@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>ALPAR AI</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        width: 340px;
+        background: #0a1622;
+        color: #e4e4e7;
+      }
+      .header {
+        padding: 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .header h2 {
+        font-size: 15px;
+        font-weight: 700;
+        color: #fff;
+      }
+      .header .domain {
+        font-size: 11px;
+        color: #00ff88;
+        margin-top: 4px;
+        word-break: break-all;
+      }
+      .content {
+        padding: 16px;
+      }
+      .count-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(0, 255, 136, 0.1);
+        border: 1px solid rgba(0, 255, 136, 0.2);
+        border-radius: 8px;
+        padding: 8px 14px;
+        margin-bottom: 12px;
+      }
+      .count-badge .num {
+        font-size: 22px;
+        font-weight: 800;
+        color: #00ff88;
+      }
+      .count-badge .label {
+        font-size: 12px;
+        color: #a1a1aa;
+      }
+      .empty {
+        font-size: 13px;
+        color: #71717a;
+        line-height: 1.5;
+      }
+      .btn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background: #00ff88;
+        color: #0a1622;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 13px;
+        margin-top: 12px;
+        cursor: pointer;
+        border: none;
+      }
+      .btn:hover {
+        opacity: 0.9;
+      }
+      .btn-outline {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: #e4e4e7;
+      }
+      .footer {
+        padding: 12px 16px;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        font-size: 10px;
+        color: #52525b;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h2>ALPAR AI</h2>
+      <div class="domain" id="domain">Loading...</div>
+    </div>
+    <div class="content">
+      <div class="count-badge" id="countBadge" style="display: none">
+        <span class="num" id="countNum">0</span>
+        <span class="label">incidents on this site</span>
+      </div>
+      <div class="empty" id="emptyMsg" style="display: none">
+        No incidents logged for this site yet.
+      </div>
+      <div id="loadingMsg" style="font-size: 12px; color: #71717a">
+        Checking ALPAR AI database...
+      </div>
+      <a id="viewBtn" class="btn" style="display: none" href="#">View Incidents</a>
+      <button id="reportBtn" class="btn btn-outline" style="margin-top: 8px">
+        Report AI Failure
+      </button>
+    </div>
+    <div class="footer">Community-governed AI accountability</div>
+    <script src="popup.js"></script>
+  </body>
+</html>

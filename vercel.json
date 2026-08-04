@@ -1,0 +1,29 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "ignoreCommand": "node scripts/deploy-gate.mjs",
+  "framework": "nextjs",
+  "regions": ["fra1"],
+  "buildCommand": "pnpm build",
+  "installCommand": "corepack enable && pnpm install --frozen-lockfile",
+  "outputDirectory": ".next",
+  "trailingSlash": false,
+  "cleanUrls": true,
+  "github": {
+    "silent": false,
+    "autoAlias": true
+  },
+  "crons": [
+    {
+      "path": "/api/cron/keep-alive",
+      "schedule": "0 0 */3 * *"
+    },
+    {
+      "path": "/api/cron/fetch-external",
+      "schedule": "0 */4 * * *"
+    },
+    {
+      "path": "/api/cron/import-incidents",
+      "schedule": "0 */6 * * *"
+    }
+  ]
+}

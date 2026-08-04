@@ -1,0 +1,18 @@
+guarded=$(git diff --cached --name-only | grep -E '^(docs/MASTER_PLAN\.md|\.husky/|\.github/workflows/plan-guard\.yml|[^/]+\.md)$' | grep -vE '^README\.md$' || true)
+if [ -n "$guarded" ] && [ "$ARCHITECT" != "1" ]; then
+  echo "BLOCKED by plan-guard (Rule #14 / #35): Architect-only paths cannot be edited without ARCHITECT=1." >&2
+  echo "$guarded" | sed 's/^/  - /' >&2
+  exit 1
+fi
+
+if [ "$ARCHITECT" = "1" ]; then
+  developer_files=$(git diff --cached --name-only | grep -vE '^(docs/.*|CLAUDE\.md|AGENTS\.md|\.github/workflows/.*|\.husky/.*|playwright\.config\.ts|package\.json|pnpm-lock\.yaml|graphify-out/.*)$' || true)
+  if [ -n "$developer_files" ]; then
+    echo "BLOCKED by role-guard (Rule #35): When ARCHITECT=1 is set, developer-only paths (src/, tests/, migrations/, etc.) cannot be modified." >&2
+    echo "$developer_files" | sed 's/^/  - /' >&2
+    exit 1
+  fi
+fi
+
+npx lint-staged
+python -m graphify update . 2>/dev/null || true

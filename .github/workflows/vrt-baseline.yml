@@ -1,0 +1,53 @@
+name: VRT Baseline Seed
+
+# One-off / on-demand: regenerates visual-regression baselines inside the same
+# ubuntu-24.04 + Playwright image that CI uses, then uploads them for review.
+# Baselines MUST be reviewed by a human and committed — they are the golden
+# reference that Doctrine #036 Rule 22 locks the UI against.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  seed-baseline:
+    name: Regenerate visual baselines
+    runs-on: ubuntu-24.04
+    env:
+      NEXT_PUBLIC_SUPABASE_URL: https://mock-supabase.supabase.co
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: mock-anon-key
+      SUPABASE_SERVICE_ROLE_KEY: mock-service-role-key-for-playwright
+      IS_PLAYWRIGHT_TEST: "true"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v6
+        with:
+          version: 9.12.0
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm exec playwright install --with-deps chromium
+
+      - run: pnpm build
+
+      - name: Start app
+        run: |
+          pnpm exec next start --port 3000 &
+          npx --yes wait-on http://127.0.0.1:3000 --timeout 120000
+
+      - name: Regenerate baselines (chromium)
+        run: pnpm exec playwright test tests/e2e/visual/ --project=chromium --update-snapshots
+
+      - name: Upload baselines for human review
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-baselines-linux
+          path: ops/visual-baseline/
+          retention-days: 30

@@ -1,0 +1,5 @@
+Contact: mailto:security@alparai.com
+Expires: 2027-07-12T10:00:00.000Z
+Preferred-Languages: en, tr
+Canonical: https://alparai.com/.well-known/security.txt
+Policy: https://alparai.com/en/security

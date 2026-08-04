@@ -1,0 +1,14 @@
+name: Test Runner
+on:
+  push:
+    branches: [master]
+    paths-ignore:
+      - "docs/**"
+      - "**/*.md"
+      - "ops/visual-baseline/**"
+      - ".vscode/**"
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello World"

@@ -1,0 +1,90 @@
+name: Security Audit
+
+on:
+  push:
+    branches: [master, main]
+    paths-ignore:
+      - "docs/**"
+      - "**/*.md"
+      - "ops/visual-baseline/**"
+      - ".vscode/**"
+  pull_request:
+    branches: [master, main]
+    paths-ignore:
+      - "docs/**"
+      - "**/*.md"
+      - "ops/visual-baseline/**"
+      - ".vscode/**"
+  schedule:
+    # Doctrine #037 Rule 23 — nightly 03:00 UTC autonomous security & dependency scan
+    - cron: "0 3 * * *"
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  pnpm-audit:
+    name: Dependency Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+        with:
+          version: 9.12.0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Check for high severity vulnerabilities
+        continue-on-error: false
+        run: pnpm audit --prod --audit-level=high
+
+  gitleaks:
+    name: Gitleaks Secrets Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Gitleaks Scan
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  secretlint:
+    name: Secretlint Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 20
+      - run: npx secretlint --secretlintignore .gitignore "**/*"
+
+  semgrep:
+    name: Semgrep Scan
+    runs-on: ubuntu-latest
+    container:
+      image: semgrep/semgrep
+    steps:
+      - uses: actions/checkout@v7
+      - name: Semgrep CI
+        continue-on-error: true
+        run: semgrep ci --config auto
+
+  trivy:
+    name: Trivy Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Trivy Vulnerability Scanner
+        continue-on-error: true
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: "fs"
+          ignore-unfixed: true
+          format: "table"
+          exit-code: "1"
+          severity: "HIGH,CRITICAL"

@@ -1,0 +1,48 @@
+-- Migration: Sync 44 confirmed LinkedIn outreach contacts status to 'added' for 100% git tracking reproducibility
+-- Timestamp: 20260729000005
+-- ROLLBACK: UPDATE public.linkedin_contacts SET status = 'to_add' WHERE status = 'added';
+
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/yacine-jernite-997ba81b6/', updated_at = NOW() WHERE full_name = 'Yacine Jernite';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/seanbmcgregor/', updated_at = NOW() WHERE full_name = 'Sean McGregor';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/danielmiessler/', updated_at = NOW() WHERE full_name = 'Daniel Miessler';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/danqic/', updated_at = NOW() WHERE full_name = 'Danqi Chen';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/rumman/', updated_at = NOW() WHERE full_name = 'Rumman Chowdhury';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/avivovadya/', updated_at = NOW() WHERE full_name = 'Aviv Ovadya';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/sven-cattell-5748a311/', updated_at = NOW() WHERE full_name = 'Sven Cattell';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = '', updated_at = NOW() WHERE full_name = 'Daniela Amodei';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = '', updated_at = NOW() WHERE full_name = 'Dario Amodei';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = '', updated_at = NOW() WHERE full_name = 'Irene Solaiman';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/ancadianadragan/', updated_at = NOW() WHERE full_name = 'Anca Dragan';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/tristanjharris/', updated_at = NOW() WHERE full_name = 'Tristan Harris';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/nick-bostrom-b5272213a/', updated_at = NOW() WHERE full_name = 'Nick Bostrom';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/jack-clark-10825b114/', updated_at = NOW() WHERE full_name = 'Jack Clark';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = '', updated_at = NOW() WHERE full_name = 'Yann LeCun';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/bengio/', updated_at = NOW() WHERE full_name = 'Samy Bengio';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = '', updated_at = NOW() WHERE full_name = 'Ilya Sutskever';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = '', updated_at = NOW() WHERE full_name = 'Andrej Karpathy';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = '', updated_at = NOW() WHERE full_name = 'Jan Leike';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/stuartjonathanrussell/', updated_at = NOW() WHERE full_name = 'Stuart Russell';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/max-tegmark-68a99898/', updated_at = NOW() WHERE full_name = 'Max Tegmark';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/buolamwini/', updated_at = NOW() WHERE full_name = 'Joy Buolamwini';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/timnit-gebru-7b3b407/', updated_at = NOW() WHERE full_name = 'Timnit Gebru';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/margaret-mitchell-9b13429/', updated_at = NOW() WHERE full_name = 'Margaret Mitchell';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/percy-liang-717b8a/', updated_at = NOW() WHERE full_name = 'Percy Liang';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/dawn-song-51586033/', updated_at = NOW() WHERE full_name = 'Dawn Song';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/pushmeet-kohli-4838994/', updated_at = NOW() WHERE full_name = 'Pushmeet Kohli';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/dan-boneh-8b599020/', updated_at = NOW() WHERE full_name = 'Dan Boneh';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/demishassabis/', updated_at = NOW() WHERE full_name = 'Demis Hassabis';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/randomwalker/', updated_at = NOW() WHERE full_name = 'Arvind Narayanan';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/ksayash/', updated_at = NOW() WHERE full_name = 'Sayash Kapoor';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/cbfinn/', updated_at = NOW() WHERE full_name = 'Chelsea Finn';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/pieterabbeel/', updated_at = NOW() WHERE full_name = 'Pieter Abbeel';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/sergey-levine-5a31a24/', updated_at = NOW() WHERE full_name = 'Sergey Levine';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/christopher-manning-011575/', updated_at = NOW() WHERE full_name = 'Christopher Manning';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/ellie-pavlick-5499b2270/', updated_at = NOW() WHERE full_name = 'Ellie Pavlick';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/yejin-choi-0b900b1/', updated_at = NOW() WHERE full_name = 'Yejin Choi';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/helen-toner-226b8916/', updated_at = NOW() WHERE full_name = 'Helen Toner';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/paul-christiano-5089211bb/', updated_at = NOW() WHERE full_name = 'Paul Christiano';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/colin-burns-87a562171/', updated_at = NOW() WHERE full_name = 'Collin Burns';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/jared-kaplan-645843213/', updated_at = NOW() WHERE full_name = 'Jared Kaplan';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/alex-rush-992119161/', updated_at = NOW() WHERE full_name = 'Alexander Rush';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/dan-hendrycks-04062395/', updated_at = NOW() WHERE full_name = 'Dan Hendrycks';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = '', updated_at = NOW() WHERE full_name = 'Yoshua Bengio';

@@ -1,0 +1,121 @@
+name: Scheduled Cron Jobs
+
+on:
+  schedule:
+    # Run every 10 minutes for fast backfill tasks
+    - cron: "*/10 * * * *"
+    # Run every hour on the hour for scheduled/daily tasks
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+jobs:
+  run-crons:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger translate-backfill (Every 10 minutes)
+        if: github.event.schedule == '*/10 * * * *'
+        run: |
+          curl -X GET "https://alparai.com/api/cron/translate-backfill" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            -H "x-vercel-cron: 1" \
+            --fail --show-error
+
+      - name: Trigger ai-heartbeat model health check (Every 10 minutes)
+        if: github.event.schedule == '*/10 * * * *'
+        run: |
+          curl -X GET "https://alparai.com/api/cron/ai-heartbeat" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            -H "x-vercel-cron: 1" \
+            --fail --show-error
+
+      - name: Hourly and Daily Cron Dispatcher
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 * * * *'
+        run: |
+          # Get current UTC hour, day of month, month, day of week
+          HOUR=$(date -u +%H)
+          DOM=$(date -u +%d)
+          MONTH=$(date -u +%m)
+          DOW=$(date -u +%u) # 1 (Monday) to 7 (Sunday)
+
+          echo "Running hourly dispatcher at UTC hour: $HOUR, DOM: $DOM, Month: $MONTH, DOW: $DOW"
+
+          # Helper function to trigger a cron endpoint
+          trigger_cron() {
+            local path="$1"
+            echo "Triggering: $path"
+            curl -X GET "https://alparai.com$path" \
+              -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+              -H "x-vercel-cron: 1" \
+              --fail --show-error || echo "::error::Failed to trigger $path"
+          }
+
+          # Hourly triggers (runs every hour)
+          trigger_cron "/api/cron/outreach"
+
+          # 0:00 UTC (moderation-sla-alarm)
+          if [ "$HOUR" = "00" ]; then
+            trigger_cron "/api/cron/moderation-sla-alarm"
+          fi
+
+          # 1:00 UTC (k-provider-preview)
+          if [ "$HOUR" = "01" ]; then
+            trigger_cron "/api/cron/k-provider-preview"
+          fi
+
+          # 2:00 UTC (import-incidents aiaaic, k-model-retirement)
+          if [ "$HOUR" = "02" ]; then
+            trigger_cron "/api/cron/import-incidents?source=aiaaic"
+            trigger_cron "/api/cron/k-model-retirement"
+          fi
+
+          # 3:00 UTC (import-incidents aiid, process-deletions, hard-delete)
+          if [ "$HOUR" = "03" ]; then
+            trigger_cron "/api/cron/import-incidents?source=aiid"
+            trigger_cron "/api/cron/process-deletions"
+            trigger_cron "/api/cron/hard-delete"
+          fi
+
+          # 4:00 UTC (fetch-external, quota-snapshot)
+          if [ "$HOUR" = "04" ]; then
+            trigger_cron "/api/cron/fetch-external"
+            trigger_cron "/api/cron/quota-snapshot"
+          fi
+
+          # 5:00 UTC (retro-audit)
+          if [ "$HOUR" = "05" ]; then
+            trigger_cron "/api/cron/retro-audit"
+          fi
+
+          # 6:00 UTC (cost-alarm, security-audit - daily)
+          if [ "$HOUR" = "06" ]; then
+            trigger_cron "/api/cron/cost-alarm"
+            trigger_cron "/api/cron/security-audit"
+          fi
+
+          # 8:00 UTC (verify-geo-citations - daily/weekly)
+          if [ "$HOUR" = "08" ]; then
+            trigger_cron "/api/cron/verify-geo-citations"
+            if [ "$DOW" = "7" ]; then
+              trigger_cron "/api/cron/k-weekly-refresh"
+            fi
+          fi
+
+          # 8:00 UTC Aug 9 (kill-metric)
+          if [ "$HOUR" = "08" ] && [ "$DOM" = "09" ] && [ "$MONTH" = "08" ]; then
+            trigger_cron "/api/cron/kill-metric"
+          fi
+
+          # 8:00 UTC Sep 1 (pivot-check)
+          if [ "$HOUR" = "08" ] && [ "$DOM" = "01" ] && [ "$MONTH" = "09" ]; then
+            trigger_cron "/api/cron/pivot-check"
+          fi
+
+          # 9:00 UTC (generate-marketing)
+          if [ "$HOUR" = "09" ]; then
+            trigger_cron "/api/cron/generate-marketing"
+          fi
+
+          # 10:00 UTC Monday (newsletter)
+          if [ "$HOUR" = "10" ] && [ "$DOW" = "1" ]; then
+            trigger_cron "/api/cron/newsletter"
+          fi

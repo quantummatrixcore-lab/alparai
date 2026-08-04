@@ -1,0 +1,81 @@
+name: Architect Trigger
+
+on:
+  schedule:
+    - cron: "0 8 * * *"
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  phase-boundary:
+    name: PHASE BOUNDARY Trigger
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Count pending items in MASTER_PLAN.md
+        id: count
+        run: |
+          COUNT=$(grep -ow "pending" docs/MASTER_PLAN.md | wc -l | tr -d ' ')
+          echo "pending_count=$COUNT" >> "$GITHUB_OUTPUT"
+          echo "Pending items in MASTER_PLAN.md: $COUNT"
+
+      - name: Check for existing open PHASE BOUNDARY issue
+        id: existing
+        if: steps.count.outputs.pending_count == '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          N=$(gh issue list --state open --search "PHASE BOUNDARY in:title" --json number --jq 'length' 2>/dev/null || echo 0)
+          echo "open_count=$N" >> "$GITHUB_OUTPUT"
+
+      - name: Open PHASE BOUNDARY issue
+        if: steps.count.outputs.pending_count == '0' && steps.existing.outputs.open_count == '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create architect-review --description "Phase boundary review requested by the Architect Trigger workflow" --force
+          gh issue create \
+            --title "PHASE BOUNDARY: no pending items in MASTER_PLAN.md" \
+            --label architect-review \
+            --body "The daily architect trigger found zero \`pending\` status items in \`docs/MASTER_PLAN.md\`. All tracked work items are closed or in progress — phase planning is required."
+
+  security-audit:
+    name: SECURITY Vulnerabilities Trigger
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+        with:
+          version: 9.12.0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      - name: Run pnpm audit for high severity
+        id: audit
+        continue-on-error: true
+        run: pnpm audit --prod --audit-level=high
+
+      - name: Check for existing open SECURITY issue
+        id: existing
+        if: steps.audit.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          N=$(gh issue list --state open --search "SECURITY: vulnerabilities found in:title" --json number --jq 'length' 2>/dev/null || echo 0)
+          echo "open_count=$N" >> "$GITHUB_OUTPUT"
+
+      - name: Open SECURITY issue
+        if: steps.audit.outcome == 'failure' && steps.existing.outputs.open_count == '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "SECURITY: vulnerabilities found" \
+            --body "The daily dependency audit (\`pnpm audit --prod --audit-level=high\`) reported high-severity vulnerabilities. Run \`pnpm audit\` locally for details and remediate."

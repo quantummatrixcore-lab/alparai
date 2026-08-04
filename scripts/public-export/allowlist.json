@@ -1,0 +1,127 @@
+{
+  "version": "1.0.0",
+  "description": "Allowlist for public repo export — defaults to DENY unless explicitly listed (allowlist pattern, not denylist)",
+  "lastUpdated": "2026-08-03",
+  "rules": [
+    {
+      "comment": "Application source code — core product logic",
+      "patterns": ["src/**/*.ts", "src/**/*.tsx"]
+    },
+    {
+      "comment": "Database schema migrations — structure only, no seed data",
+      "patterns": ["supabase/migrations/**/*.sql"],
+      "exclude": ["supabase/migrations/**/seed_*.sql", "supabase/migrations/**/*_fake_*.sql"]
+    },
+    {
+      "comment": "Public assets — images, fonts, static files",
+      "patterns": ["public/**/*"]
+    },
+    {
+      "comment": "Translations — user-facing content",
+      "patterns": ["messages/**/*.json"]
+    },
+    {
+      "comment": "Configuration files — project setup",
+      "patterns": [
+        "package.json",
+        "tsconfig.json",
+        "next.config.mjs",
+        "tailwind.config.js",
+        "eslint.config.mjs",
+        "prettier.config.mjs",
+        "vitest.config.ts",
+        "playwright.config.ts"
+      ]
+    },
+    {
+      "comment": "Tests — test coverage and patterns",
+      "patterns": ["tests/**/*.ts", "tests/**/*.tsx"]
+    },
+    {
+      "comment": "License and core documentation",
+      "patterns": ["LICENSE", "README.md", "CLAUDE.md", "AGENTS.md"]
+    },
+    {
+      "comment": "GitHub workflows and CI/CD (enforcement layer allowed per G-6)",
+      "patterns": [".github/workflows/**/*.yml"]
+    },
+    {
+      "comment": "Git configuration",
+      "patterns": [".gitignore"]
+    }
+  ],
+  "blocked": {
+    "comment": "Always blocked — business documents, strategy, financial data",
+    "patterns": [
+      "**/MASTER_PLAN*",
+      "**/APPLICATIONS/**",
+      "**/finance/**",
+      "**/strategy/**",
+      "**/strateg*",
+      "**/secret*",
+      "**/private*",
+      ".env*",
+      "*.key",
+      "*.pem"
+    ]
+  },
+  "automatedFilters": [
+    {
+      "name": "filename-blacklist",
+      "description": "Second-layer defense: files containing blocked keywords in path",
+      "keywords": ["MASTER_PLAN", "APPLICATIONS", "finance", "strategy", "secret", ".env"]
+    },
+    {
+      "name": "secret-scan",
+      "description": "Third-layer defense: detects API keys, tokens, credentials via pattern scanning",
+      "patterns": [
+        "RESEND_API_KEY",
+        "SUPABASE_SERVICE_ROLE_KEY",
+        "OPENAI_API_KEY",
+        "ANTHROPIC_API_KEY",
+        "private.*key",
+        "-----BEGIN.*PRIVATE",
+        "authorization.*bearer",
+        "password.*=",
+        "token.*=",
+        "sk_live_",
+        "sk_test_"
+      ]
+    },
+    {
+      "name": "pii-scan",
+      "description": "Fourth-layer defense: uses guardian.ts patterns to detect PII",
+      "patterns": [
+        "turkish_identity",
+        "phone_number",
+        "email_address",
+        "credit_card",
+        "bank_account"
+      ]
+    }
+  ],
+  "approvalGates": [
+    {
+      "name": "workflow-dispatch",
+      "description": "Triggered only via GitHub UI, never automatic"
+    },
+    {
+      "name": "required-reviewers",
+      "description": "Requires human approval from production-public-sync environment"
+    }
+  ],
+  "branchProtection": {
+    "description": "Public repo has no direct push — only bot token via workflow",
+    "rules": ["no-direct-push-to-all-users", "only-bot-token-write", "require-pr-for-all-changes"]
+  },
+  "auditLogging": {
+    "description": "Private repo maintains immutable log of all syncs",
+    "tracked": [
+      "timestamp",
+      "triggered_by",
+      "file_list_hash",
+      "scan_results",
+      "public_repo_commit_sha"
+    ]
+  }
+}

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="64" height="64" fill="none">
+  <defs>
+    <!-- Left Shield elements gradient (Fuchsia -> Purple) -->
+    <linearGradient id="logo-left-grad" x1="50" y1="20" x2="26" y2="84" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#d946ef" />
+      <stop offset="100%" stop-color="#a855f7" />
+    </linearGradient>
+
+    <!-- Right Tech elements gradient (Cyan -> Teal/Blue) -->
+    <linearGradient id="logo-right-grad" x1="50" y1="30" x2="85" y2="68" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#22d3ee" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+
+    <!-- Symmetrical border gradient (Fuchsia -> Purple -> Cyan) -->
+    <linearGradient id="logo-border-grad" x1="15" y1="50" x2="85" y2="50" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#d946ef" />
+      <stop offset="50%" stop-color="#a855f7" />
+      <stop offset="100%" stop-color="#22d3ee" />
+    </linearGradient>
+
+    <!-- Shield glassmorphism body fill gradient -->
+    <linearGradient id="logo-shield-fill-grad" x1="50" y1="20" x2="26" y2="84" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#c084fc" stop-opacity="0.08" />
+      <stop offset="100%" stop-color="#0a0f1e" stop-opacity="0.55" />
+    </linearGradient>
+
+    <!-- Center divider/sword column gradient -->
+    <linearGradient id="logo-center-grad" x1="50" y1="20" x2="50" y2="84" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#c084fc" />
+    </linearGradient>
+
+    <!-- Premium neon glow effect -->
+    <filter id="logo-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Full Shield Body for Glassmorphism Fill (Symmetric) -->
+  <path
+    d="M 50,15 C 28,17 15,22 15,25 V 50 C 15,70 32,82 50,88 C 68,82 85,70 85,50 V 25 C 85,22 72,17 50,15 Z"
+    fill="url(#logo-shield-fill-grad)"
+  />
+
+  <!-- Symmetrical Shield Neon Border -->
+  <path
+    d="M 50,15 C 28,17 15,22 15,25 V 50 C 15,70 32,82 50,88 C 68,82 85,70 85,50 V 25 C 85,22 72,17 50,15 Z"
+    stroke="url(#logo-border-grad)"
+    stroke-width="3.2"
+    stroke-linejoin="round"
+  />
+
+  <!-- Center Sword / Divider Column (Symmetric) -->
+  <path
+    d="M 50,22 V 78"
+    stroke="url(#logo-center-grad)"
+    stroke-width="3.2"
+    stroke-linecap="round"
+  />
+  <!-- Hilt / Base pedestal -->
+  <path
+    d="M 42,78 H 58"
+    stroke="url(#logo-center-grad)"
+    stroke-width="3.2"
+    stroke-linecap="round"
+  />
+  <!-- Top Finial Node -->
+  <circle
+    cx="50"
+    cy="22"
+    r="2.5"
+    fill="#ffffff"
+    stroke="#a855f7"
+    stroke-width="1.2"
+    filter="url(#logo-glow)"
+  />
+
+  <!-- Symmetrical Scales of Justice -->
+  <!-- Scale Beam -->
+  <path
+    d="M 30,36 H 70"
+    stroke="url(#logo-center-grad)"
+    stroke-width="2.8"
+    stroke-linecap="round"
+  />
+
+  <!-- Left Scale Pan -->
+  <path
+    d="M 30,36 L 22,54 L 38,54 Z"
+    stroke="url(#logo-left-grad)"
+    stroke-width="1.6"
+    stroke-linejoin="round"
+    fill="url(#logo-left-grad)"
+    fill-opacity="0.05"
+  />
+  <path
+    d="M 18,54 H 42"
+    stroke="url(#logo-left-grad)"
+    stroke-width="2.2"
+    stroke-linecap="round"
+  />
+  <path
+    d="M 21,54 C 21,61 39,61 39,54 Z"
+    fill="url(#logo-left-grad)"
+    fill-opacity="0.75"
+  />
+
+  <!-- Right Scale Pan -->
+  <path
+    d="M 70,36 L 62,54 L 78,54 Z"
+    stroke="url(#logo-right-grad)"
+    stroke-width="1.6"
+    stroke-linejoin="round"
+    fill="url(#logo-right-grad)"
+    fill-opacity="0.05"
+  />
+  <path
+    d="M 58,54 H 82"
+    stroke="url(#logo-right-grad)"
+    stroke-width="2.2"
+    stroke-linecap="round"
+  />
+  <path
+    d="M 61,54 C 61,61 79,61 79,54 Z"
+    fill="url(#logo-right-grad)"
+    fill-opacity="0.75"
+  />
+
+  <!-- Symmetrical AI Tech Circuits (Branching Symmetrically) -->
+  <!-- Top Circuit Traces -->
+  <path
+    d="M 50,48 H 36 L 31,43 H 26"
+    stroke="url(#logo-left-grad)"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <circle
+    cx="23"
+    cy="43"
+    r="2.5"
+    fill="#ffffff"
+    stroke="#d946ef"
+    stroke-width="1.2"
+    filter="url(#logo-glow)"
+  />
+
+  <path
+    d="M 50,48 H 64 L 69,43 H 74"
+    stroke="url(#logo-right-grad)"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <circle
+    cx="77"
+    cy="43"
+    r="2.5"
+    fill="#ffffff"
+    stroke="#22d3ee"
+    stroke-width="1.2"
+    filter="url(#logo-glow)"
+  />
+
+  <!-- Bottom Circuit Traces -->
+  <path
+    d="M 50,65 H 38 L 34,70 H 28"
+    stroke="url(#logo-left-grad)"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <circle
+    cx="25"
+    cy="70"
+    r="2.5"
+    fill="#ffffff"
+    stroke="#d946ef"
+    stroke-width="1.2"
+    filter="url(#logo-glow)"
+  />
+
+  <path
+    d="M 50,65 H 62 L 66,70 H 72"
+    stroke="url(#logo-right-grad)"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <circle
+    cx="75"
+    cy="70"
+    r="2.5"
+    fill="#ffffff"
+    stroke="#22d3ee"
+    stroke-width="1.2"
+    filter="url(#logo-glow)"
+  />
+</svg>

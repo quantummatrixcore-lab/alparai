@@ -1,0 +1,17 @@
+{
+  "model": "opencode/deepseek-v4-flash-free",
+  "command": "opencode run \"Create a new Supabase database migration file to clean up fake/placeholder finance costs data in the 'public.finance_monthly_costs' table. Specifically: 1. Drop the NOT NULL constraint on 'amount_usd' so that it can be set to NULL (indicating unmeasured/unverified values). 2. Add a 'source' column (text, default 'manual') to the 'public.finance_monthly_costs' table to track cost source. 3. Update existing 'vercel' records to $0.00 amount_usd and $0.00 budget_usd, setting metadata to show plan_name 'Hobby'. 4. Update the remaining 6 services ('gemini', 'anthropic', 'upstash', 'buffer', 'supabase', 'resend') to have amount_usd = NULL (unmeasured) since they cannot be cross-verified. 5. Make sure the migration file contains a rollback block '-- ROLLBACK:'.\"",
+  "exit_code": 1,
+  "duration_ms": 339620,
+  "git_sha": "02c88a2c643d42f5accb868b601dfc98ea395210",
+  "task_ref": 79,
+  "attempt_no": 1,
+  "role": "uygulayici",
+  "diagnosis": "Fake finance costs data cleaned up via database migration adding source column.",
+  "gates": {
+    "lint": 0,
+    "typecheck": 2,
+    "test": 0,
+    "build": 0
+  }
+}

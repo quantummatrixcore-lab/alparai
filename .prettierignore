@@ -1,0 +1,8 @@
+public/openapi.yaml
+node_modules
+.next
+.vercel
+.turbo
+coverage
+pnpm-lock.yaml
+src/types/database.ts

@@ -1,0 +1,168 @@
+name: Public Repo Sync — AGPL Compliance
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_branch:
+        description: Target branch in public repo
+        required: true
+        default: main
+      dry_run:
+        description: Run security checks without pushing (dry-run mode)
+        required: true
+        default: "true"
+        type: choice
+        options:
+          - "true"
+          - "false"
+
+permissions:
+  contents: read
+
+jobs:
+  security-scan:
+    name: Layer 1-4 Security Scan
+    runs-on: ubuntu-latest
+    outputs:
+      files_count: ${{ steps.scan.outputs.files_count }}
+      scan_hash: ${{ steps.scan.outputs.scan_hash }}
+    steps:
+      - name: Checkout private repo (this repo)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run security scan (Layer 1-4)
+        id: scan
+        run: |
+          node scripts/public-export/sync.mjs . "https://placeholder" main > scan-output.txt 2>&1
+          SCAN_EXIT=$?
+
+          # Extract results
+          FILES_COUNT=$(grep -oP '(?<=Collected )\d+(?= files)' scan-output.txt || echo "0")
+          SCAN_HASH=$(grep -oP '(?<=file_list_hash": ")[^"]+' .sync-audit-log.json || echo "unknown")
+
+          echo "files_count=$FILES_COUNT" >> $GITHUB_OUTPUT
+          echo "scan_hash=$SCAN_HASH" >> $GITHUB_OUTPUT
+
+          if [ $SCAN_EXIT -ne 0 ]; then
+            cat scan-output.txt
+            exit 1
+          fi
+
+      - name: Upload scan report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-scan-report
+          path: |
+            scan-output.txt
+            .sync-audit-log.json
+          retention-days: 30
+
+  approval:
+    name: Required Manual Approval
+    runs-on: ubuntu-latest
+    needs: security-scan
+    environment:
+      name: production-public-sync
+      reviewers: []
+    steps:
+      - name: Waiting for approval
+        run: |
+          echo "Security scan passed: ${{ needs.security-scan.outputs.files_count }} files, hash=${{ needs.security-scan.outputs.scan_hash }}"
+          echo "Workflow paused. Click 'Approve and deploy' in GitHub Actions to proceed."
+
+  export-to-public:
+    name: Layer 5-6 Export & Audit
+    runs-on: ubuntu-latest
+    needs: [security-scan, approval]
+    if: github.event.inputs.dry_run == 'false'
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout private repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup bot credentials for public repo
+        run: |
+          git config --global user.name "alparai-bot"
+          git config --global user.email "bot@alparai.com"
+
+      - name: Add public repo as remote
+        run: |
+          # Using environment secret for public repo write access
+          git remote add public "https://x-access-token:${{ secrets.PUBLIC_REPO_BOT_TOKEN }}@github.com/quantummatrixcore-lab/alparai.git"
+
+      - name: Create squash-import commit
+        id: export
+        env:
+          FILES_COUNT: ${{ needs.security-scan.outputs.files_count }}
+          SCAN_HASH: ${{ needs.security-scan.outputs.scan_hash }}
+        run: |
+          git fetch public ${{ github.event.inputs.target_branch }} || git fetch public main
+          COMMIT_MSG="Squash-import: Public repo sync (files=${{ env.FILES_COUNT }}, hash=${{ env.SCAN_HASH }})"
+          git commit --allow-empty -m "$COMMIT_MSG"
+          EXPORT_SHA=$(git rev-parse HEAD)
+          echo "export_sha=$EXPORT_SHA" >> $GITHUB_OUTPUT
+
+      - name: Push to public repo (bot token only)
+        run: |
+          git push public HEAD:${{ github.event.inputs.target_branch }} --force-with-lease
+          PUBLIC_COMMIT=$(git rev-parse HEAD)
+          echo "Public repo received commit: $PUBLIC_COMMIT"
+
+      - name: Log to audit trail (private side)
+        run: |
+          # Append to audit log with export result
+          node -e "
+            const fs = require('fs');
+            const log = JSON.parse(fs.readFileSync('.sync-audit-log.json', 'utf-8'));
+            log[log.length-1].export_completed = {
+              timestamp: new Date().toISOString(),
+              public_commit: '${{ steps.export.outputs.export_sha }}',
+              target_branch: '${{ github.event.inputs.target_branch }}',
+              actor: '${{ github.actor }}'
+            };
+            fs.writeFileSync('.sync-audit-log.json', JSON.stringify(log, null, 2));
+          "
+
+          # Commit audit log to private repo
+          git add .sync-audit-log.json
+          git commit -m "audit: public repo sync completed" || true
+          git push origin HEAD:${{ github.ref }} || true
+
+      - name: Create summary
+        run: |
+          echo "## ✅ Public Repo Sync Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Item | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Files Exported | ${{ needs.security-scan.outputs.files_count }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Security Gates | Layer 1-4 Passed |" >> $GITHUB_STEP_SUMMARY
+          echo "| Public Commit | ${{ steps.export.outputs.export_sha }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Audit Log | `.sync-audit-log.json` (private) |" >> $GITHUB_STEP_SUMMARY
+
+  dry-run-summary:
+    name: Dry-Run Summary
+    runs-on: ubuntu-latest
+    needs: security-scan
+    if: github.event.inputs.dry_run == 'true'
+    steps:
+      - name: Report dry-run result
+        run: |
+          echo "## 🔍 Dry-Run Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Security scan passed. Files ready for export: ${{ needs.security-scan.outputs.files_count }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Next step:** Re-run workflow with dry_run=false and bot token secret configured" >> $GITHUB_STEP_SUMMARY

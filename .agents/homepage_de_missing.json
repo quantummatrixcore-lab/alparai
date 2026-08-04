@@ -1,0 +1,255 @@
+[
+  ["hero.bug_bounty_badge", "AI Bug Bounty", "DE"],
+  ["hero.why_stat_1_display", "10-20%", "DE"],
+  ["hero.why_stat_2_display", "96%", "DE"],
+  ["hero.why_stat_3_display", "ZERO", "DE"],
+  ["hero.why_stat_4_display", "ZERO", "DE"],
+  ["hero.why_title", "Why this matters", "DE"],
+  [
+    "hero.why_subtitle",
+    "AI is advancing faster than the rules that govern it. Here's why the world needs ALPAR now.",
+    "DE"
+  ],
+  ["hero.why_stat_1_title", "10-20% extinction risk", "DE"],
+  [
+    "hero.why_stat_1_desc",
+    "Geoffrey Hinton, Nobel laureate and godfather of AI, estimates a 10-20% probability AI leads to human extinction within 30 years.",
+    "DE"
+  ],
+  ["hero.why_stat_2_title", "96% of experts agree", "DE"],
+  [
+    "hero.why_stat_2_desc",
+    "Harvard University study (March 2026): 96% of surveyed experts agree mitigating AI existential risk should be a global priority.",
+    "DE"
+  ],
+  ["hero.why_stat_3_title", "Zero independent oversight", "DE"],
+  [
+    "hero.why_stat_3_desc",
+    "No independent, community-governed global standard for AI ethics exists today. AI companies grade their own exams.",
+    "DE"
+  ],
+  [
+    "hero.why_stat_4_title",
+    "Provider-run transparency reports that include user-submitted failures",
+    "DE"
+  ],
+  [
+    "hero.why_stat_4_desc",
+    "AI companies publish safety reports about their own products. ALPAR AI publishes the reports they don't.",
+    "DE"
+  ],
+  [
+    "hero.why_bridging_text",
+    "These are not hypothetical risks. They are happening today — in hospitals, courtrooms, schools, and banks. ALPAR AI exists because someone needs to keep score.",
+    "DE"
+  ],
+  ["hero.how_title", "How it works", "DE"],
+  ["hero.how_subtitle", "Four steps from incident to accountability.", "DE"],
+  ["hero.how_step_1_title", "The Platform Receives", "DE"],
+  [
+    "hero.how_step_1_desc",
+    "Screenshot the moment. Describe what happened. 60 seconds. Account required — identity protected, never published. The platform receives your evidence and enters it into the public record — untouchable by the AI company.",
+    "DE"
+  ],
+  ["hero.how_step_2_title", "The Platform Verifies", "DE"],
+  [
+    "hero.how_step_2_desc",
+    "Trained moderators review every report. ALPAR AI cross-audits across 5 independent AI models. All personal data is automatically masked — no email, phone, or ID ever stored in plain text.",
+    "DE"
+  ],
+  ["hero.how_step_3_title", "The Platform Notifies", "DE"],
+  [
+    "hero.how_step_3_desc",
+    "The AI company receives an official notification within 24 hours. Their response — or their silence — is recorded by the platform. Both tell a story. Neither can be erased.",
+    "DE"
+  ],
+  ["hero.how_step_4_title", "The Record is Permanent", "DE"],
+  [
+    "hero.how_step_4_desc",
+    "Verified incidents cannot be deleted, suppressed, or edited by providers. ALPAR AI makes them source material for regulators, journalists, researchers, and courts. Every documented case protects the next person.",
+    "DE"
+  ],
+  ["hero.trust_title", "Built on trust", "DE"],
+  [
+    "hero.trust_subtitle",
+    "Every design decision serves one goal: making AI accountable to humanity.",
+    "DE"
+  ],
+  ["hero.trust_1_title", "Open Source", "DE"],
+  [
+    "hero.trust_1_desc",
+    "AGPL-3.0 licensed. Anyone can audit the code, run an instance, or contribute.",
+    "DE"
+  ],
+  ["hero.trust_2_title", "EU Data Hosted", "DE"],
+  [
+    "hero.trust_2_desc",
+    "All data stored in EU (Supabase eu-west-1, Vercel fra1). GDPR-aligned by design.",
+    "DE"
+  ],
+  ["hero.trust_3_title", "PII Guardian", "DE"],
+  [
+    "hero.trust_3_desc",
+    "Auto-masking of emails, phones, IDs, and credit cards before data reaches the database.",
+    "DE"
+  ],
+  ["hero.trust_4_title", "Intermediary, Not Publisher", "DE"],
+  [
+    "hero.trust_4_desc",
+    "EU E-Commerce Directive Art. 14 aligned. We host. Users own their content.",
+    "DE"
+  ],
+  ["hero.join_title", "Four Ways to Fight Back", "DE"],
+  ["hero.join_subtitle", "Every role matters. Choose yours.", "DE"],
+  ["hero.join_cta_1", "You Were There. Document It.", "DE"],
+  [
+    "hero.join_cta_1_desc",
+    "Upload evidence, describe what happened, choose your privacy level. Published within 72 hours. Your report joins verified cases.",
+    "DE"
+  ],
+  ["hero.join_cta_1_btn", "Report in 60 Seconds →", "DE"],
+  ["hero.join_cta_1_tag", "Account required — identity protected", "DE"],
+  ["hero.join_cta_2", "First 100. Permanent Recognition.", "DE"],
+  [
+    "hero.join_cta_2_desc",
+    "The first 100 reporters earn a permanent Founding Reporter badge on their profile, voting rights on platform decisions, and all premium features free — forever. Limited spots remain.",
+    "DE"
+  ],
+  ["hero.join_cta_2_btn", "Claim Your Spot →", "DE"],
+  ["hero.join_cta_2_tag", "Closing when full", "DE"],
+  ["hero.join_cta_3", "Researchers. Journalists. Regulators.", "DE"],
+  [
+    "hero.join_cta_3_desc",
+    "We provide anonymized incident datasets, API access, and early notifications of high-severity cases. Research institutions already in dialogue.",
+    "DE"
+  ],
+  ["hero.join_cta_3_btn", "Start a Conversation →", "DE"],
+  ["hero.join_cta_3_tag", "Institutional access", "DE"],
+  ["hero.join_cta_4", "How We Decide What's True", "DE"],
+  [
+    "hero.join_cta_4_desc",
+    "Our 5-model cross-audit engine, moderation standards, and truth scoring methodology are fully documented and open to scrutiny.",
+    "DE"
+  ],
+  ["hero.join_cta_4_btn", "Read the Methodology →", "DE"],
+  ["hero.join_cta_4_tag", "Open source", "DE"],
+  ["hero.closing_title", "The next AI incident might affect you.", "DE"],
+  [
+    "hero.closing_subtitle",
+    "Or your parent. Or your doctor. Or your judge. ALPAR AI is the platform where AI's real-world behavior is documented, verified, and made permanently accessible. Because AI systems that are never questioned never get better.",
+    "DE"
+  ],
+  ["hero.closing_good_news_title", "Every report ALPAR AI records makes AI safer.", "DE"],
+  [
+    "hero.closing_good_news_body",
+    "When incidents enter the permanent public record, AI companies improve their systems. When providers respond officially, the public gets answers. When courts cite ALPAR AI reports, accountability has evidence. No one faces AI manipulation alone. Every documented case is part of the first permanent record that refused to let AI cause harm in silence.",
+    "DE"
+  ],
+  ["hero.closing_good_news_cta", "Add to the Record →", "DE"],
+  ["hero.zero_tolerance", "Zero Tolerance. 100% Transparency.", "DE"],
+  ["feed.feed_tab_for_you", "For You", "DE"],
+  ["feed.feed_tab_latest", "Latest", "DE"],
+  ["feed.feed_tab_trending", "Trending", "DE"],
+  ["feed.feed_tab_following", "Following", "DE"],
+  ["feed.shareOnX", "Share on X", "DE"],
+  ["feed.shareOnLinkedIn", "Share on LinkedIn", "DE"],
+  ["feed.copyForInstagram", "Copy for Instagram", "DE"],
+  ["feed.shareOnWhatsApp", "Share on WhatsApp", "DE"],
+  ["feed.truthScore", "Truth Score", "DE"],
+  ["feed.upvote", "Upvote", "DE"],
+  ["feed.downvote", "Downvote", "DE"],
+  ["moderation.title", "Content Moderation Policy — ALPAR AI", "DE"],
+  [
+    "moderation.description",
+    "Rules and guidelines for submitting and moderating incident reports on ALPAR AI.",
+    "DE"
+  ],
+  ["moderation.badge", "PLATFORM RULES", "DE"],
+  ["moderation.headline", "Content Moderation Guidelines", "DE"],
+  [
+    "moderation.subtitle",
+    "We aim to document real-world AI failures with maximum truthfulness, transparency, and fairness. These guidelines explain how content is verified and moderated.",
+    "DE"
+  ],
+  ["moderation.rules_title", "Core Moderation Rules", "DE"],
+  [
+    "moderation.rules_subtitle",
+    "Every submission is reviewed against these baseline community standards.",
+    "DE"
+  ],
+  ["moderation.rule_1_title", "1. Factual Evidence Required", "DE"],
+  [
+    "moderation.rule_1_desc",
+    "All reported AI incidents must be accompanied by concrete evidence: screenshot files, JSON logs, or archived URL web links demonstrating the failure. Allegations without proof will not be published.",
+    "DE"
+  ],
+  ["moderation.rule_2_title", "2. No PII (Personally Identifiable Information)", "DE"],
+  [
+    "moderation.rule_2_desc",
+    "Reports must not contain user names, raw email addresses, IP addresses, or phone numbers. Our PII Guardian automatically masks this data, but users must make a reasonable effort to avoid submitting it.",
+    "DE"
+  ],
+  ["moderation.rule_3_title", "3. Focus on System Failures", "DE"],
+  [
+    "moderation.rule_3_desc",
+    "Incidents must represent system failures, hallucinations, bias, security breaches, or unexpected behavior by AI models. General disagreements with AI viewpoints do not constitute system failures.",
+    "DE"
+  ],
+  ["moderation.rule_4_title", "4. No Hate Speech or Harassment", "DE"],
+  [
+    "moderation.rule_4_desc",
+    "We do not tolerate abusive language, defamation, targeted harassment, or discriminatory remarks. Content violating this rule will be deleted instantly.",
+    "DE"
+  ],
+  ["moderation.dispute_title", "Provider Dispute Process", "DE"],
+  [
+    "moderation.dispute_desc",
+    "AI developers and providers have the right to dispute any incident report that they believe is fraudulent, inaccurate, or already resolved. Providers can log into the Provider Portal, submit an official response, or request a moderation review by our team. Disputes are reviewed within 48 hours.",
+    "DE"
+  ],
+  ["footer.tagline", "Where the world holds AI accountable.", "DE"],
+  ["footer.sections.platform", "Platform", "DE"],
+  ["footer.sections.company", "Company", "DE"],
+  ["footer.sections.legal", "Legal", "DE"],
+  ["footer.links.submit_report", "Submit Report", "DE"],
+  ["footer.links.ai_act", "AI Act Tracker", "DE"],
+  ["footer.links.advisory_board", "Advisory Board", "DE"],
+  ["footer.links.pricing", "Pricing", "DE"],
+  ["footer.links.security", "Security", "DE"],
+  ["footer.links.blog", "Blog", "DE"],
+  ["footer.links.methodology", "Methodology", "DE"],
+  ["footer.links.apidocs", "API Docs", "DE"],
+  ["footer.links.privacy", "Privacy Policy", "DE"],
+  ["footer.links.terms", "Terms of Service", "DE"],
+  ["footer.links.cookies", "Cookie Policy", "DE"],
+  ["footer.links.dmca", "DMCA Policy", "DE"],
+  ["footer.links.moderation", "Moderation Policy", "DE"],
+  ["footer.rights", "All rights reserved.", "DE"],
+  ["footer.platformStatus", "Intermediary platform. User-submitted content.", "DE"],
+  ["nav.feed", "Feed", "DE"],
+  ["nav.blog", "Blog", "DE"],
+  ["nav.takedown", "Takedown", "DE"],
+  ["nav.dashboard", "Dashboard", "DE"],
+  ["common.github", "GitHub", "DE"],
+  ["common.linkedin", "LinkedIn", "DE"],
+  ["common.live", "Live", "DE"],
+  ["common.optional", "Optional", "DE"],
+  ["common.details", "Details", "DE"],
+  ["common.aiResponseDesc", "The official response from the AI provider for this incident.", "DE"],
+  ["common.allSet", "All consents accepted", "DE"],
+  ["common.tr", "Turkish", "DE"],
+  ["common.en", "English", "DE"],
+  ["common.switchToEnglish", "EN", "DE"],
+  ["common.switchToTurkish", "TR", "DE"],
+  ["common.skipToContent", "Skip to main content", "DE"],
+  ["common.unknown", "Unknown", "DE"],
+  ["common.unknown_provider", "Unknown Provider", "DE"],
+  ["common.unknown_error", "Unknown error", "DE"],
+  ["common.secureAndAnonymous", "SECURE & PRIVATE", "DE"],
+  ["common.monitor", "ALPAR AI • MONITOR", "DE"],
+  ["common.alparAi", "ALPAR AI", "DE"],
+  ["common.cookiePreferences", "Cookie preferences", "DE"],
+  ["common.select", "Select", "DE"],
+  ["common.machine_translated", "Machine translated", "DE"],
+  ["app.name", "ALPAR AI", "DE"]
+]

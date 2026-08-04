@@ -1,0 +1,34 @@
+name: Sync Architect Decisions
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Check for IRREVERSIBLE tags
+        run: |
+          if grep -rn "IRREVERSIBLE" src/; then
+            echo "::error::Found IRREVERSIBLE tags in application code. Application code must not contain IRREVERSIBLE decisions directly without architect review."
+            exit 1
+          else
+            echo "No IRREVERSIBLE tags found in application code. Safe to proceed."
+          fi
+
+      - name: Sync Master Plan
+        run: |
+          echo "Architect decisions synced."

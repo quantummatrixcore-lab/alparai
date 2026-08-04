@@ -1,0 +1,69 @@
+openapi: 3.0.3
+info:
+  title: ALPAR AI B2B Risk Audit API
+  version: 1.0.0
+  description: API for evaluating and classifying AI system events and incidents under the EU AI Act framework.
+servers:
+  - url: https://alparai.com/api/v1
+paths:
+  /risk/audit:
+    post:
+      summary: Audit AI system risk
+      description: Evaluates description of an AI system event/incident and classifies it under the EU AI Act framework.
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - text
+              properties:
+                text:
+                  type: string
+                  description: Description of the incident or system behavior to evaluate.
+                  example: "A resume filtering software is systematically giving lower scores to female applicants."
+      responses:
+        "200":
+          description: Successful evaluation
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - eu_act_risk_category
+                  - eu_act_serious_incident_class
+                  - risk_score
+                  - reasoning
+                properties:
+                  eu_act_risk_category:
+                    type: string
+                    enum: [minimal, limited, high, unacceptable]
+                    description: The risk category classification of the AI system under the EU AI Act.
+                  eu_act_serious_incident_class:
+                    type: string
+                    nullable: true
+                    description: Specific classification if a serious incident occurred.
+                  risk_score:
+                    type: number
+                    minimum: 0.0
+                    maximum: 1.0
+                    description: Calculated probability or severity of risk.
+                  reasoning:
+                    type: string
+                    description: Step-by-step reasoning behind the risk categorization.
+        "400":
+          description: Invalid request parameters or malformed JSON body
+        "401":
+          description: Missing, invalid, or expired API Key
+        "429":
+          description: Rate limit exceeded
+        "500":
+          description: Internal server error
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

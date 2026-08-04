@@ -1,0 +1,41 @@
+name: Master Plan Guard
+
+on:
+  push:
+    paths:
+      - "docs/MASTER_PLAN.md"
+
+jobs:
+  check-author:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Verify commit author is Architect
+        run: |
+          AUTHOR=$(git log -1 --pretty=format:'%ae')
+          echo "Commit author: $AUTHOR"
+          # Architect emails allowed
+          ALLOWED=("noreply@anthropic.com" "claude@anthropic.com")
+          MATCH=false
+          for EMAIL in "${ALLOWED[@]}"; do
+            if [[ "" == *""* ]]; then
+              MATCH=true
+              break
+            fi
+          done
+          if [ "" = false ]; then
+            echo "::error::MASTER_PLAN.md may only be modified by Architect sessions (noreply@anthropic.com). Commit author: $AUTHOR"
+            exit 1
+          fi
+
+  consistency-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run consistency check
+        run: node scripts/check-masterplan-consistency.mjs

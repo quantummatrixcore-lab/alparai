@@ -1,0 +1,32 @@
+[
+  {
+    "timestamp": "2026-08-04T04:24:36.693Z",
+    "action": "export-blocked",
+    "metadata": {
+      "reason": "security-violations",
+      "blocked_count": 5,
+      "violations": [
+        {
+          "file": "AGENTS.md",
+          "reason": "secret-detected: SUPABASE_SERVICE_ROLE_KEY"
+        },
+        {
+          "file": "CLAUDE.md",
+          "reason": "secret-detected: SUPABASE_SERVICE_ROLE_KEY"
+        },
+        {
+          "file": "package.json",
+          "reason": "pii-detected: email"
+        },
+        {
+          "file": "playwright.config.ts",
+          "reason": "secret-detected: SUPABASE_SERVICE_ROLE_KEY"
+        },
+        {
+          "file": "README.md",
+          "reason": "pii-detected: email"
+        }
+      ]
+    }
+  }
+]

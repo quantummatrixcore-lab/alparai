@@ -1,0 +1,17 @@
+{
+  "model": "opencode/deepseek-v4-flash-free",
+  "command": "opencode run \"Fix Cyrillic character contamination in messages/fr.json and messages/de.json. S...\"",
+  "exit_code": 0,
+  "duration_ms": 413160,
+  "git_sha": "02c88a2c643d42f5accb868b601dfc98ea395210",
+  "task_ref": 86,
+  "attempt_no": 1,
+  "role": "uygulayici",
+  "diagnosis": "nominal",
+  "gates": {
+    "lint": 0,
+    "typecheck": 0,
+    "test": 0,
+    "build": 0
+  }
+}

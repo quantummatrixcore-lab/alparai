@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        width: 400px;
+        height: 400px;
+        background: #0a1622;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family:
+          "Segoe UI",
+          system-ui,
+          -apple-system,
+          sans-serif;
+      }
+      .container {
+        text-align: center;
+      }
+      .shield {
+        width: 160px;
+        height: 190px;
+        margin: 0 auto 20px;
+        position: relative;
+      }
+      .shield svg {
+        width: 100%;
+        height: 100%;
+      }
+      .text-main {
+        color: #ffffff;
+        font-size: 48px;
+        font-weight: 800;
+        letter-spacing: 6px;
+      }
+      .text-sub {
+        color: #00ff88;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 8px;
+        text-transform: uppercase;
+        margin-top: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="shield">
+        <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color: #00ff88; stop-opacity: 1" />
+              <stop offset="100%" style="stop-color: #00cc6a; stop-opacity: 1" />
+            </linearGradient>
+            <linearGradient id="innerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color: #0a1622; stop-opacity: 1" />
+              <stop offset="100%" style="stop-color: #0d1f33; stop-opacity: 1" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M50 5 L95 20 L95 55 Q95 90 50 115 Q5 90 5 55 L5 20 Z"
+            fill="url(#shieldGrad)"
+            stroke="none"
+          />
+          <path
+            d="M50 12 L88 25 L88 54 Q88 85 50 108 Q12 85 12 54 L12 25 Z"
+            fill="url(#innerGrad)"
+            stroke="none"
+          />
+          <path d="M50 28 L50 70" stroke="#00FF88" stroke-width="3" stroke-linecap="round" />
+          <path d="M50 28 L50 38" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" />
+          <circle cx="50" cy="25" r="4" fill="#00FF88" />
+          <path d="M30 55 L42 55 L42 70 L30 70 Z" fill="#00FF88" opacity="0.3" rx="2" />
+          <path d="M58 55 L70 55 L70 70 L58 70 Z" fill="#00FF88" opacity="0.3" rx="2" />
+          <path d="M30 55 L42 55 L42 60 L30 60 Z" fill="#00FF88" opacity="0.6" />
+          <path d="M58 55 L70 55 L70 62 L58 62 Z" fill="#00FF88" opacity="0.6" />
+          <path
+            d="M35 72 L65 72"
+            stroke="#00FF88"
+            stroke-width="1.5"
+            stroke-dasharray="3,2"
+            opacity="0.5"
+          />
+        </svg>
+      </div>
+      <div class="text-main">ALPAR AI</div>
+      <div class="text-sub">Trust Infrastructure</div>
+    </div>
+  </body>
+</html>

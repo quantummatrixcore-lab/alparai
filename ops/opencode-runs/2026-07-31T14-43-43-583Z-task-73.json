@@ -1,0 +1,17 @@
+{
+  "model": "opencode/deepseek-v4-flash-free",
+  "command": "opencode run \"The ops/opencode-runs/*.json schema currently only has: model, command, exit_cod...\"",
+  "exit_code": 0,
+  "duration_ms": 184200,
+  "git_sha": "02c88a2c643d42f5accb868b601dfc98ea395210",
+  "task_ref": 73,
+  "attempt_no": 1,
+  "role": "uygulayici",
+  "diagnosis": "nominal",
+  "gates": {
+    "lint": 0,
+    "typecheck": 0,
+    "test": 0,
+    "build": 0
+  }
+}

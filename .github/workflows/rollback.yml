@@ -1,0 +1,49 @@
+name: Rollback Production
+
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: "Reason for rollback"
+        required: true
+        type: string
+      deployment_url:
+        description: "Target deployment URL to verify after rollback (optional)"
+        required: false
+        type: string
+
+permissions:
+  contents: read
+  deployments: write
+
+jobs:
+  rollback:
+    name: Rollback to Last Good Deployment
+    runs-on: ubuntu-latest
+    environment: Production
+    steps:
+      - name: Log rollback intent
+        run: |
+          echo "## ⏪ Rollback Initiated" >> $GITHUB_STEP_SUMMARY
+          echo "**Reason:** ${{ inputs.reason }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Triggered by:** ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Time:** $(date -u '+%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_STEP_SUMMARY
+
+      - name: Execute Vercel rollback
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          npx vercel@latest rollback --token "$VERCEL_TOKEN" --yes --scope quantummatrixcore-lab
+          echo "✅ Vercel rollback command executed"
+
+      - name: Verify production health post-rollback
+        run: |
+          sleep 30
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://alparai.com/api/health)
+          if [ "$STATUS" != "200" ]; then
+            echo "::error::Post-rollback health check failed — HTTP $STATUS. Manual intervention required."
+            exit 1
+          fi
+          echo "✅ Production is healthy after rollback (HTTP $STATUS)"
+          echo "**Post-rollback health:** ✅ HTTP $STATUS" >> $GITHUB_STEP_SUMMARY

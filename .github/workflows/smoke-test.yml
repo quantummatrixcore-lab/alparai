@@ -1,0 +1,50 @@
+name: Post-Deploy Smoke Test
+
+on:
+  deployment_status: {}
+
+permissions:
+  contents: read
+  deployments: read
+
+jobs:
+  smoke-test:
+    name: Smoke Test — ${{ github.event.deployment.environment }}
+    if: github.event.deployment_status.state == 'success' && github.event.deployment.environment == 'Production'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Health check — /api/health
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://alparai.com/api/health)
+          if [ "$STATUS" != "200" ]; then
+            echo "::error::Health check failed with HTTP $STATUS"
+            exit 1
+          fi
+          echo "✅ Health check passed (HTTP $STATUS)"
+
+      - name: Verify critical routes return 200
+        run: |
+          for path in /en /tr /en/incidents /tr/incidents; do
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" -L "https://alparai.com${path}")
+            if [ "$STATUS" != "200" ]; then
+              echo "::error::Route $path returned HTTP $STATUS"
+              exit 1
+            fi
+            echo "✅ $path → $STATUS"
+          done
+
+      - name: Verify API response shape
+        run: |
+          BODY=$(curl -s https://alparai.com/api/health)
+          echo "$BODY" | node -e "
+            const d = JSON.parse(require('fs').readFileSync('/dev/stdin', 'utf8'));
+            if (d.status !== 'ok') { console.error('::error::API health status is not ok:', d.status); process.exit(1); }
+            console.log('✅ API health shape is valid:', JSON.stringify(d));
+          "
+
+      - name: Write smoke test summary
+        if: always()
+        run: |
+          echo "## 🚀 Post-Deploy Smoke Test" >> $GITHUB_STEP_SUMMARY
+          echo "Environment: **${{ github.event.deployment.environment }}**" >> $GITHUB_STEP_SUMMARY
+          echo "Deploy URL: ${{ github.event.deployment_status.target_url }}" >> $GITHUB_STEP_SUMMARY

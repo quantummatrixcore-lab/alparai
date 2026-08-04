@@ -1,0 +1,49 @@
+name: Plan Guard
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  plan-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify Architect marker AND identity on plan-document changes
+        run: |
+          ARCHITECT_ALLOWLIST="noreply@anthropic.com"
+          BEFORE="${{ github.event.before }}"
+          AFTER="${{ github.sha }}"
+          if [[ "$BEFORE" =~ ^0+$ ]] || ! git cat-file -e "$BEFORE" 2>/dev/null; then
+            RANGE="$AFTER~1..$AFTER"
+          else
+            RANGE="$BEFORE..$AFTER"
+          fi
+          violations=0
+          for c in $(git rev-list "$RANGE"); do
+            files=$(git show --name-only --format="" "$c")
+            guarded=$(echo "$files" | grep -E '^(docs/MASTER_PLAN\.md|\.husky/|\.github/workflows/plan-guard\.yml|[^/]+\.md)$' | grep -vE '^(README|CLAUDE|AGENTS)\.md$' || true)
+            if [ -n "$guarded" ]; then
+              msg=$(git log -1 --format=%B "$c")
+              if ! echo "$msg" | grep -q '\[architect\]'; then
+                echo "::error::Commit $c modifies Architect-only paths without the [architect] marker (MASTER_PLAN Rule #14):"
+                echo "$guarded" | sed 's/^/  - /'
+                violations=1
+                continue
+              fi
+              author_email=$(git log -1 --format=%ae "$c")
+              allowed=0
+              for a in $ARCHITECT_ALLOWLIST; do
+                if [ "$author_email" = "$a" ]; then allowed=1; fi
+              done
+              if [ "$allowed" = "0" ]; then
+                echo "::error::Commit $c carries the [architect] marker but its author ($author_email) is not on the Architect allowlist (Rule #35). A marker without a matching identity is a flagged violation, not a pass:"
+                echo "$guarded" | sed 's/^/  - /'
+                violations=1
+              fi
+            fi
+          done
+          exit $violations

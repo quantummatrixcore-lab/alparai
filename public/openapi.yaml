@@ -1,0 +1,184 @@
+openapi: 3.0.3
+info:
+  title: ALPAR AI Public API
+  description: |
+    Read-only access to ALPAR's public record of AI incidents.
+    Built for journalists, researchers, and academics who need
+    citation-ready access to documented AI behavior.
+  version: 1.0.0
+  contact:
+    name: ALPAR AI Team
+    email: hello@alparai.com
+    url: https://alparai.com
+  license:
+    name: AGPL-3.0
+    url: https://opensource.org/licenses/AGPL-3.0
+
+servers:
+  - url: https://alparai.com/api/v1
+    description: Production
+
+tags:
+  - name: incidents
+    description: Read-only access to published AI incident reports
+
+paths:
+  /incidents:
+    get:
+      tags: [incidents]
+      summary: List published AI incidents
+      description: Returns a paginated list of published AI incidents. No authentication required.
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+          description: Maximum number of incidents to return
+        - name: category
+          in: query
+          schema:
+            type: string
+            enum: [hallucination, bias, privacy, security, misinformation, harassment, manipulation, inaccessibility, copyright, other]
+          description: Filter by incident category
+        - name: severity
+          in: query
+          schema:
+            type: string
+            enum: [low, medium, high, critical]
+          description: Filter by incident severity
+        - name: provider
+          in: query
+          schema:
+            type: string
+          description: Free-text search by AI model name (case-insensitive)
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IncidentListResponse'
+        '429':
+          description: Rate limited
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /incidents/{id}:
+    get:
+      tags: [incidents]
+      summary: Get a single incident by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Incident UUID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IncidentResponse'
+        '404':
+          description: Incident not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limited
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    Incident:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+          description: Title with PII masked
+        description:
+          type: string
+          description: Description with PII masked
+        severity:
+          type: string
+          enum: [low, medium, high, critical]
+        category:
+          type: string
+          enum: [hallucination, bias, privacy, security, misinformation, harassment, manipulation, inaccessibility, copyright, other]
+        is_anonymous:
+          type: boolean
+        incident_date:
+          type: string
+          format: date-time
+        views:
+          type: integer
+        upvotes:
+          type: integer
+        model:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+      required: [id, title, description, severity, category, is_anonymous, incident_date, views, upvotes, created_at]
+
+    IncidentListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Incident'
+        meta:
+          type: object
+          properties:
+            count:
+              type: integer
+            limit:
+              type: integer
+            generated_at:
+              type: string
+              format: date-time
+      required: [data, meta]
+
+    IncidentResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Incident'
+      required: [data]
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          enum: [not_found, rate_limited, internal_error]
+        retryAfter:
+          type: integer
+          description: Seconds until retry allowed (for rate_limited)
+      required: [error]
+
+  rateLimits:
+    description: 100 requests per minute per IP. Cache-Control: public, max-age=60.

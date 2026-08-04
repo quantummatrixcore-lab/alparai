@@ -1,0 +1,136 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+    paths-ignore:
+      - "docs/**"
+      - "**/*.md"
+      - "ops/visual-baseline/**"
+      - ".vscode/**"
+  pull_request:
+    branches: [master]
+    paths-ignore:
+      - "docs/**"
+      - "**/*.md"
+      - "ops/visual-baseline/**"
+      - ".vscode/**"
+  workflow_call:
+    inputs:
+      force:
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 9.12.0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: i18n Key Check
+        if: ${{ !inputs.force }}
+        run: pnpm i18n:check
+
+      - name: Typecheck
+        if: ${{ !inputs.force }}
+        run: pnpm typecheck
+
+      - name: Lint
+        if: ${{ !inputs.force }}
+        run: pnpm lint
+
+      - name: Run Vitest tests
+        if: ${{ !inputs.force }}
+        run: pnpm test
+
+  playwright-vrt:
+    name: Visual Regression Lock
+    runs-on: ubuntu-24.04
+    env:
+      NEXT_PUBLIC_SUPABASE_URL: https://mock-supabase.supabase.co
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: mock-anon-key
+      SUPABASE_SERVICE_ROLE_KEY: mock-service-role-key-for-playwright
+      IS_PLAYWRIGHT_TEST: "true"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 9.12.0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps chromium
+
+      # playwright.config.ts sets `webServer: undefined` when CI=true,
+      # so the app must be built and started explicitly here.
+      - name: Build app
+        run: pnpm build
+
+      - name: Start app
+        run: |
+          pnpm exec next start --port 3000 &
+          npx --yes wait-on http://127.0.0.1:3000 --timeout 120000
+
+      - name: Visual regression (5% pixel threshold)
+        run: pnpm exec playwright test tests/e2e/visual/ --project=chromium
+
+      - name: Upload diff report on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vrt-diff-report
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 14
+
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Gitleaks Secret Scan
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+
+      - name: Trivy Vulnerability Scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: "fs"
+          ignore-unfixed: true
+          format: "table"
+        continue-on-error: true

@@ -1,0 +1,555 @@
+[DE,FR,RU] app.name
+  EN: ALPAR AI
+  TR: ALPAR AI
+
+[DE] nav.feed
+  EN: Feed
+  TR: Akış
+
+[FR] nav.incidents
+  EN: Incidents
+  TR: Olaylar
+
+[FR] nav.suggestions
+  EN: Suggestions
+  TR: Öneriler
+
+[DE,FR] nav.blog
+  EN: Blog
+  TR: Blog
+
+[DE] nav.takedown
+  EN: Takedown
+  TR: Kaldırma
+
+[FR] nav.contact
+  EN: Contact
+  TR: İletişim
+
+[DE] nav.dashboard
+  EN: Dashboard
+  TR: Kontrol paneli
+
+[FR] nav.experts
+  EN: Experts
+  TR: Uzmanlar
+
+[DE,FR,RU] hero.bug_bounty_badge
+  EN: AI Bug Bounty
+  TR: AI Ödül Avı
+
+[DE,FR,RU] hero.why_stat_1_display
+  EN: 10-20%
+  TR: %10-20
+
+[DE,FR,RU] hero.why_stat_2_display
+  EN: 96%
+  TR: %96
+
+[DE,FR,RU] hero.why_stat_3_display
+  EN: ZERO
+  TR: SIFIR
+
+[DE,FR,RU] hero.why_stat_4_display
+  EN: ZERO
+  TR: SIFIR
+
+[DE,FR,RU] hero.why_title
+  EN: Why this matters
+  TR: Neden önemli
+
+[DE,FR,RU] hero.why_subtitle
+  EN: AI is advancing faster than the rules that govern it. Here's why the world needs ALPAR now.
+  TR: AI, onu yöneten kurallardan daha hızlı ilerliyor. İşte dünyanın neden şimdi ALPAR'a ihtiyacı var.
+
+[DE,FR,RU] hero.why_stat_1_title
+  EN: 10-20% extinction risk
+  TR: %10-20 yok olma riski
+
+[DE,FR,RU] hero.why_stat_1_desc
+  EN: Geoffrey Hinton, Nobel laureate and godfather of AI, estimates a 10-20% probability AI leads to human extinction within 30 years.
+  TR: Nobel ödüllü ve AI'ın babası Geoffrey Hinton, AI'ın 30 yıl içinde insanlığın yok olmasına yol açma olasılığını %10-20 olarak tahmin ediyor.
+
+[DE,FR,RU] hero.why_stat_2_title
+  EN: 96% of experts agree
+  TR: Uzmanların %96'sı katılıyor
+
+[DE,FR,RU] hero.why_stat_2_desc
+  EN: Harvard University study (March 2026): 96% of surveyed experts agree mitigating AI existential risk should be a global priority.
+  TR: Harvard Üniversitesi çalışması (Mart 2026): Ankete katılan uzmanların %96'sı AI varoluşsal riskini azaltmanın küresel bir öncelik olması gerektiğine katılıyor.
+
+[DE,FR,RU] hero.why_stat_3_title
+  EN: Zero independent oversight
+  TR: Sıfır bağımsız denetim
+
+[DE,FR,RU] hero.why_stat_3_desc
+  EN: No independent, community-governed global standard for AI ethics exists today. AI companies grade their own exams.
+  TR: Bugün bağımsız, topluluk yönetimli küresel bir AI etik standardı yok. AI şirketleri kendi sınavlarını kendileri notlandırıyor.
+
+[DE,FR,RU] hero.why_stat_4_title
+  EN: Provider-run transparency reports that include user-submitted failures
+  TR: Sağlayıcı yönetimli şeffaflık raporu
+
+[DE,FR,RU] hero.why_stat_4_desc
+  EN: AI companies publish safety reports about their own products. ALPAR AI publishes the reports they don't.
+  TR: Yapay zeka şirketleri kendi ürünleri hakkında güvenlik raporları yayınlar. ALPAR AI ise onların yayınlamadığı raporları yayınlar.
+
+[DE,FR,RU] hero.why_bridging_text
+  EN: These are not hypothetical risks. They are happening today — in hospitals, courtrooms, schools, and banks. ALPAR AI exists because someone needs to keep score.
+  TR: Bunlar farazi riskler değil. Bugün hastanelerde, mahkeme salonlarında, okullarda ve bankalarda yaşanıyorlar. ALPAR AI var, çünkü birinin skor tutması gerekiyor.
+
+[DE,FR,RU] hero.how_title
+  EN: How it works
+  TR: Nasıl çalışır
+
+[DE,FR,RU] hero.how_subtitle
+  EN: Four steps from incident to accountability.
+  TR: Olaydan hesap verebilirliğe dört adım.
+
+[DE,FR,RU] hero.how_step_1_title
+  EN: The Platform Receives
+  TR: Platform Alır
+
+[DE,FR,RU] hero.how_step_1_desc
+  EN: Screenshot the moment. Describe what happened. 60 seconds. Account required — identity protected, never published. The platform receives your evidence and enters it into the public record — untouchable by the AI company.
+  TR: O anın ekran görüntüsünü al. Ne olduğunu tarif et. 60 saniye. Hesap gerekli — kimliğiniz korunur, asla yayınlanmaz. Platform kanıtınızı alır ve kamuya açık kayda girer — yapay zeka şirketi tarafından silinemez.
+
+[DE,FR,RU] hero.how_step_2_title
+  EN: The Platform Verifies
+  TR: Platform Doğrular
+
+[DE,FR,RU] hero.how_step_2_desc
+  EN: Trained moderators review every report. ALPAR AI cross-audits across 5 independent AI models. All personal data is automatically masked — no email, phone, or ID ever stored in plain text.
+  TR: Eğitimli moderatörler her raporu inceler. ALPAR AI, 5 bağımsız yapay zeka modeli üzerinde çapraz denetim yapar. Tüm kişisel verileriniz otomatik olarak maskelenir — e-posta, telefon veya kimlik asla açık metin olarak saklanmaz.
+
+[DE,FR,RU] hero.how_step_3_title
+  EN: The Platform Notifies
+  TR: Platform Bildirir
+
+[DE,FR,RU] hero.how_step_3_desc
+  EN: The AI company receives an official notification within 24 hours. Their response — or their silence — is recorded by the platform. Both tell a story. Neither can be erased.
+  TR: Yapay zeka şirketi 24 saat içinde resmi bir bildirim alır. Şirketin yanıtı — veya sessizliği — platform tarafından kaydedilir. Her ikisi de bir şeyler anlatır. Hiçbiri silinemez.
+
+[DE,FR,RU] hero.how_step_4_title
+  EN: The Record is Permanent
+  TR: Kayıt Kalıcıdır
+
+[DE,FR,RU] hero.how_step_4_desc
+  EN: Verified incidents cannot be deleted, suppressed, or edited by providers. ALPAR AI makes them source material for regulators, journalists, researchers, and courts. Every documented case protects the next person.
+  TR: Doğrulanmış olaylar sağlayıcılar tarafından silinemez, engellenemez veya düzenlenemez. ALPAR AI bunları düzenleyiciler, gazeteciler, araştırmacılar ve mahkemeler için kaynak haline getirir. Belgelenen her vaka bir sonrakini korur.
+
+[DE,FR,RU] hero.trust_title
+  EN: Built on trust
+  TR: Güven üzerine inşa edildi
+
+[DE,FR,RU] hero.trust_subtitle
+  EN: Every design decision serves one goal: making AI accountable to humanity.
+  TR: Her tasarım kararı tek bir amaca hizmet eder: AI'ı insanlığa karşı hesap verebilir kılmak.
+
+[DE,FR,RU] hero.trust_1_title
+  EN: Open Source
+  TR: Açık Kaynak
+
+[DE,FR,RU] hero.trust_1_desc
+  EN: AGPL-3.0 licensed. Anyone can audit the code, run an instance, or contribute.
+  TR: AGPL-3.0 lisanslı. Herkes kodu denetleyebilir, bir örnek çalıştırabilir veya katkıda bulunabilir.
+
+[DE,FR,RU] hero.trust_2_title
+  EN: EU Data Hosted
+  TR: AB Veri Barındırma
+
+[DE,FR,RU] hero.trust_2_desc
+  EN: All data stored in EU (Supabase eu-west-1, Vercel fra1). GDPR-aligned by design.
+  TR: Tüm veriler AB'de saklanır (Supabase eu-west-1, Vercel fra1). Tasarım gereği GDPR hizalı.
+
+[DE,FR,RU] hero.trust_3_title
+  EN: PII Guardian
+  TR: PII Koruyucu
+
+[DE,FR,RU] hero.trust_3_desc
+  EN: Auto-masking of emails, phones, IDs, and credit cards before data reaches the database.
+  TR: E-postalar, telefonlar, kimlikler ve kredi kartları veritabanına ulaşmadan önce otomatik maskelenir.
+
+[DE,FR,RU] hero.trust_4_title
+  EN: Intermediary, Not Publisher
+  TR: Aracı, Yayıncı Değil
+
+[DE,FR,RU] hero.trust_4_desc
+  EN: EU E-Commerce Directive Art. 14 aligned. We host. Users own their content.
+  TR: AB E-Ticaret Direktifi Md. 14 hizalı. Biz barındırırız. Kullanıcılar içeriklerinin sahibidir.
+
+[DE,FR,RU] hero.join_title
+  EN: Four Ways to Fight Back
+  TR: Mücadele Etmenin Dört Yolu
+
+[DE,FR,RU] hero.join_subtitle
+  EN: Every role matters. Choose yours.
+  TR: Her rol önemlidir. Kendinizinkini seçin.
+
+[DE,FR,RU] hero.join_cta_1
+  EN: You Were There. Document It.
+  TR: Oradaydınız. Belgeleyin.
+
+[DE,FR,RU] hero.join_cta_1_desc
+  EN: Upload evidence, describe what happened, choose your privacy level. Published within 72 hours. Your report joins verified cases.
+  TR: Kanıt yükleyin, ne olduğunu tarif edin, gizlilik düzeyinizi seçin. 72 saat içinde yayınlanır. Raporunuz doğrulanmış olaylara katılır.
+
+[DE,FR,RU] hero.join_cta_1_btn
+  EN: Report in 60 Seconds →
+  TR: 60 Saniyede Bildir →
+
+[DE,FR,RU] hero.join_cta_1_tag
+  EN: Account required — identity protected
+  TR: Hesap gerekli — kimlik korunur
+
+[DE,FR,RU] hero.join_cta_2
+  EN: First 100. Permanent Recognition.
+  TR: İlk 100. Kalıcı Tanınma.
+
+[DE,FR,RU] hero.join_cta_2_desc
+  EN: The first 100 reporters earn a permanent Founding Reporter badge on their profile, voting rights on platform decisions, and all premium features free — forever. Limited spots remain.
+  TR: İlk 100 muhabir profillerinde kalıcı bir Kurucu Muhabir rozeti, platform kararlarında oy hakları ve tüm premium özellikleri ömür boyu ücretsiz kazanır. Sınırlı kontenjan.
+
+[DE,FR,RU] hero.join_cta_2_btn
+  EN: Claim Your Spot →
+  TR: Kontenjanınızı Alın →
+
+[DE,FR,RU] hero.join_cta_2_tag
+  EN: Closing when full
+  TR: Dolunca kapanır
+
+[DE,FR,RU] hero.join_cta_3
+  EN: Researchers. Journalists. Regulators.
+  TR: Araştırmacılar. Gazeteciler. Düzenleyiciler.
+
+[DE,FR,RU] hero.join_cta_3_desc
+  EN: We provide anonymized incident datasets, API access, and early notifications of high-severity cases. Research institutions already in dialogue.
+  TR: Anonimleştirilmiş olay veri kümeleri, API erişimi ve yüksek önem dereceli vakaların erken bildirimlerini sağlıyoruz. 3 araştırma kurumuyla görüşmeler başladı.
+
+[DE,FR,RU] hero.join_cta_3_btn
+  EN: Start a Conversation →
+  TR: Bir İletişim Başlatın →
+
+[DE,FR,RU] hero.join_cta_3_tag
+  EN: Institutional access
+  TR: Kurumsal erişim
+
+[DE,FR,RU] hero.join_cta_4
+  EN: How We Decide What's True
+  TR: Neyin Doğru Olduğuna Nasıl Karar Veriyoruz
+
+[DE,FR,RU] hero.join_cta_4_desc
+  EN: Our 5-model cross-audit engine, moderation standards, and truth scoring methodology are fully documented and open to scrutiny.
+  TR: 5 modelli çapraz denetim motorumuz, denetleme standartlarımız ve doğruluk puanlama metodolojimiz tamamen belgelenmiştir ve incelemeye açıktır.
+
+[DE,FR,RU] hero.join_cta_4_btn
+  EN: Read the Methodology →
+  TR: Metodolojiyi Oku →
+
+[DE,FR,RU] hero.join_cta_4_tag
+  EN: Open source
+  TR: Açık kaynak
+
+[DE,FR,RU] hero.closing_title
+  EN: The next AI incident might affect you.
+  TR: Sıradaki yapay zeka olayı sizi etkileyebilir.
+
+[DE,FR,RU] hero.closing_subtitle
+  EN: Or your parent. Or your doctor. Or your judge. ALPAR AI is the platform where AI's real-world behavior is documented, verified, and made permanently accessible. Because AI systems that are never questioned never get better.
+  TR: Veya anne babanızı. Veya doktorunuzu. Veya hakiminizle. ALPAR AI, yapay zekanın gerçek dünyadaki davranışlarının belgelendiği, doğrulandığı ve kalıcı olarak erişilebilir kılındığı platformdur. Çünkü asla sorgulanmayan yapay zeka sistemleri asla daha iyiye gitmez.
+
+[DE,FR,RU] hero.closing_good_news_title
+  EN: Every report ALPAR AI records makes AI safer.
+  TR: ALPAR AI'ın kaydettiği her rapor yapay zekayı daha güvenli kılar.
+
+[DE,FR,RU] hero.closing_good_news_body
+  EN: When incidents enter the permanent public record, AI companies improve their systems. When providers respond officially, the public gets answers. When courts cite ALPAR AI reports, accountability has evidence. No one faces AI manipulation alone. Every documented case is part of the first permanent record that refused to let AI cause harm in silence.
+  TR: Olaylar kalıcı kamuya açık kayıt haline geldiğinde yapay zeka şirketleri sistemlerini geliştirir. Sağlayıcılar resmi olarak yanıt verdiğinde halk yanıt alır. Mahkemeler ALPAR AI raporlarına atıfta bulunduğunda, hesap verebilirlik kanıta kavuşur. Kimse yapay zeka manipülasyonuyla yalnız kalmaz. Belgelenen her vaka, yapay zekanın sessizce zarar vermesine izin vermeyi refusden ilk kalıcı kaydın bir parçasıdır.
+
+[DE,FR,RU] hero.closing_good_news_cta
+  EN: Add to the Record →
+  TR: Kayda Ekle →
+
+[DE,FR,RU] hero.zero_tolerance
+  EN: Zero Tolerance. 100% Transparency.
+  TR: Sıfır Tolerans. %100 Şeffaflık.
+
+[DE,FR,RU] footer.tagline
+  EN: Where the world holds AI accountable.
+  TR: Dünyanın AI'ı hesap verilebilir kıldığı yer.
+
+[DE,FR,RU] footer.sections.platform
+  EN: Platform
+  TR: Platform
+
+[DE,FR,RU] footer.sections.company
+  EN: Company
+  TR: Şirket
+
+[DE,FR,RU] footer.sections.legal
+  EN: Legal
+  TR: Yasal
+
+[FR] footer.sections.contact
+  EN: Contact
+  TR: İletişim
+
+[FR] footer.links.incidents
+  EN: Incidents
+  TR: Olaylar
+
+[DE,FR,RU] footer.links.submit_report
+  EN: Submit Report
+  TR: Rapor Gönder
+
+[DE,FR,RU] footer.links.ai_act
+  EN: AI Act Tracker
+  TR: Yapay Zeka Yasası
+
+[DE,FR,RU] footer.links.advisory_board
+  EN: Advisory Board
+  TR: Danışma Kurulu
+
+[DE,FR,RU] footer.links.pricing
+  EN: Pricing
+  TR: Fiyatlandırma
+
+[DE,FR,RU] footer.links.security
+  EN: Security
+  TR: Güvenlik
+
+[DE,FR] footer.links.blog
+  EN: Blog
+  TR: Blog
+
+[DE,FR,RU] footer.links.methodology
+  EN: Methodology
+  TR: Metodoloji
+
+[DE,FR,RU] footer.links.apidocs
+  EN: API Docs
+  TR: API Dokümantasyonu
+
+[DE,FR,RU] footer.links.privacy
+  EN: Privacy Policy
+  TR: Gizlilik Politikası
+
+[DE,FR,RU] footer.links.terms
+  EN: Terms of Service
+  TR: Kullanım Şartları
+
+[DE,FR,RU] footer.links.cookies
+  EN: Cookie Policy
+  TR: Çerez Politikası
+
+[DE,FR,RU] footer.links.dmca
+  EN: DMCA Policy
+  TR: DMCA Politikası
+
+[DE,FR,RU] footer.links.moderation
+  EN: Moderation Policy
+  TR: Moderasyon Politikası
+
+[DE,FR,RU] footer.rights
+  EN: All rights reserved.
+  TR: Tüm hakları saklıdır.
+
+[DE,FR,RU] footer.platformStatus
+  EN: Intermediary platform. User-submitted content.
+  TR: Aracı platform. Kullanıcı tarafından gönderilen içerik.
+
+[DE,FR,RU] common.github
+  EN: GitHub
+  TR: GitHub
+
+[DE,FR,RU] common.linkedin
+  EN: LinkedIn
+  TR: LinkedIn
+
+[DE] common.live
+  EN: Live
+  TR: Canlı
+
+[DE] common.optional
+  EN: Optional
+  TR: İsteğe bağlı
+
+[DE] common.details
+  EN: Details
+  TR: Detaylar
+
+[DE,FR,RU] common.aiResponseDesc
+  EN: The official response from the AI provider for this incident.
+  TR: AI sağlayıcısının bu olaya verdiği resmi yanıt.
+
+[DE,FR,RU] common.allSet
+  EN: All consents accepted
+  TR: Tüm onaylar kabul edildi
+
+[DE,FR,RU] common.tr
+  EN: Turkish
+  TR: Türkçe
+
+[DE,FR,RU] common.en
+  EN: English
+  TR: İngilizce
+
+[DE,FR,RU] common.switchToEnglish
+  EN: EN
+  TR: EN
+
+[DE,FR,RU] common.switchToTurkish
+  EN: TR
+  TR: TR
+
+[DE,FR,RU] common.skipToContent
+  EN: Skip to main content
+  TR: İçeriğe atla
+
+[DE,FR,RU] common.unknown
+  EN: Unknown
+  TR: Bilinmiyor
+
+[DE,FR,RU] common.unknown_provider
+  EN: Unknown Provider
+  TR: Bilinmeyen Sağlayıcı
+
+[DE,FR,RU] common.unknown_error
+  EN: Unknown error
+  TR: Bilinmeyen hata
+
+[DE,FR,RU] common.secureAndAnonymous
+  EN: SECURE & PRIVATE
+  TR: GÜVENLİ & GİZLİ
+
+[DE,FR,RU] common.monitor
+  EN: ALPAR AI • MONITOR
+  TR: ALPAR AI • İZLEME
+
+[DE,FR,RU] common.alparAi
+  EN: ALPAR AI
+  TR: ALPAR AI
+
+[DE,FR,RU] common.cookiePreferences
+  EN: Cookie preferences
+  TR: Çerez tercihleri
+
+[DE,FR,RU] common.select
+  EN: Select
+  TR: Seçiniz
+
+[DE,FR,RU] common.machine_translated
+  EN: Machine translated
+  TR: Makine çevirisi
+
+[DE,FR,RU] feed.feed_tab_for_you
+  EN: For You
+  TR: Sana Özel
+
+[DE,FR,RU] feed.feed_tab_latest
+  EN: Latest
+  TR: En Son
+
+[DE,FR,RU] feed.feed_tab_trending
+  EN: Trending
+  TR: Gündemdekiler
+
+[DE,FR,RU] feed.feed_tab_following
+  EN: Following
+  TR: Takip Ettiklerim
+
+[DE,FR,RU] feed.shareOnX
+  EN: Share on X
+  TR: X'te Paylaş
+
+[DE,FR,RU] feed.shareOnLinkedIn
+  EN: Share on LinkedIn
+  TR: LinkedIn'de Paylaş
+
+[DE,FR,RU] feed.copyForInstagram
+  EN: Copy for Instagram
+  TR: Instagram için Kopyala
+
+[DE,FR,RU] feed.shareOnWhatsApp
+  EN: Share on WhatsApp
+  TR: WhatsApp'ta Paylaş
+
+[DE,FR,RU] feed.truthScore
+  EN: Truth Score
+  TR: Doğruluk Skoru
+
+[DE,FR,RU] feed.upvote
+  EN: Upvote
+  TR: Olumlu oy
+
+[DE,FR,RU] feed.downvote
+  EN: Downvote
+  TR: Olumsuz oy
+
+[DE,FR,RU] moderation.title
+  EN: Content Moderation Policy — ALPAR AI
+  TR: İçerik Moderasyon Politikası — ALPAR AI
+
+[DE,FR,RU] moderation.description
+  EN: Rules and guidelines for submitting and moderating incident reports on ALPAR AI.
+  TR: ALPAR AI üzerindeki olay raporlarının gönderilmesi ve denetlenmesine ilişkin kurallar ve yönergeler.
+
+[DE,FR,RU] moderation.badge
+  EN: PLATFORM RULES
+  TR: PLATFORM KURALLARI
+
+[DE,FR,RU] moderation.headline
+  EN: Content Moderation Guidelines
+  TR: İçerik Moderasyon Yönergeleri
+
+[DE,FR,RU] moderation.subtitle
+  EN: We aim to document real-world AI failures with maximum truthfulness, transparency, and fairness. These guidelines explain how content is verified and moderated.
+  TR: Gerçek dünyadaki yapay zeka hatalarını maksimum doğruluk, şeffaflık ve adaletle belgelemeyi amaçlıyoruz. Bu yönergeler, içeriğin nasıl doğrulandığını ve denetlendiğini açıklamaktadır.
+
+[DE,FR,RU] moderation.rules_title
+  EN: Core Moderation Rules
+  TR: Temel Moderasyon Kuralları
+
+[DE,FR,RU] moderation.rules_subtitle
+  EN: Every submission is reviewed against these baseline community standards.
+  TR: Gönderilen her olay raporu, bu temel topluluk standartlarına göre gözden geçirilir.
+
+[DE,FR,RU] moderation.rule_1_title
+  EN: 1. Factual Evidence Required
+  TR: 1. Somut Kanıt Gerekliliği
+
+[DE,FR,RU] moderation.rule_1_desc
+  EN: All reported AI incidents must be accompanied by concrete evidence: screenshot files, JSON logs, or archived URL web links demonstrating the failure. Allegations without proof will not be published.
+  TR: Bildirilen tüm yapay zeka olaylarına somut kanıtlar eşlik etmelidir: hatayı gösteren ekran görüntüleri, JSON günlükleri veya arşivlenmiş URL web bağlantıları. Kanıtı olmayan iddialar yayınlanmayacaktır.
+
+[DE,FR,RU] moderation.rule_2_title
+  EN: 2. No PII (Personally Identifiable Information)
+  TR: 2. KVT (Kişisel Veri) Yasağı
+
+[DE,FR,RU] moderation.rule_2_desc
+  EN: Reports must not contain user names, raw email addresses, IP addresses, or phone numbers. Our PII Guardian automatically masks this data, but users must make a reasonable effort to avoid submitting it.
+  TR: Raporlar kullanıcı adları, ham e-posta adresleri, IP adresleri veya telefon numaraları içermemelidir. KVT Korumamız bu verileri otomatik olarak maskeler, ancak kullanıcılar da bu tür verileri göndermemek için makul çaba göstermelidir.
+
+[DE,FR,RU] moderation.rule_3_title
+  EN: 3. Focus on System Failures
+  TR: 3. Sistem Hatalarına Odaklanma
+
+[DE,FR,RU] moderation.rule_3_desc
+  EN: Incidents must represent system failures, hallucinations, bias, security breaches, or unexpected behavior by AI models. General disagreements with AI viewpoints do not constitute system failures.
+  TR: Olaylar; yapay zeka modellerinin sistem hatalarını, halüsinasyonlarını, önyargılarını, güvenlik açıklarını veya beklenmedik davranışlarını temsil etmelidir. Yapay zekanın bakış açılarıyla genel fikir ayrılıkları sistem hatası oluşturmaz.
+
+[DE,FR,RU] moderation.rule_4_title
+  EN: 4. No Hate Speech or Harassment
+  TR: 4. Nefret Söylemi ve Taciz Yasağı
+
+[DE,FR,RU] moderation.rule_4_desc
+  EN: We do not tolerate abusive language, defamation, targeted harassment, or discriminatory remarks. Content violating this rule will be deleted instantly.
+  TR: Küfürlü dil, iftira, hedefli taciz veya ayrımcı ifadelere tolerans göstermeyiz. Bu kuralı ihlal eden içerikler anında silinecektir.
+
+[DE,FR,RU] moderation.dispute_title
+  EN: Provider Dispute Process
+  TR: Sağlayıcı İtiraz Süreci
+
+[DE,FR,RU] moderation.dispute_desc
+  EN: AI developers and providers have the right to dispute any incident report that they believe is fraudulent, inaccurate, or already resolved. Providers can log into the Provider Portal, submit an official response, or request a moderation review by our team. Disputes are reviewed within 48 hours.
+  TR: Yapay zeka geliştiricileri ve sağlayıcıları, asılsız, yanlış veya zaten çözülmüş olduğunu düşündükleri herhangi bir olay raporuna itiraz etme hakkına sahiptir. Sağlayıcılar Sağlayıcı Portalı'na giriş yapabilir, resmi bir yanıt gönderebilir veya ekibimizden moderasyon incelemesi talep edebilir. İtirazlar 48 saat içinde incelenir.

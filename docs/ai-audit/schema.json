@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ALPAR AI Audit Entry",
+  "type": "object",
+  "properties": {
+    "model_id": { "type": "string", "description": "Unique model identifier (kebab-case)" },
+    "model_name": { "type": "string" },
+    "provider": { "type": "string" },
+    "audit_date": { "type": "string", "format": "date" },
+    "audit_version": { "type": "string" },
+    "audit_type": { "enum": ["initial", "360-degree", "follow-up", "deep-dive"] },
+    "raw_report_path": { "type": "string" },
+    "scores": {
+      "type": "object",
+      "properties": {
+        "vision_mission": { "type": "number", "minimum": 0, "maximum": 100 },
+        "message_content": { "type": "number", "minimum": 0, "maximum": 100 },
+        "ux_ui_design": { "type": "number", "minimum": 0, "maximum": 100 },
+        "technical_architecture": { "type": "number", "minimum": 0, "maximum": 100 },
+        "legal_compliance": { "type": "number", "minimum": 0, "maximum": 100 },
+        "business_model": { "type": "number", "minimum": 0, "maximum": 100 },
+        "growth_viral": { "type": "number", "minimum": 0, "maximum": 100 },
+        "traction_social_proof": { "type": "number", "minimum": 0, "maximum": 100 },
+        "investor_readiness": { "type": "number", "minimum": 0, "maximum": 100 },
+        "societal_impact": { "type": "number", "minimum": 0, "maximum": 100 },
+        "eu_act_transparency": { "type": "number", "minimum": 0, "maximum": 100 },
+        "eu_act_non_discrimination": { "type": "number", "minimum": 0, "maximum": 100 },
+        "eu_act_data_privacy": { "type": "number", "minimum": 0, "maximum": 100 },
+        "total": { "type": "number" },
+        "total_max": { "type": "number", "default": 1000 }
+      }
+    },
+    "p0_blockers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "category": { "enum": ["data", "ui", "i18n", "legal", "security", "performance"] },
+          "status": { "enum": ["open", "in-progress", "resolved", "wont-fix"] },
+          "resolved_date": { "type": ["string", "null"], "format": "date" },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "unique_insight": { "type": "string" },
+    "key_recommendations": { "type": "array", "items": { "type": "string" } }
+  }
+}

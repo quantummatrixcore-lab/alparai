@@ -1,0 +1,25 @@
+# CODEOWNERS - auto-assign reviewers on PRs
+# More specific rules override more general ones
+
+# Default: @quantummatrixcore-lab owns everything
+* @quantummatrixcore-lab
+
+# Security-sensitive paths
+/supabase/migrations/   @quantummatrixcore-lab
+/src/middleware.ts     @quantummatrixcore-lab
+/src/lib/auth/         @quantummatrixcore-lab
+/src/lib/supabase/     @quantummatrixcore-lab
+/src/actions/          @quantummatrixcore-lab
+/next.config.mjs       @quantummatrixcore-lab
+/.env*                 @quantummatrixcore-lab
+
+# Infrastructure
+/.github/              @quantummatrixcore-lab
+/vercel.json           @quantummatrixcore-lab
+/supabase/             @quantummatrixcore-lab
+
+# Documentation & Plan Governance
+/docs/MASTER_PLAN.md   @quantummatrixcore-lab
+/docs/                 @quantummatrixcore-lab
+/README.md             @quantummatrixcore-lab
+/AGENTS.md             @quantummatrixcore-lab

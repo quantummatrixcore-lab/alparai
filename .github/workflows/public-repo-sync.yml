@@ -28,7 +28,7 @@ jobs:
       scan_hash: ${{ steps.scan.outputs.scan_hash }}
     steps:
       - name: Checkout private repo (this repo)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -90,7 +90,7 @@ jobs:
       contents: write
     steps:
       - name: Checkout private repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 

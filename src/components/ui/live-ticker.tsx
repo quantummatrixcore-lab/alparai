@@ -37,8 +37,11 @@ export function LiveTicker() {
 
       if (count !== null) setTotalCount(count);
     }
+    const timer = setTimeout(() => {
+      fetchTickerData();
+    }, 2500);
 
-    fetchTickerData();
+    return () => clearTimeout(timer);
   }, []);
 
   if (incidents.length === 0) return null;

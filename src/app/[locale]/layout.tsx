@@ -5,24 +5,24 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
 import { MainContent } from "@/components/layout/main-content";
-import { ClientProviders } from "@/components/client-providers";
-import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { LiveTicker } from "@/components/ui/live-ticker";
 import {
   OrganizationJsonLd,
   SoftwareApplicationJsonLd,
   WebSiteJsonLd,
 } from "@/components/seo/json-ld";
-import { PlausibleWithConsent } from "@/components/plausible-consent";
-import { PwaRegister } from "@/components/pwa-register";
-import { UtmTracker } from "@/components/analytics/utm-tracker";
-
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { PostHogProvider } from "@/components/posthog-provider";
+
+import { Footer } from "@/components/layout/footer";
 import { MobileBottomNav } from "@/components/layout/mobile-bottom-nav";
+import { ClientProviders } from "@/components/client-providers";
+import { ScrollToTop } from "@/components/ui/scroll-to-top";
+import { PwaRegister } from "@/components/pwa-register";
+import { PlausibleWithConsent } from "@/components/plausible-consent";
+import { UtmTracker } from "@/components/analytics/utm-tracker";
 import "../globals.css";
 import { Inter, Outfit, JetBrains_Mono } from "next/font/google";
 

@@ -4866,5 +4866,29 @@
     "generating": "Üretiliyor...",
     "evaluating": "Değerlendiriliyor...",
     "no_questions": "Henüz soru bankasında kayıt yok. Vakalardan soru üretmek için butona tıklayın."
+  },
+  "marketing_complianceChecklist": {
+    "meta_title": "AI Act Article 73 Compliance Checklist | ALPAR AI",
+    "meta_desc": "Ensure your AI systems comply with Article 73 of the EU AI Act using our comprehensive checklist.",
+    "badge": "AI Act Ready",
+    "hero_title": "Article 73 Compliance Checklist",
+    "hero_subtitle": "Evaluate your models, track incidents, and align with the European AI Act requirements.",
+    "cta_primary": "Get Certified",
+    "cta_secondary": "Read the AI Act Guide",
+    "checklist_heading": "Your Path to Compliance",
+    "checklist_subheading": "Five essential steps for Article 73 adherence.",
+    "item1_title": "1. Risk Classification",
+    "item1_desc": "Identify whether your AI system falls under unacceptable, high, limited, or minimal risk categories as defined by the Act.",
+    "item2_title": "2. Data Governance",
+    "item2_desc": "Ensure training, validation, and testing datasets meet the quality criteria and avoid discriminatory bias.",
+    "item3_title": "3. Technical Documentation",
+    "item3_desc": "Draft comprehensive technical documentation demonstrating compliance before placing the system on the market.",
+    "item4_title": "4. Transparency & Information",
+    "item4_desc": "Provide clear instructions to users, ensuring they understand the capabilities and limitations of the AI system.",
+    "item5_title": "5. Human Oversight",
+    "item5_desc": "Implement measures that allow natural persons to oversee the system and intervene when necessary.",
+    "bottom_cta_title": "Need Help?",
+    "bottom_cta_desc": "Our team of AI compliance experts is ready to assist you.",
+    "bottom_cta_button": "Contact Us"
   }
 }

@@ -97,8 +97,3 @@ export default function AnalyzerPage() {
     </div>
   );
 }
-
-export const metadata = {
-  title: "ALPAR AI",
-  description: "The trust infrastructure for AI accountability.",
-};

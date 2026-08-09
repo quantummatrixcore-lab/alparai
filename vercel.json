@@ -24,6 +24,10 @@
     {
       "path": "/api/cron/import-incidents",
       "schedule": "0 */6 * * *"
+    },
+    {
+      "path": "/api/cron/benchmark",
+      "schedule": "0 * * * *"
     }
   ],
   "headers": [

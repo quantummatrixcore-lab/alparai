@@ -58,7 +58,7 @@ export default async function AdvisoryBoardPage({
   return (
     <div>
       {/* Premium Glassmorphism Header */}
-      <div className="bg-bg-secondary/10 border-border-subtle relative overflow-hidden border-b py-24 text-center">
+      <div className="bg-bg-secondary/10 border-border-subtle relative overflow-hidden border-b pt-12 pb-24 text-center">
         {/* Subtle decorative glow */}
         <div className="bg-brand-500/10 pointer-events-none absolute -top-48 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full blur-[100px]" />
 

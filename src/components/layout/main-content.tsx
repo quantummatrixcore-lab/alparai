@@ -24,11 +24,11 @@ export function MainContent({ children }: { children: React.ReactNode }) {
       pathname.startsWith("/admin") ||
       pathname.includes("/admin/"));
 
-  // Apply padding-top only to non-home and non-admin pages to clear the fixed navigation header
+  // Apply padding-top only to non-home and non-admin pages to clear the fixed navigation header + ticker
   const shouldHavePadding = !isHome && !isAdmin;
 
   return (
-    <main id="main-content" className={cn("flex-1", shouldHavePadding && "pt-24")} tabIndex={-1}>
+    <main id="main-content" className={cn("flex-1", shouldHavePadding && "pt-32")} tabIndex={-1}>
       {children}
     </main>
   );

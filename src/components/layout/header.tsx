@@ -34,7 +34,7 @@ export function Header({
     return null;
   }
   return (
-    <div className="pointer-events-none fixed top-0 z-50 flex w-full justify-center p-4 sm:p-6">
+    <div className="pointer-events-none fixed top-8 z-50 flex w-full justify-center p-4 sm:p-6">
       <header className="bg-glass hover:border-brand-500/20 pointer-events-auto flex h-14 w-full max-w-[1400px] items-center justify-between gap-2 rounded-full px-4 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] transition-all duration-500 hover:shadow-[0_8px_32px_rgba(168,85,247,0.15)] xl:gap-4">
         <div className="flex min-w-0 items-center gap-2 xl:gap-4 2xl:gap-8">
           <Link

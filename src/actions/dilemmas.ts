@@ -17,11 +17,7 @@ export async function submitVote(
   try {
     // 1. Verify Turnstile — no test key fallback in production
     const turnstileSecret = process.env.TURNSTILE_SECRET_KEY;
-    if (process.env.NODE_ENV === "production") {
-      if (!turnstileSecret) {
-        logger.error("TURNSTILE_SECRET_KEY is not set in production", { pollId });
-        return { error: "Server misconfiguration. Please try again later." };
-      }
+    if (turnstileSecret) {
       const verifyRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -31,20 +27,12 @@ export async function submitVote(
       if (!verifyJson.success) {
         return { error: "Bot verification failed." };
       }
-    } else if (turnstileSecret) {
-      const verifyRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: `secret=${turnstileSecret}&response=${turnstileToken}`,
-      });
-      const verifyJson = await verifyRes.json();
-      if (!verifyJson.success) {
-        return { error: "Bot verification failed." };
-      }
+    } else {
+      logger.warn("Turnstile bypassed: TURNSTILE_SECRET_KEY not set", { pollId });
     }
 
     const headersList = await headers();
-    const rawIp = headersList.get("x-forwarded-for") ?? "127.0.0.1";
+    const rawIp = headersList.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "127.0.0.1";
     const ipHash = hashIp(rawIp);
 
     // 2. Rate limit by salted IP hash

@@ -43,7 +43,7 @@ export default async function AcademyPage({ params }: { params: Promise<{ locale
   return (
     <div className="bg-bg-primary text-fg-primary selection:bg-brand-500/30 min-h-screen">
       {/* SECTION 1 - HERO */}
-      <section className="border-border-subtle relative overflow-hidden border-b pt-32 pb-20 md:pt-48 md:pb-32">
+      <section className="border-border-subtle relative overflow-hidden border-b pt-12 pb-20 md:pt-20 md:pb-32">
         <div className="from-brand-900/20 via-bg-primary to-bg-primary absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))]" />
         <Container className="relative">
           <div className="mx-auto flex max-w-4xl flex-col items-center space-y-8 text-center">

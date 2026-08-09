@@ -53,7 +53,7 @@ export default async function LeaderboardPage({
   const { data: leaderboardData } = await supabase
     .from("provider_leaderboard")
     .select(
-      "id, slug, name, logo_url, is_verified, website_url, trust_score, incident_count, response_count, is_verified_respondent, response_rate",
+      "id, slug, name, logo_url, is_verified, website_url, trust_score, incident_count, response_count, is_verified_respondent",
     )
     .order("name");
 
@@ -296,7 +296,31 @@ export default async function LeaderboardPage({
 
       <Card>
         <CardContent className="p-0">
-          {sorted.length === 0 ? (
+          {stats.length === 0 ? (
+            <div className="relative flex flex-col items-center justify-center overflow-hidden p-16 text-center">
+              <div className="from-brand-500/5 pointer-events-none absolute inset-0 bg-gradient-to-b to-transparent" />
+              <div className="bg-bg-primary/50 border-border-subtle relative z-10 flex max-w-lg flex-col items-center rounded-2xl border p-8 shadow-2xl backdrop-blur-xl">
+                <div className="bg-brand-500/10 ring-brand-500/5 mb-6 flex h-16 w-16 items-center justify-center rounded-full ring-4">
+                  <Trophy className="text-brand-400 h-8 w-8" />
+                </div>
+                <h3 className="text-fg-primary mb-2 text-xl font-bold">
+                  {locale === "tr" ? "Sıralama Hazırlanıyor" : "Leaderboard in Progress"}
+                </h3>
+                <p className="text-fg-secondary mb-6 text-sm leading-relaxed">
+                  {locale === "tr"
+                    ? "Yapay zeka sağlayıcılarına ait güven skorları ve vaka çözümleme oranları şu anda hesaplanıyor. Yeterli veri toplandığında sıralama burada yer alacaktır."
+                    : "Trust scores and incident resolution rates for AI providers are currently being calculated. The leaderboard will appear here once sufficient data is collected."}
+                </p>
+                <Link
+                  href="/submit"
+                  className="bg-brand-500 hover:bg-brand-600 focus-visible:ring-brand-500 shadow-brand-500/20 inline-flex h-10 items-center gap-2 rounded-lg px-6 text-sm font-bold text-white shadow-lg transition-all"
+                >
+                  <Plus className="h-4 w-4" />
+                  {locale === "tr" ? "Veri Havuzuna Katkıda Bulun" : "Contribute to Dataset"}
+                </Link>
+              </div>
+            </div>
+          ) : sorted.length === 0 ? (
             <div className="flex flex-col items-center justify-center p-12 text-center">
               <p className="text-fg-secondary mb-4 max-w-md text-sm font-semibold">
                 {locale === "tr"

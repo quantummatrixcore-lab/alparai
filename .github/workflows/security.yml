@@ -8,6 +8,13 @@ on:
       - "**/*.md"
       - "ops/visual-baseline/**"
       - ".vscode/**"
+  pull_request:
+    branches: [master, main]
+    paths-ignore:
+      - "docs/**"
+      - "**/*.md"
+      - "ops/visual-baseline/**"
+      - ".vscode/**"
   schedule:
     # Doctrine #037 Rule 23 — nightly 03:00 UTC autonomous security & dependency scan
     - cron: "0 3 * * *"

@@ -156,3 +156,5 @@ _Durum: **BLOKLU** (Otopilot değil — aşağıya bakınız) | Yürütücü: Op
 | ALPHA | [ALPHA-3] Top 20 VC Listesi & Warm-intro Şablonları (docs/fundraising)       | ✅ pushed (origin/master)   |
 | SIGMA | [SIGMA-3] AI Act Article 73 Uyumluluk Listesi Sayfası                        | ✅ pushed (origin/master)   |
 | OMEGA | [OMEGA-3] Qwen Omni ASR Sesli İhlal Bildirim API'si                          | ✅ pushed (origin/master)   |
+| SIGMA | [SIGMA-2] Stripe Canlı Test Webhook Simülatör Scripti                        | ✅ pushed (origin/master)   |
+| OMEGA | [OMEGA-2] Hacker News & Reddit Lansman Taslakları (docs/campaigns)           | ✅ pushed (origin/master)   |

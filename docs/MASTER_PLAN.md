@@ -65,14 +65,18 @@ _Durum: Otopilot Bekliyor | Yürütücü: 9-Model Arbitraj Sistemi_
 
 ### BLOK ZETA: Mekanik Yıkım & Hijyen (Zero-Touch Ops)
 
-_Durum: **BLOKLU** (Otopilot değil — aşağıya bakınız) | Yürütücü: OpenCode Flash / Jules_
+_Durum: **AÇIK** (v13.4 ölçümü) | Yürütücü: OpenCode Flash / Jules_
+
+> **Kural 10 düzeltmesi (v13.4, ölçüldü):** Aşağıdaki "PR şeridi kapalı, hiçbir PR merge edilemez" teşhisi **fazla genişti.** PR **#76** 09 Ağu'da merge edildi (`79f365c5`) — Jules'ün otonom temizlik PR'ı, yani ZETA-1'in kabul kriterinin kendisi. Şerit **yalnızca dependabot PR'ları için** kapalı (dependabot tanımı gereği repo secret'ı almaz); normal PR'lar geçiyor. ZETA-0a kapandı, kalan risk adı değişti: **bağımlılık yamaları giremiyor** (ZETA-0d). Tam analiz: `docs/plan/v13.x.md` §1a.
 
 > **Kural 10 düzeltmesi (v13.2, ölçüldü):** Bu blok "Otopilot Aktif" işaretliydi. **Değildir — PR şeridi kapalı olduğu için çalışamaz.** `master` ruleset'i PR + 7 status check zorunlu kılıyor; PR bağlamında kontroller 2–3 sn'de, adım çalıştırmadan düşüyor ⇒ hiçbir PR merge edilemez. `Trigger Jules Agent` kontrolü de başarısız. Yani ZETA-1'in kabul kriteri bugünkü altyapıda karşılanamaz. Ölçülen: 4 açık PR (#68, #69, #70 dependabot; #72 insan-yazımı), hiçbiri merge edilebilir değil. **Not:** `master` dalı bundan ayrıdır ve büyük ölçüde çalışır (17/30 başarılı) — v13.1'in "her dalda çökmüş" ifadesi yanlıştı.
 
-1. **[ZETA-0a] (P0, ön koşul, tüm ajan işinin üstünde)** **PR şeridi açılacak.** En güçlü açıklama: `pull_request` bağlamında sırlar yok. Kanıt: sır referanslarına fallback veren tek workflow (`preview.yml`, `secrets.X || 'default'`) PR'da çalışan tek workflow; fallback'siz olanlar (`ci.yml`, `security.yml`, `secret-scan.yml` → `secrets.GITHUB_TOKEN`) anında düşüyor. Dependabot PR'ları tanımı gereği repo secret'ı almaz. **Çözüm seçenekleri:** Dependabot secrets tanımlanır **veya** sır gerektiren job'lara `if: github.event_name != 'pull_request'` konur (taramalar `push`/`schedule`'da tam kalır) **veya** required-check listesi PR'da fiilen koşabilen kontrollerle sınırlanır. **Kabul:** açık PR'lardan en az biri yeşile döner ve merge edilir.
+1. **[ZETA-0a] ✅ KAPANDI (v13.4, kanıt: PR #76 merged `79f365c5`)** — aşağıdaki teşhis tarihsel kayıt olarak bırakıldı; dependabot kısmı ZETA-0d'ye devroldu. ~~PR şeridi açılacak.~~ En güçlü açıklama: `pull_request` bağlamında sırlar yok. Kanıt: sır referanslarına fallback veren tek workflow (`preview.yml`, `secrets.X || 'default'`) PR'da çalışan tek workflow; fallback'siz olanlar (`ci.yml`, `security.yml`, `secret-scan.yml` → `secrets.GITHUB_TOKEN`) anında düşüyor. Dependabot PR'ları tanımı gereği repo secret'ı almaz. **Çözüm seçenekleri:** Dependabot secrets tanımlanır **veya** sır gerektiren job'lara `if: github.event_name != 'pull_request'` konur (taramalar `push`/`schedule`'da tam kalır) **veya** required-check listesi PR'da fiilen koşabilen kontrollerle sınırlanır. **Kabul:** açık PR'lardan en az biri yeşile döner ve merge edilir.
 2. **[ZETA-0b] (P1)** **`master`'daki üç kırmızı workflow.** (a) `CI` → **"i18n Key Check"** (`ci.yml:51-53` → `scripts/check-i18n.mjs`): kontrol, `admin.*`/`autopilot.*` dışındaki anahtarlarda 5 dil paritesi istiyor; ölçülen delta `en/tr` **4650** satır, `de/fr/ru` **4640** — public kapsamda ~10 anahtar eksik. Çeviri metni platformun kendi ücretsiz zinciriyle (`callWithFailover` + `CREATIVE_COPY_CHAIN`) üretilir, insan onayından geçer. (b) `Release` → **Kural 10 düzeltmesi (v13.3):** v13.2'de "izin bloğu eksik" yazmıştım, **yanlıştı** — `release.yml:7-9` zaten `contents: write` + `pull-requests: write` taşıyor. Gerçek neden: `master` ruleset'i PR+7-check zorunlu kılıyor ve **`GITHUB_TOKEN` bypass listesinde değil**; release-please yazmaya çalışıyor, ruleset engelliyor. Çözüm: ruleset bypass listesine **yalnızca `GitHub Actions`** eklenir (Jules/GitHub-Claude eklenmez — onlar PR şeridini kullanmalı). (c) `Security Audit` → `pnpm-audit` job'u `continue-on-error: false` (`security.yml:40-41`); yerelde `pnpm audit --audit-level=high` çalıştırılıp çıktı raporlanır. **Kabul:** üçü de `master`'da yeşile döner.
-3. **[ZETA-1]** _(ZETA-0'a bağlı)_ Jules veya GitHub-Claude, `master` dalına dokunmaksızın arka planda otonom PR açacak (Örn: kullanılmayan kod temizliği).
-4. **[ZETA-2]** MASTER_PLAN.md dosyasının 400-satır barajı (Task #209) CI workflow'una sıkıca bağlanacak. Bu dosya (v13.0) 250 satırı geçmeyecek.
+3. **[ZETA-0c] (P0, YENİ v13.4, `blocks:#199`)** **Edge katmanı ikinci yerden kırık.** Ölçüm: `Post-Deploy Smoke Test` son başarısız koşusunun log'u birebir → `##[error]Health check failed with HTTP 308`. Yani `/api/health` **308** döndürüyor (WAF'ın 403'ünden ayrı, ikinci bir yanlış yapılandırma — muhtemelen i18n middleware locale rewrite'ı ya da Cloudflare redirect kuralı). **Asıl maliyet sağlık kontrolü değil:** smoke test kırık olduğu için deploy sonrası hiçbir otomatik doğrulama yok, ve kanıtı son beş commit'te duruyor — `59959e44`, `2d7264bc`, `4f243eca` üçü de "breaking prod" düzeltmesi. **Kırık sağlık kontrolüyle HN trafiği almak lansmanı bir kez yakar.** **Kabul:** `/api/health` **200** döner, `Post-Deploy Smoke Test` `master`'da yeşile döner, ve bunu takip eden bir deploy'un smoke test tarafından doğrulandığı gösterilir.
+4. **[ZETA-0d] (P2, YENİ v13.4)** **Bağımlılık yamaları giremiyor.** 4 açık dependabot PR'ı: #68, #69, #70 (03 Ağu — 6 gündür), #75 (08 Ağu). Dependabot PR'ları tanımı gereği repo secret'ı almaz ⇒ sır referanslı job'lar anında düşer. **Çözüm:** Dependabot secrets tanımlanır **veya** sır gerektiren job'lara `if: github.event_name != 'pull_request'` konur (taramalar `push`/`schedule`'da tam kalır). **Kabul:** dört PR'dan en az ikisi merge edilir.
+5. **[ZETA-1] ✅ KAPANDI (v13.4)** — Jules otonom PR açtı ve merge edildi: **#76** (`getJulesBaitConfig` JSDoc), `closed-by:79f365c5@master`. #210'un kabul kriteri (Jules'ten merge edilmiş PR) ilk kanıtını aldı.
+6. **[ZETA-2]** MASTER_PLAN.md dosyasının 400-satır barajı (Task #209) CI workflow'una sıkıca bağlanacak. Bu dosya (v13.0) 250 satırı geçmeyecek.
 
 ---
 
@@ -82,26 +86,57 @@ _Durum: **BLOKLU** (Otopilot değil — aşağıya bakınız) | Yürütücü: Op
 - **⚠ Anayasal açık (v13.2):** Yukarıdaki madde doğrulama yetkisini CI'a devrediyor, ama CI **PR bağlamında hiç çalışmıyor** ve `master`'da üç workflow kırmızı. **Doğrulama otoritesi bu hâldeki bir CI'a devredilemez** — ZETA-0a/0b kapanana kadar "CI yeşil" tek başına kapanış kanıtı sayılmaz; kanıt doğrudan ölçüm (komut çıktısı, HTTP durumu, DB satırı) olmak zorundadır.
 - **⚠ Kanıt zinciri kuralı (v13.2, bu turun dersi):** Bir alt ajanın raporladığı sayı, doktrine yazılmadan önce **çağıran tarafından doğrudan ölçülmelidir.** v13.1'de "master'da 30/30 başarısız" rakamı doğrulanmadan yazıldı ve yanlış çıktı (gerçek: 17/12/1). Alt ajan çıktısı kanıt değil, kanıt adayıdır. **Bu kural Uygulayıcı'nın kapanış iddialarına da uygulanır:** v13.2 turunda üç satır kanıtsız `completed` işaretlenmişti ve doğrudan ölçümle geri açıldı — WAF 403 (`/security` bugün 403 döndü), ZETA-0 (`CI`/`Release`/`Security Audit` 13:01Z'de hâlâ kırmızı), ve lansman kapısı (GATE satırı, doktrin gereği Uygulayıcı tarafından kapatılamaz; kanıt olarak ilk 24 saat huni sayıları istenir).
 - **⚠ Mimar durdurma kuralı (v13.3, bağlayıcı):** Üç turdur (v13.1, v13.2, v13.3) Mimar aynı talimatla çağrıldı ve her turda doğru doktrin üretti; aynı sürede **dış dünyada ölçülebilir hiçbir şey değişmedi.** Bundan sonra Mimar, şu üç ölçümden **en az biri** değişmeden yeni doktrin bölümü yazmaz: (1) `https://alparai.com/security` 403 dışında bir kod döner; (2) açık PR'lardan biri merge edilir; (3) `funnel_events`'te lansman sonrası veri bulunur. Hiçbiri değişmemişse doğru cevap tek satırdır: _"durum aynı, spec yazılı, yürütme bekliyor."_ Engelleri kaldıran işler Antigravity ve Founder tarafındadır; ek doktrin onları kaldırmaz.
+- **✅ Durdurma kuralı çalıştı (v13.4):** Üç şarttan biri değişti — PR #76 merge edildi (09 Ağu). Bu tur meşru. Diğer ikisi değişmedi: `/security` hâlâ **403**, `funnel_events` boş (lansman yok).
+- **⚠ KAPSAM KARARI (v13.4, bağlayıcı):** Bu dosyanın kapsamı **yalnızca ALPAR AI**'dir. §4/§9'da DecasHub ve Agent-OS (`origin/main`, ayrı depolar) yönergeleri birikti; bunlar `docs/plan/tier0-portfolio.md`'ye taşınır. **Lansman (#199) kapanana kadar o iki ürüne yeni iş açılmaz — yalnızca güvenlik yaması.** Gerekçe ölçüm: 0 dış kullanıcı, 3 ürün, 9 gündür lansmansız, ve son 5 commit'in 3'ü "breaking prod" düzeltmesi. Dikkat bütçesi bölünemez.
+- **⚠ Yaptırım katmanı kendisi kırmızı (v13.4):** `Plan Guard` ve `Master Plan Guard` workflow'ları 09 Ağu koşularında **failure**. G-6a yazarlık ayrımını fiilen zorlayan bir kontrol şu an yok; ZETA-0b bunu da kapsar.
 - **Continuous Flow (#033):** Görev bittiği an (yeşil ışık), beklemeden sıradaki Bloka geçilir.
 - **Zaman Çizelgesi Yok:** Hız asıldır. Sürüm numaraları önemsizdir. Çıktılar (para, kullanıcı, PR) gerçektir.
 
 <!-- FOUNDER_BACKLOG_START -->
 
-| Blok  | Öncelik | Atanan      | Görev Özeti                                                                                                      | Durum     |
-| ----- | ------- | ----------- | ---------------------------------------------------------------------------------------------------------------- | --------- |
-| OMEGA | P0      | Founder     | Cloudflare WAF 403 (#128) — **geri açıldı v13.2:** `/security` bugün hâlâ **403** döndü (doğrudan ölçüm)         | pending   |
-| ZETA  | P0      | Antigravity | [ZETA-0a] PR şeridi kapalı: PR bağlamında sırlar yok, kontroller 2-3 sn'de düşüyor; ajan PR doktrini uygulanamaz | ✅ pushed |
-| ZETA  | P1      | Antigravity | [ZETA-0b] master'da 3 kırmızı: i18n 5-dil paritesi, ruleset GITHUB_TOKEN'ı engelliyor, pnpm-audit                | ✅ pushed |
-| SIGMA | P0      | Flash Ajan  | Stripe canlı işlem / webhook doğrulama (#208)                                                                    | completed |
-| ALPHA | P0      | Flash Ajan  | Seed Data Room & Değerleme Memosu üretimi (#201, #203)                                                           | completed |
-| ZETA  | P1      | Flash Ajan  | 400-satır CI sınırı (#209) ve Jules/Claude yönlendirme CI'ı (#213)                                               | completed |
-| OMEGA | P1      | Flash Ajan  | "The Grok Files" serisinin 9-model arbitrajıyla yazılması (#198, #212)                                           | completed |
-| SIGMA | P1      | Antigravity | Top 50 YZ Vendor'a Trust Badge otonom (openchrome) iletilmesi                                                    | completed |
-| OMEGA | P1      | Founder     | HN Show HN + Reddit senkron lansman (#199) — kanıt bekliyor: ilk 24s huni sayıları (`funnel_events`)             | GATE      |
-| ALPHA | P2      | Flash Ajan  | [ALPHA-6] Pitch Deck (Marp/Reveal) HTML slayt kodlaması                                                          | completed |
-| SIGMA | P2      | Flash Ajan  | [SIGMA-6] Stripe Otonom Fatura (PDF) Storage API                                                                 | completed |
+| Blok  | Öncelik | Atanan      | Görev Özeti                                                                                                  | Durum     |
+| ----- | ------- | ----------- | ------------------------------------------------------------------------------------------------------------ | --------- |
+| OMEGA | P0      | Founder     | Cloudflare WAF 403 (#128) — `/security` 09 Ağu'da hâlâ **403** (doğrudan ölçüm); 9 gündür açık `blocks:#199` | pending   |
+| ZETA  | P0      | Antigravity | [ZETA-0c] Edge ikinci kırık: `/api/health` → **308**, Post-Deploy Smoke Test kırmızı `blocks:#199`           | pending   |
+| ZETA  | P1      | Antigravity | [ZETA-0b] master'da 3 kırmızı: `CI` i18n paritesi, `Release` ruleset bypass, `Security Audit` pnpm-audit     | pending   |
+| ZETA  | P2      | Antigravity | [ZETA-0d] 4 dependabot PR'ı (#68,#69,#70,#75) 6 gündür açık — bağımlılık yaması giremiyor                    | pending   |
+| ZETA  | P0      | Jules       | [ZETA-0a] PR şeridi — **kanıtla kapandı:** PR #76 merged 09 Ağu, `closed-by:79f365c5@master`                 | completed |
+| SIGMA | P0      | Flash Ajan  | Stripe canlı işlem / webhook doğrulama (#208)                                                                | completed |
+| ALPHA | P0      | Flash Ajan  | Seed Data Room & Değerleme Memosu üretimi (#201, #203)                                                       | completed |
+| ZETA  | P1      | Flash Ajan  | 400-satır CI sınırı (#209) ve Jules/Claude yönlendirme CI'ı (#213)                                           | completed |
+| OMEGA | P1      | Flash Ajan  | "The Grok Files" serisinin 9-model arbitrajıyla yazılması (#198, #212)                                       | completed |
+| SIGMA | P1      | Antigravity | Top 50 YZ Vendor'a Trust Badge otonom (openchrome) iletilmesi                                                | completed |
+| OMEGA | P1      | Founder     | HN Show HN + Reddit senkron lansman (#199) — kanıt bekliyor: ilk 24s huni sayıları (`funnel_events`)         | GATE      |
+| ALPHA | P2      | Flash Ajan  | [ALPHA-6] Pitch Deck (Marp/Reveal) HTML slayt kodlaması                                                      | completed |
+| SIGMA | P2      | Flash Ajan  | [SIGMA-6] Stripe Otonom Fatura (PDF) Storage API                                                             | completed |
 
 <!-- FOUNDER_BACKLOG_END -->
+
+### v13.4 — Blok görev dağıtımı ve öncelik sırası
+
+Sıra bağımlılıkla belirlenir, hevesle değil. Lansmandan önce **üç** şey kapanmak zorunda; geri kalan her şey lansman sonrasına ertelenir.
+
+```
+BLOK BA (Founder, P0) ──┐
+  WAF 403               ├──► BLOK BD (GATE, Founder, P0) ──► ölçüm çağı
+BLOK BB (Antigravity,P0)┤        lansman #199
+  /api/health 308       │
+BLOK BC (Antigravity,P1)┘
+  master 3 kırmızı
+```
+
+| Blok   | Ö.  | Atanan                        | İş                                                                                                                                                                                    | Kabul kriteri                                                                                                     |
+| ------ | --- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| **BA** | P0  | **Founder** (delege edilemez) | Cloudflare WAF: GPTBot/ClaudeBot/PerplexityBot/Googlebot/Bingbot istisnası                                                                                                            | `/`, `/security`, `/legal/takedown` üçü de **200**; ardından bir dış AI denetimi gerçek içerik gördüğünü raporlar |
+| **BB** | P0  | Antigravity                   | ZETA-0c: `/api/health` 308 → 200, smoke test yeşil                                                                                                                                    | Sonraki deploy'un smoke test tarafından doğrulandığı gösterilir                                                   |
+| **BC** | P1  | Antigravity                   | ZETA-0b: `CI` i18n paritesi (~10 anahtar, `de/fr/ru`), `Release` ruleset bypass'ına yalnızca `GitHub Actions`, `Security Audit` pnpm-audit; ayrıca `Plan Guard` + `Master Plan Guard` | Beşi de `master`'da yeşil                                                                                         |
+| **BD** | P0  | **Founder** (GATE)            | `docs/campaigns/` lansman taslakları onayı → HN Show HN + Reddit senkron                                                                                                              | İlk 24 saat `funnel_events` huni sayıları raporlanır                                                              |
+| **BE** | P2  | Antigravity                   | ZETA-0d: 4 dependabot PR'ı                                                                                                                                                            | En az ikisi merge                                                                                                 |
+| **BF** | P2  | Flash Ajan                    | §4/§9'daki DecasHub + Agent-OS yönergelerini `docs/plan/tier0-portfolio.md`'ye taşı                                                                                                   | Bu dosyada ALPAR AI dışı ürün yönergesi kalmaz                                                                    |
+
+**Ertelenenler (lansman sonrası):** DecasHub SSO, Agent-OS UI, Hetzner migrasyonu, yeni içerik serileri. Gerekçe kapsam kararında (§3).
+
+**Bu turun metriği:** panel satır sayısı 11 → 13 (biri kapandı, üçü açıldı, biri geri açıldı). Yeni satırların ikisi `blocks:#199` etiketli — moratoryumun tek istisnası.
 
 ---
 

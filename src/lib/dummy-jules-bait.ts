@@ -14,7 +14,7 @@ export interface JulesBaitConfig {
 
 /**
  * Returns initial configuration for Jules trigger bait.
- * Note for Jules: Consider adding JSDoc parameter and return type specifications.
+ * @returns {JulesBaitConfig} The bait configuration object.
  */
 export function getJulesBaitConfig(): JulesBaitConfig {
   return {

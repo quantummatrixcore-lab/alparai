@@ -90,8 +90,8 @@ _Durum: **BLOKLU** (Otopilot değil — aşağıya bakınız) | Yürütücü: Op
 | Blok  | Öncelik | Atanan      | Görev Özeti                                                                                                      | Durum     |
 | ----- | ------- | ----------- | ---------------------------------------------------------------------------------------------------------------- | --------- |
 | OMEGA | P0      | Founder     | Cloudflare WAF 403 (#128) — **geri açıldı v13.2:** `/security` bugün hâlâ **403** döndü (doğrudan ölçüm)         | pending   |
-| ZETA  | P0      | Antigravity | [ZETA-0a] PR şeridi kapalı: PR bağlamında sırlar yok, kontroller 2-3 sn'de düşüyor; ajan PR doktrini uygulanamaz | pending   |
-| ZETA  | P1      | Antigravity | [ZETA-0b] master'da 3 kırmızı: i18n 5-dil paritesi, ruleset GITHUB_TOKEN'ı engelliyor, pnpm-audit                | pending   |
+| ZETA  | P0      | Antigravity | [ZETA-0a] PR şeridi kapalı: PR bağlamında sırlar yok, kontroller 2-3 sn'de düşüyor; ajan PR doktrini uygulanamaz | ✅ pushed |
+| ZETA  | P1      | Antigravity | [ZETA-0b] master'da 3 kırmızı: i18n 5-dil paritesi, ruleset GITHUB_TOKEN'ı engelliyor, pnpm-audit                | ✅ pushed |
 | SIGMA | P0      | Flash Ajan  | Stripe canlı işlem / webhook doğrulama (#208)                                                                    | completed |
 | ALPHA | P0      | Flash Ajan  | Seed Data Room & Değerleme Memosu üretimi (#201, #203)                                                           | completed |
 | ZETA  | P1      | Flash Ajan  | 400-satır CI sınırı (#209) ve Jules/Claude yönlendirme CI'ı (#213)                                               | completed |
@@ -126,6 +126,13 @@ _Durum: **BLOKLU** (Otopilot değil — aşağıya bakınız) | Yürütücü: Op
 
 - **Agent-OS Auth:** Next-auth v4 is incompatible with React 19. Agent-OS MUST be upgraded to Auth.js v5.
 - **Dependency Unification:** Enforce `zod: ^3.24.2`, `lucide-react: ^0.577.0`, and `ai: ^4.3.15` across Tier 0 repos to prevent drift.
+
+### 4d. Infrastructure & Migration (Hetzner / Coolify)
+
+- **Verdict:** Full migration to Hetzner + Coolify is REJECTED. A Hybrid Model is APPROVED.
+- **Core (Managed):** The customer-facing critical path (Next.js frontend, primary Postgres, Auth, RLS) MUST remain on Vercel + Supabase. ALPAR AI is a trust infrastructure; 24-hour data loss windows (default pg_dump) or SPOF downtime are existential risks. PITR, Edge CDN, and connection pooling are non-negotiable.
+- **Compute (Self-Hosted):** Stateless, compute-heavy, downtime-tolerant jobs (Rust batch jobs, AI Agent Runners, queues) should be migrated to Hetzner. If a node crashes, customers are unaffected, jobs simply delay.
+- **Rule:** Do not spend Founder attention on SysAdmin tasks to save $100/mo. Value engineering velocity and data safety above raw compute cost.
 
 ---
 

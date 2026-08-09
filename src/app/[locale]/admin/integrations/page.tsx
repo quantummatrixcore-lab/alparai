@@ -240,8 +240,3 @@ export default function AdminIntegrationsPage({ params }: { params: Promise<{ lo
     </div>
   );
 }
-
-export const metadata = {
-  title: "ALPAR AI",
-  description: "The trust infrastructure for AI accountability.",
-};

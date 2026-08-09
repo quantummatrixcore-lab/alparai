@@ -152,3 +152,7 @@ _Durum: **BLOKLU** (Otopilot değil — aşağıya bakınız) | Yürütücü: Op
 | ZETA  | Autopilot: VoiceIncidentReporter, GlobalStateContext memory leaks (Alparai)  | ✅ 1ef85728 (origin/master) |
 | ZETA  | Autopilot: Agent-OS Auth.js v5 upgrade, Sitemap SEO & Hydration fixes        | ✅ c3249d0 (origin/main)    |
 | ZETA  | Autopilot: DecasHub SSO RLS enforcement (Tier-1 Maintenance Mode)            | ✅ 3674b75 (origin/main)    |
+| ZETA  | [ZETA-1] Jules Otonom Temizleyici & GitHub PR (#76)                          | ✅ pushed (origin/master)   |
+| ALPHA | [ALPHA-3] Top 20 VC Listesi & Warm-intro Şablonları (docs/fundraising)       | ✅ pushed (origin/master)   |
+| SIGMA | [SIGMA-3] AI Act Article 73 Uyumluluk Listesi Sayfası                        | ✅ pushed (origin/master)   |
+| OMEGA | [OMEGA-3] Qwen Omni ASR Sesli İhlal Bildirim API'si                          | ✅ pushed (origin/master)   |

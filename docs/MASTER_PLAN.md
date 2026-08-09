@@ -134,6 +134,13 @@ _Durum: **BLOKLU** (Otopilot değil — aşağıya bakınız) | Yürütücü: Op
 - **Compute (Self-Hosted):** Stateless, compute-heavy, downtime-tolerant jobs (Rust batch jobs, AI Agent Runners, queues) should be migrated to Hetzner. If a node crashes, customers are unaffected, jobs simply delay.
 - **Rule:** Do not spend Founder attention on SysAdmin tasks to save $100/mo. Value engineering velocity and data safety above raw compute cost.
 
+### 4e. UI/UX, Performance & Reliability (Tier 0 Directive)
+
+- **Performance (Speed):** Next.js ISR and Edge caching must be aggressively optimized. The "terrible speed" complaint dictates that all high-traffic routes (`/`, `/leaderboard`, `/transparency`) must be served fully statically or via Edge. Server-side delays must be eliminated.
+- **UI Integrity (Zero Overlap):** Fixed elements (Header, Ticker) must never overlap page content. `MainContent` component is strictly responsible for dynamic padding calculations. Double-padding in sections (e.g. Academy, Advisory Board) is forbidden.
+- **Data Reliability (Leaderboard & Trust Engine):** Missing columns in database views (e.g. `response_rate` missing in `provider_leaderboard`) cause silent 400 Bad Request errors, leading to empty states in production. All DB selects must strictly match the schema.
+- **Visual Polish (Favicons & Meta):** Redundant `icon.tsx` / `apple-icon.tsx` dynamically generating images causing latency or failing must be replaced with static `.png` / `.ico` or properly cached SVGs.
+
 ---
 
 ## 9. Bugün Tamamlanan Görevler (Autopilot Sprint)

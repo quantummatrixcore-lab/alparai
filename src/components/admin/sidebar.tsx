@@ -462,15 +462,9 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
     },
     {
       href: "/admin/crons",
-      label: t("nav_crons"),
+      label: t("nav_crons") || "Cron İşleri & Sağlığı",
       icon: Clock,
-      active: pathname.startsWith("/admin/crons"),
-    },
-    {
-      href: "/admin/cron-health",
-      label: t("nav_cron_health") || "Cron Health",
-      icon: Activity,
-      active: pathname.startsWith("/admin/cron-health"),
+      active: pathname.startsWith("/admin/crons") || pathname.startsWith("/admin/cron-health"),
     },
     {
       href: "/admin/startup-health",

@@ -6,6 +6,8 @@ test.describe("Item 147 — Admin Sidebar & Page Integrity", () => {
   const ALLOWED_PAGE_EXCEPTIONS: string[] = [
     // EXCEPTION: /admin/autopilot/analytics — merged into /admin/ai-orchestrator sidebar menu
     "/admin/autopilot/analytics",
+    // EXCEPTION: /admin/cron-health — merged into /admin/crons sidebar menu
+    "/admin/cron-health",
   ];
 
   // Helper to discover all admin page routes

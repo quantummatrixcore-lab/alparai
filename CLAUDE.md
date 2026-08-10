@@ -66,6 +66,18 @@ pnpm db:migrate       # supabase migration up
 
 12. **Reply style for the Founder (binding)** — Answer in flowing natural language, not numbered lists or item-ID tables. The Founder is human and does not carry item numbers in memory; refer to work by what it _does_ ("the nightly security scan"), not by its number. Keep replies short — the shortest form that is still honest and complete. Long structured reports belong in `docs/MASTER_PLAN.md`, not in chat.
 
+13. **Repository language is English (binding, v13.6)** — Every artifact committed to this repository is written in English: documentation, `README`, commit messages, PR titles and bodies, code identifiers, script output, CI job names and messages, issue templates. **The single exception is the chat reply to the Founder**, which stays Turkish (Rule 12) — chat output never enters the repository; everything that does is English.
+
+    **Rationale (measured, not stylistic):** v13.5 found **91 mojibake occurrences** in `messages/en.json` — UTF-8 content read back as Windows-1252. Turkish prose is dense in non-ASCII characters, so every encoding round-trip is an opportunity for the same corruption. A second reason is distribution: `README.md` is the public repository's front page and was measured at 31% Turkish while an HN/Reddit launch is pending.
+
+    **Out of scope (product content, not documentation):** `messages/**` and `Basın/**` stay in their target language. Bilingual content structures under `src/` (e.g. `tr:` fields) are product data, not docs — see the pending `src/` diagnosis before treating any of them as violations.
+
+    **Frozen historical record — never translated:** `docs/MASTER_PLAN_ARCHIVE.md`, `docs/ARCHIVE/**`, `docs/plan/v12.*.md`, and the pre-v13.6 sections of `docs/plan/v13.x.md`. These are the evidence base Rule 10 depends on; translating them would rewrite the evidence and inject mistranslation risk into the historical record. Each carries an English freeze notice instead. **Every section written from v13.6 onward is English, including inside archive files.**
+
+    **Enforcer (Doctrine #047) — specified and verified, not yet landed.** `scripts/check-repo-language.mjs` plus a `Repo Language Check` step in `.github/workflows/ci.yml`. It is a **ratchet**: `.repo-language-baseline` lists the files that still contain Turkish and are grandfathered; entries may only be **removed** as files are translated, never added. Any file outside the baseline and outside the permanent exemptions that contains Turkish characters fails CI. The baseline exists so adopting the rule does not turn CI red on day one — a blanket ban would have required an immediate revert under G-6.
+
+    The enforcer was written and tested in the session that authored this rule (passes at 221 grandfathered files; negative test exits 1), but `.husky/pre-commit` correctly refused the commit: `scripts/` is outside the Architect's writable paths, and G-6's enforcement list covers only `.github/workflows/**`, `.husky/**`, `playwright.config.ts` and dependency-security fields in `package.json`. The verified source is carried as a specification in `docs/plan/v13.x.md` §v13.6.8 for the Implementer to land verbatim (backlog row **BJ**). **Until BJ lands, Rule 13 binds by convention only** — this is a known, recorded Doctrine #047 gap, not an oversight.
+
 ## File Map
 
 | Need                | File                                                       |

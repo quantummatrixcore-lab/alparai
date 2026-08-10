@@ -167,6 +167,32 @@ Founder'ın LinkedIn ekran görüntüsü (**335 gösterim, 2 tepki**) üç iddia
 
 ---
 
+### v13.6 — Repository language fixed to English (Rule 13)
+
+_First section written under the English-only policy. Full analysis: `docs/plan/v13.x.md` §v13.6._
+
+**Founder decision (binding):** everything committed to this repository is English; only the chat reply to the Founder stays Turkish. Rule 13 in `CLAUDE.md` carries the full text. The justification is measured, not stylistic — v13.5 found 91 mojibake occurrences in `messages/en.json`, and Turkish prose maximises exposure to exactly that failure mode. `README.md` was measured at **66 of 211 lines Turkish (31%)** while it serves as the public repository's front page ahead of an HN launch.
+
+**Measurement correction (Rule 10).** The first inventory of this policy used `grep '[ığşçöü…]'`, which matches **bytes**, not characters: `İ` (`C4 B0`) shares its second byte with `°` (`C2 B0`), so strings like `360°` were counted as Turkish. The reported "120 files under `src/`" was inflated by this defect. The enforcer uses a Unicode-aware regex in Node instead; the corrected count of grandfathered files across the whole repo is **221**.
+
+**Three tiers.** _Tier A — before launch:_ public-facing files (`README.md`, `CONTRIBUTING.md`, `SECURITY.md`, `CODE_OF_CONDUCT.md`, `.github/ISSUE_TEMPLATE/**`). _Tier B — after launch:_ internal docs, ordered by how often they are read (`docs/MASTER_PLAN.md` 109/215 Turkish, `docs/ROADMAP.md` 177/355, `AGENTS.md` 24/254, `CLAUDE.md` 3/87). _Tier C — frozen:_ archives are never translated, only stamped with an English freeze notice.
+
+**Enforcer written and verified, but NOT shipped by the Architect — the role guard blocked it, correctly.** The enforcer (`scripts/check-repo-language.mjs` + `.repo-language-baseline`) was implemented and tested this session: the check passes on the current tree at 221 grandfathered files, and a negative test (removing `docs/MASTER_PLAN.md` from the baseline) fails with exit 1 naming its 97 offending lines. On commit, `.husky/pre-commit` refused it — `scripts/` and repo-root data files are outside the Architect's writable paths. **That refusal is the enforcement layer doing its job and is recorded here as evidence it works.** G-6's enumerated enforcement paths are `.github/workflows/**`, `.husky/**`, `playwright.config.ts` and dependency-security fields in `package.json`; `scripts/` is not among them, and widening that boundary unilaterally is exactly what G-6a exists to prevent. The full verified source is carried as a specification in `docs/plan/v13.x.md` §v13.6.8 for the Implementer to land verbatim.
+
+**Honest status: Rule 13 currently ships without an active enforcer.** That is a Doctrine #047 gap, open until BJ closes it. Until then the rule binds by convention only.
+
+| Blok   | Ö.               | Atanan      | İş                                                                                                                                                                                                                                 | Kabul kriteri                                                                   |
+| ------ | ---------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| **BI** | P0 `blocks:#199` | Antigravity | Tier A: `README.md` and other public-facing files translated to English                                                                                                                                                            | Files drop out of `.repo-language-baseline`; CI stays green                     |
+| **BJ** | **P0**           | Antigravity | Land the enforcer verbatim from `docs/plan/v13.x.md` §v13.6.8: `scripts/check-repo-language.mjs`, generate `.repo-language-baseline` via `--write-baseline`, add the `Repo Language Check` step to `ci.yml` after `i18n Key Check` | `node scripts/check-repo-language.mjs` exits 0; negative test exits 1; CI green |
+| **BK** | P1               | Antigravity | Tier C: English freeze notice at the top of each archive group (G-6: archives are outside Architect's writable paths)                                                                                                              | Notice present; file content bytes otherwise unchanged                          |
+| **BL** | P2               | Antigravity | Tier B: internal docs translated in read-frequency order; keep backlog markers/schema                                                                                                                                              | `check-masterplan-consistency.mjs` still `passed` after translation             |
+| **BM** | P2               | Antigravity | Diagnose the `src/` entries: product content (`tr:` fields) vs hardcoded Turkish UI text                                                                                                                                           | Categorised report; hardcoded text moved to `useTranslations` keys              |
+
+**Sequence:** BJ ✅ → BI (launch prerequisite) → BK → BL/BM (post-launch). BI ships together with BG (mojibake cleanup) — both are storefront-quality fixes on the same surface.
+
+---
+
 ## 4. v15.1 — The Opus Verdict (Autopilot Override)
 
 **Status:** Architect specification (Opus simulated). Implementer = Antigravity/OpenCode.

@@ -95,8 +95,8 @@ importers:
         specifier: ^8.22.0
         version: 8.22.0
       pnpm:
-        specifier: ^11.11.0
-        version: 11.18.0
+        specifier: ^11.20.0
+        version: 11.20.0
       posthog-js:
         specifier: ^1.413.2
         version: 1.413.2
@@ -4084,8 +4084,8 @@ packages:
     resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}
     engines: {node: '>=4'}
 
-  pnpm@11.18.0:
-    resolution: {integrity: sha512-M9g8d9qC9J+6g2klxvG4QRgewxMrZwY5vQEvcHX1x89jTF+HAUfBmq50ePrAHfCdiJLogEVIlu3SPumzN1dWPA==}
+  pnpm@11.20.0:
+    resolution: {integrity: sha512-mm8zCpW2ZEbqCI+vFSFAWooB8H/ecSTMmVjf7VLUu0NnN+ZbCPhfN7Rvy6N1CSVYrFEmK4FoRLIvY0Bu0Wa/7g==}
     engines: {node: '>=22.13'}
     hasBin: true
 
@@ -8864,7 +8864,7 @@ snapshots:
 
   pluralize@8.0.0: {}
 
-  pnpm@11.18.0: {}
+  pnpm@11.20.0: {}
 
   po-parser@2.1.1: {}
 

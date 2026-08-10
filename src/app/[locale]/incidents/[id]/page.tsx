@@ -56,17 +56,16 @@ export default async function IncidentDetailPage({
   const { data: incidentRow } = await query.maybeSingle();
   if (!incidentRow) notFound();
 
+  const providerId = (incidentRow as Record<string, unknown>)["ai_provider_id"] as string | null;
+  const modelId = (incidentRow as Record<string, unknown>)["ai_model_id"] as string | null;
+
   const [providerRes, modelRes, evidenceRes, responseRes, commentsRes] = await Promise.all([
-    supabase
-      .from("ai_providers")
-      .select("name, slug")
-      .eq("id", (incidentRow as Record<string, unknown>)["ai_provider_id"] as string)
-      .maybeSingle(),
-    supabase
-      .from("ai_models")
-      .select("name, version")
-      .eq("id", (incidentRow as Record<string, unknown>)["ai_model_id"] as string)
-      .maybeSingle(),
+    providerId
+      ? supabase.from("ai_providers").select("name, slug").eq("id", providerId).maybeSingle()
+      : Promise.resolve({ data: null, error: null }),
+    modelId
+      ? supabase.from("ai_models").select("name, version").eq("id", modelId).maybeSingle()
+      : Promise.resolve({ data: null, error: null }),
     supabase.from("evidence").select("id, file_name, file_path, mime_type").eq("incident_id", id),
     supabase
       .from("ai_provider_responses")

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Turnstile } from "@marsidev/react-turnstile";
+import { useState, useRef } from "react";
+import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { submitVote } from "@/actions/dilemmas";
@@ -30,17 +30,8 @@ export function PollCard({ poll }: { poll: Poll }) {
   const [turnstileError, setTurnstileError] = useState(false);
   const [isVoting, setIsVoting] = useState(false);
   const [turnstileKey, setTurnstileKey] = useState(0);
-
-  useEffect(() => {
-    if (process.env.NODE_ENV !== "production") return;
-    const timer = setTimeout(() => {
-      if (!turnstileToken && !turnstileError) {
-        setTurnstileError(true);
-        console.warn("[Turnstile] Script or widget failed to load within timeout.");
-      }
-    }, 8000);
-    return () => clearTimeout(timer);
-  }, [turnstileKey, turnstileToken, turnstileError]);
+  const turnstileRef = useRef<TurnstileInstance>(null);
+  const [pendingVote, setPendingVote] = useState<"yes" | "no" | "unsure" | null>(null);
 
   const handleRetryTurnstile = () => {
     setTurnstileError(false);
@@ -61,18 +52,31 @@ export function PollCard({ poll }: { poll: Poll }) {
   const unsurePercent = totalVotes > 0 ? 100 - yesPercent - noPercent : 0;
 
   const handleVote = async (voteType: "yes" | "no" | "unsure") => {
+    if (process.env.NODE_ENV === "development") {
+      executeVote(voteType, "dev-bypass-token");
+      return;
+    }
+
     if (turnstileError) {
       toast.error(t("turnstileError"));
       return;
     }
-    if (!turnstileToken) {
-      toast.error(t("turnstileRequired"));
-      return;
-    }
 
     setIsVoting(true);
-    const result = await submitVote(poll.id, voteType, turnstileToken);
+    if (turnstileToken) {
+      executeVote(voteType, turnstileToken);
+    } else {
+      setPendingVote(voteType);
+      turnstileRef.current?.execute();
+    }
+  };
+
+  const executeVote = async (voteType: "yes" | "no" | "unsure", token: string) => {
+    setIsVoting(true);
+    const result = await submitVote(poll.id, voteType, token);
     setIsVoting(false);
+    setPendingVote(null);
+    turnstileRef.current?.reset();
 
     if (result.error) {
       toast.error(result.error);
@@ -160,11 +164,15 @@ export function PollCard({ poll }: { poll: Poll }) {
           {process.env.NODE_ENV === "production" && (
             <div className="flex flex-col items-center">
               <Turnstile
+                ref={turnstileRef}
                 key={turnstileKey}
                 siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "2x00000000000000000000AB"}
                 onSuccess={(token) => {
                   setTurnstileToken(token);
                   setTurnstileError(false);
+                  if (pendingVote) {
+                    executeVote(pendingVote, token);
+                  }
                 }}
                 onError={() => {
                   setTurnstileError(true);
@@ -176,6 +184,7 @@ export function PollCard({ poll }: { poll: Poll }) {
                 options={{
                   theme: "dark",
                   size: "invisible",
+                  execution: "execute",
                 }}
               />
               {turnstileError && (

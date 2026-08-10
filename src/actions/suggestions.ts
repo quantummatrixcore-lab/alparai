@@ -201,3 +201,89 @@ export async function upvoteSuggestion(suggestionId: string) {
     return { ok: false, error: "An unexpected error occurred." };
   }
 }
+
+interface CommentWorkInput {
+  suggestionId: string;
+  userId: string;
+  commentText: string;
+}
+
+const runSuggestionCommentWork = async (
+  _ctx: AttemptContext,
+  data: CommentWorkInput,
+): Promise<AttemptOutcome<{ id: string }>> => {
+  const admin = createAdminClient();
+  const insertRow: Database["public"]["Tables"]["suggestion_comments"]["Insert"] = {
+    suggestion_id: data.suggestionId,
+    user_id: data.userId,
+    comment_text: maskPII(data.commentText).masked,
+  };
+
+  const { data: row, error } = await admin
+    .from("suggestion_comments")
+    .insert(insertRow)
+    .select("id")
+    .single();
+
+  if (error || !row) {
+    return { kind: "retryable", error: error?.message ?? "comment_insert_failed" };
+  }
+
+  // Increment comment count
+  await admin.rpc("increment_suggestion_comment_count", {
+    p_suggestion_id: data.suggestionId,
+  });
+
+  return { kind: "success", value: { id: row.id } };
+};
+
+export async function addSuggestionComment(
+  _prev: SubmitSuggestionState,
+  formData: FormData,
+): Promise<SubmitSuggestionState> {
+  try {
+    const user = await getCurrentUser();
+    if (!user) {
+      const t = await getTranslations("errors");
+      return { ok: false, error: t("sign_in_required", { defaultValue: "Sign in required" }) };
+    }
+
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.suggestion_submission}:${user.id}`);
+    if (!rl.ok) {
+      return { ok: false, error: `Too many comments. Try again in ${rl.retryAfter}s.` };
+    }
+
+    const suggestionId = String(formData.get("suggestionId") ?? "");
+    const commentText = String(formData.get("commentText") ?? "");
+
+    if (!suggestionId || !commentText.trim()) {
+      return { ok: false, error: "Invalid input" };
+    }
+
+    const result = await withAutopilot<{ id: string }>(
+      submitSuggestionPolicy,
+      [user.id, suggestionId, "comment"],
+      (ctx) =>
+        runSuggestionCommentWork(ctx, {
+          suggestionId,
+          userId: user.id,
+          commentText,
+        }),
+      { context: { userId: user.id, ipHash: null, clientIdempotencyKey: null } },
+    );
+
+    if (result.kind === "ok" || result.kind === "replayed") {
+      revalidatePath(`/suggestions/${suggestionId}`);
+      revalidatePath("/dilemmas");
+      return { ok: true };
+    }
+    return { ok: false, error: "Failed to add comment" };
+  } catch (e) {
+    logger.error(
+      "[addSuggestionComment] Unhandled exception",
+      undefined,
+      e instanceof Error ? e : undefined,
+    );
+    return { ok: false, error: "An unexpected error occurred." };
+  }
+}

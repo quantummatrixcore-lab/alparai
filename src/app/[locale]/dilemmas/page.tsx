@@ -51,8 +51,8 @@ export default async function DilemmasPage({ params }: { params: Promise<{ local
     description_tr: (r["description_tr"] as string | null) ?? null,
     category: r["category"] as string,
     status: r["status"] as string,
-    upvote_count: (r["upvotes_count"] as number) ?? 0,
-    comment_count: (r["comments_count"] as number) ?? 0,
+    upvotes_count: (r["upvotes_count"] as number) ?? 0,
+    comments_count: (r["comments_count"] as number) ?? 0,
     created_at: r["created_at"] as string,
     author_name: null,
   }));

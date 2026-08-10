@@ -54,9 +54,9 @@ export default async function AdminUsersPage({ params }: { params: Promise<{ loc
 
   return (
     <div className="min-h-screen bg-black p-6">
-      <div className="rounded-3xl bg-zinc-900/40 p-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl">
+      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-6 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
         <GovernanceHubTabs />
-        <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-6 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
+        <div>
           <Container className="py-10">
             <header className="mb-6 flex flex-wrap items-start justify-between gap-4">
               <div>

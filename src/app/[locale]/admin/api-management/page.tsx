@@ -25,9 +25,9 @@ export default async function ApiManagementPage({
 
   return (
     <div className="min-h-screen bg-black p-6">
-      <div className="rounded-3xl bg-zinc-900/40 p-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl">
+      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-6 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
         <SystemHubTabs />
-        <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-6 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
+        <div>
           <AdminContainer>
             <AdminPageHeader
               icon={<Zap className="text-brand-400 h-6 w-6" />}

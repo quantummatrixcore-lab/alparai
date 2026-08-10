@@ -43,9 +43,9 @@ export default async function MarketingPage({ params }: { params: Promise<{ loca
 
   return (
     <div className="min-h-screen bg-black p-6">
-      <div className="rounded-3xl bg-zinc-900/40 p-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl">
+      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-6 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
         <MarketingHubTabs />
-        <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-6 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
+        <div>
           <div>
             <h1 className="text-2xl font-bold tracking-tight text-white">{t("nav_marketing")}</h1>
             <p className="text-fg-muted mt-1 text-sm">{t("marketing_subtitle")}</p>

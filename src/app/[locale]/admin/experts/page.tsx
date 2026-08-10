@@ -44,9 +44,9 @@ export default async function AdminExpertsPage({
 
   return (
     <div className="min-h-screen bg-black p-6">
-      <div className="rounded-3xl bg-zinc-900/40 p-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl">
+      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-6 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
         <FundingHubTabs />
-        <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-6 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
+        <div>
           <Container className="py-10">
             <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
               <MetricCard

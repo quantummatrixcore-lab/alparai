@@ -8,6 +8,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return { title: t("expert_analysis_title", { defaultValue: "Uzman Kurulu Analizi · ALPAR AI" }) };
 }
 
+import { AnalyticsHubTabs } from "@/components/admin/analytics-hub-tabs";
+
 export default async function ExpertAnalysisAdminPage({
   params,
 }: {
@@ -18,6 +20,7 @@ export default async function ExpertAnalysisAdminPage({
   setRequestLocale(locale);
   return (
     <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-6 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
+      <AnalyticsHubTabs />
       <ExpertAnalysisBoard />
     </div>
   );

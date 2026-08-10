@@ -1,4 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { SystemHubTabs } from "@/components/admin/system-hub-tabs";
 export const dynamic = "force-dynamic";
 
 import { requireModerator } from "@/lib/auth/session";
@@ -258,6 +259,7 @@ export default async function FinancePage({ params }: { params: Promise<{ locale
   return (
     <div className="min-h-screen bg-black p-6">
       <div className="rounded-3xl bg-zinc-900/40 p-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl">
+        <SystemHubTabs />
         <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-6 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
           <AdminContainer>
             {/* Header */}

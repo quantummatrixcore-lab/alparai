@@ -6,6 +6,7 @@ import { Award, BarChart3 } from "lucide-react";
 import Image from "next/image";
 import { MetricCard } from "@/components/admin/metric-card";
 import { BenchTrRunButton } from "@/components/admin/bench-tr-run-button";
+import { AnalyticsHubTabs } from "@/components/admin/analytics-hub-tabs";
 
 interface BenchTrRow {
   id: string;
@@ -221,6 +222,7 @@ export default async function KBenchmarkPage({ params }: { params: Promise<{ loc
   return (
     <div className="min-h-screen bg-black p-6">
       <div className="rounded-3xl bg-zinc-900/40 p-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl">
+        <AnalyticsHubTabs />
         <div className="animate-in fade-in space-y-8 duration-500">
           <div>
             <h1 className="text-3xl font-black tracking-tight text-white drop-shadow-md">

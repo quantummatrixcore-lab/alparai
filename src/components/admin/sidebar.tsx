@@ -6,49 +6,36 @@ import { Link, usePathname } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import {
-  LayoutDashboard,
-  ShieldAlert,
-  Import,
   BarChart3,
   BrainCircuit,
   Cpu,
-  Sparkles,
+  Gauge,
   Globe,
-  Users,
-  Lock,
-  BookOpen,
-  FileText,
-  Award,
-  Share2,
-  TrendingUp,
+  Grid2X2,
   Radio,
-  Activity,
-  DollarSign,
   Server,
-  Plug,
-  CreditCard,
-  Mail,
-  ToggleRight,
+  Share2,
+  Shield,
+  ShieldAlert,
+  Sparkles,
+  Target,
+  TrendingUp,
+  Users,
+  DollarSign,
+  Activity,
+  Settings,
+  LayoutDashboard,
+  Import,
+  BookOpen,
   ChevronDown,
   ChevronRight,
   ChevronLeft,
   Menu,
   X,
   LogOut,
-  Settings,
-  Shield,
   Compass,
-  Target,
-  Grid2X2,
-  Map,
-  AlertTriangle,
   Building2,
-  Calculator,
-  Zap,
-  Gauge,
-  Newspaper,
-  Clock,
-  Eraser,
+  Mail,
 } from "lucide-react";
 import { cn, getInitials } from "@/lib/utils";
 import Image from "next/image";
@@ -177,78 +164,34 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
 
   const intelligenceItems = [
     {
+      href: "/admin/ai-hub",
+      label: "AI Hub",
+      icon: Cpu,
+      active: pathname.startsWith("/admin/ai-hub"),
+    },
+    {
+      href: "/admin/analytics-hub",
+      label: "Analytics Hub",
+      icon: BrainCircuit,
+      active: pathname.startsWith("/admin/analytics-hub"),
+    },
+    {
+      href: "/admin/metrics-hub",
+      label: "Metrics Hub",
+      icon: Gauge,
+      active: pathname.startsWith("/admin/metrics-hub"),
+    },
+    {
       href: "/admin/vendor-portal",
       label: t("nav_vendor_portal") || "Vendor Portal",
       icon: Server,
       active: pathname.startsWith("/admin/vendor-portal"),
     },
     {
-      href: "/admin/k-benchmark",
-      label: t("nav_kBenchmark"),
-      icon: BarChart3,
-      active: pathname.startsWith("/admin/k-benchmark"),
-    },
-    {
       href: "/admin/cross-audit-dashboard",
       label: t("nav_cross_audit_dashboard"),
       icon: BarChart3,
       active: pathname.startsWith("/admin/cross-audit-dashboard"),
-    },
-    {
-      href: "/admin/analysis",
-      label: t("nav_audit_analysis"),
-      icon: BrainCircuit,
-      active: pathname.startsWith("/admin/analysis"),
-    },
-    {
-      href: "/admin/signals",
-      label: t("nav_signals"),
-      icon: Radio,
-      active: pathname.startsWith("/admin/signals"),
-    },
-    {
-      href: "/admin/slo-dashboard",
-      label: t("nav_slo_dashboard"),
-      icon: Gauge,
-      active: pathname.startsWith("/admin/slo-dashboard"),
-    },
-    {
-      href: "/admin/api-metrics",
-      label: t("nav_api_metrics"),
-      icon: Zap,
-      active: pathname.startsWith("/admin/api-metrics"),
-    },
-    {
-      href: "/admin/ai-pulse",
-      label: t("nav_ai_pulse"),
-      icon: Newspaper,
-      active: pathname.startsWith("/admin/ai-pulse"),
-    },
-    {
-      href: "/admin/autopilot",
-      label: t("autopilot"),
-      icon: Cpu,
-      active: pathname === "/admin/autopilot",
-    },
-    {
-      href: "/admin/ai-orchestrator",
-      label: t("nav_ai_orchestrator") || "AI Orkestratör",
-      icon: BrainCircuit,
-      active:
-        pathname.startsWith("/admin/ai-orchestrator") ||
-        pathname.startsWith("/admin/autopilot/analytics"),
-    },
-    {
-      href: "/admin/jules",
-      label: t("nav_jules") || "Google Jules",
-      icon: Cpu,
-      active: pathname.startsWith("/admin/jules"),
-    },
-    {
-      href: "/admin/expert-analysis",
-      label: t("nav_expert_analysis") || t("nav__expert_analysis") || "Expert Analysis",
-      icon: Sparkles,
-      active: pathname.startsWith("/admin/expert-analysis"),
     },
     {
       href: "/admin/dual-channel-scoring",
@@ -272,79 +215,24 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
 
   const strategyItems = [
     {
-      href: "/admin/master-plan",
-      label: t("nav_masterPlan"),
-      icon: FileText,
-      active: pathname.startsWith("/admin/master-plan"),
-    },
-    {
       href: "/admin/strategy",
       label: t("strategy_overview"),
       icon: Target,
-      active: pathname === "/admin/strategy",
-    },
-    {
-      href: "/admin/strategy/swot",
-      label: t("strategy_swot"),
-      icon: Grid2X2,
-      active: pathname.startsWith("/admin/strategy/swot"),
-    },
-    {
-      href: "/admin/strategy/roadmap",
-      label: t("strategy_roadmap"),
-      icon: Map,
-      active: pathname.startsWith("/admin/strategy/roadmap"),
-    },
-    {
-      href: "/admin/strategy/risks",
-      label: t("strategy_risks"),
-      icon: AlertTriangle,
-      active: pathname.startsWith("/admin/strategy/risks"),
-    },
-    {
-      href: "/admin/strategy/state-support",
-      label: t("strategy_state_support"),
-      icon: Building2,
-      active: pathname.startsWith("/admin/strategy/state-support"),
-    },
-    {
-      href: "/admin/strategy/valuation",
-      label: t("strategy_valuation"),
-      icon: Calculator,
-      active: pathname.startsWith("/admin/strategy/valuation"),
+      active: pathname.startsWith("/admin/strategy"),
     },
   ];
 
   const governanceItems = [
     {
       href: "/admin/users",
-      label: t("users"),
-      icon: Users,
-      active: pathname.startsWith("/admin/users"),
-    },
-    {
-      href: "/admin/dsar",
-      label: t("nav_dsar"),
-      icon: Lock,
-      active: pathname.startsWith("/admin/dsar"),
-    },
-    {
-      href: "/admin/audit",
-      label: t("audit_log"),
-      icon: FileText,
-      active: pathname.startsWith("/admin/audit"),
-    },
-    {
-      href: "/admin/redaction-queue",
-      label: t("nav_redaction_queue"),
-      icon: Eraser,
-      active: pathname.startsWith("/admin/redaction-queue"),
-    },
-    {
-      href: "/admin/advisory-board",
-      label: t("nav_advisoryBoard"),
-      icon: Award,
-      active: pathname.startsWith("/admin/advisory-board"),
+      label: t("governance_hub") || "Governance Hub",
+      icon: Building2,
+      active:
+        pathname.startsWith("/admin/users") ||
+        pathname.startsWith("/admin/dsar") ||
+        pathname.startsWith("/admin/audit") ||
+        pathname.startsWith("/admin/redaction-queue") ||
+        pathname.startsWith("/admin/advisory-board"),
     },
   ];
 
@@ -414,81 +302,27 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
   const systemItems = [
     {
       href: "/admin/health",
-      label: t("nav_systemHealth"),
+      label: "System Hub",
       icon: Activity,
-      active: pathname.startsWith("/admin/health"),
-    },
-    {
-      href: "/admin/billing",
-      label: t("nav_subscriptions"),
-      icon: CreditCard,
-      active: pathname.startsWith("/admin/billing"),
-    },
-    {
-      href: "/admin/finance",
-      label: t("nav_infra_costs"),
-      icon: BarChart3,
-      active: pathname.startsWith("/admin/finance"),
-    },
-    {
-      href: "/admin/resources",
-      label: t("nav_resourceEfficiency"),
-      icon: Server,
-      active: pathname.startsWith("/admin/resources"),
-    },
-    {
-      href: "/admin/api-management",
-      label: t("nav_apiManagement") || "API Hub",
-      icon: Zap,
-      active: pathname.startsWith("/admin/api-management"),
+      active:
+        pathname.startsWith("/admin/health") ||
+        pathname.startsWith("/admin/startup-health") ||
+        pathname.startsWith("/admin/crons") ||
+        pathname.startsWith("/admin/api-management") ||
+        pathname.startsWith("/admin/integrations") ||
+        pathname.startsWith("/admin/api-keys") ||
+        pathname.startsWith("/admin/finance") ||
+        pathname.startsWith("/admin/billing") ||
+        pathname.startsWith("/admin/resources") ||
+        pathname.startsWith("/admin/settings") ||
+        pathname.startsWith("/admin/feature-flags") ||
+        pathname.startsWith("/admin/providers"),
     },
     {
       href: "/api-docs",
       label: t("nav_publicApiDocs"),
       icon: BookOpen,
       active: pathname.startsWith("/api-docs"),
-    },
-    {
-      href: "/admin/integrations",
-      label: t("nav_integrations"),
-      icon: Plug,
-      active: pathname.startsWith("/admin/integrations"),
-    },
-    {
-      href: "/admin/feature-flags",
-      label: t("nav_featureFlags"),
-      icon: ToggleRight,
-      active: pathname.startsWith("/admin/feature-flags"),
-    },
-    {
-      href: "/admin/crons",
-      label: t("nav_crons") || "Cron İşleri & Sağlığı",
-      icon: Clock,
-      active: pathname.startsWith("/admin/crons") || pathname.startsWith("/admin/cron-health"),
-    },
-    {
-      href: "/admin/startup-health",
-      label: t("nav_startup_health") || "Startup Health",
-      icon: Activity,
-      active: pathname.startsWith("/admin/startup-health"),
-    },
-    {
-      href: "/admin/api-keys",
-      label: t("nav_api_keys") || "API Keys",
-      icon: Lock,
-      active: pathname.startsWith("/admin/api-keys"),
-    },
-    {
-      href: "/admin/providers",
-      label: t("nav_ai_providers") || "AI Providers",
-      icon: Cpu,
-      active: pathname.startsWith("/admin/providers"),
-    },
-    {
-      href: "/admin/settings",
-      label: t("nav_settings") || "Settings",
-      icon: Settings,
-      active: pathname.startsWith("/admin/settings"),
     },
     {
       href: "/admin/codebase-hygiene",

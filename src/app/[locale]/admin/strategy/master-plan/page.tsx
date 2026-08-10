@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/layout";
 import { requireAdmin } from "@/lib/auth/session";
 import { MasterPlanClient } from "@/components/admin/master-plan-client";
 import { MasterPlanDashboard } from "@/components/admin/master-plan-dashboard";
+import { StrategyTabs } from "@/components/admin/strategy-tabs";
 import { parseMasterPlan } from "@/lib/utils/markdown-parser";
 import { Compass } from "lucide-react";
 
@@ -27,6 +28,7 @@ export default async function MasterPlanPage({ params }: { params: Promise<{ loc
   return (
     <div className="min-h-screen bg-black p-6">
       <div className="rounded-3xl bg-zinc-900/40 p-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl">
+        <StrategyTabs />
         <div className="min-h-screen rounded-3xl bg-zinc-900/40 p-6 py-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
           <Container>
             <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">

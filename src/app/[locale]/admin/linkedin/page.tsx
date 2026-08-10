@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import { Users } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { MarketingHubTabs } from "@/components/admin/marketing-hub-tabs";
 
 export default async function LinkedinAdminPage({
   params,
@@ -34,6 +35,7 @@ export default async function LinkedinAdminPage({
   return (
     <div className="min-h-screen bg-black p-6">
       <div className="rounded-3xl bg-zinc-900/40 p-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl">
+        <MarketingHubTabs />
         <div className="mx-auto max-w-6xl space-y-8 rounded-3xl bg-zinc-900/40 p-6 pb-12 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
           <div>
             <h1 className="flex items-center gap-3 text-3xl font-black tracking-tight text-white">

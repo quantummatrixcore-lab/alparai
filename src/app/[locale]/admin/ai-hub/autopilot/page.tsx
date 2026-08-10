@@ -8,6 +8,7 @@ import { getAdminAutopilotSnapshot } from "@/actions/admin-autopilot";
 import { Activity, ShieldCheck, Workflow } from "lucide-react";
 import { WorkerTickButton } from "@/components/admin/autopilot-tick-button";
 import { AutopilotWorkerToggles } from "@/components/admin/autopilot-worker-toggles";
+import { AiHubTabs } from "@/components/admin/ai-hub-tabs";
 
 export async function generateMetadata() {
   return { title: "Autopilot" };
@@ -69,6 +70,7 @@ export default async function AdminAutopilotPage({
     <div className="min-h-screen bg-black p-6">
       <div className="rounded-3xl bg-zinc-900/40 p-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl">
         <Container className="space-y-8 py-10">
+          <AiHubTabs />
           <header className="flex items-center justify-between border-b border-white/10 pb-5">
             <div>
               <h1 className="text-fg-primary inline-flex items-center gap-2.5 text-2xl font-bold tracking-tight">
@@ -83,9 +85,11 @@ export default async function AdminAutopilotPage({
                 {t("dashboard")}
               </Link>
               <span className="text-fg-muted">·</span>
-              <Link href={"/admin/moderation"} className="text-fg-muted hover:text-brand-400">
-                {t("moderation")}
+              <Link href={"/admin/ai-hub"} className="text-fg-muted hover:text-brand-400">
+                AI Hub
               </Link>
+              <span className="text-fg-muted">·</span>
+              <span className="text-fg-muted">Autopilot</span>
             </nav>
           </header>
 

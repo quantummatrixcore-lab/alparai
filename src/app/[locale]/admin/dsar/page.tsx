@@ -5,6 +5,8 @@ import { Clock, ShieldWarning, CheckCircle } from "@phosphor-icons/react/dist/ss
 import { FileText, AlertTriangle } from "lucide-react";
 import { MetricCard } from "@/components/admin/metric-card";
 
+import { GovernanceHubTabs } from "@/components/admin/governance-hub-tabs";
+
 export default async function DsarPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -33,6 +35,7 @@ export default async function DsarPage({ params }: { params: Promise<{ locale: s
   return (
     <div className="min-h-screen bg-black p-6">
       <div className="rounded-3xl bg-zinc-900/40 p-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl">
+        <GovernanceHubTabs />
         <div className="animate-in fade-in space-y-8 duration-500">
           <div>
             <h1 className="text-3xl font-black tracking-tight text-white drop-shadow-md">

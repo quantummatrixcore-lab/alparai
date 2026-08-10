@@ -8,6 +8,8 @@ import { getTranslations } from "next-intl/server";
 import { AdminContainer, AdminPageHeader } from "@/components/admin/admin-design-kit";
 import { AiOrchestratorClient } from "@/components/admin/ai-orchestrator-client";
 
+import { AiHubTabs } from "@/components/admin/ai-hub-tabs";
+
 export default async function AiOrchestratorAdminPage({
   params,
 }: {
@@ -61,6 +63,7 @@ export default async function AiOrchestratorAdminPage({
   await requireAdmin();
   return (
     <AdminContainer>
+      <AiHubTabs />
       <AdminPageHeader
         icon={<Cpu className="h-7 w-7 text-emerald-400" />}
         title={t("ai_orchestrator_cross_audit_arena") || "AI Orchestrator & Cross-Audit Arena"}
@@ -71,7 +74,8 @@ export default async function AiOrchestratorAdminPage({
         action={<OrchestratorTriggerButton />}
         breadcrumb={[
           { label: "Admin", href: "/admin" },
-          { label: "AI Orchestrator", href: "/admin/ai-orchestrator" },
+          { label: "AI Hub", href: "/admin/ai-hub" },
+          { label: "Orchestrator", href: "/admin/ai-hub/orchestrator" },
         ]}
       />
 

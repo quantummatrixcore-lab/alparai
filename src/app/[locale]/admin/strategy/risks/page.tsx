@@ -6,6 +6,7 @@ import { requireAdvisor } from "@/lib/auth/session";
 import { createServerClient } from "@/lib/supabase/server";
 import { RiskMatrixClient } from "@/components/admin/strategy/risk-matrix-client";
 import { ShieldAlert } from "lucide-react";
+import { StrategyTabs } from "@/components/admin/strategy-tabs";
 import type { StrategyRisk } from "@/types";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -30,33 +31,36 @@ export default async function RisksPage({ params }: { params: Promise<{ locale: 
   const initialRisks = (data ?? []) as StrategyRisk[];
 
   return (
-    <div className="min-h-screen bg-black p-6"><div className="bg-zinc-900/40 backdrop-blur-xl ring-1 ring-white/10 rounded-3xl shadow-2xl p-8">
-      <div className="min-h-screen rounded-3xl bg-zinc-900/40 p-6 py-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
-      <Container>
-        {/* Page Header */}
-        <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
-          <div>
-            <div className="flex items-center gap-2">
-              <ShieldAlert className="h-6 w-6 text-red-400" />
-              <h1 className="text-2xl font-extrabold tracking-tight text-white md:text-3xl">
-                {t("risk_prioritization_heatmap")}
-              </h1>
+    <div className="min-h-screen bg-black p-6">
+      <div className="rounded-3xl bg-zinc-900/40 p-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl">
+        <StrategyTabs />
+        <div className="mt-8 min-h-screen rounded-3xl bg-zinc-900/40 p-6 py-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
+          <Container>
+            {/* Page Header */}
+            <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+              <div>
+                <div className="flex items-center gap-2">
+                  <ShieldAlert className="h-6 w-6 text-red-400" />
+                  <h1 className="text-2xl font-extrabold tracking-tight text-white md:text-3xl">
+                    {t("risk_prioritization_heatmap")}
+                  </h1>
+                </div>
+                <p className="text-fg-muted mt-1 text-sm">
+                  {t("map_probability_vs_impact_score_cards_to")}
+                </p>
+              </div>
+              {isReadOnly && (
+                <span className="bg-brand-500/10 text-brand-300 border-brand-500/20 rounded-full border px-3 py-1 text-xs font-semibold tracking-wider uppercase">
+                  {t("read_only")}
+                </span>
+              )}
             </div>
-            <p className="text-fg-muted mt-1 text-sm">
-              {t("map_probability_vs_impact_score_cards_to")}
-            </p>
-          </div>
-          {isReadOnly && (
-            <span className="bg-brand-500/10 text-brand-300 border-brand-500/20 rounded-full border px-3 py-1 text-xs font-semibold tracking-wider uppercase">
-              {t("read_only")}
-            </span>
-          )}
-        </div>
 
-        {/* Risk Heatmap & Matrix */}
-        <RiskMatrixClient initialRisks={initialRisks} isReadOnly={isReadOnly} locale={locale} />
-      </Container>
+            {/* Risk Heatmap & Matrix */}
+            <RiskMatrixClient initialRisks={initialRisks} isReadOnly={isReadOnly} locale={locale} />
+          </Container>
+        </div>
+      </div>
     </div>
-      </div></div>
   );
 }

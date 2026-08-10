@@ -6,6 +6,7 @@ import { FileText } from "lucide-react";
 import { Link } from "@/i18n/routing";
 import { AnalysisDashboardClient } from "@/components/admin/analysis-dashboard-client";
 import { createServerClient } from "@/lib/supabase/server";
+import { AnalyticsHubTabs } from "@/components/admin/analytics-hub-tabs";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -137,39 +138,40 @@ export default async function AnalysisPage({ params }: { params: Promise<{ local
   };
 
   return (
-    <div className="min-h-screen bg-black p-6"><div className="bg-zinc-900/40 backdrop-blur-xl ring-1 ring-white/10 rounded-3xl shadow-2xl p-8">
+    <div className="min-h-screen bg-black p-6">
       <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-6 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
-      <Container className="py-10">
-        <header className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-center">
-          <div>
-            <h1 className="text-fg-primary inline-flex items-center gap-2 text-2xl font-bold">
-              <FileText className="text-brand-400 h-6 w-6" />
-              {t("analysisHeading")}
-            </h1>
-            <p className="text-fg-muted mt-1 text-sm">{t("analysisSubheading")}</p>
-          </div>
-          <nav className="flex items-center gap-1 text-sm">
-            <Link
-              href={"/admin"}
-              className="text-fg-muted hover:bg-bg-tertiary hover:text-fg-primary rounded-md px-3 py-1.5 transition-colors"
-            >
-              {t("dashboard")}
-            </Link>
-            <Link
-              href={"/admin/moderation"}
-              className="text-fg-muted hover:bg-bg-tertiary hover:text-fg-primary rounded-md px-3 py-1.5 transition-colors"
-            >
-              {t("moderation")}
-            </Link>
-            <span className="bg-bg-tertiary text-brand-400 rounded-md px-3 py-1.5 font-medium">
-              {t("analysis")}
-            </span>
-          </nav>
-        </header>
+        <Container className="py-10">
+          <AnalyticsHubTabs />
+          <header className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-center">
+            <div>
+              <h1 className="text-fg-primary inline-flex items-center gap-2 text-2xl font-bold">
+                <FileText className="text-brand-400 h-6 w-6" />
+                {t("analysisHeading")}
+              </h1>
+              <p className="text-fg-muted mt-1 text-sm">{t("analysisSubheading")}</p>
+            </div>
+            <nav className="flex items-center gap-1 text-sm">
+              <Link
+                href={"/admin"}
+                className="text-fg-muted hover:bg-bg-tertiary hover:text-fg-primary rounded-md px-3 py-1.5 transition-colors"
+              >
+                {t("dashboard")}
+              </Link>
+              <Link
+                href={"/admin/moderation"}
+                className="text-fg-muted hover:bg-bg-tertiary hover:text-fg-primary rounded-md px-3 py-1.5 transition-colors"
+              >
+                {t("moderation")}
+              </Link>
+              <span className="bg-bg-tertiary text-brand-400 rounded-md px-3 py-1.5 font-medium">
+                {t("analysis")}
+              </span>
+            </nav>
+          </header>
 
-        <AnalysisDashboardClient registryData={registryData} />
-      </Container>
+          <AnalysisDashboardClient registryData={registryData} />
+        </Container>
+      </div>
     </div>
-      </div></div>
   );
 }

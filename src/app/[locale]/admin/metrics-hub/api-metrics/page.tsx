@@ -2,6 +2,7 @@ import { requireAdmin } from "@/lib/auth/session";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { ApiMetricsClient } from "@/components/admin/api-metrics-client";
 import { createServerClient } from "@/lib/supabase/server";
+import { MetricsHubTabs } from "@/components/admin/metrics-hub-tabs";
 
 export default async function ApiMetricsPage({ params }: { params: Promise<{ locale: string }> }) {
   await requireAdmin();
@@ -148,6 +149,7 @@ export default async function ApiMetricsPage({ params }: { params: Promise<{ loc
   return (
     <div className="min-h-screen bg-black p-6">
       <div className="rounded-3xl bg-zinc-900/40 p-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl">
+        <MetricsHubTabs />
         <div className="animate-in fade-in space-y-8 rounded-3xl bg-zinc-900/40 p-6 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl duration-500 md:p-8">
           <div className="flex items-center justify-between">
             <div>

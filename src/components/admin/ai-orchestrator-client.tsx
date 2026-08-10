@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { ShieldCheck, Zap, Layers, Code2, BarChart3 } from "lucide-react";
 import { AdminSubNav, type SubNavItem } from "@/components/admin/admin-design-kit";
-import { BlackboxCodeAnalysisSection } from "@/app/[locale]/admin/ai-orchestrator/code-analysis-section";
+import { BlackboxCodeAnalysisSection } from "@/app/[locale]/admin/ai-hub/orchestrator/code-analysis-section";
 import type { TrustScoreRecord } from "@/actions/admin/ai-orchestrator";
 import { AnalyticsDashboard } from "@/components/admin/analytics-dashboard";
 import type { AdminAutopilotSnapshot } from "@/actions/admin-autopilot";

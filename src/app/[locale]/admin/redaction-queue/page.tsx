@@ -16,6 +16,8 @@ interface RedactionRequestRow {
   created_at: string;
 }
 
+import { GovernanceHubTabs } from "@/components/admin/governance-hub-tabs";
+
 export default async function RedactionQueuePage({
   params,
 }: {
@@ -48,6 +50,7 @@ export default async function RedactionQueuePage({
   return (
     <div className="min-h-screen bg-black p-6">
       <div className="rounded-3xl bg-zinc-900/40 p-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl">
+        <GovernanceHubTabs />
         <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-6 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
           <Container className="py-10">
             <header className="mb-6">

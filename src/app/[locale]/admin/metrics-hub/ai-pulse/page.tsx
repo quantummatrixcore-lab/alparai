@@ -8,6 +8,7 @@ import { MetricCard } from "@/components/admin/metric-card";
 import { createServerClient } from "@/lib/supabase/server";
 import { discoverAllModels } from "@/lib/ai/discovery/fetch-models";
 import { LiveModelsDirectory } from "@/components/admin/ai-pulse/live-models-directory";
+import { MetricsHubTabs } from "@/components/admin/metrics-hub-tabs";
 
 export default async function AiPulsePage({ params }: { params: Promise<{ locale: string }> }) {
   await requireAdmin();
@@ -108,6 +109,7 @@ export default async function AiPulsePage({ params }: { params: Promise<{ locale
   return (
     <div className="min-h-screen bg-black p-6">
       <div className="rounded-3xl bg-zinc-900/40 p-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl">
+        <MetricsHubTabs />
         <div className="animate-in fade-in space-y-8 duration-500">
           <div>
             <h1 className="text-3xl font-black tracking-tight text-white drop-shadow-md">

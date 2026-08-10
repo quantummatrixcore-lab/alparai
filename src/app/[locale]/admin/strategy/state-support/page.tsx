@@ -3,6 +3,7 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/layout";
 import { requireAdvisor } from "@/lib/auth/session";
 import { createServerClient } from "@/lib/supabase/server";
+import { StrategyTabs } from "@/components/admin/strategy-tabs";
 import type { StateSupport } from "@/types";
 import {
   Building,
@@ -232,7 +233,8 @@ export default async function StateSupportPage({
   return (
     <div className="min-h-screen bg-black p-6">
       <div className="rounded-3xl bg-zinc-900/40 p-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl">
-        <div className="min-h-screen py-8">
+        <StrategyTabs />
+        <div className="mt-8 min-h-screen rounded-3xl bg-zinc-900/40 p-6 py-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
           <Container>
             {/* Page Header */}
             <div className="mb-8">

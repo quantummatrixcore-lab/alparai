@@ -6,6 +6,7 @@ import { AdminContainer, AdminPageHeader } from "@/components/admin/admin-design
 import { QuestionnaireClient } from "@/components/admin/questionnaire-client";
 import { QUESTIONNAIRE_MODELS } from "@/lib/ai/openrouter-gateway";
 import { QUESTIONS } from "@/lib/strategy/questions";
+import { StrategyTabs } from "@/components/admin/strategy-tabs";
 import type { GatewayModel } from "@/lib/ai/openrouter-gateway";
 
 interface RunRow {
@@ -82,47 +83,50 @@ export default async function QuestionnairePage({
   }));
 
   return (
-    <div className="min-h-screen bg-black p-6"><div className="bg-zinc-900/40 backdrop-blur-xl ring-1 ring-white/10 rounded-3xl shadow-2xl p-8">
-      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-6 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
-      <AdminContainer>
-        <AdminPageHeader
-          icon={<ClipboardList className="text-brand-400 h-6 w-6" />}
-          title={t("questionnaire_title")}
-          subtitle={t("questionnaire_subtitle")}
-        />
+    <div className="min-h-screen bg-black p-6">
+      <div className="rounded-3xl bg-zinc-900/40 p-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl">
+        <StrategyTabs />
+        <div className="mt-8 space-y-8 rounded-3xl bg-zinc-900/40 p-6 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
+          <AdminContainer>
+            <AdminPageHeader
+              icon={<ClipboardList className="text-brand-400 h-6 w-6" />}
+              title={t("questionnaire_title")}
+              subtitle={t("questionnaire_subtitle")}
+            />
 
-        <QuestionnaireClient
-          runs={typedRuns}
-          answers={typedAnswers}
-          latestRunId={latestRunId}
-          models={models}
-          locale={locale}
-          i18n={{
-            runButton: t("questionnaire_run_button"),
-            runAgainButton: t("questionnaire_run_again_button"),
-            running: t("questionnaire_running"),
-            history: t("questionnaire_history"),
-            tableQuestion: t("questionnaire_question"),
-            tableModel: t("questionnaire_model"),
-            tableAnswer: t("questionnaire_answer"),
-            exportMd: t("questionnaire_export"),
-            noRuns: t("questionnaire_no_runs"),
-            noAnswers: t("questionnaire_no_answers"),
-            statusCompleted: t("questionnaire_status_completed"),
-            statusFailed: t("questionnaire_failed"),
-            statusRunning: t("questionnaire_running_lower"),
-            tokens: t("questionnaire_tokens"),
-            latency: t("questionnaire_latency"),
-            selectAll: t("questionnaire_select_all"),
-            questionsCount: t("questionnaire_questions_count", { total: QUESTIONS.length }),
-            modelsLabel: t("questionnaire_models"),
-            close: t("questionnaire_close"),
-            error: t("questionnaire_error"),
-            totalRuns: t("questionnaire_total_runs"),
-          }}
-        />
-      </AdminContainer>
+            <QuestionnaireClient
+              runs={typedRuns}
+              answers={typedAnswers}
+              latestRunId={latestRunId}
+              models={models}
+              locale={locale}
+              i18n={{
+                runButton: t("questionnaire_run_button"),
+                runAgainButton: t("questionnaire_run_again_button"),
+                running: t("questionnaire_running"),
+                history: t("questionnaire_history"),
+                tableQuestion: t("questionnaire_question"),
+                tableModel: t("questionnaire_model"),
+                tableAnswer: t("questionnaire_answer"),
+                exportMd: t("questionnaire_export"),
+                noRuns: t("questionnaire_no_runs"),
+                noAnswers: t("questionnaire_no_answers"),
+                statusCompleted: t("questionnaire_status_completed"),
+                statusFailed: t("questionnaire_failed"),
+                statusRunning: t("questionnaire_running_lower"),
+                tokens: t("questionnaire_tokens"),
+                latency: t("questionnaire_latency"),
+                selectAll: t("questionnaire_select_all"),
+                questionsCount: t("questionnaire_questions_count", { total: QUESTIONS.length }),
+                modelsLabel: t("questionnaire_models"),
+                close: t("questionnaire_close"),
+                error: t("questionnaire_error"),
+                totalRuns: t("questionnaire_total_runs"),
+              }}
+            />
+          </AdminContainer>
+        </div>
+      </div>
     </div>
-      </div></div>
   );
 }

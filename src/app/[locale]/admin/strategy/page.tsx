@@ -10,6 +10,7 @@ import { QuestionnaireClient } from "@/components/admin/questionnaire-client";
 import { EcosystemBenchmarkWidget } from "@/components/admin/ecosystem-benchmark-widget";
 import { QUESTIONNAIRE_MODELS } from "@/lib/ai/openrouter-gateway";
 import { Link } from "@/i18n/routing";
+import { StrategyTabs } from "@/components/admin/strategy-tabs";
 import { STRATEGY_METRICS_DEFAULTS, DEFAULT_VALUATION_PRE_MONEY } from "@/lib/constants";
 import { QUESTIONS } from "@/lib/strategy/questions";
 import {
@@ -166,6 +167,7 @@ export default async function StrategyOverviewPage({
   return (
     <div className="min-h-screen bg-black p-6">
       <div className="rounded-3xl bg-zinc-900/40 p-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl">
+        <StrategyTabs />
         <div className="min-h-screen py-8">
           <Container>
             {/* Page Header */}

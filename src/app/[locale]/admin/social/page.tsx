@@ -14,6 +14,7 @@ import {
   getSocialAccounts,
   getMarketingDrafts,
 } from "@/actions/social";
+import { MarketingHubTabs } from "@/components/admin/marketing-hub-tabs";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -38,33 +39,36 @@ export default async function SocialPage({ params }: { params: Promise<{ locale:
   ]);
 
   return (
-    <div className="min-h-screen bg-black p-6"><div className="bg-zinc-900/40 backdrop-blur-xl ring-1 ring-white/10 rounded-3xl shadow-2xl p-8">
-      <div className="min-h-screen rounded-3xl bg-zinc-900/40 p-6 py-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
-      <Container>
-        <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
-          <div>
-            <div className="flex items-center gap-2">
-              <ShareNetwork className="text-brand-400 h-6 w-6" />
-              <h1 className="text-2xl font-extrabold tracking-tight text-white md:text-3xl">
-                {t("social_automation_title") || "Social Media Automation"}
-              </h1>
+    <div className="min-h-screen bg-black p-6">
+      <div className="rounded-3xl bg-zinc-900/40 p-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl">
+        <MarketingHubTabs />
+        <div className="min-h-screen rounded-3xl bg-zinc-900/40 p-6 py-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
+          <Container>
+            <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+              <div>
+                <div className="flex items-center gap-2">
+                  <ShareNetwork className="text-brand-400 h-6 w-6" />
+                  <h1 className="text-2xl font-extrabold tracking-tight text-white md:text-3xl">
+                    {t("social_automation_title") || "Social Media Automation"}
+                  </h1>
+                </div>
+                <p className="text-fg-muted mt-1 text-sm">
+                  {t("social_automation_subtitle") ||
+                    "Manage accounts and approve AI-generated drafts before publishing"}
+                </p>
+              </div>
             </div>
-            <p className="text-fg-muted mt-1 text-sm">
-              {t("social_automation_subtitle") ||
-                "Manage accounts and approve AI-generated drafts before publishing"}
-            </p>
-          </div>
-        </div>
 
-        <SocialDashboardClient
-          initialPosts={posts}
-          initialTemplates={templates}
-          initialAssets={assets}
-          initialAccounts={accounts}
-          initialMarketingDrafts={marketingDrafts as MarketingDraft[]}
-        />
-      </Container>
+            <SocialDashboardClient
+              initialPosts={posts}
+              initialTemplates={templates}
+              initialAssets={assets}
+              initialAccounts={accounts}
+              initialMarketingDrafts={marketingDrafts as MarketingDraft[]}
+            />
+          </Container>
+        </div>
+      </div>
     </div>
-      </div></div>
   );
 }

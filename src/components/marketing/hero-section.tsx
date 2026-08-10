@@ -3,11 +3,32 @@
 import * as React from "react";
 import { motion, animate, useInView } from "framer-motion";
 import { Link } from "@/i18n/routing";
-import { ArrowRight, ShieldAlert, Target, Trophy, Quote, Radio } from "lucide-react";
+import { ArrowRight, ShieldAlert, Target, Trophy, Quote, Radio, Zap } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/layout";
 import { cn } from "@/lib/utils";
 import { trackEvent } from "@/lib/analytics";
+
+// Animation Variants for Staggering
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] },
+  },
+};
 
 export function HeroSection({
   totalIncidents = 0,
@@ -40,103 +61,104 @@ export function HeroSection({
     : undefined;
 
   return (
-    <section className="bg-bg-primary relative overflow-hidden pt-24 pb-16">
-      {/* Background Effects */}
-      <div
-        aria-hidden="true"
-        className="from-gradient-hero-start to-gradient-hero-end animate-gradient-shift absolute inset-0 z-0 overflow-hidden bg-gradient-to-br bg-[length:200%_200%]"
-      >
-        <div className="bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%221%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')] absolute inset-0 opacity-20 mix-blend-overlay" />
+    <section className="bg-bg-primary selection:bg-brand-500/30 relative overflow-hidden pt-28 pb-20">
+      {/* Cyber-Dark Ambient Background */}
+      <div aria-hidden="true" className="absolute inset-0 z-0 overflow-hidden bg-[#050914]">
+        {/* Dynamic Grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_100%_100%_at_50%_0%,#000_30%,transparent_100%)] bg-[size:80px_80px]" />
 
-        {/* Floating particles */}
-        <div className="bg-brand-600/20 animate-float absolute -top-[10%] left-[20%] h-[400px] w-[400px] rounded-full mix-blend-screen blur-[120px]" />
-        <div className="bg-accent-500/20 animate-float-delayed absolute top-[20%] right-[10%] h-[300px] w-[300px] rounded-full mix-blend-screen blur-[100px]" />
-        <div className="bg-danger-500/15 animate-float absolute -bottom-[10%] left-[40%] h-[350px] w-[350px] rounded-full mix-blend-screen blur-[120px]" />
+        {/* Premium Noise Overlay */}
+        <div className="bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')] absolute inset-0 opacity-[0.15] mix-blend-overlay" />
 
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_0%,#000_20%,transparent_100%)] bg-[size:64px_64px]" />
+        {/* Glowing Orbs (Awwwards Style) */}
+        <motion.div
+          animate={{ scale: [1, 1.1, 1], opacity: [0.2, 0.3, 0.2] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="bg-brand-600/30 absolute -top-[20%] -left-[10%] h-[600px] w-[600px] rounded-full mix-blend-screen blur-[150px]"
+        />
+        <motion.div
+          animate={{ scale: [1, 1.2, 1], opacity: [0.15, 0.25, 0.15] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="bg-accent-500/20 absolute top-[10%] -right-[10%] h-[500px] w-[500px] rounded-full mix-blend-screen blur-[120px]"
+        />
+        <motion.div
+          animate={{ scale: [1, 1.15, 1], opacity: [0.1, 0.2, 0.1] }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 4 }}
+          className="bg-danger-500/20 absolute -bottom-[20%] left-[30%] h-[500px] w-[500px] rounded-full mix-blend-screen blur-[130px]"
+        />
       </div>
 
       <Container className="relative z-10">
         {/* 2-Column Split Layout */}
-        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[55fr_45fr]">
+        <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-[55fr_45fr]">
           {/* LEFT: Manifesto Column */}
-          <div className="flex flex-col justify-center">
-            {/* Eyebrow badge */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="mb-6 flex"
-            >
-              <div className="border-danger-500/30 bg-danger-500/10 text-danger-400 inline-flex items-center gap-2 rounded-sm border px-5 py-2 text-xs font-bold tracking-[0.2em] uppercase shadow-[0_0_20px_rgba(230,57,70,0.3)] backdrop-blur-md">
-                <Target className="h-4 w-4" />
-                <span>{t("eyebrow")}</span>
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="flex flex-col justify-center"
+          >
+            {/* Eyebrow badge (Glassmorphic) */}
+            <motion.div variants={itemVariants} className="mb-8 flex">
+              <div className="group hover:border-danger-500/50 relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-[11px] font-black tracking-[0.25em] text-white uppercase shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] backdrop-blur-xl transition-all duration-300 hover:bg-white/10 hover:shadow-[0_0_30px_rgba(230,57,70,0.2)]">
+                <span className="from-danger-500/0 via-danger-500/20 to-danger-500/0 absolute inset-0 bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <Zap className="text-danger-400 h-4 w-4" />
+                <span className="relative z-10">{t("eyebrow")}</span>
               </div>
             </motion.div>
 
-            {/* Main headline */}
+            {/* Main headline - Premium Gradient Text */}
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-fg-primary animate-fade-up pb-4 text-5xl leading-[0.95] font-black tracking-tighter opacity-0 drop-shadow-lg sm:text-6xl lg:text-[72px]"
+              variants={itemVariants}
+              className="animate-fade-up pb-4 text-[56px] leading-[0.9] font-black tracking-tighter drop-shadow-2xl sm:text-[72px] lg:text-[84px]"
             >
-              {t("title_primary")}
+              <span className="bg-gradient-to-br from-white via-white to-white/40 bg-clip-text text-transparent">
+                {t("title_primary")}
+              </span>
             </motion.h1>
 
             {/* Subtitle */}
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-fg-secondary mt-6 max-w-xl text-lg leading-relaxed font-medium tracking-tight"
+              variants={itemVariants}
+              className="text-fg-secondary mt-6 max-w-xl text-lg leading-relaxed font-medium tracking-tight sm:text-xl"
             >
               {t("subtitle")}
             </motion.p>
 
-            {/* CTAs */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
-              className="mt-10 flex flex-col gap-4 sm:flex-row"
-            >
+            {/* CTAs - High-End Hover States */}
+            <motion.div variants={itemVariants} className="mt-10 flex flex-col gap-4 sm:flex-row">
               <Link
                 href="/products/ars-api"
                 onClick={() => trackEvent("hero_cta_click", { action: "primary" })}
-                className="group bg-danger-500 hover:bg-danger-400 animate-gradient-shift relative inline-flex h-13 items-center justify-center gap-3 rounded-md px-8 text-base font-black text-white shadow-[0_0_25px_rgba(230,57,70,0.4)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-[length:200%_auto] hover:shadow-[0_0_40px_rgba(230,57,70,0.7)]"
+                className="group bg-danger-500 relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl px-8 text-base font-black text-white shadow-[0_0_30px_rgba(230,57,70,0.4),inset_0_1px_0_rgba(255,255,255,0.3)] transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_0_50px_rgba(230,57,70,0.6),inset_0_1px_0_rgba(255,255,255,0.4)]"
               >
-                <ShieldAlert className="h-5 w-5" />
-                {t("cta_primary", { defaultValue: "Risk API'yi İncele" })}
+                <div className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-[100%]" />
+                <ShieldAlert className="relative z-10 h-5 w-5" />
+                <span className="relative z-10">
+                  {t("cta_primary", { defaultValue: "Risk API'yi İncele" })}
+                </span>
               </Link>
-              <Link
-                href="/products/eu-ai-act"
-                onClick={() => trackEvent("hero_cta_click", { action: "b2b_compliance" })}
-                className="bg-brand-600 hover:bg-brand-500 relative inline-flex h-13 items-center justify-center gap-3 rounded-md px-8 text-base font-black text-white shadow-[0_0_20px_rgba(168,85,247,0.4)] transition-all duration-300 hover:-translate-y-1 hover:scale-105"
-              >
-                <Target className="h-5 w-5" />
-                {t("cta_journalist", { defaultValue: "AI Act Uyum Testi" })}
-              </Link>
+
               <Link
                 href="/incidents"
                 onClick={() => trackEvent("hero_cta_click", { action: "secondary" })}
-                className="bg-glass text-fg-primary hover:border-brand-500/40 inline-flex h-13 items-center justify-center gap-3 rounded-md px-8 text-base font-bold shadow-xl transition-all duration-300 hover:-translate-y-1 hover:scale-105"
+                className="group relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl border border-white/10 bg-white/5 px-8 text-base font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:border-white/20 hover:bg-white/10 hover:shadow-[0_10px_40px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.2)]"
               >
-                {t("cta_secondary", { defaultValue: "Canlı Veritabanı" })}
-                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-2" />
+                <span className="relative z-10">
+                  {t("cta_secondary", { defaultValue: "Canlı Veritabanı" })}
+                </span>
+                <ArrowRight className="relative z-10 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </motion.div>
 
             {/* Founder Story / Trust Infrastructure */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.5 }}
-              className="border-brand-500/50 mt-12 flex flex-col gap-4 border-l-2 pl-6"
+              variants={itemVariants}
+              className="border-brand-500/50 mt-14 flex flex-col gap-5 border-l-[3px] pl-6"
             >
-              <div className="text-brand-400 flex items-center gap-2">
-                <Quote className="h-5 w-5" />
-                <span className="text-xs font-bold tracking-wider uppercase">
+              <div className="flex items-center gap-2">
+                <Quote className="text-brand-400 h-5 w-5" />
+                <span className="from-brand-400 to-accent-400 bg-gradient-to-r bg-clip-text text-xs font-black tracking-[0.2em] text-transparent uppercase">
                   The Founder&apos;s Vision
                 </span>
               </div>
@@ -148,75 +170,80 @@ export function HeroSection({
                 })}
                 &quot;
               </p>
-              <div className="mt-1 flex items-center gap-3">
-                <div className="from-brand-500 to-brand-700 border-brand-400/40 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border bg-gradient-to-br text-xs font-black text-white shadow-md">
-                  EE
+              <div className="mt-2 flex items-center gap-4">
+                <div className="from-brand-500 to-brand-800 relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br shadow-[0_0_15px_rgba(147,51,234,0.4),inset_0_1px_0_rgba(255,255,255,0.3)]">
+                  <span className="text-sm font-black text-white">EE</span>
                 </div>
                 <div>
-                  <p className="text-fg-primary text-xs font-bold">Ercüment ERDEN</p>
-                  <p className="text-brand-400 text-[10px] font-medium">
+                  <p className="text-fg-primary text-sm font-black">Ercüment ERDEN</p>
+                  <p className="text-brand-400 text-[11px] font-bold tracking-wider uppercase">
                     {t("founder_role", { defaultValue: "Kurucu, ALPAR AI" })}
                   </p>
                 </div>
               </div>
             </motion.div>
-          </div>
+          </motion.div>
 
-          {/* RIGHT: Live Data Panel */}
+          {/* RIGHT: Live Data Panel (Glassmorphic Masterpiece) */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col gap-4"
+            initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
+            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            transition={{ duration: 1, delay: 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="flex flex-col gap-6"
           >
             {/* LIVE badge */}
-            <div className="flex items-center gap-2">
-              <span className="bg-danger-500 h-2 w-2 animate-pulse rounded-full shadow-[0_0_8px_rgba(230,57,70,0.8)]" />
-              <span className="text-danger-400 text-xs font-black tracking-[0.2em] uppercase">
+            <div className="flex items-center gap-3">
+              <span className="bg-danger-500 relative flex h-2.5 w-2.5">
+                <span className="bg-danger-500 absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"></span>
+                <span className="bg-danger-500 relative inline-flex h-2.5 w-2.5 rounded-full shadow-[0_0_12px_rgba(230,57,70,1)]"></span>
+              </span>
+              <span className="text-danger-400 text-xs font-black tracking-[0.25em] uppercase">
                 {t("live_data")}
               </span>
             </div>
 
-            {/* Stats Panel */}
-            <div className="bg-glass rounded-2xl border border-white/5 p-5 shadow-2xl">
-              <div className="grid grid-cols-3 gap-2 sm:gap-4">
+            {/* Stats Panel - Deep Glassmorphism */}
+            <div className="bg-bg-tertiary/40 relative overflow-hidden rounded-3xl border border-white/5 p-6 shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-3xl">
+              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent mix-blend-overlay" />
+              <div className="relative z-10 grid grid-cols-3 gap-3 sm:gap-6">
                 <LiveStatCard
                   value={totalIncidents}
                   label={t("stats_incidents")}
-                  glowColor="rgba(230,57,70,0.15)"
+                  glowColor="rgba(230,57,70,0.2)"
                   accentClass="text-danger-400"
                   tooltip={incidentTooltip}
                 />
                 <LiveStatCard
                   value={totalProviders}
                   label={t("stats_providers")}
-                  glowColor="rgba(168,85,247,0.15)"
+                  glowColor="rgba(168,85,247,0.2)"
                   accentClass="text-brand-400"
                 />
                 <LiveStatCard
                   value={totalCountries}
                   label={t("stats_countries")}
-                  glowColor="rgba(39,174,96,0.15)"
+                  glowColor="rgba(39,174,96,0.2)"
                   accentClass="text-success-400"
                 />
               </div>
             </div>
 
-            {/* Leaderboard Panel */}
-            <div className="bg-glass rounded-2xl border border-white/5 p-5 shadow-2xl">
-              <div className="mb-4 flex items-center justify-between">
-                <h3 className="text-fg-primary text-sm font-black tracking-wider uppercase">
-                  📊 {t("leaderboard_title")}
+            {/* Leaderboard Panel - Deep Glassmorphism */}
+            <div className="bg-bg-tertiary/40 relative overflow-hidden rounded-3xl border border-white/5 p-6 shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-3xl">
+              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent mix-blend-overlay" />
+              <div className="relative z-10 mb-5 flex items-center justify-between">
+                <h3 className="text-fg-primary flex items-center gap-2 text-sm font-black tracking-wider uppercase">
+                  <span className="text-brand-400">📊</span> {t("leaderboard_title")}
                 </h3>
                 <Link
                   href="/leaderboard"
-                  className="text-brand-400 hover:text-brand-300 flex items-center gap-1 text-xs font-bold transition-colors"
+                  className="group text-brand-400 flex items-center gap-1 text-xs font-bold transition-colors hover:text-white"
                 >
                   {t("view_all")}
-                  <ArrowRight className="h-3 w-3" />
+                  <ArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
               </div>
-              <div className="space-y-2.5">
+              <div className="relative z-10 space-y-3">
                 {topProviders.length > 0 ? (
                   topProviders
                     .slice(0, 5)
@@ -230,92 +257,97 @@ export function HeroSection({
                       />
                     ))
                 ) : (
-                  <p className="text-fg-muted py-4 text-center text-xs font-medium">
+                  <p className="text-fg-muted py-6 text-center text-xs font-bold tracking-wider uppercase">
                     {t("no_providers_data", { defaultValue: "No tracking data available yet." })}
                   </p>
                 )}
               </div>
-              <Link
-                href="/leaderboard"
-                className="text-fg-muted hover:text-brand-400 mt-4 block text-center text-xs font-medium transition-colors"
-              >
-                {t("view_full_leaderboard")}
-              </Link>
+              <div className="relative z-10 mt-5 border-t border-white/5 pt-4">
+                <Link
+                  href="/leaderboard"
+                  className="text-fg-muted block text-center text-xs font-bold tracking-wider uppercase transition-colors hover:text-white"
+                >
+                  {t("view_full_leaderboard")}
+                </Link>
+              </div>
             </div>
 
             {/* Last report indicator */}
-            <div className="flex items-center gap-2 px-1">
-              <Radio className="text-fg-muted h-3.5 w-3.5" />
-              <span className="text-fg-muted text-xs">{t("last_report")}</span>
+            <div className="flex items-center gap-2 px-2">
+              <Radio className="text-fg-muted/70 h-3.5 w-3.5" />
+              <span className="text-fg-muted/70 text-xs font-semibold tracking-wide uppercase">
+                {t("last_report")}
+              </span>
             </div>
           </motion.div>
         </div>
 
-        {/* Bottom Section: Side-by-Side Highlight Cards (Perfect Symmetry) */}
+        {/* Bottom Section: Side-by-Side Highlight Cards */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-12 grid grid-cols-1 items-stretch gap-6 lg:grid-cols-2"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="mt-20 grid grid-cols-1 items-stretch gap-6 lg:grid-cols-2"
         >
-          {/* Left: Founder Story Card */}
-          <div className="bg-glass border-danger-500/30 relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border-l-4 p-6 shadow-2xl">
-            <div className="from-danger-500/5 pointer-events-none absolute inset-0 bg-gradient-to-r to-transparent" />
-            <div className="relative z-10 flex items-start gap-4">
-              <div className="bg-danger-500/10 border-danger-500/20 text-danger-400 mt-0.5 shrink-0 rounded-lg border p-2">
-                <Quote className="h-4 w-4" />
+          {/* Left: AI Act Compliance Card */}
+          <div className="group bg-bg-tertiary/40 hover:bg-bg-tertiary/60 hover:border-brand-500/30 relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border border-white/5 p-8 shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-3xl transition-all duration-500 hover:shadow-[0_30px_60px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.2)]">
+            <div className="bg-brand-500/10 group-hover:bg-brand-500/20 absolute top-0 right-0 h-64 w-64 translate-x-1/2 -translate-y-1/2 rounded-full blur-[80px] transition-all duration-500" />
+
+            <div className="relative z-10 flex items-start gap-5">
+              <div className="bg-brand-500/10 border-brand-500/20 shrink-0 rounded-2xl border p-3.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
+                <Target className="text-brand-400 h-6 w-6" />
               </div>
-              <div className="space-y-2">
-                <h4 className="text-danger-400 text-xs font-black tracking-wide uppercase">
-                  {t("founder_title")}
+              <div className="space-y-3">
+                <div className="border-brand-500/30 bg-brand-500/10 text-brand-300 inline-flex items-center gap-2 rounded-full border px-2.5 py-1 text-[10px] font-black tracking-[0.2em] uppercase">
+                  B2B Compliance
+                </div>
+                <h4 className="text-xl font-black tracking-tight text-white">
+                  EU AI Act Uyum Testi
                 </h4>
-                <blockquote className="text-fg-secondary text-sm leading-relaxed font-semibold">
-                  "{t("founder_subtitle")}"
-                </blockquote>
+                <p className="text-fg-secondary text-sm leading-relaxed font-medium">
+                  Yapay zeka sistemleriniz Avrupa Birliği Yapay Zeka Yasası'na (AI Act) hazır mı?
+                  Şirketiniz için risk sınıflandırmasını hemen yapın.
+                </p>
               </div>
             </div>
-            <div className="relative z-10 mt-6 pl-14">
-              <p className="text-fg-muted text-xs font-bold tracking-wider uppercase">
-                {t("founder_signature", { defaultValue: "— Ercüment Erden, Founder" })}
-              </p>
+            <div className="relative z-10 mt-8 pl-16">
               <Link
-                href="/incidents/fa11aab1-fa11-4700-8000-000000000031"
-                className="text-brand-400 hover:text-brand-300 mt-3 inline-flex items-center gap-1 text-xs font-bold transition-colors"
+                href="/products/eu-ai-act"
+                className="bg-brand-500 hover:bg-brand-400 inline-flex h-10 items-center gap-2 rounded-xl px-5 text-sm font-bold text-white shadow-[0_0_20px_rgba(168,85,247,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_30px_rgba(168,85,247,0.5),inset_0_1px_0_rgba(255,255,255,0.3)]"
               >
-                {t("founder_cta")}
-                <ArrowRight className="h-3 w-3" />
+                Testi Başlat <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
 
           {/* Right: Bug Bounty Card */}
-          <div className="bg-glass/60 border-warning-500/30 hover:border-warning-500/50 border-t-warning-500/60 relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-t-2 p-6 shadow-2xl transition-all duration-300 hover:shadow-[0_0_40px_rgba(249,115,22,0.18)]">
-            <div className="bg-warning-500/15 absolute -top-6 -right-6 -z-10 h-24 w-24 rounded-full blur-xl" />
-            <div className="flex items-start gap-4">
-              <div className="bg-warning-500/20 border-warning-500/30 text-warning-300 shrink-0 rounded-xl border p-3">
-                <Trophy className="h-6 w-6" />
+          <div className="group bg-bg-tertiary/40 hover:bg-bg-tertiary/60 hover:border-warning-500/30 relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border border-white/5 p-8 shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-3xl transition-all duration-500 hover:shadow-[0_30px_60px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.2)]">
+            <div className="bg-warning-500/10 group-hover:bg-warning-500/20 absolute top-0 right-0 h-64 w-64 translate-x-1/2 -translate-y-1/2 rounded-full blur-[80px] transition-all duration-500" />
+
+            <div className="relative z-10 flex items-start gap-5">
+              <div className="bg-warning-500/10 border-warning-500/20 shrink-0 rounded-2xl border p-3.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
+                <Trophy className="text-warning-400 h-6 w-6" />
               </div>
-              <div className="flex-grow space-y-2">
-                <div className="flex items-center gap-2">
-                  <span className="border-warning-500/40 bg-warning-500/20 text-warning-300 rounded-sm border px-2 py-0.5 text-[9px] font-black tracking-[0.2em] uppercase">
-                    {t("bug_bounty_badge", { defaultValue: "Bug Bounty" })}
-                  </span>
+              <div className="flex-grow space-y-3">
+                <div className="border-warning-500/30 bg-warning-500/10 text-warning-300 inline-flex items-center gap-2 rounded-full border px-2.5 py-1 text-[10px] font-black tracking-[0.2em] uppercase">
+                  {t("bug_bounty_badge", { defaultValue: "Bug Bounty" })}
                 </div>
-                <h4 className="text-warning-300 text-xl font-black tracking-tight drop-shadow-[0_2px_12px_rgba(249,115,22,0.45)]">
+                <h4 className="text-xl font-black tracking-tight text-white drop-shadow-[0_2px_12px_rgba(249,115,22,0.3)]">
                   {t("title_accent")}
                 </h4>
-                <p className="text-xs leading-relaxed font-medium text-white/85">
+                <p className="text-fg-secondary text-sm leading-relaxed font-medium">
                   {t("title_accent_desc")}
                 </p>
               </div>
             </div>
-            <div className="mt-6 pl-14">
+            <div className="relative z-10 mt-8 pl-16">
               <Link
                 href="/bounties"
-                className="bg-warning-500 hover:bg-warning-400 focus-visible:ring-warning-500 inline-flex h-9 items-center gap-2 rounded-lg px-4 text-xs font-bold text-neutral-950 shadow-lg transition-all hover:scale-105"
+                className="bg-warning-500 hover:bg-warning-400 focus-visible:ring-warning-500 inline-flex h-10 items-center gap-2 rounded-xl px-5 text-sm font-bold text-neutral-950 shadow-[0_0_20px_rgba(249,115,22,0.3),inset_0_1px_0_rgba(255,255,255,0.5)] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_30px_rgba(249,115,22,0.5),inset_0_1px_0_rgba(255,255,255,0.7)]"
               >
                 {t("bug_bounty_badge", { defaultValue: "Bug Bounty" })} {t("view_all") ?? "→"}
-                <ArrowRight className="h-3.5 w-3.5" />
+                <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
@@ -335,8 +367,8 @@ function AnimatedValue({ value }: { value: number | string }) {
     if (numVal === 0 || !isInView) return;
 
     const controls = animate(0, numVal, {
-      duration: 1.5,
-      ease: "easeOut",
+      duration: 2,
+      ease: [0.21, 0.47, 0.32, 0.98], // Custom ease for premium feel
       onUpdate: (latest) => {
         setCount(Math.round(latest));
       },
@@ -347,15 +379,19 @@ function AnimatedValue({ value }: { value: number | string }) {
 
   if (typeof value === "string") return <>{value}</>;
   return (
-    <span
+    <motion.span
       ref={ref}
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
       className={cn(
+        "inline-block",
         numVal === 0 &&
-          "from-fg-muted/50 to-fg-muted/50 animate-shimmer inline-block min-w-[2ch] bg-gradient-to-r via-white/80 bg-[length:200%_100%] bg-clip-text text-transparent",
+          "from-fg-muted/30 to-fg-muted/30 animate-shimmer min-w-[2ch] bg-gradient-to-r via-white/50 bg-[length:200%_100%] bg-clip-text text-transparent",
       )}
     >
       {count.toLocaleString()}
-    </span>
+    </motion.span>
   );
 }
 
@@ -374,14 +410,20 @@ function LiveStatCard({
 }) {
   return (
     <div
-      className={cn("rounded-xl p-2 text-center sm:p-3", tooltip && "cursor-help")}
-      style={{ boxShadow: `inset 0 0 20px ${glowColor}` }}
+      className={cn(
+        "group relative overflow-hidden rounded-2xl bg-white/5 p-3 text-center transition-all duration-300 hover:bg-white/10 sm:p-4",
+        tooltip && "cursor-help",
+      )}
+      style={{ boxShadow: `inset 0 0 30px ${glowColor}, inset 0 1px 0 rgba(255,255,255,0.1)` }}
       title={tooltip}
     >
-      <p className={`font-mono text-2xl font-black tracking-tight sm:text-3xl ${accentClass}`}>
+      <div className="absolute inset-0 bg-gradient-to-t from-transparent to-white/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      <p
+        className={`relative z-10 font-mono text-3xl font-black tracking-tight sm:text-4xl ${accentClass} drop-shadow-md transition-transform duration-300 group-hover:scale-105`}
+      >
         <AnimatedValue value={value} />
       </p>
-      <p className="text-fg-muted mt-1 text-[9px] leading-tight font-bold tracking-[0.15em] break-words uppercase sm:text-[10px]">
+      <p className="text-fg-secondary relative z-10 mt-2 text-[9px] leading-tight font-black tracking-[0.2em] break-words uppercase sm:text-[10px]">
         {label}
       </p>
     </div>
@@ -401,38 +443,40 @@ function ProviderBar({
 }) {
   const pct = maxCount > 0 ? Math.round((count / maxCount) * 100) : 0;
   const rankColors = [
-    "text-danger-400",
-    "text-warning-400",
-    "text-brand-400",
+    "text-danger-400 drop-shadow-[0_0_8px_rgba(230,57,70,0.5)]",
+    "text-warning-400 drop-shadow-[0_0_8px_rgba(245,158,11,0.5)]",
+    "text-brand-400 drop-shadow-[0_0_8px_rgba(192,132,252,0.5)]",
     "text-fg-secondary",
     "text-fg-muted",
   ];
   const barColors = [
-    "bg-danger-500/70",
-    "bg-warning-500/70",
-    "bg-brand-500/70",
-    "bg-fg-secondary/40",
-    "bg-fg-muted/30",
+    "bg-gradient-to-r from-danger-600 to-danger-400 shadow-[0_0_15px_rgba(230,57,70,0.5)]",
+    "bg-gradient-to-r from-warning-600 to-warning-400 shadow-[0_0_15px_rgba(245,158,11,0.5)]",
+    "bg-gradient-to-r from-brand-600 to-brand-400 shadow-[0_0_15px_rgba(192,132,252,0.5)]",
+    "bg-fg-secondary/60",
+    "bg-fg-muted/40",
   ];
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="group flex items-center gap-4 rounded-lg p-1 transition-colors hover:bg-white/5">
       <span
-        className={`w-4 text-center font-mono text-xs font-black ${rankColors[rank - 1] ?? "text-fg-muted"}`}
+        className={`w-5 text-center font-mono text-xs font-black ${rankColors[rank - 1] ?? "text-fg-muted"}`}
       >
         #{rank}
       </span>
       <div className="flex-1">
-        <div className="mb-1 flex items-center justify-between">
-          <span className="text-fg-primary text-xs font-bold">{name}</span>
-          <span className="text-fg-muted font-mono text-xs">{count.toLocaleString()}</span>
+        <div className="mb-1.5 flex items-center justify-between">
+          <span className="text-fg-primary text-[13px] font-bold tracking-tight">{name}</span>
+          <span className="text-fg-muted font-mono text-xs font-medium">
+            {count.toLocaleString()}
+          </span>
         </div>
-        <div className="bg-bg-tertiary h-1.5 w-full overflow-hidden rounded-full">
+        <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/5 shadow-[inset_0_1px_3px_rgba(0,0,0,0.5)]">
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: `${pct}%` }}
-            transition={{ duration: 1, delay: rank * 0.1, ease: "easeOut" }}
-            className={`h-full rounded-full ${barColors[rank - 1] ?? "bg-fg-muted/30"}`}
+            transition={{ duration: 1.5, delay: rank * 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className={`h-full rounded-full ${barColors[rank - 1] ?? "bg-fg-muted/40"}`}
           />
         </div>
       </div>

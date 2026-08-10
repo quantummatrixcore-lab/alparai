@@ -20,8 +20,8 @@ function AnimatedNumber({ value }: CounterProps) {
     if (value === 0 || !isInView) return;
 
     const controls = animate(0, value, {
-      duration: 1.5,
-      ease: "easeOut",
+      duration: 2,
+      ease: [0.21, 0.47, 0.32, 0.98],
       onUpdate: (latest) => {
         setCount(Math.round(latest));
       },
@@ -31,15 +31,19 @@ function AnimatedNumber({ value }: CounterProps) {
   }, [value, isInView]);
 
   return (
-    <span
+    <motion.span
       ref={ref}
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
       className={cn(
+        "inline-block",
         value === 0 &&
-          "from-fg-muted/50 to-fg-muted/50 animate-shimmer inline-block min-w-[2ch] bg-gradient-to-r via-white/80 bg-[length:200%_100%] bg-clip-text text-transparent",
+          "from-fg-muted/30 to-fg-muted/30 animate-shimmer min-w-[2ch] bg-gradient-to-r via-white/50 bg-[length:200%_100%] bg-clip-text text-transparent",
       )}
     >
       {count.toLocaleString()}
-    </span>
+    </motion.span>
   );
 }
 
@@ -78,54 +82,94 @@ export function LiveStats({
       label: t("stats_incidents"),
       value: totalIncidents,
       icon: AlertCircle,
-      accent: "text-danger-400 border-danger-500/20 bg-danger-500/5",
+      accent: "text-danger-400",
+      bgHover: "hover:bg-danger-500/10",
+      borderHover: "hover:border-danger-500/30",
+      glowColor: "rgba(230,57,70,0.15)",
+      shadowHover:
+        "hover:shadow-[0_20px_40px_rgba(230,57,70,0.2),inset_0_1px_0_rgba(255,255,255,0.2)]",
       tooltip: incidentTooltip,
     },
     {
       label: t("stats_providers"),
       value: totalProviders,
       icon: Cpu,
-      accent: "text-warning-400 border-warning-500/20 bg-warning-500/5",
+      accent: "text-warning-400",
+      bgHover: "hover:bg-warning-500/10",
+      borderHover: "hover:border-warning-500/30",
+      glowColor: "rgba(245,158,11,0.15)",
+      shadowHover:
+        "hover:shadow-[0_20px_40px_rgba(245,158,11,0.2),inset_0_1px_0_rgba(255,255,255,0.2)]",
       tooltip: undefined,
     },
     {
       label: t("stats_countries"),
       value: totalCountries,
       icon: Globe,
-      accent: "text-brand-400 border-brand-500/20 bg-brand-500/5",
+      accent: "text-brand-400",
+      bgHover: "hover:bg-brand-500/10",
+      borderHover: "hover:border-brand-500/30",
+      glowColor: "rgba(168,85,247,0.15)",
+      shadowHover:
+        "hover:shadow-[0_20px_40px_rgba(168,85,247,0.2),inset_0_1px_0_rgba(255,255,255,0.2)]",
       tooltip: undefined,
     },
   ];
 
   return (
-    <div className="bg-bg-secondary/20 border-border-subtle reveal-on-scroll relative scroll-mt-16 overflow-hidden border-y py-8">
-      <Container>
+    <div className="relative z-20 overflow-hidden border-y border-white/5 bg-[#050914] py-12">
+      {/* Background Orbs */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <div className="bg-brand-500/10 absolute top-1/2 left-1/4 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[100px]" />
+        <div className="bg-danger-500/10 absolute top-1/2 right-1/4 h-[400px] w-[400px] translate-x-1/2 -translate-y-1/2 rounded-full blur-[100px]" />
+      </div>
+
+      <Container className="relative z-10">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {statItems.map((item, idx) => {
             const Icon = item.icon;
             return (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.7, delay: idx * 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
                 className={cn(
-                  "flex items-center gap-4 rounded-2xl border p-6 backdrop-blur-sm",
-                  item.accent,
+                  "group relative overflow-hidden rounded-3xl border border-white/5 bg-white/5 p-8 backdrop-blur-2xl transition-all duration-500",
+                  "shadow-[0_10px_30px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.05)]",
+                  item.bgHover,
+                  item.borderHover,
+                  item.shadowHover,
                   item.tooltip && "cursor-help",
                 )}
+                style={{ boxShadow: `inset 0 0 40px ${item.glowColor}` }}
                 title={item.tooltip}
               >
-                <div className="rounded-xl border border-white/10 bg-white/5 p-3">
-                  <Icon className="h-6 w-6" />
-                </div>
-                <div>
-                  <div className="text-fg-primary text-3xl font-black tracking-tight">
-                    <AnimatedNumber value={item.value} />
+                {/* Shine effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 mix-blend-overlay transition-opacity duration-500 group-hover:opacity-100" />
+
+                <div className="relative z-10 flex items-center gap-5">
+                  <div
+                    className={cn(
+                      "flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] transition-transform duration-500 group-hover:scale-110",
+                      item.accent,
+                    )}
+                  >
+                    <Icon className="h-6 w-6" />
                   </div>
-                  <div className="text-fg-secondary mt-1 text-xs font-semibold tracking-wider uppercase">
-                    {item.label}
+                  <div>
+                    <div
+                      className={cn(
+                        "text-[32px] leading-none font-black tracking-tighter drop-shadow-md",
+                        item.accent,
+                      )}
+                    >
+                      <AnimatedNumber value={item.value} />
+                    </div>
+                    <div className="text-fg-secondary mt-1.5 text-xs font-black tracking-[0.2em] uppercase">
+                      {item.label}
+                    </div>
                   </div>
                 </div>
               </motion.div>

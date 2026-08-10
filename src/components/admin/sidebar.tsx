@@ -231,16 +231,12 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
       active: pathname === "/admin/autopilot",
     },
     {
-      href: "/admin/autopilot/analytics",
-      label: t("nav_autopilot_analytics") || t("autopilot_analytics") || "Autopilot Analytics",
-      icon: BarChart3,
-      active: pathname.startsWith("/admin/autopilot/analytics"),
-    },
-    {
       href: "/admin/ai-orchestrator",
-      label: t("nav_ai_orchestrator") || "AI Orchestrator",
+      label: t("nav_ai_orchestrator") || "AI Orkestratör",
       icon: BrainCircuit,
-      active: pathname.startsWith("/admin/ai-orchestrator"),
+      active:
+        pathname.startsWith("/admin/ai-orchestrator") ||
+        pathname.startsWith("/admin/autopilot/analytics"),
     },
     {
       href: "/admin/jules",

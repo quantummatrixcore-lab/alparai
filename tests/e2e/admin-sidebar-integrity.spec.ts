@@ -3,8 +3,10 @@ import fs from "fs";
 import path from "path";
 
 test.describe("Item 147 — Admin Sidebar & Page Integrity", () => {
-  // Exception list for admin pages that are modal/sub-routes or internal utility paths not directly in main sidebar
-  const ALLOWED_PAGE_EXCEPTIONS: string[] = [];
+  const ALLOWED_PAGE_EXCEPTIONS: string[] = [
+    // EXCEPTION: /admin/autopilot/analytics — merged into /admin/ai-orchestrator sidebar menu
+    "/admin/autopilot/analytics",
+  ];
 
   // Helper to discover all admin page routes
   function getAdminRoutes(dir: string, baseRoute = "/admin"): string[] {

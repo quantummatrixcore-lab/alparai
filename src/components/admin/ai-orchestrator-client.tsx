@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { ShieldCheck, Zap, Layers, Code2 } from "lucide-react";
+import { ShieldCheck, Zap, Layers, Code2, BarChart3 } from "lucide-react";
 import { AdminSubNav, type SubNavItem } from "@/components/admin/admin-design-kit";
 import { BlackboxCodeAnalysisSection } from "@/app/[locale]/admin/ai-orchestrator/code-analysis-section";
 import type { TrustScoreRecord } from "@/actions/admin/ai-orchestrator";
+import { AnalyticsDashboard } from "@/components/admin/analytics-dashboard";
+import type { AdminAutopilotSnapshot } from "@/actions/admin-autopilot";
 import { useTranslations } from "next-intl";
 
 interface FreeModel {
@@ -26,6 +28,8 @@ interface AiOrchestratorClientProps {
   costSavingsStr: string;
   avgTrustScore: string;
   totalAudits: number;
+  autopilotSnapshot?: AdminAutopilotSnapshot | null;
+  locale?: string;
 }
 
 export function AiOrchestratorClient({
@@ -35,12 +39,19 @@ export function AiOrchestratorClient({
   costSavingsStr,
   avgTrustScore,
   totalAudits,
+  autopilotSnapshot,
+  locale = "tr",
 }: AiOrchestratorClientProps) {
   const t = useTranslations("admin");
   const [activeTab, setActiveTab] = useState<string>("all");
 
   const subNavItems: SubNavItem[] = [
     { id: "all", label: "Overview", icon: Layers },
+    {
+      id: "autopilot",
+      label: t("autopilot_analytics") || t("nav_autopilot_analytics") || "Otopilot Analizleri",
+      icon: BarChart3,
+    },
     {
       id: "inventory",
       label: t("free_tier_inventory") || "Free AI Arsenal",
@@ -62,6 +73,7 @@ export function AiOrchestratorClient({
     { id: "blackbox", label: "Blackbox AI Analysis", icon: Code2 },
   ];
 
+  const showAutopilot = (activeTab === "all" || activeTab === "autopilot") && autopilotSnapshot;
   const showInventory = activeTab === "all" || activeTab === "inventory";
   const showChains = activeTab === "all" || activeTab === "chains";
   const showLedger = activeTab === "all" || activeTab === "ledger";
@@ -70,6 +82,9 @@ export function AiOrchestratorClient({
   return (
     <div className="space-y-6">
       <AdminSubNav items={subNavItems} activeId={activeTab} onChange={setActiveTab} />
+
+      {/* Autopilot Analytics Dashboard */}
+      {showAutopilot && <AnalyticsDashboard snapshot={autopilotSnapshot} locale={locale} />}
 
       {/* Free Tier Inventory Stats */}
       {showInventory && (

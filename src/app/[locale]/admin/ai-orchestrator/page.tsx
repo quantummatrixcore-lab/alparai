@@ -1,5 +1,6 @@
 import { requireAdmin } from "@/lib/auth/session";
 import { getTrustScoresAction } from "@/actions/admin/ai-orchestrator";
+import { getAdminAutopilotSnapshot } from "@/actions/admin-autopilot";
 import { Cpu } from "lucide-react";
 import { createServerClient } from "@/lib/supabase/server";
 import { OrchestratorTriggerButton } from "./trigger-button";
@@ -7,10 +8,18 @@ import { getTranslations } from "next-intl/server";
 import { AdminContainer, AdminPageHeader } from "@/components/admin/admin-design-kit";
 import { AiOrchestratorClient } from "@/components/admin/ai-orchestrator-client";
 
-export default async function AiOrchestratorAdminPage() {
+export default async function AiOrchestratorAdminPage({
+  params,
+}: {
+  params?: Promise<{ locale?: string }>;
+}) {
+  const resolvedParams = params ? await params : { locale: "tr" };
+  const locale = resolvedParams.locale || "tr";
   const t = await getTranslations("admin");
   const supabase = await createServerClient();
   const trustScores = await getTrustScoresAction();
+  const autopilotRes = await getAdminAutopilotSnapshot(100);
+  const autopilotSnapshot = autopilotRes.ok ? autopilotRes.snapshot : null;
 
   const { data: chains } = await supabase.from("ai_routing_chains").select("*");
   const { data: costs } = await supabase
@@ -73,6 +82,8 @@ export default async function AiOrchestratorAdminPage() {
         costSavingsStr={costSavingsStr}
         avgTrustScore={avgTrustScore}
         totalAudits={totalAudits}
+        autopilotSnapshot={autopilotSnapshot}
+        locale={locale}
       />
     </AdminContainer>
   );

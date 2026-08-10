@@ -18,6 +18,7 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import { QuickActionGrid, type QuickAction } from "@/components/ui/quick-action-grid";
+import { CreateUserModal } from "@/components/admin/create-user-modal";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   AreaChart,
@@ -268,6 +269,10 @@ export function UsersClient({ users, userRole, locale }: UsersClientProps) {
           </div>
         </motion.div>
       </div>
+
+      <motion.div variants={itemVariants} className="mb-4">
+        <CreateUserModal triggerText="Create New User Manually" />
+      </motion.div>
 
       <motion.div variants={itemVariants}>
         <QuickActionGrid actions={quickActions} columns={4} />

@@ -23,6 +23,7 @@ import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { PwaRegister } from "@/components/pwa-register";
 import { PlausibleWithConsent } from "@/components/plausible-consent";
 import { UtmTracker } from "@/components/analytics/utm-tracker";
+import { ReferralTracker } from "@/components/marketing/referral-tracker";
 import "../globals.css";
 import { Inter, Outfit, JetBrains_Mono } from "next/font/google";
 
@@ -115,6 +116,7 @@ export default async function LocaleLayout({
             <WebSiteJsonLd />
             <PlausibleWithConsent />
             <UtmTracker />
+            <ReferralTracker />
             <Analytics />
             <SpeedInsights />
           </NextIntlClientProvider>

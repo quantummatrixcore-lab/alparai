@@ -7,6 +7,7 @@ const ROOT = process.cwd();
 const BASELINE_PATH = join(ROOT, ".repo-language-baseline");
 
 const TURKISH_CHARS = /[ığşçöüİĞŞÇÖÜ]/u;
+const MOJIBAKE_CHARS = /â€”|â€“|â€™|â€œ|â€|â€¢|Ã¢|â€/u;
 
 const SCANNED_EXTENSIONS = [".md", ".ts", ".tsx", ".mjs", ".js", ".yml", ".yaml"];
 
@@ -39,13 +40,15 @@ function turkishLineCount(path) {
   try {
     content = readFileSync(join(ROOT, path), "utf8");
   } catch {
-    return 0;
+    return { turkish: 0, mojibake: 0 };
   }
-  let count = 0;
+  let turkishCount = 0;
+  let mojibakeCount = 0;
   for (const line of content.split("\n")) {
-    if (TURKISH_CHARS.test(line)) count += 1;
+    if (TURKISH_CHARS.test(line)) turkishCount += 1;
+    if (MOJIBAKE_CHARS.test(line)) mojibakeCount += 1;
   }
-  return count;
+  return { turkish: turkishCount, mojibake: mojibakeCount };
 }
 
 function loadBaseline() {
@@ -60,16 +63,33 @@ function loadBaseline() {
 
 function scan() {
   const offenders = [];
+  const mojibakeOffenders = [];
   for (const path of trackedFiles()) {
-    if (!isScanned(path) || isExempt(path)) continue;
-    const count = turkishLineCount(path);
-    if (count > 0) offenders.push({ path, count });
+    if (!isScanned(path)) continue;
+    
+    // Mojibake check applies to all scanned files, even if exempt from Turkish check
+    const counts = turkishLineCount(path);
+    
+    // but we skip the checker itself and the doctrine docs which literally describe the mojibake sequences
+    if (!path.includes('check-repo-language.mjs') && !path.includes('MASTER_PLAN') && !path.includes('v13.x.md')) {
+      if (counts.mojibake > 0) {
+        mojibakeOffenders.push({ path, count: counts.mojibake });
+      }
+    }
+    
+    if (isExempt(path)) continue;
+    if (counts.turkish > 0) {
+      offenders.push({ path, count: counts.turkish });
+    }
   }
-  return offenders.sort((a, b) => b.count - a.count);
+  return {
+    turkish: offenders.sort((a, b) => b.count - a.count),
+    mojibake: mojibakeOffenders.sort((a, b) => b.count - a.count)
+  };
 }
 
 if (process.argv.includes("--write-baseline")) {
-  const offenders = scan();
+  const { turkish: offenders } = scan();
   const header = [
     "# Repo language baseline — English-only policy (Rule 13).",
     "# Files listed here still contain Turkish text and are grandfathered.",
@@ -84,8 +104,21 @@ if (process.argv.includes("--write-baseline")) {
 }
 
 const baseline = loadBaseline();
-const offenders = scan();
+const { turkish: offenders, mojibake: mojibakeOffenders } = scan();
 const unlisted = offenders.filter((o) => !baseline.has(o.path));
+
+let failed = false;
+
+if (mojibakeOffenders.length > 0) {
+  console.error("Repo language check FAILED — Mojibake corruption detected.");
+  console.error("Rule 10: Files must not contain broken encoding sequences like 'â€'.");
+  console.error("");
+  for (const { path, count } of mojibakeOffenders) {
+    console.error(`  ${path} — ${count} line(s) with mojibake characters`);
+  }
+  console.error("");
+  failed = true;
+}
 
 if (unlisted.length > 0) {
   console.error("Repo language check FAILED — Turkish text in files not covered by the baseline.");
@@ -97,6 +130,10 @@ if (unlisted.length > 0) {
   console.error("");
   console.error("Translate the file, or if it is product content, add it to PERMANENT_EXEMPTIONS.");
   console.error("Do NOT add it to .repo-language-baseline — that list only shrinks.");
+  failed = true;
+}
+
+if (failed) {
   process.exit(1);
 }
 

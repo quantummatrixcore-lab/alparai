@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { motion, animate, useInView } from "framer-motion";
+import { motion, animate, useInView, type Variants } from "framer-motion";
 import { Link } from "@/i18n/routing";
 import { ArrowRight, ShieldAlert, Target, Trophy, Quote, Radio, Zap } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 import { trackEvent } from "@/lib/analytics";
 
 // Animation Variants for Staggering
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -21,7 +21,7 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,

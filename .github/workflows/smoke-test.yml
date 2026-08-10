@@ -13,29 +13,40 @@ jobs:
     if: github.event.deployment_status.state == 'success' && github.event.deployment.environment == 'Production'
     runs-on: ubuntu-latest
     steps:
-      - name: Health check — /api/health
+      - name: Health check — /api/health (GPTBot)
         run: |
-          STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://alparai.com/api/health)
+          STATUS=$(curl -s -A "GPTBot/1.0" -o /dev/null -w "%{http_code}" https://www.alparai.com/api/health)
           if [ "$STATUS" != "200" ]; then
-            echo "::error::Health check failed with HTTP $STATUS"
+            echo "::error::Health check failed with HTTP $STATUS for GPTBot"
             exit 1
           fi
           echo "✅ Health check passed (HTTP $STATUS)"
 
-      - name: Verify critical routes return 200
+      - name: Verify critical routes return 200 (GPTBot)
         run: |
-          for path in /en /tr /en/incidents /tr/incidents; do
-            STATUS=$(curl -s -o /dev/null -w "%{http_code}" -L "https://alparai.com${path}")
+          for path in / /security /en /tr /en/incidents /tr/incidents; do
+            STATUS=$(curl -s -A "GPTBot/1.0" -o /dev/null -w "%{http_code}" "https://www.alparai.com${path}")
             if [ "$STATUS" != "200" ]; then
-              echo "::error::Route $path returned HTTP $STATUS"
+              echo "::error::Route $path returned HTTP $STATUS for GPTBot"
               exit 1
             fi
-            echo "✅ $path → $STATUS"
+            echo "✅ $path (GPTBot) → $STATUS"
+          done
+
+      - name: Verify critical routes return 200 (LinkedInBot)
+        run: |
+          for path in / /security /api/health; do
+            STATUS=$(curl -s -A "LinkedInBot/1.0" -o /dev/null -w "%{http_code}" "https://www.alparai.com${path}")
+            if [ "$STATUS" != "200" ]; then
+              echo "::error::Route $path returned HTTP $STATUS for LinkedInBot"
+              exit 1
+            fi
+            echo "✅ $path (LinkedInBot) → $STATUS"
           done
 
       - name: Verify API response shape
         run: |
-          BODY=$(curl -s https://alparai.com/api/health)
+          BODY=$(curl -s -A "GPTBot/1.0" https://www.alparai.com/api/health)
           echo "$BODY" | node -e "
             const d = JSON.parse(require('fs').readFileSync('/dev/stdin', 'utf8'));
             if (d.status !== 'ok') { console.error('::error::API health status is not ok:', d.status); process.exit(1); }

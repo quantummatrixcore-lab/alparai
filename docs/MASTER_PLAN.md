@@ -94,21 +94,21 @@ _Durum: **AÇIK** (v13.4 ölçümü) | Yürütücü: OpenCode Flash / Jules_
 
 <!-- FOUNDER_BACKLOG_START -->
 
-| Blok  | Öncelik | Atanan      | Görev Özeti                                                                                                  | Durum     |
-| ----- | ------- | ----------- | ------------------------------------------------------------------------------------------------------------ | --------- |
-| OMEGA | P0      | Founder     | Cloudflare WAF 403 (#128) — `/security` 09 Ağu'da hâlâ **403** (doğrudan ölçüm); 9 gündür açık `blocks:#199` | pending   |
-| ZETA  | P0      | Antigravity | [ZETA-0c] Edge ikinci kırık: `/api/health` → **308**, Post-Deploy Smoke Test kırmızı `blocks:#199`           | pending   |
-| ZETA  | P1      | Antigravity | [ZETA-0b] master'da 3 kırmızı: `CI` i18n paritesi, `Release` ruleset bypass, `Security Audit` pnpm-audit     | pending   |
-| ZETA  | P2      | Antigravity | [ZETA-0d] 4 dependabot PR'ı (#68,#69,#70,#75) 6 gündür açık — bağımlılık yaması giremiyor                    | pending   |
-| ZETA  | P0      | Jules       | [ZETA-0a] PR şeridi — **kanıtla kapandı:** PR #76 merged 09 Ağu, `closed-by:79f365c5@master`                 | completed |
-| SIGMA | P0      | Flash Ajan  | Stripe canlı işlem / webhook doğrulama (#208)                                                                | completed |
-| ALPHA | P0      | Flash Ajan  | Seed Data Room & Değerleme Memosu üretimi (#201, #203)                                                       | completed |
-| ZETA  | P1      | Flash Ajan  | 400-satır CI sınırı (#209) ve Jules/Claude yönlendirme CI'ı (#213)                                           | completed |
-| OMEGA | P1      | Flash Ajan  | "The Grok Files" serisinin 9-model arbitrajıyla yazılması (#198, #212)                                       | completed |
-| SIGMA | P1      | Antigravity | Top 50 YZ Vendor'a Trust Badge otonom (openchrome) iletilmesi                                                | completed |
-| OMEGA | P1      | Founder     | HN Show HN + Reddit senkron lansman (#199) — kanıt bekliyor: ilk 24s huni sayıları (`funnel_events`)         | GATE      |
-| ALPHA | P2      | Flash Ajan  | [ALPHA-6] Pitch Deck (Marp/Reveal) HTML slayt kodlaması                                                      | completed |
-| SIGMA | P2      | Flash Ajan  | [SIGMA-6] Stripe Otonom Fatura (PDF) Storage API                                                             | completed |
+| Blok  | Öncelik | Atanan      | Görev Özeti                                                                                                                                                                                                             | Durum     |
+| ----- | ------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| OMEGA | P0      | Founder     | Cloudflare WAF (#128) — **kanıt geçersiz (v13.5):** 403 ölçümü ajan proxy'sinden geldi, siteden değil; LinkedInBot siteye ulaşıp OG kartı üretti → teşhise düşürüldü, kural değiştirilmeden önce Security Events okunur | pending   |
+| ZETA  | P0      | Antigravity | [ZETA-0c] Edge ikinci kırık: `/api/health` → **308** (GitHub runner ölçümü — tek güvenilir dış alet); smoke test kapsamı genişletilecek `blocks:#199`                                                                   | pending   |
+| ZETA  | P1      | Antigravity | [ZETA-0b] master'da 3 kırmızı: `CI` i18n paritesi, `Release` ruleset bypass, `Security Audit` pnpm-audit                                                                                                                | pending   |
+| ZETA  | P2      | Antigravity | [ZETA-0d] 4 dependabot PR'ı (#68,#69,#70,#75) 6 gündür açık — bağımlılık yaması giremiyor                                                                                                                               | pending   |
+| ZETA  | P0      | Jules       | [ZETA-0a] PR şeridi — **kanıtla kapandı:** PR #76 merged 09 Ağu, `closed-by:79f365c5@master`                                                                                                                            | completed |
+| SIGMA | P0      | Flash Ajan  | Stripe canlı işlem / webhook doğrulama (#208)                                                                                                                                                                           | completed |
+| ALPHA | P0      | Flash Ajan  | Seed Data Room & Değerleme Memosu üretimi (#201, #203)                                                                                                                                                                  | completed |
+| ZETA  | P1      | Flash Ajan  | 400-satır CI sınırı (#209) ve Jules/Claude yönlendirme CI'ı (#213)                                                                                                                                                      | completed |
+| OMEGA | P1      | Flash Ajan  | "The Grok Files" serisinin 9-model arbitrajıyla yazılması (#198, #212)                                                                                                                                                  | completed |
+| SIGMA | P1      | Antigravity | Top 50 YZ Vendor'a Trust Badge otonom (openchrome) iletilmesi                                                                                                                                                           | completed |
+| OMEGA | P1      | Founder     | HN Show HN + Reddit senkron lansman (#199) — **onay ✅ alındı** (`launch_posts.md`: `[x] Approved`); ön koşul artık BG (başlık) + BH (atıf) `depends:BG,BH`                                                             | GATE      |
+| ALPHA | P2      | Flash Ajan  | [ALPHA-6] Pitch Deck (Marp/Reveal) HTML slayt kodlaması                                                                                                                                                                 | completed |
+| SIGMA | P2      | Flash Ajan  | [SIGMA-6] Stripe Otonom Fatura (PDF) Storage API                                                                                                                                                                        | completed |
 
 <!-- FOUNDER_BACKLOG_END -->
 
@@ -137,6 +137,33 @@ BLOK BC (Antigravity,P1)┘
 **Ertelenenler (lansman sonrası):** DecasHub SSO, Agent-OS UI, Hetzner migrasyonu, yeni içerik serileri. Gerekçe kapsam kararında (§3).
 
 **Bu turun metriği:** panel satır sayısı 11 → 13 (biri kapandı, üçü açıldı, biri geri açıldı). Yeni satırların ikisi `blocks:#199` etiketli — moratoryumun tek istisnası.
+
+---
+
+### v13.5 — Dağıtım başladı, vitrin bozuk, ölçüm aleti yanlıştı
+
+Founder'ın LinkedIn ekran görüntüsü (**335 gösterim, 2 tepki**) üç iddiamı birden çürüttü. Uzun analiz: `docs/plan/v13.x.md` §v13.5.
+
+**Ölçüm doktrini (bağlayıcı).** Bu oturumun `curl` çıktısı canlı site için **geçerli kanıt değildir** — ajan proxy'si dört URL için de aynı anda `403 CONNECT tunnel failed` döndürüyor, yani site hiç ölçülmedi. Edge iddiaları yalnızca **GitHub Actions runner ölçümüne** (`smoke-test.yml`) ya da Founder'ın tarayıcı gözlemine dayanabilir. v12.104'ten beri tekrarlanan "WAF üç rotayı da 403'lüyor" cümlesi bu aletle üretildi ve LinkedInBot'un siteye ulaşmış olmasıyla çelişiyor.
+
+**Onay engeli yok.** `docs/COMMUNITY/launch_posts.md` başlığı `[x] Approved by Founder`. "Altı turdur onay bekliyor" notu bugün itibarıyla yanlıştır.
+
+**Lansman fiilen başladı.** LinkedIn'de yayın yapıldı. Panel "GATE" diyor; gerçek şu ki dağıtım başladı, HN/Reddit kanalı henüz kullanılmadı ve **hiçbiri ölçülmedi**.
+
+**Yeni bulgu — mojibake kaynak veride, ve tek satır değil.** `messages/en.json:404` ayırıcıyı em-dash olarak değil, `â`+`€`+`"` üçlüsü olarak saklıyor; `src/app/layout.tsx:6` aynı deseni doğru taşıyor (`E2 80 94`). **Ölçüm:** `grep -c 'â€'` → `en.json` **91**, `tr/de/fr/ru` **0**. Yani hasar tek dizeye değil, İngilizce dosyanın tamamına yayılmış — ve İngilizce, HN/Reddit kitlesinin göreceği dildir.
+
+**İki yeni blok görev (kapı ön koşulu — moratoryum istisnası, `blocks:#199`):**
+
+| Blok   | Ö.  | Atanan      | İş                                                                                                                                     | Kabul kriteri                                                                                         |
+| ------ | --- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| **BG** | P0  | Antigravity | `messages/{en,tr,de,fr,ru}.json` içinde `â€`, `Ã`, `â€™`, `â€œ` bileşik desenleri taranıp doğru UTF-8'e çevrilir (tek `â` hedeflenmez) | Tarama 0 eşleşme; `pnpm lint && pnpm typecheck` geçer; LinkedIn Post Inspector kartı em-dash gösterir |
+| **BH** | P0  | Antigravity | Sosyal bağlantılara kaynak parametresi + `src/actions/funnel.ts` bunu `funnel_events`'e yazar; `/admin/marketing` kaynak kırılımı      | Test ziyaret panelde kaynağıyla görünür — yeni tablo/sağlayıcı eklenmez, mevcut altyapı bağlanır      |
+
+**BA yeniden tanımlandı (düzeltme değil, teşhis):** Cloudflare → Security → Events son 24 saat okunur, hangi user-agent'ların fiilen bloklandığı raporlanır. Liste boşsa madde kapanır. Yanlış ölçüme dayanarak WAF kuralı değiştirmek, çalışan crawler erişimini bozma riskidir.
+
+**BB genişletildi:** `smoke-test.yml` `/`, `/security`, `/api/health` durum kodlarını iki bot user-agent'ıyla (GPTBot, LinkedInBot) raporlar. 308'in kaynağı bu çıktıyla teşhis edilir.
+
+**Sıra:** BG + BH → BD (lansman). BA/BB paralel, lansmanı bloklamaz — çünkü LinkedIn kanıtı siteye erişilebildiğini gösteriyor.
 
 ---
 

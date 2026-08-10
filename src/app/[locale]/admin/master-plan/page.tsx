@@ -3,6 +3,7 @@ import { setRequestLocale } from "next-intl/server";
 import { Container } from "@/components/ui/layout";
 import { requireAdmin } from "@/lib/auth/session";
 import { MasterPlanClient } from "@/components/admin/master-plan-client";
+import { MasterPlanDashboard } from "@/components/admin/master-plan-dashboard";
 import { parseMasterPlan } from "@/lib/utils/markdown-parser";
 import { Compass } from "lucide-react";
 
@@ -24,24 +25,28 @@ export default async function MasterPlanPage({ params }: { params: Promise<{ loc
   const { items, error } = parseMasterPlan();
 
   return (
-    <div className="min-h-screen bg-black p-6"><div className="bg-zinc-900/40 backdrop-blur-xl ring-1 ring-white/10 rounded-3xl shadow-2xl p-8">
-      <div className="min-h-screen rounded-3xl bg-zinc-900/40 p-6 py-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
-      <Container>
-        <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
-          <div>
-            <div className="flex items-center gap-2">
-              <Compass className="text-brand-400 h-6 w-6" />
-              <h1 className="text-2xl font-extrabold tracking-tight text-white md:text-3xl">
-                {t("master_plan_title")}
-              </h1>
+    <div className="min-h-screen bg-black p-6">
+      <div className="rounded-3xl bg-zinc-900/40 p-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl">
+        <div className="min-h-screen rounded-3xl bg-zinc-900/40 p-6 py-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
+          <Container>
+            <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+              <div>
+                <div className="flex items-center gap-2">
+                  <Compass className="text-brand-400 h-6 w-6" />
+                  <h1 className="text-2xl font-extrabold tracking-tight text-white md:text-3xl">
+                    {t("master_plan_title")}
+                  </h1>
+                </div>
+                <p className="text-fg-muted mt-1 text-sm">{t("master_plan_subtitle")}</p>
+              </div>
             </div>
-            <p className="text-fg-muted mt-1 text-sm">{t("master_plan_subtitle")}</p>
-          </div>
-        </div>
 
-        <MasterPlanClient items={items} error={error} />
-      </Container>
+            <MasterPlanDashboard items={items} />
+
+            <MasterPlanClient items={items} error={error} />
+          </Container>
+        </div>
+      </div>
     </div>
-      </div></div>
   );
 }

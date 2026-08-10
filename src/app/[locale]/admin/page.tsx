@@ -41,6 +41,7 @@ import {
   LineChart,
 } from "lucide-react";
 import { AiBudgetTransparencyScore } from "@/components/admin/AiBudgetTransparencyScore";
+import { Test360Meter } from "@/components/admin/test-360-meter";
 
 export const dynamic = "force-dynamic";
 
@@ -109,6 +110,9 @@ export default async function AdminDashboardPage({
 
             {/* AI Incident Budget Transparency Score Widget (Task #160) */}
             <AiBudgetTransparencyScore />
+
+            {/* 360 Expert AI Audit Meter */}
+            <Test360Meter />
 
             {/* Main 4 Giant Widget Grid */}
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">

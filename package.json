@@ -51,7 +51,7 @@
     "@ai-sdk/gateway": "^4.0.36",
     "@fingerprintjs/fingerprintjs": "^5.2.0",
     "@google/generative-ai": "^0.24.1",
-    "@marsidev/react-turnstile": "^1.5.3",
+    "@marsidev/react-turnstile": "^1.5.5",
     "@phosphor-icons/react": "^2.1.10",
     "@sentry/nextjs": "^10.69.0",
     "@stripe/stripe-js": "^9.12.0",

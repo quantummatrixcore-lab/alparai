@@ -3,10 +3,10 @@
 import { createServerClient } from "@/lib/supabase/server";
 
 export type AiAuditMetrics = {
-  integrityScore: number;
-  botGuardScore: number;
-  resilienceScore: number;
-  consensusScore: number;
+  integrityScore: number | null;
+  botGuardScore: number | null;
+  resilienceScore: number | null;
+  consensusScore: number | null;
   lastRunTimestamp: string;
   verdict: "PASS" | "WARNING" | "FAIL";
   aiInsights: string[];
@@ -47,9 +47,16 @@ export async function run360ExpertAudit(): Promise<{
     const totalIncidents = incidentsCount ?? 0;
 
     const integrityScore = Math.min(100, Math.max(80, 85 + (activeModels > 0 ? 10 : 0)));
-    const botGuardScore = 100;
-    const resilienceScore = activeModels >= 5 ? 98 : 85;
+    const botGuardScore = null;
+    const resilienceScore = null;
     const consensusScore = Math.min(100, 90 + Math.floor(activeProviders / 2));
+
+    const validScores = [integrityScore, botGuardScore, resilienceScore, consensusScore].filter(
+      (s): s is number => s !== null,
+    );
+    const avgScore =
+      validScores.length > 0 ? validScores.reduce((a, b) => a + b, 0) / validScores.length : 0;
+    const verdict = avgScore >= 90 ? "PASS" : avgScore >= 70 ? "WARNING" : "FAIL";
 
     const metrics: AiAuditMetrics = {
       integrityScore,
@@ -57,7 +64,7 @@ export async function run360ExpertAudit(): Promise<{
       resilienceScore,
       consensusScore,
       lastRunTimestamp: new Date().toISOString(),
-      verdict: "PASS",
+      verdict,
       totalProvidersVerified: activeProviders,
       totalModelsActive: activeModels,
       aiInsights: [

@@ -18,8 +18,8 @@ export function Test360Meter() {
   const [isAuditing, setIsAuditing] = useState(false);
   const [metrics, setMetrics] = useState<AiAuditMetrics | null>({
     integrityScore: 96,
-    botGuardScore: 100,
-    resilienceScore: 94,
+    botGuardScore: null,
+    resilienceScore: null,
     consensusScore: 98,
     lastRunTimestamp: new Date().toISOString(),
     verdict: "PASS",
@@ -49,15 +49,19 @@ export function Test360Meter() {
     }
   };
 
-  const overallScore = metrics
-    ? Math.round(
-        (metrics.integrityScore +
-          metrics.botGuardScore +
-          metrics.resilienceScore +
-          metrics.consensusScore) /
-          4,
-      )
-    : 94;
+  const validScores = metrics
+    ? [
+        metrics.integrityScore,
+        metrics.botGuardScore,
+        metrics.resilienceScore,
+        metrics.consensusScore,
+      ].filter((s): s is number => s !== null)
+    : [];
+
+  const overallScore =
+    validScores.length > 0
+      ? Math.round(validScores.reduce((a, b) => a + b, 0) / validScores.length)
+      : "Not measured";
 
   return (
     <section className="group relative flex w-full flex-col justify-between overflow-hidden rounded-3xl border border-cyan-500/20 bg-zinc-900/40 p-4 backdrop-blur-xl transition-all duration-300 hover:border-cyan-500/40 hover:bg-zinc-900/60 sm:p-6 md:p-8">
@@ -123,7 +127,9 @@ export function Test360Meter() {
                 <span className="text-2xl font-black tracking-tight text-white sm:text-3xl">
                   {overallScore}
                 </span>
-                <span className="text-xs font-semibold text-zinc-400 sm:text-sm">/ 100</span>
+                {typeof overallScore === "number" && (
+                  <span className="text-xs font-semibold text-zinc-400 sm:text-sm">/ 100</span>
+                )}
               </div>
               <p className="mt-1 truncate text-[11px] font-medium text-emerald-400">
                 Grade A+ Production Grade
@@ -139,7 +145,7 @@ export function Test360Meter() {
                 />
                 <path
                   className="stroke-cyan-400 transition-all duration-1000 ease-out"
-                  strokeDasharray={`${overallScore}, 100`}
+                  strokeDasharray={`${typeof overallScore === "number" ? overallScore : 0}, 100`}
                   d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                   fill="none"
                   strokeWidth="3.5"
@@ -160,7 +166,7 @@ export function Test360Meter() {
               </p>
               <div className="mt-1 flex flex-wrap items-baseline gap-1.5">
                 <span className="text-2xl font-black tracking-tight text-white sm:text-3xl">
-                  {metrics ? `${metrics.botGuardScore}%` : "100%"}
+                  {metrics?.botGuardScore != null ? `${metrics.botGuardScore}%` : "Not measured"}
                 </span>
               </div>
               <p className="mt-1 truncate text-[11px] font-medium text-emerald-300">
@@ -177,7 +183,7 @@ export function Test360Meter() {
                 />
                 <path
                   className="stroke-emerald-400 transition-all duration-1000 ease-out"
-                  strokeDasharray={`${metrics ? metrics.botGuardScore : 100}, 100`}
+                  strokeDasharray={`${metrics?.botGuardScore ?? 0}, 100`}
                   d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                   fill="none"
                   strokeWidth="3.5"
@@ -198,7 +204,7 @@ export function Test360Meter() {
               </p>
               <div className="mt-1 flex flex-wrap items-baseline gap-1.5">
                 <span className="text-2xl font-black tracking-tight text-white sm:text-3xl">
-                  {metrics ? `${metrics.integrityScore}%` : "98%"}
+                  {metrics?.integrityScore != null ? `${metrics.integrityScore}%` : "Not measured"}
                 </span>
               </div>
               <p className="mt-1 truncate text-[11px] font-medium text-indigo-300">
@@ -215,7 +221,7 @@ export function Test360Meter() {
                 />
                 <path
                   className="stroke-indigo-400 transition-all duration-1000 ease-out"
-                  strokeDasharray={`${metrics ? metrics.integrityScore : 98}, 100`}
+                  strokeDasharray={`${metrics?.integrityScore ?? 0}, 100`}
                   d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                   fill="none"
                   strokeWidth="3.5"
@@ -236,7 +242,9 @@ export function Test360Meter() {
               </p>
               <div className="mt-1 flex flex-wrap items-baseline gap-1.5">
                 <span className="text-2xl font-black tracking-tight text-white sm:text-3xl">
-                  {metrics ? `${metrics.resilienceScore}%` : "98%"}
+                  {metrics?.resilienceScore != null
+                    ? `${metrics.resilienceScore}%`
+                    : "Not measured"}
                 </span>
               </div>
               <p className="mt-1 truncate text-[11px] font-medium text-purple-300">
@@ -253,7 +261,7 @@ export function Test360Meter() {
                 />
                 <path
                   className="stroke-purple-400 transition-all duration-1000 ease-out"
-                  strokeDasharray="100, 100"
+                  strokeDasharray={`${metrics?.resilienceScore ?? 0}, 100`}
                   d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                   fill="none"
                   strokeWidth="3.5"

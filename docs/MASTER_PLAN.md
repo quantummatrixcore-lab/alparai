@@ -4,6 +4,26 @@
 
 Mühendislik temelleri (RLS, 9-model failover) inşa edilmiştir. Build-trap (aşırı mühendislik) dönemi bitmiştir. **Artık tüm otonom zeka; gelir (revenue), yatırım (VC) ve pazar penetrasyonu (GTM) için kullanılacaktır.**
 
+---
+
+# ALPAR AI — MASTER PLAN v13.5: Swarm Security & Architecture Execution (Otopilot)
+
+**ÖZET:** Otopilot komutuyla 4 ajanlık (Mimar, Security, QA, Jules) Swarm ordusu tetiklendi; tüm mimari şelale (waterfall) darboğazları ve 6 adet P0 güvenlik açığı kapatılıp doğrulandı.
+
+### Durum Tablosu (Doğrudan Kanıtlı)
+
+| Görev      | Açıklama                                                                             | Kanıt                                        | Durum        |
+| ---------- | ------------------------------------------------------------------------------------ | -------------------------------------------- | ------------ |
+| **SEC-1**  | `email-preferences.ts` ve `vendor.ts` IDOR/RLS Bypass                                | `d1330fa7` - `getCurrentUser()` eklendi      | ✅ completed |
+| **SEC-2**  | 4 Server Action (`dual-channel-scoring`, `leaderboard-backfill`, vb.) yetki koruması | `d1330fa7` - `requireAdmin()` eklendi        | ✅ completed |
+| **ARCH-1** | `admin/integrations/page.tsx` Server Component refaktörü                             | `d1330fa7` - waterfall çözüldü               | ✅ completed |
+| **QA-1**   | Playwright E2E Testi (Integrations)                                                  | `e2e/admin-integrations.spec.ts` oluşturuldu | ✅ completed |
+| **JULES**  | GitHub Copilot Agent "Jules" workflow tetiklemesi                                    | `gh workflow run` - bulutta aktif            | ✅ completed |
+
+**Görev Devri (Handoff):** Lansman kapısı (GATE) bekliyor. Uygulayıcı (Antigravity), lansman sonrasına kalan `[ZETA-0c]` smoke-test / `/api/health` 308 hatasını çözmelidir.
+
+---
+
 > **Kural 10 düzeltmesi (v13.2, doğrudan ölçüldü 2026-08-06):** Bu satır "%100 yeşil CI" iddia ediyordu; yanlıştır. **v13.1'de yazdığım "master'da 30/30 başarısız" rakamı da yanlıştı** — bir alt ajan raporunu doğrulamadan doktrine geçirdim. Doğrudan ölçüm (`master`, son 30 koşu): **17 başarılı, 12 başarısız, 1 atlanmış**; süreler 5–63 sn; adımlar gerçekten çalışıyor. **İki ayrı sorun var, v13.1 bunları birbirine karıştırdı:** (1) `master`'da üç workflow gerçek hatalarla düşüyor (`CI` → "i18n Key Check" adımı; `Security Audit`; `Release` → "Resource not accessible by integration" token izni); (2) **PR bağlamında** neredeyse her kontrol 2–3 sn'de, adım çalıştırmadan düşüyor (PR #69: 13'ün 12'si — bu doğrudan doğrulandı). Ayrıntı: `docs/plan/v12.13x.md`.
 
 ---

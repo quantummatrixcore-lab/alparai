@@ -19,6 +19,9 @@ const PERMANENT_EXEMPTIONS = [
   "docs/plan/v12",
   "scripts/check-repo-language.mjs",
   ".repo-language-baseline",
+  // Machine-generated dependency inventory: the text comes from upstream
+  // package metadata, not from us, and is regenerated on every scan.
+  "ops/sbom/",
 ];
 
 function isExempt(path) {

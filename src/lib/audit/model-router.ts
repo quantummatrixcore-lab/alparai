@@ -8,7 +8,13 @@ import {
 } from "../ai/openrouter-gateway";
 
 export type ModelTier = "basic" | "deep" | "none";
-export type TaskDomain = "math_logic" | "creative_copy" | "risk_audit" | "fast_triage";
+export type TaskDomain =
+  | "math_logic"
+  | "creative_copy"
+  | "risk_audit"
+  | "fast_triage"
+  | "code_generation"
+  | "ethics_audit";
 
 export interface ModelChainItem {
   id: string;
@@ -64,13 +70,17 @@ export interface EscalationResult {
   escalated: boolean;
 }
 
+function getKnownModelIds(): Set<string> {
+  return new Set([...getEscalationFreeTier(), ...getEscalationPaidTier()].map((m) => m.id));
+}
+
 async function fetchDegradedModelIds(): Promise<Set<string>> {
   try {
     const supabase = createAdminClient();
     const { data: degradedData } = await supabase
       .from("ai_free_models")
       .select("id")
-      .eq("status", "DEGRADED");
+      .eq("is_active", false);
     if (degradedData) {
       return new Set((degradedData as { id: string }[]).map((m) => m.id));
     }
@@ -105,7 +115,18 @@ export async function selectModelByCapability(domain: TaskDomain): Promise<Model
       return getFallbackChain(domain).filter((m) => !degradedIds.has(m.id));
     }
 
-    const activeChain = (data.models as ModelChainItem[]).filter((m) => !degradedIds.has(m.id));
+    const knownIds = getKnownModelIds();
+    const unknown = (data.models as ModelChainItem[]).filter((m) => !knownIds.has(m.id));
+    if (unknown.length > 0) {
+      logger.warn("[ModelRouter] Routing chain references models this build does not know", {
+        domain,
+        unknownModelIds: unknown.map((m) => m.id),
+      });
+    }
+
+    const activeChain = (data.models as ModelChainItem[]).filter(
+      (m) => !degradedIds.has(m.id) && knownIds.has(m.id),
+    );
     if (activeChain.length === 0) {
       return getFallbackChain(domain).filter((m) => !degradedIds.has(m.id));
     }
@@ -129,6 +150,16 @@ function getFallbackChain(domain: TaskDomain): ModelChainItem[] {
       return [...FALLBACK_RISK_AUDIT];
     case "fast_triage":
       return [...FALLBACK_FAST_TRIAGE];
+    case "code_generation":
+      return getEscalationFreeTier().filter(
+        (m) =>
+          m.id === "opencode/deepseek-v4-flash-free" || m.id === "opencode/nemotron-3-ultra-free",
+      );
+    case "ethics_audit":
+      return getEscalationFreeTier().filter(
+        (m) =>
+          m.id === "meta-llama/Llama-3.3-70B-Instruct" || m.id === "opencode/nemotron-3-ultra-free",
+      );
     default:
       return [...FALLBACK_FAST_TRIAGE];
   }

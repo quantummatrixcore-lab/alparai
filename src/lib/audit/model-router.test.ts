@@ -58,7 +58,6 @@ describe("selectModelWithEscalation", () => {
       "opencode/deepseek-v4-flash-free",
       "opencode/nemotron-3-ultra-free",
       "gemini-2.0-flash",
-      "blackboxai",
       "meta-llama/Llama-3.3-70B-Instruct",
     ]);
   });
@@ -72,7 +71,6 @@ describe("selectModelWithEscalation", () => {
     expect(result.chain.map((m) => m.id)).toEqual([
       "opencode/deepseek-v4-flash-free",
       "gemini-2.0-flash",
-      "blackboxai",
       "meta-llama/Llama-3.3-70B-Instruct",
     ]);
   });
@@ -83,7 +81,6 @@ describe("selectModelWithEscalation", () => {
         "opencode/deepseek-v4-flash-free",
         "opencode/nemotron-3-ultra-free",
         "gemini-2.0-flash",
-        "blackboxai",
         "meta-llama/Llama-3.3-70B-Instruct",
       ],
     });
@@ -118,7 +115,6 @@ describe("selectModelWithEscalation — gateway integration contract", () => {
         "opencode/deepseek-v4-flash-free",
         "opencode/nemotron-3-ultra-free",
         "gemini-2.0-flash",
-        "blackboxai",
         "meta-llama/Llama-3.3-70B-Instruct",
       ],
     });

@@ -73,7 +73,6 @@ docs/PROPOSALS/025-expert-perspective-analysis.md
 ops/linkedin-assets/specialties-save.js
 src/lib/config/expert-personas.ts
 docs/outreach/trust-badge-outreach.md
-scripts/delegate-opencode-batch.mjs
 scripts/send-outreach.ts
 src/actions/admin/leaderboard-backfill.ts
 src/actions/admin/run-bench-tr-evaluation.ts
@@ -108,7 +107,6 @@ src/components/dilemmas/sidebar-engagement.tsx
 docs/PROPOSALS/015-ataturk-digital-twin.md
 ops/linkedin-assets/cover-upload.js
 ops/linkedin-assets/step1-edit.js
-scripts/delegate-opencode-batch2.mjs
 scripts/execute_mail_campaign.js
 src/app/api/admin/ecosystem-fetch/route.ts
 src/app/api/cron/newsletter/route.ts

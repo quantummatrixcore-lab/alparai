@@ -98,7 +98,7 @@ export function FeedCard({
   };
 
   const shareUrl = React.useMemo(() => {
-    const relativeUrl = `/incidents/${incident.id}`;
+    const relativeUrl = `/incidents/${incident.id}?ref=alparai_platform`;
     if (typeof window === "undefined") return `https://alparai.com${relativeUrl}`;
     return `${window.location.origin}${relativeUrl}`;
   }, [incident.id]);

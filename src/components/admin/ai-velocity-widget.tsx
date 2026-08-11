@@ -114,11 +114,11 @@ export function AIVelocityWidget({
               <TrendingUp className="h-4 w-4 text-emerald-400" /> Avg Capability Jump
             </span>
             <span className="rounded bg-emerald-500/20 px-1.5 py-0.5 font-mono text-[10px] font-bold text-emerald-300">
-              ölçülmedi
+              Not measured
             </span>
           </div>
           <div className="mt-3 flex items-baseline justify-between">
-            <span className="font-mono text-2xl font-extrabold text-white">ölçülmedi</span>
+            <span className="font-mono text-2xl font-extrabold text-white">Not measured</span>
             <span className="text-fg-muted text-[11px]">per major release</span>
           </div>
           <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-white/10">

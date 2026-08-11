@@ -8,7 +8,7 @@ export function TrustBar() {
     {
       icon: Github,
       label: t("open_source"),
-      href: "https://github.com/quantummatrixcore-lab/alparai-platform",
+      href: "https://github.com/quantummatrixcore-lab/alparai-platform?ref=alparai_platform",
     },
     { icon: BookOpen, label: t("methodology"), href: "/methodology" },
     { icon: Shield, label: t("neutrality"), href: "/legal/neutrality" },

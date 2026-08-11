@@ -66,7 +66,9 @@ export function ShareButtons({
 
   const fullUrl = React.useMemo(() => {
     if (typeof window === "undefined") return url;
-    return `${window.location.origin}${url}`;
+    const constructed = new URL(url, window.location.origin);
+    constructed.searchParams.set("ref", "alparai_platform");
+    return constructed.toString();
   }, [url]);
 
   const onCopy = async () => {

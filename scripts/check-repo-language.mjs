@@ -7,7 +7,7 @@ const ROOT = process.cwd();
 const BASELINE_PATH = join(ROOT, ".repo-language-baseline");
 
 const TURKISH_CHARS = /[ığşçöüİĞŞÇÖÜ]/u;
-const MOJIBAKE_CHARS = /â€”|â€“|â€™|â€œ|â€|â€¢|Ã¢|â€/u;
+const MOJIBAKE_CHARS = /â€”|â€“|â€™|â€œ|â€ |â€¢|Ã¢|â€|Ä±|Ã¼|Ã¶|Ã§|ÅŸ|ÄŸ|Ã‡/u;
 
 const SCANNED_EXTENSIONS = [".md", ".ts", ".tsx", ".mjs", ".js", ".yml", ".yaml", ".json"];
 

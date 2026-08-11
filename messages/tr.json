@@ -766,7 +766,7 @@
     "imported_badge": "İçe Aktarıldı",
     "imported_badge_tooltip": "Dış bir kaynaktan içe aktarılmıştır. Orijinal dil korunur.",
     "machine_translated_badge": "Makine Ãevirisi",
-    "machine_translated_tooltip": "Bu iÃ§erik makine Ã§evirisi ile sunulmuÅtur"
+    "machine_translated_tooltip": "Bu içerik makine çevirisi ile sunulmuÅtur"
   },
   "categories": {
     "safety": "Güvenlik ihlali",

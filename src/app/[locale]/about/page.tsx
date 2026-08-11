@@ -193,7 +193,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                       {t("founderName")}
                     </CardTitle>
                     <a
-                      href="https://www.linkedin.com/in/ercument-erden"
+                      href="https://www.linkedin.com/in/ercument-erden?ref=alparai_platform"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-fg-muted hover:text-brand-400 transition-colors"

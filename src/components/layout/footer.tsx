@@ -88,7 +88,7 @@ export function Footer() {
                 <Twitter className="h-4 w-4" />
               </a>
               <a
-                href="https://linkedin.com/company/alpar-ai"
+                href="https://linkedin.com/company/alpar-ai?ref=alparai_platform"
                 target="_blank"
                 rel="noreferrer noopener"
                 className="text-fg-muted hover:bg-bg-tertiary hover:text-fg-primary inline-flex h-8 w-8 items-center justify-center rounded-md"

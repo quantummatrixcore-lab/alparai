@@ -13,11 +13,14 @@ export const DEFAULT_LOCALE = "en" as const;
 export const SUPPORTED_LOCALES = ["en", "tr", "de", "fr", "ru"] as const;
 export type Locale = (typeof SUPPORTED_LOCALES)[number];
 
-export const GITHUB_URL = "https://github.com/quantummatrixcore-lab/Alparai.com" as const;
+export const GITHUB_URL =
+  "https://github.com/quantummatrixcore-lab/Alparai.com?ref=alparai_platform" as const;
 export const LINKEDIN_URL =
-  process.env.NEXT_PUBLIC_LINKEDIN_URL ?? ("https://www.linkedin.com/company/alpar-ai" as const);
+  process.env.NEXT_PUBLIC_LINKEDIN_URL ??
+  ("https://www.linkedin.com/company/alpar-ai?ref=alparai_platform" as const);
 export const TWITTER_URL =
-  process.env.NEXT_PUBLIC_TWITTER_URL ?? ("https://twitter.com/alparai" as const);
+  process.env.NEXT_PUBLIC_TWITTER_URL ??
+  ("https://twitter.com/alparai?ref=alparai_platform" as const);
 
 export const SEVERITY_LEVELS = [
   { value: "low", label: "Low" },

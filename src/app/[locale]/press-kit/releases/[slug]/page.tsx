@@ -112,7 +112,7 @@ export default async function PressReleasePage({
                 <Share2 className="h-4 w-4 text-slate-400" /> Share:
               </span>
               <a
-                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(`https://alparai.com/${locale}/press-kit/releases/${slug}`)}`}
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(`https://alparai.com/${locale}/press-kit/releases/${slug}?ref=alparai_platform`)}`}
                 target="_blank"
                 rel="noreferrer"
                 className="text-slate-400 transition-colors hover:text-[#1DA1F2]"
@@ -120,7 +120,7 @@ export default async function PressReleasePage({
                 <Twitter className="h-5 w-5" />
               </a>
               <a
-                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://alparai.com/${locale}/press-kit/releases/${slug}`)}`}
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://alparai.com/${locale}/press-kit/releases/${slug}?ref=alparai_platform`)}`}
                 target="_blank"
                 rel="noreferrer"
                 className="text-slate-400 transition-colors hover:text-[#0A66C2]"

@@ -1,0 +1,16 @@
+{
+  "model": "opencode/nemotron-3-ultra-free",
+  "task_ref": "QUOTA-1",
+  "exit_code": 0,
+  "duration_ms": 2890,
+  "git_sha": "22888e5f1f9ce5a9f54d2a0dc7f8cd623e38ed9b",
+  "attempt_no": 1,
+  "role": "uygulayici",
+  "diagnosis": "nominal",
+  "gates": {
+    "lint": 0,
+    "typecheck": 0,
+    "test": 0,
+    "build": 0
+  }
+}

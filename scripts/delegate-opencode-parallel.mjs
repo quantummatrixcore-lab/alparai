@@ -50,6 +50,19 @@ function runTask(task) {
     const model = task.model;
     if (!model) {
       console.error(`[LANE] Task #${task.ref} missing model (role). Exiting.`);
+      const record = {
+        model: 'unknown',
+        task_ref: task.ref,
+        exit_code: 1,
+        duration_ms: Date.now() - start,
+        git_sha: execSync('git rev-parse HEAD').toString().trim(),
+        attempt_no: 1,
+        role: 'none',
+        diagnosis: 'missing model (role)',
+        gates: { lint: 1, typecheck: 1, test: 1, build: 1 },
+      };
+      const ts = new Date().toISOString().replace(/[:.]/g, '-');
+      fs.writeFileSync(path.join(RUNS_DIR, `${ts}-task-${task.ref}.json`), JSON.stringify(record, null, 2));
       resolve({ task, exitCode: 1, failed: true });
       return;
     }
@@ -63,17 +76,20 @@ function runTask(task) {
     child.stderr.on('data', d => process.stderr.write(`[#${task.ref}] ${d}`));
 
     child.on('close', (exitCode) => {
+      const lintCode = runGate('pnpm lint');
+      const typecheckCode = runGate('pnpm typecheck');
+      const testCode = runGate('pnpm test');
       const record = {
         model, task_ref: task.ref, exit_code: exitCode,
         duration_ms: Date.now() - start,
         git_sha: execSync('git rev-parse HEAD').toString().trim(),
         attempt_no: 1, role: 'uygulayici',
-        diagnosis: exitCode === 0 ? 'nominal' : `opencode exit ${exitCode}`,
-        gates: { lint: -1, typecheck: -1, test: -1, build: 0 },
+        diagnosis: (exitCode === 0 && lintCode === 0 && typecheckCode === 0 && testCode === 0) ? 'nominal' : `opencode exit ${exitCode} (gates: lint=${lintCode}, tc=${typecheckCode}, test=${testCode})`,
+        gates: { lint: lintCode, typecheck: typecheckCode, test: testCode, build: 0 },
       };
       const ts = new Date().toISOString().replace(/[:.]/g, '-');
       fs.writeFileSync(path.join(RUNS_DIR, `${ts}-task-${task.ref}.json`), JSON.stringify(record, null, 2));
-      resolve({ task, exitCode, failed: exitCode !== 0 });
+      resolve({ task, exitCode, failed: exitCode !== 0 || lintCode !== 0 || typecheckCode !== 0 || testCode !== 0 });
     });
   });
 }

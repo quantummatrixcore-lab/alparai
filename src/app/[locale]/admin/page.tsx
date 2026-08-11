@@ -43,6 +43,10 @@ import {
 import { AiBudgetTransparencyScore } from "@/components/admin/AiBudgetTransparencyScore";
 import { Test360Meter } from "@/components/admin/test-360-meter";
 import { PrioritizationWidget } from "@/components/admin/prioritization-widget";
+import { getStartupHealth } from "@/actions/admin/startup-health";
+import { getSystemSignalsAction } from "@/actions/admin/signals";
+import { getFundingConversion } from "@/actions/admin/funding-conversion";
+import { getCronStatus } from "@/lib/engine-registry";
 
 export const dynamic = "force-dynamic";
 
@@ -59,6 +63,28 @@ export default async function AdminDashboardPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+
+  // Fetch dynamic data for widgets
+  const [startupHealth, signals, funding, crons] = await Promise.all([
+    getStartupHealth().catch(() => null),
+    getSystemSignalsAction().catch(() => []),
+    getFundingConversion().catch(() => null),
+    getCronStatus().catch(() => []),
+  ]);
+
+  const activeSubscribers =
+    startupHealth?.kpis.find((k) => k.label === "Newsletter Subscribers")?.totalCount ??
+    "ölçülmedi";
+  const grantsWon =
+    funding?.combinedWon !== undefined ? `${funding.combinedWon} Kazanılan` : "ölçülmedi";
+  const apiCost = startupHealth?.zeroCostBurnStr ?? "ölçülmedi/mo";
+  const latency = signals?.find((s) => s.name === "API Response Time")?.value
+    ? `${signals.find((s) => s.name === "API Response Time")?.value}ms`
+    : "ölçülmedi";
+  const activeCrons = crons?.length ?? "ölçülmedi";
+  const rlsEnforcement = signals?.find((s) => s.name === "Row Level Security (RLS)")?.value
+    ? `%${signals.find((s) => s.name === "Row Level Security (RLS)")?.value}`
+    : "ölçülmedi";
 
   return (
     <div className="min-h-screen bg-black p-6">
@@ -152,17 +178,15 @@ export default async function AdminDashboardPage({
                     </div>
                     <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
                       <p className="text-xs font-medium text-zinc-400">Active Subscribers</p>
-                      <p className="mt-1 text-lg font-bold text-zinc-100">ölçülmedi</p>
+                      <p className="mt-1 text-lg font-bold text-zinc-100">{activeSubscribers}</p>
                     </div>
                     <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
                       <p className="text-xs font-medium text-zinc-400">Grants & Funding</p>
-                      <p className="mt-1 text-lg font-bold text-cyan-400">ölçülmedi</p>
+                      <p className="mt-1 text-lg font-bold text-cyan-400">{grantsWon}</p>
                     </div>
                     <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
                       <p className="text-xs font-medium text-zinc-400">API & Infra Cost</p>
-                      <p className="mt-1 text-lg font-bold text-amber-400">
-                        ölçülmedi<span className="text-xs font-normal text-zinc-500">/mo</span>
-                      </p>
+                      <p className="mt-1 text-lg font-bold text-amber-400">{apiCost}</p>
                     </div>
                   </div>
 
@@ -286,7 +310,7 @@ export default async function AdminDashboardPage({
                     </div>
                     <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
                       <p className="text-xs font-medium text-zinc-400">Avg Latency</p>
-                      <p className="mt-1 text-lg font-bold text-emerald-400">ölçülmedi</p>
+                      <p className="mt-1 text-lg font-bold text-emerald-400">{latency}</p>
                     </div>
                     <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
                       <p className="text-xs font-medium text-zinc-400">TOM Context Saved</p>
@@ -294,7 +318,7 @@ export default async function AdminDashboardPage({
                     </div>
                     <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
                       <p className="text-xs font-medium text-zinc-400">Cron Jobs</p>
-                      <p className="mt-1 text-lg font-bold text-zinc-100">ölçülmedi</p>
+                      <p className="mt-1 text-lg font-bold text-zinc-100">{activeCrons}</p>
                     </div>
                   </div>
 
@@ -437,7 +461,7 @@ export default async function AdminDashboardPage({
                     </div>
                     <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
                       <p className="text-xs font-medium text-zinc-400">RLS Enforcement</p>
-                      <p className="mt-1 text-lg font-bold text-purple-400">ölçülmedi</p>
+                      <p className="mt-1 text-lg font-bold text-purple-400">{rlsEnforcement}</p>
                     </div>
                   </div>
 

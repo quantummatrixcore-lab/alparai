@@ -4,6 +4,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { callWithFailover } from "@/lib/ai/openrouter-gateway";
 import { selectModelByCapability } from "@/lib/audit/model-router";
 import { logger } from "@/lib/utils/logger";
+import { requireAdmin } from "@/lib/auth/session";
 
 interface TranslationResult {
   title_tr: string;
@@ -11,6 +12,7 @@ interface TranslationResult {
 }
 
 export async function translateIncidentToTR(incidentId: string): Promise<boolean> {
+  await requireAdmin();
   const admin = createAdminClient();
 
   const { data: incident, error: fetchError } = await admin
@@ -112,6 +114,7 @@ Description: "${incident.description}"
 export async function backfillIncidentsTR(
   batchSize: number = 10,
 ): Promise<{ processed: number; success: number }> {
+  await requireAdmin();
   const admin = createAdminClient();
 
   const { data: incidents, error } = await admin

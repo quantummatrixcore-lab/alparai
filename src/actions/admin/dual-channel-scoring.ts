@@ -3,6 +3,7 @@
 import { createAdminClient } from "@/lib/supabase/admin";
 import { revalidatePath } from "next/cache";
 import crypto from "crypto";
+import { requireAdmin } from "@/lib/auth/session";
 
 export interface ScoringConfig {
   wAudit: number;
@@ -68,6 +69,7 @@ export async function updateScoringConfigAction(params: {
   wIncident: number;
   isCombinedActive: boolean;
 }): Promise<{ success: boolean }> {
+  await requireAdmin();
   memoryConfig = {
     ...memoryConfig,
     wAudit: params.wAudit,
@@ -118,6 +120,7 @@ export async function computeDualChannelTrustScoreAction(
   rawAuditScore = 95.0,
   rawIncidentScore = 90.0,
 ): Promise<DualChannelTrustScoreResult> {
+  await requireAdmin();
   const config = await getScoringConfigAction();
 
   const auditScore = Math.max(0, Math.min(100, rawAuditScore));

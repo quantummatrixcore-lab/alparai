@@ -3,6 +3,7 @@
 import { createAdminClient } from "@/lib/supabase/admin";
 import { logger } from "@/lib/utils/logger";
 import { calculateRankingTier, type RankingTier } from "@/lib/ranking/calculate-tier";
+import { requireAdmin } from "@/lib/auth/session";
 
 export type { RankingTier };
 
@@ -14,6 +15,7 @@ export interface TrustEngineResult {
 }
 
 export async function recalculateTrustScoresAction(): Promise<TrustEngineResult> {
+  await requireAdmin();
   const supabase = createAdminClient();
 
   // 1. Fetch all providers

@@ -1,5 +1,6 @@
 import { createAdminClient } from "@/lib/supabase/admin";
 import { logger } from "@/lib/utils/logger";
+import { requireAdmin } from "@/lib/auth/session";
 
 /**
  * Görev #134: Leaderboard veri bütünlüğü backfill scripti.
@@ -8,6 +9,7 @@ import { logger } from "@/lib/utils/logger";
  * regex ile eşleştirerek ai_provider_id atar.
  */
 export async function backfillProviderLeaderboard() {
+  await requireAdmin();
   const adminDb = createAdminClient();
 
   // 1. Tüm sağlayıcıları çek

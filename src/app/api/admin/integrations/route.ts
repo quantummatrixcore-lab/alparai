@@ -59,16 +59,12 @@ function checkServiceStatus(svc: IntegrationService, dbProviders: Set<string>): 
   return "missing_key";
 }
 
-import { GET as getCosts } from "../costs/route";
+import { getCostsData } from "@/lib/services/costs";
 
 async function fetchAllCosts(): Promise<Record<string, unknown>[] | null> {
   try {
-    const res = await getCosts();
-    if (res.ok) {
-      const data = (await res.json()) as { services?: Record<string, unknown>[] };
-      return data.services || null;
-    }
-    return null;
+    const data = await getCostsData();
+    return data.services as unknown as Record<string, unknown>[];
   } catch (_e) {
     return null;
   }

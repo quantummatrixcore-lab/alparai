@@ -3,6 +3,7 @@
 import { createAdminClient } from "@/lib/supabase/admin";
 import { revalidatePath } from "next/cache";
 import { logger } from "@/lib/utils/logger";
+import { getCurrentUser } from "@/lib/auth/session";
 
 export interface EmailPreferencesState {
   ok: boolean;
@@ -54,6 +55,11 @@ export async function updateEmailPreferencesAction(
   const userId = String(formData.get("userId") ?? "");
   if (!userId) {
     return { ok: false, error: "User ID is required" };
+  }
+
+  const user = await getCurrentUser();
+  if (!user || user.id !== userId) {
+    return { ok: false, error: "Unauthorized" };
   }
 
   const weeklyDigest = formData.get("weeklyDigest") === "on";

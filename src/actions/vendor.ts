@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { maskPII } from "@/lib/pii/guardian";
 import { logger } from "@/lib/utils/logger";
+import { getCurrentUser } from "@/lib/auth/session";
 import { z } from "zod";
 
 const vendorResponseSchema = z.object({
@@ -34,6 +35,11 @@ export async function submitVendorResponseAction(
     if (!parseResult.success) {
       const firstError = parseResult.error.issues[0]?.message || "Validation failed";
       return { ok: false, error: firstError };
+    }
+
+    const user = await getCurrentUser();
+    if (!user) {
+      return { ok: false, error: "Unauthorized" };
     }
 
     // Mask any sensitive PII in vendor response before storing

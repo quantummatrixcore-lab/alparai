@@ -35,7 +35,6 @@ function getEscalationFreeTier(): ModelChainItem[] {
     },
     { id: "opencode/nemotron-3-ultra-free", provider: "openrouter", tier: "free", maxTokens: 4096 },
     { id: "gemini-2.0-flash", provider: "google", tier: "free", maxTokens: 8192 },
-    { id: "blackboxai", provider: "blackbox", tier: "free", maxTokens: 4096 },
     {
       id: "meta-llama/Llama-3.3-70B-Instruct",
       provider: "huggingface",

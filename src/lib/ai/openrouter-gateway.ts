@@ -57,7 +57,7 @@ export const FREE_TRIAGE_MODELS: readonly GatewayModel[] = [
   { id: "mistralai/mixtral-8x22b-instruct", provider: "nvidia", tier: "free", maxTokens: 2048 },
   { id: "meta/llama-3.3-70b-instruct", provider: "nvidia", tier: "free", maxTokens: 2048 },
   { id: "deepseek/deepseek-chat", provider: "openrouter", tier: "free", maxTokens: 2048 },
-  { id: "blackboxai", provider: "blackbox", tier: "free", maxTokens: 2048 },
+  { id: "opencode/nemotron-3-ultra-free", provider: "openrouter", tier: "free", maxTokens: 2048 },
 ] as const;
 
 export const SUPREME_COURT_MODEL: GatewayModel = {
@@ -78,14 +78,14 @@ export const TRIAGE_SLOT_1_CHAIN: readonly GatewayModel[] = [
   },
   { id: "meta/llama-3.3-70b-instruct", provider: "nvidia", tier: "free", maxTokens: 2048 },
   { id: "deepseek/deepseek-chat", provider: "openrouter", tier: "free", maxTokens: 2048 },
-  { id: "blackboxai", provider: "blackbox", tier: "free", maxTokens: 2048 },
+  { id: "opencode/nemotron-3-ultra-free", provider: "openrouter", tier: "free", maxTokens: 2048 },
   { id: "command-r", provider: "cohere", tier: "free", maxTokens: 2048 },
 ] as const;
 
 export const TRIAGE_SLOT_2_CHAIN: readonly GatewayModel[] = [
   { id: "gemini-2.0-flash", provider: "google", tier: "free", maxTokens: 2048 },
   { id: "meta-llama/llama-3.3-70b:free", provider: "openrouter", tier: "free", maxTokens: 2048 },
-  { id: "blackboxai", provider: "blackbox", tier: "free", maxTokens: 2048 },
+  { id: "opencode/deepseek-v4-flash-free", provider: "openrouter", tier: "free", maxTokens: 2048 },
   {
     id: "meta-llama/Llama-3.3-70B-Instruct",
     provider: "huggingface",
@@ -97,7 +97,7 @@ export const TRIAGE_SLOT_2_CHAIN: readonly GatewayModel[] = [
 export const TRIAGE_SLOT_3_CHAIN: readonly GatewayModel[] = [
   { id: "gemini-2.0-flash", provider: "google", tier: "free", maxTokens: 2048 },
   { id: "qwen/qwen3.5-omni-7b:free", provider: "openrouter", tier: "free", maxTokens: 2048 },
-  { id: "blackboxai", provider: "blackbox", tier: "free", maxTokens: 2048 },
+  { id: "opencode/nemotron-3-ultra-free", provider: "openrouter", tier: "free", maxTokens: 2048 },
   { id: "command-r", provider: "cohere", tier: "free", maxTokens: 2048 },
 ] as const;
 
@@ -123,7 +123,6 @@ export const QUESTIONNAIRE_MODELS: readonly GatewayModel[] = [
     tier: "free",
     maxTokens: 4096,
   },
-  { id: "cohere/north-mini-code:free", provider: "openrouter", tier: "free", maxTokens: 4096 },
   // Qwen3.5 Omni — natively multimodal (text + audio + image + video), 256k context, 113-language ASR
   { id: "qwen/qwen3.5-omni-7b:free", provider: "openrouter", tier: "free", maxTokens: 4096 },
   {
@@ -178,7 +177,7 @@ export const CREATIVE_COPY_CHAIN: readonly GatewayModel[] = [
     tier: "free",
     maxTokens: 4096,
   },
-  { id: "blackboxai", provider: "blackbox", tier: "free", maxTokens: 4096 },
+  { id: "opencode/nemotron-3-ultra-free", provider: "openrouter", tier: "free", maxTokens: 4096 },
 ] as const;
 
 // 3. High-Risk Audit, Legal, Complex Reasoning (GPT-4o / Claude 3.5 Sonnet)
@@ -228,7 +227,6 @@ export const FAST_TRIAGE_CHAIN: readonly GatewayModel[] = [
     maxTokens: 4096,
   },
   { id: "gemini-2.0-flash", provider: "google", tier: "free", maxTokens: 4096 },
-  { id: "blackboxai", provider: "blackbox", tier: "free", maxTokens: 4096 },
   {
     id: "meta-llama/Llama-3.3-70B-Instruct",
     provider: "huggingface",
@@ -243,7 +241,6 @@ export const OPENCODE_FREE_MODELS: readonly GatewayModel[] = [
   { id: "opencode/deepseek-v4-flash-free", provider: "openrouter", tier: "free", maxTokens: 4096 },
   { id: "opencode/nemotron-3-ultra-free", provider: "openrouter", tier: "free", maxTokens: 4096 },
   { id: "gemini-2.0-flash", provider: "google", tier: "free", maxTokens: 4096 },
-  { id: "blackboxai", provider: "blackbox", tier: "free", maxTokens: 4096 },
   {
     id: "meta-llama/Llama-3.3-70B-Instruct",
     provider: "huggingface",

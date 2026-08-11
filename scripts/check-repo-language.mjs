@@ -76,8 +76,8 @@ function scan() {
     // Mojibake check applies to all scanned files, even if exempt from Turkish check
     const counts = turkishLineCount(path);
     
-    // but we skip the checker itself and the doctrine docs which literally describe the mojibake sequences
-    if (!path.includes('check-repo-language.mjs') && !path.includes('MASTER_PLAN') && !path.includes('v13.x.md')) {
+    // but we skip the checker itself, fix-mojibake script, and the doctrine docs which literally describe the mojibake sequences
+    if (!path.includes('check-repo-language.mjs') && !path.includes('fix-mojibake.mjs') && !path.includes('MASTER_PLAN') && !path.includes('v13.x.md')) {
       if (counts.mojibake > 0) {
         mojibakeOffenders.push({ path, count: counts.mojibake });
       }

@@ -465,7 +465,7 @@ export function IncidentForm({
         )}
 
         <div className="pt-4">
-          <Button variant="outline" onClick={() => (window.location.href = "/incidents")}>
+          <Button variant="outline" onClick={() => router.push("/incidents")}>
             {t("view_all_incidents", { defaultValue: "View All Incidents" })}
           </Button>
         </div>

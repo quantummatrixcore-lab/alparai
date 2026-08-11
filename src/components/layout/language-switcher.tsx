@@ -77,9 +77,11 @@ export function LanguageSwitcher({
         const segments = currentPath.split("/").filter(Boolean);
         if (segments.length > 0 && LOCALE_OPTIONS.some((o) => o.code === segments[0])) {
           segments[0] = code;
-          window.location.href = "/" + segments.join("/") + window.location.search;
+          window.location.href =
+            window.location.origin + "/" + segments.join("/") + window.location.search;
         } else {
-          window.location.href = `/${code}${currentPath}${window.location.search}`;
+          window.location.href =
+            window.location.origin + `/${code}${currentPath}${window.location.search}`;
         }
       }
     }

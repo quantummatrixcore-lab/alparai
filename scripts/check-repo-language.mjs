@@ -22,6 +22,9 @@ const PERMANENT_EXEMPTIONS = [
   // Machine-generated dependency inventory: the text comes from upstream
   // package metadata, not from us, and is regenerated on every scan.
   "ops/sbom/",
+  // Audit data, not documentation — incident records keep their source
+  // language, same rationale as messages/** (Rule 13, "out of scope").
+  "docs/ai-audit/",
 ];
 
 function isExempt(path) {

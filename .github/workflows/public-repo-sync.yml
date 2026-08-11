@@ -6,11 +6,11 @@ on:
       target_branch:
         description: Target branch in public repo
         required: true
-        default: main
+        default: master
       dry_run:
         description: Run security checks without pushing (dry-run mode)
         required: true
-        default: "true"
+        default: "false"
         type: choice
         options:
           - "true"

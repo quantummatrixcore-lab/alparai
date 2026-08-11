@@ -5,7 +5,14 @@
   "rules": [
     {
       "comment": "Application source code — core product logic",
-      "patterns": ["src/**/*.ts", "src/**/*.tsx"]
+      "patterns": ["src/**/*.ts", "src/**/*.tsx"],
+      "exclude": [
+        "src/lib/moderation/**",
+        "src/lib/autopilot/**",
+        "src/lib/automation/**",
+        "src/lib/audit/**",
+        "src/lib/strategy/**"
+      ]
     },
     {
       "comment": "Database schema migrations — structure only, no seed data",

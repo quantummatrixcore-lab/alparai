@@ -186,7 +186,9 @@ We do not pre-moderate submissions (except automated PII scanning). Liability fo
 
 ALPAR AI is open source under **AGPL-3.0**.
 
-**What's open:** Everything. Frontend, data schema, automated moderation engine, spam detection layer, and our internal AI orchestration (Agent-OS). Because building an "accountability infrastructure" requires provable radical transparency—not just promises. Anyone can audit our code, reproduce our checks, and see exactly how AI systems are evaluated.
+**What's open:** Frontend, data schema, validation pipeline, GDPR/KVKK compliance code, and the full incident lifecycle — because "we're transparent" requires proof, not promises.
+
+**What's closed:** The moderation engine and spam detection layer — making these public would let bad actors reverse-engineer bypass methods. This is the same approach taken by AIID and most accountability platforms.
 
 > AGPL-3.0 means: if you run a hosted instance or fork this, you must release your changes under the same license. Commercial licensing available — contact [hello@alparai.com](mailto:hello@alparai.com).
 

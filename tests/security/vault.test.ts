@@ -7,7 +7,11 @@ beforeAll(() => {
 
 describe("Vault Security Encryption at Rest", () => {
   it("encrypts plaintext and decrypts back to original string", () => {
-    const plainKey = "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";
+    // Deliberately fabricated, non-functional value. This test only needs an
+    // opaque string to round-trip through the vault; it must never carry a real
+    // credential. The literal previously here was a genuine OpenRouter key and
+    // was public in this repository's history — rotate it, do not reuse it.
+    const plainKey = "sk-or-v1-000000000000000000000000000000000000000000000000000000000000dead";
     const cipherText = encryptAtRest(plainKey);
 
     expect(cipherText).not.toBe(plainKey);

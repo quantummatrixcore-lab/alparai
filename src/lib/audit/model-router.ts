@@ -27,23 +27,36 @@ export interface ModelRouterResult {
 
 function getEscalationFreeTier(): ModelChainItem[] {
   return [
-    { id: "opencode/deepseek-v4-flash-free", provider: "openrouter", tier: "free", maxTokens: 4096 },
+    {
+      id: "opencode/deepseek-v4-flash-free",
+      provider: "openrouter",
+      tier: "free",
+      maxTokens: 4096,
+    },
     { id: "opencode/nemotron-3-ultra-free", provider: "openrouter", tier: "free", maxTokens: 4096 },
-    { id: "gemini-2.0-flash", provider: "google", tier: "free", maxTokens: 4096 },
-    { id: "meta-llama/Llama-3.3-70B-Instruct", provider: "huggingface", tier: "free", maxTokens: 4096 },
-    { id: "opencode/laguna-s-2.1-free", provider: "openrouter", tier: "free", maxTokens: 4096 },
-    { id: "opencode/ling-3.0-flash-free", provider: "openrouter", tier: "free", maxTokens: 4096 },
-    { id: "opencode/mimo-v2.5-free", provider: "openrouter", tier: "free", maxTokens: 4096 }
+    { id: "gemini-2.0-flash", provider: "google", tier: "free", maxTokens: 8192 },
+    { id: "blackboxai", provider: "blackbox", tier: "free", maxTokens: 4096 },
+    {
+      id: "meta-llama/Llama-3.3-70B-Instruct",
+      provider: "huggingface",
+      tier: "free",
+      maxTokens: 8192,
+    },
   ];
 }
 
 function getEscalationPaidTier(): ModelChainItem[] {
   return [
-    { id: "nvidia/deepseek-ai/deepseek-v4-pro", provider: "nvidia", tier: "premium", maxTokens: 4096 },
+    {
+      id: "nvidia/deepseek-ai/deepseek-v4-pro",
+      provider: "nvidia",
+      tier: "premium",
+      maxTokens: 4096,
+    },
     { id: "gemini-2.0-pro", provider: "google", tier: "premium", maxTokens: 4096 },
     { id: "nvidia/openai/gpt-oss-120b", provider: "nvidia", tier: "premium", maxTokens: 4096 },
     { id: "nvidia/z-ai/glm-5.2", provider: "nvidia", tier: "premium", maxTokens: 4096 },
-    { id: "nvidia/google/gemma-4-31b-it", provider: "nvidia", tier: "premium", maxTokens: 4096 }
+    { id: "nvidia/google/gemma-4-31b-it", provider: "nvidia", tier: "premium", maxTokens: 4096 },
   ];
 }
 

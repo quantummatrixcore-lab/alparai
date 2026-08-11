@@ -4,17 +4,11 @@
 
 🌐 **[alparai.com](https://alparai.com)** · 📧 [hello@alparai.com](mailto:hello@alparai.com) · 📜 [AGPL-3.0](./LICENSE)
 
-[![CI](https://github.com/quantummatrixcore-lab/Alparai.com/actions/workflows/ci.yml/badge.svg)](https://github.com/quantummatrixcore-lab/Alparai.com/actions/workflows/ci.yml)
-[![Security](https://github.com/quantummatrixcore-lab/Alparai.com/actions/workflows/security.yml/badge.svg)](https://github.com/quantummatrixcore-lab/Alparai.com/actions/workflows/security.yml)
-[![Deploy](https://github.com/quantummatrixcore-lab/Alparai.com/actions/workflows/deploy.yml/badge.svg)](https://github.com/quantummatrixcore-lab/Alparai.com/actions/workflows/deploy.yml)
+[![CI](https://github.com/quantummatrixcore-lab/alparai/actions/workflows/ci.yml/badge.svg)](https://github.com/quantummatrixcore-lab/alparai/actions/workflows/ci.yml)
+[![Security](https://github.com/quantummatrixcore-lab/alparai/actions/workflows/security.yml/badge.svg)](https://github.com/quantummatrixcore-lab/alparai/actions/workflows/security.yml)
+[![Deploy](https://github.com/quantummatrixcore-lab/alparai/actions/workflows/deploy.yml/badge.svg)](https://github.com/quantummatrixcore-lab/alparai/actions/workflows/deploy.yml)
 [![AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue.svg)](./LICENSE)
 [![HackerOne VDP](https://img.shields.io/badge/HackerOne-VDP-purple.svg)](./docs/outreach/hackerone_strategy.md)
-
----
-
-## Deploy Convention
-
-Production builds run only for commits whose message contains `[deploy]` (enforced by `scripts/deploy-gate.mjs` via `vercel.json` `ignoreCommand`). Batch your commits; put `[deploy]` on the batch-closing commit only. Max 2 deploy windows per executor per day.
 
 ## Why
 
@@ -54,8 +48,8 @@ ALPAR is a public, independent, verifiable record of how AI systems behave in th
 ## Quickstart
 
 ```bash
-git clone https://github.com/quantummatrixcore-lab/Alparai.com
-cd Alparai.com
+git clone https://github.com/quantummatrixcore-lab/alparai
+cd alparai
 cp .env.example .env.local
 # fill in Supabase, Resend, Upstash, etc. — see CONTRIBUTING.md
 pnpm install
@@ -192,9 +186,7 @@ We do not pre-moderate submissions (except automated PII scanning). Liability fo
 
 ALPAR AI is open source under **AGPL-3.0**.
 
-**What's open:** Frontend, data schema, validation pipeline, GDPR/KVKK compliance code, and the full incident lifecycle — because "we're transparent" requires proof, not promises.
-
-**What's closed:** The moderation engine and spam detection layer — making these public would let bad actors reverse-engineer bypass methods. This is the same approach taken by AIID and most accountability platforms.
+**What's open:** Everything. Frontend, data schema, automated moderation engine, spam detection layer, and our internal AI orchestration (Agent-OS). Because building an "accountability infrastructure" requires provable radical transparency—not just promises. Anyone can audit our code, reproduce our checks, and see exactly how AI systems are evaluated.
 
 > AGPL-3.0 means: if you run a hosted instance or fork this, you must release your changes under the same license. Commercial licensing available — contact [hello@alparai.com](mailto:hello@alparai.com).
 

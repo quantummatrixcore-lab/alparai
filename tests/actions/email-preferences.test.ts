@@ -5,6 +5,11 @@ vi.hoisted(() => {
   vi.doMock("@/lib/supabase/admin", () => ({
     createAdminClient: vi.fn(),
   }));
+  vi.doMock("@/lib/auth/session", () => ({
+    requireAdmin: vi.fn().mockResolvedValue({ id: "user-1", role: "user" }),
+    requireUser: vi.fn().mockResolvedValue({ id: "user-1", role: "user" }),
+    getCurrentUser: vi.fn().mockResolvedValue({ id: "user-1", role: "user" }),
+  }));
 });
 
 import { createAdminClient } from "@/lib/supabase/admin";

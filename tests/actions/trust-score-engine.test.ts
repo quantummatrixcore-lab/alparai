@@ -2,6 +2,10 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
 
 vi.hoisted(() => {
+  vi.doMock("@/lib/auth/session", () => ({
+    requireAdmin: vi.fn().mockResolvedValue({ id: "admin", role: "admin" }),
+    requireUser: vi.fn().mockResolvedValue({ id: "user", role: "user" }),
+  }));
   vi.doMock("@/lib/supabase/admin", () => ({
     createAdminClient: vi.fn(),
   }));

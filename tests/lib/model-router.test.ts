@@ -1,14 +1,35 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import "../helpers/setup";
 import { selectModelTier, selectModelByCapability } from "@/lib/audit/model-router";
 
+vi.mock("@/lib/supabase/admin", () => {
+  return {
+    createAdminClient: () => ({
+      from: (table: string) => ({
+        select: () => ({
+          eq: () => {
+            if (table === "ai_free_models") {
+              return Promise.resolve({ data: [{ id: "meta-llama/Llama-3.3-70B-Instruct" }] });
+            }
+            if (table === "ai_routing_chains") {
+              return {
+                single: () => Promise.resolve({ data: null, error: { message: "Not found" } }),
+              };
+            }
+            return Promise.resolve({ data: [] });
+          },
+        }),
+      }),
+    }),
+  };
+});
 describe("selectModelTier router", () => {
   it("filters out DEGRADED models during capability routing", async () => {
     const chain = await selectModelByCapability("fast_triage");
     expect(Array.isArray(chain)).toBe(true);
     expect(chain.length).toBeGreaterThan(0);
     // Ensure no DEGRADED model ID returned if any
-    const degradedIds = ["meta-llama/llama-3.3-70b-instruct:free"];
+    const degradedIds = ["meta-llama/Llama-3.3-70B-Instruct"];
     const containsDegraded = chain.some((m) => degradedIds.includes(m.id));
     expect(containsDegraded).toBe(false);
   });

@@ -58,10 +58,8 @@ describe("selectModelWithEscalation", () => {
       "opencode/deepseek-v4-flash-free",
       "opencode/nemotron-3-ultra-free",
       "gemini-2.0-flash",
+      "blackboxai",
       "meta-llama/Llama-3.3-70B-Instruct",
-      "opencode/laguna-s-2.1-free",
-      "opencode/ling-3.0-flash-free",
-      "opencode/mimo-v2.5-free",
     ]);
   });
 
@@ -74,10 +72,8 @@ describe("selectModelWithEscalation", () => {
     expect(result.chain.map((m) => m.id)).toEqual([
       "opencode/deepseek-v4-flash-free",
       "gemini-2.0-flash",
+      "blackboxai",
       "meta-llama/Llama-3.3-70B-Instruct",
-      "opencode/laguna-s-2.1-free",
-      "opencode/ling-3.0-flash-free",
-      "opencode/mimo-v2.5-free",
     ]);
   });
 
@@ -87,10 +83,8 @@ describe("selectModelWithEscalation", () => {
         "opencode/deepseek-v4-flash-free",
         "opencode/nemotron-3-ultra-free",
         "gemini-2.0-flash",
+        "blackboxai",
         "meta-llama/Llama-3.3-70B-Instruct",
-        "opencode/laguna-s-2.1-free",
-        "opencode/ling-3.0-flash-free",
-        "opencode/mimo-v2.5-free",
       ],
     });
 
@@ -124,10 +118,8 @@ describe("selectModelWithEscalation — gateway integration contract", () => {
         "opencode/deepseek-v4-flash-free",
         "opencode/nemotron-3-ultra-free",
         "gemini-2.0-flash",
+        "blackboxai",
         "meta-llama/Llama-3.3-70B-Instruct",
-        "opencode/laguna-s-2.1-free",
-        "opencode/ling-3.0-flash-free",
-        "opencode/mimo-v2.5-free",
       ],
     });
 

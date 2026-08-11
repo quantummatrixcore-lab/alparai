@@ -1,4 +1,9 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
+
+vi.mock("@/lib/auth/session", () => ({
+  requireAdmin: vi.fn().mockResolvedValue({ id: "admin", role: "admin" }),
+  requireUser: vi.fn().mockResolvedValue({ id: "user", role: "user" }),
+}));
 import {
   getScoringConfigAction,
   updateScoringConfigAction,

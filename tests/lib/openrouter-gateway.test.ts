@@ -286,7 +286,7 @@ describe("OpenRouter API Gateway", () => {
         expect(res.ok).toBe(true);
         if (res.ok) {
           expect(res.data.content).toBe("flash-fallback");
-          expect(res.data.model).toBe("gemini-1.5-flash");
+          expect(res.data.model).toBe("gemini-2.0-flash");
         }
       } finally {
         globalThis.fetch = originalFetch;

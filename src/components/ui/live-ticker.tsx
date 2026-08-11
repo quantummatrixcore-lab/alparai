@@ -28,12 +28,31 @@ export function LiveTicker() {
       }
 
       // Fetch total verified count
-      const { count } = await supabase
-        .from("incidents")
-        .select("*", { count: "exact", head: true })
-        .eq("status", "published");
+      const { data: stats } = await (
+        supabase as unknown as {
+          from: (table: string) => {
+            select: (cols: string) => {
+              eq: (
+                col: string,
+                val: string,
+              ) => {
+                single: () => Promise<{
+                  data: { stat_value: number | string } | null;
+                  error: unknown;
+                }>;
+              };
+            };
+          };
+        }
+      )
+        .from("platform_statistics")
+        .select("stat_value")
+        .eq("stat_key", "total_incidents")
+        .single();
 
-      if (count !== null) setTotalCount(count);
+      if (stats?.stat_value !== undefined) {
+        setTotalCount(Number(stats.stat_value));
+      }
     }
     const timer = setTimeout(() => {
       fetchTickerData();

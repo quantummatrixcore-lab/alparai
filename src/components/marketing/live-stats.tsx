@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { motion, animate, useInView } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Container } from "@/components/ui/layout";
 import { AlertCircle, Cpu, Globe } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -12,6 +12,7 @@ interface CounterProps {
 }
 
 function AnimatedNumber({ value }: CounterProps) {
+  const locale = useLocale();
   const [count, setCount] = React.useState(value);
   const ref = React.useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
@@ -42,7 +43,7 @@ function AnimatedNumber({ value }: CounterProps) {
           "from-fg-muted/30 to-fg-muted/30 animate-shimmer min-w-[2ch] bg-gradient-to-r via-white/50 bg-[length:200%_100%] bg-clip-text text-transparent",
       )}
     >
-      {count.toLocaleString()}
+      {count.toLocaleString(locale === "tr" ? "tr-TR" : "en-US")}
     </motion.span>
   );
 }

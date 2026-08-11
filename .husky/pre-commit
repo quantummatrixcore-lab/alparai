@@ -6,7 +6,10 @@ if [ -n "$guarded" ] && [ "$ARCHITECT" != "1" ]; then
 fi
 
 if [ "$ARCHITECT" = "1" ]; then
-  developer_files=$(git diff --cached --name-only | grep -vE '^(docs/.*|CLAUDE\.md|AGENTS\.md|\.github/workflows/.*|\.husky/.*|playwright\.config\.ts|package\.json|pnpm-lock\.yaml|graphify-out/.*)$' || true)
+  # The Architect owns architecture, doctrine AND the test process (Founder
+  # decision, v13.9): tests/**, scripts/check-*.mjs and their baselines are the
+  # acceptance harness. Implementation — src/**, migrations, messages — is not.
+  developer_files=$(git diff --cached --name-only | grep -vE '^(docs/.*|CLAUDE\.md|AGENTS\.md|\.github/workflows/.*|\.husky/.*|playwright\.config\.ts|package\.json|pnpm-lock\.yaml|graphify-out/.*|tests/.*|scripts/check-[a-z0-9-]+\.mjs|\.gitignore|\.[a-z0-9-]+-baseline)$' || true)
   if [ -n "$developer_files" ]; then
     echo "BLOCKED by role-guard (Rule #35): When ARCHITECT=1 is set, developer-only paths (src/, tests/, migrations/, etc.) cannot be modified." >&2
     echo "$developer_files" | sed 's/^/  - /' >&2

@@ -1,0 +1,8 @@
+# Admin shell baseline — Doctrine G-9 (installation is not acceptance).
+# Each entry is an admin page that renders no data from any source.
+# This list is a RATCHET: entries may be removed once a page is wired to
+# real data, and must never be added. A new shell page fails CI.
+src/app/[locale]/admin/api-keys/page.tsx
+src/app/[locale]/admin/cron-health/page.tsx
+src/app/[locale]/admin/settings/page.tsx
+src/app/[locale]/admin/strategy/master-plan/page.tsx

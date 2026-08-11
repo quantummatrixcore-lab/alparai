@@ -1,0 +1,17 @@
+# Admin link baseline — Doctrine G-11 (no unreachable page).
+# Each entry is an admin href that currently points at a route with no page.tsx.
+# This list is a RATCHET: entries may be removed once a link is fixed,
+# and must never be added. A newly broken admin link fails CI.
+/admin/ai-orchestrator
+/admin/ai-pulse
+/admin/analysis
+/admin/api-metrics
+/admin/autopilot
+/admin/autopilot/analytics
+/admin/expert-analysis
+/admin/jules
+/admin/k-benchmark
+/admin/login
+/admin/master-plan
+/admin/signals
+/admin/slo-dashboard

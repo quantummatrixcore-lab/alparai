@@ -56,6 +56,18 @@ jobs:
         if: ${{ !inputs.force }}
         run: node scripts/check-repo-language.mjs
 
+      - name: Admin Link Integrity
+        if: ${{ !inputs.force }}
+        run: node scripts/check-admin-links.mjs
+
+      - name: Admin Fabricated Metric Check
+        if: ${{ !inputs.force }}
+        run: node scripts/check-admin-metrics.mjs
+
+      - name: Admin Data Binding Check
+        if: ${{ !inputs.force }}
+        run: node scripts/check-admin-data-binding.mjs
+
       - name: Typecheck
         if: ${{ !inputs.force }}
         run: pnpm typecheck

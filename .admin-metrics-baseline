@@ -1,0 +1,23 @@
+# Admin fabricated-metric baseline — Doctrine #011 (no invented numbers).
+# Each entry is a hardcoded metric literal rendered in an admin JSX text node.
+# Format: <file>::<literal text>
+# This list is a RATCHET: entries may be removed once the value is bound to a
+# real data source (or replaced with an honest 'not measured'), and must never
+# be added. A newly hardcoded metric fails CI.
+src/app/[locale]/admin/page.tsx::$0
+src/app/[locale]/admin/page.tsx::+38.5%
+src/app/[locale]/admin/page.tsx::100% Strict
+src/app/[locale]/admin/page.tsx::12 ms
+src/app/[locale]/admin/page.tsx::24/24 Active
+src/app/[locale]/admin/page.tsx::4/4 Approved
+src/app/[locale]/admin/page.tsx::68.2%
+src/app/[locale]/admin/page.tsx::92.4%
+src/app/[locale]/admin/strategy/page.tsx::89.8 / 100
+src/components/admin/AiBudgetTransparencyScore.tsx::92.4%
+src/components/admin/ai-velocity-widget.tsx::+42.8%
+src/components/admin/geo-dashboard-client.tsx::51.5 / 100
+src/components/admin/geo-dashboard-client.tsx::58.0 / 100
+src/components/admin/geo-dashboard-client.tsx::64.2 / 100
+src/components/admin/geo-dashboard-client.tsx::88.5 / 100
+src/components/admin/test-360-meter.tsx::$0.00
+src/components/admin/test-360-meter.tsx::100%

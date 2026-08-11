@@ -1,6 +1,5 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase/client";
 
@@ -11,7 +10,6 @@ interface TickerIncident {
 }
 
 export function LiveTicker() {
-  const t = useTranslations("common");
   const [incidents, setIncidents] = useState<TickerIncident[]>([]);
   const [totalCount, setTotalCount] = useState(0);
 
@@ -62,9 +60,7 @@ export function LiveTicker() {
                 <span className="text-brand-400 ml-1">(Verified)</span>
               </span>
             ))}
-            <span className="text-fg-primary font-bold">
-              • {totalCount} {t("total_incidents", { fallback: "Total Cases" })}
-            </span>
+            • {totalCount} Total Cases
           </div>
         ))}
       </div>

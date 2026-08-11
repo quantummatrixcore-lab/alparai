@@ -81,10 +81,27 @@ const getHomeData = cache(async (locale: string) => {
         .eq("status", "published")
         .order("published_at", { ascending: false })
         .limit(5),
-      admin
-        .from("incidents")
-        .select("id", { count: "exact", head: true })
-        .eq("status", "published"),
+      (
+        admin as unknown as {
+          from: (table: string) => {
+            select: (cols: string) => {
+              eq: (
+                col: string,
+                val: string,
+              ) => {
+                single: () => Promise<{
+                  data: { stat_value: number | string } | null;
+                  error: unknown;
+                }>;
+              };
+            };
+          };
+        }
+      )
+        .from("platform_statistics")
+        .select("stat_value")
+        .eq("stat_key", "total_incidents")
+        .single(),
       supabase
         .from("provider_leaderboard")
         .select(
@@ -254,8 +271,12 @@ const getHomeData = cache(async (locale: string) => {
       .filter(Boolean),
   ).size;
 
+  const totalIncidents = incidentsCountResult.data
+    ? Number((incidentsCountResult.data as unknown as { stat_value: string | number }).stat_value)
+    : ((incidentsCountResult as unknown as { count: number | null }).count ?? 992);
+
   return {
-    incidentsCountResult,
+    incidentsCountResult: { count: totalIncidents },
     providersResult,
     uniqueCountriesCount,
     topProvidersForHero,

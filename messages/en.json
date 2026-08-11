@@ -347,7 +347,11 @@
     "section4_title": "4. KVKK & Legal Precedent",
     "section4_text": "The Turkish Personal Data Protection Authority (KVKK) launched a formal investigation into xAI under Law No. 6698, establishing a historic precedent for AI accountability.",
     "cta_title": "Want to report a similar AI incident?",
-    "cta_button": "Submit an Incident Report"
+    "cta_button": "Submit an Incident Report",
+    "scrolly_step_1": "The prompt was simple, but the outcome was a critical failure.",
+    "scrolly_step_2": "A nation's flag was replaced, triggering public outcry.",
+    "scrolly_step_3": "The KVKK (Personal Data Protection Authority) launched a historic investigation.",
+    "scrolly_step_4": "This incident exposed the fragility of AI safety guardrails."
   },
   "pricing": {
     "title": "Pricing — ALPAR AI",
@@ -383,7 +387,16 @@
     "enterprise_feature_4": "On-premise deployment options",
     "enterprise_cta": "Contact Sales",
     "neutrality_notice": "All content hosting and dispute resolutions are subject to our neutrality pledge.",
-    "neutrality_link": "Read our Neutrality Pledge."
+    "neutrality_link": "Read our Neutrality Pledge.",
+    "startup_title": "Startup",
+    "startup_price": "",
+    "startup_period": "/month",
+    "startup_desc": "For growing teams managing AI deployments.",
+    "startup_feature_1": "API access (10k req/mo)",
+    "startup_feature_2": "Basic compliance badge",
+    "startup_feature_3": "Email support",
+    "startup_cta": "Start Free Trial",
+    "enterprise_feature_compliance": "Compliance Badge"
   },
   "dashboard": {
     "title": "Role-Based Dashboard",
@@ -3521,7 +3534,18 @@
     "advisoryBoardBannerTitle": "Shape the Future of AI Accountability",
     "advisoryBoardBannerDesc": "Join our advisory council to contribute to independent AI safety benchmarks, governance protocols, and transparent audit standards.",
     "advisoryBoardApplyCTA": "Apply for Advisory Board",
-    "advisoryBoardLearnMoreCTA": "Explore Board Page"
+    "advisoryBoardLearnMoreCTA": "Explore Board Page",
+    "title": "About ALPAR AI",
+    "vision_title": "Our Vision: SSL for AI",
+    "vision_desc": "We are building the trust layer for artificial intelligence. Just as SSL secured the early internet, ALPAR AI secures the future of AI through transparency and accountability.",
+    "advisory_board_title": "Advisory Board",
+    "advisory_board_desc": "Our independent advisory board consists of leading experts in AI ethics, law, and security.",
+    "member_1_name": "[Name Placeholder]",
+    "member_1_role": "Legal Advisor",
+    "member_2_name": "[Name Placeholder]",
+    "member_2_role": "AI Ethics Researcher",
+    "mou_title": "Academic Partnerships",
+    "mou_desc": "ALPAR AI operates in partnership with leading global institutions, including memorandums of understanding (MOU) with Boğaziçi University and TU Berlin."
   },
   "legal": {
     "termsTitle": "Terms of Service",

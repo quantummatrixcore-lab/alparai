@@ -1,164 +1,90 @@
-import { setRequestLocale, getTranslations } from "next-intl/server";
-import { Container } from "@/components/ui/layout";
-import { Check, Shield, Mail } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Link } from "@/i18n/routing";
-import { CheckoutButton } from "@/components/marketing/checkout-button";
+import { useTranslations } from "next-intl";
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "pricing" });
-  return {
-    title: t("title"),
-    description: t("description"),
-  };
-}
-
-export default async function PricingPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: "pricing" });
-
-  const tiers = [
-    {
-      key: "free",
-      title: t("free_title"),
-      price: t("free_price"),
-      period: t("free_period"),
-      description: t("free_desc"),
-      features: [
-        t("free_feature_1"),
-        t("free_feature_2"),
-        t("free_feature_3"),
-        t("free_feature_4"),
-      ],
-      cta: t("free_cta"),
-      href: "/submit",
-      variant: "outline" as const,
-      popular: false,
-      isMailto: false,
-    },
-    {
-      key: "vendor",
-      title: t("vendor_title"),
-      price: t("vendor_price"),
-      period: t("vendor_period"),
-      description: t("vendor_desc"),
-      features: [
-        t("vendor_feature_1"),
-        t("vendor_feature_2"),
-        t("vendor_feature_3"),
-        t("vendor_feature_4"),
-      ],
-      cta: t("vendor_cta"),
-      href: "#",
-      checkoutTier: "pro" as const,
-      variant: "primary" as const,
-      popular: true,
-      isMailto: false,
-    },
-    {
-      key: "enterprise",
-      title: t("enterprise_title"),
-      price: t("enterprise_price"),
-      period: t("enterprise_period"),
-      description: t("enterprise_desc"),
-      features: [
-        t("enterprise_feature_1"),
-        t("enterprise_feature_2"),
-        t("enterprise_feature_3"),
-        t("enterprise_feature_4"),
-      ],
-      cta: t("enterprise_cta"),
-      href: "#",
-      checkoutTier: "enterprise" as const,
-      variant: "outline" as const,
-      popular: false,
-      isMailto: false,
-    },
-  ];
+export default function PricingPage() {
+  const t = useTranslations("pricing");
 
   return (
-    <Container size="narrow" className="py-16">
-      <div className="mb-12 text-center">
-        <span className="bg-brand-500/10 text-brand-400 inline-block rounded-full px-3 py-1 text-xs font-semibold">
-          {t("badge")}
-        </span>
-        <h1 className="text-fg-primary mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl">
-          {t("headline")}
-        </h1>
-        <p className="text-fg-muted mx-auto mt-4 max-w-2xl text-base leading-relaxed">
-          {t("subtitle")}
-        </p>
+    <div className="min-h-screen bg-black px-6 pt-24 pb-12 text-white selection:bg-white/30">
+      <div className="mx-auto max-w-7xl space-y-12">
+        <div className="space-y-4 text-center">
+          <span className="inline-block rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium tracking-wider text-zinc-400 uppercase">
+            {t("badge")}
+          </span>
+          <h1 className="text-4xl font-bold tracking-tight md:text-5xl">{t("headline")}</h1>
+          <p className="mx-auto max-w-2xl text-lg text-zinc-400">{t("subtitle")}</p>
+        </div>
+
+        <div className="grid gap-8 md:grid-cols-3">
+          {/* Free Tier */}
+          <div className="flex flex-col rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-lg">
+            <h2 className="text-2xl font-bold">{t("free_title")}</h2>
+            <div className="mt-4 mb-6 flex items-baseline gap-2">
+              <span className="text-4xl font-bold">{t("free_price")}</span>
+              <span className="text-zinc-400">{t("free_period")}</span>
+            </div>
+            <p className="mb-8 flex-1 text-sm text-zinc-400">{t("free_desc")}</p>
+            <ul className="mb-8 space-y-3 text-sm">
+              <li className="flex items-center gap-3">✓ {t("free_feature_1")}</li>
+              <li className="flex items-center gap-3">✓ {t("free_feature_2")}</li>
+              <li className="flex items-center gap-3">✓ {t("free_feature_3")}</li>
+              <li className="flex items-center gap-3">✓ {t("free_feature_4")}</li>
+            </ul>
+            <button className="w-full rounded-lg bg-white py-3 font-medium text-black transition-colors hover:bg-zinc-200">
+              {t("free_cta")}
+            </button>
+          </div>
+
+          {/* Startup Tier */}
+          <div className="relative flex flex-col overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-8 shadow-2xl shadow-white/5 backdrop-blur-xl">
+            <div className="absolute top-0 left-1/2 h-1 w-full -translate-x-1/2 bg-gradient-to-r from-transparent via-white/50 to-transparent"></div>
+            <h2 className="text-2xl font-bold">{t("startup_title")}</h2>
+            <div className="mt-4 mb-6 flex items-baseline gap-2">
+              <span className="text-4xl font-bold">{t("startup_price")}</span>
+              <span className="text-zinc-400">{t("startup_period")}</span>
+            </div>
+            <p className="mb-8 flex-1 text-sm text-zinc-400">{t("startup_desc")}</p>
+            <ul className="mb-8 space-y-3 text-sm">
+              <li className="flex items-center gap-3">✓ {t("startup_feature_1")}</li>
+              <li className="flex items-center gap-3 text-emerald-400">
+                ✓ {t("startup_feature_2")}
+              </li>
+              <li className="flex items-center gap-3">✓ {t("startup_feature_3")}</li>
+            </ul>
+            <button className="w-full rounded-lg border border-white/20 bg-white/10 py-3 font-medium text-white transition-colors hover:bg-white/20">
+              {t("startup_cta")}
+            </button>
+          </div>
+
+          {/* Enterprise Tier */}
+          <div className="flex flex-col rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-lg">
+            <h2 className="text-2xl font-bold">{t("enterprise_title")}</h2>
+            <div className="mt-4 mb-6 flex items-baseline gap-2">
+              <span className="text-4xl font-bold">{t("enterprise_price")}</span>
+            </div>
+            <p className="mb-8 flex-1 text-sm text-zinc-400">{t("enterprise_desc")}</p>
+            <ul className="mb-8 space-y-3 text-sm">
+              <li className="flex items-center gap-3">✓ {t("enterprise_feature_1")}</li>
+              <li className="flex items-center gap-3 text-emerald-400">
+                ✓ {t("enterprise_feature_compliance")}
+              </li>
+              <li className="flex items-center gap-3">✓ {t("enterprise_feature_3")}</li>
+              <li className="flex items-center gap-3">✓ {t("enterprise_feature_4")}</li>
+            </ul>
+            <button className="w-full rounded-lg border border-white/10 bg-white/5 py-3 font-medium text-white transition-colors hover:bg-white/10">
+              {t("enterprise_cta")}
+            </button>
+          </div>
+        </div>
+
+        <div className="pt-8 text-center text-sm text-zinc-500">
+          <p>
+            {t("neutrality_notice")}{" "}
+            <a href="#" className="underline">
+              {t("neutrality_link")}
+            </a>
+          </p>
+        </div>
       </div>
-
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-        {tiers.map((tier) => (
-          <Card
-            key={tier.key}
-            className={`relative flex flex-col justify-between transition-all ${
-              tier.popular
-                ? "border-brand-500 bg-brand-500/5 shadow-brand-500/10 shadow-lg"
-                : "border-border-subtle bg-bg-surface hover:border-border"
-            }`}
-          >
-            {tier.popular && (
-              <span className="bg-brand-500 absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-0.5 text-[11px] font-bold tracking-wider text-white uppercase">
-                POPULAR
-              </span>
-            )}
-            <CardContent className="flex flex-1 flex-col p-6">
-              <div className="mb-6">
-                <h3 className="text-fg-primary text-xl font-bold">{tier.title}</h3>
-                <p className="text-fg-muted mt-2 min-h-[36px] text-xs leading-relaxed">
-                  {tier.description}
-                </p>
-                <div className="mt-4 flex items-baseline gap-1">
-                  <span className="text-fg-primary text-4xl font-extrabold">{tier.price}</span>
-                  <span className="text-fg-muted text-xs font-medium">{tier.period}</span>
-                </div>
-              </div>
-
-              <ul className="mb-8 flex-1 space-y-3 text-xs">
-                {tier.features.map((feature, idx) => (
-                  <li key={idx} className="text-fg-secondary flex items-start gap-2">
-                    <Check className="text-brand-400 mt-0.5 h-4 w-4 shrink-0" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              {tier.checkoutTier ? (
-                <CheckoutButton tier={tier.checkoutTier} variant={tier.variant} className="w-full justify-center">
-                  {tier.cta}
-                </CheckoutButton>
-              ) : tier.isMailto ? (
-                <a href={tier.href} className="w-full">
-                  <Button
-                    variant={tier.variant}
-                    className="flex w-full items-center justify-center gap-2"
-                  >
-                    <Mail className="h-4 w-4" />
-                    <span>{tier.cta}</span>
-                  </Button>
-                </a>
-              ) : (
-                <Link href={tier.href} className="w-full">
-                  <Button variant={tier.variant} className="w-full justify-center">
-                    {tier.cta}
-                  </Button>
-                </Link>
-              )}
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-
-      <div className="border-border-subtle bg-bg-secondary/40 text-fg-muted mt-12 rounded-xl border p-4 text-center text-xs">
-        <Shield className="text-brand-400 mx-auto mb-2 h-5 w-5" />
-        <p>{t("neutrality_notice")}</p>
-      </div>
-    </Container>
+    </div>
   );
 }

@@ -347,7 +347,11 @@
     "section4_title": "4. KVKK & Hukuki Boyut",
     "section4_text": "Kişisel Verileri Koruma Kurumu (KVKK), 6698 sayılı kanun kapsamında xAI hakkında resmi soruşturma başlatarak yapay zeka alanında emsal karara imza attı.",
     "cta_title": "Benzer bir yapay zeka ihlali mi yaşadınız?",
-    "cta_button": "Vaka Bildir"
+    "cta_button": "Vaka Bildir",
+    "scrolly_step_1": "İstem basitti, ancak sonuç kritik bir hataydı.",
+    "scrolly_step_2": "Bir ülkenin bayrağı değiştirildi ve bu durum halkın tepkisine yol açtı.",
+    "scrolly_step_3": "KVKK (Kişisel Verileri Koruma Kurumu) tarihi bir soruşturma başlattı.",
+    "scrolly_step_4": "Bu olay, yapay zeka güvenlik bariyerlerinin kırılganlığını gözler önüne serdi."
   },
   "pricing": {
     "title": "Ücretlendirme — ALPAR AI",
@@ -383,7 +387,16 @@
     "enterprise_feature_4": "On-premise (kurum içi) kurulum seçenekleri",
     "enterprise_cta": "Satışla İletişime Geçin",
     "neutrality_notice": "Tüm içerik barındırma ve ihtilaf çözümleri tarafsızlık taahhüdümüze tabidir.",
-    "neutrality_link": "Tarafsızlık Şartımızı okuyun."
+    "neutrality_link": "Tarafsızlık Şartımızı okuyun.",
+    "startup_title": "Startup",
+    "startup_price": "",
+    "startup_period": "/ay",
+    "startup_desc": "Yapay zeka dağıtımlarını yöneten büyüyen ekipler için.",
+    "startup_feature_1": "API erişimi (10k istek/ay)",
+    "startup_feature_2": "Temel uyumluluk rozeti (Compliance Badge)",
+    "startup_feature_3": "E-posta desteği",
+    "startup_cta": "Ücretsiz Denemeyi Başlat",
+    "enterprise_feature_compliance": "Uyumluluk Rozeti (Compliance Badge)"
   },
   "dashboard": {
     "title": "Rol Bazlı Kontrol Paneli",
@@ -3521,7 +3534,18 @@
     "advisoryBoardBannerTitle": "Yapay Zeka Hesap Verebilirliğinin Geleceğini Şekillendirin",
     "advisoryBoardBannerDesc": "Bağımsız AI güvenlik standartlarına, yönetişim protokollerine ve şeffaf denetim kriterlerine katkıda bulunmak için Danışma Kurulumuza başvurun.",
     "advisoryBoardApplyCTA": "Danışma Kuruluna Başvur",
-    "advisoryBoardLearnMoreCTA": "Kurul Sayfasını İncele"
+    "advisoryBoardLearnMoreCTA": "Kurul Sayfasını İncele",
+    "title": "ALPAR AI Hakkında",
+    "vision_title": "Vizyonumuz: Yapay Zeka için SSL",
+    "vision_desc": "Yapay zeka için güven katmanını inşa ediyoruz. SSL'in erken interneti güvenli kılması gibi, ALPAR AI da şeffaflık ve hesap verebilirlik yoluyla yapay zekanın geleceğini güvence altına alıyor.",
+    "advisory_board_title": "Danışma Kurulu",
+    "advisory_board_desc": "Bağımsız danışma kurulumuz yapay zeka etiği, hukuku ve güvenliği alanlarındaki önde gelen uzmanlardan oluşmaktadır.",
+    "member_1_name": "[İsim Alanı]",
+    "member_1_role": "Hukuk Danışmanı",
+    "member_2_name": "[İsim Alanı]",
+    "member_2_role": "YZ Etik Araştırmacısı",
+    "mou_title": "Akademik Ortaklıklar",
+    "mou_desc": "ALPAR AI, Boğaziçi Üniversitesi ve TU Berlin ile imzalanan mutabakat zaptları (MOU) dahil olmak üzere önde gelen küresel kurumlarla ortaklık içinde faaliyet göstermektedir."
   },
   "legal": {
     "termsTitle": "Kullanım Koşulları",

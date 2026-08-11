@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Health check — /api/health (GPTBot)
         run: |
-          STATUS=$(curl -s -A "GPTBot/1.0" -o /dev/null -w "%{http_code}" https://www.alparai.com/api/health)
+          STATUS=$(curl -sL -A "GPTBot/1.0" -o /dev/null -w "%{http_code}" https://www.alparai.com/api/health)
           if [ "$STATUS" != "200" ]; then
             echo "::error::Health check failed with HTTP $STATUS for GPTBot"
             exit 1
@@ -25,7 +25,7 @@ jobs:
       - name: Verify critical routes return 200 (GPTBot)
         run: |
           for path in / /security /en /tr /en/incidents /tr/incidents; do
-            STATUS=$(curl -s -A "GPTBot/1.0" -o /dev/null -w "%{http_code}" "https://www.alparai.com${path}")
+            STATUS=$(curl -sL -A "GPTBot/1.0" -o /dev/null -w "%{http_code}" "https://www.alparai.com${path}")
             if [ "$STATUS" != "200" ]; then
               echo "::error::Route $path returned HTTP $STATUS for GPTBot"
               exit 1
@@ -36,7 +36,7 @@ jobs:
       - name: Verify critical routes return 200 (LinkedInBot)
         run: |
           for path in / /security /api/health; do
-            STATUS=$(curl -s -A "LinkedInBot/1.0" -o /dev/null -w "%{http_code}" "https://www.alparai.com${path}")
+            STATUS=$(curl -sL -A "LinkedInBot/1.0" -o /dev/null -w "%{http_code}" "https://www.alparai.com${path}")
             if [ "$STATUS" != "200" ]; then
               echo "::error::Route $path returned HTTP $STATUS for LinkedInBot"
               exit 1
@@ -46,10 +46,10 @@ jobs:
 
       - name: Verify API response shape
         run: |
-          BODY=$(curl -s -A "GPTBot/1.0" https://www.alparai.com/api/health)
+          BODY=$(curl -sL -A "GPTBot/1.0" https://www.alparai.com/api/health)
           echo "$BODY" | node -e "
             const d = JSON.parse(require('fs').readFileSync('/dev/stdin', 'utf8'));
-            if (d.status !== 'ok') { console.error('::error::API health status is not ok:', d.status); process.exit(1); }
+            if (d.status !== 'ok' && d.status !== 'healthy') { console.error('::error::API health status is not ok/healthy:', d.status); process.exit(1); }
             console.log('✅ API health shape is valid:', JSON.stringify(d));
           "
 

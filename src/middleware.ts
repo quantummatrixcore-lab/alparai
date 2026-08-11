@@ -21,6 +21,10 @@ export async function middleware(request: NextRequest) {
     });
   }
 
+  if (request.nextUrl.pathname === "/api/health" || request.nextUrl.pathname === "/api/health/") {
+    return NextResponse.next();
+  }
+
   if (request.headers.has("next-action")) {
     return NextResponse.next();
   }

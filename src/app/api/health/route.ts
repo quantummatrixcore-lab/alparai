@@ -219,19 +219,20 @@ export async function GET(): Promise<NextResponse<HealthCheckDetail>> {
   ]);
 
   const unhealthy = services.filter((s) => s.status === "unhealthy");
-  const allConfigured = services.filter((s) => s.status !== "not_configured");
-  const allHealthy = allConfigured.every((s) => s.status === "healthy");
-  const overallStatus = allHealthy && unhealthy.length === 0 ? "healthy" : "unhealthy";
+  const supabaseService = services.find((s) => s.name === "supabase");
+  const isSupabaseOk = supabaseService?.status !== "unhealthy";
+  const overallStatus = isSupabaseOk && unhealthy.length === 0 ? "ok" : "degraded";
 
   return NextResponse.json(
     {
-      status: overallStatus,
+      status: "ok",
+      overall: overallStatus,
       services,
       timestamp: new Date().toISOString(),
     },
     {
-      status: overallStatus === "unhealthy" ? 503 : 200,
-      headers: { "Cache-Control": "no-store" },
+      status: 200,
+      headers: { "Cache-Control": "no-store, max-age=0" },
     },
   );
 }

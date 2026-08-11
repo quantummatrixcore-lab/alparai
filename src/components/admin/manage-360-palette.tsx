@@ -167,7 +167,7 @@ export function Manage360CommandPalette() {
       category: t("group_navigate") || "Navigate",
       icon: DollarSign,
       action: () => {
-        router.push("/admin/api-metrics");
+        router.push("/admin/metrics-hub/api-metrics");
         setIsOpen(false);
       },
     },
@@ -257,7 +257,7 @@ export function Manage360CommandPalette() {
       category: t("group_navigate") || "Navigate",
       icon: Award,
       action: () => {
-        router.push("/admin/k-benchmark");
+        router.push("/admin/analytics-hub/k-benchmark");
         setIsOpen(false);
       },
     },

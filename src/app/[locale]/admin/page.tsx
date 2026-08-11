@@ -42,6 +42,7 @@ import {
 } from "lucide-react";
 import { AiBudgetTransparencyScore } from "@/components/admin/AiBudgetTransparencyScore";
 import { Test360Meter } from "@/components/admin/test-360-meter";
+import { PrioritizationWidget } from "@/components/admin/prioritization-widget";
 
 export const dynamic = "force-dynamic";
 
@@ -82,7 +83,7 @@ export default async function AdminDashboardPage({
 
               <div className="flex flex-wrap items-center gap-3">
                 <Link
-                  href={`/${locale}/admin/master-plan`}
+                  href={`/${locale}/admin/strategy/master-plan`}
                   className="inline-flex items-center gap-2 rounded-2xl border border-cyan-500/30 bg-cyan-500/10 px-4 py-2.5 text-sm font-medium text-cyan-300 transition-all duration-300 hover:border-cyan-500/60 hover:bg-cyan-500/20 hover:text-white"
                 >
                   <FileText className="h-4 w-4 text-cyan-400" />
@@ -116,6 +117,8 @@ export default async function AdminDashboardPage({
 
             {/* Main 4 Giant Widget Grid */}
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+              <PrioritizationWidget />
+
               {/* WIDGET 1: Financial & Operations Cockpit */}
               <section className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-emerald-500/20 bg-zinc-900/40 p-6 backdrop-blur-xl transition-all duration-300 hover:border-emerald-500/40 hover:bg-zinc-900/60 md:p-8">
                 <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl transition-all duration-500 group-hover:bg-emerald-500/20" />
@@ -145,20 +148,20 @@ export default async function AdminDashboardPage({
                   <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
                     <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
                       <p className="text-xs font-medium text-zinc-400">Monthly Revenue</p>
-                      <p className="mt-1 text-lg font-bold text-emerald-400">$0</p>
+                      <p className="mt-1 text-lg font-bold text-emerald-400">ölçülmedi</p>
                     </div>
                     <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
                       <p className="text-xs font-medium text-zinc-400">Active Subscribers</p>
-                      <p className="mt-1 text-lg font-bold text-zinc-100">0</p>
+                      <p className="mt-1 text-lg font-bold text-zinc-100">ölçülmedi</p>
                     </div>
                     <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
                       <p className="text-xs font-medium text-zinc-400">Grants & Funding</p>
-                      <p className="mt-1 text-lg font-bold text-cyan-400">$0</p>
+                      <p className="mt-1 text-lg font-bold text-cyan-400">ölçülmedi</p>
                     </div>
                     <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
                       <p className="text-xs font-medium text-zinc-400">API & Infra Cost</p>
                       <p className="mt-1 text-lg font-bold text-amber-400">
-                        $0<span className="text-xs font-normal text-zinc-500">/mo</span>
+                        ölçülmedi<span className="text-xs font-normal text-zinc-500">/mo</span>
                       </p>
                     </div>
                   </div>
@@ -183,7 +186,7 @@ export default async function AdminDashboardPage({
                         { href: `/${locale}/admin/grants`, label: "Grants & R&D", icon: Award },
                         { href: `/${locale}/admin/users`, label: "User Directory", icon: Users },
                         {
-                          href: `/${locale}/admin/api-metrics`,
+                          href: `/${locale}/admin/metrics-hub/api-metrics`,
                           label: "API Unit Costs",
                           icon: PieChart,
                         },
@@ -283,15 +286,15 @@ export default async function AdminDashboardPage({
                     </div>
                     <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
                       <p className="text-xs font-medium text-zinc-400">Avg Latency</p>
-                      <p className="mt-1 text-lg font-bold text-emerald-400">12 ms</p>
+                      <p className="mt-1 text-lg font-bold text-emerald-400">ölçülmedi</p>
                     </div>
                     <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
                       <p className="text-xs font-medium text-zinc-400">TOM Context Saved</p>
-                      <p className="mt-1 text-lg font-bold text-purple-400">92.4%</p>
+                      <p className="mt-1 text-lg font-bold text-purple-400">ölçülmedi</p>
                     </div>
                     <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
                       <p className="text-xs font-medium text-zinc-400">Cron Jobs</p>
-                      <p className="mt-1 text-lg font-bold text-zinc-100">24/24 Active</p>
+                      <p className="mt-1 text-lg font-bold text-zinc-100">ölçülmedi</p>
                     </div>
                   </div>
 
@@ -303,12 +306,12 @@ export default async function AdminDashboardPage({
                     <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
                       {[
                         {
-                          href: `/${locale}/admin/ai-orchestrator`,
+                          href: `/${locale}/admin/ai-hub/orchestrator`,
                           label: "AI Orchestrator",
                           icon: Cpu,
                         },
                         {
-                          href: `/${locale}/admin/ai-pulse`,
+                          href: `/${locale}/admin/metrics-hub/ai-pulse`,
                           label: "AI Pulse Health",
                           icon: Radio,
                         },
@@ -316,7 +319,7 @@ export default async function AdminDashboardPage({
                         { href: `/${locale}/admin/cron-health`, label: "Cron Health", icon: Zap },
                         { href: `/${locale}/admin/crons`, label: "Scheduled Crons", icon: Server },
                         {
-                          href: `/${locale}/admin/slo-dashboard`,
+                          href: `/${locale}/admin/metrics-hub/slo-dashboard`,
                           label: "SLO Dashboard",
                           icon: BarChart3,
                         },
@@ -326,12 +329,12 @@ export default async function AdminDashboardPage({
                           icon: Code2,
                         },
                         {
-                          href: `/${locale}/admin/autopilot`,
+                          href: `/${locale}/admin/ai-hub/autopilot`,
                           label: "Autopilot Core",
                           icon: Workflow,
                         },
                         {
-                          href: `/${locale}/admin/autopilot/analytics`,
+                          href: `/${locale}/admin/ai-hub/autopilot/analytics`,
                           label: "Autopilot Analytics",
                           icon: LineChart,
                         },
@@ -434,7 +437,7 @@ export default async function AdminDashboardPage({
                     </div>
                     <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
                       <p className="text-xs font-medium text-zinc-400">RLS Enforcement</p>
-                      <p className="mt-1 text-lg font-bold text-purple-400">100% Strict</p>
+                      <p className="mt-1 text-lg font-bold text-purple-400">ölçülmedi</p>
                     </div>
                   </div>
 
@@ -473,17 +476,21 @@ export default async function AdminDashboardPage({
                           icon: BarChart3,
                         },
                         {
-                          href: `/${locale}/admin/k-benchmark`,
+                          href: `/${locale}/admin/analytics-hub/k-benchmark`,
                           label: "K-Benchmark Suite",
                           icon: Target,
                         },
                         {
-                          href: `/${locale}/admin/expert-analysis`,
+                          href: `/${locale}/admin/analytics-hub/expert-analysis`,
                           label: "Expert Analysis",
                           icon: CheckCircle2,
                         },
                         { href: `/${locale}/admin/experts`, label: "Expert Registry", icon: Users },
-                        { href: `/${locale}/admin/analysis`, label: "Deep Analysis", icon: Search },
+                        {
+                          href: `/${locale}/admin/analytics-hub/analysis`,
+                          label: "Deep Analysis",
+                          icon: Search,
+                        },
                         {
                           href: `/${locale}/admin/cockpit`,
                           label: "Cockpit Control",
@@ -550,15 +557,15 @@ export default async function AdminDashboardPage({
                     </div>
                     <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
                       <p className="text-xs font-medium text-zinc-400">LinkedIn Reach</p>
-                      <p className="mt-1 text-lg font-bold text-emerald-400">+38.5%</p>
+                      <p className="mt-1 text-lg font-bold text-emerald-400">ölçülmedi</p>
                     </div>
                     <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
                       <p className="text-xs font-medium text-zinc-400">Outreach Open Rate</p>
-                      <p className="mt-1 text-lg font-bold text-purple-400">68.2%</p>
+                      <p className="mt-1 text-lg font-bold text-purple-400">ölçülmedi</p>
                     </div>
                     <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
                       <p className="text-xs font-medium text-zinc-400">Advisory Board</p>
-                      <p className="mt-1 text-lg font-bold text-zinc-100">4/4 Approved</p>
+                      <p className="mt-1 text-lg font-bold text-zinc-100">ölçülmedi</p>
                     </div>
                   </div>
 
@@ -570,7 +577,7 @@ export default async function AdminDashboardPage({
                     <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
                       {[
                         {
-                          href: `/${locale}/admin/master-plan`,
+                          href: `/${locale}/admin/strategy/master-plan`,
                           label: "Master Plan",
                           icon: FileText,
                         },
@@ -631,7 +638,7 @@ export default async function AdminDashboardPage({
                           icon: Radio,
                         },
                         {
-                          href: `/${locale}/admin/signals`,
+                          href: `/${locale}/admin/metrics-hub/signals`,
                           label: "Market Signals",
                           icon: Activity,
                         },
@@ -646,7 +653,11 @@ export default async function AdminDashboardPage({
                           label: "Platform Ecosystem",
                           icon: Layers,
                         },
-                        { href: `/${locale}/admin/jules`, label: "Jules AI Agent", icon: Cpu },
+                        {
+                          href: `/${locale}/admin/ai-hub/jules`,
+                          label: "Jules AI Agent",
+                          icon: Cpu,
+                        },
                       ].map((route) => (
                         <Link
                           key={route.href}
@@ -667,7 +678,7 @@ export default async function AdminDashboardPage({
                 <div className="mt-6 flex items-center justify-between border-t border-white/5 pt-4 text-xs">
                   <span className="text-zinc-500">Corporate Email Rule: hello@alparai.com</span>
                   <Link
-                    href={`/${locale}/admin/master-plan`}
+                    href={`/${locale}/admin/strategy/master-plan`}
                     className="font-semibold text-purple-400 hover:underline"
                   >
                     Master Plan Dokümanı →

@@ -39,7 +39,7 @@ export default async function AdminVelocityPage({
 
   const adminUser = await requireAdmin();
   if (!adminUser) {
-    redirect({ href: "/admin/login", locale });
+    redirect({ href: "/login", locale });
   }
 
   const supabase = await createClient();

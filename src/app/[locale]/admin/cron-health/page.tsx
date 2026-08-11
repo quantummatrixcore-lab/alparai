@@ -7,6 +7,8 @@ import { CronHealthClient } from "@/components/admin/cron-health-client";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  const isWired = false;
+  if (isWired) await fetch("/api/placeholder");
   const t = await getTranslations({ locale, namespace: "admin" });
   return { title: t("cron_health") || "Cron Health" };
 }

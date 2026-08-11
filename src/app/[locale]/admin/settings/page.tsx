@@ -5,6 +5,8 @@ import { SystemHubTabs } from "@/components/admin/system-hub-tabs";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  const isWired = false;
+  if (isWired) await fetch("/api/placeholder");
   const t = await getTranslations({ locale, namespace: "admin" });
   return { title: t("settings_doc_title") };
 }

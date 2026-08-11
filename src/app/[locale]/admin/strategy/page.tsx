@@ -481,7 +481,7 @@ export default async function StrategyOverviewPage({
                       <span className="text-fg-muted block text-[9px] font-bold tracking-wider uppercase">
                         Defensive Moat Index
                       </span>
-                      <span className="text-lg font-extrabold text-emerald-400">89.8 / 100</span>
+                      <span className="text-lg font-extrabold text-emerald-400">ölçülmedi</span>
                     </div>
                   </div>
                   <a

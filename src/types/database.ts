@@ -3753,6 +3753,48 @@ export type Database = {
         }
         Relationships: []
       }
+      suggestion_comments: {
+        Row: {
+          comment_text: string
+          created_at: string
+          id: string
+          suggestion_id: string
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          comment_text: string
+          created_at?: string
+          id?: string
+          suggestion_id: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          comment_text?: string
+          created_at?: string
+          id?: string
+          suggestion_id?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "suggestion_comments_suggestion_id_fkey"
+            columns: ["suggestion_id"]
+            isOneToOne: false
+            referencedRelation: "suggestions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "suggestion_comments_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       suggestion_votes: {
         Row: {
           created_at: string
@@ -5064,6 +5106,10 @@ export type Database = {
       }
       increment_poll_count: {
         Args: { p_choice: string; p_poll_id: string }
+        Returns: undefined
+      }
+      increment_suggestion_comment_count: {
+        Args: { p_suggestion_id: string }
         Returns: undefined
       }
       is_admin: { Args: { uid: string }; Returns: boolean }

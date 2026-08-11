@@ -24,7 +24,7 @@ export function Test360Meter() {
     lastRunTimestamp: new Date().toISOString(),
     verdict: "PASS",
     aiInsights: [
-      "100% Admin route coverage verified across 29 Hubs and sub-dashboards.",
+      "ölçülmedi Admin route coverage verified across 29 Hubs and sub-dashboards.",
       "Double-box background glitch resolved across all 15 targeted templates.",
       "Layout stability index: 100% (Zero Cumulative Layout Shifts detected).",
       "Minor recommendation: Complete TR locale keys for Audit & Billing namespaces (current completeness: 88%).",
@@ -158,7 +158,7 @@ export function Test360Meter() {
                 360° Crawl Coverage
               </p>
               <div className="mt-1 flex items-baseline gap-2">
-                <span className="text-3xl font-black tracking-tight text-white">100%</span>
+                <span className="text-3xl font-black tracking-tight text-white">ölçülmedi</span>
               </div>
               <p className="mt-1 text-[11px] font-medium text-emerald-300">
                 29 / 29 Routes Tested Live
@@ -194,7 +194,7 @@ export function Test360Meter() {
                 Layout Integrity
               </p>
               <div className="mt-1 flex items-baseline gap-2">
-                <span className="text-3xl font-black tracking-tight text-white">100%</span>
+                <span className="text-3xl font-black tracking-tight text-white">ölçülmedi</span>
               </div>
               <p className="mt-1 text-[11px] font-medium text-indigo-300">0 Double-Box Glitches</p>
             </div>
@@ -228,7 +228,7 @@ export function Test360Meter() {
                 Zero-Token Engine
               </p>
               <div className="mt-1 flex items-baseline gap-2">
-                <span className="text-3xl font-black tracking-tight text-white">$0.00</span>
+                <span className="text-3xl font-black tracking-tight text-white">ölçülmedi</span>
               </div>
               <p className="mt-1 text-[11px] font-medium text-purple-300">
                 Free Tier Router Active

@@ -91,7 +91,7 @@ export default async function SuggestionDetailPage({
 
           <div className="text-fg-muted flex flex-wrap items-center gap-4 text-sm">
             <span>
-              {t("by", { defaultValue: "by" })} {authorName}
+              {t("by", { defaultValue: "by" })} {String(authorName)}
             </span>
             <span className="inline-flex items-center gap-1">
               <ThumbsUp className="h-4 w-4" /> {suggestion.upvotes_count}

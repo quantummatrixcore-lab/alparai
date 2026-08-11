@@ -102,14 +102,14 @@ export const SUBSCRIPTION_ADVANTAGES: SubscriptionAdvantage[] = [
         "$10-$100/mo Google Cloud / Vertex AI credits via Google Developer Program",
         "2,000,000 Token Gemini 1.5 Pro / 2.0 Flash Context Window for whole-codebase analysis",
         "NotebookLM Grounded RAG Knowledge Base (50 sources, 500k words)",
-        "Jules AI PR & Automated Code Hygiene Agent (`/admin/jules`)",
+        "Jules AI PR & Automated Code Hygiene Agent (`/admin/ai-hub/jules`)",
       ],
       tr: [
         "Google Labs FX & Flow (Veo, Imagen 3, ImageFX, VideoFX, MusicFX) görsel medya kredileri",
         "Google Developer Program paneli üzerinden aylık $10-$100 GCP bulut kredisi",
         "Tüm kod tabanını tek seferde analiz eden 2.000.000 Token Gemini bağlam penceresi",
         "NotebookLM RAG Bilgi Bankası (50 kaynak, kaynak başı 500 bin kelime)",
-        "Jules AI Otonom PR ve Kod Temizleme Ajanı (`/admin/jules`)",
+        "Jules AI Otonom PR ve Kod Temizleme Ajanı (`/admin/ai-hub/jules`)",
       ],
     },
     zeroCostAlternatives: {

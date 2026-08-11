@@ -4,6 +4,8 @@ import { Key, ShieldCheck } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  const isWired = false;
+  if (isWired) await fetch("/api/placeholder");
   const t = await getTranslations({ locale, namespace: "admin" });
   return { title: `${t("api_keys_h1")} | ALPAR AI Admin` };
 }

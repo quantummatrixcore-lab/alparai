@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 export async function triggerOrchestratorAction() {
   const success = await runOrchestrator();
   if (success) {
-    revalidatePath("/[locale]/admin/ai-orchestrator", "page");
+    revalidatePath("/[locale]/admin/ai-hub/orchestrator", "page");
   }
   return success;
 }

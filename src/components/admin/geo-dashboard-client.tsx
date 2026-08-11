@@ -205,19 +205,19 @@ export function GeoDashboardClient({
                 <span className="flex items-center gap-2 font-bold text-white">
                   <Award className="h-4 w-4 text-emerald-400" /> {t("alpar_ai")}
                 </span>
-                <span className="font-mono font-bold text-emerald-400">88.5 / 100</span>
+                <span className="font-mono font-bold text-emerald-400">ölçülmedi</span>
               </div>
               <div className="text-fg-muted flex items-center justify-between border-b border-white/10 pb-2 text-xs">
                 <span>{t("ai_incident_database_aiid")}</span>
-                <span className="font-mono">64.2 / 100</span>
+                <span className="font-mono">ölçülmedi</span>
               </div>
               <div className="text-fg-muted flex items-center justify-between border-b border-white/10 pb-2 text-xs">
                 <span>{t("eu_ai_observatory")}</span>
-                <span className="font-mono">58.0 / 100</span>
+                <span className="font-mono">ölçülmedi</span>
               </div>
               <div className="text-fg-muted flex items-center justify-between text-xs">
                 <span>{t("oecd_ai_policy_observatory")}</span>
-                <span className="font-mono">51.5 / 100</span>
+                <span className="font-mono">ölçülmedi</span>
               </div>
             </div>
           </div>

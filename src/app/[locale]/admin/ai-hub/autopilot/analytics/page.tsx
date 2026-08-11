@@ -67,7 +67,7 @@ export default async function AdminAutopilotAnalyticsPage({
               </Link>
               <span className="text-fg-muted">/</span>
               <Link
-                href={"/admin/autopilot"}
+                href={"/admin/ai-hub/autopilot"}
                 className="text-fg-muted hover:text-brand-400 transition-colors"
               >
                 {t("autopilot") || "Autopilot"}

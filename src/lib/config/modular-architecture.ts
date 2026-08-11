@@ -34,7 +34,7 @@ export const MODULAR_PILLARS: ProductPillar[] = [
     name: "AI Benchmark",
     tagline: "K-Benchmark",
     description: "Independent cross-audit model trust scoring and comparative analytics.",
-    route: "/[locale]/admin/ai-orchestrator",
+    route: "/[locale]/admin/ai-hub/orchestrator",
     iconName: "BarChart2",
   },
   {
@@ -61,7 +61,7 @@ export const MODULAR_PILLARS: ProductPillar[] = [
     name: "AI Risk Intelligence",
     tagline: "Red Teaming",
     description: "Multi-perspective expert board threat modeling and automated security auditing.",
-    route: "/[locale]/admin/expert-analysis",
+    route: "/[locale]/admin/analytics-hub/expert-analysis",
     iconName: "AlertTriangle",
   },
   {

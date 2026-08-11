@@ -119,8 +119,8 @@ export interface SuggestionListItem {
   description_tr?: string | null;
   category: string;
   status: string;
-  upvote_count: number;
-  comment_count: number;
+  upvotes_count: number;
+  comments_count: number;
   created_at: string;
   author_name: string | null;
 }
@@ -131,8 +131,8 @@ export interface SuggestionItem {
   description: string;
   category: string;
   status: SuggestionStatus;
-  upvote_count: number;
-  comment_count: number;
+  upvotes_count: number;
+  comments_count: number;
   is_anonymous: boolean;
   created_at: string;
   author: {

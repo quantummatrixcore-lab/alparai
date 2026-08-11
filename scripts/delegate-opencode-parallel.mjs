@@ -47,8 +47,13 @@ function runTask(task) {
   return new Promise((resolve) => {
     const prompt = task.prompt.replace(/[\r\n]+/g, ' ').replace(/\s+/g, ' ').trim();
     const start = Date.now();
-    const model = task.model || 'opencode/deepseek-v4-flash-free';
-    console.log(`[LANE] Starting #${task.ref}`);
+    const model = task.model;
+    if (!model) {
+      console.error(`[LANE] Task #${task.ref} missing model (role). Exiting.`);
+      resolve({ task, exitCode: 1, failed: true });
+      return;
+    }
+    console.log(`[LANE] Starting #${task.ref} with model ${model}`);
 
     const child = spawn('cmd', [
       '/c',

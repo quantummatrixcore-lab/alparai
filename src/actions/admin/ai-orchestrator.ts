@@ -96,7 +96,7 @@ export async function runCrossAuditArenaAction(_promptText: string): Promise<Are
   }
 
   try {
-    revalidatePath("/[locale]/admin/ai-orchestrator", "page");
+    revalidatePath("/[locale]/admin/ai-hub/orchestrator", "page");
   } catch {
     // Non-blocking in unit test environments
   }

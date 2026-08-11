@@ -205,7 +205,7 @@ export function AiBudgetTransparencyScore({
             <div className="rounded-xl border border-white/5 bg-white/[0.02] p-3 transition-colors hover:border-amber-500/30">
               <p className="text-[11px] font-medium text-zinc-400">Tasarruf Edilen Token</p>
               <div className="mt-1 flex items-baseline justify-between">
-                <p className="text-lg font-bold text-amber-300">92.4%</p>
+                <p className="text-lg font-bold text-amber-300">ölçülmedi</p>
                 <span className="text-[10px] font-semibold text-amber-400/80">TOM Engine</span>
               </div>
             </div>

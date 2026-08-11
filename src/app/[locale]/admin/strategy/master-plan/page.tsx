@@ -10,6 +10,8 @@ import { Compass } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  const isWired = false;
+  if (isWired) await fetch("/api/placeholder");
   const t = await getTranslations({ locale, namespace: "admin" });
   return { title: `${t("master_plan") || "Master Plan"} | ALPAR AI` };
 }

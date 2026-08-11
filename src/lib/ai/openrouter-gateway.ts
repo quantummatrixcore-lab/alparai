@@ -42,22 +42,15 @@ export type {
 
 // Default model setup for the Cross-Audit Engine (kept for backwards compatibility)
 export const FREE_TRIAGE_MODELS: readonly GatewayModel[] = [
-  { id: "gemini-2.0-flash", provider: "google", tier: "free", maxTokens: 2048 },
+  { id: "opencode/deepseek-v4-flash-free", provider: "openrouter", tier: "free", maxTokens: 4096 },
+  { id: "opencode/nemotron-3-ultra-free", provider: "openrouter", tier: "free", maxTokens: 4096 },
+  { id: "gemini-2.0-flash", provider: "google", tier: "free", maxTokens: 4096 },
   {
-    id: "nvidia/llama-3.3-70b-instruct",
-    provider: "nvidia",
+    id: "meta-llama/Llama-3.3-70B-Instruct",
+    provider: "huggingface",
     tier: "free",
-    maxTokens: 2048,
+    maxTokens: 4096,
   },
-  { id: "deepseek-ai/deepseek-r1", provider: "nvidia", tier: "free", maxTokens: 2048 },
-  { id: "deepseek-ai/deepseek-v3", provider: "nvidia", tier: "free", maxTokens: 2048 },
-  { id: "thudm/glm-4-9b-chat", provider: "nvidia", tier: "free", maxTokens: 2048 },
-  { id: "meta/llama-3.3-70b-instruct", provider: "nvidia", tier: "free", maxTokens: 2048 },
-  { id: "qwen/qwen2.5-72b-instruct", provider: "nvidia", tier: "free", maxTokens: 2048 },
-  { id: "mistralai/mixtral-8x22b-instruct", provider: "nvidia", tier: "free", maxTokens: 2048 },
-  { id: "meta/llama-3.3-70b-instruct", provider: "nvidia", tier: "free", maxTokens: 2048 },
-  { id: "deepseek/deepseek-chat", provider: "openrouter", tier: "free", maxTokens: 2048 },
-  { id: "opencode/nemotron-3-ultra-free", provider: "openrouter", tier: "free", maxTokens: 2048 },
 ] as const;
 
 export const SUPREME_COURT_MODEL: GatewayModel = {
@@ -70,21 +63,10 @@ export const SUPREME_COURT_MODEL: GatewayModel = {
 // Dedicated multi-provider failover chains for each parallel slot
 export const TRIAGE_SLOT_1_CHAIN: readonly GatewayModel[] = [
   { id: "gemini-2.0-flash", provider: "google", tier: "free", maxTokens: 2048 },
-  {
-    id: "nvidia/llama-3.3-70b-instruct",
-    provider: "nvidia",
-    tier: "free",
-    maxTokens: 2048,
-  },
-  { id: "meta/llama-3.3-70b-instruct", provider: "nvidia", tier: "free", maxTokens: 2048 },
-  { id: "deepseek/deepseek-chat", provider: "openrouter", tier: "free", maxTokens: 2048 },
-  { id: "opencode/nemotron-3-ultra-free", provider: "openrouter", tier: "free", maxTokens: 2048 },
-  { id: "command-r", provider: "cohere", tier: "free", maxTokens: 2048 },
+  { id: "opencode/deepseek-v4-flash-free", provider: "openrouter", tier: "free", maxTokens: 2048 },
 ] as const;
 
 export const TRIAGE_SLOT_2_CHAIN: readonly GatewayModel[] = [
-  { id: "gemini-2.0-flash", provider: "google", tier: "free", maxTokens: 2048 },
-  { id: "meta-llama/llama-3.3-70b:free", provider: "openrouter", tier: "free", maxTokens: 2048 },
   { id: "opencode/deepseek-v4-flash-free", provider: "openrouter", tier: "free", maxTokens: 2048 },
   {
     id: "meta-llama/Llama-3.3-70B-Instruct",
@@ -96,41 +78,13 @@ export const TRIAGE_SLOT_2_CHAIN: readonly GatewayModel[] = [
 
 export const TRIAGE_SLOT_3_CHAIN: readonly GatewayModel[] = [
   { id: "gemini-2.0-flash", provider: "google", tier: "free", maxTokens: 2048 },
-  { id: "qwen/qwen3.5-omni-7b:free", provider: "openrouter", tier: "free", maxTokens: 2048 },
   { id: "opencode/nemotron-3-ultra-free", provider: "openrouter", tier: "free", maxTokens: 2048 },
-  { id: "command-r", provider: "cohere", tier: "free", maxTokens: 2048 },
 ] as const;
 
 // Strategic Questionnaire models — free OpenRouter models + MiMo V2.5 (paid)
 export const QUESTIONNAIRE_MODELS: readonly GatewayModel[] = [
-  {
-    id: "google/gemini-2.0-flash-lite-preview-02-05:free",
-    provider: "openrouter",
-    tier: "free",
-    maxTokens: 4096,
-  },
-  {
-    id: "meta-llama/llama-3.3-70b-instruct:free",
-    provider: "openrouter",
-    tier: "free",
-    maxTokens: 4096,
-  },
-  { id: "deepseek/deepseek-v4-flash:free", provider: "openrouter", tier: "free", maxTokens: 4096 },
-  { id: "tencent/hy3:free", provider: "openrouter", tier: "free", maxTokens: 4096 },
-  {
-    id: "nvidia/nemotron-3-ultra-550b-a55b:free",
-    provider: "openrouter",
-    tier: "free",
-    maxTokens: 4096,
-  },
-  // Qwen3.5 Omni — natively multimodal (text + audio + image + video), 256k context, 113-language ASR
-  { id: "qwen/qwen3.5-omni-7b:free", provider: "openrouter", tier: "free", maxTokens: 4096 },
-  {
-    id: "qwen/qwen2.5-vl-72b-instruct:free",
-    provider: "openrouter",
-    tier: "free",
-    maxTokens: 4096,
-  },
+  { id: "gemini-2.0-flash", provider: "google", tier: "free", maxTokens: 4096 },
+  { id: "opencode/deepseek-v4-flash-free", provider: "openrouter", tier: "free", maxTokens: 4096 },
 ] as const;
 
 export const SUPREME_COURT_CHAIN: readonly GatewayModel[] = [
@@ -145,95 +99,32 @@ export const SUPREME_COURT_CHAIN: readonly GatewayModel[] = [
 
 // 1. Math, Logic, Data Analysis (DeepSeek Optimized)
 export const MATH_LOGIC_CHAIN: readonly GatewayModel[] = [
-  {
-    id: "google/gemini-2.0-flash-lite-preview-02-05:free",
-    provider: "openrouter",
-    tier: "free",
-    maxTokens: 4096,
-  },
-  {
-    id: "meta-llama/llama-3.3-70b-instruct:free",
-    provider: "openrouter",
-    tier: "free",
-    maxTokens: 4096,
-  },
+  { id: "opencode/deepseek-v4-flash-free", provider: "openrouter", tier: "free", maxTokens: 4096 },
   { id: "gemini-2.0-flash", provider: "google", tier: "free", maxTokens: 4096 },
-  { id: "deepseek-ai/deepseek-v3", provider: "nvidia", tier: "free", maxTokens: 4096 },
-  { id: "deepseek/deepseek-chat", provider: "openrouter", tier: "free", maxTokens: 4096 },
-  { id: "deepseek/deepseek-chat", provider: "openrouter", tier: "premium", maxTokens: 4096 },
-  { id: "gemini-2.0-pro", provider: "google", tier: "premium", maxTokens: 4096 },
-  { id: "command-r", provider: "cohere", tier: "free", maxTokens: 4096 },
 ] as const;
 
 // 2. Creative, Marketing, Social Media Copy (Claude / Llama Optimized)
 export const CREATIVE_COPY_CHAIN: readonly GatewayModel[] = [
-  { id: "meta/llama-3.3-70b-instruct", provider: "nvidia", tier: "free", maxTokens: 4096 },
-  { id: "meta-llama/llama-3.3-70b:free", provider: "openrouter", tier: "free", maxTokens: 4096 },
-  { id: "gemini-2.0-flash", provider: "google", tier: "free", maxTokens: 4096 },
-  { id: "anthropic/claude-3.7-sonnet", provider: "openrouter", tier: "premium", maxTokens: 4096 },
   {
     id: "meta-llama/Llama-3.3-70B-Instruct",
     provider: "huggingface",
     tier: "free",
     maxTokens: 4096,
   },
-  { id: "opencode/nemotron-3-ultra-free", provider: "openrouter", tier: "free", maxTokens: 4096 },
+  { id: "gemini-2.0-flash", provider: "google", tier: "free", maxTokens: 4096 },
 ] as const;
 
 // 3. High-Risk Audit, Legal, Complex Reasoning (GPT-4o / Claude 3.5 Sonnet)
 // Directly uses SUPREME_COURT_CHAIN logic but named for capability domain
 export const RISK_AUDIT_CHAIN: readonly GatewayModel[] = [
-  {
-    id: "google/gemini-2.0-flash-lite-preview-02-05:free",
-    provider: "openrouter",
-    tier: "free",
-    maxTokens: 4096,
-  },
-  {
-    id: "meta-llama/llama-3.3-70b-instruct:free",
-    provider: "openrouter",
-    tier: "free",
-    maxTokens: 4096,
-  },
-  { id: "gemini-2.0-flash", provider: "google", tier: "free", maxTokens: 4096 },
-  {
-    id: "nvidia/llama-3.3-70b-instruct",
-    provider: "nvidia",
-    tier: "free",
-    maxTokens: 4096,
-  },
-  { id: "openai/gpt-4o", provider: "openrouter", tier: "premium", maxTokens: 4096 },
-  { id: "anthropic/claude-3.7-sonnet", provider: "openrouter", tier: "premium", maxTokens: 4096 },
+  { id: "opencode/nemotron-3-ultra-free", provider: "openrouter", tier: "free", maxTokens: 4096 },
   { id: "gemini-2.0-pro", provider: "google", tier: "premium", maxTokens: 4096 },
-  { id: "command-r", provider: "cohere", tier: "free", maxTokens: 4096 },
-  {
-    id: "meta-llama/Llama-3.3-70B-Instruct",
-    provider: "huggingface",
-    tier: "free",
-    maxTokens: 4096,
-  },
 ] as const;
 
 // 4. Fast Triage, Summarization, Classification (Qwen / Llama / OpenCode Free Optimized)
 export const FAST_TRIAGE_CHAIN: readonly GatewayModel[] = [
   { id: "opencode/deepseek-v4-flash-free", provider: "openrouter", tier: "free", maxTokens: 4096 },
-  { id: "opencode/nemotron-3-ultra-free", provider: "openrouter", tier: "free", maxTokens: 4096 },
-  { id: "qwen/qwen2.5-72b-instruct", provider: "nvidia", tier: "free", maxTokens: 4096 },
-  { id: "qwen/qwen-2.5-72b:free", provider: "openrouter", tier: "free", maxTokens: 4096 },
-  {
-    id: "meta-llama/llama-3.3-70b-instruct:free",
-    provider: "openrouter",
-    tier: "free",
-    maxTokens: 4096,
-  },
   { id: "gemini-2.0-flash", provider: "google", tier: "free", maxTokens: 4096 },
-  {
-    id: "meta-llama/Llama-3.3-70B-Instruct",
-    provider: "huggingface",
-    tier: "free",
-    maxTokens: 4096,
-  },
-  { id: "command-r", provider: "cohere", tier: "free", maxTokens: 4096 },
 ] as const;
 
 // Doktrin #044: OpenCode Zen Free & Nvidia NIM Model Pools

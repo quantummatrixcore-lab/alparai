@@ -57,13 +57,11 @@ describe("selectModelWithEscalation", () => {
     expect(result.chain.map((m) => m.id)).toEqual([
       "opencode/deepseek-v4-flash-free",
       "opencode/nemotron-3-ultra-free",
+      "gemini-2.0-flash",
+      "meta-llama/Llama-3.3-70B-Instruct",
       "opencode/laguna-s-2.1-free",
       "opencode/ling-3.0-flash-free",
       "opencode/mimo-v2.5-free",
-      "opencode/north-mini-code-free",
-      "gemini-1.5-flash",
-      "blackboxai",
-      "meta-llama/Llama-3.3-70B-Instruct",
     ]);
   });
 
@@ -75,13 +73,11 @@ describe("selectModelWithEscalation", () => {
     expect(result.escalated).toBe(false);
     expect(result.chain.map((m) => m.id)).toEqual([
       "opencode/deepseek-v4-flash-free",
+      "gemini-2.0-flash",
+      "meta-llama/Llama-3.3-70B-Instruct",
       "opencode/laguna-s-2.1-free",
       "opencode/ling-3.0-flash-free",
       "opencode/mimo-v2.5-free",
-      "opencode/north-mini-code-free",
-      "gemini-1.5-flash",
-      "blackboxai",
-      "meta-llama/Llama-3.3-70B-Instruct",
     ]);
   });
 
@@ -90,13 +86,11 @@ describe("selectModelWithEscalation", () => {
       degradedIds: [
         "opencode/deepseek-v4-flash-free",
         "opencode/nemotron-3-ultra-free",
+        "gemini-2.0-flash",
+        "meta-llama/Llama-3.3-70B-Instruct",
         "opencode/laguna-s-2.1-free",
         "opencode/ling-3.0-flash-free",
         "opencode/mimo-v2.5-free",
-        "opencode/north-mini-code-free",
-        "gemini-1.5-flash",
-        "blackboxai",
-        "meta-llama/Llama-3.3-70B-Instruct",
       ],
     });
 
@@ -105,8 +99,9 @@ describe("selectModelWithEscalation", () => {
     expect(result.escalated).toBe(true);
     expect(result.chain.map((m) => m.id)).toEqual([
       "nvidia/deepseek-ai/deepseek-v4-pro",
-      "nvidia/z-ai/glm-5.2",
+      "gemini-2.0-pro",
       "nvidia/openai/gpt-oss-120b",
+      "nvidia/z-ai/glm-5.2",
       "nvidia/google/gemma-4-31b-it",
     ]);
   });
@@ -128,13 +123,11 @@ describe("selectModelWithEscalation — gateway integration contract", () => {
       degradedIds: [
         "opencode/deepseek-v4-flash-free",
         "opencode/nemotron-3-ultra-free",
+        "gemini-2.0-flash",
+        "meta-llama/Llama-3.3-70B-Instruct",
         "opencode/laguna-s-2.1-free",
         "opencode/ling-3.0-flash-free",
         "opencode/mimo-v2.5-free",
-        "opencode/north-mini-code-free",
-        "gemini-1.5-flash",
-        "blackboxai",
-        "meta-llama/Llama-3.3-70B-Instruct",
       ],
     });
 

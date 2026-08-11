@@ -42,9 +42,9 @@ export type {
 
 // Default model setup for the Cross-Audit Engine (kept for backwards compatibility)
 export const FREE_TRIAGE_MODELS: readonly GatewayModel[] = [
-  { id: "gemini-1.5-flash", provider: "google", tier: "free", maxTokens: 2048 },
+  { id: "gemini-2.0-flash", provider: "google", tier: "free", maxTokens: 2048 },
   {
-    id: "nvidia/llama-3.1-nemotron-70b-instruct",
+    id: "nvidia/llama-3.3-70b-instruct",
     provider: "nvidia",
     tier: "free",
     maxTokens: 2048,
@@ -55,13 +55,13 @@ export const FREE_TRIAGE_MODELS: readonly GatewayModel[] = [
   { id: "meta/llama-3.3-70b-instruct", provider: "nvidia", tier: "free", maxTokens: 2048 },
   { id: "qwen/qwen2.5-72b-instruct", provider: "nvidia", tier: "free", maxTokens: 2048 },
   { id: "mistralai/mixtral-8x22b-instruct", provider: "nvidia", tier: "free", maxTokens: 2048 },
-  { id: "meta/llama-3.1-70b-instruct", provider: "nvidia", tier: "free", maxTokens: 2048 },
+  { id: "meta/llama-3.3-70b-instruct", provider: "nvidia", tier: "free", maxTokens: 2048 },
   { id: "deepseek/deepseek-chat", provider: "openrouter", tier: "free", maxTokens: 2048 },
   { id: "blackboxai", provider: "blackbox", tier: "free", maxTokens: 2048 },
 ] as const;
 
 export const SUPREME_COURT_MODEL: GatewayModel = {
-  id: "gemini-1.5-pro",
+  id: "gemini-2.0-pro",
   provider: "google",
   tier: "premium",
   maxTokens: 4096,
@@ -69,21 +69,21 @@ export const SUPREME_COURT_MODEL: GatewayModel = {
 
 // Dedicated multi-provider failover chains for each parallel slot
 export const TRIAGE_SLOT_1_CHAIN: readonly GatewayModel[] = [
-  { id: "gemini-1.5-flash", provider: "google", tier: "free", maxTokens: 2048 },
+  { id: "gemini-2.0-flash", provider: "google", tier: "free", maxTokens: 2048 },
   {
-    id: "nvidia/llama-3.1-nemotron-70b-instruct",
+    id: "nvidia/llama-3.3-70b-instruct",
     provider: "nvidia",
     tier: "free",
     maxTokens: 2048,
   },
-  { id: "meta/llama-3.1-70b-instruct", provider: "nvidia", tier: "free", maxTokens: 2048 },
+  { id: "meta/llama-3.3-70b-instruct", provider: "nvidia", tier: "free", maxTokens: 2048 },
   { id: "deepseek/deepseek-chat", provider: "openrouter", tier: "free", maxTokens: 2048 },
   { id: "blackboxai", provider: "blackbox", tier: "free", maxTokens: 2048 },
   { id: "command-r", provider: "cohere", tier: "free", maxTokens: 2048 },
 ] as const;
 
 export const TRIAGE_SLOT_2_CHAIN: readonly GatewayModel[] = [
-  { id: "gemini-1.5-flash", provider: "google", tier: "free", maxTokens: 2048 },
+  { id: "gemini-2.0-flash", provider: "google", tier: "free", maxTokens: 2048 },
   { id: "meta-llama/llama-3.3-70b:free", provider: "openrouter", tier: "free", maxTokens: 2048 },
   { id: "blackboxai", provider: "blackbox", tier: "free", maxTokens: 2048 },
   {
@@ -95,7 +95,7 @@ export const TRIAGE_SLOT_2_CHAIN: readonly GatewayModel[] = [
 ] as const;
 
 export const TRIAGE_SLOT_3_CHAIN: readonly GatewayModel[] = [
-  { id: "gemini-1.5-flash", provider: "google", tier: "free", maxTokens: 2048 },
+  { id: "gemini-2.0-flash", provider: "google", tier: "free", maxTokens: 2048 },
   { id: "qwen/qwen3.5-omni-7b:free", provider: "openrouter", tier: "free", maxTokens: 2048 },
   { id: "blackboxai", provider: "blackbox", tier: "free", maxTokens: 2048 },
   { id: "command-r", provider: "cohere", tier: "free", maxTokens: 2048 },
@@ -135,8 +135,8 @@ export const QUESTIONNAIRE_MODELS: readonly GatewayModel[] = [
 ] as const;
 
 export const SUPREME_COURT_CHAIN: readonly GatewayModel[] = [
-  { id: "gemini-1.5-pro", provider: "google", tier: "premium", maxTokens: 4096 },
-  { id: "anthropic/claude-3.5-sonnet", provider: "openrouter", tier: "premium", maxTokens: 4096 },
+  { id: "gemini-2.0-pro", provider: "google", tier: "premium", maxTokens: 4096 },
+  { id: "anthropic/claude-3.7-sonnet", provider: "openrouter", tier: "premium", maxTokens: 4096 },
   { id: "openai/gpt-4o", provider: "openrouter", tier: "premium", maxTokens: 4096 },
 ] as const;
 
@@ -158,11 +158,11 @@ export const MATH_LOGIC_CHAIN: readonly GatewayModel[] = [
     tier: "free",
     maxTokens: 4096,
   },
-  { id: "gemini-1.5-flash", provider: "google", tier: "free", maxTokens: 4096 },
+  { id: "gemini-2.0-flash", provider: "google", tier: "free", maxTokens: 4096 },
   { id: "deepseek-ai/deepseek-v3", provider: "nvidia", tier: "free", maxTokens: 4096 },
   { id: "deepseek/deepseek-chat", provider: "openrouter", tier: "free", maxTokens: 4096 },
   { id: "deepseek/deepseek-chat", provider: "openrouter", tier: "premium", maxTokens: 4096 },
-  { id: "gemini-1.5-pro", provider: "google", tier: "premium", maxTokens: 4096 },
+  { id: "gemini-2.0-pro", provider: "google", tier: "premium", maxTokens: 4096 },
   { id: "command-r", provider: "cohere", tier: "free", maxTokens: 4096 },
 ] as const;
 
@@ -170,8 +170,8 @@ export const MATH_LOGIC_CHAIN: readonly GatewayModel[] = [
 export const CREATIVE_COPY_CHAIN: readonly GatewayModel[] = [
   { id: "meta/llama-3.3-70b-instruct", provider: "nvidia", tier: "free", maxTokens: 4096 },
   { id: "meta-llama/llama-3.3-70b:free", provider: "openrouter", tier: "free", maxTokens: 4096 },
-  { id: "gemini-1.5-flash", provider: "google", tier: "free", maxTokens: 4096 },
-  { id: "anthropic/claude-3.5-sonnet", provider: "openrouter", tier: "premium", maxTokens: 4096 },
+  { id: "gemini-2.0-flash", provider: "google", tier: "free", maxTokens: 4096 },
+  { id: "anthropic/claude-3.7-sonnet", provider: "openrouter", tier: "premium", maxTokens: 4096 },
   {
     id: "meta-llama/Llama-3.3-70B-Instruct",
     provider: "huggingface",
@@ -196,16 +196,16 @@ export const RISK_AUDIT_CHAIN: readonly GatewayModel[] = [
     tier: "free",
     maxTokens: 4096,
   },
-  { id: "gemini-1.5-flash", provider: "google", tier: "free", maxTokens: 4096 },
+  { id: "gemini-2.0-flash", provider: "google", tier: "free", maxTokens: 4096 },
   {
-    id: "nvidia/llama-3.1-nemotron-70b-instruct",
+    id: "nvidia/llama-3.3-70b-instruct",
     provider: "nvidia",
     tier: "free",
     maxTokens: 4096,
   },
   { id: "openai/gpt-4o", provider: "openrouter", tier: "premium", maxTokens: 4096 },
-  { id: "anthropic/claude-3.5-sonnet", provider: "openrouter", tier: "premium", maxTokens: 4096 },
-  { id: "gemini-1.5-pro", provider: "google", tier: "premium", maxTokens: 4096 },
+  { id: "anthropic/claude-3.7-sonnet", provider: "openrouter", tier: "premium", maxTokens: 4096 },
+  { id: "gemini-2.0-pro", provider: "google", tier: "premium", maxTokens: 4096 },
   { id: "command-r", provider: "cohere", tier: "free", maxTokens: 4096 },
   {
     id: "meta-llama/Llama-3.3-70B-Instruct",
@@ -222,12 +222,12 @@ export const FAST_TRIAGE_CHAIN: readonly GatewayModel[] = [
   { id: "qwen/qwen2.5-72b-instruct", provider: "nvidia", tier: "free", maxTokens: 4096 },
   { id: "qwen/qwen-2.5-72b:free", provider: "openrouter", tier: "free", maxTokens: 4096 },
   {
-    id: "meta-llama/llama-3.1-8b-instruct:free",
+    id: "meta-llama/llama-3.3-70b-instruct:free",
     provider: "openrouter",
     tier: "free",
     maxTokens: 4096,
   },
-  { id: "gemini-1.5-flash", provider: "google", tier: "free", maxTokens: 4096 },
+  { id: "gemini-2.0-flash", provider: "google", tier: "free", maxTokens: 4096 },
   { id: "blackboxai", provider: "blackbox", tier: "free", maxTokens: 4096 },
   {
     id: "meta-llama/Llama-3.3-70B-Instruct",
@@ -246,7 +246,7 @@ export const OPENCODE_FREE_MODELS: readonly GatewayModel[] = [
   { id: "opencode/ling-3.0-flash-free", provider: "openrouter", tier: "free", maxTokens: 4096 },
   { id: "opencode/mimo-v2.5-free", provider: "openrouter", tier: "free", maxTokens: 4096 },
   { id: "opencode/north-mini-code-free", provider: "openrouter", tier: "free", maxTokens: 4096 },
-  { id: "gemini-1.5-flash", provider: "google", tier: "free", maxTokens: 4096 },
+  { id: "gemini-2.0-flash", provider: "google", tier: "free", maxTokens: 4096 },
   { id: "blackboxai", provider: "blackbox", tier: "free", maxTokens: 4096 },
   {
     id: "meta-llama/Llama-3.3-70B-Instruct",
@@ -499,13 +499,13 @@ export interface HybridMultimodalModelSelection {
 
 /**
  * Task #190: 50/50 Hybrid Multimodal Model Router (Qwen3.5-Omni / Gemini Flash).
- * Randomly selects between "qwen/qwen3.5-omni-7b:free" (50%) and "google/gemini-flash-1.5" (50%).
+ * Randomly selects between "qwen/qwen3.5-omni-7b:free" (50%) and "google/gemini-2.0-flash" (50%).
  * Provides primary and secondary fallback model IDs for cost guard and rate-limit resilience.
  */
 export function getHybridMultimodalModel(isFallback = false): HybridMultimodalModelSelection {
   const isQwenPrimary = Math.random() < 0.5;
-  const primary = isQwenPrimary ? "qwen/qwen3.5-omni-7b:free" : "google/gemini-flash-1.5";
-  const fallback = isQwenPrimary ? "google/gemini-flash-1.5" : "qwen/qwen3.5-omni-7b:free";
+  const primary = isQwenPrimary ? "qwen/qwen3.5-omni-7b:free" : "google/gemini-2.0-flash";
+  const fallback = isQwenPrimary ? "google/gemini-2.0-flash" : "qwen/qwen3.5-omni-7b:free";
   const selected = isFallback ? fallback : primary;
 
   return {

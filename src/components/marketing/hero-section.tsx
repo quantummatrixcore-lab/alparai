@@ -96,7 +96,7 @@ export function HeroSection({
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="flex flex-col justify-center"
+            className="flex min-w-0 flex-col justify-center"
           >
             {/* Eyebrow badge (Glassmorphic) */}
             <motion.div variants={itemVariants} className="mb-8 flex">
@@ -189,7 +189,7 @@ export function HeroSection({
             initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
             transition={{ duration: 1, delay: 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="flex flex-col gap-6"
+            className="flex min-w-0 flex-col gap-6"
           >
             {/* LIVE badge */}
             <div className="flex items-center gap-3">

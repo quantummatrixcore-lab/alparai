@@ -347,7 +347,11 @@
     "section4_title": "4. KVKK & Rechtspräzedenzfall",
     "section4_text": "Die türkische Behörde für den Schutz personenbezogener Daten (KVKK) leitete eine formelle Untersuchung gegen xAI nach dem Gesetz Nr. 6698 ein und schuf einen historischen Präzedenzfall für KI-Verantwortlichkeit.",
     "cta_title": "Möchten Sie einen ähnlichen KI-Vorfall melden?",
-    "cta_button": "Vorfall melden"
+    "cta_button": "Vorfall melden",
+    "scrolly_step_1": "The prompt was simple, but the outcome was a critical failure.",
+    "scrolly_step_2": "A nation's flag was replaced, triggering public outcry.",
+    "scrolly_step_3": "The KVKK (Personal Data Protection Authority) launched a historic investigation.",
+    "scrolly_step_4": "This incident exposed the fragility of AI safety guardrails."
   },
   "pricing": {
     "title": "Transparente Preisgestaltung",
@@ -383,7 +387,16 @@
     "enterprise_feature_4": "Whitelabel-Risikodashboards",
     "enterprise_cta": "Support Kontaktieren",
     "neutrality_notice": "Alle Inhalts-Hostings und Streitbeilegungen folgen unserer strikten Verpflichtung zur Neutralität.",
-    "neutrality_link": "Lesen Sie unsere Neutralitätscharta."
+    "neutrality_link": "Lesen Sie unsere Neutralitätscharta.",
+    "startup_title": "Startup",
+    "startup_price": "TBD",
+    "startup_period": "/month",
+    "startup_desc": "For growing teams managing AI deployments.",
+    "startup_feature_1": "API access (10k req/mo)",
+    "startup_feature_2": "Basic compliance badge",
+    "startup_feature_3": "Email support",
+    "startup_cta": "Start Free Trial",
+    "enterprise_feature_compliance": "Compliance Badge"
   },
   "dashboard": {
     "title": "Rollenbasiertes Dashboard",
@@ -3019,7 +3032,8 @@
     "seo_performance_title": "SEO & Leistung · ALPAR AI",
     "provider_response_title": "Anbieter-Antwort-Protokoll · ALPAR AI",
     "modular_architecture_title": "Status der Modularen Architektur · ALPAR AI",
-    "expert_analysis_title": "Expertenrat-Analyse · ALPAR AI"
+    "expert_analysis_title": "Expertenrat-Analyse · ALPAR AI",
+    "governance_hub": "Governance Hub"
   },
   "footer": {
     "tagline": "Wo die Welt KI zur Verantwortung zieht.",
@@ -3520,7 +3534,18 @@
     "advisoryBoardBannerTitle": "Gestalten Sie die Zukunft der KI-Rechenschaftspflicht",
     "advisoryBoardBannerDesc": "Treten Sie unserem Beirat bei, um zu unabhängigen KI-Sicherheits-Benchmarks, Governance-Protokollen und transparenten Prüfstandards beizutragen.",
     "advisoryBoardApplyCTA": "Für den Beirat bewerben",
-    "advisoryBoardLearnMoreCTA": "Beiratsseite erkunden"
+    "advisoryBoardLearnMoreCTA": "Beiratsseite erkunden",
+    "title": "About ALPAR AI",
+    "vision_title": "Our Vision: SSL for AI",
+    "vision_desc": "We are building the trust layer for artificial intelligence. Just as SSL secured the early internet, ALPAR AI secures the future of AI through transparency and accountability.",
+    "advisory_board_title": "Advisory Board",
+    "advisory_board_desc": "Our independent advisory board consists of leading experts in AI ethics, law, and security.",
+    "member_1_name": "[Name Placeholder]",
+    "member_1_role": "Legal Advisor",
+    "member_2_name": "[Name Placeholder]",
+    "member_2_role": "AI Ethics Researcher",
+    "mou_title": "Academic Partnerships",
+    "mou_desc": "ALPAR AI operates in partnership with leading global institutions, including memorandums of understanding (MOU) with Boğaziçi University and TU Berlin."
   },
   "legal": {
     "termsTitle": "Nutzungsbedingungen",

@@ -2,7 +2,7 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { requireModerator } from "@/lib/auth/session";
 import { getFeatureFlagsAction } from "@/actions/system-mgmt";
 import { FeatureFlagsClient } from "@/components/admin/feature-flags-client";
-import { AdminContainer, AdminPageHeader } from "@/components/admin/admin-design-kit";
+import { AdminPageHeader } from "@/components/admin/admin-design-kit";
 import { Flag } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -24,9 +24,8 @@ export default async function FeatureFlagsPage({
   const flags = await getFeatureFlagsAction();
 
   return (
-    <div className="min-h-screen bg-black p-6"><div className="bg-zinc-900/40 backdrop-blur-xl ring-1 ring-white/10 rounded-3xl shadow-2xl p-8">
-      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-6 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
-      <AdminContainer>
+    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
+      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
         <AdminPageHeader
           icon={<Flag className="text-brand-400 h-6 w-6" />}
           title={t("nav_featureFlags") || "Live Feature Flags Management"}
@@ -41,8 +40,7 @@ export default async function FeatureFlagsPage({
         />
 
         <FeatureFlagsClient initialFlags={flags} />
-      </AdminContainer>
+      </div>
     </div>
-      </div></div>
   );
 }

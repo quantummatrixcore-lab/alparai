@@ -2,7 +2,7 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { redirect } from "next/navigation";
 import { Clock } from "lucide-react";
 import { getCurrentUser } from "@/lib/auth/session";
-import { AdminContainer, AdminPageHeader } from "@/components/admin/admin-design-kit";
+import { AdminPageHeader } from "@/components/admin/admin-design-kit";
 import { CronHealthClient } from "@/components/admin/cron-health-client";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -38,19 +38,15 @@ export default async function CronHealthPage({ params }: { params: Promise<{ loc
   const historyData: Array<{ time: string; success: number; failed: number }> = [];
 
   return (
-    <div className="min-h-screen bg-black p-6">
-      <div className="rounded-3xl bg-zinc-900/40 p-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl">
-        <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-6 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
-          <AdminContainer>
-            <AdminPageHeader
-              icon={<Clock className="h-7 w-7 text-sky-400" />}
-              title={t("cron_health") || "Cron Job Health"}
-              subtitle={"Monitor background tasks and periodic system jobs"}
-            />
+    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
+      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
+        <AdminPageHeader
+          icon={<Clock className="h-7 w-7 text-sky-400" />}
+          title={t("cron_health") || "Cron Job Health"}
+          subtitle={"Monitor background tasks and periodic system jobs"}
+        />
 
-            <CronHealthClient jobs={cronJobs} historyData={historyData} />
-          </AdminContainer>
-        </div>
+        <CronHealthClient jobs={cronJobs} historyData={historyData} />
       </div>
     </div>
   );

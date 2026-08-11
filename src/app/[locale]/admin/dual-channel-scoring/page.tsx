@@ -30,8 +30,7 @@ export default async function DualChannelScoringAdminPage({
   const t = await getTranslations("admin");
   const config = await getScoringConfigAction();
   return (
-    <div className="min-h-screen bg-black p-6"><div className="bg-zinc-900/40 backdrop-blur-xl ring-1 ring-white/10 rounded-3xl shadow-2xl p-8">
-      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-6 text-white shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
+    <div className="space-y-8 rounded-3xl bg-zinc-900/40 px-3 py-4 text-white shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:px-6 md:p-8">
       <div>
         <h1 className="flex items-center gap-3 text-3xl font-bold tracking-tight text-white">
           <Scale className="h-8 w-8 text-amber-400" />
@@ -108,6 +107,5 @@ export default async function DualChannelScoringAdminPage({
         </div>
       </div>
     </div>
-      </div></div>
   );
 }

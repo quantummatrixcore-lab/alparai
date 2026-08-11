@@ -62,34 +62,36 @@ export default async function AiOrchestratorAdminPage({
 
   await requireAdmin();
   return (
-    <AdminContainer>
-      <AiHubTabs />
-      <AdminPageHeader
-        icon={<Cpu className="h-7 w-7 text-emerald-400" />}
-        title={t("ai_orchestrator_cross_audit_arena") || "AI Orchestrator & Cross-Audit Arena"}
-        subtitle={
-          t("stealth_multi_agent_cross_audit_trust_ba") ||
-          "Stealth multi-agent cross-audit & AI trust balance"
-        }
-        action={<OrchestratorTriggerButton />}
-        breadcrumb={[
-          { label: "Admin", href: "/admin" },
-          { label: "AI Hub", href: "/admin/ai-hub" },
-          { label: "Orchestrator", href: "/admin/ai-hub/orchestrator" },
-        ]}
-      />
+    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
+      <AdminContainer>
+        <AiHubTabs />
+        <AdminPageHeader
+          icon={<Cpu className="h-7 w-7 text-emerald-400" />}
+          title={t("ai_orchestrator_cross_audit_arena") || "AI Orchestrator & Cross-Audit Arena"}
+          subtitle={
+            t("stealth_multi_agent_cross_audit_trust_ba") ||
+            "Stealth multi-agent cross-audit & AI trust balance"
+          }
+          action={<OrchestratorTriggerButton />}
+          breadcrumb={[
+            { label: "Admin", href: "/admin" },
+            { label: "AI Hub", href: "/admin/ai-hub" },
+            { label: "Orchestrator", href: "/admin/ai-hub/orchestrator" },
+          ]}
+        />
 
-      <AiOrchestratorClient
-        freeModels={freeModels}
-        trustScores={trustScores}
-        chains={chains}
-        costSavingsStr={costSavingsStr}
-        avgTrustScore={avgTrustScore}
-        totalAudits={totalAudits}
-        autopilotSnapshot={autopilotSnapshot}
-        locale={locale}
-      />
-    </AdminContainer>
+        <AiOrchestratorClient
+          freeModels={freeModels}
+          trustScores={trustScores}
+          chains={chains}
+          costSavingsStr={costSavingsStr}
+          avgTrustScore={avgTrustScore}
+          totalAudits={totalAudits}
+          autopilotSnapshot={autopilotSnapshot}
+          locale={locale}
+        />
+      </AdminContainer>
+    </div>
   );
 }
 

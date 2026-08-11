@@ -242,10 +242,6 @@ export const FAST_TRIAGE_CHAIN: readonly GatewayModel[] = [
 export const OPENCODE_FREE_MODELS: readonly GatewayModel[] = [
   { id: "opencode/deepseek-v4-flash-free", provider: "openrouter", tier: "free", maxTokens: 4096 },
   { id: "opencode/nemotron-3-ultra-free", provider: "openrouter", tier: "free", maxTokens: 4096 },
-  { id: "opencode/laguna-s-2.1-free", provider: "openrouter", tier: "free", maxTokens: 4096 },
-  { id: "opencode/ling-3.0-flash-free", provider: "openrouter", tier: "free", maxTokens: 4096 },
-  { id: "opencode/mimo-v2.5-free", provider: "openrouter", tier: "free", maxTokens: 4096 },
-  { id: "opencode/north-mini-code-free", provider: "openrouter", tier: "free", maxTokens: 4096 },
   { id: "gemini-2.0-flash", provider: "google", tier: "free", maxTokens: 4096 },
   { id: "blackboxai", provider: "blackbox", tier: "free", maxTokens: 4096 },
   {

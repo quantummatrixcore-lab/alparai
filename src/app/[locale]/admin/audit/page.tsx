@@ -1,6 +1,6 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { redirect } from "next/navigation";
-import { Container } from "@/components/ui/layout";
+
 import { getCurrentUser } from "@/lib/auth/session";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { AuditLogClient } from "@/components/admin/audit-log-client";
@@ -78,26 +78,22 @@ export default async function AdminAuditPage({ params }: { params: Promise<{ loc
   }));
 
   return (
-    <div className="min-h-screen bg-black p-6">
-      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-6 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
+    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
+      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
         <GovernanceHubTabs />
-        <div>
-          <Container className="max-w-7xl py-10">
-            <header className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <h1 className="text-fg-primary inline-flex items-center gap-2.5 text-3xl font-extrabold tracking-tight">
-                  <Activity className="text-brand-400 h-8 w-8" /> {t("auditTitle")}
-                </h1>
-                <p className="text-fg-muted mt-1 text-sm">
-                  {t("cross_audit_dashboard_subheading") ||
-                    "Gerçek zamanlı denetim metrikleri, etik uyum ve düzenleyici sınıflandırma günlükleri."}
-                </p>
-              </div>
-            </header>
+        <header className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h1 className="text-fg-primary inline-flex items-center gap-2.5 text-3xl font-extrabold tracking-tight">
+              <Activity className="text-brand-400 h-8 w-8" /> {t("auditTitle")}
+            </h1>
+            <p className="text-fg-muted mt-1 text-sm">
+              {t("cross_audit_dashboard_subheading") ||
+                "Gerçek zamanlı denetim metrikleri, etik uyum ve düzenleyici sınıflandırma günlükleri."}
+            </p>
+          </div>
+        </header>
 
-            <AuditLogClient initialLogs={initialLogs} locale={locale} />
-          </Container>
-        </div>
+        <AuditLogClient initialLogs={initialLogs} locale={locale} />
       </div>
     </div>
   );

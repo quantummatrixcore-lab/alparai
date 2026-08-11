@@ -55,49 +55,47 @@ export default async function AdminInvestorsPage({
   const pendingApps = applications.filter((a) => a.status === "pending");
 
   return (
-    <div className="min-h-screen bg-black p-6">
-      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-6 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
+    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
+      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
         <FundingHubTabs />
-        <div>
-          <Container className="py-10">
-            <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
-              <MetricCard
-                title={t("investors_title_apps")}
-                value={applications.length}
-                icon={<TrendingUp className="h-4 w-4" />}
-                trend="up"
-                trendLabel="Pipeline"
-                accentColor="#10b981"
-                sparkData={applications.slice(0, 8).map((_, i) => ({ value: i + 1 }))}
-                chartType="bar"
-              />
-              <MetricCard
-                title={t("investors_title_approved")}
-                value={approved.length}
-                icon={<DollarSign className="h-4 w-4" />}
-                trend={approved.length > 0 ? "up" : "neutral"}
-                trendLabel="High intent"
-                accentColor="#f59e0b"
-              />
-              <MetricCard
-                title={t("investors_title_pending")}
-                value={pendingApps.length}
-                icon={<Clock className="h-4 w-4" />}
-                trend={pendingApps.length > 0 ? "up" : "neutral"}
-                trendLabel="Awaiting contact"
-                accentColor="#6366f1"
-              />
-            </div>
-            <header className="mb-6">
-              <h1 className="text-fg-primary inline-flex items-center gap-2 text-2xl font-bold">
-                <TrendingUp className="h-6 w-6 text-emerald-400" /> {t("investors_heading")}
-              </h1>
-              <p className="text-fg-muted mt-1 text-sm">{t("investors_desc")}</p>
-            </header>
+        <Container className="py-6">
+          <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <MetricCard
+              title={t("investors_title_apps")}
+              value={applications.length}
+              icon={<TrendingUp className="h-4 w-4" />}
+              trend="up"
+              trendLabel="Pipeline"
+              accentColor="#10b981"
+              sparkData={applications.slice(0, 8).map((_, i) => ({ value: i + 1 }))}
+              chartType="bar"
+            />
+            <MetricCard
+              title={t("investors_title_approved")}
+              value={approved.length}
+              icon={<DollarSign className="h-4 w-4" />}
+              trend={approved.length > 0 ? "up" : "neutral"}
+              trendLabel="High intent"
+              accentColor="#f59e0b"
+            />
+            <MetricCard
+              title={t("investors_title_pending")}
+              value={pendingApps.length}
+              icon={<Clock className="h-4 w-4" />}
+              trend={pendingApps.length > 0 ? "up" : "neutral"}
+              trendLabel="Awaiting contact"
+              accentColor="#6366f1"
+            />
+          </div>
+          <header className="mb-6">
+            <h1 className="text-fg-primary inline-flex items-center gap-2 text-2xl font-bold">
+              <TrendingUp className="h-6 w-6 text-emerald-400" /> {t("investors_heading")}
+            </h1>
+            <p className="text-fg-muted mt-1 text-sm">{t("investors_desc")}</p>
+          </header>
 
-            <InvestorApplicationsList applications={applications} />
-          </Container>
-        </div>
+          <InvestorApplicationsList applications={applications} />
+        </Container>
       </div>
     </div>
   );

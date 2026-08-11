@@ -467,22 +467,22 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
   return (
     <>
       {/* Top Header Bar - Visible only on mobile/tablet */}
-      <header className="bg-bg-secondary/40 fixed inset-x-0 top-0 z-30 flex h-16 items-center justify-between border-b border-white/5 px-6 backdrop-blur-xl lg:hidden">
-        <div className="flex items-center gap-3">
+      <header className="bg-bg-secondary/40 fixed inset-x-0 top-0 z-30 flex h-16 items-center justify-between border-b border-white/5 px-4 backdrop-blur-xl sm:px-6 lg:hidden">
+        <div className="flex min-w-0 items-center gap-2 sm:gap-3">
           <button
             onClick={() => setIsOpen(true)}
-            className="text-fg-secondary hover:text-fg-primary rounded-xl p-2 transition hover:bg-white/5"
+            className="text-fg-secondary hover:text-fg-primary shrink-0 rounded-xl p-2 transition hover:bg-white/5"
           >
             <Menu className="h-6 w-6" />
           </button>
-          <Link href="/admin" className="flex items-center gap-3">
-            <Wordmark className="text-xl" />
+          <Link href="/admin" className="flex min-w-0 items-center gap-2 sm:gap-3">
+            <Wordmark className="truncate text-lg sm:text-xl" />
           </Link>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex shrink-0 items-center gap-2 sm:gap-4">
           <LanguageSwitcher className="h-8" />
-          <div className="border-brand-500/20 relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border shadow-[0_0_8px_rgba(168,85,247,0.15)]">
+          <div className="border-brand-500/20 relative flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full border shadow-[0_0_8px_rgba(168,85,247,0.15)]">
             {user.avatarUrl ? (
               <Image
                 src={user.avatarUrl}
@@ -512,37 +512,39 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
       <aside
         className={cn(
           "bg-bg-secondary/40 fixed inset-y-0 left-0 z-50 flex flex-col border-r border-white/10 shadow-[4px_0_24px_rgba(0,0,0,0.5),_inset_0_1px_1px_0_rgba(255,255,255,0.1)] ring-1 ring-white/5 backdrop-blur-2xl backdrop-contrast-125 backdrop-saturate-150 transition-all duration-300 ease-in-out dark:bg-slate-950/30",
-          isOpen ? "w-72 translate-x-0" : "w-72 -translate-x-full",
-          "lg:static lg:flex lg:h-screen lg:translate-x-0 lg:shadow-none",
+          isOpen
+            ? "w-72 max-w-[calc(100vw-3rem)] translate-x-0"
+            : "w-72 max-w-[calc(100vw-3rem)] -translate-x-full",
+          "lg:static lg:flex lg:h-screen lg:max-w-none lg:translate-x-0 lg:shadow-none",
           isCollapsed ? "lg:w-16" : "lg:w-64",
         )}
       >
-        <div className="flex h-16 shrink-0 items-center justify-between border-b border-white/5 px-6">
+        <div className="flex h-16 shrink-0 items-center justify-between border-b border-white/5 px-4 sm:px-6">
           <Link
             href="/admin"
-            className="group flex items-center gap-3"
+            className="group flex min-w-0 items-center gap-3"
             onClick={() => setIsOpen(false)}
           >
             {isCollapsed ? (
               <Logo size="sm" />
             ) : (
-              <div className="flex items-center gap-2.5">
-                <div className="border-brand-500/30 bg-brand-500/10 flex h-8 w-8 items-center justify-center rounded-xl border shadow-[0_0_15px_rgba(168,85,247,0.25)] transition duration-300 group-hover:scale-105">
+              <div className="flex min-w-0 items-center gap-2.5">
+                <div className="border-brand-500/30 bg-brand-500/10 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border shadow-[0_0_15px_rgba(168,85,247,0.25)] transition duration-300 group-hover:scale-105">
                   <Logo size="sm" />
                 </div>
-                <Wordmark className="text-xl tracking-tight" />
+                <Wordmark className="truncate text-xl tracking-tight" />
               </div>
             )}
           </Link>
           <button
             onClick={() => setIsOpen(false)}
-            className="text-fg-muted rounded-xl p-1.5 transition hover:bg-white/5 hover:text-white lg:hidden"
+            className="text-fg-muted shrink-0 rounded-xl p-1.5 transition hover:bg-white/5 hover:text-white lg:hidden"
           >
             <X className="h-5 w-5" />
           </button>
           <button
             onClick={toggleCollapse}
-            className="text-fg-muted hidden rounded-xl p-1.5 transition hover:bg-white/5 hover:text-white lg:block"
+            className="text-fg-muted hidden shrink-0 rounded-xl p-1.5 transition hover:bg-white/5 hover:text-white lg:block"
             title={t("toggle_sidebar_ctrl_b")}
           >
             {isCollapsed ? (
@@ -613,8 +615,8 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
               </form>
             </div>
           ) : (
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
+            <div className="min-w-0 space-y-4 overflow-hidden">
+              <div className="flex min-w-0 items-center gap-3">
                 <div className="border-brand-500/20 relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full border shadow-[0_0_8px_rgba(168,85,247,0.15)]">
                   {user.avatarUrl ? (
                     <Image
@@ -638,19 +640,19 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between gap-2">
+              <div className="flex min-w-0 items-center justify-between gap-2">
                 <Link
                   href="/"
-                  className="text-fg-muted hover:bg-bg-tertiary/60 hover:text-fg-primary flex items-center gap-2 rounded-xl px-3 py-2 text-xs font-semibold transition"
+                  className="text-fg-muted hover:bg-bg-tertiary/60 hover:text-fg-primary flex min-w-0 items-center gap-2 rounded-xl px-2.5 py-2 text-xs font-semibold transition"
                 >
-                  <Globe className="h-3.5 w-3.5" />
-                  {tNav("home")}
+                  <Globe className="h-3.5 w-3.5 shrink-0" />
+                  <span className="truncate">{tNav("home")}</span>
                 </Link>
-                <LanguageSwitcher className="h-7 text-xs" />
-                <form action="/api/auth/signout" method="post">
+                <LanguageSwitcher className="h-7 shrink-0 text-xs" />
+                <form action="/api/auth/signout" method="post" className="shrink-0">
                   <button
                     type="submit"
-                    className="text-danger-400 hover:bg-danger-500/10 flex items-center gap-2 rounded-xl px-3 py-2 text-xs font-semibold transition"
+                    className="text-danger-400 hover:bg-danger-500/10 flex items-center gap-2 rounded-xl px-2.5 py-2 text-xs font-semibold transition"
                     title={tAuth("signOut") ?? "Sign Out"}
                   >
                     <LogOut className="h-3.5 w-3.5" />

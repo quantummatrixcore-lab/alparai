@@ -38,7 +38,7 @@ export function AiBudgetTransparencyScore({
   return (
     <div
       className={cn(
-        "group relative overflow-hidden rounded-3xl border border-cyan-500/20 bg-zinc-900/40 p-6 shadow-2xl backdrop-blur-2xl transition-all duration-300 hover:border-cyan-500/40 hover:bg-zinc-900/60 md:p-8",
+        "group relative w-full overflow-hidden rounded-3xl border border-cyan-500/20 bg-zinc-900/40 p-4 shadow-2xl backdrop-blur-2xl transition-all duration-300 hover:border-cyan-500/40 hover:bg-zinc-900/60 sm:p-6 md:p-8",
         className,
       )}
     >
@@ -47,27 +47,27 @@ export function AiBudgetTransparencyScore({
       <div className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-emerald-500/10 blur-3xl transition-all duration-500 group-hover:bg-emerald-500/20" />
 
       {/* Header */}
-      <div className="relative z-10 flex flex-col gap-4 border-b border-white/10 pb-6 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex items-center gap-3.5">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.15)]">
-            <ShieldCheck className="h-6 w-6" />
+      <div className="relative z-10 flex min-w-0 flex-col gap-4 border-b border-white/10 pb-5 sm:flex-row sm:items-center sm:justify-between sm:pb-6">
+        <div className="flex min-w-0 items-center gap-3.5">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.15)] sm:h-12 sm:w-12">
+            <ShieldCheck className="h-5 w-5 sm:h-6 sm:w-6" />
           </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <h2 className="text-xl font-bold tracking-tight text-white">
+          <div className="min-w-0 flex-1">
+            <div className="flex min-w-0 flex-wrap items-center gap-2">
+              <h2 className="max-w-full truncate text-lg font-bold tracking-tight text-white sm:text-xl">
                 AI Incident Budget Transparency Score™
               </h2>
-              <span className="inline-flex items-center gap-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-2.5 py-0.5 text-[10px] font-bold tracking-wide text-cyan-300">
+              <span className="inline-flex shrink-0 items-center gap-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-2.5 py-0.5 text-[10px] font-bold tracking-wide text-cyan-300">
                 <Sparkles className="h-3 w-3 text-cyan-400" /> Görev #160
               </span>
             </div>
-            <p className="text-xs text-zinc-400">
+            <p className="truncate text-xs text-zinc-400">
               Token Bütçe Anti-Halüsinasyon Motoru · Real-Time Entropy & Verification Monitor
             </p>
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center justify-between gap-2 sm:justify-end">
           {/* Timeframe Selector */}
           <div className="flex items-center rounded-xl border border-white/10 bg-white/5 p-1 backdrop-blur-md">
             {(["24h", "7d", "30d"] as const).map((tf) => (
@@ -88,7 +88,7 @@ export function AiBudgetTransparencyScore({
 
           <button
             onClick={handleRefresh}
-            className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-zinc-300 backdrop-blur-md transition-all hover:border-white/20 hover:bg-white/10 hover:text-white"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-zinc-300 backdrop-blur-md transition-all hover:border-white/20 hover:bg-white/10 hover:text-white"
             title="Verileri Yenile"
           >
             <RefreshCw className={cn("h-4 w-4", isRefreshing && "animate-spin text-cyan-400")} />
@@ -97,12 +97,12 @@ export function AiBudgetTransparencyScore({
       </div>
 
       {/* Grid Content */}
-      <div className="relative z-10 mt-6 grid grid-cols-1 gap-6 lg:grid-cols-12">
+      <div className="relative z-10 mt-6 grid w-full min-w-0 grid-cols-1 gap-6 lg:grid-cols-12">
         {/* Main Radial Gauge Section (5 cols) */}
-        <div className="flex flex-col items-center justify-center rounded-2xl border border-white/5 bg-white/[0.02] p-6 backdrop-blur-xl lg:col-span-5">
+        <div className="flex w-full min-w-0 flex-col items-center justify-center overflow-hidden rounded-2xl border border-white/5 bg-white/[0.02] p-4 backdrop-blur-xl sm:p-6 lg:col-span-5">
           <div className="relative flex items-center justify-center">
             {/* SVG Circular Radial Gauge */}
-            <svg className="h-48 w-48 -rotate-90 transform" viewBox="0 0 160 160">
+            <svg className="h-40 w-40 -rotate-90 transform sm:h-48 sm:w-48" viewBox="0 0 160 160">
               {/* Background circle track */}
               <circle
                 cx="80"
@@ -137,7 +137,7 @@ export function AiBudgetTransparencyScore({
 
             {/* Inner Gauge Text - Perfectly Symmetrical & Centered */}
             <div className="absolute inset-0 flex flex-col items-center justify-center p-3 text-center">
-              <span className="text-3xl font-black tracking-tight text-white drop-shadow-sm">
+              <span className="text-2xl font-black tracking-tight text-white drop-shadow-sm sm:text-3xl">
                 %{score}
               </span>
               <span className="mt-1 max-w-[100px] text-[9px] leading-tight font-bold tracking-widest text-emerald-400 uppercase">
@@ -146,21 +146,22 @@ export function AiBudgetTransparencyScore({
             </div>
           </div>
 
-          <div className="mt-4 flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-300">
-            <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />
-            <span>Optimum Doğruluk Koruma Derecesi</span>
+          <div className="mt-4 flex max-w-full items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-300">
+            <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-emerald-400" />
+            <span className="truncate">Optimum Doğruluk Koruma Derecesi</span>
           </div>
         </div>
 
         {/* Breakdown & Linear Gauge Bar Section (7 cols) */}
-        <div className="flex flex-col justify-between space-y-5 lg:col-span-7">
+        <div className="flex w-full min-w-0 flex-col justify-between space-y-5 lg:col-span-7">
           {/* Linear Bar Gauge for Token Budget */}
-          <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-4">
-            <div className="flex items-center justify-between text-xs font-semibold">
-              <span className="flex items-center gap-2 text-zinc-300">
-                <Zap className="h-4 w-4 text-amber-400" /> Token Halüsinasyon Bütçe Kullanımı
+          <div className="w-full min-w-0 overflow-hidden rounded-2xl border border-white/5 bg-white/[0.03] p-4">
+            <div className="flex min-w-0 flex-col gap-1 text-xs font-semibold sm:flex-row sm:items-center sm:justify-between">
+              <span className="flex min-w-0 items-center gap-2 text-zinc-300">
+                <Zap className="h-4 w-4 shrink-0 text-amber-400" />{" "}
+                <span className="truncate">Token Halüsinasyon Bütçe Kullanımı</span>
               </span>
-              <span className="text-zinc-400">
+              <span className="shrink-0 text-[11px] text-zinc-400 sm:text-xs">
                 <strong className="text-white">{consumedTokens}</strong> / {totalBudgetTokens}{" "}
                 Tokens ({budgetUsagePct}%)
               </span>
@@ -174,39 +175,50 @@ export function AiBudgetTransparencyScore({
               />
             </div>
 
-            <div className="mt-2.5 flex items-center justify-between text-[11px] text-zinc-400">
-              <span className="flex items-center gap-1 text-emerald-400">
-                <ShieldCheck className="h-3 w-3" /> Anti-Halüsinasyon Kalkanı Aktif
+            <div className="mt-2.5 flex min-w-0 flex-col gap-1 text-[11px] text-zinc-400 sm:flex-row sm:items-center sm:justify-between">
+              <span className="flex min-w-0 items-center gap-1 text-emerald-400">
+                <ShieldCheck className="h-3 w-3 shrink-0" />{" "}
+                <span className="truncate">Anti-Halüsinasyon Kalkanı Aktif</span>
               </span>
-              <span>Bütçe Kotası: 10.000 Token Max</span>
+              <span className="shrink-0">Bütçe Kotası: 10.000 Token Max</span>
             </div>
           </div>
 
           {/* 3 Metric Mini Cards */}
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-            <div className="rounded-xl border border-white/5 bg-white/[0.02] p-3 transition-colors hover:border-cyan-500/30">
-              <p className="text-[11px] font-medium text-zinc-400">Halüsinasyon Oranı</p>
-              <div className="mt-1 flex items-baseline justify-between">
-                <p className="text-lg font-bold text-emerald-400">%{hallucinationRate}</p>
-                <span className="text-[10px] font-semibold text-emerald-400/80">
+          <div className="grid w-full min-w-0 grid-cols-1 gap-3 sm:grid-cols-3">
+            <div className="min-w-0 overflow-hidden rounded-xl border border-white/5 bg-white/[0.02] p-3 transition-colors hover:border-cyan-500/30">
+              <p className="truncate text-[11px] font-medium text-zinc-400">Halüsinasyon Oranı</p>
+              <div className="mt-1 flex items-baseline justify-between gap-1">
+                <p className="truncate text-base font-bold text-emerald-400 sm:text-lg">
+                  %{hallucinationRate}
+                </p>
+                <span className="shrink-0 text-[10px] font-semibold text-emerald-400/80">
                   Crit &lt; 2.0%
                 </span>
               </div>
             </div>
 
-            <div className="rounded-xl border border-white/5 bg-white/[0.02] p-3 transition-colors hover:border-purple-500/30">
-              <p className="text-[11px] font-medium text-zinc-400">Doğrulanmış İddia</p>
-              <div className="mt-1 flex items-baseline justify-between">
-                <p className="text-lg font-bold text-cyan-300">{verifiedClaimsCount}</p>
-                <span className="text-[10px] font-semibold text-cyan-400/80">PDU Validated</span>
+            <div className="min-w-0 overflow-hidden rounded-xl border border-white/5 bg-white/[0.02] p-3 transition-colors hover:border-purple-500/30">
+              <p className="truncate text-[11px] font-medium text-zinc-400">Doğrulanmış İddia</p>
+              <div className="mt-1 flex items-baseline justify-between gap-1">
+                <p className="truncate text-base font-bold text-cyan-300 sm:text-lg">
+                  {verifiedClaimsCount}
+                </p>
+                <span className="shrink-0 text-[10px] font-semibold text-cyan-400/80">
+                  PDU Validated
+                </span>
               </div>
             </div>
 
-            <div className="rounded-xl border border-white/5 bg-white/[0.02] p-3 transition-colors hover:border-amber-500/30">
-              <p className="text-[11px] font-medium text-zinc-400">Tasarruf Edilen Token</p>
-              <div className="mt-1 flex items-baseline justify-between">
-                <p className="text-lg font-bold text-amber-300">ölçülmedi</p>
-                <span className="text-[10px] font-semibold text-amber-400/80">TOM Engine</span>
+            <div className="min-w-0 overflow-hidden rounded-xl border border-white/5 bg-white/[0.02] p-3 transition-colors hover:border-amber-500/30">
+              <p className="truncate text-[11px] font-medium text-zinc-400">
+                Tasarruf Edilen Token
+              </p>
+              <div className="mt-1 flex items-baseline justify-between gap-1">
+                <p className="truncate text-base font-bold text-amber-300 sm:text-lg">ölçülmedi</p>
+                <span className="shrink-0 text-[10px] font-semibold text-amber-400/80">
+                  TOM Engine
+                </span>
               </div>
             </div>
           </div>
@@ -214,14 +226,18 @@ export function AiBudgetTransparencyScore({
       </div>
 
       {/* Footer Info Strip */}
-      <div className="relative z-10 mt-6 flex flex-col gap-2 border-t border-white/5 pt-4 text-xs text-zinc-400 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex items-center gap-2">
-          <Activity className="h-3.5 w-3.5 animate-pulse text-cyan-400" />
-          <span>Sistem Durumu: Anti-Halüsinasyon Protokolü v2.4 Tam Yetki Çalışıyor</span>
+      <div className="relative z-10 mt-6 flex min-w-0 flex-col gap-2 overflow-hidden border-t border-white/5 pt-4 text-xs text-zinc-400 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex min-w-0 items-center gap-2">
+          <Activity className="h-3.5 w-3.5 shrink-0 animate-pulse text-cyan-400" />
+          <span className="truncate">
+            Sistem Durumu: Anti-Halüsinasyon Protokolü v2.4 Tam Yetki Çalışıyor
+          </span>
         </div>
-        <div className="flex items-center gap-3">
-          <span className="text-zinc-500">Zaman Damgası: Live Auto-Sync</span>
-          <span className="rounded border border-cyan-500/20 bg-cyan-500/10 px-2 py-0.5 font-mono text-[11px] text-cyan-400/90">
+        <div className="flex shrink-0 items-center justify-between gap-3 sm:justify-end">
+          <span className="text-[11px] text-zinc-500 sm:text-xs">
+            Zaman Damgası: Live Auto-Sync
+          </span>
+          <span className="shrink-0 rounded border border-cyan-500/20 bg-cyan-500/10 px-2 py-0.5 font-mono text-[11px] text-cyan-400/90">
             Rule #160 Verified
           </span>
         </div>

@@ -9,7 +9,7 @@ export default async function CodebaseHygieneAdminPage() {
 
   await requireAdmin();
   return (
-    <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-6 text-white shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
+    <div className="space-y-8 rounded-3xl bg-zinc-900/40 px-3 py-4 text-white shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:px-6 md:p-8">
       <div>
         <h1 className="flex items-center gap-3 text-3xl font-bold tracking-tight text-white">
           <Sparkles className="h-8 w-8 text-emerald-400" />

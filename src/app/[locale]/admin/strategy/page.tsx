@@ -165,10 +165,10 @@ export default async function StrategyOverviewPage({
   };
 
   return (
-    <div className="min-h-screen bg-black p-6">
-      <div className="rounded-3xl bg-zinc-900/40 p-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl">
+    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
+      <div className="rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
         <StrategyTabs />
-        <div className="min-h-screen py-8">
+        <div className="py-4 sm:py-6">
           <Container>
             {/* Page Header */}
             <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">

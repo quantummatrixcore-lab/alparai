@@ -3,7 +3,6 @@ import { requireAdmin } from "@/lib/auth/session";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { ImportQueueClient, type ImportedIncident } from "@/components/admin/import-queue-client";
 import { CsvUploadForm } from "@/components/admin/csv-upload-form";
-import { Container } from "@/components/ui/layout";
 import { logger } from "@/lib/utils/logger";
 
 interface PageProps {
@@ -44,16 +43,14 @@ export default async function AdminImportPage({ params }: PageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-black p-6"><div className="bg-zinc-900/40 backdrop-blur-xl ring-1 ring-white/10 rounded-3xl shadow-2xl p-8">
-      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-6 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
-      <Container className="space-y-10 py-8">
+    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
+      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
         <CsvUploadForm locale={locale} />
         <ImportQueueClient
           initialIncidents={(pendingIncidents as unknown as ImportedIncident[]) || []}
           locale={locale}
         />
-      </Container>
+      </div>
     </div>
-      </div></div>
   );
 }

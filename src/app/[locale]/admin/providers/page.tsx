@@ -25,8 +25,7 @@ export default async function ProvidersPage({ params }: { params: Promise<{ loca
   const models = await discoverAllModels();
 
   return (
-    <div className="min-h-screen bg-black p-6"><div className="bg-zinc-900/40 backdrop-blur-xl ring-1 ring-white/10 rounded-3xl shadow-2xl p-8">
-      <div className="animate-in fade-in space-y-8 rounded-3xl bg-zinc-900/40 p-6 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl duration-500 md:p-8">
+    <div className="animate-in fade-in space-y-8 rounded-3xl bg-zinc-900/40 px-3 py-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl duration-500 sm:px-6 md:p-8">
       <div>
         <h1 className="flex items-center gap-2 text-3xl font-black tracking-tight text-white drop-shadow-md">
           <Cpu className="text-brand-400 h-8 w-8" />
@@ -127,6 +126,5 @@ export default async function ProvidersPage({ params }: { params: Promise<{ loca
         </div>
       </div>
     </div>
-      </div></div>
   );
 }

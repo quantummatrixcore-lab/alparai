@@ -41,7 +41,7 @@ export default async function AdminLayout({
   };
 
   return (
-    <div className="bg-bg-primary text-fg-primary relative flex min-h-screen flex-col overflow-hidden lg:flex-row">
+    <div className="bg-bg-primary text-fg-primary relative flex min-h-screen max-w-full flex-col overflow-x-hidden lg:flex-row">
       {/* Premium Background Elements */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(168,85,247,0.15),rgba(255,255,255,0))]" />
       <div className="pointer-events-none absolute top-[20%] -left-[20%] h-[500px] w-[500px] rounded-full bg-cyan-500/5 blur-[120px]" />
@@ -49,7 +49,7 @@ export default async function AdminLayout({
       <AdminSidebar user={sidebarUser} />
       <Manage360CommandPalette />
       <div className="relative z-10 flex min-w-0 flex-1 flex-col pt-16 lg:h-screen lg:overflow-y-auto lg:pt-0">
-        <main className="w-full flex-1">{children}</main>
+        <main className="w-full max-w-full flex-1 overflow-x-hidden">{children}</main>
       </div>
     </div>
   );

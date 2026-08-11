@@ -1,6 +1,5 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { redirect } from "next/navigation";
-import { Container } from "@/components/ui/layout";
 import { getCurrentUser } from "@/lib/auth/session";
 import { BarChart3 } from "lucide-react";
 import { Link } from "@/i18n/routing";
@@ -33,9 +32,8 @@ export default async function CrossAuditDashboardPage({
   const metricsData = await getCrossAuditDashboardData();
 
   return (
-    <div className="min-h-screen bg-black p-6"><div className="bg-zinc-900/40 backdrop-blur-xl ring-1 ring-white/10 rounded-3xl shadow-2xl p-8">
-      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-6 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
-      <Container className="py-10">
+    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
+      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
         <header className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-center">
           <div>
             <h1 className="text-fg-primary inline-flex items-center gap-2 text-2xl font-bold">
@@ -67,8 +65,7 @@ export default async function CrossAuditDashboardPage({
         </header>
 
         <CrossAuditDashboardClient data={metricsData} />
-      </Container>
+      </div>
     </div>
-      </div></div>
   );
 }

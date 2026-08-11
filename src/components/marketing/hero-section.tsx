@@ -110,7 +110,7 @@ export function HeroSection({
             {/* Main headline - Premium Gradient Text */}
             <motion.h1
               variants={itemVariants}
-              className="animate-fade-up pb-4 text-[56px] leading-[0.9] font-black tracking-tighter drop-shadow-2xl sm:text-[72px] lg:text-[84px]"
+              className="animate-fade-up pb-4 text-[48px] leading-[1.1] font-black tracking-tighter break-words drop-shadow-2xl sm:text-[64px] lg:text-[64px] xl:text-[72px]"
             >
               <span className="bg-gradient-to-br from-white via-white to-white/40 bg-clip-text text-transparent">
                 {t("title_primary")}

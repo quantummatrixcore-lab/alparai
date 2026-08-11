@@ -1,6 +1,5 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { redirect } from "next/navigation";
-import { Container } from "@/components/ui/layout";
 import { getCurrentUser } from "@/lib/auth/session";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { Award, CheckCircle2, Clock } from "lucide-react";
@@ -43,54 +42,50 @@ export default async function AdminExpertsPage({
   const pending = applications.filter((a) => a.status === "pending");
 
   return (
-    <div className="min-h-screen bg-black p-6">
-      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-6 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
+    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
+      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
         <FundingHubTabs />
-        <div>
-          <Container className="py-10">
-            <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
-              <MetricCard
-                title={t("experts_title_apps")}
-                value={applications.length}
-                icon={<Award className="h-4 w-4" />}
-                trend="up"
-                trendLabel={t("experts_trend_total")}
-                accentColor="#f59e0b"
-                sparkData={applications.slice(0, 8).map((_, i) => ({ value: i + 1 }))}
-                chartType="bar"
-              />
-              <MetricCard
-                title={t("experts_title_approved")}
-                value={approved.length}
-                icon={<CheckCircle2 className="h-4 w-4" />}
-                trend={approved.length > 0 ? "up" : "neutral"}
-                trendLabel={t("experts_trend_verified")}
-                accentColor="#10b981"
-              />
-              <MetricCard
-                title={t("experts_title_pending")}
-                value={pending.length}
-                icon={<Clock className="h-4 w-4" />}
-                trend={pending.length > 0 ? "up" : "neutral"}
-                trendLabel={t("experts_trend_awaiting")}
-                accentColor="#6366f1"
-              />
-            </div>
-            <header className="mb-6">
-              <h1 className="text-fg-primary inline-flex items-center gap-2 text-2xl font-bold">
-                <Award className="text-brand-400 h-6 w-6" />{" "}
-                {t("expertApplications", { defaultValue: "Expert Applications" })}
-              </h1>
-              <p className="text-fg-muted mt-1 text-sm">
-                {t("manageExpertApplications", {
-                  defaultValue: "Review and manage expert panel applications.",
-                })}
-              </p>
-            </header>
-
-            <ExpertApplicationsList applications={applications} />
-          </Container>
+        <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <MetricCard
+            title={t("experts_title_apps")}
+            value={applications.length}
+            icon={<Award className="h-4 w-4" />}
+            trend="up"
+            trendLabel={t("experts_trend_total")}
+            accentColor="#f59e0b"
+            sparkData={applications.slice(0, 8).map((_, i) => ({ value: i + 1 }))}
+            chartType="bar"
+          />
+          <MetricCard
+            title={t("experts_title_approved")}
+            value={approved.length}
+            icon={<CheckCircle2 className="h-4 w-4" />}
+            trend={approved.length > 0 ? "up" : "neutral"}
+            trendLabel={t("experts_trend_verified")}
+            accentColor="#10b981"
+          />
+          <MetricCard
+            title={t("experts_title_pending")}
+            value={pending.length}
+            icon={<Clock className="h-4 w-4" />}
+            trend={pending.length > 0 ? "up" : "neutral"}
+            trendLabel={t("experts_trend_awaiting")}
+            accentColor="#6366f1"
+          />
         </div>
+        <header className="mb-6">
+          <h1 className="text-fg-primary inline-flex items-center gap-2 text-2xl font-bold">
+            <Award className="text-brand-400 h-6 w-6" />{" "}
+            {t("expertApplications", { defaultValue: "Expert Applications" })}
+          </h1>
+          <p className="text-fg-muted mt-1 text-sm">
+            {t("manageExpertApplications", {
+              defaultValue: "Review and manage expert panel applications.",
+            })}
+          </p>
+        </header>
+
+        <ExpertApplicationsList applications={applications} />
       </div>
     </div>
   );

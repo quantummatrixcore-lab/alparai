@@ -16,7 +16,7 @@ export function AdminContainer({
   className?: string;
 }) {
   return (
-    <div className={cn("mx-auto max-w-[1600px] space-y-8 p-4 sm:p-6 lg:p-8", className)}>
+    <div className={cn("mx-auto max-w-[1600px] space-y-8 px-3 py-4 sm:px-6 md:p-8", className)}>
       {children}
     </div>
   );

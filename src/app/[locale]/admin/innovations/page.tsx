@@ -1,6 +1,5 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { redirect } from "next/navigation";
-import { Container } from "@/components/ui/layout";
 import { getCurrentUser } from "@/lib/auth/session";
 import { getInnovations, getExternalQueue, getConnectorStatuses } from "@/actions/innovations";
 import { InnovationsClient } from "@/components/admin/innovations-client";
@@ -41,17 +40,15 @@ export default async function AdminInnovationsPage({
   const initialInnovations = (innovationsData || []) as StrategyInnovation[];
 
   return (
-    <div className="min-h-screen bg-black p-6"><div className="bg-zinc-900/40 backdrop-blur-xl ring-1 ring-white/10 rounded-3xl shadow-2xl p-8">
-      <div className="min-h-screen rounded-3xl bg-zinc-900/40 p-6 py-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
-      <Container>
+    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
+      <div className="rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
         <InnovationsClient
           initialInnovations={initialInnovations}
           initialQueue={pendingQueue}
           initialConnectors={connectorsData}
           locale={locale}
         />
-      </Container>
+      </div>
     </div>
-      </div></div>
   );
 }

@@ -29,22 +29,20 @@ export default async function GrantsAdminPage({ params }: { params: Promise<{ lo
   }
 
   return (
-    <div className="min-h-screen bg-black p-6">
-      <div className="rounded-3xl bg-zinc-900/40 p-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl">
+    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
+      <div className="mx-auto max-w-6xl space-y-8 rounded-3xl bg-zinc-900/40 p-4 pb-12 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
         <FundingHubTabs />
-        <div className="mx-auto max-w-6xl space-y-8 rounded-3xl bg-zinc-900/40 p-6 pb-12 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
-          <div>
-            <h1 className="flex items-center gap-3 text-3xl font-black tracking-tight text-white">
-              <Building2 className="h-8 w-8 text-amber-400" />
-              {t("nav_grants")}
-            </h1>
-            <p className="text-fg-muted mt-2 text-lg">{t("grants_subtitle")}</p>
-          </div>
-
-          <AdminSectionCard title={t("grants_active_section")}>
-            <GrantsList initialGrants={grants || []} userRole={user.role} />
-          </AdminSectionCard>
+        <div>
+          <h1 className="flex items-center gap-3 text-3xl font-black tracking-tight text-white">
+            <Building2 className="h-8 w-8 text-amber-400" />
+            {t("nav_grants")}
+          </h1>
+          <p className="text-fg-muted mt-2 text-lg">{t("grants_subtitle")}</p>
         </div>
+
+        <AdminSectionCard title={t("grants_active_section")}>
+          <GrantsList initialGrants={grants || []} userRole={user.role} />
+        </AdminSectionCard>
       </div>
     </div>
   );

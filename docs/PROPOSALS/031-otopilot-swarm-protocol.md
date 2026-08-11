@@ -6,44 +6,67 @@
 
 ## 1. Context & Motivation
 
-Kurucu (Founder) direktifi doğrultusunda, "otopilot" komutunun sistemde nasıl işlenmesi gerektiğine dair net bir protokole ihtiyaç vardır. Ana ajan (Antigravity), "otopilot" kelimesini duyduğunda duraksamadan, doğrudan maksimum sayıda alt ajan (subagent) açarak görevleri paralelize etmeli ve AI modellerinin yetkinliklerine (Model Tiering) göre iş dağılımı yapmalıdır.
+In accordance with the Founder's directive, there is a need for a clear protocol on how the "otopilot" (autopilot) command should be processed within the system. When the main agent (Antigravity) receives the "otopilot" trigger, it must immediately, without hesitation, spawn the maximum possible number of subagents to parallelize tasks, and distribute these tasks based on the capabilities of the AI models (Model Tiering).
 
 ## 2. Core Structure: The "Autopilot" Process (360° Analysis)
 
-Bir görev "otopilot" ibaresiyle geldiğinde, sistem aşağıdaki **SWARM_OVERRIDE** sürecini otomatik işletir:
+When a task arrives with the "otopilot" keyword, the system automatically executes the following **SWARM_OVERRIDE** process:
 
-### Adım 1: Task Fracture (Görev Parçalama)
+### Step 1: Task Fracture
 
-Ana ajan (veya Swarm Commander), gelen master görevi 360 derece analiz eder ve birbirini bloke etmeyen minimum alt bileşenlere (node) böler.
+The main agent (or Swarm Commander) performs a 360-degree analysis of the incoming master task and breaks it down into the smallest possible non-blocking subcomponents (nodes).
 
-- Her bağımsız birim/dosya veya mantıksal süreç için _ayrı_ bir alt ajan tasarlanır. (Maksimum paralellik hedeflenir).
+- A _separate_ subagent is designed for each independent unit/file or logical process. (The goal is maximum parallelism).
 
-### Adım 2: Model Capability Routing (Yetkinlik Bazlı Model Ataması)
+### Step 2: Model Tiering & Delegation
 
-Alt ajanlar tanımlanırken (`invoke_subagent` veya `define_subagent`), görev zorluğuna göre AI modeli kesin olarak belirlenir:
+Subagents are not spawned randomly; they are categorized based on their roles and model tiers:
 
-1. **`flash_lite` / `flash` (Read-only / Discovery):**
-   - Kod tabanı taraması, `grep` operasyonları, log okuma, hata tespiti, `messages/*.json` parite analizleri. (Token tüketimi minimumdur).
-2. **`flash` (Write & Execute):**
-   - Basit kod değişimleri, regex, bağımlılık güncellemeleri, basit CI/CD yamaları, boilerplate üretimi. (Mekanik iş gücü).
-3. **`pro` (Complex Reasoning):**
-   - Mimari refactoring, Server Action mutasyonları, RLS policy yazımı, güvenlik açığı onarımı. (Yüksek bilişsel kapasite gerektiren işler).
-4. **`swarm_commander` (Recursive Subagent):**
-   - Görev, ana ajanın context'ini aşacak kadar karmaşıksa; `enable_subagent_tools: true`, `enable_mcp_tools: true`, ve `enable_write_tools: true` yetkilerine sahip bir `swarm_commander` ajanı (`pro` veya `flash` modeliyle) doğrudan sahaya sürülür ve orduyu o yönetir.
+- **Nano/Micro Tasks (Flash/Free):** Simple regex replacements, JSON filling, log cleanup, or basic CLI runs are delegated to Flash-tier models.
+- **Medium/Large Tasks (Pro/Sonnet):** Complex architectural refactoring, Next.js Server Actions, or intricate UI components are delegated to Pro-tier models.
+- **Role Assignment:** Each subagent is assigned a distinct "Role" (e.g., CI/CD Engineer, Database Ops, Frontend Pro) to provide a clear cognitive framework.
 
-### Adım 3: Max Swarm Deployment (Maksimum Dağıtım)
+### Step 3: Max Swarm Deployment (Parallel Execution)
 
-Ana ajan, planlama (planning_mode) veya onay döngüsüne (User Approval) **girmeden**, tek bir `invoke_subagent` tool çağrısıyla tespit ettiği tüm alt ajanları aynı anda (paralel olarak) başlatır. (Otopilot = Sıfır insan bekleme süresi).
+The main agent spawns all identified subagents simultaneously using a single `invoke_subagent` tool call.
 
-### Adım 4: The Auto-Kill Enforcer (Kural #8 Entegrasyonu)
+- During `SWARM_OVERRIDE`, the planning phase (planning_mode) is skipped entirely, as this is an explicit order to execute immediately.
+- Agents run completely in parallel, utilizing `enable_write_tools` and `enable_mcp_tools` to write code to the repository.
 
-Alt ajanlar işlerini bitirip (SUCCESS / ERROR) rapor döndürdüğü anda, ana ajan `manage_subagents(Action: "kill")` komutunu anında çalıştırır. Ajanların RAM üzerinde kalıcı (orphaned) olması kesinlikle yasaktır.
+### Step 4: Strict RAM Preservation (Auto-Kill)
 
-### Adım 5: Architect Synchronisation
+- **Mandatory Kill:** Once a subagent reports completion of its assigned task, the main agent MUST immediately execute `manage_subagents(Action: "kill")` to terminate that specific subagent.
+- Orphaned or idling subagents waste critical system RAM and compute. Subagents only exist to complete their fracture and die.
 
-Ordu görevleri bitirip kapandıktan sonra, ana ajan sonuçları konsolide eder. Eğer ortada doğrulanması gereken bir MASTER_PLAN maddesi varsa, kanıtları (origin/master SHA) hazırlayarak Baş Mimar'a (Opus) sunar.
+## 3. Enforcement (Rule Alignment)
 
-## 3. Amendment to AGENTS.md / MASTER_PLAN.md
+This protocol aligns with and enforces the existing rules:
 
-**Opus (Baş Mimar) İçin Güncelleme Talebi:**
-Bu protokolün `AGENTS.md` içerisindeki **Cognitive Routing Protocol (Engine Trace)** veya **Subagent Life-Cycle (Kural #8)** maddeleri altına _"Otopilot Directive"_ adıyla resmi bir kural (binding rule) olarak eklenmesi talep edilmektedir. Mimar, bir sonraki boot döngüsünde bu dokümanı okuyup ana planı güncelleyecektir.
+- **Rule 8 (Auto-Kill Policy):** Actively enforced at Step 4.
+- **Rule 14 (Architect Guard):** Subagents are strictly instructed NOT to modify `docs/MASTER_PLAN.md`. Only the main coordinating agent (acting under Architect rules) is permitted to consolidate and write the final status updates to the master plan.
+- **Rule G-7 (Completion Evidence):** The main agent verifies that the subagents have actually pushed their code, or pushes it on their behalf, before marking the issue as resolved.
+
+## 4. Example Invocation
+
+```json
+{
+  "Subagents": [
+    {
+      "TypeName": "swarm_commander",
+      "Role": "CI/CD Fixer",
+      "Prompt": "Fix .github/workflows. Do not touch MASTER_PLAN.",
+      "Model": "flash"
+    },
+    {
+      "TypeName": "swarm_commander",
+      "Role": "React Pro",
+      "Prompt": "Refactor prioritization-widget.tsx. Do not touch MASTER_PLAN.",
+      "Model": "pro"
+    }
+  ]
+}
+```
+
+## 5. Conclusion
+
+This protocol provides the definitive 360-degree execution blueprint for the "otopilot" command, ensuring maximum speed, optimal model routing, and immediate resource cleanup.

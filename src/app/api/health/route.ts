@@ -221,11 +221,11 @@ export async function GET(): Promise<NextResponse<HealthCheckDetail>> {
   const unhealthy = services.filter((s) => s.status === "unhealthy");
   const supabaseService = services.find((s) => s.name === "supabase");
   const isSupabaseOk = supabaseService?.status !== "unhealthy";
-  const overallStatus = isSupabaseOk && unhealthy.length === 0 ? "ok" : "degraded";
+  const overallStatus = isSupabaseOk && unhealthy.length === 0 ? "healthy" : "degraded";
 
   return NextResponse.json(
     {
-      status: "ok",
+      status: "healthy",
       overall: overallStatus,
       services,
       timestamp: new Date().toISOString(),

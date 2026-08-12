@@ -76,6 +76,10 @@
       "**/docs/**",
       "**/ops/**",
       "**/scripts/**",
+      "**/artifacts/**",
+      "**/.agents/**",
+      "**/.openchrome/**",
+      "**/walkthrough.md",
       "**/*.log",
       ".env*",
       "*.key",
@@ -98,7 +102,11 @@
         "ARCHIVE",
         "ANTIGRAVITY",
         "Dossier",
-        "CLAUDE"
+        "CLAUDE",
+        "artifacts",
+        ".agents",
+        ".openchrome",
+        "walkthrough.md"
       ]
     },
     {

@@ -16,7 +16,9 @@
         "src/lib/autopilot/**",
         "src/lib/automation/**",
         "src/lib/audit/**",
-        "src/lib/strategy/**"
+        "src/lib/strategy/**",
+        "src/actions/outreach.ts",
+        "src/actions/strategy*.ts"
       ]
     },
     {
@@ -48,7 +50,11 @@
     {
       "comment": "Tests — test coverage and patterns",
       "patterns": ["tests/**/*.ts", "tests/**/*.tsx"],
-      "exclude": ["tests/security/vault.test.ts"]
+      "exclude": [
+        "tests/security/vault.test.ts",
+        "tests/actions/outreach.test.ts",
+        "tests/actions/strategy*.ts"
+      ]
     },
     {
       "comment": "License and public community documentation",

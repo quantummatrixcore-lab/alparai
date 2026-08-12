@@ -7,6 +7,11 @@
       "comment": "Application source code — core product logic",
       "patterns": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.css"],
       "exclude": [
+        "src/app/**/admin/**",
+        "src/components/admin/**",
+        "src/actions/admin/**",
+        "src/actions/admin*.ts",
+        "src/actions/admin.ts",
         "src/lib/moderation/**",
         "src/lib/autopilot/**",
         "src/lib/automation/**",

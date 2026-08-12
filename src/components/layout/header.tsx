@@ -51,7 +51,7 @@ export function Header({
         </div>
         <div className="flex items-center gap-1.5 sm:gap-2.5">
           <a
-            href="https://github.com/quantummatrixcore-lab/alparai-platform"
+            href="https://github.com/quantummatrixcore-lab/alparai"
             target="_blank"
             rel="noopener noreferrer"
             className="text-fg-muted hover:text-brand-400 focus-visible:ring-brand-500 hidden h-9 w-9 items-center justify-center rounded-full transition-colors focus-visible:ring-2 focus-visible:outline-none sm:flex"

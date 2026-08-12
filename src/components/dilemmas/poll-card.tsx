@@ -31,7 +31,7 @@ export function PollCard({ poll }: { poll: Poll }) {
   const [isVoting, setIsVoting] = useState(false);
   const [turnstileKey, setTurnstileKey] = useState(0);
   const turnstileRef = useRef<TurnstileInstance>(null);
-  const [pendingVote, setPendingVote] = useState<"yes" | "no" | "unsure" | null>(null);
+  const pendingVoteRef = useRef<"yes" | "no" | "unsure" | null>(null);
 
   const handleRetryTurnstile = () => {
     setTurnstileError(false);
@@ -66,7 +66,7 @@ export function PollCard({ poll }: { poll: Poll }) {
     if (turnstileToken) {
       executeVote(voteType, turnstileToken);
     } else {
-      setPendingVote(voteType);
+      pendingVoteRef.current = voteType;
       turnstileRef.current?.execute();
     }
   };
@@ -75,7 +75,7 @@ export function PollCard({ poll }: { poll: Poll }) {
     setIsVoting(true);
     const result = await submitVote(poll.id, voteType, token);
     setIsVoting(false);
-    setPendingVote(null);
+    pendingVoteRef.current = null;
     turnstileRef.current?.reset();
 
     if (result.error) {
@@ -170,8 +170,8 @@ export function PollCard({ poll }: { poll: Poll }) {
                 onSuccess={(token) => {
                   setTurnstileToken(token);
                   setTurnstileError(false);
-                  if (pendingVote) {
-                    executeVote(pendingVote, token);
+                  if (pendingVoteRef.current) {
+                    executeVote(pendingVoteRef.current, token);
                   }
                 }}
                 onError={() => {

@@ -95,14 +95,37 @@ export function CalendlyEmbed({
             style={{ minWidth: "320px", height: "700px" }}
           />
         ) : (
-          <iframe
-            src={`${url}?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=0f172a&text_color=f8fafc&primary_color=8b5cf6`}
-            width="100%"
-            height="700"
-            frameBorder="0"
-            title="Calendly Scheduling Page"
-            className="w-full rounded-xl border-0"
-          />
+          <div className="border-border-subtle bg-bg-secondary/30 flex min-h-[500px] w-full flex-col items-center justify-center rounded-xl border p-8 text-center backdrop-blur-sm">
+            <div className="bg-brand-500/10 text-brand-400 mb-6 flex h-16 w-16 items-center justify-center rounded-full">
+              <Calendar className="h-8 w-8" />
+            </div>
+            <h4 className="text-fg-primary mb-2 text-xl font-bold">
+              {isTr ? "Takvim Yüklenemedi" : "Calendar Could Not Be Loaded"}
+            </h4>
+            <p className="text-fg-secondary mb-8 max-w-md text-sm">
+              {isTr
+                ? "Tarayıcı ayarlarınız (reklam engelleyici vb.) nedeniyle takvim arayüzü yüklenemedi. Lütfen randevu için doğrudan takvim sayfasını ziyaret edin veya e-posta gönderin."
+                : "The calendar interface could not be loaded due to your browser settings (e.g., ad blocker). Please visit the calendar page directly or send an email to schedule."}
+            </p>
+            <div className="flex flex-col gap-4 sm:flex-row">
+              <a
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-brand-500 shadow-brand-500/20 hover:bg-brand-600 inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-bold text-white shadow-lg transition-all active:scale-95"
+              >
+                <ExternalLink className="h-4 w-4" />
+                {isTr ? "Takvimi Yeni Sekmede Aç" : "Open Calendar in New Tab"}
+              </a>
+              <a
+                href="mailto:hello@alparai.com?subject=Advisory%20Board%20Application"
+                className="border-border-subtle bg-bg-tertiary text-fg-primary hover:bg-bg-secondary inline-flex items-center justify-center gap-2 rounded-lg border px-6 py-3 text-sm font-bold transition-colors"
+              >
+                <Mail className="h-4 w-4" />
+                {isTr ? "E-posta Gönder" : "Send Email"}
+              </a>
+            </div>
+          </div>
         )}
       </div>
 

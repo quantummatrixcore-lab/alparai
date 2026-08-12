@@ -35,6 +35,7 @@ const routeSchemaMap: Record<string, z.ZodTypeAny> = {
   extract: schemas.extractResponseSchema,
   incidents: schemas.incidentsResponseSchema,
   "incidents/export": schemas.incidentsExportResponseSchema,
+  "incidents/voice": schemas.voiceIncidentResponseSchema,
   "incidents/[id]": schemas.incidentDetailResponseSchema,
   leaderboard: schemas.leaderboardResponseSchema,
   "oecd/feed": schemas.oecdFeedResponseSchema,

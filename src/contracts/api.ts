@@ -67,6 +67,25 @@ export const incidentDetailResponseSchema = z.object({
   }),
 });
 
+// 1c. POST /api/v1/incidents/voice
+export const voiceIncidentResponseSchema = z.object({
+  success: z.boolean(),
+  data: z
+    .object({
+      incident_id: z.string().uuid().nullable(),
+      transcription: z.string(),
+      detected_language: z.string(),
+      languages_supported_count: z.number(),
+      confidence: z.number(),
+      duration_seconds: z.number(),
+      asr_engine: z.string(),
+      pii_masked: z.boolean(),
+      pii_categories_redacted: z.array(z.string()),
+    })
+    .optional(),
+  error: z.string().optional(),
+});
+
 // 3. GET /api/v1/leaderboard
 export const leaderboardResponseSchema = z.object({
   data: z.array(

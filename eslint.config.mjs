@@ -47,7 +47,8 @@ const eslintConfig = defineConfig([
     "ops/**",
     "chrome-data/**",
     "graphify-out/**",
-    "*.js"
+    "*.js",
+    "dist-public/**"
   ]),
 ]);
 

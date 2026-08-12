@@ -58,7 +58,7 @@ describe("selectModelTier router", () => {
 
     expect(res.tier).toBe("basic");
     expect(res.slot1Chain[0]?.provider).toBe("openrouter");
-    expect(res.slot2Chain[0]?.provider).toBe("nvidia");
+    expect(res.slot2Chain[0]?.provider).toBe("google");
     expect(res.supremeChain[0]?.provider).toBe("openrouter");
   });
 
@@ -71,9 +71,9 @@ describe("selectModelTier router", () => {
     });
 
     expect(res.tier).toBe("deep");
-    expect(res.slot1Chain[0]?.id).toBe("google/gemini-2.0-flash-lite-preview-02-05:free");
-    expect(res.slot2Chain[0]?.id).toBe("google/gemini-2.0-flash-lite-preview-02-05:free");
-    expect(res.supremeChain[0]?.id).toBe("google/gemini-2.0-flash-lite-preview-02-05:free");
+    expect(res.slot1Chain[0]?.id).toBe("opencode/nemotron-3-ultra-free");
+    expect(res.slot2Chain[0]?.id).toBe("opencode/nemotron-3-ultra-free");
+    expect(res.supremeChain[0]?.id).toBe("opencode/nemotron-3-ultra-free");
   });
 
   it("routes to deep tier for long descriptions even if severity is low", async () => {
@@ -86,7 +86,7 @@ describe("selectModelTier router", () => {
     });
 
     expect(res.tier).toBe("deep");
-    expect(res.slot1Chain[0]?.id).toBe("google/gemini-2.0-flash-lite-preview-02-05:free");
+    expect(res.slot1Chain[0]?.id).toBe("opencode/nemotron-3-ultra-free");
   });
 
   it("routes to deep tier for critical severity even if description is short", async () => {
@@ -98,7 +98,7 @@ describe("selectModelTier router", () => {
     });
 
     expect(res.tier).toBe("deep");
-    expect(res.slot1Chain[0]?.id).toBe("google/gemini-2.0-flash-lite-preview-02-05:free");
+    expect(res.slot1Chain[0]?.id).toBe("opencode/nemotron-3-ultra-free");
   });
 
   it("routes to deep tier for high severity even if description is short", async () => {
@@ -110,6 +110,6 @@ describe("selectModelTier router", () => {
     });
 
     expect(res.tier).toBe("deep");
-    expect(res.slot1Chain[0]?.id).toBe("google/gemini-2.0-flash-lite-preview-02-05:free");
+    expect(res.slot1Chain[0]?.id).toBe("opencode/nemotron-3-ultra-free");
   });
 });

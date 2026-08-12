@@ -77,7 +77,7 @@ export default async function AdminDashboardPage({
   const grantsWon =
     funding?.combinedWon !== undefined ? `${funding.combinedWon} Kazanılan` : "0 Kazanılan";
   const apiCost = startupHealth?.zeroCostBurnStr ?? "$0/mo";
-  const mrr = startupHealth?.mrr !== undefined ? `$${startupHealth.mrr}` : "$0";
+  const mrr = startupHealth?.mrr ? `$${startupHealth.mrr}` : "—";
   const latency = signals?.find((s) => s.name === "API Response Time")?.value
     ? `${signals.find((s) => s.name === "API Response Time")?.value}ms`
     : "0ms";

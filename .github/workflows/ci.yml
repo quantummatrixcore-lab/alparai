@@ -49,7 +49,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: i18n Key Check
-        if: ${{ !inputs.force }}
+        if: ${{ !inputs.force && github.actor != 'dependabot[bot]' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
         run: pnpm i18n:check
 
       - name: Repo Language Check

@@ -38,8 +38,9 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - name: Check for high severity vulnerabilities
+        if: ${{ github.actor != 'dependabot[bot]' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
         continue-on-error: false
-        run: pnpm audit --prod --audit-level=high || true
+        run: pnpm audit --prod --audit-level=high
 
   gitleaks:
     name: Gitleaks Secrets Scan

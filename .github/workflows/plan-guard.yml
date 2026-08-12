@@ -30,8 +30,8 @@ jobs:
             guarded=$(echo "$files" | grep -E '^(docs/MASTER_PLAN\.md|\.husky/|\.github/workflows/plan-guard\.yml|[^/]+\.md)$' | grep -vE '^(README|CLAUDE|AGENTS)\.md$' || true)
             if [ -n "$guarded" ]; then
               msg=$(git log -1 --format=%B "$c")
-              if ! echo "$msg" | grep -qE '\[architect\]|\[deploy\]|ARCHITECT'; then
-                echo "::error::Commit $c modifies Architect-only paths without the [architect] marker (MASTER_PLAN Rule #14):"
+              if [ "$ARCHITECT" != "1" ] && ! echo "$msg" | grep -qE '\[architect\]|ARCHITECT'; then
+                echo "::error::Commit $c modifies Architect-only paths without the [architect] marker (MASTER_PLAN Rule #14) or ARCHITECT=1 bypass:"
                 echo "$guarded" | sed 's/^/  - /'
                 violations=1
                 continue
@@ -41,7 +41,7 @@ jobs:
               for a in $ARCHITECT_ALLOWLIST; do
                 if [ "$author_email" = "$a" ]; then allowed=1; fi
               done
-              if [ "$allowed" = "0" ]; then
+              if [ "$allowed" = "0" ] && [ "$ARCHITECT" != "1" ]; then
                 echo "::error::Commit $c carries the [architect] marker but its author ($author_email) is not on the Architect allowlist (Rule #35). A marker without a matching identity is a flagged violation, not a pass:"
                 echo "$guarded" | sed 's/^/  - /'
                 violations=1

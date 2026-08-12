@@ -83,10 +83,6 @@ function scanForSecrets(content, filePath, allowlist) {
 }
 
 function scanForPII(content, filePath) {
-  const normalizedPath = filePath.replace(/\\/g, "/");
-  if (normalizedPath.startsWith("messages/") || normalizedPath.startsWith("supabase/migrations/")) {
-    return { detected: false };
-  }
 
   const piiPatterns = {
     tc_kimlik: /\b[1-9]\d{10}\b/g,

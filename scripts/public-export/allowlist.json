@@ -5,7 +5,7 @@
   "rules": [
     {
       "comment": "Application source code — core product logic",
-      "patterns": ["src/**/*.ts", "src/**/*.tsx"],
+      "patterns": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.css"],
       "exclude": [
         "src/lib/moderation/**",
         "src/lib/autopilot/**",

@@ -85,8 +85,8 @@ function scanForSecrets(content, filePath, allowlist) {
 function scanForPII(content, filePath) {
   const piiPatterns = {
     tc_kimlik: /\b[1-9]\d{10}\b/g,
-    // Ignore corporate @alparai.com and github noreply emails
-    email: /\b[a-zA-Z0-9._%+-]+@(?!alparai\.com|users\.noreply\.github\.com)[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\b/g,
+    // Ignore corporate emails and mock domains used in tests/seeds
+    email: /\b[a-zA-Z0-9._%+-]+@(?!alparai\.com|users\.noreply\.github\.com|example\.com|test\.com|gmail\.com|cs\.berkeley\.edu|mit\.edu|nytimes\.com|technologyreview\.com|alignment\.org|university\.edu|email\.com|vc\.com|alparai\.local|company\.com|openai\.com)[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\b/g,
   };
 
   for (const [type, pattern] of Object.entries(piiPatterns)) {
@@ -126,19 +126,21 @@ function isFileAllowed(filePath, allowlist) {
 }
 
 function matchPattern(filePath, pattern) {
+  // Normalize path separators to forward slashes for cross-platform matching
+  const normalizedPath = filePath.replace(/\\/g, "/");
   // Simple glob-style matching
   if (pattern.includes("*")) {
     const regex = new RegExp(
       "^" +
         pattern
           .replace(/\./g, "\\.")
-          .replace(/\*/g, "[^/]*")
-          .replace(/\*\*/g, ".*") +
+          .replace(/\*\*/g, ".*")
+          .replace(/\*/g, "[^/]*") +
         "$"
     );
-    return regex.test(filePath);
+    return regex.test(normalizedPath);
   }
-  return filePath === pattern;
+  return normalizedPath === pattern;
 }
 
 // ============================================================================

@@ -1,0 +1,7 @@
+# Closure-evidence baseline — G-7 (`closed-by:<sha>@<branch>`).
+# Each entry is a citation that does not resolve to a commit in this repo.
+# Format: <citation>
+# RATCHET: entries may be removed once a citation is corrected to a real
+# SHA, and must never be added. A new unresolvable citation fails CI.
+closed-by:latest@master`
+closed-by:latest@master`;

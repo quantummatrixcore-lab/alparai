@@ -1,0 +1,13 @@
+model_id,model_name,provider,trust_score,compliance_level,hallucination_rate_pct,pii_protection_score,alignment_score,sample_size,last_audited_at,score_k5_ethics_safety,score_k6_hallucination_factuality,score_k7_turkish_competence,score_k8_eu_ai_act_reasoning,score_k9_math_reasoning,score_k10_instruction_following,score_k11_robustness_adversarial,score_k12_long_context_retrieval
+claude-3-5-sonnet,"Claude 3.5 Sonnet",Anthropic,98.4,"EU AI Act Compliant",1.2,99.1,97.8,2500,2026-08-01T12:00:00Z,97.8,98.8,98.2,99.1,98.5,99.0,97.9,98.0
+deepseek-r1,"DeepSeek R1","DeepSeek (NVIDIA NIM)",96.8,"EU AI Act Compliant",1.8,96.2,96.9,2200,2026-08-02T10:00:00Z,96.5,98.2,95.8,96.0,99.2,97.1,96.4,95.2
+gpt-4o,GPT-4o,OpenAI,96.2,"EU AI Act Compliant",2.1,95.8,96.5,2400,2026-08-01T14:30:00Z,96.5,97.9,96.0,95.8,96.8,97.5,95.2,94.0
+gemini-1-5-pro,"Gemini 1.5 Pro",Google DeepMind,95.8,"EU AI Act Compliant",2.4,96.4,95.2,2300,2026-08-03T09:15:00Z,95.2,97.6,94.8,96.4,95.0,96.0,94.5,97.0
+llama-3-3-70b,"Llama 3.3 70B Instruct","Meta AI (Open Weights)",95.4,"EU AI Act Compliant",2.8,94.1,94.8,2100,2026-08-02T16:45:00Z,94.8,97.2,93.5,94.1,96.0,95.8,94.0,97.8
+deepseek-v3,"DeepSeek V3","DeepSeek (NVIDIA NIM)",95.1,"EU AI Act Compliant",2.9,94.5,94.9,2000,2026-08-04T11:20:00Z,94.9,97.1,93.0,94.5,97.5,95.0,94.2,94.6
+qwen-2-5-72b,"Qwen 2.5 72B Instruct","Alibaba Cloud",94.2,"EU AI Act Compliant",3.2,93.8,93.5,1900,2026-08-03T18:00:00Z,93.5,96.8,92.4,93.8,96.2,94.5,93.0,93.4
+nemotron-70b,"Llama 3.1 Nemotron 70B","NVIDIA NIM",93.8,"EU AI Act Compliant",3.5,93.0,93.2,1800,2026-08-01T08:00:00Z,93.2,96.5,91.8,93.0,94.5,94.0,92.5,91.9
+gemini-1-5-flash,"Gemini 1.5 Flash",Google DeepMind,92.5,"EU AI Act Compliant",3.9,92.4,92.0,1800,2026-08-04T15:10:00Z,92.0,96.1,91.0,92.4,91.5,93.0,91.2,92.8
+mixtral-8x22b,"Mixtral 8x22B Instruct","Mistral AI",91.7,"Moderate Risk",4.1,90.5,90.8,1700,2026-08-02T13:40:00Z,90.8,95.9,89.5,90.5,92.0,92.2,90.0,91.7
+llama-3-70b,"Llama 3 70B","Meta (Open Weights)",91.5,"Moderate Risk",4.2,89.2,90.1,1600,2026-08-01T11:00:00Z,90.1,95.8,88.9,89.2,93.1,91.8,91.0,92.1
+glm-4-9b,"GLM-4 9B Chat",THUDM,89.9,"Moderate Risk",5.1,88.0,88.5,1500,2026-08-03T17:25:00Z,88.5,94.9,87.2,88.0,89.0,90.1,88.2,89.3

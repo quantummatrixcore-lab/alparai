@@ -1,0 +1,315 @@
+{
+  "title": "ALPAR AI K-BENCHMARK AI Model Accountability & Safety Ratings",
+  "version": "1.0.0",
+  "license": "AGPL-3.0",
+  "methodology": "Wilson-score statistical confidence with 5-LLM adversarial cross-audit debate engine",
+  "generated_at": "2026-08-06T14:37:00Z",
+  "categories": [
+    {
+      "id": "K5",
+      "name": "Ethics & Safety",
+      "description": "Real-world AI incident evaluation grounded in the ALPAR incident registry, combined with adversarial jailbreaks."
+    },
+    {
+      "id": "K6",
+      "name": "Hallucination & Factuality",
+      "description": "TruthfulQA-based factuality analysis paired with curated Turkish-context factual claims."
+    },
+    {
+      "id": "K7",
+      "name": "Turkish Competence",
+      "description": "Evaluation of Turkish language proficiency using translated MMLU-TR and bespoke local regulatory test sets."
+    },
+    {
+      "id": "K8",
+      "name": "EU AI Act Reasoning",
+      "description": "Assessment of model decision-making logic against Art. 73 regulatory scenarios based on EU AI Act taxonomy."
+    },
+    {
+      "id": "K9",
+      "name": "Math & Reasoning",
+      "description": "Standard mathematical problem-solving capability checked against GSM8K and MATH benchmarks."
+    },
+    {
+      "id": "K10",
+      "name": "Instruction Following",
+      "description": "Verification of structural instruction-following accuracy using IFEval-like constraints."
+    },
+    {
+      "id": "K11",
+      "name": "Robustness & Adversarial",
+      "description": "Adversarial jailbreak protection and prompt-injection defense rating under human-approved simulation."
+    },
+    {
+      "id": "K12",
+      "name": "Long-Context Retrieval",
+      "description": "Needle-in-a-haystack retrieval evaluation for context lengths up to 32k tokens."
+    }
+  ],
+  "models": [
+    {
+      "model_id": "claude-3-5-sonnet",
+      "model_name": "Claude 3.5 Sonnet",
+      "provider": "Anthropic",
+      "trust_score": 98.4,
+      "compliance_level": "EU AI Act Compliant",
+      "hallucination_rate_pct": 1.2,
+      "pii_protection_score": 99.1,
+      "alignment_score": 97.8,
+      "sample_size": 2500,
+      "last_audited_at": "2026-08-01T12:00:00Z",
+      "category_scores": {
+        "K5": 97.8,
+        "K6": 98.8,
+        "K7": 98.2,
+        "K8": 99.1,
+        "K9": 98.5,
+        "K10": 99.0,
+        "K11": 97.9,
+        "K12": 98.0
+      }
+    },
+    {
+      "model_id": "deepseek-r1",
+      "model_name": "DeepSeek R1",
+      "provider": "DeepSeek (NVIDIA NIM)",
+      "trust_score": 96.8,
+      "compliance_level": "EU AI Act Compliant",
+      "hallucination_rate_pct": 1.8,
+      "pii_protection_score": 96.2,
+      "alignment_score": 96.9,
+      "sample_size": 2200,
+      "last_audited_at": "2026-08-02T10:00:00Z",
+      "category_scores": {
+        "K5": 96.5,
+        "K6": 98.2,
+        "K7": 95.8,
+        "K8": 96.0,
+        "K9": 99.2,
+        "K10": 97.1,
+        "K11": 96.4,
+        "K12": 95.2
+      }
+    },
+    {
+      "model_id": "gpt-4o",
+      "model_name": "GPT-4o",
+      "provider": "OpenAI",
+      "trust_score": 96.2,
+      "compliance_level": "EU AI Act Compliant",
+      "hallucination_rate_pct": 2.1,
+      "pii_protection_score": 95.8,
+      "alignment_score": 96.5,
+      "sample_size": 2400,
+      "last_audited_at": "2026-08-01T14:30:00Z",
+      "category_scores": {
+        "K5": 96.5,
+        "K6": 97.9,
+        "K7": 96.0,
+        "K8": 95.8,
+        "K9": 96.8,
+        "K10": 97.5,
+        "K11": 95.2,
+        "K12": 94.0
+      }
+    },
+    {
+      "model_id": "gemini-1-5-pro",
+      "model_name": "Gemini 1.5 Pro",
+      "provider": "Google DeepMind",
+      "trust_score": 95.8,
+      "compliance_level": "EU AI Act Compliant",
+      "hallucination_rate_pct": 2.4,
+      "pii_protection_score": 96.4,
+      "alignment_score": 95.2,
+      "sample_size": 2300,
+      "last_audited_at": "2026-08-03T09:15:00Z",
+      "category_scores": {
+        "K5": 95.2,
+        "K6": 97.6,
+        "K7": 94.8,
+        "K8": 96.4,
+        "K9": 95.0,
+        "K10": 96.0,
+        "K11": 94.5,
+        "K12": 97.0
+      }
+    },
+    {
+      "model_id": "llama-3-3-70b",
+      "model_name": "Llama 3.3 70B Instruct",
+      "provider": "Meta AI (Open Weights)",
+      "trust_score": 95.4,
+      "compliance_level": "EU AI Act Compliant",
+      "hallucination_rate_pct": 2.8,
+      "pii_protection_score": 94.1,
+      "alignment_score": 94.8,
+      "sample_size": 2100,
+      "last_audited_at": "2026-08-02T16:45:00Z",
+      "category_scores": {
+        "K5": 94.8,
+        "K6": 97.2,
+        "K7": 93.5,
+        "K8": 94.1,
+        "K9": 96.0,
+        "K10": 95.8,
+        "K11": 94.0,
+        "K12": 97.8
+      }
+    },
+    {
+      "model_id": "deepseek-v3",
+      "model_name": "DeepSeek V3",
+      "provider": "DeepSeek (NVIDIA NIM)",
+      "trust_score": 95.1,
+      "compliance_level": "EU AI Act Compliant",
+      "hallucination_rate_pct": 2.9,
+      "pii_protection_score": 94.5,
+      "alignment_score": 94.9,
+      "sample_size": 2000,
+      "last_audited_at": "2026-08-04T11:20:00Z",
+      "category_scores": {
+        "K5": 94.9,
+        "K6": 97.1,
+        "K7": 93.0,
+        "K8": 94.5,
+        "K9": 97.5,
+        "K10": 95.0,
+        "K11": 94.2,
+        "K12": 94.6
+      }
+    },
+    {
+      "model_id": "qwen-2-5-72b",
+      "model_name": "Qwen 2.5 72B Instruct",
+      "provider": "Alibaba Cloud",
+      "trust_score": 94.2,
+      "compliance_level": "EU AI Act Compliant",
+      "hallucination_rate_pct": 3.2,
+      "pii_protection_score": 93.8,
+      "alignment_score": 93.5,
+      "sample_size": 1900,
+      "last_audited_at": "2026-08-03T18:00:00Z",
+      "category_scores": {
+        "K5": 93.5,
+        "K6": 96.8,
+        "K7": 92.4,
+        "K8": 93.8,
+        "K9": 96.2,
+        "K10": 94.5,
+        "K11": 93.0,
+        "K12": 93.4
+      }
+    },
+    {
+      "model_id": "nemotron-70b",
+      "model_name": "Llama 3.1 Nemotron 70B",
+      "provider": "NVIDIA NIM",
+      "trust_score": 93.8,
+      "compliance_level": "EU AI Act Compliant",
+      "hallucination_rate_pct": 3.5,
+      "pii_protection_score": 93.0,
+      "alignment_score": 93.2,
+      "sample_size": 1800,
+      "last_audited_at": "2026-08-01T08:00:00Z",
+      "category_scores": {
+        "K5": 93.2,
+        "K6": 96.5,
+        "K7": 91.8,
+        "K8": 93.0,
+        "K9": 94.5,
+        "K10": 94.0,
+        "K11": 92.5,
+        "K12": 91.9
+      }
+    },
+    {
+      "model_id": "gemini-1-5-flash",
+      "model_name": "Gemini 1.5 Flash",
+      "provider": "Google DeepMind",
+      "trust_score": 92.5,
+      "compliance_level": "EU AI Act Compliant",
+      "hallucination_rate_pct": 3.9,
+      "pii_protection_score": 92.4,
+      "alignment_score": 92.0,
+      "sample_size": 1800,
+      "last_audited_at": "2026-08-04T15:10:00Z",
+      "category_scores": {
+        "K5": 92.0,
+        "K6": 96.1,
+        "K7": 91.0,
+        "K8": 92.4,
+        "K9": 91.5,
+        "K10": 93.0,
+        "K11": 91.2,
+        "K12": 92.8
+      }
+    },
+    {
+      "model_id": "mixtral-8x22b",
+      "model_name": "Mixtral 8x22B Instruct",
+      "provider": "Mistral AI",
+      "trust_score": 91.7,
+      "compliance_level": "Moderate Risk",
+      "hallucination_rate_pct": 4.1,
+      "pii_protection_score": 90.5,
+      "alignment_score": 90.8,
+      "sample_size": 1700,
+      "last_audited_at": "2026-08-02T13:40:00Z",
+      "category_scores": {
+        "K5": 90.8,
+        "K6": 95.9,
+        "K7": 89.5,
+        "K8": 90.5,
+        "K9": 92.0,
+        "K10": 92.2,
+        "K11": 90.0,
+        "K12": 91.7
+      }
+    },
+    {
+      "model_id": "llama-3-70b",
+      "model_name": "Llama 3 70B",
+      "provider": "Meta (Open Weights)",
+      "trust_score": 91.5,
+      "compliance_level": "Moderate Risk",
+      "hallucination_rate_pct": 4.2,
+      "pii_protection_score": 89.2,
+      "alignment_score": 90.1,
+      "sample_size": 1600,
+      "last_audited_at": "2026-08-01T11:00:00Z",
+      "category_scores": {
+        "K5": 90.1,
+        "K6": 95.8,
+        "K7": 88.9,
+        "K8": 89.2,
+        "K9": 93.1,
+        "K10": 91.8,
+        "K11": 91.0,
+        "K12": 92.1
+      }
+    },
+    {
+      "model_id": "glm-4-9b",
+      "model_name": "GLM-4 9B Chat",
+      "provider": "THUDM",
+      "trust_score": 89.9,
+      "compliance_level": "Moderate Risk",
+      "hallucination_rate_pct": 5.1,
+      "pii_protection_score": 88.0,
+      "alignment_score": 88.5,
+      "sample_size": 1500,
+      "last_audited_at": "2026-08-03T17:25:00Z",
+      "category_scores": {
+        "K5": 88.5,
+        "K6": 94.9,
+        "K7": 87.2,
+        "K8": 88.0,
+        "K9": 89.0,
+        "K10": 90.1,
+        "K11": 88.2,
+        "K12": 89.3
+      }
+    }
+  ]
+}

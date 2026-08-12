@@ -252,3 +252,8 @@ Sürekli çalışan ajanlar (Momentum Orchestrator, Swarm) için "Compute" ve "F
 - **Tier 1 (T1 - 20% Compute):** `DecasHub`. Ürün bazlı bakım. Sadece güvenlik yamaları, API sızıntı denetimi ve UI darboğazları düzeltilir. Agresif mimari değişim yapılmaz.
 - **Tier 2 (T2 - 10% Compute):** `Ercument Erden`. İkincil önceliklidir. Sadece "Yüksek/Kritik" CVE'ler ve DoS açıkları için çalışılır. Bakım modundadır.
 - **Tier 3 (T3 - 0% Compute):** (Tartarus Arşivi). `Hatay-Kabak-Tatli`, `Quantum-Matrix-*`, `ayazwater`, `carbonecomarket`, `LLM_MCP` gibi eski/kullanılmayan repolara sistem giriş yapamaz ve compute harcayamaz. (Silmek yasak, sadece arşivde kalacaklar).
+
+## Ajan Yönetim Kuralları (Hafıza Kaydı)
+
+1. **Alt Ajan Temizliği:** Alt ajanlar (subagents) görevlerini bitirdiklerinde otomatik kapanmaz ve arka planda ciddi RAM tüketirler. İşi biten ajanlar derhal `manage_subagents (action: kill)` ile temizlenmelidir.
+2. **Arka Plan Görevleri (Background Tasks):** CLI üzerinden başlatılan asenkron `opencode run` işlemleri (tasks) kendi kendine kapanmayabilir veya asılı kalabilir. Düzenli olarak `manage_task (action: list)` ile kontrol edilmeli ve biten/takılan süreçler `manage_task (action: kill)` ile sonlandırılmalıdır.

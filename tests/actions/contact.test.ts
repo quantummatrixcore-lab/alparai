@@ -36,7 +36,7 @@ vi.mock("@/lib/constants", () => ({
   APP_EMAIL: "hello@alparai.com",
 }));
 
-import { submitContact } from "@/actions/contact";
+import { submitContact } from "@/actions/community/contact";
 
 function buildContactForm(overrides: Record<string, string> = {}): FormData {
   const fd = new FormData();

@@ -109,7 +109,7 @@ BEGIN
             related_entity_id, granted, ip_hash, user_agent
         ) VALUES (
             v_user_id, v_ctype, 'Accepted on ' || v_now || ' for incident ' || new_incident_id::text,
-            'incident', new_incident_id::text, true, v_ip_hash, v_user_agent
+            'incident', new_incident_id, true, v_ip_hash, v_user_agent
         );
     END LOOP;
 

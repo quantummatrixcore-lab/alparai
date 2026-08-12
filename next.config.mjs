@@ -89,6 +89,7 @@ const nextConfig = {
     },
   },
   images: {
+    minimumCacheTTL: 2592000,
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
       { protocol: "https", hostname: "*.supabase.co" },

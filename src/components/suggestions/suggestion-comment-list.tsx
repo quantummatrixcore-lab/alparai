@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
-import { addSuggestionComment, upvoteSuggestion } from "@/actions/suggestions";
+import { addSuggestionComment, upvoteSuggestion } from "@/actions/community/suggestions";
 import { toast } from "sonner";
 import { ThumbsUp, Send } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";

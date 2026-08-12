@@ -4,7 +4,7 @@ import * as React from "react";
 import { useTranslations } from "next-intl";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
-import { submitModelFeatureRequest } from "@/actions/model-features";
+import { submitModelFeatureRequest } from "@/actions/models/model-features";
 
 interface ModelFeatureRequestFormProps {
   modelId: string;

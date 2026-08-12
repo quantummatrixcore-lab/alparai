@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Send, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
-import { submitContact, type ContactState } from "@/actions/contact";
+import { submitContact, type ContactState } from "@/actions/community/contact";
 
 const initialState: ContactState = { ok: false };
 

@@ -15,7 +15,7 @@ import type { ModelReview, ModelFeatureRequest } from "@/types";
 import { ModelJsonLd } from "@/components/seo/json-ld";
 import { APP_URL } from "@/lib/constants";
 
-export const revalidate = 20;
+export const revalidate = 3600;
 
 export async function generateMetadata({ params }: ModelDetailPageProps) {
   const { locale, modelId, providerId } = await params;

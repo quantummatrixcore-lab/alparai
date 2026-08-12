@@ -1,4 +1,4 @@
-export const revalidate = 30;
+export const revalidate = 3600;
 
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";

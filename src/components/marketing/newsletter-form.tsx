@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
-import { subscribeNewsletter, type NewsletterState } from "@/actions/newsletter";
+import { subscribeNewsletter, type NewsletterState } from "@/actions/community/newsletter";
 
 const initialState: NewsletterState = { ok: false };
 

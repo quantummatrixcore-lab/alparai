@@ -11,7 +11,7 @@ vi.mock("next-intl", () => ({
   },
 }));
 
-vi.mock("@/actions/auth", () => ({
+vi.mock("@/actions/auth/auth", () => ({
   signInWithGoogle: vi.fn(),
   signInWithMagicLink: vi.fn(),
 }));
@@ -61,7 +61,7 @@ describe("EmailMagicLinkForm", () => {
   });
 
   test("renders sent state after successful magic link send", async () => {
-    const { signInWithMagicLink } = await import("@/actions/auth");
+    const { signInWithMagicLink } = await import("@/actions/auth/auth");
     vi.mocked(signInWithMagicLink).mockResolvedValueOnce({ ok: true });
     render(<EmailMagicLinkForm />);
     const input = screen.getByLabelText("email_label");
@@ -73,7 +73,7 @@ describe("EmailMagicLinkForm", () => {
   });
 
   test("calls toast.error when signInWithMagicLink fails", async () => {
-    const { signInWithMagicLink } = await import("@/actions/auth");
+    const { signInWithMagicLink } = await import("@/actions/auth/auth");
     vi.mocked(signInWithMagicLink).mockResolvedValueOnce({ ok: false, error: "Server error" });
     render(<EmailMagicLinkForm />);
     const input = screen.getByLabelText("email_label");

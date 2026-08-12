@@ -486,7 +486,7 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
             {user.avatarUrl ? (
               <Image
                 src={user.avatarUrl}
-                alt=""
+                alt={user.fullName || "User Avatar"}
                 width={36}
                 height={36}
                 className="h-full w-full object-cover"
@@ -588,7 +588,7 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
                 {user.avatarUrl ? (
                   <Image
                     src={user.avatarUrl}
-                    alt=""
+                    alt={user.fullName || "User Avatar"}
                     width={36}
                     height={36}
                     className="h-full w-full object-cover"
@@ -605,6 +605,7 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
               <form action="/api/auth/signout" method="post">
                 <button
                   type="submit"
+                  aria-label={tAuth("signOut") ?? "Sign Out"}
                   className="text-danger-400 hover:bg-danger-500/10 group relative rounded-xl p-2 transition"
                 >
                   <LogOut className="h-5 w-5" />
@@ -621,7 +622,7 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
                   {user.avatarUrl ? (
                     <Image
                       src={user.avatarUrl}
-                      alt=""
+                      alt={user.fullName || "User Avatar"}
                       width={40}
                       height={40}
                       className="h-full w-full object-cover"
@@ -652,6 +653,7 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
                 <form action="/api/auth/signout" method="post" className="shrink-0">
                   <button
                     type="submit"
+                    aria-label={tAuth("signOut") ?? "Sign Out"}
                     className="text-danger-400 hover:bg-danger-500/10 flex items-center gap-2 rounded-xl px-2.5 py-2 text-xs font-semibold transition"
                     title={tAuth("signOut") ?? "Sign Out"}
                   >

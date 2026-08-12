@@ -17,7 +17,7 @@ import {
   Activity,
   ArrowUpRight,
 } from "lucide-react";
-import { QuickActionGrid, type QuickAction } from "@/components/ui/quick-action-grid";
+import { QuickActionGrid, type QuickAction } from "@/components/admin/quick-action-grid";
 import { CreateUserModal } from "@/components/admin/create-user-modal";
 import { motion, AnimatePresence } from "framer-motion";
 import {

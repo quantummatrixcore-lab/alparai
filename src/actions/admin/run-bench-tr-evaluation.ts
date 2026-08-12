@@ -4,7 +4,7 @@ import { createServerClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { logger } from "@/lib/utils/logger";
 import { callModel, type GatewayModel } from "@/lib/ai/openrouter-gateway";
-import { recalculateTrustScoresAction } from "@/actions/trust-score-engine";
+import { recalculateTrustScoresAction } from "@/actions/models/trust-score-engine";
 
 export interface BenchTrResult {
   ok: boolean;

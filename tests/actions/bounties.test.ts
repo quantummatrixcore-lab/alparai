@@ -14,7 +14,7 @@ vi.hoisted(() => {
 
 import { createAdminClient } from "@/lib/supabase/admin";
 import { requireAdmin, requireModerator } from "@/lib/auth/session";
-import { claimBounty, updateBountyStatus } from "@/actions/bounties";
+import { claimBounty, updateBountyStatus } from "@/actions/community/bounties";
 
 let mockAdmin: ReturnType<typeof createMockSupabaseClient>;
 let testAdmin: ReturnType<typeof createTestAdmin>;

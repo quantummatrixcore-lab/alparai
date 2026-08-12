@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select } from "@/components/ui/select";
 import { useTranslations } from "next-intl";
 import { useTransition, useState } from "react";
-import { submitTakedownRequest } from "@/actions/takedown";
+import { submitTakedownRequest } from "@/actions/legal/takedown";
 import { toast } from "sonner";
 import { CheckCircle2 } from "lucide-react";
 import { TAKEDOWN_REASON_OPTIONS } from "@/lib/constants/takedown-reasons";

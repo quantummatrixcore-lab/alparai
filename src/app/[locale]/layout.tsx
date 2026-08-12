@@ -6,7 +6,7 @@ import { getMessages, getTranslations, setRequestLocale } from "next-intl/server
 import { routing } from "@/i18n/routing";
 import { Header } from "@/components/layout/header";
 import { MainContent } from "@/components/layout/main-content";
-import { LiveTicker } from "@/components/ui/live-ticker";
+import { LiveTicker } from "@/components/shared/live-ticker";
 import {
   OrganizationJsonLd,
   SoftwareApplicationJsonLd,

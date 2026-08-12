@@ -6,7 +6,7 @@ import { MessageSquare, Trash2, Send, ShieldAlert, Clock, User } from "lucide-re
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { toast } from "sonner";
-import { submitComment, deleteComment } from "@/actions/comments";
+import { submitComment, deleteComment } from "@/actions/community/comments";
 import { Link } from "@/i18n/routing";
 import { formatRelativeTime } from "@/lib/utils";
 import Image from "next/image";

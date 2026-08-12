@@ -45,6 +45,8 @@
     "test:visual": "playwright test tests/e2e/visual/",
     "knip": "knip",
     "validate": "pnpm i18n:check && pnpm typecheck && pnpm lint && pnpm test",
+    "db:reset": "supabase db reset",
+    "db:migrate": "supabase migration up",
     "db:seed": "npx tsx scripts/seed-roadmap.ts",
     "prepare": "husky || true",
     "check-plan": "node scripts/check-masterplan-consistency.mjs"
@@ -76,9 +78,7 @@
     "next-intl": "^4.13.3",
     "openai": "^6.48.0",
     "papaparse": "^5.5.4",
-    "pg": "^8.22.0",
     "posthog-js": "^1.413.2",
-    "puppeteer-core": "^25.5.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "recharts": "^3.10.1",

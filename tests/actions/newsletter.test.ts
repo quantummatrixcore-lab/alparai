@@ -36,7 +36,7 @@ vi.mock("@/lib/validation/schemas", async () => {
   };
 });
 
-import { subscribeNewsletter } from "@/actions/newsletter";
+import { subscribeNewsletter } from "@/actions/community/newsletter";
 
 function buildNewsletterForm(overrides: Record<string, string> = {}): FormData {
   const fd = new FormData();

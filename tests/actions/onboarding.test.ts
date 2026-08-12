@@ -46,7 +46,7 @@ vi.mock("@/lib/utils/rate-limit", () => ({
   },
 }));
 
-import { saveOnboardingData } from "@/actions/onboarding";
+import { saveOnboardingData } from "@/actions/auth/onboarding";
 
 describe("onboarding action", () => {
   beforeEach(() => {

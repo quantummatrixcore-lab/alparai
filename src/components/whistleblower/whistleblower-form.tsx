@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Shield, Lock, AlertCircle, CheckCircle2, KeyRound } from "lucide-react";
-import { submitWhistleblowerAction } from "@/actions/whistleblower";
+import { submitWhistleblowerAction } from "@/actions/legal/whistleblower";
 import { encryptZeroKnowledge } from "@/lib/crypto/client-crypto";
 
 export function WhistleblowerForm() {

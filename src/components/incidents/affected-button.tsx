@@ -4,7 +4,7 @@ import { useState, useTransition } from "react";
 import { useLocale } from "next-intl";
 import { AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { toggleAffectedStatus } from "@/actions/comments";
+import { toggleAffectedStatus } from "@/actions/community/comments";
 import { toast } from "sonner";
 
 export function AffectedButton({

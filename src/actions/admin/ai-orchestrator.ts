@@ -65,29 +65,34 @@ export async function runCrossAuditArenaAction(_promptText: string): Promise<Are
   const synthesizedVerdict = `[Stealth Cross-Audit Verdict] Evaluated input across ${candidates.length} free-tier models (${auditedModelIds.join(", ")}). Synthesized by ${judge?.id ?? "Judge"}: Ethical compliance verified, ${anomaliesCount} critical anomaly(s) detected via benchmark DB.`;
 
   // 3. Upsert trust scores dynamically
+  const upsertData = [];
   for (const m of candidates) {
-    try {
-      const modelScoreRecord = kScores?.find((k) => k.model_id === m.id);
-      const computedTrustScore = modelScoreRecord
-        ? parseFloat((modelScoreRecord.score * 100).toFixed(1))
-        : null;
-      const computedHallucination = modelScoreRecord
-        ? parseFloat((1.0 - modelScoreRecord.score).toFixed(3))
-        : null;
-      const computedEthical = modelScoreRecord
-        ? parseFloat((modelScoreRecord.score * 100).toFixed(1))
-        : null;
+    const modelScoreRecord = kScores?.find((k) => k.model_id === m.id);
+    const computedTrustScore = modelScoreRecord
+      ? parseFloat((modelScoreRecord.score * 100).toFixed(1))
+      : null;
+    const computedHallucination = modelScoreRecord
+      ? parseFloat((1.0 - modelScoreRecord.score).toFixed(3))
+      : null;
+    const computedEthical = modelScoreRecord
+      ? parseFloat((modelScoreRecord.score * 100).toFixed(1))
+      : null;
 
+    upsertData.push({
+      model_id: m.id,
+      provider: m.provider,
+      trust_score: computedTrustScore,
+      hallucination_rate: computedHallucination,
+      ethical_compliance: computedEthical,
+      total_audits: 1,
+      updated_at: new Date().toISOString(),
+    });
+  }
+
+  if (upsertData.length > 0) {
+    try {
       await supabase.from("ai_trust_scores" as unknown as "incidents").upsert(
-        {
-          model_id: m.id,
-          provider: m.provider,
-          trust_score: computedTrustScore,
-          hallucination_rate: computedHallucination,
-          ethical_compliance: computedEthical,
-          total_audits: 1,
-          updated_at: new Date().toISOString(),
-        } as never,
+        upsertData as never[],
         { onConflict: "model_id" } as never,
       );
     } catch {

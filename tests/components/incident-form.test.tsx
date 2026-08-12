@@ -62,11 +62,11 @@ vi.mock("@/components/ui/button", () => ({
   ),
 }));
 
-vi.mock("@/components/ui/provider-combobox", () => ({
+vi.mock("@/components/models/provider-combobox", () => ({
   ProviderCombobox: () => <div data-testid="provider-combobox" />,
 }));
 
-vi.mock("@/components/ui/model-autocomplete", () => ({
+vi.mock("@/components/models/model-autocomplete", () => ({
   ModelAutocomplete: () => <div data-testid="model-autocomplete" />,
 }));
 

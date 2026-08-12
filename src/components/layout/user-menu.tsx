@@ -6,7 +6,7 @@ import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { User as UserIcon, LogOut, Settings, ShieldCheck, BarChart3 } from "lucide-react";
 import { getInitials } from "@/lib/utils";
-import { getMe } from "@/actions/auth";
+import { getMe } from "@/actions/auth/auth";
 import Image from "next/image";
 
 interface SessionUserShape {

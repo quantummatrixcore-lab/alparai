@@ -6,7 +6,7 @@ import { ThumbsUp } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { enUS, tr } from "date-fns/locale";
 import { useParams } from "next/navigation";
-import { voteModelFeatureRequest } from "@/actions/model-features";
+import { voteModelFeatureRequest } from "@/actions/models/model-features";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
 import { logger } from "@/lib/utils/logger";

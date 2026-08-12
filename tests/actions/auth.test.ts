@@ -33,7 +33,7 @@ vi.hoisted(() => {
 import { createClient, createServerClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/lib/auth/session";
 import { checkRateLimit } from "@/lib/utils/rate-limit";
-import { signInWithGoogle, signInWithMagicLink, getMe } from "@/actions/auth";
+import { signInWithGoogle, signInWithMagicLink, getMe } from "@/actions/auth/auth";
 
 let mockSupabase: ReturnType<typeof createMockSupabaseClient>;
 let mockUser: ReturnType<typeof createTestUser>;

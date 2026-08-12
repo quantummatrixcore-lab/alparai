@@ -26,7 +26,7 @@ vi.mock("@/lib/supabase/admin", () => ({
   }),
 }));
 
-import { submitWhistleblowerAction } from "@/actions/whistleblower";
+import { submitWhistleblowerAction } from "@/actions/legal/whistleblower";
 
 describe("submitWhistleblowerAction", () => {
   beforeEach(() => {

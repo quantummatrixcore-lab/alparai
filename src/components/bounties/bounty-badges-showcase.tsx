@@ -1,7 +1,7 @@
 "use client";
 
 import { Trophy, Award, Medal, Crown, ShieldCheck, CheckCircle2, Lock } from "lucide-react";
-import type { BountyBadgeWithStats } from "@/actions/bounties";
+import type { BountyBadgeWithStats } from "@/actions/community/bounties";
 
 interface BountyBadgesShowcaseProps {
   badges: BountyBadgeWithStats[];

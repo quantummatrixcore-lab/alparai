@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select } from "@/components/ui/select";
 import { Modal } from "@/components/ui/modal";
 import { useTranslations } from "next-intl";
-import { submitTakedown } from "@/actions/takedown";
+import { submitTakedown } from "@/actions/legal/takedown";
 import { toast } from "sonner";
 import { TAKEDOWN_REASON_OPTIONS } from "@/lib/constants/takedown-reasons";
 

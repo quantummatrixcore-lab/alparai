@@ -1,4 +1,4 @@
-export const revalidate = 30;
+export const revalidate = 3600;
 
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/layout";
@@ -9,7 +9,7 @@ import { Trophy, Award, Sparkles, Clock, DollarSign, Plus } from "lucide-react";
 import { Link } from "@/i18n/routing";
 import { formatDate } from "@/lib/utils";
 import Image from "next/image";
-import { getBountyBadgesStats } from "@/actions/bounties";
+import { getBountyBadgesStats } from "@/actions/community/bounties";
 import { BountyBadgesShowcase } from "@/components/bounties/bounty-badges-showcase";
 import { getCurrentUser } from "@/lib/auth/session";
 

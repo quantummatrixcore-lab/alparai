@@ -43,7 +43,7 @@ vi.mock("@/lib/utils/rate-limit", () => ({
   },
 }));
 
-import { submitComment, deleteComment, toggleAffectedStatus } from "@/actions/comments";
+import { submitComment, deleteComment, toggleAffectedStatus } from "@/actions/community/comments";
 
 describe("comments actions", () => {
   beforeEach(() => {

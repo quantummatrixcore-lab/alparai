@@ -4,7 +4,7 @@ import * as React from "react";
 import { useTranslations } from "next-intl";
 import { Star, Loader2 } from "lucide-react";
 import { toast } from "sonner";
-import { submitModelReview } from "@/actions/model-reviews";
+import { submitModelReview } from "@/actions/models/model-reviews";
 
 interface ModelRatingFormProps {
   modelId: string;

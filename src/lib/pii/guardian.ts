@@ -112,11 +112,11 @@ const PATTERNS: ReadonlyArray<{
     re: /\b(?:sk-[A-Za-z0-9-]{20,}|ghp_[A-Za-z0-9]{30,}|AKIA[0-9A-Z]{16}|xai-[A-Za-z0-9]{20,})\b/g,
     mask: "[REDACTED-API-KEY]",
   },
-  // Turkish passport (letter + 8 digits) — heuristic
+  // Turkish passport (letter + 8 digits or U + 8 characters) + TR Driver's License heuristic
   {
-    name: "passport_tr",
-    re: /\b[A-Z]\d{8}\b/g,
-    mask: "[REDACTED-PASSPORT]",
+    name: "passport_license_tr",
+    re: /\b[A-Z]\d{8}\b|\bU[A-Z0-9]{8}\b/g,
+    mask: "[REDACTED-PASSPORT-OR-LICENSE]",
   },
   // Date of birth (Turkish + ISO formats: DD.MM.YYYY or YYYY-MM-DD)
   {

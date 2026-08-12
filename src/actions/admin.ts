@@ -2,7 +2,7 @@ export { moderateIncident, bulkApproveIncidents, bulkRejectIncidents } from "./a
 export type { ModerationResult } from "./admin/moderation";
 
 export { reviewTakedown } from "./admin/takedown";
-export { reviewTakedownAppeal } from "./appeal";
+export { reviewTakedownAppeal } from "./legal/appeal";
 
 export { setUserRole, promoteUser } from "./admin/users";
 

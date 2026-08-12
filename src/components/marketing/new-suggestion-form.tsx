@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SUGGESTION_CATEGORIES } from "@/lib/constants";
 import { useTranslations } from "next-intl";
-import { submitSuggestion, type SubmitSuggestionState } from "@/actions/suggestions";
+import { submitSuggestion, type SubmitSuggestionState } from "@/actions/community/suggestions";
 import { toast } from "sonner";
 import { useRouter } from "@/i18n/routing";
 

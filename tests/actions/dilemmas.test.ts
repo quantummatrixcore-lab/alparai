@@ -31,7 +31,7 @@ vi.hoisted(() => {
 import { createServerClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { checkRateLimit } from "@/lib/utils/rate-limit";
-import { submitVote } from "@/actions/dilemmas";
+import { submitVote } from "@/actions/community/dilemmas";
 
 let mockSupabase: ReturnType<typeof createMockSupabaseClient>;
 let mockAdmin: ReturnType<typeof createMockSupabaseClient>;

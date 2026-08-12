@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { submitVote } from "@/actions/dilemmas";
+import { submitVote } from "@/actions/community/dilemmas";
 import { toast } from "sonner";
 import { useTranslations, useLocale } from "next-intl";
 

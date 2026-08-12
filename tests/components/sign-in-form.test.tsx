@@ -12,7 +12,7 @@ afterEach(() => {
 });
 
 
-vi.mock("@/actions/auth", () => ({
+vi.mock("@/actions/auth/auth", () => ({
   signInWithGoogle: vi.fn(),
   signInWithMagicLink: vi.fn(),
 }));

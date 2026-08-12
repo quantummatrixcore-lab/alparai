@@ -74,7 +74,7 @@ export function GoogleSignInButton({
         "341717447635-hsdu69hk692lkveikkpc8398v8rhu40b.apps.googleusercontent.com";
 
       const fallbackOAuthRedirect = async () => {
-        const { signInWithGoogle } = await import("@/actions/auth");
+        const { signInWithGoogle } = await import("@/actions/auth/auth");
         const res = await signInWithGoogle(next);
         if (res.ok && res.url) {
           window.location.href = res.url;
@@ -98,7 +98,7 @@ export function GoogleSignInButton({
       };
 
       const handleCredential = async (credential: string, nonce: string) => {
-        const { signInWithGoogleIdToken } = await import("@/actions/auth");
+        const { signInWithGoogleIdToken } = await import("@/actions/auth/auth");
         const res = await signInWithGoogleIdToken(credential, nonce);
         if (res.ok) {
           window.location.href = next;
@@ -230,7 +230,7 @@ export function EmailMagicLinkForm({
     setState({ status: "sending" });
 
     start(async () => {
-      const { signInWithMagicLink } = await import("@/actions/auth");
+      const { signInWithMagicLink } = await import("@/actions/auth/auth");
       const res = await signInWithMagicLink(email);
       if (res.ok) {
         setState({ status: "sent", email, sentAt: Date.now() });

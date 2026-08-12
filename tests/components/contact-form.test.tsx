@@ -25,7 +25,7 @@ vi.mock("react-dom", () => ({
 }));
 
 // Mock submitContact action
-vi.mock("@/actions/contact", () => ({
+vi.mock("@/actions/community/contact", () => ({
   submitContact: vi.fn(),
 }));
 

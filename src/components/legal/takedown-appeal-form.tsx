@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
-import { submitTakedownAppeal } from "@/actions/appeal";
+import { submitTakedownAppeal } from "@/actions/legal/appeal";
 
 export function TakedownAppealForm({
   takedownId,

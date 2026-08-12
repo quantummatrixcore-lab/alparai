@@ -5,8 +5,8 @@
 # SHA, and must never be added. A new unresolvable citation fails CI.
 closed-by:latest@master`
 closed-by:latest@master`;
-missing:"The Grok Files" serisinin 9-model arbitrajıyla
-missing:400-satır CI sınırı (#209) ve Jules/Claude yönle
+missing:FA ALPHA-6 — [ALPHA-6] Pitch Deck
+missing:FA SIGMA-6 — [SIGMA-6] Stripe Oto
 missing:8 kurumsal outreach maili (ercument.erden@alpara
 missing:ARCH-1
 missing:JULES
@@ -17,21 +17,15 @@ missing:QA-1
 missing:Reddit r/ML + Hacker News Show HN trafik analizi
 missing:SEC-1
 missing:SEC-2
-missing:SHOW-3
-missing:Seed Data Room & Değerleme Memosu üretimi (#201,
 missing:Stripe Checkout entegrasyonu (Pricing page)
-missing:Stripe canlı işlem / webhook doğrulama (#208)
-missing:Top 50 YZ Vendor'a Trust Badge otonom (openchrom
 missing:Trust Badge embed snippet <script src="badge.js"
 missing:Vendor portal mock data temizliği (Rule #30 uyum
 missing:Vercel deploy hatası (pnpm-lock mismatch) gideri
 missing:[ALPHA-3] Top 20 VC Listesi & Warm-intro Şablonl
-missing:[ALPHA-6] Pitch Deck (Marp/Reveal) HTML slayt ko
 missing:[OMEGA-2] Hacker News & Reddit Lansman Taslaklar
 missing:[OMEGA-3] Qwen Omni ASR Sesli İhlal Bildirim API
 missing:[SIGMA-2] Stripe Canlı Test Webhook Simülatör Sc
 missing:[SIGMA-3] AI Act Article 73 Uyumluluk Listesi Sa
-missing:[SIGMA-6] Stripe Otonom Fatura (PDF) Storage API
 missing:[ZETA-1] Jules Otonom Temizleyici & GitHub PR (#
 missing:i18n 5 dil coverage (enterprise + products pages
 missing:İlk 10 enterprise outreach e-postası gönder (hel

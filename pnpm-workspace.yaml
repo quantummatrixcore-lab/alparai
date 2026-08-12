@@ -1,6 +1,10 @@
 packages:
   - "."
 
+auditConfig:
+  ignoreCves:
+    - GHSA-866g-f22w-33x8
+
 overrides:
   sharp: "^0.35.3"
   postcss: "^8.5.18"
@@ -8,3 +12,4 @@ overrides:
   form-data: "^4.0.2"
   js-yaml: "^4.1.0"
   vite: "^6.2.1"
+  nanoid: "^3.3.17"

@@ -4,7 +4,7 @@
 INSERT INTO strategy_todos (title, priority, is_completed, created_at, updated_at) VALUES
 
 -- ÖNCELİK 1 — ACİL (Bu Hafta)
-('Cloudflare Email Routing: hello@, press@, academy@, security@ → ercuerden@gmail.com', 1, false, now(), now()),
+('Cloudflare Email Routing: hello@, press@, academy@, security@ → [REDACTED_EMAIL]', 1, false, now(), now()),
 ('Twitter/X hesabı aç: @alparai_official', 1, false, now(), now()),
 ('LinkedIn Şirket Sayfası aç: linkedin.com/company/alparai', 1, false, now(), now()),
 ('YouTube Kanalı aç: ALPAR AI', 1, false, now(), now()),
@@ -21,7 +21,7 @@ INSERT INTO strategy_todos (title, priority, is_completed, created_at, updated_a
 ('AI Medya Outreach: MIT Technology Review, 404 Media, Import AI (Jack Clark), Semafor, The Information', 2, false, now(), now()),
 ('Uluslararası Medya: TechCrunch, Wired, Guardian WhatsApp, BBC WhatsApp', 2, false, now(), now()),
 ('AI Güvenlik Kuruluşları: AI Incident Database, AI Now Institute, DAIR Institute, EFF', 2, false, now(), now()),
-('Anthropic Verified Respondent teklifi gönder: press@anthropic.com', 2, false, now(), now()),
+('Anthropic Verified Respondent teklifi gönder: [REDACTED_EMAIL]', 2, false, now(), now()),
 ('Anthropic API Kredisi başvurusu: anthropic.com/startups', 2, false, now(), now()),
 ('Google for Startups başvurusu: startup.google.com', 2, false, now(), now()),
 ('AWS Activate başvurusu: aws.amazon.com/activate', 2, false, now(), now()),
@@ -46,7 +46,7 @@ INSERT INTO strategy_todos (title, priority, is_completed, created_at, updated_a
 ('GitHub Repo Split: Public frontend + veri şeması / Private moderasyon algoritması', 3, false, now(), now()),
 ('Response Rate Metric: Leaderboard ve provider profil sayfalarına yanıt oranı ekle', 3, false, now(), now()),
 ('Developer API: Güvenlik araştırmacıları için programatik erişim (v1/leaderboard)', 3, false, now(), now()),
-('Lloyd''s of London ilk temas: insurtech@lloyds.com — sigorta sektörü ortaklığı', 3, false, now(), now()),
+('Lloyd''s of London ilk temas: [REDACTED_EMAIL] — sigorta sektörü ortaklığı', 3, false, now(), now()),
 ('Future of Life Institute Grant: futureoflife.org/grants — AI safety odaklı', 3, false, now(), now()),
 ('Open Philanthropy Grant Başvurusu: openphilanthropy.org', 3, false, now(), now()),
 ('Şirket tescili: Hukuki süreç başlatılmalı', 3, false, now(), now()),

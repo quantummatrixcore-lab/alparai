@@ -21,8 +21,8 @@ UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www
 UPDATE public.linkedin_contacts SET status = 'added', profile_url = '', updated_at = NOW() WHERE full_name = 'Ilya Sutskever';
 UPDATE public.linkedin_contacts SET status = 'added', profile_url = '', updated_at = NOW() WHERE full_name = 'Andrej Karpathy';
 UPDATE public.linkedin_contacts SET status = 'added', profile_url = '', updated_at = NOW() WHERE full_name = 'Jan Leike';
-UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/stuartjonathanrussell/', updated_at = NOW() WHERE full_name = 'Stuart Russell';
-UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/max-tegmark-68a99898/', updated_at = NOW() WHERE full_name = 'Max Tegmark';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = '[REDACTED_ADDRESS]', updated_at = NOW() WHERE full_name = '[REDACTED_NAME]';
+UPDATE public.linkedin_contacts SET status = 'added', profile_url = '[REDACTED_ADDRESS]', updated_at = NOW() WHERE full_name = '[REDACTED_NAME]';
 UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/buolamwini/', updated_at = NOW() WHERE full_name = 'Joy Buolamwini';
 UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/timnit-gebru-7b3b407/', updated_at = NOW() WHERE full_name = 'Timnit Gebru';
 UPDATE public.linkedin_contacts SET status = 'added', profile_url = 'https://www.linkedin.com/in/margaret-mitchell-9b13429/', updated_at = NOW() WHERE full_name = 'Margaret Mitchell';

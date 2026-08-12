@@ -4,10 +4,10 @@
 
 DELETE FROM public.outreach_queue 
 WHERE recipient_email IN (
-  'daniel@danielmiessler.com', 
-  'contact@yoshuabengio.org', 
-  'info@futureoflife.org', 
-  'jack@importai.net', 
-  'contact@safe.ai', 
-  'press@eff.org'
+  '[REDACTED_EMAIL]', 
+  '[REDACTED_EMAIL]', 
+  '[REDACTED_EMAIL]', 
+  '[REDACTED_EMAIL]', 
+  '[REDACTED_EMAIL]', 
+  '[REDACTED_EMAIL]'
 );

@@ -4,8 +4,8 @@
 INSERT INTO public.outreach_queue (recipient_email, recipient_name, company, template_type, subject, body_template, status)
 VALUES
   (
-    'stuart.russell@cs.berkeley.edu',
-    'Stuart Russell',
+    '[REDACTED_EMAIL]',
+    '[REDACTED_NAME]',
     'UC Berkeley (CHAI)',
     'expert',
     'Invitation: ALPAR AI Methodology Advisory Board (AI Security & Incident Auditing)',
@@ -13,8 +13,8 @@ VALUES
     'pending'
   ),
   (
-    'max.tegmark@mit.edu',
-    'Max Tegmark',
+    '[REDACTED_EMAIL]',
+    '[REDACTED_NAME]',
     'Future of Life Institute / MIT',
     'expert',
     'AI Governance & Open Safety Metrics Collaboration — ALPAR AI',
@@ -22,7 +22,7 @@ VALUES
     'pending'
   ),
   (
-    'cade.metz@nytimes.com',
+    '[REDACTED_EMAIL]',
     'Cade Metz',
     'The New York Times',
     'media',
@@ -31,7 +31,7 @@ VALUES
     'pending'
   ),
   (
-    'melissa.heikkila@technologyreview.com',
+    '[REDACTED_EMAIL]',
     'Melissa Heikkilä',
     'MIT Technology Review',
     'media',
@@ -40,7 +40,7 @@ VALUES
     'pending'
   ),
   (
-    'paul.christiano@alignment.org',
+    '[REDACTED_EMAIL]',
     'Paul Christiano',
     'Alignment Research Center (ARC)',
     'expert',
@@ -51,4 +51,4 @@ VALUES
 ON CONFLICT DO NOTHING;
 
 -- ROLLBACK:
--- DELETE FROM public.outreach_queue WHERE recipient_email IN ('stuart.russell@cs.berkeley.edu', 'max.tegmark@mit.edu', 'cade.metz@nytimes.com', 'melissa.heikkila@technologyreview.com', 'paul.christiano@alignment.org');
+-- DELETE FROM public.outreach_queue WHERE recipient_email IN ('[REDACTED_EMAIL]', '[REDACTED_EMAIL]', '[REDACTED_EMAIL]', '[REDACTED_EMAIL]', '[REDACTED_EMAIL]');

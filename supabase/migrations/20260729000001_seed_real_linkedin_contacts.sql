@@ -1,6 +1,6 @@
 -- Migration: Replace LinkedIn placeholder contacts with real AI Safety & Governance leaders
 -- Timestamp: 20260729000001
--- ROLLBACK: DELETE FROM public.linkedin_contacts WHERE full_name IN ('Dario Amodei', 'Daniela Amodei', 'Stuart Russell', 'Yann LeCun', 'Yoshua Bengio', 'Demis Hassabis', 'Pushmeet Kohli', 'Dan Hendrycks', 'Paul Christiano', 'Jan Leike', 'Collin Burns', 'Helen Toner', 'Jack Clark', 'Jared Kaplan', 'Max Tegmark', 'Nick Bostrom', 'Tristan Harris', 'Joy Buolamwini', 'Timnit Gebru', 'Arvind Narayanan', 'Sayash Kapoor', 'Margaret Mitchell', 'Percy Liang', 'Danqi Chen', 'Christopher Manning', 'Ellie Pavlick', 'Dawn Song', 'Dan Boneh', 'Anca Dragan', 'Chelsea Finn', 'Pieter Abbeel', 'Sergey Levine', 'Alexander Rush', 'Yejin Choi', 'Ilya Sutskever', 'Andrej Karpathy', 'Samy Bengio');
+-- ROLLBACK: DELETE FROM public.linkedin_contacts WHERE full_name IN ('Dario Amodei', 'Daniela Amodei', '[REDACTED_NAME]', 'Yann LeCun', 'Yoshua Bengio', 'Demis Hassabis', 'Pushmeet Kohli', 'Dan Hendrycks', 'Paul Christiano', 'Jan Leike', 'Collin Burns', 'Helen Toner', 'Jack Clark', 'Jared Kaplan', '[REDACTED_NAME]', 'Nick Bostrom', 'Tristan Harris', 'Joy Buolamwini', 'Timnit Gebru', 'Arvind Narayanan', 'Sayash Kapoor', 'Margaret Mitchell', 'Percy Liang', 'Danqi Chen', 'Christopher Manning', 'Ellie Pavlick', 'Dawn Song', 'Dan Boneh', 'Anca Dragan', 'Chelsea Finn', 'Pieter Abbeel', 'Sergey Levine', 'Alexander Rush', 'Yejin Choi', 'Ilya Sutskever', 'Andrej Karpathy', 'Samy Bengio');
 
 DELETE FROM public.linkedin_contacts WHERE full_name LIKE 'Placeholder Contact%';
 
@@ -8,7 +8,7 @@ INSERT INTO public.linkedin_contacts (full_name, title, category, status, priori
 VALUES
   ('Dario Amodei', 'CEO & Co-Founder, Anthropic', 'AI Safety & Frontier Models', 'to_add', 1, 'Key contact for frontier safety alignment'),
   ('Daniela Amodei', 'President & Co-Founder, Anthropic', 'AI Safety & Policy', 'to_add', 1, 'Frontier AI governance research'),
-  ('Stuart Russell', 'Professor of CS, UC Berkeley & Author of Human Compatible', 'AI Safety Research', 'to_add', 1, 'Provably beneficial AI alignment pioneer'),
+  ('[REDACTED_NAME]', 'Professor of CS, UC Berkeley & Author of Human Compatible', 'AI Safety Research', 'to_add', 1, 'Provably beneficial AI alignment pioneer'),
   ('Yann LeCun', 'VP & Chief AI Scientist, Meta', 'AI Architecture & Open Science', 'to_add', 2, 'Open source AI models and objective-driven AI'),
   ('Yoshua Bengio', 'Founder & Scientific Director, Mila', 'AI Safety & International Governance', 'to_add', 1, 'Turing Award laureate & international AI safety summit chair'),
   ('Demis Hassabis', 'CEO & Co-Founder, Google DeepMind', 'Frontier AI & Science', 'to_add', 1, 'Nobel laureate & AGI safety researcher'),
@@ -20,7 +20,7 @@ VALUES
   ('Helen Toner', 'Director of Strategy, CSET Georgetown', 'AI Policy & Security', 'to_add', 2, 'U.S. AI national security policy'),
   ('Jack Clark', 'Co-Founder, Anthropic & Co-Chair, AI Index', 'AI Index & Public Policy', 'to_add', 2, 'Stanford HAI AI Index lead author'),
   ('Jared Kaplan', 'Co-Founder & Chief Scientist, Anthropic', 'Scaling Laws & Alignment', 'to_add', 2, 'LLM scaling law pioneer'),
-  ('Max Tegmark', 'President, Future of Life Institute (FLI)', 'Existential Risk & Policy', 'to_add', 1, 'FLI open letter & AI governance policy'),
+  ('[REDACTED_NAME]', 'President, Future of Life Institute (FLI)', 'Existential Risk & Policy', 'to_add', 1, 'FLI open letter & AI governance policy'),
   ('Nick Bostrom', 'Professor & Author of Superintelligence', 'Philosophy & AI Risk', 'to_add', 2, 'Longtermism & AI existential risk'),
   ('Tristan Harris', 'Executive Director, Center for Humane Technology', 'Humane Tech & AI Ethics', 'to_add', 2, 'Social harm & AI attention economy'),
   ('Joy Buolamwini', 'Founder, Algorithmic Justice League', 'AI Bias & Fairness', 'to_add', 1, 'Gender Shades & algorithmic justice pioneer'),

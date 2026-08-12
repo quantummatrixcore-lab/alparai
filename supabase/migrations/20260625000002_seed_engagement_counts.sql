@@ -48,7 +48,7 @@ BEGIN
   -- Check if users exist in the DB (fallback to creating a dummy user if they do not)
   IF (SELECT count(*) FROM public.users) = 0 THEN
     INSERT INTO public.users (id, email, full_name, role)
-    VALUES ('b9a1bb8e-8245-4de6-9134-678e14f80d49', 'ercuerde@gmail.com', 'Ercüment Erden', 'ceo');
+    VALUES ('b9a1bb8e-8245-4de6-9134-678e14f80d49', '[REDACTED_EMAIL]', 'Ercüment Erden', 'ceo');
   END IF;
 
   -- Re-query existing users just in case the hardcoded list is missing some

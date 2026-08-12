@@ -350,3 +350,4 @@ This was not hypothetical. The launch GATE declared `depends:BG,BH` while BG, BH
 | OMEGA | [OMEGA-3] Qwen Omni ASR Sesli İhlal Bildirim API'si                         | ✅ pushed (origin/master)   |
 | SIGMA | [SIGMA-2] Stripe Canlı Test Webhook Simülatör Scripti                       | ✅ pushed (origin/master)   |
 | OMEGA | [OMEGA-2] Hacker News & Reddit Lansman Taslakları (docs/campaigns)          | ✅ pushed (origin/master)   |
+| ZETA  | Vercel deploy hatası (pnpm-lock mismatch) giderildi                         | ✅ pushed (origin/master)   |

@@ -46,6 +46,13 @@ function trackedFiles() {
     .filter(Boolean);
 }
 
+// Proper nouns keep their correct spelling. Rule 13 governs the language a
+// document is written in, not how a person's name is spelled; stripping the
+// diaeresis from the founder's own name would be a misspelling, not a
+// translation. Same class of false positive as the "360°" degree sign that
+// v13.7 recorded. Kept deliberately tiny — names only, never prose.
+const PROPER_NOUNS = /Ercüment|Erden|Basın|Alpar|Türkiye/g;
+
 function turkishLineCount(path) {
   let content;
   try {
@@ -56,7 +63,7 @@ function turkishLineCount(path) {
   let turkishCount = 0;
   let mojibakeCount = 0;
   for (const line of content.split("\n")) {
-    if (TURKISH_CHARS.test(line)) turkishCount += 1;
+    if (TURKISH_CHARS.test(line.replace(PROPER_NOUNS, ""))) turkishCount += 1;
     if (MOJIBAKE_CHARS.test(line)) mojibakeCount += 1;
   }
   return { turkish: turkishCount, mojibake: mojibakeCount };

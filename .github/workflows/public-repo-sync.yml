@@ -10,7 +10,7 @@ on:
       dry_run:
         description: Run security checks without pushing (dry-run mode)
         required: true
-        default: "false"
+        default: "true"
         type: choice
         options:
           - "true"
@@ -43,7 +43,7 @@ jobs:
       - name: Run security scan (Layer 1-4)
         id: scan
         run: |
-          node scripts/public-export/sync.mjs . "https://placeholder" main > scan-output.txt 2>&1
+          node scripts/public-export/sync.mjs . "https://placeholder" main dist-public > scan-output.txt 2>&1
           SCAN_EXIT=$?
 
           # Extract results
@@ -66,6 +66,7 @@ jobs:
           path: |
             scan-output.txt
             .sync-audit-log.json
+            dist-public/
           retention-days: 30
 
   approval:
@@ -93,33 +94,36 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Download clean tree artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: security-scan-report
+          path: .
+
       - name: Setup bot credentials for public repo
         run: |
           git config --global user.name "alparai-bot"
           git config --global user.email "bot@alparai.com"
 
-      - name: Add public repo as remote
-        run: |
-          # Using environment secret for public repo write access
-          git remote add public "https://x-access-token:${{ secrets.PUBLIC_REPO_BOT_TOKEN }}@github.com/quantummatrixcore-lab/alparai.git"
-
-      - name: Create squash-import commit
+      - name: Create squash-import commit and push
         id: export
         env:
           FILES_COUNT: ${{ needs.security-scan.outputs.files_count }}
           SCAN_HASH: ${{ needs.security-scan.outputs.scan_hash }}
         run: |
-          git fetch public ${{ github.event.inputs.target_branch }} || git fetch public main
+          cd dist-public
+          git init
+          git checkout -b ${{ github.event.inputs.target_branch }}
+          git add .
           COMMIT_MSG="Squash-import: Public repo sync (files=${{ env.FILES_COUNT }}, hash=${{ env.SCAN_HASH }})"
-          git commit --allow-empty -m "$COMMIT_MSG"
+          git commit -m "$COMMIT_MSG"
+          git remote add public "https://x-access-token:${{ secrets.PUBLIC_REPO_BOT_TOKEN }}@github.com/quantummatrixcore-lab/alparai.git"
+
+          git push public ${{ github.event.inputs.target_branch }} --force
+
           EXPORT_SHA=$(git rev-parse HEAD)
           echo "export_sha=$EXPORT_SHA" >> $GITHUB_OUTPUT
-
-      - name: Push to public repo (bot token only)
-        run: |
-          git push public HEAD:${{ github.event.inputs.target_branch }} --force-with-lease
-          PUBLIC_COMMIT=$(git rev-parse HEAD)
-          echo "Public repo received commit: $PUBLIC_COMMIT"
+          echo "Public repo received commit: $EXPORT_SHA"
 
       - name: Log to audit trail (private side)
         run: |

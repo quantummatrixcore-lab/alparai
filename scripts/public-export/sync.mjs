@@ -11,10 +11,10 @@
  * 6. Branch protection + bot token only
  *
  * Usage:
- *   node scripts/public-export/sync.mjs <source-dir> <public-repo-url> <branch-name>
+ *   node scripts/public-export/sync.mjs <source-dir> <public-repo-url> <branch-name> [out-dir]
  *
  * Example:
- *   node scripts/public-export/sync.mjs /home/user/Alparai.com https://github.com/quantummatrixcore-lab/alparai.git main
+ *   node scripts/public-export/sync.mjs . https://github.com/quantummatrixcore-lab/alparai.git main dist-public
  */
 
 import fs from "fs";
@@ -252,9 +252,10 @@ async function main() {
   const sourceDir = process.argv[2] || ".";
   const publicRepoUrl = process.argv[3];
   const branch = process.argv[4] || "main";
+  const outDir = process.argv[5];
 
   if (!publicRepoUrl) {
-    console.error("Usage: node sync.mjs <source-dir> <public-repo-url> [branch]");
+    console.error("Usage: node sync.mjs <source-dir> <public-repo-url> [branch] [out-dir]");
     process.exit(1);
   }
 
@@ -295,11 +296,27 @@ async function main() {
     file_list_hash: fileListHash,
     public_repo: publicRepoUrl,
     branch,
+    out_dir: outDir || "none"
   });
 
-  console.log(
-    `[LAYER-5] All files passed security checks. Ready for workflow dispatch.`
-  );
+  if (outDir) {
+    console.log(`[LAYER-5] Copying ${files.length} clean files to ${outDir}...`);
+    // Delete outDir if it exists to ensure a clean tree
+    if (fs.existsSync(outDir)) {
+      fs.rmSync(outDir, { recursive: true, force: true });
+    }
+    fs.mkdirSync(outDir, { recursive: true });
+    
+    for (const f of files) {
+      const destPath = path.join(outDir, f.target);
+      fs.mkdirSync(path.dirname(destPath), { recursive: true });
+      fs.copyFileSync(f.source, destPath);
+    }
+    console.log(`[LAYER-5] Successfully built clean tree in ${outDir}`);
+  } else {
+    console.log(`[LAYER-5] All files passed security checks. Ready for workflow dispatch.`);
+  }
+
   console.log(`[AUDIT-LOG] Sync audit logged to ${AUDIT_LOG_PATH}`);
   console.log(
     `[NOTE] Actual squash-import will be performed by GitHub workflow with bot token.`

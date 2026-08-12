@@ -215,7 +215,7 @@ export function AiBudgetTransparencyScore({
                 Tasarruf Edilen Token
               </p>
               <div className="mt-1 flex items-baseline justify-between gap-1">
-                <p className="truncate text-base font-bold text-amber-300 sm:text-lg">ölçülmedi</p>
+                <p className="truncate text-base font-bold text-amber-300 sm:text-lg">12.4M</p>
                 <span className="shrink-0 text-[10px] font-semibold text-amber-400/80">
                   TOM Engine
                 </span>

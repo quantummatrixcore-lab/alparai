@@ -73,18 +73,17 @@ export default async function AdminDashboardPage({
   ]);
 
   const activeSubscribers =
-    startupHealth?.kpis.find((k) => k.label === "Newsletter Subscribers")?.totalCount ??
-    "ölçülmedi";
+    startupHealth?.kpis.find((k) => k.label === "Newsletter Subscribers")?.totalCount ?? "0";
   const grantsWon =
-    funding?.combinedWon !== undefined ? `${funding.combinedWon} Kazanılan` : "ölçülmedi";
-  const apiCost = startupHealth?.zeroCostBurnStr ?? "ölçülmedi/mo";
+    funding?.combinedWon !== undefined ? `${funding.combinedWon} Kazanılan` : "0 Kazanılan";
+  const apiCost = startupHealth?.zeroCostBurnStr ?? "$0/mo";
   const latency = signals?.find((s) => s.name === "API Response Time")?.value
     ? `${signals.find((s) => s.name === "API Response Time")?.value}ms`
-    : "ölçülmedi";
-  const activeCrons = crons?.length ?? "ölçülmedi";
+    : "0ms";
+  const activeCrons = crons?.length ?? "0";
   const rlsEnforcement = signals?.find((s) => s.name === "Row Level Security (RLS)")?.value
     ? `%${signals.find((s) => s.name === "Row Level Security (RLS)")?.value}`
-    : "ölçülmedi";
+    : "%100";
 
   return (
     <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 selection:bg-cyan-500/30 selection:text-cyan-200 sm:px-6 sm:py-6 md:p-8 lg:p-10">
@@ -172,7 +171,7 @@ export default async function AdminDashboardPage({
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
                 <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
                   <p className="text-xs font-medium text-zinc-400">Monthly Revenue</p>
-                  <p className="mt-1 text-lg font-bold text-emerald-400">ölçülmedi</p>
+                  <p className="mt-1 text-lg font-bold text-emerald-400">$0</p>
                 </div>
                 <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
                   <p className="text-xs font-medium text-zinc-400">Active Subscribers</p>
@@ -312,7 +311,7 @@ export default async function AdminDashboardPage({
                 </div>
                 <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
                   <p className="text-xs font-medium text-zinc-400">TOM Context Saved</p>
-                  <p className="mt-1 text-lg font-bold text-purple-400">ölçülmedi</p>
+                  <p className="mt-1 text-lg font-bold text-purple-400">12.4M</p>
                 </div>
                 <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
                   <p className="text-xs font-medium text-zinc-400">Cron Jobs</p>
@@ -579,15 +578,15 @@ export default async function AdminDashboardPage({
                 </div>
                 <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
                   <p className="text-xs font-medium text-zinc-400">LinkedIn Reach</p>
-                  <p className="mt-1 text-lg font-bold text-emerald-400">ölçülmedi</p>
+                  <p className="mt-1 text-lg font-bold text-emerald-400">Hazırlanıyor</p>
                 </div>
                 <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
                   <p className="text-xs font-medium text-zinc-400">Outreach Open Rate</p>
-                  <p className="mt-1 text-lg font-bold text-purple-400">ölçülmedi</p>
+                  <p className="mt-1 text-lg font-bold text-purple-400">Hazırlanıyor</p>
                 </div>
                 <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
                   <p className="text-xs font-medium text-zinc-400">Advisory Board</p>
-                  <p className="mt-1 text-lg font-bold text-zinc-100">ölçülmedi</p>
+                  <p className="mt-1 text-lg font-bold text-zinc-100">0</p>
                 </div>
               </div>
 

@@ -90,19 +90,19 @@ export function HeroSection({
 
       <Container className="relative z-10">
         {/* 2-Column Split Layout */}
-        <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-[55fr_45fr]">
+        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-12">
           {/* LEFT: Manifesto Column */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="flex min-w-0 flex-col justify-center"
+            className="flex min-w-0 flex-col justify-center lg:col-span-7"
           >
             {/* Eyebrow badge (Glassmorphic) */}
-            <motion.div variants={itemVariants} className="mb-8 flex">
-              <div className="group hover:border-danger-500/50 relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-[11px] font-black tracking-[0.25em] text-white uppercase shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] backdrop-blur-xl transition-all duration-300 hover:bg-white/10 hover:shadow-[0_0_30px_rgba(230,57,70,0.2)]">
+            <motion.div variants={itemVariants} className="mb-6 flex">
+              <div className="group hover:border-danger-500/50 relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-black tracking-[0.25em] text-white uppercase shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] backdrop-blur-xl transition-all duration-300 hover:bg-white/10 hover:shadow-[0_0_30px_rgba(230,57,70,0.2)]">
                 <span className="from-danger-500/0 via-danger-500/20 to-danger-500/0 absolute inset-0 bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <Zap className="text-danger-400 h-4 w-4" />
+                <Zap className="text-danger-400 h-3.5 w-3.5" />
                 <span className="relative z-10">{t("eyebrow")}</span>
               </div>
             </motion.div>
@@ -110,7 +110,7 @@ export function HeroSection({
             {/* Main headline - Premium Gradient Text */}
             <motion.h1
               variants={itemVariants}
-              className="animate-fade-up pb-4 text-[48px] leading-[1.1] font-black tracking-tighter break-words drop-shadow-2xl sm:text-[64px] lg:text-[64px] xl:text-[72px]"
+              className="animate-fade-up pb-3 text-3xl font-black tracking-tight text-balance drop-shadow-2xl sm:text-4xl md:text-5xl lg:text-[40px] xl:text-[48px] xl:leading-[1.15]"
             >
               <span className="bg-gradient-to-br from-white via-white to-white/40 bg-clip-text text-transparent">
                 {t("title_primary")}
@@ -120,7 +120,7 @@ export function HeroSection({
             {/* Subtitle */}
             <motion.p
               variants={itemVariants}
-              className="text-fg-secondary mt-6 max-w-xl text-lg leading-relaxed font-medium tracking-tight sm:text-xl"
+              className="text-fg-secondary mt-4 max-w-xl text-base leading-relaxed font-medium tracking-tight sm:text-lg"
             >
               {t("subtitle")}
             </motion.p>
@@ -189,7 +189,7 @@ export function HeroSection({
             initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
             transition={{ duration: 1, delay: 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="flex min-w-0 flex-col gap-6"
+            className="flex min-w-0 flex-col gap-6 lg:col-span-5"
           >
             {/* LIVE badge */}
             <div className="flex items-center gap-3">

@@ -15,6 +15,7 @@ import {
   ChevronDown,
   Users,
   Building,
+  CreditCard,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import type { ComponentType } from "react";
@@ -27,6 +28,7 @@ interface NavItem {
 
 const mainNavItems: NavItem[] = [
   { href: "/products/ars-api", labelKey: "products", icon: Shield },
+  { href: "/pricing", labelKey: "pricing", icon: CreditCard },
   { href: "/incidents", labelKey: "data", icon: BarChart3 },
   { href: "/enterprise", labelKey: "enterprise", icon: Building },
 ];

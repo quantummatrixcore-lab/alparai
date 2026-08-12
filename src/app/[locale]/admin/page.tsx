@@ -77,6 +77,7 @@ export default async function AdminDashboardPage({
   const grantsWon =
     funding?.combinedWon !== undefined ? `${funding.combinedWon} Kazanılan` : "0 Kazanılan";
   const apiCost = startupHealth?.zeroCostBurnStr ?? "$0/mo";
+  const mrr = startupHealth?.mrr !== undefined ? `$${startupHealth.mrr}` : "$0";
   const latency = signals?.find((s) => s.name === "API Response Time")?.value
     ? `${signals.find((s) => s.name === "API Response Time")?.value}ms`
     : "0ms";
@@ -171,7 +172,7 @@ export default async function AdminDashboardPage({
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
                 <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
                   <p className="text-xs font-medium text-zinc-400">Monthly Revenue</p>
-                  <p className="mt-1 text-lg font-bold text-emerald-400">$0</p>
+                  <p className="mt-1 text-lg font-bold text-emerald-400">{mrr}</p>
                 </div>
                 <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
                   <p className="text-xs font-medium text-zinc-400">Active Subscribers</p>

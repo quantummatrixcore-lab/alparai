@@ -389,7 +389,7 @@
     "neutrality_notice": "Хостинг контента и разрешение споров строго следуют нашей хартии нейтральности.",
     "neutrality_link": "Прочитать нашу Хартию Нейтральности.",
     "startup_title": "Startup",
-    "startup_price": "TBD",
+    "startup_price": "$99",
     "startup_period": "/month",
     "startup_desc": "For growing teams managing AI deployments.",
     "startup_feature_1": "API access (10k req/mo)",
@@ -454,7 +454,8 @@
     "ars_api": "Risk Score API",
     "eu_ai_act": "EU AI Act SaaS",
     "datasets": "Safety Datasets",
-    "enterprise": "Enterprise"
+    "enterprise": "Enterprise",
+    "pricing": "Цены"
   },
   "velocity": {
     "page_title": "Публичная панель Velocity Engine",
@@ -532,6 +533,7 @@
     "subtitle": "ALPAR AI dokumentiert, verifiziert und speichert jeden KI-Vorfall dauerhaft — verwaltet von der Community, nicht von KI-Konzernen. Konto erforderlich — Ihre Identität bleibt geschützt, niemals veröffentlicht. Das Register ist permanent.",
     "cta_primary": "Vorfall melden",
     "cta_explore_data": "Исследовать данные",
+    "cta_pricing": "Enterprise & Цены",
     "cta_view_platform": "Открыть платформу",
     "cta_journalist": "Для журналистов",
     "cta_secondary": "Beweise ansehen",

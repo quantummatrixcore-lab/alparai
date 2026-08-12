@@ -20,6 +20,7 @@ export interface StartupHealthResult {
   uptimePct: number;
   zeroCostBurnStr: string;
   measuredAt: string;
+  mrr: number;
 }
 
 function momGrowth(current: number, previous: number): number | null {
@@ -143,5 +144,6 @@ export async function getStartupHealth(): Promise<StartupHealthResult | null> {
     uptimePct: 99.98,
     zeroCostBurnStr: "$20.00 / mo (Vercel Pro)",
     measuredAt: new Date().toISOString(),
+    mrr: 0,
   };
 }

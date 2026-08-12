@@ -3,7 +3,16 @@
 import * as React from "react";
 import { motion, animate, useInView, type Variants } from "framer-motion";
 import { Link } from "@/i18n/routing";
-import { ArrowRight, ShieldAlert, Target, Trophy, Quote, Radio, Zap } from "lucide-react";
+import {
+  ArrowRight,
+  ShieldAlert,
+  Target,
+  Trophy,
+  Quote,
+  Radio,
+  Zap,
+  CreditCard,
+} from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/layout";
 import { cn } from "@/lib/utils";
@@ -125,12 +134,15 @@ export function HeroSection({
               {t("subtitle")}
             </motion.p>
 
-            {/* CTAs - High-End Hover States */}
-            <motion.div variants={itemVariants} className="mt-10 flex flex-col gap-4 sm:flex-row">
+            {/* CTAs - High-End Hover States & Micro-interactions */}
+            <motion.div
+              variants={itemVariants}
+              className="mt-10 flex flex-wrap gap-4 sm:flex-row sm:items-center"
+            >
               <Link
                 href="/products/ars-api"
                 onClick={() => trackEvent("hero_cta_click", { action: "primary" })}
-                className="group bg-danger-500 relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl px-8 text-base font-black text-white shadow-[0_0_30px_rgba(230,57,70,0.4),inset_0_1px_0_rgba(255,255,255,0.3)] transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_0_50px_rgba(230,57,70,0.6),inset_0_1px_0_rgba(255,255,255,0.4)]"
+                className="group bg-danger-500 relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl px-8 text-base font-black text-white shadow-[0_0_30px_rgba(230,57,70,0.4),inset_0_1px_0_rgba(255,255,255,0.3)] transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_0_50px_rgba(230,57,70,0.6),inset_0_1px_0_rgba(255,255,255,0.4)] active:scale-[0.98]"
               >
                 <div className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-[100%]" />
                 <ShieldAlert className="relative z-10 h-5 w-5" />
@@ -140,9 +152,20 @@ export function HeroSection({
               </Link>
 
               <Link
+                href="/pricing"
+                onClick={() => trackEvent("hero_cta_click", { action: "pricing" })}
+                className="group border-brand-500/40 bg-brand-500/10 hover:border-brand-400 hover:bg-brand-500/20 relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl border px-8 text-base font-bold text-white shadow-[0_0_25px_rgba(168,85,247,0.2),inset_0_1px_0_rgba(255,255,255,0.2)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(168,85,247,0.4),inset_0_1px_0_rgba(255,255,255,0.3)] active:scale-[0.98]"
+              >
+                <CreditCard className="text-brand-400 relative z-10 h-5 w-5" />
+                <span className="relative z-10">
+                  {t("cta_pricing", { defaultValue: "Enterprise & Pricing" })}
+                </span>
+              </Link>
+
+              <Link
                 href="/incidents"
                 onClick={() => trackEvent("hero_cta_click", { action: "secondary" })}
-                className="group relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl border border-white/10 bg-white/5 px-8 text-base font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:border-white/20 hover:bg-white/10 hover:shadow-[0_10px_40px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.2)]"
+                className="group relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl border border-white/10 bg-white/5 px-8 text-base font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:border-white/20 hover:bg-white/10 hover:shadow-[0_10px_40px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.2)] active:scale-[0.98]"
               >
                 <span className="relative z-10">
                   {t("cta_secondary", { defaultValue: "Canlı Veritabanı" })}
@@ -300,23 +323,25 @@ export function HeroSection({
               </div>
               <div className="space-y-3">
                 <div className="border-brand-500/30 bg-brand-500/10 text-brand-300 inline-flex items-center gap-2 rounded-full border px-2.5 py-1 text-[10px] font-black tracking-[0.2em] uppercase">
-                  B2B Compliance
+                  {t("b2b_compliance", { defaultValue: "B2B Compliance" })}
                 </div>
                 <h4 className="text-xl font-black tracking-tight text-white">
-                  EU AI Act Uyum Testi
+                  {t("ai_act_compliance_title", { defaultValue: "EU AI Act Compliance Test" })}
                 </h4>
                 <p className="text-fg-secondary text-sm leading-relaxed font-medium">
-                  Yapay zeka sistemleriniz Avrupa Birliği Yapay Zeka Yasası'na (AI Act) hazır mı?
-                  Şirketiniz için risk sınıflandırmasını hemen yapın.
+                  {t("ai_act_compliance_desc", {
+                    defaultValue:
+                      "Are your AI systems ready for the European Union AI Act? Run a risk classification for your enterprise now.",
+                  })}
                 </p>
               </div>
             </div>
             <div className="relative z-10 mt-8 pl-16">
               <Link
                 href="/products/eu-ai-act"
-                className="bg-brand-500 hover:bg-brand-400 inline-flex h-10 items-center gap-2 rounded-xl px-5 text-sm font-bold text-white shadow-[0_0_20px_rgba(168,85,247,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_30px_rgba(168,85,247,0.5),inset_0_1px_0_rgba(255,255,255,0.3)]"
+                className="bg-brand-500 hover:bg-brand-400 inline-flex h-10 items-center gap-2 rounded-xl px-5 text-sm font-bold text-white shadow-[0_0_20px_rgba(168,85,247,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_30px_rgba(168,85,247,0.5),inset_0_1px_0_rgba(255,255,255,0.3)] active:scale-[0.98]"
               >
-                Testi Başlat <ArrowRight className="h-4 w-4" />
+                {t("start_test", { defaultValue: "Start Test" })} <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
@@ -344,7 +369,7 @@ export function HeroSection({
             <div className="relative z-10 mt-8 pl-16">
               <Link
                 href="/bounties"
-                className="bg-warning-500 hover:bg-warning-400 focus-visible:ring-warning-500 inline-flex h-10 items-center gap-2 rounded-xl px-5 text-sm font-bold text-neutral-950 shadow-[0_0_20px_rgba(249,115,22,0.3),inset_0_1px_0_rgba(255,255,255,0.5)] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_30px_rgba(249,115,22,0.5),inset_0_1px_0_rgba(255,255,255,0.7)]"
+                className="bg-warning-500 hover:bg-warning-400 focus-visible:ring-warning-500 inline-flex h-10 items-center gap-2 rounded-xl px-5 text-sm font-bold text-neutral-950 shadow-[0_0_20px_rgba(249,115,22,0.3),inset_0_1px_0_rgba(255,255,255,0.5)] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_30px_rgba(249,115,22,0.5),inset_0_1px_0_rgba(255,255,255,0.7)] active:scale-[0.98]"
               >
                 {t("bug_bounty_badge", { defaultValue: "Bug Bounty" })} {t("view_all") ?? "→"}
                 <ArrowRight className="h-4 w-4" />

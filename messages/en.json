@@ -389,7 +389,7 @@
     "neutrality_notice": "All content hosting and dispute resolutions are subject to our neutrality pledge.",
     "neutrality_link": "Read our Neutrality Pledge.",
     "startup_title": "Startup",
-    "startup_price": "TBD",
+    "startup_price": "$99",
     "startup_period": "/month",
     "startup_desc": "For growing teams managing AI deployments.",
     "startup_feature_1": "API access (10k req/mo)",
@@ -454,7 +454,8 @@
     "ars_api": "Risk Score API",
     "eu_ai_act": "EU AI Act SaaS",
     "datasets": "Safety Datasets",
-    "enterprise": "Enterprise"
+    "enterprise": "Enterprise",
+    "pricing": "Pricing"
   },
   "velocity": {
     "page_title": "Velocity Engine Public Dashboard",
@@ -531,6 +532,7 @@
     "title_accent_desc": "Found a real AI failure? Document it. Get verified. Earn the Ethics Advocate badge — and reward credits from the providers you reported.",
     "subtitle": "ALPAR AI documents, verifies, and permanently records every AI incident — governed by its community, not by AI companies. Account required — your identity is protected, never published. The record is permanent.",
     "cta_primary": "Report an Incident",
+    "cta_pricing": "Enterprise & Pricing",
     "cta_explore_data": "Explore Data →",
     "cta_view_platform": "View Platform →",
     "cta_journalist": "For Journalists",

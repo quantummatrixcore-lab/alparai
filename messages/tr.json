@@ -389,7 +389,7 @@
     "neutrality_notice": "Tüm içerik barındırma ve ihtilaf çözümleri tarafsızlık taahhüdümüze tabidir.",
     "neutrality_link": "Tarafsızlık Şartımızı okuyun.",
     "startup_title": "Startup",
-    "startup_price": "TBD",
+    "startup_price": "$99",
     "startup_period": "/ay",
     "startup_desc": "Yapay zeka dağıtımlarını yöneten büyüyen ekipler için.",
     "startup_feature_1": "API erişimi (10k istek/ay)",
@@ -454,7 +454,8 @@
     "ars_api": "Risk Skor API",
     "eu_ai_act": "AB YZ Yasası SaaS",
     "datasets": "Güvenlik Veri Setleri",
-    "enterprise": "Kurumsal"
+    "enterprise": "Kurumsal",
+    "pricing": "Fiyatlandırma"
   },
   "velocity": {
     "page_title": "Velocity Engine Kamu Kontrol Paneli",
@@ -531,6 +532,7 @@
     "title_accent_desc": "Gerçek bir AI hatası mı buldun? Belgele. Doğrulat. Etik Savunucu rozeti kazan — ve bildirdiğin sağlayıcıdan ödül kredisi al.",
     "subtitle": "ALPAR AI, yapay zeka şirketleri yerine kendi topluluğu tarafından yönetilen, yapay zekanın her hatasını belgeleyen, doğrulayan ve kalıcı olarak kaydeden bir platformdur. Hesap gerekli — kimliğiniz korunur, asla yayınlanmaz. Kayıt kalıcıdır.",
     "cta_primary": "Olay Bildir",
+    "cta_pricing": "Kurumsal & Fiyatlandırma",
     "cta_explore_data": "Verileri İncele →",
     "cta_view_platform": "Platformu Gör →",
     "cta_journalist": "Gazeteciler için",

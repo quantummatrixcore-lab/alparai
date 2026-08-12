@@ -1,4 +1,4 @@
-export const revalidate = 20;
+export const dynamic = "force-dynamic";
 
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { createServerClient } from "@/lib/supabase/server";
@@ -53,7 +53,7 @@ export default async function LeaderboardPage({
   const { data: leaderboardData } = await supabase
     .from("provider_leaderboard")
     .select(
-      "id, slug, name, logo_url, is_verified, website_url, trust_score, incident_count, response_count, is_verified_respondent",
+      "id, slug, name, logo_url, is_verified, website_url, trust_score, incident_count, response_count, is_verified_respondent, response_rate",
     )
     .order("name");
 

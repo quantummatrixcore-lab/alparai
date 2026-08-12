@@ -19,12 +19,15 @@ Thanks for your interest in ALPAR AI. We welcome PRs, bug reports, and feature i
 - Server Actions for mutations; never `supabase.from().insert()` from the client.
 - All copy goes in `messages/{en,tr}.json`.
 
-## Branching
+## Branching & Deploy Convention
 
 - `main` is always deployable.
 - Feature branches: `feat/<short-name>`
 - Bug fixes: `fix/<short-name>`
 - Hotfixes: `hotfix/<short-name>`
+
+**Production Deployments:**
+Production builds run only for commits whose message contains `[deploy]` (enforced by `scripts/deploy-gate.mjs` via `vercel.json` `ignoreCommand`). Batch your commits; put `[deploy]` on the batch-closing commit only. Max 2 deploy windows per executor per day.
 
 ## Commit messages
 

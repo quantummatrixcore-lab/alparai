@@ -2,11 +2,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
 
-vi.hoisted(() => {
-  vi.stubEnv("OPENROUTER_API_KEY", "test-key");
-  vi.stubEnv("GOOGLE_API_KEY", "test-google-key");
-});
-
 // Mock the openai client
 vi.mock("openai", () => {
   const mockCompletionsCreate = vi.fn();
@@ -71,6 +66,8 @@ const MOCK_FREE_TRIAGE_MODELS: readonly GatewayModel[] = [
 describe("OpenRouter API Gateway", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    vi.stubEnv("OPENROUTER_API_KEY", "test-key");
+    vi.stubEnv("GOOGLE_API_KEY", "test-google-key");
   });
 
   describe("callModel", () => {

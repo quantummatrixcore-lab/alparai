@@ -321,7 +321,11 @@
     "expertise_other": "Diğer",
     "ambassador_title": "Öğrenci Elçileri",
     "ambassador_subtitle": "ALPAR AI Öğrenci Elçisi Programına katılın ve üniversitenizde Yapay Zeka Güvenliği tartışmalarına öncülük edin.",
-    "ambassador_form_title": "Başvuru Yap"
+    "ambassador_form_title": "Başvuru Yap",
+    "programs_title": "Akademi Programları",
+    "programs_ambassador_title": "Elçi Programı",
+    "programs_fellowship_title": "Burs Programı",
+    "programs_instructor_title": "Eğitmen Portalı"
   },
   "press": {
     "title": "Basın & Medya Kiti",
@@ -3549,10 +3553,6 @@
     "vision_desc": "Yapay zeka için güven katmanını inşa ediyoruz. SSL'in erken interneti güvenli kılması gibi, ALPAR AI da şeffaflık ve hesap verebilirlik yoluyla yapay zekanın geleceğini güvence altına alıyor.",
     "advisory_board_title": "Danışma Kurulu",
     "advisory_board_desc": "Bağımsız danışma kurulumuz yapay zeka etiği, hukuku ve güvenliği alanlarındaki önde gelen uzmanlardan oluşmaktadır.",
-    "member_1_name": "[İsim Alanı]",
-    "member_1_role": "Hukuk Danışmanı",
-    "member_2_name": "[İsim Alanı]",
-    "member_2_role": "YZ Etik Araştırmacısı",
     "mou_title": "Akademik Ortaklıklar",
     "mou_desc": "ALPAR AI, Boğaziçi Üniversitesi ve TU Berlin ile imzalanan mutabakat zaptları (MOU) dahil olmak üzere önde gelen küresel kurumlarla ortaklık içinde faaliyet göstermektedir."
   },
@@ -4885,7 +4885,6 @@
     "evidence_2": "Ekran Görüntüleri (12)",
     "evidence_3": "KVKK Şikayeti",
     "legal_title": "Yasal Süreçler",
-    "legal_1": "KVKK (Türkiye) — Dosyalandı, Kayıt #[XXX]",
     "legal_2": "ICO (İngiltere) — Beklemede",
     "legal_3": "CNIL (Fransa) — Beklemede",
     "legal_4": "FTC (ABD) — Beklemede",

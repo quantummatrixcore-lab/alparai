@@ -321,7 +321,11 @@
     "expertise_other": "Andere",
     "ambassador_title": "Studenten-Botschafter",
     "ambassador_subtitle": "Treten Sie dem ALPAR AI Studenten-Botschafter-Programm bei und führen Sie die Diskussion über KI-Sicherheit an Ihrer Universität.",
-    "ambassador_form_title": "Jetzt bewerben"
+    "ambassador_form_title": "Jetzt bewerben",
+    "programs_title": "Academy-Programme",
+    "programs_ambassador_title": "Botschafter-Programm",
+    "programs_fellowship_title": "Fellowship-Programm",
+    "programs_instructor_title": "Dozenten-Portal"
   },
   "press": {
     "title": "Presse- & Medien-Kit",
@@ -3549,10 +3553,6 @@
     "vision_desc": "We are building the trust layer for artificial intelligence. Just as SSL secured the early internet, ALPAR AI secures the future of AI through transparency and accountability.",
     "advisory_board_title": "Advisory Board",
     "advisory_board_desc": "Our independent advisory board consists of leading experts in AI ethics, law, and security.",
-    "member_1_name": "[Name Placeholder]",
-    "member_1_role": "Legal Advisor",
-    "member_2_name": "[Name Placeholder]",
-    "member_2_role": "AI Ethics Researcher",
     "mou_title": "Academic Partnerships",
     "mou_desc": "ALPAR AI operates in partnership with leading global institutions, including memorandums of understanding (MOU) with Boğaziçi University and TU Berlin."
   },
@@ -4885,7 +4885,6 @@
     "evidence_2": "Screenshots (12)",
     "evidence_3": "KVKK Complaint",
     "legal_title": "Legal Actions",
-    "legal_1": "KVKK (Turkey) — Filed [DATE], Registration #[XXX]",
     "legal_2": "ICO (UK) — Pending",
     "legal_3": "CNIL (France) — Pending",
     "legal_4": "FTC (US) — Pending",

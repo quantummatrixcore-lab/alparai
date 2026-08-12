@@ -62,13 +62,18 @@ export default async function SubmitPage({ params }: { params: Promise<{ locale:
       </header>
 
       {/* Whistleblower Protection Pathway Banner */}
-      <div className="mb-6 rounded-lg border border-purple-500/30 bg-purple-500/10 p-4 text-xs">
+      <Link
+        href="/submit/whistleblower"
+        className="mb-6 block rounded-lg border border-purple-500/30 bg-purple-500/10 p-4 text-xs transition-colors hover:bg-purple-500/20"
+      >
         <div className="mb-1 flex items-center gap-2 font-semibold text-purple-300">
           <Shield className="h-4 w-4 text-purple-400" />
-          <span>{t("whistleblower_title")}</span>
+          <span className="underline decoration-purple-400/50 underline-offset-2">
+            {t("whistleblower_title")}
+          </span>
         </div>
         <p className="text-fg-muted leading-relaxed">{t("whistleblower_desc")}</p>
-      </div>
+      </Link>
 
       {!isLoggedIn ? (
         <Card className="border-brand-500/20 bg-brand-500/5">

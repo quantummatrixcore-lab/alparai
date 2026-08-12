@@ -1,6 +1,6 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/layout";
-import { ShieldAlert, Calendar, User, Building, FileText, CheckCircle2, Clock } from "lucide-react";
+import { ShieldAlert, Calendar, User, Building, FileText, Clock } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -34,7 +34,6 @@ export default async function Case001Page({ params }: { params: Promise<{ locale
   ];
 
   const legalActions = [
-    { text: t("legal_1"), icon: CheckCircle2, active: true },
     { text: t("legal_2"), icon: Clock, active: false },
     { text: t("legal_3"), icon: Clock, active: false },
     { text: t("legal_4"), icon: Clock, active: false },

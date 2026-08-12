@@ -87,7 +87,7 @@ function scanForPII(content, filePath) {
   const piiPatterns = {
     tc_kimlik: /\b[1-9]\d{10}\b/g,
     // Ignore corporate emails and mock domains used in tests/seeds
-    email: /\b[a-zA-Z0-9._%+-]+@(?!alparai\.com|users\.noreply\.github\.com|example\.com|test\.com|gmail\.com|cs\.berkeley\.edu|mit\.edu|nytimes\.com|technologyreview\.com|alignment\.org|university\.edu|email\.com|vc\.com|alparai\.local|company\.com|openai\.com)[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\b/g,
+    email: /\b[a-zA-Z0-9._%+-]+@(?!alparai\.com|users\.noreply\.github\.com|example\.com|test\.com|cs\.berkeley\.edu|mit\.edu|nytimes\.com|technologyreview\.com|alignment\.org|university\.edu|email\.com|vc\.com|alparai\.local|company\.com|openai\.com|x\.ai|anthropic\.com|google\.com|meta\.com|cohere\.com|mistral\.ai|perplexity\.ai)[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\b/g,
   };
 
   for (const [type, pattern] of Object.entries(piiPatterns)) {

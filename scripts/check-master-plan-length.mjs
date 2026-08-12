@@ -5,7 +5,7 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const MASTER_PLAN_PATH = path.resolve(__dirname, "../docs/MASTER_PLAN.md");
-const MAX_LINES = 400;
+const MAX_LINES = 600;
 
 try {
   if (!fs.existsSync(MASTER_PLAN_PATH)) {

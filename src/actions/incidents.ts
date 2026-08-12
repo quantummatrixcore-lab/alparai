@@ -278,14 +278,16 @@ const runSubmitWork = async (
         severity: raw.severity,
       });
 
-      emailPromises.push(
-        resend.emails.send({
-          from: "ALPAR AI Alerts <alerts@alparai.com>",
-          to: process.env.ADMIN_ALERT_EMAIL || "quantum.matrix.core@gmail.com",
-          subject: `[ALERT] New Incident: ${raw.title.substring(0, 40)}...`,
-          html: adminHtml,
-        }),
-      );
+      if (process.env.ADMIN_ALERT_EMAIL) {
+        emailPromises.push(
+          resend.emails.send({
+            from: "ALPAR AI Alerts <alerts@alparai.com>",
+            to: process.env.ADMIN_ALERT_EMAIL,
+            subject: `[ALERT] New Incident: ${raw.title.substring(0, 40)}...`,
+            html: adminHtml,
+          }),
+        );
+      }
 
       // 3. Send alert to AI Provider if they are claimed/verified and have contact email
       const providerId = providerIsCustom ? null : raw.provider_id || null;

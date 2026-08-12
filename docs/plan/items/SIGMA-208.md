@@ -1,3 +1,3 @@
 # SIGMA-208
 
-Stripe canlı işlem / webhook doğrulama [↗](plan/items/SIGMA-208.md)
+Stripe canlı işlem / webhook doğrulama (#208)

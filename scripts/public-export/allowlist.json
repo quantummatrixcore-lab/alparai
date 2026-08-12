@@ -47,7 +47,8 @@
     },
     {
       "comment": "Tests — test coverage and patterns",
-      "patterns": ["tests/**/*.ts", "tests/**/*.tsx"]
+      "patterns": ["tests/**/*.ts", "tests/**/*.tsx"],
+      "exclude": ["tests/security/vault.test.ts"]
     },
     {
       "comment": "License and public community documentation",

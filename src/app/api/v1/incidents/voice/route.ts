@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { headers } from "next/headers";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { maskPII } from "@/lib/pii/guardian";
-import { transcribeAudioBlob, ASR_SUPPORTED_LANGUAGES_COUNT } from "@/actions/voice-incidents";
+import { transcribeAudioBlob } from "@/actions/voice-incidents";
 import { submitIncident, type SubmitIncidentState } from "@/actions/incidents";
 import { z } from "zod";
 
@@ -222,7 +222,7 @@ export async function POST(request: Request) {
           incident_id: incidentId || null,
           transcription: sanitizedTranscript,
           detected_language: detectedLanguage,
-          languages_supported_count: ASR_SUPPORTED_LANGUAGES_COUNT,
+          languages_supported_count: 113,
           confidence,
           duration_seconds: durationSeconds,
           asr_engine: "qwen-omni-asr-113lang",

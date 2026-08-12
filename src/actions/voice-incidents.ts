@@ -3,23 +3,11 @@
 import { maskPII } from "@/lib/pii/guardian";
 import { logger } from "@/lib/utils/logger";
 import { submitIncident, type SubmitIncidentState } from "@/actions/incidents";
-import { z } from "zod";
 
 /**
  * 113 Supported Languages ASR catalog (ISO-639-1 / BCP-47 codes).
  * Qwen Omni & Whisper v3 ASR engine ready.
  */
-export const ASR_SUPPORTED_LANGUAGES_COUNT = 113;
-
-export const voiceIncidentInputSchema = z.object({
-  locale: z.string().optional().default("tr"),
-  category: z.string().optional().default("other"),
-  severity: z.string().optional().default("medium"),
-  provider_id: z.string().optional(),
-  model_id: z.string().optional(),
-  is_anonymous: z.boolean().optional().default(true),
-  auto_submit: z.boolean().optional().default(true),
-});
 
 export interface VoiceIncidentActionResult {
   success: boolean;

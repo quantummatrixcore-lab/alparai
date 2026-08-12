@@ -3042,7 +3042,8 @@
     "provider_response_title": "Sağlayıcı Yanıt Protokolü · ALPAR AI",
     "modular_architecture_title": "Modüler Mimari Durumu · ALPAR AI",
     "expert_analysis_title": "Uzman Kurulu Analizi · ALPAR AI",
-    "governance_hub": "Yönetişim Hub"
+    "governance_hub": "Yönetişim Hub",
+    "moderators": "Moderatörler"
   },
   "footer": {
     "tagline": "Dünyanın AI'ı hesap verilebilir kıldığı yer.",

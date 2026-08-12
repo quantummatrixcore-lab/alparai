@@ -3042,7 +3042,8 @@
     "provider_response_title": "Provider Response Protocol · ALPAR AI",
     "modular_architecture_title": "Modular Architecture Status · ALPAR AI",
     "expert_analysis_title": "Expert Board Analysis · ALPAR AI",
-    "governance_hub": "Governance Hub"
+    "governance_hub": "Governance Hub",
+    "moderators": "Moderators"
   },
   "footer": {
     "tagline": "Where the world holds AI accountable.",

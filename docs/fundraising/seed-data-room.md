@@ -6,7 +6,7 @@
 **Contact:** ercument.erden@alparai.com / hello@alparai.com  
 **Target Round:** Seed (€750,000 SAFE / Equity)  
 **Target Valuation:** €4.5M Post-Money (€3.75M Pre-Money)  
-**Document Version:** 3.0.0 — Synchronized with MASTER_PLAN v12.131 & Seed Funding Strategy
+**Document Version:** 3.1.0 — Synchronized with MASTER_PLAN v13.x & Seed Funding Strategy
 
 ---
 
@@ -15,7 +15,7 @@
 This Data Room contains the complete strategic, regulatory, operational, financial, and architectural dossier for ALPAR AI’s Seed financing round ahead of the EU AI Act enforcement milestone.
 
 | Document ID | Title / Target File Path                       | Category & Description                                        | Status     |
-| ----------- | ---------------------------------------------- | ------------------------------------------------------------- | ---------- |
+| :---------- | :--------------------------------------------- | :------------------------------------------------------------ | :--------- |
 | **DR-01**   | `docs/INVESTOR/001-pitch-deck-v2.md`           | Executive Investor Pitch Deck & Product Vision                | Verified   |
 | **DR-02**   | `docs/INVESTOR/002-financial-projection-3y.md` | 3-Year Financial & Unit Economic Model                        | Verified   |
 | **DR-03**   | `docs/fundraising/seed-data-room.md`           | Master Data Room, LTV/CAC Formula & 18-Month Operational Burn | **Active** |
@@ -61,7 +61,8 @@ $$\text{Blended LTV/CAC} = \frac{\$45,900}{\$1,750} = \mathbf{26.22\text{x}}$$
 
 $$\text{Payback Period (Months)} = \frac{\text{CAC}}{\text{ARPU} \times \text{Gross Margin}} = \frac{\$1,750}{\$299 \times 0.85} = \mathbf{6.88\text{ Months}}$$
 
-> **Key Takeaway:** The **17.43x LTV/CAC ratio** and **<7-month CAC payback period** demonstrate capital-efficient SaaS growth powered by regulatory tailwinds and zero-cost inbound developer funnels.
+> [!NOTE]
+> The **17.43x LTV/CAC ratio** and **<7-month CAC payback period** demonstrate capital-efficient SaaS growth powered by regulatory tailwinds and zero-cost inbound developer funnels.
 
 ---
 
@@ -109,7 +110,7 @@ ALPAR AI maintains extreme capital discipline by combining automated engineering
 ### 4.1 18-Month Financial Runway Schedule (€750,000 Target Raise)
 
 | Operational Horizon | Monthly Burn Rate | Period Expenses  | Cumulative Spent | Remaining Capital (€750K Pool) | Key Milestones & Growth Targets                                                          |
-| ------------------- | ----------------- | ---------------- | ---------------- | ------------------------------ | ---------------------------------------------------------------------------------------- |
+| :------------------ | :---------------- | :--------------- | :--------------- | :----------------------------- | :--------------------------------------------------------------------------------------- |
 | **Months 1 – 6**    | €35,000 / mo      | €210,000         | €210,000         | €540,000                       | 50 AI Vendor Subscriptions (€15K MRR), EU AI Act Article 73 integration complete.        |
 | **Months 7 – 12**   | €35,000 / mo      | €210,000         | €420,000         | €330,000                       | 150 Vendors + 20 Enterprise SLAs (€65K MRR), SOC2 Type II & ISO 42001 certification.     |
 | **Months 13 – 18**  | €35,000 / mo      | €210,000         | €630,000         | €120,000                       | 300 Vendors + 60 Enterprise SLAs (€175K MRR / €2.1M ARR run-rate). Seed runway complete. |
@@ -134,5 +135,5 @@ ALPAR AI maintains extreme capital discipline by combining automated engineering
 
 ---
 
-_Document Version: 3.0.0 — Authoritative Seed Data Room_  
+_Document Version: 3.1.0 — Authoritative Seed Data Room_  
 _Approved by: Ercüment Erden, Founder & Chief Architect (`ercument.erden@alparai.com`)_

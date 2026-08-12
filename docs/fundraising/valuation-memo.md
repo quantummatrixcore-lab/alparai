@@ -5,7 +5,7 @@
 **Company:** ALPAR AI Inc.  
 **Domain:** Sovereign AI Governance & EU AI Act Trust Infrastructure  
 **Author / Contact:** Ercüment Erden (`ercument.erden@alparai.com`)  
-**Document Version:** 3.0.0 — Synchronized with MASTER_PLAN v12.131 & Seed Pitch Deck
+**Document Version:** 3.1.0 — Synchronized with MASTER_PLAN v13.x & Seed Pitch Deck
 
 ---
 
@@ -17,7 +17,7 @@ ALPAR AI is raising **€750,000** in Seed capital at a **€4.5M Post-Money Val
 +-----------------------------------------------------------------------------------+
 |                            VALUATION SNAPSHOT & HIGHLIGHTS                        |
 +-----------------------------------------------------------------------------------+
-|  Target Post-Money Valuation  |  €4.50,000,000                                    |
+|  Target Post-Money Valuation  |  €4,500,000                                       |
 |  Target Pre-Money Valuation   |  €3,750,000                                       |
 |  Capital Being Raised         |  €750,000 (16.67% Equity / SAFE)                  |
 |  Total Addressable Market     |  €2.1 Billion (EU AI Act Compliance & Governance) |
@@ -68,7 +68,7 @@ ALPAR AI operates at the intersection of **AI Infrastructure**, **Incident Manag
 ### Comparable Valuation Analysis
 
 | Company               | Stage / Funding          | Revenue / Valuation Metric   | Implied Multiple       | Strategic Benchmark for ALPAR AI                                            |
-| --------------------- | ------------------------ | ---------------------------- | ---------------------- | --------------------------------------------------------------------------- |
+| :-------------------- | :----------------------- | :--------------------------- | :--------------------- | :-------------------------------------------------------------------------- |
 | **incident.io**       | Series C / £62M ARR      | ~$1.0B Valuation             | **~15x ARR**           | Modern API-first incident management & developer-centric workflow platform. |
 | **OneTrust**          | Growth / $5.3B Valuation | ~$350M ARR                   | **15x – 18x ARR**      | De facto privacy management & GRC regulatory enterprise standard.           |
 | **ServiceNow**        | Public (NYSE: NOW)       | ~$10B Revenue / $160B MktCap | **14x – 16x EV**       | Enterprise workflow standard & regulatory compliance record-keeping.        |
@@ -122,5 +122,5 @@ The €750,000 Seed capital will be allocated strictly across four key strategic
 
 ---
 
-_Document Version: 3.0.0 — Authoritative Valuation Defense Memo_  
+_Document Version: 3.1.0 — Authoritative Valuation Defense Memo_  
 _Approved by: Ercüment Erden, Founder & Chief Architect (`ercument.erden@alparai.com`)_

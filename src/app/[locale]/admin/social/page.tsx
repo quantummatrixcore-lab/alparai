@@ -1,11 +1,11 @@
+import dynamic from "next/dynamic";
 import { getTranslations } from "next-intl/server";
 import { setRequestLocale } from "next-intl/server";
 import { Container } from "@/components/ui/layout";
 import { requireAdmin } from "@/lib/auth/session";
-import {
-  SocialDashboardClient,
-  type MarketingDraft,
-} from "@/components/admin/social-dashboard-client";
+import { type MarketingDraft,  } from "@/components/admin/social-dashboard-client";
+const SocialDashboardClient = dynamic(() => import("@/components/admin/social-dashboard-client").then(m => m.SocialDashboardClient), { ssr: false });
+
 import { ShareNetwork } from "@phosphor-icons/react/dist/ssr";
 import {
   getSocialPosts,

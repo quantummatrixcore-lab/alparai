@@ -42,7 +42,7 @@ export function SuggestionCard({ item }: { item: SuggestionListItem }) {
             <div className="flex flex-wrap items-center gap-2">
               <Badge variant="muted">{catLabel}</Badge>
               <Badge variant="outline">{statusLabel}</Badge>
-              <span className="text-fg-muted text-xs">
+              <span suppressHydrationWarning className="text-fg-muted text-xs">
                 {formatRelativeTime(new Date(item.created_at), locale)}
               </span>
             </div>

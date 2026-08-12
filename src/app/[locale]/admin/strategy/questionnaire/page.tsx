@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { requireAdvisor } from "@/lib/auth/session";
 import { createAdminClient } from "@/lib/supabase/admin";
@@ -6,7 +7,8 @@ import { AdminContainer, AdminPageHeader } from "@/components/admin/admin-design
 import { QuestionnaireClient } from "@/components/admin/questionnaire-client";
 import { QUESTIONNAIRE_MODELS } from "@/lib/ai/openrouter-gateway";
 import { QUESTIONS } from "@/lib/strategy/questions";
-import { StrategyTabs } from "@/components/admin/strategy-tabs";
+const StrategyTabs = dynamic(() => import("@/components/admin/strategy-tabs").then(m => m.StrategyTabs), { ssr: false });
+
 import type { GatewayModel } from "@/lib/ai/openrouter-gateway";
 
 interface RunRow {

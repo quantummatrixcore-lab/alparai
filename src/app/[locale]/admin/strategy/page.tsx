@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import { requireAdmin } from "@/lib/auth/session";
 import { getTranslations } from "next-intl/server";
 import { setRequestLocale } from "next-intl/server";
@@ -10,7 +11,8 @@ import { QuestionnaireClient } from "@/components/admin/questionnaire-client";
 import { EcosystemBenchmarkWidget } from "@/components/admin/ecosystem-benchmark-widget";
 import { QUESTIONNAIRE_MODELS } from "@/lib/ai/openrouter-gateway";
 import { Link } from "@/i18n/routing";
-import { StrategyTabs } from "@/components/admin/strategy-tabs";
+const StrategyTabs = dynamic(() => import("@/components/admin/strategy-tabs").then(m => m.StrategyTabs), { ssr: false });
+
 import { STRATEGY_METRICS_DEFAULTS, DEFAULT_VALUATION_PRE_MONEY } from "@/lib/constants";
 import { QUESTIONS } from "@/lib/strategy/questions";
 import {

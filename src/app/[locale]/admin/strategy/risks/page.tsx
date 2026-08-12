@@ -1,12 +1,15 @@
+import dynamic from "next/dynamic";
 import { requireAdmin } from "@/lib/auth/session";
 import { getTranslations } from "next-intl/server";
 import { setRequestLocale } from "next-intl/server";
 import { Container } from "@/components/ui/layout";
 import { requireAdvisor } from "@/lib/auth/session";
 import { createServerClient } from "@/lib/supabase/server";
-import { RiskMatrixClient } from "@/components/admin/strategy/risk-matrix-client";
+const RiskMatrixClient = dynamic(() => import("@/components/admin/strategy/risk-matrix-client").then(m => m.RiskMatrixClient), { ssr: false });
+
 import { ShieldAlert } from "lucide-react";
-import { StrategyTabs } from "@/components/admin/strategy-tabs";
+const StrategyTabs = dynamic(() => import("@/components/admin/strategy-tabs").then(m => m.StrategyTabs), { ssr: false });
+
 import type { StrategyRisk } from "@/types";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {

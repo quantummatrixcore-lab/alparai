@@ -1,10 +1,12 @@
+import dynamic from "next/dynamic";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/auth/session";
 import { BarChart3 } from "lucide-react";
 import { Link } from "@/i18n/routing";
 import { getCrossAuditDashboardData } from "@/actions/admin/cross-audit-metrics";
-import { CrossAuditDashboardClient } from "@/components/admin/cross-audit-dashboard-client";
+const CrossAuditDashboardClient = dynamic(() => import("@/components/admin/cross-audit-dashboard-client").then(m => m.CrossAuditDashboardClient), { ssr: false });
+
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

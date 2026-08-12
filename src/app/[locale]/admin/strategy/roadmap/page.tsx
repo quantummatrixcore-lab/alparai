@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import { requireAdmin } from "@/lib/auth/session";
 import { getTranslations } from "next-intl/server";
 import { setRequestLocale } from "next-intl/server";
@@ -7,7 +8,8 @@ import { createServerClient } from "@/lib/supabase/server";
 import { RoadmapClient } from "@/components/admin/strategy/roadmap-client";
 import { RoadmapTodosClient } from "@/components/admin/strategy/todos-client";
 import { Compass } from "lucide-react";
-import { StrategyTabs } from "@/components/admin/strategy-tabs";
+const StrategyTabs = dynamic(() => import("@/components/admin/strategy-tabs").then(m => m.StrategyTabs), { ssr: false });
+
 import type { StrategyMilestone, StrategyTodo } from "@/types";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {

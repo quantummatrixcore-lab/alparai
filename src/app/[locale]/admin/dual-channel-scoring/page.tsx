@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import { requireAdmin } from "@/lib/auth/session";
 import { getScoringConfigAction } from "@/actions/admin/dual-channel-scoring";
 import {
@@ -9,7 +10,8 @@ import {
   PieChart as PieChartIcon,
 } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { DualChannelChart } from "@/components/admin/dual-channel-chart";
+const DualChannelChart = dynamic(() => import("@/components/admin/dual-channel-chart").then(m => m.DualChannelChart), { ssr: false });
+
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

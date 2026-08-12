@@ -192,6 +192,7 @@ const runSubmitWork = async (
   const incidentId = (rpcRes as unknown as { id: string }).id;
 
   if (providerIsCustom && providerCustom) {
+    // EXCEPTION: createAdminClient() is required here because regular users do not have RLS permissions to insert into the global 'ai_providers' and 'ai_models' tables. We are doing it on their behalf.
     const admin = createAdminClient();
     const slug = providerCustomSlug || slugify(providerCustom);
     const { data: existing } = await admin

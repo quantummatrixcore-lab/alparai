@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { getTranslations } from "next-intl/server";
 import { createServerClient } from "@/lib/supabase/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+
 import { getCurrentUser } from "@/lib/auth/session";
 import { suggestionSubmissionSchema } from "@/lib/validation/schemas";
 import { withAutopilot, submitSuggestionPolicy, attemptsOf, durationOf } from "@/lib/autopilot";
@@ -135,9 +135,9 @@ const runSuggestionVoteWork = async (
   _ctx: AttemptContext,
   data: VoteWorkInput,
 ): Promise<AttemptOutcome<{ toggled: "added" | "removed" }>> => {
-  const admin = createAdminClient();
+  const supabase = await createServerClient();
   if (data.alreadyVoted) {
-    const { error } = await admin
+    const { error } = await supabase
       .from("suggestion_votes")
       .delete()
       .eq("suggestion_id", data.suggestionId)
@@ -151,7 +151,7 @@ const runSuggestionVoteWork = async (
     suggestion_id: data.suggestionId,
     user_id: data.userId,
   };
-  const { error } = await admin.from("suggestion_votes").insert(insertRow);
+  const { error } = await supabase.from("suggestion_votes").insert(insertRow);
   if (error) {
     return { kind: "retryable", error: error.message };
   }
@@ -165,8 +165,8 @@ export async function upvoteSuggestion(suggestionId: string) {
       const t = await getTranslations("errors");
       return { ok: false, error: t("sign_in_to_upvote") };
     }
-    const admin = createAdminClient();
-    const { data: existing } = await admin
+    const supabase = await createServerClient();
+    const { data: existing } = await supabase
       .from("suggestion_votes")
       .select("user_id")
       .eq("suggestion_id", suggestionId)
@@ -212,14 +212,14 @@ const runSuggestionCommentWork = async (
   _ctx: AttemptContext,
   data: CommentWorkInput,
 ): Promise<AttemptOutcome<{ id: string }>> => {
-  const admin = createAdminClient();
+  const supabase = await createServerClient();
   const insertRow: Database["public"]["Tables"]["suggestion_comments"]["Insert"] = {
     suggestion_id: data.suggestionId,
     user_id: data.userId,
     comment_text: maskPII(data.commentText).masked,
   };
 
-  const { data: row, error } = await admin
+  const { data: row, error } = await supabase
     .from("suggestion_comments")
     .insert(insertRow)
     .select("id")
@@ -230,7 +230,7 @@ const runSuggestionCommentWork = async (
   }
 
   // Increment comment count
-  await admin.rpc("increment_suggestion_comment_count", {
+  await supabase.rpc("increment_suggestion_comment_count", {
     p_suggestion_id: data.suggestionId,
   });
 

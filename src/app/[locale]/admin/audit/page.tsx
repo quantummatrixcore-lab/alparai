@@ -1,9 +1,11 @@
+import dynamic from "next/dynamic";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { redirect } from "next/navigation";
 
 import { getCurrentUser } from "@/lib/auth/session";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { AuditLogClient } from "@/components/admin/audit-log-client";
+const AuditLogClient = dynamic(() => import("@/components/admin/audit-log-client").then(m => m.AuditLogClient), { ssr: false });
+
 import { Activity } from "lucide-react";
 
 import { GovernanceHubTabs } from "@/components/admin/governance-hub-tabs";

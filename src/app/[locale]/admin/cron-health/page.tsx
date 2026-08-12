@@ -1,9 +1,11 @@
+import dynamic from "next/dynamic";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { redirect } from "next/navigation";
 import { Clock } from "lucide-react";
 import { getCurrentUser } from "@/lib/auth/session";
 import { AdminPageHeader } from "@/components/admin/admin-design-kit";
-import { CronHealthClient } from "@/components/admin/cron-health-client";
+const CronHealthClient = dynamic(() => import("@/components/admin/cron-health-client").then(m => m.CronHealthClient), { ssr: false });
+
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

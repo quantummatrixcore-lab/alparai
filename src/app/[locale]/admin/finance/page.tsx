@@ -1,3 +1,4 @@
+import nextDynamic from "next/dynamic";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { SystemHubTabs } from "@/components/admin/system-hub-tabs";
 export const dynamic = "force-dynamic";
@@ -6,7 +7,8 @@ import { requireModerator } from "@/lib/auth/session";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { CostOverviewCard } from "@/components/admin/finance/cost-overview-card";
 import { BudgetGauge } from "@/components/admin/finance/budget-gauge";
-import { CostTrendChart } from "@/components/admin/finance/cost-trend-chart";
+const CostTrendChart = nextDynamic(() => import("@/components/admin/finance/cost-trend-chart").then(m => m.CostTrendChart), { ssr: false });
+
 import { ApiUsageTable } from "@/components/admin/finance/api-usage-table";
 import { AlertBanner } from "@/components/admin/finance/alert-banner";
 import { QuotaWidget } from "@/components/admin/quota-widget";

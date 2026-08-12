@@ -4990,5 +4990,10 @@
     "bottom_cta_title": "Need Enterprise Customization?",
     "bottom_cta_desc": "Integrate ALPAR AI automated Article 73 monitoring directly into your core banking or telco stack.",
     "bottom_cta_button": "Schedule Technical Briefing"
+  },
+  "suggestions": {
+    "title": "Suggestions",
+    "subtitle": "Community Suggestions",
+    "create_title": "New Suggestion"
   }
 }

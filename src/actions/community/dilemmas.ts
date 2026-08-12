@@ -17,7 +17,9 @@ export async function submitVote(
   try {
     // 1. Verify Turnstile — no test key fallback in production
     const turnstileSecret = process.env.TURNSTILE_SECRET_KEY;
-    if (turnstileSecret) {
+    if (process.env.NODE_ENV !== "production") {
+      logger.info("Dev mode: Bypassing Turnstile verify.");
+    } else if (turnstileSecret) {
       const verifyRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },

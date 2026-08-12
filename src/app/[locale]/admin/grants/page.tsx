@@ -1,5 +1,7 @@
+import dynamic from "next/dynamic";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { GrantsList } from "@/components/admin/grants-list";
+const GrantsList = dynamic(() => import("@/components/admin/grants-list").then(m => m.GrantsList), { ssr: false });
+
 import { AdminSectionCard } from "@/components/admin/admin-design-kit";
 import { requireModerator } from "@/lib/auth/session";
 import { redirect } from "next/navigation";

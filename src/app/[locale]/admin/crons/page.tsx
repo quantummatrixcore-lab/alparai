@@ -1,7 +1,9 @@
+import dynamic from "next/dynamic";
 import { setRequestLocale } from "next-intl/server";
 import { requireAdmin } from "@/lib/auth/session";
 import { CronsDashboardClient } from "@/components/admin/crons-dashboard-client";
-import { CronHealthClient } from "@/components/admin/cron-health-client";
+const CronHealthClient = dynamic(() => import("@/components/admin/cron-health-client").then(m => m.CronHealthClient), { ssr: false });
+
 import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {

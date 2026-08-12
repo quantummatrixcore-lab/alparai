@@ -52,7 +52,7 @@ export function PollCard({ poll }: { poll: Poll }) {
   const unsurePercent = totalVotes > 0 ? 100 - yesPercent - noPercent : 0;
 
   const handleVote = async (voteType: "yes" | "no" | "unsure") => {
-    if (process.env.NODE_ENV === "development") {
+    if (process.env.NODE_ENV !== "production") {
       executeVote(voteType, "dev-bypass-token");
       return;
     }
@@ -155,7 +155,7 @@ export function PollCard({ poll }: { poll: Poll }) {
                 <div className="absolute inset-0 bg-white/20 opacity-0 transition-opacity group-hover:opacity-100"></div>
               </div>
             </div>
-            <div className="text-fg-muted pt-1 text-center text-xs font-medium">
+            <div suppressHydrationWarning className="text-fg-muted pt-1 text-center text-xs font-medium">
               {t("totalVotes", { count: totalVotes.toLocaleString() })}
             </div>
           </div>

@@ -163,120 +163,136 @@ export default async function LeaderboardPage({
   };
 
   return (
-    <Container className="py-10">
-      <header className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
-        <div>
-          <h1 className="text-fg-primary inline-flex items-center gap-2 text-3xl font-bold tracking-tight">
-            <Trophy className="text-warning-500 h-7 w-7" />
-            {t("title")}
-          </h1>
-          <p className="text-fg-muted mt-2 text-sm">{t("subtitle")}</p>
-        </div>
-        <div className="shrink-0">
-          <ShareButtons url="/leaderboard" title={t("title")} />
-        </div>
-      </header>
-
-      <div className="mb-8 flex flex-wrap gap-2">
-        <Link
-          href="/leaderboard?filter=all"
-          className={cn(
-            "rounded-full border px-4 py-1.5 text-xs font-semibold transition-colors",
-            currentFilter === "all"
-              ? "bg-brand-500/20 border-brand-500 text-brand-400"
-              : "border-border-subtle hover:bg-bg-tertiary/50 text-fg-muted",
-          )}
-        >
-          {t("filter_all")}
-        </Link>
-        <Link
-          href="/leaderboard?filter=verified"
-          className={cn(
-            "rounded-full border px-4 py-1.5 text-xs font-semibold transition-colors",
-            currentFilter === "verified"
-              ? "bg-brand-500/20 border-brand-500 text-brand-400"
-              : "border-border-subtle hover:bg-bg-tertiary/50 text-fg-muted",
-          )}
-        >
-          {t("filter_verified")}
-        </Link>
-        <Link
-          href="/leaderboard?filter=with_incidents"
-          className={cn(
-            "rounded-full border px-4 py-1.5 text-xs font-semibold transition-colors",
-            currentFilter === "with_incidents"
-              ? "bg-brand-500/20 border-brand-500 text-brand-400"
-              : "border-border-subtle hover:bg-bg-tertiary/50 text-fg-muted",
-          )}
-        >
-          {t("filter_with_incidents")}
-        </Link>
+    <main className="relative min-h-screen w-full">
+      {/* Dynamic Glowing Background Orbs */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute top-0 left-1/2 h-[500px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/20 blur-[120px]" />
+        <div className="absolute top-40 right-0 h-[400px] w-[400px] rounded-full bg-accent-500/10 blur-[100px]" />
       </div>
 
-      <div className="mb-6">
-        <form method="GET" action="/leaderboard" className="relative max-w-md">
-          {currentFilter !== "all" && <input type="hidden" name="filter" value={currentFilter} />}
-          {currentSort !== "score" && <input type="hidden" name="sort" value={currentSort} />}
-          {currentOrder !== "desc" && <input type="hidden" name="order" value={currentOrder} />}
-          <div className="relative">
-            <input
-              type="search"
-              name="q"
-              defaultValue={searchQuery}
-              placeholder={locale === "tr" ? "Sağlayıcı ara..." : "Search providers..."}
-              className="border-border-subtle bg-bg-secondary text-fg-primary placeholder:text-fg-muted focus:ring-brand-500 flex h-10 w-full rounded-md border px-3 py-2 text-sm focus:ring-2 focus:outline-none"
-            />
+      <div className="relative z-10 pt-32 pb-16">
+        <Container>
+          {/* Hero Section */}
+          <header className="mb-12 flex flex-col items-center justify-center text-center">
+            <div className="bg-brand-500/10 ring-brand-500/20 mb-6 flex h-16 w-16 items-center justify-center rounded-full ring-1 shadow-[0_0_30px_rgba(168,85,247,0.3)]">
+              <Trophy className="text-brand-400 h-8 w-8" />
+            </div>
+            <h1 className="text-fg-primary mb-4 text-4xl sm:text-5xl font-extrabold tracking-tight">
+              {t("title")}
+            </h1>
+            <p className="text-fg-secondary max-w-2xl text-lg">{t("subtitle")}</p>
+            
+            <div className="mt-8 flex justify-center">
+              <ShareButtons url="/leaderboard" title={t("title")} />
+            </div>
+          </header>
+
+          {/* Glassmorphic Stats Row */}
+          <div className="mb-12 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <div className="bg-glass border-border-subtle hover:border-brand-500/30 group relative overflow-hidden rounded-2xl border p-6 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_10px_40px_-10px_rgba(168,85,247,0.2)]">
+              <div className="from-brand-500/10 absolute inset-0 bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+              <div className="relative z-10 flex items-center gap-4">
+                <div className="bg-brand-500/20 text-brand-400 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-transform duration-500 group-hover:scale-110">
+                  <Trophy className="h-6 w-6" />
+                </div>
+                <div>
+                  <p className="text-fg-muted text-sm font-medium">{t("providersTracked")}</p>
+                  <p className="text-fg-primary text-3xl font-bold tracking-tight">{stats.length}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-glass border-border-subtle hover:border-success-500/30 group relative overflow-hidden rounded-2xl border p-6 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_10px_40px_-10px_rgba(34,197,94,0.2)]">
+              <div className="from-success-500/10 absolute inset-0 bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+              <div className="relative z-10 flex items-center gap-4">
+                <div className="bg-success-500/20 text-success-400 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-transform duration-500 group-hover:scale-110">
+                  <MessageSquare className="h-6 w-6" />
+                </div>
+                <div>
+                  <p className="text-fg-muted text-sm font-medium">{t("totalResponses")}</p>
+                  <p className="text-fg-primary text-3xl font-bold tracking-tight">
+                    {stats.reduce((s, p) => s + p.response_count, 0)}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-glass border-border-subtle hover:border-accent-500/30 group relative overflow-hidden rounded-2xl border p-6 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_10px_40px_-10px_rgba(56,189,248,0.2)]">
+              <div className="from-accent-500/10 absolute inset-0 bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+              <div className="relative z-10 flex items-center gap-4">
+                <div className="bg-accent-500/20 text-accent-400 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-transform duration-500 group-hover:scale-110">
+                  <TrendingUp className="h-6 w-6" />
+                </div>
+                <div>
+                  <p className="text-fg-muted text-sm font-medium">{t("avgResponseRate")}</p>
+                  <p className="text-fg-primary text-3xl font-bold tracking-tight">
+                    {stats.filter((p) => p.incident_count > 0).length > 0
+                      ? Math.round(
+                          stats
+                            .filter((p) => p.incident_count > 0)
+                            .reduce((s, p) => s + p.response_rate, 0) /
+                            stats.filter((p) => p.incident_count > 0).length,
+                        )
+                      : 0}
+                    %
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-        </form>
-      </div>
 
-      <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <Card>
-          <CardContent className="flex items-center gap-3 p-4">
-            <div className="bg-brand-500/10 flex h-10 w-10 items-center justify-center rounded-lg">
-              <Trophy className="text-brand-400 h-5 w-5" />
+          <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+            <div className="flex flex-wrap gap-2">
+              <Link
+                href="/leaderboard?filter=all"
+                className={cn(
+                  "rounded-full border px-4 py-1.5 text-xs font-semibold transition-colors",
+                  currentFilter === "all"
+                    ? "bg-brand-500/20 border-brand-500 text-brand-400"
+                    : "border-border-subtle hover:bg-bg-tertiary/50 text-fg-muted",
+                )}
+              >
+                {t("filter_all")}
+              </Link>
+              <Link
+                href="/leaderboard?filter=verified"
+                className={cn(
+                  "rounded-full border px-4 py-1.5 text-xs font-semibold transition-colors",
+                  currentFilter === "verified"
+                    ? "bg-brand-500/20 border-brand-500 text-brand-400"
+                    : "border-border-subtle hover:bg-bg-tertiary/50 text-fg-muted",
+                )}
+              >
+                {t("filter_verified")}
+              </Link>
+              <Link
+                href="/leaderboard?filter=with_incidents"
+                className={cn(
+                  "rounded-full border px-4 py-1.5 text-xs font-semibold transition-colors",
+                  currentFilter === "with_incidents"
+                    ? "bg-brand-500/20 border-brand-500 text-brand-400"
+                    : "border-border-subtle hover:bg-bg-tertiary/50 text-fg-muted",
+                )}
+              >
+                {t("filter_with_incidents")}
+              </Link>
             </div>
-            <div>
-              <p className="text-fg-primary text-2xl font-bold">{stats.length}</p>
-              <p className="text-fg-muted text-xs">{t("providersTracked")}</p>
-            </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="flex items-center gap-3 p-4">
-            <div className="bg-success-500/10 flex h-10 w-10 items-center justify-center rounded-lg">
-              <MessageSquare className="text-success-500 h-5 w-5" />
-            </div>
-            <div>
-              <p className="text-fg-primary text-2xl font-bold">
-                {stats.reduce((s, p) => s + p.response_count, 0)}
-              </p>
-              <p className="text-fg-muted text-xs">{t("totalResponses")}</p>
-            </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="flex items-center gap-3 p-4">
-            <div className="bg-accent-500/10 flex h-10 w-10 items-center justify-center rounded-lg">
-              <TrendingUp className="text-accent-400 h-5 w-5" />
-            </div>
-            <div>
-              <p className="text-fg-primary text-2xl font-bold">
-                {stats.filter((p) => p.incident_count > 0).length > 0
-                  ? Math.round(
-                      stats
-                        .filter((p) => p.incident_count > 0)
-                        .reduce((s, p) => s + p.response_rate, 0) /
-                        stats.filter((p) => p.incident_count > 0).length,
-                    )
-                  : 0}
-                %
-              </p>
-              <p className="text-fg-muted text-xs">{t("avgResponseRate")}</p>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+
+            <form method="GET" action="/leaderboard" className="relative w-full sm:max-w-xs">
+              {currentFilter !== "all" && <input type="hidden" name="filter" value={currentFilter} />}
+              {currentSort !== "score" && <input type="hidden" name="sort" value={currentSort} />}
+              {currentOrder !== "desc" && <input type="hidden" name="order" value={currentOrder} />}
+              <div className="relative">
+                <input
+                  type="search"
+                  name="q"
+                  defaultValue={searchQuery}
+                  placeholder={locale === "tr" ? "Sağlayıcı ara..." : "Search providers..."}
+                  className="border-border-subtle bg-bg-secondary/50 text-fg-primary placeholder:text-fg-muted focus:ring-brand-500 focus:border-brand-500 flex h-10 w-full rounded-full border px-4 py-2 text-sm backdrop-blur-sm transition-all focus:ring-2 focus:outline-none"
+                />
+              </div>
+            </form>
+          </div>
 
       {/* Trust Score Explanation & Non-Responsive Warnings */}
       <Card className="border-border-subtle bg-bg-secondary/40 mb-6">
@@ -403,7 +419,7 @@ export default async function LeaderboardPage({
                 </thead>
                 <tbody className="divide-border-subtle divide-y">
                   {sorted.map((p) => (
-                    <tr key={p.id} className="hover:bg-bg-tertiary/30">
+                    <tr key={p.id} className="group hover:bg-white/5 transition-colors duration-300">
                       <td className="p-4">
                         <span
                           className={cn(
@@ -497,7 +513,9 @@ export default async function LeaderboardPage({
           )}
         </CardContent>
       </Card>
-    </Container>
+        </Container>
+      </div>
+    </main>
   );
 }
 

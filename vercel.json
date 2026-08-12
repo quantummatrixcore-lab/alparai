@@ -7,7 +7,6 @@
   "installCommand": "corepack enable && pnpm install",
   "outputDirectory": ".next",
   "trailingSlash": false,
-  "cleanUrls": true,
   "github": {
     "silent": false,
     "autoAlias": true

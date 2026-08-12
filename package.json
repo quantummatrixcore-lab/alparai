@@ -24,7 +24,6 @@
     "pnpm": ">=9.0.0"
   },
   "packageManager": "pnpm@9.12.0",
-
   "scripts": {
     "dev": "next dev",
     "dev:all": "concurrently -n \"DEV,TEST,OPENCODE\" -c \"cyan,magenta,green\" \"pnpm dev\" \"pnpm test:watch\" \"opencode\"",
@@ -36,6 +35,7 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,css,yml,yaml}\"",
     "typecheck": "tsc --noEmit",
     "i18n:check": "node scripts/check-i18n.mjs",
+    "check:masterplan-length": "node scripts/check-master-plan-length.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",

@@ -417,15 +417,13 @@ export function ComplianceChecklistClient({ t, items }: ComplianceChecklistClien
             {t.bottomCtaDesc}
           </p>
           <div className="mt-6">
-            <Button
-              asChild
-              className="rounded-xl bg-white px-6 py-3 font-bold text-slate-950 hover:bg-gray-100"
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 font-bold text-slate-950 hover:bg-gray-100"
             >
-              <Link href="/contact" className="inline-flex items-center gap-2">
-                <span>{t.bottomCtaButton}</span>
-                <ChevronRight className="h-4 w-4" />
-              </Link>
-            </Button>
+              <span>{t.bottomCtaButton}</span>
+              <ChevronRight className="h-4 w-4" />
+            </Link>
           </div>
         </CardContent>
       </Card>

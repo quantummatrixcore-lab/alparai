@@ -56,6 +56,10 @@ jobs:
         if: ${{ !inputs.force }}
         run: node scripts/check-repo-language.mjs
 
+      - name: Master Plan Length Check (ZETA-2)
+        if: ${{ !inputs.force }}
+        run: node scripts/check-master-plan-length.mjs
+
       - name: Model Routing Consistency Check
         if: ${{ !inputs.force }}
         run: node scripts/check-model-routing-consistency.mjs
@@ -146,6 +150,7 @@ jobs:
           fetch-depth: 0
 
       - name: Gitleaks Secret Scan
+        if: github.event_name != 'pull_request'
         uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

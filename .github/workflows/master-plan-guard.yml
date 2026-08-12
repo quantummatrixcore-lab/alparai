@@ -61,11 +61,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Check MASTER_PLAN.md 400-line limit (Task #209)
-        run: |
-          LINES=$(wc -l < docs/MASTER_PLAN.md)
-          echo "MASTER_PLAN.md has $LINES lines"
-          if [ "$LINES" -gt 400 ]; then
-            echo "::error::MASTER_PLAN.md is $LINES lines, exceeding 400-line CI limit (Task #209). Move backlog items to DB or docs/plan/completed-backlog.md."
-            exit 1
-          fi
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 20
+      - name: Check MASTER_PLAN.md 400-line limit (ZETA-2 / Task #209)
+        run: node scripts/check-master-plan-length.mjs

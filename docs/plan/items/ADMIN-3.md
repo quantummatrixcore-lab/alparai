@@ -1,0 +1,3 @@
+# ADMIN-3
+
+**ADMIN-3 — kanıtla kapandı (v13.11, bağımsız doğrulandı).** `8ad18525` `prioritization-widget.tsx`'i yeniden yazdı: `import { parseMasterPlan } from "@/lib/utils/markdown-parser"` + `const { items, error } = parseMasterPlan()`. Eski "Momentum K-Matrix / Agent-OS Compute Allocation" widget'ı ve elle yazılmış `TIERS` dizisi (Agent-OS/DecasHub/Ercument Erden/Tartarus Archives yüzdeleri) tamamen kaldırıldı. Widget artık ALPAR AI'nin kendi backlog'unu (tamamlanan/bekleyen/duraklamış sayısı + öncelik dağılımı) gösteriyor. `closed-by:8ad18525@master evidence:"parseMasterPlan import + çağrısı doğrudan koddan okundu, v13.11"`

@@ -1,0 +1,3 @@
+# TYPE-0
+
+**TYPE-0 — kapandı (v13.13), ama kod düzeltmesiyle değil.** v13.13'te ölçüldü: `pnpm install` → exit 0 (13 sn), `posthog-js 1.413.2` kuruldu; ardından `pnpm typecheck` → **exit 0, sıfır hata**. `git status` install sonrası **temiz** — yani lockfile zaten doğruydu, bozuk olan bu konteynerdeki `node_modules`'tı. Hiçbir commit bu maddeye dokunmadı; sorun kod değil ortam artefaktıydı. **Kural 10 notu:** v13.10/v13.11'de bunu "lockfile senkron değil" diye kaydetmiştim — yanlıştı, lockfile doğruydu. `closed-by:environment@v13.13 evidence:"pnpm install exit 0 + git status temiz + pnpm typecheck exit 0, v13.13'te doğrudan çalıştırıldı"`

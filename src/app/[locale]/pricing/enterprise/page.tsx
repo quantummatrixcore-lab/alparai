@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { StripeCheckoutButton } from "@/components/pricing/stripe-checkout-button";
+import Link from "next/link";
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   const t = await getTranslations({ locale, namespace: "pricing" });
@@ -128,12 +128,12 @@ export default async function EnterprisePricingPage({
             </div>
 
             <div>
-              <StripeCheckoutButton
-                tier="enterprise"
-                className="bg-accent-soft hover:bg-accent-soft/90 text-bg-primary mb-4 w-full rounded-2xl px-6 py-4 font-semibold transition-all duration-200"
+              <Link
+                href="/contact"
+                className="bg-accent-soft hover:bg-accent-soft/90 text-bg-primary mb-4 block w-full rounded-2xl px-6 py-4 text-center font-semibold transition-all duration-200"
               >
                 {t("cta_enterprise")}
-              </StripeCheckoutButton>
+              </Link>
             </div>
           </div>
         </div>

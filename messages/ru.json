@@ -379,11 +379,11 @@
     "vendor_cta": "Получить доступ к поставщикам",
     "enterprise_title": "Корпоративный API",
     "enterprise_price": "Custom",
-    "enterprise_period": "pricing",
-    "enterprise_desc": "Для крупных предприятий, исследовательских институтов и страховых компаний с потребностью в массовом доступе.",
+    "enterprise_period": "",
+    "enterprise_desc": "Design partner program — not available for sale yet.",
     "enterprise_feature_1": "Полный API доступа к базе данных на чтение",
     "enterprise_feature_2": "Интеграция вебхуков в реальном времени",
-    "enterprise_feature_3": "Гарантии SLA и выделенная поддержка",
+    "enterprise_feature_3": "Low-latency (<50ms) & Dedicated Support",
     "enterprise_feature_4": "Дашборды рисков под вашим брендом",
     "enterprise_cta": "Связаться с поддержкой",
     "neutrality_notice": "Хостинг контента и разрешение споров строго следуют нашей хартии нейтральности.",
@@ -396,7 +396,8 @@
     "startup_feature_2": "Basic compliance badge",
     "startup_feature_3": "Email support",
     "startup_cta": "Start Free Trial",
-    "enterprise_feature_compliance": "Compliance Badge"
+    "enterprise_feature_compliance": "Compliance Badge",
+    "plan_enterprise_desc": "Design partner program — not available for sale yet."
   },
   "dashboard": {
     "title": "Ролевая панель мониторинга",

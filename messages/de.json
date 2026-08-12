@@ -379,11 +379,11 @@
     "vendor_cta": "Anbieterzugang erhalten",
     "enterprise_title": "Enterprise-API",
     "enterprise_price": "Custom",
-    "enterprise_period": "pricing",
-    "enterprise_desc": "Für große Unternehmen, Forschungseinrichtungen und Versicherer mit Bedarf an Massendaten.",
+    "enterprise_period": "",
+    "enterprise_desc": "Design partner program — not available for sale yet.",
     "enterprise_feature_1": "Vollständige Datenbank-Lese-API",
     "enterprise_feature_2": "Echtzeit-Webhook-Integration",
-    "enterprise_feature_3": "SLA-Garantien & dedizierter Support",
+    "enterprise_feature_3": "Low-latency (<50ms) & Dedicated Support",
     "enterprise_feature_4": "Whitelabel-Risikodashboards",
     "enterprise_cta": "Support Kontaktieren",
     "neutrality_notice": "Alle Inhalts-Hostings und Streitbeilegungen folgen unserer strikten Verpflichtung zur Neutralität.",
@@ -396,7 +396,8 @@
     "startup_feature_2": "Basic compliance badge",
     "startup_feature_3": "Email support",
     "startup_cta": "Start Free Trial",
-    "enterprise_feature_compliance": "Compliance Badge"
+    "enterprise_feature_compliance": "Compliance Badge",
+    "plan_enterprise_desc": "Design partner program — not available for sale yet."
   },
   "dashboard": {
     "title": "Rollenbasiertes Dashboard",

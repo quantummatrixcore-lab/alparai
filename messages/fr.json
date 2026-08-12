@@ -379,11 +379,11 @@
     "vendor_cta": "Obtenir l'accès fournisseur",
     "enterprise_title": "API Entreprise",
     "enterprise_price": "Custom",
-    "enterprise_period": "pricing",
-    "enterprise_desc": "Pour les grandes entreprises, organismes de recherche et assureurs nécessitant un accès massif aux données.",
+    "enterprise_period": "",
+    "enterprise_desc": "Design partner program — not available for sale yet.",
     "enterprise_feature_1": "API d'accès en lecture complète à la base de données",
     "enterprise_feature_2": "Intégration Webhook en temps réel",
-    "enterprise_feature_3": "Garanties SLA & support dédié",
+    "enterprise_feature_3": "Low-latency (<50ms) & Dedicated Support",
     "enterprise_feature_4": "Tableaux de bord de risque en marque blanche",
     "enterprise_cta": "Contacter le Support",
     "neutrality_notice": "Toutes les résolutions de litiges et l'hébergement de contenus respectent notre charte de neutralité.",
@@ -396,7 +396,8 @@
     "startup_feature_2": "Basic compliance badge",
     "startup_feature_3": "Email support",
     "startup_cta": "Start Free Trial",
-    "enterprise_feature_compliance": "Compliance Badge"
+    "enterprise_feature_compliance": "Compliance Badge",
+    "plan_enterprise_desc": "Design partner program — not available for sale yet."
   },
   "dashboard": {
     "title": "Tableau de bord basé sur les rôles",

@@ -377,13 +377,13 @@
     "vendor_feature_3": "Jira & Zendesk integration",
     "vendor_feature_4": "TruthScore API access & GDPR reports",
     "vendor_cta": "Get Vendor Access",
-    "enterprise_title": "Enterprise API",
+    "enterprise_title": "Early Access",
     "enterprise_price": "Custom",
-    "enterprise_period": "[TODO: pricing.enterprise_period]",
-    "enterprise_desc": "For banks, telecom, and insurance requiring real-time compliance.",
+    "enterprise_period": "",
+    "enterprise_desc": "Design partner program — not available for sale yet.",
     "enterprise_feature_1": "Real-time hallucination detection",
     "enterprise_feature_2": "PII masking & bias filtering",
-    "enterprise_feature_3": "Low-latency (<50ms) & Dedicated SLA",
+    "enterprise_feature_3": "Low-latency (<50ms) & Dedicated Support",
     "enterprise_feature_4": "On-premise deployment options",
     "enterprise_cta": "Contact Sales",
     "neutrality_notice": "All content hosting and dispute resolutions are subject to our neutrality pledge.",
@@ -396,7 +396,8 @@
     "startup_feature_2": "Basic compliance badge",
     "startup_feature_3": "Email support",
     "startup_cta": "Start Free Trial",
-    "enterprise_feature_compliance": "Compliance Badge"
+    "enterprise_feature_compliance": "Compliance Badge",
+    "plan_enterprise_desc": "Design partner program — not available for sale yet."
   },
   "dashboard": {
     "title": "Role-Based Dashboard",

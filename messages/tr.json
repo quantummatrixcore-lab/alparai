@@ -377,13 +377,13 @@
     "vendor_feature_3": "Jira & Zendesk entegrasyonu",
     "vendor_feature_4": "TruthScore API erişimi ve GDPR raporları",
     "vendor_cta": "Vendor Erişimi Alın",
-    "enterprise_title": "Enterprise API",
+    "enterprise_title": "Erken Erişim",
     "enterprise_price": "Özel",
-    "enterprise_period": "[TODO: pricing.enterprise_period]",
-    "enterprise_desc": "Gerçek zamanlı regülasyon uyumu gerektiren banka, telekom ve sigorta devleri için.",
+    "enterprise_period": "",
+    "enterprise_desc": "Tasarım ortağı programı — henüz satışta değil.",
     "enterprise_feature_1": "Gerçek zamanlı halüsinasyon tespiti",
     "enterprise_feature_2": "PII maskeleme ve önyargı filtreleme",
-    "enterprise_feature_3": "Düşük gecikme (<50ms) ve Özel SLA",
+    "enterprise_feature_3": "Düşük gecikme süresi (<50ms) ve Özel Destek",
     "enterprise_feature_4": "On-premise (kurum içi) kurulum seçenekleri",
     "enterprise_cta": "Satışla İletişime Geçin",
     "neutrality_notice": "Tüm içerik barındırma ve ihtilaf çözümleri tarafsızlık taahhüdümüze tabidir.",
@@ -396,7 +396,8 @@
     "startup_feature_2": "Temel uyumluluk rozeti (Compliance Badge)",
     "startup_feature_3": "E-posta desteği",
     "startup_cta": "Ücretsiz Denemeyi Başlat",
-    "enterprise_feature_compliance": "Uyumluluk Rozeti (Compliance Badge)"
+    "enterprise_feature_compliance": "Uyumluluk Rozeti (Compliance Badge)",
+    "plan_enterprise_desc": "Tasarım ortağı programı — henüz satışta değil."
   },
   "dashboard": {
     "title": "Rol Bazlı Kontrol Paneli",

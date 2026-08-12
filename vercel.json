@@ -4,7 +4,7 @@
   "framework": "nextjs",
   "regions": ["fra1"],
   "buildCommand": "pnpm build",
-  "installCommand": "corepack enable && pnpm install --no-frozen-lockfile",
+  "installCommand": "corepack enable && pnpm install",
   "outputDirectory": ".next",
   "trailingSlash": false,
   "github": {

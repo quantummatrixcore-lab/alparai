@@ -4736,7 +4736,7 @@
       }
     },
     "ars_api_page": {
-      "badge": "Kurumsal API",
+      "badge": "Geliştirici Önizlemesi",
       "title": "ALPAR Risk Skor API",
       "subtitle": "Dünyanın en kapsamlı yapay zeka hesap verebilirlik indeksini doğrudan risk modellerinize, uyum iş akışlarınıza ve siber sigorta kabul süreçlerinize entegre edin.",
       "telemetry_title": "Gerçek Zamanlı Telemetri",
@@ -4744,7 +4744,7 @@
       "precision_title": "Aktüeryal Hassasiyet",
       "precision_desc": "Sigorta sektörü için tasarlandı. Modellerimiz risk skorunu doğrulanmış geçmiş olaylara göre hesaplar.",
       "dev_first_title": "Önce Geliştirici",
-      "dev_first_desc": "Webhook'lar, tipli SDK'lar ve %99.99 çalışma süresi SLA'sı ile REST ve GraphQL uç noktaları.",
+      "dev_first_desc": "Webhook'lar ve tipli SDK'lar ile REST ve GraphQL uç noktaları (API geliştirme aşamasındadır).",
       "early_access_title": "Erken Erişim Programı",
       "early_access_desc": "Şu anda ARS API için tasarım ortaklarını dahil ediyoruz. Erken erişim ve özel entegrasyon desteği için şimdi başvurun.",
       "request_access": "API Erişimi Talep Et"
@@ -4791,7 +4791,7 @@
       },
       "api": {
         "title": "Kurumsal API",
-        "desc": "Özel destek ve %99.99 SLA ile günlük 100.000+ istek limiti."
+        "desc": "Özel destek ile günlük 100.000+ istek limiti (API geliştirme aşamasındadır)."
       },
       "compliance": {
         "title": "YZ Yasası Uyumluluğu",
@@ -4839,7 +4839,7 @@
     "meta_desc": "ALPAR AI sistemlerinin ve API'lerinin gerçek zamanlı durumu.",
     "title": "ALPAR AI Sistem Durumu",
     "all_operational": "Tüm Sistemler Çalışır Durumda",
-    "uptime": "Son 90 gündeki çalışma süresi: %99.99",
+    "uptime": "Çalışma süresi takibi yakında eklenecek",
     "api_services": "API Servisleri",
     "web_app": "Web Uygulaması",
     "database": "Veritabanı (Supabase)",

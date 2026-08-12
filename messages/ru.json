@@ -4736,7 +4736,7 @@
       }
     },
     "ars_api_page": {
-      "badge": "Enterprise API",
+      "badge": "Development Preview",
       "title": "ALPAR Risk Score API",
       "subtitle": "Integrate the world's most comprehensive AI accountability index directly into your risk models, compliance workflows, and cyber insurance underwriting processes.",
       "telemetry_title": "Real-time Telemetry",
@@ -4744,7 +4744,7 @@
       "precision_title": "Actuarial Precision",
       "precision_desc": "Built for insurance. Our models calculate risk based on historical verified incidents.",
       "dev_first_title": "Developer First",
-      "dev_first_desc": "REST and GraphQL endpoints with webhooks, typed SDKs, and 99.99% uptime SLA.",
+      "dev_first_desc": "REST and GraphQL endpoints with webhooks and typed SDKs (API under development).",
       "early_access_title": "Early Access Program",
       "early_access_desc": "We are currently onboarding design partners for the ARS API. Apply now for early access and dedicated integration support.",
       "request_access": "Request API Access"
@@ -4791,7 +4791,7 @@
       },
       "api": {
         "title": "Enterprise API",
-        "desc": "100,000+ daily limits with 99.99% SLA and dedicated support."
+        "desc": "100,000+ daily limits with dedicated support (API under development)."
       },
       "compliance": {
         "title": "AI Act Compliance",
@@ -4839,7 +4839,7 @@
     "meta_desc": "Real-time status of ALPAR AI systems and APIs.",
     "title": "ALPAR AI System Status",
     "all_operational": "All Systems Operational",
-    "uptime": "Uptime over the last 90 days: 99.99%",
+    "uptime": "Uptime tracking coming soon",
     "api_services": "API Services",
     "web_app": "Web Application",
     "database": "Database (Supabase)",

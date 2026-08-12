@@ -27,20 +27,49 @@ interface NavItem {
   icon: ComponentType<{ className?: string }>;
 }
 
-const mainNavItems: NavItem[] = [
-  { href: "/", labelKey: "leaderboard", icon: Trophy },
-  { href: "/products/ars-api", labelKey: "products", icon: Shield },
+interface NavGroup {
+  id: string;
+  labelKey: string;
+  icon: ComponentType<{ className?: string }>;
+  items: NavItem[];
+}
+
+const topLevelItems: NavItem[] = [
+  { href: "/incidents", labelKey: "incidents", icon: BarChart3 },
+  { href: "/leaderboard", labelKey: "leaderboard", icon: Trophy },
+  { href: "/academy", labelKey: "academy", icon: GraduationCap },
   { href: "/pricing", labelKey: "pricing", icon: CreditCard },
-  { href: "/incidents", labelKey: "data", icon: BarChart3 },
-  { href: "/enterprise", labelKey: "enterprise", icon: Building },
 ];
 
-const resourcesItems: NavItem[] = [
-  { href: "/academy", labelKey: "academy", icon: GraduationCap },
-  { href: "/dilemmas", labelKey: "dilemmas", icon: Scale },
-  { href: "/blog", labelKey: "blog", icon: BookOpen },
-  { href: "/about/advisory-board", labelKey: "advisory_board", icon: Users },
-  { href: "/transparency", labelKey: "transparency", icon: Eye },
+const navGroups: NavGroup[] = [
+  {
+    id: "products",
+    labelKey: "products",
+    icon: Shield,
+    items: [
+      { href: "/products/ars-api", labelKey: "ars_api", icon: Shield },
+      { href: "/products/datasets", labelKey: "datasets", icon: BarChart3 },
+      { href: "/products/browser-extension", labelKey: "browser_extension", icon: Eye },
+      { href: "/products/eu-ai-act", labelKey: "eu_ai_act", icon: Scale },
+      { href: "/enterprise", labelKey: "enterprise", icon: Building },
+    ],
+  },
+  {
+    id: "resources",
+    labelKey: "resources",
+    icon: BookOpen,
+    items: [
+      { href: "/methodology", labelKey: "methodology", icon: Scale },
+      { href: "/transparency", labelKey: "transparency", icon: Eye },
+      { href: "/velocity", labelKey: "velocity", icon: BarChart3 },
+      { href: "/ai-act", labelKey: "ai_act", icon: Scale },
+      { href: "/dilemmas", labelKey: "dilemmas", icon: Scale },
+      { href: "/blog", labelKey: "blog", icon: BookOpen },
+      { href: "/about", labelKey: "about", icon: Users },
+      { href: "/about/advisory-board", labelKey: "advisory_board", icon: Users },
+      { href: "/press-kit", labelKey: "presskit", icon: BookOpen },
+    ],
+  },
 ];
 
 export function Nav({
@@ -54,36 +83,48 @@ export function Nav({
 }) {
   const pathname = usePathname();
   const t = useTranslations("nav");
-  const [dropdownOpen, setDropdownOpen] = React.useState(false);
-  const dropdownRef = React.useRef<HTMLDivElement>(null);
+  const [openGroup, setOpenGroup] = React.useState<string | null>(null);
+  const navRef = React.useRef<HTMLElement>(null);
 
   React.useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setDropdownOpen(false);
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setOpenGroup(null);
       }
     }
-    if (dropdownOpen) {
+    if (openGroup) {
       document.addEventListener("mousedown", handleClickOutside);
     }
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [dropdownOpen]);
+  }, [openGroup]);
+
+  React.useEffect(() => {
+    setOpenGroup(null);
+  }, [pathname]);
+
+  React.useEffect(() => {
+    function handleEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setOpenGroup(null);
+      }
+    }
+    if (openGroup) {
+      document.addEventListener("keydown", handleEscape);
+    }
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [openGroup]);
 
   const isMod = user && (user.role === "moderator" || user.role === "admin" || user.role === "ceo");
-  const activeItems = isMod
-    ? [...mainNavItems, { href: "/admin", labelKey: "admin", icon: ShieldCheck }]
-    : mainNavItems;
-
-  const isDropdownActive = resourcesItems.some((item) => pathname.startsWith(item.href));
 
   return (
-    <nav className={cn("hidden items-center gap-0.5 lg:flex", className)}>
-      {activeItems.map((item) => {
+    <nav ref={navRef} className={cn("hidden items-center gap-0.5 lg:flex", className)}>
+      {topLevelItems.map((item) => {
         const Icon = item.icon;
-        const isActive =
-          item.href === "/" ? pathname === "/" || pathname === "" : pathname.startsWith(item.href);
+        const isActive = pathname.startsWith(item.href);
         return (
           <Link
             key={item.href}
@@ -109,57 +150,89 @@ export function Nav({
         );
       })}
 
-      {/* Resources Dropdown */}
-      <div className="relative" ref={dropdownRef}>
-        <button
-          onClick={() => setDropdownOpen(!dropdownOpen)}
+      {navGroups.map((group) => {
+        const GroupIcon = group.icon;
+        const isGroupOpen = openGroup === group.id;
+        const isGroupActive = group.items.some((item) => pathname.startsWith(item.href));
+
+        return (
+          <div key={group.id} className="relative">
+            <button
+              onClick={() => setOpenGroup(isGroupOpen ? null : group.id)}
+              className={cn(
+                "focus-visible:ring-brand-500 relative inline-flex cursor-pointer items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold whitespace-nowrap transition-colors duration-300 outline-none focus-visible:ring-2 xl:gap-1.5 xl:px-2 xl:text-xs 2xl:gap-2 2xl:px-3 2xl:text-sm",
+                isGroupActive || isGroupOpen
+                  ? "text-brand-400"
+                  : "text-fg-secondary hover:text-fg-primary",
+              )}
+              aria-expanded={isGroupOpen}
+              aria-haspopup="true"
+            >
+              <span className="relative z-10 flex items-center gap-1 xl:gap-1.5 2xl:gap-2">
+                <GroupIcon className="hidden h-4 w-4 2xl:block" aria-hidden="true" />
+                {t(group.labelKey)}
+                <ChevronDown
+                  className={cn(
+                    "h-3.5 w-3.5 transition-transform duration-300",
+                    isGroupOpen && "rotate-180",
+                  )}
+                  aria-hidden="true"
+                />
+              </span>
+            </button>
+
+            {isGroupOpen && (
+              <div className="border-border-subtle bg-bg-elevated/95 animate-in fade-in slide-in-from-top-1 absolute top-8 left-0 z-50 mt-1 w-52 rounded-xl border p-1 shadow-2xl backdrop-blur-md duration-200">
+                {group.items.map((subItem) => {
+                  const SubIcon = subItem.icon;
+                  const isSubActive = pathname.startsWith(subItem.href);
+                  return (
+                    <Link
+                      key={subItem.href}
+                      href={subItem.href}
+                      onClick={() => setOpenGroup(null)}
+                      className={cn(
+                        "flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold transition-colors duration-200",
+                        isSubActive
+                          ? "bg-brand-500/10 text-brand-400"
+                          : "text-fg-secondary hover:text-fg-primary hover:bg-white/5",
+                      )}
+                    >
+                      <SubIcon className="h-4 w-4" />
+                      {t(subItem.labelKey)}
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        );
+      })}
+
+      {isMod && (
+        <Link
+          href="/admin"
           className={cn(
-            "focus-visible:ring-brand-500 relative inline-flex cursor-pointer items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold whitespace-nowrap transition-colors duration-300 outline-none focus-visible:ring-2 xl:gap-1.5 xl:px-2 xl:text-xs 2xl:gap-2 2xl:px-3 2xl:text-sm",
-            isDropdownActive || dropdownOpen
+            "focus-visible:ring-brand-500 relative inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold whitespace-nowrap transition-colors duration-300 outline-none focus-visible:ring-2 xl:gap-1.5 xl:px-2.5 xl:text-xs",
+            pathname.startsWith("/admin")
               ? "text-brand-400"
               : "text-fg-secondary hover:text-fg-primary",
           )}
-          aria-expanded={dropdownOpen}
-          aria-haspopup="true"
+          aria-current={pathname.startsWith("/admin") ? "page" : undefined}
         >
-          <span className="relative z-10 flex items-center gap-1 xl:gap-1.5 2xl:gap-2">
-            <BookOpen className="hidden h-4 w-4 2xl:block" aria-hidden="true" />
-            {t("resources")}
-            <ChevronDown
-              className={cn(
-                "h-3.5 w-3.5 transition-transform duration-300",
-                dropdownOpen && "rotate-180",
-              )}
-              aria-hidden="true"
+          {pathname.startsWith("/admin") && (
+            <motion.span
+              layoutId="nav-active"
+              className="absolute inset-0 rounded-full border border-white/5 bg-white/5 shadow-inner"
+              transition={{ type: "spring", stiffness: 380, damping: 30 }}
             />
+          )}
+          <span className="relative z-10 flex items-center gap-1">
+            <ShieldCheck className="hidden h-3.5 w-3.5 lg:block" aria-hidden="true" />
+            <span>{t("admin")}</span>
           </span>
-        </button>
-
-        {dropdownOpen && (
-          <div className="border-border-subtle bg-bg-elevated/95 animate-in fade-in slide-in-from-top-1 absolute top-8 left-0 z-50 mt-1 w-44 rounded-xl border p-1 shadow-2xl backdrop-blur-md duration-200">
-            {resourcesItems.map((subItem) => {
-              const SubIcon = subItem.icon;
-              const isSubActive = pathname.startsWith(subItem.href);
-              return (
-                <Link
-                  key={subItem.href}
-                  href={subItem.href}
-                  onClick={() => setDropdownOpen(false)}
-                  className={cn(
-                    "flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold transition-colors duration-200",
-                    isSubActive
-                      ? "bg-brand-500/10 text-brand-400"
-                      : "text-fg-secondary hover:text-fg-primary hover:bg-white/5",
-                  )}
-                >
-                  <SubIcon className="h-4 w-4" />
-                  {t(subItem.labelKey)}
-                </Link>
-              );
-            })}
-          </div>
-        )}
-      </div>
+        </Link>
+      )}
     </nav>
   );
 }

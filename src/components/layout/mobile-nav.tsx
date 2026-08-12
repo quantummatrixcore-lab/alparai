@@ -8,21 +8,33 @@ import { Menu, X, Plus } from "lucide-react";
 import { Wordmark } from "./wordmark";
 import { LanguageSwitcher } from "./language-switcher";
 
-const links = [
+type NavLink = { href: string; key: string };
+type NavGroup = { group: string };
+type NavItem = NavLink | NavGroup;
+
+const links: readonly NavItem[] = [
   { href: "/", key: "home" },
   { href: "/incidents", key: "incidents" },
-  { href: "/pricing", key: "pricing" },
-  { href: "/enterprise", key: "enterprise" },
   { href: "/leaderboard", key: "leaderboard" },
-  { href: "/velocity", key: "velocity" },
-  { href: "/dilemmas", key: "dilemmas" },
-  { href: "/ai-act", key: "ai_act" },
-  { href: "/transparency", key: "transparency" },
   { href: "/academy", key: "academy" },
+  { href: "/pricing", key: "pricing" },
+  { group: "products" },
+  { href: "/products/ars-api", key: "ars_api" },
+  { href: "/products/datasets", key: "datasets" },
+  { href: "/products/browser-extension", key: "browser_extension" },
+  { href: "/products/eu-ai-act", key: "eu_ai_act" },
+  { href: "/enterprise", key: "enterprise" },
+  { group: "resources" },
+  { href: "/methodology", key: "methodology" },
+  { href: "/transparency", key: "transparency" },
+  { href: "/velocity", key: "velocity" },
+  { href: "/ai-act", key: "ai_act" },
+  { href: "/dilemmas", key: "dilemmas" },
   { href: "/blog", key: "blog" },
-  { href: "/press-kit", key: "presskit" },
-  { href: "/challenges", key: "challenges" },
+  { href: "/about", key: "about" },
   { href: "/about/advisory-board", key: "advisory_board" },
+  { href: "/challenges", key: "challenges" },
+  { href: "/press-kit", key: "presskit" },
 ] as const;
 
 export function MobileNav({
@@ -90,13 +102,24 @@ export function MobileNav({
             </button>
           </div>
           <nav className="flex flex-1 flex-col gap-1 overflow-y-auto p-4">
-            {activeLinks.map((link) => {
+            {activeLinks.map((item) => {
+              const isGroup = "group" in item;
+              if (isGroup) {
+                return (
+                  <div
+                    key={item.group}
+                    className="text-fg-muted mt-4 px-4 pb-1 text-xs font-bold tracking-wider uppercase"
+                  >
+                    {t(item.group)}
+                  </div>
+                );
+              }
               const isActive =
-                link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+                item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
               return (
                 <Link
-                  key={link.href}
-                  href={link.href}
+                  key={item.href}
+                  href={item.href}
                   className={cn(
                     "focus-visible:ring-brand-500 rounded-md px-4 py-3 text-base font-medium transition-colors focus-visible:ring-2 focus-visible:outline-none",
                     isActive
@@ -104,7 +127,7 @@ export function MobileNav({
                       : "text-fg-secondary hover:bg-bg-tertiary hover:text-fg-primary",
                   )}
                 >
-                  {t(link.key)}
+                  {t(item.key)}
                 </Link>
               );
             })}

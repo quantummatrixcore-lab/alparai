@@ -238,15 +238,21 @@ const getHomeData = cache(async (locale: string) => {
       const scoreA = a.trust_score ?? 70;
       const scoreB = b.trust_score ?? 70;
       if (scoreB !== scoreA) return scoreB - scoreA;
-      if (a.incident_count !== b.incident_count) return a.incident_count - b.incident_count;
+      if (a.incident_count !== b.incident_count) return b.incident_count - a.incident_count;
       return a.provider_name.localeCompare(b.provider_name);
     });
 
-  const topProvidersForHero = [...leaderboard].slice(0, 5).map((p) => ({
-    name: p.provider_name,
-    count: p.incident_count,
-    slug: p.provider_slug,
-  }));
+  const topProvidersForHero = [...leaderboard]
+    .sort((a, b) => {
+      if (a.incident_count !== b.incident_count) return b.incident_count - a.incident_count;
+      return a.provider_name.localeCompare(b.provider_name);
+    })
+    .slice(0, 5)
+    .map((p) => ({
+      name: p.provider_name,
+      count: p.incident_count,
+      slug: p.provider_slug,
+    }));
 
   const uniqueCountriesCount = new Set(
     ((countriesResult.data as Array<{ location_country: string | null }>) ?? [])

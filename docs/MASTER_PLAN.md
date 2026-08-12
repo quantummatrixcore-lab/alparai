@@ -1,3 +1,16 @@
+# ALPAR AI — MASTER PLAN v13.22: Test & i18n Fixes (Antigravity)
+
+**ÖZET:** Antigravity tarafından 2 yeni commit eklendi. Test uyuşmazlıkları (model-router ve api-v1-contracts) giderildi, eksik `de.json` çeviri anahtarları eklendi. Bütün iddialar doğrudan ölçümle (`git show --stat`) doğrulandı.
+
+### Durum Tablosu (Doğrudan Kanıtlı)
+
+| Görev      | Açıklama                                            | Kanıt                                                                                     | Durum        |
+| ---------- | --------------------------------------------------- | ----------------------------------------------------------------------------------------- | ------------ |
+| **TEST-1** | CI contract missing ve model router test mismatches | `closed-by:1f60edca@master` evidence:"src/contracts/api.ts ve 2 test dosyası güncellendi" | ✅ completed |
+| **I18N-1** | `de.json` için eksik çeviri anahtarları eklendi     | `closed-by:3d4059e6@master` evidence:"messages/de.json 4 satır eklendi"                   | ✅ completed |
+
+---
+
 # ALPAR AI — MASTER PLAN v13.0: Otonom Pazar Hegemonyası
 
 **Mimar (Opus) Sentezi:** Bu belge, bir yazılım projesi yol haritası değil, 27 Temmuz 2026'da yürürlüğe giren EU AI Act Madde 73 (Zorunlu Olay Bildirimi) pazarını domine etmek için tasarlanmış bir **savaş ve işgal doktrinidir**.

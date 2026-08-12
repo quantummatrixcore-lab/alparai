@@ -175,6 +175,22 @@ const nextConfig = {
         destination: "/:locale/insights/open-vs-closed",
         permanent: false,
       },
+      // Broken links discovered via 360° QA audit (2026-08-13)
+      {
+        source: "/:locale/scoreboard",
+        destination: "/:locale/leaderboard",
+        permanent: true,
+      },
+      {
+        source: "/:locale/auth/login",
+        destination: "/:locale/auth/signin",
+        permanent: true,
+      },
+      {
+        source: "/:locale/community",
+        destination: "/:locale/academy",
+        permanent: false,
+      },
     ];
   },
 };

@@ -17,7 +17,7 @@ export default async function LinkedinAdminPage({
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "admin" });
   const user = await requireModerator();
-  if (!user) redirect(`/${locale}/login`);
+  if (!user) redirect(`/${locale}/auth/signin?next=/${locale}/admin/linkedin`);
 
   const supabase = createAdminClient();
 

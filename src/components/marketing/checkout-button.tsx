@@ -13,7 +13,12 @@ interface CheckoutButtonProps {
   className?: string;
 }
 
-export function CheckoutButton({ tier, children, variant = "primary", className }: CheckoutButtonProps) {
+export function CheckoutButton({
+  tier,
+  children,
+  variant = "primary",
+  className,
+}: CheckoutButtonProps) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -31,7 +36,7 @@ export function CheckoutButton({ tier, children, variant = "primary", className 
       if (!res.ok) {
         if (res.status === 401) {
           toast.error("Please sign in to continue.");
-          router.push("/auth");
+          router.push("/auth/signin");
           return;
         }
         throw new Error(data.error || "Failed to initiate checkout");
@@ -48,12 +53,7 @@ export function CheckoutButton({ tier, children, variant = "primary", className 
   };
 
   return (
-    <Button 
-      variant={variant} 
-      className={className} 
-      onClick={handleCheckout} 
-      disabled={loading}
-    >
+    <Button variant={variant} className={className} onClick={handleCheckout} disabled={loading}>
       {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
       {children}
     </Button>

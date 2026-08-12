@@ -68,6 +68,10 @@ jobs:
         if: ${{ !inputs.force }}
         run: node scripts/check-admin-links.mjs
 
+      - name: Internal Link Integrity
+        if: ${{ !inputs.force }}
+        run: node scripts/check-internal-links.mjs
+
       - name: Admin Fabricated Metric Check
         if: ${{ !inputs.force }}
         run: node scripts/check-admin-metrics.mjs

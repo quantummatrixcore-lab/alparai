@@ -482,3 +482,78 @@ The specification section ("board/detail contract, 400B row cap, byte budget, pa
 4. Architect: Write doctrine section and commit v13.35
 
 **Status row marking:** This audit itself is a `docs/MASTER_PLAN.md` amendment (Architect role). Once fixes land on master, a follow-up v13.35 section will verify and close this. |
+
+---
+
+## v13.35 — 360° audit: the deploy gate exists but verifies nothing
+
+**Method.** Six subagents measured the repository directly this session (build/test/CI, routing/i18n, security/RLS/PII, orphan-link mapping, plus two fixer agents). Every figure below was produced by a command run in this container. Figures not measured are marked `ölçülmedi`.
+
+### The central finding
+
+`vercel.json` sets `"ignoreCommand": "node scripts/deploy-gate.mjs"`. That script is the only thing standing between a commit and production, and it asks exactly two questions: is the ref `master`, and did a file under `src/`, `messages/`, `public/`, `package.json`, `pnpm-lock.yaml`, `next.config.mjs`, `vercel.json`, `tsconfig.json`, or `tailwind.config` change. It never queries whether any check passed. `.github/workflows/ci.yml` already runs i18n parity, repo-language, typecheck, lint, vitest, and a visual-regression job — but nothing consumes their result. **A commit whose tests are red deploys exactly as fast as one whose tests are green.** This is the mechanism behind the three defects the Founder caught by hand on 2026-08-12.
+
+Two aggravating findings:
+
+- **44 Playwright e2e specs exist under `tests/e2e/` and none of them run before deploy.** `ci.yml` runs only `tests/e2e/visual/`. The specs covering registration, incident submission, navigation, pricing, and locale switching are written and never executed.
+- **`.github/workflows/test-runner.yml` is a stub that only echoes and always succeeds.** A green check named "test-runner" that runs no tests is worse than an absent one: it tells every reader that tests ran.
+
+### Measured baseline (2026-08-12, this container)
+
+| Check                            | Result                                                                                                                                                     |
+| -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pnpm install --frozen-lockfile` | exit 0                                                                                                                                                     |
+| `pnpm lint`                      | exit 0, zero warnings                                                                                                                                      |
+| `npx tsc --noEmit`               | exit 0                                                                                                                                                     |
+| `pnpm test`                      | 1035 tests, 1028 pass, 7 fail — all 7 in `tests/lib/openrouter-gateway.test.ts`, cause is absent `OPENROUTER_API_KEY`, not a source defect                 |
+| `pnpm build`                     | exit 1 — three Google Fonts fetch failures (Inter, JetBrains Mono, Outfit) from `src/app/[locale]/layout.tsx`; container proxy artifact, not a code defect |
+| Test files / e2e specs           | 221 / 44                                                                                                                                                   |
+| Workflows                        | 21; two gate anything (`public-repo-sync.yml`, `rollback.yml`), and neither gates the production site                                                      |
+
+### Security posture — measured, and it is sound
+
+No live credential is present in tracked files; every hit is a `process.env` reference, an `.env.example` placeholder, or a deliberate test fixture (`AKIAIOSFODNN7EXAMPLE`). No client component imports `src/lib/supabase/admin.ts`; no `NEXT_PUBLIC_*` variable carries SERVICE, SECRET, or ROLE. All 50+ server actions sampled call an auth guard before writing, and public/anonymous endpoints are IP rate-limited. All five sampled user-text insertions pass through `maskPII` first. **73 of 73 tables have RLS enabled with at least one policy.** `pnpm audit`: 0 critical, 0 high, 0 moderate, 1 low (`@ai-sdk/provider-utils` ≤3.0.97, GHSA-866g-f22w-33x8, no patch released — monitor).
+
+### Content defects found and fixed this session
+
+- `messages/en.json` `admin.l_lmedi` held `"Ã–lçülmedi"` — UTF-8 read back as Windows-1252. Set to `"Not measured"`; de/fr/ru held leftover untranslated Turkish and were translated.
+- Three further keys shipped literal Turkish in all four non-TR files (`admin.resources_quota_projected_tag`, `admin.resources_efficiency_estimated_tag`, `admin.resources_quota_not_measured`) — translated.
+- Corrupted emoji byte sequences remain under repair in `incident.processing_queued`, `incident.processing_analyzing`, `incident.submit_live_counter`, `admin.dsar_box_title`, `admin.kbench_box_title`.
+- Key parity holds at 4749 leaf keys across all five languages; `node scripts/check-i18n.mjs` exit 0.
+
+### Orphaned pages
+
+19 routes render real content, appear in `src/app/sitemap.ts` (so search engines index them), and have **no incoming link anywhere in `src/`** — reachable only by typing the URL. The two that matter most: `/submit/whistleblower` (the /submit page mentions whistleblower protection but never links the form) and the five `/academy/*` subpages, which the `/academy` index itself never links. Being repaired this session. Nine regulatory pages (`/legal/kvkk`, `/legal/imprint`, `/legal/provider-response`, `/legal/takedown/appeal`, `/transparency/cease-desist`, `/transparency/legal-threats`, `/transparency/art-73-tracker`, `/compliance/analyzer`, `/compliance-checklist`) are plausibly isolated by design and were deliberately left alone — see FOUNDER-7.
+
+### Gate decision (Founder, 2026-08-12): hard
+
+Nothing reaches production unless every required check for that exact commit SHA has concluded successfully. `scripts/deploy-gate.mjs` is being rewritten to query the GitHub check-runs API for the deploying SHA, poll while checks are in flight, and skip the build on any failure. Failure to verify is deliberately **not** fail-closed on day one: with no token present the script proceeds and logs an unmissable warning, because failing closed before FOUNDER-1 is done would block all deploys of a live site. **Adding the token is what arms the gate.** Until FOUNDER-1 and FOUNDER-2 are both done, the gate is instrumented but inert.
+
+### FOUNDER ACTION LIST — manual, to be executed by Antigravity's browser agent
+
+These cannot be done from this container. Each is stated as a click-path.
+
+**FOUNDER-1 — arm the deploy gate. P0. Nothing else on this list matters until this is done.**
+Vercel → project `alparai` → Settings → Environment Variables → add `GITHUB_TOKEN` for the Production environment. Value: a fine-grained GitHub PAT scoped to `quantummatrixcore-lab/alparai-platform` with **Read access to Checks, Commit statuses, and Contents** — no write scopes. Optional companions: `DEPLOY_GATE_REQUIRED_CHECKS` (comma-separated check names; defaults to the CI job names) and `DEPLOY_GATE_TIMEOUT_MS` (default 900000). Verify by pushing a trivial commit and reading the Vercel build log for a line starting `DEPLOY GATE:`.
+
+**FOUNDER-2 — make the checks required on `master`. P0.**
+GitHub → repo Settings → Rules/Branch protection for `master` → Require status checks to pass before merging → add the CI build job, `Visual Regression Lock`, and the new e2e job (exact name will be confirmed once the CI change lands). Without this, a PR can merge red even with FOUNDER-1 in place.
+
+**FOUNDER-3 — KVKK filing for case 001. P0 (legal).**
+The public page claimed a KVKK filing that has not been made; the claim has been removed from the site this session. Founder decision: the filing will be made. After filing, supply the real filing date and registration number so `case_001.legal_1` can be restored with true values in all five languages. Do not restore the sentence before the filing exists.
+
+**FOUNDER-4 — Cloudflare WAF diagnosis (carried over, OMEGA-128). P1.**
+Still open. The prior 403 measurement came from the agent proxy, not from the site, so it never proved a WAF block. Read Cloudflare → Security → Events for the affected paths before changing any rule.
+
+**FOUNDER-5 — GitHub Actions restriction on `claude/*` branches (carried over, G-8). P1.**
+Three consecutive attempts at a branch-sync workflow failed in 6–7 seconds with `runner_id:0`, i.e. no runner was ever assigned. Check repo Settings → Actions → General for a ruleset, runner-group restriction, or "new workflows require approval" policy scoped to this branch pattern. If one exists, the automated sync can be retried; until then the manual merge in G-8 is the only mechanism.
+
+**FOUNDER-6 — About page member names. P2.**
+The two "[Name Placeholder]" member slots were removed from the page this session per Founder decision. Supply the real names when the people are confirmed and the section will be restored.
+
+**FOUNDER-7 — decide the nine isolated regulatory pages. P2.**
+Listed above. Each renders real content and is indexed by search engines but is linked from nowhere. Decide per page: link it from the footer, or remove it from `sitemap.ts`. Leaving a page indexed but unlinked is the one option that is not defensible.
+
+### Standing correction to the v13.34 audit
+
+The `docs/MASTER_PLAN.md` split migration remains defective and unfixed: 11 rows whose task text contains a literal `|` (grep patterns, shell syntax) were split incorrectly, corrupting their status cells and truncating their detail files. `docs/plan/items/BN.md` still carries the status `Ã¼\`. The board parses (49/49) and `check-masterplan-consistency.mjs` exits 0, but that check validates parseability, not content integrity — it is green for the same structural reason it was green when it parsed zero rows. Unchanged from v13.34; still Implementer work.

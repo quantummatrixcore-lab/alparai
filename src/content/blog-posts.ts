@@ -15,21 +15,21 @@ export interface BlogPost {
 
 const blogPosts: BlogPost[] = [
   {
-    slug: "why-ai-accountability-matters-2025",
-    title: "Why AI Accountability Matters in 2025",
-    title_tr: "2025'te AI Hesap Verebilirliği Neden Önemli?",
+    slug: "why-ai-accountability-matters-2026",
+    title: "Why AI Accountability Matters in 2026",
+    title_tr: "2026'te AI Hesap Verebilirliği Neden Önemli?",
     description:
       "As AI systems grow more autonomous, the need for community-driven tracking and verification becomes critical. Here is why independent documentation is the future.",
     description_tr:
       "Yapay zeka sistemleri daha otonom hale geldikçe, topluluk odaklı takip ve doğrulama kritik bir ihtiyaç haline geliyor. Bağımsız belgelemenin neden gelecek olduğunu keşfedin.",
-    date: "2025-06-20",
+    date: "2026-06-20",
     author: "ALPAR AI Research",
     author_tr: "ALPAR AI Araştırma",
     tags: ["opinion", "ai-ethics", "governance"],
     readingTime: 3,
     content: `## The Rise of Autonomous Systems
 
-In 2025, artificial intelligence has moved from simple chat interfaces to agentic systems capable of executing multi-step tasks in our daily lives. They handle scheduling, drafts, financial transactions, and code execution. This autonomy, however, comes with a severe lack of public oversight.
+In 2026, artificial intelligence has moved from simple chat interfaces to agentic systems capable of executing multi-step tasks in our daily lives. They handle scheduling, drafts, financial transactions, and code execution. This autonomy, however, comes with a severe lack of public oversight.
 
 When an AI system makes a mistake today, it doesn't just output a funny hallucination—it can misallocate funds, make incorrect legal assertions, or leak private data.
 
@@ -44,10 +44,10 @@ An independent, community-driven database of verified AI failures is the only wa
 
 ## The Future of Trust
 
-At ALPAR AI, we believe trust is earned through verification. As we move further into 2025, independent trust infrastructure will become the bedrock of the AI ecosystem, protecting human agency and ensuring technology remains accountable.`,
+At ALPAR AI, we believe trust is earned through verification. As we move further into 2026, independent trust infrastructure will become the bedrock of the AI ecosystem, protecting human agency and ensuring technology remains accountable.`,
     content_tr: `## Otonom Sistemlerin Yükselişi
 
-2025 yılında yapay zeka, basit sohbet arayüzlerinden günlük hayatımızda çok adımlı görevleri yerine getirebilen otonom sistemlere doğru evrildi. Planlama, taslak hazırlama, finansal işlemler ve kod yürütme süreçlerini yönetiyorlar. Ancak bu otonomluk, ciddi bir denetim eksikliğiyle birlikte geliyor.
+2026 yılında yapay zeka, basit sohbet arayüzlerinden günlük hayatımızda çok adımlı görevleri yerine getirebilen otonom sistemlere doğru evrildi. Planlama, taslak hazırlama, finansal işlemler ve kod yürütme süreçlerini yönetiyorlar. Ancak bu otonomluk, ciddi bir denetim eksikliğiyle birlikte geliyor.
 
 Bugün bir yapay zeka sistemi hata yaptığında, sadece komik bir halüsinasyon üretmekle kalmıyor; bütçeleri yanlış yönlendirebiliyor, yanlış hukuki iddialarda bulunabiliyor ya da kişisel verileri sızdırabiliyor.
 
@@ -62,7 +62,7 @@ Doğrulanmış yapay zeka hatalarının bağımsız, topluluk odaklı bir verita
 
 ## Güvenin Geleceği
 
-ALPAR AI olarak güvenin ancak doğrulama yoluyla kazanılabileceğine inanıyoruz. 2025 yılı ilerledikçe, bağımsız güven altyapısı yapay zeka ekosisteminin temeli haline gelecek; insan iradesini koruyacak ve teknolojinin hesap verebilir kalmasını sağlayacaktır.`,
+ALPAR AI olarak güvenin ancak doğrulama yoluyla kazanılabileceğine inanıyoruz. 2026 yılı ilerledikçe, bağımsız güven altyapısı yapay zeka ekosisteminin temeli haline gelecek; insan iradesini koruyacak ve teknolojinin hesap verebilir kalmasını sağlayacaktır.`,
   },
   {
     slug: "how-to-report-ai-incident",
@@ -72,7 +72,7 @@ ALPAR AI olarak güvenin ancak doğrulama yoluyla kazanılabileceğine inanıyor
       "Found an AI failure, bias, or safety issue? Learn how to document and submit it securely to our community-governed database.",
     description_tr:
       "Bir yapay zeka hatası, yanlılığı veya güvenlik sorunu mu buldunuz? Bunu nasıl belgeleyeceğinizi ve güvenli bir şekilde topluluk veritabanımıza göndereceğinizi öğrenin.",
-    date: "2025-06-19",
+    date: "2026-06-19",
     author: "ALPAR AI Guide",
     author_tr: "ALPAR AI Rehber",
     tags: ["guide", "incidents", "tutorial"],

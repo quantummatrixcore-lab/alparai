@@ -7,7 +7,7 @@ import { MobileNav } from "./mobile-nav";
 import { LanguageSwitcher } from "./language-switcher";
 import { UserMenu } from "./user-menu";
 import { useTranslations } from "next-intl";
-import { Plus } from "lucide-react";
+import { Plus, Github } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 export function Header({
@@ -50,6 +50,15 @@ export function Header({
           </div>
         </div>
         <div className="flex items-center gap-1.5 sm:gap-2.5">
+          <a
+            href="https://github.com/quantummatrixcore-lab/alparai-platform"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-fg-muted hover:text-brand-400 focus-visible:ring-brand-500 hidden h-9 w-9 items-center justify-center rounded-full transition-colors focus-visible:ring-2 focus-visible:outline-none sm:flex"
+            aria-label="GitHub Repository"
+          >
+            <Github className="h-5 w-5" />
+          </a>
           <LanguageSwitcher className="inline-flex" />
           <Link
             href="/submit"

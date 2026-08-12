@@ -16,6 +16,7 @@ import {
   Users,
   Building,
   CreditCard,
+  Trophy,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import type { ComponentType } from "react";
@@ -27,6 +28,7 @@ interface NavItem {
 }
 
 const mainNavItems: NavItem[] = [
+  { href: "/", labelKey: "leaderboard", icon: Trophy },
   { href: "/products/ars-api", labelKey: "products", icon: Shield },
   { href: "/pricing", labelKey: "pricing", icon: CreditCard },
   { href: "/incidents", labelKey: "data", icon: BarChart3 },
@@ -80,7 +82,8 @@ export function Nav({
     <nav className={cn("hidden items-center gap-0.5 lg:flex", className)}>
       {activeItems.map((item) => {
         const Icon = item.icon;
-        const isActive = pathname.startsWith(item.href);
+        const isActive =
+          item.href === "/" ? pathname === "/" || pathname === "" : pathname.startsWith(item.href);
         return (
           <Link
             key={item.href}

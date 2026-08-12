@@ -78,9 +78,9 @@ Bu andan itibaren, Antigravity ve OpenCode (Flash) ajanları aşağıdaki blokla
 
 _Durum: Otopilot Bekliyor | Yürütücü: Antigravity + Flash Ajanlar_
 
-1. **[ALPHA-1]** `docs/fundraising/seed-data-room.md` inşa edilecek. LTV/CAC formülleri, pazar analizi ve 18 aylık Runway tablosu.
-2. **[ALPHA-2]** `docs/fundraising/valuation-memo.md` €4.5M değerleme savunması yazılacak.
-3. **[ALPHA-3]** Top 20 VC partneri listesi ve otonom (openchrome) warm-intro metinleri üretilecek.
+1. **[ALPHA-1]** `docs/fundraising/seed-data-room.md` inşa edilecek. LTV/CAC formülleri, pazar analizi ve 18 aylık Runway tablosu. ✅ completed closed-by:1e6d6438@master evidence:"created docs/fundraising/seed-data-room.md"
+2. **[ALPHA-2]** `docs/fundraising/valuation-memo.md` €4.5M değerleme savunması yazılacak. ✅ completed closed-by:1e6d6438@master evidence:"created docs/fundraising/valuation-memo.md"
+3. **[ALPHA-3]** Top 20 VC partneri listesi ve otonom (openchrome) warm-intro metinleri üretilecek. ✅ completed closed-by:1e6d6438@master evidence:"created docs/fundraising/vc-outreach-list.md"
 
 ### BLOK SIGMA: Enterprise Sızma & Gelir (Revenue & B2B GTM)
 
@@ -88,14 +88,14 @@ _Durum: Otopilot Bekliyor | Yürütücü: Antigravity (Tarayıcı & Kod)_
 
 1. **[SIGMA-1]** Kilo.ai benzeri "otonom satış temsilcisi" modu aktifleştirilip, Top 50 LLM sağlayıcısına (OpenAI, Anthropic, Mistral) "Trust Badge" embed kodları mail/form via `openchrome` ile gönderilecek.
 2. **[SIGMA-2]** Cloudflare WAF engeli (Task #128) Founder tarafından çözüldüğü an, Stripe webhook'lar üzerinden ilk canlı test ödemesi simüle edilecek.
-3. **[SIGMA-3]** Bankacılık/Telekom uyum departmanlarına yönelik "AI Act Article 73 Compliance Checklist" lead-magnet sayfası (Next.js route) kodlanıp yayına alınacak.
+3. **[SIGMA-3]** Bankacılık/Telekom uyum departmanlarına yönelik "AI Act Article 73 Compliance Checklist" lead-magnet sayfası (Next.js route) kodlanıp yayına alınacak. ✅ completed closed-by:1e6d6438@master evidence:"created src/app/[locale]/compliance-checklist/page.tsx with translations"
 
 ### BLOK OMEGA: Gerilla Büyüme & Viralite (Content & Viral Loop)
 
 _Durum: Otopilot Bekliyor | Yürütücü: 9-Model Arbitraj Sistemi_
 
-1. **[OMEGA-1]** "The Grok Files" (#198) 10 günlük ifşa serisi: Sistemdeki ucuz 9 model kullanılarak otomatik blog içeriklerine (Markdown) dönüştürülecek.
-2. **[OMEGA-2]** Reddit (r/MachineLearning, r/SaaS) ve Hacker News (Show HN) için eşzamanlı, anti-bot korumalı (openchrome Stealth) lansman taslakları oluşturulacak.
+1. **[OMEGA-1]** "The Grok Files" (#198) 10 günlük ifşa serisi: Sistemdeki ucuz 9 model kullanılarak otomatik blog içeriklerine (Markdown) dönüştürülecek. ✅ completed closed-by:1e6d6438@master evidence:"created docs/campaigns/grok-files-series.md"
+2. **[OMEGA-2]** Reddit (r/MachineLearning, r/SaaS) ve Hacker News (Show HN) için eşzamanlı, anti-bot korumalı (openchrome Stealth) lansman taslakları oluşturulacak. ✅ completed closed-by:1e6d6438@master evidence:"created docs/GTM/reddit-hn-launch-drafts.md"
 3. **[OMEGA-3]** Qwen Omni ASR entegrasyonu kurularak sesli (113 dil) incident bildirim API'si (Task #204) canlıya alınacak.
 
 ### BLOK ZETA: Mekanik Yıkım & Hijyen (Zero-Touch Ops)

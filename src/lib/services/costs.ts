@@ -151,7 +151,7 @@ export async function getCostsData() {
   // Group costs by month for Recharts trend
   const months = Array.from(new Set(dbCosts.map((c) => c.month)));
   const trends = months.map((m) => {
-    const monthLabel = new Date(m).toLocaleDateString("tr-TR", { month: "long" });
+    const monthLabel = new Date(m).toLocaleDateString("en-US", { month: "long" });
     const monthCosts = dbCosts.filter((c) => c.month === m);
     const dataPoint: Record<string, string | number> = { name: monthLabel };
     let sum = 0;
@@ -160,7 +160,7 @@ export async function getCostsData() {
       dataPoint[c.service] = val;
       sum += val;
     });
-    dataPoint["Toplam"] = sum;
+    dataPoint["Total"] = sum;
     return dataPoint;
   });
 
@@ -168,12 +168,10 @@ export async function getCostsData() {
   const alerts: string[] = [];
   services.forEach((s) => {
     if (s.percentUsed >= 90 && s.budgetLimit > 0) {
-      alerts.push(
-        `${s.name.toUpperCase()} bütçesi limitine ulaştı (${s.percentUsed}% kullanıldı).`,
-      );
+      alerts.push(`${s.name.toUpperCase()} budget reached its limit (${s.percentUsed}% used).`);
     } else if (s.percentUsed >= 80 && s.budgetLimit > 0) {
       alerts.push(
-        `${s.name.toUpperCase()} bütçesi kritik sınıra yaklaşıyor (${s.percentUsed}% kullanıldı).`,
+        `${s.name.toUpperCase()} budget is approaching critical limit (${s.percentUsed}% used).`,
       );
     }
   });

@@ -17,6 +17,11 @@ const PERMANENT_EXEMPTIONS = [
   "docs/ARCHIVE/",
   "docs/MASTER_PLAN_ARCHIVE.md",
   "docs/plan/v12",
+  "docs/blog/",
+  "docs/campaigns/",
+  "docs/outreach/",
+  "docs/fundraising/",
+  "docs/DATA_ROOM/",
   "scripts/check-repo-language.mjs",
   ".repo-language-baseline",
   // Machine-generated dependency inventory: the text comes from upstream

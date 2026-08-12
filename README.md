@@ -8,7 +8,6 @@
 [![Security](https://github.com/quantummatrixcore-lab/alparai/actions/workflows/security.yml/badge.svg)](https://github.com/quantummatrixcore-lab/alparai/actions/workflows/security.yml)
 [![Deploy](https://github.com/quantummatrixcore-lab/alparai/actions/workflows/deploy.yml/badge.svg)](https://github.com/quantummatrixcore-lab/alparai/actions/workflows/deploy.yml)
 [![AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue.svg)](./LICENSE)
-[![HackerOne VDP](https://img.shields.io/badge/HackerOne-VDP-purple.svg)](./docs/outreach/hackerone_strategy.md)
 
 ## Why
 
@@ -21,7 +20,7 @@ ALPAR is a public, independent, verifiable record of how AI systems behave in th
 - 🔐 **Sign in with Google** (Supabase Auth) — no passwords.
 - 🛡️ **PII Guardian** — emails, phone numbers, IDs, IBANs, credit cards, access tokens are automatically masked before publication.
 - 🌍 **EN + TR bilingual** (i18n with `next-intl`, `/en/...` and `/tr/...`).
-- 🏛️ **Intermediary legal model** — like Trustpilot / sikayetvar.com. We host user content; users are responsible for what they submit. (See [Terms](./docs/LEGAL.md) and [KVKK compliance](./docs/KVKK.md).)
+- 🏛️ **Intermediary legal model** — like Trustpilot / sikayetvar.com. We host user content; users are responsible for what they submit. (See [Terms](./src/app/[locale]/legal/terms/page.tsx) and [KVKK compliance](./docs/KVKK.md).)
 - 🤖 **AI providers' right to respond** — verified providers can post an official response on any incident.
 - 📊 **Leaderboard** — ranked by Trust Score (response rate, resolution rate, and response time).
 - 💡 **Suggestion system** — community votes, we build what matters.

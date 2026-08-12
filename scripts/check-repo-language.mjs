@@ -19,9 +19,6 @@ const PERMANENT_EXEMPTIONS = [
   "docs/plan/v12",
   "docs/blog/",
   "docs/campaigns/",
-  "docs/outreach/",
-  "docs/fundraising/",
-  "docs/DATA_ROOM/",
   "scripts/check-repo-language.mjs",
   ".repo-language-baseline",
   // Machine-generated dependency inventory: the text comes from upstream
@@ -51,7 +48,7 @@ function trackedFiles() {
 // diaeresis from the founder's own name would be a misspelling, not a
 // translation. Same class of false positive as the "360°" degree sign that
 // v13.7 recorded. Kept deliberately tiny — names only, never prose.
-const PROPER_NOUNS = /Ercüment|Erden|Basın|Alpar|Türkiye/g;
+const PROPER_NOUNS = /Ercüment|Erden|Basın|Alpar|Türkiye|Dilek|Dayınlarlı|Atıl|Erken|Cem|Sertoğlu|Özgür|Gründerfonds|Traçabilité/g;
 
 function turkishLineCount(path) {
   let content;

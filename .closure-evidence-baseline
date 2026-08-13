@@ -5,8 +5,6 @@
 # SHA, and must never be added. A new unresolvable citation fails CI.
 closed-by:latest@master`
 closed-by:latest@master`;
-missing:FA ALPHA-6 — [ALPHA-6] Pitch Deck
-missing:FA SIGMA-6 — [SIGMA-6] Stripe Oto
 missing:8 kurumsal outreach maili (ercument.erden@alpara
 missing:ARCH-1
 missing:JULES

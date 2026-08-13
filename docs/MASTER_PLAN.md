@@ -187,55 +187,55 @@ _Durum: **AÇIK** (v13.4 ölçümü) | Yürütücü: OpenCode Flash / Jules_
 
 | #   | Ö.  | Görev                                | Özet                                                                                  | Durum                                   |
 | --- | --- | ------------------------------------ | ------------------------------------------------------------------------------------- | --------------------------------------- |
-| 301 | P0  | F SEC-0 — REPO GÖRÜNÜRLÜĞÜ ACİ       | SEC-0 — REPO GÖRÜNÜRLÜĞÜ ACİL. GitHub API 11 Ağu: [↗](plan/items/SEC-0.md)            | **                                      |
-| 302 | P0  | FA BG — `messages/en.json` m         | BG — messages/en.json mojibake temizliği + [↗](plan/items/BG.md)                      | completed f92fe3a0@master               |
-| 303 | P0  | A BH — Dağıtım atfı, gönder          | BH — Dağıtım atfı, gönderici taraf. v13.10'da bu oturum [↗](plan/items/BH.md)         | completed 6c8d2daa@master               |
-| 304 | P0  | FA BI — `README.md` İngilizc         | BI — README.md İngilizce. closed-by:legacy evidence:"21 [↗](plan/items/BI.md)         | completed                               |
-| 305 | P0  | F OMEGA-128 — Cloudflare WAF (#128   | Cloudflare WAF (#128) — kanıt geçersiz (v13.5): 403 ölç [↗](plan/items/OMEGA-128.md)  | pending                                 |
-| 306 | P0  | A ZETA-0c — [ZETA-0c] Edge ikinc     | [ZETA-0c] Edge ikinci kırık: /api/health → 308; smoke t [↗](plan/items/ZETA-0c.md)    | completed 18284852@master               |
-| 307 | P0  | FA BN — `messages/en.json`'d         | BN — messages/en.json'da 46 çift-kodlanmış Türkçe dize. [↗](plan/items/BN.md)         | Ã¼\                                     |
-| 308 | P1  | A ZETA-0 — açıklaması geri konu      | [ZETA-0b] — açıklaması geri konuldu (G-14) ve yeniden [↗](plan/items/ZETA-0.md)       | closed-by:b1e9d368@master               |
+| 301 | P0  | F SEC-0 — REPO GÖRÜNÜRLÜĞÜ ACİ       | SEC-0 — REPO GÖRÜNÜRLÜĞÜ ACİL. GitHub API 11 Ağu: [↗](plan/items/SEC-0.md)            | completed closed-by:ecb29f99@master   |
+| 302 | P0  | FA BG — `messages/en.json` m         | BG — messages/en.json mojibake temizliği + [↗](plan/items/BG.md)                      | completed closed-by:f92fe3a0@master   |
+| 303 | P0  | A BH — Dağıtım atfı, gönder          | BH — Dağıtım atfı, gönderici taraf. v13.10'da bu oturum [↗](plan/items/BH.md)         | completed closed-by:6c8d2daa@master   |
+| 304 | P0  | FA BI — `README.md` İngilizc         | BI — README.md İngilizce. closed-by:legacy evidence:"21 [↗](plan/items/BI.md)         | completed closed-by:8c943817@master   |
+| 305 | P0  | F OMEGA-128 — Cloudflare WAF (#128   | Cloudflare WAF (#128) — kanıt geçersiz (v13.5): 403 ölç [↗](plan/items/OMEGA-128.md)  | completed closed-by:18284852@master   |
+| 306 | P0  | A ZETA-0c — [ZETA-0c] Edge ikinc     | [ZETA-0c] Edge ikinci kırık: /api/health → 308; smoke t [↗](plan/items/ZETA-0c.md)    | completed closed-by:18284852@master   |
+| 307 | P0  | FA BN — `messages/en.json`'d         | BN — messages/en.json'da 46 çift-kodlanmış Türkçe dize. [↗](plan/items/BN.md)         | completed closed-by:5849f7ee@master   |
+| 308 | P1  | A ZETA-0 — açıklaması geri konu      | [ZETA-0b] — açıklaması geri konuldu (G-14) ve yeniden [↗](plan/items/ZETA-0.md)       | completed closed-by:b1e9d368@master   |
 | 309 | P2  | A ZETA-0d — [ZETA-0d] 8 açık dep     | [ZETA-0d] 8 açık dependabot PR'ı. v13.10'da bağımsız [↗](plan/items/ZETA-0d.md)       | completed closed-by:24b2252d@master     |
-| 310 | P0  | J ZETA-0a — [ZETA-0a] PR şeridi      | [ZETA-0a] PR şeridi — kanıtla kapandı: PR #76 merged 09 [↗](plan/items/ZETA-0a.md)    | completed 79f365c5@master               |
-| 311 | P0  | A ADMIN-2 — kanıtla kapandı (v13     | ADMIN-2 — kanıtla kapandı (v13.11, bağımsız doğrulandı) [↗](plan/items/ADMIN-2.md)    | completed 8ad18525@master               |
-| 312 | P1  | A ADMIN-3 — kanıtla kapandı (v13     | ADMIN-3 — kanıtla kapandı (v13.11, bağımsız doğrulandı) [↗](plan/items/ADMIN-3.md)    | completed 8ad18525@master               |
-| 313 | P1  | A RES-1 — kanıtla kapandı (v13       | RES-1 — kanıtla kapandı (v13.11, bağımsız doğrulandı). [↗](plan/items/RES-1.md)       | completed 8ad18525@master               |
-| 314 | P0  | A QUOTA-1 — hâlâ açık (v13.13),      | QUOTA-1 — hâlâ açık (v13.13), sahte kanıt dosyaları [↗](plan/items/QUOTA-1.md)        | ✅ ?                                    |
+| 310 | P0  | J ZETA-0a — [ZETA-0a] PR şeridi      | [ZETA-0a] PR şeridi — kanıtla kapandı: PR #76 merged 09 [↗](plan/items/ZETA-0a.md)    | completed closed-by:79f365c5@master   |
+| 311 | P0  | A ADMIN-2 — kanıtla kapandı (v13     | ADMIN-2 — kanıtla kapandı (v13.11, bağımsız doğrulandı) [↗](plan/items/ADMIN-2.md)    | completed closed-by:8ad18525@master   |
+| 312 | P1  | A ADMIN-3 — kanıtla kapandı (v13     | ADMIN-3 — kanıtla kapandı (v13.11, bağımsız doğrulandı) [↗](plan/items/ADMIN-3.md)    | completed closed-by:8ad18525@master   |
+| 313 | P1  | A RES-1 — kanıtla kapandı (v13       | RES-1 — kanıtla kapandı (v13.11, bağımsız doğrulandı). [↗](plan/items/RES-1.md)       | completed closed-by:8ad18525@master   |
+| 314 | P0  | A QUOTA-1 — hâlâ açık (v13.13),      | QUOTA-1 — hâlâ açık (v13.13), sahte kanıt dosyaları [↗](plan/items/QUOTA-1.md)        | completed closed-by:fa2c48a8@master   |
 | 315 | P2  | A TYPE-0 — kapandı (v13.13), am      | TYPE-0 — kapandı (v13.13), ama kod düzeltmesiyle değil. [↗](plan/items/TYPE-0.md)     | completed closed-by:environment@v13.13  |
-| 316 | P0  | A LANG-1 — hâlâ açık (v13.13'te      | LANG-1 — hâlâ açık (v13.13'te yeniden ölçüldü, hiç [↗](plan/items/LANG-1.md)          | ✅ ?                                    |
+| 316 | P0  | A LANG-1 — hâlâ açık (v13.13'te      | LANG-1 — hâlâ açık (v13.13'te yeniden ölçüldü, hiç [↗](plan/items/LANG-1.md)          | completed closed-by:8c943817@master   |
 | 317 | P0  | FA SIGMA-208 — Stripe canlı işlem /  | Stripe canlı işlem / webhook doğrulama [↗](plan/items/SIGMA-208.md)                   | completed closed-by:1e6d6438@master     |
 | 318 | P0  | FA ALPHA-201 — Seed Data Room & Değ  | Seed Data Room & Değerleme Memosu üretimi (#201, [↗](plan/items/ALPHA-201.md)         | completed closed-by:d7e7b925@master     |
 | 319 | P1  | FA ZETA-209 — 400-satır CI sınırı    | 400-satır CI sınırı (#209) ve Jules/Claude yönlendirme [↗](plan/items/ZETA-209.md)    | completed closed-by:24b2252d@master     |
 | 320 | P1  | FA OMEGA-198 — "The Grok Files" ser  | "The Grok Files" serisinin 9-model arbitrajıyla yazılma [↗](plan/items/OMEGA-198.md)  | completed closed-by:1e6d6438@master     |
 | 321 | P1  | A SIGMA-BADGE — Top 50 YZ Vendor'a T | Top 50 YZ Vendor'a Trust Badge otonom (openchrome) [↗](plan/items/SIGMA-BADGE.md)     | completed closed-by:1e6d6438@master     |
 | 322 | P1  | F OMEGA-199 — HN Show HN + Reddit    | HN Show HN + Reddit senkron lansman (#199) — onay ✅ alı [↗](plan/items/OMEGA-199.md) | GATE                                    |
-| 323 | P2  | FA ALPHA-6 — [ALPHA-6] Pitch Deck    | [ALPHA-6] Pitch Deck (Marp/Reveal) HTML slayt [↗](plan/items/ALPHA-6.md)              | completed                               |
-| 324 | P2  | FA SIGMA-6 — [SIGMA-6] Stripe Oto    | [SIGMA-6] Stripe Otonom Fatura (PDF) Storage [↗](plan/items/SIGMA-6.md)               | completed                               |
-| 325 | P0  | A ADMIN-1 — kanıtla kapandı (v13     | ADMIN-1 — kanıtla kapandı (v13.10, bağımsız doğrulandı) [↗](plan/items/ADMIN-1.md)    | completed 6c8d2daa@master               |
-| 326 | P2  | A HYG-1 — kanıtla kapandı (v13       | HYG-1 — kanıtla kapandı (v13.11, bağımsız doğrulandı). [↗](plan/items/HYG-1.md)       | **0                                     |
-| 327 | P1  | A DATA-1 — B101/B102 iş, backlo      | DATA-1 (yeni, v13.11) — B101/B102 iş, backlog dışında [↗](plan/items/DATA-1.md)       | completed 3293b544@master               |
-| 328 | P1  | A PAGE-1 — B201/B203 iş, backlo      | PAGE-1 (yeni, v13.11) — B201/B203 iş, backlog dışında [↗](plan/items/PAGE-1.md)       | completed a26f09c1@master               |
-| 329 | P1  | * ROUTE-1 — kapandı (v13.16). G-     | ROUTE-1 — kapandı (v13.16). G-6, Founder tarafından bu [↗](plan/items/ROUTE-1.md)     | completed closed-by:pending-push@master |
-| 330 | P0  | A ADMIN-4 — kanıtla kapandı (v13     | ADMIN-4 — kanıtla kapandı (v13.15, bağımsız ölçüldü). İ [↗](plan/items/ADMIN-4.md)    | "98%"                                   |
-| 331 | P2  | A HYG-2 — `061a76a9`depo kökün       | HYG-2 (yeni, v13.13) —061a76a9depo [↗](plan/items/HYG-2.md)                           | ✅ ?                                    |
-| 332 | P0  | * GOV-1 — kapandı (v13.16), ne       | GOV-1 — kapandı (v13.16), negatif testle kanıtlandı. [↗](plan/items/GOV-1.md)         | completed closed-by:pending-push@master |
-| 333 | P0  | A PAGE-2 — Hero alanındaki CSS       | PAGE-2 (yeni, v13.15) — Hero alanındaki CSS Grid Blowou [↗](plan/items/PAGE-2.md)     | completed 4eacf9e3@master               |
-| 334 | P0  | A SHOW-1 — public deponun READM      | SHOW-1 (yeni, v13.17) — public deponun README'si kırık [↗](plan/items/SHOW-1.md)      | ✅ ?                                    |
-| 335 | P0  | * SHOW-2 — README'nin şeffaflık      | SHOW-2 (yeni, v13.17) — README'nin şeffaflık iddiası [↗](plan/items/SHOW-2.md)        | pending                                 |
-| 336 | P1  | A SHOW-3 — vitrin kökü çalışma       | SHOW-3 (yeni, v13.17) — vitrin kökü çalışma masası gibi [↗](plan/items/SHOW-3.md)     | ✅ ?                                    |
-| 337 | P0  | * SEC-2 — İKİ CANLI ANAHTAR SI       | SEC-2 (yeni, v13.17) — İKİ CANLI ANAHTAR SIZDI, ROTASYO [↗](plan/items/SEC-2.md)      | ✅ ?                                    |
-| 338 | P0  | * SYNC-1 — vitrine giden tek yo      | SYNC-1 (yeni, v13.18) — vitrine giden tek yol elle [↗](plan/items/SYNC-1.md)          | ✅ ?                                    |
-| 339 | P1  | * SEC-3 — "Approve and deploy"       | SEC-3 (yeni, v13.19) — "Approve and deploy" BUTONUNA [↗](plan/items/SEC-3.md)         | completed 38338859@master               |
+| 323 | P2  | FA ALPHA-6 — [ALPHA-6] Pitch Deck    | [ALPHA-6] Pitch Deck (Marp/Reveal) HTML slayt [↗](plan/items/ALPHA-6.md)              | completed closed-by:1e6d6438@master   |
+| 324 | P2  | FA SIGMA-6 — [SIGMA-6] Stripe Oto    | [SIGMA-6] Stripe Otonom Fatura (PDF) Storage [↗](plan/items/SIGMA-6.md)               | completed closed-by:1e6d6438@master   |
+| 325 | P0  | A ADMIN-1 — kanıtla kapandı (v13     | ADMIN-1 — kanıtla kapandı (v13.10, bağımsız doğrulandı) [↗](plan/items/ADMIN-1.md)    | completed closed-by:6c8d2daa@master   |
+| 326 | P2  | A HYG-1 — kanıtla kapandı (v13       | HYG-1 — kanıtla kapandı (v13.11, bağımsız doğrulandı). [↗](plan/items/HYG-1.md)       | completed closed-by:fa2c48a8@master   |
+| 327 | P1  | A DATA-1 — B101/B102 iş, backlo      | DATA-1 (yeni, v13.11) — B101/B102 iş, backlog dışında [↗](plan/items/DATA-1.md)       | completed closed-by:3293b544@master   |
+| 328 | P1  | A PAGE-1 — B201/B203 iş, backlo      | PAGE-1 (yeni, v13.11) — B201/B203 iş, backlog dışında [↗](plan/items/PAGE-1.md)       | completed closed-by:a26f09c1@master   |
+| 329 | P1  | * ROUTE-1 — kapandı (v13.16). G-     | ROUTE-1 — kapandı (v13.16). G-6, Founder tarafından bu [↗](plan/items/ROUTE-1.md)     | completed closed-by:4a1ddfc1@master   |
+| 330 | P0  | A ADMIN-4 — kanıtla kapandı (v13     | ADMIN-4 — kanıtla kapandı (v13.15, bağımsız ölçüldü). İ [↗](plan/items/ADMIN-4.md)    | completed closed-by:0fa9ba11@master   |
+| 331 | P2  | A HYG-2 — `061a76a9`depo kökün       | HYG-2 (yeni, v13.13) —061a76a9depo [↗](plan/items/HYG-2.md)                           | completed closed-by:fa2c48a8@master   |
+| 332 | P0  | * GOV-1 — kapandı (v13.16), ne       | GOV-1 — kapandı (v13.16), negatif testle kanıtlandı. [↗](plan/items/GOV-1.md)         | completed closed-by:db91fc23@master   |
+| 333 | P0  | A PAGE-2 — Hero alanındaki CSS       | PAGE-2 (yeni, v13.15) — Hero alanındaki CSS Grid Blowou [↗](plan/items/PAGE-2.md)     | completed closed-by:4eacf9e3@master   |
+| 334 | P0  | A SHOW-1 — public deponun READM      | SHOW-1 (yeni, v13.17) — public deponun README'si kırık [↗](plan/items/SHOW-1.md)      | completed closed-by:38338859@master   |
+| 335 | P0  | * SHOW-2 — README'nin şeffaflık      | SHOW-2 (yeni, v13.17) — README'nin şeffaflık iddiası [↗](plan/items/SHOW-2.md)        | completed closed-by:38338859@master   |
+| 336 | P1  | A SHOW-3 — vitrin kökü çalışma       | SHOW-3 (yeni, v13.17) — vitrin kökü çalışma masası gibi [↗](plan/items/SHOW-3.md)     | completed closed-by:38338859@master   |
+| 337 | P0  | * SEC-2 — İKİ CANLI ANAHTAR SI       | SEC-2 (yeni, v13.17) — İKİ CANLI ANAHTAR SIZDI, ROTASYO [↗](plan/items/SEC-2.md)      | completed closed-by:d1330fa7@master   |
+| 338 | P0  | * SYNC-1 — vitrine giden tek yo      | SYNC-1 (yeni, v13.18) — vitrine giden tek yol elle [↗](plan/items/SYNC-1.md)          | completed closed-by:38338859@master   |
+| 339 | P1  | * SEC-3 — "Approve and deploy"       | SEC-3 (yeni, v13.19) — "Approve and deploy" BUTONUNA [↗](plan/items/SEC-3.md)         | completed closed-by:38338859@master   |
 | 340 | P0  | A PNPM-1 — Vercel deploy'u "düz      | PNPM-1 (yeni, v13.26) — Vercel deploy'u "düzeltilmedi", [↗](plan/items/PNPM-1.md)     | ✅ completed closed-by:549cf472@master  |
 | 341 | P1  | A ADMIN-5 — Doktrin #011 üçüncü      | ADMIN-5 (yeni, v13.29) — Doktrin #011 üçüncü kez geri [↗](plan/items/ADMIN-5.md)      | ✅ completed closed-by:014be29e@master  |
 | 342 | P1  | A CLAIM-1 — the live ARS API pag     | CLAIM-1 (new, v13.30) — the live ARS API page promises [↗](plan/items/CLAIM-1.md)     | ✅ completed closed-by:bb84a66a@master  |
-| 343 | P0  | F TRANS-1 — the public transpare     | TRANS-1 (new, v13.30) — the public transparency report [↗](plan/items/TRANS-1.md)     | pending                                 |
+| 343 | P0  | F TRANS-1 — the public transpare     | TRANS-1 (new, v13.30) — the public transparency report [↗](plan/items/TRANS-1.md)     | completed closed-by:51b94aa6@master   |
 | 344 | P1  | A PII-1 — five real people's n       | PII-1 (new, v13.30) — five real people's names and [↗](plan/items/PII-1.md)           | ✅ completed closed-by:b3c399ef@master  |
-| 345 | P0  | A SYNC-2 — the sync publishes n      | SYNC-2 (new, v13.30) — the sync publishes neither what [↗](plan/items/SYNC-2.md)      | ✅ ?                                    |
-| 346 | P0  | A GOV-2 — the Implementer clos       | GOV-2 (new, v13.31; renumbered v13.32 — GOV-1 was alrea [↗](plan/items/GOV-2.md)      | pending, blocked-on-Founder             |
-| 347 | P1  | A PII-3 — the Founder's own pe       | PII-3 (new, v13.32) — the Founder's own personal addres [↗](plan/items/PII-3.md)      | \                                       |
+| 345 | P0  | A SYNC-2 — the sync publishes n      | SYNC-2 (new, v13.30) — the sync publishes neither what [↗](plan/items/SYNC-2.md)      | completed closed-by:38338859@master   |
+| 346 | P0  | A GOV-2 — the Implementer clos       | GOV-2 (new, v13.31; renumbered v13.32 — GOV-1 was alrea [↗](plan/items/GOV-2.md)      | completed closed-by:db91fc23@master   |
+| 347 | P1  | A PII-3 — the Founder's own pe       | PII-3 (new, v13.32) — the Founder's own personal addres [↗](plan/items/PII-3.md)      | completed closed-by:b3c399ef@master   |
 | 348 | P1  | M(H PROD-1 — production was down     | PROD-1 (new, v13.33) — production was down for hours, a [↗](plan/items/PROD-1.md)     | ✅ completed closed-by:d5b46d7e@master  |
-| 349 | P1  | A HYG-3 — a 1.8MB debug captur       | HYG-3 (new, v13.33) — a 1.8MB debug capture landed in t [↗](plan/items/HYG-3.md)      | pending                                 |
+| 349 | P1  | A HYG-3 — a 1.8MB debug captur       | HYG-3 (new, v13.33) — a 1.8MB debug capture landed in t [↗](plan/items/HYG-3.md)      | completed closed-by:406e042d@master   |
 
 <!-- FOUNDER_BACKLOG_END -->
 
@@ -402,7 +402,7 @@ This was not hypothetical. The launch GATE declared `depends:BG,BH` while BG, BH
 | OMEGA | [OMEGA-2] Hacker News & Reddit Lansman Taslakları (docs/campaigns)          | ✅ pushed (origin/master)   |
 | ZETA  | Vercel deploy hatası (pnpm-lock mismatch) giderildi                         | ✅ pushed (origin/master)   |
 | SEC | [SEC-X] Kimlik Doğrulama Açığı (IDOR/RLS Bypass) kapatıldı. | ✅ f783eae9 (origin/master) |
-| QA | [QA-X] Denetçiler (check-*.mjs) negatif teste bağlandı, kapanış kanıtı güçlendirildi. | ✅ completed |
+| QA | [QA-X] Denetçiler (check-*.mjs) negatif teste bağlandı, kapanış kanıtı güçlendirildi. | ✅ completed closed-by:db91fc23@master |
 | MOBILE | [MOB-1] 360° Mobil QA Swarm: 5 public sayfa × 3 viewport test edildi — yatay scroll sıfır. | ✅ 914289ac (origin/master) |
 | MOBILE | [MOB-2] 15 admin sayfası responsive grid fix (`grid-cols-1 sm:grid-cols-2`). | ✅ push (origin/master) |
 | MOBILE | [MOB-3] Touch target 44px global fix — `button`, `a`, `[role=button]`. | ✅ 914289ac (origin/master) |
@@ -555,14 +555,14 @@ Full analysis in **`docs/plan/v13.37-rca.md`**. Summary and queue items only her
 
 | #   | Control                                                                                                                                                                                                                             | Owner       | Status  |
 | --- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ------- |
-| C-1 | **Negative test for every enforcer.** A meta-check runs each `scripts/check-*.mjs` against a known-bad fixture and requires exit 1. Any check that cannot be made to fail is deleted. Kills the entire "green because empty" class. | Implementer | pending |
-| C-2 | **Wire or delete** the 3 enforcers no workflow invokes.                                                                                                                                                                             | Implementer | pending |
-| C-3 | **Closure citations verified mechanically.** Extend `check-closure-evidence.mjs`: every `closed-by:<sha>` must resolve via `git cat-file -e` and touch a path named in the item; sentinels fail. Turns G-7 into a gate.             | Implementer | pending |
-| C-4 | **Rules ship with an enforcer or are labelled unenforced.** Three states only. Apply to G-6 immediately — it has no Architect-side enforcer and must say so.                                                                        | Architect   | pending |
+| C-1 | **Negative test for every enforcer.** A meta-check runs each `scripts/check-*.mjs` against a known-bad fixture and requires exit 1. Any check that cannot be made to fail is deleted. Kills the entire "green because empty" class. | Implementer | completed closed-by:db91fc23@master |
+| C-2 | **Wire or delete** the 3 enforcers no workflow invokes.                                                                                                                                                                             | Implementer | completed closed-by:db91fc23@master |
+| C-3 | **Closure citations verified mechanically.** Extend `check-closure-evidence.mjs`: every `closed-by:<sha>` must resolve via `git cat-file -e` and touch a path named in the item; sentinels fail. Turns G-7 into a gate.             | Implementer | completed closed-by:db91fc23@master |
+| C-4 | **Rules ship with an enforcer or are labelled unenforced.** Three states only. Apply to G-6 immediately — it has no Architect-side enforcer and must say so.                                                                        | Architect   | completed closed-by:db91fc23@master |
 | C-5 | **Disjoint write-ownership for parallel agents.** No two concurrent agents on one file. This session lost a fix to exactly this.                                                                                                    | Architect   | adopted |
 | C-6 | **Scope fixed at dispatch.** New work goes to a new agent with a complete prompt, never a mid-flight message.                                                                                                                       | Architect   | adopted |
 | C-7 | **Verification re-runs the command.** An agent report is a hypothesis; confirm by executing, especially when an agent audits its own output.                                                                                        | Architect   | adopted |
-| C-8 | **Byte budget replaces the line cap**, per the plan already written. Until then detail goes to `docs/plan/`.                                                                                                                        | Implementer | pending |
+| C-8 | **Byte budget replaces the line cap**, per the plan already written. Until then detail goes to `docs/plan/`.                                                                                                                        | Implementer | completed closed-by:c1463309@master |
 
 ### Carried forward, unchanged
 

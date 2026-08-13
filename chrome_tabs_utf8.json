@@ -1,0 +1,151 @@
+﻿[ {
+   "description": "",
+   "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@28a7a6c409e03c701d3474ef9e3b1f0be6249039/inspector.html?ws=localhost:9222/devtools/page/E821E2C36034B543FA6D9FAC752669F5",
+   "id": "E821E2C36034B543FA6D9FAC752669F5",
+   "title": "chrome-extension://aapbdbdomjkkjkaonfhkkikfgjllcleb/offscreen.html",
+   "type": "background_page",
+   "url": "chrome-extension://aapbdbdomjkkjkaonfhkkikfgjllcleb/offscreen.html",
+   "webSocketDebuggerUrl": "ws://localhost:9222/devtools/page/E821E2C36034B543FA6D9FAC752669F5"
+}, {
+   "description": "",
+   "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@28a7a6c409e03c701d3474ef9e3b1f0be6249039/inspector.html?ws=localhost:9222/devtools/page/E2E000B258D684EC21370E3218CF6EB3",
+   "faviconUrl": "https://sikayet.kvkk.gov.tr/kvkkLogoSmall.png",
+   "id": "E2E000B258D684EC21370E3218CF6EB3",
+   "title": "KVKK - ┼Şikayet Mod├╝l├╝",
+   "type": "page",
+   "url": "https://sikayet.kvkk.gov.tr/User/Profile",
+   "webSocketDebuggerUrl": "ws://localhost:9222/devtools/page/E2E000B258D684EC21370E3218CF6EB3"
+}, {
+   "description": "",
+   "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@28a7a6c409e03c701d3474ef9e3b1f0be6249039/inspector.html?ws=localhost:9222/devtools/page/150BAAE490FFA2C8070A3B2AD1F23C38",
+   "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+   "id": "150BAAE490FFA2C8070A3B2AD1F23C38",
+   "title": "Kay─▒t Sorunu ├ç├Âz├╝m├╝: Adres Numaras─▒ ve Eklentiler - Google Gemini",
+   "type": "page",
+   "url": "https://gemini.google.com/app/a1eaadfefb9d3a26?hl=tr",
+   "webSocketDebuggerUrl": "ws://localhost:9222/devtools/page/150BAAE490FFA2C8070A3B2AD1F23C38"
+}, {
+   "description": "",
+   "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@28a7a6c409e03c701d3474ef9e3b1f0be6249039/inspector.html?ws=localhost:9222/devtools/page/2C5D9A5C1E1B1CE5E1F61A1773EDB76A",
+   "faviconUrl": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+   "id": "2C5D9A5C1E1B1CE5E1F61A1773EDB76A",
+   "parentId": "150BAAE490FFA2C8070A3B2AD1F23C38",
+   "title": "https://accounts.google.com/RotateCookiesPage?og_pid=658&amp;rot=3&amp;origin=https%3A%2F%2Fgemini.google.com&amp;exp_id=0",
+   "type": "iframe",
+   "url": "https://accounts.google.com/RotateCookiesPage?og_pid=658&rot=3&origin=https%3A%2F%2Fgemini.google.com&exp_id=0",
+   "webSocketDebuggerUrl": "ws://localhost:9222/devtools/page/2C5D9A5C1E1B1CE5E1F61A1773EDB76A"
+}, {
+   "description": "",
+   "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@28a7a6c409e03c701d3474ef9e3b1f0be6249039/inspector.html?ws=localhost:9222/devtools/page/CEF7AD7803E8DEE79EBCCDE34EED7C0F",
+   "faviconUrl": "https://ssl.gstatic.com/pantheon/images/favicon/default.png",
+   "id": "CEF7AD7803E8DEE79EBCCDE34EED7C0F",
+   "title": "ALPARAI ÔÇô Google Cloud console",
+   "type": "page",
+   "url": "https://console.cloud.google.com/welcome?project=alparai-prod",
+   "webSocketDebuggerUrl": "ws://localhost:9222/devtools/page/CEF7AD7803E8DEE79EBCCDE34EED7C0F"
+}, {
+   "description": "",
+   "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@28a7a6c409e03c701d3474ef9e3b1f0be6249039/inspector.html?ws=localhost:9222/devtools/page/B863C2A7F8CB1A54BE78E23AD4D1C839",
+   "faviconUrl": "https://ssl.gstatic.com/pantheon/images/favicon/default.png",
+   "id": "B863C2A7F8CB1A54BE78E23AD4D1C839",
+   "parentId": "CEF7AD7803E8DEE79EBCCDE34EED7C0F",
+   "title": "https://accounts.google.com/RotateCookiesPage?origin=https%3A%2F%2Fconsole.cloud.google.com&amp;hfcr_pid=1&amp;rot=3",
+   "type": "iframe",
+   "url": "https://accounts.google.com/RotateCookiesPage?origin=https%3A%2F%2Fconsole.cloud.google.com&hfcr_pid=1&rot=3",
+   "webSocketDebuggerUrl": "ws://localhost:9222/devtools/page/B863C2A7F8CB1A54BE78E23AD4D1C839"
+}, {
+   "description": "",
+   "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@28a7a6c409e03c701d3474ef9e3b1f0be6249039/inspector.html?ws=localhost:9222/devtools/page/DE30100F86EDDB0012949D6A2F1C0093",
+   "faviconUrl": "https://supabase.com/dashboard/favicon/favicon-32x32.png",
+   "id": "DE30100F86EDDB0012949D6A2F1C0093",
+   "title": "Organizations | Supabase",
+   "type": "page",
+   "url": "https://supabase.com/dashboard/organizations",
+   "webSocketDebuggerUrl": "ws://localhost:9222/devtools/page/DE30100F86EDDB0012949D6A2F1C0093"
+}, {
+   "description": "",
+   "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@28a7a6c409e03c701d3474ef9e3b1f0be6249039/inspector.html?ws=localhost:9222/devtools/page/AAE365445C932579D5143FCA8C66106C",
+   "faviconUrl": "https://supabase.com/dashboard/favicon/favicon-32x32.png",
+   "id": "AAE365445C932579D5143FCA8C66106C",
+   "parentId": "DE30100F86EDDB0012949D6A2F1C0093",
+   "title": "https://js.stripe.com/v3/controller-with-preconnect-5b54842c8564a70decd5c184fe6cde57.html#__shared_params__[version]=dahlia&amp;__shared_params__[light_experiment_assignments]=%7B%22token%22%3A%22a516c3b5-c73c-4a4c-b680-5b057ee98c98%22%2C%22assignments%22%3A%7B%22api_fastpath_ewcs_elements_v1%22%3A%22control%22%2C%22api_fastpath_habanero_v1%22%3A%22control%22%7D%7D&amp;apiKey=pk_live_RCgmeGrogodF6BBvZj2M6zGc00r2Nck4eJ&amp;apiVersion=2026-03-25.dahlia&amp;stripeJsId=a516c3b5-c73c-4a4c-b680-5b057ee98c98&amp;stripeObjId=sobj-6518c528-2114-4f9a-8c82-b67cc3070f68&amp;firstStripeInstanceCreatedLatency=74&amp;controllerCount=1&amp;isCheckout=false&amp;stripeJsLoadTime=1786645628883.1&amp;manualBrowserDeprecationRollout=false&amp;mids[guid]=NA&amp;mids[muid]=1d87fe6e-eb1b-49c1-8a23-130f8c823e2d0b046c&amp;mids[sid]=NA&amp;referrer=https%3A%2F%2Fsupabase.com%2Fdashboard%2Forganizations&amp;controllerId=__privateStripeController8431",
+   "type": "iframe",
+   "url": "https://js.stripe.com/v3/controller-with-preconnect-5b54842c8564a70decd5c184fe6cde57.html#__shared_params__[version]=dahlia&__shared_params__[light_experiment_assignments]=%7B%22token%22%3A%22a516c3b5-c73c-4a4c-b680-5b057ee98c98%22%2C%22assignments%22%3A%7B%22api_fastpath_ewcs_elements_v1%22%3A%22control%22%2C%22api_fastpath_habanero_v1%22%3A%22control%22%7D%7D&apiKey=pk_live_RCgmeGrogodF6BBvZj2M6zGc00r2Nck4eJ&apiVersion=2026-03-25.dahlia&stripeJsId=a516c3b5-c73c-4a4c-b680-5b057ee98c98&stripeObjId=sobj-6518c528-2114-4f9a-8c82-b67cc3070f68&firstStripeInstanceCreatedLatency=74&controllerCount=1&isCheckout=false&stripeJsLoadTime=1786645628883.1&manualBrowserDeprecationRollout=false&mids[guid]=NA&mids[muid]=1d87fe6e-eb1b-49c1-8a23-130f8c823e2d0b046c&mids[sid]=NA&referrer=https%3A%2F%2Fsupabase.com%2Fdashboard%2Forganizations&controllerId=__privateStripeController8431",
+   "webSocketDebuggerUrl": "ws://localhost:9222/devtools/page/AAE365445C932579D5143FCA8C66106C"
+}, {
+   "description": "",
+   "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@28a7a6c409e03c701d3474ef9e3b1f0be6249039/inspector.html?ws=localhost:9222/devtools/page/192D0F9D18F17620F29F666443F24FB9",
+   "faviconUrl": "https://supabase.com/dashboard/favicon/favicon-32x32.png",
+   "id": "192D0F9D18F17620F29F666443F24FB9",
+   "parentId": "DE30100F86EDDB0012949D6A2F1C0093",
+   "title": "https://js.stripe.com/v3/m-outer-3437aaddcdf6922d623e172c2d6f9278.html#url=https%3A%2F%2Fsupabase.com%2Fdashboard%2Forganizations&amp;title=Organizations%20%7C%20Supabase&amp;referrer=https%3A%2F%2Fsupabase.com%2F&amp;muid=1d87fe6e-eb1b-49c1-8a23-130f8c823e2d0b046c&amp;sid=NA&amp;version=6&amp;preview=false&amp;__shared_params__[version]=dahlia",
+   "type": "iframe",
+   "url": "https://js.stripe.com/v3/m-outer-3437aaddcdf6922d623e172c2d6f9278.html#url=https%3A%2F%2Fsupabase.com%2Fdashboard%2Forganizations&title=Organizations%20%7C%20Supabase&referrer=https%3A%2F%2Fsupabase.com%2F&muid=1d87fe6e-eb1b-49c1-8a23-130f8c823e2d0b046c&sid=NA&version=6&preview=false&__shared_params__[version]=dahlia",
+   "webSocketDebuggerUrl": "ws://localhost:9222/devtools/page/192D0F9D18F17620F29F666443F24FB9"
+}, {
+   "description": "",
+   "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@28a7a6c409e03c701d3474ef9e3b1f0be6249039/inspector.html?ws=localhost:9222/devtools/page/3043B1FA53B54AD33D53040D109A8B61",
+   "faviconUrl": "https://supabase.com/dashboard/favicon/favicon-32x32.png",
+   "id": "3043B1FA53B54AD33D53040D109A8B61",
+   "parentId": "192D0F9D18F17620F29F666443F24FB9",
+   "title": "https://m.stripe.network/inner.html#url=https%3A%2F%2Fsupabase.com%2Fdashboard%2Forganizations&amp;title=Organizations%20%7C%20Supabase&amp;referrer=https%3A%2F%2Fsupabase.com%2F&amp;muid=1d87fe6e-eb1b-49c1-8a23-130f8c823e2d0b046c&amp;sid=NA&amp;version=6&amp;preview=false&amp;__shared_params__[version]=dahlia",
+   "type": "iframe",
+   "url": "https://m.stripe.network/inner.html#url=https%3A%2F%2Fsupabase.com%2Fdashboard%2Forganizations&title=Organizations%20%7C%20Supabase&referrer=https%3A%2F%2Fsupabase.com%2F&muid=1d87fe6e-eb1b-49c1-8a23-130f8c823e2d0b046c&sid=NA&version=6&preview=false&__shared_params__[version]=dahlia",
+   "webSocketDebuggerUrl": "ws://localhost:9222/devtools/page/3043B1FA53B54AD33D53040D109A8B61"
+}, {
+   "description": "",
+   "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@28a7a6c409e03c701d3474ef9e3b1f0be6249039/inspector.html?ws=localhost:9222/devtools/page/6939617E48BE28894679ADABA91979CB",
+   "id": "6939617E48BE28894679ADABA91979CB",
+   "title": "Omnibox Popup",
+   "type": "browser_ui",
+   "url": "chrome://omnibox-popup.top-chrome/",
+   "webSocketDebuggerUrl": "ws://localhost:9222/devtools/page/6939617E48BE28894679ADABA91979CB"
+}, {
+   "description": "",
+   "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@28a7a6c409e03c701d3474ef9e3b1f0be6249039/inspector.html?ws=localhost:9222/devtools/page/8AC60D381F1215C34854183B424965E6",
+   "id": "8AC60D381F1215C34854183B424965E6",
+   "title": "Gruba g├Âre",
+   "type": "browser_ui",
+   "url": "chrome://history-clusters-side-panel.top-chrome/",
+   "webSocketDebuggerUrl": "ws://localhost:9222/devtools/page/8AC60D381F1215C34854183B424965E6"
+}, {
+   "description": "",
+   "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@28a7a6c409e03c701d3474ef9e3b1f0be6249039/inspector.html?ws=localhost:9222/devtools/page/F40445FAC0D7D0C1FB025386C269823D",
+   "id": "F40445FAC0D7D0C1FB025386C269823D",
+   "title": "Omnibox Popup",
+   "type": "browser_ui",
+   "url": "chrome://omnibox-popup.top-chrome/omnibox_popup_aim.html",
+   "webSocketDebuggerUrl": "ws://localhost:9222/devtools/page/F40445FAC0D7D0C1FB025386C269823D"
+}, {
+   "description": "",
+   "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@28a7a6c409e03c701d3474ef9e3b1f0be6249039/worker_app.html?ws=localhost:9222/devtools/page/2ACC43E18383A6A39EFAC6A8EE974D25",
+   "id": "2ACC43E18383A6A39EFAC6A8EE974D25",
+   "title": "Service Worker https://www.alparai.com/sw.js",
+   "type": "service_worker",
+   "url": "https://www.alparai.com/sw.js",
+   "webSocketDebuggerUrl": "ws://localhost:9222/devtools/page/2ACC43E18383A6A39EFAC6A8EE974D25"
+}, {
+   "description": "",
+   "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@28a7a6c409e03c701d3474ef9e3b1f0be6249039/worker_app.html?ws=localhost:9222/devtools/page/0C29EB54EE6A32C6C2D930A4BA0CB51D",
+   "id": "0C29EB54EE6A32C6C2D930A4BA0CB51D",
+   "title": "Service Worker https://console.cloud.google.com/p/sw/serviceworker.js",
+   "type": "service_worker",
+   "url": "https://console.cloud.google.com/p/sw/serviceworker.js",
+   "webSocketDebuggerUrl": "ws://localhost:9222/devtools/page/0C29EB54EE6A32C6C2D930A4BA0CB51D"
+}, {
+   "description": "",
+   "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@28a7a6c409e03c701d3474ef9e3b1f0be6249039/worker_app.html?ws=localhost:9222/devtools/page/9E924099B7C2FFBC89BC1764286E65D3",
+   "id": "9E924099B7C2FFBC89BC1764286E65D3",
+   "title": "Service Worker https://ss.supabase.com/_/service_worker/68a0/sw.js?origin=https%3A%2F%2Fsupabase.com",
+   "type": "service_worker",
+   "url": "https://ss.supabase.com/_/service_worker/68a0/sw.js?origin=https%3A%2F%2Fsupabase.com",
+   "webSocketDebuggerUrl": "ws://localhost:9222/devtools/page/9E924099B7C2FFBC89BC1764286E65D3"
+}, {
+   "description": "",
+   "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@28a7a6c409e03c701d3474ef9e3b1f0be6249039/worker_app.html?ws=localhost:9222/devtools/page/313F02DFEA41C015C95DB9EE767A7893",
+   "id": "313F02DFEA41C015C95DB9EE767A7893",
+   "title": "Service Worker chrome-extension://aapbdbdomjkkjkaonfhkkikfgjllcleb/main_compiled.js",
+   "type": "service_worker",
+   "url": "chrome-extension://aapbdbdomjkkjkaonfhkkikfgjllcleb/main_compiled.js",
+   "webSocketDebuggerUrl": "ws://localhost:9222/devtools/page/313F02DFEA41C015C95DB9EE767A7893"
+} ]

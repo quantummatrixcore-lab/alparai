@@ -45,22 +45,26 @@ describe("checkRateLimit", () => {
 
   it("returns ok when within rate limit", async () => {
     const { checkRateLimit } = await import("@/lib/utils/rate-limit");
-    mockLimit.mockResolvedValueOnce({
-      success: true,
-      remaining: 3,
-      reset: Date.now() + 60_000,
-    });
+    mockLimit.mockImplementation(() =>
+      Promise.resolve({
+        success: true,
+        remaining: 3,
+        reset: Date.now() + 60_000,
+      }),
+    );
     const result = await checkRateLimit("ratelimit:incident_submission:user1:127.0.0.1");
     expect(result.ok).toBe(true);
   });
 
   it("returns not ok when rate limit exceeded", async () => {
     const { checkRateLimit } = await import("@/lib/utils/rate-limit");
-    mockLimit.mockResolvedValueOnce({
-      success: false,
-      remaining: 0,
-      reset: Date.now() + 30_000,
-    });
+    mockLimit.mockImplementation(() =>
+      Promise.resolve({
+        success: false,
+        remaining: 0,
+        reset: Date.now() + 30_000,
+      }),
+    );
     const result = await checkRateLimit("ratelimit:incident_submission:user1:127.0.0.1");
     expect(result.ok).toBe(false);
     expect(result.retryAfter).toBeGreaterThan(0);
@@ -77,18 +81,20 @@ describe("checkRateLimit", () => {
 
   it("fails open when Redis throws an error", async () => {
     const { checkRateLimit } = await import("@/lib/utils/rate-limit");
-    mockLimit.mockRejectedValueOnce(new Error("Redis connection failed"));
+    mockLimit.mockImplementation(() => Promise.reject(new Error("Redis connection failed")));
     const result = await checkRateLimit("ratelimit:incident_submission:user1:127.0.0.1");
     expect(result.ok).toBe(true);
   });
 
   it("returns remaining count from rate limiter", async () => {
     const { checkRateLimit } = await import("@/lib/utils/rate-limit");
-    mockLimit.mockResolvedValueOnce({
-      success: true,
-      remaining: 7,
-      reset: Date.now() + 60_000,
-    });
+    mockLimit.mockImplementation(() =>
+      Promise.resolve({
+        success: true,
+        remaining: 7,
+        reset: Date.now() + 60_000,
+      }),
+    );
     const result = await checkRateLimit("ratelimit:incident_submission:user1:127.0.0.1");
     expect(result.ok).toBe(true);
     expect(result.remaining).toBe(7);

@@ -25,8 +25,7 @@ export async function getWeightClassAnalysis(): Promise<WeightClassAnalysisResul
   const { data, error } = await supabase.rpc("get_incident_weight_class_stats");
 
   if (error) {
-    // RPC may not exist yet in DB — degrade gracefully instead of 500
-    return { insufficient_data: true };
+    throw new Error(error.message);
   }
 
   const rows = (data ?? []) as WeightClassIncidentStat[];

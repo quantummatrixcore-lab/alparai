@@ -23,8 +23,10 @@ async function run() {
 
   await new Promise(r => ws.addEventListener('open', r));
 
-  console.log('Navigating to /User/Profile...');
-  await sendCommand('Page.navigate', { url: 'https://sikayet.kvkk.gov.tr/User/Profile' });
+  console.log('Clicking Profil link...');
+  await sendCommand('Runtime.evaluate', { 
+    expression: "document.querySelector('a[href=\"/User/Profile\"]').click()" 
+  });
 
   console.log('Waiting for load...');
   await new Promise(r => setTimeout(r, 5000));
@@ -32,10 +34,21 @@ async function run() {
   const nav = await sendCommand('Runtime.evaluate', { expression: 'window.location.href' });
   console.log('Current URL is:', nav.result.value);
 
-  console.log('Taking screenshot...');
-  const ss = await sendCommand('Page.captureScreenshot', { format: 'png' });
-  fs.writeFileSync('ss_profile.png', Buffer.from(ss.data, 'base64'));
-  console.log('Saved ss_profile.png');
+  const extract = await sendCommand('Runtime.evaluate', {
+    returnByValue: true,
+    expression: `
+      Array.from(document.querySelectorAll('input, select, textarea')).map(i => {
+        let label = i.labels ? Array.from(i.labels).map(l=>l.innerText).join(' ') : (i.placeholder || i.name || i.id);
+        if (!label) {
+          const parentLabel = i.closest('label');
+          if (parentLabel) label = parentLabel.innerText;
+        }
+        return label + ': ' + i.value;
+      })
+    `
+  });
+  console.log('Inputs found:');
+  console.log(extract.result.value);
 
   ws.close();
 }

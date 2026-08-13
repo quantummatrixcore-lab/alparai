@@ -4,7 +4,9 @@ import { redirect } from "next/navigation";
 
 import { getCurrentUser } from "@/lib/auth/session";
 import { createAdminClient } from "@/lib/supabase/admin";
-const AuditLogClient = dynamic(() => import("@/components/admin/audit-log-client").then(m => m.AuditLogClient), { ssr: false });
+const AuditLogClient = dynamic(() =>
+  import("@/components/admin/audit-log-client").then((m) => m.AuditLogClient),
+);
 
 import { Activity } from "lucide-react";
 

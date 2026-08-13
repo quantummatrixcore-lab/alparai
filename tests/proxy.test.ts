@@ -16,6 +16,10 @@ vi.mock("@/lib/supabase/middleware", () => ({
   updateSession: (req: any, res: any) => mockUpdateSession(req, res),
 }));
 
+vi.mock("@/lib/geo/bot-tracker", () => ({
+  trackBotHit: vi.fn().mockResolvedValue(undefined),
+}));
+
 let proxy: any;
 
 describe("proxy middleware", () => {

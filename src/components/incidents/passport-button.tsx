@@ -39,7 +39,7 @@ export function PassportButton({ incidentId }: { incidentId: string }) {
       size="sm"
       leftIcon={
         pending ? (
-          <Loader2 className="h-3.5 w-3.5 animate-spin" />
+          <Loader2 className="h-3.5 w-3.5 animate-spin" aria-label="Loading" />
         ) : (
           <Download className="h-3.5 w-3.5" />
         )

@@ -168,7 +168,7 @@ export function IntegrationsClient({ locale }: { locale: string }) {
           <Button
             onClick={fetchData}
             variant="outline"
-            leftIcon={<RefreshCw className="h-4 w-4" />}
+            leftIcon={<RefreshCw className="h-4 w-4" aria-label="Refresh" />}
           >
             {t("integrations_retry")}
           </Button>
@@ -196,7 +196,12 @@ export function IntegrationsClient({ locale }: { locale: string }) {
                 disabled={loading}
                 variant="outline"
                 size="sm"
-                leftIcon={<RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />}
+                leftIcon={
+                  <RefreshCw
+                    className={`h-4 w-4 ${loading ? "animate-spin" : ""}`}
+                    aria-label="Refresh"
+                  />
+                }
               >
                 {loading ? t("integrations_refreshing") : t("integrations_refresh")}
               </Button>

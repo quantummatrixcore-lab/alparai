@@ -155,34 +155,39 @@ export async function submitModelReview(
 }
 
 export async function voteModelReview(reviewId: string) {
-  const user = await getCurrentUser();
-  if (!user) {
-    const t = await getTranslations("errors");
-    return { ok: false, error: t("sign_in_to_vote") };
-  }
+  try {
+    const user = await getCurrentUser();
+    if (!user) {
+      const t = await getTranslations("errors");
+      return { ok: false, error: t("sign_in_to_vote") };
+    }
 
-  const admin = createAdminClient();
-  const { data: existing } = await admin
-    .from("model_review_votes")
-    .select("review_id")
-    .eq("review_id", reviewId)
-    .eq("user_id", user.id)
-    .maybeSingle();
-
-  if (existing) {
-    const { error } = await admin
+    const admin = createAdminClient();
+    const { data: existing } = await admin
       .from("model_review_votes")
-      .delete()
+      .select("review_id")
       .eq("review_id", reviewId)
-      .eq("user_id", user.id);
-    if (error) return { ok: false, error: error.message };
-    return { ok: true, toggled: "removed" as const };
-  } else {
-    const { error } = await admin.from("model_review_votes").insert({
-      review_id: reviewId,
-      user_id: user.id,
-    });
-    if (error) return { ok: false, error: error.message };
-    return { ok: true, toggled: "added" as const };
+      .eq("user_id", user.id)
+      .maybeSingle();
+
+    if (existing) {
+      const { error } = await admin
+        .from("model_review_votes")
+        .delete()
+        .eq("review_id", reviewId)
+        .eq("user_id", user.id);
+      if (error) return { ok: false, error: error.message };
+      return { ok: true, toggled: "removed" as const };
+    } else {
+      const { error } = await admin.from("model_review_votes").insert({
+        review_id: reviewId,
+        user_id: user.id,
+      });
+      if (error) return { ok: false, error: error.message };
+      return { ok: true, toggled: "added" as const };
+    }
+  } catch (err) {
+    console.error("[voteModelReview] Error:", err);
+    throw err;
   }
 }

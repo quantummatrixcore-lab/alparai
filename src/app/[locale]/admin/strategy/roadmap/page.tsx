@@ -8,7 +8,9 @@ import { createServerClient } from "@/lib/supabase/server";
 import { RoadmapClient } from "@/components/admin/strategy/roadmap-client";
 import { RoadmapTodosClient } from "@/components/admin/strategy/todos-client";
 import { Compass } from "lucide-react";
-const StrategyTabs = dynamic(() => import("@/components/admin/strategy-tabs").then(m => m.StrategyTabs), { ssr: false });
+const StrategyTabs = dynamic(() =>
+  import("@/components/admin/strategy-tabs").then((m) => m.StrategyTabs),
+);
 
 import type { StrategyMilestone, StrategyTodo } from "@/types";
 

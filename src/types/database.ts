@@ -166,7 +166,7 @@ export type Database = {
         ]
       }
       ai_free_models: {Row:{id:string,model_name:string,provider:string,is_active:boolean,status:string,latency_ms:number|null,last_ping_at:string|null,created_at:string,updated_at:string},Insert:{id?:string,model_name:string,provider:string,is_active?:boolean,status?:string,latency_ms?:number|null,last_ping_at?:string|null,created_at?:string,updated_at?:string},Update:{id?:string,model_name?:string,provider?:string,is_active?:boolean,status?:string,latency_ms?:number|null,last_ping_at?:string|null,created_at?:string,updated_at?:string},Relationships:[]},
-      ai_routing_chains: {Row:{domain_name:string,models:any[],created_at:string,updated_at:string},Insert:{domain_name:string,models:any[],created_at?:string,updated_at?:string},Update:{domain_name?:string,models?:any[],created_at?:string,updated_at?:string},Relationships:[]},
+      ai_routing_chains: {Row:{domain_name:string,models:unknown[],created_at:string,updated_at:string},Insert:{domain_name:string,models:unknown[],created_at?:string,updated_at?:string},Update:{domain_name?:string,models?:unknown[],created_at?:string,updated_at?:string},Relationships:[]},
       advisory_board_members: {
         Row: {
           avatar_url: string | null

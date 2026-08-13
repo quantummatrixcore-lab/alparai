@@ -232,54 +232,55 @@ export async function submitInvestor(
 
 export async function approveInvestor(id: string): Promise<{ ok: boolean; error?: string }> {
   try {
-    await requireAdmin();
-  } catch (_authEx) {
-    return { ok: false, error: "Unauthorized" };
-  }
-
-  const rawToken = crypto.randomUUID();
-  const hash = crypto.createHash("sha256").update(rawToken).digest("hex");
-
-  const admin = createAdminClient();
-  const { data: appData, error: fetchError } = await admin
-    .from("investor_applications")
-    .select("full_name, email")
-    .eq("id", id)
-    .single();
-
-  if (fetchError || !appData) {
-    return { ok: false, error: "Application not found" };
-  }
-
-  const { error: updateError } = await admin
-    .from("investor_applications")
-    .update({
-      status: "approved",
-      access_token_hash: hash,
-      approved_at: new Date().toISOString(),
-    })
-    .eq("id", id);
-
-  if (updateError) {
-    return { ok: false, error: updateError.message };
-  }
-
-  // Send Email with token
-  const resend = getResendClient();
-  const link = `${APP_URL}/investor-portal?token=${rawToken}`;
-
-  if (!resend) {
-    logger.info(
-      `[Resend Sandbox Log] Gated portal link for ${appData.full_name} (${appData.email}):\n${link}`,
-    );
-  } else {
     try {
-      await resend.emails.send({
-        from: `Ercüment Erden <${APP_EMAIL}>`,
-        to: appData.email,
-        subject: "You have investor access to ALPAR AI",
-        text: `Hello ${appData.full_name},\n\nThank you for your interest in ALPAR AI. We've reviewed your application and are pleased to grant you access to our investor portal.\n\nAccess your private investor portal:\n${link}\n\nThis link is unique to you and should not be shared. It expires in 30 days. If you need renewed access, simply contact us.\n\nWe look forward to speaking with you.\n\nBest,\nErcüment Erden\nFounder, ALPAR AI\nhello@alparai.com`,
-        html: `
+      await requireAdmin();
+    } catch (_authEx) {
+      return { ok: false, error: "Unauthorized" };
+    }
+
+    const rawToken = crypto.randomUUID();
+    const hash = crypto.createHash("sha256").update(rawToken).digest("hex");
+
+    const admin = createAdminClient();
+    const { data: appData, error: fetchError } = await admin
+      .from("investor_applications")
+      .select("full_name, email")
+      .eq("id", id)
+      .single();
+
+    if (fetchError || !appData) {
+      return { ok: false, error: "Application not found" };
+    }
+
+    const { error: updateError } = await admin
+      .from("investor_applications")
+      .update({
+        status: "approved",
+        access_token_hash: hash,
+        approved_at: new Date().toISOString(),
+      })
+      .eq("id", id);
+
+    if (updateError) {
+      return { ok: false, error: updateError.message };
+    }
+
+    // Send Email with token
+    const resend = getResendClient();
+    const link = `${APP_URL}/investor-portal?token=${rawToken}`;
+
+    if (!resend) {
+      logger.info(
+        `[Resend Sandbox Log] Gated portal link for ${appData.full_name} (${appData.email}):\n${link}`,
+      );
+    } else {
+      try {
+        await resend.emails.send({
+          from: `Ercüment Erden <${APP_EMAIL}>`,
+          to: appData.email,
+          subject: "You have investor access to ALPAR AI",
+          text: `Hello ${appData.full_name},\n\nThank you for your interest in ALPAR AI. We've reviewed your application and are pleased to grant you access to our investor portal.\n\nAccess your private investor portal:\n${link}\n\nThis link is unique to you and should not be shared. It expires in 30 days. If you need renewed access, simply contact us.\n\nWe look forward to speaking with you.\n\nBest,\nErcüment Erden\nFounder, ALPAR AI\nhello@alparai.com`,
+          html: `
           <p>Hello ${appData.full_name},</p>
           <p>Thank you for your interest in ALPAR AI. We've reviewed your application and are pleased to grant you access to our investor portal.</p>
           <p><strong>Access your private investor portal:</strong><br />
@@ -289,40 +290,49 @@ export async function approveInvestor(id: string): Promise<{ ok: boolean; error?
           <p>We look forward to speaking with you.</p>
           <p>Best,<br /><strong>Ercüment Erden</strong><br />Founder, ALPAR AI<br />hello@alparai.com</p>
         `,
-      });
-    } catch (e) {
-      logger.error(
-        "[approveInvestor] Email sending failed",
-        undefined,
-        e instanceof Error ? e : undefined,
-      );
-      return { ok: true, error: "Approved successfully but failed to send email" };
+        });
+      } catch (e) {
+        logger.error(
+          "[approveInvestor] Email sending failed",
+          undefined,
+          e instanceof Error ? e : undefined,
+        );
+        return { ok: true, error: "Approved successfully but failed to send email" };
+      }
     }
-  }
 
-  revalidatePath("/[locale]/admin/investors", "page");
-  return { ok: true };
+    revalidatePath("/[locale]/admin/investors", "page");
+    return { ok: true };
+  } catch (err) {
+    console.error("[approveInvestor] Error:", err);
+    throw err;
+  }
 }
 
 export async function rejectInvestor(id: string): Promise<{ ok: boolean; error?: string }> {
   try {
-    await requireAdmin();
-  } catch (_authEx) {
-    return { ok: false, error: "Unauthorized" };
+    try {
+      await requireAdmin();
+    } catch (_authEx) {
+      return { ok: false, error: "Unauthorized" };
+    }
+
+    const admin = createAdminClient();
+    const { error } = await admin
+      .from("investor_applications")
+      .update({
+        status: "rejected",
+      })
+      .eq("id", id);
+
+    if (error) {
+      return { ok: false, error: error.message };
+    }
+
+    revalidatePath("/[locale]/admin/investors", "page");
+    return { ok: true };
+  } catch (err) {
+    console.error("[rejectInvestor] Error:", err);
+    throw err;
   }
-
-  const admin = createAdminClient();
-  const { error } = await admin
-    .from("investor_applications")
-    .update({
-      status: "rejected",
-    })
-    .eq("id", id);
-
-  if (error) {
-    return { ok: false, error: error.message };
-  }
-
-  revalidatePath("/[locale]/admin/investors", "page");
-  return { ok: true };
 }

@@ -136,34 +136,39 @@ export async function submitModelFeatureRequest(
 }
 
 export async function voteModelFeatureRequest(requestId: string) {
-  const user = await getCurrentUser();
-  if (!user) {
-    const t = await getTranslations("errors");
-    return { ok: false, error: t("sign_in_to_vote") };
-  }
+  try {
+    const user = await getCurrentUser();
+    if (!user) {
+      const t = await getTranslations("errors");
+      return { ok: false, error: t("sign_in_to_vote") };
+    }
 
-  const admin = createAdminClient();
-  const { data: existing } = await admin
-    .from("model_feature_votes")
-    .select("request_id")
-    .eq("request_id", requestId)
-    .eq("user_id", user.id)
-    .maybeSingle();
-
-  if (existing) {
-    const { error } = await admin
+    const admin = createAdminClient();
+    const { data: existing } = await admin
       .from("model_feature_votes")
-      .delete()
+      .select("request_id")
       .eq("request_id", requestId)
-      .eq("user_id", user.id);
-    if (error) return { ok: false, error: error.message };
-    return { ok: true, toggled: "removed" as const };
-  } else {
-    const { error } = await admin.from("model_feature_votes").insert({
-      request_id: requestId,
-      user_id: user.id,
-    });
-    if (error) return { ok: false, error: error.message };
-    return { ok: true, toggled: "added" as const };
+      .eq("user_id", user.id)
+      .maybeSingle();
+
+    if (existing) {
+      const { error } = await admin
+        .from("model_feature_votes")
+        .delete()
+        .eq("request_id", requestId)
+        .eq("user_id", user.id);
+      if (error) return { ok: false, error: error.message };
+      return { ok: true, toggled: "removed" as const };
+    } else {
+      const { error } = await admin.from("model_feature_votes").insert({
+        request_id: requestId,
+        user_id: user.id,
+      });
+      if (error) return { ok: false, error: error.message };
+      return { ok: true, toggled: "added" as const };
+    }
+  } catch (err) {
+    console.error("[voteModelFeatureRequest] Error:", err);
+    throw err;
   }
 }

@@ -44,11 +44,10 @@ export default async function AiOrchestratorAdminPage({
     .eq("status", "active")
     .limit(10);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const freeModels = ((dbModels as any[]) || []).map((m: any) => ({
-    id: m.id,
-    name: m.name,
-    provider: m.provider?.name || "Unknown Provider",
+  const freeModels = ((dbModels as Record<string, unknown>[]) || []).map((m) => ({
+    id: String(m.id || ""),
+    name: String(m.name || ""),
+    provider: (m.provider as { name?: string } | null)?.name || "Unknown Provider",
     context_length: 128000,
   }));
 

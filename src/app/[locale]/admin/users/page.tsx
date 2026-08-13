@@ -6,7 +6,9 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { Users } from "lucide-react";
 import { PromoteUserForm } from "@/components/admin/promote-user-form";
 import dynamic from "next/dynamic";
-const UsersClient = dynamic(() => import("@/app/[locale]/admin/users/users-client").then(m => m.UsersClient), { ssr: false });
+const UsersClient = dynamic(() =>
+  import("@/app/[locale]/admin/users/users-client").then((m) => m.UsersClient),
+);
 
 import { GovernanceHubTabs } from "@/components/admin/governance-hub-tabs";
 

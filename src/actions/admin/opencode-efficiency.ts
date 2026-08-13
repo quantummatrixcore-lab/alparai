@@ -27,31 +27,36 @@ const RUN_SCHEMA = z.object({
 });
 
 export async function getOpenCodeEfficiencyAction(): Promise<OpenCodeEfficiencyReport> {
-  const dir = path.join(process.cwd(), "ops", "opencode-runs");
-  const records: OpenCodeRunRecord[] = [];
+  try {
+    const dir = path.join(process.cwd(), "ops", "opencode-runs");
+    const records: OpenCodeRunRecord[] = [];
 
-  if (fs.existsSync(dir)) {
-    for (const file of fs.readdirSync(dir)) {
-      if (!file.endsWith(".json")) continue;
-      try {
-        const raw: unknown = JSON.parse(fs.readFileSync(path.join(dir, file), "utf-8"));
-        const parsed = RUN_SCHEMA.safeParse(raw);
-        if (parsed.success) {
-          records.push({
-            model: parsed.data.model,
-            exitCode: parsed.data.exit_code,
-            durationMs: parsed.data.duration_ms,
-            attemptNo: parsed.data.attempt_no,
-            role: parsed.data.role,
-            diagnosis: parsed.data.diagnosis,
-            gates: parsed.data.gates,
-          });
+    if (fs.existsSync(dir)) {
+      for (const file of fs.readdirSync(dir)) {
+        if (!file.endsWith(".json")) continue;
+        try {
+          const raw: unknown = JSON.parse(fs.readFileSync(path.join(dir, file), "utf-8"));
+          const parsed = RUN_SCHEMA.safeParse(raw);
+          if (parsed.success) {
+            records.push({
+              model: parsed.data.model,
+              exitCode: parsed.data.exit_code,
+              durationMs: parsed.data.duration_ms,
+              attemptNo: parsed.data.attempt_no,
+              role: parsed.data.role,
+              diagnosis: parsed.data.diagnosis,
+              gates: parsed.data.gates,
+            });
+          }
+        } catch {
+          // skip malformed run files
         }
-      } catch {
-        // skip malformed run files
       }
     }
-  }
 
-  return buildEfficiencyReport(records);
+    return buildEfficiencyReport(records);
+  } catch (err) {
+    console.error("[getOpenCodeEfficiencyAction] Error:", err);
+    throw err;
+  }
 }

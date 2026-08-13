@@ -229,6 +229,7 @@ export function LinkedinContactsList({ initialContacts }: { initialContacts: Lin
                     target="_blank"
                     rel="noreferrer"
                     className="text-fg-muted rounded-md border border-white/5 bg-white/5 p-2 transition-colors hover:bg-white/10 hover:text-[#0077b5]"
+                    aria-label="LinkedIn profile"
                   >
                     <Linkedin className="h-4 w-4" />
                   </a>

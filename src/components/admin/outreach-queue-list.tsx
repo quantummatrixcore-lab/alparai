@@ -344,7 +344,7 @@ Ercüment`);
                     <Button
                       size="sm"
                       variant="success"
-                      leftIcon={<Check className="h-3.5 w-3.5" />}
+                      leftIcon={<Check className="h-3.5 w-3.5" aria-label="Approve" />}
                       isLoading={isPending}
                       onClick={() => handleUpdateStatus(item.id, "approved")}
                     >
@@ -355,7 +355,7 @@ Ercüment`);
                     <Button
                       size="sm"
                       variant="ghost"
-                      leftIcon={<X className="h-3.5 w-3.5" />}
+                      leftIcon={<X className="h-3.5 w-3.5" aria-label="Action" />}
                       isLoading={isPending}
                       onClick={() => handleUpdateStatus(item.id, "pending")}
                     >
@@ -366,7 +366,7 @@ Ercüment`);
                     <Button
                       size="sm"
                       variant="primary"
-                      leftIcon={<Send className="h-3.5 w-3.5" />}
+                      leftIcon={<Send className="h-3.5 w-3.5" aria-label="Send" />}
                       isLoading={isPending}
                       onClick={() => handleUpdateStatus(item.id, "approved")}
                     >

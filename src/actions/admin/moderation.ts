@@ -287,105 +287,120 @@ https://alparai.com`,
 export async function moderateIncident(
   input: z.infer<typeof moderateSchema>,
 ): Promise<ModerationResult> {
-  const mod = await requireModerator();
-  if (!mod) return { ok: false, error: "Forbidden" };
-  const parsed = moderateSchema.safeParse(input);
-  if (!parsed.success) return { ok: false, error: "Invalid input" };
+  try {
+    const mod = await requireModerator();
+    if (!mod) return { ok: false, error: "Forbidden" };
+    const parsed = moderateSchema.safeParse(input);
+    if (!parsed.success) return { ok: false, error: "Invalid input" };
 
-  const result = await withAutopilot<{ id: string; newStatus: string }>(
-    moderateIncidentPolicy,
-    [parsed.data.incidentId, mod.id, parsed.data.decision],
-    (ctx) =>
-      runModerationWork(ctx, {
-        moderatorId: mod.id,
-        incidentId: parsed.data.incidentId,
-        decision: parsed.data.decision,
-        moderationNote: parsed.data.moderationNote ?? null,
-      }),
-    { context: { userId: mod.id, ipHash: null, clientIdempotencyKey: null } },
-  );
+    const result = await withAutopilot<{ id: string; newStatus: string }>(
+      moderateIncidentPolicy,
+      [parsed.data.incidentId, mod.id, parsed.data.decision],
+      (ctx) =>
+        runModerationWork(ctx, {
+          moderatorId: mod.id,
+          incidentId: parsed.data.incidentId,
+          decision: parsed.data.decision,
+          moderationNote: parsed.data.moderationNote ?? null,
+        }),
+      { context: { userId: mod.id, ipHash: null, clientIdempotencyKey: null } },
+    );
 
-  if (result.kind === "ok" || result.kind === "replayed") {
-    revalidatePath("/admin");
-    revalidatePath(`/incidents/${parsed.data.incidentId}`);
+    if (result.kind === "ok" || result.kind === "replayed") {
+      revalidatePath("/admin");
+      revalidatePath(`/incidents/${parsed.data.incidentId}`);
+      return {
+        ok: true,
+        autopilot: {
+          attempts: attemptsOf(result),
+          durationMs: durationOf(result),
+          kind: result.kind,
+        },
+      };
+    }
     return {
-      ok: true,
+      ok: false,
+      error: "Failed to update",
       autopilot: {
         attempts: attemptsOf(result),
         durationMs: durationOf(result),
         kind: result.kind,
       },
     };
+  } catch (err) {
+    console.error("[moderateIncident] Error:", err);
+    throw err;
   }
-  return {
-    ok: false,
-    error: "Failed to update",
-    autopilot: {
-      attempts: attemptsOf(result),
-      durationMs: durationOf(result),
-      kind: result.kind,
-    },
-  };
 }
 
 export async function bulkApproveIncidents(
   ids: string[],
 ): Promise<{ ok: boolean; error?: string }> {
-  const admin = await requireAdmin();
-  if (!admin) return { ok: false, error: "Forbidden" };
+  try {
+    const admin = await requireAdmin();
+    if (!admin) return { ok: false, error: "Forbidden" };
 
-  const db = createAdminClient();
+    const db = createAdminClient();
 
-  const { error } = await db
-    .from("incidents")
-    .update({
-      status: "published",
-      moderator_id: admin.id,
-      moderated_at: new Date().toISOString(),
-      published_at: new Date().toISOString(),
-    })
-    .in("id", ids);
+    const { error } = await db
+      .from("incidents")
+      .update({
+        status: "published",
+        moderator_id: admin.id,
+        moderated_at: new Date().toISOString(),
+        published_at: new Date().toISOString(),
+      })
+      .in("id", ids);
 
-  if (error) return { ok: false, error: error.message };
+    if (error) return { ok: false, error: error.message };
 
-  await db.from("audit_log").insert({
-    actor_id: admin.id,
-    action: "incident.bulk_approve",
-    entity_type: "incident",
-    entity_id: ids.join(","),
-    after_data: { count: ids.length },
-  });
+    await db.from("audit_log").insert({
+      actor_id: admin.id,
+      action: "incident.bulk_approve",
+      entity_type: "incident",
+      entity_id: ids.join(","),
+      after_data: { count: ids.length },
+    });
 
-  revalidatePath("/[locale]/admin/import", "layout");
-  revalidatePath("/[locale]/incidents", "layout");
-  return { ok: true };
+    revalidatePath("/[locale]/admin/import", "layout");
+    revalidatePath("/[locale]/incidents", "layout");
+    return { ok: true };
+  } catch (err) {
+    console.error("[bulkApproveIncidents] Error:", err);
+    throw err;
+  }
 }
 
 export async function bulkRejectIncidents(ids: string[]): Promise<{ ok: boolean; error?: string }> {
-  const admin = await requireAdmin();
-  if (!admin) return { ok: false, error: "Forbidden" };
+  try {
+    const admin = await requireAdmin();
+    if (!admin) return { ok: false, error: "Forbidden" };
 
-  const db = createAdminClient();
+    const db = createAdminClient();
 
-  const { error } = await db
-    .from("incidents")
-    .update({
-      status: "rejected",
-      moderator_id: admin.id,
-      moderated_at: new Date().toISOString(),
-    })
-    .in("id", ids);
+    const { error } = await db
+      .from("incidents")
+      .update({
+        status: "rejected",
+        moderator_id: admin.id,
+        moderated_at: new Date().toISOString(),
+      })
+      .in("id", ids);
 
-  if (error) return { ok: false, error: error.message };
+    if (error) return { ok: false, error: error.message };
 
-  await db.from("audit_log").insert({
-    actor_id: admin.id,
-    action: "incident.bulk_reject",
-    entity_type: "incident",
-    entity_id: ids.join(","),
-    after_data: { count: ids.length },
-  });
+    await db.from("audit_log").insert({
+      actor_id: admin.id,
+      action: "incident.bulk_reject",
+      entity_type: "incident",
+      entity_id: ids.join(","),
+      after_data: { count: ids.length },
+    });
 
-  revalidatePath("/[locale]/admin/import", "layout");
-  return { ok: true };
+    revalidatePath("/[locale]/admin/import", "layout");
+    return { ok: true };
+  } catch (err) {
+    console.error("[bulkRejectIncidents] Error:", err);
+    throw err;
+  }
 }

@@ -3,11 +3,17 @@ import { getTranslations } from "next-intl/server";
 import { setRequestLocale } from "next-intl/server";
 import { Container } from "@/components/ui/layout";
 import { requireAdmin } from "@/lib/auth/session";
-const MasterPlanClient = dynamic(() => import("@/components/admin/master-plan-client").then(m => m.MasterPlanClient), { ssr: false });
+const MasterPlanClient = dynamic(() =>
+  import("@/components/admin/master-plan-client").then((m) => m.MasterPlanClient),
+);
 
-const MasterPlanDashboard = dynamic(() => import("@/components/admin/master-plan-dashboard").then(m => m.MasterPlanDashboard), { ssr: false });
+const MasterPlanDashboard = dynamic(() =>
+  import("@/components/admin/master-plan-dashboard").then((m) => m.MasterPlanDashboard),
+);
 
-const StrategyTabs = dynamic(() => import("@/components/admin/strategy-tabs").then(m => m.StrategyTabs), { ssr: false });
+const StrategyTabs = dynamic(() =>
+  import("@/components/admin/strategy-tabs").then((m) => m.StrategyTabs),
+);
 
 import { parseMasterPlan } from "@/lib/utils/markdown-parser";
 import { Compass } from "lucide-react";

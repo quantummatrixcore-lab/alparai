@@ -6,7 +6,9 @@ import { requireAdvisor } from "@/lib/auth/session";
 import { createServerClient } from "@/lib/supabase/server";
 import { ValuationCalculatorClient } from "@/components/admin/strategy/valuation-calculator-client";
 import { TrendingUp } from "lucide-react";
-const StrategyTabs = dynamic(() => import("@/components/admin/strategy-tabs").then(m => m.StrategyTabs), { ssr: false });
+const StrategyTabs = dynamic(() =>
+  import("@/components/admin/strategy-tabs").then((m) => m.StrategyTabs),
+);
 
 import type { StrategyValuation } from "@/types";
 

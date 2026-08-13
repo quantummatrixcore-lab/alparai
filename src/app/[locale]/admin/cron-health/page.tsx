@@ -4,8 +4,9 @@ import { redirect } from "next/navigation";
 import { Clock } from "lucide-react";
 import { getCurrentUser } from "@/lib/auth/session";
 import { AdminPageHeader } from "@/components/admin/admin-design-kit";
-const CronHealthClient = dynamic(() => import("@/components/admin/cron-health-client").then(m => m.CronHealthClient), { ssr: false });
-
+const CronHealthClient = dynamic(() =>
+  import("@/components/admin/cron-health-client").then((m) => m.CronHealthClient),
+);
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

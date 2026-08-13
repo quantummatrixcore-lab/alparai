@@ -110,7 +110,7 @@ export function CommunityHub({ polls, suggestions, isLoggedIn: _isLoggedIn }: Co
                 <p className="text-fg-muted mt-1 text-xs">{tSuggestions("subtitle")}</p>
               </div>
               <Link href="/suggestions/new">
-                <Button size="sm" leftIcon={<Plus className="h-4 w-4" />}>
+                <Button size="sm" leftIcon={<Plus className="h-4 w-4" aria-label="Add" />}>
                   {tSuggestions("create_title")}
                 </Button>
               </Link>

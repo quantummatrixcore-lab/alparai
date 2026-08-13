@@ -159,6 +159,23 @@
   --color-gradient-hero-start: var(--brand-900);
   --color-gradient-hero-end: var(--bg-primary);
 
+  --color-emerald-accent: #00ff88;
+  --color-social-linkedin: #0077b5;
+  --color-social-instagram: #e1306c;
+  --color-social-whatsapp: #25d366;
+  --color-social-facebook: #1877f2;
+  --color-bg-deep: #050914;
+  --color-bg-navy: #0e1f30;
+
+  --text-2xs: 0.625rem;
+  --text-3xs: 0.5625rem;
+  --text-sub: 0.6875rem;
+
+  --shadow-glow-brand: var(--glow-brand);
+  --shadow-glow-accent: var(--glow-accent);
+  --shadow-glow-success: var(--glow-success);
+  --shadow-glow-danger: var(--glow-danger);
+
   --animate-fade-up: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   --animate-float: float 6s ease-in-out infinite;
   --animate-float-delayed: float 6s ease-in-out 3s infinite;
@@ -390,7 +407,9 @@ a {
 }
 
 /* Minimum touch target for interactive elements */
-button, a, [role='button'] {
+button,
+a,
+[role="button"] {
   min-height: 44px;
   min-width: 44px;
 }

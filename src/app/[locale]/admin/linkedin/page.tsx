@@ -1,6 +1,8 @@
 import dynamic from "next/dynamic";
 import { createAdminClient } from "@/lib/supabase/admin";
-const LinkedinContactsList = dynamic(() => import("@/components/admin/linkedin-contacts-list").then(m => m.LinkedinContactsList), { ssr: false });
+const LinkedinContactsList = dynamic(() =>
+  import("@/components/admin/linkedin-contacts-list").then((m) => m.LinkedinContactsList),
+);
 
 import { AdminSectionCard } from "@/components/admin/admin-design-kit";
 import { requireModerator } from "@/lib/auth/session";

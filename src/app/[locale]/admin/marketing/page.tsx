@@ -48,8 +48,7 @@ export default async function MarketingPage({ params }: { params: Promise<{ loca
 
   const sourceCounts = (visits ?? []).reduce(
     (acc, curr) => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const source = (curr.metadata as any)?.source as string;
+      const source = (curr.metadata as Record<string, unknown> | null)?.source as string;
       if (source) {
         acc[source] = (acc[source] || 0) + 1;
       }

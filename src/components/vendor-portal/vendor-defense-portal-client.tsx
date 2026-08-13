@@ -272,7 +272,9 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
             <p className="mt-1 text-2xl font-bold text-amber-400">{needsResponseCount}</p>
           </div>
           <div className="col-span-2 rounded-2xl border border-emerald-800/30 bg-emerald-950/20 p-4 sm:col-span-1">
-            <p className="text-xs font-medium text-emerald-300/80">{t("defense_statements_stat")}</p>
+            <p className="text-xs font-medium text-emerald-300/80">
+              {t("defense_statements_stat")}
+            </p>
             <p className="mt-1 text-2xl font-bold text-emerald-400">{respondedCount}</p>
           </div>
         </div>

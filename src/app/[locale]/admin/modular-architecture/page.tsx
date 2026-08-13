@@ -2,8 +2,11 @@ import dynamic from "next/dynamic";
 import { requireAdmin } from "@/lib/auth/session";
 import { getModularArchitectureAction } from "@/actions/admin/modular-architecture";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-const ModularArchitectureView = dynamic(() => import("@/components/admin/modular-architecture/modular-architecture-view").then(m => m.ModularArchitectureView), { ssr: false });
-
+const ModularArchitectureView = dynamic(() =>
+  import("@/components/admin/modular-architecture/modular-architecture-view").then(
+    (m) => m.ModularArchitectureView,
+  ),
+);
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -26,4 +29,3 @@ export default async function ModularArchitectureAdminPage({
 
   return <ModularArchitectureView data={data} />;
 }
-

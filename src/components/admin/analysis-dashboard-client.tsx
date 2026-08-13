@@ -733,12 +733,14 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                   <button
                     onClick={handlePrevInsight}
                     className="rounded-md border border-white/10 p-1 transition-all duration-200 hover:bg-white/5"
+                    aria-label="Previous"
                   >
                     <ChevronLeft className="h-4 w-4 text-white" />
                   </button>
                   <button
                     onClick={handleNextInsight}
                     className="rounded-md border border-white/10 p-1 transition-all duration-200 hover:bg-white/5"
+                    aria-label="Next"
                   >
                     <ChevronRight className="h-4 w-4 text-white" />
                   </button>

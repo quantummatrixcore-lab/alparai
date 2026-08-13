@@ -58,71 +58,87 @@ const DEFAULT_FLAGS: FeatureFlagItem[] = [
 ];
 
 export async function getFeatureFlagsAction(): Promise<FeatureFlagItem[]> {
-  await requireModerator();
-  const admin = createAdminClient();
-  const db = admin as unknown as {
-    from: (table: string) => {
-      select: (cols: string) => {
-        order: (
-          col: string,
-          opts: { ascending: boolean },
-        ) => Promise<{ data: FeatureFlagItem[] | null; error: unknown }>;
+  try {
+    await requireModerator();
+    const admin = createAdminClient();
+    const db = admin as unknown as {
+      from: (table: string) => {
+        select: (cols: string) => {
+          order: (
+            col: string,
+            opts: { ascending: boolean },
+          ) => Promise<{ data: FeatureFlagItem[] | null; error: unknown }>;
+        };
       };
     };
-  };
 
-  try {
-    const { data, error } = await db
-      .from("feature_flags")
-      .select("*")
-      .order("key", { ascending: true });
-    if (!error && data && data.length > 0) return data;
-  } catch (e) {
-    console.error("Feature flags DB select error (falling back to default flags):", e);
+    try {
+      const { data, error } = await db
+        .from("feature_flags")
+        .select("*")
+        .order("key", { ascending: true });
+      if (!error && data && data.length > 0) return data;
+    } catch (e) {
+      console.error("Feature flags DB select error (falling back to default flags):", e);
+    }
+
+    return DEFAULT_FLAGS;
+  } catch (err) {
+    console.error("[getFeatureFlagsAction] Error:", err);
+    throw err;
   }
-
-  return DEFAULT_FLAGS;
 }
 
 export async function toggleFeatureFlagAction(key: string, enabled: boolean) {
-  await requireModerator();
-  const admin = createAdminClient();
-  const db = admin as unknown as {
-    from: (table: string) => {
-      upsert: (
-        values: unknown,
-        options?: { onConflict?: string },
-      ) => Promise<{ error: { message: string } | null }>;
-    };
-  };
-
   try {
-    const { error } = await db.from("feature_flags").upsert(
-      {
-        key,
-        enabled,
-        description: DEFAULT_FLAGS.find((f) => f.key === key)?.description || `Feature flag ${key}`,
-        updated_at: new Date().toISOString(),
-      },
-      { onConflict: "key" },
-    );
+    await requireModerator();
+    const admin = createAdminClient();
+    const db = admin as unknown as {
+      from: (table: string) => {
+        upsert: (
+          values: unknown,
+          options?: { onConflict?: string },
+        ) => Promise<{ error: { message: string } | null }>;
+      };
+    };
 
-    if (error) {
-      console.warn("Supabase feature_flags table upsert warning:", error.message);
-      // Even if table doesn't exist yet, return success for local interactive state revalidation
+    try {
+      const { error } = await db.from("feature_flags").upsert(
+        {
+          key,
+          enabled,
+          description:
+            DEFAULT_FLAGS.find((f) => f.key === key)?.description || `Feature flag ${key}`,
+          updated_at: new Date().toISOString(),
+        },
+        { onConflict: "key" },
+      );
+
+      if (error) {
+        console.warn("Supabase feature_flags table upsert warning:", error.message);
+        // Even if table doesn't exist yet, return success for local interactive state revalidation
+      }
+    } catch (e) {
+      console.warn("Feature flag mutation handled:", e);
     }
-  } catch (e) {
-    console.warn("Feature flag mutation handled:", e);
-  }
 
-  revalidatePath("/[locale]/admin/feature-flags", "page");
-  return { success: true, key, enabled };
+    revalidatePath("/[locale]/admin/feature-flags", "page");
+    return { success: true, key, enabled };
+  } catch (err) {
+    console.error("[toggleFeatureFlagAction] Error:", err);
+    throw err;
+  }
 }
 
 export async function triggerCronJobAction(jobName: string) {
-  await requireModerator();
-  return {
-    success: true,
-    message: `Cron job '${jobName}' triggered successfully at ${new Date().toISOString()}`,
-  };
+  try {
+    await requireModerator();
+    return {
+      success: true,
+      message: `Cron job '${jobName}' triggered successfully at ${new Date().toISOString()}`,
+    };
+  } catch (err) {
+    console.error("[triggerCronJobAction] Error:", err);
+    throw err;
+  }
 }

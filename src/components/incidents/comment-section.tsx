@@ -213,7 +213,9 @@ export function CommentSection({
                   size="sm"
                   onClick={handlePostComment}
                   disabled={isPending || !commentText.trim()}
-                  leftIcon={isPending ? undefined : <Send className="h-3.5 w-3.5" />}
+                  leftIcon={
+                    isPending ? undefined : <Send className="h-3.5 w-3.5" aria-label="Send" />
+                  }
                 >
                   {isPending ? textSubmitting : textSubmit}
                 </Button>

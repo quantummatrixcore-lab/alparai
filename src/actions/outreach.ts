@@ -72,6 +72,7 @@ export async function createOutreachTarget(input: z.infer<typeof outreachTargetS
       .single();
 
     if (error) {
+      console.error("[createOutreachTarget] DB error:", error);
       logger.error("Failed to insert outreach target", { error });
       return { success: false, error: "Database insert failed" };
     }

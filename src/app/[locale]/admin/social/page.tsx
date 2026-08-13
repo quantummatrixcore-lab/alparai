@@ -3,8 +3,10 @@ import { getTranslations } from "next-intl/server";
 import { setRequestLocale } from "next-intl/server";
 import { Container } from "@/components/ui/layout";
 import { requireAdmin } from "@/lib/auth/session";
-import { type MarketingDraft,  } from "@/components/admin/social-dashboard-client";
-const SocialDashboardClient = dynamic(() => import("@/components/admin/social-dashboard-client").then(m => m.SocialDashboardClient), { ssr: false });
+import { type MarketingDraft } from "@/components/admin/social-dashboard-client";
+const SocialDashboardClient = dynamic(() =>
+  import("@/components/admin/social-dashboard-client").then((m) => m.SocialDashboardClient),
+);
 
 import { ShareNetwork } from "@phosphor-icons/react/dist/ssr";
 import {

@@ -20,67 +20,76 @@ export async function createUserByAdmin(data: {
   fullName: string;
   role: "user" | "moderator" | "admin" | "ceo";
 }) {
-  // 1. Verify caller is admin
-  const supabase = await createServerClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return { ok: false, error: "Unauthorized" };
-  }
-
-  const { data: profile } = await supabase.from("users").select("role").eq("id", user.id).single();
-
-  if (!profile || (profile.role !== "admin" && profile.role !== "ceo")) {
-    return { ok: false, error: "Forbidden: Admins only" };
-  }
-
   try {
-    // 2. Create the user in Supabase Auth
-    const { data: authData, error: authError } = await supabaseAdmin.auth.admin.createUser({
-      email: data.email,
-      email_confirm: true,
-      user_metadata: {
-        full_name: data.fullName,
-      },
-    });
+    // 1. Verify caller is admin
+    const supabase = await createServerClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-    if (authError) {
-      logger.error("Auth creation error in createUserByAdmin", { role: data.role }, authError);
-      return { ok: false, error: authError.message };
+    if (!user) {
+      return { ok: false, error: "Unauthorized" };
     }
 
-    if (!authData.user) {
-      return { ok: false, error: "User creation failed in Auth" };
-    }
-
-    // 3. Update the role in public.users (triggers usually create the row, we just update it)
-    const { error: dbError } = await supabaseAdmin
+    const { data: profile } = await supabase
       .from("users")
-      .update({
-        role: data.role,
-        is_verified: true,
-      })
-      .eq("id", authData.user.id);
+      .select("role")
+      .eq("id", user.id)
+      .single();
 
-    if (dbError) {
-      logger.error(
-        "DB role update error in createUserByAdmin",
-        { role: data.role, userId: authData.user.id },
-        new Error(dbError.message),
-      );
-      // Even if this fails, the user was created, but role might be default 'user'
+    if (!profile || (profile.role !== "admin" && profile.role !== "ceo")) {
+      return { ok: false, error: "Forbidden: Admins only" };
     }
 
-    return { ok: true, userId: authData.user.id };
-  } catch (error: unknown) {
-    logger.error(
-      "Unexpected error in createUserByAdmin",
-      undefined,
-      error instanceof Error ? error : new Error(String(error)),
-    );
-    const errorMessage = error instanceof Error ? error.message : "Internal server error";
-    return { ok: false, error: errorMessage };
+    try {
+      // 2. Create the user in Supabase Auth
+      const { data: authData, error: authError } = await supabaseAdmin.auth.admin.createUser({
+        email: data.email,
+        email_confirm: true,
+        user_metadata: {
+          full_name: data.fullName,
+        },
+      });
+
+      if (authError) {
+        logger.error("Auth creation error in createUserByAdmin", { role: data.role }, authError);
+        return { ok: false, error: authError.message };
+      }
+
+      if (!authData.user) {
+        return { ok: false, error: "User creation failed in Auth" };
+      }
+
+      // 3. Update the role in public.users (triggers usually create the row, we just update it)
+      const { error: dbError } = await supabaseAdmin
+        .from("users")
+        .update({
+          role: data.role,
+          is_verified: true,
+        })
+        .eq("id", authData.user.id);
+
+      if (dbError) {
+        logger.error(
+          "DB role update error in createUserByAdmin",
+          { role: data.role, userId: authData.user.id },
+          new Error(dbError.message),
+        );
+        // Even if this fails, the user was created, but role might be default 'user'
+      }
+
+      return { ok: true, userId: authData.user.id };
+    } catch (error: unknown) {
+      logger.error(
+        "Unexpected error in createUserByAdmin",
+        undefined,
+        error instanceof Error ? error : new Error(String(error)),
+      );
+      const errorMessage = error instanceof Error ? error.message : "Internal server error";
+      return { ok: false, error: errorMessage };
+    }
+  } catch (err) {
+    console.error("[createUserByAdmin] Error:", err);
+    throw err;
   }
 }

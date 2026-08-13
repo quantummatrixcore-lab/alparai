@@ -3,7 +3,9 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { requireAdmin } from "@/lib/auth/session";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { type ImportedIncident } from "@/components/admin/import-queue-client";
-const ImportQueueClient = dynamic(() => import("@/components/admin/import-queue-client").then(m => m.ImportQueueClient), { ssr: false });
+const ImportQueueClient = dynamic(() =>
+  import("@/components/admin/import-queue-client").then((m) => m.ImportQueueClient),
+);
 
 import { CsvUploadForm } from "@/components/admin/csv-upload-form";
 import { logger } from "@/lib/utils/logger";

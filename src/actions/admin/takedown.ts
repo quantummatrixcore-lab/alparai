@@ -41,42 +41,47 @@ const runTakedownReviewWork = async (
 export async function reviewTakedown(
   input: z.infer<typeof takedownSchema>,
 ): Promise<ModerationResult> {
-  const mod = await requireModerator();
-  if (!mod) return { ok: false, error: "Forbidden" };
-  const parsed = takedownSchema.safeParse(input);
-  if (!parsed.success) return { ok: false, error: "Invalid input" };
-  const newStatus = parsed.data.decision === "approve" ? "approved" : "rejected";
+  try {
+    const mod = await requireModerator();
+    if (!mod) return { ok: false, error: "Forbidden" };
+    const parsed = takedownSchema.safeParse(input);
+    if (!parsed.success) return { ok: false, error: "Invalid input" };
+    const newStatus = parsed.data.decision === "approve" ? "approved" : "rejected";
 
-  const result = await withAutopilot<{ id: string; newStatus: string }>(
-    reviewTakedownPolicy,
-    [parsed.data.id, mod.id, parsed.data.decision],
-    (ctx) =>
-      runTakedownReviewWork(ctx, {
-        id: parsed.data.id,
-        reviewerId: mod.id,
-        newStatus,
-      }),
-    { context: { userId: mod.id, ipHash: null, clientIdempotencyKey: null } },
-  );
+    const result = await withAutopilot<{ id: string; newStatus: string }>(
+      reviewTakedownPolicy,
+      [parsed.data.id, mod.id, parsed.data.decision],
+      (ctx) =>
+        runTakedownReviewWork(ctx, {
+          id: parsed.data.id,
+          reviewerId: mod.id,
+          newStatus,
+        }),
+      { context: { userId: mod.id, ipHash: null, clientIdempotencyKey: null } },
+    );
 
-  if (result.kind === "ok" || result.kind === "replayed") {
-    revalidatePath("/admin");
+    if (result.kind === "ok" || result.kind === "replayed") {
+      revalidatePath("/admin");
+      return {
+        ok: true,
+        autopilot: {
+          attempts: attemptsOf(result),
+          durationMs: durationOf(result),
+          kind: result.kind,
+        },
+      };
+    }
     return {
-      ok: true,
+      ok: false,
+      error: "Failed to update",
       autopilot: {
         attempts: attemptsOf(result),
         durationMs: durationOf(result),
         kind: result.kind,
       },
     };
+  } catch (err) {
+    console.error("[reviewTakedown] Error:", err);
+    throw err;
   }
-  return {
-    ok: false,
-    error: "Failed to update",
-    autopilot: {
-      attempts: attemptsOf(result),
-      durationMs: durationOf(result),
-      kind: result.kind,
-    },
-  };
 }

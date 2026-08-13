@@ -158,7 +158,7 @@ export function IncidentCard({
                     className={cn(
                       "cursor-help transition-all duration-200",
                       isUserSubmitted
-                        ? "border-[#00FF88]/20 bg-[#00FF88]/10 font-bold text-[#00FF88]"
+                        ? "border-emerald-accent/20 bg-emerald-accent/10 text-emerald-accent font-bold"
                         : "border-border-subtle bg-bg-tertiary text-fg-muted",
                     )}
                     title={t(`source_tooltip_${source}`)}
@@ -301,7 +301,7 @@ export function IncidentCard({
                   href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="p-0.5 text-[#0077b5] transition-colors hover:text-[#0077b5]/80"
+                  className="text-social-linkedin hover:text-social-linkedin/80 p-0.5 transition-colors"
                   aria-label={tFeed("shareOnLinkedIn")}
                   onClick={(e) => e.stopPropagation()}
                 >
@@ -312,7 +312,7 @@ export function IncidentCard({
                 <motion.button
                   whileHover={{ scale: 1.2, y: -1 }}
                   whileTap={{ scale: 0.9 }}
-                  className="cursor-pointer p-0.5 text-[#e1306c] transition-colors hover:text-[#e1306c]/80"
+                  className="text-social-instagram hover:text-social-instagram/80 cursor-pointer p-0.5 transition-colors"
                   aria-label={tFeed("copyForInstagram")}
                   onClick={(e) => {
                     e.stopPropagation();
@@ -330,7 +330,7 @@ export function IncidentCard({
                   href={`https://api.whatsapp.com/send?text=${encodeURIComponent(displayTitle + " " + shareUrl)}`}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="p-0.5 text-[#25d366] transition-colors hover:text-[#25d366]/80"
+                  className="text-social-whatsapp hover:text-social-whatsapp/80 p-0.5 transition-colors"
                   aria-label={tFeed("shareOnWhatsApp")}
                   onClick={(e) => e.stopPropagation()}
                 >

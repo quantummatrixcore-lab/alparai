@@ -92,7 +92,7 @@ export function CitationPanel({ citation }: { citation: JournalistCitation | nul
               onClick={handleCopy}
               leftIcon={
                 copied ? (
-                  <Check className="h-4 w-4" aria-hidden="true" />
+                  <Check className="h-4 w-4" aria-hidden="true" aria-label="Approve" />
                 ) : (
                   <Copy className="h-4 w-4" aria-hidden="true" />
                 )

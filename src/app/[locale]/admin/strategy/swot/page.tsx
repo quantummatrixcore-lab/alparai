@@ -4,10 +4,14 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/layout";
 import { requireAdvisor } from "@/lib/auth/session";
 import { createServerClient } from "@/lib/supabase/server";
-const SwotBoardClient = dynamic(() => import("@/components/admin/strategy/swot-board-client").then(m => m.SwotBoardClient), { ssr: false });
+const SwotBoardClient = dynamic(() =>
+  import("@/components/admin/strategy/swot-board-client").then((m) => m.SwotBoardClient),
+);
 
 import { Grid as GridIcon } from "lucide-react";
-const StrategyTabs = dynamic(() => import("@/components/admin/strategy-tabs").then(m => m.StrategyTabs), { ssr: false });
+const StrategyTabs = dynamic(() =>
+  import("@/components/admin/strategy-tabs").then((m) => m.StrategyTabs),
+);
 
 import type { SwotItem } from "@/types";
 

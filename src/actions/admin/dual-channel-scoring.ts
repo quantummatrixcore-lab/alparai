@@ -69,50 +69,55 @@ export async function updateScoringConfigAction(params: {
   wIncident: number;
   isCombinedActive: boolean;
 }): Promise<{ success: boolean }> {
-  await requireAdmin();
-  memoryConfig = {
-    ...memoryConfig,
-    wAudit: params.wAudit,
-    wIncident: params.wIncident,
-    isCombinedActive: params.isCombinedActive,
-  };
-
   try {
-    const supabase = createAdminClient();
-    const { data: existing } = await supabase
-      .from("ai_scoring_config" as unknown as "incidents")
-      .select("id")
-      .limit(1)
-      .maybeSingle();
+    await requireAdmin();
+    memoryConfig = {
+      ...memoryConfig,
+      wAudit: params.wAudit,
+      wIncident: params.wIncident,
+      isCombinedActive: params.isCombinedActive,
+    };
 
-    if (existing) {
-      await supabase
+    try {
+      const supabase = createAdminClient();
+      const { data: existing } = await supabase
         .from("ai_scoring_config" as unknown as "incidents")
-        .update({
+        .select("id")
+        .limit(1)
+        .maybeSingle();
+
+      if (existing) {
+        await supabase
+          .from("ai_scoring_config" as unknown as "incidents")
+          .update({
+            w_audit: params.wAudit,
+            w_incident: params.wIncident,
+            is_combined_active: params.isCombinedActive,
+            updated_at: new Date().toISOString(),
+          } as never)
+          .eq("id", (existing as { id: string }).id);
+      } else {
+        await supabase.from("ai_scoring_config" as unknown as "incidents").insert({
           w_audit: params.wAudit,
           w_incident: params.wIncident,
           is_combined_active: params.isCombinedActive,
-          updated_at: new Date().toISOString(),
-        } as never)
-        .eq("id", (existing as { id: string }).id);
-    } else {
-      await supabase.from("ai_scoring_config" as unknown as "incidents").insert({
-        w_audit: params.wAudit,
-        w_incident: params.wIncident,
-        is_combined_active: params.isCombinedActive,
-      } as never);
+        } as never);
+      }
+    } catch {
+      // Non-blocking in test environment
     }
-  } catch {
-    // Non-blocking in test environment
-  }
 
-  try {
-    revalidatePath("/[locale]/admin/dual-channel-scoring", "page");
-  } catch {
-    // Non-blocking in test environment
-  }
+    try {
+      revalidatePath("/[locale]/admin/dual-channel-scoring", "page");
+    } catch {
+      // Non-blocking in test environment
+    }
 
-  return { success: true };
+    return { success: true };
+  } catch (err) {
+    console.error("[updateScoringConfigAction] Error:", err);
+    throw err;
+  }
 }
 
 export async function computeDualChannelTrustScoreAction(
@@ -120,43 +125,48 @@ export async function computeDualChannelTrustScoreAction(
   rawAuditScore = 95.0,
   rawIncidentScore = 90.0,
 ): Promise<DualChannelTrustScoreResult> {
-  await requireAdmin();
-  const config = await getScoringConfigAction();
-
-  const auditScore = Math.max(0, Math.min(100, rawAuditScore));
-  const incidentScore = Math.max(0, Math.min(100, rawIncidentScore));
-
-  const combinedScore = config.isCombinedActive
-    ? Number((auditScore * config.wAudit + incidentScore * config.wIncident).toFixed(2))
-    : auditScore;
-
-  const timestamp = new Date().toISOString();
-
-  // Cryptographic SHA-256 Ledger Signature
-  const hashPayload = `${modelId}:${auditScore}:${incidentScore}:${combinedScore}:${config.wAudit}:${config.wIncident}:${timestamp}`;
-  const hashSignature = crypto.createHash("sha256").update(hashPayload).digest("hex");
-
   try {
-    const supabase = createAdminClient();
-    await supabase.from("ai_trust_ledger" as unknown as "incidents").insert({
-      model_id: modelId,
-      audit_score: auditScore,
-      incident_score: incidentScore,
-      combined_score: combinedScore,
-      hash_signature: hashSignature,
-      created_at: timestamp,
-    } as never);
-  } catch {
-    // Non-blocking write
-  }
+    await requireAdmin();
+    const config = await getScoringConfigAction();
 
-  return {
-    modelId,
-    auditScore,
-    incidentScore,
-    combinedScore,
-    isCombinedActive: config.isCombinedActive,
-    hashSignature,
-    timestamp,
-  };
+    const auditScore = Math.max(0, Math.min(100, rawAuditScore));
+    const incidentScore = Math.max(0, Math.min(100, rawIncidentScore));
+
+    const combinedScore = config.isCombinedActive
+      ? Number((auditScore * config.wAudit + incidentScore * config.wIncident).toFixed(2))
+      : auditScore;
+
+    const timestamp = new Date().toISOString();
+
+    // Cryptographic SHA-256 Ledger Signature
+    const hashPayload = `${modelId}:${auditScore}:${incidentScore}:${combinedScore}:${config.wAudit}:${config.wIncident}:${timestamp}`;
+    const hashSignature = crypto.createHash("sha256").update(hashPayload).digest("hex");
+
+    try {
+      const supabase = createAdminClient();
+      await supabase.from("ai_trust_ledger" as unknown as "incidents").insert({
+        model_id: modelId,
+        audit_score: auditScore,
+        incident_score: incidentScore,
+        combined_score: combinedScore,
+        hash_signature: hashSignature,
+        created_at: timestamp,
+      } as never);
+    } catch {
+      // Non-blocking write
+    }
+
+    return {
+      modelId,
+      auditScore,
+      incidentScore,
+      combinedScore,
+      isCombinedActive: config.isCombinedActive,
+      hashSignature,
+      timestamp,
+    };
+  } catch (err) {
+    console.error("[computeDualChannelTrustScoreAction] Error:", err);
+    throw err;
+  }
 }

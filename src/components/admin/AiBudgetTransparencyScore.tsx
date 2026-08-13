@@ -90,6 +90,7 @@ export function AiBudgetTransparencyScore({
             onClick={handleRefresh}
             className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-zinc-300 backdrop-blur-md transition-all hover:border-white/20 hover:bg-white/10 hover:text-white"
             title="Verileri Yenile"
+            aria-label="Refresh"
           >
             <RefreshCw className={cn("h-4 w-4", isRefreshing && "animate-spin text-cyan-400")} />
           </button>

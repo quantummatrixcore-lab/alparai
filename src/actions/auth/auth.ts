@@ -26,74 +26,94 @@ function getOrigin(hdrs: Headers) {
 }
 
 export async function signInWithGoogleIdToken(token: string, nonce: string): Promise<AuthResult> {
-  const hdrs = await headers();
-  const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
-  const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.auth_signin}:${ip}`);
-  if (!rl.ok) {
-    return { ok: false, error: `Too many attempts. Try again in ${rl.retryAfter}s.` };
+  try {
+    const hdrs = await headers();
+    const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.auth_signin}:${ip}`);
+    if (!rl.ok) {
+      return { ok: false, error: `Too many attempts. Try again in ${rl.retryAfter}s.` };
+    }
+    const supabase = await createServerClient();
+    const { error } = await supabase.auth.signInWithIdToken({
+      provider: "google",
+      token,
+      nonce,
+    });
+    if (error) {
+      logger.error("signInWithGoogleIdToken failed", { action: "signInWithGoogleIdToken" }, error);
+      return { ok: false, error: error.message };
+    }
+    return { ok: true };
+  } catch (err) {
+    console.error("[signInWithGoogleIdToken] Error:", err);
+    throw err;
   }
-  const supabase = await createServerClient();
-  const { error } = await supabase.auth.signInWithIdToken({
-    provider: "google",
-    token,
-    nonce,
-  });
-  if (error) {
-    logger.error("signInWithGoogleIdToken failed", { action: "signInWithGoogleIdToken" }, error);
-    return { ok: false, error: error.message };
-  }
-  return { ok: true };
 }
 
 // Uses standard Supabase OAuth redirect flow.
 export async function signInWithGoogle(next = "/profile"): Promise<AuthResult> {
-  const hdrs = await headers();
-  const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
-  const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.auth_signin}:${ip}`);
-  if (!rl.ok) {
-    return { ok: false, error: `Too many attempts. Try again in ${rl.retryAfter}s.` };
-  }
-  const supabase = await createServerClient();
-  const originUrl = getOrigin(hdrs);
-  const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: "google",
-    options: {
-      redirectTo: `${originUrl}/auth/callback?next=${encodeURIComponent(next)}`,
-      queryParams: {
-        access_type: "offline",
-        prompt: "consent",
+  try {
+    const hdrs = await headers();
+    const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.auth_signin}:${ip}`);
+    if (!rl.ok) {
+      return { ok: false, error: `Too many attempts. Try again in ${rl.retryAfter}s.` };
+    }
+    const supabase = await createServerClient();
+    const originUrl = getOrigin(hdrs);
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: `${originUrl}/auth/callback?next=${encodeURIComponent(next)}`,
+        queryParams: {
+          access_type: "offline",
+          prompt: "consent",
+        },
       },
-    },
-  });
-  if (error) {
-    logger.error("signInWithGoogle failed", { action: "signInWithGoogle" }, error);
-    return { ok: false, error: error.message };
+    });
+    if (error) {
+      logger.error("signInWithGoogle failed", { action: "signInWithGoogle" }, error);
+      return { ok: false, error: error.message };
+    }
+    return { ok: true, url: data.url };
+  } catch (err) {
+    console.error("[signInWithGoogle] Error:", err);
+    throw err;
   }
-  return { ok: true, url: data.url };
 }
 
 export async function signInWithMagicLink(email: string): Promise<AuthResult> {
-  const hdrs = await headers();
-  const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
-  const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.auth_magiclink}:${ip}`);
-  if (!rl.ok) {
-    return { ok: false, error: `Too many attempts. Try again in ${rl.retryAfter}s.` };
+  try {
+    const hdrs = await headers();
+    const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.auth_magiclink}:${ip}`);
+    if (!rl.ok) {
+      return { ok: false, error: `Too many attempts. Try again in ${rl.retryAfter}s.` };
+    }
+    const supabase = await createServerClient();
+    const originUrl = getOrigin(hdrs);
+    const { error } = await supabase.auth.signInWithOtp({
+      email,
+      options: { emailRedirectTo: `${originUrl}/auth/callback` },
+    });
+    if (error) return { ok: false, error: error.message };
+    return { ok: true };
+  } catch (err) {
+    console.error("[signInWithMagicLink] Error:", err);
+    throw err;
   }
-  const supabase = await createServerClient();
-  const originUrl = getOrigin(hdrs);
-  const { error } = await supabase.auth.signInWithOtp({
-    email,
-    options: { emailRedirectTo: `${originUrl}/auth/callback` },
-  });
-  if (error) return { ok: false, error: error.message };
-  return { ok: true };
 }
 
 export async function signOut(): Promise<void> {
-  const supabase = await createServerClient();
-  await supabase.auth.signOut();
-  revalidatePath("/");
-  redirect("/");
+  try {
+    const supabase = await createServerClient();
+    await supabase.auth.signOut();
+    revalidatePath("/");
+    redirect("/");
+  } catch (err) {
+    console.error("[signOut] Error:", err);
+    throw err;
+  }
 }
 
 export interface MeResult {
@@ -108,16 +128,21 @@ export interface MeResult {
 }
 
 export async function getMe(): Promise<MeResult> {
-  const u = await getCurrentUser();
-  if (!u) return { ok: true, user: null };
-  return {
-    ok: true,
-    user: {
-      id: u.id,
-      email: u.email,
-      fullName: u.fullName,
-      avatarUrl: u.avatarUrl,
-      role: u.role,
-    },
-  };
+  try {
+    const u = await getCurrentUser();
+    if (!u) return { ok: true, user: null };
+    return {
+      ok: true,
+      user: {
+        id: u.id,
+        email: u.email,
+        fullName: u.fullName,
+        avatarUrl: u.avatarUrl,
+        role: u.role,
+      },
+    };
+  } catch (err) {
+    console.error("[getMe] Error:", err);
+    throw err;
+  }
 }

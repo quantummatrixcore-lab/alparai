@@ -172,7 +172,10 @@ export function ImportQueueClient({ initialIncidents, locale: _locale }: ImportQ
                   }}
                   itemStyle={{ fontSize: "12px", color: "#F3F4F6" }}
                   labelStyle={{ display: "none" }}
-                  formatter={(value: unknown, name: unknown) => [`${value} incidents`, String(name ?? "")]}
+                  formatter={(value: unknown, name: unknown) => [
+                    `${value} incidents`,
+                    String(name ?? ""),
+                  ]}
                 />
               </PieChart>
             </ResponsiveContainer>
@@ -326,6 +329,7 @@ export function ImportQueueClient({ initialIncidents, locale: _locale }: ImportQ
                           rel="noopener noreferrer"
                           className="text-fg-muted transition hover:text-white"
                           title={t("import_q_original_source")}
+                          aria-label="Open link"
                         >
                           <ExternalLink className="h-3 w-3" />
                         </a>

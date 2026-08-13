@@ -154,7 +154,7 @@ export function ShareButtons({
           target="_blank"
           rel="noreferrer noopener"
           onClick={() => trackEvent("Incident Shared", { platform: "linkedin" })}
-          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#0077b5]/30 bg-[#0077b5]/10 text-[#0077b5] shadow-sm backdrop-blur-md transition-all duration-200 hover:border-[#0077b5]/50 hover:bg-[#0077b5]/20 hover:shadow-[#0077b5]/20"
+          className="border-social-linkedin/30 bg-social-linkedin/10 text-social-linkedin hover:border-social-linkedin/50 hover:bg-social-linkedin/20 hover:shadow-social-linkedin/20 inline-flex h-9 w-9 items-center justify-center rounded-lg border shadow-sm backdrop-blur-md transition-all duration-200"
           aria-label={t("share_linkedin")}
         >
           <LinkedInIcon className="h-4 w-4" />
@@ -167,8 +167,8 @@ export function ShareButtons({
           whileTap={{ scale: 0.95 }}
           onClick={onCopyInstagram}
           className={cn(
-            "inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#e1306c]/30 bg-gradient-to-tr from-[#f9ce34]/15 via-[#ee2a7b]/15 to-[#6228d7]/15 text-[#e1306c] shadow-sm backdrop-blur-md transition-all duration-200 hover:border-[#e1306c]/50 hover:from-[#f9ce34]/25 hover:via-[#ee2a7b]/25 hover:to-[#6228d7]/25 hover:shadow-[#e1306c]/20",
-            instaCopied && "border-[#e1306c]/60 bg-[#e1306c]/30",
+            "border-social-instagram/30 text-social-instagram hover:border-social-instagram/50 hover:shadow-social-instagram/20 inline-flex h-9 w-9 items-center justify-center rounded-lg border bg-gradient-to-tr from-[#f9ce34]/15 via-[#ee2a7b]/15 to-[#6228d7]/15 shadow-sm backdrop-blur-md transition-all duration-200 hover:from-[#f9ce34]/25 hover:via-[#ee2a7b]/25 hover:to-[#6228d7]/25",
+            instaCopied && "border-social-instagram/60 bg-social-instagram/30",
           )}
           aria-label={t("share_instagram")}
         >
@@ -184,7 +184,7 @@ export function ShareButtons({
           target="_blank"
           rel="noreferrer noopener"
           onClick={() => trackEvent("Incident Shared", { platform: "facebook" })}
-          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#1877f2]/30 bg-[#1877f2]/10 text-[#1877f2] shadow-sm backdrop-blur-md transition-all duration-200 hover:border-[#1877f2]/50 hover:bg-[#1877f2]/20 hover:shadow-[#1877f2]/20"
+          className="border-social-facebook/30 bg-social-facebook/10 text-social-facebook hover:border-social-facebook/50 hover:bg-social-facebook/20 hover:shadow-social-facebook/20 inline-flex h-9 w-9 items-center justify-center rounded-lg border shadow-sm backdrop-blur-md transition-all duration-200"
           aria-label={t("share_facebook")}
         >
           <FacebookIcon className="h-4 w-4" />
@@ -199,7 +199,7 @@ export function ShareButtons({
           target="_blank"
           rel="noreferrer noopener"
           onClick={() => trackEvent("Incident Shared", { platform: "whatsapp" })}
-          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-[#25d366]/30 bg-[#25d366]/10 text-[#25d366] shadow-sm backdrop-blur-md transition-all duration-200 hover:border-[#25d366]/50 hover:bg-[#25d366]/20 hover:shadow-[#25d366]/20"
+          className="border-social-whatsapp/30 bg-social-whatsapp/10 text-social-whatsapp hover:border-social-whatsapp/50 hover:bg-social-whatsapp/20 hover:shadow-social-whatsapp/20 inline-flex h-9 w-9 items-center justify-center rounded-lg border shadow-sm backdrop-blur-md transition-all duration-200"
           aria-label={t("share_whatsapp")}
         >
           <WhatsAppIcon className="h-4 w-4" />

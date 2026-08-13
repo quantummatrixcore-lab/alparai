@@ -22,7 +22,7 @@ function SubmitBtn({ children }: { children: React.ReactNode }) {
       isLoading={pending}
       size="lg"
       className="w-full shrink-0 sm:w-auto"
-      leftIcon={<Mail className="h-4 w-4" />}
+      leftIcon={<Mail className="h-4 w-4" aria-label="Email" />}
     >
       {children}
     </Button>

@@ -5,8 +5,11 @@ import { getCurrentUser } from "@/lib/auth/session";
 import { BarChart3 } from "lucide-react";
 import { Link } from "@/i18n/routing";
 import { getCrossAuditDashboardData } from "@/actions/admin/cross-audit-metrics";
-const CrossAuditDashboardClient = dynamic(() => import("@/components/admin/cross-audit-dashboard-client").then(m => m.CrossAuditDashboardClient), { ssr: false });
-
+const CrossAuditDashboardClient = dynamic(() =>
+  import("@/components/admin/cross-audit-dashboard-client").then(
+    (m) => m.CrossAuditDashboardClient,
+  ),
+);
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

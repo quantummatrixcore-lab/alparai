@@ -7,7 +7,9 @@ import { AdminContainer, AdminPageHeader } from "@/components/admin/admin-design
 import { QuestionnaireClient } from "@/components/admin/questionnaire-client";
 import { QUESTIONNAIRE_MODELS } from "@/lib/ai/openrouter-gateway";
 import { QUESTIONS } from "@/lib/strategy/questions";
-const StrategyTabs = dynamic(() => import("@/components/admin/strategy-tabs").then(m => m.StrategyTabs), { ssr: false });
+const StrategyTabs = dynamic(() =>
+  import("@/components/admin/strategy-tabs").then((m) => m.StrategyTabs),
+);
 
 import type { GatewayModel } from "@/lib/ai/openrouter-gateway";
 

@@ -366,7 +366,7 @@ export function IncidentForm({
           </div>
 
           {/* Progress Card */}
-          <div className="border-brand-500/20 rounded-2xl border bg-bg-primary/40 p-6 shadow-2xl backdrop-blur-md">
+          <div className="border-brand-500/20 bg-bg-primary/40 rounded-2xl border p-6 shadow-2xl backdrop-blur-md">
             <div className="space-y-6 text-left">
               {stages.map((stage, idx) => {
                 const isPast = idx < currentIdx;
@@ -375,14 +375,14 @@ export function IncidentForm({
                 let icon = null;
                 if (isPast) {
                   icon = (
-                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-accent/20">
-                      <CheckCircle2 className="h-4 w-4 text-emerald-accent" />
+                    <div className="bg-emerald-accent/20 flex h-6 w-6 items-center justify-center rounded-full">
+                      <CheckCircle2 className="text-emerald-accent h-4 w-4" />
                     </div>
                   );
                 } else if (isCurrent) {
                   icon = (
                     <div className="flex h-6 w-6 items-center justify-center">
-                      <div className="h-4 w-4 animate-spin rounded-full border-2 border-emerald-accent border-t-transparent" />
+                      <div className="border-emerald-accent h-4 w-4 animate-spin rounded-full border-2 border-t-transparent" />
                     </div>
                   );
                 } else {

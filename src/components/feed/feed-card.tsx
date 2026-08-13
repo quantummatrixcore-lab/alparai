@@ -324,7 +324,7 @@ export function FeedCard({
                       href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`}
                       target="_blank"
                       rel="noreferrer noopener"
-                      className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0077b5]/10 text-[#0077b5] transition-colors hover:bg-[#0077b5]/20"
+                      className="bg-social-linkedin/10 text-social-linkedin hover:bg-social-linkedin/20 flex h-8 w-8 items-center justify-center rounded-full transition-colors"
                       aria-label={tFeed("shareOnLinkedIn")}
                     >
                       <LinkedInIcon className="h-4 w-4" />
@@ -333,7 +333,7 @@ export function FeedCard({
                     {/* Instagram (Copy Link) */}
                     <motion.button
                       whileHover={{ scale: 1.15, y: -1 }}
-                      className="flex h-8 w-8 items-center justify-center rounded-full bg-[#e1306c]/10 text-[#e1306c] transition-colors hover:bg-[#e1306c]/20"
+                      className="bg-social-instagram/10 text-social-instagram hover:bg-social-instagram/20 flex h-8 w-8 items-center justify-center rounded-full transition-colors"
                       aria-label={tFeed("copyForInstagram")}
                       onClick={() => {
                         navigator.clipboard.writeText(shareUrl);
@@ -350,7 +350,7 @@ export function FeedCard({
                       href={`https://api.whatsapp.com/send?text=${encodeURIComponent(displayTitle + " " + shareUrl)}`}
                       target="_blank"
                       rel="noreferrer noopener"
-                      className="flex h-8 w-8 items-center justify-center rounded-full bg-[#25d366]/10 text-[#25d366] transition-colors hover:bg-[#25d366]/20"
+                      className="bg-social-whatsapp/10 text-social-whatsapp hover:bg-social-whatsapp/20 flex h-8 w-8 items-center justify-center rounded-full transition-colors"
                       aria-label={tFeed("shareOnWhatsApp")}
                     >
                       <WhatsAppIcon className="h-4 w-4" />

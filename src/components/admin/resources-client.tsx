@@ -741,6 +741,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-brand-400 hover:text-brand-300"
+                        aria-label="Open link"
                       >
                         <ExternalLink className="h-3.5 w-3.5" />
                       </a>

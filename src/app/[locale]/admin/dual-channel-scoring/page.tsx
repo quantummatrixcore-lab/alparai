@@ -10,8 +10,9 @@ import {
   PieChart as PieChartIcon,
 } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-const DualChannelChart = dynamic(() => import("@/components/admin/dual-channel-chart").then(m => m.DualChannelChart), { ssr: false });
-
+const DualChannelChart = dynamic(() =>
+  import("@/components/admin/dual-channel-chart").then((m) => m.DualChannelChart),
+);
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

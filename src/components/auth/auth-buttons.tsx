@@ -347,7 +347,7 @@ export function EmailMagicLinkForm({
           disabled={disabled || !emailValue.trim()}
           leftIcon={
             state?.status !== "sending" ? (
-              <Mail className="h-4 w-4" />
+              <Mail className="h-4 w-4" aria-label="Email" />
             ) : (
               <Loader2 className="h-4 w-4 animate-spin" />
             )

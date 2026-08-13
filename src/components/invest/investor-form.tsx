@@ -24,7 +24,7 @@ function SubmitBtn({ children }: { children: React.ReactNode }) {
       isLoading={pending}
       size="lg"
       className="text-bg-primary w-full bg-emerald-500 font-bold hover:bg-emerald-600"
-      leftIcon={<Send className="h-4 w-4" />}
+      leftIcon={<Send className="h-4 w-4" aria-label="Send" />}
     >
       {children}
     </Button>

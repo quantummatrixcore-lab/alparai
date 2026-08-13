@@ -8,11 +8,13 @@ vi.mock("next/headers", () => ({
   }),
 }));
 
-const mockLimit = vi.fn().mockResolvedValue({
-  success: true,
-  remaining: 4,
-  reset: Date.now() + 60_000,
-});
+const { mockLimit } = vi.hoisted(() => ({
+  mockLimit: vi.fn().mockResolvedValue({
+    success: true,
+    remaining: 4,
+    reset: Date.now() + 60_000,
+  }),
+}));
 
 vi.mock("@upstash/ratelimit", () => ({
   Ratelimit: Object.assign(

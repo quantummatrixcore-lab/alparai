@@ -42,15 +42,16 @@ interface IncidentRow {
 }
 
 export async function getCrossAuditDashboardData(): Promise<CrossAuditDashboardData> {
-  await requireModerator(); // Gated for moderator, admin, and ceo
+  try {
+    await requireModerator(); // Gated for moderator, admin, and ceo
 
-  const admin = createAdminClient();
+    const admin = createAdminClient();
 
-  // Fetch incidents that have been cross-audited
-  const { data: incidents, error } = await admin
-    .from("incidents")
-    .select(
-      `
+    // Fetch incidents that have been cross-audited
+    const { data: incidents, error } = await admin
+      .from("incidents")
+      .select(
+        `
       cross_audit_truth_score,
       cross_audit_confidence,
       eu_act_transparency_score,
@@ -65,165 +66,169 @@ export async function getCrossAuditDashboardData(): Promise<CrossAuditDashboardD
         name
       )
     `,
-    )
-    .eq("status", "published")
-    .not("cross_audit_truth_score", "is", null);
+      )
+      .eq("status", "published")
+      .not("cross_audit_truth_score", "is", null);
 
-  if (error || !incidents || incidents.length === 0) {
-    return {
-      overview: {
-        averageTruthScore: 0,
-        averageConfidence: 0,
-        averageTransparency: 0,
-        averageNonDiscrimination: 0,
-        averageDataPrivacy: 0,
-        totalAudited: 0,
-      },
-      categoryDistribution: [],
-      modelComparison: [],
-      riskDistribution: [],
-      trendData: [],
-    };
-  }
-
-  // 1. Overview Calculations
-  let sumTruth = 0;
-  let sumConf = 0;
-  let sumTrans = 0;
-  let sumNonDisc = 0;
-  let sumPrivacy = 0;
-  let countTrans = 0;
-  let countNonDisc = 0;
-  let countPrivacy = 0;
-
-  // 2. Category Distribution
-  const categoryCounts: Record<string, number> = {};
-
-  // 3. Model Comparison
-  const modelMetrics: Record<
-    string,
-    { sumTruth: number; sumNonDisc: number; countNonDisc: number; count: number }
-  > = {};
-
-  // 4. Risk Distribution
-  const riskCounts: Record<string, number> = {};
-
-  // 5. Trend data
-  const trendPoints: Record<
-    string,
-    { sumTruth: number; sumNonDisc: number; countNonDisc: number; count: number }
-  > = {};
-
-  const typedIncidents = incidents as unknown as IncidentRow[];
-
-  typedIncidents.forEach((inc) => {
-    const truth = inc.cross_audit_truth_score ?? 0;
-    const conf = inc.cross_audit_confidence ?? 0;
-
-    sumTruth += truth;
-    sumConf += conf;
-
-    if (inc.eu_act_transparency_score !== null && inc.eu_act_transparency_score !== undefined) {
-      sumTrans += inc.eu_act_transparency_score;
-      countTrans++;
-    }
-    if (
-      inc.eu_act_non_discrimination_score !== null &&
-      inc.eu_act_non_discrimination_score !== undefined
-    ) {
-      sumNonDisc += inc.eu_act_non_discrimination_score;
-      countNonDisc++;
-    }
-    if (inc.eu_act_data_privacy_score !== null && inc.eu_act_data_privacy_score !== undefined) {
-      sumPrivacy += inc.eu_act_data_privacy_score;
-      countPrivacy++;
+    if (error || !incidents || incidents.length === 0) {
+      return {
+        overview: {
+          averageTruthScore: 0,
+          averageConfidence: 0,
+          averageTransparency: 0,
+          averageNonDiscrimination: 0,
+          averageDataPrivacy: 0,
+          totalAudited: 0,
+        },
+        categoryDistribution: [],
+        modelComparison: [],
+        riskDistribution: [],
+        trendData: [],
+      };
     }
 
-    // Category distribution
-    const cat = inc.category || "other";
-    categoryCounts[cat] = (categoryCounts[cat] || 0) + 1;
+    // 1. Overview Calculations
+    let sumTruth = 0;
+    let sumConf = 0;
+    let sumTrans = 0;
+    let sumNonDisc = 0;
+    let sumPrivacy = 0;
+    let countTrans = 0;
+    let countNonDisc = 0;
+    let countPrivacy = 0;
 
-    // Model / Provider Comparison
-    const providerName = inc.ai_providers?.name || "Unknown Provider";
-    if (!modelMetrics[providerName]) {
-      modelMetrics[providerName] = { sumTruth: 0, sumNonDisc: 0, countNonDisc: 0, count: 0 };
-    }
-    modelMetrics[providerName].sumTruth += truth;
-    if (
-      inc.eu_act_non_discrimination_score !== null &&
-      inc.eu_act_non_discrimination_score !== undefined
-    ) {
-      modelMetrics[providerName].sumNonDisc += inc.eu_act_non_discrimination_score;
-      modelMetrics[providerName].countNonDisc++;
-    }
-    modelMetrics[providerName].count++;
+    // 2. Category Distribution
+    const categoryCounts: Record<string, number> = {};
 
-    // Risk distribution
-    const risk = inc.eu_act_risk_category || "Minimal";
-    riskCounts[risk] = (riskCounts[risk] || 0) + 1;
+    // 3. Model Comparison
+    const modelMetrics: Record<
+      string,
+      { sumTruth: number; sumNonDisc: number; countNonDisc: number; count: number }
+    > = {};
 
-    // Trend by month. Group by YYYY-MM
-    const dateStr = inc.incident_date || inc.created_at;
-    if (dateStr) {
-      const month = dateStr.substring(0, 7); // e.g. '2026-06'
-      if (!trendPoints[month]) {
-        trendPoints[month] = { sumTruth: 0, sumNonDisc: 0, countNonDisc: 0, count: 0 };
+    // 4. Risk Distribution
+    const riskCounts: Record<string, number> = {};
+
+    // 5. Trend data
+    const trendPoints: Record<
+      string,
+      { sumTruth: number; sumNonDisc: number; countNonDisc: number; count: number }
+    > = {};
+
+    const typedIncidents = incidents as unknown as IncidentRow[];
+
+    typedIncidents.forEach((inc) => {
+      const truth = inc.cross_audit_truth_score ?? 0;
+      const conf = inc.cross_audit_confidence ?? 0;
+
+      sumTruth += truth;
+      sumConf += conf;
+
+      if (inc.eu_act_transparency_score !== null && inc.eu_act_transparency_score !== undefined) {
+        sumTrans += inc.eu_act_transparency_score;
+        countTrans++;
       }
-      trendPoints[month].sumTruth += truth;
       if (
         inc.eu_act_non_discrimination_score !== null &&
         inc.eu_act_non_discrimination_score !== undefined
       ) {
-        trendPoints[month].sumNonDisc += inc.eu_act_non_discrimination_score;
-        trendPoints[month].countNonDisc++;
+        sumNonDisc += inc.eu_act_non_discrimination_score;
+        countNonDisc++;
       }
-      trendPoints[month].count++;
-    }
-  });
+      if (inc.eu_act_data_privacy_score !== null && inc.eu_act_data_privacy_score !== undefined) {
+        sumPrivacy += inc.eu_act_data_privacy_score;
+        countPrivacy++;
+      }
 
-  const total = incidents.length;
+      // Category distribution
+      const cat = inc.category || "other";
+      categoryCounts[cat] = (categoryCounts[cat] || 0) + 1;
 
-  const overview = {
-    averageTruthScore: Math.round(sumTruth / total),
-    averageConfidence: parseFloat((sumConf / total).toFixed(2)),
-    averageTransparency: countTrans > 0 ? Math.round(sumTrans / countTrans) : 0,
-    averageNonDiscrimination: countNonDisc > 0 ? Math.round(sumNonDisc / countNonDisc) : 0,
-    averageDataPrivacy: countPrivacy > 0 ? Math.round(sumPrivacy / countPrivacy) : 0,
-    totalAudited: total,
-  };
+      // Model / Provider Comparison
+      const providerName = inc.ai_providers?.name || "Unknown Provider";
+      if (!modelMetrics[providerName]) {
+        modelMetrics[providerName] = { sumTruth: 0, sumNonDisc: 0, countNonDisc: 0, count: 0 };
+      }
+      modelMetrics[providerName].sumTruth += truth;
+      if (
+        inc.eu_act_non_discrimination_score !== null &&
+        inc.eu_act_non_discrimination_score !== undefined
+      ) {
+        modelMetrics[providerName].sumNonDisc += inc.eu_act_non_discrimination_score;
+        modelMetrics[providerName].countNonDisc++;
+      }
+      modelMetrics[providerName].count++;
 
-  const categoryDistribution = Object.entries(categoryCounts).map(([name, value]) => ({
-    name,
-    value,
-  }));
+      // Risk distribution
+      const risk = inc.eu_act_risk_category || "Minimal";
+      riskCounts[risk] = (riskCounts[risk] || 0) + 1;
 
-  const modelComparison = Object.entries(modelMetrics).map(([providerName, metrics]) => ({
-    providerName,
-    averageTruthScore: Math.round(metrics.sumTruth / metrics.count),
-    averageNonDiscrimination:
-      metrics.countNonDisc > 0 ? Math.round(metrics.sumNonDisc / metrics.countNonDisc) : 0,
-    incidentCount: metrics.count,
-  }));
+      // Trend by month. Group by YYYY-MM
+      const dateStr = inc.incident_date || inc.created_at;
+      if (dateStr) {
+        const month = dateStr.substring(0, 7); // e.g. '2026-06'
+        if (!trendPoints[month]) {
+          trendPoints[month] = { sumTruth: 0, sumNonDisc: 0, countNonDisc: 0, count: 0 };
+        }
+        trendPoints[month].sumTruth += truth;
+        if (
+          inc.eu_act_non_discrimination_score !== null &&
+          inc.eu_act_non_discrimination_score !== undefined
+        ) {
+          trendPoints[month].sumNonDisc += inc.eu_act_non_discrimination_score;
+          trendPoints[month].countNonDisc++;
+        }
+        trendPoints[month].count++;
+      }
+    });
 
-  const riskDistribution = Object.entries(riskCounts).map(([name, value]) => ({
-    name,
-    value,
-  }));
+    const total = incidents.length;
 
-  const trendData = Object.entries(trendPoints)
-    .sort(([a], [b]) => a.localeCompare(b))
-    .map(([month, metrics]) => ({
-      date: month,
-      truthScore: Math.round(metrics.sumTruth / metrics.count),
-      nonDiscrimination:
-        metrics.countNonDisc > 0 ? Math.round(metrics.sumNonDisc / metrics.countNonDisc) : 0,
+    const overview = {
+      averageTruthScore: Math.round(sumTruth / total),
+      averageConfidence: parseFloat((sumConf / total).toFixed(2)),
+      averageTransparency: countTrans > 0 ? Math.round(sumTrans / countTrans) : 0,
+      averageNonDiscrimination: countNonDisc > 0 ? Math.round(sumNonDisc / countNonDisc) : 0,
+      averageDataPrivacy: countPrivacy > 0 ? Math.round(sumPrivacy / countPrivacy) : 0,
+      totalAudited: total,
+    };
+
+    const categoryDistribution = Object.entries(categoryCounts).map(([name, value]) => ({
+      name,
+      value,
     }));
 
-  return {
-    overview,
-    categoryDistribution,
-    modelComparison,
-    riskDistribution,
-    trendData,
-  };
+    const modelComparison = Object.entries(modelMetrics).map(([providerName, metrics]) => ({
+      providerName,
+      averageTruthScore: Math.round(metrics.sumTruth / metrics.count),
+      averageNonDiscrimination:
+        metrics.countNonDisc > 0 ? Math.round(metrics.sumNonDisc / metrics.countNonDisc) : 0,
+      incidentCount: metrics.count,
+    }));
+
+    const riskDistribution = Object.entries(riskCounts).map(([name, value]) => ({
+      name,
+      value,
+    }));
+
+    const trendData = Object.entries(trendPoints)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([month, metrics]) => ({
+        date: month,
+        truthScore: Math.round(metrics.sumTruth / metrics.count),
+        nonDiscrimination:
+          metrics.countNonDisc > 0 ? Math.round(metrics.sumNonDisc / metrics.countNonDisc) : 0,
+      }));
+
+    return {
+      overview,
+      categoryDistribution,
+      modelComparison,
+      riskDistribution,
+      trendData,
+    };
+  } catch (err) {
+    console.error("[getCrossAuditDashboardData] Error:", err);
+    throw err;
+  }
 }

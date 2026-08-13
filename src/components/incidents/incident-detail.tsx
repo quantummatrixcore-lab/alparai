@@ -104,7 +104,7 @@ export function IncidentDetailView({
                   className={cn(
                     "cursor-help transition-all duration-200",
                     isUserSubmitted
-                      ? "border-[#00FF88]/20 bg-[#00FF88]/10 font-bold text-[#00FF88]"
+                      ? "border-emerald-accent/20 bg-emerald-accent/10 text-emerald-accent font-bold"
                       : "border-border-subtle bg-bg-tertiary text-fg-muted",
                   )}
                   title={t(`source_tooltip_${source}`)}
@@ -283,6 +283,7 @@ export function IncidentDetailView({
                     target="_blank"
                     rel="noreferrer noopener"
                     className="border-border-subtle relative block h-48 w-full overflow-hidden rounded-md border"
+                    aria-label="Image"
                   >
                     <Image
                       src={e.file_url}

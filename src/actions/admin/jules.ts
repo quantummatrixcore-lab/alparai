@@ -153,21 +153,26 @@ export async function getJulesHealth(): Promise<{
   sessionCount: number;
   error?: string;
 }> {
-  const apiKey = process.env.JULES_API_KEY;
-  if (!apiKey) return { connected: false, sessionCount: 0, error: "JULES_API_KEY not set" };
-
   try {
-    const response = await fetch(`${JULES_API_BASE}/sessions`, {
-      headers: { "X-Goog-Api-Key": apiKey },
-      cache: "no-store",
-      signal: AbortSignal.timeout(5000),
-    });
+    const apiKey = process.env.JULES_API_KEY;
+    if (!apiKey) return { connected: false, sessionCount: 0, error: "JULES_API_KEY not set" };
 
-    if (!response.ok)
-      return { connected: false, sessionCount: 0, error: `HTTP ${response.status}` };
-    const data = (await response.json()) as { sessions?: unknown[] };
-    return { connected: true, sessionCount: data.sessions?.length ?? 0 };
-  } catch (error) {
-    return { connected: false, sessionCount: 0, error: String(error) };
+    try {
+      const response = await fetch(`${JULES_API_BASE}/sessions`, {
+        headers: { "X-Goog-Api-Key": apiKey },
+        cache: "no-store",
+        signal: AbortSignal.timeout(5000),
+      });
+
+      if (!response.ok)
+        return { connected: false, sessionCount: 0, error: `HTTP ${response.status}` };
+      const data = (await response.json()) as { sessions?: unknown[] };
+      return { connected: true, sessionCount: data.sessions?.length ?? 0 };
+    } catch (error) {
+      return { connected: false, sessionCount: 0, error: String(error) };
+    }
+  } catch (err) {
+    console.error("[getJulesHealth] Error:", err);
+    throw err;
   }
 }

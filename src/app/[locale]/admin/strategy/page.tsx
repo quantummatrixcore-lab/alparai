@@ -11,7 +11,9 @@ import { QuestionnaireClient } from "@/components/admin/questionnaire-client";
 import { EcosystemBenchmarkWidget } from "@/components/admin/ecosystem-benchmark-widget";
 import { QUESTIONNAIRE_MODELS } from "@/lib/ai/openrouter-gateway";
 import { Link } from "@/i18n/routing";
-const StrategyTabs = dynamic(() => import("@/components/admin/strategy-tabs").then(m => m.StrategyTabs), { ssr: false });
+const StrategyTabs = dynamic(() =>
+  import("@/components/admin/strategy-tabs").then((m) => m.StrategyTabs),
+);
 
 import { STRATEGY_METRICS_DEFAULTS, DEFAULT_VALUATION_PRE_MONEY } from "@/lib/constants";
 import { QUESTIONS } from "@/lib/strategy/questions";
@@ -140,8 +142,7 @@ export default async function StrategyOverviewPage({
       : 0;
 
   const latestRunId = runs?.[0]?.id ?? null;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let allAnswers: any[] = [];
+  let allAnswers: unknown[] = [];
   if (latestRunId) {
     const { data: answersData } = await supabase
       .from("strategic_answers")

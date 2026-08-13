@@ -53,6 +53,7 @@ export async function submitComment(incidentId: string, commentText: string) {
       .single();
 
     if (error) {
+      console.error("[submitComment] DB error:", error);
       logger.error("Failed to insert comment", { error });
       return { ok: false, error: "Database error. Could not post comment." };
     }
@@ -86,6 +87,7 @@ export async function deleteComment(commentId: string, incidentId: string) {
     const { error } = await supabase.from("incident_comments").delete().eq("id", commentId);
 
     if (error) {
+      console.error("[deleteComment] DB error:", error);
       logger.error("Failed to delete comment", { commentId, error });
       return { ok: false, error: error.message };
     }
@@ -142,6 +144,7 @@ export async function toggleAffectedStatus(incidentId: string) {
         .eq("user_id", user.id);
 
       if (error) {
+        console.error("[toggleAffectedStatus] DB error:", error);
         return { ok: false, error: error.message };
       }
 
@@ -155,6 +158,7 @@ export async function toggleAffectedStatus(incidentId: string) {
       });
 
       if (error) {
+        console.error("[toggleAffectedStatus] DB error:", error);
         return { ok: false, error: error.message };
       }
 

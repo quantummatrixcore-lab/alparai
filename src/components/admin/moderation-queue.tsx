@@ -70,7 +70,10 @@ export function ModerationQueue({ incidents }: { incidents: IncidentListItem[] }
           })}
         </p>
         <Link href="/admin/strategy">
-          <Button variant="outline" rightIcon={<ArrowRight className="h-4 w-4" />}>
+          <Button
+            variant="outline"
+            rightIcon={<ArrowRight className="h-4 w-4" aria-label="Next" />}
+          >
             {t("go_to_strategy_board")}
           </Button>
         </Link>
@@ -252,7 +255,7 @@ function ModerationCard({ incident }: { incident: IncidentListItem }) {
             <Button
               size="sm"
               variant="success"
-              leftIcon={<Check className="h-3.5 w-3.5" />}
+              leftIcon={<Check className="h-3.5 w-3.5" aria-label="Approve" />}
               isLoading={pending}
               onClick={() => decide("approve")}
               className="flex-1 text-xs"
@@ -262,7 +265,7 @@ function ModerationCard({ incident }: { incident: IncidentListItem }) {
             <Button
               size="sm"
               variant="danger"
-              leftIcon={<X className="h-3.5 w-3.5" />}
+              leftIcon={<X className="h-3.5 w-3.5" aria-label="Action" />}
               isLoading={pending}
               onClick={() => decide("reject")}
               className="flex-1 text-xs"
@@ -275,7 +278,7 @@ function ModerationCard({ incident }: { incident: IncidentListItem }) {
             <Button
               size="sm"
               variant="ghost"
-              leftIcon={<MessageSquare className="h-3.5 w-3.5" />}
+              leftIcon={<MessageSquare className="h-3.5 w-3.5" aria-label="Comment" />}
               onClick={() => setShowNote((v) => !v)}
               className="text-fg-muted hover:text-white"
             >
@@ -286,7 +289,7 @@ function ModerationCard({ incident }: { incident: IncidentListItem }) {
                 <Button
                   size="sm"
                   variant="outline"
-                  leftIcon={<Cpu className="h-3.5 w-3.5" />}
+                  leftIcon={<Cpu className="h-3.5 w-3.5" aria-label="Process" />}
                   isLoading={rerunPending}
                   onClick={handleRerun}
                   className="text-xs"
@@ -295,7 +298,11 @@ function ModerationCard({ incident }: { incident: IncidentListItem }) {
                 </Button>
               )}
               <Link href={`/incidents/${incident.id}`}>
-                <Button size="sm" variant="outline" leftIcon={<Eye className="h-3.5 w-3.5" />}>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  leftIcon={<Eye className="h-3.5 w-3.5" aria-label="View" />}
+                >
                   {t("view", { defaultValue: "View" })}
                 </Button>
               </Link>
@@ -303,7 +310,7 @@ function ModerationCard({ incident }: { incident: IncidentListItem }) {
                 <Button
                   size="sm"
                   variant="ghost"
-                  leftIcon={<Code className="h-3.5 w-3.5" />}
+                  leftIcon={<Code className="h-3.5 w-3.5" aria-label="Source code" />}
                   className="text-fg-muted hover:text-white"
                 />
               </Link>

@@ -17,6 +17,7 @@ export async function trackFunnelEvent(eventName: string, metadata?: Record<stri
     });
 
     if (error) {
+      console.error("[trackFunnelEvent] DB error:", error);
       logger.error(`Failed to insert funnel event: ${eventName}`, { error, metadata });
     }
   } catch (err) {

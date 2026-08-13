@@ -48,6 +48,7 @@ export async function getOutreachQueue() {
       .order("created_at", { ascending: false });
 
     if (error) {
+      console.error("[getOutreachQueue] DB error:", error);
       logger.error("Failed to fetch outreach queue", { error });
       throw error;
     }
@@ -187,5 +188,10 @@ export async function triggerOutreachQueueAction() {
 }
 
 export async function processOutreachQueueAction() {
-  return triggerOutreachQueueAction();
+  try {
+    return triggerOutreachQueueAction();
+  } catch (err) {
+    console.error("[processOutreachQueueAction] Error:", err);
+    throw err;
+  }
 }

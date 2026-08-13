@@ -53,71 +53,76 @@ function calculateRate(numerator: number, denominator: number): number | null {
 }
 
 export async function getFundingConversion(): Promise<FundingConversionResult | null> {
-  const user = await requireModerator();
-  if (!user) return null;
+  try {
+    const user = await requireModerator();
+    if (!user) return null;
 
-  const db = createAdminClient();
+    const db = createAdminClient();
 
-  const grantWonStatuses = ["approved", "accepted_by_program"];
-  const grantRejectedStatuses = ["rejected"];
-  const grantAppliedStatuses = [
-    "submitted_pending_review",
-    "approved",
-    "rejected",
-    "accepted_by_program",
-  ];
+    const grantWonStatuses = ["approved", "accepted_by_program"];
+    const grantRejectedStatuses = ["rejected"];
+    const grantAppliedStatuses = [
+      "submitted_pending_review",
+      "approved",
+      "rejected",
+      "accepted_by_program",
+    ];
 
-  const stateWonStatuses = ["awarded"];
-  const stateRejectedStatuses = ["rejected"];
-  const stateAppliedStatuses = ["applied", "awarded", "rejected"];
+    const stateWonStatuses = ["awarded"];
+    const stateRejectedStatuses = ["rejected"];
+    const stateAppliedStatuses = ["applied", "awarded", "rejected"];
 
-  const [
-    grantWon,
-    grantRejected,
-    grantApplied,
-    grantTotal,
-    stateWon,
-    stateRejected,
-    stateApplied,
-    stateTotal,
-  ] = await Promise.all([
-    countByStatus(db, "grant_applications", grantWonStatuses),
-    countByStatus(db, "grant_applications", grantRejectedStatuses),
-    countByStatus(db, "grant_applications", grantAppliedStatuses),
-    countTotal(db, "grant_applications"),
-    countByStatus(db, "strategy_state_support", stateWonStatuses),
-    countByStatus(db, "strategy_state_support", stateRejectedStatuses),
-    countByStatus(db, "strategy_state_support", stateAppliedStatuses),
-    countTotal(db, "strategy_state_support"),
-  ]);
+    const [
+      grantWon,
+      grantRejected,
+      grantApplied,
+      grantTotal,
+      stateWon,
+      stateRejected,
+      stateApplied,
+      stateTotal,
+    ] = await Promise.all([
+      countByStatus(db, "grant_applications", grantWonStatuses),
+      countByStatus(db, "grant_applications", grantRejectedStatuses),
+      countByStatus(db, "grant_applications", grantAppliedStatuses),
+      countTotal(db, "grant_applications"),
+      countByStatus(db, "strategy_state_support", stateWonStatuses),
+      countByStatus(db, "strategy_state_support", stateRejectedStatuses),
+      countByStatus(db, "strategy_state_support", stateAppliedStatuses),
+      countTotal(db, "strategy_state_support"),
+    ]);
 
-  const combinedWon = grantWon + stateWon;
-  const combinedRejected = grantRejected + stateRejected;
-  const combinedApplied = grantApplied + stateApplied;
-  const combinedTotal = grantTotal + stateTotal;
+    const combinedWon = grantWon + stateWon;
+    const combinedRejected = grantRejected + stateRejected;
+    const combinedApplied = grantApplied + stateApplied;
+    const combinedTotal = grantTotal + stateTotal;
 
-  return {
-    grantWon,
-    grantRejected,
-    grantWinRate: calculateRate(grantWon, grantWon + grantRejected),
-    grantApplied,
-    grantTotal,
-    grantActivationRate: calculateRate(grantApplied, grantTotal),
+    return {
+      grantWon,
+      grantRejected,
+      grantWinRate: calculateRate(grantWon, grantWon + grantRejected),
+      grantApplied,
+      grantTotal,
+      grantActivationRate: calculateRate(grantApplied, grantTotal),
 
-    stateWon,
-    stateRejected,
-    stateWinRate: calculateRate(stateWon, stateWon + stateRejected),
-    stateApplied,
-    stateTotal,
-    stateActivationRate: calculateRate(stateApplied, stateTotal),
+      stateWon,
+      stateRejected,
+      stateWinRate: calculateRate(stateWon, stateWon + stateRejected),
+      stateApplied,
+      stateTotal,
+      stateActivationRate: calculateRate(stateApplied, stateTotal),
 
-    combinedWon,
-    combinedRejected,
-    combinedWinRate: calculateRate(combinedWon, combinedWon + combinedRejected),
-    combinedApplied,
-    combinedTotal,
-    combinedActivationRate: calculateRate(combinedApplied, combinedTotal),
+      combinedWon,
+      combinedRejected,
+      combinedWinRate: calculateRate(combinedWon, combinedWon + combinedRejected),
+      combinedApplied,
+      combinedTotal,
+      combinedActivationRate: calculateRate(combinedApplied, combinedTotal),
 
-    hasData: combinedTotal > 0,
-  };
+      hasData: combinedTotal > 0,
+    };
+  } catch (err) {
+    console.error("[getFundingConversion] Error:", err);
+    throw err;
+  }
 }

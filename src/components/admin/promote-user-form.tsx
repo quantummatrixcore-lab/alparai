@@ -81,7 +81,7 @@ export function PromoteUserForm({ currentUserRole }: PromoteUserFormProps) {
       <Button
         type="button"
         variant="primary"
-        leftIcon={<UserCog className="h-4 w-4" />}
+        leftIcon={<UserCog className="h-4 w-4" aria-label="Promote" />}
         onClick={() => setOpen(true)}
       >
         {t("promote_user")}

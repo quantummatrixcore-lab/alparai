@@ -48,6 +48,9 @@ vi.hoisted(() => {
     policyNames: vi.fn(),
     getQueue: vi.fn(),
   }));
+  vi.doMock("@/lib/engine-registry", () => ({
+    getRegistryReport: vi.fn().mockResolvedValue({ services: [] }),
+  }));
 });
 
 import { requireAdmin } from "@/lib/auth/session";

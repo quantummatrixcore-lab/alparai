@@ -167,50 +167,60 @@ export async function runQuestionnaire(modelIds?: string[]): Promise<{
 }
 
 export async function getQuestionnaireRuns() {
-  await requireAdvisor();
-  const supabase = createAdminClient();
+  try {
+    await requireAdvisor();
+    const supabase = createAdminClient();
 
-  const { data: runs } = await supabase
-    .from("strategic_runs")
-    .select("*")
-    .order("started_at", { ascending: false })
-    .limit(20);
+    const { data: runs } = await supabase
+      .from("strategic_runs")
+      .select("*")
+      .order("started_at", { ascending: false })
+      .limit(20);
 
-  return (runs || []) as {
-    id: string;
-    status: string;
-    model_ids: string[];
-    total_questions: number;
-    total_answers: number;
-    started_at: string;
-    completed_at: string | null;
-  }[];
+    return (runs || []) as {
+      id: string;
+      status: string;
+      model_ids: string[];
+      total_questions: number;
+      total_answers: number;
+      started_at: string;
+      completed_at: string | null;
+    }[];
+  } catch (err) {
+    console.error("[getQuestionnaireRuns] Error:", err);
+    throw err;
+  }
 }
 
 export async function getQuestionnaireRunAnswers(runId: string) {
-  await requireAdvisor();
-  const supabase = createAdminClient();
+  try {
+    await requireAdvisor();
+    const supabase = createAdminClient();
 
-  const { data: answers } = await supabase
-    .from("strategic_answers")
-    .select("*")
-    .eq("run_id", runId)
-    .order("question_index", { ascending: true });
+    const { data: answers } = await supabase
+      .from("strategic_answers")
+      .select("*")
+      .eq("run_id", runId)
+      .order("question_index", { ascending: true });
 
-  return (answers || []) as {
-    id: string;
-    run_id: string;
-    model_id: string;
-    model_name: string;
-    question_index: number;
-    question_id: string;
-    section: string;
-    answer_text: string | null;
-    error_message: string | null;
-    latency_ms: number | null;
-    tokens_used: number | null;
-    created_at: string;
-  }[];
+    return (answers || []) as {
+      id: string;
+      run_id: string;
+      model_id: string;
+      model_name: string;
+      question_index: number;
+      question_id: string;
+      section: string;
+      answer_text: string | null;
+      error_message: string | null;
+      latency_ms: number | null;
+      tokens_used: number | null;
+      created_at: string;
+    }[];
+  } catch (err) {
+    console.error("[getQuestionnaireRunAnswers] Error:", err);
+    throw err;
+  }
 }
 
 export async function exportRunToMarkdown(runId: string): Promise<{ ok: boolean; error?: string }> {

@@ -1,7 +1,9 @@
 import dynamic from "next/dynamic";
 import { requireAdmin } from "@/lib/auth/session";
 import { setRequestLocale, getTranslations } from "next-intl/server";
-const ApiMetricsClient = dynamic(() => import("@/components/admin/api-metrics-client").then(m => m.ApiMetricsClient), { ssr: false });
+const ApiMetricsClient = dynamic(() =>
+  import("@/components/admin/api-metrics-client").then((m) => m.ApiMetricsClient),
+);
 
 import { createServerClient } from "@/lib/supabase/server";
 import { MetricsHubTabs } from "@/components/admin/metrics-hub-tabs";

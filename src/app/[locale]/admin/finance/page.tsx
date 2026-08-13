@@ -7,7 +7,9 @@ import { requireModerator } from "@/lib/auth/session";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { CostOverviewCard } from "@/components/admin/finance/cost-overview-card";
 import { BudgetGauge } from "@/components/admin/finance/budget-gauge";
-const CostTrendChart = nextDynamic(() => import("@/components/admin/finance/cost-trend-chart").then(m => m.CostTrendChart), { ssr: false });
+const CostTrendChart = nextDynamic(() =>
+  import("@/components/admin/finance/cost-trend-chart").then((m) => m.CostTrendChart),
+);
 
 import { ApiUsageTable } from "@/components/admin/finance/api-usage-table";
 import { AlertBanner } from "@/components/admin/finance/alert-banner";

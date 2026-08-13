@@ -8,52 +8,67 @@ export async function toggleTodoAction(
   id: string,
   is_completed: boolean,
 ): Promise<{ success: boolean }> {
-  await requireCEO();
-  const supabase = await createServerClient();
+  try {
+    await requireCEO();
+    const supabase = await createServerClient();
 
-  const { error } = await supabase
-    .from("strategy_todos")
-    .update({ is_completed, updated_at: new Date().toISOString() })
-    .eq("id", id);
+    const { error } = await supabase
+      .from("strategy_todos")
+      .update({ is_completed, updated_at: new Date().toISOString() })
+      .eq("id", id);
 
-  if (error) throw new Error(error.message);
+    if (error) throw new Error(error.message);
 
-  revalidatePath("/[locale]/admin/strategy", "layout");
-  return { success: true };
+    revalidatePath("/[locale]/admin/strategy", "layout");
+    return { success: true };
+  } catch (err) {
+    console.error("[toggleTodoAction] Error:", err);
+    throw err;
+  }
 }
 
 export async function deleteTodoAction(id: string): Promise<{ success: boolean }> {
-  await requireCEO();
-  const supabase = await createServerClient();
+  try {
+    await requireCEO();
+    const supabase = await createServerClient();
 
-  const { error } = await supabase.from("strategy_todos").delete().eq("id", id);
-  if (error) throw new Error(error.message);
+    const { error } = await supabase.from("strategy_todos").delete().eq("id", id);
+    if (error) throw new Error(error.message);
 
-  revalidatePath("/[locale]/admin/strategy", "layout");
-  return { success: true };
+    revalidatePath("/[locale]/admin/strategy", "layout");
+    return { success: true };
+  } catch (err) {
+    console.error("[deleteTodoAction] Error:", err);
+    throw err;
+  }
 }
 
 export async function createTodoAction(
   title: string,
   priority: number,
 ): Promise<{ success: boolean; id: string }> {
-  await requireCEO();
-  const supabase = await createServerClient();
+  try {
+    await requireCEO();
+    const supabase = await createServerClient();
 
-  const { data: inserted, error } = await supabase
-    .from("strategy_todos")
-    .insert({
-      title,
-      priority,
-      is_completed: false,
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString(),
-    })
-    .select("id")
-    .single();
+    const { data: inserted, error } = await supabase
+      .from("strategy_todos")
+      .insert({
+        title,
+        priority,
+        is_completed: false,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      })
+      .select("id")
+      .single();
 
-  if (error) throw new Error(error.message);
+    if (error) throw new Error(error.message);
 
-  revalidatePath("/[locale]/admin/strategy", "layout");
-  return { success: true, id: inserted.id };
+    revalidatePath("/[locale]/admin/strategy", "layout");
+    return { success: true, id: inserted.id };
+  } catch (err) {
+    console.error("[createTodoAction] Error:", err);
+    throw err;
+  }
 }

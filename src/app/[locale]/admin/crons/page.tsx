@@ -2,7 +2,9 @@ import dynamic from "next/dynamic";
 import { setRequestLocale } from "next-intl/server";
 import { requireAdmin } from "@/lib/auth/session";
 import { CronsDashboardClient } from "@/components/admin/crons-dashboard-client";
-const CronHealthClient = dynamic(() => import("@/components/admin/cron-health-client").then(m => m.CronHealthClient), { ssr: false });
+const CronHealthClient = dynamic(() =>
+  import("@/components/admin/cron-health-client").then((m) => m.CronHealthClient),
+);
 
 import { getTranslations } from "next-intl/server";
 

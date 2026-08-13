@@ -15,10 +15,15 @@ export interface ModularArchitectureOverview {
 }
 
 export async function getModularArchitectureAction(): Promise<ModularArchitectureOverview> {
-  return {
-    umbrellaTitle: "AlparAI = AI Trust Infrastructure",
-    tagline: "Single Umbrella Platform Architecture for Independent AI Accountability",
-    auditScore: GPT_360_AUDIT_SCORE,
-    pillars: MODULAR_PILLARS,
-  };
+  try {
+    return {
+      umbrellaTitle: "AlparAI = AI Trust Infrastructure",
+      tagline: "Single Umbrella Platform Architecture for Independent AI Accountability",
+      auditScore: GPT_360_AUDIT_SCORE,
+      pillars: MODULAR_PILLARS,
+    };
+  } catch (err) {
+    console.error("[getModularArchitectureAction] Error:", err);
+    throw err;
+  }
 }

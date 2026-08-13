@@ -221,9 +221,7 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="border-border-subtle mt-12 flex flex-col gap-4 border-t pt-8 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
-          <p className="text-fg-muted text-xs">
-            {t("copyright")}
-          </p>
+          <p className="text-fg-muted text-xs">{t("copyright")}</p>
           <p className="text-fg-muted text-xs">{t("platformStatus")}</p>
         </div>
       </Container>

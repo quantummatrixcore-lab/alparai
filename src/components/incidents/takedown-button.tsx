@@ -27,7 +27,7 @@ export function TakedownButton({ incidentId }: { incidentId: string }) {
       <Button
         variant="outline"
         size="sm"
-        leftIcon={<Flag className="h-3.5 w-3.5" />}
+        leftIcon={<Flag className="h-3.5 w-3.5" aria-label="Report" />}
         onClick={() => setOpen(true)}
         className="w-full"
       >

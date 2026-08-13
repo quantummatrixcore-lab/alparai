@@ -223,21 +223,21 @@ export const dsarExportResponseSchema = z.object({
     created_at: z.string().nullable().optional(),
     last_sign_in_at: z.string().nullable().optional(),
   }),
-  profile: z.any().nullable(),
-  incidents: z.array(z.any()),
-  comments: z.array(z.any()),
-  votes: z.array(z.any()),
-  expert_applications: z.array(z.any()),
+  profile: z.unknown().nullable(),
+  incidents: z.array(z.unknown()),
+  comments: z.array(z.unknown()),
+  votes: z.array(z.unknown()),
+  expert_applications: z.array(z.unknown()),
 }); // 11. GET /api/v1/dsar/download
 export const dsarDownloadResponseSchema = z.union([
   z.object({
     user_id: z.string().uuid(),
     email: z.string().nullable().optional(),
     generated_at: z.string(),
-    profile: z.any().nullable(),
-    incidents: z.array(z.any()),
-    comments: z.array(z.any()),
-    votes: z.array(z.any()),
+    profile: z.unknown().nullable(),
+    incidents: z.array(z.unknown()),
+    comments: z.array(z.unknown()),
+    votes: z.array(z.unknown()),
   }),
   z.string(), // CSV format is plain string
 ]);
@@ -305,7 +305,7 @@ export const auditorAuditLogsResponseSchema = z.object({
 });
 
 // 15. GET /api/v1/dsar/portable
-export const dsarPortableResponseSchema = z.any(); // Returns ZIP binary stream
+export const dsarPortableResponseSchema = z.unknown(); // Returns ZIP binary stream
 
 // 16. GET /api/v1/regulators
 export const regulatorsResponseSchema = z.union([
@@ -370,7 +370,7 @@ export const playbooksResponseSchema = z.object({
       title: z.string(),
       framework: z.string(),
       summary: z.string(),
-      checklist: z.any(),
+      checklist: z.unknown(),
       created_at: z.string(),
       updated_at: z.string(),
     }),

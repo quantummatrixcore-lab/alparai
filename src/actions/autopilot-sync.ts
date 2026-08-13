@@ -243,64 +243,74 @@ async function runNewsSyncWork(
 }
 
 export async function syncNewsAction(): Promise<{ ok: boolean; added?: number }> {
-  const timestamp = new Date().toISOString().slice(0, 13); // hourly idempotency key
-  const idempotencyKey = `news-sync:${timestamp}`;
+  try {
+    const timestamp = new Date().toISOString().slice(0, 13); // hourly idempotency key
+    const idempotencyKey = `news-sync:${timestamp}`;
 
-  const result = await withAutopilot<{ processed: number; added: number }>(
-    syncNewsPolicy,
-    [idempotencyKey],
-    (ctx) => runNewsSyncWork(ctx),
-    { context: { userId: null, ipHash: null, clientIdempotencyKey: idempotencyKey } },
-  );
+    const result = await withAutopilot<{ processed: number; added: number }>(
+      syncNewsPolicy,
+      [idempotencyKey],
+      (ctx) => runNewsSyncWork(ctx),
+      { context: { userId: null, ipHash: null, clientIdempotencyKey: idempotencyKey } },
+    );
 
-  if (result.kind === "ok") {
-    try {
-      revalidatePath("/");
-      revalidatePath("/incidents");
-    } catch (e) {
-      console.error("Ignored error:", e);
+    if (result.kind === "ok") {
+      try {
+        revalidatePath("/");
+        revalidatePath("/incidents");
+      } catch (e) {
+        console.error("Ignored error:", e);
+      }
+      return { ok: true, added: result.value.added };
     }
-    return { ok: true, added: result.value.added };
-  }
 
-  if (result.kind === "replayed") {
-    return { ok: true, added: 0 };
-  }
+    if (result.kind === "replayed") {
+      return { ok: true, added: 0 };
+    }
 
-  return { ok: false };
+    return { ok: false };
+  } catch (err) {
+    console.error("[syncNewsAction] Error:", err);
+    throw err;
+  }
 }
 
 export async function checkAndTriggerNewsSyncPassive(): Promise<void> {
-  const admin = createAdminClient();
   try {
-    // Check the last successful run of syncNews
-    const { data: lastRun } = await admin
-      .from("autopilot_runs")
-      .select("created_at")
-      .eq("action", "syncNews")
-      .eq("status", "succeeded")
-      .order("created_at", { ascending: false })
-      .limit(1)
-      .maybeSingle();
+    const admin = createAdminClient();
+    try {
+      // Check the last successful run of syncNews
+      const { data: lastRun } = await admin
+        .from("autopilot_runs")
+        .select("created_at")
+        .eq("action", "syncNews")
+        .eq("status", "succeeded")
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .maybeSingle();
 
-    const sixHoursAgo = Date.now() - 6 * 60 * 60 * 1000;
-    const lastRunTime = lastRun ? new Date(lastRun.created_at).getTime() : 0;
+      const sixHoursAgo = Date.now() - 6 * 60 * 60 * 1000;
+      const lastRunTime = lastRun ? new Date(lastRun.created_at).getTime() : 0;
 
-    if (lastRunTime < sixHoursAgo) {
-      // Trigger asynchronously so it does not block the render/request
-      void syncNewsAction().catch((err) => {
-        logger.error(
-          "Background passive news sync failed",
-          undefined,
-          err instanceof Error ? err : undefined,
-        );
-      });
+      if (lastRunTime < sixHoursAgo) {
+        // Trigger asynchronously so it does not block the render/request
+        void syncNewsAction().catch((err) => {
+          logger.error(
+            "Background passive news sync failed",
+            undefined,
+            err instanceof Error ? err : undefined,
+          );
+        });
+      }
+    } catch (err) {
+      logger.error(
+        "Failed to check last news sync time",
+        undefined,
+        err instanceof Error ? err : undefined,
+      );
     }
   } catch (err) {
-    logger.error(
-      "Failed to check last news sync time",
-      undefined,
-      err instanceof Error ? err : undefined,
-    );
+    console.error("[checkAndTriggerNewsSyncPassive] Error:", err);
+    throw err;
   }
 }

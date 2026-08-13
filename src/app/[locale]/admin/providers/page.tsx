@@ -47,8 +47,7 @@ export default async function ProvidersPage({ params }: { params: Promise<{ loca
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-800">
-              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-              {((providers as any[]) || []).map((provider: any) => (
+              {((providers as Record<string, unknown>[]) || []).map((provider) => (
                 <tr key={provider.id} className="hover:bg-slate-800/40">
                   <td className="p-3 font-semibold text-white">{provider.name}</td>
                   <td className="p-3 font-mono text-slate-400">{provider.slug}</td>

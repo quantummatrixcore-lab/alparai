@@ -2,8 +2,8 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
 
 vi.hoisted(() => {
-  vi.doMock("@/lib/supabase/admin", () => ({
-    createAdminClient: vi.fn(),
+  vi.doMock("@/lib/supabase/server", () => ({
+    createClient: vi.fn(),
   }));
   vi.doMock("@/lib/auth/session", () => ({
     requireAdmin: vi.fn().mockResolvedValue({ id: "user-1", role: "user" }),
@@ -12,7 +12,7 @@ vi.hoisted(() => {
   }));
 });
 
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createClient } from "@/lib/supabase/server";
 import { getEmailPreferences, updateEmailPreferencesAction } from "@/actions/email-preferences";
 
 beforeEach(() => {
@@ -26,7 +26,7 @@ describe("Email Preferences", () => {
       const mockMaybeSingle = vi.fn().mockResolvedValue({ data: mockData, error: null });
       const mockEq = vi.fn().mockReturnValue({ maybeSingle: mockMaybeSingle });
       const mockSelect = vi.fn().mockReturnValue({ eq: mockEq });
-      vi.mocked(createAdminClient).mockReturnValue({
+      vi.mocked(createClient).mockResolvedValue({
         from: vi.fn().mockReturnValue({ select: mockSelect }),
       } as never);
 
@@ -44,7 +44,7 @@ describe("Email Preferences", () => {
       const mockInsertSelect = vi.fn().mockReturnValue({ single: mockInsertSingle });
       const mockInsert = vi.fn().mockReturnValue({ select: mockInsertSelect });
 
-      vi.mocked(createAdminClient).mockReturnValue({
+      vi.mocked(createClient).mockResolvedValue({
         from: vi.fn().mockImplementation((table) => {
           if (table === "email_preferences" && mockSelect.mock.calls.length === 0) {
             return { select: mockSelect };
@@ -62,7 +62,7 @@ describe("Email Preferences", () => {
     it("updates preferences successfully", async () => {
       const mockUpdateEq = vi.fn().mockResolvedValue({ error: null });
       const mockUpdate = vi.fn().mockReturnValue({ eq: mockUpdateEq });
-      vi.mocked(createAdminClient).mockReturnValue({
+      vi.mocked(createClient).mockResolvedValue({
         from: vi.fn().mockReturnValue({ update: mockUpdate }),
       } as never);
 

@@ -4,7 +4,9 @@ ALPAR AI ekosistemi, **Otopilot & Çok Katmanlı Ajan Mimarisi (Agent-OS)** ile 
 
 ---
 
-## 1. Mimari Katmanlar
+## 1. Mimari Katmanlar (Yerel `.agents` Mimarisi)
+
+> **DUYURU (Ağustos 2026):** Dış, hantal Rust-tabanlı `Agent-Os` sunucusu devreden çıkarılmış, buradaki kıymetli zeka (Engine Prompts, Nexus Kuralları, Personalar) yerel dizine (`.agents/engines`, `.agents/nexus`, `.agents/personas`) taşınmıştır. Artık Agent-OS tamamen bu yerel ve hafif Node.js yapısı üzerinden işlemektedir.
 
 ### Katman 1: Mimar (Architect - Opus / Claude)
 * **Rolü**: Üst düzey mimari kararlar, stratejik yönelimler ve `MASTER_PLAN.md` güncellemeleri.

@@ -7,7 +7,7 @@ import { CheckCircle2, Shield, Lock } from "lucide-react";
 import { Link } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 
-export function SignInForm({ locale }: { locale: string }) {
+export function SignInForm({ locale, next }: { locale: string; next?: string }) {
   const t = useTranslations("auth");
   // Default to true for seamless 1-click UX, visible & toggleable right at the top
   const [agreed, setAgreed] = React.useState(true);
@@ -54,7 +54,11 @@ export function SignInForm({ locale }: { locale: string }) {
 
       {/* 2. Primary: Google Sign In (Immediate 1-click action) */}
       <div className="space-y-2">
-        <GoogleSignInButton next={`/${locale}/profile`} className="w-full" disabled={!agreed} />
+        <GoogleSignInButton
+          next={next ?? `/${locale}/profile`}
+          className="w-full"
+          disabled={!agreed}
+        />
       </div>
 
       {/* 3. Divider with label */}

@@ -5,6 +5,7 @@ import { SignInForm } from "@/components/auth/sign-in-form";
 import { AlertCircle, Mail } from "lucide-react";
 import { Link } from "@/i18n/routing";
 import { Logo } from "@/components/layout/logo";
+import { sanitizeNextPath } from "@/lib/utils/safe-redirect";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -30,13 +31,20 @@ export default async function SignInPage({
   searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ error?: string; reason?: string; sent?: string; email?: string }>;
+  searchParams: Promise<{
+    error?: string;
+    reason?: string;
+    sent?: string;
+    email?: string;
+    next?: string;
+  }>;
 }) {
   const { locale } = await params;
-  const { error, reason, sent, email } = await searchParams;
+  const { error, reason, sent, email, next } = await searchParams;
   setRequestLocale(locale);
+  const safeNext = sanitizeNextPath(next, `/${locale}/profile`);
   const user = await getCurrentUser();
-  if (user) redirect(`/${locale}/profile`);
+  if (user) redirect(safeNext);
 
   const t = await getTranslations({ locale, namespace: "auth" });
 
@@ -121,7 +129,7 @@ export default async function SignInPage({
             <p className="text-fg-muted mt-1.5 text-sm font-medium">{t("welcome_subtitle")}</p>
           </div>
 
-          <SignInForm locale={locale} />
+          <SignInForm locale={locale} next={safeNext} />
         </div>
 
         {/* Footer info links */}

@@ -30,7 +30,7 @@ export default async function AdminAutopilotPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const user = await getCurrentUser();
-  if (!user) redirect(`/${locale}/auth/signin?next=/${locale}/admin/autopilot`);
+  if (!user) redirect(`/${locale}/auth/signin?next=/${locale}/admin/ai-hub/autopilot`);
   if (user.role !== "admin" && user.role !== "ceo") redirect(`/${locale}`);
 
   const t = await getTranslations({ locale, namespace: "autopilot" });

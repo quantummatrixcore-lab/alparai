@@ -1,0 +1,19 @@
+{
+  "persistent_agents": {
+    "gemini_pro_stratejist": {
+      "conversation_id": "a1420068-9a4d-444f-8b8d-d452cab9dbde",
+      "role": "STRATEJIST",
+      "model": "Gemini Pro (MODEL_TIER_PRO)",
+      "context_window": "2000000",
+      "status": "STANDBY",
+      "specializations": ["full_codebase_analysis", "architecture", "security_audit", "flash_task_dispatch"],
+      "started_at": "2026-08-13T21:57:43Z",
+      "note": "Bu ajan KILL edilmez. Claude tarafından send_message ile görev alır."
+    }
+  },
+  "hierarchy": {
+    "chief_architect": "Claude Sonnet (bu konuşma)",
+    "strategist": "a1420068-9a4d-444f-8b8d-d452cab9dbde",
+    "flash_executors": "Gerektiğinde spawn edilir, görev bitince kill edilir"
+  }
+}

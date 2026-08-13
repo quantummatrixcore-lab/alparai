@@ -12,13 +12,19 @@ const Avatar = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElem
 );
 Avatar.displayName = "Avatar";
 
+import Image from "next/image";
+
 const AvatarImage = React.forwardRef<HTMLImageElement, React.ImgHTMLAttributes<HTMLImageElement>>(
-  ({ className, ...props }, ref) => (
-    <img
+  ({ className, src, ...props }, ref) => (
+    <Image
       ref={ref}
+      src={src as string}
       alt={props.alt || "Avatar"}
-      className={cn("aspect-square h-full w-full", className)}
-      {...props}
+      width={40}
+      height={40}
+      className={cn("aspect-square h-full w-full object-cover", className)}
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      {...(props as any)}
     />
   ),
 );

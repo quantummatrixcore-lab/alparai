@@ -172,7 +172,7 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
                 htmlFor="vendorToken"
                 className="mb-2 block text-xs font-medium text-slate-300"
               >
-                Corporate Vendor Token / Access Code
+                {t("corporate_vendor_token")}
               </label>
               <div className="relative">
                 <Lock className="absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2 text-slate-500" />
@@ -200,7 +200,7 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
 
           {/* Quick Demo Selector */}
           <div className="mt-8 border-t border-slate-800/80 pt-6">
-            <p className="mb-3 text-center text-xs text-slate-500">Quick Demo Token Preset:</p>
+            <p className="mb-3 text-center text-xs text-slate-500">{t("quick_demo_preset")}</p>
             <div className="flex flex-wrap justify-center gap-2">
               {VENDOR_COMPANIES.map((company) => (
                 <button
@@ -264,15 +264,15 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
         {/* Dashboard Stats */}
         <div className="mt-6 grid grid-cols-2 gap-4 border-t border-slate-800/60 pt-6 sm:grid-cols-3">
           <div className="rounded-2xl border border-slate-800/50 bg-slate-950/40 p-4">
-            <p className="text-xs font-medium text-slate-400">Total Incidents</p>
+            <p className="text-xs font-medium text-slate-400">{t("total_incidents_stat")}</p>
             <p className="mt-1 text-2xl font-bold text-white">{incidents.length}</p>
           </div>
           <div className="rounded-2xl border border-amber-800/30 bg-amber-950/20 p-4">
-            <p className="text-xs font-medium text-amber-300/80">Pending Response</p>
+            <p className="text-xs font-medium text-amber-300/80">{t("pending_response_stat")}</p>
             <p className="mt-1 text-2xl font-bold text-amber-400">{needsResponseCount}</p>
           </div>
           <div className="col-span-2 rounded-2xl border border-emerald-800/30 bg-emerald-950/20 p-4 sm:col-span-1">
-            <p className="text-xs font-medium text-emerald-300/80">Defense Statements</p>
+            <p className="text-xs font-medium text-emerald-300/80">{t("defense_statements_stat")}</p>
             <p className="mt-1 text-2xl font-bold text-emerald-400">{respondedCount}</p>
           </div>
         </div>
@@ -299,7 +299,7 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search incidents or models..."
+                  placeholder={t("search_placeholder_input")}
                   className="w-full rounded-xl border border-slate-800 bg-slate-950/60 py-2 pr-3 pl-9 text-xs text-white placeholder-slate-500 focus:border-emerald-500/50 focus:outline-none"
                 />
               </div>
@@ -371,12 +371,12 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
                         {isResponded ? (
                           <span className="flex items-center gap-1 rounded-md border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-400">
                             <CheckCircle2 className="h-3 w-3" />
-                            Responded
+                            {t("status_responded_badge")}
                           </span>
                         ) : (
                           <span className="flex items-center gap-1 rounded-md border border-amber-500/20 bg-amber-500/10 px-2 py-0.5 text-[10px] font-medium text-amber-400">
                             <Clock className="h-3 w-3" />
-                            Pending
+                            {t("status_pending_badge")}
                           </span>
                         )}
                       </div>
@@ -449,7 +449,7 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
                       {t("official_response_title")}
                     </h3>
                   </div>
-                  <span className="text-[11px] text-slate-400">PII Guardian Active</span>
+                  <span className="text-[11px] text-slate-400">{t("pii_guardian_active")}</span>
                 </div>
 
                 <p className="text-xs text-slate-400">{t("official_response_desc")}</p>
@@ -508,7 +508,7 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
                   <div className="flex items-center justify-between text-xs text-emerald-400">
                     <span className="flex items-center gap-1.5 font-semibold">
                       <CheckCircle2 className="h-4 w-4" />
-                      Published Official Statement
+                      {t("published_official_statement")}
                     </span>
                     {selectedIncident.vendorResponseAt && (
                       <span className="text-[11px] text-slate-400">

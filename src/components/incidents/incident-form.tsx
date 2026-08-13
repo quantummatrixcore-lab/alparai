@@ -366,7 +366,7 @@ export function IncidentForm({
           </div>
 
           {/* Progress Card */}
-          <div className="border-brand-500/20 rounded-2xl border bg-[#0A1622]/40 p-6 shadow-2xl backdrop-blur-md">
+          <div className="border-brand-500/20 rounded-2xl border bg-bg-primary/40 p-6 shadow-2xl backdrop-blur-md">
             <div className="space-y-6 text-left">
               {stages.map((stage, idx) => {
                 const isPast = idx < currentIdx;
@@ -375,14 +375,14 @@ export function IncidentForm({
                 let icon = null;
                 if (isPast) {
                   icon = (
-                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#00FF88]/20">
-                      <CheckCircle2 className="h-4 w-4 text-[#00FF88]" />
+                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-accent/20">
+                      <CheckCircle2 className="h-4 w-4 text-emerald-accent" />
                     </div>
                   );
                 } else if (isCurrent) {
                   icon = (
                     <div className="flex h-6 w-6 items-center justify-center">
-                      <div className="h-4 w-4 animate-spin rounded-full border-2 border-[#00FF88] border-t-transparent" />
+                      <div className="h-4 w-4 animate-spin rounded-full border-2 border-emerald-accent border-t-transparent" />
                     </div>
                   );
                 } else {
@@ -407,7 +407,7 @@ export function IncidentForm({
                     <span
                       className={`text-sm font-medium ${
                         isCurrent
-                          ? "text-[#00FF88] shadow-sm drop-shadow-[0_0_8px_rgba(0,255,136,0.3)]"
+                          ? "text-emerald-accent shadow-sm drop-shadow-[0_0_8px_rgba(0,255,136,0.3)]"
                           : "text-fg-primary"
                       }`}
                     >
@@ -545,9 +545,13 @@ export function IncidentForm({
     const provider_id = String(formData.get("provider_id") ?? "");
     const model_id = String(formData.get("model_id") ?? "");
 
+    const { maskPII } = await import("@/lib/pii/guardian");
+    const rawTitle = String(formData.get("title") ?? "");
+    const rawDescription = String(formData.get("description") ?? "");
+
     const input = {
-      title: String(formData.get("title") ?? ""),
-      description: String(formData.get("description") ?? ""),
+      title: maskPII(rawTitle).masked,
+      description: maskPII(rawDescription).masked,
       category: String(formData.get("category") ?? "") as IncidentCategory,
       severity: String(formData.get("severity") ?? "") as IncidentSeverity,
       aiProviderId: provider_id && isUuid(provider_id) ? provider_id : null,
@@ -582,6 +586,9 @@ export function IncidentForm({
     }
 
     setClientErrors({});
+
+    formData.set("title", input.title);
+    formData.set("description", input.description);
 
     // Zero-Knowledge Client-Side Encryption before transmission to server
     try {

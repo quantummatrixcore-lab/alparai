@@ -182,7 +182,7 @@ export function HeroSection({
               <div className="flex items-center gap-2">
                 <Quote className="text-brand-400 h-5 w-5" />
                 <span className="from-brand-400 to-accent-400 bg-gradient-to-r bg-clip-text text-xs font-black tracking-[0.2em] text-transparent uppercase">
-                  The Founder&apos;s Vision
+                  {t("founder_vision")}
                 </span>
               </div>
               <p className="text-fg-secondary text-sm leading-relaxed italic">

@@ -48,6 +48,8 @@ import { getSystemSignalsAction } from "@/actions/admin/signals";
 import { getFundingConversion } from "@/actions/admin/funding-conversion";
 import { getCronStatus } from "@/lib/engine-registry";
 
+import { PlausibleVisitorCard } from "@/components/admin/plausible-visitor-card";
+
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -132,6 +134,9 @@ export default async function AdminDashboardPage({
             </button>
           </div>
         </header>
+
+        {/* Plausible Traffic Visitors Widget */}
+        <PlausibleVisitorCard />
 
         {/* AI Incident Budget Transparency Score Widget (Task #160) */}
         <AiBudgetTransparencyScore />

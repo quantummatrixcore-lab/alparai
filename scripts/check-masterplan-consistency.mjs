@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const planPath = 'docs/MASTER_PLAN.md';
+const planPath = process.env.NEGATIVE_TEST_MODE ? '.mock-masterplan-consistency' : 'docs/MASTER_PLAN.md';
 const itemsDir = 'docs/plan/items';
 
 if (!fs.existsSync(planPath)) {

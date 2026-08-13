@@ -37,12 +37,14 @@ const DATA_SIGNALS = [
 const FOLLOWABLE_IMPORT = /from\s+["'](@\/components\/admin\/[^"']+|\.\/[^"']+)["']/g;
 
 function trackedFiles() {
-  return execFileSync("git", ["ls-files", "-z"], {
+  const list = execFileSync("git", ["ls-files", "-z"], {
     encoding: "utf8",
     maxBuffer: 64 * 1024 * 1024,
   })
     .split("\0")
     .filter(Boolean);
+  if (process.env.NEGATIVE_TEST_MODE) list.push("src/app/[locale]/admin/.mock-negative-test/page.tsx");
+  return list;
 }
 
 function readSafe(path) {

@@ -38,12 +38,14 @@ const METRIC_PATTERNS = [
 ];
 
 function trackedFiles() {
-  return execFileSync("git", ["ls-files", "-z"], {
+  const list = execFileSync("git", ["ls-files", "-z"], {
     encoding: "utf8",
     maxBuffer: 64 * 1024 * 1024,
   })
     .split("\0")
     .filter(Boolean);
+  if (process.env.NEGATIVE_TEST_MODE) list.push("src/app/[locale]/admin/.mock-negative-test.tsx");
+  return list;
 }
 
 function isScanned(path) {

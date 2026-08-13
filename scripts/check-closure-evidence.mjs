@@ -32,7 +32,7 @@ import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 
 const ROOT = process.cwd();
-const PLAN_PATH = join(ROOT, "docs/MASTER_PLAN.md");
+const PLAN_PATH = process.env.NEGATIVE_TEST_MODE ? join(ROOT, ".mock-closure-evidence") : join(ROOT, "docs/MASTER_PLAN.md");
 const BASELINE_PATH = join(ROOT, ".closure-evidence-baseline");
 
 const CLOSED_BY = /closed-by:([^@\s]+)@([^\s"'|)]+)/g;

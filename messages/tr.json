@@ -805,7 +805,9 @@
     "other": "Diğer"
   },
   "suggestions": {
-    "meta_title": "Topluluk Fikirleri"
+    "title": "Öneriler",
+    "subtitle": "Topluluk Önerileri",
+    "create_title": "Yeni Öneri"
   },
   "leaderboard": {
     "title": "Yapay Zeka Sağlayıcı Sıralaması",
@@ -4990,10 +4992,5 @@
     "bottom_cta_title": "Kurumsal Özelleştirmeye mi İhtiyacınız Var?",
     "bottom_cta_desc": "ALPAR AI otomatik Madde 73 izleme altyapısını doğrudan çekirdek bankacılık veya telekom sisteminize entegre edin.",
     "bottom_cta_button": "Teknik Bilgilendirme Randevusu Alın"
-  },
-  "suggestions": {
-    "title": "Öneriler",
-    "subtitle": "Topluluk Önerileri",
-    "create_title": "Yeni Öneri"
   }
 }

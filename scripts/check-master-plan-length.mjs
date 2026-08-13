@@ -4,7 +4,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const MASTER_PLAN_PATH = path.resolve(__dirname, "../docs/MASTER_PLAN.md");
+const MASTER_PLAN_PATH = process.env.NEGATIVE_TEST_MODE ? path.resolve(__dirname, ".mock-master-plan-length") : path.resolve(__dirname, "../docs/MASTER_PLAN.md");
 const MAX_LINES = 600;
 
 try {

@@ -22,8 +22,8 @@ import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
 const ROOT = process.cwd();
-const ROUTER_PATH = join(ROOT, "src/lib/audit/model-router.ts");
-const MIGRATIONS_DIR = join(ROOT, "supabase/migrations");
+const ROUTER_PATH = process.env.NEGATIVE_TEST_MODE ? join(ROOT, ".mock-model-router") : join(ROOT, "src/lib/audit/model-router.ts");
+const MIGRATIONS_DIR = process.env.NEGATIVE_TEST_MODE ? join(ROOT, ".mock-migrations") : join(ROOT, "supabase/migrations");
 
 function routerModelIds() {
   const src = readFileSync(ROUTER_PATH, "utf8");

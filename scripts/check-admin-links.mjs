@@ -26,12 +26,14 @@ const SCANNED_EXTENSIONS = [".ts", ".tsx"];
 const HREF_PATTERN = /href[=:]\s*[{]?\s*[`"'](?:\/\$\{locale\}|\/\[locale\])?(\/admin\/[a-z0-9\-/[\]]*)[`"']/gi;
 
 function trackedFiles() {
-  return execFileSync("git", ["ls-files", "-z"], {
+  const list = execFileSync("git", ["ls-files", "-z"], {
     encoding: "utf8",
     maxBuffer: 64 * 1024 * 1024,
   })
     .split("\0")
     .filter(Boolean);
+  if (process.env.NEGATIVE_TEST_MODE) list.push("src/app/[locale]/admin/.mock-negative-test.tsx");
+  return list;
 }
 
 function isScanned(path) {

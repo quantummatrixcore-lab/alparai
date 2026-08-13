@@ -1,6 +1,6 @@
 "use server";
 
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
 import { logger } from "@/lib/utils/logger";
 import { getCurrentUser } from "@/lib/auth/session";
@@ -11,8 +11,8 @@ export interface EmailPreferencesState {
 }
 
 export async function getEmailPreferences(userId: string) {
-  const admin = createAdminClient();
-  const { data: fetchedData, error } = await admin
+  const supabase = await createClient();
+  const { data: fetchedData, error } = await supabase
     .from("email_preferences")
     .select("weekly_digest, watches, reporter_notifications")
     .eq("user_id", userId)
@@ -30,7 +30,7 @@ export async function getEmailPreferences(userId: string) {
 
   if (!data) {
     // Insert defaults if missing
-    const { data: inserted } = await admin
+    const { data: inserted } = await supabase
       .from("email_preferences")
       .insert({
         user_id: userId,
@@ -66,8 +66,8 @@ export async function updateEmailPreferencesAction(
   const watches = formData.get("watches") === "on";
   const reporterNotifications = formData.get("reporterNotifications") === "on";
 
-  const admin = createAdminClient();
-  const { error } = await admin
+  const supabase = await createClient();
+  const { error } = await supabase
     .from("email_preferences")
     .update({
       weekly_digest: weeklyDigest,

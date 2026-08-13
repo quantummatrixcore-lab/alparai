@@ -76,6 +76,10 @@ jobs:
         if: ${{ !inputs.force }}
         run: node scripts/check-admin-data-binding.mjs
 
+      - name: Negative Checker Integrity Test
+        if: ${{ !inputs.force }}
+        run: pnpm test:checks
+
       - name: Typecheck
         if: ${{ !inputs.force }}
         run: pnpm typecheck

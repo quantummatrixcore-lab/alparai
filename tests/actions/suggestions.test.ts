@@ -145,27 +145,25 @@ describe("upvoteSuggestion", () => {
       eq: mockEqInner,
     });
 
-    mockAdminClient.from.mockReturnValue({
+    mockSupabase.from.mockReturnValue({
       select: vi.fn().mockReturnValue({ eq: mockEqOuter }),
       insert: vi.fn().mockResolvedValue({ data: null, error: null }),
       delete: vi.fn().mockReturnValue({
         eq: vi.fn().mockResolvedValue({ data: null, error: null }),
       }),
-      update: vi.fn().mockReturnValue({
-        eq: vi.fn().mockResolvedValue({ data: null, error: null }),
-      }),
+      update: vi.fn().mockResolvedValue({ data: null, error: null }),
       upsert: vi.fn().mockReturnValue({
         select: vi.fn().mockReturnValue({
           single: vi.fn().mockResolvedValue({ data: { id: "test" }, error: null }),
         }),
       }),
-    } as ReturnType<typeof mockAdminClient.from>);
+    } as ReturnType<typeof mockSupabase.from>);
   });
 
   it("creates a new upvote when none exists", async () => {
     const result = await upvoteSuggestion("sug-1");
     expect(result).toEqual({ ok: true });
-    expect(mockAdminClient.from).toHaveBeenCalledWith("suggestion_votes");
+    expect(mockSupabase.from).toHaveBeenCalledWith("suggestion_votes");
   });
 
   it("returns error when not authenticated", async () => {

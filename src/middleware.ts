@@ -92,6 +92,8 @@ export async function middleware(request: NextRequest) {
     }
   }
 
+  const reqWithHeaders = new NextRequest(request, { headers: requestHeaders });
+
   let intlResponse: NextResponse;
   try {
     if (pathname.startsWith("/api/")) {
@@ -101,7 +103,7 @@ export async function middleware(request: NextRequest) {
         },
       });
     } else {
-      intlResponse = intlMiddleware(request);
+      intlResponse = intlMiddleware(reqWithHeaders);
       // Pass custom request headers to Server Components via response headers
       intlResponse.headers.set("x-middleware-request-x-request-id", requestId);
       intlResponse.headers.set("x-middleware-request-x-pathname", request.nextUrl.pathname);
@@ -121,7 +123,7 @@ export async function middleware(request: NextRequest) {
 
   let response: NextResponse;
   try {
-    response = await updateSession(request, intlResponse);
+    response = await updateSession(reqWithHeaders, intlResponse);
   } catch (err) {
     logger.error(
       "[middleware] updateSession threw",

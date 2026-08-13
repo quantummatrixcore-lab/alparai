@@ -116,7 +116,7 @@ const PATTERNS: ReadonlyArray<{
   {
     name: "passport_license_tr",
     re: /\b[A-Z]\d{8}\b|\bU[A-Z0-9]{8}\b/g,
-    mask: "[REDACTED-PASSPORT-OR-LICENSE]",
+    mask: "[REDACTED-PASSPORT]",
   },
   // Date of birth (Turkish + ISO formats: DD.MM.YYYY or YYYY-MM-DD)
   {

@@ -1,0 +1,11 @@
+{
+  "task_id": "EXAMPLE-1",
+  "pipeline": "code_forge",
+  "priority": "P1",
+  "token_budget": 15000,
+  "model": "flash",
+  "files_touched": [
+    "src/actions/example.ts"
+  ],
+  "acceptance": "pnpm test gec"
+}

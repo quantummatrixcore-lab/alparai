@@ -447,6 +447,8 @@
     "description": "ALPAR AI documents, verifies, and permanently records every AI incident — governed by its community, not by AI companies. Report a failure. See the evidence. The record is permanent."
   },
   "nav": {
+    "open_menu": "Ouvrir le menu",
+    "close_menu": "Fermer le menu",
     "home": "Startseite",
     "feed": "Fil d'actualité",
     "incidents": "Vorfälle",

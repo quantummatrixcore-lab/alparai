@@ -2,6 +2,7 @@
 
 import { createClient } from "@supabase/supabase-js";
 import { createServerClient } from "@/lib/supabase/server";
+import { logger } from "@/lib/utils/logger";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
@@ -46,7 +47,11 @@ export async function createUserByAdmin(data: {
     });
 
     if (authError) {
-      console.error("Auth creation error:", authError);
+      logger.error(
+        "Auth creation error in createUserByAdmin",
+        { role: data.role },
+        authError instanceof Error ? authError : new Error(authError.message),
+      );
       return { ok: false, error: authError.message };
     }
 
@@ -64,13 +69,21 @@ export async function createUserByAdmin(data: {
       .eq("id", authData.user.id);
 
     if (dbError) {
-      console.error("DB role update error:", dbError);
+      logger.error(
+        "DB role update error in createUserByAdmin",
+        { role: data.role, userId: authData.user.id },
+        dbError instanceof Error ? dbError : new Error(dbError.message),
+      );
       // Even if this fails, the user was created, but role might be default 'user'
     }
 
     return { ok: true, userId: authData.user.id };
   } catch (error: unknown) {
-    console.error("Unexpected error in createUserByAdmin:", error);
+    logger.error(
+      "Unexpected error in createUserByAdmin",
+      undefined,
+      error instanceof Error ? error : new Error(String(error)),
+    );
     const errorMessage = error instanceof Error ? error.message : "Internal server error";
     return { ok: false, error: errorMessage };
   }

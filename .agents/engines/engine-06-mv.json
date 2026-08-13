@@ -1,0 +1,18 @@
+{
+  "id": "ENG-06",
+  "key": "MV",
+  "name": "MV — Mental Vision",
+  "description": "Model Insight & Analysis: provides introspective model evaluation, token attribution, latent-space reasoning traces, and confidence calibration.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "model_introspection",
+    "token_attribution",
+    "latent_space_analysis",
+    "reasoning_trace",
+    "confidence_scoring",
+    "calibration_audit"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

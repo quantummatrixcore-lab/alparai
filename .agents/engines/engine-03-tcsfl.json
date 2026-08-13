@@ -1,0 +1,18 @@
+{
+  "id": "ENG-03",
+  "key": "TCSFL",
+  "name": "TCSFL — Tactical Command & Synergy Flow Logic",
+  "description": "Multi-agent Orchestration: coordinates parallel agent swarms via DAG-based task graphs, dependency resolution, and consensus checkpoints.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "dag_orchestration",
+    "agent_swarm_coordination",
+    "consensus_checkpointing",
+    "parallel_execution",
+    "dependency_resolution",
+    "deadlock_detection"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

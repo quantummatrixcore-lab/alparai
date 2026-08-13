@@ -1,0 +1,19 @@
+{
+  "id": "ENG-10",
+  "key": "NEXUS",
+  "name": "NEXUS — Event Bus & Integration Hub",
+  "description": "Real-time Message Bus: fan-out/fan-in event streaming across agents, webhooks, WebSocket channels, and external integrations.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "event_streaming",
+    "fan_out_fanin",
+    "websocket_channels",
+    "webhook_dispatch",
+    "pub_sub",
+    "dead_letter_queue",
+    "message_ordering"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

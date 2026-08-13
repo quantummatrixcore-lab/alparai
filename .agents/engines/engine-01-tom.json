@@ -1,0 +1,18 @@
+{
+  "id": "ENG-01",
+  "key": "TOM",
+  "name": "TOM — The Omni Mind",
+  "description": "Gating Network & Model Routing: selects the optimal LLM for each task via capability-weighted dispatch across all registered providers.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "model_routing",
+    "capability_gating",
+    "provider_fallback",
+    "cost_aware_dispatch",
+    "multi_provider_support",
+    "load_balanced_inference"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

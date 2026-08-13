@@ -1,0 +1,19 @@
+{
+  "id": "ENG-14",
+  "key": "KAIROS",
+  "name": "KAIROS — Real-time Adaptive Intelligence",
+  "description": "Opportunity Detection & Adaptive Routing: monitors live signals to identify optimal action windows and dynamically reprioritises agent queues.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "signal_monitoring",
+    "opportunity_detection",
+    "dynamic_reprioritisation",
+    "real_time_adaptation",
+    "context_switching",
+    "market_signal_ingestion",
+    "trigger_automation"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

@@ -1,0 +1,19 @@
+{
+  "id": "ENG-25",
+  "key": "OPALGATE",
+  "name": "OPAL-GATE — Auth & API Gateway",
+  "description": "Auth & API Gateway: validates JWTs, enforces RBAC policies, rate-limits ingress, and proxies requests to downstream services.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "jwt_validation",
+    "rbac_enforcement",
+    "rate_limiting",
+    "request_proxying",
+    "api_key_management",
+    "tenant_isolation",
+    "oauth2_integration"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

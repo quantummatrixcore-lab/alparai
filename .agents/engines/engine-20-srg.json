@@ -1,0 +1,19 @@
+{
+  "id": "ENG-20",
+  "key": "SRG",
+  "name": "SRG — Sovereign Resource Governor",
+  "description": "Efficiency & Optimisation: enforces resource quotas, garbage-collects idle compute, and rebalances load across agent pools in real time.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "resource_quota_enforcement",
+    "idle_compute_gc",
+    "load_rebalancing",
+    "cpu_budget_tracking",
+    "memory_limit_policies",
+    "pool_auto_scaling",
+    "cost_efficiency_scoring"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

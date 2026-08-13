@@ -1,0 +1,18 @@
+{
+  "id": "ENG-09",
+  "key": "ATLAS",
+  "name": "ATLAS — Resource & Budget Governor",
+  "description": "Compute Budget Enforcement: tracks per-tenant token spend, enforces hard caps, and triggers cost-aware fallback routing.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "token_budget_enforcement",
+    "per_tenant_accounting",
+    "cost_cap_policies",
+    "spend_analytics",
+    "fallback_routing",
+    "quota_management"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

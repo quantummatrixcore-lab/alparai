@@ -1,0 +1,19 @@
+{
+  "id": "ENG-33",
+  "key": "ZENITH",
+  "name": "ZENITH — Sovereign Orchestration Master",
+  "description": "System Master & Autonomous Zenith Orchestration: the apex coordinator that oversees all 33 engines, enforces system-wide policies, and drives autonomous cross-engine optimisation.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "cross_engine_coordination",
+    "system_wide_policy_enforcement",
+    "autonomous_optimisation",
+    "apex_decision_routing",
+    "engine_health_arbitration",
+    "sovereign_override",
+    "global_state_coherence"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

@@ -1,0 +1,19 @@
+{
+  "id": "ENG-29",
+  "key": "INTEL",
+  "name": "INTEL — Cyber-Intelligence Engine",
+  "description": "Cyber-Intelligence & Red Team Simulation: aggregates threat intelligence, simulates adversarial attack chains, and generates proactive defence postures.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "threat_intelligence",
+    "red_team_simulation",
+    "attack_chain_modelling",
+    "cve_correlation",
+    "ioc_enrichment",
+    "defence_posture_generation",
+    "ttps_mapping"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

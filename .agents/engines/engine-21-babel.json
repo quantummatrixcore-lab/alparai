@@ -1,0 +1,19 @@
+{
+  "id": "ENG-21",
+  "key": "BABEL",
+  "name": "BABEL — Cross-Language Bridge",
+  "description": "Cross-language Compatibility: provides neural machine translation, locale-aware formatting, and multi-script NLP normalisation.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "neural_translation",
+    "locale_formatting",
+    "multi_script_normalisation",
+    "language_detection",
+    "transliteration",
+    "i18n_injection",
+    "rtl_support"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

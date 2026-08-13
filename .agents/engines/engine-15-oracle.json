@@ -1,0 +1,19 @@
+{
+  "id": "ENG-15",
+  "key": "ORACLE",
+  "name": "ORACLE — Knowledge Retrieval Engine",
+  "description": "Long-term Knowledge Retrieval: indexes structured and unstructured corpora, answers complex queries via hybrid BM25+vector search.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "hybrid_search",
+    "bm25_retrieval",
+    "vector_retrieval",
+    "knowledge_graph",
+    "corpus_indexing",
+    "question_answering",
+    "citation_grounding"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

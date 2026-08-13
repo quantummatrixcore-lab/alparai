@@ -1,0 +1,19 @@
+{
+  "id": "ENG-31",
+  "key": "IPLAW",
+  "name": "IP-LAW — Intellectual Property Engine",
+  "description": "Intellectual Property & Patent Strategy: analyses patent landscapes, detects IP risks, drafts claims, and monitors infringement signals.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "patent_landscape_analysis",
+    "ip_risk_detection",
+    "claim_drafting",
+    "infringement_monitoring",
+    "prior_art_search",
+    "trademark_screening",
+    "freedom_to_operate"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

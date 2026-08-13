@@ -1,0 +1,19 @@
+{
+  "id": "ENG-23",
+  "key": "ZENITHINTEL",
+  "name": "ZENITH-INTEL — Executive Intelligence",
+  "description": "Executive Decision Support: synthesises cross-domain intelligence into actionable C-suite briefings, scenario analyses, and strategic recommendations.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "executive_briefing",
+    "scenario_analysis",
+    "strategic_synthesis",
+    "cross_domain_intelligence",
+    "kpi_monitoring",
+    "risk_forecasting",
+    "decision_simulation"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

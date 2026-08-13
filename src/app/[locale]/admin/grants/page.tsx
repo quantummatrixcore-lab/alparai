@@ -15,7 +15,7 @@ export default async function GrantsAdminPage({ params }: { params: Promise<{ lo
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "admin" });
   const user = await requireModerator();
-  if (!user) redirect(`/${locale}/login`);
+  if (!user) redirect(`/${locale}/auth/signin?next=/${locale}/admin/grants`);
 
   const supabase = createAdminClient();
 

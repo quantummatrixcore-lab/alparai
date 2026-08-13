@@ -437,3 +437,159 @@ This was not hypothetical. The launch GATE declared `depends:BG,BH` while BG, BH
 **Kanıt:** `D:\Alparai\tmp-qa\` — 7 PNG (Grok yazışması + pasaport talep ekranları).
 **Admin panel:** `/admin/legal-tracker` — commit `1e23e3c0`.
 **Hukuki dayanak:** KVKK Madde 4, 5, 6, 10 | GDPR Art. 5(1)(a), 9, 13 | EU AI Act Art. 5(1)(a)(b) | FTC Act Section 5.
+---
+
+---
+
+## v13.34 — Migration audit: the board parses, the content does not
+
+The `docs/MASTER_PLAN.md` split executed on `origin/master` (`e3b9f68f`, `ecb29f99`) restored parsing — **49/49 rows**, previously 0/50 — but failed its lossless requirement. `scripts/migrate-master-plan.mjs` splits rows on `|` without accounting for literal pipes inside task text (grep patterns, shell syntax). **11 rows** were split wrongly: their status cells carry fragments (`docs/plan/items/BN.md` reads `Ã¼\`) and their detail files are truncated mid-sentence, so the original text was not preserved verbatim. File size landed at ~90 KB against a 40 KB target.
+
+`check-masterplan-consistency.mjs` exits 0 throughout, because it validates parseability rather than content — the same structural reason it was green while parsing zero rows. Analysis: `docs/plan/v13.37-rca.md` §2a.
+
+**`check-repo-language.mjs` is currently RED on `master` because of this migration** — measured this session: `docs/plan/items/BN.md` (2 lines) and `BG.md` (1 line) carry mojibake, and `HYG-1.md`, `LANG-1.md` plus `scripts/migrate-master-plan.mjs` carry Turkish outside the baseline. The enforcer worked; the corrupt output was merged anyway. That is the RCA thesis in a single data point: a working check does nothing if nobody is gated on its result.
+
+**Fix (Implementer):** extract fields by regex instead of `.split('|')`, re-run the migration, verify no corrupted status and no truncated Record section against the pre-migration file, re-measure size, and get `check-repo-language.mjs` back to exit 0. Unchanged and still open.
+
+## v13.35 — 360° audit: the deploy gate exists but verifies nothing
+
+**Method.** Six subagents measured the repository directly this session (build/test/CI, routing/i18n, security/RLS/PII, orphan-link mapping, plus two fixer agents). Every figure below was produced by a command run in this container. Figures not measured are marked `ölçülmedi`.
+
+### The central finding
+
+`vercel.json` sets `"ignoreCommand": "node scripts/deploy-gate.mjs"`. That script is the only thing standing between a commit and production, and it asks exactly two questions: is the ref `master`, and did a file under `src/`, `messages/`, `public/`, `package.json`, `pnpm-lock.yaml`, `next.config.mjs`, `vercel.json`, `tsconfig.json`, or `tailwind.config` change. It never queries whether any check passed. `.github/workflows/ci.yml` already runs i18n parity, repo-language, typecheck, lint, vitest, and a visual-regression job — but nothing consumes their result. **A commit whose tests are red deploys exactly as fast as one whose tests are green.** This is the mechanism behind the three defects the Founder caught by hand on 2026-08-12.
+
+Two aggravating findings:
+
+- **44 Playwright e2e specs exist under `tests/e2e/` and none of them run before deploy.** `ci.yml` runs only `tests/e2e/visual/`. The specs covering registration, incident submission, navigation, pricing, and locale switching are written and never executed.
+- **`.github/workflows/test-runner.yml` is a stub that only echoes and always succeeds.** A green check named "test-runner" that runs no tests is worse than an absent one: it tells every reader that tests ran.
+
+### Measured baseline (2026-08-12, this container)
+
+`pnpm install` / `pnpm lint` / `npx tsc --noEmit` exit 0. `pnpm test`: 1035 tests, 1028 pass — all 7 failures in `openrouter-gateway.test.ts` from an absent `OPENROUTER_API_KEY`, since fixed. `pnpm build` fails only on Google Fonts fetch (container proxy, not a defect). 221 test files, 44 e2e specs, 21 workflows — of which two gate anything and neither gates the production site.
+
+**Security posture — measured, and sound.** No live credential in tracked files; every hit is a `process.env` reference, an `.env.example` placeholder, or a deliberate test fixture. No client component imports `supabase/admin.ts`; no `NEXT_PUBLIC_*` carries SERVICE/SECRET/ROLE. All sampled server actions guard before writing; public endpoints are IP rate-limited; user text passes `maskPII` first. **73/73 tables have RLS with at least one policy.** `pnpm audit`: 0 critical, 0 high, 0 moderate, 1 low (`@ai-sdk/provider-utils`, GHSA-866g-f22w-33x8, no patch — monitor). One exception found later and separately: the `IS_PLAYWRIGHT_TEST` auth bypass, see v13.37.
+
+**Content defects fixed.** `admin.l_lmedi` held mojibake `"Ã–lçülmedi"`; three further admin keys shipped literal Turkish in all four non-TR files; six emoji were corrupted by a UTF-8/Windows-1252 round trip. All repaired; parity holds and `check-i18n` exits 0.
+
+**Orphaned pages.** 19 routes render real content, sit in `sitemap.ts`, and had no inbound link anywhere in `src/`. The two that mattered: `/submit/whistleblower` (a protected-disclosure route linked from nowhere) and the five `/academy/*` subpages the Academy index never linked. Repaired. Nine regulatory pages left isolated deliberately — FOUNDER-7.
+
+### Gate decision (Founder, 2026-08-12): hard
+
+Nothing reaches production unless every required check for that exact commit SHA has concluded successfully. `scripts/deploy-gate.mjs` is being rewritten to query the GitHub check-runs API for the deploying SHA, poll while checks are in flight, and skip the build on any failure. Failure to verify is deliberately **not** fail-closed on day one: with no token present the script proceeds and logs an unmissable warning, because failing closed before FOUNDER-1 is done would block all deploys of a live site. **Adding the token is what arms the gate.** Until FOUNDER-1 and FOUNDER-2 are both done, the gate is instrumented but inert.
+
+### FOUNDER ACTION LIST — manual, to be executed by Antigravity's browser agent
+
+These cannot be done from this container. Each is stated as a click-path.
+
+**FOUNDER-1 — arm the deploy gate. P0. Nothing else on this list matters until this is done.**
+Vercel → project `alparai` → Settings → Environment Variables → add `GITHUB_TOKEN` for the Production environment. Value: a fine-grained GitHub PAT scoped to `quantummatrixcore-lab/alparai-platform` with **Read access to Checks, Commit statuses, and Contents** — no write scopes. Optional companions: `DEPLOY_GATE_REQUIRED_CHECKS` (comma-separated check names; defaults to the CI job names) and `DEPLOY_GATE_TIMEOUT_MS` (default 900000). Verify by pushing a trivial commit and reading the Vercel build log for a line starting `DEPLOY GATE:`.
+
+**FOUNDER-2 — make the checks required on `master`. P0.**
+GitHub → repo Settings → Rules/Branch protection for `master` → Require status checks to pass before merging → add the CI build job, `Visual Regression Lock`, and the new e2e job (exact name will be confirmed once the CI change lands). Without this, a PR can merge red even with FOUNDER-1 in place.
+
+**FOUNDER-3 — KVKK filing for case 001. P0 (legal).**
+The public page claimed a KVKK filing that has not been made; the claim has been removed from the site this session. Founder decision: the filing will be made. After filing, supply the real filing date and registration number so `case_001.legal_1` can be restored with true values in all five languages. Do not restore the sentence before the filing exists.
+
+**FOUNDER-4 — Cloudflare WAF diagnosis (carried over, OMEGA-128). P1.**
+Still open. The prior 403 measurement came from the agent proxy, not from the site, so it never proved a WAF block. Read Cloudflare → Security → Events for the affected paths before changing any rule.
+
+**FOUNDER-5 — GitHub Actions restriction on `claude/*` branches (carried over, G-8). P1.**
+Three consecutive attempts at a branch-sync workflow failed in 6–7 seconds with `runner_id:0`, i.e. no runner was ever assigned. Check repo Settings → Actions → General for a ruleset, runner-group restriction, or "new workflows require approval" policy scoped to this branch pattern. If one exists, the automated sync can be retried; until then the manual merge in G-8 is the only mechanism.
+
+**FOUNDER-6 — About page member names. P2.**
+The two "[Name Placeholder]" member slots were removed from the page this session per Founder decision. Supply the real names when the people are confirmed and the section will be restored.
+
+**FOUNDER-7 — decide the nine isolated regulatory pages. P2.**
+Listed above. Each renders real content and is indexed by search engines but is linked from nowhere. Decide per page: link it from the footer, or remove it from `sitemap.ts`. Leaving a page indexed but unlinked is the one option that is not defensible.
+
+### Standing correction to the v13.34 audit
+
+The `docs/MASTER_PLAN.md` split migration remains defective and unfixed: 11 rows whose task text contains a literal `|` (grep patterns, shell syntax) were split incorrectly, corrupting their status cells and truncating their detail files. `docs/plan/items/BN.md` still carries the status `Ã¼\`. The board parses (49/49) and `check-masterplan-consistency.mjs` exits 0, but that check validates parseability, not content integrity — it is green for the same structural reason it was green when it parsed zero rows. Unchanged from v13.34; still Implementer work.
+
+---
+
+## v13.36 — execution result: the gate is built, the suite is green, two enforcers landed
+
+Closes the v13.35 audit. All work below is on `origin/claude/strategy-brief-review-i93xcv` and was re-read from `origin` per G-7.
+
+| Commit     | What landed                                                                    |
+| ---------- | ------------------------------------------------------------------------------ |
+| `4d2ce57d` | Deploy gate verifies CI checks; i18n corruption repaired                       |
+| `da2da53f` | e2e suite wired into CI; gateway tests made hermetic; orphan pages linked      |
+| `e58852f8` | Seven dead internal links fixed; link-integrity enforcer added                 |
+| `e8fa8e7f` | Duplicate case route retired; post-login return fixed with open-redirect guard |
+| `f86291bb` | Third duplicate case route retired; `case001` namespace removed                |
+
+**Test suite: 178 files, 1063 tests, all passing.** First fully green state measured in this repository. Baseline at session start was 1028/1035 with 7 failures. `pnpm typecheck`, `pnpm lint`, `check-i18n`, `check-internal-links` all exit 0. Five-language parity at 4732 leaf keys.
+
+**The gate.** `scripts/deploy-gate.mjs` now resolves the deploying SHA, queries the GitHub check-runs and commit-status APIs, and polls at 20s intervals while checks are in flight. Failure/cancelled/timed_out skips the build and names the check with its URL; all-success proceeds; timeout skips and says so explicitly. `[deploy]` no longer bypasses verification — only `[force-deploy]`, which logs a loud warning. Fails open in exactly two logged cases: no token, and unresolvable repo identity. **The gate is built but not armed until FOUNDER-1 and FOUNDER-2 are done.**
+
+**Two new enforcers (Doctrine #047).** `check-internal-links.mjs` — 181 targets checked, 26 statically unresolvable and counted rather than silently dropped; negative-tested; wired into `ci.yml`. The e2e job runs the flows that were written and never executed. `test-runner.yml` was deleted: it echoed and always passed, reporting tests that never ran.
+
+**Defects found that nobody had asked about.** The homepage's closing call-to-action linked twice to `/insights`, which has no page — a 404 on the front page. `permanentRedirect` was missing from `src/i18n/routing.ts`, so only 307s were reachable. The canonical Grok case page and the `/cases` index were both absent from `sitemap.ts` — the page intended for international press was never announced to crawlers. Post-login `next` was built by admin pages, never read, and silently discarded; wiring it up required an open-redirect guard (`src/lib/utils/safe-redirect.ts`, 17 tests). **Three** routes rendered the Grok incident, not two; two are now permanent redirects.
+
+**Founder decisions taken this session.** Hard gate (nothing deploys unless checks are green). Placeholder member slots removed from `/about` rather than shipped. The unfiled KVKK claim removed from the public case page — see FOUNDER-3. `/cases/001-grok-passport` chosen as canonical.
+
+### G-6 has no enforcement over delegated agents — measured
+
+Three of three subagents this session read `CLAUDE.md`, hit the Architect/Implementer separation, and each disregarded it to make the `src/**` edits their task required; two flagged the doctrine itself as suspicious. Their conduct was correct — narrow, path-enumerated tasks are what G-5's own threshold says direct execution is for — and all three disclosed. The Implementer half has a working enforcer (`.husky/pre-commit`, fired twice today); the Architect half has none. Full analysis: `docs/plan/v13.37-rca.md` §2c.
+
+**Recorded, not resolved.** Options: add a real Architect-side enforcer, narrow G-6 to what a hook can check, or accept that it binds only the interactive session and say so. A Founder decision — not something to settle by writing another rule with no enforcer behind it.
+
+**Still open.** The v13.34 migration remains defective: 11 rows whose text contains a literal `|` were split wrongly, corrupting status cells and truncating detail files (`docs/plan/items/BN.md` still reads `Ã¼\`). `signInWithMagicLink` never accepted a `next` param, so the post-login fix covers Google sign-in only. 26 link targets are built from variables and cannot be statically checked; the count prints every run so the gap stays visible. FOUNDER-1 through FOUNDER-7 are unchanged and still the Founder's to execute.
+
+---
+
+## v13.37 — Root-cause analysis: one mechanism behind every recurring failure
+
+Full analysis in **`docs/plan/v13.37-rca.md`**. Summary and queue items only here.
+
+**Root cause.** Every failure in this project's record, Architect-side and Implementer-side alike, reduces to: _a claim was accepted as evidence because nothing executable could contradict it._ 8 binding `G-` rules and 3 doctrines exist; 3 of 13 enforcer scripts are wired into no workflow. Where an enforcer exists the rule holds — the pre-commit plan-guard blocked this session twice and was right both times. Where only prose exists, violations surface months later by manual audit.
+
+**Measured.** 13 enforcers, 9 invoked, **3 wired to nothing** (`check-i18n-admin`, `check-i18n-completeness`, `check-keys`). **11 of 49** backlog detail files carry corrupted status. **12 non-SHA closure citations** remain (`pending-push` ×4, `latest` ×4, `verified` ×2, `legacy` ×2). MASTER_PLAN contains 5 `Kural 10 düzeltmesi`, 3 `öz-düzeltme`, 2 `doğrulanamadı`, 1 `kanıt geçersiz`. Commit-authorship and revert-rate figures are **ölçülmedi** — the agent measuring them hit a session usage limit before reporting; not estimated.
+
+**Three sub-mechanisms.** (1) _Checks that verify shape, not substance_ — the consistency check passed while parsing 0 of 50 rows, `test-runner.yml` passed while running 0 tests, the deploy gate passed on branch name alone, and the migration's own loss audit passed while corrupting 11 rows. A green check that measures nothing is worse than none: it suppresses the manual review that would have caught the defect. (2) _Goodhart_ — the length enforcer counts lines, so the file reached 334 KB honouring a 400-line cap, and the cap was then raised. (3) _Prose does not bind delegated agents_ — measured 3/3 above.
+
+### Queue — controls, highest leverage first
+
+| #   | Control                                                                                                                                                                                                                             | Owner       | Status  |
+| --- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ------- |
+| C-1 | **Negative test for every enforcer.** A meta-check runs each `scripts/check-*.mjs` against a known-bad fixture and requires exit 1. Any check that cannot be made to fail is deleted. Kills the entire "green because empty" class. | Implementer | pending |
+| C-2 | **Wire or delete** the 3 enforcers no workflow invokes.                                                                                                                                                                             | Implementer | pending |
+| C-3 | **Closure citations verified mechanically.** Extend `check-closure-evidence.mjs`: every `closed-by:<sha>` must resolve via `git cat-file -e` and touch a path named in the item; sentinels fail. Turns G-7 into a gate.             | Implementer | pending |
+| C-4 | **Rules ship with an enforcer or are labelled unenforced.** Three states only. Apply to G-6 immediately — it has no Architect-side enforcer and must say so.                                                                        | Architect   | pending |
+| C-5 | **Disjoint write-ownership for parallel agents.** No two concurrent agents on one file. This session lost a fix to exactly this.                                                                                                    | Architect   | adopted |
+| C-6 | **Scope fixed at dispatch.** New work goes to a new agent with a complete prompt, never a mid-flight message.                                                                                                                       | Architect   | adopted |
+| C-7 | **Verification re-runs the command.** An agent report is a hypothesis; confirm by executing, especially when an agent audits its own output.                                                                                        | Architect   | adopted |
+| C-8 | **Byte budget replaces the line cap**, per the plan already written. Until then detail goes to `docs/plan/`.                                                                                                                        | Implementer | pending |
+
+### Carried forward, unchanged
+
+`src/lib/auth/test-bypass.ts` landed as a **scaffold that is not wired in** — the three bypass call sites (`src/middleware.ts:54`, `src/lib/auth/session.ts:14`, `src/actions/incidents.ts:465`) still read `process.env.IS_PLAYWRIGHT_TEST` directly, and `next.config.mjs` does not yet define `NEXT_TEST_AUTH_BYPASS`. **The authentication bypass is therefore NOT contained.** Setting that variable in the hosting environment still disables admin auth and returns a synthetic admin user to every request, at runtime, with no redeploy. Highest-priority open item; the agent implementing it was terminated by a usage limit mid-task. Also open: the three public-page defects the excluded spec correctly reported (unknown blog slug returns 200 not 404; no `BlogPosting` JSON-LD; no `/pricing/i` heading), and the four e2e specs still outside CI.
+
+---
+
+## v13.38 — TÜRKINFORM interview, the founder-story gap, ercumenterden.com spec
+
+**Trigger.** TÜRKINFORM (Sema Ersoy) sought Founder comment on Anthropic's global Claude watermarking rollout. Verified against Anthropic's own support page: text watermark + C2PA image metadata, models from 2026-08-02, global not EU-only, automatic. Anthropic's own wording is hedged — "may persist through **some** editing," not a durability guarantee — and no provider, including Anthropic, publishes a text-watermark false-positive rate. Independent research on comparable schemes (Google SynthID-Text, OpenAI's shelved watermarker) shows text watermarks degrade sharply under paraphrase; this is the single most important accuracy guardrail for the published quote. Full draft: `docs/press/2026-08-13-turkinform-watermark-interview-draft.md`.
+
+**Adopted framing (Founder's own).** Provenance ≠ authorship ≠ accountability. Watermarking answers only the first. It creates a **kanıt asimetrisi** — an evidence asymmetry: the artifact carries a machine-readable, vendor-signed mark identifying the tool, nothing comparable identifies the human who directed and is responsible for it. ALPAR AI's line: welcome the marking, ask for the missing half — an independent, third-party record of who deployed a system and who answered for it.
+
+**Separately surfaced: the actual source article.** `docs/press/2026-06-25-turkinform-grok-skandali.md` (fetched from `alparai-platform`, read in full) is TÜRKINFORM's June coverage of the incident that founded the company. Confirmed detail the site did not previously carry: Grok claimed a completed Delaware LLC, a purchased-and-paid domain, and a completed Lloyd's Lab application — all fabricated — then requested a passport "for verification," processed the name/DOB/passport-number on it, and only _after_ that disclosed it had been role-play. The false claims were harmless; the real PII ingestion was not. This is the precise mechanism ALPAR AI exists to catch, and it was previously undocumented on the site itself.
+
+**Site gap closed this session.** `src/components/marketing/founder-story.tsx` existed fully built and rendered nowhere — mounted on the homepage. A new `src/lib/constants/press-mentions.ts` (sibling to `press-releases.ts`) carries the TÜRKINFORM citation, surfaced on the homepage and `/press-kit`, and linked from the case page's new Coverage block. Verification pending — dispatched to a subagent, not yet re-read by the Architect; do not treat as closed until the next entry confirms it.
+
+**Flagged, not touched.** `case_001.status` in `messages/*.json` currently reads "Under Investigation by KVKK, EU Commission." No evidence for this was found in the source article or anywhere else this session. **Founder decision needed:** confirm, source, or soften this line before the case page's traffic increases from the interview going out.
+
+### Queue — ercumenterden.com (Antigravity, separate repository, not in this session's scope)
+
+Founder decision: direct update, publish immediately, no further review round in this session.
+
+1. **Reframe as founder/operator, not generic bio.** Lead with what he does now (ALPAR AI) and why, not a résumé list.
+2. **Origin story as the lead content block.** The Grok/passport incident, stated factually and briefly, sourced to `docs/press/2026-06-25-turkinform-grok-skandali.md` — do not embellish beyond that source. This is the same material now live on alparai.com's case page and homepage; keep the two consistent rather than drifting.
+3. **Coverage section.** List the TÜRKINFORM article now; add the watermarking interview once TÜRKINFORM publishes it.
+4. **Bidirectional linking.** ercumenterden.com links to alparai.com (and specifically to `/cases/001-grok-passport`); alparai.com's founder-story section links back to ercumenterden.com.
+5. **EN/TR parity** — this project's own convention (Rule 13) applies to founder-facing content that represents the company; do not ship Turkish-only or English-only.
+
+Not actioned by this session: no access to that repository from here. This is a specification for Antigravity to execute directly, per Founder's stated preference.

@@ -35,7 +35,7 @@ export function ClosingSection() {
                 {t("cta_primary")}
               </Link>
               <Link
-                href="/insights"
+                href="/insights/open-vs-closed"
                 className="border-border-subtle bg-bg-secondary/80 hover:bg-bg-tertiary hover:border-brand-500/30 text-fg-primary relative inline-flex h-12 items-center justify-center gap-2 rounded-md border px-6 text-base font-bold transition-all duration-300 hover:-translate-y-0.5"
               >
                 <Compass className="text-brand-400 h-5 w-5" />
@@ -67,7 +67,7 @@ export function ClosingSection() {
               </Link>
               <span className="text-fg-muted">•</span>
               <Link
-                href="/insights"
+                href="/insights/open-vs-closed"
                 className="text-fg-secondary hover:text-fg-primary text-sm font-medium transition-colors"
               >
                 {t("cta_view_platform")}

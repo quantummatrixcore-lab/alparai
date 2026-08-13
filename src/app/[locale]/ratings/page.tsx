@@ -1,7 +1,7 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { createServerClient } from "@/lib/supabase/server";
 import { Container } from "@/components/ui/layout";
-import { ShieldCheck, Search, Trophy, Cpu, ExternalLink, Activity } from "lucide-react";
+import { ShieldCheck, Search, Trophy, Cpu, ExternalLink, Activity, Scale } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Link } from "@/i18n/routing";
 
@@ -51,6 +51,7 @@ export default async function RatingsPage({
   setRequestLocale(locale);
   const supabase = await createServerClient();
   const t = await getTranslations({ locale, namespace: "ratings" });
+  const tInsights = await getTranslations({ locale, namespace: "insights" });
 
   // 1. Fetch categories
   const { data: categories } = await supabase
@@ -169,6 +170,13 @@ export default async function RatingsPage({
           >
             <Activity className="h-4 w-4" />
             <span>{t("methodology_link")}</span>
+          </Link>
+          <Link
+            href="/insights/open-vs-closed"
+            className="flex items-center space-x-2 text-sm text-[#00FF88] hover:underline"
+          >
+            <Scale className="h-4 w-4" />
+            <span>{tInsights("openVsClosedTitle")}</span>
           </Link>
           <Link
             href="/api-docs"

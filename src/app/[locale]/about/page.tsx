@@ -1,7 +1,11 @@
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
+import { ArrowUpRight } from "lucide-react";
 
 export default function AboutPage() {
   const t = useTranslations("about");
+  const tCommittee = useTranslations("about_methodology_committee");
+  const tBlog = useTranslations("blog");
 
   return (
     <div className="min-h-screen bg-black px-6 pt-24 pb-12 text-white">
@@ -17,27 +21,32 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Advisory Board */}
+        {/* Governance */}
         <section className="space-y-8">
           <div className="text-center">
-            <h2 className="mb-4 text-3xl font-semibold">{t("advisory_board_title")}</h2>
-            <p className="mx-auto max-w-2xl text-zinc-400">{t("advisory_board_desc")}</p>
+            <h2 className="mb-4 text-3xl font-semibold">{tBlog("tags.governance")}</h2>
           </div>
           <div className="grid gap-6 md:grid-cols-2">
-            <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-6 transition-colors hover:bg-white/10">
-              <div className="h-16 w-16 animate-pulse rounded-full border border-white/20 bg-white/10" />
+            <Link
+              href="/about/advisory-board"
+              className="group flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/5 p-6 transition-colors hover:bg-white/10"
+            >
               <div>
-                <h3 className="text-xl font-medium">{t("member_1_name")}</h3>
-                <p className="text-zinc-400">{t("member_1_role")}</p>
+                <h3 className="text-xl font-medium">{t("advisory_board_title")}</h3>
+                <p className="text-zinc-400">{t("advisory_board_desc")}</p>
               </div>
-            </div>
-            <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-6 transition-colors hover:bg-white/10">
-              <div className="h-16 w-16 animate-pulse rounded-full border border-white/20 bg-white/10" />
+              <ArrowUpRight className="h-6 w-6 shrink-0 text-zinc-500 transition-colors group-hover:text-white" />
+            </Link>
+            <Link
+              href="/about/methodology-committee"
+              className="group flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/5 p-6 transition-colors hover:bg-white/10"
+            >
               <div>
-                <h3 className="text-xl font-medium">{t("member_2_name")}</h3>
-                <p className="text-zinc-400">{t("member_2_role")}</p>
+                <h3 className="text-xl font-medium">{tCommittee("title")}</h3>
+                <p className="text-zinc-400">{tCommittee("description")}</p>
               </div>
-            </div>
+              <ArrowUpRight className="h-6 w-6 shrink-0 text-zinc-500 transition-colors group-hover:text-white" />
+            </Link>
           </div>
         </section>
 

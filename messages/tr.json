@@ -321,7 +321,11 @@
     "expertise_other": "Diğer",
     "ambassador_title": "Öğrenci Elçileri",
     "ambassador_subtitle": "ALPAR AI Öğrenci Elçisi Programına katılın ve üniversitenizde Yapay Zeka Güvenliği tartışmalarına öncülük edin.",
-    "ambassador_form_title": "Başvuru Yap"
+    "ambassador_form_title": "Başvuru Yap",
+    "programs_title": "Akademi Programları",
+    "programs_ambassador_title": "Elçi Programı",
+    "programs_fellowship_title": "Burs Programı",
+    "programs_instructor_title": "Eğitmen Portalı"
   },
   "press": {
     "title": "Basın & Medya Kiti",
@@ -334,24 +338,6 @@
     "press_releases": "Basın Bültenleri",
     "contact_press": "Basın İletişimi",
     "press_email": "press@alparai.com"
-  },
-  "case001": {
-    "title": "Vaka #001: Grok Bayrak ve Pasaport İhlali",
-    "subtitle": "2025 Grok veri ihlali ve sembol tahrifatına ilişkin kronolojik adli inceleme.",
-    "section1_title": "1. Olay Başlıyor",
-    "section1_text": "2025 başında Grok, şirket kurulumu gerekçesiyle pasaport fotoğrafı istedi ve Türk bayrağı yerine PKK sembolü içeren tahrif edilmiş bir yanıt döndürdü.",
-    "section2_title": "2. Yayılma ve Tepkiler",
-    "section2_text": "Ekran görüntüleri sosyal medyada hızla yayıldı, kullanıcı tepkileri ve kamuoyu hassasiyeti üzerine kitlesel şikayetler oluşturuldu.",
-    "section3_title": "3. xAI'nin Yanıtı ve Geri Çekme",
-    "section3_text": "xAI halüsinasyon ve komut enjeksiyonu açığını kabul ederek acil durum rollback (geri çekme) ve sistem güvenlik yaması yayınladı.",
-    "section4_title": "4. KVKK & Hukuki Boyut",
-    "section4_text": "Kişisel Verileri Koruma Kurumu (KVKK), 6698 sayılı kanun kapsamında xAI hakkında resmi soruşturma başlatarak yapay zeka alanında emsal karara imza attı.",
-    "cta_title": "Benzer bir yapay zeka ihlali mi yaşadınız?",
-    "cta_button": "Vaka Bildir",
-    "scrolly_step_1": "İstem basitti, ancak sonuç kritik bir hataydı.",
-    "scrolly_step_2": "Bir ülkenin bayrağı değiştirildi ve bu durum halkın tepkisine yol açtı.",
-    "scrolly_step_3": "KVKK (Kişisel Verileri Koruma Kurumu) tarihi bir soruşturma başlattı.",
-    "scrolly_step_4": "Bu olay, yapay zeka güvenlik bariyerlerinin kırılganlığını gözler önüne serdi."
   },
   "pricing": {
     "title": "Ücretlendirme — ALPAR AI",
@@ -3575,10 +3561,6 @@
     "vision_desc": "Yapay zeka için güven katmanını inşa ediyoruz. SSL'in erken interneti güvenli kılması gibi, ALPAR AI da şeffaflık ve hesap verebilirlik yoluyla yapay zekanın geleceğini güvence altına alıyor.",
     "advisory_board_title": "Danışma Kurulu",
     "advisory_board_desc": "Bağımsız danışma kurulumuz yapay zeka etiği, hukuku ve güvenliği alanlarındaki önde gelen uzmanlardan oluşmaktadır.",
-    "member_1_name": "[İsim Alanı]",
-    "member_1_role": "Hukuk Danışmanı",
-    "member_2_name": "[İsim Alanı]",
-    "member_2_role": "YZ Etik Araştırmacısı",
     "mou_title": "Akademik Ortaklıklar",
     "mou_desc": "ALPAR AI, Boğaziçi Üniversitesi ve TU Berlin ile imzalanan mutabakat zaptları (MOU) dahil olmak üzere önde gelen küresel kurumlarla ortaklık içinde faaliyet göstermektedir."
   },
@@ -4924,7 +4906,6 @@
     "evidence_2": "Ekran Görüntüleri (12)",
     "evidence_3": "KVKK Şikayeti",
     "legal_title": "Yasal Süreçler",
-    "legal_1": "KVKK (Türkiye) — Dosyalandı, Kayıt #[XXX]",
     "legal_2": "ICO (İngiltere) — Beklemede",
     "legal_3": "CNIL (Fransa) — Beklemede",
     "legal_4": "FTC (ABD) — Beklemede",

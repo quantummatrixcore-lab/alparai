@@ -36,6 +36,7 @@
     "typecheck": "tsc --noEmit",
     "i18n:check": "node scripts/check-i18n.mjs",
     "check:masterplan-length": "node scripts/check-master-plan-length.mjs",
+    "check:links": "node scripts/check-internal-links.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:checks": "node scripts/test-negative-checks.mjs",

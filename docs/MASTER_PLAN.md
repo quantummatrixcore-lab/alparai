@@ -401,3 +401,5 @@ This was not hypothetical. The launch GATE declared `depends:BG,BH` while BG, BH
 | SIGMA | [SIGMA-2] Stripe Canlı Test Webhook Simülatör Scripti                       | ✅ pushed (origin/master)   |
 | OMEGA | [OMEGA-2] Hacker News & Reddit Lansman Taslakları (docs/campaigns)          | ✅ pushed (origin/master)   |
 | ZETA  | Vercel deploy hatası (pnpm-lock mismatch) giderildi                         | ✅ pushed (origin/master)   |
+| SEC | [SEC-X] Kimlik Doğrulama Açığı (IDOR/RLS Bypass) kapatıldı. | ✅ f783eae9 (origin/master) |
+| QA | [QA-X] Denetçiler (check-*.mjs) negatif teste bağlandı, kapanış kanıtı güçlendirildi. | ✅ completed |

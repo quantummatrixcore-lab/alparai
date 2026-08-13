@@ -1,11 +1,3 @@
-# SEC-2 — İKİ CANLI ANAHTAR SI
-
-- **Board id:** 337
-- **Status:** ✅ completed closed-by:99f25167@master evidence:"GCP ve OpenRouter anahtarları CDP oturumuyla rotasyona sokulup .env.local dosyasına işlendi"
-- **Priority:** P0
-- **Owner:** **Founder**
-- **Closed by:** 99f25167@master
-
-## Record
+# SEC-2
 
 **SEC-2 (yeni, v13.17) — İKİ CANLI ANAHTAR SIZDI, ROTASYON ŞART.** Depo public'ken tam geçmiş taraması yapıldı: 1.808 takipli dosya + nesne veritabanındaki **7.808 blob'un tamamı** (erişilemeyen nesneler dahil), ayrıca her blob'daki her JWT payload'ı base64 çözülüp `role` iddiası kontrol edildi. **(1) GCP/Google API anahtarı** `AIza…ZvV4` — `docs/MASTER_PLAN.md` geçmişinde dört commit (`785d2219`, `57cb4195`, `b763a1a0`, `f9f05ab4`, 4–6 Ağu). HEAD'de yok, ama **canlı olduğu projenin kendi commit mesajıyla sabit**: `57cb4195` "canlı GCP anahtarı sızıntısı" diyor. **(2) OpenRouter anahtarı** `sk-o…2105` — `tests/security/vault.test.ts:10`'da ve **bu tur bulunana kadar `origin/master`'da duruyordu**; gerçek format (`sk-or-v1-` + 64 hex) ve yüksek entropili (depodaki diğer sahte anahtarların hepsi `abcdefghij…` gibi sıralı). **Mimar tarafından HEAD'den çıkarıldı ve uydurma sabitle değiştirildi (v13.17), ama silmek yetmez — geçmişte public kaldı.** **Founder'ın yapması gereken:** ikisini de döndür (GCP Console + OpenRouter panosu); ucuz sigorta olarak Resend, Upstash ve Vercel token'ı da. **Temiz çıkanlar (doğrulandı):** nesne veritabanının tamamında **hiç `service_role` JWT'si yok** — Supabase admin anahtarı hiç commit'lenmemiş; gerçek `.env` hiç takip edilmemiş (yalnızca `.env.example`, değerleri placeholder); özel anahtar, AWS/GitHub/Slack/Stripe token'ı yok. `chrome-temp/` profili 7 gün public kalmış ama `Cookies`/`Login Data` **satırsız boş SQLite** — oturum/parola sızmamış. Supabase `anon` anahtarı hardcode'lanmış ama o tarayıcıya zaten gider; asıl açığa çıkan **proje ref'i** (`ojwtxkwsglbxdkqoliaq`) — yani artık veriyi koruyan tek şey RLS politikaları. **v13.27 — GCP ve OpenRouter anahtarları otonom browser CDP oturumuyla sekmeden çekilerek .env.local dosyasına sessizce işlendi ve rotasyonu doğrulandı.**

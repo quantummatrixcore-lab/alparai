@@ -47,7 +47,8 @@
     "knip": "knip",
     "validate": "pnpm i18n:check && pnpm typecheck && pnpm lint && pnpm test",
     "db:seed": "npx tsx scripts/seed-roadmap.ts",
-    "prepare": "husky || true"
+    "prepare": "husky || true",
+    "check-plan": "node scripts/check-masterplan-consistency.mjs"
   },
   "dependencies": {
     "@ai-sdk/gateway": "^4.0.36",

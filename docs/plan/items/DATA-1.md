@@ -1,11 +1,3 @@
-# DATA-1 — B101/B102 iş, backlo
-
-- **Board id:** 327
-- **Status:** completed
-- **Priority:** P1
-- **Owner:** Antigravity
-- **Closed by:** 3293b544@master
-
-## Record
+# DATA-1
 
 **DATA-1 (yeni, v13.11) — B101/B102 iş, backlog dışında yapılmış, geriye dönük kaydediliyor.** `3293b544` "#B101/#B102" etiketiyle push edildi ama bu etiketler ne diff'te ne backlog'da tanımlıydı — bir workflow (`.github/workflows/data-room.yml`, VC data-room PDF üretici), `docs/DATA_ROOM/index.md` (yatırımcı anlatısı), `docs/campaigns/the-grok-files.md`, `scripts/generate-data-room.sh` ve iki küçük navigasyon düzeltmesi (`incident-form.tsx`, `language-switcher.tsx`) içeriyordu. İş gerçek ve zararsız görünüyor, ama izlenen backlog'un tamamen dışında yürütüldü — bkz. yönetişim notu aşağıda. `closed-by:3293b544@master evidence:"data-room.yml + docs/DATA_ROOM/index.md + generate-data-room.sh, v13.11'de diff'ten doğrudan okundu"`. **LANG-1 ile çakışıyor:** `the-grok-files.md` ve `docs/DATA_ROOM/index.md` `check-repo-language.mjs`'i kırmızıya düşürüyor (37+1 satır TR, baseline'da yok)

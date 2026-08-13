@@ -1,11 +1,3 @@
-# GOV-1 — kapandı (v13.16), ne
-
-- **Board id:** 332
-- **Status:** completed
-- **Priority:** P0
-- **Owner:** **Mimar**
-- **Closed by:** —
-
-## Record
+# GOV-1
 
 **GOV-1 — kapandı (v13.16), negatif testle kanıtlandı.** `master-plan-guard.yml` yeniden yazıldı: mesaj-bayrağı bypass'ı kaldırıldı, artık **işaret VE kimlik** birlikte aranıyor, kimlik karşılaştırması substring yerine tam eşitlik, `pull_request` tetikleyicisi eklendi. **En kritik değişiklik:** `[deploy]` artık kabul edilen bir işaret değil — o Uygulayıcı'nın kendi öneki ve muhafızın durdurması gereken taraf tam olarak o. **Negatif test (5 senaryo, çalıştırıldı):** altı kez içeri giren `[deploy]` + yetkili kimlik → `FAIL(no-marker)`; işaretsiz → `FAIL`; doğru işaret + yetkisiz kimlik → `FAIL(bad-author)`; **eski koddaki substring açığı** (`evil+noreply@anthropic.com.attacker.net`) → `FAIL`; gerçek Mimar commit'i → `PASS`. **Dürüst sınır:** Uygulayıcı Mimar'la aynı git kimliğini kullandığı için, mesajına `[architect]` yazarsa yine geçer. Bunu kalıcı kapatmanın tek yolu ayrı bir git kimliğidir — bu, Founder'a bırakılan açık bir maddedir, muhafız düzeltmesi onsuz da bugünkü fiili ihlal biçimini durdurur. `closed-by:pending-push@master evidence:"5 senaryoluk negatif test; [deploy]+yetkili kimlik artık exit 1"`

@@ -1,11 +1,3 @@
-# PAGE-1 — B201/B203 iş, backlo
-
-- **Board id:** 328
-- **Status:** completed
-- **Priority:** P1
-- **Owner:** Antigravity
-- **Closed by:** a26f09c1@master
-
-## Record
+# PAGE-1
 
 **PAGE-1 (yeni, v13.11) — B201/B203 iş, backlog dışında yapılmış, geriye dönük kaydediliyor.** `a26f09c1` "#B201 (Public Pages)/#B203 (TR/EN Counter Sync)" etiketiyle push edildi, aynı şekilde tanımsız. İçerik: `about/page.tsx` (509 satır, büyük ölçüde sadeleştirme), `pricing/page.tsx` (234 satır), ana sayfa (+31 satır), yeni `case/001/page.tsx` (82 satır, ilk vaka çalışması sayfası), `messages/{en,tr}.json` güncellemeleri. B203'ün (TR/EN sayaç senkronu) diff içinde ayrı bir iz olarak doğrulanamadı — muhtemelen `messages/*.json` + `live-ticker` düzeltmeleriyle (aşağıdaki iki küçük commit) birleşik. `closed-by:a26f09c1@master evidence:"about/pricing/home rewrite + yeni case/001 sayfası, v13.11'de diff'ten doğrudan okundu"`

@@ -1,11 +1,3 @@
-# PNPM-1 — Vercel deploy'u "düz
-
-- **Board id:** 340
-- **Status:** ✅ completed closed-by:549cf472@master
-- **Priority:** P0
-- **Owner:** Antigravity
-- **Closed by:** 549cf472@master
-
-## Record
+# PNPM-1
 
 **PNPM-1 (yeni, v13.26) — Vercel deploy'u "düzeltilmedi", tekrarlanabilirlik kapatılarak susturuldu.** `19ec2bdc` `vercel.json`'a `pnpm install --no-frozen-lockfile` koydu. Bu, **üretim derlemelerinin lockfile'da sabitlenmiş sürümlerden farklı bağımlılıklar çözebilmesi** demektir — yani canlıda çalışan ağaç, CI'da test edilen ağaçtan sessizce ayrışabilir. Kendi doktrininizle çelişiyor: v15.1 §4c "Dependency Unification … prevent drift" diyor, `Security Audit` workflow'u ve `ops/sbom/` envanteri var; tedarik zinciri iddiası olan bir projede üretimde frozen-lockfile kapatmak o iddiayı boşa çıkarır. **Kök neden ölçüldü ve semptom değil:** `package.json`'da **dört ayrı pnpm sürümü** beyan edilmiş — `engines.pnpm: ">=9.0.0"` (satır 24), `packageManager: "pnpm@10.0.0"` (satır 26) ve **`dependencies.pnpm: "^11.20.0"` (satır 79)** — sonuncusu paket yöneticisini uygulamanın çalışma-zamanı bağımlılığı olarak kuruyor, `openai`/`papaparse`/`pg` ile aynı blokta. Buna CI'ın `pnpm/action-setup` ile sabitlediği **9.12.0** ve `pnpm-lock.yaml`'ın **`lockfileVersion: '9.0'`** eklenince çatışma kaçınılmaz. `f609f8a7`'nin `packageManager`'ı 10'a çekmesi ve ardından frozen-lockfile'ın kapatılması, bu çatışmayı çözmüyor, görünmez kılıyor. **Kabul:** (1) `pnpm` `dependencies`'ten kaldırılır — paket yöneticisi uygulama bağımlılığı değildir; (2) `packageManager`, lockfile sürümü (9.0) ve CI pin'i (9.12.0) tek bir sürümde hizalanır; (3) `vercel.json` `--frozen-lockfile`'a döner; (4) kanıt: Vercel derlemesi frozen-lockfile ile yeşil geçer

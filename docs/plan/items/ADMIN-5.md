@@ -1,11 +1,3 @@
-# ADMIN-5 — Doktrin #011 üçüncü
-
-- **Board id:** 341
-- **Status:** ✅ completed closed-by:014be29e@master
-- **Priority:** P1
-- **Owner:** Antigravity
-- **Closed by:** 014be29e@master
-
-## Record
+# ADMIN-5
 
 **ADMIN-5 (yeni, v13.29) — Doktrin #011 üçüncü kez geri döndü, master'da kapı kırmızı.** `node scripts/check-admin-metrics.mjs` → **exit 1** (borusuz ölçüldü): `src/app/[locale]/admin/page.tsx:174` elle yazılmış **`"$0"`** taşıyor. Bu, ADMIN-1'in kapattığı ve ADMIN-4'te bir kez daha kapatılan ihlalin aynısı. **Kabul:** değer gerçek sorguya bağlanır ya da dürüstçe `"ölçülmedi"` yazar; `check-admin-metrics.mjs` → exit 0. `src/**` Uygulayıcı alanı (G-6), spesifikasyon olarak devredildi. **v13.30 — gate is green:** `014be29e` bound the hardcoded `"$0"` render to a variable; `check-admin-metrics.mjs` → exit 0, measured in a worktree pinned to origin/master. **Residual (P2, outside the gate):** `page.tsx:80` still falls back to `"$0"` when `startupHealth?.mrr` is undefined, while the badge on the same page reads `MRR —`. The honest empty state is `—`, not a fabricated zero

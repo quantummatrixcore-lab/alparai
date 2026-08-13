@@ -33,6 +33,7 @@ export const RATE_LIMIT_KEYS = {
   vertex_scout: "ratelimit:vertex_scout",
   unsubscribe_attempt: "ratelimit:unsubscribe_attempt",
   incident_submission_fp: "ratelimit:incident_submission_fp",
+  admin_gazi_chat: "ratelimit:admin_gazi_chat",
 } as const;
 
 let _redis: Redis | null = null;
@@ -224,6 +225,12 @@ function getLimiters(): Record<string, Ratelimit> {
     [RATE_LIMIT_KEYS.unsubscribe_attempt]: new Ratelimit({
       redis: _redis,
       limiter: Ratelimit.slidingWindow(5, "1 d"),
+      analytics: true,
+      prefix: "alpar",
+    }),
+    [RATE_LIMIT_KEYS.admin_gazi_chat]: new Ratelimit({
+      redis: _redis,
+      limiter: Ratelimit.slidingWindow(20, "1 h"),
       analytics: true,
       prefix: "alpar",
     }),

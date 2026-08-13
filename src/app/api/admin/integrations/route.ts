@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 
+import { getCurrentUser } from "@/lib/auth/session";
 import { logger } from "@/lib/utils/logger";
 import { INTEGRATION_SERVICES, getServiceById } from "@/lib/integrations/registry";
 import type {
@@ -287,6 +288,10 @@ async function searchAlternatives(serviceId: string): Promise<IntegrationAlterna
 }
 
 export async function GET() {
+  const user = await getCurrentUser();
+  if (!user || (user.role !== "admin" && user.role !== "ceo")) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
   try {
     const allCostsData = (await fetchAllCosts()) || [];
     const altCache = new Map<string, Awaited<ReturnType<typeof searchAlternatives>>>();

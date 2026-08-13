@@ -1,8 +1,13 @@
 import { NextResponse } from "next/server";
+import { getCurrentUser } from "@/lib/auth/session";
 import { getCostsData } from "@/lib/services/costs";
 import { logger } from "@/lib/utils/logger";
 
 export async function GET() {
+  const user = await getCurrentUser();
+  if (!user || (user.role !== "admin" && user.role !== "ceo")) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
   try {
     const data = await getCostsData();
     return NextResponse.json(data);

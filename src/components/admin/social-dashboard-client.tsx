@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useState, useTransition, useMemo } from "react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import {
   LineChart,
@@ -757,11 +758,12 @@ export function SocialDashboardClient({
                         </div>
 
                         {post.image_url && (
-                          <div className="h-36 w-full shrink-0 overflow-hidden rounded-lg border border-white/10 md:w-36">
-                            <img
+                          <div className="relative h-36 w-full shrink-0 overflow-hidden rounded-lg border border-white/10 md:w-36">
+                            <Image
                               src={post.image_url}
                               alt={post.title}
-                              className="h-full w-full object-cover"
+                              fill
+                              className="object-cover"
                             />
                           </div>
                         )}
@@ -882,11 +884,12 @@ export function SocialDashboardClient({
                             {draft.content}
                           </p>
                           {draft.media_url && (
-                            <div className="mt-3 max-h-[150px] overflow-hidden rounded-lg border border-white/10">
-                              <img
+                            <div className="relative mt-3 h-[150px] max-h-[150px] w-full overflow-hidden rounded-lg border border-white/10">
+                              <Image
                                 src={draft.media_url}
                                 alt="Draft attachment"
-                                className="h-full w-full object-cover"
+                                fill
+                                className="object-cover"
                               />
                             </div>
                           )}
@@ -1697,10 +1700,11 @@ export function SocialDashboardClient({
                 )}
                 {formImageUrl ? (
                   <div className="border-border-subtle relative mt-2 aspect-square max-w-[120px] overflow-hidden rounded-xl border">
-                    <img
+                    <Image
                       src={formImageUrl}
                       alt="Generated Asset"
-                      className="h-full w-full object-cover"
+                      fill
+                      className="object-cover"
                     />
                     <button
                       type="button"

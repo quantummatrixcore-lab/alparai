@@ -22,6 +22,9 @@ const LiveStats = dynamicImport(() =>
 const WhyItMatters = dynamicImport(() =>
   import("@/components/marketing/why-it-matters").then((mod) => mod.WhyItMatters),
 );
+const FounderStory = dynamicImport(() =>
+  import("@/components/marketing/founder-story").then((mod) => mod.FounderStory),
+);
 const HowItWorks = dynamicImport(() =>
   import("@/components/marketing/how-it-works").then((mod) => mod.HowItWorks),
 );
@@ -336,6 +339,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </Suspense>
 
       <WhyItMatters />
+
+      <FounderStory />
 
       <HowItWorks />
 

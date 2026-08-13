@@ -1,5 +1,6 @@
 import { createServerClient } from "@/lib/supabase/server";
 import { getTranslations } from "next-intl/server";
+import Image from "next/image";
 
 interface CommitteeMember {
   id: string;
@@ -60,9 +61,11 @@ export default async function MethodologyCommitteePage({
               >
                 <div className="flex items-center space-x-4">
                   {member.avatar_url ? (
-                    <img
+                    <Image
                       src={member.avatar_url}
                       alt={member.name}
+                      width={64}
+                      height={64}
                       className="border-border-primary h-16 w-16 rounded-full border object-cover"
                     />
                   ) : (

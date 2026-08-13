@@ -172,7 +172,7 @@ export function ImportQueueClient({ initialIncidents, locale: _locale }: ImportQ
                   }}
                   itemStyle={{ fontSize: "12px", color: "#F3F4F6" }}
                   labelStyle={{ display: "none" }}
-                  formatter={(value: number, name: string) => [`${value} incidents`, name]}
+                  formatter={(value: unknown, name: unknown) => [`${value} incidents`, String(name ?? "")]}
                 />
               </PieChart>
             </ResponsiveContainer>

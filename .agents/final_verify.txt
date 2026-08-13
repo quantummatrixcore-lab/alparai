@@ -1,0 +1,30 @@
+DE (Deutsch): 12/231 EN-identical home keys
+  common.details = "Details"
+  common.github = "GitHub"
+  common.linkedin = "LinkedIn"
+  common.live = "Live"
+  common.optional = "Optional"
+  common.switchToEnglish = "EN"
+  common.switchToTurkish = "TR"
+  footer.links.blog = "Blog"
+  hero.trust_1_title = "Open Source"
+  nav.blog = "Blog"
+  nav.dashboard = "Dashboard"
+  nav.feed = "Feed"
+
+FR (Francais): 8/231 EN-identical home keys
+  common.github = "GitHub"
+  common.linkedin = "LinkedIn"
+  common.switchToEnglish = "EN"
+  common.switchToTurkish = "TR"
+  footer.links.blog = "Blog"
+  footer.sections.contact = "Contact"
+  nav.blog = "Blog"
+  nav.suggestions = "Suggestions"
+
+RU (Russkiy): 5/231 EN-identical home keys
+  common.github = "GitHub"
+  common.linkedin = "LinkedIn"
+  common.switchToEnglish = "EN"
+  common.switchToTurkish = "TR"
+  hero.why_stat_2_display = "96%"

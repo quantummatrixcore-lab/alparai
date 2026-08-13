@@ -1,0 +1,19 @@
+{
+  "id": "ENG-08",
+  "key": "SENTINEL",
+  "name": "SENTINEL — Security & Guardrails",
+  "description": "Safety & Content Filtering: enforces constitutional AI guardrails, prompt injection detection, PII redaction, and multi-layer abuse mitigation.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "content_filtering",
+    "prompt_injection_detection",
+    "pii_redaction",
+    "abuse_mitigation",
+    "constitutional_ai",
+    "rate_limit_enforcement",
+    "threat_classification"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

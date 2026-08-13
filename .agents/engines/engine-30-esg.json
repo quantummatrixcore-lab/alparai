@@ -1,0 +1,19 @@
+{
+  "id": "ENG-30",
+  "key": "ESG",
+  "name": "ESG — Sustainability & Impact Engine",
+  "description": "Sustainability & Impact Reporting: tracks ESG KPIs, generates compliance reports, and scores initiatives against UN SDG frameworks.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "esg_kpi_tracking",
+    "compliance_reporting",
+    "sdg_scoring",
+    "carbon_footprint_modelling",
+    "social_impact_measurement",
+    "governance_benchmarking",
+    "stakeholder_reporting"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

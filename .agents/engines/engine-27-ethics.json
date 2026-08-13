@@ -1,0 +1,19 @@
+{
+  "id": "ENG-27",
+  "key": "ETHICS",
+  "name": "ETHICS — Alignment & Governance Engine",
+  "description": "Alignment Audit & Governance Guardrails: enforces ethical policies, audits agent decisions for value alignment, and ensures regulatory compliance.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "alignment_auditing",
+    "governance_guardrails",
+    "ethical_policy_enforcement",
+    "regulatory_compliance",
+    "bias_detection",
+    "fairness_scoring",
+    "decision_explainability"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

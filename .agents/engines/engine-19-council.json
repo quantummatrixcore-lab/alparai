@@ -1,0 +1,19 @@
+{
+  "id": "ENG-19",
+  "key": "COUNCIL",
+  "name": "COUNCIL — Consensus & Governance",
+  "description": "Agent Voting & Agreement: orchestrates multi-agent deliberation, weighted voting, and Byzantine-fault-tolerant consensus for critical decisions.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "weighted_voting",
+    "bft_consensus",
+    "deliberation_orchestration",
+    "veto_policies",
+    "audit_logging",
+    "quorum_management",
+    "dissent_tracking"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

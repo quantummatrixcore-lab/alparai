@@ -1,0 +1,19 @@
+{
+  "id": "ENG-24",
+  "key": "MCPHUB",
+  "name": "MCP-HUB — Model Context Protocol Hub",
+  "description": "MCP Integration Layer: brokers tool calls between agents and external MCP servers, handles capability negotiation and schema validation.",
+  "version": "3.3.0",
+  "status": "degraded",
+  "capabilities": [
+    "mcp_protocol_brokering",
+    "tool_call_routing",
+    "capability_negotiation",
+    "schema_validation",
+    "server_registry",
+    "streaming_tool_results",
+    "multi_server_fanout"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

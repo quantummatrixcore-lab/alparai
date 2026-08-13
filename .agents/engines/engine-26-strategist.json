@@ -1,0 +1,19 @@
+{
+  "id": "ENG-26",
+  "key": "STRATEGIST",
+  "name": "STRATEGIST — Strategic Foresight Engine",
+  "description": "Strategic Foresight & Market Scenario Analysis: models competitive landscapes, simulates multi-horizon scenarios, and surfaces high-conviction strategic bets.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "market_scenario_modelling",
+    "competitive_landscape_analysis",
+    "multi_horizon_forecasting",
+    "strategic_bet_ranking",
+    "swot_synthesis",
+    "porter_five_forces",
+    "blue_ocean_mapping"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

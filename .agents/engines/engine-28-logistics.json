@@ -1,0 +1,19 @@
+{
+  "id": "ENG-28",
+  "key": "LOGISTICS",
+  "name": "LOGISTICS — Neural Asset Logistics",
+  "description": "Supply Chain & Neural Asset Logistics: optimises digital and physical asset flows, models supply chain risks, and automates procurement decisions.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "supply_chain_optimisation",
+    "asset_flow_modelling",
+    "risk_simulation",
+    "procurement_automation",
+    "inventory_forecasting",
+    "vendor_scoring",
+    "logistics_graph_routing"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

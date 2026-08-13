@@ -1,0 +1,19 @@
+{
+  "id": "ENG-16",
+  "key": "HEPHAESTUS",
+  "name": "HEPHAESTUS — Code Forge",
+  "description": "Automated Coding & Repair: generates, reviews, and auto-fixes code via LLM-driven synthesis, static analysis, and test-guided iteration.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "code_generation",
+    "auto_repair",
+    "static_analysis",
+    "test_driven_iteration",
+    "pr_review",
+    "dependency_analysis",
+    "security_scanning"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

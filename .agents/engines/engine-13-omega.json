@@ -1,0 +1,19 @@
+{
+  "id": "ENG-13",
+  "key": "OMEGA",
+  "name": "OMEGA — Final Validation Layer",
+  "description": "Quality Assurance & Output Verification: applies multi-criteria scoring, fact-grounding checks, and format validation before response emission.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "output_scoring",
+    "fact_grounding",
+    "format_validation",
+    "hallucination_detection",
+    "multi_criteria_ranking",
+    "response_sanitisation",
+    "citation_verification"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

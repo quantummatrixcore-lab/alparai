@@ -1,0 +1,19 @@
+{
+  "id": "ENG-32",
+  "key": "VENTURE",
+  "name": "VENTURE — Portfolio Intelligence Engine",
+  "description": "Venture Capital & Portfolio Optimisation: evaluates investment opportunities, models portfolio risk, and generates VC-grade due diligence reports.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "investment_evaluation",
+    "portfolio_risk_modelling",
+    "due_diligence_generation",
+    "valuation_modelling",
+    "market_sizing",
+    "founder_signal_scoring",
+    "exit_scenario_simulation"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

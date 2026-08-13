@@ -1,0 +1,19 @@
+{
+  "id": "ENG-07",
+  "key": "TARTARUS",
+  "name": "TARTARUS — Deep Memory Vault",
+  "description": "Vector Search & Cold Storage: manages long-horizon episodic memory via pgvector embeddings, tiered retrieval, and memory compression.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "pgvector_search",
+    "episodic_memory",
+    "cold_storage_tiering",
+    "embedding_indexing",
+    "semantic_recall",
+    "memory_compression",
+    "namespace_isolation"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

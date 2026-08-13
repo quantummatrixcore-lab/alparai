@@ -1,0 +1,18 @@
+{
+  "id": "ENG-02",
+  "key": "RPE",
+  "name": "RPE — Reward Policy Engine",
+  "description": "Agent Incentive & IQ Mutation: drives continuous agent improvement via reward shaping, policy gradients, and adaptive scoring.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "reward_shaping",
+    "policy_gradient",
+    "iq_mutation",
+    "agent_scoring",
+    "performance_attribution",
+    "reinforcement_loop"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

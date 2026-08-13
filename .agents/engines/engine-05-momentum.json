@@ -1,0 +1,18 @@
+{
+  "id": "ENG-05",
+  "key": "MOMENTUM",
+  "name": "MOMENTUM — Velocity & Execution Engine",
+  "description": "Task Throughput Optimizer: maximises pipeline velocity via adaptive concurrency, backpressure control, and work-stealing queues.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "adaptive_concurrency",
+    "backpressure_control",
+    "work_stealing",
+    "queue_prioritisation",
+    "throughput_analytics",
+    "burst_handling"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

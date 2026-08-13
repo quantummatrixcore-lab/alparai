@@ -51,7 +51,9 @@
     "db:migrate": "supabase migration up",
     "db:seed": "npx tsx scripts/seed-roadmap.ts",
     "prepare": "husky || true",
-    "check-plan": "node scripts/check-masterplan-consistency.mjs"
+    "check-plan": "node scripts/check-masterplan-consistency.mjs",
+    "agent:index": "node scripts/graphify-agent-indexer.mjs",
+    "hooks:install": "bash scripts/install-hooks.sh"
   },
   "dependencies": {
     "@ai-sdk/gateway": "^4.0.36",

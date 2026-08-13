@@ -1,0 +1,17 @@
+{
+  "id": "ENG-04",
+  "key": "CORE",
+  "name": "CORE — Sovereign Infrastructure Core",
+  "description": "Imperial Infrastructure Core: bootstraps all subsystems, manages shared application state, and enforces lifecycle policies.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "state_management",
+    "subsystem_bootstrap",
+    "lifecycle_management",
+    "config_resolution",
+    "dependency_injection"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

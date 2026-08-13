@@ -1,0 +1,19 @@
+{
+  "id": "ENG-11",
+  "key": "PROMETHEUS",
+  "name": "PROMETHEUS — Observability Engine",
+  "description": "System Telemetry & Monitoring: scrapes metrics, exports to Prometheus/Grafana, and triggers alerting pipelines on SLO breaches.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "metrics_scraping",
+    "prometheus_export",
+    "distributed_tracing",
+    "alert_routing",
+    "slo_tracking",
+    "anomaly_detection",
+    "dashboard_integration"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

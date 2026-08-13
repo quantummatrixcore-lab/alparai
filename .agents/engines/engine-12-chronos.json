@@ -1,0 +1,19 @@
+{
+  "id": "ENG-12",
+  "key": "CHRONOS",
+  "name": "CHRONOS — Temporal Scheduler",
+  "description": "Task Scheduling & Heartbeats: manages cron jobs, delayed tasks, timeout enforcement, and distributed heartbeat coordination.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "cron_scheduling",
+    "delayed_task_dispatch",
+    "timeout_enforcement",
+    "heartbeat_coordination",
+    "temporal_triggers",
+    "retry_backoff",
+    "clock_synchronisation"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

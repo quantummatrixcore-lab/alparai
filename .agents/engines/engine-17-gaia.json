@@ -1,0 +1,19 @@
+{
+  "id": "ENG-17",
+  "key": "GAIA",
+  "name": "GAIA — Infrastructure Interface",
+  "description": "Hardware & Cloud Interface: monitors host resources, manages ephemeral cloud assets, and exposes a unified infrastructure abstraction layer.",
+  "version": "3.3.0",
+  "status": "healthy",
+  "capabilities": [
+    "host_resource_monitoring",
+    "cloud_asset_management",
+    "infrastructure_abstraction",
+    "auto_scaling_signals",
+    "disk_io_monitoring",
+    "network_telemetry",
+    "container_lifecycle"
+  ],
+  "registered_at": "2026-05-13T21:44:17.943409300+00:00",
+  "uptime_seconds": 578150
+}

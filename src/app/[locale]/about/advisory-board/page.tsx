@@ -1,6 +1,6 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Container, Section } from "@/components/ui/layout";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Users,
   Scale,
@@ -161,6 +161,32 @@ export default async function AdvisoryBoardPage({
                         {isTr ? member.bio_tr : member.bio_en}
                       </p>
                     </CardContent>
+                    {(member.website_url || member.press_url) && (
+                      <CardFooter className="gap-4 pt-4">
+                        {member.website_url && (
+                          <a
+                            href={member.website_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-brand-400 hover:text-brand-300 inline-flex items-center gap-1 text-xs font-semibold tracking-wide uppercase transition-colors"
+                          >
+                            {t("advisoryBoardWebsiteLink")}
+                            <ArrowUpRight className="h-3 w-3" />
+                          </a>
+                        )}
+                        {member.press_url && (
+                          <a
+                            href={member.press_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-brand-400 hover:text-brand-300 inline-flex items-center gap-1 text-xs font-semibold tracking-wide uppercase transition-colors"
+                          >
+                            {t("advisoryBoardMediaOutletLink")}
+                            <ArrowUpRight className="h-3 w-3" />
+                          </a>
+                        )}
+                      </CardFooter>
+                    )}
                   </Card>
                 ))}
               </div>

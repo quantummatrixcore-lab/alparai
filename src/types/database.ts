@@ -179,11 +179,13 @@ export type Database = {
           institution_tr: string | null
           is_active: boolean
           name: string
+          press_url: string | null
           term_end: string | null
           term_start: string | null
           title_en: string
           title_tr: string
           updated_at: string
+          website_url: string | null
         }
         Insert: {
           avatar_url?: string | null
@@ -196,11 +198,13 @@ export type Database = {
           institution_tr?: string | null
           is_active?: boolean
           name: string
+          press_url?: string | null
           term_end?: string | null
           term_start?: string | null
           title_en: string
           title_tr: string
           updated_at?: string
+          website_url?: string | null
         }
         Update: {
           avatar_url?: string | null
@@ -213,11 +217,13 @@ export type Database = {
           institution_tr?: string | null
           is_active?: boolean
           name?: string
+          press_url?: string | null
           term_end?: string | null
           term_start?: string | null
           title_en?: string
           title_tr?: string
           updated_at?: string
+          website_url?: string | null
         }
         Relationships: []
       }

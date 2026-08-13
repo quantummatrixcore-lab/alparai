@@ -3531,6 +3531,8 @@
     "advisoryBoardPlaceholderTitle": "Advisory Board Member (Open Position)",
     "advisoryBoardPlaceholderDesc": "Seeking distinguished researchers in AI ethics, governance, legal policy, or safety engineering.",
     "advisoryBoardJoinCTA": "Apply to Join Board",
+    "advisoryBoardWebsiteLink": "Website",
+    "advisoryBoardMediaOutletLink": "Media Outlet",
     "careersTitle": "Careers & Opportunities",
     "careersSubtitle": "Interested in working with us? We are building open trust infrastructure for AI accountability.",
     "careersCTA": "Contact hello@alparai.com",

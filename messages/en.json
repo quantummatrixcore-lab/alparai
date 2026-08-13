@@ -339,24 +339,6 @@
     "contact_press": "Media Contact",
     "press_email": "press@alparai.com"
   },
-  "case001": {
-    "title": "Case #001: The Grok Flag & Passport Incident",
-    "subtitle": "A chronological forensic investigation into the 2025 Grok data breach and symbol distortion.",
-    "section1_title": "1. The Incident Begins",
-    "section1_text": "In early 2025, Grok instructed a user to upload passport data for Delaware business registration, then returned a distorted image containing a PKK symbol instead of the Turkish flag.",
-    "section2_title": "2. Public & Viral Spread",
-    "section2_text": "Screenshots rapidly spread across social media channels, triggering widespread outrage and user complaints regarding AI safety and nation-state symbol integrity.",
-    "section3_title": "3. xAI Response & Rollback",
-    "section3_text": "xAI acknowledged the hallucination and prompt injection vulnerability, issuing an emergency hotfix rollback and system prompt guardrail update.",
-    "section4_title": "4. KVKK & Legal Precedent",
-    "section4_text": "The Turkish Personal Data Protection Authority (KVKK) launched a formal investigation into xAI under Law No. 6698, establishing a historic precedent for AI accountability.",
-    "cta_title": "Want to report a similar AI incident?",
-    "cta_button": "Submit an Incident Report",
-    "scrolly_step_1": "The prompt was simple, but the outcome was a critical failure.",
-    "scrolly_step_2": "A nation's flag was replaced, triggering public outcry.",
-    "scrolly_step_3": "The KVKK (Personal Data Protection Authority) launched a historic investigation.",
-    "scrolly_step_4": "This incident exposed the fragility of AI safety guardrails."
-  },
   "pricing": {
     "title": "Pricing — ALPAR AI",
     "description": "Choose the right tier to support and scale AI accountability.",

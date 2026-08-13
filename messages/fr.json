@@ -339,24 +339,6 @@
     "contact_press": "Contact Médias",
     "press_email": "press@alparai.com"
   },
-  "case001": {
-    "title": "Cas #001 : L'incident du drapeau et du passeport Grok",
-    "subtitle": "Une enquête forensique chronologique sur la violation de données Grok de 2025 et la distorsion de symboles.",
-    "section1_title": "1. Début de l'incident",
-    "section1_text": "Début 2025, Grok a demandé à un utilisateur de télécharger des données de passeport pour l'enregistrement d'une entreprise au Delaware, puis a renvoyé une image déformée contenant un symbole du PKK au lieu du drapeau turc.",
-    "section2_title": "2. Diffusion publique et virale",
-    "section2_text": "Les captures d'écran se sont rapidement propagées sur les réseaux sociaux, déclenchant une indignation généralisée et des plaintes d'utilisateurs concernant la sécurité de l'IA et l'intégrité des symboles nationaux.",
-    "section3_title": "3. Réponse et retour en arrière de xAI",
-    "section3_text": "xAI a reconnu l'hallucination et la vulnérabilité à l'injection d'invite, publiant un correctif d'urgence et une mise à jour des garde-fous d'invite système.",
-    "section4_title": "4. KVKK et précédent juridique",
-    "section4_text": "L'Autorité turque de protection des données personnelles (KVKK) a lancé une enquête formelle sur xAI en vertu de la loi n° 6698, établissant un précédent historique pour la Responsabilité IA.",
-    "cta_title": "Vous souhaitez signaler un incident d'IA similaire ?",
-    "cta_button": "Soumettre un rapport d'incident",
-    "scrolly_step_1": "The prompt was simple, but the outcome was a critical failure.",
-    "scrolly_step_2": "A nation's flag was replaced, triggering public outcry.",
-    "scrolly_step_3": "The KVKK (Personal Data Protection Authority) launched a historic investigation.",
-    "scrolly_step_4": "This incident exposed the fragility of AI safety guardrails."
-  },
   "pricing": {
     "title": "Transparente Preisgestaltung",
     "description": "Choisissez le niveau adapté pour soutenir et étendre la Responsabilité IA.",

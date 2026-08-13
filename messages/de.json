@@ -339,24 +339,6 @@
     "contact_press": "Pressekontakt",
     "press_email": "presse@alparai.com"
   },
-  "case001": {
-    "title": "Fall #001: Der Grok-Flaggen- und Reisepass-Vorfall",
-    "subtitle": "Eine chronologische forensische Untersuchung des Grok-Datenschutzvorfalls 2025 und der Symbolverzerrung.",
-    "section1_title": "1. Der Vorfall beginnt",
-    "section1_text": "Anfang 2025 wies Grok einen Benutzer an, Reisepassdaten für die Delaware-Geschäftsanmeldung hochzuladen und gab dann ein verzerrtes Bild mit einem PKK-Symbol anstelle der türkischen Flagge zurück.",
-    "section2_title": "2. Öffentliche & virale Verbreitung",
-    "section2_text": "Screenshots verbreiteten sich schnell über soziale Medienkanäle und lösten weit verbreitete Empörung und Benutzerbeschwerden bezüglich KI-Sicherheit und Symbolintegrität von Nationen aus.",
-    "section3_title": "3. xAI-Antwort & Rollback",
-    "section3_text": "xAI bestätigte die Halluzination und die Prompt-Injektionsverwundbarkeit und veröffentlichte ein Notfall-Hotfix-Rollback und ein System-Prompt-Sicherheitsupdate.",
-    "section4_title": "4. KVKK & Rechtspräzedenzfall",
-    "section4_text": "Die türkische Behörde für den Schutz personenbezogener Daten (KVKK) leitete eine formelle Untersuchung gegen xAI nach dem Gesetz Nr. 6698 ein und schuf einen historischen Präzedenzfall für KI-Verantwortlichkeit.",
-    "cta_title": "Möchten Sie einen ähnlichen KI-Vorfall melden?",
-    "cta_button": "Vorfall melden",
-    "scrolly_step_1": "The prompt was simple, but the outcome was a critical failure.",
-    "scrolly_step_2": "A nation's flag was replaced, triggering public outcry.",
-    "scrolly_step_3": "The KVKK (Personal Data Protection Authority) launched a historic investigation.",
-    "scrolly_step_4": "This incident exposed the fragility of AI safety guardrails."
-  },
   "pricing": {
     "title": "Transparente Preisgestaltung",
     "description": "Wählen Sie die richtige Ebene, um KI-Verantwortlichkeit zu unterstützen und zu skalieren.",

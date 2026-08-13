@@ -3557,6 +3557,19 @@
     "mou_title": "Academic Partnerships",
     "mou_desc": "ALPAR AI operates in partnership with leading global institutions, including memorandums of understanding (MOU) with Boğaziçi University and TU Berlin."
   },
+  "team": {
+    "meta_title": "Team — ALPAR AI",
+    "title": "Team & Transparency",
+    "subtitle": "ALPAR AI is built by an independent team dedicated to AI accountability.",
+    "mission_title": "Mission",
+    "mission_desc": "Building independent audit, transparency, and trust infrastructure for black-box AI systems.",
+    "privacy_title": "Privacy & Security",
+    "privacy_desc": "AGPL-3.0 licensed open-source project. All data processing compliance procedures are fully documented and auditable.",
+    "opensource_title": "Open Source",
+    "opensource_desc": "The codebase is transparent; CONTRIBUTING.md and community guidelines are available for contributors.",
+    "advisory_title": "Advisory Board",
+    "advisory_desc": "Industry advisory board positions are open. Interested experts can reach out via hello@alparai.com."
+  },
   "legal": {
     "termsTitle": "Terms of Service",
     "cookiesTitle": "Cookie Policy",

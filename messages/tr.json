@@ -3559,6 +3559,19 @@
     "mou_title": "Akademik Ortaklıklar",
     "mou_desc": "ALPAR AI, Boğaziçi Üniversitesi ve TU Berlin ile imzalanan mutabakat zaptları (MOU) dahil olmak üzere önde gelen küresel kurumlarla ortaklık içinde faaliyet göstermektedir."
   },
+  "team": {
+    "meta_title": "Ekip — ALPAR AI",
+    "title": "Ekip & Şeffaflık",
+    "subtitle": "ALPAR AI, yapay zeka hesap verebilirliği alanında çalışan bağımsız bir ekip tarafından inşa edilmektedir.",
+    "mission_title": "Misyon",
+    "mission_desc": "Kara-kutu yapay zeka sistemleri için bağımsız denetim, şeffaflık ve güven altyapısı kurmak.",
+    "privacy_title": "Gizlilik & Güvenlik",
+    "privacy_desc": "AGPL-3.0 lisanslı açık kaynak proje. Tüm veri işleme süreçleri KVKK uyumlu ve denetlenebilir şekilde belgelenmiştir.",
+    "opensource_title": "Açık Kaynak",
+    "opensource_desc": "Kod tabanı şeffaf; katkıda bulunmak isteyenler için CONTRIBUTING.md ve topluluk kılavuzları mevcuttur.",
+    "advisory_title": "Danışma Kurulu",
+    "advisory_desc": "Sektör danışma kurulu pozisyonları açıktır. İlgilenen uzmanlar hello@alparai.com adresinden iletişime geçebilir."
+  },
   "legal": {
     "termsTitle": "Kullanım Koşulları",
     "cookiesTitle": "Çerez Politikası",

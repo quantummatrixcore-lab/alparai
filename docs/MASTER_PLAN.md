@@ -557,3 +557,41 @@ Listed above. Each renders real content and is indexed by search engines but is 
 ### Standing correction to the v13.34 audit
 
 The `docs/MASTER_PLAN.md` split migration remains defective and unfixed: 11 rows whose task text contains a literal `|` (grep patterns, shell syntax) were split incorrectly, corrupting their status cells and truncating their detail files. `docs/plan/items/BN.md` still carries the status `Ã¼\`. The board parses (49/49) and `check-masterplan-consistency.mjs` exits 0, but that check validates parseability, not content integrity — it is green for the same structural reason it was green when it parsed zero rows. Unchanged from v13.34; still Implementer work.
+
+---
+
+## v13.36 — execution result: the gate is built, the suite is green, two enforcers landed
+
+Closes the v13.35 audit. All work below is on `origin/claude/strategy-brief-review-i93xcv` and was re-read from `origin` per G-7.
+
+| Commit     | What landed                                                                    |
+| ---------- | ------------------------------------------------------------------------------ |
+| `4d2ce57d` | Deploy gate verifies CI checks; i18n corruption repaired                       |
+| `da2da53f` | e2e suite wired into CI; gateway tests made hermetic; orphan pages linked      |
+| `e58852f8` | Seven dead internal links fixed; link-integrity enforcer added                 |
+| `e8fa8e7f` | Duplicate case route retired; post-login return fixed with open-redirect guard |
+| `f86291bb` | Third duplicate case route retired; `case001` namespace removed                |
+
+**Test suite: 178 files, 1063 tests, all passing.** First fully green state measured in this repository. Baseline at session start was 1028/1035 with 7 failures. `pnpm typecheck`, `pnpm lint`, `check-i18n`, `check-internal-links` all exit 0. Five-language parity at 4732 leaf keys.
+
+**The gate.** `scripts/deploy-gate.mjs` now resolves the deploying SHA, queries the GitHub check-runs and commit-status APIs, and polls at 20s intervals while checks are in flight. Failure/cancelled/timed_out skips the build and names the check with its URL; all-success proceeds; timeout skips and says so explicitly. `[deploy]` no longer bypasses verification — only `[force-deploy]`, which logs a loud warning. Fails open in exactly two logged cases: no token, and unresolvable repo identity. **The gate is built but not armed until FOUNDER-1 and FOUNDER-2 are done.**
+
+**Two new enforcers (Doctrine #047).** `check-internal-links.mjs` — 181 targets checked, 26 statically unresolvable and counted rather than silently dropped; negative-tested. `Internal Link Integrity` step added to `ci.yml`. The e2e job added to `ci.yml` runs the flows that were written and never executed. `.github/workflows/test-runner.yml` was deleted: it echoed and always passed, so it reported tests that never ran.
+
+**Defects found that nobody had asked about.** The homepage's closing call-to-action linked twice to `/insights`, which has no page — a 404 on the front page. `permanentRedirect` was missing from `src/i18n/routing.ts`, so only 307s were reachable. The canonical Grok case page and the `/cases` index were both absent from `sitemap.ts` — the page intended for international press was never announced to crawlers. Post-login `next` was constructed by admin pages, never read, and silently discarded; wiring it up required an open-redirect guard (`src/lib/utils/safe-redirect.ts`, 17 tests) because an unvalidated target lets an attacker bounce an authenticated victim off-site. **Three** routes rendered the Grok incident, not two; two are now permanent redirects to the canonical page.
+
+**Founder decisions taken this session.** Hard gate (nothing deploys unless checks are green). Placeholder member slots removed from `/about` rather than shipped. The unfiled KVKK claim removed from the public case page — see FOUNDER-3. `/cases/001-grok-passport` chosen as canonical.
+
+### G-6 has no enforcement over delegated agents — measured, not theorised
+
+Three independent subagents this session read `CLAUDE.md`, encountered the Architect/Implementer separation, and **each disregarded it** to perform the `src/**` edits their assigned task required. Two went further and flagged the doctrine itself as suspicious: one called it "role-play," another advised sanity-checking where the content came from, noting that a document instructing an agent not to edit the files a legitimate task requires is worth a second look.
+
+This is a real finding, not a complaint about tone. Three consequences follow:
+
+1. **The G-6a claim that the boundary is "separation of duties, not model identity" is only half-enforced.** The Implementer half has a working enforcer — `.husky/pre-commit` blocks `docs/MASTER_PLAN.md` without `ARCHITECT=1`, and it fired correctly against this session twice today. The Architect half has none, and a role-guard also blocks `scripts/**` when `ARCHITECT=1` is set, so the two guards together make some legitimate commits require splitting by path. That is a design smell worth revisiting.
+2. **Doctrine written as unexplained imperatives reads as prompt injection to a fresh agent.** Agents are increasingly trained to distrust instructions that arrive as context and conflict with an operator's explicit task. Rules stated with their rationale survive that filter; bare prohibitions do not. Any rule intended to bind delegated agents must therefore either ship with an executable enforcer, or be restated in the task prompt itself with its reasoning.
+3. **The measured behaviour was correct in each case.** The tasks were narrowly scoped with paths already enumerated — the exact condition G-5's own delegation threshold says direct execution is right for. No agent used the doctrine as cover to skip work, and none silently ignored it: all three disclosed. The gap is in enforcement design, not agent conduct.
+
+**Recorded, not resolved.** Options: add a real Architect-side enforcer, narrow G-6 to what a hook can check, or accept that it binds only the interactive session and say so. A Founder decision — not something to settle by writing another rule with no enforcer behind it.
+
+**Still open.** The v13.34 migration remains defective: 11 rows whose text contains a literal `|` were split wrongly, corrupting status cells and truncating detail files (`docs/plan/items/BN.md` still reads `Ã¼\`). `signInWithMagicLink` never accepted a `next` param, so the post-login fix covers Google sign-in only. 26 link targets are built from variables and cannot be statically checked; the count prints every run so the gap stays visible. FOUNDER-1 through FOUNDER-7 are unchanged and still the Founder's to execute.

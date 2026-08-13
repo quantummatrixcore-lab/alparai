@@ -14,16 +14,18 @@ export function ScrollToTop() {
   if (!visible) return null;
   return (
     <button
+      type="button"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       className={cn(
         "fixed right-6 bottom-6 z-40 flex h-10 w-10 items-center justify-center rounded-full",
         "bg-bg-elevated border-border-strong text-fg-primary border",
         "hover:border-brand-500 hover:text-brand-400",
+        "focus-visible:ring-brand-500 focus-visible:ring-offset-bg-primary focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
         "shadow-xl transition-all",
       )}
       aria-label="Scroll to top"
     >
-      <ChevronDown className="h-5 w-5 rotate-180" />
+      <ChevronDown className="h-5 w-5 rotate-180" aria-hidden="true" />
     </button>
   );
 }

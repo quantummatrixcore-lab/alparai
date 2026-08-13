@@ -20,12 +20,19 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label htmlFor={inputId} className="text-fg-primary block text-sm font-medium">
             {label}
-            {props.required && <span className="text-danger-500 ml-0.5">*</span>}
+            {props.required && (
+              <span className="text-danger-500 ml-0.5" aria-hidden="true">
+                *
+              </span>
+            )}
           </label>
         )}
         <div className="relative">
           {leftIcon && (
-            <div className="text-fg-muted pointer-events-none absolute top-1/2 left-3 -translate-y-1/2">
+            <div
+              className="text-fg-muted pointer-events-none absolute top-1/2 left-3 -translate-y-1/2"
+              aria-hidden="true"
+            >
               {leftIcon}
             </div>
           )}
@@ -39,19 +46,22 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
               "bg-bg-secondary text-fg-primary w-full rounded-md border px-3 py-2 text-sm",
               "placeholder:text-fg-muted",
               "transition-colors duration-200",
-              "focus:ring-brand-500 focus:ring-offset-bg-primary focus:ring-2 focus:ring-offset-2 focus:outline-none",
+              "focus-visible:ring-brand-500 focus-visible:ring-offset-bg-primary focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
               "disabled:cursor-not-allowed disabled:opacity-50",
               leftIcon && "pl-10",
               rightIcon && "pr-10",
               error
-                ? "border-danger-500 focus:ring-danger-500"
-                : "border-border-subtle focus:border-brand-500",
+                ? "border-danger-500 focus-visible:ring-danger-500"
+                : "border-border-subtle focus-visible:border-brand-500",
               className,
             )}
             {...props}
           />
           {rightIcon && (
-            <div className="text-fg-muted absolute top-1/2 right-3 -translate-y-1/2">
+            <div
+              className="text-fg-muted absolute top-1/2 right-3 -translate-y-1/2"
+              aria-hidden="true"
+            >
               {rightIcon}
             </div>
           )}

@@ -16,7 +16,11 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         {label && (
           <label htmlFor={inputId} className="text-fg-primary block text-sm font-medium">
             {label}
-            {props.required && <span className="text-danger-500 ml-0.5">*</span>}
+            {props.required && (
+              <span className="text-danger-500 ml-0.5" aria-hidden="true">
+                *
+              </span>
+            )}
           </label>
         )}
         <textarea
@@ -28,11 +32,11 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             "bg-bg-secondary text-fg-primary min-h-[100px] w-full rounded-md border px-3 py-2 text-sm",
             "placeholder:text-fg-muted resize-y",
             "transition-colors duration-200",
-            "focus:ring-brand-500 focus:ring-offset-bg-primary focus:ring-2 focus:ring-offset-2 focus:outline-none",
+            "focus-visible:ring-brand-500 focus-visible:ring-offset-bg-primary focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
             "disabled:cursor-not-allowed disabled:opacity-50",
             error
-              ? "border-danger-500 focus:ring-danger-500"
-              : "border-border-subtle focus:border-brand-500",
+              ? "border-danger-500 focus-visible:ring-danger-500"
+              : "border-border-subtle focus-visible:border-brand-500",
             className,
           )}
           {...props}

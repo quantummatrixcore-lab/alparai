@@ -26,14 +26,17 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             className={cn(
               "peer bg-bg-tertiary h-5 w-5 shrink-0 cursor-pointer appearance-none rounded border transition-all duration-200",
               "checked:bg-brand-500 checked:border-brand-500",
-              "focus:ring-brand-500 focus:ring-offset-bg-primary focus:ring-2 focus:ring-offset-2 focus:outline-none",
+              "focus-visible:ring-brand-500 focus-visible:ring-offset-bg-primary focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
               "disabled:cursor-not-allowed disabled:opacity-50",
               error ? "border-danger-500" : "hover:border-brand-400/50 border-white/20",
               className,
             )}
             {...props}
           />
-          <Check className="pointer-events-none absolute top-1/2 left-1/2 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 scale-0 text-white transition-transform duration-200 peer-checked:scale-100" />
+          <Check
+            className="pointer-events-none absolute top-1/2 left-1/2 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 scale-0 text-white transition-transform duration-200 peer-checked:scale-100"
+            aria-hidden="true"
+          />
         </div>
         {(label || description) && (
           <div className="flex-1 space-y-0.5 leading-snug">
@@ -43,7 +46,11 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
                 className="text-fg-primary block cursor-pointer text-sm font-medium select-none"
               >
                 {label}
-                {props.required && <span className="text-danger-500 ml-0.5">*</span>}
+                {props.required && (
+                  <span className="text-danger-500 ml-0.5" aria-hidden="true">
+                    *
+                  </span>
+                )}
               </label>
             )}
             {description && (

@@ -43,7 +43,7 @@ export function NotFoundClient({
               className="border-danger-500/30 bg-danger-500/5 text-danger-400 mb-6 inline-flex items-center gap-2 rounded-sm border px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase shadow-[0_0_20px_rgba(230,57,70,0.15)]"
               role="status"
             >
-              <AlertCircle className="h-4 w-4" />
+              <AlertCircle className="h-4 w-4" aria-hidden="true" />
               {badge}
             </div>
           </div>
@@ -68,9 +68,12 @@ export function NotFoundClient({
             <div className="transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-[1.02]">
               <Link
                 href="/"
-                className="border-border-subtle bg-bg-secondary hover:border-brand-500/40 hover:shadow-brand-500/5 flex items-center gap-3 rounded-xl border p-5 text-left transition-all duration-300 ease-in-out hover:shadow-lg"
+                className="border-border-subtle bg-bg-secondary hover:border-brand-500/40 hover:shadow-brand-500/5 focus-visible:ring-brand-500 flex items-center gap-3 rounded-xl border p-5 text-left transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none hover:shadow-lg"
               >
-                <div className="bg-brand-500/10 border-brand-500/20 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border">
+                <div
+                  className="bg-brand-500/10 border-brand-500/20 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border"
+                  aria-hidden="true"
+                >
                   <Home className="text-brand-400 h-5 w-5" />
                 </div>
                 <div>
@@ -83,9 +86,12 @@ export function NotFoundClient({
             <div className="transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-[1.02]">
               <Link
                 href="/incidents"
-                className="border-border-subtle bg-bg-secondary hover:border-brand-500/40 hover:shadow-brand-500/5 flex items-center gap-3 rounded-xl border p-5 text-left transition-all duration-300 ease-in-out hover:shadow-lg"
+                className="border-border-subtle bg-bg-secondary hover:border-brand-500/40 hover:shadow-brand-500/5 focus-visible:ring-brand-500 flex items-center gap-3 rounded-xl border p-5 text-left transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none hover:shadow-lg"
               >
-                <div className="bg-brand-500/10 border-brand-500/20 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border">
+                <div
+                  className="bg-brand-500/10 border-brand-500/20 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border"
+                  aria-hidden="true"
+                >
                   <FileSearch className="text-brand-400 h-5 w-5" />
                 </div>
                 <div>
@@ -100,9 +106,9 @@ export function NotFoundClient({
           <div className="mt-10">
             <Link
               href="/"
-              className="text-fg-muted hover:text-brand-400 inline-flex items-center gap-2 text-sm font-semibold transition-colors duration-200 ease-in-out"
+              className="text-fg-muted hover:text-brand-400 focus-visible:ring-brand-500 rounded-md inline-flex items-center gap-2 text-sm font-semibold transition-colors duration-200 ease-in-out focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
             >
-              <ArrowLeft className="h-4 w-4" />
+              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
               {backLabel}
             </Link>
           </div>

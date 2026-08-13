@@ -46,12 +46,14 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
         onMouseMove={handleMouseMove}
         onMouseEnter={() => interactive && setIsHovered(true)}
         onMouseLeave={() => interactive && setIsHovered(false)}
+        tabIndex={interactive ? (props.tabIndex ?? 0) : props.tabIndex}
+        role={interactive ? (props.role ?? "button") : props.role}
         className={cn(
           "relative overflow-hidden rounded-xl transition-all duration-300",
           variantClasses[variant],
           paddingClasses[padding],
           interactive &&
-            "hover:border-brand-500/30 cursor-pointer hover:scale-[1.015] hover:shadow-[0_0_30px_rgba(168,85,247,0.1)]",
+            "hover:border-brand-500/30 focus-visible:ring-brand-500 cursor-pointer hover:scale-[1.015] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none hover:shadow-[0_0_30px_rgba(168,85,247,0.1)]",
           className,
         )}
         {...props}

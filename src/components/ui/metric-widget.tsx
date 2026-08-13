@@ -29,14 +29,21 @@ export function MetricWidget({
     <button
       type="button"
       onClick={onClick}
+      disabled={!onClick}
       className={cn(
         "bg-bg-secondary border-border-subtle flex w-full items-center gap-4 rounded-xl border p-4 text-left transition-all duration-200",
-        onClick && "hover:border-brand-500/30 active:scale-[0.98]",
+        "focus-visible:ring-brand-500 focus-visible:ring-offset-bg-primary focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
+        onClick
+          ? "hover:border-brand-500/30 cursor-pointer active:scale-[0.98]"
+          : "cursor-default disabled:opacity-100",
         className,
       )}
     >
       {Icon && (
-        <div className="bg-brand-500/10 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg">
+        <div
+          className="bg-brand-500/10 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg"
+          aria-hidden="true"
+        >
           <Icon className="text-brand-400 h-5 w-5" strokeWidth={1.5} />
         </div>
       )}
@@ -53,7 +60,7 @@ export function MetricWidget({
             trend === "neutral" && "text-fg-muted bg-white/5",
           )}
         >
-          <TrendIcon className="h-3 w-3" strokeWidth={2.5} />
+          <TrendIcon className="h-3 w-3" strokeWidth={2.5} aria-hidden="true" />
           {trendValue}
         </div>
       )}

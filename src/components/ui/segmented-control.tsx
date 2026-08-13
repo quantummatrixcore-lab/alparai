@@ -39,12 +39,13 @@ export function SegmentedControl<T extends string = string>({
             onClick={() => onChange(option.value)}
             className={cn(
               "flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-bold transition-all duration-200",
+              "focus-visible:ring-brand-500 focus-visible:ring-offset-bg-tertiary focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
               isActive
                 ? "bg-bg-primary text-fg-primary shadow-sm"
                 : "text-fg-muted hover:text-fg-primary",
             )}
           >
-            {Icon && <Icon className="h-4 w-4" strokeWidth={2} />}
+            {Icon && <Icon className="h-4 w-4" strokeWidth={2} aria-hidden="true" />}
             {option.label}
           </button>
         );

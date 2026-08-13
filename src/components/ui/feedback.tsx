@@ -29,6 +29,7 @@ export function Skeleton({ className, ...props }: React.HTMLAttributes<HTMLDivEl
         "before:bg-gradient-to-r before:from-transparent before:via-white/5 before:to-transparent",
         className,
       )}
+      aria-hidden="true"
       {...props}
     />
   );
@@ -54,7 +55,11 @@ export function EmptyState({
         className,
       )}
     >
-      {icon && <div className="text-fg-muted text-4xl">{icon}</div>}
+      {icon && (
+        <div className="text-fg-muted text-4xl" aria-hidden="true">
+          {icon}
+        </div>
+      )}
       <div className="space-y-1">
         <h3 className="text-fg-primary text-lg font-semibold">{title}</h3>
         {description && <p className="text-fg-muted max-w-md text-sm">{description}</p>}
@@ -75,7 +80,9 @@ export function ErrorState({
 }) {
   return (
     <div className="border-danger-500/30 bg-danger-500/5 flex flex-col items-center justify-center gap-4 rounded-xl border p-8 text-center">
-      <div className="text-4xl">⚠️</div>
+      <div className="text-4xl" aria-hidden="true">
+        ⚠️
+      </div>
       <div className="space-y-1">
         <h3 className="text-fg-primary text-lg font-semibold">{title}</h3>
         {description && <p className="text-fg-muted max-w-md text-sm">{description}</p>}

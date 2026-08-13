@@ -32,6 +32,8 @@ export function Modal({
   className,
 }: ModalProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const titleId = React.useId();
+  const descId = React.useId();
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -60,8 +62,8 @@ export function Modal({
         ref={ref}
         role="dialog"
         aria-modal="true"
-        aria-labelledby={title ? "modal-title" : undefined}
-        aria-describedby={description ? "modal-desc" : undefined}
+        aria-labelledby={title ? titleId : undefined}
+        aria-describedby={description ? descId : undefined}
         onClick={(e) => e.stopPropagation()}
         className={cn(
           "border-border-subtle bg-bg-elevated w-full rounded-xl border shadow-2xl",
@@ -73,22 +75,23 @@ export function Modal({
         <div className="flex items-start justify-between gap-4 p-6 pb-4">
           <div className="space-y-1">
             {title && (
-              <h2 id="modal-title" className="text-fg-primary text-lg font-semibold">
+              <h2 id={titleId} className="text-fg-primary text-lg font-semibold">
                 {title}
               </h2>
             )}
             {description && (
-              <p id="modal-desc" className="text-fg-muted text-sm">
+              <p id={descId} className="text-fg-muted text-sm">
                 {description}
               </p>
             )}
           </div>
           <button
+            type="button"
             onClick={() => onOpenChange(false)}
-            className="text-fg-muted hover:text-fg-primary"
-            aria-label="Close"
+            className="text-fg-muted hover:text-fg-primary focus-visible:ring-brand-500 focus-visible:ring-offset-bg-elevated rounded-md transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+            aria-label="Close modal"
           >
-            <X className="h-5 w-5" />
+            <X className="h-5 w-5" aria-hidden="true" />
           </button>
         </div>
         <div className="p-6 pt-0">{children}</div>

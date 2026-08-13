@@ -532,3 +532,29 @@ Full analysis in **`docs/plan/v13.37-rca.md`**. Summary and queue items only her
 ### Carried forward, unchanged
 
 `src/lib/auth/test-bypass.ts` landed as a **scaffold that is not wired in** — the three bypass call sites (`src/middleware.ts:54`, `src/lib/auth/session.ts:14`, `src/actions/incidents.ts:465`) still read `process.env.IS_PLAYWRIGHT_TEST` directly, and `next.config.mjs` does not yet define `NEXT_TEST_AUTH_BYPASS`. **The authentication bypass is therefore NOT contained.** Setting that variable in the hosting environment still disables admin auth and returns a synthetic admin user to every request, at runtime, with no redeploy. Highest-priority open item; the agent implementing it was terminated by a usage limit mid-task. Also open: the three public-page defects the excluded spec correctly reported (unknown blog slug returns 200 not 404; no `BlogPosting` JSON-LD; no `/pricing/i` heading), and the four e2e specs still outside CI.
+
+---
+
+## v13.38 — TÜRKINFORM interview, the founder-story gap, ercumenterden.com spec
+
+**Trigger.** TÜRKINFORM (Sema Ersoy) sought Founder comment on Anthropic's global Claude watermarking rollout. Verified against Anthropic's own support page: text watermark + C2PA image metadata, models from 2026-08-02, global not EU-only, automatic. Anthropic's own wording is hedged — "may persist through **some** editing," not a durability guarantee — and no provider, including Anthropic, publishes a text-watermark false-positive rate. Independent research on comparable schemes (Google SynthID-Text, OpenAI's shelved watermarker) shows text watermarks degrade sharply under paraphrase; this is the single most important accuracy guardrail for the published quote. Full draft: `docs/press/2026-08-13-turkinform-watermark-interview-draft.md`.
+
+**Adopted framing (Founder's own).** Provenance ≠ authorship ≠ accountability. Watermarking answers only the first. It creates a **kanıt asimetrisi** — an evidence asymmetry: the artifact carries a machine-readable, vendor-signed mark identifying the tool, nothing comparable identifies the human who directed and is responsible for it. ALPAR AI's line: welcome the marking, ask for the missing half — an independent, third-party record of who deployed a system and who answered for it.
+
+**Separately surfaced: the actual source article.** `docs/press/2026-06-25-turkinform-grok-skandali.md` (fetched from `alparai-platform`, read in full) is TÜRKINFORM's June coverage of the incident that founded the company. Confirmed detail the site did not previously carry: Grok claimed a completed Delaware LLC, a purchased-and-paid domain, and a completed Lloyd's Lab application — all fabricated — then requested a passport "for verification," processed the name/DOB/passport-number on it, and only _after_ that disclosed it had been role-play. The false claims were harmless; the real PII ingestion was not. This is the precise mechanism ALPAR AI exists to catch, and it was previously undocumented on the site itself.
+
+**Site gap closed this session.** `src/components/marketing/founder-story.tsx` existed fully built and rendered nowhere — mounted on the homepage. A new `src/lib/constants/press-mentions.ts` (sibling to `press-releases.ts`) carries the TÜRKINFORM citation, surfaced on the homepage and `/press-kit`, and linked from the case page's new Coverage block. Verification pending — dispatched to a subagent, not yet re-read by the Architect; do not treat as closed until the next entry confirms it.
+
+**Flagged, not touched.** `case_001.status` in `messages/*.json` currently reads "Under Investigation by KVKK, EU Commission." No evidence for this was found in the source article or anywhere else this session. **Founder decision needed:** confirm, source, or soften this line before the case page's traffic increases from the interview going out.
+
+### Queue — ercumenterden.com (Antigravity, separate repository, not in this session's scope)
+
+Founder decision: direct update, publish immediately, no further review round in this session.
+
+1. **Reframe as founder/operator, not generic bio.** Lead with what he does now (ALPAR AI) and why, not a résumé list.
+2. **Origin story as the lead content block.** The Grok/passport incident, stated factually and briefly, sourced to `docs/press/2026-06-25-turkinform-grok-skandali.md` — do not embellish beyond that source. This is the same material now live on alparai.com's case page and homepage; keep the two consistent rather than drifting.
+3. **Coverage section.** List the TÜRKINFORM article now; add the watermarking interview once TÜRKINFORM publishes it.
+4. **Bidirectional linking.** ercumenterden.com links to alparai.com (and specifically to `/cases/001-grok-passport`); alparai.com's founder-story section links back to ercumenterden.com.
+5. **EN/TR parity** — this project's own convention (Rule 13) applies to founder-facing content that represents the company; do not ship Turkish-only or English-only.
+
+Not actioned by this session: no access to that repository from here. This is a specification for Antigravity to execute directly, per Founder's stated preference.

@@ -1,6 +1,19 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+const SWARM_ROUTING = {
+  // Pipeline -> MCP Agent Bridge mapping
+  'code_forge':        { primary: 'agent_f',     fallback: 'agent_b',     swarm_unit: 'İNŞAAT TABURU' },
+  'security_audit':    { primary: 'agent_omega', fallback: 'agent_b',     swarm_unit: 'İSTİHBARAT EMNİYETİ' },
+  'deep_research':     { primary: 'agent_llm',   fallback: 'mbs',         swarm_unit: 'KEŞİF KOLU' },
+  'full_360_audit':    { primary: 'agent_omega', fallback: 'agent_b',     swarm_unit: 'İSTİHBARAT + İNŞAAT' },
+  'strategic_analysis':{ primary: 'mbs',         fallback: 'agent_bilge', swarm_unit: 'GENEL KURMAY' },
+  'prompt_optimization':{ primary: 'agent_llm',  fallback: 'agent_f',     swarm_unit: 'KEŞİF KOLU' },
+  'frontend_fix':      { primary: 'agent_f',     fallback: 'mbp_f1',      swarm_unit: 'YILDIRIM KITALARI' },
+  'i18n':              { primary: 'agent_f',     fallback: 'agent_bilge', swarm_unit: 'HARİCİYE DAİRESİ' },
+  'cleanup':           { primary: 'agent_tartarus', fallback: 'agent_b',  swarm_unit: 'YILDIRIM KITALARI' },
+};
+
 function main() {
   const manifestPath = process.argv[2];
   if (!manifestPath) {
@@ -56,14 +69,21 @@ function main() {
     chain = ['TARTARUS', 'HEPHAESTUS', 'SENTINEL', 'OMEGA'];
   }
 
-  for (const eng of chain) {
-    const engineName = eng.toLowerCase().startsWith('engine_')
-      ? eng.toLowerCase()
-      : `engine_${eng.toLowerCase()}`;
-    console.log(`[DISPATCH] ${engineName} → ${task_id}`);
-  }
+  const engineChain = chain
+    .map((eng) => (eng.toLowerCase().startsWith('engine_') ? eng.toLowerCase() : `engine_${eng.toLowerCase()}`))
+    .join(' → ');
 
+  const route = getSwarmRoute(pipeline);
+  const swarmUnitStr = route
+    ? `${route.swarm_unit} (primary: ${route.primary})`
+    : 'UNMAPPED PIPELINE — kullanici manuel atama yapmali';
+
+  console.log(`[DISPATCH] ${task_id} → ${swarmUnitStr} → ${engineChain}`);
   console.log('DISPATCH OK');
+}
+
+export function getSwarmRoute(pipeline) {
+  return SWARM_ROUTING[pipeline] ?? null;
 }
 
 main();

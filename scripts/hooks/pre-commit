@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+set -e
+
+# Graphify update runner
+run_graphify() {
+    if command -v graphify >/dev/null 2>&1; then
+        graphify update .
+    elif python -m graphify --help >/dev/null 2>&1; then
+        python -m graphify update .
+    else
+        echo "[pre-commit] graphify not found, skipping graphify update."
+    fi
+}
+
+# Check if this is a MERGE COMMIT
+IS_MERGE=0
+if [ -n "$MERGE_HEAD" ] || git rev-parse --verify MERGE_HEAD >/dev/null 2>&1; then
+    IS_MERGE=1
+fi
+
+if [ "$IS_MERGE" -eq 1 ]; then
+    echo "[pre-commit] Merge commit detected. Skipping role checks."
+    run_graphify
+    exit 0
+fi
+
+# Get list of staged files
+STAGED_FILES=$(git diff --cached --name-only)
+
+# 1. MASTER_PLAN.md check: if changed, ARCHITECT_MODE=1 is REQUIRED
+if echo "$STAGED_FILES" | grep -q "^docs/MASTER_PLAN\.md$"; then
+    if [ "$ARCHITECT_MODE" != "1" ]; then
+        echo "❌ [pre-commit ERROR] docs/MASTER_PLAN.md modification requires ARCHITECT_MODE=1."
+        echo "   Architect-only document requires ARCHITECT_MODE=1 environment variable."
+        exit 1
+    fi
+fi
+
+# 2. src/ check: if changed and ARCHITECT_MODE=1 is SET, BLOCK
+if echo "$STAGED_FILES" | grep -q "^src/"; then
+    if [ "$ARCHITECT_MODE" = "1" ]; then
+        echo "❌ [pre-commit ERROR] src/ modified while ARCHITECT_MODE=1."
+        echo "   Architect mode (ARCHITECT_MODE=1) is forbidden from editing src/ application code (Rule G-6)."
+        exit 1
+    fi
+fi
+
+# All checks passed, run graphify update
+run_graphify
+exit 0

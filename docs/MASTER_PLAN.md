@@ -185,57 +185,57 @@ _Durum: **AÇIK** (v13.4 ölçümü) | Yürütücü: OpenCode Flash / Jules_
 
 <!-- FOUNDER_BACKLOG_START -->
 
-| #   | Ö.  | Görev                                | Özet                                                                                  | Durum                                   |
-| --- | --- | ------------------------------------ | ------------------------------------------------------------------------------------- | --------------------------------------- |
-| 301 | P0  | F SEC-0 — REPO GÖRÜNÜRLÜĞÜ ACİ       | SEC-0 — REPO GÖRÜNÜRLÜĞÜ ACİL. GitHub API 11 Ağu: [↗](plan/items/SEC-0.md)            | completed closed-by:ecb29f99@master   |
-| 302 | P0  | FA BG — `messages/en.json` m         | BG — messages/en.json mojibake temizliği + [↗](plan/items/BG.md)                      | completed closed-by:f92fe3a0@master   |
-| 303 | P0  | A BH — Dağıtım atfı, gönder          | BH — Dağıtım atfı, gönderici taraf. v13.10'da bu oturum [↗](plan/items/BH.md)         | completed closed-by:6c8d2daa@master   |
-| 304 | P0  | FA BI — `README.md` İngilizc         | BI — README.md İngilizce. closed-by:legacy evidence:"21 [↗](plan/items/BI.md)         | completed closed-by:8c943817@master   |
-| 305 | P0  | F OMEGA-128 — Cloudflare WAF (#128   | Cloudflare WAF (#128) — kanıt geçersiz (v13.5): 403 ölç [↗](plan/items/OMEGA-128.md)  | completed closed-by:18284852@master   |
-| 306 | P0  | A ZETA-0c — [ZETA-0c] Edge ikinc     | [ZETA-0c] Edge ikinci kırık: /api/health → 308; smoke t [↗](plan/items/ZETA-0c.md)    | completed closed-by:18284852@master   |
-| 307 | P0  | FA BN — `messages/en.json`'d         | BN — messages/en.json'da 46 çift-kodlanmış Türkçe dize. [↗](plan/items/BN.md)         | completed closed-by:5849f7ee@master   |
-| 308 | P1  | A ZETA-0 — açıklaması geri konu      | [ZETA-0b] — açıklaması geri konuldu (G-14) ve yeniden [↗](plan/items/ZETA-0.md)       | completed closed-by:b1e9d368@master   |
-| 309 | P2  | A ZETA-0d — [ZETA-0d] 8 açık dep     | [ZETA-0d] 8 açık dependabot PR'ı. v13.10'da bağımsız [↗](plan/items/ZETA-0d.md)       | completed closed-by:24b2252d@master     |
-| 310 | P0  | J ZETA-0a — [ZETA-0a] PR şeridi      | [ZETA-0a] PR şeridi — kanıtla kapandı: PR #76 merged 09 [↗](plan/items/ZETA-0a.md)    | completed closed-by:79f365c5@master   |
-| 311 | P0  | A ADMIN-2 — kanıtla kapandı (v13     | ADMIN-2 — kanıtla kapandı (v13.11, bağımsız doğrulandı) [↗](plan/items/ADMIN-2.md)    | completed closed-by:8ad18525@master   |
-| 312 | P1  | A ADMIN-3 — kanıtla kapandı (v13     | ADMIN-3 — kanıtla kapandı (v13.11, bağımsız doğrulandı) [↗](plan/items/ADMIN-3.md)    | completed closed-by:8ad18525@master   |
-| 313 | P1  | A RES-1 — kanıtla kapandı (v13       | RES-1 — kanıtla kapandı (v13.11, bağımsız doğrulandı). [↗](plan/items/RES-1.md)       | completed closed-by:8ad18525@master   |
-| 314 | P0  | A QUOTA-1 — hâlâ açık (v13.13),      | QUOTA-1 — hâlâ açık (v13.13), sahte kanıt dosyaları [↗](plan/items/QUOTA-1.md)        | completed closed-by:fa2c48a8@master   |
-| 315 | P2  | A TYPE-0 — kapandı (v13.13), am      | TYPE-0 — kapandı (v13.13), ama kod düzeltmesiyle değil. [↗](plan/items/TYPE-0.md)     | completed closed-by:environment@v13.13  |
-| 316 | P0  | A LANG-1 — hâlâ açık (v13.13'te      | LANG-1 — hâlâ açık (v13.13'te yeniden ölçüldü, hiç [↗](plan/items/LANG-1.md)          | completed closed-by:8c943817@master   |
-| 317 | P0  | FA SIGMA-208 — Stripe canlı işlem /  | Stripe canlı işlem / webhook doğrulama [↗](plan/items/SIGMA-208.md)                   | completed closed-by:1e6d6438@master     |
-| 318 | P0  | FA ALPHA-201 — Seed Data Room & Değ  | Seed Data Room & Değerleme Memosu üretimi (#201, [↗](plan/items/ALPHA-201.md)         | completed closed-by:d7e7b925@master     |
-| 319 | P1  | FA ZETA-209 — 400-satır CI sınırı    | 400-satır CI sınırı (#209) ve Jules/Claude yönlendirme [↗](plan/items/ZETA-209.md)    | completed closed-by:24b2252d@master     |
-| 320 | P1  | FA OMEGA-198 — "The Grok Files" ser  | "The Grok Files" serisinin 9-model arbitrajıyla yazılma [↗](plan/items/OMEGA-198.md)  | completed closed-by:1e6d6438@master     |
-| 321 | P1  | A SIGMA-BADGE — Top 50 YZ Vendor'a T | Top 50 YZ Vendor'a Trust Badge otonom (openchrome) [↗](plan/items/SIGMA-BADGE.md)     | completed closed-by:1e6d6438@master     |
-| 322 | P1  | F OMEGA-199 — HN Show HN + Reddit    | HN Show HN + Reddit senkron lansman (#199) — onay ✅ alı [↗](plan/items/OMEGA-199.md) | GATE                                    |
-| 323 | P2  | FA ALPHA-6 — [ALPHA-6] Pitch Deck    | [ALPHA-6] Pitch Deck (Marp/Reveal) HTML slayt [↗](plan/items/ALPHA-6.md)              | completed closed-by:1e6d6438@master   |
-| 324 | P2  | FA SIGMA-6 — [SIGMA-6] Stripe Oto    | [SIGMA-6] Stripe Otonom Fatura (PDF) Storage [↗](plan/items/SIGMA-6.md)               | completed closed-by:1e6d6438@master   |
-| 325 | P0  | A ADMIN-1 — kanıtla kapandı (v13     | ADMIN-1 — kanıtla kapandı (v13.10, bağımsız doğrulandı) [↗](plan/items/ADMIN-1.md)    | completed closed-by:6c8d2daa@master   |
-| 326 | P2  | A HYG-1 — kanıtla kapandı (v13       | HYG-1 — kanıtla kapandı (v13.11, bağımsız doğrulandı). [↗](plan/items/HYG-1.md)       | completed closed-by:fa2c48a8@master   |
-| 327 | P1  | A DATA-1 — B101/B102 iş, backlo      | DATA-1 (yeni, v13.11) — B101/B102 iş, backlog dışında [↗](plan/items/DATA-1.md)       | completed closed-by:3293b544@master   |
-| 328 | P1  | A PAGE-1 — B201/B203 iş, backlo      | PAGE-1 (yeni, v13.11) — B201/B203 iş, backlog dışında [↗](plan/items/PAGE-1.md)       | completed closed-by:a26f09c1@master   |
-| 329 | P1  | * ROUTE-1 — kapandı (v13.16). G-     | ROUTE-1 — kapandı (v13.16). G-6, Founder tarafından bu [↗](plan/items/ROUTE-1.md)     | completed closed-by:4a1ddfc1@master   |
-| 330 | P0  | A ADMIN-4 — kanıtla kapandı (v13     | ADMIN-4 — kanıtla kapandı (v13.15, bağımsız ölçüldü). İ [↗](plan/items/ADMIN-4.md)    | completed closed-by:0fa9ba11@master   |
-| 331 | P2  | A HYG-2 — `061a76a9`depo kökün       | HYG-2 (yeni, v13.13) —061a76a9depo [↗](plan/items/HYG-2.md)                           | completed closed-by:fa2c48a8@master   |
-| 332 | P0  | * GOV-1 — kapandı (v13.16), ne       | GOV-1 — kapandı (v13.16), negatif testle kanıtlandı. [↗](plan/items/GOV-1.md)         | completed closed-by:db91fc23@master   |
-| 333 | P0  | A PAGE-2 — Hero alanındaki CSS       | PAGE-2 (yeni, v13.15) — Hero alanındaki CSS Grid Blowou [↗](plan/items/PAGE-2.md)     | completed closed-by:4eacf9e3@master   |
-| 334 | P0  | A SHOW-1 — public deponun READM      | SHOW-1 (yeni, v13.17) — public deponun README'si kırık [↗](plan/items/SHOW-1.md)      | completed closed-by:38338859@master   |
-| 335 | P0  | * SHOW-2 — README'nin şeffaflık      | SHOW-2 (yeni, v13.17) — README'nin şeffaflık iddiası [↗](plan/items/SHOW-2.md)        | completed closed-by:38338859@master   |
-| 336 | P1  | A SHOW-3 — vitrin kökü çalışma       | SHOW-3 (yeni, v13.17) — vitrin kökü çalışma masası gibi [↗](plan/items/SHOW-3.md)     | completed closed-by:38338859@master   |
-| 337 | P0  | * SEC-2 — İKİ CANLI ANAHTAR SI       | SEC-2 (yeni, v13.17) — İKİ CANLI ANAHTAR SIZDI, ROTASYO [↗](plan/items/SEC-2.md)      | completed closed-by:d1330fa7@master   |
-| 338 | P0  | * SYNC-1 — vitrine giden tek yo      | SYNC-1 (yeni, v13.18) — vitrine giden tek yol elle [↗](plan/items/SYNC-1.md)          | completed closed-by:38338859@master   |
-| 339 | P1  | * SEC-3 — "Approve and deploy"       | SEC-3 (yeni, v13.19) — "Approve and deploy" BUTONUNA [↗](plan/items/SEC-3.md)         | completed closed-by:38338859@master   |
-| 340 | P0  | A PNPM-1 — Vercel deploy'u "düz      | PNPM-1 (yeni, v13.26) — Vercel deploy'u "düzeltilmedi", [↗](plan/items/PNPM-1.md)     | ✅ completed closed-by:549cf472@master  |
-| 341 | P1  | A ADMIN-5 — Doktrin #011 üçüncü      | ADMIN-5 (yeni, v13.29) — Doktrin #011 üçüncü kez geri [↗](plan/items/ADMIN-5.md)      | ✅ completed closed-by:014be29e@master  |
-| 342 | P1  | A CLAIM-1 — the live ARS API pag     | CLAIM-1 (new, v13.30) — the live ARS API page promises [↗](plan/items/CLAIM-1.md)     | ✅ completed closed-by:bb84a66a@master  |
-| 343 | P0  | F TRANS-1 — the public transpare     | TRANS-1 (new, v13.30) — the public transparency report [↗](plan/items/TRANS-1.md)     | completed closed-by:51b94aa6@master   |
-| 344 | P1  | A PII-1 — five real people's n       | PII-1 (new, v13.30) — five real people's names and [↗](plan/items/PII-1.md)           | ✅ completed closed-by:b3c399ef@master  |
-| 345 | P0  | A SYNC-2 — the sync publishes n      | SYNC-2 (new, v13.30) — the sync publishes neither what [↗](plan/items/SYNC-2.md)      | completed closed-by:38338859@master   |
-| 346 | P0  | A GOV-2 — the Implementer clos       | GOV-2 (new, v13.31; renumbered v13.32 — GOV-1 was alrea [↗](plan/items/GOV-2.md)      | completed closed-by:db91fc23@master   |
-| 347 | P1  | A PII-3 — the Founder's own pe       | PII-3 (new, v13.32) — the Founder's own personal addres [↗](plan/items/PII-3.md)      | completed closed-by:b3c399ef@master   |
-| 348 | P1  | M(H PROD-1 — production was down     | PROD-1 (new, v13.33) — production was down for hours, a [↗](plan/items/PROD-1.md)     | ✅ completed closed-by:d5b46d7e@master  |
-| 349 | P1  | A HYG-3 — a 1.8MB debug captur       | HYG-3 (new, v13.33) — a 1.8MB debug capture landed in t [↗](plan/items/HYG-3.md)      | completed closed-by:406e042d@master   |
+| #   | Ö.  | Görev                                | Özet                                                                                  | Durum                                  |
+| --- | --- | ------------------------------------ | ------------------------------------------------------------------------------------- | -------------------------------------- |
+| 301 | P0  | F SEC-0 — REPO GÖRÜNÜRLÜĞÜ ACİ       | SEC-0 — REPO GÖRÜNÜRLÜĞÜ ACİL. GitHub API 11 Ağu: [↗](plan/items/SEC-0.md)            | completed closed-by:ecb29f99@master    |
+| 302 | P0  | FA BG — `messages/en.json` m         | BG — messages/en.json mojibake temizliği + [↗](plan/items/BG.md)                      | completed closed-by:f92fe3a0@master    |
+| 303 | P0  | A BH — Dağıtım atfı, gönder          | BH — Dağıtım atfı, gönderici taraf. v13.10'da bu oturum [↗](plan/items/BH.md)         | completed closed-by:6c8d2daa@master    |
+| 304 | P0  | FA BI — `README.md` İngilizc         | BI — README.md İngilizce. closed-by:legacy evidence:"21 [↗](plan/items/BI.md)         | completed closed-by:8c943817@master    |
+| 305 | P0  | F OMEGA-128 — Cloudflare WAF (#128   | Cloudflare WAF (#128) — kanıt geçersiz (v13.5): 403 ölç [↗](plan/items/OMEGA-128.md)  | completed closed-by:18284852@master    |
+| 306 | P0  | A ZETA-0c — [ZETA-0c] Edge ikinc     | [ZETA-0c] Edge ikinci kırık: /api/health → 308; smoke t [↗](plan/items/ZETA-0c.md)    | completed closed-by:18284852@master    |
+| 307 | P0  | FA BN — `messages/en.json`'d         | BN — messages/en.json'da 46 çift-kodlanmış Türkçe dize. [↗](plan/items/BN.md)         | completed closed-by:5849f7ee@master    |
+| 308 | P1  | A ZETA-0 — açıklaması geri konu      | [ZETA-0b] — açıklaması geri konuldu (G-14) ve yeniden [↗](plan/items/ZETA-0.md)       | completed closed-by:b1e9d368@master    |
+| 309 | P2  | A ZETA-0d — [ZETA-0d] 8 açık dep     | [ZETA-0d] 8 açık dependabot PR'ı. v13.10'da bağımsız [↗](plan/items/ZETA-0d.md)       | completed closed-by:24b2252d@master    |
+| 310 | P0  | J ZETA-0a — [ZETA-0a] PR şeridi      | [ZETA-0a] PR şeridi — kanıtla kapandı: PR #76 merged 09 [↗](plan/items/ZETA-0a.md)    | completed closed-by:79f365c5@master    |
+| 311 | P0  | A ADMIN-2 — kanıtla kapandı (v13     | ADMIN-2 — kanıtla kapandı (v13.11, bağımsız doğrulandı) [↗](plan/items/ADMIN-2.md)    | completed closed-by:8ad18525@master    |
+| 312 | P1  | A ADMIN-3 — kanıtla kapandı (v13     | ADMIN-3 — kanıtla kapandı (v13.11, bağımsız doğrulandı) [↗](plan/items/ADMIN-3.md)    | completed closed-by:8ad18525@master    |
+| 313 | P1  | A RES-1 — kanıtla kapandı (v13       | RES-1 — kanıtla kapandı (v13.11, bağımsız doğrulandı). [↗](plan/items/RES-1.md)       | completed closed-by:8ad18525@master    |
+| 314 | P0  | A QUOTA-1 — hâlâ açık (v13.13),      | QUOTA-1 — hâlâ açık (v13.13), sahte kanıt dosyaları [↗](plan/items/QUOTA-1.md)        | completed closed-by:fa2c48a8@master    |
+| 315 | P2  | A TYPE-0 — kapandı (v13.13), am      | TYPE-0 — kapandı (v13.13), ama kod düzeltmesiyle değil. [↗](plan/items/TYPE-0.md)     | completed closed-by:environment@v13.13 |
+| 316 | P0  | A LANG-1 — hâlâ açık (v13.13'te      | LANG-1 — hâlâ açık (v13.13'te yeniden ölçüldü, hiç [↗](plan/items/LANG-1.md)          | completed closed-by:8c943817@master    |
+| 317 | P0  | FA SIGMA-208 — Stripe canlı işlem /  | Stripe canlı işlem / webhook doğrulama [↗](plan/items/SIGMA-208.md)                   | completed closed-by:1e6d6438@master    |
+| 318 | P0  | FA ALPHA-201 — Seed Data Room & Değ  | Seed Data Room & Değerleme Memosu üretimi (#201, [↗](plan/items/ALPHA-201.md)         | completed closed-by:d7e7b925@master    |
+| 319 | P1  | FA ZETA-209 — 400-satır CI sınırı    | 400-satır CI sınırı (#209) ve Jules/Claude yönlendirme [↗](plan/items/ZETA-209.md)    | completed closed-by:24b2252d@master    |
+| 320 | P1  | FA OMEGA-198 — "The Grok Files" ser  | "The Grok Files" serisinin 9-model arbitrajıyla yazılma [↗](plan/items/OMEGA-198.md)  | completed closed-by:1e6d6438@master    |
+| 321 | P1  | A SIGMA-BADGE — Top 50 YZ Vendor'a T | Top 50 YZ Vendor'a Trust Badge otonom (openchrome) [↗](plan/items/SIGMA-BADGE.md)     | completed closed-by:1e6d6438@master    |
+| 322 | P1  | F OMEGA-199 — HN Show HN + Reddit    | HN Show HN + Reddit senkron lansman (#199) — onay ✅ alı [↗](plan/items/OMEGA-199.md) | GATE                                   |
+| 323 | P2  | FA ALPHA-6 — [ALPHA-6] Pitch Deck    | [ALPHA-6] Pitch Deck (Marp/Reveal) HTML slayt [↗](plan/items/ALPHA-6.md)              | completed closed-by:1e6d6438@master    |
+| 324 | P2  | FA SIGMA-6 — [SIGMA-6] Stripe Oto    | [SIGMA-6] Stripe Otonom Fatura (PDF) Storage [↗](plan/items/SIGMA-6.md)               | completed closed-by:1e6d6438@master    |
+| 325 | P0  | A ADMIN-1 — kanıtla kapandı (v13     | ADMIN-1 — kanıtla kapandı (v13.10, bağımsız doğrulandı) [↗](plan/items/ADMIN-1.md)    | completed closed-by:6c8d2daa@master    |
+| 326 | P2  | A HYG-1 — kanıtla kapandı (v13       | HYG-1 — kanıtla kapandı (v13.11, bağımsız doğrulandı). [↗](plan/items/HYG-1.md)       | completed closed-by:fa2c48a8@master    |
+| 327 | P1  | A DATA-1 — B101/B102 iş, backlo      | DATA-1 (yeni, v13.11) — B101/B102 iş, backlog dışında [↗](plan/items/DATA-1.md)       | completed closed-by:3293b544@master    |
+| 328 | P1  | A PAGE-1 — B201/B203 iş, backlo      | PAGE-1 (yeni, v13.11) — B201/B203 iş, backlog dışında [↗](plan/items/PAGE-1.md)       | completed closed-by:a26f09c1@master    |
+| 329 | P1  | * ROUTE-1 — kapandı (v13.16). G-     | ROUTE-1 — kapandı (v13.16). G-6, Founder tarafından bu [↗](plan/items/ROUTE-1.md)     | completed closed-by:4a1ddfc1@master    |
+| 330 | P0  | A ADMIN-4 — kanıtla kapandı (v13     | ADMIN-4 — kanıtla kapandı (v13.15, bağımsız ölçüldü). İ [↗](plan/items/ADMIN-4.md)    | completed closed-by:0fa9ba11@master    |
+| 331 | P2  | A HYG-2 — `061a76a9`depo kökün       | HYG-2 (yeni, v13.13) —061a76a9depo [↗](plan/items/HYG-2.md)                           | completed closed-by:fa2c48a8@master    |
+| 332 | P0  | * GOV-1 — kapandı (v13.16), ne       | GOV-1 — kapandı (v13.16), negatif testle kanıtlandı. [↗](plan/items/GOV-1.md)         | completed closed-by:db91fc23@master    |
+| 333 | P0  | A PAGE-2 — Hero alanındaki CSS       | PAGE-2 (yeni, v13.15) — Hero alanındaki CSS Grid Blowou [↗](plan/items/PAGE-2.md)     | completed closed-by:4eacf9e3@master    |
+| 334 | P0  | A SHOW-1 — public deponun READM      | SHOW-1 (yeni, v13.17) — public deponun README'si kırık [↗](plan/items/SHOW-1.md)      | completed closed-by:38338859@master    |
+| 335 | P0  | * SHOW-2 — README'nin şeffaflık      | SHOW-2 (yeni, v13.17) — README'nin şeffaflık iddiası [↗](plan/items/SHOW-2.md)        | completed closed-by:38338859@master    |
+| 336 | P1  | A SHOW-3 — vitrin kökü çalışma       | SHOW-3 (yeni, v13.17) — vitrin kökü çalışma masası gibi [↗](plan/items/SHOW-3.md)     | completed closed-by:38338859@master    |
+| 337 | P0  | * SEC-2 — İKİ CANLI ANAHTAR SI       | SEC-2 (yeni, v13.17) — İKİ CANLI ANAHTAR SIZDI, ROTASYO [↗](plan/items/SEC-2.md)      | completed closed-by:d1330fa7@master    |
+| 338 | P0  | * SYNC-1 — vitrine giden tek yo      | SYNC-1 (yeni, v13.18) — vitrine giden tek yol elle [↗](plan/items/SYNC-1.md)          | completed closed-by:38338859@master    |
+| 339 | P1  | * SEC-3 — "Approve and deploy"       | SEC-3 (yeni, v13.19) — "Approve and deploy" BUTONUNA [↗](plan/items/SEC-3.md)         | completed closed-by:38338859@master    |
+| 340 | P0  | A PNPM-1 — Vercel deploy'u "düz      | PNPM-1 (yeni, v13.26) — Vercel deploy'u "düzeltilmedi", [↗](plan/items/PNPM-1.md)     | ✅ completed closed-by:549cf472@master |
+| 341 | P1  | A ADMIN-5 — Doktrin #011 üçüncü      | ADMIN-5 (yeni, v13.29) — Doktrin #011 üçüncü kez geri [↗](plan/items/ADMIN-5.md)      | ✅ completed closed-by:014be29e@master |
+| 342 | P1  | A CLAIM-1 — the live ARS API pag     | CLAIM-1 (new, v13.30) — the live ARS API page promises [↗](plan/items/CLAIM-1.md)     | ✅ completed closed-by:bb84a66a@master |
+| 343 | P0  | F TRANS-1 — the public transpare     | TRANS-1 (new, v13.30) — the public transparency report [↗](plan/items/TRANS-1.md)     | completed closed-by:51b94aa6@master    |
+| 344 | P1  | A PII-1 — five real people's n       | PII-1 (new, v13.30) — five real people's names and [↗](plan/items/PII-1.md)           | ✅ completed closed-by:b3c399ef@master |
+| 345 | P0  | A SYNC-2 — the sync publishes n      | SYNC-2 (new, v13.30) — the sync publishes neither what [↗](plan/items/SYNC-2.md)      | completed closed-by:38338859@master    |
+| 346 | P0  | A GOV-2 — the Implementer clos       | GOV-2 (new, v13.31; renumbered v13.32 — GOV-1 was alrea [↗](plan/items/GOV-2.md)      | completed closed-by:db91fc23@master    |
+| 347 | P1  | A PII-3 — the Founder's own pe       | PII-3 (new, v13.32) — the Founder's own personal addres [↗](plan/items/PII-3.md)      | completed closed-by:b3c399ef@master    |
+| 348 | P1  | M(H PROD-1 — production was down     | PROD-1 (new, v13.33) — production was down for hours, a [↗](plan/items/PROD-1.md)     | ✅ completed closed-by:d5b46d7e@master |
+| 349 | P1  | A HYG-3 — a 1.8MB debug captur       | HYG-3 (new, v13.33) — a 1.8MB debug capture landed in t [↗](plan/items/HYG-3.md)      | completed closed-by:406e042d@master    |
 
 <!-- FOUNDER_BACKLOG_END -->
 
@@ -385,37 +385,37 @@ This was not hypothetical. The launch GATE declared `depends:BG,BH` while BG, BH
 
 ## 9. Bugün Tamamlanan Görevler (Autopilot Sprint)
 
-| Blok  | Görev Özeti                                                                 | Durum                       |
-| ----- | --------------------------------------------------------------------------- | --------------------------- |
-| SIGMA | Mobile LanguageSwitcher fix                                                 | ✅ completed                |
-| ZETA  | Public API rate-limit + env key hardening                                   | ✅ completed                |
-| ZETA  | Vendor portal mock data temizliği (Rule #30 uyumu)                          | ✅ completed                |
-| SIGMA | Stripe Checkout entegrasyonu (Pricing page)                                 | ✅ completed                |
-| OMEGA | i18n 5 dil coverage (enterprise + products pages)                           | ✅ completed                |
-| SIGMA | 8 kurumsal outreach maili (ercument.erden@alparai.com)                      | ✅ completed                |
-| ZETA  | Autopilot: VoiceIncidentReporter, GlobalStateContext memory leaks (Alparai) | ✅ 1ef85728 (origin/master) |
-| ZETA  | [ZETA-1] Jules Otonom Temizleyici & GitHub PR (#76)                         | ✅ pushed (origin/master)   |
-| ALPHA | [ALPHA-3] Top 20 VC Listesi & Warm-intro Şablonları (docs/fundraising)      | ✅ pushed (origin/master)   |
-| SIGMA | [SIGMA-3] AI Act Article 73 Uyumluluk Listesi Sayfası                       | ✅ pushed (origin/master)   |
-| OMEGA | [OMEGA-3] Qwen Omni ASR Sesli İhlal Bildirim API'si                         | ✅ pushed (origin/master)   |
-| SIGMA | [SIGMA-2] Stripe Canlı Test Webhook Simülatör Scripti                       | ✅ pushed (origin/master)   |
-| OMEGA | [OMEGA-2] Hacker News & Reddit Lansman Taslakları (docs/campaigns)          | ✅ pushed (origin/master)   |
-| ZETA  | Vercel deploy hatası (pnpm-lock mismatch) giderildi                         | ✅ pushed (origin/master)   |
-| SEC | [SEC-X] Kimlik Doğrulama Açığı (IDOR/RLS Bypass) kapatıldı. | ✅ f783eae9 (origin/master) |
-| QA | [QA-X] Denetçiler (check-*.mjs) negatif teste bağlandı, kapanış kanıtı güçlendirildi. | ✅ completed closed-by:db91fc23@master |
-| MOBILE | [MOB-1] 360° Mobil QA Swarm: 5 public sayfa × 3 viewport test edildi — yatay scroll sıfır. | ✅ 914289ac (origin/master) |
-| MOBILE | [MOB-2] 15 admin sayfası responsive grid fix (`grid-cols-1 sm:grid-cols-2`). | ✅ push (origin/master) |
-| MOBILE | [MOB-3] Touch target 44px global fix — `button`, `a`, `[role=button]`. | ✅ 914289ac (origin/master) |
-| MOBILE | [MOB-4] `main-content.tsx` padding responsive (`pt-20 sm:pt-28 md:pt-32`). | ✅ push (origin/master) |
-| MOBILE | [MOB-5] 5 admin PARTIAL sayfa (ai-hub, analytics-hub, cockpit, metrics-hub, modular-arch) responsive. | ✅ d0631333 (origin/master) |
-| LEGAL | [LEG-1] xAI Corp. resmi ihtarname — KVKK Madde 13 ön bildirimi. | ✅ Gmail f1da1610 (13 Aug 2026) |
-| LEGAL | [LEG-2] KVKK e-posta bildirimi — Veri ihlali + resen inceleme talebi. | ✅ Gmail 985c8335 (13 Aug 2026) |
-| LEGAL | [LEG-3] ICO (UK) uluslararası veri ihlali bildirimi. | ✅ Gmail 354e9212 (13 Aug 2026) |
-| LEGAL | [LEG-4] CNIL (France/EU) GDPR ihlal bildirimi. | ✅ Gmail 51db9f32 (13 Aug 2026) |
-| LEGAL | [LEG-5] EU AI Office — AI Act Art. 5 ihlal bildirimi. | ✅ Gmail 19d55c84 (13 Aug 2026) |
-| LEGAL | [LEG-6] FTC (USA) online fraud report — xAI / Grok. | ✅ Report #205404412 (13 Aug 2026) |
-| LEGAL | [LEG-7] Google OAuth Consent Screen App Name → "ALPAR AI". | ✅ Google Cloud Console (13 Aug 2026) |
-| ADMIN | [ADM-1] `/admin/legal-tracker` sayfası — 6 bildirim + 3 başvuru kaydı, FTC #205404412. | ✅ 1e23e3c0 (origin/master) |
+| Blok   | Görev Özeti                                                                                           | Durum                                  |
+| ------ | ----------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| SIGMA  | Mobile LanguageSwitcher fix                                                                           | ✅ completed                           |
+| ZETA   | Public API rate-limit + env key hardening                                                             | ✅ completed                           |
+| ZETA   | Vendor portal mock data temizliği (Rule #30 uyumu)                                                    | ✅ completed                           |
+| SIGMA  | Stripe Checkout entegrasyonu (Pricing page)                                                           | ✅ completed                           |
+| OMEGA  | i18n 5 dil coverage (enterprise + products pages)                                                     | ✅ completed                           |
+| SIGMA  | 8 kurumsal outreach maili (ercument.erden@alparai.com)                                                | ✅ completed                           |
+| ZETA   | Autopilot: VoiceIncidentReporter, GlobalStateContext memory leaks (Alparai)                           | ✅ 1ef85728 (origin/master)            |
+| ZETA   | [ZETA-1] Jules Otonom Temizleyici & GitHub PR (#76)                                                   | ✅ pushed (origin/master)              |
+| ALPHA  | [ALPHA-3] Top 20 VC Listesi & Warm-intro Şablonları (docs/fundraising)                                | ✅ pushed (origin/master)              |
+| SIGMA  | [SIGMA-3] AI Act Article 73 Uyumluluk Listesi Sayfası                                                 | ✅ pushed (origin/master)              |
+| OMEGA  | [OMEGA-3] Qwen Omni ASR Sesli İhlal Bildirim API'si                                                   | ✅ pushed (origin/master)              |
+| SIGMA  | [SIGMA-2] Stripe Canlı Test Webhook Simülatör Scripti                                                 | ✅ pushed (origin/master)              |
+| OMEGA  | [OMEGA-2] Hacker News & Reddit Lansman Taslakları (docs/campaigns)                                    | ✅ pushed (origin/master)              |
+| ZETA   | Vercel deploy hatası (pnpm-lock mismatch) giderildi                                                   | ✅ pushed (origin/master)              |
+| SEC    | [SEC-X] Kimlik Doğrulama Açığı (IDOR/RLS Bypass) kapatıldı.                                           | ✅ f783eae9 (origin/master)            |
+| QA     | [QA-X] Denetçiler (check-*.mjs) negatif teste bağlandı, kapanış kanıtı güçlendirildi.                 | ✅ completed closed-by:db91fc23@master |
+| MOBILE | [MOB-1] 360° Mobil QA Swarm: 5 public sayfa × 3 viewport test edildi — yatay scroll sıfır.            | ✅ 914289ac (origin/master)            |
+| MOBILE | [MOB-2] 15 admin sayfası responsive grid fix (`grid-cols-1 sm:grid-cols-2`).                          | ✅ push (origin/master)                |
+| MOBILE | [MOB-3] Touch target 44px global fix — `button`, `a`, `[role=button]`.                                | ✅ 914289ac (origin/master)            |
+| MOBILE | [MOB-4] `main-content.tsx` padding responsive (`pt-20 sm:pt-28 md:pt-32`).                            | ✅ push (origin/master)                |
+| MOBILE | [MOB-5] 5 admin PARTIAL sayfa (ai-hub, analytics-hub, cockpit, metrics-hub, modular-arch) responsive. | ✅ d0631333 (origin/master)            |
+| LEGAL  | [LEG-1] xAI Corp. resmi ihtarname — KVKK Madde 13 ön bildirimi.                                       | ✅ Gmail f1da1610 (13 Aug 2026)        |
+| LEGAL  | [LEG-2] KVKK e-posta bildirimi — Veri ihlali + resen inceleme talebi.                                 | ✅ Gmail 985c8335 (13 Aug 2026)        |
+| LEGAL  | [LEG-3] ICO (UK) uluslararası veri ihlali bildirimi.                                                  | ✅ Gmail 354e9212 (13 Aug 2026)        |
+| LEGAL  | [LEG-4] CNIL (France/EU) GDPR ihlal bildirimi.                                                        | ✅ Gmail 51db9f32 (13 Aug 2026)        |
+| LEGAL  | [LEG-5] EU AI Office — AI Act Art. 5 ihlal bildirimi.                                                 | ✅ Gmail 19d55c84 (13 Aug 2026)        |
+| LEGAL  | [LEG-6] FTC (USA) online fraud report — xAI / Grok.                                                   | ✅ Report #205404412 (13 Aug 2026)     |
+| LEGAL  | [LEG-7] Google OAuth Consent Screen App Name → "ALPAR AI".                                            | ✅ Google Cloud Console (13 Aug 2026)  |
+| ADMIN  | [ADM-1] `/admin/legal-tracker` sayfası — 6 bildirim + 3 başvuru kaydı, FTC #205404412.                | ✅ 1e23e3c0 (origin/master)            |
 | MEMORY | Antigravity session-memory.json güncellendi — viewport/scroll protokolü + subagent auto-kill mandate. | ✅ D:/Antigravity/memory (13 Aug 2026) |
 
 ---
@@ -424,15 +424,15 @@ This was not hypothetical. The launch GATE declared `depends:BG,BH` while BG, BH
 
 > **Bağlayıcı kayıt.** Bu bölüm hukuki sürecin resmi zaman çizelgesidir. Hiçbir madde gerçek kanal çıktısı olmadan "tamamlandı" olarak işaretlenemez.
 
-| # | Kurum | Kanal | Tarih | Referans | Durum |
-|---|-------|-------|-------|----------|-------|
-| 1 | xAI Corp. | E-posta (privacy@x.ai, legal@x.ai) | 13 Ağu 2026 | `f1da1610` | ⏳ Cevap bekleniyor (son: 12 Eyl 2026) |
-| 2 | KVKK | E-posta (iletisim@kvkk.gov.tr) | 13 Ağu 2026 | `985c8335` | ⏳ Cevap bekleniyor |
-| 3 | ICO (UK) | E-posta (casework@ico.org.uk) | 13 Ağu 2026 | `354e9212` | ⏳ Cevap bekleniyor |
-| 4 | CNIL (FR/AB) | E-posta (webmaster@cnil.fr) | 13 Ağu 2026 | `51db9f32` | ⏳ Cevap bekleniyor |
-| 5 | EU AI Office | E-posta (ai-office@ec.europa.eu) | 13 Ağu 2026 | `19d55c84` | ⏳ Cevap bekleniyor |
-| 6 | FTC (ABD) | Online form (reportfraud.ftc.gov) | 13 Ağu 2026 | `#205404412` | ✅ Gönderildi |
-| 7 | KVKK e-Devlet | sikayet.kvkk.gov.tr (form) | — | — | 🔴 Profil adresi eksik |
+| #   | Kurum         | Kanal                              | Tarih       | Referans     | Durum                                  |
+| --- | ------------- | ---------------------------------- | ----------- | ------------ | -------------------------------------- |
+| 1   | xAI Corp.     | E-posta (privacy@x.ai, legal@x.ai) | 13 Ağu 2026 | `f1da1610`   | ⏳ Cevap bekleniyor (son: 12 Eyl 2026) |
+| 2   | KVKK          | E-posta (iletisim@kvkk.gov.tr)     | 13 Ağu 2026 | `985c8335`   | ⏳ Cevap bekleniyor                    |
+| 3   | ICO (UK)      | E-posta (casework@ico.org.uk)      | 13 Ağu 2026 | `354e9212`   | ⏳ Cevap bekleniyor                    |
+| 4   | CNIL (FR/AB)  | E-posta (webmaster@cnil.fr)        | 13 Ağu 2026 | `51db9f32`   | ⏳ Cevap bekleniyor                    |
+| 5   | EU AI Office  | E-posta (ai-office@ec.europa.eu)   | 13 Ağu 2026 | `19d55c84`   | ⏳ Cevap bekleniyor                    |
+| 6   | FTC (ABD)     | Online form (reportfraud.ftc.gov)  | 13 Ağu 2026 | `#205404412` | ✅ Gönderildi                          |
+| 7   | KVKK e-Devlet | sikayet.kvkk.gov.tr (form)         | —           | —            | 🔴 Profil adresi eksik                 |
 
 **Kanıt:** `D:\Alparai\tmp-qa\` — 7 PNG (Grok yazışması + pasaport talep ekranları).
 **Admin panel:** `/admin/legal-tracker` — commit `1e23e3c0`.
@@ -447,7 +447,7 @@ The `docs/MASTER_PLAN.md` split executed on `origin/master` (`e3b9f68f`, `ecb29f
 
 `check-masterplan-consistency.mjs` exits 0 throughout, because it validates parseability rather than content — the same structural reason it was green while parsing zero rows. Analysis: `docs/plan/v13.37-rca.md` §2a.
 
-**`check-repo-language.mjs` is currently RED on `master` because of this migration** — measured this session: `docs/plan/items/BN.md` (2 lines) and `BG.md` (1 line) carry mojibake, and `HYG-1.md`, `LANG-1.md` plus `scripts/migrate-master-plan.mjs` carry Turkish outside the baseline. The enforcer worked; the corrupt output was merged anyway. That is the RCA thesis in a single data point: a working check does nothing if nobody is gated on its result.
+`check-repo-language.mjs` was RED on `master` from this migration's mojibake/Turkish leakage (`BN.md`, `BG.md`, `HYG-1.md`, `LANG-1.md`, `migrate-master-plan.mjs`) — the enforcer worked, the corrupt output merged anyway (v13.37 §2a in one data point).
 
 **Fix (Implementer):** extract fields by regex instead of `.split('|')`, re-run the migration, verify no corrupted status and no truncated Record section against the pre-migration file, re-measure size, and get `check-repo-language.mjs` back to exit 0. Unchanged and still open.
 
@@ -488,24 +488,16 @@ Vercel → project `alparai` → Settings → Environment Variables → add `GIT
 **FOUNDER-2 — make the checks required on `master`. P0.**
 GitHub → repo Settings → Rules/Branch protection for `master` → Require status checks to pass before merging → add the CI build job, `Visual Regression Lock`, and the new e2e job (exact name will be confirmed once the CI change lands). Without this, a PR can merge red even with FOUNDER-1 in place.
 
-**FOUNDER-3 — KVKK filing for case 001. P0 (legal).**
-The public page claimed a KVKK filing that has not been made; the claim has been removed from the site this session. Founder decision: the filing will be made. After filing, supply the real filing date and registration number so `case_001.legal_1` can be restored with true values in all five languages. Do not restore the sentence before the filing exists.
+**FOUNDER-3 — KVKK filing for case 001. Resolved.** The false claim was removed, then overtaken by events: §10's Legal Action Log shows real filings 13 Aug (xAI, KVKK, ICO, CNIL, EU AI Office, FTC #205404412), each with a Gmail reference. `case_001.legal_1` can now be restored with these real values across all five languages — not yet done, still queued.
 
-**FOUNDER-4 — Cloudflare WAF diagnosis (carried over, OMEGA-128). P1.**
-Still open. The prior 403 measurement came from the agent proxy, not from the site, so it never proved a WAF block. Read Cloudflare → Security → Events for the affected paths before changing any rule.
+**FOUNDER-4 — Cloudflare WAF diagnosis (OMEGA-128). P1.** Still open; prior 403 came from the agent proxy, not the site — read Cloudflare → Security → Events before changing any rule.
 
-**FOUNDER-5 — GitHub Actions restriction on `claude/*` branches (carried over, G-8). P1.**
-Three consecutive attempts at a branch-sync workflow failed in 6–7 seconds with `runner_id:0`, i.e. no runner was ever assigned. Check repo Settings → Actions → General for a ruleset, runner-group restriction, or "new workflows require approval" policy scoped to this branch pattern. If one exists, the automated sync can be retried; until then the manual merge in G-8 is the only mechanism.
+**FOUNDER-5 — Actions runner-assignment failure, now repo-wide (G-8, escalated v13.39).** `runner_id:0` was `claude/*`-scoped; now also on `master` (29/30 recent runs, v13.39). Check Settings → Actions → General for a ruleset/runner-group/approval policy; until fixed, no "CI passed" claim is trustworthy and required-status-check protection would block legitimate merges.
 
-**FOUNDER-6 — About page member names. P2.**
-The two "[Name Placeholder]" member slots were removed from the page this session per Founder decision. Supply the real names when the people are confirmed and the section will be restored.
+**FOUNDER-6 — About page member names. Resolved.** The placeholder slots were replaced with a Governance section (Advisory Board + Methodology Committee links) rather than left empty.
 
 **FOUNDER-7 — decide the nine isolated regulatory pages. P2.**
 Listed above. Each renders real content and is indexed by search engines but is linked from nowhere. Decide per page: link it from the footer, or remove it from `sitemap.ts`. Leaving a page indexed but unlinked is the one option that is not defensible.
-
-### Standing correction to the v13.34 audit
-
-The `docs/MASTER_PLAN.md` split migration remains defective and unfixed: 11 rows whose task text contains a literal `|` (grep patterns, shell syntax) were split incorrectly, corrupting their status cells and truncating their detail files. `docs/plan/items/BN.md` still carries the status `Ã¼\`. The board parses (49/49) and `check-masterplan-consistency.mjs` exits 0, but that check validates parseability, not content integrity — it is green for the same structural reason it was green when it parsed zero rows. Unchanged from v13.34; still Implementer work.
 
 ---
 
@@ -553,15 +545,15 @@ Full analysis in **`docs/plan/v13.37-rca.md`**. Summary and queue items only her
 
 ### Queue — controls, highest leverage first
 
-| #   | Control                                                                                                                                                                                                                             | Owner       | Status  |
-| --- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ------- |
+| #   | Control                                                                                                                                                                                                                             | Owner       | Status                              |
+| --- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ----------------------------------- |
 | C-1 | **Negative test for every enforcer.** A meta-check runs each `scripts/check-*.mjs` against a known-bad fixture and requires exit 1. Any check that cannot be made to fail is deleted. Kills the entire "green because empty" class. | Implementer | completed closed-by:db91fc23@master |
 | C-2 | **Wire or delete** the 3 enforcers no workflow invokes.                                                                                                                                                                             | Implementer | completed closed-by:db91fc23@master |
 | C-3 | **Closure citations verified mechanically.** Extend `check-closure-evidence.mjs`: every `closed-by:<sha>` must resolve via `git cat-file -e` and touch a path named in the item; sentinels fail. Turns G-7 into a gate.             | Implementer | completed closed-by:db91fc23@master |
 | C-4 | **Rules ship with an enforcer or are labelled unenforced.** Three states only. Apply to G-6 immediately — it has no Architect-side enforcer and must say so.                                                                        | Architect   | completed closed-by:db91fc23@master |
-| C-5 | **Disjoint write-ownership for parallel agents.** No two concurrent agents on one file. This session lost a fix to exactly this.                                                                                                    | Architect   | adopted |
-| C-6 | **Scope fixed at dispatch.** New work goes to a new agent with a complete prompt, never a mid-flight message.                                                                                                                       | Architect   | adopted |
-| C-7 | **Verification re-runs the command.** An agent report is a hypothesis; confirm by executing, especially when an agent audits its own output.                                                                                        | Architect   | adopted |
+| C-5 | **Disjoint write-ownership for parallel agents.** No two concurrent agents on one file. This session lost a fix to exactly this.                                                                                                    | Architect   | adopted                             |
+| C-6 | **Scope fixed at dispatch.** New work goes to a new agent with a complete prompt, never a mid-flight message.                                                                                                                       | Architect   | adopted                             |
+| C-7 | **Verification re-runs the command.** An agent report is a hypothesis; confirm by executing, especially when an agent audits its own output.                                                                                        | Architect   | adopted                             |
 | C-8 | **Byte budget replaces the line cap**, per the plan already written. Until then detail goes to `docs/plan/`.                                                                                                                        | Implementer | completed closed-by:c1463309@master |
 
 ### Carried forward, unchanged
@@ -593,3 +585,15 @@ Founder decision: direct update, publish immediately, no further review round in
 5. **EN/TR parity** — this project's own convention (Rule 13) applies to founder-facing content that represents the company; do not ship Turkish-only or English-only.
 
 Not actioned by this session: no access to that repository from here. This is a specification for Antigravity to execute directly, per Founder's stated preference.
+
+---
+
+## v13.39 — Antigravity's "CI green" claim checked, false
+
+Antigravity reported `4b0b413d` verified: "1063/1063 Yeşil", branch protection locked. Checked against the GitHub Actions API directly: all 4 CI jobs show `conclusion:failure`, 2–13s runtime, **`runner_id:0`** — no runner assigned, nothing ran. Same across 29/30 recent runs on `master`. The `runner_id:0` signature G-8 found scoped to `claude/*` branches is now also on `master` — worse, repo-wide.
+
+Local `pnpm test` (1063/1063) is real, verified independently twice. "CI green" was reported as if the pipeline validated it; it did not run. v13.37 §2a, live: a conclusion with no run is worse than no check.
+
+Unverifiable here (no DB/network access): whether the advisory-board migration applied. Confirmed: repo is private.
+
+**Needed:** diagnose the runner-assignment failure before trusting a future "CI passed" claim or letting branch protection require checks that cannot succeed.

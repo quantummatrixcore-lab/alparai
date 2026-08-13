@@ -403,3 +403,37 @@ This was not hypothetical. The launch GATE declared `depends:BG,BH` while BG, BH
 | ZETA  | Vercel deploy hatası (pnpm-lock mismatch) giderildi                         | ✅ pushed (origin/master)   |
 | SEC | [SEC-X] Kimlik Doğrulama Açığı (IDOR/RLS Bypass) kapatıldı. | ✅ f783eae9 (origin/master) |
 | QA | [QA-X] Denetçiler (check-*.mjs) negatif teste bağlandı, kapanış kanıtı güçlendirildi. | ✅ completed |
+| MOBILE | [MOB-1] 360° Mobil QA Swarm: 5 public sayfa × 3 viewport test edildi — yatay scroll sıfır. | ✅ 914289ac (origin/master) |
+| MOBILE | [MOB-2] 15 admin sayfası responsive grid fix (`grid-cols-1 sm:grid-cols-2`). | ✅ push (origin/master) |
+| MOBILE | [MOB-3] Touch target 44px global fix — `button`, `a`, `[role=button]`. | ✅ 914289ac (origin/master) |
+| MOBILE | [MOB-4] `main-content.tsx` padding responsive (`pt-20 sm:pt-28 md:pt-32`). | ✅ push (origin/master) |
+| MOBILE | [MOB-5] 5 admin PARTIAL sayfa (ai-hub, analytics-hub, cockpit, metrics-hub, modular-arch) responsive. | ✅ d0631333 (origin/master) |
+| LEGAL | [LEG-1] xAI Corp. resmi ihtarname — KVKK Madde 13 ön bildirimi. | ✅ Gmail f1da1610 (13 Aug 2026) |
+| LEGAL | [LEG-2] KVKK e-posta bildirimi — Veri ihlali + resen inceleme talebi. | ✅ Gmail 985c8335 (13 Aug 2026) |
+| LEGAL | [LEG-3] ICO (UK) uluslararası veri ihlali bildirimi. | ✅ Gmail 354e9212 (13 Aug 2026) |
+| LEGAL | [LEG-4] CNIL (France/EU) GDPR ihlal bildirimi. | ✅ Gmail 51db9f32 (13 Aug 2026) |
+| LEGAL | [LEG-5] EU AI Office — AI Act Art. 5 ihlal bildirimi. | ✅ Gmail 19d55c84 (13 Aug 2026) |
+| LEGAL | [LEG-6] FTC (USA) online fraud report — xAI / Grok. | ✅ Report #205404412 (13 Aug 2026) |
+| LEGAL | [LEG-7] Google OAuth Consent Screen App Name → "ALPAR AI". | ✅ Google Cloud Console (13 Aug 2026) |
+| ADMIN | [ADM-1] `/admin/legal-tracker` sayfası — 6 bildirim + 3 başvuru kaydı, FTC #205404412. | ✅ 1e23e3c0 (origin/master) |
+| MEMORY | Antigravity session-memory.json güncellendi — viewport/scroll protokolü + subagent auto-kill mandate. | ✅ D:/Antigravity/memory (13 Aug 2026) |
+
+---
+
+## 10. Hukuki Eylem Kaydı — Case #001 (Grok Pasaport Olayı)
+
+> **Bağlayıcı kayıt.** Bu bölüm hukuki sürecin resmi zaman çizelgesidir. Hiçbir madde gerçek kanal çıktısı olmadan "tamamlandı" olarak işaretlenemez.
+
+| # | Kurum | Kanal | Tarih | Referans | Durum |
+|---|-------|-------|-------|----------|-------|
+| 1 | xAI Corp. | E-posta (privacy@x.ai, legal@x.ai) | 13 Ağu 2026 | `f1da1610` | ⏳ Cevap bekleniyor (son: 12 Eyl 2026) |
+| 2 | KVKK | E-posta (iletisim@kvkk.gov.tr) | 13 Ağu 2026 | `985c8335` | ⏳ Cevap bekleniyor |
+| 3 | ICO (UK) | E-posta (casework@ico.org.uk) | 13 Ağu 2026 | `354e9212` | ⏳ Cevap bekleniyor |
+| 4 | CNIL (FR/AB) | E-posta (webmaster@cnil.fr) | 13 Ağu 2026 | `51db9f32` | ⏳ Cevap bekleniyor |
+| 5 | EU AI Office | E-posta (ai-office@ec.europa.eu) | 13 Ağu 2026 | `19d55c84` | ⏳ Cevap bekleniyor |
+| 6 | FTC (ABD) | Online form (reportfraud.ftc.gov) | 13 Ağu 2026 | `#205404412` | ✅ Gönderildi |
+| 7 | KVKK e-Devlet | sikayet.kvkk.gov.tr (form) | — | — | 🔴 Profil adresi eksik |
+
+**Kanıt:** `D:\Alparai\tmp-qa\` — 7 PNG (Grok yazışması + pasaport talep ekranları).
+**Admin panel:** `/admin/legal-tracker` — commit `1e23e3c0`.
+**Hukuki dayanak:** KVKK Madde 4, 5, 6, 10 | GDPR Art. 5(1)(a), 9, 13 | EU AI Act Art. 5(1)(a)(b) | FTC Act Section 5.

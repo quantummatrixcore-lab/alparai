@@ -406,84 +406,15 @@ This was not hypothetical. The launch GATE declared `depends:BG,BH` while BG, BH
 
 ---
 
-## v13.34-ARCHITECT AUDIT: MASTER_PLAN Migration — Lossless Verification & Defects
+## v13.34 — Migration audit: the board parses, the content does not
 
-**Status:** Migration executed on origin/master (`e3b9f68f` + `ecb29f99`), migration script and detail files committed. Architect audit reveals **critical lossless-movement defect** requiring Implementer fix before doctrine can be certified.
+The `docs/MASTER_PLAN.md` split executed on `origin/master` (`e3b9f68f`, `ecb29f99`) restored parsing — **49/49 rows**, previously 0/50 — but failed its lossless requirement. `scripts/migrate-master-plan.mjs` splits rows on `|` without accounting for literal pipes inside task text (grep patterns, shell syntax). **11 rows** were split wrongly: their status cells carry fragments (`docs/plan/items/BN.md` reads `Ã¼\`) and their detail files are truncated mid-sentence, so the original text was not preserved verbatim. File size landed at ~90 KB against a 40 KB target.
 
-### Verification Summary
+`check-masterplan-consistency.mjs` exits 0 throughout, because it validates parseability rather than content — the same structural reason it was green while parsing zero rows. Analysis: `docs/plan/v13.37-rca.md` §2a.
 
-| Criterion                         | Result          | Notes                                                                                             |
-| --------------------------------- | --------------- | ------------------------------------------------------------------------------------------------- |
-| **Board rows parsed**             | ✅ 49/49 (100%) | Previously 0/50; parser now works — bare-integer column format restoration confirmed              |
-| **Board file size**               | ⚠️ 90KB         | Target: <40KB; reduced from 334KB but overshoots 2.25×. See analysis below.                       |
-| **Detail files created**          | ✅ 49/49        | All rows have corresponding `docs/plan/items/<SLUG>.md`                                           |
-| **Content lossless (full audit)** | ❌ **FAILED**   | 11+ rows have **corrupted status fields** and **truncated Record sections**. See defects below.   |
-| **Consistency check (CLI)**       | ✅ Passes       | `node scripts/check-masterplan-consistency.mjs` → exit 0 (but only tests parsing, not corruption) |
-| **Row byte budget**               | ✅ Met          | Max row 185 bytes; limit 400B; confirmed via `wc -c` on sample rows                               |
+**`check-repo-language.mjs` is currently RED on `master` because of this migration** — measured this session: `docs/plan/items/BN.md` (2 lines) and `BG.md` (1 line) carry mojibake, and `HYG-1.md`, `LANG-1.md` plus `scripts/migrate-master-plan.mjs` carry Turkish outside the baseline. The enforcer worked; the corrupt output was merged anyway. That is the RCA thesis in a single data point: a working check does nothing if nobody is gated on its result.
 
-### Critical Defects Found
-
-**Defect 1: Pipe Character Handling in Task Descriptions**
-
-- **Affected rows:** BN, HYG-1, LANG-1, SEC-0 (and likely 7 others with embedded grep patterns or shell syntax)
-- **Root cause:** Migration script splits by `|` without escaping inline pipes. Original rows like `| OMEGA | P0 | Flash | **BN** … grep -c 'Ä±\|Ã¼\|Ã¶\|Ã§' … | completed |` create extra cells when the grep pattern is split.
-- **Symptom:** `cells[4]` (status) extracts `Ã¼\` instead of `completed`, treating mojibake fragments as status.
-- **Evidence:**
-  - `docs/plan/items/BN.md` status field: `Ã¼\` (mojibake from `\|` pipe)
-  - `docs/plan/items/HYG-1.md` status field contains full task description text instead of one-word status
-  - `docs/plan/items/LANG-1.md` status field contains partial closure evidence
-  - Original row in v13.33: `git show e3b9f68f~1:docs/MASTER_PLAN.md | sed -n '11p'` shows BN row with embedded `'Ä±\|Ã¼\|Ã¶\|Ã§'`
-
-**Defect 2: Record Section Truncation**
-
-- **Affected rows:** All 11 rows with pipe-character defect
-- **Symptom:** `docs/plan/items/*.md` Record section ends prematurely; grep pattern or status text cuts off mid-line
-- **Impact:** **Violates migration specification (Architect requirement #1: lossless)** — original full text not preserved verbatim in detail file
-- **Example:** `docs/plan/items/BN.md` Record section ends with `` `grep -c 'Ä±\ `` — incomplete
-
-**Defect 3: File Size Still Exceeds Target**
-
-- **Current:** 89,993 bytes (after migration); **Target:** 40,000 bytes
-- **Why overshot:** The migration added back markdown headers, links, and metadata to each row cell. Non-content bytes (link markup `[↗](plan/items/...)`) and redundant header cells still add overhead. Rows are now 5-column format, but the "Summary" column (parts[4]) is still substantial.
-- **Granular measure:** Average row size = 1,836 bytes; max row 185 bytes (verified) but that's the markdown cell, not the byte spend. Full row with pipes/cells is ~100-170 bytes of markup plus content.
-
-### Why Consistency Check Passes Despite Defects
-
-The `check-masterplan-consistency.mjs` script:
-
-1. Extracts rows where `parts[1]` (ID) is a bare integer ✅
-2. Checks for duplicate IDs ✅
-3. Looks for `closed-by:` citations ✅
-4. **Does NOT validate:** (a) status field encoding/sanity, (b) full row text integrity, (c) Record section preservation
-
-The green "passed" result means **the board is parseable**, not that **the data is sound**. This is the exact scenario the Architect audit was designed to catch.
-
-### Required Fixes (Implementer Responsibility)
-
-1. **Migration script repair (`scripts/migrate-master-plan.mjs`):** Handle pipe characters in task cell by:
-   - Regex-based extraction of slug, priority, owner, and status (instead of `.split('|')`), OR
-   - Pre-processing to escape/replace pipes in original table before splitting
-
-2. **Re-run migration** to regenerate all 49 detail files with correct status and full Record text
-
-3. **Verify** no rows remain with mojibake status, and `docs/plan/items/*.md` files are lossless (compare concatenated records against original v13.33 row text)
-
-4. **File size:** After fixing defect 1, measure new board size; if still >40KB, trim summary column to 40 bytes and remove link markup (detail link survives via status cell)
-
-### Architect Doctrine Section — Deferred
-
-The specification section ("board/detail contract, 400B row cap, byte budget, parser restoration finding") cannot be certified in MASTER_PLAN.md until these defects are repaired and re-audited. Once Implementer completes fixes and pushes, Architect will verify and add doctrine.
-
-### Next Steps
-
-1. Implementer: Fix migration script and re-run, push to origin/master
-2. Architect: Re-audit detail files for lossless content
-3. Architect: Confirm board parses 49 rows + all status fields valid + no mojibake
-4. Architect: Write doctrine section and commit v13.35
-
-**Status row marking:** This audit itself is a `docs/MASTER_PLAN.md` amendment (Architect role). Once fixes land on master, a follow-up v13.35 section will verify and close this. |
-
----
+**Fix (Implementer):** extract fields by regex instead of `.split('|')`, re-run the migration, verify no corrupted status and no truncated Record section against the pre-migration file, re-measure size, and get `check-repo-language.mjs` back to exit 0. Unchanged and still open.
 
 ## v13.35 — 360° audit: the deploy gate exists but verifies nothing
 
@@ -500,30 +431,13 @@ Two aggravating findings:
 
 ### Measured baseline (2026-08-12, this container)
 
-| Check                            | Result                                                                                                                                                     |
-| -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `pnpm install --frozen-lockfile` | exit 0                                                                                                                                                     |
-| `pnpm lint`                      | exit 0, zero warnings                                                                                                                                      |
-| `npx tsc --noEmit`               | exit 0                                                                                                                                                     |
-| `pnpm test`                      | 1035 tests, 1028 pass, 7 fail — all 7 in `tests/lib/openrouter-gateway.test.ts`, cause is absent `OPENROUTER_API_KEY`, not a source defect                 |
-| `pnpm build`                     | exit 1 — three Google Fonts fetch failures (Inter, JetBrains Mono, Outfit) from `src/app/[locale]/layout.tsx`; container proxy artifact, not a code defect |
-| Test files / e2e specs           | 221 / 44                                                                                                                                                   |
-| Workflows                        | 21; two gate anything (`public-repo-sync.yml`, `rollback.yml`), and neither gates the production site                                                      |
+`pnpm install` / `pnpm lint` / `npx tsc --noEmit` exit 0. `pnpm test`: 1035 tests, 1028 pass — all 7 failures in `openrouter-gateway.test.ts` from an absent `OPENROUTER_API_KEY`, since fixed. `pnpm build` fails only on Google Fonts fetch (container proxy, not a defect). 221 test files, 44 e2e specs, 21 workflows — of which two gate anything and neither gates the production site.
 
-### Security posture — measured, and it is sound
+**Security posture — measured, and sound.** No live credential in tracked files; every hit is a `process.env` reference, an `.env.example` placeholder, or a deliberate test fixture. No client component imports `supabase/admin.ts`; no `NEXT_PUBLIC_*` carries SERVICE/SECRET/ROLE. All sampled server actions guard before writing; public endpoints are IP rate-limited; user text passes `maskPII` first. **73/73 tables have RLS with at least one policy.** `pnpm audit`: 0 critical, 0 high, 0 moderate, 1 low (`@ai-sdk/provider-utils`, GHSA-866g-f22w-33x8, no patch — monitor). One exception found later and separately: the `IS_PLAYWRIGHT_TEST` auth bypass, see v13.37.
 
-No live credential is present in tracked files; every hit is a `process.env` reference, an `.env.example` placeholder, or a deliberate test fixture (`AKIAIOSFODNN7EXAMPLE`). No client component imports `src/lib/supabase/admin.ts`; no `NEXT_PUBLIC_*` variable carries SERVICE, SECRET, or ROLE. All 50+ server actions sampled call an auth guard before writing, and public/anonymous endpoints are IP rate-limited. All five sampled user-text insertions pass through `maskPII` first. **73 of 73 tables have RLS enabled with at least one policy.** `pnpm audit`: 0 critical, 0 high, 0 moderate, 1 low (`@ai-sdk/provider-utils` ≤3.0.97, GHSA-866g-f22w-33x8, no patch released — monitor).
+**Content defects fixed.** `admin.l_lmedi` held mojibake `"Ã–lçülmedi"`; three further admin keys shipped literal Turkish in all four non-TR files; six emoji were corrupted by a UTF-8/Windows-1252 round trip. All repaired; parity holds and `check-i18n` exits 0.
 
-### Content defects found and fixed this session
-
-- `messages/en.json` `admin.l_lmedi` held `"Ã–lçülmedi"` — UTF-8 read back as Windows-1252. Set to `"Not measured"`; de/fr/ru held leftover untranslated Turkish and were translated.
-- Three further keys shipped literal Turkish in all four non-TR files (`admin.resources_quota_projected_tag`, `admin.resources_efficiency_estimated_tag`, `admin.resources_quota_not_measured`) — translated.
-- Corrupted emoji byte sequences remain under repair in `incident.processing_queued`, `incident.processing_analyzing`, `incident.submit_live_counter`, `admin.dsar_box_title`, `admin.kbench_box_title`.
-- Key parity holds at 4749 leaf keys across all five languages; `node scripts/check-i18n.mjs` exit 0.
-
-### Orphaned pages
-
-19 routes render real content, appear in `src/app/sitemap.ts` (so search engines index them), and have **no incoming link anywhere in `src/`** — reachable only by typing the URL. The two that matter most: `/submit/whistleblower` (the /submit page mentions whistleblower protection but never links the form) and the five `/academy/*` subpages, which the `/academy` index itself never links. Being repaired this session. Nine regulatory pages (`/legal/kvkk`, `/legal/imprint`, `/legal/provider-response`, `/legal/takedown/appeal`, `/transparency/cease-desist`, `/transparency/legal-threats`, `/transparency/art-73-tracker`, `/compliance/analyzer`, `/compliance-checklist`) are plausibly isolated by design and were deliberately left alone — see FOUNDER-7.
+**Orphaned pages.** 19 routes render real content, sit in `sitemap.ts`, and had no inbound link anywhere in `src/`. The two that mattered: `/submit/whistleblower` (a protected-disclosure route linked from nowhere) and the five `/academy/*` subpages the Academy index never linked. Repaired. Nine regulatory pages left isolated deliberately — FOUNDER-7.
 
 ### Gate decision (Founder, 2026-08-12): hard
 
@@ -576,22 +490,45 @@ Closes the v13.35 audit. All work below is on `origin/claude/strategy-brief-revi
 
 **The gate.** `scripts/deploy-gate.mjs` now resolves the deploying SHA, queries the GitHub check-runs and commit-status APIs, and polls at 20s intervals while checks are in flight. Failure/cancelled/timed_out skips the build and names the check with its URL; all-success proceeds; timeout skips and says so explicitly. `[deploy]` no longer bypasses verification — only `[force-deploy]`, which logs a loud warning. Fails open in exactly two logged cases: no token, and unresolvable repo identity. **The gate is built but not armed until FOUNDER-1 and FOUNDER-2 are done.**
 
-**Two new enforcers (Doctrine #047).** `check-internal-links.mjs` — 181 targets checked, 26 statically unresolvable and counted rather than silently dropped; negative-tested. `Internal Link Integrity` step added to `ci.yml`. The e2e job added to `ci.yml` runs the flows that were written and never executed. `.github/workflows/test-runner.yml` was deleted: it echoed and always passed, so it reported tests that never ran.
+**Two new enforcers (Doctrine #047).** `check-internal-links.mjs` — 181 targets checked, 26 statically unresolvable and counted rather than silently dropped; negative-tested; wired into `ci.yml`. The e2e job runs the flows that were written and never executed. `test-runner.yml` was deleted: it echoed and always passed, reporting tests that never ran.
 
-**Defects found that nobody had asked about.** The homepage's closing call-to-action linked twice to `/insights`, which has no page — a 404 on the front page. `permanentRedirect` was missing from `src/i18n/routing.ts`, so only 307s were reachable. The canonical Grok case page and the `/cases` index were both absent from `sitemap.ts` — the page intended for international press was never announced to crawlers. Post-login `next` was constructed by admin pages, never read, and silently discarded; wiring it up required an open-redirect guard (`src/lib/utils/safe-redirect.ts`, 17 tests) because an unvalidated target lets an attacker bounce an authenticated victim off-site. **Three** routes rendered the Grok incident, not two; two are now permanent redirects to the canonical page.
+**Defects found that nobody had asked about.** The homepage's closing call-to-action linked twice to `/insights`, which has no page — a 404 on the front page. `permanentRedirect` was missing from `src/i18n/routing.ts`, so only 307s were reachable. The canonical Grok case page and the `/cases` index were both absent from `sitemap.ts` — the page intended for international press was never announced to crawlers. Post-login `next` was built by admin pages, never read, and silently discarded; wiring it up required an open-redirect guard (`src/lib/utils/safe-redirect.ts`, 17 tests). **Three** routes rendered the Grok incident, not two; two are now permanent redirects.
 
 **Founder decisions taken this session.** Hard gate (nothing deploys unless checks are green). Placeholder member slots removed from `/about` rather than shipped. The unfiled KVKK claim removed from the public case page — see FOUNDER-3. `/cases/001-grok-passport` chosen as canonical.
 
-### G-6 has no enforcement over delegated agents — measured, not theorised
+### G-6 has no enforcement over delegated agents — measured
 
-Three independent subagents this session read `CLAUDE.md`, encountered the Architect/Implementer separation, and **each disregarded it** to perform the `src/**` edits their assigned task required. Two went further and flagged the doctrine itself as suspicious: one called it "role-play," another advised sanity-checking where the content came from, noting that a document instructing an agent not to edit the files a legitimate task requires is worth a second look.
-
-This is a real finding, not a complaint about tone. Three consequences follow:
-
-1. **The G-6a claim that the boundary is "separation of duties, not model identity" is only half-enforced.** The Implementer half has a working enforcer — `.husky/pre-commit` blocks `docs/MASTER_PLAN.md` without `ARCHITECT=1`, and it fired correctly against this session twice today. The Architect half has none, and a role-guard also blocks `scripts/**` when `ARCHITECT=1` is set, so the two guards together make some legitimate commits require splitting by path. That is a design smell worth revisiting.
-2. **Doctrine written as unexplained imperatives reads as prompt injection to a fresh agent.** Agents are increasingly trained to distrust instructions that arrive as context and conflict with an operator's explicit task. Rules stated with their rationale survive that filter; bare prohibitions do not. Any rule intended to bind delegated agents must therefore either ship with an executable enforcer, or be restated in the task prompt itself with its reasoning.
-3. **The measured behaviour was correct in each case.** The tasks were narrowly scoped with paths already enumerated — the exact condition G-5's own delegation threshold says direct execution is right for. No agent used the doctrine as cover to skip work, and none silently ignored it: all three disclosed. The gap is in enforcement design, not agent conduct.
+Three of three subagents this session read `CLAUDE.md`, hit the Architect/Implementer separation, and each disregarded it to make the `src/**` edits their task required; two flagged the doctrine itself as suspicious. Their conduct was correct — narrow, path-enumerated tasks are what G-5's own threshold says direct execution is for — and all three disclosed. The Implementer half has a working enforcer (`.husky/pre-commit`, fired twice today); the Architect half has none. Full analysis: `docs/plan/v13.37-rca.md` §2c.
 
 **Recorded, not resolved.** Options: add a real Architect-side enforcer, narrow G-6 to what a hook can check, or accept that it binds only the interactive session and say so. A Founder decision — not something to settle by writing another rule with no enforcer behind it.
 
 **Still open.** The v13.34 migration remains defective: 11 rows whose text contains a literal `|` were split wrongly, corrupting status cells and truncating detail files (`docs/plan/items/BN.md` still reads `Ã¼\`). `signInWithMagicLink` never accepted a `next` param, so the post-login fix covers Google sign-in only. 26 link targets are built from variables and cannot be statically checked; the count prints every run so the gap stays visible. FOUNDER-1 through FOUNDER-7 are unchanged and still the Founder's to execute.
+
+---
+
+## v13.37 — Root-cause analysis: one mechanism behind every recurring failure
+
+Full analysis in **`docs/plan/v13.37-rca.md`**. Summary and queue items only here.
+
+**Root cause.** Every failure in this project's record, Architect-side and Implementer-side alike, reduces to: _a claim was accepted as evidence because nothing executable could contradict it._ 8 binding `G-` rules and 3 doctrines exist; 3 of 13 enforcer scripts are wired into no workflow. Where an enforcer exists the rule holds — the pre-commit plan-guard blocked this session twice and was right both times. Where only prose exists, violations surface months later by manual audit.
+
+**Measured.** 13 enforcers, 9 invoked, **3 wired to nothing** (`check-i18n-admin`, `check-i18n-completeness`, `check-keys`). **11 of 49** backlog detail files carry corrupted status. **12 non-SHA closure citations** remain (`pending-push` ×4, `latest` ×4, `verified` ×2, `legacy` ×2). MASTER_PLAN contains 5 `Kural 10 düzeltmesi`, 3 `öz-düzeltme`, 2 `doğrulanamadı`, 1 `kanıt geçersiz`. Commit-authorship and revert-rate figures are **ölçülmedi** — the agent measuring them hit a session usage limit before reporting; not estimated.
+
+**Three sub-mechanisms.** (1) _Checks that verify shape, not substance_ — the consistency check passed while parsing 0 of 50 rows, `test-runner.yml` passed while running 0 tests, the deploy gate passed on branch name alone, and the migration's own loss audit passed while corrupting 11 rows. A green check that measures nothing is worse than none: it suppresses the manual review that would have caught the defect. (2) _Goodhart_ — the length enforcer counts lines, so the file reached 334 KB honouring a 400-line cap, and the cap was then raised. (3) _Prose does not bind delegated agents_ — measured 3/3 above.
+
+### Queue — controls, highest leverage first
+
+| #   | Control                                                                                                                                                                                                                             | Owner       | Status  |
+| --- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ------- |
+| C-1 | **Negative test for every enforcer.** A meta-check runs each `scripts/check-*.mjs` against a known-bad fixture and requires exit 1. Any check that cannot be made to fail is deleted. Kills the entire "green because empty" class. | Implementer | pending |
+| C-2 | **Wire or delete** the 3 enforcers no workflow invokes.                                                                                                                                                                             | Implementer | pending |
+| C-3 | **Closure citations verified mechanically.** Extend `check-closure-evidence.mjs`: every `closed-by:<sha>` must resolve via `git cat-file -e` and touch a path named in the item; sentinels fail. Turns G-7 into a gate.             | Implementer | pending |
+| C-4 | **Rules ship with an enforcer or are labelled unenforced.** Three states only. Apply to G-6 immediately — it has no Architect-side enforcer and must say so.                                                                        | Architect   | pending |
+| C-5 | **Disjoint write-ownership for parallel agents.** No two concurrent agents on one file. This session lost a fix to exactly this.                                                                                                    | Architect   | adopted |
+| C-6 | **Scope fixed at dispatch.** New work goes to a new agent with a complete prompt, never a mid-flight message.                                                                                                                       | Architect   | adopted |
+| C-7 | **Verification re-runs the command.** An agent report is a hypothesis; confirm by executing, especially when an agent audits its own output.                                                                                        | Architect   | adopted |
+| C-8 | **Byte budget replaces the line cap**, per the plan already written. Until then detail goes to `docs/plan/`.                                                                                                                        | Implementer | pending |
+
+### Carried forward, unchanged
+
+`src/lib/auth/test-bypass.ts` landed as a **scaffold that is not wired in** — the three bypass call sites (`src/middleware.ts:54`, `src/lib/auth/session.ts:14`, `src/actions/incidents.ts:465`) still read `process.env.IS_PLAYWRIGHT_TEST` directly, and `next.config.mjs` does not yet define `NEXT_TEST_AUTH_BYPASS`. **The authentication bypass is therefore NOT contained.** Setting that variable in the hosting environment still disables admin auth and returns a synthetic admin user to every request, at runtime, with no redeploy. Highest-priority open item; the agent implementing it was terminated by a usage limit mid-task. Also open: the three public-page defects the excluded spec correctly reported (unknown blog slug returns 200 not 404; no `BlogPosting` JSON-LD; no `/pricing/i` heading), and the four e2e specs still outside CI.

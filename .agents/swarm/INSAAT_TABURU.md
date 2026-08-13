@@ -1,4 +1,4 @@
-# BETA_SQUAD — Ağır Mühendislik & Kodlama
+# INSAAT TABURU — Ağır Mühendislik & Kodlama
 
 ## Rol & Yetki
 Karmaşık iş mantığı, veritabanı migrasyonları ve Server Action mühendisliğinden sorumludur.

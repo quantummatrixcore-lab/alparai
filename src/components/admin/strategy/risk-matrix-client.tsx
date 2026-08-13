@@ -940,7 +940,7 @@ export function RiskMatrixClient({
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                   <div>
                     <label className="mb-1 block text-[11px] font-bold tracking-wider text-slate-300 uppercase">
                       {t("risk_code_label")}

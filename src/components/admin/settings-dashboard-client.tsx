@@ -81,7 +81,7 @@ export function SettingsDashboardClient() {
           </div>
 
           {/* Quick Metrics Bar */}
-          <div className="grid grid-cols-3 gap-3 rounded-xl border border-white/5 bg-black/30 p-3">
+          <div className="grid grid-cols-1 gap-3 rounded-xl border border-white/5 bg-black/30 p-3 sm:grid-cols-3">
             <div className="px-2 text-center">
               <span className="text-fg-muted block text-[10px] font-bold tracking-wider uppercase">
                 PII Guard

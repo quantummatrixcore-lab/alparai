@@ -164,7 +164,7 @@ export function JulesDashboard({ sessions, connected, defaultRepo }: JulesDashbo
                 required
               />
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <div>
                 <label className="mb-1 block text-xs text-zinc-500">Repository</label>
                 <input

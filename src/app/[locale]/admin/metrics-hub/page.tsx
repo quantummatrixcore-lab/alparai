@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 
+/** Responsive Metrics Hub Redirect */
 export default async function MetricsHubRedirect({
   params,
 }: {
@@ -8,3 +9,4 @@ export default async function MetricsHubRedirect({
   const { locale } = await params;
   redirect(`/${locale}/admin/metrics-hub/slo-dashboard`);
 }
+

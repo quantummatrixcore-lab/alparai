@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 
+/** Responsive AI Hub Redirect */
 export default async function AiHubRedirect({
   params,
 }: {
@@ -8,3 +9,4 @@ export default async function AiHubRedirect({
   const { locale } = await params;
   redirect(`/${locale}/admin/ai-hub/orchestrator`);
 }
+

@@ -13,6 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
+/** Responsive Modular Architecture Admin Page */
 export default async function ModularArchitectureAdminPage({
   params,
 }: {
@@ -25,3 +26,4 @@ export default async function ModularArchitectureAdminPage({
 
   return <ModularArchitectureView data={data} />;
 }
+

@@ -77,7 +77,7 @@ export function MasterPlanDashboard({ items }: MasterPlanDashboardProps) {
             Task Distribution
           </h3>
         </div>
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
           <div className="flex flex-col items-center rounded-lg border border-white/5 bg-black/20 p-2">
             <CheckCircle2 className="mb-1 h-4 w-4 text-emerald-400" />
             <span className="text-lg font-bold text-emerald-400">{completed}</span>

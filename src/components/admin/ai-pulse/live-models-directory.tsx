@@ -106,7 +106,7 @@ export function LiveModelsDirectory({ initialModels }: LiveModelsDirectoryProps)
           </div>
         </div>
       </CardHeader>
-      <CardContent className="custom-scrollbar max-h-[600px] overflow-y-auto p-0">
+      <CardContent className="custom-scrollbar max-h-[600px] overflow-x-auto overflow-y-auto p-0">
         <table className="w-full text-left text-sm">
           <thead className="text-fg-muted sticky top-0 z-10 border-b border-white/10 bg-white/5 text-xs uppercase backdrop-blur-md">
             <tr>

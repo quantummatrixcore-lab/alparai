@@ -92,7 +92,7 @@ export default async function AdminAutopilotPage({
         </header>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-6">
           <Stat label={t("stats_total")} value={stats.total} />
           <Stat label={t("stats_succeeded")} value={stats.succeeded} accent="ok" />
           <Stat label={t("stats_failed")} value={stats.failed} accent="danger" />
@@ -149,29 +149,31 @@ export default async function AdminAutopilotPage({
               <CardTitle>{t("section_policies")}</CardTitle>
             </CardHeader>
             <CardContent>
-              <table className="w-full text-left text-sm">
-                <caption className="sr-only">Autopilot Policies Table</caption>
-                <thead className="text-fg-muted">
-                  <tr>
-                    <th className="py-2 font-medium">{t("policy_action")}</th>
-                    <th className="py-2 font-medium">{t("policy_on_exhaust")}</th>
-                    <th className="py-2 font-medium">{t("policy_attempts")}</th>
-                    <th className="py-2 font-medium">{t("policy_budget")}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {policies.map((p) => (
-                    <tr key={p.action} className="border-border-subtle border-t">
-                      <td className="text-fg-secondary py-2 font-mono">{p.action}</td>
-                      <td className="py-2">{p.onExhaust}</td>
-                      <td className="py-2">{p.attempts}</td>
-                      <td className="py-2">
-                        {p.budgetMs} ms · {p.budgetTokens} tok
-                      </td>
+              <div className="overflow-x-auto">
+                <table className="w-full text-left text-sm">
+                  <caption className="sr-only">Autopilot Policies Table</caption>
+                  <thead className="text-fg-muted">
+                    <tr>
+                      <th className="py-2 font-medium">{t("policy_action")}</th>
+                      <th className="py-2 font-medium">{t("policy_on_exhaust")}</th>
+                      <th className="py-2 font-medium">{t("policy_attempts")}</th>
+                      <th className="py-2 font-medium">{t("policy_budget")}</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {policies.map((p) => (
+                      <tr key={p.action} className="border-border-subtle border-t">
+                        <td className="text-fg-secondary py-2 font-mono">{p.action}</td>
+                        <td className="py-2">{p.onExhaust}</td>
+                        <td className="py-2">{p.attempts}</td>
+                        <td className="py-2">
+                          {p.budgetMs} ms · {p.budgetTokens} tok
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </CardContent>
           </Card>
         </div>

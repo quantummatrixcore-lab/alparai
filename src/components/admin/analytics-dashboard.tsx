@@ -151,7 +151,7 @@ export function AnalyticsDashboard({ snapshot, locale }: AnalyticsDashboardProps
                 </span>
               </div>
             </div>
-            <div className="mt-6 grid w-full grid-cols-2 gap-4 text-center">
+            <div className="mt-6 grid w-full grid-cols-1 gap-4 text-center sm:grid-cols-2">
               <div>
                 <span className="text-fg-muted block text-xs">{t("succeeded")}</span>
                 <span className="text-success-400 text-lg font-semibold">{stats.succeeded}</span>

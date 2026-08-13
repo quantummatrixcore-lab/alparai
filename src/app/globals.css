@@ -389,6 +389,17 @@ a {
   color: inherit;
 }
 
+/* Minimum touch target for interactive elements */
+button, a, [role='button'] {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+@utility text-overflow-safe {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
 @keyframes flow-line {
   to {
     stroke-dashoffset: -40;

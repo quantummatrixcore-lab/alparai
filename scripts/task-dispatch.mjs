@@ -3,10 +3,10 @@ import path from 'node:path';
 import { execSync } from 'node:child_process';
 
 // ──────────────────────────────────────────────────────────────────
-// ANTIGRAVITY TIER MAP  (Baş Mimar: Claude Sonnet)
-// flash_lite → nano/micro görevler  (≤5K token)   — en hızlı & ucuz
-// flash      → small/medium görevler (≤20K token)  — dengeli
-// pro        → large/XL görevler    (≤80K token)   — 2M bağlam
+// ANTIGRAVITY MODEL CAPABILITY MATRIX (Baş Mimar: Claude Sonnet)
+// Kaynak: 6-model karşılaştırma tablosu — 14 Ağustos 2026
+// ──────────────────────────────────────────────────────────────────
+// tier: flash_lite → nano (≤5K)  | flash → small/medium (≤20K) | pro → large/XL (≤80K)
 // ──────────────────────────────────────────────────────────────────
 const ANTIGRAVITY_TIER = {
   flash_lite: { max_budget: 5000,  ag_model: 'flash_lite', label: 'Nano/Micro' },
@@ -15,33 +15,72 @@ const ANTIGRAVITY_TIER = {
 };
 
 const MODEL_CAPABILITIES = {
-  // flash_lite tier — tek satır / mekanik düzeltmeler
-  'agent_tartarus':{ spec: 'cleanup',  tier: 'flash_lite', models: ['archive','dead-code','hygiene','single-line-fix'], oc_model: 'Laguna-S-2.1-Free',     max_tokens: 5000 },
-  'agent_bilge':   { spec: 'knowledge',tier: 'flash_lite', models: ['docs','history','governance','lookup'],           oc_model: 'MiMo-V2.5-Free',         max_tokens: 5000 },
-  // flash tier — 1-3 dosya, lint dahil
-  'agent_f':       { spec: 'frontend', tier: 'flash',      models: ['next.js','tailwind','react','i18n','a11y'],       oc_model: 'DeepSeek-V4-Flash-Free',  max_tokens: 10000 },
-  'agent_omega':   { spec: 'security', tier: 'flash',      models: ['rls','pii','audit','cve','ssrf'],                 oc_model: 'DeepSeek-V4-Flash-Free',  max_tokens: 10000 },
-  'agent_llm':     { spec: 'research', tier: 'flash',      models: ['prompt','routing','llm','docs','eval'],           oc_model: 'GLM-5.2-Free',            max_tokens: 15000 },
-  'agent_b':       { spec: 'backend',  tier: 'flash',      models: ['postgresql','api','migration','rpc'],             oc_model: 'Nemotron-3-Ultra-Free',   max_tokens: 15000 },
-  'mbp_f1':        { spec: 'ui_prime', tier: 'flash',      models: ['next.js','ui','ux','glassmorphism','animation'],  oc_model: 'Gemma-4-31B-IT',          max_tokens: 20000 },
-  // pro tier — mimari, 2M bağlam, tam repo analizi
-  'mbs':           { spec: 'strategy', tier: 'pro',        models: ['verdict','memory','advisory','architecture'],     oc_model: 'GPT-OSS-120B',            max_tokens: 40000 },
-  'mbp':           { spec: 'command',  tier: 'pro',        models: ['orchestrate','fullrepo','planning','2m-context'], oc_model: 'DeepSeek-V4-Pro',         max_tokens: 80000 },
+  // ── NANO TİER (flash_lite) — sub-agent, yüksek hacim, düşük gecikme ──
+  'nemotron_lightning': {
+    tier: 'flash_lite', spec: 'speed',
+    oc_model: 'Nemotron 3.5 Lightning',
+    active_params: '3B', context: '1M',
+    strengths: ['sub-agent', 'batch', 'low-latency', 'cost'],
+    max_tokens: 3000,
+  },
+
+  // ── FLASH TİER — dengeli, 1-3 dosya ──
+  'deepseek_flash': {
+    tier: 'flash', spec: 'long_context',
+    oc_model: 'DeepSeek V4 Flash',
+    active_params: '13B', context: '1M',
+    strengths: ['long-doc', 'code', 'high-volume', 'i18n'],
+    max_tokens: 10000,
+  },
+  'hy3': {
+    tier: 'flash', spec: 'frontend',
+    oc_model: 'Hy3',
+    active_params: '21B', context: '256K',
+    strengths: ['frontend', 'ci-cd', 'office', 'react', 'tailwind'],
+    max_tokens: 12000,
+  },
+  'laguna': {
+    tier: 'flash', spec: 'coding',
+    oc_model: 'Laguna S 2.1',
+    active_params: '8B', context: '1M',
+    strengths: ['code', 'tool-calling', 'agentic-coding', 'migration'],
+    max_tokens: 15000,
+  },
+  'mimo': {
+    tier: 'flash', spec: 'multimodal',
+    oc_model: 'MiMo V2.5',
+    active_params: '15B', context: '1M',
+    strengths: ['image', 'video', 'audio', 'multimodal', 'reasoning'],
+    max_tokens: 15000,
+  },
+
+  // ── PRO TİER — en güçlü reasoning, agentic workflow ──
+  'nemotron_ultra': {
+    tier: 'pro', spec: 'reasoning',
+    oc_model: 'Nemotron 3 Ultra',
+    active_params: '55B', context: '1M',
+    strengths: ['reasoning', 'agentic', 'multilingual', 'architecture'],
+    max_tokens: 40000,
+  },
 };
 
 const SWARM_ROUTING = {
-  'code_forge':         { fallback_chain: ['agent_b','agent_f','mbp_f1'],        swarm_unit: 'INSAAT TABURU' },
-  'security_audit':     { fallback_chain: ['agent_omega','agent_b','mbs'],       swarm_unit: 'ISTIHBARAT EMNIYETI' },
-  'deep_research':      { fallback_chain: ['agent_llm','agent_bilge','mbs'],     swarm_unit: 'KESIF KOLU' },
-  'full_360_audit':     { fallback_chain: ['agent_omega','agent_b','agent_llm'], swarm_unit: 'ISTIHBARAT + INSAAT' },
-  'strategic_analysis': { fallback_chain: ['mbs','mbp','agent_bilge'],           swarm_unit: 'GENEL KURMAY' },
-  'prompt_optimization':{ fallback_chain: ['agent_llm','agent_f','mbs'],         swarm_unit: 'KESIF KOLU' },
-  'frontend_fix':       { fallback_chain: ['agent_f','mbp_f1','agent_b'],        swarm_unit: 'YILDIRIM KITALARI' },
-  'i18n':               { fallback_chain: ['agent_f','agent_bilge','agent_llm'], swarm_unit: 'HARICIYE DAIRESI' },
-  'cleanup':            { fallback_chain: ['agent_tartarus','agent_b','agent_f'], swarm_unit: 'YILDIRIM KITALARI' },
-  'ui_design':          { fallback_chain: ['agent_f','mbp_f1','agent_b'],        swarm_unit: 'TASARIM KOMANDOLARI' },
-  'component_build':    { fallback_chain: ['mbp_f1','agent_f','agent_b'],        swarm_unit: 'TASARIM KOMANDOLARI' },
-  'a11y_audit':         { fallback_chain: ['agent_omega','agent_f','agent_llm'], swarm_unit: 'TASARIM KOMANDOLARI' },
+  // Görev → [P1, P2, P3] en yetkin modelden başla
+  'code_forge':         { fallback_chain: ['laguna','deepseek_flash','nemotron_ultra'],  swarm_unit: 'İNŞAAT TABURU' },
+  'security_audit':     { fallback_chain: ['nemotron_ultra','laguna','deepseek_flash'],  swarm_unit: 'İSTİHBARAT EMNİYET' },
+  'deep_research':      { fallback_chain: ['nemotron_ultra','deepseek_flash','mimo'],    swarm_unit: 'KEŞİF KOLU' },
+  'strategic_analysis': { fallback_chain: ['nemotron_ultra','mimo','deepseek_flash'],    swarm_unit: 'GENEL KURMAY' },
+  'frontend_fix':       { fallback_chain: ['hy3','deepseek_flash','laguna'],             swarm_unit: 'YILDIRIM KITALARI' },
+  'i18n':               { fallback_chain: ['deepseek_flash','nemotron_ultra','hy3'],     swarm_unit: 'HARİCİYE DAİRESİ' },
+  'ui_design':          { fallback_chain: ['hy3','mimo','deepseek_flash'],               swarm_unit: 'TASARIM KOMANDOLARI' },
+  'component_build':    { fallback_chain: ['hy3','laguna','deepseek_flash'],             swarm_unit: 'TASARIM KOMANDOLARI' },
+  'a11y_audit':         { fallback_chain: ['mimo','hy3','nemotron_ultra'],               swarm_unit: 'TASARIM KOMANDOLARI' },
+  'cleanup':            { fallback_chain: ['nemotron_lightning','deepseek_flash','laguna'], swarm_unit: 'YILDIRIM KITALARI' },
+  'batch_task':         { fallback_chain: ['nemotron_lightning','deepseek_flash','hy3'],   swarm_unit: 'YILDIRIM KITALARI' },
+  'multimodal':         { fallback_chain: ['mimo','nemotron_ultra','deepseek_flash'],    swarm_unit: 'KEŞİF KOLU' },
+  'agentic_workflow':   { fallback_chain: ['nemotron_ultra','laguna','mimo'],            swarm_unit: 'GENEL KURMAY' },
+  'long_doc':           { fallback_chain: ['deepseek_flash','nemotron_ultra','laguna'],  swarm_unit: 'KEŞİF KOLU' },
+  'full_360_audit':     { fallback_chain: ['nemotron_ultra','laguna','deepseek_flash'],  swarm_unit: 'GENEL KURMAY' },
 };
 
 function fetchGraphifyContext(query) {

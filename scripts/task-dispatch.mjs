@@ -10,7 +10,7 @@ const MODEL_CAPABILITIES = {
   'agent_tartarus':{ spec: 'cleanup',  models: ['archive','dead-code','hygiene'],   oc_model: 'Laguna-S-2.1-Free' },
   'mbs':           { spec: 'strategy', models: ['verdict','memory','advisory'],     oc_model: 'GPT-OSS-120B' },
   'mbp':           { spec: 'command',  models: ['ceo','dispatch','orchestrate'],    oc_model: 'DeepSeek-V4-Pro' },
-  'mbp_f1':        { spec: 'frontend_prime', models: ['next.js','ui','ux'],        oc_model: 'Gemma-4-31B-IT' },
+  'mbp_f1':        { spec: 'frontend_prime', models: ['next.js','ui','ux','a11y','animation'], oc_model: 'Gemma-4-31B-IT' },
 };
 
 const SWARM_ROUTING = {
@@ -24,6 +24,9 @@ const SWARM_ROUTING = {
   'frontend_fix':       { fallback_chain: ['agent_f','mbp_f1','agent_b'],        swarm_unit: 'YILDIRIM KITALARI' },
   'i18n':               { fallback_chain: ['agent_f','agent_bilge','agent_llm'], swarm_unit: 'HARICIYE DAIRESI' },
   'cleanup':            { fallback_chain: ['agent_tartarus','agent_b','agent_f'], swarm_unit: 'YILDIRIM KITALARI' },
+  'ui_design':          { fallback_chain: ['agent_f','mbp_f1','agent_b'],        swarm_unit: 'TASARIM KOMANDOLARI' },
+  'component_build':    { fallback_chain: ['mbp_f1','agent_f','agent_b'],        swarm_unit: 'TASARIM KOMANDOLARI' },
+  'a11y_audit':         { fallback_chain: ['agent_omega','agent_f','agent_llm'], swarm_unit: 'TASARIM KOMANDOLARI' },
 };
 
 function main() {

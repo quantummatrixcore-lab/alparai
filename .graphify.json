@@ -1,0 +1,11 @@
+{
+  "project_name": "Alparai",
+  "include": ["src", ".agents", "docs", "scripts", "supabase"],
+  "exclude": ["node_modules", ".git", "graphify-out", "target_fresh", ".pnpm-store"],
+  "node_types": {
+    "engine": { "pattern": ".agents/engines/*.json", "color": "#FF6B35" },
+    "persona": { "pattern": ".agents/personas/*.md", "color": "#4ECDC4" },
+    "nexus_rule": { "pattern": ".agents/nexus/*.md", "color": "#45B7D1" },
+    "swarm_doc": { "pattern": ".agents/swarm/*.md", "color": "#96CEB4" }
+  }
+}

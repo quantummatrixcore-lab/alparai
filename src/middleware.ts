@@ -92,16 +92,19 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  const requestWithId = new NextRequest(request, {
-    headers: requestHeaders,
-  });
-
   let intlResponse: NextResponse;
   try {
     if (pathname.startsWith("/api/")) {
-      intlResponse = NextResponse.next({ request: requestWithId });
+      intlResponse = NextResponse.next({
+        request: {
+          headers: requestHeaders,
+        },
+      });
     } else {
-      intlResponse = intlMiddleware(requestWithId);
+      intlResponse = intlMiddleware(request);
+      // Pass custom request headers to Server Components via response headers
+      intlResponse.headers.set("x-middleware-request-x-request-id", requestId);
+      intlResponse.headers.set("x-middleware-request-x-pathname", request.nextUrl.pathname);
     }
   } catch (err) {
     logger.error(
@@ -109,12 +112,16 @@ export async function middleware(request: NextRequest) {
       undefined,
       err instanceof Error ? err : undefined,
     );
-    return NextResponse.next();
+    return NextResponse.next({
+      request: {
+        headers: requestHeaders,
+      },
+    });
   }
 
   let response: NextResponse;
   try {
-    response = await updateSession(requestWithId, intlResponse);
+    response = await updateSession(request, intlResponse);
   } catch (err) {
     logger.error(
       "[middleware] updateSession threw",

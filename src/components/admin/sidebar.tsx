@@ -342,6 +342,12 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
       icon: Grid2X2,
       active: pathname.startsWith("/admin/modular-architecture"),
     },
+    {
+      href: "/admin/gazi",
+      label: t("nav_gazi") || "GAZİ",
+      icon: Sparkles,
+      active: pathname.startsWith("/admin/gazi"),
+    },
   ];
 
   const showOperations = user.role === "ceo" || user.role === "admin" || user.role === "moderator";

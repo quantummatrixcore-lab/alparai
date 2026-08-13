@@ -924,6 +924,7 @@
     "sending": "Gönderiliyor..."
   },
   "admin": {
+    "nav_gazi": "GAZİ",
     "env_audit_live": "CANLI ORTAM DENETİMİ",
     "refresh_telemetry": "Telemetriyi Yenile",
     "jules_meta_title": "Google Jules — Yapay Zeka Kodlama Ajanı | ALPAR AI Yönetim",

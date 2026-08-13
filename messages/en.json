@@ -922,6 +922,7 @@
     "sending": "Sending..."
   },
   "admin": {
+    "nav_gazi": "GAZİ",
     "env_audit_live": "ENV AUDIT LIVE",
     "refresh_telemetry": "Refresh Telemetry",
     "jules_meta_title": "Google Jules — AI Coding Agent | ALPAR AI Admin",

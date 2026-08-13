@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * i18n routing — middleware + helpers.
  */

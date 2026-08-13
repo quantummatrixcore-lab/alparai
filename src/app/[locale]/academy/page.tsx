@@ -14,9 +14,14 @@ import {
   Shield,
   Lock,
   CheckCircle2,
+  ArrowUpRight,
+  Megaphone,
+  Award,
+  Presentation,
 } from "lucide-react";
 import { ExpertForm } from "./expert-form";
 import { createClient } from "@/lib/supabase/server";
+import { Link } from "@/i18n/routing";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const resolvedParams = await params;
@@ -144,6 +149,43 @@ export default async function AcademyPage({ params }: { params: Promise<{ locale
                 <h4 className="mb-2 text-lg font-semibold">{t(item.titleKey)}</h4>
                 <p className="text-fg-muted text-sm leading-relaxed">{t(item.descKey)}</p>
               </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* SECTION 4B - PROGRAMS */}
+      <section className="border-border-subtle border-b py-24">
+        <Container>
+          <div className="mx-auto mb-16 max-w-3xl md:text-center">
+            <h2 className="mb-4 text-3xl font-bold">{t("programs_title")}</h2>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                href: "/academy/ambassador",
+                icon: Megaphone,
+                title: t("programs_ambassador_title"),
+              },
+              { href: "/academy/student-ambassadors", icon: Users, title: t("ambassador_title") },
+              { href: "/academy/fellowship", icon: Award, title: t("programs_fellowship_title") },
+              {
+                href: "/academy/instructor",
+                icon: Presentation,
+                title: t("programs_instructor_title"),
+              },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="bg-bg-tertiary border-border-subtle hover:border-brand-500/30 group flex items-center justify-between gap-3 rounded-xl border p-6 transition-colors"
+              >
+                <div className="flex items-center gap-3">
+                  <item.icon className="text-brand-400 h-6 w-6 shrink-0" />
+                  <h4 className="text-base font-semibold">{item.title}</h4>
+                </div>
+                <ArrowUpRight className="text-fg-muted group-hover:text-brand-400 h-5 w-5 shrink-0 transition-colors" />
+              </Link>
             ))}
           </div>
         </Container>

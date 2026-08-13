@@ -250,6 +250,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     },
     {
+      url: `${APP_URL}/cases`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${APP_URL}/cases/001-grok-passport`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${APP_URL}/challenges`,
       lastModified: new Date(),
       changeFrequency: "weekly",

@@ -22,7 +22,6 @@ import {
   DollarSign,
   Award,
   HardDrive,
-  TrendingUp,
 } from "lucide-react";
 import { triggerExternalFetch } from "@/actions/ecosystem";
 import {
@@ -228,16 +227,6 @@ export function Manage360CommandPalette() {
       icon: Users,
       action: () => {
         router.push("/admin/users");
-        setIsOpen(false);
-      },
-    },
-    {
-      id: "dora",
-      title: "DORA Metrics Dashboard",
-      category: t("group_navigate") || "Navigate",
-      icon: TrendingUp,
-      action: () => {
-        router.push("/admin/dora");
         setIsOpen(false);
       },
     },

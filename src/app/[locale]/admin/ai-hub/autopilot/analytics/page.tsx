@@ -23,7 +23,7 @@ export default async function AdminAutopilotAnalyticsPage({
 
   const user = await getCurrentUser();
   if (!user) {
-    redirect(`/${locale}/auth/signin?next=/${locale}/admin/autopilot/analytics`);
+    redirect(`/${locale}/auth/signin?next=/${locale}/admin/ai-hub/autopilot/analytics`);
   }
   if (user.role !== "admin" && user.role !== "ceo") {
     redirect(`/${locale}`);

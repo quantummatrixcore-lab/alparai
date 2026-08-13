@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/routing";
 
 export default async function MethodologyPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -13,6 +14,22 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
         <p>{t("wilson_desc")}</p>
         <h2>{t("corrections_title")}</h2>
         <p>{t("corrections_desc")}</p>
+      </section>
+      <section className="not-prose mt-12 grid gap-4 sm:grid-cols-2">
+        <Link
+          href="/methodology/ai-iss"
+          className="border-border-subtle bg-bg-secondary/40 hover:border-brand-500/40 block rounded-xl border p-6 transition-colors"
+        >
+          <h3 className="text-fg-primary mb-2 text-lg font-semibold">{t("aiIssTitle")}</h3>
+          <p className="text-fg-muted text-sm leading-relaxed">{t("aiIssDesc")}</p>
+        </Link>
+        <Link
+          href="/methodology/corrections"
+          className="border-border-subtle bg-bg-secondary/40 hover:border-brand-500/40 block rounded-xl border p-6 transition-colors"
+        >
+          <h3 className="text-fg-primary mb-2 text-lg font-semibold">{t("corrections_title")}</h3>
+          <p className="text-fg-muted text-sm leading-relaxed">{t("corrections_subtitle")}</p>
+        </Link>
       </section>
     </main>
   );

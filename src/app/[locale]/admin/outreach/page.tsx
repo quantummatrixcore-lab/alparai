@@ -17,7 +17,7 @@ export default async function OutreachAdminPage({
 }) {
   const { locale } = await params;
   const user = await requireModerator();
-  if (!user) redirect(`/${locale}/login`);
+  if (!user) redirect(`/${locale}/auth/signin?next=/${locale}/admin/outreach`);
 
   const t = await getTranslations({ locale, namespace: "admin" });
 

@@ -66,7 +66,7 @@ export function ApiManagementHub() {
         </div>
         <div className="flex items-center gap-2 text-xs">
           <span className="rounded-full bg-emerald-500/20 px-2.5 py-1 font-mono font-medium text-emerald-300">
-            {isRealTelemetry ? "ENV AUDIT LIVE" : "INITIALIZING"}
+            {isRealTelemetry ? t("env_audit_live") : "INITIALIZING"}
           </span>
           {lastRefreshed && (
             <span className="font-mono text-zinc-400">
@@ -89,7 +89,7 @@ export function ApiManagementHub() {
           className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-zinc-300 transition-colors hover:bg-white/10 disabled:opacity-50"
         >
           <RefreshCw className={`h-3.5 w-3.5 ${loading ? "animate-spin" : ""}`} />
-          {loading ? "Refreshing..." : "Refresh Telemetry"}
+          {loading ? "Refreshing..." : t("refresh_telemetry")}
         </button>
       </div>
 

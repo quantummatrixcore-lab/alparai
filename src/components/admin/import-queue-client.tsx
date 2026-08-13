@@ -172,8 +172,7 @@ export function ImportQueueClient({ initialIncidents, locale: _locale }: ImportQ
                   }}
                   itemStyle={{ fontSize: "12px", color: "#F3F4F6" }}
                   labelStyle={{ display: "none" }}
-                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                  formatter={(value: any, name: any) => [`${value} incidents`, name]}
+                  formatter={(value: number, name: string) => [`${value} incidents`, name]}
                 />
               </PieChart>
             </ResponsiveContainer>

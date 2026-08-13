@@ -447,6 +447,8 @@
     "description": "ALPAR AI documents, verifies, and permanently records every AI incident — governed by its community, not by AI companies. Report a failure. See the evidence. The record is permanent."
   },
   "nav": {
+    "open_menu": "Open menu",
+    "close_menu": "Close menu",
     "home": "Home",
     "feed": "Feed",
     "incidents": "Incidents",
@@ -920,6 +922,8 @@
     "sending": "Sending..."
   },
   "admin": {
+    "env_audit_live": "ENV AUDIT LIVE",
+    "refresh_telemetry": "Refresh Telemetry",
     "jules_meta_title": "Google Jules — AI Coding Agent | ALPAR AI Admin",
     "jules_meta_desc": "Manage Google Jules autonomous coding agent sessions for the ALPAR AI platform",
     "*": "*",

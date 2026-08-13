@@ -477,6 +477,7 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
         <div className="flex min-w-0 items-center gap-2 sm:gap-3">
           <button
             onClick={() => setIsOpen(true)}
+            aria-label={tNav("open_menu")}
             className="text-fg-secondary hover:text-fg-primary shrink-0 rounded-xl p-2 transition hover:bg-white/5"
           >
             <Menu className="h-6 w-6" />
@@ -544,12 +545,14 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
           </Link>
           <button
             onClick={() => setIsOpen(false)}
+            aria-label={tNav("close_menu")}
             className="text-fg-muted shrink-0 rounded-xl p-1.5 transition hover:bg-white/5 hover:text-white lg:hidden"
           >
             <X className="h-5 w-5" />
           </button>
           <button
             onClick={toggleCollapse}
+            aria-label={t("toggle_sidebar_ctrl_b")}
             className="text-fg-muted hidden shrink-0 rounded-xl p-1.5 transition hover:bg-white/5 hover:text-white lg:block"
             title={t("toggle_sidebar_ctrl_b")}
           >

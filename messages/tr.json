@@ -443,11 +443,13 @@
   "app": {
     "name": "ALPAR AI",
     "tagline": "Dünyanın ilk topluluk yönetimli yapay zeka hesap verebilirlik platformu",
-    "title": "ALPAR AI — Dünyanın ilk topluluk yönetimli yapay zeka hesap verebilirlik platformu",
+    "title": "ALPAR AI — Dünyanın ilk topluluk yönetimli yapay zeka hesap verebilirliği platformu",
     "description": "ALPAR AI, yapay zekanın gerçek dünyadaki her hatasını belgeleyen, doğrulayan ve kalıcı olarak kaydeden, topluluk yönetimli bir platformdur. Bir yapay zeka hatasını bildirin. Kanıtları görün. Kayıt kalıcıdır."
   },
   "nav": {
-    "home": "Ana sayfa",
+    "open_menu": "Menüyü aç",
+    "close_menu": "Menüyü kapat",
+    "home": "Ana Sayfa",
     "feed": "Akış",
     "incidents": "Olaylar",
     "leaderboard": "Skor tablosu",
@@ -922,6 +924,8 @@
     "sending": "Gönderiliyor..."
   },
   "admin": {
+    "env_audit_live": "CANLI ORTAM DENETİMİ",
+    "refresh_telemetry": "Telemetriyi Yenile",
     "jules_meta_title": "Google Jules — Yapay Zeka Kodlama Ajanı | ALPAR AI Yönetim",
     "jules_meta_desc": "ALPAR AI platformu için Google Jules otonom kodlama ajanı oturumlarını yönetin",
     "*": "*",

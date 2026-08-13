@@ -234,6 +234,12 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
         pathname.startsWith("/admin/redaction-queue") ||
         pathname.startsWith("/admin/advisory-board"),
     },
+    {
+      href: "/admin/legal-tracker",
+      label: t("nav_legal_tracker") || "Legal Tracker",
+      icon: ShieldAlert,
+      active: pathname.startsWith("/admin/legal-tracker"),
+    },
   ];
 
   const growthItems = [

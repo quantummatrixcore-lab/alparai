@@ -28,7 +28,7 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, windows, x64]
 
     steps:
       - name: Checkout repository
@@ -98,7 +98,7 @@ jobs:
 
   playwright-vrt:
     name: Visual Regression Lock
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, windows, x64]
     env:
       NEXT_PUBLIC_SUPABASE_URL: https://mock-supabase.supabase.co
       NEXT_PUBLIC_SUPABASE_ANON_KEY: mock-anon-key
@@ -150,7 +150,7 @@ jobs:
 
   e2e:
     name: E2E Critical Journeys
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, windows, x64]
     env:
       NEXT_PUBLIC_SUPABASE_URL: https://mock-supabase.supabase.co
       NEXT_PUBLIC_SUPABASE_ANON_KEY: mock-anon-key
@@ -214,7 +214,7 @@ jobs:
 
   security-scan:
     name: Security Scan
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, windows, x64]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

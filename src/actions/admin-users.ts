@@ -47,11 +47,7 @@ export async function createUserByAdmin(data: {
     });
 
     if (authError) {
-      logger.error(
-        "Auth creation error in createUserByAdmin",
-        { role: data.role },
-        authError instanceof Error ? authError : new Error(authError.message),
-      );
+      logger.error("Auth creation error in createUserByAdmin", { role: data.role }, authError);
       return { ok: false, error: authError.message };
     }
 
@@ -72,7 +68,7 @@ export async function createUserByAdmin(data: {
       logger.error(
         "DB role update error in createUserByAdmin",
         { role: data.role, userId: authData.user.id },
-        dbError instanceof Error ? dbError : new Error(dbError.message),
+        new Error(dbError.message),
       );
       // Even if this fails, the user was created, but role might be default 'user'
     }

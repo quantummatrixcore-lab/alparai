@@ -1,5 +1,6 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import Link from "next/link";
+import { AdvisorRoster } from "@/components/admin/strategy/advisor-roster";
 import {
   DollarSign,
   TrendingUp,
@@ -143,6 +144,9 @@ export default async function AdminDashboardPage({
 
         {/* 360 Expert AI Audit Meter */}
         <Test360Meter />
+
+        {/* AI Advisor Roster */}
+        <AdvisorRoster />
 
         {/* Main 4 Giant Widget Grid */}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">

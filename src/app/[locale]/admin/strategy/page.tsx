@@ -13,6 +13,7 @@ import {
   type AnswerRow,
 } from "@/components/admin/questionnaire-client";
 import { EcosystemBenchmarkWidget } from "@/components/admin/ecosystem-benchmark-widget";
+import { AdvisorRoster } from "@/components/admin/strategy/advisor-roster";
 import { QUESTIONNAIRE_MODELS } from "@/lib/ai/openrouter-gateway";
 import { Link } from "@/i18n/routing";
 const StrategyTabs = dynamic(() =>
@@ -501,6 +502,10 @@ export default async function StrategyOverviewPage({
                 </div>
               </div>
             </div>
+
+            {/* AI Advisor Roster */}
+            <AdvisorRoster />
+
             {/* Live AI Strategy Analysis */}
             <div className="mt-8">
               <LiveStrategyClient

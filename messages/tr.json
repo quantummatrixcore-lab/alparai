@@ -2409,7 +2409,19 @@
     "yat_r_m_hibe_d_n_m_oran": "Yatırım/Hibe Dönüşüm Oranı",
     "zero_contamination_hash_signatures": "Zero-Contamination & Hash Signatures",
     "zero_junk_engineering_protocol_real_time": "Zero-Junk Engineering Protocol: Real-time context economy and AST graph sync audit",
-    "zero_token_cost_on_internal_audits": "Zero token cost on internal audits"
+    "zero_token_cost_on_internal_audits": "Zero token cost on internal audits",
+    "access": "Erişim",
+    "ai_advisor_roster": "Yapay Zeka Stratejik Danışmanları",
+    "advisor_roster_desc": "Otonom ajan swarm'ı",
+    "advisor_gazi_purpose": "Atatürk ilkeleriyle tüm Swarm'u yöneten stratejik orkestratör",
+    "advisor_genel_kurmay_purpose": "Swarm orkestrasyonu ve mimari kararlar",
+    "advisor_yildirim_purpose": "Hızlı taktik müdahale ve mikro düzeltmeler",
+    "advisor_insaat_purpose": "Ağır mühendislik ve karmaşık kodlama",
+    "advisor_kesif_purpose": "Kod keşfi ve istihbarat",
+    "advisor_tasarim_purpose": "Görsel tasarım ve UI/UX mükemmelliği",
+    "advisor_hariciye_purpose": "Çok dilli lokalizasyon",
+    "advisor_istihbarat_purpose": "Güvenlik ve KŞV koruması",
+    "advisor_roster_note": "Canlı danışmanlar etkileşimli araçlara yönlendirilir. Tanımlar, swarm koordinasyonu için uzmanlaşmış ajan rollerini açıklar."
   },
   "admin_question_bank": {
     "evaluating": "Değerlendiriliyor...",

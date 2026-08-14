@@ -2409,7 +2409,19 @@
     "yat_r_m_hibe_d_n_m_oran": "Investment / Grant Conversion Rate",
     "zero_contamination_hash_signatures": "Zero-Contamination & Hash Signatures",
     "zero_junk_engineering_protocol_real_time": "Zero-Junk Engineering Protocol: Real-time context economy and AST graph sync audit",
-    "zero_token_cost_on_internal_audits": "Zero token cost on internal audits"
+    "zero_token_cost_on_internal_audits": "Zero token cost on internal audits",
+    "access": "Access",
+    "ai_advisor_roster": "AI Strategic Advisors",
+    "advisor_roster_desc": "Swarm of autonomous agents",
+    "advisor_gazi_purpose": "Atatürk-principles strategic orchestrator commanding entire Swarm",
+    "advisor_genel_kurmay_purpose": "Swarm orchestration and architectural decisions",
+    "advisor_yildirim_purpose": "Rapid tactical response and micro-fixes",
+    "advisor_insaat_purpose": "Heavy engineering and complex coding",
+    "advisor_kesif_purpose": "Code discovery and intelligence",
+    "advisor_tasarim_purpose": "Visual design and UI/UX excellence",
+    "advisor_hariciye_purpose": "Multilingual localization",
+    "advisor_istihbarat_purpose": "Security and PII protection",
+    "advisor_roster_note": "Live advisors route to interactive tools. Definitions describe specialized agent roles for swarm coordination."
   },
   "admin_question_bank": {
     "evaluating": "Evaluating...",

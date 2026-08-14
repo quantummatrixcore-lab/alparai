@@ -2,7 +2,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
 
-import { parseMasterPlan } from "@/lib/utils/markdown-parser";
+import { parseMasterPlanContent } from "@/lib/utils/markdown-parser";
+import { parseMasterPlan } from "@/lib/server/master-plan";
 
 const PLAN_PATH = path.join(process.cwd(), "docs", "MASTER_PLAN.md");
 const originalRead = fs.readFileSync;
@@ -40,7 +41,24 @@ afterEach(() => {
   vi.restoreAllMocks();
 });
 
-describe("parseMasterPlan", () => {
+describe("parseMasterPlanContent (client-safe pure parser)", () => {
+  it("returns markers error when markers are missing", () => {
+    const result = parseMasterPlanContent("# Plan\n\nNo markers here");
+    expect(result.error).toBe("markers");
+    expect(result.items).toEqual([]);
+  });
+
+  it("parses valid markdown content directly without fs", () => {
+    const result = parseMasterPlanContent(validDocument());
+    expect(result.error).toBeNull();
+    expect(result.items).toHaveLength(3);
+    expect(result.items[0]?.title).toBe("[Antigravity] Fix login bug");
+    expect(result.items[0]?.owner).toBe("Antigravity");
+    expect(result.items[0]?.status).toBe("completed");
+  });
+});
+
+describe("parseMasterPlan (server loader)", () => {
   it("returns a read error when the file is missing or unreadable", () => {
     const result = parseMasterPlan();
     expect(result.error).toBe("read");

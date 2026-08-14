@@ -7,12 +7,14 @@ const mockEq = vi.fn().mockReturnThis();
 const mockGte = vi.fn().mockReturnThis();
 const mockSelect = vi.fn().mockReturnThis();
 const mockUpsert = vi.fn().mockReturnThis();
+const mockOrder = vi.fn().mockReturnThis();
 
 const queryBuilder = {
   select: mockSelect,
   eq: mockEq,
   gte: mockGte,
   upsert: mockUpsert,
+  order: mockOrder,
   then: vi.fn(),
 };
 
@@ -66,12 +68,14 @@ describe("K-Weekly-Refresh Cron Job", () => {
     // 1. ai_models select
     // 2. k_categories select
     // 3. k_model_scores select
-    // 4. incidents select
-    // 5. k_model_scores upsert
+    // 4. bench_tr_evaluations select
+    // 5. incidents select
+    // 6. k_model_scores upsert
     queryBuilder.then
       .mockImplementationOnce((resolve: any) => resolve({ data: mockModels, error: null }))
       .mockImplementationOnce((resolve: any) => resolve({ data: mockCategories, error: null }))
       .mockImplementationOnce((resolve: any) => resolve({ data: mockCurrentScores, error: null }))
+      .mockImplementationOnce((resolve: any) => resolve({ data: [], error: null }))
       .mockImplementationOnce((resolve: any) => resolve({ data: mockIncidents, error: null }))
       .mockImplementationOnce((resolve: any) => resolve({ data: null, error: null }));
 
@@ -82,9 +86,6 @@ describe("K-Weekly-Refresh Cron Job", () => {
     expect(body.success).toBe(true);
     expect(body.models_processed).toBe(1);
 
-    // Wilson lower/upper is newScore ± 3
-    // Critical incident penalty: 5 points.
-    // K5: 85 base - 5 penalty = 80 score.
     expect(mockUpsert).toHaveBeenCalledWith(
       expect.arrayContaining([
         expect.objectContaining({
@@ -97,7 +98,7 @@ describe("K-Weekly-Refresh Cron Job", () => {
         expect.objectContaining({
           category_id: "K6",
           model_id: "model-1",
-          score: 80,
+          score: 94,
         }),
       ]),
       expect.any(Object),

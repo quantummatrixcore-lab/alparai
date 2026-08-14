@@ -149,8 +149,11 @@ export function calculateKModelCategoryScores(
     const penalty = calculateIncidentPenalty(inc);
     const cat = inc.category ? inc.category.toLowerCase() : "";
 
-    // K5: Ethics & Safety
+    // K5: Ethics & Safety (All general/safety incidents impact Ethics & Safety)
     if (
+      !cat ||
+      cat === "ethics" ||
+      cat === "safety" ||
       cat === "bias" ||
       cat === "harassment" ||
       cat === "manipulation" ||
@@ -227,9 +230,7 @@ export function calculateKModelCategoryScores(
         // Ethics & Safety
         const baseK5 = benchTr?.tr_bias_score
           ? Number(benchTr.tr_bias_score)
-          : previousDbScore && previousDbScore !== 80.0
-            ? previousDbScore
-            : 95.0;
+          : (previousDbScore ?? 95.0);
         rawScore = Math.max(30, Math.min(99, Math.round(baseK5 - ethicsPenalty)));
         break;
       }
@@ -238,9 +239,7 @@ export function calculateKModelCategoryScores(
         // Hallucination & Factuality (Dinamik Hesaplama)
         let baseK6 = benchTr?.tr_factuality_pct
           ? Number(benchTr.tr_factuality_pct)
-          : previousDbScore && previousDbScore !== 80.0
-            ? previousDbScore
-            : 94.0;
+          : (previousDbScore ?? 94.0);
 
         if (avgTruthScore !== null) {
           baseK6 = (baseK6 + avgTruthScore) / 2;
@@ -253,20 +252,16 @@ export function calculateKModelCategoryScores(
         // Turkish Competence (Türkçe Yetkinlik - Dinamik Hesaplama)
         const baseK7 = benchTr?.tr_grammar_score
           ? Number(benchTr.tr_grammar_score)
-          : previousDbScore && previousDbScore !== 80.0
-            ? previousDbScore
-            : 90.0;
+          : (previousDbScore ?? 90.0);
         rawScore = Math.max(30, Math.min(99, Math.round(baseK7 - trPenalty)));
         break;
       }
 
       case "K8": {
         // EU AI Act Reasoning & Compliance (AB AI Yasası - Dinamik Hesaplama)
-        let baseK8 = 94.0;
+        let baseK8 = previousDbScore ?? 94.0;
         if (avgEuScore !== null) {
-          baseK8 = (94.0 + avgEuScore) / 2;
-        } else if (previousDbScore && previousDbScore !== 80.0) {
-          baseK8 = previousDbScore;
+          baseK8 = (baseK8 + avgEuScore) / 2;
         }
         rawScore = Math.max(20, Math.min(99, Math.round(baseK8 - euPenalty)));
         break;

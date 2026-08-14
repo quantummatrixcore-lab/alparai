@@ -1,9 +1,50 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { type MasterPlanParseResult } from "@/lib/utils/markdown-parser";
+import type { PlanItem, MasterPlanParseError } from "@/lib/utils/markdown-parser";
+import { getMasterPlanAction } from "@/actions/admin/master-plan";
 import { Target, CheckCircle2, CircleDashed, PauseCircle, AlertTriangle } from "lucide-react";
 
-export function PrioritizationWidget({ items, error }: MasterPlanParseResult) {
+export interface PrioritizationWidgetProps {
+  items?: PlanItem[];
+  error?: MasterPlanParseError | null;
+}
+
+export function PrioritizationWidget({
+  items: initialItems,
+  error: initialError = null,
+}: PrioritizationWidgetProps = {}) {
   const t = useTranslations("admin");
+  const [items, setItems] = useState<PlanItem[]>(initialItems ?? []);
+  const [error, setError] = useState<MasterPlanParseError | null>(initialError);
+
+  useEffect(() => {
+    if (initialItems !== undefined) {
+      setItems(initialItems);
+      setError(initialError);
+      return;
+    }
+
+    let isMounted = true;
+    getMasterPlanAction()
+      .then((res) => {
+        if (isMounted) {
+          setItems(res.items);
+          setError(res.error);
+        }
+      })
+      .catch(() => {
+        if (isMounted) {
+          setError("read");
+        }
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [initialItems, initialError]);
+>>>>>>> be884c2f (fix(architecture): separate markdown server parser & calculate benchmark dynamic scores)
 
   const total = items.length;
   const completed = items.filter((i) => i.status === "completed").length;

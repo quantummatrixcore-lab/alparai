@@ -1,7 +1,3 @@
-import fs from "fs";
-import path from "path";
-import { logger } from "@/lib/utils/logger";
-
 export interface PlanItem {
   id: string;
   priority: string;
@@ -26,7 +22,7 @@ export interface MasterPlanParseResult {
 const BACKLOG_START = "<!-- FOUNDER_BACKLOG_START -->";
 const BACKLOG_END = "<!-- FOUNDER_BACKLOG_END -->";
 
-function cleanMarkdown(value: string): string {
+export function cleanMarkdown(value: string): string {
   return value
     .replace(/<[^>]*>?/gm, "")
     .replace(/\[(.*?)\]\(.*?\)/g, "$1")
@@ -35,17 +31,18 @@ function cleanMarkdown(value: string): string {
     .trim();
 }
 
-export function parseMasterPlan(): MasterPlanParseResult {
+/**
+ * Pure parser that transforms markdown string content into structured PlanItem list.
+ * Safe for client-side and server-side execution (zero Node.js dependencies).
+ */
+export function parseMasterPlanContent(content: string): MasterPlanParseResult {
   try {
-    const filePath = path.join(process.cwd(), "docs", "MASTER_PLAN.md");
-    const content = fs.readFileSync(filePath, "utf-8");
     const lines = content.split("\n");
 
     const startIdx = lines.findIndex((l) => l.includes(BACKLOG_START));
     const endIdx = lines.findIndex((l) => l.includes(BACKLOG_END));
 
     if (startIdx === -1 || endIdx === -1 || endIdx <= startIdx) {
-      logger.error("parseMasterPlan: FOUNDER_BACKLOG markers not found — returning empty list");
       return { items: [], error: "markers" };
     }
 
@@ -152,12 +149,7 @@ export function parseMasterPlan(): MasterPlanParseResult {
     }
 
     return { items, error: null };
-  } catch (error) {
-    logger.error(
-      "Error reading MASTER_PLAN.md",
-      undefined,
-      error instanceof Error ? error : undefined,
-    );
+  } catch {
     return { items: [], error: "read" };
   }
 }

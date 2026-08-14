@@ -15,7 +15,7 @@ const StrategyTabs = dynamic(() =>
   import("@/components/admin/strategy-tabs").then((m) => m.StrategyTabs),
 );
 
-import { parseMasterPlan } from "@/lib/utils/markdown-parser";
+import { parseMasterPlan } from "@/lib/server/master-plan";
 import { Compass } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {

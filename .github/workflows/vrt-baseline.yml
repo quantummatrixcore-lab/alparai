@@ -22,11 +22,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v6
+      - uses: pnpm/action-setup@v4
         with:
           version: 9.12.0
 
-      - uses: actions/setup-node@v7
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: "pnpm"
@@ -46,7 +46,7 @@ jobs:
         run: pnpm exec playwright test tests/e2e/visual/ --project=chromium --update-snapshots
 
       - name: Upload baselines for human review
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v4
         with:
           name: visual-baselines-linux
           path: ops/visual-baseline/

@@ -24,7 +24,8 @@ export async function POST(req: Request) {
     const supabase = createAdminClient();
 
     // @ts-expect-error missing webhooks table in types
-    const { data, error } = await supabase
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data, error } = await (supabase as any)
       .from("webhooks")
       .insert({ url, secret, provider_filter })
       .select("id, url, provider_filter, created_at")

@@ -27,7 +27,8 @@ export async function addGeoCitationAction(input: AddGeoCitationInput) {
     await requireAdmin();
 
     const admin = createAdminClient();
-    const db = admin;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const db = admin as any;
 
     // @ts-expect-error Supabase Database types might be missing geo_citations
     const { error } = await db.from("geo_citations").insert({
@@ -55,7 +56,8 @@ export async function getGeoStatsAction() {
     await requireAdmin();
 
     const admin = createAdminClient();
-    const db = admin;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const db = admin as any;
 
     try {
       // @ts-expect-error Supabase Database types might be missing geo_citations

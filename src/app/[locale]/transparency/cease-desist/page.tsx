@@ -80,7 +80,8 @@ export default async function CeaseDesistArchivePage({
   const supabase = await createServerClient();
 
   // @ts-expect-error missing from Database types
-  const { data } = await supabase
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data } = await (supabase as any)
     .from("cease_and_desist_logs")
     .select("*, ai_providers (id, name, slug, logo_url)")
     .order("published_at", { ascending: false })

@@ -5183,5 +5183,30 @@
     "transmitting": "Transmitting...",
     "yourRecoveryKey": "Your Recovery Key — Save It Now",
     "zeroKnowledge": "Zero-Knowledge Encryption"
+  },
+  "reportFlagging": {
+    "badge": "Press Promise Fulfilled",
+    "title": "Report Wrongful AI Flagging",
+    "subtitle": "Were you unfairly flagged by an AI detection system?",
+    "description": "Submit your case. Individual complaints can be ignored; a documented corpus cannot.",
+    "detectorLabel": "Which detector flagged you?",
+    "contextLabel": "What happened?",
+    "contextPlaceholder": "Describe what the detector said, the context (school/work/legal), and what impact it had.",
+    "platformLabel": "Where did this happen?",
+    "evidenceLabel": "Evidence URL (optional)",
+    "emailLabel": "Your email (optional — for follow-up)",
+    "submit": "Submit Report",
+    "submitAnother": "Submit Another Report",
+    "successTitle": "Report received",
+    "successMessage": "Your case has been added to the independent public record.",
+    "tagline": "Individual complaints can be ignored. A documented corpus cannot.",
+    "selectDetector": "— Select detector —",
+    "selectPlatform": "— Select platform —",
+    "emailHint": "Stored as a one-way hash. We never expose your email publicly.",
+    "submitting": "Submitting…",
+    "platformSchool": "School / University",
+    "platformEmployer": "Employer / Workplace",
+    "platformCourt": "Legal / Court Proceeding",
+    "platformOther": "Other"
   }
 }

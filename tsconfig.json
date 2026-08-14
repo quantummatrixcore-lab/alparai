@@ -32,10 +32,36 @@
   },
   "include": [
     "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "tests/**/*.ts",
+    "tests/**/*.tsx",
+    "scripts/**/*.ts",
+    "scripts/**/*.js",
+    "*.ts",
+    "*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules", ".next", "out", "build", "dist", "dist-public"]
+  "exclude": [
+    "node_modules",
+    ".next",
+    "out",
+    "build",
+    "dist",
+    "dist-public",
+    "chrome-data",
+    "chrome-profile",
+    "chrome-temp",
+    "chrome-temp-test",
+    ".browser_profile",
+    ".agents",
+    ".openchrome",
+    ".opencode",
+    ".claude",
+    "coverage",
+    "artifacts",
+    "tmp",
+    "tmp-qa"
+  ]
 }

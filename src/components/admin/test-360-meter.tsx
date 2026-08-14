@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { run360ExpertAudit, type AiAuditMetrics } from "@/actions/admin-360-evaluation";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
@@ -15,6 +16,7 @@ import {
 } from "lucide-react";
 
 export function Test360Meter() {
+  const t = useTranslations("admin");
   const [isAuditing, setIsAuditing] = useState(false);
   const [metrics, setMetrics] = useState<AiAuditMetrics | null>({
     integrityScore: 96,
@@ -281,10 +283,10 @@ export function Test360Meter() {
             <div className="mb-3 flex min-w-0 flex-col gap-1.5 border-b border-white/10 pb-3 sm:flex-row sm:items-center sm:justify-between">
               <h3 className="flex min-w-0 items-center gap-2 text-xs font-extrabold tracking-wide text-zinc-200 sm:text-sm">
                 <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-400" />
-                <span className="truncate">Autonomous Live Swarm Audit Findings</span>
+                <span className="truncate">{t("test_360_swarm_findings")}</span>
               </h3>
               <span className="shrink-0 text-[11px] font-semibold text-zinc-500 sm:text-xs">
-                Audited: {new Date().toLocaleTimeString()}
+                {t("test_360_audited")} {new Date().toLocaleTimeString()}
               </span>
             </div>
             <div className="grid min-w-0 grid-cols-1 gap-2.5 sm:grid-cols-2">

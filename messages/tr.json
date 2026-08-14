@@ -5183,5 +5183,30 @@
     "transmitting": "İletiliyor...",
     "yourRecoveryKey": "Kurtarma Anahtarınız — Hemen Kaydedin",
     "zeroKnowledge": "Sıfır Bilgi Şifrelemesi"
+  },
+  "reportFlagging": {
+    "badge": "Basın Sözü Tutuldu",
+    "title": "Haksız AI Tespiti Bildir",
+    "subtitle": "Bir yapay zeka tespit sistemi sizi haksız yere işaretledi mi?",
+    "description": "Vakanızı bildirin. Tek tek şikayetler görmezden gelinebilir; kayıt altına alınmış bir vaka külliyatı gözden kaçırılamaz.",
+    "detectorLabel": "Hangi tespit sistemi sizi işaretledi?",
+    "contextLabel": "Ne oldu?",
+    "contextPlaceholder": "Sistemin ne dediğini, bağlamı (okul/iş/hukuki) ve bunun ne gibi bir etkisi olduğunu açıklayın.",
+    "platformLabel": "Bu nerede yaşandı?",
+    "evidenceLabel": "Kanıt URL'si (isteğe bağlı)",
+    "emailLabel": "E-postanız (isteğe bağlı — takip için)",
+    "submit": "Raporu Gönder",
+    "submitAnother": "Yeni Rapor Gönder",
+    "successTitle": "Rapor alındı",
+    "successMessage": "Vakanız bağımsız kamuya açık kayda eklendi.",
+    "tagline": "Tek tek şikayetler görmezden gelinebilir. Kayıt altına alınmış bir vaka külliyatı gözden kaçırılamaz.",
+    "selectDetector": "— Tespit sistemi seçin —",
+    "selectPlatform": "— Platform seçin —",
+    "emailHint": "Tek yönlü özet (hash) olarak saklanır. E-postanız asla kamuya açıklanmaz.",
+    "submitting": "Gönderiliyor…",
+    "platformSchool": "Okul / Üniversite",
+    "platformEmployer": "İşveren / İşyeri",
+    "platformCourt": "Hukuki / Mahkeme Süreci",
+    "platformOther": "Diğer"
   }
 }

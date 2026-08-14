@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { AlertCircle, CheckCircle2, Clock, ShieldAlert } from "lucide-react";
 import type { VendorIncident } from "@/actions/admin/vendor-portal";
 
@@ -8,6 +9,8 @@ interface VendorIncidentHistoryProps {
 }
 
 export function VendorIncidentHistory({ incidents }: VendorIncidentHistoryProps) {
+  const t = useTranslations("vendorPortal");
+
   const getSeverityBadge = (severity: VendorIncident["severity"]) => {
     switch (severity) {
       case "critical":
@@ -26,19 +29,19 @@ export function VendorIncidentHistory({ incidents }: VendorIncidentHistoryProps)
       case "resolved":
         return (
           <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-400">
-            <CheckCircle2 className="h-3 w-3" /> Resolved
+            <CheckCircle2 className="h-3 w-3" /> {t("status_resolved")}
           </span>
         );
       case "investigating":
         return (
           <span className="inline-flex items-center gap-1 rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-0.5 text-xs font-semibold text-amber-400">
-            <Clock className="h-3 w-3 animate-pulse" /> Investigating
+            <Clock className="h-3 w-3 animate-pulse" /> {t("status_investigating")}
           </span>
         );
       default:
         return (
           <span className="inline-flex items-center gap-1 rounded-full border border-rose-500/30 bg-rose-500/10 px-2.5 py-0.5 text-xs font-semibold text-rose-400">
-            <AlertCircle className="h-3 w-3" /> Open
+            <AlertCircle className="h-3 w-3" /> {t("status_open")}
           </span>
         );
     }
@@ -49,20 +52,20 @@ export function VendorIncidentHistory({ incidents }: VendorIncidentHistoryProps)
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <ShieldAlert className="h-5 w-5 text-amber-400" />
-          <h2 className="text-fg-primary text-lg font-bold">Vendor Incident Log</h2>
+          <h2 className="text-fg-primary text-lg font-bold">{t("vendor_incident_log")}</h2>
         </div>
-        <span className="text-fg-muted font-mono text-xs">Real-time Telemetry</span>
+        <span className="text-fg-muted font-mono text-xs">{t("realtime_telemetry")}</span>
       </div>
 
       <div className="overflow-x-auto">
         <table className="text-fg-primary w-full text-left text-sm">
           <thead className="border-border-subtle bg-bg-tertiary text-fg-muted border-b text-xs tracking-wider uppercase">
             <tr>
-              <th className="p-3.5">Provider</th>
-              <th className="p-3.5">Incident</th>
-              <th className="p-3.5">Severity</th>
-              <th className="p-3.5">Status</th>
-              <th className="p-3.5">Timestamp</th>
+              <th className="p-3.5">{t("provider")}</th>
+              <th className="p-3.5">{t("incident")}</th>
+              <th className="p-3.5">{t("severity")}</th>
+              <th className="p-3.5">{t("status")}</th>
+              <th className="p-3.5">{t("timestamp")}</th>
             </tr>
           </thead>
           <tbody className="divide-border-subtle divide-y">
@@ -88,9 +91,7 @@ export function VendorIncidentHistory({ incidents }: VendorIncidentHistoryProps)
           </tbody>
         </table>
         {incidents.length === 0 && (
-          <div className="text-fg-muted py-8 text-center">
-            No active or past incidents recorded.
-          </div>
+          <div className="text-fg-muted py-8 text-center">{t("no_incidents")}</div>
         )}
       </div>
     </div>

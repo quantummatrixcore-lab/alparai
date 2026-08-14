@@ -127,6 +127,18 @@ export const EU_TAXONOMY_MAP: Record<
     highRiskSystemCategory: null,
     reportingDeadlineDays: null,
   },
+  non_consensual_intimate_imagery_csam: {
+    riskCategory: "Unacceptable Risk",
+    seriousIncidentClass: "fundamental-rights",
+    highRiskSystemCategory: null,
+    reportingDeadlineDays: 2,
+  },
+  wrongful_flagging: {
+    riskCategory: "High Risk",
+    seriousIncidentClass: "fundamental-rights",
+    highRiskSystemCategory: "education",
+    reportingDeadlineDays: 15,
+  },
   other: {
     riskCategory: "Minimal",
     seriousIncidentClass: null,

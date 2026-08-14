@@ -44,6 +44,7 @@ import {
 import { AiBudgetTransparencyScore } from "@/components/admin/AiBudgetTransparencyScore";
 import { Test360Meter } from "@/components/admin/test-360-meter";
 import { PrioritizationWidget } from "@/components/admin/prioritization-widget";
+import { parseMasterPlan } from "@/lib/utils/markdown-parser";
 import { getStartupHealth } from "@/actions/admin/startup-health";
 import { getSystemSignalsAction } from "@/actions/admin/signals";
 import { getFundingConversion } from "@/actions/admin/funding-conversion";
@@ -150,7 +151,7 @@ export default async function AdminDashboardPage({
 
         {/* Main 4 Giant Widget Grid */}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-          <PrioritizationWidget />
+          <PrioritizationWidget {...parseMasterPlan()} />
 
           {/* WIDGET 1: Financial & Operations Cockpit */}
           <section className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-emerald-500/20 bg-zinc-900/40 p-6 backdrop-blur-xl transition-all duration-300 hover:border-emerald-500/40 hover:bg-zinc-900/60 md:p-8">

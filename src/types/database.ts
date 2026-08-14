@@ -5151,6 +5151,8 @@ export type Database = {
         | "manipulation"
         | "inaccessibility"
         | "copyright"
+        | "non_consensual_intimate_imagery_csam"
+        | "wrongful_flagging"
         | "other"
       incident_severity: "low" | "medium" | "high" | "critical"
       incident_status:
@@ -5320,6 +5322,7 @@ export const Constants = {
         "inaccessibility",
         "copyright",
         "non_consensual_intimate_imagery_csam",
+        "wrongful_flagging",
         "other",
       ],
       incident_severity: ["low", "medium", "high", "critical"],

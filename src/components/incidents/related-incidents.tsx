@@ -1,4 +1,5 @@
 import { createServerClient } from "@/lib/supabase/server";
+import { type Database } from "@/types/database";
 import { Link } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
 import { Card, CardContent } from "@/components/ui/card";
@@ -46,17 +47,7 @@ export async function RelatedIncidents({
             title_masked: string | null;
             title_tr: string | null;
             severity: "low" | "medium" | "high" | "critical";
-            category:
-              | "other"
-              | "hallucination"
-              | "bias"
-              | "privacy"
-              | "security"
-              | "misinformation"
-              | "harassment"
-              | "manipulation"
-              | "inaccessibility"
-              | "copyright";
+            category: Database["public"]["Enums"]["incident_category"];
             incident_date: string | null;
             created_at: string;
             cross_audit_truth_score: number | null;

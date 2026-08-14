@@ -1,12 +1,11 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { parseMasterPlan } from "@/lib/utils/markdown-parser";
+import { type MasterPlanParseResult } from "@/lib/utils/markdown-parser";
 import { Target, CheckCircle2, CircleDashed, PauseCircle, AlertTriangle } from "lucide-react";
 
-export function PrioritizationWidget() {
+export function PrioritizationWidget({ items, error }: MasterPlanParseResult) {
   const t = useTranslations("admin");
-  const { items, error } = parseMasterPlan();
 
   const total = items.length;
   const completed = items.filter((i) => i.status === "completed").length;

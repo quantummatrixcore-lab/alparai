@@ -69,9 +69,6 @@ export async function submitFlaggingReport(
             .update(email.toLowerCase())
             .digest("hex")
         : null,
-      age_consent: true,
-      coppa_consent: true,
-      uk_osa_consent: true,
       status: "pending_review",
       processing_stage: "complete",
       moderator_notes: `Wrongful AI flagging report. Detector: ${detector_name}. Platform: ${platform}.`,

@@ -344,7 +344,7 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
     },
     {
       href: "/admin/gazi",
-      label: t("nav_gazi") || "GAZİ",
+      label: t("nav_gazi") || "GAZÄ°",
       icon: Sparkles,
       active: pathname.startsWith("/admin/gazi"),
     },

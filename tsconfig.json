@@ -1,4 +1,4 @@
-{
+﻿{
   "compilerOptions": {
     "target": "ES2022",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -44,6 +44,7 @@
     ".next/dev/types/**/*.ts"
   ],
   "exclude": [
+    "ercumenterden.com",
     "node_modules",
     ".next",
     "out",

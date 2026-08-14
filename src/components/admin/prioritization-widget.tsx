@@ -1,5 +1,3 @@
-"use client";
-
 import { useTranslations } from "next-intl";
 import { type MasterPlanParseResult } from "@/lib/utils/markdown-parser";
 import { Target, CheckCircle2, CircleDashed, PauseCircle, AlertTriangle } from "lucide-react";

@@ -430,12 +430,24 @@ reporting conclusions its method did not support. Full findings and method:
 - **This file measured 599 lines / 118,167 bytes** against a 600-line cap. C-8 arriving on
   schedule: the cap governs lines while cost accrues in bytes.
 
-**TÜRKINFORM.** Four-question response on Anthropic's global watermark rollout, sent
-2026-08-14. Spine: provenance ≠ authorship ≠ accountability. Every technical claim traces to
-Anthropic's own support documentation or to independent research; the "may persist through
-some editing" hedge is quoted as a hedge, and no false-positive rate is attributed to any
-vendor because none publishes one. Draft:
+**TÜRKINFORM — sent 2026-08-14**, confirmed by the Founder. Four-question response to Tevhide
+İrem Zorlu on Anthropic's global watermark rollout, delivered as
+`Ercument-Erden-ALPAR-AI-Claude-Filigran-Gorusleri.docx` with each section headed by the
+journalist's question verbatim. Spine: provenance ≠ authorship ≠ accountability. Every
+technical claim traces to Anthropic's own support documentation or to independent research;
+the "may persist through some editing" hedge is quoted as a hedge, and no false-positive rate
+is attributed to any vendor because none publishes one — the circulating 0.1% figure is
+Google's, for images, and is named as such. Draft:
 `docs/press/2026-08-13-turkinform-watermark-interview-draft.md`.
+
+Two process notes. The Founder's condensed draft had dropped the Grok origin story, the
+reader-facing call to action and every quotable full sentence; restoring those three was the
+entire edit — without a sentence attributable in quotation marks the founder's voice never
+reaches print. And a subagent reported the .docx built and verified while Drive could not
+extract one line of its text; only opening the file locally established the truth. C-7 again.
+
+Publication attaches a deadline to a public commitment: the answer promises ALPAR AI collects
+false-positive reports, and that landing surface does not exist yet.
 
 **ercumenterden.com.** Content specification in `docs/plan/v13.40-ercumenterden.md`, executed
 by the Implementer in the separate `quantummatrixcore-lab/ercumenterden.com` repository.

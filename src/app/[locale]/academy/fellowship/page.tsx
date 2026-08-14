@@ -39,28 +39,27 @@ export default async function AcademyFellowshipPage({
             <div className="bg-accent-soft/10 border-accent-soft/20 text-accent-soft mb-4 flex h-10 w-10 items-center justify-center rounded-full border font-bold">
               1
             </div>
-            <h4 className="text-fg-primary mb-2 font-bold">Research Grants</h4>
+            <h4 className="text-fg-primary mb-2 font-bold">{t("fellowship_card1_title")}</h4>
             <p className="text-fg-secondary text-sm leading-relaxed">
-              Receive direct funding to support peer-reviewed empirical studies on AI safety.
+              {t("fellowship_card1_desc")}
             </p>
           </div>
           <div className="bg-bg-secondary/30 border-border-primary/40 rounded-2xl border p-6 backdrop-blur-sm">
             <div className="bg-accent-soft/10 border-accent-soft/20 text-accent-soft mb-4 flex h-10 w-10 items-center justify-center rounded-full border font-bold">
               2
             </div>
-            <h4 className="text-fg-primary mb-2 font-bold">Compute Credits</h4>
+            <h4 className="text-fg-primary mb-2 font-bold">{t("fellowship_card2_title")}</h4>
             <p className="text-fg-secondary text-sm leading-relaxed">
-              Access high-performance GPU clusters to benchmark models under extreme prompt
-              payloads.
+              {t("fellowship_card2_desc")}
             </p>
           </div>
           <div className="bg-bg-secondary/30 border-border-primary/40 rounded-2xl border p-6 backdrop-blur-sm">
             <div className="bg-accent-soft/10 border-accent-soft/20 text-accent-soft mb-4 flex h-10 w-10 items-center justify-center rounded-full border font-bold">
               3
             </div>
-            <h4 className="text-fg-primary mb-2 font-bold">Consensus Panels</h4>
+            <h4 className="text-fg-primary mb-2 font-bold">{t("fellowship_card3_title")}</h4>
             <p className="text-fg-secondary text-sm leading-relaxed">
-              Join the academic peer-review pipeline to arbitrate multi-provider safety ratings.
+              {t("fellowship_card3_desc")}
             </p>
           </div>
         </div>

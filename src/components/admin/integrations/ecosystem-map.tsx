@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { INTEGRATION_SERVICES } from "@/lib/integrations/registry";
 import { LOGO_MAP } from "@/lib/integrations/logos";
@@ -22,6 +23,7 @@ const PILLARS = [
 ];
 
 export function EcosystemMap() {
+  const t = useTranslations("admin");
   const [activePillar, setActivePillar] = useState<string | null>(null);
 
   const containerVariants = {
@@ -38,9 +40,9 @@ export function EcosystemMap() {
     <div className="mb-12 w-full rounded-2xl border border-white/5 bg-neutral-950/20 p-8 backdrop-blur-3xl">
       <div className="mb-8 text-center">
         <h2 className="bg-gradient-to-br from-white to-white/50 bg-clip-text text-2xl font-semibold tracking-tight text-transparent">
-          AI Ecosystem & Architecture Map
+          {t("ecosystem_map_title")}
         </h2>
-        <p className="mt-2 text-sm text-neutral-400">The radial infrastructure powering Alpar AI</p>
+        <p className="mt-2 text-sm text-neutral-400">{t("ecosystem_map_subtitle")}</p>
       </div>
 
       <div className="flex flex-col items-center justify-center space-y-12 lg:flex-row lg:space-y-0 lg:space-x-12">
@@ -51,7 +53,9 @@ export function EcosystemMap() {
         >
           <div className="text-center">
             <div className="text-lg font-bold text-white">ALPAR AI</div>
-            <div className="text-[10px] tracking-widest text-neutral-500 uppercase">Core</div>
+            <div className="text-[10px] tracking-widest text-neutral-500 uppercase">
+              {t("ecosystem_map_core")}
+            </div>
           </div>
         </motion.div>
 

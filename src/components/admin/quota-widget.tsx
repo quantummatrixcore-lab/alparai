@@ -1,3 +1,6 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
 
 export interface QuotaWidgetProps {
@@ -17,24 +20,25 @@ export function QuotaWidget({
   warningAt = 0.8,
   criticalAt = 0.95,
 }: QuotaWidgetProps) {
+  const t = useTranslations("admin");
   const percentage = total > 0 ? Math.min(100, Math.round((used / total) * 100)) : 0;
   const ratio = total > 0 ? used / total : 0;
 
   let colorClass = "bg-emerald-500";
   let textClass = "text-emerald-400";
   let statusVariant: "success" | "warning" | "muted" = "success";
-  let statusText = "Normal";
+  let statusText = t("quota_normal");
 
   if (ratio >= criticalAt) {
     colorClass = "bg-rose-500";
     textClass = "text-rose-400";
     statusVariant = "muted";
-    statusText = "Critical";
+    statusText = t("quota_critical");
   } else if (ratio >= warningAt) {
     colorClass = "bg-amber-500";
     textClass = "text-amber-400";
     statusVariant = "warning";
-    statusText = "Warning";
+    statusText = t("quota_warning");
   }
 
   return (
@@ -48,7 +52,7 @@ export function QuotaWidget({
 
       <div className="my-3 space-y-1.5">
         <div className="flex items-baseline justify-between text-xs">
-          <span className="text-fg-muted">Usage</span>
+          <span className="text-fg-muted">{t("quota_usage")}</span>
           <span className={`font-mono font-bold ${textClass}`}>
             {used.toLocaleString()} / {total.toLocaleString()} {unit} ({percentage}%)
           </span>

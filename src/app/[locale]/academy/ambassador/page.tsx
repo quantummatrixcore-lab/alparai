@@ -39,30 +39,27 @@ export default async function AcademyAmbassadorPage({
             <div className="bg-accent-soft/10 border-accent-soft/20 text-accent-soft mb-4 flex h-10 w-10 items-center justify-center rounded-full border font-bold">
               1
             </div>
-            <h4 className="text-fg-primary mb-2 font-bold">Campus Workshops</h4>
+            <h4 className="text-fg-primary mb-2 font-bold">{t("ambassador_card1_title")}</h4>
             <p className="text-fg-secondary text-sm leading-relaxed">
-              Host AI safety, model auditing, and prompt injection workshops using ALPAR curriculum
-              resources.
+              {t("ambassador_card1_desc")}
             </p>
           </div>
           <div className="bg-bg-secondary/30 border-border-primary/40 rounded-2xl border p-6 backdrop-blur-sm">
             <div className="bg-accent-soft/10 border-accent-soft/20 text-accent-soft mb-4 flex h-10 w-10 items-center justify-center rounded-full border font-bold">
               2
             </div>
-            <h4 className="text-fg-primary mb-2 font-bold">Audit Chapters</h4>
+            <h4 className="text-fg-primary mb-2 font-bold">{t("ambassador_card2_title")}</h4>
             <p className="text-fg-secondary text-sm leading-relaxed">
-              Lead student research teams to benchmark commercial and open-source models at your
-              campus.
+              {t("ambassador_card2_desc")}
             </p>
           </div>
           <div className="bg-bg-secondary/30 border-border-primary/40 rounded-2xl border p-6 backdrop-blur-sm">
             <div className="bg-accent-soft/10 border-accent-soft/20 text-accent-soft mb-4 flex h-10 w-10 items-center justify-center rounded-full border font-bold">
               3
             </div>
-            <h4 className="text-fg-primary mb-2 font-bold">Global Network</h4>
+            <h4 className="text-fg-primary mb-2 font-bold">{t("ambassador_card3_title")}</h4>
             <p className="text-fg-secondary text-sm leading-relaxed">
-              Connect with fellow ambassadors and AI safety experts across top universities in TR
-              and EU.
+              {t("ambassador_card3_desc")}
             </p>
           </div>
         </div>

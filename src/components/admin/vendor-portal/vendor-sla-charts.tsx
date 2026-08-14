@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import {
   AreaChart,
   Area,
@@ -18,14 +19,16 @@ interface VendorSlaChartsProps {
 }
 
 export function VendorSlaCharts({ data }: VendorSlaChartsProps) {
+  const t = useTranslations("vendorPortal");
+
   return (
     <div className="border-border-subtle bg-bg-secondary space-y-4 rounded-3xl border p-6 shadow-2xl backdrop-blur-xl">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Activity className="text-brand-400 h-5 w-5" />
-          <h2 className="text-fg-primary text-lg font-bold">SLA Uptime Trends (%)</h2>
+          <h2 className="text-fg-primary text-lg font-bold">{t("sla_trends_title")}</h2>
         </div>
-        <span className="text-fg-muted font-mono text-xs">Last 7 Days Telemetry</span>
+        <span className="text-fg-muted font-mono text-xs">{t("sla_telemetry_subtitle")}</span>
       </div>
 
       <div className="h-72 w-full pt-2">

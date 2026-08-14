@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { ShieldCheck, Activity, AlertTriangle, Zap, CheckCircle2 } from "lucide-react";
 import type { VendorSlaMetric } from "@/actions/admin/vendor-portal";
 
@@ -8,6 +9,7 @@ interface VendorSlaCardProps {
 }
 
 export function VendorSlaCard({ vendor }: VendorSlaCardProps) {
+  const t = useTranslations("vendorPortal");
   const getTierColor = (tier: string) => {
     switch (tier) {
       case "AAA":
@@ -46,7 +48,7 @@ export function VendorSlaCard({ vendor }: VendorSlaCardProps) {
             <span className="text-fg-muted text-xs font-normal">/100</span>
           </div>
           <span className="text-fg-muted text-[10px] font-semibold tracking-wider uppercase">
-            Trust Score
+            {t("trust_score")}
           </span>
         </div>
       </div>
@@ -55,7 +57,7 @@ export function VendorSlaCard({ vendor }: VendorSlaCardProps) {
         <div>
           <div className="text-fg-muted flex items-center gap-1.5 text-xs">
             <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />
-            <span>SLA Uptime</span>
+            <span>{t("sla_uptime")}</span>
           </div>
           <p className="mt-1 font-mono text-lg font-bold text-emerald-400">
             {vendor.slaUptimePercent}%
@@ -65,7 +67,7 @@ export function VendorSlaCard({ vendor }: VendorSlaCardProps) {
         <div>
           <div className="text-fg-muted flex items-center gap-1.5 text-xs">
             <Zap className="h-3.5 w-3.5 text-amber-400" />
-            <span>Avg Latency</span>
+            <span>{t("avg_latency")}</span>
           </div>
           <p className="text-fg-primary mt-1 font-mono text-lg font-bold">
             {vendor.avgResponseLatencyMs}ms
@@ -75,7 +77,7 @@ export function VendorSlaCard({ vendor }: VendorSlaCardProps) {
         <div>
           <div className="text-fg-muted flex items-center gap-1.5 text-xs">
             <AlertTriangle className="h-3.5 w-3.5 text-rose-400" />
-            <span>Penalty</span>
+            <span>{t("penalty")}</span>
           </div>
           <p className="mt-1 font-mono text-lg font-bold text-rose-400">
             -{vendor.incidentPenalty.toFixed(1)}
@@ -85,7 +87,7 @@ export function VendorSlaCard({ vendor }: VendorSlaCardProps) {
         <div>
           <div className="text-fg-muted flex items-center gap-1.5 text-xs">
             <Activity className="h-3.5 w-3.5 text-cyan-400" />
-            <span>Resp. Bonus</span>
+            <span>{t("resp_bonus")}</span>
           </div>
           <p className="mt-1 font-mono text-lg font-bold text-cyan-400">
             +{vendor.responseRateBonus.toFixed(1)}

@@ -1,7 +1,11 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import { parseMasterPlan } from "@/lib/utils/markdown-parser";
 import { Target, CheckCircle2, CircleDashed, PauseCircle, AlertTriangle } from "lucide-react";
 
 export function PrioritizationWidget() {
+  const t = useTranslations("admin");
   const { items, error } = parseMasterPlan();
 
   const total = items.length;
@@ -33,19 +37,21 @@ export function PrioritizationWidget() {
               <Target className="h-6 w-6" />
             </div>
             <div>
-              <h2 className="text-xl font-bold tracking-tight text-white">Master Plan Progress</h2>
-              <p className="text-xs text-zinc-400">ALPAR AI Backlog Statistics</p>
+              <h2 className="text-xl font-bold tracking-tight text-white">
+                {t("prioritization_title")}
+              </h2>
+              <p className="text-xs text-zinc-400">{t("prioritization_subtitle")}</p>
             </div>
           </div>
           <span className="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 text-xs font-semibold text-cyan-400">
-            {total} Items
+            {total} {t("prioritization_items")}
           </span>
         </div>
 
         {error ? (
           <div className="flex items-center gap-2 rounded-2xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-400">
             <AlertTriangle className="h-4 w-4" />
-            <span>Could not parse Master Plan: {error}</span>
+            <span>{t("prioritization_parse_error", { error })}</span>
           </div>
         ) : (
           <div className="space-y-4">
@@ -54,9 +60,13 @@ export function PrioritizationWidget() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 text-emerald-400">
                   <CheckCircle2 className="h-4 w-4" />
-                  <span className="font-bold">Completed ({completedPerc}%)</span>
+                  <span className="font-bold">
+                    {t("prioritization_completed")} ({completedPerc}%)
+                  </span>
                 </div>
-                <span className="text-xs font-medium text-emerald-300/80">{completed} items</span>
+                <span className="text-xs font-medium text-emerald-300/80">
+                  {completed} {t("prioritization_items")}
+                </span>
               </div>
               <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-black/40">
                 <div
@@ -71,9 +81,13 @@ export function PrioritizationWidget() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 text-amber-400">
                   <CircleDashed className="h-4 w-4" />
-                  <span className="font-bold">Pending ({pendingPerc}%)</span>
+                  <span className="font-bold">
+                    {t("prioritization_pending")} ({pendingPerc}%)
+                  </span>
                 </div>
-                <span className="text-xs font-medium text-amber-300/80">{pending} items</span>
+                <span className="text-xs font-medium text-amber-300/80">
+                  {pending} {t("prioritization_items")}
+                </span>
               </div>
               <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-black/40">
                 <div
@@ -89,9 +103,13 @@ export function PrioritizationWidget() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2 text-zinc-400">
                     <PauseCircle className="h-4 w-4" />
-                    <span className="font-bold">Paused ({pausedPerc}%)</span>
+                    <span className="font-bold">
+                      {t("prioritization_paused")} ({pausedPerc}%)
+                    </span>
                   </div>
-                  <span className="text-xs font-medium text-zinc-400/80">{paused} items</span>
+                  <span className="text-xs font-medium text-zinc-400/80">
+                    {paused} {t("prioritization_items")}
+                  </span>
                 </div>
                 <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-black/40">
                   <div

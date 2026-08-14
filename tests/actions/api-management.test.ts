@@ -13,7 +13,7 @@ function makeAdminClient() {
 vi.mock("@/lib/auth/session", () => ({ requireAdmin: vi.fn() }));
 vi.mock("@/lib/supabase/admin", () => ({ createAdminClient: makeAdminClient }));
 
-describe.skip("getApiTelemetryData — API Management Hub server action", () => {
+describe("getApiTelemetryData — API Management Hub server action", () => {
   beforeEach(() => {
     vi.resetModules();
     vi.clearAllMocks();

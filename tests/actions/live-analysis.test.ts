@@ -28,7 +28,7 @@ vi.hoisted(() => {
 import { callWithFailover } from "@/lib/ai/openrouter-gateway";
 import { runLiveSystemAnalysis } from "@/actions/admin/live-analysis";
 
-describe.skip("Live System Analysis", () => {
+describe("Live System Analysis", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });

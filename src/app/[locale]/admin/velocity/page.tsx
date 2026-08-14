@@ -4,7 +4,6 @@ import { requireAdmin } from "@/lib/auth/session";
 import { Container } from "@/components/ui/layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Activity, TrendingUp, Cpu } from "lucide-react";
-import { redirect } from "@/i18n/routing";
 
 interface AIVelocityMetric {
   id: string;
@@ -37,10 +36,7 @@ export default async function AdminVelocityPage({
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "admin_velocity" });
 
-  const adminUser = await requireAdmin();
-  if (!adminUser) {
-    redirect({ href: "/login", locale });
-  }
+  await requireAdmin();
 
   const supabase = await createClient();
 

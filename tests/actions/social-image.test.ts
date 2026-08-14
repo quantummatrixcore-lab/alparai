@@ -44,7 +44,7 @@ vi.mock("@/lib/ai/adapters/vertex-imagen", () => ({
 
 import { generateSocialImageAction } from "@/actions/social-image";
 
-describe.skip("generateSocialImageAction", () => {
+describe("generateSocialImageAction", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     requireAdminMock.mockResolvedValue(mockAdminUser);

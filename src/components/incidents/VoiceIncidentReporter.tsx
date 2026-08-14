@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { Square, Loader2, Volume2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -9,6 +10,7 @@ interface VoiceIncidentReporterProps {
 }
 
 export function VoiceIncidentReporter({ onTranscript }: VoiceIncidentReporterProps) {
+  const t = useTranslations("incident");
   const [isRecording, setIsRecording] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [recordingTime, setRecordingTime] = useState(0);
@@ -63,7 +65,7 @@ export function VoiceIncidentReporter({ onTranscript }: VoiceIncidentReporterPro
       }, 1000);
     } catch (err) {
       console.error("Microphone access error:", err);
-      setStatusMessage("Mikrofon erişimi engellendi veya desteklenmiyor.");
+      setStatusMessage(t("voice_incident_mic_error"));
     }
   };
 
@@ -77,7 +79,7 @@ export function VoiceIncidentReporter({ onTranscript }: VoiceIncidentReporterPro
 
   const processAudio = async (blob: Blob) => {
     setIsProcessing(true);
-    setStatusMessage("Ses çözümleniyor (ASR)...");
+    setStatusMessage(t("voice_incident_transcribing"));
 
     try {
       const formData = new FormData();
@@ -89,19 +91,19 @@ export function VoiceIncidentReporter({ onTranscript }: VoiceIncidentReporterPro
       });
 
       if (!response.ok) {
-        throw new Error("Transkript API hatası");
+        throw new Error(t("voice_incident_api_error"));
       }
 
       const data = await response.json();
       if (data.transcript) {
         onTranscript(data.transcript);
-        setStatusMessage("Transkript açıklamaya eklendi.");
+        setStatusMessage(t("voice_incident_appended"));
       } else {
-        setStatusMessage("Ses metne dönüştürülemedi.");
+        setStatusMessage(t("voice_incident_failed"));
       }
     } catch (err) {
       console.error("Transkript gönderme hatası:", err);
-      setStatusMessage("Transkript servisi yanıt vermedi.");
+      setStatusMessage(t("voice_incident_no_response"));
     } finally {
       setIsProcessing(false);
     }
@@ -112,7 +114,7 @@ export function VoiceIncidentReporter({ onTranscript }: VoiceIncidentReporterPro
       <div className="flex items-center justify-between">
         <div className="text-fg-primary flex items-center gap-2 font-medium">
           <Volume2 className="text-brand-400 h-4 w-4" />
-          <span>Sesli İhbar (Qwen Omni ASR)</span>
+          <span>{t("voice_incident_title")}</span>
         </div>
 
         {isRecording && (
@@ -138,7 +140,9 @@ export function VoiceIncidentReporter({ onTranscript }: VoiceIncidentReporterPro
             ) : (
               <span className="flex h-3 w-3 rounded-full bg-red-500" />
             )}
-            <span>{isProcessing ? "İşleniyor..." : "Ses Kaydı Başlat"}</span>
+            <span>
+              {isProcessing ? t("voice_incident_processing") : t("voice_incident_start_btn")}
+            </span>
           </Button>
         ) : (
           <Button
@@ -149,7 +153,7 @@ export function VoiceIncidentReporter({ onTranscript }: VoiceIncidentReporterPro
             className="border-fg-muted text-fg-primary hover:bg-bg-elevated flex items-center gap-2"
           >
             <Square className="h-3 w-3 fill-red-500 text-red-500" />
-            <span>Kaydı Durdur</span>
+            <span>{t("voice_incident_stop_btn")}</span>
           </Button>
         )}
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type ChangeEvent } from "react";
+import { useTranslations } from "next-intl";
 import { Video, Upload, Loader2, CheckCircle2, AlertCircle, Film } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -15,6 +16,7 @@ interface VideoEvent {
 }
 
 export function VideoEvidenceUploader({ onAnalysis }: VideoEvidenceUploaderProps) {
+  const t = useTranslations("incident");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -32,7 +34,7 @@ export function VideoEvidenceUploader({ onAnalysis }: VideoEvidenceUploaderProps
 
     // 50MB client-side limit check
     if (file.size > 50 * 1024 * 1024) {
-      setErrorMessage("Video boyutu 50MB sınırını aşıyor.");
+      setErrorMessage(t("video_evidence_size_exceeded"));
       setSelectedFile(null);
       return;
     }
@@ -59,7 +61,7 @@ export function VideoEvidenceUploader({ onAnalysis }: VideoEvidenceUploaderProps
 
       if (!response.ok) {
         const errData = await response.json();
-        throw new Error(errData.error || "Video analizi başarısız oldu.");
+        throw new Error(errData.error || t("video_evidence_failed"));
       }
 
       const data = await response.json();
@@ -67,7 +69,7 @@ export function VideoEvidenceUploader({ onAnalysis }: VideoEvidenceUploaderProps
       setEvents(data.events || []);
       onAnalysis(data.summary);
     } catch (err) {
-      const message = err instanceof Error ? err.message : "Bilinmeyen bir hata oluştu";
+      const message = err instanceof Error ? err.message : t("video_evidence_unknown_error");
       setErrorMessage(message);
     } finally {
       setIsUploading(false);
@@ -79,16 +81,16 @@ export function VideoEvidenceUploader({ onAnalysis }: VideoEvidenceUploaderProps
       <div className="flex items-center justify-between">
         <div className="text-fg-primary flex items-center gap-2 font-medium">
           <Film className="text-brand-400 h-4 w-4" />
-          <span>Video Delil Analizi (Multimodal AI)</span>
+          <span>{t("video_evidence_title")}</span>
         </div>
-        <span className="text-fg-muted text-[11px]">Max 50MB (MP4/WebM)</span>
+        <span className="text-fg-muted text-[11px]">{t("video_evidence_max_size")}</span>
       </div>
 
       <div className="flex items-center gap-3">
         <label className="border-border bg-bg-elevated text-fg-secondary hover:text-fg-primary flex flex-1 cursor-pointer items-center gap-2 rounded-md border px-3 py-2">
           <Video className="text-fg-muted h-4 w-4" />
           <span className="truncate">
-            {selectedFile ? selectedFile.name : "Video dosyası seç..."}
+            {selectedFile ? selectedFile.name : t("video_evidence_select")}
           </span>
           <input type="file" accept="video/*" onChange={handleFileChange} className="hidden" />
         </label>
@@ -105,7 +107,9 @@ export function VideoEvidenceUploader({ onAnalysis }: VideoEvidenceUploaderProps
           ) : (
             <Upload className="h-4 w-4" />
           )}
-          <span>{isUploading ? "Analiz Ediliyor..." : "Analiz Et"}</span>
+          <span>
+            {isUploading ? t("video_evidence_analyzing") : t("video_evidence_analyze_btn")}
+          </span>
         </Button>
       </div>
 
@@ -120,13 +124,15 @@ export function VideoEvidenceUploader({ onAnalysis }: VideoEvidenceUploaderProps
         <div className="border-brand-500/20 bg-brand-500/5 space-y-2 rounded-md border p-3">
           <div className="text-brand-400 flex items-center gap-2 font-semibold">
             <CheckCircle2 className="h-4 w-4" />
-            <span>Video Analiz Özeti</span>
+            <span>{t("video_evidence_summary_title")}</span>
           </div>
           <p className="text-fg-secondary leading-relaxed">{summary}</p>
 
           {events.length > 0 && (
             <div className="border-border-subtle mt-2 space-y-1 border-t pt-2">
-              <span className="text-fg-primary font-semibold">Zaman Çizelgesi Olayları:</span>
+              <span className="text-fg-primary font-semibold">
+                {t("video_evidence_timeline_events")}
+              </span>
               <ul className="space-y-1 pl-2">
                 {events.map((ev, idx) => (
                   <li key={idx} className="text-fg-muted flex items-center gap-2">

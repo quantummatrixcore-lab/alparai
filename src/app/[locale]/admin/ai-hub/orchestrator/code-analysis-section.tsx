@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Code2, Play, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import {
   analyzeCodeWithBlackbox,
@@ -8,6 +9,7 @@ import {
 } from "@/actions/admin/blackbox-analysis";
 
 export function BlackboxCodeAnalysisSection() {
+  const t = useTranslations("admin");
   const [filePath, setFilePath] = useState("");
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
@@ -35,36 +37,36 @@ export function BlackboxCodeAnalysisSection() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Code2 className="h-6 w-6 text-emerald-400" />
-          <h2 className="text-fg-primary text-xl font-bold">Blackbox AI Code Quality Analysis</h2>
+          <h2 className="text-fg-primary text-xl font-bold">{t("blackbox_analysis_title")}</h2>
         </div>
         <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-bold text-emerald-400">
-          Blackbox Engine Active
+          {t("blackbox_engine_active")}
         </span>
       </div>
 
       <div className="space-y-4">
         <div>
           <label className="text-fg-muted mb-1 block text-xs font-medium uppercase">
-            File Path (optional)
+            {t("blackbox_file_path")}
           </label>
           <input
             type="text"
             value={filePath}
             onChange={(e) => setFilePath(e.target.value)}
-            placeholder="e.g. src/actions/incidents.ts"
+            placeholder={t("blackbox_file_placeholder")}
             className="border-border-subtle bg-bg-tertiary text-fg-primary placeholder-fg-muted/60 w-full rounded-xl border px-4 py-2 text-sm focus:border-emerald-500 focus:outline-none"
           />
         </div>
 
         <div>
           <label className="text-fg-muted mb-1 block text-xs font-medium uppercase">
-            Code Content / Snippet
+            {t("blackbox_code_snippet")}
           </label>
           <textarea
             value={code}
             onChange={(e) => setCode(e.target.value)}
             rows={6}
-            placeholder="Paste code snippet for automated quality & security analysis..."
+            placeholder={t("blackbox_code_placeholder")}
             className="border-border-subtle bg-bg-tertiary text-fg-primary placeholder-fg-muted/60 w-full rounded-xl border p-4 font-mono text-sm focus:border-emerald-500 focus:outline-none"
           />
         </div>
@@ -76,11 +78,11 @@ export function BlackboxCodeAnalysisSection() {
         >
           {loading ? (
             <>
-              <Loader2 className="h-4 w-4 animate-spin" /> Analyzing with Blackbox AI...
+              <Loader2 className="h-4 w-4 animate-spin" /> {t("blackbox_analyzing")}
             </>
           ) : (
             <>
-              <Play className="h-4 w-4" /> Run Quality Analysis
+              <Play className="h-4 w-4" /> {t("blackbox_run_analysis")}
             </>
           )}
         </button>
@@ -90,7 +92,7 @@ export function BlackboxCodeAnalysisSection() {
         <div className="border-border-subtle bg-bg-tertiary mt-6 space-y-4 rounded-xl border p-4">
           <div className="space-y-2">
             <h3 className="text-fg-primary flex items-center gap-2 text-sm font-bold uppercase">
-              <AlertCircle className="h-4 w-4 text-emerald-400" /> Executive Analysis
+              <AlertCircle className="h-4 w-4 text-emerald-400" /> {t("blackbox_exec_analysis")}
             </h3>
             <p className="text-fg-primary text-sm whitespace-pre-wrap">{result.analysis}</p>
           </div>

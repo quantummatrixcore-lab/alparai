@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Star, CheckCircle, XCircle } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 import type { IntegrationAlternative } from "@/lib/integrations/types";
@@ -9,9 +10,9 @@ interface AlternativeCardsProps {
   alternatives: IntegrationAlternative[];
 }
 
-function RatingStars({ rating }: { rating?: number | null }) {
+function RatingStars({ rating, unratedText }: { rating?: number | null; unratedText: string }) {
   if (!rating || rating <= 0) {
-    return <span className="text-fg-muted font-mono text-[10px] font-medium">Unrated (N/A)</span>;
+    return <span className="text-fg-muted font-mono text-[10px] font-medium">{unratedText}</span>;
   }
 
   return (
@@ -41,6 +42,8 @@ function LogoBadge({ id, name }: { id: string; name: string }) {
 }
 
 export function AlternativeCards({ alternatives }: AlternativeCardsProps) {
+  const t = useTranslations("admin");
+
   return (
     <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
       {alternatives.map((alt) => (
@@ -53,7 +56,7 @@ export function AlternativeCards({ alternatives }: AlternativeCardsProps) {
               <LogoBadge id={alt.id} name={alt.name} />
               <div>
                 <h5 className="text-fg-primary text-sm leading-tight font-bold">{alt.name}</h5>
-                <RatingStars rating={alt.rating} />
+                <RatingStars rating={alt.rating} unratedText={t("integration_unrated")} />
               </div>
             </div>
           </div>
@@ -88,7 +91,7 @@ export function AlternativeCards({ alternatives }: AlternativeCardsProps) {
                 rel="noopener noreferrer"
                 className="text-fg-muted hover:text-brand-400 text-[11px] font-semibold transition-colors"
               >
-                Visit →
+                {t("integration_visit")}
               </a>
             )}
           </div>

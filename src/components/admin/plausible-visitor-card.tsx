@@ -1,11 +1,17 @@
 "use client";
 
 import * as React from "react";
+import { useTranslations } from "next-intl";
 import { Users, Eye, AlertTriangle } from "lucide-react";
 import { getPlausibleMetrics } from "@/actions/admin/analytics";
 
 export function PlausibleVisitorCard() {
-  const [metrics, setMetrics] = React.useState<{ visitors: number; pageviews: number; error: string | null } | null>(null);
+  const t = useTranslations("admin");
+  const [metrics, setMetrics] = React.useState<{
+    visitors: number;
+    pageviews: number;
+    error: string | null;
+  } | null>(null);
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
@@ -36,7 +42,7 @@ export function PlausibleVisitorCard() {
       <div className="flex w-full items-center gap-3 rounded-2xl border border-orange-500/20 bg-orange-500/10 p-4 backdrop-blur-2xl sm:rounded-3xl sm:p-6">
         <AlertTriangle className="h-6 w-6 shrink-0 text-orange-400" />
         <div className="flex flex-col">
-          <p className="text-sm font-semibold text-orange-400">Canlı Ziyaretçi (Plausible)</p>
+          <p className="text-sm font-semibold text-orange-400">{t("plausible_live_visitors")}</p>
           <p className="text-xs text-orange-300/80">{metrics.error}</p>
         </div>
       </div>
@@ -49,9 +55,9 @@ export function PlausibleVisitorCard() {
         <div className="absolute -top-24 -right-24 h-48 w-48 rounded-full bg-blue-500/10 blur-3xl transition-all duration-500 group-hover:bg-blue-500/20" />
         <div className="relative z-10 flex items-center justify-between">
           <div>
-            <p className="text-sm font-medium text-zinc-400">Son 30 Gün Ziyaretçi</p>
+            <p className="text-sm font-medium text-zinc-400">{t("plausible_visitors_30d")}</p>
             <p className="mt-1 text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl">
-              {metrics?.visitors?.toLocaleString("tr-TR") || "0"}
+              {metrics?.visitors?.toLocaleString() || "0"}
             </p>
           </div>
           <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-500/10 text-blue-400">
@@ -64,9 +70,9 @@ export function PlausibleVisitorCard() {
         <div className="absolute -top-24 -right-24 h-48 w-48 rounded-full bg-indigo-500/10 blur-3xl transition-all duration-500 group-hover:bg-indigo-500/20" />
         <div className="relative z-10 flex items-center justify-between">
           <div>
-            <p className="text-sm font-medium text-zinc-400">Son 30 Gün Görüntülenme</p>
+            <p className="text-sm font-medium text-zinc-400">{t("plausible_pageviews_30d")}</p>
             <p className="mt-1 text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl">
-              {metrics?.pageviews?.toLocaleString("tr-TR") || "0"}
+              {metrics?.pageviews?.toLocaleString() || "0"}
             </p>
           </div>
           <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-500/10 text-indigo-400">

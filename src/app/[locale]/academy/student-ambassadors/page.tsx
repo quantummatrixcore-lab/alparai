@@ -34,28 +34,28 @@ export default async function StudentAmbassadorsPage({
         <Card>
           <CardContent className="p-6 text-center">
             <GraduationCap className="text-brand-400 mx-auto mb-3 h-8 w-8" />
-            <h3 className="text-fg-primary mb-2 font-semibold">Workshops</h3>
-            <p className="text-fg-muted text-xs">
-              Organize AI safety workshops and model auditing sessions at your university.
-            </p>
+            <h3 className="text-fg-primary mb-2 font-semibold">
+              {t("student_ambassador_workshops_title")}
+            </h3>
+            <p className="text-fg-muted text-xs">{t("student_ambassador_workshops_desc")}</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-6 text-center">
             <Globe className="text-brand-400 mx-auto mb-3 h-8 w-8" />
-            <h3 className="text-fg-primary mb-2 font-semibold">Network</h3>
-            <p className="text-fg-muted text-xs">
-              Connect with a global community of student AI safety researchers.
-            </p>
+            <h3 className="text-fg-primary mb-2 font-semibold">
+              {t("student_ambassador_network_title")}
+            </h3>
+            <p className="text-fg-muted text-xs">{t("student_ambassador_network_desc")}</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-6 text-center">
             <Trophy className="text-brand-400 mx-auto mb-3 h-8 w-8" />
-            <h3 className="text-fg-primary mb-2 font-semibold">Leadership</h3>
-            <p className="text-fg-muted text-xs">
-              Lead empirical model auditing chapters and earn recognition.
-            </p>
+            <h3 className="text-fg-primary mb-2 font-semibold">
+              {t("student_ambassador_leadership_title")}
+            </h3>
+            <p className="text-fg-muted text-xs">{t("student_ambassador_leadership_desc")}</p>
           </CardContent>
         </Card>
       </div>

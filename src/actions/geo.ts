@@ -30,7 +30,6 @@ export async function addGeoCitationAction(input: AddGeoCitationInput) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const db = admin as any;
 
-    // @ts-expect-error Supabase Database types might be missing geo_citations
     const { error } = await db.from("geo_citations").insert({
       ai_engine: input.ai_engine,
       query: input.query,
@@ -60,7 +59,6 @@ export async function getGeoStatsAction() {
     const db = admin as any;
 
     try {
-      // @ts-expect-error Supabase Database types might be missing geo_citations
       const { data: citations } = await db
         .from("geo_citations")
         .select("*")

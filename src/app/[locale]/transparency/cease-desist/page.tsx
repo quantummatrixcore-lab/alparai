@@ -79,7 +79,6 @@ export default async function CeaseDesistArchivePage({
   const t = await getTranslations({ locale, namespace: "transparency" });
   const supabase = await createServerClient();
 
-  // @ts-expect-error missing from Database types
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data } = await (supabase as any)
     .from("cease_and_desist_logs")

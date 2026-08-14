@@ -23,7 +23,6 @@ export async function POST(req: Request) {
     const { url, secret, provider_filter } = parsed.data;
     const supabase = createAdminClient();
 
-    // @ts-expect-error missing webhooks table in types
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data, error } = await (supabase as any)
       .from("webhooks")

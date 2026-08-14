@@ -2421,7 +2421,25 @@
     "advisor_tasarim_purpose": "Visual design and UI/UX excellence",
     "advisor_hariciye_purpose": "Multilingual localization",
     "advisor_istihbarat_purpose": "Security and PII protection",
-    "advisor_roster_note": "Live advisors route to interactive tools. Definitions describe specialized agent roles for swarm coordination."
+    "advisor_roster_note": "Live advisors route to interactive tools. Definitions describe specialized agent roles for swarm coordination.",
+    "appeals": {
+      "title": "Takedown Appeals",
+      "description": "Review and moderate takedown appeals submitted by users.",
+      "status_pending": "Pending",
+      "status_approved": "Approved",
+      "status_rejected": "Rejected",
+      "approve": "Approve",
+      "reject": "Reject",
+      "resolution_notes": "Resolution Notes",
+      "appellant": "Appellant",
+      "reason": "Reason",
+      "evidence": "Evidence",
+      "no_appeals": "No appeals found.",
+      "submit": "Submit",
+      "cancel": "Cancel",
+      "confirm_approve": "Are you sure you want to approve this appeal?",
+      "confirm_reject": "Are you sure you want to reject this appeal?"
+    }
   },
   "admin_question_bank": {
     "evaluating": "Evaluating...",

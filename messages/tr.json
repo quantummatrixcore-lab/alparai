@@ -2421,7 +2421,25 @@
     "advisor_tasarim_purpose": "Görsel tasarım ve UI/UX mükemmelliği",
     "advisor_hariciye_purpose": "Çok dilli lokalizasyon",
     "advisor_istihbarat_purpose": "Güvenlik ve KŞV koruması",
-    "advisor_roster_note": "Canlı danışmanlar etkileşimli araçlara yönlendirilir. Tanımlar, swarm koordinasyonu için uzmanlaşmış ajan rollerini açıklar."
+    "advisor_roster_note": "Canlı danışmanlar etkileşimli araçlara yönlendirilir. Tanımlar, swarm koordinasyonu için uzmanlaşmış ajan rollerini açıklar.",
+    "appeals": {
+      "title": "Kaldırma İtirazları",
+      "description": "Kullanıcılar tarafından gönderilen kaldırma itirazlarını inceleyin ve yönetin.",
+      "status_pending": "Bekliyor",
+      "status_approved": "Onaylandı",
+      "status_rejected": "Reddedildi",
+      "approve": "Onayla",
+      "reject": "Reddet",
+      "resolution_notes": "Çözüm Notları",
+      "appellant": "İtiraz Eden",
+      "reason": "Sebep",
+      "evidence": "Kanıt",
+      "no_appeals": "İtiraz bulunamadı.",
+      "submit": "Gönder",
+      "cancel": "İptal",
+      "confirm_approve": "Bu itirazı onaylamak istediğinize emin misiniz?",
+      "confirm_reject": "Bu itirazı reddetmek istediğinize emin misiniz?"
+    }
   },
   "admin_question_bank": {
     "evaluating": "Değerlendiriliyor...",

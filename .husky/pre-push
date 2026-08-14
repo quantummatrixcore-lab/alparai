@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-. "$(dirname -- "$0")_/_/husky.sh"
+. "$(dirname -- "$0")/_/husky.sh"
 
 echo "[pre-push] Running quality checks before push..."
 pnpm typecheck && pnpm lint && pnpm test

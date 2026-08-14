@@ -40,14 +40,16 @@ const runModerationWork = async (
   const admin = createAdminClient();
   const newStatus: "published" | "rejected" =
     data.decision === "approve" ? "published" : "rejected";
+  const now = new Date().toISOString();
   const { error } = await admin
     .from("incidents")
     .update({
       status: newStatus,
       moderator_id: data.moderatorId,
-      moderated_at: new Date().toISOString(),
+      moderated_at: now,
       moderation_note: data.moderationNote,
-      published_at: newStatus === "published" ? new Date().toISOString() : null,
+      published_at: newStatus === "published" ? now : null,
+      reviewed_at: now,
     } as Database["public"]["Tables"]["incidents"]["Update"])
     .eq("id", data.incidentId);
   if (error) {

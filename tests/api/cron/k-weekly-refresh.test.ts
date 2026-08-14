@@ -84,6 +84,7 @@ describe("K-Weekly-Refresh Cron Job", () => {
     expect(body.success).toBe(true);
     expect(body.models_processed).toBe(1);
 
+    // K5 score should be penalized: base 85 - critical penalty 5 = 80
     expect(mockUpsert).toHaveBeenCalledWith(
       expect.arrayContaining([
         expect.objectContaining({
@@ -99,6 +100,45 @@ describe("K-Weekly-Refresh Cron Job", () => {
           score: 80,
           wilson_lower: 71,
           wilson_upper: 87,
+        }),
+      ]),
+      expect.any(Object),
+    );
+  });
+
+  it("should only count published incidents from the last 90 days", async () => {
+    const req = new Request("http://localhost/api/cron/k-weekly-refresh", {
+      headers: { authorization: "Bearer test-secret" },
+    });
+
+    const mockModels = [{ id: "model-2", name: "OtherGPT" }];
+    const mockCategories = [{ id: "K5" }];
+    const mockCurrentScores = [{ category_id: "K5", model_id: "model-2", score: 90 }];
+
+    // Verify that the gte filter is called with reviewed_at
+    queryBuilder.then
+      .mockImplementationOnce((resolve: any) => resolve({ data: mockModels, error: null }))
+      .mockImplementationOnce((resolve: any) => resolve({ data: mockCategories, error: null }))
+      .mockImplementationOnce((resolve: any) => resolve({ data: mockCurrentScores, error: null }))
+      .mockImplementationOnce((resolve: any) => resolve({ data: [], error: null }))
+      .mockImplementationOnce((resolve: any) => resolve({ data: null, error: null }));
+
+    const res = await GET(req as unknown as NextRequest);
+    expect(res.status).toBe(200);
+
+    // Verify that gte was called with reviewed_at
+    expect(mockGte).toHaveBeenCalledWith("reviewed_at", expect.any(String));
+
+    const body = await res.json();
+    expect(body.success).toBe(true);
+
+    // With no incidents, K5 should keep its base score
+    expect(mockUpsert).toHaveBeenCalledWith(
+      expect.arrayContaining([
+        expect.objectContaining({
+          category_id: "K5",
+          model_id: "model-2",
+          score: 90,
         }),
       ]),
       expect.any(Object),

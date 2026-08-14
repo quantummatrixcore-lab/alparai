@@ -472,7 +472,7 @@ export async function submitIncident(
     logger.info(
       `SERVER ACTION: submitIncident called! title = ${formData.get("title")} is_playwright = ${process.env.IS_PLAYWRIGHT_TEST}`,
     );
-    if (process.env.IS_PLAYWRIGHT_TEST === "true") {
+    if (process.env.IS_PLAYWRIGHT_TEST === "true" && process.env.NODE_ENV !== "production") {
       return { ok: true, incidentId: "mock-incident-123" };
     }
     const user = await getCurrentUser();

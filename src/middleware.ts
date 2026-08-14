@@ -7,6 +7,10 @@ import { logger } from "@/lib/utils/logger";
 import type { Database } from "@/types/database";
 import { trackBotHit } from "@/lib/geo/bot-tracker";
 
+if (process.env.IS_PLAYWRIGHT_TEST === "true" && process.env.NODE_ENV === "production") {
+  throw new Error("SECURITY FAULT: Playwright test bypass enabled in production environment.");
+}
+
 const intlMiddleware = createIntlMiddleware(routing);
 
 export async function middleware(request: NextRequest) {

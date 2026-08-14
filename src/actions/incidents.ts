@@ -32,6 +32,10 @@ import { translateIncidentToTR } from "@/actions/translations";
 import { triggerClaimAndRespondAlert } from "@/lib/notifications/claim-and-respond";
 import type { Database } from "@/types/database";
 
+if (process.env.IS_PLAYWRIGHT_TEST === "true" && process.env.NODE_ENV === "production") {
+  throw new Error("SECURITY FAULT: Playwright test bypass enabled in production environment.");
+}
+
 export interface SubmitIncidentState {
   ok: boolean;
   error?: string;

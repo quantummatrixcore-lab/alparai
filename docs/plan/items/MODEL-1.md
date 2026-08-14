@@ -32,3 +32,20 @@ These are unrelated and must not be touched:
 - No `gazi` reference remains under `src/`, `messages/`, `public/` or `.agents/` outside the out-of-scope list.
 - `pnpm lint`, `pnpm typecheck` and `node scripts/check-i18n.mjs` exit 0.
 - `node scripts/check-internal-links.mjs` exits 0 — the sidebar entry is an internal link, so removing the key without the nav entry, or the reverse, fails here.
+
+## Superseded by later instruction — needs Founder ruling
+
+`0b82659` ("implement ERCU-1 and MODEL-1") deleted the `.agents/swarm/` doctrine files, closing
+the flattening half of this item. But the same commit range added
+`src/app/[locale]/admin/ai-hub/swarm/page.tsx` — a new admin page visualizing an _expanded_
+hierarchy (Gazi Başkomutan → Fatih Sultan Mehmet → Mimar Sinan → six divisions), which is the
+opposite of "flatten the naming."
+
+This may not be a violation. Later the same day the Founder said explicitly: "atatürk ve
+diğerlerini burada görmek istiyorum" (I want to see Atatürk and the others here), and the
+advisor roster this session built at his direction (`d3464f38`) keeps the full Turkish role
+names by design. MODEL-1's flattening goal and the Founder's later instruction point opposite
+directions, and the Architect is not resolving that unilaterally.
+
+**Open question for the Founder:** does the swarm hierarchy page stay as built, or does MODEL-1's
+original flattening still apply to it? Whichever is chosen, record the decision here with a SHA.

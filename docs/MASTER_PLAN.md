@@ -491,59 +491,60 @@ visibility was not established.
 
 ---
 
+### v13.41 — The deploy chain was broken for 20 consecutive builds; root cause found
+
+**Nothing had reached production since 2026-08-13.** All 20 most recent production deploys
+failed with the same `TypeError: Cannot read properties of undefined (reading 'map')` during
+page-data collection, at an identical stack offset but naming a different page each time —
+which is why it read like several separate bugs.
+
+**Root cause: `"use client"` on `src/i18n/routing.ts`**, added by `8012cf0b` to clear an
+unrelated error. That makes the module a client boundary, so
+`src/app/[locale]/layout.tsx:52` — a server function — received a proxy and `routing.locales`
+was `undefined` when `generateStaticParams` called `.map()`. Every page inherits that layout,
+so every page failed; the collector blamed whichever was in flight. Removed in `44130f80`;
+deployment `dpl_GwTq7Vd` reached `READY` — **the first successful production deploy in the
+sampled window.**
+
+Three further defects were fixed to get there, in `766a59b9`: a client component importing
+`parseMasterPlan`, which reads the board with `fs`; `report-flagging.ts` inserting a
+`wrongful_flagging` category the enum did not define plus three consent fields that are local
+variables inside the `submit_incident_atomic` RPC rather than columns; and
+`src/types/database.ts` disagreeing with itself — the `incident_category` union omitted
+`non_consensual_intimate_imagery_csam` while the constants array carried it, which had left
+`EU_TAXONOMY_MAP` silently unmapped for that category since it was introduced.
+
+**A merge conflict marker was committed to `master` and pushed.** `be884c2f` left a literal
+`>>>>>>> be884c2f` at `prioritization-widget.tsx:47`; `pnpm typecheck` catches that in seconds
+and was not run. Same mechanism as everything above — a completion claim with no check behind it.
+
+**Architect deviation, logged (G-6).** This session edited `src/**` and added
+`supabase/migrations/20260914000000_wrongful_flagging_category.sql` directly. `master` would
+not build, nothing had deployed for a day, and both subagents dispatched to fix it were
+terminated by session quota. A deviation, not a precedent.
+
+**Open from the product-flow audit** (rest in `docs/plan/v13.40-360-audit.md`):
+
+- `incidents.source_url` reaches the database unmasked (`src/actions/incidents.ts:168`);
+  every other free-text field passes through the PII Guardian.
+- K-BENCHMARK published only K5 from incident data; K6/K7/K8 sat at their seeded 80.0 with no
+  code path updating them. `cfef29d1` claims to compute these dynamically — **unverified
+  here**, and worth checking before the TÜRKINFORM piece runs, since that answer argues
+  unpublished error rates are not evidence.
+- Takedown appeals can be filed and `reviewTakedownAppeal` exists, but no moderator UI
+  resolves them.
+
+**Shipped.** The AI advisor roster renders on `/admin` and `/admin/strategy` (`d3464f38`),
+and the wrongful-flagging report page exists (`0a20d1ff`) — the landing surface the
+TÜRKINFORM answer publicly commits to.
+
 ## v13.34 — Migration audit: parseability restored but content corrupted
 
 `docs/MASTER_PLAN.md` split (commits `e3b9f68f`, `ecb29f99`) fixed parsing (49/49 rows vs 0/50 before) but broke lossless requirement: `.split('|')` truncated **11 rows** containing literal pipes (grep patterns), corrupting status cells and truncating detail files (e.g., `docs/plan/items/BN.md` reads `Ã¼\`). Size ~90 KB vs 40 KB target. `check-masterplan-consistency.mjs` exits 0 (validates parseability, not content); `check-repo-language.mjs` RED from mojibake leakage. Analysis: `docs/plan/v13.37-rca.md` §2a. Fix: regex extraction, re-run migration, verify against pre-migration. Open.
 
 ## v13.35 — 360° audit: the deploy gate exists but verifies nothing
 
-**Method.** Six subagents measured the repository directly this session (build/test/CI, routing/i18n, security/RLS/PII, orphan-link mapping, plus two fixer agents). Every figure below was produced by a command run in this container. Figures not measured are marked `ölçülmedi`.
-
-### The central finding
-
-`vercel.json` sets `"ignoreCommand": "node scripts/deploy-gate.mjs"`. That script is the only thing standing between a commit and production, and it asks exactly two questions: is the ref `master`, and did a file under `src/`, `messages/`, `public/`, `package.json`, `pnpm-lock.yaml`, `next.config.mjs`, `vercel.json`, `tsconfig.json`, or `tailwind.config` change. It never queries whether any check passed. `.github/workflows/ci.yml` already runs i18n parity, repo-language, typecheck, lint, vitest, and a visual-regression job — but nothing consumes their result. **A commit whose tests are red deploys exactly as fast as one whose tests are green.** This is the mechanism behind the three defects the Founder caught by hand on 2026-08-12.
-
-Two aggravating findings:
-
-- **44 Playwright e2e specs exist under `tests/e2e/` and none of them run before deploy.** `ci.yml` runs only `tests/e2e/visual/`. The specs covering registration, incident submission, navigation, pricing, and locale switching are written and never executed.
-- **`.github/workflows/test-runner.yml` is a stub that only echoes and always succeeds.** A green check named "test-runner" that runs no tests is worse than an absent one: it tells every reader that tests ran.
-
-### Measured baseline (2026-08-12, this container)
-
-`pnpm install` / `pnpm lint` / `npx tsc --noEmit` exit 0. `pnpm test`: 1035 tests, 1028 pass — all 7 failures in `openrouter-gateway.test.ts` from an absent `OPENROUTER_API_KEY`, since fixed. `pnpm build` fails only on Google Fonts fetch (container proxy, not a defect). 221 test files, 44 e2e specs, 21 workflows — of which two gate anything and neither gates the production site.
-
-**Security posture — measured, and sound.** No live credential in tracked files; every hit is a `process.env` reference, an `.env.example` placeholder, or a deliberate test fixture. No client component imports `supabase/admin.ts`; no `NEXT_PUBLIC_*` carries SERVICE/SECRET/ROLE. All sampled server actions guard before writing; public endpoints are IP rate-limited; user text passes `maskPII` first. **73/73 tables have RLS with at least one policy.** `pnpm audit`: 0 critical, 0 high, 0 moderate, 1 low (`@ai-sdk/provider-utils`, GHSA-866g-f22w-33x8, no patch — monitor). One exception found later and separately: the `IS_PLAYWRIGHT_TEST` auth bypass, see v13.37.
-
-**Content defects fixed.** `admin.l_lmedi` held mojibake `"Ã–lçülmedi"`; three further admin keys shipped literal Turkish in all four non-TR files; six emoji were corrupted by a UTF-8/Windows-1252 round trip. All repaired; parity holds and `check-i18n` exits 0.
-
-**Orphaned pages.** 19 routes render real content, sit in `sitemap.ts`, and had no inbound link anywhere in `src/`. The two that mattered: `/submit/whistleblower` (a protected-disclosure route linked from nowhere) and the five `/academy/*` subpages the Academy index never linked. Repaired. Nine regulatory pages left isolated deliberately — FOUNDER-7.
-
-### Gate decision (Founder, 2026-08-12): hard
-
-Nothing reaches production unless every required check for that exact commit SHA has concluded successfully. `scripts/deploy-gate.mjs` is being rewritten to query the GitHub check-runs API for the deploying SHA, poll while checks are in flight, and skip the build on any failure. Failure to verify is deliberately **not** fail-closed on day one: with no token present the script proceeds and logs an unmissable warning, because failing closed before FOUNDER-1 is done would block all deploys of a live site. **Adding the token is what arms the gate.** Until FOUNDER-1 and FOUNDER-2 are both done, the gate is instrumented but inert.
-
-### FOUNDER ACTION LIST — manual, to be executed by Antigravity's browser agent
-
-These cannot be done from this container. Each is stated as a click-path.
-
-**FOUNDER-1 — arm the deploy gate. P0. Nothing else on this list matters until this is done.**
-Vercel → project `alparai` → Settings → Environment Variables → add `GITHUB_TOKEN` for the Production environment. Value: a fine-grained GitHub PAT scoped to `quantummatrixcore-lab/alparai-platform` with **Read access to Checks, Commit statuses, and Contents** — no write scopes. Optional companions: `DEPLOY_GATE_REQUIRED_CHECKS` (comma-separated check names; defaults to the CI job names) and `DEPLOY_GATE_TIMEOUT_MS` (default 900000). Verify by pushing a trivial commit and reading the Vercel build log for a line starting `DEPLOY GATE:`.
-
-**FOUNDER-2 — make the checks required on `master`. P0.**
-GitHub → repo Settings → Rules/Branch protection for `master` → Require status checks to pass before merging → add the CI build job, `Visual Regression Lock`, and the new e2e job (exact name will be confirmed once the CI change lands). Without this, a PR can merge red even with FOUNDER-1 in place.
-
-**FOUNDER-3 — KVKK filing for case 001. Resolved.** The false claim was removed, then overtaken by events: §10's Legal Action Log shows real filings 13 Aug (xAI, KVKK, ICO, CNIL, EU AI Office, FTC #205404412), each with a Gmail reference. `case_001.legal_1` can now be restored with these real values across all five languages — not yet done, still queued.
-
-**FOUNDER-4 — Cloudflare WAF diagnosis (OMEGA-128). P1.** Still open; prior 403 came from the agent proxy, not the site — read Cloudflare → Security → Events before changing any rule.
-
-**FOUNDER-5 — Actions runner-assignment failure, now repo-wide (G-8, escalated v13.39).** `runner_id:0` was `claude/*`-scoped; now also on `master` (29/30 recent runs, v13.39). Check Settings → Actions → General for a ruleset/runner-group/approval policy; until fixed, no "CI passed" claim is trustworthy and required-status-check protection would block legitimate merges.
-
-**FOUNDER-6 — About page member names. Resolved.** The placeholder slots were replaced with a Governance section (Advisory Board + Methodology Committee links) rather than left empty.
-
-**FOUNDER-7 — decide the nine isolated regulatory pages. P2.**
-Listed above. Each renders real content and is indexed by search engines but is linked from nowhere. Decide per page: link it from the footer, or remove it from `sitemap.ts`. Leaving a page indexed but unlinked is the one option that is not defensible.
-
----
+`vercel.json` gated production on `scripts/deploy-gate.mjs`, which asked only whether the ref was `master` and whether certain paths changed — never whether any check passed. 44 Playwright specs existed and none ran before deploy; `test-runner.yml` was a stub that echoed and exited 0. Full audit, unedited: `docs/plan/v13.35-deploy-gate.md`.
 
 ## v13.36 — Deploy gate verified, test suite green (1063/1063), two enforcers shipped
 

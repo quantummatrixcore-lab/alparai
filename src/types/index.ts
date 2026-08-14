@@ -153,7 +153,7 @@ export interface LeaderboardEntry {
   avg_severity: number;
   trend: number;
   trust_score?: number;
-  response_rate?: number;
+  response_rate?: number | null;
   is_verified_respondent?: boolean;
 }
 

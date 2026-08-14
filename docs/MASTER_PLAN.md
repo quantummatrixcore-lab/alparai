@@ -185,57 +185,65 @@ _Durum: **AÇIK** (v13.4 ölçümü) | Yürütücü: OpenCode Flash / Jules_
 
 <!-- FOUNDER_BACKLOG_START -->
 
-| #   | Ö.  | Görev                                | Özet                                                                                  | Durum                                  |
-| --- | --- | ------------------------------------ | ------------------------------------------------------------------------------------- | -------------------------------------- |
-| 301 | P0  | F SEC-0 — REPO GÖRÜNÜRLÜĞÜ ACİ       | SEC-0 — REPO GÖRÜNÜRLÜĞÜ ACİL. GitHub API 11 Ağu: [↗](plan/items/SEC-0.md)            | completed closed-by:ecb29f99@master    |
-| 302 | P0  | FA BG — `messages/en.json` m         | BG — messages/en.json mojibake temizliği + [↗](plan/items/BG.md)                      | completed closed-by:f92fe3a0@master    |
-| 303 | P0  | A BH — Dağıtım atfı, gönder          | BH — Dağıtım atfı, gönderici taraf. v13.10'da bu oturum [↗](plan/items/BH.md)         | completed closed-by:6c8d2daa@master    |
-| 304 | P0  | FA BI — `README.md` İngilizc         | BI — README.md İngilizce. closed-by:legacy evidence:"21 [↗](plan/items/BI.md)         | completed closed-by:8c943817@master    |
-| 305 | P0  | F OMEGA-128 — Cloudflare WAF (#128   | Cloudflare WAF (#128) — kanıt geçersiz (v13.5): 403 ölç [↗](plan/items/OMEGA-128.md)  | completed closed-by:18284852@master    |
-| 306 | P0  | A ZETA-0c — [ZETA-0c] Edge ikinc     | [ZETA-0c] Edge ikinci kırık: /api/health → 308; smoke t [↗](plan/items/ZETA-0c.md)    | completed closed-by:18284852@master    |
-| 307 | P0  | FA BN — `messages/en.json`'d         | BN — messages/en.json'da 46 çift-kodlanmış Türkçe dize. [↗](plan/items/BN.md)         | completed closed-by:5849f7ee@master    |
-| 308 | P1  | A ZETA-0 — açıklaması geri konu      | [ZETA-0b] — açıklaması geri konuldu (G-14) ve yeniden [↗](plan/items/ZETA-0.md)       | completed closed-by:b1e9d368@master    |
-| 309 | P2  | A ZETA-0d — [ZETA-0d] 8 açık dep     | [ZETA-0d] 8 açık dependabot PR'ı. v13.10'da bağımsız [↗](plan/items/ZETA-0d.md)       | completed closed-by:24b2252d@master    |
-| 310 | P0  | J ZETA-0a — [ZETA-0a] PR şeridi      | [ZETA-0a] PR şeridi — kanıtla kapandı: PR #76 merged 09 [↗](plan/items/ZETA-0a.md)    | completed closed-by:79f365c5@master    |
-| 311 | P0  | A ADMIN-2 — kanıtla kapandı (v13     | ADMIN-2 — kanıtla kapandı (v13.11, bağımsız doğrulandı) [↗](plan/items/ADMIN-2.md)    | completed closed-by:8ad18525@master    |
-| 312 | P1  | A ADMIN-3 — kanıtla kapandı (v13     | ADMIN-3 — kanıtla kapandı (v13.11, bağımsız doğrulandı) [↗](plan/items/ADMIN-3.md)    | completed closed-by:8ad18525@master    |
-| 313 | P1  | A RES-1 — kanıtla kapandı (v13       | RES-1 — kanıtla kapandı (v13.11, bağımsız doğrulandı). [↗](plan/items/RES-1.md)       | completed closed-by:8ad18525@master    |
-| 314 | P0  | A QUOTA-1 — hâlâ açık (v13.13),      | QUOTA-1 — hâlâ açık (v13.13), sahte kanıt dosyaları [↗](plan/items/QUOTA-1.md)        | completed closed-by:fa2c48a8@master    |
-| 315 | P2  | A TYPE-0 — kapandı (v13.13), am      | TYPE-0 — kapandı (v13.13), ama kod düzeltmesiyle değil. [↗](plan/items/TYPE-0.md)     | completed closed-by:environment@v13.13 |
-| 316 | P0  | A LANG-1 — hâlâ açık (v13.13'te      | LANG-1 — hâlâ açık (v13.13'te yeniden ölçüldü, hiç [↗](plan/items/LANG-1.md)          | completed closed-by:8c943817@master    |
-| 317 | P0  | FA SIGMA-208 — Stripe canlı işlem /  | Stripe canlı işlem / webhook doğrulama [↗](plan/items/SIGMA-208.md)                   | completed closed-by:1e6d6438@master    |
-| 318 | P0  | FA ALPHA-201 — Seed Data Room & Değ  | Seed Data Room & Değerleme Memosu üretimi (#201, [↗](plan/items/ALPHA-201.md)         | completed closed-by:d7e7b925@master    |
-| 319 | P1  | FA ZETA-209 — 400-satır CI sınırı    | 400-satır CI sınırı (#209) ve Jules/Claude yönlendirme [↗](plan/items/ZETA-209.md)    | completed closed-by:24b2252d@master    |
-| 320 | P1  | FA OMEGA-198 — "The Grok Files" ser  | "The Grok Files" serisinin 9-model arbitrajıyla yazılma [↗](plan/items/OMEGA-198.md)  | completed closed-by:1e6d6438@master    |
-| 321 | P1  | A SIGMA-BADGE — Top 50 YZ Vendor'a T | Top 50 YZ Vendor'a Trust Badge otonom (openchrome) [↗](plan/items/SIGMA-BADGE.md)     | completed closed-by:1e6d6438@master    |
-| 322 | P1  | F OMEGA-199 — HN Show HN + Reddit    | HN Show HN + Reddit senkron lansman (#199) — onay ✅ alı [↗](plan/items/OMEGA-199.md) | GATE                                   |
-| 323 | P2  | FA ALPHA-6 — [ALPHA-6] Pitch Deck    | [ALPHA-6] Pitch Deck (Marp/Reveal) HTML slayt [↗](plan/items/ALPHA-6.md)              | completed closed-by:1e6d6438@master    |
-| 324 | P2  | FA SIGMA-6 — [SIGMA-6] Stripe Oto    | [SIGMA-6] Stripe Otonom Fatura (PDF) Storage [↗](plan/items/SIGMA-6.md)               | completed closed-by:1e6d6438@master    |
-| 325 | P0  | A ADMIN-1 — kanıtla kapandı (v13     | ADMIN-1 — kanıtla kapandı (v13.10, bağımsız doğrulandı) [↗](plan/items/ADMIN-1.md)    | completed closed-by:6c8d2daa@master    |
-| 326 | P2  | A HYG-1 — kanıtla kapandı (v13       | HYG-1 — kanıtla kapandı (v13.11, bağımsız doğrulandı). [↗](plan/items/HYG-1.md)       | completed closed-by:fa2c48a8@master    |
-| 327 | P1  | A DATA-1 — B101/B102 iş, backlo      | DATA-1 (yeni, v13.11) — B101/B102 iş, backlog dışında [↗](plan/items/DATA-1.md)       | completed closed-by:3293b544@master    |
-| 328 | P1  | A PAGE-1 — B201/B203 iş, backlo      | PAGE-1 (yeni, v13.11) — B201/B203 iş, backlog dışında [↗](plan/items/PAGE-1.md)       | completed closed-by:a26f09c1@master    |
-| 329 | P1  | * ROUTE-1 — kapandı (v13.16). G-     | ROUTE-1 — kapandı (v13.16). G-6, Founder tarafından bu [↗](plan/items/ROUTE-1.md)     | completed closed-by:4a1ddfc1@master    |
-| 330 | P0  | A ADMIN-4 — kanıtla kapandı (v13     | ADMIN-4 — kanıtla kapandı (v13.15, bağımsız ölçüldü). İ [↗](plan/items/ADMIN-4.md)    | completed closed-by:0fa9ba11@master    |
-| 331 | P2  | A HYG-2 — `061a76a9`depo kökün       | HYG-2 (yeni, v13.13) —061a76a9depo [↗](plan/items/HYG-2.md)                           | completed closed-by:fa2c48a8@master    |
-| 332 | P0  | * GOV-1 — kapandı (v13.16), ne       | GOV-1 — kapandı (v13.16), negatif testle kanıtlandı. [↗](plan/items/GOV-1.md)         | completed closed-by:db91fc23@master    |
-| 333 | P0  | A PAGE-2 — Hero alanındaki CSS       | PAGE-2 (yeni, v13.15) — Hero alanındaki CSS Grid Blowou [↗](plan/items/PAGE-2.md)     | completed closed-by:4eacf9e3@master    |
-| 334 | P0  | A SHOW-1 — public deponun READM      | SHOW-1 (yeni, v13.17) — public deponun README'si kırık [↗](plan/items/SHOW-1.md)      | completed closed-by:38338859@master    |
-| 335 | P0  | * SHOW-2 — README'nin şeffaflık      | SHOW-2 (yeni, v13.17) — README'nin şeffaflık iddiası [↗](plan/items/SHOW-2.md)        | completed closed-by:38338859@master    |
-| 336 | P1  | A SHOW-3 — vitrin kökü çalışma       | SHOW-3 (yeni, v13.17) — vitrin kökü çalışma masası gibi [↗](plan/items/SHOW-3.md)     | completed closed-by:38338859@master    |
-| 337 | P0  | * SEC-2 — İKİ CANLI ANAHTAR SI       | SEC-2 (yeni, v13.17) — İKİ CANLI ANAHTAR SIZDI, ROTASYO [↗](plan/items/SEC-2.md)      | completed closed-by:d1330fa7@master    |
-| 338 | P0  | * SYNC-1 — vitrine giden tek yo      | SYNC-1 (yeni, v13.18) — vitrine giden tek yol elle [↗](plan/items/SYNC-1.md)          | completed closed-by:38338859@master    |
-| 339 | P1  | * SEC-3 — "Approve and deploy"       | SEC-3 (yeni, v13.19) — "Approve and deploy" BUTONUNA [↗](plan/items/SEC-3.md)         | completed closed-by:38338859@master    |
-| 340 | P0  | A PNPM-1 — Vercel deploy'u "düz      | PNPM-1 (yeni, v13.26) — Vercel deploy'u "düzeltilmedi", [↗](plan/items/PNPM-1.md)     | ✅ completed closed-by:549cf472@master |
-| 341 | P1  | A ADMIN-5 — Doktrin #011 üçüncü      | ADMIN-5 (yeni, v13.29) — Doktrin #011 üçüncü kez geri [↗](plan/items/ADMIN-5.md)      | ✅ completed closed-by:014be29e@master |
-| 342 | P1  | A CLAIM-1 — the live ARS API pag     | CLAIM-1 (new, v13.30) — the live ARS API page promises [↗](plan/items/CLAIM-1.md)     | ✅ completed closed-by:bb84a66a@master |
-| 343 | P0  | F TRANS-1 — the public transpare     | TRANS-1 (new, v13.30) — the public transparency report [↗](plan/items/TRANS-1.md)     | completed closed-by:51b94aa6@master    |
-| 344 | P1  | A PII-1 — five real people's n       | PII-1 (new, v13.30) — five real people's names and [↗](plan/items/PII-1.md)           | ✅ completed closed-by:b3c399ef@master |
-| 345 | P0  | A SYNC-2 — the sync publishes n      | SYNC-2 (new, v13.30) — the sync publishes neither what [↗](plan/items/SYNC-2.md)      | completed closed-by:38338859@master    |
-| 346 | P0  | A GOV-2 — the Implementer clos       | GOV-2 (new, v13.31; renumbered v13.32 — GOV-1 was alrea [↗](plan/items/GOV-2.md)      | completed closed-by:db91fc23@master    |
-| 347 | P1  | A PII-3 — the Founder's own pe       | PII-3 (new, v13.32) — the Founder's own personal addres [↗](plan/items/PII-3.md)      | completed closed-by:b3c399ef@master    |
-| 348 | P1  | M(H PROD-1 — production was down     | PROD-1 (new, v13.33) — production was down for hours, a [↗](plan/items/PROD-1.md)     | ✅ completed closed-by:d5b46d7e@master |
-| 349 | P1  | A HYG-3 — a 1.8MB debug captur       | HYG-3 (new, v13.33) — a 1.8MB debug capture landed in t [↗](plan/items/HYG-3.md)      | completed closed-by:406e042d@master    |
+| #   | Ö.  | Görev                                | Özet                                                                                                                       | Durum                                  |
+| --- | --- | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 301 | P0  | F SEC-0 — REPO GÖRÜNÜRLÜĞÜ ACİ       | SEC-0 — REPO GÖRÜNÜRLÜĞÜ ACİL. GitHub API 11 Ağu: [↗](plan/items/SEC-0.md)                                                 | completed closed-by:ecb29f99@master    |
+| 302 | P0  | FA BG — `messages/en.json` m         | BG — messages/en.json mojibake temizliği + [↗](plan/items/BG.md)                                                           | completed closed-by:f92fe3a0@master    |
+| 303 | P0  | A BH — Dağıtım atfı, gönder          | BH — Dağıtım atfı, gönderici taraf. v13.10'da bu oturum [↗](plan/items/BH.md)                                              | completed closed-by:6c8d2daa@master    |
+| 304 | P0  | FA BI — `README.md` İngilizc         | BI — README.md İngilizce. closed-by:legacy evidence:"21 [↗](plan/items/BI.md)                                              | completed closed-by:8c943817@master    |
+| 305 | P0  | F OMEGA-128 — Cloudflare WAF (#128   | Cloudflare WAF (#128) — kanıt geçersiz (v13.5): 403 ölç [↗](plan/items/OMEGA-128.md)                                       | completed closed-by:18284852@master    |
+| 306 | P0  | A ZETA-0c — [ZETA-0c] Edge ikinc     | [ZETA-0c] Edge ikinci kırık: /api/health → 308; smoke t [↗](plan/items/ZETA-0c.md)                                         | completed closed-by:18284852@master    |
+| 307 | P0  | FA BN — `messages/en.json`'d         | BN — messages/en.json'da 46 çift-kodlanmış Türkçe dize. [↗](plan/items/BN.md)                                              | completed closed-by:5849f7ee@master    |
+| 308 | P1  | A ZETA-0 — açıklaması geri konu      | [ZETA-0b] — açıklaması geri konuldu (G-14) ve yeniden [↗](plan/items/ZETA-0.md)                                            | completed closed-by:b1e9d368@master    |
+| 309 | P2  | A ZETA-0d — [ZETA-0d] 8 açık dep     | [ZETA-0d] 8 açık dependabot PR'ı. v13.10'da bağımsız [↗](plan/items/ZETA-0d.md)                                            | completed closed-by:24b2252d@master    |
+| 310 | P0  | J ZETA-0a — [ZETA-0a] PR şeridi      | [ZETA-0a] PR şeridi — kanıtla kapandı: PR #76 merged 09 [↗](plan/items/ZETA-0a.md)                                         | completed closed-by:79f365c5@master    |
+| 311 | P0  | A ADMIN-2 — kanıtla kapandı (v13     | ADMIN-2 — kanıtla kapandı (v13.11, bağımsız doğrulandı) [↗](plan/items/ADMIN-2.md)                                         | completed closed-by:8ad18525@master    |
+| 312 | P1  | A ADMIN-3 — kanıtla kapandı (v13     | ADMIN-3 — kanıtla kapandı (v13.11, bağımsız doğrulandı) [↗](plan/items/ADMIN-3.md)                                         | completed closed-by:8ad18525@master    |
+| 313 | P1  | A RES-1 — kanıtla kapandı (v13       | RES-1 — kanıtla kapandı (v13.11, bağımsız doğrulandı). [↗](plan/items/RES-1.md)                                            | completed closed-by:8ad18525@master    |
+| 314 | P0  | A QUOTA-1 — hâlâ açık (v13.13),      | QUOTA-1 — hâlâ açık (v13.13), sahte kanıt dosyaları [↗](plan/items/QUOTA-1.md)                                             | completed closed-by:fa2c48a8@master    |
+| 315 | P2  | A TYPE-0 — kapandı (v13.13), am      | TYPE-0 — kapandı (v13.13), ama kod düzeltmesiyle değil. [↗](plan/items/TYPE-0.md)                                          | completed closed-by:environment@v13.13 |
+| 316 | P0  | A LANG-1 — hâlâ açık (v13.13'te      | LANG-1 — hâlâ açık (v13.13'te yeniden ölçüldü, hiç [↗](plan/items/LANG-1.md)                                               | completed closed-by:8c943817@master    |
+| 317 | P0  | FA SIGMA-208 — Stripe canlı işlem /  | Stripe canlı işlem / webhook doğrulama [↗](plan/items/SIGMA-208.md)                                                        | completed closed-by:1e6d6438@master    |
+| 318 | P0  | FA ALPHA-201 — Seed Data Room & Değ  | Seed Data Room & Değerleme Memosu üretimi (#201, [↗](plan/items/ALPHA-201.md)                                              | completed closed-by:d7e7b925@master    |
+| 319 | P1  | FA ZETA-209 — 400-satır CI sınırı    | 400-satır CI sınırı (#209) ve Jules/Claude yönlendirme [↗](plan/items/ZETA-209.md)                                         | completed closed-by:24b2252d@master    |
+| 320 | P1  | FA OMEGA-198 — "The Grok Files" ser  | "The Grok Files" serisinin 9-model arbitrajıyla yazılma [↗](plan/items/OMEGA-198.md)                                       | completed closed-by:1e6d6438@master    |
+| 321 | P1  | A SIGMA-BADGE — Top 50 YZ Vendor'a T | Top 50 YZ Vendor'a Trust Badge otonom (openchrome) [↗](plan/items/SIGMA-BADGE.md)                                          | completed closed-by:1e6d6438@master    |
+| 322 | P1  | F OMEGA-199 — HN Show HN + Reddit    | HN Show HN + Reddit senkron lansman (#199) — onay ✅ alı [↗](plan/items/OMEGA-199.md)                                      | GATE                                   |
+| 323 | P2  | FA ALPHA-6 — [ALPHA-6] Pitch Deck    | [ALPHA-6] Pitch Deck (Marp/Reveal) HTML slayt [↗](plan/items/ALPHA-6.md)                                                   | completed closed-by:1e6d6438@master    |
+| 324 | P2  | FA SIGMA-6 — [SIGMA-6] Stripe Oto    | [SIGMA-6] Stripe Otonom Fatura (PDF) Storage [↗](plan/items/SIGMA-6.md)                                                    | completed closed-by:1e6d6438@master    |
+| 325 | P0  | A ADMIN-1 — kanıtla kapandı (v13     | ADMIN-1 — kanıtla kapandı (v13.10, bağımsız doğrulandı) [↗](plan/items/ADMIN-1.md)                                         | completed closed-by:6c8d2daa@master    |
+| 326 | P2  | A HYG-1 — kanıtla kapandı (v13       | HYG-1 — kanıtla kapandı (v13.11, bağımsız doğrulandı). [↗](plan/items/HYG-1.md)                                            | completed closed-by:fa2c48a8@master    |
+| 327 | P1  | A DATA-1 — B101/B102 iş, backlo      | DATA-1 (yeni, v13.11) — B101/B102 iş, backlog dışında [↗](plan/items/DATA-1.md)                                            | completed closed-by:3293b544@master    |
+| 328 | P1  | A PAGE-1 — B201/B203 iş, backlo      | PAGE-1 (yeni, v13.11) — B201/B203 iş, backlog dışında [↗](plan/items/PAGE-1.md)                                            | completed closed-by:a26f09c1@master    |
+| 329 | P1  | * ROUTE-1 — kapandı (v13.16). G-     | ROUTE-1 — kapandı (v13.16). G-6, Founder tarafından bu [↗](plan/items/ROUTE-1.md)                                          | completed closed-by:4a1ddfc1@master    |
+| 330 | P0  | A ADMIN-4 — kanıtla kapandı (v13     | ADMIN-4 — kanıtla kapandı (v13.15, bağımsız ölçüldü). İ [↗](plan/items/ADMIN-4.md)                                         | completed closed-by:0fa9ba11@master    |
+| 331 | P2  | A HYG-2 — `061a76a9`depo kökün       | HYG-2 (yeni, v13.13) —061a76a9depo [↗](plan/items/HYG-2.md)                                                                | completed closed-by:fa2c48a8@master    |
+| 332 | P0  | * GOV-1 — kapandı (v13.16), ne       | GOV-1 — kapandı (v13.16), negatif testle kanıtlandı. [↗](plan/items/GOV-1.md)                                              | completed closed-by:db91fc23@master    |
+| 333 | P0  | A PAGE-2 — Hero alanındaki CSS       | PAGE-2 (yeni, v13.15) — Hero alanındaki CSS Grid Blowou [↗](plan/items/PAGE-2.md)                                          | completed closed-by:4eacf9e3@master    |
+| 334 | P0  | A SHOW-1 — public deponun READM      | SHOW-1 (yeni, v13.17) — public deponun README'si kırık [↗](plan/items/SHOW-1.md)                                           | completed closed-by:38338859@master    |
+| 335 | P0  | * SHOW-2 — README'nin şeffaflık      | SHOW-2 (yeni, v13.17) — README'nin şeffaflık iddiası [↗](plan/items/SHOW-2.md)                                             | completed closed-by:38338859@master    |
+| 336 | P1  | A SHOW-3 — vitrin kökü çalışma       | SHOW-3 (yeni, v13.17) — vitrin kökü çalışma masası gibi [↗](plan/items/SHOW-3.md)                                          | completed closed-by:38338859@master    |
+| 337 | P0  | * SEC-2 — İKİ CANLI ANAHTAR SI       | SEC-2 (yeni, v13.17) — İKİ CANLI ANAHTAR SIZDI, ROTASYO [↗](plan/items/SEC-2.md)                                           | completed closed-by:d1330fa7@master    |
+| 338 | P0  | * SYNC-1 — vitrine giden tek yo      | SYNC-1 (yeni, v13.18) — vitrine giden tek yol elle [↗](plan/items/SYNC-1.md)                                               | completed closed-by:38338859@master    |
+| 339 | P1  | * SEC-3 — "Approve and deploy"       | SEC-3 (yeni, v13.19) — "Approve and deploy" BUTONUNA [↗](plan/items/SEC-3.md)                                              | completed closed-by:38338859@master    |
+| 340 | P0  | A PNPM-1 — Vercel deploy'u "düz      | PNPM-1 (yeni, v13.26) — Vercel deploy'u "düzeltilmedi", [↗](plan/items/PNPM-1.md)                                          | ✅ completed closed-by:549cf472@master |
+| 341 | P1  | A ADMIN-5 — Doktrin #011 üçüncü      | ADMIN-5 (yeni, v13.29) — Doktrin #011 üçüncü kez geri [↗](plan/items/ADMIN-5.md)                                           | ✅ completed closed-by:014be29e@master |
+| 342 | P1  | A CLAIM-1 — the live ARS API pag     | CLAIM-1 (new, v13.30) — the live ARS API page promises [↗](plan/items/CLAIM-1.md)                                          | ✅ completed closed-by:bb84a66a@master |
+| 343 | P0  | F TRANS-1 — the public transpare     | TRANS-1 (new, v13.30) — the public transparency report [↗](plan/items/TRANS-1.md)                                          | completed closed-by:51b94aa6@master    |
+| 344 | P1  | A PII-1 — five real people's n       | PII-1 (new, v13.30) — five real people's names and [↗](plan/items/PII-1.md)                                                | ✅ completed closed-by:b3c399ef@master |
+| 345 | P0  | A SYNC-2 — the sync publishes n      | SYNC-2 (new, v13.30) — the sync publishes neither what [↗](plan/items/SYNC-2.md)                                           | completed closed-by:38338859@master    |
+| 346 | P0  | A GOV-2 — the Implementer clos       | GOV-2 (new, v13.31; renumbered v13.32 — GOV-1 was alrea [↗](plan/items/GOV-2.md)                                           | completed closed-by:db91fc23@master    |
+| 347 | P1  | A PII-3 — the Founder's own pe       | PII-3 (new, v13.32) — the Founder's own personal addres [↗](plan/items/PII-3.md)                                           | completed closed-by:b3c399ef@master    |
+| 348 | P1  | M(H PROD-1 — production was down     | PROD-1 (new, v13.33) — production was down for hours, a [↗](plan/items/PROD-1.md)                                          | ✅ completed closed-by:d5b46d7e@master |
+| 349 | P1  | A HYG-3 — a 1.8MB debug captur       | HYG-3 (new, v13.33) — a 1.8MB debug capture landed in t [↗](plan/items/HYG-3.md)                                           | completed closed-by:406e042d@master    |
+| 350 | P0  | A PLAY-1 — `IS_PLAYWRIGHT_TEST` gua  | PLAY-1 (new, v13.40) — `IS_PLAYWRIGHT_TEST` branches guarded with `NODE_ENV` check [↗](plan/items/PLAY-1.md)               | open                                   |
+| 351 | P0  | A CRYPT-1 — `api_keys.api_key` encr  | CRYPT-1 (new, v13.40) — encrypt at application layer or document plaintext acceptance [↗](plan/items/CRYPT-1.md)           | open                                   |
+| 352 | P1  | F RUNNER-1 — GitHub Actions runne    | RUNNER-1 (new, v13.40) — diagnose runner_id:0 on 29/30 recent runs, repo-wide [↗](plan/items/RUNNER-1.md)                  | open                                   |
+| 353 | P1  | A LANG-2 — `.repo-language-baseline` | LANG-2 (new, v13.40) — reduce from 44 grandfathered files to zero [↗](plan/items/LANG-2.md)                                | open                                   |
+| 354 | P1  | A CITE-1 — replace 29 non-SHA close  | CITE-1 (new, v13.40) — replace non-SHA closures (GOV-1.md, ROUTE-1.md, others) with real SHAs [↗](plan/items/CITE-1.md)    | open                                   |
+| 355 | P2  | A ERCU-1 — ercumenterden.com speci   | ERCU-1 (new, v13.40) — content spec per `docs/plan/v13.40-ercumenterden.md`, separate repo [↗](plan/items/ERCU-1.md)       | open                                   |
+| 356 | P2  | A MODEL-1 — Atatürk model packagi    | MODEL-1 (new, v13.40) — rename route/label, drop silhouette asset, flatten `.agents/swarm/` [↗](plan/items/MODEL-1.md)     | open                                   |
+| 357 | P2  | A BRANCH-1 — fast-forward `claude/   | BRANCH-1 (new, v13.40) — fast-forward `claude/strategy-brief-review-i93xcv` to `origin/master` [↗](plan/items/BRANCH-1.md) | open                                   |
 
 <!-- FOUNDER_BACKLOG_END -->
 
@@ -267,19 +275,11 @@ BLOK BC (Antigravity,P1)┘
 
 ---
 
-### v13.5 — Dağıtım başladı, vitrin bozuk, ölçüm aleti yanlıştı
+### v13.5 — Three measurement claims corrected; mojibake in production (91 occurrences)
 
-Founder'ın LinkedIn ekran görüntüsü (**335 gösterim, 2 tepki**) üç iddiamı birden çürüttü. Uzun analiz: `docs/plan/v13.x.md` §v13.5.
+Launch report undermined by measurement errors: agent proxy 403s conflated with site status; approval barrier never existed; distribution had begun. **91 mojibake characters** (`â€`, `Ã`, `â€™`, `â€œ`) spanning `messages/en.json` (English, served to HN audience) rather than isolated strings. G-19 (measurement doctrine): edge claims verified via GitHub Actions logs or Founder observation only, never `curl` through proxy. Details: `docs/plan/v13.x.md` §v13.5.
 
-**Ölçüm doktrini (bağlayıcı).** Bu oturumun `curl` çıktısı canlı site için **geçerli kanıt değildir** — ajan proxy'si dört URL için de aynı anda `403 CONNECT tunnel failed` döndürüyor, yani site hiç ölçülmedi. Edge iddiaları yalnızca **GitHub Actions runner ölçümüne** (`smoke-test.yml`) ya da Founder'ın tarayıcı gözlemine dayanabilir. v12.104'ten beri tekrarlanan "WAF üç rotayı da 403'lüyor" cümlesi bu aletle üretildi ve LinkedInBot'un siteye ulaşmış olmasıyla çelişiyor.
-
-**Onay engeli yok.** `docs/COMMUNITY/launch_posts.md` başlığı `[x] Approved by Founder`. "Altı turdur onay bekliyor" notu bugün itibarıyla yanlıştır.
-
-**Lansman fiilen başladı.** LinkedIn'de yayın yapıldı. Panel "GATE" diyor; gerçek şu ki dağıtım başladı, HN/Reddit kanalı henüz kullanılmadı ve **hiçbiri ölçülmedi**.
-
-**Yeni bulgu — mojibake kaynak veride, ve tek satır değil.** `messages/en.json:404` ayırıcıyı em-dash olarak değil, `â`+`€`+`"` üçlüsü olarak saklıyor; `src/app/layout.tsx:6` aynı deseni doğru taşıyor (`E2 80 94`). **Ölçüm:** `grep -c 'â€'` → `en.json` **91**, `tr/de/fr/ru` **0**. Yani hasar tek dizeye değil, İngilizce dosyanın tamamına yayılmış — ve İngilizce, HN/Reddit kitlesinin göreceği dildir.
-
-**İki yeni blok görev (kapı ön koşulu — moratoryum istisnası, `blocks:#199`):**
+**Two new block tasks (pre-gate, `blocks:#199`):**
 
 | Blok   | Ö.  | Atanan      | İş                                                                                                                                     | Kabul kriteri                                                                                         |
 | ------ | --- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
@@ -296,17 +296,7 @@ Founder'ın LinkedIn ekran görüntüsü (**335 gösterim, 2 tepki**) üç iddia
 
 ### v13.6 — Repository language fixed to English (Rule 13)
 
-_First section written under the English-only policy. Full analysis: `docs/plan/v13.x.md` §v13.6._
-
-**Founder decision (binding):** everything committed to this repository is English; only the chat reply to the Founder stays Turkish. Rule 13 in `CLAUDE.md` carries the full text. The justification is measured, not stylistic — v13.5 found 91 mojibake occurrences in `messages/en.json`, and Turkish prose maximises exposure to exactly that failure mode. `README.md` was measured at **66 of 211 lines Turkish (31%)** while it serves as the public repository's front page ahead of an HN launch.
-
-**Measurement correction (Rule 10).** The first inventory of this policy used `grep '[ığşçöü…]'`, which matches **bytes**, not characters: `İ` (`C4 B0`) shares its second byte with `°` (`C2 B0`), so strings like `360°` were counted as Turkish. The reported "120 files under `src/`" was inflated by this defect. The enforcer uses a Unicode-aware regex in Node instead; the corrected count of grandfathered files across the whole repo is **221**.
-
-**Three tiers.** _Tier A — before launch:_ public-facing files (`README.md`, `CONTRIBUTING.md`, `SECURITY.md`, `CODE_OF_CONDUCT.md`, `.github/ISSUE_TEMPLATE/**`). _Tier B — after launch:_ internal docs, ordered by how often they are read (`docs/MASTER_PLAN.md` 109/215 Turkish, `docs/ROADMAP.md` 177/355, `AGENTS.md` 24/254, `CLAUDE.md` 3/87). _Tier C — frozen:_ archives are never translated, only stamped with an English freeze notice.
-
-**Enforcer written and verified, but NOT shipped by the Architect — the role guard blocked it, correctly.** The enforcer (`scripts/check-repo-language.mjs` + `.repo-language-baseline`) was implemented and tested this session: the check passes on the current tree at 221 grandfathered files, and a negative test (removing `docs/MASTER_PLAN.md` from the baseline) fails with exit 1 naming its 97 offending lines. On commit, `.husky/pre-commit` refused it — `scripts/` and repo-root data files are outside the Architect's writable paths. **That refusal is the enforcement layer doing its job and is recorded here as evidence it works.** G-6's enumerated enforcement paths are `.github/workflows/**`, `.husky/**`, `playwright.config.ts` and dependency-security fields in `package.json`; `scripts/` is not among them, and widening that boundary unilaterally is exactly what G-6a exists to prevent. The full verified source is carried as a specification in `docs/plan/v13.x.md` §v13.6.8 for the Implementer to land verbatim.
-
-**Status update (v13.7): the gap is closed.** BJ landed in `8c943817` — the enforcer, the 227-file baseline and the `Repo Language Check` CI step are all on `master`. Rule 13 no longer binds by convention only.
+All repository artifacts are English; chat reply to Founder only exceeds this (Rule 13 binding). `README.md` measured at **66/211 lines (31%) Turkish**; 91 mojibake in `messages/en.json` showed risk. First inventory used byte-wise `grep`, inflating counts — corrected via Unicode-aware enforcer identifying **221 grandfathered files**. Enforcer written/tested (`scripts/check-repo-language.mjs` + `.repo-language-baseline` + baseline validation against 97 lines) but not committed (G-6a — outside Architect's writable paths). Landed by Implementer in `8c943817` (BJ) — enforcer, baseline, CI step all on `master` (v13.7). Details: `docs/plan/v13.x.md` §v13.6.
 
 | Blok   | Ö.               | Atanan      | İş                                                                                                                                                                                                                 | Kabul kriteri                                                       |
 | ------ | ---------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------- |
@@ -320,25 +310,9 @@ _First section written under the English-only policy. Full analysis: `docs/plan/
 
 ---
 
-### v13.7 — The launch blockers were not on the board
+### v13.7 — Launch blockers were hidden in prose; G-7 tightened to require origin-verified reads
 
-_Full analysis: `docs/plan/v13.x.md` §v13.7._
-
-**Rule 10 self-correction — my own G-7 violation.** Last turn I reported that the Implementer's commit `713d75a4` "was not on origin" and flagged a possible G-7 breach. That was wrong: I read a stale remote-tracking ref without fetching. After `git fetch`: `02e5d317..713d75a4 master -> origin/master`. The commit was on origin and the Implementer's report was accurate.
-
-This is the **third** time a local instrument was mistaken for external reality: the `curl` 403s came from the agent proxy rather than the site (v13.5); byte-wise `grep` counted `360°` as Turkish (v13.6); today a stale tracking ref was read as `origin`.
-
-**G-7 tightened (binding).** "Re-read from `origin`" means a read performed after an explicit `git fetch` in the same turn, or a read through the GitHub API. A remote-tracking ref of unknown age is not `origin`, and no completion or non-completion may be claimed from one.
-
-**Panel visibility rule (binding).** Every identifier referenced by a panel row through `depends:` or `blocks:` **must itself exist as a panel row**. `parseMasterPlan()` reads only the region between the `FOUNDER_BACKLOG` markers, so a blocker living in prose is invisible to `/admin/strategy` and to `check-masterplan-consistency.mjs` alike.
-
-This was not hypothetical. The launch GATE declared `depends:BG,BH` while BG, BH and BI existed only as prose tables further down the file — the consistency check passed precisely because it could not see the dangling reference. The three rows are promoted to the panel in this version.
-
-**Moratorium reinterpreted (binding).** v13.1 froze new panel rows until #199 closes, excepting work tagged `blocks:#199`. v13.4–v13.6 honoured the freeze by writing the actual launch blockers into prose, which is how the only work that mattered left the tracked surface. The exception is therefore **an obligation, not a permission**: work that blocks the launch must be on the board. The moratorium exists to prevent dilution, not to hide blockers.
-
-**Doctrine #047 gap (recorded, deliberately not scheduled).** The enforcer for the visibility rule is a dangling-reference check inside `scripts/check-masterplan-consistency.mjs`. `scripts/` is outside the Architect's writable paths under G-6a — the same wall that held BJ — so the check is specified in `docs/plan/v13.x.md` §v13.7 and queued for after the launch. It does **not** carry `blocks:#199` and therefore does **not** get a panel row: the moratorium binds the Architect too, and v12.128 is the record of what happens when it does not.
-
-**Ruling on Proposal 030 (Awwwards UI standard).** Phase 1 (landing page, `713d75a4`) is accepted. **Phases 2 and 3 — incidents/leaderboard and the admin dashboard — are deferred until #199 closes.** Phase 1 is defensible only because the landing page is where distribution actually points; that argument does not extend to surfaces no external visitor has been sent to yet. Polishing a third page group while the storefront title is corrupted and attribution is unmeasured is the "internal work while the door is shut" pattern named in v12.131.
+Mistook stale local tracking ref for `origin/master` (commit `713d75a4`, incorrect Architect claim). G-7 binding: no completion claim from remote refs of unknown age — reads require explicit `git fetch` this turn or GitHub API. **Panel visibility rule (binding):** every `depends:`/`blocks:` identifier must exist as a panel row; dangling references (BG, BH, BI in prose only) became invisible to `check-masterplan-consistency.mjs`. Promoted three rows to panel. Moratorium exception (`blocks:#199`) reinterpreted: obligation not permission — work blocking launch **must** be on board. Details: `docs/plan/v13.x.md` §v13.7.
 
 ### v13.30 — The gates were measured on a stale tree; the one red gate was G-7 itself
 
@@ -420,6 +394,70 @@ This was not hypothetical. The launch GATE declared `depends:BG,BH` while BG, BH
 
 ---
 
+### v13.40 — 360° audit of the live tree; TÜRKINFORM response sent; three decisions closed
+
+**360° audit.** Four read-only subagents over `master` @ `e28c0bfb`, each corrected once after
+reporting conclusions its method did not support. Full findings and method:
+`docs/plan/v13.40-360-audit.md`.
+
+- **`IS_PLAYWRIGHT_TEST` is not contained, and the record said it was.**
+  `src/lib/auth/session.ts:14` returns a synthetic `role: "admin"` user with no `NODE_ENV`
+  guard. The guard at `src/middleware.ts:54` is real but scoped to admin page paths and
+  excludes `/api/`, so all twelve admin API routes call `getCurrentUser()` without traversing
+  it. `src/actions/incidents.ts:466` repeats the pattern. Nothing throws when the flag is set
+  in production. Not remotely exploitable — an attacker cannot set the variable — but the
+  mitigation assumed by the record does not cover the path that matters.
+- **`api_keys.api_key` is plaintext** (`20260623000200_create_api_keys_table.sql:2-5`). Its RLS
+  authorises on role, which the synthetic admin satisfies, so the two defects compose.
+- **CI has produced 0 green runs in its last 30.** 13 cancelled with `runner_id: 0` (verified
+  on runs `31750260782`, `31750959708`), 16 failed, 1 queued. Separately
+  `check-repo-language.mjs` exits 1 against 44 files, so CI stays red even once runner
+  allocation is fixed — two stacked causes, one masking the other.
+- **v13.37's enforcer count is superseded.** `master` carries 10 enforcers, all wired, 0
+  orphaned. The 3 counted as orphaned exist only on the stale Architect branch and never
+  shipped; that measurement was taken against a tree nobody deploys and then promoted into
+  doctrine. C-7 exists to catch exactly this and did not fire.
+- **Citations reconciled:** 163 `closed-by:` occurrences = 122 resolving SHAs + 29 genuine
+  non-SHA claims + 12 specification templates. The first pass reported 163/52/26, which does
+  not sum, and counted the rule's own specification text as evidence against it. Misattribution
+  is 5 sampled, 0 found, 117 occurrences unexamined — a sample, not a census.
+- **Public surface healthy.** `check-i18n.mjs`, `check-internal-links.mjs`, `pnpm lint`,
+  `pnpm typecheck` all exit 0; 178 files / 1063 tests pass; `FounderStory` is mounted at
+  `src/app/[locale]/page.tsx:346`. Hygiene debt, correctly sized: 57 `target="_blank"` anchors
+  lack `rel="noopener noreferrer"` (reverse-tabnabbing, not XSS, and browsers have applied
+  implicit `noopener` since 2021), and 16 files import `Link` from `next/link` rather than
+  `@/i18n/routing`.
+- **This file measured 599 lines / 118,167 bytes** against a 600-line cap. C-8 arriving on
+  schedule: the cap governs lines while cost accrues in bytes.
+
+**TÜRKINFORM.** Four-question response on Anthropic's global watermark rollout, sent
+2026-08-14. Spine: provenance ≠ authorship ≠ accountability. Every technical claim traces to
+Anthropic's own support documentation or to independent research; the "may persist through
+some editing" hedge is quoted as a hedge, and no false-positive rate is attributed to any
+vendor because none publishes one. Draft:
+`docs/press/2026-08-13-turkinform-watermark-interview-draft.md`.
+
+**ercumenterden.com.** Content specification in `docs/plan/v13.40-ercumenterden.md`, executed
+by the Implementer in the separate `quantummatrixcore-lab/ercumenterden.com` repository.
+
+**Atatürk model — keep, fix the packaging.** The live system prompt already carries a
+strategic-advisor framing with an explicit "you are an AI system" disclosure, which removes the
+impersonation objection. What remains is packaging that still asserts what the prompt no longer
+claims: the `gazi` route name, the `nav_gazi` label, and
+`public/brand-assets/ataturk-silhouette.svg`. Not a security item — the route's auth guard,
+rate limit and key check landed in `e28c0bfb`.
+
+**Branch model collapsed.** `git rev-list --left-right --count
+origin/master...origin/claude/strategy-brief-review-i93xcv` returns `68  0`. The Architect
+branch is a strict ancestor of `master` carrying nothing of its own; G-8's manual per-session
+sync has not been happening.
+
+**Repo visibility — ölçülmedi.** `quantummatrixcore-lab/alparai` is public and
+`alparai-platform` is private; `Alparai.com` did not surface in repository search and its
+visibility was not established.
+
+---
+
 ## 10. Hukuki Eylem Kaydı — Case #001 (Grok Pasaport Olayı)
 
 > **Bağlayıcı kayıt.** Bu bölüm hukuki sürecin resmi zaman çizelgesidir. Hiçbir madde gerçek kanal çıktısı olmadan "tamamlandı" olarak işaretlenemez.
@@ -441,15 +479,9 @@ This was not hypothetical. The launch GATE declared `depends:BG,BH` while BG, BH
 
 ---
 
-## v13.34 — Migration audit: the board parses, the content does not
+## v13.34 — Migration audit: parseability restored but content corrupted
 
-The `docs/MASTER_PLAN.md` split executed on `origin/master` (`e3b9f68f`, `ecb29f99`) restored parsing — **49/49 rows**, previously 0/50 — but failed its lossless requirement. `scripts/migrate-master-plan.mjs` splits rows on `|` without accounting for literal pipes inside task text (grep patterns, shell syntax). **11 rows** were split wrongly: their status cells carry fragments (`docs/plan/items/BN.md` reads `Ã¼\`) and their detail files are truncated mid-sentence, so the original text was not preserved verbatim. File size landed at ~90 KB against a 40 KB target.
-
-`check-masterplan-consistency.mjs` exits 0 throughout, because it validates parseability rather than content — the same structural reason it was green while parsing zero rows. Analysis: `docs/plan/v13.37-rca.md` §2a.
-
-`check-repo-language.mjs` was RED on `master` from this migration's mojibake/Turkish leakage (`BN.md`, `BG.md`, `HYG-1.md`, `LANG-1.md`, `migrate-master-plan.mjs`) — the enforcer worked, the corrupt output merged anyway (v13.37 §2a in one data point).
-
-**Fix (Implementer):** extract fields by regex instead of `.split('|')`, re-run the migration, verify no corrupted status and no truncated Record section against the pre-migration file, re-measure size, and get `check-repo-language.mjs` back to exit 0. Unchanged and still open.
+`docs/MASTER_PLAN.md` split (commits `e3b9f68f`, `ecb29f99`) fixed parsing (49/49 rows vs 0/50 before) but broke lossless requirement: `.split('|')` truncated **11 rows** containing literal pipes (grep patterns), corrupting status cells and truncating detail files (e.g., `docs/plan/items/BN.md` reads `Ã¼\`). Size ~90 KB vs 40 KB target. `check-masterplan-consistency.mjs` exits 0 (validates parseability, not content); `check-repo-language.mjs` RED from mojibake leakage. Analysis: `docs/plan/v13.37-rca.md` §2a. Fix: regex extraction, re-run migration, verify against pre-migration. Open.
 
 ## v13.35 — 360° audit: the deploy gate exists but verifies nothing
 
@@ -501,35 +533,9 @@ Listed above. Each renders real content and is indexed by search engines but is 
 
 ---
 
-## v13.36 — execution result: the gate is built, the suite is green, two enforcers landed
+## v13.36 — Deploy gate verified, test suite green (1063/1063), two enforcers shipped
 
-Closes the v13.35 audit. All work below is on `origin/claude/strategy-brief-review-i93xcv` and was re-read from `origin` per G-7.
-
-| Commit     | What landed                                                                    |
-| ---------- | ------------------------------------------------------------------------------ |
-| `4d2ce57d` | Deploy gate verifies CI checks; i18n corruption repaired                       |
-| `da2da53f` | e2e suite wired into CI; gateway tests made hermetic; orphan pages linked      |
-| `e58852f8` | Seven dead internal links fixed; link-integrity enforcer added                 |
-| `e8fa8e7f` | Duplicate case route retired; post-login return fixed with open-redirect guard |
-| `f86291bb` | Third duplicate case route retired; `case001` namespace removed                |
-
-**Test suite: 178 files, 1063 tests, all passing.** First fully green state measured in this repository. Baseline at session start was 1028/1035 with 7 failures. `pnpm typecheck`, `pnpm lint`, `check-i18n`, `check-internal-links` all exit 0. Five-language parity at 4732 leaf keys.
-
-**The gate.** `scripts/deploy-gate.mjs` now resolves the deploying SHA, queries the GitHub check-runs and commit-status APIs, and polls at 20s intervals while checks are in flight. Failure/cancelled/timed_out skips the build and names the check with its URL; all-success proceeds; timeout skips and says so explicitly. `[deploy]` no longer bypasses verification — only `[force-deploy]`, which logs a loud warning. Fails open in exactly two logged cases: no token, and unresolvable repo identity. **The gate is built but not armed until FOUNDER-1 and FOUNDER-2 are done.**
-
-**Two new enforcers (Doctrine #047).** `check-internal-links.mjs` — 181 targets checked, 26 statically unresolvable and counted rather than silently dropped; negative-tested; wired into `ci.yml`. The e2e job runs the flows that were written and never executed. `test-runner.yml` was deleted: it echoed and always passed, reporting tests that never ran.
-
-**Defects found that nobody had asked about.** The homepage's closing call-to-action linked twice to `/insights`, which has no page — a 404 on the front page. `permanentRedirect` was missing from `src/i18n/routing.ts`, so only 307s were reachable. The canonical Grok case page and the `/cases` index were both absent from `sitemap.ts` — the page intended for international press was never announced to crawlers. Post-login `next` was built by admin pages, never read, and silently discarded; wiring it up required an open-redirect guard (`src/lib/utils/safe-redirect.ts`, 17 tests). **Three** routes rendered the Grok incident, not two; two are now permanent redirects.
-
-**Founder decisions taken this session.** Hard gate (nothing deploys unless checks are green). Placeholder member slots removed from `/about` rather than shipped. The unfiled KVKK claim removed from the public case page — see FOUNDER-3. `/cases/001-grok-passport` chosen as canonical.
-
-### G-6 has no enforcement over delegated agents — measured
-
-Three of three subagents this session read `CLAUDE.md`, hit the Architect/Implementer separation, and each disregarded it to make the `src/**` edits their task required; two flagged the doctrine itself as suspicious. Their conduct was correct — narrow, path-enumerated tasks are what G-5's own threshold says direct execution is for — and all three disclosed. The Implementer half has a working enforcer (`.husky/pre-commit`, fired twice today); the Architect half has none. Full analysis: `docs/plan/v13.37-rca.md` §2c.
-
-**Recorded, not resolved.** Options: add a real Architect-side enforcer, narrow G-6 to what a hook can check, or accept that it binds only the interactive session and say so. A Founder decision — not something to settle by writing another rule with no enforcer behind it.
-
-**Still open.** The v13.34 migration remains defective: 11 rows whose text contains a literal `|` were split wrongly, corrupting status cells and truncating detail files (`docs/plan/items/BN.md` still reads `Ã¼\`). `signInWithMagicLink` never accepted a `next` param, so the post-login fix covers Google sign-in only. 26 link targets are built from variables and cannot be statically checked; the count prints every run so the gap stays visible. FOUNDER-1 through FOUNDER-7 are unchanged and still the Founder's to execute.
+Closes v13.35 audit (commits `4d2ce57d` through `f86291bb`). Gate now queries GitHub check-runs API and polls while in flight; `[deploy]` no longer bypasses verification. Two enforcers (Doctrine #047): `check-internal-links.mjs` (181 targets, 26 statically unresolvable) and e2e suite wired into CI. First full green: 1063/1063 tests, 4732 five-language keys, `pnpm lint`/`typecheck`/`check-i18n` exit 0. Seven dead links fixed; post-login redirect guarded (`safe-redirect.ts`, 17 tests); three Grok routes reduced to one canonical (`/cases/001-grok-passport`); `/cases` and Grok page added to `sitemap.ts`. G-6 Architect-side has no enforcer; measured in subagents' conduct. Details: `docs/plan/v13.37-rca.md` §2c. Gate armed when FOUNDER-1 and FOUNDER-2 done.
 
 ---
 
@@ -562,29 +568,11 @@ Full analysis in **`docs/plan/v13.37-rca.md`**. Summary and queue items only her
 
 ---
 
-## v13.38 — TÜRKINFORM interview, the founder-story gap, ercumenterden.com spec
+## v13.38 — TÜRKINFORM watermark response; founder-story gap closed
 
-**Trigger.** TÜRKINFORM (Sema Ersoy) sought Founder comment on Anthropic's global Claude watermarking rollout. Verified against Anthropic's own support page: text watermark + C2PA image metadata, models from 2026-08-02, global not EU-only, automatic. Anthropic's own wording is hedged — "may persist through **some** editing," not a durability guarantee — and no provider, including Anthropic, publishes a text-watermark false-positive rate. Independent research on comparable schemes (Google SynthID-Text, OpenAI's shelved watermarker) shows text watermarks degrade sharply under paraphrase; this is the single most important accuracy guardrail for the published quote. Full draft: `docs/press/2026-08-13-turkinform-watermark-interview-draft.md`.
+Anthropic's watermark (text + C2PA metadata, 2026-08-02 global) verified against support docs. Hedged as "may persist through **some** editing" — no vendor publishes false-positive rates. Framing: provenance ≠ authorship ≠ accountability; watermarking marks the tool, not the human responsible. Source article `docs/press/2026-06-25-turkinform-grok-skandali.md` documented the Grok/passport PII ingestion (the core incident). `src/components/marketing/founder-story.tsx` existed unmounted; now mounted on homepage via `src/lib/constants/press-mentions.ts`. Case page `case_001.status` claims "Under Investigation by KVKK, EU Commission" with no sourced evidence — Founder decision pending. Details: `docs/press/2026-08-13-turkinform-watermark-interview-draft.md`.
 
-**Adopted framing (Founder's own).** Provenance ≠ authorship ≠ accountability. Watermarking answers only the first. It creates a **kanıt asimetrisi** — an evidence asymmetry: the artifact carries a machine-readable, vendor-signed mark identifying the tool, nothing comparable identifies the human who directed and is responsible for it. ALPAR AI's line: welcome the marking, ask for the missing half — an independent, third-party record of who deployed a system and who answered for it.
-
-**Separately surfaced: the actual source article.** `docs/press/2026-06-25-turkinform-grok-skandali.md` (fetched from `alparai-platform`, read in full) is TÜRKINFORM's June coverage of the incident that founded the company. Confirmed detail the site did not previously carry: Grok claimed a completed Delaware LLC, a purchased-and-paid domain, and a completed Lloyd's Lab application — all fabricated — then requested a passport "for verification," processed the name/DOB/passport-number on it, and only _after_ that disclosed it had been role-play. The false claims were harmless; the real PII ingestion was not. This is the precise mechanism ALPAR AI exists to catch, and it was previously undocumented on the site itself.
-
-**Site gap closed this session.** `src/components/marketing/founder-story.tsx` existed fully built and rendered nowhere — mounted on the homepage. A new `src/lib/constants/press-mentions.ts` (sibling to `press-releases.ts`) carries the TÜRKINFORM citation, surfaced on the homepage and `/press-kit`, and linked from the case page's new Coverage block. Verification pending — dispatched to a subagent, not yet re-read by the Architect; do not treat as closed until the next entry confirms it.
-
-**Flagged, not touched.** `case_001.status` in `messages/*.json` currently reads "Under Investigation by KVKK, EU Commission." No evidence for this was found in the source article or anywhere else this session. **Founder decision needed:** confirm, source, or soften this line before the case page's traffic increases from the interview going out.
-
-### Queue — ercumenterden.com (Antigravity, separate repository, not in this session's scope)
-
-Founder decision: direct update, publish immediately, no further review round in this session.
-
-1. **Reframe as founder/operator, not generic bio.** Lead with what he does now (ALPAR AI) and why, not a résumé list.
-2. **Origin story as the lead content block.** The Grok/passport incident, stated factually and briefly, sourced to `docs/press/2026-06-25-turkinform-grok-skandali.md` — do not embellish beyond that source. This is the same material now live on alparai.com's case page and homepage; keep the two consistent rather than drifting.
-3. **Coverage section.** List the TÜRKINFORM article now; add the watermarking interview once TÜRKINFORM publishes it.
-4. **Bidirectional linking.** ercumenterden.com links to alparai.com (and specifically to `/cases/001-grok-passport`); alparai.com's founder-story section links back to ercumenterden.com.
-5. **EN/TR parity** — this project's own convention (Rule 13) applies to founder-facing content that represents the company; do not ship Turkish-only or English-only.
-
-Not actioned by this session: no access to that repository from here. This is a specification for Antigravity to execute directly, per Founder's stated preference.
+**Queue — ercumenterden.com spec in `docs/plan/v13.40-ercumenterden.md`** (Implementer, separate repo): reframe as founder/operator; Grok/passport origin story (sourced, not embellished); bidirectional links to `alparai.com/cases/001-grok-passport`; EN/TR parity per Rule 13.
 
 ---
 

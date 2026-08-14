@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import { requireAdmin } from "@/lib/auth/session";
 import { getModularArchitectureAction } from "@/actions/admin/modular-architecture";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { AdvisorRoster } from "@/components/admin/strategy/advisor-roster";
 const ModularArchitectureView = dynamic(() =>
   import("@/components/admin/modular-architecture/modular-architecture-view").then(
     (m) => m.ModularArchitectureView,
@@ -27,5 +28,12 @@ export default async function ModularArchitectureAdminPage({
   await requireAdmin();
   const data = await getModularArchitectureAction();
 
-  return <ModularArchitectureView data={data} />;
+  return (
+    <>
+      <ModularArchitectureView data={data} />
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <AdvisorRoster />
+      </div>
+    </>
+  );
 }

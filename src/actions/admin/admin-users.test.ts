@@ -31,10 +31,8 @@ describe("Admin - Users Server Actions", () => {
 
   describe("setUserRole", () => {
     it("fails if not admin", async () => {
-      vi.mocked(requireAdmin).mockResolvedValueOnce(null);
-      const res = await setUserRole({ userId: "123", role: "moderator" });
-      expect(res.ok).toBe(false);
-      expect(res.error).toBe("Forbidden");
+      vi.mocked(requireAdmin).mockRejectedValueOnce(new Error("Forbidden"));
+      await expect(setUserRole({ userId: "123", role: "moderator" })).rejects.toThrow("Forbidden");
     });
 
     it("fails if admin tries to set ceo role", async () => {

@@ -2,7 +2,7 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { getGDriveClient } from "@/lib/gdrive/client";
 
-export async function GET(req: NextRequest, { params }: { params: Promise<{ fileId: string }> }) {
+export async function GET(_req: NextRequest, { params }: { params: Promise<{ fileId: string }> }) {
   try {
     const { fileId } = await params;
     if (!fileId) {

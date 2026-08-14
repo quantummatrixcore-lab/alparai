@@ -16,6 +16,7 @@ import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import type { AttemptContext, AttemptOutcome } from "@/lib/autopilot";
 import type { Database } from "@/types/database";
 import { logger } from "@/lib/utils/logger";
+import { maskPII } from "@/lib/pii/guardian";
 
 export interface SubmitModelFeatureRequestState {
   ok: boolean;
@@ -42,8 +43,8 @@ const runModelFeatureWork = async (
     user_id: data.userId,
     model_id: data.modelId,
     is_anonymous: data.isAnonymous,
-    title: data.title,
-    description: data.description,
+    title: maskPII(data.title).masked,
+    description: data.description ? maskPII(data.description).masked : null,
     category: data.category,
     status: "open",
   };

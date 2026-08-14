@@ -4,6 +4,14 @@ import { Cpu, Server } from "lucide-react";
 import { createServerClient } from "@/lib/supabase/server";
 import { discoverAllModels } from "@/lib/ai/discovery/fetch-models";
 
+interface ProviderRow {
+  id: string;
+  name: string;
+  slug: string;
+  website_url: string | null;
+  is_verified: boolean;
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "admin" });
@@ -17,11 +25,12 @@ export default async function ProvidersPage({ params }: { params: Promise<{ loca
   const t = await getTranslations({ locale, namespace: "admin" });
 
   const supabase = await createServerClient();
-  const { data: providers } = await supabase
-    .from("ai_providers" as never)
-    .select("*")
+  const { data: rawProviders } = await supabase
+    .from("ai_providers")
+    .select("id, name, slug, website_url, is_verified")
     .order("name");
 
+  const providers = (rawProviders || []) as ProviderRow[];
   const models = await discoverAllModels();
 
   return (
@@ -40,14 +49,14 @@ export default async function ProvidersPage({ params }: { params: Promise<{ loca
           <table className="w-full text-left text-sm text-slate-300">
             <thead className="bg-slate-800/60 text-xs text-slate-400 uppercase">
               <tr>
-                <th className="p-3">{t("name")}</th>
-                <th className="p-3">{t("slug")}</th>
-                <th className="p-3">{t("website")}</th>
-                <th className="p-3">{t("status")}</th>
+                <th className="p-3">{String(t("name"))}</th>
+                <th className="p-3">{String(t("slug"))}</th>
+                <th className="p-3">{String(t("website"))}</th>
+                <th className="p-3">{String(t("status"))}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-800">
-              {((providers as Record<string, unknown>[]) || []).map((provider) => (
+              {providers.map((provider) => (
                 <tr key={provider.id} className="hover:bg-slate-800/40">
                   <td className="p-3 font-semibold text-white">{provider.name}</td>
                   <td className="p-3 font-mono text-slate-400">{provider.slug}</td>
@@ -68,7 +77,7 @@ export default async function ProvidersPage({ params }: { params: Promise<{ loca
                   <td className="p-3">
                     {provider.is_verified ? (
                       <span className="inline-flex items-center rounded border border-emerald-800 bg-emerald-950 px-2 py-0.5 text-xs font-medium text-emerald-400">
-                        {t("verified")}
+                        {String(t("verified"))}
                       </span>
                     ) : (
                       <span className="inline-flex items-center rounded border border-slate-700 bg-slate-800 px-2 py-0.5 text-xs font-medium text-slate-400">

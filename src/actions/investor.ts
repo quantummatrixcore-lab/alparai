@@ -14,6 +14,7 @@ import { revalidatePath } from "next/cache";
 import crypto from "crypto";
 import { investorApplicationSchema } from "@/lib/validation/schemas";
 import { logger } from "@/lib/utils/logger";
+import { maskPII } from "@/lib/pii/guardian";
 
 export interface InvestorState {
   ok: boolean;
@@ -44,13 +45,13 @@ const runInvestorWork = async (
   try {
     const admin = createAdminClient();
     const { error: dbError } = await admin.from("investor_applications").insert({
-      full_name: data.fullName,
-      title: data.title,
-      company: data.company,
+      full_name: maskPII(data.fullName).masked,
+      title: maskPII(data.title).masked,
+      company: maskPII(data.company).masked,
       linkedin_url: data.linkedinUrl,
       email: data.email,
       check_size: data.checkSize,
-      why_interested: data.whyInterested || null,
+      why_interested: data.whyInterested ? maskPII(data.whyInterested).masked : null,
       status: "pending",
     });
     if (dbError) {

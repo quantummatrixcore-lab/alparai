@@ -6,7 +6,7 @@ import { createServerClient } from "@/lib/supabase/server";
 import { OrchestratorTriggerButton } from "./trigger-button";
 import { getTranslations } from "next-intl/server";
 import { AdminContainer, AdminPageHeader } from "@/components/admin/admin-design-kit";
-import { AiOrchestratorClient } from "@/components/admin/ai-orchestrator-client";
+import { AiOrchestratorClient, type RoutingChain } from "@/components/admin/ai-orchestrator-client";
 
 import { AiHubTabs } from "@/components/admin/ai-hub-tabs";
 
@@ -24,7 +24,8 @@ export default async function AiOrchestratorAdminPage({
   const autopilotRes = await getAdminAutopilotSnapshot(100);
   const autopilotSnapshot = autopilotRes.ok ? autopilotRes.snapshot : null;
 
-  const { data: chains } = await supabase.from("ai_routing_chains").select("*");
+  const { data: chainsData } = await supabase.from("ai_routing_chains").select("*");
+  const chains = (chainsData as unknown as RoutingChain[]) || null;
   const { data: costs } = await supabase
     .from("finance_monthly_costs")
     .select("budget_usd, amount_usd");
@@ -82,7 +83,7 @@ export default async function AiOrchestratorAdminPage({
         <AiOrchestratorClient
           freeModels={freeModels}
           trustScores={trustScores}
-          chains={chains}
+          chains={(chains as never) || null}
           costSavingsStr={costSavingsStr}
           avgTrustScore={avgTrustScore}
           totalAudits={totalAudits}

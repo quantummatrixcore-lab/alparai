@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { createServerClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/lib/auth/session";
 import { logger } from "@/lib/utils/logger";
+import { maskPII } from "@/lib/pii/guardian";
 
 export interface ChallengeVoteState {
   ok: boolean;
@@ -110,8 +111,8 @@ export async function submitChallengeSubmission(
     const { error: insertError } = await supabase.from("challenge_submissions").insert({
       challenge_id: challengeId,
       user_id: user.id,
-      title: title.trim(),
-      description: description.trim(),
+      title: maskPII(title.trim()).masked,
+      description: maskPII(description.trim()).masked,
     });
 
     if (insertError) {

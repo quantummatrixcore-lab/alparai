@@ -12,9 +12,9 @@ describe("run360ExpertAudit", () => {
   });
 
   it("should return ok: false if user is not authorized", async () => {
-    (createServerClient as any).mockResolvedValue({
+    vi.mocked(createServerClient).mockResolvedValue({
       auth: { getUser: vi.fn().mockResolvedValue({ data: { user: null } }) },
-    });
+    } as never);
 
     const result = await run360ExpertAudit();
     expect(result.ok).toBe(false);
@@ -22,7 +22,7 @@ describe("run360ExpertAudit", () => {
   });
 
   it("should return metrics and pass verdict when data is valid", async () => {
-    (createServerClient as any).mockResolvedValue({
+    vi.mocked(createServerClient).mockResolvedValue({
       auth: { getUser: vi.fn().mockResolvedValue({ data: { user: { id: "user-123" } } }) },
       from: vi.fn().mockImplementation((table: string) => {
         if (table === "ai_providers") {
@@ -36,7 +36,7 @@ describe("run360ExpertAudit", () => {
         }
         return { select: vi.fn().mockResolvedValue({ count: 0 }) };
       }),
-    });
+    } as never);
 
     const result = await run360ExpertAudit();
     expect(result.ok).toBe(true);
@@ -47,7 +47,7 @@ describe("run360ExpertAudit", () => {
   });
 
   it("should handle unexpected errors gracefully", async () => {
-    (createServerClient as any).mockRejectedValue(new Error("Supabase error"));
+    vi.mocked(createServerClient).mockRejectedValue(new Error("Supabase error"));
     const result = await run360ExpertAudit();
     expect(result.ok).toBe(false);
     expect(result.error).toBe("Failed to run 360 AI Audit");

@@ -40,7 +40,6 @@ vi.mock("@/lib/utils/unsubscribe", () => ({
 }));
 
 import { requireModerator } from "@/lib/auth/session";
-import type { SessionUser } from "@/types";
 import { moderateIncident } from "./moderation";
 
 describe("Admin - Moderation Server Actions", () => {
@@ -50,14 +49,14 @@ describe("Admin - Moderation Server Actions", () => {
 
   describe("moderateIncident", () => {
     it("fails if not moderator", async () => {
-      vi.mocked(requireModerator).mockResolvedValueOnce(null);
-      const res = await moderateIncident({
-        incidentId: "inc-1",
-        decision: "approve",
-        moderationNote: "test",
-      });
-      expect(res.ok).toBe(false);
-      expect(res.error).toBe("Forbidden");
+      vi.mocked(requireModerator).mockRejectedValueOnce(new Error("Forbidden"));
+      await expect(
+        moderateIncident({
+          incidentId: "inc-1",
+          decision: "approve",
+          moderationNote: "test",
+        }),
+      ).rejects.toThrow("Forbidden");
     });
 
     it("succeeds for valid moderation", async () => {
@@ -69,7 +68,7 @@ describe("Admin - Moderation Server Actions", () => {
         avatarUrl: null,
         isVerified: true,
         createdAt: "2026-01-01T00:00:00Z",
-      } as SessionUser);
+      } as unknown as NonNullable<Awaited<ReturnType<typeof requireModerator>>>);
 
       mockDb.update.mockReturnValueOnce({
         eq: vi.fn().mockResolvedValueOnce({ error: null }),

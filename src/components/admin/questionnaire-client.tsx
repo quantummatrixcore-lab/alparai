@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-interface RunRow {
+export interface RunRow {
   id: string;
   status: string;
   model_ids: string[];
@@ -25,7 +25,7 @@ interface RunRow {
   completed_at: string | null;
 }
 
-interface AnswerRow {
+export interface AnswerRow {
   id: string;
   run_id: string;
   model_id: string;

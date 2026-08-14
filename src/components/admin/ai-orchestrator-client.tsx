@@ -9,14 +9,14 @@ import { AnalyticsDashboard } from "@/components/admin/analytics-dashboard";
 import type { AdminAutopilotSnapshot } from "@/actions/admin-autopilot";
 import { useTranslations } from "next-intl";
 
-interface FreeModel {
+export interface FreeModel {
   id: string;
   name: string;
   provider: string;
   context_length: number;
 }
 
-interface RoutingChain {
+export interface RoutingChain {
   domain_name: string;
   models?: Array<{ id?: string; provider?: string } | string>;
 }

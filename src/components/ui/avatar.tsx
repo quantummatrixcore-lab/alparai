@@ -15,11 +15,11 @@ Avatar.displayName = "Avatar";
 import Image from "next/image";
 
 const AvatarImage = React.forwardRef<HTMLImageElement, React.ImgHTMLAttributes<HTMLImageElement>>(
-  ({ className, src, ...props }, ref) => (
+  ({ className, src, alt, ...props }, ref) => (
     <Image
       ref={ref}
       src={src as string}
-      alt={props.alt || "Avatar"}
+      alt={alt || "Avatar"}
       width={40}
       height={40}
       className={cn("aspect-square h-full w-full object-cover", className)}

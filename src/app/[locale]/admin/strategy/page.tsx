@@ -7,7 +7,11 @@ import { requireAdvisor } from "@/lib/auth/session";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { HealthGauge } from "@/components/admin/strategy/health-gauge";
 import { LiveStrategyClient } from "@/components/admin/strategy/live-strategy-client";
-import { QuestionnaireClient } from "@/components/admin/questionnaire-client";
+import {
+  QuestionnaireClient,
+  type RunRow,
+  type AnswerRow,
+} from "@/components/admin/questionnaire-client";
 import { EcosystemBenchmarkWidget } from "@/components/admin/ecosystem-benchmark-widget";
 import { QUESTIONNAIRE_MODELS } from "@/lib/ai/openrouter-gateway";
 import { Link } from "@/i18n/routing";
@@ -516,9 +520,8 @@ export default async function StrategyOverviewPage({
             {/* Strategy Questionnaire Module */}
             <div id="questionnaire" className="mt-12">
               <QuestionnaireClient
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                runs={runs as any[]}
-                answers={allAnswers}
+                runs={(runs as unknown as RunRow[]) || []}
+                answers={(allAnswers as unknown as AnswerRow[]) || []}
                 latestRunId={latestRunId}
                 models={models}
                 locale={locale}

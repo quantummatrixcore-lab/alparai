@@ -13,6 +13,7 @@ import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import type { Database } from "@/types/database";
 import { logger } from "@/lib/utils/logger";
 import { calculateSlaDueDate } from "@/lib/moderation/sla";
+import { maskPII } from "@/lib/pii/guardian";
 
 export interface TakedownResult {
   ok: boolean;
@@ -43,10 +44,14 @@ const runTakedownRequestWork = async (
 ): Promise<AttemptOutcome<{ id: string }>> => {
   const admin = createAdminClient();
   const insertRow: Database["public"]["Tables"]["takedown_requests"]["Insert"] = {
-    reason: `${data.parsed.reason}\n\nTarget: ${data.parsed.target_url}\n\n${data.parsed.details}`,
-    requester_name: data.parsed.requester_name,
+    reason: maskPII(
+      `${data.parsed.reason}\n\nTarget: ${data.parsed.target_url}\n\n${data.parsed.details}`,
+    ).masked,
+    requester_name: maskPII(data.parsed.requester_name).masked,
     requester_email: data.parsed.requester_email,
-    requester_organization: data.parsed.organization ?? null,
+    requester_organization: data.parsed.organization
+      ? maskPII(data.parsed.organization).masked
+      : null,
     evidence_url: data.parsed.identity_proof_url,
     sla_due_at: calculateSlaDueDate().toISOString(),
   };
@@ -150,9 +155,11 @@ const runInlineTakedownWork = async (
 ): Promise<AttemptOutcome<{ id: string }>> => {
   const admin = createAdminClient();
   const insertRow: Database["public"]["Tables"]["takedown_requests"]["Insert"] = {
-    reason: `${data.parsed.reason}\n\nTarget: ${process.env.NEXT_PUBLIC_APP_URL}/incidents/${data.parsed.incidentId}\n\n${data.parsed.details}`,
+    reason: maskPII(
+      `${data.parsed.reason}\n\nTarget: ${process.env.NEXT_PUBLIC_APP_URL}/incidents/${data.parsed.incidentId}\n\n${data.parsed.details}`,
+    ).masked,
     requester_email: data.parsed.contactEmail,
-    requester_name: data.requesterName,
+    requester_name: maskPII(data.requesterName).masked,
     requester_organization: data.userId ? null : "Anonymous user",
     incident_id: data.parsed.incidentId,
     sla_due_at: calculateSlaDueDate().toISOString(),

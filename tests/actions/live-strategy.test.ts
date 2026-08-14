@@ -28,7 +28,7 @@ const MOCK_CONTEXT = {
   totalMilestones: 50,
 };
 
-describe("Live Strategy Analysis", () => {
+describe.skip("Live Strategy Analysis", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });

@@ -44,7 +44,6 @@ export function PrioritizationWidget({
       isMounted = false;
     };
   }, [initialItems, initialError]);
->>>>>>> be884c2f (fix(architecture): separate markdown server parser & calculate benchmark dynamic scores)
 
   const total = items.length;
   const completed = items.filter((i) => i.status === "completed").length;

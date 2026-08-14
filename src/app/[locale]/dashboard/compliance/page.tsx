@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "dashboard" });
   return {
     title: `${t("compliance_title")} | ALPAR AI`,
@@ -9,10 +10,11 @@ export async function generateMetadata({ params: { locale } }: { params: { local
 }
 
 export default async function ComplianceDashboard({
-  params: { locale },
+  params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "dashboard" });
 
   return (

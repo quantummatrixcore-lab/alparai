@@ -1,7 +1,8 @@
 import { getTranslations } from "next-intl/server";
 import AmbassadorForm from "./AmbassadorForm";
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "academy" });
   return {
     title: `${t("ambassador_title")} | ALPAR AI`,
@@ -10,10 +11,11 @@ export async function generateMetadata({ params: { locale } }: { params: { local
 }
 
 export default async function AcademyAmbassadorPage({
-  params: { locale },
+  params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "academy" });
 
   return (

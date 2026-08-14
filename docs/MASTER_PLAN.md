@@ -458,6 +458,57 @@ committed in the TÜRKINFORM answer.
 binding rule rather than a preference? Cheap to adopt now, expensive to reverse once revenue
 depends on it.
 
+### v13.45 — The payer test; two audit claims corrected; four proposals taken, six rejected
+
+Two further external briefs reviewed: a 360° site audit and a ten-innovation brief. Full
+assessment: `docs/plan/v13.45-innovation-review.md`.
+
+**The innovation brief adopted v13.44's issuer-pays finding as a hard rule — then reintroduced
+it three times.** Training-data audits at $10K, a compliance badge at $5K/year, red-team
+campaigns at $50K: all paid by the party being examined. This is not carelessness. A ban stated
+as a slogan cannot be applied, because every proposal renames the payment.
+
+**Proposed doctrine — the payer test.** _Does the party paying benefit from a favourable
+result?_ If yes it is issuer-pays whatever it is called; if no it is clean. Academic licences,
+media access, foundation grants and individual certification pass. Audit fees, compliance
+badges and vendor-funded red-teaming fail. Compliance-as-Evidence is the sharpest case and
+should be rejected outright — it sells mitigation to a party under investigation, with ALPAR
+vouching to the regulator.
+
+**Two site-audit claims are factually wrong.** The reported "TR=13 vs EN=371 incident count,
+data integrity violation" cannot originate in the code: `getHomeData`
+(`src/app/[locale]/page.tsx:75`) applies **no locale filter** to the count query. If two numbers
+were genuinely seen, the likely cause is two page loads separated by one of the day's twenty
+deploys. And "leaderboard is missing response rate — the biggest missing lever" understates
+what exists: `response_rate` and `response_count` are already columns on `ai_providers` and are
+already selected by that same query. The data is fetched and not rendered — an afternoon of UI
+work (**LEAD-1**).
+
+The audit also scores the site "859/1000" and projects "+86 points in 72 hours". No such scale
+exists and the deltas are unfalsifiable. The observations under several of them are real; the
+scoring apparatus should not enter a deck, for the same reason the ratings page now labels its
+own unmeasured categories. It also cites "992 cases" in its conclusion and "371" in its body —
+which is what STRAT-1 exists to settle.
+
+**Taken:** **AAR-1** Agent Action Registry — the strongest idea in either brief, built as three
+fields on `incidents` (action type, authority, impact) rather than a new platform; autonomous
+agents take consequential actions with no durable record and there is no incumbent. **LEAD-1**
+response-rate display — the one metric a provider improves by behaving well, clean under the
+payer test. **LEGAL-2** DMCA and content-moderation policies — a real DSA safe-harbour gap,
+where the takedown code exists but the published policy does not. And a filing helper scoped to
+one user in one jurisdiction, not automatic submission to fifty regulators, which is the
+"diplomatic cable" proposal renamed.
+
+**Rejected:** the incident futures market (a betting market on whether companies cause harm
+creates an incentive for harm, and is gambling regulation besides); Shadow AI discovery (a
+different company — endpoint agents, SOC 2, established incumbents); the insurance pool (makes
+ALPAR a regulated insurer); the deepfake-detection API (sells a detector with an unpublished
+error rate, refuting the TÜRKINFORM argument with our own product — unless we publish the rate,
+which the brief does not propose); and the Tor whistleblower build (the action already exists;
+running a hidden service for AI-lab insiders is a serious commitment, and a five-model panel
+cannot "verify" a leak about data it has no access to — the foundation-grant angle is worth
+pursuing separately).
+
 ## v13.34 — Migration audit: parseability restored but content corrupted
 
 `docs/MASTER_PLAN.md` split (commits `e3b9f68f`, `ecb29f99`) fixed parsing (49/49 rows vs 0/50 before) but broke lossless requirement: `.split('|')` truncated **11 rows** containing literal pipes (grep patterns), corrupting status cells and truncating detail files (e.g., `docs/plan/items/BN.md` reads `Ã¼\`). Size ~90 KB vs 40 KB target. `check-masterplan-consistency.mjs` exits 0 (validates parseability, not content); `check-repo-language.mjs` RED from mojibake leakage. Analysis: `docs/plan/v13.37-rca.md` §2a. Fix: regex extraction, re-run migration, verify against pre-migration. Open.

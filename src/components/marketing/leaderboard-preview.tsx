@@ -93,14 +93,16 @@ export function LeaderboardPreview({ entries }: { entries: LeaderboardEntry[] })
                       <span
                         className={cn(
                           "inline-flex items-center text-[10px] font-bold tracking-wide",
-                          e.response_rate !== undefined && e.response_rate >= 70
-                            ? "text-success-400"
-                            : e.response_rate !== undefined && e.response_rate >= 30
-                              ? "text-warning-400"
-                              : "text-danger-400",
+                          e.response_rate == null
+                            ? "text-fg-muted"
+                            : e.response_rate >= 70
+                              ? "text-success-400"
+                              : e.response_rate >= 30
+                                ? "text-warning-400"
+                                : "text-danger-400",
                         )}
                       >
-                        {e.response_rate !== undefined
+                        {e.response_rate != null
                           ? `${e.response_rate}% ${t("responseRate")}`
                           : `N/A ${t("responseRate")}`}
                       </span>

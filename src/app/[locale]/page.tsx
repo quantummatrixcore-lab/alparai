@@ -226,7 +226,7 @@ const getHomeData = cache(async (locale: string) => {
     .map((p) => {
       const total = (p["incident_count"] as number) ?? 0;
       const responded = (p["response_count"] as number) ?? 0;
-      const responseRate = total > 0 ? Math.round((responded / total) * 100) : 0;
+      const responseRate = total > 0 ? Math.round((responded / total) * 100) : null;
       return {
         provider_id: p["id"] as string,
         provider_name: (p["name"] as string) ?? "",

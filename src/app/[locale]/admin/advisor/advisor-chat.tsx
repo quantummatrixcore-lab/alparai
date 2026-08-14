@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
@@ -12,7 +12,7 @@ interface Message {
   timestamp: string;
 }
 
-export function GaziChat() {
+export function AdvisorChat() {
   const t = useTranslations("admin");
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -83,9 +83,9 @@ export function GaziChat() {
   };
 
   return (
-    <div className="flex min-h-[calc(100vh-5rem)] flex-col overflow-hidden rounded-2xl border border-amber-900/30 bg-[#080808] text-white shadow-2xl md:flex-row">
+    <div className="flex min-h-[calc(100vh-5rem)] flex-col overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/40 text-white shadow-2xl backdrop-blur-xl md:flex-row">
       {/* Sol Panel: Profile & Bio */}
-      <aside className="flex w-full shrink-0 flex-col items-center border-b border-amber-900/30 bg-[#0c0a09] p-6 md:w-[280px] md:border-r md:border-b-0">
+      <aside className="flex w-full shrink-0 flex-col items-center border-b border-white/10 bg-black/20 p-6 md:w-[280px] md:border-r md:border-b-0">
         <div className="relative mb-4">
           <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-amber-600 to-amber-900 opacity-50 blur-sm" />
           <Image
@@ -223,9 +223,9 @@ export function GaziChat() {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder={t("gazi_placeholder")}
+              placeholder="Paşam, size bir sorum var..."
               disabled={loading}
-              className="flex-1 rounded-xl border border-amber-800/40 bg-[#111] px-4 py-3 text-sm text-white placeholder-amber-900/60 focus:border-amber-500/60 focus:ring-2 focus:ring-amber-500/50 focus:outline-none disabled:opacity-50"
+              className="flex-1 rounded-xl border border-white/10 bg-zinc-900/40 px-4 py-3 text-sm text-white placeholder-white/40 transition-all duration-200 ease-out focus:border-white/20 focus:ring-2 focus:ring-white/20 focus:outline-none disabled:opacity-50"
             />
             <button
               type="submit"

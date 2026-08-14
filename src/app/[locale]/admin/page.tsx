@@ -93,19 +93,19 @@ export default async function AdminDashboardPage({
     : "%100";
 
   return (
-    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 selection:bg-cyan-500/30 selection:text-cyan-200 sm:px-6 sm:py-6 md:p-8 lg:p-10">
+    <div className="bg-bg-primary text-fg-primary selection:bg-brand-500/30 selection:text-brand-200 min-h-screen px-3 py-4 sm:px-6 sm:py-6 md:p-8 lg:p-10">
       <div className="mx-auto max-w-7xl space-y-6 sm:space-y-8">
         {/* Top Bar: Title + Status + Action Buttons */}
-        <header className="flex flex-col gap-4 rounded-2xl border border-white/10 bg-zinc-900/30 p-4 backdrop-blur-2xl sm:rounded-3xl sm:p-6 md:flex-row md:items-center md:justify-between">
+        <header className="bg-bg-elevated/30 border-border-subtle flex flex-col gap-4 rounded-2xl border p-4 backdrop-blur-2xl sm:rounded-3xl sm:p-6 md:flex-row md:items-center md:justify-between">
           <div className="space-y-2">
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold tracking-wide text-emerald-400">
               <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
               360° SPATIAL COCKPIT — PROD OPERATIONAL
             </div>
-            <h1 className="bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-3xl font-bold tracking-tight text-transparent sm:text-4xl md:text-5xl">
+            <h1 className="from-fg-primary via-fg-secondary to-fg-muted bg-gradient-to-r bg-clip-text text-3xl font-bold tracking-tight text-transparent sm:text-4xl md:text-5xl">
               ALPAR AI Command Center
             </h1>
-            <p className="text-sm font-medium text-zinc-400 sm:text-base">
+            <p className="text-fg-muted text-sm font-medium sm:text-base">
               Autonomous Governance, Financial Engine, Security Radar & Strategy Control (56
               Integrated Routes)
             </p>
@@ -128,10 +128,13 @@ export default async function AdminDashboardPage({
               <span>Spatial View</span>
             </Link>
 
-            <button className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-zinc-400 backdrop-blur-xl transition-all duration-300 hover:border-white/20 hover:bg-white/10 hover:text-zinc-200">
+            <button
+              aria-label="Open Command Palette"
+              className="text-fg-muted border-border-subtle hover:border-border-strong hover:text-fg-primary group flex items-center gap-3 rounded-2xl border bg-white/5 px-4 py-2.5 text-sm backdrop-blur-xl transition-all duration-200 hover:bg-white/10"
+            >
               <Search className="h-4 w-4" />
               <span className="font-medium">Command Palette</span>
-              <kbd className="ml-2 hidden h-5 items-center gap-0.5 rounded-md bg-white/10 px-2 font-mono text-[11px] font-semibold text-zinc-300 md:inline-flex">
+              <kbd className="text-fg-secondary ml-2 hidden h-5 items-center gap-0.5 rounded-md bg-white/10 px-2 font-mono text-[11px] font-semibold md:inline-flex">
                 <span>⌘</span>
                 <span>K</span>
               </kbd>
@@ -156,53 +159,53 @@ export default async function AdminDashboardPage({
           <PrioritizationWidget items={masterPlan.items} error={masterPlan.error} />
 
           {/* WIDGET 1: Financial & Operations Cockpit */}
-          <section className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-emerald-500/20 bg-zinc-900/40 p-6 backdrop-blur-xl transition-all duration-300 hover:border-emerald-500/40 hover:bg-zinc-900/60 md:p-8">
+          <section className="bg-bg-elevated/40 hover:bg-bg-elevated/60 group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-emerald-500/20 p-6 backdrop-blur-xl transition-all duration-300 hover:border-emerald-500/40 md:p-8">
             <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl transition-all duration-500 group-hover:bg-emerald-500/20" />
 
             <div className="space-y-6">
               {/* Header */}
-              <div className="flex items-center justify-between border-b border-white/10 pb-4">
+              <div className="border-border-subtle flex items-center justify-between border-b pb-4">
                 <div className="flex items-center gap-3">
                   <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-3 text-emerald-400">
                     <DollarSign className="h-6 w-6" />
                   </div>
                   <div>
-                    <h2 className="text-xl font-bold tracking-tight text-white">
+                    <h2 className="text-fg-primary text-xl font-bold tracking-tight">
                       Finans & Operasyonel Maliyet
                     </h2>
-                    <p className="text-xs text-zinc-400">
+                    <p className="text-fg-muted text-xs">
                       Financial Ledger, Grants, Users & Operational Unit Costs
                     </p>
                   </div>
                 </div>
-                <span className="rounded-full border border-zinc-500/30 bg-zinc-500/10 px-3 py-1 text-xs font-semibold text-zinc-400">
+                <span className="text-fg-muted rounded-full border border-zinc-500/30 bg-zinc-500/10 px-3 py-1 text-xs font-semibold">
                   MRR —
                 </span>
               </div>
 
               {/* KPI Cards */}
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-                <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
-                  <p className="text-xs font-medium text-zinc-400">Monthly Revenue</p>
+                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                  <p className="text-fg-muted text-xs font-medium">Monthly Revenue</p>
                   <p className="mt-1 text-lg font-bold text-emerald-400">{mrr}</p>
                 </div>
-                <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
-                  <p className="text-xs font-medium text-zinc-400">Active Subscribers</p>
-                  <p className="mt-1 text-lg font-bold text-zinc-100">{activeSubscribers}</p>
+                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                  <p className="text-fg-muted text-xs font-medium">Active Subscribers</p>
+                  <p className="text-fg-primary mt-1 text-lg font-bold">{activeSubscribers}</p>
                 </div>
-                <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
-                  <p className="text-xs font-medium text-zinc-400">Grants & Funding</p>
+                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                  <p className="text-fg-muted text-xs font-medium">Grants & Funding</p>
                   <p className="mt-1 text-lg font-bold text-cyan-400">{grantsWon}</p>
                 </div>
-                <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
-                  <p className="text-xs font-medium text-zinc-400">API & Infra Cost</p>
+                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                  <p className="text-fg-muted text-xs font-medium">API & Infra Cost</p>
                   <p className="mt-1 text-lg font-bold text-amber-400">{apiCost}</p>
                 </div>
               </div>
 
               {/* Route Shortcuts Grid */}
               <div className="space-y-3">
-                <p className="text-xs font-semibold tracking-wider text-zinc-400 uppercase">
+                <p className="text-fg-muted text-xs font-semibold tracking-wider uppercase">
                   Finans Rotaları (12 Entegre Modül)
                 </p>
                 <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
@@ -263,24 +266,24 @@ export default async function AdminDashboardPage({
                     <Link
                       key={route.href}
                       href={route.href}
-                      className="group/item flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.02] px-3 py-2.5 text-xs font-medium text-zinc-300 transition-all duration-200 hover:border-emerald-500/40 hover:bg-emerald-500/10 hover:text-emerald-300"
+                      className="group/item border-border-subtle text-fg-secondary flex items-center justify-between rounded-xl border bg-white/[0.02] px-3 py-2.5 text-xs font-medium transition-all duration-200 hover:border-emerald-500/40 hover:bg-emerald-500/10 hover:text-emerald-300"
                     >
                       <span className="flex items-center gap-2 truncate">
-                        <route.icon className="h-3.5 w-3.5 shrink-0 text-emerald-400/70 group-hover/item:text-emerald-400" />
+                        <route.icon className="h-3.5 w-3.5 shrink-0 text-emerald-400/70 transition-colors duration-200 group-hover/item:text-emerald-400" />
                         <span className="truncate">{route.label}</span>
                       </span>
-                      <ChevronRight className="h-3 w-3 shrink-0 text-zinc-600 transition-transform group-hover/item:translate-x-0.5 group-hover/item:text-emerald-400" />
+                      <ChevronRight className="text-fg-muted/70 h-3 w-3 shrink-0 transition-transform group-hover/item:translate-x-0.5 group-hover/item:text-emerald-400" />
                     </Link>
                   ))}
                 </div>
               </div>
             </div>
 
-            <div className="mt-6 flex items-center justify-between border-t border-white/5 pt-4 text-xs">
-              <span className="text-zinc-500">Auto-synced via Supabase & Resend API</span>
+            <div className="border-border-subtle mt-6 flex items-center justify-between border-t pt-4 text-xs">
+              <span className="text-fg-muted">Auto-synced via Supabase & Resend API</span>
               <Link
                 href={`/${locale}/admin/billing`}
-                className="font-semibold text-emerald-400 hover:underline"
+                className="font-semibold text-emerald-400 transition-all duration-200 hover:underline"
               >
                 Finansal Raporları İncele →
               </Link>
@@ -288,21 +291,21 @@ export default async function AdminDashboardPage({
           </section>
 
           {/* WIDGET 2: AI Core & System Health Cockpit */}
-          <section className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-cyan-500/20 bg-zinc-900/40 p-6 backdrop-blur-xl transition-all duration-300 hover:border-cyan-500/40 hover:bg-zinc-900/60 md:p-8">
+          <section className="bg-bg-elevated/40 hover:bg-bg-elevated/60 group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-cyan-500/20 p-6 backdrop-blur-xl transition-all duration-300 hover:border-cyan-500/40 md:p-8">
             <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-cyan-500/10 blur-3xl transition-all duration-500 group-hover:bg-cyan-500/20" />
 
             <div className="space-y-6">
               {/* Header */}
-              <div className="flex items-center justify-between border-b border-white/10 pb-4">
+              <div className="border-border-subtle flex items-center justify-between border-b pb-4">
                 <div className="flex items-center gap-3">
                   <div className="rounded-2xl border border-cyan-500/30 bg-cyan-500/10 p-3 text-cyan-400">
                     <Cpu className="h-6 w-6" />
                   </div>
                   <div>
-                    <h2 className="text-xl font-bold tracking-tight text-white">
+                    <h2 className="text-fg-primary text-xl font-bold tracking-tight">
                       AI Core & Sistem Sağlığı
                     </h2>
-                    <p className="text-xs text-zinc-400">
+                    <p className="text-fg-muted text-xs">
                       TOM Engine, Edge Latency, Crons & Autopilot Status
                     </p>
                   </div>
@@ -314,27 +317,27 @@ export default async function AdminDashboardPage({
 
               {/* KPI Cards */}
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-                <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
-                  <p className="text-xs font-medium text-zinc-400">Edge Region</p>
+                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                  <p className="text-fg-muted text-xs font-medium">Edge Region</p>
                   <p className="mt-1 text-lg font-bold text-cyan-400">fra1 (Vercel)</p>
                 </div>
-                <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
-                  <p className="text-xs font-medium text-zinc-400">Avg Latency</p>
+                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                  <p className="text-fg-muted text-xs font-medium">Avg Latency</p>
                   <p className="mt-1 text-lg font-bold text-emerald-400">{latency}</p>
                 </div>
-                <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
-                  <p className="text-xs font-medium text-zinc-400">TOM Context Saved</p>
+                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                  <p className="text-fg-muted text-xs font-medium">TOM Context Saved</p>
                   <p className="mt-1 text-lg font-bold text-purple-400">12.4M</p>
                 </div>
-                <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
-                  <p className="text-xs font-medium text-zinc-400">Cron Jobs</p>
-                  <p className="mt-1 text-lg font-bold text-zinc-100">{activeCrons}</p>
+                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                  <p className="text-fg-muted text-xs font-medium">Cron Jobs</p>
+                  <p className="text-fg-primary mt-1 text-lg font-bold">{activeCrons}</p>
                 </div>
               </div>
 
               {/* Route Shortcuts Grid */}
               <div className="space-y-3">
-                <p className="text-xs font-semibold tracking-wider text-zinc-400 uppercase">
+                <p className="text-fg-muted text-xs font-semibold tracking-wider uppercase">
                   Sistem & AI Rotaları (15 Entegre Modül)
                 </p>
                 <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
@@ -431,21 +434,21 @@ export default async function AdminDashboardPage({
           </section>
 
           {/* WIDGET 3: Security, Compliance & Moderation Cockpit */}
-          <section className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-rose-500/20 bg-zinc-900/40 p-6 backdrop-blur-xl transition-all duration-300 hover:border-rose-500/40 hover:bg-zinc-900/60 md:p-8">
+          <section className="bg-bg-elevated/40 hover:bg-bg-elevated/60 group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-rose-500/20 p-6 backdrop-blur-xl transition-all duration-300 hover:border-rose-500/40 md:p-8">
             <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-rose-500/10 blur-3xl transition-all duration-500 group-hover:bg-rose-500/20" />
 
             <div className="space-y-6">
               {/* Header */}
-              <div className="flex items-center justify-between border-b border-white/10 pb-4">
+              <div className="border-border-subtle flex items-center justify-between border-b pb-4">
                 <div className="flex items-center gap-3">
                   <div className="rounded-2xl border border-rose-500/30 bg-rose-500/10 p-3 text-rose-400">
                     <ShieldCheck className="h-6 w-6" />
                   </div>
                   <div>
-                    <h2 className="text-xl font-bold tracking-tight text-white">
+                    <h2 className="text-fg-primary text-xl font-bold tracking-tight">
                       Güvenlik & Uyum (Security Radar)
                     </h2>
-                    <p className="text-xs text-zinc-400">
+                    <p className="text-fg-muted text-xs">
                       PII Guardian, DSAR, Audit Logs & Content Moderation
                     </p>
                   </div>
@@ -457,27 +460,27 @@ export default async function AdminDashboardPage({
 
               {/* KPI Cards */}
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-                <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
-                  <p className="text-xs font-medium text-zinc-400">PII Guardian</p>
+                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                  <p className="text-fg-muted text-xs font-medium">PII Guardian</p>
                   <p className="mt-1 text-lg font-bold text-emerald-400">Active</p>
                 </div>
-                <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
-                  <p className="text-xs font-medium text-zinc-400">Pending DSAR</p>
-                  <p className="mt-1 text-lg font-bold text-zinc-100">0 Overdue</p>
+                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                  <p className="text-fg-muted text-xs font-medium">Pending DSAR</p>
+                  <p className="text-fg-primary mt-1 text-lg font-bold">0 Overdue</p>
                 </div>
-                <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
-                  <p className="text-xs font-medium text-zinc-400">Moderation Queue</p>
+                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                  <p className="text-fg-muted text-xs font-medium">Moderation Queue</p>
                   <p className="mt-1 text-lg font-bold text-cyan-400">Clean</p>
                 </div>
-                <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
-                  <p className="text-xs font-medium text-zinc-400">RLS Enforcement</p>
+                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                  <p className="text-fg-muted text-xs font-medium">RLS Enforcement</p>
                   <p className="mt-1 text-lg font-bold text-purple-400">{rlsEnforcement}</p>
                 </div>
               </div>
 
               {/* Route Shortcuts Grid */}
               <div className="space-y-3">
-                <p className="text-xs font-semibold tracking-wider text-zinc-400 uppercase">
+                <p className="text-fg-muted text-xs font-semibold tracking-wider uppercase">
                   Güvenlik & Moderasyon Rotaları (12 Entegre Modül)
                 </p>
                 <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
@@ -559,21 +562,21 @@ export default async function AdminDashboardPage({
           </section>
 
           {/* WIDGET 4: Strategy, Growth & Outreach Cockpit */}
-          <section className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-purple-500/20 bg-zinc-900/40 p-6 backdrop-blur-xl transition-all duration-300 hover:border-purple-500/40 hover:bg-zinc-900/60 md:p-8">
+          <section className="bg-bg-elevated/40 hover:bg-bg-elevated/60 group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-purple-500/20 p-6 backdrop-blur-xl transition-all duration-300 hover:border-purple-500/40 md:p-8">
             <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-purple-500/10 blur-3xl transition-all duration-500 group-hover:bg-purple-500/20" />
 
             <div className="space-y-6">
               {/* Header */}
-              <div className="flex items-center justify-between border-b border-white/10 pb-4">
+              <div className="border-border-subtle flex items-center justify-between border-b pb-4">
                 <div className="flex items-center gap-3">
                   <div className="rounded-2xl border border-purple-500/30 bg-purple-500/10 p-3 text-purple-400">
                     <Rocket className="h-6 w-6" />
                   </div>
                   <div>
-                    <h2 className="text-xl font-bold tracking-tight text-white">
+                    <h2 className="text-fg-primary text-xl font-bold tracking-tight">
                       Strateji, Büyüme & Outreach
                     </h2>
-                    <p className="text-xs text-zinc-400">
+                    <p className="text-fg-muted text-xs">
                       Master Plan, LinkedIn, Resend Outreach & Advisory Board
                     </p>
                   </div>
@@ -585,27 +588,27 @@ export default async function AdminDashboardPage({
 
               {/* KPI Cards */}
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-                <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
-                  <p className="text-xs font-medium text-zinc-400">Master Plan</p>
+                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                  <p className="text-fg-muted text-xs font-medium">Master Plan</p>
                   <p className="mt-1 text-lg font-bold text-cyan-400">%65 Done</p>
                 </div>
-                <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
-                  <p className="text-xs font-medium text-zinc-400">LinkedIn Reach</p>
+                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                  <p className="text-fg-muted text-xs font-medium">LinkedIn Reach</p>
                   <p className="mt-1 text-lg font-bold text-emerald-400">Hazırlanıyor</p>
                 </div>
-                <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
-                  <p className="text-xs font-medium text-zinc-400">Outreach Open Rate</p>
+                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                  <p className="text-fg-muted text-xs font-medium">Outreach Open Rate</p>
                   <p className="mt-1 text-lg font-bold text-purple-400">Hazırlanıyor</p>
                 </div>
-                <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5">
-                  <p className="text-xs font-medium text-zinc-400">Advisory Board</p>
-                  <p className="mt-1 text-lg font-bold text-zinc-100">0</p>
+                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                  <p className="text-fg-muted text-xs font-medium">Advisory Board</p>
+                  <p className="text-fg-primary mt-1 text-lg font-bold">0</p>
                 </div>
               </div>
 
               {/* Route Shortcuts Grid */}
               <div className="space-y-3">
-                <p className="text-xs font-semibold tracking-wider text-zinc-400 uppercase">
+                <p className="text-fg-muted text-xs font-semibold tracking-wider uppercase">
                   Strateji & Büyüme Rotaları (18 Entegre Modül)
                 </p>
                 <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">

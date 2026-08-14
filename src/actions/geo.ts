@@ -27,8 +27,7 @@ export async function addGeoCitationAction(input: AddGeoCitationInput) {
     await requireAdmin();
 
     const admin = createAdminClient();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const db = admin as any;
+    const db = admin;
 
     const { error } = await db.from("geo_citations").insert({
       ai_engine: input.ai_engine,
@@ -55,8 +54,7 @@ export async function getGeoStatsAction() {
     await requireAdmin();
 
     const admin = createAdminClient();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const db = admin as any;
+    const db = admin;
 
     try {
       const { data: citations } = await db

@@ -343,10 +343,10 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
       active: pathname.startsWith("/admin/modular-architecture"),
     },
     {
-      href: "/admin/gazi",
-      label: t("nav_gazi") || "GAZÄ°",
+      href: "/admin/advisor",
+      label: t("nav_gazi") || "GAZİ (Advisor)",
       icon: Sparkles,
-      active: pathname.startsWith("/admin/gazi"),
+      active: pathname.startsWith("/admin/advisor"),
     },
   ];
 

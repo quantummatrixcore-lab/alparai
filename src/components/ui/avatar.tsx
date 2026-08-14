@@ -23,8 +23,7 @@ const AvatarImage = React.forwardRef<HTMLImageElement, React.ImgHTMLAttributes<H
       width={40}
       height={40}
       className={cn("aspect-square h-full w-full object-cover", className)}
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      {...(props as any)}
+      {...props}
     />
   ),
 );

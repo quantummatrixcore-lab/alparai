@@ -15,11 +15,24 @@ const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey, {
   },
 });
 
+import { z } from "zod";
+
+const createUserSchema = z.object({
+  email: z.string().email(),
+  fullName: z.string().min(2).max(100),
+  role: z.enum(["user", "moderator", "admin", "ceo"]),
+});
+
 export async function createUserByAdmin(data: {
   email: string;
   fullName: string;
   role: "user" | "moderator" | "admin" | "ceo";
 }) {
+  const parsed = createUserSchema.safeParse(data);
+  if (!parsed.success) {
+    return { ok: false, error: "Invalid input data" };
+  }
+  const validData = parsed.data;
   try {
     // 1. Verify caller is admin
     const supabase = await createServerClient();
@@ -44,15 +57,19 @@ export async function createUserByAdmin(data: {
     try {
       // 2. Create the user in Supabase Auth
       const { data: authData, error: authError } = await supabaseAdmin.auth.admin.createUser({
-        email: data.email,
+        email: validData.email,
         email_confirm: true,
         user_metadata: {
-          full_name: data.fullName,
+          full_name: validData.fullName,
         },
       });
 
       if (authError) {
-        logger.error("Auth creation error in createUserByAdmin", { role: data.role }, authError);
+        logger.error(
+          "Auth creation error in createUserByAdmin",
+          { role: validData.role },
+          authError,
+        );
         return { ok: false, error: authError.message };
       }
 
@@ -64,7 +81,7 @@ export async function createUserByAdmin(data: {
       const { error: dbError } = await supabaseAdmin
         .from("users")
         .update({
-          role: data.role,
+          role: validData.role,
           is_verified: true,
         })
         .eq("id", authData.user.id);
@@ -72,7 +89,7 @@ export async function createUserByAdmin(data: {
       if (dbError) {
         logger.error(
           "DB role update error in createUserByAdmin",
-          { role: data.role, userId: authData.user.id },
+          { role: validData.role, userId: authData.user.id },
           new Error(dbError.message),
         );
         // Even if this fails, the user was created, but role might be default 'user'

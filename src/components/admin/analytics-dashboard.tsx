@@ -71,6 +71,7 @@ export function AnalyticsDashboard({ snapshot, locale }: AnalyticsDashboardProps
         <button
           onClick={handleTriggerTick}
           disabled={isPending}
+          aria-label={t("trigger_worker") || "Trigger Worker Tick"}
           className="bg-brand-500 hover:bg-brand-600 active:bg-brand-700 shadow-brand-500/25 hover:shadow-brand-500/35 inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-white shadow-lg transition-all disabled:opacity-50"
         >
           <RefreshCw className={`h-4 w-4 ${isPending ? "animate-spin" : ""}`} />

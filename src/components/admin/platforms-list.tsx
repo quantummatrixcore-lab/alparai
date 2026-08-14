@@ -229,8 +229,9 @@ export function PlatformsList({ initialPlatforms }: { initialPlatforms: Platform
                   <select
                     disabled={isPending}
                     value={platform.status}
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    onChange={(e) => handleUpdateStatus(platform.id, e.target.value as any)}
+                    onChange={(e) =>
+                      handleUpdateStatus(platform.id, e.target.value as PlatformSignup["status"])
+                    }
                     className="cursor-pointer bg-transparent px-3 py-1.5 text-sm text-white outline-none hover:bg-white/5"
                   >
                     <option value="not_started">{t("platforms_status_not_started")}</option>

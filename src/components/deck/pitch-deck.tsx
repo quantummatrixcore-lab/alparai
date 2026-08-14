@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -1165,7 +1165,16 @@ function Slide10() {
               EE
             </div>
             <div>
-              <h3 className="text-lg font-bold text-white">Ercüment Erden</h3>
+              <h3 className="text-lg font-bold text-white">
+                <a
+                  href="https://ercumenterden.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-blue-400 hover:underline"
+                >
+                  Ercüment Erden
+                </a>
+              </h3>
               <p className="text-brand-400 text-xs font-semibold tracking-wider uppercase">
                 Founder & Chief Architect
               </p>

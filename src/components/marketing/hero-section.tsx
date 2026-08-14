@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import * as React from "react";
 import { motion, animate, useInView, type Variants } from "framer-motion";
@@ -198,7 +198,14 @@ export function HeroSection({
                   <span className="text-sm font-black text-white">EE</span>
                 </div>
                 <div>
-                  <p className="text-fg-primary text-sm font-black">Ercüment ERDEN</p>
+                  <a
+                    href="https://ercumenterden.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-fg-primary text-sm font-black transition-colors hover:text-white hover:underline"
+                  >
+                    Ercüment ERDEN
+                  </a>
                   <p className="text-brand-400 text-[11px] font-bold tracking-wider uppercase">
                     {t("founder_role", { defaultValue: "Kurucu, ALPAR AI" })}
                   </p>

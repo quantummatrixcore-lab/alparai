@@ -30,5 +30,5 @@ export const RATE_LIMITS = {
   email_notification: { max: 10, window: "1 h" },
   vertex_scout: { max: 20, window: "1 m" },
   unsubscribe_attempt: { max: 5, window: "1 h" },
-  admin_gazi_chat: { max: 20, window: "1 h" },
+  admin_advisor_chat: { max: 20, window: "1 h" },
 } as const satisfies Record<string, { max: number; window: string }>;

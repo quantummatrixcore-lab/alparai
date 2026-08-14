@@ -13,20 +13,20 @@
         "flash_task_dispatch"
       ],
       "started_at": "2026-08-13T21:57:43Z",
-      "note": "Bu ajan KILL edilmez. Claude tarafından send_message ile görev alır."
+      "note": "Bu ajan KILL edilmez. Claude taraf\u0131ndan send_message ile g\u00f6rev al\u0131r."
     },
-    "gazi_komutan": {
-      "role": "SUPREME_COMMANDER",
+    "strategic_orchestrator": {
+      "role": "STRATEGIC_ORCHESTRATOR",
       "model": "pro",
       "context_window": "2000000",
-      "protocol": "ATATURK_SWARM_v1",
+      "protocol": "STRATEGIC_SWARM_v1",
       "status": "ACTIVE"
     }
   },
   "hierarchy": {
-    "chief_architect": "Claude Sonnet (bu konuşma)",
-    "supreme_commander": "gazi_komutan",
+    "chief_architect": "Claude Sonnet (bu konu\u015fma)",
     "strategist": "a1420068-9a4d-444f-8b8d-d452cab9dbde",
-    "flash_executors": "Gerektiğinde spawn edilir, görev bitince kill edilir"
+    "flash_executors": "Gerekti\u011finde spawn edilir, g\u00f6rev bitince kill edilir",
+    "strategic_orchestrator": "strategic_orchestrator"
   }
 }

@@ -68,14 +68,12 @@ describe("K-Weekly-Refresh Cron Job", () => {
     // 1. ai_models select
     // 2. k_categories select
     // 3. k_model_scores select
-    // 4. bench_tr_evaluations select
-    // 5. incidents select
-    // 6. k_model_scores upsert
+    // 4. incidents select
+    // 5. k_model_scores upsert
     queryBuilder.then
       .mockImplementationOnce((resolve: any) => resolve({ data: mockModels, error: null }))
       .mockImplementationOnce((resolve: any) => resolve({ data: mockCategories, error: null }))
       .mockImplementationOnce((resolve: any) => resolve({ data: mockCurrentScores, error: null }))
-      .mockImplementationOnce((resolve: any) => resolve({ data: [], error: null }))
       .mockImplementationOnce((resolve: any) => resolve({ data: mockIncidents, error: null }))
       .mockImplementationOnce((resolve: any) => resolve({ data: null, error: null }));
 
@@ -98,7 +96,9 @@ describe("K-Weekly-Refresh Cron Job", () => {
         expect.objectContaining({
           category_id: "K6",
           model_id: "model-1",
-          score: 94,
+          score: 80,
+          wilson_lower: 71,
+          wilson_upper: 87,
         }),
       ]),
       expect.any(Object),

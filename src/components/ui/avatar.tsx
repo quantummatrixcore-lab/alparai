@@ -14,19 +14,20 @@ Avatar.displayName = "Avatar";
 
 import Image from "next/image";
 
-const AvatarImage = React.forwardRef<HTMLImageElement, React.ImgHTMLAttributes<HTMLImageElement>>(
-  ({ className, src, alt, ...props }, ref) => (
-    <Image
-      ref={ref}
-      src={src as string}
-      alt={alt || "Avatar"}
-      width={40}
-      height={40}
-      className={cn("aspect-square h-full w-full object-cover", className)}
-      {...props}
-    />
-  ),
-);
+const AvatarImage = React.forwardRef<
+  HTMLImageElement,
+  Omit<React.ImgHTMLAttributes<HTMLImageElement>, "width" | "height">
+>(({ className, src, alt, ...props }, ref) => (
+  <Image
+    ref={ref}
+    src={src as string}
+    alt={alt || "Avatar"}
+    width={40}
+    height={40}
+    className={cn("aspect-square h-full w-full object-cover", className)}
+    {...props}
+  />
+));
 AvatarImage.displayName = "AvatarImage";
 
 const AvatarFallback = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(

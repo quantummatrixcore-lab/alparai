@@ -79,6 +79,7 @@ export default async function CeaseDesistArchivePage({
   const t = await getTranslations({ locale, namespace: "transparency" });
   const supabase = await createServerClient();
 
+  // @ts-expect-error missing from Database types
   const { data } = await supabase
     .from("cease_and_desist_logs")
     .select("*, ai_providers (id, name, slug, logo_url)")

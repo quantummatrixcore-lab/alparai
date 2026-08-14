@@ -23,6 +23,7 @@ export async function POST(req: Request) {
     const { url, secret, provider_filter } = parsed.data;
     const supabase = createAdminClient();
 
+    // @ts-expect-error missing webhooks table in types
     const { data, error } = await supabase
       .from("webhooks")
       .insert({ url, secret, provider_filter })

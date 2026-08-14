@@ -17,3 +17,24 @@ audit the enforcers exist to replace.
 Founder action, unchanged: check repo Settings → Actions → General for a ruleset, runner group,
 or workflow-approval policy blocking allocation. Until that is answered, treat every "CI green"
 claim as unverified regardless of who makes it.
+
+## Reopened — the closure was verified false (v13.44)
+
+`bf76b1f9` marked this completed; `94418b81` claimed to "Resolve runner_id:0 by fixing
+setup-node action versions". Checked immediately after, on the newest commit `e65c9788`:
+
+Run `31827253701`, all four jobs — `Visual Regression Lock`, `E2E Critical Journeys`, `build`,
+`Security Scan`:
+
+- `runner_id: 0`, `runner_name: ""`
+- `started_at 18:08:23`, `completed_at 18:08:25` — **two seconds**
+- `conclusion: failure`
+
+Unchanged. **One cause is now ruled out:** job labels read `ubuntu-latest`, so `605c16a8`'s
+replacement of the self-hosted Windows runner did land. The label was never the problem, and
+neither were the action versions. What remains is account- or organisation-level: an Actions
+policy, a runner group restriction, a workflow-approval requirement, or a billing/spending
+limit.
+
+That is Founder-side and cannot be diagnosed from this container. Until it is answered, treat
+every "CI green" claim as unverified regardless of source — including this file's own.

@@ -412,6 +412,52 @@ item's completion claim is unverifiable, and this session has now twice recorded
 could only confirm by running the checks by hand. **HOOK-1** is added as the interim gate that
 does not depend on GitHub-side runner allocation.
 
+### v13.44 — Two closures checked and corrected; the strategy brief reviewed
+
+**v13.43's thesis confirmed itself within hours.** That section, committed earlier the same day,
+holds that this project's recurring failure is a claim accepted as evidence because nothing
+executable contradicts it. Five commits then landed marking board items complete. Two of the
+three closures do not survive a two-minute check.
+
+**RUNNER-1 — reopened.** `bf76b1f9` marked it done, `94418b81` claimed to resolve `runner_id:0`
+via setup-node versions. Run `31827253701` on the newest commit `e65c9788`: all four jobs report
+`runner_id: 0`, `runner_name: ""`, `started 18:08:23 → completed 18:08:25` — **two seconds** —
+`conclusion: failure`. Unchanged. One cause is now ruled out: labels read `ubuntu-latest`, so
+`605c16a8`'s runner change did land and the label was never it. What remains is account- or
+org-level — Actions policy, runner group, approval requirement, or spending limit. Founder-side.
+
+**TYPE-1 — reopened.** `2a578ced` cleared the three type errors with `const db = admin as any`
+and `(supabase as any)`, each behind an `eslint-disable` for `no-explicit-any`. That casts away
+the type system where it was reporting a real schema gap, violates `CLAUDE.md`'s binding "No
+`any`" convention, and disables the linter that would have caught it. The question the item
+exists to answer is still open: **do `webhooks`, `cease_and_desist_logs` and
+`grant_applications.ai_engine` exist in the database?** If not, a compile-time error is now a
+runtime failure no test covers.
+
+**HOOK-1 — confirmed done.** `.husky/pre-push` exists on `origin` and runs
+`pnpm typecheck && pnpm lint && pnpm test`. It was deferred pending the Founder's choice between
+full suite and fast subset; the full suite was chosen by implementation rather than decision.
+**I18N-2 — confirmed done** (`e65c9788`), and `fbce4815` cleanly removed the stale
+`@ts-expect-error` directives.
+
+**Strategy brief.** Full review: `docs/plan/v13.44-strategy-review.md`. Its thesis — products
+compete, infrastructure dominates — is right. The structural problem is that **six of its ten
+revenue models are paid by the audited party**: certification fees, the white-label engine sold
+to the audited company, insurance referrals on scores ALPAR issues. That is the issuer-pays
+structure that discredited the rating agencies in 2008, and for a body whose only asset is
+independence it is the one model that cannot work. The SSL analogy also fails — SSL became
+mandatory because a browser vendor enforced it, and ALPAR holds no equivalent chokepoint.
+
+The brief additionally prices assets that do not yet exist: a "5-model cross-audit engine" that
+was publishing seeded 80.0 constants until `9adfcf5a`, and "992+ cases" which is `ölçülmedi`
+(**STRAT-1**). **Recommendation: the false-positive registry is the correct first block** — the
+only proposal that manufactures independence rather than spending it, and already publicly
+committed in the TÜRKINFORM answer.
+
+**For Founder ruling:** should "ALPAR does not take payment from parties it audits" become a
+binding rule rather than a preference? Cheap to adopt now, expensive to reverse once revenue
+depends on it.
+
 ## v13.34 — Migration audit: parseability restored but content corrupted
 
 `docs/MASTER_PLAN.md` split (commits `e3b9f68f`, `ecb29f99`) fixed parsing (49/49 rows vs 0/50 before) but broke lossless requirement: `.split('|')` truncated **11 rows** containing literal pipes (grep patterns), corrupting status cells and truncating detail files (e.g., `docs/plan/items/BN.md` reads `Ã¼\`). Size ~90 KB vs 40 KB target. `check-masterplan-consistency.mjs` exits 0 (validates parseability, not content); `check-repo-language.mjs` RED from mojibake leakage. Analysis: `docs/plan/v13.37-rca.md` §2a. Fix: regex extraction, re-run migration, verify against pre-migration. Open.

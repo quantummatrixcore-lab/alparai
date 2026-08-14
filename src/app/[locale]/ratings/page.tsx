@@ -276,21 +276,29 @@ export default async function RatingsPage({
                     <td className="px-6 py-4 text-sm text-slate-300">{item.providerName}</td>
                     {activeCategoryList.map((cat) => {
                       const score = item.categoryScores[cat.id];
+                      const isK5OrHigher = ["K5", "K6", "K7", "K8"].includes(cat.id);
                       return (
-                        <td key={cat.id} className="px-6 py-4 text-center font-mono text-sm">
+                        <td key={cat.id} className="px-6 py-4 text-center">
                           {score !== undefined ? (
-                            <span
-                              className={cn(
-                                "rounded-md px-2 py-1 text-xs font-semibold",
-                                score >= 85
-                                  ? "border border-emerald-800/30 bg-emerald-950/20 text-emerald-400"
-                                  : score >= 75
-                                    ? "border border-blue-800/30 bg-blue-950/20 text-blue-400"
-                                    : "border border-amber-800/30 bg-amber-950/20 text-amber-400",
+                            <div className="flex flex-col items-center gap-1">
+                              <span
+                                className={cn(
+                                  "rounded-md px-2 py-1 font-mono text-xs font-semibold",
+                                  score >= 85
+                                    ? "border border-emerald-800/30 bg-emerald-950/20 text-emerald-400"
+                                    : score >= 75
+                                      ? "border border-blue-800/30 bg-blue-950/20 text-blue-400"
+                                      : "border border-amber-800/30 bg-amber-950/20 text-amber-400",
+                                )}
+                              >
+                                {score}%
+                              </span>
+                              {isK5OrHigher && (
+                                <span className="text-[10px] leading-tight font-normal text-slate-500">
+                                  {t("baseline")}
+                                </span>
                               )}
-                            >
-                              {score}%
-                            </span>
+                            </div>
                           ) : (
                             <span className="text-slate-600">-</span>
                           )}

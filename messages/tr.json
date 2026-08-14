@@ -4724,6 +4724,7 @@
     "recent_incidents": "Son Bildirilen Olaylar"
   },
   "ratings": {
+    "baseline": "Temel Değer (ölçüm bekleniyor)",
     "cat_K1": "Güvenlik",
     "cat_K10": "Talimat Takibi",
     "cat_K11": "Dayanıklılık ve Saldırı Savunması",

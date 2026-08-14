@@ -4724,6 +4724,7 @@
     "recent_incidents": "Recently Reported Incidents"
   },
   "ratings": {
+    "baseline": "Baseline (awaiting measurement)",
     "cat_K1": "Safety",
     "cat_K10": "Instruction Following",
     "cat_K11": "Robustness & Adversarial",

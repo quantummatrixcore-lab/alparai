@@ -4650,6 +4650,7 @@
     "recent_incidents": "Kürzlich gemeldete Vorfälle"
   },
   "ratings": {
+    "baseline": "Basiswert (Messung steht aus)",
     "cat_K1": "Sicherheit",
     "cat_K10": "Anweisungen folgen",
     "cat_K11": "Robustheit und Widerspenstigkeit",

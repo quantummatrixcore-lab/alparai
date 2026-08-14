@@ -42,8 +42,8 @@ const legalLinks = [
   { href: "/legal/privacy", key: "privacy" },
   { href: "/legal/terms", key: "terms" },
   { href: "/legal/cookies", key: "cookies" },
-  { href: "/dmca", key: "dmca" },
-  { href: "/moderation", key: "moderation" },
+  { href: "/legal/dmca", key: "dmca" },
+  { href: "/legal/moderation", key: "moderation" },
 ] as const;
 
 export function Footer() {

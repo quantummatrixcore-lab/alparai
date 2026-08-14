@@ -12,6 +12,7 @@ export const routing = defineRouting({
   locales: SUPPORTED_LOCALES,
   defaultLocale: DEFAULT_LOCALE,
   localePrefix: "always",
+  localeDetection: false,
 });
 
 export const { Link, redirect, permanentRedirect, usePathname, useRouter, getPathname } =

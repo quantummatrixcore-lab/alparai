@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "academy" });
   return {
     title: `${t("title")} | ALPAR AI`,
@@ -9,10 +10,11 @@ export async function generateMetadata({ params: { locale } }: { params: { local
 }
 
 export default async function AcademyInstructorPage({
-  params: { locale },
+  params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "academy" });
 
   // Curriculum data (to be fetched from database)

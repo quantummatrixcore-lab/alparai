@@ -70,7 +70,7 @@ vi.mock("@/components/models/model-autocomplete", () => ({
   ModelAutocomplete: () => <div data-testid="model-autocomplete" />,
 }));
 
-vi.mock("./evidence-uploader", () => ({
+vi.mock("@/components/incidents/evidence-uploader", () => ({
   EvidenceUploader: () => <div data-testid="evidence-uploader" />,
   SubmitButton: ({ disabled, children }: { disabled?: boolean; children?: React.ReactNode }) => (
     <button type="submit" disabled={disabled}>

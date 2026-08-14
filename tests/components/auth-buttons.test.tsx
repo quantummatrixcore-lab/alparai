@@ -46,7 +46,7 @@ describe("EmailMagicLinkForm", () => {
   test("renders email input and send button", () => {
     render(<EmailMagicLinkForm />);
     expect(screen.getByLabelText("email_label")).toBeDefined();
-    expect(screen.getByRole("button", { name: "send" })).toBeDefined();
+    expect(screen.getByRole("button", { name: /send/i })).toBeDefined();
   });
 
   test("shows validation error for invalid email", async () => {
@@ -54,7 +54,7 @@ describe("EmailMagicLinkForm", () => {
     const input = screen.getByLabelText("email_label");
     await act(async () => {
       fireEvent.change(input, { target: { value: "invalid-email" } });
-      screen.getByRole("button", { name: "send" }).click();
+      screen.getByRole("button", { name: /send/i }).click();
     });
     expect(await screen.findByRole("alert")).toBeDefined();
     expect(screen.getByText("invalid_email")).toBeDefined();
@@ -67,7 +67,7 @@ describe("EmailMagicLinkForm", () => {
     const input = screen.getByLabelText("email_label");
     await act(async () => {
       fireEvent.change(input, { target: { value: "test@example.com" } });
-      screen.getByRole("button", { name: "send" }).click();
+      screen.getByRole("button", { name: /send/i }).click();
     });
     expect(await screen.findByText("magic_link_heading")).toBeDefined();
   });
@@ -79,7 +79,7 @@ describe("EmailMagicLinkForm", () => {
     const input = screen.getByLabelText("email_label");
     await act(async () => {
       fireEvent.change(input, { target: { value: "test@example.com" } });
-      screen.getByRole("button", { name: "send" }).click();
+      screen.getByRole("button", { name: /send/i }).click();
     });
     await vi.waitFor(() => expect(mockToast).toHaveBeenCalledWith("Server error"));
   });

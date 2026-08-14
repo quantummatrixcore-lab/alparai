@@ -6,9 +6,11 @@ vi.mock("@/lib/supabase/server", () => ({
   createServerClient: vi.fn(),
 }));
 
-const adminAuthMock = {
-  createUser: vi.fn(),
-};
+const { adminAuthMock } = vi.hoisted(() => ({
+  adminAuthMock: {
+    createUser: vi.fn(),
+  },
+}));
 
 vi.mock("@supabase/supabase-js", () => {
   const updateMock = vi.fn().mockReturnValue({

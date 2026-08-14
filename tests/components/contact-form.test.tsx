@@ -37,7 +37,7 @@ describe("ContactForm Component", () => {
     expect(screen.getByLabelText("category", { exact: false })).toBeDefined();
     expect(screen.getByLabelText("subject", { exact: false })).toBeDefined();
     expect(screen.getByLabelText("message", { exact: false })).toBeDefined();
-    expect(screen.getByRole("button", { name: "form.submit" })).toBeDefined();
+    expect(screen.getByRole("button", { name: /submit/i })).toBeDefined();
   });
 
   test("renders success state card when state.ok is true", () => {

@@ -52,7 +52,7 @@ export async function submitFlaggingReport(
       title_masked: `[Wrongful Flagging] ${detector_name} — ${platform}`,
       description: maskedContext.masked,
       description_masked: maskedContext.masked,
-      category: "wrongful_flagging",
+      category: "other",
       severity: "medium",
       source_url: evidence_url,
       is_anonymous: true,

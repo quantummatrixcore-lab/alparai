@@ -105,10 +105,12 @@ const runSubmitWork = async (
   const maskedTitle = maskPII(raw.title);
   const maskedDescription = maskPII(raw.description);
   const maskedExpertFix = raw.expert_fix ? maskPII(raw.expert_fix) : null;
+  const maskedSourceUrl = raw.source_url ? maskPII(raw.source_url) : null;
   const containsPii =
     maskedTitle.masked !== raw.title ||
     maskedDescription.masked !== raw.description ||
-    (maskedExpertFix ? maskedExpertFix.masked !== raw.expert_fix : false);
+    (maskedExpertFix ? maskedExpertFix.masked !== raw.expert_fix : false) ||
+    (maskedSourceUrl ? maskedSourceUrl.masked !== raw.source_url : false);
 
   const incidentDateISO = raw.incident_date
     ? new Date(raw.incident_date).toISOString()
@@ -165,7 +167,7 @@ const runSubmitWork = async (
     is_anonymous: raw.is_anonymous,
     is_expert: raw.is_expert,
     expert_fix: maskedExpertFix ? maskedExpertFix.masked : null,
-    source_url: raw.source_url,
+    source_url: maskedSourceUrl ? maskedSourceUrl.masked : null,
     is_possible_duplicate: isPossibleDuplicate,
     ip_hash: hashIp(data.ip),
     user_agent: userAgent,
@@ -174,6 +176,7 @@ const runSubmitWork = async (
       ...maskedTitle.detections.map((d) => d.type),
       ...maskedDescription.detections.map((d) => d.type),
       ...(maskedExpertFix ? maskedExpertFix.detections.map((d) => d.type) : []),
+      ...(maskedSourceUrl ? maskedSourceUrl.detections.map((d) => d.type) : []),
     ].filter((v, i, a) => a.indexOf(v) === i),
     anonymous_email_hash: raw.anonymous_email
       ? createHash("sha256").update(raw.anonymous_email.toLowerCase()).digest("hex")

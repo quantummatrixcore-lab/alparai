@@ -39,17 +39,17 @@ export function VendorPortalDashboard({ data }: VendorPortalDashboardProps) {
       <div className="border-border-subtle grid grid-cols-1 gap-4 border-b pb-6 sm:grid-cols-3">
         <div className="border-border-subtle bg-bg-secondary rounded-2xl border p-4">
           <div className="text-fg-muted flex items-center gap-2 text-xs font-semibold">
-            <ShieldCheck className="h-4 w-4 text-emerald-400" />
+            <ShieldCheck className="text-success-400 h-4 w-4" />
             <span>{t("vendor_sla_uptime") || "Global SLA Uptime"}</span>
           </div>
-          <p className="mt-2 font-mono text-3xl font-black text-emerald-400">
+          <p className="text-success-400 mt-2 font-mono text-3xl font-black">
             {data.overallUptimeSla}%
           </p>
         </div>
 
         <div className="border-border-subtle bg-bg-secondary rounded-2xl border p-4">
           <div className="text-fg-muted flex items-center gap-2 text-xs font-semibold">
-            <Clock className="h-4 w-4 text-amber-400" />
+            <Clock className="text-warning-400 h-4 w-4" />
             <span>{t("vendor_avg_latency") || "Avg Response Latency"}</span>
           </div>
           <p className="text-fg-primary mt-2 font-mono text-3xl font-black">

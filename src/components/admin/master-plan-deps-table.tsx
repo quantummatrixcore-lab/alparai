@@ -97,22 +97,22 @@ export function MasterPlanDepsTable({
             onClick={() => setFilterMode("startable")}
             className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all ${
               filterMode === "startable"
-                ? "border border-emerald-500/30 bg-emerald-500/20 text-emerald-400"
+                ? "border-success-500/30 bg-success-500/20 text-success-400 border"
                 : "bg-bg-tertiary text-fg-muted border-border-subtle border hover:text-white"
             }`}
           >
-            <PlayCircle className="h-3.5 w-3.5 text-emerald-400" />
+            <PlayCircle className="text-success-400 h-3.5 w-3.5" />
             {t("deps_filter_startable", { count: graph.stats.startableCount })}
           </button>
           <button
             onClick={() => setFilterMode("blocked")}
             className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all ${
               filterMode === "blocked"
-                ? "border border-amber-500/30 bg-amber-500/20 text-amber-400"
+                ? "border-warning-500/30 bg-warning-500/20 text-warning-400 border"
                 : "bg-bg-tertiary text-fg-muted border-border-subtle border hover:text-white"
             }`}
           >
-            <Lock className="h-3.5 w-3.5 text-amber-400" />
+            <Lock className="text-warning-400 h-3.5 w-3.5" />
             {t("deps_filter_blocked", { count: graph.stats.blockedCount })}
           </button>
         </div>
@@ -178,7 +178,7 @@ export function MasterPlanDepsTable({
                             {node.title}
                           </div>
                           <div className="text-fg-muted mt-0.5 flex items-center gap-2 text-[10px]">
-                            <span className="font-bold text-amber-400">{node.priority}</span>
+                            <span className="text-warning-400 font-bold">{node.priority}</span>
                             {node.owner && (
                               <span>• {t("deps_owner_label", { owner: node.owner })}</span>
                             )}
@@ -188,17 +188,17 @@ export function MasterPlanDepsTable({
                         {/* Status Badge */}
                         <td className="px-4 py-3 whitespace-nowrap">
                           {node.status === "completed" && (
-                            <span className="inline-flex items-center gap-1 rounded border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 font-semibold text-emerald-400">
+                            <span className="border-success-500/30 bg-success-500/10 text-success-400 inline-flex items-center gap-1 rounded border px-2 py-0.5 font-semibold">
                               <CheckCircle2 className="h-3 w-3" /> {t("plan_status_completed")}
                             </span>
                           )}
                           {node.status === "pending" && (
-                            <span className="inline-flex items-center gap-1 rounded border border-amber-500/30 bg-amber-500/10 px-2 py-0.5 font-semibold text-amber-400">
+                            <span className="border-warning-500/30 bg-warning-500/10 text-warning-400 inline-flex items-center gap-1 rounded border px-2 py-0.5 font-semibold">
                               <Clock className="h-3 w-3" /> {t("plan_status_pending")}
                             </span>
                           )}
                           {node.status === "paused" && (
-                            <span className="inline-flex items-center gap-1 rounded border border-purple-500/30 bg-purple-500/10 px-2 py-0.5 font-semibold text-purple-400">
+                            <span className="border-brand-500/30 bg-brand-500/10 text-brand-400 inline-flex items-center gap-1 rounded border px-2 py-0.5 font-semibold">
                               <Clock className="h-3 w-3" /> {t("plan_status_paused")}
                             </span>
                           )}
@@ -220,14 +220,14 @@ export function MasterPlanDepsTable({
                                     title={depItem ? `#${depId}: ${depItem.title}` : `#${depId}`}
                                     className={`inline-flex items-center gap-1 rounded px-2 py-0.5 font-mono text-[11px] font-medium ${
                                       isSatisfied
-                                        ? "border border-emerald-500/20 bg-emerald-500/10 text-emerald-400"
-                                        : "border border-amber-500/20 bg-amber-500/10 text-amber-400"
+                                        ? "border-success-500/20 bg-success-500/10 text-success-400 border"
+                                        : "border-warning-500/20 bg-warning-500/10 text-warning-400 border"
                                     }`}
                                   >
                                     {isSatisfied ? (
-                                      <CheckCircle2 className="h-3 w-3 text-emerald-400" />
+                                      <CheckCircle2 className="text-success-400 h-3 w-3" />
                                     ) : (
-                                      <Lock className="h-3 w-3 text-amber-400" />
+                                      <Lock className="text-warning-400 h-3 w-3" />
                                     )}
                                     #{depId}
                                   </span>
@@ -258,7 +258,7 @@ export function MasterPlanDepsTable({
                                     className={`inline-flex items-center gap-1 rounded px-2 py-0.5 font-mono text-[11px] font-medium ${
                                       isDone
                                         ? "bg-bg-tertiary text-fg-muted border-border-subtle border"
-                                        : "border border-blue-500/20 bg-blue-500/10 text-blue-400"
+                                        : "border-brand-500/20 bg-brand-500/10 text-brand-400 border"
                                     }`}
                                   >
                                     <ArrowRight className="h-3 w-3" />#{blockedId}
@@ -272,17 +272,17 @@ export function MasterPlanDepsTable({
                         {/* Action Readiness Status */}
                         <td className="px-4 py-3 text-right whitespace-nowrap">
                           {node.status === "completed" ? (
-                            <span className="text-[11px] font-semibold text-emerald-400">
+                            <span className="text-success-400 text-[11px] font-semibold">
                               {t("deps_status_closed")}
                             </span>
                           ) : node.canStart ? (
-                            <span className="inline-flex items-center gap-1 rounded border border-emerald-500/40 bg-emerald-500/15 px-2 py-1 font-bold text-emerald-400">
+                            <span className="border-success-500/40 bg-success-500/15 text-success-400 inline-flex items-center gap-1 rounded border px-2 py-1 font-bold">
                               <PlayCircle className="h-3.5 w-3.5" />{" "}
                               {t("deps_status_startable_short")}
                             </span>
                           ) : node.isBlocked ? (
                             <span
-                              className="inline-flex items-center gap-1 rounded border border-amber-500/40 bg-amber-500/15 px-2 py-1 font-bold text-amber-400"
+                              className="border-warning-500/40 bg-warning-500/15 text-warning-400 inline-flex items-center gap-1 rounded border px-2 py-1 font-bold"
                               title={`${t("deps_pending_label")}: ${node.pendingDependencies.map((d) => `#${d}`).join(", ")}`}
                             >
                               <Lock className="h-3.5 w-3.5" />{" "}

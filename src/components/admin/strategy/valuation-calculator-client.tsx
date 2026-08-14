@@ -278,10 +278,10 @@ export function ValuationCalculatorClient({
 
           <button
             onClick={handleAutoSuggestFromStrategy}
-            className="flex items-center justify-center gap-1.5 rounded-xl border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs font-bold text-amber-300 transition hover:bg-amber-500/20"
+            className="border-warning-500/30 bg-warning-500/10 text-warning-300 hover:bg-warning-500/20 flex items-center justify-center gap-1.5 rounded-xl border px-3 py-2 text-xs font-bold transition"
             title={t("auto_fill_valuation_multipliers_based_on")}
           >
-            <Sparkles className="h-3.5 w-3.5 text-amber-400" />
+            <Sparkles className="text-warning-400 h-3.5 w-3.5" />
             {t("auto_suggest_from_strategy_data")}
           </button>
         </div>
@@ -335,7 +335,7 @@ export function ValuationCalculatorClient({
               <span className="text-sm font-extrabold text-white">
                 {t("val_berkus_calc_result")}
               </span>
-              <span className="font-mono text-2xl font-black text-emerald-400">
+              <span className="text-success-400 font-mono text-2xl font-black">
                 {formatCurrency(berkusValuation)}
               </span>
             </div>
@@ -430,7 +430,7 @@ export function ValuationCalculatorClient({
               <span className="text-sm font-extrabold text-white">
                 {t("val_scorecard_calc_result")}
               </span>
-              <span className="font-mono text-2xl font-black text-emerald-400">
+              <span className="text-success-400 font-mono text-2xl font-black">
                 {formatCurrency(scorecardValuation)}
               </span>
             </div>
@@ -488,7 +488,7 @@ export function ValuationCalculatorClient({
 
             <div className="mt-4 flex items-center justify-between rounded-xl border border-white/10 bg-white/5 p-4">
               <span className="text-sm font-extrabold text-white">{t("val_vc_calc_result")}</span>
-              <span className="font-mono text-2xl font-black text-emerald-400">
+              <span className="text-success-400 font-mono text-2xl font-black">
                 {formatCurrency(vcValuation)}
               </span>
             </div>
@@ -534,7 +534,7 @@ export function ValuationCalculatorClient({
                   />
                 </div>
               ) : (
-                <div className="rounded-xl border border-amber-500/10 bg-amber-500/5 p-4 text-center text-xs text-amber-300">
+                <div className="border-warning-500/10 bg-warning-500/5 text-warning-300 rounded-xl border p-4 text-center text-xs">
                   {t("val_pre_revenue_status")}
                 </div>
               )}
@@ -543,7 +543,7 @@ export function ValuationCalculatorClient({
             {hasRevenue && (
               <div className="mt-4 flex items-center justify-between rounded-xl border border-white/10 bg-white/5 p-4">
                 <span className="text-sm font-extrabold text-white">{t("val_revenue_title")}</span>
-                <span className="font-mono text-2xl font-black text-emerald-400">
+                <span className="text-success-400 font-mono text-2xl font-black">
                   {formatCurrency(revenueValuation)}
                 </span>
               </div>
@@ -578,7 +578,7 @@ export function ValuationCalculatorClient({
               </div>
               <div className="flex justify-between border-b border-white/5 pb-3 text-xs">
                 <span className="text-fg-muted">{t("val_high_range")}</span>
-                <span className="font-mono font-bold text-emerald-400">
+                <span className="text-success-400 font-mono font-bold">
                   {formatCurrency(highValuation)}
                 </span>
               </div>
@@ -697,14 +697,14 @@ export function ValuationCalculatorClient({
                 </div>
               )}
 
-              <div className="mt-6 rounded-xl border border-emerald-500/10 bg-emerald-500/5 p-4 text-center">
+              <div className="border-success-500/10 bg-success-500/5 mt-6 rounded-xl border p-4 text-center">
                 <span className="text-fg-muted block text-[10px] font-bold tracking-wider uppercase">
                   {t("val_consolidated_avg_label")}
                 </span>
-                <span className="mt-1 block font-mono text-2xl font-black text-emerald-400">
+                <span className="text-success-400 mt-1 block font-mono text-2xl font-black">
                   {formatCurrency(baseValuation)}
                 </span>
-                <div className="text-fg-muted mt-2 flex justify-around border-t border-emerald-500/10 pt-2 text-[10px]">
+                <div className="text-fg-muted border-success-500/10 mt-2 flex justify-around border-t pt-2 text-[10px]">
                   <div>
                     <span className="block font-bold">{t("val_low_range")}</span>
                     <span className="font-mono text-white">{formatCurrency(lowValuation)}</span>

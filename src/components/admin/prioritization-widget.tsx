@@ -64,71 +64,71 @@ export function PrioritizationWidget({
   const pausedPerc = total > 0 ? Math.round((paused / total) * 100) : 0;
 
   return (
-    <section className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-cyan-500/20 bg-zinc-900/40 p-6 backdrop-blur-xl transition-all duration-300 hover:border-cyan-500/40 hover:bg-zinc-900/60 md:p-8">
-      <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-cyan-500/10 blur-3xl transition-all duration-500 group-hover:bg-cyan-500/20" />
+    <section className="group border-accent-500/20 bg-bg-elevated/40 hover:border-accent-500/40 hover:bg-bg-elevated/60 relative flex flex-col justify-between overflow-hidden rounded-3xl border p-6 backdrop-blur-xl transition-all duration-300 md:p-8">
+      <div className="bg-accent-500/10 group-hover:bg-accent-500/20 absolute -top-24 -right-24 h-64 w-64 rounded-full blur-3xl transition-all duration-500" />
 
       <div className="relative z-10 space-y-6">
         <div className="flex items-center justify-between border-b border-white/10 pb-4">
           <div className="flex items-center gap-3">
-            <div className="rounded-2xl border border-cyan-500/30 bg-cyan-500/10 p-3 text-cyan-400">
+            <div className="border-accent-500/30 bg-accent-500/10 text-accent-400 rounded-2xl border p-3">
               <Target className="h-6 w-6" />
             </div>
             <div>
               <h2 className="text-xl font-bold tracking-tight text-white">
                 {t("prioritization_title")}
               </h2>
-              <p className="text-xs text-zinc-400">{t("prioritization_subtitle")}</p>
+              <p className="text-fg-muted text-xs">{t("prioritization_subtitle")}</p>
             </div>
           </div>
-          <span className="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 text-xs font-semibold text-cyan-400">
+          <span className="border-accent-500/30 bg-accent-500/10 text-accent-400 rounded-full border px-3 py-1 text-xs font-semibold">
             {total} {t("prioritization_items")}
           </span>
         </div>
 
         {error ? (
-          <div className="flex items-center gap-2 rounded-2xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-400">
+          <div className="border-danger-500/30 bg-danger-500/10 text-danger-400 flex items-center gap-2 rounded-2xl border p-4 text-sm">
             <AlertTriangle className="h-4 w-4" />
             <span>{t("prioritization_parse_error", { error })}</span>
           </div>
         ) : (
           <div className="space-y-4">
             {/* Completed */}
-            <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-4">
+            <div className="border-success-500/20 bg-success-500/5 rounded-2xl border p-4">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-emerald-400">
+                <div className="text-success-400 flex items-center gap-2">
                   <CheckCircle2 className="h-4 w-4" />
                   <span className="font-bold">
                     {t("prioritization_completed")} ({completedPerc}%)
                   </span>
                 </div>
-                <span className="text-xs font-medium text-emerald-300/80">
+                <span className="text-success-300/80 text-xs font-medium">
                   {completed} {t("prioritization_items")}
                 </span>
               </div>
               <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-black/40">
                 <div
-                  className="h-full bg-emerald-500 transition-all duration-500"
+                  className="bg-success-500 h-full transition-all duration-500"
                   style={{ width: `${completedPerc}%` }}
                 />
               </div>
             </div>
 
             {/* Pending */}
-            <div className="rounded-2xl border border-amber-500/20 bg-amber-500/5 p-4">
+            <div className="border-warning-500/20 bg-warning-500/5 rounded-2xl border p-4">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-amber-400">
+                <div className="text-warning-400 flex items-center gap-2">
                   <CircleDashed className="h-4 w-4" />
                   <span className="font-bold">
                     {t("prioritization_pending")} ({pendingPerc}%)
                   </span>
                 </div>
-                <span className="text-xs font-medium text-amber-300/80">
+                <span className="text-warning-300/80 text-xs font-medium">
                   {pending} {t("prioritization_items")}
                 </span>
               </div>
               <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-black/40">
                 <div
-                  className="h-full bg-amber-500 transition-all duration-500"
+                  className="bg-warning-500 h-full transition-all duration-500"
                   style={{ width: `${pendingPerc}%` }}
                 />
               </div>
@@ -138,13 +138,13 @@ export function PrioritizationWidget({
             {paused > 0 && (
               <div className="rounded-2xl border border-zinc-500/20 bg-zinc-500/5 p-4">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-zinc-400">
+                  <div className="text-fg-muted flex items-center gap-2">
                     <PauseCircle className="h-4 w-4" />
                     <span className="font-bold">
                       {t("prioritization_paused")} ({pausedPerc}%)
                     </span>
                   </div>
-                  <span className="text-xs font-medium text-zinc-400/80">
+                  <span className="text-fg-muted/80 text-xs font-medium">
                     {paused} {t("prioritization_items")}
                   </span>
                 </div>
@@ -163,8 +163,8 @@ export function PrioritizationWidget({
                 const isHigh =
                   priority.toLowerCase().includes("p0") || priority.toLowerCase().includes("p1");
                 const colorClass = isHigh
-                  ? "text-red-400 bg-red-500/10 border-red-500/20"
-                  : "text-blue-400 bg-blue-500/10 border-blue-500/20";
+                  ? "text-danger-400 bg-danger-500/10 border-danger-500/20"
+                  : "text-brand-400 bg-brand-500/10 border-brand-500/20";
                 return (
                   <div
                     key={priority}

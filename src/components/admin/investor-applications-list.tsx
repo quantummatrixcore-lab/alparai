@@ -98,7 +98,7 @@ function InvestorApplicationRow({ application }: { application: InvestorApplicat
           <div className="space-y-2">
             <div className="flex flex-wrap items-center gap-2">
               <h3 className="text-fg-primary flex items-center gap-1.5 text-lg font-bold">
-                <Users className="h-5 w-5 text-emerald-500" />
+                <Users className="text-success-500 h-5 w-5" />
                 {application.full_name}
               </h3>
               <Badge
@@ -133,7 +133,7 @@ function InvestorApplicationRow({ application }: { application: InvestorApplicat
             <div className="flex flex-wrap gap-2 pt-1">
               <Badge
                 variant="outline"
-                className="flex items-center gap-1 border-amber-500/30 text-xs text-amber-500"
+                className="border-warning-500/30 text-warning-500 flex items-center gap-1 text-xs"
               >
                 <DollarSign className="h-3 w-3" />
                 {application.check_size}
@@ -153,8 +153,8 @@ function InvestorApplicationRow({ application }: { application: InvestorApplicat
             </div>
 
             {application.why_interested && (
-              <div className="mt-2 max-w-2xl rounded border border-slate-800 bg-[#0E1F30] p-3 text-xs text-slate-300">
-                <p className="mb-1 font-semibold text-slate-400">{t("why_interested")}</p>
+              <div className="border-border-subtle text-fg-secondary mt-2 max-w-2xl rounded border bg-[#0E1F30] p-3 text-xs">
+                <p className="text-fg-muted mb-1 font-semibold">{t("why_interested")}</p>
                 <p className="italic">"{application.why_interested}"</p>
               </div>
             )}

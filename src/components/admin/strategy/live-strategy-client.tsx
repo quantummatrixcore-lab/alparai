@@ -67,9 +67,9 @@ export function LiveStrategyClient({ context }: LiveStrategyClientProps) {
   };
 
   const getScoreColor = (score: number) => {
-    if (score >= 80) return "text-emerald-400";
-    if (score >= 60) return "text-amber-400";
-    return "text-red-400";
+    if (score >= 80) return "text-success-400";
+    if (score >= 60) return "text-warning-400";
+    return "text-danger-400";
   };
 
   return (
@@ -79,7 +79,7 @@ export function LiveStrategyClient({ context }: LiveStrategyClientProps) {
           <button
             onClick={handleAnalyze}
             disabled={isAnalyzing}
-            className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl border border-indigo-500/20 bg-indigo-500/10 px-8 py-4 font-bold text-indigo-300 transition-all hover:bg-indigo-500/20 hover:text-indigo-200"
+            className="group border-brand-500/20 bg-brand-500/10 text-brand-300 hover:bg-brand-500/20 hover:text-brand-200 relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl border px-8 py-4 font-bold transition-all"
           >
             {isAnalyzing ? (
               <Loader2 className="h-5 w-5 animate-spin" />
@@ -89,17 +89,17 @@ export function LiveStrategyClient({ context }: LiveStrategyClientProps) {
             <span>
               {isAnalyzing ? "Yapay Zeka Analiz Ediyor..." : "Yapay Zeka Analizini Başlat (Canlı)"}
             </span>
-            <div className="absolute inset-0 -z-10 bg-gradient-to-r from-indigo-500/0 via-indigo-500/10 to-indigo-500/0 opacity-0 transition-opacity group-hover:opacity-100" />
+            <div className="from-brand-500/0 via-brand-500/10 to-brand-500/0 absolute inset-0 -z-10 bg-gradient-to-r opacity-0 transition-opacity group-hover:opacity-100" />
           </button>
         </div>
       ) : (
-        <div className="relative overflow-hidden rounded-2xl border border-indigo-500/20 bg-indigo-500/5 p-6 backdrop-blur-sm">
-          <div className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full bg-indigo-500/10 blur-3xl" />
+        <div className="border-brand-500/20 bg-brand-500/5 relative overflow-hidden rounded-2xl border p-6 backdrop-blur-sm">
+          <div className="bg-brand-500/10 pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full blur-3xl" />
 
           <div className="relative z-10">
             <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-4">
               <h2 className="flex items-center gap-2 text-xl font-bold text-white">
-                <Bot className="h-6 w-6 text-indigo-400" />
+                <Bot className="text-brand-400 h-6 w-6" />
                 {t("canl_ai_strateji_raporu")}
               </h2>
               <div className="flex items-center gap-2">
@@ -121,8 +121,8 @@ export function LiveStrategyClient({ context }: LiveStrategyClientProps) {
               </div>
 
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                <div className="rounded-xl border border-rose-500/20 bg-rose-500/5 p-4">
-                  <h3 className="mb-3 flex items-center gap-2 font-semibold text-rose-400">
+                <div className="border-danger-500/20 bg-danger-500/5 rounded-xl border p-4">
+                  <h3 className="text-danger-400 mb-3 flex items-center gap-2 font-semibold">
                     <AlertTriangle className="h-4 w-4" /> {t("stratejik_bo_luklar")}
                   </h3>
                   <ul className="text-fg-primary list-inside list-disc space-y-2 text-sm">
@@ -134,8 +134,8 @@ export function LiveStrategyClient({ context }: LiveStrategyClientProps) {
                   </ul>
                 </div>
 
-                <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-4">
-                  <h3 className="mb-3 flex items-center gap-2 font-semibold text-emerald-400">
+                <div className="border-success-500/20 bg-success-500/5 rounded-xl border p-4">
+                  <h3 className="text-success-400 mb-3 flex items-center gap-2 font-semibold">
                     <Target className="h-4 w-4" /> {t("tavsiyeler")}
                   </h3>
                   <ul className="text-fg-primary list-inside list-disc space-y-2 text-sm">

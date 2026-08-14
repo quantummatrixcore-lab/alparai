@@ -92,18 +92,18 @@ export function AiOrchestratorClient({
           <div className="border-border-subtle bg-bg-secondary rounded-2xl border p-5 shadow-sm">
             <div className="text-fg-muted flex items-center justify-between text-xs font-semibold">
               <span>{t("free_tier_inventory")}</span>
-              <Zap className="h-5 w-5 text-amber-400" />
+              <Zap className="text-warning-400 h-5 w-5" />
             </div>
-            <p className="mt-2 text-3xl font-black text-amber-400">{freeModels.length}</p>
+            <p className="text-warning-400 mt-2 text-3xl font-black">{freeModels.length}</p>
             <p className="text-fg-muted mt-1 text-xs">{t("live_active_0_00_pricing_models")}</p>
           </div>
 
           <div className="border-border-subtle bg-bg-secondary rounded-2xl border p-5 shadow-sm">
             <div className="text-fg-muted flex items-center justify-between text-xs font-semibold">
               <span>{t("average_trust_score")}</span>
-              <ShieldCheck className="h-5 w-5 text-emerald-400" />
+              <ShieldCheck className="text-success-400 h-5 w-5" />
             </div>
-            <p className="mt-2 text-3xl font-black text-emerald-400">{avgTrustScore}%</p>
+            <p className="text-success-400 mt-2 text-3xl font-black">{avgTrustScore}%</p>
             <p className="text-fg-muted mt-1 text-xs">
               {t("evaluated_across")} {totalAudits} {t("cross_audits")}
             </p>
@@ -112,16 +112,16 @@ export function AiOrchestratorClient({
           <div className="border-border-subtle bg-bg-secondary rounded-2xl border p-5 shadow-sm">
             <div className="text-fg-muted flex items-center justify-between text-xs font-semibold">
               <span>{t("active_capability_chains")}</span>
-              <Layers className="h-5 w-5 text-cyan-400" />
+              <Layers className="text-accent-400 h-5 w-5" />
             </div>
-            <p className="mt-2 text-3xl font-black text-cyan-400">{chains?.length || 0}</p>
+            <p className="text-accent-400 mt-2 text-3xl font-black">{chains?.length || 0}</p>
             <p className="text-fg-muted mt-1 text-xs">{t("dynamic_db_routing_chains")}</p>
           </div>
 
           <div className="border-border-subtle bg-bg-secondary rounded-2xl border p-5 shadow-sm">
             <div className="text-fg-muted flex items-center justify-between text-xs font-semibold">
               <span>{t("api_cost_savings")}</span>
-              <span className="rounded border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-xs font-bold text-emerald-400 uppercase">
+              <span className="border-success-500/30 bg-success-500/10 text-success-400 rounded border px-2 py-0.5 text-xs font-bold uppercase">
                 100%
               </span>
             </div>
@@ -149,14 +149,14 @@ export function AiOrchestratorClient({
               <tbody className="divide-border-subtle divide-y">
                 {freeModels.map((m) => (
                   <tr key={m.id} className="hover:bg-bg-tertiary/60 transition-colors">
-                    <td className="p-3 font-mono font-semibold text-emerald-400">{m.name}</td>
+                    <td className="text-success-400 p-3 font-mono font-semibold">{m.name}</td>
                     <td className="text-fg-primary p-3">{m.provider}</td>
                     <td className="text-fg-muted p-3 font-mono">
                       {m.context_length.toLocaleString()} {t("tokens")}
                     </td>
-                    <td className="p-3 font-mono text-emerald-400">{t("0_00_1m")}</td>
+                    <td className="text-success-400 p-3 font-mono">{t("0_00_1m")}</td>
                     <td className="p-3">
-                      <span className="inline-flex items-center rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-xs font-bold text-emerald-400">
+                      <span className="border-success-500/30 bg-success-500/10 text-success-400 inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-bold">
                         {t("active")}
                       </span>
                     </td>
@@ -178,7 +178,7 @@ export function AiOrchestratorClient({
                 key={chain.domain_name}
                 className="border-border-subtle bg-bg-tertiary rounded-xl border p-4"
               >
-                <h3 className="font-bold text-emerald-400">{chain.domain_name}</h3>
+                <h3 className="text-success-400 font-bold">{chain.domain_name}</h3>
                 <ul className="mt-2 space-y-1">
                   {(chain.models || []).map((m, idx) => {
                     const modelName = typeof m === "string" ? m : m.id || "Unknown";
@@ -217,13 +217,13 @@ export function AiOrchestratorClient({
               <tbody className="divide-border-subtle divide-y">
                 {trustScores.map((s) => (
                   <tr key={s.id} className="hover:bg-bg-tertiary/60 transition-colors">
-                    <td className="p-3 font-mono font-medium text-cyan-400">{s.model_id}</td>
+                    <td className="text-accent-400 p-3 font-mono font-medium">{s.model_id}</td>
                     <td className="text-fg-primary p-3 font-medium">{s.provider}</td>
-                    <td className="p-3 font-bold text-emerald-400">{s.trust_score}%</td>
-                    <td className="p-3 font-mono text-rose-400">
+                    <td className="text-success-400 p-3 font-bold">{s.trust_score}%</td>
+                    <td className="text-danger-400 p-3 font-mono">
                       {(s.hallucination_rate * 100).toFixed(1)}%
                     </td>
-                    <td className="p-3 font-mono text-emerald-400">{s.ethical_compliance}%</td>
+                    <td className="text-success-400 p-3 font-mono">{s.ethical_compliance}%</td>
                   </tr>
                 ))}
               </tbody>

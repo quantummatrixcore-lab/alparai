@@ -87,8 +87,8 @@ export function LiveModelsDirectory({ initialModels }: LiveModelsDirectoryProps)
               onClick={() => setFilterType("free")}
               className={`rounded-sm px-3 py-1 text-xs transition-colors ${
                 filterType === "free"
-                  ? "bg-emerald-500/20 font-medium text-emerald-400"
-                  : "text-fg-muted hover:text-emerald-400"
+                  ? "bg-success-500/20 text-success-400 font-medium"
+                  : "text-fg-muted hover:text-success-400"
               }`}
             >
               {t("free")}
@@ -198,7 +198,7 @@ export function LiveModelsDirectory({ initialModels }: LiveModelsDirectoryProps)
                   </td>
                   <td className="px-6 py-4 text-right">
                     {isFree ? (
-                      <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-1 text-[11px] font-bold tracking-wider text-emerald-400 uppercase">
+                      <span className="border-success-500/20 bg-success-500/10 text-success-400 inline-flex items-center gap-1 rounded-full border px-2 py-1 text-[11px] font-bold tracking-wider uppercase">
                         <CheckCircle2 className="h-3 w-3" /> {t("free")}
                       </span>
                     ) : (

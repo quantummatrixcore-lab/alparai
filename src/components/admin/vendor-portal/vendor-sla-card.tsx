@@ -13,13 +13,13 @@ export function VendorSlaCard({ vendor }: VendorSlaCardProps) {
   const getTierColor = (tier: string) => {
     switch (tier) {
       case "AAA":
-        return "bg-emerald-500/10 text-emerald-400 border-emerald-500/30";
+        return "bg-success-500/10 text-success-400 border-success-500/30";
       case "AA":
-        return "bg-cyan-500/10 text-cyan-400 border-cyan-500/30";
+        return "bg-accent-500/10 text-accent-400 border-accent-500/30";
       case "A":
-        return "bg-blue-500/10 text-blue-400 border-blue-500/30";
+        return "bg-brand-500/10 text-brand-400 border-brand-500/30";
       default:
-        return "bg-amber-500/10 text-amber-400 border-amber-500/30";
+        return "bg-warning-500/10 text-warning-400 border-warning-500/30";
     }
   };
 
@@ -56,17 +56,17 @@ export function VendorSlaCard({ vendor }: VendorSlaCardProps) {
       <div className="border-border-subtle mt-6 grid grid-cols-2 gap-4 border-t pt-4 sm:grid-cols-4">
         <div>
           <div className="text-fg-muted flex items-center gap-1.5 text-xs">
-            <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />
+            <CheckCircle2 className="text-success-400 h-3.5 w-3.5" />
             <span>{t("sla_uptime")}</span>
           </div>
-          <p className="mt-1 font-mono text-lg font-bold text-emerald-400">
+          <p className="text-success-400 mt-1 font-mono text-lg font-bold">
             {vendor.slaUptimePercent}%
           </p>
         </div>
 
         <div>
           <div className="text-fg-muted flex items-center gap-1.5 text-xs">
-            <Zap className="h-3.5 w-3.5 text-amber-400" />
+            <Zap className="text-warning-400 h-3.5 w-3.5" />
             <span>{t("avg_latency")}</span>
           </div>
           <p className="text-fg-primary mt-1 font-mono text-lg font-bold">
@@ -76,20 +76,20 @@ export function VendorSlaCard({ vendor }: VendorSlaCardProps) {
 
         <div>
           <div className="text-fg-muted flex items-center gap-1.5 text-xs">
-            <AlertTriangle className="h-3.5 w-3.5 text-rose-400" />
+            <AlertTriangle className="text-danger-400 h-3.5 w-3.5" />
             <span>{t("penalty")}</span>
           </div>
-          <p className="mt-1 font-mono text-lg font-bold text-rose-400">
+          <p className="text-danger-400 mt-1 font-mono text-lg font-bold">
             -{vendor.incidentPenalty.toFixed(1)}
           </p>
         </div>
 
         <div>
           <div className="text-fg-muted flex items-center gap-1.5 text-xs">
-            <Activity className="h-3.5 w-3.5 text-cyan-400" />
+            <Activity className="text-accent-400 h-3.5 w-3.5" />
             <span>{t("resp_bonus")}</span>
           </div>
-          <p className="mt-1 font-mono text-lg font-bold text-cyan-400">
+          <p className="text-accent-400 mt-1 font-mono text-lg font-bold">
             +{vendor.responseRateBonus.toFixed(1)}
           </p>
         </div>

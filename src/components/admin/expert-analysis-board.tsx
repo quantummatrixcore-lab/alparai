@@ -26,16 +26,16 @@ import {
 import { useTranslations } from "next-intl";
 
 const ICON_MAP: Record<string, React.ReactNode> = {
-  "ai-ecosystem-architect": <Brain className="h-6 w-6 text-purple-400" />,
-  "silicon-valley-startup-team": <Rocket className="h-6 w-6 text-amber-400" />,
-  "vc-angel-investor": <DollarSign className="h-6 w-6 text-emerald-400" />,
-  "advisory-board": <Users className="h-6 w-6 text-blue-400" />,
+  "ai-ecosystem-architect": <Brain className="text-brand-400 h-6 w-6" />,
+  "silicon-valley-startup-team": <Rocket className="text-warning-400 h-6 w-6" />,
+  "vc-angel-investor": <DollarSign className="text-success-400 h-6 w-6" />,
+  "advisory-board": <Users className="text-brand-400 h-6 w-6" />,
   "growth-gtm-hacker": <Sparkles className="h-6 w-6 text-pink-400" />,
-  "regulatory-legal-assessor": <Scale className="h-6 w-6 text-cyan-400" />,
-  "futurist-strategist": <Eye className="h-6 w-6 text-indigo-400" />,
-  "red-team-security": <ShieldAlert className="h-6 w-6 text-rose-400" />,
-  "osint-analyst": <Radio className="h-6 w-6 text-yellow-400" />,
-  "social-media-viral-strategist": <Share2 className="h-6 w-6 text-teal-400" />,
+  "regulatory-legal-assessor": <Scale className="text-accent-400 h-6 w-6" />,
+  "futurist-strategist": <Eye className="text-brand-400 h-6 w-6" />,
+  "red-team-security": <ShieldAlert className="text-danger-400 h-6 w-6" />,
+  "osint-analyst": <Radio className="text-warning-400 h-6 w-6" />,
+  "social-media-viral-strategist": <Share2 className="text-accent-400 h-6 w-6" />,
 };
 
 export function ExpertAnalysisBoard() {
@@ -99,10 +99,10 @@ export function ExpertAnalysisBoard() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="flex items-center gap-3 text-3xl font-bold tracking-tight text-white">
-            <Users className="h-8 w-8 text-cyan-400" />
+            <Users className="text-accent-400 h-8 w-8" />
             <span>{t("multi_perspective_expert_board_analysis")}</span>
           </h1>
-          <p className="mt-2 text-slate-400">
+          <p className="text-fg-muted mt-2">
             <span>{t("simulated_10_persona_c_suite_specialist_")}</span>
           </p>
         </div>
@@ -131,41 +131,41 @@ export function ExpertAnalysisBoard() {
           return (
             <div
               key={persona.id}
-              className="flex flex-col justify-between space-y-4 rounded-xl border border-slate-800 bg-slate-900/80 p-6 shadow-sm transition hover:border-slate-700 hover:shadow-md"
+              className="border-border-subtle bg-bg-elevated/80 hover:border-border-strong flex flex-col justify-between space-y-4 rounded-xl border p-6 shadow-sm transition hover:shadow-md"
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="rounded-lg border border-slate-700 bg-slate-800/60 p-2.5">
-                      {ICON_MAP[persona.id] ?? <Brain className="h-6 w-6 text-cyan-400" />}
+                    <div className="border-border-strong rounded-lg border bg-slate-800/60 p-2.5">
+                      {ICON_MAP[persona.id] ?? <Brain className="text-accent-400 h-6 w-6" />}
                     </div>
                     <div>
                       <h3 className="text-base font-bold text-white">
                         <span>{persona.name}</span>
                       </h3>
-                      <p className="font-mono text-xs text-slate-400">
+                      <p className="text-fg-muted font-mono text-xs">
                         <span>{persona.roleTitle}</span>
                       </p>
                     </div>
                   </div>
                   {report && (
-                    <span className="flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-400">
+                    <span className="border-success-500/30 bg-success-500/10 text-success-400 flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-bold">
                       <CheckCircle2 className="h-3 w-3" /> Ready
                     </span>
                   )}
                 </div>
 
-                <p className="line-clamp-2 text-xs text-slate-300">
+                <p className="text-fg-secondary line-clamp-2 text-xs">
                   <span>{persona.focusArea}</span>
                 </p>
 
                 {report && (
-                  <div className="mt-3 space-y-3 rounded-xl border border-white/10 bg-zinc-950/80 p-4 text-xs backdrop-blur-xl">
-                    <div className="flex items-center justify-between border-b border-white/10 pb-2 font-mono text-[10px] text-slate-400">
-                      <span className="flex items-center gap-1 font-bold text-cyan-300">
-                        <Bot className="h-3.5 w-3.5 text-cyan-400" /> {report.modelUsed}
+                  <div className="bg-bg-tertiary/80 mt-3 space-y-3 rounded-xl border border-white/10 p-4 text-xs backdrop-blur-xl">
+                    <div className="text-fg-muted flex items-center justify-between border-b border-white/10 pb-2 font-mono text-[10px]">
+                      <span className="text-accent-300 flex items-center gap-1 font-bold">
+                        <Bot className="text-accent-400 h-3.5 w-3.5" /> {report.modelUsed}
                       </span>
-                      <span className="flex items-center gap-1 text-slate-400">
+                      <span className="text-fg-muted flex items-center gap-1">
                         <Clock className="h-3 w-3" />
                         {mounted &&
                           new Date(report.timestamp).toLocaleTimeString([], {
@@ -182,11 +182,11 @@ export function ExpertAnalysisBoard() {
 
                     {/* Key Findings section */}
                     {report.keyFindings && report.keyFindings.length > 0 && (
-                      <div className="space-y-1.5 rounded-lg border border-purple-500/20 bg-purple-950/20 p-2.5">
-                        <div className="font-mono text-[10px] font-bold tracking-wider text-purple-300 uppercase">
+                      <div className="border-brand-500/20 space-y-1.5 rounded-lg border bg-purple-950/20 p-2.5">
+                        <div className="text-brand-300 font-mono text-[10px] font-bold tracking-wider uppercase">
                           Strategic Findings
                         </div>
-                        <ul className="list-disc space-y-1 pl-3.5 text-[11px] text-purple-200/90">
+                        <ul className="text-brand-200/90 list-disc space-y-1 pl-3.5 text-[11px]">
                           {report.keyFindings.map((finding, idx) => (
                             <li key={idx}>{finding}</li>
                           ))}
@@ -196,11 +196,11 @@ export function ExpertAnalysisBoard() {
 
                     {/* Recommended Actions section */}
                     {report.recommendedActions && report.recommendedActions.length > 0 && (
-                      <div className="space-y-1.5 rounded-lg border border-emerald-500/20 bg-emerald-950/20 p-2.5">
-                        <div className="font-mono text-[10px] font-bold tracking-wider text-emerald-300 uppercase">
+                      <div className="border-success-500/20 space-y-1.5 rounded-lg border bg-emerald-950/20 p-2.5">
+                        <div className="text-success-300 font-mono text-[10px] font-bold tracking-wider uppercase">
                           Recommended Actions
                         </div>
-                        <ul className="list-disc space-y-1 pl-3.5 text-[11px] text-emerald-200/90">
+                        <ul className="text-success-200/90 list-disc space-y-1 pl-3.5 text-[11px]">
                           {report.recommendedActions.map((action, idx) => (
                             <li key={idx}>{action}</li>
                           ))}
@@ -210,15 +210,15 @@ export function ExpertAnalysisBoard() {
 
                     {/* Dynamic Percentage Statistic Nodes (Confidence Score) */}
                     <div className="mt-3 border-t border-white/10 pt-3">
-                      <div className="mb-1 flex items-center justify-between font-mono text-[10px] text-slate-400">
+                      <div className="text-fg-muted mb-1 flex items-center justify-between font-mono text-[10px]">
                         <span>{t("confidence_score", { defaultValue: "Confidence Score" })}</span>
-                        <span className="font-bold text-emerald-400">
+                        <span className="text-success-400 font-bold">
                           {report.confidenceScore}%
                         </span>
                       </div>
                       <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
                         <div
-                          className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-emerald-400 transition-all duration-1000 ease-out"
+                          className="to-success-400 h-full rounded-full bg-gradient-to-r from-cyan-500 transition-all duration-1000 ease-out"
                           style={{ width: `${report.confidenceScore}%` }}
                         />
                       </div>
@@ -227,15 +227,15 @@ export function ExpertAnalysisBoard() {
                 )}
               </div>
 
-              <div className="flex items-center justify-between border-t border-slate-800/80 pt-3">
-                <span className="rounded border border-cyan-800/60 bg-cyan-950/60 px-2 py-0.5 font-mono text-[11px] text-cyan-400">
+              <div className="border-border-subtle/80 flex items-center justify-between border-t pt-3">
+                <span className="border-accent-800/60 text-accent-400 rounded border bg-cyan-950/60 px-2 py-0.5 font-mono text-[11px]">
                   <span>{t("chain")}</span> <span>{persona.capabilityDomain}</span>
                 </span>
                 <button
                   type="button"
                   onClick={() => handleRunSingle(persona.id)}
                   disabled={isLoading}
-                  className="flex items-center gap-1.5 rounded-md bg-cyan-600 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-cyan-500 active:scale-95 disabled:opacity-50"
+                  className="bg-accent-600 hover:bg-accent-500 flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold text-white transition active:scale-95 disabled:opacity-50"
                 >
                   {isLoading ? (
                     <Loader2 className="h-3.5 w-3.5 animate-spin" />

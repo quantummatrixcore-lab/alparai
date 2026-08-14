@@ -257,7 +257,7 @@ export function PitchDeckViewer() {
     <div className="selection:bg-brand-500 relative flex h-screen w-screen flex-col overflow-hidden bg-[#0a0a0f] text-slate-100 antialiased selection:text-white">
       {/* Background ambient lighting effects */}
       <div className="bg-brand-600/10 pointer-events-none absolute -top-40 left-1/4 h-[600px] w-[600px] rounded-full blur-[150px]" />
-      <div className="pointer-events-none absolute right-1/4 -bottom-40 h-[500px] w-[500px] rounded-full bg-purple-600/10 blur-[140px]" />
+      <div className="bg-brand-600/10 pointer-events-none absolute right-1/4 -bottom-40 h-[500px] w-[500px] rounded-full blur-[140px]" />
 
       {/* Top Header Navigation Bar */}
       <header className="relative z-30 flex shrink-0 items-center justify-between border-b border-white/10 bg-[#0a0a0f]/80 px-4 py-3 backdrop-blur-xl sm:px-8">
@@ -288,7 +288,7 @@ export function PitchDeckViewer() {
               />
             ))}
           </div>
-          <span className="ml-2 font-mono text-xs font-bold text-slate-400">
+          <span className="text-fg-muted ml-2 font-mono text-xs font-bold">
             <span className="text-white">{SLIDES_META[currentSlide - 1]?.numberStr}</span> /{" "}
             {TOTAL_SLIDES}
           </span>
@@ -298,11 +298,11 @@ export function PitchDeckViewer() {
         <div className="flex items-center gap-2">
           <button
             onClick={handleShare}
-            className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-slate-300 transition-colors hover:bg-white/10 hover:text-white"
+            className="text-fg-secondary flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium transition-colors hover:bg-white/10 hover:text-white"
             title="Copy Deck URL"
           >
             {copiedLink ? (
-              <Check className="h-3.5 w-3.5 text-emerald-400" />
+              <Check className="text-success-400 h-3.5 w-3.5" />
             ) : (
               <Share2 className="h-3.5 w-3.5" />
             )}
@@ -314,7 +314,7 @@ export function PitchDeckViewer() {
             className={`flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors ${
               showGridView
                 ? "border-brand-500 bg-brand-500/20 text-brand-300"
-                : "border-white/10 bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white"
+                : "text-fg-secondary border-white/10 bg-white/5 hover:bg-white/10 hover:text-white"
             }`}
             title="Grid Overview (G)"
           >
@@ -324,7 +324,7 @@ export function PitchDeckViewer() {
 
           <button
             onClick={toggleFullscreen}
-            className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 p-1.5 text-xs font-medium text-slate-300 transition-colors hover:bg-white/10 hover:text-white"
+            className="text-fg-secondary flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 p-1.5 text-xs font-medium transition-colors hover:bg-white/10 hover:text-white"
             title="Fullscreen (F)"
           >
             {isFullscreen ? (
@@ -362,11 +362,11 @@ export function PitchDeckViewer() {
                 <span className="bg-brand-500/20 text-brand-300 border-brand-500/30 flex h-7 items-center justify-center rounded-lg border px-3 font-mono text-xs font-bold">
                   SLIDE {SLIDES_META[currentSlide - 1]?.numberStr}
                 </span>
-                <span className="text-xs font-semibold tracking-wider text-slate-400 uppercase">
+                <span className="text-fg-muted text-xs font-semibold tracking-wider uppercase">
                   {SLIDES_META[currentSlide - 1]?.category}
                 </span>
               </div>
-              <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-slate-300">
+              <span className="text-fg-secondary rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium">
                 {SLIDES_META[currentSlide - 1]?.badge}
               </span>
             </div>
@@ -388,10 +388,10 @@ export function PitchDeckViewer() {
             </div>
 
             {/* Slide Footer Info */}
-            <div className="flex shrink-0 items-center justify-between border-t border-white/10 pt-6 text-xs text-slate-500">
+            <div className="text-fg-disabled flex shrink-0 items-center justify-between border-t border-white/10 pt-6 text-xs">
               <div className="flex items-center gap-2">
                 <Shield className="text-brand-400 h-3.5 w-3.5" />
-                <span className="font-semibold text-slate-400">ALPAR AI</span>
+                <span className="text-fg-muted font-semibold">ALPAR AI</span>
                 <span>• Confidential Investment Memorandum</span>
               </div>
               <div className="hidden items-center gap-4 sm:flex">
@@ -429,7 +429,7 @@ export function PitchDeckViewer() {
         <div className="mx-6 hidden max-w-xs flex-1 items-center gap-3 sm:flex">
           <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/10">
             <div
-              className="from-brand-500 h-full bg-gradient-to-r to-purple-400 transition-all duration-300"
+              className="from-brand-500 to-brand-400 h-full bg-gradient-to-r transition-all duration-300"
               style={{ width: `${(currentSlide / TOTAL_SLIDES) * 100}%` }}
             />
           </div>
@@ -440,7 +440,7 @@ export function PitchDeckViewer() {
             href="https://alparai.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-brand-400 flex items-center gap-1 text-xs text-slate-400 transition-colors"
+            className="hover:text-brand-400 text-fg-muted flex items-center gap-1 text-xs transition-colors"
           >
             <span>alparai.com</span>
             <ArrowRight className="h-3 w-3" />
@@ -460,11 +460,11 @@ export function PitchDeckViewer() {
             <div className="flex items-center justify-between border-b border-white/10 pb-6">
               <div>
                 <h2 className="text-xl font-bold text-white">Slide Navigator</h2>
-                <p className="text-xs text-slate-400">Select any slide to jump directly</p>
+                <p className="text-fg-muted text-xs">Select any slide to jump directly</p>
               </div>
               <button
                 onClick={() => setShowGridView(false)}
-                className="rounded-xl border border-white/10 bg-white/5 p-2 text-slate-300 transition-colors hover:bg-white/10 hover:text-white"
+                className="text-fg-secondary rounded-xl border border-white/10 bg-white/5 p-2 transition-colors hover:bg-white/10 hover:text-white"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -485,12 +485,12 @@ export function PitchDeckViewer() {
                     <span className="text-brand-400 font-mono text-xs font-bold">
                       SLIDE {s.numberStr}
                     </span>
-                    <span className="text-[10px] text-slate-400">{s.category}</span>
+                    <span className="text-fg-muted text-[10px]">{s.category}</span>
                   </div>
                   <h3 className="group-hover:text-brand-300 line-clamp-2 text-sm font-bold text-white transition-colors">
                     {s.title}
                   </h3>
-                  <p className="mt-2 line-clamp-2 text-xs text-slate-400">{s.subtitle}</p>
+                  <p className="text-fg-muted mt-2 line-clamp-2 text-xs">{s.subtitle}</p>
                 </button>
               ))}
             </div>
@@ -514,27 +514,27 @@ function Slide1() {
 
         <h1 className="text-3xl leading-tight font-black tracking-tight text-white sm:text-5xl">
           Trust Infrastructure for{" "}
-          <span className="from-brand-400 bg-gradient-to-r via-purple-300 to-indigo-400 bg-clip-text text-transparent">
+          <span className="from-brand-400 via-brand-300 to-brand-400 bg-gradient-to-r bg-clip-text text-transparent">
             AI Accountability
           </span>
         </h1>
 
-        <p className="text-base leading-relaxed font-light text-slate-300 sm:text-lg">
+        <p className="text-fg-secondary text-base leading-relaxed font-light sm:text-lg">
           Cryptographic verification, real-time auditability, and regulatory compliance for
           enterprise autonomous AI agent deployments.
         </p>
 
         <div className="space-y-2 rounded-2xl border border-white/10 bg-white/5 p-4">
           <p className="text-brand-400 text-xs font-bold tracking-wider uppercase">Core Mission</p>
-          <p className="text-sm leading-relaxed text-slate-300">
+          <p className="text-fg-secondary text-sm leading-relaxed">
             As autonomous AI agents make high-stakes operational and financial decisions, ALPAR AI
             acts as the immutable safety & audit layer preventing unverified AI failures.
           </p>
         </div>
 
         <div className="flex items-center gap-4 pt-2">
-          <div className="flex items-center gap-2 font-mono text-xs text-slate-400">
-            <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+          <div className="text-fg-muted flex items-center gap-2 font-mono text-xs">
+            <CheckCircle2 className="text-success-400 h-4 w-4" />
             <span>Tagline: &quot;Trust, Verified in Real-Time.&quot;</span>
           </div>
         </div>
@@ -542,36 +542,36 @@ function Slide1() {
 
       <div className="flex justify-center lg:col-span-5">
         <div className="border-brand-500/30 from-brand-950/40 relative w-full max-w-sm rounded-3xl border bg-gradient-to-b to-slate-950/60 p-6 shadow-2xl backdrop-blur-xl">
-          <div className="absolute -top-3 left-1/2 flex -translate-x-1/2 items-center gap-1.5 rounded-full border border-emerald-500/40 bg-emerald-950/80 px-3 py-0.5 font-mono text-[10px] font-bold text-emerald-400">
-            <span className="h-2 w-2 animate-ping rounded-full bg-emerald-400" />
+          <div className="border-success-500/40 text-success-400 absolute -top-3 left-1/2 flex -translate-x-1/2 items-center gap-1.5 rounded-full border bg-emerald-950/80 px-3 py-0.5 font-mono text-[10px] font-bold">
+            <span className="bg-success-400 h-2 w-2 animate-ping rounded-full" />
             REAL-TIME CRYPTO SEAL VERIFIED
           </div>
 
           <div className="mt-4 space-y-4">
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
-              <span className="font-mono text-xs text-slate-400">Agent Execution Hash</span>
+              <span className="text-fg-muted font-mono text-xs">Agent Execution Hash</span>
               <span className="text-brand-300 font-mono text-xs font-bold">0x7f8a...e9b2</span>
             </div>
-            <div className="space-y-2 font-mono text-xs text-slate-300">
+            <div className="text-fg-secondary space-y-2 font-mono text-xs">
               <div className="flex justify-between">
-                <span className="text-slate-500">Latency Overhead:</span>
-                <span className="font-bold text-emerald-400">0.18ms</span>
+                <span className="text-fg-disabled">Latency Overhead:</span>
+                <span className="text-success-400 font-bold">0.18ms</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-slate-500">PII Masking:</span>
-                <span className="font-bold text-emerald-400">100% Zero Leak</span>
+                <span className="text-fg-disabled">PII Masking:</span>
+                <span className="text-success-400 font-bold">100% Zero Leak</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-slate-500">Ledger Proof:</span>
-                <span className="font-bold text-purple-300">Append-Only SHA256</span>
+                <span className="text-fg-disabled">Ledger Proof:</span>
+                <span className="text-brand-300 font-bold">Append-Only SHA256</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-slate-500">EU AI Act Readiness:</span>
+                <span className="text-fg-disabled">EU AI Act Readiness:</span>
                 <span className="text-brand-300 font-bold">Art. 12 & 14 Compliant</span>
               </div>
             </div>
 
-            <div className="rounded-xl border border-white/5 bg-black/40 p-3 font-mono text-[11px] leading-relaxed text-slate-400">
+            <div className="text-fg-muted rounded-xl border border-white/5 bg-black/40 p-3 font-mono text-[11px] leading-relaxed">
               &quot;proof&quot;:
               &quot;sha256-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855&quot;,
               <br />
@@ -591,41 +591,41 @@ function Slide2() {
         <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
           Autonomous AI Deployment Outpaces Trust & Compliance Capabilities
         </h2>
-        <p className="text-sm text-slate-300 sm:text-base">
+        <p className="text-fg-secondary text-sm sm:text-base">
           Enterprise adoption of autonomous AI is severely blocked by three existential operational
           threats.
         </p>
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-        <div className="space-y-3 rounded-2xl border border-red-500/20 bg-red-950/10 p-6">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-red-500/30 bg-red-500/20 text-red-400">
+        <div className="border-danger-500/20 space-y-3 rounded-2xl border bg-red-950/10 p-6">
+          <div className="border-danger-500/30 bg-danger-500/20 text-danger-400 flex h-10 w-10 items-center justify-center rounded-xl border">
             <AlertTriangle className="h-5 w-5" />
           </div>
           <h3 className="text-base font-bold text-white">1. Hallucination & Unbounded Actions</h3>
-          <p className="text-xs leading-relaxed text-slate-300">
+          <p className="text-fg-secondary text-xs leading-relaxed">
             AI agents make unverified financial, legal, and operational decisions without real-time
             boundary verification or runtime containment.
           </p>
         </div>
 
-        <div className="space-y-3 rounded-2xl border border-amber-500/20 bg-amber-950/10 p-6">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-amber-500/30 bg-amber-500/20 text-amber-400">
+        <div className="border-warning-500/20 space-y-3 rounded-2xl border bg-amber-950/10 p-6">
+          <div className="border-warning-500/30 bg-warning-500/20 text-warning-400 flex h-10 w-10 items-center justify-center rounded-xl border">
             <Lock className="h-5 w-5" />
           </div>
           <h3 className="text-base font-bold text-white">2. PII & Sensitive Data Leaks</h3>
-          <p className="text-xs leading-relaxed text-slate-300">
+          <p className="text-fg-secondary text-xs leading-relaxed">
             Unsanitized customer data entering model prompts creates massive GDPR, KVKK, and
             regulatory liability for enterprise deployers.
           </p>
         </div>
 
-        <div className="space-y-3 rounded-2xl border border-purple-500/20 bg-purple-950/10 p-6">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-purple-500/30 bg-purple-500/20 text-purple-400">
+        <div className="border-brand-500/20 space-y-3 rounded-2xl border bg-purple-950/10 p-6">
+          <div className="border-brand-500/30 bg-brand-500/20 text-brand-400 flex h-10 w-10 items-center justify-center rounded-xl border">
             <Shield className="h-5 w-5" />
           </div>
           <h3 className="text-base font-bold text-white">3. Zero Legal Accountability</h3>
-          <p className="text-xs leading-relaxed text-slate-300">
+          <p className="text-fg-secondary text-xs leading-relaxed">
             Black-box AI execution leaves organizations legally defenseless during post-incident
             court investigations and compliance audits.
           </p>
@@ -641,21 +641,19 @@ function Slide2() {
             <p className="text-xs font-bold tracking-wider text-white uppercase">
               Average Failure Cost
             </p>
-            <p className="text-xs text-slate-400">
+            <p className="text-fg-muted text-xs">
               Estimated enterprise cost per major unmonitored AI compliance failure.
             </p>
           </div>
         </div>
 
         <div className="flex items-center gap-4">
-          <span className="text-4xl font-black tracking-tight text-purple-400 sm:text-5xl">
-            78%
-          </span>
+          <span className="text-brand-400 text-4xl font-black tracking-tight sm:text-5xl">78%</span>
           <div>
             <p className="text-xs font-bold tracking-wider text-white uppercase">
               Auditability Barrier
             </p>
-            <p className="text-xs text-slate-400">
+            <p className="text-fg-muted text-xs">
               Enterprises citing lack of auditability as their #1 barrier to deploying autonomous
               agents.
             </p>
@@ -673,19 +671,19 @@ function Slide3() {
         <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
           Real-Time Accountability Infrastructure for the AI Era
         </h2>
-        <p className="text-sm text-slate-300 sm:text-base">
+        <p className="text-fg-secondary text-sm sm:text-base">
           ALPAR AI provides an enterprise-grade trust engine sitting seamlessly between user
           prompts, autonomous agents, and core backend infrastructure.
         </p>
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-        <div className="space-y-2 rounded-2xl border border-emerald-500/20 bg-emerald-950/10 p-5">
-          <div className="flex items-center gap-2 text-sm font-bold text-emerald-400">
+        <div className="border-success-500/20 space-y-2 rounded-2xl border bg-emerald-950/10 p-5">
+          <div className="text-success-400 flex items-center gap-2 text-sm font-bold">
             <Zap className="h-4 w-4" />
             <span>Real-Time PII Sanitization</span>
           </div>
-          <p className="text-xs leading-relaxed text-slate-300">
+          <p className="text-fg-secondary text-xs leading-relaxed">
             Automatic neural and regex PII masking before sensitive prompts ever reach external LLM
             endpoints.
           </p>
@@ -696,18 +694,18 @@ function Slide3() {
             <Lock className="h-4 w-4" />
             <span>Immutable Incident Ledger</span>
           </div>
-          <p className="text-xs leading-relaxed text-slate-300">
+          <p className="text-fg-secondary text-xs leading-relaxed">
             Cryptographically signed execution records stored in append-only PostgreSQL tables for
             post-incident legal defense.
           </p>
         </div>
 
-        <div className="space-y-2 rounded-2xl border border-indigo-500/20 bg-indigo-950/10 p-5">
-          <div className="flex items-center gap-2 text-sm font-bold text-indigo-400">
+        <div className="border-brand-500/20 space-y-2 rounded-2xl border bg-indigo-950/10 p-5">
+          <div className="text-brand-400 flex items-center gap-2 text-sm font-bold">
             <Shield className="h-4 w-4" />
             <span>Automated Guardrails</span>
           </div>
-          <p className="text-xs leading-relaxed text-slate-300">
+          <p className="text-fg-secondary text-xs leading-relaxed">
             Instant runtime containment and cross-audit adjudication for non-compliant model outputs
             before execution.
           </p>
@@ -716,28 +714,28 @@ function Slide3() {
 
       {/* Architectural Flow Diagram */}
       <div className="space-y-4 rounded-2xl border border-white/10 bg-black/40 p-6">
-        <p className="text-center text-xs font-bold tracking-wider text-slate-400 uppercase">
+        <p className="text-fg-muted text-center text-xs font-bold tracking-wider uppercase">
           ALPAR AI Runtime Pipeline Architecture
         </p>
         <div className="grid grid-cols-2 gap-3 text-center font-mono text-xs sm:grid-cols-5">
           <div className="flex flex-col justify-center rounded-xl border border-white/10 bg-white/5 p-3">
-            <span className="text-[10px] text-slate-400">Step 1</span>
+            <span className="text-fg-muted text-[10px]">Step 1</span>
             <span className="mt-1 font-bold text-white">User / Agent Prompt</span>
           </div>
-          <div className="flex flex-col justify-center rounded-xl border border-emerald-500/40 bg-emerald-500/10 p-3">
-            <span className="text-[10px] text-emerald-400">Step 2 (0.18ms)</span>
+          <div className="border-success-500/40 bg-success-500/10 flex flex-col justify-center rounded-xl border p-3">
+            <span className="text-success-400 text-[10px]">Step 2 (0.18ms)</span>
             <span className="mt-1 font-bold text-white">PII Guardian</span>
           </div>
           <div className="border-brand-500/40 bg-brand-500/10 flex flex-col justify-center rounded-xl border p-3">
             <span className="text-brand-400 text-[10px]">Step 3</span>
             <span className="mt-1 font-bold text-white">LLM Execution</span>
           </div>
-          <div className="flex flex-col justify-center rounded-xl border border-purple-500/40 bg-purple-500/10 p-3">
-            <span className="text-[10px] text-purple-400">Step 4</span>
+          <div className="border-brand-500/40 bg-brand-500/10 flex flex-col justify-center rounded-xl border p-3">
+            <span className="text-brand-400 text-[10px]">Step 4</span>
             <span className="mt-1 font-bold text-white">Crypto Ledger</span>
           </div>
-          <div className="col-span-2 flex flex-col justify-center rounded-xl border border-indigo-500/40 bg-indigo-500/10 p-3 sm:col-span-1">
-            <span className="text-[10px] text-indigo-400">Step 5</span>
+          <div className="border-brand-500/40 bg-brand-500/10 col-span-2 flex flex-col justify-center rounded-xl border p-3 sm:col-span-1">
+            <span className="text-brand-400 text-[10px]">Step 5</span>
             <span className="mt-1 font-bold text-white">Output Verified</span>
           </div>
         </div>
@@ -753,7 +751,7 @@ function Slide4() {
         <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
           The Regulatory Enforcement Window is Open (EU AI Act & Global Mandates)
         </h2>
-        <p className="text-sm text-slate-300 sm:text-base">
+        <p className="text-fg-secondary text-sm sm:text-base">
           The EU AI Act imposes strict, legally binding auditability requirements for High-Risk AI
           systems with severe non-compliance penalties.
         </p>
@@ -765,40 +763,40 @@ function Slide4() {
             <Scale className="h-5 w-5" />
             <span>EU AI Act Article 12 (Record-Keeping)</span>
           </div>
-          <p className="text-xs leading-relaxed text-slate-300">
+          <p className="text-fg-secondary text-xs leading-relaxed">
             Explicitly mandates continuous, automated event logging for high-risk AI systems to
             ensure traceability throughout their lifecycle.
           </p>
         </div>
 
-        <div className="space-y-3 rounded-2xl border border-purple-500/30 bg-purple-950/20 p-6">
-          <div className="flex items-center gap-2 font-bold text-purple-400">
+        <div className="border-brand-500/30 space-y-3 rounded-2xl border bg-purple-950/20 p-6">
+          <div className="text-brand-400 flex items-center gap-2 font-bold">
             <Users className="h-5 w-5" />
             <span>EU AI Act Article 14 (Human Oversight)</span>
           </div>
-          <p className="text-xs leading-relaxed text-slate-300">
+          <p className="text-fg-secondary text-xs leading-relaxed">
             Requires built-in real-time monitoring and intervention tools so human overseers can
             detect anomalies and override AI actions.
           </p>
         </div>
       </div>
 
-      <div className="flex flex-col items-center justify-between gap-6 rounded-2xl border border-amber-500/30 bg-amber-950/10 p-6 sm:flex-row">
+      <div className="border-warning-500/30 flex flex-col items-center justify-between gap-6 rounded-2xl border bg-amber-950/10 p-6 sm:flex-row">
         <div className="space-y-1">
-          <span className="text-xs font-bold tracking-wider text-amber-400 uppercase">
+          <span className="text-warning-400 text-xs font-bold tracking-wider uppercase">
             Maximum Statutory Penalty
           </span>
           <p className="text-2xl font-black text-white sm:text-3xl">
             Up to €35,000,000 or 7% of Global Turnover
           </p>
-          <p className="text-xs text-slate-400">
+          <p className="text-fg-muted text-xs">
             Compliance is no longer optional—it is a non-negotiable prerequisite for enterprise
             market entry.
           </p>
         </div>
-        <div className="shrink-0 rounded-xl border border-amber-500/40 bg-amber-500/20 px-4 py-3 text-center">
-          <span className="block text-xl font-bold text-amber-300">2024–2026</span>
-          <span className="text-[10px] font-semibold text-amber-400 uppercase">
+        <div className="border-warning-500/40 bg-warning-500/20 shrink-0 rounded-xl border px-4 py-3 text-center">
+          <span className="text-warning-300 block text-xl font-bold">2024–2026</span>
+          <span className="text-warning-400 text-[10px] font-semibold uppercase">
             Enforcement Window
           </span>
         </div>
@@ -814,7 +812,7 @@ function Slide5() {
         <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
           A $45B+ Infrastructure Opportunity at the Intersection of Security & AI
         </h2>
-        <p className="text-sm text-slate-300 sm:text-base">
+        <p className="text-fg-secondary text-sm sm:text-base">
           ALPAR AI targets the rapidly emerging market for enterprise AI governance, compliance, and
           audit observability.
         </p>
@@ -827,7 +825,7 @@ function Slide5() {
             TAM (Total Addressable)
           </span>
           <p className="text-4xl font-black tracking-tight text-white">$48.5B</p>
-          <p className="text-xs leading-relaxed text-slate-400">
+          <p className="text-fg-muted text-xs leading-relaxed">
             Global Enterprise AI Governance, Security & Observability Market projected by 2028.
           </p>
         </div>
@@ -838,24 +836,24 @@ function Slide5() {
             SAM (Serviceable Addressable)
           </span>
           <p className="text-brand-300 text-4xl font-black tracking-tight">$12.2B</p>
-          <p className="text-xs leading-relaxed text-slate-300">
+          <p className="text-fg-secondary text-xs leading-relaxed">
             Autonomous AI Agent Guardrail & Compliance Infrastructure market segment.
           </p>
         </div>
 
-        <div className="relative space-y-3 overflow-hidden rounded-2xl border border-purple-500/40 bg-purple-950/30 p-6">
-          <div className="absolute top-0 right-0 h-16 w-16 rounded-bl-3xl bg-purple-500/30" />
-          <span className="text-xs font-bold tracking-wider text-purple-300 uppercase">
+        <div className="border-brand-500/40 relative space-y-3 overflow-hidden rounded-2xl border bg-purple-950/30 p-6">
+          <div className="bg-brand-500/30 absolute top-0 right-0 h-16 w-16 rounded-bl-3xl" />
+          <span className="text-brand-300 text-xs font-bold tracking-wider uppercase">
             SOM (Serviceable Obtainable)
           </span>
-          <p className="text-4xl font-black tracking-tight text-purple-300">$450M</p>
-          <p className="text-xs leading-relaxed text-slate-300">
+          <p className="text-brand-300 text-4xl font-black tracking-tight">$450M</p>
+          <p className="text-fg-secondary text-xs leading-relaxed">
             High-risk European & Global enterprise early adopters targeted within 36 months.
           </p>
         </div>
       </div>
 
-      <div className="rounded-2xl border border-white/10 bg-black/30 p-4 text-center text-xs text-slate-400">
+      <div className="text-fg-muted rounded-2xl border border-white/10 bg-black/30 p-4 text-center text-xs">
         Source: Gartner AI Security & Risk Management Telemetry Forecast (2025–2028)
       </div>
     </div>
@@ -869,7 +867,7 @@ function Slide6() {
         <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
           Enterprise-Grade Architecture Built for Speed and Security
         </h2>
-        <p className="text-sm text-slate-300 sm:text-base">
+        <p className="text-fg-secondary text-sm sm:text-base">
           Engineered on Next.js 15, PostgreSQL/Supabase RLS, and cryptographic verification modules
           with sub-millisecond execution overhead.
         </p>
@@ -881,34 +879,34 @@ function Slide6() {
             <Cpu className="h-4 w-4" />
             <span>PII Guardian Pipeline</span>
           </div>
-          <p className="text-xs leading-relaxed text-slate-300">
+          <p className="text-fg-secondary text-xs leading-relaxed">
             Zero-leak regex + neural sanitization layer operating in under 0.2ms.
           </p>
         </div>
 
         <div className="space-y-2 rounded-2xl border border-white/10 bg-white/5 p-5">
-          <div className="flex items-center gap-2 text-sm font-bold text-purple-400">
+          <div className="text-brand-400 flex items-center gap-2 text-sm font-bold">
             <Lock className="h-4 w-4" />
             <span>Audit Ledger Engine</span>
           </div>
-          <p className="text-xs leading-relaxed text-slate-300">
+          <p className="text-fg-secondary text-xs leading-relaxed">
             Append-only cryptographic trace keeping complete immutable historical audit logs.
           </p>
         </div>
 
         <div className="space-y-2 rounded-2xl border border-white/10 bg-white/5 p-5">
-          <div className="flex items-center gap-2 text-sm font-bold text-emerald-400">
+          <div className="text-success-400 flex items-center gap-2 text-sm font-bold">
             <Shield className="h-4 w-4" />
             <span>Server Action Isolation</span>
           </div>
-          <p className="text-xs leading-relaxed text-slate-300">
+          <p className="text-fg-secondary text-xs leading-relaxed">
             Type-safe Next.js mutations strictly enforced with Row Level Security (RLS).
           </p>
         </div>
       </div>
 
       <div className="border-brand-500/30 bg-brand-950/20 flex flex-wrap items-center justify-between gap-4 rounded-2xl border p-6 font-mono text-xs">
-        <div className="flex items-center gap-2 text-emerald-400">
+        <div className="text-success-400 flex items-center gap-2">
           <CheckCircle2 className="h-4 w-4" />
           <span>100% Deterministic Verification</span>
         </div>
@@ -916,7 +914,7 @@ function Slide6() {
           <CheckCircle2 className="h-4 w-4" />
           <span>Zero PII Leak Guarantee</span>
         </div>
-        <div className="flex items-center gap-2 text-purple-300">
+        <div className="text-brand-300 flex items-center gap-2">
           <CheckCircle2 className="h-4 w-4" />
           <span>TypeScript Strict (noUncheckedIndexedAccess)</span>
         </div>
@@ -932,7 +930,7 @@ function Slide7() {
         <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
           High-Margin Usage-Based SaaS + Enterprise Certification
         </h2>
-        <p className="text-sm text-slate-300 sm:text-base">
+        <p className="text-fg-secondary text-sm sm:text-base">
           Scalable revenue model aligning platform usage directly with enterprise risk exposure and
           compliance scale.
         </p>
@@ -941,16 +939,16 @@ function Slide7() {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         <div className="flex flex-col justify-between space-y-4 rounded-2xl border border-white/10 bg-white/5 p-6">
           <div className="space-y-2">
-            <span className="text-xs font-bold tracking-wider text-slate-400 uppercase">
+            <span className="text-fg-muted text-xs font-bold tracking-wider uppercase">
               1. Developer Tier (PLG)
             </span>
             <p className="text-2xl font-black text-white">Free</p>
-            <p className="text-xs leading-relaxed text-slate-300">
+            <p className="text-fg-secondary text-xs leading-relaxed">
               Free tier with monthly verification tokens for API key usage and open-source CLI
               integration.
             </p>
           </div>
-          <div className="font-mono text-[11px] text-slate-400">
+          <div className="text-fg-muted font-mono text-[11px]">
             Target: Individual Devs & Startups
           </div>
         </div>
@@ -964,7 +962,7 @@ function Slide7() {
               2. Pro & Growth Tier
             </span>
             <p className="text-brand-300 text-2xl font-black">
-              $499 – $2,499<span className="text-xs font-normal text-slate-400"> / mo</span>
+              $499 – $2,499<span className="text-fg-muted text-xs font-normal"> / mo</span>
             </p>
             <p className="text-xs leading-relaxed text-slate-200">
               Advanced rate limits, automated incident reporting, custom PII rules, and dedicated
@@ -976,27 +974,27 @@ function Slide7() {
           </div>
         </div>
 
-        <div className="flex flex-col justify-between space-y-4 rounded-2xl border border-purple-500/40 bg-purple-950/30 p-6">
+        <div className="border-brand-500/40 flex flex-col justify-between space-y-4 rounded-2xl border bg-purple-950/30 p-6">
           <div className="space-y-2">
-            <span className="text-xs font-bold tracking-wider text-purple-300 uppercase">
+            <span className="text-brand-300 text-xs font-bold tracking-wider uppercase">
               3. Enterprise Tier
             </span>
-            <p className="text-2xl font-black text-purple-300">
-              $50k – $250k<span className="text-xs font-normal text-slate-400"> / yr</span>
+            <p className="text-brand-300 text-2xl font-black">
+              $50k – $250k<span className="text-fg-muted text-xs font-normal"> / yr</span>
             </p>
             <p className="text-xs leading-relaxed text-slate-200">
               Dedicated Supabase instances, custom compliance connectors (SOC2, EU AI Act), 99.99%
               SLA, and formal audit sign-off.
             </p>
           </div>
-          <div className="font-mono text-[11px] text-purple-400">
+          <div className="text-brand-400 font-mono text-[11px]">
             Target: Tier-1 Enterprises & Banks
           </div>
         </div>
       </div>
 
-      <div className="rounded-2xl border border-emerald-500/30 bg-emerald-950/20 p-4 text-center">
-        <span className="text-sm font-bold text-emerald-400">
+      <div className="border-success-500/30 rounded-2xl border bg-emerald-950/20 p-4 text-center">
+        <span className="text-success-400 text-sm font-bold">
           Projected Net Revenue Retention (NRR):{" "}
         </span>
         <span className="text-base font-black text-white">135%</span>
@@ -1012,7 +1010,7 @@ function Slide8() {
         <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
           Developer-Led Adoption + Enterprise Top-Down Sales
         </h2>
-        <p className="text-sm text-slate-300 sm:text-base">
+        <p className="text-fg-secondary text-sm sm:text-base">
           Dual-engine GTM strategy driving rapid developer ecosystem expansion and high-ACV
           enterprise deals.
         </p>
@@ -1024,19 +1022,19 @@ function Slide8() {
             <CodeIcon className="h-5 w-5" />
             <span>Bottom-Up (Developer First)</span>
           </div>
-          <ul className="list-inside list-disc space-y-2 text-xs leading-relaxed text-slate-300">
+          <ul className="text-fg-secondary list-inside list-disc space-y-2 text-xs leading-relaxed">
             <li>Open-source CLI (`opencode` / Antigravity integration)</li>
             <li>AGPL-3.0 open core repository generating organic GitHub traction</li>
             <li>Self-serve developer portal with instant API provisioning</li>
           </ul>
         </div>
 
-        <div className="space-y-4 rounded-2xl border border-purple-500/30 bg-purple-950/20 p-6">
-          <div className="flex items-center gap-2 text-base font-bold text-purple-400">
+        <div className="border-brand-500/30 space-y-4 rounded-2xl border bg-purple-950/20 p-6">
+          <div className="text-brand-400 flex items-center gap-2 text-base font-bold">
             <Building2 className="h-5 w-5" />
             <span>Top-Down (Compliance & Legal)</span>
           </div>
-          <ul className="list-inside list-disc space-y-2 text-xs leading-relaxed text-slate-300">
+          <ul className="text-fg-secondary list-inside list-disc space-y-2 text-xs leading-relaxed">
             <li>Direct outreach to CISOs, Chief Risk Officers, and AI Legal Advisors</li>
             <li>EU AI Act Article 73 readiness audits and executive briefings</li>
             <li>Custom enterprise pilots with guaranteed 45-day conversion target</li>
@@ -1045,7 +1043,7 @@ function Slide8() {
       </div>
 
       <div className="space-y-2 rounded-2xl border border-white/10 bg-black/40 p-6">
-        <p className="text-center text-xs font-bold tracking-wider text-slate-400 uppercase">
+        <p className="text-fg-muted text-center text-xs font-bold tracking-wider uppercase">
           GTM Conversion Funnel
         </p>
         <div className="flex flex-col items-center justify-between gap-4 text-center font-mono text-xs sm:flex-row">
@@ -1057,7 +1055,7 @@ function Slide8() {
             2. Free API Token Usage
           </div>
           <ArrowRight className="text-brand-400 hidden h-4 w-4 shrink-0 sm:block" />
-          <div className="w-full rounded-xl border border-purple-500/40 bg-purple-500/20 p-3 font-bold text-purple-300">
+          <div className="border-brand-500/40 bg-brand-500/20 text-brand-300 w-full rounded-xl border p-3 font-bold">
             3. Enterprise Pilot (45 Days)
           </div>
         </div>
@@ -1086,7 +1084,7 @@ function Slide9() {
         <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
           Unrivaled Cryptographic Proof & Open Infrastructure
         </h2>
-        <p className="text-sm text-slate-300 sm:text-base">
+        <p className="text-fg-secondary text-sm sm:text-base">
           Existing observability solutions focus purely on LLM cost telemetry, omitting legal
           auditability and zero-knowledge PII sanitization.
         </p>
@@ -1094,13 +1092,13 @@ function Slide9() {
 
       {/* 2x2 Matrix Visual */}
       <div className="relative space-y-4 rounded-2xl border border-white/10 bg-black/40 p-6">
-        <p className="text-center text-xs font-bold tracking-wider text-slate-400 uppercase">
+        <p className="text-fg-muted text-center text-xs font-bold tracking-wider uppercase">
           Competitive Positioning Matrix
         </p>
-        <div className="relative grid h-64 grid-cols-2 gap-4 rounded-xl border border-white/10 bg-slate-950/40 p-4">
+        <div className="bg-bg-tertiary/40 relative grid h-64 grid-cols-2 gap-4 rounded-xl border border-white/10 p-4">
           {/* Top Left */}
-          <div className="rounded-lg border border-white/5 bg-white/[0.02] p-3 text-xs text-slate-400">
-            <span className="font-semibold text-slate-300">Traditional GRC (OneTrust)</span>
+          <div className="text-fg-muted rounded-lg border border-white/5 bg-white/[0.02] p-3 text-xs">
+            <span className="text-fg-secondary font-semibold">Traditional GRC (OneTrust)</span>
             <p className="mt-1 text-[10px]">
               High Legal Auditability / Low Real-Time AI API Integration
             </p>
@@ -1116,13 +1114,15 @@ function Slide9() {
             </p>
           </div>
           {/* Bottom Left */}
-          <div className="rounded-lg border border-white/5 bg-white/[0.02] p-3 text-xs text-slate-500">
-            <span className="font-semibold text-slate-400">Legacy Logging</span>
+          <div className="text-fg-disabled rounded-lg border border-white/5 bg-white/[0.02] p-3 text-xs">
+            <span className="text-fg-muted font-semibold">Legacy Logging</span>
             <p className="mt-1 text-[10px]">Low Auditability / Low AI Real-Time Context</p>
           </div>
           {/* Bottom Right */}
-          <div className="rounded-lg border border-white/5 bg-white/[0.02] p-3 text-xs text-slate-400">
-            <span className="font-semibold text-slate-300">LLM Telemetry (LangSmith, Datadog)</span>
+          <div className="text-fg-muted rounded-lg border border-white/5 bg-white/[0.02] p-3 text-xs">
+            <span className="text-fg-secondary font-semibold">
+              LLM Telemetry (LangSmith, Datadog)
+            </span>
             <p className="mt-1 text-[10px]">
               High Real-Time Context / Low Cryptographic Legal Auditability
             </p>
@@ -1130,15 +1130,15 @@ function Slide9() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-3 font-mono text-xs text-slate-300 sm:grid-cols-3">
+      <div className="text-fg-secondary grid grid-cols-1 gap-3 font-mono text-xs sm:grid-cols-3">
         <div className="rounded-xl border border-white/10 bg-white/5 p-3 text-center">
           <span className="text-brand-300 font-bold">AGPL-3.0 Open Core</span>
         </div>
         <div className="rounded-xl border border-white/10 bg-white/5 p-3 text-center">
-          <span className="font-bold text-purple-300">Cryptographic Ledger Integrity</span>
+          <span className="text-brand-300 font-bold">Cryptographic Ledger Integrity</span>
         </div>
         <div className="rounded-xl border border-white/10 bg-white/5 p-3 text-center">
-          <span className="font-bold text-emerald-400">Zero-Knowledge PII Masking</span>
+          <span className="text-success-400 font-bold">Zero-Knowledge PII Masking</span>
         </div>
       </div>
     </div>
@@ -1152,7 +1152,7 @@ function Slide10() {
         <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
           Founded by Systems Architects & Security Engineers
         </h2>
-        <p className="text-sm text-slate-300 sm:text-base">
+        <p className="text-fg-secondary text-sm sm:text-base">
           World-class engineering execution combined with deep expertise in compliance
           infrastructure and autonomous systems.
         </p>
@@ -1171,18 +1171,18 @@ function Slide10() {
               </p>
             </div>
           </div>
-          <p className="text-xs leading-relaxed text-slate-300">
+          <p className="text-fg-secondary text-xs leading-relaxed">
             Senior Systems Architect & Security Specialist with deep expertise in high-throughput
             Next.js, Supabase PostgreSQL architectures, and real-time AI security boundaries.
           </p>
         </div>
 
-        <div className="space-y-4 rounded-2xl border border-purple-500/30 bg-purple-950/20 p-6">
-          <div className="flex items-center gap-3 text-base font-bold text-purple-400">
+        <div className="border-brand-500/30 space-y-4 rounded-2xl border bg-purple-950/20 p-6">
+          <div className="text-brand-400 flex items-center gap-3 text-base font-bold">
             <Award className="h-5 w-5" />
             <span>Strategic Advisory Board</span>
           </div>
-          <p className="text-xs leading-relaxed text-slate-300">
+          <p className="text-fg-secondary text-xs leading-relaxed">
             Strategic advisory council spanning EU AI Regulatory Affairs, AI Safety Research, and
             Enterprise Security CISOs guiding our regulatory alignment roadmap.
           </p>
@@ -1199,7 +1199,7 @@ function Slide11() {
         <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
           Path to $10M ARR in 36 Months with 85%+ Gross Margins
         </h2>
-        <p className="text-sm text-slate-300 sm:text-base">
+        <p className="text-fg-secondary text-sm sm:text-base">
           Rapid revenue acceleration backed by low customer acquisition costs (PLG) and high
           Enterprise Contract Values (ACV).
         </p>
@@ -1207,11 +1207,11 @@ function Slide11() {
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         <div className="space-y-2 rounded-2xl border border-white/10 bg-white/5 p-6">
-          <span className="text-xs font-bold tracking-wider text-slate-400 uppercase">
+          <span className="text-fg-muted text-xs font-bold tracking-wider uppercase">
             Year 1 Projection
           </span>
           <p className="text-3xl font-black text-white">$1.2M ARR</p>
-          <p className="text-xs text-slate-400">50 Enterprise Pilots onboarded</p>
+          <p className="text-fg-muted text-xs">50 Enterprise Pilots onboarded</p>
         </div>
 
         <div className="border-brand-500/30 bg-brand-950/20 space-y-2 rounded-2xl border p-6">
@@ -1219,34 +1219,32 @@ function Slide11() {
             Year 2 Projection
           </span>
           <p className="text-brand-300 text-3xl font-black">$4.8M ARR</p>
-          <p className="text-xs text-slate-300">200 Enterprise Customers</p>
+          <p className="text-fg-secondary text-xs">200 Enterprise Customers</p>
         </div>
 
-        <div className="space-y-2 rounded-2xl border border-purple-500/40 bg-purple-950/30 p-6">
-          <span className="text-xs font-bold tracking-wider text-purple-300 uppercase">
+        <div className="border-brand-500/40 space-y-2 rounded-2xl border bg-purple-950/30 p-6">
+          <span className="text-brand-300 text-xs font-bold tracking-wider uppercase">
             Year 3 Projection
           </span>
-          <p className="text-3xl font-black text-purple-300">$12.5M ARR</p>
-          <p className="text-xs text-slate-300">500+ Active Enterprises</p>
+          <p className="text-brand-300 text-3xl font-black">$12.5M ARR</p>
+          <p className="text-fg-secondary text-xs">500+ Active Enterprises</p>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 rounded-2xl border border-emerald-500/30 bg-emerald-950/20 p-6 sm:grid-cols-2">
+      <div className="border-success-500/30 grid grid-cols-1 gap-4 rounded-2xl border bg-emerald-950/20 p-6 sm:grid-cols-2">
         <div className="flex items-center gap-4">
-          <span className="text-4xl font-black text-emerald-400">87%</span>
+          <span className="text-success-400 text-4xl font-black">87%</span>
           <div>
             <p className="text-xs font-bold tracking-wider text-white uppercase">Gross Margin</p>
-            <p className="text-xs text-slate-400">
-              Low infrastructure cost per verification check.
-            </p>
+            <p className="text-fg-muted text-xs">Low infrastructure cost per verification check.</p>
           </div>
         </div>
 
         <div className="flex items-center gap-4">
-          <span className="text-4xl font-black text-emerald-400">5.2x</span>
+          <span className="text-success-400 text-4xl font-black">5.2x</span>
           <div>
             <p className="text-xs font-bold tracking-wider text-white uppercase">LTV : CAC Ratio</p>
-            <p className="text-xs text-slate-400">Strong PLG developer funnel efficiency.</p>
+            <p className="text-fg-muted text-xs">Strong PLG developer funnel efficiency.</p>
           </div>
         </div>
       </div>
@@ -1261,7 +1259,7 @@ function Slide12() {
         <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
           Raising $2.5M Seed Capital to Scale the AI Trust Layer
         </h2>
-        <p className="text-sm text-slate-300 sm:text-base">
+        <p className="text-fg-secondary text-sm sm:text-base">
           Capital allocation focused on core engineering expansion, enterprise compliance
           certification, and global GTM acceleration.
         </p>
@@ -1273,25 +1271,25 @@ function Slide12() {
           <p className="text-xs font-bold tracking-wider text-white uppercase">
             Engineering & Product
           </p>
-          <p className="text-xs leading-relaxed text-slate-300">
+          <p className="text-fg-secondary text-xs leading-relaxed">
             Core trust engine, zero-knowledge verification research, and sub-millisecond PII
             pipeline optimization.
           </p>
         </div>
 
-        <div className="space-y-2 rounded-2xl border border-purple-500/30 bg-purple-950/20 p-6">
-          <span className="text-2xl font-black text-purple-300">25%</span>
+        <div className="border-brand-500/30 space-y-2 rounded-2xl border bg-purple-950/20 p-6">
+          <span className="text-brand-300 text-2xl font-black">25%</span>
           <p className="text-xs font-bold tracking-wider text-white uppercase">Go-To-Market</p>
-          <p className="text-xs leading-relaxed text-slate-300">
+          <p className="text-fg-secondary text-xs leading-relaxed">
             Enterprise sales team, developer advocacy, open-source community management, and EU AI
             Act roadshows.
           </p>
         </div>
 
-        <div className="space-y-2 rounded-2xl border border-emerald-500/30 bg-emerald-950/20 p-6">
-          <span className="text-2xl font-black text-emerald-400">15%</span>
+        <div className="border-success-500/30 space-y-2 rounded-2xl border bg-emerald-950/20 p-6">
+          <span className="text-success-400 text-2xl font-black">15%</span>
           <p className="text-xs font-bold tracking-wider text-white uppercase">Security & Audits</p>
-          <p className="text-xs leading-relaxed text-slate-300">
+          <p className="text-fg-secondary text-xs leading-relaxed">
             SOC2 Type II, ISO 27001, and independent third-party EU AI Act compliance
             certifications.
           </p>
@@ -1299,15 +1297,15 @@ function Slide12() {
       </div>
 
       <div className="space-y-3 rounded-2xl border border-white/10 bg-black/40 p-6 text-center">
-        <p className="text-xs font-bold tracking-wider text-slate-400 uppercase">
+        <p className="text-fg-muted text-xs font-bold tracking-wider uppercase">
           Target 18-Month Milestones
         </p>
         <div className="flex flex-wrap items-center justify-center gap-6 text-sm font-bold text-white">
           <span className="text-brand-400">$3M ARR</span>
           <span>•</span>
-          <span className="text-purple-300">1,000 Active Clusters</span>
+          <span className="text-brand-300">1,000 Active Clusters</span>
           <span>•</span>
-          <span className="text-emerald-400">SOC2 & ISO Certified</span>
+          <span className="text-success-400">SOC2 & ISO Certified</span>
         </div>
         <div className="pt-2">
           <a

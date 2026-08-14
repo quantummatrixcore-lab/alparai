@@ -189,11 +189,11 @@ export function RoadmapClient({ initialMilestones, isReadOnly, _locale }: Roadma
                             className={cn(
                               "h-full rounded-full transition-all duration-500",
                               m.status === "done"
-                                ? "bg-emerald-500"
+                                ? "bg-success-500"
                                 : m.status === "in_progress"
                                   ? "bg-brand-500"
                                   : m.status === "missed"
-                                    ? "bg-red-500"
+                                    ? "bg-danger-500"
                                     : "bg-white/20",
                             )}
                             style={{ width: `${m.progress}%` }}
@@ -213,11 +213,11 @@ export function RoadmapClient({ initialMilestones, isReadOnly, _locale }: Roadma
                           className={cn(
                             "rounded border px-1.5 py-0.5",
                             m.status === "done"
-                              ? "border-emerald-500/15 bg-emerald-500/10 text-emerald-400"
+                              ? "border-success-500/15 bg-success-500/10 text-success-400"
                               : m.status === "in_progress"
                                 ? "bg-brand-500/10 text-brand-400 border-brand-500/15"
                                 : m.status === "missed"
-                                  ? "border-red-500/15 bg-red-500/10 text-red-400"
+                                  ? "border-danger-500/15 bg-danger-500/10 text-danger-400"
                                   : "text-fg-muted border-white/10 bg-white/5",
                           )}
                         >
@@ -242,7 +242,7 @@ export function RoadmapClient({ initialMilestones, isReadOnly, _locale }: Roadma
                           </button>
                           <button
                             onClick={() => handleDelete(m.id)}
-                            className="rounded p-1 text-red-400 transition hover:bg-red-500/10 hover:text-red-300"
+                            className="text-danger-400 hover:bg-danger-500/10 hover:text-danger-300 rounded p-1 transition"
                           >
                             <Trash2 className="h-3 w-3" />
                           </button>

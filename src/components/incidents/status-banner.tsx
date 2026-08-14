@@ -24,38 +24,38 @@ interface StatusConfig {
 const STATUS_CONFIG: Record<string, StatusConfig> = {
   pending_review: {
     icon: Clock as IconComponent,
-    bgClass: "bg-amber-500/10",
-    borderClass: "border-amber-500/30",
-    textClass: "text-amber-400",
-    iconClass: "text-amber-400",
+    bgClass: "bg-warning-500/10",
+    borderClass: "border-warning-500/30",
+    textClass: "text-warning-400",
+    iconClass: "text-warning-400",
   },
   draft: {
     icon: EyeSlash as IconComponent,
     bgClass: "bg-zinc-500/10",
     borderClass: "border-zinc-500/30",
-    textClass: "text-zinc-400",
-    iconClass: "text-zinc-400",
+    textClass: "text-fg-muted",
+    iconClass: "text-fg-muted",
   },
   takedown: {
     icon: Trash as IconComponent,
-    bgClass: "bg-rose-500/10",
-    borderClass: "border-rose-500/30",
-    textClass: "text-rose-400",
-    iconClass: "text-rose-400",
+    bgClass: "bg-danger-500/10",
+    borderClass: "border-danger-500/30",
+    textClass: "text-danger-400",
+    iconClass: "text-danger-400",
   },
   hard_deleted: {
     icon: Trash as IconComponent,
-    bgClass: "bg-rose-500/10",
-    borderClass: "border-rose-500/30",
-    textClass: "text-rose-400",
-    iconClass: "text-rose-400",
+    bgClass: "bg-danger-500/10",
+    borderClass: "border-danger-500/30",
+    textClass: "text-danger-400",
+    iconClass: "text-danger-400",
   },
   archived: {
     icon: Warning as IconComponent,
-    bgClass: "bg-purple-500/10",
-    borderClass: "border-purple-500/30",
-    textClass: "text-purple-400",
-    iconClass: "text-purple-400",
+    bgClass: "bg-brand-500/10",
+    borderClass: "border-brand-500/30",
+    textClass: "text-brand-400",
+    iconClass: "text-brand-400",
   },
 };
 
@@ -63,8 +63,8 @@ const DEFAULT_CONFIG: StatusConfig = {
   icon: EyeSlash as IconComponent,
   bgClass: "bg-zinc-500/10",
   borderClass: "border-zinc-500/30",
-  textClass: "text-zinc-400",
-  iconClass: "text-zinc-400",
+  textClass: "text-fg-muted",
+  iconClass: "text-fg-muted",
 };
 
 export function StatusBanner({ status, className }: StatusBannerProps) {

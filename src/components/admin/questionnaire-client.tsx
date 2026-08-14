@@ -228,7 +228,7 @@ export function QuestionnaireClient({
                 onClick={() => setModelFilter("free")}
                 className={`rounded-full px-3 py-1 text-xs font-bold transition-all ${
                   modelFilter === "free"
-                    ? "bg-emerald-500/20 text-emerald-300 ring-1 ring-emerald-500/40"
+                    ? "bg-success-500/20 text-success-300 ring-success-500/40 ring-1"
                     : "bg-bg-tertiary text-fg-muted ring-border-subtle ring-1 hover:text-white"
                 }`}
               >
@@ -238,7 +238,7 @@ export function QuestionnaireClient({
                 onClick={() => setModelFilter("premium")}
                 className={`rounded-full px-3 py-1 text-xs font-bold transition-all ${
                   modelFilter === "premium"
-                    ? "bg-amber-500/20 text-amber-300 ring-1 ring-amber-500/40"
+                    ? "bg-warning-500/20 text-warning-300 ring-warning-500/40 ring-1"
                     : "bg-bg-tertiary text-fg-muted ring-border-subtle ring-1 hover:text-white"
                 }`}
               >
@@ -283,11 +283,11 @@ export function QuestionnaireClient({
                 <Cpu className="h-3 w-3" />
                 {m.label}
                 {m.tier === "free" ? (
-                  <span className="ml-1 rounded-sm bg-emerald-500/20 px-1 py-0.5 text-[9px] tracking-wider text-emerald-400 uppercase">
+                  <span className="bg-success-500/20 text-success-400 ml-1 rounded-sm px-1 py-0.5 text-[9px] tracking-wider uppercase">
                     Free
                   </span>
                 ) : (
-                  <span className="ml-1 rounded-sm bg-amber-500/20 px-1 py-0.5 text-[9px] tracking-wider text-amber-400 uppercase">
+                  <span className="bg-warning-500/20 text-warning-400 ml-1 rounded-sm px-1 py-0.5 text-[9px] tracking-wider uppercase">
                     Premium
                   </span>
                 )}
@@ -326,11 +326,11 @@ export function QuestionnaireClient({
               >
                 <div className="flex items-center gap-3">
                   {run.status === "completed" ? (
-                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                    <CheckCircle2 className="text-success-400 h-4 w-4" />
                   ) : run.status === "failed" ? (
-                    <AlertCircle className="h-4 w-4 text-rose-400" />
+                    <AlertCircle className="text-danger-400 h-4 w-4" />
                   ) : (
-                    <RotateCcw className="h-4 w-4 animate-spin text-amber-400" />
+                    <RotateCcw className="text-warning-400 h-4 w-4 animate-spin" />
                   )}
                   <div>
                     <span className="font-mono text-xs text-white">
@@ -420,10 +420,10 @@ export function QuestionnaireClient({
                                 variant="outline"
                                 className={
                                   level === "high"
-                                    ? "border-emerald-500/20 bg-emerald-500/10 text-[9px] font-bold text-emerald-400"
+                                    ? "border-success-500/20 bg-success-500/10 text-success-400 text-[9px] font-bold"
                                     : level === "medium"
-                                      ? "border-amber-500/20 bg-amber-500/10 text-[9px] font-bold text-amber-400"
-                                      : "border-blue-500/20 bg-blue-500/10 text-[9px] font-bold text-blue-400"
+                                      ? "border-warning-500/20 bg-warning-500/10 text-warning-400 text-[9px] font-bold"
+                                      : "border-brand-500/20 bg-brand-500/10 text-brand-400 text-[9px] font-bold"
                                 }
                               >
                                 {isTurkish ? "Fikir Birliği: " : "Agreement: "}
@@ -461,7 +461,7 @@ export function QuestionnaireClient({
                         return (
                           <td key={modelName} className="px-5 py-3 align-top">
                             {ans.error_message ? (
-                              <span className="text-xs text-rose-400">
+                              <span className="text-danger-400 text-xs">
                                 {i18n.error}: {ans.error_message}
                               </span>
                             ) : (

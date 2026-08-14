@@ -171,9 +171,9 @@ export function ResourcesClient({ locale }: { locale: string }) {
   }
 
   const renderProgressBar = (percentage: number) => {
-    let color = "bg-emerald-500";
-    if (percentage > 80) color = "bg-rose-500";
-    else if (percentage > 60) color = "bg-amber-500";
+    let color = "bg-success-500";
+    if (percentage > 80) color = "bg-danger-500";
+    else if (percentage > 60) color = "bg-warning-500";
 
     return (
       <div className="mt-2 w-full">
@@ -188,9 +188,9 @@ export function ResourcesClient({ locale }: { locale: string }) {
   };
 
   const getUsageColorClass = (percentage: number) => {
-    if (percentage > 80) return "text-rose-400";
-    if (percentage > 60) return "text-amber-400";
-    return "text-emerald-400";
+    if (percentage > 80) return "text-danger-400";
+    if (percentage > 60) return "text-warning-400";
+    return "text-success-400";
   };
 
   return (
@@ -222,10 +222,10 @@ export function ResourcesClient({ locale }: { locale: string }) {
       <div
         className={`rounded-r-xl border-l-4 p-4 backdrop-blur-xl ${
           systemStatus === "operational"
-            ? "border-emerald-500 bg-emerald-500/10 text-emerald-400"
+            ? "border-success-500 bg-success-500/10 text-success-400"
             : systemStatus === "warning"
-              ? "border-amber-500 bg-amber-500/10 text-amber-400"
-              : "border-rose-500 bg-rose-500/10 text-rose-400"
+              ? "border-warning-500 bg-warning-500/10 text-warning-400"
+              : "border-danger-500 bg-danger-500/10 text-danger-400"
         }`}
       >
         <div className="flex items-center gap-3">
@@ -264,7 +264,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
             {t("resources_loading")}
           </div>
         ) : !metrics ? (
-          <div className="py-8 text-center font-mono text-sm text-rose-400">
+          <div className="text-danger-400 py-8 text-center font-mono text-sm">
             {t("resources_error")}
           </div>
         ) : (
@@ -434,7 +434,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
             {t("resources_quota_loading")}
           </div>
         ) : !quotas ? (
-          <div className="py-8 text-center font-mono text-sm text-rose-400">
+          <div className="text-danger-400 py-8 text-center font-mono text-sm">
             {t("resources_quota_error")}
           </div>
         ) : quotas.length === 0 ? (
@@ -457,10 +457,10 @@ export function ResourcesClient({ locale }: { locale: string }) {
                     : "default";
               const badgeClass =
                 status === "danger"
-                  ? "text-rose-400"
+                  ? "text-danger-400"
                   : status === "warning"
-                    ? "text-amber-400"
-                    : "text-emerald-400";
+                    ? "text-warning-400"
+                    : "text-success-400";
 
               return (
                 <div
@@ -520,9 +520,9 @@ export function ResourcesClient({ locale }: { locale: string }) {
                       <span
                         className={
                           stats.deviation > 1
-                            ? "text-amber-400"
+                            ? "text-warning-400"
                             : stats.deviation < -1
-                              ? "text-emerald-400"
+                              ? "text-success-400"
                               : "text-fg-muted"
                         }
                       >
@@ -549,7 +549,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
                         </span>
                       </div>
                       {stats.deviation > 5 && stats.depletion && (
-                        <div className="mt-1 flex items-start gap-2 rounded-md border border-rose-500/20 bg-rose-500/10 p-2 text-rose-400">
+                        <div className="border-danger-500/20 bg-danger-500/10 text-danger-400 mt-1 flex items-start gap-2 rounded-md border p-2">
                           <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
                           <span>
                             {t("resources_quota_projected_warning", { date: stats.depletion })}{" "}
@@ -612,11 +612,11 @@ export function ResourcesClient({ locale }: { locale: string }) {
                     {efficiency.efficiencyScore.toFixed(1)}
                   </span>
                   {efficiency.targetDistancePct > 0 ? (
-                    <span className="font-mono text-[10px] text-amber-400">
+                    <span className="text-warning-400 font-mono text-[10px]">
                       (-{efficiency.targetDistancePct.toFixed(1)}%)
                     </span>
                   ) : (
-                    <span className="font-mono text-[10px] text-emerald-400">{t("hedefte")}</span>
+                    <span className="text-success-400 font-mono text-[10px]">{t("hedefte")}</span>
                   )}
                 </div>
               </div>
@@ -810,10 +810,10 @@ export function ResourcesClient({ locale }: { locale: string }) {
                       variant="outline"
                       className={
                         v.criticality === "high"
-                          ? "border-rose-500/20 bg-rose-500/10 text-rose-400"
+                          ? "border-danger-500/20 bg-danger-500/10 text-danger-400"
                           : v.criticality === "medium"
-                            ? "border-amber-500/20 bg-amber-500/10 text-amber-400"
-                            : "border-blue-500/20 bg-blue-500/10 text-blue-400"
+                            ? "border-warning-500/20 bg-warning-500/10 text-warning-400"
+                            : "border-brand-500/20 bg-brand-500/10 text-brand-400"
                       }
                     >
                       {t(`resources_criticality_${v.criticality}`)}
@@ -834,7 +834,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
         <div className="border-border-subtle flex flex-wrap items-center justify-between gap-4 border-b pb-4">
           <div>
             <h2 className="flex items-center gap-2 text-xl font-black tracking-tight text-white">
-              <Activity className="h-5 w-5 text-emerald-400" />
+              <Activity className="text-success-400 h-5 w-5" />
               {isTR
                 ? "360° Abonelik Maksimum Verimlilik Paneli"
                 : "360° Subscription Maximum Efficiency Matrix"}
@@ -845,7 +845,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
                 : "Comprehensive breakdown of paid platform perks, quota savings, and maximum efficiency percentages."}
             </p>
           </div>
-          <div className="flex items-center gap-2 rounded-xl border border-emerald-500/20 bg-emerald-500/10 px-3 py-1.5 font-mono text-xs font-bold text-emerald-400">
+          <div className="border-success-500/20 bg-success-500/10 text-success-400 flex items-center gap-2 rounded-xl border px-3 py-1.5 font-mono text-xs font-bold">
             <span>{isTR ? "Ortalama Sistem Verimliliği:" : "Avg Efficiency Score:"}</span>
             <span className="text-sm font-black">
               {Math.round(
@@ -875,8 +875,8 @@ export function ResourcesClient({ locale }: { locale: string }) {
                     variant="outline"
                     className={
                       sub.efficiencyScorePct >= 95
-                        ? "border-emerald-500/30 bg-emerald-500/10 font-mono font-bold text-emerald-400"
-                        : "border-amber-500/30 bg-amber-500/10 font-mono font-bold text-amber-400"
+                        ? "border-success-500/30 bg-success-500/10 text-success-400 font-mono font-bold"
+                        : "border-warning-500/30 bg-warning-500/10 text-warning-400 font-mono font-bold"
                     }
                   >
                     %{sub.efficiencyScorePct} {isTR ? "Verim" : "Efficiency"}
@@ -890,7 +890,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
                   <ul className="space-y-1.5 text-xs text-white/90">
                     {(isTR ? sub.keyPerks.tr : sub.keyPerks.en).map((perk, idx) => (
                       <li key={idx} className="flex items-start gap-2">
-                        <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-400" />
+                        <CheckCircle2 className="text-success-400 mt-0.5 h-3.5 w-3.5 shrink-0" />
                         <span className="leading-snug">{perk}</span>
                       </li>
                     ))}
@@ -904,7 +904,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
                     href={sub.actionRequired.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-400 transition-colors hover:text-amber-300"
+                    className="text-warning-400 hover:text-warning-300 inline-flex items-center gap-1.5 text-xs font-bold transition-colors"
                   >
                     <span>⚡ {isTR ? sub.actionRequired.tr : sub.actionRequired.en}</span>
                     <ExternalLink className="h-3 w-3 shrink-0" />
@@ -920,7 +920,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
       <div className="bg-bg-secondary border-border-subtle space-y-6 rounded-xl border p-6">
         <div className="border-border-subtle border-b pb-4">
           <h2 className="flex items-center gap-2 text-xl font-black tracking-tight text-white">
-            <Server className="h-5 w-5 text-cyan-400" />
+            <Server className="text-accent-400 h-5 w-5" />
             {isTR
               ? "Sıfır Maliyetli Ücretsiz AI API Kredi Envanteri"
               : "Zero-Cost Free AI API Credit Providers"}
@@ -945,8 +945,8 @@ export function ResourcesClient({ locale }: { locale: string }) {
                     variant="outline"
                     className={
                       provider.isIntegrated
-                        ? "border-emerald-500/30 bg-emerald-500/10 text-[10px] font-bold text-emerald-400"
-                        : "border-cyan-500/30 bg-cyan-500/10 text-[10px] font-bold text-cyan-400"
+                        ? "border-success-500/30 bg-success-500/10 text-success-400 text-[10px] font-bold"
+                        : "border-accent-500/30 bg-accent-500/10 text-accent-400 text-[10px] font-bold"
                     }
                   >
                     {provider.isIntegrated
@@ -968,7 +968,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
                     <span className="text-fg-muted">
                       {isTR ? "Hız Limitleri:" : "Rate Limits:"}
                     </span>
-                    <span className="font-bold text-cyan-400">{provider.rateLimits}</span>
+                    <span className="text-accent-400 font-bold">{provider.rateLimits}</span>
                   </div>
                   <div className="mt-2 flex flex-col gap-1">
                     <span className="text-fg-muted text-[10px] font-bold tracking-wider uppercase">
@@ -993,7 +993,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
                   href={provider.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-xs font-bold text-cyan-400 transition-colors hover:text-cyan-300"
+                  className="text-accent-400 hover:text-accent-300 inline-flex items-center gap-1 text-xs font-bold transition-colors"
                 >
                   <span>{isTR ? "Konsola Git" : "Go to Console"}</span>
                   <ExternalLink className="h-3 w-3" />

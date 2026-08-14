@@ -61,11 +61,13 @@ export function SystemHubTabs() {
               className={cn(
                 "flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium whitespace-nowrap transition-all duration-300",
                 tab.isActive
-                  ? "bg-amber-500/10 text-amber-400 shadow-lg ring-1 shadow-amber-500/5 ring-amber-500/20"
-                  : "bg-zinc-900/50 text-zinc-400 hover:bg-zinc-800/50 hover:text-white",
+                  ? "bg-warning-500/10 text-warning-400 shadow-warning-500/5 ring-warning-500/20 shadow-lg ring-1"
+                  : "bg-bg-elevated/50 text-fg-muted hover:bg-zinc-800/50 hover:text-white",
               )}
             >
-              <Icon className={cn("h-4 w-4", tab.isActive ? "text-amber-400" : "text-zinc-500")} />
+              <Icon
+                className={cn("h-4 w-4", tab.isActive ? "text-warning-400" : "text-fg-disabled")}
+              />
               {tab.name}
             </Link>
           );

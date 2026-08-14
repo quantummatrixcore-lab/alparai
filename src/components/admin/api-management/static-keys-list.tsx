@@ -76,7 +76,7 @@ export function StaticKeysList() {
             <Server className="text-brand-400 h-5 w-5" /> {t("api_keys_prov_inv")}
           </span>
           <span className="text-fg-muted flex items-center gap-2 font-mono text-xs font-normal">
-            <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400"></span>{" "}
+            <span className="bg-success-400 h-2 w-2 animate-pulse rounded-full"></span>{" "}
             {t("api_keys_live_data")}
           </span>
         </CardTitle>
@@ -108,16 +108,16 @@ export function StaticKeysList() {
                     </div>
                   </td>
                   <td className="text-fg-secondary p-4 text-[11px]">
-                    <div className="flex w-fit items-center gap-2 rounded border border-white/10 bg-neutral-950 px-2 py-1 text-zinc-400">
+                    <div className="text-fg-muted flex w-fit items-center gap-2 rounded border border-white/10 bg-neutral-950 px-2 py-1">
                       <EyeOff className="text-fg-muted h-3 w-3" />
                       {prov.envKey}
                     </div>
                   </td>
-                  <td className="p-4 text-xs font-bold text-amber-400">{prov.cost}</td>
-                  <td className="text-fg-muted p-4 text-xs text-zinc-400">{prov.limit}</td>
+                  <td className="text-warning-400 p-4 text-xs font-bold">{prov.cost}</td>
+                  <td className="text-fg-muted text-fg-muted p-4 text-xs">{prov.limit}</td>
                   <td className="p-4 text-right">
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-1 text-[10px] font-bold tracking-wider text-emerald-400 uppercase">
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>{" "}
+                    <span className="border-success-500/20 bg-success-500/10 text-success-400 inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[10px] font-bold tracking-wider uppercase">
+                      <span className="bg-success-400 h-1.5 w-1.5 rounded-full"></span>{" "}
                       {t("connected")}
                     </span>
                   </td>

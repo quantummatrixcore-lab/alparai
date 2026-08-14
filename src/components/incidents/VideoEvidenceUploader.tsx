@@ -114,7 +114,7 @@ export function VideoEvidenceUploader({ onAnalysis }: VideoEvidenceUploaderProps
       </div>
 
       {errorMessage && (
-        <div className="flex items-center gap-2 rounded border border-red-500/20 bg-red-500/10 p-2 text-red-400">
+        <div className="border-danger-500/20 bg-danger-500/10 text-danger-400 flex items-center gap-2 rounded border p-2">
           <AlertCircle className="h-4 w-4 shrink-0" />
           <span>{errorMessage}</span>
         </div>

@@ -342,7 +342,7 @@ export function EmailMagicLinkForm({
         </div>
         <Button
           type="submit"
-          className="from-brand-600 hover:from-brand-500 active:from-brand-700 h-11 w-full rounded-xl bg-gradient-to-r to-indigo-600 font-bold tracking-wide text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:to-indigo-500 hover:shadow-[0_0_25px_rgba(168,85,247,0.25)] active:to-indigo-700 disabled:opacity-40 disabled:hover:translate-y-0 disabled:hover:shadow-none"
+          className="from-brand-600 hover:from-brand-500 active:from-brand-700 to-brand-600 hover:to-brand-500 active:to-brand-700 h-11 w-full rounded-xl bg-gradient-to-r font-bold tracking-wide text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(168,85,247,0.25)] disabled:opacity-40 disabled:hover:translate-y-0 disabled:hover:shadow-none"
           isLoading={state?.status === "sending"}
           disabled={disabled || !emailValue.trim()}
           leftIcon={

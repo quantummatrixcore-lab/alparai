@@ -35,7 +35,7 @@ export function AdminSubNav({ items, activeId, onChange, className }: AdminSubNa
             className={cn(
               "flex shrink-0 items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-semibold transition-all duration-150",
               isActive
-                ? "border border-cyan-500/30 bg-cyan-500/15 text-cyan-400 shadow-sm"
+                ? "border-accent-500/30 bg-accent-500/15 text-accent-400 border shadow-sm"
                 : "text-fg-muted hover:text-fg-primary hover:bg-bg-tertiary/60 border border-transparent",
               item.disabled && "cursor-not-allowed opacity-50",
             )}
@@ -46,7 +46,7 @@ export function AdminSubNav({ items, activeId, onChange, className }: AdminSubNa
               <span
                 className={cn(
                   "ml-1 rounded-full px-2 py-0.5 text-[10px] font-bold",
-                  isActive ? "bg-cyan-500/25 text-cyan-300" : "bg-bg-tertiary text-fg-muted",
+                  isActive ? "bg-accent-500/25 text-accent-300" : "bg-bg-tertiary text-fg-muted",
                 )}
               >
                 {item.badge}

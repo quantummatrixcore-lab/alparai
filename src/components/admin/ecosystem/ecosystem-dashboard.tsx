@@ -45,7 +45,7 @@ export function EcosystemDashboard({ data }: { data: DashboardData }) {
                   {t("crawler_active") || "CRAWLER ACTIVE"}
                 </span>
               </div>
-              <p className="mt-1 text-xs text-zinc-400">
+              <p className="text-fg-muted mt-1 text-xs">
                 {t("ecosystem_hub_subtitle") ||
                   "Monitor AI ecosystem news, review external incident submissions, and track positive developments."}
               </p>
@@ -59,20 +59,20 @@ export function EcosystemDashboard({ data }: { data: DashboardData }) {
       </div>
 
       {/* Review Queue Explanation Glass Banner */}
-      <div className="rounded-2xl border border-amber-500/20 bg-gradient-to-r from-amber-500/10 via-zinc-950/60 to-transparent p-5 shadow-xl backdrop-blur-xl">
+      <div className="border-warning-500/20 from-warning-500/10 rounded-2xl border bg-gradient-to-r via-zinc-950/60 to-transparent p-5 shadow-xl backdrop-blur-xl">
         <div className="flex items-start space-x-3">
-          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-amber-500/30 bg-amber-500/20">
-            <Info className="h-4 w-4 text-amber-400" />
+          <div className="border-warning-500/30 bg-warning-500/20 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border">
+            <Info className="text-warning-400 h-4 w-4" />
           </div>
           <div className="min-w-0 flex-1">
-            <h4 className="flex items-center gap-2 text-xs font-bold tracking-wider text-amber-300 uppercase">
+            <h4 className="text-warning-300 flex items-center gap-2 text-xs font-bold tracking-wider uppercase">
               <span>{t("review_queue_guidance") || "Review Queue Guidance"}</span>
             </h4>
-            <p className="mt-1 text-xs leading-relaxed text-zinc-300">
+            <p className="text-fg-secondary mt-1 text-xs leading-relaxed">
               {t("review_queue_guidance_desc") ||
                 "Entries in the queue are potential incident drafts automatically fetched by ALPAR AI autonomous crawlers from OECD AI Observatory, AI Incident Database (AIID), and global RSS feeds."}
             </p>
-            <div className="mt-3 flex flex-wrap gap-4 text-[11px] text-zinc-400">
+            <div className="text-fg-muted mt-3 flex flex-wrap gap-4 text-[11px]">
               <span className="flex items-center gap-1.5 font-medium">
                 <Bot className="text-brand-400 h-3.5 w-3.5" />
                 {t("oecd_aiid_active") || "OECD AI & AIID Integration Active"}
@@ -82,7 +82,7 @@ export function EcosystemDashboard({ data }: { data: DashboardData }) {
                 {t("global_rss_feeds") || "Global RSS News Feeds"}
               </span>
               <span className="flex items-center gap-1.5 font-medium">
-                <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
+                <ShieldCheck className="text-success-400 h-3.5 w-3.5" />
                 {t("human_moderator_gatekeeping") || "Human Moderator Gatekeeping"}
               </span>
             </div>

@@ -57,9 +57,9 @@ export function AdvisorRoster() {
   const t = useTranslations("admin");
 
   return (
-    <div className="border-border-subtle rounded-2xl border bg-zinc-900/40 p-6 ring-1 ring-white/10 backdrop-blur-md backdrop-blur-xl">
+    <div className="border-border-subtle bg-bg-elevated/40 rounded-2xl border p-6 ring-1 ring-white/10 backdrop-blur-md backdrop-blur-xl">
       <div className="mb-4 flex items-center gap-2">
-        <div className="rounded-lg border border-emerald-500/25 bg-emerald-500/10 p-2 text-emerald-400">
+        <div className="border-success-500/25 bg-success-500/10 text-success-400 rounded-lg border p-2">
           <Users className="h-5 w-5" />
         </div>
         <div>
@@ -86,11 +86,11 @@ export function AdvisorRoster() {
                 <div className="flex items-center gap-2">
                   <span className="font-mono text-sm font-bold text-white">{advisor.name}</span>
                   {isLive ? (
-                    <span className="inline-flex items-center rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-400 uppercase">
+                    <span className="border-success-500/30 bg-success-500/10 text-success-400 inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-bold uppercase">
                       Live
                     </span>
                   ) : (
-                    <span className="inline-flex items-center rounded-full border border-amber-500/20 bg-amber-500/10 px-2 py-0.5 text-[10px] font-bold text-amber-300/70 uppercase">
+                    <span className="border-warning-500/20 bg-warning-500/10 text-warning-300/70 inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-bold uppercase">
                       Definition
                     </span>
                   )}

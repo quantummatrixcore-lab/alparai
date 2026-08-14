@@ -25,14 +25,17 @@ export function VelocityMetricsCard({
     if (v >= 3.0)
       return {
         label: t("status_agi"),
-        color: "bg-purple-500/20 text-purple-400 border-purple-500/30",
+        color: "bg-brand-500/20 text-brand-400 border-brand-500/30",
       };
     if (v >= 1.5)
       return {
         label: t("status_exponential"),
-        color: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
+        color: "bg-success-500/20 text-success-400 border-success-500/30",
       };
-    return { label: t("status_linear"), color: "bg-blue-500/20 text-blue-400 border-blue-500/30" };
+    return {
+      label: t("status_linear"),
+      color: "bg-brand-500/20 text-brand-400 border-brand-500/30",
+    };
   };
 
   const badge = getVelocityBadge(velocityFactor);
@@ -43,12 +46,12 @@ export function VelocityMetricsCard({
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative overflow-hidden rounded-2xl border border-cyan-500/30 bg-neutral-900/70 p-6 shadow-[0_0_30px_rgba(6,182,212,0.15)] backdrop-blur-xl transition-all duration-300 hover:border-cyan-500/50 lg:col-span-2"
+        className="border-accent-500/30 hover:border-accent-500/50 relative overflow-hidden rounded-2xl border bg-neutral-900/70 p-6 shadow-[0_0_30px_rgba(6,182,212,0.15)] backdrop-blur-xl transition-all duration-300 lg:col-span-2"
       >
-        <div className="pointer-events-none absolute -top-24 -right-24 h-48 w-48 rounded-full bg-cyan-500/10 blur-3xl" />
+        <div className="bg-accent-500/10 pointer-events-none absolute -top-24 -right-24 h-48 w-48 rounded-full blur-3xl" />
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-cyan-500/30 bg-cyan-500/10 text-cyan-400">
+            <div className="border-accent-500/30 bg-accent-500/10 text-accent-400 flex h-10 w-10 items-center justify-center rounded-xl border">
               <Zap className="h-5 w-5" />
             </div>
             <div>
@@ -64,10 +67,10 @@ export function VelocityMetricsCard({
         </div>
 
         <div className="mt-6 flex items-baseline gap-3">
-          <span className="bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400 bg-clip-text text-4xl font-extrabold text-transparent sm:text-5xl">
+          <span className="to-success-400 bg-gradient-to-r from-cyan-400 via-teal-300 bg-clip-text text-4xl font-extrabold text-transparent sm:text-5xl">
             {velocityFactor.toFixed(2)}x
           </span>
-          <span className="flex items-center gap-1 text-xs font-medium text-emerald-400">
+          <span className="text-success-400 flex items-center gap-1 text-xs font-medium">
             <TrendingUp className="h-3.5 w-3.5" />+{((velocityFactor - 1.0) * 100).toFixed(0)}%{" "}
             {t("vs_baseline")}
           </span>
@@ -85,12 +88,12 @@ export function VelocityMetricsCard({
       >
         <div className="flex items-center justify-between">
           <span className="text-fg-muted text-xs font-medium">{t("avg_jump_title")}</span>
-          <Cpu className="h-4 w-4 text-purple-400" />
+          <Cpu className="text-brand-400 h-4 w-4" />
         </div>
         <div className="mt-4 flex items-baseline gap-2">
           <span className="text-fg-primary text-3xl font-bold">+{avgJumpPct}%</span>
         </div>
-        <div className="mt-2 flex items-center gap-1.5 text-xs text-purple-400">
+        <div className="text-brand-400 mt-2 flex items-center gap-1.5 text-xs">
           <Activity className="h-3.5 w-3.5" />
           <span>
             {totalModelsTracked} {t("models_audited")}
@@ -107,7 +110,7 @@ export function VelocityMetricsCard({
       >
         <div className="flex items-center justify-between">
           <span className="text-fg-muted text-xs font-medium">{t("base_arr_title")}</span>
-          <Rocket className="h-4 w-4 text-amber-400" />
+          <Rocket className="text-warning-400 h-4 w-4" />
         </div>
         <div className="mt-4 flex items-baseline gap-2">
           <span className="text-fg-primary text-3xl font-bold">
@@ -115,7 +118,7 @@ export function VelocityMetricsCard({
           </span>
           <span className="text-fg-muted text-xs">ARR</span>
         </div>
-        <div className="mt-2 flex items-center gap-1.5 text-xs text-amber-400">
+        <div className="text-warning-400 mt-2 flex items-center gap-1.5 text-xs">
           <ShieldCheck className="h-3.5 w-3.5" />
           <span>
             {clientCount} {t("enterprise_clients")}

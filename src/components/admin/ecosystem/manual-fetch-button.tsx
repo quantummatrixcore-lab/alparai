@@ -38,8 +38,8 @@ export function ManualFetchButton() {
         if (msg) msg.textContent = result.message;
         if (icon) {
           icon.innerHTML = result.success
-            ? '<svg class="w-5 h-5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>'
-            : '<svg class="w-5 h-5 text-rose-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>';
+            ? '<svg class="w-5 h-5 text-success-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>'
+            : '<svg class="w-5 h-5 text-danger-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>';
         }
         toast.classList.remove("opacity-0", "translate-y-4", "pointer-events-none");
         toast.classList.add("opacity-100", "translate-y-0");
@@ -56,7 +56,7 @@ export function ManualFetchButton() {
           msg.textContent = `Ağ veya Sunucu Hatası: ${err instanceof Error ? err.message : "Bilinmeyen hata"}`;
         if (icon) {
           icon.innerHTML =
-            '<svg class="w-5 h-5 text-rose-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>';
+            '<svg class="w-5 h-5 text-danger-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>';
         }
         toast.classList.remove("opacity-0", "translate-y-4", "pointer-events-none");
         toast.classList.add("opacity-100", "translate-y-0");
@@ -81,7 +81,7 @@ export function ManualFetchButton() {
 
       <div
         id="fetch-toast"
-        className="pointer-events-none fixed right-6 bottom-6 z-50 flex translate-y-4 items-center gap-3 rounded-xl border border-white/10 bg-zinc-900/95 px-5 py-3.5 opacity-0 shadow-2xl backdrop-blur-xl transition-all duration-300"
+        className="bg-bg-elevated/95 pointer-events-none fixed right-6 bottom-6 z-50 flex translate-y-4 items-center gap-3 rounded-xl border border-white/10 px-5 py-3.5 opacity-0 shadow-2xl backdrop-blur-xl transition-all duration-300"
       >
         <span className="toast-icon"></span>
         <span className="toast-msg text-xs font-semibold text-white"></span>

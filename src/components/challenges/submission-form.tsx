@@ -40,8 +40,8 @@ export function SubmissionForm({ challengeId }: { challengeId: string }) {
 
   if (success) {
     return (
-      <div className="mt-6 rounded-lg border border-emerald-500/20 bg-emerald-500/5 p-4">
-        <p className="text-sm font-medium text-emerald-400">{t("submitted")}</p>
+      <div className="border-success-500/20 bg-success-500/5 mt-6 rounded-lg border p-4">
+        <p className="text-success-400 text-sm font-medium">{t("submitted")}</p>
       </div>
     );
   }
@@ -56,8 +56,8 @@ export function SubmissionForm({ challengeId }: { challengeId: string }) {
       </h4>
 
       {error && (
-        <div className="rounded-lg border border-red-500/20 bg-red-500/5 p-3">
-          <p className="text-sm text-red-400">{error}</p>
+        <div className="border-danger-500/20 bg-danger-500/5 rounded-lg border p-3">
+          <p className="text-danger-400 text-sm">{error}</p>
         </div>
       )}
 
@@ -68,7 +68,9 @@ export function SubmissionForm({ challengeId }: { challengeId: string }) {
           placeholder={t("titlePlaceholder")}
           className="focus:border-brand-500/50 focus:ring-brand-500/20 w-full rounded-lg border border-white/10 bg-white/[0.03] px-4 py-2.5 text-sm text-white transition outline-none placeholder:text-white/30 focus:ring-1"
         />
-        {fieldErrors.title && <p className="mt-1 text-xs text-red-400">{fieldErrors.title[0]}</p>}
+        {fieldErrors.title && (
+          <p className="text-danger-400 mt-1 text-xs">{fieldErrors.title[0]}</p>
+        )}
       </div>
 
       <div>
@@ -80,7 +82,7 @@ export function SubmissionForm({ challengeId }: { challengeId: string }) {
           className="focus:border-brand-500/50 focus:ring-brand-500/20 w-full rounded-lg border border-white/10 bg-white/[0.03] px-4 py-2.5 text-sm text-white transition outline-none placeholder:text-white/30 focus:ring-1"
         />
         {fieldErrors.description && (
-          <p className="mt-1 text-xs text-red-400">{fieldErrors.description[0]}</p>
+          <p className="text-danger-400 mt-1 text-xs">{fieldErrors.description[0]}</p>
         )}
       </div>
 

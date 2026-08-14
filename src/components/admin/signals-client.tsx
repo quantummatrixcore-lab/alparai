@@ -28,14 +28,14 @@ export function SignalsClient({ initialSignals = [] }: SignalsClientProps) {
   const t = useTranslations("admin");
 
   const categories: { key: SignalCategory; label: string; color: string }[] = [
-    { key: "performance", label: t("signal_perf") || "Performance", color: "text-cyan-400" },
-    { key: "security", label: t("signal_security") || "Security", color: "text-emerald-400" },
+    { key: "performance", label: t("signal_perf") || "Performance", color: "text-accent-400" },
+    { key: "security", label: t("signal_security") || "Security", color: "text-success-400" },
     {
       key: "reliability",
       label: t("signal_reliability") || "Reliability",
-      color: "text-purple-400",
+      color: "text-brand-400",
     },
-    { key: "ux", label: t("signal_ux") || "User Experience", color: "text-amber-400" },
+    { key: "ux", label: t("signal_ux") || "User Experience", color: "text-warning-400" },
   ];
 
   const healthyCount = initialSignals.filter((s) => s.status === "healthy").length;
@@ -95,15 +95,15 @@ export function SignalsClient({ initialSignals = [] }: SignalsClientProps) {
           </div>
           <div className="flex gap-8">
             <div className="text-center">
-              <AnimatedCounter value={healthyCount} className="text-3xl text-emerald-400" />
+              <AnimatedCounter value={healthyCount} className="text-success-400 text-3xl" />
               <p className="text-fg-muted text-[10px] font-bold">{t("slo_healthy") || "Healthy"}</p>
             </div>
             <div className="text-center">
-              <AnimatedCounter value={warningCount} className="text-3xl text-amber-400" />
+              <AnimatedCounter value={warningCount} className="text-warning-400 text-3xl" />
               <p className="text-fg-muted text-[10px] font-bold">{t("slo_warning") || "Warning"}</p>
             </div>
             <div className="text-center">
-              <AnimatedCounter value={dangerCount} className="text-3xl text-rose-400" />
+              <AnimatedCounter value={dangerCount} className="text-danger-400 text-3xl" />
               <p className="text-fg-muted text-[10px] font-bold">
                 {t("signal_critical") || "Critical"}
               </p>
@@ -143,8 +143,8 @@ export function SignalsClient({ initialSignals = [] }: SignalsClientProps) {
                     />
                     <div className="flex-1">
                       <div className="flex items-center gap-1">
-                        {sig.trend === "up" && <TrendUp className="h-3 w-3 text-emerald-400" />}
-                        {sig.trend === "down" && <TrendDown className="h-3 w-3 text-rose-400" />}
+                        {sig.trend === "up" && <TrendUp className="text-success-400 h-3 w-3" />}
+                        {sig.trend === "down" && <TrendDown className="text-danger-400 h-3 w-3" />}
                         {sig.trend === "stable" && <Minus className="text-fg-muted h-3 w-3" />}
                         <span className="font-mono text-lg font-black text-white">{sig.value}</span>
                         <span className="text-fg-muted text-[10px]">/ {sig.threshold}</span>
@@ -156,10 +156,10 @@ export function SignalsClient({ initialSignals = [] }: SignalsClientProps) {
                     <div
                       className={`h-full rounded-full transition-all duration-500 ${
                         sig.status === "healthy"
-                          ? "bg-emerald-500"
+                          ? "bg-success-500"
                           : sig.status === "warning"
-                            ? "bg-amber-500"
-                            : "bg-rose-500"
+                            ? "bg-warning-500"
+                            : "bg-danger-500"
                       }`}
                       style={{ width: `${Math.min(sig.value, 100)}%` }}
                     />

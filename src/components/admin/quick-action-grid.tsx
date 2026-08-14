@@ -20,15 +20,15 @@ export interface QuickActionGridProps {
 
 const variantClasses = {
   default: "bg-bg-secondary border-border-subtle hover:border-brand-500/30 hover:bg-brand-500/5",
-  danger: "bg-red-500/5 border-red-500/20 hover:border-red-500/40 hover:bg-red-500/10",
+  danger: "bg-danger-500/5 border-danger-500/20 hover:border-danger-500/40 hover:bg-danger-500/10",
   success:
-    "bg-emerald-500/5 border-emerald-500/20 hover:border-emerald-500/40 hover:bg-emerald-500/10",
+    "bg-success-500/5 border-success-500/20 hover:border-success-500/40 hover:bg-success-500/10",
 };
 
 const iconVariantClasses = {
   default: "text-brand-400",
-  danger: "text-red-400",
-  success: "text-emerald-400",
+  danger: "text-danger-400",
+  success: "text-success-400",
 };
 
 export function QuickActionGrid({ actions, columns = 2, className }: QuickActionGridProps) {

@@ -42,10 +42,10 @@ export function Observe360Dashboard() {
 
   const healthColor =
     telemetry?.healthSlo.status === "CRITICAL"
-      ? "text-red-400"
+      ? "text-danger-400"
       : telemetry?.healthSlo.status === "DEGRADED"
-        ? "text-amber-400"
-        : "text-emerald-400";
+        ? "text-warning-400"
+        : "text-success-400";
 
   return (
     <div className="border-brand-500/20 to-brand-950/30 mb-8 overflow-hidden rounded-2xl border bg-gradient-to-br from-zinc-950 via-zinc-900 p-6 shadow-2xl backdrop-blur-xl">
@@ -59,14 +59,14 @@ export function Observe360Dashboard() {
                 {t("live_8_domain_telemetry")}
               </span>
             </h2>
-            <p className="text-xs text-zinc-400">{t("aggregated_cross_domain_signals_incident")}</p>
+            <p className="text-fg-muted text-xs">{t("aggregated_cross_domain_signals_incident")}</p>
           </div>
         </div>
 
         <button
           onClick={fetchTelemetry}
           disabled={loading}
-          className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-zinc-300 transition-colors hover:bg-white/10"
+          className="text-fg-secondary flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold transition-colors hover:bg-white/10"
         >
           <RefreshCw className={`h-3.5 w-3.5 ${loading ? "animate-spin" : ""}`} />
           <span>{t("sync_telemetry")}</span>
@@ -75,8 +75,8 @@ export function Observe360Dashboard() {
 
       <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {/* 1. Incidents Registry */}
-        <div className="hover:border-brand-500/30 rounded-xl border border-white/10 bg-zinc-900/80 p-4 transition-all">
-          <div className="flex items-center justify-between text-xs text-zinc-400">
+        <div className="hover:border-brand-500/30 bg-bg-elevated/80 rounded-xl border border-white/10 p-4 transition-all">
+          <div className="text-fg-muted flex items-center justify-between text-xs">
             <span>{t("1_incidents_registry")}</span>
             <Shield className="text-brand-400 h-4 w-4" />
           </div>
@@ -88,7 +88,7 @@ export function Observe360Dashboard() {
               {telemetry ? `${telemetry.incidents.pendingReview} PENDING` : ""}
             </span>
           </div>
-          <p className="mt-2 text-[11px] text-zinc-400">
+          <p className="text-fg-muted mt-2 text-[11px]">
             {telemetry
               ? `${telemetry.incidents.verified} Expert-Verified`
               : loading
@@ -98,10 +98,10 @@ export function Observe360Dashboard() {
         </div>
 
         {/* 2. Health & SLO */}
-        <div className="hover:border-brand-500/30 rounded-xl border border-white/10 bg-zinc-900/80 p-4 transition-all">
-          <div className="flex items-center justify-between text-xs text-zinc-400">
+        <div className="hover:border-brand-500/30 bg-bg-elevated/80 rounded-xl border border-white/10 p-4 transition-all">
+          <div className="text-fg-muted flex items-center justify-between text-xs">
             <span>{t("2_health_slo")}</span>
-            <Activity className="h-4 w-4 text-emerald-400" />
+            <Activity className="text-success-400 h-4 w-4" />
           </div>
           <div className="mt-2 flex items-baseline justify-between">
             <span className="text-2xl font-black text-white">
@@ -121,24 +121,24 @@ export function Observe360Dashboard() {
         </div>
 
         {/* 3. Security & RLS */}
-        <div className="hover:border-brand-500/30 rounded-xl border border-white/10 bg-zinc-900/80 p-4 transition-all">
-          <div className="flex items-center justify-between text-xs text-zinc-400">
+        <div className="hover:border-brand-500/30 bg-bg-elevated/80 rounded-xl border border-white/10 p-4 transition-all">
+          <div className="text-fg-muted flex items-center justify-between text-xs">
             <span>{t("3_security_rls")}</span>
             <SupabaseIcon size={14} />
           </div>
           <div className="mt-2 flex items-baseline justify-between">
             <span className="text-2xl font-black text-white">{t("hardened")}</span>
-            <span className="text-xs font-bold text-emerald-400">{t("passed")}</span>
+            <span className="text-success-400 text-xs font-bold">{t("passed")}</span>
           </div>
-          <p className="mt-2 text-[11px] text-zinc-400">
+          <p className="text-fg-muted mt-2 text-[11px]">
             {t("pii_guardian_active")}{" "}
             {telemetry ? `${telemetry.securityRls.rlsPolicyCount} RLS Policies` : "—"}
           </p>
         </div>
 
         {/* 4. DORA Metrics */}
-        <div className="hover:border-brand-500/30 rounded-xl border border-white/10 bg-zinc-900/80 p-4 transition-all">
-          <div className="flex items-center justify-between text-xs text-zinc-400">
+        <div className="hover:border-brand-500/30 bg-bg-elevated/80 rounded-xl border border-white/10 p-4 transition-all">
+          <div className="text-fg-muted flex items-center justify-between text-xs">
             <span>{t("4_dora_metrics")}</span>
             <Zap className="h-4 w-4 text-sky-400" />
           </div>
@@ -150,7 +150,7 @@ export function Observe360Dashboard() {
               {telemetry?.dora.instrumented ? "LIVE" : "PENDING"}
             </span>
           </div>
-          <p className="mt-2 text-[11px] text-zinc-400">
+          <p className="text-fg-muted mt-2 text-[11px]">
             {telemetry?.dora.instrumented
               ? `Lead: ${telemetry.dora.leadTimeMinutes}m • MTTR: ${telemetry.dora.mttrMinutes}m`
               : "Webhook not yet configured"}
@@ -158,36 +158,36 @@ export function Observe360Dashboard() {
         </div>
 
         {/* 5. Cost (AI Gateway) */}
-        <div className="hover:border-brand-500/30 rounded-xl border border-white/10 bg-zinc-900/80 p-4 transition-all">
-          <div className="flex items-center justify-between text-xs text-zinc-400">
+        <div className="hover:border-brand-500/30 bg-bg-elevated/80 rounded-xl border border-white/10 p-4 transition-all">
+          <div className="text-fg-muted flex items-center justify-between text-xs">
             <span>{t("5_ai_gateway_cost")}</span>
-            <DollarSign className="h-4 w-4 text-emerald-400" />
+            <DollarSign className="text-success-400 h-4 w-4" />
           </div>
           <div className="mt-2 flex items-baseline justify-between">
             <span className="text-2xl font-black text-white">
               ${telemetry?.cost.dailySpendUsd.toFixed(2) ?? "—"} {t("day")}
             </span>
-            <span className="text-xs font-bold text-emerald-400">{t("tracked")}</span>
+            <span className="text-success-400 text-xs font-bold">{t("tracked")}</span>
           </div>
-          <p className="mt-2 text-[11px] text-zinc-400">
+          <p className="text-fg-muted mt-2 text-[11px]">
             {t("30_day_spend")}
             {telemetry?.cost.monthlySpendUsd.toFixed(2) ?? "—"}
           </p>
         </div>
 
         {/* 6. Growth & Users */}
-        <div className="hover:border-brand-500/30 rounded-xl border border-white/10 bg-zinc-900/80 p-4 transition-all">
-          <div className="flex items-center justify-between text-xs text-zinc-400">
+        <div className="hover:border-brand-500/30 bg-bg-elevated/80 rounded-xl border border-white/10 p-4 transition-all">
+          <div className="text-fg-muted flex items-center justify-between text-xs">
             <span>{t("6_growth_users")}</span>
-            <TrendingUp className="h-4 w-4 text-purple-400" />
+            <TrendingUp className="text-brand-400 h-4 w-4" />
           </div>
           <div className="mt-2 flex items-baseline justify-between">
             <span className="text-2xl font-black text-white">
               {telemetry ? `${telemetry.growth.totalUsers} Users` : "—"}
             </span>
-            <span className="text-xs font-bold text-purple-400">{t("active")}</span>
+            <span className="text-brand-400 text-xs font-bold">{t("active")}</span>
           </div>
-          <p className="mt-2 text-[11px] text-zinc-400">
+          <p className="text-fg-muted mt-2 text-[11px]">
             {telemetry
               ? `${telemetry.growth.reportersCount} Incident Reporters`
               : loading
@@ -197,16 +197,16 @@ export function Observe360Dashboard() {
         </div>
 
         {/* 7. Capacity & Infra */}
-        <div className="hover:border-brand-500/30 rounded-xl border border-white/10 bg-zinc-900/80 p-4 transition-all">
-          <div className="flex items-center justify-between text-xs text-zinc-400">
+        <div className="hover:border-brand-500/30 bg-bg-elevated/80 rounded-xl border border-white/10 p-4 transition-all">
+          <div className="text-fg-muted flex items-center justify-between text-xs">
             <span>{t("7_capacity_infra")}</span>
-            <HardDrive className="h-4 w-4 text-amber-400" />
+            <HardDrive className="text-warning-400 h-4 w-4" />
           </div>
           <div className="mt-2 flex items-baseline justify-between">
             <span className="text-2xl font-black text-white">
               {telemetry ? `${telemetry.capacity.dbSizeMb} MB` : "—"}
             </span>
-            <span className="text-xs font-bold text-amber-400">
+            <span className="text-warning-400 text-xs font-bold">
               {telemetry ? `/ ${telemetry.capacity.dbSizeLimitMb}MB cap` : ""}
             </span>
           </div>
@@ -226,8 +226,8 @@ export function Observe360Dashboard() {
         </div>
 
         {/* 8. K-BENCHMARK */}
-        <div className="hover:border-brand-500/30 rounded-xl border border-white/10 bg-zinc-900/80 p-4 transition-all">
-          <div className="flex items-center justify-between text-xs text-zinc-400">
+        <div className="hover:border-brand-500/30 bg-bg-elevated/80 rounded-xl border border-white/10 p-4 transition-all">
+          <div className="text-fg-muted flex items-center justify-between text-xs">
             <span>{t("8_k_benchmark")}</span>
             <Award className="text-brand-400 h-4 w-4" />
           </div>
@@ -237,7 +237,7 @@ export function Observe360Dashboard() {
             </span>
             <span className="text-brand-300 text-xs font-bold">{t("rated")}</span>
           </div>
-          <p className="mt-2 text-[11px] text-zinc-400">
+          <p className="text-fg-muted mt-2 text-[11px]">
             {t("last_audit")}{" "}
             {telemetry?.kBenchmark.lastAuditDate ?? (loading ? "Loading…" : "Not yet run")}
           </p>

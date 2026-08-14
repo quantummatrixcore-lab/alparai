@@ -80,7 +80,7 @@ export function ARRProjectionCharts({ scenarioResult }: ARRProjectionChartsProps
               onClick={() => setActiveTab(tab)}
               className={`rounded-lg px-3 py-1.5 text-xs font-semibold transition-all ${
                 activeTab === tab
-                  ? "border border-cyan-500/30 bg-cyan-500/20 text-cyan-400 shadow-md"
+                  ? "border-accent-500/30 bg-accent-500/20 text-accent-400 border shadow-md"
                   : "text-fg-muted hover:text-fg-primary"
               }`}
             >

@@ -24,19 +24,19 @@ export function QuotaWidget({
   const percentage = total > 0 ? Math.min(100, Math.round((used / total) * 100)) : 0;
   const ratio = total > 0 ? used / total : 0;
 
-  let colorClass = "bg-emerald-500";
-  let textClass = "text-emerald-400";
+  let colorClass = "bg-success-500";
+  let textClass = "text-success-400";
   let statusVariant: "success" | "warning" | "muted" = "success";
   let statusText = t("quota_normal");
 
   if (ratio >= criticalAt) {
-    colorClass = "bg-rose-500";
-    textClass = "text-rose-400";
+    colorClass = "bg-danger-500";
+    textClass = "text-danger-400";
     statusVariant = "muted";
     statusText = t("quota_critical");
   } else if (ratio >= warningAt) {
-    colorClass = "bg-amber-500";
-    textClass = "text-amber-400";
+    colorClass = "bg-warning-500";
+    textClass = "text-warning-400";
     statusVariant = "warning";
     statusText = t("quota_warning");
   }

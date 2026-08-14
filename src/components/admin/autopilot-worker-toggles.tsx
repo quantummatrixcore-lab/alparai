@@ -35,24 +35,24 @@ export function AutopilotWorkerToggles({ workerConfigs, globalKillSwitch }: Prop
       <div
         className={`flex items-center gap-3 rounded-lg border p-4 backdrop-blur-xl ${
           globalKillSwitch
-            ? "border-red-500/20 bg-red-950/20 text-red-300 shadow-[0_0_15px_rgba(239,68,68,0.1)]"
-            : "border-emerald-500/20 bg-emerald-950/20 text-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.1)]"
+            ? "border-danger-500/20 text-danger-300 bg-red-950/20 shadow-[0_0_15px_rgba(239,68,68,0.1)]"
+            : "border-success-500/20 text-success-300 bg-emerald-950/20 shadow-[0_0_15px_rgba(16,185,129,0.1)]"
         }`}
       >
         {globalKillSwitch ? (
           <>
-            <ShieldAlert className="h-6 w-6 shrink-0 text-red-400" />
+            <ShieldAlert className="text-danger-400 h-6 w-6 shrink-0" />
             <div>
               <p className="text-sm font-semibold">{t("kill_switch_active_title")}</p>
-              <p className="mt-0.5 text-xs text-red-400/80">{t("kill_switch_active_desc")}</p>
+              <p className="text-danger-400/80 mt-0.5 text-xs">{t("kill_switch_active_desc")}</p>
             </div>
           </>
         ) : (
           <>
-            <ShieldCheck className="h-6 w-6 shrink-0 text-emerald-400" />
+            <ShieldCheck className="text-success-400 h-6 w-6 shrink-0" />
             <div>
               <p className="text-sm font-semibold">{t("kill_switch_inactive_title")}</p>
-              <p className="mt-0.5 text-xs text-emerald-400/80">{t("kill_switch_inactive_desc")}</p>
+              <p className="text-success-400/80 mt-0.5 text-xs">{t("kill_switch_inactive_desc")}</p>
             </div>
           </>
         )}
@@ -88,12 +88,12 @@ export function AutopilotWorkerToggles({ workerConfigs, globalKillSwitch }: Prop
                         <span
                           className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-semibold ${
                             wc.enabled
-                              ? "bg-emerald-500/10 text-emerald-400"
-                              : "bg-red-500/10 text-red-400"
+                              ? "bg-success-500/10 text-success-400"
+                              : "bg-danger-500/10 text-danger-400"
                           }`}
                         >
                           <span
-                            className={`h-1.5 w-1.5 rounded-full ${wc.enabled ? "bg-emerald-400" : "bg-red-400"}`}
+                            className={`h-1.5 w-1.5 rounded-full ${wc.enabled ? "bg-success-400" : "bg-danger-400"}`}
                           />
                           {wc.enabled ? t("status_enabled") : t("status_disabled")}
                         </span>
@@ -110,8 +110,8 @@ export function AutopilotWorkerToggles({ workerConfigs, globalKillSwitch }: Prop
                           onClick={() => handleToggle(wc.worker_name, !wc.enabled)}
                           className={
                             wc.enabled
-                              ? "text-red-400 hover:bg-red-500/5 hover:text-red-300"
-                              : "text-emerald-400 hover:bg-emerald-500/5 hover:text-emerald-300"
+                              ? "text-danger-400 hover:bg-danger-500/5 hover:text-danger-300"
+                              : "text-success-400 hover:bg-success-500/5 hover:text-success-300"
                           }
                         >
                           {wc.enabled ? (

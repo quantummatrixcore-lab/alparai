@@ -26,16 +26,16 @@ export function BountyBadgesShowcase({
   const getBadgeIcon = (code: string) => {
     switch (code) {
       case "bug_hunter_gold":
-        return <Crown className="h-6 w-6 text-yellow-400" />;
+        return <Crown className="text-warning-400 h-6 w-6" />;
       case "bug_hunter_silver":
-        return <Medal className="h-6 w-6 text-slate-300" />;
+        return <Medal className="text-fg-secondary h-6 w-6" />;
       case "bug_hunter_bronze":
-        return <Award className="h-6 w-6 text-amber-600" />;
+        return <Award className="text-warning-600 h-6 w-6" />;
       case "ethics_advocate":
-        return <ShieldCheck className="h-6 w-6 text-emerald-400" />;
+        return <ShieldCheck className="text-success-400 h-6 w-6" />;
       case "bug_hunter_first":
       default:
-        return <Trophy className="h-6 w-6 text-amber-400" />;
+        return <Trophy className="text-warning-400 h-6 w-6" />;
     }
   };
 
@@ -46,13 +46,13 @@ export function BountyBadgesShowcase({
 
     switch (code) {
       case "bug_hunter_gold":
-        return "border-yellow-500/50 bg-yellow-500/10 shadow-[0_0_20px_rgba(234,179,8,0.15)]";
+        return "border-warning-500/50 bg-warning-500/10 shadow-[0_0_20px_rgba(234,179,8,0.15)]";
       case "bug_hunter_silver":
         return "border-slate-400/50 bg-slate-400/10 shadow-[0_0_15px_rgba(148,163,184,0.1)]";
       case "bug_hunter_bronze":
-        return "border-amber-700/50 bg-amber-700/10 shadow-[0_0_15px_rgba(180,83,9,0.1)]";
+        return "border-warning-700/50 bg-warning-700/10 shadow-[0_0_15px_rgba(180,83,9,0.1)]";
       case "ethics_advocate":
-        return "border-emerald-500/50 bg-emerald-500/10 shadow-[0_0_20px_rgba(16,185,129,0.15)]";
+        return "border-success-500/50 bg-success-500/10 shadow-[0_0_20px_rgba(16,185,129,0.15)]";
       case "bug_hunter_first":
       default:
         return "border-warning-500/50 bg-warning-500/10 shadow-[0_0_20px_rgba(245,158,11,0.15)]";
@@ -91,7 +91,7 @@ export function BountyBadgesShowcase({
                     <span
                       className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[10px] font-bold tracking-wider uppercase ${
                         isUnlocked
-                          ? "border border-emerald-500/40 bg-emerald-500/20 text-emerald-400"
+                          ? "border-success-500/40 bg-success-500/20 text-success-400 border"
                           : "bg-bg-tertiary text-fg-muted border-border-subtle border"
                       }`}
                     >

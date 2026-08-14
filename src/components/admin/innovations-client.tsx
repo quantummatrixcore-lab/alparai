@@ -185,10 +185,10 @@ export function InnovationsClient({
   };
 
   const priorityColors = {
-    low: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-    medium: "bg-yellow-500/10 text-yellow-400 border-yellow-500/20",
-    high: "bg-orange-500/10 text-orange-400 border-orange-500/20",
-    critical: "bg-red-500/10 text-red-400 border-red-500/20",
+    low: "bg-brand-500/10 text-brand-400 border-brand-500/20",
+    medium: "bg-warning-500/10 text-warning-400 border-warning-500/20",
+    high: "bg-warning-500/10 text-warning-400 border-warning-500/20",
+    critical: "bg-danger-500/10 text-danger-400 border-danger-500/20",
   };
 
   const priorityLabels = {
@@ -206,8 +206,8 @@ export function InnovationsClient({
 
   const statusColors = {
     idea: "bg-neutral-800 text-neutral-400 border-neutral-700",
-    in_progress: "bg-yellow-500/20 text-yellow-300 border-yellow-500/30",
-    done: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
+    in_progress: "bg-warning-500/20 text-warning-300 border-warning-500/30",
+    done: "bg-success-500/20 text-success-300 border-success-500/30",
   };
 
   return (
@@ -227,7 +227,7 @@ export function InnovationsClient({
           <button
             onClick={handleAutoReview}
             disabled={isAutoReviewing}
-            className="flex items-center gap-1.5 rounded-xl bg-indigo-600 px-4 py-2.5 text-xs font-bold text-white shadow-lg transition hover:bg-indigo-500 hover:shadow-indigo-500/10"
+            className="bg-brand-600 hover:bg-brand-500 hover:shadow-brand-500/10 flex items-center gap-1.5 rounded-xl px-4 py-2.5 text-xs font-bold text-white shadow-lg transition"
           >
             {isAutoReviewing ? (
               <Loader2 className="h-4 w-4 animate-spin" />
@@ -267,7 +267,7 @@ export function InnovationsClient({
           >
             <div className="flex items-start justify-between">
               <h3 className="text-sm font-bold text-white">{conn.name}</h3>
-              <span className="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-400">
+              <span className="border-success-500/20 bg-success-500/10 text-success-400 rounded-full border px-2 py-0.5 text-[10px] font-bold">
                 {t("active")}
               </span>
             </div>
@@ -434,7 +434,7 @@ export function InnovationsClient({
               </button>
               <button
                 type="submit"
-                className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-500"
+                className="bg-success-600 hover:bg-success-500 rounded-lg px-4 py-2 text-sm font-semibold text-white transition"
               >
                 {t("approve_publish")}
               </button>
@@ -448,7 +448,7 @@ export function InnovationsClient({
         {/* Review Queue (8 cols on large screens) */}
         <div className="space-y-4 lg:col-span-7">
           <h2 className="flex items-center gap-2 text-lg font-bold text-white">
-            <Flame className="h-5 w-5 text-amber-500" />
+            <Flame className="text-warning-500 h-5 w-5" />
             {t("external_incidents_review_queue")} ({queue.length})
           </h2>
 
@@ -468,21 +468,21 @@ export function InnovationsClient({
                   <div className="flex shrink-0 gap-1">
                     <button
                       onClick={() => setAcceptingItem(item)}
-                      className="rounded-lg border border-emerald-500/20 bg-emerald-500/10 p-1.5 text-emerald-400 transition hover:bg-emerald-500/20"
+                      className="border-success-500/20 bg-success-500/10 text-success-400 hover:bg-success-500/20 rounded-lg border p-1.5 transition"
                       title={t("approve")}
                     >
                       <Check className="h-3.5 w-3.5" />
                     </button>
                     <button
                       onClick={() => handleQueueStatus(item.id, "duplicate")}
-                      className="rounded-lg border border-yellow-500/20 bg-yellow-500/10 px-2 py-1.5 text-[10px] font-bold text-yellow-400 transition hover:bg-yellow-500/20"
+                      className="border-warning-500/20 bg-warning-500/10 text-warning-400 hover:bg-warning-500/20 rounded-lg border px-2 py-1.5 text-[10px] font-bold transition"
                       title={t("mark_duplicate")}
                     >
                       {t("dup")}
                     </button>
                     <button
                       onClick={() => handleQueueStatus(item.id, "rejected")}
-                      className="rounded-lg border border-red-500/20 bg-red-500/10 p-1.5 text-red-400 transition hover:bg-red-500/20"
+                      className="border-danger-500/20 bg-danger-500/10 text-danger-400 hover:bg-danger-500/20 rounded-lg border p-1.5 transition"
                       title={t("reject")}
                     >
                       <X className="h-3.5 w-3.5" />
@@ -513,7 +513,7 @@ export function InnovationsClient({
 
             {queue.length === 0 && (
               <div className="bg-bg-secondary/20 text-fg-muted space-y-2 rounded-xl border border-dashed border-white/10 p-8 text-center text-sm">
-                <CheckCircle className="mx-auto h-8 w-8 text-emerald-500" />
+                <CheckCircle className="text-success-500 mx-auto h-8 w-8" />
                 <p>{t("queue_clean_no_new_external_incidents")}</p>
               </div>
             )}

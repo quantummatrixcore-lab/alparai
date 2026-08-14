@@ -194,12 +194,12 @@ export function ApiMetricsClient({
           )}
         </div>
         <div className="mt-4 flex gap-6 text-sm">
-          <span className="flex items-center gap-2 text-purple-400">
-            <span className="h-3 w-3 rounded-full bg-purple-500" />
+          <span className="text-brand-400 flex items-center gap-2">
+            <span className="bg-brand-500 h-3 w-3 rounded-full" />
             {t("api_requests") || "Requests"}
           </span>
-          <span className="flex items-center gap-2 text-red-400">
-            <span className="h-3 w-3 rounded-full bg-red-500" />
+          <span className="text-danger-400 flex items-center gap-2">
+            <span className="bg-danger-500 h-3 w-3 rounded-full" />
             {t("api_errors") || "Errors"}
           </span>
         </div>

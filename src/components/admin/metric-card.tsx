@@ -31,15 +31,15 @@ export function MetricCard({
   chartType = "line",
   accentColor = "#6366f1",
   badge,
-  badgeColor = "text-emerald-400",
+  badgeColor = "text-success-400",
 }: MetricCardProps) {
   const TrendIcon = trend === "up" ? TrendingUp : trend === "down" ? TrendingDown : Minus;
   const trendColor =
-    trend === "up" ? "text-emerald-400" : trend === "down" ? "text-red-400" : "text-zinc-400";
+    trend === "up" ? "text-success-400" : trend === "down" ? "text-danger-400" : "text-fg-muted";
 
   return (
-    <div className="rounded-xl border border-white/10 bg-zinc-900/80 p-4 transition-all hover:border-white/20">
-      <div className="flex items-center justify-between text-xs text-zinc-400">
+    <div className="bg-bg-elevated/80 rounded-xl border border-white/10 p-4 transition-all hover:border-white/20">
+      <div className="text-fg-muted flex items-center justify-between text-xs">
         <span>{title}</span>
         <span className="h-4 w-4" style={{ color: accentColor }}>
           {icon}
@@ -51,7 +51,7 @@ export function MetricCard({
         {badge && <span className={`text-xs font-bold ${badgeColor}`}>{badge}</span>}
       </div>
 
-      {subtitle && <p className="mt-1 text-[11px] text-zinc-400">{subtitle}</p>}
+      {subtitle && <p className="text-fg-muted mt-1 text-[11px]">{subtitle}</p>}
 
       {sparkData && sparkData.length > 1 && (
         <div className="mt-3 h-10">

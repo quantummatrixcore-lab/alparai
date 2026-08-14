@@ -170,16 +170,16 @@ export function IncidentCard({
               {incident.is_expert && (
                 <Badge
                   variant="success"
-                  className="border-emerald-500/20 bg-emerald-500/10 font-bold text-emerald-400"
+                  className="border-success-500/20 bg-success-500/10 text-success-400 font-bold"
                 >
-                  <CheckCircle2 className="mr-1 h-3 w-3 text-emerald-400" aria-hidden="true" />
+                  <CheckCircle2 className="text-success-400 mr-1 h-3 w-3" aria-hidden="true" />
                   {t("expert_verified", { defaultValue: "Expert Verified" })}
                 </Badge>
               )}
               {incident.machine_translated && (
                 <Badge
                   variant="muted"
-                  className="border-amber-500/20 bg-amber-500/10 text-amber-400"
+                  className="border-warning-500/20 bg-warning-500/10 text-warning-400"
                   title={t("machine_translated_tooltip", {
                     defaultValue: "This content was machine-translated for accessibility",
                   })}
@@ -193,7 +193,7 @@ export function IncidentCard({
               {incident.source_badge === "seed" && (
                 <Badge
                   variant="muted"
-                  className="border-amber-500/20 bg-amber-500/10 text-amber-400"
+                  className="border-warning-500/20 bg-warning-500/10 text-warning-400"
                   title={t("seed_badge_tooltip", {
                     defaultValue:
                       "This incident was imported from curated research data to seed the platform at launch.",
@@ -235,7 +235,7 @@ export function IncidentCard({
                   {t("anonymous")}
                 </Badge>
               )}
-              <span className="rounded border border-white/5 bg-slate-950/80 px-2 py-0.5 text-[10px] font-bold text-slate-400">
+              <span className="bg-bg-tertiary/80 text-fg-muted rounded border border-white/5 px-2 py-0.5 text-[10px] font-bold">
                 {getFormattedBadgeDate(incident.incident_date, locale)}
               </span>
             </div>
@@ -270,7 +270,7 @@ export function IncidentCard({
                 </Link>
                 <Link
                   href={`/incidents/${incident.id}#comments`}
-                  className="text-fg-secondary inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-white/5 bg-white/5 px-2.5 py-1 text-xs font-semibold transition-all hover:border-cyan-500/30 hover:bg-cyan-500/10 hover:text-cyan-400"
+                  className="text-fg-secondary hover:border-accent-500/30 hover:bg-accent-500/10 hover:text-accent-400 inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-white/5 bg-white/5 px-2.5 py-1 text-xs font-semibold transition-all"
                 >
                   <MessageSquare className="h-3.5 w-3.5" aria-hidden="true" />
                   <span>{t("comment_action", { defaultValue: "Yorum Yap" })}</span>

@@ -39,8 +39,8 @@ export function StatsCards({ stats }: { stats: AdminStats }) {
       icon: <AlertTriangle className="h-4 w-4" />,
       label: t("stats_pending"),
       value: stats.pending,
-      color: "text-amber-400",
-      gradient: "from-amber-500 to-transparent",
+      color: "text-warning-400",
+      gradient: "from-warning-500 to-transparent",
       glow: "drop-shadow-[0_0_8px_rgba(245,158,11,0.4)]",
       badge: stats.pending > 0 ? `${stats.pending}` : undefined,
     },
@@ -48,7 +48,7 @@ export function StatsCards({ stats }: { stats: AdminStats }) {
       icon: <ShieldCheck className="h-4 w-4" />,
       label: t("stats_published"),
       value: stats.published,
-      color: "text-cyan-400",
+      color: "text-accent-400",
       gradient: "from-cyan-500 to-transparent",
       glow: "drop-shadow-[0_0_8px_rgba(6,182,212,0.4)]",
     },
@@ -64,15 +64,15 @@ export function StatsCards({ stats }: { stats: AdminStats }) {
       icon: <ShieldAlert className="h-4 w-4" />,
       label: t("stats_takedown_requests"),
       value: stats.takedown_requests,
-      color: "text-rose-400",
-      gradient: "from-rose-500 to-transparent",
+      color: "text-danger-400",
+      gradient: "from-danger-500 to-transparent",
       glow: "drop-shadow-[0_0_8px_rgba(244,63,94,0.4)]",
     },
     {
       icon: <TrendingUp className="h-4 w-4" />,
       label: t("stats_24h"),
       value: stats.recent_24h,
-      color: "text-cyan-400",
+      color: "text-accent-400",
       gradient: "from-cyan-500 to-transparent",
       glow: "drop-shadow-[0_0_8px_rgba(6,182,212,0.4)]",
     },
@@ -140,7 +140,7 @@ export function StatsCards({ stats }: { stats: AdminStats }) {
               {c.icon}
             </div>
             {c.badge && (
-              <span className="inline-flex h-5 min-w-5 animate-pulse items-center justify-center rounded-full border border-amber-500/30 bg-amber-500/20 px-1.5 text-[10px] font-bold text-amber-400 shadow-[0_0_10px_rgba(245,158,11,0.25)]">
+              <span className="border-warning-500/30 bg-warning-500/20 text-warning-400 inline-flex h-5 min-w-5 animate-pulse items-center justify-center rounded-full border px-1.5 text-[10px] font-bold shadow-[0_0_10px_rgba(245,158,11,0.25)]">
                 {c.badge}
               </span>
             )}

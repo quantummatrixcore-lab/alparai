@@ -55,7 +55,7 @@ export function ChallengeList({
                 <div className="flex items-center gap-3">
                   <h3 className="text-xl font-semibold">{title}</h3>
                   {isActive ? (
-                    <span className="rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-xs font-medium text-emerald-400">
+                    <span className="bg-success-500/10 text-success-400 rounded-full px-2.5 py-0.5 text-xs font-medium">
                       {t("active")}
                     </span>
                   ) : (

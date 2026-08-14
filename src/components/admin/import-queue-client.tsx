@@ -99,13 +99,13 @@ export function ImportQueueClient({ initialIncidents, locale: _locale }: ImportQ
   const getSeverityColor = (sev: string) => {
     switch (sev) {
       case "critical":
-        return "bg-red-500/10 text-red-400 border border-red-500/20";
+        return "bg-danger-500/10 text-danger-400 border border-danger-500/20";
       case "high":
-        return "bg-orange-500/10 text-orange-400 border border-orange-500/20";
+        return "bg-warning-500/10 text-warning-400 border border-warning-500/20";
       case "medium":
-        return "bg-yellow-500/10 text-yellow-400 border border-yellow-500/20";
+        return "bg-warning-500/10 text-warning-400 border border-warning-500/20";
       default:
-        return "bg-blue-500/10 text-blue-400 border border-blue-500/20";
+        return "bg-brand-500/10 text-brand-400 border border-brand-500/20";
     }
   };
 
@@ -243,7 +243,7 @@ export function ImportQueueClient({ initialIncidents, locale: _locale }: ImportQ
             <button
               onClick={handleBulkReject}
               disabled={isProcessing}
-              className="flex items-center gap-1.5 rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-2 text-xs font-bold text-red-400 transition hover:bg-red-500/20"
+              className="border-danger-500/20 bg-danger-500/10 text-danger-400 hover:bg-danger-500/20 flex items-center gap-1.5 rounded-xl border px-4 py-2 text-xs font-bold transition"
             >
               <X className="h-4 w-4" />
               {t("import_q_reject")}
@@ -310,8 +310,8 @@ export function ImportQueueClient({ initialIncidents, locale: _locale }: ImportQ
                       className={cn(
                         "rounded border px-2 py-0.5 text-[9px] font-extrabold tracking-wide uppercase",
                         incident.incident_source === "aiaaic_import"
-                          ? "border-purple-500/20 bg-purple-500/10 text-purple-400"
-                          : "border-blue-500/20 bg-blue-500/10 text-blue-400",
+                          ? "border-brand-500/20 bg-brand-500/10 text-brand-400"
+                          : "border-brand-500/20 bg-brand-500/10 text-brand-400",
                       )}
                     >
                       {incident.incident_source === "aiaaic_import" ? "AIAAIC" : "AIID"}

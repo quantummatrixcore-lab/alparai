@@ -15,12 +15,12 @@ interface HeatmapData {
 }
 
 const PROVIDER_COLORS: Record<string, { bg: string; text: string }> = {
-  openai: { bg: "bg-amber-500", text: "text-amber-900" },
-  anthropic: { bg: "bg-indigo-500", text: "text-indigo-900" },
-  google: { bg: "bg-emerald-500", text: "text-emerald-900" },
+  openai: { bg: "bg-warning-500", text: "text-warning-900" },
+  anthropic: { bg: "bg-brand-500", text: "text-brand-900" },
+  google: { bg: "bg-success-500", text: "text-success-900" },
   supabase: { bg: "bg-pink-500", text: "text-pink-900" },
-  upstash: { bg: "bg-cyan-500", text: "text-cyan-900" },
-  resend: { bg: "bg-purple-500", text: "text-purple-900" },
+  upstash: { bg: "bg-accent-500", text: "text-accent-900" },
+  resend: { bg: "bg-brand-500", text: "text-brand-900" },
 };
 
 function getHeatmapColor(value: number, maxValue: number) {
@@ -70,7 +70,7 @@ export function UsageHeatmap({
 
   return (
     <div className="space-y-4">
-      <div className="rounded-xl border border-white/10 bg-zinc-900/80 p-6">
+      <div className="bg-bg-elevated/80 rounded-xl border border-white/10 p-6">
         {/* Legend */}
         <div className="mb-6 flex flex-wrap gap-4">
           {providers.map((provider) => (
@@ -78,7 +78,7 @@ export function UsageHeatmap({
               <div
                 className={`h-3 w-3 rounded ${PROVIDER_COLORS[provider.id]?.bg || "bg-zinc-500"}`}
               />
-              <span className="text-xs text-zinc-400">{provider.name}</span>
+              <span className="text-fg-muted text-xs">{provider.name}</span>
             </div>
           ))}
         </div>
@@ -90,13 +90,13 @@ export function UsageHeatmap({
             style={{ gridTemplateColumns: "60px repeat(24, minmax(32px, 1fr))" }}
           >
             {/* Header row with hours */}
-            <div className="flex items-center justify-center text-xs font-semibold text-zinc-500">
+            <div className="text-fg-disabled flex items-center justify-center text-xs font-semibold">
               {t("hour")}
             </div>
             {Array.from({ length: 24 }).map((_, i) => (
               <div
                 key={`header-${i}`}
-                className="flex items-center justify-center text-xs text-zinc-500"
+                className="text-fg-disabled flex items-center justify-center text-xs"
               >
                 {i % 3 === 0 ? `${i}h` : ""}
               </div>
@@ -105,7 +105,7 @@ export function UsageHeatmap({
             {/* Heatmap rows for each provider */}
             {providerIds.map((providerId) => (
               <React.Fragment key={providerId}>
-                <div className="flex items-center truncate text-xs font-semibold text-zinc-400">
+                <div className="text-fg-muted flex items-center truncate text-xs font-semibold">
                   {providers.find((p) => p.id === providerId)?.name || providerId}
                 </div>
                 {dataToUse.map((row, hourIndex) => {
@@ -131,9 +131,9 @@ export function UsageHeatmap({
 
         {/* Legend for intensity */}
         <div className="mt-6 border-t border-white/10 pt-4">
-          <p className="mb-3 text-xs font-semibold text-zinc-400">{t("intensity_scale")}</p>
+          <p className="text-fg-muted mb-3 text-xs font-semibold">{t("intensity_scale")}</p>
           <div className="flex items-center gap-2">
-            <span className="text-xs text-zinc-500">{t("low")}</span>
+            <span className="text-fg-disabled text-xs">{t("low")}</span>
             <div className="flex gap-1">
               {[
                 "bg-zinc-800",
@@ -146,7 +146,7 @@ export function UsageHeatmap({
                 <div key={i} className={`h-4 w-4 rounded ${color}`} />
               ))}
             </div>
-            <span className="text-xs text-zinc-500">{t("high")}</span>
+            <span className="text-fg-disabled text-xs">{t("high")}</span>
           </div>
         </div>
 
@@ -162,11 +162,11 @@ export function UsageHeatmap({
 
               return (
                 <div key={provider.id}>
-                  <p className="text-xs text-zinc-500">{provider.name}</p>
+                  <p className="text-fg-disabled text-xs">{provider.name}</p>
                   <p className="mt-1 text-sm font-bold text-white">
                     {totalRequests > 999 ? `${(totalRequests / 1000).toFixed(1)}K` : totalRequests}
                   </p>
-                  <p className="text-xs text-zinc-400">
+                  <p className="text-fg-muted text-xs">
                     {t("avg")}
                     {avgRequests}/h
                   </p>

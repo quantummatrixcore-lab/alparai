@@ -22,12 +22,12 @@ function hashStringToColor(name: string): { bg: string; fg: string } {
   }
   const palettes = [
     { bg: "from-brand-500/30 to-brand-700/30", fg: "text-brand-300" },
-    { bg: "from-purple-500/30 to-pink-500/30", fg: "text-purple-300" },
-    { bg: "from-blue-500/30 to-cyan-500/30", fg: "text-blue-300" },
-    { bg: "from-emerald-500/30 to-teal-500/30", fg: "text-emerald-300" },
-    { bg: "from-amber-500/30 to-orange-500/30", fg: "text-amber-300" },
-    { bg: "from-rose-500/30 to-red-500/30", fg: "text-rose-300" },
-    { bg: "from-indigo-500/30 to-violet-500/30", fg: "text-indigo-300" },
+    { bg: "from-brand-500/30 to-pink-500/30", fg: "text-brand-300" },
+    { bg: "from-brand-500/30 to-cyan-500/30", fg: "text-brand-300" },
+    { bg: "from-success-500/30 to-teal-500/30", fg: "text-success-300" },
+    { bg: "from-warning-500/30 to-warning-500/30", fg: "text-warning-300" },
+    { bg: "from-danger-500/30 to-danger-500/30", fg: "text-danger-300" },
+    { bg: "from-brand-500/30 to-brand-500/30", fg: "text-brand-300" },
     { bg: "from-fuchsia-500/30 to-pink-500/30", fg: "text-fuchsia-300" },
   ];
   const idx = Math.abs(hash) % palettes.length;

@@ -93,17 +93,17 @@ export function GrantsList({
         <MetricCard
           title={t("grants_drafting")}
           value={stats.drafting}
-          icon={<FileText className="h-4 w-4 text-amber-400" />}
+          icon={<FileText className="text-warning-400 h-4 w-4" />}
         />
         <MetricCard
           title={t("grants_submitted")}
           value={stats.submitted}
-          icon={<Send className="h-4 w-4 text-blue-400" />}
+          icon={<Send className="text-brand-400 h-4 w-4" />}
         />
         <MetricCard
           title={t("grants_approved")}
           value={stats.approved}
-          icon={<CheckCircle2 className="h-4 w-4 text-emerald-400" />}
+          icon={<CheckCircle2 className="text-success-400 h-4 w-4" />}
         />
       </div>
 
@@ -216,7 +216,7 @@ export function GrantsList({
                     {t("grants_phase")} {grant.phase}
                   </span>
                   {grant.funding_amount && (
-                    <span className="flex items-center gap-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 text-xs text-emerald-400">
+                    <span className="border-success-500/20 bg-success-500/10 text-success-400 flex items-center gap-1 rounded-full border px-2 py-0.5 text-xs">
                       <DollarSign className="h-3 w-3" /> {grant.funding_amount}
                     </span>
                   )}
@@ -248,7 +248,7 @@ export function GrantsList({
                   <button
                     disabled={isPending}
                     onClick={() => handleMarkSubmitted(grant.id)}
-                    className="flex items-center gap-1.5 rounded-md bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-blue-700 disabled:opacity-50"
+                    className="bg-brand-600 hover:bg-brand-700 flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold text-white transition-colors disabled:opacity-50"
                   >
                     <Send className="h-3.5 w-3.5" />
                     {t("grants_mark_submitted")}

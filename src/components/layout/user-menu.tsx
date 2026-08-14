@@ -43,7 +43,7 @@ export function UserMenu({ initialUser }: { initialUser: SessionUserShape | null
     return (
       <Link
         href="/auth/signin"
-        className="from-brand-500/20 hover:from-brand-500/30 border-brand-500/40 hover:border-brand-400 text-brand-200 inline-flex h-9 items-center justify-center rounded-full border to-purple-500/20 px-4 text-xs font-bold shadow-[0_0_15px_rgba(168,85,247,0.15)] transition-all hover:scale-105 hover:to-purple-500/30 hover:text-white hover:shadow-[0_0_20px_rgba(168,85,247,0.3)]"
+        className="from-brand-500/20 hover:from-brand-500/30 border-brand-500/40 hover:border-brand-400 text-brand-200 to-brand-500/20 hover:to-brand-500/30 inline-flex h-9 items-center justify-center rounded-full border px-4 text-xs font-bold shadow-[0_0_15px_rgba(168,85,247,0.15)] transition-all hover:scale-105 hover:text-white hover:shadow-[0_0_20px_rgba(168,85,247,0.3)]"
       >
         {t("signIn")}
       </Link>

@@ -28,17 +28,18 @@ interface MasterPlanClientProps {
 }
 
 function priorityBadgeClasses(priority: string): string {
-  if (priority.includes("P0")) return "border border-red-500/20 bg-red-500/10 text-red-400";
-  if (priority.includes("P1")) return "border border-amber-500/20 bg-amber-500/10 text-amber-400";
-  return "border border-blue-500/20 bg-blue-500/10 text-blue-400";
+  if (priority.includes("P0"))
+    return "border border-danger-500/20 bg-danger-500/10 text-danger-400";
+  if (priority.includes("P1"))
+    return "border border-warning-500/20 bg-warning-500/10 text-warning-400";
+  return "border border-brand-500/20 bg-brand-500/10 text-brand-400";
 }
 
 function statusMeta(status: PlanItem["status"]) {
   if (status === "completed")
-    return { classes: "text-emerald-400 border-emerald-500/30 bg-emerald-500/10" };
-  if (status === "paused")
-    return { classes: "text-purple-400 border-purple-500/30 bg-purple-500/10" };
-  return { classes: "text-amber-400 border-amber-500/30 bg-amber-500/10" };
+    return { classes: "text-success-400 border-success-500/30 bg-success-500/10" };
+  if (status === "paused") return { classes: "text-brand-400 border-brand-500/30 bg-brand-500/10" };
+  return { classes: "text-warning-400 border-warning-500/30 bg-warning-500/10" };
 }
 
 function PlanCard({
@@ -98,9 +99,9 @@ function PlanCard({
         return (
           <div
             title={`Depends: ${depText}`}
-            className="mt-1 flex w-fit items-center gap-1.5 rounded border border-amber-500/20 bg-amber-500/10 px-2 py-1 text-[10px] font-bold tracking-wider text-amber-400 uppercase"
+            className="border-warning-500/20 bg-warning-500/10 text-warning-400 mt-1 flex w-fit items-center gap-1.5 rounded border px-2 py-1 text-[10px] font-bold tracking-wider uppercase"
           >
-            <AlertTriangle className="h-3 w-3 shrink-0 text-amber-400" />
+            <AlertTriangle className="text-warning-400 h-3 w-3 shrink-0" />
             <span>Depends: {depText}</span>
           </div>
         );
@@ -296,12 +297,12 @@ export function MasterPlanClient({ items, error }: MasterPlanClientProps) {
         <motion.div
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex items-start gap-3 rounded-xl border border-red-500/30 bg-red-500/10 p-4"
+          className="border-danger-500/30 bg-danger-500/10 flex items-start gap-3 rounded-xl border p-4"
         >
-          <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-red-400" />
+          <AlertTriangle className="text-danger-400 mt-0.5 h-5 w-5 shrink-0" />
           <div>
             <p className="text-fg-primary text-sm font-bold">{t("plan_error_title")}</p>
-            <p className="mt-1 text-sm text-red-200/80">
+            <p className="text-danger-200/80 mt-1 text-sm">
               {error === "markers" ? t("plan_error_markers_body") : t("plan_error_body")}
             </p>
           </div>
@@ -404,7 +405,7 @@ export function MasterPlanClient({ items, error }: MasterPlanClientProps) {
                   <div className="flex flex-col gap-4">
                     <div className="flex items-center justify-between">
                       <h3 className="text-fg-primary flex items-center gap-2 font-bold">
-                        <Clock className="h-5 w-5 text-amber-400" />
+                        <Clock className="text-warning-400 h-5 w-5" />
                         {t("pending_column")}
                       </h3>
                       <span className="bg-bg-tertiary text-fg-muted rounded-full px-2.5 py-0.5 text-xs font-bold">
@@ -438,7 +439,7 @@ export function MasterPlanClient({ items, error }: MasterPlanClientProps) {
                   <div className="flex flex-col gap-4">
                     <div className="flex items-center justify-between">
                       <h3 className="text-fg-primary flex items-center gap-2 font-bold">
-                        <Clock className="h-5 w-5 text-purple-400" />
+                        <Clock className="text-brand-400 h-5 w-5" />
                         {t("paused_column")}
                       </h3>
                       <span className="bg-bg-tertiary text-fg-muted rounded-full px-2.5 py-0.5 text-xs font-bold">
@@ -472,7 +473,7 @@ export function MasterPlanClient({ items, error }: MasterPlanClientProps) {
                   <div className="flex flex-col gap-4">
                     <div className="flex items-center justify-between">
                       <h3 className="text-fg-primary flex items-center gap-2 font-bold">
-                        <CheckCircle2 className="h-5 w-5 text-emerald-400" />
+                        <CheckCircle2 className="text-success-400 h-5 w-5" />
                         {t("completed_column")}
                       </h3>
                       <span className="bg-bg-tertiary text-fg-muted rounded-full px-2.5 py-0.5 text-xs font-bold">
@@ -529,15 +530,15 @@ export function MasterPlanClient({ items, error }: MasterPlanClientProps) {
                           }}
                           className={`flex cursor-pointer items-start gap-4 rounded-xl border p-4 transition-all hover:-translate-y-0.5 ${
                             item.status === "completed"
-                              ? "border-emerald-500/10 bg-emerald-500/5"
+                              ? "border-success-500/10 bg-success-500/5"
                               : "bg-bg-secondary border-border-subtle hover:border-brand-500/30"
                           }`}
                         >
                           <div className="mt-0.5">
                             {item.status === "completed" ? (
-                              <CheckCircle2 className="h-5 w-5 text-emerald-500" />
+                              <CheckCircle2 className="text-success-500 h-5 w-5" />
                             ) : item.status === "paused" ? (
-                              <Clock className="h-5 w-5 text-purple-400" />
+                              <Clock className="text-brand-400 h-5 w-5" />
                             ) : (
                               <Circle className="text-fg-muted h-5 w-5" />
                             )}
@@ -561,7 +562,7 @@ export function MasterPlanClient({ items, error }: MasterPlanClientProps) {
                                 (item.dependsOn && item.dependsOn.length > 0)) && (
                                 <span
                                   title={`Depends: ${(item.depends && item.depends.length > 0 ? item.depends.map((d) => `#${d}`) : item.dependsOn?.map((d) => `#${d}`))?.join(", ")}`}
-                                  className="rounded border border-amber-500/20 bg-amber-500/10 px-2 py-0.5 text-[10px] font-black tracking-wider text-amber-400 uppercase"
+                                  className="border-warning-500/20 bg-warning-500/10 text-warning-400 rounded border px-2 py-0.5 text-[10px] font-black tracking-wider uppercase"
                                 >
                                   Depends:{" "}
                                   {(item.depends && item.depends.length > 0

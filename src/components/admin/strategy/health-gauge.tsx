@@ -14,28 +14,28 @@ export function HealthGauge({ score }: HealthGaugeProps) {
 
   // Determine color and status text based on score
   let strokeColor = "stroke-emerald-500";
-  let textColor = "text-emerald-400";
-  let bgColor = "bg-emerald-500/10";
-  let border = "border-emerald-500/20";
+  let textColor = "text-success-400";
+  let bgColor = "bg-success-500/10";
+  let border = "border-success-500/20";
   let statusText = "EXCELLENT";
 
   if (score < 50) {
     strokeColor = "stroke-red-500";
-    textColor = "text-red-400";
-    bgColor = "bg-red-500/10";
-    border = "border-red-500/20";
+    textColor = "text-danger-400";
+    bgColor = "bg-danger-500/10";
+    border = "border-danger-500/20";
     statusText = "CRITICAL";
   } else if (score < 70) {
     strokeColor = "stroke-amber-500";
-    textColor = "text-amber-400";
-    bgColor = "bg-amber-500/10";
-    border = "border-amber-500/20";
+    textColor = "text-warning-400";
+    bgColor = "bg-warning-500/10";
+    border = "border-warning-500/20";
     statusText = "WARNING";
   } else if (score < 90) {
     strokeColor = "stroke-blue-500";
-    textColor = "text-blue-400";
-    bgColor = "bg-blue-500/10";
-    border = "border-blue-500/20";
+    textColor = "text-brand-400";
+    bgColor = "bg-brand-500/10";
+    border = "border-brand-500/20";
     statusText = "GOOD";
   }
 
@@ -78,23 +78,23 @@ export function HealthGauge({ score }: HealthGaugeProps) {
           <span
             className={`absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 ${
               score < 50
-                ? "bg-red-400"
+                ? "bg-danger-400"
                 : score < 70
-                  ? "bg-amber-400"
+                  ? "bg-warning-400"
                   : score < 90
-                    ? "bg-blue-400"
-                    : "bg-emerald-400"
+                    ? "bg-brand-400"
+                    : "bg-success-400"
             }`}
           />
           <span
             className={`relative inline-flex h-2 w-2 rounded-full ${
               score < 50
-                ? "bg-red-500"
+                ? "bg-danger-500"
                 : score < 70
-                  ? "bg-amber-500"
+                  ? "bg-warning-500"
                   : score < 90
-                    ? "bg-blue-500"
-                    : "bg-emerald-500"
+                    ? "bg-brand-500"
+                    : "bg-success-500"
             }`}
           />
         </span>

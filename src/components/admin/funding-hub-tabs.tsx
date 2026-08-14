@@ -49,11 +49,13 @@ export function FundingHubTabs() {
               className={cn(
                 "flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all duration-200",
                 tab.isActive
-                  ? "bg-purple-500/10 text-purple-400 ring-1 ring-purple-500/20"
-                  : "text-zinc-400 hover:bg-white/5 hover:text-white",
+                  ? "bg-brand-500/10 text-brand-400 ring-brand-500/20 ring-1"
+                  : "text-fg-muted hover:bg-white/5 hover:text-white",
               )}
             >
-              <Icon className={cn("h-4 w-4", tab.isActive ? "text-purple-400" : "text-zinc-500")} />
+              <Icon
+                className={cn("h-4 w-4", tab.isActive ? "text-brand-400" : "text-fg-disabled")}
+              />
               {tab.name}
             </Link>
           );

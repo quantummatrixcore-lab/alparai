@@ -172,7 +172,7 @@ function ModerationCard({ incident }: { incident: IncidentListItem }) {
   return (
     <Card className="group border-border-subtle bg-bg-secondary/40 hover:border-brand-500/40 relative flex flex-col justify-between overflow-hidden border transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(168,85,247,0.1)]">
       {/* Visual Accent glow line */}
-      <div className="absolute top-0 right-0 left-0 h-[2px] bg-gradient-to-r from-purple-500 via-cyan-500 to-emerald-500 opacity-20 transition-opacity duration-300 group-hover:opacity-100" />
+      <div className="from-brand-500 to-success-500 absolute top-0 right-0 left-0 h-[2px] bg-gradient-to-r via-cyan-500 opacity-20 transition-opacity duration-300 group-hover:opacity-100" />
 
       <CardContent className="flex h-full flex-col justify-between p-6">
         <div className="space-y-4">
@@ -183,7 +183,7 @@ function ModerationCard({ incident }: { incident: IncidentListItem }) {
                 {incident.severity}
               </Badge>
               <Badge variant="muted" className="flex items-center gap-1">
-                <Cpu className="h-3 w-3 text-cyan-400" />
+                <Cpu className="text-accent-400 h-3 w-3" />
                 {incident.provider_name}
               </Badge>
               {incident.processing_stage === "failed" && (
@@ -198,7 +198,7 @@ function ModerationCard({ incident }: { incident: IncidentListItem }) {
           {/* Title & Description */}
           <div>
             <div className="mb-2 flex items-start gap-2">
-              <span className="rounded border border-cyan-500/20 bg-cyan-500/10 px-2 py-0.5 text-[11px] font-bold text-cyan-400 uppercase">
+              <span className="border-accent-500/20 bg-accent-500/10 text-accent-400 rounded border px-2 py-0.5 text-[11px] font-bold uppercase">
                 {incident.category}
               </span>
             </div>
@@ -217,7 +217,7 @@ function ModerationCard({ incident }: { incident: IncidentListItem }) {
               <div className="grid grid-cols-2 gap-2 rounded-xl border border-white/5 bg-neutral-950/40 p-3">
                 <div className="flex items-center justify-between text-[11px]">
                   <span className="text-fg-muted">Truth Score</span>
-                  <span className="font-mono font-bold text-emerald-400">
+                  <span className="text-success-400 font-mono font-bold">
                     {incident.cross_audit_truth_score}%
                   </span>
                 </div>
@@ -225,7 +225,7 @@ function ModerationCard({ incident }: { incident: IncidentListItem }) {
                   incident.cross_audit_confidence !== undefined && (
                     <div className="flex items-center justify-between text-[11px]">
                       <span className="text-fg-muted">Confidence</span>
-                      <span className="font-mono font-bold text-cyan-400">
+                      <span className="text-accent-400 font-mono font-bold">
                         {incident.cross_audit_confidence}%
                       </span>
                     </div>

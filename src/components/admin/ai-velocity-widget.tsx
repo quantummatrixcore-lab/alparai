@@ -79,17 +79,17 @@ export function AIVelocityWidget({
       )}
     >
       <div className="bg-brand-500/10 pointer-events-none absolute -top-20 -right-20 h-64 w-64 rounded-full blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl" />
+      <div className="bg-success-500/10 pointer-events-none absolute -bottom-20 -left-20 h-64 w-64 rounded-full blur-3xl" />
 
       <div className="relative z-10 mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-5">
         <div className="flex items-center gap-3">
-          <div className="border-brand-500/30 bg-brand-500/10 flex h-11 w-11 items-center justify-center rounded-xl border text-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+          <div className="border-brand-500/30 bg-brand-500/10 text-accent-400 flex h-11 w-11 items-center justify-center rounded-xl border shadow-[0_0_15px_rgba(6,182,212,0.2)]">
             <Gauge className="h-6 w-6" />
           </div>
           <div>
             <h3 className="flex items-center gap-2 text-lg font-extrabold tracking-tight text-white">
               AI Velocity Engine & Dynamic Projections
-              <span className="inline-flex items-center gap-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-2.5 py-0.5 text-[10px] font-bold text-cyan-400">
+              <span className="border-accent-500/30 bg-accent-500/10 text-accent-400 inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-[10px] font-bold">
                 <Sparkles className="h-3 w-3" /> Real-Time Autonomous Engine
               </span>
             </h3>
@@ -101,7 +101,7 @@ export function AIVelocityWidget({
 
         <div className="flex items-center gap-2">
           <span className="text-fg-muted text-xs font-medium">Velocity Index:</span>
-          <span className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 font-mono text-sm font-extrabold text-emerald-400 shadow-inner">
+          <span className="border-success-500/30 bg-success-500/10 text-success-400 rounded-lg border px-3 py-1 font-mono text-sm font-extrabold shadow-inner">
             {velocityFactor.toFixed(2)}x
           </span>
         </div>
@@ -111,9 +111,9 @@ export function AIVelocityWidget({
         <div className="rounded-xl border border-white/10 bg-white/5 p-4 shadow-inner">
           <div className="flex items-center justify-between text-xs text-white/70">
             <span className="flex items-center gap-1.5 font-semibold text-white/80">
-              <TrendingUp className="h-4 w-4 text-emerald-400" /> Avg Capability Jump
+              <TrendingUp className="text-success-400 h-4 w-4" /> Avg Capability Jump
             </span>
-            <span className="rounded bg-emerald-500/20 px-1.5 py-0.5 font-mono text-[10px] font-bold text-emerald-300">
+            <span className="bg-success-500/20 text-success-300 rounded px-1.5 py-0.5 font-mono text-[10px] font-bold">
               Not measured
             </span>
           </div>
@@ -122,16 +122,16 @@ export function AIVelocityWidget({
             <span className="text-fg-muted text-[11px]">per major release</span>
           </div>
           <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-[85%] rounded-full bg-gradient-to-r from-emerald-500 to-cyan-400" />
+            <div className="from-success-500 h-full w-[85%] rounded-full bg-gradient-to-r to-cyan-400" />
           </div>
         </div>
 
         <div className="rounded-xl border border-white/10 bg-white/5 p-4 shadow-inner">
           <div className="flex items-center justify-between text-xs text-white/70">
             <span className="flex items-center gap-1.5 font-semibold text-white/80">
-              <Cpu className="h-4 w-4 text-purple-400" /> Release Cycle Cadence
+              <Cpu className="text-brand-400 h-4 w-4" /> Release Cycle Cadence
             </span>
-            <span className="rounded bg-purple-500/20 px-1.5 py-0.5 font-mono text-[10px] font-bold text-purple-300">
+            <span className="bg-brand-500/20 text-brand-300 rounded px-1.5 py-0.5 font-mono text-[10px] font-bold">
               {releaseCycleDays} Days
             </span>
           </div>
@@ -142,16 +142,16 @@ export function AIVelocityWidget({
             <span className="text-fg-muted text-[11px]">model iteration interval</span>
           </div>
           <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-[70%] rounded-full bg-gradient-to-r from-purple-500 to-indigo-400" />
+            <div className="from-brand-500 to-brand-400 h-full w-[70%] rounded-full bg-gradient-to-r" />
           </div>
         </div>
 
         <div className="rounded-xl border border-white/10 bg-white/5 p-4 shadow-inner">
           <div className="flex items-center justify-between text-xs text-white/70">
             <span className="flex items-center gap-1.5 font-semibold text-white/80">
-              <ShieldAlert className="h-4 w-4 text-amber-400" /> AI Incident Density
+              <ShieldAlert className="text-warning-400 h-4 w-4" /> AI Incident Density
             </span>
-            <span className="rounded bg-amber-500/20 px-1.5 py-0.5 font-mono text-[10px] font-bold text-amber-300">
+            <span className="bg-warning-500/20 text-warning-300 rounded px-1.5 py-0.5 font-mono text-[10px] font-bold">
               Low Risk
             </span>
           </div>
@@ -160,7 +160,7 @@ export function AIVelocityWidget({
             <span className="text-fg-muted text-[11px]">per 1k model prompts</span>
           </div>
           <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-[25%] rounded-full bg-gradient-to-r from-amber-400 to-emerald-400" />
+            <div className="from-warning-400 to-success-400 h-full w-[25%] rounded-full bg-gradient-to-r" />
           </div>
         </div>
       </div>
@@ -168,7 +168,7 @@ export function AIVelocityWidget({
       <div className="relative z-10 space-y-6">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <h4 className="flex items-center gap-2 text-sm font-bold tracking-tight text-white">
-            <BarChart3 className="h-4 w-4 text-emerald-400" />
+            <BarChart3 className="text-success-400 h-4 w-4" />
             Dynamic ARR Growth Projections
           </h4>
 
@@ -190,7 +190,7 @@ export function AIVelocityWidget({
                   className={cn(
                     "flex cursor-pointer items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-bold transition-all",
                     isSelected
-                      ? "bg-gradient-to-r from-emerald-500 to-cyan-500 text-white shadow-md"
+                      ? "from-success-500 bg-gradient-to-r to-cyan-500 text-white shadow-md"
                       : "text-fg-muted hover:bg-white/5 hover:text-white",
                   )}
                 >
@@ -238,11 +238,11 @@ export function AIVelocityWidget({
           </div>
         </div>
 
-        <div className="rounded-2xl border border-emerald-500/30 bg-emerald-950/20 p-5 backdrop-blur-md">
+        <div className="border-success-500/30 rounded-2xl border bg-emerald-950/20 p-5 backdrop-blur-md">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
               <div className="flex items-center gap-2">
-                <span className="rounded bg-emerald-500/20 px-2 py-0.5 font-mono text-xs font-extrabold text-emerald-300">
+                <span className="bg-success-500/20 text-success-300 rounded px-2 py-0.5 font-mono text-xs font-extrabold">
                   {activeScenario.label}
                 </span>
                 <span className="text-fg-muted text-xs">{activeScenario.description}</span>
@@ -258,7 +258,7 @@ export function AIVelocityWidget({
                 <p className="text-fg-muted text-[10px] font-bold tracking-wider uppercase">
                   Demand Multiplier
                 </p>
-                <p className="mt-0.5 font-mono text-xl font-extrabold text-emerald-400">
+                <p className="text-success-400 mt-0.5 font-mono text-xl font-extrabold">
                   {activeScenario.demandMultiplier}x
                 </p>
               </div>
@@ -267,7 +267,7 @@ export function AIVelocityWidget({
                 <p className="text-fg-muted text-[10px] font-bold tracking-wider uppercase">
                   Projected Monthly
                 </p>
-                <p className="mt-0.5 font-mono text-xl font-extrabold text-cyan-400">
+                <p className="text-accent-400 mt-0.5 font-mono text-xl font-extrabold">
                   ${activeScenario.monthlyARR.toLocaleString()}
                 </p>
               </div>
@@ -286,7 +286,7 @@ export function AIVelocityWidget({
                     <span
                       className={cn(
                         "font-semibold",
-                        isCurrent ? "font-bold text-emerald-300" : "text-fg-muted",
+                        isCurrent ? "text-success-300 font-bold" : "text-fg-muted",
                       )}
                     >
                       {sc.label}
@@ -300,8 +300,8 @@ export function AIVelocityWidget({
                       className={cn(
                         "h-full rounded-full transition-all duration-500",
                         sc.key === "A" && "bg-slate-400",
-                        sc.key === "B" && "bg-gradient-to-r from-emerald-500 to-cyan-400",
-                        sc.key === "C" && "bg-gradient-to-r from-cyan-400 to-purple-500",
+                        sc.key === "B" && "from-success-500 bg-gradient-to-r to-cyan-400",
+                        sc.key === "C" && "to-brand-500 bg-gradient-to-r from-cyan-400",
                       )}
                       style={{ width: `${widthPct}%` }}
                     />
@@ -313,7 +313,7 @@ export function AIVelocityWidget({
         </div>
 
         <div className="text-fg-muted flex items-center gap-2 text-[11px]">
-          <Info className="h-3.5 w-3.5 shrink-0 text-cyan-400" />
+          <Info className="text-accent-400 h-3.5 w-3.5 shrink-0" />
           <span>
             Projections are automatically parameterized using real-time benchmark Elo scores and AI
             model velocity metrics stored in Supabase.

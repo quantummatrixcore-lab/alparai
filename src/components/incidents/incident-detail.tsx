@@ -116,9 +116,9 @@ export function IncidentDetailView({
             {incident.is_expert && (
               <UIBadge
                 variant="success"
-                className="border-emerald-500/20 bg-emerald-500/10 font-bold text-emerald-400"
+                className="border-success-500/20 bg-success-500/10 text-success-400 font-bold"
               >
-                <CheckCircle2 className="mr-1 h-3 w-3 text-emerald-400" aria-hidden="true" />
+                <CheckCircle2 className="text-success-400 mr-1 h-3 w-3" aria-hidden="true" />
                 {t("expert_verified", { defaultValue: "Expert Verified" })}
               </UIBadge>
             )}

@@ -122,7 +122,7 @@ Ercüment`);
               className={`rounded-full px-3.5 py-1.5 text-xs font-semibold tracking-wider uppercase transition-all ${
                 filter === f
                   ? "bg-brand-500/20 text-brand-300 border-brand-500/30 border"
-                  : "text-slate-400 hover:bg-white/5 hover:text-white"
+                  : "text-fg-muted hover:bg-white/5 hover:text-white"
               }`}
             >
               {f} ({initialQueue.filter((x) => f === "all" || x.status === f).length})
@@ -151,7 +151,7 @@ Ercüment`);
             <form onSubmit={handleCreate} className="space-y-4">
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <div>
-                  <label className="mb-1 block text-xs font-semibold text-slate-400">
+                  <label className="text-fg-muted mb-1 block text-xs font-semibold">
                     {t("recipient_email")}
                   </label>
                   <input
@@ -164,7 +164,7 @@ Ercüment`);
                   />
                 </div>
                 <div>
-                  <label className="mb-1 block text-xs font-semibold text-slate-400">
+                  <label className="text-fg-muted mb-1 block text-xs font-semibold">
                     {t("recipient_name")}
                   </label>
                   <input
@@ -179,7 +179,7 @@ Ercüment`);
 
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <div>
-                  <label className="mb-1 block text-xs font-semibold text-slate-400">
+                  <label className="text-fg-muted mb-1 block text-xs font-semibold">
                     {t("company_outlet")}
                   </label>
                   <input
@@ -191,7 +191,7 @@ Ercüment`);
                   />
                 </div>
                 <div>
-                  <label className="mb-1 block text-xs font-semibold text-slate-400">
+                  <label className="text-fg-muted mb-1 block text-xs font-semibold">
                     {t("template_type")}
                   </label>
                   <div className="flex gap-2">
@@ -201,7 +201,7 @@ Ercüment`);
                       className={`flex-1 rounded-md py-2 text-sm font-semibold transition-colors ${
                         type === "media"
                           ? "bg-brand-500 text-white"
-                          : "bg-black/40 text-slate-400 hover:bg-black/60"
+                          : "text-fg-muted bg-black/40 hover:bg-black/60"
                       }`}
                     >
                       {t("media_pitch")}
@@ -212,7 +212,7 @@ Ercüment`);
                       className={`flex-1 rounded-md py-2 text-sm font-semibold transition-colors ${
                         type === "expert"
                           ? "bg-brand-500 text-white"
-                          : "bg-black/40 text-slate-400 hover:bg-black/60"
+                          : "text-fg-muted bg-black/40 hover:bg-black/60"
                       }`}
                     >
                       {t("expert_invite")}
@@ -222,7 +222,7 @@ Ercüment`);
               </div>
 
               <div>
-                <label className="mb-1 block text-xs font-semibold text-slate-400">
+                <label className="text-fg-muted mb-1 block text-xs font-semibold">
                   {t("subject")}
                 </label>
                 <input
@@ -236,7 +236,7 @@ Ercüment`);
               </div>
 
               <div>
-                <label className="mb-1 block text-xs font-semibold text-slate-400">
+                <label className="text-fg-muted mb-1 block text-xs font-semibold">
                   {t("body_template")}
                 </label>
                 <textarea
@@ -301,31 +301,31 @@ Ercüment`);
                     </span>
                   </div>
 
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-slate-300">
+                  <div className="text-fg-secondary flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
                     {item.recipient_name && (
                       <span className="flex items-center gap-1">
-                        <User className="h-4 w-4 text-slate-500" />
+                        <User className="text-fg-disabled h-4 w-4" />
                         {item.recipient_name}
                       </span>
                     )}
                     {item.company && (
                       <span className="flex items-center gap-1">
-                        <Building2 className="h-4 w-4 text-slate-500" />
+                        <Building2 className="text-fg-disabled h-4 w-4" />
                         {item.company}
                       </span>
                     )}
-                    <span className="rounded bg-white/5 px-1.5 py-0.5 text-xs text-slate-400">
+                    <span className="text-fg-muted rounded bg-white/5 px-1.5 py-0.5 text-xs">
                       {t("template")}
                       {item.template_type}
                     </span>
                   </div>
 
                   <div className="rounded border border-white/5 bg-black/20 p-3">
-                    <div className="mb-2 text-xs font-semibold text-slate-400">
+                    <div className="text-fg-muted mb-2 text-xs font-semibold">
                       {t("subject")}
                       {item.subject}
                     </div>
-                    <pre className="font-sans text-xs whitespace-pre-wrap text-slate-300">
+                    <pre className="text-fg-secondary font-sans text-xs whitespace-pre-wrap">
                       {item.body_template.slice(0, 200)}
                       {item.body_template.length > 200 ? "..." : ""}
                     </pre>

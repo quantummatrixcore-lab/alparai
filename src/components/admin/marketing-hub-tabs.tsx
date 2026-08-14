@@ -55,12 +55,12 @@ export function MarketingHubTabs() {
               className={cn(
                 "flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all duration-200",
                 tab.isActive
-                  ? "bg-emerald-500/10 text-emerald-400 ring-1 ring-emerald-500/20"
-                  : "text-zinc-400 hover:bg-white/5 hover:text-white",
+                  ? "bg-success-500/10 text-success-400 ring-success-500/20 ring-1"
+                  : "text-fg-muted hover:bg-white/5 hover:text-white",
               )}
             >
               <Icon
-                className={cn("h-4 w-4", tab.isActive ? "text-emerald-400" : "text-zinc-500")}
+                className={cn("h-4 w-4", tab.isActive ? "text-success-400" : "text-fg-disabled")}
               />
               {tab.name}
             </Link>

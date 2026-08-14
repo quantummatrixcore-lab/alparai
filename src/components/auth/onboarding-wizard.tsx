@@ -53,21 +53,21 @@ export function OnboardingWizard({ locale }: OnboardingWizardProps) {
       title: t("providerTitle"),
       desc: t("providerDesc"),
       icon: BrainCircuit,
-      color: "text-blue-400 bg-blue-500/10 border-blue-500/20",
+      color: "text-brand-400 bg-brand-500/10 border-brand-500/20",
     },
     {
       id: "advisor",
       title: t("advisorTitle"),
       desc: t("advisorDesc"),
       icon: HeartHandshake,
-      color: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
+      color: "text-success-400 bg-success-500/10 border-success-500/20",
     },
     {
       id: "researcher",
       title: t("researcherTitle"),
       desc: t("researcherDesc"),
       icon: BookOpen,
-      color: "text-purple-400 bg-purple-500/10 border-purple-500/20",
+      color: "text-brand-400 bg-brand-500/10 border-brand-500/20",
     },
   ];
 
@@ -126,7 +126,7 @@ export function OnboardingWizard({ locale }: OnboardingWizardProps) {
     <Card className="border-border-subtle bg-bg-secondary/40 relative overflow-hidden backdrop-blur-md">
       {/* Background radial gradient glow */}
       <div className="bg-brand-500/10 pointer-events-none absolute -top-40 -right-40 h-80 w-80 rounded-full blur-[100px]" />
-      <div className="pointer-events-none absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-blue-500/10 blur-[100px]" />
+      <div className="bg-brand-500/10 pointer-events-none absolute -bottom-40 -left-40 h-80 w-80 rounded-full blur-[100px]" />
 
       {step < 3 && (
         <CardHeader className="space-y-4">
@@ -294,14 +294,14 @@ export function OnboardingWizard({ locale }: OnboardingWizardProps) {
               </div>
 
               {/* Founder Reporter Badge Showcase Card */}
-              <div className="group relative w-full max-w-sm overflow-hidden rounded-2xl border border-amber-500/20 bg-gradient-to-br from-amber-500/10 to-orange-500/10 p-6 shadow-2xl">
+              <div className="group border-warning-500/20 from-warning-500/10 to-warning-500/10 relative w-full max-w-sm overflow-hidden rounded-2xl border bg-gradient-to-br p-6 shadow-2xl">
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:14px_14px]" />
                 <div className="relative z-10 flex flex-col items-center space-y-3">
-                  <div className="rounded-full border border-amber-500/30 bg-amber-500/20 p-3.5 text-amber-500 shadow-xl transition-transform duration-300 group-hover:scale-105">
+                  <div className="border-warning-500/30 bg-warning-500/20 text-warning-500 rounded-full border p-3.5 shadow-xl transition-transform duration-300 group-hover:scale-105">
                     <Award className="h-8 w-8" />
                   </div>
                   <div>
-                    <span className="mb-1 block font-mono text-xs font-bold tracking-[0.2em] text-amber-400 uppercase">
+                    <span className="text-warning-400 mb-1 block font-mono text-xs font-bold tracking-[0.2em] uppercase">
                       {tAuth("unlockedBadge", { defaultValue: "UNLOCKED BADGE" })}
                     </span>
                     <span className="text-fg-primary block text-lg font-black">

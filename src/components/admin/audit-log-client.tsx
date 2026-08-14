@@ -172,7 +172,7 @@ function AuditDetailPanel({ log, onClose }: { log: AuditLogItem; onClose: () => 
             <span className="text-fg-muted text-[10px] font-bold tracking-wider uppercase">
               Before State
             </span>
-            <div className="max-h-56 overflow-y-auto rounded-xl border border-white/5 bg-black/50 p-4 font-mono text-[11px] text-rose-300 shadow-inner backdrop-blur-md">
+            <div className="text-danger-300 max-h-56 overflow-y-auto rounded-xl border border-white/5 bg-black/50 p-4 font-mono text-[11px] shadow-inner backdrop-blur-md">
               {log.before_data ? (
                 <pre className="whitespace-pre-wrap">
                   {JSON.stringify(log.before_data, null, 2)}
@@ -187,7 +187,7 @@ function AuditDetailPanel({ log, onClose }: { log: AuditLogItem; onClose: () => 
             <span className="text-fg-muted text-[10px] font-bold tracking-wider uppercase">
               After State
             </span>
-            <div className="max-h-56 overflow-y-auto rounded-xl border border-white/5 bg-black/50 p-4 font-mono text-[11px] text-emerald-300 shadow-inner backdrop-blur-md">
+            <div className="text-success-300 max-h-56 overflow-y-auto rounded-xl border border-white/5 bg-black/50 p-4 font-mono text-[11px] shadow-inner backdrop-blur-md">
               {log.after_data ? (
                 <pre className="whitespace-pre-wrap">{JSON.stringify(log.after_data, null, 2)}</pre>
               ) : (
@@ -267,17 +267,17 @@ export function AuditLogClient({ initialLogs, locale }: AuditLogClientProps) {
   const getEntityIcon = (entityType: string) => {
     switch (entityType) {
       case "incident":
-        return <AlertTriangle className="h-4 w-4 text-amber-400" />;
+        return <AlertTriangle className="text-warning-400 h-4 w-4" />;
       case "users":
-        return <User className="h-4 w-4 text-cyan-400" />;
+        return <User className="text-accent-400 h-4 w-4" />;
       case "api_keys":
-        return <Key className="h-4 w-4 text-emerald-400" />;
+        return <Key className="text-success-400 h-4 w-4" />;
       case "takedown_requests":
-        return <ShieldAlert className="h-4 w-4 text-rose-400" />;
+        return <ShieldAlert className="text-danger-400 h-4 w-4" />;
       case "finance":
-        return <Layers className="h-4 w-4 text-purple-400" />;
+        return <Layers className="text-brand-400 h-4 w-4" />;
       default:
-        return <Cpu className="h-4 w-4 text-blue-400" />;
+        return <Cpu className="text-brand-400 h-4 w-4" />;
     }
   };
 
@@ -426,9 +426,9 @@ export function AuditLogClient({ initialLogs, locale }: AuditLogClientProps) {
           value={systemCount}
         />
         <div className="bg-bg-secondary/40 group relative flex items-center justify-between overflow-hidden rounded-2xl border border-white/5 p-5 shadow-lg backdrop-blur-xl">
-          <div className="absolute top-0 right-0 -mt-4 -mr-4 h-16 w-16 rounded-full bg-purple-500/10 blur-xl transition-all group-hover:bg-purple-500/20" />
+          <div className="bg-brand-500/10 group-hover:bg-brand-500/20 absolute top-0 right-0 -mt-4 -mr-4 h-16 w-16 rounded-full blur-xl transition-all" />
           <div className="z-10 flex items-center gap-4">
-            <Terminal className="h-6 w-6 text-purple-400" strokeWidth={1.5} />
+            <Terminal className="text-brand-400 h-6 w-6" strokeWidth={1.5} />
             <div>
               <p className="text-fg-muted mb-1 text-[10px] font-bold tracking-wider uppercase">
                 Real-time Feed
@@ -533,20 +533,18 @@ export function AuditLogClient({ initialLogs, locale }: AuditLogClientProps) {
                             </div>
                           ) : (
                             <div className="flex items-center gap-2">
-                              <div className="flex h-7 w-7 items-center justify-center rounded-full border border-purple-500/20 bg-purple-500/10">
-                                <Cpu className="h-3.5 w-3.5 text-purple-400" />
+                              <div className="border-brand-500/20 bg-brand-500/10 flex h-7 w-7 items-center justify-center rounded-full border">
+                                <Cpu className="text-brand-400 h-3.5 w-3.5" />
                               </div>
                               <div className="flex flex-col">
-                                <span className="text-xs font-semibold text-purple-300">
-                                  SYSTEM
-                                </span>
-                                <span className="text-[10px] text-purple-400/80">
+                                <span className="text-brand-300 text-xs font-semibold">SYSTEM</span>
+                                <span className="text-brand-400/80 text-[10px]">
                                   Autopilot Guard
                                 </span>
                               </div>
                               <Badge
                                 variant="outline"
-                                className="border-purple-500/30 bg-purple-500/5 px-1.5 py-0 text-[9px] text-purple-400"
+                                className="border-brand-500/30 bg-brand-500/5 text-brand-400 px-1.5 py-0 text-[9px]"
                               >
                                 Core
                               </Badge>

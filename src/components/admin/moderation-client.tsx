@@ -54,7 +54,7 @@ export function ModerationClient({ items, providers }: ModerationClientProps) {
       {showIncidents && (
         <div className="space-y-4">
           <h2 className="text-fg-primary flex items-center gap-2 px-1 text-lg font-bold">
-            <Flag className="h-5 w-5 text-emerald-400" />
+            <Flag className="text-success-400 h-5 w-5" />
             <span>{t("pending_review")}</span>
             <span className="bg-bg-tertiary text-fg-muted rounded-full px-2.5 py-0.5 font-mono text-xs">
               {items.length}
@@ -72,7 +72,7 @@ export function ModerationClient({ items, providers }: ModerationClientProps) {
       {showRespondents && (
         <div className="space-y-4">
           <h2 className="text-fg-primary flex items-center gap-2 px-1 text-lg font-bold">
-            <ShieldCheck className="h-5 w-5 text-emerald-400" />
+            <ShieldCheck className="text-success-400 h-5 w-5" />
             <span>{t("verified_respondent_badge_moderation")}</span>
           </h2>
           <VerifiedRespondentListClient providers={providers} />

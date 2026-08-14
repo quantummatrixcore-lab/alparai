@@ -49,27 +49,27 @@ export function ApiManagementHub() {
   return (
     <div className="space-y-8">
       {/* Telemetry Status Banner */}
-      <div className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-4 text-sm text-emerald-300">
+      <div className="border-success-500/20 bg-success-500/10 text-success-300 flex flex-wrap items-center justify-between gap-4 rounded-xl border p-4 text-sm">
         <div className="flex items-center gap-2.5">
-          <ShieldCheck className="h-5 w-5 shrink-0 text-emerald-400" />
+          <ShieldCheck className="text-success-400 h-5 w-5 shrink-0" />
           <div>
-            <p className="font-semibold text-emerald-200">
+            <p className="text-success-200 font-semibold">
               {t("live_environment_audit_baseline_benchmar")}
             </p>
-            <p className="text-xs text-emerald-400/80">
-              <strong className="text-emerald-300">{t("live")}</strong>{" "}
+            <p className="text-success-400/80 text-xs">
+              <strong className="text-success-300">{t("live")}</strong>{" "}
               {t("provider_credentials_presence_masked_key")}{" "}
-              <strong className="text-zinc-300">{t("benchmark")}</strong>{" "}
+              <strong className="text-fg-secondary">{t("benchmark")}</strong>{" "}
               {t("latency_p95_request_volume_and_quota_lim")}
             </p>
           </div>
         </div>
         <div className="flex items-center gap-2 text-xs">
-          <span className="rounded-full bg-emerald-500/20 px-2.5 py-1 font-mono font-medium text-emerald-300">
+          <span className="bg-success-500/20 text-success-300 rounded-full px-2.5 py-1 font-mono font-medium">
             {isRealTelemetry ? t("env_audit_live") : "INITIALIZING"}
           </span>
           {lastRefreshed && (
-            <span className="font-mono text-zinc-400">
+            <span className="text-fg-muted font-mono">
               {t("updated")}
               {lastRefreshed}
             </span>
@@ -78,15 +78,15 @@ export function ApiManagementHub() {
       </div>
 
       {/* Header Actions */}
-      <div className="flex items-center justify-between rounded-lg border border-white/10 bg-zinc-900/50 px-4 py-3">
+      <div className="bg-bg-elevated/50 flex items-center justify-between rounded-lg border border-white/10 px-4 py-3">
         <div>
-          <p className="text-xs text-zinc-400">{t("total_daily_api_spend_ai_gateway_rpc")}</p>
+          <p className="text-fg-muted text-xs">{t("total_daily_api_spend_ai_gateway_rpc")}</p>
           <p className="text-2xl font-bold text-white">${totalDailyCost.toFixed(2)}</p>
         </div>
         <button
           onClick={loadTelemetry}
           disabled={loading}
-          className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-zinc-300 transition-colors hover:bg-white/10 disabled:opacity-50"
+          className="text-fg-secondary flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold transition-colors hover:bg-white/10 disabled:opacity-50"
         >
           <RefreshCw className={`h-3.5 w-3.5 ${loading ? "animate-spin" : ""}`} />
           {loading ? "Refreshing..." : t("refresh_telemetry")}
@@ -100,7 +100,7 @@ export function ApiManagementHub() {
           className={`px-4 py-3 text-sm font-medium transition-colors ${
             activeTab === "telemetry"
               ? "border-brand-400 border-b-2 text-white"
-              : "text-zinc-400 hover:text-white"
+              : "text-fg-muted hover:text-white"
           }`}
         >
           {t("telemetry_health")}
@@ -110,7 +110,7 @@ export function ApiManagementHub() {
           className={`px-4 py-3 text-sm font-medium transition-colors ${
             activeTab === "ai-providers"
               ? "border-brand-400 border-b-2 text-white"
-              : "text-zinc-400 hover:text-white"
+              : "text-fg-muted hover:text-white"
           }`}
         >
           {t("ai_providers")}
@@ -120,7 +120,7 @@ export function ApiManagementHub() {
           className={`px-4 py-3 text-sm font-medium transition-colors ${
             activeTab === "system-keys"
               ? "border-brand-400 border-b-2 text-white"
-              : "text-zinc-400 hover:text-white"
+              : "text-fg-muted hover:text-white"
           }`}
         >
           {t("system_keys")}
@@ -137,7 +137,7 @@ export function ApiManagementHub() {
                 <h2 className="text-lg font-bold tracking-tight text-white">
                   {t("provider_status_matrix")}
                 </h2>
-                <span className="rounded border border-emerald-500/30 bg-emerald-500/20 px-2 py-0.5 font-mono text-[10px] text-emerald-300">
+                <span className="border-success-500/30 bg-success-500/20 text-success-300 rounded border px-2 py-0.5 font-mono text-[10px]">
                   {t("live_env_key_audit")}
                 </span>
               </div>
@@ -150,7 +150,7 @@ export function ApiManagementHub() {
                 <h2 className="text-lg font-bold tracking-tight text-white">
                   {t("model_latency_trends_p95")}
                 </h2>
-                <span className="rounded border border-white/5 bg-zinc-800 px-2 py-0.5 font-mono text-[10px] text-zinc-400">
+                <span className="text-fg-muted rounded border border-white/5 bg-zinc-800 px-2 py-0.5 font-mono text-[10px]">
                   {t("baseline_benchmark")}
                 </span>
               </div>
@@ -163,7 +163,7 @@ export function ApiManagementHub() {
                 <h2 className="text-lg font-bold tracking-tight text-white">
                   {t("quota_usage_by_provider")}
                 </h2>
-                <span className="rounded border border-white/5 bg-zinc-800 px-2 py-0.5 font-mono text-[10px] text-zinc-400">
+                <span className="text-fg-muted rounded border border-white/5 bg-zinc-800 px-2 py-0.5 font-mono text-[10px]">
                   {t("estimated_limits")}
                 </span>
               </div>
@@ -176,7 +176,7 @@ export function ApiManagementHub() {
                 <h2 className="text-lg font-bold tracking-tight text-white">
                   {t("daily_request_volume_24h_heatmap")}
                 </h2>
-                <span className="rounded border border-white/5 bg-zinc-800 px-2 py-0.5 font-mono text-[10px] text-zinc-400">
+                <span className="text-fg-muted rounded border border-white/5 bg-zinc-800 px-2 py-0.5 font-mono text-[10px]">
                   {t("estimated_volume")}
                 </span>
               </div>
@@ -192,7 +192,7 @@ export function ApiManagementHub() {
                 <h2 className="text-lg font-bold tracking-tight text-white">
                   {t("ai_model_providers")}
                 </h2>
-                <span className="rounded border border-emerald-500/30 bg-emerald-500/20 px-2 py-0.5 font-mono text-[10px] text-emerald-300">
+                <span className="border-success-500/30 bg-success-500/20 text-success-300 rounded border px-2 py-0.5 font-mono text-[10px]">
                   {t("live_database_keys")}
                 </span>
               </div>
@@ -208,7 +208,7 @@ export function ApiManagementHub() {
                 <h2 className="text-lg font-bold tracking-tight text-white">
                   {t("infrastructure_keys")}
                 </h2>
-                <span className="rounded border border-purple-500/30 bg-purple-500/20 px-2 py-0.5 font-mono text-[10px] text-purple-300">
+                <span className="border-brand-500/30 bg-brand-500/20 text-brand-300 rounded border px-2 py-0.5 font-mono text-[10px]">
                   {t("read_only_env_variables")}
                 </span>
               </div>

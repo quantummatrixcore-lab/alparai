@@ -44,7 +44,7 @@ export function EcosystemBenchmarkWidget() {
       {/* Widget Header & Overview Banner */}
       <div className="border-brand-500/20 from-bg-secondary/80 via-bg-tertiary/40 to-brand-950/20 relative overflow-hidden rounded-3xl border bg-gradient-to-br p-6 shadow-2xl backdrop-blur-xl md:p-8">
         <div className="bg-brand-500/10 pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-purple-500/10 blur-3xl" />
+        <div className="bg-brand-500/10 pointer-events-none absolute -bottom-24 -left-24 h-64 w-64 rounded-full blur-3xl" />
 
         <div className="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-2xl space-y-2">
@@ -66,10 +66,10 @@ export function EcosystemBenchmarkWidget() {
           <div className="min-w-[280px] shrink-0 rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md">
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
               <span className="text-fg-muted flex items-center gap-1.5 text-[10px] font-extrabold tracking-widest uppercase">
-                <Target className="h-3.5 w-3.5 text-emerald-400" />
+                <Target className="text-success-400 h-3.5 w-3.5" />
                 Defensive Moat Index
               </span>
-              <span className="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 font-mono text-xs font-bold text-emerald-400">
+              <span className="border-success-500/20 bg-success-500/10 text-success-400 rounded-full border px-2 py-0.5 font-mono text-xs font-bold">
                 {positioning.tier}
               </span>
             </div>
@@ -82,7 +82,7 @@ export function EcosystemBenchmarkWidget() {
                 </div>
               </div>
               <div className="text-right">
-                <span className="inline-block rounded-md border border-emerald-500/30 bg-emerald-500/20 px-2.5 py-1 text-xs font-extrabold tracking-wide text-emerald-300">
+                <span className="border-success-500/30 bg-success-500/20 text-success-300 inline-block rounded-md border px-2.5 py-1 text-xs font-extrabold tracking-wide">
                   {positioning.rating}
                 </span>
               </div>
@@ -91,7 +91,7 @@ export function EcosystemBenchmarkWidget() {
             {/* Progress bar */}
             <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-white/10">
               <div
-                className="to-brand-400 h-full rounded-full bg-gradient-to-r from-emerald-500 transition-all duration-1000"
+                className="to-brand-400 from-success-500 h-full rounded-full bg-gradient-to-r transition-all duration-1000"
                 style={{ width: `${moatIndex}%` }}
               />
             </div>
@@ -165,7 +165,7 @@ export function EcosystemBenchmarkWidget() {
                   </div>
                   <div className="shrink-0 text-right">
                     <span className="text-fg-muted block text-xs">Moat Score</span>
-                    <span className="font-mono text-xl font-extrabold text-emerald-400">
+                    <span className="text-success-400 font-mono text-xl font-extrabold">
                       {player.moatScore}/100
                     </span>
                   </div>
@@ -173,13 +173,13 @@ export function EcosystemBenchmarkWidget() {
 
                 {/* Success Factors */}
                 <div className="space-y-1.5">
-                  <div className="flex items-center gap-1 text-[11px] font-bold tracking-wider text-emerald-400 uppercase">
+                  <div className="text-success-400 flex items-center gap-1 text-[11px] font-bold tracking-wider uppercase">
                     <Zap className="h-3.5 w-3.5" /> Success Drivers
                   </div>
                   <ul className="space-y-1">
                     {player.successFactors.map((sf, idx) => (
                       <li key={idx} className="text-fg-muted flex items-start gap-1.5 text-xs">
-                        <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-400" />
+                        <CheckCircle2 className="text-success-400 mt-0.5 h-3.5 w-3.5 shrink-0" />
                         <span>{sf}</span>
                       </li>
                     ))}
@@ -188,13 +188,13 @@ export function EcosystemBenchmarkWidget() {
 
                 {/* Failure Pitfalls */}
                 <div className="space-y-1.5 border-t border-white/5 pt-2">
-                  <div className="flex items-center gap-1 text-[11px] font-bold tracking-wider text-rose-400 uppercase">
+                  <div className="text-danger-400 flex items-center gap-1 text-[11px] font-bold tracking-wider uppercase">
                     <AlertTriangle className="h-3.5 w-3.5" /> Critical Pitfalls
                   </div>
                   <ul className="space-y-1">
                     {player.failurePitfalls.map((fp, idx) => (
                       <li key={idx} className="text-fg-muted flex items-start gap-1.5 text-xs">
-                        <XCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-rose-400" />
+                        <XCircle className="text-danger-400 mt-0.5 h-3.5 w-3.5 shrink-0" />
                         <span>{fp}</span>
                       </li>
                     ))}
@@ -204,8 +204,8 @@ export function EcosystemBenchmarkWidget() {
 
               {/* ALPAR Moat Box */}
               <div className="bg-brand-950/30 border-brand-500/20 -mx-6 mt-5 -mb-6 rounded-b-2xl border-t border-white/10 p-4 pt-4">
-                <div className="mb-1 flex items-center gap-1.5 text-[11px] font-extrabold tracking-wider text-purple-300 uppercase">
-                  <ShieldCheck className="h-4 w-4 text-purple-400" />
+                <div className="text-brand-300 mb-1 flex items-center gap-1.5 text-[11px] font-extrabold tracking-wider uppercase">
+                  <ShieldCheck className="text-brand-400 h-4 w-4" />
                   ALPAR Defensible Advantage
                 </div>
                 <p className="text-fg-muted text-xs leading-relaxed">{player.alparMoat}</p>
@@ -257,7 +257,7 @@ export function EcosystemBenchmarkWidget() {
                   <td className="space-y-1 p-3.5 align-top">
                     {p.successFactors.map((sf, idx) => (
                       <div key={idx} className="text-fg-muted flex items-start gap-1.5">
-                        <CheckCircle2 className="mt-0.5 h-3 w-3 shrink-0 text-emerald-400" />
+                        <CheckCircle2 className="text-success-400 mt-0.5 h-3 w-3 shrink-0" />
                         <span>{sf}</span>
                       </div>
                     ))}
@@ -266,16 +266,16 @@ export function EcosystemBenchmarkWidget() {
                   <td className="space-y-1 p-3.5 align-top">
                     {p.failurePitfalls.map((fp, idx) => (
                       <div key={idx} className="text-fg-muted flex items-start gap-1.5">
-                        <XCircle className="mt-0.5 h-3 w-3 shrink-0 text-rose-400" />
+                        <XCircle className="text-danger-400 mt-0.5 h-3 w-3 shrink-0" />
                         <span>{fp}</span>
                       </div>
                     ))}
                   </td>
 
                   <td className="p-3.5 align-top">
-                    <div className="rounded-lg border border-purple-500/20 bg-purple-500/10 p-2.5 text-xs leading-relaxed text-purple-200">
-                      <div className="mb-1 flex items-center gap-1 font-semibold text-purple-300">
-                        <ShieldCheck className="h-3.5 w-3.5 text-purple-400" />
+                    <div className="border-brand-500/20 bg-brand-500/10 text-brand-200 rounded-lg border p-2.5 text-xs leading-relaxed">
+                      <div className="text-brand-300 mb-1 flex items-center gap-1 font-semibold">
+                        <ShieldCheck className="text-brand-400 h-3.5 w-3.5" />
                         Strategic Defense
                       </div>
                       {p.alparMoat}
@@ -283,7 +283,7 @@ export function EcosystemBenchmarkWidget() {
                   </td>
 
                   <td className="p-3.5 text-right align-top font-mono">
-                    <span className="inline-block rounded-lg border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-1 text-sm font-bold text-emerald-400">
+                    <span className="border-success-500/20 bg-success-500/10 text-success-400 inline-block rounded-lg border px-2.5 py-1 text-sm font-bold">
                       {p.moatScore}/100
                     </span>
                   </td>

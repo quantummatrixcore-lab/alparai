@@ -524,7 +524,7 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
       {/* Sidebar Drawer */}
       <aside
         className={cn(
-          "bg-bg-secondary/40 fixed inset-y-0 left-0 z-50 flex flex-col border-r border-white/10 shadow-[4px_0_24px_rgba(0,0,0,0.5),_inset_0_1px_1px_0_rgba(255,255,255,0.1)] ring-1 ring-white/5 backdrop-blur-2xl backdrop-contrast-125 backdrop-saturate-150 transition-all duration-300 ease-in-out dark:bg-slate-950/30",
+          "bg-bg-secondary/40 dark:bg-bg-tertiary/30 fixed inset-y-0 left-0 z-50 flex flex-col border-r border-white/10 shadow-[4px_0_24px_rgba(0,0,0,0.5),_inset_0_1px_1px_0_rgba(255,255,255,0.1)] ring-1 ring-white/5 backdrop-blur-2xl backdrop-contrast-125 backdrop-saturate-150 transition-all duration-300 ease-in-out",
           isOpen
             ? "w-72 max-w-[calc(100vw-3rem)] translate-x-0"
             : "w-72 max-w-[calc(100vw-3rem)] -translate-x-full",

@@ -21,7 +21,7 @@ function RatingStars({ rating, unratedText }: { rating?: number | null; unratedT
         <Star
           key={star}
           weight={star <= rating ? "fill" : "regular"}
-          className={cn("h-3 w-3", star <= rating ? "text-amber-400" : "text-zinc-600")}
+          className={cn("h-3 w-3", star <= rating ? "text-warning-400" : "text-zinc-600")}
         />
       ))}
     </div>
@@ -68,13 +68,13 @@ export function AlternativeCards({ alternatives }: AlternativeCardsProps) {
           <div className="mb-2.5 space-y-1">
             {alt.pros.slice(0, 2).map((pro, i) => (
               <div key={i} className="flex items-start gap-1.5">
-                <CheckCircle weight="fill" className="mt-0.5 h-3 w-3 shrink-0 text-emerald-400" />
+                <CheckCircle weight="fill" className="text-success-400 mt-0.5 h-3 w-3 shrink-0" />
                 <span className="text-fg-secondary text-xs leading-tight">{pro}</span>
               </div>
             ))}
             {alt.cons.slice(0, 2).map((con, i) => (
               <div key={i} className="flex items-start gap-1.5">
-                <XCircle weight="fill" className="mt-0.5 h-3 w-3 shrink-0 text-rose-400" />
+                <XCircle weight="fill" className="text-danger-400 mt-0.5 h-3 w-3 shrink-0" />
                 <span className="text-fg-secondary text-xs leading-tight">{con}</span>
               </div>
             ))}

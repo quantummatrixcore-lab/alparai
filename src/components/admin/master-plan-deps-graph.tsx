@@ -280,22 +280,22 @@ export function MasterPlanDepsGraph({
             onClick={() => setFilterMode("startable")}
             className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all ${
               filterMode === "startable"
-                ? "border border-emerald-500/30 bg-emerald-500/20 text-emerald-400"
+                ? "border-success-500/30 bg-success-500/20 text-success-400 border"
                 : "bg-bg-tertiary text-fg-muted border-border-subtle border hover:text-white"
             }`}
           >
-            <PlayCircle className="h-3.5 w-3.5 text-emerald-400" />
+            <PlayCircle className="text-success-400 h-3.5 w-3.5" />
             {t("deps_filter_startable", { count: graph.stats.startableCount })}
           </button>
           <button
             onClick={() => setFilterMode("blocked")}
             className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all ${
               filterMode === "blocked"
-                ? "border border-amber-500/30 bg-amber-500/20 text-amber-400"
+                ? "border-warning-500/30 bg-warning-500/20 text-warning-400 border"
                 : "bg-bg-tertiary text-fg-muted border-border-subtle border hover:text-white"
             }`}
           >
-            <Lock className="h-3.5 w-3.5 text-amber-400" />
+            <Lock className="text-warning-400 h-3.5 w-3.5" />
             {t("deps_filter_blocked", { count: graph.stats.blockedCount })}
           </button>
           <button
@@ -319,20 +319,20 @@ export function MasterPlanDepsGraph({
       <div className="bg-bg-tertiary/40 border-border-subtle/60 flex flex-wrap items-center justify-between gap-4 rounded-xl border p-3 text-xs">
         <div className="flex flex-wrap items-center gap-4">
           <div className="flex items-center gap-1.5">
-            <span className="h-2.5 w-2.5 rounded-full bg-emerald-400"></span>
+            <span className="bg-success-400 h-2.5 w-2.5 rounded-full"></span>
             <span className="text-fg-secondary font-medium">{t("deps_legend_green")}</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="h-2.5 w-2.5 rounded-full bg-amber-400"></span>
+            <span className="bg-warning-400 h-2.5 w-2.5 rounded-full"></span>
             <span className="text-fg-secondary font-medium">{t("deps_graph_legend_blocker")}</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="h-2.5 w-2.5 rounded-full bg-blue-400"></span>
+            <span className="bg-brand-400 h-2.5 w-2.5 rounded-full"></span>
             <span className="text-fg-secondary font-medium">{t("deps_graph_legend_peer")}</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="h-2.5 w-2.5 rounded-full bg-red-500"></span>
-            <span className="text-fg-secondary font-medium font-semibold text-red-400">
+            <span className="bg-danger-500 h-2.5 w-2.5 rounded-full"></span>
+            <span className="text-fg-secondary text-danger-400 font-medium font-semibold">
               Kritik Yol (Critical Path)
             </span>
           </div>
@@ -345,7 +345,7 @@ export function MasterPlanDepsGraph({
 
       {/* Cycle Warning */}
       {graph.hasCycle && (
-        <div className="mb-4 flex items-center gap-2 rounded-lg border border-red-500/20 bg-red-500/10 p-3 text-sm font-semibold text-red-400">
+        <div className="border-danger-500/20 bg-danger-500/10 text-danger-400 mb-4 flex items-center gap-2 rounded-lg border p-3 text-sm font-semibold">
           <span>⚠️</span>
           <span>
             {t("deps_graph_cycle_warning", {
@@ -499,7 +499,7 @@ export function MasterPlanDepsGraph({
                       if (planItem) onOpenItem(planItem);
                     }
                   }}
-                  className="focus-visible:ring-brand-400 cursor-pointer transition-opacity duration-200 focus:ring-2 focus:ring-blue-500 focus:outline-none focus-visible:ring-2"
+                  className="focus-visible:ring-brand-400 focus:ring-brand-500 cursor-pointer transition-opacity duration-200 focus:ring-2 focus:outline-none focus-visible:ring-2"
                   style={{ opacity: isHighlighted ? 1 : 0.2 }}
                 >
                   {/* Card Background Container */}

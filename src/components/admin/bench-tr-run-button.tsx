@@ -42,7 +42,7 @@ export function BenchTrRunButton() {
 
       <div
         id="benchtr-toast"
-        className="pointer-events-none fixed right-6 bottom-6 z-50 flex translate-y-4 items-center gap-3 rounded-xl border border-white/10 bg-zinc-900/95 px-5 py-3.5 opacity-0 shadow-2xl backdrop-blur-xl transition-all duration-300"
+        className="bg-bg-elevated/95 pointer-events-none fixed right-6 bottom-6 z-50 flex translate-y-4 items-center gap-3 rounded-xl border border-white/10 px-5 py-3.5 opacity-0 shadow-2xl backdrop-blur-xl transition-all duration-300"
       >
         <span className="toast-msg text-xs font-semibold text-white"></span>
       </div>

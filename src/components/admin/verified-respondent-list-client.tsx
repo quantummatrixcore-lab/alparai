@@ -25,7 +25,7 @@ export function VerifiedRespondentListClient({ providers = [] }: Props) {
     <Card className="border-border-subtle bg-bg-secondary shadow-sm">
       <CardHeader>
         <CardTitle className="text-fg-primary flex items-center gap-2 text-base font-bold">
-          <ShieldCheck className="h-5 w-5 text-emerald-400" />
+          <ShieldCheck className="text-success-400 h-5 w-5" />
           {t("verified_respondent_badge_management")}
         </CardTitle>
         <p className="text-fg-muted text-xs">{t("grant_official_verified_respondent_badge")}</p>
@@ -54,7 +54,7 @@ export function VerifiedRespondentListClient({ providers = [] }: Props) {
                         <span className="text-fg-primary text-sm font-semibold">{p.name}</span>
                         <span className="text-fg-muted font-mono text-xs">({p.slug})</span>
                         {isVerified && (
-                          <Badge className="border-emerald-500/30 bg-emerald-500/10 text-[10px] text-emerald-400">
+                          <Badge className="border-success-500/30 bg-success-500/10 text-success-400 text-[10px]">
                             {t("verified_respondent")}
                           </Badge>
                         )}

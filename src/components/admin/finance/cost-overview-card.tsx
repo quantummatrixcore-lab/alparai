@@ -36,31 +36,31 @@ export function CostOverviewCard({
   const getIcon = () => {
     switch (name.toLowerCase()) {
       case "vercel":
-        return <Cloud className="h-6 w-6 text-zinc-300" />;
+        return <Cloud className="text-fg-secondary h-6 w-6" />;
       case "supabase":
-        return <Database className="h-6 w-6 text-emerald-400" />;
+        return <Database className="text-success-400 h-6 w-6" />;
       case "gemini":
-        return <Brain className="h-6 w-6 text-blue-400" />;
+        return <Brain className="text-brand-400 h-6 w-6" />;
       case "anthropic":
-        return <Brain className="h-6 w-6 text-orange-400" />;
+        return <Brain className="text-warning-400 h-6 w-6" />;
       case "resend":
         return <Envelope className="h-6 w-6 text-sky-400" />;
       case "upstash":
-        return <Lightning className="h-6 w-6 text-yellow-400" />;
+        return <Lightning className="text-warning-400 h-6 w-6" />;
       case "buffer":
-        return <ShareNetwork className="h-6 w-6 text-indigo-400" />;
+        return <ShareNetwork className="text-brand-400 h-6 w-6" />;
       case "claude_pro":
-        return <Brain className="h-6 w-6 text-amber-500" />;
+        return <Brain className="text-warning-500 h-6 w-6" />;
       case "google_ultra":
-        return <Brain className="h-6 w-6 text-purple-400" />;
+        return <Brain className="text-brand-400 h-6 w-6" />;
       case "github":
-        return <GitBranch className="h-6 w-6 text-zinc-300" />;
+        return <GitBranch className="text-fg-secondary h-6 w-6" />;
       case "openrouter":
-        return <Brain className="h-6 w-6 text-indigo-400" />;
+        return <Brain className="text-brand-400 h-6 w-6" />;
       case "opencode_free_tier":
-        return <Brain className="h-6 w-6 text-zinc-400" />;
+        return <Brain className="text-fg-muted h-6 w-6" />;
       default:
-        return <Cloud className="h-6 w-6 text-zinc-400" />;
+        return <Cloud className="text-fg-muted h-6 w-6" />;
     }
   };
 
@@ -68,11 +68,11 @@ export function CostOverviewCard({
   const getTrendIcon = () => {
     switch (trend) {
       case "up":
-        return <TrendUp className="h-4 w-4 text-rose-400" />;
+        return <TrendUp className="text-danger-400 h-4 w-4" />;
       case "down":
-        return <TrendDown className="h-4 w-4 text-emerald-400" />;
+        return <TrendDown className="text-success-400 h-4 w-4" />;
       default:
-        return <Equals className="h-4 w-4 text-zinc-400" />;
+        return <Equals className="text-fg-muted h-4 w-4" />;
     }
   };
 
@@ -111,20 +111,20 @@ export function CostOverviewCard({
   const isFree = budgetLimit === 0;
 
   return (
-    <div className="relative overflow-hidden rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-950">
+    <div className="dark:border-border-subtle dark:bg-bg-tertiary relative overflow-hidden rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:shadow-md">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-900">
+          <div className="dark:bg-bg-elevated flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-100">
             {getIcon()}
           </div>
           <div>
             <h4 className="font-semibold text-zinc-950 dark:text-zinc-50">{getLabel()}</h4>
-            <p className="text-xs text-zinc-500 dark:text-zinc-400">{t("monthlyPlan")}</p>
+            <p className="text-fg-disabled dark:text-fg-muted text-xs">{t("monthlyPlan")}</p>
           </div>
         </div>
-        <div className="flex items-center gap-1 rounded bg-zinc-50 px-2 py-0.5 text-xs font-medium dark:bg-zinc-900">
+        <div className="dark:bg-bg-elevated flex items-center gap-1 rounded bg-zinc-50 px-2 py-0.5 text-xs font-medium">
           {getTrendIcon()}
-          <span className="text-zinc-600 dark:text-zinc-300">
+          <span className="dark:text-fg-secondary text-zinc-600">
             {trend === "up" ? t("rising") : trend === "down" ? t("falling") : t("stable")}
           </span>
         </div>
@@ -135,11 +135,11 @@ export function CostOverviewCard({
           <span className="text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
             ${currentCost.toFixed(2)}
           </span>
-          <span className="text-sm text-zinc-500 dark:text-zinc-400">/ {t("monthShort")}</span>
+          <span className="text-fg-disabled dark:text-fg-muted text-sm">/ {t("monthShort")}</span>
         </div>
 
         <div className="mt-4">
-          <div className="flex items-center justify-between text-xs text-zinc-500 dark:text-zinc-400">
+          <div className="text-fg-disabled dark:text-fg-muted flex items-center justify-between text-xs">
             <span>{isFree ? t("freeTier") : `${t("budget")}: $${budgetLimit.toFixed(0)}`}</span>
             {!isFree && <span>{percentUsed}%</span>}
           </div>
@@ -148,10 +148,10 @@ export function CostOverviewCard({
               <div
                 className={`h-1.5 rounded-full transition-all duration-500 ${
                   percentUsed >= 90
-                    ? "bg-rose-500"
+                    ? "bg-danger-500"
                     : percentUsed >= 75
-                      ? "bg-amber-500"
-                      : "bg-emerald-500"
+                      ? "bg-warning-500"
+                      : "bg-success-500"
                 }`}
                 style={{ width: `${Math.min(percentUsed, 100)}%` }}
               />

@@ -265,7 +265,7 @@ export function FeedCard({
               {/* Comments */}
               <Link
                 href={`/incidents/${incident.id}#comments`}
-                className="text-fg-secondary inline-flex h-9 items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 text-xs font-bold transition-all duration-300 hover:border-cyan-500/30 hover:bg-cyan-500/10 hover:text-cyan-400"
+                className="text-fg-secondary hover:border-accent-500/30 hover:bg-accent-500/10 hover:text-accent-400 inline-flex h-9 items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 text-xs font-bold transition-all duration-300"
               >
                 <MessageSquare className="h-4 w-4" />
                 <span>{incident.evidence_count}</span>

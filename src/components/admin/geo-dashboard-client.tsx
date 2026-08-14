@@ -78,7 +78,7 @@ export function GeoDashboardClient({
               variant="success"
             />
             <div className="mt-4 space-y-1">
-              <p className="text-xs font-semibold text-emerald-400">{t("geo_status_success")}</p>
+              <p className="text-success-400 text-xs font-semibold">{t("geo_status_success")}</p>
               <p className="text-fg-muted text-[11px]">{t("geo_score_desc")}</p>
             </div>
           </div>
@@ -88,32 +88,32 @@ export function GeoDashboardClient({
           <div className="space-y-4 p-6">
             <div className="flex items-center justify-between">
               <span className="text-fg-primary flex items-center gap-2 text-xs font-bold">
-                <Bot className="h-4 w-4 text-emerald-400" /> {t("geo_total_hits")}
+                <Bot className="text-success-400 h-4 w-4" /> {t("geo_total_hits")}
               </span>
-              <span className="font-mono text-xl font-bold text-emerald-400">{totalBotHits}</span>
+              <span className="text-success-400 font-mono text-xl font-bold">{totalBotHits}</span>
             </div>
             <div className="grid grid-cols-2 gap-3 text-xs">
               <div className="rounded border border-white/10 bg-white/5 p-2.5">
                 <span className="text-fg-muted block text-[10px]">{t("geo_bot_openai")}</span>
-                <span className="font-mono text-sm font-semibold text-cyan-400">
+                <span className="text-accent-400 font-mono text-sm font-semibold">
                   {botHits.gptbot}
                 </span>
               </div>
               <div className="rounded border border-white/10 bg-white/5 p-2.5">
                 <span className="text-fg-muted block text-[10px]">{t("geo_bot_claude")}</span>
-                <span className="font-mono text-sm font-semibold text-purple-400">
+                <span className="text-brand-400 font-mono text-sm font-semibold">
                   {botHits.claudebot}
                 </span>
               </div>
               <div className="rounded border border-white/10 bg-white/5 p-2.5">
                 <span className="text-fg-muted block text-[10px]">{t("geo_bot_perplexity")}</span>
-                <span className="font-mono text-sm font-semibold text-amber-400">
+                <span className="text-warning-400 font-mono text-sm font-semibold">
                   {botHits.perplexitybot}
                 </span>
               </div>
               <div className="rounded border border-white/10 bg-white/5 p-2.5">
                 <span className="text-fg-muted block text-[10px]">{t("geo_bot_bing")}</span>
-                <span className="font-mono text-sm font-semibold text-blue-400">
+                <span className="text-brand-400 font-mono text-sm font-semibold">
                   {botHits.googleExtended}
                 </span>
               </div>
@@ -132,7 +132,7 @@ export function GeoDashboardClient({
               <select
                 value={form.ai_engine}
                 onChange={(e) => setForm({ ...form, ai_engine: e.target.value })}
-                className="text-fg-primary w-full rounded border border-white/10 bg-black/40 px-3 py-2 text-xs focus:border-emerald-500 focus:outline-none"
+                className="text-fg-primary focus:border-success-500 w-full rounded border border-white/10 bg-black/40 px-3 py-2 text-xs focus:outline-none"
               >
                 <option value="ChatGPT / GPTBot">{t("geo_bot_openai")}</option>
                 <option value="Claude / ClaudeBot">{t("geo_bot_claude")}</option>
@@ -150,7 +150,7 @@ export function GeoDashboardClient({
                 value={form.query}
                 onChange={(e) => setForm({ ...form, query: e.target.value })}
                 placeholder={t("geo_prompt_placeholder")}
-                className="text-fg-primary w-full rounded border border-white/10 bg-black/40 px-3 py-2 text-xs focus:border-emerald-500 focus:outline-none"
+                className="text-fg-primary focus:border-success-500 w-full rounded border border-white/10 bg-black/40 px-3 py-2 text-xs focus:outline-none"
                 required
               />
             </div>
@@ -163,7 +163,7 @@ export function GeoDashboardClient({
                 value={form.cited_url}
                 onChange={(e) => setForm({ ...form, cited_url: e.target.value })}
                 placeholder={t("https_alparai_com_incidents")}
-                className="text-fg-primary w-full rounded border border-white/10 bg-black/40 px-3 py-2 text-xs focus:border-emerald-500 focus:outline-none"
+                className="text-fg-primary focus:border-success-500 w-full rounded border border-white/10 bg-black/40 px-3 py-2 text-xs focus:outline-none"
                 required
               />
             </div>
@@ -176,20 +176,20 @@ export function GeoDashboardClient({
               value={form.passage_snippet}
               onChange={(e) => setForm({ ...form, passage_snippet: e.target.value })}
               placeholder={t("geo_snippet_placeholder")}
-              className="text-fg-primary h-20 w-full rounded border border-white/10 bg-black/40 px-3 py-2 text-xs focus:border-emerald-500 focus:outline-none"
+              className="text-fg-primary focus:border-success-500 h-20 w-full rounded border border-white/10 bg-black/40 px-3 py-2 text-xs focus:outline-none"
             />
           </div>
           <div className="flex items-center justify-between">
             <button
               type="submit"
               disabled={submitting}
-              className="inline-flex items-center gap-2 rounded bg-emerald-500 px-4 py-2 text-xs font-bold text-black hover:bg-emerald-400 disabled:opacity-50"
+              className="bg-success-500 hover:bg-success-400 inline-flex items-center gap-2 rounded px-4 py-2 text-xs font-bold text-black disabled:opacity-50"
             >
               <Plus className="h-4 w-4" />
               {submitting ? t("saving") : t("geo_add_citation")}
             </button>
             {successMsg && (
-              <span className="flex items-center gap-1.5 text-xs font-medium text-emerald-400">
+              <span className="text-success-400 flex items-center gap-1.5 text-xs font-medium">
                 <CheckCircle2 className="h-4 w-4" /> {t("geo_citation_added")}
               </span>
             )}
@@ -203,9 +203,9 @@ export function GeoDashboardClient({
             <div className="space-y-3">
               <div className="flex items-center justify-between border-b border-white/10 pb-2 text-xs">
                 <span className="flex items-center gap-2 font-bold text-white">
-                  <Award className="h-4 w-4 text-emerald-400" /> {t("alpar_ai")}
+                  <Award className="text-success-400 h-4 w-4" /> {t("alpar_ai")}
                 </span>
-                <span className="font-mono font-bold text-emerald-400">Not measured</span>
+                <span className="text-success-400 font-mono font-bold">Not measured</span>
               </div>
               <div className="text-fg-muted flex items-center justify-between border-b border-white/10 pb-2 text-xs">
                 <span>{t("ai_incident_database_aiid")}</span>
@@ -225,7 +225,7 @@ export function GeoDashboardClient({
 
         <AdminSectionCard title={t("geo_content_freshness")}>
           <div className="text-fg-muted space-y-3 p-6 text-xs">
-            <div className="rounded border border-amber-500/20 bg-amber-500/10 p-3 text-amber-300">
+            <div className="border-warning-500/20 bg-warning-500/10 text-warning-300 rounded border p-3">
               <p className="mb-1 flex items-center gap-1.5 font-semibold">
                 <FileText className="h-4 w-4" /> {t("geo_add_findings_title")}
               </p>
@@ -245,7 +245,7 @@ export function GeoDashboardClient({
             {citations.map((c) => (
               <div key={c.id} className="py-3 text-xs">
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold text-emerald-400">{c.ai_engine}</span>
+                  <span className="text-success-400 font-semibold">{c.ai_engine}</span>
                   <span className="text-fg-muted text-[10px]">
                     {c.created_at ? new Date(c.created_at).toLocaleDateString() : t("geo_just_now")}
                   </span>

@@ -30,27 +30,27 @@ export function StatsCards({ stats }: { stats: EcosystemStats }) {
       value: stats.incidents,
       subtext: t("stat_violation_subtext") || "Tracked AI safety violations",
       icon: AlertTriangle,
-      color: "text-rose-400",
-      bgGlow: "from-rose-500/10 via-transparent to-transparent",
-      borderColor: "border-rose-500/20 hover:border-rose-500/40",
+      color: "text-danger-400",
+      bgGlow: "from-danger-500/10 via-transparent to-transparent",
+      borderColor: "border-danger-500/20 hover:border-danger-500/40",
     },
     {
       label: t("stat_positive_developments") || "Positive Developments",
       value: stats.positive,
       subtext: t("stat_governance_subtext") || "Governance & alignment wins",
       icon: Sparkles,
-      color: "text-emerald-400",
-      bgGlow: "from-emerald-500/10 via-transparent to-transparent",
-      borderColor: "border-emerald-500/20 hover:border-emerald-500/40",
+      color: "text-success-400",
+      bgGlow: "from-success-500/10 via-transparent to-transparent",
+      borderColor: "border-success-500/20 hover:border-success-500/40",
     },
     {
       label: t("stat_review_queue") || "Review Queue",
       value: stats.queue,
       subtext: t("stat_pending_subtext") || "Pending moderator review",
       icon: Clock,
-      color: "text-amber-400",
-      bgGlow: "from-amber-500/10 via-transparent to-transparent",
-      borderColor: "border-amber-500/20 hover:border-amber-500/40",
+      color: "text-warning-400",
+      bgGlow: "from-warning-500/10 via-transparent to-transparent",
+      borderColor: "border-warning-500/20 hover:border-warning-500/40",
     },
   ];
 
@@ -61,10 +61,10 @@ export function StatsCards({ stats }: { stats: EcosystemStats }) {
         return (
           <div
             key={c.label}
-            className={`group relative overflow-hidden rounded-2xl border bg-gradient-to-br ${c.bgGlow} bg-zinc-950/80 p-5 shadow-xl backdrop-blur-xl transition-all duration-300 ${c.borderColor} hover:shadow-brand-500/5 hover:shadow-2xl`}
+            className={`group relative overflow-hidden rounded-2xl border bg-gradient-to-br ${c.bgGlow} bg-bg-tertiary/80 p-5 shadow-xl backdrop-blur-xl transition-all duration-300 ${c.borderColor} hover:shadow-brand-500/5 hover:shadow-2xl`}
           >
             <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold tracking-wider text-zinc-400 uppercase">
+              <span className="text-fg-muted text-xs font-semibold tracking-wider uppercase">
                 {c.label}
               </span>
               <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/5 transition-transform group-hover:scale-110">
@@ -76,13 +76,13 @@ export function StatsCards({ stats }: { stats: EcosystemStats }) {
               <span className={`text-3xl font-black tracking-tight text-white ${c.color}`}>
                 {c.value.toLocaleString()}
               </span>
-              <span className="flex items-center gap-1 text-[11px] font-medium text-zinc-400">
-                <TrendingUp className="h-3 w-3 text-emerald-400" />
+              <span className="text-fg-muted flex items-center gap-1 text-[11px] font-medium">
+                <TrendingUp className="text-success-400 h-3 w-3" />
                 {t("live")}
               </span>
             </div>
 
-            <p className="mt-2 text-xs text-zinc-500">{c.subtext}</p>
+            <p className="text-fg-disabled mt-2 text-xs">{c.subtext}</p>
           </div>
         );
       })}

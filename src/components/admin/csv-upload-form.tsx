@@ -8,9 +8,9 @@ import type { ImportIncidentsResult } from "@/actions/admin";
 import { cn } from "@/lib/utils";
 
 const SOURCES = [
-  { value: "aiaaic_import", labelKey: "csv_import_source_aiaaic", color: "text-purple-400" },
-  { value: "aiid_import", labelKey: "csv_import_source_aiid", color: "text-blue-400" },
-  { value: "news_curated", labelKey: "csv_import_source_news", color: "text-emerald-400" },
+  { value: "aiaaic_import", labelKey: "csv_import_source_aiaaic", color: "text-brand-400" },
+  { value: "aiid_import", labelKey: "csv_import_source_aiid", color: "text-brand-400" },
+  { value: "news_curated", labelKey: "csv_import_source_news", color: "text-success-400" },
 ] as const;
 
 interface CsvUploadFormProps {
@@ -111,7 +111,7 @@ export function CsvUploadForm({ locale: _locale }: CsvUploadFormProps) {
         >
           {selectedFile ? (
             <>
-              <FileText className="h-8 w-8 text-emerald-400" />
+              <FileText className="text-success-400 h-8 w-8" />
               <span className="text-sm font-bold text-white">{selectedFile.name}</span>
               <span className="text-fg-muted text-xs">
                 {(selectedFile.size / 1024).toFixed(1)} KB
@@ -161,20 +161,20 @@ export function CsvUploadForm({ locale: _locale }: CsvUploadFormProps) {
             className={cn(
               "animate-in fade-in slide-in-from-bottom-2 rounded-xl border p-4 text-sm duration-300",
               result.ok
-                ? "border-emerald-500/20 bg-emerald-500/10"
-                : "border-red-500/20 bg-red-500/10",
+                ? "border-success-500/20 bg-success-500/10"
+                : "border-danger-500/20 bg-danger-500/10",
             )}
           >
             <div className="flex items-start gap-3">
               {result.ok ? (
-                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-400" />
+                <CheckCircle2 className="text-success-400 mt-0.5 h-5 w-5 shrink-0" />
               ) : (
-                <XCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-400" />
+                <XCircle className="text-danger-400 mt-0.5 h-5 w-5 shrink-0" />
               )}
               <div className="space-y-1">
-                {result.error && <p className="font-bold text-red-300">{result.error}</p>}
+                {result.error && <p className="text-danger-300 font-bold">{result.error}</p>}
                 {result.ok && (
-                  <p className="font-bold text-emerald-300">
+                  <p className="text-success-300 font-bold">
                     {t("csv_success_msg", {
                       inserted: result.inserted ?? 0,
                       skipped: result.skipped ?? 0,
@@ -184,7 +184,7 @@ export function CsvUploadForm({ locale: _locale }: CsvUploadFormProps) {
                 {(result.parseErrors?.length ?? 0) > 0 && (
                   <details className="mt-2">
                     <summary className="text-fg-secondary cursor-pointer text-xs font-bold">
-                      <AlertTriangle className="mr-1 inline h-3 w-3 text-yellow-400" />
+                      <AlertTriangle className="text-warning-400 mr-1 inline h-3 w-3" />
                       {result.parseErrors?.length} {t("csv_parse_error")}
                     </summary>
                     <ul className="text-fg-muted mt-2 space-y-1 text-xs">

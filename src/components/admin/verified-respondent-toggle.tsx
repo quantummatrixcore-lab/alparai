@@ -77,7 +77,7 @@ export function VerifiedRespondentToggle({
             size="sm"
             onClick={handleToggle}
             disabled={loading}
-            className="gap-1.5 text-emerald-400 hover:bg-emerald-500/10 hover:text-emerald-300"
+            className="text-success-400 hover:bg-success-500/10 hover:text-success-300 gap-1.5"
           >
             {loading ? (
               <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -92,7 +92,7 @@ export function VerifiedRespondentToggle({
             size="sm"
             onClick={handleToggle}
             disabled={loading}
-            className="gap-1.5 text-slate-400 hover:bg-white/5 hover:text-white"
+            className="text-fg-muted gap-1.5 hover:bg-white/5 hover:text-white"
           >
             {loading ? (
               <Loader2 className="h-3.5 w-3.5 animate-spin" />

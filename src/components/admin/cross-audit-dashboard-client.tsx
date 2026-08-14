@@ -163,7 +163,7 @@ export function CrossAuditDashboardClient({ data }: CrossAuditDashboardClientPro
                 <div className="flex gap-4">
                   <div className="bg-bg-tertiary/60 flex items-center gap-3 rounded-xl border border-white/5 px-4 py-2">
                     <span className="text-fg-muted text-xs font-bold uppercase">TRUTH SCORE</span>
-                    <span className="font-mono text-lg font-black text-emerald-400">
+                    <span className="text-success-400 font-mono text-lg font-black">
                       {testResult.truth_score}/100
                     </span>
                   </div>
@@ -174,8 +174,8 @@ export function CrossAuditDashboardClient({ data }: CrossAuditDashboardClientPro
                         "rounded-lg border px-2.5 py-0.5 font-mono text-sm font-black uppercase",
                         testResult.risk_level.toLowerCase().includes("high") ||
                           testResult.risk_level.toLowerCase().includes("unacceptable")
-                          ? "border-red-500/20 bg-red-500/10 text-red-400 shadow-[0_0_12px_rgba(239,68,68,0.15)]"
-                          : "border-emerald-500/20 bg-emerald-500/10 text-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.15)]",
+                          ? "border-danger-500/20 bg-danger-500/10 text-danger-400 shadow-[0_0_12px_rgba(239,68,68,0.15)]"
+                          : "border-success-500/20 bg-success-500/10 text-success-400 shadow-[0_0_12px_rgba(16,185,129,0.15)]",
                       )}
                     >
                       {testResult.risk_level}
@@ -209,10 +209,10 @@ export function CrossAuditDashboardClient({ data }: CrossAuditDashboardClientPro
                       key={idx}
                       className="border-border-subtle bg-bg-secondary/40 hover:border-brand-500/30 group relative rounded-xl border p-4 transition-all duration-300"
                     >
-                      <div className="absolute top-0 right-0 left-0 h-[1.5px] bg-gradient-to-r from-purple-500 to-cyan-500 opacity-10 transition-opacity duration-300 group-hover:opacity-100" />
+                      <div className="from-brand-500 absolute top-0 right-0 left-0 h-[1.5px] bg-gradient-to-r to-cyan-500 opacity-10 transition-opacity duration-300 group-hover:opacity-100" />
                       <div className="mb-3 flex items-center justify-between gap-2 border-b border-white/5 pb-2">
                         <div className="text-brand-400 flex items-center gap-1.5 text-xs font-bold tracking-wider uppercase">
-                          <Cpu className="h-3.5 w-3.5 text-cyan-400" />
+                          <Cpu className="text-accent-400 h-3.5 w-3.5" />
                           {m.name}
                         </div>
                         <Badge
@@ -233,7 +233,7 @@ export function CrossAuditDashboardClient({ data }: CrossAuditDashboardClientPro
 
               <div className="bg-brand-500/10 border-brand-500/20 rounded-xl border p-4 shadow-[inset_0_0_12px_rgba(168,85,247,0.05)]">
                 <h4 className="text-brand-400 mb-2 flex items-center gap-2 text-xs font-bold tracking-wider uppercase">
-                  <Shield className="h-4 w-4 text-purple-400" /> Nihai Karar (Judge Verdict)
+                  <Shield className="text-brand-400 h-4 w-4" /> Nihai Karar (Judge Verdict)
                 </h4>
                 <p className="text-sm leading-relaxed text-white/90">{testResult.judge_verdict}</p>
               </div>

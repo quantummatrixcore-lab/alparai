@@ -104,8 +104,8 @@ export function CategoryGroup({
               className={cn(
                 "inline-flex items-center rounded-full px-2 py-0.5 font-mono text-[10px] font-bold tracking-wider uppercase",
                 allConnected
-                  ? "bg-emerald-500/10 text-emerald-400"
-                  : "bg-amber-500/10 text-amber-400",
+                  ? "bg-success-500/10 text-success-400"
+                  : "bg-warning-500/10 text-warning-400",
               )}
             >
               {connectedCount}/{totalCount}

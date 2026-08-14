@@ -288,10 +288,10 @@ export function Manage360CommandPalette() {
   );
 
   const categoryColors: Record<string, string> = {
-    "Quick-Approve": "text-emerald-400",
-    "Quick-Reject": "text-red-400",
+    "Quick-Approve": "text-success-400",
+    "Quick-Reject": "text-danger-400",
     Operations: "text-sky-400",
-    Navigate: "text-zinc-400",
+    Navigate: "text-fg-muted",
   };
 
   return (
@@ -299,16 +299,16 @@ export function Manage360CommandPalette() {
       <button
         onClick={() => setIsOpen(true)}
         aria-label="Open 360 Command Palette"
-        className="border-brand-500/40 text-brand-300 fixed bottom-6 left-6 z-40 flex h-12 w-12 items-center justify-center rounded-full border bg-zinc-900/90 shadow-2xl backdrop-blur-xl transition-transform hover:scale-105 sm:hidden"
+        className="border-brand-500/40 text-brand-300 bg-bg-elevated/90 fixed bottom-6 left-6 z-40 flex h-12 w-12 items-center justify-center rounded-full border shadow-2xl backdrop-blur-xl transition-transform hover:scale-105 sm:hidden"
       >
         <Command className="h-5 w-5" />
       </button>
 
       {isOpen && (
         <div className="animate-fade-in fixed inset-0 z-50 flex items-start justify-center bg-black/70 pt-16 backdrop-blur-md">
-          <div className="mx-4 w-full max-w-xl overflow-hidden rounded-2xl border border-white/10 bg-zinc-950/95 shadow-2xl">
+          <div className="bg-bg-tertiary/95 mx-4 w-full max-w-xl overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
             <div className="flex items-center border-b border-white/10 px-4 py-3.5">
-              <Search className="h-5 w-5 text-zinc-400" />
+              <Search className="text-fg-muted h-5 w-5" />
               <input
                 type="text"
                 value={query}
@@ -317,7 +317,7 @@ export function Manage360CommandPalette() {
                 className="ml-3 flex-1 bg-transparent text-sm text-white placeholder-zinc-500 focus:outline-none"
                 autoFocus
               />
-              <kbd className="rounded bg-zinc-800 px-2 py-0.5 text-xs text-zinc-400">
+              <kbd className="text-fg-muted rounded bg-zinc-800 px-2 py-0.5 text-xs">
                 {t("esc")}
               </kbd>
             </div>
@@ -327,7 +327,7 @@ export function Manage360CommandPalette() {
                 className={`border-b px-4 py-2 text-center text-xs font-bold ${
                   statusOk
                     ? "border-brand-500/30 bg-brand-500/10 text-brand-300"
-                    : "border-red-500/30 bg-red-500/10 text-red-300"
+                    : "border-danger-500/30 bg-danger-500/10 text-danger-300"
                 }`}
               >
                 {statusMsg}
@@ -336,13 +336,13 @@ export function Manage360CommandPalette() {
 
             <div className="max-h-96 overflow-y-auto p-2">
               {filteredActions.length === 0 ? (
-                <div className="p-6 text-center text-xs text-zinc-500">
+                <div className="text-fg-disabled p-6 text-center text-xs">
                   {t("no_matching_360_actions_found")}
                 </div>
               ) : (
                 filteredActions.map((action) => {
                   const Icon = action.icon;
-                  const catColor = categoryColors[action.category] ?? "text-zinc-400";
+                  const catColor = categoryColors[action.category] ?? "text-fg-muted";
                   return (
                     <button
                       key={action.id}
@@ -353,7 +353,7 @@ export function Manage360CommandPalette() {
                         <Icon className={`h-4 w-4 ${catColor}`} />
                         <span className="font-medium">{action.title}</span>
                       </div>
-                      <span className="rounded-md bg-zinc-800 px-2 py-0.5 text-[10px] font-bold tracking-wider text-zinc-400 uppercase">
+                      <span className="text-fg-muted rounded-md bg-zinc-800 px-2 py-0.5 text-[10px] font-bold tracking-wider uppercase">
                         {action.category}
                       </span>
                     </button>
@@ -362,12 +362,12 @@ export function Manage360CommandPalette() {
               )}
             </div>
 
-            <div className="flex items-center justify-between border-t border-white/5 bg-zinc-950/80 px-4 py-2.5 text-[11px] text-zinc-500">
+            <div className="bg-bg-tertiary/80 text-fg-disabled flex items-center justify-between border-t border-white/5 px-4 py-2.5 text-[11px]">
               <span>
                 {t("alpar_ai_360_manage_surface")}
                 {allActions.length} {t("actions")}
               </span>
-              <span className="font-mono text-zinc-400">{t("cmd_k_ctrl_k")}</span>
+              <span className="text-fg-muted font-mono">{t("cmd_k_ctrl_k")}</span>
             </div>
           </div>
         </div>

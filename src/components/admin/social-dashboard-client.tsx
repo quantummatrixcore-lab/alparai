@@ -623,7 +623,7 @@ export function SocialDashboardClient({
               <div
                 className={cn(
                   "absolute inset-0 bg-gradient-to-br to-transparent opacity-0 transition-opacity group-hover:opacity-100",
-                  isLinkedin ? "from-blue-500/5" : "from-sky-500/5",
+                  isLinkedin ? "from-brand-500/5" : "from-sky-500/5",
                 )}
               />
               <div className="relative flex items-center justify-between">
@@ -632,7 +632,7 @@ export function SocialDashboardClient({
                     className={cn(
                       "rounded-lg border p-3",
                       isLinkedin
-                        ? "border-blue-500/20 bg-blue-500/10 shadow-[0_0_15px_rgba(59,130,246,0.15)]"
+                        ? "border-brand-500/20 bg-brand-500/10 shadow-[0_0_15px_rgba(59,130,246,0.15)]"
                         : "border-sky-500/20 bg-sky-500/10 shadow-[0_0_15px_rgba(14,165,233,0.15)]",
                     )}
                   >
@@ -644,7 +644,7 @@ export function SocialDashboardClient({
                     </h3>
                     <p className="text-fg-muted flex items-center gap-2 text-sm">
                       <span
-                        className={`flex h-2 w-2 rounded-full ${account.connection_status === "connected" ? "bg-emerald-500" : "bg-red-500"}`}
+                        className={`flex h-2 w-2 rounded-full ${account.connection_status === "connected" ? "bg-success-500" : "bg-danger-500"}`}
                       />
                       <span className="capitalize">{account.connection_status}</span>
                     </p>
@@ -876,7 +876,7 @@ export function SocialDashboardClient({
                               <Linkedin className="text-brand-400 h-3 w-3" />
                               <span>{t("linkedin")}</span>
                             </div>
-                            <span className="rounded border border-amber-500/20 bg-amber-500/10 px-2 py-0.5 text-[10px] font-bold text-amber-400 uppercase">
+                            <span className="border-warning-500/20 bg-warning-500/10 text-warning-400 rounded border px-2 py-0.5 text-[10px] font-bold uppercase">
                               {t("pending_approval")}
                             </span>
                           </div>
@@ -1246,7 +1246,7 @@ export function SocialDashboardClient({
 
         {/* Tab 5: Intelligence */}
         {activeTab === "intelligence" && (
-          <div className="bg-bg-secondary/40 border-border-subtle space-y-6 rounded-2xl border bg-gradient-to-br from-violet-500/5 via-transparent to-cyan-500/5 p-6">
+          <div className="bg-bg-secondary/40 border-border-subtle from-brand-500/5 space-y-6 rounded-2xl border bg-gradient-to-br via-transparent to-cyan-500/5 p-6">
             <div>
               <h2 className="text-fg-primary flex items-center gap-2 text-xl font-bold">
                 <Brain className="text-brand-500 h-5 w-5" />
@@ -1700,12 +1700,7 @@ export function SocialDashboardClient({
                 )}
                 {formImageUrl ? (
                   <div className="border-border-subtle relative mt-2 aspect-square max-w-[120px] overflow-hidden rounded-xl border">
-                    <Image
-                      src={formImageUrl}
-                      alt="Generated Asset"
-                      fill
-                      className="object-cover"
-                    />
+                    <Image src={formImageUrl} alt="Generated Asset" fill className="object-cover" />
                     <button
                       type="button"
                       onClick={() => setFormImageUrl("")}

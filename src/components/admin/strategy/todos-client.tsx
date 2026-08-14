@@ -203,7 +203,7 @@ export function RoadmapTodosClient({ initialTodos, isReadOnly, locale }: TodosCl
                     {!isReadOnly && (
                       <button
                         onClick={() => handleDelete(todo.id)}
-                        className="text-fg-muted rounded p-1 opacity-0 transition group-hover:opacity-100 hover:bg-red-400/10 hover:text-red-400 md:opacity-100"
+                        className="text-fg-muted hover:bg-danger-400/10 hover:text-danger-400 rounded p-1 opacity-0 transition group-hover:opacity-100 md:opacity-100"
                       >
                         <Trash2 className="h-3.5 w-3.5" />
                       </button>

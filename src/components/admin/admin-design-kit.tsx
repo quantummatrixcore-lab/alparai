@@ -82,7 +82,7 @@ export function AdminPageHeader({
               {badge ? (
                 <span className="shrink-0">{badge}</span>
               ) : (
-                <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-[10px] font-bold text-emerald-400">
+                <span className="border-success-500/30 bg-success-500/10 text-success-400 inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-[10px] font-bold">
                   <ShieldCheck className="h-3 w-3" /> Protected
                 </span>
               )}
@@ -166,16 +166,16 @@ export function MetricCard({
 
   const colorClasses = {
     default: "text-white",
-    success: "text-emerald-400",
-    warning: "text-amber-400",
-    danger: "text-rose-400",
+    success: "text-success-400",
+    warning: "text-warning-400",
+    danger: "text-danger-400",
   };
 
   const borderGlow = {
     default: "border-brand-500/20 hover:border-brand-500/40 shadow-brand-500/5",
-    success: "border-emerald-500/20 hover:border-emerald-500/40 shadow-emerald-500/5",
-    warning: "border-amber-500/20 hover:border-amber-500/40 shadow-amber-500/5",
-    danger: "border-rose-500/20 hover:border-rose-500/40 shadow-rose-500/5",
+    success: "border-success-500/20 hover:border-success-500/40 shadow-success-500/5",
+    warning: "border-warning-500/20 hover:border-warning-500/40 shadow-warning-500/5",
+    danger: "border-danger-500/20 hover:border-danger-500/40 shadow-danger-500/5",
   }[variant];
 
   const glowRgb = {
@@ -224,8 +224,8 @@ export function MetricCard({
               className={cn(
                 "inline-flex items-center gap-1 rounded-md px-2 py-0.5 font-mono text-xs font-bold",
                 delta.isPositive
-                  ? "border border-emerald-500/20 bg-emerald-500/10 text-emerald-400"
-                  : "border border-rose-500/20 bg-rose-500/10 text-rose-400",
+                  ? "border-success-500/20 bg-success-500/10 text-success-400 border"
+                  : "border-danger-500/20 bg-danger-500/10 text-danger-400 border",
               )}
             >
               {delta.isPositive ? "+" : ""}
@@ -299,15 +299,15 @@ export function ZeroCostBanner({
   void services;
   void locale;
   return (
-    <div className="via-bg-secondary to-bg-tertiary relative overflow-hidden rounded-2xl border border-emerald-500/30 bg-gradient-to-r from-emerald-950/40 p-6 shadow-2xl backdrop-blur-xl">
+    <div className="via-bg-secondary to-bg-tertiary border-success-500/30 relative overflow-hidden rounded-2xl border bg-gradient-to-r from-emerald-950/40 p-6 shadow-2xl backdrop-blur-xl">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <div className="rounded-xl border border-emerald-500/40 bg-emerald-500/20 p-3 text-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.2)]">
+          <div className="border-success-500/40 bg-success-500/20 text-success-400 rounded-xl border p-3 shadow-[0_0_20px_rgba(16,185,129,0.2)]">
             <Zap className="h-6 w-6" />
           </div>
           <div>
             <h3 className="text-base font-bold text-white">Zero Token Cost Tier Active</h3>
-            <p className="text-xs text-emerald-300">
+            <p className="text-success-300 text-xs">
               Free open-source & provider tier allocation active ({totalSaved} saved)
             </p>
           </div>

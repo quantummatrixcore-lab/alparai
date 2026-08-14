@@ -14,9 +14,12 @@ export function QuotaGauges({ providers }: { providers: Provider[] }) {
           quotaPercent > 80 ? "danger" : quotaPercent > 50 ? "warning" : "success";
 
         return (
-          <div key={provider.id} className="rounded-xl border border-white/10 bg-zinc-900/80 p-6">
+          <div
+            key={provider.id}
+            className="bg-bg-elevated/80 rounded-xl border border-white/10 p-6"
+          >
             <h3 className="text-sm font-bold text-white">{provider.name}</h3>
-            <p className="mt-1 text-xs text-zinc-400">
+            <p className="text-fg-muted mt-1 text-xs">
               {(provider.quotaUsed / 1000).toFixed(0)}
               {t("k")}
               {(provider.quotaLimit / 1000).toFixed(0)}K
@@ -37,7 +40,7 @@ export function QuotaGauges({ providers }: { providers: Provider[] }) {
             </div>
 
             {provider.monthlyLimitUsd > 0 && (
-              <p className="mt-3 text-xs text-zinc-400">
+              <p className="text-fg-muted mt-3 text-xs">
                 {t("monthly_budget")}{" "}
                 <span className="font-bold text-white">${provider.monthlyLimitUsd}</span>
               </p>

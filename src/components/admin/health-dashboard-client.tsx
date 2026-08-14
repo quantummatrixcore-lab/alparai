@@ -31,19 +31,19 @@ export function HealthDashboardClient({ initialReport }: HealthDashboardClientPr
     switch (status) {
       case "healthy":
         return (
-          <span className="flex items-center gap-1 text-xs font-semibold text-emerald-400">
+          <span className="text-success-400 flex items-center gap-1 text-xs font-semibold">
             <CheckCircle2 className="h-4 w-4" /> {t("health_status_healthy")}
           </span>
         );
       case "degraded":
         return (
-          <span className="flex items-center gap-1 text-xs font-semibold text-amber-400">
+          <span className="text-warning-400 flex items-center gap-1 text-xs font-semibold">
             <AlertTriangle className="h-4 w-4" /> {t("health_status_degraded")}
           </span>
         );
       case "down":
         return (
-          <span className="flex items-center gap-1 text-xs font-semibold text-rose-400">
+          <span className="text-danger-400 flex items-center gap-1 text-xs font-semibold">
             <XCircle className="h-4 w-4" /> {t("health_status_down")}
           </span>
         );
@@ -57,10 +57,10 @@ export function HealthDashboardClient({ initialReport }: HealthDashboardClientPr
           <span
             className={`rounded-full px-3 py-1 text-xs font-bold tracking-wider uppercase ${
               report.overall === "healthy"
-                ? "border border-emerald-500/30 bg-emerald-500/20 text-emerald-400"
+                ? "border-success-500/30 bg-success-500/20 text-success-400 border"
                 : report.overall === "degraded"
-                  ? "border border-amber-500/30 bg-amber-500/20 text-amber-400"
-                  : "border border-rose-500/30 bg-rose-500/20 text-rose-400"
+                  ? "border-warning-500/30 bg-warning-500/20 text-warning-400 border"
+                  : "border-danger-500/30 bg-danger-500/20 text-danger-400 border"
             }`}
           >
             {t("health_system_status")}{" "}
@@ -110,7 +110,7 @@ export function HealthDashboardClient({ initialReport }: HealthDashboardClientPr
 
       <AdminSectionCard title={t("health_sla_monitor")}>
         <div className="text-fg-muted space-y-3 p-6 text-xs">
-          <div className="flex items-center justify-between rounded border border-emerald-500/20 bg-emerald-500/10 p-3 text-emerald-300">
+          <div className="border-success-500/20 bg-success-500/10 text-success-300 flex items-center justify-between rounded border p-3">
             <span className="flex items-center gap-2 font-medium">
               <Bell className="h-4 w-4" /> {t("health_sla_active")}
             </span>

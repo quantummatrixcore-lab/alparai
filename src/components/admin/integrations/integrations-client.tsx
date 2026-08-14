@@ -159,12 +159,12 @@ export function IntegrationsClient({ locale }: { locale: string }) {
     return (
       <AdminContainer>
         <AdminPageHeader
-          icon={<AlertTriangle className="h-6 w-6 text-rose-400" />}
+          icon={<AlertTriangle className="text-danger-400 h-6 w-6" />}
           title={t("integrations_title")}
           subtitle={t("integrations_sync_failed")}
         />
-        <div className="border-border-subtle rounded-xl border bg-zinc-900/40 p-8 text-center ring-1 ring-white/10 backdrop-blur-xl">
-          <p className="mb-4 text-sm text-rose-400">{error}</p>
+        <div className="border-border-subtle bg-bg-elevated/40 rounded-xl border p-8 text-center ring-1 ring-white/10 backdrop-blur-xl">
+          <p className="text-danger-400 mb-4 text-sm">{error}</p>
           <Button
             onClick={fetchData}
             variant="outline"
@@ -183,7 +183,7 @@ export function IntegrationsClient({ locale }: { locale: string }) {
 
   return (
     <div className="min-h-screen bg-black p-6">
-      <div className="rounded-3xl bg-zinc-900/40 p-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl">
+      <div className="bg-bg-elevated/40 rounded-3xl p-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl">
         <AdminContainer>
           <AdminPageHeader
             icon={<Cpu className="text-brand-400 h-6 w-6" />}

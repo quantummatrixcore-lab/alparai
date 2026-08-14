@@ -55,8 +55,8 @@ export function MetricWidget({
         <div
           className={cn(
             "flex shrink-0 items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold",
-            trend === "up" && "bg-emerald-500/10 text-emerald-400",
-            trend === "down" && "bg-red-500/10 text-red-400",
+            trend === "up" && "bg-success-500/10 text-success-400",
+            trend === "down" && "bg-danger-500/10 text-danger-400",
             trend === "neutral" && "text-fg-muted bg-white/5",
           )}
         >

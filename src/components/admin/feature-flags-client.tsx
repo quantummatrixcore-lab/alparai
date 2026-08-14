@@ -63,8 +63,8 @@ export function FeatureFlagsClient({ initialFlags }: FeatureFlagsClientProps) {
                     <span
                       className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase transition-colors ${
                         flag.enabled
-                          ? "border border-emerald-500/30 bg-emerald-500/15 text-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.15)]"
-                          : "border border-zinc-700 bg-zinc-800/60 text-zinc-400"
+                          ? "border-success-500/30 bg-success-500/15 text-success-400 border shadow-[0_0_12px_rgba(16,185,129,0.15)]"
+                          : "border-border-strong text-fg-muted border bg-zinc-800/60"
                       }`}
                     >
                       {flag.enabled ? (
@@ -80,7 +80,7 @@ export function FeatureFlagsClient({ initialFlags }: FeatureFlagsClientProps) {
                       )}
                     </span>
                   </div>
-                  <p className="text-xs leading-relaxed text-zinc-400">{flag.description}</p>
+                  <p className="text-fg-muted text-xs leading-relaxed">{flag.description}</p>
                 </div>
 
                 {/* Interactive Toggle Switch Button */}
@@ -90,9 +90,9 @@ export function FeatureFlagsClient({ initialFlags }: FeatureFlagsClientProps) {
                   aria-checked={flag.enabled}
                   disabled={isUpdating}
                   onClick={() => handleToggle(flag.key, flag.enabled)}
-                  className={`group relative inline-flex h-7 w-14 shrink-0 cursor-pointer items-center rounded-full p-1 transition-colors duration-300 ease-in-out focus:ring-2 focus:ring-emerald-400/50 focus:outline-none disabled:cursor-wait disabled:opacity-60 ${
+                  className={`group focus:ring-success-400/50 relative inline-flex h-7 w-14 shrink-0 cursor-pointer items-center rounded-full p-1 transition-colors duration-300 ease-in-out focus:ring-2 focus:outline-none disabled:cursor-wait disabled:opacity-60 ${
                     flag.enabled
-                      ? "bg-emerald-500 shadow-[0_0_16px_rgba(16,185,129,0.35)]"
+                      ? "bg-success-500 shadow-[0_0_16px_rgba(16,185,129,0.35)]"
                       : "bg-zinc-700 hover:bg-zinc-600"
                   }`}
                 >
@@ -116,8 +116,8 @@ export function FeatureFlagsClient({ initialFlags }: FeatureFlagsClientProps) {
       </AdminSectionCard>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <div className="space-y-1.5 rounded-xl border border-amber-500/20 bg-amber-500/5 p-4 text-xs text-zinc-300 backdrop-blur-md">
-          <span className="flex items-center gap-2 font-bold text-amber-400">
+        <div className="border-warning-500/20 bg-warning-500/5 text-fg-secondary space-y-1.5 rounded-xl border p-4 text-xs backdrop-blur-md">
+          <span className="text-warning-400 flex items-center gap-2 font-bold">
             <Zap className="h-4 w-4" /> {t("ff_edge_cache") || "Edge Cache Revalidation"}
           </span>
           <p className="leading-relaxed">
@@ -125,8 +125,8 @@ export function FeatureFlagsClient({ initialFlags }: FeatureFlagsClientProps) {
               "Feature flag state changes are instantly broadcasted across edge nodes with zero-downtime revalidation."}
           </p>
         </div>
-        <div className="space-y-1.5 rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-4 text-xs text-zinc-300 backdrop-blur-md">
-          <span className="flex items-center gap-2 font-bold text-emerald-400">
+        <div className="border-success-500/20 bg-success-500/5 text-fg-secondary space-y-1.5 rounded-xl border p-4 text-xs backdrop-blur-md">
+          <span className="text-success-400 flex items-center gap-2 font-bold">
             <ShieldCheck className="h-4 w-4" /> {t("ff_rls_protection") || "RLS Security Shield"}
           </span>
           <p className="leading-relaxed">

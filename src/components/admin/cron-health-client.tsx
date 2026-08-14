@@ -79,12 +79,12 @@ export function CronHealthClient({ jobs, historyData }: CronHealthProps) {
           )}
         </div>
         <div className="mt-4 flex gap-6 text-sm">
-          <span className="flex items-center gap-2 text-emerald-400">
-            <span className="h-3 w-3 rounded-full bg-emerald-500" />
+          <span className="text-success-400 flex items-center gap-2">
+            <span className="bg-success-500 h-3 w-3 rounded-full" />
             {t("success") || "Success"}
           </span>
-          <span className="flex items-center gap-2 text-red-400">
-            <span className="h-3 w-3 rounded-full bg-red-500" />
+          <span className="text-danger-400 flex items-center gap-2">
+            <span className="bg-danger-500 h-3 w-3 rounded-full" />
             {t("failed") || "Failed"}
           </span>
         </div>
@@ -110,11 +110,11 @@ export function CronHealthClient({ jobs, historyData }: CronHealthProps) {
                   <td className="py-3 pr-4 font-mono text-white/80">{job.executionTime}ms</td>
                   <td className="py-3">
                     {job.status === "Active" ? (
-                      <span className="inline-flex items-center gap-1.5 rounded bg-emerald-500/10 px-2 py-1 text-xs font-bold text-emerald-400">
+                      <span className="bg-success-500/10 text-success-400 inline-flex items-center gap-1.5 rounded px-2 py-1 text-xs font-bold">
                         <ShieldCheck className="h-3.5 w-3.5" /> {t("active") || "Active"}
                       </span>
                     ) : (
-                      <span className="inline-flex items-center gap-1.5 rounded bg-red-500/10 px-2 py-1 text-xs font-bold text-red-400">
+                      <span className="bg-danger-500/10 text-danger-400 inline-flex items-center gap-1.5 rounded px-2 py-1 text-xs font-bold">
                         <AlertCircle className="h-3.5 w-3.5" /> {t("degraded") || "Degraded"}
                       </span>
                     )}

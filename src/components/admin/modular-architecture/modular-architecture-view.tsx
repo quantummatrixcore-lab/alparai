@@ -17,14 +17,14 @@ import {
 import type { ModularArchitectureOverview } from "@/actions/admin/modular-architecture";
 
 const ICON_MAP: Record<string, React.ReactNode> = {
-  Eye: <Eye className="h-6 w-6 text-purple-400" />,
-  ShieldCheck: <ShieldCheck className="h-6 w-6 text-emerald-400" />,
-  BarChart2: <BarChart2 className="h-6 w-6 text-cyan-400" />,
-  CheckCircle2: <CheckCircle2 className="h-6 w-6 text-amber-400" />,
-  Activity: <Activity className="h-6 w-6 text-rose-400" />,
-  AlertTriangle: <AlertTriangle className="h-6 w-6 text-orange-400" />,
-  Globe: <Globe className="h-6 w-6 text-blue-400" />,
-  Code: <Code className="h-6 w-6 text-teal-400" />,
+  Eye: <Eye className="text-brand-400 h-6 w-6" />,
+  ShieldCheck: <ShieldCheck className="text-success-400 h-6 w-6" />,
+  BarChart2: <BarChart2 className="text-accent-400 h-6 w-6" />,
+  CheckCircle2: <CheckCircle2 className="text-warning-400 h-6 w-6" />,
+  Activity: <Activity className="text-danger-400 h-6 w-6" />,
+  AlertTriangle: <AlertTriangle className="text-warning-400 h-6 w-6" />,
+  Globe: <Globe className="text-brand-400 h-6 w-6" />,
+  Code: <Code className="text-accent-400 h-6 w-6" />,
 };
 
 interface ModularArchitectureViewProps {
@@ -60,18 +60,18 @@ export function ModularArchitectureView({ data }: ModularArchitectureViewProps) 
         initial="hidden"
         animate="visible"
         variants={containerVariants}
-        className="mx-auto max-w-7xl space-y-8 rounded-[2.5rem] bg-zinc-950/40 p-6 text-white shadow-2xl ring-1 ring-white/10 backdrop-blur-2xl md:p-10 lg:p-12"
+        className="bg-bg-tertiary/40 mx-auto max-w-7xl space-y-8 rounded-[2.5rem] p-6 text-white shadow-2xl ring-1 ring-white/10 backdrop-blur-2xl md:p-10 lg:p-12"
       >
         <motion.div variants={itemVariants}>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 ring-1 ring-cyan-500/30">
-              <Layers className="h-8 w-8 text-cyan-400" />
+            <div className="to-brand-500/20 ring-accent-500/30 flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-500/20 ring-1">
+              <Layers className="text-accent-400 h-8 w-8" />
             </div>
             <div>
               <h1 className="text-3xl font-extrabold tracking-tight text-white md:text-4xl lg:text-5xl">
                 {data.umbrellaTitle}
               </h1>
-              <p className="mt-2 text-sm text-slate-400 sm:text-base lg:text-lg">{data.tagline}</p>
+              <p className="text-fg-muted mt-2 text-sm sm:text-base lg:text-lg">{data.tagline}</p>
             </div>
           </div>
         </motion.div>
@@ -82,26 +82,26 @@ export function ModularArchitectureView({ data }: ModularArchitectureViewProps) 
           className="grid grid-cols-1 overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.03] to-transparent md:grid-cols-3"
         >
           <div className="flex flex-col items-start justify-center border-b border-white/5 p-6 sm:p-8 md:border-r md:border-b-0">
-            <div className="flex items-center gap-2 text-sm font-medium text-slate-400">
-              <Award className="h-5 w-5 text-amber-400" />
+            <div className="text-fg-muted flex items-center gap-2 text-sm font-medium">
+              <Award className="text-warning-400 h-5 w-5" />
               <span>{t("gpt_360_evaluation_score")}</span>
             </div>
             <div className="mt-4 flex items-baseline gap-2">
-              <span className="text-6xl font-black tracking-tighter text-emerald-400 lg:text-7xl">
+              <span className="text-success-400 text-6xl font-black tracking-tighter lg:text-7xl">
                 {data.auditScore.overallScore}
               </span>
-              <span className="text-2xl font-bold text-slate-500">
+              <span className="text-fg-disabled text-2xl font-bold">
                 / {data.auditScore.maxScore}
               </span>
             </div>
-            <p className="mt-3 text-xs leading-relaxed text-slate-400">
+            <p className="text-fg-muted mt-3 text-xs leading-relaxed">
               {t("targeted_roadmap_optimization_to_reach_1")}
             </p>
           </div>
 
           <div className="border-b border-white/5 p-6 sm:p-8 md:border-r md:border-b-0">
-            <h3 className="mb-5 flex items-center gap-2 font-mono text-xs font-semibold tracking-widest text-emerald-400 uppercase">
-              <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+            <h3 className="text-success-400 mb-5 flex items-center gap-2 font-mono text-xs font-semibold tracking-widest uppercase">
+              <span className="bg-success-400 h-2 w-2 rounded-full shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
               {t("top_strengths")}
             </h3>
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -110,16 +110,16 @@ export function ModularArchitectureView({ data }: ModularArchitectureViewProps) 
                   key={s.category}
                   className="flex items-center justify-between rounded-xl border border-white/5 bg-black/40 px-3 py-2 transition-colors hover:bg-black/60"
                 >
-                  <span className="text-xs text-slate-300">{s.category}</span>
-                  <span className="font-mono text-sm font-bold text-emerald-400">{s.score}</span>
+                  <span className="text-fg-secondary text-xs">{s.category}</span>
+                  <span className="text-success-400 font-mono text-sm font-bold">{s.score}</span>
                 </div>
               ))}
             </div>
           </div>
 
           <div className="p-6 sm:p-8">
-            <h3 className="mb-5 flex items-center gap-2 font-mono text-xs font-semibold tracking-widest text-amber-400 uppercase">
-              <span className="h-2 w-2 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]" />
+            <h3 className="text-warning-400 mb-5 flex items-center gap-2 font-mono text-xs font-semibold tracking-widest uppercase">
+              <span className="bg-warning-400 h-2 w-2 rounded-full shadow-[0_0_8px_rgba(251,191,36,0.8)]" />
               {t("growth_bottlenecks")}
             </h3>
             <div className="space-y-3">
@@ -128,8 +128,8 @@ export function ModularArchitectureView({ data }: ModularArchitectureViewProps) 
                   key={g.category}
                   className="flex items-center justify-between rounded-xl border border-white/5 bg-black/40 px-3 py-2 transition-colors hover:bg-black/60"
                 >
-                  <span className="text-xs text-slate-300">{g.category}</span>
-                  <span className="font-mono text-sm font-bold text-amber-400">{g.score}</span>
+                  <span className="text-fg-secondary text-xs">{g.category}</span>
+                  <span className="text-warning-400 font-mono text-sm font-bold">{g.score}</span>
                 </div>
               ))}
             </div>
@@ -157,26 +157,26 @@ export function ModularArchitectureView({ data }: ModularArchitectureViewProps) 
                     <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-black/50 shadow-inner">
                       {ICON_MAP[pillar.iconName]}
                     </div>
-                    <span className="rounded-full bg-white/5 px-2.5 py-1 font-mono text-[10px] font-medium tracking-widest text-slate-400">
+                    <span className="text-fg-muted rounded-full bg-white/5 px-2.5 py-1 font-mono text-[10px] font-medium tracking-widest">
                       {t("pillar_0")}
                       {pillar.number}
                     </span>
                   </div>
                   <div>
-                    <h3 className="text-base font-bold text-white transition-colors group-hover:text-cyan-100">
+                    <h3 className="group-hover:text-accent-100 text-base font-bold text-white transition-colors">
                       {pillar.name}
                     </h3>
-                    <div className="mt-2 inline-flex items-center rounded-md border border-cyan-500/20 bg-cyan-500/10 px-2 py-0.5 font-mono text-[10px] font-medium text-cyan-400">
+                    <div className="border-accent-500/20 bg-accent-500/10 text-accent-400 mt-2 inline-flex items-center rounded-md border px-2 py-0.5 font-mono text-[10px] font-medium">
                       {pillar.tagline}
                     </div>
-                    <p className="mt-3 text-xs leading-relaxed text-slate-400 transition-colors group-hover:text-slate-300">
+                    <p className="text-fg-muted group-hover:text-fg-secondary mt-3 text-xs leading-relaxed transition-colors">
                       {pillar.description}
                     </p>
                   </div>
                 </div>
 
                 <div className="mt-6 border-t border-white/10 pt-4">
-                  <code className="block w-full truncate rounded-lg bg-black/40 px-3 py-2 font-mono text-[10px] text-slate-500 transition-colors group-hover:text-slate-400">
+                  <code className="text-fg-disabled group-hover:text-fg-muted block w-full truncate rounded-lg bg-black/40 px-3 py-2 font-mono text-[10px] transition-colors">
                     {pillar.route}
                   </code>
                 </div>

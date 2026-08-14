@@ -214,8 +214,8 @@ export function ShareButtons({
           className={cn(
             "text-fg-secondary inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-neutral-900/60 backdrop-blur-md transition-colors duration-200",
             copied
-              ? "border-cyan-500/40 bg-cyan-500/20 text-cyan-400"
-              : "hover:border-cyan-500/20 hover:bg-cyan-500/10 hover:text-cyan-400",
+              ? "border-accent-500/40 bg-accent-500/20 text-accent-400"
+              : "hover:border-accent-500/20 hover:bg-accent-500/10 hover:text-accent-400",
           )}
           aria-label={t("share_copy")}
         >

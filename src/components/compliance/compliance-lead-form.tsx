@@ -40,11 +40,11 @@ export function ComplianceLeadForm({ t }: ComplianceLeadFormProps) {
   };
 
   return (
-    <Card className="via-bg-secondary to-bg-primary relative overflow-hidden border-blue-500/30 bg-gradient-to-b from-blue-950/40 shadow-2xl">
-      <div className="absolute top-0 right-0 -mt-12 -mr-12 h-48 w-48 rounded-full bg-blue-500/10 blur-3xl" />
+    <Card className="via-bg-secondary to-bg-primary border-brand-500/30 relative overflow-hidden bg-gradient-to-b from-blue-950/40 shadow-2xl">
+      <div className="bg-brand-500/10 absolute top-0 right-0 -mt-12 -mr-12 h-48 w-48 rounded-full blur-3xl" />
       <CardContent className="p-8 lg:p-10">
         <div className="mb-6 flex items-center gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-500/10 text-blue-400 ring-1 ring-blue-500/20">
+          <div className="bg-brand-500/10 text-brand-400 ring-brand-500/20 flex h-12 w-12 items-center justify-center rounded-2xl ring-1">
             <ShieldCheck className="h-6 w-6" />
           </div>
           <div>
@@ -54,14 +54,14 @@ export function ComplianceLeadForm({ t }: ComplianceLeadFormProps) {
         </div>
 
         {submitted ? (
-          <div className="animate-in fade-in zoom-in-95 my-6 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-6 text-center">
-            <CheckCircle2 className="mx-auto mb-3 h-12 w-12 text-emerald-400" />
+          <div className="animate-in fade-in zoom-in-95 border-success-500/30 bg-success-500/10 my-6 rounded-2xl border p-6 text-center">
+            <CheckCircle2 className="text-success-400 mx-auto mb-3 h-12 w-12" />
             <h4 className="mb-2 text-lg font-bold text-white">Toolkit Activated</h4>
-            <p className="text-sm text-emerald-200/90">{t.successMsg}</p>
+            <p className="text-success-200/90 text-sm">{t.successMsg}</p>
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <Button
                 variant="outline"
-                className="border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/20"
+                className="border-success-500/40 text-success-300 hover:bg-success-500/20"
                 onClick={() => setSubmitted(false)}
               >
                 Submit Another Request
@@ -72,7 +72,7 @@ export function ComplianceLeadForm({ t }: ComplianceLeadFormProps) {
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
-                <label className="mb-2 block text-xs font-semibold tracking-wider text-gray-400 uppercase">
+                <label className="text-fg-muted mb-2 block text-xs font-semibold tracking-wider uppercase">
                   Corporate Email
                 </label>
                 <input
@@ -81,12 +81,12 @@ export function ComplianceLeadForm({ t }: ComplianceLeadFormProps) {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={t.emailPlaceholder}
-                  className="w-full rounded-xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-white placeholder-gray-500 transition-all focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+                  className="focus:border-brand-500 focus:ring-brand-500 w-full rounded-xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-white placeholder-gray-500 transition-all focus:ring-1 focus:outline-none"
                 />
               </div>
 
               <div>
-                <label className="mb-2 block text-xs font-semibold tracking-wider text-gray-400 uppercase">
+                <label className="text-fg-muted mb-2 block text-xs font-semibold tracking-wider uppercase">
                   Organization / Financial Institution
                 </label>
                 <input
@@ -95,13 +95,13 @@ export function ComplianceLeadForm({ t }: ComplianceLeadFormProps) {
                   value={org}
                   onChange={(e) => setOrg(e.target.value)}
                   placeholder={t.orgPlaceholder}
-                  className="w-full rounded-xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-white placeholder-gray-500 transition-all focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+                  className="focus:border-brand-500 focus:ring-brand-500 w-full rounded-xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-white placeholder-gray-500 transition-all focus:ring-1 focus:outline-none"
                 />
               </div>
             </div>
 
             <div>
-              <label className="mb-2 block text-xs font-semibold tracking-wider text-gray-400 uppercase">
+              <label className="text-fg-muted mb-2 block text-xs font-semibold tracking-wider uppercase">
                 {t.sectorLabel}
               </label>
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
@@ -110,11 +110,11 @@ export function ComplianceLeadForm({ t }: ComplianceLeadFormProps) {
                   onClick={() => setSector("banking")}
                   className={`flex items-center justify-center gap-2 rounded-xl border p-3 text-xs font-medium transition-all ${
                     sector === "banking"
-                      ? "border-blue-500 bg-blue-500/20 text-white shadow-lg shadow-blue-500/10"
-                      : "border-white/10 bg-black/30 text-gray-400 hover:border-white/20 hover:text-gray-200"
+                      ? "border-brand-500 bg-brand-500/20 shadow-brand-500/10 text-white shadow-lg"
+                      : "text-fg-muted border-white/10 bg-black/30 hover:border-white/20 hover:text-gray-200"
                   }`}
                 >
-                  <Building2 className="h-4 w-4 text-blue-400" />
+                  <Building2 className="text-brand-400 h-4 w-4" />
                   <span>{t.sectorBanking}</span>
                 </button>
 
@@ -123,11 +123,11 @@ export function ComplianceLeadForm({ t }: ComplianceLeadFormProps) {
                   onClick={() => setSector("telecom")}
                   className={`flex items-center justify-center gap-2 rounded-xl border p-3 text-xs font-medium transition-all ${
                     sector === "telecom"
-                      ? "border-blue-500 bg-blue-500/20 text-white shadow-lg shadow-blue-500/10"
-                      : "border-white/10 bg-black/30 text-gray-400 hover:border-white/20 hover:text-gray-200"
+                      ? "border-brand-500 bg-brand-500/20 shadow-brand-500/10 text-white shadow-lg"
+                      : "text-fg-muted border-white/10 bg-black/30 hover:border-white/20 hover:text-gray-200"
                   }`}
                 >
-                  <Radio className="h-4 w-4 text-cyan-400" />
+                  <Radio className="text-accent-400 h-4 w-4" />
                   <span>{t.sectorTelecom}</span>
                 </button>
 
@@ -136,11 +136,11 @@ export function ComplianceLeadForm({ t }: ComplianceLeadFormProps) {
                   onClick={() => setSector("enterprise")}
                   className={`flex items-center justify-center gap-2 rounded-xl border p-3 text-xs font-medium transition-all ${
                     sector === "enterprise"
-                      ? "border-blue-500 bg-blue-500/20 text-white shadow-lg shadow-blue-500/10"
-                      : "border-white/10 bg-black/30 text-gray-400 hover:border-white/20 hover:text-gray-200"
+                      ? "border-brand-500 bg-brand-500/20 shadow-brand-500/10 text-white shadow-lg"
+                      : "text-fg-muted border-white/10 bg-black/30 hover:border-white/20 hover:text-gray-200"
                   }`}
                 >
-                  <ShieldCheck className="h-4 w-4 text-emerald-400" />
+                  <ShieldCheck className="text-success-400 h-4 w-4" />
                   <span>{t.sectorEnterprise}</span>
                 </button>
               </div>
@@ -149,7 +149,7 @@ export function ComplianceLeadForm({ t }: ComplianceLeadFormProps) {
             <Button
               type="submit"
               disabled={loading}
-              className="mt-4 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-sm font-semibold text-white shadow-lg shadow-blue-600/30 transition-all hover:from-blue-500 hover:to-indigo-500 hover:shadow-blue-500/40"
+              className="from-brand-600 to-brand-600 shadow-brand-600/30 hover:from-brand-500 hover:to-brand-500 hover:shadow-brand-500/40 mt-4 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r text-sm font-semibold text-white shadow-lg transition-all"
             >
               {loading ? (
                 <span className="inline-flex items-center gap-2">

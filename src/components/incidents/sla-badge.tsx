@@ -17,16 +17,16 @@ function getUptimeTier(pct: number | null | undefined): "green" | "yellow" | "re
 }
 
 const TIER_STYLES = {
-  green: "border-emerald-500/30 bg-emerald-500/10 text-emerald-400",
-  yellow: "border-amber-500/30 bg-amber-500/10 text-amber-400",
-  red: "border-red-500/30 bg-red-500/10 text-red-400",
+  green: "border-success-500/30 bg-success-500/10 text-success-400",
+  yellow: "border-warning-500/30 bg-warning-500/10 text-warning-400",
+  red: "border-danger-500/30 bg-danger-500/10 text-danger-400",
   unknown: "border-border-subtle bg-bg-tertiary text-fg-muted",
 };
 
 const TIER_DOT = {
-  green: "bg-emerald-400",
-  yellow: "bg-amber-400",
-  red: "bg-red-400",
+  green: "bg-success-400",
+  yellow: "bg-warning-400",
+  red: "bg-danger-400",
   unknown: "bg-fg-muted",
 };
 

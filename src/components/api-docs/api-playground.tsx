@@ -143,16 +143,16 @@ export function ApiPlayground() {
   };
 
   return (
-    <div className="rounded-xl border border-emerald-500/20 bg-[#0A1622] p-6 shadow-2xl">
+    <div className="border-success-500/20 rounded-xl border bg-[#0A1622] p-6 shadow-2xl">
       <div className="mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-emerald-400" />
+            <Sparkles className="text-success-400 h-5 w-5" />
             <h2 className="text-lg font-bold text-white">
               Interactive API Playground (Try-It-Out)
             </h2>
           </div>
-          <p className="mt-1 text-xs text-slate-400">
+          <p className="text-fg-muted mt-1 text-xs">
             Execute real-time API queries against ALPAR AI public REST endpoints.
           </p>
         </div>
@@ -162,10 +162,10 @@ export function ApiPlayground() {
             variant="outline"
             size="sm"
             onClick={handleCopyCurl}
-            className="border-white/10 bg-[#0D1B2A] text-xs text-slate-300 hover:bg-white/10"
+            className="text-fg-secondary border-white/10 bg-[#0D1B2A] text-xs hover:bg-white/10"
           >
             {copied ? (
-              <Check className="mr-1 h-3.5 w-3.5 text-emerald-400" />
+              <Check className="text-success-400 mr-1 h-3.5 w-3.5" />
             ) : (
               <Copy className="mr-1 h-3.5 w-3.5" />
             )}
@@ -176,7 +176,7 @@ export function ApiPlayground() {
             size="sm"
             onClick={handleRunTest}
             disabled={loading}
-            className="bg-emerald-500 font-semibold text-slate-950 hover:bg-emerald-400"
+            className="bg-success-500 hover:bg-success-400 font-semibold text-slate-950"
           >
             <Play className="mr-1.5 h-3.5 w-3.5 fill-current" />
             {loading ? "Executing..." : "Execute Test Request"}
@@ -187,7 +187,7 @@ export function ApiPlayground() {
       <div className="grid gap-6 lg:grid-cols-12">
         {/* Endpoint Selector & Query Params */}
         <div className="min-w-0 space-y-4 lg:col-span-5">
-          <label className="block text-xs font-semibold text-slate-300">Select Endpoint</label>
+          <label className="text-fg-secondary block text-xs font-semibold">Select Endpoint</label>
           <div className="space-y-2">
             {PUBLIC_ENDPOINTS.map((ep) => {
               const isSelected = selectedEndpoint.path === ep.path;
@@ -201,13 +201,13 @@ export function ApiPlayground() {
                   }}
                   className={`w-full rounded-lg border p-3 text-left transition-all ${
                     isSelected
-                      ? "border-emerald-500/50 bg-emerald-500/10 text-white shadow-lg"
-                      : "border-white/5 bg-[#0D1B2A] text-slate-400 hover:border-white/20 hover:text-slate-200"
+                      ? "border-success-500/50 bg-success-500/10 text-white shadow-lg"
+                      : "text-fg-muted border-white/5 bg-[#0D1B2A] hover:border-white/20 hover:text-slate-200"
                   }`}
                 >
                   <div className="flex items-center justify-between text-xs">
-                    <span className="font-mono font-bold text-emerald-400">{ep.method}</span>
-                    <span className="truncate font-mono text-[11px] text-slate-400">{ep.path}</span>
+                    <span className="text-success-400 font-mono font-bold">{ep.method}</span>
+                    <span className="text-fg-muted truncate font-mono text-[11px]">{ep.path}</span>
                   </div>
                   <div className="mt-1 text-xs font-medium text-slate-200">{ep.summary}</div>
                 </button>
@@ -222,15 +222,15 @@ export function ApiPlayground() {
                 {selectedEndpoint.params.map((param) => (
                   <div key={param.name}>
                     <div className="mb-1 flex items-center justify-between text-[11px]">
-                      <span className="font-mono text-emerald-300">{param.name}</span>
-                      <span className="text-slate-500">{param.type}</span>
+                      <span className="text-success-300 font-mono">{param.name}</span>
+                      <span className="text-fg-disabled">{param.type}</span>
                     </div>
                     <input
                       type="text"
                       value={queryParams[param.name] ?? param.default ?? ""}
                       onChange={(e) => handleParamChange(param.name, e.target.value)}
                       placeholder={param.description}
-                      className="w-full rounded border border-white/10 bg-[#08121C] px-3 py-1.5 font-mono text-xs text-white focus:border-emerald-500 focus:outline-none"
+                      className="focus:border-success-500 w-full rounded border border-white/10 bg-[#08121C] px-3 py-1.5 font-mono text-xs text-white focus:outline-none"
                     />
                   </div>
                 ))}
@@ -241,17 +241,17 @@ export function ApiPlayground() {
 
         {/* Live HTTP Console */}
         <div className="flex min-w-0 flex-col lg:col-span-7">
-          <div className="flex items-center justify-between text-xs font-semibold text-slate-300">
+          <div className="text-fg-secondary flex items-center justify-between text-xs font-semibold">
             <span className="flex items-center gap-1.5">
-              <Terminal className="h-4 w-4 text-emerald-400" />
+              <Terminal className="text-success-400 h-4 w-4" />
               Live Response Inspector
             </span>
             {responseStatus !== null && (
               <span
                 className={`rounded px-2 py-0.5 font-mono text-[11px] font-bold ${
                   responseStatus >= 200 && responseStatus < 300
-                    ? "bg-emerald-500/20 text-emerald-400"
-                    : "bg-rose-500/20 text-rose-400"
+                    ? "bg-success-500/20 text-success-400"
+                    : "bg-danger-500/20 text-danger-400"
                 }`}
               >
                 HTTP {responseStatus}
@@ -260,21 +260,21 @@ export function ApiPlayground() {
           </div>
 
           <div className="mt-2 flex-1 rounded-lg border border-white/10 bg-[#060D15] p-4 font-mono text-xs">
-            <div className="mb-2 border-b border-white/10 pb-2 text-[11px] text-slate-400">
-              <span className="text-emerald-400">{selectedEndpoint.method}</span>{" "}
+            <div className="text-fg-muted mb-2 border-b border-white/10 pb-2 text-[11px]">
+              <span className="text-success-400">{selectedEndpoint.method}</span>{" "}
               https://alparai.com
               {getFullUrl()}
             </div>
 
             {loading ? (
-              <div className="flex h-64 items-center justify-center text-slate-400">
-                <Server className="mr-2 h-5 w-5 animate-pulse text-emerald-400" />
+              <div className="text-fg-muted flex h-64 items-center justify-center">
+                <Server className="text-success-400 mr-2 h-5 w-5 animate-pulse" />
                 Executing HTTP GET against production API...
               </div>
             ) : responseData ? (
-              <pre className="max-h-[420px] overflow-auto text-emerald-300">{responseData}</pre>
+              <pre className="text-success-300 max-h-[420px] overflow-auto">{responseData}</pre>
             ) : (
-              <div className="flex h-64 flex-col items-center justify-center text-center text-slate-500">
+              <div className="text-fg-disabled flex h-64 flex-col items-center justify-center text-center">
                 <Terminal className="mb-2 h-8 w-8 text-slate-600" />
                 <p>Click &quot;Execute Test Request&quot; above to run live query.</p>
                 <p className="mt-1 text-[10px]">

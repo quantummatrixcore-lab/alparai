@@ -105,8 +105,8 @@ export function ComplianceChecklistClient({ t, items }: ComplianceChecklistClien
             onClick={() => setActiveTab("all")}
             className={`flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition-all ${
               activeTab === "all"
-                ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25"
-                : "text-gray-400 hover:text-white"
+                ? "bg-brand-600 shadow-brand-500/25 text-white shadow-lg"
+                : "text-fg-muted hover:text-white"
             }`}
           >
             <Layers className="h-4 w-4" />
@@ -116,22 +116,22 @@ export function ComplianceChecklistClient({ t, items }: ComplianceChecklistClien
             onClick={() => setActiveTab("banking")}
             className={`flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition-all ${
               activeTab === "banking"
-                ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25"
-                : "text-gray-400 hover:text-white"
+                ? "bg-brand-600 shadow-brand-500/25 text-white shadow-lg"
+                : "text-fg-muted hover:text-white"
             }`}
           >
-            <Building2 className="h-4 w-4 text-cyan-400" />
+            <Building2 className="text-accent-400 h-4 w-4" />
             <span>{t.bankingTab}</span>
           </button>
           <button
             onClick={() => setActiveTab("telecom")}
             className={`flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition-all ${
               activeTab === "telecom"
-                ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25"
-                : "text-gray-400 hover:text-white"
+                ? "bg-brand-600 shadow-brand-500/25 text-white shadow-lg"
+                : "text-fg-muted hover:text-white"
             }`}
           >
-            <Radio className="h-4 w-4 text-emerald-400" />
+            <Radio className="text-success-400 h-4 w-4" />
             <span>{t.telecomTab}</span>
           </button>
         </div>
@@ -139,15 +139,17 @@ export function ComplianceChecklistClient({ t, items }: ComplianceChecklistClien
         {/* Dynamic Sector Callout Card */}
         <div className="mt-6">
           {activeTab === "banking" && (
-            <Card className="border-cyan-500/30 bg-cyan-950/20 backdrop-blur-md">
+            <Card className="border-accent-500/30 bg-cyan-950/20 backdrop-blur-md">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-400 ring-1 ring-cyan-500/20">
+                  <div className="bg-accent-500/10 text-accent-400 ring-accent-500/20 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ring-1">
                     <Building2 className="h-6 w-6" />
                   </div>
                   <div>
                     <h3 className="text-lg font-bold text-white">{t.bankingTitle}</h3>
-                    <p className="mt-1 text-sm leading-relaxed text-cyan-200/80">{t.bankingDesc}</p>
+                    <p className="text-accent-200/80 mt-1 text-sm leading-relaxed">
+                      {t.bankingDesc}
+                    </p>
                   </div>
                 </div>
               </CardContent>
@@ -155,15 +157,15 @@ export function ComplianceChecklistClient({ t, items }: ComplianceChecklistClien
           )}
 
           {activeTab === "telecom" && (
-            <Card className="border-emerald-500/30 bg-emerald-950/20 backdrop-blur-md">
+            <Card className="border-success-500/30 bg-emerald-950/20 backdrop-blur-md">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-400 ring-1 ring-emerald-500/20">
+                  <div className="bg-success-500/10 text-success-400 ring-success-500/20 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ring-1">
                     <Radio className="h-6 w-6" />
                   </div>
                   <div>
                     <h3 className="text-lg font-bold text-white">{t.telecomTitle}</h3>
-                    <p className="mt-1 text-sm leading-relaxed text-emerald-200/80">
+                    <p className="text-success-200/80 mt-1 text-sm leading-relaxed">
                       {t.telecomDesc}
                     </p>
                   </div>
@@ -175,11 +177,11 @@ export function ComplianceChecklistClient({ t, items }: ComplianceChecklistClien
       </div>
 
       {/* Readiness Interactive Tracker */}
-      <Card className="border-white/10 bg-slate-900/60 backdrop-blur-xl">
+      <Card className="bg-bg-elevated/60 border-white/10 backdrop-blur-xl">
         <CardContent className="p-6 lg:p-8">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <div className="flex items-center gap-2 text-xs font-semibold tracking-wider text-blue-400 uppercase">
+              <div className="text-brand-400 flex items-center gap-2 text-xs font-semibold tracking-wider uppercase">
                 <Sparkles className="h-4 w-4" />
                 Interactive Readiness Audit Tracker
               </div>
@@ -190,11 +192,11 @@ export function ComplianceChecklistClient({ t, items }: ComplianceChecklistClien
             <div className="flex items-center gap-3">
               <div className="h-3 w-40 overflow-hidden rounded-full bg-black/40 ring-1 ring-white/10">
                 <div
-                  className="h-full bg-gradient-to-r from-blue-500 to-emerald-400 transition-all duration-500"
+                  className="from-brand-500 to-success-400 h-full bg-gradient-to-r transition-all duration-500"
                   style={{ width: `${progressPercent}%` }}
                 />
               </div>
-              <span className="text-sm font-bold text-emerald-400">{progressPercent}% Ready</span>
+              <span className="text-success-400 text-sm font-bold">{progressPercent}% Ready</span>
             </div>
           </div>
         </CardContent>
@@ -206,7 +208,7 @@ export function ComplianceChecklistClient({ t, items }: ComplianceChecklistClien
           <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl">
             {t.checklistHeading}
           </h2>
-          <p className="mx-auto mt-2 max-w-2xl text-sm text-gray-400 sm:text-base">
+          <p className="text-fg-muted mx-auto mt-2 max-w-2xl text-sm sm:text-base">
             {t.checklistSubheading}
           </p>
         </div>
@@ -220,24 +222,24 @@ export function ComplianceChecklistClient({ t, items }: ComplianceChecklistClien
                 onClick={() => toggleCheck(item.id)}
                 className={`group cursor-pointer transition-all duration-200 hover:-translate-y-1 ${
                   isChecked
-                    ? "border-emerald-500/40 bg-emerald-950/20 ring-1 ring-emerald-500/30"
-                    : "border-white/10 bg-slate-900/40 hover:border-blue-500/30 hover:bg-slate-900/80"
+                    ? "border-success-500/40 ring-success-500/30 bg-emerald-950/20 ring-1"
+                    : "bg-bg-elevated/40 hover:border-brand-500/30 hover:bg-bg-elevated/80 border-white/10"
                 }`}
               >
                 <CardContent className="p-6">
                   <div className="mb-3 flex items-start justify-between gap-3">
-                    <span className="inline-flex items-center gap-1.5 rounded-md border border-blue-500/20 bg-blue-500/10 px-2.5 py-1 text-xs font-semibold text-blue-400">
+                    <span className="border-brand-500/20 bg-brand-500/10 text-brand-400 inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 text-xs font-semibold">
                       {item.article}
                     </span>
                     <button
                       type="button"
                       aria-label="Toggle completed"
-                      className="text-gray-400 transition-colors group-hover:text-white"
+                      className="text-fg-muted transition-colors group-hover:text-white"
                     >
                       {isChecked ? (
-                        <CheckSquare className="h-5 w-5 text-emerald-400" />
+                        <CheckSquare className="text-success-400 h-5 w-5" />
                       ) : (
-                        <Square className="h-5 w-5 text-gray-500" />
+                        <Square className="text-fg-disabled h-5 w-5" />
                       )}
                     </button>
                   </div>
@@ -245,24 +247,26 @@ export function ComplianceChecklistClient({ t, items }: ComplianceChecklistClien
                   <h4
                     className={`text-base font-bold transition-colors ${
                       isChecked
-                        ? "text-emerald-200 line-through decoration-emerald-500/50"
-                        : "text-white group-hover:text-blue-300"
+                        ? "text-success-200 line-through decoration-emerald-500/50"
+                        : "group-hover:text-brand-300 text-white"
                     }`}
                   >
                     {item.title}
                   </h4>
 
-                  <p className="mt-2 text-xs leading-relaxed text-gray-400">{item.desc}</p>
+                  <p className="text-fg-muted mt-2 text-xs leading-relaxed">{item.desc}</p>
 
                   <div className="mt-4 flex items-center justify-between border-t border-white/5 pt-3">
-                    <span className="text-[11px] font-medium text-gray-500">{item.category}</span>
+                    <span className="text-fg-disabled text-[11px] font-medium">
+                      {item.category}
+                    </span>
                     <span
                       className={`text-[11px] font-semibold ${
                         item.sector === "banking"
-                          ? "text-cyan-400"
+                          ? "text-accent-400"
                           : item.sector === "telecom"
-                            ? "text-emerald-400"
-                            : "text-purple-400"
+                            ? "text-success-400"
+                            : "text-brand-400"
                       }`}
                     >
                       {item.sector === "banking"
@@ -280,27 +284,27 @@ export function ComplianceChecklistClient({ t, items }: ComplianceChecklistClien
       </div>
 
       {/* Lead Magnet Capture Form Section */}
-      <Card className="relative overflow-hidden border-blue-500/30 bg-gradient-to-br from-slate-950 via-blue-950/40 to-slate-950 shadow-2xl">
-        <div className="absolute top-0 right-0 -mt-12 -mr-12 h-64 w-64 rounded-full bg-blue-500/10 blur-3xl" />
+      <Card className="border-brand-500/30 relative overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950/40 to-slate-950 shadow-2xl">
+        <div className="bg-brand-500/10 absolute top-0 right-0 -mt-12 -mr-12 h-64 w-64 rounded-full blur-3xl" />
         <CardContent className="p-8 lg:p-12">
           <div className="mx-auto max-w-3xl">
             <div className="mb-8 text-center">
-              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-500/10 text-blue-400 ring-1 ring-blue-500/30">
+              <div className="bg-brand-500/10 text-brand-400 ring-brand-500/30 mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl ring-1">
                 <Download className="h-7 w-7" />
               </div>
               <h3 className="text-2xl font-extrabold text-white sm:text-3xl">{t.leadFormTitle}</h3>
-              <p className="mt-2 text-sm text-gray-300 sm:text-base">{t.leadFormSubtitle}</p>
+              <p className="text-fg-secondary mt-2 text-sm sm:text-base">{t.leadFormSubtitle}</p>
             </div>
 
             {submitted ? (
-              <div className="animate-in fade-in zoom-in-95 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-8 text-center backdrop-blur-md">
-                <CheckCircle2 className="mx-auto mb-4 h-14 w-14 text-emerald-400" />
+              <div className="animate-in fade-in zoom-in-95 border-success-500/30 bg-success-500/10 rounded-2xl border p-8 text-center backdrop-blur-md">
+                <CheckCircle2 className="text-success-400 mx-auto mb-4 h-14 w-14" />
                 <h4 className="mb-2 text-xl font-bold text-white">Compliance Toolkit Dispatched</h4>
-                <p className="mx-auto max-w-md text-sm text-emerald-200">{t.successMsg}</p>
+                <p className="text-success-200 mx-auto max-w-md text-sm">{t.successMsg}</p>
                 <div className="mt-6 flex justify-center">
                   <Button
                     variant="outline"
-                    className="border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/20"
+                    className="border-success-500/40 text-success-300 hover:bg-success-500/20"
                     onClick={() => setSubmitted(false)}
                   >
                     Submit Another Email
@@ -311,7 +315,7 @@ export function ComplianceChecklistClient({ t, items }: ComplianceChecklistClien
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div>
-                    <label className="mb-2 block text-xs font-semibold tracking-wider text-gray-300 uppercase">
+                    <label className="text-fg-secondary mb-2 block text-xs font-semibold tracking-wider uppercase">
                       Corporate Email
                     </label>
                     <input
@@ -320,12 +324,12 @@ export function ComplianceChecklistClient({ t, items }: ComplianceChecklistClien
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder={t.emailPlaceholder}
-                      className="w-full rounded-xl border border-white/10 bg-black/60 px-4 py-3.5 text-sm text-white placeholder-gray-500 transition-all focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+                      className="focus:border-brand-500 focus:ring-brand-500 w-full rounded-xl border border-white/10 bg-black/60 px-4 py-3.5 text-sm text-white placeholder-gray-500 transition-all focus:ring-1 focus:outline-none"
                     />
                   </div>
 
                   <div>
-                    <label className="mb-2 block text-xs font-semibold tracking-wider text-gray-300 uppercase">
+                    <label className="text-fg-secondary mb-2 block text-xs font-semibold tracking-wider uppercase">
                       Institution / Telecom Name
                     </label>
                     <input
@@ -334,13 +338,13 @@ export function ComplianceChecklistClient({ t, items }: ComplianceChecklistClien
                       value={org}
                       onChange={(e) => setOrg(e.target.value)}
                       placeholder={t.orgPlaceholder}
-                      className="w-full rounded-xl border border-white/10 bg-black/60 px-4 py-3.5 text-sm text-white placeholder-gray-500 transition-all focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+                      className="focus:border-brand-500 focus:ring-brand-500 w-full rounded-xl border border-white/10 bg-black/60 px-4 py-3.5 text-sm text-white placeholder-gray-500 transition-all focus:ring-1 focus:outline-none"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-xs font-semibold tracking-wider text-gray-300 uppercase">
+                  <label className="text-fg-secondary mb-2 block text-xs font-semibold tracking-wider uppercase">
                     {t.sectorLabel}
                   </label>
                   <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
@@ -349,11 +353,11 @@ export function ComplianceChecklistClient({ t, items }: ComplianceChecklistClien
                       onClick={() => setSelectedSector("banking")}
                       className={`flex items-center justify-center gap-2 rounded-xl border p-3.5 text-xs font-semibold transition-all ${
                         selectedSector === "banking"
-                          ? "border-blue-500 bg-blue-500/20 text-white shadow-lg shadow-blue-500/20"
-                          : "border-white/10 bg-black/40 text-gray-400 hover:border-white/20 hover:text-gray-200"
+                          ? "border-brand-500 bg-brand-500/20 shadow-brand-500/20 text-white shadow-lg"
+                          : "text-fg-muted border-white/10 bg-black/40 hover:border-white/20 hover:text-gray-200"
                       }`}
                     >
-                      <Building2 className="h-4 w-4 text-cyan-400" />
+                      <Building2 className="text-accent-400 h-4 w-4" />
                       <span>{t.sectorBanking}</span>
                     </button>
 
@@ -362,11 +366,11 @@ export function ComplianceChecklistClient({ t, items }: ComplianceChecklistClien
                       onClick={() => setSelectedSector("telecom")}
                       className={`flex items-center justify-center gap-2 rounded-xl border p-3.5 text-xs font-semibold transition-all ${
                         selectedSector === "telecom"
-                          ? "border-blue-500 bg-blue-500/20 text-white shadow-lg shadow-blue-500/20"
-                          : "border-white/10 bg-black/40 text-gray-400 hover:border-white/20 hover:text-gray-200"
+                          ? "border-brand-500 bg-brand-500/20 shadow-brand-500/20 text-white shadow-lg"
+                          : "text-fg-muted border-white/10 bg-black/40 hover:border-white/20 hover:text-gray-200"
                       }`}
                     >
-                      <Radio className="h-4 w-4 text-emerald-400" />
+                      <Radio className="text-success-400 h-4 w-4" />
                       <span>{t.sectorTelecom}</span>
                     </button>
 
@@ -375,11 +379,11 @@ export function ComplianceChecklistClient({ t, items }: ComplianceChecklistClien
                       onClick={() => setSelectedSector("enterprise")}
                       className={`flex items-center justify-center gap-2 rounded-xl border p-3.5 text-xs font-semibold transition-all ${
                         selectedSector === "enterprise"
-                          ? "border-blue-500 bg-blue-500/20 text-white shadow-lg shadow-blue-500/20"
-                          : "border-white/10 bg-black/40 text-gray-400 hover:border-white/20 hover:text-gray-200"
+                          ? "border-brand-500 bg-brand-500/20 shadow-brand-500/20 text-white shadow-lg"
+                          : "text-fg-muted border-white/10 bg-black/40 hover:border-white/20 hover:text-gray-200"
                       }`}
                     >
-                      <ShieldAlert className="h-4 w-4 text-purple-400" />
+                      <ShieldAlert className="text-brand-400 h-4 w-4" />
                       <span>{t.sectorEnterprise}</span>
                     </button>
                   </div>
@@ -388,7 +392,7 @@ export function ComplianceChecklistClient({ t, items }: ComplianceChecklistClien
                 <Button
                   type="submit"
                   disabled={loading}
-                  className="flex h-13 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 text-base font-bold text-white shadow-xl shadow-blue-600/30 transition-all hover:from-blue-500 hover:to-indigo-500 hover:shadow-blue-500/40"
+                  className="from-brand-600 via-brand-600 to-brand-600 shadow-brand-600/30 hover:from-brand-500 hover:to-brand-500 hover:shadow-brand-500/40 flex h-13 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r text-base font-bold text-white shadow-xl transition-all"
                 >
                   {loading ? (
                     <span className="inline-flex items-center gap-2">
@@ -410,10 +414,10 @@ export function ComplianceChecklistClient({ t, items }: ComplianceChecklistClien
       </Card>
 
       {/* Bottom Enterprise CTA Banner */}
-      <Card className="border-blue-500/20 bg-slate-900/80 backdrop-blur-md">
+      <Card className="border-brand-500/20 bg-bg-elevated/80 backdrop-blur-md">
         <CardContent className="p-8 text-center sm:p-10">
           <h3 className="text-2xl font-bold text-white sm:text-3xl">{t.bottomCtaTitle}</h3>
-          <p className="mx-auto mt-2 max-w-2xl text-sm text-gray-300 sm:text-base">
+          <p className="text-fg-secondary mx-auto mt-2 max-w-2xl text-sm sm:text-base">
             {t.bottomCtaDesc}
           </p>
           <div className="mt-6">

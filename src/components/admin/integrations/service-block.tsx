@@ -56,23 +56,23 @@ export function ServiceBlock({
 
   const statusColors = {
     connected: {
-      dot: "bg-emerald-400",
-      bg: "bg-emerald-500/10 border-emerald-500/20 text-emerald-400",
-      pulse: "shadow-emerald-400/50 animate-pulse",
+      dot: "bg-success-400",
+      bg: "bg-success-500/10 border-success-500/20 text-success-400",
+      pulse: "shadow-success-400/50 animate-pulse",
     },
     missing_key: {
-      dot: "bg-amber-400",
-      bg: "bg-amber-500/10 border-amber-500/20 text-amber-400",
-      pulse: "shadow-amber-400/50",
+      dot: "bg-warning-400",
+      bg: "bg-warning-500/10 border-warning-500/20 text-warning-400",
+      pulse: "shadow-warning-400/50",
     },
     error: {
-      dot: "bg-rose-400",
-      bg: "bg-rose-500/10 border-rose-500/20 text-rose-400",
-      pulse: "shadow-rose-400/50",
+      dot: "bg-danger-400",
+      bg: "bg-danger-500/10 border-danger-500/20 text-danger-400",
+      pulse: "shadow-danger-400/50",
     },
     not_configured: {
       dot: "bg-zinc-600",
-      bg: "bg-zinc-500/10 border-zinc-500/20 text-zinc-400",
+      bg: "bg-zinc-500/10 border-zinc-500/20 text-fg-muted",
       pulse: "shadow-zinc-600/50",
     },
   }[statusType];

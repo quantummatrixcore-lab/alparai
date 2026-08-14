@@ -71,17 +71,17 @@ export function LinkedinContactsList({ initialContacts }: { initialContacts: Lin
         <MetricCard
           title={t("linkedin_added")}
           value={stats.added}
-          icon={<UserPlus className="h-4 w-4 text-emerald-400" />}
+          icon={<UserPlus className="text-success-400 h-4 w-4" />}
         />
         <MetricCard
           title={t("linkedin_messaged")}
           value={stats.messaged}
-          icon={<MessageSquare className="h-4 w-4 text-blue-400" />}
+          icon={<MessageSquare className="text-brand-400 h-4 w-4" />}
         />
         <MetricCard
           title={t("linkedin_responded")}
           value={stats.responded}
-          icon={<CheckCircle2 className="h-4 w-4 text-violet-400" />}
+          icon={<CheckCircle2 className="text-brand-400 h-4 w-4" />}
         />
       </div>
 
@@ -207,7 +207,7 @@ export function LinkedinContactsList({ initialContacts }: { initialContacts: Lin
                     {contact.category || t("linkedin_uncategorized")}
                   </span>
                   {contact.priority === 1 && (
-                    <span className="rounded-full border border-red-500/20 bg-red-500/10 px-2 py-0.5 text-xs text-red-400">
+                    <span className="border-danger-500/20 bg-danger-500/10 text-danger-400 rounded-full border px-2 py-0.5 text-xs">
                       P1
                     </span>
                   )}
@@ -246,21 +246,21 @@ export function LinkedinContactsList({ initialContacts }: { initialContacts: Lin
                   <button
                     disabled={isPending || contact.status === "added"}
                     onClick={() => handleUpdateStatus(contact.id, "added")}
-                    className={`border-l border-white/10 px-3 py-1.5 text-xs font-medium ${contact.status === "added" ? "bg-emerald-500/20 text-emerald-400" : "text-fg-muted hover:bg-white/5 hover:text-white"}`}
+                    className={`border-l border-white/10 px-3 py-1.5 text-xs font-medium ${contact.status === "added" ? "bg-success-500/20 text-success-400" : "text-fg-muted hover:bg-white/5 hover:text-white"}`}
                   >
                     {t("linkedin_status_added")}
                   </button>
                   <button
                     disabled={isPending || contact.status === "messaged"}
                     onClick={() => handleUpdateStatus(contact.id, "messaged")}
-                    className={`border-l border-white/10 px-3 py-1.5 text-xs font-medium ${contact.status === "messaged" ? "bg-blue-500/20 text-blue-400" : "text-fg-muted hover:bg-white/5 hover:text-white"}`}
+                    className={`border-l border-white/10 px-3 py-1.5 text-xs font-medium ${contact.status === "messaged" ? "bg-brand-500/20 text-brand-400" : "text-fg-muted hover:bg-white/5 hover:text-white"}`}
                   >
                     {t("linkedin_status_messaged")}
                   </button>
                   <button
                     disabled={isPending || contact.status === "responded"}
                     onClick={() => handleUpdateStatus(contact.id, "responded")}
-                    className={`border-l border-white/10 px-3 py-1.5 text-xs font-medium ${contact.status === "responded" ? "bg-violet-500/20 text-violet-400" : "text-fg-muted hover:bg-white/5 hover:text-white"}`}
+                    className={`border-l border-white/10 px-3 py-1.5 text-xs font-medium ${contact.status === "responded" ? "bg-brand-500/20 text-brand-400" : "text-fg-muted hover:bg-white/5 hover:text-white"}`}
                   >
                     {t("linkedin_status_responded")}
                   </button>

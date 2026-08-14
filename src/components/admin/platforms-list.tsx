@@ -65,12 +65,12 @@ export function PlatformsList({ initialPlatforms }: { initialPlatforms: Platform
         <MetricCard
           title={t("platforms_in_progress")}
           value={stats.in_progress}
-          icon={<User className="h-4 w-4 text-amber-400" />}
+          icon={<User className="text-warning-400 h-4 w-4" />}
         />
         <MetricCard
           title={t("platforms_active_completed")}
           value={stats.active}
-          icon={<CheckCircle2 className="h-4 w-4 text-emerald-400" />}
+          icon={<CheckCircle2 className="text-success-400 h-4 w-4" />}
         />
       </div>
 

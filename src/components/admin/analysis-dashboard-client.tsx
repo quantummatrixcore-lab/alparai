@@ -227,9 +227,9 @@ export function AnalysisDashboardClient({ registryData }: Props) {
   ];
 
   const getScoreColor = (score: number) => {
-    if (score >= 80) return "text-cyan-400 bg-cyan-500/10 border-cyan-500/20";
-    if (score >= 40) return "text-amber-400 bg-amber-500/10 border-amber-500/20";
-    if (score > 0) return "text-rose-400 bg-rose-500/10 border-rose-500/20";
+    if (score >= 80) return "text-accent-400 bg-accent-500/10 border-accent-500/20";
+    if (score >= 40) return "text-warning-400 bg-warning-500/10 border-warning-500/20";
+    if (score > 0) return "text-danger-400 bg-danger-500/10 border-danger-500/20";
     return "text-fg-muted bg-bg-tertiary border-border-subtle";
   };
 
@@ -293,8 +293,8 @@ export function AnalysisDashboardClient({ registryData }: Props) {
               </div>
 
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                <div className="rounded-xl border border-rose-500/20 bg-rose-500/5 p-4">
-                  <h3 className="mb-3 flex items-center gap-2 font-semibold text-rose-400">
+                <div className="border-danger-500/20 bg-danger-500/5 rounded-xl border p-4">
+                  <h3 className="text-danger-400 mb-3 flex items-center gap-2 font-semibold">
                     <AlertTriangle className="h-4 w-4" /> {t("g_venlik_a_klar")}
                   </h3>
                   <ul className="text-fg-primary list-inside list-disc space-y-2 text-sm">
@@ -308,8 +308,8 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                   </ul>
                 </div>
 
-                <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-4">
-                  <h3 className="mb-3 flex items-center gap-2 font-semibold text-emerald-400">
+                <div className="border-success-500/20 bg-success-500/5 rounded-xl border p-4">
+                  <h3 className="text-success-400 mb-3 flex items-center gap-2 font-semibold">
                     <CheckCircle2 className="h-4 w-4" /> {t("tavsiyeler")}
                   </h3>
                   <ul className="text-fg-primary list-inside list-disc space-y-2 text-sm">
@@ -355,7 +355,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
               </span>
               <span className="text-fg-muted text-sm">/ 1000</span>
             </div>
-            <div className="mt-4 flex items-center gap-1 text-xs text-cyan-400">
+            <div className="text-accent-400 mt-4 flex items-center gap-1 text-xs">
               <TrendingUp className="h-3.5 w-3.5" />
               <span>
                 +{scoreDiff} {t("increase_from_r1", { diff: scoreDiff })}
@@ -403,13 +403,13 @@ export function AnalysisDashboardClient({ registryData }: Props) {
           </div>
 
           {/* Metric 2: Total Frontiers */}
-          <div className="group relative flex flex-col overflow-hidden rounded-lg border border-white/10 bg-neutral-900/60 p-5 shadow-md backdrop-blur-xl transition-all duration-300 hover:border-cyan-500/30">
+          <div className="group hover:border-accent-500/30 relative flex flex-col overflow-hidden rounded-lg border border-white/10 bg-neutral-900/60 p-5 shadow-md backdrop-blur-xl transition-all duration-300">
             <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-cyan-500 to-transparent opacity-50 transition-all transition-opacity group-hover:opacity-100"></div>
             <div className="mb-4 flex items-start justify-between">
               <span className="text-fg-muted text-xs font-semibold tracking-widest uppercase">
                 {t("total_models")}
               </span>
-              <Database className="h-5 w-5 text-cyan-400" />
+              <Database className="text-accent-400 h-5 w-5" />
             </div>
             <div className="flex items-baseline gap-2">
               <span className="text-4xl font-extrabold tracking-tight text-white drop-shadow-[0_0_10px_rgba(6,182,212,0.4)]">
@@ -417,7 +417,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
               </span>
               <span className="text-fg-muted text-sm">{t("frontiers")}</span>
             </div>
-            <div className="mt-4 font-mono text-[10px] tracking-wider text-cyan-400 uppercase">
+            <div className="text-accent-400 mt-4 font-mono text-[10px] tracking-wider uppercase">
               {t("active_nodes_secured")}
             </div>
           </div>
@@ -427,19 +427,19 @@ export function AnalysisDashboardClient({ registryData }: Props) {
             className={cn(
               "group relative flex flex-col overflow-hidden rounded-lg border bg-neutral-900/60 p-5 shadow-md backdrop-blur-xl transition-all duration-300",
               openP0Count > 0
-                ? "border-rose-500/30 bg-rose-950/5 hover:border-rose-500/50"
+                ? "border-danger-500/30 hover:border-danger-500/50 bg-rose-950/5"
                 : "hover:border-brand-500/30 border-white/10",
             )}
           >
             {openP0Count > 0 && (
-              <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-rose-500 to-transparent"></div>
+              <div className="from-danger-500 absolute top-0 left-0 h-1 w-full bg-gradient-to-r to-transparent"></div>
             )}
             <div className="mb-4 flex items-start justify-between">
               <span className="text-fg-muted text-xs font-semibold tracking-widest uppercase">
                 {t("open_p0_blockers")}
               </span>
               <AlertTriangle
-                className={cn("h-5 w-5", openP0Count > 0 ? "text-rose-400" : "text-fg-muted")}
+                className={cn("h-5 w-5", openP0Count > 0 ? "text-danger-400" : "text-fg-muted")}
               />
             </div>
             <div className="flex items-baseline gap-2">
@@ -447,7 +447,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                 className={cn(
                   "text-4xl font-extrabold tracking-tight",
                   openP0Count > 0
-                    ? "text-rose-400 drop-shadow-[0_0_10px_rgba(244,63,94,0.4)]"
+                    ? "text-danger-400 drop-shadow-[0_0_10px_rgba(244,63,94,0.4)]"
                     : "text-white",
                 )}
               >
@@ -455,27 +455,27 @@ export function AnalysisDashboardClient({ registryData }: Props) {
               </span>
               <span className="text-fg-muted text-sm">{t("critical")}</span>
             </div>
-            <div className="mt-4 font-mono text-[10px] tracking-wider text-rose-400/80 uppercase">
+            <div className="text-danger-400/80 mt-4 font-mono text-[10px] tracking-wider uppercase">
               {openP0Count > 0 ? t("requires_immediate") : t("all_operational")}
             </div>
           </div>
 
           {/* Metric 4: Resolved P0 Blockers */}
-          <div className="group relative flex flex-col overflow-hidden rounded-lg border border-white/10 bg-neutral-900/60 p-5 shadow-md backdrop-blur-xl transition-all duration-300 hover:border-emerald-500/30">
-            <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-emerald-500 to-transparent opacity-50 transition-opacity group-hover:opacity-100"></div>
+          <div className="group hover:border-success-500/30 relative flex flex-col overflow-hidden rounded-lg border border-white/10 bg-neutral-900/60 p-5 shadow-md backdrop-blur-xl transition-all duration-300">
+            <div className="from-success-500 absolute top-0 left-0 h-1 w-full bg-gradient-to-r to-transparent opacity-50 transition-opacity group-hover:opacity-100"></div>
             <div className="mb-4 flex items-start justify-between">
               <span className="text-fg-muted text-xs font-semibold tracking-widest uppercase">
                 {t("resolved_p0_blockers")}
               </span>
-              <CheckCircle2 className="h-5 w-5 text-emerald-400" />
+              <CheckCircle2 className="text-success-400 h-5 w-5" />
             </div>
             <div className="flex items-baseline gap-2">
-              <span className="text-4xl font-extrabold tracking-tight text-emerald-400 drop-shadow-[0_0_10px_rgba(16,185,129,0.4)]">
+              <span className="text-success-400 text-4xl font-extrabold tracking-tight drop-shadow-[0_0_10px_rgba(16,185,129,0.4)]">
                 {resolvedP0Count}
               </span>
               <span className="text-fg-muted text-sm">{t("fixed")}</span>
             </div>
-            <div className="mt-4 font-mono text-[10px] tracking-wider text-emerald-400/80 uppercase">
+            <div className="text-success-400/80 mt-4 font-mono text-[10px] tracking-wider uppercase">
               {t("remediated_active")}
             </div>
           </div>
@@ -510,7 +510,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                               {a.model_name.replace(" (360°)", "")}
                             </span>
                             {a.is_free && (
-                              <span className="rounded border border-emerald-500/30 bg-emerald-500/20 px-1.5 py-0.5 font-sans text-[9px] font-semibold text-emerald-400">
+                              <span className="border-success-500/30 bg-success-500/20 text-success-400 rounded border px-1.5 py-0.5 font-sans text-[9px] font-semibold">
                                 Free
                               </span>
                             )}
@@ -569,15 +569,15 @@ export function AnalysisDashboardClient({ registryData }: Props) {
             {/* Audit Consensus */}
             <div className="rounded-lg border border-white/10 border-t-cyan-500/30 bg-neutral-900/60 p-6 shadow-md backdrop-blur-xl">
               <h3 className="text-md mb-4 flex items-center gap-2 font-semibold text-white">
-                <CheckCircle2 className="h-5 w-5 text-cyan-400" />
+                <CheckCircle2 className="text-accent-400 h-5 w-5" />
                 {t("consensus_core_alignment")}
               </h3>
               <div className="space-y-4">
                 {/* Unanimous Pass */}
                 <div className="flex items-center justify-between rounded border border-white/5 bg-neutral-950/40 p-3 shadow-[inset_0_0_10px_rgba(255,255,255,0.02)]">
                   <div className="flex items-center gap-2.5">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full border border-cyan-500/30 bg-cyan-500/10 shadow-[0_0_10px_rgba(6,182,212,0.2)]">
-                      <CheckCircle2 className="h-4 w-4 text-cyan-400" />
+                    <div className="border-accent-500/30 bg-accent-500/10 flex h-8 w-8 items-center justify-center rounded-full border shadow-[0_0_10px_rgba(6,182,212,0.2)]">
+                      <CheckCircle2 className="text-accent-400 h-4 w-4" />
                     </div>
                     <div>
                       <div className="text-xs font-semibold text-white">
@@ -588,7 +588,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                       </div>
                     </div>
                   </div>
-                  <span className="font-mono text-2xl font-extrabold tracking-tighter text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.3)]">
+                  <span className="text-accent-400 font-mono text-2xl font-extrabold tracking-tighter drop-shadow-[0_0_8px_rgba(6,182,212,0.3)]">
                     {registryData.consensus_findings.unanimous.length}
                   </span>
                 </div>
@@ -616,22 +616,22 @@ export function AnalysisDashboardClient({ registryData }: Props) {
             </div>
 
             {/* Telemetry Feed Log Window */}
-            <div className="flex min-h-[220px] flex-grow flex-col rounded-lg border border-cyan-500/20 bg-neutral-950/80 p-5 shadow-[0_0_20px_rgba(6,182,212,0.08)] backdrop-blur-2xl">
+            <div className="border-accent-500/20 flex min-h-[220px] flex-grow flex-col rounded-lg border bg-neutral-950/80 p-5 shadow-[0_0_20px_rgba(6,182,212,0.08)] backdrop-blur-2xl">
               <div className="mb-3 flex items-center justify-between border-b border-white/10 pb-2">
-                <span className="flex items-center gap-1.5 font-mono text-xs font-bold tracking-wider text-cyan-400 uppercase">
-                  <span className="h-2 w-2 animate-ping rounded-full bg-cyan-400"></span>
+                <span className="text-accent-400 flex items-center gap-1.5 font-mono text-xs font-bold tracking-wider uppercase">
+                  <span className="bg-accent-400 h-2 w-2 animate-ping rounded-full"></span>
                   {t("telemetry_feed")}
                 </span>
                 <span className="text-fg-muted font-mono text-[10px]">{t("terminal_version")}</span>
               </div>
-              <div className="max-h-[160px] flex-grow scrollbar-thin scrollbar-thumb-cyan-500/30 space-y-1.5 overflow-y-auto pr-2 font-mono text-[10px] text-cyan-300/80">
+              <div className="text-accent-300/80 max-h-[160px] flex-grow scrollbar-thin scrollbar-thumb-cyan-500/30 space-y-1.5 overflow-y-auto pr-2 font-mono text-[10px]">
                 {logs.map((log, index) => {
                   const translatedLog = t(log);
-                  let logColor = "text-cyan-300/80";
+                  let logColor = "text-accent-300/80";
                   if (translatedLog.includes("WARN:") || translatedLog.includes("UYARI:"))
-                    logColor = "text-amber-400";
+                    logColor = "text-warning-400";
                   if (translatedLog.includes("OK:") || translatedLog.includes("TAMAM:"))
-                    logColor = "text-cyan-400 font-semibold";
+                    logColor = "text-accent-400 font-semibold";
                   if (
                     translatedLog.includes("SYS_MONITOR:") ||
                     translatedLog.includes("SİS_GÖZLEM:") ||
@@ -639,7 +639,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                   )
                     logColor = "text-brand-400/90";
                   if (translatedLog.includes("SECURE:") || translatedLog.includes("GÜVENLİ:"))
-                    logColor = "text-emerald-400 font-semibold";
+                    logColor = "text-success-400 font-semibold";
                   return (
                     <div
                       key={index}
@@ -649,9 +649,9 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                     </div>
                   );
                 })}
-                <div className="flex items-center font-bold text-cyan-400">
+                <div className="text-accent-400 flex items-center font-bold">
                   {t("awaiting_input")}
-                  <span className="ml-1 inline-block h-3.5 w-1.5 animate-pulse bg-cyan-400" />
+                  <span className="bg-accent-400 ml-1 inline-block h-3.5 w-1.5 animate-pulse" />
                 </div>
               </div>
             </div>
@@ -679,7 +679,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                   <span className="text-xs font-semibold text-white">
                     {t("prod_gateway_master")}
                   </span>
-                  <span className="rounded border border-cyan-500/20 bg-cyan-500/10 px-2 py-0.5 font-mono text-[9px] tracking-wider text-cyan-400 uppercase">
+                  <span className="border-accent-500/20 bg-accent-500/10 text-accent-400 rounded border px-2 py-0.5 font-mono text-[9px] tracking-wider uppercase">
                     {t("active")}
                   </span>
                 </div>
@@ -755,7 +755,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                         {filteredAudits[carouselIndex]?.provider}
                       </span>
                       {filteredAudits[carouselIndex]?.is_free && (
-                        <span className="rounded border border-emerald-500/30 bg-emerald-500/20 px-2 py-0.5 text-[10px] font-semibold text-emerald-400">
+                        <span className="border-success-500/30 bg-success-500/20 text-success-400 rounded border px-2 py-0.5 text-[10px] font-semibold">
                           Free
                         </span>
                       )}
@@ -852,10 +852,10 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                   >
                     <div className="mt-1">
                       {isResolved ? (
-                        <CheckCircle2 className="h-5 w-5 text-emerald-400" />
+                        <CheckCircle2 className="text-success-400 h-5 w-5" />
                       ) : (
-                        <div className="flex h-5 w-5 items-center justify-center rounded-md border border-rose-500/50 bg-rose-500/5">
-                          <span className="h-2 w-2 animate-pulse rounded-full bg-rose-500" />
+                        <div className="border-danger-500/50 bg-danger-500/5 flex h-5 w-5 items-center justify-center rounded-md border">
+                          <span className="bg-danger-500 h-2 w-2 animate-pulse rounded-full" />
                         </div>
                       )}
                     </div>
@@ -874,7 +874,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                           {item.category}
                         </span>
                         {!isResolved && (
-                          <span className="rounded-full border border-rose-500/20 bg-rose-500/10 px-2 py-0.5 text-[10px] font-semibold text-rose-400">
+                          <span className="border-danger-500/20 bg-danger-500/10 text-danger-400 rounded-full border px-2 py-0.5 text-[10px] font-semibold">
                             {t("open")}
                           </span>
                         )}
@@ -892,7 +892,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                         )}
                         <span>{t("first_reported", { date: item.first_reported })}</span>
                         {item.resolved_date && (
-                          <span className="font-semibold text-emerald-400">
+                          <span className="text-success-400 font-semibold">
                             {t("resolved_label", { date: item.resolved_date })}
                           </span>
                         )}
@@ -912,7 +912,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
           <div className="flex flex-col gap-4 border-b border-white/10 pb-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h3 className="text-md flex items-center gap-2 font-semibold text-white">
-                <Database className="h-5 w-5 animate-pulse text-cyan-400" />
+                <Database className="text-accent-400 h-5 w-5 animate-pulse" />
                 {t("war_room_title")}
               </h3>
               <p className="text-fg-muted mt-1 text-xs">{t("war_room_desc")}</p>
@@ -963,19 +963,19 @@ export function AnalysisDashboardClient({ registryData }: Props) {
               <div className="grid gap-3">
                 <div className="flex items-center justify-between rounded-lg border border-white/5 bg-neutral-950/40 p-3">
                   <span className="text-fg-secondary text-xs">{t("incident_rate_limit")}</span>
-                  <span className="rounded border border-cyan-500/20 bg-cyan-500/10 px-2 py-0.5 text-[10px] font-bold text-cyan-400">
+                  <span className="border-accent-500/20 bg-accent-500/10 text-accent-400 rounded border px-2 py-0.5 text-[10px] font-bold">
                     {t("edge")}
                   </span>
                 </div>
                 <div className="flex items-center justify-between rounded-lg border border-white/5 bg-neutral-950/40 p-3">
                   <span className="text-fg-secondary text-xs">{t("comment_rate_limit")}</span>
-                  <span className="rounded border border-cyan-500/20 bg-cyan-500/10 px-2 py-0.5 text-[10px] font-bold text-cyan-400">
+                  <span className="border-accent-500/20 bg-accent-500/10 text-accent-400 rounded border px-2 py-0.5 text-[10px] font-bold">
                     {t("edge")}
                   </span>
                 </div>
                 <div className="flex items-center justify-between rounded-lg border border-white/5 bg-neutral-950/40 p-3">
                   <span className="text-fg-secondary text-xs">{t("affected_rate_limit")}</span>
-                  <span className="rounded border border-cyan-500/20 bg-cyan-500/10 px-2 py-0.5 text-[10px] font-bold text-cyan-400">
+                  <span className="border-accent-500/20 bg-accent-500/10 text-accent-400 rounded border px-2 py-0.5 text-[10px] font-bold">
                     {t("edge")}
                   </span>
                 </div>

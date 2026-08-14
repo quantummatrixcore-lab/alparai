@@ -68,10 +68,10 @@ export function ApiKeyManager({ providers }: { providers: Provider[] }) {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <p className="text-sm text-zinc-400">{t("manage_api_credentials_for_all_integrate")}</p>
+        <p className="text-fg-muted text-sm">{t("manage_api_credentials_for_all_integrate")}</p>
         <button
           onClick={() => setIsAddOpen(true)}
-          className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-zinc-300 transition-colors hover:bg-white/10"
+          className="text-fg-secondary flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold transition-colors hover:bg-white/10"
         >
           <Plus className="h-3.5 w-3.5" />
           {t("add_key")}
@@ -81,7 +81,7 @@ export function ApiKeyManager({ providers }: { providers: Provider[] }) {
       {isAddOpen && (
         <form
           onSubmit={handleSaveKey}
-          className="space-y-3 rounded-xl border border-white/10 bg-zinc-900/90 p-4"
+          className="bg-bg-elevated/90 space-y-3 rounded-xl border border-white/10 p-4"
         >
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-4">
             <input
@@ -122,14 +122,14 @@ export function ApiKeyManager({ providers }: { providers: Provider[] }) {
             <button
               type="button"
               onClick={() => setIsAddOpen(false)}
-              className="rounded-lg px-3 py-1 text-xs text-zinc-400 hover:text-white"
+              className="text-fg-muted rounded-lg px-3 py-1 text-xs hover:text-white"
             >
               {t("cancel")}
             </button>
             <button
               type="submit"
               disabled={saving}
-              className="rounded-lg bg-emerald-600 px-3 py-1 text-xs font-semibold text-white hover:bg-emerald-500 disabled:opacity-50"
+              className="bg-success-600 hover:bg-success-500 rounded-lg px-3 py-1 text-xs font-semibold text-white disabled:opacity-50"
             >
               {saving ? "Saving..." : "Save Key"}
             </button>
@@ -138,9 +138,9 @@ export function ApiKeyManager({ providers }: { providers: Provider[] }) {
       )}
 
       {loading ? (
-        <div className="p-8 text-center text-xs text-zinc-400">{t("loading_api_keys")}</div>
+        <div className="text-fg-muted p-8 text-center text-xs">{t("loading_api_keys")}</div>
       ) : keys.length > 0 ? (
-        <div className="overflow-hidden rounded-xl border border-white/10 bg-zinc-900/80">
+        <div className="bg-bg-elevated/80 overflow-hidden rounded-xl border border-white/10">
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
@@ -166,23 +166,23 @@ export function ApiKeyManager({ providers }: { providers: Provider[] }) {
                     <td className="px-6 py-3 font-medium text-white">
                       {getProviderName(key.provider)}
                     </td>
-                    <td className="px-6 py-3 text-xs text-zinc-300 capitalize">{key.tier}</td>
-                    <td className="px-6 py-3 text-xs text-zinc-400 capitalize">
+                    <td className="text-fg-secondary px-6 py-3 text-xs capitalize">{key.tier}</td>
+                    <td className="text-fg-muted px-6 py-3 text-xs capitalize">
                       {key.client_type}
                     </td>
                     <td className="px-6 py-3">
-                      <code className="rounded bg-black/40 px-2 py-1 font-mono text-xs text-zinc-400">
+                      <code className="text-fg-muted rounded bg-black/40 px-2 py-1 font-mono text-xs">
                         {key.api_key}
                       </code>
                     </td>
-                    <td className="px-6 py-3 text-xs text-zinc-400">
+                    <td className="text-fg-muted px-6 py-3 text-xs">
                       {new Date(key.updated_at).toLocaleDateString()}
                     </td>
                     <td className="px-6 py-3">
                       <div className="flex items-center justify-center gap-2">
                         <button
                           onClick={() => handleDeleteKey(key.provider)}
-                          className="text-zinc-400 transition-colors hover:text-red-400"
+                          className="text-fg-muted hover:text-danger-400 transition-colors"
                           title={t("delete_key")}
                         >
                           <Trash2 className="h-4 w-4" />
@@ -196,11 +196,11 @@ export function ApiKeyManager({ providers }: { providers: Provider[] }) {
           </div>
         </div>
       ) : (
-        <div className="rounded-xl border border-white/10 bg-zinc-900/80 p-12 text-center">
-          <p className="text-zinc-400">{t("no_api_keys_configured_yet")}</p>
+        <div className="bg-bg-elevated/80 rounded-xl border border-white/10 p-12 text-center">
+          <p className="text-fg-muted">{t("no_api_keys_configured_yet")}</p>
           <button
             onClick={() => setIsAddOpen(true)}
-            className="mt-4 rounded-lg bg-emerald-500/20 px-4 py-2 text-sm font-semibold text-emerald-300 transition-colors hover:bg-emerald-500/30"
+            className="bg-success-500/20 text-success-300 hover:bg-success-500/30 mt-4 rounded-lg px-4 py-2 text-sm font-semibold transition-colors"
           >
             {t("add_your_first_key")}
           </button>

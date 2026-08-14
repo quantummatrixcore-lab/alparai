@@ -10,9 +10,9 @@ interface LivePulseRingProps {
 }
 
 const statusColors = {
-  healthy: { ring: "bg-emerald-500", glow: "shadow-[0_0_12px_rgba(39,174,96,0.6)]" },
-  warning: { ring: "bg-amber-500", glow: "shadow-[0_0_12px_rgba(243,156,18,0.6)]" },
-  danger: { ring: "bg-rose-500", glow: "shadow-[0_0_12px_rgba(230,57,70,0.6)]" },
+  healthy: { ring: "bg-success-500", glow: "shadow-[0_0_12px_rgba(39,174,96,0.6)]" },
+  warning: { ring: "bg-warning-500", glow: "shadow-[0_0_12px_rgba(243,156,18,0.6)]" },
+  danger: { ring: "bg-danger-500", glow: "shadow-[0_0_12px_rgba(230,57,70,0.6)]" },
   idle: { ring: "bg-zinc-500", glow: "" },
 };
 

@@ -66,10 +66,10 @@ export function SettingsDashboardClient() {
                 <h2 className="text-xl font-bold tracking-tight text-white">
                   ALPAR AI System Governance
                 </h2>
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-400">
+                <span className="border-success-500/30 bg-success-500/10 text-success-400 inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-semibold">
                   <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                    <span className="bg-success-400 absolute inline-flex h-full w-full animate-ping rounded-full opacity-75" />
+                    <span className="bg-success-500 relative inline-flex h-2 w-2 rounded-full" />
                   </span>
                   Operational
                 </span>
@@ -86,13 +86,13 @@ export function SettingsDashboardClient() {
               <span className="text-fg-muted block text-[10px] font-bold tracking-wider uppercase">
                 PII Guard
               </span>
-              <span className="text-sm font-extrabold text-emerald-400">Active</span>
+              <span className="text-success-400 text-sm font-extrabold">Active</span>
             </div>
             <div className="border-x border-white/10 px-3 text-center">
               <span className="text-fg-muted block text-[10px] font-bold tracking-wider uppercase">
                 SSRF Policy
               </span>
-              <span className="text-sm font-extrabold text-cyan-400">Strict</span>
+              <span className="text-accent-400 text-sm font-extrabold">Strict</span>
             </div>
             <div className="px-2 text-center">
               <span className="text-fg-muted block text-[10px] font-bold tracking-wider uppercase">
@@ -116,7 +116,7 @@ export function SettingsDashboardClient() {
                 : "text-fg-muted bg-white/5 hover:bg-white/10 hover:text-white"
             }`}
           >
-            <ShieldCheck className="h-4 w-4 text-emerald-400" /> Security & PII Guardian
+            <ShieldCheck className="text-success-400 h-4 w-4" /> Security & PII Guardian
           </button>
 
           <button
@@ -128,7 +128,7 @@ export function SettingsDashboardClient() {
                 : "text-fg-muted bg-white/5 hover:bg-white/10 hover:text-white"
             }`}
           >
-            <Globe className="h-4 w-4 text-cyan-400" /> Public API & Gateway
+            <Globe className="text-accent-400 h-4 w-4" /> Public API & Gateway
           </button>
 
           <button
@@ -140,7 +140,7 @@ export function SettingsDashboardClient() {
                 : "text-fg-muted bg-white/5 hover:bg-white/10 hover:text-white"
             }`}
           >
-            <Zap className="h-4 w-4 text-amber-400" /> Rate Limits & Ceilings
+            <Zap className="text-warning-400 h-4 w-4" /> Rate Limits & Ceilings
           </button>
 
           <button
@@ -162,10 +162,10 @@ export function SettingsDashboardClient() {
         {activeTab === "security" && (
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {/* PII Guardian Widget */}
-            <div className="from-bg-secondary via-bg-tertiary relative overflow-hidden rounded-2xl border border-emerald-500/20 bg-gradient-to-br to-emerald-950/20 p-6 shadow-xl backdrop-blur-xl">
+            <div className="from-bg-secondary via-bg-tertiary border-success-500/20 relative overflow-hidden rounded-2xl border bg-gradient-to-br to-emerald-950/20 p-6 shadow-xl backdrop-blur-xl">
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-3 text-emerald-400">
+                  <div className="border-success-500/30 bg-success-500/10 text-success-400 rounded-xl border p-3">
                     <ShieldCheck className="h-6 w-6" />
                   </div>
                   <div>
@@ -185,23 +185,23 @@ export function SettingsDashboardClient() {
                     onChange={(e) => setSettings({ ...settings, piiGuardian: e.target.checked })}
                     className="peer sr-only"
                   />
-                  <div className="peer h-6 w-11 rounded-full bg-white/10 peer-checked:bg-emerald-500 peer-focus:outline-none after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white" />
+                  <div className="peer peer-checked:bg-success-500 h-6 w-11 rounded-full bg-white/10 peer-focus:outline-none after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white" />
                 </label>
               </div>
 
               <div className="mt-4 space-y-2 rounded-xl border border-white/5 bg-black/40 p-4 text-xs">
                 <p className="text-fg-secondary">{t("mask_emails_phone_numbers_and_tc_identit")}</p>
                 <div className="flex flex-wrap gap-2 pt-2">
-                  <span className="rounded border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] text-emerald-300">
+                  <span className="border-success-500/20 bg-success-500/10 text-success-300 rounded border px-2 py-0.5 font-mono text-[10px]">
                     Emails (HASH)
                   </span>
-                  <span className="rounded border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] text-emerald-300">
+                  <span className="border-success-500/20 bg-success-500/10 text-success-300 rounded border px-2 py-0.5 font-mono text-[10px]">
                     TCKN / SSN
                   </span>
-                  <span className="rounded border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] text-emerald-300">
+                  <span className="border-success-500/20 bg-success-500/10 text-success-300 rounded border px-2 py-0.5 font-mono text-[10px]">
                     Phone Numbers
                   </span>
-                  <span className="rounded border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] text-emerald-300">
+                  <span className="border-success-500/20 bg-success-500/10 text-success-300 rounded border px-2 py-0.5 font-mono text-[10px]">
                     API Tokens
                   </span>
                 </div>
@@ -209,10 +209,10 @@ export function SettingsDashboardClient() {
             </div>
 
             {/* SSRF Policy Guard Widget */}
-            <div className="from-bg-secondary via-bg-tertiary relative overflow-hidden rounded-2xl border border-cyan-500/20 bg-gradient-to-br to-cyan-950/20 p-6 shadow-xl backdrop-blur-xl">
+            <div className="from-bg-secondary via-bg-tertiary border-accent-500/20 relative overflow-hidden rounded-2xl border bg-gradient-to-br to-cyan-950/20 p-6 shadow-xl backdrop-blur-xl">
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="rounded-xl border border-cyan-500/30 bg-cyan-500/10 p-3 text-cyan-400">
+                  <div className="border-accent-500/30 bg-accent-500/10 text-accent-400 rounded-xl border p-3">
                     <Lock className="h-6 w-6" />
                   </div>
                   <div>
@@ -230,17 +230,17 @@ export function SettingsDashboardClient() {
                     onChange={(e) => setSettings({ ...settings, strictSsr: e.target.checked })}
                     className="peer sr-only"
                   />
-                  <div className="peer h-6 w-11 rounded-full bg-white/10 peer-checked:bg-cyan-500 peer-focus:outline-none after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white" />
+                  <div className="peer peer-checked:bg-accent-500 h-6 w-11 rounded-full bg-white/10 peer-focus:outline-none after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white" />
                 </label>
               </div>
 
               <div className="mt-4 space-y-2 rounded-xl border border-white/5 bg-black/40 p-4 text-xs">
                 <p className="text-fg-secondary">{t("enforce_https_only_and_block_internal_ip")}</p>
                 <div className="flex flex-wrap gap-2 pt-2">
-                  <span className="rounded border border-cyan-500/20 bg-cyan-500/10 px-2 py-0.5 font-mono text-[10px] text-cyan-300">
+                  <span className="border-accent-500/20 bg-accent-500/10 text-accent-300 rounded border px-2 py-0.5 font-mono text-[10px]">
                     HTTPS Only
                   </span>
-                  <span className="rounded border border-cyan-500/20 bg-cyan-500/10 px-2 py-0.5 font-mono text-[10px] text-cyan-300">
+                  <span className="border-accent-500/20 bg-accent-500/10 text-accent-300 rounded border px-2 py-0.5 font-mono text-[10px]">
                     No Private IPs (10/8, 127/8)
                   </span>
                 </div>
@@ -248,10 +248,10 @@ export function SettingsDashboardClient() {
             </div>
 
             {/* Session & Auth Guard Widget */}
-            <div className="from-bg-secondary via-bg-tertiary relative overflow-hidden rounded-2xl border border-purple-500/20 bg-gradient-to-br to-purple-950/20 p-6 shadow-xl backdrop-blur-xl">
+            <div className="from-bg-secondary via-bg-tertiary border-brand-500/20 relative overflow-hidden rounded-2xl border bg-gradient-to-br to-purple-950/20 p-6 shadow-xl backdrop-blur-xl">
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="rounded-xl border border-purple-500/30 bg-purple-500/10 p-3 text-purple-400">
+                  <div className="border-brand-500/30 bg-brand-500/10 text-brand-400 rounded-xl border p-3">
                     <KeyRound className="h-6 w-6" />
                   </div>
                   <div>
@@ -265,7 +265,7 @@ export function SettingsDashboardClient() {
                 <div>
                   <div className="text-fg-muted mb-1 flex items-center justify-between text-xs">
                     <span>Admin Inactivity Timeout</span>
-                    <span className="font-mono font-bold text-purple-300">
+                    <span className="text-brand-300 font-mono font-bold">
                       {settings.sessionTimeoutMins} minutes
                     </span>
                   </div>
@@ -288,7 +288,7 @@ export function SettingsDashboardClient() {
                     type="checkbox"
                     checked={settings.corsRestricted}
                     onChange={(e) => setSettings({ ...settings, corsRestricted: e.target.checked })}
-                    className="h-4 w-4 rounded border-white/20 bg-black/40 text-purple-500"
+                    className="text-brand-500 h-4 w-4 rounded border-white/20 bg-black/40"
                   />
                 </div>
               </div>
@@ -332,10 +332,10 @@ export function SettingsDashboardClient() {
         {/* TAB 2: PUBLIC API & GATEWAY */}
         {activeTab === "api" && (
           <div className="space-y-6">
-            <div className="from-bg-secondary via-bg-tertiary to-bg-elevated relative overflow-hidden rounded-2xl border border-cyan-500/20 bg-gradient-to-br p-6 shadow-xl backdrop-blur-xl">
+            <div className="from-bg-secondary via-bg-tertiary to-bg-elevated border-accent-500/20 relative overflow-hidden rounded-2xl border bg-gradient-to-br p-6 shadow-xl backdrop-blur-xl">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="rounded-xl border border-cyan-500/30 bg-cyan-500/10 p-3 text-cyan-400">
+                  <div className="border-accent-500/30 bg-accent-500/10 text-accent-400 rounded-xl border p-3">
                     <Server className="h-6 w-6" />
                   </div>
                   <div>
@@ -357,7 +357,7 @@ export function SettingsDashboardClient() {
                     }
                     className="peer sr-only"
                   />
-                  <div className="peer h-6 w-11 rounded-full bg-white/10 peer-checked:bg-cyan-500 peer-focus:outline-none after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white" />
+                  <div className="peer peer-checked:bg-accent-500 h-6 w-11 rounded-full bg-white/10 peer-focus:outline-none after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white" />
                 </label>
               </div>
 
@@ -366,7 +366,7 @@ export function SettingsDashboardClient() {
                   <span className="text-fg-muted block text-[10px] font-bold tracking-wider uppercase">
                     API Version
                   </span>
-                  <span className="mt-1 block font-mono text-sm font-bold text-cyan-300">
+                  <span className="text-accent-300 mt-1 block font-mono text-sm font-bold">
                     v1.1 (REST + JSON-LD)
                   </span>
                 </div>
@@ -384,7 +384,7 @@ export function SettingsDashboardClient() {
                       onChange={(e) =>
                         setSettings({ ...settings, maxPayloadMb: Number(e.target.value) })
                       }
-                      className="w-16 rounded border border-white/10 bg-black/60 px-2 py-0.5 text-right font-mono text-xs text-cyan-400"
+                      className="text-accent-400 w-16 rounded border border-white/10 bg-black/60 px-2 py-0.5 text-right font-mono text-xs"
                     />
                   </div>
                 </div>
@@ -392,7 +392,7 @@ export function SettingsDashboardClient() {
                   <span className="text-fg-muted block text-[10px] font-bold tracking-wider uppercase">
                     Gateway Providers
                   </span>
-                  <span className="mt-1 block font-mono text-sm font-bold text-emerald-400">
+                  <span className="text-success-400 mt-1 block font-mono text-sm font-bold">
                     9 Active Adapters
                   </span>
                 </div>
@@ -404,9 +404,9 @@ export function SettingsDashboardClient() {
         {/* TAB 3: RATE LIMITS & CEILINGS */}
         {activeTab === "performance" && (
           <div className="space-y-6">
-            <div className="from-bg-secondary via-bg-tertiary relative overflow-hidden rounded-2xl border border-amber-500/20 bg-gradient-to-br to-amber-950/20 p-6 shadow-xl backdrop-blur-xl">
+            <div className="from-bg-secondary via-bg-tertiary border-warning-500/20 relative overflow-hidden rounded-2xl border bg-gradient-to-br to-amber-950/20 p-6 shadow-xl backdrop-blur-xl">
               <div className="mb-6 flex items-center gap-3">
-                <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-3 text-amber-400">
+                <div className="border-warning-500/30 bg-warning-500/10 text-warning-400 rounded-xl border p-3">
                   <Sliders className="h-6 w-6" />
                 </div>
                 <div>
@@ -425,7 +425,7 @@ export function SettingsDashboardClient() {
                     <label className="font-bold text-white">
                       {t("global_rate_limit_requests_minute_ip")}
                     </label>
-                    <span className="rounded-md border border-amber-500/30 bg-amber-500/10 px-3 py-1 font-mono text-sm font-extrabold text-amber-400">
+                    <span className="border-warning-500/30 bg-warning-500/10 text-warning-400 rounded-md border px-3 py-1 font-mono text-sm font-extrabold">
                       {settings.rateLimitRequestsPerMin} RPM / IP
                     </span>
                   </div>
@@ -507,7 +507,7 @@ export function SettingsDashboardClient() {
           </button>
 
           {saved && (
-            <span className="animate-in fade-in slide-in-from-bottom-2 inline-flex items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-xs font-bold text-emerald-400">
+            <span className="animate-in fade-in slide-in-from-bottom-2 border-success-500/30 bg-success-500/10 text-success-400 inline-flex items-center gap-2 rounded-xl border px-4 py-2 text-xs font-bold">
               <CheckCircle2 className="h-4 w-4" /> {t("system_settings_updated_successfully")}
             </span>
           )}

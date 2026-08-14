@@ -118,8 +118,8 @@ export function VoiceIncidentReporter({ onTranscript }: VoiceIncidentReporterPro
         </div>
 
         {isRecording && (
-          <div className="flex animate-pulse items-center gap-2 font-mono text-red-400">
-            <span className="h-2 w-2 rounded-full bg-red-500" />
+          <div className="text-danger-400 flex animate-pulse items-center gap-2 font-mono">
+            <span className="bg-danger-500 h-2 w-2 rounded-full" />
             <span>{formatTime(recordingTime)}</span>
           </div>
         )}
@@ -133,12 +133,12 @@ export function VoiceIncidentReporter({ onTranscript }: VoiceIncidentReporterPro
             size="sm"
             onClick={startRecording}
             disabled={isProcessing}
-            className="flex items-center gap-2 border-red-500/30 text-red-400 hover:bg-red-500/10"
+            className="border-danger-500/30 text-danger-400 hover:bg-danger-500/10 flex items-center gap-2"
           >
             {isProcessing ? (
               <Loader2 className="h-4 w-4 animate-spin" />
             ) : (
-              <span className="flex h-3 w-3 rounded-full bg-red-500" />
+              <span className="bg-danger-500 flex h-3 w-3 rounded-full" />
             )}
             <span>
               {isProcessing ? t("voice_incident_processing") : t("voice_incident_start_btn")}
@@ -152,7 +152,7 @@ export function VoiceIncidentReporter({ onTranscript }: VoiceIncidentReporterPro
             onClick={stopRecording}
             className="border-fg-muted text-fg-primary hover:bg-bg-elevated flex items-center gap-2"
           >
-            <Square className="h-3 w-3 fill-red-500 text-red-500" />
+            <Square className="text-danger-500 h-3 w-3 fill-red-500" />
             <span>{t("voice_incident_stop_btn")}</span>
           </Button>
         )}

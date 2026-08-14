@@ -23,7 +23,7 @@ function SubmitBtn({ children }: { children: React.ReactNode }) {
       type="submit"
       isLoading={pending}
       size="lg"
-      className="text-bg-primary w-full bg-emerald-500 font-bold hover:bg-emerald-600"
+      className="text-bg-primary bg-success-500 hover:bg-success-600 w-full font-bold"
       leftIcon={<Send className="h-4 w-4" aria-label="Send" />}
     >
       {children}
@@ -45,10 +45,10 @@ export function InvestorForm() {
 
   if (state.ok) {
     return (
-      <Card variant="elevated" className="border border-emerald-500/20 bg-[#0F1E2E]">
+      <Card variant="elevated" className="border-success-500/20 border bg-[#0F1E2E]">
         <CardContent className="py-12 text-center">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/10">
-            <CheckCircle2 className="h-10 w-10 text-emerald-400" />
+          <div className="bg-success-500/10 mx-auto flex h-16 w-16 items-center justify-center rounded-full">
+            <CheckCircle2 className="text-success-400 h-10 w-10" />
           </div>
           <h3 className="text-fg-primary mt-6 text-2xl font-bold">{t("success_title")}</h3>
           <p className="text-fg-muted mx-auto mt-4 max-w-md text-sm">
@@ -59,7 +59,7 @@ export function InvestorForm() {
               href="https://alparai.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-semibold text-emerald-400 transition-colors hover:text-emerald-300"
+              className="text-success-400 hover:text-success-300 text-sm font-semibold transition-colors"
             >
               {t("success_cta")}
             </a>

@@ -66,12 +66,12 @@ export function VelocityDashboard() {
         animate={{ opacity: 1, y: 0 }}
         className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-neutral-900/90 via-neutral-900/60 to-neutral-950/90 p-8 shadow-2xl backdrop-blur-2xl"
       >
-        <div className="pointer-events-none absolute -top-32 -left-32 h-64 w-64 rounded-full bg-cyan-500/10 blur-3xl" />
-        <div className="pointer-events-none absolute -right-32 -bottom-32 h-64 w-64 rounded-full bg-purple-500/10 blur-3xl" />
+        <div className="bg-accent-500/10 pointer-events-none absolute -top-32 -left-32 h-64 w-64 rounded-full blur-3xl" />
+        <div className="bg-brand-500/10 pointer-events-none absolute -right-32 -bottom-32 h-64 w-64 rounded-full blur-3xl" />
 
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-3xl space-y-3">
-            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 text-xs font-semibold text-cyan-400">
+            <div className="border-accent-500/30 bg-accent-500/10 text-accent-400 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold">
               <Sparkles className="h-3.5 w-3.5" />
               <span>{t("header_badge")}</span>
             </div>
@@ -86,7 +86,7 @@ export function VelocityDashboard() {
           <div className="flex flex-wrap items-center gap-3">
             <a
               href="#scenarios"
-              className="inline-flex items-center gap-2 rounded-xl border border-cyan-500/30 bg-cyan-500/10 px-4 py-2.5 text-xs font-bold text-cyan-300 transition-all hover:bg-cyan-500/20"
+              className="border-accent-500/30 bg-accent-500/10 text-accent-300 hover:bg-accent-500/20 inline-flex items-center gap-2 rounded-xl border px-4 py-2.5 text-xs font-bold transition-all"
             >
               <Gauge className="h-4 w-4" />
               {t("cta_scenarios")}
@@ -112,7 +112,7 @@ export function VelocityDashboard() {
           className="rounded-2xl border border-white/10 bg-neutral-900/60 p-6 shadow-xl backdrop-blur-xl lg:col-span-1"
         >
           <div className="text-fg-primary flex items-center gap-2 text-sm font-bold">
-            <Sliders className="h-4 w-4 text-cyan-400" />
+            <Sliders className="text-accent-400 h-4 w-4" />
             <span>{t("simulator_title")}</span>
           </div>
           <p className="text-fg-muted mt-1 text-xs">{t("simulator_subtitle")}</p>
@@ -122,7 +122,7 @@ export function VelocityDashboard() {
             <div>
               <div className="mb-2 flex justify-between text-xs font-medium">
                 <span className="text-fg-muted">{t("input_base_arr")}</span>
-                <span className="font-bold text-cyan-400">${baseARR.toLocaleString()}</span>
+                <span className="text-accent-400 font-bold">${baseARR.toLocaleString()}</span>
               </div>
               <input
                 type="range"
@@ -144,7 +144,7 @@ export function VelocityDashboard() {
             <div>
               <div className="mb-2 flex justify-between text-xs font-medium">
                 <span className="text-fg-muted">{t("input_clients")}</span>
-                <span className="font-bold text-emerald-400">
+                <span className="text-success-400 font-bold">
                   {clients} {t("clients_suffix")}
                 </span>
               </div>
@@ -171,7 +171,7 @@ export function VelocityDashboard() {
               </div>
               <div className="text-fg-muted flex justify-between">
                 <span>{t("calc_demand_mult")}</span>
-                <span className="font-mono text-emerald-400">
+                <span className="text-success-400 font-mono">
                   {(velocityFactor * 1.8).toFixed(2)}x
                 </span>
               </div>
@@ -192,12 +192,12 @@ export function VelocityDashboard() {
         </h2>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {/* Scenario A */}
-          <div className="rounded-2xl border border-blue-500/20 bg-neutral-900/60 p-6 shadow-xl backdrop-blur-xl">
+          <div className="border-brand-500/20 rounded-2xl border bg-neutral-900/60 p-6 shadow-xl backdrop-blur-xl">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold tracking-wider text-blue-400 uppercase">
+              <span className="text-brand-400 text-xs font-bold tracking-wider uppercase">
                 {t("scenario_a_tag")}
               </span>
-              <span className="rounded-md bg-blue-500/10 px-2 py-0.5 text-[11px] font-semibold text-blue-400">
+              <span className="bg-brand-500/10 text-brand-400 rounded-md px-2 py-0.5 text-[11px] font-semibold">
                 V = 1.0x
               </span>
             </div>
@@ -212,13 +212,13 @@ export function VelocityDashboard() {
           </div>
 
           {/* Scenario B */}
-          <div className="relative overflow-hidden rounded-2xl border border-emerald-500/30 bg-neutral-900/60 p-6 shadow-xl backdrop-blur-xl">
-            <div className="pointer-events-none absolute top-0 right-0 h-20 w-20 rounded-full bg-emerald-500/10 blur-2xl" />
+          <div className="border-success-500/30 relative overflow-hidden rounded-2xl border bg-neutral-900/60 p-6 shadow-xl backdrop-blur-xl">
+            <div className="bg-success-500/10 pointer-events-none absolute top-0 right-0 h-20 w-20 rounded-full blur-2xl" />
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold tracking-wider text-emerald-400 uppercase">
+              <span className="text-success-400 text-xs font-bold tracking-wider uppercase">
                 {t("scenario_b_tag")}
               </span>
-              <span className="rounded-md bg-emerald-500/10 px-2 py-0.5 text-[11px] font-semibold text-emerald-400">
+              <span className="bg-success-500/10 text-success-400 rounded-md px-2 py-0.5 text-[11px] font-semibold">
                 V = 1.8x
               </span>
             </div>
@@ -226,20 +226,20 @@ export function VelocityDashboard() {
             <p className="text-fg-muted mt-1 text-xs leading-relaxed">{t("scenario_b_desc")}</p>
             <div className="mt-6 border-t border-white/5 pt-4">
               <div className="text-fg-muted text-[11px]">{t("projected_arr")}</div>
-              <div className="text-2xl font-extrabold text-emerald-400">
+              <div className="text-success-400 text-2xl font-extrabold">
                 ${projectionResult.scenarioB.projectedARR.toLocaleString()}
               </div>
             </div>
           </div>
 
           {/* Scenario C */}
-          <div className="relative overflow-hidden rounded-2xl border border-purple-500/30 bg-neutral-900/60 p-6 shadow-xl backdrop-blur-xl">
-            <div className="pointer-events-none absolute top-0 right-0 h-20 w-20 rounded-full bg-purple-500/10 blur-2xl" />
+          <div className="border-brand-500/30 relative overflow-hidden rounded-2xl border bg-neutral-900/60 p-6 shadow-xl backdrop-blur-xl">
+            <div className="bg-brand-500/10 pointer-events-none absolute top-0 right-0 h-20 w-20 rounded-full blur-2xl" />
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold tracking-wider text-purple-400 uppercase">
+              <span className="text-brand-400 text-xs font-bold tracking-wider uppercase">
                 {t("scenario_c_tag")}
               </span>
-              <span className="rounded-md bg-purple-500/10 px-2 py-0.5 text-[11px] font-semibold text-purple-400">
+              <span className="bg-brand-500/10 text-brand-400 rounded-md px-2 py-0.5 text-[11px] font-semibold">
                 V = 3.5x
               </span>
             </div>
@@ -247,7 +247,7 @@ export function VelocityDashboard() {
             <p className="text-fg-muted mt-1 text-xs leading-relaxed">{t("scenario_c_desc")}</p>
             <div className="mt-6 border-t border-white/5 pt-4">
               <div className="text-fg-muted text-[11px]">{t("projected_arr")}</div>
-              <div className="text-2xl font-extrabold text-purple-400">
+              <div className="text-brand-400 text-2xl font-extrabold">
                 ${projectionResult.scenarioC.projectedARR.toLocaleString()}
               </div>
             </div>
@@ -258,7 +258,7 @@ export function VelocityDashboard() {
       {/* Model Capability Audit Table */}
       <div className="rounded-2xl border border-white/10 bg-neutral-900/60 p-6 shadow-xl backdrop-blur-xl">
         <div className="text-fg-primary mb-4 flex items-center gap-2 text-base font-bold">
-          <Cpu className="h-5 w-5 text-cyan-400" />
+          <Cpu className="text-accent-400 h-5 w-5" />
           <span>{t("table_title")}</span>
         </div>
         <div className="overflow-x-auto">
@@ -275,12 +275,12 @@ export function VelocityDashboard() {
             <tbody className="text-fg-primary divide-y divide-white/5 font-medium">
               {INITIAL_METRICS.map((item, idx) => (
                 <tr key={idx} className="transition-colors hover:bg-white/5">
-                  <td className="px-4 py-3 font-semibold text-cyan-400">{item.provider}</td>
+                  <td className="text-accent-400 px-4 py-3 font-semibold">{item.provider}</td>
                   <td className="px-4 py-3">{item.model_name}</td>
                   <td className="px-4 py-3 font-mono">{item.benchmark_elo}</td>
                   <td className="text-fg-muted px-4 py-3">{item.release_date}</td>
                   <td className="px-4 py-3">
-                    <span className="inline-flex items-center gap-1 rounded-md bg-emerald-500/10 px-2 py-0.5 text-xs font-semibold text-emerald-400">
+                    <span className="bg-success-500/10 text-success-400 inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-xs font-semibold">
                       +{item.capability_jump_pct}%
                     </span>
                   </td>

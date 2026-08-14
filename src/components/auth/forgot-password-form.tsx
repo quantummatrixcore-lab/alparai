@@ -34,9 +34,9 @@ export function ForgotPasswordForm() {
   if (sent) {
     return (
       <div className="flex min-h-screen items-center justify-center p-4">
-        <div className="w-full max-w-md rounded-2xl border border-slate-800 bg-slate-900 p-8 text-center text-white">
+        <div className="border-border-subtle bg-bg-elevated w-full max-w-md rounded-2xl border p-8 text-center text-white">
           <h1 className="mb-2 text-2xl font-bold">{t("email_sent_title")}</h1>
-          <p className="text-sm text-slate-400">{t("email_sent_desc", { email })}</p>
+          <p className="text-fg-muted text-sm">{t("email_sent_desc", { email })}</p>
         </div>
       </div>
     );
@@ -46,13 +46,13 @@ export function ForgotPasswordForm() {
     <div className="flex min-h-screen items-center justify-center p-4">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-md space-y-4 rounded-2xl border border-slate-800 bg-slate-900 p-8"
+        className="border-border-subtle bg-bg-elevated w-full max-w-md space-y-4 rounded-2xl border p-8"
       >
         <h1 className="text-2xl font-bold text-white">{t("forgot_password_title")}</h1>
-        <p className="text-sm text-slate-400">{t("forgot_password_subtitle")}</p>
-        {error && <p className="text-sm text-red-400">{error}</p>}
+        <p className="text-fg-muted text-sm">{t("forgot_password_subtitle")}</p>
+        {error && <p className="text-danger-400 text-sm">{error}</p>}
         <div>
-          <label htmlFor="email-input" className="mb-1 block text-xs text-slate-400">
+          <label htmlFor="email-input" className="text-fg-muted mb-1 block text-xs">
             {t("email_label")}
           </label>
           <input
@@ -62,13 +62,13 @@ export function ForgotPasswordForm() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder={t("email_placeholder")}
             required
-            className="w-full rounded-lg border border-slate-700 bg-slate-800 px-4 py-3 text-white placeholder-slate-500 focus:border-purple-500 focus:outline-none"
+            className="border-border-strong focus:border-brand-500 w-full rounded-lg border bg-slate-800 px-4 py-3 text-white placeholder-slate-500 focus:outline-none"
           />
         </div>
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded-lg bg-purple-600 py-3 font-semibold text-white transition-colors hover:bg-purple-700 disabled:opacity-50"
+          className="bg-brand-600 hover:bg-brand-700 w-full rounded-lg py-3 font-semibold text-white transition-colors disabled:opacity-50"
         >
           {loading ? t("sending") : t("send_link")}
         </button>

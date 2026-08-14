@@ -9,22 +9,22 @@ export function ProviderMatrix({ providers }: { providers: Provider[] }) {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "connected":
-        return <CheckCircle2 className="h-5 w-5 text-emerald-400" />;
+        return <CheckCircle2 className="text-success-400 h-5 w-5" />;
       case "degraded":
-        return <AlertCircle className="h-5 w-5 text-amber-400" />;
+        return <AlertCircle className="text-warning-400 h-5 w-5" />;
       default:
-        return <XCircle className="h-5 w-5 text-red-400" />;
+        return <XCircle className="text-danger-400 h-5 w-5" />;
     }
   };
 
   const getStatusBg = (status: string) => {
     switch (status) {
       case "connected":
-        return "bg-emerald-500/10 border-emerald-500/30";
+        return "bg-success-500/10 border-success-500/30";
       case "degraded":
-        return "bg-amber-500/10 border-amber-500/30";
+        return "bg-warning-500/10 border-warning-500/30";
       default:
-        return "bg-red-500/10 border-red-500/30";
+        return "bg-danger-500/10 border-danger-500/30";
     }
   };
 
@@ -39,7 +39,7 @@ export function ProviderMatrix({ providers }: { providers: Provider[] }) {
           <div className="flex items-start justify-between gap-3">
             <div>
               <h3 className="font-bold text-white">{provider.name}</h3>
-              <p className="mt-1 text-xs text-zinc-400">
+              <p className="text-fg-muted mt-1 text-xs">
                 {provider.models.slice(0, 2).join(", ")}
                 {provider.models.length > 2 ? `, +${provider.models.length - 2}` : ""}
               </p>
@@ -50,11 +50,11 @@ export function ProviderMatrix({ providers }: { providers: Provider[] }) {
           {/* Metrics Grid */}
           <div className="mt-4 grid grid-cols-2 gap-2 text-xs">
             <div>
-              <p className="text-zinc-400">{t("health")}</p>
+              <p className="text-fg-muted">{t("health")}</p>
               <p className="mt-1 text-lg font-bold text-white">{provider.health}%</p>
             </div>
             <div>
-              <p className="text-zinc-400">{t("latency_p95")}</p>
+              <p className="text-fg-muted">{t("latency_p95")}</p>
               <p className="mt-1 text-lg font-bold text-white">{provider.latencyMs}ms</p>
             </div>
           </div>
@@ -62,14 +62,14 @@ export function ProviderMatrix({ providers }: { providers: Provider[] }) {
           {/* Daily Activity */}
           <div className="mt-3 flex items-center justify-between border-t border-white/10 pt-3">
             <div className="text-xs">
-              <p className="text-zinc-400">{t("daily_requests")}</p>
+              <p className="text-fg-muted">{t("daily_requests")}</p>
               <p className="font-mono text-sm font-bold text-white">
                 {(provider.dailyRequests / 1000).toFixed(1)}K
               </p>
             </div>
             <div className="text-right text-xs">
-              <p className="text-zinc-400">{t("daily_cost")}</p>
-              <p className="font-mono text-sm font-bold text-emerald-400">
+              <p className="text-fg-muted">{t("daily_cost")}</p>
+              <p className="text-success-400 font-mono text-sm font-bold">
                 ${provider.dailyCostUsd.toFixed(2)}
               </p>
             </div>
@@ -77,9 +77,9 @@ export function ProviderMatrix({ providers }: { providers: Provider[] }) {
 
           {/* Respondent Badge */}
           {provider.respondentActive && (
-            <div className="mt-2 flex items-center gap-1 rounded bg-blue-500/20 px-2 py-1">
-              <Cpu className="h-3 w-3 text-blue-400" />
-              <span className="text-[10px] font-bold text-blue-400">
+            <div className="bg-brand-500/20 mt-2 flex items-center gap-1 rounded px-2 py-1">
+              <Cpu className="text-brand-400 h-3 w-3" />
+              <span className="text-brand-400 text-[10px] font-bold">
                 {t("verified_respondent")}
               </span>
             </div>

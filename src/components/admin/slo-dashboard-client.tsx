@@ -96,7 +96,7 @@ export function SloDashboardClient({
               <span className="text-fg-muted text-xs">
                 {t("dora_deploy_freq") || "Deployment Frequency"}
               </span>
-              <span className="rounded bg-emerald-500/20 px-2 py-0.5 text-[10px] font-bold text-emerald-400">
+              <span className="bg-success-500/20 text-success-400 rounded px-2 py-0.5 text-[10px] font-bold">
                 {dora.summary?.deployment_frequency_rating || "—"}
               </span>
             </div>
@@ -114,7 +114,7 @@ export function SloDashboardClient({
               <span className="text-fg-muted text-xs">
                 {t("dora_lead_time") || "Lead Time for Changes"}
               </span>
-              <span className="rounded bg-emerald-500/20 px-2 py-0.5 text-[10px] font-bold text-emerald-400">
+              <span className="bg-success-500/20 text-success-400 rounded px-2 py-0.5 text-[10px] font-bold">
                 {dora.summary?.lead_time_rating || "—"}
               </span>
             </div>
@@ -132,7 +132,7 @@ export function SloDashboardClient({
               <span className="text-fg-muted text-xs">
                 {t("dora_change_failure") || "Change Failure Rate"}
               </span>
-              <span className="rounded bg-emerald-500/20 px-2 py-0.5 text-[10px] font-bold text-emerald-400">
+              <span className="bg-success-500/20 text-success-400 rounded px-2 py-0.5 text-[10px] font-bold">
                 {dora.summary?.change_failure_rate_rating || "—"}
               </span>
             </div>
@@ -149,7 +149,7 @@ export function SloDashboardClient({
               <span className="text-fg-muted text-xs">
                 {t("dora_mttr") || "Time to Restore (MTTR)"}
               </span>
-              <span className="rounded bg-emerald-500/20 px-2 py-0.5 text-[10px] font-bold text-emerald-400">
+              <span className="bg-success-500/20 text-success-400 rounded px-2 py-0.5 text-[10px] font-bold">
                 {dora.summary?.mttr_rating || "—"}
               </span>
             </div>
@@ -205,7 +205,7 @@ export function SloDashboardClient({
           <div className="flex flex-col items-center gap-2">
             <div className="flex gap-4">
               <div className="text-center">
-                <p className="font-mono text-2xl font-black text-emerald-400">
+                <p className="text-success-400 font-mono text-2xl font-black">
                   {initialSlos.filter((s) => s.status === "healthy").length}
                 </p>
                 <p className="text-fg-muted text-[10px] font-bold">
@@ -213,7 +213,7 @@ export function SloDashboardClient({
                 </p>
               </div>
               <div className="text-center">
-                <p className="font-mono text-2xl font-black text-amber-400">
+                <p className="text-warning-400 font-mono text-2xl font-black">
                   {initialSlos.filter((s) => s.status === "warning").length}
                 </p>
                 <p className="text-fg-muted text-[10px] font-bold">
@@ -221,7 +221,7 @@ export function SloDashboardClient({
                 </p>
               </div>
               <div className="text-center">
-                <p className="font-mono text-2xl font-black text-rose-400">
+                <p className="text-danger-400 font-mono text-2xl font-black">
                   {initialSlos.filter((s) => s.status === "danger").length}
                 </p>
                 <p className="text-fg-muted text-[10px] font-bold">{t("slo_breach") || "Breach"}</p>
@@ -262,10 +262,10 @@ export function SloDashboardClient({
                   <div
                     className={`h-full rounded-full transition-all duration-500 ${
                       slo.status === "healthy"
-                        ? "bg-emerald-500"
+                        ? "bg-success-500"
                         : slo.status === "warning"
-                          ? "bg-amber-500"
-                          : "bg-rose-500"
+                          ? "bg-warning-500"
+                          : "bg-danger-500"
                     }`}
                     style={{
                       width: `${(slo.errorBudget.remaining / slo.errorBudget.total) * 100}%`,

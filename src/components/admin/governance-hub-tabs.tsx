@@ -55,15 +55,15 @@ export function GovernanceHubTabs() {
               className={cn(
                 "group flex min-w-max items-center gap-2 border-b-2 px-4 py-3 text-sm font-medium whitespace-nowrap transition-all",
                 tab.active
-                  ? "border-emerald-500 text-emerald-400"
-                  : "border-transparent text-zinc-400 hover:border-zinc-700 hover:text-zinc-200",
+                  ? "border-success-500 text-success-400"
+                  : "text-fg-muted hover:border-border-strong border-transparent hover:text-zinc-200",
               )}
               aria-current={tab.active ? "page" : undefined}
             >
               <Icon
                 className={cn(
                   "h-4 w-4",
-                  tab.active ? "text-emerald-500" : "text-zinc-500 group-hover:text-zinc-400",
+                  tab.active ? "text-success-500" : "text-fg-disabled group-hover:text-fg-muted",
                 )}
                 aria-hidden="true"
               />

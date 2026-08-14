@@ -32,10 +32,10 @@ export function StatusPill({
   };
 
   const statusTextColor = {
-    healthy: "text-emerald-400",
-    warning: "text-amber-400",
-    danger: "text-rose-400",
-    idle: "text-zinc-400",
+    healthy: "text-success-400",
+    warning: "text-warning-400",
+    danger: "text-danger-400",
+    idle: "text-fg-muted",
   };
 
   return (

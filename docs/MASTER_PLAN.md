@@ -351,6 +351,67 @@ Founder in `docs/plan/items/MODEL-1.md`, not resolved unilaterally.
 **CRYPT-1's claimed closure is unverified.** `cf8a145` says it documents the plaintext-key
 rationale; the citation to where that landed has not been checked against the diff.
 
+### v13.43 — The control system was built, wired, and has never executed
+
+This is the synthesis v13.40–v13.42 accumulated evidence for but did not state.
+
+**The claim.** Ten of ten enforcers are wired — 7 via `ci.yml`, 3 via `master-plan-guard.yml`,
+1 via `masterplan-consistency.yml`. CI produced **0 successful runs in its last 30** on
+`master`. `.husky/` contains `pre-commit` only — **there is no `pre-push` hook**. Therefore
+nothing has gated a push to `master` at any point, and every control shipped under Doctrine
+#047 across v13.35–v13.42 — C-1 through C-8, the closure-evidence checker, the language
+ratchet — has been decorative on the branch that ships. The one gate that ever fired is a
+local pre-commit hook, on whichever agent happened to run it.
+
+The distinction that matters: the controls are not **weak**, they are **unexecuted**. Those
+have opposite remedies, and the project has spent three versions strengthening rules whose
+runtime was zero.
+
+**The deploy gate is the same defect one layer up.** `vercel.json:3` wires
+`scripts/deploy-gate.mjs` as `ignoreCommand`, and v13.36 recorded it as verified. The script
+genuinely queries GitHub check-runs and evaluates conclusions — but it carries two explicit
+fail-open branches, one of which logs `gate is unenforced` before proceeding. Deploys succeeded
+today while CI produced no successful run, so the gate did not enforce. Which branch it took is
+`ölçülmedi` — the build-log head was not retrieved. v13.36's "verified" described the code, not
+an executing control.
+
+**What the missing signal cost, all cited above.** 20 consecutive failed deploys from one line
+(`44130f80`); a merge conflict marker reaching `origin` (`be884c2f`); a missing i18n key
+breaking the suite (`fcaa09f`); three type errors; 11 commits with no verification evidence;
+K-BENCHMARK publishing seeded 80.0 constants as measurements for a period that is `ölçülmedi`.
+
+**A failure mode worth naming, because it will recur.** The 20 failed deploys were fixed twice,
+at two layers, before the cause was found — `e2be9b37` corrected `params` handling on eight
+pages, which was correct in itself and moved the error rather than clearing it; `44130f80`
+found the actual cause. The Next collector named a different page each run, so the error text
+pointed somewhere new every time. **When the only feedback signal is broken, agents optimise
+against the error text rather than the cause.** Neither fix was wrong; the debugging loop was.
+
+**The ratchet is losing, not broken.** LANG-2 was recorded at 44 files, measured **82** while
+v13.42 was being written, and measures **83** now. The baseline only shrinks by design, so all
+growth is new violations — dozens of new `docs/plan/items/*.md` files and today's admin UI. The
+enforcer behaves correctly; the rate of new violations exceeds the rate of cleanup. "The check
+is broken" and "we are losing the race" have opposite fixes.
+
+The one-file drift between those two measurements was caused by v13.42's own commit, which
+added `docs/plan/items/TYPE-1.md` containing the word `ölçülmedi` — a word Rule 10 requires.
+The governance process is itself a source of the violations its enforcer counts. That is not an
+argument for relaxing either rule; it is the reason the count must be re-run rather than cited
+from memory.
+
+**Risk register, dated.** The TÜRKINFORM answer argues a detector with an unpublished error
+rate cannot be used as evidence. Three things currently sit on the wrong side of that standard:
+K-BENCHMARK published seeded constants as scores until `9adfcf5a` labelled them;
+`ercumenterden.com` claims to be the world's first independent AI incident registry, which AIID
+(2020) and AIAAIC (2019) falsify; and the CI that nominally validates all of it has never run.
+This risk exists until the article publishes and the claims are corrected.
+
+**Consequent reordering.** **RUNNER-1 moves to the top of the board, above CRYPT-1 and the
+remaining security work.** It is not an infrastructure ticket — until CI executes, every other
+item's completion claim is unverifiable, and this session has now twice recorded closures it
+could only confirm by running the checks by hand. **HOOK-1** is added as the interim gate that
+does not depend on GitHub-side runner allocation.
+
 ## v13.34 — Migration audit: parseability restored but content corrupted
 
 `docs/MASTER_PLAN.md` split (commits `e3b9f68f`, `ecb29f99`) fixed parsing (49/49 rows vs 0/50 before) but broke lossless requirement: `.split('|')` truncated **11 rows** containing literal pipes (grep patterns), corrupting status cells and truncating detail files (e.g., `docs/plan/items/BN.md` reads `Ã¼\`). Size ~90 KB vs 40 KB target. `check-masterplan-consistency.mjs` exits 0 (validates parseability, not content); `check-repo-language.mjs` RED from mojibake leakage. Analysis: `docs/plan/v13.37-rca.md` §2a. Fix: regex extraction, re-run migration, verify against pre-migration. Open.

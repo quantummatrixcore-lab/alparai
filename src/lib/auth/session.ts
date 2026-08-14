@@ -10,8 +10,14 @@ import type { Database } from "@/types/database";
 
 import { createAdminClient } from "@/lib/supabase/admin";
 
+if (process.env.IS_PLAYWRIGHT_TEST === "true" && process.env.NODE_ENV === "production") {
+  throw new Error(
+    "CRITICAL SECURITY VIOLATION: IS_PLAYWRIGHT_TEST test bypass must never be enabled in production. This indicates a misconfiguration or deployment error.",
+  );
+}
+
 export const getCurrentUser = cache(async (): Promise<SessionUser | null> => {
-  if (process.env.IS_PLAYWRIGHT_TEST === "true") {
+  if (process.env.IS_PLAYWRIGHT_TEST === "true" && process.env.NODE_ENV !== "production") {
     return {
       id: "playwright-test-user",
       email: "admin@playwright.test",

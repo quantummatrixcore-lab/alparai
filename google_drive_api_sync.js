@@ -1,0 +1,49 @@
+const { google } = require('googleapis');
+const fs = require('fs');
+const path = require('path');
+require('dotenv').config();
+
+// Kural (Madde 33): API varsa API kullanılır. CDP (Tarayıcı) fallback'tir.
+const SCOPES = ['https://www.googleapis.com/auth/drive.file'];
+
+async function uploadFileToDrive(filePath) {
+    console.log("[Wolf Pack] Google Drive API (Otonom Senkronizasyon) Başlatılıyor...");
+    
+    // Eğer kimlik dosyası yoksa uyarı ver
+    if (!process.env.GOOGLE_APPLICATION_CREDENTIALS) {
+        console.warn("[!] UYARI: GOOGLE_APPLICATION_CREDENTIALS bulunamadı.");
+        console.warn("[!] Kural 33 gereği API önceliklidir. Lütfen Service Account JSON dosyanızı sisteme ekleyin.");
+        console.warn("[*] Geçici olarak CDP (google_drive_automator.js) Fallback moduna geçiliyor...");
+        return;
+    }
+
+    try {
+        const auth = new google.auth.GoogleAuth({
+            scopes: SCOPES,
+        });
+
+        const drive = google.drive({ version: 'v3', auth });
+        const fileName = path.basename(filePath);
+
+        const fileMetadata = {
+            name: fileName,
+        };
+        const media = {
+            mimeType: 'application/octet-stream',
+            body: fs.createReadStream(filePath),
+        };
+
+        const file = await drive.files.create({
+            resource: fileMetadata,
+            media: media,
+            fields: 'id',
+        });
+        
+        console.log(`[+] API Senkronizasyonu Başarılı. Dosya ID: ${file.data.id}`);
+    } catch (err) {
+        console.error("[-] API Yükleme Hatası:", err.message);
+    }
+}
+
+// Örnek tetikleme
+// uploadFileToDrive('./logs/latest_backup.sql');

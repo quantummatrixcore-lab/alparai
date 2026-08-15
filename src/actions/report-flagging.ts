@@ -5,6 +5,7 @@ import { maskPII } from "@/lib/pii/guardian";
 import { logger } from "@/lib/utils/logger";
 import { headers } from "next/headers";
 import { hashIp } from "@/lib/utils/hash";
+import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 
 export interface ReportFlaggingState {
   ok: boolean;
@@ -41,6 +42,10 @@ export async function submitFlaggingReport(
 
     const hdrs = await headers();
     const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.report_flagging}:${ip}`);
+    if (!rl.ok) {
+      return { ok: false, error: `Rate limit exceeded. Please retry in ${rl.retryAfter ?? 60}s.` };
+    }
     const ipHash = hashIp(ip);
 
     const maskedContext = maskPII(context);

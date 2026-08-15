@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
 import { logger } from "@/lib/utils/logger";
 import { getCurrentUser } from "@/lib/auth/session";
+import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 
 export interface EmailPreferencesState {
   ok: boolean;
@@ -66,6 +67,11 @@ export async function updateEmailPreferencesAction(
     const user = await getCurrentUser();
     if (!user || user.id !== userId) {
       return { ok: false, error: "Unauthorized" };
+    }
+
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.email_preferences}:${user.id}`);
+    if (!rl.ok) {
+      return { ok: false, error: `Rate limit exceeded. Try again in ${rl.retryAfter ?? 60}s.` };
     }
 
     const weeklyDigest = formData.get("weeklyDigest") === "on";

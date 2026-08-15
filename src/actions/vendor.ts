@@ -5,6 +5,7 @@ import { createClient } from "@/lib/supabase/server";
 import { maskPII } from "@/lib/pii/guardian";
 import { logger } from "@/lib/utils/logger";
 import { getCurrentUser } from "@/lib/auth/session";
+import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { z } from "zod";
 
 const vendorResponseSchema = z.object({
@@ -40,6 +41,11 @@ export async function submitVendorResponseAction(
     const user = await getCurrentUser();
     if (!user) {
       return { ok: false, error: "Unauthorized" };
+    }
+
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.provider_response}:${user.id}`);
+    if (!rl.ok) {
+      return { ok: false, error: `Rate limit exceeded. Please wait ${rl.retryAfter ?? 60}s.` };
     }
 
     // Mask any sensitive PII in vendor response before storing

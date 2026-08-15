@@ -19,6 +19,9 @@ create table public.ai_poll_votes (
   primary key (poll_id, ip_hash)
 );
 
+alter table public.ai_polls enable row level security;
+alter table public.ai_poll_votes enable row level security;
+
 -- Seed Dilemmas
 insert into public.ai_polls (title, description) values
 ('Otonom Araç İkilemi', 'Otonom bir araç, yola aniden çıkan 5 yayayı ezmemek için direksiyonu kırıp içindeki 1 yolcuyu feda etmeli mi?'),

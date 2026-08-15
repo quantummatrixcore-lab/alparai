@@ -3,6 +3,8 @@
 import { maskPII } from "@/lib/pii/guardian";
 import { logger } from "@/lib/utils/logger";
 import { submitIncident, type SubmitIncidentState } from "@/actions/incidents";
+import { headers } from "next/headers";
+import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 
 /**
  * 113 Supported Languages ASR catalog (ISO-639-1 / BCP-47 codes).
@@ -157,6 +159,15 @@ export async function submitVoiceIncidentAction(
   formData: FormData,
 ): Promise<VoiceIncidentActionResult> {
   try {
+    const hdrs = await headers();
+    const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.voice_incident}:${ip}`);
+    if (!rl.ok) {
+      return {
+        success: false,
+        error: `Rate limit exceeded. Please retry in ${rl.retryAfter ?? 60}s.`,
+      };
+    }
     const file = formData.get("audio") || formData.get("file");
     if (!file || !(file instanceof Blob)) {
       return { success: false, error: "No audio file provided in request FormData" };

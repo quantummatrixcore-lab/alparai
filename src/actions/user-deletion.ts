@@ -3,6 +3,7 @@
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getCurrentUser } from "@/lib/auth/session";
 import { revalidatePath } from "next/cache";
+import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 
 export interface DeletionResult {
   ok: boolean;
@@ -17,6 +18,11 @@ export async function requestUserDeletionAction(
     const user = await getCurrentUser();
     if (!user) {
       return { ok: false, error: "Unauthorized" };
+    }
+
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.user_deletion}:${user.id}`);
+    if (!rl.ok) {
+      return { ok: false, error: `Rate limit exceeded. Retry after ${rl.retryAfter ?? 60}s.` };
     }
 
     const admin = createAdminClient();
@@ -51,6 +57,11 @@ export async function cancelUserDeletionAction(
     const user = await getCurrentUser();
     if (!user) {
       return { ok: false, error: "Unauthorized" };
+    }
+
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.user_deletion}:${user.id}`);
+    if (!rl.ok) {
+      return { ok: false, error: `Rate limit exceeded. Retry after ${rl.retryAfter ?? 60}s.` };
     }
 
     const admin = createAdminClient();

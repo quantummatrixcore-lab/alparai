@@ -113,6 +113,7 @@ CREATE TABLE IF NOT EXISTS embeddings (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 CREATE INDEX IF NOT EXISTS embeddings_hnsw_idx ON embeddings USING hnsw (embedding vector_cosine_ops);
+ALTER TABLE embeddings ENABLE ROW LEVEL SECURITY;
 
 -- 9. Match Embeddings Function
 CREATE OR REPLACE FUNCTION match_embeddings (
@@ -183,6 +184,7 @@ END $$;
 
 CREATE INDEX IF NOT EXISTS idx_profiles_referral_code ON profiles(referral_code);
 CREATE INDEX IF NOT EXISTS idx_profiles_referred_by ON profiles(referred_by);
+ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
 
 -- Create stub tables for documents, projects, grants just to satisfy the DecasHub search/index scripts if they don't exist
 CREATE TABLE IF NOT EXISTS documents (id UUID PRIMARY KEY, content TEXT, embedding VECTOR(1536));
@@ -191,6 +193,9 @@ CREATE TABLE IF NOT EXISTS grants (id UUID PRIMARY KEY, country TEXT, sector TEX
 
 CREATE INDEX IF NOT EXISTS idx_projects_owner ON projects (owner_id);
 CREATE INDEX IF NOT EXISTS idx_grants_country_sector ON grants (country, sector);
+ALTER TABLE documents ENABLE ROW LEVEL SECURITY;
+ALTER TABLE projects ENABLE ROW LEVEL SECURITY;
+ALTER TABLE grants ENABLE ROW LEVEL SECURITY;
 
 -- 12. Hybrid Match Function
 CREATE OR REPLACE FUNCTION match_documents_hybrid (

@@ -4,6 +4,8 @@ import { callWithFailover, FAST_TRIAGE_CHAIN } from "@/lib/ai/openrouter-gateway
 import { selectModelByCapability } from "@/lib/audit/model-router";
 import { logger } from "@/lib/utils/logger";
 import { maskPII } from "@/lib/pii/guardian";
+import { headers } from "next/headers";
+import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 
 export interface IncidentAnalysisResult {
   summary: string;
@@ -29,6 +31,16 @@ export async function analyzeIncident(
   description: string,
 ): Promise<AnalyzeIncidentState> {
   try {
+    const hdrs = await headers();
+    const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.incident_analyze}:${ip}`);
+    if (!rl.ok) {
+      return {
+        ok: false,
+        error: `Rate limit exceeded. Try again in ${rl.retryAfter ?? 60}s.`,
+      };
+    }
+
     const maskedTitle = maskPII(title || "").masked;
     const maskedDesc = maskPII(description || "").masked;
 

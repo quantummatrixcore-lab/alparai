@@ -71,6 +71,12 @@ create table if not exists public.bounty_badges (
   threshold_count integer not null default 1
 );
 
+alter table public.bounty_badges enable row level security;
+
+drop policy if exists "bounty_badges_public_read" on public.bounty_badges;
+create policy "bounty_badges_public_read" on public.bounty_badges
+  for select using (true);
+
 insert into public.bounty_badges (code, name_en, name_tr, description_en, description_tr, icon, threshold_count) values
   ('bug_hunter_first', 'First Bug Found', 'İlk Bug Yakalandı', 'Submitted the first validated AI incident.', 'İlk doğrulanmış AI olayını gönderdi.', 'trophy', 1),
   ('bug_hunter_bronze', 'Bug Hunter (Bronze)', 'Bug Avcısı (Bronz)', '5 validated AI incidents.', '5 doğrulanmış AI olayı.', 'medal', 5),

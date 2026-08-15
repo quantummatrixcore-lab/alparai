@@ -2,6 +2,8 @@
 
 import { uploadToDrive } from "@/lib/gdrive/client";
 import { revalidatePath } from "next/cache";
+import { headers } from "next/headers";
+import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 
 export async function uploadIncidentEvidence(formData: FormData) {
   try {

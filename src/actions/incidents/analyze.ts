@@ -4,6 +4,8 @@ import { callWithFailover, FAST_TRIAGE_CHAIN } from "@/lib/ai/openrouter-gateway
 import { selectModelByCapability } from "@/lib/audit/model-router";
 import { logger } from "@/lib/utils/logger";
 import { maskPII } from "@/lib/pii/guardian";
+import { headers } from "next/headers";
+import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 
 export interface IncidentAnalysisResult {
   summary: string;

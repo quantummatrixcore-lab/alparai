@@ -3,6 +3,8 @@
 import { maskPII } from "@/lib/pii/guardian";
 import { logger } from "@/lib/utils/logger";
 import { submitIncident, type SubmitIncidentState } from "@/actions/incidents";
+import { headers } from "next/headers";
+import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 
 /**
  * 113 Supported Languages ASR catalog (ISO-639-1 / BCP-47 codes).

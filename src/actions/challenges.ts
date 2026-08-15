@@ -5,6 +5,7 @@ import { createServerClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/lib/auth/session";
 import { logger } from "@/lib/utils/logger";
 import { maskPII } from "@/lib/pii/guardian";
+import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 
 export interface ChallengeVoteState {
   ok: boolean;

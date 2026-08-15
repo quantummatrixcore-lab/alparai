@@ -1,3 +1,4 @@
+import { maskPII } from "@/lib/pii/guardian";
 "use server";
 
 import { createServerClient } from "@/lib/supabase/server";
@@ -24,10 +25,10 @@ export async function upsertSwotItemAction(data: {
 
     const payload = {
       category: data.category,
-      title: data.title,
-      description: data.description,
+      title: maskPII(data.title.trim()).masked,
+      description: data.description ? maskPII(data.description).masked : null,
       weight: data.weight,
-      action_plan: data.action_plan,
+      action_plan: data.action_plan ? maskPII(data.action_plan).masked : null,
       target_date: data.target_date || null,
       status: data.status,
       owner_user_id: user.id,
@@ -105,7 +106,7 @@ export async function upsertRiskAction(data: {
       description: data.description,
       probability: data.probability,
       impact: data.impact,
-      mitigation_plan: data.mitigation_plan,
+      mitigation_plan: data.mitigation_plan ? maskPII(data.mitigation_plan).masked : null,
       target_date: data.target_date || null,
       status: data.status,
       owner_user_id: user.id,
@@ -178,7 +179,7 @@ export async function saveValuationAction(data: {
         method: data.method,
         inputs: data.inputs,
         result_pre_money: data.result_pre_money,
-        notes: data.notes,
+        notes: data.notes ? maskPII(data.notes).masked : null,
         snapshot_date: new Date().toISOString().split("T")[0],
         created_by: user.id,
         created_at: new Date().toISOString(),
@@ -215,7 +216,7 @@ export async function upsertMilestoneAction(data: {
     const payload = {
       quarter: data.quarter,
       title: data.title,
-      okr_text: data.okr_text,
+      okr_text: data.okr_text ? maskPII(data.okr_text).masked : null,
       progress: data.progress,
       status: data.status,
       linked_metric: data.linked_metric,

@@ -3,6 +3,8 @@
 import { createServerClient } from "@/lib/supabase/server";
 import { getCurrentUser } from "@/lib/auth/session";
 import { logger } from "@/lib/utils/logger";
+import { headers } from "next/headers";
+import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import type { Json } from "@/types/database";
 
 export async function trackFunnelEvent(eventName: string, metadata?: Record<string, unknown>) {

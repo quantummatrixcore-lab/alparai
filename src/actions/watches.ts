@@ -3,10 +3,14 @@
 import { createServerClient } from "@/lib/supabase/server";
 import { requireUser, getCurrentUser } from "@/lib/auth/session";
 import { revalidatePath } from "next/cache";
+import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 
 export async function watchProvider(providerId: string): Promise<{ success: boolean }> {
   try {
     const user = await requireUser();
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.watches}:${user.id}`);
+    if (!rl.ok) throw new Error("Rate limit exceeded. Please wait a moment.");
+
     const supabase = await createServerClient();
     const { error } = await supabase.from("user_provider_watches").insert({
       user_id: user.id,
@@ -24,6 +28,9 @@ export async function watchProvider(providerId: string): Promise<{ success: bool
 export async function unwatchProvider(providerId: string): Promise<{ success: boolean }> {
   try {
     const user = await requireUser();
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.watches}:${user.id}`);
+    if (!rl.ok) throw new Error("Rate limit exceeded. Please wait a moment.");
+
     const supabase = await createServerClient();
     const { error } = await supabase
       .from("user_provider_watches")

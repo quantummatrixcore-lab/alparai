@@ -5,6 +5,7 @@ import { maskPII } from "@/lib/pii/guardian";
 import { logger } from "@/lib/utils/logger";
 import { headers } from "next/headers";
 import { hashIp } from "@/lib/utils/hash";
+import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 
 export interface ReportFlaggingState {
   ok: boolean;

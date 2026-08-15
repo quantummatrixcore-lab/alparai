@@ -1,3 +1,4 @@
+import { maskPII } from "@/lib/pii/guardian";
 "use server";
 
 import { createServerClient } from "@/lib/supabase/server";
@@ -72,10 +73,10 @@ export async function acceptExternalIncident(
       .from("incidents")
       .insert({
         user_id: user.id,
-        title: queueItem.title,
-        title_masked: queueItem.title,
-        description: queueItem.body ?? "",
-        description_masked: queueItem.body ?? "",
+        title: maskPII(queueItem.title).masked,
+        title_masked: maskPII(queueItem.title).masked,
+        description: queueItem.body ? maskPII(queueItem.body).masked : "",
+        description_masked: queueItem.body ? maskPII(queueItem.body).masked : "",
         category: category as Database["public"]["Enums"]["incident_category"],
         severity: severity as Database["public"]["Enums"]["incident_severity"],
         source_url: queueItem.external_url,

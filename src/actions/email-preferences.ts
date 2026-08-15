@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
 import { logger } from "@/lib/utils/logger";
 import { getCurrentUser } from "@/lib/auth/session";
+import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 
 export interface EmailPreferencesState {
   ok: boolean;

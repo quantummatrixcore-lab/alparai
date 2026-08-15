@@ -5,6 +5,7 @@ import { createClient } from "@/lib/supabase/server";
 import { maskPII } from "@/lib/pii/guardian";
 import { logger } from "@/lib/utils/logger";
 import { getCurrentUser } from "@/lib/auth/session";
+import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { z } from "zod";
 
 const vendorResponseSchema = z.object({

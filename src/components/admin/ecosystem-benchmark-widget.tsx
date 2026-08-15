@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import {
   getEcosystemBenchmarks,
   calculateMoatIndex,
@@ -21,6 +22,7 @@ import {
 } from "lucide-react";
 
 export function EcosystemBenchmarkWidget() {
+  const t = useTranslations("admin");
   const [players] = useState<EcosystemPlayer[]>(() => getEcosystemBenchmarks());
   const [selectedPlayerName, setSelectedPlayerName] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
@@ -50,16 +52,12 @@ export function EcosystemBenchmarkWidget() {
           <div className="max-w-2xl space-y-2">
             <div className="border-brand-500/30 bg-brand-500/10 text-brand-300 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold">
               <Sparkles className="text-brand-400 h-3.5 w-3.5" />
-              <span>360° Competitive Intelligence & Post-Mortem</span>
+              <span>{t("ecosystem_badge")}</span>
             </div>
             <h2 className="text-2xl font-black tracking-tight text-white md:text-3xl">
-              Ecosystem Benchmarking & Moat Analysis
+              {t("ecosystem_title")}
             </h2>
-            <p className="text-fg-muted text-sm leading-relaxed">
-              Deconstruct market pioneers (OpenRouter, Blackbox AI, LMSYS, Scale AI, LangChain) to
-              extract growth drivers, avert structural failure pitfalls, and solidify ALPAR
-              AI&apos;s defensible trust infrastructure.
-            </p>
+            <p className="text-fg-muted text-sm leading-relaxed">{t("ecosystem_description")}</p>
           </div>
 
           {/* Defensive Positioning Index Card */}
@@ -67,7 +65,7 @@ export function EcosystemBenchmarkWidget() {
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
               <span className="text-fg-muted flex items-center gap-1.5 text-[10px] font-extrabold tracking-widest uppercase">
                 <Target className="text-success-400 h-3.5 w-3.5" />
-                Defensive Moat Index
+                {t("ecosystem_moat_index_title")}
               </span>
               <span className="border-success-500/20 bg-success-500/10 text-success-400 rounded-full border px-2 py-0.5 font-mono text-xs font-bold">
                 {positioning.tier}
@@ -78,7 +76,7 @@ export function EcosystemBenchmarkWidget() {
               <div>
                 <div className="font-mono text-3xl font-black text-white">{moatIndex}</div>
                 <div className="text-fg-muted text-[10px] font-semibold tracking-wider uppercase">
-                  Out of 100 Moat Score
+                  {t("ecosystem_moat_score_max")}
                 </div>
               </div>
               <div className="text-right">
@@ -110,7 +108,7 @@ export function EcosystemBenchmarkWidget() {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search players, categories, moats..."
+            placeholder={t("ecosystem_search_placeholder")}
             className="bg-bg-secondary/60 placeholder-fg-muted focus:border-brand-500 focus:ring-brand-500 w-full rounded-xl border border-white/10 py-2 pr-4 pl-9 text-xs text-white transition-all focus:ring-1 focus:outline-none"
           />
         </div>
@@ -124,7 +122,7 @@ export function EcosystemBenchmarkWidget() {
                 : "bg-bg-tertiary/40 text-fg-muted border border-white/5 hover:text-white"
             }`}
           >
-            All Players ({players.length})
+            {t("ecosystem_all_players", { count: players.length })}
           </button>
           {players.map((player) => (
             <button
@@ -164,7 +162,9 @@ export function EcosystemBenchmarkWidget() {
                     </h3>
                   </div>
                   <div className="shrink-0 text-right">
-                    <span className="text-fg-muted block text-xs">Moat Score</span>
+                    <span className="text-fg-muted block text-xs">
+                      {t("ecosystem_card_moat_score")}
+                    </span>
                     <span className="text-success-400 font-mono text-xl font-extrabold">
                       {player.moatScore}/100
                     </span>
@@ -174,7 +174,7 @@ export function EcosystemBenchmarkWidget() {
                 {/* Success Factors */}
                 <div className="space-y-1.5">
                   <div className="text-success-400 flex items-center gap-1 text-[11px] font-bold tracking-wider uppercase">
-                    <Zap className="h-3.5 w-3.5" /> Success Drivers
+                    <Zap className="h-3.5 w-3.5" /> {t("ecosystem_card_success_drivers")}
                   </div>
                   <ul className="space-y-1">
                     {player.successFactors.map((sf, idx) => (
@@ -189,7 +189,8 @@ export function EcosystemBenchmarkWidget() {
                 {/* Failure Pitfalls */}
                 <div className="space-y-1.5 border-t border-white/5 pt-2">
                   <div className="text-danger-400 flex items-center gap-1 text-[11px] font-bold tracking-wider uppercase">
-                    <AlertTriangle className="h-3.5 w-3.5" /> Critical Pitfalls
+                    <AlertTriangle className="h-3.5 w-3.5" />{" "}
+                    {t("ecosystem_card_critical_pitfalls")}
                   </div>
                   <ul className="space-y-1">
                     {player.failurePitfalls.map((fp, idx) => (
@@ -206,7 +207,7 @@ export function EcosystemBenchmarkWidget() {
               <div className="bg-brand-950/30 border-brand-500/20 -mx-6 mt-5 -mb-6 rounded-b-2xl border-t border-white/10 p-4 pt-4">
                 <div className="text-brand-300 mb-1 flex items-center gap-1.5 text-[11px] font-extrabold tracking-wider uppercase">
                   <ShieldCheck className="text-brand-400 h-4 w-4" />
-                  ALPAR Defensible Advantage
+                  {t("ecosystem_card_alpar_advantage")}
                 </div>
                 <p className="text-fg-muted text-xs leading-relaxed">{player.alparMoat}</p>
               </div>
@@ -221,15 +222,13 @@ export function EcosystemBenchmarkWidget() {
           <div>
             <h3 className="flex items-center gap-2 text-lg font-bold text-white">
               <Layers className="text-brand-400 h-5 w-5" />
-              360° Ecosystem Post-Mortem Comparison Matrix
+              {t("ecosystem_matrix_title")}
             </h3>
-            <p className="text-fg-muted mt-1 text-xs">
-              Side-by-side strategic decomposition of market competitors vs ALPAR AI Moat.
-            </p>
+            <p className="text-fg-muted mt-1 text-xs">{t("ecosystem_matrix_description")}</p>
           </div>
           <div className="text-fg-muted flex items-center gap-2 rounded-xl border border-white/5 bg-white/5 px-3 py-1.5 font-mono text-xs">
             <Cpu className="text-brand-400 h-3.5 w-3.5" />
-            <span>5 Pioneer Market Models Tracked</span>
+            <span>{t("ecosystem_matrix_models_tracked", { count: 5 })}</span>
           </div>
         </div>
 
@@ -237,11 +236,13 @@ export function EcosystemBenchmarkWidget() {
           <table className="text-fg-muted w-full border-collapse text-left text-xs">
             <thead>
               <tr className="border-b border-white/10 bg-white/5 font-mono text-[10px] tracking-wider text-white uppercase">
-                <th className="rounded-tl-xl p-3.5">Player & Category</th>
-                <th className="p-3.5">Key Success Factors</th>
-                <th className="p-3.5">Failure Pitfalls to Avoid</th>
-                <th className="p-3.5">ALPAR AI Moat Strategy</th>
-                <th className="rounded-tr-xl p-3.5 text-right">Moat Score</th>
+                <th className="rounded-tl-xl p-3.5">{t("ecosystem_matrix_col_player")}</th>
+                <th className="p-3.5">{t("ecosystem_matrix_col_success")}</th>
+                <th className="p-3.5">{t("ecosystem_matrix_col_pitfalls")}</th>
+                <th className="p-3.5">{t("ecosystem_matrix_col_moat")}</th>
+                <th className="rounded-tr-xl p-3.5 text-right">
+                  {t("ecosystem_matrix_col_score")}
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-white/5">
@@ -276,7 +277,7 @@ export function EcosystemBenchmarkWidget() {
                     <div className="border-brand-500/20 bg-brand-500/10 text-brand-200 rounded-lg border p-2.5 text-xs leading-relaxed">
                       <div className="text-brand-300 mb-1 flex items-center gap-1 font-semibold">
                         <ShieldCheck className="text-brand-400 h-3.5 w-3.5" />
-                        Strategic Defense
+                        {t("ecosystem_matrix_strategic_defense")}
                       </div>
                       {p.alparMoat}
                     </div>

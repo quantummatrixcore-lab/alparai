@@ -271,7 +271,9 @@ export function UsersClient({ users, userRole, locale }: UsersClientProps) {
       </div>
 
       <motion.div variants={itemVariants} className="mb-4">
-        <CreateUserModal triggerText="Create New User Manually" />
+        <CreateUserModal
+          triggerText={t("create_new_user_manually") || "Create New User Manually"}
+        />
       </motion.div>
 
       <motion.div variants={itemVariants}>

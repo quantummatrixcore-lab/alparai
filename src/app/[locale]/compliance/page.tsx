@@ -54,7 +54,7 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
       icon: Clock,
       title: t("item1_title"),
       desc: t("item1_desc"),
-      category: "Mandatory SLA",
+      category: t("cat_mandatory_sla"),
       color: "text-amber-400 border-amber-500/20 bg-amber-500/10",
     },
     {
@@ -62,7 +62,7 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
       icon: AlertTriangle,
       title: t("item2_title"),
       desc: t("item2_desc"),
-      category: "Annex III Scope",
+      category: t("cat_annex_iii_scope"),
       color: "text-rose-400 border-rose-500/20 bg-rose-500/10",
     },
     {
@@ -70,7 +70,7 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
       icon: Lock,
       title: t("item3_title"),
       desc: t("item3_desc"),
-      category: "GDPR & PII",
+      category: t("cat_gdpr_pii"),
       color: "text-purple-400 border-purple-500/20 bg-purple-500/10",
     },
     {
@@ -78,7 +78,7 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
       icon: Database,
       title: t("item4_title"),
       desc: t("item4_desc"),
-      category: "Audit Infrastructure",
+      category: t("cat_audit_infra"),
       color: "text-blue-400 border-blue-500/20 bg-blue-500/10",
     },
     {
@@ -86,7 +86,7 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
       icon: ShieldAlert,
       title: t("item5_title"),
       desc: t("item5_desc"),
-      category: "Regulatory Channel",
+      category: t("cat_regulatory_channel"),
       color: "text-emerald-400 border-emerald-500/20 bg-emerald-500/10",
     },
     {
@@ -94,7 +94,7 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
       icon: FileCheck2,
       title: t("item6_title"),
       desc: t("item6_desc"),
-      category: "Governance",
+      category: t("cat_governance"),
       color: "text-indigo-400 border-indigo-500/20 bg-indigo-500/10",
     },
     {
@@ -102,7 +102,7 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
       icon: Search,
       title: t("item7_title"),
       desc: t("item7_desc"),
-      category: "Forensic Analysis",
+      category: t("cat_forensic_analysis"),
       color: "text-cyan-400 border-cyan-500/20 bg-cyan-500/10",
     },
     {
@@ -110,7 +110,7 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
       icon: CheckCircle,
       title: t("item8_title"),
       desc: t("item8_desc"),
-      category: "Mitigation & Safeguards",
+      category: t("cat_mitigation_safeguards"),
       color: "text-teal-400 border-teal-500/20 bg-teal-500/10",
     },
     {
@@ -118,7 +118,7 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
       icon: Scale,
       title: t("item9_title"),
       desc: t("item9_desc"),
-      category: "EU Jurisdiction",
+      category: t("cat_eu_jurisdiction"),
       color: "text-sky-400 border-sky-500/20 bg-sky-500/10",
     },
     {
@@ -126,7 +126,7 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
       icon: Building2,
       title: t("item10_title"),
       desc: t("item10_desc"),
-      category: "Subscriber Protection",
+      category: t("cat_subscriber_protection"),
       color: "text-orange-400 border-orange-500/20 bg-orange-500/10",
     },
     {
@@ -134,7 +134,7 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
       icon: Radio,
       title: t("item11_title"),
       desc: t("item11_desc"),
-      category: "MLOps Retrain Pipeline",
+      category: t("cat_mlops_retrain"),
       color: "text-violet-400 border-violet-500/20 bg-violet-500/10",
     },
     {
@@ -142,7 +142,7 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
       icon: FileText,
       title: t("item12_title"),
       desc: t("item12_desc"),
-      category: "10-Year Archiving",
+      category: t("cat_10yr_archiving"),
       color: "text-blue-400 border-blue-500/20 bg-blue-500/10",
     },
   ];
@@ -190,12 +190,12 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
             <div className="mt-8 inline-flex flex-wrap items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-6 py-3 text-xs font-medium text-gray-300 backdrop-blur-sm">
               <div className="flex items-center gap-1.5 text-blue-400">
                 <Building2 className="h-4 w-4" />
-                <span>Banking (EBA/ECB)</span>
+                <span>{t("sector_banking_callout")}</span>
               </div>
               <span className="text-gray-600">•</span>
               <div className="flex items-center gap-1.5 text-cyan-400">
                 <Radio className="h-4 w-4" />
-                <span>Telecom (BEREC/GDPR)</span>
+                <span>{t("sector_telecom_callout")}</span>
               </div>
               <span className="text-gray-600">•</span>
               <span className="text-emerald-400">{t("banking_telecom_notice")}</span>
@@ -244,12 +244,9 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
           <div className="mt-24">
             <div className="mb-12 text-center">
               <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                EU AI Act Article 73 Implementation Checklist
+                {t("checklist_section_title")}
               </h2>
-              <p className="text-fg-secondary mt-3">
-                12 operational steps required for banking and telecom compliance departments under
-                Annex III high-risk AI rules.
-              </p>
+              <p className="text-fg-secondary mt-3">{t("checklist_section_desc")}</p>
             </div>
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -292,28 +289,25 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/20 text-blue-400">
                   <Building2 className="h-5 w-5" />
                 </div>
-                <h3 className="text-xl font-bold text-white">Banking & Financial Services</h3>
+                <h3 className="text-xl font-bold text-white">{t("banking_section_title")}</h3>
               </div>
               <ul className="space-y-3 text-sm text-gray-300">
                 <li className="flex items-start gap-2">
                   <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-blue-400" />
                   <span>
-                    <strong>Credit Scoring AI (Annex III §5b):</strong> Mandatory incident logging
-                    and 72h NCA reporting for biased credit denial algorithms.
+                    <strong>{t("banking_item1_label")}</strong> {t("banking_item1_text")}
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-blue-400" />
                   <span>
-                    <strong>Fraud Detection:</strong> Real-time PII masking before passing
-                    transaction telemetry to regulatory audit trails.
+                    <strong>{t("banking_item2_label")}</strong> {t("banking_item2_text")}
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-blue-400" />
                   <span>
-                    <strong>Algorithmic Trading & Risk Models:</strong> 10-year immutable record
-                    retention aligned with EBA/ECB AI guidelines.
+                    <strong>{t("banking_item3_label")}</strong> {t("banking_item3_text")}
                   </span>
                 </li>
               </ul>
@@ -325,28 +319,25 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/20 text-cyan-400">
                   <Radio className="h-5 w-5" />
                 </div>
-                <h3 className="text-xl font-bold text-white">Telecommunications & Networks</h3>
+                <h3 className="text-xl font-bold text-white">{t("telecom_section_title")}</h3>
               </div>
               <ul className="space-y-3 text-sm text-gray-300">
                 <li className="flex items-start gap-2">
                   <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-cyan-400" />
                   <span>
-                    <strong>Network Traffic Optimization:</strong> Immediate circuit-breakers for
-                    autonomous routing incidents affecting critical infrastructure.
+                    <strong>{t("telecom_item1_label")}</strong> {t("telecom_item1_text")}
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-cyan-400" />
                   <span>
-                    <strong>Subscriber Care & Chatbots:</strong> Automated detection and logging of
-                    hallucinations or unauthorized data disclosures under Art. 52.
+                    <strong>{t("telecom_item2_label")}</strong> {t("telecom_item2_text")}
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-cyan-400" />
                   <span>
-                    <strong>GDPR & BEREC Alignment:</strong> Subscriber notification workflows
-                    integrated with national telecom regulator channels.
+                    <strong>{t("telecom_item3_label")}</strong> {t("telecom_item3_text")}
                   </span>
                 </li>
               </ul>

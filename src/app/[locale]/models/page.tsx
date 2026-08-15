@@ -161,7 +161,7 @@ export default async function ModelsPage({ params, searchParams }: ModelPageProp
       <div className="relative space-y-4 text-center">
         <div className="border-brand-500/30 bg-brand-500/10 text-brand-300 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold backdrop-blur-md">
           <Sparkles className="text-brand-400 h-3.5 w-3.5 animate-pulse" />
-          <span>K-BENCHMARK 3.0 • ENTERPRISE MODEL EVALUATION</span>
+          <span>{t("enterprise_badge")}</span>
         </div>
         <h1 className="text-fg-primary to-brand-300 bg-gradient-to-r from-white via-slate-100 bg-clip-text text-4xl font-black tracking-tight text-transparent sm:text-5xl lg:text-6xl">
           {t("page_title")}
@@ -176,7 +176,7 @@ export default async function ModelsPage({ params, searchParams }: ModelPageProp
         <div className="hover:border-brand-500/40 relative overflow-hidden rounded-2xl border border-white/10 bg-slate-900/40 p-5 shadow-xl backdrop-blur-xl transition-all duration-300 hover:bg-slate-900/60">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold tracking-wider text-slate-400 uppercase">
-              Total Models
+              {t("stat_total_models")}
             </span>
             <div className="border-brand-500/20 bg-brand-500/10 text-brand-400 flex h-9 w-9 items-center justify-center rounded-xl border">
               <Cpu className="h-5 w-5" />
@@ -185,47 +185,47 @@ export default async function ModelsPage({ params, searchParams }: ModelPageProp
           <div className="mt-3 text-3xl font-extrabold text-white">{totalModelsCount}</div>
           <div className="mt-1 flex items-center gap-1 text-xs text-slate-400">
             <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
-            <span>Catalog & Verified</span>
+            <span>{t("stat_total_models_sub")}</span>
           </div>
         </div>
 
         <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-slate-900/40 p-5 shadow-xl backdrop-blur-xl transition-all duration-300 hover:border-amber-500/40 hover:bg-slate-900/60">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold tracking-wider text-slate-400 uppercase">
-              Rated Models
+              {t("stat_rated_models")}
             </span>
             <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-amber-500/20 bg-amber-500/10 text-amber-400">
               <Star className="h-5 w-5 fill-amber-400/20" />
             </div>
           </div>
           <div className="mt-3 text-3xl font-extrabold text-white">{ratedModelsCount}</div>
-          <div className="mt-1 text-xs text-slate-400">Community Benchmarked</div>
+          <div className="mt-1 text-xs text-slate-400">{t("stat_rated_models_sub")}</div>
         </div>
 
         <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-slate-900/40 p-5 shadow-xl backdrop-blur-xl transition-all duration-300 hover:border-indigo-500/40 hover:bg-slate-900/60">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold tracking-wider text-slate-400 uppercase">
-              AI Labs & Providers
+              {t("stat_providers")}
             </span>
             <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-indigo-500/20 bg-indigo-500/10 text-indigo-400">
               <Layers className="h-5 w-5" />
             </div>
           </div>
           <div className="mt-3 text-3xl font-extrabold text-white">{uniqueProvidersCount}</div>
-          <div className="mt-1 text-xs text-slate-400">Active Ecosystem</div>
+          <div className="mt-1 text-xs text-slate-400">{t("stat_providers_sub")}</div>
         </div>
 
         <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-slate-900/40 p-5 shadow-xl backdrop-blur-xl transition-all duration-300 hover:border-purple-500/40 hover:bg-slate-900/60">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold tracking-wider text-slate-400 uppercase">
-              Community Audits
+              {t("stat_audits")}
             </span>
             <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-purple-500/20 bg-purple-500/10 text-purple-400">
               <Award className="h-5 w-5" />
             </div>
           </div>
           <div className="mt-3 text-3xl font-extrabold text-white">{totalAuditsCount}</div>
-          <div className="mt-1 text-xs text-slate-400">Reviews & Feature Requests</div>
+          <div className="mt-1 text-xs text-slate-400">{t("stat_audits_sub")}</div>
         </div>
       </div>
 
@@ -271,14 +271,12 @@ export default async function ModelsPage({ params, searchParams }: ModelPageProp
       <div className="overflow-hidden rounded-2xl border border-white/10 bg-slate-900/40 shadow-2xl backdrop-blur-xl">
         {/* Table Header (Hidden on Mobile) */}
         <div className="hidden border-b border-white/10 bg-slate-950/60 px-6 py-4 text-xs font-black tracking-widest text-slate-400 uppercase md:grid md:grid-cols-[2fr_1.2fr_1.2fr_1.2fr_0.8fr_0.8fr_40px] md:items-center md:gap-4">
-          <div>{t("table_model_name", { defaultValue: "Model" })}</div>
-          <div>{t("table_provider", { defaultValue: "Provider" })}</div>
-          <div>{t("table_status", { defaultValue: "Status" })}</div>
-          <div className="text-center">{t("table_rating", { defaultValue: "Rating" })}</div>
-          <div className="text-center">{t("table_reviews", { defaultValue: "Reviews" })}</div>
-          <div className="text-center">
-            {t("table_suggestions", { defaultValue: "Suggestions" })}
-          </div>
+          <div>{t("table_model_name")}</div>
+          <div>{t("table_provider")}</div>
+          <div>{t("table_status")}</div>
+          <div className="text-center">{t("table_rating")}</div>
+          <div className="text-center">{t("table_reviews")}</div>
+          <div className="text-center">{t("table_suggestions")}</div>
           <div></div>
         </div>
 
@@ -390,7 +388,7 @@ export default async function ModelsPage({ params, searchParams }: ModelPageProp
                     <Lightbulb className="h-4 w-4 shrink-0 text-slate-400 md:hidden" />
                     <span className="text-sm font-bold">{featuresCount}</span>
                     <span className="ml-1 text-xs text-slate-400 md:hidden">
-                      ({t("suggestions_label", { defaultValue: "suggestions" })})
+                      ({t("suggestions_label")})
                     </span>
                   </div>
 

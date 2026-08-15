@@ -51,9 +51,12 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
 
   // Auth / Company Token state
   const [authToken, setAuthToken] = useState("");
-  const [authenticatedVendor, setAuthenticatedVendor] = useState<
-    (typeof VENDOR_COMPANIES)[0] | null
-  >(null);
+  const [authenticatedVendor, setAuthenticatedVendor] = useState<{
+    id: string;
+    name: string;
+    token: string;
+    badge: string;
+  } | null>(null);
   const [authError, setAuthError] = useState("");
 
   // Incidents state
@@ -91,10 +94,10 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
         id: "custom_vendor",
         name: authToken.trim().toUpperCase(),
         token: authToken.trim(),
-        badge: "Verified Vendor",
+        badge: t("verified_vendor_badge"),
       });
     } else {
-      setAuthError("Invalid access token. Try entering 'vtr_anthropic_2026' or company slug.");
+      setAuthError(t("auth_error_invalid_token"));
     }
   };
 
@@ -290,7 +293,9 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
                 <ShieldAlert className="text-success-400 h-4 w-4" />
                 {t("incidents_title")}
               </h2>
-              <span className="text-fg-muted text-xs">{filteredIncidents.length} items</span>
+              <span className="text-fg-muted text-xs">
+                {t("items_count", { count: filteredIncidents.length })}
+              </span>
             </div>
 
             {/* Search and Tabs */}
@@ -421,7 +426,7 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
                       {selectedIncident.modelName}
                     </span>
                     <span className="text-fg-muted text-xs">
-                      ID: {selectedIncident.id.slice(0, 8)}...
+                      {t("id_prefix")}: {selectedIncident.id.slice(0, 8)}...
                     </span>
                   </div>
 

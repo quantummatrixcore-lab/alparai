@@ -57,7 +57,7 @@ export const dynamic = "force-dynamic";
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "admin" });
-  return { title: t("dashboard") || "360° Spatial Cockpit — ALPAR AI" };
+  return { title: t("dashboard_title") };
 }
 
 export default async function AdminDashboardPage({
@@ -67,6 +67,7 @@ export default async function AdminDashboardPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: "admin" });
 
   // Fetch dynamic data for widgets
   const [startupHealth, signals, funding, crons] = await Promise.all([
@@ -81,7 +82,9 @@ export default async function AdminDashboardPage({
   const activeSubscribers =
     startupHealth?.kpis.find((k) => k.label === "Newsletter Subscribers")?.totalCount ?? "0";
   const grantsWon =
-    funding?.combinedWon !== undefined ? `${funding.combinedWon} Kazanılan` : "0 Kazanılan";
+    funding?.combinedWon !== undefined
+      ? t("grants_won_count", { count: funding.combinedWon })
+      : t("grants_won_count", { count: 0 });
   const apiCost = startupHealth?.zeroCostBurnStr ?? "$0/mo";
   const mrr = startupHealth?.mrr ? `$${startupHealth.mrr}` : "—";
   const latency = signals?.find((s) => s.name === "API Response Time")?.value
@@ -100,14 +103,13 @@ export default async function AdminDashboardPage({
           <div className="space-y-2">
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold tracking-wide text-emerald-400">
               <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
-              360° SPATIAL COCKPIT — PROD OPERATIONAL
+              {t("badge_spatial_cockpit")}
             </div>
             <h1 className="from-fg-primary via-fg-secondary to-fg-muted bg-gradient-to-r bg-clip-text text-3xl font-bold tracking-tight text-transparent sm:text-4xl md:text-5xl">
-              ALPAR AI Command Center
+              {t("command_center_title")}
             </h1>
             <p className="text-fg-muted text-sm font-medium sm:text-base">
-              Autonomous Governance, Financial Engine, Security Radar & Strategy Control (56
-              Integrated Routes)
+              {t("command_center_subtitle")}
             </p>
           </div>
 
@@ -117,7 +119,7 @@ export default async function AdminDashboardPage({
               className="inline-flex items-center gap-2 rounded-2xl border border-cyan-500/30 bg-cyan-500/10 px-4 py-2.5 text-sm font-medium text-cyan-300 transition-all duration-300 hover:border-cyan-500/60 hover:bg-cyan-500/20 hover:text-white"
             >
               <FileText className="h-4 w-4 text-cyan-400" />
-              <span>Master Plan v12.83</span>
+              <span>{t("header_master_plan")}</span>
             </Link>
 
             <Link
@@ -125,15 +127,15 @@ export default async function AdminDashboardPage({
               className="inline-flex items-center gap-2 rounded-2xl border border-purple-500/30 bg-purple-500/10 px-4 py-2.5 text-sm font-medium text-purple-300 transition-all duration-300 hover:border-purple-500/60 hover:bg-purple-500/20 hover:text-white"
             >
               <Sparkles className="h-4 w-4 text-purple-400" />
-              <span>Spatial View</span>
+              <span>{t("spatial_view")}</span>
             </Link>
 
             <button
-              aria-label="Open Command Palette"
+              aria-label={t("command_palette")}
               className="text-fg-muted border-border-subtle hover:border-border-strong hover:text-fg-primary group flex items-center gap-3 rounded-2xl border bg-white/5 px-4 py-2.5 text-sm backdrop-blur-xl transition-all duration-200 hover:bg-white/10"
             >
               <Search className="h-4 w-4" />
-              <span className="font-medium">Command Palette</span>
+              <span className="font-medium">{t("command_palette")}</span>
               <kbd className="text-fg-secondary ml-2 hidden h-5 items-center gap-0.5 rounded-md bg-white/10 px-2 font-mono text-[11px] font-semibold md:inline-flex">
                 <span>⌘</span>
                 <span>K</span>
@@ -171,34 +173,32 @@ export default async function AdminDashboardPage({
                   </div>
                   <div>
                     <h2 className="text-fg-primary text-xl font-bold tracking-tight">
-                      Finans & Operasyonel Maliyet
+                      {t("financial_ops_title")}
                     </h2>
-                    <p className="text-fg-muted text-xs">
-                      Financial Ledger, Grants, Users & Operational Unit Costs
-                    </p>
+                    <p className="text-fg-muted text-xs">{t("financial_ops_desc")}</p>
                   </div>
                 </div>
                 <span className="text-fg-muted rounded-full border border-zinc-500/30 bg-zinc-500/10 px-3 py-1 text-xs font-semibold">
-                  MRR —
+                  {t("mrr_label")}
                 </span>
               </div>
 
               {/* KPI Cards */}
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
                 <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
-                  <p className="text-fg-muted text-xs font-medium">Monthly Revenue</p>
+                  <p className="text-fg-muted text-xs font-medium">{t("monthly_revenue")}</p>
                   <p className="mt-1 text-lg font-bold text-emerald-400">{mrr}</p>
                 </div>
                 <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
-                  <p className="text-fg-muted text-xs font-medium">Active Subscribers</p>
+                  <p className="text-fg-muted text-xs font-medium">{t("active_subscribers")}</p>
                   <p className="text-fg-primary mt-1 text-lg font-bold">{activeSubscribers}</p>
                 </div>
                 <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
-                  <p className="text-fg-muted text-xs font-medium">Grants & Funding</p>
+                  <p className="text-fg-muted text-xs font-medium">{t("grants_funding")}</p>
                   <p className="mt-1 text-lg font-bold text-cyan-400">{grantsWon}</p>
                 </div>
                 <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
-                  <p className="text-fg-muted text-xs font-medium">API & Infra Cost</p>
+                  <p className="text-fg-muted text-xs font-medium">{t("api_infra_cost")}</p>
                   <p className="mt-1 text-lg font-bold text-amber-400">{apiCost}</p>
                 </div>
               </div>
@@ -206,60 +206,64 @@ export default async function AdminDashboardPage({
               {/* Route Shortcuts Grid */}
               <div className="space-y-3">
                 <p className="text-fg-muted text-xs font-semibold tracking-wider uppercase">
-                  Finans Rotaları (12 Entegre Modül)
+                  {t("finance_routes_heading")}
                 </p>
                 <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
                   {[
                     {
                       href: `/${locale}/admin/billing`,
-                      label: "Billing & Invoices",
+                      label: t("route_billing_invoices"),
                       icon: DollarSign,
                     },
                     {
                       href: `/${locale}/admin/finance`,
-                      label: "Financial Ledger",
+                      label: t("route_financial_ledger"),
                       icon: LineChart,
                     },
-                    { href: `/${locale}/admin/grants`, label: "Grants & R&D", icon: Award },
-                    { href: `/${locale}/admin/users`, label: "User Directory", icon: Users },
+                    { href: `/${locale}/admin/grants`, label: t("route_grants_rd"), icon: Award },
+                    {
+                      href: `/${locale}/admin/users`,
+                      label: t("route_user_directory"),
+                      icon: Users,
+                    },
                     {
                       href: `/${locale}/admin/metrics-hub/api-metrics`,
-                      label: "API Unit Costs",
+                      label: t("route_api_unit_costs"),
                       icon: PieChart,
                     },
                     {
                       href: `/${locale}/admin/investors`,
-                      label: "Investors Portal",
+                      label: t("route_investors_portal"),
                       icon: TrendingUp,
                     },
                     {
                       href: `/${locale}/admin/startup-health`,
-                      label: "Startup Health",
+                      label: t("route_startup_health"),
                       icon: Activity,
                     },
                     {
                       href: `/${locale}/admin/strategy/valuation`,
-                      label: "Valuation Models",
+                      label: t("route_valuation_models"),
                       icon: FileSpreadsheet,
                     },
                     {
                       href: `/${locale}/admin/strategy/state-support`,
-                      label: "State Support",
+                      label: t("route_state_support"),
                       icon: CheckCircle2,
                     },
                     {
                       href: `/${locale}/admin/resources`,
-                      label: "Resource Alloc",
+                      label: t("route_resource_alloc"),
                       icon: Layers,
                     },
                     {
                       href: `/${locale}/admin/ecosystem`,
-                      label: "Ecosystem Capital",
+                      label: t("route_ecosystem_capital"),
                       icon: Globe,
                     },
                     {
                       href: `/${locale}/admin/import`,
-                      label: "Data Import/Export",
+                      label: t("route_data_import_export"),
                       icon: ArrowUpRight,
                     },
                   ].map((route) => (
@@ -280,12 +284,12 @@ export default async function AdminDashboardPage({
             </div>
 
             <div className="border-border-subtle mt-6 flex items-center justify-between border-t pt-4 text-xs">
-              <span className="text-fg-muted">Auto-synced via Supabase & Resend API</span>
+              <span className="text-fg-muted">{t("sync_supabase_resend")}</span>
               <Link
                 href={`/${locale}/admin/billing`}
                 className="font-semibold text-emerald-400 transition-all duration-200 hover:underline"
               >
-                Finansal Raporları İncele →
+                {t("view_financial_reports")}
               </Link>
             </div>
           </section>
@@ -303,34 +307,32 @@ export default async function AdminDashboardPage({
                   </div>
                   <div>
                     <h2 className="text-fg-primary text-xl font-bold tracking-tight">
-                      AI Core & Sistem Sağlığı
+                      {t("ai_core_system_health_title")}
                     </h2>
-                    <p className="text-fg-muted text-xs">
-                      TOM Engine, Edge Latency, Crons & Autopilot Status
-                    </p>
+                    <p className="text-fg-muted text-xs">{t("ai_core_system_health_desc")}</p>
                   </div>
                 </div>
                 <span className="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 text-xs font-semibold text-cyan-400">
-                  Uptime 99.99%
+                  {t("uptime_badge")}
                 </span>
               </div>
 
               {/* KPI Cards */}
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
                 <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
-                  <p className="text-fg-muted text-xs font-medium">Edge Region</p>
+                  <p className="text-fg-muted text-xs font-medium">{t("edge_region")}</p>
                   <p className="mt-1 text-lg font-bold text-cyan-400">fra1 (Vercel)</p>
                 </div>
                 <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
-                  <p className="text-fg-muted text-xs font-medium">Avg Latency</p>
+                  <p className="text-fg-muted text-xs font-medium">{t("avg_latency")}</p>
                   <p className="mt-1 text-lg font-bold text-emerald-400">{latency}</p>
                 </div>
                 <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
-                  <p className="text-fg-muted text-xs font-medium">TOM Context Saved</p>
+                  <p className="text-fg-muted text-xs font-medium">{t("tom_context_saved")}</p>
                   <p className="mt-1 text-lg font-bold text-purple-400">12.4M</p>
                 </div>
                 <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
-                  <p className="text-fg-muted text-xs font-medium">Cron Jobs</p>
+                  <p className="text-fg-muted text-xs font-medium">{t("cron_jobs")}</p>
                   <p className="text-fg-primary mt-1 text-lg font-bold">{activeCrons}</p>
                 </div>
               </div>
@@ -338,71 +340,83 @@ export default async function AdminDashboardPage({
               {/* Route Shortcuts Grid */}
               <div className="space-y-3">
                 <p className="text-fg-muted text-xs font-semibold tracking-wider uppercase">
-                  Sistem & AI Rotaları (15 Entegre Modül)
+                  {t("system_ai_routes_heading")}
                 </p>
                 <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
                   {[
                     {
                       href: `/${locale}/admin/ai-hub/orchestrator`,
-                      label: "AI Orchestrator",
+                      label: t("route_ai_orchestrator"),
                       icon: Cpu,
                     },
                     {
                       href: `/${locale}/admin/metrics-hub/ai-pulse`,
-                      label: "AI Pulse Health",
+                      label: t("route_ai_pulse_health"),
                       icon: Radio,
                     },
-                    { href: `/${locale}/admin/health`, label: "System Status", icon: Activity },
-                    { href: `/${locale}/admin/cron-health`, label: "Cron Health", icon: Zap },
-                    { href: `/${locale}/admin/crons`, label: "Scheduled Crons", icon: Server },
+                    {
+                      href: `/${locale}/admin/health`,
+                      label: t("route_system_status"),
+                      icon: Activity,
+                    },
+                    {
+                      href: `/${locale}/admin/cron-health`,
+                      label: t("route_cron_health"),
+                      icon: Zap,
+                    },
+                    {
+                      href: `/${locale}/admin/crons`,
+                      label: t("route_scheduled_crons"),
+                      icon: Server,
+                    },
                     {
                       href: `/${locale}/admin/metrics-hub/slo-dashboard`,
-                      label: "SLO Dashboard",
+                      label: t("route_slo_dashboard"),
                       icon: BarChart3,
                     },
                     {
                       href: `/${locale}/admin/api-management`,
-                      label: "API Management",
+                      label: t("route_api_management"),
                       icon: Code2,
                     },
                     {
                       href: `/${locale}/admin/ai-hub/autopilot`,
-                      label: "Autopilot Core",
+                      label: t("route_autopilot_core"),
                       icon: Workflow,
                     },
                     {
                       href: `/${locale}/admin/ai-hub/autopilot/analytics`,
-                      label: "Autopilot Analytics",
+                      label: t("route_autopilot_analytics"),
                       icon: LineChart,
                     },
                     {
                       href: `/${locale}/admin/codebase-hygiene`,
-                      label: "Code Hygiene",
+                      label: t("route_code_hygiene"),
                       icon: CheckCircle2,
                     },
                     {
                       href: `/${locale}/admin/modular-architecture`,
-                      label: "Modular Arch",
+                      label: t("route_modular_arch"),
                       icon: Layers,
                     },
                     {
                       href: `/${locale}/admin/feature-flags`,
-                      label: "Feature Flags",
+                      label: t("route_feature_flags"),
                       icon: Sliders,
                     },
                     {
                       href: `/${locale}/admin/providers`,
-                      label: "AI Providers",
+                      label: t("route_ai_providers"),
                       icon: Sparkles,
                     },
                     {
                       href: `/${locale}/admin/cross-audit-dashboard`,
-                      label: "Cross Audit",
+                      label: t("route_cross_audit"),
                       icon: Eye,
                     },
                     {
                       href: `/${locale}/admin/settings`,
-                      label: "Global Settings",
+                      label: t("route_global_settings"),
                       icon: Database,
                     },
                   ].map((route) => (
@@ -423,12 +437,12 @@ export default async function AdminDashboardPage({
             </div>
 
             <div className="mt-6 flex items-center justify-between border-t border-white/5 pt-4 text-xs">
-              <span className="text-zinc-500">Vercel & Supabase Edge Connected</span>
+              <span className="text-zinc-500">{t("edge_connected")}</span>
               <Link
                 href={`/${locale}/admin/health`}
                 className="font-semibold text-cyan-400 hover:underline"
               >
-                Orchestrator Detayları →
+                {t("view_orchestrator_details")}
               </Link>
             </div>
           </section>
@@ -446,34 +460,32 @@ export default async function AdminDashboardPage({
                   </div>
                   <div>
                     <h2 className="text-fg-primary text-xl font-bold tracking-tight">
-                      Güvenlik & Uyum (Security Radar)
+                      {t("security_radar_title")}
                     </h2>
-                    <p className="text-fg-muted text-xs">
-                      PII Guardian, DSAR, Audit Logs & Content Moderation
-                    </p>
+                    <p className="text-fg-muted text-xs">{t("security_radar_desc")}</p>
                   </div>
                 </div>
                 <span className="rounded-full border border-rose-500/30 bg-rose-500/10 px-3 py-1 text-xs font-semibold text-rose-400">
-                  PII 100% Masked
+                  {t("pii_masked_badge")}
                 </span>
               </div>
 
               {/* KPI Cards */}
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
                 <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
-                  <p className="text-fg-muted text-xs font-medium">PII Guardian</p>
+                  <p className="text-fg-muted text-xs font-medium">{t("pii_guardian")}</p>
                   <p className="mt-1 text-lg font-bold text-emerald-400">Active</p>
                 </div>
                 <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
-                  <p className="text-fg-muted text-xs font-medium">Pending DSAR</p>
+                  <p className="text-fg-muted text-xs font-medium">{t("pending_dsar")}</p>
                   <p className="text-fg-primary mt-1 text-lg font-bold">0 Overdue</p>
                 </div>
                 <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
-                  <p className="text-fg-muted text-xs font-medium">Moderation Queue</p>
+                  <p className="text-fg-muted text-xs font-medium">{t("moderation_queue")}</p>
                   <p className="mt-1 text-lg font-bold text-cyan-400">Clean</p>
                 </div>
                 <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
-                  <p className="text-fg-muted text-xs font-medium">RLS Enforcement</p>
+                  <p className="text-fg-muted text-xs font-medium">{t("rls_enforcement")}</p>
                   <p className="mt-1 text-lg font-bold text-purple-400">{rlsEnforcement}</p>
                 </div>
               </div>
@@ -481,56 +493,64 @@ export default async function AdminDashboardPage({
               {/* Route Shortcuts Grid */}
               <div className="space-y-3">
                 <p className="text-fg-muted text-xs font-semibold tracking-wider uppercase">
-                  Güvenlik & Moderasyon Rotaları (12 Entegre Modül)
+                  {t("security_routes_heading")}
                 </p>
                 <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
                   {[
-                    { href: `/${locale}/admin/audit`, label: "Audit Logs", icon: Lock },
-                    { href: `/${locale}/admin/dsar`, label: "DSAR Requests", icon: UserCheck },
+                    { href: `/${locale}/admin/audit`, label: t("route_audit_logs"), icon: Lock },
+                    {
+                      href: `/${locale}/admin/dsar`,
+                      label: t("route_dsar_requests"),
+                      icon: UserCheck,
+                    },
                     {
                       href: `/${locale}/admin/takedown`,
-                      label: "Takedown & DMCA",
+                      label: t("route_takedown_dmca"),
                       icon: ShieldAlert,
                     },
                     {
                       href: `/${locale}/admin/moderation`,
-                      label: "Moderation Queue",
+                      label: t("route_moderation_queue"),
                       icon: Inbox,
                     },
                     {
                       href: `/${locale}/admin/api-keys`,
-                      label: "API Key Management",
+                      label: t("route_api_key_management"),
                       icon: Key,
                     },
                     {
                       href: `/${locale}/admin/redaction-queue`,
-                      label: "Redaction Queue",
+                      label: t("route_redaction_queue"),
                       icon: Eye,
                     },
                     {
                       href: `/${locale}/admin/dual-channel-scoring`,
-                      label: "Dual Channel Score",
+                      label: t("route_dual_channel_score"),
                       icon: BarChart3,
                     },
                     {
                       href: `/${locale}/admin/analytics-hub/k-benchmark`,
-                      label: "K-Benchmark Suite",
+                      label: t("route_k_benchmark_suite"),
                       icon: Target,
                     },
                     {
                       href: `/${locale}/admin/analytics-hub/expert-analysis`,
-                      label: "Expert Analysis",
+                      label: t("route_expert_analysis"),
                       icon: CheckCircle2,
                     },
-                    { href: `/${locale}/admin/experts`, label: "Expert Registry", icon: Users },
+                    {
+                      href: `/${locale}/admin/experts`,
+                      label: t("route_expert_registry"),
+                      icon: Users,
+                    },
                     {
                       href: `/${locale}/admin/analytics-hub/analysis`,
-                      label: "Deep Analysis",
+                      label: t("route_deep_analysis"),
                       icon: Search,
                     },
                     {
                       href: `/${locale}/admin/cockpit`,
-                      label: "Cockpit Control",
+                      label: t("route_cockpit_control"),
                       icon: Sparkles,
                     },
                   ].map((route) => (
@@ -551,12 +571,12 @@ export default async function AdminDashboardPage({
             </div>
 
             <div className="mt-6 flex items-center justify-between border-t border-white/5 pt-4 text-xs">
-              <span className="text-zinc-500">KVKK & GDPR Zero-Knowledge Compliant</span>
+              <span className="text-zinc-500">{t("kvkk_gdpr_compliant")}</span>
               <Link
                 href={`/${locale}/admin/audit`}
                 className="font-semibold text-rose-400 hover:underline"
               >
-                Güvenlik Loglarını İncele →
+                {t("view_security_logs")}
               </Link>
             </div>
           </section>
@@ -574,34 +594,32 @@ export default async function AdminDashboardPage({
                   </div>
                   <div>
                     <h2 className="text-fg-primary text-xl font-bold tracking-tight">
-                      Strateji, Büyüme & Outreach
+                      {t("strategy_growth_title")}
                     </h2>
-                    <p className="text-fg-muted text-xs">
-                      Master Plan, LinkedIn, Resend Outreach & Advisory Board
-                    </p>
+                    <p className="text-fg-muted text-xs">{t("strategy_growth_desc")}</p>
                   </div>
                 </div>
                 <span className="rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-semibold text-purple-400">
-                  Q3 Progress %65
+                  {t("q3_progress_badge")}
                 </span>
               </div>
 
               {/* KPI Cards */}
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
                 <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
-                  <p className="text-fg-muted text-xs font-medium">Master Plan</p>
-                  <p className="mt-1 text-lg font-bold text-cyan-400">%65 Done</p>
+                  <p className="text-fg-muted text-xs font-medium">{t("master_plan_kpi")}</p>
+                  <p className="mt-1 text-lg font-bold text-cyan-400">{t("master_plan_done")}</p>
                 </div>
                 <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
-                  <p className="text-fg-muted text-xs font-medium">LinkedIn Reach</p>
-                  <p className="mt-1 text-lg font-bold text-emerald-400">Hazırlanıyor</p>
+                  <p className="text-fg-muted text-xs font-medium">{t("linkedin_reach")}</p>
+                  <p className="mt-1 text-lg font-bold text-emerald-400">{t("in_preparation")}</p>
                 </div>
                 <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
-                  <p className="text-fg-muted text-xs font-medium">Outreach Open Rate</p>
-                  <p className="mt-1 text-lg font-bold text-purple-400">Hazırlanıyor</p>
+                  <p className="text-fg-muted text-xs font-medium">{t("outreach_open_rate")}</p>
+                  <p className="mt-1 text-lg font-bold text-purple-400">{t("in_preparation")}</p>
                 </div>
                 <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
-                  <p className="text-fg-muted text-xs font-medium">Advisory Board</p>
+                  <p className="text-fg-muted text-xs font-medium">{t("advisory_board_kpi")}</p>
                   <p className="text-fg-primary mt-1 text-lg font-bold">0</p>
                 </div>
               </div>
@@ -609,90 +627,98 @@ export default async function AdminDashboardPage({
               {/* Route Shortcuts Grid */}
               <div className="space-y-3">
                 <p className="text-fg-muted text-xs font-semibold tracking-wider uppercase">
-                  Strateji & Büyüme Rotaları (18 Entegre Modül)
+                  {t("strategy_routes_heading")}
                 </p>
                 <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
                   {[
                     {
                       href: `/${locale}/admin/strategy/master-plan`,
-                      label: "Master Plan",
+                      label: t("route_master_plan"),
                       icon: FileText,
                     },
                     {
                       href: `/${locale}/admin/strategy`,
-                      label: "Strategy Portal",
+                      label: t("route_strategy_portal"),
                       icon: Target,
                     },
                     {
                       href: `/${locale}/admin/strategy/roadmap`,
-                      label: "Product Roadmap",
+                      label: t("route_product_roadmap"),
                       icon: Rocket,
                     },
                     {
                       href: `/${locale}/admin/strategy/swot`,
-                      label: "SWOT Matrix",
+                      label: t("route_swot_matrix"),
                       icon: PieChart,
                     },
                     {
                       href: `/${locale}/admin/strategy/risks`,
-                      label: "Risk Assessment",
+                      label: t("route_risk_assessment"),
                       icon: AlertTriangle,
                     },
                     {
                       href: `/${locale}/admin/strategy/questionnaire`,
-                      label: "Strategy Survey",
+                      label: t("route_strategy_survey"),
                       icon: FileSpreadsheet,
                     },
                     {
                       href: `/${locale}/admin/advisory-board`,
-                      label: "Advisory Board",
+                      label: t("route_advisory_board"),
                       icon: Users,
                     },
                     {
                       href: `/${locale}/admin/linkedin`,
-                      label: "LinkedIn Analytics",
+                      label: t("route_linkedin_analytics"),
                       icon: Share2,
                     },
                     {
                       href: `/${locale}/admin/outreach`,
-                      label: "Outreach (Resend)",
+                      label: t("route_outreach_resend"),
                       icon: Send,
                     },
-                    { href: `/${locale}/admin/social`, label: "Social Media", icon: Globe },
+                    {
+                      href: `/${locale}/admin/social`,
+                      label: t("route_social_media"),
+                      icon: Globe,
+                    },
                     {
                       href: `/${locale}/admin/marketing`,
-                      label: "Growth Marketing",
+                      label: t("route_growth_marketing"),
                       icon: Flame,
                     },
                     {
                       href: `/${locale}/admin/seo-performance`,
-                      label: "SEO Performance",
+                      label: t("route_seo_performance"),
                       icon: LineChart,
                     },
                     {
                       href: `/${locale}/admin/launch-signal`,
-                      label: "Launch Signals",
+                      label: t("route_launch_signals"),
                       icon: Radio,
                     },
                     {
                       href: `/${locale}/admin/metrics-hub/signals`,
-                      label: "Market Signals",
+                      label: t("route_market_signals"),
                       icon: Activity,
                     },
                     {
                       href: `/${locale}/admin/innovations`,
-                      label: "AI Innovations",
+                      label: t("route_ai_innovations"),
                       icon: Sparkles,
                     },
-                    { href: `/${locale}/admin/geo`, label: "Geo Intelligence", icon: Globe },
+                    {
+                      href: `/${locale}/admin/geo`,
+                      label: t("route_geo_intelligence"),
+                      icon: Globe,
+                    },
                     {
                       href: `/${locale}/admin/platforms`,
-                      label: "Platform Ecosystem",
+                      label: t("route_platform_ecosystem"),
                       icon: Layers,
                     },
                     {
                       href: `/${locale}/admin/ai-hub/jules`,
-                      label: "Jules AI Agent",
+                      label: t("route_jules_agent"),
                       icon: Cpu,
                     },
                   ].map((route) => (
@@ -713,12 +739,12 @@ export default async function AdminDashboardPage({
             </div>
 
             <div className="mt-6 flex items-center justify-between border-t border-white/5 pt-4 text-xs">
-              <span className="text-zinc-500">Corporate Email Rule: hello@alparai.com</span>
+              <span className="text-zinc-500">{t("corporate_email_rule")}</span>
               <Link
                 href={`/${locale}/admin/strategy/master-plan`}
                 className="font-semibold text-purple-400 hover:underline"
               >
-                Master Plan Dokümanı →
+                {t("view_master_plan_doc")}
               </Link>
             </div>
           </section>

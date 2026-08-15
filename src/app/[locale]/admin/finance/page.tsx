@@ -49,7 +49,7 @@ export default async function FinancePage({ params }: { params: Promise<{ locale
   await requireModerator();
 
   // 2. Translations
-  const t = await getTranslations("finance");
+  const t = await getTranslations({ locale, namespace: "finance" });
   const tAdmin = await getTranslations({ locale, namespace: "admin" });
   const tErrors = await getTranslations({ locale, namespace: "errors" });
 
@@ -274,7 +274,8 @@ export default async function FinancePage({ params }: { params: Promise<{ locale
           lastUpdated={new Date().toLocaleDateString(locale)}
           badge={
             <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-bold text-emerald-400">
-              <Zap className="h-3.5 w-3.5" /> Zero Token Cost Active
+              <Zap className="h-3.5 w-3.5" />{" "}
+              {t("zero_token_cost_active") || "Zero Token Cost Active"}
             </span>
           }
           breadcrumb={[
@@ -342,14 +343,16 @@ export default async function FinancePage({ params }: { params: Promise<{ locale
             ))}
           </div>
           <div className="lg:col-span-1">
-            <AdminSectionCard title="Budget Allocation Gauge">
+            <AdminSectionCard title={t("budget_allocation_gauge") || "Budget Allocation Gauge"}>
               <BudgetGauge totalMonthly={totalMonthly} totalBudget={totalBudget} />
             </AdminSectionCard>
           </div>
         </div>
 
         {/* Trend Chart */}
-        <AdminSectionCard title="Infrastructure & Provider Cost Trends">
+        <AdminSectionCard
+          title={t("infra_provider_cost_trends") || "Infrastructure & Provider Cost Trends"}
+        >
           <CostTrendChart data={trends} />
         </AdminSectionCard>
 
@@ -359,7 +362,9 @@ export default async function FinancePage({ params }: { params: Promise<{ locale
         />
 
         {/* Infrastructure Quota Tracking */}
-        <AdminSectionCard title="Platform Quota & Resource Usage">
+        <AdminSectionCard
+          title={t("platform_quota_resource_usage") || "Platform Quota & Resource Usage"}
+        >
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <QuotaWidget
               name="GitHub Actions"
@@ -397,7 +402,9 @@ export default async function FinancePage({ params }: { params: Promise<{ locale
         </AdminSectionCard>
 
         {/* API Usage Metrics Table */}
-        <AdminSectionCard title="Real-Time API & Gateway Telemetry Usage">
+        <AdminSectionCard
+          title={t("api_telemetry_usage") || "Real-Time API & Gateway Telemetry Usage"}
+        >
           <ApiUsageTable data={usage} />
         </AdminSectionCard>
       </div>

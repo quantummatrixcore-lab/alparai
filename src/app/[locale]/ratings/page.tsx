@@ -155,7 +155,7 @@ export default async function RatingsPage({
       <div className="mb-12 flex flex-col space-y-6">
         <div className="flex items-center space-x-3 text-sm font-semibold tracking-wider text-[#00FF88] uppercase">
           <ShieldCheck className="h-5 w-5 animate-pulse" />
-          <span>ALPAR AI Ratings</span>
+          <span>{t("badge")}</span>
         </div>
         <h1 className="bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-4xl font-extrabold tracking-tight text-transparent md:text-5xl">
           {t("title")}
@@ -183,7 +183,7 @@ export default async function RatingsPage({
             className="ml-4 flex items-center space-x-2 text-sm text-slate-400 hover:text-white hover:underline"
           >
             <ExternalLink className="h-4 w-4" />
-            <span>JSON API docs</span>
+            <span>{t("api_docs_link")}</span>
           </Link>
         </div>
       </div>
@@ -229,7 +229,7 @@ export default async function RatingsPage({
             <table className="w-full border-collapse text-left">
               <thead>
                 <tr className="border-b border-slate-800/80 bg-slate-900/50 text-xs font-semibold tracking-wider text-slate-400 uppercase">
-                  <th className="w-16 px-6 py-4 text-center">Rank</th>
+                  <th className="w-16 px-6 py-4 text-center">{t("rank")}</th>
                   <th className="px-6 py-4">{t("model")}</th>
                   <th className="px-6 py-4">{t("provider")}</th>
                   {activeCategoryList.map((cat) => (
@@ -268,7 +268,7 @@ export default async function RatingsPage({
                         <span>{item.modelName}</span>
                         {item.isRetired && (
                           <span className="ml-2 rounded-full border border-rose-900/30 bg-rose-950/20 px-2 py-0.5 text-[10px] font-bold text-rose-400">
-                            {t("retired", { defaultValue: "Retired" })}
+                            {t("retired")}
                           </span>
                         )}
                       </Link>

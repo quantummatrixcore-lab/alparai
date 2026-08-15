@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useTranslations } from "next-intl";
 import {
   Activity,
   BarChart3,
@@ -54,6 +55,7 @@ export function AIVelocityWidget({
   initialClients = 45,
   className,
 }: AIVelocityWidgetProps) {
+  const t = useTranslations("admin");
   const [baseARR, setBaseARR] = React.useState<number>(initialBaseARR);
   const [clients, setClients] = React.useState<number>(initialClients);
   const [selectedScenario, setSelectedScenario] = React.useState<"A" | "B" | "C">("B");
@@ -100,7 +102,9 @@ export function AIVelocityWidget({
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="text-fg-muted text-xs font-medium">Velocity Index:</span>
+          <span className="text-fg-muted text-xs font-medium">
+            {t("velocity_index") || "Velocity Index:"}
+          </span>
           <span className="border-success-500/30 bg-success-500/10 text-success-400 rounded-lg border px-3 py-1 font-mono text-sm font-extrabold shadow-inner">
             {velocityFactor.toFixed(2)}x
           </span>
@@ -111,15 +115,20 @@ export function AIVelocityWidget({
         <div className="rounded-xl border border-white/10 bg-white/5 p-4 shadow-inner">
           <div className="flex items-center justify-between text-xs text-white/70">
             <span className="flex items-center gap-1.5 font-semibold text-white/80">
-              <TrendingUp className="text-success-400 h-4 w-4" /> Avg Capability Jump
+              <TrendingUp className="text-success-400 h-4 w-4" />{" "}
+              {t("avg_capability_jump") || "Avg Capability Jump"}
             </span>
             <span className="bg-success-500/20 text-success-300 rounded px-1.5 py-0.5 font-mono text-[10px] font-bold">
-              Not measured
+              {t("not_measured") || "Not measured"}
             </span>
           </div>
           <div className="mt-3 flex items-baseline justify-between">
-            <span className="font-mono text-2xl font-extrabold text-white">Not measured</span>
-            <span className="text-fg-muted text-[11px]">per major release</span>
+            <span className="font-mono text-2xl font-extrabold text-white">
+              {t("not_measured") || "Not measured"}
+            </span>
+            <span className="text-fg-muted text-[11px]">
+              {t("per_major_release") || "per major release"}
+            </span>
           </div>
           <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
             <div className="from-success-500 h-full w-[85%] rounded-full bg-gradient-to-r to-cyan-400" />
@@ -129,17 +138,20 @@ export function AIVelocityWidget({
         <div className="rounded-xl border border-white/10 bg-white/5 p-4 shadow-inner">
           <div className="flex items-center justify-between text-xs text-white/70">
             <span className="flex items-center gap-1.5 font-semibold text-white/80">
-              <Cpu className="text-brand-400 h-4 w-4" /> Release Cycle Cadence
+              <Cpu className="text-brand-400 h-4 w-4" />{" "}
+              {t("release_cycle_cadence") || "Release Cycle Cadence"}
             </span>
             <span className="bg-brand-500/20 text-brand-300 rounded px-1.5 py-0.5 font-mono text-[10px] font-bold">
-              {releaseCycleDays} Days
+              {releaseCycleDays} {t("days") || "Days"}
             </span>
           </div>
           <div className="mt-3 flex items-baseline justify-between">
             <span className="font-mono text-2xl font-extrabold text-white">
               {releaseCycleDays}d
             </span>
-            <span className="text-fg-muted text-[11px]">model iteration interval</span>
+            <span className="text-fg-muted text-[11px]">
+              {t("model_iteration_interval") || "model iteration interval"}
+            </span>
           </div>
           <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
             <div className="from-brand-500 to-brand-400 h-full w-[70%] rounded-full bg-gradient-to-r" />
@@ -149,15 +161,18 @@ export function AIVelocityWidget({
         <div className="rounded-xl border border-white/10 bg-white/5 p-4 shadow-inner">
           <div className="flex items-center justify-between text-xs text-white/70">
             <span className="flex items-center gap-1.5 font-semibold text-white/80">
-              <ShieldAlert className="text-warning-400 h-4 w-4" /> AI Incident Density
+              <ShieldAlert className="text-warning-400 h-4 w-4" />{" "}
+              {t("ai_incident_density") || "AI Incident Density"}
             </span>
             <span className="bg-warning-500/20 text-warning-300 rounded px-1.5 py-0.5 font-mono text-[10px] font-bold">
-              Low Risk
+              {t("low_risk") || "Low Risk"}
             </span>
           </div>
           <div className="mt-3 flex items-baseline justify-between">
             <span className="font-mono text-2xl font-extrabold text-white">{incidentDensity}</span>
-            <span className="text-fg-muted text-[11px]">per 1k model prompts</span>
+            <span className="text-fg-muted text-[11px]">
+              {t("per_1k_model_prompts") || "per 1k model prompts"}
+            </span>
           </div>
           <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
             <div className="from-warning-400 to-success-400 h-full w-[25%] rounded-full bg-gradient-to-r" />
@@ -168,8 +183,8 @@ export function AIVelocityWidget({
       <div className="relative z-10 space-y-6">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <h4 className="flex items-center gap-2 text-sm font-bold tracking-tight text-white">
-            <BarChart3 className="text-success-400 h-4 w-4" />
-            Dynamic ARR Growth Projections
+            <BarChart3 className="text-success-400 h-4 w-4" />{" "}
+            {t("dynamic_arr_projections") || "Dynamic ARR Growth Projections"}
           </h4>
 
           <div className="inline-flex rounded-xl border border-white/10 bg-black/40 p-1">
@@ -207,7 +222,7 @@ export function AIVelocityWidget({
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div className="rounded-xl border border-white/10 bg-black/20 p-3.5">
             <label className="text-fg-muted flex items-center justify-between text-xs font-semibold">
-              <span>Baseline ARR ($ USD)</span>
+              <span>{t("baseline_arr_usd") || "Baseline ARR ($ USD)"}</span>
               <span className="font-mono text-white">${baseARR.toLocaleString()}</span>
             </label>
             <input
@@ -223,8 +238,10 @@ export function AIVelocityWidget({
 
           <div className="rounded-xl border border-white/10 bg-black/20 p-3.5">
             <label className="text-fg-muted flex items-center justify-between text-xs font-semibold">
-              <span>Enterprise B2B Clients</span>
-              <span className="font-mono text-white">{clients} Active</span>
+              <span>{t("enterprise_b2b_clients") || "Enterprise B2B Clients"}</span>
+              <span className="font-mono text-white">
+                {clients} {t("active_clients") || "Active"}
+              </span>
             </label>
             <input
               type="range"
@@ -249,7 +266,9 @@ export function AIVelocityWidget({
               </div>
               <p className="mt-3 font-mono text-4xl font-black text-white">
                 ${activeScenario.projectedARR.toLocaleString()}
-                <span className="text-fg-muted ml-2 text-sm font-normal">/ yr ARR</span>
+                <span className="text-fg-muted ml-2 text-sm font-normal">
+                  {t("per_yr_arr") || "/ yr ARR"}
+                </span>
               </p>
             </div>
 

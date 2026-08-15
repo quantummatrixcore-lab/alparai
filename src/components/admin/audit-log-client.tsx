@@ -62,26 +62,28 @@ interface AuditLogClientProps {
 }
 
 const ACTION_GROUPS = [
-  { value: "all", label: "All Actions" },
-  { value: "incident", label: "Incident Operations" },
-  { value: "user", label: "User Management" },
-  { value: "security", label: "Security & Keys" },
-  { value: "system", label: "System & Autopilot" },
-  { value: "billing", label: "Billing & Subscriptions" },
-  { value: "takedown", label: "Takedown Requests" },
-];
+  { value: "all", labelKey: "audit_filter_all_actions" },
+  { value: "incident", labelKey: "audit_filter_incident_ops" },
+  { value: "user", labelKey: "audit_filter_user_mgmt" },
+  { value: "security", labelKey: "audit_filter_security_keys" },
+  { value: "system", labelKey: "audit_filter_system_autopilot" },
+  { value: "billing", labelKey: "audit_filter_billing_subs" },
+  { value: "takedown", labelKey: "audit_filter_takedown_reqs" },
+] as const;
 
 const ENTITY_TYPES = [
-  { value: "all", label: "All Entities" },
-  { value: "incident", label: "Incident" },
-  { value: "users", label: "User" },
-  { value: "api_keys", label: "API Key" },
-  { value: "takedown_requests", label: "Takedown Request" },
-  { value: "finance", label: "Billing" },
-  { value: "system", label: "System" },
-];
+  { value: "all", labelKey: "audit_filter_all_entities" },
+  { value: "incident", labelKey: "audit_filter_entity_incident" },
+  { value: "users", labelKey: "audit_filter_entity_user" },
+  { value: "api_keys", labelKey: "audit_filter_entity_api_key" },
+  { value: "takedown_requests", labelKey: "audit_filter_entity_takedown" },
+  { value: "finance", labelKey: "audit_filter_entity_billing" },
+  { value: "system", labelKey: "audit_filter_entity_system" },
+] as const;
 
 function AuditDetailPanel({ log, onClose }: { log: AuditLogItem; onClose: () => void }) {
+  const t = useTranslations("admin");
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -90,7 +92,9 @@ function AuditDetailPanel({ log, onClose }: { log: AuditLogItem; onClose: () => 
     >
       <div className="bg-bg-secondary/40 grid gap-4 rounded-xl border border-white/5 p-4 shadow-lg backdrop-blur-md sm:grid-cols-3">
         <div>
-          <p className="text-fg-muted text-[10px] font-semibold tracking-wider uppercase">Action</p>
+          <p className="text-fg-muted text-[10px] font-semibold tracking-wider uppercase">
+            {t("audit_detail_action")}
+          </p>
           <Badge
             variant="danger"
             className="mt-1 font-mono text-[11px] tracking-normal normal-case"
@@ -100,11 +104,11 @@ function AuditDetailPanel({ log, onClose }: { log: AuditLogItem; onClose: () => 
         </div>
         <div>
           <p className="text-fg-muted text-[10px] font-semibold tracking-wider uppercase">
-            Executed By
+            {t("audit_detail_executed_by")}
           </p>
           <div className="mt-1 flex items-center gap-1.5">
             <span className="text-xs font-semibold text-white">
-              {log.users ? log.users.full_name : "SYSTEM AUTOPILOT"}
+              {log.users ? log.users.full_name : t("audit_detail_system_autopilot")}
             </span>
             {log.users && (
               <Badge variant="brand" className="px-1 py-0 text-[9px]">
@@ -115,7 +119,7 @@ function AuditDetailPanel({ log, onClose }: { log: AuditLogItem; onClose: () => 
         </div>
         <div>
           <p className="text-fg-muted text-[10px] font-semibold tracking-wider uppercase">
-            Origin IP
+            {t("audit_detail_origin_ip")}
           </p>
           <p className="mt-1.5 flex items-center gap-1 font-mono text-xs text-white">
             <Globe className="text-fg-muted h-3 w-3" />
@@ -127,30 +131,30 @@ function AuditDetailPanel({ log, onClose }: { log: AuditLogItem; onClose: () => 
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="bg-bg-secondary/40 rounded-xl border border-white/5 p-4 shadow-lg backdrop-blur-md">
           <h4 className="text-fg-secondary mb-2 text-xs font-bold tracking-wider uppercase">
-            Target Entity
+            {t("audit_detail_target_entity")}
           </h4>
           <div className="space-y-1.5 text-xs">
             <div className="flex justify-between">
-              <span className="text-fg-muted">Entity Type:</span>
+              <span className="text-fg-muted">{t("audit_detail_entity_type")}</span>
               <span className="font-semibold text-white capitalize">{log.entity_type}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-fg-muted">Entity ID:</span>
+              <span className="text-fg-muted">{t("audit_detail_entity_id")}</span>
               <span className="font-mono text-[11px] text-white">{log.entity_id}</span>
             </div>
           </div>
         </div>
         <div className="bg-bg-secondary/40 rounded-xl border border-white/5 p-4 shadow-lg backdrop-blur-md">
           <h4 className="text-fg-secondary mb-2 text-xs font-bold tracking-wider uppercase">
-            Meta Details
+            {t("audit_detail_meta_details")}
           </h4>
           <div className="space-y-1.5 text-xs">
             <div className="flex justify-between">
-              <span className="text-fg-muted">Log UUID:</span>
+              <span className="text-fg-muted">{t("audit_detail_log_uuid")}</span>
               <span className="font-mono text-[11px] text-white">{log.id}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-fg-muted">Exact Time:</span>
+              <span className="text-fg-muted">{t("audit_detail_exact_time")}</span>
               <span className="font-mono text-[11px] text-white">
                 {new Date(log.created_at).toLocaleString()}
               </span>
@@ -163,14 +167,14 @@ function AuditDetailPanel({ log, onClose }: { log: AuditLogItem; onClose: () => 
         <div className="flex items-center gap-2">
           <FileCode className="text-brand-400 h-4 w-4" />
           <h4 className="text-xs font-bold tracking-wider text-white uppercase">
-            State Payload Changes
+            {t("audit_detail_payload_changes")}
           </h4>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">
           <div className="space-y-1">
             <span className="text-fg-muted text-[10px] font-bold tracking-wider uppercase">
-              Before State
+              {t("audit_detail_before_state")}
             </span>
             <div className="text-danger-300 max-h-56 overflow-y-auto rounded-xl border border-white/5 bg-black/50 p-4 font-mono text-[11px] shadow-inner backdrop-blur-md">
               {log.before_data ? (
@@ -178,20 +182,20 @@ function AuditDetailPanel({ log, onClose }: { log: AuditLogItem; onClose: () => 
                   {JSON.stringify(log.before_data, null, 2)}
                 </pre>
               ) : (
-                <span className="text-fg-muted italic">No initial state (Created Entity)</span>
+                <span className="text-fg-muted italic">{t("audit_detail_no_initial_state")}</span>
               )}
             </div>
           </div>
 
           <div className="space-y-1">
             <span className="text-fg-muted text-[10px] font-bold tracking-wider uppercase">
-              After State
+              {t("audit_detail_after_state")}
             </span>
             <div className="text-success-300 max-h-56 overflow-y-auto rounded-xl border border-white/5 bg-black/50 p-4 font-mono text-[11px] shadow-inner backdrop-blur-md">
               {log.after_data ? (
                 <pre className="whitespace-pre-wrap">{JSON.stringify(log.after_data, null, 2)}</pre>
               ) : (
-                <span className="text-fg-muted italic">No final state (Deleted Entity)</span>
+                <span className="text-fg-muted italic">{t("audit_detail_no_final_state")}</span>
               )}
             </div>
           </div>
@@ -200,7 +204,7 @@ function AuditDetailPanel({ log, onClose }: { log: AuditLogItem; onClose: () => 
 
       <div className="flex justify-end border-t border-white/5 pt-4">
         <Button onClick={onClose} variant="outline" className="bg-white/5 hover:bg-white/10">
-          Close Inspector
+          {t("audit_detail_close")}
         </Button>
       </div>
     </motion.div>
@@ -336,7 +340,7 @@ export function AuditLogClient({ initialLogs, locale }: AuditLogClientProps) {
       >
         <div className="bg-brand-500/5 absolute top-0 right-0 -mt-20 -mr-20 h-64 w-64 rounded-full blur-3xl" />
         <h3 className="mb-6 text-sm font-bold tracking-wide text-white">
-          Log Volume (Last Activity)
+          {t("audit_chart_title")}
         </h3>
         <div className="h-64 w-full">
           {chartData.length > 0 ? (
@@ -385,14 +389,14 @@ export function AuditLogClient({ initialLogs, locale }: AuditLogClientProps) {
                 />
                 <Bar
                   dataKey="count"
-                  name="Total Actions"
+                  name={t("audit_chart_total_actions")}
                   fill="url(#colorTotal)"
                   radius={[4, 4, 0, 0]}
                   maxBarSize={40}
                 />
                 <Bar
                   dataKey="security"
-                  name="Security Events"
+                  name={t("audit_chart_security_events")}
                   fill="url(#colorSecurity)"
                   radius={[4, 4, 0, 0]}
                   maxBarSize={40}
@@ -401,8 +405,8 @@ export function AuditLogClient({ initialLogs, locale }: AuditLogClientProps) {
             </ResponsiveContainer>
           ) : (
             <EmptyStateIllustration
-              title="No Log Data"
-              description="There are no audit logs to visualize in the current timeframe."
+              title={t("audit_chart_empty_title")}
+              description={t("audit_chart_empty_desc")}
               icon={Activity}
             />
           )}
@@ -431,7 +435,7 @@ export function AuditLogClient({ initialLogs, locale }: AuditLogClientProps) {
             <Terminal className="text-brand-400 h-6 w-6" strokeWidth={1.5} />
             <div>
               <p className="text-fg-muted mb-1 text-[10px] font-bold tracking-wider uppercase">
-                Real-time Feed
+                {t("audit_realtime_feed")}
               </p>
               <p className="text-lg font-bold text-white">
                 {totalCount > 0 ? t("audit_active") || "Active" : t("audit_no_data") || "No Data"}
@@ -457,12 +461,12 @@ export function AuditLogClient({ initialLogs, locale }: AuditLogClientProps) {
         </div>
         <div className="flex flex-wrap gap-2">
           <SegmentedControl
-            options={ACTION_GROUPS.map((g) => ({ value: g.value, label: g.label }))}
+            options={ACTION_GROUPS.map((g) => ({ value: g.value, label: t(g.labelKey) }))}
             value={filterAction}
             onChange={setFilterAction}
           />
           <SegmentedControl
-            options={ENTITY_TYPES.map((e) => ({ value: e.value, label: e.label }))}
+            options={ENTITY_TYPES.map((e) => ({ value: e.value, label: t(e.labelKey) }))}
             value={filterEntity}
             onChange={setFilterEntity}
           />
@@ -520,7 +524,7 @@ export function AuditLogClient({ initialLogs, locale }: AuditLogClientProps) {
                               </div>
                               <div className="flex flex-col">
                                 <span className="text-xs font-semibold text-white">
-                                  {log.users.full_name || "Unknown Staff"}
+                                  {log.users.full_name || t("audit_unknown_staff")}
                                 </span>
                                 <span className="text-fg-muted text-[10px]">{log.users.email}</span>
                               </div>
@@ -537,16 +541,18 @@ export function AuditLogClient({ initialLogs, locale }: AuditLogClientProps) {
                                 <Cpu className="text-brand-400 h-3.5 w-3.5" />
                               </div>
                               <div className="flex flex-col">
-                                <span className="text-brand-300 text-xs font-semibold">SYSTEM</span>
+                                <span className="text-brand-300 text-xs font-semibold">
+                                  {t("audit_system_label")}
+                                </span>
                                 <span className="text-brand-400/80 text-[10px]">
-                                  Autopilot Guard
+                                  {t("audit_autopilot_guard")}
                                 </span>
                               </div>
                               <Badge
                                 variant="outline"
                                 className="border-brand-500/30 bg-brand-500/5 text-brand-400 px-1.5 py-0 text-[9px]"
                               >
-                                Core
+                                {t("audit_core_badge")}
                               </Badge>
                             </div>
                           )}
@@ -588,7 +594,7 @@ export function AuditLogClient({ initialLogs, locale }: AuditLogClientProps) {
                             variant="outline"
                             className="h-8 border-white/10 bg-white/5 px-2.5 text-[11px] opacity-0 transition-opacity duration-150 group-hover:opacity-100 hover:bg-white/10"
                           >
-                            Inspect
+                            {t("audit_inspect_button")}
                             <ArrowRight className="ml-1 h-3 w-3" />
                           </Button>
                         </td>
@@ -617,7 +623,7 @@ export function AuditLogClient({ initialLogs, locale }: AuditLogClientProps) {
       <SlideOverPanel
         open={!!selectedLog}
         onClose={() => setSelectedLog(null)}
-        title="Audit Event Details"
+        title={t("audit_event_details")}
       >
         {selectedLog && <AuditDetailPanel log={selectedLog} onClose={() => setSelectedLog(null)} />}
       </SlideOverPanel>

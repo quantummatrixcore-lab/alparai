@@ -36,7 +36,9 @@ export default async function StartupHealthPage({
           <AdminPageHeader
             icon={<Activity className="h-6 w-6 text-rose-400" />}
             title={t("startup_health_score") || "Startup Health Matrix"}
-            subtitle="Access Restricted or Data Unavailable"
+            subtitle={
+              t("access_restricted_or_data_unavail") || "Access Restricted or Data Unavailable"
+            }
           />
           <AdminSectionCard>
             <div className="text-fg-muted p-8 text-center">
@@ -110,7 +112,9 @@ export default async function StartupHealthPage({
           </div>
 
           {/* Primary KPI Metrics */}
-          <AdminSectionCard title="Month-Over-Month Growth Telemetry">
+          <AdminSectionCard
+            title={t("mom_growth_telemetry") || "Month-Over-Month Growth Telemetry"}
+          >
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
               {kpis.map((kpi) => {
                 const isPositive = kpi.momGrowthPct !== null && kpi.momGrowthPct >= 0;
@@ -149,7 +153,8 @@ export default async function StartupHealthPage({
                           {kpi.totalCount > 0 ? kpi.totalCount : kpi.thisMonth}
                         </span>
                         <span className="text-fg-muted mt-1 block text-[10px]">
-                          This month: {kpi.thisMonth} | Prev: {kpi.lastMonth}
+                          {t("this_month") || "This month"}: {kpi.thisMonth} | {t("prev") || "Prev"}
+                          : {kpi.lastMonth}
                         </span>
                       </div>
                     </div>
@@ -161,11 +166,15 @@ export default async function StartupHealthPage({
 
           {/* Funding & Conversion Breakdown */}
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            <AdminSectionCard title="Grant & State Funding Conversion">
+            <AdminSectionCard
+              title={t("grant_state_funding_conversion") || "Grant & State Funding Conversion"}
+            >
               <div className="space-y-4">
                 <div className="flex items-center justify-between rounded-xl border border-white/5 bg-white/5 p-4">
                   <div>
-                    <p className="text-fg-muted text-xs">Funding Applications Won</p>
+                    <p className="text-fg-muted text-xs">
+                      {t("funding_applications_won") || "Funding Applications Won"}
+                    </p>
                     <p className="font-mono text-2xl font-bold text-emerald-400">
                       {fundingData?.combinedWon ?? 2}
                     </p>
@@ -175,13 +184,17 @@ export default async function StartupHealthPage({
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="rounded-xl border border-white/5 bg-black/20 p-4">
-                    <p className="text-fg-muted text-xs">Applications Submitted</p>
+                    <p className="text-fg-muted text-xs">
+                      {t("applications_submitted") || "Applications Submitted"}
+                    </p>
                     <p className="font-mono text-xl font-bold text-white">
                       {fundingData?.combinedApplied ?? 4}
                     </p>
                   </div>
                   <div className="rounded-xl border border-white/5 bg-black/20 p-4">
-                    <p className="text-fg-muted text-xs">Catalog Opportunities</p>
+                    <p className="text-fg-muted text-xs">
+                      {t("catalog_opportunities") || "Catalog Opportunities"}
+                    </p>
                     <p className="font-mono text-xl font-bold text-white">
                       {fundingData?.combinedTotal ?? 8}
                     </p>
@@ -190,15 +203,19 @@ export default async function StartupHealthPage({
               </div>
             </AdminSectionCard>
 
-            <AdminSectionCard title="Infrastructure & Operational Burn">
+            <AdminSectionCard
+              title={t("infra_operational_burn") || "Infrastructure & Operational Burn"}
+            >
               <div className="space-y-4">
                 <div className="flex items-center justify-between rounded-xl border border-white/5 bg-white/5 p-4">
                   <div>
-                    <p className="text-fg-muted text-xs">Monthly Infrastructure Cost</p>
+                    <p className="text-fg-muted text-xs">
+                      {t("monthly_infrastructure_cost") || "Monthly Infrastructure Cost"}
+                    </p>
                     <p className="font-mono text-2xl font-bold text-purple-400">
                       $0.00{" "}
                       <span className="font-sans text-xs font-semibold text-emerald-400">
-                        (Free Tier)
+                        ({t("free_tier") || "Free Tier"})
                       </span>
                     </p>
                   </div>
@@ -207,11 +224,13 @@ export default async function StartupHealthPage({
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="rounded-xl border border-white/5 bg-black/20 p-4">
-                    <p className="text-fg-muted text-xs">Vercel Region</p>
+                    <p className="text-fg-muted text-xs">{t("vercel_region") || "Vercel Region"}</p>
                     <p className="font-mono text-sm font-bold text-white">fra1 (Frankfurt)</p>
                   </div>
                   <div className="rounded-xl border border-white/5 bg-black/20 p-4">
-                    <p className="text-fg-muted text-xs">Supabase DB Region</p>
+                    <p className="text-fg-muted text-xs">
+                      {t("supabase_db_region") || "Supabase DB Region"}
+                    </p>
                     <p className="font-mono text-sm font-bold text-white">eu-west-1 (Ireland)</p>
                   </div>
                 </div>

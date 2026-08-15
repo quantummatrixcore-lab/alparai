@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { supabase } from "@/lib/supabase/client";
 
 interface AmbassadorFormProps {
@@ -8,6 +9,7 @@ interface AmbassadorFormProps {
 }
 
 export default function AmbassadorForm({}: AmbassadorFormProps) {
+  const t = useTranslations("academy");
   const [university, setUniversity] = useState("");
   const [graduationYear, setGraduationYear] = useState(2027);
   const [loading, setLoading] = useState(false);
@@ -26,7 +28,7 @@ export default function AmbassadorForm({}: AmbassadorFormProps) {
       } = await supabase.auth.getUser();
 
       if (!user) {
-        setError("You must be logged in to submit an ambassador application.");
+        setError(t("ambassador_login_required"));
         setLoading(false);
         return;
       }
@@ -47,13 +49,12 @@ export default function AmbassadorForm({}: AmbassadorFormProps) {
         throw insertError;
       }
 
-      setMessage("Student ambassador application submitted successfully!");
+      setMessage(t("ambassador_submit_success"));
       setUniversity("");
       setGraduationYear(2027);
     } catch (err: unknown) {
       console.error(err);
-      const errMsg =
-        err instanceof Error ? err.message : "Failed to submit application. Please try again.";
+      const errMsg = err instanceof Error ? err.message : t("ambassador_submit_error");
       setError(errMsg);
     } finally {
       setLoading(false);
@@ -75,21 +76,21 @@ export default function AmbassadorForm({}: AmbassadorFormProps) {
 
       <div>
         <label className="text-fg-secondary mb-2 block text-xs font-bold tracking-wider uppercase">
-          University Name
+          {t("ambassador_university_label")}
         </label>
         <input
           type="text"
           required
           value={university}
           onChange={(e) => setUniversity(e.target.value)}
-          placeholder="e.g. Istanbul Technical University"
+          placeholder={t("ambassador_university_placeholder")}
           className="bg-bg-secondary border-border-primary/50 text-fg-primary placeholder-fg-secondary/50 focus:border-accent-soft w-full rounded-2xl border px-4 py-3 text-sm transition duration-200 focus:outline-none"
         />
       </div>
 
       <div>
         <label className="text-fg-secondary mb-2 block text-xs font-bold tracking-wider uppercase">
-          Expected Graduation Year
+          {t("ambassador_grad_year_label")}
         </label>
         <select
           value={graduationYear}
@@ -109,7 +110,7 @@ export default function AmbassadorForm({}: AmbassadorFormProps) {
         disabled={loading}
         className="bg-accent-soft hover:bg-accent-soft/90 disabled:bg-accent-soft/50 text-bg-primary shadow-accent-soft/10 w-full rounded-2xl py-4 text-sm font-bold shadow-md transition duration-200"
       >
-        {loading ? "Submitting..." : "Submit Ambassador Application"}
+        {loading ? t("ambassador_submitting") : t("ambassador_submit_btn")}
       </button>
     </form>
   );

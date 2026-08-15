@@ -8,7 +8,8 @@ export async function runOrchestrator() {
   try {
     const supabase = createAdminClient();
 
-    const { data: models, error } = await supabase
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data: models, error } = await (supabase as any)
       .from("ai_free_models")
       .select("*")
       .eq("is_active", true)
@@ -76,7 +77,8 @@ export async function runOrchestrator() {
     ];
 
     for (const chain of chains) {
-      await supabase.from("ai_routing_chains").upsert(chain, { onConflict: "domain_name" });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      await (supabase as any).from("ai_routing_chains").upsert(chain, { onConflict: "domain_name" });
     }
 
     logger.info("[Orchestrator] Successfully updated capability routing chains.");

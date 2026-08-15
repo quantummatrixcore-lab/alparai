@@ -26,7 +26,7 @@ export function Header({
   const pathname = usePathname();
   const isAdmin =
     pathname &&
-    (/^\/(?:en|tr)\/admin(?:\/|$)/.test(pathname) ||
+    (/^\/[a-z]{2}\/admin(?:\/|$)/.test(pathname) ||
       pathname === "/admin" ||
       pathname.startsWith("/admin"));
 

@@ -3,6 +3,7 @@
 import { z } from "zod";
 import { headers } from "next/headers";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
+import { fetchWithSsrfGuard } from "@/lib/security/ssrf";
 
 const verifyIncidentSchema = z.string().url();
 
@@ -39,9 +40,8 @@ export async function verifyIncident(url: string): Promise<VerifyIncidentResult>
 
     let textContent = "";
     try {
-      const res = await fetch(parseResult.data, {
+      const res = await fetchWithSsrfGuard(parseResult.data, {
         headers: { "User-Agent": "AlparAI-EvidenceVerifier/1.0" },
-        signal: AbortSignal.timeout(5000),
       });
       if (res.ok) {
         textContent = await res.text();

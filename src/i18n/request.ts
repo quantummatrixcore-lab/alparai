@@ -15,7 +15,7 @@ const localeMessages: Record<Locale, () => Promise<{ default: AbstractIntlMessag
   ru: () => import("../../messages/ru.json"),
 };
 
-export default getRequestConfig(async ({ requestLocale }) => {
+export default getRequestConfig(async ({ requestLocale }: { requestLocale?: Promise<string | undefined> | string | undefined }) => {
   let locale = await requestLocale;
   if (!locale || !SUPPORTED_LOCALES.includes(locale as Locale)) {
     locale = DEFAULT_LOCALE;

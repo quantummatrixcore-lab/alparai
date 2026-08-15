@@ -63,9 +63,24 @@ export default async function LocaleLayout({
   const { locale } = await params;
   if (!routing.locales.includes(locale as (typeof routing.locales)[number])) notFound();
   setRequestLocale(locale);
-  const messages = await getMessages();
+  const messages = await getMessages() as Record<string, any>;
   const tCommon = await getTranslations({ locale, namespace: "common" });
   const headerUser = null;
+
+  // Performans Optimizasyonu: RSC Payload Bloat'u engellemek için sadece client component'lerin
+  // ihtiyaç duyduğu temel namespace'leri gönderiyoruz.
+  const clientKeys = [
+    "common",
+    "nav",
+    "footer",
+    "auth",
+    "incident",
+    "leaderboard",
+    "ui"
+  ];
+  const clientMessages = Object.fromEntries(
+    clientKeys.map((key) => [key, messages[key]]).filter(([, val]) => val !== undefined)
+  );
 
   const headersList = await headers();
   const pathname = headersList.get("x-pathname") || "";
@@ -92,7 +107,7 @@ export default async function LocaleLayout({
           {tCommon("skipToContent", { defaultValue: "Skip to main content" })}
         </a>
         <PostHogProvider>
-          <NextIntlClientProvider messages={messages}>
+          <NextIntlClientProvider messages={clientMessages}>
             {isEmbed ? (
               <main className="m-0 min-h-screen bg-transparent p-0">{children}</main>
             ) : (

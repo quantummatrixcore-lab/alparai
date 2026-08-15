@@ -28,7 +28,13 @@ export async function getDailyCost(): Promise<number> {
     const { createAdminClient } = await import("@/lib/supabase/admin");
     const admin = createAdminClient();
     const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
-    const { data: llmDaily, error } = await admin
+    const { data: llmDaily, error } = await (admin as unknown as {
+      from: (t: string) => {
+        select: (q: string) => {
+          gte: (c: string, v: string) => Promise<{ data: Array<{cost_usd: string|number|null}> | null, error: Error | null }>
+        }
+      }
+    })
       .from("cross_audit_runs")
       .select("cost_usd")
       .gte("created_at", oneDayAgo);
@@ -38,7 +44,7 @@ export async function getDailyCost(): Promise<number> {
     }
 
     if (llmDaily) {
-      return llmDaily.reduce((acc, curr) => acc + Number(curr.cost_usd || 0), 0);
+      return (llmDaily as Array<{cost_usd: string|number|null}>).reduce((acc: number, curr: {cost_usd: string|number|null}) => acc + Number(curr.cost_usd || 0), 0);
     }
   } catch {
     // Silently fallback if DB is not initialized or fails

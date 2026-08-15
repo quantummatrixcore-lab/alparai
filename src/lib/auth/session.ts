@@ -9,24 +9,17 @@ import type { SessionUser } from "@/types";
 import type { Database } from "@/types/database";
 
 import { createAdminClient } from "@/lib/supabase/admin";
+import {
+  isTestAuthBypassActive,
+  assertTestBypassSafe,
+  getPlaywrightMockUser,
+} from "@/lib/auth/test-bypass";
 
-if (process.env.IS_PLAYWRIGHT_TEST === "true" && process.env.NODE_ENV === "production") {
-  throw new Error(
-    "CRITICAL SECURITY VIOLATION: IS_PLAYWRIGHT_TEST test bypass must never be enabled in production. This indicates a misconfiguration or deployment error.",
-  );
-}
+assertTestBypassSafe();
 
 export const getCurrentUser = cache(async (): Promise<SessionUser | null> => {
-  if (process.env.IS_PLAYWRIGHT_TEST === "true" && process.env.NODE_ENV !== "production") {
-    return {
-      id: "playwright-test-user",
-      email: "admin@playwright.test",
-      fullName: "Playwright Test Admin",
-      avatarUrl: null,
-      role: "admin",
-      isVerified: true,
-      createdAt: "2026-01-01T00:00:00Z",
-    };
+  if (isTestAuthBypassActive()) {
+    return getPlaywrightMockUser();
   }
   const supabase = await createClient();
   const {

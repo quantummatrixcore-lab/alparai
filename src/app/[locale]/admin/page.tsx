@@ -96,47 +96,60 @@ export default async function AdminDashboardPage({
     : "%100";
 
   return (
-    <div className="bg-bg-primary text-fg-primary selection:bg-brand-500/30 selection:text-brand-200 min-h-screen px-3 py-4 sm:px-6 sm:py-6 md:p-8 lg:p-10">
-      <div className="mx-auto max-w-7xl space-y-6 sm:space-y-8">
+    <div className="relative min-h-screen bg-slate-950 text-slate-200 selection:bg-brand-500/30 selection:text-brand-200 overflow-hidden">
+      {/* Cinematic Background Elements */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-brand-600/10 blur-[120px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-indigo-600/10 blur-[120px]" />
+        <div className="absolute top-[40%] left-[50%] translate-x-[-50%] w-[60%] h-[20%] rounded-full bg-fuchsia-600/5 blur-[150px]" />
+        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-7xl space-y-8 px-3 py-6 sm:px-6 md:p-8 lg:p-10">
         {/* Top Bar: Title + Status + Action Buttons */}
-        <header className="bg-bg-elevated/30 border-border-subtle flex flex-col gap-4 rounded-2xl border p-4 backdrop-blur-2xl sm:rounded-3xl sm:p-6 md:flex-row md:items-center md:justify-between">
-          <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold tracking-wide text-emerald-400">
-              <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
+        <header className="group relative flex flex-col gap-6 rounded-3xl border border-white/10 bg-slate-900/40 p-6 backdrop-blur-3xl transition-all duration-500 hover:bg-slate-900/60 hover:shadow-[0_0_80px_rgba(var(--color-brand-500),0.1)] md:flex-row md:items-center md:justify-between overflow-hidden">
+          {/* Header Internal Glow */}
+          <div className="absolute -inset-x-20 -top-20 h-[150px] w-full bg-gradient-to-r from-transparent via-brand-500/10 to-transparent blur-3xl opacity-0 transition-opacity duration-700 group-hover:opacity-100 pointer-events-none" />
+
+          <div className="space-y-3 relative z-10">
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-3 py-1 text-xs font-semibold tracking-wider text-emerald-400 uppercase shadow-[0_0_15px_rgba(16,185,129,0.1)]">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
               {t("badge_spatial_cockpit")}
             </div>
-            <h1 className="from-fg-primary via-fg-secondary to-fg-muted bg-gradient-to-r bg-clip-text text-3xl font-bold tracking-tight text-transparent sm:text-4xl md:text-5xl">
+            <h1 className="bg-gradient-to-br from-white via-slate-200 to-slate-500 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl drop-shadow-sm">
               {t("command_center_title")}
             </h1>
-            <p className="text-fg-muted text-sm font-medium sm:text-base">
+            <p className="text-slate-400 text-sm font-medium tracking-wide">
               {t("command_center_subtitle")}
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3 relative z-10">
             <Link
               href={`/${locale}/admin/strategy/master-plan`}
-              className="inline-flex items-center gap-2 rounded-2xl border border-cyan-500/30 bg-cyan-500/10 px-4 py-2.5 text-sm font-medium text-cyan-300 transition-all duration-300 hover:border-cyan-500/60 hover:bg-cyan-500/20 hover:text-white"
+              className="group/btn relative inline-flex items-center gap-2 rounded-2xl border border-amber-500/20 bg-amber-500/10 px-5 py-3 text-sm font-medium text-amber-300 transition-all duration-300 hover:border-amber-400/40 hover:bg-amber-400/20 hover:text-amber-100 hover:shadow-[0_0_20px_rgba(251,191,36,0.15)] overflow-hidden"
             >
-              <FileText className="h-4 w-4 text-cyan-400" />
+              <div className="absolute inset-0 bg-gradient-to-r from-amber-400/0 via-amber-400/10 to-amber-400/0 translate-x-[-100%] group-hover/btn:animate-[shimmer_1.5s_infinite]" />
+              <FileText className="h-4 w-4 text-amber-400" />
               <span>{t("header_master_plan")}</span>
             </Link>
 
             <Link
               href={`/${locale}/admin/cockpit`}
-              className="inline-flex items-center gap-2 rounded-2xl border border-purple-500/30 bg-purple-500/10 px-4 py-2.5 text-sm font-medium text-purple-300 transition-all duration-300 hover:border-purple-500/60 hover:bg-purple-500/20 hover:text-white"
+              className="group/btn relative inline-flex items-center gap-2 rounded-2xl border border-cyan-500/20 bg-cyan-500/10 px-5 py-3 text-sm font-medium text-cyan-300 transition-all duration-300 hover:border-cyan-400/40 hover:bg-cyan-400/20 hover:text-cyan-100 hover:shadow-[0_0_20px_rgba(6,182,212,0.15)] overflow-hidden"
             >
-              <Sparkles className="h-4 w-4 text-purple-400" />
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/0 via-cyan-400/10 to-cyan-400/0 translate-x-[-100%] group-hover/btn:animate-[shimmer_1.5s_infinite]" />
+              <Sparkles className="h-4 w-4 text-cyan-400" />
               <span>{t("spatial_view")}</span>
             </Link>
 
             <button
               aria-label={t("command_palette")}
-              className="text-fg-muted border-border-subtle hover:border-border-strong hover:text-fg-primary group flex items-center gap-3 rounded-2xl border bg-white/5 px-4 py-2.5 text-sm backdrop-blur-xl transition-all duration-200 hover:bg-white/10"
+              className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-slate-300 backdrop-blur-xl transition-all duration-300 hover:border-white/20 hover:bg-white/10 hover:text-white"
             >
-              <Search className="h-4 w-4" />
-              <span className="font-medium">{t("command_palette")}</span>
-              <kbd className="text-fg-secondary ml-2 hidden h-5 items-center gap-0.5 rounded-md bg-white/10 px-2 font-mono text-[11px] font-semibold md:inline-flex">
+              <Search className="h-4 w-4 text-slate-400 group-hover:text-white transition-colors" />
+              <span>{t("command_palette")}</span>
+              <kbd className="ml-2 hidden h-5 items-center gap-0.5 rounded-md border border-white/10 bg-black/20 px-2 font-mono text-[10px] font-semibold text-slate-400 md:inline-flex">
                 <span>⌘</span>
                 <span>K</span>
               </kbd>
@@ -161,8 +174,8 @@ export default async function AdminDashboardPage({
           <PrioritizationWidget items={masterPlan.items} error={masterPlan.error} />
 
           {/* WIDGET 1: Financial & Operations Cockpit */}
-          <section className="bg-bg-elevated/40 hover:bg-bg-elevated/60 group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-emerald-500/20 p-6 backdrop-blur-xl transition-all duration-300 hover:border-emerald-500/40 md:p-8">
-            <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl transition-all duration-500 group-hover:bg-emerald-500/20" />
+          <section className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-slate-900/40 p-6 backdrop-blur-3xl transition-all duration-500 hover:-translate-y-1 hover:border-emerald-500/30 hover:bg-slate-900/70 hover:shadow-[0_0_50px_rgba(16,185,129,0.1)] md:p-8">
+            <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-emerald-500/10 blur-[80px] transition-all duration-700 group-hover:bg-emerald-500/20" />
 
             <div className="space-y-6">
               {/* Header */}
@@ -295,8 +308,8 @@ export default async function AdminDashboardPage({
           </section>
 
           {/* WIDGET 2: AI Core & System Health Cockpit */}
-          <section className="bg-bg-elevated/40 hover:bg-bg-elevated/60 group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-cyan-500/20 p-6 backdrop-blur-xl transition-all duration-300 hover:border-cyan-500/40 md:p-8">
-            <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-cyan-500/10 blur-3xl transition-all duration-500 group-hover:bg-cyan-500/20" />
+          <section className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-slate-900/40 p-6 backdrop-blur-3xl transition-all duration-500 hover:-translate-y-1 hover:border-cyan-500/30 hover:bg-slate-900/70 hover:shadow-[0_0_50px_rgba(6,182,212,0.1)] md:p-8">
+            <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-cyan-500/10 blur-[80px] transition-all duration-700 group-hover:bg-cyan-500/20" />
 
             <div className="space-y-6">
               {/* Header */}
@@ -448,8 +461,8 @@ export default async function AdminDashboardPage({
           </section>
 
           {/* WIDGET 3: Security, Compliance & Moderation Cockpit */}
-          <section className="bg-bg-elevated/40 hover:bg-bg-elevated/60 group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-rose-500/20 p-6 backdrop-blur-xl transition-all duration-300 hover:border-rose-500/40 md:p-8">
-            <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-rose-500/10 blur-3xl transition-all duration-500 group-hover:bg-rose-500/20" />
+          <section className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-slate-900/40 p-6 backdrop-blur-3xl transition-all duration-500 hover:-translate-y-1 hover:border-rose-500/30 hover:bg-slate-900/70 hover:shadow-[0_0_50px_rgba(244,63,94,0.1)] md:p-8">
+            <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-rose-500/10 blur-[80px] transition-all duration-700 group-hover:bg-rose-500/20" />
 
             <div className="space-y-6">
               {/* Header */}
@@ -582,8 +595,8 @@ export default async function AdminDashboardPage({
           </section>
 
           {/* WIDGET 4: Strategy, Growth & Outreach Cockpit */}
-          <section className="bg-bg-elevated/40 hover:bg-bg-elevated/60 group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-purple-500/20 p-6 backdrop-blur-xl transition-all duration-300 hover:border-purple-500/40 md:p-8">
-            <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-purple-500/10 blur-3xl transition-all duration-500 group-hover:bg-purple-500/20" />
+          <section className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-slate-900/40 p-6 backdrop-blur-3xl transition-all duration-500 hover:-translate-y-1 hover:border-purple-500/30 hover:bg-slate-900/70 hover:shadow-[0_0_50px_rgba(168,85,247,0.1)] md:p-8">
+            <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-purple-500/10 blur-[80px] transition-all duration-700 group-hover:bg-purple-500/20" />
 
             <div className="space-y-6">
               {/* Header */}

@@ -1,0 +1,874 @@
+<html data-src-ver="c74ac769" data-om-id="c74ac769:0" style="color-scheme: light;"><head data-om-id="c74ac769:1"><style>
+    .sc-placeholder{background:color-mix(in srgb,currentColor 8%,transparent);
+      border:1px solid color-mix(in srgb,currentColor 50%,transparent);
+      border-radius:2px;box-sizing:border-box;overflow:hidden}
+    @keyframes sc-shine{0%{background-position:100% 50%}100%{background-position:0% 50%}}
+    html.sc-dc-streaming .sc-placeholder,
+    html.sc-dc-streaming .sc-interp.sc-missing{position:relative;
+      background:color-mix(in srgb,currentColor 5%,transparent);
+      border-color:transparent}
+    html.sc-dc-streaming .sc-placeholder::before,
+    html.sc-dc-streaming .sc-interp.sc-missing::before{content:'';
+      position:absolute;inset:0;pointer-events:none;
+      background:linear-gradient(90deg,rgba(217,119,87,0) 25%,rgba(247,225,211,.95) 37%,rgba(217,119,87,0) 63%);
+      background-size:400% 100%;animation:sc-shine 1.4s ease infinite}
+    html.sc-dc-streaming .sc-placeholder:nth-child(n+9 of .sc-placeholder)::before,
+    html.sc-dc-streaming .sc-interp.sc-missing:nth-child(n+9 of .sc-interp.sc-missing)::before{animation:none;
+      background:color-mix(in srgb,currentColor 8%,transparent)}
+    .sc-placeholder-error{padding:4px 8px;font:11px/1.4 ui-monospace,monospace;
+      color:color-mix(in srgb,currentColor 70%,transparent);word-break:break-word}
+    .sc-interp.sc-missing{display:inline-block;width:2em;height:1em;overflow:hidden;
+      vertical-align:text-bottom;background:rgba(255,255,255,.3);border:1px solid rgba(0,0,0,.5);
+      border-radius:2px;box-sizing:border-box;color:transparent;
+      user-select:none}
+    .sc-interp.sc-unresolved{font-family:ui-monospace,monospace;font-size:.85em;
+      color:color-mix(in srgb,currentColor 50%,transparent);
+      background:color-mix(in srgb,currentColor 10%,transparent);border-radius:3px;
+      padding:0 3px}
+    .sc-host.sc-has-error{position:relative}
+    .sc-logic-error{position:absolute;top:8px;left:8px;z-index:2147483647;max-width:60ch;
+      padding:6px 10px;background:#b00020;color:#fff;font:12px/1.4 ui-monospace,monospace;
+      border-radius:4px;white-space:pre-wrap;pointer-events:none}
+    /* Mirrors PRINT_BASELINE_CSS in apps/web deck-stage-export.ts — keep both
+       in sync until dc-runtime regains a build step. */
+    @media print {
+      @page { margin: 0.5cm; }
+      figure, table { break-inside: avoid; }
+      #dc-root, #dc-root > .sc-host { height: auto; }
+      *, *::before, *::after {
+        print-color-adjust: exact; -webkit-print-color-adjust: exact;
+        backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+        animation-delay: -99s !important; animation-duration: .001s !important;
+        animation-iteration-count: 1 !important; animation-fill-mode: both !important;
+        animation-play-state: running !important; transition-duration: 0s !important;
+      }
+    }
+  </style>
+<style data-omelette-injected="">html,body{background:transparent}</style><script data-omelette-injected="">(()=>{{const n=new URLSearchParams(location.search).get("theme");if(n==="light"||n==="dark"){document.documentElement.dataset.theme=n}}{if(new URLSearchParams(location.search).get("_omthumb")==="1"){const n=(f)=>{const g=f.focus;if(!g)return;f.focus=function(h){g.call(this,{...h,preventScroll:true})}};n(HTMLElement.prototype);n(SVGElement.prototype);if(typeof MathMLElement!=="undefined"){n(MathMLElement.prototype)}const d=(f)=>{f.removeAttribute("autofocus");f.inert=true;if(!(f instanceof HTMLElement))f.removeAttribute("tabindex")};const p=(f)=>{if(f.hasAttribute("autofocus"))d(f);for(const g of f.querySelectorAll("[autofocus]")){d(g)}};p(document.documentElement);new MutationObserver((f)=>{for(const g of f){for(const h of g.addedNodes){if(h.nodeType===1)p(h)}}}).observe(document,{childList:true,subtree:true})}}{const n=()=>{try{if(document.querySelector('meta[name="color-scheme"]'))return;const d=getComputedStyle(document.documentElement).getPropertyValue("color-scheme").trim();if(d&&d!=="normal")return;const p=(y)=>{if(!y)return null;const m=getComputedStyle(y).backgroundColor.match(/^rgba?\(\s*(\d+)[,\s]+(\d+)[,\s]+(\d+)(?:[,\s/]+([\d.]+%?))?\s*\)$/);if(!m)return null;const w=m[4]==null?1:parseFloat(m[4])/(m[4].endsWith("%")?100:1);if(w<0.99)return null;return[+m[1],+m[2],+m[3]]};const f=p(document.body)||p(document.documentElement);if(!f)return;const g=(y)=>{const m=y/255;return m<=0.04045?m/12.92:((m+0.055)/1.055)**2.4};const h=0.2126*g(f[0])+0.7152*g(f[1])+0.0722*g(f[2]);document.documentElement.style.setProperty("color-scheme",h<0.4?"dark":"light")}catch{}};if(document.readyState==="complete")n();else window.addEventListener("load",n)}var I=["https://claude.ai","https://preview.claude.ai","https://2a8ce91e-fe84-4be9-a98a-c8c6d0059d53.claudeusercontent.com"];var B=true;var K=false;var C=()=>{};if(K===true){try{const n=setTimeout.bind(window);const d=1e4;const p=15;const f=1e4;const g=120000;const h=200;const y=(o)=>{try{let r;if(typeof o==="string")r=o;else if(o instanceof URL)r=o.href;else if(typeof Request!=="undefined"&&o instanceof Request)r=o.url;else return null;if(!r)return null;const l=document.baseURI;const i=new URL(r,l);if(i.protocol!=="http:"&&i.protocol!=="https:")return null;if(i.origin!==new URL(l).origin)return null;return i.origin+i.pathname}catch{return null}};const m=new Map;const w=(o)=>{let r=m.get(o);if(!r){if(m.size>=h){const l=m.keys().next().value;if(l!==undefined)m.delete(l)}r={fails:[],until:0,cooldown:f,hard:false};m.set(o,r)}return r};const R=(o)=>{const r=m.get(o);return r!==undefined&&r.until>Date.now()};const O=(o,r)=>{const l=Date.now();const i=w(o);if(r)i.hard=true;if(i.until>l)return;i.fails.push(l);while(i.fails.length>0&&i.fails[0]<=l-d)i.fails.shift();if(i.fails.length>=p){i.until=l+i.cooldown;if(i.hard)i.cooldown=Math.min(i.cooldown*2,g);i.fails.length=0;try{n(()=>{try{S(true)}catch{}},i.until-l+100)}catch{}console.warn("[omelette] asset circuit breaker: pausing requests to "+o+" for "+Math.round((i.until-l)/1000)+"s after "+p+" failures in "+d/1000+"s")}};const e=(o)=>{m.delete(o)};const t=100;const a=new WeakMap;const u=new Set;let s=null;const S=(o)=>{for(const r of Array.from(u)){try{const l=a.get(r);if(l===undefined){u.delete(r);continue}if(o){const i=y(l);if(i!==null&&R(i))continue}a.delete(r);u.delete(r);if(s!==null)s.call(r,l)}catch{}}};C=()=>{try{m.clear();S(false)}catch{}};document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")C()});const _=window.fetch;if(typeof _==="function"){const o=function(...r){let l=null;try{l=y(r[0])}catch{}if(l!==null&&R(l)){let c;try{if(r[1]&&r[1].signal!==undefined){c=r[1].signal||undefined}else if(typeof Request!=="undefined"&&r[0]instanceof Request){c=r[0].signal||undefined}}catch{c=undefined}return new Promise((k,b)=>{const E=()=>{try{return c.reason!==undefined?c.reason:new DOMException("The operation was aborted.","AbortError")}catch{return new DOMException("The operation was aborted.","AbortError")}};try{if(c&&c.aborted){b(E());return}}catch{}let T=false;const j=()=>{if(T)return;T=true;b(E())};try{if(c)c.addEventListener("abort",j,{once:true})}catch{}n(()=>{if(T)return;T=true;try{if(c)c.removeEventListener("abort",j)}catch{}let L;try{L=new Response(null,{status:429,statusText:"Too Many Requests",headers:{"Retry-After":"10"}})}catch{L={ok:false,status:429}}k(L)},250)})}const i=_.apply(window,r);if(l!==null){const c=l;i.then((k)=>{try{if(k.ok)e(c);else if(k.status===401||k.status===403||k.status===404||k.status===429){O(c,k.status!==404)}}catch{}},()=>{})}return i};window.fetch=o}const v=Object.getOwnPropertyDescriptor(HTMLImageElement.prototype,"src");if(v!==undefined&&v.set!==undefined&&v.get!==undefined){const o=v.set;s=o;Object.defineProperty(HTMLImageElement.prototype,"src",{configurable:true,enumerable:v.enumerable,get:v.get,set(r){const l=`${r}`;try{const i=y(l);if(i!==null&&R(i)){a.set(this,l);if(u.size<t)u.add(this);return}}catch{}try{a.delete(this);u.delete(this)}catch{}o.call(this,l)}})}try{const o=HTMLImageElement.prototype.setAttribute;HTMLImageElement.prototype.setAttribute=function(r,l){if(arguments.length<2){o.apply(this,arguments);return}if(typeof r==="string"&&r.toLowerCase()==="src"){const i=`${l}`;try{const c=y(i);if(c!==null&&R(c)){a.set(this,i);if(u.size<t)u.add(this);return}a.delete(this);u.delete(this)}catch{}o.call(this,r,i);return}o.call(this,r,l)}}catch{}window.addEventListener("error",(o)=>{try{const r=o.target;if(r instanceof HTMLImageElement){const l=y(r.currentSrc||r.src||"");if(l!==null)O(l,true)}}catch{}},true);window.addEventListener("load",(o)=>{try{const r=o.target;if(r instanceof HTMLImageElement){const l=y(r.currentSrc||r.src||"");if(l!==null)e(l);const i=a.get(r);if(i!==undefined){let c=false;try{c=new URL(i,document.baseURI).href===new URL(r.currentSrc||r.src||"",document.baseURI).href}catch{c=false}if(c){a.delete(r);u.delete(r)}}}}catch{}},true)}catch{}}var J=30000;var G=3000;document.addEventListener("DOMContentLoaded",()=>{const n=window.Babel;const d="om-src-id";if(n&&n.registerPlugin&&!(n.availablePlugins&&n.availablePlugins[d])){n.registerPlugin(d,({types:h})=>({visitor:{JSXOpeningElement(y,m){const w=y.node;if(w.name&&w.name.type==="JSXMemberExpression")return;for(let t=0;t<w.attributes.length;t++){const a=w.attributes[t];if(a.type==="JSXAttribute"&&a.name&&a.name.name==="data-om-id")return}const R=m.file&&m.file.opts&&m.file.opts.filename||"?";const O=w.loc&&w.loc.start;const e=`jsx:${R}:${w.start??0}:${O?O.line:0}:${O?O.column+1:0}`;w.attributes.push(h.jsxAttribute(h.jsxIdentifier("data-om-id"),h.stringLiteral(e)))}}}))}const p="om-text-extract";let f=false;if(B&&n&&n.registerPlugin&&!(n.availablePlugins&&n.availablePlugins[p])){const h=window.React;if(h&&h.useSyncExternalStore&&h.createElement){f=true;const y={};const m=new Set;let w=0;window.__omTextO=y;window.__omTextSet=(e)=>{for(const t in e){const a=e[t];if(a==null)delete y[t];else y[t]=a}w++;m.forEach((t)=>t())};const R=(e)=>{m.add(e);return()=>m.delete(e)};const O=()=>w;window.__OmT=function e(t){h.useSyncExternalStore(R,O,O);return h.createElement("span",{"data-om-text":t.i,className:"__om-t"},t.i in y?y[t.i]:t.children)};n.registerPlugin(p,({types:e})=>{const t={style:1,script:1,noscript:1,textarea:1,title:1,option:1,text:1,tspan:1,textPath:1};const a={placeholder:1,alt:1,title:1,label:1,"aria-label":1,"aria-description":1,"aria-placeholder":1};const u=(o,r)=>e.logicalExpression("??",e.memberExpression(e.logicalExpression("||",e.memberExpression(e.identifier("window"),e.identifier("__omTextO")),e.objectExpression([])),e.stringLiteral(o),true),r);const s=(o)=>o.file&&o.file.opts&&o.file.opts.filename||"?";const S=(o)=>o.file&&o.file.code||"";const _=(o,r)=>{const l=(c)=>c&&c.start!=null&&c.end!=null&&(c.type==="StringLiteral"||c.type==="TemplateLiteral"&&c.expressions.length===0)?[c.start,c.end]:null;const i=l(r);if(i)return i;if(r&&r.type==="Identifier"){const c=o.scope.getBinding(r.name);if(c&&c.constant&&c.path.node.type==="VariableDeclarator"){return l(c.path.node.init)}}return null};const v=(o,r,l)=>{const i=o.node;let c=false;const k=(E,T)=>{c=true;return e.jsxElement(e.jsxOpeningElement(e.jsxIdentifier("__OmT"),[e.jsxAttribute(e.jsxIdentifier("i"),e.stringLiteral(E))],false),e.jsxClosingElement(e.jsxIdentifier("__OmT")),[T],false)};const b=i.children.map((E)=>{if(E.type==="JSXText"){if(E.start==null||E.end==null)return E;const T=l.slice(E.start,E.end);const j=T.length-T.trimStart().length;const L=T.length-T.trimEnd().length;if(j+L>=T.length)return E;return k(`txt:${r}:${E.start+j}:${E.end-L}`,E)}if(E.type==="JSXExpressionContainer"){const T=_(o,E.expression);if(T)return k(`str:${r}:${T[0]}:${T[1]}`,E)}return E});if(c)i.children=b};return{visitor:{JSXOpeningElement(o,r){const l=o.node;const i=s(r);const c={};for(let k=0;k<l.attributes.length;k++){const b=l.attributes[k];if(b.type!=="JSXAttribute"||!b.name)continue;const E=b.name.name;if(!a[E])continue;if(!b.value||b.value.type!=="StringLiteral")continue;if(b.value.start==null||b.value.end==null)continue;const T=`txt:${i}:${b.value.start}:${b.value.end}`;c[E]=T;b.value=e.jsxExpressionContainer(u(T,e.stringLiteral(b.value.value)))}if(Object.keys(c).length){l.attributes.push(e.jsxAttribute(e.jsxIdentifier("data-om-text-attrs"),e.stringLiteral(JSON.stringify(c))))}},JSXElement(o,r){const l=o.node.openingElement;const i=l&&l.name&&l.name.name;if(i==="__OmT")return;if(typeof i==="string"&&t[i])return;v(o,s(r),S(r))},JSXFragment(o,r){v(o,s(r),S(r))}}}})}}const g=f?["transform-react-jsx-source",d,p]:["transform-react-jsx-source",d];document.querySelectorAll('script[type="text/babel"],script[type="text/jsx"]').forEach((h,y)=>{const m=h.getAttribute("data-plugins")||"";const w=g.filter((R)=>m.indexOf(R)<0);if(w.length){h.setAttribute("data-plugins",m?`${m},${w.join(",")}`:w.join(","))}if(!h.hasAttribute("data-filename")){h.setAttribute("data-filename",h.getAttribute("src")||`inline-${y}`)}})});var A=window.parent;var U="not editable here — open the project in the Claude Design editor to save";var W=()=>Promise.resolve({persisted:false,noHost:true,reason:U});var H=W;var M="data/storage.json";var z=()=>{try{const n=new URL(document.baseURI);const d=n.pathname.match(/\/projects\/([^/]+)\/serve\//);if(d)return d[1];return n.hostname.split(".")[0]||""}catch{return location.hostname.split(".")[0]||""}};var Z=()=>{try{const n=new URL(document.baseURI);const d=n.pathname.indexOf("/serve/");if(d>=0)return n.origin+n.pathname.slice(0,d+"/serve/".length)+M}catch{}return"./"+M};var x=null;var N=()=>{if(!x){x=fetch(Z(),{cache:"no-store"}).then((n)=>{if(n.ok)return n.text();return n.status===404?"":null}).catch(()=>null).then((n)=>{if(n===null){x=null;return null}const d=new Map;if(!n)return d;let p;try{p=JSON.parse(n)}catch{console.warn("[omelette.storage] "+M+" is not valid JSON; treating the store as unreadable so a save cannot overwrite the "+"hand-edited bytes. Fix the JSON (or delete the file) to re-enable persistence.");x=null;return null}if(p===null||typeof p!=="object"||Array.isArray(p)){console.warn("[omelette.storage] "+M+" doesn't hold a JSON object; treating the store as unreadable so a save cannot "+"overwrite the hand-edited bytes. Make the top level a JSON object to re-enable persistence.");x=null;return null}const f=p;if("data"in f){const g=f.data;if(g===null||typeof g!=="object"||Array.isArray(g)){console.warn("[omelette.storage] "+M+' has a "data" field that is not a JSON object; treating the store as unreadable so a '+'save cannot overwrite the hand-edited bytes. Make "data" a JSON object to re-enable persistence.');x=null;return null}const h=f._meta;const y=h!==null&&typeof h==="object"?h.project:undefined;if(typeof y==="string"&&y!==""&&y!==z())return d;for(const m of Object.keys(g))d.set(m,g[m]);return d}for(const g of Object.keys(f)){if(g!=="_meta")d.set(g,f[g])}return d})}return x};var F=(n)=>H(M,JSON.stringify({_meta:{project:z(),version:1},data:Object.fromEntries(n)},null,2));var D=Promise.resolve();var $=(n)=>{const d=D.then(n);D=d.then(()=>{return},()=>{return});return d};var V=/sk-(?:ant-)?[A-Za-z0-9_-]{16,}|AKIA[0-9A-Z]{16}|gh[pousr]_[A-Za-z0-9]{20,}|xox[a-z]-[A-Za-z0-9][A-Za-z0-9-]{9,}|AIza[0-9A-Za-z_-]{30,}|-----BEGIN [A-Z ]*PRIVATE KEY-----/;var Y=/password|passwd|secret|api[_-]?key|access[_-]?token|auth[_-]?token|credential/i;var Q=(n,d,p)=>{if(V.test(d)||Y.test(n)&&typeof p==="string"&&p.length>=8){console.warn('[omelette.storage] the value for "'+n+'" looks like a credential. The storage file is a plaintext project file — visible to '+"everyone with project access and copied when the project is duplicated. Do not store secrets here.")}};var q={persisted:false,reason:"could not load the existing store — not overwriting it"};var X={persisted:false,reason:"stored value changed since a failed read — re-read this key before saving"};var P=new Set;var ee={get:(n)=>{if(typeof n!=="string"){return Promise.reject(new TypeError("storage.get: key must be a string"))}return $(N).then((d)=>{if(d===null){P.add(n);return null}P.delete(n);if(!d.has(n))return null;const p=d.get(n);return p==null?null:JSON.parse(JSON.stringify(p))})},set:(n,d)=>{if(typeof n!=="string"){return Promise.reject(new TypeError("storage.set: key must be a string"))}let p;try{p=JSON.stringify(d)}catch(g){return Promise.reject(new TypeError("storage.set: value must be JSON-serializable ("+String(g)+")"))}if(p===undefined){return Promise.reject(new TypeError("storage.set: value must be JSON-serializable"))}Q(n,p,d);const f=JSON.parse(p);return $(()=>N().then((g)=>{if(g===null)return q;if(P.has(n)){if(g.has(n))return X;P.delete(n)}g.set(n,f);return F(g)}))},delete:(n)=>{if(typeof n!=="string"){return Promise.reject(new TypeError("storage.delete: key must be a string"))}return $(()=>N().then((d)=>{if(d===null)return q;if(P.has(n)){if(d.has(n))return X;P.delete(n)}d.delete(n);return F(d)}))},keys:()=>$(N).then((n)=>n===null?[]:Array.from(n.keys()))};window.omelette={writeFile:(n,d)=>H(n,d).then((p)=>{if(!p.persisted&&!p.noHost){throw new Error(p.reason||"write failed")}}),storage:ee};if(A&&A!==window){const n=(e,t)=>{try{A.postMessage({__omelette_log:true,type:e,data:t},"*")}catch{}};["log","warn","error"].forEach((e)=>{const t=console[e];console[e]=(...a)=>{const u=a.map((s)=>{try{return typeof s==="object"?JSON.stringify(s):String(s)}catch{try{return String(s)}catch{return"[unstringifiable]"}}}).join(" ");n(e,u);t.apply(console,a)}});window.addEventListener("error",(e)=>{const t=e.target;if(t&&t!==window&&t.tagName){const a=t.src||t.href||"";n("resource_error",`${t.tagName} failed to load: ${a}`)}else{n("error",`${e.message||"Unknown error"} at ${e.filename||"?"}:${e.lineno||0}:${e.colno||0}`)}},true);window.addEventListener("unhandledrejection",(e)=>{const t=e.reason;const a=t instanceof Error?`${t.message} ${t.stack}`:String(t);n("error",`Unhandled rejection: ${a}`)});window.addEventListener("click",(e)=>{if(e.defaultPrevented||e.button!==0)return;if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;const t=e.composedPath?e.composedPath():[];const a=["button","input","select","textarea","summary","label"];let u=null;for(const v of t){if(!(v instanceof Element))continue;if(v.localName==="a"){if(!(v instanceof HTMLAnchorElement))return;u=v;break}if(a.indexOf(v.localName)!==-1)return}if(!u)return;if(u.isContentEditable)return;const s=u.closest("[contenteditable]");if(s&&s.getAttribute("contenteditable")!=="false")return;const S=(u.getAttribute("target")||"_self").toLowerCase();if(S!=="_self"&&S!=="_top"&&S!=="_parent")return;let _;try{_=new URL(u.href)}catch{return}if(_.protocol!=="http:"&&_.protocol!=="https:")return;if(location.origin==="null")return;if(_.origin===location.origin)return;e.preventDefault();window.open(_.href,"_blank","noopener,noreferrer")});const d=()=>{try{A.postMessage({type:"omelette:height",height:document.documentElement.scrollHeight},"*")}catch{}};if(window.ResizeObserver)new ResizeObserver(d).observe(document.documentElement);const p=()=>{d();if(!document.querySelector('script[type="text/babel"],script[type="text/jsx"]'))return;const e=()=>document.getElementById("root")||document.querySelector("body > div[id]");const t=e()?.firstElementChild??null;let a=0;const u=()=>{const s=e();if(s&&s.firstElementChild!==t||++a>30){d();return}setTimeout(u,100)};setTimeout(u,100)};if(document.readyState==="complete")p();else window.addEventListener("load",p);const f={};let g=0;const h=(e)=>new Promise((t,a)=>{if(!I.length){a(new Error("claude.complete: no parent origin"));return}const u=`c${++g}`;const s=()=>setTimeout(()=>{delete f[u];a(new Error(`claude.complete: no data for ${J/1000}s`))},J);const S=s();f[u]={resolve:t,reject:a,text:"",t:S,arm:s};try{for(const _ of I){A.postMessage({__om_api:true,id:u,body:e},_)}}catch(_){clearTimeout(S);delete f[u];a(_)}});const y=8;const m=async(e,t)=>{if(!Array.isArray(e.messages)){throw new Error("claude.complete: tools require a messages array")}const a=e.messages.slice();const u={...e,tools:e.tools.map((_)=>{if(_===null||typeof _!=="object")return _;const v={};for(const o of Object.keys(_)){if(typeof _[o]!=="function")v[o]=_[o]}return v})};const s=u.tool_choice;const S=s!=null&&(s.type==="any"||s.type==="tool")?{...u,tool_choice:s.disable_parallel_tool_use!==undefined?{type:"auto",disable_parallel_tool_use:s.disable_parallel_tool_use}:{type:"auto"}}:u;for(let _=0;_<y;_++){const v=await h({..._===0?u:S,messages:a});const o=v.message;const r=o&&Array.isArray(o.content)?o.content:null;const l=r?r.filter((c)=>c?.type==="tool_use"):[];if(o?.stop_reason!=="tool_use"||l.length===0){return v.text}const i=[];for(const c of l){const k=t.get(c.name);if(!k){i.push({type:"tool_result",tool_use_id:c.id,content:`no handler for tool "${c.name}"`,is_error:true});continue}try{const b=await k(c.input);const E=typeof b==="string"?b:O(b)??"";i.push({type:"tool_result",tool_use_id:c.id,content:E})}catch(b){i.push({type:"tool_result",tool_use_id:c.id,content:String(b?.message??b??"tool handler failed"),is_error:true})}}a.push({role:"assistant",content:r},{role:"user",content:i})}throw new Error(`claude.complete: exceeded ${y} tool turns`)};window.claude={complete(e){const t=e;if(t!==null&&typeof t==="object"&&Array.isArray(t.tools)&&t.tools.some((a)=>a!==null&&typeof a==="object"&&typeof a.run==="function")){const a=new Map;for(const u of t.tools){if(u!==null&&typeof u==="object"&&typeof u.run==="function"){a.set(String(u.name),u.run)}}return m(t,a)}return h(e).then((a)=>a.text)}};const w={};let R=0;H=(e,t)=>new Promise((a)=>{if(!I.length){a({persisted:false,noHost:true,reason:U});return}const u=`f${++R}`;const s=setTimeout(()=>{delete w[u];a({persisted:false,noHost:true,reason:U})},G);w[u]={settle:a,t:s};try{for(const S of I){A.postMessage({__om_file:true,id:u,op:"write",path:e,content:t},S)}}catch{clearTimeout(s);delete w[u];a({persisted:false,noHost:true,reason:U})}});const O=(e)=>{try{return JSON.stringify(e)}catch{return JSON.stringify(String(e))}};window.addEventListener("message",(e)=>{if(I.indexOf(e.origin)<0)return;if(e.source!==A)return;const t=e.data;if(!t)return;if(t.type==="omelette-preview-refresh"){if(typeof t.token!=="string"||!/^[0-9a-f.-]+(\.(rc|pr-[0-9]+))?(\.[0-9]+\.[0-9a-f]{16})?$/.test(t.token))return;const s=Math.max(1,Math.floor((t.expiresAt||0)-Date.now()/1000));document.cookie="__Host-omelette-preview="+t.token+"; Path=/; Secure; SameSite=None; Partitioned; Max-Age="+s;C();return}if(t.__om_file_r){const s=w[t.id];if(!s)return;clearTimeout(s.t);delete w[t.id];s.settle(t.ok?{persisted:true}:{persisted:false,reason:t.error||"write failed"});return}if(t.__om_api_r){const s=f[t.id];if(!s)return;if(t.error!=null){clearTimeout(s.t);delete f[t.id];s.reject(new Error(t.error));return}if(t.chunk!=null){clearTimeout(s.t);s.t=s.arm();s.text+=t.chunk;return}if(t.done){clearTimeout(s.t);delete f[t.id];s.resolve({text:t.text!=null?t.text:s.text,message:t.message});return}return}if(!t.__om_eval)return;const a=t;const u=(s)=>{e.source.postMessage({...s,__om_eval_r:1,id:a.id},e.origin)};try{const s=(0,eval)(a.code);if(s&&typeof s.then==="function"){s.then((S)=>u({ok:1,v:O(S)}),(S)=>u({ok:0,e:String(S)}))}else{u({ok:1,v:O(s)})}}catch(s){u({ok:0,e:String(s)})}})}})();
+</script>
+
+<meta charset="utf-8" data-om-id="c74ac769:2">
+<meta name="viewport" content="width=device-width, initial-scale=1" data-om-id="c74ac769:3">
+<script src="./support.js"></script><style>x-dc{display:none!important}</style><script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script><script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
+<style></style><style>html,body{height:100%;margin:0}#dc-root,#dc-root>.sc-host{height:100%}</style><link rel="stylesheet" href="_ds/modernist-b73c78e5-96ce-4ea1-83ad-40e0f9e00c6f/styles.css" data-om-id="c74ac769:7" data-dc-tpl="1"><style data-dc-tpl="2">
+  html,body{height:100%}
+  body{margin:0;overflow:hidden}
+</style></head>
+<body data-om-id="c74ac769:4">
+<div id="dc-root"><div class="sc-host" data-sc-name="Founder Admin Panel v2"><div data-dc-tpl="3" data-om-id="c74ac769:8" style="display: flex; height: 100vh; width: 100%; overflow: hidden; background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); --color-bg: oklch(97% 0.004 255); --color-surface: oklch(99% 0.002 255); --color-text: oklch(22% 0.015 255); --color-divider: oklch(88% 0.008 255); --color-neutral-100: oklch(96% 0.004 255); --color-neutral-200: oklch(93% 0.006 255); --color-neutral-300: oklch(87% 0.008 255); --color-neutral-400: oklch(76% 0.01 255); --color-neutral-500: oklch(63% 0.012 255); --color-neutral-600: oklch(52% 0.014 255); --color-neutral-700: oklch(42% 0.014 255); --color-neutral-800: oklch(32% 0.014 255); --color-neutral-900: oklch(22% 0.014 255); --color-accent: oklch(48% 0.17 258); --color-accent-100: oklch(94% 0.035 258); --color-accent-700: oklch(38% 0.14 258); --color-accent-800: oklch(32% 0.13 258); --shadow-sm: 0 1px 2px oklch(20% 0.01 255 / 8%); --shadow-md: 0 4px 14px oklch(20% 0.01 255 / 10%); --chart-ink: oklch(22% 0.015 255); --chart-grid: oklch(90% 0.006 255); --chart-muted: oklch(55% 0.012 255); --chart-area: oklch(48% 0.17 258 / 12%); transition: background 0.15s, color 0.15s;">
+
+  
+  <div data-dc-tpl="4" data-om-id="c74ac769:9" style="width: 236px; flex: 0 0 auto; background: var(--color-surface); border-right: 2px solid var(--color-divider); display: flex; flex-direction: column; overflow-y: auto;">
+    <div data-dc-tpl="5" data-om-id="c74ac769:10" style="padding: var(--space-6) var(--space-4); border-bottom: 2px solid var(--color-divider);">
+      <div data-dc-tpl="6" data-om-id="c74ac769:11" style="font-family: var(--font-heading); font-weight: 800; font-size: 20px; letter-spacing: -0.02em;">ALPAR</div>
+      <div data-dc-tpl="7" data-om-id="c74ac769:12" style="font-size: 10px; color: var(--color-neutral-700); margin-top: 2px; letter-spacing: 0.12em; text-transform: uppercase;">Kurucu Paneli</div>
+    </div>
+
+    <div data-dc-tpl="8" data-om-id="c74ac769:13" style="padding: var(--space-4) var(--space-2);">
+      <div data-dc-tpl="9" data-om-id="c74ac769:14" style="font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-neutral-600); padding: 0 var(--space-2) var(--space-2);">Genel</div>
+      
+        <button data-dc-tpl="11" data-om-id="c74ac769:16" class="scp0" style="display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; background: var(--color-accent-100); border-width: medium medium medium 3px; border-style: none none none solid; border-color: currentcolor currentcolor currentcolor oklch(0.48 0.17 258); border-image: none; cursor: pointer; padding: 10px var(--space-2); font-family: var(--font-heading); font-weight: 800; font-size: 13.5px; color: var(--color-text);">
+          <span data-dc-tpl="12" data-om-id="c74ac769:17"><span class="sc-interp">Genel Bakış</span></span>
+        </button>
+      
+        <button data-dc-tpl="11" data-om-id="c74ac769:16" class="scp0" style="display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; background: transparent; border-width: medium medium medium 3px; border-style: none none none solid; border-color: currentcolor currentcolor currentcolor transparent; border-image: none; cursor: pointer; padding: 10px var(--space-2); font-family: var(--font-heading); font-weight: 800; font-size: 13.5px; color: var(--color-text);">
+          <span data-dc-tpl="12" data-om-id="c74ac769:17"><span class="sc-interp">İçerik Yönetimi</span></span>
+        </button>
+      
+        <button data-dc-tpl="11" data-om-id="c74ac769:16" class="scp0" style="display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; background: transparent; border-width: medium medium medium 3px; border-style: none none none solid; border-color: currentcolor currentcolor currentcolor transparent; border-image: none; cursor: pointer; padding: 10px var(--space-2); font-family: var(--font-heading); font-weight: 800; font-size: 13.5px; color: var(--color-text);">
+          <span data-dc-tpl="12" data-om-id="c74ac769:17"><span class="sc-interp">Raporlar &amp; Analitik</span></span>
+        </button>
+      
+    </div>
+
+    
+      
+        <div data-dc-tpl="15" data-om-id="c74ac769:20" style="padding: 0 var(--space-2);">
+          <div data-dc-tpl="16" data-om-id="c74ac769:21" style="font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-neutral-600); padding: var(--space-3) var(--space-2) var(--space-1); border-top: 1px solid var(--color-divider); margin-top: var(--space-2);"><span class="sc-interp">Operasyon</span></div>
+          
+            <div data-dc-tpl="18" data-om-id="c74ac769:23" style="padding: 7px var(--space-2); font-size: 12.5px; color: var(--color-neutral-500);"><span class="sc-interp">Denetim Kuyruğu</span></div>
+          
+            <div data-dc-tpl="18" data-om-id="c74ac769:23" style="padding: 7px var(--space-2); font-size: 12.5px; color: var(--color-neutral-500);"><span class="sc-interp">Vaka Kayıtları</span></div>
+          
+            <div data-dc-tpl="18" data-om-id="c74ac769:23" style="padding: 7px var(--space-2); font-size: 12.5px; color: var(--color-neutral-500);"><span class="sc-interp">İçe Aktarım</span></div>
+          
+        </div>
+      
+        <div data-dc-tpl="15" data-om-id="c74ac769:20" style="padding: 0 var(--space-2);">
+          <div data-dc-tpl="16" data-om-id="c74ac769:21" style="font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-neutral-600); padding: var(--space-3) var(--space-2) var(--space-1); border-top: 1px solid var(--color-divider); margin-top: var(--space-2);"><span class="sc-interp">İstihbarat</span></div>
+          
+            <div data-dc-tpl="18" data-om-id="c74ac769:23" style="padding: 7px var(--space-2); font-size: 12.5px; color: var(--color-neutral-500);"><span class="sc-interp">Model Karşılaştırma</span></div>
+          
+            <div data-dc-tpl="18" data-om-id="c74ac769:23" style="padding: 7px var(--space-2); font-size: 12.5px; color: var(--color-neutral-500);"><span class="sc-interp">Otomasyon Merkezi</span></div>
+          
+        </div>
+      
+        <div data-dc-tpl="15" data-om-id="c74ac769:20" style="padding: 0 var(--space-2);">
+          <div data-dc-tpl="16" data-om-id="c74ac769:21" style="font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-neutral-600); padding: var(--space-3) var(--space-2) var(--space-1); border-top: 1px solid var(--color-divider); margin-top: var(--space-2);"><span class="sc-interp">Yönetişim</span></div>
+          
+            <div data-dc-tpl="18" data-om-id="c74ac769:23" style="padding: 7px var(--space-2); font-size: 12.5px; color: var(--color-neutral-500);"><span class="sc-interp">Kullanıcılar &amp; Roller</span></div>
+          
+            <div data-dc-tpl="18" data-om-id="c74ac769:23" style="padding: 7px var(--space-2); font-size: 12.5px; color: var(--color-neutral-500);"><span class="sc-interp">Gizlilik Talepleri</span></div>
+          
+            <div data-dc-tpl="18" data-om-id="c74ac769:23" style="padding: 7px var(--space-2); font-size: 12.5px; color: var(--color-neutral-500);"><span class="sc-interp">Denetim Günlükleri</span></div>
+          
+        </div>
+      
+        <div data-dc-tpl="15" data-om-id="c74ac769:20" style="padding: 0 var(--space-2);">
+          <div data-dc-tpl="16" data-om-id="c74ac769:21" style="font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-neutral-600); padding: var(--space-3) var(--space-2) var(--space-1); border-top: 1px solid var(--color-divider); margin-top: var(--space-2);"><span class="sc-interp">Sistem</span></div>
+          
+            <div data-dc-tpl="18" data-om-id="c74ac769:23" style="padding: 7px var(--space-2); font-size: 12.5px; color: var(--color-neutral-500);"><span class="sc-interp">Sistem Sağlığı</span></div>
+          
+            <div data-dc-tpl="18" data-om-id="c74ac769:23" style="padding: 7px var(--space-2); font-size: 12.5px; color: var(--color-neutral-500);"><span class="sc-interp">Faturalama &amp; Limitler</span></div>
+          
+            <div data-dc-tpl="18" data-om-id="c74ac769:23" style="padding: 7px var(--space-2); font-size: 12.5px; color: var(--color-neutral-500);"><span class="sc-interp">Entegrasyonlar</span></div>
+          
+        </div>
+      
+    
+
+    <div data-dc-tpl="19" data-om-id="c74ac769:24" style="margin-top: auto; padding: var(--space-4); border-top: 2px solid var(--color-divider); display: flex; flex-direction: column; gap: 6px;">
+      <div data-dc-tpl="20" data-om-id="c74ac769:25" style="font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-neutral-600);">Sistem Durumu</div>
+      <div data-dc-tpl="21" data-om-id="c74ac769:26" style="display: flex; align-items: center; gap: 8px; font-size: 12px;">
+        <span data-dc-tpl="22" data-om-id="c74ac769:27" style="width: 8px; height: 8px; background: var(--color-accent); flex: 0 0 auto;"></span>
+        <span data-dc-tpl="23" data-om-id="c74ac769:28">Tüm servisler çalışıyor</span>
+      </div>
+      <div data-dc-tpl="24" data-om-id="c74ac769:29" style="display: flex; gap: 2px; margin-top: 2px;">
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.55 0.13 152);"></span>
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.55 0.13 152);"></span>
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.55 0.13 152);"></span>
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.55 0.13 152);"></span>
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.55 0.13 152);"></span>
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.55 0.13 152);"></span>
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.55 0.13 152);"></span>
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.55 0.13 152);"></span>
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.55 0.13 152);"></span>
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.55 0.13 152);"></span>
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.55 0.13 152);"></span>
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.55 0.13 152);"></span>
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.55 0.13 152);"></span>
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.55 0.13 152);"></span>
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.55 0.13 152);"></span>
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.55 0.13 152);"></span>
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.55 0.13 152);"></span>
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.66 0.15 75);"></span>
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.55 0.13 152);"></span>
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.55 0.13 152);"></span>
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.55 0.13 152);"></span>
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.55 0.13 152);"></span>
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.55 0.13 152);"></span>
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.55 0.13 152);"></span>
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.55 0.13 152);"></span>
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.55 0.13 152);"></span>
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.55 0.13 152);"></span>
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.55 0.13 152);"></span>
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.55 0.13 152);"></span>
+        
+          <span data-dc-tpl="26" data-om-id="c74ac769:31" style="flex: 1 1 0%; height: 16px; background: oklch(0.55 0.13 152);"></span>
+        
+      </div>
+      <div data-dc-tpl="27" data-om-id="c74ac769:32" style="font-size: 10px; color: var(--color-neutral-600);">30 günlük çalışma süresi · %99,8</div>
+    </div>
+  </div>
+
+  
+  <div data-dc-tpl="28" data-om-id="c74ac769:33" style="flex: 1 1 0%; display: flex; flex-direction: column; min-width: 0px; overflow: hidden;">
+    <div data-dc-tpl="29" data-om-id="c74ac769:34" style="height: 60px; flex: 0 0 auto; border-bottom: 2px solid var(--color-divider); display: flex; align-items: center; justify-content: space-between; padding: 0 var(--space-8);">
+      <div data-dc-tpl="30" data-om-id="c74ac769:35" style="font-size: 12.5px; color: var(--color-neutral-700);">Kurucu Paneli <span data-dc-tpl="31" data-om-id="c74ac769:36" style="color: var(--color-neutral-400); margin: 0px 6px;">/</span> <span data-dc-tpl="32" data-om-id="c74ac769:37" style="color: var(--color-text); font-weight: 600;"><span class="sc-interp">Kontrol Merkezi</span></span></div>
+      <div data-dc-tpl="33" data-om-id="c74ac769:38" style="display: flex; align-items: center; gap: var(--space-4);">
+        <div data-dc-tpl="34" class="seg" data-om-id="c74ac769:39">
+          <label data-dc-tpl="35" class="seg-opt" data-om-id="c74ac769:40"><input data-dc-tpl="36" type="radio" name="theme-switch" data-om-id="c74ac769:41" checked="">Açık</label>
+          <label data-dc-tpl="37" class="seg-opt" data-om-id="c74ac769:42"><input data-dc-tpl="38" type="radio" name="theme-switch" data-om-id="c74ac769:43">Koyu</label>
+        </div>
+        <input data-dc-tpl="39" class="input" placeholder="Ara..." data-om-id="c74ac769:44" style="width: 180px; min-height: 32px;">
+        <div data-dc-tpl="40" data-om-id="c74ac769:45" style="display: flex; align-items: center; gap: 8px;">
+          <div data-dc-tpl="41" data-om-id="c74ac769:46" style="width: 30px; height: 30px; background: var(--color-accent); color: var(--color-bg); display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: 800; font-size: 12px;">K</div>
+          <span data-dc-tpl="42" data-om-id="c74ac769:47" style="font-size: 12px; color: var(--color-neutral-700);">Kurucu</span>
+        </div>
+      </div>
+    </div>
+
+    <div data-dc-tpl="43" data-om-id="c74ac769:48" style="flex: 1 1 0%; overflow-y: auto; padding: var(--space-8);">
+
+      
+      
+        <div data-dc-tpl="45" data-om-id="c74ac769:50" style="display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap;">
+          <div data-dc-tpl="46" data-om-id="c74ac769:51">
+            <div data-dc-tpl="47" data-om-id="c74ac769:52" style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 6px;">Canlı Telemetri</div>
+            <h1 data-dc-tpl="48" data-om-id="c74ac769:53" style="margin: 0px; font-size: 38px;">Kontrol Merkezi</h1>
+          </div>
+          <div data-dc-tpl="49" data-om-id="c74ac769:54" style="display: flex; align-items: center; gap: var(--space-3);">
+            <span data-dc-tpl="50" data-om-id="c74ac769:55" style="font-size: 11px; color: var(--color-neutral-600);">Son güncelleme 14:32</span>
+            <button data-dc-tpl="51" class="btn btn-secondary" data-om-id="c74ac769:56">Yenile</button>
+          </div>
+        </div>
+        <hr data-dc-tpl="52" class="hr" data-om-id="c74ac769:57">
+
+        
+        <div data-dc-tpl="53" data-om-id="c74ac769:58" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4);">
+          <div data-dc-tpl="54" data-om-id="c74ac769:59" style="background: var(--color-surface); border: 1px solid var(--color-divider); box-shadow: var(--shadow-sm); padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2);">
+            <div data-dc-tpl="55" data-om-id="c74ac769:60" style="font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-600);">Toplam Vaka</div>
+            <div data-dc-tpl="56" data-om-id="c74ac769:61" style="font-family: var(--font-heading); font-weight: 800; font-size: 34px; line-height: 1;">1.842</div>
+            <svg data-dc-tpl="57" viewBox="0 0 120 32" data-om-id="c74ac769:62" style="width: 100%; height: 32px; display: block;">
+              <polyline data-dc-tpl="58" points="0,26 15,24 30,25 45,19 60,20 75,14 90,12 105,8 120,4" fill="none" stroke-width="2" data-om-id="c74ac769:63" style="stroke: var(--color-accent);"></polyline>
+            </svg>
+            <div data-dc-tpl="59" data-om-id="c74ac769:64" style="font-size: 11px; color: var(--color-neutral-700); border-top: 1px solid var(--color-divider); padding-top: 8px;">▲ %6 · 30 günde +104</div>
+          </div>
+          <div data-dc-tpl="60" data-om-id="c74ac769:65" style="background: var(--color-surface); border: 1px solid var(--color-divider); box-shadow: var(--shadow-sm); padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2);">
+            <div data-dc-tpl="61" data-om-id="c74ac769:66" style="font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-600);">Denetim Kuyruğu</div>
+            <div data-dc-tpl="62" data-om-id="c74ac769:67" style="font-family: var(--font-heading); font-weight: 800; font-size: 34px; line-height: 1;">37</div>
+            <svg data-dc-tpl="63" viewBox="0 0 120 32" data-om-id="c74ac769:68" style="width: 100%; height: 32px; display: block;">
+              <polyline data-dc-tpl="64" points="0,18 15,14 30,20 45,12 60,16 75,9 90,14 105,6 120,10" fill="none" stroke-width="2" data-om-id="c74ac769:69" style="stroke: var(--chart-ink);"></polyline>
+            </svg>
+            <div data-dc-tpl="65" data-om-id="c74ac769:70" style="font-size: 11px; color: var(--color-neutral-700); border-top: 1px solid var(--color-divider); padding-top: 8px;">9 tanesi 48 saati aştı</div>
+          </div>
+          <div data-dc-tpl="66" data-om-id="c74ac769:71" style="background: var(--color-surface); border: 1px solid var(--color-divider); box-shadow: var(--shadow-sm); padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2);">
+            <div data-dc-tpl="67" data-om-id="c74ac769:72" style="font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-600);">Aylık API Maliyeti</div>
+            <div data-dc-tpl="68" data-om-id="c74ac769:73" style="font-family: var(--font-heading); font-weight: 800; font-size: 34px; line-height: 1;">$4.120</div>
+            <svg data-dc-tpl="69" viewBox="0 0 120 32" data-om-id="c74ac769:74" style="width: 100%; height: 32px; display: block;">
+              <polyline data-dc-tpl="70" points="0,22 15,20 30,16 45,18 60,13 75,15 90,10 105,9 120,7" fill="none" stroke-width="2" data-om-id="c74ac769:75" style="stroke: var(--chart-ink);"></polyline>
+            </svg>
+            <div data-dc-tpl="71" data-om-id="c74ac769:76" style="font-size: 11px; color: var(--color-neutral-700); border-top: 1px solid var(--color-divider); padding-top: 8px;">Bütçenin %68'i kullanıldı</div>
+          </div>
+          <div data-dc-tpl="72" data-om-id="c74ac769:77" style="background: var(--color-surface); border: 1px solid var(--color-divider); box-shadow: var(--shadow-sm); padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2);">
+            <div data-dc-tpl="73" data-om-id="c74ac769:78" style="font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-600);">MRR</div>
+            <div data-dc-tpl="74" data-om-id="c74ac769:79" style="font-family: var(--font-heading); font-weight: 800; font-size: 34px; line-height: 1;">$18.4K</div>
+            <svg data-dc-tpl="75" viewBox="0 0 120 32" data-om-id="c74ac769:80" style="width: 100%; height: 32px; display: block;">
+              <polyline data-dc-tpl="76" points="0,28 15,26 30,22 45,21 60,17 75,15 90,11 105,8 120,3" fill="none" stroke-width="2" data-om-id="c74ac769:81" style="stroke: oklch(0.55 0.13 152);"></polyline>
+            </svg>
+            <div data-dc-tpl="77" data-om-id="c74ac769:82" style="font-size: 11px; color: var(--color-neutral-700); border-top: 1px solid var(--color-divider); padding-top: 8px;">▲ %9 · hedefin %82'si</div>
+          </div>
+        </div>
+
+        
+        <div data-dc-tpl="78" data-om-id="c74ac769:83" style="display: grid; grid-template-columns: 2fr 1fr; gap: var(--space-4); margin-top: var(--space-4);">
+          <div data-dc-tpl="79" data-om-id="c74ac769:84" style="background: var(--color-surface); border: 1px solid var(--color-divider); box-shadow: var(--shadow-sm); padding: var(--space-4);">
+            <div data-dc-tpl="80" data-om-id="c74ac769:85" style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid var(--color-divider); padding-bottom: var(--space-3); margin-bottom: var(--space-4);">
+              <h4 data-dc-tpl="81" data-om-id="c74ac769:86" style="margin: 0px;">Vaka Hacmi &amp; Triyaj</h4>
+              <div data-dc-tpl="82" data-om-id="c74ac769:87" style="display: flex; gap: var(--space-4); font-size: 11px; color: var(--color-neutral-700);">
+                <span data-dc-tpl="83" data-om-id="c74ac769:88" style="display: flex; align-items: center; gap: 6px;"><span data-dc-tpl="84" data-om-id="c74ac769:89" style="width: 12px; height: 3px; background: var(--color-accent);"></span>Gelen</span>
+                <span data-dc-tpl="85" data-om-id="c74ac769:90" style="display: flex; align-items: center; gap: 6px;"><span data-dc-tpl="86" data-om-id="c74ac769:91" style="width: 12px; height: 3px; background: oklch(0.55 0.13 152);"></span>Çözülen</span>
+              </div>
+            </div>
+            <svg data-dc-tpl="87" viewBox="0 0 620 220" data-om-id="c74ac769:92" style="width: 100%; height: 230px; display: block;">
+              <line data-dc-tpl="88" x1="0" y1="10" x2="620" y2="10" stroke-width="1" data-om-id="c74ac769:93" style="stroke: var(--chart-grid);"></line>
+              <line data-dc-tpl="89" x1="0" y1="60" x2="620" y2="60" stroke-width="1" data-om-id="c74ac769:94" style="stroke: var(--chart-grid);"></line>
+              <line data-dc-tpl="90" x1="0" y1="110" x2="620" y2="110" stroke-width="1" data-om-id="c74ac769:95" style="stroke: var(--chart-grid);"></line>
+              <line data-dc-tpl="91" x1="0" y1="160" x2="620" y2="160" stroke-width="1" data-om-id="c74ac769:96" style="stroke: var(--chart-grid);"></line>
+              <line data-dc-tpl="92" x1="0" y1="196" x2="620" y2="196" stroke-width="2" data-om-id="c74ac769:97" style="stroke: var(--chart-ink);"></line>
+              <polygon data-dc-tpl="93" points="0,150 56,132 112,140 169,108 225,116 281,86 338,92 394,64 450,72 507,44 563,52 620,26 620,196 0,196" data-om-id="c74ac769:98" style="fill: var(--chart-area);"></polygon>
+              <polyline data-dc-tpl="94" points="0,150 56,132 112,140 169,108 225,116 281,86 338,92 394,64 450,72 507,44 563,52 620,26" fill="none" stroke-width="2.5" data-om-id="c74ac769:99" style="stroke: var(--color-accent);"></polyline>
+              <polyline data-dc-tpl="95" points="0,172 56,166 112,158 169,150 225,144 281,132 338,126 394,114 450,110 507,96 563,88 620,74" fill="none" stroke-width="2" stroke-dasharray="5 4" data-om-id="c74ac769:100" style="stroke: oklch(0.55 0.13 152);"></polyline>
+              <g data-dc-tpl="96" font-size="10" font-family="Archivo" data-om-id="c74ac769:101" style="fill: var(--chart-muted);">
+                <text data-dc-tpl="97" x="0" y="212" data-om-id="c74ac769:102">H1</text><text data-dc-tpl="98" x="112" y="212" data-om-id="c74ac769:103">H3</text><text data-dc-tpl="99" x="225" y="212" data-om-id="c74ac769:104">H5</text><text data-dc-tpl="100" x="338" y="212" data-om-id="c74ac769:105">H7</text><text data-dc-tpl="101" x="450" y="212" data-om-id="c74ac769:106">H9</text><text data-dc-tpl="102" x="563" y="212" data-om-id="c74ac769:107">H11</text>
+              </g>
+            </svg>
+          </div>
+
+          <div data-dc-tpl="103" data-om-id="c74ac769:108" style="background: var(--color-surface); border: 1px solid var(--color-divider); box-shadow: var(--shadow-sm); padding: var(--space-4);">
+            <h4 data-dc-tpl="104" data-om-id="c74ac769:109" style="margin: 0 0 var(--space-4); border-bottom: 2px solid var(--color-divider); padding-bottom: var(--space-3);">Kaynak Kullanımı</h4>
+            <div data-dc-tpl="105" data-om-id="c74ac769:110" style="display: flex; flex-direction: column; gap: var(--space-4);">
+              
+                <div data-dc-tpl="107" data-om-id="c74ac769:112" style="display: flex; align-items: center; gap: var(--space-4);">
+                  <svg data-dc-tpl="108" viewBox="0 0 120 120" data-om-id="c74ac769:113" style="width: 78px; height: 78px; flex: 0 0 auto; display: block;">
+                    <circle data-dc-tpl="109" cx="60" cy="60" r="50" fill="none" stroke-width="12" data-om-id="c74ac769:114" style="stroke: var(--chart-grid);"></circle>
+                    <circle data-dc-tpl="110" cx="60" cy="60" r="50" fill="none" stroke="oklch(66% 0.15 75)" stroke-width="12" stroke-dasharray="213.6 100.5" stroke-linecap="round" transform="rotate(-90 60 60)" data-om-id="c74ac769:115"></circle>
+                    <text data-dc-tpl="111" x="60" y="66" text-anchor="middle" font-family="Archivo" font-weight="800" font-size="24" data-om-id="c74ac769:116" style="fill: var(--chart-ink);"><span class="sc-interp">%68</span></text>
+                  </svg>
+                  <div data-dc-tpl="112" data-om-id="c74ac769:117">
+                    <div data-dc-tpl="113" data-om-id="c74ac769:118" style="font-family: var(--font-heading); font-weight: 800; font-size: 14px;"><span class="sc-interp">API Bütçesi</span></div>
+                    <div data-dc-tpl="114" data-om-id="c74ac769:119" style="font-size: 11.5px; color: var(--color-neutral-700); margin-top: 3px;"><span class="sc-interp">$4.120 / $6.000 · 15 gün kaldı</span></div>
+                  </div>
+                </div>
+              
+                <div data-dc-tpl="107" data-om-id="c74ac769:112" style="display: flex; align-items: center; gap: var(--space-4);">
+                  <svg data-dc-tpl="108" viewBox="0 0 120 120" data-om-id="c74ac769:113" style="width: 78px; height: 78px; flex: 0 0 auto; display: block;">
+                    <circle data-dc-tpl="109" cx="60" cy="60" r="50" fill="none" stroke-width="12" data-om-id="c74ac769:114" style="stroke: var(--chart-grid);"></circle>
+                    <circle data-dc-tpl="110" cx="60" cy="60" r="50" fill="none" stroke="oklch(55% 0.13 152)" stroke-width="12" stroke-dasharray="295.3 18.8" stroke-linecap="round" transform="rotate(-90 60 60)" data-om-id="c74ac769:115"></circle>
+                    <text data-dc-tpl="111" x="60" y="66" text-anchor="middle" font-family="Archivo" font-weight="800" font-size="24" data-om-id="c74ac769:116" style="fill: var(--chart-ink);"><span class="sc-interp">%94</span></text>
+                  </svg>
+                  <div data-dc-tpl="112" data-om-id="c74ac769:117">
+                    <div data-dc-tpl="113" data-om-id="c74ac769:118" style="font-family: var(--font-heading); font-weight: 800; font-size: 14px;"><span class="sc-interp">Denetim SLA</span></div>
+                    <div data-dc-tpl="114" data-om-id="c74ac769:119" style="font-size: 11.5px; color: var(--color-neutral-700); margin-top: 3px;"><span class="sc-interp">Hedef %90 · son 30 gün</span></div>
+                  </div>
+                </div>
+              
+                <div data-dc-tpl="107" data-om-id="c74ac769:112" style="display: flex; align-items: center; gap: var(--space-4);">
+                  <svg data-dc-tpl="108" viewBox="0 0 120 120" data-om-id="c74ac769:113" style="width: 78px; height: 78px; flex: 0 0 auto; display: block;">
+                    <circle data-dc-tpl="109" cx="60" cy="60" r="50" fill="none" stroke-width="12" data-om-id="c74ac769:114" style="stroke: var(--chart-grid);"></circle>
+                    <circle data-dc-tpl="110" cx="60" cy="60" r="50" fill="none" stroke="oklch(76% 0.01 255)" stroke-width="12" stroke-dasharray="128.8 185.4" stroke-linecap="round" transform="rotate(-90 60 60)" data-om-id="c74ac769:115"></circle>
+                    <text data-dc-tpl="111" x="60" y="66" text-anchor="middle" font-family="Archivo" font-weight="800" font-size="24" data-om-id="c74ac769:116" style="fill: var(--chart-ink);"><span class="sc-interp">%41</span></text>
+                  </svg>
+                  <div data-dc-tpl="112" data-om-id="c74ac769:117">
+                    <div data-dc-tpl="113" data-om-id="c74ac769:118" style="font-family: var(--font-heading); font-weight: 800; font-size: 14px;"><span class="sc-interp">Veri Kapasitesi</span></div>
+                    <div data-dc-tpl="114" data-om-id="c74ac769:119" style="font-size: 11.5px; color: var(--color-neutral-700); margin-top: 3px;"><span class="sc-interp">82 GB / 200 GB</span></div>
+                  </div>
+                </div>
+              
+            </div>
+          </div>
+        </div>
+
+        
+        <div data-dc-tpl="115" data-om-id="c74ac769:120" style="background: var(--color-surface); border: 1px solid var(--color-divider); box-shadow: var(--shadow-sm); padding: var(--space-4); margin-top: var(--space-4);">
+          <div data-dc-tpl="116" data-om-id="c74ac769:121" style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid var(--color-divider); padding-bottom: var(--space-3); margin-bottom: var(--space-6);">
+            <h4 data-dc-tpl="117" data-om-id="c74ac769:122" style="margin: 0px;">Vaka Akış Hattı</h4>
+            <span data-dc-tpl="118" data-om-id="c74ac769:123" style="font-size: 11px; color: var(--color-neutral-700);">Darboğaz: İnsan Denetimi</span>
+          </div>
+          <div data-dc-tpl="119" data-om-id="c74ac769:124" style="display: flex; align-items: stretch; gap: 0px;">
+            
+              <div data-dc-tpl="121" data-om-id="c74ac769:126" style="flex: 1 1 0%; display: flex; align-items: stretch;">
+                <div data-dc-tpl="122" data-om-id="c74ac769:127" style="flex: 1 1 0%; border: 2px solid var(--color-neutral-300); background: transparent; padding: var(--space-3); display: flex; flex-direction: column; gap: 4px;">
+                  <div data-dc-tpl="123" data-om-id="c74ac769:128" style="font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700);">Adım <span class="sc-interp">01</span></div>
+                  <div data-dc-tpl="124" data-om-id="c74ac769:129" style="font-family: var(--font-heading); font-weight: 800; font-size: 14px; line-height: 1.15;"><span class="sc-interp">İçe Aktarım</span></div>
+                  <div data-dc-tpl="125" data-om-id="c74ac769:130" style="font-family: var(--font-heading); font-weight: 800; font-size: 26px; line-height: 1; margin-top: 4px; color: oklch(0.22 0.015 255);"><span class="sc-interp">126</span></div>
+                  <div data-dc-tpl="126" data-om-id="c74ac769:131" style="font-size: 10.5px; color: var(--color-neutral-700);"><span class="sc-interp">otomatik akış</span></div>
+                  <div data-dc-tpl="127" data-om-id="c74ac769:132" style="height: 4px; background: var(--color-neutral-300); margin-top: auto;"><div data-dc-tpl="128" data-om-id="c74ac769:133" style="height: 100%; width: 100%; background: oklch(0.22 0.015 255);"></div></div>
+                </div>
+                
+                  <div data-dc-tpl="130" data-om-id="c74ac769:135" style="width: 26px; flex: 0 0 auto; display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--color-neutral-600);">→</div>
+                
+              </div>
+            
+              <div data-dc-tpl="121" data-om-id="c74ac769:126" style="flex: 1 1 0%; display: flex; align-items: stretch;">
+                <div data-dc-tpl="122" data-om-id="c74ac769:127" style="flex: 1 1 0%; border: 2px solid var(--color-neutral-300); background: transparent; padding: var(--space-3); display: flex; flex-direction: column; gap: 4px;">
+                  <div data-dc-tpl="123" data-om-id="c74ac769:128" style="font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700);">Adım <span class="sc-interp">02</span></div>
+                  <div data-dc-tpl="124" data-om-id="c74ac769:129" style="font-family: var(--font-heading); font-weight: 800; font-size: 14px; line-height: 1.15;"><span class="sc-interp">Sınıflandırma</span></div>
+                  <div data-dc-tpl="125" data-om-id="c74ac769:130" style="font-family: var(--font-heading); font-weight: 800; font-size: 26px; line-height: 1; margin-top: 4px; color: oklch(0.22 0.015 255);"><span class="sc-interp">112</span></div>
+                  <div data-dc-tpl="126" data-om-id="c74ac769:131" style="font-size: 10.5px; color: var(--color-neutral-700);"><span class="sc-interp">model etiketleme</span></div>
+                  <div data-dc-tpl="127" data-om-id="c74ac769:132" style="height: 4px; background: var(--color-neutral-300); margin-top: auto;"><div data-dc-tpl="128" data-om-id="c74ac769:133" style="height: 100%; width: 89%; background: oklch(0.22 0.015 255);"></div></div>
+                </div>
+                
+                  <div data-dc-tpl="130" data-om-id="c74ac769:135" style="width: 26px; flex: 0 0 auto; display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--color-neutral-600);">→</div>
+                
+              </div>
+            
+              <div data-dc-tpl="121" data-om-id="c74ac769:126" style="flex: 1 1 0%; display: flex; align-items: stretch;">
+                <div data-dc-tpl="122" data-om-id="c74ac769:127" style="flex: 1 1 0%; border: 2px solid oklch(0.66 0.15 75); background: oklch(0.94 0.06 75); padding: var(--space-3); display: flex; flex-direction: column; gap: 4px;">
+                  <div data-dc-tpl="123" data-om-id="c74ac769:128" style="font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700);">Adım <span class="sc-interp">03</span></div>
+                  <div data-dc-tpl="124" data-om-id="c74ac769:129" style="font-family: var(--font-heading); font-weight: 800; font-size: 14px; line-height: 1.15;"><span class="sc-interp">İnsan Denetimi</span></div>
+                  <div data-dc-tpl="125" data-om-id="c74ac769:130" style="font-family: var(--font-heading); font-weight: 800; font-size: 26px; line-height: 1; margin-top: 4px; color: oklch(0.38 0.1 65);"><span class="sc-interp">37</span></div>
+                  <div data-dc-tpl="126" data-om-id="c74ac769:131" style="font-size: 10.5px; color: var(--color-neutral-700);"><span class="sc-interp">bekleyen · darboğaz</span></div>
+                  <div data-dc-tpl="127" data-om-id="c74ac769:132" style="height: 4px; background: var(--color-neutral-300); margin-top: auto;"><div data-dc-tpl="128" data-om-id="c74ac769:133" style="height: 100%; width: 33%; background: oklch(0.38 0.1 65);"></div></div>
+                </div>
+                
+                  <div data-dc-tpl="130" data-om-id="c74ac769:135" style="width: 26px; flex: 0 0 auto; display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--color-neutral-600);">→</div>
+                
+              </div>
+            
+              <div data-dc-tpl="121" data-om-id="c74ac769:126" style="flex: 1 1 0%; display: flex; align-items: stretch;">
+                <div data-dc-tpl="122" data-om-id="c74ac769:127" style="flex: 1 1 0%; border: 2px solid var(--color-neutral-300); background: transparent; padding: var(--space-3); display: flex; flex-direction: column; gap: 4px;">
+                  <div data-dc-tpl="123" data-om-id="c74ac769:128" style="font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700);">Adım <span class="sc-interp">04</span></div>
+                  <div data-dc-tpl="124" data-om-id="c74ac769:129" style="font-family: var(--font-heading); font-weight: 800; font-size: 14px; line-height: 1.15;"><span class="sc-interp">Doğrulama</span></div>
+                  <div data-dc-tpl="125" data-om-id="c74ac769:130" style="font-family: var(--font-heading); font-weight: 800; font-size: 26px; line-height: 1; margin-top: 4px; color: oklch(0.22 0.015 255);"><span class="sc-interp">24</span></div>
+                  <div data-dc-tpl="126" data-om-id="c74ac769:131" style="font-size: 10.5px; color: var(--color-neutral-700);"><span class="sc-interp">kaynak kontrolü</span></div>
+                  <div data-dc-tpl="127" data-om-id="c74ac769:132" style="height: 4px; background: var(--color-neutral-300); margin-top: auto;"><div data-dc-tpl="128" data-om-id="c74ac769:133" style="height: 100%; width: 21%; background: oklch(0.22 0.015 255);"></div></div>
+                </div>
+                
+                  <div data-dc-tpl="130" data-om-id="c74ac769:135" style="width: 26px; flex: 0 0 auto; display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--color-neutral-600);">→</div>
+                
+              </div>
+            
+              <div data-dc-tpl="121" data-om-id="c74ac769:126" style="flex: 1 1 0%; display: flex; align-items: stretch;">
+                <div data-dc-tpl="122" data-om-id="c74ac769:127" style="flex: 1 1 0%; border: 2px solid var(--color-neutral-300); background: transparent; padding: var(--space-3); display: flex; flex-direction: column; gap: 4px;">
+                  <div data-dc-tpl="123" data-om-id="c74ac769:128" style="font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700);">Adım <span class="sc-interp">05</span></div>
+                  <div data-dc-tpl="124" data-om-id="c74ac769:129" style="font-family: var(--font-heading); font-weight: 800; font-size: 14px; line-height: 1.15;"><span class="sc-interp">Yayın</span></div>
+                  <div data-dc-tpl="125" data-om-id="c74ac769:130" style="font-family: var(--font-heading); font-weight: 800; font-size: 26px; line-height: 1; margin-top: 4px; color: oklch(0.22 0.015 255);"><span class="sc-interp">19</span></div>
+                  <div data-dc-tpl="126" data-om-id="c74ac769:131" style="font-size: 10.5px; color: var(--color-neutral-700);"><span class="sc-interp">bu hafta yayınlanan</span></div>
+                  <div data-dc-tpl="127" data-om-id="c74ac769:132" style="height: 4px; background: var(--color-neutral-300); margin-top: auto;"><div data-dc-tpl="128" data-om-id="c74ac769:133" style="height: 100%; width: 17%; background: oklch(0.22 0.015 255);"></div></div>
+                </div>
+                
+              </div>
+            
+          </div>
+        </div>
+
+        
+        <div data-dc-tpl="131" data-om-id="c74ac769:136" style="display: grid; grid-template-columns: 1.35fr 1fr; gap: var(--space-4); margin-top: var(--space-4);">
+          <div data-dc-tpl="132" data-om-id="c74ac769:137" style="background: var(--color-surface); border: 1px solid var(--color-divider); box-shadow: var(--shadow-sm); padding: var(--space-4);">
+            <div data-dc-tpl="133" data-om-id="c74ac769:138" style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid var(--color-divider); padding-bottom: var(--space-3); margin-bottom: var(--space-4);">
+              <h4 data-dc-tpl="134" data-om-id="c74ac769:139" style="margin: 0px;">Aktivite Yoğunluğu</h4>
+              <span data-dc-tpl="135" data-om-id="c74ac769:140" style="font-size: 11px; color: var(--color-neutral-700);">12 hafta · gün bazında</span>
+            </div>
+            <div data-dc-tpl="136" data-om-id="c74ac769:141" style="display: flex; gap: var(--space-2);">
+              <div data-dc-tpl="137" data-om-id="c74ac769:142" style="display: flex; flex-direction: column; gap: 3px; padding-top: 0px;">
+                
+                  <div data-dc-tpl="139" data-om-id="c74ac769:144" style="height: 18px; font-size: 9.5px; color: var(--color-neutral-600); display: flex; align-items: center;"><span class="sc-interp">Pzt</span></div>
+                
+                  <div data-dc-tpl="139" data-om-id="c74ac769:144" style="height: 18px; font-size: 9.5px; color: var(--color-neutral-600); display: flex; align-items: center;"><span class="sc-interp">Sal</span></div>
+                
+                  <div data-dc-tpl="139" data-om-id="c74ac769:144" style="height: 18px; font-size: 9.5px; color: var(--color-neutral-600); display: flex; align-items: center;"><span class="sc-interp">Çar</span></div>
+                
+                  <div data-dc-tpl="139" data-om-id="c74ac769:144" style="height: 18px; font-size: 9.5px; color: var(--color-neutral-600); display: flex; align-items: center;"><span class="sc-interp">Per</span></div>
+                
+                  <div data-dc-tpl="139" data-om-id="c74ac769:144" style="height: 18px; font-size: 9.5px; color: var(--color-neutral-600); display: flex; align-items: center;"><span class="sc-interp">Cum</span></div>
+                
+                  <div data-dc-tpl="139" data-om-id="c74ac769:144" style="height: 18px; font-size: 9.5px; color: var(--color-neutral-600); display: flex; align-items: center;"><span class="sc-interp">Cmt</span></div>
+                
+                  <div data-dc-tpl="139" data-om-id="c74ac769:144" style="height: 18px; font-size: 9.5px; color: var(--color-neutral-600); display: flex; align-items: center;"><span class="sc-interp">Paz</span></div>
+                
+              </div>
+              <div data-dc-tpl="140" data-om-id="c74ac769:145" style="flex: 1 1 0%; display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: 18px; gap: 3px; grid-auto-flow: column;">
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.96 0.004 255);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.9 0.04 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.78 0.09 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.9 0.04 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.63 0.13 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.78 0.09 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.48 0.17 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.9 0.04 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.78 0.09 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.63 0.13 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.78 0.09 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.9 0.04 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.96 0.004 255);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.78 0.09 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.63 0.13 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.48 0.17 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.78 0.09 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.9 0.04 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.63 0.13 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.78 0.09 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.48 0.17 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.63 0.13 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.9 0.04 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.78 0.09 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.96 0.004 255);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.9 0.04 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.63 0.13 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.78 0.09 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.48 0.17 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.78 0.09 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.9 0.04 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.63 0.13 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.78 0.09 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.48 0.17 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.63 0.13 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.78 0.09 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.9 0.04 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.96 0.004 255);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.78 0.09 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.63 0.13 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.9 0.04 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.48 0.17 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.78 0.09 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.63 0.13 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.48 0.17 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.78 0.09 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.9 0.04 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.63 0.13 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.96 0.004 255);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.78 0.09 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.9 0.04 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.63 0.13 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.78 0.09 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.48 0.17 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.63 0.13 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.9 0.04 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.78 0.09 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.48 0.17 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.63 0.13 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.78 0.09 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.9 0.04 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.96 0.004 255);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.63 0.13 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.78 0.09 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.48 0.17 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.9 0.04 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.78 0.09 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.63 0.13 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.48 0.17 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.78 0.09 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.63 0.13 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.9 0.04 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.96 0.004 255);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.78 0.09 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.48 0.17 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.63 0.13 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.78 0.09 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.9 0.04 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.63 0.13 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.48 0.17 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.78 0.09 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.63 0.13 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.9 0.04 258);"></div>
+                
+                  <div data-dc-tpl="142" data-om-id="c74ac769:147" style="background: oklch(0.78 0.09 258);"></div>
+                
+              </div>
+            </div>
+            <div data-dc-tpl="143" data-om-id="c74ac769:148" style="display: flex; align-items: center; gap: 8px; margin-top: var(--space-4); font-size: 10px; color: var(--color-neutral-600);">
+              <span data-dc-tpl="144" data-om-id="c74ac769:149">Az</span>
+              
+                <span data-dc-tpl="146" data-om-id="c74ac769:151" style="width: 16px; height: 10px; background: oklch(0.96 0.004 255); border: 1px solid var(--color-divider);"></span>
+              
+                <span data-dc-tpl="146" data-om-id="c74ac769:151" style="width: 16px; height: 10px; background: oklch(0.9 0.04 258); border: 1px solid var(--color-divider);"></span>
+              
+                <span data-dc-tpl="146" data-om-id="c74ac769:151" style="width: 16px; height: 10px; background: oklch(0.78 0.09 258); border: 1px solid var(--color-divider);"></span>
+              
+                <span data-dc-tpl="146" data-om-id="c74ac769:151" style="width: 16px; height: 10px; background: oklch(0.63 0.13 258); border: 1px solid var(--color-divider);"></span>
+              
+                <span data-dc-tpl="146" data-om-id="c74ac769:151" style="width: 16px; height: 10px; background: oklch(0.48 0.17 258); border: 1px solid var(--color-divider);"></span>
+              
+              <span data-dc-tpl="147" data-om-id="c74ac769:152">Çok</span>
+            </div>
+          </div>
+
+          <div data-dc-tpl="148" data-om-id="c74ac769:153" style="background: var(--color-surface); border: 1px solid var(--color-divider); box-shadow: var(--shadow-sm); padding: var(--space-4); display: flex; flex-direction: column;">
+            <h4 data-dc-tpl="149" data-om-id="c74ac769:154" style="margin: 0 0 var(--space-4); border-bottom: 2px solid var(--color-divider); padding-bottom: var(--space-3);">Acil Aksiyon</h4>
+            <div data-dc-tpl="150" data-om-id="c74ac769:155" style="display: flex; flex-direction: column;">
+              
+                <div data-dc-tpl="152" data-om-id="c74ac769:157" style="display: flex; gap: var(--space-3); padding: var(--space-3) 0; border-bottom: 1px solid var(--color-divider);">
+                  <div data-dc-tpl="153" data-om-id="c74ac769:158" style="width: 44px; flex: 0 0 auto; font-family: var(--font-heading); font-weight: 800; font-size: 22px; color: oklch(0.54 0.19 24); line-height: 1;"><span class="sc-interp">09</span></div>
+                  <div data-dc-tpl="154" data-om-id="c74ac769:159" style="flex: 1 1 0%;">
+                    <div data-dc-tpl="155" data-om-id="c74ac769:160" style="font-size: 13px; font-weight: 600; line-height: 1.3;"><span class="sc-interp">Vaka 48 saatten uzun süredir denetimde bekliyor</span></div>
+                    <div data-dc-tpl="156" data-om-id="c74ac769:161" style="font-size: 11px; color: var(--color-neutral-600); margin-top: 3px;"><span class="sc-interp">Moderasyon Ekibi</span></div>
+                  </div>
+                  <span data-dc-tpl="157" data-om-id="c74ac769:162" style="font-size: 11px; padding: 3px 9px; background: oklch(0.94 0.05 24); color: oklch(0.38 0.14 22);"><span class="sc-interp">Yüksek</span></span>
+                </div>
+              
+                <div data-dc-tpl="152" data-om-id="c74ac769:157" style="display: flex; gap: var(--space-3); padding: var(--space-3) 0; border-bottom: 1px solid var(--color-divider);">
+                  <div data-dc-tpl="153" data-om-id="c74ac769:158" style="width: 44px; flex: 0 0 auto; font-family: var(--font-heading); font-weight: 800; font-size: 22px; color: oklch(0.66 0.15 75); line-height: 1;"><span class="sc-interp">02</span></div>
+                  <div data-dc-tpl="154" data-om-id="c74ac769:159" style="flex: 1 1 0%;">
+                    <div data-dc-tpl="155" data-om-id="c74ac769:160" style="font-size: 13px; font-weight: 600; line-height: 1.3;"><span class="sc-interp">Gizlilik talebi son teslim tarihine 3 gün kaldı</span></div>
+                    <div data-dc-tpl="156" data-om-id="c74ac769:161" style="font-size: 11px; color: var(--color-neutral-600); margin-top: 3px;"><span class="sc-interp">Yönetişim</span></div>
+                  </div>
+                  <span data-dc-tpl="157" data-om-id="c74ac769:162" style="font-size: 11px; padding: 3px 9px; background: oklch(0.94 0.06 75); color: oklch(0.38 0.1 65);"><span class="sc-interp">Orta</span></span>
+                </div>
+              
+                <div data-dc-tpl="152" data-om-id="c74ac769:157" style="display: flex; gap: var(--space-3); padding: var(--space-3) 0; border-bottom: 1px solid var(--color-divider);">
+                  <div data-dc-tpl="153" data-om-id="c74ac769:158" style="width: 44px; flex: 0 0 auto; font-family: var(--font-heading); font-weight: 800; font-size: 22px; color: oklch(0.66 0.15 75); line-height: 1;"><span class="sc-interp">01</span></div>
+                  <div data-dc-tpl="154" data-om-id="c74ac769:159" style="flex: 1 1 0%;">
+                    <div data-dc-tpl="155" data-om-id="c74ac769:160" style="font-size: 13px; font-weight: 600; line-height: 1.3;"><span class="sc-interp">API kotası eşiğin %68'inde — limit gözden geçirilmeli</span></div>
+                    <div data-dc-tpl="156" data-om-id="c74ac769:161" style="font-size: 11px; color: var(--color-neutral-600); margin-top: 3px;"><span class="sc-interp">Sistem</span></div>
+                  </div>
+                  <span data-dc-tpl="157" data-om-id="c74ac769:162" style="font-size: 11px; padding: 3px 9px; background: oklch(0.94 0.06 75); color: oklch(0.38 0.1 65);"><span class="sc-interp">Orta</span></span>
+                </div>
+              
+            </div>
+            <button data-dc-tpl="158" class="btn btn-block btn-secondary" data-om-id="c74ac769:163" style="margin-top: auto;">Tüm kuyruğu aç</button>
+          </div>
+        </div>
+      
+
+      
+      
+
+      
+      
+
+    </div>
+  </div></div></div></div>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;defaultScreen&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;dashboard&quot;, &quot;options&quot;: [&quot;dashboard&quot;, &quot;content&quot;, &quot;reports&quot;], &quot;tsType&quot;: &quot;string&quot;}, &quot;showSecondaryNav&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { screen: this.props.defaultScreen || "dashboard", theme: "light" };
+
+  renderVals() {
+    const screen = this.state.screen;
+    const theme = this.state.theme;
+
+    // Professional slate + blue + semantic-status palette (oklch)
+    const light = {
+      bg: "oklch(97% 0.004 255)", surface: "oklch(99% 0.002 255)", text: "oklch(22% 0.015 255)",
+      divider: "oklch(88% 0.008 255)",
+      n100: "oklch(96% 0.004 255)", n200: "oklch(93% 0.006 255)", n300: "oklch(87% 0.008 255)", n400: "oklch(76% 0.01 255)",
+      n500: "oklch(63% 0.012 255)", n600: "oklch(52% 0.014 255)", n700: "oklch(42% 0.014 255)", n800: "oklch(32% 0.014 255)", n900: "oklch(22% 0.014 255)",
+      accent100: "oklch(94% 0.035 258)", accent700: "oklch(38% 0.14 258)", accent800: "oklch(32% 0.13 258)", accent: "oklch(48% 0.17 258)",
+      success: "oklch(55% 0.13 152)", successLight: "oklch(94% 0.05 152)", successDark: "oklch(34% 0.09 152)",
+      warning: "oklch(66% 0.15 75)", warningLight: "oklch(94% 0.06 75)", warningDark: "oklch(38% 0.1 65)",
+      danger: "oklch(54% 0.19 24)", dangerLight: "oklch(94% 0.05 24)", dangerDark: "oklch(38% 0.14 22)",
+      shadowSm: "0 1px 2px oklch(20% 0.01 255 / 8%)", shadowMd: "0 4px 14px oklch(20% 0.01 255 / 10%)",
+      chartInk: "oklch(22% 0.015 255)", chartGrid: "oklch(90% 0.006 255)", chartMuted: "oklch(55% 0.012 255)",
+      chartArea: "oklch(48% 0.17 258 / 12%)", heatRamp: ["oklch(96% 0.004 255)", "oklch(90% 0.04 258)", "oklch(78% 0.09 258)", "oklch(63% 0.13 258)", "oklch(48% 0.17 258)"],
+    };
+    const dark = {
+      bg: "oklch(18% 0.011 255)", surface: "oklch(23% 0.013 255)", text: "oklch(94% 0.004 255)",
+      divider: "oklch(34% 0.014 255)",
+      n100: "oklch(24% 0.013 255)", n200: "oklch(29% 0.014 255)", n300: "oklch(38% 0.015 255)", n400: "oklch(50% 0.014 255)",
+      n500: "oklch(62% 0.012 255)", n600: "oklch(72% 0.01 255)", n700: "oklch(80% 0.008 255)", n800: "oklch(88% 0.006 255)", n900: "oklch(94% 0.004 255)",
+      accent100: "oklch(30% 0.07 258)", accent700: "oklch(84% 0.06 258)", accent800: "oklch(88% 0.05 258)", accent: "oklch(70% 0.14 258)",
+      success: "oklch(72% 0.14 152)", successLight: "oklch(30% 0.07 152)", successDark: "oklch(88% 0.07 152)",
+      warning: "oklch(78% 0.14 75)", warningLight: "oklch(32% 0.07 70)", warningDark: "oklch(90% 0.06 75)",
+      danger: "oklch(70% 0.17 24)", dangerLight: "oklch(32% 0.08 22)", dangerDark: "oklch(90% 0.07 24)",
+      shadowSm: "0 1px 0 oklch(100% 0 0 / 4%)", shadowMd: "0 12px 32px oklch(0% 0 0 / 45%)",
+      chartInk: "oklch(94% 0.004 255)", chartGrid: "oklch(34% 0.013 255)", chartMuted: "oklch(66% 0.012 255)",
+      chartArea: "oklch(70% 0.14 258 / 16%)", heatRamp: ["oklch(24% 0.013 255)", "oklch(32% 0.05 258)", "oklch(42% 0.09 258)", "oklch(55% 0.13 258)", "oklch(70% 0.14 258)"],
+    };
+    const t = theme === "dark" ? dark : light;
+    const INK = t.chartInk;
+    const ACCENT2 = t.accent;
+
+    const titles = { dashboard: "Kontrol Merkezi", content: "İçerik Yönetimi", reports: "Raporlar & Analitik" };
+    const mainNav = [
+      { id: "dashboard", label: "Genel Bakış" },
+      { id: "content", label: "İçerik Yönetimi" },
+      { id: "reports", label: "Raporlar & Analitik" },
+    ].map(n => ({
+      label: n.label,
+      bg: screen === n.id ? "var(--color-accent-100)" : "transparent",
+      edge: screen === n.id ? ACCENT2 : "transparent",
+      onClick: () => this.setState({ screen: n.id }),
+    }));
+
+    const C = 2 * Math.PI * 50;
+    const gauge = (pct, label, note, color) => ({
+      pct: "%" + pct, label, note, color,
+      dashArray: (C * pct / 100).toFixed(1) + " " + (C * (100 - pct) / 100).toFixed(1),
+    });
+    // gauge color by reading: healthy>=80 success, watch 50-79 primary/warning, low <50 muted
+    const gaugeColor = (pct, isCostLike) => isCostLike
+      ? (pct >= 85 ? t.danger : pct >= 65 ? t.warning : t.success)
+      : (pct >= 80 ? t.success : pct >= 50 ? t.accent : t.n400);
+
+    const ramp = t.heatRamp;
+    const seedVals = [0,1,2,1,3,2,4,1,2,3,2,1,0,2,3,4,2,1,3,2,4,3,1,2,0,1,3,2,4,2,1,3,2,4,3,2,1,0,2,3,1,4,2,3,4,2,1,3,0,2,1,3,2,4,3,1,2,4,3,2,1,0,3,2,4,1,2,3,4,2,3,1,0,2,4,3,2,1,3,4,2,3,1,2];
+    const heat = seedVals.map(v => ({ color: ramp[v] }));
+
+    // categorical set for donut/segments — distinct hues at matched lightness/chroma
+    const CAT = [t.accent, "oklch(62% 0.1 195)", t.warning, t.n300];
+    const DC_ = 2 * Math.PI * 46;
+    const segs = [
+      { label: "Vaka İncelemesi", pct: 38, color: CAT[0] },
+      { label: "Rehber", pct: 27, color: CAT[1] },
+      { label: "Metodoloji", pct: 21, color: CAT[2] },
+      { label: "Duyuru", pct: 14, color: CAT[3] },
+    ];
+    let acc = 0;
+    const donut = segs.map(s => {
+      const dash = DC_ * s.pct / 100;
+      const item = { label: s.label, pct: "%" + s.pct, color: s.color, dashArray: dash.toFixed(1) + " " + (DC_ - dash).toFixed(1), offset: (-DC_ * acc / 100).toFixed(1) };
+      acc += s.pct;
+      return item;
+    });
+
+    const users = [420, 486, 512, 574, 603, 641, 688, 724];
+    const months = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu"];
+    const maxU = 800, base = 222, top = 20;
+    const acqBars = users.map((u, i) => {
+      const h = (u / maxU) * (base - top);
+      const x = 20 + i * 110;
+      return { x, tx: x + 33, y: (base - h).toFixed(1), h: h.toFixed(1), label: months[i] };
+    });
+    const mrr = [13.2, 14.8, 16.1, 17.3, 18.4, 19.6, 21.0, 22.4];
+    const maxM = 26;
+    const mrrLine = mrr.map((v, i) => `${20 + i * 110 + 33},${(base - (v / maxM) * (base - top)).toFixed(1)}`).join(" ");
+
+    const cohortData = [
+      { label: "Mar 2026", cells: [100, 68, 54, 46, 41, 38] },
+      { label: "Nis 2026", cells: [100, 71, 58, 49, 44, 40] },
+      { label: "May 2026", cells: [100, 74, 61, 53, 47, 0] },
+      { label: "Haz 2026", cells: [100, 76, 64, 56, 0, 0] },
+      { label: "Tem 2026", cells: [100, 79, 67, 0, 0, 0] },
+      { label: "Ağu 2026", cells: [100, 81, 0, 0, 0, 0] },
+    ];
+    const cellStyle = v => {
+      if (!v) return { label: "—", bg: t.n100, fg: t.n500 };
+      const steps = t.heatRamp;
+      if (v >= 90) return { label: "%" + v, bg: steps[4], fg: theme === "dark" ? t.n900 : "#fff" };
+      if (v >= 70) return { label: "%" + v, bg: steps[3], fg: theme === "dark" ? t.n900 : "#fff" };
+      if (v >= 55) return { label: "%" + v, bg: steps[2], fg: t.n800 };
+      if (v >= 44) return { label: "%" + v, bg: steps[1], fg: t.n800 };
+      return { label: "%" + v, bg: steps[0], fg: t.n600 };
+    };
+
+    const spark = pts => pts.map((p, i) => `${i * 11},${24 - p}`).join(" ");
+
+    return {
+      t,
+      isLight: theme === "light",
+      isDark: theme === "dark",
+      setLight: () => this.setState({ theme: "light" }),
+      setDark: () => this.setState({ theme: "dark" }),
+      screenTitle: titles[screen],
+      isDashboard: screen === "dashboard",
+      isContent: screen === "content",
+      isReports: screen === "reports",
+      showSecondaryNav: this.props.showSecondaryNav !== false,
+      mainNav,
+      otherGroups: [
+        { label: "Operasyon", items: ["Denetim Kuyruğu", "Vaka Kayıtları", "İçe Aktarım"] },
+        { label: "İstihbarat", items: ["Model Karşılaştırma", "Otomasyon Merkezi"] },
+        { label: "Yönetişim", items: ["Kullanıcılar & Roller", "Gizlilik Talepleri", "Denetim Günlükleri"] },
+        { label: "Sistem", items: ["Sistem Sağlığı", "Faturalama & Limitler", "Entegrasyonlar"] },
+      ],
+      uptimeTicks: Array.from({ length: 30 }, (_, i) => ({ color: i === 17 ? t.warning : t.success })),
+
+      gauges: [
+        gauge(68, "API Bütçesi", "$4.120 / $6.000 · 15 gün kaldı", gaugeColor(68, true)),
+        gauge(94, "Denetim SLA", "Hedef %90 · son 30 gün", gaugeColor(94, false)),
+        gauge(41, "Veri Kapasitesi", "82 GB / 200 GB", gaugeColor(41, false)),
+      ],
+
+      pipeline: [
+        { step: "01", name: "İçe Aktarım", count: "126", meta: "otomatik akış", fill: "100%", edge: "var(--color-neutral-300)", bg: "transparent", numColor: INK, hasArrow: true },
+        { step: "02", name: "Sınıflandırma", count: "112", meta: "model etiketleme", fill: "89%", edge: "var(--color-neutral-300)", bg: "transparent", numColor: INK, hasArrow: true },
+        { step: "03", name: "İnsan Denetimi", count: "37", meta: "bekleyen · darboğaz", fill: "33%", edge: t.warning, bg: t.warningLight, numColor: t.warningDark, hasArrow: true },
+        { step: "04", name: "Doğrulama", count: "24", meta: "kaynak kontrolü", fill: "21%", edge: "var(--color-neutral-300)", bg: "transparent", numColor: INK, hasArrow: true },
+        { step: "05", name: "Yayın", count: "19", meta: "bu hafta yayınlanan", fill: "17%", edge: "var(--color-neutral-300)", bg: "transparent", numColor: INK, hasArrow: false },
+      ],
+
+      dayLabels: ["Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Paz"],
+      heat,
+
+      actions: [
+        { num: "09", desc: "Vaka 48 saatten uzun süredir denetimde bekliyor", owner: "Moderasyon Ekibi", priority: "Yüksek", tagBg: t.dangerLight, tagFg: t.dangerDark, color: t.danger },
+        { num: "02", desc: "Gizlilik talebi son teslim tarihine 3 gün kaldı", owner: "Yönetişim", priority: "Orta", tagBg: t.warningLight, tagFg: t.warningDark, color: t.warning },
+        { num: "01", desc: "API kotası eşiğin %68'inde — limit gözden geçirilmeli", owner: "Sistem", priority: "Orta", tagBg: t.warningLight, tagFg: t.warningDark, color: t.warning },
+      ],
+
+      donut,
+      contentRows: [
+        { title: "AI Güvenliği Vaka İncelemesi #42", category: "Vaka İncelemesi", status: "Yayında", tagBg: t.successLight, tagFg: t.successDark, views: "12.480", spark: spark([6,8,7,11,13,12,16,19]), sparkColor: t.success, engage: "%74" },
+        { title: "KVKK Uyum Rehberi 2026", category: "Rehber", status: "Taslak", tagBg: t.warningLight, tagFg: t.warningDark, views: "—", spark: spark([4,4,5,4,6,5,6,6]), sparkColor: t.n500, engage: "%0" },
+        { title: "Model Değerlendirme Metodolojisi", category: "Metodoloji", status: "Yayında", tagBg: t.successLight, tagFg: t.successDark, views: "8.210", spark: spark([9,11,10,12,11,14,13,15]), sparkColor: t.success, engage: "%61" },
+        { title: "Ekosistem Raporu — Temmuz", category: "Rapor", status: "Yayında", tagBg: t.successLight, tagFg: t.successDark, views: "6.940", spark: spark([14,13,12,12,10,9,8,7]), sparkColor: t.n500, engage: "%48" },
+        { title: "Vaka İncelemesi #41", category: "Vaka İncelemesi", status: "Arşiv", tagBg: t.n100, tagFg: t.n700, views: "3.120", spark: spark([12,10,9,7,6,5,4,3]), sparkColor: t.n500, engage: "%22" },
+        { title: "K-Benchmark Metodoloji Notu", category: "Metodoloji", status: "Taslak", tagBg: t.warningLight, tagFg: t.warningDark, views: "—", spark: spark([3,4,4,5,5,6,6,7]), sparkColor: t.n500, engage: "%0" },
+        { title: "Vaka İncelemesi #40", category: "Vaka İncelemesi", status: "Yayında", tagBg: t.successLight, tagFg: t.successDark, views: "9.760", spark: spark([8,9,11,10,13,15,14,17]), sparkColor: t.success, engage: "%67" },
+        { title: "Danışma Kurulu Duyurusu", category: "Duyuru", status: "Yayında", tagBg: t.successLight, tagFg: t.successDark, views: "4.480", spark: spark([5,7,9,8,10,9,11,12]), sparkColor: t.success, engage: "%39" },
+      ],
+
+      reportMetrics: [
+        { label: "Toplam Kullanıcı", value: "6.240", bar: "78%", barColor: t.accent, delta: "▲ %14 · hedefin %78'i" },
+        { label: "Aylık Gelir", value: "$18.4K", bar: "82%", barColor: t.success, delta: "▲ %9 · hedefin %82'si" },
+        { label: "Ort. Çözüm Süresi", value: "3,2 gün", bar: "64%", barColor: t.accent, delta: "▼ %8 iyileşme" },
+        { label: "Kayıp Oranı", value: "%2,1", bar: "21%", barColor: t.warning, delta: "▲ %0,3 · eşik %3" },
+      ],
+      acqBars, mrrLine,
+
+      funnel: [
+        { label: "Ziyaretçi", count: "48.200", pct: "%100", width: "100%", color: "oklch(90% 0.04 258)", drop: "organik + kampanya trafiği" },
+        { label: "Kayıt", count: "9.640", pct: "%20", width: "58%", color: "oklch(75% 0.09 258)", drop: "▼ 38.560 kayıp · form terk oranı %31" },
+        { label: "Aktif Kullanıcı", count: "6.240", pct: "%13", width: "34%", color: "oklch(60% 0.13 258)", drop: "▼ 3.400 kayıp · ilk hafta aktivasyonu" },
+        { label: "Ücretli", count: "1.180", pct: "%2,4", width: "14%", color: t.success, drop: "▼ 5.060 kayıp · dönüşüm %18,9" },
+      ],
+      channels: [
+        { name: "Organik Arama", pct: "%38", visits: "18.3K", width: "38%", color: t.accent },
+        { name: "Doğrudan", pct: "%27", visits: "13.0K", width: "27%", color: "oklch(62% 0.1 195)" },
+        { name: "Sosyal", pct: "%18", visits: "8.7K", width: "18%", color: t.warning },
+        { name: "Referans", pct: "%12", visits: "5.8K", width: "12%", color: "oklch(70% 0.06 258)" },
+        { name: "E-posta", pct: "%5", visits: "2.4K", width: "5%", color: t.n300 },
+      ],
+      cohortCols: ["H0", "H1", "H2", "H3", "H4", "H5"],
+      cohorts: cohortData.map(r => ({ label: r.label, cells: r.cells.map(cellStyle) })),
+      healthScoreColor: t.success,
+      heatLegend: t.heatRamp,
+    };
+  }
+}
+</script>
+
+
+<script type="application/json" id="__om_srcmap">{"gen":"c74ac769","entries":[{"id":"c74ac769:0","tag":"html","openStart":16,"attrEnd":21,"openEnd":22,"closeStart":49451,"closeEnd":49458,"textRuns":[[22,23],[166,167],[49450,49451]],"parentId":null,"childIds":["c74ac769:1","c74ac769:4"]},{"id":"c74ac769:1","tag":"head","openStart":23,"attrEnd":28,"openEnd":29,"closeStart":159,"closeEnd":166,"textRuns":[[29,30],[52,53],[121,122],[158,159]],"parentId":"c74ac769:0","childIds":["c74ac769:2","c74ac769:3"]},{"id":"c74ac769:2","tag":"meta","openStart":30,"attrEnd":51,"openEnd":52,"closeEnd":52,"textRuns":[],"parentId":"c74ac769:1","childIds":[]},{"id":"c74ac769:3","tag":"meta","openStart":53,"attrEnd":120,"openEnd":121,"closeEnd":121,"textRuns":[],"parentId":"c74ac769:1","childIds":[]},{"id":"c74ac769:4","tag":"body","openStart":167,"attrEnd":172,"openEnd":173,"closeStart":49443,"closeEnd":49450,"textRuns":[[173,174],[35754,35755],[49442,49443]],"parentId":"c74ac769:0","childIds":["c74ac769:5"]},{"id":"c74ac769:5","tag":"x-dc","openStart":174,"attrEnd":179,"openEnd":180,"closeStart":35747,"closeEnd":35754,"textRuns":[[180,182],[368,369],[35745,35747]],"parentId":"c74ac769:4","childIds":["c74ac769:6","c74ac769:8"]},{"id":"c74ac769:6","tag":"helmet","openStart":182,"attrEnd":189,"openEnd":190,"closeStart":359,"closeEnd":368,"textRuns":[[190,191],[283,284],[358,359]],"parentId":"c74ac769:5","childIds":["c74ac769:7"]},{"id":"c74ac769:7","tag":"link","openStart":191,"attrEnd":282,"openEnd":283,"closeEnd":283,"textRuns":[],"parentId":"c74ac769:6","childIds":[]},{"id":"c74ac769:8","tag":"div","openStart":369,"attrEnd":1351,"openEnd":1352,"closeStart":35739,"closeEnd":35745,"styleAttr":[381,1350],"textRuns":[[1352,1356],[1509,1512],[4484,4488],[4647,4650],[35738,35739]],"parentId":"c74ac769:5","childIds":["c74ac769:9","c74ac769:33"]},{"id":"c74ac769:9","tag":"div","openStart":1512,"attrEnd":1680,"openEnd":1681,"closeStart":4478,"closeEnd":4484,"styleAttr":[1524,1679],"textRuns":[[1681,1686],[2068,2074],[2847,2853],[3580,3586],[4475,4478]],"parentId":"c74ac769:8","childIds":["c74ac769:10","c74ac769:13","c74ac769:18","c74ac769:24"]},{"id":"c74ac769:10","tag":"div","openStart":1686,"attrEnd":1783,"openEnd":1784,"closeStart":2062,"closeEnd":2068,"styleAttr":[1698,1782],"textRuns":[[1784,1791],[1905,1912],[2057,2062]],"parentId":"c74ac769:9","childIds":["c74ac769:11","c74ac769:12"]},{"id":"c74ac769:11","tag":"div","openStart":1791,"attrEnd":1893,"openEnd":1894,"closeStart":1899,"closeEnd":1905,"styleAttr":[1803,1892],"textRuns":[[1894,1899]],"parentId":"c74ac769:10","childIds":[]},{"id":"c74ac769:12","tag":"div","openStart":1912,"attrEnd":2037,"openEnd":2038,"closeStart":2051,"closeEnd":2057,"styleAttr":[1924,2036],"textRuns":[[2038,2051]],"parentId":"c74ac769:10","childIds":[]},{"id":"c74ac769:13","tag":"div","openStart":2074,"attrEnd":2125,"openEnd":2126,"closeStart":2841,"closeEnd":2847,"styleAttr":[2086,2124],"textRuns":[[2126,2133],[2295,2302],[2836,2841]],"parentId":"c74ac769:9","childIds":["c74ac769:14","c74ac769:15"]},{"id":"c74ac769:14","tag":"div","openStart":2133,"attrEnd":2283,"openEnd":2284,"closeStart":2289,"closeEnd":2295,"styleAttr":[2145,2282],"textRuns":[[2284,2289]],"parentId":"c74ac769:13","childIds":[]},{"id":"c74ac769:15","tag":"sc-for","openStart":2302,"attrEnd":2367,"openEnd":2368,"closeStart":2827,"closeEnd":2836,"textRuns":[[2368,2377],[2820,2827]],"parentId":"c74ac769:13","childIds":["c74ac769:16"]},{"id":"c74ac769:16","tag":"button","openStart":2377,"attrEnd":2761,"openEnd":2762,"closeStart":2811,"closeEnd":2820,"styleAttr":[2421,2709],"textRuns":[[2762,2773],[2802,2811]],"parentId":"c74ac769:15","childIds":["c74ac769:17"]},{"id":"c74ac769:17","tag":"span","openStart":2773,"attrEnd":2778,"openEnd":2779,"closeStart":2795,"closeEnd":2802,"textRuns":[[2779,2795]],"parentId":"c74ac769:16","childIds":[]},{"id":"c74ac769:18","tag":"sc-if","openStart":2853,"attrEnd":2924,"openEnd":2925,"closeStart":3572,"closeEnd":3580,"textRuns":[[2925,2932],[3567,3572]],"parentId":"c74ac769:9","childIds":["c74ac769:19"]},{"id":"c74ac769:19","tag":"sc-for","openStart":2932,"attrEnd":3002,"openEnd":3003,"closeStart":3558,"closeEnd":3567,"textRuns":[[3003,3012],[3551,3558]],"parentId":"c74ac769:18","childIds":["c74ac769:20"]},{"id":"c74ac769:20","tag":"div","openStart":3012,"attrEnd":3050,"openEnd":3051,"closeStart":3545,"closeEnd":3551,"styleAttr":[3024,3049],"textRuns":[[3051,3062],[3319,3330],[3536,3545]],"parentId":"c74ac769:19","childIds":["c74ac769:21","c74ac769:22"]},{"id":"c74ac769:21","tag":"div","openStart":3062,"attrEnd":3295,"openEnd":3296,"closeStart":3313,"closeEnd":3319,"styleAttr":[3074,3294],"textRuns":[[3296,3313]],"parentId":"c74ac769:20","childIds":[]},{"id":"c74ac769:22","tag":"sc-for","openStart":3330,"attrEnd":3397,"openEnd":3398,"closeStart":3527,"closeEnd":3536,"textRuns":[[3398,3411],[3516,3527]],"parentId":"c74ac769:20","childIds":["c74ac769:23"]},{"id":"c74ac769:23","tag":"div","openStart":3411,"attrEnd":3501,"openEnd":3502,"closeStart":3510,"closeEnd":3516,"styleAttr":[3423,3500],"textRuns":[[3502,3510]],"parentId":"c74ac769:22","childIds":[]},{"id":"c74ac769:24","tag":"div","openStart":3586,"attrEnd":3728,"openEnd":3729,"closeStart":4469,"closeEnd":4475,"styleAttr":[3598,3727],"textRuns":[[3729,3736],[3865,3872],[4103,4110],[4351,4358],[4464,4469]],"parentId":"c74ac769:9","childIds":["c74ac769:25","c74ac769:26","c74ac769:29","c74ac769:32"]},{"id":"c74ac769:25","tag":"div","openStart":3736,"attrEnd":3845,"openEnd":3846,"closeStart":3859,"closeEnd":3865,"styleAttr":[3748,3844],"textRuns":[[3846,3859]],"parentId":"c74ac769:24","childIds":[]},{"id":"c74ac769:26","tag":"div","openStart":3872,"attrEnd":3943,"openEnd":3944,"closeStart":4097,"closeEnd":4103,"styleAttr":[3884,3942],"textRuns":[[3944,3953],[4040,4049],[4090,4097]],"parentId":"c74ac769:24","childIds":["c74ac769:27","c74ac769:28"]},{"id":"c74ac769:27","tag":"span","openStart":3953,"attrEnd":4032,"openEnd":4033,"closeStart":4033,"closeEnd":4040,"styleAttr":[3966,4031],"textRuns":[],"parentId":"c74ac769:26","childIds":[]},{"id":"c74ac769:28","tag":"span","openStart":4049,"attrEnd":4054,"openEnd":4055,"closeStart":4083,"closeEnd":4090,"textRuns":[[4055,4083]],"parentId":"c74ac769:26","childIds":[]},{"id":"c74ac769:29","tag":"div","openStart":4110,"attrEnd":4161,"openEnd":4162,"closeStart":4345,"closeEnd":4351,"styleAttr":[4122,4160],"textRuns":[[4162,4171],[4338,4345]],"parentId":"c74ac769:24","childIds":["c74ac769:30"]},{"id":"c74ac769:30","tag":"sc-for","openStart":4171,"attrEnd":4239,"openEnd":4240,"closeStart":4329,"closeEnd":4338,"textRuns":[[4240,4251],[4320,4329]],"parentId":"c74ac769:29","childIds":["c74ac769:31"]},{"id":"c74ac769:31","tag":"span","openStart":4251,"attrEnd":4312,"openEnd":4313,"closeStart":4313,"closeEnd":4320,"styleAttr":[4264,4311],"textRuns":[],"parentId":"c74ac769:30","childIds":[]},{"id":"c74ac769:32","tag":"div","openStart":4358,"attrEnd":4418,"openEnd":4419,"closeStart":4458,"closeEnd":4464,"styleAttr":[4370,4417],"textRuns":[[4419,4458]],"parentId":"c74ac769:24","childIds":[]},{"id":"c74ac769:33","tag":"div","openStart":4650,"attrEnd":4737,"openEnd":4738,"closeStart":35732,"closeEnd":35738,"styleAttr":[4662,4736],"textRuns":[[4738,4743],[6057,6063],[35729,35732]],"parentId":"c74ac769:8","childIds":["c74ac769:34","c74ac769:48"]},{"id":"c74ac769:34","tag":"div","openStart":4743,"attrEnd":4916,"openEnd":4917,"closeStart":6051,"closeEnd":6057,"styleAttr":[4755,4915],"textRuns":[[4917,4924],[5156,5163],[6046,6051]],"parentId":"c74ac769:33","childIds":["c74ac769:35","c74ac769:38"]},{"id":"c74ac769:35","tag":"div","openStart":4924,"attrEnd":4986,"openEnd":4987,"closeStart":5150,"closeEnd":5156,"styleAttr":[4936,4985],"textRuns":[[4987,5001],[5069,5070]],"parentId":"c74ac769:34","childIds":["c74ac769:36","c74ac769:37"]},{"id":"c74ac769:36","tag":"span","openStart":5001,"attrEnd":5060,"openEnd":5061,"closeStart":5062,"closeEnd":5069,"styleAttr":[5014,5059],"textRuns":[[5061,5062]],"parentId":"c74ac769:35","childIds":[]},{"id":"c74ac769:37","tag":"span","openStart":5070,"attrEnd":5125,"openEnd":5126,"closeStart":5143,"closeEnd":5150,"styleAttr":[5083,5124],"textRuns":[[5126,5143]],"parentId":"c74ac769:35","childIds":[]},{"id":"c74ac769:38","tag":"div","openStart":5163,"attrEnd":5229,"openEnd":5230,"closeStart":6040,"closeEnd":6046,"styleAttr":[5175,5228],"textRuns":[[5230,5239],[5543,5552],[5632,5641],[6033,6040]],"parentId":"c74ac769:34","childIds":["c74ac769:39","c74ac769:44","c74ac769:45"]},{"id":"c74ac769:39","tag":"div","openStart":5239,"attrEnd":5255,"openEnd":5256,"closeStart":5537,"closeEnd":5543,"textRuns":[[5256,5267],[5394,5405],[5528,5537]],"parentId":"c74ac769:38","childIds":["c74ac769:40","c74ac769:42"]},{"id":"c74ac769:40","tag":"label","openStart":5267,"attrEnd":5289,"openEnd":5290,"closeStart":5386,"closeEnd":5394,"textRuns":[[5380,5386]],"parentId":"c74ac769:39","childIds":["c74ac769:41"]},{"id":"c74ac769:41","tag":"input","openStart":5290,"attrEnd":5379,"openEnd":5380,"closeEnd":5380,"textRuns":[],"parentId":"c74ac769:40","childIds":[]},{"id":"c74ac769:42","tag":"label","openStart":5405,"attrEnd":5427,"openEnd":5428,"closeStart":5520,"closeEnd":5528,"textRuns":[[5516,5520]],"parentId":"c74ac769:39","childIds":["c74ac769:43"]},{"id":"c74ac769:43","tag":"input","openStart":5428,"attrEnd":5515,"openEnd":5516,"closeEnd":5516,"textRuns":[],"parentId":"c74ac769:42","childIds":[]},{"id":"c74ac769:44","tag":"input","openStart":5552,"attrEnd":5631,"openEnd":5632,"closeEnd":5632,"styleAttr":[5601,5630],"textRuns":[],"parentId":"c74ac769:38","childIds":[]},{"id":"c74ac769:45","tag":"div","openStart":5641,"attrEnd":5696,"openEnd":5697,"closeStart":6027,"closeEnd":6033,"styleAttr":[5653,5695],"textRuns":[[5697,5708],[5932,5943],[6018,6027]],"parentId":"c74ac769:38","childIds":["c74ac769:46","c74ac769:47"]},{"id":"c74ac769:46","tag":"div","openStart":5708,"attrEnd":5924,"openEnd":5925,"closeStart":5926,"closeEnd":5932,"styleAttr":[5720,5923],"textRuns":[[5925,5926]],"parentId":"c74ac769:45","childIds":[]},{"id":"c74ac769:47","tag":"span","openStart":5943,"attrEnd":6004,"openEnd":6005,"closeStart":6011,"closeEnd":6018,"styleAttr":[5956,6003],"textRuns":[[6005,6011]],"parentId":"c74ac769:45","childIds":[]},{"id":"c74ac769:48","tag":"div","openStart":6063,"attrEnd":6124,"openEnd":6125,"closeStart":35723,"closeEnd":35729,"styleAttr":[6075,6123],"textRuns":[[6125,6133],[6177,6184],[20358,20366],[20410,20417],[27710,27718],[27761,27768],[35717,35723]],"parentId":"c74ac769:33","childIds":["c74ac769:49","c74ac769:164","c74ac769:251"]},{"id":"c74ac769:49","tag":"sc-if","openStart":6184,"attrEnd":6250,"openEnd":6251,"closeStart":20350,"closeEnd":20358,"textRuns":[[6251,6260],[6914,6923],[6938,6948],[6966,6975],[10721,10731],[10759,10768],[14894,14904],[14929,14938],[16980,16990],[17016,17025],[20343,20350]],"parentId":"c74ac769:48","childIds":["c74ac769:50","c74ac769:57","c74ac769:58","c74ac769:83","c74ac769:120","c74ac769:136"]},{"id":"c74ac769:50","tag":"div","openStart":6260,"attrEnd":6375,"openEnd":6376,"closeStart":6908,"closeEnd":6914,"styleAttr":[6272,6374],"textRuns":[[6376,6387],[6639,6650],[6899,6908]],"parentId":"c74ac769:49","childIds":["c74ac769:51","c74ac769:54"]},{"id":"c74ac769:51","tag":"div","openStart":6387,"attrEnd":6391,"openEnd":6392,"closeStart":6633,"closeEnd":6639,"textRuns":[[6392,6405],[6551,6564],[6622,6633]],"parentId":"c74ac769:50","childIds":["c74ac769:52","c74ac769:53"]},{"id":"c74ac769:52","tag":"div","openStart":6405,"attrEnd":6528,"openEnd":6529,"closeStart":6545,"closeEnd":6551,"styleAttr":[6417,6527],"textRuns":[[6529,6545]],"parentId":"c74ac769:51","childIds":[]},{"id":"c74ac769:53","tag":"h1","openStart":6564,"attrEnd":6601,"openEnd":6602,"closeStart":6617,"closeEnd":6622,"styleAttr":[6575,6600],"textRuns":[[6602,6617]],"parentId":"c74ac769:51","childIds":[]},{"id":"c74ac769:54","tag":"div","openStart":6650,"attrEnd":6716,"openEnd":6717,"closeStart":6893,"closeEnd":6899,"styleAttr":[6662,6715],"textRuns":[[6717,6730],[6820,6833],[6882,6893]],"parentId":"c74ac769:50","childIds":["c74ac769:55","c74ac769:56"]},{"id":"c74ac769:55","tag":"span","openStart":6730,"attrEnd":6791,"openEnd":6792,"closeStart":6813,"closeEnd":6820,"styleAttr":[6743,6790],"textRuns":[[6792,6813]],"parentId":"c74ac769:54","childIds":[]},{"id":"c74ac769:56","tag":"button","openStart":6833,"attrEnd":6866,"openEnd":6867,"closeStart":6873,"closeEnd":6882,"textRuns":[[6867,6873]],"parentId":"c74ac769:54","childIds":[]},{"id":"c74ac769:57","tag":"hr","openStart":6923,"attrEnd":6937,"openEnd":6938,"closeEnd":6938,"textRuns":[],"parentId":"c74ac769:49","childIds":[]},{"id":"c74ac769:58","tag":"div","openStart":6975,"attrEnd":7058,"openEnd":7059,"closeStart":10715,"closeEnd":10721,"styleAttr":[6987,7057],"textRuns":[[7059,7070],[7971,7982],[8882,8893],[9805,9816],[10706,10715]],"parentId":"c74ac769:49","childIds":["c74ac769:59","c74ac769:65","c74ac769:71","c74ac769:77"]},{"id":"c74ac769:59","tag":"div","openStart":7070,"attrEnd":7264,"openEnd":7265,"closeStart":7965,"closeEnd":7971,"styleAttr":[7082,7263],"textRuns":[[7265,7278],[7404,7417],[7522,7535],[7790,7803],[7954,7965]],"parentId":"c74ac769:58","childIds":["c74ac769:60","c74ac769:61","c74ac769:62","c74ac769:64"]},{"id":"c74ac769:60","tag":"div","openStart":7278,"attrEnd":7386,"openEnd":7387,"closeStart":7398,"closeEnd":7404,"styleAttr":[7290,7385],"textRuns":[[7387,7398]],"parentId":"c74ac769:59","childIds":[]},{"id":"c74ac769:61","tag":"div","openStart":7417,"attrEnd":7510,"openEnd":7511,"closeStart":7516,"closeEnd":7522,"styleAttr":[7429,7509],"textRuns":[[7511,7516]],"parentId":"c74ac769:59","childIds":[]},{"id":"c74ac769:62","tag":"svg","openStart":7535,"attrEnd":7608,"openEnd":7609,"closeStart":7784,"closeEnd":7790,"styleAttr":[7568,7607],"textRuns":[[7609,7624],[7771,7784]],"parentId":"c74ac769:59","childIds":["c74ac769:63"]},{"id":"c74ac769:63","tag":"polyline","openStart":7624,"attrEnd":7759,"openEnd":7760,"closeStart":7760,"closeEnd":7771,"styleAttr":[7715,7741],"textRuns":[],"parentId":"c74ac769:62","childIds":[]},{"id":"c74ac769:64","tag":"div","openStart":7803,"attrEnd":7923,"openEnd":7924,"closeStart":7948,"closeEnd":7954,"styleAttr":[7815,7922],"textRuns":[[7924,7948]],"parentId":"c74ac769:59","childIds":[]},{"id":"c74ac769:65","tag":"div","openStart":7982,"attrEnd":8176,"openEnd":8177,"closeStart":8876,"closeEnd":8882,"styleAttr":[7994,8175],"textRuns":[[8177,8190],[8321,8334],[8436,8449],[8701,8714],[8865,8876]],"parentId":"c74ac769:58","childIds":["c74ac769:66","c74ac769:67","c74ac769:68","c74ac769:70"]},{"id":"c74ac769:66","tag":"div","openStart":8190,"attrEnd":8298,"openEnd":8299,"closeStart":8315,"closeEnd":8321,"styleAttr":[8202,8297],"textRuns":[[8299,8315]],"parentId":"c74ac769:65","childIds":[]},{"id":"c74ac769:67","tag":"div","openStart":8334,"attrEnd":8427,"openEnd":8428,"closeStart":8430,"closeEnd":8436,"styleAttr":[8346,8426],"textRuns":[[8428,8430]],"parentId":"c74ac769:65","childIds":[]},{"id":"c74ac769:68","tag":"svg","openStart":8449,"attrEnd":8522,"openEnd":8523,"closeStart":8695,"closeEnd":8701,"styleAttr":[8482,8521],"textRuns":[[8523,8538],[8682,8695]],"parentId":"c74ac769:65","childIds":["c74ac769:69"]},{"id":"c74ac769:69","tag":"polyline","openStart":8538,"attrEnd":8670,"openEnd":8671,"closeStart":8671,"closeEnd":8682,"styleAttr":[8629,8652],"textRuns":[],"parentId":"c74ac769:68","childIds":[]},{"id":"c74ac769:70","tag":"div","openStart":8714,"attrEnd":8834,"openEnd":8835,"closeStart":8859,"closeEnd":8865,"styleAttr":[8726,8833],"textRuns":[[8835,8859]],"parentId":"c74ac769:65","childIds":[]},{"id":"c74ac769:71","tag":"div","openStart":8893,"attrEnd":9087,"openEnd":9088,"closeStart":9799,"closeEnd":9805,"styleAttr":[8905,9086],"textRuns":[[9088,9101],[9235,9248],[9354,9367],[9619,9632],[9788,9799]],"parentId":"c74ac769:58","childIds":["c74ac769:72","c74ac769:73","c74ac769:74","c74ac769:76"]},{"id":"c74ac769:72","tag":"div","openStart":9101,"attrEnd":9209,"openEnd":9210,"closeStart":9229,"closeEnd":9235,"styleAttr":[9113,9208],"textRuns":[[9210,9229]],"parentId":"c74ac769:71","childIds":[]},{"id":"c74ac769:73","tag":"div","openStart":9248,"attrEnd":9341,"openEnd":9342,"closeStart":9348,"closeEnd":9354,"styleAttr":[9260,9340],"textRuns":[[9342,9348]],"parentId":"c74ac769:71","childIds":[]},{"id":"c74ac769:74","tag":"svg","openStart":9367,"attrEnd":9440,"openEnd":9441,"closeStart":9613,"closeEnd":9619,"styleAttr":[9400,9439],"textRuns":[[9441,9456],[9600,9613]],"parentId":"c74ac769:71","childIds":["c74ac769:75"]},{"id":"c74ac769:75","tag":"polyline","openStart":9456,"attrEnd":9588,"openEnd":9589,"closeStart":9589,"closeEnd":9600,"styleAttr":[9547,9570],"textRuns":[],"parentId":"c74ac769:74","childIds":[]},{"id":"c74ac769:76","tag":"div","openStart":9632,"attrEnd":9752,"openEnd":9753,"closeStart":9782,"closeEnd":9788,"styleAttr":[9644,9751],"textRuns":[[9753,9782]],"parentId":"c74ac769:71","childIds":[]},{"id":"c74ac769:77","tag":"div","openStart":9816,"attrEnd":10010,"openEnd":10011,"closeStart":10700,"closeEnd":10706,"styleAttr":[9828,10009],"textRuns":[[10011,10024],[10142,10155],[10261,10274],[10525,10538],[10689,10700]],"parentId":"c74ac769:58","childIds":["c74ac769:78","c74ac769:79","c74ac769:80","c74ac769:82"]},{"id":"c74ac769:78","tag":"div","openStart":10024,"attrEnd":10132,"openEnd":10133,"closeStart":10136,"closeEnd":10142,"styleAttr":[10036,10131],"textRuns":[[10133,10136]],"parentId":"c74ac769:77","childIds":[]},{"id":"c74ac769:79","tag":"div","openStart":10155,"attrEnd":10248,"openEnd":10249,"closeStart":10255,"closeEnd":10261,"styleAttr":[10167,10247],"textRuns":[[10249,10255]],"parentId":"c74ac769:77","childIds":[]},{"id":"c74ac769:80","tag":"svg","openStart":10274,"attrEnd":10347,"openEnd":10348,"closeStart":10519,"closeEnd":10525,"styleAttr":[10307,10346],"textRuns":[[10348,10363],[10506,10519]],"parentId":"c74ac769:77","childIds":["c74ac769:81"]},{"id":"c74ac769:81","tag":"polyline","openStart":10363,"attrEnd":10494,"openEnd":10495,"closeStart":10495,"closeEnd":10506,"styleAttr":[10454,10476],"textRuns":[],"parentId":"c74ac769:80","childIds":[]},{"id":"c74ac769:82","tag":"div","openStart":10538,"attrEnd":10658,"openEnd":10659,"closeStart":10683,"closeEnd":10689,"styleAttr":[10550,10657],"textRuns":[[10659,10683]],"parentId":"c74ac769:77","childIds":[]},{"id":"c74ac769:83","tag":"div","openStart":10768,"attrEnd":10872,"openEnd":10873,"closeStart":14888,"closeEnd":14894,"styleAttr":[10780,10871],"textRuns":[[10873,10884],[13341,13353],[14879,14888]],"parentId":"c74ac769:49","childIds":["c74ac769:84","c74ac769:108"]},{"id":"c74ac769:84","tag":"div","openStart":10884,"attrEnd":11021,"openEnd":11022,"closeStart":13335,"closeEnd":13341,"styleAttr":[10896,11020],"textRuns":[[11022,11035],[11764,11777],[13324,13335]],"parentId":"c74ac769:83","childIds":["c74ac769:85","c74ac769:92"]},{"id":"c74ac769:85","tag":"div","openStart":11035,"attrEnd":11221,"openEnd":11222,"closeStart":11758,"closeEnd":11764,"styleAttr":[11047,11220],"textRuns":[[11222,11237],[11287,11302],[11745,11758]],"parentId":"c74ac769:84","childIds":["c74ac769:86","c74ac769:87"]},{"id":"c74ac769:86","tag":"h4","openStart":11237,"attrEnd":11258,"openEnd":11259,"closeStart":11282,"closeEnd":11287,"styleAttr":[11248,11257],"textRuns":[[11259,11282]],"parentId":"c74ac769:85","childIds":[]},{"id":"c74ac769:87","tag":"div","openStart":11302,"attrEnd":11396,"openEnd":11397,"closeStart":11739,"closeEnd":11745,"styleAttr":[11314,11395],"textRuns":[[11397,11414],[11560,11577],[11724,11739]],"parentId":"c74ac769:85","childIds":["c74ac769:88","c74ac769:90"]},{"id":"c74ac769:88","tag":"span","openStart":11414,"attrEnd":11470,"openEnd":11471,"closeStart":11553,"closeEnd":11560,"styleAttr":[11427,11469],"textRuns":[[11548,11553]],"parentId":"c74ac769:87","childIds":["c74ac769:89"]},{"id":"c74ac769:89","tag":"span","openStart":11471,"attrEnd":11540,"openEnd":11541,"closeStart":11541,"closeEnd":11548,"styleAttr":[11484,11539],"textRuns":[],"parentId":"c74ac769:88","childIds":[]},{"id":"c74ac769:90","tag":"span","openStart":11577,"attrEnd":11633,"openEnd":11634,"closeStart":11717,"closeEnd":11724,"styleAttr":[11590,11632],"textRuns":[[11707,11717]],"parentId":"c74ac769:87","childIds":["c74ac769:91"]},{"id":"c74ac769:91","tag":"span","openStart":11634,"attrEnd":11699,"openEnd":11700,"closeStart":11700,"closeEnd":11707,"styleAttr":[11647,11698],"textRuns":[],"parentId":"c74ac769:90","childIds":[]},{"id":"c74ac769:92","tag":"svg","openStart":11777,"attrEnd":11852,"openEnd":11853,"closeStart":13318,"closeEnd":13324,"styleAttr":[11811,11851],"textRuns":[[11853,11868],[11963,11978],[12073,12088],[12185,12200],[12297,12312],[12408,12423],[12582,12597],[12779,12794],[12997,13012],[13305,13318]],"parentId":"c74ac769:84","childIds":["c74ac769:93","c74ac769:94","c74ac769:95","c74ac769:96","c74ac769:97","c74ac769:98","c74ac769:99","c74ac769:100","c74ac769:101"]},{"id":"c74ac769:93","tag":"line","openStart":11868,"attrEnd":11955,"openEnd":11956,"closeStart":11956,"closeEnd":11963,"styleAttr":[11913,11937],"textRuns":[],"parentId":"c74ac769:92","childIds":[]},{"id":"c74ac769:94","tag":"line","openStart":11978,"attrEnd":12065,"openEnd":12066,"closeStart":12066,"closeEnd":12073,"styleAttr":[12023,12047],"textRuns":[],"parentId":"c74ac769:92","childIds":[]},{"id":"c74ac769:95","tag":"line","openStart":12088,"attrEnd":12177,"openEnd":12178,"closeStart":12178,"closeEnd":12185,"styleAttr":[12135,12159],"textRuns":[],"parentId":"c74ac769:92","childIds":[]},{"id":"c74ac769:96","tag":"line","openStart":12200,"attrEnd":12289,"openEnd":12290,"closeStart":12290,"closeEnd":12297,"styleAttr":[12247,12271],"textRuns":[],"parentId":"c74ac769:92","childIds":[]},{"id":"c74ac769:97","tag":"line","openStart":12312,"attrEnd":12400,"openEnd":12401,"closeStart":12401,"closeEnd":12408,"styleAttr":[12359,12382],"textRuns":[],"parentId":"c74ac769:92","childIds":[]},{"id":"c74ac769:98","tag":"polygon","openStart":12423,"attrEnd":12571,"openEnd":12572,"closeStart":12572,"closeEnd":12582,"styleAttr":[12548,12570],"textRuns":[],"parentId":"c74ac769:92","childIds":[]},{"id":"c74ac769:99","tag":"polyline","openStart":12597,"attrEnd":12767,"openEnd":12768,"closeStart":12768,"closeEnd":12779,"styleAttr":[12721,12747],"textRuns":[],"parentId":"c74ac769:92","childIds":[]},{"id":"c74ac769:100","tag":"polyline","openStart":12794,"attrEnd":12985,"openEnd":12986,"closeStart":12986,"closeEnd":12997,"styleAttr":[12922,12944],"textRuns":[],"parentId":"c74ac769:92","childIds":[]},{"id":"c74ac769:101","tag":"g","openStart":13012,"attrEnd":13083,"openEnd":13084,"closeStart":13301,"closeEnd":13305,"styleAttr":[13037,13060],"textRuns":[[13084,13101],[13286,13301]],"parentId":"c74ac769:92","childIds":["c74ac769:102","c74ac769:103","c74ac769:104","c74ac769:105","c74ac769:106","c74ac769:107"]},{"id":"c74ac769:102","tag":"text","openStart":13101,"attrEnd":13120,"openEnd":13121,"closeStart":13123,"closeEnd":13130,"textRuns":[[13121,13123]],"parentId":"c74ac769:101","childIds":[]},{"id":"c74ac769:103","tag":"text","openStart":13130,"attrEnd":13151,"openEnd":13152,"closeStart":13154,"closeEnd":13161,"textRuns":[[13152,13154]],"parentId":"c74ac769:101","childIds":[]},{"id":"c74ac769:104","tag":"text","openStart":13161,"attrEnd":13182,"openEnd":13183,"closeStart":13185,"closeEnd":13192,"textRuns":[[13183,13185]],"parentId":"c74ac769:101","childIds":[]},{"id":"c74ac769:105","tag":"text","openStart":13192,"attrEnd":13213,"openEnd":13214,"closeStart":13216,"closeEnd":13223,"textRuns":[[13214,13216]],"parentId":"c74ac769:101","childIds":[]},{"id":"c74ac769:106","tag":"text","openStart":13223,"attrEnd":13244,"openEnd":13245,"closeStart":13247,"closeEnd":13254,"textRuns":[[13245,13247]],"parentId":"c74ac769:101","childIds":[]},{"id":"c74ac769:107","tag":"text","openStart":13254,"attrEnd":13275,"openEnd":13276,"closeStart":13279,"closeEnd":13286,"textRuns":[[13276,13279]],"parentId":"c74ac769:101","childIds":[]},{"id":"c74ac769:108","tag":"div","openStart":13353,"attrEnd":13490,"openEnd":13491,"closeStart":14873,"closeEnd":14879,"styleAttr":[13365,13489],"textRuns":[[13491,13504],[13643,13656],[14862,14873]],"parentId":"c74ac769:83","childIds":["c74ac769:109","c74ac769:110"]},{"id":"c74ac769:109","tag":"h4","openStart":13504,"attrEnd":13619,"openEnd":13620,"closeStart":13638,"closeEnd":13643,"styleAttr":[13515,13618],"textRuns":[[13620,13638]],"parentId":"c74ac769:108","childIds":[]},{"id":"c74ac769:110","tag":"div","openStart":13656,"attrEnd":13725,"openEnd":13726,"closeStart":14856,"closeEnd":14862,"styleAttr":[13668,13724],"textRuns":[[13726,13741],[14843,14856]],"parentId":"c74ac769:108","childIds":["c74ac769:111"]},{"id":"c74ac769:111","tag":"sc-for","openStart":13741,"attrEnd":13802,"openEnd":13803,"closeStart":14834,"closeEnd":14843,"textRuns":[[13803,13820],[14819,14834]],"parentId":"c74ac769:110","childIds":["c74ac769:112"]},{"id":"c74ac769:112","tag":"div","openStart":13820,"attrEnd":13886,"openEnd":13887,"closeStart":14813,"closeEnd":14819,"styleAttr":[13832,13885],"textRuns":[[13887,13906],[14510,14529],[14796,14813]],"parentId":"c74ac769:111","childIds":["c74ac769:113","c74ac769:117"]},{"id":"c74ac769:113","tag":"svg","openStart":13906,"attrEnd":13991,"openEnd":13992,"closeStart":14504,"closeEnd":14510,"styleAttr":[13940,13990],"textRuns":[[13992,14013],[14116,14137],[14320,14341],[14485,14504]],"parentId":"c74ac769:112","childIds":["c74ac769:114","c74ac769:115","c74ac769:116"]},{"id":"c74ac769:114","tag":"circle","openStart":14013,"attrEnd":14106,"openEnd":14107,"closeStart":14107,"closeEnd":14116,"styleAttr":[14063,14087],"textRuns":[],"parentId":"c74ac769:113","childIds":[]},{"id":"c74ac769:115","tag":"circle","openStart":14137,"attrEnd":14310,"openEnd":14311,"closeStart":14311,"closeEnd":14320,"textRuns":[],"parentId":"c74ac769:113","childIds":[]},{"id":"c74ac769:116","tag":"text","openStart":14341,"attrEnd":14466,"openEnd":14467,"closeStart":14478,"closeEnd":14485,"styleAttr":[14444,14465],"textRuns":[[14467,14478]],"parentId":"c74ac769:113","childIds":[]},{"id":"c74ac769:117","tag":"div","openStart":14529,"attrEnd":14533,"openEnd":14534,"closeStart":14790,"closeEnd":14796,"textRuns":[[14534,14555],[14653,14674],[14771,14790]],"parentId":"c74ac769:112","childIds":["c74ac769:118","c74ac769:119"]},{"id":"c74ac769:118","tag":"div","openStart":14555,"attrEnd":14633,"openEnd":14634,"closeStart":14647,"closeEnd":14653,"styleAttr":[14567,14632],"textRuns":[[14634,14647]],"parentId":"c74ac769:117","childIds":[]},{"id":"c74ac769:119","tag":"div","openStart":14674,"attrEnd":14752,"openEnd":14753,"closeStart":14765,"closeEnd":14771,"styleAttr":[14686,14751],"textRuns":[[14753,14765]],"parentId":"c74ac769:117","childIds":[]},{"id":"c74ac769:120","tag":"div","openStart":14938,"attrEnd":15102,"openEnd":15103,"closeStart":16974,"closeEnd":16980,"styleAttr":[14950,15101],"textRuns":[[15103,15114],[15484,15495],[16965,16974]],"parentId":"c74ac769:49","childIds":["c74ac769:121","c74ac769:124"]},{"id":"c74ac769:121","tag":"div","openStart":15114,"attrEnd":15300,"openEnd":15301,"closeStart":15478,"closeEnd":15484,"styleAttr":[15126,15299],"textRuns":[[15301,15314],[15359,15372],[15467,15478]],"parentId":"c74ac769:120","childIds":["c74ac769:122","c74ac769:123"]},{"id":"c74ac769:122","tag":"h4","openStart":15314,"attrEnd":15335,"openEnd":15336,"closeStart":15354,"closeEnd":15359,"styleAttr":[15325,15334],"textRuns":[[15336,15354]],"parentId":"c74ac769:121","childIds":[]},{"id":"c74ac769:123","tag":"span","openStart":15372,"attrEnd":15433,"openEnd":15434,"closeStart":15460,"closeEnd":15467,"styleAttr":[15385,15432],"textRuns":[[15434,15460]],"parentId":"c74ac769:121","childIds":[]},{"id":"c74ac769:124","tag":"div","openStart":15495,"attrEnd":15549,"openEnd":15550,"closeStart":16959,"closeEnd":16965,"styleAttr":[15507,15548],"textRuns":[[15550,15563],[16948,16959]],"parentId":"c74ac769:120","childIds":["c74ac769:125"]},{"id":"c74ac769:125","tag":"sc-for","openStart":15563,"attrEnd":15626,"openEnd":15627,"closeStart":16939,"closeEnd":16948,"textRuns":[[15627,15642],[16926,16939]],"parentId":"c74ac769:124","childIds":["c74ac769:126"]},{"id":"c74ac769:126","tag":"div","openStart":15642,"attrEnd":15697,"openEnd":15698,"closeStart":16920,"closeEnd":16926,"styleAttr":[15654,15696],"textRuns":[[15698,15715],[16627,16644],[16905,16920]],"parentId":"c74ac769:125","childIds":["c74ac769:127","c74ac769:134"]},{"id":"c74ac769:127","tag":"div","openStart":15715,"attrEnd":15859,"openEnd":15860,"closeStart":16621,"closeEnd":16627,"styleAttr":[15727,15858],"textRuns":[[15860,15879],[16013,16032],[16147,16166],[16319,16338],[16419,16438],[16604,16621]],"parentId":"c74ac769:126","childIds":["c74ac769:128","c74ac769:129","c74ac769:130","c74ac769:131","c74ac769:132"]},{"id":"c74ac769:128","tag":"div","openStart":15879,"attrEnd":15988,"openEnd":15989,"closeStart":16007,"closeEnd":16013,"styleAttr":[15891,15987],"textRuns":[[15989,16007]],"parentId":"c74ac769:127","childIds":[]},{"id":"c74ac769:129","tag":"div","openStart":16032,"attrEnd":16128,"openEnd":16129,"closeStart":16141,"closeEnd":16147,"styleAttr":[16044,16127],"textRuns":[[16129,16141]],"parentId":"c74ac769:127","childIds":[]},{"id":"c74ac769:130","tag":"div","openStart":16166,"attrEnd":16299,"openEnd":16300,"closeStart":16313,"closeEnd":16319,"styleAttr":[16178,16298],"textRuns":[[16300,16313]],"parentId":"c74ac769:127","childIds":[]},{"id":"c74ac769:131","tag":"div","openStart":16338,"attrEnd":16400,"openEnd":16401,"closeStart":16413,"closeEnd":16419,"styleAttr":[16350,16399],"textRuns":[[16401,16413]],"parentId":"c74ac769:127","childIds":[]},{"id":"c74ac769:132","tag":"div","openStart":16438,"attrEnd":16516,"openEnd":16517,"closeStart":16598,"closeEnd":16604,"styleAttr":[16450,16515],"textRuns":[],"parentId":"c74ac769:127","childIds":["c74ac769:133"]},{"id":"c74ac769:133","tag":"div","openStart":16517,"attrEnd":16591,"openEnd":16592,"closeStart":16592,"closeEnd":16598,"styleAttr":[16529,16590],"textRuns":[],"parentId":"c74ac769:132","childIds":[]},{"id":"c74ac769:134","tag":"sc-if","openStart":16644,"attrEnd":16709,"openEnd":16710,"closeStart":16897,"closeEnd":16905,"textRuns":[[16710,16729],[16880,16897]],"parentId":"c74ac769:126","childIds":["c74ac769:135"]},{"id":"c74ac769:135","tag":"div","openStart":16729,"attrEnd":16870,"openEnd":16871,"closeStart":16874,"closeEnd":16880,"styleAttr":[16741,16869],"textRuns":[[16871,16874]],"parentId":"c74ac769:134","childIds":[]},{"id":"c74ac769:136","tag":"div","openStart":17025,"attrEnd":17132,"openEnd":17133,"closeStart":20337,"closeEnd":20343,"styleAttr":[17037,17131],"textRuns":[[17133,17144],[18917,18929],[20328,20337]],"parentId":"c74ac769:49","childIds":["c74ac769:137","c74ac769:153"]},{"id":"c74ac769:137","tag":"div","openStart":17144,"attrEnd":17281,"openEnd":17282,"closeStart":18911,"closeEnd":18917,"styleAttr":[17156,17280],"textRuns":[[17282,17295],[17672,17685],[18446,18459],[18900,18911]],"parentId":"c74ac769:136","childIds":["c74ac769:138","c74ac769:141","c74ac769:148"]},{"id":"c74ac769:138","tag":"div","openStart":17295,"attrEnd":17481,"openEnd":17482,"closeStart":17666,"closeEnd":17672,"styleAttr":[17307,17480],"textRuns":[[17482,17497],[17544,17559],[17653,17666]],"parentId":"c74ac769:137","childIds":["c74ac769:139","c74ac769:140"]},{"id":"c74ac769:139","tag":"h4","openStart":17497,"attrEnd":17518,"openEnd":17519,"closeStart":17539,"closeEnd":17544,"styleAttr":[17508,17517],"textRuns":[[17519,17539]],"parentId":"c74ac769:138","childIds":[]},{"id":"c74ac769:140","tag":"span","openStart":17559,"attrEnd":17620,"openEnd":17621,"closeStart":17646,"closeEnd":17653,"styleAttr":[17572,17619],"textRuns":[[17621,17646]],"parentId":"c74ac769:138","childIds":[]},{"id":"c74ac769:141","tag":"div","openStart":17685,"attrEnd":17731,"openEnd":17732,"closeStart":18440,"closeEnd":18446,"styleAttr":[17697,17730],"textRuns":[[17732,17747],[18091,18106],[18427,18440]],"parentId":"c74ac769:137","childIds":["c74ac769:142","c74ac769:145"]},{"id":"c74ac769:142","tag":"div","openStart":17747,"attrEnd":17820,"openEnd":17821,"closeStart":18085,"closeEnd":18091,"styleAttr":[17759,17819],"textRuns":[[17821,17838],[18070,18085]],"parentId":"c74ac769:141","childIds":["c74ac769:143"]},{"id":"c74ac769:143","tag":"sc-for","openStart":17838,"attrEnd":17902,"openEnd":17903,"closeStart":18061,"closeEnd":18070,"textRuns":[[17903,17922],[18044,18061]],"parentId":"c74ac769:142","childIds":["c74ac769:144"]},{"id":"c74ac769:144","tag":"div","openStart":17922,"attrEnd":18030,"openEnd":18031,"closeStart":18038,"closeEnd":18044,"styleAttr":[17934,18029],"textRuns":[[18031,18038]],"parentId":"c74ac769:143","childIds":[]},{"id":"c74ac769:145","tag":"div","openStart":18106,"attrEnd":18231,"openEnd":18232,"closeStart":18421,"closeEnd":18427,"styleAttr":[18118,18230],"textRuns":[[18232,18249],[18406,18421]],"parentId":"c74ac769:141","childIds":["c74ac769:146"]},{"id":"c74ac769:146","tag":"sc-for","openStart":18249,"attrEnd":18312,"openEnd":18313,"closeStart":18397,"closeEnd":18406,"textRuns":[[18313,18332],[18380,18397]],"parentId":"c74ac769:145","childIds":["c74ac769:147"]},{"id":"c74ac769:147","tag":"div","openStart":18332,"attrEnd":18373,"openEnd":18374,"closeStart":18374,"closeEnd":18380,"styleAttr":[18344,18372],"textRuns":[],"parentId":"c74ac769:146","childIds":[]},{"id":"c74ac769:148","tag":"div","openStart":18459,"attrEnd":18589,"openEnd":18590,"closeStart":18894,"closeEnd":18900,"styleAttr":[18471,18588],"textRuns":[[18590,18605],[18620,18635],[18849,18864],[18881,18894]],"parentId":"c74ac769:137","childIds":["c74ac769:149","c74ac769:150","c74ac769:152"]},{"id":"c74ac769:149","tag":"span","openStart":18605,"attrEnd":18610,"openEnd":18611,"closeStart":18613,"closeEnd":18620,"textRuns":[[18611,18613]],"parentId":"c74ac769:148","childIds":[]},{"id":"c74ac769:150","tag":"sc-for","openStart":18635,"attrEnd":18701,"openEnd":18702,"closeStart":18840,"closeEnd":18849,"textRuns":[[18702,18719],[18825,18840]],"parentId":"c74ac769:148","childIds":["c74ac769:151"]},{"id":"c74ac769:151","tag":"span","openStart":18719,"attrEnd":18817,"openEnd":18818,"closeStart":18818,"closeEnd":18825,"styleAttr":[18732,18816],"textRuns":[],"parentId":"c74ac769:150","childIds":[]},{"id":"c74ac769:152","tag":"span","openStart":18864,"attrEnd":18869,"openEnd":18870,"closeStart":18874,"closeEnd":18881,"textRuns":[[18870,18874]],"parentId":"c74ac769:148","childIds":[]},{"id":"c74ac769:153","tag":"div","openStart":18929,"attrEnd":19103,"openEnd":19104,"closeStart":20322,"closeEnd":20328,"styleAttr":[18941,19102],"textRuns":[[19104,19117],[19250,19263],[20203,20216],[20311,20322]],"parentId":"c74ac769:136","childIds":["c74ac769:154","c74ac769:155","c74ac769:163"]},{"id":"c74ac769:154","tag":"h4","openStart":19117,"attrEnd":19232,"openEnd":19233,"closeStart":19245,"closeEnd":19250,"styleAttr":[19128,19231],"textRuns":[[19233,19245]],"parentId":"c74ac769:153","childIds":[]},{"id":"c74ac769:155","tag":"div","openStart":19263,"attrEnd":19312,"openEnd":19313,"closeStart":20197,"closeEnd":20203,"styleAttr":[19275,19311],"textRuns":[[19313,19328],[20184,20197]],"parentId":"c74ac769:153","childIds":["c74ac769:156"]},{"id":"c74ac769:156","tag":"sc-for","openStart":19328,"attrEnd":19392,"openEnd":19393,"closeStart":20175,"closeEnd":20184,"textRuns":[[19393,19410],[20160,20175]],"parentId":"c74ac769:155","childIds":["c74ac769:157"]},{"id":"c74ac769:157","tag":"div","openStart":19410,"attrEnd":19528,"openEnd":19529,"closeStart":20154,"closeEnd":20160,"styleAttr":[19422,19527],"textRuns":[[19529,19548],[19707,19726],[19995,20014],[20137,20154]],"parentId":"c74ac769:156","childIds":["c74ac769:158","c74ac769:159","c74ac769:162"]},{"id":"c74ac769:158","tag":"div","openStart":19548,"attrEnd":19687,"openEnd":19688,"closeStart":19701,"closeEnd":19707,"styleAttr":[19560,19686],"textRuns":[[19688,19701]],"parentId":"c74ac769:157","childIds":[]},{"id":"c74ac769:159","tag":"div","openStart":19726,"attrEnd":19746,"openEnd":19747,"closeStart":19989,"closeEnd":19995,"styleAttr":[19738,19745],"textRuns":[[19747,19768],[19851,19872],[19970,19989]],"parentId":"c74ac769:157","childIds":["c74ac769:160","c74ac769:161"]},{"id":"c74ac769:160","tag":"div","openStart":19768,"attrEnd":19830,"openEnd":19831,"closeStart":19845,"closeEnd":19851,"styleAttr":[19780,19829],"textRuns":[[19831,19845]],"parentId":"c74ac769:159","childIds":[]},{"id":"c74ac769:161","tag":"div","openStart":19872,"attrEnd":19948,"openEnd":19949,"closeStart":19964,"closeEnd":19970,"styleAttr":[19884,19947],"textRuns":[[19949,19964]],"parentId":"c74ac769:159","childIds":[]},{"id":"c74ac769:162","tag":"span","openStart":20014,"attrEnd":20111,"openEnd":20112,"closeStart":20130,"closeEnd":20137,"styleAttr":[20027,20110],"textRuns":[[20112,20130]],"parentId":"c74ac769:157","childIds":[]},{"id":"c74ac769:163","tag":"button","openStart":20216,"attrEnd":20284,"openEnd":20285,"closeStart":20302,"closeEnd":20311,"styleAttr":[20267,20283],"textRuns":[[20285,20302]],"parentId":"c74ac769:153","childIds":[]},{"id":"c74ac769:164","tag":"sc-if","openStart":20417,"attrEnd":20482,"openEnd":20483,"closeStart":27702,"closeEnd":27710,"textRuns":[[20483,20492],[20961,20970],[20985,20995],[24811,24821],[25424,25434],[27274,27283],[27695,27702]],"parentId":"c74ac769:48","childIds":["c74ac769:165","c74ac769:170","c74ac769:171","c74ac769:206","c74ac769:217","c74ac769:246"]},{"id":"c74ac769:165","tag":"div","openStart":20492,"attrEnd":20607,"openEnd":20608,"closeStart":20955,"closeEnd":20961,"styleAttr":[20504,20606],"textRuns":[[20608,20619],[20881,20892],[20946,20955]],"parentId":"c74ac769:164","childIds":["c74ac769:166","c74ac769:169"]},{"id":"c74ac769:166","tag":"div","openStart":20619,"attrEnd":20623,"openEnd":20624,"closeStart":20875,"closeEnd":20881,"textRuns":[[20624,20637],[20790,20803],[20864,20875]],"parentId":"c74ac769:165","childIds":["c74ac769:167","c74ac769:168"]},{"id":"c74ac769:167","tag":"div","openStart":20637,"attrEnd":20760,"openEnd":20761,"closeStart":20784,"closeEnd":20790,"styleAttr":[20649,20759],"textRuns":[[20761,20784]],"parentId":"c74ac769:166","childIds":[]},{"id":"c74ac769:168","tag":"h1","openStart":20803,"attrEnd":20840,"openEnd":20841,"closeStart":20859,"closeEnd":20864,"styleAttr":[20814,20839],"textRuns":[[20841,20859]],"parentId":"c74ac769:166","childIds":[]},{"id":"c74ac769:169","tag":"button","openStart":20892,"attrEnd":20923,"openEnd":20924,"closeStart":20937,"closeEnd":20946,"textRuns":[[20924,20937]],"parentId":"c74ac769:165","childIds":[]},{"id":"c74ac769:170","tag":"hr","openStart":20970,"attrEnd":20984,"openEnd":20985,"closeEnd":20985,"textRuns":[],"parentId":"c74ac769:164","childIds":[]},{"id":"c74ac769:171","tag":"div","openStart":20995,"attrEnd":21078,"openEnd":21079,"closeStart":24805,"closeEnd":24811,"styleAttr":[21007,21077],"textRuns":[[21079,21090],[22459,22471],[23728,23740],[24796,24805]],"parentId":"c74ac769:164","childIds":["c74ac769:172","c74ac769:188","c74ac769:199"]},{"id":"c74ac769:172","tag":"div","openStart":21090,"attrEnd":21227,"openEnd":21228,"closeStart":22453,"closeEnd":22459,"styleAttr":[21102,21226],"textRuns":[[21228,21241],[21319,21332],[21649,21662],[22442,22453]],"parentId":"c74ac769:171","childIds":["c74ac769:173","c74ac769:174","c74ac769:178"]},{"id":"c74ac769:173","tag":"h4","openStart":21241,"attrEnd":21295,"openEnd":21296,"closeStart":21314,"closeEnd":21319,"styleAttr":[21252,21294],"textRuns":[[21296,21314]],"parentId":"c74ac769:172","childIds":[]},{"id":"c74ac769:174","tag":"div","openStart":21332,"attrEnd":21401,"openEnd":21402,"closeStart":21643,"closeEnd":21649,"styleAttr":[21344,21400],"textRuns":[[21402,21417],[21475,21490],[21548,21563],[21630,21643]],"parentId":"c74ac769:172","childIds":["c74ac769:175","c74ac769:176","c74ac769:177"]},{"id":"c74ac769:175","tag":"div","openStart":21417,"attrEnd":21468,"openEnd":21469,"closeStart":21469,"closeEnd":21475,"styleAttr":[21429,21467],"textRuns":[],"parentId":"c74ac769:174","childIds":[]},{"id":"c74ac769:176","tag":"div","openStart":21490,"attrEnd":21541,"openEnd":21542,"closeStart":21542,"closeEnd":21548,"styleAttr":[21502,21540],"textRuns":[],"parentId":"c74ac769:174","childIds":[]},{"id":"c74ac769:177","tag":"div","openStart":21563,"attrEnd":21623,"openEnd":21624,"closeStart":21624,"closeEnd":21630,"styleAttr":[21575,21622],"textRuns":[],"parentId":"c74ac769:174","childIds":[]},{"id":"c74ac769:178","tag":"div","openStart":21662,"attrEnd":21720,"openEnd":21721,"closeStart":22436,"closeEnd":22442,"styleAttr":[21674,21719],"textRuns":[[21721,21736],[21954,21969],[22184,22199],[22423,22436]],"parentId":"c74ac769:172","childIds":["c74ac769:179","c74ac769:182","c74ac769:185"]},{"id":"c74ac769:179","tag":"div","openStart":21736,"attrEnd":21807,"openEnd":21808,"closeStart":21948,"closeEnd":21954,"styleAttr":[21748,21806],"textRuns":[[21882,21890]],"parentId":"c74ac769:178","childIds":["c74ac769:180","c74ac769:181"]},{"id":"c74ac769:180","tag":"span","openStart":21808,"attrEnd":21874,"openEnd":21875,"closeStart":21875,"closeEnd":21882,"styleAttr":[21821,21873],"textRuns":[],"parentId":"c74ac769:179","childIds":[]},{"id":"c74ac769:181","tag":"span","openStart":21890,"attrEnd":21938,"openEnd":21939,"closeStart":21941,"closeEnd":21948,"styleAttr":[21903,21937],"textRuns":[[21939,21941]],"parentId":"c74ac769:179","childIds":[]},{"id":"c74ac769:182","tag":"div","openStart":21969,"attrEnd":22040,"openEnd":22041,"closeStart":22178,"closeEnd":22184,"styleAttr":[21981,22039],"textRuns":[[22115,22121]],"parentId":"c74ac769:178","childIds":["c74ac769:183","c74ac769:184"]},{"id":"c74ac769:183","tag":"span","openStart":22041,"attrEnd":22107,"openEnd":22108,"closeStart":22108,"closeEnd":22115,"styleAttr":[22054,22106],"textRuns":[],"parentId":"c74ac769:182","childIds":[]},{"id":"c74ac769:184","tag":"span","openStart":22121,"attrEnd":22169,"openEnd":22170,"closeStart":22171,"closeEnd":22178,"styleAttr":[22134,22168],"textRuns":[[22170,22171]],"parentId":"c74ac769:182","childIds":[]},{"id":"c74ac769:185","tag":"div","openStart":22199,"attrEnd":22270,"openEnd":22271,"closeStart":22417,"closeEnd":22423,"styleAttr":[22211,22269],"textRuns":[[22354,22360]],"parentId":"c74ac769:178","childIds":["c74ac769:186","c74ac769:187"]},{"id":"c74ac769:186","tag":"span","openStart":22271,"attrEnd":22346,"openEnd":22347,"closeStart":22347,"closeEnd":22354,"styleAttr":[22284,22345],"textRuns":[],"parentId":"c74ac769:185","childIds":[]},{"id":"c74ac769:187","tag":"span","openStart":22360,"attrEnd":22408,"openEnd":22409,"closeStart":22410,"closeEnd":22417,"styleAttr":[22373,22407],"textRuns":[[22409,22410]],"parentId":"c74ac769:185","childIds":[]},{"id":"c74ac769:188","tag":"div","openStart":22471,"attrEnd":22662,"openEnd":22663,"closeStart":23722,"closeEnd":23728,"styleAttr":[22483,22661],"textRuns":[[22663,22676],[23095,23108],[23711,23722]],"parentId":"c74ac769:171","childIds":["c74ac769:189","c74ac769:192"]},{"id":"c74ac769:189","tag":"svg","openStart":22676,"attrEnd":22763,"openEnd":22764,"closeStart":23089,"closeEnd":23095,"styleAttr":[22710,22762],"textRuns":[[22764,22779],[23076,23089]],"parentId":"c74ac769:188","childIds":["c74ac769:190"]},{"id":"c74ac769:190","tag":"sc-for","openStart":22779,"attrEnd":22839,"openEnd":22840,"closeStart":23067,"closeEnd":23076,"textRuns":[[22840,22857],[23052,23067]],"parentId":"c74ac769:189","childIds":["c74ac769:191"]},{"id":"c74ac769:191","tag":"circle","openStart":22857,"attrEnd":23042,"openEnd":23043,"closeStart":23043,"closeEnd":23052,"textRuns":[],"parentId":"c74ac769:190","childIds":[]},{"id":"c74ac769:192","tag":"div","openStart":23108,"attrEnd":23128,"openEnd":23129,"closeStart":23705,"closeEnd":23711,"styleAttr":[23120,23127],"textRuns":[[23129,23144],[23218,23233],[23692,23705]],"parentId":"c74ac769:188","childIds":["c74ac769:193","c74ac769:194"]},{"id":"c74ac769:193","tag":"h4","openStart":23144,"attrEnd":23198,"openEnd":23199,"closeStart":23213,"closeEnd":23218,"styleAttr":[23155,23197],"textRuns":[[23199,23213]],"parentId":"c74ac769:192","childIds":[]},{"id":"c74ac769:194","tag":"div","openStart":23233,"attrEnd":23291,"openEnd":23292,"closeStart":23686,"closeEnd":23692,"styleAttr":[23245,23290],"textRuns":[[23292,23309],[23671,23686]],"parentId":"c74ac769:192","childIds":["c74ac769:195"]},{"id":"c74ac769:195","tag":"sc-for","openStart":23309,"attrEnd":23369,"openEnd":23370,"closeStart":23662,"closeEnd":23671,"textRuns":[[23370,23389],[23645,23662]],"parentId":"c74ac769:194","childIds":["c74ac769:196"]},{"id":"c74ac769:196","tag":"div","openStart":23389,"attrEnd":23462,"openEnd":23463,"closeStart":23639,"closeEnd":23645,"styleAttr":[23401,23461],"textRuns":[[23544,23557]],"parentId":"c74ac769:195","childIds":["c74ac769:197","c74ac769:198"]},{"id":"c74ac769:197","tag":"span","openStart":23463,"attrEnd":23536,"openEnd":23537,"closeStart":23537,"closeEnd":23544,"styleAttr":[23476,23535],"textRuns":[],"parentId":"c74ac769:196","childIds":[]},{"id":"c74ac769:198","tag":"span","openStart":23557,"attrEnd":23620,"openEnd":23621,"closeStart":23632,"closeEnd":23639,"styleAttr":[23570,23619],"textRuns":[[23621,23632]],"parentId":"c74ac769:196","childIds":[]},{"id":"c74ac769:199","tag":"div","openStart":23740,"attrEnd":23938,"openEnd":23939,"closeStart":24790,"closeEnd":24796,"styleAttr":[23752,23937],"textRuns":[[23939,23952],[24035,24048],[24608,24621],[24779,24790]],"parentId":"c74ac769:171","childIds":["c74ac769:200","c74ac769:201","c74ac769:205"]},{"id":"c74ac769:200","tag":"h4","openStart":23952,"attrEnd":24006,"openEnd":24007,"closeStart":24030,"closeEnd":24035,"styleAttr":[23963,24005],"textRuns":[[24007,24030]],"parentId":"c74ac769:199","childIds":[]},{"id":"c74ac769:201","tag":"svg","openStart":24048,"attrEnd":24140,"openEnd":24141,"closeStart":24602,"closeEnd":24608,"styleAttr":[24082,24139],"textRuns":[[24141,24156],[24265,24280],[24438,24453],[24589,24602]],"parentId":"c74ac769:199","childIds":["c74ac769:202","c74ac769:203","c74ac769:204"]},{"id":"c74ac769:202","tag":"path","openStart":24156,"attrEnd":24257,"openEnd":24258,"closeStart":24258,"closeEnd":24265,"styleAttr":[24214,24238],"textRuns":[],"parentId":"c74ac769:201","childIds":[]},{"id":"c74ac769:203","tag":"path","openStart":24280,"attrEnd":24430,"openEnd":24431,"closeStart":24431,"closeEnd":24438,"textRuns":[],"parentId":"c74ac769:201","childIds":[]},{"id":"c74ac769:204","tag":"text","openStart":24453,"attrEnd":24579,"openEnd":24580,"closeStart":24582,"closeEnd":24589,"styleAttr":[24557,24578],"textRuns":[[24580,24582]],"parentId":"c74ac769:201","childIds":[]},{"id":"c74ac769:205","tag":"div","openStart":24621,"attrEnd":24710,"openEnd":24711,"closeStart":24773,"closeEnd":24779,"styleAttr":[24633,24709],"textRuns":[[24711,24773]],"parentId":"c74ac769:199","childIds":[]},{"id":"c74ac769:206","tag":"div","openStart":24821,"attrEnd":24943,"openEnd":24944,"closeStart":25418,"closeEnd":25424,"styleAttr":[24833,24942],"textRuns":[[24944,24955],[25027,25038],[25409,25418]],"parentId":"c74ac769:164","childIds":["c74ac769:207","c74ac769:208"]},{"id":"c74ac769:207","tag":"input","openStart":24955,"attrEnd":25026,"openEnd":25027,"closeEnd":25027,"styleAttr":[25013,25025],"textRuns":[],"parentId":"c74ac769:206","childIds":[]},{"id":"c74ac769:208","tag":"div","openStart":25038,"attrEnd":25054,"openEnd":25055,"closeStart":25403,"closeEnd":25409,"textRuns":[[25055,25068],[25150,25163],[25232,25245],[25312,25325],[25392,25403]],"parentId":"c74ac769:206","childIds":["c74ac769:209","c74ac769:211","c74ac769:213","c74ac769:215"]},{"id":"c74ac769:209","tag":"label","openStart":25068,"attrEnd":25090,"openEnd":25091,"closeStart":25142,"closeEnd":25150,"textRuns":[[25136,25142]],"parentId":"c74ac769:208","childIds":["c74ac769:210"]},{"id":"c74ac769:210","tag":"input","openStart":25091,"attrEnd":25135,"openEnd":25136,"closeEnd":25136,"textRuns":[],"parentId":"c74ac769:209","childIds":[]},{"id":"c74ac769:211","tag":"label","openStart":25163,"attrEnd":25185,"openEnd":25186,"closeStart":25224,"closeEnd":25232,"textRuns":[[25216,25224]],"parentId":"c74ac769:208","childIds":["c74ac769:212"]},{"id":"c74ac769:212","tag":"input","openStart":25186,"attrEnd":25215,"openEnd":25216,"closeEnd":25216,"textRuns":[],"parentId":"c74ac769:211","childIds":[]},{"id":"c74ac769:213","tag":"label","openStart":25245,"attrEnd":25267,"openEnd":25268,"closeStart":25304,"closeEnd":25312,"textRuns":[[25298,25304]],"parentId":"c74ac769:208","childIds":["c74ac769:214"]},{"id":"c74ac769:214","tag":"input","openStart":25268,"attrEnd":25297,"openEnd":25298,"closeEnd":25298,"textRuns":[],"parentId":"c74ac769:213","childIds":[]},{"id":"c74ac769:215","tag":"label","openStart":25325,"attrEnd":25347,"openEnd":25348,"closeStart":25384,"closeEnd":25392,"textRuns":[[25378,25384]],"parentId":"c74ac769:208","childIds":["c74ac769:216"]},{"id":"c74ac769:216","tag":"input","openStart":25348,"attrEnd":25377,"openEnd":25378,"closeEnd":25378,"textRuns":[],"parentId":"c74ac769:215","childIds":[]},{"id":"c74ac769:217","tag":"div","openStart":25434,"attrEnd":25573,"openEnd":25574,"closeStart":27268,"closeEnd":27274,"styleAttr":[25446,25572],"textRuns":[[25574,25585],[27259,27268]],"parentId":"c74ac769:164","childIds":["c74ac769:218"]},{"id":"c74ac769:218","tag":"table","openStart":25585,"attrEnd":25605,"openEnd":25606,"closeStart":27251,"closeEnd":27259,"textRuns":[[25606,25619],[25785,25798],[27240,27251]],"parentId":"c74ac769:217","childIds":["c74ac769:219","c74ac769:228"]},{"id":"c74ac769:219","tag":"thead","openStart":25619,"attrEnd":25625,"openEnd":25626,"textRuns":[[25626,25641],[25764,25777]],"parentId":"c74ac769:218","childIds":["c74ac769:220"]},{"id":"c74ac769:220","tag":"tr","openStart":25641,"attrEnd":25644,"openEnd":25645,"textRuns":[],"parentId":"c74ac769:219","childIds":["c74ac769:221","c74ac769:222","c74ac769:223","c74ac769:224","c74ac769:225","c74ac769:226","c74ac769:227"]},{"id":"c74ac769:221","tag":"th","openStart":25645,"attrEnd":25648,"openEnd":25649,"closeStart":25657,"closeEnd":25662,"textRuns":[[25649,25657]],"parentId":"c74ac769:220","childIds":[]},{"id":"c74ac769:222","tag":"th","openStart":25662,"attrEnd":25665,"openEnd":25666,"closeStart":25674,"closeEnd":25679,"textRuns":[[25666,25674]],"parentId":"c74ac769:220","childIds":[]},{"id":"c74ac769:223","tag":"th","openStart":25679,"attrEnd":25682,"openEnd":25683,"closeStart":25688,"closeEnd":25693,"textRuns":[[25683,25688]],"parentId":"c74ac769:220","childIds":[]},{"id":"c74ac769:224","tag":"th","openStart":25693,"attrEnd":25696,"openEnd":25697,"closeStart":25712,"closeEnd":25717,"textRuns":[[25697,25712]],"parentId":"c74ac769:220","childIds":[]},{"id":"c74ac769:225","tag":"th","openStart":25717,"attrEnd":25720,"openEnd":25721,"closeStart":25726,"closeEnd":25731,"textRuns":[[25721,25726]],"parentId":"c74ac769:220","childIds":[]},{"id":"c74ac769:226","tag":"th","openStart":25731,"attrEnd":25734,"openEnd":25735,"closeStart":25745,"closeEnd":25750,"textRuns":[[25735,25745]],"parentId":"c74ac769:220","childIds":[]},{"id":"c74ac769:227","tag":"th","openStart":25750,"attrEnd":25753,"openEnd":25754,"closeStart":25754,"closeEnd":25759,"textRuns":[],"parentId":"c74ac769:220","childIds":[]},{"id":"c74ac769:228","tag":"tbody","openStart":25798,"attrEnd":25804,"openEnd":25805,"textRuns":[[25805,25820],[27219,27232]],"parentId":"c74ac769:218","childIds":["c74ac769:229"]},{"id":"c74ac769:229","tag":"sc-for","openStart":25820,"attrEnd":25886,"openEnd":25887,"closeStart":27210,"closeEnd":27219,"textRuns":[[25887,25904],[27195,27210]],"parentId":"c74ac769:228","childIds":["c74ac769:230"]},{"id":"c74ac769:230","tag":"tr","openStart":25904,"attrEnd":25907,"openEnd":25908,"textRuns":[[25908,25927],[25974,25993],[26058,26077],[26201,26220],[26285,26304],[26597,26616],[27072,27091],[27173,27190]],"parentId":"c74ac769:229","childIds":["c74ac769:231","c74ac769:232","c74ac769:233","c74ac769:235","c74ac769:236","c74ac769:239","c74ac769:244"]},{"id":"c74ac769:231","tag":"td","openStart":25927,"attrEnd":25955,"openEnd":25956,"closeStart":25969,"closeEnd":25974,"styleAttr":[25938,25954],"textRuns":[[25956,25969]],"parentId":"c74ac769:230","childIds":[]},{"id":"c74ac769:232","tag":"td","openStart":25993,"attrEnd":26036,"openEnd":26037,"closeStart":26053,"closeEnd":26058,"styleAttr":[26004,26035],"textRuns":[[26037,26053]],"parentId":"c74ac769:230","childIds":[]},{"id":"c74ac769:233","tag":"td","openStart":26077,"attrEnd":26080,"openEnd":26081,"closeStart":26196,"closeEnd":26201,"textRuns":[],"parentId":"c74ac769:230","childIds":["c74ac769:234"]},{"id":"c74ac769:234","tag":"span","openStart":26081,"attrEnd":26174,"openEnd":26175,"closeStart":26189,"closeEnd":26196,"styleAttr":[26094,26173],"textRuns":[[26175,26189]],"parentId":"c74ac769:233","childIds":[]},{"id":"c74ac769:235","tag":"td","openStart":26220,"attrEnd":26266,"openEnd":26267,"closeStart":26280,"closeEnd":26285,"styleAttr":[26231,26265],"textRuns":[[26267,26280]],"parentId":"c74ac769:230","childIds":[]},{"id":"c74ac769:236","tag":"td","openStart":26304,"attrEnd":26327,"openEnd":26328,"closeStart":26592,"closeEnd":26597,"styleAttr":[26315,26326],"textRuns":[[26328,26349],[26573,26592]],"parentId":"c74ac769:230","childIds":["c74ac769:237"]},{"id":"c74ac769:237","tag":"svg","openStart":26349,"attrEnd":26421,"openEnd":26422,"closeStart":26567,"closeEnd":26573,"styleAttr":[26381,26420],"textRuns":[[26422,26445],[26546,26567]],"parentId":"c74ac769:236","childIds":["c74ac769:238"]},{"id":"c74ac769:238","tag":"polyline","openStart":26445,"attrEnd":26534,"openEnd":26535,"closeStart":26535,"closeEnd":26546,"textRuns":[],"parentId":"c74ac769:237","childIds":[]},{"id":"c74ac769:239","tag":"td","openStart":26616,"attrEnd":26640,"openEnd":26641,"closeStart":27067,"closeEnd":27072,"styleAttr":[26627,26639],"textRuns":[[26641,26662],[27048,27067]],"parentId":"c74ac769:230","childIds":["c74ac769:240"]},{"id":"c74ac769:240","tag":"div","openStart":26662,"attrEnd":26717,"openEnd":26718,"closeStart":27042,"closeEnd":27048,"styleAttr":[26674,26716],"textRuns":[[26718,26741],[26903,26926],[27021,27042]],"parentId":"c74ac769:239","childIds":["c74ac769:241","c74ac769:243"]},{"id":"c74ac769:241","tag":"div","openStart":26741,"attrEnd":26810,"openEnd":26811,"closeStart":26897,"closeEnd":26903,"styleAttr":[26753,26809],"textRuns":[],"parentId":"c74ac769:240","childIds":["c74ac769:242"]},{"id":"c74ac769:242","tag":"div","openStart":26811,"attrEnd":26890,"openEnd":26891,"closeStart":26891,"closeEnd":26897,"styleAttr":[26823,26889],"textRuns":[],"parentId":"c74ac769:241","childIds":[]},{"id":"c74ac769:243","tag":"span","openStart":26926,"attrEnd":26999,"openEnd":27000,"closeStart":27014,"closeEnd":27021,"styleAttr":[26939,26998],"textRuns":[[27000,27014]],"parentId":"c74ac769:240","childIds":[]},{"id":"c74ac769:244","tag":"td","openStart":27091,"attrEnd":27120,"openEnd":27121,"closeStart":27168,"closeEnd":27173,"styleAttr":[27102,27119],"textRuns":[],"parentId":"c74ac769:230","childIds":["c74ac769:245"]},{"id":"c74ac769:245","tag":"button","openStart":27121,"attrEnd":27150,"openEnd":27151,"closeStart":27159,"closeEnd":27168,"textRuns":[[27151,27159]],"parentId":"c74ac769:244","childIds":[]},{"id":"c74ac769:246","tag":"div","openStart":27283,"attrEnd":27437,"openEnd":27438,"closeStart":27689,"closeEnd":27695,"styleAttr":[27295,27436],"textRuns":[[27438,27449],[27479,27490],[27680,27689]],"parentId":"c74ac769:164","childIds":["c74ac769:247","c74ac769:248"]},{"id":"c74ac769:247","tag":"span","openStart":27449,"attrEnd":27454,"openEnd":27455,"closeStart":27472,"closeEnd":27479,"textRuns":[[27455,27472]],"parentId":"c74ac769:246","childIds":[]},{"id":"c74ac769:248","tag":"div","openStart":27490,"attrEnd":27536,"openEnd":27537,"closeStart":27674,"closeEnd":27680,"styleAttr":[27502,27535],"textRuns":[[27537,27550],[27600,27613],[27663,27674]],"parentId":"c74ac769:246","childIds":["c74ac769:249","c74ac769:250"]},{"id":"c74ac769:249","tag":"button","openStart":27550,"attrEnd":27583,"openEnd":27584,"closeStart":27591,"closeEnd":27600,"textRuns":[[27584,27591]],"parentId":"c74ac769:248","childIds":[]},{"id":"c74ac769:250","tag":"button","openStart":27613,"attrEnd":27646,"openEnd":27647,"closeStart":27654,"closeEnd":27663,"textRuns":[[27647,27654]],"parentId":"c74ac769:248","childIds":[]},{"id":"c74ac769:251","tag":"sc-if","openStart":27768,"attrEnd":27833,"openEnd":27834,"closeStart":35709,"closeEnd":35717,"textRuns":[[27834,27843],[28714,28723],[28738,28748],[29692,29702],[31753,31763],[34055,34065],[35702,35709]],"parentId":"c74ac769:48","childIds":["c74ac769:252","c74ac769:265","c74ac769:266","c74ac769:274","c74ac769:292","c74ac769:314"]},{"id":"c74ac769:252","tag":"div","openStart":27843,"attrEnd":27958,"openEnd":27959,"closeStart":28708,"closeEnd":28714,"styleAttr":[27855,27957],"textRuns":[[27959,27970],[28236,28247],[28699,28708]],"parentId":"c74ac769:251","childIds":["c74ac769:253","c74ac769:256"]},{"id":"c74ac769:253","tag":"div","openStart":27970,"attrEnd":27974,"openEnd":27975,"closeStart":28230,"closeEnd":28236,"textRuns":[[27975,27988],[28140,28153],[28219,28230]],"parentId":"c74ac769:252","childIds":["c74ac769:254","c74ac769:255"]},{"id":"c74ac769:254","tag":"div","openStart":27988,"attrEnd":28111,"openEnd":28112,"closeStart":28134,"closeEnd":28140,"styleAttr":[28000,28110],"textRuns":[[28112,28134]],"parentId":"c74ac769:253","childIds":[]},{"id":"c74ac769:255","tag":"h1","openStart":28153,"attrEnd":28190,"openEnd":28191,"closeStart":28214,"closeEnd":28219,"styleAttr":[28164,28189],"textRuns":[[28191,28214]],"parentId":"c74ac769:253","childIds":[]},{"id":"c74ac769:256","tag":"div","openStart":28247,"attrEnd":28313,"openEnd":28314,"closeStart":28693,"closeEnd":28699,"styleAttr":[28259,28312],"textRuns":[[28314,28327],[28614,28627],[28682,28693]],"parentId":"c74ac769:252","childIds":["c74ac769:257","c74ac769:264"]},{"id":"c74ac769:257","tag":"div","openStart":28327,"attrEnd":28343,"openEnd":28344,"closeStart":28608,"closeEnd":28614,"textRuns":[[28344,28359],[28422,28437],[28516,28531],[28595,28608]],"parentId":"c74ac769:256","childIds":["c74ac769:258","c74ac769:260","c74ac769:262"]},{"id":"c74ac769:258","tag":"label","openStart":28359,"attrEnd":28381,"openEnd":28382,"closeStart":28414,"closeEnd":28422,"textRuns":[[28412,28414]],"parentId":"c74ac769:257","childIds":["c74ac769:259"]},{"id":"c74ac769:259","tag":"input","openStart":28382,"attrEnd":28411,"openEnd":28412,"closeEnd":28412,"textRuns":[],"parentId":"c74ac769:258","childIds":[]},{"id":"c74ac769:260","tag":"label","openStart":28437,"attrEnd":28459,"openEnd":28460,"closeStart":28508,"closeEnd":28516,"textRuns":[[28505,28508]],"parentId":"c74ac769:257","childIds":["c74ac769:261"]},{"id":"c74ac769:261","tag":"input","openStart":28460,"attrEnd":28504,"openEnd":28505,"closeEnd":28505,"textRuns":[],"parentId":"c74ac769:260","childIds":[]},{"id":"c74ac769:262","tag":"label","openStart":28531,"attrEnd":28553,"openEnd":28554,"closeStart":28587,"closeEnd":28595,"textRuns":[[28584,28587]],"parentId":"c74ac769:257","childIds":["c74ac769:263"]},{"id":"c74ac769:263","tag":"input","openStart":28554,"attrEnd":28583,"openEnd":28584,"closeEnd":28584,"textRuns":[],"parentId":"c74ac769:262","childIds":[]},{"id":"c74ac769:264","tag":"button","openStart":28627,"attrEnd":28660,"openEnd":28661,"closeStart":28673,"closeEnd":28682,"textRuns":[[28661,28673]],"parentId":"c74ac769:256","childIds":[]},{"id":"c74ac769:265","tag":"hr","openStart":28723,"attrEnd":28737,"openEnd":28738,"closeEnd":28738,"textRuns":[],"parentId":"c74ac769:251","childIds":[]},{"id":"c74ac769:266","tag":"div","openStart":28748,"attrEnd":28831,"openEnd":28832,"closeStart":29686,"closeEnd":29692,"styleAttr":[28760,28830],"textRuns":[[28832,28843],[29677,29686]],"parentId":"c74ac769:251","childIds":["c74ac769:267"]},{"id":"c74ac769:267","tag":"sc-for","openStart":28843,"attrEnd":28911,"openEnd":28912,"closeStart":29668,"closeEnd":29677,"textRuns":[[28912,28925],[29657,29668]],"parentId":"c74ac769:266","childIds":["c74ac769:268"]},{"id":"c74ac769:268","tag":"div","openStart":28925,"attrEnd":29108,"openEnd":29109,"closeStart":29651,"closeEnd":29657,"styleAttr":[28937,29107],"textRuns":[[29109,29124],[29252,29267],[29380,29395],[29543,29558],[29638,29651]],"parentId":"c74ac769:267","childIds":["c74ac769:269","c74ac769:270","c74ac769:271","c74ac769:273"]},{"id":"c74ac769:269","tag":"div","openStart":29124,"attrEnd":29232,"openEnd":29233,"closeStart":29246,"closeEnd":29252,"styleAttr":[29136,29231],"textRuns":[[29233,29246]],"parentId":"c74ac769:268","childIds":[]},{"id":"c74ac769:270","tag":"div","openStart":29267,"attrEnd":29360,"openEnd":29361,"closeStart":29374,"closeEnd":29380,"styleAttr":[29279,29359],"textRuns":[[29361,29374]],"parentId":"c74ac769:268","childIds":[]},{"id":"c74ac769:271","tag":"div","openStart":29395,"attrEnd":29456,"openEnd":29457,"closeStart":29537,"closeEnd":29543,"styleAttr":[29407,29455],"textRuns":[],"parentId":"c74ac769:268","childIds":["c74ac769:272"]},{"id":"c74ac769:272","tag":"div","openStart":29457,"attrEnd":29530,"openEnd":29531,"closeStart":29531,"closeEnd":29537,"styleAttr":[29469,29529],"textRuns":[],"parentId":"c74ac769:271","childIds":[]},{"id":"c74ac769:273","tag":"div","openStart":29558,"attrEnd":29618,"openEnd":29619,"closeStart":29632,"closeEnd":29638,"styleAttr":[29570,29617],"textRuns":[[29619,29632]],"parentId":"c74ac769:268","childIds":[]},{"id":"c74ac769:274","tag":"div","openStart":29702,"attrEnd":29866,"openEnd":29867,"closeStart":31747,"closeEnd":31753,"styleAttr":[29714,29865],"textRuns":[[29867,29878],[30615,30626],[31738,31747]],"parentId":"c74ac769:251","childIds":["c74ac769:275","c74ac769:282"]},{"id":"c74ac769:275","tag":"div","openStart":29878,"attrEnd":30064,"openEnd":30065,"closeStart":30609,"closeEnd":30615,"styleAttr":[29890,30063],"textRuns":[[30065,30078],[30139,30152],[30598,30609]],"parentId":"c74ac769:274","childIds":["c74ac769:276","c74ac769:277"]},{"id":"c74ac769:276","tag":"h4","openStart":30078,"attrEnd":30099,"openEnd":30100,"closeStart":30134,"closeEnd":30139,"styleAttr":[30089,30098],"textRuns":[[30100,30134]],"parentId":"c74ac769:275","childIds":[]},{"id":"c74ac769:277","tag":"div","openStart":30152,"attrEnd":30246,"openEnd":30247,"closeStart":30592,"closeEnd":30598,"styleAttr":[30164,30245],"textRuns":[[30247,30262],[30424,30439],[30579,30592]],"parentId":"c74ac769:275","childIds":["c74ac769:278","c74ac769:280"]},{"id":"c74ac769:278","tag":"span","openStart":30262,"attrEnd":30318,"openEnd":30319,"closeStart":30417,"closeEnd":30424,"styleAttr":[30275,30317],"textRuns":[[30401,30417]],"parentId":"c74ac769:277","childIds":["c74ac769:279"]},{"id":"c74ac769:279","tag":"span","openStart":30319,"attrEnd":30393,"openEnd":30394,"closeStart":30394,"closeEnd":30401,"styleAttr":[30332,30392],"textRuns":[],"parentId":"c74ac769:278","childIds":[]},{"id":"c74ac769:280","tag":"span","openStart":30439,"attrEnd":30495,"openEnd":30496,"closeStart":30572,"closeEnd":30579,"styleAttr":[30452,30494],"textRuns":[[30569,30572]],"parentId":"c74ac769:277","childIds":["c74ac769:281"]},{"id":"c74ac769:281","tag":"span","openStart":30496,"attrEnd":30561,"openEnd":30562,"closeStart":30562,"closeEnd":30569,"styleAttr":[30509,30560],"textRuns":[],"parentId":"c74ac769:280","childIds":[]},{"id":"c74ac769:282","tag":"svg","openStart":30626,"attrEnd":30701,"openEnd":30702,"closeStart":31732,"closeEnd":31738,"styleAttr":[30660,30700],"textRuns":[[30702,30715],[30810,30823],[30918,30931],[31028,31041],[31137,31150],[31358,31371],[31469,31482],[31721,31732]],"parentId":"c74ac769:274","childIds":["c74ac769:283","c74ac769:284","c74ac769:285","c74ac769:286","c74ac769:287","c74ac769:289","c74ac769:290"]},{"id":"c74ac769:283","tag":"line","openStart":30715,"attrEnd":30802,"openEnd":30803,"closeStart":30803,"closeEnd":30810,"styleAttr":[30760,30784],"textRuns":[],"parentId":"c74ac769:282","childIds":[]},{"id":"c74ac769:284","tag":"line","openStart":30823,"attrEnd":30910,"openEnd":30911,"closeStart":30911,"closeEnd":30918,"styleAttr":[30868,30892],"textRuns":[],"parentId":"c74ac769:282","childIds":[]},{"id":"c74ac769:285","tag":"line","openStart":30931,"attrEnd":31020,"openEnd":31021,"closeStart":31021,"closeEnd":31028,"styleAttr":[30978,31002],"textRuns":[],"parentId":"c74ac769:282","childIds":[]},{"id":"c74ac769:286","tag":"line","openStart":31041,"attrEnd":31129,"openEnd":31130,"closeStart":31130,"closeEnd":31137,"styleAttr":[31088,31111],"textRuns":[],"parentId":"c74ac769:282","childIds":[]},{"id":"c74ac769:287","tag":"sc-for","openStart":31150,"attrEnd":31212,"openEnd":31213,"closeStart":31349,"closeEnd":31358,"textRuns":[[31213,31228],[31336,31349]],"parentId":"c74ac769:282","childIds":["c74ac769:288"]},{"id":"c74ac769:288","tag":"rect","openStart":31228,"attrEnd":31328,"openEnd":31329,"closeStart":31329,"closeEnd":31336,"styleAttr":[31299,31327],"textRuns":[],"parentId":"c74ac769:287","childIds":[]},{"id":"c74ac769:289","tag":"polyline","openStart":31371,"attrEnd":31457,"openEnd":31458,"closeStart":31458,"closeEnd":31469,"textRuns":[],"parentId":"c74ac769:282","childIds":[]},{"id":"c74ac769:290","tag":"sc-for","openStart":31482,"attrEnd":31544,"openEnd":31545,"closeStart":31712,"closeEnd":31721,"textRuns":[[31545,31560],[31699,31712]],"parentId":"c74ac769:282","childIds":["c74ac769:291"]},{"id":"c74ac769:291","tag":"text","openStart":31560,"attrEnd":31678,"openEnd":31679,"closeStart":31692,"closeEnd":31699,"styleAttr":[31654,31677],"textRuns":[[31679,31692]],"parentId":"c74ac769:290","childIds":[]},{"id":"c74ac769:292","tag":"div","openStart":31763,"attrEnd":31867,"openEnd":31868,"closeStart":34049,"closeEnd":34055,"styleAttr":[31775,31866],"textRuns":[[31868,31879],[33068,33080],[34040,34049]],"parentId":"c74ac769:251","childIds":["c74ac769:293","c74ac769:304"]},{"id":"c74ac769:293","tag":"div","openStart":31879,"attrEnd":32016,"openEnd":32017,"closeStart":33062,"closeEnd":33068,"styleAttr":[31891,32015],"textRuns":[[32017,32030],[32169,32182],[33051,33062]],"parentId":"c74ac769:292","childIds":["c74ac769:294","c74ac769:295"]},{"id":"c74ac769:294","tag":"h4","openStart":32030,"attrEnd":32145,"openEnd":32146,"closeStart":32164,"closeEnd":32169,"styleAttr":[32041,32144],"textRuns":[[32146,32164]],"parentId":"c74ac769:293","childIds":[]},{"id":"c74ac769:295","tag":"div","openStart":32182,"attrEnd":32251,"openEnd":32252,"closeStart":33045,"closeEnd":33051,"styleAttr":[32194,32250],"textRuns":[[32252,32267],[33032,33045]],"parentId":"c74ac769:293","childIds":["c74ac769:296"]},{"id":"c74ac769:296","tag":"sc-for","openStart":32267,"attrEnd":32328,"openEnd":32329,"closeStart":33023,"closeEnd":33032,"textRuns":[[32329,32346],[33008,33023]],"parentId":"c74ac769:295","childIds":["c74ac769:297"]},{"id":"c74ac769:297","tag":"div","openStart":32346,"attrEnd":32350,"openEnd":32351,"closeStart":33002,"closeEnd":33008,"textRuns":[[32351,32370],[32662,32681],[32869,32888],[32985,33002]],"parentId":"c74ac769:296","childIds":["c74ac769:298","c74ac769:301","c74ac769:303"]},{"id":"c74ac769:298","tag":"div","openStart":32370,"attrEnd":32462,"openEnd":32463,"closeStart":32656,"closeEnd":32662,"styleAttr":[32382,32461],"textRuns":[[32463,32484],[32535,32556],[32637,32656]],"parentId":"c74ac769:297","childIds":["c74ac769:299","c74ac769:300"]},{"id":"c74ac769:299","tag":"span","openStart":32484,"attrEnd":32514,"openEnd":32515,"closeStart":32528,"closeEnd":32535,"styleAttr":[32497,32513],"textRuns":[[32515,32528]],"parentId":"c74ac769:298","childIds":[]},{"id":"c74ac769:300","tag":"span","openStart":32556,"attrEnd":32601,"openEnd":32602,"closeStart":32630,"closeEnd":32637,"styleAttr":[32569,32600],"textRuns":[[32602,32630]],"parentId":"c74ac769:298","childIds":[]},{"id":"c74ac769:301","tag":"div","openStart":32681,"attrEnd":32743,"openEnd":32744,"closeStart":32863,"closeEnd":32869,"styleAttr":[32693,32742],"textRuns":[[32744,32765],[32844,32863]],"parentId":"c74ac769:297","childIds":["c74ac769:302"]},{"id":"c74ac769:302","tag":"div","openStart":32765,"attrEnd":32837,"openEnd":32838,"closeStart":32838,"closeEnd":32844,"styleAttr":[32777,32836],"textRuns":[],"parentId":"c74ac769:301","childIds":[]},{"id":"c74ac769:303","tag":"div","openStart":32888,"attrEnd":32966,"openEnd":32967,"closeStart":32979,"closeEnd":32985,"styleAttr":[32900,32965],"textRuns":[[32967,32979]],"parentId":"c74ac769:297","childIds":[]},{"id":"c74ac769:304","tag":"div","openStart":33080,"attrEnd":33217,"openEnd":33218,"closeStart":34034,"closeEnd":34040,"styleAttr":[33092,33216],"textRuns":[[33218,33231],[33373,33386],[34023,34034]],"parentId":"c74ac769:292","childIds":["c74ac769:305","c74ac769:306"]},{"id":"c74ac769:305","tag":"h4","openStart":33231,"attrEnd":33346,"openEnd":33347,"closeStart":33368,"closeEnd":33373,"styleAttr":[33242,33345],"textRuns":[[33347,33368]],"parentId":"c74ac769:304","childIds":[]},{"id":"c74ac769:306","tag":"div","openStart":33386,"attrEnd":33455,"openEnd":33456,"closeStart":34017,"closeEnd":34023,"styleAttr":[33398,33454],"textRuns":[[33456,33471],[34004,34017]],"parentId":"c74ac769:304","childIds":["c74ac769:307"]},{"id":"c74ac769:307","tag":"sc-for","openStart":33471,"attrEnd":33535,"openEnd":33536,"closeStart":33995,"closeEnd":34004,"textRuns":[[33536,33553],[33980,33995]],"parentId":"c74ac769:306","childIds":["c74ac769:308"]},{"id":"c74ac769:308","tag":"div","openStart":33553,"attrEnd":33557,"openEnd":33558,"closeStart":33974,"closeEnd":33980,"textRuns":[[33558,33577],[33788,33807],[33957,33974]],"parentId":"c74ac769:307","childIds":["c74ac769:309","c74ac769:312"]},{"id":"c74ac769:309","tag":"div","openStart":33577,"attrEnd":33671,"openEnd":33672,"closeStart":33782,"closeEnd":33788,"styleAttr":[33589,33670],"textRuns":[],"parentId":"c74ac769:308","childIds":["c74ac769:310","c74ac769:311"]},{"id":"c74ac769:310","tag":"span","openStart":33672,"attrEnd":33677,"openEnd":33678,"closeStart":33691,"closeEnd":33698,"textRuns":[[33678,33691]],"parentId":"c74ac769:309","childIds":[]},{"id":"c74ac769:311","tag":"span","openStart":33698,"attrEnd":33743,"openEnd":33744,"closeStart":33775,"closeEnd":33782,"styleAttr":[33711,33742],"textRuns":[[33744,33775]],"parentId":"c74ac769:309","childIds":[]},{"id":"c74ac769:312","tag":"div","openStart":33807,"attrEnd":33869,"openEnd":33870,"closeStart":33951,"closeEnd":33957,"styleAttr":[33819,33868],"textRuns":[],"parentId":"c74ac769:308","childIds":["c74ac769:313"]},{"id":"c74ac769:313","tag":"div","openStart":33870,"attrEnd":33944,"openEnd":33945,"closeStart":33945,"closeEnd":33951,"styleAttr":[33882,33943],"textRuns":[],"parentId":"c74ac769:312","childIds":[]},{"id":"c74ac769:314","tag":"div","openStart":34065,"attrEnd":34229,"openEnd":34230,"closeStart":35696,"closeEnd":35702,"styleAttr":[34077,34228],"textRuns":[[34230,34241],[34621,34632],[35687,35696]],"parentId":"c74ac769:251","childIds":["c74ac769:315","c74ac769:318"]},{"id":"c74ac769:315","tag":"div","openStart":34241,"attrEnd":34427,"openEnd":34428,"closeStart":34615,"closeEnd":34621,"styleAttr":[34253,34426],"textRuns":[[34428,34441],[34485,34498],[34604,34615]],"parentId":"c74ac769:314","childIds":["c74ac769:316","c74ac769:317"]},{"id":"c74ac769:316","tag":"h4","openStart":34441,"attrEnd":34462,"openEnd":34463,"closeStart":34480,"closeEnd":34485,"styleAttr":[34452,34461],"textRuns":[[34463,34480]],"parentId":"c74ac769:315","childIds":[]},{"id":"c74ac769:317","tag":"span","openStart":34498,"attrEnd":34559,"openEnd":34560,"closeStart":34597,"closeEnd":34604,"styleAttr":[34511,34558],"textRuns":[[34560,34597]],"parentId":"c74ac769:315","childIds":[]},{"id":"c74ac769:318","tag":"div","openStart":34632,"attrEnd":34690,"openEnd":34691,"closeStart":35681,"closeEnd":35687,"styleAttr":[34644,34689],"textRuns":[[34691,34704],[35043,35056],[35670,35681]],"parentId":"c74ac769:314","childIds":["c74ac769:319","c74ac769:323"]},{"id":"c74ac769:319","tag":"div","openStart":34704,"attrEnd":34739,"openEnd":34740,"closeStart":35037,"closeEnd":35043,"styleAttr":[34716,34738],"textRuns":[[34740,34755],[34797,34812],[35024,35037]],"parentId":"c74ac769:318","childIds":["c74ac769:320","c74ac769:321"]},{"id":"c74ac769:320","tag":"div","openStart":34755,"attrEnd":34790,"openEnd":34791,"closeStart":34791,"closeEnd":34797,"styleAttr":[34767,34789],"textRuns":[],"parentId":"c74ac769:319","childIds":[]},{"id":"c74ac769:321","tag":"sc-for","openStart":34812,"attrEnd":34879,"openEnd":34880,"closeStart":35015,"closeEnd":35024,"textRuns":[[34880,34897],[35000,35015]],"parentId":"c74ac769:319","childIds":["c74ac769:322"]},{"id":"c74ac769:322","tag":"div","openStart":34897,"attrEnd":34984,"openEnd":34985,"closeStart":34994,"closeEnd":35000,"styleAttr":[34909,34983],"textRuns":[[34985,34994]],"parentId":"c74ac769:321","childIds":[]},{"id":"c74ac769:323","tag":"sc-for","openStart":35056,"attrEnd":35120,"openEnd":35121,"closeStart":35661,"closeEnd":35670,"textRuns":[[35121,35136],[35648,35661]],"parentId":"c74ac769:318","childIds":["c74ac769:324"]},{"id":"c74ac769:324","tag":"div","openStart":35136,"attrEnd":35191,"openEnd":35192,"closeStart":35642,"closeEnd":35648,"styleAttr":[35148,35190],"textRuns":[[35192,35209],[35301,35318],[35627,35642]],"parentId":"c74ac769:323","childIds":["c74ac769:325","c74ac769:326"]},{"id":"c74ac769:325","tag":"div","openStart":35209,"attrEnd":35279,"openEnd":35280,"closeStart":35295,"closeEnd":35301,"styleAttr":[35221,35278],"textRuns":[[35280,35295]],"parentId":"c74ac769:324","childIds":[]},{"id":"c74ac769:326","tag":"sc-for","openStart":35318,"attrEnd":35385,"openEnd":35386,"closeStart":35618,"closeEnd":35627,"textRuns":[[35386,35405],[35601,35618]],"parentId":"c74ac769:324","childIds":["c74ac769:327"]},{"id":"c74ac769:327","tag":"div","openStart":35405,"attrEnd":35578,"openEnd":35579,"closeStart":35595,"closeEnd":35601,"styleAttr":[35417,35577],"textRuns":[[35579,35595]],"parentId":"c74ac769:326","childIds":[]}]}</script></body></html>

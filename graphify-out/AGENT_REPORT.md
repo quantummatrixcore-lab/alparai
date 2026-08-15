@@ -1,7 +1,7 @@
 # 🤖 Agent-OS Graphify Index Report
 
-> **Generated At:** `2026-08-13T20:49:41.254Z`  
-> **Stats:** 34 Engines | 6 Pipelines | 19 Personas | 9 Nexus Rules | 6 Swarm Squads
+> **Generated At:** `2026-08-15T11:54:34.039Z`  
+> **Stats:** 34 Engines | 6 Pipelines | 20 Personas | 9 Nexus Rules | 0 Swarm Squads
 
 ---
 
@@ -92,6 +92,7 @@
 | `procurement.md` | name: Procurement Agent |
 | `protocol.md` | name: Protocol Agent |
 | `security.md` | name: Security Agent |
+| `tasarim-komandolari.md` | TASARIM KOMANDOLARI — Uzman Persona |
 | `tax.md` | name: Tax Agent |
 | `tender.md` | name: Tender Agent |
 | `tester.md` | name: Tester Agent |
@@ -113,16 +114,3 @@
 | **🛡️ QUALITY-NEXUS — The FAANG Engineering Pillars** (`QUALITY-NEXUS.md`) | This document contains the absolute laws for Code Quality, Security, Testing, and Crisis Management. |
 | **🌪️ TARTARUS-NEXUS — The Absolute Sanitization Doctrine** (`TARTARUS-NEXUS.md`) | This document contains the absolute laws for Workspace Sanitization and Disk Management. Workspace bloat (e.g., reaching 7+ GB) is a catastrophic failure of DevOps. |
 | **🛠️ TOOLS-NEXUS — Full Third-Party Capability Registry** (`TOOLS-NEXUS.md`) | This is the SINGLE SOURCE OF TRUTH for all third-party tools, CLIs, MCP servers, and platforms available in the Sovereign Zenith V42.0.0 ecosystem. |
-
----
-
-## 🐝 Swarm Squad Units
-
-| Unit File | Title |
-| --- | --- |
-| `ALPHA_SQUAD.md` | ALPHA_SQUAD — Hızlı Taktik Müdahale Birimi |
-| `BABEL_UNIT.md` | BABEL_UNIT — Çok Dilli Lokalizasyon & i18n |
-| `BETA_SQUAD.md` | BETA_SQUAD — Ağır Mühendislik & Kodlama |
-| `OMEGA_COMMANDER.md` | OMEGA_COMMANDER — Baş Komutan & Orkestratör |
-| `ORACLE_CORPS.md` | ORACLE_CORPS — Keşif, Taramalar & Dokümantasyon |
-| `SENTINEL_GUARD.md` | SENTINEL_GUARD — Güvenlik, RLS & PII Muhafızı |

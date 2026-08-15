@@ -101,6 +101,27 @@ describe("session auth helpers", () => {
       );
       expect(mockEq).toHaveBeenCalledWith("id", "user-1");
     });
+
+    it("should return Playwright mock user when test bypass is active", async () => {
+      const prevIsPlaywright = process.env.IS_PLAYWRIGHT_TEST;
+      const prevBypass = process.env.NEXT_TEST_AUTH_BYPASS;
+      process.env.IS_PLAYWRIGHT_TEST = "true";
+      process.env.NEXT_TEST_AUTH_BYPASS = "true";
+
+      const result = await getCurrentUser();
+      expect(result).toEqual({
+        id: "playwright-test-user",
+        email: "admin@playwright.test",
+        fullName: "Playwright Test Admin",
+        avatarUrl: null,
+        role: "admin",
+        isVerified: true,
+        createdAt: "2026-01-01T00:00:00Z",
+      });
+
+      process.env.IS_PLAYWRIGHT_TEST = prevIsPlaywright;
+      process.env.NEXT_TEST_AUTH_BYPASS = prevBypass;
+    });
   });
 
   describe("role checks", () => {

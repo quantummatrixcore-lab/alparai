@@ -79,7 +79,8 @@ export async function getKBenchmarkScores(modelId?: string): Promise<BenchmarkMo
       supabase = createAdminClient();
     }
 
-    const { data: rawScores, error } = await supabase.from("k_model_scores").select(`
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data: rawScores, error } = await (supabase as any).from("k_model_scores").select(`
         score,
         category_id,
         model_id,

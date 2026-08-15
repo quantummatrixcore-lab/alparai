@@ -4,11 +4,12 @@ import { VertexGeminiAdapter } from "@/lib/ai/adapters/vertex-gemini";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { revalidatePath } from "next/cache";
 import { logger } from "@/lib/utils/logger";
-import { getCurrentUser } from "@/lib/auth/session";
+import { getCurrentUser, requireAdmin } from "@/lib/auth/session";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 
 export async function scoutNewAIIncidents() {
   try {
+    await requireAdmin();
     const user = await getCurrentUser();
     const rateLimitKey = `${RATE_LIMIT_KEYS.vertex_scout}:${user?.id ?? "anonymous"}`;
     const rateCheck = await checkRateLimit(rateLimitKey);

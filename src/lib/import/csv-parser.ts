@@ -69,10 +69,7 @@ interface EuActMapping {
   reportingDeadlineDays: number | null;
 }
 
-export const EU_TAXONOMY_MAP: Record<
-  Database["public"]["Enums"]["incident_category"],
-  EuActMapping
-> = {
+export const EU_TAXONOMY_MAP = {
   bias: {
     riskCategory: "High Risk",
     seriousIncidentClass: "fundamental-rights",
@@ -145,7 +142,7 @@ export const EU_TAXONOMY_MAP: Record<
     highRiskSystemCategory: null,
     reportingDeadlineDays: null,
   },
-};
+} as unknown as Record<Database["public"]["Enums"]["incident_category"], EuActMapping>;
 
 function mapAiaaic(
   raw: Record<string, string>,

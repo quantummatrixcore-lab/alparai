@@ -8,24 +8,18 @@ export function MainContent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   // Determine if this is the homepage (with or without locale prefix)
-  const isHome =
-    !pathname ||
-    pathname === "/" ||
-    pathname === "/en" ||
-    pathname === "/tr" ||
-    pathname === "/en/" ||
-    pathname === "/tr/";
+  const isHome = !pathname || pathname === "/" || /^\/[a-z]{2}\/?$/.test(pathname);
 
   // Determine if this is an admin page
   const isAdmin =
     pathname &&
-    (/^\/(?:en|tr)\/admin(?:\/|$)/.test(pathname) ||
+    (/^\/[a-z]{2}\/admin(?:\/|$)/.test(pathname) ||
       pathname === "/admin" ||
       pathname.startsWith("/admin") ||
       pathname.includes("/admin/"));
 
   // Apply padding-top only to non-home, non-admin, and non-leaderboard pages to clear the fixed navigation header + ticker
-  const isLeaderboard = pathname && (pathname === "/leaderboard" || pathname.startsWith("/en/leaderboard") || pathname.startsWith("/tr/leaderboard"));
+  const isLeaderboard = pathname && (pathname === "/leaderboard" || /^\/[a-z]{2}\/leaderboard/.test(pathname));
   const shouldHavePadding = !isHome && !isAdmin && !isLeaderboard;
 
   return (

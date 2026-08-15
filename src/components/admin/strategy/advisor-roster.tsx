@@ -1,120 +1,90 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
-import { Users, ChevronRight } from "lucide-react";
-
-interface Advisor {
-  id: string;
-  name: string;
-  purposeKey: string;
-  routePath?: string;
-}
-
-const ADVISORS: Advisor[] = [
-  {
-    id: "gazi_komutan",
-    name: "GAZİ KOMUTAN",
-    purposeKey: "advisor_gazi_purpose",
-    routePath: "/admin/gazi",
-  },
-  {
-    id: "genel_kurmay",
-    name: "GENEL KURMAY",
-    purposeKey: "advisor_genel_kurmay_purpose",
-  },
-  {
-    id: "yildirim_kitalari",
-    name: "YILDIRIM KITALARI",
-    purposeKey: "advisor_yildirim_purpose",
-  },
-  {
-    id: "insaat_taburu",
-    name: "INSAAT TABURU",
-    purposeKey: "advisor_insaat_purpose",
-  },
-  {
-    id: "kesif_kolu",
-    name: "KESIF KOLU",
-    purposeKey: "advisor_kesif_purpose",
-  },
-  {
-    id: "tasarim_komandolari",
-    name: "TASARIM KOMANDOLARI",
-    purposeKey: "advisor_tasarim_purpose",
-  },
-  {
-    id: "hariciye_dairesi",
-    name: "HARICIYE DAIRESI",
-    purposeKey: "advisor_hariciye_purpose",
-  },
-  {
-    id: "istihbarat_emniyeti",
-    name: "ISTIHBARAT EMNIYETI",
-    purposeKey: "advisor_istihbarat_purpose",
-  },
-];
+import { Users, ChevronRight, Crown, Sparkles, BrainCircuit } from "lucide-react";
+import { DIGITAL_TWINS } from "@/lib/agent-os/personas";
 
 export function AdvisorRoster() {
   const t = useTranslations("admin");
+  const twinsList = Object.values(DIGITAL_TWINS).slice(0, 8); // Showcase top 8 in dashboard
 
   return (
-    <div className="border-border-subtle bg-bg-elevated/40 rounded-2xl border p-6 ring-1 ring-white/10 backdrop-blur-md backdrop-blur-xl">
-      <div className="mb-4 flex items-center gap-2">
-        <div className="border-success-500/25 bg-success-500/10 text-success-400 rounded-lg border p-2">
-          <Users className="h-5 w-5" />
+    <div className="group relative overflow-hidden rounded-3xl border border-white/10 bg-slate-900/50 p-6 backdrop-blur-3xl transition-all duration-500 hover:bg-slate-900/70 hover:shadow-[0_0_80px_rgba(var(--color-amber-500),0.1)]">
+      {/* Neo-morphic glowing orb */}
+      <div className="absolute -top-32 -right-32 h-64 w-64 rounded-full bg-amber-500/10 blur-[100px] transition-all duration-700 group-hover:bg-amber-500/20" />
+      <div className="absolute -bottom-32 -left-32 h-64 w-64 rounded-full bg-cyan-500/10 blur-[100px] transition-all duration-700 group-hover:bg-cyan-500/20" />
+
+      <div className="relative z-10 mb-6 flex items-center justify-between border-b border-white/10 pb-4">
+        <div className="flex items-center gap-3">
+          <div className="relative flex items-center justify-center rounded-2xl border border-amber-500/30 bg-amber-500/10 p-3 text-amber-400">
+            <Crown className="h-6 w-6" />
+            <div className="absolute inset-0 rounded-2xl bg-amber-400/20 blur-md" />
+          </div>
+          <div>
+            <h3 className="bg-gradient-to-br from-white to-slate-400 bg-clip-text text-xl font-bold tracking-tight text-transparent">
+              The Council of 30 Sages
+            </h3>
+            <p className="text-slate-400 text-xs font-medium tracking-wide">
+              {t("advisor_roster_desc") || "Autonomous Cyber-Renaissance Intelligence"}
+            </p>
+          </div>
         </div>
-        <div>
-          <h3 className="text-lg font-bold text-white">
-            {t("ai_advisor_roster") || "AI Strategic Advisors"}
-          </h3>
-          <p className="text-fg-muted text-xs">
-            {t("advisor_roster_desc") || "Swarm of autonomous agents"}
-          </p>
-        </div>
+        <Link
+          href={`/en/twins-leaderboard`}
+          className="group/link flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-bold text-slate-300 transition-all hover:bg-white/10 hover:text-white"
+        >
+          Tümünü Gör (30)
+          <ChevronRight className="h-3 w-3 transition-transform group-hover/link:translate-x-1" />
+        </Link>
       </div>
 
-      <div className="space-y-3">
-        {ADVISORS.map((advisor) => {
-          const purpose = t(advisor.purposeKey);
-          const isLive = !!advisor.routePath;
-
+      <div className="relative z-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {twinsList.map((twin, idx) => {
           return (
             <div
-              key={advisor.id}
-              className="group border-border-subtle flex items-center justify-between rounded-lg border bg-white/5 p-4 transition-all duration-200 hover:bg-white/10"
+              key={twin.id}
+              className="group/card relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/5 bg-black/40 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-black/60 hover:shadow-2xl"
             >
-              <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-2">
-                  <span className="font-mono text-sm font-bold text-white">{advisor.name}</span>
-                  {isLive ? (
-                    <span className="border-success-500/30 bg-success-500/10 text-success-400 inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-bold uppercase">
-                      Live
-                    </span>
-                  ) : (
-                    <span className="border-warning-500/20 bg-warning-500/10 text-warning-300/70 inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-bold uppercase">
-                      Definition
-                    </span>
-                  )}
+              {/* Dynamic Gradient Background for each card */}
+              <div
+                className={`absolute inset-0 opacity-0 transition-opacity duration-500 group-hover/card:opacity-10 bg-gradient-to-br ${twin.stats.badgeGradient}`}
+              />
+              
+              <div className="relative z-10">
+                <div className="mb-3 flex items-center justify-between">
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-300">
+                    <Sparkles className="h-3 w-3 text-amber-400" />
+                    {twin.stats.tier}
+                  </span>
+                  <span className="font-mono text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                    %{twin.stats.successRate} WIN
+                  </span>
                 </div>
-                <p className="text-fg-muted mt-1 text-sm">{purpose}</p>
+                
+                <h4 className="mb-1 text-lg font-bold text-white drop-shadow-md">
+                  {twin.name}
+                </h4>
+                <p className="line-clamp-2 text-xs font-medium text-slate-400">
+                  {twin.title}
+                </p>
               </div>
 
-              {isLive && advisor.routePath && (
+              <div className="relative z-10 mt-5 flex items-center justify-between border-t border-white/10 pt-4">
+                <div className="flex items-center gap-2">
+                  <BrainCircuit className="h-4 w-4 text-cyan-400" />
+                  <span className="font-mono text-xs font-bold text-cyan-400">
+                    IQ {twin.stats.iqScore}
+                  </span>
+                </div>
                 <Link
-                  href={advisor.routePath}
-                  className="text-brand-400 hover:text-brand-300 ml-4 flex shrink-0 items-center gap-1 text-xs font-bold uppercase transition"
+                  href={`/en/admin/ai-hub/orchestrator`}
+                  className="rounded-full bg-white/10 p-1.5 text-white transition-all hover:bg-brand-500 hover:text-white"
                 >
-                  {t("access") || "Access"}
-                  <ChevronRight className="h-3 w-3" />
+                  <ChevronRight className="h-4 w-4" />
                 </Link>
-              )}
+              </div>
             </div>
           );
         })}
-      </div>
-
-      <div className="text-fg-muted mt-6 border-t border-white/5 pt-4 text-[11px]">
-        {t("advisor_roster_note") ||
-          "Live advisors route to interactive tools. Definitions describe specialized agent roles for swarm coordination."}
       </div>
     </div>
   );

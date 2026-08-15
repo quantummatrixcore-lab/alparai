@@ -1,7 +1,10 @@
 /**
  * Security headers applied to all routes.
  */
-const isTest = process.env.IS_PLAYWRIGHT_TEST === "true";
+const isTest =
+  process.env.NODE_ENV === "test" &&
+  process.env.IS_PLAYWRIGHT_TEST === "true" &&
+  process.env.NEXT_TEST_AUTH_BYPASS === "true";
 
 const cspRules = [
   "default-src 'self'",
@@ -72,6 +75,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const nextConfig = {
+  env: {
+    NEXT_TEST_AUTH_BYPASS:
+      process.env.NODE_ENV === "test" && process.env.NEXT_TEST_AUTH_BYPASS === "true"
+        ? "true"
+        : "false",
+  },
   typescript: {
     ignoreBuildErrors: false,
   },

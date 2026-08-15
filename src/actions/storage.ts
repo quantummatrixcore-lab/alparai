@@ -4,6 +4,7 @@ import { uploadToDrive } from "@/lib/gdrive/client";
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
+import { createClient } from "@/lib/supabase/server";
 
 export async function uploadIncidentEvidence(formData: FormData) {
   try {
@@ -35,8 +36,16 @@ export async function uploadIncidentEvidence(formData: FormData) {
     // Upload to Google Drive (Zero-Cost Storage)
     const fileId = await uploadToDrive(file.name, file.type, buffer);
 
-    // TODO: Save the fileId to your Supabase Database under the specific incidentId
-    // e.g., await supabase.from('incident_evidence').insert({ incident_id: incidentId, gdrive_file_id: fileId })
+    // Save the fileId to Supabase Database under the specific incidentId
+    const supabase = await createClient();
+    const { error: dbError } = await supabase
+      .from("incident_evidence")
+      .insert({ incident_id: incidentId, gdrive_file_id: fileId });
+
+    if (dbError) {
+      console.error("Storage Error: Failed to save evidence to DB:", dbError);
+      // We don't fail the upload entirely, but we should log it
+    }
 
     revalidatePath(`/incidents/${incidentId}`);
 

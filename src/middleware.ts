@@ -5,11 +5,10 @@ import { updateSession } from "@/lib/supabase/middleware";
 import { routing } from "@/i18n/routing";
 import { logger } from "@/lib/utils/logger";
 import type { Database } from "@/types/database";
+import { isTestAuthBypassActive, assertTestBypassSafe } from "@/lib/auth/test-bypass";
 import { trackBotHit } from "@/lib/geo/bot-tracker";
 
-if (process.env.IS_PLAYWRIGHT_TEST === "true" && process.env.NODE_ENV === "production") {
-  throw new Error("SECURITY FAULT: Playwright test bypass enabled in production environment.");
-}
+assertTestBypassSafe();
 
 const intlMiddleware = createIntlMiddleware(routing);
 
@@ -55,7 +54,7 @@ export async function middleware(request: NextRequest) {
 
   const isAdminPath = pathname.startsWith("/admin") || /^\/[a-z]{2}\/admin(\/|$)/.test(pathname);
 
-  if (isAdminPath && !pathname.startsWith("/api/") && !(process.env.IS_PLAYWRIGHT_TEST === "true" && process.env.NODE_ENV !== "production")) {
+  if (isAdminPath && !pathname.startsWith("/api/") && !isTestAuthBypassActive()) {
     const supabase = createServerClient<Database>(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,

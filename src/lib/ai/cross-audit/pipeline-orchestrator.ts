@@ -112,7 +112,8 @@ async function runCrossAuditPipelineOnce(incidentId: string): Promise<TruthScore
     logger.info("[CrossAudit] Cache hit — skipping LLM calls", { incidentId, cacheKey });
 
     try {
-      await admin.from("cross_audit_runs").insert({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      await (admin as any).from("cross_audit_runs").insert({
         incident_id: incidentId,
         model: cached.supremeCourtModel ?? "cache",
         tokens_in: 0,
@@ -407,7 +408,8 @@ async function runCrossAuditPipelineOnce(incidentId: string): Promise<TruthScore
   }
 
   try {
-    await admin.from("cross_audit_runs").insert({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await (admin as any).from("cross_audit_runs").insert({
       incident_id: incidentId,
       model: supremeResult.model,
       tokens_in: costEst.inputTokens,

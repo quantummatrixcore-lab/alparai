@@ -30,11 +30,10 @@ import {
 } from "@/emails/templates";
 import { translateIncidentToTR } from "@/actions/translations";
 import { triggerClaimAndRespondAlert } from "@/lib/notifications/claim-and-respond";
+import { isTestAuthBypassActive, assertTestBypassSafe } from "@/lib/auth/test-bypass";
 import type { Database } from "@/types/database";
 
-if (process.env.IS_PLAYWRIGHT_TEST === "true" && process.env.NODE_ENV === "production") {
-  throw new Error("SECURITY FAULT: Playwright test bypass enabled in production environment.");
-}
+assertTestBypassSafe();
 
 export interface SubmitIncidentState {
   ok: boolean;
@@ -474,9 +473,9 @@ export async function submitIncident(
 ): Promise<SubmitIncidentState> {
   try {
     logger.info(
-      `SERVER ACTION: submitIncident called! title = ${formData.get("title")} is_playwright = ${process.env.IS_PLAYWRIGHT_TEST}`,
+      `SERVER ACTION: submitIncident called! title = ${formData.get("title")} is_test_bypass = ${isTestAuthBypassActive()}`,
     );
-    if (process.env.IS_PLAYWRIGHT_TEST === "true" && process.env.NODE_ENV !== "production") {
+    if (isTestAuthBypassActive()) {
       return { ok: true, incidentId: "mock-incident-123" };
     }
     const user = await getCurrentUser();

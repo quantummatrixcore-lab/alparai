@@ -42,6 +42,11 @@ export async function submitVendorResponseAction(
     if (!user) {
       return { ok: false, error: "Unauthorized" };
     }
+    
+    // Güvenlik Yaması: IDOR Zafiyetini engellemek için geçici olarak sadece Admin yetkisi zorunlu kılındı.
+    // Orijinal sağlayıcılar src/actions/provider-response.ts üzerinden token ile yanıt vermelidir.
+    const { requireAdmin } = await import("@/lib/auth/session");
+    await requireAdmin();
 
     const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.provider_response}:${user.id}`);
     if (!rl.ok) {

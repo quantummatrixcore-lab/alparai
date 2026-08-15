@@ -18,6 +18,8 @@ export type SidebarNewsItem = {
 export type SidebarPollData = {
   id: string;
   title: string;
+  title_en?: string;
+  title_tr?: string;
   yes_count: number;
   no_count: number;
   unsure_count: number;
@@ -121,7 +123,7 @@ export function FeedSidebar({ leaderboard, news, poll }: FeedSidebarProps) {
             {locale === "tr" ? "Canlı Anket" : "Live Poll"}
           </span>
           <h3 className="text-fg-primary mt-3 mb-4 text-xs leading-normal font-bold">
-            {poll.title}
+            {locale === "tr" && poll.title_tr ? poll.title_tr : poll.title_en || poll.title}
           </h3>
 
           <div className="space-y-2">

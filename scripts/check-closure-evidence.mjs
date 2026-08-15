@@ -27,7 +27,7 @@
  * this was built for. Narrowing the key would mean encoding line numbers, and
  * those move every time the plan is edited.
  */
-import { execFileSync } from "node:child_process";
+import { execFileSync, execSync } from "node:child_process";
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 
@@ -53,6 +53,60 @@ function isRealCommit(sha) {
   }
 }
 
+function verifyCommitStructuralEvidence(sha, lineStr) {
+  // 1. Verify that the commit touched the files mentioned in the row
+  let changedFiles = [];
+  try {
+    changedFiles = execFileSync("git", ["diff-tree", "--no-commit-id", "--name-only", "-r", sha], { encoding: "utf8" })
+      .trim().split("\n").filter(Boolean);
+  } catch {
+    return { valid: false, reason: "Cannot read commit diff" };
+  }
+
+  // Extract file paths from the row (e.g. `src/actions/incidents.ts` or just src/...)
+  const pathRegex = /([a-zA-Z0-9_/-]+\.[a-zA-Z0-9]+)/g;
+  let m;
+  const mentionedFiles = [];
+  while ((m = pathRegex.exec(lineStr)) !== null) {
+    if (m[1].includes("/")) mentionedFiles.push(m[1]);
+  }
+
+  if (mentionedFiles.length > 0) {
+    // If none of the mentioned files were touched by the commit, it's likely a hallucination
+    const hasIntersection = mentionedFiles.some(mf => changedFiles.some(cf => cf.includes(mf) || mf.includes(cf)));
+    if (!hasIntersection) {
+      return { valid: false, reason: `Commit did not touch any of the mentioned files (${mentionedFiles.join(', ')})` };
+    }
+  }
+
+  // 2. Verify acceptance criteria (run inline commands like `pnpm test`)
+  const cells = lineStr.split("|").map(c => c.trim());
+  if (cells.length >= 5) {
+    const acceptanceCell = cells[cells.length - 2];
+    if (acceptanceCell) {
+      const cmdRegex = /`([^`]+)`/g;
+      let cmdMatch;
+      while ((cmdMatch = cmdRegex.exec(acceptanceCell)) !== null) {
+        const cmd = cmdMatch[1].trim();
+        if (cmd.startsWith("pnpm ") || cmd.startsWith("npm ") || cmd.startsWith("npx ") || cmd.startsWith("node ")) {
+          try {
+            // Check if commit is recent to avoid running expensive tests for old grandfathered rows
+            // If the commit is older than 20 commits, we skip execution to save CI time
+            const isRecent = execFileSync("git", ["rev-list", "-n", "20", "HEAD"], { encoding: "utf8" }).includes(sha);
+            if (isRecent) {
+               execSync(cmd, { stdio: "ignore" });
+            }
+          } catch (e) {
+            return { valid: false, reason: `Acceptance criteria command failed: ${cmd}` };
+          }
+        }
+      }
+    }
+  }
+
+  return { valid: true };
+}
+
 function loadBaseline() {
   if (!existsSync(BASELINE_PATH)) return new Set();
   return new Set(
@@ -68,16 +122,26 @@ function scan() {
   const lines = content.split("\n");
   const offenders = [];
   for (let i = 0; i < lines.length; i += 1) {
+    const lineStr = lines[i];
     CLOSED_BY.lastIndex = 0;
     let m;
-    while ((m = CLOSED_BY.exec(lines[i])) !== null) {
+    while ((m = CLOSED_BY.exec(lineStr)) !== null) {
       const [, ref, branch] = m;
       // `closed-by:<sha>@<branch>` appears in the doctrine text that defines
       // the rule; a placeholder is not a citation.
       if (ref.includes("<") || ref.includes(">")) continue;
       if (SENTINELS.has(ref.toLowerCase())) continue;
-      if (isRealCommit(ref)) continue;
-      offenders.push({ line: i + 1, ref, branch, cite: `closed-by:${ref}@${branch}` });
+      
+      if (!isRealCommit(ref)) {
+        offenders.push({ line: i + 1, ref, branch, cite: `closed-by:${ref}@${branch}`, reason: "not a commit in this repository" });
+        continue;
+      }
+
+      // Run structural evidence check (files & acceptance criteria)
+      const evidence = verifyCommitStructuralEvidence(ref, lineStr);
+      if (!evidence.valid) {
+        offenders.push({ line: i + 1, ref, branch, cite: `closed-by:${ref}@${branch}`, reason: evidence.reason });
+      }
     }
   }
   return offenders;
@@ -138,12 +202,12 @@ const baseline = loadBaseline();
 const unlisted = offenders.filter((o) => !baseline.has(o.cite));
 
 if (unlisted.length > 0) {
-  console.error("Closure-evidence check FAILED — citations that lead nowhere.");
-  console.error("G-7: a closed row must cite closed-by:<sha>@<branch> with a real commit.");
+  console.error("Closure-evidence check FAILED — citations that lead nowhere or failed structural evidence.");
+  console.error("G-7: a closed row must cite closed-by:<sha>@<branch> with a real commit matching the files and passing acceptance criteria.");
   console.error("");
-  for (const { line, ref, cite } of unlisted) {
+  for (const { line, ref, cite, reason } of unlisted) {
     console.error(`  docs/MASTER_PLAN.md:${line}  ${cite}`);
-    console.error(`      "${ref}" is not a commit in this repository.`);
+    console.error(`      "${ref}" failed: ${reason}`);
   }
   console.error("");
   console.error("Use the actual commit hash that did the work (git log --oneline).");

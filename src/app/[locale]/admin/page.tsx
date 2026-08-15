@@ -51,6 +51,9 @@ import { getFundingConversion } from "@/actions/admin/funding-conversion";
 import { getCronStatus } from "@/lib/engine-registry";
 
 import { PlausibleVisitorCard } from "@/components/admin/plausible-visitor-card";
+import { OutreachAutopilot } from "@/components/admin/founder/OutreachAutopilot";
+import { CalendarAndSentiment } from "@/components/admin/founder/CalendarAndSentiment";
+import { Crown } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -759,6 +762,39 @@ export default async function AdminDashboardPage({
               >
                 {t("view_master_plan_doc")}
               </Link>
+            </div>
+          </section>
+
+          {/* WIDGET 5: Founder Command (Outreach & Media) */}
+          <section className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-slate-900/40 p-6 backdrop-blur-3xl transition-all duration-500 hover:-translate-y-1 hover:border-indigo-500/30 hover:bg-slate-900/70 hover:shadow-[0_0_50px_rgba(99,102,241,0.1)] md:p-8 lg:col-span-2">
+            <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-indigo-500/10 blur-[80px] transition-all duration-700 group-hover:bg-indigo-500/20" />
+
+            <div className="space-y-6">
+              {/* Header */}
+              <div className="border-border-subtle flex items-center justify-between border-b pb-4">
+                <div className="flex items-center gap-3">
+                  <div className="rounded-2xl border border-indigo-500/30 bg-indigo-500/10 p-3 text-indigo-400">
+                    <Crown className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h2 className="text-fg-primary text-xl font-bold tracking-tight">
+                      Kurucu Yönetici Paneli (Founder Command v2)
+                    </h2>
+                    <p className="text-fg-muted text-xs">Outreach Otopilot, Medya İçerik ve Takvim Yönetimi</p>
+                  </div>
+                </div>
+                <span className="rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3 py-1 text-xs font-semibold text-indigo-400">
+                  Core
+                </span>
+              </div>
+
+              {/* Outreach Autopilot Component */}
+              <OutreachAutopilot />
+
+              {/* Calendar & Sentiment Component */}
+              <div className="mt-8">
+                <CalendarAndSentiment />
+              </div>
             </div>
           </section>
         </div>

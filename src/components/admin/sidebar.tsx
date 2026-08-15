@@ -36,6 +36,9 @@ import {
   Compass,
   Building2,
   Mail,
+  Crown,
+  Video,
+  FileText
 } from "lucide-react";
 import { cn, getInitials } from "@/lib/utils";
 import Image from "next/image";
@@ -350,6 +353,39 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
     },
   ];
 
+  const founderItems = [
+    {
+      href: "/admin",
+      label: "Dashboard",
+      icon: LayoutDashboard,
+      active: pathname === "/admin" || pathname === "/en/admin",
+    },
+    {
+      href: "/admin/c360",
+      label: "Customer 360",
+      icon: Target,
+      active: pathname.startsWith("/admin/c360"),
+    },
+    {
+      href: "/admin/media",
+      label: "Medya",
+      icon: Video,
+      active: pathname.startsWith("/admin/media"),
+    },
+    {
+      href: "/admin/content",
+      label: "İçerik",
+      icon: FileText,
+      active: pathname.startsWith("/admin/content"),
+    },
+    {
+      href: "/admin/reports",
+      label: "Raporlar",
+      icon: BarChart3,
+      active: pathname.startsWith("/admin/reports"),
+    },
+  ];
+
   const showOperations = user.role === "ceo" || user.role === "admin" || user.role === "moderator";
   const showIntelligence = user.role === "ceo" || user.role === "admin";
   const showStrategy = user.role === "ceo" || user.role === "admin";
@@ -575,6 +611,8 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
           onScroll={handleNavScroll}
           className="scrollbar-hide flex-1 overflow-y-auto py-4"
         >
+          {showSystem && renderNavGroup("founder", "Founder Command", Crown, founderItems)}
+          
           <div className="space-y-1">
             {renderNavGroup("overview", t("nav_group_overview"), Activity, overviewItems)}
           </div>

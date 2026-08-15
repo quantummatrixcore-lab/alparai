@@ -1,0 +1,44 @@
+name: Alparai Sürü (Wolf Pack) CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main", "dev" ]
+  pull_request:
+    branches: [ "main", "dev" ]
+
+jobs:
+  build_and_test:
+    name: Sürü Analizi ve Kod Doğrulama
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Repoyu Çek
+      uses: actions/checkout@v3
+
+    - name: Node.js Ortamını Kur
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
+    - name: pnpm Yükle
+      uses: pnpm/action-setup@v2
+      with:
+        version: 8
+
+    - name: Bağımlılıkları Yükle
+      run: pnpm install
+
+    - name: Tip Denetimi (Typecheck)
+      run: pnpm typecheck
+
+    - name: Linter (Sürü Disiplini)
+      run: pnpm lint
+
+    - name: Build Kontrolü (Vercel Hazırlığı)
+      run: pnpm build
+      env:
+        NEXT_TELEMETRY_DISABLED: 1
+        # Supabase and Vercel Keys will be injected by GitHub Secrets
+
+  # Vercel deployment is handled natively by the Vercel GitHub App.
+  # This action ensures code is clean before Vercel triggers deployment.

@@ -78,7 +78,7 @@ export default async function BrandPage({
 
   const providerId = (provider as Record<string, unknown>)["id"] as string;
 
-  const [incidentsRes, modelsRes, allIncidentsRes, responsesRes] = await Promise.all([
+  const [incidentsRes, modelsRes, allIncidentsRes, responsesRes, leaderboardRes] = await Promise.all([
     supabase
       .from("incidents")
       .select(
@@ -86,7 +86,7 @@ export default async function BrandPage({
       )
       .eq("status", "published")
       .eq("ai_provider_id", providerId)
-      .order("published_at", { ascending: false })
+      .order("created_at", { ascending: false })
       .limit(50),
     supabase
       .from("ai_models")
@@ -102,6 +102,11 @@ export default async function BrandPage({
       .select("id, incident_id, is_official, is_published, created_at")
       .eq("ai_provider_id", providerId)
       .eq("is_published", true),
+    supabase
+      .from("provider_leaderboard")
+      .select("trust_score, incident_count, response_rate, response_count")
+      .eq("id", providerId)
+      .maybeSingle(),
   ]);
 
   const providerRow = provider as Record<string, unknown>;
@@ -117,11 +122,17 @@ export default async function BrandPage({
   const allIncidents = (allIncidentsRes.data as Array<Record<string, unknown>>) ?? [];
   const responses = (responsesRes.data as Array<Record<string, unknown>>) ?? [];
 
-  const totalIncidents = allIncidents.length;
-  const publishedIncidents = allIncidents.filter((i) => i["status"] === "published").length;
-  const responseCount = responses.length;
-  const respondedIncidentIds = new Set(responses.map((r) => r["incident_id"]));
-  const responseRate = totalIncidents > 0 ? Math.round((responseCount / totalIncidents) * 100) : 0;
+  const leaderboardData = leaderboardRes.data as Record<string, unknown> | null;
+  const totalIncidents = leaderboardData?.incident_count as number ?? allIncidents.length;
+  const totalResponses = leaderboardData?.response_count as number ?? responses.length;
+  
+  const resolvedCount = responses.filter(
+    (r: any) =>
+      r.status === "resolved" || r.is_official || (r.ai_provider_id && r.is_published),
+  ).length;
+
+  const trustScore = leaderboardData?.trust_score as number ?? calculateTrustScore(totalIncidents, totalResponses, resolvedCount);
+  const responseRate = leaderboardData?.response_rate as number ?? (totalIncidents > 0 ? Math.round((totalResponses / totalIncidents) * 100) : 0);
 
   const severityBreakdown = {
     critical: allIncidents.filter((i) => i["severity"] === "critical").length,

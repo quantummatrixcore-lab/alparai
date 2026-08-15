@@ -30,18 +30,21 @@ export function ChallengeSubmissions({
   useEffect(() => {
     async function load() {
       const [subsRes, votesRes, userVotesRes] = await Promise.all([
+        // @ts-expect-error missing from db types
         supabase
           .from("challenge_submissions")
           .select()
           .eq("challenge_id", challengeId)
           .eq("status", "approved"),
+        // @ts-expect-error missing from db types
         supabase.from("challenge_votes").select("submission_id"),
         userId
+          // @ts-expect-error missing from db types
           ? supabase.from("challenge_votes").select("submission_id").eq("user_id", userId)
           : Promise.resolve({ data: null }),
       ]);
 
-      setSubmissions(subsRes.data ?? []);
+      setSubmissions((subsRes.data as unknown as SubmissionRow[]) ?? []);
       const counts: Record<string, number> = {};
       for (const v of (votesRes.data ?? []) as Array<{ submission_id: string }>) {
         counts[v.submission_id] = (counts[v.submission_id] ?? 0) + 1;

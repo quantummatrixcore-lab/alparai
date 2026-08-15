@@ -8,6 +8,8 @@ import { useLocale } from "next-intl";
 export type SidebarPollData = {
   id: string;
   title: string;
+  title_en?: string;
+  title_tr?: string;
   yes_count: number;
   no_count: number;
   unsure_count: number;
@@ -61,7 +63,9 @@ export function SidebarEngagement({
               {locale === "tr" ? "Canlı Anket" : "Live Poll"}
             </span>
           </div>
-          <h3 className="text-fg-primary mb-4 text-sm leading-snug font-bold">{poll.title}</h3>
+          <h3 className="text-fg-primary mb-4 text-sm leading-snug font-bold">
+            {locale === "tr" && poll.title_tr ? poll.title_tr : poll.title_en || poll.title}
+          </h3>
 
           <div className="space-y-1.5">
             <VoteBar

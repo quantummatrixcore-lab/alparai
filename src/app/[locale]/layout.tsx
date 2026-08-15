@@ -76,7 +76,9 @@ export default async function LocaleLayout({
     "auth",
     "incident",
     "leaderboard",
-    "ui"
+    "ui",
+    "contact",
+    "hero"
   ];
   const clientMessages = Object.fromEntries(
     clientKeys.map((key) => [key, messages[key]]).filter(([, val]) => val !== undefined)

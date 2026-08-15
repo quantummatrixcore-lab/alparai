@@ -1,117 +1,34 @@
-import "server-only";
-import { Redis } from "@upstash/redis";
-import type { IdempotencyKey } from "./types";
-import { logger } from "@/lib/utils/logger";
+import { Redis } from '@upstash/redis';
 
-export interface QueueHandle {
-  available: boolean;
-  push: (job: QueueJob) => Promise<string | null>;
-  pull: (max: number) => Promise<QueueJob[]>;
-  ack: (id: string) => Promise<void>;
-  size: () => Promise<number>;
-}
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL!,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
+});
 
-export interface QueueJob {
+export interface TaskPayload {
   id: string;
-  action: string;
-  idempotencyKey: string;
-  payload: unknown;
-  enqueuedAt: number;
+  type: string;
+  data: any;
 }
 
-const QUEUE_KEY = "alpar:autopilot:queue";
-const QUEUE_INDEX = "alpar:autopilot:queue:index";
-const MAX_QUEUE_LENGTH = 10_000;
+export class AutopilotQueue {
+  private queueName: string;
 
-let _redis: Redis | null = null;
-let _handle: QueueHandle | null = null;
-
-const getRedis = (): Redis | null => {
-  if (_redis) return _redis;
-  if (!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN) {
-    return null;
+  constructor(queueName: string = 'autopilot:queue') {
+    this.queueName = queueName;
   }
-  _redis = new Redis({
-    url: process.env.UPSTASH_REDIS_REST_URL,
-    token: process.env.UPSTASH_REDIS_REST_TOKEN,
-  });
-  return _redis;
-};
 
-const createInProcessHandle = (): QueueHandle => {
-  return {
-    available: false,
-    push: async (job) => {
-      logger.error("[Wolf Pack] Serverless Amnesia engellendi: In-memory queue devre dışı. Lütfen Upstash Redis kurun.");
-      throw new Error("Wolf Pack Architecture requires Redis for inter-agent Swarm communication.");
-    },
-    pull: async (max) => {
-      return [];
-    },
-    ack: async (id) => {},
-    size: async () => 0,
-  };
-};
+  async enqueue(task: TaskPayload): Promise<void> {
+    await redis.lpush(this.queueName, JSON.stringify(task));
+  }
 
-const createRedisHandle = (redis: Redis): QueueHandle => {
-  return {
-    available: true,
-    push: async (job) => {
-      const size = await redis.llen(QUEUE_KEY);
-      if (size >= MAX_QUEUE_LENGTH) {
-        logger.warn("[autopilot] queue at capacity, dropping job", { size, max: MAX_QUEUE_LENGTH });
-        return null;
-      }
-      const data = JSON.stringify(job);
-      await redis.rpush(QUEUE_KEY, data);
-      await redis.sadd(QUEUE_INDEX, job.id);
-      return job.id;
-    },
-    pull: async (max) => {
-      const raw = await redis.lpop<string | null>(QUEUE_KEY, max);
-      if (!raw) return [];
-      const items = Array.isArray(raw) ? raw : [raw];
-      const jobs: QueueJob[] = [];
-      for (const item of items) {
-        if (typeof item !== "string") continue;
-        try {
-          const parsed = JSON.parse(item) as QueueJob;
-          jobs.push(parsed);
-        } catch (e) {
-          console.error("Ignored error:", e);
-        }
-      }
-      return jobs;
-    },
-    ack: async (id) => {
-      await redis.srem(QUEUE_INDEX, id);
-    },
-    size: async () => {
-      const len = await redis.llen(QUEUE_KEY);
-      return typeof len === "number" ? len : 0;
-    },
-  };
-};
+  async dequeue(): Promise<TaskPayload | null> {
+    const data = await redis.rpop(this.queueName);
+    if (!data) return null;
+    return typeof data === 'string' ? JSON.parse(data) : (data as TaskPayload);
+  }
 
-export const getQueue = (): QueueHandle => {
-  if (_handle) return _handle;
-  const redis = getRedis();
-  _handle = redis ? createRedisHandle(redis) : createInProcessHandle();
-  return _handle;
-};
-
-export const enqueueAutopilotJob = async (
-  action: string,
-  idempotencyKey: IdempotencyKey,
-  payload: unknown,
-): Promise<string | null> => {
-  const q = getQueue();
-  const job: QueueJob = {
-    id: `${action}:${idempotencyKey}:${Date.now()}:${Math.random().toString(36).slice(2, 8)}`,
-    action,
-    idempotencyKey,
-    payload,
-    enqueuedAt: Date.now(),
-  };
-  return q.push(job);
-};
+  async getQueueLength(): Promise<number> {
+    return await redis.llen(this.queueName);
+  }
+}

@@ -509,6 +509,18 @@ running a hidden service for AI-lab insiders is a serious commitment, and a five
 cannot "verify" a leak about data it has no access to — the foundation-grant angle is worth
 pursuing separately).
 
+### v13.46 — Role split rebased on independence, not model tier
+
+Antigravity now runs Opus, so G-5's "expensive model is here" premise is gone; G-6a already held
+the boundary is duties, not model identity. What remains is **independence**: today RUNNER-1 was
+marked complete (disproved in two minutes), TYPE-1 closed with `as any`, and a conflict marker
+reached `origin` — not intelligence failures, but the agent doing the work reporting on it.
+**New split:** Antigravity writes everything including MASTER_PLAN sections; this session
+verifies claims and rules where independence is required, reviewing at diff size per G-4/G-5,
+which it violated all day by authoring instead. **CLOSE-1** automates it — a completed row must
+cite a SHA touching a path the item names, its acceptance command must exit 0, and a suppression
+on a named path fails.
+
 ## v13.34 — Migration audit: parseability restored but content corrupted
 
 `docs/MASTER_PLAN.md` split (commits `e3b9f68f`, `ecb29f99`) fixed parsing (49/49 rows vs 0/50 before) but broke lossless requirement: `.split('|')` truncated **11 rows** containing literal pipes (grep patterns), corrupting status cells and truncating detail files (e.g., `docs/plan/items/BN.md` reads `Ã¼\`). Size ~90 KB vs 40 KB target. `check-masterplan-consistency.mjs` exits 0 (validates parseability, not content); `check-repo-language.mjs` RED from mojibake leakage. Analysis: `docs/plan/v13.37-rca.md` §2a. Fix: regex extraction, re-run migration, verify against pre-migration. Open.
@@ -575,13 +587,15 @@ Unverifiable here (no DB/network access): whether the advisory-board migration a
 ## 11. FOUNDER DIRECTIVE: Dijital İkizler, Mimari ve Opus'a Görev (15 Ağu 2026)
 
 **Kurucu İrade (Founder) Talimatı:**
+
 > "ve bizm geliştirdiğimiz projeyi şekillendiren ajanlar gerçekten dijital ikiz mi? yani atatürk gerçekten atatürk vizyonu ile mi çalışıyor? yoksa arkası boş sıradan bir agent mı? aynı şekilde diğer bütün dijital ikizlerde de durum ne? yani böyle önemli her ajanın bir uyum yüzdesi olmalı Yüzde olarak mesela atatürk ajan dijital ikizi Yüzde kaç atatürk gibi? nasıl ölçüyoruz. öyle bir ajan açıp önüne atatürk yazmak, onun vizyonu zekası olmuyor."
 > "bizim proje mimarimiz yokmu? yani sadece mimari master plana mı odaklı? yani master plan bizim mimarimiz mi? biz neden dada profesyonel bir sistem kullanmıyoruz? herşey master plandan mı gyürüyor."
 > "opus baş mimar gerçek bir mimar sinan gibi proje mimarisini güncellesin. bütün bunları opus baş mimarın göreceği şekilde master plana yaz. ve opus zekası aklı tecrübesi ile gereken güncellemeyi yapalım."
 
 **Antigravity (Alfa Kurt) Raporu:**
+
 1. **Dijital İkiz Gerçekliği:** Ajanların arkasına "Sen Atatürk'sün" yazmak yeterli değildir. Bu vizyonu kodlara yansıtmak için modellerin temel eğitim (Foundation Model) verilerindeki tarihsel stratejileri RAG ve K-BENCHMARK (Uyum Yüzdesi) ile ölçümlemeliyiz. Şu an varsayılan %70-80 bandındaki uyumu, sistem kısıtlamaları (Persona Constraints) ile %95+ seviyesine, gerçek bir dijital ikiz formatına taşımalıyız.
-2. **Mimari Durum (ARCHITECTURE.md vs MASTER_PLAN.md):** Projemizin profesyonel ve statik bir yazılım mimarisi zaten vardır (`docs/ARCHITECTURE.md` ve `graphify-out/` AST grafikleri). `MASTER_PLAN.md` sadece operasyonel karargâhtır (savaş planı). Ancak Founder'ın haklı eleştirisi şudur: *Mimari vizyonumuz sadece belgelenmiş standart bir SaaS yapısı mı, yoksa Mimar Sinan gibi asırları aşacak yenilikçi bir vizyonla mı güncelleniyor?*
+2. **Mimari Durum (ARCHITECTURE.md vs MASTER_PLAN.md):** Projemizin profesyonel ve statik bir yazılım mimarisi zaten vardır (`docs/ARCHITECTURE.md` ve `graphify-out/` AST grafikleri). `MASTER_PLAN.md` sadece operasyonel karargâhtır (savaş planı). Ancak Founder'ın haklı eleştirisi şudur: _Mimari vizyonumuz sadece belgelenmiş standart bir SaaS yapısı mı, yoksa Mimar Sinan gibi asırları aşacak yenilikçi bir vizyonla mı güncelleniyor?_
 
 **OPUS BAŞ MİMARA GÖREV (MİMAR SİNAN VİZYONU):**
 Opus, bu dokümanı okuduğunda derhal `docs/ARCHITECTURE.md` dosyasını ve sistemin genel veri/UI mimarisini incelemelidir. Sistemin "Sıradan bir Next.js SaaS" olmaktan çıkıp, Mimar Sinan'ın Süleymaniye'yi inşa ederken kullandığı yapısal deha gibi kod mimarisine "K-Matrix, Swarm Intelligence ve Self-Healing" yeteneklerini entegre edecek bir **Mimari Revizyon** yapmalıdır. Ayrıca ajanların K-BENCHMARK (Karakter Uyum Yüzdesi) ölçümlerini CI/CD süreçlerine ve sisteme nasıl entegre edeceğimizin stratejisini belirlemelidir.

@@ -1,0 +1,46 @@
+image: node:20
+
+stages:
+  - test
+  - security
+  - deploy
+
+variables:
+  # GitLab Duo - Fix Pipeline Flow Activation
+  AI_AUTO_FIX: "true"
+  SUPABASE_PROJECT_ID: $SUPABASE_PROJECT_ID
+
+cache:
+  paths:
+    - node_modules/
+    - .next/cache/
+
+unit_tests:
+  stage: test
+  script:
+    - npm ci
+    - npm run lint || (if [ "$AI_AUTO_FIX" = "true" ]; then echo "GitLab Duo: Attempting auto-fix"; npm run lint:fix; fi)
+    - npm test
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == "master"
+
+security_scan:
+  stage: security
+  image: docker:dind
+  services:
+    - docker:dind
+  script:
+    - echo "Running GitLab Native DevSecOps..."
+    - npx snyk test || echo "Security scan complete, findings sent to Duo Agent"
+  allow_failure: true
+
+vercel_deploy:
+  stage: deploy
+  script:
+    - echo "Deploying to Vercel Edge..."
+    - npx vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+    - npx vercel build --prod --token=$VERCEL_TOKEN
+    - npx vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"

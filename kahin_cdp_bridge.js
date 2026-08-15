@@ -76,7 +76,7 @@ async function run() {
   const payloadData = process.argv[3];
 
   const tabs = await getTabs();
-  const notebookTab = tabs.find(t => t.url && t.url.includes('notebooklm.google.com'));
+  const notebookTab = tabs.find(t => t.url && t.url.includes('notebook.google'));
   
   if (!notebookTab) {
     console.error("HATA: NotebookLM sekmesi açık değil.");
@@ -85,10 +85,11 @@ async function run() {
   
   connectWebSocket(notebookTab.webSocketDebuggerUrl, (socket) => {
     let script = "";
+    const safeData = JSON.stringify(payloadData);
     if (mode === 'ask') {
-      script = `console.log("[Kahin] Ajan Sorusu Alındı: ${payloadData}. Otonom Yanıt Üretiliyor...");`;
+      script = `console.log("[Kahin] Ajan Sorusu Alındı: " + ${safeData} + ". Otonom Yanıt Üretiliyor...");`;
     } else if (mode === 'sync') {
-      script = `console.log("[Kahin] Kod Tabanı Senkronize Edildi. Kaynaklar Güncellendi.");`;
+      script = `console.log("[Kahin] Senkronizasyon (Kod Tabanı): " + ${safeData} + ". Kaynaklar Güncellendi.");`;
     }
     
     sendCommand(socket, 'Runtime.evaluate', { expression: script });

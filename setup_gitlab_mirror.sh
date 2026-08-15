@@ -10,14 +10,14 @@ cd "$REPO_DIR" || exit 1
 
 if git remote get-url gitlab-mirror >/dev/null 2>&1; then
     echo "[*] GitLab mirror mevcut. Güncelleniyor..."
-    git remote set-url gitlab-mirror "https://${GITLAB_USER}:${GITLAB_TOKEN}@${GITLAB_URL}"
+    git remote set-url gitlab-mirror "https://${GITLAB_URL}"
 else
     echo "[*] GitLab mirror remote ekleniyor..."
-    git remote add --mirror=push gitlab-mirror "https://${GITLAB_USER}:${GITLAB_TOKEN}@${GITLAB_URL}"
+    git remote add --mirror=push gitlab-mirror "https://${GITLAB_URL}"
 fi
 
 echo "[*] Mirroring işlemi başlatılıyor..."
-git push gitlab-mirror --all
-git push gitlab-mirror --tags
+git -c http.extraHeader="AUTHORIZATION: Bearer $GITLAB_TOKEN" push gitlab-mirror --all
+git -c http.extraHeader="AUTHORIZATION: Bearer $GITLAB_TOKEN" push gitlab-mirror --tags
 
 echo "[+] GitLab Mirroring başarıyla ayarlandı ve senkronize edildi."

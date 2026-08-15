@@ -1,5 +1,5 @@
 import { EventBus } from './event-bus';
-import { exec } from 'child_process';
+import { spawn } from 'child_process';
 import path from 'path';
 
 export class KahinOracle {
@@ -16,17 +16,23 @@ export class KahinOracle {
     return new Promise((resolve, reject) => {
       console.log(`[Wolf Pack Oracle] ${agentRole} Kahin'e danışıyor: ${question}`);
       
-      const cmd = `node ${this.scriptPath} ask "${question}"`;
+      const child = spawn('node', [this.scriptPath, 'ask', question]);
       
-      exec(cmd, (error, stdout, stderr) => {
-        if (error) {
-          console.error(`[Wolf Pack Oracle] Hata: ${error.message}`);
-          return reject(error);
+      let stdoutData = '';
+      let stderrData = '';
+
+      child.stdout.on('data', (data) => stdoutData += data);
+      child.stderr.on('data', (data) => stderrData += data);
+
+      child.on('close', (code) => {
+        if (code !== 0) {
+          console.error(`[Wolf Pack Oracle] Hata (Kod ${code}): ${stderrData}`);
+          return reject(new Error(stderrData || 'Bilinmeyen Hata'));
         }
-        if (stderr) {
-          console.warn(`[Wolf Pack Oracle] Uyarı: ${stderr}`);
+        if (stderrData) {
+          console.warn(`[Wolf Pack Oracle] Uyarı: ${stderrData}`);
         }
-        resolve(stdout.trim());
+        resolve(stdoutData.trim());
       });
     });
   }
@@ -36,12 +42,15 @@ export class KahinOracle {
     return new Promise((resolve, reject) => {
       console.log(`[Wolf Pack Oracle] Kod tabanı Kahin'e (NotebookLM) senkronize ediliyor...`);
       
-      const cmd = `node ${this.scriptPath} sync "${codebaseSummary.replace(/"/g, '\\"')}"`;
+      const child = spawn('node', [this.scriptPath, 'sync', codebaseSummary]);
       
-      exec(cmd, (error, stdout, stderr) => {
-        if (error) {
-          console.error(`[Wolf Pack Oracle] Hata: ${error.message}`);
-          return reject(error);
+      let stderrData = '';
+      child.stderr.on('data', (data) => stderrData += data);
+
+      child.on('close', (code) => {
+        if (code !== 0) {
+          console.error(`[Wolf Pack Oracle] Hata (Kod ${code}): ${stderrData}`);
+          return reject(new Error(stderrData || 'Bilinmeyen Hata'));
         }
         resolve();
       });

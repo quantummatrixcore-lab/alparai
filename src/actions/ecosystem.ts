@@ -1,4 +1,3 @@
-import { maskPII } from "@/lib/pii/guardian";
 "use server";
 
 import { revalidatePath } from "next/cache";
@@ -23,10 +22,10 @@ export async function approveQueueItem(id: string): Promise<void> {
     }
 
     const { error: newsError } = await supabase.from("ecosystem_news").insert({
-      title_en: maskPII(item.title).masked,
-      title_tr: maskPII(item.title).masked,
-      summary_en: item.body ? maskPII(item.body).masked : "",
-      summary_tr: item.body ? maskPII(item.body).masked : "",
+      title_en: item.title,
+      title_tr: item.title,
+      summary_en: item.body ?? "",
+      summary_tr: item.body ?? "",
       category: "incident",
       severity: "medium",
       source: item.source,

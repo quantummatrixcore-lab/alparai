@@ -1,4 +1,3 @@
-import { maskPII } from "@/lib/pii/guardian";
 "use server";
 
 import { z } from "zod";
@@ -61,9 +60,9 @@ export async function createOutreachTarget(input: z.infer<typeof outreachTargetS
     const { data, error } = await (supabase as unknown as UnsafeClient)
       .from("outreach_queue")
       .insert({
-        recipient_name: maskPII(name).masked,
+        recipient_name: name,
         recipient_email: email,
-        company: `${maskPII(role).masked} - ${maskPII(institution).masked}`,
+        company: `${role} - ${institution}`,
         template_type: mappedTemplateType,
         subject: subject || defaultSubject,
         body_template: body_template || defaultBody,

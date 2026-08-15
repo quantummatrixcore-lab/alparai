@@ -42,6 +42,10 @@ export async function submitFlaggingReport(
 
     const hdrs = await headers();
     const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.report_flagging}:${ip}`);
+    if (!rl.ok) {
+      return { ok: false, error: `Rate limit exceeded. Please retry in ${rl.retryAfter ?? 60}s.` };
+    }
     const ipHash = hashIp(ip);
 
     const maskedContext = maskPII(context);

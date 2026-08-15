@@ -1,4 +1,3 @@
-import { maskPII } from "@/lib/pii/guardian";
 "use server";
 
 import { z } from "zod";
@@ -102,7 +101,7 @@ export async function claimBounty(
         status: "open",
         severity_score: parsed.data.severityScore,
         estimated_reward_cents: estimatedReward,
-        notes: parsed.data.notes ? maskPII(parsed.data.notes).masked : null,
+        notes: parsed.data.notes ?? null,
       })
       .select("id")
       .single();
@@ -168,7 +167,7 @@ export async function updateBountyStatus(
       updates["actual_reward_cents"] = parsed.data.actualRewardCents;
     }
     if (parsed.data.notes !== undefined) {
-      updates["notes"] = parsed.data.notes ? maskPII(parsed.data.notes).masked : null;
+      updates["notes"] = parsed.data.notes;
     }
     if (parsed.data.status === "paid") {
       updates["paid_at"] = new Date().toISOString();

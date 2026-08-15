@@ -43,8 +43,8 @@ const runContactWork = async (
       from: "ALPAR AI Contact <contact@alparai.com>",
       to: APP_EMAIL,
       replyTo: data.email,
-      subject: `[${data.category}] ${maskPII(data.subject).masked}`,
-      text: `From: ${maskPII(data.name).masked} <${data.email}>\n\n${maskPII(data.message).masked}\n\n--\nIP Hash: ${hashIp(data.ip)}`,
+      subject: `[${data.category}] ${maskPII(data.subject)}`,
+      text: `From: ${data.name} <${data.email}>\n\n${maskPII(data.message)}\n\n--\nIP Hash: ${hashIp(data.ip)}`,
     });
     return { kind: "success", value: { sent: true, channel: "email" } };
   } catch (e) {

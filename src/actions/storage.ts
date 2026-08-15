@@ -7,6 +7,16 @@ import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 
 export async function uploadIncidentEvidence(formData: FormData) {
   try {
+    const hdrs = await headers();
+    const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.upload_evidence}:${ip}`);
+    if (!rl.ok) {
+      return {
+        success: false,
+        error: `Upload rate limit exceeded. Retry in ${rl.retryAfter ?? 60}s.`,
+      };
+    }
+
     const file = formData.get("file") as File;
     const incidentId = formData.get("incidentId") as string;
 

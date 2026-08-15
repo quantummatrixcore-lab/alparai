@@ -43,6 +43,11 @@ export async function submitVendorResponseAction(
       return { ok: false, error: "Unauthorized" };
     }
 
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.provider_response}:${user.id}`);
+    if (!rl.ok) {
+      return { ok: false, error: `Rate limit exceeded. Please wait ${rl.retryAfter ?? 60}s.` };
+    }
+
     // Mask any sensitive PII in vendor response before storing
     const piiResult = maskPII(responseText.trim());
     const maskedText = piiResult.masked;

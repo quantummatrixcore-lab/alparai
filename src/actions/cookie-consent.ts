@@ -11,9 +11,13 @@ export async function logCookieConsent(
   consentLevel: "necessary" | "analytics" | "marketing",
 ): Promise<{ ok: boolean }> {
   try {
-    const user = await getCurrentUser();
     const hdrs = await headers();
     const ip = hdrs.get("x-forwarded-for") ?? hdrs.get("x-real-ip") ?? "unknown";
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.cookie_consent}:${ip}`);
+    if (!rl.ok) {
+      return { ok: false };
+    }
+    const user = await getCurrentUser();
     const ipHash = createHash("sha256").update(ip).digest("hex").slice(0, 16);
     const userAgent = hdrs.get("user-agent") ?? null;
 

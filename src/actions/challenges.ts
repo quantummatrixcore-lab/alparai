@@ -19,6 +19,11 @@ export async function submitChallengeVote(submissionId: string): Promise<Challen
       return { ok: false, error: "You must be signed in to vote." };
     }
 
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.challenge_vote}:${user.id}`);
+    if (!rl.ok) {
+      return { ok: false, error: `Rate limit exceeded. Try again in ${rl.retryAfter ?? 60}s.` };
+    }
+
     const supabase = await createServerClient();
 
     const { error: insertError } = await supabase
@@ -50,6 +55,11 @@ export async function removeChallengeVote(submissionId: string): Promise<Challen
     const user = await getCurrentUser();
     if (!user) {
       return { ok: false, error: "You must be signed in to remove your vote." };
+    }
+
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.challenge_vote}:${user.id}`);
+    if (!rl.ok) {
+      return { ok: false, error: `Rate limit exceeded. Try again in ${rl.retryAfter ?? 60}s.` };
     }
 
     const supabase = await createServerClient();
@@ -91,6 +101,14 @@ export async function submitChallengeSubmission(
     const user = await getCurrentUser();
     if (!user) {
       return { ok: false, error: "You must be signed in to submit." };
+    }
+
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.challenge_submission}:${user.id}`);
+    if (!rl.ok) {
+      return {
+        ok: false,
+        error: `Submission rate limit exceeded. Try again in ${rl.retryAfter ?? 60}s.`,
+      };
     }
 
     const title = formData.get("title") as string;

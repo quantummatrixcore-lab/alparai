@@ -69,6 +69,11 @@ export async function updateEmailPreferencesAction(
       return { ok: false, error: "Unauthorized" };
     }
 
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.email_preferences}:${user.id}`);
+    if (!rl.ok) {
+      return { ok: false, error: `Rate limit exceeded. Try again in ${rl.retryAfter ?? 60}s.` };
+    }
+
     const weeklyDigest = formData.get("weeklyDigest") === "on";
     const watches = formData.get("watches") === "on";
     const reporterNotifications = formData.get("reporterNotifications") === "on";

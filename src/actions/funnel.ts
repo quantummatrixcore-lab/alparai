@@ -9,7 +9,16 @@ import type { Json } from "@/types/database";
 
 export async function trackFunnelEvent(eventName: string, metadata?: Record<string, unknown>) {
   try {
+    const hdrs = await headers();
+    const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
     const user = await getCurrentUser();
+    const rlKey = user
+      ? `${RATE_LIMIT_KEYS.funnel_event}:${user.id}`
+      : `${RATE_LIMIT_KEYS.funnel_event}:${ip}`;
+    const rl = await checkRateLimit(rlKey);
+    if (!rl.ok) {
+      return;
+    }
     const supabase = await createServerClient();
 
     const { error } = await supabase.from("funnel_events").insert({

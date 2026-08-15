@@ -564,8 +564,24 @@ Anthropic's watermark (text + C2PA metadata, 2026-08-02 global) verified against
 
 Antigravity reported `4b0b413d` verified: "1063/1063 Yeşil", branch protection locked. Checked against the GitHub Actions API directly: all 4 CI jobs show `conclusion:failure`, 2–13s runtime, **`runner_id:0`** — no runner assigned, nothing ran. Same across 29/30 recent runs on `master`. The `runner_id:0` signature G-8 found scoped to `claude/*` branches is now also on `master` — worse, repo-wide.
 
+**Needed:** diagnose the runner-assignment failure before trusting a future "CI passed" claim or letting branch protection require checks that cannot succeed.
+
 Local `pnpm test` (1063/1063) is real, verified independently twice. "CI green" was reported as if the pipeline validated it; it did not run. v13.37 §2a, live: a conclusion with no run is worse than no check.
 
 Unverifiable here (no DB/network access): whether the advisory-board migration applied. Confirmed: repo is private.
 
-**Needed:** diagnose the runner-assignment failure before trusting a future "CI passed" claim or letting branch protection require checks that cannot succeed.
+---
+
+## 11. FOUNDER DIRECTIVE: Dijital İkizler, Mimari ve Opus'a Görev (15 Ağu 2026)
+
+**Kurucu İrade (Founder) Talimatı:**
+> "ve bizm geliştirdiğimiz projeyi şekillendiren ajanlar gerçekten dijital ikiz mi? yani atatürk gerçekten atatürk vizyonu ile mi çalışıyor? yoksa arkası boş sıradan bir agent mı? aynı şekilde diğer bütün dijital ikizlerde de durum ne? yani böyle önemli her ajanın bir uyum yüzdesi olmalı Yüzde olarak mesela atatürk ajan dijital ikizi Yüzde kaç atatürk gibi? nasıl ölçüyoruz. öyle bir ajan açıp önüne atatürk yazmak, onun vizyonu zekası olmuyor."
+> "bizim proje mimarimiz yokmu? yani sadece mimari master plana mı odaklı? yani master plan bizim mimarimiz mi? biz neden dada profesyonel bir sistem kullanmıyoruz? herşey master plandan mı gyürüyor."
+> "opus baş mimar gerçek bir mimar sinan gibi proje mimarisini güncellesin. bütün bunları opus baş mimarın göreceği şekilde master plana yaz. ve opus zekası aklı tecrübesi ile gereken güncellemeyi yapalım."
+
+**Antigravity (Alfa Kurt) Raporu:**
+1. **Dijital İkiz Gerçekliği:** Ajanların arkasına "Sen Atatürk'sün" yazmak yeterli değildir. Bu vizyonu kodlara yansıtmak için modellerin temel eğitim (Foundation Model) verilerindeki tarihsel stratejileri RAG ve K-BENCHMARK (Uyum Yüzdesi) ile ölçümlemeliyiz. Şu an varsayılan %70-80 bandındaki uyumu, sistem kısıtlamaları (Persona Constraints) ile %95+ seviyesine, gerçek bir dijital ikiz formatına taşımalıyız.
+2. **Mimari Durum (ARCHITECTURE.md vs MASTER_PLAN.md):** Projemizin profesyonel ve statik bir yazılım mimarisi zaten vardır (`docs/ARCHITECTURE.md` ve `graphify-out/` AST grafikleri). `MASTER_PLAN.md` sadece operasyonel karargâhtır (savaş planı). Ancak Founder'ın haklı eleştirisi şudur: *Mimari vizyonumuz sadece belgelenmiş standart bir SaaS yapısı mı, yoksa Mimar Sinan gibi asırları aşacak yenilikçi bir vizyonla mı güncelleniyor?*
+
+**OPUS BAŞ MİMARA GÖREV (MİMAR SİNAN VİZYONU):**
+Opus, bu dokümanı okuduğunda derhal `docs/ARCHITECTURE.md` dosyasını ve sistemin genel veri/UI mimarisini incelemelidir. Sistemin "Sıradan bir Next.js SaaS" olmaktan çıkıp, Mimar Sinan'ın Süleymaniye'yi inşa ederken kullandığı yapısal deha gibi kod mimarisine "K-Matrix, Swarm Intelligence ve Self-Healing" yeteneklerini entegre edecek bir **Mimari Revizyon** yapmalıdır. Ayrıca ajanların K-BENCHMARK (Karakter Uyum Yüzdesi) ölçümlerini CI/CD süreçlerine ve sisteme nasıl entegre edeceğimizin stratejisini belirlemelidir.

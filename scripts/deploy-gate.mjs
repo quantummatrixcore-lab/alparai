@@ -1,7 +1,7 @@
 import { execSync } from "node:child_process";
 import { pathToFileURL } from "node:url";
 
-export const DEFAULT_REQUIRED_CHECKS = ["build", "Visual Regression Lock"];
+export const DEFAULT_REQUIRED_CHECKS = ["CI Pipeline"];
 export const DEFAULT_TIMEOUT_MS = 15 * 60 * 1000;
 export const DEFAULT_POLL_INTERVAL_MS = 20 * 1000;
 

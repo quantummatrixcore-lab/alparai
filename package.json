@@ -27,7 +27,7 @@
   "scripts": {
     "dev": "next dev",
     "dev:all": "concurrently -n \"DEV,TEST,OPENCODE\" -c \"cyan,magenta,green\" \"pnpm dev\" \"pnpm test:watch\" \"opencode\"",
-    "build": "node scripts/check-i18n.mjs && cross-env NODE_OPTIONS=--max-old-space-size=8192 next build",
+    "build": "pnpm validate && cross-env NODE_OPTIONS=--max-old-space-size=8192 next build",
     "start": "next start",
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "eslint . --fix",
@@ -37,7 +37,7 @@
     "i18n:check": "node scripts/check-i18n.mjs",
     "check:masterplan-length": "node scripts/check-master-plan-length.mjs",
     "check:links": "node scripts/check-internal-links.mjs",
-    "test": "vitest run",
+    "test": "vitest run --pool=forks",
     "test:watch": "vitest",
     "test:checks": "node scripts/test-negative-checks.mjs",
     "test:coverage": "vitest run --coverage",
@@ -124,7 +124,8 @@
     "tailwindcss": "^4.3.3",
     "ts-morph": "^28.0.0",
     "typescript": "^6.0.3",
-    "vitest": "^3.2.0"
+    "vite": "5.4.11",
+    "vitest": "^2.1.8"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [

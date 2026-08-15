@@ -1,0 +1,89 @@
+/**
+ * Claude Artifact & Dashboard Integration Bridge (IQ 180 Standard)
+ * Author: Mimar Sinan (Alparai Agent-OS)
+ */
+
+const fs = require('fs');
+const path = require('path');
+
+class ClaudeArtifactBridge {
+  constructor(apiKey = process.env.CLAUDE_API_KEY) {
+    this.apiKey = apiKey;
+    this.baseUrl = 'https://api.anthropic.com/v1/messages';
+  }
+
+  async extractArtifacts(prompt) {
+    if (!this.apiKey) {
+      console.warn('[ClaudeBridge] CLAUDE_API_KEY atanmamış. Simülasyon modunda çalışılıyor.');
+      return this.getMockArtifactResponse(prompt);
+    }
+
+    try {
+      const response = await fetch(this.baseUrl, {
+        method: 'POST',
+        headers: {
+          'x-api-key': this.apiKey,
+          'anthropic-version': '2023-06-01',
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          model: 'claude-3-5-sonnet-20241022',
+          max_tokens: 4096,
+          messages: [{ role: 'user', content: prompt }]
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`Claude API HTTP Hatası: ${response.status}`);
+      }
+
+      const data = await response.json();
+      return this.parseCodeBlocks(data.content?.[0]?.text || '');
+    } catch (error) {
+      console.error('[ClaudeBridge] Hata:', error.message);
+      return { error: error.message };
+    }
+  }
+
+  parseCodeBlocks(text) {
+    const codeBlockRegex = /```(?:(\w+))?\n([\s\S]*?)```/g;
+    const artifacts = [];
+    let match;
+
+    while ((match = codeBlockRegex.exec(text)) !== null) {
+      artifacts.push({
+        language: match[1] || 'text',
+        code: match[2].trim()
+      });
+    }
+
+    return {
+      rawText: text,
+      artifactsFound: artifacts.length,
+      artifacts: artifacts
+    };
+  }
+
+  getMockArtifactResponse(prompt) {
+    return {
+      status: 'simulated',
+      message: 'CLAUDE_API_KEY eksik olduğu için mock yanıt üretildi.',
+      promptReceived: prompt,
+      artifacts: [
+        {
+          language: 'html',
+          code: '<div class="alparai-card"><h3>Simüle Claude Component</h3></div>'
+        }
+      ]
+    };
+  }
+}
+
+module.exports = ClaudeArtifactBridge;
+
+if (require.main === module) {
+  const bridge = new ClaudeArtifactBridge();
+  bridge.extractArtifacts('Generate a simple dashboard card HTML').then(res => {
+    console.log('[ClaudeBridge CLI Test Output]:', JSON.stringify(res, null, 2));
+  });
+}

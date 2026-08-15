@@ -21,10 +21,14 @@ export default async function PressPage({ params }: { params: Promise<{ locale: 
   const isEn = locale === "en";
 
   const brandColors = [
-    { name: "Brand Primary", hex: "#6366f1", bgClass: "bg-[#6366f1]" },
-    { name: "Emerald Success", hex: "#10b981", bgClass: "bg-[#10b981]" },
-    { name: "Amber Warning", hex: "#f59e0b", bgClass: "bg-[#f59e0b]" },
-    { name: "Dark Surface", hex: "#090d16", bgClass: "bg-[#090d16] border border-border-subtle" },
+    { name: t("color_brand_primary"), hex: "#6366f1", bgClass: "bg-[#6366f1]" },
+    { name: t("color_emerald_success"), hex: "#10b981", bgClass: "bg-[#10b981]" },
+    { name: t("color_amber_warning"), hex: "#f59e0b", bgClass: "bg-[#f59e0b]" },
+    {
+      name: t("color_dark_surface"),
+      hex: "#090d16",
+      bgClass: "bg-[#090d16] border border-border-subtle",
+    },
   ];
 
   return (
@@ -32,7 +36,7 @@ export default async function PressPage({ params }: { params: Promise<{ locale: 
       {/* Header */}
       <div className="space-y-4 text-center">
         <span className="bg-brand-500/10 text-brand-400 inline-block rounded-full px-3 py-1 text-xs font-semibold">
-          PRESS & MEDIA KIT
+          {t("badge")}
         </span>
         <h1 className="text-fg-primary text-4xl font-extrabold tracking-tight sm:text-5xl">
           {t("title")}
@@ -47,11 +51,9 @@ export default async function PressPage({ params }: { params: Promise<{ locale: 
         <Card className="border-border-subtle bg-bg-surface space-y-4 p-6">
           <div className="text-fg-primary flex items-center gap-3 font-semibold">
             <Download className="text-brand-400 h-5 w-5" />
-            <span>Logo Assets</span>
+            <span>{t("logo_assets_title")}</span>
           </div>
-          <p className="text-fg-muted text-xs leading-relaxed">
-            Download vector SVG and high-resolution PNG logos for official media usage.
-          </p>
+          <p className="text-fg-muted text-xs leading-relaxed">{t("logo_assets_desc")}</p>
           <div className="flex items-center gap-3">
             <a
               href="/logo.svg"
@@ -78,9 +80,7 @@ export default async function PressPage({ params }: { params: Promise<{ locale: 
             <Mail className="text-brand-400 h-5 w-5" />
             <span>{t("contact_press")}</span>
           </div>
-          <p className="text-fg-muted text-xs leading-relaxed">
-            For press inquiries, interview requests, and media assets validation.
-          </p>
+          <p className="text-fg-muted text-xs leading-relaxed">{t("contact_press_desc")}</p>
           <a
             href="mailto:press@alparai.com"
             className="text-brand-400 inline-flex items-center gap-2 text-sm font-bold hover:underline"
@@ -119,10 +119,7 @@ export default async function PressPage({ params }: { params: Promise<{ locale: 
             <Type className="text-brand-400 h-4 w-4" />
             <span>{t("typography")}</span>
           </div>
-          <p className="text-fg-muted text-xs leading-relaxed">
-            Primary Typeface: <strong>Inter / Geist / Outfit</strong>. Used across titles, body
-            text, and digital interfaces for maximum clarity.
-          </p>
+          <p className="text-fg-muted text-xs leading-relaxed">{t("typography_desc")}</p>
         </div>
       </Card>
 
@@ -157,7 +154,7 @@ export default async function PressPage({ params }: { params: Promise<{ locale: 
                     href={`/press-kit/releases/${release.slug}`}
                     className="text-brand-400 text-xs font-semibold hover:underline"
                   >
-                    Read Full Release →
+                    {t("read_full_release")}
                   </Link>
                 </div>
               </div>

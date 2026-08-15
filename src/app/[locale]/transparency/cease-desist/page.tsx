@@ -112,15 +112,17 @@ export default async function CeaseDesistArchivePage({
           <div className="text-fg-muted flex flex-wrap gap-4 border-t border-red-500/20 pt-4 font-mono text-xs">
             <div className="flex items-center gap-1.5">
               <Eye className="h-4 w-4 text-red-400" />
-              <span>{t("publishRate")}: 100% Public</span>
+              <span>
+                {t("publishRate")}: {t("publishRate_value")}
+              </span>
             </div>
             <div className="flex items-center gap-1.5">
               <Lock className="h-4 w-4 text-red-400" />
-              <span>Zero-Redaction Immunity</span>
+              <span>{t("cease_desist_immunity")}</span>
             </div>
             <div className="flex items-center gap-1.5">
               <Scale className="h-4 w-4 text-red-400" />
-              <span>DSA Art. 17 & KVKK Exempt</span>
+              <span>{t("cease_desist_exemption")}</span>
             </div>
           </div>
         </div>
@@ -137,7 +139,7 @@ export default async function CeaseDesistArchivePage({
       ) : (
         <div className="space-y-6">
           {logs.map((log) => {
-            const providerName = log.ai_providers?.name ?? "External Legal Counsel / Provider";
+            const providerName = log.ai_providers?.name ?? t("cease_desist_unknown_provider");
 
             return (
               <div

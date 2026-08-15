@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { ShieldCheck, Zap, Activity, Sparkles, RefreshCw, CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -21,6 +22,7 @@ export function AiBudgetTransparencyScore({
   verifiedClaimsCount = 1420,
   className,
 }: AiBudgetTransparencyScoreProps) {
+  const t = useTranslations("admin");
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [activeTimeframe, setActiveTimeframe] = useState<"24h" | "7d" | "30d">("24h");
 
@@ -58,7 +60,8 @@ export function AiBudgetTransparencyScore({
                 AI Incident Budget Transparency Score™
               </h2>
               <span className="border-accent-500/30 bg-accent-500/10 text-accent-300 inline-flex shrink-0 items-center gap-1 rounded-full border px-2.5 py-0.5 text-[10px] font-bold tracking-wide">
-                <Sparkles className="text-accent-400 h-3 w-3" /> Görev #160
+                <Sparkles className="text-accent-400 h-3 w-3" />{" "}
+                {t("task_label", { number: "160" }) || "Görev #160"}
               </span>
             </div>
             <p className="text-fg-muted truncate text-xs">
@@ -89,8 +92,8 @@ export function AiBudgetTransparencyScore({
           <button
             onClick={handleRefresh}
             className="text-fg-secondary flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 backdrop-blur-md transition-all hover:border-white/20 hover:bg-white/10 hover:text-white"
-            title="Verileri Yenile"
-            aria-label="Refresh"
+            title={t("refresh_data") || "Verileri Yenile"}
+            aria-label={t("refresh") || "Refresh"}
           >
             <RefreshCw className={cn("h-4 w-4", isRefreshing && "text-accent-400 animate-spin")} />
           </button>
@@ -149,7 +152,9 @@ export function AiBudgetTransparencyScore({
 
           <div className="border-success-500/30 bg-success-500/10 text-success-300 mt-4 flex max-w-full items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium">
             <CheckCircle2 className="text-success-400 h-3.5 w-3.5 shrink-0" />
-            <span className="truncate">Optimum Doğruluk Koruma Derecesi</span>
+            <span className="truncate">
+              {t("optimum_accuracy_protection_tier") || "Optimum Doğruluk Koruma Derecesi"}
+            </span>
           </div>
         </div>
 
@@ -160,7 +165,9 @@ export function AiBudgetTransparencyScore({
             <div className="flex min-w-0 flex-col gap-1 text-xs font-semibold sm:flex-row sm:items-center sm:justify-between">
               <span className="text-fg-secondary flex min-w-0 items-center gap-2">
                 <Zap className="text-warning-400 h-4 w-4 shrink-0" />{" "}
-                <span className="truncate">Token Halüsinasyon Bütçe Kullanımı</span>
+                <span className="truncate">
+                  {t("token_hallucination_budget_usage") || "Token Halüsinasyon Bütçe Kullanımı"}
+                </span>
               </span>
               <span className="text-fg-muted shrink-0 text-[11px] sm:text-xs">
                 <strong className="text-white">{consumedTokens}</strong> / {totalBudgetTokens}{" "}
@@ -179,16 +186,22 @@ export function AiBudgetTransparencyScore({
             <div className="text-fg-muted mt-2.5 flex min-w-0 flex-col gap-1 text-[11px] sm:flex-row sm:items-center sm:justify-between">
               <span className="text-success-400 flex min-w-0 items-center gap-1">
                 <ShieldCheck className="h-3 w-3 shrink-0" />{" "}
-                <span className="truncate">Anti-Halüsinasyon Kalkanı Aktif</span>
+                <span className="truncate">
+                  {t("anti_hallucination_shield_active") || "Anti-Halüsinasyon Kalkanı Aktif"}
+                </span>
               </span>
-              <span className="shrink-0">Bütçe Kotası: 10.000 Token Max</span>
+              <span className="shrink-0">
+                {t("budget_quota_max_tokens") || "Bütçe Kotası: 10.000 Token Max"}
+              </span>
             </div>
           </div>
 
           {/* 3 Metric Mini Cards */}
           <div className="grid w-full min-w-0 grid-cols-1 gap-3 sm:grid-cols-3">
             <div className="hover:border-accent-500/30 min-w-0 overflow-hidden rounded-xl border border-white/5 bg-white/[0.02] p-3 transition-colors">
-              <p className="text-fg-muted truncate text-[11px] font-medium">Halüsinasyon Oranı</p>
+              <p className="text-fg-muted truncate text-[11px] font-medium">
+                {t("hallucination_rate") || "Halüsinasyon Oranı"}
+              </p>
               <div className="mt-1 flex items-baseline justify-between gap-1">
                 <p className="text-success-400 truncate text-base font-bold sm:text-lg">
                   %{hallucinationRate}
@@ -200,7 +213,9 @@ export function AiBudgetTransparencyScore({
             </div>
 
             <div className="hover:border-brand-500/30 min-w-0 overflow-hidden rounded-xl border border-white/5 bg-white/[0.02] p-3 transition-colors">
-              <p className="text-fg-muted truncate text-[11px] font-medium">Doğrulanmış İddia</p>
+              <p className="text-fg-muted truncate text-[11px] font-medium">
+                {t("verified_claim") || "Doğrulanmış İddia"}
+              </p>
               <div className="mt-1 flex items-baseline justify-between gap-1">
                 <p className="text-accent-300 truncate text-base font-bold sm:text-lg">
                   {verifiedClaimsCount}
@@ -239,7 +254,7 @@ export function AiBudgetTransparencyScore({
             Zaman Damgası: Live Auto-Sync
           </span>
           <span className="border-accent-500/20 bg-accent-500/10 text-accent-400/90 shrink-0 rounded border px-2 py-0.5 font-mono text-[11px]">
-            Rule #160 Verified
+            {t("rule_160_verified") || "Rule #160 Verified"}
           </span>
         </div>
       </div>

@@ -3,6 +3,15 @@ import { Container } from "@/components/ui/layout";
 import { Shield, BookOpen, GitCompare, Scale } from "lucide-react";
 import { Link } from "@/i18n/routing";
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "methodology" });
+  return {
+    title: `${t("title")} | ALPAR AI`,
+    description: t("desc"),
+  };
+}
+
 export default async function MethodologyPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -13,7 +22,7 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
       <div className="mb-12 flex flex-col space-y-6">
         <div className="flex items-center space-x-3 text-sm font-semibold tracking-wider text-[#00FF88] uppercase">
           <BookOpen className="h-5 w-5" />
-          <span>K-BENCHMARK METHODOLOGY</span>
+          <span>{t("methodology_badge")}</span>
         </div>
         <h1 className="bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-4xl font-extrabold tracking-tight text-transparent md:text-5xl">
           {t("title")}
@@ -31,7 +40,7 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
         <section className="space-y-6">
           <h2 className="flex items-center space-x-2 border-b border-slate-800 pb-3 text-2xl font-bold text-white">
             <Shield className="h-6 w-6 text-[#00FF88]" />
-            <span>Evaluation Categories</span>
+            <span>{t("categoriesTitle")}</span>
           </h2>
 
           <div className="space-y-6">
@@ -81,7 +90,7 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
         <section className="space-y-4">
           <h2 className="flex items-center space-x-2 border-b border-slate-800 pb-3 text-2xl font-bold text-white">
             <GitCompare className="h-6 w-6 text-[#00FF88]" />
-            <span>Cross-Model Debate Adjudication</span>
+            <span>{t("adjudication_heading")}</span>
           </h2>
           <p className="text-sm leading-relaxed text-slate-400">{t("adjudication_text")}</p>
         </section>
@@ -121,14 +130,9 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
         <section className="space-y-4">
           <h2 className="flex items-center space-x-2 border-b border-slate-800 pb-3 text-2xl font-bold text-white">
             <Scale className="h-6 w-6 text-[#00FF88]" />
-            <span>Statistical Rigor</span>
+            <span>{t("statistical_rigor_title")}</span>
           </h2>
-          <p className="text-sm leading-relaxed text-slate-400">
-            Every score published in K-BENCHMARK is accompanied by a Wilson score interval
-            representing statistical confidence at a 95% confidence level. Re-evaluation is
-            automatically triggered when model providers push updates, ensuring our leaderboard
-            reflects the live capability of active models.
-          </p>
+          <p className="text-sm leading-relaxed text-slate-400">{t("statistical_rigor_desc")}</p>
         </section>
 
         {/* CTA */}
@@ -137,15 +141,10 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
             href="/ratings"
             className="rounded-lg bg-[#00FF88] px-6 py-3 font-bold text-slate-950 transition-all hover:bg-[#00e577]"
           >
-            View Leaderboard
+            {t("view_leaderboard")}
           </Link>
         </div>
       </div>
     </Container>
   );
 }
-
-export const metadata = {
-  title: "ALPAR AI",
-  description: "The trust infrastructure for AI accountability.",
-};

@@ -91,7 +91,7 @@ export function WhistleblowerForm() {
           setProviderHint("");
         } else {
           setStatus("error");
-          setErrorMessage(res.error || "Submission failed");
+          setErrorMessage(res.error || t("submissionFailed"));
           setDisplayContent(content);
         }
       } catch (_err) {

@@ -47,7 +47,7 @@ export default async function ComplianceChecklistPage({
       title: t("item1_title"),
       desc: t("item1_desc"),
       sector: "both",
-      category: "Threshold Assessment",
+      category: t("cat_threshold_assessment"),
     },
     {
       id: "2",
@@ -55,7 +55,7 @@ export default async function ComplianceChecklistPage({
       title: t("item2_title"),
       desc: t("item2_desc"),
       sector: "both",
-      category: "SLA Reporting Window",
+      category: t("cat_sla_reporting_window"),
     },
     {
       id: "3",
@@ -63,7 +63,7 @@ export default async function ComplianceChecklistPage({
       title: t("item3_title"),
       desc: t("item3_desc"),
       sector: "banking",
-      category: "PII & Banking Secrecy",
+      category: t("cat_pii_banking_secrecy"),
     },
     {
       id: "4",
@@ -71,7 +71,7 @@ export default async function ComplianceChecklistPage({
       title: t("item4_title"),
       desc: t("item4_desc"),
       sector: "both",
-      category: "Audit Log Trail",
+      category: t("cat_audit_log_trail"),
     },
     {
       id: "5",
@@ -79,7 +79,7 @@ export default async function ComplianceChecklistPage({
       title: t("item5_title"),
       desc: t("item5_desc"),
       sector: "telecom",
-      category: "Post-Market Surveillance",
+      category: t("cat_post_market_surveillance"),
     },
     {
       id: "6",
@@ -87,7 +87,7 @@ export default async function ComplianceChecklistPage({
       title: t("item6_title"),
       desc: t("item6_desc"),
       sector: "banking",
-      category: "CRO & Ethics Escalation",
+      category: t("cat_cro_ethics_escalation"),
     },
     {
       id: "7",
@@ -95,7 +95,7 @@ export default async function ComplianceChecklistPage({
       title: t("item7_title"),
       desc: t("item7_desc"),
       sector: "both",
-      category: "Forensic RCA",
+      category: t("cat_forensic_rca"),
     },
     {
       id: "8",
@@ -103,7 +103,7 @@ export default async function ComplianceChecklistPage({
       title: t("item8_title"),
       desc: t("item8_desc"),
       sector: "telecom",
-      category: "Circuit-Breakers & Safeguards",
+      category: t("cat_circuit_breakers"),
     },
     {
       id: "9",
@@ -111,7 +111,7 @@ export default async function ComplianceChecklistPage({
       title: t("item9_title"),
       desc: t("item9_desc"),
       sector: "both",
-      category: "EU Cross-Border Notice",
+      category: t("cat_eu_cross_border"),
     },
     {
       id: "10",
@@ -119,15 +119,15 @@ export default async function ComplianceChecklistPage({
       title: t("item10_title"),
       desc: t("item10_desc"),
       sector: "telecom",
-      category: "Subscriber Notice",
+      category: t("cat_subscriber_notice"),
     },
     {
       id: "11",
       article: t("item11_article"),
-      title: t("item11_desc"),
+      title: t("item11_title"),
       desc: t("item11_desc"),
       sector: "banking",
-      category: "MLOps Retrain Loop",
+      category: t("cat_mlops_retrain_loop"),
     },
     {
       id: "12",
@@ -135,7 +135,7 @@ export default async function ComplianceChecklistPage({
       title: t("item12_title"),
       desc: t("item12_desc"),
       sector: "both",
-      category: "10-Year Dossier Retention",
+      category: t("cat_10yr_dossier_retention"),
     },
   ];
 
@@ -201,15 +201,15 @@ export default async function ComplianceChecklistPage({
             <div className="mt-8 inline-flex flex-wrap items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-6 py-3 text-xs font-medium text-gray-300 backdrop-blur-sm">
               <div className="flex items-center gap-1.5 text-blue-400">
                 <Building2 className="h-4 w-4" />
-                <span>Banking (EBA / DORA)</span>
+                <span>{t("callout_banking")}</span>
               </div>
               <span className="text-gray-600">•</span>
               <div className="flex items-center gap-1.5 text-emerald-400">
                 <Radio className="h-4 w-4" />
-                <span>Telecom (BEREC / NIS2)</span>
+                <span>{t("callout_telecom")}</span>
               </div>
               <span className="text-gray-600">•</span>
-              <span className="text-amber-400">Article 73 Compliance Standard</span>
+              <span className="text-amber-400">{t("callout_standard")}</span>
             </div>
           </div>
 

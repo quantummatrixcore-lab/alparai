@@ -17,6 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function OnboardingPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: "onboarding" });
 
   const user = await getCurrentUser();
   if (!user) {
@@ -26,9 +27,7 @@ export default async function OnboardingPage({ params }: { params: Promise<{ loc
   return (
     <Container size="narrow" className="py-12 md:py-20">
       <Suspense
-        fallback={
-          <div className="text-fg-muted text-center font-mono text-xs">Loading onboarding...</div>
-        }
+        fallback={<div className="text-fg-muted text-center font-mono text-xs">{t("loading")}</div>}
       >
         <OnboardingWizard locale={locale} />
       </Suspense>

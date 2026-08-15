@@ -1,0 +1,78 @@
+name: DevSecOps Pipeline (ALPAR Security Orchestration)
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  # FAZ 2: Yerel Geliştirici Ortamı & Secret Scanning
+  secret-scan:
+    name: Sır Taraması (Gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Gitleaks Çalıştır
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # Analistin okuması için log çıktısı
+        continue-on-error: true
+
+  # FAZ 3: CI/CD Otomatik Savunma Hattı
+  sast-scan:
+    name: SAST (Semgrep)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Semgrep CI
+        uses: returntocorp/semgrep-action@v1
+        with:
+          config: "p/default"
+          generateSarif: "1"
+        # Analistin okuması için log çıktısı
+        continue-on-error: true
+      - name: Sonuçları Kaydet
+        run: cp semgrep.sarif findings_semgrep.json || true
+      - uses: actions/upload-artifact@v3
+        with:
+          name: semgrep-findings
+          path: findings_semgrep.json
+
+  sca-scan:
+    name: SCA (Trivy)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Trivy Zafiyet Taraması
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          format: 'json'
+          output: 'findings_trivy.json'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+        # Analistin okuması için log çıktısı
+        continue-on-error: true
+      - uses: actions/upload-artifact@v3
+        with:
+          name: trivy-findings
+          path: findings_trivy.json
+
+  # FAZ 4: Orkestrasyon (Sürü Analizi)
+  ai-analysis:
+    name: AI Security Analyst Yorumlaması
+    needs: [secret-scan, sast-scan, sca-scan]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Tarama Sonuçlarını İndir
+        uses: actions/download-artifact@v3
+      - name: AI Analisti Tetikle (Node.js)
+        run: |
+          echo "Bulgular Toplandı (Findings Bus). AI Analist (ai_security_analyst) tetikleniyor..."
+          node security_orchestrator.js

@@ -39,25 +39,17 @@ const getRedis = (): Redis | null => {
 };
 
 const createInProcessHandle = (): QueueHandle => {
-  const inMemory = new Map<string, QueueJob>();
   return {
     available: false,
     push: async (job) => {
-      inMemory.set(job.id, job);
-      return job.id;
+      logger.error("[Wolf Pack] Serverless Amnesia engellendi: In-memory queue devre dışı. Lütfen Upstash Redis kurun.");
+      throw new Error("Wolf Pack Architecture requires Redis for inter-agent Swarm communication.");
     },
     pull: async (max) => {
-      const items: QueueJob[] = [];
-      for (const [, job] of inMemory) {
-        items.push(job);
-        if (items.length >= max) break;
-      }
-      return items;
+      return [];
     },
-    ack: async (id) => {
-      inMemory.delete(id);
-    },
-    size: async () => inMemory.size,
+    ack: async (id) => {},
+    size: async () => 0,
   };
 };
 

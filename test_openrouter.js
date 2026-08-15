@@ -1,0 +1,106 @@
+require('dotenv').config();
+const https = require('https');
+
+const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY || '';
+const MODEL = 'openai/gpt-4o-mini';
+const ENDPOINT = 'openrouter.ai';
+
+const maxRetries = 3;
+const baseDelayMs = 1000;
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function requestOpenRouter(prompt, retryCount = 0) {
+    const data = JSON.stringify({
+        model: MODEL,
+        messages: [{ role: 'user', content: prompt }]
+    });
+
+    const options = {
+        hostname: ENDPOINT,
+        path: '/api/v1/chat/completions',
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
+            'HTTP-Referer': 'http://localhost', 
+            'X-Title': 'Wolf Pack Test', 
+            'Content-Type': 'application/json',
+            'Content-Length': Buffer.byteLength(data)
+        }
+    };
+
+    return new Promise((resolve, reject) => {
+        const req = https.request(options, (res) => {
+            let body = '';
+            res.on('data', chunk => body += chunk);
+            res.on('end', async () => {
+                if (res.statusCode >= 200 && res.statusCode < 300) {
+                    try {
+                        const json = JSON.parse(body);
+                        resolve(json);
+                    } catch (e) {
+                        reject(new Error(`JSON Parse Error: ${e.message}`));
+                    }
+                } else if (res.statusCode === 429 || res.statusCode >= 500) {
+                    if (retryCount < maxRetries) {
+                        const delay = baseDelayMs * Math.pow(2, retryCount);
+                        console.log(`HTTP ${res.statusCode} alındı. ${delay}ms bekleniyor... (Deneme ${retryCount + 1}/${maxRetries})`);
+                        await sleep(delay);
+                        try {
+                            resolve(await requestOpenRouter(prompt, retryCount + 1));
+                        } catch(e) {
+                            reject(e);
+                        }
+                    } else {
+                        reject(new Error(`Max retries ulaşıldı. Son HTTP Kodu: ${res.statusCode}. Yanıt: ${body}`));
+                    }
+                } else {
+                    reject(new Error(`HTTP Hata: ${res.statusCode} - ${body}`));
+                }
+            });
+        });
+
+        req.on('error', async (error) => {
+            if (retryCount < maxRetries) {
+                const delay = baseDelayMs * Math.pow(2, retryCount);
+                console.log(`Ağ hatası: ${error.message}. ${delay}ms bekleniyor... (Deneme ${retryCount + 1}/${maxRetries})`);
+                await sleep(delay);
+                try {
+                    resolve(await requestOpenRouter(prompt, retryCount + 1));
+                } catch(e) {
+                    reject(e);
+                }
+            } else {
+                reject(error);
+            }
+        });
+
+        req.write(data);
+        req.end();
+    });
+}
+
+async function main() {
+    if (!OPENROUTER_API_KEY) {
+        console.error("HATA: OPENROUTER_API_KEY ortam değişkeni bulunamadı. Lütfen sisteme enjekte edildiğinden emin ol.");
+        process.exit(1);
+    }
+    
+    console.log("Wolf Pack sistem testi başlatılıyor (Hedef: Claude 3.5 Sonnet)...");
+    try {
+        const response = await requestOpenRouter("Wolf Pack sistem testi. Lütfen sadece 'Sistem aktif. Wolf Pack dinlemede.' yanıtını ver.");
+        if (response && response.choices && response.choices.length > 0) {
+            console.log("BAŞARILI! Model Yanıtı:");
+            console.log(response.choices[0].message.content);
+        } else {
+            console.log("Beklenmeyen yanıt formatı:", response);
+        }
+    } catch (error) {
+        console.error("Test Başarısız:", error.message);
+        process.exit(1);
+    }
+}
+
+main();

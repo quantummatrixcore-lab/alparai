@@ -136,6 +136,99 @@ export type Database = {
           }
           Relationships: []
         },
+
+        cease_and_desist_logs: {
+          Row: {
+            id: string
+            provider_id: string | null
+            threat_level: "low" | "medium" | "high" | "critical" | "existential"
+            legal_text: string
+            our_response: string
+            published_at: string
+            created_at: string
+          }
+          Insert: {
+            id?: string
+            provider_id?: string | null
+            threat_level: "low" | "medium" | "high" | "critical" | "existential"
+            legal_text: string
+            our_response: string
+            published_at: string
+            created_at?: string
+          }
+          Update: {
+            id?: string
+            provider_id?: string | null
+            threat_level?: "low" | "medium" | "high" | "critical" | "existential"
+            legal_text?: string
+            our_response?: string
+            published_at?: string
+            created_at?: string
+          }
+          Relationships: [
+            {
+              foreignKeyName: "cease_and_desist_logs_provider_id_fkey"
+              columns: ["provider_id"]
+              isOneToOne: false
+              referencedRelation: "ai_providers"
+              referencedColumns: ["id"]
+            }
+          ]
+        },
+        geo_citations: {
+          Row: {
+            id: string
+            ai_engine: string
+            query: string
+            cited_url: string
+            passage_snippet: string | null
+            bot_hit_count: number
+            created_at: string
+          }
+          Insert: {
+            id?: string
+            ai_engine: string
+            query: string
+            cited_url: string
+            passage_snippet?: string | null
+            bot_hit_count?: number
+            created_at?: string
+          }
+          Update: {
+            id?: string
+            ai_engine?: string
+            query?: string
+            cited_url?: string
+            passage_snippet?: string | null
+            bot_hit_count?: number
+            created_at?: string
+          }
+          Relationships: []
+        },
+        webhooks: {
+          Row: {
+            id: string
+            url: string
+            secret: string
+            provider_filter: string | null
+            created_at: string
+          }
+          Insert: {
+            id?: string
+            url: string
+            secret: string
+            provider_filter?: string | null
+            created_at?: string
+          }
+          Update: {
+            id?: string
+            url?: string
+            secret?: string
+            provider_filter?: string | null
+            created_at?: string
+          }
+          Relationships: []
+        },
       admin_login_events: {
         Row: {
           created_at: string

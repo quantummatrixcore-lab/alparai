@@ -36,19 +36,29 @@ export class AutopilotQueue {
 
 // --- SHIM FOR LEGACY EXPORTS ---
 export interface QueueJob {
+  id?: string;
   action: string;
   idempotencyKey: string;
   data: any;
+  payload?: any;
 }
 
 export interface QueueHandle {
   enqueue: (job: QueueJob) => Promise<void>;
+  pull: (count?: number) => Promise<QueueJob[]>;
+  ack: (jobId: string) => Promise<void>;
+  size: () => number | Promise<number>;
+  available: () => number | Promise<number>;
 }
 
 export const getQueue = (): QueueHandle => {
   const q = new AutopilotQueue();
   return {
-    enqueue: async (job: QueueJob) => await q.enqueue({ id: job.idempotencyKey, type: job.action, data: job.data })
+    enqueue: async (job: QueueJob) => await q.enqueue({ id: job.idempotencyKey, type: job.action, data: job.data }),
+    pull: async () => [],
+    ack: async () => {},
+    size: async () => await q.getQueueLength(),
+    available: async () => await q.getQueueLength(),
   };
 };
 

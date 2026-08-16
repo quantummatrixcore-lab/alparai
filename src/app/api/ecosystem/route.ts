@@ -26,6 +26,17 @@ export async function GET() {
       console.error('Developer profile read error:', e);
     }
 
+    // AlparAI Admin Data
+    let alparAdminProfile = null;
+    try {
+      const adminProfilePath = path.join(process.cwd(), 'alpar_admin_sync.json');
+      if (fs.existsSync(adminProfilePath)) {
+        alparAdminProfile = JSON.parse(fs.readFileSync(adminProfilePath, 'utf8'));
+      }
+    } catch (e) {
+      console.error('Admin profile read error:', e);
+    }
+
     // Altyapı durumu (Simüle edilmiş veya gerçek)
     const infraStatus = {
       wafMode: process.env.CLOUDFLARE_API_TOKEN ? 'Active' : 'Standby',
@@ -40,6 +51,9 @@ export async function GET() {
           gemini: geminiQuota,
           drive: storageQuota,
           developer: developerProfile
+        },
+        alparai: {
+          admin: alparAdminProfile
         },
         infrastructure: infraStatus
       }

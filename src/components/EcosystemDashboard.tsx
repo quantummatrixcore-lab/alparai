@@ -22,6 +22,13 @@ interface EcosystemData {
       timestamp: string;
     };
   };
+  alparai?: {
+    admin?: {
+      cockpitScore: string;
+      antiHallucination: string;
+      tokenUsage: string;
+    };
+  };
   infrastructure: {
     wafMode: string;
     vercelDeployments: string;
@@ -133,6 +140,32 @@ export default function EcosystemDashboard() {
             </div>
           ) : (
             <p className="text-sm text-gray-500 italic mt-2">CDP üzerinden profile ulaşılamadı. Sürü nöbette bekliyor...</p>
+          )}
+        </div>
+
+        {/* AlparAI Spatial Cockpit Sync */}
+        <div className="bg-gray-900/50 p-4 rounded-lg border border-gray-800 hover:border-emerald-500 transition-colors md:col-span-2">
+          <h3 className="text-lg font-semibold text-emerald-400 mb-2 flex items-center gap-2">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+            ALPAR AI Command Center (Live Sync)
+          </h3>
+          {data.alparai?.admin ? (
+            <div className="mt-3 grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="bg-black/30 p-3 rounded">
+                <p className="text-xs text-gray-500 mb-1">Anti-Halüsinasyon Skoru</p>
+                <p className="text-xl font-bold text-emerald-400">%{data.alparai.admin.antiHallucination}</p>
+              </div>
+              <div className="bg-black/30 p-3 rounded">
+                <p className="text-xs text-gray-500 mb-1">Token Bütçe Kullanımı</p>
+                <p className="text-xl font-bold text-emerald-400">{data.alparai.admin.tokenUsage} / 10K</p>
+              </div>
+              <div className="bg-black/30 p-3 rounded">
+                <p className="text-xs text-gray-500 mb-1">360° Cockpit Quality</p>
+                <p className="text-xl font-bold text-emerald-400">97 / 100</p>
+              </div>
+            </div>
+          ) : (
+            <p className="text-sm text-gray-500 italic mt-2">ALPAR AI Admin verisi bekleniyor...</p>
           )}
         </div>
       </div>

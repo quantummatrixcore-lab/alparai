@@ -16,6 +16,11 @@ interface EcosystemData {
       storageTotalGB?: number;
       usagePercentage?: string;
     };
+    developer?: {
+      level: string;
+      badgesFound?: string[];
+      timestamp: string;
+    };
   };
   infrastructure: {
     wafMode: string;
@@ -99,6 +104,36 @@ export default function EcosystemDashboard() {
         <div className="bg-gray-900/50 p-4 rounded-lg border border-gray-800 hover:border-purple-500 transition-colors">
           <h3 className="text-lg font-semibold text-purple-400 mb-2">Vercel Serverless</h3>
           <p className="text-sm text-gray-400">Dağıtım Motoru: <span className="font-mono text-white">{data.infrastructure.vercelDeployments}</span></p>
+        </div>
+
+        {/* Google Developer Profile */}
+        <div className="bg-gray-900/50 p-4 rounded-lg border border-gray-800 hover:border-cyan-500 transition-colors md:col-span-2">
+          <h3 className="text-lg font-semibold text-cyan-400 mb-2 flex items-center gap-2">
+            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            Google Developer Profile (Agent-OS Sızma Motoru)
+          </h3>
+          {data.google.developer ? (
+            <div className="mt-3">
+              <p className="text-sm text-gray-400 mb-1">Rank / Seviye: <span className="font-mono text-white">{data.google.developer.level}</span></p>
+              <div className="mt-2">
+                <p className="text-sm text-gray-400 mb-1">Kazanılan Rozetler ({data.google.developer.badgesFound?.length || 0}):</p>
+                <div className="flex flex-wrap gap-2">
+                  {data.google.developer.badgesFound && data.google.developer.badgesFound.length > 0 ? (
+                    data.google.developer.badgesFound.map((badge, idx) => (
+                      <span key={idx} className="px-2 py-1 text-xs font-mono bg-cyan-900/30 text-cyan-300 rounded border border-cyan-800">
+                        {badge}
+                      </span>
+                    ))
+                  ) : (
+                    <span className="text-xs text-gray-500 italic">Henüz rozet çekilemedi veya CDP senkronizasyonu bekleniyor.</span>
+                  )}
+                </div>
+              </div>
+              <p className="text-xs text-gray-600 mt-3 text-right">Son Senkronizasyon: {new Date(data.google.developer.timestamp).toLocaleString()}</p>
+            </div>
+          ) : (
+            <p className="text-sm text-gray-500 italic mt-2">CDP üzerinden profile ulaşılamadı. Sürü nöbette bekliyor...</p>
+          )}
         </div>
       </div>
     </div>

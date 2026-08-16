@@ -12,6 +12,19 @@ export async function GET() {
       googleBridge.getStorageQuotaInfo()
     ]);
 
+    // Developer Profile Sync Data
+    let developerProfile = null;
+    try {
+      const fs = require('fs');
+      const path = require('path');
+      const devProfilePath = path.join(process.cwd(), 'developer_profile_sync.json');
+      if (fs.existsSync(devProfilePath)) {
+        developerProfile = JSON.parse(fs.readFileSync(devProfilePath, 'utf8'));
+      }
+    } catch (e) {
+      console.error('Developer profile read error:', e);
+    }
+
     // Altyapı durumu (Simüle edilmiş veya gerçek)
     const infraStatus = {
       wafMode: process.env.CLOUDFLARE_API_TOKEN ? 'Active' : 'Standby',
@@ -24,7 +37,8 @@ export async function GET() {
       ecosystem: {
         google: {
           gemini: geminiQuota,
-          drive: storageQuota
+          drive: storageQuota,
+          developer: developerProfile
         },
         infrastructure: infraStatus
       }

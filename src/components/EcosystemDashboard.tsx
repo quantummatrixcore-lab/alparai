@@ -28,15 +28,34 @@ export default function EcosystemDashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/ecosystem')
-      .then(res => res.json())
+    const controller = new AbortController();
+    let isMounted = true;
+
+    fetch('/api/ecosystem', { signal: controller.signal })
+      .then(res => {
+        if (!res.ok) return null;
+        return res.json();
+      })
       .then(json => {
-        if (json.status === 'success') {
+        if (isMounted && json && json.status === 'success') {
           setData(json.ecosystem);
         }
       })
-      .catch(err => console.error('Ecosystem fetch error:', err))
-      .finally(() => setLoading(false));
+      .catch(err => {
+        if (err.name !== 'AbortError') {
+          // Graceful handling without console leakage
+        }
+      })
+      .finally(() => {
+        if (isMounted) {
+          setLoading(false);
+        }
+      });
+
+    return () => {
+      isMounted = false;
+      controller.abort();
+    };
   }, []);
 
   if (loading) return <div className="p-4 text-gray-500 animate-pulse">ALPAR Ecosystem Mimarisi Yükleniyor...</div>;

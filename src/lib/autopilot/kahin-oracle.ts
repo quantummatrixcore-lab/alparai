@@ -3,11 +3,9 @@ import { spawn } from 'child_process';
 import path from 'path';
 
 export class KahinOracle {
-  private eventBus: EventBus;
   private scriptPath: string;
 
-  constructor(eventBus: EventBus) {
-    this.eventBus = eventBus;
+  constructor(_eventBus: EventBus) {
     this.scriptPath = path.resolve(process.cwd(), 'kahin_cdp_bridge.js');
   }
 

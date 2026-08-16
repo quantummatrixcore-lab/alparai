@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { Send, CheckCircle2, Clock, Mail, ShieldCheck, Zap } from "lucide-react";
-import { useTranslations } from "next-intl";
 
 export function OutreachAutopilot() {
   const [isExecuting, setIsExecuting] = useState(false);

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Redis } from '@upstash/redis';
 
 const redis = new Redis({
@@ -32,3 +33,25 @@ export class AutopilotQueue {
     return await redis.llen(this.queueName);
   }
 }
+
+// --- SHIM FOR LEGACY EXPORTS ---
+export interface QueueJob {
+  action: string;
+  idempotencyKey: string;
+  data: any;
+}
+
+export interface QueueHandle {
+  enqueue: (job: QueueJob) => Promise<void>;
+}
+
+export const getQueue = (): QueueHandle => {
+  const q = new AutopilotQueue();
+  return {
+    enqueue: async (job: QueueJob) => await q.enqueue({ id: job.idempotencyKey, type: job.action, data: job.data })
+  };
+};
+
+export const enqueueAutopilotJob = async (action: string, idempotencyKey: string, data: any): Promise<void> => {
+  await getQueue().enqueue({ action, idempotencyKey, data });
+};

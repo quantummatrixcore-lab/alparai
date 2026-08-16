@@ -13,6 +13,17 @@ assertTestBypassSafe();
 const intlMiddleware = createIntlMiddleware(routing);
 
 export async function middleware(request: NextRequest) {
+  // CVE-2025-29927 Mitigation: Reject or strip forged internal Next.js routing headers
+  if (
+    request.headers.has("x-middleware-subrequest") ||
+    request.headers.has("x-middleware-rewrite")
+  ) {
+    logger.warn("[Security] Forged internal middleware header detected and dropped", {
+      ip: request.headers.get("x-forwarded-for") || "unknown",
+      path: request.nextUrl.pathname,
+    });
+  }
+
   const userAgent = request.headers.get("user-agent");
   if (userAgent) {
     void trackBotHit(userAgent, request.nextUrl.pathname).catch((err) => {
@@ -41,6 +52,9 @@ export async function middleware(request: NextRequest) {
 
   const requestId = request.headers.get("x-request-id") ?? crypto.randomUUID();
   const requestHeaders = new Headers(request.headers);
+  // Strip dangerous internal headers
+  requestHeaders.delete("x-middleware-subrequest");
+  requestHeaders.delete("x-middleware-rewrite");
   requestHeaders.set("x-request-id", requestId);
   requestHeaders.set("x-pathname", request.nextUrl.pathname);
 
@@ -137,6 +151,10 @@ export async function middleware(request: NextRequest) {
   }
 
   response.headers.set("x-request-id", requestId);
+  response.headers.set("X-Content-Type-Options", "nosniff");
+  response.headers.set("X-Frame-Options", "DENY");
+  response.headers.set("X-XSS-Protection", "1; mode=block");
+  response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
   return response;
 }
 

@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
@@ -221,7 +222,7 @@ export function RevenueShare() {
                   }}
                   itemStyle={{ color: 'var(--brand-400)', fontWeight: 600 }}
                   labelStyle={{ color: 'var(--fg-muted)', marginBottom: '4px' }}
-                  formatter={(value: number) => [formatNumber(value), "API İstek"]}
+                  formatter={(value: any) => [formatNumber(Number(value) || 0), "API İstek"]}
                 />
                 <Area 
                   type="monotone" 

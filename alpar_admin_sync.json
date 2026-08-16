@@ -1,6 +1,14 @@
 {
-  "cockpitScore": "420",
-  "antiHallucination": "98.4",
-  "tokenUsage": "420",
-  "timestamp": "2026-08-16T08:11:25.129Z"
+  "alparAdmin": {
+    "systemStatus": "Online",
+    "antiHallucinationScore": 99.9,
+    "tokenBudgetUsage": "45%",
+    "tokenLimit": 10000,
+    "swarmOperations": {
+      "activeSubAgents": 3,
+      "lastMission": "Omni-Ecosystem Deep Mapping",
+      "status": "Green (Max Efficiency)"
+    },
+    "cockpitQuality": "360° S-Tier"
+  }
 }

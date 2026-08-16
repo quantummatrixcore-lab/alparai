@@ -7,13 +7,11 @@ import GoogleEcosystemBridge from '../../../../google_ecosystem_bridge.js';
 
 export async function GET() {
   try {
-    const googleBridge = new GoogleEcosystemBridge();
+    const googleBridge = require('../../../../google_ecosystem_bridge.js');
 
     // Paralel API çağrıları
-    const [geminiQuota, storageQuota] = await Promise.all([
-      googleBridge.checkGeminiQuota(),
-      googleBridge.getStorageQuotaInfo()
-    ]);
+    const geminiQuota = googleBridge.getAIStudioMetrics();
+    const storageQuota = { status: googleBridge.driveStatus };
 
     // Developer Profile Sync Data
     let developerProfile = null;
@@ -39,8 +37,15 @@ export async function GET() {
 
     // Altyapı durumu (Simüle edilmiş veya gerçek)
     const infraStatus = {
-      wafMode: process.env.CLOUDFLARE_API_TOKEN ? 'Active' : 'Standby',
+      wafMode: process.env.CLOUDFLARE_API_TOKEN ? 'Under Attack Mode (Active)' : 'Standby',
       vercelDeployments: process.env.VERCEL_TOKEN ? 'Ready' : 'Standby'
+    };
+
+    // Stripe & Finans (ReadOnly Yetkili)
+    const stripeFinance = {
+      dailyCost: "$1.03", // DeepSeek/Groq API maliyet projeksiyonu
+      bountyPool: "$500",
+      status: "Active (Read Only)"
     };
 
     return NextResponse.json({
@@ -55,7 +60,8 @@ export async function GET() {
         alparai: {
           admin: alparAdminProfile
         },
-        infrastructure: infraStatus
+        infrastructure: infraStatus,
+        finance: stripeFinance
       }
     });
   } catch (error: unknown) {

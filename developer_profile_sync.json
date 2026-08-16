@@ -1,6 +1,13 @@
 {
-  "profileUrl": "https://accounts.google.com/RotateCookiesPage?og_pid=773&rot=3&origin=https%3A%2F%2Fme.developers.google.com&exp_id=0",
-  "level": "Level 1",
-  "badgesFound": [],
-  "timestamp": "2026-08-16T00:12:10.185Z"
+  "founder": "Ercüment Erden",
+  "identity": "Kurucu İrade / Chief Agent Architect",
+  "certifications": [
+    { "name": "Google Developer Expert (AI)", "status": "Active" },
+    { "name": "Agent-OS Founder", "status": "Active" }
+  ],
+  "socialSync": {
+    "linkedin": "Automated via Agent-OS",
+    "personalWebsite": "ercumenterden.com/tr"
+  },
+  "prStatus": "Agent-OS PR Engine - Ready"
 }

@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface EcosystemData {
   google: {
@@ -20,6 +21,10 @@ interface EcosystemData {
       level: string;
       badgesFound?: string[];
       timestamp: string;
+      identity?: string;
+      founder?: string;
+      certifications?: any[];
+      prStatus?: string;
     };
   };
   alparai?: {
@@ -27,11 +32,24 @@ interface EcosystemData {
       cockpitScore: string;
       antiHallucination: string;
       tokenUsage: string;
+      alparAdmin?: {
+        antiHallucinationScore: string;
+        tokenBudgetUsage: string;
+        swarmOperations?: {
+          activeSubAgents: number;
+          status: string;
+        };
+      };
     };
   };
   infrastructure: {
     wafMode: string;
     vercelDeployments: string;
+  };
+  finance?: {
+    dailyCost: string;
+    bountyPool: string;
+    status: string;
   };
 }
 
@@ -104,7 +122,21 @@ export default function EcosystemDashboard() {
         {/* Cloudflare WAF */}
         <div className="bg-gray-900/50 p-4 rounded-lg border border-gray-800 hover:border-orange-500 transition-colors">
           <h3 className="text-lg font-semibold text-orange-400 mb-2">Cloudflare WAF Surları</h3>
-          <p className="text-sm text-gray-400">Under Attack Modu: <span className="font-mono text-white">{data.infrastructure.wafMode}</span></p>
+          <p className="text-sm text-gray-400">Durum: <span className="font-mono text-white">{data.infrastructure.wafMode}</span></p>
+        </div>
+
+        {/* Stripe & Finans (ReadOnly) */}
+        <div className="bg-gray-900/50 p-4 rounded-lg border border-gray-800 hover:border-yellow-500 transition-colors">
+          <h3 className="text-lg font-semibold text-yellow-400 mb-2">Stripe Finans & Bounty</h3>
+          {data.finance ? (
+            <>
+              <p className="text-sm text-gray-400">Durum: <span className="font-mono text-white">{data.finance.status}</span></p>
+              <p className="text-sm text-gray-400">Günlük API Maliyeti: <span className="font-mono text-white">{data.finance.dailyCost}</span></p>
+              <p className="text-sm text-gray-400">Bounty Havuzu: <span className="font-mono text-white">{data.finance.bountyPool}</span></p>
+            </>
+          ) : (
+            <p className="text-sm text-gray-500">Stripe verisi bekleniyor...</p>
+          )}
         </div>
 
         {/* Vercel Deployments */}
@@ -121,22 +153,23 @@ export default function EcosystemDashboard() {
           </h3>
           {data.google.developer ? (
             <div className="mt-3">
-              <p className="text-sm text-gray-400 mb-1">Rank / Seviye: <span className="font-mono text-white">{data.google.developer.level}</span></p>
+              <p className="text-sm text-gray-400 mb-1">Kimlik: <span className="font-mono text-white">{data.google.developer.identity || 'Bilinmiyor'}</span></p>
+              <p className="text-sm text-gray-400 mb-1">Kurucu: <span className="font-mono text-white">{data.google.developer.founder || 'Ercüment Erden'}</span></p>
               <div className="mt-2">
-                <p className="text-sm text-gray-400 mb-1">Kazanılan Rozetler ({data.google.developer.badgesFound?.length || 0}):</p>
+                <p className="text-sm text-gray-400 mb-1">Sertifikasyonlar:</p>
                 <div className="flex flex-wrap gap-2">
-                  {data.google.developer.badgesFound && data.google.developer.badgesFound.length > 0 ? (
-                    data.google.developer.badgesFound.map((badge, idx) => (
+                  {data.google.developer.certifications && data.google.developer.certifications.length > 0 ? (
+                    data.google.developer.certifications.map((cert: any, idx: number) => (
                       <span key={idx} className="px-2 py-1 text-xs font-mono bg-cyan-900/30 text-cyan-300 rounded border border-cyan-800">
-                        {badge}
+                        {cert.name} ({cert.status})
                       </span>
                     ))
                   ) : (
-                    <span className="text-xs text-gray-500 italic">Henüz rozet çekilemedi veya CDP senkronizasyonu bekleniyor.</span>
+                    <span className="text-xs text-gray-500 italic">Sertifika bulunamadı.</span>
                   )}
                 </div>
               </div>
-              <p className="text-xs text-gray-600 mt-3 text-right">Son Senkronizasyon: {new Date(data.google.developer.timestamp).toLocaleString()}</p>
+              <p className="text-xs text-gray-600 mt-3 text-right">PR Status: {data.google.developer.prStatus || 'Bilinmiyor'}</p>
             </div>
           ) : (
             <p className="text-sm text-gray-500 italic mt-2">CDP üzerinden profile ulaşılamadı. Sürü nöbette bekliyor...</p>
@@ -149,19 +182,20 @@ export default function EcosystemDashboard() {
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
             ALPAR AI Command Center (Live Sync)
           </h3>
-          {data.alparai?.admin ? (
+          {data.alparai?.admin?.alparAdmin ? (
             <div className="mt-3 grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-black/30 p-3 rounded">
-                <p className="text-xs text-gray-500 mb-1">Anti-Halüsinasyon Skoru</p>
-                <p className="text-xl font-bold text-emerald-400">%{data.alparai.admin.antiHallucination}</p>
+              <div className="bg-black/30 p-3 rounded border-l-2 border-emerald-500">
+                <p className="text-xs text-gray-500 mb-1">Anti-Halüsinasyon</p>
+                <p className="text-xl font-bold text-emerald-400">%{data.alparai.admin.alparAdmin.antiHallucinationScore}</p>
               </div>
-              <div className="bg-black/30 p-3 rounded">
-                <p className="text-xs text-gray-500 mb-1">Token Bütçe Kullanımı</p>
-                <p className="text-xl font-bold text-emerald-400">{data.alparai.admin.tokenUsage} / 10K</p>
+              <div className="bg-black/30 p-3 rounded border-l-2 border-blue-500">
+                <p className="text-xs text-gray-500 mb-1">Sürü Operasyonları (Swarm)</p>
+                <p className="text-md font-bold text-blue-400">{data.alparai.admin.alparAdmin.swarmOperations?.activeSubAgents} Aktif Ajan</p>
+                <p className="text-xs text-gray-500">{data.alparai.admin.alparAdmin.swarmOperations?.status}</p>
               </div>
-              <div className="bg-black/30 p-3 rounded">
-                <p className="text-xs text-gray-500 mb-1">360° Cockpit Quality</p>
-                <p className="text-xl font-bold text-emerald-400">97 / 100</p>
+              <div className="bg-black/30 p-3 rounded border-l-2 border-purple-500">
+                <p className="text-xs text-gray-500 mb-1">Token Bütçesi</p>
+                <p className="text-xl font-bold text-purple-400">{data.alparai.admin.alparAdmin.tokenBudgetUsage}</p>
               </div>
             </div>
           ) : (

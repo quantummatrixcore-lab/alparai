@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
-import { Users, ChevronRight, Crown, Sparkles, BrainCircuit } from "lucide-react";
+import { ChevronRight, Crown, Sparkles, BrainCircuit } from "lucide-react";
 import { DIGITAL_TWINS } from "@/lib/agent-os/personas";
 
 export function AdvisorRoster() {
@@ -38,7 +38,7 @@ export function AdvisorRoster() {
       </div>
 
       <div className="relative z-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {twinsList.map((twin, idx) => {
+        {twinsList.map((twin) => {
           return (
             <div
               key={twin.id}

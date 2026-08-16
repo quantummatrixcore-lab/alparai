@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { DIGITAL_TWINS } from "@/lib/agent-os/personas";
+import { DIGITAL_TWINS, DIGITAL_TWINS_LIST } from "@/lib/agent-os/personas";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -12,11 +12,11 @@ import { Badge } from "@/components/ui/badge";
 export default function DigitalTwinsPage() {
   const [selectedTwin, setSelectedTwin] = useState<string | null>(null);
   const [message, setMessage] = useState("");
-  const [chatHistory, setChatHistory] = useState<{ role: "user" | "twin", content: string }[]>([]);
+  const [chatHistory, setChatHistory] = useState<{ role: "user" | "twin"; content: string }[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [modelUsed, setModelUsed] = useState<string | null>(null);
 
-  const twinList = Object.values(DIGITAL_TWINS);
+  const activePersona = selectedTwin ? DIGITAL_TWINS[selectedTwin] : null;
 
   const handleSendMessage = async () => {
     if (!message.trim() || !selectedTwin) return;
@@ -37,7 +37,9 @@ export default function DigitalTwinsPage() {
       if (!res.ok) throw new Error(data.error || "Failed to fetch response");
 
       setChatHistory((prev) => [...prev, { role: "twin", content: data.reply }]);
-      setModelUsed(data.modelUsed);
+      if (data.modelUsed) {
+        setModelUsed(data.modelUsed);
+      }
     } catch (error: any) {
       toast.error(error.message);
     } finally {
@@ -57,13 +59,13 @@ export default function DigitalTwinsPage() {
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-fg-muted text-lg">
           Tarihe yön veren dehaların zihin yapılarıyla doğrudan etkileşime geçin. 
-          Agent-OS "Model Arbitraj Motoru" sayesinde o anki en uygun yapay zeka modeliyle sıfır maliyete danışmanlık alın.
+          Agent-OS &quot;Model Arbitraj Motoru&quot; sayesinde en uygun yapay zeka modeliyle yüksek mantıksal kapasitede danışmanlık alın.
         </p>
       </div>
 
-      {!selectedTwin ? (
+      {!selectedTwin || !activePersona ? (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {twinList.map((twin) => (
+          {DIGITAL_TWINS_LIST.map((twin) => (
             <Card 
               key={twin.id} 
               className="group cursor-pointer border-white/10 bg-white/5 backdrop-blur-md transition-all hover:bg-white/10 hover:shadow-xl hover:shadow-brand-500/20"
@@ -94,7 +96,7 @@ export default function DigitalTwinsPage() {
         <div className="mx-auto max-w-4xl">
           <Button 
             variant="ghost" 
-            onClick={() => { setSelectedTwin(null); setChatHistory([]); }}
+            onClick={() => { setSelectedTwin(null); setChatHistory([]); setModelUsed(null); }}
             className="mb-6"
           >
             ← İkiz Seçimine Dön
@@ -104,8 +106,8 @@ export default function DigitalTwinsPage() {
             <CardHeader className="border-b border-white/10 bg-white/5 pb-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <CardTitle className="text-2xl">{DIGITAL_TWINS[selectedTwin].name}</CardTitle>
-                  <CardDescription>{DIGITAL_TWINS[selectedTwin].title}</CardDescription>
+                  <CardTitle className="text-2xl">{activePersona.name}</CardTitle>
+                  <CardDescription>{activePersona.title}</CardDescription>
                 </div>
                 {modelUsed && (
                   <Badge variant="outline" className="border-brand-500 text-brand-400">
@@ -150,7 +152,7 @@ export default function DigitalTwinsPage() {
                 <Input
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  placeholder={`${DIGITAL_TWINS[selectedTwin].name} ikizine sorunuzu yöneltin...`}
+                  placeholder={`${activePersona.name} ikizine sorunuzu yöneltin...`}
                   className="flex-1 border-white/20 bg-white/5"
                   disabled={isLoading}
                 />

@@ -1,12 +1,8 @@
 "use client";
 
-import React from "react";
-import { Calendar, Smile, TrendingUp, Sparkles, MessageCircle } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { Calendar, Smile } from "lucide-react";
 
 export function CalendarAndSentiment() {
-  const t = useTranslations("admin");
-
   return (
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
       {/* Sentiment Analysis */}

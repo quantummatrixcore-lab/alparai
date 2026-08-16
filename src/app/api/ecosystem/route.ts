@@ -1,4 +1,7 @@
 import { NextResponse } from 'next/server';
+import fs from 'fs';
+import path from 'path';
+
 // @ts-expect-error - Local JS modules without types
 import GoogleEcosystemBridge from '../../../../google_ecosystem_bridge.js';
 
@@ -15,8 +18,6 @@ export async function GET() {
     // Developer Profile Sync Data
     let developerProfile = null;
     try {
-      const fs = require('fs');
-      const path = require('path');
       const devProfilePath = path.join(process.cwd(), 'developer_profile_sync.json');
       if (fs.existsSync(devProfilePath)) {
         developerProfile = JSON.parse(fs.readFileSync(devProfilePath, 'utf8'));

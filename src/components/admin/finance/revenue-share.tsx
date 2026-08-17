@@ -222,7 +222,7 @@ export function RevenueShare() {
                   }}
                   itemStyle={{ color: 'var(--brand-400)', fontWeight: 600 }}
                   labelStyle={{ color: 'var(--fg-muted)', marginBottom: '4px' }}
-                  formatter={(value: number | string) => [formatNumber(Number(value) || 0), "API İstek"]}
+                  formatter={(value) => [formatNumber(Number(value) || 0), "API İstek"]}
                 />
                 <Area 
                   type="monotone" 

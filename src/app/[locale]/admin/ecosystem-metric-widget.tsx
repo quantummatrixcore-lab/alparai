@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function EcosystemMetricWidget() {
   // Demo % values for ecosystem usage, to be linked to real telemetry later
   const metrics = [

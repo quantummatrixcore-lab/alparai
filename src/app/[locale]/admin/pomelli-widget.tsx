@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function PomelliWidget() {
   return (
     <div className="p-4 border rounded shadow bg-white dark:bg-gray-800">

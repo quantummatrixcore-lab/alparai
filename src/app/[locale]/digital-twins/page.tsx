@@ -50,7 +50,7 @@ export default function DigitalTwinsPage() {
   return (
     <div className="container mx-auto max-w-6xl px-4 py-12">
       <div className="mb-12 text-center">
-        <Badge variant="secondary" className="mb-4">
+        <Badge variant="outline" className="mb-4">
           <Sparkles className="mr-2 h-4 w-4 text-brand-500" />
           Agent-OS: Bilge Kurul
         </Badge>

@@ -75,6 +75,13 @@ Grok 4 ve OpenCode modellerinden gelen sert eleştiriler doğrultusunda revize e
 
 - **Nemotron 3 Ultra (Enterprise Warning):** CDP tabanlı sıfır maliyetli scraping iç Ar-Ge içindir. Müşteriye B2B satılacak olan TruthScore motoru, yasal VPC içi API'ler (AWS Bedrock) üzerinden çalışacaktır.
 
+### M-13 · ⚡ PROMPT ENGINE & META-COGNITION ROUTER (YENİ)
+
+- **Görünmez İçsel Derleme:** Kullanıcı girdilerini otomatik olarak Opus/Flash seviyesi profesyonel İngilizce komutlara çeviren arka plan katmanı.
+- **Dinamik Rota Başlığı:** Tüm aksiyonların başında `⚡ Rota: engine_tom → prompt_engine → engine_strategist | MCP: none | Mode: swarm` formatıyla transparan süreç takibi.
+- **Token Ekonomisi:** Maximum semantik yoğunluk, sıfır dolgu metni (filler). Bağlam sıkıştırma (context compression) ve özyinelemeli budama (recursive pruning) ile maliyet optimizasyonu.
+- **Swarm Delegasyonu:** Kritik `high/critical` kompleksite görevlerinde `Fatih`, `Sinan`, `Atatürk`, `Cezeri` ve `Picasso` gibi dijital ikizlerin otonom devreye girmesi.
+
 ---
 
 ## 🎯 60 GÜNLÜK İCRA YOL HARİTASI (EXECUTION ROADMAP)

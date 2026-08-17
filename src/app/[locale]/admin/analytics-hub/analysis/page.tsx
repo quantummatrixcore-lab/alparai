@@ -25,7 +25,9 @@ export default async function AnalysisPage({ params }: { params: Promise<{ local
   }
 
   const supabase = await createServerClient();
-  const { data: aiModels } = await supabase.from("ai_models").select("*, ai_providers(name)");
+  const { data: aiModels } = await supabase
+    .from("ai_models")
+    .select("*, ai_providers!ai_models_provider_id_fkey(name)");
   const { data: freeModels } = await supabase.from("ai_free_models").select("*");
 
   const paidModels = (aiModels || []).map((model) => ({

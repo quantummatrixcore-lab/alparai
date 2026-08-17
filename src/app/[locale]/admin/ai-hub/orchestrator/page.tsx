@@ -9,6 +9,7 @@ import { AdminContainer, AdminPageHeader } from "@/components/admin/admin-design
 import { AiOrchestratorClient, type RoutingChain } from "@/components/admin/ai-orchestrator-client";
 
 import { AiHubTabs } from "@/components/admin/ai-hub-tabs";
+import { discoverFreeModels } from "@/lib/ai/discovery/fetch-models";
 
 export default async function AiOrchestratorAdminPage({
   params,
@@ -32,24 +33,12 @@ export default async function AiOrchestratorAdminPage({
   const costSavings = (costs || []).reduce((acc, c) => acc + (c.budget_usd - c.amount_usd), 0);
   const costSavingsStr = costSavings > 0 ? `$${costSavings.toFixed(2)}` : "$0.00";
 
-  const { data: dbModels } = await supabase
-    .from("ai_models")
-    .select(
-      `
-      id,
-      name,
-      status,
-      provider:ai_providers!ai_models_provider_id_fkey(name)
-    `,
-    )
-    .eq("status", "active")
-    .limit(10);
-
-  const freeModels = ((dbModels as Record<string, unknown>[]) || []).map((m) => ({
-    id: String(m.id || ""),
-    name: String(m.name || ""),
-    provider: (m.provider as { name?: string } | null)?.name || "Unknown Provider",
-    context_length: 128000,
+  const freeModelsList = await discoverFreeModels();
+  const freeModels = freeModelsList.slice(0, 10).map((m) => ({
+    id: m.id,
+    name: m.name,
+    provider: m.provider,
+    context_length: m.context_length || 128000,
   }));
 
   const avgTrustScore =

@@ -32,7 +32,10 @@ function verifySignature(body: string, signature: string | null): boolean {
   if (!secret || !signature) return false;
   const expected = "sha256=" + createHmac("sha256", secret).update(body).digest("hex");
   try {
-    return timingSafeEqual(Buffer.from(signature), Buffer.from(expected));
+    const sigBuf = Buffer.from(signature);
+    const expBuf = Buffer.from(expected);
+    if (sigBuf.length !== expBuf.length) return false;
+    return timingSafeEqual(sigBuf, expBuf);
   } catch {
     return false;
   }

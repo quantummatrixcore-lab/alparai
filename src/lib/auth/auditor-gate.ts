@@ -1,5 +1,14 @@
-import { createHash } from "crypto";
+import { createHash, timingSafeEqual } from "crypto";
 import { createAdminClient } from "@/lib/supabase/admin";
+
+function safeCompare(a: string, b: string): boolean {
+  const aBuf = Buffer.from(a);
+  const bBuf = Buffer.from(b);
+  if (aBuf.length !== bBuf.length) {
+    return false;
+  }
+  return timingSafeEqual(aBuf, bBuf);
+}
 
 export async function isAuthorizedAuditor(request: Request): Promise<boolean> {
   const authHeader = request.headers.get("authorization");
@@ -14,7 +23,7 @@ export async function isAuthorizedAuditor(request: Request): Promise<boolean> {
 
   // Check env key first
   const auditorEnvKey = process.env.AUDITOR_API_KEY;
-  if (auditorEnvKey && apiKey === auditorEnvKey) {
+  if (auditorEnvKey && safeCompare(apiKey, auditorEnvKey)) {
     return true;
   }
 

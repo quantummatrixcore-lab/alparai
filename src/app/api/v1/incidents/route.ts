@@ -1,7 +1,17 @@
 import { NextResponse } from "next/server";
 import { headers } from "next/headers";
+import { timingSafeEqual } from "crypto";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
+
+function safeCompare(a: string, b: string): boolean {
+  const aBuf = Buffer.from(a);
+  const bBuf = Buffer.from(b);
+  if (aBuf.length !== bBuf.length) {
+    return false;
+  }
+  return timingSafeEqual(aBuf, bBuf);
+}
 
 export async function GET(request: Request) {
   try {
@@ -11,14 +21,14 @@ export async function GET(request: Request) {
     if (!rl.ok) {
       return NextResponse.json(
         { error: "rate_limited", retryAfter: rl.retryAfter },
-        { status: 429 }
+        { status: 429 },
       );
     }
 
     const apiKey = request.headers.get("x-api-key");
     const validKey = process.env.PUBLIC_API_KEY;
 
-    if (!validKey || !apiKey || apiKey !== validKey) {
+    if (!validKey || !apiKey || !safeCompare(apiKey, validKey)) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 

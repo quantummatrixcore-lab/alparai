@@ -46,10 +46,6 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  if (request.headers.has("next-action")) {
-    return NextResponse.next();
-  }
-
   const requestId = request.headers.get("x-request-id") ?? crypto.randomUUID();
   const requestHeaders = new Headers(request.headers);
   // Strip dangerous internal headers

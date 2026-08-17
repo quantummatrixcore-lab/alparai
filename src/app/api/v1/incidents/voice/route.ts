@@ -1,10 +1,20 @@
 import { NextResponse } from "next/server";
 import { headers } from "next/headers";
+import { timingSafeEqual } from "crypto";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { maskPII } from "@/lib/pii/guardian";
 import { transcribeAudioBlob } from "@/actions/voice-incidents";
 import { submitIncident, type SubmitIncidentState } from "@/actions/incidents";
 import { z } from "zod";
+
+function safeCompare(a: string, b: string): boolean {
+  const aBuf = Buffer.from(a);
+  const bBuf = Buffer.from(b);
+  if (aBuf.length !== bBuf.length) {
+    return false;
+  }
+  return timingSafeEqual(aBuf, bBuf);
+}
 
 // Maximum audio file size limit: 25MB
 const MAX_AUDIO_SIZE_BYTES = 25 * 1024 * 1024;
@@ -62,7 +72,7 @@ export async function POST(request: Request) {
     // 2. Optional API Key Authentication
     const apiKey = request.headers.get("x-api-key");
     const validKey = process.env.PUBLIC_API_KEY;
-    if (apiKey && validKey && apiKey !== validKey) {
+    if (apiKey && validKey && !safeCompare(apiKey, validKey)) {
       return NextResponse.json(
         { success: false, error: "Unauthorized: Invalid API key" },
         { status: 401 },

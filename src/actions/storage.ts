@@ -6,6 +6,9 @@ import { headers } from "next/headers";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { createClient } from "@/lib/supabase/server";
 
+export const MAX_STORAGE_FILE_SIZE_BYTES = 10 * 1024 * 1024; // 10MB
+export const ALLOWED_STORAGE_MIME_TYPES = ["image/png", "image/jpeg", "application/pdf"] as const;
+
 export async function uploadIncidentEvidence(formData: FormData) {
   try {
     const hdrs = await headers();
@@ -27,6 +30,24 @@ export async function uploadIncidentEvidence(formData: FormData) {
 
     if (!incidentId) {
       return { success: false, error: "Incident ID is missing" };
+    }
+
+    // Security Gate: 10MB size limit
+    if (file.size > MAX_STORAGE_FILE_SIZE_BYTES) {
+      return {
+        success: false,
+        error: "Dosya boyutu 10MB sınırını aşamaz (Maximum 10MB allowed).",
+      };
+    }
+
+    // Security Gate: MIME type whitelist
+    if (
+      !ALLOWED_STORAGE_MIME_TYPES.includes(file.type as (typeof ALLOWED_STORAGE_MIME_TYPES)[number])
+    ) {
+      return {
+        success: false,
+        error: `Geçersiz dosya türü (${file.type}). Yalnızca PNG, JPEG ve PDF formatlarına izin verilmektedir.`,
+      };
     }
 
     // Convert Web File to Node.js Buffer

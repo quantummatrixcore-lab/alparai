@@ -1,14 +1,16 @@
-const http = require('http');
-const fs = require('fs');
-const path = require('path');
+const http = require("http");
+const fs = require("fs");
+const path = require("path");
 
 async function getTabs() {
   return new Promise((resolve, reject) => {
-    http.get('http://localhost:9222/json', (res) => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => resolve(JSON.parse(data)));
-    }).on('error', reject);
+    http
+      .get("http://localhost:9222/json", (res) => {
+        let data = "";
+        res.on("data", (chunk) => (data += chunk));
+        res.on("end", () => resolve(JSON.parse(data)));
+      })
+      .on("error", reject);
   });
 }
 
@@ -43,10 +45,10 @@ class CDPClient {
   }
 
   async eval(expression) {
-    const res = await this.send('Runtime.evaluate', {
+    const res = await this.send("Runtime.evaluate", {
       expression,
       returnByValue: true,
-      awaitPromise: true
+      awaitPromise: true,
     });
     return res.result?.value;
   }
@@ -54,14 +56,16 @@ class CDPClient {
 
 async function main() {
   const tabs = await getTabs();
-  const aiStudioTab = tabs.find(t => t.url.includes('aistudio.google.com/api-keys'));
-  
+  const aiStudioTab = tabs.find((t) => t.url.includes("aistudio.google.com/api-keys"));
+
   if (!aiStudioTab) {
-    console.log('AI Studio sekmesi bulunamadı. Lütfen https://aistudio.google.com/api-keys adresini açık tutun.');
+    console.log(
+      "AI Studio sekmesi bulunamadı. Lütfen https://aistudio.google.com/api-keys adresini açık tutun.",
+    );
     process.exit(1);
   }
 
-  console.log('⚡ Hedef Sekme:', aiStudioTab.title);
+  console.log("⚡ Hedef Sekme:", aiStudioTab.title);
   const client = new CDPClient(aiStudioTab.webSocketDebuggerUrl);
 
   const script = `
@@ -80,26 +84,29 @@ async function main() {
   `;
 
   let apiKey = await client.eval(script);
-  
+
   if (apiKey) {
-    console.log('🔑 API Anahtarı başarıyla tarayıcıdan (DOM) çekildi (Loglara yazdırılmıyor).');
-    const envPath = path.join(__dirname, '.env');
-    let envContent = '';
-    
+    console.log("🔑 API Anahtarı başarıyla tarayıcıdan (DOM) çekildi (Loglara yazdırılmıyor).");
+    const envPath = path.join(__dirname, ".env");
+    let envContent = "";
+
     if (fs.existsSync(envPath)) {
-      envContent = fs.readFileSync(envPath, 'utf8');
+      envContent = fs.readFileSync(envPath, "utf8");
     }
-    
-    if (envContent.includes('GOOGLE_GEMINI_API_KEY=')) {
-      envContent = envContent.replace(/GOOGLE_GEMINI_API_KEY=.*/g, `GOOGLE_GEMINI_API_KEY=${apiKey}`);
+
+    if (envContent.includes("GOOGLE_GEMINI_API_KEY=")) {
+      envContent = envContent.replace(
+        /GOOGLE_GEMINI_API_KEY=.*/g,
+        `GOOGLE_GEMINI_API_KEY=${apiKey}`,
+      );
     } else {
       envContent += `\nGOOGLE_GEMINI_API_KEY=${apiKey}\n`;
     }
-    
-    fs.writeFileSync(envPath, envContent, 'utf8');
-    console.log('✅ .env dosyası GOOGLE_GEMINI_API_KEY ile güncellendi!');
+
+    fs.writeFileSync(envPath, envContent, "utf8");
+    console.log("✅ .env dosyası GOOGLE_GEMINI_API_KEY ile güncellendi!");
   } else {
-    console.log('❌ API Anahtarı okunamadı.');
+    console.log("❌ API Anahtarı okunamadı.");
   }
 
   process.exit(0);

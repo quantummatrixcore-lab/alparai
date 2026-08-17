@@ -9,13 +9,11 @@ export const dynamic = "force-dynamic";
 
 async function getHandler(request: NextRequest) {
   const authHeader = request.headers.get("authorization");
-  const isVercelCron = request.headers.get("x-vercel-cron") === "1";
   const cronSecret = process.env.CRON_SECRET;
 
   const isAuthorized =
-    isVercelCron ||
-    (cronSecret && authHeader === `Bearer ${cronSecret}`) ||
-    process.env.NODE_ENV !== "production";
+    Boolean(cronSecret && authHeader === `Bearer ${cronSecret}`) ||
+    (process.env.NODE_ENV !== "production" && !cronSecret);
 
   if (!isAuthorized) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

@@ -1,5 +1,15 @@
 import { NextResponse } from "next/server";
+import { timingSafeEqual } from "crypto";
 import { logger } from "@/lib/utils/logger";
+
+function safeCompare(a: string, b: string): boolean {
+  const aBuf = Buffer.from(a);
+  const bBuf = Buffer.from(b);
+  if (aBuf.length !== bBuf.length) {
+    return false;
+  }
+  return timingSafeEqual(aBuf, bBuf);
+}
 
 const VERCEL_PROJECT_ID = "prj_REYJORnuYOT4tk28iMXnKZBCGkjL";
 const VERCEL_TEAM_ID = "team_g1woIK466hduGfKkuZN6LpkV";
@@ -8,9 +18,10 @@ export async function POST(request: Request) {
   try {
     const url = new URL(request.url);
     const secret = url.searchParams.get("secret");
+    const webhookSecret = process.env.SENTRY_WEBHOOK_SECRET;
 
     // 1. Secret authorization check
-    if (secret !== process.env.SENTRY_WEBHOOK_SECRET) {
+    if (!secret || !webhookSecret || !safeCompare(secret, webhookSecret)) {
       return NextResponse.json({ error: "unauthorized" }, { status: 401 });
     }
 

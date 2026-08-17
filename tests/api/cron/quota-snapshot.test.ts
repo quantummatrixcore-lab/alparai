@@ -79,14 +79,14 @@ describe("Quota Snapshot Cron Route (/api/cron/quota-snapshot)", () => {
     expect(mockUpsert).not.toHaveBeenCalled();
   });
 
-  it("accepts x-vercel-cron header in production", async () => {
+  it("rejects x-vercel-cron header without valid CRON_SECRET in production", async () => {
     vi.stubEnv("NODE_ENV", "production");
     buildFetchMock(successHandler);
     const req = new Request("http://localhost/api/cron/quota-snapshot", {
       headers: { "x-vercel-cron": "1" },
     });
     const res = await GET(req as NextRequest);
-    expect(res.status).toBe(200);
+    expect(res.status).toBe(401);
   });
 
   it("captures GitHub, Vercel, and Supabase and writes source='api' rows", async () => {

@@ -89,7 +89,7 @@ const processJob = async (job: QueueJob): Promise<"ok" | "retry" | "fail"> => {
   const policy = getPolicy(job.action);
   const result = await withAutopilot(
     policy,
-    [job.id, job.idempotencyKey],
+    [job.id || "", job.idempotencyKey],
     async (ctx) => handler(job, ctx),
     { context: { userId: null, ipHash: null, clientIdempotencyKey: job.idempotencyKey } },
   );
@@ -126,7 +126,7 @@ export const runAutopilotWorkerOnce = async (
     if (outcome === "ok") stats.succeeded += 1;
     else if (outcome === "retry") stats.retried += 1;
     else stats.failed += 1;
-    await queue.ack(job.id);
+    await queue.ack(job.id || "");
   }
   stats.durationMs = Date.now() - started;
   return stats;
@@ -169,7 +169,7 @@ export const runAutopilotWorker = async (
       if (outcome === "ok") aggregate.succeeded += 1;
       else if (outcome === "retry") aggregate.retried += 1;
       else aggregate.failed += 1;
-      await queue.ack(job.id);
+      await queue.ack(job.id || "");
     }
   }
   aggregate.durationMs = Date.now() - started;

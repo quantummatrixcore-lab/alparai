@@ -20,7 +20,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ locale
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "profile" });
   const user = await getCurrentUser();
-  if (!user) redirect(`/${locale}/auth/signin?next=/${locale}/profile`);
+  if (!user) { redirect(`/${locale}/auth/signin?next=/${locale}/profile`); return null; }
 
   const supabase = await createServerClient();
   const [{ count: myIncidents }, { count: mySuggestions }, { data: dbUser }] = await Promise.all([

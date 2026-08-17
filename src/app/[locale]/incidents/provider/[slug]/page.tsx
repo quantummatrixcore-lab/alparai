@@ -44,7 +44,10 @@ export default async function ProviderIncidentsPage({
     .eq("slug", slug)
     .maybeSingle();
 
-  if (!provider) notFound();
+  if (!provider) {
+    notFound();
+    return null;
+  }
 
   const { data: incidents } = await supabase
     .from("incidents")

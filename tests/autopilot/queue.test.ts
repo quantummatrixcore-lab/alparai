@@ -44,7 +44,7 @@ describe("Autopilot Queue", () => {
     expect(jobs[0]).toBeDefined();
     expect(jobs[0]!.action).toBe("test-action");
 
-    await q.ack(jobs[0]!.id);
+    await q.ack(jobs[0]!.id as string);
     expect(await q.size()).toBe(0);
   });
 

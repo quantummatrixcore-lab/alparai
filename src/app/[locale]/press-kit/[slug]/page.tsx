@@ -144,8 +144,6 @@ export default async function BrandPage({
   const totalViews = allIncidents.reduce((sum, i) => sum + ((i["views_count"] as number) ?? 0), 0);
   const avgViews = totalIncidents > 0 ? Math.round(totalViews / totalIncidents) : 0;
 
-  const trustScore = calculateTrustScore(totalIncidents, responseCount, responseCount);
-
   const incidents: IncidentListItem[] = toIncidentListItems(incidentsRes.data).map((item) => ({
     ...item,
     provider_name: providerName,
@@ -361,11 +359,11 @@ export default async function BrandPage({
           <CardContent className="space-y-3 text-sm">
             <div className="flex items-center justify-between">
               <span className="text-fg-muted">{t("published")}</span>
-              <span className="text-success-500 font-semibold">{publishedIncidents}</span>
+              <span className="text-success-500 font-semibold">{totalIncidents}</span>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-fg-muted">{t("responsesGiven")}</span>
-              <span className="text-brand-400 font-semibold">{responseCount}</span>
+              <span className="text-brand-400 font-semibold">{totalResponses}</span>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-fg-muted">{t("totalViews")}</span>
@@ -373,7 +371,7 @@ export default async function BrandPage({
             </div>
             <div className="flex items-center justify-between">
               <span className="text-fg-muted">{t("incidentsResponded")}</span>
-              <span className="text-accent-400 font-semibold">{respondedIncidentIds.size}</span>
+              <span className="text-accent-400 font-semibold">{new Set(responses.map((r: any) => r.incident_id)).size}</span>
             </div>
           </CardContent>
         </Card>

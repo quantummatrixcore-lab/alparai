@@ -43,7 +43,7 @@ export async function POST(
     const adminClient = createAdminClient();
     let isAuthorized = false;
     try {
-      const { data: keyData, error: keyError } = await adminClient
+      const { data: keyData, error: keyError } = await (adminClient as any)
         .from("api_keys")
         .select("id, status")
         .eq("key", apiKey)
@@ -177,13 +177,13 @@ export async function POST(
 
     // 9. Log Usage (Vekilharçlık Kaydı)
     try {
-      const { error: rpcError } = await adminClient.rpc("increment_persona_usage", { 
+      const { error: rpcError } = await (adminClient.rpc as any)("increment_persona_usage", { 
         p_twin_id: twinId, 
         p_tokens: totalTokens 
       });
       
       if (rpcError) {
-        await adminClient.from("persona_usage_stats").insert({
+        await (adminClient as any).from("persona_usage_stats").insert({
           twin_id: twinId,
           tokens_used: totalTokens,
           request_count: 1,

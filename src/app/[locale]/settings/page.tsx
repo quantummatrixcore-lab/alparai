@@ -21,7 +21,7 @@ export default async function SettingsPage({ params }: { params: Promise<{ local
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "settings" });
   const user = await getCurrentUser();
-  if (!user) redirect(`/${locale}/auth/signin?next=/${locale}/settings`);
+  if (!user) { redirect(`/${locale}/auth/signin?next=/${locale}/settings`); return null; }
 
   const prefs = await getEmailPreferences(user.id);
   const admin = createAdminClient();

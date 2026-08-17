@@ -18,7 +18,10 @@ export default async function MyIncidentsPage({ params }: { params: Promise<{ lo
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "myIncidents" });
   const user = await getCurrentUser();
-  if (!user) redirect(`/${locale}/auth/signin?next=/${locale}/my-incidents`);
+  if (!user) {
+    redirect(`/${locale}/auth/signin?next=/${locale}/my-incidents`);
+    return null;
+  }
 
   const supabase = await createServerClient();
   const { data } = await supabase

@@ -1,8 +1,7 @@
-// @ts-nocheck
 /* eslint-disable */
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // Founder Admin Panel v2 - Agent-OS Premium UI
 export default function FounderAdminPanel() {

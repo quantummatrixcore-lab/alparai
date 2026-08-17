@@ -30,7 +30,7 @@ export default async function ModelHistoryPage({
     .eq("id", modelSlug)
     .single();
 
-  if (!model) notFound();
+  if (!model) { notFound(); return null; }
 
   const { data: scores } = await supabase
     .from("k_model_scores")

@@ -25,25 +25,6 @@ import { PlausibleWithConsent } from "@/components/plausible-consent";
 import { UtmTracker } from "@/components/analytics/utm-tracker";
 import { ReferralTracker } from "@/components/marketing/referral-tracker";
 import "../globals.css";
-import { Inter, Outfit, JetBrains_Mono } from "next/font/google";
-
-const sans = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-});
-
-const display = Outfit({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-});
-
-const mono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  display: "swap",
-});
 
 export const metadata = {
   metadataBase: new URL("https://alparai.com"),
@@ -93,7 +74,6 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       dir={dir}
-      className={`${sans.variable} ${display.variable} ${mono.variable}`}
       suppressHydrationWarning
     >
       <head>

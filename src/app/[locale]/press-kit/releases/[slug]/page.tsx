@@ -33,7 +33,7 @@ export default async function PressReleasePage({
   const t = await getTranslations({ locale, namespace: "pressKit" });
 
   const release = PRESS_RELEASES.find((r) => r.slug === slug);
-  if (!release) notFound();
+  if (!release) { notFound(); return null; }
 
   const isEn = locale === "en";
   const title = release.title[isEn ? "en" : "tr"];

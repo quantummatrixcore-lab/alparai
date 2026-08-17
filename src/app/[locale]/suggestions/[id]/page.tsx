@@ -43,7 +43,10 @@ export default async function SuggestionDetailPage({
     .eq("id", id)
     .maybeSingle();
 
-  if (error || !suggestion) notFound();
+  if (error || !suggestion) {
+    notFound();
+    return null;
+  }
 
   // Fetch comments
   const { data: commentsData } = await supabase

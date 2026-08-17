@@ -21,7 +21,7 @@ export default getRequestConfig(async ({ requestLocale }: { requestLocale?: Prom
     locale = DEFAULT_LOCALE;
   }
 
-  let messages: AbstractIntlMessages;
+  let messages: AbstractIntlMessages = {} as any;
   try {
     const loader = localeMessages[locale as Locale] ?? localeMessages[DEFAULT_LOCALE];
     messages = (await loader()).default;

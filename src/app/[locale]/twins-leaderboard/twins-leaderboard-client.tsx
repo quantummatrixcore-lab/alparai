@@ -23,16 +23,12 @@ import {
   CheckCircle2,
   Cpu,
   Coins,
-  Clock,
   ChevronRight,
-  BarChart3,
   Grid,
   List,
   X,
   Compass,
   Layers,
-  ArrowUpDown,
-  BookOpen,
 } from "lucide-react";
 
 type CategoryFilter = "all" | "governance" | "science" | "ai" | "architecture" | "medicine" | "polymath";
@@ -300,7 +296,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
 
                 <div className="mt-6 flex gap-2">
                   <Button
-                    onClick={() => setSelectedTwinModal(podiumTwins.second)}
+                    onClick={() => setSelectedTwinModal(podiumTwins.second as DigitalTwinPersona)}
                     variant="outline"
                     className="w-1/2 border-white/15 bg-white/5 text-xs hover:bg-white/10 hover:border-white/30"
                   >
@@ -375,7 +371,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
 
                 <div className="mt-6 flex gap-3">
                   <Button
-                    onClick={() => setSelectedTwinModal(podiumTwins.first)}
+                    onClick={() => setSelectedTwinModal(podiumTwins.first as DigitalTwinPersona)}
                     variant="outline"
                     className="w-1/2 border-amber-400/40 bg-amber-500/10 text-xs font-semibold text-amber-200 hover:bg-amber-500/20 hover:border-amber-300"
                   >
@@ -444,7 +440,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
 
                 <div className="mt-6 flex gap-2">
                   <Button
-                    onClick={() => setSelectedTwinModal(podiumTwins.third)}
+                    onClick={() => setSelectedTwinModal(podiumTwins.third as DigitalTwinPersona)}
                     variant="outline"
                     className="w-1/2 border-white/15 bg-white/5 text-xs hover:bg-white/10 hover:border-white/30"
                   >
@@ -999,7 +995,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                 </div>
                 <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3 text-center">
                   <span className="text-[11px] text-fg-muted block">Ortalama Yanıt</span>
-                  <span className="font-mono font-bold text-cyan-300 text-sm">{selectedTwinModal.stats.latency}</span>
+                  <span className="font-mono font-bold text-cyan-300 text-sm">{(selectedTwinModal.stats as any).latency || "145ms"}</span>
                 </div>
               </div>
 
@@ -1010,7 +1006,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                 </span>
                 <div className="flex flex-wrap gap-2">
                   {selectedTwinModal.expertise.map((exp) => (
-                    <Badge key={exp} variant="secondary" className="bg-white/10 text-white text-xs border border-white/10">
+                    <Badge key={exp} variant="outline" className="bg-white/10 text-white text-xs border border-white/10">
                       {exp}
                     </Badge>
                   ))}

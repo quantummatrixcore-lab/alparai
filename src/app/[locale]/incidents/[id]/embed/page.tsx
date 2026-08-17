@@ -45,7 +45,10 @@ export default async function IncidentEmbedPage({ params }: EmbedPageProps) {
     .eq("status", "published")
     .maybeSingle();
 
-  if (!incident) notFound();
+  if (!incident) {
+    notFound();
+    return null;
+  }
 
   // Fetch provider & model details
   const [providerRes, modelRes] = await Promise.all([

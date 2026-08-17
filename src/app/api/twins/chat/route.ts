@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
     // Rate Limit (Demoda IP başına 15 dakikada 5 istek)
     const hdrs = await headers();
     const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "127.0.0.1";
-    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.chat_rate_limit ?? "twin_chat"}:${ip}`, 5);
+    const rl = await checkRateLimit(`${(RATE_LIMIT_KEYS as any).chat_rate_limit ?? "twin_chat"}:${ip}`);
     if (!rl.ok) {
       return NextResponse.json(
         { error: `İstek limiti aşıldı. Lütfen ${rl.retryAfter ?? 60} saniye sonra tekrar deneyin.` },

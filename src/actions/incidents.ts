@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { waitUntil } from "@vercel/functions";
 import { getLocale, getTranslations } from "next-intl/server";
 import { logger } from "@/lib/utils/logger";
 import { createServerClient } from "@/lib/supabase/server";
@@ -29,6 +30,8 @@ import {
   getProviderAlertEmail,
 } from "@/emails/templates";
 import { translateIncidentToTR } from "@/actions/translations";
+import { autoModerateIncidentAction } from "@/actions/autopilot-moderate";
+import { runCrossAudit } from "@/lib/ai/cross-audit-engine";
 import { triggerClaimAndRespondAlert } from "@/lib/notifications/claim-and-respond";
 import { isTestAuthBypassActive, assertTestBypassSafe } from "@/lib/auth/test-bypass";
 import type { Database } from "@/types/database";
@@ -338,8 +341,13 @@ const runSubmitWork = async (
         }
       }
 
-      await Promise.all(emailPromises);
-      logger.info("Resend emails dispatched successfully", { incidentId });
+      waitUntil(
+        Promise.all(emailPromises).then(() => {
+          logger.info("Resend emails dispatched successfully", { incidentId });
+        }).catch((emailErr) => {
+          logger.error("Failed to send Resend emails", { error: emailErr, incidentId });
+        })
+      );
     } catch (emailErr) {
       logger.error("Failed to send Resend emails", { error: emailErr, incidentId });
     }
@@ -347,22 +355,24 @@ const runSubmitWork = async (
     logger.info("Resend email simulation (no RESEND_API_KEY configuration)", { incidentId });
   }
 
-  // Fire-and-forget translation
-  translateIncidentToTR(incidentId).catch((err) => {
-    logger.error("Failed to auto-translate incident", { incidentId, err });
-  });
+  // Auto-translate incident
+  waitUntil(
+    translateIncidentToTR(incidentId).catch(err => {
+      logger.error("Failed to auto-translate incident", { incidentId, err });
+    })
+  );
 
-  try {
-    await triggerClaimAndRespondAlert({
+  waitUntil(
+    triggerClaimAndRespondAlert({
       incidentId,
       providerId: providerIsCustom ? null : raw.provider_id || null,
       modelId: isCustomValue(raw.model_id) ? null : raw.model_id || null,
       title: raw.title,
       severity: (raw.severity as "low" | "medium" | "high" | "critical") || "medium",
-    });
-  } catch (claimErr) {
-    logger.warn("Failed to trigger Claim & Respond alert", { incidentId, error: claimErr });
-  }
+    }).catch(claimErr => {
+      logger.warn("Failed to trigger Claim & Respond alert", { incidentId, error: claimErr });
+    })
+  );
 
   return { kind: "success", value: { id: incidentId } };
 };
@@ -370,6 +380,8 @@ const runSubmitWork = async (
 export async function preTriageCheck(
   title: string,
   description: string,
+  excludeIncidentId?: string,
+  ipHash?: string,
 ): Promise<{ ok: boolean; reason?: string }> {
   try {
     // 1. Length checks: description must have at least 15 words. Title must be >= 10 chars.
@@ -415,8 +427,8 @@ export async function preTriageCheck(
 
     if (redis) {
       try {
-        const isCachedDuplicate = await redis.get<string>(cacheKey);
-        if (isCachedDuplicate) {
+        const cachedIncidentId = await redis.get<string>(cacheKey);
+        if (cachedIncidentId && (!excludeIncidentId || cachedIncidentId !== excludeIncidentId)) {
           return {
             ok: false,
             reason:
@@ -430,18 +442,25 @@ export async function preTriageCheck(
 
     const admin = createAdminClient();
     const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
-    const { data: duplicate } = await admin
+    let query = admin
       .from("incidents")
       .select("id")
       .eq("title", title.trim())
-      .gt("created_at", thirtyDaysAgo)
-      .limit(1)
-      .maybeSingle();
+      .gt("created_at", thirtyDaysAgo);
+
+    if (excludeIncidentId) {
+      query = query.neq("id", excludeIncidentId);
+    }
+    if (ipHash) {
+      query = query.neq("ip_hash", ipHash);
+    }
+
+    const { data: duplicate } = await query.limit(1).maybeSingle();
 
     if (duplicate) {
       if (redis) {
         try {
-          await redis.set(cacheKey, "1", { ex: 30 * 24 * 60 * 60 });
+          await redis.set(cacheKey, duplicate.id, { ex: 30 * 24 * 60 * 60 });
         } catch {
           // Ignored
         }
@@ -454,7 +473,7 @@ export async function preTriageCheck(
 
     if (redis) {
       try {
-        await redis.set(cacheKey, "1", { ex: 30 * 24 * 60 * 60 });
+        await redis.set(cacheKey, excludeIncidentId || "1", { ex: 30 * 24 * 60 * 60 });
       } catch {
         // Ignored
       }
@@ -487,37 +506,45 @@ export async function submitIncident(
     const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
     const clientIdempotencyKey = hdrs.get("x-idempotency-key");
     const userIdForRl = user?.id ?? "anonymous";
+    const redis = clientIdempotencyKey ? getRedisInstance() : null;
+    const redisIdemKey = clientIdempotencyKey ? `idem:${clientIdempotencyKey}` : null;
 
-    if (clientIdempotencyKey) {
-      const redis = getRedisInstance();
-      if (redis) {
-        try {
-          const redisKey = `idem:${clientIdempotencyKey}`;
-          const existingIncidentId = await redis.get<string>(redisKey);
-          if (existingIncidentId) {
+    if (redis && redisIdemKey) {
+      try {
+        const lockAcquired = await redis.set(redisIdemKey, "IN_PROGRESS", {
+          nx: true,
+          px: 60 * 1000,
+        });
+        if (!lockAcquired) {
+          const existingIncidentId = await redis.get<string>(redisIdemKey);
+          if (existingIncidentId && existingIncidentId !== "IN_PROGRESS") {
             logger.info(
               "[Idempotency] Duplicate submission detected. Returning existing incident ID.",
-              {
-                clientIdempotencyKey,
-                existingIncidentId,
-              },
+              { clientIdempotencyKey, existingIncidentId }
             );
             return { ok: true, incidentId: existingIncidentId };
           }
-        } catch (err) {
-          logger.error(
-            "[Idempotency] Failed to read idempotency key from Redis",
-            { clientIdempotencyKey },
-            err instanceof Error ? err : undefined,
+          logger.warn(
+            "[Idempotency] Concurrent submission in progress with same idempotency key.",
+            { clientIdempotencyKey }
           );
+          return {
+            ok: false,
+            formError: "A submission is currently being processed. Please wait a moment.",
+          };
         }
+      } catch (err) {
+        logger.error(
+          "[Idempotency] Failed to acquire lock in Redis",
+          { clientIdempotencyKey },
+          err instanceof Error ? err : undefined,
+        );
       }
     }
 
     // 1. Global Burst Guard (Max 10 submissions per minute globally across all IPs)
     const globalRl = await checkRateLimit(`${RATE_LIMIT_KEYS.global_incident_burst_guard}:global`);
     if (!globalRl.ok) {
-      logger.warn("[BurstGuard] Coordinated submission burst blocked", { ip, userId: userIdForRl });
       return {
         ok: false,
         formError: "System is experiencing high load. Please try again in 1 minute.",
@@ -626,6 +653,8 @@ export async function submitIncident(
       return { ok: false, fieldErrors: fieldParsed.error.flatten().fieldErrors };
     }
 
+    // 1. Idempotency Lock: Acquired earlier at the top of the function.
+
     const result = await withAutopilot<{ id: string }>(
       submitIncidentPolicy,
       [user?.id ?? "anon", raw.title, raw.description, raw.category, raw.severity],
@@ -642,23 +671,15 @@ export async function submitIncident(
     if (result.kind === "ok") {
       const incidentId = result.value.id;
 
-      import("@/actions/translations").then(({ translateIncidentToTR }) => {
-        translateIncidentToTR(incidentId).catch(() => {});
-      });
-
-      if (clientIdempotencyKey) {
-        const redis = getRedisInstance();
-        if (redis) {
-          try {
-            const redisKey = `idem:${clientIdempotencyKey}`;
-            await redis.set(redisKey, incidentId, { nx: true, px: 24 * 60 * 60 * 1000 });
-          } catch (err) {
-            logger.error(
-              "[Idempotency] Failed to write idempotency key to Redis",
-              { clientIdempotencyKey, incidentId },
-              err instanceof Error ? err : undefined,
-            );
-          }
+      if (redis && redisIdemKey) {
+        try {
+          await redis.set(redisIdemKey, incidentId, { px: 24 * 60 * 60 * 1000 });
+        } catch (err) {
+          logger.error(
+            "[Idempotency] Failed to write idempotency key to Redis",
+            { clientIdempotencyKey, incidentId },
+            err instanceof Error ? err : undefined,
+          );
         }
       }
 
@@ -724,8 +745,8 @@ export async function submitIncident(
           })
           .eq("id", incidentId);
       } else {
-        // Run rule-based pre-triage COGS check BEFORE invoking LLM moderation and cross-audit
-        const triage = await preTriageCheck(raw.title, raw.description);
+        // Run rule-based pre-triage COGS check BEFORE invoking LLM moderation and cross-audit (pass incidentId to prevent self-collision)
+        const triage = await preTriageCheck(raw.title, raw.description, incidentId, hashIp(ip || "127.0.0.1") || undefined);
         if (!triage.ok) {
           // Failed pre-triage: status set/kept as pending_review, bypassed AI, never auto-published
           await admin
@@ -737,57 +758,54 @@ export async function submitIncident(
             })
             .eq("id", incidentId);
         } else {
-          import("@/actions/autopilot-moderate").then(({ autoModerateIncidentAction }) => {
-            autoModerateIncidentAction(incidentId)
-              .then(async (res) => {
-                if (res.ok) {
-                  import("@/lib/ai/cross-audit-engine").then(({ runCrossAudit }) => {
-                    runCrossAudit(incidentId).catch(async (err) => {
-                      logger.error(
-                        "[CrossAudit] Async cross-audit pipeline failed",
-                        { incidentId },
-                        err instanceof Error ? err : undefined,
-                      );
-                      const adminClient = createAdminClient();
-                      if (adminClient) {
-                        await adminClient
-                          .from("incidents")
-                          .update({
-                            processing_stage: "failed",
-                            moderator_notes: `[DLQ] Async cross-audit pipeline failed: ${err instanceof Error ? err.message : String(err)}`,
-                          })
-                          .eq("id", incidentId);
-                      }
-                    });
-                  });
-                } else {
-                  logger.error("Auto-moderation completed with non-ok result", { incidentId });
+          try {
+            const res = await autoModerateIncidentAction(incidentId);
+            if (res.ok) {
+              waitUntil(
+                runCrossAudit(incidentId).catch(async (err) => {
+                  logger.error(
+                    "[CrossAudit] Async cross-audit pipeline failed",
+                    { incidentId },
+                    err instanceof Error ? err : undefined,
+                  );
                   const adminClient = createAdminClient();
                   if (adminClient) {
                     await adminClient
                       .from("incidents")
                       .update({
                         processing_stage: "failed",
-                        moderator_notes: `[DLQ] Auto-moderation completed with error: ${res.error ?? "Unknown error"}`,
+                        moderator_notes: `[DLQ] Async cross-audit pipeline failed: ${err instanceof Error ? err.message : String(err)}`,
                       })
                       .eq("id", incidentId);
                   }
-                }
-              })
-              .catch(async (err) => {
-                logger.error("Async auto-moderation failed", err);
-                const adminClient = createAdminClient();
-                if (adminClient) {
-                  await adminClient
-                    .from("incidents")
-                    .update({
-                      processing_stage: "failed",
-                      moderator_notes: `[DLQ] Async auto-moderation failed: ${err instanceof Error ? err.message : String(err)}`,
-                    })
-                    .eq("id", incidentId);
-                }
-              });
-          });
+                })
+              );
+            } else {
+              logger.error("Auto-moderation completed with non-ok result", { incidentId });
+              const adminClient = createAdminClient();
+              if (adminClient) {
+                await adminClient
+                  .from("incidents")
+                  .update({
+                    processing_stage: "failed",
+                    moderator_notes: `[DLQ] Auto-moderation completed with error: ${res.error ?? "Unknown error"}`,
+                  })
+                  .eq("id", incidentId);
+              }
+            }
+          } catch (err) {
+            logger.error("Async auto-moderation failed", err);
+            const adminClient = createAdminClient();
+            if (adminClient) {
+              await adminClient
+                .from("incidents")
+                .update({
+                  processing_stage: "failed",
+                  moderator_notes: `[DLQ] Async auto-moderation failed: ${err instanceof Error ? err.message : String(err)}`,
+                })
+                .eq("id", incidentId);
+            }
+          }
         }
       }
 
@@ -807,40 +825,37 @@ export async function submitIncident(
       const replayId =
         typeof result.value === "string" ? result.value : (result.value as { id?: string })?.id;
       if (replayId) {
-        import("@/actions/autopilot-moderate").then(({ autoModerateIncidentAction }) => {
-          autoModerateIncidentAction(replayId)
-            .then(async (res) => {
-              if (!res.ok) {
-                const adminClient = createAdminClient();
-                if (adminClient) {
-                  await adminClient
-                    .from("incidents")
-                    .update({
-                      processing_stage: "failed",
-                      moderator_notes: `[DLQ] Auto-moderation for replay completed with error: ${res.error ?? "Unknown error"}`,
-                    })
-                    .eq("id", replayId);
-                }
-              }
-            })
-            .catch(async (err) => {
-              logger.error(
-                "Async auto-moderation for replay failed",
-                undefined,
-                err instanceof Error ? err : undefined,
-              );
-              const adminClient = createAdminClient();
-              if (adminClient) {
-                await adminClient
-                  .from("incidents")
-                  .update({
-                    processing_stage: "failed",
-                    moderator_notes: `[DLQ] Async auto-moderation for replay failed: ${err instanceof Error ? err.message : String(err)}`,
-                  })
-                  .eq("id", replayId);
-              }
-            });
-        });
+        try {
+          const res = await autoModerateIncidentAction(replayId);
+          if (!res.ok) {
+            const adminClient = createAdminClient();
+            if (adminClient) {
+              await adminClient
+                .from("incidents")
+                .update({
+                  processing_stage: "failed",
+                  moderator_notes: `[DLQ] Auto-moderation for replay completed with error: ${res.error ?? "Unknown error"}`,
+                })
+                .eq("id", replayId);
+            }
+          }
+        } catch (err) {
+          logger.error(
+            "Async auto-moderation for replay failed",
+            undefined,
+            err instanceof Error ? err : undefined,
+          );
+          const adminClient = createAdminClient();
+          if (adminClient) {
+            await adminClient
+              .from("incidents")
+              .update({
+                processing_stage: "failed",
+                moderator_notes: `[DLQ] Async auto-moderation for replay failed: ${err instanceof Error ? err.message : String(err)}`,
+              })
+              .eq("id", replayId);
+          }
+        }
       }
       return {
         ok: true,
@@ -848,6 +863,18 @@ export async function submitIncident(
         autopilot: { attempts: attemptsOf(result), durationMs: 0, kind: result.kind },
       };
     }
+
+    if (redis && redisIdemKey) {
+      try {
+        const currentVal = await redis.get<string>(redisIdemKey);
+        if (currentVal === "IN_PROGRESS") {
+          await redis.del(redisIdemKey);
+        }
+      } catch {
+        // Ignored
+      }
+    }
+
     if (result.kind === "circuit_open") {
       return {
         ok: false,
@@ -868,6 +895,21 @@ export async function submitIncident(
     }
     return { ok: false, formError: "Unexpected error." };
   } catch (err) {
+    const clientIdempotencyKey = (await headers().catch(() => null))?.get("x-idempotency-key");
+    if (clientIdempotencyKey) {
+      try {
+        const redis = getRedisInstance();
+        if (redis) {
+          const redisIdemKey = `idem:${clientIdempotencyKey}`;
+          const currentVal = await redis.get<string>(redisIdemKey);
+          if (currentVal === "IN_PROGRESS") {
+            await redis.del(redisIdemKey);
+          }
+        }
+      } catch {
+        // Ignored
+      }
+    }
     console.error("[submitIncident] Error:", err);
     throw err;
   }

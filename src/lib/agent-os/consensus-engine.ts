@@ -36,6 +36,16 @@ export function calculateTruthScore(responses: ModelResponse[]): ConsensusResult
     }
   }
 
+  if (totalVotingWeight <= 0) {
+    return {
+      truthScore: 0,
+      verdict: "DISPUTED",
+      totalVotingWeight: 0,
+      approvedWeight: 0,
+      details: responses
+    };
+  }
+
   // Consensus Formülü: Σ(model_vote × model_weight) / Σ(model_weight)
   const truthScore = (approvedWeight / totalVotingWeight) * 100;
 

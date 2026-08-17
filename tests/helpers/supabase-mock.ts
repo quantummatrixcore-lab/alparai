@@ -6,21 +6,28 @@ export function createMockSupabaseClient() {
   const mockMaybeSingle = vi.fn().mockResolvedValue({ data: null, error: null });
 
   const mockLimit = vi.fn().mockImplementation(() => ({
+    ...mockQueryChain,
     maybeSingle: mockMaybeSingle,
     single: mockSingle,
   }));
 
+  const mockNeq = vi.fn().mockImplementation(() => mockQueryChain);
+
   const mockGte = vi.fn().mockImplementation(() => ({
+    ...mockQueryChain,
     limit: mockLimit,
     maybeSingle: mockMaybeSingle,
     single: mockSingle,
+    neq: mockNeq,
   }));
 
   const mockGt = vi.fn().mockImplementation(() => ({
+    ...mockQueryChain,
     limit: mockLimit,
     maybeSingle: mockMaybeSingle,
     single: mockSingle,
     gte: mockGte,
+    neq: mockNeq,
   }));
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -37,6 +44,7 @@ export function createMockSupabaseClient() {
 
   const mockNot = vi.fn().mockImplementation(() => mockQueryChain);
   const mockIs = vi.fn().mockImplementation(() => mockQueryChain);
+  mockQueryChain.neq = mockNeq;
   mockQueryChain.not = mockNot;
   mockQueryChain.is = mockIs;
   mockQueryChain.eq = vi.fn().mockImplementation(() => mockQueryChain);

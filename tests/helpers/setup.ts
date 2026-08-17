@@ -55,3 +55,10 @@ vi.mock("@upstash/ratelimit", () => ({
     },
   ),
 }));
+
+vi.mock("@sentry/nextjs", () => ({
+  captureMessage: vi.fn(),
+  captureException: vi.fn(),
+  init: vi.fn(),
+}));
+

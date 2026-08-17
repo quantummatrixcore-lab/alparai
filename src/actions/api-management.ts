@@ -170,8 +170,7 @@ export async function getApiTelemetryData(): Promise<ApiTelemetryData> {
 
     function mask(val: string | undefined): string | null {
       if (!val) return null;
-      if (val.length <= 8) return "****";
-      return val.slice(0, 4) + "..." + val.slice(-4);
+      return "****";
     }
 
     const apiKeys: RealApiKeyEntry[] = [

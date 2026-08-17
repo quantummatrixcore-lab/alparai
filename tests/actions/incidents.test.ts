@@ -19,6 +19,7 @@ vi.hoisted(() => {
   }));
   vi.doMock("@/lib/auth/session", () => ({
     getCurrentUser: vi.fn(),
+    requireAdmin: vi.fn().mockResolvedValue({ id: "admin-1", email: "admin@alparai.com" }),
   }));
   vi.doMock("@/lib/utils/rate-limit", () => ({
     checkRateLimit: vi.fn(),
@@ -51,7 +52,7 @@ import { getCurrentUser } from "@/lib/auth/session";
 import { checkRateLimit } from "@/lib/utils/rate-limit";
 import { maskPII } from "@/lib/pii/guardian";
 import { headers } from "next/headers";
-import { submitIncident, voteOnIncident } from "@/actions/incidents";
+import { submitIncident, voteOnIncident, preTriageCheck } from "@/actions/incidents";
 
 let mockSupabase: ReturnType<typeof createMockSupabaseClient>;
 let mockAdminClient: ReturnType<typeof createMockSupabaseClient>;
@@ -309,8 +310,13 @@ describe("submitIncident", () => {
     expect(mockRedisInstance.get).toHaveBeenCalledWith("idem:test-idempotency-key-123");
     expect(mockRedisInstance.set).toHaveBeenCalledWith(
       "idem:test-idempotency-key-123",
+      "IN_PROGRESS",
+      expect.objectContaining({ nx: true, px: 60 * 1000 }),
+    );
+    expect(mockRedisInstance.set).toHaveBeenCalledWith(
+      "idem:test-idempotency-key-123",
       expect.any(String),
-      expect.objectContaining({ nx: true, px: 24 * 60 * 60 * 1000 }),
+      expect.objectContaining({ px: 24 * 60 * 60 * 1000 }),
     );
   });
 });

@@ -22,6 +22,14 @@ export async function POST(req: Request) {
     }
 
     const { url, secret, provider_filter } = parsed.data;
+
+    const authHeader = req.headers.get("authorization");
+    const token = authHeader?.split(" ")[1];
+    const expectedToken = process.env.WEBHOOK_SECRET || process.env.API_SECRET_KEY;
+    if (!token || !expectedToken || token !== expectedToken) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const supabase = createAdminClient();
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

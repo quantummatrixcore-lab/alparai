@@ -24,7 +24,7 @@ export async function POST(req: Request) {
     const qwenRes = await fetch("https://api.qwen.ai/v1/audio/transcriptions", {
       method: "POST",
       headers: {
-        Authorization: "Bearer ",
+        Authorization: `Bearer ${process.env.QWEN_API_KEY}`,
       },
       body: qwenFormData,
     });

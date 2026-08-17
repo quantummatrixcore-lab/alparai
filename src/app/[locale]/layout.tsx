@@ -42,7 +42,10 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  if (!routing.locales.includes(locale as (typeof routing.locales)[number])) notFound();
+  if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
+    notFound();
+    return null;
+  }
   setRequestLocale(locale);
   const messages = await getMessages() as Record<string, any>;
   const tCommon = await getTranslations({ locale, namespace: "common" });

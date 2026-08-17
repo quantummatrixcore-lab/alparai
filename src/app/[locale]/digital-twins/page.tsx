@@ -110,7 +110,7 @@ export default function DigitalTwinsPage() {
                   <CardDescription>{activePersona.title}</CardDescription>
                 </div>
                 {modelUsed && (
-                  <Badge variant="outline" className="border-brand-500 text-brand-400">
+                  <Badge variant="outline" className="border-brand-500/30 bg-brand-500/10 text-brand-300">
                     Model: {modelUsed}
                   </Badge>
                 )}

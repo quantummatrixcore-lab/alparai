@@ -1,8 +1,14 @@
 import { NextResponse } from "next/server";
 import { getHybridMultimodalModel } from "@/lib/ai/openrouter-gateway";
+import { getCurrentUser } from "@/lib/auth/session";
 
 export async function POST(request: Request) {
   try {
+    const user = await getCurrentUser();
+    if (!user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const formData = await request.formData();
     const audioFile = formData.get("audio") as File | null;
 

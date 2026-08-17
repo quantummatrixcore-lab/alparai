@@ -1,10 +1,23 @@
 import { NextResponse } from "next/server";
 import { getHybridMultimodalModel } from "@/lib/ai/openrouter-gateway";
+import { getCurrentUser } from "@/lib/auth/session";
+import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 
 const MAX_VIDEO_SIZE_BYTES = 50 * 1024 * 1024; // 50MB
 
 export async function POST(request: Request) {
   try {
+    const user = await getCurrentUser();
+    if (!user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const ip = request.headers.get("x-forwarded-for") ?? "127.0.0.1";
+    const rateLimitResult = await checkRateLimit(`${RATE_LIMIT_KEYS.incident_analyze}:${ip}`);
+    if (!rateLimitResult.ok) {
+      return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+    }
+
     const formData = await request.formData();
     const videoFile = formData.get("video") as File | null;
 

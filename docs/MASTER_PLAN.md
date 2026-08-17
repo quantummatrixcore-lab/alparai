@@ -5,7 +5,7 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.49 · **Updated:** 2026-08-17 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.50 · **Updated:** 2026-08-17 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
 
 ## 0. Where things live
 
@@ -41,34 +41,42 @@ only what is currently true.
 
 ## 2. Active backlog
 
-| ID                                       | P      | Owner                       | Work                                                                                                                                                                                                             | Acceptance                                                                 |
-| ---------------------------------------- | ------ | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| **[TYPE-2](plan/items/TYPE-2.md)**       | **P0** | Implementer                 | Clear the remaining 36 typecheck errors and unwind the 5 `@ts-nocheck` files added while fixing the first 548                                                                                                    | `pnpm typecheck` exits 0; `@ts-nocheck` back to 0                          |
-| **[DBTYPE-1](plan/items/DBTYPE-1.md)**   | **P0** | Implementer                 | Regenerate `src/types/database.ts` against the **production** database — `599c3554` regenerated it against an incomplete instance and dropped `challenge_votes`, `challenge_submissions` and three RPC functions | `pnpm typecheck` errors drop 584 → ≤14; no suppressions in the diff        |
-| **[AGENTOS-1](plan/items/AGENTOS-1.md)** | **P0** | Implementer                 | Remove or replace the 9 `src/lib/agent-os/` imports (2 public pages, 2 API routes, 3 components/actions, 2 root test files)                                                                                      | `pnpm typecheck` exits 0                                                   |
-| **BA**                                   | P0     | **Founder** (not delegable) | Cloudflare: read Security → Events for the last 24h, report which user-agents are actually blocked. Closes if the list is empty                                                                                  | Report produced; WAF rules unchanged unless the log justifies a change     |
-| **BB**                                   | P0     | Implementer                 | ZETA-0c: `/api/health` 308 → 200, smoke test green                                                                                                                                                               | Next deploy shown as smoke-test verified                                   |
-| **BD**                                   | P0     | **Founder** (GATE)          | Approve `docs/campaigns/` launch drafts → HN + Reddit                                                                                                                                                            | First 24h `funnel_events` counts reported                                  |
-| **BG**                                   | P0     | Implementer                 | Repair mojibake in `messages/{en,tr,de,fr,ru}.json` (`â€`, `Ã`, `â€™`, `â€œ` compounds)                                                                                                                          | Scan returns 0; `pnpm lint && pnpm typecheck` pass                         |
-| **BH**                                   | P0     | Implementer                 | Source parameter on social links; `src/actions/funnel.ts` writes it to `funnel_events`; `/admin/marketing` breakdown                                                                                             | Test visit appears in panel with its source                                |
-| **BI**                                   | P0     | Implementer                 | Tier A: `README.md` and public-facing files translated to English                                                                                                                                                | Files leave `.repo-language-baseline`; CI stays green                      |
-| **[CI-COST-1](plan/items/CI-COST-1.md)** | P1     | Architect                   | Path filters (`docs/**`, `**.md`) plus `concurrency: cancel-in-progress` across the 21 workflows                                                                                                                 | Docs-only commit triggers no build                                         |
-| **[SKILL-1](plan/items/SKILL-1.md)**     | P1     | Implementer                 | Copy `.agents/skills/{bilge-kurul,graphify}/` into `.claude/skills/` — nothing reads `.agents/skills/` today                                                                                                     | Both invocable in a fresh session                                          |
-| **[HIER-1](plan/items/HIER-1.md)**       | P1     | Implementer                 | `.agents/hierarchy.json` binding the command hierarchy to existing role prompts (see §4)                                                                                                                         | Dispatcher resolves a task to one specialist                               |
-| **[MEM-1](plan/items/MEM-1.md)**         | P1     | Implementer                 | Semantic memory: `agent_memory` table + pgvector, write path as a `policies.ts` entry, `retrieveContext()` read path, embeddings from the wired Google adapter                                                   | A fact stored in one session is retrieved by semantic query in a later one |
-| **BC**                                   | P1     | Implementer                 | ZETA-0b: CI i18n parity (`de/fr/ru`), Release ruleset bypass limited to GitHub Actions, Security Audit `pnpm-audit`, Plan Guard + Master Plan Guard                                                              | All five green on `master`                                                 |
-| **BE**                                   | P2     | Implementer                 | 4 dependabot PRs                                                                                                                                                                                                 | At least two merged                                                        |
-| **BF**                                   | P2     | Implementer                 | Move DecasHub + Agent-OS directives to `docs/plan/tier0-portfolio.md`                                                                                                                                            | No non-ALPAR product directive remains in this file                        |
-| **BK**                                   | P2     | Implementer                 | English freeze notice atop each archive group                                                                                                                                                                    | Notice present; bytes otherwise unchanged                                  |
-| **BL**                                   | P2     | Implementer                 | Tier B internal docs translated in read-frequency order                                                                                                                                                          | `check-masterplan-consistency.mjs` still passes                            |
+| ID                                       | P      | Owner                       | Work                                                                                                                                                                                                             | Acceptance                                                                                            |
+| ---------------------------------------- | ------ | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| **[TYPE-2](plan/items/TYPE-2.md)**       | **P0** | Implementer                 | Clear the remaining 36 typecheck errors and unwind the 5 `@ts-nocheck` files added while fixing the first 548                                                                                                    | `pnpm typecheck` exits 0; `@ts-nocheck` back to 0                                                     |
+| **[REPO-1](plan/items/REPO-1.md)**       | P1     | Implementer                 | Clear the repository root: 83 tracked files, 8 of them legitimate config; 1.4 MB of build output, scraped HTML and superseded generated copies. Root-anchored `.gitignore` rules so they cannot return           | `git ls-files \| grep -cE "^[^/]+\.(js\|html\|png\|txt)$"` returns 0; build, test and lint still pass |
+| **[DBTYPE-1](plan/items/DBTYPE-1.md)**   | **P0** | Implementer                 | Regenerate `src/types/database.ts` against the **production** database — `599c3554` regenerated it against an incomplete instance and dropped `challenge_votes`, `challenge_submissions` and three RPC functions | `pnpm typecheck` errors drop 584 → ≤14; no suppressions in the diff                                   |
+| **[AGENTOS-1](plan/items/AGENTOS-1.md)** | **P0** | Implementer                 | Remove or replace the 9 `src/lib/agent-os/` imports (2 public pages, 2 API routes, 3 components/actions, 2 root test files)                                                                                      | `pnpm typecheck` exits 0                                                                              |
+| **BA**                                   | P0     | **Founder** (not delegable) | Cloudflare: read Security → Events for the last 24h, report which user-agents are actually blocked. Closes if the list is empty                                                                                  | Report produced; WAF rules unchanged unless the log justifies a change                                |
+| **BB**                                   | P0     | Implementer                 | ZETA-0c: `/api/health` 308 → 200, smoke test green                                                                                                                                                               | Next deploy shown as smoke-test verified                                                              |
+| **BD**                                   | P0     | **Founder** (GATE)          | Approve `docs/campaigns/` launch drafts → HN + Reddit                                                                                                                                                            | First 24h `funnel_events` counts reported                                                             |
+| **BG**                                   | P0     | Implementer                 | Repair mojibake in `messages/{en,tr,de,fr,ru}.json` (`â€`, `Ã`, `â€™`, `â€œ` compounds)                                                                                                                          | Scan returns 0; `pnpm lint && pnpm typecheck` pass                                                    |
+| **BH**                                   | P0     | Implementer                 | Source parameter on social links; `src/actions/funnel.ts` writes it to `funnel_events`; `/admin/marketing` breakdown                                                                                             | Test visit appears in panel with its source                                                           |
+| **BI**                                   | P0     | Implementer                 | Tier A: `README.md` and public-facing files translated to English                                                                                                                                                | Files leave `.repo-language-baseline`; CI stays green                                                 |
+| **[CI-COST-1](plan/items/CI-COST-1.md)** | P1     | Architect                   | Path filters (`docs/**`, `**.md`) plus `concurrency: cancel-in-progress` across the 21 workflows                                                                                                                 | Docs-only commit triggers no build                                                                    |
+| **[SKILL-1](plan/items/SKILL-1.md)**     | P1     | Implementer                 | Copy `.agents/skills/{bilge-kurul,graphify}/` into `.claude/skills/` — nothing reads `.agents/skills/` today                                                                                                     | Both invocable in a fresh session                                                                     |
+| **[HIER-1](plan/items/HIER-1.md)**       | P1     | Implementer                 | `.agents/hierarchy.json` binding the command hierarchy to existing role prompts (see §4)                                                                                                                         | Dispatcher resolves a task to one specialist                                                          |
+| **[MEM-1](plan/items/MEM-1.md)**         | P1     | Implementer                 | Semantic memory: `agent_memory` table + pgvector, write path as a `policies.ts` entry, `retrieveContext()` read path, embeddings from the wired Google adapter                                                   | A fact stored in one session is retrieved by semantic query in a later one                            |
+| **BC**                                   | P1     | Implementer                 | ZETA-0b: CI i18n parity (`de/fr/ru`), Release ruleset bypass limited to GitHub Actions, Security Audit `pnpm-audit`, Plan Guard + Master Plan Guard                                                              | All five green on `master`                                                                            |
+| **BE**                                   | P2     | Implementer                 | 4 dependabot PRs                                                                                                                                                                                                 | At least two merged                                                                                   |
+| **BF**                                   | P2     | Implementer                 | Move DecasHub + Agent-OS directives to `docs/plan/tier0-portfolio.md`                                                                                                                                            | No non-ALPAR product directive remains in this file                                                   |
+| **BK**                                   | P2     | Implementer                 | English freeze notice atop each archive group                                                                                                                                                                    | Notice present; bytes otherwise unchanged                                                             |
+| **BL**                                   | P2     | Implementer                 | Tier B internal docs translated in read-frequency order                                                                                                                                                          | `check-masterplan-consistency.mjs` still passes                                                       |
 
-**Carried forward, unchanged.** `src/lib/auth/test-bypass.ts` landed as a scaffold that is **not
-wired in**: the three call sites (`src/middleware.ts:54`, `src/lib/auth/session.ts:14`,
-`src/actions/incidents.ts:465`) still read `process.env.IS_PLAYWRIGHT_TEST` directly and
-`next.config.mjs` does not define `NEXT_TEST_AUTH_BYPASS`. **The authentication bypass is therefore
-not contained** — setting that variable in the hosting environment still disables admin auth at
-runtime with no redeploy. Highest-priority open security item. Also open: unknown blog slug returns
-200 not 404; no `BlogPosting` JSON-LD; no `/pricing/i` heading; four e2e specs outside CI.
+**Carried forward — with a correction.** The paragraph previously here stated that the
+authentication bypass was **not** contained and that three call sites read
+`process.env.IS_PLAYWRIGHT_TEST` directly. **That was stale and is wrong.** Verified 2026-08-17:
+`src/lib/auth/test-bypass.ts` returns false unconditionally when `NODE_ENV === "production"`,
+otherwise requires `NODE_ENV === "test"` **and** `NEXT_TEST_AUTH_BYPASS` **and**
+`IS_PLAYWRIGHT_TEST`; `assertTestBypassSafe()` throws if either flag is seen in production. It is
+imported at all three call sites — `src/middleware.ts`, `src/lib/auth/session.ts`,
+`src/actions/incidents.ts`. The text was copied into the v13.47 restructure without re-measurement,
+which is the same defect this board keeps correcting in others; recorded rather than quietly
+deleted, since anyone reading the board as a security summary would have been misled about the most
+sensitive control in the project.
+
+Genuinely still open: unknown blog slug returns 200 rather than 404; no `BlogPosting` JSON-LD; no
+`/pricing/i` heading; four e2e specs outside CI.
 
 ## 3. Legal action register — Case #001 (Grok passport incident)
 
@@ -197,6 +205,29 @@ sit.
 returned with a 10-line section appended. Rebased rather than merged — the `.husky/pre-commit`
 role-guard correctly blocks an `ARCHITECT=1` merge commit, since a merge carries the incoming
 `src/**` changes in its diff.
+
+**v13.50 — investment readiness measured against the Yapay Zekâ Fabrikası application.** The
+Founder asked whether to apply to Türkiye İş Bankası's corporate venture arm and whether the system
+is ready. Eligibility is met on every stated criterion. **The thesis is fundable; the codebase would
+not survive technical diligence today**, and because the repository is public under AGPL-3.0 a
+reviewer reads the tree directly rather than a summary — whatever state it is in on the day is what
+they see.
+
+Strong and worth leading with: 1063/1063 tests, RLS on every table, the PII Guardian, seven
+regulatory filings with dated references, national press coverage, and EU AI Act Article 73 timing.
+Blocking, in the order a reviewer meets them: the red build and five `@ts-nocheck` files
+([TYPE-2](plan/items/TYPE-2.md)); 83 tracked files at the repository root carrying 1.4 MB of build
+output and scraped HTML, scanned and free of credentials but reading as an abandoned workspace
+([REPO-1](plan/items/REPO-1.md)); zero successful CI runs ever ([CI-COST-1](plan/items/CI-COST-1.md)
+plus the Actions quota); the unmeasured corpus ([STRAT-1](plan/items/STRAT-1.md)); and
+`case_001.status` claiming "Under Investigation by KVKK, EU Commission" while six of seven bodies
+have acknowledged nothing — it should read "filed, awaiting response", which is true and still
+strong. Full assessment: [v13.50-investment-readiness.md](plan/v13.50-investment-readiness.md).
+
+**The Architect's own stale claim, corrected in §2.** The carried-forward security paragraph said
+the authentication bypass was not contained. Measurement says it is, at all three call sites and
+with a production abort guard. The text was copied through the v13.47 restructure unverified — the
+exact defect recorded against others in v13.44 and v13.49, committed here by this session.
 
 ## 5. History
 

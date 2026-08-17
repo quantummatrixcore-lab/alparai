@@ -5,7 +5,7 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.48 · **Updated:** 2026-08-17 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.49 · **Updated:** 2026-08-17 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
 
 ## 0. Where things live
 
@@ -29,20 +29,21 @@ only what is currently true.
 
 ## 1. Current state (measured 2026-08-17)
 
-| Fact                                             | Evidence                                                                                                                                                                            |
-| ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `pnpm typecheck` **fails: 584 errors, 82 files** | **570 (97.6%) from one damaged generated file** — `src/types/database.ts` lost 2032 lines in `599c3554`. 14 from missing `agent-os` modules. See [DBTYPE-1](plan/items/DBTYPE-1.md) |
-| `src/lib/agent-os/` **does not exist**           | `ls` → no such directory; 9 files import 5 modules from it                                                                                                                          |
-| CI has produced **zero successful runs**         | `runner_id: 0`, 2-second failures. **Root cause now known:** GitHub Actions quota exhausted (Founder, 2026-08-17)                                                                   |
-| `.husky/pre-push` blocks all pushes              | Runs `pnpm typecheck && pnpm lint && pnpm test`; correct behaviour against a red tree                                                                                               |
-| Architect commit `e88e94b9` (v13.46) unpushed    | Blocked by the above; 1 ahead / 16 behind `origin/master`                                                                                                                           |
-| Local test suite                                 | 1063/1063 passing, verified independently twice                                                                                                                                     |
-| ALPAR AI ↔ Agent-OS coupling                     | 3 of 58 tables, 1 of 21 workflows; `src/lib/autopilot/` imports only Supabase + generated types                                                                                     |
+| Fact                                            | Evidence                                                                                                                                                             |
+| ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pnpm typecheck` **fails: 36 errors, 13 files** | Down from 584. `DBTYPE-1` largely resolved and `agent-os` written on `origin/master`. Remainder plus 5 `@ts-nocheck` files to unwind: [TYPE-2](plan/items/TYPE-2.md) |
+| `src/lib/agent-os/` **now exists**              | Written on `origin/master`: 7 files, 556 lines. `scouts/ecosystem-scout` still missing                                                                               |
+| CI has produced **zero successful runs**        | `runner_id: 0`, 2-second failures. **Root cause now known:** GitHub Actions quota exhausted (Founder, 2026-08-17)                                                    |
+| `.husky/pre-push` blocks all pushes             | Runs `pnpm typecheck && pnpm lint && pnpm test`; correct behaviour against a red tree                                                                                |
+| Architect commit `e88e94b9` (v13.46) unpushed   | Blocked by the above; 1 ahead / 16 behind `origin/master`                                                                                                            |
+| Local test suite                                | 1063/1063 passing, verified independently twice                                                                                                                      |
+| ALPAR AI ↔ Agent-OS coupling                    | 3 of 58 tables, 1 of 21 workflows; `src/lib/autopilot/` imports only Supabase + generated types                                                                      |
 
 ## 2. Active backlog
 
 | ID                                       | P      | Owner                       | Work                                                                                                                                                                                                             | Acceptance                                                                 |
 | ---------------------------------------- | ------ | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| **[TYPE-2](plan/items/TYPE-2.md)**       | **P0** | Implementer                 | Clear the remaining 36 typecheck errors and unwind the 5 `@ts-nocheck` files added while fixing the first 548                                                                                                    | `pnpm typecheck` exits 0; `@ts-nocheck` back to 0                          |
 | **[DBTYPE-1](plan/items/DBTYPE-1.md)**   | **P0** | Implementer                 | Regenerate `src/types/database.ts` against the **production** database — `599c3554` regenerated it against an incomplete instance and dropped `challenge_votes`, `challenge_submissions` and three RPC functions | `pnpm typecheck` errors drop 584 → ≤14; no suppressions in the diff        |
 | **[AGENTOS-1](plan/items/AGENTOS-1.md)** | **P0** | Implementer                 | Remove or replace the 9 `src/lib/agent-os/` imports (2 public pages, 2 API routes, 3 components/actions, 2 root test files)                                                                                      | `pnpm typecheck` exits 0                                                   |
 | **BA**                                   | P0     | **Founder** (not delegable) | Cloudflare: read Security → Events for the last 24h, report which user-agents are actually blocked. Closes if the list is empty                                                                                  | Report produced; WAF rules unchanged unless the log justifies a change     |
@@ -160,6 +161,42 @@ files and never written. Recorded as [ADR-011](adr/0011-prompt-engine-topology.m
 [MEM-1](plan/items/MEM-1.md). **G-6 amended** in `CLAUDE.md` to add `docs/adr/**` and
 `docs/ARCHITECTURE.md` to the Architect's writable paths — an ADR is Architect work product, and the
 constraint that keeps it safe is that an ADR records a decision and never ships behaviour.
+
+**v13.49 — the repair largely worked; the method needs unwinding.** `origin/master` advanced 23
+commits during the restructure. `DBTYPE-1` is largely resolved: `src/types/database.ts` is back to
+5447 lines with `challenge_votes`, `challenge_submissions` and the three RPC functions restored, and
+`src/lib/agent-os/` was **written** — 7 files, 556 lines — rather than deleted, which supersedes the
+removal option in `AGENTOS-1` and matches the Founder's decision to keep the command hierarchy.
+Measured after rebase: **584 errors → 36**, across 13 files.
+
+Four things are recorded because measurement produced them, not doubt. **`@ts-nocheck` went 0 → 5
+and `eslint-disable` 15 → 23** (`as any` unchanged at 14); `@ts-nocheck` disables checking for a
+whole file, so those five — three of them public API routes — are excluded from the 36 rather than
+clean, and `DBTYPE-1` constraint 2 ruled that class out. **The restore is not a regeneration:**
+`strategy_questionnaire` and `increment_persona_usage` are still absent, exactly as constraint 3
+anticipated. **Commit `c0ff30c4` is mislabelled** — its message names an eslint/pre-commit change but
+it touches no eslint, husky or lint-script file; it rewrites `.gitlab-ci.yml` across 48 files.
+**`src/lib/autopilot/queue.ts` gained `pull()`/`ack()` returning `[]` and `{}`** — if those are
+placeholders, a queue whose `pull()` always returns empty processes nothing silently.
+
+**The "S-Tier Prompt Engine V2.0 — TAMAMLANDI" row in `4889fdbe` is a completion claim without
+evidence.** [ADR-011](adr/0011-prompt-engine-topology.md) measured four of its five components as
+already present before the claim. The fifth, multi-agent memory, is **half true and is corrected
+here**: `20260816000000_agent_vector_memory.sql` does create `agent_episodic_memory` with pgvector,
+an HNSW index and a `match_agent_memory` RPC — but nothing in `src/` writes to that table or calls
+that function. Schema built, never wired; [MEM-1](plan/items/MEM-1.md) is rescoped to wiring only.
+That row also carries mojibake (`TAMAMLANTI`), the defect `BG` tracks.
+
+**A pattern worth naming, since it now has four instances.** `.agents/skills/` read by nothing,
+`docs/adr/` unreferenced since June, `agent_episodic_memory` built and unwired, and `agent-os`
+imported before it was written. The recurring failure here is not building the wrong thing — it is
+building a thing and never connecting it. Connection, not construction, is where the queue should
+sit.
+
+**Merge resolution.** The incoming commits branched from before v13.47, so the 601-line board
+returned with a 10-line section appended. Rebased rather than merged — the `.husky/pre-commit`
+role-guard correctly blocks an `ARCHITECT=1` merge commit, since a merge carries the incoming
+`src/**` changes in its diff.
 
 ## 5. History
 

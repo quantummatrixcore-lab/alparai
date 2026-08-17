@@ -3,53 +3,46 @@
 **MEM-1** — Semantic memory for agents. Owner: Implementer. Priority: P1 (after `DBTYPE-1` and
 `AGENTOS-1`; the tree must be green first). Decision context: `docs/adr/0011-prompt-engine-topology.md`.
 
-## Why this and nothing else from the "Prompt Engine" proposal
+## Correction (2026-08-17, after measuring `origin/master`)
 
-Five subsystems were proposed. Four already exist and are mapped in ADR-011. This is the measured
-gap: `grep` for `embedding|pgvector|vector|similarity` across `src/lib/` and
-`supabase/migrations/` returns four incidental hits (models-catalog, resources-catalog, questions,
-dedup) and **no vector store, no RAG, no episodic or semantic memory table**. Inference is
-stateless — every call re-derives its context from scratch.
+ADR-011 recorded semantic memory as absent. **At the database layer that is now wrong and is
+corrected here.** Two migrations exist on `origin/master`:
 
-This is also the technical form of a problem the Founder raised directly: agents cannot carry
-knowledge between sessions, so context has to be restated by hand each time. Durable rules already
-travel through `CLAUDE.md` and `AGENTS.md`, and durable decisions now travel through `docs/adr/`.
-What has no home is _derived_ knowledge — what an agent learned while working.
+- `supabase/migrations/20260816000000_agent_vector_memory.sql` — enables `pgvector`, creates
+  `agent_episodic_memory` (`agent_id`, `session_id`, `content`, `metadata`,
+  `embedding vector(1536)`), an HNSW cosine index, and a `match_agent_memory(query_embedding,
+match_threshold, match_count, p_agent_id)` RPC.
+- `supabase/migrations/20260904000000_bilge_rag_memory.sql`.
+
+**What is still absent is the application code.** `grep embedding` across `src/` returns only
+`models-catalog.ts` and `resources-catalog.ts`, which are model metadata and unrelated. Nothing
+writes to `agent_episodic_memory` and nothing calls `match_agent_memory`. The schema is built and
+unused — the same pattern as `.agents/skills/` being read by nothing, and as `docs/adr/` sitting
+unreferenced since June.
+
+So this item is smaller than first scoped: **no new table, no new migration.** Wire the existing one.
 
 ## Scope
 
-Deliberately small. One table, one write path, one read path, no new provider.
+**Do not create a table.** `agent_episodic_memory` exists. Confirm it is applied in production
+before building against it — the `DBTYPE-1` incident showed migrations and the live schema can
+diverge.
 
-**Migration** — `supabase/migrations/<timestamp>_agent_memory.sql`:
+**Write path.** A server action that inserts `{agent_id, session_id, content, metadata, embedding}`,
+declared as an entry in `src/lib/autopilot/policies.ts` so it reuses the existing retry, breaker and
+budget machinery (ADR-011, decision 1). Content passes the PII Guardian before insert, like every
+other free-text write.
 
-```sql
-create extension if not exists vector;
+**Read path.** `retrieveContext(query, agentId, k)` — embed the query, call the existing
+`match_agent_memory` RPC, return the rows.
 
-create table public.agent_memory (
-  id           uuid primary key default gen_random_uuid(),
-  scope        text not null check (scope in ('session', 'project')),
-  scope_key    text not null,
-  content      text not null,
-  embedding    vector(768) not null,
-  created_at   timestamptz not null default now(),
-  last_used_at timestamptz
-);
+**Embeddings.** The table declares `vector(1536)`, with a comment noting Gemini would be 768. Pick
+one and make the code and the column agree; the already-wired Google adapter
+(`src/lib/ai/adapters/google.ts`) is the default, which means either changing the column to 768 in a
+new migration or using a 1536-dimension provider. Record which, and why, in the commit.
 
-create index on public.agent_memory using ivfflat (embedding vector_cosine_ops);
-create index on public.agent_memory (scope, scope_key);
-```
-
-RLS as with every other table — no anonymous read, admin client only for cross-scope access.
-
-**Write path.** Through a new entry in `src/lib/autopilot/policies.ts`, reusing the existing retry,
-breaker and budget machinery. Do **not** add a second retry mechanism (ADR-011, decision 1).
-Content passes the PII Guardian before insert, like every other free-text write in this codebase.
-
-**Read path.** `retrieveContext(query: string, scope, scopeKey, k = 5)` returning the top-k rows by
-cosine similarity, and stamping `last_used_at`.
-
-**Embeddings.** From the already-wired Google adapter (`src/lib/ai/adapters/google.ts`). No new
-provider, no new key, no new cost surface.
+**RLS.** The migration must be checked for policies. If `agent_episodic_memory` has none, that is a
+finding in its own right — every table in this project carries RLS.
 
 ## Out of scope
 
@@ -62,6 +55,7 @@ needed. Add them when a measurement says so.
 
 - A fact written in one session is retrieved by semantic query in a later session without being
   restated — demonstrated, not asserted
+- `agent_episodic_memory` confirmed present in the live database, with RLS policies
 - Retrieval returns k rows ordered by similarity; `last_used_at` updates
 - The write path appears as a policy in `policies.ts`; no new retry or breaker code exists
 - RLS blocks unprivileged reads (negative test, per control C-1)

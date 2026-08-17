@@ -61,6 +61,21 @@ few-shot dynamic injection. No measurement in this repository shows they are nee
 - This ADR describes topology only. Any implementation it implies is a specification for the
   Implementer, per G-6.
 
+## Correction (2026-08-17, same day)
+
+The row above marking semantic memory **Absent** was measured against the tree before
+`origin/master` advanced. At the **database layer it is wrong**: `20260816000000_agent_vector_memory.sql`
+creates `agent_episodic_memory` with `pgvector`, an HNSW cosine index and a `match_agent_memory`
+RPC, and `20260904000000_bilge_rag_memory.sql` exists alongside it.
+
+The decision is unchanged, because what is absent is the **application code**: nothing in `src/`
+writes to that table or calls that function. The schema is built and unwired — which makes the gap
+smaller than stated, not different in kind. `MEM-1` is rescoped accordingly: wire the existing
+table, do not create one.
+
+Recorded rather than edited in place: an ADR that silently revises its own evidence is worth less
+than one that shows where it was corrected.
+
 ## Related
 
 - `docs/plan/items/MEM-1.md` — the one gap

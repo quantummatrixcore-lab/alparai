@@ -1,8 +1,10 @@
 # AGENTOS-1
 
 **AGENTOS-1** — Resolve the nine imports of `src/lib/agent-os/`, a directory that does not exist.
-Owner: Implementer. Priority: **P0** — this is the sole blocker on `pnpm typecheck`, which blocks
-`.husky/pre-push`, which blocks every push including the Architect's.
+Owner: Implementer. Priority: P0, but **second to [DBTYPE-1](DBTYPE-1.md)**. An earlier version of this file called
+this the sole blocker on `pnpm typecheck`. That was wrong and is corrected here: of 584 typecheck
+errors, **14 are these missing modules and 570 come from a damaged `src/types/database.ts`**.
+Clearing AGENTOS-1 alone will not turn the tree green.
 
 ## Measured state (2026-08-17)
 

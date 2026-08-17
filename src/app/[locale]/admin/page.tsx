@@ -99,7 +99,7 @@ export default async function AdminDashboardPage({
     : "%100";
 
   return (
-    <div className="relative min-h-screen bg-slate-950 text-slate-200 selection:bg-brand-500/30 selection:text-brand-200 overflow-hidden">
+    <div className="relative min-h-screen bg-[#070709] text-fg-primary selection:bg-brand-500/30 selection:text-brand-200 overflow-hidden">
       {/* Cinematic Background Elements */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-brand-600/10 blur-[120px]" />
@@ -110,9 +110,9 @@ export default async function AdminDashboardPage({
 
       <div className="relative z-10 mx-auto max-w-7xl space-y-8 px-3 py-6 sm:px-6 md:p-8 lg:p-10">
         {/* Top Bar: Title + Status + Action Buttons */}
-        <header className="group relative flex flex-col gap-6 rounded-3xl border border-white/10 bg-slate-900/40 p-6 backdrop-blur-3xl transition-all duration-500 hover:bg-slate-900/60 hover:shadow-[0_0_80px_rgba(var(--color-brand-500),0.1)] md:flex-row md:items-center md:justify-between overflow-hidden">
+        <header className="group relative flex flex-col gap-6 rounded-3xl border border-white/20 bg-zinc-900/40 backdrop-blur-xl border-white/20 p-6 backdrop-blur-3xl transition-all duration-300 ease-out hover:bg-zinc-900/60 backdrop-blur-xl border-white/20 hover:shadow-[0_0_80px_rgba(var(--color-brand-500),0.1)] md:flex-row md:items-center md:justify-between overflow-hidden">
           {/* Header Internal Glow */}
-          <div className="absolute -inset-x-20 -top-20 h-[150px] w-full bg-gradient-to-r from-transparent via-brand-500/10 to-transparent blur-3xl opacity-0 transition-opacity duration-700 group-hover:opacity-100 pointer-events-none" />
+          <div className="absolute -inset-x-20 -top-20 h-[150px] w-full bg-gradient-to-r from-transparent via-brand-500/10 to-transparent blur-3xl opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 pointer-events-none" />
 
           <div className="space-y-3 relative z-10">
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-3 py-1 text-xs font-semibold tracking-wider text-emerald-400 uppercase shadow-[0_0_15px_rgba(16,185,129,0.1)]">
@@ -122,7 +122,7 @@ export default async function AdminDashboardPage({
             <h1 className="bg-gradient-to-br from-white via-slate-200 to-slate-500 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl drop-shadow-sm">
               {t("command_center_title")}
             </h1>
-            <p className="text-slate-400 text-sm font-medium tracking-wide">
+            <p className="text-fg-muted text-sm font-medium tracking-wide">
               {t("command_center_subtitle")}
             </p>
           </div>
@@ -148,11 +148,11 @@ export default async function AdminDashboardPage({
 
             <button
               aria-label={t("command_palette")}
-              className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-slate-300 backdrop-blur-xl transition-all duration-300 hover:border-white/20 hover:bg-white/10 hover:text-white"
+              className="group flex items-center gap-3 rounded-2xl border border-white/20 bg-white/5 px-5 py-3 text-sm font-medium text-fg-primary backdrop-blur-xl transition-all duration-300 hover:border-white/20 hover:bg-white/10 hover:text-white"
             >
-              <Search className="h-4 w-4 text-slate-400 group-hover:text-white transition-colors" />
+              <Search className="h-4 w-4 text-fg-muted group-hover:text-white transition-colors" />
               <span>{t("command_palette")}</span>
-              <kbd className="ml-2 hidden h-5 items-center gap-0.5 rounded-md border border-white/10 bg-black/20 px-2 font-mono text-[10px] font-semibold text-slate-400 md:inline-flex">
+              <kbd className="ml-2 hidden h-5 items-center gap-0.5 rounded-md border border-white/20 bg-black/20 px-2 font-mono text-[10px] font-semibold text-fg-muted md:inline-flex">
                 <span>⌘</span>
                 <span>K</span>
               </kbd>
@@ -177,8 +177,8 @@ export default async function AdminDashboardPage({
           <PrioritizationWidget items={masterPlan.items} error={masterPlan.error} />
 
           {/* WIDGET 1: Financial & Operations Cockpit */}
-          <section className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-slate-900/40 p-6 backdrop-blur-3xl transition-all duration-500 hover:-translate-y-1 hover:border-emerald-500/30 hover:bg-slate-900/70 hover:shadow-[0_0_50px_rgba(16,185,129,0.1)] md:p-8">
-            <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-emerald-500/10 blur-[80px] transition-all duration-700 group-hover:bg-emerald-500/20" />
+          <section className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/20 bg-zinc-900/40 backdrop-blur-xl border-white/20 p-6 backdrop-blur-3xl transition-all duration-300 ease-out hover:-translate-y-1 hover:border-emerald-500/30 hover:bg-zinc-900/70 backdrop-blur-xl border-white/20 hover:shadow-[0_0_50px_rgba(16,185,129,0.1)] md:p-8">
+            <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-emerald-500/10 blur-[80px] transition-all duration-300 ease-out group-hover:bg-emerald-500/20" />
 
             <div className="space-y-6">
               {/* Header */}
@@ -194,26 +194,26 @@ export default async function AdminDashboardPage({
                     <p className="text-fg-muted text-xs">{t("financial_ops_desc")}</p>
                   </div>
                 </div>
-                <span className="text-fg-muted rounded-full border border-zinc-500/30 bg-zinc-500/10 px-3 py-1 text-xs font-semibold">
+                <span className="text-fg-muted rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold">
                   {t("mrr_label")}
                 </span>
               </div>
 
               {/* KPI Cards */}
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                <div className="border-border-subtle rounded-2xl border bg-white/10 backdrop-blur-md p-3.5 transition-all duration-200 hover:bg-white/10 backdrop-blur-md">
                   <p className="text-fg-muted text-xs font-medium">{t("monthly_revenue")}</p>
                   <p className="mt-1 text-lg font-bold text-emerald-400">{mrr}</p>
                 </div>
-                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                <div className="border-border-subtle rounded-2xl border bg-white/10 backdrop-blur-md p-3.5 transition-all duration-200 hover:bg-white/10 backdrop-blur-md">
                   <p className="text-fg-muted text-xs font-medium">{t("active_subscribers")}</p>
                   <p className="text-fg-primary mt-1 text-lg font-bold">{activeSubscribers}</p>
                 </div>
-                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                <div className="border-border-subtle rounded-2xl border bg-white/10 backdrop-blur-md p-3.5 transition-all duration-200 hover:bg-white/10 backdrop-blur-md">
                   <p className="text-fg-muted text-xs font-medium">{t("grants_funding")}</p>
                   <p className="mt-1 text-lg font-bold text-cyan-400">{grantsWon}</p>
                 </div>
-                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                <div className="border-border-subtle rounded-2xl border bg-white/10 backdrop-blur-md p-3.5 transition-all duration-200 hover:bg-white/10 backdrop-blur-md">
                   <p className="text-fg-muted text-xs font-medium">{t("api_infra_cost")}</p>
                   <p className="mt-1 text-lg font-bold text-amber-400">{apiCost}</p>
                 </div>
@@ -286,7 +286,7 @@ export default async function AdminDashboardPage({
                     <Link
                       key={route.href}
                       href={route.href}
-                      className="group/item border-border-subtle text-fg-secondary flex items-center justify-between rounded-xl border bg-white/[0.02] px-3 py-2.5 text-xs font-medium transition-all duration-200 hover:border-emerald-500/40 hover:bg-emerald-500/10 hover:text-emerald-300"
+                      className="group/item border-border-subtle text-fg-secondary flex items-center justify-between rounded-xl border bg-white/10 backdrop-blur-md px-3 py-2.5 text-xs font-medium transition-all duration-200 hover:border-emerald-500/40 hover:bg-emerald-500/10 hover:text-emerald-300"
                     >
                       <span className="flex items-center gap-2 truncate">
                         <route.icon className="h-3.5 w-3.5 shrink-0 text-emerald-400/70 transition-colors duration-200 group-hover/item:text-emerald-400" />
@@ -311,8 +311,8 @@ export default async function AdminDashboardPage({
           </section>
 
           {/* WIDGET 2: AI Core & System Health Cockpit */}
-          <section className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-slate-900/40 p-6 backdrop-blur-3xl transition-all duration-500 hover:-translate-y-1 hover:border-cyan-500/30 hover:bg-slate-900/70 hover:shadow-[0_0_50px_rgba(6,182,212,0.1)] md:p-8">
-            <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-cyan-500/10 blur-[80px] transition-all duration-700 group-hover:bg-cyan-500/20" />
+          <section className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/20 bg-zinc-900/40 backdrop-blur-xl border-white/20 p-6 backdrop-blur-3xl transition-all duration-300 ease-out hover:-translate-y-1 hover:border-cyan-500/30 hover:bg-zinc-900/70 backdrop-blur-xl border-white/20 hover:shadow-[0_0_50px_rgba(6,182,212,0.1)] md:p-8">
+            <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-cyan-500/10 blur-[80px] transition-all duration-300 ease-out group-hover:bg-cyan-500/20" />
 
             <div className="space-y-6">
               {/* Header */}
@@ -335,19 +335,19 @@ export default async function AdminDashboardPage({
 
               {/* KPI Cards */}
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                <div className="border-border-subtle rounded-2xl border bg-white/10 backdrop-blur-md p-3.5 transition-all duration-200 hover:bg-white/10 backdrop-blur-md">
                   <p className="text-fg-muted text-xs font-medium">{t("edge_region")}</p>
                   <p className="mt-1 text-lg font-bold text-cyan-400">fra1 (Vercel)</p>
                 </div>
-                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                <div className="border-border-subtle rounded-2xl border bg-white/10 backdrop-blur-md p-3.5 transition-all duration-200 hover:bg-white/10 backdrop-blur-md">
                   <p className="text-fg-muted text-xs font-medium">{t("avg_latency")}</p>
                   <p className="mt-1 text-lg font-bold text-emerald-400">{latency}</p>
                 </div>
-                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                <div className="border-border-subtle rounded-2xl border bg-white/10 backdrop-blur-md p-3.5 transition-all duration-200 hover:bg-white/10 backdrop-blur-md">
                   <p className="text-fg-muted text-xs font-medium">{t("tom_context_saved")}</p>
                   <p className="mt-1 text-lg font-bold text-purple-400">12.4M</p>
                 </div>
-                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                <div className="border-border-subtle rounded-2xl border bg-white/10 backdrop-blur-md p-3.5 transition-all duration-200 hover:bg-white/10 backdrop-blur-md">
                   <p className="text-fg-muted text-xs font-medium">{t("cron_jobs")}</p>
                   <p className="text-fg-primary mt-1 text-lg font-bold">{activeCrons}</p>
                 </div>
@@ -439,7 +439,7 @@ export default async function AdminDashboardPage({
                     <Link
                       key={route.href}
                       href={route.href}
-                      className="group/item flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.02] px-3 py-2.5 text-xs font-medium text-zinc-300 transition-all duration-200 hover:border-cyan-500/40 hover:bg-cyan-500/10 hover:text-cyan-300"
+                      className="group/item flex items-center justify-between rounded-xl border border-white/5 bg-white/10 backdrop-blur-md px-3 py-2.5 text-xs font-medium text-fg-primary transition-all duration-200 hover:border-cyan-500/40 hover:bg-cyan-500/10 hover:text-cyan-300"
                     >
                       <span className="flex items-center gap-2 truncate">
                         <route.icon className="h-3.5 w-3.5 shrink-0 text-cyan-400/70 group-hover/item:text-cyan-400" />
@@ -453,7 +453,7 @@ export default async function AdminDashboardPage({
             </div>
 
             <div className="mt-6 flex items-center justify-between border-t border-white/5 pt-4 text-xs">
-              <span className="text-zinc-500">{t("edge_connected")}</span>
+              <span className="text-fg-muted">{t("edge_connected")}</span>
               <Link
                 href={`/${locale}/admin/health`}
                 className="font-semibold text-cyan-400 hover:underline"
@@ -464,8 +464,8 @@ export default async function AdminDashboardPage({
           </section>
 
           {/* WIDGET 3: Security, Compliance & Moderation Cockpit */}
-          <section className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-slate-900/40 p-6 backdrop-blur-3xl transition-all duration-500 hover:-translate-y-1 hover:border-rose-500/30 hover:bg-slate-900/70 hover:shadow-[0_0_50px_rgba(244,63,94,0.1)] md:p-8">
-            <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-rose-500/10 blur-[80px] transition-all duration-700 group-hover:bg-rose-500/20" />
+          <section className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/20 bg-zinc-900/40 backdrop-blur-xl border-white/20 p-6 backdrop-blur-3xl transition-all duration-300 ease-out hover:-translate-y-1 hover:border-rose-500/30 hover:bg-zinc-900/70 backdrop-blur-xl border-white/20 hover:shadow-[0_0_50px_rgba(244,63,94,0.1)] md:p-8">
+            <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-rose-500/10 blur-[80px] transition-all duration-300 ease-out group-hover:bg-rose-500/20" />
 
             <div className="space-y-6">
               {/* Header */}
@@ -488,19 +488,19 @@ export default async function AdminDashboardPage({
 
               {/* KPI Cards */}
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                <div className="border-border-subtle rounded-2xl border bg-white/10 backdrop-blur-md p-3.5 transition-all duration-200 hover:bg-white/10 backdrop-blur-md">
                   <p className="text-fg-muted text-xs font-medium">{t("pii_guardian")}</p>
                   <p className="mt-1 text-lg font-bold text-emerald-400">Active</p>
                 </div>
-                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                <div className="border-border-subtle rounded-2xl border bg-white/10 backdrop-blur-md p-3.5 transition-all duration-200 hover:bg-white/10 backdrop-blur-md">
                   <p className="text-fg-muted text-xs font-medium">{t("pending_dsar")}</p>
                   <p className="text-fg-primary mt-1 text-lg font-bold">0 Overdue</p>
                 </div>
-                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                <div className="border-border-subtle rounded-2xl border bg-white/10 backdrop-blur-md p-3.5 transition-all duration-200 hover:bg-white/10 backdrop-blur-md">
                   <p className="text-fg-muted text-xs font-medium">{t("moderation_queue")}</p>
                   <p className="mt-1 text-lg font-bold text-cyan-400">Clean</p>
                 </div>
-                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                <div className="border-border-subtle rounded-2xl border bg-white/10 backdrop-blur-md p-3.5 transition-all duration-200 hover:bg-white/10 backdrop-blur-md">
                   <p className="text-fg-muted text-xs font-medium">{t("rls_enforcement")}</p>
                   <p className="mt-1 text-lg font-bold text-purple-400">{rlsEnforcement}</p>
                 </div>
@@ -573,7 +573,7 @@ export default async function AdminDashboardPage({
                     <Link
                       key={route.href}
                       href={route.href}
-                      className="group/item flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.02] px-3 py-2.5 text-xs font-medium text-zinc-300 transition-all duration-200 hover:border-rose-500/40 hover:bg-rose-500/10 hover:text-rose-300"
+                      className="group/item flex items-center justify-between rounded-xl border border-white/5 bg-white/10 backdrop-blur-md px-3 py-2.5 text-xs font-medium text-fg-primary transition-all duration-200 hover:border-rose-500/40 hover:bg-rose-500/10 hover:text-rose-300"
                     >
                       <span className="flex items-center gap-2 truncate">
                         <route.icon className="h-3.5 w-3.5 shrink-0 text-rose-400/70 group-hover/item:text-rose-400" />
@@ -587,7 +587,7 @@ export default async function AdminDashboardPage({
             </div>
 
             <div className="mt-6 flex items-center justify-between border-t border-white/5 pt-4 text-xs">
-              <span className="text-zinc-500">{t("kvkk_gdpr_compliant")}</span>
+              <span className="text-fg-muted">{t("kvkk_gdpr_compliant")}</span>
               <Link
                 href={`/${locale}/admin/audit`}
                 className="font-semibold text-rose-400 hover:underline"
@@ -598,8 +598,8 @@ export default async function AdminDashboardPage({
           </section>
 
           {/* WIDGET 4: Strategy, Growth & Outreach Cockpit */}
-          <section className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-slate-900/40 p-6 backdrop-blur-3xl transition-all duration-500 hover:-translate-y-1 hover:border-purple-500/30 hover:bg-slate-900/70 hover:shadow-[0_0_50px_rgba(168,85,247,0.1)] md:p-8">
-            <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-purple-500/10 blur-[80px] transition-all duration-700 group-hover:bg-purple-500/20" />
+          <section className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/20 bg-zinc-900/40 backdrop-blur-xl border-white/20 p-6 backdrop-blur-3xl transition-all duration-300 ease-out hover:-translate-y-1 hover:border-purple-500/30 hover:bg-zinc-900/70 backdrop-blur-xl border-white/20 hover:shadow-[0_0_50px_rgba(168,85,247,0.1)] md:p-8">
+            <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-purple-500/10 blur-[80px] transition-all duration-300 ease-out group-hover:bg-purple-500/20" />
 
             <div className="space-y-6">
               {/* Header */}
@@ -622,19 +622,19 @@ export default async function AdminDashboardPage({
 
               {/* KPI Cards */}
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                <div className="border-border-subtle rounded-2xl border bg-white/10 backdrop-blur-md p-3.5 transition-all duration-200 hover:bg-white/10 backdrop-blur-md">
                   <p className="text-fg-muted text-xs font-medium">{t("master_plan_kpi")}</p>
                   <p className="mt-1 text-lg font-bold text-cyan-400">{t("master_plan_done")}</p>
                 </div>
-                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                <div className="border-border-subtle rounded-2xl border bg-white/10 backdrop-blur-md p-3.5 transition-all duration-200 hover:bg-white/10 backdrop-blur-md">
                   <p className="text-fg-muted text-xs font-medium">{t("linkedin_reach")}</p>
                   <p className="mt-1 text-lg font-bold text-emerald-400">{t("in_preparation")}</p>
                 </div>
-                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                <div className="border-border-subtle rounded-2xl border bg-white/10 backdrop-blur-md p-3.5 transition-all duration-200 hover:bg-white/10 backdrop-blur-md">
                   <p className="text-fg-muted text-xs font-medium">{t("outreach_open_rate")}</p>
                   <p className="mt-1 text-lg font-bold text-purple-400">{t("in_preparation")}</p>
                 </div>
-                <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 transition-all duration-200 hover:bg-white/[0.06]">
+                <div className="border-border-subtle rounded-2xl border bg-white/10 backdrop-blur-md p-3.5 transition-all duration-200 hover:bg-white/10 backdrop-blur-md">
                   <p className="text-fg-muted text-xs font-medium">{t("advisory_board_kpi")}</p>
                   <p className="text-fg-primary mt-1 text-lg font-bold">0</p>
                 </div>
@@ -741,7 +741,7 @@ export default async function AdminDashboardPage({
                     <Link
                       key={route.href}
                       href={route.href}
-                      className="group/item flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.02] px-3 py-2.5 text-xs font-medium text-zinc-300 transition-all duration-200 hover:border-purple-500/40 hover:bg-purple-500/10 hover:text-purple-300"
+                      className="group/item flex items-center justify-between rounded-xl border border-white/5 bg-white/10 backdrop-blur-md px-3 py-2.5 text-xs font-medium text-fg-primary transition-all duration-200 hover:border-purple-500/40 hover:bg-purple-500/10 hover:text-purple-300"
                     >
                       <span className="flex items-center gap-2 truncate">
                         <route.icon className="h-3.5 w-3.5 shrink-0 text-purple-400/70 group-hover/item:text-purple-400" />
@@ -755,7 +755,7 @@ export default async function AdminDashboardPage({
             </div>
 
             <div className="mt-6 flex items-center justify-between border-t border-white/5 pt-4 text-xs">
-              <span className="text-zinc-500">{t("corporate_email_rule")}</span>
+              <span className="text-fg-muted">{t("corporate_email_rule")}</span>
               <Link
                 href={`/${locale}/admin/strategy/master-plan`}
                 className="font-semibold text-purple-400 hover:underline"
@@ -766,8 +766,8 @@ export default async function AdminDashboardPage({
           </section>
 
           {/* WIDGET 5: Founder Command (Outreach & Media) */}
-          <section className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-slate-900/40 p-6 backdrop-blur-3xl transition-all duration-500 hover:-translate-y-1 hover:border-indigo-500/30 hover:bg-slate-900/70 hover:shadow-[0_0_50px_rgba(99,102,241,0.1)] md:p-8 lg:col-span-2">
-            <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-indigo-500/10 blur-[80px] transition-all duration-700 group-hover:bg-indigo-500/20" />
+          <section className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/20 bg-zinc-900/40 backdrop-blur-xl border-white/20 p-6 backdrop-blur-3xl transition-all duration-300 ease-out hover:-translate-y-1 hover:border-indigo-500/30 hover:bg-zinc-900/70 backdrop-blur-xl border-white/20 hover:shadow-[0_0_50px_rgba(99,102,241,0.1)] md:p-8 lg:col-span-2">
+            <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-indigo-500/10 blur-[80px] transition-all duration-300 ease-out group-hover:bg-indigo-500/20" />
 
             <div className="space-y-6">
               {/* Header */}

@@ -38,3 +38,20 @@ limit.
 
 That is Founder-side and cannot be diagnosed from this container. Until it is answered, treat
 every "CI green" claim as unverified regardless of source — including this file's own.
+
+## Root cause found — closed (v13.47, 2026-08-17)
+
+The Founder reported that continuous pushing had **exhausted the GitHub Actions quota** and had
+also produced unexpected Vercel spend.
+
+That is the answer. `runner_id: 0` with a two-second failure and an empty `runner_name` is what
+quota exhaustion looks like from the API — the run is created, no runner is ever allocated, and it
+is marked failed. It was never a workflow-configuration defect, which is why neither the
+`setup-node` version change (`94418b81`) nor the runner-label change (`605c16a8`) could have fixed
+it, and why the closure citing them was premature.
+
+**Diagnosis complete; the remedy is a separate item.** Reducing consumption is `CI-COST-1`:
+21 workflows currently run with no path filters and no concurrency cancellation, so a
+documentation-only commit triggers several full builds, and a failed build still consumes minutes.
+
+No further diagnosis is required. Do not reopen this item for the fix.

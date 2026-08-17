@@ -1,6 +1,6 @@
 # Architecture
 
-> Last updated: 2026-06-01
+> Last updated: 2026-08-17
 
 ## High-level
 
@@ -144,6 +144,8 @@ Detected categories: `email`, `phone`, `tc_kimlik`, `iban`, `credit_card`, `ipv4
 - [ADR-004: next-intl with localePrefix: "always"](./adr/0004-next-intl.md)
 - [ADR-005: Server Components + Server Actions](./adr/0005-rsc-server-actions.md)
 - [ADR-006: PII Guardian on submit](./adr/0006-pii-guardian.md)
+- [ADR-010: API keys stored in plaintext — rationale](./adr/0010-api-keys-plaintext-rationale.md)
+- [ADR-011: Prompt engine topology — one engine, named parts](./adr/0011-prompt-engine-topology.md)
 
 ## Entity-Relationship Diagram
 

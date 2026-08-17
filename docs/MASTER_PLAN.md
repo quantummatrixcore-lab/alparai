@@ -5,21 +5,21 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.47 · **Updated:** 2026-08-17 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.48 · **Updated:** 2026-08-17 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
 
 ## 0. Where things live
 
 The Founder asked why the project runs everything through this one file instead of a professional
 structure. It does not have to — **the professional structure already exists and is unused**:
 
-| Need                                                | File                                          | State                           |
-| --------------------------------------------------- | --------------------------------------------- | ------------------------------- |
-| System architecture, layers, ER diagram, RLS matrix | `docs/ARCHITECTURE.md` (246 lines, Mermaid)   | Exists; last updated 2026-06-01 |
-| Architecture decisions                              | `docs/adr/0001…0010` (7 records, MADR format) | Exists; unreferenced since June |
-| Historical narrative, closed audits                 | `docs/plan/v13.x.md`, `docs/plan/v12.*.md`    | Frozen record — never edited    |
-| Per-item detail and acceptance                      | `docs/plan/items/<ID>.md` (65 files)          | Live                            |
-| Binding rules and roles                             | `CLAUDE.md`, `AGENTS.md`                      | Live                            |
-| Operational board                                   | **this file**                                 | Live                            |
+| Need                                                | File                                          | State                                                                           |
+| --------------------------------------------------- | --------------------------------------------- | ------------------------------------------------------------------------------- |
+| System architecture, layers, ER diagram, RLS matrix | `docs/ARCHITECTURE.md` (246 lines, Mermaid)   | Exists; last updated 2026-06-01                                                 |
+| Architecture decisions                              | `docs/adr/0001…0011` (8 records, MADR format) | **Live again** — ADR-011 written v13.48; Architect may write here (G-6 amended) |
+| Historical narrative, closed audits                 | `docs/plan/v13.x.md`, `docs/plan/v12.*.md`    | Frozen record — never edited                                                    |
+| Per-item detail and acceptance                      | `docs/plan/items/<ID>.md` (65 files)          | Live                                                                            |
+| Binding rules and roles                             | `CLAUDE.md`, `AGENTS.md`                      | Live                                                                            |
+| Operational board                                   | **this file**                                 | Live                                                                            |
 
 **The defect was routing, not absence.** Decisions that belonged in `docs/adr/` were written as
 version sections here, so this file grew to 601 lines against a 600-line cap and new entries could
@@ -41,24 +41,25 @@ only what is currently true.
 
 ## 2. Active backlog
 
-| ID                                       | P      | Owner                       | Work                                                                                                                                                                                                             | Acceptance                                                             |
-| ---------------------------------------- | ------ | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| **[DBTYPE-1](plan/items/DBTYPE-1.md)**   | **P0** | Implementer                 | Regenerate `src/types/database.ts` against the **production** database — `599c3554` regenerated it against an incomplete instance and dropped `challenge_votes`, `challenge_submissions` and three RPC functions | `pnpm typecheck` errors drop 584 → ≤14; no suppressions in the diff    |
-| **[AGENTOS-1](plan/items/AGENTOS-1.md)** | **P0** | Implementer                 | Remove or replace the 9 `src/lib/agent-os/` imports (2 public pages, 2 API routes, 3 components/actions, 2 root test files)                                                                                      | `pnpm typecheck` exits 0                                               |
-| **BA**                                   | P0     | **Founder** (not delegable) | Cloudflare: read Security → Events for the last 24h, report which user-agents are actually blocked. Closes if the list is empty                                                                                  | Report produced; WAF rules unchanged unless the log justifies a change |
-| **BB**                                   | P0     | Implementer                 | ZETA-0c: `/api/health` 308 → 200, smoke test green                                                                                                                                                               | Next deploy shown as smoke-test verified                               |
-| **BD**                                   | P0     | **Founder** (GATE)          | Approve `docs/campaigns/` launch drafts → HN + Reddit                                                                                                                                                            | First 24h `funnel_events` counts reported                              |
-| **BG**                                   | P0     | Implementer                 | Repair mojibake in `messages/{en,tr,de,fr,ru}.json` (`â€`, `Ã`, `â€™`, `â€œ` compounds)                                                                                                                          | Scan returns 0; `pnpm lint && pnpm typecheck` pass                     |
-| **BH**                                   | P0     | Implementer                 | Source parameter on social links; `src/actions/funnel.ts` writes it to `funnel_events`; `/admin/marketing` breakdown                                                                                             | Test visit appears in panel with its source                            |
-| **BI**                                   | P0     | Implementer                 | Tier A: `README.md` and public-facing files translated to English                                                                                                                                                | Files leave `.repo-language-baseline`; CI stays green                  |
-| **[CI-COST-1](plan/items/CI-COST-1.md)** | P1     | Architect                   | Path filters (`docs/**`, `**.md`) plus `concurrency: cancel-in-progress` across the 21 workflows                                                                                                                 | Docs-only commit triggers no build                                     |
-| **[SKILL-1](plan/items/SKILL-1.md)**     | P1     | Implementer                 | Copy `.agents/skills/{bilge-kurul,graphify}/` into `.claude/skills/` — nothing reads `.agents/skills/` today                                                                                                     | Both invocable in a fresh session                                      |
-| **[HIER-1](plan/items/HIER-1.md)**       | P1     | Implementer                 | `.agents/hierarchy.json` binding the command hierarchy to existing role prompts (see §4)                                                                                                                         | Dispatcher resolves a task to one specialist                           |
-| **BC**                                   | P1     | Implementer                 | ZETA-0b: CI i18n parity (`de/fr/ru`), Release ruleset bypass limited to GitHub Actions, Security Audit `pnpm-audit`, Plan Guard + Master Plan Guard                                                              | All five green on `master`                                             |
-| **BE**                                   | P2     | Implementer                 | 4 dependabot PRs                                                                                                                                                                                                 | At least two merged                                                    |
-| **BF**                                   | P2     | Implementer                 | Move DecasHub + Agent-OS directives to `docs/plan/tier0-portfolio.md`                                                                                                                                            | No non-ALPAR product directive remains in this file                    |
-| **BK**                                   | P2     | Implementer                 | English freeze notice atop each archive group                                                                                                                                                                    | Notice present; bytes otherwise unchanged                              |
-| **BL**                                   | P2     | Implementer                 | Tier B internal docs translated in read-frequency order                                                                                                                                                          | `check-masterplan-consistency.mjs` still passes                        |
+| ID                                       | P      | Owner                       | Work                                                                                                                                                                                                             | Acceptance                                                                 |
+| ---------------------------------------- | ------ | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| **[DBTYPE-1](plan/items/DBTYPE-1.md)**   | **P0** | Implementer                 | Regenerate `src/types/database.ts` against the **production** database — `599c3554` regenerated it against an incomplete instance and dropped `challenge_votes`, `challenge_submissions` and three RPC functions | `pnpm typecheck` errors drop 584 → ≤14; no suppressions in the diff        |
+| **[AGENTOS-1](plan/items/AGENTOS-1.md)** | **P0** | Implementer                 | Remove or replace the 9 `src/lib/agent-os/` imports (2 public pages, 2 API routes, 3 components/actions, 2 root test files)                                                                                      | `pnpm typecheck` exits 0                                                   |
+| **BA**                                   | P0     | **Founder** (not delegable) | Cloudflare: read Security → Events for the last 24h, report which user-agents are actually blocked. Closes if the list is empty                                                                                  | Report produced; WAF rules unchanged unless the log justifies a change     |
+| **BB**                                   | P0     | Implementer                 | ZETA-0c: `/api/health` 308 → 200, smoke test green                                                                                                                                                               | Next deploy shown as smoke-test verified                                   |
+| **BD**                                   | P0     | **Founder** (GATE)          | Approve `docs/campaigns/` launch drafts → HN + Reddit                                                                                                                                                            | First 24h `funnel_events` counts reported                                  |
+| **BG**                                   | P0     | Implementer                 | Repair mojibake in `messages/{en,tr,de,fr,ru}.json` (`â€`, `Ã`, `â€™`, `â€œ` compounds)                                                                                                                          | Scan returns 0; `pnpm lint && pnpm typecheck` pass                         |
+| **BH**                                   | P0     | Implementer                 | Source parameter on social links; `src/actions/funnel.ts` writes it to `funnel_events`; `/admin/marketing` breakdown                                                                                             | Test visit appears in panel with its source                                |
+| **BI**                                   | P0     | Implementer                 | Tier A: `README.md` and public-facing files translated to English                                                                                                                                                | Files leave `.repo-language-baseline`; CI stays green                      |
+| **[CI-COST-1](plan/items/CI-COST-1.md)** | P1     | Architect                   | Path filters (`docs/**`, `**.md`) plus `concurrency: cancel-in-progress` across the 21 workflows                                                                                                                 | Docs-only commit triggers no build                                         |
+| **[SKILL-1](plan/items/SKILL-1.md)**     | P1     | Implementer                 | Copy `.agents/skills/{bilge-kurul,graphify}/` into `.claude/skills/` — nothing reads `.agents/skills/` today                                                                                                     | Both invocable in a fresh session                                          |
+| **[HIER-1](plan/items/HIER-1.md)**       | P1     | Implementer                 | `.agents/hierarchy.json` binding the command hierarchy to existing role prompts (see §4)                                                                                                                         | Dispatcher resolves a task to one specialist                               |
+| **[MEM-1](plan/items/MEM-1.md)**         | P1     | Implementer                 | Semantic memory: `agent_memory` table + pgvector, write path as a `policies.ts` entry, `retrieveContext()` read path, embeddings from the wired Google adapter                                                   | A fact stored in one session is retrieved by semantic query in a later one |
+| **BC**                                   | P1     | Implementer                 | ZETA-0b: CI i18n parity (`de/fr/ru`), Release ruleset bypass limited to GitHub Actions, Security Audit `pnpm-audit`, Plan Guard + Master Plan Guard                                                              | All five green on `master`                                                 |
+| **BE**                                   | P2     | Implementer                 | 4 dependabot PRs                                                                                                                                                                                                 | At least two merged                                                        |
+| **BF**                                   | P2     | Implementer                 | Move DecasHub + Agent-OS directives to `docs/plan/tier0-portfolio.md`                                                                                                                                            | No non-ALPAR product directive remains in this file                        |
+| **BK**                                   | P2     | Implementer                 | English freeze notice atop each archive group                                                                                                                                                                    | Notice present; bytes otherwise unchanged                                  |
+| **BL**                                   | P2     | Implementer                 | Tier B internal docs translated in read-frequency order                                                                                                                                                          | `check-masterplan-consistency.mjs` still passes                            |
 
 **Carried forward, unchanged.** `src/lib/auth/test-bypass.ts` landed as a scaffold that is **not
 wired in**: the three call sites (`src/middleware.ts:54`, `src/lib/auth/session.ts:14`,
@@ -143,6 +144,22 @@ precise failure this board's doctrine exists to prevent — and is recorded rath
 **`.agents/skills/` is read by nothing.** Claude Code loads `.claude/skills/`, which holds `tom`
 alone. `bilge-kurul` and `graphify` never load, and `CLAUDE.md` standing rule 2 ("use graphify for
 architecture questions") therefore points at an unwired tool. `SKILL-1`.
+
+**v13.48 — a new "Prompt Engine" was requested; four fifths of it already existed.** A directive
+asked for a five-part prompt-engine subsystem. Measured first: `src/lib/audit/model-router.ts`
+already classifies intent across six `TaskDomain`s, `src/lib/ai/router.ts` routes on complexity,
+`cross-audit/debate-prompts.ts` holds templated system prompts with response DTOs, Zod validates in
+20 files across 36 `safeParse` sites, and `src/lib/autopilot/policies.ts` declares **16 named
+policies** carrying retry attempts, backoff, breaker thresholds, token budgets, redaction and
+exhaustion behaviour — which is precisely the "deterministic contract enforcement with self-healing
+retry" that was asked to be designed. `src/lib/ai/` is 26 files and 4,276 lines. The one real gap is
+semantic memory: no embeddings, no pgvector, no RAG, stateless inference. Building a new engine would
+have produced the fifth duplicate in a repository that already carries three unaware dispatchers, 34
+engine descriptors that are registry entries rather than code, and an `agent-os` imported by nine
+files and never written. Recorded as [ADR-011](adr/0011-prompt-engine-topology.md); the gap is
+[MEM-1](plan/items/MEM-1.md). **G-6 amended** in `CLAUDE.md` to add `docs/adr/**` and
+`docs/ARCHITECTURE.md` to the Architect's writable paths — an ADR is Architect work product, and the
+constraint that keeps it safe is that an ADR records a decision and never ships behaviour.
 
 ## 5. History
 

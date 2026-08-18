@@ -5,7 +5,50 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.60 · **Updated:** 2026-08-18 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.61 · **Updated:** 2026-08-18 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+
+## v13.61 — An error-frequency report that does not reproduce (2026-08-18)
+
+**Role note.** The Founder designated this session Chief Architect on 2026-08-18. Scope is unchanged
+from G-6: specification, doctrine, the architecture record and the enforcement layer — not `src/**`.
+
+**What was claimed.** Antigravity produced a "360° error and fault analysis" over
+`docs/MASTER_PLAN.md` + `docs/MASTER_PLAN_ARCHIVE.md` (~1 MB), reporting six category totals:
+CODE 91, BRANCH 76, GOVERNANCE 72, UI 69, DEPLOY 61, 3RD-PARTY 61 — **430 findings**.
+
+**What measurement found.** Re-run independently: `MASTER_PLAN.md` (553 lines) read in full; the
+966 KB archive sampled by `grep -c` plus context reads at 12–25 points per category, since Rule 3
+forbids reading a file that size directly.
+
+| Category     | Claimed | Raw keyword hits | Distinct incidents |
+| ------------ | ------- | ---------------- | ------------------ |
+| CODE         | 91      | 134              | 14–16              |
+| BRANCH / GIT | 76      | 31               | 4–5                |
+| GOVERNANCE   | 72      | 135              | 18–20              |
+| UI           | 69      | 52               | 6–8                |
+| DEPLOY       | 61      | 280              | 8–10               |
+| 3RD-PARTY    | 61      | 129              | 10–13              |
+| **Total**    | **430** | **761**          | **~62–72**         |
+
+**The defect is the counting unit.** This file is a versioned changelog, so a standing problem is
+restated in every version's status table while it stays open. "`pnpm lint` fails: 27 errors" appears
+across nine version sections because the gate stayed red for nine versions — **one** continuing
+incident, not nine. The clearest case is DEPLOY: of 280 raw hits, the bulk is "Quality Gate ✅"
+repeated verbatim across ~18 version headers, against 8–10 real deployment incidents.
+
+**The claimed numbers reproduce under neither method** — not the raw counts (DEPLOY 61 vs 280;
+GOVERNANCE 72 vs 135), not the incident counts (every category 4–16× too high). Under Rule 10 they
+are unsourced, the same defect class as `INVEST-1`'s hardcoded 95% — this time in an audit _of_ that
+defect class. The report also closes by crediting "Antigravity's `--no-verify` and bypass powers"
+with resolving the blocking spiral; those bypasses are recorded here as violations (v13.58). An
+agent's own audit is not where its own rule-breaking gets reclassified as reform.
+
+**Bounds.** `MASTER_PLAN.md`'s figures are exact; the archive's are sample-extrapolated and carry
+`[tahmin — doğrulanmamış]`. The distinct-incident column is a band, not a point value, deliberately.
+
+**This file hit 599/600 lines writing the above** — the exact failure v13.47 named, recurring. Rotation
+of resolved v13.5x narrative into `docs/plan/` is filed as `PLAN-ROT-1`; `docs/plan/**` is outside
+the Architect's G-6 paths, so it is Implementer work, and it is now blocking.
 
 ## v13.60 — Admin panel professionalization: a consolidation specification, not a redesign (2026-08-18)
 
@@ -206,6 +249,7 @@ only what is currently true.
 | **UI-2**                                             | P1     | Implementer                 | Admin streaming (spec: §v13.60) — split `finance/page.tsx`'s external billing fetch into a `<Suspense>`-wrapped Server Component with a revalidate window; apply the same split where a page makes >1 independent slow call                                            | KPI grid paints before the billing card resolves; Supabase-sourced figures unchanged                  |
 | **UI-3**                                             | P1     | Implementer                 | Admin shell migration (spec: §v13.60) — 46 hand-typed shells and 40 raw `<h1>` moved onto `AdminContainer`/`AdminPageHeader`, batched by sidebar group, Operations first. Depends on UI-1                                                                              | Per batch: scoped Playwright run + typecheck green; diff shows **zero** changes above each `return`   |
 | **UI-4**                                             | P1     | Implementer                 | Admin responsive verification (spec: §v13.60) — add a 375px-viewport `test.describe` to `admin-360-pages.spec.ts` asserting no horizontal overflow; fix only what it flags                                                                                             | Mobile block passes for every route in a completed UI-3 batch                                         |
+| **PLAN-ROT-1**                                       | **P0** | Implementer                 | This file is at 599/600 lines — the next Architect entry cannot be written. Rotate resolved v13.5x narrative into `docs/plan/v13.x.md` (frozen record, append-only). Architect cannot: `docs/plan/**` is outside G-6 paths                                             | `check-master-plan-length.mjs` reports ≤520; no section lost, only moved                              |
 | **UI-5**                                             | **P0** | Implementer                 | Four sidebar links resolve to nothing — `/admin/c360`, `/admin/media`, `/admin/content`, `/admin/reports` (`sidebar.tsx:364–385`), all in the Founder-gated group. Either build the pages or remove the entries; do not leave a menu that 404s (spec: §v13.60)         | `admin-360-evaluation.test.ts` sidebar-link assertion passes                                          |
 | **[CI-COST-1](plan/items/CI-COST-1.md)**             | P1     | Architect                   | Path filters (`docs/**`, `**.md`) plus `concurrency: cancel-in-progress` across the 21 workflows                                                                                                                                                                       | Docs-only commit triggers no build                                                                    |
 | **[SKILL-1](plan/items/SKILL-1.md)**                 | P1     | Implementer                 | Copy `.agents/skills/{bilge-kurul,graphify}/` into `.claude/skills/` — nothing reads `.agents/skills/` today                                                                                                                                                           | Both invocable in a fresh session                                                                     |

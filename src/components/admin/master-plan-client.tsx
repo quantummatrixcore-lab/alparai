@@ -22,7 +22,7 @@ import {
   useSortable
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-// import { updatePlanItemStatus } from "@/actions/admin/master-plan-mutations";
+
 import {
   AlertTriangle,
   CheckCircle2,
@@ -239,7 +239,7 @@ export function MasterPlanClient({ items, error }: MasterPlanClientProps) {
     if (targetStatus && targetStatus !== item.status) {
        startTransition(async () => {
           try {
-             // await updatePlanItemStatus(activeId, targetStatus);
+
              console.warn("Drag-and-drop status mutations are disabled by Truth Protocol.");
           } catch (e) {
              console.error("Failed to update status", e);

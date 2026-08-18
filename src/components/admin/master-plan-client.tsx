@@ -1,8 +1,28 @@
-"use client";
+﻿"use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useTransition } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import {
+  DndContext,
+  DragOverlay,
+  closestCorners,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  DragEndEvent,
+  DragStartEvent
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  arrayMove,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+  useSortable
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+import { updatePlanItemStatus } from "@/actions/admin/master-plan-mutations";
 import {
   AlertTriangle,
   CheckCircle2,
@@ -62,7 +82,7 @@ function PlanCard({
       animate={{ opacity: 1, scale: 1 }}
       role="button"
       tabIndex={0}
-      aria-label={`${t("plan_item_id", { id: item.id })} — ${item.title}`}
+      aria-label={`${t("plan_item_id", { id: item.id })} â€” ${item.title}`}
       onClick={() => onOpen(item)}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
@@ -115,10 +135,30 @@ function PlanCard({
           <span />
         )}
         <span className="text-brand-400/70 group-hover:text-brand-400 text-[10px] font-bold tracking-wider uppercase opacity-0 transition-opacity group-hover:opacity-100">
-          {t("plan_view_details")} →
+          {t("plan_view_details")} â†’
         </span>
       </div>
     </motion.div>
+  );
+}
+
+
+export function SortablePlanCard({ item, compact, onOpen, pendingDependencies }: any) {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
+    id: item.id,
+    data: { item }
+  });
+  
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+  };
+
+  return (
+    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
+      <PlanCard item={item} compact={compact} onOpen={onOpen} pendingDependencies={pendingDependencies} />
+    </div>
   );
 }
 
@@ -163,6 +203,49 @@ export function MasterPlanClient({ items, error }: MasterPlanClientProps) {
     ],
     [t],
   );
+
+  
+  const [isPending, startTransition] = useTransition();
+  const [activeItem, setActiveItem] = useState<PlanItem | null>(null);
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
+  );
+
+  const handleDragStart = (event: DragStartEvent) => {
+    setActiveItem(event.active.data.current?.item as PlanItem);
+  };
+
+  const handleDragEnd = async (event: DragEndEvent) => {
+    setActiveItem(null);
+    const { active, over } = event;
+    if (!over) return;
+
+    const activeId = active.id as string;
+    const overId = over.id as string;
+    
+    const item = items.find(i => i.id === activeId);
+    if (!item) return;
+    
+    let targetStatus: "pending" | "paused" | "completed" | null = null;
+    if (["col-pending", "col-paused", "col-completed"].includes(overId)) {
+       targetStatus = overId.replace("col-", "") as any;
+    } else {
+       const overItem = items.find(i => i.id === overId);
+       if (overItem) targetStatus = overItem.status;
+    }
+
+    if (targetStatus && targetStatus !== item.status) {
+       startTransition(async () => {
+          try {
+             await updatePlanItemStatus(activeId, targetStatus);
+          } catch (e) {
+             console.error("Failed to update status", e);
+          }
+       });
+    }
+  };
 
   const completedIds = useMemo(
     () => new Set(items.filter((i) => i.status === "completed").map((i) => i.id)),
@@ -292,7 +375,7 @@ export function MasterPlanClient({ items, error }: MasterPlanClientProps) {
 
   return (
     <div className="space-y-8">
-      {/* Parse error — visually distinct from an empty backlog */}
+      {/* Parse error â€” visually distinct from an empty backlog */}
       {hasError && (
         <motion.div
           initial={{ opacity: 0, y: -8 }}
@@ -309,7 +392,7 @@ export function MasterPlanClient({ items, error }: MasterPlanClientProps) {
         </motion.div>
       )}
 
-      {/* Genuine empty state — the file parsed fine but has no rows */}
+      {/* Genuine empty state â€” the file parsed fine but has no rows */}
       {isEmpty && (
         <div className="bg-bg-secondary/40 border-border-subtle/50 flex flex-col items-center justify-center rounded-xl border border-dashed py-16 text-center">
           <Inbox className="text-fg-muted mb-3 h-10 w-10 opacity-40" />
@@ -384,7 +467,7 @@ export function MasterPlanClient({ items, error }: MasterPlanClientProps) {
             </div>
           </div>
 
-          {/* Filter produced no matches — distinct from an empty backlog */}
+          {/* Filter produced no matches â€” distinct from an empty backlog */}
           {noFilterResults ? (
             <div className="bg-bg-secondary/40 border-border-subtle/50 flex flex-col items-center justify-center rounded-xl border border-dashed py-14 text-center">
               <Search className="text-fg-muted mb-3 h-8 w-8 opacity-40" />
@@ -400,111 +483,98 @@ export function MasterPlanClient({ items, error }: MasterPlanClientProps) {
             <>
               {/* Kanban View */}
               {viewMode === "kanban" && (
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                  {/* Pending Column */}
-                  <div className="flex flex-col gap-4">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-fg-primary flex items-center gap-2 font-bold">
-                        <Clock className="text-warning-400 h-5 w-5" />
-                        {t("pending_column")}
-                      </h3>
-                      <span className="bg-bg-tertiary text-fg-muted rounded-full px-2.5 py-0.5 text-xs font-bold">
-                        {pendingItems.length}
-                      </span>
-                    </div>
-                    <div className="space-y-3">
-                      {pendingItems.length === 0 ? (
-                        <EmptyColumn
-                          icon={<Clock className="h-6 w-6 opacity-40" />}
-                          label={t("no_pending_items")}
-                        />
-                      ) : (
-                        <AnimatePresence initial={false}>
-                          {pendingItems.map((item) => (
-                            <PlanCard
-                              key={item.id}
-                              item={item}
-                              onOpen={setSelected}
-                              pendingDependencies={Array.from(
-                                effectiveDependsOn.get(item.id) || [],
-                              ).filter((d) => !completedIds.has(d))}
-                            />
-                          ))}
-                        </AnimatePresence>
-                      )}
-                    </div>
-                  </div>
+  <DndContext 
+    sensors={sensors} 
+    collisionDetection={closestCorners} 
+    onDragStart={handleDragStart}
+    onDragEnd={handleDragEnd}
+  >
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      
+      {/* Pending Column */}
+      <div className="flex flex-col gap-4">
+        <div className="flex items-center justify-between">
+          <h3 className="text-fg-primary flex items-center gap-2 font-bold">
+            <Clock className="text-warning-400 h-5 w-5" />
+            {t("pending_column")}
+          </h3>
+          <span className="bg-bg-tertiary text-fg-muted rounded-full px-2.5 py-0.5 text-xs font-bold">
+            {pendingItems.length}
+          </span>
+        </div>
+        <SortableContext id="col-pending" items={pendingItems.map(i => i.id)} strategy={verticalListSortingStrategy}>
+          <div className="space-y-3 min-h-[150px]">
+            {pendingItems.length === 0 ? (
+              <EmptyColumn icon={<Clock className="h-6 w-6 opacity-40" />} label={t("no_pending_items")} />
+            ) : (
+              <AnimatePresence initial={false}>
+                {pendingItems.map((item) => (
+                  <SortablePlanCard key={item.id} item={item} onOpen={setSelected} pendingDependencies={Array.from(effectiveDependsOn.get(item.id) || []).filter((d) => !completedIds.has(d))} />
+                ))}
+              </AnimatePresence>
+            )}
+          </div>
+        </SortableContext>
+      </div>
 
-                  {/* Paused / Founder-Gated Column */}
-                  <div className="flex flex-col gap-4">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-fg-primary flex items-center gap-2 font-bold">
-                        <Clock className="text-brand-400 h-5 w-5" />
-                        {t("paused_column")}
-                      </h3>
-                      <span className="bg-bg-tertiary text-fg-muted rounded-full px-2.5 py-0.5 text-xs font-bold">
-                        {pausedItems.length}
-                      </span>
-                    </div>
-                    <div className="space-y-3">
-                      {pausedItems.length === 0 ? (
-                        <EmptyColumn
-                          icon={<Clock className="h-6 w-6 opacity-40" />}
-                          label={t("no_paused_items")}
-                        />
-                      ) : (
-                        <AnimatePresence initial={false}>
-                          {pausedItems.map((item) => (
-                            <PlanCard
-                              key={item.id}
-                              item={item}
-                              onOpen={setSelected}
-                              pendingDependencies={Array.from(
-                                effectiveDependsOn.get(item.id) || [],
-                              ).filter((d) => !completedIds.has(d))}
-                            />
-                          ))}
-                        </AnimatePresence>
-                      )}
-                    </div>
-                  </div>
+      {/* Paused Column */}
+      <div className="flex flex-col gap-4">
+        <div className="flex items-center justify-between">
+          <h3 className="text-fg-primary flex items-center gap-2 font-bold">
+            <Clock className="text-brand-400 h-5 w-5" />
+            {t("paused_column")}
+          </h3>
+          <span className="bg-bg-tertiary text-fg-muted rounded-full px-2.5 py-0.5 text-xs font-bold">
+            {pausedItems.length}
+          </span>
+        </div>
+        <SortableContext id="col-paused" items={pausedItems.map(i => i.id)} strategy={verticalListSortingStrategy}>
+          <div className="space-y-3 min-h-[150px]">
+            {pausedItems.length === 0 ? (
+              <EmptyColumn icon={<Clock className="h-6 w-6 opacity-40" />} label={t("no_paused_items")} />
+            ) : (
+              <AnimatePresence initial={false}>
+                {pausedItems.map((item) => (
+                  <SortablePlanCard key={item.id} item={item} onOpen={setSelected} pendingDependencies={Array.from(effectiveDependsOn.get(item.id) || []).filter((d) => !completedIds.has(d))} />
+                ))}
+              </AnimatePresence>
+            )}
+          </div>
+        </SortableContext>
+      </div>
 
-                  {/* Completed Column */}
-                  <div className="flex flex-col gap-4">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-fg-primary flex items-center gap-2 font-bold">
-                        <CheckCircle2 className="text-success-400 h-5 w-5" />
-                        {t("completed_column")}
-                      </h3>
-                      <span className="bg-bg-tertiary text-fg-muted rounded-full px-2.5 py-0.5 text-xs font-bold">
-                        {completedItems.length}
-                      </span>
-                    </div>
-                    <div className="space-y-3 opacity-60 transition-opacity hover:opacity-100">
-                      {completedItems.length === 0 ? (
-                        <EmptyColumn
-                          icon={<CheckCircle2 className="h-6 w-6 opacity-40" />}
-                          label={t("no_completed_items")}
-                        />
-                      ) : (
-                        <AnimatePresence initial={false}>
-                          {completedItems.map((item) => (
-                            <PlanCard
-                              key={item.id}
-                              item={item}
-                              compact
-                              onOpen={setSelected}
-                              pendingDependencies={Array.from(
-                                effectiveDependsOn.get(item.id) || [],
-                              ).filter((d) => !completedIds.has(d))}
-                            />
-                          ))}
-                        </AnimatePresence>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              )}
+      {/* Completed Column */}
+      <div className="flex flex-col gap-4">
+        <div className="flex items-center justify-between">
+          <h3 className="text-fg-primary flex items-center gap-2 font-bold">
+            <CheckCircle2 className="text-success-400 h-5 w-5" />
+            {t("completed_column")}
+          </h3>
+          <span className="bg-bg-tertiary text-fg-muted rounded-full px-2.5 py-0.5 text-xs font-bold">
+            {completedItems.length}
+          </span>
+        </div>
+        <SortableContext id="col-completed" items={completedItems.map(i => i.id)} strategy={verticalListSortingStrategy}>
+          <div className="space-y-3 min-h-[150px] opacity-60 transition-opacity hover:opacity-100">
+            {completedItems.length === 0 ? (
+              <EmptyColumn icon={<CheckCircle2 className="h-6 w-6 opacity-40" />} label={t("no_completed_items")} />
+            ) : (
+              <AnimatePresence initial={false}>
+                {completedItems.map((item) => (
+                  <SortablePlanCard compact key={item.id} item={item} onOpen={setSelected} pendingDependencies={Array.from(effectiveDependsOn.get(item.id) || []).filter((d) => !completedIds.has(d))} />
+                ))}
+              </AnimatePresence>
+            )}
+          </div>
+        </SortableContext>
+      </div>
+
+    </div>
+    <DragOverlay>
+      {activeItem ? <PlanCard item={activeItem} onOpen={setSelected} /> : null}
+    </DragOverlay>
+  </DndContext>
+)}
 
               {/* List View */}
               {viewMode === "list" && (
@@ -520,7 +590,7 @@ export function MasterPlanClient({ items, error }: MasterPlanClientProps) {
                           animate={{ opacity: 1, y: 0 }}
                           role="button"
                           tabIndex={0}
-                          aria-label={`${t("plan_item_id", { id: item.id })} — ${item.title}`}
+                          aria-label={`${t("plan_item_id", { id: item.id })} â€” ${item.title}`}
                           onClick={() => setSelected(item)}
                           onKeyDown={(e) => {
                             if (e.key === "Enter" || e.key === " ") {
@@ -612,7 +682,7 @@ export function MasterPlanClient({ items, error }: MasterPlanClientProps) {
             className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
             role="dialog"
             aria-modal="true"
-            aria-label={`${t("plan_detail_title")} — ${selected.title}`}
+            aria-label={`${t("plan_detail_title")} â€” ${selected.title}`}
           >
             <motion.div
               className="absolute inset-0 bg-black/70 backdrop-blur-sm"
@@ -702,7 +772,7 @@ export function MasterPlanClient({ items, error }: MasterPlanClientProps) {
                       {selected.commitHash ??
                         (selected.closedBy
                           ? `${selected.closedBy.sha}@${selected.closedBy.branch}`
-                          : "—")}
+                          : "â€”")}
                     </p>
                   </div>
                   <div>
@@ -712,7 +782,7 @@ export function MasterPlanClient({ items, error }: MasterPlanClientProps) {
                     <p className="text-fg-primary text-sm font-semibold">
                       {Array.from(effectiveDependsOn.get(selected.id) || [])
                         .map((d) => `#${d}`)
-                        .join(", ") || "—"}
+                        .join(", ") || "â€”"}
                     </p>
                   </div>
                 </div>
@@ -724,3 +794,4 @@ export function MasterPlanClient({ items, error }: MasterPlanClientProps) {
     </div>
   );
 }
+

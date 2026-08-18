@@ -31,7 +31,7 @@ export const metadata = {
 };
 
 export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
+  return routing.locales.map((locale: string) => ({ locale }));
 }
 
 export default async function LocaleLayout({

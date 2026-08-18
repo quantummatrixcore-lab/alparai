@@ -51,7 +51,7 @@ export function TrackedCtaButton({
   return (
     <a
       {...props}
-      onClick={(e) => {
+      onClick={(e: any) => {
         trackShowcaseCtaClick(pagePath, ctaAction, extraData);
         if (onClick) onClick(e);
       }}
@@ -65,6 +65,8 @@ interface TrackedLinkProps extends React.ComponentProps<typeof Link> {
   pagePath: string;
   ctaAction: string;
   extraData?: Record<string, unknown>;
+  children?: React.ReactNode;
+  onClick?: (e: any) => void;
 }
 
 export function TrackedLink({
@@ -78,7 +80,7 @@ export function TrackedLink({
   return (
     <Link
       {...props}
-      onClick={(e) => {
+      onClick={(e: any) => {
         trackShowcaseCtaClick(pagePath, ctaAction, extraData);
         if (onClick) onClick(e);
       }}

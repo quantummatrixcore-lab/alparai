@@ -4,11 +4,22 @@
  * by implementing a simple ProviderAdapter interface.
  */
 
+export type TaskDomain =
+  | "math_logic"
+  | "creative_copy"
+  | "risk_audit"
+  | "fast_triage"
+  | "code_generation"
+  | "ethics_audit";
+
 export interface GatewayModel {
   id: string; // The raw model identifier for the provider API
-  provider: string; // e.g. "openrouter", "cohere", "huggingface", "google"
+  provider: string; // e.g. "openrouter", "cohere", "huggingface", "google", "nvidia"
   tier: "free" | "premium";
   maxTokens: number;
+  modelClass?: "flash" | "pro";
+  capability?: "low" | "medium" | "high";
+  specialties?: TaskDomain[];
 }
 
 export interface GatewayRequest {

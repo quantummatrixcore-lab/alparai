@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useMemo, useEffect } from "react";
 import {
@@ -32,7 +32,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { MetricWidget } from "@/components/ui/metric-widget";
+import { MetricWidget } from "@/components/analytics/metric-widget";
 import { SegmentedControl } from "@/components/ui/segmented-control";
 import { SlideOverPanel } from "@/components/ui/slide-over-panel";
 import { useTranslations } from "next-intl";
@@ -333,7 +333,7 @@ export function AuditLogClient({ initialLogs, locale }: AuditLogClientProps) {
 
   return (
     <motion.div variants={containerVariants} initial="hidden" animate="show" className="space-y-6">
-      {/* 360° Observe: Log Volume Chart */}
+      {/* 360Â° Observe: Log Volume Chart */}
       <motion.div
         variants={itemVariants}
         className="bg-bg-secondary/40 relative overflow-hidden rounded-2xl border border-white/5 p-6 shadow-lg backdrop-blur-xl"
@@ -630,3 +630,4 @@ export function AuditLogClient({ initialLogs, locale }: AuditLogClientProps) {
     </motion.div>
   );
 }
+

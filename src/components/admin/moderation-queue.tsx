@@ -1,11 +1,11 @@
-"use client";
+﻿"use client";
 
 import { useState, useTransition, useMemo } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { MetricWidget } from "@/components/ui/metric-widget";
+import { MetricWidget } from "@/components/analytics/metric-widget";
 import { SegmentedControl, type SegmentedOption } from "@/components/ui/segmented-control";
 import {
   Check,
@@ -139,7 +139,7 @@ function ModerationCard({ incident }: { incident: IncidentListItem }) {
         moderationNote: note || undefined,
       });
       if (res.ok) {
-        toast.success(decision === "approve" ? t("approve") + " ✓" : t("reject") + " ✓");
+        toast.success(decision === "approve" ? t("approve") + " âœ“" : t("reject") + " âœ“");
       } else {
         toast.error(res.error ?? tCommon("loading"));
       }
@@ -321,3 +321,4 @@ function ModerationCard({ incident }: { incident: IncidentListItem }) {
     </Card>
   );
 }
+

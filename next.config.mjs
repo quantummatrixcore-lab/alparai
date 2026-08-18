@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Security headers applied to all routes.
  */
 const isTest =
@@ -8,8 +8,8 @@ const isTest =
 
 const cspRules = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.supabase.co https://*.sentry.io https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.google.com https://*.gstatic.com",
-  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com",
+  "script-src 'self' https://*.supabase.co https://*.sentry.io https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.google.com https://*.gstatic.com",
+  "style-src 'self' https://fonts.googleapis.com https://accounts.google.com",
   "font-src 'self' https://fonts.gstatic.com data:",
   "img-src 'self' data: blob: https: https://*.googleusercontent.com",
   "connect-src 'self' https://*.supabase.co https://*.sentry.io wss://*.supabase.co https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.googleapis.com",
@@ -185,7 +185,7 @@ const nextConfig = {
         destination: "/:locale/insights/open-vs-closed",
         permanent: false,
       },
-      // Broken links discovered via 360° QA audit (2026-08-13)
+      // Broken links discovered via 360Â° QA audit (2026-08-13)
       {
         source: "/:locale/scoreboard",
         destination: "/:locale/leaderboard",
@@ -218,3 +218,4 @@ export default withSentryConfig(nextConfig, {
     automaticVercelMonitors: true,
   },
 });
+

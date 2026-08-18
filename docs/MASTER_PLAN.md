@@ -5,32 +5,24 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.55 · **Updated:** 2026-08-17 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.56 · **Updated:** 2026-08-17 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
 
-## URGENT — the previous urgent item was not actioned; worse was built instead (2026-08-18)
+## RESOLVED — the urgent false claim is fixed; one item remains open (2026-08-18, `ecd601e8`)
 
-`653a93f3` landed after this banner already asked for `/constitution`'s false "recorded" message to
-be disabled _first, ahead of everything else_. That file is untouched. Instead: a new admin page
-(`constitution-pr/page.tsx`) attributes fabricated, ideologically-loaded quotes to nine real
-commercial AI products — Claude, GPT-4o, Gemini, Grok, Llama, Mistral, Qwen, DeepSeek — none of them
-real outputs, no API call behind any of them. Those fake quotes were then cited as the justification
-for raising `vc-readiness-widget.tsx`'s fabricated score from 95 to 98. Full finding:
-[CONST-2](plan/items/CONST-2.md).
+Verified directly, both directions. **Fixed, genuinely:** `/constitution`'s `handleSign()` now does
+nothing but a comment; the submit button is permanently disabled, reading "Sistem Yapılandırılıyor
+(Çok Yakında)." No visitor can reach the false "your signature was recorded" message any more — this
+closes the most serious finding of the session. The VC widget was also substantially corrected in the
+same commit: every fabricated score and every "HAZIR (%N)" badge was removed, replaced with an honest
+"pending_verification" checklist framing. Detail: [CONST-1](plan/items/CONST-1.md),
+[INVEST-1](plan/items/INVEST-1.md).
 
-**Both items below are now open. Neither has been started.**
-
-## URGENT — live public page tells real users a false thing (Founder-confirmed 2026-08-18)
-
-**`/constitution`'s signature form must be disabled today, ahead of everything else on this board.**
-It collects a visitor's name and email and displays _"İmzanız Küresel Yapay Zeka Siciline
-Kaydedildi"_ ("your signature has been recorded"). Nothing is recorded — `handleSign()` only
-increments local React state; no `supabase`, `insert` or `fetch` exists in the file. Likely live in
-production now (Vercel deploys on every push). Full finding: [CONST-1](plan/items/CONST-1.md).
-
-**Fix, in one sentence:** comment out or feature-flag the form (keep the article content) until real
-persistence exists — a small, fast, low-risk change, not a rewrite. Do not wait for the rest of
-`CONST-1`'s scope (i18n, reframing, the fabricated VC widget in `INVEST-1`) — those proceed at
-normal priority and are specified in full already.
+**Still open:** the commit title claimed "remove fake PR page," but `constitution-pr/page.tsx` —
+nine fabricated quotes attributed to Claude, GPT-4o, Gemini and six other named AI products — is
+still on disk. Only the link to it was removed from the widget. The file must be deleted, not just
+unlinked. [CONST-2](plan/items/CONST-2.md). Also `pnpm typecheck` regressed 0 → 12 errors, all benign
+`TS6133` unused-declaration cleanup from disabling the fake form — mechanical, not a new class of
+defect. [TYPE-3](plan/items/TYPE-3.md).
 
 ## 0. Where things live
 

@@ -114,3 +114,21 @@ runs in this container. Flagging as immediate, not queued.
 Given a false "your data was recorded" message to real users is the most serious item, consider
 whether the page should be taken down or the form disabled until item 1 above is fixed, rather than
 left live while the correction is scheduled.
+
+## Urgent item genuinely fixed (2026-08-18, `ecd601e8`)
+
+Verified directly. `handleSign()`'s body is now a single comment
+(`// Temporarily disabled due to Truth Protocol (no backend connection yet)`) — no state mutation,
+no path to the "recorded" message. The submit button is permanently `disabled={true}`, greyed out,
+reading "Sistem Yapılandırılıyor (Çok Yakında)." A visitor can no longer submit the form or see the
+false registration claim. **This closes the single most serious finding of the session.**
+
+**Two things remain, both lower severity, in scope for this item's original spec:**
+
+1. `useState(1482)` is still declared and still displayed — "1.482 Yurttaş İmzası" now renders as a
+   static, unchanging number rather than an active per-visitor counter. It is no longer paired with
+   a false promise, but it is still a number with no source. Replace with a real count (0, or from a
+   real persistence layer once built) or remove the display until one exists.
+2. The rest of the original spec is untouched: no `useTranslations` (still hardcoded Turkish, still
+   violates the 5-locale public-page rule), no "Draft v0.1, open for co-authorship" reframing, no
+   reuse of the `suggestions` mechanism. Normal priority, not urgent — the active deception is gone.

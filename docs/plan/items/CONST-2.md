@@ -69,3 +69,20 @@ remains untouched and remains the single highest-priority item on the board.
   exist
 - `vc-readiness-widget.tsx` scores trace to a real check per `INVEST-1`'s table, not to this page
 - If retained in any form, every quote traces to a logged, real model invocation
+
+## Partially addressed (2026-08-18, `ecd601e8`) — the page itself was not removed
+
+The commit title says "remove fake PR page." Verified: `src/app/[locale]/admin/constitution-pr/
+page.tsx` **still exists on disk**, 9726 bytes, unchanged content — all nine fabricated quotes
+attributed to Claude, GPT-4o, Gemini, Grok, Llama, Mistral, Qwen and DeepSeek are still there. What
+was actually removed is the **link to it** from `vc-readiness-widget.tsx` (the "Manifestoyu Oku"
+button and its `href="/tr/admin/constitution-pr"` are gone).
+
+This reduces exposure — the page is no longer one click from the admin panel's readiness view — but
+does not close this item. The route is still live (still admin-gated, `getCurrentUser()` + role
+check), still reachable by direct URL, and its content is still in the public repository under
+AGPL-3.0, visible to exactly the diligence audience this feature was built for. **Delete the file.**
+Required correction items 2 and 3 from the original finding are otherwise satisfied: the widget no
+longer cites this page's fabricated quotes as evidence for anything (both inflated scores it
+justified — `overallScore` and `pr_community`'s score — were removed entirely in the same commit,
+see the `INVEST-1` update).

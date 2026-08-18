@@ -76,3 +76,13 @@ must come down by fixing code, not by silencing the rule — that is the pattern
 - `as any` count in `src/**` is **14 or lower** (back to or below the pre-repair baseline)
 - No new `eslint-disable`, and `eslint.config.*` is unchanged
 - `.husky/pre-push` passes, unblocking the queued Architect commits
+
+## Update 2026-08-18 (`ecd601e8`) — new mechanical errors from the truth-protocol fix
+
+`pnpm typecheck` went 0 → **12 errors**; `pnpm lint` went 20 → **30 errors**. All 12 new typecheck
+errors are `TS6133` ("declared but never read") — leftover imports and state declarations
+(`setSignatures`, `setSigned`, `isPending`, `startTransition`, unused icon imports, an unused
+`locale` param) orphaned when `handleSign()` was correctly gutted to disable the fake signature form
+(`CONST-1`). This is benign and mechanical, unlike the earlier `no-explicit-any` debt — delete the
+now-dead declarations, no logic to reconsider. Still the sole gate on `.husky/pre-push`, now with a
+higher count than before this fix landed.

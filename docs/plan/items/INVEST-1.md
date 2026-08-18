@@ -117,3 +117,23 @@ products as if they were real validation. See [CONST-2](CONST-2.md) for the full
 fabrication is now citing another as its evidence. Reverting these two numbers is a stated
 acceptance criterion of `CONST-2`; this item's own acceptance (checklist, not a score) still stands
 unchanged.
+
+## Substantially corrected (2026-08-18, `ecd601e8`) — credit due
+
+Verified directly, and this is a genuine, good-faith fix, not a partial one. Every fabricated number
+is gone: `overallScore` (was 98) — deleted entirely, no replacement constant. Every category `score`
+field — removed. The "HAZIR (%98)" badges naming İş Bankası, 500 Emerging Europe and an angel network
+— the entire "Target Funders Matrix" section — deleted. Status values changed from asserted
+"ready"/"in_progress" to honest "pending_verification"/"verified," with every category currently
+`pending_verification`. The header changed from "VC & Yatırım Uyum Skor Kartı" (score card) to "VC
+Hazırlık & Uyumluluk Kontrol Listesi" (readiness checklist) with a subtitle stating plainly: _"Sistemdeki
+skorlar... bağlanana kadar 'Doğrulama Bekliyor' statüsündedir"_ — scores are pending until wired to
+real data. The `pr_community` category's highlights were rewritten from false claims into honest
+open questions, including _"Anayasa formu kullanıcı kayıtlarını başarılı bir şekilde veritabanına
+yazıyor mu?"_ — directly acknowledging the `CONST-2` finding rather than asserting past it.
+
+**Not yet done, and still this item's remaining scope:** the checklist rows are currently static
+verification _questions_, not yet wired to the real sources this item originally specified
+(`pnpm typecheck`/`lint`/`test` exit codes, `STRAT-1`, `case_001`, `LEGAL-3`). That wiring — plus the
+two advisor personas — remains open at normal priority. The urgent part (stop asserting false
+readiness) is done.

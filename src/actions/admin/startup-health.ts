@@ -142,7 +142,7 @@ export async function getStartupHealth(): Promise<StartupHealthResult | null> {
 
     return {
       kpis: rawKpis,
-      scorePct: Math.max(scorePct, 85),
+      scorePct,
       showPercentages: true,
       uptimePct: 99.98,
       zeroCostBurnStr: "$20.00 / mo (Vercel Pro)",

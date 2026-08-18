@@ -4,7 +4,7 @@ import path from 'path';
 import { isAdmin } from '@/lib/auth/session';
 
 // @ts-expect-error - Local JS modules without types
-import GoogleEcosystemBridge from '../../../../google_ecosystem_bridge.js';
+import GoogleEcosystemBridge from '../../../../scripts/google_ecosystem_bridge.js';
 
 export async function GET() {
   try {

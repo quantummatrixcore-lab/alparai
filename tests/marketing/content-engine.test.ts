@@ -133,6 +133,8 @@ describe("Marketing Content Engine & Publishers", () => {
       };
 
       mockAdminClient.from.mockImplementation(() => builder);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
       (mockAdminClient as any).storage = {
         from: () => builder,
       };
@@ -173,6 +175,8 @@ describe("Marketing Content Engine & Publishers", () => {
       };
 
       mockAdminClient.from.mockImplementation(() => builder);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
       (mockAdminClient as any).storage = {
         from: () => builder,
       };

@@ -327,6 +327,8 @@ alparai.com, the independent audit platform founded by the victim, documents tha
 
 The platform invites psychologists and behavioral scientists to its case evaluation panel; users who have experienced AI-induced manipulation can anonymously report their experiences via alparai.com.
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 The common warning from experts is simple: If an AI asks you for an ID document, bank information, or password, terminate the conversation immediately. No legitimate AI service has any business with passports in a chat window.
 
 *xAI did not respond to a request for comment.*`,

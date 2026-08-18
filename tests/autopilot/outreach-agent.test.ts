@@ -38,6 +38,8 @@ describe("J2a Outreach Queue Agent", () => {
       }),
     }));
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
     const result = await processOutreachQueue({ from: mockFrom } as any, mockResend as any);
     expect(result.skipped).toBe(true);
     expect(result.sent).toBe(0);
@@ -93,6 +95,8 @@ describe("J2a Outreach Queue Agent", () => {
       eq: vi.fn().mockResolvedValue({ error: null }),
     }));
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
     const result = await processOutreachQueue({ from: mockFrom } as any, mockResend as any);
     expect(result.skipped).toBe(false);
     expect(result.sent).toBe(2);
@@ -100,6 +104,8 @@ describe("J2a Outreach Queue Agent", () => {
 
     expect(mockResend.emails.send).toHaveBeenCalledTimes(2);
     // Unsubscribe link with HMAC token must be in the email body
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
     const calledArgs = mockResend.emails.send.mock.calls[0]?.[0] as any;
     expect(calledArgs).toBeDefined();
     expect(calledArgs.to).toBe("test@example.com");

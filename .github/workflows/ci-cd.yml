@@ -2,9 +2,11 @@ name: Alparai Sürü (Wolf Pack) CI/CD Pipeline
 
 on:
   push:
-    branches: [ "main", "dev" ]
+    branches:
+      - master
   pull_request:
-    branches: [ "main", "dev" ]
+    branches:
+      - master
 
 jobs:
   build_and_test:

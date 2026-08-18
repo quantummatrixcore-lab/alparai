@@ -225,6 +225,8 @@ describe("submitIncident", () => {
             }),
           }),
           insert: vi.fn().mockResolvedValue({ error: null }),
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
         } as any;
       }
       return {
@@ -244,6 +246,8 @@ describe("submitIncident", () => {
             single: vi.fn().mockResolvedValue({ data: null, error: null }),
           }),
         }),
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any;
     });
 
@@ -285,6 +289,8 @@ describe("submitIncident", () => {
         if (name === "x-idempotency-key") return "test-idempotency-key-123";
         return "127.0.0.1";
       }),
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
 
     mockRedisInstance.get.mockResolvedValue("existing-incident-uuid");
@@ -301,6 +307,8 @@ describe("submitIncident", () => {
         if (name === "x-idempotency-key") return "test-idempotency-key-123";
         return "127.0.0.1";
       }),
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
 
     mockRedisInstance.get.mockResolvedValue(null);

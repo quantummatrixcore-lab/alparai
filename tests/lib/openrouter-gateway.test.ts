@@ -55,6 +55,8 @@ import { isCostKillSwitchActive, getDailyCost } from "@/lib/ai/cost-guard";
 import { callModel, callWithFailover } from "@/lib/ai/openrouter-gateway";
 import type { GatewayModel } from "@/lib/ai/types";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const openaiMock = new OpenAI() as any;
 
 const MOCK_FREE_TRIAGE_MODELS: readonly GatewayModel[] = [
@@ -103,6 +105,8 @@ describe("OpenRouter API Gateway", () => {
 
     it("returns error on rate limit 429", async () => {
       openaiMock.chat.completions.create.mockRejectedValueOnce(
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
         new (OpenAI.RateLimitError as any)("Rate limit hit"),
       );
 
@@ -120,6 +124,8 @@ describe("OpenRouter API Gateway", () => {
 
     it("returns error on timeout", async () => {
       openaiMock.chat.completions.create.mockRejectedValueOnce(
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
         new (OpenAI.APIConnectionTimeoutError as any)({ message: "Timeout occurred" }),
       );
 
@@ -174,6 +180,8 @@ describe("OpenRouter API Gateway", () => {
     it("fails on first model with rate_limit, then succeeds on second", async () => {
       // First call (deepseek) fails with 429
       openaiMock.chat.completions.create.mockRejectedValueOnce(
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
         new (OpenAI.RateLimitError as any)("Rate limit"),
       );
       // Second call (llama) succeeds
@@ -202,8 +210,14 @@ describe("OpenRouter API Gateway", () => {
 
     it("fails on all models when all are rate limited", async () => {
       openaiMock.chat.completions.create
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
         .mockRejectedValueOnce(new (OpenAI.RateLimitError as any)("Rate limit 1"))
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
         .mockRejectedValueOnce(new (OpenAI.RateLimitError as any)("Rate limit 2"))
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
         .mockRejectedValueOnce(new (OpenAI.RateLimitError as any)("Rate limit 3"));
 
       const res = await callWithFailover(
@@ -266,6 +280,8 @@ describe("OpenRouter API Gateway", () => {
           ],
           usage: { prompt_tokens: 5, completion_tokens: 10, total_tokens: 15 },
         }),
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
       }) as any;
 
       try {

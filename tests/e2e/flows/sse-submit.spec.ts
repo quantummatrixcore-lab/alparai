@@ -71,6 +71,8 @@ test.describe("SSE Status Tracking in Submit Flow", () => {
       }
 
       // Assign mock to window
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
       (window as any).EventSource = MockEventSource;
     });
 

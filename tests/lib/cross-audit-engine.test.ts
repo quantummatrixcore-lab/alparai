@@ -65,6 +65,8 @@ describe("Cross-Audit Engine (Debate Protocol)", () => {
         }),
       }),
       update: mockAdminClient._mocks.mockUpdate,
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
 
     // 2. Mock callWithFailover sequence for Debate Protocol (7 calls)
@@ -226,6 +228,8 @@ describe("Cross-Audit Engine (Debate Protocol)", () => {
         }),
       }),
       update: mockAdminClient._mocks.mockUpdate,
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
 
     const result = await runCrossAudit("inc-invalid");
@@ -300,6 +304,8 @@ describe("Cross-Audit Engine (Debate Protocol)", () => {
           }),
         }),
         update: mockAdminClient._mocks.mockUpdate,
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any);
 
       const result = await runCrossAudit("inc-123");

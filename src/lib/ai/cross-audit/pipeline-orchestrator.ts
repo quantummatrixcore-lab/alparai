@@ -113,6 +113,8 @@ async function runCrossAuditPipelineOnce(incidentId: string): Promise<TruthScore
 
     try {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
       await (admin as any).from("cross_audit_runs").insert({
         incident_id: incidentId,
         model: cached.supremeCourtModel ?? "cache",
@@ -409,6 +411,8 @@ async function runCrossAuditPipelineOnce(incidentId: string): Promise<TruthScore
 
   try {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
     await (admin as any).from("cross_audit_runs").insert({
       incident_id: incidentId,
       model: supremeResult.model,

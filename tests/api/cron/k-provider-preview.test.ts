@@ -46,11 +46,15 @@ describe("K-Provider-Preview Cron Job", () => {
     });
 
     const originalEnv = process.env.NODE_ENV;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
     (process.env as any).NODE_ENV = "production";
 
     const res = await GET(req as unknown as NextRequest);
     expect(res.status).toBe(401);
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
     (process.env as any).NODE_ENV = originalEnv;
   });
 

@@ -13,7 +13,7 @@
 - **Mevcut Durum:** `alparai.com` projenin ana omurgası ve vitrinidir.
 - **Grok 4 Marka Kararı:** Projenin B2B Sigorta/Risk bacağını veya küresel lansmanını güçlendirmek için defansif olarak **TruthGuard.ai** veya **WatchdogAI** domain varyasyonları değerlendirilecek.
 
-### B. Veri Monetizasyonu (992 Belgelenmiş AI İhlali Verisi)
+### B. Veri Monetizasyonu (371 Belgelenmiş AI İhlali Verisi)
 
 - **ALP Risk API / Actuarial Feed:** Sigorta şirketlerine (Lloyd’s, Munich Re vb.) "AI Risk Rating Score" ve "Model Failure Severity Index" veri akışı satışı.
 - **Enterprise Risk Dashboard:** Kurumların kendi kullandıkları modellerin hata ve kriz geçmişini izlediği B2B SaaS paneli.
@@ -89,4 +89,4 @@ Grok 4 ve OpenCode modellerinden gelen sert eleştiriler doğrultusunda revize e
 - `[x]` **Faz 1: Veritabanı & Mimari Temel (Tamamlandı)** -> Supabase M-01 & M-08 SQL şeması yazıldı.
 - `[ ]` **Faz 2: Grok UX İyileştirmeleri (Sıradaki Adım)** -> Admin Paneli Kanban tahtasına Drag-and-Drop ve Status güncelleme endpoint'i eklenmesi.
 - `[ ]` **Faz 3: Browser Extension (Growth Lever)** -> ChatGPT/Claude/Grok kullanırken tek tıkla "AI İhlali Bildir" eklentisi.
-- `[ ]` **Faz 4: ALP Risk API Alpha (Monetization)** -> 992 ihlalin sigorta/risk skorlama algoritmasına dönüştürülmesi.
+- `[ ]` **Faz 4: ALP Risk API Alpha (Monetization)** -> 371 yayımlanmış ihlalin sigorta/risk skorlama algoritmasına dönüştürülmesi.

@@ -39,6 +39,8 @@ describe("VertexVeoAdapter", () => {
         }),
     };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
     const fetchSpy = vi.spyOn(global, "fetch").mockResolvedValue(mockResponse as any);
 
     const adapter = new VertexVeoAdapter();

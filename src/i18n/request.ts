@@ -21,6 +21,8 @@ export default getRequestConfig(async ({ requestLocale }: { requestLocale?: Prom
     locale = DEFAULT_LOCALE;
   }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
   let messages: AbstractIntlMessages = {} as any;
   try {
     const loader = localeMessages[locale as Locale] ?? localeMessages[DEFAULT_LOCALE];

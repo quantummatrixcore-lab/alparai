@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { AdvisorChat } from "./advisor-chat";
 
 export const metadata: Metadata = {

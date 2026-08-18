@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useTransition, useMemo } from "react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -321,4 +321,3 @@ function ModerationCard({ incident }: { incident: IncidentListItem }) {
     </Card>
   );
 }
-

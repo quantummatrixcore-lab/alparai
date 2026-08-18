@@ -1,4 +1,4 @@
-﻿const fs = require('fs');
+const fs = require('fs');
 let code = fs.readFileSync('src/components/admin/master-plan-client.tsx', 'utf8');
 
 const planCardEnd = code.indexOf('function EmptyColumn');

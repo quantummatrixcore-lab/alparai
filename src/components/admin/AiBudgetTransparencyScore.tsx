@@ -166,7 +166,8 @@ export function AiBudgetTransparencyScore({
               <span className="text-fg-secondary flex min-w-0 items-center gap-2">
                 <Zap className="text-warning-400 h-4 w-4 shrink-0" />{" "}
                 <span className="truncate">
-                  {t("token_hallucination_budget_usage") || "Token HalÃ¼sinasyon BÃ¼tÃ§e KullanÄ±mÄ±"}
+                  {t("token_hallucination_budget_usage") ||
+                    "Token HalÃ¼sinasyon BÃ¼tÃ§e KullanÄ±mÄ±"}
                 </span>
               </span>
               <span className="text-fg-muted shrink-0 text-[11px] sm:text-xs">
@@ -261,5 +262,3 @@ export function AiBudgetTransparencyScore({
     </div>
   );
 }
-
-

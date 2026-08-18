@@ -1,4 +1,4 @@
-﻿export default function Page() {
+export default function Page() {
   return (
     <main className="mx-auto min-h-screen max-w-4xl bg-black p-8 text-white">
       <header className="mb-12">

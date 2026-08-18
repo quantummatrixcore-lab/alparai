@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useMemo, useEffect } from "react";
 import {
@@ -630,4 +630,3 @@ export function AuditLogClient({ initialLogs, locale }: AuditLogClientProps) {
     </motion.div>
   );
 }
-

@@ -3557,7 +3557,11 @@
     "why_stat_4_title": "Transparenzberichte von Anbietern mit Nutzerfehlern",
     "why_subtitle": "KI entwickelt sich schneller als die Regeln, die sie steuern. Deshalb braucht die Welt ALPAR jetzt.",
     "why_title": "Warum dies wichtig ist",
-    "zero_tolerance": "Null Toleranz. 100% Transparenz."
+    "zero_tolerance": "Null Toleranz. 100% Transparenz.",
+    "b2b_compliance": "CONFORMITÉ B2B",
+    "ai_act_compliance_title": "Test de conformité à l'AI Act UE",
+    "ai_act_compliance_desc": "Vos systèmes d'IA sont-ils prêts pour l'AI Act de l'Union Européenne ? Effectuez une classification des risques dès maintenant.",
+    "start_test": "Démarrer le test"
   },
   "incident": {
     "account_required_desc": "ALPAR AI erfordert eine Kontoverifizierung zur Gewährleistung der Sicherheit.",

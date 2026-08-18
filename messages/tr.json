@@ -3920,7 +3920,11 @@
     "why_stat_4_title": "Sağlayıcı yönetimli şeffaflık raporu",
     "why_subtitle": "AI, onu yöneten kurallardan daha hızlı ilerliyor. İşte dünyanın neden şimdi ALPAR'a ihtiyacı var.",
     "why_title": "Neden önemli",
-    "zero_tolerance": "Sıfır Tolerans. %100 Şeffaflık."
+    "zero_tolerance": "Sıfır Tolerans. %100 Şeffaflık.",
+    "b2b_compliance": "B2B UYUMLULUĞU",
+    "ai_act_compliance_title": "AB AI Act Uyum Testi",
+    "ai_act_compliance_desc": "Yapay zeka sistemleriniz Avrupa Birliği Yapay Zeka Yasası'na hazır mı? Kurumunuz için risk sınıflandırmasını hemen çalıştırın.",
+    "start_test": "Testi Başlat"
   },
   "incident": {
     "account_required_desc": "ALPAR AI, topluluk güvenliği ve hesap verebilirlik için hesap doğrulaması gerektirir. Kimliğiniz korunur, asla yayınlanmaz ve tüm kişisel verileriniz gönderim sırasında otomatik olarak maskelenir.",

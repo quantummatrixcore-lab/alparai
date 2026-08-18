@@ -3920,7 +3920,11 @@
     "why_stat_4_title": "Provider-run transparency reports that include user-submitted failures",
     "why_subtitle": "AI is advancing faster than the rules that govern it. Here's why the world needs ALPAR now.",
     "why_title": "Why this matters",
-    "zero_tolerance": "Zero Tolerance. 100% Transparency."
+    "zero_tolerance": "Zero Tolerance. 100% Transparency.",
+    "b2b_compliance": "B2B COMPLIANCE",
+    "ai_act_compliance_title": "EU AI Act Compliance Test",
+    "ai_act_compliance_desc": "Are your AI systems ready for the European Union AI Act? Run a risk classification for your enterprise now.",
+    "start_test": "Start Test"
   },
   "incident": {
     "account_required_desc": "ALPAR AI requires account verification for community safety and accountability. Your identity is protected, never published, and all personal data is automatically masked during submission.",

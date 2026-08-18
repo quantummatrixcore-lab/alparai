@@ -5,7 +5,20 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.53 · **Updated:** 2026-08-17 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.54 · **Updated:** 2026-08-17 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+
+## URGENT — live public page tells real users a false thing (Founder-confirmed 2026-08-18)
+
+**`/constitution`'s signature form must be disabled today, ahead of everything else on this board.**
+It collects a visitor's name and email and displays _"İmzanız Küresel Yapay Zeka Siciline
+Kaydedildi"_ ("your signature has been recorded"). Nothing is recorded — `handleSign()` only
+increments local React state; no `supabase`, `insert` or `fetch` exists in the file. Likely live in
+production now (Vercel deploys on every push). Full finding: [CONST-1](plan/items/CONST-1.md).
+
+**Fix, in one sentence:** comment out or feature-flag the form (keep the article content) until real
+persistence exists — a small, fast, low-risk change, not a rewrite. Do not wait for the rest of
+`CONST-1`'s scope (i18n, reframing, the fabricated VC widget in `INVEST-1`) — those proceed at
+normal priority and are specified in full already.
 
 ## 0. Where things live
 

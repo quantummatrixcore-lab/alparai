@@ -1,126 +1,71 @@
 "use client";
 
 import React from "react";
-import { CheckCircle2, ShieldCheck, ArrowUpRight, Award } from "lucide-react";
+import { ListTodo, ShieldAlert, FileClock, Activity } from "lucide-react";
 
 export interface ReadinessCategory {
   id: string;
   name: string;
-  score: number;
-  weight: string;
-  status: "ready" | "in_progress" | "action_needed";
+  status: "pending_verification" | "verified";
   highlights: string[];
-  blockers?: string[];
 }
 
 export function VcReadinessWidget() {
   const categories: ReadinessCategory[] = [
     {
       id: "tech_sec",
-      name: "Teknik Mimari & Güvenlik",
-      score: 100,
-      weight: "25%",
-      status: "ready",
+      name: "Teknik Mimari & Güvenlik Denetimi",
+      status: "pending_verification",
       highlights: [
-        "Kimlik doğrulama bayrağı kapalı (production-level auth)",
-        "0 @ts-nocheck & 0 gevşek repo kök dosyası",
-        "CI/CD workflow master branch tam senkronizasyonu"
+        "Kimlik doğrulama bayrağı kapalı mı? (Production-level auth kontrolü)",
+        "Tüm projede @ts-nocheck temizlendi mi?",
+        "Repo kök dizininde gevşek/açık unutulan yapılandırma dosyaları yok mu?"
       ]
     },
     {
       id: "reg_data",
-      name: "Regülasyon & Data Moat",
-      score: 96,
-      weight: "ready",
-      status: "ready",
+      name: "Veri Odası (Data Room) Doğrulaması",
+      status: "pending_verification",
       highlights: [
-        "371 belgelenmiş ve doğrulanmış kamuya açık AI ihlali",
-        "AB Yapay Zeka Yasası Madde 73 taksonomi uyumluluğu",
-        "KVKK Madde 11 & EU AI Act Madde 50 toolkit entegrasyonu"
-      ]
-    },
-    {
-      id: "founder_team",
-      name: "Kurucu & Uyum (İş Bankası YZ Fabrikası Kriteri)",
-      score: 100,
-      weight: "20%",
-      status: "ready",
-      highlights: [
-        "En az 1 Türk Kurucu Şartı: %100 Uyumlu",
-        "Otonom Ajan Mimarisi & Agent-OS Yetkinliği",
-        "Derin Yapay Zeka Güvenliği Etik Kurul Yapısı"
-      ]
-    },
-    {
-      id: "monetization",
-      name: "Monetizasyon & B2B Pazarı",
-      score: 90,
-      weight: "15%",
-      status: "ready",
-      highlights: [
-        "ALP Risk API Alpha Aktüeryal Veri beslemesi",
-        "B2B SaaS Uyum Rozeti & Kurumsal Risk Paneli",
-        "Lloyd's & Reasürans modellerine uygun veri mimarisi"
+        "Veritabanındaki AI ihlali (incident) sayısı doğrulandı mı?",
+        "EU AI Act Madde 73'e göre etiketlemeler tam mı?",
+        "PII (Kişisel Veri) maskeleme sistemi ihbar formlarında devrede mi?"
       ]
     },
     {
       id: "pr_community",
-      name: "Topluluk & Küresel Etki (Global Anayasa)",
-      score: 100,
-      weight: "15%",
-      status: "ready",
+      name: "Topluluk Anayasası & Kullanıcı Katılımı",
+      status: "pending_verification",
       highlights: [
-        "10 otonom model tarafından S-Tier anayasal doğrulama",
-        "Yapay Zekanın Global Anayasası (PR Manifestosu) yayında",
-        "Devlet/Şirket Vesayetine Karşı Demokratik Yapay Zeka Hareketi"
+        "Anayasa formu kullanıcı kayıtlarını başarılı bir şekilde veritabanına yazıyor mu?",
+        "E-posta abonelik formları (Resend vb.) entegre edildi mi?",
+        "Kullanıcı sözleşmeleri (KVKK/GDPR) KVKK.md üzerinden onaylatılıyor mu?"
       ]
     }
   ];
-
-  const overallScore = 98;
 
   return (
     <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-zinc-900/90 via-zinc-900/50 to-zinc-950/90 p-6 shadow-2xl backdrop-blur-xl md:p-8">
       {/* Header */}
       <div className="flex flex-col gap-4 border-b border-white/10 pb-6 md:flex-row md:items-center md:justify-between">
         <div>
-          <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-purple-400">
-            <Award className="h-3.5 w-3.5" /> VC & Yatırım Uyum Skor Kartı
+          <div className="inline-flex items-center gap-2 rounded-full border border-yellow-500/30 bg-yellow-500/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-yellow-400">
+            <Activity className="h-3.5 w-3.5" /> Doğrulama Bekliyor
           </div>
           <h2 className="mt-2 text-2xl font-black tracking-tight text-white md:text-3xl">
-            İş Bankası Yapay Zeka Fabrikası & VC Hazırlık Endeksi
+            VC Hazırlık & Uyumluluk Kontrol Listesi
           </h2>
           <p className="mt-1 text-sm font-medium text-zinc-400">
-            Yatırımcı Veri Odası (Data Room), Teknik Güvenlik ve Kurucu Şartları canlı denetimi.
+            Sistemdeki skorlar, veritabanı sorguları ve çalıştırılabilir testler bağlanana kadar "Doğrulama Bekliyor" statüsündedir.
           </p>
         </div>
 
-        <div className="flex items-center gap-4 rounded-2xl border border-emerald-500/20 bg-emerald-500/10 px-5 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
+        <div className="flex items-center gap-4 rounded-2xl border border-zinc-500/20 bg-zinc-500/10 px-5 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
           <div className="text-right">
-            <div className="text-xs font-bold uppercase tracking-wider text-emerald-400">Toplam Uyum Oranı</div>
-            <div className="text-3xl font-black text-emerald-300">%{overallScore}</div>
+            <div className="text-xs font-bold uppercase tracking-wider text-zinc-400">Canlı Metrikler</div>
+            <div className="text-lg font-black text-zinc-300">BAĞLANMADI</div>
           </div>
-          <ShieldCheck className="h-10 w-10 text-emerald-400" />
-        </div>
-      </div>
-
-      {/* Target Funders Matrix */}
-      <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-3.5 text-center">
-          <div className="text-xs font-bold text-zinc-400">İş Bankası YZ Fabrikası</div>
-          <div className="mt-1 text-base font-black text-emerald-400">HAZIR (%98)</div>
-        </div>
-        <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-3.5 text-center">
-          <div className="text-xs font-bold text-zinc-400">500 Emerging Europe</div>
-          <div className="mt-1 text-base font-black text-emerald-400">HAZIR (%95)</div>
-        </div>
-        <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-3.5 text-center">
-          <div className="text-xs font-bold text-zinc-400">Melek Yatırım Ağı</div>
-          <div className="mt-1 text-base font-black text-emerald-400">HAZIR (%92)</div>
-        </div>
-        <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-3.5 text-center">
-          <div className="text-xs font-bold text-zinc-400">Kurucu Ortak Ekosistemi</div>
-          <div className="mt-1 text-base font-black text-cyan-400">TAM TAMAMLAMA</div>
+          <ShieldAlert className="h-10 w-10 text-yellow-500" />
         </div>
       </div>
 
@@ -129,23 +74,15 @@ export function VcReadinessWidget() {
         {categories.map((cat) => (
           <div
             key={cat.id}
-            className="flex flex-col justify-between rounded-2xl border border-white/10 bg-zinc-950/60 p-5 transition-all duration-300 hover:border-purple-500/30"
+            className="flex flex-col justify-between rounded-2xl border border-white/10 bg-zinc-950/60 p-5 transition-all duration-300"
           >
             <div>
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold tracking-wider text-zinc-400 uppercase">
-                  Ağırlık: {cat.weight}
-                </span>
-                <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-xs font-black text-emerald-400">
-                  %{cat.score}
-                </span>
-              </div>
-              <h3 className="mt-2 text-base font-bold text-white">{cat.name}</h3>
+              <h3 className="text-base font-bold text-white">{cat.name}</h3>
 
               <ul className="mt-3 space-y-2">
                 {cat.highlights.map((h, i) => (
                   <li key={i} className="flex items-start gap-2 text-xs font-medium text-zinc-300">
-                    <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-400" />
+                    <ListTodo className="mt-0.5 h-3.5 w-3.5 shrink-0 text-zinc-500" />
                     <span>{h}</span>
                   </li>
                 ))}
@@ -153,16 +90,9 @@ export function VcReadinessWidget() {
             </div>
 
             <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-xs font-semibold text-zinc-400">
-              <span>Durum: <strong className={cat.status === "ready" ? "text-emerald-400 uppercase" : "text-purple-400 uppercase"}>{cat.status}</strong></span>
-              {cat.id === "pr_community" ? (
-                <a href="/tr/admin/constitution-pr" className="text-purple-400 hover:underline cursor-pointer inline-flex items-center gap-0.5">
-                  Manifestoyu Oku <ArrowUpRight className="h-3 w-3" />
-                </a>
-              ) : (
-                <span className="text-purple-400 hover:underline cursor-pointer inline-flex items-center gap-0.5">
-                  Detay <ArrowUpRight className="h-3 w-3" />
-                </span>
-              )}
+              <span className="inline-flex items-center gap-1.5 text-yellow-400/90">
+                <FileClock className="h-3.5 w-3.5" /> {cat.status === "pending_verification" ? "Kanıt Bekliyor" : "Doğrulandı"}
+              </span>
             </div>
           </div>
         ))}

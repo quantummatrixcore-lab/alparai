@@ -59,12 +59,7 @@ export function ConstitutionClient() {
 
   const handleSign = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name || !email) return;
-
-    startTransition(() => {
-      setSignatures((prev) => prev + 1);
-      setSigned(true);
-    });
+    // Temporarily disabled due to Truth Protocol (no backend connection yet)
   };
 
   return (
@@ -195,10 +190,10 @@ export function ConstitutionClient() {
 
                 <button
                   type="submit"
-                  disabled={isPending}
-                  className="mt-6 w-full rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 py-3.5 text-sm font-bold text-white shadow-lg shadow-purple-500/25 transition-all hover:opacity-90 active:scale-[0.99]"
+                  disabled={true}
+                  className="mt-6 w-full rounded-xl bg-zinc-800 py-3.5 text-sm font-bold text-zinc-400 cursor-not-allowed transition-all"
                 >
-                  {isPending ? "Kaydediliyor..." : "Anayasayı İmzala & Destekle"}
+                  Sistem Yapılandırılıyor (Çok Yakında)
                 </button>
               </form>
             )}

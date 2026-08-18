@@ -995,8 +995,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                 </div>
                 <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3 text-center">
                   <span className="text-[11px] text-fg-muted block">Ortalama Yanıt</span>
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                   <span className="font-mono font-bold text-cyan-300 text-sm">{(selectedTwinModal.stats as any).latency || "145ms"}</span>
                 </div>
               </div>

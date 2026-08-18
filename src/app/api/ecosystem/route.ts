@@ -12,11 +12,10 @@ export async function GET() {
     if (!adminStatus) {
       return NextResponse.json({ status: 'error', message: 'Unauthorized' }, { status: 401 });
     }
-    const googleBridge = require('../../../../google_ecosystem_bridge.js');
 
     // Paralel API çağrıları
-    const geminiQuota = googleBridge.getAIStudioMetrics();
-    const storageQuota = { status: googleBridge.driveStatus };
+    const geminiQuota = GoogleEcosystemBridge.getAIStudioMetrics();
+    const storageQuota = { status: GoogleEcosystemBridge.driveStatus };
 
     // Developer Profile Sync Data
     let developerProfile = null;

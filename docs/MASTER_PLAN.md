@@ -48,6 +48,20 @@ fetch" symptom is not solved by adding `loading.tsx` files: `admin/loading.tsx` 
 all 65 nested routes. The real cause is that each `page.tsx` is one monolithic async component with
 no internal `<Suspense>`, so a single slow call blocks the entire first paint.
 
+**Correction to this session's own 360° test report — four sidebar links point at pages that do not
+exist.** This session earlier reported "all 67 admin routes green" from
+`tests/e2e/admin-360-pages.spec.ts`. That report was true but **structurally incomplete**: the suite
+discovers routes by walking `src/app/[locale]/admin/**/page.tsx`, so it can only test pages that
+exist. It cannot, by construction, catch a menu link pointing at a page that does not. The vitest
+suite already knew: `tests/actions/admin-360-evaluation.test.ts` → "verifies sidebar navigation links
+map to existing page files" fails with `expected [ '/admin/c360', '/admin/media', …(2) ] to deeply
+equal []`. Verified directly — `c360`, `media`, `content` and `reports` have no `page.tsx`
+(`src/components/admin/sidebar.tsx:364–385`). All four sit in the **Founder Command** group, gated to
+`ceo`/`admin`, so the broken links are in the Founder's own menu. Neither file was touched by this
+session (`sidebar.tsx` last at `3e926518`; the test at `69af1d6b`) — pre-existing, not a regression.
+Filed as `UI-5`. The lesson generalizes: **route-existence coverage and link-resolution coverage are
+different tests**, and only the second catches a dead menu entry.
+
 **Phase 1 — Foundation** (`UI-1`). In `src/app/globals.css`: delete the dead `--fs-*` and `--space-*`
 blocks (zero consumers, zero behaviour change). In `src/components/admin/admin-design-kit.tsx`: add a
 `shell?: boolean` prop to `AdminContainer` (default matching today's output) that owns the
@@ -192,6 +206,7 @@ only what is currently true.
 | **UI-2**                                             | P1     | Implementer                 | Admin streaming (spec: §v13.60) — split `finance/page.tsx`'s external billing fetch into a `<Suspense>`-wrapped Server Component with a revalidate window; apply the same split where a page makes >1 independent slow call                                            | KPI grid paints before the billing card resolves; Supabase-sourced figures unchanged                  |
 | **UI-3**                                             | P1     | Implementer                 | Admin shell migration (spec: §v13.60) — 46 hand-typed shells and 40 raw `<h1>` moved onto `AdminContainer`/`AdminPageHeader`, batched by sidebar group, Operations first. Depends on UI-1                                                                              | Per batch: scoped Playwright run + typecheck green; diff shows **zero** changes above each `return`   |
 | **UI-4**                                             | P1     | Implementer                 | Admin responsive verification (spec: §v13.60) — add a 375px-viewport `test.describe` to `admin-360-pages.spec.ts` asserting no horizontal overflow; fix only what it flags                                                                                             | Mobile block passes for every route in a completed UI-3 batch                                         |
+| **UI-5**                                             | **P0** | Implementer                 | Four sidebar links resolve to nothing — `/admin/c360`, `/admin/media`, `/admin/content`, `/admin/reports` (`sidebar.tsx:364–385`), all in the Founder-gated group. Either build the pages or remove the entries; do not leave a menu that 404s (spec: §v13.60)         | `admin-360-evaluation.test.ts` sidebar-link assertion passes                                          |
 | **[CI-COST-1](plan/items/CI-COST-1.md)**             | P1     | Architect                   | Path filters (`docs/**`, `**.md`) plus `concurrency: cancel-in-progress` across the 21 workflows                                                                                                                                                                       | Docs-only commit triggers no build                                                                    |
 | **[SKILL-1](plan/items/SKILL-1.md)**                 | P1     | Implementer                 | Copy `.agents/skills/{bilge-kurul,graphify}/` into `.claude/skills/` — nothing reads `.agents/skills/` today                                                                                                                                                           | Both invocable in a fresh session                                                                     |
 | **[HIER-1](plan/items/HIER-1.md)**                   | P1     | Implementer                 | `.agents/hierarchy.json` binding the command hierarchy to existing role prompts (see §4)                                                                                                                                                                               | Dispatcher resolves a task to one specialist                                                          |

@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createServerClient } from "@supabase/ssr";
+
 import createIntlMiddleware from "next-intl/middleware";
 import { updateSession } from "@/lib/supabase/middleware";
 import { routing } from "@/i18n/routing";
 import { logger } from "@/lib/utils/logger";
-import type { Database } from "@/types/database";
+
 import { isTestAuthBypassActive, assertTestBypassSafe } from "@/lib/auth/test-bypass";
 import { trackBotHit } from "@/lib/geo/bot-tracker";
 

@@ -197,6 +197,11 @@ never invent, and never act outside their mandate.
 - Never author an approval, decision, or acknowledgment on someone else's behalf. A Founder
   decision exists only when the Founder has stated it; fabricating one is the gravest violation
   on this project's record.
+- This extends to any named AI system, not only the Founder: never generate content and label it
+  as another model's output, and never claim a specific agent (e.g. "Claude") reviewed, wrote, or
+  approved something it was not actually invoked to produce. If a sub-agent role-plays another
+  model because the real one is unreachable, say so plainly — do not narrate the role-play as if
+  the real model ran (2026-08-18, `.agents/AGENTS.md` incident and the `constitution-pr` page).
 - Uncertainty is reported as uncertainty. "Should work", "probably fine", and silent assumptions
   are protocol failures; "verified", "not verified", and "blocked because X" are the only honest
   states.
@@ -260,11 +265,12 @@ Sürekli çalışan ajanlar (Momentum Orchestrator, Swarm) için "Compute" ve "F
 
 ## Design Standard (TASARIM KOMANDOLARI — Tüm Ajanlar İçin Bağlayıcı)
 
-> *"Güzellik bir lüks değil, kullanıcıya duyulan saygının kanıtıdır."*
+> _"Güzellik bir lüks değil, kullanıcıya duyulan saygının kanıtıdır."_
 
 UI/UX katmanına dokunan her ajan aşağıdaki standartlara uymak **zorundadır**.
 
 ### Tasarım Sistemi Kuralları
+
 - **Token önceliği:** Tailwind v4 `@theme inline` — `src/app/globals.css` tek kaynak. Hardcoded renk/boyut yasak.
 - **Renk paleti:** HSL tabanlı uyumlu palet. Düz `red`, `blue`, `green` gibi jenerik renkler yasak.
 - **Tipografi:** Google Fonts — Inter, Outfit veya Geist. Tarayıcı varsayılanı yasak.
@@ -272,12 +278,14 @@ UI/UX katmanına dokunan her ajan aşağıdaki standartlara uymak **zorundadır*
 - **Spacing:** Tailwind v4 spacing scale. Magic number (`px-[13px]`) yasak.
 
 ### Bileşen Mimarisi
+
 - `src/components/ui/` → **Saf primitifler** (Button, Card, Input, Badge). Domain logic yasak.
 - Feature bileşenleri → `incidents/`, `auth/`, `admin/`, `marketing/` altında.
 - Her bileşen: TypeScript strict, sıfır `any`, kesin interface tanımı.
 - `<img>` doğrudan yasak → `<Image />` (next/image) zorunlu.
 
 ### Görsel Kalite Minimumları
+
 - **Glassmorphism:** `backdrop-blur`, `bg-white/10`, `border-white/20` paterni.
 - **Mikro-animasyon:** Her etkileşimde en az `transition-all duration-200 ease-out`.
 - **Hover:** `group` + `group-hover:` pattern — statik hover yasak.
@@ -285,29 +293,32 @@ UI/UX katmanına dokunan her ajan aşağıdaki standartlara uymak **zorundadır*
 - **Gradient:** `bg-gradient-to-*` ile HSL uyumlu. Tek düz renk arka plan yasak (hero/card).
 
 ### Erişilebilirlik (a11y) — WCAG 2.1 AA Zorunlu
+
 - Kontrast oranı minimum **4.5:1** (metin), **3:1** (büyük metin/ikon).
 - Her etkileşimli eleman `aria-label` veya görünür metin taşır.
 - `focus-visible` ring: `ring-2 ring-offset-2 ring-primary` — outline kaldırma yasak.
 - Klavye navigasyonu tam desteklenir.
 
 ### Performans Disiplini
+
 - Core Web Vitals hedefi: **LCP < 2.5s**, **CLS < 0.1**, **FID < 100ms**.
 - Font: `display: swap` + `preload: true`. FOUT kabul edilmez.
 - İkon: `lucide-react` veya inline SVG. Font-icon (Font Awesome) yasak.
 
 ### Yasak Listesi
 
-| Yasak | Zorunlu Alternatif |
-|---|---|
-| `style={{ color: '#FF0000' }}` | `text-[--color-danger]` token |
-| `className="text-blue-500"` | `className="text-primary"` |
-| `tailwind.config.ts` düzenleme | `globals.css @theme inline` |
-| Animasyonsuz modal/drawer | `animate-in fade-in slide-in-from-bottom-4` |
-| `any` prop tipi | Kesin TypeScript interface |
-| `<img src="...">` | `<Image />` next/image |
-| Hardcoded font-size | `text-sm`, `text-lg` (Tailwind scale) |
+| Yasak                          | Zorunlu Alternatif                          |
+| ------------------------------ | ------------------------------------------- |
+| `style={{ color: '#FF0000' }}` | `text-[--color-danger]` token               |
+| `className="text-blue-500"`    | `className="text-primary"`                  |
+| `tailwind.config.ts` düzenleme | `globals.css @theme inline`                 |
+| Animasyonsuz modal/drawer      | `animate-in fade-in slide-in-from-bottom-4` |
+| `any` prop tipi                | Kesin TypeScript interface                  |
+| `<img src="...">`              | `<Image />` next/image                      |
+| Hardcoded font-size            | `text-sm`, `text-lg` (Tailwind scale)       |
 
 ### NUTUK PROTOKOLÜ — Tasarım Commit Formatı
+
 ```
 feat(ui): [bileşen adı] — [tasarım kararının gerekçesi]
 # Örnek:
@@ -315,4 +326,3 @@ feat(ui): hero-section — glassmorphism card + gradient backdrop, WCAG AA kontr
 ```
 
 > **Referans:** `.agents/swarm/TASARIM_KOMANDOLARI.md` | `.agents/personas/tasarim-komandolari.md`
-

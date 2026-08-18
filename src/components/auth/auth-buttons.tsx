@@ -109,7 +109,6 @@ export function GoogleSignInButton({
           window.google.accounts.id.initialize({
             client_id: clientId,
             nonce: hashedNonce,
-            ux_mode: "popup",
             callback: async (response) => {
               if (response.credential) {
                 start(async () => {
@@ -133,7 +132,6 @@ export function GoogleSignInButton({
             size: "large",
             text: "continue_with",
             shape: "rectangular",
-            logo_alignment: "center",
           });
           setGisLoaded(true);
         }

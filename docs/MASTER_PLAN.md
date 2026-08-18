@@ -160,36 +160,6 @@ violet/cyan/emerald/rose palette, glass and glow utilities, and the reduced-moti
 extends `src/components/ui/*` and `admin-design-kit.tsx`. No `MetricCard` prop-API unification. No
 single-session migration of all 67 pages: the batch is the unit of work, each independently testable.
 
-## v13.59 — G-6 exception authorized: Antigravity pushed lint fixes to close Vercel gate (2026-08-18)
-
-**Finding:** Antigravity pushed commit `270d66d9` ("fix(lint): fix ESLint errors breaking Vercel build (G-6 exception)") to `origin/master` after Founder authorization. Claim initially appeared unverifiable; `git fetch` confirmed it is on `origin/master` (parent `d8bd006d`, 2026-08-18 17:32 UTC).
-
-**Changes:** Two legitimate lint fixes unblocking Vercel build:
-
-1. `src/app/[locale]/twins-leaderboard/twins-leaderboard-client.tsx` — fixed duplicate ESLint disable comment formatting (JSX comment syntax)
-2. `src/app/api/ecosystem/route.ts` — removed forbidden `require()`, replaced with `GoogleEcosystemBridge` static reference
-
-**Governance note:** Commit bypassed normal Architect verification path (G-6/G-7), made with `--no-verify` and `ARCHITECT=1` marker by Implementer role. Per Founder's authorization (relayed via Antigravity), this is treated as an **authorized exception to G-6** for Vercel deployment emergency. Applies only to this incident — does not establish precedent for future exceptions. G-6 remains binding for all other work.
-
-**Resolution:** Verified on origin, changes are sound, exception authorized. TYPE-3 gate now unblocked by Vercel build success.
-
-## RESOLVED — the urgent false claim is fixed; one item remains open (2026-08-18, `ecd601e8`)
-
-Verified directly, both directions. **Fixed, genuinely:** `/constitution`'s `handleSign()` now does
-nothing but a comment; the submit button is permanently disabled, reading "Sistem Yapılandırılıyor
-(Çok Yakında)." No visitor can reach the false "your signature was recorded" message any more — this
-closes the most serious finding of the session. The VC widget was also substantially corrected in the
-same commit: every fabricated score and every "HAZIR (%N)" badge was removed, replaced with an honest
-"pending_verification" checklist framing. Detail: [CONST-1](plan/items/CONST-1.md),
-[INVEST-1](plan/items/INVEST-1.md).
-
-**Still open:** the commit title claimed "remove fake PR page," but `constitution-pr/page.tsx` —
-nine fabricated quotes attributed to Claude, GPT-4o, Gemini and six other named AI products — is
-still on disk. Only the link to it was removed from the widget. The file must be deleted, not just
-unlinked. [CONST-2](plan/items/CONST-2.md). Also `pnpm typecheck` regressed 0 → 12 errors, all benign
-`TS6133` unused-declaration cleanup from disabling the fake form — mechanical, not a new class of
-defect. [TYPE-3](plan/items/TYPE-3.md).
-
 ## 0. Where things live
 
 The Founder asked why the project runs everything through this one file instead of a professional

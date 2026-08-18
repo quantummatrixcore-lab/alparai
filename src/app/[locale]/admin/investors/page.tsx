@@ -10,6 +10,8 @@ import { logger } from "@/lib/utils/logger";
 import { MetricCard } from "@/components/admin/metric-card";
 import { FundingHubTabs } from "@/components/admin/funding-hub-tabs";
 
+import { VcReadinessWidget } from "@/components/admin/vc-readiness-widget";
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "admin" });
@@ -57,6 +59,7 @@ export default async function AdminInvestorsPage({
   return (
     <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
       <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
+        <VcReadinessWidget />
         <FundingHubTabs />
         <Container className="py-6">
           <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">

@@ -8,6 +8,7 @@ import { Container } from "@/components/ui/layout";
 import { usePathname } from "next/navigation";
 
 const platformLinks = [
+  { href: "/constitution", key: "constitution" },
   { href: "/incidents", key: "incidents" },
   { href: "/leaderboard", key: "leaderboard" },
   { href: "/dilemmas", key: "dilemmas" },

@@ -9,7 +9,8 @@ export async function GET(request: Request) {
     // Basic protection (Vercel Cron sets this header)
     const authHeader = request.headers.get("authorization");
     if (
-      process.env.NODE_ENV === "production" &&
+      !process.env.CRON_SECRET ||
+      !authHeader ||
       authHeader !== `Bearer ${process.env.CRON_SECRET}`
     ) {
       return new NextResponse("Unauthorized", { status: 401 });

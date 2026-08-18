@@ -64,46 +64,6 @@ export async function middleware(request: NextRequest) {
 
   const isAdminPath = pathname.startsWith("/admin") || /^\/[a-z]{2}\/admin(\/|$)/.test(pathname);
 
-  if (isAdminPath && !pathname.startsWith("/api/") && !isTestAuthBypassActive()) {
-    const supabase = createServerClient<Database>(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-      {
-        cookies: {
-          getAll: () => request.cookies.getAll(),
-        },
-      },
-    );
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-
-    const locale = request.cookies.get("NEXT_LOCALE")?.value ?? "en";
-
-    if (!user) {
-      const currentPath = request.nextUrl.pathname + request.nextUrl.search;
-      const signinUrl = new URL(`/${locale}/auth/signin`, request.url);
-      signinUrl.searchParams.set("next", currentPath);
-      return NextResponse.redirect(signinUrl);
-    }
-
-    const { data: profile } = await supabase
-      .from("users")
-      .select("role")
-      .eq("id", user.id)
-      .single();
-
-    const isFounder = user.email === "quantum.matrix.core@gmail.com";
-    const userRole = (profile?.role as string | undefined) || (isFounder ? "admin" : undefined);
-    if (
-      userRole !== "moderator" &&
-      userRole !== "admin" &&
-      userRole !== "ceo" &&
-      userRole !== "advisor"
-    ) {
-      return NextResponse.redirect(new URL(`/${locale}`, request.url));
-    }
-  }
 
   const reqWithHeaders = new NextRequest(request, { headers: requestHeaders });
 
@@ -136,7 +96,20 @@ export async function middleware(request: NextRequest) {
 
   let response: NextResponse;
   try {
-    response = await updateSession(reqWithHeaders, intlResponse);
+    const sessionResult = await updateSession(reqWithHeaders, intlResponse);
+    response = sessionResult.response;
+    const user = sessionResult.user;
+
+    // Fast-path unauthenticated redirect for admin routes (Role check is delegated to Server Components)
+    if (isAdminPath && !pathname.startsWith("/api/") && !isTestAuthBypassActive()) {
+      if (!user) {
+        const locale = request.cookies.get("NEXT_LOCALE")?.value ?? "en";
+        const currentPath = request.nextUrl.pathname + request.nextUrl.search;
+        const signinUrl = new URL(`/${locale}/auth/signin`, request.url);
+        signinUrl.searchParams.set("next", currentPath);
+        return NextResponse.redirect(signinUrl);
+      }
+    }
   } catch (err) {
     logger.error(
       "[middleware] updateSession threw",

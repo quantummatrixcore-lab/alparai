@@ -1,9 +1,22 @@
 import { NextResponse } from "next/server";
 import { logger } from "@/lib/utils/logger";
 import { submitIncident, type SubmitIncidentState } from "@/actions/incidents";
+import { getCurrentUser } from "@/lib/auth/session";
+import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 
 export async function POST(req: Request) {
   try {
+    const user = await getCurrentUser();
+    if (!user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const ip = req.headers.get("x-forwarded-for") || "unknown";
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.voice_incident}:${ip}`);
+    if (!rl.ok) {
+      return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+    }
+
     const formData = await req.formData();
     const audioFile = formData.get("file") as Blob | null;
 

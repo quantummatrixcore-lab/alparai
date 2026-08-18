@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { maskPII } from "@/lib/pii/guardian";
+import { getCurrentUser } from "@/lib/auth/session";
+import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 
 /**
  * Zod Schema for voice incident request metadata parameters
@@ -139,6 +141,17 @@ export async function transcribeAudio(
  */
 export async function POST(request: Request) {
   try {
+    const user = await getCurrentUser();
+    if (!user) {
+      return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 });
+    }
+
+    const ip = request.headers.get("x-forwarded-for") || "unknown";
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.voice_incident}:${ip}`);
+    if (!rl.ok) {
+      return NextResponse.json({ success: false, error: "Too many requests" }, { status: 429 });
+    }
+
     const contentType = request.headers.get("content-type") || "";
     if (!contentType.includes("multipart/form-data")) {
       return NextResponse.json(

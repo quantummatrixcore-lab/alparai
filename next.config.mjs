@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Security headers applied to all routes.
  */
 const isTest =
@@ -48,7 +48,7 @@ const securityHeaders = [
   { key: "Cross-Origin-Opener-Policy", value: "same-origin-allow-popups" },
 ];
 
-const embedCsp = csp.replace("frame-ancestors 'none'", "frame-ancestors *");
+const embedCsp = csp.replace("frame-ancestors 'none'", "frame-ancestors 'self' https://*.alparai.com https://*.vercel.app");
 const embedHeaders = [
   { key: "Content-Security-Policy", value: embedCsp },
   { key: "X-Content-Type-Options", value: "nosniff" },

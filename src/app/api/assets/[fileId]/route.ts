@@ -13,8 +13,21 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ fil
 
     const metadata = await drive.files.get({
       fileId,
-      fields: "mimeType, name",
+      fields: "mimeType, name, parents",
     });
+
+    const mimeType = metadata.data.mimeType || "";
+    
+    // Block sensitive files (e.g. JSON DB backups, SQL dumps)
+    if (mimeType === "application/json" || mimeType.includes("sql") || mimeType.includes("csv")) {
+      return new NextResponse("Access to this file type is forbidden", { status: 403 });
+    }
+
+    // Verify folder boundary if configured
+    const allowedFolderId = process.env.GDRIVE_ASSETS_FOLDER_ID;
+    if (allowedFolderId && metadata.data.parents && !metadata.data.parents.includes(allowedFolderId)) {
+      return new NextResponse("Unauthorized Asset Location", { status: 403 });
+    }
 
     const response = await drive.files.get({ fileId, alt: "media" }, { responseType: "stream" });
 

@@ -1,12 +1,17 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { isAdmin } from '@/lib/auth/session';
 
 // @ts-expect-error - Local JS modules without types
 import GoogleEcosystemBridge from '../../../../google_ecosystem_bridge.js';
 
 export async function GET() {
   try {
+    const adminStatus = await isAdmin();
+    if (!adminStatus) {
+      return NextResponse.json({ status: 'error', message: 'Unauthorized' }, { status: 401 });
+    }
     const googleBridge = require('../../../../google_ecosystem_bridge.js');
 
     // Paralel API çağrıları

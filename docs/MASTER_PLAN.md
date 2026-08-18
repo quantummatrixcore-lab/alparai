@@ -5,7 +5,7 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.56 · **Updated:** 2026-08-17 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.57 · **Updated:** 2026-08-17 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
 
 ## RESOLVED — the urgent false claim is fixed; one item remains open (2026-08-18, `ecd601e8`)
 
@@ -63,6 +63,7 @@ only what is currently true.
 | ---------------------------------------------------- | ------ | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
 | **[TYPE-3](plan/items/TYPE-3.md)**                   | **P0** | Implementer                 | Clear 27 `pnpm lint` errors — 16 `no-explicit-any` from the repair method, 11 mechanical. Do not widen the ESLint config                                                                                         | `pnpm lint` exits 0; `as any` back to ≤14                                                             |
 | **[LEGAL-3](plan/items/LEGAL-3.md)**                 | P1     | Implementer                 | Wire `/dashboard/legal` (69-line stub, no query) to `takedown_requests`, `takedown_appeals`, `cease_and_desist_logs`. Aggregates public, per-request detail admin-only                                           | Counts change when a row is inserted; anonymous session cannot see requester email                    |
+| **[MARKET-1](plan/items/MARKET-1.md)**               | P1     | Implementer                 | Real, cited AI-ecosystem/market/financial analysis for VC conversations — external market data already researched and sourced; 5-year projections tagged `[tahmin — doğrulanmamış]` per Rule 10                  | Every figure sourced/dated; ships only after `TYPE-3` and `CONST-2` close                             |
 | **[INVEST-1](plan/items/INVEST-1.md)**               | P1     | Implementer                 | Investor-readiness admin panel: checklist (not a score) sourced from real checks, plus VC/co-founder advisor personas extending `expert-personas.ts`                                                             | `check-admin-metrics.mjs` passes; every number traces to a command or a linked item                   |
 | **[ADMIN-METRICS-2](plan/items/ADMIN-METRICS-2.md)** | P1     | Implementer                 | Fix two blind spots in `check-admin-metrics.mjs` (brace-interpolated local constants, Turkish percent-first notation) found by a real violation that passed through it                                           | Negative-test fixture demonstrates both catches; no regression on existing findings                   |
 | **[CONST-1](plan/items/CONST-1.md)**                 | P2     | Implementer                 | Community AI Charter — "Draft v0.1, open for co-authorship," `docs/constitution/` articles (ADR-style), public page, reusing the existing `suggestions` mechanism for amendments                                 | Framing states draft/co-authorship, not settled authority; no announcement before `TYPE-3` closes     |
@@ -348,6 +349,26 @@ in production — Vercel deploys on every push (`CI-COST-1`, v13.51), independen
 `.husky/pre-push` check would have blocked it. The Founder should decide whether to disable the form
 immediately rather than wait for the scheduled correction; recorded in
 [CONST-1](plan/items/CONST-1.md).
+
+**v13.57 — real market data gathered and specified, ahead of any VC conversation.** The
+Founder asked for genuine ecosystem/market/financial analysis before approaching investors — the
+right response to today's fabrication findings. [MARKET-1](plan/items/MARKET-1.md) records real,
+dated, cited figures gathered this session: global AI market estimates range $827B–$1.8T by 2030
+across three named sources (reported as a range, not false precision); the more relevant AI
+governance segment is $308M–$839M (2025) growing 31–36% CAGR to $3.6–5.7B by 2033/34 — three sources
+disagreeing by 3x, which itself signals an early, undefined category rather than a settled market.
+Comparable: Credo AI raised $21M in July 2024 ($41.3M total), a real capital anchor, not a valuation
+projection for ALPAR AI. **The strongest finding:** ALPAR AI's actual niche — a public,
+incident-level accountability registry — has no funded commercial rival; the nearest comparables
+(AI Incident Database, AIAAIC) are non-commercial and AIID states its own sustainability path is
+partnering with the GRC industry, the same direction already scoped in this project's ADR history.
+
+Financial projections are scoped by methodology, not fabricated: real revenue lines already in the
+architecture record, real existing cost infrastructure (`cost-guard.ts`, free-tier routing), growth
+assumptions from `startup-health.ts`'s real trailing rate — flagged for a pre-existing 85%-floor
+defect that must be fixed first — and every forward dollar figure tagged
+`[tahmin — doğrulanmamış]` per `CLAUDE.md` Rule 10, which existed before today and was simply never
+applied here. Gated: does not ship before `TYPE-3` and `CONST-2` close.
 
 ## 5. History
 

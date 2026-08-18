@@ -38,7 +38,7 @@ import {
   Mail,
   Crown,
   Video,
-  FileText
+  FileText,
 } from "lucide-react";
 import { cn, getInitials } from "@/lib/utils";
 import Image from "next/image";
@@ -360,30 +360,6 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
       icon: LayoutDashboard,
       active: pathname === "/admin" || pathname === "/en/admin",
     },
-    {
-      href: "/admin/c360",
-      label: "Customer 360",
-      icon: Target,
-      active: pathname.startsWith("/admin/c360"),
-    },
-    {
-      href: "/admin/media",
-      label: "Medya",
-      icon: Video,
-      active: pathname.startsWith("/admin/media"),
-    },
-    {
-      href: "/admin/content",
-      label: "İçerik",
-      icon: FileText,
-      active: pathname.startsWith("/admin/content"),
-    },
-    {
-      href: "/admin/reports",
-      label: "Raporlar",
-      icon: BarChart3,
-      active: pathname.startsWith("/admin/reports"),
-    },
   ];
 
   const showOperations = user.role === "ceo" || user.role === "admin" || user.role === "moderator";
@@ -612,7 +588,7 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
           className="scrollbar-hide flex-1 overflow-y-auto py-4"
         >
           {showSystem && renderNavGroup("founder", "Founder Command", Crown, founderItems)}
-          
+
           <div className="space-y-1">
             {renderNavGroup("overview", t("nav_group_overview"), Activity, overviewItems)}
           </div>

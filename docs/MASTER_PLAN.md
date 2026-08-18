@@ -5,7 +5,103 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.58 · **Updated:** 2026-08-17 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.60 · **Updated:** 2026-08-18 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+
+## v13.60 — Admin panel professionalization: a consolidation specification, not a redesign (2026-08-18)
+
+**Founder directive:** a more professional admin panel, scope confirmed across all four of visual
+design, information architecture, loading performance and responsive behaviour — the whole panel,
+not one section. This section is the specification; implementation is Implementer-owned per G-6.
+
+**Measured state, 2026-08-18.** Every figure below is a command run against the working tree at
+`a8a65f72`, not an estimate:
+
+| Measurement                                           | Value | Command                                                 |
+| ----------------------------------------------------- | ----- | ------------------------------------------------------- |
+| Admin route pages                                     | 67    | `find "src/app/[locale]/admin" -name page.tsx \| wc -l` |
+| …using the shared `AdminPageHeader`                   | 11    | `grep -rl AdminPageHeader … --include=page.tsx`         |
+| …using the shared `AdminContainer`                    | 6     | `grep -rl AdminContainer … --include=page.tsx`          |
+| …hand-typing the glass shell `bg-[#070709]` instead   | 46    | `grep -rl 'bg-\[#070709\]' … --include=page.tsx`        |
+| …using a raw `<h1>` instead of the shared header      | 40    | `grep -rl '<h1' … --include=page.tsx`                   |
+| `<Suspense>` boundaries anywhere under `admin/`       | 0     | `grep -rl Suspense … --include=*.tsx`                   |
+| `loading.tsx` files for those 67 routes               | 2     | `find … -name loading.tsx \| wc -l`                     |
+| Pages with no `sm:`/`md:`/`lg:` class at page level   | 9     | `grep -rlL 'sm:\|md:\|lg:' … --include=page.tsx`        |
+| References to the `--fs-*` / `--space-*` token scales | 0     | `grep -rn 'var(--fs-\|var(--space-' src/`               |
+| References to the `--radius-*` scale                  | 2     | both inside `globals.css` itself; no consumer           |
+| `admin-design-kit.tsx` importers                      | 31    | `grep -rl admin-design-kit src/`                        |
+| `metric-card.tsx` importers (the duplicate)           | 10    | `grep -rl '@/components/admin/metric-card' src/`        |
+
+**The finding: this is a consolidation problem, not a rebuild problem.** The panel already has the
+right foundations — a server-first data architecture (65 of 67 pages are Server Components), a
+723-line sidebar with collapse/persistence/mobile-drawer already solved, a 355-line
+`admin-design-kit.tsx` whose `AdminContainer`/`AdminPageHeader`/`AdminSectionCard` primitives are
+correct and already imported 31 times, and a `globals.css` token system carrying real accessibility
+work (reduced-motion, forced-colors, 44px touch targets). What is missing is that **these primitives
+are not the only path**: 46 pages hand-copy a glass-shell wrapper that should live inside
+`AdminContainer`, and 40 use a raw `<h1>` where a shared header exists. The professional gap is
+inconsistency, and the fix is to make the good primitives the sole path — not to design new ones.
+
+Two audit claims were corrected by direct measurement before being written here. The `--fs-*` and
+`--space-*` scales in `globals.css` are **byte-identical to Tailwind v4's own defaults** and have
+zero consumers — they are dead code to delete, not tokens to wire. And the "blank screen during
+fetch" symptom is not solved by adding `loading.tsx` files: `admin/loading.tsx` already cascades to
+all 65 nested routes. The real cause is that each `page.tsx` is one monolithic async component with
+no internal `<Suspense>`, so a single slow call blocks the entire first paint.
+
+**Phase 1 — Foundation** (`UI-1`). In `src/app/globals.css`: delete the dead `--fs-*` and `--space-*`
+blocks (zero consumers, zero behaviour change). In `src/components/admin/admin-design-kit.tsx`: add a
+`shell?: boolean` prop to `AdminContainer` (default matching today's output) that owns the
+`min-h-screen bg-[#070709] … rounded-3xl bg-zinc-900/40 ring-1 ring-white/10` chrome currently
+hand-typed in 46 pages, and a `subnav?: React.ReactNode` slot to `AdminPageHeader` so hub-tab
+components stop being hand-placed above it at inconsistent positions. In
+`src/components/admin/metric-card.tsx`: rename the export to `TrendMetricCard` across its 10 import
+sites. This is a naming-collision fix only — the two components have incompatible prop APIs
+(`label`/`value`/`sparkline` vs `title`/`trend`/`sparkData`/`chartType`) and are genuinely different
+widgets; a prop-API unification would risk 10 call sites to solve a naming problem.
+
+**Phase 2 — Streaming and loading** (`UI-2`). Pilot on `src/app/[locale]/admin/finance/page.tsx`,
+which performs an external Vercel billing fetch inline with `cache: "no-store"` plus a page-level
+`force-dynamic`, blocking the whole page on the slowest call. Extract that fetch into its own async
+Server Component and wrap only it in `<Suspense>`, so the Supabase-backed KPI grid paints
+immediately; give the billing call a revalidate window rather than `no-store`, since billing data
+changes hourly at most. Apply the same split wherever a page makes more than one independent slow
+call. Add page-shaped `loading.tsx` only where the generic root fallback visibly mismatches the real
+layout, Operations and Intelligence groups first.
+
+**Phase 3 — Migration, batched by sidebar group** (`UI-3`). The sidebar's own 8 groups are the unit
+of work, in this order: Operations (4 pages, highest moderator traffic — the pilot batch), then
+Intelligence (8), Governance + Strategy, Growth (10), System + Founder. Per page the change is
+JSX-shell only: manual wrapper → `<AdminContainer shell>`, raw `<h1>` → `<AdminPageHeader>`, hub-tabs
+→ the new `subnav` slot. **The function body above `return` — auth gates, role checks, Supabase
+queries, server actions — is never touched; a diff showing changes there is a failed migration.**
+Three reference buckets cover all 67 without enumerating them: `finance/page.tsx` (manual shell but
+correct header — smallest diff), `health/page.tsx` (manual shell plus raw `<h1>` carrying custom
+markup that moves into the header's `badge` prop), and `moderation/page.tsx` (already the target
+pattern — the acceptance reference, zero changes).
+
+**Phase 4 — Responsive verification** (`UI-4`). Extend `tests/e2e/admin-360-pages.spec.ts`, which
+already discovers all 67 routes automatically and is confirmed green, with a second `test.describe`
+at a 375px viewport asserting `documentElement.scrollWidth <= clientWidth`. Run it **before**
+touching the 9 pages that carry no page-level breakpoint classes — absence of a breakpoint class in
+`page.tsx` does not prove overflow, since child components may already handle it, and fixing
+un-measured pages is the guessing this project keeps correcting elsewhere. Fold the mobile run into
+each Phase 3 batch's verification so responsive fixes land in the same review as that batch.
+
+**Open decision for the Founder — `--radius-*`.** This is the one token group that genuinely
+diverges from Tailwind's defaults (6/12/16/24/32px vs 4/6/8/12/16/24px — a deliberately softer
+scale) and the only one worth keeping. But `globals.css` is site-wide, not admin-scoped: wiring it
+into `@theme inline` would redefine `rounded-sm|md|lg|xl|2xl|full` across the 5-locale public
+marketing pages too. Cosmetic-only risk, but real and outside the stated scope. **Default is the
+scoped option:** standardize radius inside the new `AdminContainer`/`AdminPageHeader` shell rather
+than in `@theme`, leaving public pages untouched. The sitewide option stays available if the Founder
+wants one radius language everywhere, verified by the admin Playwright suite plus a visual pass of
+home, `/report` and `/providers`.
+
+**Explicit non-goals.** No light theme — `color-scheme: dark` stays. No visual rewrite: the existing
+violet/cyan/emerald/rose palette, glass and glow utilities, and the reduced-motion / forced-colors /
+44px-touch-target accessibility work are preserved as-is. No new component library — everything
+extends `src/components/ui/*` and `admin-design-kit.tsx`. No `MetricCard` prop-API unification. No
+single-session migration of all 67 pages: the batch is the unit of work, each independently testable.
 
 ## v13.59 — G-6 exception authorized: Antigravity pushed lint fixes to close Vercel gate (2026-08-18)
 
@@ -92,6 +188,10 @@ only what is currently true.
 | **BG**                                               | P0     | Implementer                 | Repair mojibake in `messages/{en,tr,de,fr,ru}.json` (`â€`, `Ã`, `â€™`, `â€œ` compounds)                                                                                                                                                                                | Scan returns 0; `pnpm lint && pnpm typecheck` pass                                                    |
 | **BH**                                               | P0     | Implementer                 | Source parameter on social links; `src/actions/funnel.ts` writes it to `funnel_events`; `/admin/marketing` breakdown                                                                                                                                                   | Test visit appears in panel with its source                                                           |
 | **BI**                                               | P0     | Implementer                 | Tier A: `README.md` and public-facing files translated to English                                                                                                                                                                                                      | Files leave `.repo-language-baseline`; CI stays green                                                 |
+| **UI-1**                                             | P1     | Implementer                 | Admin foundation (spec: §v13.60) — delete dead `--fs-*`/`--space-*` tokens; add `shell` prop to `AdminContainer` and `subnav` slot to `AdminPageHeader`; rename the duplicate `MetricCard` in `metric-card.tsx` to `TrendMetricCard` across its 10 import sites        | `pnpm typecheck` exits 0; `admin-360-pages.spec.ts` stays green; no `page.tsx` changed in this phase  |
+| **UI-2**                                             | P1     | Implementer                 | Admin streaming (spec: §v13.60) — split `finance/page.tsx`'s external billing fetch into a `<Suspense>`-wrapped Server Component with a revalidate window; apply the same split where a page makes >1 independent slow call                                            | KPI grid paints before the billing card resolves; Supabase-sourced figures unchanged                  |
+| **UI-3**                                             | P1     | Implementer                 | Admin shell migration (spec: §v13.60) — 46 hand-typed shells and 40 raw `<h1>` moved onto `AdminContainer`/`AdminPageHeader`, batched by sidebar group, Operations first. Depends on UI-1                                                                              | Per batch: scoped Playwright run + typecheck green; diff shows **zero** changes above each `return`   |
+| **UI-4**                                             | P1     | Implementer                 | Admin responsive verification (spec: §v13.60) — add a 375px-viewport `test.describe` to `admin-360-pages.spec.ts` asserting no horizontal overflow; fix only what it flags                                                                                             | Mobile block passes for every route in a completed UI-3 batch                                         |
 | **[CI-COST-1](plan/items/CI-COST-1.md)**             | P1     | Architect                   | Path filters (`docs/**`, `**.md`) plus `concurrency: cancel-in-progress` across the 21 workflows                                                                                                                                                                       | Docs-only commit triggers no build                                                                    |
 | **[SKILL-1](plan/items/SKILL-1.md)**                 | P1     | Implementer                 | Copy `.agents/skills/{bilge-kurul,graphify}/` into `.claude/skills/` — nothing reads `.agents/skills/` today                                                                                                                                                           | Both invocable in a fresh session                                                                     |
 | **[HIER-1](plan/items/HIER-1.md)**                   | P1     | Implementer                 | `.agents/hierarchy.json` binding the command hierarchy to existing role prompts (see §4)                                                                                                                                                                               | Dispatcher resolves a task to one specialist                                                          |

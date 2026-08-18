@@ -63,8 +63,8 @@ describe("GET /api/cron/kill-metric", () => {
           then: (cb: any) => cb({ count: 5, error: null }),
         }),
       }),
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
+ 
     } as any);
 
     const req = new Request("http://localhost/api/cron/kill-metric", {

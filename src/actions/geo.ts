@@ -27,8 +27,8 @@ export async function addGeoCitationAction(input: AddGeoCitationInput) {
     await requireAdmin();
 
     const admin = createAdminClient();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+     
+ 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const db = admin as any;
 
@@ -57,8 +57,8 @@ export async function getGeoStatsAction() {
     await requireAdmin();
 
     const admin = createAdminClient();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+     
+ 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const db = admin as any;
 

@@ -8,8 +8,8 @@ export async function runOrchestrator() {
   try {
     const supabase = createAdminClient();
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+     
+ 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data: models, error } = await (supabase as any)
       .from("ai_free_models")
@@ -79,8 +79,8 @@ export async function runOrchestrator() {
     ];
 
     for (const chain of chains) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+       
+ 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
       await (supabase as any).from("ai_routing_chains").upsert(chain, { onConflict: "domain_name" });
     }

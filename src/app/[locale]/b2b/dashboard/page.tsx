@@ -26,7 +26,7 @@ export default async function B2BDashboardPage({
   const { data } = await supabase
     .from("incidents")
     .select("id, title_masked, title_tr, severity, status, created_at")
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
     .in("status", ["published", "investigating", "resolved"] as any[])
     .order("created_at", { ascending: false })
@@ -64,7 +64,7 @@ export default async function B2BDashboardPage({
           onStatusChange={async (id, status) => {
             "use server";
             const sb = await createServerClient();
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
             await sb.from("incidents").update({ status: status as any }).eq("id", id);
           }} 

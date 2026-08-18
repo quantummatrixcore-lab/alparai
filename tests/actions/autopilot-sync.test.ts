@@ -4,13 +4,13 @@ import "../helpers/setup";
 
 // Mock global fetch
 const mockFetch = vi.fn();
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
+ 
 global.fetch = mockFetch as any;
 
 const withAutopilotMock = vi.fn().mockImplementation(async (_policy, _keys, fn, _options) => {
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
+ 
   const outcome = await fn({} as any);
   if (outcome.kind === "success") {
     return { kind: "ok", value: outcome.value };
@@ -51,8 +51,8 @@ describe("autopilot-sync news action", () => {
     vi.clearAllMocks();
     process.env.GEMINI_API_KEY = "test-gemini-key";
     withAutopilotMock.mockImplementation(async (_policy, _keys, fn, _options) => {
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
+ 
       const outcome = await fn({} as any);
       if (outcome.kind === "success") {
         return { kind: "ok", value: outcome.value };

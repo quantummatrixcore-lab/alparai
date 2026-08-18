@@ -1,7 +1,8 @@
-/* eslint-disable */
+ 
 'use client';
 
 import { useEffect, useState } from 'react';
+import { DeploymentLimitsWidget } from './deployment-limits-widget';
 
 // Founder Admin Panel v2 - Agent-OS Premium UI
 export default function FounderAdminPanel() {
@@ -72,6 +73,9 @@ export default function FounderAdminPanel() {
             </div>
           </div>
         </div>
+
+        {/* Deploy Agent Limits Monitor */}
+        <DeploymentLimitsWidget />
 
         {/* Ana Zeka (Gemini & Oracle) */}
         <div className="bg-gray-900/30 backdrop-blur-xl border border-gray-800 rounded-2xl p-6 hover:border-purple-500/50 transition-all duration-300 group">

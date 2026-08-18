@@ -8,8 +8,8 @@ vi.mock("@/i18n/routing", () => ({
 }));
 
 vi.mock("next-intl/middleware", () => ({
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
+ 
   default: () => (global as any).__mockIntlMiddleware,
 }));
 
@@ -27,15 +27,15 @@ let proxy: any;
 describe("proxy middleware", () => {
   beforeAll(async () => {
     // Initialize global mocks before dynamically importing proxy module
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
+ 
     (global as any).__mockIntlResponse = new NextResponse(null, { headers: { "x-intl": "true" } });
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
+ 
     (global as any).__mockIntlMiddleware = vi
       .fn()
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
+ 
       .mockImplementation(() => (global as any).__mockIntlResponse);
 
     const mod = await import("@/middleware");
@@ -44,11 +44,11 @@ describe("proxy middleware", () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
+ 
     (global as any).__mockIntlResponse = new NextResponse(null, { headers: { "x-intl": "true" } });
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
+ 
     (global as any).__mockIntlMiddleware.mockReturnValue((global as any).__mockIntlResponse);
   });
 
@@ -60,18 +60,18 @@ describe("proxy middleware", () => {
     const response = await proxy(request);
 
     // Verify intlMiddleware is called with request containing headers
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
+ 
     expect((global as any).__mockIntlMiddleware).toHaveBeenCalled();
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
+ 
     const passedReq = (global as any).__mockIntlMiddleware.mock.calls[0][0] as NextRequest;
     expect(passedReq.headers.get("x-request-id")).toBeDefined();
     expect(passedReq.headers.get("x-pathname")).toBe("/en/incidents");
 
     // Verify updateSession is called
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
+ 
     expect(mockUpdateSession).toHaveBeenCalledWith(passedReq, (global as any).__mockIntlResponse);
 
     // Verify response headers contain request-id

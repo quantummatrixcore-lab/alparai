@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
@@ -31,11 +31,11 @@ export function AiBudgetTransparencyScore({
     setTimeout(() => setIsRefreshing(false), 800);
   };
 
-  const budgetUsagePct = Math.min(
+  const budgetUsagePct = totalBudgetTokens ? Math.min(
     100,
-    Math.round((consumedTokens / totalBudgetTokens) * 1000) / 10,
-  );
-  const strokeDashoffset = 440 - (440 * score) / 100;
+    Math.round(((consumedTokens || 0) / totalBudgetTokens) * 1000) / 10,
+  ) : 0;
+  const strokeDashoffset = score !== undefined ? 440 - (440 * score) / 100 : 440;
 
   return (
     <div

@@ -611,8 +611,8 @@ describe("AI Adapters", () => {
       mockResolveApiKey.mockResolvedValue("mock-blackbox-key");
 
       mockCompletionsCreate.mockRejectedValueOnce(
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
+ 
         new (OpenAI.RateLimitError as any)("Rate limit hit"),
       );
 
@@ -628,8 +628,8 @@ describe("AI Adapters", () => {
       mockResolveApiKey.mockResolvedValue("mock-blackbox-key");
 
       mockCompletionsCreate.mockRejectedValueOnce(
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
+ 
         new (OpenAI.APIConnectionTimeoutError as any)({ message: "Timeout occurred" }),
       );
 
@@ -645,8 +645,8 @@ describe("AI Adapters", () => {
       mockResolveApiKey.mockResolvedValue("mock-blackbox-key");
 
       mockCompletionsCreate.mockRejectedValueOnce(
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
+ 
         new (OpenAI.APIError as any)("API Error status 500"),
       );
 
@@ -716,8 +716,8 @@ describe("AI Adapters", () => {
       mockResolveApiKey.mockResolvedValue("mock-nvidia-key");
 
       mockCompletionsCreate.mockRejectedValueOnce(
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
+ 
         new (OpenAI.RateLimitError as any)("Rate limit hit"),
       );
 
@@ -733,8 +733,8 @@ describe("AI Adapters", () => {
       mockResolveApiKey.mockResolvedValue("mock-nvidia-key");
 
       mockCompletionsCreate.mockRejectedValueOnce(
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
+ 
         new (OpenAI.APIConnectionTimeoutError as any)({ message: "Timeout occurred" }),
       );
 
@@ -750,8 +750,8 @@ describe("AI Adapters", () => {
       mockResolveApiKey.mockResolvedValue("mock-nvidia-key");
 
       mockCompletionsCreate.mockRejectedValueOnce(
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
+ 
         new (OpenAI.APIError as any)("API Error status 500"),
       );
 

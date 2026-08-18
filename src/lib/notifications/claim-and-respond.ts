@@ -61,8 +61,8 @@ export async function triggerClaimAndRespondAlert(
     );
 
     // 2. Queue into outreach queue table for record keeping
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+     
+ 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data: queued, error: queueErr } = await (supabase as any)
       .from("outreach_queue")

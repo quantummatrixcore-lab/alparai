@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { ChevronRight, Crown, Sparkles, BrainCircuit } from "lucide-react";
-import { DIGITAL_TWINS, DigitalTwinPersona } from "@/lib/agent-os/personas";
+import { DIGITAL_TWINS, type DigitalTwinPersona } from "@/lib/agent-os/personas";
 
 export function AdvisorRoster() {
   const t = useTranslations("admin");

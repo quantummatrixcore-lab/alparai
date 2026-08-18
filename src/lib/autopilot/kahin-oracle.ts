@@ -1,4 +1,4 @@
-import { EventBus } from './event-bus';
+import { type EventBus } from './event-bus';
 import { spawn } from 'child_process';
 import path from 'path';
 

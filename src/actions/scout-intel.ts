@@ -11,7 +11,7 @@ export async function fetchLatestIntel() {
   const supabase = await createClient();
 
   const { data, error } = await supabase
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
     .from("agent_ecosystem_intel" as any)
     .select("*")
@@ -43,7 +43,7 @@ export async function markIntelActioned(id: string) {
   const supabase = await createClient();
 
   const { error } = await supabase
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
     .from("agent_ecosystem_intel" as any)
     .update({ is_actioned: true })

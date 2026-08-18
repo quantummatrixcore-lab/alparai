@@ -1,5 +1,5 @@
 import "server-only";
-import { BaseAdapter, DomSelectors } from "./base-adapter";
+import { BaseAdapter, type DomSelectors } from "./base-adapter";
 
 export class QwenAdapter extends BaseAdapter {
   constructor() {

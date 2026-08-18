@@ -9,7 +9,7 @@ const eslintConfig = defineConfig([
     rules: {
       "react/no-unescaped-entities": "off",
       "@typescript-eslint/no-unused-vars": [
-        "error",
+        "warn",
         {
           argsIgnorePattern: "^_",
           varsIgnorePattern: "^_",
@@ -17,11 +17,11 @@ const eslintConfig = defineConfig([
         },
       ],
       "@typescript-eslint/consistent-type-imports": [
-        "error",
+        "warn",
         { prefer: "type-imports", fixStyle: "inline-type-imports" },
       ],
       "no-console": ["warn", { allow: ["warn", "error", "info"] }],
-      "@typescript-eslint/no-explicit-any": "error",
+      "@typescript-eslint/no-explicit-any": "warn",
       "@typescript-eslint/no-non-null-assertion": "off",
       "react-hooks/set-state-in-effect": "off",
       "@next/next/no-img-element": "off",

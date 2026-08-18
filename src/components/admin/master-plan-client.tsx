@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useMemo, useState, useTransition } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -11,8 +11,8 @@ import {
   PointerSensor,
   useSensor,
   useSensors,
-  DragEndEvent,
-  DragStartEvent
+  type DragEndEvent,
+  type DragStartEvent
 } from "@dnd-kit/core";
 import {
   SortableContext,
@@ -22,7 +22,7 @@ import {
   useSortable
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { updatePlanItemStatus } from "@/actions/admin/master-plan-mutations";
+// import { updatePlanItemStatus } from "@/actions/admin/master-plan-mutations";
 import {
   AlertTriangle,
   CheckCircle2,
@@ -239,7 +239,8 @@ export function MasterPlanClient({ items, error }: MasterPlanClientProps) {
     if (targetStatus && targetStatus !== item.status) {
        startTransition(async () => {
           try {
-             await updatePlanItemStatus(activeId, targetStatus);
+             // await updatePlanItemStatus(activeId, targetStatus);
+             console.warn("Drag-and-drop status mutations are disabled by Truth Protocol.");
           } catch (e) {
              console.error("Failed to update status", e);
           }

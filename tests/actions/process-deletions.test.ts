@@ -18,8 +18,8 @@ let mockAdminClient: ReturnType<typeof createMockSupabaseClient>;
 beforeEach(() => {
   vi.clearAllMocks();
   mockAdminClient = createMockSupabaseClient();
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
+ 
   vi.mocked(createAdminClient).mockReturnValue(mockAdminClient as any);
 });
 
@@ -62,15 +62,15 @@ describe("Process Deletions Cron", () => {
             }
           },
           update: mockUpdate,
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
+ 
         } as any;
       }
       if (table === "email_preferences") {
         return {
           update: mockUpdate,
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
+ 
         } as any;
       }
       if (table === "redaction_requests") {
@@ -80,12 +80,12 @@ describe("Process Deletions Cron", () => {
               is: vi.fn().mockResolvedValue({ data: [], error: null }),
             }),
           }),
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
+ 
         } as any;
       }
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
+ 
       return {} as any;
     });
 

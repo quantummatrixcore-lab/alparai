@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 import { DIGITAL_TWINS } from "@/lib/agent-os/personas";
 import { ArbitrageEngine } from "@/lib/agent-os/arbitrage-engine";
 import { calculateAlignmentScore, selfHealResponse } from "@/lib/agent-os/alignment-engine";
@@ -26,8 +26,8 @@ export async function POST(req: NextRequest) {
     // Rate Limit (Demoda IP başına 15 dakikada 5 istek)
     const hdrs = await headers();
     const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "127.0.0.1";
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
+ 
     const rl = await checkRateLimit(`${(RATE_LIMIT_KEYS as any).chat_rate_limit ?? "twin_chat"}:${ip}`);
     if (!rl.ok) {
       return NextResponse.json(
@@ -115,16 +115,16 @@ export async function POST(req: NextRequest) {
     // Usage Logging (Vekilharçlık Kaydı)
     const adminClient = createAdminClient();
     try {
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
+ 
       const { error: rpcError } = await (adminClient.rpc as any)("increment_persona_usage", { 
         p_twin_id: twinId, 
         p_tokens: totalTokens 
       });
       
       if (rpcError) {
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
+ 
         await (adminClient as any).from("persona_usage_stats").insert({
           twin_id: twinId,
           tokens_used: totalTokens,

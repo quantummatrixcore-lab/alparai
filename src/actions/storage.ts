@@ -59,8 +59,8 @@ export async function uploadIncidentEvidence(formData: FormData) {
 
     // Save the fileId to Supabase Database under the specific incidentId
     const supabase = await createClient();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+     
+ 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { error: dbError } = await (supabase as any)
       .from("incident_evidence")

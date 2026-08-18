@@ -75,8 +75,8 @@ export function createMockSupabaseClient() {
     }),
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+   
+ 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const mockUpdateChain = {} as any;
   const mockUpdateEq = vi.fn().mockImplementation(() => mockUpdateChain);

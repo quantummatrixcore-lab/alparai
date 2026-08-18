@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { DIGITAL_TWINS, DigitalTwinPersona } from "@/lib/agent-os/personas";
+import { DIGITAL_TWINS, type DigitalTwinPersona } from "@/lib/agent-os/personas";
 import { calculateAlignmentScore, selfHealResponse } from "@/lib/agent-os/alignment-engine";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
@@ -43,7 +43,7 @@ export async function POST(
     const adminClient = createAdminClient();
     let isAuthorized = false;
     try {
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { data: keyData, error: keyError } = await (adminClient as any)
         .from("api_keys")
@@ -179,7 +179,7 @@ export async function POST(
 
     // 9. Log Usage (Vekilharçlık Kaydı)
     try {
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { error: rpcError } = await (adminClient.rpc as any)("increment_persona_usage", { 
         p_twin_id: twinId, 
@@ -187,7 +187,7 @@ export async function POST(
       });
       
       if (rpcError) {
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
         await (adminClient as any).from("persona_usage_stats").insert({
           twin_id: twinId,

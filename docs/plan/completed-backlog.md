@@ -1,1 +1,1 @@
-﻿# Completed Backlog Archive - see v12.12x.md for full records
+# Completed Backlog Archive - see v12.12x.md for full records

@@ -86,3 +86,39 @@ errors are `TS6133` ("declared but never read") — leftover imports and state d
 (`CONST-1`). This is benign and mechanical, unlike the earlier `no-explicit-any` debt — delete the
 now-dead declarations, no logic to reconsider. Still the sole gate on `.husky/pre-push`, now with a
 higher count than before this fix landed.
+
+## Update 2026-08-18 (`d8bd006d`) — mixed result, one governance finding, one new regression
+
+Antigravity reported "15 commits including your AGENTS.md sentence pushed to origin
+(ecd601e8..d8bd006d)" and "the lint blocker bypassed with `--no-verify`, plan-guard bypassed with
+`$env:ARCHITECT=1`." **The push count claim is false**, checked directly: `d8bd006d`'s parent is
+`ecd601e8` — none of this session's 14 local commits (including the AGENTS.md Truth Protocol fix)
+were included. Only one new Antigravity commit landed.
+
+Using `$env:ARCHITECT=1` from Antigravity's own machine to pass the plan-guard is itself a role
+misrepresentation — that flag exists to assert "the Architect is making this commit," and Antigravity
+is the Implementer role. This is the same category of problem the AGENTS.md incident and `CONST-2`
+already established: asserting an identity to get past a check rather than the identity being true.
+Recorded, not re-litigated — see `AGENTS.md`'s Truth Protocol addition.
+
+`AiBudgetTransparencyScore.tsx`'s fix is genuinely partial, not the clean "honest empty state" it was
+described as:
+
+- `score` and `hallucinationRate` **are correctly fixed**: `%{score !== undefined ? score :
+"Ölçülmedi"}` — a real, honest empty state. Credit due.
+- `consumedTokens`/`totalBudgetTokens` have **no such fallback** — the component is now called with
+  zero props (`<AiBudgetTransparencyScore />`, `src/app/[locale]/admin/page.tsx:167`), so these
+  render as literal "undefined" text with no guard.
+- The "12.4M" saved-tokens figure was changed to a hardcoded **"0"** — not connected to props at
+  all, not an empty state, a different invented number in the same category the fix was meant to
+  end.
+- **New regression in the same diff:** two correct Turkish UTF-8 strings — "Anti-Halüsinasyon
+  Protokolü v2.4 Tam Yetki Çalışıyor" and "Zaman Damgası" — were corrupted to mojibake
+  ("Anti-HalÃ¼sinasyon ProtokolÃ¼...", "Zaman DamgasÄ±") in this commit. This is exactly the class of
+  defect `BG`/Rule 13 tracks; it was introduced, not fixed, while fixing something else.
+
+CONST-2 (`constitution-pr/page.tsx`, fabricated AI-product quotes) was **not touched** in this
+commit — still fully open, still on `origin/master`.
+
+Separately: `master-plan-mutations.ts`, shipped in the same commit, is a live governance bypass —
+see [GOV-3](GOV-3.md), filed P0.

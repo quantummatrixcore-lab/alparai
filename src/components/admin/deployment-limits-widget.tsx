@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { Activity, Server, Database, Cloud } from "lucide-react";
 
@@ -40,7 +40,7 @@ export function DeploymentLimitsWidget() {
           <div className="grid grid-cols-2 gap-2 text-xs">
             <div className="bg-black/40 p-2 rounded border border-gray-800">
               <span className="text-gray-500 block mb-1">Bağlantı (Pool)</span>
-              <span className="font-mono text-blue-400">Bilinmiyor</span>
+              <span className="font-mono text-blue-400">API (Serverless)</span>
             </div>
             <div className="bg-black/40 p-2 rounded border border-gray-800">
               <span className="text-gray-500 block mb-1">Veritabanı Boyutu</span>

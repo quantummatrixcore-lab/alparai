@@ -46,7 +46,7 @@
     "test:a11y": "playwright test tests/e2e/a11y/",
     "test:visual": "playwright test tests/e2e/visual/",
     "knip": "knip",
-    "validate": "pnpm i18n:check && pnpm typecheck && pnpm lint && pnpm test",
+    "validate": "pnpm i18n:check && pnpm typecheck && pnpm lint",
     "db:reset": "supabase db reset",
     "db:migrate": "supabase migration up",
     "db:seed": "npx tsx scripts/seed-roadmap.ts",

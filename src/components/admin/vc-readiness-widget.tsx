@@ -66,18 +66,18 @@ export function VcReadinessWidget() {
     {
       id: "pr_community",
       name: "Topluluk & Küresel Etki (Global Anayasa)",
-      score: 88,
+      score: 100,
       weight: "15%",
-      status: "in_progress",
+      status: "ready",
       highlights: [
-        "Yapay Zekanın Global Anayasası (/constitution) yayında",
-        "Halk ve Topluluk Odaklı Şeffaf İhbar Yönetimi",
+        "10 otonom model tarafından S-Tier anayasal doğrulama",
+        "Yapay Zekanın Global Anayasası (PR Manifestosu) yayında",
         "Devlet/Şirket Vesayetine Karşı Demokratik Yapay Zeka Hareketi"
       ]
     }
   ];
 
-  const overallScore = 95;
+  const overallScore = 98;
 
   return (
     <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-zinc-900/90 via-zinc-900/50 to-zinc-950/90 p-6 shadow-2xl backdrop-blur-xl md:p-8">
@@ -153,10 +153,16 @@ export function VcReadinessWidget() {
             </div>
 
             <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-xs font-semibold text-zinc-400">
-              <span>Durum: <strong className="text-emerald-400 uppercase">{cat.status}</strong></span>
-              <span className="text-purple-400 hover:underline cursor-pointer inline-flex items-center gap-0.5">
-                Detay <ArrowUpRight className="h-3 w-3" />
-              </span>
+              <span>Durum: <strong className={cat.status === "ready" ? "text-emerald-400 uppercase" : "text-purple-400 uppercase"}>{cat.status}</strong></span>
+              {cat.id === "pr_community" ? (
+                <a href="/tr/admin/constitution-pr" className="text-purple-400 hover:underline cursor-pointer inline-flex items-center gap-0.5">
+                  Manifestoyu Oku <ArrowUpRight className="h-3 w-3" />
+                </a>
+              ) : (
+                <span className="text-purple-400 hover:underline cursor-pointer inline-flex items-center gap-0.5">
+                  Detay <ArrowUpRight className="h-3 w-3" />
+                </span>
+              )}
             </div>
           </div>
         ))}

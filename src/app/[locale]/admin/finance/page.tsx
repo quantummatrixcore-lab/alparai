@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import nextDynamic from "next/dynamic";
 import { Suspense } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -49,7 +50,7 @@ async function VercelLiveCostCard({
 }: {
   fallbackCost: number;
   budgetLimit: number;
-  trend: any;
+  trend: "up" | "down" | "stable";
   lastUpdated: string;
 }) {
   let vercelLiveCost: number | null = null;

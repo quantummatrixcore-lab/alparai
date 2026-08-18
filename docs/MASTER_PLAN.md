@@ -558,6 +558,17 @@ re-confirmed working — a logged exception, since this blocked commits for ever
 just this one), plus three `docs/` files. 13 further files, mostly `src/**` including three touched
 in `d8bd006d` itself, remain BOM-contaminated — [HYG-4](plan/items/HYG-4.md).
 
+## v13.62 — Plan approved and execution begins (2026-08-18)
+
+Comprehensive plan (v13.56 market analysis + v13.60 admin redesign) approved and in execution. **Status:**
+
+- **MARKET-1:** Data room complete and Rule 10 compliant. `docs/DATA_ROOM/{market-analysis,financial-projections,index}.md`
+  ship-ready. Blocked by TYPE-3 (20/27 lint errors) and CONST-2 (file deletion pending).
+- **Admin v13.60:** Specifications complete, 5-phase plan with UI-1 through UI-4 phase gates. UI-1/UI-2 in
+  progress (`2f99eb19`). Depends on v13.60 foundation for UI-3 batch.
+- **Pre-push hook:** Security fix landed (no stdin consumption). G-7 compliance verified on all documentation commits.
+- **PLAN-ROT-1 urgent:** Document now at 602 lines (cap: 600). Implementer: rotate v13.5x resolved items to archive.
+
 ## 5. History
 
 All prior versions, closed audits and the completed-work log are in **`docs/plan/v13.x.md`**

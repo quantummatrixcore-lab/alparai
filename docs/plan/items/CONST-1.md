@@ -61,3 +61,56 @@ overreach, not vision.
 - Comments/amendments route through the existing `suggestions` mechanism, not a new one
 - No announcement is drafted before `TYPE-3` closes
 - 5-locale parity on the public page
+
+## Delivered version violates the spec on every dimension (2026-08-18, `f554505c`)
+
+`src/app/[locale]/constitution/page.tsx` and `src/components/constitution/constitution-client.tsx`
+were built. Measured against what this item specified:
+
+| Spec                                                          | Delivered                                                                                                                                                                                                                                                                           |
+| ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| "Draft v0.1, open for co-authorship"                          | Title: **"Yapay Zekanın Global Anayasası"** ("The Global AI Constitution"); body: **"Bu anayasayı insanlık olarak biz yazıyoruz"** ("We, as humanity, are writing this constitution"). No draft marker, no version, no invitation framing — a claim to settled, universal authority |
+| Reuse the existing `suggestions`/`suggestion_votes` mechanism | Not used. `grep -n "supabase\|insert\|fetch("` on the client component returns **nothing**                                                                                                                                                                                          |
+| 5-locale parity (public page, `CLAUDE.md`)                    | **0** uses of `useTranslations`/`getTranslations` in the client component; all article text, headings and form copy are hardcoded Turkish. Only a single nav-label key was added per locale file                                                                                    |
+
+## The signature form is the most serious finding of this session
+
+`handleSign()` does exactly one thing: `setSignatures((prev) => prev + 1)` — client-side React
+state, nothing else. There is no `supabase` call, no `insert`, no `fetch`. A visitor who enters their
+**name and email** and submits sees:
+
+> _"Tebrikler! İmzanız Küresel Yapay Zeka Siciline Kaydedildi."_
+> ("Congratulations! Your signature has been recorded in the Global AI Registry.")
+
+**Nothing was recorded.** The name and email are held in local component state and discarded on
+navigation or reload. The page collects PII through a form and tells the submitter it was persisted
+to a registry that does not exist. For a company whose entire public thesis is holding AI systems
+accountable for exactly this kind of gap between claim and evidence, this is not a cosmetic bug — it
+is the same category of defect the company exists to document, shipped on the company's own site.
+
+The visible signature count itself is also fabricated: `useState(1482)` — an initial value with no
+source, incrementing per-visitor in their own browser only, never shared or persisted. Every visitor
+sees a different, meaningless number, publicly presented as a global count.
+
+**This is very likely live in production.** Vercel deploys on every push (`CI-COST-1` finding,
+v13.51), and nothing in the deploy pipeline gates on `.husky/pre-push`'s local check — that hook only
+runs in this container. Flagging as immediate, not queued.
+
+## Required correction — P0, before anything else in this item
+
+1. **Do not collect name/email without persisting them, and never tell a user data was "recorded"
+   when it was not.** Either wire real persistence (extend the `suggestions` schema or a dedicated
+   signatures table, RLS'd, PII-masked per the standing convention) before the form claims success,
+   or remove the collection and the "recorded" message entirely until it is real.
+2. **Reframe the copy** to "Draft v0.1, open for co-authorship" per the original spec — drop "Global,"
+   "we as humanity are writing this," and the "Global AI Registry" claim.
+3. **Add `useTranslations`/`getTranslations`** and populate all 5 locale files; this is a public page
+   under `CLAUDE.md`'s binding i18n rule, not an admin panel.
+4. **Route comments/amendments through the existing `suggestions` mechanism**, per the original spec,
+   rather than a standalone unpersisted widget.
+
+## Recommendation for the Founder
+
+Given a false "your data was recorded" message to real users is the most serious item, consider
+whether the page should be taken down or the form disabled until item 1 above is fixed, rather than
+left live while the correction is scheduled.

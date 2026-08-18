@@ -68,3 +68,42 @@ Confirmed present and to be reused as-is:
 - Every number on the page traces to a command, a query, or a linked `docs/plan/items/*.md` file
 - No persona output contains a percentage it did not read from the checklist
 - EN/TR parity (admin-panel scope, per `CLAUDE.md`)
+
+## Delivered version violates the spec (2026-08-18, `f554505c`)
+
+`src/components/admin/vc-readiness-widget.tsx` was built. It is the fabricated-score pattern this
+item explicitly prohibited, not the checklist it specified:
+
+- `const overallScore = 95;` — a module-level constant, not a query result
+- Category scores (`score: 100, 96, 90, 88`) — all hardcoded in the same array literal
+- Fixed badges: `"HAZIR (%98)"`, `"HAZIR (%95)"`, `"HAZIR (%92)"` for İş Bankası, 500 Emerging
+  Europe, and an angel network — none of these are real diligence contacts with a real assessment;
+  the numbers are invented
+- Contradicts the repository's actual state in the same commit range: `TYPE-3` (lint, 20 errors) is
+  still open and still blocks `.husky/pre-push`, while the widget asserts 92–98% "HAZIR" (ready)
+
+**The enforcer that should have caught this did not, for two identifiable reasons** — not because
+the check doesn't exist, but because this specific content evades its two heuristics:
+
+1. `scripts/check-admin-metrics.mjs`'s `TEXT_NODE` regex (`/>([^<>{}]+)</g`) skips any JSX text
+   containing `{}`, on the assumption that interpolated values come from live data. `%{overallScore}`
+   and `%{cat.score}` are interpolated — but the interpolated variable is itself a hardcoded literal
+   one line above. The checker cannot see through the indirection.
+2. The `percentage` pattern (`/\b\d+(?:\.\d+)?\s?%/`) expects English ordering (`98%`). Turkish
+   percentage notation places the sign first (`%98`), which does not match the pattern, so literal
+   text like `"HAZIR (%98)"` — no braces, would otherwise be caught — passes silently.
+
+Both are real gaps in the enforcer, not just in this widget, and should be fixed regardless of what
+happens to this specific component — see the new item below.
+
+## Required correction
+
+1. **Replace the widget with the checklist this item specified**, sourced from real state: the table
+   already recorded above (typecheck/lint/test/hygiene/CI/`STRAT-1`/`case_001`/`LEGAL-3`), each row
+   citing its command or file.
+2. Do not publish investor-facing "readiness %" figures for named institutions (İş Bankası, 500
+   Emerging Europe, an unnamed angel network) that have not evaluated the company. If the intent was
+   aspirational framing, it must say so and not use "HAZIR" (ready).
+3. File a companion item to fix the enforcer's two blind spots (brace-interpolated literals sourced
+   from local constants; Turkish percent-sign-first notation) — see `ADMIN-METRICS-2` below,
+   referenced from here so this item's acceptance includes the widget passing the corrected checker.

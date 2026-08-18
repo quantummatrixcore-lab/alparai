@@ -794,7 +794,7 @@ export async function submitIncident(
               }
             }
           } catch (err) {
-            logger.error("Async auto-moderation failed", err);
+            logger.error("Async auto-moderation failed", { error: err instanceof Error ? err.message : String(err) });
             const adminClient = createAdminClient();
             if (adminClient) {
               await adminClient

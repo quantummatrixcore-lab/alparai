@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import * as React from "react";
 import { motion, animate, useInView, type Variants } from "framer-motion";
@@ -168,7 +168,7 @@ export function HeroSection({
                 className="group relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl border border-white/10 bg-white/5 px-8 text-base font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:border-white/20 hover:bg-white/10 hover:shadow-[0_10px_40px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.2)] active:scale-[0.98]"
               >
                 <span className="relative z-10">
-                  {t("cta_secondary", { defaultValue: "Canlı Veritabanı" })}
+                  {t("cta_secondary", { defaultValue: "Kozmik Adalet Panosu" })}
                 </span>
                 <ArrowRight className="relative z-10 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>

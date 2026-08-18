@@ -266,7 +266,7 @@ const getHomeData = cache(async (locale: string) => {
       .filter(Boolean),
   ).size;
 
-  const totalIncidents = (incidentsCountResult as unknown as { count: number | null }).count ?? 992;
+  const totalIncidents = (incidentsCountResult as unknown as { count: number | null }).count ?? 371;
 
   return {
     incidentsCountResult: { count: totalIncidents },

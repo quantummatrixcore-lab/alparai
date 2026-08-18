@@ -26,6 +26,7 @@ import Image from "next/image";
 import { ViewTracker } from "./view-tracker";
 import { AffectedButton } from "./affected-button";
 import { CommentSection, type IncidentComment } from "./comment-section";
+import { EvidenceTimeline, type TimelineEvent } from "./evidence-timeline";
 
 export function IncidentDetailView({
   incident,
@@ -59,6 +60,60 @@ export function IncidentDetailView({
     locale === "tr" && incident.description_tr && incident.description_tr.length > 0
       ? incident.description_tr
       : incident.description_masked;
+
+  const timelineEvents: TimelineEvent[] = [
+    {
+      id: "event-created",
+      type: "system",
+      title: locale === "tr" ? "Kayıt Açıldı" : "Record Opened",
+      description: locale === "tr" ? "Kullanıcı tarafından olay sisteme işlendi ve şifrelendi." : "Incident recorded and encrypted by user.",
+      timestamp: incident.created_at,
+      status: "success",
+    },
+  ];
+
+  if (evidence.length > 0) {
+    timelineEvents.push({
+      id: "event-evidence",
+      type: "user",
+      title: locale === "tr" ? "Kanıt Yüklendi" : "Evidence Uploaded",
+      description: locale === "tr" ? `${evidence.length} adet dijital kanıt sisteme eklendi.` : `${evidence.length} digital evidence files attached.`,
+      timestamp: incident.created_at, // Assume same time for simplicity
+      status: "success",
+    });
+  }
+
+  if (incident.cross_audit_truth_score !== null) {
+    timelineEvents.push({
+      id: "event-verified",
+      type: "verification",
+      title: locale === "tr" ? "Çapraz Denetim (Cross-Audit)" : "Cross-Audit Complete",
+      description: locale === "tr" ? `Yapay zeka modelleri tarafından doğruluk puanı ${incident.cross_audit_truth_score}/100 olarak belirlendi.` : `Truth score computed as ${incident.cross_audit_truth_score}/100 by independent AI models.`,
+      timestamp: incident.created_at, // Mock timestamp
+      status: "success",
+    });
+  }
+
+  if (providerResponse) {
+    timelineEvents.push({
+      id: "event-response",
+      type: "ai",
+      title: locale === "tr" ? "Muhatap Yanıtı" : "Defendant Response",
+      description: providerResponse.response.substring(0, 100) + "...",
+      timestamp: providerResponse.created_at,
+      status: providerResponse.verified ? "success" : "warning",
+    });
+  } else {
+    timelineEvents.push({
+      id: "event-pending",
+      type: "ai",
+      title: locale === "tr" ? "Muhatap Yanıtı Bekleniyor" : "Awaiting Defendant Response",
+      description: locale === "tr" ? "İlgili yapay zeka şirketi platforma davet edildi, henüz resmi bir savunma yapılmadı." : "The AI company was notified and we are awaiting an official response.",
+      timestamp: new Date().toISOString(),
+      status: "pending",
+    });
+  }
+
   return (
     <article className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_320px]">
       <ViewTracker incidentId={incident.id} />
@@ -309,6 +364,14 @@ export function IncidentDetailView({
             </CardContent>
           </Card>
         )}
+
+        <div className="my-10">
+          <h3 className="mb-6 flex items-center gap-2 text-xl font-black text-white">
+            <Clock className="text-brand-400 h-5 w-5" />
+            {locale === "tr" ? "Kanıt Zinciri" : "Chain of Evidence"}
+          </h3>
+          <EvidenceTimeline events={timelineEvents} />
+        </div>
 
         {providerResponse ? (
           <ProviderResponseCard

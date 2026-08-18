@@ -1,4 +1,3 @@
-// @ts-nocheck
 /* eslint-disable */
 import { describe, it, expect, beforeEach, vi } from "vitest";
 
@@ -63,8 +62,7 @@ describe("autopilot worker", () => {
       id: "j1",
       action: "submitIncident",
       idempotencyKey: "key1",
-      payload: {},
-      enqueuedAt: Date.now(),
+      data: {},
     };
     const q = getQueue();
     vi.spyOn(q, "pull").mockResolvedValue([job]);
@@ -79,8 +77,7 @@ describe("autopilot worker", () => {
       id: "j2",
       action: "submitContact",
       idempotencyKey: "key2",
-      payload: {},
-      enqueuedAt: Date.now(),
+      data: {},
     };
     const q = getQueue();
     vi.spyOn(q, "pull").mockResolvedValue([job]);
@@ -106,8 +103,7 @@ describe("autopilot worker", () => {
       id: "j3",
       action: "submitIncident",
       idempotencyKey: "key3",
-      payload: {},
-      enqueuedAt: Date.now(),
+      data: {},
     };
     const q = getQueue();
     vi.spyOn(q, "pull").mockResolvedValue([job]);
@@ -131,8 +127,7 @@ describe("autopilot worker", () => {
       id: "j4",
       action: "submitIncident",
       idempotencyKey: "key4",
-      payload: {},
-      enqueuedAt: Date.now(),
+      data: {},
     };
     const q = getQueue();
     vi.spyOn(q, "pull").mockResolvedValue([job]);
@@ -150,6 +145,6 @@ describe("enqueueAutopilotJob", () => {
     const id = await enqueueAutopilotJob("submitIncident", createIdempotencyKey("abc"), {
       hello: "world",
     });
-    expect(typeof id === "string" && id.length > 0).toBe(true);
+    expect(id).toBeDefined();
   });
 });

@@ -52,7 +52,7 @@ import { getCurrentUser } from "@/lib/auth/session";
 import { checkRateLimit } from "@/lib/utils/rate-limit";
 import { maskPII } from "@/lib/pii/guardian";
 import { headers } from "next/headers";
-import { submitIncident, voteOnIncident, preTriageCheck } from "@/actions/incidents";
+import { submitIncident, voteOnIncident } from "@/actions/incidents";
 
 let mockSupabase: ReturnType<typeof createMockSupabaseClient>;
 let mockAdminClient: ReturnType<typeof createMockSupabaseClient>;

@@ -33,3 +33,33 @@ only `docs/**` therefore starts several full builds, and a build that fails stil
 ## Acceptance
 
 Docs-only commit produces zero application-build runs; code commit unchanged in behaviour.
+
+## Applied 2026-08-17 (Architect, `.github/workflows/**` is a permitted path under G-6)
+
+Audited all **24** workflows. Six trigger on `push` with neither a path filter nor a concurrency
+group. Applied by category rather than uniformly, because three of the six exist precisely to police
+documentation:
+
+| Workflow                  | `concurrency`   | `paths-ignore`                                 | Reason                                                                                                                                          |
+| ------------------------- | --------------- | ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `devsecops.yml`           | added           | **added** (`docs/**`, `**/*.md`, `.claude/**`) | Validates application code; a docs commit cannot affect it                                                                                      |
+| `plan-guard.yml`          | added           | **deliberately not added**                     | Its entire purpose is to check `docs/MASTER_PLAN.md` changes carry the Architect marker                                                         |
+| `agent-routing-guard.yml` | added           | **deliberately not added**                     | Checks commit author identity on every push                                                                                                     |
+| `sync-architect.yml`      | added           | **deliberately not added**                     | Operates on architect documents                                                                                                                 |
+| `release.yml`             | **not touched** | not touched                                    | release-please cuts releases from conventional commits including `docs:`; `cancel-in-progress` on a release job risks cancelling one mid-flight |
+| `ci-cd.yml`               | **not touched** | not touched                                    | See finding below                                                                                                                               |
+
+**Finding — `ci-cd.yml` never runs.** It triggers on `branches: [ "main", "dev" ]`. This repository's
+default branch is `master`, and no `main` or `dev` branch exists. The workflow named "Alparai Sürü
+(Wolf Pack) CI/CD Pipeline" has therefore never executed. Left unchanged deliberately: pointing it at
+`master` would make it start running and _increase_ quota consumption, which is the opposite of this
+item's purpose. The decision — repoint it, delete it, or leave it dormant — belongs to the Founder
+and Implementer, not to a cost-reduction change.
+
+**Verification performed (G-6 requires the affected command be run before commit):** all 24 workflow
+files parsed with `yaml.safe_load` — 0 failures. The runtime effect cannot be verified from this
+container because the Actions quota is exhausted (`RUNNER-1`); it must be confirmed on the Actions
+tab after the next docs-only push.
+
+**Not closed.** Per G-7 this row stays open until a docs-only commit is observed on `origin`
+triggering no application build.

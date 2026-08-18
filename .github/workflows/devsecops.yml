@@ -2,9 +2,21 @@ name: DevSecOps Pipeline (ALPAR Security Orchestration)
 
 on:
   push:
-    branches: [ master, main ]
+    branches: [master, main]
+    paths-ignore:
+      - "docs/**"
+      - "**/*.md"
+      - ".claude/**"
   pull_request:
-    branches: [ master, main ]
+    branches: [master, main]
+    paths-ignore:
+      - "docs/**"
+      - "**/*.md"
+      - ".claude/**"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   # FAZ 2: Yerel Geliştirici Ortamı & Secret Scanning
@@ -50,12 +62,12 @@ jobs:
       - name: Trivy Zafiyet Taraması
         uses: aquasecurity/trivy-action@master
         with:
-          scan-type: 'fs'
-          format: 'json'
-          output: 'findings_trivy.json'
+          scan-type: "fs"
+          format: "json"
+          output: "findings_trivy.json"
           ignore-unfixed: true
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
+          vuln-type: "os,library"
+          severity: "CRITICAL,HIGH"
         # Analistin okuması için log çıktısı
         continue-on-error: true
       - uses: actions/upload-artifact@v3

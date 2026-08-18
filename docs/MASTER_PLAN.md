@@ -5,7 +5,7 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.50 · **Updated:** 2026-08-17 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.51 · **Updated:** 2026-08-17 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
 
 ## 0. Where things live
 
@@ -29,20 +29,24 @@ only what is currently true.
 
 ## 1. Current state (measured 2026-08-17)
 
-| Fact                                            | Evidence                                                                                                                                                             |
-| ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `pnpm typecheck` **fails: 36 errors, 13 files** | Down from 584. `DBTYPE-1` largely resolved and `agent-os` written on `origin/master`. Remainder plus 5 `@ts-nocheck` files to unwind: [TYPE-2](plan/items/TYPE-2.md) |
-| `src/lib/agent-os/` **now exists**              | Written on `origin/master`: 7 files, 556 lines. `scouts/ecosystem-scout` still missing                                                                               |
-| CI has produced **zero successful runs**        | `runner_id: 0`, 2-second failures. **Root cause now known:** GitHub Actions quota exhausted (Founder, 2026-08-17)                                                    |
-| `.husky/pre-push` blocks all pushes             | Runs `pnpm typecheck && pnpm lint && pnpm test`; correct behaviour against a red tree                                                                                |
-| Architect commit `e88e94b9` (v13.46) unpushed   | Blocked by the above; 1 ahead / 16 behind `origin/master`                                                                                                            |
-| Local test suite                                | 1063/1063 passing, verified independently twice                                                                                                                      |
-| ALPAR AI ↔ Agent-OS coupling                    | 3 of 58 tables, 1 of 21 workflows; `src/lib/autopilot/` imports only Supabase + generated types                                                                      |
+| Fact                                          | Evidence                                                                                                                                               |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `pnpm typecheck` **exits 0**                  | Verified by running it after rebase onto `59a40e95`. Antigravity's repair confirmed: 584 → 0, `@ts-nocheck` back to 0, root files 83 → 0               |
+| `pnpm lint` **fails: 27 errors**              | 16 are `no-explicit-any` (`as any` 14 → 25 — `@ts-nocheck` was traded for it), 11 mechanical. Sole remaining push gate: [TYPE-3](plan/items/TYPE-3.md) |
+| `src/lib/agent-os/` complete                  | `scouts/ecosystem-scout.ts` created; all imports resolve                                                                                               |
+| CI has produced **zero successful runs**      | `runner_id: 0`, 2-second failures. **Root cause now known:** GitHub Actions quota exhausted (Founder, 2026-08-17)                                      |
+| `.husky/pre-push` blocks all pushes           | Runs `pnpm typecheck && pnpm lint && pnpm test`; correct behaviour against a red tree                                                                  |
+| Architect commit `e88e94b9` (v13.46) unpushed | Blocked by the above; 1 ahead / 16 behind `origin/master`                                                                                              |
+| Local test suite                              | 1063/1063 passing, verified independently twice                                                                                                        |
+| ALPAR AI ↔ Agent-OS coupling                  | 3 of 58 tables, 1 of 21 workflows; `src/lib/autopilot/` imports only Supabase + generated types                                                        |
 
 ## 2. Active backlog
 
 | ID                                       | P      | Owner                       | Work                                                                                                                                                                                                             | Acceptance                                                                                            |
 | ---------------------------------------- | ------ | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| **[TYPE-3](plan/items/TYPE-3.md)**       | **P0** | Implementer                 | Clear 27 `pnpm lint` errors — 16 `no-explicit-any` from the repair method, 11 mechanical. Do not widen the ESLint config                                                                                         | `pnpm lint` exits 0; `as any` back to ≤14                                                             |
+| **[STRAT-1](plan/items/STRAT-1.md)**     | **P0** | Implementer                 | Reconcile 2500 / 992 / 371 with four dated queries against production; remove 992 from `docs/DATA_ROOM/` and check the "largest public dataset" claim                                                            | Figures recorded with query and date; `grep -rn "992" docs/` clean                                    |
+| **[LEGAL-3](plan/items/LEGAL-3.md)**     | P1     | Implementer                 | Wire `/dashboard/legal` (69-line stub, no query) to `takedown_requests`, `takedown_appeals`, `cease_and_desist_logs`. Aggregates public, per-request detail admin-only                                           | Counts change when a row is inserted; anonymous session cannot see requester email                    |
 | **[TYPE-2](plan/items/TYPE-2.md)**       | **P0** | Implementer                 | Clear the remaining 36 typecheck errors and unwind the 5 `@ts-nocheck` files added while fixing the first 548                                                                                                    | `pnpm typecheck` exits 0; `@ts-nocheck` back to 0                                                     |
 | **[REPO-1](plan/items/REPO-1.md)**       | P1     | Implementer                 | Clear the repository root: 83 tracked files, 8 of them legitimate config; 1.4 MB of build output, scraped HTML and superseded generated copies. Root-anchored `.gitignore` rules so they cannot return           | `git ls-files \| grep -cE "^[^/]+\.(js\|html\|png\|txt)$"` returns 0; build, test and lint still pass |
 | **[DBTYPE-1](plan/items/DBTYPE-1.md)**   | **P0** | Implementer                 | Regenerate `src/types/database.ts` against the **production** database — `599c3554` regenerated it against an incomplete instance and dropped `challenge_votes`, `challenge_submissions` and three RPC functions | `pnpm typecheck` errors drop 584 → ≤14; no suppressions in the diff                                   |
@@ -228,6 +232,40 @@ strong. Full assessment: [v13.50-investment-readiness.md](plan/v13.50-investment
 the authentication bypass was not contained. Measurement says it is, at all three call sites and
 with a production abort guard. The text was copied through the v13.47 restructure unverified — the
 exact defect recorded against others in v13.44 and v13.49, committed here by this session.
+
+**v13.51 — the readiness claim verified, mostly true, with one exception that matters.**
+Antigravity reported every v13.50 blocker cleared. Checked against `origin/master` rather than
+accepted, and then by running the commands after rebasing onto `59a40e95`:
+
+**Confirmed true.** `pnpm typecheck` **exits 0** — the 584 errors are genuinely resolved.
+`@ts-nocheck` is back to 0 across `src/` and `tests/`. `src/lib/agent-os/scouts/ecosystem-scout.ts`
+was created, so every `agent-os` import now resolves. Tracked loose files at the repository root:
+**0**, down from 83. Five apparent TS2307 errors on the first run were a stale `node_modules` in
+this container, not a defect — all five packages are declared in `package.json` and resolve after
+`pnpm install`. This was substantial work and it holds up.
+
+**Not true: "992 was replaced with the measured 371."** 992 is still live in
+`docs/DATA_ROOM/index.md:31` — _"Data Moat: 992 documented incidents (largest independent public
+dataset)"_ — and twice in `docs/AGENT_OS_MASTER_ARCHITECTURE.md`, where it is the basis of a
+monetisation phase. The Founder separately states **2500**. Three numbers for one asset, in the
+investor data room. The reconciliation is probably the status filter — `getHomeData` counts
+`status = 'published'` while `admin/strategy/page.tsx:94` counts every row — but that must be
+measured, not inferred. [STRAT-1](plan/items/STRAT-1.md) is rewritten and raised to P0, and now also
+challenges the "largest independent public dataset" wording, since `src/lib/import/csv-parser.ts`
+imports from AIID and AIAAIC, meaning part of the corpus is their data under their CC licences.
+
+**New gate: `pnpm lint` fails with 27 errors.** Sixteen are `@typescript-eslint/no-explicit-any`;
+`as any` went 14 → 25 while `@ts-nocheck` went 5 → 0. Trading a whole-file suppression for a
+single-expression one is a genuine improvement and is credited as such — but `CLAUDE.md`'s binding
+convention is "No `any` — use `unknown` + Zod", so eleven new ones are debt. The other eleven errors
+are mechanical. [TYPE-3](plan/items/TYPE-3.md); it is now the sole gate on `.husky/pre-push` and on
+six queued Architect commits.
+
+**`/dashboard/legal` is the fifth "built but never connected".** A 69-line stub with no query sits
+in front of three populated tables — `takedown_requests`, `takedown_appeals`,
+`cease_and_desist_logs` — while `/admin/legal-tracker` renders the same subject hardcoded.
+[LEGAL-3](plan/items/LEGAL-3.md) wires it, aggregates public and per-request detail admin-only,
+since `takedown_requests` carries requester name and email.
 
 ## 5. History
 

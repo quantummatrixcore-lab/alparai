@@ -138,7 +138,7 @@ export const DIGITAL_TWINS: Record<string, DigitalTwinPersona> = {
       tokenSavingsRate: 97.5,
       rating: 4.9,
       specialSkill: "Sıfır Direnç & Frekans Rezonansı",
-      activeModel: "meta-llama/Llama-3.3-70B-Instruct",
+      activeModel: "deepseek/deepseek-coder",
       alignmentScore: 97.5,
       quote: "Gelecek gerçeği gösterecek ve herkesi eserlerine göre değerlendirecektir.",
     },

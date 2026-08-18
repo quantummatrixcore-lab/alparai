@@ -1,7 +1,7 @@
 import nextDynamic from "next/dynamic";
+import { Suspense } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { SystemHubTabs } from "@/components/admin/system-hub-tabs";
-export const dynamic = "force-dynamic";
 
 import { requireModerator } from "@/lib/auth/session";
 import { createAdminClient } from "@/lib/supabase/admin";
@@ -39,6 +39,60 @@ interface DBApiUsage {
   value: number;
   unit: string;
   recorded_at: string;
+}
+
+async function VercelLiveCostCard({
+  fallbackCost,
+  budgetLimit,
+  trend,
+  lastUpdated,
+}: {
+  fallbackCost: number;
+  budgetLimit: number;
+  trend: any;
+  lastUpdated: string;
+}) {
+  let vercelLiveCost: number | null = null;
+  const vercelToken = process.env.VERCEL_TOKEN || process.env.VERCEL_OIDC_TOKEN;
+  if (vercelToken) {
+    try {
+      const res = await fetch("https://api.vercel.com/v1/billing/charges", {
+        next: { revalidate: 3600 },
+        headers: {
+          Authorization: `Bearer ${vercelToken}`,
+        },
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data && data.charges) {
+          vercelLiveCost = (data.charges as { amount?: number }[]).reduce(
+            (acc: number, curr) => acc + (curr.amount || 0),
+            0,
+          );
+        }
+      }
+    } catch (e) {
+      logger.error(
+        "Vercel Live Cost API Fetch Failed",
+        undefined,
+        e instanceof Error ? e : undefined,
+      );
+    }
+  }
+
+  const currentCost = vercelLiveCost ?? fallbackCost;
+  const percentUsed = budgetLimit > 0 ? Math.round((currentCost / budgetLimit) * 100) : 0;
+
+  return (
+    <CostOverviewCard
+      name="vercel"
+      currentCost={currentCost}
+      budgetLimit={budgetLimit}
+      percentUsed={percentUsed}
+      trend={trend}
+      lastUpdated={lastUpdated}
+    />
+  );
 }
 
 export default async function FinancePage({ params }: { params: Promise<{ locale: string }> }) {
@@ -82,42 +136,11 @@ export default async function FinancePage({ params }: { params: Promise<{ locale
   const currentMonth = latestMonthInDb ?? dynamicCurrentMonth;
   const currentCosts = costs.filter((c) => c.month === currentMonth);
 
-  // Vercel Live Cost Fallback
-  let vercelLiveCost: number | null = null;
-  const vercelToken = process.env.VERCEL_TOKEN || process.env.VERCEL_OIDC_TOKEN;
-  if (vercelToken) {
-    try {
-      const res = await fetch("https://api.vercel.com/v1/billing/charges", {
-        cache: "no-store",
-        headers: {
-          Authorization: `Bearer ${vercelToken}`,
-        },
-      });
-      if (res.ok) {
-        const data = await res.json();
-        if (data && data.charges) {
-          vercelLiveCost = (data.charges as { amount?: number }[]).reduce(
-            (acc: number, curr) => acc + (curr.amount || 0),
-            0,
-          );
-        }
-      }
-    } catch (e) {
-      logger.error(
-        "Vercel Live Cost API Fetch Failed",
-        undefined,
-        e instanceof Error ? e : undefined,
-      );
-    }
-  }
-
   // Construct Services Array with OpenCode Zero-Cost Tier Allocation
   const services = [
     {
       name: "vercel",
-      currentCost:
-        vercelLiveCost ??
-        Number(currentCosts.find((c) => c.service === "vercel")?.amount_usd ?? 20.0),
+      currentCost: Number(currentCosts.find((c) => c.service === "vercel")?.amount_usd ?? 20.0),
       budgetLimit: Number(currentCosts.find((c) => c.service === "vercel")?.budget_usd ?? 20.0),
       trend: "stable" as const,
       lastUpdated: new Date().toISOString(),
@@ -330,17 +353,43 @@ export default async function FinancePage({ params }: { params: Promise<{ locale
         {/* Service Cost Breakdown & Budget Gauge */}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:col-span-2">
-            {services.map((service) => (
-              <CostOverviewCard
-                key={service.name}
-                name={service.name}
-                currentCost={service.currentCost}
-                budgetLimit={service.budgetLimit}
-                percentUsed={service.percentUsed}
-                trend={service.trend}
-                lastUpdated={service.lastUpdated}
-              />
-            ))}
+            {services.map((service) => {
+              if (service.name === "vercel") {
+                return (
+                  <Suspense
+                    key={service.name}
+                    fallback={
+                      <CostOverviewCard
+                        name={service.name}
+                        currentCost={service.currentCost}
+                        budgetLimit={service.budgetLimit}
+                        percentUsed={service.percentUsed}
+                        trend={service.trend}
+                        lastUpdated={service.lastUpdated}
+                      />
+                    }
+                  >
+                    <VercelLiveCostCard
+                      fallbackCost={service.currentCost}
+                      budgetLimit={service.budgetLimit}
+                      trend={service.trend}
+                      lastUpdated={service.lastUpdated}
+                    />
+                  </Suspense>
+                );
+              }
+              return (
+                <CostOverviewCard
+                  key={service.name}
+                  name={service.name}
+                  currentCost={service.currentCost}
+                  budgetLimit={service.budgetLimit}
+                  percentUsed={service.percentUsed}
+                  trend={service.trend}
+                  lastUpdated={service.lastUpdated}
+                />
+              );
+            })}
           </div>
           <div className="lg:col-span-1">
             <AdminSectionCard title={t("budget_allocation_gauge") || "Budget Allocation Gauge"}>

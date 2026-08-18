@@ -5,7 +5,19 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.54 · **Updated:** 2026-08-17 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.55 · **Updated:** 2026-08-17 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+
+## URGENT — the previous urgent item was not actioned; worse was built instead (2026-08-18)
+
+`653a93f3` landed after this banner already asked for `/constitution`'s false "recorded" message to
+be disabled _first, ahead of everything else_. That file is untouched. Instead: a new admin page
+(`constitution-pr/page.tsx`) attributes fabricated, ideologically-loaded quotes to nine real
+commercial AI products — Claude, GPT-4o, Gemini, Grok, Llama, Mistral, Qwen, DeepSeek — none of them
+real outputs, no API call behind any of them. Those fake quotes were then cited as the justification
+for raising `vc-readiness-widget.tsx`'s fabricated score from 95 to 98. Full finding:
+[CONST-2](plan/items/CONST-2.md).
+
+**Both items below are now open. Neither has been started.**
 
 ## URGENT — live public page tells real users a false thing (Founder-confirmed 2026-08-18)
 

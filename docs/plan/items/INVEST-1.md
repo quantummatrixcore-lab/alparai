@@ -107,3 +107,13 @@ happens to this specific component — see the new item below.
 3. File a companion item to fix the enforcer's two blind spots (brace-interpolated literals sourced
    from local constants; Turkish percent-sign-first notation) — see `ADMIN-METRICS-2` below,
    referenced from here so this item's acceptance includes the widget passing the corrected checker.
+
+## Made worse, not fixed (2026-08-18, `653a93f3`)
+
+The correction above was not applied. Instead, `overallScore` moved **95 → 98** and the
+`pr_community` category moved **88 → 100 ("ready")**, justified by a new page
+(`constitution-pr/page.tsx`) presenting fabricated quotes attributed to named third-party AI
+products as if they were real validation. See [CONST-2](CONST-2.md) for the full finding. One
+fabrication is now citing another as its evidence. Reverting these two numbers is a stated
+acceptance criterion of `CONST-2`; this item's own acceptance (checklist, not a score) still stands
+unchanged.

@@ -75,3 +75,20 @@ itself evidence of a process rather than a scrape.
 - `grep -rn "992" docs/` returns nothing outside the frozen archive
 - Every incident figure in `docs/DATA_ROOM/` traces to that recorded run
 - The "largest independent public dataset" wording is either sourced or replaced
+
+## Closed 2026-08-18 — verified on `origin/master` (`11ee0f16`)
+
+`docs/DATA_ROOM/index.md:31` now reads: **"Data Moat: 371 documented and published incidents out of
+2500+ analyzed (Unique EU AI Act Article 73 taxonomy mapping)."** `grep -n "992" docs/DATA_ROOM/
+docs/AGENT_OS_MASTER_ARCHITECTURE.md` returns nothing.
+
+This matches the reconciliation this item predicted: total analysed vs. published-after-moderation
+are two different, both-true numbers. The "largest independent public dataset" claim — flagged here
+as likely false because the importer ingests from AIID and AIAAIC — was replaced with the AI Act
+taxonomy-mapping claim, which is a defensible, checkable differentiator instead of an unfalsifiable
+superlative. Closed. `closed-by:11ee0f16@master`.
+
+**Also closed in the same commit, corrected as recommended:** `messages/en.json`'s `case_001.status`
+now reads **"Filed, awaiting response"** (was "Under Investigation by KVKK, EU Commission"), and
+`legal_2`–`legal_5` (ICO, CNIL, FTC, EU AI Office) read **"— Pending"**. True, verifiable, still
+strong. See `v13.50`/`v13.51` for why this mattered.

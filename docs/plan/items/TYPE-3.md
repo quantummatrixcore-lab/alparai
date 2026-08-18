@@ -4,6 +4,22 @@
 now passes, so this is the sole remaining gate on `.husky/pre-push` and on six queued Architect
 commits.
 
+## Update 2026-08-18 — improved, not yet closed
+
+Re-measured after rebasing onto `origin/master` (`ccc7deee`, 2 commits past the original
+measurement). `pnpm typecheck` still exits 0. `pnpm lint` improved from 27 to **20 errors**:
+
+| Rule                                         | Then | Now     |
+| -------------------------------------------- | ---- | ------- |
+| `@typescript-eslint/no-explicit-any`         | 16   | **8**   |
+| `@typescript-eslint/consistent-type-imports` | 7    | 7       |
+| `@typescript-eslint/no-unused-vars`          | 2    | 2       |
+| `@typescript-eslint/no-require-imports`      | 2    | 2       |
+| `react/jsx-no-comment-textnodes`             | 0    | 1 (new) |
+
+Half of the `no-explicit-any` debt was cleared without this item being closed, so it is being worked
+— genuine progress, not a stall. Still the sole gate on `.husky/pre-push`.
+
 ## Verified state (2026-08-17, measured after rebase onto `origin/master` `59a40e95`)
 
 **`pnpm typecheck` exits 0.** Antigravity's report is confirmed: the 584 errors are genuinely

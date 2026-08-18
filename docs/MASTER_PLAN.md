@@ -5,7 +5,7 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.51 · **Updated:** 2026-08-17 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.52 · **Updated:** 2026-08-17 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
 
 ## 0. Where things live
 
@@ -29,24 +29,25 @@ only what is currently true.
 
 ## 1. Current state (measured 2026-08-17)
 
-| Fact                                          | Evidence                                                                                                                                               |
-| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `pnpm typecheck` **exits 0**                  | Verified by running it after rebase onto `59a40e95`. Antigravity's repair confirmed: 584 → 0, `@ts-nocheck` back to 0, root files 83 → 0               |
-| `pnpm lint` **fails: 27 errors**              | 16 are `no-explicit-any` (`as any` 14 → 25 — `@ts-nocheck` was traded for it), 11 mechanical. Sole remaining push gate: [TYPE-3](plan/items/TYPE-3.md) |
-| `src/lib/agent-os/` complete                  | `scouts/ecosystem-scout.ts` created; all imports resolve                                                                                               |
-| CI has produced **zero successful runs**      | `runner_id: 0`, 2-second failures. **Root cause now known:** GitHub Actions quota exhausted (Founder, 2026-08-17)                                      |
-| `.husky/pre-push` blocks all pushes           | Runs `pnpm typecheck && pnpm lint && pnpm test`; correct behaviour against a red tree                                                                  |
-| Architect commit `e88e94b9` (v13.46) unpushed | Blocked by the above; 1 ahead / 16 behind `origin/master`                                                                                              |
-| Local test suite                              | 1063/1063 passing, verified independently twice                                                                                                        |
-| ALPAR AI ↔ Agent-OS coupling                  | 3 of 58 tables, 1 of 21 workflows; `src/lib/autopilot/` imports only Supabase + generated types                                                        |
+| Fact                                          | Evidence                                                                                                                              |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `pnpm typecheck` **exits 0**                  | Stable across two rebases                                                                                                             |
+| `pnpm lint` **fails: 20 errors**              | Improved from 27 (`no-explicit-any` 16→8, half cleared without the item being closed). Sole push gate: [TYPE-3](plan/items/TYPE-3.md) |
+| `src/lib/agent-os/` complete                  | `scouts/ecosystem-scout.ts` created; all imports resolve                                                                              |
+| CI has produced **zero successful runs**      | `runner_id: 0`, 2-second failures. **Root cause now known:** GitHub Actions quota exhausted (Founder, 2026-08-17)                     |
+| `.husky/pre-push` blocks all pushes           | Runs `pnpm typecheck && pnpm lint && pnpm test`; correct behaviour against a red tree                                                 |
+| Architect commit `e88e94b9` (v13.46) unpushed | Blocked by the above; 1 ahead / 16 behind `origin/master`                                                                             |
+| Local test suite                              | 1063/1063 passing, verified independently twice                                                                                       |
+| ALPAR AI ↔ Agent-OS coupling                  | 3 of 58 tables, 1 of 21 workflows; `src/lib/autopilot/` imports only Supabase + generated types                                       |
 
 ## 2. Active backlog
 
 | ID                                       | P      | Owner                       | Work                                                                                                                                                                                                             | Acceptance                                                                                            |
 | ---------------------------------------- | ------ | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
 | **[TYPE-3](plan/items/TYPE-3.md)**       | **P0** | Implementer                 | Clear 27 `pnpm lint` errors — 16 `no-explicit-any` from the repair method, 11 mechanical. Do not widen the ESLint config                                                                                         | `pnpm lint` exits 0; `as any` back to ≤14                                                             |
-| **[STRAT-1](plan/items/STRAT-1.md)**     | **P0** | Implementer                 | Reconcile 2500 / 992 / 371 with four dated queries against production; remove 992 from `docs/DATA_ROOM/` and check the "largest public dataset" claim                                                            | Figures recorded with query and date; `grep -rn "992" docs/` clean                                    |
 | **[LEGAL-3](plan/items/LEGAL-3.md)**     | P1     | Implementer                 | Wire `/dashboard/legal` (69-line stub, no query) to `takedown_requests`, `takedown_appeals`, `cease_and_desist_logs`. Aggregates public, per-request detail admin-only                                           | Counts change when a row is inserted; anonymous session cannot see requester email                    |
+| **[INVEST-1](plan/items/INVEST-1.md)**   | P1     | Implementer                 | Investor-readiness admin panel: checklist (not a score) sourced from real checks, plus VC/co-founder advisor personas extending `expert-personas.ts`                                                             | `check-admin-metrics.mjs` passes; every number traces to a command or a linked item                   |
+| **[CONST-1](plan/items/CONST-1.md)**     | P2     | Implementer                 | Community AI Charter — "Draft v0.1, open for co-authorship," `docs/constitution/` articles (ADR-style), public page, reusing the existing `suggestions` mechanism for amendments                                 | Framing states draft/co-authorship, not settled authority; no announcement before `TYPE-3` closes     |
 | **[TYPE-2](plan/items/TYPE-2.md)**       | **P0** | Implementer                 | Clear the remaining 36 typecheck errors and unwind the 5 `@ts-nocheck` files added while fixing the first 548                                                                                                    | `pnpm typecheck` exits 0; `@ts-nocheck` back to 0                                                     |
 | **[REPO-1](plan/items/REPO-1.md)**       | P1     | Implementer                 | Clear the repository root: 83 tracked files, 8 of them legitimate config; 1.4 MB of build output, scraped HTML and superseded generated copies. Root-anchored `.gitignore` rules so they cannot return           | `git ls-files \| grep -cE "^[^/]+\.(js\|html\|png\|txt)$"` returns 0; build, test and lint still pass |
 | **[DBTYPE-1](plan/items/DBTYPE-1.md)**   | **P0** | Implementer                 | Regenerate `src/types/database.ts` against the **production** database — `599c3554` regenerated it against an incomplete instance and dropped `challenge_votes`, `challenge_submissions` and three RPC functions | `pnpm typecheck` errors drop 584 → ≤14; no suppressions in the diff                                   |
@@ -266,6 +267,33 @@ in front of three populated tables — `takedown_requests`, `takedown_appeals`,
 `cease_and_desist_logs` — while `/admin/legal-tracker` renders the same subject hardcoded.
 [LEGAL-3](plan/items/LEGAL-3.md) wires it, aggregates public and per-request detail admin-only,
 since `takedown_requests` carries requester name and email.
+
+**v13.52 — STRAT-1 and the `case_001` claim genuinely closed; two new initiatives specified.**
+`origin/master` advanced two commits. Checked rather than accepted: `docs/DATA_ROOM/index.md` now
+reads **"371 documented and published incidents out of 2500+ analyzed"** — the reconciliation this
+board predicted in v13.51, and the unfalsifiable "largest independent public dataset" claim was
+replaced with the checkable EU AI Act taxonomy-mapping claim. `case_001.status` now reads **"Filed,
+awaiting response"**, and the four pending institutions read **"— Pending"**. Both closed with
+evidence in [STRAT-1](plan/items/STRAT-1.md).
+
+**One claim in the same commit did not hold.** Its title cited "the legal dashboard," but
+`/dashboard/legal` is unchanged — still a 68-line stub, zero Supabase references. Recorded in
+[LEGAL-3](plan/items/LEGAL-3.md) rather than accepted from the commit message, the same discipline
+applied to every claim this session.
+
+**`pnpm lint` improved, not closed:** 27 → 20 errors; `no-explicit-any` 16 → 8, worked without the
+item being marked done. [TYPE-3](plan/items/TYPE-3.md) remains the sole gate on `.husky/pre-push`.
+
+**Two Founder requests specified as backlog, not built directly** — both are `src/**`/public content
+under G-6, Implementer-owned. [INVEST-1](plan/items/INVEST-1.md): an investor-readiness admin panel
+built from a real checklist rather than a "% compliance" figure — `scripts/check-admin-metrics.mjs`
+already fails CI on a hardcoded admin metric, so the constraint is an existing enforcer, not a new
+rule — plus VC/co-founder advisor personas extending the `EXPERT_PERSONAS` pattern already in
+`expert-personas.ts` (fictional roles, not real-person impersonation, so none of the Digital Twins
+risk applies). [CONST-1](plan/items/CONST-1.md): a community AI charter, reframed from "the global
+constitution" to "Draft v0.1, open for co-authorship" — defensible today, versus a claim to authority
+not yet earned — reusing the existing `suggestions` mechanism rather than building a new one, with no
+announcement before `TYPE-3` closes.
 
 ## 5. History
 

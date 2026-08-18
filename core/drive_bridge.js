@@ -1,4 +1,5 @@
-const { google } = require('googleapis');
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const { google } = require("googleapis");
 
 // Drive API entegrasyonu
 // Bu modül buluta veri göndermek için kullanılır.
@@ -6,7 +7,7 @@ const { google } = require('googleapis');
 
 class DriveBridge {
   constructor(auth) {
-    this.drive = google.drive({ version: 'v3', auth });
+    this.drive = google.drive({ version: "v3", auth });
   }
 
   async uploadFile(fileName, mimeType, fileStream) {
@@ -23,7 +24,7 @@ class DriveBridge {
       });
       return response.data;
     } catch (error) {
-      console.error('Dosya yükleme hatası:', error);
+      console.error("Dosya yükleme hatası:", error);
       throw error;
     }
   }

@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { TrendingUp, TrendingDown, Minus } from "lucide-react";
 import { MetricCardChart } from "./metric-card-chart";
 
@@ -20,7 +20,7 @@ interface MetricCardProps {
   badgeColor?: string;
 }
 
-export function MetricCard({
+export function TrendMetricCard({
   title,
   value,
   subtitle,

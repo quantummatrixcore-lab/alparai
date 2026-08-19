@@ -4,9 +4,10 @@ import { createServerClient } from "@/lib/supabase/server";
 import { Star } from "@phosphor-icons/react/dist/ssr";
 import { Award, BarChart3 } from "lucide-react";
 import Image from "next/image";
-import { MetricCard } from "@/components/admin/metric-card";
+import { TrendMetricCard } from "@/components/admin/metric-card";
 import { BenchTrRunButton } from "@/components/admin/bench-tr-run-button";
 import { AnalyticsHubTabs } from "@/components/admin/analytics-hub-tabs";
+import { AdminContainer, AdminPageHeader } from "@/components/admin/admin-design-kit";
 
 interface BenchTrRow {
   id: string;
@@ -220,19 +221,13 @@ export default async function KBenchmarkPage({ params }: { params: Promise<{ loc
   const benchTrRows = DEFAULT_BENCH_TR_ROWS;
 
   return (
-    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
-      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
-        <AnalyticsHubTabs />
-        <div className="animate-in fade-in space-y-8 duration-500">
-          <div>
-            <h1 className="text-3xl font-black tracking-tight text-white drop-shadow-md">
-              {t("kbench_title")}
-            </h1>
-            <p className="text-fg-secondary mt-2">{t("kbench_subtitle")}</p>
-          </div>
+    <AdminContainer shell>
+      <AnalyticsHubTabs />
+      <AdminPageHeader title={t("kbench_title")} subtitle={t("kbench_subtitle")} />
+      <div className="animate-in fade-in space-y-8 duration-500">
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <MetricCard
+            <TrendMetricCard
               title={t("kb_total_models")}
               value={scores.length}
               icon={<Award className="h-4 w-4" />}
@@ -245,7 +240,7 @@ export default async function KBenchmarkPage({ params }: { params: Promise<{ loc
                 .map((_, i) => ({ value: scores.length - Math.min(10, scores.length) + i + 1 }))}
               chartType="bar"
             />
-            <MetricCard
+            <TrendMetricCard
               title={t("kb_avg_score")}
               value={
                 scores.length > 0
@@ -411,9 +406,8 @@ export default async function KBenchmarkPage({ params }: { params: Promise<{ loc
               </div>
             </div>
           </div>
-        </div>
       </div>
-    </div>
+    </AdminContainer>
   );
 }
 

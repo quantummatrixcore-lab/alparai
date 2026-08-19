@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/auth/session";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { EcosystemDashboard } from "@/components/admin/ecosystem/ecosystem-dashboard";
+import { AdminContainer } from "@/components/admin/admin-design-kit";
 
 export default async function AdminEcosystemPage({
   params,
@@ -51,18 +52,16 @@ export default async function AdminEcosystemPage({
   };
 
   return (
-    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
-      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
-        <EcosystemDashboard
-          data={{
-            queue: queueRes.data ?? [],
-            feed: feedRes.data ?? [],
-            positive: positiveRes.data ?? [],
-            stats,
-          }}
-        />
-      </div>
-    </div>
+    <AdminContainer shell>
+      <EcosystemDashboard
+        data={{
+          queue: queueRes.data ?? [],
+          feed: feedRes.data ?? [],
+          positive: positiveRes.data ?? [],
+          stats,
+        }}
+      />
+    </AdminContainer>
   );
 }
 

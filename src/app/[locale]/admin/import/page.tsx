@@ -9,6 +9,7 @@ const ImportQueueClient = dynamic(() =>
 
 import { CsvUploadForm } from "@/components/admin/csv-upload-form";
 import { logger } from "@/lib/utils/logger";
+import { AdminContainer } from "@/components/admin/admin-design-kit";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -48,14 +49,12 @@ export default async function AdminImportPage({ params }: PageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
-      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
-        <CsvUploadForm locale={locale} />
-        <ImportQueueClient
-          initialIncidents={(pendingIncidents as unknown as ImportedIncident[]) || []}
-          locale={locale}
-        />
-      </div>
-    </div>
+    <AdminContainer shell>
+      <CsvUploadForm locale={locale} />
+      <ImportQueueClient
+        initialIncidents={(pendingIncidents as unknown as ImportedIncident[]) || []}
+        locale={locale}
+      />
+    </AdminContainer>
   );
 }

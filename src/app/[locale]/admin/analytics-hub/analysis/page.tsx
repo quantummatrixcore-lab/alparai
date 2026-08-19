@@ -7,6 +7,7 @@ import { Link } from "@/i18n/routing";
 import { AnalysisDashboardClient } from "@/components/admin/analysis-dashboard-client";
 import { createServerClient } from "@/lib/supabase/server";
 import { AnalyticsHubTabs } from "@/components/admin/analytics-hub-tabs";
+import { AdminContainer, AdminPageHeader } from "@/components/admin/admin-design-kit";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -140,38 +141,19 @@ export default async function AnalysisPage({ params }: { params: Promise<{ local
   };
 
   return (
-    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
-      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
-        <AnalyticsHubTabs />
-        <header className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-center">
-          <div>
-            <h1 className="text-fg-primary inline-flex items-center gap-2 text-2xl font-bold">
-              <FileText className="text-brand-400 h-6 w-6" />
-              {t("analysisHeading")}
-            </h1>
-            <p className="text-fg-muted mt-1 text-sm">{t("analysisSubheading")}</p>
-          </div>
-          <nav className="flex items-center gap-1 text-sm">
-            <Link
-              href={"/admin"}
-              className="text-fg-muted hover:bg-bg-tertiary hover:text-fg-primary rounded-md px-3 py-1.5 transition-colors"
-            >
-              {t("dashboard")}
-            </Link>
-            <Link
-              href={"/admin/moderation"}
-              className="text-fg-muted hover:bg-bg-tertiary hover:text-fg-primary rounded-md px-3 py-1.5 transition-colors"
-            >
-              {t("moderation")}
-            </Link>
-            <span className="bg-bg-tertiary text-brand-400 rounded-md px-3 py-1.5 font-medium">
-              {t("analysis")}
-            </span>
-          </nav>
-        </header>
-
-        <AnalysisDashboardClient registryData={registryData} />
-      </div>
-    </div>
+    <AdminContainer shell>
+      <AnalyticsHubTabs />
+      <AdminPageHeader
+        title={t("analysisHeading")}
+        subtitle={t("analysisSubheading")}
+        icon={<FileText className="text-brand-400 h-6 w-6" />}
+        breadcrumb={[
+          { label: t("dashboard"), href: "/admin" },
+          { label: t("moderation"), href: "/admin/moderation" },
+          { label: t("analysis"), href: "/admin/analytics-hub/analysis" }
+        ]}
+      />
+      <AnalysisDashboardClient registryData={registryData} />
+    </AdminContainer>
   );
 }

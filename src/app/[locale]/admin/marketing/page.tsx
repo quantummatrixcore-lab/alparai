@@ -1,7 +1,7 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { requireAdmin } from "@/lib/auth/session";
 import { TrendingUp, Globe, Users } from "lucide-react";
-import { MetricCard } from "@/components/admin/metric-card";
+import { TrendMetricCard } from "@/components/admin/metric-card";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { MarketingHubTabs } from "@/components/admin/marketing-hub-tabs";
 
@@ -73,7 +73,7 @@ export default async function MarketingPage({ params }: { params: Promise<{ loca
         </div>
 
         <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-          <MetricCard
+          <TrendMetricCard
             title="Site Visits (Referrals)"
             value={totalVisits.toLocaleString()}
             icon={<Users className="h-4 w-4" />}
@@ -81,7 +81,7 @@ export default async function MarketingPage({ params }: { params: Promise<{ loca
             trendLabel="Total Tracked"
             accentColor="#ec4899"
           />
-          <MetricCard
+          <TrendMetricCard
             title="Funnel: Ziyaret -> Başlama"
             value={funnelStart.toLocaleString()}
             icon={<Users className="h-4 w-4" />}
@@ -89,7 +89,7 @@ export default async function MarketingPage({ params }: { params: Promise<{ loca
             trendLabel="Forma girenler"
             accentColor="#3b82f6"
           />
-          <MetricCard
+          <TrendMetricCard
             title={t("marketing_funnel")}
             value={funnelComplete.toLocaleString()}
             icon={<TrendingUp className="h-4 w-4" />}
@@ -99,7 +99,7 @@ export default async function MarketingPage({ params }: { params: Promise<{ loca
             badge={conversionRate > 0 ? `%${conversionRate}` : undefined}
             badgeColor={conversionRate >= 50 ? "text-emerald-400" : "text-amber-400"}
           />
-          <MetricCard
+          <TrendMetricCard
             title={t("marketing_organic")}
             value={(outreachCount ?? 0).toLocaleString()}
             icon={<Globe className="h-4 w-4" />}
@@ -107,7 +107,7 @@ export default async function MarketingPage({ params }: { params: Promise<{ loca
             trendLabel="Outreach Campaigns Queued"
             accentColor="#f59e0b"
           />
-          <MetricCard
+          <TrendMetricCard
             title={t("marketing_activated")}
             value={(usersCount ?? 0).toLocaleString()}
             icon={<Users className="h-4 w-4" />}

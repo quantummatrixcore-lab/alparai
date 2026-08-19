@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/auth/session";
 import { BarChart3 } from "lucide-react";
 import { Link } from "@/i18n/routing";
+import { AdminContainer, AdminPageHeader } from "@/components/admin/admin-design-kit";
 import { getCrossAuditDashboardData } from "@/actions/admin/cross-audit-metrics";
 const CrossAuditDashboardClient = dynamic(() =>
   import("@/components/admin/cross-audit-dashboard-client").then(
@@ -37,40 +38,19 @@ export default async function CrossAuditDashboardPage({
   const metricsData = await getCrossAuditDashboardData();
 
   return (
-    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
-      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
-        <header className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-center">
-          <div>
-            <h1 className="text-fg-primary inline-flex items-center gap-2 text-2xl font-bold">
-              <BarChart3 className="text-brand-400 h-6 w-6" />
-              {t("cross_audit_dashboard_heading") || "Cross-Audit Dashboard"}
-            </h1>
-            <p className="text-fg-muted mt-1 text-sm">
-              {t("cross_audit_dashboard_subheading") ||
-                "Real-time auditing metrics, ethics alignment & regulatory classification logs."}
-            </p>
-          </div>
-          <nav className="flex items-center gap-1 text-sm">
-            <Link
-              href={"/admin"}
-              className="text-fg-muted hover:bg-bg-tertiary hover:text-fg-primary rounded-md px-3 py-1.5 transition-colors"
-            >
-              {t("dashboard") || "Dashboard"}
-            </Link>
-            <Link
-              href={"/admin/moderation"}
-              className="text-fg-muted hover:bg-bg-tertiary hover:text-fg-primary rounded-md px-3 py-1.5 transition-colors"
-            >
-              {t("moderation") || "Moderation"}
-            </Link>
-            <span className="bg-bg-tertiary text-brand-400 rounded-md px-3 py-1.5 font-medium">
-              {t("metrics") || "Metrics"}
-            </span>
-          </nav>
-        </header>
+    <AdminContainer shell>
+      <AdminPageHeader
+        title={t("cross_audit_dashboard_heading") || "Cross-Audit Dashboard"}
+        subtitle={t("cross_audit_dashboard_subheading") || "Real-time auditing metrics, ethics alignment & regulatory classification logs."}
+        icon={<BarChart3 className="text-brand-400 h-6 w-6" />}
+        breadcrumb={[
+          { label: t("dashboard") || "Dashboard", href: "/admin" },
+          { label: t("moderation") || "Moderation", href: "/admin/moderation" },
+          { label: t("metrics") || "Metrics", href: "/admin/cross-audit-dashboard" }
+        ]}
+      />
 
-        <CrossAuditDashboardClient data={metricsData} />
-      </div>
-    </div>
+      <CrossAuditDashboardClient data={metricsData} />
+    </AdminContainer>
   );
 }

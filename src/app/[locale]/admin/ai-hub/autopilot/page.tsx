@@ -8,6 +8,7 @@ import { Activity, ShieldCheck, Workflow } from "lucide-react";
 import { WorkerTickButton } from "@/components/admin/autopilot-tick-button";
 import { AutopilotWorkerToggles } from "@/components/admin/autopilot-worker-toggles";
 import { AiHubTabs } from "@/components/admin/ai-hub-tabs";
+import { AdminContainer, AdminPageHeader } from "@/components/admin/admin-design-kit";
 
 export async function generateMetadata() {
   return { title: "Autopilot" };
@@ -38,18 +39,16 @@ export default async function AdminAutopilotPage({
   const result = await getAdminAutopilotSnapshot(100);
   if (!result.ok || !result.snapshot) {
     return (
-      <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
-        <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
-          <Card>
-            <CardHeader>
-              <CardTitle>{t("admin_title")}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-fg-muted">{result.error ?? tCommon("unknown_error")}</p>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
+      <AdminContainer shell>
+        <Card>
+          <CardHeader>
+            <CardTitle>{t("admin_title")}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-fg-muted">{result.error ?? tCommon("unknown_error")}</p>
+          </CardContent>
+        </Card>
+      </AdminContainer>
     );
   }
   const {
@@ -66,30 +65,18 @@ export default async function AdminAutopilotPage({
   } = result.snapshot;
 
   return (
-    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
-      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
-        <AiHubTabs />
-        <header className="flex items-center justify-between border-b border-white/10 pb-5">
-          <div>
-            <h1 className="text-fg-primary inline-flex items-center gap-2.5 text-2xl font-bold tracking-tight">
-              <Activity className="text-brand-400 h-6 w-6" />
-              {t("admin_title")}
-            </h1>
-            <p className="text-fg-muted mt-1 text-sm">{t("admin_subtitle")}</p>
-          </div>
-          <nav className="flex flex-wrap items-center gap-2 text-sm">
-            <Link href={"/admin"} className="text-fg-muted hover:text-brand-400">
-              <ShieldCheck className="mr-1 inline h-4 w-4" />
-              {t("dashboard")}
-            </Link>
-            <span className="text-fg-muted">·</span>
-            <Link href={"/admin/ai-hub"} className="text-fg-muted hover:text-brand-400">
-              AI Hub
-            </Link>
-            <span className="text-fg-muted">·</span>
-            <span className="text-fg-muted">Autopilot</span>
-          </nav>
-        </header>
+    <AdminContainer shell>
+      <AiHubTabs />
+      <AdminPageHeader
+        title={t("admin_title")}
+        subtitle={t("admin_subtitle")}
+        icon={<Activity className="text-brand-400 h-6 w-6" />}
+        breadcrumb={[
+          { label: t("dashboard"), href: "/admin" },
+          { label: "AI Hub", href: "/admin/ai-hub" },
+          { label: "Autopilot", href: "/admin/ai-hub/autopilot" }
+        ]}
+      />
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-6">
@@ -349,8 +336,7 @@ export default async function AdminAutopilotPage({
             )}
           </CardContent>
         </Card>
-      </div>
-    </div>
+    </AdminContainer>
   );
 }
 

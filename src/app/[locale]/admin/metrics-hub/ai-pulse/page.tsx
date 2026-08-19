@@ -4,7 +4,7 @@ export const dynamic = "force-dynamic";
 
 import { Radio, Cpu, Pulse } from "@phosphor-icons/react/dist/ssr";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { MetricCard } from "@/components/admin/metric-card";
+import { TrendMetricCard } from "@/components/admin/metric-card";
 import { createServerClient } from "@/lib/supabase/server";
 import { discoverAllModels } from "@/lib/ai/discovery/fetch-models";
 import { LiveModelsDirectory } from "@/components/admin/ai-pulse/live-models-directory";
@@ -118,7 +118,7 @@ export default async function AiPulsePage({ params }: { params: Promise<{ locale
         </div>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          <MetricCard
+          <TrendMetricCard
             title={t("ai_pulse_gpt4o_p95")}
             value="340ms"
             icon={<Cpu className="h-4 w-4" />}
@@ -128,7 +128,7 @@ export default async function AiPulsePage({ params }: { params: Promise<{ locale
             sparkData={gptSpark}
             chartType="line"
           />
-          <MetricCard
+          <TrendMetricCard
             title={t("ai_pulse_claude_p95")}
             value="210ms"
             icon={<Cpu className="h-4 w-4" />}
@@ -138,7 +138,7 @@ export default async function AiPulsePage({ params }: { params: Promise<{ locale
             sparkData={claudeSpark}
             chartType="line"
           />
-          <MetricCard
+          <TrendMetricCard
             title={t("ai_pulse_gemini_p95")}
             value="180ms"
             icon={<Cpu className="h-4 w-4" />}

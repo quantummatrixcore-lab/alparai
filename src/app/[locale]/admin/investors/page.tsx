@@ -7,7 +7,7 @@ import { TrendingUp, DollarSign, Clock } from "lucide-react";
 import { InvestorApplicationsList } from "@/components/admin/investor-applications-list";
 import type { InvestorApplicationItem } from "@/components/admin/investor-applications-list";
 import { logger } from "@/lib/utils/logger";
-import { MetricCard } from "@/components/admin/metric-card";
+import { TrendMetricCard } from "@/components/admin/metric-card";
 import { FundingHubTabs } from "@/components/admin/funding-hub-tabs";
 
 import { VcReadinessWidget } from "@/components/admin/vc-readiness-widget";
@@ -63,7 +63,7 @@ export default async function AdminInvestorsPage({
         <FundingHubTabs />
         <Container className="py-6">
           <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
-            <MetricCard
+            <TrendMetricCard
               title={t("investors_title_apps")}
               value={applications.length}
               icon={<TrendingUp className="h-4 w-4" />}
@@ -73,7 +73,7 @@ export default async function AdminInvestorsPage({
               sparkData={applications.slice(0, 8).map((_, i) => ({ value: i + 1 }))}
               chartType="bar"
             />
-            <MetricCard
+            <TrendMetricCard
               title={t("investors_title_approved")}
               value={approved.length}
               icon={<DollarSign className="h-4 w-4" />}
@@ -81,7 +81,7 @@ export default async function AdminInvestorsPage({
               trendLabel="High intent"
               accentColor="#f59e0b"
             />
-            <MetricCard
+            <TrendMetricCard
               title={t("investors_title_pending")}
               value={pendingApps.length}
               icon={<Clock className="h-4 w-4" />}

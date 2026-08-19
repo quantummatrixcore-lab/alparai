@@ -5,7 +5,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { Award, CheckCircle2, Clock } from "lucide-react";
 import { ExpertApplicationsList } from "@/components/admin/expert-applications-list";
 import type { ExpertApplicationItem } from "@/components/admin/expert-applications-list";
-import { MetricCard } from "@/components/admin/metric-card";
+import { TrendMetricCard } from "@/components/admin/metric-card";
 import { FundingHubTabs } from "@/components/admin/funding-hub-tabs";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -46,7 +46,7 @@ export default async function AdminExpertsPage({
       <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
         <FundingHubTabs />
         <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
-          <MetricCard
+          <TrendMetricCard
             title={t("experts_title_apps")}
             value={applications.length}
             icon={<Award className="h-4 w-4" />}
@@ -56,7 +56,7 @@ export default async function AdminExpertsPage({
             sparkData={applications.slice(0, 8).map((_, i) => ({ value: i + 1 }))}
             chartType="bar"
           />
-          <MetricCard
+          <TrendMetricCard
             title={t("experts_title_approved")}
             value={approved.length}
             icon={<CheckCircle2 className="h-4 w-4" />}
@@ -64,7 +64,7 @@ export default async function AdminExpertsPage({
             trendLabel={t("experts_trend_verified")}
             accentColor="#10b981"
           />
-          <MetricCard
+          <TrendMetricCard
             title={t("experts_title_pending")}
             value={pending.length}
             icon={<Clock className="h-4 w-4" />}

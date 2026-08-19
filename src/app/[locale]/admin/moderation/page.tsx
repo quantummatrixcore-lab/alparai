@@ -42,7 +42,7 @@ export default async function ModerationPage({ params }: { params: Promise<{ loc
   const providers = providersRes.ok && providersRes.data ? providersRes.data : [];
 
   return (
-    <AdminContainer>
+    <AdminContainer shell>
       <AdminPageHeader
         icon={<Flag className="h-7 w-7 text-emerald-400" />}
         title={t("moderation_queue") || "Incident Moderation Queue"}

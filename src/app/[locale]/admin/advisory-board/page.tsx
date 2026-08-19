@@ -3,7 +3,7 @@ import { requireAdmin } from "@/lib/auth/session";
 import { createServerClient } from "@/lib/supabase/server";
 import { WarningCircle, CheckCircle } from "@phosphor-icons/react/dist/ssr";
 import { Users, Shield } from "lucide-react";
-import { MetricCard } from "@/components/admin/metric-card";
+import { TrendMetricCard } from "@/components/admin/metric-card";
 
 import { GovernanceHubTabs } from "@/components/admin/governance-hub-tabs";
 
@@ -89,7 +89,7 @@ export default async function AdvisoryBoardPage({
           </div>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <MetricCard
+            <TrendMetricCard
               title={t("advisory_members_count")}
               value={activeMembers.length}
               icon={<Users className="h-4 w-4" />}
@@ -99,7 +99,7 @@ export default async function AdvisoryBoardPage({
               sparkData={activeMembers.map((_, i) => ({ value: i + 1 }))}
               chartType="bar"
             />
-            <MetricCard
+            <TrendMetricCard
               title={t("advisory_governance")}
               value={t("advisory_status_active")}
               icon={<Shield className="h-4 w-4" />}

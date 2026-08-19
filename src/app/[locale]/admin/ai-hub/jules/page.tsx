@@ -4,6 +4,7 @@ import { JulesDashboard } from "@/components/admin/jules/jules-dashboard";
 import { getTranslations } from "next-intl/server";
 
 import { AiHubTabs } from "@/components/admin/ai-hub-tabs";
+import { AdminContainer } from "@/components/admin/admin-design-kit";
 
 export const dynamic = "force-dynamic";
 
@@ -13,16 +14,14 @@ export default async function JulesPage() {
   const [sessionsResult] = await Promise.all([listJulesSessions()]);
 
   return (
-    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
-      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
-        <AiHubTabs />
-        <JulesDashboard
-          sessions={sessionsResult.sessions ?? []}
-          connected={sessionsResult.success}
-          defaultRepo="quantummatrixcore-lab/Alparai.com"
-        />
-      </div>
-    </div>
+    <AdminContainer shell>
+      <AiHubTabs />
+      <JulesDashboard
+        sessions={sessionsResult.sessions ?? []}
+        connected={sessionsResult.success}
+        defaultRepo="quantummatrixcore-lab/Alparai.com"
+      />
+    </AdminContainer>
   );
 }
 

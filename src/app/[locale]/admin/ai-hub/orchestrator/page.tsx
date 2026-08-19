@@ -51,9 +51,8 @@ export default async function AiOrchestratorAdminPage({
   const totalAudits = trustScores.reduce((acc, s) => acc + (Number(s.total_audits) || 0), 0);
 
   return (
-    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
-      <AdminContainer>
-        <AiHubTabs />
+    <AdminContainer shell>
+      <AiHubTabs />
         <AdminPageHeader
           icon={<Cpu className="h-7 w-7 text-emerald-400" />}
           title={t("ai_orchestrator_cross_audit_arena") || "AI Orchestrator & Cross-Audit Arena"}
@@ -79,8 +78,7 @@ export default async function AiOrchestratorAdminPage({
           autopilotSnapshot={autopilotSnapshot}
           locale={locale}
         />
-      </AdminContainer>
-    </div>
+    </AdminContainer>
   );
 }
 

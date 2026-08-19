@@ -7,6 +7,7 @@ const ApiMetricsClient = dynamic(() =>
 
 import { createServerClient } from "@/lib/supabase/server";
 import { MetricsHubTabs } from "@/components/admin/metrics-hub-tabs";
+import { AdminContainer, AdminPageHeader } from "@/components/admin/admin-design-kit";
 
 export default async function ApiMetricsPage({ params }: { params: Promise<{ locale: string }> }) {
   await requireAdmin();
@@ -151,25 +152,21 @@ export default async function ApiMetricsPage({ params }: { params: Promise<{ loc
   ];
 
   return (
-    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
-      <div className="animate-in fade-in space-y-8 rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl duration-500 sm:p-6 md:p-8">
-        <MetricsHubTabs />
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-black tracking-tight text-white drop-shadow-md">
-              {t("api_metrics_title")}
-            </h1>
-            <p className="text-fg-secondary mt-2">{t("api_metrics_subtitle")}</p>
-          </div>
+    <AdminContainer shell>
+      <MetricsHubTabs />
+      <AdminPageHeader
+        title={t("api_metrics_title")}
+        subtitle={t("api_metrics_subtitle")}
+        action={
           <div className="flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs text-emerald-400">
             <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-500" />
             {t("api_metrics_live_status")}
           </div>
-        </div>
+        }
+      />
 
         <ApiMetricsClient metrics={dbMetrics} trafficData={trafficData} endpoints={endpointsData} />
-      </div>
-    </div>
+    </AdminContainer>
   );
 }
 

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { LineChart, Line, BarChart, Bar, ResponsiveContainer, Tooltip } from "recharts";
 

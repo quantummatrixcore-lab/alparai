@@ -1,9 +1,9 @@
-"use client";
+﻿"use client";
 
 import { useState, useTransition } from "react";
 import { useTranslations } from "next-intl";
 import { Card } from "@/components/ui/card";
-import { MetricCard } from "@/components/admin/metric-card";
+import { TrendMetricCard } from "@/components/admin/metric-card";
 import { ExternalLink, CheckCircle2, DollarSign, Building2, Send, FileText } from "lucide-react";
 import { updateGrantStatus, markGrantSubmitted } from "@/actions/admin/grants";
 import { toast } from "sonner";
@@ -85,22 +85,22 @@ export function GrantsList({
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
-        <MetricCard
+        <TrendMetricCard
           title={t("grants_total")}
           value={stats.total}
           icon={<Building2 className="h-4 w-4 text-sky-400" />}
         />
-        <MetricCard
+        <TrendMetricCard
           title={t("grants_drafting")}
           value={stats.drafting}
           icon={<FileText className="text-warning-400 h-4 w-4" />}
         />
-        <MetricCard
+        <TrendMetricCard
           title={t("grants_submitted")}
           value={stats.submitted}
           icon={<Send className="text-brand-400 h-4 w-4" />}
         />
-        <MetricCard
+        <TrendMetricCard
           title={t("grants_approved")}
           value={stats.approved}
           icon={<CheckCircle2 className="text-success-400 h-4 w-4" />}

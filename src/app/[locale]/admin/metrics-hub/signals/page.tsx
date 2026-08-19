@@ -15,9 +15,7 @@ export default async function SignalsPage({ params }: { params: Promise<{ locale
   const signals = await getSystemSignalsAction();
 
   return (
-    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
-      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
-        <AdminContainer>
+    <AdminContainer shell>
           <MetricsHubTabs />
           <AdminPageHeader
             icon={<Activity className="h-6 w-6 text-cyan-400" />}
@@ -34,9 +32,7 @@ export default async function SignalsPage({ params }: { params: Promise<{ locale
           />
 
           <SignalsClient initialSignals={signals} />
-        </AdminContainer>
-      </div>
-    </div>
+    </AdminContainer>
   );
 }
 

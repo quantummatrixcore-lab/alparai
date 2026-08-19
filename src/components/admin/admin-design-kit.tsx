@@ -11,10 +11,22 @@ export { AdminSubNav, type AdminSubNavProps, type SubNavItem } from "./admin-sub
 export function AdminContainer({
   children,
   className,
+  shell = false,
 }: {
   children: React.ReactNode;
   className?: string;
+  shell?: boolean;
 }) {
+  if (shell) {
+    return (
+      <div className={cn("min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8", className)}>
+        <div className="mx-auto max-w-[1600px] space-y-8 rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
+          {children}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={cn("mx-auto max-w-[1600px] space-y-8 px-3 py-4 sm:px-6 md:p-8", className)}>
       {children}
@@ -30,6 +42,7 @@ export function AdminPageHeader({
   badge,
   breadcrumb,
   lastUpdated,
+  subnav,
   className,
 }: {
   icon?: React.ReactNode;
@@ -39,6 +52,7 @@ export function AdminPageHeader({
   badge?: React.ReactNode;
   breadcrumb?: { label: string; href: string }[];
   lastUpdated?: string;
+  subnav?: React.ReactNode;
   className?: string;
 }) {
   const t = useTranslations("admin");
@@ -46,16 +60,18 @@ export function AdminPageHeader({
   return (
     <header
       className={cn(
-        "from-bg-secondary via-bg-tertiary to-bg-elevated relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-r p-6 shadow-2xl backdrop-blur-xl",
+        "from-bg-secondary via-bg-tertiary to-bg-elevated relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-r p-6 shadow-2xl backdrop-blur-xl flex flex-col gap-4",
         className,
       )}
     >
       <div className="bg-brand-500/10 absolute top-0 right-0 -mt-10 -mr-10 h-40 w-40 rounded-full blur-3xl" />
       <div className="bg-accent-500/10 absolute bottom-0 left-1/3 -mb-10 h-40 w-40 rounded-full blur-3xl" />
 
+      {subnav && <div className="relative z-10 w-full mb-2">{subnav}</div>}
+
       {/* Breadcrumb Navigation */}
       {breadcrumb && (
-        <nav className="text-fg-muted relative z-10 mb-2 flex items-center gap-1.5 text-xs">
+        <nav className="text-fg-muted relative z-10 flex items-center gap-1.5 text-xs">
           {breadcrumb.map((item, index) => (
             <React.Fragment key={item.href}>
               <Link

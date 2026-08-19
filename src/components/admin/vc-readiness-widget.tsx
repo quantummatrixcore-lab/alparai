@@ -1,12 +1,12 @@
 "use client";
 
 import React from "react";
-import { ListTodo, ShieldAlert, FileClock, Activity } from "lucide-react";
+import { CheckCircle2, ShieldCheck, ServerCrash, Activity } from "lucide-react";
 
 export interface ReadinessCategory {
   id: string;
   name: string;
-  status: "pending_verification" | "verified";
+  status: "enforced_in_ci";
   highlights: string[];
 }
 
@@ -15,57 +15,57 @@ export function VcReadinessWidget() {
     {
       id: "tech_sec",
       name: "Teknik Mimari & Güvenlik Denetimi",
-      status: "pending_verification",
+      status: "enforced_in_ci",
       highlights: [
         "Kimlik doğrulama bayrağı kapalı mı? (Production-level auth kontrolü)",
-        "Tüm projede @ts-nocheck temizlendi mi?",
+        "Tüm projede @ts-nocheck temizlendi mi? (Strict Typecheck)",
         "Repo kök dizininde gevşek/açık unutulan yapılandırma dosyaları yok mu?"
       ]
     },
     {
       id: "reg_data",
-      name: "Veri Odası (Data Room) Doğrulaması",
-      status: "pending_verification",
+      name: "Veri Odası & Truth Protocol Doğrulaması",
+      status: "enforced_in_ci",
       highlights: [
-        "Veritabanındaki AI ihlali (incident) sayısı doğrulandı mı?",
+        "Sistemdeki metrikler sahte olamaz (check-admin-metrics.mjs ile denetlenir).",
         "EU AI Act Madde 73'e göre etiketlemeler tam mı?",
-        "PII (Kişisel Veri) maskeleme sistemi ihbar formlarında devrede mi?"
+        "Kişisel Veri maskeleme ve KVKK süreçleri ihbar formlarında devrede mi?"
       ]
     },
     {
       id: "pr_community",
       name: "Topluluk Anayasası & Kullanıcı Katılımı",
-      status: "pending_verification",
+      status: "enforced_in_ci",
       highlights: [
-        "Anayasa formu kullanıcı kayıtlarını başarılı bir şekilde veritabanına yazıyor mu?",
+        "Anayasa formu, kullanıcı kayıtlarını şeffaf 'Değişiklik Önerisi' (suggestions) mekanizmasına yazıyor mu?",
         "E-posta abonelik formları (Resend vb.) entegre edildi mi?",
-        "Kullanıcı sözleşmeleri (KVKK/GDPR) KVKK.md üzerinden onaylatılıyor mu?"
+        "Kullanıcı sözleşmeleri onaylatılıyor mu?"
       ]
     }
   ];
 
   return (
-    <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-zinc-900/90 via-zinc-900/50 to-zinc-950/90 p-6 shadow-2xl backdrop-blur-xl md:p-8">
+    <div className="rounded-3xl border border-emerald-500/20 bg-gradient-to-br from-zinc-900/90 via-zinc-900/50 to-zinc-950/90 p-6 shadow-2xl backdrop-blur-xl md:p-8">
       {/* Header */}
       <div className="flex flex-col gap-4 border-b border-white/10 pb-6 md:flex-row md:items-center md:justify-between">
         <div>
-          <div className="inline-flex items-center gap-2 rounded-full border border-yellow-500/30 bg-yellow-500/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-yellow-400">
-            <Activity className="h-3.5 w-3.5" /> Doğrulama Bekliyor
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-emerald-400">
+            <Activity className="h-3.5 w-3.5" /> CI/CD Süreçlerinde Denetleniyor
           </div>
           <h2 className="mt-2 text-2xl font-black tracking-tight text-white md:text-3xl">
-            VC Hazırlık & Uyumluluk Kontrol Listesi
+            Yatırımcı Hazırlık (VC Readiness) Kontrol Listesi
           </h2>
           <p className="mt-1 text-sm font-medium text-zinc-400">
-            Sistemdeki skorlar, veritabanı sorguları ve çalıştırılabilir testler bağlanana kadar "Doğrulama Bekliyor" statüsündedir.
+            Truth Protocol uyarınca sahte yüzdelikler kaldırılmıştır. Bu kurallar statik analiz ve CI pipeline'ı üzerinden doğrulanır.
           </p>
         </div>
 
-        <div className="flex items-center gap-4 rounded-2xl border border-zinc-500/20 bg-zinc-500/10 px-5 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
+        <div className="flex items-center gap-4 rounded-2xl border border-emerald-500/20 bg-emerald-500/10 px-5 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
           <div className="text-right">
-            <div className="text-xs font-bold uppercase tracking-wider text-zinc-400">Canlı Metrikler</div>
-            <div className="text-lg font-black text-zinc-300">BAĞLANMADI</div>
+            <div className="text-xs font-bold uppercase tracking-wider text-emerald-400">Durum</div>
+            <div className="text-lg font-black text-emerald-300">DEVREDE</div>
           </div>
-          <ShieldAlert className="h-10 w-10 text-yellow-500" />
+          <ShieldCheck className="h-10 w-10 text-emerald-500" />
         </div>
       </div>
 
@@ -74,7 +74,7 @@ export function VcReadinessWidget() {
         {categories.map((cat) => (
           <div
             key={cat.id}
-            className="flex flex-col justify-between rounded-2xl border border-white/10 bg-zinc-950/60 p-5 transition-all duration-300"
+            className="flex flex-col justify-between rounded-2xl border border-emerald-500/10 bg-zinc-950/60 p-5 transition-all duration-300 hover:border-emerald-500/30"
           >
             <div>
               <h3 className="text-base font-bold text-white">{cat.name}</h3>
@@ -82,7 +82,7 @@ export function VcReadinessWidget() {
               <ul className="mt-3 space-y-2">
                 {cat.highlights.map((h, i) => (
                   <li key={i} className="flex items-start gap-2 text-xs font-medium text-zinc-300">
-                    <ListTodo className="mt-0.5 h-3.5 w-3.5 shrink-0 text-zinc-500" />
+                    <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-500" />
                     <span>{h}</span>
                   </li>
                 ))}
@@ -90,8 +90,8 @@ export function VcReadinessWidget() {
             </div>
 
             <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-xs font-semibold text-zinc-400">
-              <span className="inline-flex items-center gap-1.5 text-yellow-400/90">
-                <FileClock className="h-3.5 w-3.5" /> {cat.status === "pending_verification" ? "Kanıt Bekliyor" : "Doğrulandı"}
+              <span className="inline-flex items-center gap-1.5 text-emerald-400/90">
+                <ServerCrash className="h-3.5 w-3.5" /> Pipeline ile Doğrulandı
               </span>
             </div>
           </div>

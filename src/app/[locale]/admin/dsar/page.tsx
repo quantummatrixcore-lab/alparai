@@ -3,7 +3,7 @@ import { requireAdmin } from "@/lib/auth/session";
 import { createServerClient } from "@/lib/supabase/server";
 import { Clock, ShieldWarning, CheckCircle } from "@phosphor-icons/react/dist/ssr";
 import { FileText, AlertTriangle } from "lucide-react";
-import { MetricCard } from "@/components/admin/metric-card";
+import { TrendMetricCard } from "@/components/admin/metric-card";
 
 import { GovernanceHubTabs } from "@/components/admin/governance-hub-tabs";
 
@@ -49,7 +49,7 @@ export default async function DsarPage({ params }: { params: Promise<{ locale: s
             const urgent = (requests ?? []).filter((r) => getSlaDaysLeft(r.created_at) < 7);
             return (
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-                <MetricCard
+                <TrendMetricCard
                   title={t("dsar_title_total")}
                   value={requests?.length ?? 0}
                   icon={<FileText className="h-4 w-4" />}
@@ -59,7 +59,7 @@ export default async function DsarPage({ params }: { params: Promise<{ locale: s
                   sparkData={(requests ?? []).slice(0, 8).map((_, i) => ({ value: i + 1 }))}
                   chartType="bar"
                 />
-                <MetricCard
+                <TrendMetricCard
                   title={t("dsar_title_pending")}
                   value={pending.length}
                   icon={<Clock className="h-4 w-4" />}
@@ -67,7 +67,7 @@ export default async function DsarPage({ params }: { params: Promise<{ locale: s
                   trendLabel={t("dsar_trend_awaiting")}
                   accentColor="#f59e0b"
                 />
-                <MetricCard
+                <TrendMetricCard
                   title={t("dsar_sla_urgent")}
                   value={urgent.length}
                   icon={<AlertTriangle className="h-4 w-4" />}

@@ -1,9 +1,9 @@
-"use client";
+﻿"use client";
 
 import { useState, useTransition } from "react";
 import { useTranslations } from "next-intl";
 import { Card } from "@/components/ui/card";
-import { MetricCard } from "@/components/admin/metric-card";
+import { TrendMetricCard } from "@/components/admin/metric-card";
 import { CheckCircle2, MessageSquare, Linkedin, UserPlus, FileText } from "lucide-react";
 import { updateLinkedinContactStatus } from "@/actions/admin/linkedin";
 import { toast } from "sonner";
@@ -67,18 +67,18 @@ export function LinkedinContactsList({ initialContacts }: { initialContacts: Lin
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
-        <MetricCard title={t("linkedin_total_targets")} value={stats.total} icon={<UsersIcon />} />
-        <MetricCard
+        <TrendMetricCard title={t("linkedin_total_targets")} value={stats.total} icon={<UsersIcon />} />
+        <TrendMetricCard
           title={t("linkedin_added")}
           value={stats.added}
           icon={<UserPlus className="text-success-400 h-4 w-4" />}
         />
-        <MetricCard
+        <TrendMetricCard
           title={t("linkedin_messaged")}
           value={stats.messaged}
           icon={<MessageSquare className="text-brand-400 h-4 w-4" />}
         />
-        <MetricCard
+        <TrendMetricCard
           title={t("linkedin_responded")}
           value={stats.responded}
           icon={<CheckCircle2 className="text-brand-400 h-4 w-4" />}

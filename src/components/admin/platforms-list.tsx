@@ -1,9 +1,9 @@
-"use client";
+﻿"use client";
 
 import { useState, useTransition } from "react";
 import { useTranslations } from "next-intl";
 import { Card } from "@/components/ui/card";
-import { MetricCard } from "@/components/admin/metric-card";
+import { TrendMetricCard } from "@/components/admin/metric-card";
 import { ExternalLink, CheckCircle2, User, Globe, FileText } from "lucide-react";
 import { updatePlatformStatus } from "@/actions/admin/platforms";
 import { toast } from "sonner";
@@ -57,17 +57,17 @@ export function PlatformsList({ initialPlatforms }: { initialPlatforms: Platform
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-        <MetricCard
+        <TrendMetricCard
           title={t("platforms_total")}
           value={stats.total}
           icon={<Globe className="h-4 w-4 text-pink-400" />}
         />
-        <MetricCard
+        <TrendMetricCard
           title={t("platforms_in_progress")}
           value={stats.in_progress}
           icon={<User className="text-warning-400 h-4 w-4" />}
         />
-        <MetricCard
+        <TrendMetricCard
           title={t("platforms_active_completed")}
           value={stats.active}
           icon={<CheckCircle2 className="text-success-400 h-4 w-4" />}

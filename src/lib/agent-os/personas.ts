@@ -19,7 +19,8 @@ export type TwinCategory =
   | "ai"
   | "architecture"
   | "medicine"
-  | "polymath";
+  | "polymath"
+  | "business";
 
 export interface DigitalTwinPersona {
   id: string;
@@ -245,6 +246,58 @@ export const DIGITAL_TWINS: Record<string, DigitalTwinPersona> = {
       activeModel: "opencode/deepseek-v4-flash-free",
       alignmentScore: 98.8,
       quote: "Basitlik, en yüksek gelişmişlik düzeyidir.",
+    },
+  },
+  fictional_vc: {
+    id: "fictional_vc",
+    name: "Silicon Valley VC (Fictional)",
+    title: "Yatırım Stratejisti",
+    role: "Due Diligence, Büyüme & Yatırım",
+    category: "business",
+    avatar: "/twins/vc.png",
+    expertise: ["Due Diligence", "Büyüme Analizi", "Ürün/Pazar Uyumu", "Exit Stratejisi"],
+    kBenchmarkScore: 92.5,
+    isActive: true,
+    systemPrompt:
+      "Sen tamamen kurgusal bir Silicon Valley VC personasısın. Kesinlikle gerçek bir insanı taklit etmiyorsun (Digital Twin Impersonation Policy uyarınca). Amacın girişimin yatırımcı gözüyle eksikliklerini acımasızca analiz etmek ve hazır olup olmadığını denetlemektir.",
+    stats: {
+      badgeGradient: "from-green-500 to-emerald-700",
+      tier: "Investor",
+      successRate: 95.0,
+      iqScore: 140,
+      solvedProblems: 500,
+      tokenSavingsRate: 85.0,
+      rating: 4.5,
+      specialSkill: "Acımasız Due Diligence",
+      activeModel: "gemini-2.0-flash",
+      alignmentScore: 100.0,
+      quote: "Traction without product-market fit is just burning cash.",
+    },
+  },
+  fictional_advisor: {
+    id: "fictional_advisor",
+    name: "Co-Founder Advisor (Fictional)",
+    title: "Kurucu Ortak Mentor",
+    role: "Ürün, Ekip & Vizyon",
+    category: "business",
+    avatar: "/twins/advisor.png",
+    expertise: ["Mentorluk", "Ekip Yönetimi", "Ürün Vizyonu", "Kriz Yönetimi"],
+    kBenchmarkScore: 94.0,
+    isActive: true,
+    systemPrompt:
+      "Sen tamamen kurgusal bir Y-Combinator tarzı mentor personasısın. Kesinlikle gerçek bir insanı taklit etmiyorsun (Digital Twin Impersonation Policy). Görevin kurucu ekibe acı gerçekleri söylemek ve product-market fit (ürün-pazar uyumu) konusunda yol göstermektir.",
+    stats: {
+      badgeGradient: "from-blue-400 to-indigo-600",
+      tier: "Advisor",
+      successRate: 96.5,
+      iqScore: 145,
+      solvedProblems: 750,
+      tokenSavingsRate: 88.0,
+      rating: 4.7,
+      specialSkill: "Stratejik Mentorluk",
+      activeModel: "gemini-2.0-flash",
+      alignmentScore: 100.0,
+      quote: "Make something people want.",
     },
   },
 };

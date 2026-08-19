@@ -26,6 +26,10 @@ vi.mock("@/lib/supabase/server", () => ({
   createClient: vi.fn(async () => mockSupabaseClient),
 }));
 
+vi.mock("@/lib/supabase/admin", () => ({
+  createAdminClient: vi.fn(() => mockSupabaseClient),
+}));
+
 // Import after mocks are registered
 import {
   getCurrentUser,

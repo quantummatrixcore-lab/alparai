@@ -40,7 +40,10 @@ export const getCurrentUser = cache(async (): Promise<SessionUser | null> => {
       .single<UserProfile>();
     profile = data;
   } catch (_err) {
-    // If admin client query fails, fallback to user client
+    // Fallback handled below if profile remains null
+  }
+
+  if (!profile) {
     const { data } = await supabase
       .from("users")
       .select("id, full_name, avatar_url, role, is_verified, created_at")

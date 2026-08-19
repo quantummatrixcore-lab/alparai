@@ -34,7 +34,7 @@ When EU AI Act fines (up to €35M or 7% global turnover) take effect in Q4 2026
   - **Platform Users & Community Votes:** Sustained month-over-month organic community expansion.
   - _(Note: All internal growth metrics are directly derived from the live `startup-health.ts` telemetry, which explicitly avoids hardcoded growth floors.)_
 - **Regulatory Alignment:** Precedent-setting KVKK (Turkish DPA) formal investigation (Case #001) and EU AI Act Article 50 toolkit integration.
-- **Timing:** Launching exactly 6 months before EU AI Act enforcement begins.
+- **Timing:** The EU AI Act high-risk framework is already in effect as of 2026-08-02. Prohibited AI practices bound from 2025-02-02, and general-purpose AI (GPAI) obligations plus the full penalty regime from 2025-08-02. We are positioning for immediate compliance as the framework is live.
 
 ## 6. Technical Architecture & Velocity Engine
 

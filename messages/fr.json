@@ -3594,6 +3594,8 @@
     "consent_truth": "Ich bestätige die Richtigkeit der angegebenen Informationen",
     "consent_uk_osa": "Ich bestätige, dass ich mindestens 18 Jahre alt bin",
     "custom_provider_notice": "Dieser Anbieter wird in unsere Datenbank aufgenommen.",
+    "cross_audit_reasoning": "Justification de l'Examen",
+    "cross_audit_report_title": "Rapport d'Audit Croisé IA Autonome",
     "description_placeholder": "Was hat die KI gesagt oder getan? Seien Sie spezifisch — Zitate, Screenshots und Kontext beschleunigen die Prüfung.",
     "draft_restored": "Entwurf wiederhergestellt.",
     "evidence": "Beweismittel (Screenshots, Dateien)",
@@ -3741,7 +3743,8 @@
     "voice_incident_transcribing": "Transcribing audio (ASR)...",
     "whistleblower_desc": "Meldungen entsprechen dem Schutz von Hinweisgebern gemäß EU AI Act.",
     "whistleblower_encryption_notice": "Hinweisgeber-Einreichungen werden Ende-zu-Ende verschlüsselt.",
-    "whistleblower_title": "Geschützter Whistleblower-Kanal"
+    "whistleblower_title": "Geschützter Whistleblower-Kanal",
+    "truth_score": "Score de Vérité"
   },
   "insights": {
     "closed": "Geschlossen",

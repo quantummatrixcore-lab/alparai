@@ -3957,6 +3957,8 @@
     "consent_truth": "Sağladığım bilgilerin doğruluğunu onaylıyorum",
     "consent_uk_osa": "18 yaş veya üzerinde olduğumu onaylıyorum (Birleşik Krallık Çevrimiçi Güvenlik Yasası)",
     "custom_provider_notice": "Bu sağlayıcı veritabanımıza eklenecek ve moderatör doğrulaması bekliyor olacak.",
+    "cross_audit_reasoning": "Denetim Gerekçesi",
+    "cross_audit_report_title": "Özerk AI Çapraz Denetim Raporu",
     "description_placeholder": "Yapay zeka ne söyledi veya ne yaptı? Spesifik olun — alıntılar, ekran görüntüleri ve bağlam, doğrulamayı hızlandırır ve raporunuzu güçlendirir.",
     "draft_restored": "Taslak son oturumunuzdan geri yüklendi.",
     "evidence": "Kanıt (ekran görüntüsü, dosya)",
@@ -4104,7 +4106,8 @@
     "voice_incident_transcribing": "Ses çözümleniyor (ASR)...",
     "whistleblower_desc": "Gönderimleriniz AB Yapay Zeka Yasası (EU AI Act) Whistleblower standartlarıyla koruma altındadır. Kimlik bilgileriniz PII Guardian tarafından otomatik olarak temizlenir ve asla 3. taraflarla paylaşılmaz.",
     "whistleblower_encryption_notice": "Muhbir gönderimleri uçtan uca şifrelenir. Kaynağı ALPAR AI dahil hiç kimse tespit edemez.",
-    "whistleblower_title": "Korumalı Bilgi Uçurma Kanalı (Whistleblower Protection)"
+    "whistleblower_title": "Korumalı Bilgi Uçurma Kanalı (Whistleblower Protection)",
+    "truth_score": "Doğruluk Puanı"
   },
   "insights": {
     "closed": "Kapalı",

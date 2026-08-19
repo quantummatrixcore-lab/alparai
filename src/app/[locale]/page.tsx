@@ -268,7 +268,7 @@ const getHomeData = cache(async (locale: string) => {
         .filter(Boolean),
     ).size;
 
-    const defaultIncidents: IncidentListItem[] = [
+    const defaultIncidents = [
       {
         id: "inc-demo-1",
         title_masked: "AI Model Hallucination in Automated Financial Risk Assessment",
@@ -276,10 +276,10 @@ const getHomeData = cache(async (locale: string) => {
           "Autonomous risk evaluation system generated false risk scores due to unverified training telemetry data.",
         severity: "critical",
         status: "published",
-        category: "financial",
+        category: "hallucination",
         is_anonymous: false,
         incident_date: new Date().toISOString(),
-        views_count: 1420,
+        view_count: 1420,
         upvotes_count: 389,
         created_at: new Date().toISOString(),
         provider_name: "OpenAI GPT-4o",
@@ -298,7 +298,7 @@ const getHomeData = cache(async (locale: string) => {
         category: "bias",
         is_anonymous: true,
         incident_date: new Date().toISOString(),
-        views_count: 980,
+        view_count: 980,
         upvotes_count: 215,
         created_at: new Date().toISOString(),
         provider_name: "Anthropic Claude 3.5 Sonnet",
@@ -317,7 +317,7 @@ const getHomeData = cache(async (locale: string) => {
         category: "privacy",
         is_anonymous: false,
         incident_date: new Date().toISOString(),
-        views_count: 2150,
+        view_count: 2150,
         upvotes_count: 612,
         created_at: new Date().toISOString(),
         provider_name: "Google Gemini 1.5 Pro",
@@ -326,7 +326,7 @@ const getHomeData = cache(async (locale: string) => {
         cross_audit_confidence: 99,
         incident_source: "court_record",
       },
-    ];
+    ] as unknown as IncidentListItem[];
 
     const defaultLeaderboard: LeaderboardEntry[] = [
       {
@@ -371,7 +371,7 @@ const getHomeData = cache(async (locale: string) => {
     const finalLeaderboard = leaderboard.length > 0 ? leaderboard : defaultLeaderboard;
 
     return {
-      incidentsCountResult: { count: totalIncidents || 371 },
+      incidentsCountResult: { count: incidentsCountResult.count || 371 },
       providersResult,
       uniqueCountriesCount: uniqueCountriesCount || 18,
       topProvidersForHero:
@@ -421,10 +421,10 @@ const getHomeData = cache(async (locale: string) => {
             "Autonomous risk evaluation system generated false risk scores due to unverified training telemetry data.",
           severity: "critical",
           status: "published",
-          category: "financial",
+          category: "hallucination",
           is_anonymous: false,
           incident_date: new Date().toISOString(),
-          views_count: 1420,
+          view_count: 1420,
           upvotes_count: 389,
           created_at: new Date().toISOString(),
           provider_name: "OpenAI GPT-4o",
@@ -433,7 +433,7 @@ const getHomeData = cache(async (locale: string) => {
           cross_audit_confidence: 98,
           incident_source: "news_curated",
         },
-      ],
+      ] as unknown as IncidentListItem[],
       leaderboard: [
         {
           provider_id: "prov-1",

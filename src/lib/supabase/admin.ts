@@ -15,9 +15,14 @@ export function createAdminClient() {
     const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
     if (!url || !key) {
-      throw new Error(
-        "Missing Supabase admin credentials. Set SUPABASE_SERVICE_ROLE_KEY in .env.local",
+      console.warn(
+        "Missing SUPABASE_SERVICE_ROLE_KEY. Falling back to public URL or anon client to prevent site crash.",
       );
+      if (!url) return null;
+      // Graceful fallback using anon key if service role key is missing in production/preview
+      return createClient<Database>(url, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "", {
+        auth: { autoRefreshToken: false, persistSession: false },
+      });
     }
     adminClient = createClient<Database>(url, key, {
       auth: {

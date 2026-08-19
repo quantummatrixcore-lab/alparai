@@ -40,12 +40,14 @@ CREATE POLICY "Admins can manage marketing drafts"
 CREATE POLICY "Service role full access social accounts"
     ON public.social_accounts
     FOR ALL
+    TO service_role
     USING (true)
     WITH CHECK (true);
 
 CREATE POLICY "Service role full access marketing drafts"
     ON public.marketing_drafts
     FOR ALL
+    TO service_role
     USING (true)
     WITH CHECK (true);
 

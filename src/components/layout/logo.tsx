@@ -6,18 +6,20 @@ export interface LogoProps extends React.HTMLAttributes<HTMLSpanElement> {
 }
 
 const sizeMap = {
-  sm: { w: 24, h: 24 },
-  md: { w: 32, h: 32 },
-  lg: { w: 48, h: 48 },
-  xl: { w: 96, h: 96 },
+  sm: "w-6 h-6",
+  md: "w-8 h-8",
+  lg: "w-12 h-12",
+  xl: "w-24 h-24",
 } as const;
 
 export function Logo({ className, size = "md", ...props }: LogoProps) {
-  const { w, h } = sizeMap[size];
+  const sizeClass = sizeMap[size];
   return (
     <span
-      className={cn("group/logo relative inline-block shrink-0 select-none", className)}
-      style={{ width: w, height: h }}
+      className={cn(
+        `group/logo relative inline-block shrink-0 select-none ${sizeClass}`,
+        className,
+      )}
       role="img"
       aria-label="ALPAR AI"
       {...props}

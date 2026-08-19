@@ -62,6 +62,10 @@ jobs:
         if: ${{ !inputs.force && github.actor != 'dependabot[bot]' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
         run: pnpm i18n:check
 
+      - name: i18n Key Coverage Check
+        if: ${{ !inputs.force && github.actor != 'dependabot[bot]' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
+        run: node scripts/check-i18n-key-coverage.mjs
+
       - name: Repo Language Check
         if: ${{ !inputs.force }}
         run: node scripts/check-repo-language.mjs

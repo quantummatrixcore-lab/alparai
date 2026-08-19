@@ -6,31 +6,32 @@ export interface LogoProps extends React.HTMLAttributes<HTMLSpanElement> {
 }
 
 const sizeMap = {
-  sm: "w-6 h-6",
-  md: "w-8 h-8",
-  lg: "w-12 h-12",
-  xl: "w-24 h-24",
+  sm: 24,
+  md: 32,
+  lg: 48,
+  xl: 96,
 } as const;
 
 export function Logo({ className, size = "md", ...props }: LogoProps) {
-  const sizeClass = sizeMap[size];
+  const px = sizeMap[size];
   return (
     <span
       className={cn(
-        `group/logo relative inline-block shrink-0 select-none ${sizeClass}`,
+        "group/logo relative inline-flex shrink-0 select-none items-center justify-center",
         className,
       )}
+      style={{ width: px, height: px }}
       role="img"
       aria-label="ALPAR AI"
       {...props}
     >
       <svg
         viewBox="0 0 100 100"
-        width="100%"
-        height="100%"
+        width={px}
+        height={px}
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="block h-full w-full overflow-visible"
+        className="block overflow-visible"
       >
         <defs>
           {/* Main Shield Gradient (Violet/Fuchsia to Indigo/Blue) */}

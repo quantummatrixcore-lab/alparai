@@ -2754,7 +2754,13 @@
     "zero_contamination_hash_signatures": "Zero-Contamination & Hash Signatures",
     "zero_junk_engineering_protocol_real_time": "Zero-Junk Engineering Protocol: Real-time context economy and AST graph sync audit",
     "zero_overdue": "0 Gecikmiş",
-    "zero_token_cost_on_internal_audits": "Zero token cost on internal audits"
+    "zero_token_cost_on_internal_audits": "Zero token cost on internal audits",
+    "vendor_quotas": "Satıcı Kotaları ve Kaynak Kullanımı",
+    "quota_subtitle": "Tüm hizmetlerde üçüncü taraf satıcı kotalarını, API sınırlarını ve kaynak tüketimini takip edin.",
+    "quota_tracking": "Kota İzlemesi",
+    "no_quotas": "Konfigüre edilmiş kota yok",
+    "view_all_quotas": "Tüm Kotaları Görüntüle",
+    "platform_quota_resource_usage": "Platform Kota ve Kaynak Kullanımı"
   },
   "admin_question_bank": {
     "evaluating": "Değerlendiriliyor...",

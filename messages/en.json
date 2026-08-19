@@ -2754,7 +2754,13 @@
     "zero_contamination_hash_signatures": "Zero-Contamination & Hash Signatures",
     "zero_junk_engineering_protocol_real_time": "Zero-Junk Engineering Protocol: Real-time context economy and AST graph sync audit",
     "zero_overdue": "0 Overdue",
-    "zero_token_cost_on_internal_audits": "Zero token cost on internal audits"
+    "zero_token_cost_on_internal_audits": "Zero token cost on internal audits",
+    "vendor_quotas": "Vendor Quotas & Resource Usage",
+    "quota_subtitle": "Track third-party vendor quotas, API limits, and resource consumption across all services.",
+    "quota_tracking": "Quota Tracking",
+    "no_quotas": "No quotas configured",
+    "view_all_quotas": "View All Quotas",
+    "platform_quota_resource_usage": "Platform Quota & Resource Usage"
   },
   "admin_question_bank": {
     "evaluating": "Evaluating...",

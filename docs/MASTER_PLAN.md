@@ -5,7 +5,65 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.62 · **Updated:** 2026-08-19 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.63 · **Updated:** 2026-08-19 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+
+## v13.63 — A valid CSP that disabled the application (2026-08-19)
+
+**Outage.** The Founder reported `/en` with no hero and no data. Every server-side signal read
+healthy: HTTP 200, 627,785 characters, full navigation, hero copy, five real live-feed incidents,
+the provider leaderboard, zero `MISSING_MESSAGE` or `IntlError`, and an empty Vercel runtime-error
+table. The failure was entirely in the browser and the cause was one line.
+
+**Cause.** Commit `d8bd006d` removed `'unsafe-inline' 'unsafe-eval'` from `script-src` at
+`next.config.mjs:11` as a hardening measure, without adding a nonce mechanism. Measured on the live
+page: 25 inline `<script>` elements, **0** carrying a nonce, **20** of them the `self.__next_f` RSC
+flight payload, which itself records `"nonce":"$undefined"`. React streams `<Suspense>` content to
+the **end of the document** and relocates it with inline `$RC()` calls — 3 pending markers and 3
+`$RC(` calls were present. With those scripts blocked, nothing hydrated and nothing moved:
+`<footer>` sits at 31.0% of the script-stripped body and the sole `<h1>` at 41.3%, i.e. the hero
+renders **below the footer** while its skeleton freezes at the top. Verified still present on the
+remote via `git show origin/master:next.config.mjs`.
+
+**The architectural point.** Inline scripts are not an incidental convenience in this framework;
+they are the transport for both hydration and Suspense relocation. A CSP that forbids them without
+supplying a nonce does not harden the application — it disables it, while remaining a perfectly
+valid CSP.
+
+**Why no gate caught it.** A response header is not a build artifact, so `pnpm build` was green and
+had no way not to be; a directive string has no type or lint surface; no unit test asserts response
+headers; Playwright's presence assertions pass against server-rendered HTML and cannot distinguish a
+hydrated application from an inert document; and Vercel's error table is server-side while CSP
+violations are raised by the browser. The systemic finding: **no layer of the test pyramid asserts
+that the application hydrated.** Every gate measured the server, and the server was never wrong.
+
+Two earlier commits — `65b7c09c` ("prevent infinite loading skeleton crash") and `8fbe42b1`
+("remove root loading and resolve hydration mismatch causing infinite skeletons") — treated the
+frozen skeletons as a data or layout defect and patched around them. When a fix targets a symptom
+and the symptom returns, the next step is to falsify the assumed mechanism, not to patch harder.
+
+**Decision and full reasoning:** `docs/adr/0013-csp-streaming-hydration.md`. Restore the known-good
+directive; the per-request nonce in middleware is the correct end state but forces dynamic rendering
+on every route across five locales, which is not a change to make during a live outage.
+`'strict-dynamic'` was considered and does not reach inline scripts.
+
+**Implementer work (Architect is blocked here — the safety classifier refuses the commit that
+re-adds `'unsafe-inline'`, which is a correct refusal on its face):**
+
+- `CSP-1` — restore `'unsafe-inline' 'unsafe-eval'` at `next.config.mjs:11`. Unblocks the site.
+- `CSP-2` — add `scripts/check-csp-hydration.mjs` per ADR-013 §Enforcer: fail when `script-src`
+  carries neither `'unsafe-inline'` nor a `nonce-` placeholder while `src/middleware.ts` sets no
+  per-request nonce. Wire as a step in `.github/workflows/ci.yml`.
+- `CSP-3` — a Playwright assertion that no unresolved streaming boundary survives load. Presence
+  assertions must never again be read as evidence of hydration.
+- `CSP-4` — scope and measure the nonce migration, including the static-rendering cost.
+
+**Correction on the record.** This session reported a `clientKeys` allowlist regression in
+`src/app/[locale]/layout.tsx`. It does not exist — `16102f28` had already removed it, and the branch
+shows `messages={messages}` at line 74. The finding came from a stale local working copy. The
+corrective rule is the read-side mirror of G-7: a finding is verified against `origin` before it is
+reported as real.
+
+---
 
 ## v13.62 — UI consolidation complete: admin panel migration verified (2026-08-19)
 

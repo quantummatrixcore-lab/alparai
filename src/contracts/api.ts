@@ -493,3 +493,24 @@ export const litigationExportResponseSchema = z.object({
 export const article50ResponseSchema = z.object({
   ok: z.boolean().optional(),
 });
+
+// 25. POST /api/v1/personas/[twinId]/completions
+export const personasCompletionsResponseSchema = z.object({
+  id: z.string().optional(),
+  object: z.string().optional(),
+  created: z.number().optional(),
+  model: z.string().optional(),
+  choices: z
+    .array(
+      z.object({
+        index: z.number().optional(),
+        message: z.object({
+          role: z.string().optional(),
+          content: z.string().optional(),
+        }),
+        finish_reason: z.string().nullable().optional(),
+      }),
+    )
+    .optional(),
+  alignment_score: z.number().optional(),
+});

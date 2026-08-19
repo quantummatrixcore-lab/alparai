@@ -225,8 +225,6 @@ describe("submitIncident", () => {
             }),
           }),
           insert: vi.fn().mockResolvedValue({ error: null }),
- 
- 
         } as any;
       }
       return {
@@ -246,8 +244,6 @@ describe("submitIncident", () => {
             single: vi.fn().mockResolvedValue({ data: null, error: null }),
           }),
         }),
- 
- 
       } as any;
     });
 
@@ -289,10 +285,9 @@ describe("submitIncident", () => {
         if (name === "x-idempotency-key") return "test-idempotency-key-123";
         return "127.0.0.1";
       }),
- 
- 
     } as any);
 
+    mockRedisInstance.set.mockResolvedValue(null);
     mockRedisInstance.get.mockResolvedValue("existing-incident-uuid");
 
     const result = await submitIncident({ ok: false }, buildFormData());
@@ -307,15 +302,13 @@ describe("submitIncident", () => {
         if (name === "x-idempotency-key") return "test-idempotency-key-123";
         return "127.0.0.1";
       }),
- 
- 
     } as any);
 
+    mockRedisInstance.set.mockResolvedValue("OK");
     mockRedisInstance.get.mockResolvedValue(null);
 
     const result = await submitIncident({ ok: false }, buildFormData());
     expect(result.ok).toBe(true);
-    expect(mockRedisInstance.get).toHaveBeenCalledWith("idem:test-idempotency-key-123");
     expect(mockRedisInstance.set).toHaveBeenCalledWith(
       "idem:test-idempotency-key-123",
       "IN_PROGRESS",

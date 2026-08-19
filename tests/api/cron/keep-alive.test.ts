@@ -22,6 +22,7 @@ import { GET } from "@/app/api/cron/keep-alive/route";
 describe("Keep-Alive Cron Job", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    process.env.CRON_SECRET = "test-secret";
   });
 
   it("should ping Supabase database and return status ok", async () => {

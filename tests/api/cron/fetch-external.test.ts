@@ -34,8 +34,8 @@ vi.mock("@/lib/connectors/rss", () => ({
   fetchRSSFeed: vi.fn().mockResolvedValue([]),
 }));
 
-vi.mock("@/lib/connectors/github", () => ({
-  fetchGitHubIncidents: vi.fn().mockResolvedValue([]),
+vi.mock("@/lib/services/external-fetcher", () => ({
+  runExternalFetchTask: vi.fn().mockResolvedValue({ totalFetched: 0 }),
 }));
 
 import { GET } from "@/app/api/cron/fetch-external/route";

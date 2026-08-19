@@ -8,6 +8,7 @@ vi.hoisted(() => {
   }));
   vi.doMock("@/lib/auth/session", () => ({
     getCurrentUser: vi.fn(),
+    requireAdmin: vi.fn().mockResolvedValue({ id: "admin-1", role: "admin" }),
   }));
   vi.doMock("@/lib/utils/rate-limit", () => ({
     checkRateLimit: vi.fn(),

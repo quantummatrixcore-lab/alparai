@@ -28,6 +28,7 @@ import { GET } from "@/app/api/cron/retro-audit/route";
 describe("Retro-Audit Cron Job", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    process.env.CRON_SECRET = "test-secret";
   });
 
   it("should query Supabase and exclude community incidents using neq('source_badge', 'community')", async () => {

@@ -21,6 +21,7 @@ function baseEnv(overrides: Partial<EnvMap> = {}): EnvMap {
     VERCEL_GIT_REPO_OWNER: "quantummatrixcore-lab",
     VERCEL_GIT_REPO_SLUG: "Alparai.com",
     GITHUB_TOKEN: "test-token",
+    DEPLOY_GATE_REQUIRED_CHECKS: "build, Visual Regression Lock",
     ...overrides,
   };
 }

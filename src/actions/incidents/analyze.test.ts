@@ -13,8 +13,15 @@ vi.mock("@/lib/audit/model-router", () => ({
     ]),
 }));
 
-vi.mock("@/lib/utils/logger", () => ({
-  logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn() },
+vi.mock("next/headers", () => ({
+  headers: vi.fn().mockResolvedValue({
+    get: vi.fn().mockReturnValue("127.0.0.1"),
+  }),
+}));
+
+vi.mock("@/lib/utils/rate-limit", () => ({
+  checkRateLimit: vi.fn().mockResolvedValue({ ok: true }),
+  RATE_LIMIT_KEYS: { incident_analyze: "incident_analyze" },
 }));
 
 import { analyzeIncident } from "./analyze";

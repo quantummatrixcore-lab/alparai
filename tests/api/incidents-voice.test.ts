@@ -1,5 +1,15 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import "../helpers/setup";
+
+vi.mock("@/lib/auth/session", () => ({
+  getCurrentUser: vi.fn().mockResolvedValue({ id: "user-1", email: "user@test.com" }),
+}));
+
+vi.mock("@/lib/utils/rate-limit", () => ({
+  checkRateLimit: vi.fn().mockResolvedValue({ ok: true }),
+  RATE_LIMIT_KEYS: { voice_incident: "voice_incident" },
+}));
+
 import { POST, transcribeAudio } from "@/app/api/incidents/voice/route";
 
 describe("Qwen Omni ASR Voice Incident API Route", () => {

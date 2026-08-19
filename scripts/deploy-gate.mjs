@@ -373,6 +373,7 @@ export async function runDeployGate(options = {}) {
 }
 
 function isDirectRun() {
+  if (process.env.VITEST === "true" || process.env.NODE_ENV === "test") return false;
   if (!process.argv[1]) return false;
   try {
     return import.meta.url === pathToFileURL(process.argv[1]).href;

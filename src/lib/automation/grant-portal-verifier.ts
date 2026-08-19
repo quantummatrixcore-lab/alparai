@@ -80,6 +80,26 @@ export async function verifyGrantPortalsViaCDP(
   cdpUrl = "http://127.0.0.1:9222",
 ): Promise<GrantPortalTarget[]> {
   try {
+    try {
+      const urlObj = new URL(cdpUrl);
+      if (urlObj.port) {
+        const portNum = Number(urlObj.port);
+        if (isNaN(portNum) || portNum < 1 || portNum > 65535) {
+          console.warn(`[CDP] Invalid port ${urlObj.port}. Returning unreachable status.`);
+          return GRANT_PORTAL_CATALOG.map((p) => ({
+            ...p,
+            status: p.isEligible ? "unreachable" : "excluded",
+          }));
+        }
+      }
+    } catch {
+      console.warn(`[CDP] Invalid CDP URL ${cdpUrl}. Returning unreachable status.`);
+      return GRANT_PORTAL_CATALOG.map((p) => ({
+        ...p,
+        status: p.isEligible ? "unreachable" : "excluded",
+      }));
+    }
+
     const res = await fetch(`${cdpUrl}/json/list`);
     if (!res.ok) {
       console.warn(

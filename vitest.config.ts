@@ -14,6 +14,14 @@ export default defineConfig({
     testTimeout: 30000,
     hookTimeout: 45000,
     setupFiles: ["./vitest.setup.ts"],
+    pool: "forks",
+    poolOptions: {
+      forks: {
+        singleFork: true,
+        execArgv: ["--max-old-space-size=8192"],
+      },
+    },
+    fileParallelism: false,
     include: ["src/**/*.{test,spec}.{ts,tsx}", "tests/**/*.{test,spec}.{ts,tsx}"],
     exclude: ["tests/e2e/**", "node_modules/**"],
     coverage: {

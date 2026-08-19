@@ -28,6 +28,38 @@ export async function runLinkedInOutreachBot(
   );
 
   try {
+    try {
+      const parsedUrl = new URL(cdpUrl);
+      if (parsedUrl.port) {
+        const portNum = Number(parsedUrl.port);
+        if (isNaN(portNum) || portNum < 1 || portNum > 65535) {
+          logs.push(
+            `[LinkedInBot Warning] CDP port ${cdpUrl} unavailable. Bot running in dry-run simulation mode.`,
+          );
+          return {
+            processedCount: contacts.length,
+            navigatedCount: 0,
+            connectedCount: 0,
+            messageSentCount: 0,
+            skippedCount: contacts.length,
+            logs,
+          };
+        }
+      }
+    } catch {
+      logs.push(
+        `[LinkedInBot Warning] CDP port ${cdpUrl} unavailable. Bot running in dry-run simulation mode.`,
+      );
+      return {
+        processedCount: contacts.length,
+        navigatedCount: 0,
+        connectedCount: 0,
+        messageSentCount: 0,
+        skippedCount: contacts.length,
+        logs,
+      };
+    }
+
     const res = await fetch(`${cdpUrl}/json/list`).catch((err) => {
       logs.push(
         `[LinkedInBot Warning] CDP port ${cdpUrl} unavailable (${err instanceof Error ? err.message : String(err)}). Bot running in dry-run simulation mode.`,

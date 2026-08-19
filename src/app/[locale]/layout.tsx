@@ -47,26 +47,9 @@ export default async function LocaleLayout({
     return null;
   }
   setRequestLocale(locale);
-  const messages = await getMessages() as Record<string, any>;
+  const messages = (await getMessages()) as Record<string, any>;
   const tCommon = await getTranslations({ locale, namespace: "common" });
   const headerUser = null;
-
-  // Performans Optimizasyonu: RSC Payload Bloat'u engellemek için sadece client component'lerin
-  // ihtiyaç duyduğu temel namespace'leri gönderiyoruz.
-  const clientKeys = [
-    "common",
-    "nav",
-    "footer",
-    "auth",
-    "incident",
-    "leaderboard",
-    "ui",
-    "contact",
-    "hero"
-  ];
-  const clientMessages = Object.fromEntries(
-    clientKeys.map((key) => [key, messages[key]]).filter(([, val]) => val !== undefined)
-  );
 
   const headersList = await headers();
   const pathname = headersList.get("x-pathname") || "";
@@ -74,11 +57,7 @@ export default async function LocaleLayout({
   const dir = locale === "ar" || locale === "fa" ? "rtl" : "ltr";
 
   return (
-    <html
-      lang={locale}
-      dir={dir}
-      suppressHydrationWarning
-    >
+    <html lang={locale} dir={dir} suppressHydrationWarning>
       <head>
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -92,7 +71,7 @@ export default async function LocaleLayout({
           {tCommon("skipToContent", { defaultValue: "Skip to main content" })}
         </a>
         <PostHogProvider>
-          <NextIntlClientProvider messages={clientMessages}>
+          <NextIntlClientProvider messages={messages}>
             {isEmbed ? (
               <main className="m-0 min-h-screen bg-transparent p-0">{children}</main>
             ) : (

@@ -18,11 +18,19 @@ export function createAdminClient() {
       console.warn(
         "Missing SUPABASE_SERVICE_ROLE_KEY. Falling back to public URL or anon client to prevent site crash.",
       );
-      if (!url) return null;
+      if (!url) {
+        return createClient<Database>("https://placeholder.supabase.co", "placeholder", {
+          auth: { autoRefreshToken: false, persistSession: false },
+        });
+      }
       // Graceful fallback using anon key if service role key is missing in production/preview
-      return createClient<Database>(url, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "", {
-        auth: { autoRefreshToken: false, persistSession: false },
-      });
+      return createClient<Database>(
+        url,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "placeholder",
+        {
+          auth: { autoRefreshToken: false, persistSession: false },
+        },
+      );
     }
     adminClient = createClient<Database>(url, key, {
       auth: {

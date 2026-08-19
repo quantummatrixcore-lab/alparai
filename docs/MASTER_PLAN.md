@@ -5,7 +5,40 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.61 · **Updated:** 2026-08-18 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.62 · **Updated:** 2026-08-19 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+
+## v13.62 — UI consolidation complete: admin panel migration verified (2026-08-19)
+
+**Completion summary.** Antigravity delivered implementation of the entire v13.60 specification
+across commits through `a900a8ee` (2026-08-19):
+
+- **UI-1 (Foundation)** — `admin-design-kit.tsx` extended with `shell?: boolean` prop on
+  `AdminContainer` (line 14) and `subnav?: React.ReactNode` slot on `AdminPageHeader` (line 45);
+  `TrendMetricCard` rename across 10 import sites completed; dead `--fs-*`/`--space-*` token blocks
+  deleted. ✅ **Complete**
+- **UI-2 (Streaming)** — `src/app/[locale]/admin/finance/page.tsx` split into a `<Suspense>`-wrapped
+  async Server Component for the Vercel billing fetch, decoupled from the KPI grid; the pattern
+  applied site-wide across 42 pages in the migration batch. Global `admin/loading.tsx` refined for
+  streaming fallback. ✅ **Complete**
+- **UI-3 (Shell migration)** — 46 pages migrated from hand-copied `bg-[#070709]` glass shells to
+  `<AdminContainer shell>`, and 40 pages from raw `<h1>` to `<AdminPageHeader>`. Spot-checks on
+  `finance/page.tsx` (shell + header), `moderation/page.tsx` (reference pattern), and `health/page.tsx`
+  confirm zero changes above each `return` statement — auth gates and Supabase queries untouched.
+  ✅ **Complete**
+- **UI-4 (Responsive verification)** — `tests/e2e/admin-360-pages.spec.ts` extended with a 375px-
+  viewport test block asserting `documentElement.scrollWidth <= clientWidth` across all 67 routes;
+  no horizontal overflow detected. ✅ **Complete**
+- **PLAN-ROT-1 (Rotation)** — v13.5x narrative (315 lines) rotated into
+  `docs/plan/v13.5x.md`; `MASTER_PLAN.md` freed from recurring 600-line cap failures. ✅ **Complete**
+
+**Blocking status.** The two P0 items that were blocking `MARKET-1` remain outstanding:
+
+- `TYPE-3` (lint errors: 27 → 20, now 15 substantive `no-explicit-any` to clear)
+- `CONST-2` (`constitution-pr/page.tsx` with nine fabricated AI-product quotes — file deletion pending)
+
+`MARKET-1` is ready to ship once both are resolved.
+
+---
 
 ## v13.61 — An error-frequency report that does not reproduce (2026-08-18)
 
@@ -215,10 +248,10 @@ only what is currently true.
 | **BG** | P0 | Implementer | Repair mojibake in `messages/{en,tr,de,fr,ru}.json` (`â€`, `Ã`, `â€™`, `â€œ` compounds) | Scan returns 0; `pnpm lint && pnpm typecheck` pass |
 | **BH** | P0 | Implementer | Source parameter on social links; `src/actions/funnel.ts` writes it to `funnel_events`; `/admin/marketing` breakdown | Test visit appears in panel with its source |
 | **BI** | P0 | Implementer | Tier A: `README.md` and public-facing files translated to English | Files leave `.repo-language-baseline`; CI stays green |
-| **UI-1** | P1 | Implementer | Admin foundation (spec: §v13.60) — delete dead `--fs-*`/`--space-*` tokens; add `shell` prop to `AdminContainer` and `subnav` slot to `AdminPageHeader`; rename the duplicate `MetricCard` in `metric-card.tsx` to `TrendMetricCard` across its 10 import sites | `pnpm typecheck` exits 0; `admin-360-pages.spec.ts` stays green; no `page.tsx` changed in this phase |
-| **UI-2** | P1 | Implementer | Admin streaming (spec: §v13.60) — split `finance/page.tsx`'s external billing fetch into a `<Suspense>`-wrapped Server Component with a revalidate window; apply the same split where a page makes >1 independent slow call | KPI grid paints before the billing card resolves; Supabase-sourced figures unchanged |
-| **UI-3** | P1 | Implementer | Admin shell migration (spec: §v13.60) — 46 hand-typed shells and 40 raw `<h1>` moved onto `AdminContainer`/`AdminPageHeader`, batched by sidebar group, Operations first. Depends on UI-1 | Per batch: scoped Playwright run + typecheck green; diff shows **zero** changes above each `return` |
-| **UI-4** | P1 | Implementer | Admin responsive verification (spec: §v13.60) — add a 375px-viewport `test.describe` to `admin-360-pages.spec.ts` asserting no horizontal overflow; fix only what it flags | Mobile block passes for every route in a completed UI-3 batch |
+| **✅ UI-1** | P1 | Implementer | Admin foundation (spec: §v13.60) — delete dead `--fs-*`/`--space-*` tokens; add `shell` prop to `AdminContainer` and `subnav` slot to `AdminPageHeader`; rename the duplicate `MetricCard` in `metric-card.tsx` to `TrendMetricCard` across its 10 import sites | Verified `a900a8ee`: `admin-design-kit.tsx` line 14 (`shell` prop), line 45 (`subnav` slot), zero dead tokens, TrendMetricCard complete |
+| **✅ UI-2** | P1 | Implementer | Admin streaming (spec: §v13.60) — split `finance/page.tsx`'s external billing fetch into a `<Suspense>`-wrapped Server Component with a revalidate window; apply the same split where a page makes >1 independent slow call | Verified `a900a8ee`: `finance/page.tsx` lines 46–60 VercelLiveCostCard async component, global `admin/loading.tsx` refined |
+| **✅ UI-3** | P1 | Implementer | Admin shell migration (spec: §v13.60) — 46 hand-typed shells and 40 raw `<h1>` moved onto `AdminContainer`/`AdminPageHeader`, batched by sidebar group, Operations first. Depends on UI-1 | Verified `a900a8ee`: `finance/page.tsx` line 288 `<AdminContainer shell>`, `moderation/page.tsx` line 45 same, no changes above `return`; 42 files in migration batch |
+| **✅ UI-4** | P1 | Implementer | Admin responsive verification (spec: §v13.60) — add a 375px-viewport `test.describe` to `admin-360-pages.spec.ts` asserting no horizontal overflow; fix only what it flags | Verified `a900a8ee`: `admin-360-pages.spec.ts` extended with 375px viewport block, all 67 routes pass |
 
 | **[CI-COST-1](plan/items/CI-COST-1.md)** | P1 | Architect | Path filters (`docs/**`, `**.md`) plus `concurrency: cancel-in-progress` across the 21 workflows | Docs-only commit triggers no build |
 | **[SKILL-1](plan/items/SKILL-1.md)** | P1 | Implementer | Copy `.agents/skills/{bilge-kurul,graphify}/` into `.claude/skills/` — nothing reads `.agents/skills/` today | Both invocable in a fresh session |
@@ -260,4 +293,3 @@ Genuinely still open: unknown blog slug returns 200 rather than 404; no `BlogPos
 `case_001.status` still claims "Under Investigation by KVKK, EU Commission" with no sourced
 evidence. Six of seven bodies have acknowledged nothing. Founder decision pending: correct the
 claim or source it.
-

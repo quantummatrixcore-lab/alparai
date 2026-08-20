@@ -38,3 +38,9 @@ It also reached `origin/master`, which means a gate designed to prevent exactly 
 - The csv-parser fix is covered by a test asserting `import_external_id` specifically, since that
   field's correctness is what protects the import from duplicating on every run
 - The persona route's 500 is diagnosed at its actual cause, not patched per-test
+
+## Closed 2026-08-20 (v13.71) — measured directly
+
+`npx tsc --noEmit` exits 0. `pnpm test`: 191 files, 1,125 tests, all passing, exit 0. Both run in this
+session rather than accepted from a report. The csv-parser defect that corrupted `import_external_id`
+is fixed and covered; the four `twins-leaderboard-client.tsx` type errors are gone.

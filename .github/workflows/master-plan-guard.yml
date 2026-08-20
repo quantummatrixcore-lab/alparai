@@ -56,6 +56,9 @@ jobs:
           node-version: 20
       - name: Run consistency check
         run: node scripts/check-masterplan-consistency.mjs
+
+      - name: Plan Claim Check
+        run: node scripts/check-plan-claims.mjs
       - name: Closure evidence check (G-7)
         run: node scripts/check-closure-evidence.mjs
 

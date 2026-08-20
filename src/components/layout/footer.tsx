@@ -31,7 +31,7 @@ const resourcesLinks = [
   { href: "/blog", key: "blog", label: "Blog", external: false },
   { href: "/methodology/k-benchmark", key: "methodology", label: "K-BENCHMARK", external: false },
   {
-    href: "https://github.com/quantummatrixcore-lab/alparai",
+    href: "https://github.com/quantummatrixcore-lab/Alparai.com",
     key: "github",
     label: "GitHub",
     external: true,
@@ -71,7 +71,7 @@ export function Footer() {
             <p className="text-fg-muted text-xs leading-relaxed">{t("tagline")}</p>
             <div className="flex items-center gap-2">
               <a
-                href="https://github.com/quantummatrixcore-lab/alparai"
+                href="https://github.com/quantummatrixcore-lab/Alparai.com"
                 target="_blank"
                 rel="noreferrer noopener"
                 className="text-fg-muted hover:bg-bg-tertiary hover:text-fg-primary inline-flex h-8 w-8 items-center justify-center rounded-md"

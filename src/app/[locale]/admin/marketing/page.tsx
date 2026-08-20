@@ -37,6 +37,19 @@ export default async function MarketingPage({ params }: { params: Promise<{ loca
     .from("users")
     .select("*", { count: "exact", head: true });
 
+  const { count: newsletterCount } = await supabase
+    .from("newsletter_subscribers")
+    .select("*", { count: "exact", head: true });
+
+  const { count: incidentsCount } = await supabase
+    .from("incidents")
+    .select("*", { count: "exact", head: true });
+
+  const { count: apiCallsCount } = await supabase
+    .from("funnel_events")
+    .select("*", { count: "exact", head: true })
+    .eq("event_name", "api_call");
+
   const funnelStart = startCount ?? 0;
   const funnelComplete = completeCount ?? 0;
   const conversionRate = funnelStart > 0 ? Math.round((funnelComplete / funnelStart) * 100) : 0;
@@ -114,6 +127,30 @@ export default async function MarketingPage({ params }: { params: Promise<{ loca
             trend="up"
             trendLabel="Registered Accounts"
             accentColor="#10b981"
+          />
+          <TrendMetricCard
+            title="Newsletter Subscribers"
+            value={(newsletterCount ?? 0).toLocaleString()}
+            icon={<Users className="h-4 w-4" />}
+            trend="neutral"
+            trendLabel="Active Subscribers"
+            accentColor="#a855f7"
+          />
+          <TrendMetricCard
+            title="Incident Submissions"
+            value={(incidentsCount ?? 0).toLocaleString()}
+            icon={<TrendingUp className="h-4 w-4" />}
+            trend="neutral"
+            trendLabel="Total Incidents"
+            accentColor="#ef4444"
+          />
+          <TrendMetricCard
+            title="API Calls"
+            value={(apiCallsCount ?? 0).toLocaleString()}
+            icon={<Globe className="h-4 w-4" />}
+            trend="neutral"
+            trendLabel="API Usage"
+            accentColor="#06b6d4"
           />
         </div>
 

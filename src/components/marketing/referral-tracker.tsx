@@ -11,9 +11,11 @@ export function ReferralTracker() {
   useEffect(() => {
     if (trackedRef.current) return;
     const ref = searchParams.get("ref");
-    if (ref) {
+    const bh = searchParams.get("BH");
+    const source = bh || ref;
+    if (source) {
       trackedRef.current = true;
-      void trackFunnelEvent("visit", { source: ref });
+      void trackFunnelEvent("visit", { source });
     }
   }, [searchParams]);
 

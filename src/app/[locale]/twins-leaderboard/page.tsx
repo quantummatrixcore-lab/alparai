@@ -1,5 +1,4 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { DIGITAL_TWINS } from "@/lib/agent-os/personas";
 import { TwinsLeaderboardClient } from "./twins-leaderboard-client";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {

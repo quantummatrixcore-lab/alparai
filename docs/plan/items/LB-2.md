@@ -30,6 +30,31 @@ priority: `import-incidents`, `k-weekly-refresh`, `quota-snapshot` lead.
 like working infrastructure but are not is the exact condition that produced this item; leaving the
 unscheduled majority undocumented reproduces it.
 
+**Unscheduled Routes:**
+Due to Vercel plan limits on the number of cron jobs, only priority jobs are scheduled. The following 22 routes are currently unscheduled and must be invoked manually if needed:
+- `ai-heartbeat`
+- `backup`
+- `benchmark`
+- `cost-alarm`
+- `data-synthesis`
+- `fetch-external`
+- `generate-marketing`
+- `hard-delete`
+- `k-model-retirement`
+- `k-provider-preview`
+- `keep-alive`
+- `kill-metric`
+- `moderation-sla-alarm`
+- `newsletter`
+- `omega-audit`
+- `outreach`
+- `pivot-check`
+- `process-deletions`
+- `retro-audit`
+- `security-audit`
+- `translate-backfill`
+- `verify-geo-citations`
+
 **3. Configure the feeds.** Set `AIAAIC_FEED_URL` and `AIID_FEED_URL` in the Vercel project
 environment, and add both to `.env.example` with a comment naming the expected CSV shape (the header
 row is given in `LB-3`).

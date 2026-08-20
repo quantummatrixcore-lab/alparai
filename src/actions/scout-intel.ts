@@ -2,7 +2,6 @@
 
 import { requireAdmin } from "@/lib/auth/session";
 import { createClient } from "@/lib/supabase/server";
-import { EcosystemScout } from "@/lib/agent-os/scouts/ecosystem-scout";
 import { logger } from "@/lib/utils/logger";
 import { revalidatePath } from "next/cache";
 

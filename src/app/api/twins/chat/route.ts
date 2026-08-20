@@ -1,8 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { type NextRequest, NextResponse } from "next/server";
-import { DIGITAL_TWINS } from "@/lib/agent-os/personas";
-import { ArbitrageEngine } from "@/lib/agent-os/arbitrage-engine";
-import { calculateAlignmentScore, selfHealResponse } from "@/lib/agent-os/alignment-engine";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { fetchWithSsrfGuard } from "@/lib/security/ssrf";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";

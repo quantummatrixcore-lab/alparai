@@ -129,7 +129,7 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!api/health|api/cron|api/webhook|_next/static|_next/image|_vercel|auth/callback|auth/v1/|images/|icons/|fonts/|favicon\\.ico|robots\\.txt|sitemap\\.xml|manifest\\.webmanifest|.*\\.(?:svg|png|jpg|jpeg|gif|webp|css|js|ico|woff|woff2|ttf|eot|json|xml|txt|webmanifest)).*)",
-    "/api/((?!health|cron|webhook).*)",
+    "/((?!api/cron|api/webhook|_next/static|_next/image|_vercel|auth/callback|auth/v1/|images/|icons/|fonts/|favicon\\.ico|robots\\.txt|sitemap\\.xml|manifest\\.webmanifest|.*\\.(?:svg|png|jpg|jpeg|gif|webp|css|js|ico|woff|woff2|ttf|eot|json|xml|txt|webmanifest)).*)",
+    "/api/((?!cron|webhook).*)",
   ],
 };

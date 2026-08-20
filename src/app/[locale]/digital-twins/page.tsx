@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { DIGITAL_TWINS, DIGITAL_TWINS_LIST } from "@/lib/agent-os/personas";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";

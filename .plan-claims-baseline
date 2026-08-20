@@ -1,0 +1,7 @@
+# Backlog rows marked complete before check-plan-claims.mjs required a
+# `closed-by:<sha>@<branch>` citation. Ratchet: entries may only be REMOVED,
+# as each row gains a real citation or is retired. Never add to this file.
+UI-1
+UI-2
+UI-3
+UI-4

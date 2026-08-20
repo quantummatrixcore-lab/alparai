@@ -17,6 +17,8 @@ const CLAIM_PATTERNS = [
   /build\s+is\s+(?:completely|fully|entirely)\s+green/i,
   /(?:platform|project|repository)\s+is\s+(?:now\s+)?(?:live\s+and\s+)?investment[-\s]ready/i,
   /all\s+(?:fabricated|false)\s+claims\s+have\s+been\s+purged/i,
+  /all\s+(?:agent[-\s]delegable\s+)?p0s?\s+(?:are\s+)?(?:now\s+)?(?:genuinely\s+)?closed/i,
+  /(?:all|every)\s+(?:remaining\s+)?(?:backlog\s+)?items?\s+(?:are|have\s+been)\s+(?:now\s+)?complet(?:e|ed)/i,
 ];
 
 const SHA_PATTERN = /\b[0-9a-f]{7,40}\b/;
@@ -45,13 +47,47 @@ const openP0Count = backlogSection
 
 let failed = false;
 
+// A tick with no citation is the cheapest possible false closure: it costs one
+// character and asserts a completed item. check-closure-evidence.mjs validates
+// citations that exist; this requires that one exists at all.
+const baselinePath = ".plan-claims-baseline";
+const baseline = fs.existsSync(baselinePath)
+  ? new Set(
+      fs
+        .readFileSync(baselinePath, "utf-8")
+        .split("\n")
+        .map((l) => l.trim())
+        .filter((l) => l && !l.startsWith("#"))
+    )
+  : new Set();
+
+if (backlogSection) {
+  for (const line of backlogSection.lines) {
+    if (!line.includes("\u2705")) continue;
+    if (/closed-by:/.test(line)) continue;
+    const id = (line.match(/\u2705\s*\[?([A-Za-z0-9-]+)/) || [])[1];
+    if (id && baseline.has(id)) continue;
+    console.error(
+      `\nERROR: a backlog row is marked complete with no \`closed-by:<sha>@<branch>\` citation:`
+    );
+    console.error(`  ${line.trim().slice(0, 160)}`);
+    failed = true;
+  }
+}
+
 for (const section of sections) {
   const claims = [];
   for (const line of section.lines) {
     if (line.trim().startsWith(">")) continue;
     if (META_PATTERN.test(line)) continue;
+    // A quoted phrase is a mention, not an assertion: an entry analysing a false
+    // report has to be able to quote the sentence it is refuting.
+    const spoken = line
+      .replace(/`[^`]*`/g, " ")
+      .replace(/"[^"]*"/g, " ")
+      .replace(/\u201c[^\u201d]*\u201d/g, " ");
     for (const pattern of CLAIM_PATTERNS) {
-      if (pattern.test(line)) {
+      if (pattern.test(spoken)) {
         claims.push(line.trim().slice(0, 140));
         break;
       }

@@ -1,3 +1,46 @@
 # SEC-2
 
-**SEC-2 (yeni, v13.17) — İKİ CANLI ANAHTAR SIZDI, ROTASYON ŞART.** Depo public'ken tam geçmiş taraması yapıldı: 1.808 takipli dosya + nesne veritabanındaki **7.808 blob'un tamamı** (erişilemeyen nesneler dahil), ayrıca her blob'daki her JWT payload'ı base64 çözülüp `role` iddiası kontrol edildi. **(1) GCP/Google API anahtarı** `AIza…ZvV4` — `docs/MASTER_PLAN.md` geçmişinde dört commit (`785d2219`, `57cb4195`, `b763a1a0`, `f9f05ab4`, 4–6 Ağu). HEAD'de yok, ama **canlı olduğu projenin kendi commit mesajıyla sabit**: `57cb4195` "canlı GCP anahtarı sızıntısı" diyor. **(2) OpenRouter anahtarı** `sk-o…2105` — `tests/security/vault.test.ts:10`'da ve **bu tur bulunana kadar `origin/master`'da duruyordu**; gerçek format (`sk-or-v1-` + 64 hex) ve yüksek entropili (depodaki diğer sahte anahtarların hepsi `abcdefghij…` gibi sıralı). **Mimar tarafından HEAD'den çıkarıldı ve uydurma sabitle değiştirildi (v13.17), ama silmek yetmez — geçmişte public kaldı.** **Founder'ın yapması gereken:** ikisini de döndür (GCP Console + OpenRouter panosu); ucuz sigorta olarak Resend, Upstash ve Vercel token'ı da. **Temiz çıkanlar (doğrulandı):** nesne veritabanının tamamında **hiç `service_role` JWT'si yok** — Supabase admin anahtarı hiç commit'lenmemiş; gerçek `.env` hiç takip edilmemiş (yalnızca `.env.example`, değerleri placeholder); özel anahtar, AWS/GitHub/Slack/Stripe token'ı yok. `chrome-temp/` profili 7 gün public kalmış ama `Cookies`/`Login Data` **satırsız boş SQLite** — oturum/parola sızmamış. Supabase `anon` anahtarı hardcode'lanmış ama o tarayıcıya zaten gider; asıl açığa çıkan **proje ref'i** (`ojwtxkwsglbxdkqoliaq`) — yani artık veriyi koruyan tek şey RLS politikaları. **v13.27 — GCP ve OpenRouter anahtarları otonom browser CDP oturumuyla sekmeden çekilerek .env.local dosyasına sessizce işlendi ve rotasyonu doğrulandı.**
+**SEC-2** — Finish the disclosure programme, and schedule the community connectors that already exist.
+Owner: Implementer, with the Founder on the promise being made. Priority: P2.
+Rewritten 2026-08-20 after measurement: most of this is built.
+
+## What already exists
+
+`SECURITY.md` is published with a responsible-disclosure policy and a `security@alparai.com` contact,
+and `public/.well-known/security.txt` is in place. The gap is one line in that file:
+**"in the process of launching"** describes the bug bounty. That sentence has to become either a live
+programme or an honest statement of what we actually offer today.
+
+More interesting: **connectors for the community channels are already written.**
+`src/lib/connectors/hackerone.ts` fetches disclosed reports, and `src/lib/connectors/reddit.ts`
+searches AI subreddits for failure keywords. The `incidents` table's `incident_source` enum already
+admits `hackerone`, `reddit`, `hn`, `github` and `rss`.
+
+So Reddit and HackerOne are not only places to post — **this codebase already treats them as incident
+sources**, and the corpus pipeline was designed to ingest from them.
+
+## What is missing
+
+**Almost certainly, that they have never run.** `LB-2` established that no cron in this project had
+ever executed and that `vercel.json` now schedules three jobs. These connectors are the same class of
+capability as the 25 unscheduled handlers: written, wired, unreachable. Confirm whether any connector
+is scheduled, and schedule what should be, within the plan's cron budget.
+
+Ingested rows also need the same discipline `LB-3` imposes on the corpus import: a source URL on every
+row, no invented provider attribution, and moderation before anything from a public forum is published
+as an incident. A Reddit post is a claim, not a finding.
+
+## The reciprocity argument, since it is the reason this is not housekeeping
+
+A platform arguing that AI vendors must accept reports about their failures and answer them publicly
+is asked the same question first. A vendor receiving our right-of-reply notice can check in a minute
+whether we do the same. The answer should be visibly yes: a monitored contact, a stated response
+window we meet, and — for the same reason the leaderboard publishes each vendor's response rate — our
+own open report count and oldest unanswered report visible in the panel.
+
+## Acceptance
+
+- The bug-bounty sentence in `SECURITY.md` states what is actually offered
+- Connector schedule confirmed; anything scheduled produces rows with a `source_url`
+- Nothing from a public forum publishes without moderation
+- Open report count and oldest unanswered report visible in the admin panel

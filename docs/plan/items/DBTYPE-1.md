@@ -81,3 +81,10 @@ Constraints:
 A regeneration that deletes 4868 lines should not be able to merge silently. Proposed guard, for a
 later item: a CI check that fails when `src/types/database.ts` shrinks by more than a threshold in a
 single commit without an accompanying migration that drops tables.
+
+## Closed 2026-08-20 (v13.66) — measured, not reported
+
+At commit `a23b10d1`, `pnpm typecheck` (a real `tsc --noEmit`, `package.json:36`) exits 0 with zero
+errors and `@ts-nocheck` directives under `src/` number zero. This item was carried as an open P0
+after the work was already finished. A later four-error regression (`47db3b8e`) is tracked separately
+as `TEST-1` and does not reopen this item.

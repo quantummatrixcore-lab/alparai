@@ -30,6 +30,7 @@ export interface ImportIncidentRow {
   euActSeriousIncidentClass: string | null;
   euActHighRiskSystemCategory: string | null;
   euActReportingDeadlineDays: number | null;
+  affectedProvider?: string | null;
 }
 
 export interface ParseResult {
@@ -198,11 +199,30 @@ function mapAiid(
   raw: Record<string, string>,
   rowIndex: number,
 ): { row: ImportIncidentRow | null; error: string | null } {
-  const title = (raw["title"] ?? raw["Title"] ?? "").trim();
-  const description = (raw["description"] ?? raw["Description"] ?? raw["text"] ?? "").trim();
-  const externalId = (raw["incident_id"] ?? raw["id"] ?? String(rowIndex)).trim();
-  const sourceUrl = (raw["url"] ?? raw["source_url"] ?? "").trim() || null;
-  const incidentDate = parseDate(raw["date_published"] ?? raw["date"] ?? "");
+  const title = (raw["Title"] ?? raw["title"] ?? "").trim();
+  const description = (raw["Description"] ?? raw["description"] ?? raw["text"] ?? "").trim();
+  const externalId = (
+    raw["AIID ID"] ??
+    raw["aiid id"] ??
+    raw["ID"] ??
+    raw["id"] ??
+    String(rowIndex)
+  ).trim();
+  const sourceUrl =
+    (raw["Primary reference URL"] ?? raw["primary reference url"] ?? raw["url"] ?? "").trim() ||
+    null;
+  const incidentDate = parseDate(raw["Date"] ?? raw["date"] ?? raw["date_published"] ?? "");
+  const affected = (raw["Affected"] ?? raw["affected"] ?? "").trim() || null;
+  const severityRaw = (raw["Severity"] ?? raw["severity"] ?? "").toLowerCase().trim();
+  let severity: "low" | "medium" | "high" | "critical" = "medium";
+  if (
+    severityRaw === "critical" ||
+    severityRaw === "high" ||
+    severityRaw === "medium" ||
+    severityRaw === "low"
+  ) {
+    severity = severityRaw as any;
+  }
 
   if (!title || title.length < 8) {
     return { row: null, error: `Row ${rowIndex}: title too short ("${title}")` };
@@ -219,16 +239,18 @@ function mapAiid(
       title,
       description,
       category: "other",
-      severity: "medium",
+      severity,
       incidentDate,
       locationCountry: null,
       sourceUrl,
-      importAttribution: "AI Incident Database (CC BY-SA 4.0) — incidentdatabase.ai",
+      importAttribution:
+        "VulcanLab GenAI Incidents (CC BY 4.0) — github.com/VulcanLab/genai-security-incidents",
       language: "en",
       euActRiskCategory: euActMapping.riskCategory,
       euActSeriousIncidentClass: euActMapping.seriousIncidentClass,
       euActHighRiskSystemCategory: euActMapping.highRiskSystemCategory,
       euActReportingDeadlineDays: euActMapping.reportingDeadlineDays,
+      affectedProvider: affected,
     },
     error: null,
   };

@@ -31,10 +31,9 @@ export function AiBudgetTransparencyScore({
     setTimeout(() => setIsRefreshing(false), 800);
   };
 
-  const budgetUsagePct = totalBudgetTokens ? Math.min(
-    100,
-    Math.round(((consumedTokens || 0) / totalBudgetTokens) * 1000) / 10,
-  ) : 0;
+  const budgetUsagePct = totalBudgetTokens
+    ? Math.min(100, Math.round(((consumedTokens || 0) / totalBudgetTokens) * 1000) / 10)
+    : 0;
   const strokeDashoffset = score !== undefined ? 440 - (440 * score) / 100 : 440;
 
   return (
@@ -61,11 +60,11 @@ export function AiBudgetTransparencyScore({
               </h2>
               <span className="border-accent-500/30 bg-accent-500/10 text-accent-300 inline-flex shrink-0 items-center gap-1 rounded-full border px-2.5 py-0.5 text-[10px] font-bold tracking-wide">
                 <Sparkles className="text-accent-400 h-3 w-3" />{" "}
-                {t("task_label", { number: "160" }) || "GÃ¶rev #160"}
+                {t("task_label", { number: "160" }) || "Görev #160"}
               </span>
             </div>
             <p className="text-fg-muted truncate text-xs">
-              Token BÃ¼tÃ§e Anti-HalÃ¼sinasyon Motoru Â· Real-Time Entropy & Verification Monitor
+              Token Bütçe Anti-Halüsinasyon Motoru Â· Real-Time Entropy & Verification Monitor
             </p>
           </div>
         </div>
@@ -153,7 +152,7 @@ export function AiBudgetTransparencyScore({
           <div className="border-success-500/30 bg-success-500/10 text-success-300 mt-4 flex max-w-full items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium">
             <CheckCircle2 className="text-success-400 h-3.5 w-3.5 shrink-0" />
             <span className="truncate">
-              {t("optimum_accuracy_protection_tier") || "Optimum DoÄŸruluk Koruma Derecesi"}
+              {t("optimum_accuracy_protection_tier") || "Optimum Doğruluk Koruma Derecesi"}
             </span>
           </div>
         </div>
@@ -166,8 +165,7 @@ export function AiBudgetTransparencyScore({
               <span className="text-fg-secondary flex min-w-0 items-center gap-2">
                 <Zap className="text-warning-400 h-4 w-4 shrink-0" />{" "}
                 <span className="truncate">
-                  {t("token_hallucination_budget_usage") ||
-                    "Token HalÃ¼sinasyon BÃ¼tÃ§e KullanÄ±mÄ±"}
+                  {t("token_hallucination_budget_usage") || "Token Halüsinasyon Bütçe Kullanımı"}
                 </span>
               </span>
               <span className="text-fg-muted shrink-0 text-[11px] sm:text-xs">
@@ -188,11 +186,11 @@ export function AiBudgetTransparencyScore({
               <span className="text-success-400 flex min-w-0 items-center gap-1">
                 <ShieldCheck className="h-3 w-3 shrink-0" />{" "}
                 <span className="truncate">
-                  {t("anti_hallucination_shield_active") || "Anti-HalÃ¼sinasyon KalkanÄ± Aktif"}
+                  {t("anti_hallucination_shield_active") || "Anti-Halüsinasyon Kalkanı Aktif"}
                 </span>
               </span>
               <span className="shrink-0">
-                {t("budget_quota_max_tokens") || "BÃ¼tÃ§e KotasÄ±: 10.000 Token Max"}
+                {t("budget_quota_max_tokens") || "Bütçe Kotası: 10.000 Token Max"}
               </span>
             </div>
           </div>
@@ -201,7 +199,7 @@ export function AiBudgetTransparencyScore({
           <div className="grid w-full min-w-0 grid-cols-1 gap-3 sm:grid-cols-3">
             <div className="hover:border-accent-500/30 min-w-0 overflow-hidden rounded-xl border border-white/5 bg-white/[0.02] p-3 transition-colors">
               <p className="text-fg-muted truncate text-[11px] font-medium">
-                {t("hallucination_rate") || "HalÃ¼sinasyon OranÄ±"}
+                {t("hallucination_rate") || "Halüsinasyon Oranı"}
               </p>
               <div className="mt-1 flex items-baseline justify-between gap-1">
                 <p className="text-success-400 truncate text-base font-bold sm:text-lg">
@@ -215,7 +213,7 @@ export function AiBudgetTransparencyScore({
 
             <div className="hover:border-brand-500/30 min-w-0 overflow-hidden rounded-xl border border-white/5 bg-white/[0.02] p-3 transition-colors">
               <p className="text-fg-muted truncate text-[11px] font-medium">
-                {t("verified_claim") || "DoÄŸrulanmÄ±ÅŸ Ä°ddia"}
+                {t("verified_claim") || "Doğrulanmış İddia"}
               </p>
               <div className="mt-1 flex items-baseline justify-between gap-1">
                 <p className="text-accent-300 truncate text-base font-bold sm:text-lg">
@@ -247,12 +245,12 @@ export function AiBudgetTransparencyScore({
         <div className="flex min-w-0 items-center gap-2">
           <Activity className="text-accent-400 h-3.5 w-3.5 shrink-0 animate-pulse" />
           <span className="truncate">
-            Sistem Durumu: Anti-HalÃ¼sinasyon ProtokolÃ¼ v2.4 Tam Yetki Ã‡alÄ±ÅŸÄ±yor
+            Sistem Durumu: Anti-Halüsinasyon Protokolü v2.4 Tam Yetki Çalışıyor
           </span>
         </div>
         <div className="flex shrink-0 items-center justify-between gap-3 sm:justify-end">
           <span className="text-fg-disabled text-[11px] sm:text-xs">
-            Zaman DamgasÄ±: Live Auto-Sync
+            Zaman Damgası: Live Auto-Sync
           </span>
           <span className="border-accent-500/20 bg-accent-500/10 text-accent-400/90 shrink-0 rounded border px-2 py-0.5 font-mono text-[11px]">
             {t("rule_160_verified") || "Rule #160 Verified"}

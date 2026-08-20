@@ -109,6 +109,8 @@ export interface ProviderResponse {
   verified: boolean;
   created_at: string;
   provider_name: string;
+  response_type?: "official_reply" | "public_statement";
+  source_url?: string | null;
 }
 
 export interface SuggestionListItem {

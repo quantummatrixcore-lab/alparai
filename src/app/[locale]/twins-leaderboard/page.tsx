@@ -17,7 +17,7 @@ export default async function TwinsLeaderboardPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  
+
   // "Fetch" the data on the server side
   const initialData = Object.values(DIGITAL_TWINS);
 

@@ -10,6 +10,8 @@ export interface ProviderResponseCardProps {
   response: string;
   createdAt: string;
   verified: boolean;
+  responseType?: "official_reply" | "public_statement";
+  sourceUrl?: string | null;
 }
 
 export function ProviderResponseCard({
@@ -17,6 +19,8 @@ export function ProviderResponseCard({
   response,
   createdAt,
   verified,
+  responseType = "official_reply",
+  sourceUrl,
 }: ProviderResponseCardProps) {
   const t = useTranslations("incident");
   const locale = useLocale();
@@ -30,7 +34,22 @@ export function ProviderResponseCard({
             {t("aiResponse")}
           </Badge>
         </div>
-        {verified ? (
+        {responseType === "public_statement" ? (
+          <a
+            href={sourceUrl || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-opacity hover:opacity-80"
+          >
+            <Badge
+              variant="outline"
+              size="sm"
+              className="border-brand-500 text-brand-500 bg-brand-500/10"
+            >
+              {t("publiclyStated") || "Publicly Stated"}
+            </Badge>
+          </a>
+        ) : verified ? (
           <Badge variant="success" size="sm" dot>
             <CheckCircle2 className="h-3 w-3" aria-hidden="true" />
             {t("verified")}

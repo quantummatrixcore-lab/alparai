@@ -22,7 +22,7 @@ export function AdvisorRoster() {
             <h3 className="bg-gradient-to-br from-white to-slate-400 bg-clip-text text-xl font-bold tracking-tight text-transparent">
               The Council of 30 Sages
             </h3>
-            <p className="text-slate-400 text-xs font-medium tracking-wide">
+            <p className="text-xs font-medium tracking-wide text-slate-400">
               {t("advisor_roster_desc") || "Autonomous Cyber-Renaissance Intelligence"}
             </p>
           </div>
@@ -45,26 +45,22 @@ export function AdvisorRoster() {
             >
               {/* Dynamic Gradient Background for each card */}
               <div
-                className={`absolute inset-0 opacity-0 transition-opacity duration-500 group-hover/card:opacity-10 bg-gradient-to-br ${twin.stats.badgeGradient}`}
+                className={`absolute inset-0 bg-gradient-to-br opacity-0 transition-opacity duration-500 group-hover/card:opacity-10 ${twin.stats.badgeGradient}`}
               />
-              
+
               <div className="relative z-10">
                 <div className="mb-3 flex items-center justify-between">
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-300">
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-bold tracking-wider text-slate-300 uppercase">
                     <Sparkles className="h-3 w-3 text-amber-400" />
                     {twin.stats.tier}
                   </span>
-                  <span className="font-mono text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                  <span className="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] font-bold text-emerald-400">
                     %{twin.stats.successRate} WIN
                   </span>
                 </div>
-                
-                <h4 className="mb-1 text-lg font-bold text-white drop-shadow-md">
-                  {twin.name}
-                </h4>
-                <p className="line-clamp-2 text-xs font-medium text-slate-400">
-                  {twin.title}
-                </p>
+
+                <h4 className="mb-1 text-lg font-bold text-white drop-shadow-md">{twin.name}</h4>
+                <p className="line-clamp-2 text-xs font-medium text-slate-400">{twin.title}</p>
               </div>
 
               <div className="relative z-10 mt-5 flex items-center justify-between border-t border-white/10 pt-4">
@@ -76,7 +72,7 @@ export function AdvisorRoster() {
                 </div>
                 <Link
                   href={`/en/admin/ai-hub/orchestrator`}
-                  className="rounded-full bg-white/10 p-1.5 text-white transition-all hover:bg-brand-500 hover:text-white"
+                  className="hover:bg-brand-500 rounded-full bg-white/10 p-1.5 text-white transition-all hover:text-white"
                 >
                   <ChevronRight className="h-4 w-4" />
                 </Link>

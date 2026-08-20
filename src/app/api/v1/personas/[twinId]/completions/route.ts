@@ -11,19 +11,23 @@ interface CompletionRequest {
   max_tokens?: number;
 }
 
-export async function POST(
-  req: Request,
-  props: { params: Promise<{ twinId: string }> }
-) {
+export async function POST(req: Request, props: { params: Promise<{ twinId: string }> }) {
   try {
     const { twinId } = await props.params;
-    
+
     // 1. Validate Twin ID
     const persona: DigitalTwinPersona | undefined = DIGITAL_TWINS[twinId];
     if (!persona) {
       return NextResponse.json(
-        { error: { message: "Persona not found", type: "invalid_request_error", param: "twinId", code: "persona_not_found" } },
-        { status: 404 }
+        {
+          error: {
+            message: "Persona not found",
+            type: "invalid_request_error",
+            param: "twinId",
+            code: "persona_not_found",
+          },
+        },
+        { status: 404 },
       );
     }
 
@@ -31,8 +35,15 @@ export async function POST(
     const authHeader = req.headers.get("authorization");
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
       return NextResponse.json(
-        { error: { message: "Missing or invalid authorization header", type: "authentication_error", param: null, code: "invalid_api_key" } },
-        { status: 401 }
+        {
+          error: {
+            message: "Missing or invalid authorization header",
+            type: "authentication_error",
+            param: null,
+            code: "invalid_api_key",
+          },
+        },
+        { status: 401 },
       );
     }
     const apiKey = authHeader.replace("Bearer ", "").trim();
@@ -41,14 +52,13 @@ export async function POST(
     const adminClient = createAdminClient();
     let isAuthorized = false;
     try {
- 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { data: keyData, error: keyError } = await (adminClient as any)
         .from("api_keys")
         .select("id, status")
         .eq("key", apiKey)
         .single();
-        
+
       if (keyError) {
         if (keyError.code === "42P01" || keyError.code === "PGRST116") {
           if (apiKey.startsWith("sk-") || apiKey === "alpar-test-key") {
@@ -66,8 +76,15 @@ export async function POST(
 
     if (!isAuthorized) {
       return NextResponse.json(
-        { error: { message: "Unauthorized API Key", type: "authentication_error", param: null, code: "invalid_api_key" } },
-        { status: 401 }
+        {
+          error: {
+            message: "Unauthorized API Key",
+            type: "authentication_error",
+            param: null,
+            code: "invalid_api_key",
+          },
+        },
+        { status: 401 },
       );
     }
 
@@ -77,8 +94,15 @@ export async function POST(
     const rlResult = await checkRateLimit(rlKey);
     if (!rlResult.ok) {
       return NextResponse.json(
-        { error: { message: "Rate limit exceeded", type: "rate_limit_error", param: null, code: "rate_limit_exceeded" } },
-        { status: 429, headers: { "Retry-After": rlResult.retryAfter?.toString() || "60" } }
+        {
+          error: {
+            message: "Rate limit exceeded",
+            type: "rate_limit_error",
+            param: null,
+            code: "rate_limit_exceeded",
+          },
+        },
+        { status: 429, headers: { "Retry-After": rlResult.retryAfter?.toString() || "60" } },
       );
     }
 
@@ -86,16 +110,24 @@ export async function POST(
     const body: CompletionRequest = await req.json().catch(() => ({ messages: [] }));
     if (!body.messages || !Array.isArray(body.messages)) {
       return NextResponse.json(
-        { error: { message: "Invalid request body: messages array is required", type: "invalid_request_error", param: "messages", code: "invalid_format" } },
-        { status: 400 }
+        {
+          error: {
+            message: "Invalid request body: messages array is required",
+            type: "invalid_request_error",
+            param: "messages",
+            code: "invalid_format",
+          },
+        },
+        { status: 400 },
       );
     }
 
     // Extract the latest user query for alignment calculation
-    const latestUserPrompt = body.messages
-      .filter((m) => m.role === "user")
-      .map((m) => m.content)
-      .pop() || "";
+    const latestUserPrompt =
+      body.messages
+        .filter((m) => m.role === "user")
+        .map((m) => m.content)
+        .pop() || "";
 
     // 6. Prepend System Prompt
     const systemMessage = { role: "system", content: persona.systemPrompt };
@@ -103,29 +135,29 @@ export async function POST(
 
     // 7. Make request to OpenRouter or fallback mock
     const openRouterKey = process.env.OPENROUTER_API_KEY;
-    const fallbackModel = "google/gemini-2.5-flash"; 
+    const fallbackModel = "google/gemini-2.5-flash";
     const targetModel = body.model || fallbackModel;
-    
+
     let completionText = "";
     let promptTokens = 0;
     let completionTokens = 0;
-    
+
     if (openRouterKey) {
       try {
         const orRes = await fetchWithSsrfGuard("https://openrouter.ai/api/v1/chat/completions", {
           method: "POST",
           headers: {
-            "Authorization": `Bearer ${openRouterKey}`,
+            Authorization: `Bearer ${openRouterKey}`,
             "Content-Type": "application/json",
             "HTTP-Referer": "https://alparai.com",
-            "X-Title": "ALPAR AI"
+            "X-Title": "ALPAR AI",
           },
           body: JSON.stringify({
             model: targetModel,
             messages,
             temperature: body.temperature ?? 0.7,
-            max_tokens: body.max_tokens ?? 2000
-          })
+            max_tokens: body.max_tokens ?? 2000,
+          }),
         });
 
         if (orRes.ok) {
@@ -155,14 +187,14 @@ export async function POST(
     if (alignmentScore < 85) {
       logger.info("Persona Alignment score below threshold, triggering self-healing", {
         twinId,
-        score: alignmentScore
+        score: alignmentScore,
       });
 
       const healedText = await selfHealResponse(
         persona,
         latestUserPrompt,
         completionText,
-        alignmentScore
+        alignmentScore,
       );
 
       if (healedText && healedText.trim().length > 0) {
@@ -177,31 +209,33 @@ export async function POST(
 
     // 9. Log Usage (Vekilharçlık Kaydı)
     try {
- 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const { error: rpcError } = await (adminClient.rpc as any)("increment_persona_usage", { 
-        p_twin_id: twinId, 
-        p_tokens: totalTokens 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { error: rpcError } = await (adminClient.rpc as any)("increment_persona_usage", {
+        p_twin_id: twinId,
+        p_tokens: totalTokens,
       });
-      
+
       if (rpcError) {
- 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         await (adminClient as any).from("persona_usage_stats").insert({
           twin_id: twinId,
           tokens_used: totalTokens,
           request_count: 1,
-          last_used_at: new Date().toISOString()
+          last_used_at: new Date().toISOString(),
         });
       }
     } catch (logErr) {
-      logger.error("Usage logging failed", { twinId, totalTokens }, logErr instanceof Error ? logErr : undefined);
+      logger.error(
+        "Usage logging failed",
+        { twinId, totalTokens },
+        logErr instanceof Error ? logErr : undefined,
+      );
     }
 
     // 10. Format and return OpenAI compatible response with alignment_score
     const responseId = `chatcmpl-${crypto.randomUUID()}`;
     const timestamp = Math.floor(Date.now() / 1000);
-    
+
     return NextResponse.json({
       id: responseId,
       object: "chat.completion",
@@ -212,24 +246,30 @@ export async function POST(
           index: 0,
           message: {
             role: "assistant",
-            content: completionText
+            content: completionText,
           },
-          finish_reason: "stop"
-        }
+          finish_reason: "stop",
+        },
       ],
       usage: {
         prompt_tokens: Math.ceil(promptTokens),
         completion_tokens: Math.ceil(completionTokens),
-        total_tokens: totalTokens
+        total_tokens: totalTokens,
       },
-      alignment_score: alignmentScore
+      alignment_score: alignmentScore,
     });
-
   } catch (error) {
     logger.error("Persona API Error", { error }, error instanceof Error ? error : undefined);
     return NextResponse.json(
-      { error: { message: "Internal server error", type: "api_error", param: null, code: "internal_error" } },
-      { status: 500 }
+      {
+        error: {
+          message: "Internal server error",
+          type: "api_error",
+          param: null,
+          code: "internal_error",
+        },
+      },
+      { status: 500 },
     );
   }
 }

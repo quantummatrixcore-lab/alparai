@@ -125,7 +125,13 @@ export async function importIncidents(
 
       // Auto-resolve provider
       let matchedProviderId: string | null = null;
-      const textToSearch = `${row.title} ${row.description}`.toLowerCase();
+
+      // If affectedProvider is explicitly provided, we ONLY search that string for provider matches.
+      // Otherwise, we fall back to searching title and description.
+      // This honors LB-3 rule: "A row that cannot be resolved to a real provider must not invent one."
+      const textToSearch = row.affectedProvider
+        ? row.affectedProvider.toLowerCase()
+        : `${row.title} ${row.description}`.toLowerCase();
 
       for (const item of providerKeywords) {
         let found = false;

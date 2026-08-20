@@ -66,7 +66,10 @@ export function IncidentDetailView({
       id: "event-created",
       type: "system",
       title: locale === "tr" ? "Kayıt Açıldı" : "Record Opened",
-      description: locale === "tr" ? "Kullanıcı tarafından olay sisteme işlendi ve şifrelendi." : "Incident recorded and encrypted by user.",
+      description:
+        locale === "tr"
+          ? "Kullanıcı tarafından olay sisteme işlendi ve şifrelendi."
+          : "Incident recorded and encrypted by user.",
       timestamp: incident.created_at,
       status: "success",
     },
@@ -77,7 +80,10 @@ export function IncidentDetailView({
       id: "event-evidence",
       type: "user",
       title: locale === "tr" ? "Kanıt Yüklendi" : "Evidence Uploaded",
-      description: locale === "tr" ? `${evidence.length} adet dijital kanıt sisteme eklendi.` : `${evidence.length} digital evidence files attached.`,
+      description:
+        locale === "tr"
+          ? `${evidence.length} adet dijital kanıt sisteme eklendi.`
+          : `${evidence.length} digital evidence files attached.`,
       timestamp: incident.created_at, // Assume same time for simplicity
       status: "success",
     });
@@ -88,27 +94,44 @@ export function IncidentDetailView({
       id: "event-verified",
       type: "verification",
       title: locale === "tr" ? "Çapraz Denetim (Cross-Audit)" : "Cross-Audit Complete",
-      description: locale === "tr" ? `Yapay zeka modelleri tarafından doğruluk puanı ${incident.cross_audit_truth_score}/100 olarak belirlendi.` : `Truth score computed as ${incident.cross_audit_truth_score}/100 by independent AI models.`,
+      description:
+        locale === "tr"
+          ? `Yapay zeka modelleri tarafından doğruluk puanı ${incident.cross_audit_truth_score}/100 olarak belirlendi.`
+          : `Truth score computed as ${incident.cross_audit_truth_score}/100 by independent AI models.`,
       timestamp: incident.created_at, // Mock timestamp
       status: "success",
     });
   }
 
   if (providerResponse) {
-    timelineEvents.push({
-      id: "event-response",
-      type: "ai",
-      title: locale === "tr" ? "Muhatap Yanıtı" : "Defendant Response",
-      description: providerResponse.response.substring(0, 100) + "...",
-      timestamp: providerResponse.created_at,
-      status: providerResponse.verified ? "success" : "warning",
-    });
+    if (providerResponse.response_type === "public_statement") {
+      timelineEvents.push({
+        id: "event-response",
+        type: "ai",
+        title: locale === "tr" ? "Muhatap Açıklaması" : "Public Statement",
+        description: providerResponse.response.substring(0, 100) + "...",
+        timestamp: providerResponse.created_at,
+        status: "success",
+      });
+    } else {
+      timelineEvents.push({
+        id: "event-response",
+        type: "ai",
+        title: locale === "tr" ? "Muhatap Yanıtı" : "Defendant Response",
+        description: providerResponse.response.substring(0, 100) + "...",
+        timestamp: providerResponse.created_at,
+        status: providerResponse.verified ? "success" : "warning",
+      });
+    }
   } else {
     timelineEvents.push({
       id: "event-pending",
       type: "ai",
       title: locale === "tr" ? "Muhatap Yanıtı Bekleniyor" : "Awaiting Defendant Response",
-      description: locale === "tr" ? "İlgili yapay zeka şirketi platforma davet edildi, henüz resmi bir savunma yapılmadı." : "The AI company was notified and we are awaiting an official response.",
+      description:
+        locale === "tr"
+          ? "İlgili yapay zeka şirketi platforma davet edildi, henüz resmi bir savunma yapılmadı."
+          : "The AI company was notified and we are awaiting an official response.",
       timestamp: new Date().toISOString(),
       status: "pending",
     });
@@ -379,6 +402,8 @@ export function IncidentDetailView({
             response={providerResponse.response}
             createdAt={providerResponse.created_at}
             verified={providerResponse.verified}
+            responseType={providerResponse.response_type}
+            sourceUrl={providerResponse.source_url}
           />
         ) : (
           <Card variant="default" className="border-dashed">

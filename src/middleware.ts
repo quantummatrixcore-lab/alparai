@@ -64,7 +64,6 @@ export async function middleware(request: NextRequest) {
 
   const isAdminPath = pathname.startsWith("/admin") || /^\/[a-z]{2}\/admin(\/|$)/.test(pathname);
 
-
   const reqWithHeaders = new NextRequest(request, { headers: requestHeaders });
 
   let intlResponse: NextResponse;

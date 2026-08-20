@@ -50,30 +50,31 @@ export default function DigitalTwinsPage() {
     <div className="container mx-auto max-w-6xl px-4 py-12">
       <div className="mb-12 text-center">
         <Badge variant="outline" className="mb-4">
-          <Sparkles className="mr-2 h-4 w-4 text-brand-500" />
+          <Sparkles className="text-brand-500 mr-2 h-4 w-4" />
           Agent-OS: Bilge Kurul
         </Badge>
-        <h1 className="text-4xl font-display font-bold md:text-5xl">
+        <h1 className="font-display text-4xl font-bold md:text-5xl">
           Dijital İkizler (Rent-a-Genius)
         </h1>
-        <p className="mx-auto mt-4 max-w-2xl text-fg-muted text-lg">
-          Tarihe yön veren dehaların zihin yapılarıyla doğrudan etkileşime geçin. 
-          Agent-OS &quot;Model Arbitraj Motoru&quot; sayesinde en uygun yapay zeka modeliyle yüksek mantıksal kapasitede danışmanlık alın.
+        <p className="text-fg-muted mx-auto mt-4 max-w-2xl text-lg">
+          Tarihe yön veren dehaların zihin yapılarıyla doğrudan etkileşime geçin. Agent-OS
+          &quot;Model Arbitraj Motoru&quot; sayesinde en uygun yapay zeka modeliyle yüksek mantıksal
+          kapasitede danışmanlık alın.
         </p>
       </div>
 
       {!selectedTwin || !activePersona ? (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {DIGITAL_TWINS_LIST.map((twin) => (
-            <Card 
-              key={twin.id} 
-              className="group cursor-pointer border-white/10 bg-white/5 backdrop-blur-md transition-all hover:bg-white/10 hover:shadow-xl hover:shadow-brand-500/20"
+            <Card
+              key={twin.id}
+              className="group hover:shadow-brand-500/20 cursor-pointer border-white/10 bg-white/5 backdrop-blur-md transition-all hover:bg-white/10 hover:shadow-xl"
               onClick={() => setSelectedTwin(twin.id)}
             >
               <CardHeader className="text-center">
-                <div className="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-brand-500 to-brand-700 p-1">
-                  <div className="flex h-full w-full flex-col items-center justify-center rounded-full bg-bg-primary">
-                    <BrainCircuit className="h-10 w-10 text-brand-400" />
+                <div className="from-brand-500 to-brand-700 mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br p-1">
+                  <div className="bg-bg-primary flex h-full w-full flex-col items-center justify-center rounded-full">
+                    <BrainCircuit className="text-brand-400 h-10 w-10" />
                   </div>
                 </div>
                 <CardTitle>{twin.name}</CardTitle>
@@ -81,7 +82,7 @@ export default function DigitalTwinsPage() {
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap justify-center gap-2">
-                  {twin.expertise.slice(0, 3).map((exp) => (
+                  {twin.expertise.map((exp: any, i: number) => (
                     <Badge key={exp} variant="outline" className="border-brand-500/30 text-xs">
                       {exp}
                     </Badge>
@@ -93,9 +94,13 @@ export default function DigitalTwinsPage() {
         </div>
       ) : (
         <div className="mx-auto max-w-4xl">
-          <Button 
-            variant="ghost" 
-            onClick={() => { setSelectedTwin(null); setChatHistory([]); setModelUsed(null); }}
+          <Button
+            variant="ghost"
+            onClick={() => {
+              setSelectedTwin(null);
+              setChatHistory([]);
+              setModelUsed(null);
+            }}
             className="mb-6"
           >
             ← İkiz Seçimine Dön
@@ -109,34 +114,42 @@ export default function DigitalTwinsPage() {
                   <CardDescription>{activePersona.title}</CardDescription>
                 </div>
                 {modelUsed && (
-                  <Badge variant="outline" className="border-brand-500/30 bg-brand-500/10 text-brand-300">
+                  <Badge
+                    variant="outline"
+                    className="border-brand-500/30 bg-brand-500/10 text-brand-300"
+                  >
                     Model: {modelUsed}
                   </Badge>
                 )}
               </div>
             </CardHeader>
-            <CardContent className="flex-1 overflow-y-auto p-6 space-y-6">
+            <CardContent className="flex-1 space-y-6 overflow-y-auto p-6">
               {chatHistory.length === 0 ? (
-                <div className="flex h-full flex-col items-center justify-center text-fg-muted">
+                <div className="text-fg-muted flex h-full flex-col items-center justify-center">
                   <BrainCircuit className="mb-4 h-16 w-16 opacity-50" />
                   <p>Sohbeti başlatmak için bir soru sorun.</p>
                 </div>
               ) : (
                 chatHistory.map((msg, i) => (
-                  <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
-                    <div className={`max-w-[80%] rounded-2xl px-5 py-3 ${
-                      msg.role === "user" 
-                        ? "bg-brand-600 text-white" 
-                        : "bg-white/10 text-fg-primary backdrop-blur-md"
-                    }`}>
-                      <p className="whitespace-pre-wrap leading-relaxed">{msg.content}</p>
+                  <div
+                    key={i}
+                    className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+                  >
+                    <div
+                      className={`max-w-[80%] rounded-2xl px-5 py-3 ${
+                        msg.role === "user"
+                          ? "bg-brand-600 text-white"
+                          : "text-fg-primary bg-white/10 backdrop-blur-md"
+                      }`}
+                    >
+                      <p className="leading-relaxed whitespace-pre-wrap">{msg.content}</p>
                     </div>
                   </div>
                 ))
               )}
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="flex items-center gap-2 rounded-2xl bg-white/10 px-5 py-3 text-fg-muted backdrop-blur-md">
+                  <div className="text-fg-muted flex items-center gap-2 rounded-2xl bg-white/10 px-5 py-3 backdrop-blur-md">
                     <Loader2 className="h-4 w-4 animate-spin" />
                     <span>Düşünüyor...</span>
                   </div>
@@ -144,8 +157,11 @@ export default function DigitalTwinsPage() {
               )}
             </CardContent>
             <div className="border-t border-white/10 p-4">
-              <form 
-                onSubmit={(e) => { e.preventDefault(); handleSendMessage(); }}
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleSendMessage();
+                }}
                 className="flex items-center gap-2"
               >
                 <Input
@@ -155,7 +171,11 @@ export default function DigitalTwinsPage() {
                   className="flex-1 border-white/20 bg-white/5"
                   disabled={isLoading}
                 />
-                <Button type="submit" disabled={isLoading || !message.trim()} className="bg-brand-600 hover:bg-brand-500">
+                <Button
+                  type="submit"
+                  disabled={isLoading || !message.trim()}
+                  className="bg-brand-600 hover:bg-brand-500"
+                >
                   <Send className="h-4 w-4" />
                 </Button>
               </form>

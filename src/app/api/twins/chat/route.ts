@@ -12,7 +12,10 @@ export async function POST(req: NextRequest) {
     const { twinId, message } = body;
 
     if (!twinId || typeof twinId !== "string" || !message || typeof message !== "string") {
-      return NextResponse.json({ error: "Geçersiz veya eksik parametreler (twinId, message)." }, { status: 400 });
+      return NextResponse.json(
+        { error: "Geçersiz veya eksik parametreler (twinId, message)." },
+        { status: 400 },
+      );
     }
 
     const persona = DIGITAL_TWINS[twinId];
@@ -23,13 +26,16 @@ export async function POST(req: NextRequest) {
     // Rate Limit (Demoda IP başına 15 dakikada 5 istek)
     const hdrs = await headers();
     const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "127.0.0.1";
- 
- 
-    const rl = await checkRateLimit(`${(RATE_LIMIT_KEYS as any).chat_rate_limit ?? "twin_chat"}:${ip}`);
+
+    const rl = await checkRateLimit(
+      `${(RATE_LIMIT_KEYS as any).chat_rate_limit ?? "twin_chat"}:${ip}`,
+    );
     if (!rl.ok) {
       return NextResponse.json(
-        { error: `İstek limiti aşıldı. Lütfen ${rl.retryAfter ?? 60} saniye sonra tekrar deneyin.` },
-        { status: 429, headers: { "Retry-After": String(rl.retryAfter ?? 60) } }
+        {
+          error: `İstek limiti aşıldı. Lütfen ${rl.retryAfter ?? 60} saniye sonra tekrar deneyin.`,
+        },
+        { status: 429, headers: { "Retry-After": String(rl.retryAfter ?? 60) } },
       );
     }
 
@@ -64,16 +70,22 @@ export async function POST(req: NextRequest) {
 
         if (!response.ok) {
           const errorText = await response.text();
-          logger.error("[Twins Chat API] OpenRouter error response", { status: response.status, errorText });
+          logger.error("[Twins Chat API] OpenRouter error response", {
+            status: response.status,
+            errorText,
+          });
           throw new Error(`OpenRouter API hatası: ${response.status}`);
         }
 
         const data = await response.json();
-        reply = data.choices?.[0]?.message?.content || `${persona.name} stratejik analizini tamamladı.`;
+        reply =
+          data.choices?.[0]?.message?.content || `${persona.name} stratejik analizini tamamladı.`;
         promptTokens = data.usage?.prompt_tokens || message.length;
         completionTokens = data.usage?.completion_tokens || reply.length / 4;
       } catch (upstreamError: any) {
-        logger.error("[Twins Chat API] Upstream call failed, switching to local persona engine", { error: upstreamError });
+        logger.error("[Twins Chat API] Upstream call failed, switching to local persona engine", {
+          error: upstreamError,
+        });
         reply = `${persona.name} (${persona.title}) olarak bildiriminiz incelendi: "${message.substring(0, 100)}..." konusundaki stratejik direktifimiz: Sistem mimarisinde tam bağımsızlık, yüksek güvenlik ve asimetrik inovasyon esastır.`;
         promptTokens = message.length;
         completionTokens = 20;
@@ -88,17 +100,15 @@ export async function POST(req: NextRequest) {
     let alignmentScore = calculateAlignmentScore(persona, message, reply);
 
     if (alignmentScore < 85) {
-      logger.info("[Twins Chat API] Persona Alignment score below threshold, triggering self-healing", {
-        twinId,
-        score: alignmentScore
-      });
-
-      const healedText = await selfHealResponse(
-        persona,
-        message,
-        reply,
-        alignmentScore
+      logger.info(
+        "[Twins Chat API] Persona Alignment score below threshold, triggering self-healing",
+        {
+          twinId,
+          score: alignmentScore,
+        },
       );
+
+      const healedText = await selfHealResponse(persona, message, reply, alignmentScore);
 
       if (healedText && healedText.trim().length > 0) {
         reply = healedText;
@@ -112,25 +122,25 @@ export async function POST(req: NextRequest) {
     // Usage Logging (Vekilharçlık Kaydı)
     const adminClient = createAdminClient();
     try {
- 
- 
-      const { error: rpcError } = await (adminClient.rpc as any)("increment_persona_usage", { 
-        p_twin_id: twinId, 
-        p_tokens: totalTokens 
+      const { error: rpcError } = await (adminClient.rpc as any)("increment_persona_usage", {
+        p_twin_id: twinId,
+        p_tokens: totalTokens,
       });
-      
+
       if (rpcError) {
- 
- 
         await (adminClient as any).from("persona_usage_stats").insert({
           twin_id: twinId,
           tokens_used: totalTokens,
           request_count: 1,
-          last_used_at: new Date().toISOString()
+          last_used_at: new Date().toISOString(),
         });
       }
     } catch (logErr) {
-      logger.error("[Twins Chat API] Usage logging failed", { twinId, totalTokens }, logErr instanceof Error ? logErr : undefined);
+      logger.error(
+        "[Twins Chat API] Usage logging failed",
+        { twinId, totalTokens },
+        logErr instanceof Error ? logErr : undefined,
+      );
     }
 
     return NextResponse.json({
@@ -144,7 +154,14 @@ export async function POST(req: NextRequest) {
       },
     });
   } catch (error: any) {
-    logger.error("[Twins API] Unhandled Error", { error }, error instanceof Error ? error : undefined);
-    return NextResponse.json({ error: "Yanıt üretilirken bir sunucu hatası oluştu." }, { status: 500 });
+    logger.error(
+      "[Twins API] Unhandled Error",
+      { error },
+      error instanceof Error ? error : undefined,
+    );
+    return NextResponse.json(
+      { error: "Yanıt üretilirken bir sunucu hatası oluştu." },
+      { status: 500 },
+    );
   }
 }

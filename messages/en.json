@@ -2093,7 +2093,7 @@
     "resources_quota_tempo_ahead": "ahead of pace",
     "resources_quota_tempo_behind": "behind pace",
     "resources_quota_tempo_deviation": "Tempo Deviation",
-    "resources_quota_tempo_subtitle": "Vendor usage vs. expected pace. Tempo deviation = usage% âˆ’ elapsed% of billing period.",
+    "resources_quota_tempo_subtitle": "Vendor usage vs. expected pace. Tempo deviation = usage% − elapsed% of billing period.",
     "resources_quota_tempo_title": "Quota & Tempo",
     "resources_quota_usage": "Usage",
     "resources_redis_commands": "Upstash Redis Commands",

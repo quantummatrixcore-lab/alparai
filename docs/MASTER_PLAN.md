@@ -5,7 +5,77 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.68 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.69 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+
+## v13.69 — Four corrections from the Founder, and the pattern joining them (2026-08-20)
+
+The Founder corrected four statements in v13.68. All four were mine, all four were wrong, and they
+were wrong in the same way — which is more useful than any of them separately.
+
+**1. The platform has users.** v13.68 closed with "a very clean product with zero users." There are
+**30-odd real users**. And the count was never actually missing: `/admin/launch-signal` already runs
+`SELECT count(*) FROM users` beside counts of published, user-submitted and pending incidents. It sits
+on a page that is not in the sidebar menu. The first figure any funder asks for is three clicks deep
+in a route nobody opens — that is a placement defect, not a measurement gap, and it belongs on the
+dashboard.
+
+**2. Real incidents exist, entered by hand.** Fabricated rows and the Founder's genuine entries are in
+the same table right now. The database does distinguish them — `incident_source` defaults to
+`user_submitted` against `aiid_import`, `news_curated` and the connector sources — but the interface
+does not, and neither does the pending purge migration.
+
+**This escalates `LB-1a` from a correctness objection to a risk of destroying real work.** A purge
+matching incidents by `ILIKE` text pattern, with no `incident_source` filter, can delete the Founder's
+own incidents and report success. It must exclude `user_submitted`, name ids explicitly, and run after
+a snapshot. **It is the most dangerous pending operation in the project, and it is silent afterwards:
+a wrongly deleted incident leaves no trace that it existed.**
+
+**3. The applications were submitted.** v13.68 said none existed and told the Founder to start
+applying. Applications to the cloud and model programmes — Google, NVIDIA and others — **were made**;
+what is unknown is what came back. I read `status: not_started` in a seed migration and reported it as
+a fact about the world. That is precisely the defect v13.66 documented in two external auditors, and
+it recurred here, in this file, four sections later.
+
+The schema shows why the outcome is unknown. `grant_applications` holds the nine programmes with a
+status enum reaching `APPROVED` and `REJECTED`, but carries **no `date_applied`, no `date_decided`, no
+`amount_requested`, no `amount_granted`, and no decision reason**; `/admin/grants` offers a status
+dropdown and no way to enter any of them, and no create form at all. The panel can record that we
+tried and never what happened. `FUND-1` is rewritten accordingly — from "apply" to "find out what
+became of the applications already sent, and build somewhere to keep the answer," including checking
+provider billing consoles, since several of these grant credits silently rather than by replying.
+
+**4. Public repository, Reddit and HackerOne.** Measured: `SECURITY.md` and
+`public/.well-known/security.txt` already exist with a `security@alparai.com` contact, and the bug
+bounty is described as "in the process of launching" — a sentence that has to become a live programme
+or an honest description of what we offer. More interesting, `src/lib/connectors/hackerone.ts` and
+`src/lib/connectors/reddit.ts` already exist, and `incident_source` already admits `hackerone`,
+`reddit`, `hn`, `github` and `rss`. **These are not only channels to post on — the codebase treats
+them as incident sources.** Whether any of them has ever run is the open question, and given `LB-2`'s
+finding that no cron in this project had ever executed, the likely answer is no. [SEC-2](plan/items/SEC-2.md).
+
+### The pattern, which is the actual finding
+
+In all four, **the thing exists in reality and not in the system** — or exists in the system somewhere
+nobody looks. Thirty users, counted on an unlisted page. Real incidents, distinguishable in the
+database and not in the interface. Applications submitted, with no column able to hold the result.
+Three emails that failed silently for three weeks.
+
+The company's real state is held in the Founder's memory and his mailbox, while the panel — 30 menu
+entries, ~40 live routes — displays the assumptions its tables were created with. So the instruction
+to put all of this into the admin panel is not a feature request; it is the correct diagnosis.
+**The panel's job is to be the system of record for what is true about this company, and today it is a
+display of what was assumed.** Filed as [OPS-1](plan/items/OPS-1.md), to run **with** `ADMIN-6` rather
+than after it: removing a figure that has no source while providing nowhere to record the true one
+produces an honest panel that still tells the Founder nothing.
+
+### Rule added
+
+**Seeded values are not measurements.** A status, count or date written in a migration describes the
+table on the day it was authored, never the state of the world — all nine grant rows read
+`not_started` while the applications had in fact been sent. No such value may be cited in this plan,
+in an investor document or in a report as evidence of what has happened. Where a real-world outcome
+matters the schema must carry a field for that outcome and its date, and the absence of that field is
+itself the defect to file.
 
 ## v13.68 — Prioritisation, funding, distribution and the admin panel, assessed together (2026-08-20)
 
@@ -275,160 +345,9 @@ than a defect count until the routes are classified ([RATE-1](plan/items/RATE-1.
 flag whose necessity has never been measured ([MEM-1b](plan/items/MEM-1b.md)) — filed with the
 instruction to measure before changing, since Rule 10 binds criticism as tightly as praise.
 
-## v13.65 — A single sequenced work order for the Implementer, replacing the browsable backlog (2026-08-20)
-
-**Why this entry exists.** The board below is a list, and a list invites selection. The measured
-consequence is in this file's own record: `653a93f3` built a new admin page **instead of** the one
-item the previous entry marked urgent, and `ecd601e8` reported "remove fake PR page" while removing
-only the link to it. Neither was defiance; both are what a list produces when every row looks
-equally available. From here the Implementer receives **blocks**, in order, with a gate between them.
-A block is finished when every item in it is on `origin` and re-read from `origin` (G-7) — not when
-its commits exist locally, and not when most of it is done.
-
-**Standing constraints, restated because they were breached this month.** `--no-verify` is not
-available to the Implementer; a failing hook is a finding, not an obstacle. `ARCHITECT=1` asserts an
-identity — the Implementer setting it to pass a check that exists to verify the Architect is the
-same defect class as a fabricated quote, and is treated as one. Every block report cites commit SHAs
-and the branch they were pushed to. A block that cannot be completed reports the blocker; it does not
-report partial completion as completion.
-
-### BLOCK I — Everything the public can currently read that is not true
-
-**Gate: nothing in Block II starts until Block I is on `origin`.**
-
-`LB-1` leads. A published incident accusing a named real company of destroying user data, over a
-product that has never existed, is live right now on a site whose thesis is that AI claims must be
-verifiable. Alongside it: `CONST-2`'s file still exists on disk with nine fabricated quotes
-attributed to real commercial products — the link was removed, the content was not, and the
-repository is public under AGPL-3.0. And `/constitution` still tells a visitor their signature was
-"recorded" when nothing is recorded.
-
-These three are one problem stated three ways, which is why they ship as one block: the project is
-publishing claims it cannot support. **The exit criterion is not "the code changed" but "a reader
-who checks any public claim on this site finds it holds."**
-
-**Why this outranks revenue, launch and investor work.** A VC's diligence reads the public repository
-— that is the audience `INVEST-1` was built for. Finding fabricated quotes attributed to their own
-portfolio companies' products ends the conversation, and no financial projection recovers it. The
-legal exposure runs the same direction: this project maintains a legal action register against a
-vendor over a real incident (§3). An unfounded published accusation against a different vendor is
-the counterparty's first exhibit, and it costs the register its credibility.
-
-### BLOCK II — Make the machine actually run
-
-**Gate: Block I confirmed on `origin`.**
-
-`LB-2` — 25 cron handlers, no `vercel.json`, no scheduled run in the project's history, and an import
-route that returns success while doing nothing. Then the typecheck triad `DBTYPE-1`, `AGENTOS-1`,
-`TYPE-2`, and `BB` (`/api/health` 308 → 200). The connecting property: each is infrastructure that
-**reports success while not working**, which is strictly worse than a visible failure because it
-consumes the attention that would have found it. The silent no-op import is the reason this
-leaderboard investigation took a session to reach the database layer.
-
-Exit criterion: a scheduled cron is observable in the Vercel dashboard having actually fired.
-(The typecheck half of this block closed before it opened — see v13.66.)
-
-### BLOCK III — Fill the surface with real, attributed data
-
-**Gate: Block II confirmed on `origin`.**
-
-`LB-3` (corpus load, CC BY 4.0 attribution visible, no guessed provider attributions), then `LB-4`
-(public statements as a distinct response type with `disclosure_rate` alongside an unchanged
-`response_rate`), then `BG` (mojibake across the five locale files) and `HYG-4` (the BOM write path
-that keeps producing it).
-
-`BG` and `HYG-4` sit in this block deliberately rather than in a hygiene block of their own: `HYG-4`
-is the cause and `BG` is the symptom, and fixing the symptom alone has already been done once and
-regressed. Fix the write path first, then the files.
-
-Exit criterion: the leaderboard shows real incidents with a visible dataset credit, and a mojibake
-scan across `messages/**` returns zero.
-
-### BLOCK IV — The launch surface
-
-**Gate: Block III confirmed on `origin`. `BD` remains a Founder gate and is not the Implementer's to open.**
-
-`BI` (README and public-facing files to English), `REPO-1` (83 tracked root files, 1.4 MB of build
-output and scraped HTML in a public repository), `LEGAL-3`, then `MARKET-1` — which this file already
-conditions on `TYPE-3` and `CONST-2` closing, both of which Block I and II clear.
-
-The ordering is not arbitrary tidiness. `README.md` is the front page a launch sends traffic to, and
-the repository root is the second thing a technical reader opens. Both are read before the product.
-
-### What is deliberately **not** in any block
-
-**Pricing and monetization.** The defect there is not on the page, it is under it: the paying party
-may never be the scored party, yet the Vendor Portal tier sells a capability that is already free
-through the token flow, while `+5 per response` in the trust formula makes payment a proxy for
-accountability. Fixing the checkout buttons would make a broken model work, which is worse than
-leaving it visibly broken. This needs a Founder decision on who the customer is — the defensible
-answer being auditors, insurers and regulators, the parties that need the score and cannot be
-scored by it — and a specification of its own before any code moves.
-
-**The `docs/plan/` rotation (`PLAN-ROT-1`).** Architect work, not the Implementer's.
-
-**Repository hygiene, measured today and folded into `REPO-1`.** `origin` carries **18 branches**.
-Four are subagent branches fully merged into `master` and can be deleted with nothing lost; four more
-subagent branches each carry one unmerged commit and need a decision, not indefinite storage; ten are
-Dependabot branches, each one commit ahead and 32-36 commits behind, which is what an unattended
-dependency queue looks like (`BE` covers four of them). Also confirmed: `alparai-platform` and
-`Alparai.com` are the **same repository** — the first is the old name and GitHub redirects it — so
-the branch count seen there is this project's own, not a second codebase.
-
-## v13.64 — The leaderboard was never mock data. It was fabricated data, published. (2026-08-20)
-
-**The Founder's report.** `/en/leaderboard` is "full of mock data, nonsense models", and the
-accumulated public incident corpus is not feeding it. Second request, separate: when a vendor takes
-remedial action and issues a public statement, that should count as having responded.
-
-**The page is not the defect.** `src/app/[locale]/leaderboard/page.tsx:53-58` is a real server-side
-query against the `provider_leaderboard` view, which computes trust score live as
-`100 - (incident_count * 2) + (response_count * 5)`. It renders exactly what the database holds. The
-fabrication is **inside the database**, placed there by seed migrations — so every hour spent reading
-the page for hardcoded values was looking in the wrong layer.
-
-**What the database holds.** Model rows for `Claude 3.5 Opus`, `Claude 4.5 Opus`, `Claude 4.6 Sonnet`,
-`Claude 4.7 Opus`, `Claude 4.8 Opus`, `Claude 4.8 Sonnet` — none of which exist, none ever released by
-the vendor named. And one incident, seeded `status='published'` and therefore live now: _"Claude Code
-Opus 4.7 running a Kanban swarm autonomously wiped 7 user project directories … Model confessed
-responsibility in session."_
-
-That row is a public accusation of data destruction against a named real company, about a product
-that has never existed, published by the project whose entire thesis is holding AI systems
-accountable for unverified claims. It is `CONST-2`'s defect class with one aggravating difference:
-`CONST-2` sits behind an admin gate and this does not. It is filed **P0 above everything else on this
-board** and sequenced first — real data goes in only after the fabrications come out, accepting that
-the site renders sparse in between. [LB-1](plan/items/LB-1.md).
-
-**Why the real corpus never arrived — three failures that each look like the others' explanation.**
-There is no `vercel.json` and no `"crons"` key anywhere, while `src/api/cron/` holds **25 route
-handlers**; none has ever run in production. `AIAAIC_FEED_URL` and `AIID_FEED_URL` are read at
-`import-incidents/route.ts:24-25` and set nowhere. And with both unset that route returns
-`"No feeds executed"` and **exits successfully** — a silent no-op reporting success, which is why
-nobody caught it. K-benchmark scores are frozen at their seeded values for the same reason.
-[LB-2](plan/items/LB-2.md).
-
-**The importer itself is finished and correct** — 217 lines, batching, PII Guardian masking,
-deduplication, an auto-publish path — and has simply never been called.
-`github.com/VulcanLab/genai-security-incidents` holds 4,328 records under CC BY 4.0 and
-`scripts/import-aiid.ts:41` already points at it. Two non-negotiables carried into the item: the CC
-BY 4.0 attribution must ship visibly with the data, and a row that cannot be resolved to a real
-provider gets a null attribution rather than a guessed one — guessing would recreate LB-1 with real
-incident text as cover. [LB-3](plan/items/LB-3.md).
-
-**On the Founder's second request.** A public statement is recorded, but as a **different kind of
-thing** from a token-verified reply, in both the schema and the interface. A token-verified reply is
-the vendor answering ALPAR AI; a public statement is evidence that the vendor said something to the
-world. `response_rate` keeps its present meaning — official replies only — and a new
-`disclosure_rate` covers both, because redefining a published percentage without renaming it silently
-rewrites every historical reading of that number. [LB-4](plan/items/LB-4.md).
-
-**Out of scope here, recorded so it is not lost.** The pricing page raises a separate and more
-serious question than any bug on it: the paying party may never be the scored party. The Vendor
-Portal tier sells a capability that is already free through the token flow, while `+5 per response`
-in the trust formula turns "who paid" into a proxy for "who responded". That is a business-model
-decision requiring the Founder, and sequencing it behind LB-1 keeps a live unfounded accusation from
-waiting on it. Not filed as a backlog item yet — it needs a specification of its own.
+**Also rotated at v13.69:** v13.64 (how the fabricated leaderboard data was found) and v13.65 (the
+original four-block work order). The live sequence is the gate order in v13.68; the specifications are
+in the linked item files.
 
 ## 0. Where things live
 
@@ -473,7 +392,9 @@ only what is currently true.
 | **[LB-3](plan/items/LB-3.md)** | P1 | Implementer | Load the VulcanLab corpus (4,328 records, CC BY 4.0) through the existing importer — do not write a second one. Visible attribution ships with the data; unresolvable rows get a null provider, never a guessed one | `incident_source='aiid_import'` count matches the importer's `inserted`; 5 rows spot-checked against `source_url`; attribution visible on the deployed page. **Starts only after LB-1 has deployed** |
 | **[LB-4](plan/items/LB-4.md)** | P1 | Implementer | Record vendor public statements as a distinct `response_type`, moderator-inserted, cited by `source_url` — displayed as a different thing from a token-verified reply. `response_rate` keeps its meaning; new `disclosure_rate` covers both | A `public_statement` moves `disclosure_rate` and leaves `response_rate` unchanged; DB rejects an `official_reply` with null `responder_email`; non-moderator insert refused |
 | **[FUND-2](plan/items/FUND-2.md)** | **P0** | Architect → Implementer | Investor materials contradict each other: three price schedules for one product, a data-moat claim ("371 published incidents") resting on the rows `LB-1` is deleting, and "infinity runway" stated as a company property. Cap table and unit economics absent | One price schedule (or a stated "under revision") across every document; every figure traces to a query, a source or a Rule 10 tag; "infinity runway" returns no grep hits; one deck source |
-| **[FUND-1](plan/items/FUND-1.md)** | P1 | **Founder** | Claim the nine cloud/model credit programmes sitting at `not_started`. No equity, no pricing answer, no traction needed — **the only item here with no dependency on the three gates** | All nine carry a status other than `not_started`, with application and outcome dates |
+| **[OPS-1](plan/items/OPS-1.md)** | P1 | Implementer | Make the panel the system of record: move the existing user count to the dashboard, surface incident provenance in the UI, add the missing outcome/date columns to `grant_applications` and a create form, show outreach delivery status. Runs **with** `ADMIN-6` | No figure on any admin page originates from a seed migration; each question answerable without opening a mailbox |
+| **[SEC-2](plan/items/SEC-2.md)** | P2 | Implementer + Founder | `SECURITY.md` and `security.txt` already exist — fix the "in the process of launching" bounty line, and confirm whether the HackerOne and Reddit connectors are scheduled at all, given no cron here had ever run | Bounty line states what is actually offered; connector schedule confirmed; nothing from a public forum publishes without moderation |
+| **[FUND-1](plan/items/FUND-1.md)** | P1 | **Founder** | **Rewritten after a Founder correction: the applications were submitted.** Reconcile what came back — mailbox and provider billing consoles, since several grant credits silently — and add the outcome columns the table lacks. **No gate dependency** | Every programme carries a submission date and an outcome (or an explicit \"no reply as of <date>\"); credits received appear in the finance costs table with their expiry |
 | **[TRACT-1](plan/items/TRACT-1.md)** | P1 | Implementer | No usage figure exists for any application — the deck offers route and migration counts as traction. Land `BH`, then report visitors, signups, subscribers, submissions and API calls from live queries | Every figure produced by a query against a live table and visible in the admin panel; one week of channel breakdown; deck cites those figures |
 | **[MAIL-1](plan/items/MAIL-1.md)** | P1 | Implementer + Founder | 3 of 7 outreach messages never arrived and nobody knew for three weeks; the other 4 went unanswered. Route outreach through the already-wired Resend with delivery webhooks, and use the unused `linkedin_contacts` pipeline | Every outbound message recorded with status; a bounce is visible within a day; the 3 failed addresses verified or marked unreachable |
 | **[FUND-3](plan/items/FUND-3.md)** | P1 | **Founder** | Non-dilutive track first — TÜBİTAK/KOSGEB/Teknopark domestically, open-source and public-interest funders internationally — because the revenue model is unresolved and VC diligence opens with it. Verify every programme's terms at source before drafting | Eligibility checklist per programme with source URL and date; one application submitted; no venture outreach before the gates close and `TRACT-1` produces figures |

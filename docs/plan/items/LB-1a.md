@@ -53,3 +53,20 @@ the data it argues from.
 - "VulcanLab" is visible on the deployed leaderboard or data-sources page
 - Mojibake scan across `messages/**` returns 0
 - Reported per G-7: commit SHA plus the branch, re-read from `origin`
+
+## Escalation, 2026-08-20 — this migration can now destroy real work
+
+The Founder has personally entered genuine incidents. Fabricated rows and hand-entered real rows are
+in the same table right now, so a purge that matches on text is no longer only imprecise — it can
+delete the Founder's own work, and report success while doing it.
+
+The database already carries the distinction the migration ignores: `incident_source` defaults to
+`user_submitted` for manual entries, against `aiid_import` / `aiaaic_import` / `news_curated` and the
+connector sources for everything ingested. The purge must therefore, without exception:
+
+1. exclude `incident_source = 'user_submitted'` in every `WHERE` clause, and
+2. name ids explicitly, enumerated from a production query reviewed before it runs.
+
+Take a database snapshot before executing it. This is the single most dangerous pending operation in
+the project, and it is dangerous in a way that is silent afterwards — a wrongly deleted incident
+leaves no trace that it existed.

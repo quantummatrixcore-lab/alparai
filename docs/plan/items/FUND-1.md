@@ -1,32 +1,45 @@
 # FUND-1
 
-**FUND-1** — Claim the nine cloud and model credit programmes. Owner: Founder (applications) with
-Implementer support (evidence links). Priority: **P1, and it starts today.**
+**FUND-1** — Find out what happened to the applications already submitted, and build somewhere to
+keep the answer. Owner: Founder (the facts) with Implementer (the schema and the page).
+Priority: **P1.** Rewritten 2026-08-20 after a Founder correction.
 
-Nine credit programmes are recorded in seed data with status `not_started`: the major cloud, model
-and platform providers all run one. Measured 2026-08-20.
+## What this item used to say, and why it was wrong
 
-**This is the only item in v13.68 with no dependency on the three gates.** It takes no equity,
-requires no pricing decision, needs no traction figures, and is assessed largely on whether a real
-technical artifact exists — which it does, publicly, under AGPL-3.0 with a long commit history.
+It said no application had been made and told the Founder to start applying. **Applications to the
+cloud and model credit programmes — Google, NVIDIA and others — were in fact submitted.** The error
+came from reading `status: not_started` in a seed migration and reporting it as a fact about the
+world. A seeded status describes the table on the day it was written; it is not a record of what
+happened. That is the same defect this plan documented in two external auditors in v13.66, committed
+here.
 
-Several of these programmes also reduce the operating cost this project already pays: model
-inference, hosting, database and email all currently run on free tiers that are consumed monthly.
-Credits convert a recurring constraint into runway without a fundraise.
+## What is actually true
+
+Applications went out. **Nobody knows which of them were granted.** That is the finding, and it is the
+same shape as the three outreach emails that failed silently for three weeks (`MAIL-1`): the project
+performs an action and then has no instrument that reports the result back. An application whose
+outcome is unknown is indistinguishable, operationally, from one never sent — except that it has
+already spent the one chance to make a first impression.
 
 ## Required work
 
-Work the list in order of monthly cost relieved, not alphabetically. For each: record in this file the
-programme, the date applied, the amount requested, the decision and the date it arrived. An
-application with no recorded outcome is the same defect as an email whose delivery was never checked
-(see `MAIL-1`).
+**1. Reconcile.** For each programme, establish from the mailbox and the provider consoles: was it
+submitted, when, what was requested, and what came back. Several of these grant credits silently by
+provisioning them on the account rather than by replying — so check the billing console, not only the
+inbox. A granted credit that expires unused is the worst of the three possible outcomes.
 
-Applications generally ask for: the repository URL, a short product description, expected monthly
-consumption, and company status. Every one of those exists today except a settled company status,
-which the Founder should confirm once and reuse across all nine.
+**2. Give the answer a home.** The applications table must carry, at minimum, the date submitted, the
+amount requested, the decision, the date of the decision, and any expiry on what was granted. Where
+those columns do not exist, adding them is part of this item — a table that can only hold `not_started`
+cannot record the only part that matters. Surfaced through `OPS-1`.
+
+**3. Then, and only then, work the remainder.** Programmes with no application yet get one, in order
+of monthly cost relieved. These take no equity, need no pricing decision and require no traction —
+they are assessed largely on whether a real technical artifact exists, which it does, publicly.
 
 ## Acceptance
 
-- All nine programmes have a recorded status other than `not_started`
-- Each row carries an application date and, once decided, an outcome date
-- Credits received are reflected in the finance costs table rather than tracked only here
+- Every programme has a recorded submission date and an outcome, or an explicit "no reply as of
+  <date>"
+- Credits received appear in the finance costs table and their expiry dates are recorded
+- No programme's status in the panel originates from a seed migration

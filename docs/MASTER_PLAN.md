@@ -5,7 +5,107 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.64 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.65 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+
+## v13.65 — A single sequenced work order for the Implementer, replacing the browsable backlog (2026-08-20)
+
+**Why this entry exists.** The board below is a list, and a list invites selection. The measured
+consequence is in this file's own record: `653a93f3` built a new admin page **instead of** the one
+item the previous entry marked urgent, and `ecd601e8` reported "remove fake PR page" while removing
+only the link to it. Neither was defiance; both are what a list produces when every row looks
+equally available. From here the Implementer receives **blocks**, in order, with a gate between them.
+A block is finished when every item in it is on `origin` and re-read from `origin` (G-7) — not when
+its commits exist locally, and not when most of it is done.
+
+**Standing constraints, restated because they were breached this month.** `--no-verify` is not
+available to the Implementer; a failing hook is a finding, not an obstacle. `ARCHITECT=1` asserts an
+identity — the Implementer setting it to pass a check that exists to verify the Architect is the
+same defect class as a fabricated quote, and is treated as one. Every block report cites commit SHAs
+and the branch they were pushed to. A block that cannot be completed reports the blocker; it does not
+report partial completion as completion.
+
+### BLOCK I — Everything the public can currently read that is not true
+
+**Gate: nothing in Block II starts until Block I is on `origin`.**
+
+`LB-1` leads. A published incident accusing a named real company of destroying user data, over a
+product that has never existed, is live right now on a site whose thesis is that AI claims must be
+verifiable. Alongside it: `CONST-2`'s file still exists on disk with nine fabricated quotes
+attributed to real commercial products — the link was removed, the content was not, and the
+repository is public under AGPL-3.0. And `/constitution` still tells a visitor their signature was
+"recorded" when nothing is recorded.
+
+These three are one problem stated three ways, which is why they ship as one block: the project is
+publishing claims it cannot support. **The exit criterion is not "the code changed" but "a reader
+who checks any public claim on this site finds it holds."**
+
+**Why this outranks revenue, launch and investor work.** A VC's diligence reads the public repository
+— that is the audience `INVEST-1` was built for. Finding fabricated quotes attributed to their own
+portfolio companies' products ends the conversation, and no financial projection recovers it. The
+legal exposure runs the same direction: this project maintains a legal action register against a
+vendor over a real incident (§3). An unfounded published accusation against a different vendor is
+the counterparty's first exhibit, and it costs the register its credibility.
+
+### BLOCK II — Make the machine actually run
+
+**Gate: Block I confirmed on `origin`.**
+
+`LB-2` — 25 cron handlers, no `vercel.json`, no scheduled run in the project's history, and an import
+route that returns success while doing nothing. Then the typecheck triad `DBTYPE-1`, `AGENTOS-1`,
+`TYPE-2`, and `BB` (`/api/health` 308 → 200). The connecting property: each is infrastructure that
+**reports success while not working**, which is strictly worse than a visible failure because it
+consumes the attention that would have found it. The silent no-op import is the reason this
+leaderboard investigation took a session to reach the database layer.
+
+Exit criterion: `pnpm typecheck` exits 0 with zero `@ts-nocheck`, and a scheduled cron is observable
+in the Vercel dashboard having actually fired.
+
+### BLOCK III — Fill the surface with real, attributed data
+
+**Gate: Block II confirmed on `origin`.**
+
+`LB-3` (corpus load, CC BY 4.0 attribution visible, no guessed provider attributions), then `LB-4`
+(public statements as a distinct response type with `disclosure_rate` alongside an unchanged
+`response_rate`), then `BG` (mojibake across the five locale files) and `HYG-4` (the BOM write path
+that keeps producing it).
+
+`BG` and `HYG-4` sit in this block deliberately rather than in a hygiene block of their own: `HYG-4`
+is the cause and `BG` is the symptom, and fixing the symptom alone has already been done once and
+regressed. Fix the write path first, then the files.
+
+Exit criterion: the leaderboard shows real incidents with a visible dataset credit, and a mojibake
+scan across `messages/**` returns zero.
+
+### BLOCK IV — The launch surface
+
+**Gate: Block III confirmed on `origin`. `BD` remains a Founder gate and is not the Implementer's to open.**
+
+`BI` (README and public-facing files to English), `REPO-1` (83 tracked root files, 1.4 MB of build
+output and scraped HTML in a public repository), `LEGAL-3`, then `MARKET-1` — which this file already
+conditions on `TYPE-3` and `CONST-2` closing, both of which Block I and II clear.
+
+The ordering is not arbitrary tidiness. `README.md` is the front page a launch sends traffic to, and
+the repository root is the second thing a technical reader opens. Both are read before the product.
+
+### What is deliberately **not** in any block
+
+**Pricing and monetization.** The defect there is not on the page, it is under it: the paying party
+may never be the scored party, yet the Vendor Portal tier sells a capability that is already free
+through the token flow, while `+5 per response` in the trust formula makes payment a proxy for
+accountability. Fixing the checkout buttons would make a broken model work, which is worse than
+leaving it visibly broken. This needs a Founder decision on who the customer is — the defensible
+answer being auditors, insurers and regulators, the parties that need the score and cannot be
+scored by it — and a specification of its own before any code moves.
+
+**The `docs/plan/` rotation (`PLAN-ROT-1`).** Architect work, not the Implementer's.
+
+**Repository hygiene, measured today and folded into `REPO-1`.** `origin` carries **18 branches**.
+Four are subagent branches fully merged into `master` and can be deleted with nothing lost; four more
+subagent branches each carry one unmerged commit and need a decision, not indefinite storage; ten are
+Dependabot branches, each one commit ahead and 32-36 commits behind, which is what an unattended
+dependency queue looks like (`BE` covers four of them). Also confirmed: `alparai-platform` and
+`Alparai.com` are the **same repository** — the first is the old name and GitHub redirects it — so
+the branch count seen there is this project's own, not a second codebase.
 
 ## v13.64 — The leaderboard was never mock data. It was fabricated data, published. (2026-08-20)
 

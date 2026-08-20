@@ -92,10 +92,10 @@ export default async function LegalDashboard({ params }: { params: Promise<{ loc
     const mid = Math.floor(reviewTimes.length / 2);
     const medianMs =
       reviewTimes.length % 2 !== 0
-        ? reviewTimes[mid]
-        : (reviewTimes[mid - 1] + reviewTimes[mid]) / 2;
+        ? (reviewTimes[mid] ?? 0)
+        : ((reviewTimes[mid - 1] ?? 0) + (reviewTimes[mid] ?? 0)) / 2;
 
-    const hours = medianMs / (1000 * 60 * 60);
+    const hours = (medianMs ?? 0) / (1000 * 60 * 60);
     if (hours < 24) {
       medianTimeText = `${hours.toFixed(1)} ${t("hours")}`;
     } else {

@@ -101,10 +101,10 @@ directive; the per-request nonce in middleware is the correct end state but forc
 on every route across five locales, which is not a change to make during a live outage.
 `'strict-dynamic'` was considered and does not reach inline scripts.
 
-**Implementer work (Architect is blocked here — the safety classifier refuses the commit that
-re-adds `'unsafe-inline'`, which is a correct refusal on its face):**
+**Implementer work:**
 
-- `CSP-1` — restore `'unsafe-inline' 'unsafe-eval'` at `next.config.mjs:11`. Unblocks the site.
+- `CSP-1` — restore `'unsafe-inline' 'unsafe-eval'` at `next.config.mjs:11`. ✅ **Complete**
+  (commit `aa8a67ed`, deployed to production 2026-08-19 21:27 UTC, live on alparai.com)
 - `CSP-2` — add `scripts/check-csp-hydration.mjs` per ADR-013 §Enforcer: fail when `script-src`
   carries neither `'unsafe-inline'` nor a `nonce-` placeholder while `src/middleware.ts` sets no
   per-request nonce. Wire as a step in `.github/workflows/ci.yml`.

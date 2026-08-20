@@ -3489,7 +3489,18 @@
     "legal_title": "Legal Case Panel",
     "safety_desc": "Real-time threat evaluation, vulnerability scores, and model audit logs.",
     "safety_title": "AI Safety & Ethics Console",
-    "title": "Role-Based Dashboard"
+    "title": "Role-Based Dashboard",
+    "takedown_volume_by_status": "Takedown Volume by Status",
+    "median_review_time": "Median Review Time",
+    "sla_compliance": "SLA Compliance",
+    "cnd_threat_levels": "C&D Actions by Threat Level",
+    "recent_cnd": "Recent C&D Actions",
+    "status_pending": "Pending",
+    "status_resolved": "Resolved",
+    "status_rejected": "Rejected",
+    "hours": "hours",
+    "days": "days",
+    "na": "N/A"
   },
   "deck": {
     "meta_desc": "Explore ALPAR AI's 12-slide interactive seed pitch deck: Cryptographic verification, real-time auditability, and regulatory compliance for enterprise autonomous AI deployment.",

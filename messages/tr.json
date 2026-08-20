@@ -3489,7 +3489,18 @@
     "legal_title": "Hukuki Vaka Paneli",
     "safety_desc": "GerÃ§ek zamanlÄ± tehdit deÄŸerlendirmesi, zafiyet skorlarÄ± ve model denetim gÃ¼nlÃ¼kleri.",
     "safety_title": "YZ GÃ¼venlik ve Etik Konsolu",
-    "title": "Rol BazlÄ± Kontrol Paneli"
+    "title": "Rol BazlÄ± Kontrol Paneli",
+    "takedown_volume_by_status": "Duruma Göre Yayından Kaldırma Hacmi",
+    "median_review_time": "Ortalama İnceleme Süresi",
+    "sla_compliance": "SLA Uyumluluğu",
+    "cnd_threat_levels": "Tehdit Seviyesine Göre İhtarname İşlemleri",
+    "recent_cnd": "Son İhtarname İşlemleri",
+    "status_pending": "Beklemede",
+    "status_resolved": "Çözüldü",
+    "status_rejected": "Reddedildi",
+    "hours": "saat",
+    "days": "gün",
+    "na": "Yok"
   },
   "deck": {
     "meta_desc": "ALPAR AI'Ä±n 12 slaytlÄ±k etkileÅŸimli tohum yatÄ±rÄ±m sunumunu inceleyin: Kurumsal otonom yapay zeka daÄŸÄ±tÄ±mÄ± iÃ§in kriptografik doÄŸrulama, gerÃ§ek zamanlÄ± denetlenebilirlik ve dÃ¼zenleyici uyumluluk.",

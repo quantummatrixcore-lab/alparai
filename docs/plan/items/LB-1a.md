@@ -70,3 +70,10 @@ connector sources for everything ingested. The purge must therefore, without exc
 Take a database snapshot before executing it. This is the single most dangerous pending operation in
 the project, and it is dangerous in a way that is silent afterwards — a wrongly deleted incident
 leaves no trace that it existed.
+
+## Closed 2026-08-20 (v13.72) — all five requirements met
+
+The fifth and last requirement, the moderator-only insert policy, is on `origin` as
+`supabase/migrations/20260917000001_public_statement_rls.sql`: a `RESTRICTIVE` `FOR INSERT` policy
+with `WITH CHECK (response_type = 'official_reply' || public.is_moderator(auth.uid()))`. Read directly from
+`origin/master` rather than accepted from a report. The other four were verified at v13.71.

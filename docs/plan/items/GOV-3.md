@@ -49,3 +49,8 @@ environment or on any host with a writable filesystem.
 
 - `grep -rn "master-plan-mutations\|updatePlanItemStatus" src/` returns nothing
 - `docs/MASTER_PLAN.md` is writable only through git, as before
+
+## Closed 2026-08-20 (v13.73) — verified directly
+
+`git grep "master-plan-mutations|updatePlanItemStatus" -- src/` returns no hits on `origin/master`,
+which is this item's stated acceptance. The runtime rewrite path into `docs/MASTER_PLAN.md` is gone.

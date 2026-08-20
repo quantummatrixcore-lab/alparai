@@ -125,7 +125,11 @@ export default async function SeoPerformancePage({
                   strokeWidth="10"
                   fill="transparent"
                   strokeDasharray="376.99"
-                  strokeDashoffset={typeof complianceRate === 'number' ? 376.99 - (376.99 * Number(complianceRate)) / 100 : 376.99}
+                  strokeDashoffset={
+                    typeof complianceRate === "number"
+                      ? 376.99 - (376.99 * Number(complianceRate)) / 100
+                      : 376.99
+                  }
                   className="text-emerald-400 transition-all duration-1000 ease-out"
                   strokeLinecap="round"
                 />

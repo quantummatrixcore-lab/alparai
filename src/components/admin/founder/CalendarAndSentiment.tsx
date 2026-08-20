@@ -15,29 +15,30 @@ export function CalendarAndSentiment() {
             <h3 className="text-sm font-bold text-white">Duygu Analizi (Sentiment)</h3>
           </div>
           <span className="rounded-full bg-emerald-500/20 px-2.5 py-0.5 text-xs font-semibold text-emerald-400">
-            %64 Pozitif
+            Ölçülmedi
           </span>
         </div>
         <div className="space-y-4">
           <div>
-            <div className="mb-1 flex justify-between text-xs">
-              <span className="text-zinc-400">Marka Algısı</span>
-              <span className="text-emerald-400 font-bold">%64</span>
+            <div className="flex justify-between text-xs">
+              <span className="text-zinc-400">Genel Sentiment</span>
+              <span className="font-bold text-emerald-400">Ölçülmedi</span>
             </div>
-            <div className="h-2 overflow-hidden rounded-full bg-white/5">
-              <div className="h-full w-[64%] bg-gradient-to-r from-emerald-500/50 to-emerald-400" />
+            <div className="h-1.5 w-full overflow-hidden rounded-full bg-zinc-800">
+              <div className="h-full w-0 bg-emerald-500" />
             </div>
           </div>
-          <div>
-            <div className="mb-1 flex justify-between text-xs">
-              <span className="text-zinc-400">Müşteri Memnuniyeti</span>
-              <span className="text-cyan-400 font-bold">%82</span>
+
+          <div className="space-y-2">
+            <div className="flex justify-between text-xs">
+              <span className="text-zinc-400">İş/Yaşam Dengesi (Tahmini)</span>
+              <span className="font-bold text-amber-400">Ölçülmedi</span>
             </div>
             <div className="h-2 overflow-hidden rounded-full bg-white/5">
               <div className="h-full w-[82%] bg-gradient-to-r from-cyan-500/50 to-cyan-400" />
             </div>
           </div>
-          <p className="text-xs text-zinc-500 mt-2">
+          <p className="mt-2 text-xs text-zinc-500">
             Son 24 saatteki sosyal medya ve destek talebi etkileşimlerinden analiz edilmiştir.
           </p>
         </div>
@@ -53,7 +54,7 @@ export function CalendarAndSentiment() {
         </div>
         <div className="space-y-3">
           <div className="flex items-center gap-3 rounded-lg border border-white/5 bg-black/20 p-3">
-            <div className="flex h-10 w-10 shrink-0 flex-col items-center justify-center rounded bg-brand-500/20 text-brand-400">
+            <div className="bg-brand-500/20 text-brand-400 flex h-10 w-10 shrink-0 flex-col items-center justify-center rounded">
               <span className="text-[10px] font-bold uppercase">Ağu</span>
               <span className="text-sm font-black">16</span>
             </div>

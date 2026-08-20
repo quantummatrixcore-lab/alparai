@@ -5,13 +5,20 @@
 
 BEGIN;
 
+-- Delete dependent responses explicitly for the fake incidents
+DELETE FROM public.ai_provider_responses
+WHERE incident_id IN (
+  'a0000021-0000-4000-8000-000000000021',
+  'a0000028-0000-4000-8000-000000000028'
+);
+
 -- Delete fabricated incidents explicitly.
 DELETE FROM public.incidents 
-WHERE title ILIKE '%Claude Code Opus 4.7%' 
-   OR description ILIKE '%Claude Code Opus 4.7%';
-
--- Delete any responses linked to those incidents.
--- (This happens automatically via CASCADE if FKs are set up, but let's be safe).
+WHERE id IN (
+  'a0000021-0000-4000-8000-000000000021',
+  'a0000028-0000-4000-8000-000000000028'
+)
+AND COALESCE(incident_source, '') != 'user_submitted';
 
 -- Delete fabricated models
 DELETE FROM public.ai_models

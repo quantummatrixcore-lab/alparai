@@ -28,7 +28,7 @@ When EU AI Act fines (up to €35M or 7% global turnover) take effect in Q4 2026
 
 **Data & Regulatory Network Effects**
 
-- **Data Moat:** 371 documented and published incidents out of 2500+ analyzed (Unique EU AI Act Article 73 taxonomy mapping).
+- **Data Moat:** Comprehensive incident registry (Unique EU AI Act Article 73 taxonomy mapping) [tahmin — doğrulanmamış].
 - **Current Traction & Growth (As of 2026-08-18):**
   - **Incidents Filed:** Month-over-month growth tracked precisely via platform metrics, representing real utilization of the registry.
   - **Platform Users & Community Votes:** Sustained month-over-month organic community expansion.

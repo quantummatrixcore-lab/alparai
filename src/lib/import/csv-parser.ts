@@ -202,6 +202,7 @@ function mapAiid(
   const title = (raw["Title"] ?? raw["title"] ?? "").trim();
   const description = (raw["Description"] ?? raw["description"] ?? raw["text"] ?? "").trim();
   const externalId = (
+    raw["incident_id"] ??
     raw["AIID ID"] ??
     raw["aiid id"] ??
     raw["ID"] ??

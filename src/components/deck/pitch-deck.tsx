@@ -961,9 +961,7 @@ function Slide7() {
             <span className="text-brand-300 text-xs font-bold tracking-wider uppercase">
               2. Pro & Growth Tier
             </span>
-            <p className="text-brand-300 text-2xl font-black">
-              $499 – $2,499<span className="text-fg-muted text-xs font-normal"> / mo</span>
-            </p>
+            <p className="text-brand-300 text-2xl font-black">Pricing under revision</p>
             <p className="text-xs leading-relaxed text-slate-200">
               Advanced rate limits, automated incident reporting, custom PII rules, and dedicated
               cross-audit logs.
@@ -979,9 +977,7 @@ function Slide7() {
             <span className="text-brand-300 text-xs font-bold tracking-wider uppercase">
               3. Enterprise Tier
             </span>
-            <p className="text-brand-300 text-2xl font-black">
-              $50k – $250k<span className="text-fg-muted text-xs font-normal"> / yr</span>
-            </p>
+            <p className="text-brand-300 text-2xl font-black">Pricing under revision</p>
             <p className="text-xs leading-relaxed text-slate-200">
               Dedicated Supabase instances, custom compliance connectors (SOC2, EU AI Act), 99.99%
               SLA, and formal audit sign-off.

@@ -28,48 +28,7 @@ interface Notification {
   status: "sent" | "received" | "escalated";
 }
 
-const notifications: Notification[] = [
-  {
-    id: 1,
-    institution: "xAI Corp.",
-    recipient: "privacy@x.ai, legal@x.ai",
-    date: "13 Aug 2026",
-    messageId: "f1da1610-fa7a-5f34-5593-9b783b059d74",
-    status: "sent",
-  },
-  {
-    id: 2,
-    institution: "KVKK (Turkey)",
-    recipient: "iletisim@kvkk.gov.tr",
-    date: "13 Aug 2026",
-    messageId: "985c8335-ecc2-3d9b-d20b-428c207b1c27",
-    status: "sent",
-  },
-  {
-    id: 3,
-    institution: "ICO (UK)",
-    recipient: "casework@ico.org.uk",
-    date: "13 Aug 2026",
-    messageId: "354e9212-bd7c-0cb9-6f7f-ba09e243c6d2",
-    status: "sent",
-  },
-  {
-    id: 4,
-    institution: "CNIL (France/EU)",
-    recipient: "webmaster@cnil.fr",
-    date: "13 Aug 2026",
-    messageId: "51db9f32-816e-8d9e-5f7c-d507635f7e10",
-    status: "sent",
-  },
-  {
-    id: 5,
-    institution: "EU AI Office",
-    recipient: "ai-office@ec.europa.eu",
-    date: "13 Aug 2026",
-    messageId: "19d55c84-4066-2e4d-2001-cb6492ed5f89",
-    status: "sent",
-  },
-];
+const notifications: Notification[] = [];
 
 export default function LegalTrackerPage() {
   const t = useTranslations("admin");

@@ -62,7 +62,7 @@ export default async function SeoPerformancePage({
     },
   ];
 
-  const complianceRate = 92;
+  const complianceRate = "Ölçülmedi";
 
   return (
     <div className="rounded-3xl bg-zinc-900/40 px-3 py-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:px-6 md:p-8">
@@ -125,13 +125,13 @@ export default async function SeoPerformancePage({
                   strokeWidth="10"
                   fill="transparent"
                   strokeDasharray="376.99"
-                  strokeDashoffset={376.99 - (376.99 * complianceRate) / 100}
+                  strokeDashoffset={typeof complianceRate === 'number' ? 376.99 - (376.99 * Number(complianceRate)) / 100 : 376.99}
                   className="text-emerald-400 transition-all duration-1000 ease-out"
                   strokeLinecap="round"
                 />
               </svg>
               <div className="absolute flex flex-col items-center">
-                <span className="text-4xl font-black text-white">%{complianceRate}</span>
+                <span className="text-4xl font-black text-white">{complianceRate}</span>
               </div>
             </div>
             <p className="relative z-10 flex items-center gap-1.5 text-xs font-medium text-emerald-400/80">

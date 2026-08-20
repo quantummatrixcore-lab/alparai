@@ -3,6 +3,8 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { logger } from "@/lib/utils/logger";
 import { fetchWithSsrfGuard } from "@/lib/security/ssrf";
+import { DIGITAL_TWINS, type DigitalTwinPersona } from "@/lib/agent-os/personas";
+import { calculateAlignmentScore, selfHealResponse } from "@/lib/agent-os/alignment-engine";
 
 interface CompletionRequest {
   messages: Array<{ role: string; content: string }>;

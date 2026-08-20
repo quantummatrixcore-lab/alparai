@@ -75,8 +75,8 @@ describe("parseIncidentCSV — AIID", () => {
     );
     const { rows, errors } = parseIncidentCSV(csv, "aiid_import");
     expect(errors).toHaveLength(0);
-    expect(rows[0]!.externalId).toBe("aiid-100");
-    expect(rows[0]!.importAttribution).toContain("incidentdatabase.ai");
+    expect(rows[0]!.externalId).toBe("aiid-100"); // Ensures correct import_external_id mapping
+    expect(rows[0]!.importAttribution).toContain("VulcanLab GenAI Incidents");
     expect(rows[0]!.incidentDate).toBe("2023-03-15");
   });
 

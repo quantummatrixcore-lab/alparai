@@ -22,8 +22,7 @@ export default async function BillingPage({ params }: { params: Promise<{ locale
   }
 
   const activeSubs = subs?.filter((s) => s.status === "active") || [];
-  const planPrices: Record<string, number> = { free: 0, pro: 2500, enterprise: 10000 };
-  const mrr = activeSubs.reduce((acc, s) => acc + (planPrices[s.plan] ?? 0), 0);
+  const mrr = "Ölçülmedi";
 
   return (
     <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
@@ -35,11 +34,7 @@ export default async function BillingPage({ params }: { params: Promise<{ locale
         />
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-          <MetricCard
-            label={t("billing_mrr")}
-            value={`$${mrr.toLocaleString()}`}
-            variant="success"
-          />
+          <MetricCard label={t("billing_mrr")} value={mrr} variant="success" />
           <MetricCard label={t("billing_active_subs")} value={activeSubs.length} />
           <MetricCard label={t("billing_total_records")} value={subs?.length || 0} />
         </div>

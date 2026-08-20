@@ -62,7 +62,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
         (twin) =>
           twin.name.toLowerCase().includes(q) ||
           twin.title.toLowerCase().includes(q) ||
-          twin.expertise.some((exp) => exp.toLowerCase().includes(q)) ||
+          twin.expertise.some((exp: string) => exp.toLowerCase().includes(q)) ||
           twin.stats.specialSkill.toLowerCase().includes(q) ||
           twin.stats.activeModel.toLowerCase().includes(q),
       );
@@ -796,7 +796,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
 
                     {/* Expertise Pills */}
                     <div className="mt-4 flex flex-wrap gap-1.5">
-                      {twin.expertise.slice(0, 3).map((exp) => (
+                      {twin.expertise.slice(0, 3).map((exp: string) => (
                         <span
                           key={exp}
                           className="text-fg-secondary rounded-lg border border-white/5 bg-white/[0.03] px-2 py-0.5 text-[10px]"
@@ -895,7 +895,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                                 </span>
                                 <span className="text-fg-muted text-[10px]">
                                   {twin.expertise.map((exp: string) => (
-                                    <Badge key={exp} variant="secondary" className="text-xs">
+                                    <Badge key={exp} variant="outline" className="text-xs">
                                       {exp}
                                     </Badge>
                                   ))}
@@ -1144,7 +1144,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                   Stratejik Uzmanlık Alanları
                 </span>
                 <div className="flex flex-wrap gap-2">
-                  {selectedTwinModal.expertise.map((exp) => (
+                  {selectedTwinModal.expertise.map((exp: string) => (
                     <Badge
                       key={exp}
                       variant="outline"

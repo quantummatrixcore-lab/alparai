@@ -14,9 +14,9 @@ This document specifies the 18-Month Month-over-Month (MoM) SaaS financial proje
 
 ### Key Highlights:
 
-1. **MRR Trajectory:** Scales from **$3,994** in Month 1 to **$93,335** ($1.12M ARR) at Month 12, reaching **$221,590** ($2.66M ARR) by Month 18.
-2. **Breakeven Horizon:** Reaches cash flow positive status by **Month 10** ($67,385 MRR / $54,000 OpEx), eliminating additional capital dilution prior to Series A.
-3. **Cash Runway:** Starting cash balance of **$810,000** (€750K seed raise) never dips below **$596,511** (trough in Month 9), providing an effective infinity runway post-Month 10.
+1. **MRR Trajectory:** Scales from **$3,994** in Month 1 to **$93,335** ($1.12M ARR) at Month 12, reaching **$221,590** ($2.66M ARR) by Month 18 [tahmin — doğrulanmamış].
+2. **Breakeven Horizon:** Reaches cash flow positive status by **Month 10** ($67,385 MRR / $54,000 OpEx), eliminating additional capital dilution prior to Series A [tahmin — doğrulanmamış].
+3. **Cash Runway:** Starting cash balance of **$810,000** (€750K seed raise) never dips below **$596,511** (trough in Month 9) [tahmin — doğrulanmamış].
 4. **EU AI Act Catalyst Alignment:** Acceleration in Months 6–12 coincides directly with the EU AI Act full enforcement date (August 2026), driving high-volume Enterprise adoption.
 
 ---
@@ -38,7 +38,7 @@ This document specifies the 18-Month Month-over-Month (MoM) SaaS financial proje
 
 ---
 
-## 3. 18-Month Financial Projection Table (MoM)
+## 3. 18-Month Financial Projection Table (MoM) [tahmin — doğrulanmamış]
 
 |  Month  | Freemium Users | Vendor Portal ($299) | Enterprise ($2,499) | Total MRR ($) |  ARR ($)   | Gross Profit ($) | OpEx / Gross Burn ($) | Net Burn / (Contribution) ($) | Ending Cash ($) | Cash Runway (Months) |
 | :-----: | :------------: | :------------------: | :-----------------: | :-----------: | :--------: | :--------------: | :-------------------: | :---------------------------: | :-------------: | :------------------: |
@@ -78,10 +78,10 @@ Seed capital of **€750,000** ($810,000) is disciplined across four main bucket
 
 ## 5. Milestone Realization & Valuation Catalyst Mapping
 
-- **Month 9 ($684K ARR):** Surpasses the target **$650K+ ARR milestone** outlined in `docs/fundraising/valuation-memo.md` ahead of schedule.
-- **Month 10 (Breakeven):** Net positive monthly contribution, guaranteeing zero capital stress prior to Series A.
-- **Month 12 ($1.12M ARR):** Full EU AI Act enforcement in market. 145 Vendor Portal subscribers & 20 Enterprise Banking/Insurance clients onboarded.
-- **Month 14 ($1.50M ARR):** Crosses the canonical **$1.5M ARR Series A threshold**, positioning ALPAR AI for a **$15M–$25M Series A round** at a 10x–16x ARR valuation multiple.
+- **Month 9 ($684K ARR):** Surpasses the target **$650K+ ARR milestone** outlined in `docs/fundraising/valuation-memo.md` ahead of schedule [tahmin — doğrulanmamış].
+- **Month 10 (Breakeven):** Net positive monthly contribution, guaranteeing zero capital stress prior to Series A [tahmin — doğrulanmamış].
+- **Month 12 ($1.12M ARR):** Full EU AI Act enforcement in market. 145 Vendor Portal subscribers & 20 Enterprise Banking/Insurance clients onboarded [tahmin — doğrulanmamış].
+- **Month 14 ($1.50M ARR):** Crosses the canonical **$1.5M ARR Series A threshold**, positioning ALPAR AI for a **$15M–$25M Series A round** at a 10x–16x ARR valuation multiple [tahmin — doğrulanmamış].
 
 ---
 

@@ -32,7 +32,7 @@ const TEXT_NODE = />([^<>{}]+)</g;
 
 const METRIC_PATTERNS = [
   { name: "currency", re: /\$\s?\d[\d,]*(?:\.\d+)?/ },
-  { name: "percentage", re: /\b\d+(?:\.\d+)?\s?%/ },
+  { name: "percentage", re: /(?:%\s?\d+(?:\.\d+)?|\b\d+(?:\.\d+)?\s?%)/ },
   { name: "latency", re: /\b\d+(?:\.\d+)?\s?(?:ms|s)\b(?!\w)/ },
   { name: "ratio", re: /\b\d+\s?\/\s?\d+\b/ },
 ];
@@ -65,6 +65,14 @@ function scan() {
     } catch {
       continue;
     }
+
+    const localConsts = new Map();
+    const CONST_RE = /(?:const|let|var)\s+([A-Za-z0-9_]+)\s*=\s*([0-9]+(?:\.[0-9]+)?|"[^"]*"|'[^']*'|`[^`]*`)/g;
+    let cMatch;
+    while ((cMatch = CONST_RE.exec(content)) !== null) {
+      localConsts.set(cMatch[1], cMatch[2].replace(/^["'`]|["'`]$/g, ''));
+    }
+
     const lines = content.split("\n");
     for (let i = 0; i < lines.length; i += 1) {
       TEXT_NODE.lastIndex = 0;
@@ -76,6 +84,21 @@ function scan() {
           if (re.test(text)) {
             offenders.push({ path, line: i + 1, kind: name, text });
             break;
+          }
+        }
+      }
+
+      const INTERP_RE = />([^<>]*)\{\s*([A-Za-z0-9_]+)\s*\}([^<]*)</g;
+      let iMatch;
+      while ((iMatch = INTERP_RE.exec(lines[i])) !== null) {
+        const id = iMatch[2];
+        if (localConsts.has(id)) {
+          const resolved = (iMatch[1] + localConsts.get(id) + iMatch[3]).trim();
+          for (const { name, re } of METRIC_PATTERNS) {
+            if (re.test(resolved)) {
+              offenders.push({ path, line: i + 1, kind: name, text: resolved });
+              break;
+            }
           }
         }
       }

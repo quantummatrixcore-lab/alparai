@@ -5,7 +5,62 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.63 · **Updated:** 2026-08-19 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.64 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+
+## v13.64 — The leaderboard was never mock data. It was fabricated data, published. (2026-08-20)
+
+**The Founder's report.** `/en/leaderboard` is "full of mock data, nonsense models", and the
+accumulated public incident corpus is not feeding it. Second request, separate: when a vendor takes
+remedial action and issues a public statement, that should count as having responded.
+
+**The page is not the defect.** `src/app/[locale]/leaderboard/page.tsx:53-58` is a real server-side
+query against the `provider_leaderboard` view, which computes trust score live as
+`100 - (incident_count * 2) + (response_count * 5)`. It renders exactly what the database holds. The
+fabrication is **inside the database**, placed there by seed migrations — so every hour spent reading
+the page for hardcoded values was looking in the wrong layer.
+
+**What the database holds.** Model rows for `Claude 3.5 Opus`, `Claude 4.5 Opus`, `Claude 4.6 Sonnet`,
+`Claude 4.7 Opus`, `Claude 4.8 Opus`, `Claude 4.8 Sonnet` — none of which exist, none ever released by
+the vendor named. And one incident, seeded `status='published'` and therefore live now: _"Claude Code
+Opus 4.7 running a Kanban swarm autonomously wiped 7 user project directories … Model confessed
+responsibility in session."_
+
+That row is a public accusation of data destruction against a named real company, about a product
+that has never existed, published by the project whose entire thesis is holding AI systems
+accountable for unverified claims. It is `CONST-2`'s defect class with one aggravating difference:
+`CONST-2` sits behind an admin gate and this does not. It is filed **P0 above everything else on this
+board** and sequenced first — real data goes in only after the fabrications come out, accepting that
+the site renders sparse in between. [LB-1](plan/items/LB-1.md).
+
+**Why the real corpus never arrived — three failures that each look like the others' explanation.**
+There is no `vercel.json` and no `"crons"` key anywhere, while `src/api/cron/` holds **25 route
+handlers**; none has ever run in production. `AIAAIC_FEED_URL` and `AIID_FEED_URL` are read at
+`import-incidents/route.ts:24-25` and set nowhere. And with both unset that route returns
+`"No feeds executed"` and **exits successfully** — a silent no-op reporting success, which is why
+nobody caught it. K-benchmark scores are frozen at their seeded values for the same reason.
+[LB-2](plan/items/LB-2.md).
+
+**The importer itself is finished and correct** — 217 lines, batching, PII Guardian masking,
+deduplication, an auto-publish path — and has simply never been called.
+`github.com/VulcanLab/genai-security-incidents` holds 4,328 records under CC BY 4.0 and
+`scripts/import-aiid.ts:41` already points at it. Two non-negotiables carried into the item: the CC
+BY 4.0 attribution must ship visibly with the data, and a row that cannot be resolved to a real
+provider gets a null attribution rather than a guessed one — guessing would recreate LB-1 with real
+incident text as cover. [LB-3](plan/items/LB-3.md).
+
+**On the Founder's second request.** A public statement is recorded, but as a **different kind of
+thing** from a token-verified reply, in both the schema and the interface. A token-verified reply is
+the vendor answering ALPAR AI; a public statement is evidence that the vendor said something to the
+world. `response_rate` keeps its present meaning — official replies only — and a new
+`disclosure_rate` covers both, because redefining a published percentage without renaming it silently
+rewrites every historical reading of that number. [LB-4](plan/items/LB-4.md).
+
+**Out of scope here, recorded so it is not lost.** The pricing page raises a separate and more
+serious question than any bug on it: the paying party may never be the scored party. The Vendor
+Portal tier sells a capability that is already free through the token flow, while `+5 per response`
+in the trust formula turns "who paid" into a proxy for "who responded". That is a business-model
+decision requiring the Founder, and sequencing it behind LB-1 keeps a live unfounded accusation from
+waiting on it. Not filed as a backlog item yet — it needs a specification of its own.
 
 ## v13.63 — A valid CSP that disabled the application (2026-08-19)
 
@@ -289,6 +344,10 @@ only what is currently true.
 | ID  | P   | Owner | Work | Acceptance |
 | --- | --- | ----- | ---- | ---------- |
 
+| **[LB-1](plan/items/LB-1.md)** | **P0** | Implementer | Purge fabricated `ai_models` rows and the incidents attributed to them — including a live published accusation against a named real company about a product that never existed. Plus `scripts/check-model-catalog.mjs` so the next seed migration cannot undo it | Model list contains only vendor-verifiable names; fabricated incident absent from `/en/incidents` and from that provider's `incident_count`; enforcer exits 1 on a reintroduced name |
+| **[LB-2](plan/items/LB-2.md)** | **P0** | Implementer | 25 cron handlers exist, no `vercel.json` and no `"crons"` key — none has ever run. Schedule by priority within the plan's cap, set `AIAAIC_FEED_URL`/`AIID_FEED_URL`/`CRON_SECRET`, document every route left unscheduled | Vercel dashboard lists the crons; authenticated call to `import-incidents` returns real counts, not `"No feeds executed"` |
+| **[LB-3](plan/items/LB-3.md)** | P1 | Implementer | Load the VulcanLab corpus (4,328 records, CC BY 4.0) through the existing importer — do not write a second one. Visible attribution ships with the data; unresolvable rows get a null provider, never a guessed one | `incident_source='aiid_import'` count matches the importer's `inserted`; 5 rows spot-checked against `source_url`; attribution visible on the deployed page. **Starts only after LB-1 has deployed** |
+| **[LB-4](plan/items/LB-4.md)** | P1 | Implementer | Record vendor public statements as a distinct `response_type`, moderator-inserted, cited by `source_url` — displayed as a different thing from a token-verified reply. `response_rate` keeps its meaning; new `disclosure_rate` covers both | A `public_statement` moves `disclosure_rate` and leaves `response_rate` unchanged; DB rejects an `official_reply` with null `responder_email`; non-moderator insert refused |
 | **[LEGAL-3](plan/items/LEGAL-3.md)** | P1 | Implementer | Wire `/dashboard/legal` (69-line stub, no query) to `takedown_requests`, `takedown_appeals`, `cease_and_desist_logs`. Aggregates public, per-request detail admin-only | Counts change when a row is inserted; anonymous session cannot see requester email |
 | **[MARKET-1](plan/items/MARKET-1.md)** | P1 | Implementer | Real, cited AI-ecosystem/market/financial analysis for VC conversations — external market data already researched and sourced; 5-year projections tagged `[tahmin — doğrulanmamış]` per Rule 10 | Every figure sourced/dated; ships only after `TYPE-3` and `CONST-2` close |
 | **[GOV-3](plan/items/GOV-3.md)** | **P0** | Implementer | Delete `master-plan-mutations.ts` — a live, admin-UI-wired runtime rewrite of `docs/MASTER_PLAN.md` bypassing G-6/G-7 entirely | `grep -rn "master-plan-mutations\|updatePlanItemStatus" src/` returns nothing |

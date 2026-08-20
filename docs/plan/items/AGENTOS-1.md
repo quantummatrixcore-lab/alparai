@@ -52,3 +52,10 @@ belongs in the admin panel as an internal command hierarchy, not as public pages
 - `pnpm build` completes
 - `grep -rn "agent-os" src/ *.ts` returns nothing
 - `/digital-twins` and `/twins-leaderboard` return 404 and are absent from the sitemap
+
+## Closed 2026-08-20 (v13.66) — measured, not reported
+
+At commit `a23b10d1`, `pnpm typecheck` (a real `tsc --noEmit`, `package.json:36`) exits 0 with zero
+errors and `@ts-nocheck` directives under `src/` number zero. This item was carried as an open P0
+after the work was already finished. A later four-error regression (`47db3b8e`) is tracked separately
+as `TEST-1` and does not reopen this item.

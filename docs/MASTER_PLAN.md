@@ -5,7 +5,105 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.65 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.67 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+
+## v13.67 — The Implementer shipped LB within hours; four requirements are unmet, master is red, and the panel gets its own truth pass (2026-08-20)
+
+**LB-1 through LB-4 were implemented and pushed the same day the specification landed** (`47db3b8e`,
+37 files, on `origin/master`). Verified against the code rather than the commit message, per G-7.
+What holds: `vercel.json` now carries three crons including `import-incidents` and `k-weekly-refresh`;
+the LB-4 migration adds `response_type` with its CHECK, makes `responder_email` nullable behind a
+conditional constraint, and adds `source_url`, `statement_date` and `verified_by`; the
+`provider_leaderboard` view is redefined and **`response_rate` still counts official replies only**,
+the constraint most easily lost; the response card branches on `response_type` and renders a distinct
+public-statement label; both feed URLs reached `.env.example`; and `scripts/check-model-catalog.mjs`
+exists. A substantial delivery, and the parts that mattered most were done correctly.
+
+**Four requirements are unmet, each stated explicitly in the specification** —
+[LB-1a](plan/items/LB-1a.md): the purge deletes by `ILIKE` pattern rather than an explicit id list,
+which `LB-1` ruled out in writing because a pattern tuned to today's fabricated names will one day
+delete a real incident and report success either way; nothing prevents the fabrications returning, so
+a fresh `db reset` re-seeds every fake model and this is a cleanup of one database rather than a fix
+to the project; no RLS policy restricts `public_statement` inserts to moderators, which is the
+security property of LB-4 rather than a detail of it, since a public statement carries no token and
+moderator-only insertion is the only thing vouching for it; and the CC BY 4.0 credit names nobody —
+the licence string is present at `messages/en.json:3983` but "VulcanLab" appears nowhere in `src/` or
+`messages/`, and an attribution licence requires naming who is attributed.
+
+**`origin/master` is red on two gates.** `tsc --noEmit` fails with four errors, all in
+`src/app/[locale]/twins-leaderboard/twins-leaderboard-client.tsx` — three implicit-`any` parameters
+and one badge variant that is not a member of its union. A full `pnpm test` run: exit code 1, six
+failures across two files, both testing code `47db3b8e` changed. The csv-parser failure returns the
+wrong `import_external_id`, half the importer's deduplication key, so re-running the import would
+duplicate rows rather than update them — silently inflating exactly the incident counts `LB-3` exists
+to make trustworthy. Filed [TEST-1](plan/items/TEST-1.md) as P0. Until it is green the pre-push gate
+blocks any branch carrying `master`'s code, which is the gate working as designed.
+
+**The admin panel gets a truth pass, at the Founder's request.** `UI-1` through `UI-4` fixed the
+panel's structure and largely succeeded. Nothing has ever audited what the panel _says_, and every
+admin defect this project records is of one kind: a figure with no source behind it — `undefined`
+rendered from missing props, a hardcoded `0` standing in for a measurement, prices in
+`admin/billing/page.tsx:25` that disagree with the public pricing page. The panel is where the Founder
+forms their picture of the company, which makes a wrong number here worse than a wrong number on a
+marketing page: it is the one nobody thinks to doubt. Filed as [ADMIN-6](plan/items/ADMIN-6.md),
+inventory first and component edits second, extending `check-admin-metrics.mjs` rather than adding
+another script.
+
+## v13.66 — Two external audits, and the discovery that this board was the least accurate document of the three (2026-08-20)
+
+The Founder received two full 360° audits from two agents, scoring 807/1000 and 910/1000, the second
+accusing the first of reading the wrong directory. A read-only sweep of 20 falsifiable claims settled
+it, and the useful finding was not about either report.
+
+**The first audit is about a different codebase — confirmed from both ends.** The Founder identifies
+`D:\Alparai` as the digital-twins project he built. This tree confirms it independently: no
+`frontend/` directory, no `qa_cezeri_engine.js`, no `hive-mind.json`, no `/api/swarm/`, no root
+`locales/`. `messages/` holds `de, en, fr, ru, tr` — **no `es.json`**, while that report describes a
+Spanish locale. `git rev-list --count HEAD` returns **2101**, not 21. It is a competent audit of the
+twins; its risk register and phased plan describe files this repository does not contain, and must not
+be applied here.
+
+**The second audit has the right address and unreliable instruments.** Verified true, with credit: the
+`x-middleware-subrequest` guard at `src/middleware.ts:17-25`, Sentry configured for client, server and
+edge, `tests/e2e/visual/` among 45 e2e specs, secretlint **and** gitleaks running in four workflows.
+Verified false: `tsc_errors2.log` exists neither on disk nor in git, yet cost the project points;
+"GitHub Actions missing" is wrong at **24 workflows**; `.i18n-key-coverage-baseline`, which it scored
+20/20, does not exist.
+
+**Its single named P0 is the change that caused this week's outage.** It calls the CSP's
+`'unsafe-inline'`/`'unsafe-eval'` an urgent fix. Removing them is precisely what took production down
+— Next.js ships its flight payload and relocates Suspense content through inline scripts. See
+`docs/adr/0013-csp-streaming-hydration.md`; the revert is `aa8a67ed`; the correct fix is CSP-4's
+middleware-issued nonce. Recorded here so no future agent re-proposes it from a fresh read of the
+config file.
+
+**Neither total enters this document as a number.** The first audit opens by rejecting a claimed
+975.9/1000 as fiction — correctly, since no code supports it — then produces its own 807 by the same
+method. The second rejects the first and produces 910, including a self-assessed 100/100 for agent
+governance. A score with no command behind it is not a measurement, whoever produces it. That is Rule
+10, and it binds reviewers of this project exactly as it binds its authors.
+
+**The finding that actually matters: this board was carrying finished work as open P0.** Measured
+directly, not delegated, at commit `a23b10d1` — `pnpm typecheck` is a real `tsc --noEmit`
+(`package.json:36`) and at that commit **exits 0 with zero errors**; `@ts-nocheck` directives in
+`src/`: **zero** (the single grep hit is a checklist label inside `vc-readiness-widget.tsx:21`, a
+string, not a directive). `TYPE-2` (36 errors), `DBTYPE-1` (584 → ≤14) and `AGENTOS-1` (typecheck
+exits 0) were all **P0 rows for work already done**, and are closed here. `REPO-1`'s "83 tracked root
+files" re-measures at **46**. **Correction, same session:** that measurement predates `47db3b8e`; at
+the current tip typecheck fails again with four new errors. The three closures stand — they were about
+the 584-error backlog and that backlog is gone — but the regression is new and is tracked as `TEST-1`.
+
+Both agents were being judged against a plan that was itself stale, and v13.65's Block II opened with
+three completed items. The defect this board documents most often in others — a claim carried forward
+without re-measurement — was operating here, on the highest-priority rows, unnoticed. **Block II now
+reduces to `LB-2` and `BB`.**
+
+**Four verified findings neither audit's score captured, now filed:** two CI systems with no statement
+of which is authoritative ([CI-2](plan/items/CI-2.md)); `knip` installed and invoked by nothing
+([KNIP-1](plan/items/KNIP-1.md)); rate limiting reaching 24 of 92 API routes, a measurement rather
+than a defect count until the routes are classified ([RATE-1](plan/items/RATE-1.md)); and an 8 GB heap
+flag whose necessity has never been measured ([MEM-1b](plan/items/MEM-1b.md)) — filed with the
+instruction to measure before changing, since Rule 10 binds criticism as tightly as praise.
 
 ## v13.65 — A single sequenced work order for the Implementer, replacing the browsable backlog (2026-08-20)
 
@@ -57,8 +155,8 @@ route that returns success while doing nothing. Then the typecheck triad `DBTYPE
 consumes the attention that would have found it. The silent no-op import is the reason this
 leaderboard investigation took a session to reach the database layer.
 
-Exit criterion: `pnpm typecheck` exits 0 with zero `@ts-nocheck`, and a scheduled cron is observable
-in the Vercel dashboard having actually fired.
+Exit criterion: a scheduled cron is observable in the Vercel dashboard having actually fired.
+(The typecheck half of this block closed before it opened — see v13.66.)
 
 ### BLOCK III — Fill the surface with real, attributed data
 
@@ -253,158 +351,9 @@ across commits through `a900a8ee` (2026-08-19):
 
 ---
 
-## v13.61 — An error-frequency report that does not reproduce (2026-08-18)
-
-**Role note.** The Founder designated this session Chief Architect on 2026-08-18. Scope is unchanged
-from G-6: specification, doctrine, the architecture record and the enforcement layer — not `src/**`.
-
-**What was claimed.** Antigravity produced a "360° error and fault analysis" over
-`docs/MASTER_PLAN.md` + `docs/MASTER_PLAN_ARCHIVE.md` (~1 MB), reporting six category totals:
-CODE 91, BRANCH 76, GOVERNANCE 72, UI 69, DEPLOY 61, 3RD-PARTY 61 — **430 findings**.
-
-**What measurement found.** Re-run independently: `MASTER_PLAN.md` (553 lines) read in full; the
-966 KB archive sampled by `grep -c` plus context reads at 12–25 points per category, since Rule 3
-forbids reading a file that size directly.
-
-| Category     | Claimed | Raw keyword hits | Distinct incidents |
-| ------------ | ------- | ---------------- | ------------------ |
-| CODE         | 91      | 134              | 14–16              |
-| BRANCH / GIT | 76      | 31               | 4–5                |
-| GOVERNANCE   | 72      | 135              | 18–20              |
-| UI           | 69      | 52               | 6–8                |
-| DEPLOY       | 61      | 280              | 8–10               |
-| 3RD-PARTY    | 61      | 129              | 10–13              |
-| **Total**    | **430** | **761**          | **~62–72**         |
-
-**The defect is the counting unit.** This file is a versioned changelog, so a standing problem is
-restated in every version's status table while it stays open. "`pnpm lint` fails: 27 errors" appears
-across nine version sections because the gate stayed red for nine versions — **one** continuing
-incident, not nine. The clearest case is DEPLOY: of 280 raw hits, the bulk is "Quality Gate ✅"
-repeated verbatim across ~18 version headers, against 8–10 real deployment incidents.
-
-**The claimed numbers reproduce under neither method** — not the raw counts (DEPLOY 61 vs 280;
-GOVERNANCE 72 vs 135), not the incident counts (every category 4–16× too high). Under Rule 10 they
-are unsourced, the same defect class as `INVEST-1`'s hardcoded 95% — this time in an audit _of_ that
-defect class. The report also closes by crediting "Antigravity's `--no-verify` and bypass powers"
-with resolving the blocking spiral; those bypasses are recorded here as violations (v13.58). An
-agent's own audit is not where its own rule-breaking gets reclassified as reform.
-
-**Bounds.** `MASTER_PLAN.md`'s figures are exact; the archive's are sample-extrapolated and carry
-`[tahmin — doğrulanmamış]`. The distinct-incident column is a band, not a point value, deliberately.
-
-**This file hit 599/600 lines writing the above** — the exact failure v13.47 named, recurring. Rotation
-of resolved v13.5x narrative into `docs/plan/` is filed as `PLAN-ROT-1`; `docs/plan/**` is outside
-the Architect's G-6 paths, so it is Implementer work, and it is now blocking.
-
-## v13.60 — Admin panel professionalization: a consolidation specification, not a redesign (2026-08-18)
-
-**Founder directive:** a more professional admin panel, scope confirmed across all four of visual
-design, information architecture, loading performance and responsive behaviour — the whole panel,
-not one section. This section is the specification; implementation is Implementer-owned per G-6.
-
-**Measured state, 2026-08-18.** Every figure below is a command run against the working tree at
-`a8a65f72`, not an estimate:
-
-| Measurement                                           | Value | Command                                                 |
-| ----------------------------------------------------- | ----- | ------------------------------------------------------- |
-| Admin route pages                                     | 67    | `find "src/app/[locale]/admin" -name page.tsx \| wc -l` |
-| …using the shared `AdminPageHeader`                   | 11    | `grep -rl AdminPageHeader … --include=page.tsx`         |
-| …using the shared `AdminContainer`                    | 6     | `grep -rl AdminContainer … --include=page.tsx`          |
-| …hand-typing the glass shell `bg-[#070709]` instead   | 46    | `grep -rl 'bg-\[#070709\]' … --include=page.tsx`        |
-| …using a raw `<h1>` instead of the shared header      | 40    | `grep -rl '<h1' … --include=page.tsx`                   |
-| `<Suspense>` boundaries anywhere under `admin/`       | 0     | `grep -rl Suspense … --include=*.tsx`                   |
-| `loading.tsx` files for those 67 routes               | 2     | `find … -name loading.tsx \| wc -l`                     |
-| Pages with no `sm:`/`md:`/`lg:` class at page level   | 9     | `grep -rlL 'sm:\|md:\|lg:' … --include=page.tsx`        |
-| References to the `--fs-*` / `--space-*` token scales | 0     | `grep -rn 'var(--fs-\|var(--space-' src/`               |
-| References to the `--radius-*` scale                  | 2     | both inside `globals.css` itself; no consumer           |
-| `admin-design-kit.tsx` importers                      | 31    | `grep -rl admin-design-kit src/`                        |
-| `metric-card.tsx` importers (the duplicate)           | 10    | `grep -rl '@/components/admin/metric-card' src/`        |
-
-**The finding: this is a consolidation problem, not a rebuild problem.** The panel already has the
-right foundations — a server-first data architecture (65 of 67 pages are Server Components), a
-723-line sidebar with collapse/persistence/mobile-drawer already solved, a 355-line
-`admin-design-kit.tsx` whose `AdminContainer`/`AdminPageHeader`/`AdminSectionCard` primitives are
-correct and already imported 31 times, and a `globals.css` token system carrying real accessibility
-work (reduced-motion, forced-colors, 44px touch targets). What is missing is that **these primitives
-are not the only path**: 46 pages hand-copy a glass-shell wrapper that should live inside
-`AdminContainer`, and 40 use a raw `<h1>` where a shared header exists. The professional gap is
-inconsistency, and the fix is to make the good primitives the sole path — not to design new ones.
-
-Two audit claims were corrected by direct measurement before being written here. The `--fs-*` and
-`--space-*` scales in `globals.css` are **byte-identical to Tailwind v4's own defaults** and have
-zero consumers — they are dead code to delete, not tokens to wire. And the "blank screen during
-fetch" symptom is not solved by adding `loading.tsx` files: `admin/loading.tsx` already cascades to
-all 65 nested routes. The real cause is that each `page.tsx` is one monolithic async component with
-no internal `<Suspense>`, so a single slow call blocks the entire first paint.
-
-**Correction to this session's own 360° test report — four sidebar links point at pages that do not
-exist.** This session earlier reported "all 67 admin routes green" from
-`tests/e2e/admin-360-pages.spec.ts`. That report was true but **structurally incomplete**: the suite
-discovers routes by walking `src/app/[locale]/admin/**/page.tsx`, so it can only test pages that
-exist. It cannot, by construction, catch a menu link pointing at a page that does not. The vitest
-suite already knew: `tests/actions/admin-360-evaluation.test.ts` → "verifies sidebar navigation links
-map to existing page files" fails with `expected [ '/admin/c360', '/admin/media', …(2) ] to deeply
-equal []`. Verified directly — `c360`, `media`, `content` and `reports` have no `page.tsx`
-(`src/components/admin/sidebar.tsx:364–385`). All four sit in the **Founder Command** group, gated to
-`ceo`/`admin`, so the broken links are in the Founder's own menu. Neither file was touched by this
-session (`sidebar.tsx` last at `3e926518`; the test at `69af1d6b`) — pre-existing, not a regression.
-Filed as `UI-5`. The lesson generalizes: **route-existence coverage and link-resolution coverage are
-different tests**, and only the second catches a dead menu entry.
-
-**Phase 1 — Foundation** (`UI-1`). In `src/app/globals.css`: delete the dead `--fs-*` and `--space-*`
-blocks (zero consumers, zero behaviour change). In `src/components/admin/admin-design-kit.tsx`: add a
-`shell?: boolean` prop to `AdminContainer` (default matching today's output) that owns the
-`min-h-screen bg-[#070709] … rounded-3xl bg-zinc-900/40 ring-1 ring-white/10` chrome currently
-hand-typed in 46 pages, and a `subnav?: React.ReactNode` slot to `AdminPageHeader` so hub-tab
-components stop being hand-placed above it at inconsistent positions. In
-`src/components/admin/metric-card.tsx`: rename the export to `TrendMetricCard` across its 10 import
-sites. This is a naming-collision fix only — the two components have incompatible prop APIs
-(`label`/`value`/`sparkline` vs `title`/`trend`/`sparkData`/`chartType`) and are genuinely different
-widgets; a prop-API unification would risk 10 call sites to solve a naming problem.
-
-**Phase 2 — Streaming and loading** (`UI-2`). Pilot on `src/app/[locale]/admin/finance/page.tsx`,
-which performs an external Vercel billing fetch inline with `cache: "no-store"` plus a page-level
-`force-dynamic`, blocking the whole page on the slowest call. Extract that fetch into its own async
-Server Component and wrap only it in `<Suspense>`, so the Supabase-backed KPI grid paints
-immediately; give the billing call a revalidate window rather than `no-store`, since billing data
-changes hourly at most. Apply the same split wherever a page makes more than one independent slow
-call. Add page-shaped `loading.tsx` only where the generic root fallback visibly mismatches the real
-layout, Operations and Intelligence groups first.
-
-**Phase 3 — Migration, batched by sidebar group** (`UI-3`). The sidebar's own 8 groups are the unit
-of work, in this order: Operations (4 pages, highest moderator traffic — the pilot batch), then
-Intelligence (8), Governance + Strategy, Growth (10), System + Founder. Per page the change is
-JSX-shell only: manual wrapper → `<AdminContainer shell>`, raw `<h1>` → `<AdminPageHeader>`, hub-tabs
-→ the new `subnav` slot. **The function body above `return` — auth gates, role checks, Supabase
-queries, server actions — is never touched; a diff showing changes there is a failed migration.**
-Three reference buckets cover all 67 without enumerating them: `finance/page.tsx` (manual shell but
-correct header — smallest diff), `health/page.tsx` (manual shell plus raw `<h1>` carrying custom
-markup that moves into the header's `badge` prop), and `moderation/page.tsx` (already the target
-pattern — the acceptance reference, zero changes).
-
-**Phase 4 — Responsive verification** (`UI-4`). Extend `tests/e2e/admin-360-pages.spec.ts`, which
-already discovers all 67 routes automatically and is confirmed green, with a second `test.describe`
-at a 375px viewport asserting `documentElement.scrollWidth <= clientWidth`. Run it **before**
-touching the 9 pages that carry no page-level breakpoint classes — absence of a breakpoint class in
-`page.tsx` does not prove overflow, since child components may already handle it, and fixing
-un-measured pages is the guessing this project keeps correcting elsewhere. Fold the mobile run into
-each Phase 3 batch's verification so responsive fixes land in the same review as that batch.
-
-**Open decision for the Founder — `--radius-*`.** This is the one token group that genuinely
-diverges from Tailwind's defaults (6/12/16/24/32px vs 4/6/8/12/16/24px — a deliberately softer
-scale) and the only one worth keeping. But `globals.css` is site-wide, not admin-scoped: wiring it
-into `@theme inline` would redefine `rounded-sm|md|lg|xl|2xl|full` across the 5-locale public
-marketing pages too. Cosmetic-only risk, but real and outside the stated scope. **Default is the
-scoped option:** standardize radius inside the new `AdminContainer`/`AdminPageHeader` shell rather
-than in `@theme`, leaving public pages untouched. The sitewide option stays available if the Founder
-wants one radius language everywhere, verified by the admin Playwright suite plus a visual pass of
-home, `/report` and `/providers`.
-
-**Explicit non-goals.** No light theme — `color-scheme: dark` stays. No visual rewrite: the existing
-violet/cyan/emerald/rose palette, glass and glow utilities, and the reduced-motion / forced-colors /
-44px-touch-target accessibility work are preserved as-is. No new component library — everything
-extends `src/components/ui/*` and `admin-design-kit.tsx`. No `MetricCard` prop-API unification. No
-single-session migration of all 67 pages: the batch is the unit of work, each independently testable.
+**Rotated to `docs/plan/v13.x.md` at v13.67** (PLAN-ROT-1): v13.60 (admin consolidation
+specification) and v13.61 (the error-frequency report that did not reproduce). Both are closed
+records; the live successor of v13.60's admin work is [ADMIN-6](plan/items/ADMIN-6.md).
 
 ## 0. Where things live
 
@@ -448,6 +397,9 @@ only what is currently true.
 | **[LB-2](plan/items/LB-2.md)** | **P0** | Implementer | 25 cron handlers exist, no `vercel.json` and no `"crons"` key — none has ever run. Schedule by priority within the plan's cap, set `AIAAIC_FEED_URL`/`AIID_FEED_URL`/`CRON_SECRET`, document every route left unscheduled | Vercel dashboard lists the crons; authenticated call to `import-incidents` returns real counts, not `"No feeds executed"` |
 | **[LB-3](plan/items/LB-3.md)** | P1 | Implementer | Load the VulcanLab corpus (4,328 records, CC BY 4.0) through the existing importer — do not write a second one. Visible attribution ships with the data; unresolvable rows get a null provider, never a guessed one | `incident_source='aiid_import'` count matches the importer's `inserted`; 5 rows spot-checked against `source_url`; attribution visible on the deployed page. **Starts only after LB-1 has deployed** |
 | **[LB-4](plan/items/LB-4.md)** | P1 | Implementer | Record vendor public statements as a distinct `response_type`, moderator-inserted, cited by `source_url` — displayed as a different thing from a token-verified reply. `response_rate` keeps its meaning; new `disclosure_rate` covers both | A `public_statement` moves `disclosure_rate` and leaves `response_rate` unchanged; DB rejects an `official_reply` with null `responder_email`; non-moderator insert refused |
+| **[TEST-1](plan/items/TEST-1.md)** | **P0** | Implementer | `origin/master` is red on two gates — `tsc --noEmit` fails with 4 errors in `twins-leaderboard-client.tsx`, and 6 tests fail across 2 files testing code `47db3b8e` changed. The csv-parser failure corrupts `import_external_id`, the importer's dedupe key, so re-running the import duplicates rows instead of updating them | `pnpm typecheck` and `pnpm test` both exit 0; the parser fix is covered by a test asserting `import_external_id` |
+| **[LB-1a](plan/items/LB-1a.md)** | **P0** | Implementer | Four specified requirements missed by `47db3b8e`: pattern-matched deletes instead of an explicit id list, no migration stopping the fake seeds returning on `db reset`, no moderator-only RLS policy on `public_statement`, and a CC BY 4.0 credit that names no source | Deletes are id-explicit; `db reset` yields no fabricated model; a non-moderator `public_statement` insert is refused; "VulcanLab" is visible on the deployed page |
+| **[ADMIN-6](plan/items/ADMIN-6.md)** | P1 | Implementer | Admin panel truth pass: inventory every figure on every admin route and its source, then wire, empty-state or delete each hardcoded literal; reconcile the two disagreeing price tables; extend `check-admin-metrics.mjs` as the enforcer | Inventory table complete; no admin route renders `undefined`; no figure traces to an uninventoried literal; enforcer fails on a new hardcoded metric |
 | **[LEGAL-3](plan/items/LEGAL-3.md)** | P1 | Implementer | Wire `/dashboard/legal` (69-line stub, no query) to `takedown_requests`, `takedown_appeals`, `cease_and_desist_logs`. Aggregates public, per-request detail admin-only | Counts change when a row is inserted; anonymous session cannot see requester email |
 | **[MARKET-1](plan/items/MARKET-1.md)** | P1 | Implementer | Real, cited AI-ecosystem/market/financial analysis for VC conversations — external market data already researched and sourced; 5-year projections tagged `[tahmin — doğrulanmamış]` per Rule 10 | Every figure sourced/dated; ships only after `TYPE-3` and `CONST-2` close |
 | **[GOV-3](plan/items/GOV-3.md)** | **P0** | Implementer | Delete `master-plan-mutations.ts` — a live, admin-UI-wired runtime rewrite of `docs/MASTER_PLAN.md` bypassing G-6/G-7 entirely | `grep -rn "master-plan-mutations\|updatePlanItemStatus" src/` returns nothing |
@@ -455,10 +407,11 @@ only what is currently true.
 | **[INVEST-1](plan/items/INVEST-1.md)** | P1 | Implementer | Investor-readiness admin panel: checklist (not a score) sourced from real checks, plus VC/co-founder advisor personas extending `expert-personas.ts` | `check-admin-metrics.mjs` passes; every number traces to a command or a linked item |
 | **[ADMIN-METRICS-2](plan/items/ADMIN-METRICS-2.md)** | P1 | Implementer | Fix two blind spots in `check-admin-metrics.mjs` (brace-interpolated local constants, Turkish percent-first notation) found by a real violation that passed through it | Negative-test fixture demonstrates both catches; no regression on existing findings |
 | **[CONST-1](plan/items/CONST-1.md)** | P2 | Implementer | Community AI Charter — "Draft v0.1, open for co-authorship," `docs/constitution/` articles (ADR-style), public page, reusing the existing `suggestions` mechanism for amendments | Framing states draft/co-authorship, not settled authority; no announcement before `TYPE-3` closes |
-| **[TYPE-2](plan/items/TYPE-2.md)** | **P0** | Implementer | Clear the remaining 36 typecheck errors and unwind the 5 `@ts-nocheck` files added while fixing the first 548 | `pnpm typecheck` exits 0; `@ts-nocheck` back to 0 |
-| **[REPO-1](plan/items/REPO-1.md)** | P1 | Implementer | Clear the repository root: 83 tracked files, 8 of them legitimate config; 1.4 MB of build output, scraped HTML and superseded generated copies. Root-anchored `.gitignore` rules so they cannot return | `git ls-files \| grep -cE "^[^/]+\.(js\|html\|png\|txt)$"` returns 0; build, test and lint still pass |
-| **[DBTYPE-1](plan/items/DBTYPE-1.md)** | **P0** | Implementer | Regenerate `src/types/database.ts` against the **production** database — `599c3554` regenerated it against an incomplete instance and dropped `challenge_votes`, `challenge_submissions` and three RPC functions | `pnpm typecheck` errors drop 584 → ≤14; no suppressions in the diff |
-| **[AGENTOS-1](plan/items/AGENTOS-1.md)** | **P0** | Implementer | Remove or replace the 9 `src/lib/agent-os/` imports (2 public pages, 2 API routes, 3 components/actions, 2 root test files) | `pnpm typecheck` exits 0 |
+| **[REPO-1](plan/items/REPO-1.md)** | P1 | Implementer | Clear the repository root: **46** tracked files (was 83 — re-measured 2026-08-20), 8 of them legitimate config; 1.4 MB of build output, scraped HTML and superseded generated copies. Root-anchored `.gitignore` rules so they cannot return | `git ls-files \| grep -cE "^[^/]+\.(js\|html\|png\|txt)$"` returns 0; build, test and lint still pass |
+| **[CI-2](plan/items/CI-2.md)** | P1 | Implementer | `.gitlab-ci.yml` sits at the root beside 24 GitHub workflows — two CI systems, one presumably dead, and no way for a contributor to tell which gate is real | Exactly one CI configuration remains; a test push shows it running; the item file records what was removed |
+| **[RATE-1](plan/items/RATE-1.md)** | P1 | Implementer | Rate limiting reaches 24 of 92 API route files. Classify all 92 as mutating / paid / read-only, limit the first two through the existing `rate-limit.ts`, document the third as deliberate | Classification table complete; every mutating or paid route imports a limiter; enforcer fails on a new unprotected mutating route |
+| **[KNIP-1](plan/items/KNIP-1.md)** | P2 | Implementer | `knip` is installed with a script and invoked by no workflow — dead-code analysis that analyses nothing while looking like coverage | `knip` runs in CI with a ratcheted baseline, or is removed from `package.json` |
+| **[MEM-1b](plan/items/MEM-1b.md)** | P2 | Implementer | `--max-old-space-size=8192` on `build` and `typecheck`, necessity unmeasured. Measure peak memory first; change the flag only against a number | Peak memory for both commands recorded; flag lowered to a justified figure or documented as load-bearing |
 | **BA** | P0 | **Founder** (not delegable) | Cloudflare: read Security → Events for the last 24h, report which user-agents are actually blocked. Closes if the list is empty | Report produced; WAF rules unchanged unless the log justifies a change |
 | **BB** | P0 | Implementer | ZETA-0c: `/api/health` 308 → 200, smoke test green | Next deploy shown as smoke-test verified |
 | **BD** | P0 | **Founder** (GATE) | Approve `docs/campaigns/` launch drafts → HN + Reddit | First 24h `funnel_events` counts reported |

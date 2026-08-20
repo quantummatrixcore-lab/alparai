@@ -63,3 +63,10 @@ autopilot queue.
 - `src/lib/agent-os/scouts/ecosystem-scout` exists, or `src/actions/scout-intel.ts` stops importing it
 - `pnpm lint` and `pnpm test` exit 0, and `pnpm build` completes
 - `src/types/database.ts` regenerated against production and containing `strategy_questionnaire`
+
+## Closed 2026-08-20 (v13.66) — measured, not reported
+
+At commit `a23b10d1`, `pnpm typecheck` (a real `tsc --noEmit`, `package.json:36`) exits 0 with zero
+errors and `@ts-nocheck` directives under `src/` number zero. This item was carried as an open P0
+after the work was already finished. A later four-error regression (`47db3b8e`) is tracked separately
+as `TEST-1` and does not reopen this item.

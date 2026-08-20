@@ -5,7 +5,177 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.67 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.68 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+
+## v13.68 — Prioritisation, funding, distribution and the admin panel, assessed together (2026-08-20)
+
+The Founder asked five questions at once — how to prioritise, what to do about social accounts,
+whether we are ready to seek investment and where to apply, what happened to the mail we sent, and
+whether the admin panel is live — and asked for them to be answered as one assessment rather than
+five. They are one assessment: each answer changes the others, and the sequence between them is the
+substance of this entry.
+
+### The prioritisation axis changes when the goal is funding
+
+This board has always ordered work by defect severity. For a company about to seek investment that is
+the wrong axis, and keeping it would produce a sequence that looks busy and raises nothing. The right
+axis is **what gates everything downstream**, and there are three gates in a fixed order.
+
+**Gate 1 — nothing published is false.** Diligence and legal exposure both terminate here, and this is
+the only gate where a single artifact can end the conversation outright: a fabricated incident naming
+a real company, found by a reviewer, is not a bug report, it is a verdict on the project's thesis.
+
+**Gate 2 — the build is green.** Every "done" on this board is unverifiable while `master` is red,
+which means the board itself stops being evidence. A technical reviewer runs the build; it is usually
+the first thing they do and the cheapest signal they take.
+
+**Gate 3 — the product shows real data.** An accountability registry with no incidents in it is a
+thesis, not a product. Until the corpus is loaded and attributed, there is nothing for a visitor,
+a journalist or an investor to look at.
+
+Outreach — press, social, investors — comes **after** all three, and not because outreach is less
+important. It is because **investor attention is non-renewable per firm.** A warm intro spent on a
+product with an empty leaderboard and a red build converts into a permanent no at that firm; the same
+intro three weeks later, with a loaded corpus and a green build, is a live conversation. There is no
+version of this where going early is cheap.
+
+### The admin panel: the menu is healthy, six pages are not, and three of those are what the deck sells
+
+Measured 2026-08-20. All **30** sidebar entries resolve — there are **no dead links**, which is better
+than expected. Around **40** routes run a real query. Four pages are orphans, reachable by URL but
+absent from the menu (`cockpit`, `cron-health`, `quotas`, `velocity`).
+
+**Six pages are not live, and the three that matter are the three the pitch deck leans on.**
+`analytics-hub/k-benchmark` displays **ten hardcoded model scores** (`page.tsx:43-127`) — and
+K-BENCHMARK is sold in the deck as half the product, so the panel that would demonstrate it shows
+invented numbers. `api-keys` reports that "key generation is temporarily disabled for maintenance"
+(`page.tsx:31`) — and API key issuance is the monetisation path v13.64 identified, currently switched
+off. `legal-tracker` renders **five hardcoded notifications** with dates fixed at "13 Aug 2026"
+(`page.tsx:31-72`), sitting beside a real legal register this project maintains against a named
+vendor. The remaining three: `strategy/master-plan` carries a dead `fetch("/api/placeholder")` behind
+`isWired = false`, `settings` is a maintenance placeholder, and `AiBudgetTransparencyScore` is called
+**with no props at all** (`admin/page.tsx:167`), rendering "Ölçülmedi" twice, `undefined` for verified
+claims, and a hardcoded `0` for saved tokens — an invented number wearing an empty state's clothes.
+
+So the answer to "are all the menus live" is: the navigation is sound, the data behind six pages is
+not, and the correlation between which pages are hollow and which the fundraising story depends on is
+not a coincidence — those are the pages built to be shown rather than used. Folded into
+[ADMIN-6](plan/items/ADMIN-6.md), whose inventory step this sweep largely completes.
+
+### Outreach already happened, and its results are the strongest argument in this entry
+
+The Founder asked whether the mail we sent arrived. Measured directly from the sending mailbox on
+2026-08-20: **seven project outreach messages, three of which never arrived, four delivered, zero
+replies** after 16 to 24 days.
+
+The three that failed did so for three different reasons — a permanent failure after repeated delivery
+delays, a bad address, and a misconfigured receiving server — and **all three failed silently as far
+as this project was concerned.** Nobody noticed for three weeks. That is the finding: not that cold
+mail is hard, but that we had no idea which of our messages existed. An organisation that publishes a
+registry of AI accountability failures was not tracking the delivery of its own correspondence.
+
+The four that did arrive went to serious recipients — a security-research platform, a digital-rights
+organisation, an AI-safety centre, and our own hosting provider — and none replied. That is the
+expected outcome of a cold approach whose linked artifact shows an empty leaderboard, a red build and
+a pricing page that does not work. **The outreach was not badly written; it was sent too early.** This
+is the evidence for the sequencing above, and it cost four introductions to obtain.
+
+Also measured, and worth stating plainly because both are zero: **no investor outreach has been sent —
+none — and no grant or accelerator application exists.** The investment question is therefore not
+"are we ready to apply", it is "we have not started, and the infrastructure to start is missing."
+
+**What follows from this, concretely.** Delivery must be observable before the next message goes out:
+a transactional provider with webhook-tracked bounces, and a record of who was contacted, when, and
+what came back. Re-contacting the three failed recipients requires correct addresses, not a resend to
+the same ones. And the four who received and ignored us should not be re-approached until there is
+something new to show — a second cold mail with nothing changed converts a non-answer into a no.
+
+### Investment readiness: the artifacts exist, and they contradict each other
+
+The Founder asked whether the infrastructure is ready to apply. The materials are further along than
+expected — and that is the problem, because more than one of them is wrong in a way diligence is
+designed to find. **Diligence is a consistency test before it is anything else:** a reviewer reads two
+of our documents and checks whether they describe the same company. Today they do not.
+
+**Three price schedules for the same product.** `docs/INVESTOR/001-pitch-deck-v2.md:38-39` sells Pro
+at $499/mo and Enterprise at $4,999/mo. The public pricing page sells Startup at $99/mo and Vendor
+Portal at $2,500/mo. `admin/billing/page.tsx:25` hardcodes 2500 and 10000. Three documents, three
+answers, one repository. The three-year projection in `docs/INVESTOR/002-financial-projection-3y.md`
+is built on the $499/$4,999 pair, so whichever schedule is real, at least one financial model is
+computed from prices we do not charge.
+
+**The data-moat claim rests on the data `LB-1` is deleting.** `docs/DATA_ROOM/index.md:31` states
+"371 documented and published incidents out of 2500+ analyzed" as the moat. That count was taken
+from a database seeded with fabricated models and at least one fabricated incident naming a real
+company, and the real corpus has not been imported yet. After the purge the live number will not
+match, and a reviewer who checks the claim against the site — which is exactly what a claim like this
+invites — finds the gap. **This must be recomputed from the database after `LB-1` and `LB-3`, or
+removed until it can be.**
+
+**"Infinity runway."** `docs/fundraising/financial-model.md:19` states the cash balance "never dips
+below $596,511, providing an effective infinity runway post-Month 10." That is a projection presented
+as a property of the company, and the CSV behind it reaches 10,000 users and profitability by month
+twelve from a base of zero users today. Rule 10 already governs this file: projections carry
+`[tahmin — doğrulanmamış]`, and a phrase like "infinity runway" cannot be tagged into acceptability —
+it has to go.
+
+**Traction is described as activity.** The deck's traction slide offers a 56-route dashboard and 203
+migrations. Those are measures of effort, not of demand, and an investor reads the substitution
+precisely: a company that counts its own commits is a company with no users to count. There is no
+published figure for visitors, signups or API calls, and `BH` — the source parameter that would make
+`funnel_events` meaningful — has not landed.
+
+**What is genuinely missing:** a cap table, and unit economics. There is no CAC, no LTV, no payback
+period and no cohort view anywhere; the model is scalar growth applied to a revenue line. A seed
+conversation survives without a cap table for about one meeting.
+
+**What is genuinely strong, and should be said:** the `docs/campaigns/` material — 959 lines, including
+a 447-line ten-part series on Case #001 with a KVKK regulatory angle — is a real distribution asset,
+and the press kit is fully built. Both are waiting on Block I, because accountability journalism
+published from a site carrying a fabricated accusation is not survivable.
+
+### The free money nobody has claimed
+
+Nine cloud-credit programmes are recorded in the seed data with status `not_started` — the major
+cloud, model and infrastructure providers all run them. They take no equity, require no pricing
+answer, need no traction, and are approved on the strength of a working repository, which exists.
+They are also the only item in this entire entry that has **no dependency on the three gates.**
+
+Twelve state support programmes sit at status `open`, and a twenty-firm VC list exists at
+`docs/fundraising/vc-outreach-list.md` — with, as measured above, zero emails ever sent to any of
+them. The infrastructure for outreach was built and never used, which is the same pattern as the 25
+unscheduled crons and the uninvoked `knip`: capability present, capability unreachable.
+
+### Where to apply, and what to say on the two accounts
+
+Both answers are long enough to belong in their items rather than on the board.
+[FUND-3](plan/items/FUND-3.md) sets the funding route: **non-dilutive first** — TÜBİTAK/KOSGEB and
+Teknopark domestically, open-source and public-interest funders internationally — because the revenue
+model is unresolved and venture diligence opens with exactly that question, because AGPL-3.0 plus an
+open incident corpus describes a public registry rather than a SaaS, and because investor attention
+is non-renewable per firm. The measurement above is the proof: four cold approaches, sent while the
+site showed an empty leaderboard and a red build, produced nothing in three weeks.
+
+[SOCIAL-1](plan/items/SOCIAL-1.md) sets the distribution discipline: **two accounts, not five**, each
+fed by the product rather than by invention; every post citing a `source_url`, because a project whose
+thesis is that AI claims must be verifiable cannot publish an unsourced claim about a vendor even
+once; and leading with the response mechanic — "vendor X responded" invites participation where
+"vendor X did wrong" invites counsel. The content already exists in `docs/campaigns/`, and none of it
+publishes before Block I.
+
+### The resulting order of work
+
+**Gate 1, now:** `LB-1a` and `TEST-1` — close Block I and turn the build green. **Gate 2:** `LB-2`
+and `LB-3`, so the registry holds real, attributed data. **Gate 3:** `FUND-2` and `ADMIN-6`, so every
+number we publish about ourselves is true. **Then and only then:** `TRACT-1`, `SOCIAL-1`, `FUND-3`.
+
+**One exception runs in parallel starting today:** [FUND-1](plan/items/FUND-1.md), the nine unclaimed
+credit programmes, because it depends on none of the above and relieves cost this project is paying
+now.
+
+**What the Founder should hold back:** the twenty-firm VC list, the four organisations that received
+our mail, and `docs/campaigns/`'s ten-part series. All three are assets whose value is spent on first
+use, and all three are currently pointed at a product that would not survive the click.
 
 ## v13.67 — The Implementer shipped LB within hours; four requirements are unmet, master is red, and the panel gets its own truth pass (2026-08-20)
 
@@ -260,101 +430,6 @@ in the trust formula turns "who paid" into a proxy for "who responded". That is 
 decision requiring the Founder, and sequencing it behind LB-1 keeps a live unfounded accusation from
 waiting on it. Not filed as a backlog item yet — it needs a specification of its own.
 
-## v13.63 — A valid CSP that disabled the application (2026-08-19)
-
-**Outage.** The Founder reported `/en` with no hero and no data. Every server-side signal read
-healthy: HTTP 200, 627,785 characters, full navigation, hero copy, five real live-feed incidents,
-the provider leaderboard, zero `MISSING_MESSAGE` or `IntlError`, and an empty Vercel runtime-error
-table. The failure was entirely in the browser and the cause was one line.
-
-**Cause.** Commit `d8bd006d` removed `'unsafe-inline' 'unsafe-eval'` from `script-src` at
-`next.config.mjs:11` as a hardening measure, without adding a nonce mechanism. Measured on the live
-page: 25 inline `<script>` elements, **0** carrying a nonce, **20** of them the `self.__next_f` RSC
-flight payload, which itself records `"nonce":"$undefined"`. React streams `<Suspense>` content to
-the **end of the document** and relocates it with inline `$RC()` calls — 3 pending markers and 3
-`$RC(` calls were present. With those scripts blocked, nothing hydrated and nothing moved:
-`<footer>` sits at 31.0% of the script-stripped body and the sole `<h1>` at 41.3%, i.e. the hero
-renders **below the footer** while its skeleton freezes at the top. Verified still present on the
-remote via `git show origin/master:next.config.mjs`.
-
-**The architectural point.** Inline scripts are not an incidental convenience in this framework;
-they are the transport for both hydration and Suspense relocation. A CSP that forbids them without
-supplying a nonce does not harden the application — it disables it, while remaining a perfectly
-valid CSP.
-
-**Why no gate caught it.** A response header is not a build artifact, so `pnpm build` was green and
-had no way not to be; a directive string has no type or lint surface; no unit test asserts response
-headers; Playwright's presence assertions pass against server-rendered HTML and cannot distinguish a
-hydrated application from an inert document; and Vercel's error table is server-side while CSP
-violations are raised by the browser. The systemic finding: **no layer of the test pyramid asserts
-that the application hydrated.** Every gate measured the server, and the server was never wrong.
-
-Two earlier commits — `65b7c09c` ("prevent infinite loading skeleton crash") and `8fbe42b1`
-("remove root loading and resolve hydration mismatch causing infinite skeletons") — treated the
-frozen skeletons as a data or layout defect and patched around them. When a fix targets a symptom
-and the symptom returns, the next step is to falsify the assumed mechanism, not to patch harder.
-
-**Decision and full reasoning:** `docs/adr/0013-csp-streaming-hydration.md`. Restore the known-good
-directive; the per-request nonce in middleware is the correct end state but forces dynamic rendering
-on every route across five locales, which is not a change to make during a live outage.
-`'strict-dynamic'` was considered and does not reach inline scripts.
-
-**Implementer work:**
-
-- `CSP-1` — restore `'unsafe-inline' 'unsafe-eval'` at `next.config.mjs:11`. ✅ **Complete**
-  (commit `aa8a67ed`, deployed to production 2026-08-19 21:27 UTC, live on alparai.com)
-- `CSP-2` — add `scripts/check-csp-hydration.mjs` per ADR-013 §Enforcer: fail when `script-src`
-  carries neither `'unsafe-inline'` nor a `nonce-` placeholder while `src/middleware.ts` sets no
-  per-request nonce. Wire as a step in `.github/workflows/ci.yml`.
-- `CSP-3` — a Playwright assertion that no unresolved streaming boundary survives load. Presence
-  assertions must never again be read as evidence of hydration.
-- `CSP-4` — scope and measure the nonce migration, including the static-rendering cost.
-
-**Correction on the record.** This session reported a `clientKeys` allowlist regression in
-`src/app/[locale]/layout.tsx`. It does not exist — `16102f28` had already removed it, and the branch
-shows `messages={messages}` at line 74. The finding came from a stale local working copy. The
-corrective rule is the read-side mirror of G-7: a finding is verified against `origin` before it is
-reported as real.
-
----
-
-## v13.62 — UI consolidation complete: admin panel migration verified (2026-08-19)
-
-**Completion summary.** Antigravity delivered implementation of the entire v13.60 specification
-across commits through `a900a8ee` (2026-08-19):
-
-- **UI-1 (Foundation)** — `admin-design-kit.tsx` extended with `shell?: boolean` prop on
-  `AdminContainer` (line 14) and `subnav?: React.ReactNode` slot on `AdminPageHeader` (line 45);
-  `TrendMetricCard` rename across 10 import sites completed; dead `--fs-*`/`--space-*` token blocks
-  deleted. ✅ **Complete**
-- **UI-2 (Streaming)** — `src/app/[locale]/admin/finance/page.tsx` split into a `<Suspense>`-wrapped
-  async Server Component for the Vercel billing fetch, decoupled from the KPI grid; the pattern
-  applied site-wide across 42 pages in the migration batch. Global `admin/loading.tsx` refined for
-  streaming fallback. ✅ **Complete**
-- **UI-3 (Shell migration)** — 46 pages migrated from hand-copied `bg-[#070709]` glass shells to
-  `<AdminContainer shell>`, and 40 pages from raw `<h1>` to `<AdminPageHeader>`. Spot-checks on
-  `finance/page.tsx` (shell + header), `moderation/page.tsx` (reference pattern), and `health/page.tsx`
-  confirm zero changes above each `return` statement — auth gates and Supabase queries untouched.
-  ✅ **Complete**
-- **UI-4 (Responsive verification)** — `tests/e2e/admin-360-pages.spec.ts` extended with a 375px-
-  viewport test block asserting `documentElement.scrollWidth <= clientWidth` across all 67 routes;
-  no horizontal overflow detected. ✅ **Complete**
-- **PLAN-ROT-1 (Rotation)** — v13.5x narrative (315 lines) rotated into
-  `docs/plan/v13.5x.md`; `MASTER_PLAN.md` freed from recurring 600-line cap failures. ✅ **Complete**
-
-**Blocking status.** The two P0 items that were blocking `MARKET-1` remain outstanding:
-
-- `TYPE-3` (lint errors: 27 → 20, now 15 substantive `no-explicit-any` to clear)
-- `CONST-2` (`constitution-pr/page.tsx` with nine fabricated AI-product quotes — file deletion pending)
-
-`MARKET-1` is ready to ship once both are resolved.
-
----
-
-**Rotated to `docs/plan/v13.x.md` at v13.67** (PLAN-ROT-1): v13.60 (admin consolidation
-specification) and v13.61 (the error-frequency report that did not reproduce). Both are closed
-records; the live successor of v13.60's admin work is [ADMIN-6](plan/items/ADMIN-6.md).
-
 ## 0. Where things live
 
 The Founder asked why the project runs everything through this one file instead of a professional
@@ -397,6 +472,12 @@ only what is currently true.
 | **[LB-2](plan/items/LB-2.md)** | **P0** | Implementer | 25 cron handlers exist, no `vercel.json` and no `"crons"` key — none has ever run. Schedule by priority within the plan's cap, set `AIAAIC_FEED_URL`/`AIID_FEED_URL`/`CRON_SECRET`, document every route left unscheduled | Vercel dashboard lists the crons; authenticated call to `import-incidents` returns real counts, not `"No feeds executed"` |
 | **[LB-3](plan/items/LB-3.md)** | P1 | Implementer | Load the VulcanLab corpus (4,328 records, CC BY 4.0) through the existing importer — do not write a second one. Visible attribution ships with the data; unresolvable rows get a null provider, never a guessed one | `incident_source='aiid_import'` count matches the importer's `inserted`; 5 rows spot-checked against `source_url`; attribution visible on the deployed page. **Starts only after LB-1 has deployed** |
 | **[LB-4](plan/items/LB-4.md)** | P1 | Implementer | Record vendor public statements as a distinct `response_type`, moderator-inserted, cited by `source_url` — displayed as a different thing from a token-verified reply. `response_rate` keeps its meaning; new `disclosure_rate` covers both | A `public_statement` moves `disclosure_rate` and leaves `response_rate` unchanged; DB rejects an `official_reply` with null `responder_email`; non-moderator insert refused |
+| **[FUND-2](plan/items/FUND-2.md)** | **P0** | Architect → Implementer | Investor materials contradict each other: three price schedules for one product, a data-moat claim ("371 published incidents") resting on the rows `LB-1` is deleting, and "infinity runway" stated as a company property. Cap table and unit economics absent | One price schedule (or a stated "under revision") across every document; every figure traces to a query, a source or a Rule 10 tag; "infinity runway" returns no grep hits; one deck source |
+| **[FUND-1](plan/items/FUND-1.md)** | P1 | **Founder** | Claim the nine cloud/model credit programmes sitting at `not_started`. No equity, no pricing answer, no traction needed — **the only item here with no dependency on the three gates** | All nine carry a status other than `not_started`, with application and outcome dates |
+| **[TRACT-1](plan/items/TRACT-1.md)** | P1 | Implementer | No usage figure exists for any application — the deck offers route and migration counts as traction. Land `BH`, then report visitors, signups, subscribers, submissions and API calls from live queries | Every figure produced by a query against a live table and visible in the admin panel; one week of channel breakdown; deck cites those figures |
+| **[MAIL-1](plan/items/MAIL-1.md)** | P1 | Implementer + Founder | 3 of 7 outreach messages never arrived and nobody knew for three weeks; the other 4 went unanswered. Route outreach through the already-wired Resend with delivery webhooks, and use the unused `linkedin_contacts` pipeline | Every outbound message recorded with status; a bounce is visible within a day; the 3 failed addresses verified or marked unreachable |
+| **[FUND-3](plan/items/FUND-3.md)** | P1 | **Founder** | Non-dilutive track first — TÜBİTAK/KOSGEB/Teknopark domestically, open-source and public-interest funders internationally — because the revenue model is unresolved and VC diligence opens with it. Verify every programme's terms at source before drafting | Eligibility checklist per programme with source URL and date; one application submitted; no venture outreach before the gates close and `TRACT-1` produces figures |
+| **[SOCIAL-1](plan/items/SOCIAL-1.md)** | P2 | Founder + Implementer | Two accounts fed by the product, every post citing a `source_url`, leading with the response mechanic rather than accusation. Fix the footer GitHub link, which points at a repository name that now only resolves by redirect | Footer link resolves canonically; every post links a source; `BH` landed and channel attribution visible |
 | **[TEST-1](plan/items/TEST-1.md)** | **P0** | Implementer | `origin/master` is red on two gates — `tsc --noEmit` fails with 4 errors in `twins-leaderboard-client.tsx`, and 6 tests fail across 2 files testing code `47db3b8e` changed. The csv-parser failure corrupts `import_external_id`, the importer's dedupe key, so re-running the import duplicates rows instead of updating them | `pnpm typecheck` and `pnpm test` both exit 0; the parser fix is covered by a test asserting `import_external_id` |
 | **[LB-1a](plan/items/LB-1a.md)** | **P0** | Implementer | Four specified requirements missed by `47db3b8e`: pattern-matched deletes instead of an explicit id list, no migration stopping the fake seeds returning on `db reset`, no moderator-only RLS policy on `public_statement`, and a CC BY 4.0 credit that names no source | Deletes are id-explicit; `db reset` yields no fabricated model; a non-moderator `public_statement` insert is refused; "VulcanLab" is visible on the deployed page |
 | **[ADMIN-6](plan/items/ADMIN-6.md)** | P1 | Implementer | Admin panel truth pass: inventory every figure on every admin route and its source, then wire, empty-state or delete each hardcoded literal; reconcile the two disagreeing price tables; extend `check-admin-metrics.mjs` as the enforcer | Inventory table complete; no admin route renders `undefined`; no figure traces to an uninventoried literal; enforcer fails on a new hardcoded metric |

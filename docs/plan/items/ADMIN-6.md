@@ -49,3 +49,29 @@ item adds no DE/FR/RU strings.
 - No admin route renders `undefined`, and no figure traces to a literal absent from the inventory
 - The two price tables agree, or both are removed pending the pricing decision
 - `check-admin-metrics.mjs` fails on a newly introduced hardcoded metric (negative test)
+
+## Step 1 partially done: the sweep of 2026-08-20
+
+A read-only sweep already produced most of the inventory. **The menu itself is healthy** — all 30
+sidebar entries resolve to a real route or redirect; there are no dead links. Roughly 40 routes run a
+real Supabase query. Four pages are orphans, reachable by URL but absent from the menu:
+`cockpit` (a redirect to `/admin`), `cron-health` (separate from `crons`), `quotas` and `velocity`.
+
+**Six pages are not live, and three of them are the ones the pitch deck leans on.**
+
+| Route                       | State                                                                                     | Why it matters                                                                                            |
+| --------------------------- | ----------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `analytics-hub/k-benchmark` | 10 hardcoded model scores (`96.8`, `95.4`, … plus grammar/bias scores), `page.tsx:43-127` | K-BENCHMARK is sold in the deck as half the product. The panel that displays it shows invented numbers    |
+| `api-keys`                  | "Key generation is temporarily disabled for maintenance" (`page.tsx:31`)                  | API key issuance is the monetisation path in v13.64's analysis. It is switched off                        |
+| `legal-tracker`             | 5 hardcoded notifications, dates fixed at "13 Aug 2026" (`page.tsx:31-72`)                | This project maintains a real legal register (Case #001). Invented legal notifications sit beside it      |
+| `strategy/master-plan`      | `const isWired = false; if (isWired) await fetch("/api/placeholder")` (`page.tsx:23-24`)  | Dead code that can never execute, shaped like a working integration                                       |
+| `settings`                  | "under maintenance" placeholder (`page.tsx:31-32`)                                        | —                                                                                                         |
+| `AiBudgetTransparencyScore` | called with **no props** at `admin/page.tsx:167`                                          | Renders "Ölçülmedi" twice, `undefined` for verified claims, and a hardcoded `0` for saved tokens (`:235`) |
+
+The budget widget deserves the distinction its own entry made earlier: the `"Ölçülmedi"` fallbacks are
+correct behaviour and were the requested fix. The remaining defects are the missing props at the call
+site and the hardcoded `0`, which is an invented number wearing an empty state's clothes.
+
+**What step 1 still owes:** the same table for the ~40 live routes — which query, which table, and
+whether that table has rows in production. A route that queries a live but empty table renders zero,
+and zero is indistinguishable from a working system with nothing in it.

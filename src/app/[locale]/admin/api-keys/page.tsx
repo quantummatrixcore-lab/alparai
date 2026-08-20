@@ -27,9 +27,7 @@ export default async function ApiKeysPage({ params }: { params: Promise<{ locale
 
         <div className="grid grid-cols-1 gap-6">
           <AdminSectionCard title="Active Keys">
-            <p className="text-zinc-400">
-              No active keys found. Key generation is temporarily disabled for maintenance.
-            </p>
+            <p className="text-zinc-400">No active keys found.</p>
           </AdminSectionCard>
         </div>
       </div>

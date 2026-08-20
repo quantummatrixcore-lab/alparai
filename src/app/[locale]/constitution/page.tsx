@@ -7,7 +7,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: "Yapay Zekanın Global Anayasası | ALPAR AI Public Manifesto",
     description:
-      "Yapay zeka kurallarını tek taraflı şirketler ve hükümetler değil; küresel halk ve topluluk koyar. Global Yapay Zeka Anayasası'nı inceleyin ve imzalayın.",
+      "Yapay zeka kurallarını tek taraflı şirketler ve hükümetler değil; küresel halk ve topluluk koyar. Global Yapay Zeka Anayasası'nı inceleyin ve katkıda bulunun.",
   };
 }
 

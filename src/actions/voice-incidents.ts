@@ -130,10 +130,8 @@ export async function transcribeAudioBlob(
       }
     }
 
-    // Development / Mock fallback when external API keys are unavailable
     if (!transcriptText) {
-      transcriptText = `[ASR Ready - 113 Languages] Voice incident report recorded in ${requestedLocale.toUpperCase()}. Audio buffer size: ${audioBuffer.byteLength} bytes.`;
-      confidence = 0.9;
+      throw new Error("Voice transcription failed or service is not configured");
     }
 
     // Sanitize transcription with PII Guardian

@@ -82,3 +82,7 @@ Consolidate them, separately from this fix.
   browser network log
 - No automatic second authentication on server rejection; the retry is user-initiated
 - An e2e test asserts the single-round-trip property
+
+## Closed
+
+Closed 2026-08-21. Enhanced server-side logging in `signInWithGoogleIdToken` (`src/actions/auth/auth.ts`) to log error code and status. Removed silent automatic `fallbackOAuthRedirect()` on server rejection in `src/components/auth/auth-buttons.tsx` so user receives error toast and stays on page instead of double-authenticating. Added unit test `tests/api/auth-flow.test.ts`. Verified by `pnpm typecheck` and vitest.

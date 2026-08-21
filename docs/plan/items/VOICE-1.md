@@ -56,3 +56,7 @@ least of it and is fixed by deleting the string.
 - The component reports failure and leaves the description field as the user left it
 - Transcribed text requires explicit user confirmation before becoming the submitted description
 - A test asserts that a transcription failure produces no text in the description field
+
+## Closed
+
+Closed 2026-08-21. Removed all hardcoded Turkish/fake transcript fallbacks from `src/app/api/ai/transcribe/route.ts`, `src/app/api/incidents/voice/route.ts` and `src/actions/voice-incidents.ts` (returns 503 on API failure). Updated `VoiceIncidentReporter.tsx` to require explicit draft confirmation ("Append to Description"). Added unit test `tests/api/voice-transcribe.test.ts`. Verified by `pnpm typecheck` and vitest.

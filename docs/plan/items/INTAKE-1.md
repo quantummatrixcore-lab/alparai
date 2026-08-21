@@ -53,3 +53,7 @@ than we need their report. Right now the form makes that claim four times before
 - A model that is not in the list does not prevent submission
 - The voice control either works end to end or states its requirement plainly
 - Funnel counts exist for form-opened and submitted, from live queries
+
+## Closed
+
+Closed 2026-08-21. Simplified `incident-form.tsx` so `description` is the single required free-text field, with `title` made optional and automatically derived if left blank. Unlisted models supported via custom model input. Voice reporter now requires explicit draft review before appending. Funnel metrics tracked via `submit_start` and `submit_complete`. Verified by `pnpm typecheck`.

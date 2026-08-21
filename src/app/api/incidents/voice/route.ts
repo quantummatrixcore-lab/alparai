@@ -57,7 +57,7 @@ export async function transcribeAudio(
   }
 
   const apiKey = process.env.QWEN_API_KEY;
-  let rawTranscript: string;
+  let rawTranscript = "";
   let confidence = 0.98;
 
   if (apiKey) {
@@ -97,28 +97,15 @@ export async function transcribeAudio(
         if (textOutput) {
           rawTranscript = textOutput;
           confidence = 0.99;
-        } else {
-          rawTranscript = options?.incidentContext
-            ? `[Qwen Omni ASR] Ses kaydı transkribe edildi (Bağlam: ${options.incidentContext})`
-            : `[Qwen Omni ASR] Sesli olay bildirimi başarıyla transkribe edildi.`;
         }
-      } else {
-        console.warn("[Qwen Omni ASR] API HTTP Error, using fallback transcriber");
-        rawTranscript = options?.incidentContext
-          ? `[Qwen Omni ASR] Ses kaydı transkribe edildi (Bağlam: ${options.incidentContext})`
-          : `[Qwen Omni ASR] Sesli olay bildirimi başarıyla transkribe edildi.`;
       }
     } catch (err) {
       console.error("[Qwen Omni ASR] Fetch Exception:", err);
-      rawTranscript = options?.incidentContext
-        ? `[Qwen Omni ASR] Ses kaydı transkribe edildi (Bağlam: ${options.incidentContext})`
-        : `[Qwen Omni ASR] Sesli olay bildirimi başarıyla transkribe edildi.`;
     }
-  } else {
-    // Development/Fallback transcriber mode
-    rawTranscript = options?.incidentContext
-      ? `[Qwen Omni ASR] Ses kaydı transkribe edildi (Bağlam: ${options.incidentContext})`
-      : `[Qwen Omni ASR] Sesli olay bildirimi başarıyla transkribe edildi.`;
+  }
+
+  if (!rawTranscript) {
+    throw new Error("Voice transcription failed or service is unavailable");
   }
 
   // Pass transcribed text through PII Guardian to ensure server-side data sanitization

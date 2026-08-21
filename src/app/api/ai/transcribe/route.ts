@@ -83,11 +83,17 @@ export async function POST(request: Request) {
       }
     }
 
-    // Fallback transcript when API key is missing or model fails
-    return NextResponse.json({
-      transcript:
-        "[Ses kaydı başarıyla transkribe edildi: Yapay zeka modeli beklenmeyen bir yanıt üretti ve sistem güvenlik protokolünü ihlal etti.]",
-    });
+    if (!openRouterApiKey) {
+      return NextResponse.json(
+        { error: "Transcription service is not configured (missing API key)" },
+        { status: 503 },
+      );
+    }
+
+    return NextResponse.json(
+      { error: "Voice transcription service failed to process audio" },
+      { status: 503 },
+    );
   } catch (error) {
     console.error("Transcribe API error:", error);
     return NextResponse.json({ error: "Failed to process audio transcript" }, { status: 500 });

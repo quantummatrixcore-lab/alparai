@@ -40,7 +40,17 @@ export async function signInWithGoogleIdToken(token: string, nonce: string): Pro
       nonce,
     });
     if (error) {
-      logger.error("signInWithGoogleIdToken failed", { action: "signInWithGoogleIdToken" }, error);
+      logger.error(
+        "signInWithGoogleIdToken failed",
+        { action: "signInWithGoogleIdToken", code: error.code, status: error.status },
+        error,
+      );
+      console.error(
+        "[signInWithGoogleIdToken] Supabase Auth Error:",
+        `code=${error.code}`,
+        `status=${error.status}`,
+        error.message,
+      );
       return { ok: false, error: error.message };
     }
     return { ok: true };

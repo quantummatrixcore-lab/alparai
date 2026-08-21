@@ -536,7 +536,7 @@ export function IncidentForm({
     else if (value !== "custom:other") setCustomModelName("");
   };
 
-  const canSubmit = allConsents && selectedProvider && title.trim() && description.trim();
+  const canSubmit = allConsents && selectedProvider && description.trim().length >= 10;
 
   const handleClientAction = async (formData: FormData) => {
     const isUuid = (v: string) =>
@@ -546,11 +546,15 @@ export function IncidentForm({
     const model_id = String(formData.get("model_id") ?? "");
 
     const { maskPII } = await import("@/lib/pii/guardian");
-    const rawTitle = String(formData.get("title") ?? "");
-    const rawDescription = String(formData.get("description") ?? "");
+    const rawTitle = String(formData.get("title") ?? "").trim();
+    const rawDescription = String(formData.get("description") ?? "").trim();
+
+    const effectiveTitle =
+      rawTitle ||
+      (rawDescription.length > 80 ? `${rawDescription.slice(0, 77)}...` : rawDescription);
 
     const input = {
-      title: maskPII(rawTitle).masked,
+      title: maskPII(effectiveTitle).masked,
       description: maskPII(rawDescription).masked,
       category: String(formData.get("category") ?? "") as IncidentCategory,
       severity: String(formData.get("severity") ?? "") as IncidentSeverity,
@@ -716,8 +720,7 @@ export function IncidentForm({
 
       <Input
         name="title"
-        label={t("title_placeholder")}
-        required
+        label={`${t("title_placeholder")} (Optional)`}
         maxLength={200}
         value={title}
         onChange={(e) => setTitle(e.target.value)}

@@ -77,6 +77,8 @@ export function VoiceIncidentReporter({ onTranscript }: VoiceIncidentReporterPro
     }
   };
 
+  const [draftTranscript, setDraftTranscript] = useState<string | null>(null);
+
   const processAudio = async (blob: Blob) => {
     setIsProcessing(true);
     setStatusMessage(t("voice_incident_transcribing"));
@@ -96,8 +98,8 @@ export function VoiceIncidentReporter({ onTranscript }: VoiceIncidentReporterPro
 
       const data = await response.json();
       if (data.transcript) {
-        onTranscript(data.transcript);
-        setStatusMessage(t("voice_incident_appended"));
+        setDraftTranscript(data.transcript);
+        setStatusMessage(null);
       } else {
         setStatusMessage(t("voice_incident_failed"));
       }
@@ -161,6 +163,37 @@ export function VoiceIncidentReporter({ onTranscript }: VoiceIncidentReporterPro
           <span className="text-fg-muted max-w-[240px] truncate text-xs">{statusMessage}</span>
         )}
       </div>
+
+      {draftTranscript && (
+        <div className="border-brand-500/30 bg-brand-500/5 mt-2 flex flex-col gap-2 rounded border p-2 text-xs">
+          <div className="text-fg-primary font-semibold">Draft Transcription (AI):</div>
+          <div className="text-fg-secondary max-h-24 overflow-y-auto whitespace-pre-wrap italic">
+            "{draftTranscript}"
+          </div>
+          <div className="flex justify-end gap-2">
+            <Button
+              type="button"
+              size="sm"
+              variant="ghost"
+              onClick={() => setDraftTranscript(null)}
+            >
+              Discard
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              variant="primary"
+              onClick={() => {
+                onTranscript(draftTranscript);
+                setDraftTranscript(null);
+                setStatusMessage(t("voice_incident_appended"));
+              }}
+            >
+              Append to Description
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

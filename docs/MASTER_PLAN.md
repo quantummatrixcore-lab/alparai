@@ -5,7 +5,44 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.79 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.80 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+
+## v13.80 — `I18N-3` closes; what remains of the mojibake item is one file (2026-08-21)
+
+`2fe485ca`, verified on `origin/master`. All three loose ends from v13.79 are closed, and one of them
+was solved slightly better than specified.
+
+`scripts/check-i18n.mjs` **exits 0**. The BOM is stripped on read (`:30`,
+`replace(/^\uFEFF/, "")`) so a stray BOM is now survivable rather than fatal, and `publicLangs` is
+`["en", "tr"]` (`:75`). The CI gate is green again.
+
+`src/components/seo/json-ld.tsx` derives every `inLanguage` from `SUPPORTED_LOCALES` — all three
+occurrences, not only the wrong one — so the file can no longer contradict itself the next time the
+locale list changes. That is the fix rather than the patch.
+
+The redirects are in place and **cover a case this board did not specify**: `next.config.mjs:206`
+handles the bare `/de` alongside `/de/:path*` at `:211`, both permanent. A bare prefix would have kept
+404ing under the rule as written.
+
+`npx tsc --noEmit` exits 0. **`I18N-3` closes**, cited `2fe485ca`.
+
+**What this leaves of `BG`.** The mojibake item covered five files. `tr` is clean, and `de`, `fr` and
+`ru` are no longer served — so the live surface reduces to `en.json`, which still carries **13**
+double-encoding sequences. That is the whole of the remaining user-visible work.
+
+The three unpublished files are a separate question and worth answering deliberately: they are
+corrupted, BOM-prefixed, 95% English, and now unreachable. Keeping them means `HYG-4`'s BOM count never
+reaches zero and every future contributor has to work out why three locale files exist that nothing
+loads. Deleting them is the tidier answer, and the translations they would have needed do not exist to
+lose — but that is a Founder call, since it forecloses on re-adding those languages cheaply later.
+
+One cosmetic residue: `check-i18n.mjs`'s success message still announces "public 5-lang parity" while
+checking two. Harmless, and worth a word the next time that file is open.
+
+**Third consecutive delivery verified with no correction on what was claimed.** The pattern that
+changed is narrow and worth naming: the work is pushed before the report, the report carries the remote
+hash, and the claim describes artifacts a reviewer can open. Nothing about the difficulty of the work
+changed.
 
 ## v13.79 — The locale decision landed; three loose ends, one of them a red gate (2026-08-21)
 
@@ -435,7 +472,7 @@ only what is currently true.
 | **✅ [HEALTH-1](plan/items/HEALTH-1.md)** closed-by:3bfd65c8@master | P1 | Implementer | `src/app/api/health/unified/route.ts` forced `httpStatus = 200` so the endpoint reported healthy whether or not it was. Fixed: the status now follows the report, `src/app/api/health/live/route.ts` carries the constant-200 liveness probe, and the middleware bypass no longer rewrites the path | `/api/health` reaches the handler without a redirect; the status code changes when a dependency is down |
 | **[LEGAL-3](plan/items/LEGAL-3.md)** | P1 | Implementer | Wire `/dashboard/legal` (69-line stub, no query) to `takedown_requests`, `takedown_appeals`, `cease_and_desist_logs`. Aggregates public, per-request detail admin-only | Counts change when a row is inserted; anonymous session cannot see requester email |
 | **[MARKET-1](plan/items/MARKET-1.md)** | P1 | Implementer | Real, cited AI-ecosystem/market/financial analysis for VC conversations — external market data already researched and sourced; 5-year projections tagged `[tahmin — doğrulanmamış]` per Rule 10 | Every figure sourced/dated; ships only after `TYPE-3` and `CONST-2` close |
-| **[I18N-3](plan/items/I18N-3.md)** | P1 | Implementer + **Founder** (scope call) | **Decision taken and landed (`f88dcf99`): only `en` and `tr` are published.** Follow-through outstanding — `scripts/check-i18n.mjs` throws on the BOM'd files and still hardcodes five locales (**CI red now**), `src/components/seo/json-ld.tsx:73` still declares five to search engines, and `/de`, `/fr`, `/ru` 404 with no redirect | `check-i18n.mjs` exits 0 and derives its locale list from `SUPPORTED_LOCALES`; `json-ld` declares only published locales; `/de/:path*` redirects to `/en/:path*`; no `messages/*.json` carries a BOM |
+| **✅ [I18N-3](plan/items/I18N-3.md)** closed-by:2fe485ca@master | P1 | Implementer + **Founder** (scope call) | **Decision taken and landed (`f88dcf99`): only `en` and `tr` are published.** Follow-through outstanding — `scripts/check-i18n.mjs` throws on the BOM'd files and still hardcodes five locales (**CI red now**), `src/components/seo/json-ld.tsx:73` still declares five to search engines, and `/de`, `/fr`, `/ru` 404 with no redirect | `check-i18n.mjs` exits 0 and derives its locale list from `SUPPORTED_LOCALES`; `json-ld` declares only published locales; `/de/:path*` redirects to `/en/:path*`; no `messages/*.json` carries a BOM |
 | **[HYG-4](plan/items/HYG-4.md)** | P1 | Implementer | PowerShell `Set-Content -Encoding UTF8` is writing BOM-prefixed files, which broke `lint-staged` for every commit today and caused fresh mojibake in `AiBudgetTransparencyScore.tsx`. `package.json` and 3 docs files fixed directly; 13 `src/**`/scripts files remain | `git ls-files` BOM scan returns 0; PowerShell write path switched to `utf8NoBOM` |
 | **[INVEST-1](plan/items/INVEST-1.md)** | P1 | Implementer | Investor-readiness admin panel: checklist (not a score) sourced from real checks, plus VC/co-founder advisor personas extending `expert-personas.ts` | `check-admin-metrics.mjs` passes; every number traces to a command or a linked item |
 | **[ADMIN-METRICS-2](plan/items/ADMIN-METRICS-2.md)** | P1 | Implementer | Fix two blind spots in `check-admin-metrics.mjs` (brace-interpolated local constants, Turkish percent-first notation) found by a real violation that passed through it | Negative-test fixture demonstrates both catches; no regression on existing findings |

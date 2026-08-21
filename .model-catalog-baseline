@@ -1,0 +1,9 @@
+# Files containing model names not yet in validModels. Historical migrations are
+# immutable; models-catalog.ts is grandfathered until each name is confirmed
+# released and moved into validModels. Ratchet: entries may only be REMOVED.
+20260620000003_seed_2026_modern_models.sql
+20260701201000_seed_massive_ai_ecosystem.sql
+20260729000002_seed_real_k_benchmark_models.sql
+20260811224940_add_2026_free_models.sql
+20260917000000_remove_remaining_seed_models.sql
+models-catalog.ts

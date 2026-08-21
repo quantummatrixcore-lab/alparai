@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { readFileSync, existsSync, readdirSync } from 'fs';
 import { join } from 'path';
 
 // Load the current model catalog from the file (or we could fetch it if it were dynamically imported, but here we can just parse the file or rely on explicit verification list)
@@ -101,31 +101,63 @@ const fabricatedModels = [
 let failed = false;
 
 // We check all SQL files in supabase/migrations and models-catalog.ts if it exists
-import { readdirSync } from 'fs';
+
+// Allowlist detection, not blocklist. A blocklist only ever catches yesterday's
+// fabrications: the first run of this check passed a freshly invented
+// "Claude 4.9 Opus" because nobody had added it to the list yet. Instead, find
+// anything shaped like a vendor model name and require it to be a name we have
+// verified. A genuinely new model is added to validModels in the same commit
+// that introduces it, which is the point — someone states that it is real.
+const MODEL_NAME_RE =
+  /\b(?:Claude|GPT|Gemini|Llama|Mistral|Grok|Qwen|DeepSeek|Phi|Sora)[ -][\w.]*\d[\w.]*(?:[ -](?:Opus|Sonnet|Haiku|Pro|Flash|Turbo|Instant|mini|Max|Ultra|Codex))?/g;
 
 function checkFile(filePath) {
   const content = readFileSync(filePath, 'utf-8');
+
   for (const fakeModel of fabricatedModels) {
-    // Only check for exact matches in the string to avoid false positives, but a simple includes is safer for finding any instance
     if (content.includes(`'${fakeModel}'`) || content.includes(`"${fakeModel}"`)) {
-      console.error(`ERROR: Fabricated model name "${fakeModel}" found in ${filePath}`);
+      console.error(`ERROR: known fabricated model "${fakeModel}" in ${filePath}`);
       failed = true;
     }
   }
+
+  const quoted = content.match(/'[^'\n]{3,60}'|"[^"\n]{3,60}"/g) || [];
+  for (const raw of quoted) {
+    const value = raw.slice(1, -1).trim();
+    const matches = value.match(MODEL_NAME_RE);
+    if (!matches) continue;
+    if (matches[0] !== value) continue; // only flag when the whole string is a model name
+    if (validModels.has(value)) continue;
+    if (fabricatedModels.includes(value)) continue; // already reported above
+    console.error(
+      `ERROR: unverified model name "${value}" in ${filePath} — add it to validModels once confirmed released, or remove it`,
+    );
+    failed = true;
+  }
 }
 
+const BASELINE_PATH = join(process.cwd(), '.model-catalog-baseline');
+const baseline = existsSync(BASELINE_PATH)
+  ? new Set(
+      readFileSync(BASELINE_PATH, 'utf-8')
+        .split('\n')
+        .map((l) => l.trim())
+        .filter((l) => l && !l.startsWith('#')),
+    )
+  : new Set();
+
 const migrationsDir = join(process.cwd(), 'supabase', 'migrations');
-if (require('fs').existsSync(migrationsDir)) {
+if (existsSync(migrationsDir)) {
   const files = readdirSync(migrationsDir).filter(f => f.endsWith('.sql'));
   for (const file of files) {
-    if (!file.includes('remove_fake_models')) {
+    if (!file.includes('remove_fake_models') && !baseline.has(file)) {
       checkFile(join(migrationsDir, file));
     }
   }
 }
 
 const catalogPath = join(process.cwd(), 'src', 'lib', 'constants', 'models-catalog.ts');
-if (require('fs').existsSync(catalogPath)) {
+if (existsSync(catalogPath) && !baseline.has('models-catalog.ts')) {
   checkFile(catalogPath);
 }
 

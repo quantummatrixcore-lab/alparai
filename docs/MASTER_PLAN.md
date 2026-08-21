@@ -5,70 +5,61 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.88 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.89 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
 
-## v13.88 — Both follow-ups closed; the suite is green on a full run (2026-08-21)
+## v13.89 — The fabricated-model enforcer never worked, and the next work order (2026-08-21)
 
-`25980b2d`, verified here rather than accepted. **`pnpm test` run in full: 193 files, 1,128 tests,
-exit 0.** The report cited a 9-test subset, which is a narrower claim than the one that matters, so it
-is worth recording that the whole suite passes and not only the file that was edited.
+**First, a correction to v13.83.** That entry reported `scripts/check-model-catalog.mjs` as an
+enforcer that existed but was invoked by nothing, and wiring it into CI was presented as the fix. Run
+directly, it **crashed**: `require('fs')` inside an ES module, line 118. It had never executed
+successfully in its life. So wiring it into CI would have turned CI red — a red gate introduced by the
+entry that complained about unwatched red gates.
 
-`tests/api/incidents-voice.test.ts` now asserts the contract the code actually has — an error when the
-transcription service is unavailable, instead of the 200-with-prose it previously certified. The test
-that had been guaranteeing the fabrication now guards against its return, which is the right end state
-for that file.
+Worse, once it ran it turned out to be a **blocklist**: it matched six hardcoded fabricated names. A
+freshly invented `Claude 4.9 Opus` passed it cleanly. A blocklist only ever catches yesterday's
+fabrication, which is the opposite of what `LB-1` asked for. **`LB-1`'s protection has not existed at
+any point since it was specified.**
 
-The eight throwaway scripts are gone and `.gitignore:43` carries `scripts/temp_*`, so the next batch
-of debug scaffolding does not reach the repository at all. Fixing the instance and closing the path in
-one pass is the pattern this board keeps asking for.
+Fixed here, in the enforcement layer: the ESM bug, a duplicate import, and the detection rewritten to
+an **allowlist** — anything shaped like a vendor model name with a version token must appear in
+`validModels` or the check fails. Six existing files are grandfathered in `.model-catalog-baseline`,
+removable only. Verified both ways: clean on the current tree, and exit 1 on an injected
+`Claude 4.9 Opus`.
 
-**One inconsistency, small and worth naming before it hardens.** For the same condition — the
-transcription service being unavailable — `api/ai/transcribe/route.ts:89,95` answers **503** while
-`api/incidents/voice/route.ts:232` answers **500**. A 500 says the server is broken; a 503 says a
-dependency is down and the request may be retried, and monitors and clients act on that difference.
-Both routes should say 503 here. Not filed as an item — it is one line in each file and belongs to
-whoever next opens them — but recorded so the decision is deliberate rather than accidental.
+### Work order — everything below is independent of the production purge
 
-## v13.87 — Three closed, and a test that had been guaranteeing the fabrication (2026-08-21)
+**1. Turn the red gates green, first.** `check-repo-language.mjs` is failing in CI on two counts:
+mojibake in `messages/{de,en,fr,ru}.json` (184/141/141/139 lines) plus `package.json`, and Turkish
+outside the baseline led by `twins-leaderboard-client.tsx` (92 lines), `scripts/apply-i18n_temp.mjs`
+(61) and `src/lib/agent-os/personas.ts` (51). Three of those locale files are **no longer served** —
+deleting them is the cheapest honest fix and closes most of this in one commit, though that is the
+Founder's call on ever re-adding those languages. Fix `HYG-4`'s BOM write path in the same pass or the
+files come back corrupted. **A red gate is worth more than a feature: while CI is red, every other
+item's acceptance line is unverifiable.**
 
-`babb4435`, verified on `origin/master`. All three of v13.86's items are done, and done as specified
-rather than approximately.
+**2. Two commands that unblock more than they cost.** One `curl -i` against the deployed `/api/health`
+closes `BB`. One real visit through a tagged social link, confirmed in the marketing panel, closes
+`BH` — and `BH` is the only thing standing between this project and having a usage figure, which every
+funding route in `FUND-3` asks for first. Minutes, not tasks.
 
-**`VOICE-1` closes.** The fabricated transcript is gone from `src/` entirely — the string returns zero
-hits — and `transcribe/route.ts` now answers **503** with a reason when the service is unavailable.
-`VoiceIncidentReporter.tsx` holds the transcript as a `draftTranscript` and offers **Discard** or
-**Append to Description**, so machine-transcribed text never becomes the submitted description without
-the user choosing it. That is the confirmation step the item asked for, built rather than approximated.
+**3. Issue API keys.** `admin/api-keys` still renders "No active keys found" with no form and no server
+action behind it. v13.64 identified the API surface as the only asset here that can be sold to the
+parties who may legitimately buy — auditors, insurers, regulators — and key issuance is the first step
+of it. Create, list, revoke, scoped to a tier, with the existing rate limiter honoured.
 
-**`INTAKE-1` closes.** `title` is optional and labelled so; `description` is the single required field.
-When the title is blank it is derived from the description — first 77 characters and an ellipsis
-(`incident-form.tsx:551-553`) — so the schema keeps its column and the reporter is not asked for a
-headline. One mandatory field now files a report.
+**4. Finish the system of record (`OPS-1`).** A create form for grant applications so a programme not
+in the seed can be added, the new outcome and date columns surfaced, incident provenance visible in the
+UI so hand-entered rows are distinguishable from imports, and outreach delivery status from `MAIL-1`.
 
-**`AUTH-1` closes.** The server-rejection branch logs the Supabase `code` and `status`
-(`auth.ts:43-52`) and shows the error; **the automatic second Google round-trip is gone**. The one
-remaining `fallbackOAuthRedirect()` sits in the no-credential branch — the user dismissed the prompt —
-which is exactly the only case the item allowed it, and the manual button is unchanged. The measurement
-step and the fix landed together, which is acceptable here because the fix does not depend on what the
-log says: whatever the reason, silently re-authenticating was wrong.
+**5. Hygiene, cheapest first.** `CI-2` — decide between `.gitlab-ci.yml` and the 24 GitHub workflows
+and delete the loser. `KNIP-1` — wire it with a baseline or remove the dependency. `MEM-1b` — measure
+peak heap before touching the 8 GB flag. Then `RATE-1`'s classification of 92 routes, `REPO-1`, and
+`ADMIN-METRICS-2`'s two blind spots. Also from `AUTH-1`: consolidate the two callback routes, which
+duplicate `safeNextPath` and `detectLocale` verbatim.
 
-### The finding that came out of running the suite
-
-`pnpm test` is **red**: 2 failures in `tests/api/incidents-voice.test.ts`, both asserting that
-`transcribeAudio` returns a transcript and the route returns 200. The test mocks the session and the
-rate limiter but **not** the transcription service — so it was passing only because the endpoint
-returned the fabricated sentence. **The bug was covered by a test that certified it as working.**
-
-That is why it survived: the suite was green _because_ the endpoint lied, and a green suite is exactly
-what stops anyone looking. The test now encodes a contract the code has correctly abandoned, and needs
-rewriting to assert the new one — a 503 and a thrown error when the service is unavailable. Small
-work, and it belongs to whoever touches that file next; recorded here rather than filed, because
-`VOICE-1`'s acceptance already requires a test asserting that a failure leaves the field untouched.
-
-**Worth watching, not filed:** the same commit added eight throwaway scripts to `scripts/` —
-`fix-tr-mojibake2/3/4.js`, `fix-tr-json-syntax.js`, `temp_cdp_buttons.js`, `temp_cdp_click_send.js`,
-`lb1-prod.js`. Debug scaffolding belongs outside the repository or in `.gitignore`; this is `REPO-1`'s
-defect class arriving faster than `REPO-1` clears it.
+**One condition on all of it.** Per C1, each item lands with the check that stops it returning, and
+that check must be **run before the commit** — this entry exists because an enforcer was shipped
+without ever being executed.
 
 ## v13.86 — The reporting form, and a transcription endpoint that invents evidence (2026-08-21)
 
@@ -429,47 +420,6 @@ checking two. Harmless, and worth a word the next time that file is open.
 changed is narrow and worth naming: the work is pushed before the report, the report carries the remote
 hash, and the claim describes artifacts a reviewer can open. Nothing about the difficulty of the work
 changed.
-
-## v13.77 — The health endpoint fixed properly; mojibake down by two thirds and not gone (2026-08-21)
-
-Pushed as `3bfd65c8` and verified on `origin/master`, with the remote hash reported alongside the
-claim for the first time — which is why this entry took one measurement instead of three.
-
-**`HEALTH-1` closes, and the fix is the right one rather than the convenient one.**
-`api/health/unified/route.ts:10` now reads
-`const httpStatus = report.overall === "healthy" ? 200 : 503`, so the status code follows the report
-again. `/api/health/live` exists as a separate constant-200 liveness route for the platform probe, and
-the middleware bypass is now scoped to skipping i18n rather than rewriting the path. That is the
-routing defect `BB` actually described, solved without disabling the signal.
-
-**`BB` stays open one more step.** The code is right; its acceptance is a production request to
-`/api/health` returning 200 without a redirect, and that cannot be checked from here. One `curl -i`
-against the deployed URL closes it.
-
-**`BH`'s write path is complete.** `referral-tracker.tsx:15-19` reads `utm_source` (and the older `bh`
-and `ref` parameters), and calls `trackFunnelEvent("visit", { source })`, which inserts into
-`funnel_events` (`src/actions/funnel.ts:24`). The links are tagged and something now reads the tag.
-Its acceptance — a test visit appearing in the marketing panel with its source — needs one real visit
-to demonstrate; after that `TRACT-1` is unblocked for the first time.
-
-**`BG` improved substantially and is not closed.** Measured on `origin/master`: `Ã` fell from 28 to
-**2**, `Â` from 38 to **13**, and `â€` remains at 0. But `Å` is **84**, exactly what it was before —
-untouched. These are real corruptions, not false positives: `"…Geleceğini Åekillendirin"` and
-`"Radikal Åeffaflık"` should both be `Ş`, and the surviving `Â` sequences are `360Â°` where `°`
-belongs.
-
-The reason a general fix keeps missing them is worth writing down: these `Å` characters are
-**orphaned**. A normal double-encoding stores `ş` as `ÅŸ`, which a cp1252→UTF-8 round-trip reverses
-mechanically. Here the second byte is already gone, so the round-trip has nothing to work with and the
-character has to be mapped directly — `Å` → `Ş`, `Â°` → `°` — after confirming no legitimate use of
-those characters exists in the file. It parses as valid JSON with 95 top-level keys, so the damage is
-in the string values only.
-
-**Process note.** This is the second consecutive delivery where the claim survived verification with
-no correction needed on the parts that were claimed, and the first where the remote hash was given
-before the check was asked for. The health fix also went beyond the specification in the right
-direction — a separate liveness route was a suggestion, not a requirement, and shipping it is what
-made the 503 restoration safe.
 
 ## 0. Where things live
 

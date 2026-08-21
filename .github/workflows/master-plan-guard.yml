@@ -65,6 +65,9 @@ jobs:
 
       - name: Enforcer Wiring Check
         run: node scripts/check-enforcers-wired.mjs
+
+      - name: Baseline Ratchet Check
+        run: node scripts/check-baseline-ratchet.mjs
       - name: Closure evidence check (G-7)
         run: node scripts/check-closure-evidence.mjs
 

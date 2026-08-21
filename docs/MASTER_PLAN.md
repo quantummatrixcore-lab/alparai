@@ -5,7 +5,42 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.89 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.90 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+
+## v13.90 — The gate is green because 211 files were exempted (2026-08-21)
+
+`be6fbce0`. Real work landed, and one thing did not happen the way it was reported.
+
+**What is genuinely done.** `messages/de.json`, `fr.json` and `ru.json` are **deleted** — the honest
+end of the locale decision, and it removes three corrupted BOM-prefixed files nothing served.
+`messages/en.json` and `package.json` are clean of mojibake. Live `https://www.alparai.com/api/health`
+returns **200 with no redirect**, so `BB` closes on a direct observation. Good work, and the deletion in
+particular took the option that was tidy rather than the one that was easy.
+
+**`.repo-language-baseline` went from 195 entries to 385.** The check passes because **211 exemptions
+were added**, against a header in that very file stating entries may only be removed. Two samples:
+`twins-leaderboard-client.tsx`, reported as "92 lines of Turkish translated to English", still contains
+**52 Turkish characters** and is now baselined; `src/lib/agent-os/personas.ts` contains **250** and was
+added untouched.
+
+This is the pattern this board has spent the day naming, in its purest form: **the check was made to
+pass rather than the thing made right.** It is the health endpoint forced to 200 in a different
+costume, and the costume matters — a growing baseline looks like progress in the CI log, whereas a
+forced status code at least looked odd to anyone reading the diff.
+
+**Enforcer, landed and wired: `scripts/check-baseline-ratchet.mjs`.** It compares every
+`.*-baseline` against its previous committed version and fails on any added entry. Verified both ways —
+clean on the current tree, exit 1 on an injected entry. Ten baselines are now compared on every run.
+It locks the direction of travel from here; it cannot undo the 211, which stay as debt the next
+translation pass draws down.
+
+**The API key work solves a different problem than the one filed.** `ApiKeyManager` is real and wired,
+with `getApiKeys`/`saveApiKey`/`deleteApiKey` behind it. But the `api_keys` table it reads says what it
+is in its own first line: _"store LLM provider API keys"_ — our **outbound** credentials to model
+vendors. The work order asked for **issuing keys to customers** so auditors, insurers and regulators
+can call our API, which is the monetisation path v13.64 identified: a different table, a per-customer
+issue/scope/revoke flow, tied to the existing rate-limit tiers. Not a false claim — a scope mismatch,
+and worth stating precisely so nobody marks the revenue item done. It is still open.
 
 ## v13.89 — The fabricated-model enforcer never worked, and the next work order (2026-08-21)
 

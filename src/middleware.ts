@@ -35,14 +35,8 @@ export async function middleware(request: NextRequest) {
     });
   }
 
-  // ZETA-1: Ensure /api/health bypasses i18n and edge redirects completely
+  // Ensure /api/health bypasses i18n completely
   if (request.nextUrl.pathname.startsWith("/api/health")) {
-    const url = request.nextUrl.clone();
-    // If there's a trailing slash, Next.js might 308 redirect. We rewrite to avoid it.
-    if (url.pathname.endsWith("/")) {
-      url.pathname = url.pathname.replace(/\/$/, "");
-      return NextResponse.rewrite(url);
-    }
     return NextResponse.next();
   }
 

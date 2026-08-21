@@ -90,11 +90,14 @@ export function IncidentCard({
     }
   }, [incident.created_at]);
 
-  const shareUrl = React.useMemo(() => {
-    const relativeUrl = `/incidents/${incident.id}?ref=alparai_platform`;
-    if (typeof window === "undefined") return `https://alparai.com${relativeUrl}`;
-    return `${window.location.origin}${relativeUrl}`;
-  }, [incident.id]);
+  const getShareUrlForPlatform = React.useCallback(
+    (platform: string) => {
+      const relativeUrl = `/incidents/${incident.id}?ref=${platform}`;
+      if (typeof window === "undefined") return `https://alparai.com${relativeUrl}`;
+      return `${window.location.origin}${relativeUrl}`;
+    },
+    [incident.id],
+  );
 
   const severityBorders: Record<IncidentSeverity, string> = {
     low: "border-l-4 border-l-success-500/80 focus-within:border-l-success-500",
@@ -284,7 +287,7 @@ export function IncidentCard({
                 <motion.a
                   whileHover={{ scale: 1.2, y: -1 }}
                   whileTap={{ scale: 0.9 }}
-                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(displayTitle)}&url=${encodeURIComponent(shareUrl)}`}
+                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(displayTitle)}&url=${encodeURIComponent(getShareUrlForPlatform("x"))}`}
                   target="_blank"
                   rel="noreferrer noopener"
                   className="p-0.5 text-zinc-100 transition-colors hover:text-white"
@@ -298,7 +301,7 @@ export function IncidentCard({
                 <motion.a
                   whileHover={{ scale: 1.2, y: -1 }}
                   whileTap={{ scale: 0.9 }}
-                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`}
+                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(getShareUrlForPlatform("linkedin"))}`}
                   target="_blank"
                   rel="noreferrer noopener"
                   className="text-social-linkedin hover:text-social-linkedin/80 p-0.5 transition-colors"
@@ -316,7 +319,7 @@ export function IncidentCard({
                   aria-label={tFeed("copyForInstagram")}
                   onClick={(e) => {
                     e.stopPropagation();
-                    navigator.clipboard.writeText(shareUrl);
+                    navigator.clipboard.writeText(getShareUrlForPlatform("copy"));
                     toast.success(tFeed("copyForInstagram") + " ✓");
                   }}
                 >
@@ -327,7 +330,7 @@ export function IncidentCard({
                 <motion.a
                   whileHover={{ scale: 1.2, y: -1 }}
                   whileTap={{ scale: 0.9 }}
-                  href={`https://api.whatsapp.com/send?text=${encodeURIComponent(displayTitle + " " + shareUrl)}`}
+                  href={`https://api.whatsapp.com/send?text=${encodeURIComponent(displayTitle + " " + getShareUrlForPlatform("whatsapp"))}`}
                   target="_blank"
                   rel="noreferrer noopener"
                   className="text-social-whatsapp hover:text-social-whatsapp/80 p-0.5 transition-colors"

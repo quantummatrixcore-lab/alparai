@@ -12,7 +12,8 @@ export function ReferralTracker() {
     if (trackedRef.current) return;
     const ref = searchParams.get("ref");
     const bh = searchParams.get("BH");
-    const source = bh || ref;
+    const utmSource = searchParams.get("utm_source");
+    const source = bh || ref || utmSource;
     if (source) {
       trackedRef.current = true;
       void trackFunnelEvent("visit", { source });

@@ -64,16 +64,19 @@ export function ShareButtons({
   const [copied, setCopied] = useState(false);
   const [instaCopied, setInstaCopied] = useState(false);
 
-  const fullUrl = React.useMemo(() => {
-    if (typeof window === "undefined") return url;
-    const constructed = new URL(url, window.location.origin);
-    constructed.searchParams.set("ref", "alparai_platform");
-    return constructed.toString();
-  }, [url]);
+  const getUrlForPlatform = React.useCallback(
+    (platform: string) => {
+      if (typeof window === "undefined") return url;
+      const constructed = new URL(url, window.location.origin);
+      constructed.searchParams.set("ref", platform);
+      return constructed.toString();
+    },
+    [url],
+  );
 
   const onCopy = async () => {
     try {
-      await navigator.clipboard.writeText(fullUrl);
+      await navigator.clipboard.writeText(getUrlForPlatform("copy"));
       setCopied(true);
       trackEvent("Incident Shared", { platform: "copy" });
       toast.success(t("share_copy") + " ✓");
@@ -86,7 +89,7 @@ export function ShareButtons({
 
   const onCopyInstagram = async () => {
     try {
-      await navigator.clipboard.writeText(fullUrl);
+      await navigator.clipboard.writeText(getUrlForPlatform("instagram"));
       setInstaCopied(true);
       trackEvent("Incident Shared", { platform: "instagram" });
       toast.success(t("share_instagram") + " ✓");
@@ -97,10 +100,10 @@ export function ShareButtons({
     }
   };
 
-  const xUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(fullUrl)}`;
-  const liUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(fullUrl)}`;
-  const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(title + " " + fullUrl)}`;
-  const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(fullUrl)}`;
+  const xUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(getUrlForPlatform("x"))}`;
+  const liUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(getUrlForPlatform("linkedin"))}`;
+  const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(title + " " + getUrlForPlatform("whatsapp"))}`;
+  const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(getUrlForPlatform("facebook"))}`;
 
   const containerVariants: Variants = {
     hidden: { opacity: 0, y: 10 },

@@ -97,11 +97,14 @@ export function FeedCard({
     }
   };
 
-  const shareUrl = React.useMemo(() => {
-    const relativeUrl = `/incidents/${incident.id}?ref=alparai_platform`;
-    if (typeof window === "undefined") return `https://alparai.com${relativeUrl}`;
-    return `${window.location.origin}${relativeUrl}`;
-  }, [incident.id]);
+  const getShareUrlForPlatform = React.useCallback(
+    (platform: string) => {
+      const relativeUrl = `/incidents/${incident.id}?ref=${platform}`;
+      if (typeof window === "undefined") return `https://alparai.com${relativeUrl}`;
+      return `${window.location.origin}${relativeUrl}`;
+    },
+    [incident.id],
+  );
 
   const toggleExpand = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -309,7 +312,7 @@ export function FeedCard({
                     {/* X */}
                     <motion.a
                       whileHover={{ scale: 1.15, y: -1 }}
-                      href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(displayTitle)}&url=${encodeURIComponent(shareUrl)}`}
+                      href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(displayTitle)}&url=${encodeURIComponent(getShareUrlForPlatform("x"))}`}
                       target="_blank"
                       rel="noreferrer noopener"
                       className="flex h-8 w-8 items-center justify-center rounded-full bg-white/5 text-zinc-100 transition-colors hover:text-white"
@@ -321,7 +324,7 @@ export function FeedCard({
                     {/* LinkedIn */}
                     <motion.a
                       whileHover={{ scale: 1.15, y: -1 }}
-                      href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`}
+                      href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(getShareUrlForPlatform("linkedin"))}`}
                       target="_blank"
                       rel="noreferrer noopener"
                       className="bg-social-linkedin/10 text-social-linkedin hover:bg-social-linkedin/20 flex h-8 w-8 items-center justify-center rounded-full transition-colors"
@@ -336,7 +339,7 @@ export function FeedCard({
                       className="bg-social-instagram/10 text-social-instagram hover:bg-social-instagram/20 flex h-8 w-8 items-center justify-center rounded-full transition-colors"
                       aria-label={tFeed("copyForInstagram")}
                       onClick={() => {
-                        navigator.clipboard.writeText(shareUrl);
+                        navigator.clipboard.writeText(getShareUrlForPlatform("copy"));
                         toast.success(tFeed("copyForInstagram") + " ✓");
                         setShowShare(false);
                       }}
@@ -347,7 +350,7 @@ export function FeedCard({
                     {/* WhatsApp */}
                     <motion.a
                       whileHover={{ scale: 1.15, y: -1 }}
-                      href={`https://api.whatsapp.com/send?text=${encodeURIComponent(displayTitle + " " + shareUrl)}`}
+                      href={`https://api.whatsapp.com/send?text=${encodeURIComponent(displayTitle + " " + getShareUrlForPlatform("whatsapp"))}`}
                       target="_blank"
                       rel="noreferrer noopener"
                       className="bg-social-whatsapp/10 text-social-whatsapp hover:bg-social-whatsapp/20 flex h-8 w-8 items-center justify-center rounded-full transition-colors"

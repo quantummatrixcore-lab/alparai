@@ -7,7 +7,7 @@ export const revalidate = 0; // Always dynamic
 
 export async function GET() {
   const report = await checkSystemHealth();
-  const httpStatus = 200; // Force 200 to allow deployment checks to pass
+  const httpStatus = report.overall === "healthy" ? 200 : 503;
 
   return NextResponse.json(report, {
     status: httpStatus,

@@ -67,3 +67,19 @@ The fabricated transcript returns zero hits in `src/`; the route answers 503 wit
 component holds a `draftTranscript` with Discard / Append to Description so transcribed text needs an
 explicit choice. Note: `tests/api/incidents-voice.test.ts` still asserts the removed behaviour and is
 red — it was passing only because the endpoint fabricated.
+
+## Follow-up note (2026-08-21, after `bcb4b17b`) — one status code went one step too far
+
+The unification is right in three of four places. `transcribe/route.ts:87-96` returns **503** for the
+two service-unavailable conditions (missing API key, model failed), and `incidents/voice/route.ts:232`
+now matches. Correct.
+
+But `transcribe/route.ts:99` is the **outer `catch (error)`** — it catches any unexpected exception in
+the handler: a malformed multipart parse, a null dereference, a bug. That is a server fault, and it
+should stay **500**. A 503 tells a monitor "a dependency is down, it will recover, retry" and is
+typically not paged on; a genuine crash returning 503 therefore hides in the same bucket as an unset
+API key.
+
+That is a small instance of the pattern this whole board has been chasing — a failure wearing the
+costume of a known benign condition. One line: revert `:99` to 500, leave `:89` and `:95` at 503.
+Not a reopening of this item; recorded here because this file owns the route.

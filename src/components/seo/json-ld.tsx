@@ -5,6 +5,7 @@ import {
   GITHUB_URL,
   TWITTER_URL,
   LINKEDIN_URL,
+  SUPPORTED_LOCALES,
 } from "@/lib/constants";
 
 export function OrganizationJsonLd() {
@@ -20,7 +21,7 @@ export function OrganizationJsonLd() {
       "@type": "ContactPoint",
       email: "hello@alparai.com",
       contactType: "customer support",
-      availableLanguage: ["English", "Turkish", "German", "French", "Russian"],
+      availableLanguage: ["English", "Turkish"],
     },
     foundingDate: "2024",
     knowsAbout: ["AI Accountability", "AI Incident Reporting", "AI Safety", "Machine Learning"],
@@ -70,7 +71,7 @@ export function SoftwareApplicationJsonLd() {
       name: APP_NAME,
       url: APP_URL,
     },
-    inLanguage: ["en", "tr", "de", "fr", "ru"],
+    inLanguage: [...SUPPORTED_LOCALES],
   };
   return (
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
@@ -139,7 +140,7 @@ export function IncidentJsonLd({
       url: APP_URL,
     },
     keywords: ["AI", "incident", severity, provider, "accountability"],
-    inLanguage: ["en", "tr"],
+    inLanguage: [...SUPPORTED_LOCALES],
   };
   return (
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
@@ -221,7 +222,7 @@ export function BlogArticleJsonLd({
       name: APP_NAME,
       logo: `${APP_URL}/icons/android-chrome-512x512.png`,
     },
-    inLanguage: ["en", "tr"],
+    inLanguage: [...SUPPORTED_LOCALES],
   };
   return (
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />

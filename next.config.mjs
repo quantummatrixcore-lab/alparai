@@ -201,6 +201,17 @@ const nextConfig = {
         destination: "/:locale/academy",
         permanent: false,
       },
+      // Deprecated locale redirects (de, fr, ru -> en)
+      {
+        source: "/:oldLocale(de|fr|ru)",
+        destination: "/en",
+        permanent: true,
+      },
+      {
+        source: "/:oldLocale(de|fr|ru)/:path*",
+        destination: "/en/:path*",
+        permanent: true,
+      },
     ];
   },
 };

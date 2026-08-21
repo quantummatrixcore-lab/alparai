@@ -25,8 +25,14 @@ try {
     process.exit(1);
   }
 
-  const enContent = JSON.parse(fs.readFileSync(enPath, "utf-8"));
-  const trContent = JSON.parse(fs.readFileSync(trPath, "utf-8"));
+  // Read helper with BOM stripping
+  const readJson = (filePath) => {
+    const raw = fs.readFileSync(filePath, "utf-8").replace(/^\uFEFF/, "");
+    return JSON.parse(raw);
+  };
+
+  const enContent = readJson(enPath);
+  const trContent = readJson(trPath);
 
   const enKeys = flattenKeys(enContent);
   const trKeys = flattenKeys(trContent);
@@ -65,14 +71,14 @@ try {
   const adminMissingInTr = adminKeysEn.filter(k => !adminSetTr.has(k));
   const adminMissingInEn = adminKeysTr.filter(k => !adminSetEn.has(k));
 
-  // Check public pages parity (en/tr/de/fr/ru)
-  const publicLangs = ["en", "tr", "de", "fr", "ru"];
+  // Check public pages parity (EN/TR)
+  const publicLangs = ["en", "tr"];
   const publicContents = {};
   const publicKeySets = {};
   for (const lang of publicLangs) {
     const p = path.resolve(process.cwd(), `messages/${lang}.json`);
     if (fs.existsSync(p)) {
-      publicContents[lang] = JSON.parse(fs.readFileSync(p, "utf-8"));
+      publicContents[lang] = readJson(p);
       publicKeySets[lang] = new Set(flattenKeys(publicContents[lang]));
     }
   }

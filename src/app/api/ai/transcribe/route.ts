@@ -96,6 +96,6 @@ export async function POST(request: Request) {
     );
   } catch (error) {
     console.error("Transcribe API error:", error);
-    return NextResponse.json({ error: "Failed to process audio transcript" }, { status: 503 });
+    return NextResponse.json({ error: "Failed to process audio transcript" }, { status: 500 });
   }
 }

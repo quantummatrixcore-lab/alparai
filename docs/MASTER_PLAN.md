@@ -5,7 +5,54 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.85 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.86 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+
+## v13.86 — The reporting form, and a transcription endpoint that invents evidence (2026-08-21)
+
+The Founder reported four things about filing an incident: it demands both a short and a long
+description, the model list is out of date, voice recording does not work, and the whole thing is
+harder than it should be. All four check out in the code, and the third turned out to be something
+other than "does not work".
+
+**`src/app/api/ai/transcribe/route.ts` fabricates the transcript when it fails.** If
+`OPENROUTER_API_KEY` is absent, or the model call fails, or the response is unusable, the route does
+not return an error. It returns HTTP 200 with a hardcoded Turkish sentence meaning:
+
+> "[Voice recording successfully transcribed: the AI model produced an unexpected response and
+> violated the system security protocol.]"
+
+The user speaks a description of a real incident. The system discards it, **states that transcription
+succeeded**, and substitutes an invented sentence that is itself an accusation against an AI model —
+into the description field of an incident report, attributed to whichever provider they selected.
+
+**This is the most serious fabrication found on this board.** The earlier ones invented metrics about
+ourselves: a transparency score, a K-benchmark table, a readiness percentage. All bad, all removed.
+This one invents **evidence**, out of a user's own words, on the single surface where the project's
+value rests entirely on the record being real. And it does so while reporting success, which is why it
+has read as "voice doesn't work" rather than as what it is.
+[VOICE-1](plan/items/VOICE-1.md), P0. The correction is to delete the fallback: a failed transcription
+returns a non-2xx with a reason. A user told the recording failed can type instead; a user told it
+succeeded has no reason to check.
+
+**The other three are one problem — the form asks too much of the person least able to give it.**
+`incident-form.tsx:718-737` requires **both** a title of up to 200 characters and a description of up
+to 5,000, so someone who has just experienced something must compose a headline and an essay before
+the form will accept them. The model list is the `ai_models` table — the same one `LB-1` is purging of
+fabricated entries, never refreshed with the models people actually use — so a reporter looks for
+their model, does not find it, and either picks something wrong or leaves. And voice, the alternative
+for anyone who cannot type, additionally requires a signed-in session (`transcribe/route.ts:7-10`),
+which under `AUTH-1` puts the double sign-in between a whistleblower and their report.
+[INTAKE-1](plan/items/INTAKE-1.md).
+
+**The principle, because it decides the next twenty design questions:** the reporter is doing us a
+favour. Every mandatory field asserts that we need something more than we need their report, and the
+form currently makes that assertion four times before a word is typed. One required free-text field
+files a report. An unlisted model is metadata a moderator resolves later and must never block
+submission. A broken alternative path is worse than none, because it spends the single attempt of
+exactly the person who could not use the main one.
+
+**Measure before redesigning further.** Instrument form-opened and submitted, so the next change aims
+at where people actually stop. Guessing at friction is how forms acquire fields in the first place.
 
 ## v13.85 — The double sign-in, located (2026-08-21)
 
@@ -320,86 +367,6 @@ changed is narrow and worth naming: the work is pushed before the report, the re
 hash, and the claim describes artifacts a reviewer can open. Nothing about the difficulty of the work
 changed.
 
-## v13.79 — The locale decision landed; three loose ends, one of them a red gate (2026-08-21)
-
-The Founder chose subtraction, and `f88dcf99` implements it in two files: `SUPPORTED_LOCALES` is
-`["en", "tr"]` and the routing config derives from it. `npx tsc --noEmit` exits **0**, which was not a
-given — narrowing that union could have broken every `locale === "de"` comparison in the codebase, and
-did not.
-
-**The switcher needed no work, and that is worth noticing.** `language-switcher.tsx:22` already
-filtered its options through `SUPPORTED_LOCALES`, so the three languages left the UI by themselves;
-the sitemap shrank the same way. Someone built those to derive rather than to repeat, and today it
-paid.
-
-**Three things did not follow, and the first is breaking CI now.**
-
-`scripts/check-i18n.mjs` **throws**. Line 69 still hardcodes all five locales and line 75 parses each
-file with a plain `JSON.parse` — and `de`, `fr` and `ru` carry a BOM, so it dies with
-`"abou"... is not valid JSON` and exits 1 on an unhandled exception. The i18n gate is red, over files
-the site no longer serves. Both halves need fixing: read the locale list from `SUPPORTED_LOCALES`, and
-strip a leading BOM on read so its presence is reported rather than fatal.
-
-`src/components/seo/json-ld.tsx:73` still declares `inLanguage: ["en", "tr", "de", "fr", "ru"]`. Lines
-142 and 224 of the same file already say `["en", "tr"]` — the file contradicts itself, and the wrong
-one is the copy search engines read as a statement about what this site offers. That is the same claim
-we just removed from the interface, still being made to machines.
-
-`/de`, `/fr` and `/ru` now **404**. Yesterday those paths served English; today they serve nothing, and
-anything indexed or linked under them is broken. Permanent redirects to the `/en` equivalent cost three
-lines in `next.config.mjs`. **Removing a language should cost a visitor a redirect, not a dead end** —
-and the reason to say it that way is that subtraction was the right call precisely because it was the
-honest one, and a wave of 404s is how an honest decision acquires the reputation of a careless one.
-
-All three are recorded in [I18N-3](plan/items/I18N-3.md) rather than as new rows, since they are the
-follow-through of one decision rather than separate findings.
-
-## v13.78 — tr.json is clean; the check that found it also found three fake locales (2026-08-21)
-
-`7891fd59`, verified on `origin/master`.
-
-**The mojibake in `messages/tr.json` is gone, and the evidence is exact.** All markers read zero — `Ã`,
-`Å`, `Â`, `â€`, `Ä` — and the file parses as valid JSON. The correspondence is what makes this
-convincing rather than merely reported: the **84** orphaned `Å` characters became **84** `Ş`, and the
-**13** stray `Â` sequences became **13** `°`. Nothing was dropped and nothing was invented. The AST
-approach was the right call; text substitution had failed at this twice.
-
-**`BG` does not close, because it covers five files and only one was fixed.** Unambiguous
-double-encoding sequences remaining: `en` **13**, `de` **146**, `fr` **262**, `ru` ~**1,950**. `tr` is
-at zero and is the largest and most-read of them.
-
-### What the wider scan found instead
-
-Checking the other four locales for mojibake produced a bigger finding than mojibake. Compared value
-by value against `en.json` (5,500 keys):
-
-| Locale | Identical to English     |
-| ------ | ------------------------ |
-| `tr`   | 562 of 5,500 — **10%**   |
-| `de`   | 5,233 of 5,489 — **95%** |
-| `fr`   | 5,250 of 5,489 — **95%** |
-| `ru`   | 5,242 of 5,489 — **95%** |
-
-**`de`, `fr` and `ru` are English files.** `ru.json` contains **zero Cyrillic characters** — whatever
-Russian it held is gone, leaving English plus fragments with Turkish diacritics. All three also carry a
-**UTF-8 BOM** that `en` and `tr` do not, so they fail a strict JSON parse and load only through a
-BOM-tolerant reader; that is `HYG-4`'s write path, still producing corrupted files.
-
-`CLAUDE.md` requires public pages in all five languages. A visitor choosing Deutsch, Français or
-Русский receives English. **An English-only site is honest about its reach; a language switcher that
-returns English is a claim that does not hold** — on a project whose entire subject is claims that do
-not hold, and it is visible to any reviewer in under a minute.
-
-The honest fix may well be **subtraction**: publish English and Turkish, remove the other three from
-the switcher until they are real. Removing a language is not a regression; advertising one that does
-not exist is. That is a Founder call on reach, and either answer is defensible — what is not
-defensible is the current state. [I18N-3](plan/items/I18N-3.md).
-
-**Why every existing check missed it.** `check-i18n.mjs` enforces key parity, and the parity is
-perfect — all three files have every key. The values are simply English. A partially translated locale
-looks complete to every check this repository runs, which is why the enforcer in `I18N-3` compares
-values rather than keys.
-
 ## v13.77 — The health endpoint fixed properly; mojibake down by two thirds and not gone (2026-08-21)
 
 Pushed as `3bfd65c8` and verified on `origin/master`, with the remote hash reported alongside the
@@ -479,6 +446,8 @@ only what is currently true.
 | ID  | P   | Owner | Work | Acceptance |
 | --- | --- | ----- | ---- | ---------- |
 
+| **[VOICE-1](plan/items/VOICE-1.md)** | **P0** | Implementer | `src/app/api/ai/transcribe/route.ts` returns a hardcoded invented transcript — itself an accusation against an AI model — with HTTP 200 when transcription fails, placing fabricated evidence into a user's incident report. Delete the fallback; fail visibly | A failed transcription returns non-2xx with a reason; no branch returns invented prose; transcribed text needs explicit confirmation; a test asserts failure leaves the field untouched |
+| **[INTAKE-1](plan/items/INTAKE-1.md)** | P1 | Implementer | Filing an incident requires both a 200-char title and a 5,000-char description (`incident-form.tsx:718-737`), offers a stale model list from `ai_models`, and its voice alternative needs a signed-in session on top of `AUTH-1` | One mandatory free-text field; an unlisted model does not block submission; the voice control works or states its requirement; funnel counts exist for opened and submitted |
 | **[AUTH-1](plan/items/AUTH-1.md)** | **P0** | Implementer | Google sign-in re-authenticates through a second full OAuth redirect whenever the ID-token exchange fails (`auth-buttons.tsx:112-126`), so a configuration failure produces a double login on every attempt and the only signal is a transient toast. Log `res.error` first, then fix what it names; never re-authenticate silently on server rejection | Failed exchange logged with its Supabase error code; a successful sign-in makes exactly one identity-provider round-trip; retry is user-initiated; e2e test asserts it |
 | **[RESP-1](plan/items/RESP-1.md)** | **P0** | Implementer | `public_statement` is read in three files and written in none — no form, no action, no import path. Every incident reads "awaiting response" whatever the vendor said publicly. Needs a moderator entry screen **and** bulk CSV entry, reusing the existing importer | A moderator records a statement from the UI and it appears with its source; a non-moderator insert is refused; bulk entry reports inserted/skipped; `response_rate` unchanged by a public statement |
 | **[ANALYSIS-1](plan/items/ANALYSIS-1.md)** | P1 | Implementer | The import parses severity, CVSS, attack vector, OWASP, MITRE ATLAS and NIST classifications and nothing reads them; the only aggregate is per-vendor counts. Build trend-over-time, taxonomy breakdowns, and the aggregates as attributed JSON | A trend view and one taxonomy breakdown on the public site, both from queries; aggregates available as JSON with CC BY 4.0 attribution. **Starts after the purge runs** |

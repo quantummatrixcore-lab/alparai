@@ -170,7 +170,7 @@ export function AiBudgetTransparencyScore({
               </span>
               <span className="text-fg-muted shrink-0 text-[11px] sm:text-xs">
                 <strong className="text-white">{consumedTokens !== undefined ? consumedTokens : "Ölçülmedi"}</strong> / {totalBudgetTokens !== undefined ? totalBudgetTokens : "Ölçülmedi"}{" "}
-                Tokens ({budgetUsagePct}%)
+                Tokens {totalBudgetTokens !== undefined ? `(${budgetUsagePct}%)` : ""}
               </span>
             </div>
 
@@ -178,7 +178,7 @@ export function AiBudgetTransparencyScore({
             <div className="relative mt-3 h-3 w-full overflow-hidden rounded-full bg-zinc-800/80 p-0.5 ring-1 ring-white/10">
               <div
                 className="via-brand-500 to-success-400 h-full rounded-full bg-gradient-to-r from-cyan-500 shadow-[0_0_12px_rgba(6,182,212,0.4)] transition-all duration-700 ease-out"
-                style={{ width: `${budgetUsagePct}%` }}
+                style={{ width: totalBudgetTokens !== undefined ? `${budgetUsagePct}%` : "0%" }}
               />
             </div>
 

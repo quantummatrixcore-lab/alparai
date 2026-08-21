@@ -80,7 +80,7 @@ export function Footer() {
                 <Github className="h-4 w-4" />
               </a>
               <a
-                href="https://twitter.com/alparai"
+                href="https://twitter.com/alparai?utm_source=alparai_footer"
                 target="_blank"
                 rel="noreferrer noopener"
                 className="text-fg-muted hover:bg-bg-tertiary hover:text-fg-primary inline-flex h-8 w-8 items-center justify-center rounded-md"
@@ -89,7 +89,7 @@ export function Footer() {
                 <Twitter className="h-4 w-4" />
               </a>
               <a
-                href="https://linkedin.com/company/alpar-ai?ref=alparai_platform"
+                href="https://linkedin.com/company/alpar-ai?ref=alparai_platform&utm_source=alparai_footer"
                 target="_blank"
                 rel="noreferrer noopener"
                 className="text-fg-muted hover:bg-bg-tertiary hover:text-fg-primary inline-flex h-8 w-8 items-center justify-center rounded-md"

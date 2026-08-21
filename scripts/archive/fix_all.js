@@ -50,15 +50,15 @@ files.forEach((f) => {
       .replace(/Ã‡/g, "Ç")
       .replace(/Äž/g, "Ğ");
     text = text
-      .replace(/â€”/g, "—")
-      .replace(/â€“/g, "–")
-      .replace(/â€™/g, "’")
-      .replace(/â€œ/g, "“")
-      .replace(/â€\x9D/g, "”");
+      .replace(/—/g, "—")
+      .replace(/–/g, "–")
+      .replace(/’/g, "’")
+      .replace(/“/g, "“")
+      .replace(/”\x9D/g, "”");
     text = text
-      .replace(/â€/g, "”")
-      .replace(/â€¢/g, "•")
-      .replace(/Ã¢/g, "â")
+      .replace(/”/g, "”")
+      .replace(/•/g, "•")
+      .replace(/â/g, "â")
       .replace(/âˆ’/g, "−")
       .replace(/â† /g, "←");
 

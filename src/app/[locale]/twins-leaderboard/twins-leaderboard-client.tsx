@@ -122,13 +122,13 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
   }, [allTwins]);
 
   const categories: { key: CategoryFilter; label: string; icon: typeof Compass }[] = [
-    { key: "all", label: "Tüm Dehalar", icon: Layers },
+    { key: "all", label: "All Digital Twins", icon: Layers },
     { key: "governance", label: "Devlet & Makro Strateji", icon: Crown },
-    { key: "architecture", label: "Mimari & Strüktür", icon: Compass },
+    { key: "architecture", label: "Architecture & Engineering", icon: Compass },
     { key: "science", label: "Bilim & Fizik", icon: Zap },
     { key: "ai", label: "Yapay Zeka & Kripto", icon: BrainCircuit },
-    { key: "polymath", label: "Altın Oran & Sanat", icon: Sparkles },
-    { key: "medicine", label: "Bütüncül Tıp & Mantık", icon: ShieldCheck },
+    { key: "polymath", label: "Golden Ratio & Arts", icon: Sparkles },
+    { key: "medicine", label: "Holistic Medicine & Logic", icon: ShieldCheck },
   ];
 
   return (
@@ -140,7 +140,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
 
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* =========================================================================
-            HEADER & HERO SECTION (Mimar Sinan Standardı)
+            HEADER & HERO SECTION (Mimar Sinan Standard)
             ========================================================================= */}
         <header className="mb-14 text-center">
           <div className="border-brand-500/30 from-brand-950/80 hover:border-brand-400/60 inline-flex items-center gap-2 rounded-full border bg-gradient-to-r via-purple-950/40 to-slate-900/80 px-4 py-1.5 shadow-[0_0_25px_rgba(168,85,247,0.25)] backdrop-blur-xl transition-all duration-300 hover:shadow-[0_0_35px_rgba(168,85,247,0.4)]">
@@ -151,14 +151,14 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
           </div>
 
           <h1 className="font-display mt-6 text-4xl font-extrabold tracking-tight sm:text-6xl md:text-7xl">
-            Dijital İkizler{" "}
+            Digital Twins{" "}
             <span className="from-brand-300 bg-gradient-to-r via-purple-400 to-cyan-400 bg-clip-text text-transparent drop-shadow-sm">
               Liderlik Tablosu
             </span>
           </h1>
 
           <p className="text-fg-secondary mx-auto mt-6 max-w-3xl text-base leading-relaxed sm:text-lg md:text-xl">
-            Tarihe yön veren kurucu akılların ve dehaların dijital ikizleri.
+            Digital twins of historical visionaries, master architects, and polymaths.
             <span className="font-medium text-white"> Agent-OS Model Arbitraj Motoru</span> ile
             sıfır token maliyetinde yüksek mantıksal kapasite, stratejik karar desteği ve asimetrik
             problem çözme matrisi.
@@ -169,13 +169,13 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
             <div className="group hover:border-brand-500/40 relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-center backdrop-blur-xl transition-all duration-300 hover:bg-white/[0.06] hover:shadow-[0_0_30px_rgba(168,85,247,0.2)]">
               <div className="text-fg-muted mb-1 flex items-center justify-center gap-1.5 text-xs font-medium">
                 <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />
-                <span>Çözülen Problem</span>
+                <span>Problems Solved</span>
               </div>
               <div className="font-display text-2xl font-extrabold text-white sm:text-3xl">
                 {aggregateMetrics.totalSolved.toLocaleString()}
               </div>
               <span className="font-mono text-[11px] font-medium text-emerald-400">
-                ↑ Canlı Telemetri
+                ↑ Live Telemetry
               </span>
             </div>
 
@@ -188,7 +188,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                 {aggregateMetrics.avgIQ}
               </div>
               <span className="text-brand-400 font-mono text-[11px] font-medium">
-                Bilişsel Zirve
+                Cognitive Peak
               </span>
             </div>
 
@@ -208,7 +208,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
             <div className="group hover:border-brand-500/40 relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-center backdrop-blur-xl transition-all duration-300 hover:bg-white/[0.06] hover:shadow-[0_0_30px_rgba(168,85,247,0.2)]">
               <div className="text-fg-muted mb-1 flex items-center justify-center gap-1.5 text-xs font-medium">
                 <TrendingUp className="h-3.5 w-3.5 text-cyan-400" />
-                <span>Görev Başarısı</span>
+                <span>Task Success</span>
               </div>
               <div className="font-display text-2xl font-extrabold text-cyan-300 sm:text-3xl">
                 %{aggregateMetrics.avgSuccess}
@@ -227,14 +227,14 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                 {aggregateMetrics.activeCount} Deha
               </div>
               <span className="font-mono text-[11px] font-medium text-rose-400">
-                Sonsuz Strüktür
+                Infinite Structure
               </span>
             </div>
           </div>
         </header>
 
         {/* =========================================================================
-            TOP 3 PODIUM SHOWCASE (Altın, Gümüş, Bronz Kürsüsü)
+            TOP 3 PODIUM SHOWCASE (Gold, Silver, Bronze Podium)
             ========================================================================= */}
         <section aria-label="Zirvedeki Dehalar Podyumu" className="mb-16">
           <div className="mb-6 flex items-center justify-between">
@@ -252,7 +252,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
               href={`/${locale}/digital-twins`}
               className="text-brand-400 hover:text-brand-300 hidden items-center gap-1.5 text-xs font-semibold transition-colors sm:inline-flex"
             >
-              <span>Tüm Zihinlerle Sohbet</span>
+              <span>Chat with All Visionaries</span>
               <ArrowUpRight className="h-4 w-4" />
             </Link>
           </div>
@@ -264,7 +264,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                 <div className="absolute -top-4 left-6 flex items-center gap-1.5 rounded-full border border-slate-300/30 bg-gradient-to-r from-slate-600 to-slate-400 px-3.5 py-1 shadow-lg">
                   <Award className="h-4 w-4 text-slate-100" />
                   <span className="text-xs font-bold tracking-wider text-white">
-                    #2 GÜMÜŞ DERECE
+                    #2 SILVER RANK
                   </span>
                 </div>
 
@@ -298,19 +298,19 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
 
                 <div className="mt-5 space-y-2 border-t border-white/10 pt-4 text-xs">
                   <div className="flex items-center justify-between">
-                    <span className="text-fg-muted">IQ & Bilişsel Kapasite</span>
+                    <span className="text-fg-muted">IQ & Cognitive Capacity</span>
                     <span className="font-bold text-amber-400">
                       {podiumTwins.second.stats.iqScore} IQ
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-fg-muted">Çözülen Problem</span>
+                    <span className="text-fg-muted">Problems Solved</span>
                     <span className="font-mono text-white">
                       {podiumTwins.second.stats.solvedProblems.toLocaleString()}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-fg-muted">Başarı Oranı</span>
+                    <span className="text-fg-muted">Success Rate</span>
                     <span className="font-semibold text-emerald-400">
                       %{podiumTwins.second.stats.successRate}
                     </span>
@@ -329,11 +329,11 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                     variant="outline"
                     className="w-1/2 border-white/15 bg-white/5 text-xs hover:border-white/30 hover:bg-white/10"
                   >
-                    Profil İncele
+                    View Profile
                   </Button>
                   <Link href={`/${locale}/digital-twins`} className="w-1/2">
                     <Button className="w-full bg-gradient-to-r from-red-600 to-amber-600 text-xs font-semibold text-white shadow-md hover:brightness-110">
-                      Danış
+                      Consult
                     </Button>
                   </Link>
                 </div>
@@ -346,7 +346,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                 <div className="absolute -top-5 left-1/2 flex -translate-x-1/2 items-center gap-1.5 rounded-full border border-amber-300 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 px-5 py-1.5 shadow-[0_0_20px_rgba(245,158,11,0.6)]">
                   <Crown className="h-4 w-4 text-slate-950" />
                   <span className="text-xs font-black tracking-wider text-slate-950">
-                    #1 BAŞKOMUTAN // ALTIN ZİRVE
+                    #1 COMMANDER IN CHIEF // GOLDEN PEAK
                   </span>
                 </div>
 
@@ -384,19 +384,21 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
 
                 <div className="mt-5 space-y-2.5 border-t border-amber-400/20 pt-4 text-xs sm:text-sm">
                   <div className="flex items-center justify-between">
-                    <span className="text-fg-muted font-medium">Bilişsel Zeka (IQ Skoru)</span>
+                    <span className="text-fg-muted font-medium">
+                      Cognitive Intelligence (IQ Score)
+                    </span>
                     <span className="text-base font-extrabold text-amber-300">
                       {podiumTwins.first.stats.iqScore} IQ (Efsanevi)
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-fg-muted font-medium">Toplam Çözülen Problem</span>
+                    <span className="text-fg-muted font-medium">Toplam Problems Solved</span>
                     <span className="font-mono text-base font-bold text-white">
                       {podiumTwins.first.stats.solvedProblems.toLocaleString()}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-fg-muted font-medium">Görev Başarı Oranı</span>
+                    <span className="text-fg-muted font-medium">Görev Success Rate</span>
                     <span className="font-bold text-emerald-400">
                       %{podiumTwins.first.stats.successRate} Kusursuz
                     </span>
@@ -408,7 +410,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-fg-muted font-medium">Model Eşleşmesi</span>
+                    <span className="text-fg-muted font-medium">Model Match</span>
                     <span className="font-mono text-xs text-purple-300">
                       {podiumTwins.first.stats.activeModel}
                     </span>
@@ -421,11 +423,11 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                     variant="outline"
                     className="w-1/2 border-amber-400/40 bg-amber-500/10 text-xs font-semibold text-amber-200 hover:border-amber-300 hover:bg-amber-500/20"
                   >
-                    Doktrini Gör
+                    View Doctrine
                   </Button>
                   <Link href={`/${locale}/digital-twins`} className="w-1/2">
                     <Button className="w-full bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600 text-xs font-bold text-slate-950 shadow-[0_0_25px_rgba(245,158,11,0.5)] hover:brightness-110">
-                      Hemen Danış
+                      Hemen Consult
                     </Button>
                   </Link>
                 </div>
@@ -438,7 +440,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                 <div className="absolute -top-4 left-6 flex items-center gap-1.5 rounded-full border border-emerald-400/30 bg-gradient-to-r from-emerald-700 to-teal-500 px-3.5 py-1 shadow-lg">
                   <Compass className="h-4 w-4 text-emerald-100" />
                   <span className="text-xs font-bold tracking-wider text-white">
-                    #3 BRONZ // BAŞMİMAR
+                    #3 BRONZE // CHIEF ARCHITECT
                   </span>
                 </div>
 
@@ -474,13 +476,13 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
 
                 <div className="mt-5 space-y-2 border-t border-white/10 pt-4 text-xs">
                   <div className="flex items-center justify-between">
-                    <span className="text-fg-muted">IQ & Bilişsel Kapasite</span>
+                    <span className="text-fg-muted">IQ & Cognitive Capacity</span>
                     <span className="font-bold text-emerald-400">
                       {podiumTwins.third.stats.iqScore} IQ
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-fg-muted">Çözülen Problem</span>
+                    <span className="text-fg-muted">Problems Solved</span>
                     <span className="font-mono text-white">
                       {podiumTwins.third.stats.solvedProblems.toLocaleString()}
                     </span>
@@ -505,11 +507,11 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                     variant="outline"
                     className="w-1/2 border-white/15 bg-white/5 text-xs hover:border-white/30 hover:bg-white/10"
                   >
-                    Profil İncele
+                    View Profile
                   </Button>
                   <Link href={`/${locale}/digital-twins`} className="w-1/2">
                     <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 text-xs font-semibold text-white shadow-md hover:brightness-110">
-                      Danış
+                      Consult
                     </Button>
                   </Link>
                 </div>
@@ -530,7 +532,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                 <Search className="text-fg-muted absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2" />
                 <Input
                   type="text"
-                  placeholder="Deha ismi, uzmanlık alanı, model veya yetenek ara..."
+                  placeholder="Search visionaries, expertise, models, or skills..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="placeholder:text-fg-muted focus:border-brand-500 focus:ring-brand-500/20 w-full rounded-2xl border-white/15 bg-slate-900/60 py-2.5 pr-4 pl-11 text-sm text-white focus:ring-2"
@@ -538,7 +540,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                 {searchQuery && (
                   <button
                     onClick={() => setSearchQuery("")}
-                    aria-label="Aramayı temizle"
+                    aria-label="Clear search"
                     className="text-fg-muted absolute top-1/2 right-3 -translate-y-1/2 hover:text-white"
                   >
                     <X className="h-4 w-4" />
@@ -550,27 +552,27 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
               <div className="flex flex-wrap items-center gap-3">
                 <div className="flex items-center gap-2 rounded-2xl border border-white/10 bg-slate-900/60 px-3 py-1.5">
                   <SlidersHorizontal className="text-brand-400 h-4 w-4" />
-                  <span className="text-fg-muted text-xs font-medium">Sırala:</span>
+                  <span className="text-fg-muted text-xs font-medium">Sort by:</span>
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value as SortOption)}
                     className="cursor-pointer bg-transparent text-xs font-semibold text-white outline-none"
-                    aria-label="Liderlik sıralama kriteri"
+                    aria-label="Leaderboard sort criteria"
                   >
                     <option value="iq" className="bg-slate-900 text-white">
-                      IQ Skoru (En Yüksek)
+                      IQ Score (Highest)
                     </option>
                     <option value="problems" className="bg-slate-900 text-white">
-                      Çözülen Problem Sayısı
+                      Problems Solved Sayısı
                     </option>
                     <option value="success" className="bg-slate-900 text-white">
-                      Görev Başarı Oranı
+                      Görev Success Rate
                     </option>
                     <option value="savings" className="bg-slate-900 text-white">
-                      Token Tasarruf Oranı
+                      Token Savings Rate
                     </option>
                     <option value="rating" className="bg-slate-900 text-white">
-                      Kullanıcı Memnuniyeti
+                      User Satisfaction
                     </option>
                   </select>
                 </div>
@@ -584,7 +586,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                         ? "from-brand-600 bg-gradient-to-r to-purple-600 text-white shadow-md"
                         : "text-fg-muted hover:text-white"
                     }`}
-                    aria-label="Kart görünümüne geç"
+                    aria-label="Switch to grid view"
                   >
                     <Grid className="h-3.5 w-3.5" />
                     <span>Kartlar</span>
@@ -596,7 +598,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                         ? "from-brand-600 bg-gradient-to-r to-purple-600 text-white shadow-md"
                         : "text-fg-muted hover:text-white"
                     }`}
-                    aria-label="Tablo matrisine geç"
+                    aria-label="Switch to table view"
                   >
                     <List className="h-3.5 w-3.5" />
                     <span>Matris</span>
@@ -638,10 +640,10 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
           <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-12 text-center backdrop-blur-xl">
             <BrainCircuit className="text-fg-muted mx-auto mb-3 h-12 w-12 opacity-40" />
             <h3 className="font-display text-lg font-bold text-white">
-              Arama Kriterine Uygun Deha Bulunamadı
+              No Matching Visionary Found
             </h3>
             <p className="text-fg-muted mt-1 text-sm">
-              Filtreleri sıfırlayarak veya arama terimini değiştirerek tekrar deneyin.
+              Try resetting filters or modifying your search term.
             </p>
             <Button
               onClick={() => {
@@ -651,7 +653,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
               variant="outline"
               className="border-brand-500/40 bg-brand-500/10 text-brand-300 mt-4 text-xs"
             >
-              Filtreleri Sıfırla
+              Reset Filters
             </Button>
           </div>
         ) : viewMode === "grid" ? (
@@ -691,7 +693,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
 
                       <div className="flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-400">
                         <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
-                        <span>Çevrimiçi</span>
+                        <span>Online</span>
                       </div>
                     </div>
 
@@ -724,7 +726,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                       {/* Metric 1: IQ Capacity */}
                       <div>
                         <div className="mb-1 flex justify-between text-xs">
-                          <span className="text-fg-muted">IQ & Bilişsel Kapasite</span>
+                          <span className="text-fg-muted">IQ & Cognitive Capacity</span>
                           <span className="text-brand-300 font-bold">
                             {twin.stats.iqScore} / 200
                           </span>
@@ -740,7 +742,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                       {/* Metric 2: Success Rate */}
                       <div>
                         <div className="mb-1 flex justify-between text-xs">
-                          <span className="text-fg-muted">Görev Başarı Oranı</span>
+                          <span className="text-fg-muted">Görev Success Rate</span>
                           <span className="font-bold text-emerald-400">
                             %{twin.stats.successRate}
                           </span>
@@ -772,7 +774,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                       {/* Key Meta row */}
                       <div className="grid grid-cols-2 gap-2 pt-1 text-[11px]">
                         <div className="rounded-xl border border-white/5 bg-slate-900/60 p-2 text-center">
-                          <span className="text-fg-muted block">Çözülen Problem</span>
+                          <span className="text-fg-muted block">Problems Solved</span>
                           <span className="font-mono text-xs font-bold text-white">
                             {twin.stats.solvedProblems.toLocaleString()}
                           </span>
@@ -787,7 +789,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
 
                       {/* Active Model Tag */}
                       <div className="flex items-center justify-between pt-1 text-[11px]">
-                        <span className="text-fg-muted">Motor Eşleşmesi:</span>
+                        <span className="text-fg-muted">Engine Match:</span>
                         <span className="text-brand-300 max-w-[170px] truncate font-mono font-medium">
                           {twin.stats.activeModel}
                         </span>
@@ -814,11 +816,11 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                       variant="outline"
                       className="w-1/2 border-white/15 bg-white/5 text-xs text-white hover:border-white/30 hover:bg-white/10"
                     >
-                      Bilişsel Rapor
+                      Cognitive Report
                     </Button>
                     <Link href={`/${locale}/digital-twins`} className="w-1/2">
                       <Button className="from-brand-600 w-full bg-gradient-to-r to-purple-600 text-xs font-semibold text-white shadow-md hover:brightness-110">
-                        <span>Zihinle Konuş</span>
+                        <span>Talk to Visionary</span>
                         <ChevronRight className="ml-1 h-3.5 w-3.5" />
                       </Button>
                     </Link>
@@ -835,7 +837,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                 <thead className="text-fg-muted border-b border-white/10 bg-white/[0.04] text-[11px] tracking-wider uppercase">
                   <tr>
                     <th scope="col" className="px-6 py-4 font-semibold">
-                      Sıra & Deha
+                      Rank & Visionary
                     </th>
                     <th scope="col" className="px-6 py-4 font-semibold">
                       Unvan & Kategori
@@ -844,16 +846,16 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                       IQ Skoru
                     </th>
                     <th scope="col" className="px-6 py-4 font-semibold">
-                      Çözülen Problem
+                      Problems Solved
                     </th>
                     <th scope="col" className="px-6 py-4 font-semibold">
-                      Başarı Oranı
+                      Success Rate
                     </th>
                     <th scope="col" className="px-6 py-4 font-semibold">
                       Token Tasarrufu
                     </th>
                     <th scope="col" className="px-6 py-4 font-semibold">
-                      Eşleşen Model
+                      Matching Model
                     </th>
                     <th scope="col" className="px-6 py-4 text-right font-semibold">
                       Eylem
@@ -957,11 +959,11 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                               variant="ghost"
                               className="text-fg-muted h-8 px-2.5 text-xs hover:text-white"
                             >
-                              İncele
+                              Inspect
                             </Button>
                             <Link href={`/${locale}/digital-twins`}>
                               <Button className="bg-brand-600 hover:bg-brand-500 h-8 px-3 text-xs font-semibold text-white">
-                                Danış
+                                Consult
                               </Button>
                             </Link>
                           </div>
@@ -976,29 +978,29 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
         )}
 
         {/* =========================================================================
-            MİMAR SİNAN STRÜKTÜREL DOKTRİNİ & MODEL ARBİTRAJ PROTOKOLÜ
+            MIMAR SINAN STRUCTURAL DOCTRINE & MODEL ARBITRAGE PROTOCOL
             ========================================================================= */}
-        <section aria-label="Mimari Standartlar ve Bilişsel Arbitraj" className="mt-16">
+        <section aria-label="Architectural Standards and Cognitive Arbitrage" className="mt-16">
           <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-slate-900/60 via-purple-950/20 to-slate-950/80 p-8 shadow-2xl backdrop-blur-2xl sm:p-10">
             <div className="flex flex-col gap-6 border-b border-white/10 pb-8 lg:flex-row lg:items-center lg:justify-between">
               <div>
                 <div className="text-brand-400 mb-2 inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase">
                   <Compass className="h-4 w-4" />
-                  <span>Mimar Sinan Strüktürel Doktrini</span>
+                  <span>Mimar Sinan Structural Doctrine</span>
                 </div>
                 <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">
-                  Kusursuz Statik Denge & Model Arbitrajı
+                  Flawless Static Equilibrium & Model Arbitrage
                 </h2>
                 <p className="text-fg-secondary mt-2 max-w-2xl text-sm leading-relaxed">
-                  Dijital ikizlerin her biri bağımsız birer bilişsel kubbe gibi inşa edilmiştir.
-                  Agent-OS orkestrasyonu, sorunun semantik ağırlığına göre en uygun egemen yapay
-                  zeka modelini sıfır gecikmeyle eşler.
+                  Each digital twin is constructed like an independent cognitive dome. Agent-OS
+                  orkestrasyonu, sorunun semantik ağırlığına göre en uygun egemen yapay zeka
+                  modelini sıfır gecikmeyle eşler.
                 </p>
               </div>
 
               <Link href={`/${locale}/digital-twins`}>
                 <Button className="from-brand-600 bg-gradient-to-r to-purple-600 px-6 py-3 text-sm font-bold text-white shadow-[0_0_25px_rgba(168,85,247,0.35)] hover:brightness-110">
-                  <span>Bilge Kurul ile Sohbet Başlat</span>
+                  <span>Start Chat with Council of Sages</span>
                   <ArrowUpRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
@@ -1011,7 +1013,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                   <ShieldCheck className="h-5 w-5" />
                 </div>
                 <h3 className="font-display text-base font-bold text-white">
-                  1. Sıfır Halüsinasyon Garantisi
+                  1. Zero Hallucination Guarantee
                 </h3>
                 <p className="text-fg-muted mt-2 text-xs leading-relaxed">
                   Her ikiz, kendi tarihi felsefesi ve kanıtlanmış prensipleri sınırında akıl
@@ -1024,7 +1026,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                   <Coins className="h-5 w-5" />
                 </div>
                 <h3 className="font-display text-base font-bold text-white">
-                  2. %98 Token Tasarruf Arbitrajı
+                  2. 98% Token Savings Arbitrage
                 </h3>
                 <p className="text-fg-muted mt-2 text-xs leading-relaxed">
                   Rutin danışmanlık sorguları ücretsiz yüksek hızlı OpenCode modellerine (DeepSeek
@@ -1038,7 +1040,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                   <Flame className="h-5 w-5" />
                 </div>
                 <h3 className="font-display text-base font-bold text-white">
-                  3. Asimetrik Problem Çözme
+                  3. Asymmetric Problem Solving
                 </h3>
                 <p className="text-fg-muted mt-2 text-xs leading-relaxed">
                   İstanbul'u fetheden Fatih stratejisinden, Enigma'yı kıran Turing mantığına kadar
@@ -1059,7 +1061,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
             {/* Close Button */}
             <button
               onClick={() => setSelectedTwinModal(null)}
-              aria-label="Modalı kapat"
+              aria-label="Close modal"
               className="text-fg-muted absolute top-5 right-5 rounded-full p-2 transition-colors hover:bg-white/10 hover:text-white"
             >
               <X className="h-5 w-5" />
@@ -1092,7 +1094,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
               {/* Quote */}
               <div className="border-brand-500/20 bg-brand-500/5 rounded-2xl border p-4">
                 <span className="text-brand-400 mb-1 block text-[11px] font-bold tracking-wider uppercase">
-                  Temel Felsefe & İlke
+                  Core Philosophy & Principles
                 </span>
                 <p className="text-sm leading-relaxed text-white italic">
                   "{selectedTwinModal.stats.quote}"
@@ -1102,7 +1104,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
               {/* System Prompt Philosophy */}
               <div>
                 <span className="text-fg-muted mb-1.5 block text-xs font-semibold tracking-wider uppercase">
-                  Bilişsel Yönerge & Mantık Algoritması
+                  Cognitive Guidelines & Logic Algorithm
                 </span>
                 <p className="rounded-2xl border border-white/10 bg-slate-950/60 p-4 font-mono text-xs leading-relaxed text-slate-300">
                   {selectedTwinModal.systemPrompt}
@@ -1118,19 +1120,19 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                   </span>
                 </div>
                 <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3 text-center">
-                  <span className="text-fg-muted block text-[11px]">Çözülen Vaka</span>
+                  <span className="text-fg-muted block text-[11px]">Cases Solved</span>
                   <span className="font-mono text-sm font-bold text-white">
                     {selectedTwinModal.stats.solvedProblems.toLocaleString()}
                   </span>
                 </div>
                 <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3 text-center">
-                  <span className="text-fg-muted block text-[11px]">Başarı Oranı</span>
+                  <span className="text-fg-muted block text-[11px]">Success Rate</span>
                   <span className="text-sm font-bold text-emerald-400">
                     %{selectedTwinModal.stats.successRate}
                   </span>
                 </div>
                 <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3 text-center">
-                  <span className="text-fg-muted block text-[11px]">Ortalama Yanıt</span>
+                  <span className="text-fg-muted block text-[11px]">Avg Response</span>
                   {}
                   <span className="font-mono text-sm font-bold text-cyan-300">
                     {(selectedTwinModal.stats as any).latency || "145ms"}
@@ -1141,7 +1143,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
               {/* Expertise tags */}
               <div>
                 <span className="text-fg-muted mb-2 block text-xs font-semibold tracking-wider uppercase">
-                  Stratejik Uzmanlık Alanları
+                  Strategic Expertise Areas
                 </span>
                 <div className="flex flex-wrap gap-2">
                   {selectedTwinModal.expertise.map((exp: string) => (
@@ -1168,7 +1170,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
               </Button>
               <Link href={`/${locale}/digital-twins`}>
                 <Button className="from-brand-600 bg-gradient-to-r to-purple-600 text-xs font-bold text-white shadow-lg hover:brightness-110">
-                  <span>Bu Deha ile Canlı Sohbet Başlat</span>
+                  <span>Start Live Chat with this Visionary</span>
                   <ArrowUpRight className="ml-1.5 h-4 w-4" />
                 </Button>
               </Link>

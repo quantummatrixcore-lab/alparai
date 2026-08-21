@@ -3,6 +3,7 @@ import { requireModerator } from "@/lib/auth/session";
 import { AdminPageHeader, AdminSectionCard } from "@/components/admin/admin-design-kit";
 import { Key } from "lucide-react";
 import { SystemHubTabs } from "@/components/admin/system-hub-tabs";
+import { ApiKeyManager } from "@/components/admin/api-management/api-key-manager";
 
 export default async function ApiKeysPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -26,8 +27,8 @@ export default async function ApiKeysPage({ params }: { params: Promise<{ locale
         />
 
         <div className="grid grid-cols-1 gap-6">
-          <AdminSectionCard title="Active Keys">
-            <p className="text-zinc-400">No active keys found.</p>
+          <AdminSectionCard title="API Keys & Access Management">
+            <ApiKeyManager providers={[]} />
           </AdminSectionCard>
         </div>
       </div>

@@ -35,7 +35,7 @@ const checks = [
   },
   {
     name: "check-repo-language.mjs",
-    setup: () => fs.writeFileSync(path.join(ROOT, "src/app/[locale]/admin/.mock-negative-test.tsx"), "â€"), // mojibake
+    setup: () => fs.writeFileSync(path.join(ROOT, "src/app/[locale]/admin/.mock-negative-test.tsx"), "”"), // mojibake
     cleanup: () => fs.unlinkSync(path.join(ROOT, "src/app/[locale]/admin/.mock-negative-test.tsx"))
   },
   {

@@ -5,7 +5,48 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.83 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.84 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+
+## v13.84 — The rules rewritten from the failure record, and a third red gate found while doing it (2026-08-21)
+
+The Founder's objection was correct and is the better engineering: appending Rule 14, then Rule 15, to
+a list that had already grown to fifteen numbered rules plus six `G-` rules plus three doctrine
+amendments is accretion, not design. `CLAUDE.md`'s Standing Rules are now **derived from the failure
+families v13.83 measured**, grouped by the failure each prevents.
+
+**The change that matters is not the grouping.** It is that every invariant now states whether a
+machine checks it — `[enforced: <script>]` or `[review only]`. Twenty such labels. A rule marked
+review-only is not weaker by accident; it is labelled so nobody mistakes it for a gate, which is
+exactly the mistake that let `G-5a` sit unobeyed for seventy versions while its zero log entries read
+as compliance.
+
+**`G-5a` is retired outright** and replaced by an invariant it earns: _no rule may depend on voluntary
+self-reporting._ A rule that asks an agent to volunteer a record of its own shortcut collects nothing.
+Where self-reporting is genuinely unavoidable — as with proving absence — the rule must say so in its
+own text rather than implying a check exists.
+
+Old identifiers are preserved in an alias map, because ~13,400 lines of archive reference them and
+rewriting history to match a new numbering would be its own violation. `Rule 10` is now A1, `G-7` is
+A3, `G-6` is B1, `G-8` is B2, `#047` is C1, `G-5` is E1, `G-15` is E2, and so on. The file carries the
+rule; the plan and its archive carry the history.
+
+**Found while verifying the rewrite: `check-repo-language.mjs` is failing.** It is wired into CI and
+it exits 1 on two counts — mojibake in `messages/de.json` (184 lines), `en.json` (141), `fr.json`
+(141) and `ru.json` (139), and Turkish text in files outside the baseline, led by
+`twins-leaderboard-client.tsx` (92 lines), `scripts/apply-i18n_temp.mjs` (61) and
+`src/lib/agent-os/personas.ts` (51). `package.json` also carries a mojibake line.
+
+That is the **third** red gate this session — after the i18n check that threw on a BOM and the health
+endpoint that had been made to always return 200. None was reported by the agent that broke it; each
+was found by someone looking for something else. The pattern is not carelessness, it is that a red
+gate produces no notification anybody reads, which makes "is CI green" a question nobody currently
+answers. Recorded here rather than filed as a new item: `BG` already owns the mojibake and `BI` owns
+the translation backlog, and what is new is only the measurement that both are currently breaking a
+check rather than merely outstanding.
+
+Note also that the counts differ from v13.78's, which measured double-encoding _sequences_ while this
+counts _lines containing_ a flagged character — 13 sequences and 141 lines are not in conflict, and
+the difference is worth stating so the next reader does not treat one as a regression against the other.
 
 ## v13.83 — Recurrence analysis across the full archive, and three mechanisms that answer it (2026-08-21)
 

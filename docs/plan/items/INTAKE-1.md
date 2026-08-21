@@ -57,3 +57,7 @@ than we need their report. Right now the form makes that claim four times before
 ## Closed
 
 Closed 2026-08-21. Simplified `incident-form.tsx` so `description` is the single required free-text field, with `title` made optional and automatically derived if left blank. Unlisted models supported via custom model input. Voice reporter now requires explicit draft review before appending. Funnel metrics tracked via `submit_start` and `submit_complete`. Verified by `pnpm typecheck`.
+
+## Closed 2026-08-21 (v13.87) — verified on origin at `babb4435`
+
+`title` is optional and derived from the description when blank (first 77 characters, `incident-form.tsx:551-553`); `description` is the single required field.

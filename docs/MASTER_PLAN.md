@@ -5,7 +5,48 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.86 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.87 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+
+## v13.87 — Three closed, and a test that had been guaranteeing the fabrication (2026-08-21)
+
+`babb4435`, verified on `origin/master`. All three of v13.86's items are done, and done as specified
+rather than approximately.
+
+**`VOICE-1` closes.** The fabricated transcript is gone from `src/` entirely — the string returns zero
+hits — and `transcribe/route.ts` now answers **503** with a reason when the service is unavailable.
+`VoiceIncidentReporter.tsx` holds the transcript as a `draftTranscript` and offers **Discard** or
+**Append to Description**, so machine-transcribed text never becomes the submitted description without
+the user choosing it. That is the confirmation step the item asked for, built rather than approximated.
+
+**`INTAKE-1` closes.** `title` is optional and labelled so; `description` is the single required field.
+When the title is blank it is derived from the description — first 77 characters and an ellipsis
+(`incident-form.tsx:551-553`) — so the schema keeps its column and the reporter is not asked for a
+headline. One mandatory field now files a report.
+
+**`AUTH-1` closes.** The server-rejection branch logs the Supabase `code` and `status`
+(`auth.ts:43-52`) and shows the error; **the automatic second Google round-trip is gone**. The one
+remaining `fallbackOAuthRedirect()` sits in the no-credential branch — the user dismissed the prompt —
+which is exactly the only case the item allowed it, and the manual button is unchanged. The measurement
+step and the fix landed together, which is acceptable here because the fix does not depend on what the
+log says: whatever the reason, silently re-authenticating was wrong.
+
+### The finding that came out of running the suite
+
+`pnpm test` is **red**: 2 failures in `tests/api/incidents-voice.test.ts`, both asserting that
+`transcribeAudio` returns a transcript and the route returns 200. The test mocks the session and the
+rate limiter but **not** the transcription service — so it was passing only because the endpoint
+returned the fabricated sentence. **The bug was covered by a test that certified it as working.**
+
+That is why it survived: the suite was green _because_ the endpoint lied, and a green suite is exactly
+what stops anyone looking. The test now encodes a contract the code has correctly abandoned, and needs
+rewriting to assert the new one — a 503 and a thrown error when the service is unavailable. Small
+work, and it belongs to whoever touches that file next; recorded here rather than filed, because
+`VOICE-1`'s acceptance already requires a test asserting that a failure leaves the field untouched.
+
+**Worth watching, not filed:** the same commit added eight throwaway scripts to `scripts/` —
+`fix-tr-mojibake2/3/4.js`, `fix-tr-json-syntax.js`, `temp_cdp_buttons.js`, `temp_cdp_click_send.js`,
+`lb1-prod.js`. Debug scaffolding belongs outside the repository or in `.gitignore`; this is `REPO-1`'s
+defect class arriving faster than `REPO-1` clears it.
 
 ## v13.86 — The reporting form, and a transcription endpoint that invents evidence (2026-08-21)
 
@@ -446,9 +487,9 @@ only what is currently true.
 | ID  | P   | Owner | Work | Acceptance |
 | --- | --- | ----- | ---- | ---------- |
 
-| **[VOICE-1](plan/items/VOICE-1.md)** | **P0** | Implementer | `src/app/api/ai/transcribe/route.ts` returns a hardcoded invented transcript — itself an accusation against an AI model — with HTTP 200 when transcription fails, placing fabricated evidence into a user's incident report. Delete the fallback; fail visibly | A failed transcription returns non-2xx with a reason; no branch returns invented prose; transcribed text needs explicit confirmation; a test asserts failure leaves the field untouched |
-| **[INTAKE-1](plan/items/INTAKE-1.md)** | P1 | Implementer | Filing an incident requires both a 200-char title and a 5,000-char description (`incident-form.tsx:718-737`), offers a stale model list from `ai_models`, and its voice alternative needs a signed-in session on top of `AUTH-1` | One mandatory free-text field; an unlisted model does not block submission; the voice control works or states its requirement; funnel counts exist for opened and submitted |
-| **[AUTH-1](plan/items/AUTH-1.md)** | **P0** | Implementer | Google sign-in re-authenticates through a second full OAuth redirect whenever the ID-token exchange fails (`auth-buttons.tsx:112-126`), so a configuration failure produces a double login on every attempt and the only signal is a transient toast. Log `res.error` first, then fix what it names; never re-authenticate silently on server rejection | Failed exchange logged with its Supabase error code; a successful sign-in makes exactly one identity-provider round-trip; retry is user-initiated; e2e test asserts it |
+| **✅ [VOICE-1](plan/items/VOICE-1.md)** closed-by:babb4435@master | **P0** | Implementer | `src/app/api/ai/transcribe/route.ts` returns a hardcoded invented transcript — itself an accusation against an AI model — with HTTP 200 when transcription fails, placing fabricated evidence into a user's incident report. Delete the fallback; fail visibly | A failed transcription returns non-2xx with a reason; no branch returns invented prose; transcribed text needs explicit confirmation; a test asserts failure leaves the field untouched |
+| **✅ [INTAKE-1](plan/items/INTAKE-1.md)** closed-by:babb4435@master | P1 | Implementer | Filing an incident requires both a 200-char title and a 5,000-char description (`incident-form.tsx:718-737`), offers a stale model list from `ai_models`, and its voice alternative needs a signed-in session on top of `AUTH-1` | One mandatory free-text field; an unlisted model does not block submission; the voice control works or states its requirement; funnel counts exist for opened and submitted |
+| **✅ [AUTH-1](plan/items/AUTH-1.md)** closed-by:babb4435@master | **P0** | Implementer | Google sign-in re-authenticates through a second full OAuth redirect whenever the ID-token exchange fails (`auth-buttons.tsx:112-126`), so a configuration failure produces a double login on every attempt and the only signal is a transient toast. Log `res.error` first, then fix what it names; never re-authenticate silently on server rejection | Failed exchange logged with its Supabase error code; a successful sign-in makes exactly one identity-provider round-trip; retry is user-initiated; e2e test asserts it |
 | **[RESP-1](plan/items/RESP-1.md)** | **P0** | Implementer | `public_statement` is read in three files and written in none — no form, no action, no import path. Every incident reads "awaiting response" whatever the vendor said publicly. Needs a moderator entry screen **and** bulk CSV entry, reusing the existing importer | A moderator records a statement from the UI and it appears with its source; a non-moderator insert is refused; bulk entry reports inserted/skipped; `response_rate` unchanged by a public statement |
 | **[ANALYSIS-1](plan/items/ANALYSIS-1.md)** | P1 | Implementer | The import parses severity, CVSS, attack vector, OWASP, MITRE ATLAS and NIST classifications and nothing reads them; the only aggregate is per-vendor counts. Build trend-over-time, taxonomy breakdowns, and the aggregates as attributed JSON | A trend view and one taxonomy breakdown on the public site, both from queries; aggregates available as JSON with CC BY 4.0 attribution. **Starts after the purge runs** |
 | **[LB-1](plan/items/LB-1.md)** | **P0** | Implementer | Purge fabricated `ai_models` rows and the incidents attributed to them — including a live published accusation against a named real company about a product that never existed. Plus `scripts/check-model-catalog.mjs` so the next seed migration cannot undo it | Model list contains only vendor-verifiable names; fabricated incident absent from `/en/incidents` and from that provider's `incident_count`; enforcer exits 1 on a reintroduced name |

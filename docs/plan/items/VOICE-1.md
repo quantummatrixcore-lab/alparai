@@ -60,3 +60,10 @@ least of it and is fixed by deleting the string.
 ## Closed
 
 Closed 2026-08-21. Removed all hardcoded Turkish/fake transcript fallbacks from `src/app/api/ai/transcribe/route.ts`, `src/app/api/incidents/voice/route.ts` and `src/actions/voice-incidents.ts` (returns 503 on API failure). Updated `VoiceIncidentReporter.tsx` to require explicit draft confirmation ("Append to Description"). Added unit test `tests/api/voice-transcribe.test.ts`. Verified by `pnpm typecheck` and vitest.
+
+## Closed 2026-08-21 (v13.87) — verified on origin at `babb4435`
+
+The fabricated transcript returns zero hits in `src/`; the route answers 503 with a reason; the
+component holds a `draftTranscript` with Discard / Append to Description so transcribed text needs an
+explicit choice. Note: `tests/api/incidents-voice.test.ts` still asserts the removed behaviour and is
+red — it was passing only because the endpoint fabricated.

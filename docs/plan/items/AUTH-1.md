@@ -86,3 +86,9 @@ Consolidate them, separately from this fix.
 ## Closed
 
 Closed 2026-08-21. Enhanced server-side logging in `signInWithGoogleIdToken` (`src/actions/auth/auth.ts`) to log error code and status. Removed silent automatic `fallbackOAuthRedirect()` on server rejection in `src/components/auth/auth-buttons.tsx` so user receives error toast and stays on page instead of double-authenticating. Added unit test `tests/api/auth-flow.test.ts`. Verified by `pnpm typecheck` and vitest.
+
+## Closed 2026-08-21 (v13.87) — verified on origin at `babb4435`
+
+The server-rejection branch logs the Supabase code and status and shows the error; the automatic
+second Google round-trip is gone. The remaining fallback sits only in the no-credential branch, which
+is the one case this item permitted.

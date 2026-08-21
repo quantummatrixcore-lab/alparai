@@ -26,17 +26,17 @@ export default async function AnalysisPage({ params }: { params: Promise<{ local
   }
 
   const supabase = await createServerClient();
-  const { data: aiModels } = await supabase
-    .from("ai_models")
-    .select("*, ai_providers!ai_models_provider_id_fkey(name)");
+  const { data: aiModels } = await supabase.from("ai_models").select("*, ai_providers(name)");
   const { data: freeModels } = await supabase.from("ai_free_models").select("*");
 
-  const paidModels = (aiModels || []).map((model) => ({
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const paidModels = (aiModels || []).map((model: any) => ({
     ...model,
     is_free: false,
   }));
 
-  const freeModelsList = (freeModels || []).map((model) => ({
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const freeModelsList = (freeModels || []).map((model: any) => ({
     id: model.id,
     name: model.model_name,
     created_at: model.created_at,
@@ -150,7 +150,7 @@ export default async function AnalysisPage({ params }: { params: Promise<{ local
         breadcrumb={[
           { label: t("dashboard"), href: "/admin" },
           { label: t("moderation"), href: "/admin/moderation" },
-          { label: t("analysis"), href: "/admin/analytics-hub/analysis" }
+          { label: t("analysis"), href: "/admin/analytics-hub/analysis" },
         ]}
       />
       <AnalysisDashboardClient registryData={registryData} />

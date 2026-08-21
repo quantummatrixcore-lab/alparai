@@ -143,7 +143,9 @@ export default async function StrategyOverviewPage({
   const totalMilestones = milestones.length;
   const avgOkrProgress =
     totalMilestones > 0
-      ? Math.round(milestones.reduce((acc, m) => acc + m.progress, 0) / totalMilestones)
+      ? Math.round(
+          milestones.reduce((acc, m) => acc + (Number(m.progress) || 0), 0) / totalMilestones,
+        )
       : 0;
 
   const latestRunId = runs?.[0]?.id ?? null;

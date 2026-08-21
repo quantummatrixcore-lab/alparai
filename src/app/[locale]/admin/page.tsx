@@ -75,7 +75,7 @@ export default async function AdminDashboardPage({
 
   // Fetch dynamic data for widgets
   const supabase = await createServerClient();
-  const [{ count: totalUsers }, startupHealth, signals, funding, crons] = await Promise.all([
+  const [usersRes, startupHealth, signals, funding, crons] = await Promise.all([
     supabase.from("users").select("*", { count: "exact", head: true }),
     getStartupHealth().catch(() => null),
     getSystemSignalsAction().catch(() => []),
@@ -83,6 +83,7 @@ export default async function AdminDashboardPage({
     getCronStatus().catch(() => []),
   ]);
 
+  const totalUsers = usersRes?.count ?? 0;
   const masterPlan = parseMasterPlan();
 
   const activeSubscribers =

@@ -105,7 +105,7 @@ export function ModularArchitectureView({ data }: ModularArchitectureViewProps) 
               {t("top_strengths")}
             </h3>
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {data.auditScore.strengths.map((s) => (
+              {(data?.auditScore?.strengths || []).map((s) => (
                 <div
                   key={s.category}
                   className="flex items-center justify-between rounded-xl border border-white/5 bg-black/40 px-3 py-2 transition-colors hover:bg-black/60"
@@ -123,7 +123,7 @@ export function ModularArchitectureView({ data }: ModularArchitectureViewProps) 
               {t("growth_bottlenecks")}
             </h3>
             <div className="space-y-3">
-              {data.auditScore.growthAreas.map((g) => (
+              {(data?.auditScore?.growthAreas || []).map((g) => (
                 <div
                   key={g.category}
                   className="flex items-center justify-between rounded-xl border border-white/5 bg-black/40 px-3 py-2 transition-colors hover:bg-black/60"
@@ -142,7 +142,7 @@ export function ModularArchitectureView({ data }: ModularArchitectureViewProps) 
             {t("the_8_modular_product_pillars")}
           </h2>
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {data.pillars.map((pillar) => (
+            {(data?.pillars || []).map((pillar) => (
               <motion.div
                 key={pillar.id}
                 whileHover={{ y: -6, scale: 1.02 }}

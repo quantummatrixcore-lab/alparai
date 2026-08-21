@@ -1,0 +1,891 @@
+{
+  "summary": {
+    "total": 68,
+    "passed": 0,
+    "failed": 68,
+    "totalButtons": 0,
+    "totalInputs": 0,
+    "totalForms": 0,
+    "totalLinks": 0
+  },
+  "results": [
+    {
+      "route": "/en/admin/advisor",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/advisory-board",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/ai-hub/autopilot/analytics",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/ai-hub/autopilot",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/ai-hub/jules",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/ai-hub/orchestrator",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/ai-hub",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/ai-hub/swarm",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/analytics-hub/analysis",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/analytics-hub/expert-analysis",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/analytics-hub/k-benchmark",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/analytics-hub",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/api-keys",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/api-management",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/audit",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/billing",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/cockpit",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/codebase-hygiene",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/cron-health",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/crons",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/cross-audit-dashboard",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/dsar",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/dual-channel-scoring",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/ecosystem",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/experts",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/feature-flags",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/finance",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/geo",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/grants",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/health",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/import",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/innovations",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/integrations",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/investors",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/launch-signal",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/legal-tracker",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/linkedin",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/marketing",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/metrics-hub/ai-pulse",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/metrics-hub/api-metrics",
+      "status": 0,
+      "ok": false,
+      "error": "TIMEOUT"
+    },
+    {
+      "route": "/en/admin/metrics-hub",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/metrics-hub/signals",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/metrics-hub/slo-dashboard",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/moderation",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/modular-architecture",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/outreach",
+      "status": 0,
+      "ok": false,
+      "error": "TIMEOUT"
+    },
+    {
+      "route": "/en/admin",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/platforms",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/providers",
+      "status": 500,
+      "ok": false,
+      "is500": true,
+      "is404": false,
+      "hasReactError": true,
+      "missingI18n": false,
+      "metrics": {
+        "buttonCount": 0,
+        "inputCount": 0,
+        "formCount": 0,
+        "linkCount": 0,
+        "htmlLength": 6108
+      }
+    },
+    {
+      "route": "/en/admin/quotas",
+      "status": 0,
+      "ok": false,
+      "error": "TIMEOUT"
+    },
+    {
+      "route": "/en/admin/redaction-queue",
+      "status": 0,
+      "ok": false,
+      "error": "TIMEOUT"
+    },
+    {
+      "route": "/en/admin/resources",
+      "status": 0,
+      "ok": false,
+      "error": "TIMEOUT"
+    },
+    {
+      "route": "/en/admin/seo-performance",
+      "status": 0,
+      "ok": false,
+      "error": "TIMEOUT"
+    },
+    {
+      "route": "/en/admin/settings",
+      "status": 0,
+      "ok": false,
+      "error": "TIMEOUT"
+    },
+    {
+      "route": "/en/admin/social",
+      "status": 0,
+      "ok": false,
+      "error": "TIMEOUT"
+    },
+    {
+      "route": "/en/admin/startup-health",
+      "status": 0,
+      "ok": false,
+      "error": "TIMEOUT"
+    },
+    {
+      "route": "/en/admin/strategy/master-plan",
+      "status": 0,
+      "ok": false,
+      "error": "TIMEOUT"
+    },
+    {
+      "route": "/en/admin/strategy",
+      "status": 0,
+      "ok": false,
+      "error": "TIMEOUT"
+    },
+    {
+      "route": "/en/admin/strategy/questionnaire",
+      "status": 0,
+      "ok": false,
+      "error": "TIMEOUT"
+    },
+    {
+      "route": "/en/admin/strategy/risks",
+      "status": 0,
+      "ok": false,
+      "error": "TIMEOUT"
+    },
+    {
+      "route": "/en/admin/strategy/roadmap",
+      "status": 0,
+      "ok": false,
+      "error": "TIMEOUT"
+    },
+    {
+      "route": "/en/admin/strategy/state-support",
+      "status": 0,
+      "ok": false,
+      "error": "TIMEOUT"
+    },
+    {
+      "route": "/en/admin/strategy/swot",
+      "status": 0,
+      "ok": false,
+      "error": "TIMEOUT"
+    },
+    {
+      "route": "/en/admin/strategy/valuation",
+      "status": 0,
+      "ok": false,
+      "error": "TIMEOUT"
+    },
+    {
+      "route": "/en/admin/takedown",
+      "status": 0,
+      "ok": false,
+      "error": "TIMEOUT"
+    },
+    {
+      "route": "/en/admin/users",
+      "status": 0,
+      "ok": false,
+      "error": "TIMEOUT"
+    },
+    {
+      "route": "/en/admin/velocity",
+      "status": 0,
+      "ok": false,
+      "error": "TIMEOUT"
+    },
+    {
+      "route": "/en/admin/vendor-portal",
+      "status": 0,
+      "ok": false,
+      "error": "TIMEOUT"
+    }
+  ]
+}

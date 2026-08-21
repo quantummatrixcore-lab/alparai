@@ -56,7 +56,7 @@ export function AiBudgetTransparencyScore({
           <div className="min-w-0 flex-1">
             <div className="flex min-w-0 flex-wrap items-center gap-2">
               <h2 className="max-w-full truncate text-lg font-bold tracking-tight text-white sm:text-xl">
-                AI Incident Budget Transparency Scoreâ„¢
+                AI Incident Budget Transparency Score™
               </h2>
               <span className="border-accent-500/30 bg-accent-500/10 text-accent-300 inline-flex shrink-0 items-center gap-1 rounded-full border px-2.5 py-0.5 text-[10px] font-bold tracking-wide">
                 <Sparkles className="text-accent-400 h-3 w-3" />{" "}
@@ -169,8 +169,11 @@ export function AiBudgetTransparencyScore({
                 </span>
               </span>
               <span className="text-fg-muted shrink-0 text-[11px] sm:text-xs">
-                <strong className="text-white">{consumedTokens !== undefined ? consumedTokens : "Ölçülmedi"}</strong> / {totalBudgetTokens !== undefined ? totalBudgetTokens : "Ölçülmedi"}{" "}
-                Tokens {totalBudgetTokens !== undefined ? `(${budgetUsagePct}%)` : ""}
+                <strong className="text-white">
+                  {consumedTokens !== undefined ? consumedTokens : "Ölçülmedi"}
+                </strong>{" "}
+                / {totalBudgetTokens !== undefined ? totalBudgetTokens : "Ölçülmedi"} Tokens{" "}
+                {totalBudgetTokens !== undefined ? `(${budgetUsagePct}%)` : ""}
               </span>
             </div>
 

@@ -256,3 +256,22 @@ Genuinely still open: unknown blog slug returns 200 rather than 404; no `BlogPos
 `case_001.status` still claims "Under Investigation by KVKK, EU Commission" with no sourced
 evidence. Six of seven bodies have acknowledged nothing. Founder decision pending: correct the
 claim or source it.
+
+## 4. History
+
+This board is a living document: it carries the current state, the active backlog, the legal register
+and the newest entries only. Everything older rotates out and is never edited afterwards.
+
+- **`docs/plan/v13.x.md`** — v13.0 onward, including this session's v13.60–v13.86. Two entries there
+  are still operationally useful rather than merely historical: **v13.82** is the batch handover for a
+  single Implementer session, and **v13.83** is the recurrence analysis across the whole archive that
+  the current Standing Rules were derived from.
+- **`docs/plan/v12.*.md`** — the v12 series.
+- **`docs/MASTER_PLAN_ARCHIVE.md`** — everything before that.
+- **`docs/plan/items/*.md`** — one file per work item, including closure records with their commit
+  citations. `scripts/check-spec-drift.mjs` fails if any of them is neither referenced here nor closed.
+
+The rules themselves live in `CLAUDE.md`, each labelled with the script that enforces it or marked
+`[review only]`. The enforcers are `scripts/check-*.mjs`;
+`scripts/check-enforcers-wired.mjs` fails if any of them is invoked by nothing, and
+`scripts/check-baseline-ratchet.mjs` fails if any baseline grows.

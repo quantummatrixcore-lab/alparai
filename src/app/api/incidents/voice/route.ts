@@ -229,7 +229,7 @@ export async function POST(request: Request) {
             ? error.message
             : "Internal server error during audio transcription",
       },
-      { status: 500 },
+      { status: 503 },
     );
   }
 }

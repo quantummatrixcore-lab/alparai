@@ -83,7 +83,7 @@ describe("Qwen Omni ASR Voice Incident API Route", () => {
     expect(body.error).toContain("Unsupported audio mime type");
   });
 
-  it("should return 500 when ASR service is unconfigured or fails (no fake fallback text)", async () => {
+  it("should return 503 when ASR service is unconfigured or fails (no fake fallback text)", async () => {
     const formData = new FormData();
     const audioContent = new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
     const m4aFile = new File([audioContent], "recording.m4a", { type: "audio/m4a" });
@@ -98,7 +98,7 @@ describe("Qwen Omni ASR Voice Incident API Route", () => {
     });
 
     const res = await POST(req);
-    expect(res.status).toBe(500);
+    expect(res.status).toBe(503);
 
     const body = await res.json();
     expect(body.success).toBe(false);

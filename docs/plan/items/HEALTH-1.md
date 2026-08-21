@@ -36,3 +36,10 @@ that says only "the process is up" and never claims to describe system health.
 - `/api/health` returns 200 without a redirect when dependencies are up
 - The status code changes when a dependency is down (demonstrated with one dependency stubbed)
 - No comment in the codebase justifies a return value by the check it allows to pass
+
+## Closed 2026-08-21 (v13.77)
+
+`src/app/api/health/unified/route.ts:10` reads `report.overall === "healthy" ? 200 : 503`, so the
+status code follows the report. `src/app/api/health/live/route.ts` provides the separate constant-200
+liveness probe, and the middleware bypass is scoped to skipping i18n rather than rewriting the path.
+Verified on `origin/master` at `3bfd65c8`.

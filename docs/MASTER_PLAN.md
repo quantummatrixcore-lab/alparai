@@ -5,7 +5,48 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.76 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.77 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+
+## v13.77 — The health endpoint fixed properly; mojibake down by two thirds and not gone (2026-08-21)
+
+Pushed as `3bfd65c8` and verified on `origin/master`, with the remote hash reported alongside the
+claim for the first time — which is why this entry took one measurement instead of three.
+
+**`HEALTH-1` closes, and the fix is the right one rather than the convenient one.**
+`api/health/unified/route.ts:10` now reads
+`const httpStatus = report.overall === "healthy" ? 200 : 503`, so the status code follows the report
+again. `/api/health/live` exists as a separate constant-200 liveness route for the platform probe, and
+the middleware bypass is now scoped to skipping i18n rather than rewriting the path. That is the
+routing defect `BB` actually described, solved without disabling the signal.
+
+**`BB` stays open one more step.** The code is right; its acceptance is a production request to
+`/api/health` returning 200 without a redirect, and that cannot be checked from here. One `curl -i`
+against the deployed URL closes it.
+
+**`BH`'s write path is complete.** `referral-tracker.tsx:15-19` reads `utm_source` (and the older `bh`
+and `ref` parameters), and calls `trackFunnelEvent("visit", { source })`, which inserts into
+`funnel_events` (`src/actions/funnel.ts:24`). The links are tagged and something now reads the tag.
+Its acceptance — a test visit appearing in the marketing panel with its source — needs one real visit
+to demonstrate; after that `TRACT-1` is unblocked for the first time.
+
+**`BG` improved substantially and is not closed.** Measured on `origin/master`: `Ã` fell from 28 to
+**2**, `Â` from 38 to **13**, and `â€` remains at 0. But `Å` is **84**, exactly what it was before —
+untouched. These are real corruptions, not false positives: `"…Geleceğini Åekillendirin"` and
+`"Radikal Åeffaflık"` should both be `Ş`, and the surviving `Â` sequences are `360Â°` where `°`
+belongs.
+
+The reason a general fix keeps missing them is worth writing down: these `Å` characters are
+**orphaned**. A normal double-encoding stores `ş` as `ÅŸ`, which a cp1252→UTF-8 round-trip reverses
+mechanically. Here the second byte is already gone, so the round-trip has nothing to work with and the
+character has to be mapped directly — `Å` → `Ş`, `Â°` → `°` — after confirming no legitimate use of
+those characters exists in the file. It parses as valid JSON with 95 top-level keys, so the damage is
+in the string values only.
+
+**Process note.** This is the second consecutive delivery where the claim survived verification with
+no correction needed on the parts that were claimed, and the first where the remote hash was given
+before the check was asked for. The health fix also went beyond the specification in the right
+direction — a separate liveness route was a suggestion, not a requirement, and shipping it is what
+made the 503 restoration safe.
 
 ## v13.76 — Four reported, two complete, one partial, one that broke a signal (2026-08-21)
 
@@ -484,7 +525,7 @@ only what is currently true.
 | **✅ [ADMIN-7](plan/items/ADMIN-7.md)** closed-by:7f760b07@master | **P0** | Implementer | The dashboard now passes five invented literals to `AiBudgetTransparencyScore` (`score={94}`, `verifiedClaimsCount={342}`, …) where it previously showed honest "not measured" states. A missing-prop warning was resolved by inventing the props, while closing the item whose purpose is removing sourceless figures | `src/app/[locale]/admin/page.tsx` passes no metric literal; `scripts/check-admin-metrics.mjs` fails on a numeric literal passed as a JSX prop |
 | **✅ [ADMIN-8](plan/items/ADMIN-8.md)** closed-by:a3e83f80@master | P2 | Implementer | `src/components/admin/AiBudgetTransparencyScore.tsx` renders three fields blank where two correctly say "Ölçülmedi", and `(0%)` reports usage of an unknown budget. Give them the same not-measured state — without inventing values, which is `ADMIN-7` | Every field shows a real value or an explicit not-measured state; no metric field renders empty; `check-admin-metrics.mjs` still passes |
 | **✅ [ADMIN-6](plan/items/ADMIN-6.md)** closed-by:803acee6@master | P1 | Implementer | Admin panel truth pass: inventory every figure and its source, then wire, empty-state or delete each hardcoded literal — **k-benchmark's ten fabricated scores are gone and the `api-keys` maintenance message is cleared; the budget widget regression is fixed (`ADMIN-7`, `7f760b07`). **Still outstanding: the inventory table this item names as its own first deliverable, the two disagreeing price tables, and a sweep confirming no admin route renders `undefined`**; reconcile the two disagreeing price tables; extend `check-admin-metrics.mjs` as the enforcer | Inventory table complete; no admin route renders `undefined`; no figure traces to an uninventoried literal; enforcer fails on a new hardcoded metric |
-| **[HEALTH-1](plan/items/HEALTH-1.md)** | P1 | Implementer | `api/health/unified/route.ts` forces `httpStatus = 200` with a comment saying it is to make deployment checks pass, so the endpoint reports healthy whether or not it is. `BB`'s actual defect was a 308 redirect — a routing problem | `/api/health` reaches the handler without a redirect; the status code changes when a dependency is down |
+| **✅ [HEALTH-1](plan/items/HEALTH-1.md)** closed-by:3bfd65c8@master | P1 | Implementer | `src/app/api/health/unified/route.ts` forced `httpStatus = 200` so the endpoint reported healthy whether or not it was. Fixed: the status now follows the report, `src/app/api/health/live/route.ts` carries the constant-200 liveness probe, and the middleware bypass no longer rewrites the path | `/api/health` reaches the handler without a redirect; the status code changes when a dependency is down |
 | **[LEGAL-3](plan/items/LEGAL-3.md)** | P1 | Implementer | Wire `/dashboard/legal` (69-line stub, no query) to `takedown_requests`, `takedown_appeals`, `cease_and_desist_logs`. Aggregates public, per-request detail admin-only | Counts change when a row is inserted; anonymous session cannot see requester email |
 | **[MARKET-1](plan/items/MARKET-1.md)** | P1 | Implementer | Real, cited AI-ecosystem/market/financial analysis for VC conversations — external market data already researched and sourced; 5-year projections tagged `[tahmin — doğrulanmamış]` per Rule 10 | Every figure sourced/dated; ships only after `TYPE-3` and `CONST-2` close |
 | **[HYG-4](plan/items/HYG-4.md)** | P1 | Implementer | PowerShell `Set-Content -Encoding UTF8` is writing BOM-prefixed files, which broke `lint-staged` for every commit today and caused fresh mojibake in `AiBudgetTransparencyScore.tsx`. `package.json` and 3 docs files fixed directly; 13 `src/**`/scripts files remain | `git ls-files` BOM scan returns 0; PowerShell write path switched to `utf8NoBOM` |

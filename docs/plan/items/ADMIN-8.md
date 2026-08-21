@@ -31,3 +31,10 @@ measurement claim rather than an empty state.
 - Every field in the component shows either a real value or an explicit not-measured state
 - No metric field renders empty
 - `check-admin-metrics.mjs` still passes; no literal is introduced to satisfy this
+
+## Closed 2026-08-21 (v13.76)
+
+`AiBudgetTransparencyScore.tsx:173` renders the percentage only when `totalBudgetTokens` is defined,
+and the progress bar falls back to zero width instead of claiming zero usage. With the three
+"Ölçülmedi" fallbacks from `9a43219f`, every field shows a real value or an explicit not-measured
+state. Verified on `origin/master`.

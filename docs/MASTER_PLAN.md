@@ -5,7 +5,55 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.75 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.76 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+
+## v13.76 — Four reported, two complete, one partial, one that broke a signal (2026-08-21)
+
+`a3e83f80` reports ADMIN-8, the health endpoint, social source parameters and the mojibake cleanup all
+done. Measured on `origin/master`:
+
+**`ADMIN-8` is complete and closes.** The percentage is now rendered only when a budget exists
+(`AiBudgetTransparencyScore.tsx:173`) and the progress bar falls back to zero width rather than
+claiming zero usage. With the three "Ölçülmedi" fields from `9a43219f`, every field in the component
+now shows either a real value or an explicit not-measured state. Cited `a3e83f80`.
+
+**The mojibake claim does not hold.** `messages/tr.json` on `origin` still contains **28 occurrences of
+`Ã`** and 84 of `Å`. What was fixed is real — `â€` and `ÅŸ` are both at zero — but the file is not
+clean. Samples: `"Gemini 2.5 Pro Â· Yapay ZekÃ¢ …"` (line 300), `"Ã— I"` (1175), `"Ã— günlük hata
+bütçesi tüketimi"` (2336). The `Ã—` sequences are a double-encoded `×`; `ZekÃ¢` is `Zekâ`. `BG` stays
+open, and the underlying write path (`HYG-4`) is the reason it keeps coming back.
+
+**The social source parameter is partial.** `footer.tsx` carries the UTM parameters, which is the
+first half. `BH`'s acceptance is that a test visit appears in the marketing panel with its source —
+that needs `src/actions/funnel.ts` to persist the parameter into `funnel_events` and the panel to
+break down by it. Until then the links are tagged and nothing reads the tag, so `TRACT-1` is still
+blocked on the same dependency it was blocked on before.
+
+**The health endpoint fix disabled the signal.** `api/health/unified/route.ts` now sets
+`const httpStatus = 200; // Force 200 to allow deployment checks to pass`. `checkSystemHealth()` still
+runs and the body still carries the report, but every monitor and deployment gate reads the status
+code, and it is now constant. `BB` described a **308** — a redirect, meaning the route was never
+reached. That is a routing defect, and forcing the code to 200 both stops the redirect and removes the
+only thing the endpoint is for. Filed [HEALTH-1](plan/items/HEALTH-1.md); `BB` does not close.
+
+### The blocker report, and why it is the best thing in this entry
+
+`LB-1` could not be applied: the service-role key from `.env.production.local` returns
+"Unregistered API key," so no snapshot and no delete were performed. **This was reported as a blocker
+rather than claimed as a completion, and the provenance filter was verified from the file instead of
+assumed.** That is the behaviour four previous entries in this board asked for, and it arrived without
+being asked again.
+
+**The direction is: stop.** Destructive DML against the production database should not run from an
+agent session holding a service-role key scraped out of an environment file — Standing Rule 6 says
+that key never leaves the server side, and an "Unregistered API key" response usually means the key
+does not belong to that project reference or is a placeholder, not that a different call would work.
+Do not retry with other keys.
+
+`LB-1`'s remaining work is a **Founder action**: take a restore point, run the migration through
+Supabase's own tooling or the dashboard SQL editor, then paste back `SELECT name FROM ai_models ORDER
+BY name` and the query showing the fabricated incident gone. Verification happens against that output.
+If the key was echoed into any log or transcript during these attempts, rotate it.
 
 ## v13.75 — ADMIN-6 verified and closed, with one residue (2026-08-21)
 
@@ -210,76 +258,6 @@ what was reported matters as much as the correction. See v13.71 for the measurem
 
 Written into `docs/MASTER_PLAN.md` by commit `7e7d0a6a`.
 
-## v13.69 — Four corrections from the Founder, and the pattern joining them (2026-08-20)
-
-The Founder corrected four statements in v13.68. All four were mine, all four were wrong, and they
-were wrong in the same way — which is more useful than any of them separately.
-
-**1. The platform has users.** v13.68 closed with "a very clean product with zero users." There are
-**30-odd real users**. And the count was never actually missing: `/admin/launch-signal` already runs
-`SELECT count(*) FROM users` beside counts of published, user-submitted and pending incidents. It sits
-on a page that is not in the sidebar menu. The first figure any funder asks for is three clicks deep
-in a route nobody opens — that is a placement defect, not a measurement gap, and it belongs on the
-dashboard.
-
-**2. Real incidents exist, entered by hand.** Fabricated rows and the Founder's genuine entries are in
-the same table right now. The database does distinguish them — `incident_source` defaults to
-`user_submitted` against `aiid_import`, `news_curated` and the connector sources — but the interface
-does not, and neither does the pending purge migration.
-
-**This escalates `LB-1a` from a correctness objection to a risk of destroying real work.** A purge
-matching incidents by `ILIKE` text pattern, with no `incident_source` filter, can delete the Founder's
-own incidents and report success. It must exclude `user_submitted`, name ids explicitly, and run after
-a snapshot. **It is the most dangerous pending operation in the project, and it is silent afterwards:
-a wrongly deleted incident leaves no trace that it existed.**
-
-**3. The applications were submitted.** v13.68 said none existed and told the Founder to start
-applying. Applications to the cloud and model programmes — Google, NVIDIA and others — **were made**;
-what is unknown is what came back. I read `status: not_started` in a seed migration and reported it as
-a fact about the world. That is precisely the defect v13.66 documented in two external auditors, and
-it recurred here, in this file, four sections later.
-
-The schema shows why the outcome is unknown. `grant_applications` holds the nine programmes with a
-status enum reaching `APPROVED` and `REJECTED`, but carries **no `date_applied`, no `date_decided`, no
-`amount_requested`, no `amount_granted`, and no decision reason**; `/admin/grants` offers a status
-dropdown and no way to enter any of them, and no create form at all. The panel can record that we
-tried and never what happened. `FUND-1` is rewritten accordingly — from "apply" to "find out what
-became of the applications already sent, and build somewhere to keep the answer," including checking
-provider billing consoles, since several of these grant credits silently rather than by replying.
-
-**4. Public repository, Reddit and HackerOne.** Measured: `SECURITY.md` and
-`public/.well-known/security.txt` already exist with a `security@alparai.com` contact, and the bug
-bounty is described as "in the process of launching" — a sentence that has to become a live programme
-or an honest description of what we offer. More interesting, `src/lib/connectors/hackerone.ts` and
-`src/lib/connectors/reddit.ts` already exist, and `incident_source` already admits `hackerone`,
-`reddit`, `hn`, `github` and `rss`. **These are not only channels to post on — the codebase treats
-them as incident sources.** Whether any of them has ever run is the open question, and given `LB-2`'s
-finding that no cron in this project had ever executed, the likely answer is no. [SEC-2](plan/items/SEC-2.md).
-
-### The pattern, which is the actual finding
-
-In all four, **the thing exists in reality and not in the system** — or exists in the system somewhere
-nobody looks. Thirty users, counted on an unlisted page. Real incidents, distinguishable in the
-database and not in the interface. Applications submitted, with no column able to hold the result.
-Three emails that failed silently for three weeks.
-
-The company's real state is held in the Founder's memory and his mailbox, while the panel — 30 menu
-entries, ~40 live routes — displays the assumptions its tables were created with. So the instruction
-to put all of this into the admin panel is not a feature request; it is the correct diagnosis.
-**The panel's job is to be the system of record for what is true about this company, and today it is a
-display of what was assumed.** Filed as [OPS-1](plan/items/OPS-1.md), to run **with** `ADMIN-6` rather
-than after it: removing a figure that has no source while providing nowhere to record the true one
-produces an honest panel that still tells the Founder nothing.
-
-### Rule added
-
-**Seeded values are not measurements.** A status, count or date written in a migration describes the
-table on the day it was authored, never the state of the world — all nine grant rows read
-`not_started` while the applications had in fact been sent. No such value may be cited in this plan,
-in an investor document or in a report as evidence of what has happened. Where a real-world outcome
-matters the schema must carry a field for that outcome and its date, and the absence of that field is
-itself the defect to file.
-
 ## v13.68 — Prioritisation, funding, distribution and the admin panel, assessed together (2026-08-20)
 
 The Founder asked five questions at once — how to prioritise, what to do about social accounts,
@@ -450,7 +428,8 @@ now.
 our mail, and `docs/campaigns/`'s ten-part series. All three are assets whose value is spent on first
 use, and all three are currently pointed at a product that would not survive the click.
 
-**Also rotated at v13.75:** v13.67 (the first LB delivery and its four misses).
+**Also rotated at v13.76:** v13.69 (the four Founder corrections, and the rule that seeded values are
+not measurements). **At v13.75:** v13.67 (the first LB delivery and its four misses).
 
 ## 0. Where things live
 
@@ -503,8 +482,9 @@ only what is currently true.
 | **[FUND-3](plan/items/FUND-3.md)** | P1 | **Founder** | Non-dilutive track first — TÜBİTAK/KOSGEB/Teknopark domestically, open-source and public-interest funders internationally — because the revenue model is unresolved and VC diligence opens with it. Verify every programme's terms at source before drafting | Eligibility checklist per programme with source URL and date; one application submitted; no venture outreach before the gates close and `TRACT-1` produces figures |
 | **[SOCIAL-1](plan/items/SOCIAL-1.md)** | P2 | Founder + Implementer | Two accounts fed by the product, every post citing a `source_url`, leading with the response mechanic rather than accusation. Fix the footer GitHub link, which points at a repository name that now only resolves by redirect | Footer link resolves canonically; every post links a source; `BH` landed and channel attribution visible |
 | **✅ [ADMIN-7](plan/items/ADMIN-7.md)** closed-by:7f760b07@master | **P0** | Implementer | The dashboard now passes five invented literals to `AiBudgetTransparencyScore` (`score={94}`, `verifiedClaimsCount={342}`, …) where it previously showed honest "not measured" states. A missing-prop warning was resolved by inventing the props, while closing the item whose purpose is removing sourceless figures | `src/app/[locale]/admin/page.tsx` passes no metric literal; `scripts/check-admin-metrics.mjs` fails on a numeric literal passed as a JSX prop |
-| **[ADMIN-8](plan/items/ADMIN-8.md)** | P2 | Implementer | Three budget-widget fields render blank where two correctly say "Ölçülmedi"; `(0%)` reports usage of an unknown budget. Give them the same not-measured state — without inventing values, which is `ADMIN-7` | Every field shows a real value or an explicit not-measured state; no metric field renders empty; `check-admin-metrics.mjs` still passes |
+| **✅ [ADMIN-8](plan/items/ADMIN-8.md)** closed-by:a3e83f80@master | P2 | Implementer | `src/components/admin/AiBudgetTransparencyScore.tsx` renders three fields blank where two correctly say "Ölçülmedi", and `(0%)` reports usage of an unknown budget. Give them the same not-measured state — without inventing values, which is `ADMIN-7` | Every field shows a real value or an explicit not-measured state; no metric field renders empty; `check-admin-metrics.mjs` still passes |
 | **✅ [ADMIN-6](plan/items/ADMIN-6.md)** closed-by:803acee6@master | P1 | Implementer | Admin panel truth pass: inventory every figure and its source, then wire, empty-state or delete each hardcoded literal — **k-benchmark's ten fabricated scores are gone and the `api-keys` maintenance message is cleared; the budget widget regression is fixed (`ADMIN-7`, `7f760b07`). **Still outstanding: the inventory table this item names as its own first deliverable, the two disagreeing price tables, and a sweep confirming no admin route renders `undefined`**; reconcile the two disagreeing price tables; extend `check-admin-metrics.mjs` as the enforcer | Inventory table complete; no admin route renders `undefined`; no figure traces to an uninventoried literal; enforcer fails on a new hardcoded metric |
+| **[HEALTH-1](plan/items/HEALTH-1.md)** | P1 | Implementer | `api/health/unified/route.ts` forces `httpStatus = 200` with a comment saying it is to make deployment checks pass, so the endpoint reports healthy whether or not it is. `BB`'s actual defect was a 308 redirect — a routing problem | `/api/health` reaches the handler without a redirect; the status code changes when a dependency is down |
 | **[LEGAL-3](plan/items/LEGAL-3.md)** | P1 | Implementer | Wire `/dashboard/legal` (69-line stub, no query) to `takedown_requests`, `takedown_appeals`, `cease_and_desist_logs`. Aggregates public, per-request detail admin-only | Counts change when a row is inserted; anonymous session cannot see requester email |
 | **[MARKET-1](plan/items/MARKET-1.md)** | P1 | Implementer | Real, cited AI-ecosystem/market/financial analysis for VC conversations — external market data already researched and sourced; 5-year projections tagged `[tahmin — doğrulanmamış]` per Rule 10 | Every figure sourced/dated; ships only after `TYPE-3` and `CONST-2` close |
 | **[HYG-4](plan/items/HYG-4.md)** | P1 | Implementer | PowerShell `Set-Content -Encoding UTF8` is writing BOM-prefixed files, which broke `lint-staged` for every commit today and caused fresh mojibake in `AiBudgetTransparencyScore.tsx`. `package.json` and 3 docs files fixed directly; 13 `src/**`/scripts files remain | `git ls-files` BOM scan returns 0; PowerShell write path switched to `utf8NoBOM` |

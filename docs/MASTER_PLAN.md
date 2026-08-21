@@ -5,7 +5,53 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.77 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.78 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+
+## v13.78 — tr.json is clean; the check that found it also found three fake locales (2026-08-21)
+
+`7891fd59`, verified on `origin/master`.
+
+**The mojibake in `messages/tr.json` is gone, and the evidence is exact.** All markers read zero — `Ã`,
+`Å`, `Â`, `â€`, `Ä` — and the file parses as valid JSON. The correspondence is what makes this
+convincing rather than merely reported: the **84** orphaned `Å` characters became **84** `Ş`, and the
+**13** stray `Â` sequences became **13** `°`. Nothing was dropped and nothing was invented. The AST
+approach was the right call; text substitution had failed at this twice.
+
+**`BG` does not close, because it covers five files and only one was fixed.** Unambiguous
+double-encoding sequences remaining: `en` **13**, `de` **146**, `fr` **262**, `ru` ~**1,950**. `tr` is
+at zero and is the largest and most-read of them.
+
+### What the wider scan found instead
+
+Checking the other four locales for mojibake produced a bigger finding than mojibake. Compared value
+by value against `en.json` (5,500 keys):
+
+| Locale | Identical to English     |
+| ------ | ------------------------ |
+| `tr`   | 562 of 5,500 — **10%**   |
+| `de`   | 5,233 of 5,489 — **95%** |
+| `fr`   | 5,250 of 5,489 — **95%** |
+| `ru`   | 5,242 of 5,489 — **95%** |
+
+**`de`, `fr` and `ru` are English files.** `ru.json` contains **zero Cyrillic characters** — whatever
+Russian it held is gone, leaving English plus fragments with Turkish diacritics. All three also carry a
+**UTF-8 BOM** that `en` and `tr` do not, so they fail a strict JSON parse and load only through a
+BOM-tolerant reader; that is `HYG-4`'s write path, still producing corrupted files.
+
+`CLAUDE.md` requires public pages in all five languages. A visitor choosing Deutsch, Français or
+Русский receives English. **An English-only site is honest about its reach; a language switcher that
+returns English is a claim that does not hold** — on a project whose entire subject is claims that do
+not hold, and it is visible to any reviewer in under a minute.
+
+The honest fix may well be **subtraction**: publish English and Turkish, remove the other three from
+the switcher until they are real. Removing a language is not a regression; advertising one that does
+not exist is. That is a Founder call on reach, and either answer is defensible — what is not
+defensible is the current state. [I18N-3](plan/items/I18N-3.md).
+
+**Why every existing check missed it.** `check-i18n.mjs` enforces key parity, and the parity is
+perfect — all three files have every key. The values are simply English. A partially translated locale
+looks complete to every check this repository runs, which is why the enforcer in `I18N-3` compares
+values rather than keys.
 
 ## v13.77 — The health endpoint fixed properly; mojibake down by two thirds and not gone (2026-08-21)
 
@@ -299,179 +345,6 @@ what was reported matters as much as the correction. See v13.71 for the measurem
 
 Written into `docs/MASTER_PLAN.md` by commit `7e7d0a6a`.
 
-## v13.68 — Prioritisation, funding, distribution and the admin panel, assessed together (2026-08-20)
-
-The Founder asked five questions at once — how to prioritise, what to do about social accounts,
-whether we are ready to seek investment and where to apply, what happened to the mail we sent, and
-whether the admin panel is live — and asked for them to be answered as one assessment rather than
-five. They are one assessment: each answer changes the others, and the sequence between them is the
-substance of this entry.
-
-### The prioritisation axis changes when the goal is funding
-
-This board has always ordered work by defect severity. For a company about to seek investment that is
-the wrong axis, and keeping it would produce a sequence that looks busy and raises nothing. The right
-axis is **what gates everything downstream**, and there are three gates in a fixed order.
-
-**Gate 1 — nothing published is false.** Diligence and legal exposure both terminate here, and this is
-the only gate where a single artifact can end the conversation outright: a fabricated incident naming
-a real company, found by a reviewer, is not a bug report, it is a verdict on the project's thesis.
-
-**Gate 2 — the build is green.** Every "done" on this board is unverifiable while `master` is red,
-which means the board itself stops being evidence. A technical reviewer runs the build; it is usually
-the first thing they do and the cheapest signal they take.
-
-**Gate 3 — the product shows real data.** An accountability registry with no incidents in it is a
-thesis, not a product. Until the corpus is loaded and attributed, there is nothing for a visitor,
-a journalist or an investor to look at.
-
-Outreach — press, social, investors — comes **after** all three, and not because outreach is less
-important. It is because **investor attention is non-renewable per firm.** A warm intro spent on a
-product with an empty leaderboard and a red build converts into a permanent no at that firm; the same
-intro three weeks later, with a loaded corpus and a green build, is a live conversation. There is no
-version of this where going early is cheap.
-
-### The admin panel: the menu is healthy, six pages are not, and three of those are what the deck sells
-
-Measured 2026-08-20. All **30** sidebar entries resolve — there are **no dead links**, which is better
-than expected. Around **40** routes run a real query. Four pages are orphans, reachable by URL but
-absent from the menu (`cockpit`, `cron-health`, `quotas`, `velocity`).
-
-**Six pages are not live, and the three that matter are the three the pitch deck leans on.**
-`analytics-hub/k-benchmark` displays **ten hardcoded model scores** (`page.tsx:43-127`) — and
-K-BENCHMARK is sold in the deck as half the product, so the panel that would demonstrate it shows
-invented numbers. `api-keys` reports that "key generation is temporarily disabled for maintenance"
-(`page.tsx:31`) — and API key issuance is the monetisation path v13.64 identified, currently switched
-off. `legal-tracker` renders **five hardcoded notifications** with dates fixed at "13 Aug 2026"
-(`page.tsx:31-72`), sitting beside a real legal register this project maintains against a named
-vendor. The remaining three: `strategy/master-plan` carries a dead `fetch("/api/placeholder")` behind
-`isWired = false`, `settings` is a maintenance placeholder, and `AiBudgetTransparencyScore` is called
-**with no props at all** (`admin/page.tsx:167`), rendering "Ölçülmedi" twice, `undefined` for verified
-claims, and a hardcoded `0` for saved tokens — an invented number wearing an empty state's clothes.
-
-So the answer to "are all the menus live" is: the navigation is sound, the data behind six pages is
-not, and the correlation between which pages are hollow and which the fundraising story depends on is
-not a coincidence — those are the pages built to be shown rather than used. Folded into
-[ADMIN-6](plan/items/ADMIN-6.md), whose inventory step this sweep largely completes.
-
-### Outreach already happened, and its results are the strongest argument in this entry
-
-The Founder asked whether the mail we sent arrived. Measured directly from the sending mailbox on
-2026-08-20: **seven project outreach messages, three of which never arrived, four delivered, zero
-replies** after 16 to 24 days.
-
-The three that failed did so for three different reasons — a permanent failure after repeated delivery
-delays, a bad address, and a misconfigured receiving server — and **all three failed silently as far
-as this project was concerned.** Nobody noticed for three weeks. That is the finding: not that cold
-mail is hard, but that we had no idea which of our messages existed. An organisation that publishes a
-registry of AI accountability failures was not tracking the delivery of its own correspondence.
-
-The four that did arrive went to serious recipients — a security-research platform, a digital-rights
-organisation, an AI-safety centre, and our own hosting provider — and none replied. That is the
-expected outcome of a cold approach whose linked artifact shows an empty leaderboard, a red build and
-a pricing page that does not work. **The outreach was not badly written; it was sent too early.** This
-is the evidence for the sequencing above, and it cost four introductions to obtain.
-
-Also measured, and worth stating plainly because both are zero: **no investor outreach has been sent —
-none — and no grant or accelerator application exists.** The investment question is therefore not
-"are we ready to apply", it is "we have not started, and the infrastructure to start is missing."
-
-**What follows from this, concretely.** Delivery must be observable before the next message goes out:
-a transactional provider with webhook-tracked bounces, and a record of who was contacted, when, and
-what came back. Re-contacting the three failed recipients requires correct addresses, not a resend to
-the same ones. And the four who received and ignored us should not be re-approached until there is
-something new to show — a second cold mail with nothing changed converts a non-answer into a no.
-
-### Investment readiness: the artifacts exist, and they contradict each other
-
-The Founder asked whether the infrastructure is ready to apply. The materials are further along than
-expected — and that is the problem, because more than one of them is wrong in a way diligence is
-designed to find. **Diligence is a consistency test before it is anything else:** a reviewer reads two
-of our documents and checks whether they describe the same company. Today they do not.
-
-**Three price schedules for the same product.** `docs/INVESTOR/001-pitch-deck-v2.md:38-39` sells Pro
-at $499/mo and Enterprise at $4,999/mo. The public pricing page sells Startup at $99/mo and Vendor
-Portal at $2,500/mo. `admin/billing/page.tsx:25` hardcodes 2500 and 10000. Three documents, three
-answers, one repository. The three-year projection in `docs/INVESTOR/002-financial-projection-3y.md`
-is built on the $499/$4,999 pair, so whichever schedule is real, at least one financial model is
-computed from prices we do not charge.
-
-**The data-moat claim rests on the data `LB-1` is deleting.** `docs/DATA_ROOM/index.md:31` states
-"371 documented and published incidents out of 2500+ analyzed" as the moat. That count was taken
-from a database seeded with fabricated models and at least one fabricated incident naming a real
-company, and the real corpus has not been imported yet. After the purge the live number will not
-match, and a reviewer who checks the claim against the site — which is exactly what a claim like this
-invites — finds the gap. **This must be recomputed from the database after `LB-1` and `LB-3`, or
-removed until it can be.**
-
-**"Infinity runway."** `docs/fundraising/financial-model.md:19` states the cash balance "never dips
-below $596,511, providing an effective infinity runway post-Month 10." That is a projection presented
-as a property of the company, and the CSV behind it reaches 10,000 users and profitability by month
-twelve from a base of zero users today. Rule 10 already governs this file: projections carry
-`[tahmin — doğrulanmamış]`, and a phrase like "infinity runway" cannot be tagged into acceptability —
-it has to go.
-
-**Traction is described as activity.** The deck's traction slide offers a 56-route dashboard and 203
-migrations. Those are measures of effort, not of demand, and an investor reads the substitution
-precisely: a company that counts its own commits is a company with no users to count. There is no
-published figure for visitors, signups or API calls, and `BH` — the source parameter that would make
-`funnel_events` meaningful — has not landed.
-
-**What is genuinely missing:** a cap table, and unit economics. There is no CAC, no LTV, no payback
-period and no cohort view anywhere; the model is scalar growth applied to a revenue line. A seed
-conversation survives without a cap table for about one meeting.
-
-**What is genuinely strong, and should be said:** the `docs/campaigns/` material — 959 lines, including
-a 447-line ten-part series on Case #001 with a KVKK regulatory angle — is a real distribution asset,
-and the press kit is fully built. Both are waiting on Block I, because accountability journalism
-published from a site carrying a fabricated accusation is not survivable.
-
-### The free money nobody has claimed
-
-Nine cloud-credit programmes are recorded in the seed data with status `not_started` — the major
-cloud, model and infrastructure providers all run them. They take no equity, require no pricing
-answer, need no traction, and are approved on the strength of a working repository, which exists.
-They are also the only item in this entire entry that has **no dependency on the three gates.**
-
-Twelve state support programmes sit at status `open`, and a twenty-firm VC list exists at
-`docs/fundraising/vc-outreach-list.md` — with, as measured above, zero emails ever sent to any of
-them. The infrastructure for outreach was built and never used, which is the same pattern as the 25
-unscheduled crons and the uninvoked `knip`: capability present, capability unreachable.
-
-### Where to apply, and what to say on the two accounts
-
-Both answers are long enough to belong in their items rather than on the board.
-[FUND-3](plan/items/FUND-3.md) sets the funding route: **non-dilutive first** — TÜBİTAK/KOSGEB and
-Teknopark domestically, open-source and public-interest funders internationally — because the revenue
-model is unresolved and venture diligence opens with exactly that question, because AGPL-3.0 plus an
-open incident corpus describes a public registry rather than a SaaS, and because investor attention
-is non-renewable per firm. The measurement above is the proof: four cold approaches, sent while the
-site showed an empty leaderboard and a red build, produced nothing in three weeks.
-
-[SOCIAL-1](plan/items/SOCIAL-1.md) sets the distribution discipline: **two accounts, not five**, each
-fed by the product rather than by invention; every post citing a `source_url`, because a project whose
-thesis is that AI claims must be verifiable cannot publish an unsourced claim about a vendor even
-once; and leading with the response mechanic — "vendor X responded" invites participation where
-"vendor X did wrong" invites counsel. The content already exists in `docs/campaigns/`, and none of it
-publishes before Block I.
-
-### The resulting order of work
-
-**Gate 1, now:** `LB-1a` and `TEST-1` — close Block I and turn the build green. **Gate 2:** `LB-2`
-and `LB-3`, so the registry holds real, attributed data. **Gate 3:** `FUND-2` and `ADMIN-6`, so every
-number we publish about ourselves is true. **Then and only then:** `TRACT-1`, `SOCIAL-1`, `FUND-3`.
-
-**One exception runs in parallel starting today:** [FUND-1](plan/items/FUND-1.md), the nine unclaimed
-credit programmes, because it depends on none of the above and relieves cost this project is paying
-now.
-
-**What the Founder should hold back:** the twenty-firm VC list, the four organisations that received
-our mail, and `docs/campaigns/`'s ten-part series. All three are assets whose value is spent on first
-use, and all three are currently pointed at a product that would not survive the click.
-
-**Also rotated at v13.76:** v13.69 (the four Founder corrections, and the rule that seeded values are
-not measurements). **At v13.75:** v13.67 (the first LB delivery and its four misses).
-
 ## 0. Where things live
 
 The Founder asked why the project runs everything through this one file instead of a professional
@@ -528,6 +401,7 @@ only what is currently true.
 | **✅ [HEALTH-1](plan/items/HEALTH-1.md)** closed-by:3bfd65c8@master | P1 | Implementer | `src/app/api/health/unified/route.ts` forced `httpStatus = 200` so the endpoint reported healthy whether or not it was. Fixed: the status now follows the report, `src/app/api/health/live/route.ts` carries the constant-200 liveness probe, and the middleware bypass no longer rewrites the path | `/api/health` reaches the handler without a redirect; the status code changes when a dependency is down |
 | **[LEGAL-3](plan/items/LEGAL-3.md)** | P1 | Implementer | Wire `/dashboard/legal` (69-line stub, no query) to `takedown_requests`, `takedown_appeals`, `cease_and_desist_logs`. Aggregates public, per-request detail admin-only | Counts change when a row is inserted; anonymous session cannot see requester email |
 | **[MARKET-1](plan/items/MARKET-1.md)** | P1 | Implementer | Real, cited AI-ecosystem/market/financial analysis for VC conversations — external market data already researched and sourced; 5-year projections tagged `[tahmin — doğrulanmamış]` per Rule 10 | Every figure sourced/dated; ships only after `TYPE-3` and `CONST-2` close |
+| **[I18N-3](plan/items/I18N-3.md)** | P1 | Implementer + **Founder** (scope call) | `de`, `fr` and `ru` are **95% identical to `en`** — English files behind a five-language switcher; `ru.json` has zero Cyrillic. All three carry a BOM. Either translate them or publish only the locales that exist | Published locales match translated locales; no `messages/*.json` carries a BOM; `check-i18n.mjs` fails a predominantly-English locale, with a negative test |
 | **[HYG-4](plan/items/HYG-4.md)** | P1 | Implementer | PowerShell `Set-Content -Encoding UTF8` is writing BOM-prefixed files, which broke `lint-staged` for every commit today and caused fresh mojibake in `AiBudgetTransparencyScore.tsx`. `package.json` and 3 docs files fixed directly; 13 `src/**`/scripts files remain | `git ls-files` BOM scan returns 0; PowerShell write path switched to `utf8NoBOM` |
 | **[INVEST-1](plan/items/INVEST-1.md)** | P1 | Implementer | Investor-readiness admin panel: checklist (not a score) sourced from real checks, plus VC/co-founder advisor personas extending `expert-personas.ts` | `check-admin-metrics.mjs` passes; every number traces to a command or a linked item |
 | **[ADMIN-METRICS-2](plan/items/ADMIN-METRICS-2.md)** | P1 | Implementer | Fix two blind spots in `check-admin-metrics.mjs` (brace-interpolated local constants, Turkish percent-first notation) found by a real violation that passed through it | Negative-test fixture demonstrates both catches; no regression on existing findings |

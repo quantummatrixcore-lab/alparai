@@ -83,7 +83,7 @@ describe("Qwen Omni ASR Voice Incident API Route", () => {
     expect(body.error).toContain("Unsupported audio mime type");
   });
 
-  it("should return 200 and transcription data for a valid .m4a audio file", async () => {
+  it("should return 500 when ASR service is unconfigured or fails (no fake fallback text)", async () => {
     const formData = new FormData();
     const audioContent = new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
     const m4aFile = new File([audioContent], "recording.m4a", { type: "audio/m4a" });
@@ -98,21 +98,17 @@ describe("Qwen Omni ASR Voice Incident API Route", () => {
     });
 
     const res = await POST(req);
-    expect(res.status).toBe(200);
+    expect(res.status).toBe(500);
 
     const body = await res.json();
-    expect(body.success).toBe(true);
-    expect(body.data).toBeDefined();
-    expect(body.data.transcript).toContain("Mobil uygulama çökme bildirimi");
-    expect(body.data.model).toBe("qwen-omni-asr-v1");
+    expect(body.success).toBe(false);
+    expect(body.error).toContain("Voice transcription failed");
   });
 
-  it("should directly run transcribeAudio adapter function", async () => {
+  it("should throw error when transcribeAudio is called without ASR service", async () => {
     const file = new File([new Uint8Array([1, 2, 3])], "audio.m4a", { type: "audio/m4a" });
-    const result = await transcribeAudio(file, { locale: "tr", incidentContext: "Test" });
-
-    expect(result.transcript).toBeDefined();
-    expect(result.model).toBe("qwen-omni-asr-v1");
-    expect(result.confidence).toBeGreaterThan(0.9);
+    await expect(transcribeAudio(file, { locale: "tr", incidentContext: "Test" })).rejects.toThrow(
+      "Voice transcription failed or service is unavailable",
+    );
   });
 });

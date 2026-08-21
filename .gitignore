@@ -40,6 +40,7 @@ agent-browser.json
 *.cookies
 *_cookies.txt
 chrome_tabs*.json
+scripts/temp_*
 
 # typescript
 *.tsbuildinfo

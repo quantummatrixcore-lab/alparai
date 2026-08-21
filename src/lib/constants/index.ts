@@ -10,7 +10,7 @@ export const APP_EMAIL = "hello@alparai.com" as const;
 export const APP_TAKEDOWN_EMAIL = process.env.TAKEDOWN_EMAIL ?? ("takedown@alparai.com" as const);
 
 export const DEFAULT_LOCALE = "en" as const;
-export const SUPPORTED_LOCALES = ["en", "tr", "de", "fr", "ru"] as const;
+export const SUPPORTED_LOCALES = ["en", "tr"] as const;
 export type Locale = (typeof SUPPORTED_LOCALES)[number];
 
 export const GITHUB_URL =

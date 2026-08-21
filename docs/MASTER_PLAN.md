@@ -5,7 +5,46 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.80 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.81 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+
+## v13.81 — Why the corpus is not being used, in three specific pieces (2026-08-21)
+
+The Founder asked why the accumulated incidents are not analysed, why publicly given vendor responses
+are not recorded as responses, and why unanswered ones do not simply stay unanswered. The third is
+already correct; the first two have precise causes, and one of them is sharper than expected.
+
+**Recording a public statement is impossible today, and the feature is otherwise finished.** `LB-4`
+shipped the column and its constraint, the moderator-only insert policy, `source_url`,
+`statement_date`, `verified_by`, `public_statement_count`, `disclosure_rate`, and a distinct label in
+the response card. Measured: `public_statement` appears in exactly three files —
+`incident-detail.tsx`, `provider-response-card.tsx`, `types/index.ts` — and **all three read it.**
+There is no form, no server action, no import path, no admin screen that writes one. The feature is
+complete except for the part where a human can use it, which is why every incident reads "awaiting
+response" no matter what the vendor did in public. [RESP-1](plan/items/RESP-1.md), filed P0, and it
+needs bulk entry rather than a one-at-a-time form — the backlog is thousands of incidents whose vendor
+statements already exist publicly.
+
+**The corpus is imported and never analysed.** The only aggregate over incidents is
+`provider_leaderboard` — counts, response rate, trust score. The import parses `Severity`, `CVSS`,
+`Attack vector`, `OWASP LLM`, `OWASP ASI`, `MITRE ATLAS`, `NIST AI RMF`, `CVE IDs` and `Quality tier`,
+and **nothing reads any of them.** A registry holding thousands of classified incidents that publishes
+only per-vendor counts is sitting on its own primary asset. The taxonomy columns are what make it
+citable by auditors and regulators rather than merely interesting.
+[ANALYSIS-1](plan/items/ANALYSIS-1.md).
+
+**Ingestion itself is scheduled and set to publish.** `vercel.json` runs `import-incidents` daily and
+`importIncidents` defaults `autoPublish` to **true**, so rows publish on arrival once the feed URLs
+are set in the Vercel project — which cannot be checked from here. Whether the pipeline is flowing is
+a question for the Vercel cron log, not for this repository.
+
+**The unanswered case needs no work.** `response_rate` counts token-verified official replies only and
+`disclosure_rate` covers both kinds, so an incident with no response stays visibly unanswered and a
+public statement never masquerades as a reply. That was `LB-4`'s design decision and it holds.
+
+**Both new items are gated behind the purge**, for the same reason as everything else: analysis over a
+table still containing fabricated rows produces charts that are wrong in a way no reader can detect,
+and recording vendor responses against fabricated incidents would compound the original error rather
+than correct it. The migration exists and has never been run against production.
 
 ## v13.80 — `I18N-3` closes; what remains of the mojibake item is one file (2026-08-21)
 
@@ -454,6 +493,8 @@ only what is currently true.
 | ID  | P   | Owner | Work | Acceptance |
 | --- | --- | ----- | ---- | ---------- |
 
+| **[RESP-1](plan/items/RESP-1.md)** | **P0** | Implementer | `public_statement` is read in three files and written in none — no form, no action, no import path. Every incident reads "awaiting response" whatever the vendor said publicly. Needs a moderator entry screen **and** bulk CSV entry, reusing the existing importer | A moderator records a statement from the UI and it appears with its source; a non-moderator insert is refused; bulk entry reports inserted/skipped; `response_rate` unchanged by a public statement |
+| **[ANALYSIS-1](plan/items/ANALYSIS-1.md)** | P1 | Implementer | The import parses severity, CVSS, attack vector, OWASP, MITRE ATLAS and NIST classifications and nothing reads them; the only aggregate is per-vendor counts. Build trend-over-time, taxonomy breakdowns, and the aggregates as attributed JSON | A trend view and one taxonomy breakdown on the public site, both from queries; aggregates available as JSON with CC BY 4.0 attribution. **Starts after the purge runs** |
 | **[LB-1](plan/items/LB-1.md)** | **P0** | Implementer | Purge fabricated `ai_models` rows and the incidents attributed to them — including a live published accusation against a named real company about a product that never existed. Plus `scripts/check-model-catalog.mjs` so the next seed migration cannot undo it | Model list contains only vendor-verifiable names; fabricated incident absent from `/en/incidents` and from that provider's `incident_count`; enforcer exits 1 on a reintroduced name |
 | **✅ [LB-2](plan/items/LB-2.md)** closed-by:47db3b8e@master | **P0** | Implementer | 25 cron handlers exist, no `vercel.json` and no `"crons"` key — none has ever run. Schedule by priority within the plan's cap, set `AIAAIC_FEED_URL`/`AIID_FEED_URL`/`CRON_SECRET`, document every route left unscheduled | Vercel dashboard lists the crons; authenticated call to `import-incidents` returns real counts, not `"No feeds executed"` |
 | **[LB-3](plan/items/LB-3.md)** | P1 | Implementer | Load the VulcanLab corpus (4,328 records, CC BY 4.0) through the existing importer — do not write a second one. Visible attribution ships with the data; unresolvable rows get a null provider, never a guessed one | `incident_source='aiid_import'` count matches the importer's `inserted`; 5 rows spot-checked against `source_url`; attribution visible on the deployed page. **Starts only after LB-1 has deployed** |

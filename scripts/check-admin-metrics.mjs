@@ -49,6 +49,7 @@ function trackedFiles() {
 }
 
 function isScanned(path) {
+  if (path.endsWith(".mock-negative-test.tsx") && !process.env.NEGATIVE_TEST_MODE) return false;
   return (
     SCANNED_PREFIXES.some((prefix) => path.startsWith(prefix)) &&
     SCANNED_EXTENSIONS.some((ext) => path.endsWith(ext))
@@ -75,6 +76,24 @@ function scan() {
 
     const lines = content.split("\n");
     for (let i = 0; i < lines.length; i += 1) {
+      const PROP_RE = /([A-Za-z0-9_]+)\s*=\s*\{\s*([0-9]+(?:\.[0-9]+)?)\s*\}/g;
+      let pMatch;
+      while ((pMatch = PROP_RE.exec(lines[i])) !== null) {
+        const propName = pMatch[1].toLowerCase();
+        if (
+          propName.includes("score") ||
+          propName.includes("count") ||
+          propName.includes("tokens") ||
+          propName.includes("rate") ||
+          propName.includes("amount") ||
+          propName.includes("percentage") ||
+          propName.includes("pct") ||
+          propName.includes("metric")
+        ) {
+          offenders.push({ path, line: i + 1, kind: "prop:" + pMatch[1], text: pMatch[2] });
+        }
+      }
+
       TEXT_NODE.lastIndex = 0;
       let match;
       while ((match = TEXT_NODE.exec(lines[i])) !== null) {

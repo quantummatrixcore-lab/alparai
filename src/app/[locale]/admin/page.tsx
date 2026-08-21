@@ -167,13 +167,7 @@ export default async function AdminDashboardPage({
         <PlausibleVisitorCard />
 
         {/* AI Incident Budget Transparency Score Widget (Task #160) */}
-        <AiBudgetTransparencyScore
-          score={94}
-          totalBudgetTokens={50000}
-          consumedTokens={12450}
-          hallucinationRate={0.2}
-          verifiedClaimsCount={342}
-        />
+        <AiBudgetTransparencyScore />
 
         {/* 360 Expert AI Audit Meter */}
         <Test360Meter />

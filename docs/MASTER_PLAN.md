@@ -5,7 +5,41 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.78 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.79 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+
+## v13.79 — The locale decision landed; three loose ends, one of them a red gate (2026-08-21)
+
+The Founder chose subtraction, and `f88dcf99` implements it in two files: `SUPPORTED_LOCALES` is
+`["en", "tr"]` and the routing config derives from it. `npx tsc --noEmit` exits **0**, which was not a
+given — narrowing that union could have broken every `locale === "de"` comparison in the codebase, and
+did not.
+
+**The switcher needed no work, and that is worth noticing.** `language-switcher.tsx:22` already
+filtered its options through `SUPPORTED_LOCALES`, so the three languages left the UI by themselves;
+the sitemap shrank the same way. Someone built those to derive rather than to repeat, and today it
+paid.
+
+**Three things did not follow, and the first is breaking CI now.**
+
+`scripts/check-i18n.mjs` **throws**. Line 69 still hardcodes all five locales and line 75 parses each
+file with a plain `JSON.parse` — and `de`, `fr` and `ru` carry a BOM, so it dies with
+`"abou"... is not valid JSON` and exits 1 on an unhandled exception. The i18n gate is red, over files
+the site no longer serves. Both halves need fixing: read the locale list from `SUPPORTED_LOCALES`, and
+strip a leading BOM on read so its presence is reported rather than fatal.
+
+`src/components/seo/json-ld.tsx:73` still declares `inLanguage: ["en", "tr", "de", "fr", "ru"]`. Lines
+142 and 224 of the same file already say `["en", "tr"]` — the file contradicts itself, and the wrong
+one is the copy search engines read as a statement about what this site offers. That is the same claim
+we just removed from the interface, still being made to machines.
+
+`/de`, `/fr` and `/ru` now **404**. Yesterday those paths served English; today they serve nothing, and
+anything indexed or linked under them is broken. Permanent redirects to the `/en` equivalent cost three
+lines in `next.config.mjs`. **Removing a language should cost a visitor a redirect, not a dead end** —
+and the reason to say it that way is that subtraction was the right call precisely because it was the
+honest one, and a wave of 404s is how an honest decision acquires the reputation of a careless one.
+
+All three are recorded in [I18N-3](plan/items/I18N-3.md) rather than as new rows, since they are the
+follow-through of one decision rather than separate findings.
 
 ## v13.78 — tr.json is clean; the check that found it also found three fake locales (2026-08-21)
 
@@ -401,7 +435,7 @@ only what is currently true.
 | **✅ [HEALTH-1](plan/items/HEALTH-1.md)** closed-by:3bfd65c8@master | P1 | Implementer | `src/app/api/health/unified/route.ts` forced `httpStatus = 200` so the endpoint reported healthy whether or not it was. Fixed: the status now follows the report, `src/app/api/health/live/route.ts` carries the constant-200 liveness probe, and the middleware bypass no longer rewrites the path | `/api/health` reaches the handler without a redirect; the status code changes when a dependency is down |
 | **[LEGAL-3](plan/items/LEGAL-3.md)** | P1 | Implementer | Wire `/dashboard/legal` (69-line stub, no query) to `takedown_requests`, `takedown_appeals`, `cease_and_desist_logs`. Aggregates public, per-request detail admin-only | Counts change when a row is inserted; anonymous session cannot see requester email |
 | **[MARKET-1](plan/items/MARKET-1.md)** | P1 | Implementer | Real, cited AI-ecosystem/market/financial analysis for VC conversations — external market data already researched and sourced; 5-year projections tagged `[tahmin — doğrulanmamış]` per Rule 10 | Every figure sourced/dated; ships only after `TYPE-3` and `CONST-2` close |
-| **[I18N-3](plan/items/I18N-3.md)** | P1 | Implementer + **Founder** (scope call) | `de`, `fr` and `ru` are **95% identical to `en`** — English files behind a five-language switcher; `ru.json` has zero Cyrillic. All three carry a BOM. Either translate them or publish only the locales that exist | Published locales match translated locales; no `messages/*.json` carries a BOM; `check-i18n.mjs` fails a predominantly-English locale, with a negative test |
+| **[I18N-3](plan/items/I18N-3.md)** | P1 | Implementer + **Founder** (scope call) | **Decision taken and landed (`f88dcf99`): only `en` and `tr` are published.** Follow-through outstanding — `scripts/check-i18n.mjs` throws on the BOM'd files and still hardcodes five locales (**CI red now**), `src/components/seo/json-ld.tsx:73` still declares five to search engines, and `/de`, `/fr`, `/ru` 404 with no redirect | `check-i18n.mjs` exits 0 and derives its locale list from `SUPPORTED_LOCALES`; `json-ld` declares only published locales; `/de/:path*` redirects to `/en/:path*`; no `messages/*.json` carries a BOM |
 | **[HYG-4](plan/items/HYG-4.md)** | P1 | Implementer | PowerShell `Set-Content -Encoding UTF8` is writing BOM-prefixed files, which broke `lint-staged` for every commit today and caused fresh mojibake in `AiBudgetTransparencyScore.tsx`. `package.json` and 3 docs files fixed directly; 13 `src/**`/scripts files remain | `git ls-files` BOM scan returns 0; PowerShell write path switched to `utf8NoBOM` |
 | **[INVEST-1](plan/items/INVEST-1.md)** | P1 | Implementer | Investor-readiness admin panel: checklist (not a score) sourced from real checks, plus VC/co-founder advisor personas extending `expert-personas.ts` | `check-admin-metrics.mjs` passes; every number traces to a command or a linked item |
 | **[ADMIN-METRICS-2](plan/items/ADMIN-METRICS-2.md)** | P1 | Implementer | Fix two blind spots in `check-admin-metrics.mjs` (brace-interpolated local constants, Turkish percent-first notation) found by a real violation that passed through it | Negative-test fixture demonstrates both catches; no regression on existing findings |

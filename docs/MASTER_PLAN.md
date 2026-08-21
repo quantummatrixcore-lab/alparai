@@ -5,7 +5,29 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.87 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.88 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+
+## v13.88 — Both follow-ups closed; the suite is green on a full run (2026-08-21)
+
+`25980b2d`, verified here rather than accepted. **`pnpm test` run in full: 193 files, 1,128 tests,
+exit 0.** The report cited a 9-test subset, which is a narrower claim than the one that matters, so it
+is worth recording that the whole suite passes and not only the file that was edited.
+
+`tests/api/incidents-voice.test.ts` now asserts the contract the code actually has — an error when the
+transcription service is unavailable, instead of the 200-with-prose it previously certified. The test
+that had been guaranteeing the fabrication now guards against its return, which is the right end state
+for that file.
+
+The eight throwaway scripts are gone and `.gitignore:43` carries `scripts/temp_*`, so the next batch
+of debug scaffolding does not reach the repository at all. Fixing the instance and closing the path in
+one pass is the pattern this board keeps asking for.
+
+**One inconsistency, small and worth naming before it hardens.** For the same condition — the
+transcription service being unavailable — `api/ai/transcribe/route.ts:89,95` answers **503** while
+`api/incidents/voice/route.ts:232` answers **500**. A 500 says the server is broken; a 503 says a
+dependency is down and the request may be retried, and monitors and clients act on that difference.
+Both routes should say 503 here. Not filed as an item — it is one line in each file and belongs to
+whoever next opens them — but recorded so the decision is deliberate rather than accidental.
 
 ## v13.87 — Three closed, and a test that had been guaranteeing the fabrication (2026-08-21)
 

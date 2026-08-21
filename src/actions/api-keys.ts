@@ -169,3 +169,52 @@ export async function deleteApiKey(provider: string) {
     throw err;
   }
 }
+
+export async function generateInboundClientKey(
+  clientName: string,
+  tier: "free" | "developer" | "enterprise" | "auditor" = "auditor",
+) {
+  try {
+    const user = await getCurrentUser();
+    if (!user || (user.role !== "admin" && user.role !== "ceo")) {
+      return { ok: false, error: "UNAUTHORIZED" };
+    }
+
+    if (!clientName.trim()) {
+      return { ok: false, error: "Client name is required." };
+    }
+
+    const { randomBytes } = await import("crypto");
+    const rawKey = `alp_live_${randomBytes(24).toString("hex")}`;
+    const providerId = `client_${clientName
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9_]/g, "_")}`;
+    const hashedKey = createHash("sha256").update(rawKey).digest("hex");
+
+    const admin = createAdminClient();
+    const { error } = await (
+      admin as unknown as {
+        from: (name: string) => {
+          upsert: (values: Record<string, unknown>) => Promise<{ error: unknown }>;
+        };
+      }
+    )
+      .from("api_keys")
+      .upsert({
+        provider: providerId,
+        api_key: hashedKey,
+        tier,
+        client_type: "external",
+        updated_at: new Date().toISOString(),
+      });
+
+    if (error) throw error;
+
+    revalidatePath("/[locale]/admin/api-keys", "page");
+    return { ok: true, rawKey, provider: providerId, clientName };
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : "Failed to generate inbound key";
+    return { ok: false, error: msg };
+  }
+}

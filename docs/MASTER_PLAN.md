@@ -5,7 +5,48 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.84 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.85 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+
+## v13.85 — The double sign-in, located (2026-08-21)
+
+The Founder has reported a double authentication on login many times and it has never been fixed. An
+earlier session in this conversation looked at it and set it aside — which, under the invariant
+written two entries ago, is precisely the kind of "found nothing" that does not count as a finding.
+Looked at properly, the mechanism is in the code and is not subtle.
+
+**`auth-buttons.tsx:112-126`.** The Google Identity Services button authenticates the user and returns
+a credential. The credential goes to the `signInWithGoogleIdToken` server action. If that action
+returns anything other than success, the next line calls `fallbackOAuthRedirect()` — which is
+`signInWithOAuth`, the full redirect to Google's consent screen. **A user who has just authenticated
+with Google is sent to Google again.** The same call sits in the no-credential branch.
+
+If the server-side exchange fails for a configuration reason — the client ID registered in Supabase's
+Google provider not matching `NEXT_PUBLIC_GOOGLE_CLIENT_ID`, or ID-token sign-in not enabled — this
+fires on **every** login. That fits a defect reported repeatedly over months and never reproduced as
+broken: the second flow succeeds, the user does get in, and the only signal is a toast that flashes
+during a redirect they were expecting anyway. **A defect that always recovers is a defect nobody can
+file.** [AUTH-1](plan/items/AUTH-1.md), P0.
+
+**One diagnosis was checked and rejected.** An automated review named the nonce handling as the root
+cause — hashed nonce to Google, raw nonce to Supabase. That asymmetry is Supabase's **documented**
+pattern: Google embeds the hash in the token, Supabase hashes the raw value to compare. Relaying it
+would have sent the Implementer to rewrite working code. Also positively ruled out, each with its
+line: the middleware excludes `auth/callback` from its matcher, the sign-in page already redirects an
+authenticated visitor away, and the callback route writes its cookies onto the response it returns.
+
+**The first action is measurement, not a fix.** `res.error` already carries the reason and is thrown
+away into a toast. Logging it server-side on one real login answers whether the exchange fails always
+or occasionally, and that answer decides which fix is right. Changing code before that would be
+guessing at a bug that has survived this long precisely because everyone guessed.
+
+**The design lesson, which outlives this bug:** a silent automatic fallback to a second identity
+provider round-trip is not resilience, it is a decision made on the user's behalf that their first
+authentication did not count — and it converts a hard failure that would have been fixed in a day into
+a soft one that survives for months. Fall back automatically only when the user cancelled; on a server
+rejection, show the error and let them press the button.
+
+Separately, two callback routes exist with `safeNextPath` and `detectLocale` duplicated verbatim;
+OAuth uses one and email links the other. Consolidation is filed with the item, not as part of the fix.
 
 ## v13.84 — The rules rewritten from the failure record, and a third red gate found while doing it (2026-08-21)
 
@@ -438,6 +479,7 @@ only what is currently true.
 | ID  | P   | Owner | Work | Acceptance |
 | --- | --- | ----- | ---- | ---------- |
 
+| **[AUTH-1](plan/items/AUTH-1.md)** | **P0** | Implementer | Google sign-in re-authenticates through a second full OAuth redirect whenever the ID-token exchange fails (`auth-buttons.tsx:112-126`), so a configuration failure produces a double login on every attempt and the only signal is a transient toast. Log `res.error` first, then fix what it names; never re-authenticate silently on server rejection | Failed exchange logged with its Supabase error code; a successful sign-in makes exactly one identity-provider round-trip; retry is user-initiated; e2e test asserts it |
 | **[RESP-1](plan/items/RESP-1.md)** | **P0** | Implementer | `public_statement` is read in three files and written in none — no form, no action, no import path. Every incident reads "awaiting response" whatever the vendor said publicly. Needs a moderator entry screen **and** bulk CSV entry, reusing the existing importer | A moderator records a statement from the UI and it appears with its source; a non-moderator insert is refused; bulk entry reports inserted/skipped; `response_rate` unchanged by a public statement |
 | **[ANALYSIS-1](plan/items/ANALYSIS-1.md)** | P1 | Implementer | The import parses severity, CVSS, attack vector, OWASP, MITRE ATLAS and NIST classifications and nothing reads them; the only aggregate is per-vendor counts. Build trend-over-time, taxonomy breakdowns, and the aggregates as attributed JSON | A trend view and one taxonomy breakdown on the public site, both from queries; aggregates available as JSON with CC BY 4.0 attribution. **Starts after the purge runs** |
 | **[LB-1](plan/items/LB-1.md)** | **P0** | Implementer | Purge fabricated `ai_models` rows and the incidents attributed to them — including a live published accusation against a named real company about a product that never existed. Plus `scripts/check-model-catalog.mjs` so the next seed migration cannot undo it | Model list contains only vendor-verifiable names; fabricated incident absent from `/en/incidents` and from that provider's `incident_count`; enforcer exits 1 on a reintroduced name |

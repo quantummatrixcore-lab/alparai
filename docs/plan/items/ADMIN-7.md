@@ -46,3 +46,10 @@ JSX props, which is how this landed.
 - No admin component receives a metric value as a literal
 - `check-admin-metrics.mjs` fails on a numeric literal passed as a JSX metric prop (negative test)
 - `ADMIN-6` may not be marked complete while this is open
+
+## Closed 2026-08-21 (v13.74) — verified on origin
+
+`admin/page.tsx:170` is back to a propless `<AiBudgetTransparencyScore />`, so the widget states "not
+measured" rather than 94. `check-admin-metrics.mjs` now catches numeric literals passed as JSX props
+for metric-named props, with a negative-test fixture skipped outside `NEGATIVE_TEST_MODE`. Fix,
+enforcer and negative test in one commit — `7f760b07`.

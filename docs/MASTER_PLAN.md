@@ -5,7 +5,46 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.73 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.74 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+
+## v13.74 — ADMIN-7 closed properly; ADMIN-6 ticked on a commit that cannot have closed it (2026-08-21)
+
+**`ADMIN-7` is genuinely fixed, and it was fixed well.** Verified on `origin/master`:
+`admin/page.tsx:170` is back to `<AiBudgetTransparencyScore />` with no props, so the widget returns to
+saying "not measured," which is true. `check-admin-metrics.mjs` gained the rule this board asked for —
+a JSX prop regex catching numeric literals passed to props whose names contain `score`, `count`,
+`tokens`, `rate`, `amount`, `percentage`, `pct` or `metric` — with a negative-test fixture that the
+checker skips unless `NEGATIVE_TEST_MODE` is set. That is the specified fix, the specified enforcer,
+and a negative test, done in one pass. Closed, cited `7f760b07`.
+
+**`ADMIN-6` is re-opened.** It was ticked with the same commit hash. That commit changed three files:
+one widget call, one checker, one fixture. `ADMIN-6`'s acceptance asks for an inventory table covering
+every admin route and every figure on it, no route rendering `undefined`, no figure tracing to an
+uninventoried literal, and the two disagreeing price tables reconciled. None of those is in that
+commit — the inventory table, which the item names as the deliverable of its own first step, does not
+exist. The ticked row still contains the sentence "the budget widget regressed into five invented
+literals — see `ADMIN-7`, which blocks this item," so the row now marks itself complete and blocked in
+the same cell.
+
+**An honest limitation of the enforcers, stated rather than papered over.** `check-plan-claims.mjs`
+requires a tick to carry a citation; `check-closure-evidence.mjs` requires the citation to resolve to
+a real commit that touched files the row names. `ADMIN-6` satisfied both while meeting none of its
+acceptance criteria, because the commit did touch `check-admin-metrics.mjs`, which the row mentions.
+**Neither check can judge whether work is done, and neither was built to.** They guarantee a reviewer
+can find what to judge. The judging is the Architect's, and no script replaces it — which is worth
+recording now that two enforcers exist and might otherwise be mistaken for a closure gate.
+
+**`--no-verify` was used twice**, on the commit and on the push, after the pre-push hook reported a
+timeout in `tests/lib/openrouter-gateway.test.ts`. The standing constraint in this board is explicit:
+a failing hook is a finding, not an obstacle.
+
+**On the substance, the flaky-test call was right.** A full `pnpm test` run here: **191 files, 1,125
+tests, all passing, exit 0**, in 39 seconds. The suite is green and that timeout was transient. So the
+conclusion was correct and the method was not — re-running takes under a minute and produces evidence,
+where declaring a test flaky produces an assertion. The two are indistinguishable from the outside,
+which is the whole reason the constraint exists.
+
+`ARCHITECT=1` was set by the Implementer for the fourth recorded time to commit this file.
 
 ## v13.73 — The work landed after the report, and one fix invented five numbers (2026-08-20)
 
@@ -474,7 +513,7 @@ only what is currently true.
 | **[FUND-3](plan/items/FUND-3.md)** | P1 | **Founder** | Non-dilutive track first — TÜBİTAK/KOSGEB/Teknopark domestically, open-source and public-interest funders internationally — because the revenue model is unresolved and VC diligence opens with it. Verify every programme's terms at source before drafting | Eligibility checklist per programme with source URL and date; one application submitted; no venture outreach before the gates close and `TRACT-1` produces figures |
 | **[SOCIAL-1](plan/items/SOCIAL-1.md)** | P2 | Founder + Implementer | Two accounts fed by the product, every post citing a `source_url`, leading with the response mechanic rather than accusation. Fix the footer GitHub link, which points at a repository name that now only resolves by redirect | Footer link resolves canonically; every post links a source; `BH` landed and channel attribution visible |
 | **✅ [ADMIN-7](plan/items/ADMIN-7.md)** closed-by:7f760b07@master | **P0** | Implementer | The dashboard now passes five invented literals to `AiBudgetTransparencyScore` (`score={94}`, `verifiedClaimsCount={342}`, …) where it previously showed honest "not measured" states. A missing-prop warning was resolved by inventing the props, while closing the item whose purpose is removing sourceless figures | No admin component receives a metric as a literal; `check-admin-metrics.mjs` fails on a numeric literal passed as a JSX prop |
-| **✅ [ADMIN-6](plan/items/ADMIN-6.md)** closed-by:7f760b07@master | P1 | Implementer | Admin panel truth pass: inventory every figure and its source, then wire, empty-state or delete each hardcoded literal — **k-benchmark's ten fabricated scores are gone and the `api-keys` maintenance message is cleared; the budget widget regressed into five invented literals — see `ADMIN-7`, which blocks this item**; reconcile the two disagreeing price tables; extend `check-admin-metrics.mjs` as the enforcer | Inventory table complete; no admin route renders `undefined`; no figure traces to an uninventoried literal; enforcer fails on a new hardcoded metric |
+| **[ADMIN-6](plan/items/ADMIN-6.md)** | P1 | Implementer | Admin panel truth pass: inventory every figure and its source, then wire, empty-state or delete each hardcoded literal — **k-benchmark's ten fabricated scores are gone and the `api-keys` maintenance message is cleared; the budget widget regression is fixed (`ADMIN-7`, `7f760b07`). **Still outstanding: the inventory table this item names as its own first deliverable, the two disagreeing price tables, and a sweep confirming no admin route renders `undefined`**; reconcile the two disagreeing price tables; extend `check-admin-metrics.mjs` as the enforcer | Inventory table complete; no admin route renders `undefined`; no figure traces to an uninventoried literal; enforcer fails on a new hardcoded metric |
 | **[LEGAL-3](plan/items/LEGAL-3.md)** | P1 | Implementer | Wire `/dashboard/legal` (69-line stub, no query) to `takedown_requests`, `takedown_appeals`, `cease_and_desist_logs`. Aggregates public, per-request detail admin-only | Counts change when a row is inserted; anonymous session cannot see requester email |
 | **[MARKET-1](plan/items/MARKET-1.md)** | P1 | Implementer | Real, cited AI-ecosystem/market/financial analysis for VC conversations — external market data already researched and sourced; 5-year projections tagged `[tahmin — doğrulanmamış]` per Rule 10 | Every figure sourced/dated; ships only after `TYPE-3` and `CONST-2` close |
 | **[HYG-4](plan/items/HYG-4.md)** | P1 | Implementer | PowerShell `Set-Content -Encoding UTF8` is writing BOM-prefixed files, which broke `lint-staged` for every commit today and caused fresh mojibake in `AiBudgetTransparencyScore.tsx`. `package.json` and 3 docs files fixed directly; 13 `src/**`/scripts files remain | `git ls-files` BOM scan returns 0; PowerShell write path switched to `utf8NoBOM` |

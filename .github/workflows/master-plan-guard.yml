@@ -59,6 +59,12 @@ jobs:
 
       - name: Plan Claim Check
         run: node scripts/check-plan-claims.mjs
+
+      - name: Spec Drift Check
+        run: node scripts/check-spec-drift.mjs
+
+      - name: Enforcer Wiring Check
+        run: node scripts/check-enforcers-wired.mjs
       - name: Closure evidence check (G-7)
         run: node scripts/check-closure-evidence.mjs
 

@@ -74,6 +74,9 @@ jobs:
         if: ${{ !inputs.force }}
         run: node scripts/check-master-plan-length.mjs
 
+      - name: Model Catalog Check
+        run: node scripts/check-model-catalog.mjs
+
       - name: Model Routing Consistency Check
         if: ${{ !inputs.force }}
         run: node scripts/check-model-routing-consistency.mjs

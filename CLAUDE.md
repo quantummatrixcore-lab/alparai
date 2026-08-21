@@ -86,6 +86,44 @@ pnpm db:migrate       # supabase migration up
 
     The enforcer was written and tested in the session that authored this rule (passes at 221 grandfathered files; negative test exits 1), but `.husky/pre-commit` correctly refused the commit: `scripts/` is outside the Architect's writable paths, and G-6's enforcement list covers only `.github/workflows/**`, `.husky/**`, `playwright.config.ts` and dependency-security fields in `package.json`. The verified source is carried as a specification in `docs/plan/v13.x.md` §v13.6.8 for the Implementer to land verbatim (backlog row **BJ**). **Until BJ lands, Rule 13 binds by convention only** — this is a known, recorded Doctrine #047 gap, not an oversight.
 
+14. **An absence claim must be proven directly (binding, v13.83)** — "X does not exist", "nothing
+    references Y", "the file is not there" may **not** be recorded in `docs/MASTER_PLAN.md`, in a
+    report, or in an investor document on the strength of a delegated search. Cite the exact command
+    and quote its output.
+
+    **Rationale, measured across the archive:** absence is the one thing a search is worst at
+    establishing — a grep that finds nothing is indistinguishable from a grep that looked in the wrong
+    place, used the wrong pattern, or ran against a stale checkout. Three consecutive versions
+    (v13.5–v13.7) each corrected the previous one's instrument rather than its judgement: a proxy's 403
+    read as a Cloudflare block, a byte-wise grep read as Turkish content, a stale local ref read as
+    "not on origin". The Architect then repeated it twice in one session — recording an RLS policy as
+    missing when it existed, and a baseline file as absent when it had been committed the day before.
+    This class has produced more false statements in this plan than fabrication has.
+
+    **Positive claims are cheap to verify and negative ones are not**, so the burden is asymmetric on
+    purpose: to assert something exists, show it; to assert it does not, show where you looked.
+    **This rule has no automated enforcer, and that is stated rather than papered over** — no script
+    can judge whether a search looked in the right place. It is enforced at review.
+
+15. **A specification is on the board or it is closed (binding, v13.83)** — every file in
+    `docs/plan/items/` must either be referenced in `docs/MASTER_PLAN.md` or carry a `## Closed`
+    section recording what happened. A spec that is neither is work nobody can act on and nobody can
+    confirm was done. Measured at introduction: **57 of 106 item files were in that state.**
+    Enforcer: `scripts/check-spec-drift.mjs`, ratcheted through `.spec-drift-baseline`.
+
+    **Doctrine #047-c (amendment) — an enforcer must be wired, not merely written.** Doctrine #047
+    requires every binding rule to ship with an executable enforcer; it did not require that anything
+    invoke it, so `scripts/check-model-catalog.mjs` — written to stop fabricated model names returning
+    — existed for weeks without a single run. An enforcer nothing invokes reports nothing while
+    looking like coverage, which is the same defect as the 25 cron handlers nobody scheduled, applied
+    to the enforcement layer itself. Enforcer: `scripts/check-enforcers-wired.mjs`.
+
+    **Corollary, from the same evidence:** a rule that asks an agent to volunteer a record of its own
+    shortcut collects nothing. `G-5a` has required a logged exception for every direct execution since
+    v12.46 and **has never been logged once**, and its zero entries read as compliance. Prefer a rule a
+    machine can check over a rule that depends on self-reporting; where self-reporting is unavoidable,
+    say so in the rule itself.
+
 ## File Map
 
 | Need                | File                                                       |

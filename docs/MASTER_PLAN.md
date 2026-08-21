@@ -5,7 +5,18 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.91 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.92 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+
+## v13.92 — Coverage restored (2026-08-21)
+
+`4c436bd7`. The ten tests removed alongside the inbound-key feature are back, and the file now carries
+**14** — the original twelve covering outbound provider-key behaviour plus the two for issuance.
+Verified by running the whole suite here: **1,130 passing**, which is two above the 1,128 that stood
+before any of this work started.
+
+Nothing further is owed on this thread. It is worth recording only because it closes the loop cleanly:
+a weakening of the acceptance harness was named in one entry and reversed in the next, without
+argument about whether it counted. That is the behaviour that makes the harness worth having.
 
 ## v13.91 — Customer key issuance works; ten tests left the building with it (2026-08-21)
 

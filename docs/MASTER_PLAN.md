@@ -5,7 +5,40 @@
 >
 > **What this file is not.** It is not the architecture. See the map below.
 >
-> **Version:** v13.74 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+> **Version:** v13.75 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
+
+## v13.75 — ADMIN-6 verified and closed, with one residue (2026-08-21)
+
+v13.74 re-opened `ADMIN-6` on the grounds that the commit cited could not have satisfied it. Checked
+again after the Implementer's follow-up, and this time the claim holds.
+
+**The inventory exists and is real.** `docs/plan/items/ADMIN-6.md` now carries a **78-row table**
+mapping each admin route to its data source and whether that source is live, including the honest
+`None / Hardcoded` entries for `velocity` and `vendor-portal`. That is the deliverable the item named
+as its own first step, and v13.74's expectation that it could not exist was wrong — the table arrived
+in `803acee6`, not in the commit v13.74 was examining.
+
+**The price disagreement is gone.** `planPrices` and the hardcoded 2500/10000 pair no longer appear in
+`admin/billing/page.tsx`; the page defers to the single public schedule. That closes the contradiction
+recorded since v13.68 — two prices for one plan in one repository — and it also removes one of the
+three schedules `FUND-2` tracks.
+
+**`ADMIN-6` is closed**, cited `803acee6`, with the enforcer from `ADMIN-7` already in place.
+
+**One residue, filed rather than waved through.** The "no admin route renders `undefined`" criterion is
+met in the literal sense — React drops an `undefined` child, so the string never appears. But three
+fields of the budget widget now render **blank**: `consumedTokens`, `totalBudgetTokens` and
+`verifiedClaimsCount` print nothing, leaving an empty numerator over an empty denominator followed by
+"Tokens (0%)", and an empty figure under a "PDU Validated" badge — while the score and
+hallucination-rate fields correctly say "Ölçülmedi" two lines above. Nothing false is asserted, which
+is why this is P2 and not a reopening. But a blank number under a confident label reads as a broken
+render rather than as absent data, and `(0%)` is a measurement claim about a budget nobody knows.
+[ADMIN-8](plan/items/ADMIN-8.md).
+
+**Worth recording about the process rather than the code:** this is the first item in the sequence
+where the Implementer's completion claim survived verification intact. The difference from v13.70 and
+v13.72 is not effort — it is that the work was done before the claim, and the claim pointed at
+artifacts a reviewer could open.
 
 ## v13.74 — ADMIN-7 closed properly; ADMIN-6 ticked on a commit that cannot have closed it (2026-08-21)
 
@@ -417,50 +450,7 @@ now.
 our mail, and `docs/campaigns/`'s ten-part series. All three are assets whose value is spent on first
 use, and all three are currently pointed at a product that would not survive the click.
 
-## v13.67 — The Implementer shipped LB within hours; four requirements are unmet, master is red, and the panel gets its own truth pass (2026-08-20)
-
-**LB-1 through LB-4 were implemented and pushed the same day the specification landed** (`47db3b8e`,
-37 files, on `origin/master`). Verified against the code rather than the commit message, per G-7.
-What holds: `vercel.json` now carries three crons including `import-incidents` and `k-weekly-refresh`;
-the LB-4 migration adds `response_type` with its CHECK, makes `responder_email` nullable behind a
-conditional constraint, and adds `source_url`, `statement_date` and `verified_by`; the
-`provider_leaderboard` view is redefined and **`response_rate` still counts official replies only**,
-the constraint most easily lost; the response card branches on `response_type` and renders a distinct
-public-statement label; both feed URLs reached `.env.example`; and `scripts/check-model-catalog.mjs`
-exists. A substantial delivery, and the parts that mattered most were done correctly.
-
-**Four requirements are unmet, each stated explicitly in the specification** —
-[LB-1a](plan/items/LB-1a.md): the purge deletes by `ILIKE` pattern rather than an explicit id list,
-which `LB-1` ruled out in writing because a pattern tuned to today's fabricated names will one day
-delete a real incident and report success either way; nothing prevents the fabrications returning, so
-a fresh `db reset` re-seeds every fake model and this is a cleanup of one database rather than a fix
-to the project; no RLS policy restricts `public_statement` inserts to moderators, which is the
-security property of LB-4 rather than a detail of it, since a public statement carries no token and
-moderator-only insertion is the only thing vouching for it; and the CC BY 4.0 credit names nobody —
-the licence string is present at `messages/en.json:3983` but "VulcanLab" appears nowhere in `src/` or
-`messages/`, and an attribution licence requires naming who is attributed.
-
-**`origin/master` is red on two gates.** `tsc --noEmit` fails with four errors, all in
-`src/app/[locale]/twins-leaderboard/twins-leaderboard-client.tsx` — three implicit-`any` parameters
-and one badge variant that is not a member of its union. A full `pnpm test` run: exit code 1, six
-failures across two files, both testing code `47db3b8e` changed. The csv-parser failure returns the
-wrong `import_external_id`, half the importer's deduplication key, so re-running the import would
-duplicate rows rather than update them — silently inflating exactly the incident counts `LB-3` exists
-to make trustworthy. Filed [TEST-1](plan/items/TEST-1.md) as P0. Until it is green the pre-push gate
-blocks any branch carrying `master`'s code, which is the gate working as designed.
-
-**The admin panel gets a truth pass, at the Founder's request.** `UI-1` through `UI-4` fixed the
-panel's structure and largely succeeded. Nothing has ever audited what the panel _says_, and every
-admin defect this project records is of one kind: a figure with no source behind it — `undefined`
-rendered from missing props, a hardcoded `0` standing in for a measurement, prices in
-`admin/billing/page.tsx:25` that disagree with the public pricing page. The panel is where the Founder
-forms their picture of the company, which makes a wrong number here worse than a wrong number on a
-marketing page: it is the one nobody thinks to doubt. Filed as [ADMIN-6](plan/items/ADMIN-6.md),
-inventory first and component edits second, extending `check-admin-metrics.mjs` rather than adding
-another script.
-
-**Also rotated at v13.72:** v13.66 (the two external audits, and the three stale P0 rows that
-comparison exposed).
+**Also rotated at v13.75:** v13.67 (the first LB delivery and its four misses).
 
 ## 0. Where things live
 
@@ -512,7 +502,8 @@ only what is currently true.
 | **[MAIL-1](plan/items/MAIL-1.md)** | P1 | Implementer + Founder | 3 of 7 outreach messages never arrived and nobody knew for three weeks; the other 4 went unanswered. Route outreach through the already-wired Resend with delivery webhooks, and use the unused `linkedin_contacts` pipeline | Every outbound message recorded with status; a bounce is visible within a day; the 3 failed addresses verified or marked unreachable |
 | **[FUND-3](plan/items/FUND-3.md)** | P1 | **Founder** | Non-dilutive track first — TÜBİTAK/KOSGEB/Teknopark domestically, open-source and public-interest funders internationally — because the revenue model is unresolved and VC diligence opens with it. Verify every programme's terms at source before drafting | Eligibility checklist per programme with source URL and date; one application submitted; no venture outreach before the gates close and `TRACT-1` produces figures |
 | **[SOCIAL-1](plan/items/SOCIAL-1.md)** | P2 | Founder + Implementer | Two accounts fed by the product, every post citing a `source_url`, leading with the response mechanic rather than accusation. Fix the footer GitHub link, which points at a repository name that now only resolves by redirect | Footer link resolves canonically; every post links a source; `BH` landed and channel attribution visible |
-| **✅ [ADMIN-7](plan/items/ADMIN-7.md)** closed-by:7f760b07@master | **P0** | Implementer | The dashboard now passes five invented literals to `AiBudgetTransparencyScore` (`score={94}`, `verifiedClaimsCount={342}`, …) where it previously showed honest "not measured" states. A missing-prop warning was resolved by inventing the props, while closing the item whose purpose is removing sourceless figures | No admin component receives a metric as a literal; `check-admin-metrics.mjs` fails on a numeric literal passed as a JSX prop |
+| **✅ [ADMIN-7](plan/items/ADMIN-7.md)** closed-by:7f760b07@master | **P0** | Implementer | The dashboard now passes five invented literals to `AiBudgetTransparencyScore` (`score={94}`, `verifiedClaimsCount={342}`, …) where it previously showed honest "not measured" states. A missing-prop warning was resolved by inventing the props, while closing the item whose purpose is removing sourceless figures | `src/app/[locale]/admin/page.tsx` passes no metric literal; `scripts/check-admin-metrics.mjs` fails on a numeric literal passed as a JSX prop |
+| **[ADMIN-8](plan/items/ADMIN-8.md)** | P2 | Implementer | Three budget-widget fields render blank where two correctly say "Ölçülmedi"; `(0%)` reports usage of an unknown budget. Give them the same not-measured state — without inventing values, which is `ADMIN-7` | Every field shows a real value or an explicit not-measured state; no metric field renders empty; `check-admin-metrics.mjs` still passes |
 | **✅ [ADMIN-6](plan/items/ADMIN-6.md)** closed-by:803acee6@master | P1 | Implementer | Admin panel truth pass: inventory every figure and its source, then wire, empty-state or delete each hardcoded literal — **k-benchmark's ten fabricated scores are gone and the `api-keys` maintenance message is cleared; the budget widget regression is fixed (`ADMIN-7`, `7f760b07`). **Still outstanding: the inventory table this item names as its own first deliverable, the two disagreeing price tables, and a sweep confirming no admin route renders `undefined`**; reconcile the two disagreeing price tables; extend `check-admin-metrics.mjs` as the enforcer | Inventory table complete; no admin route renders `undefined`; no figure traces to an uninventoried literal; enforcer fails on a new hardcoded metric |
 | **[LEGAL-3](plan/items/LEGAL-3.md)** | P1 | Implementer | Wire `/dashboard/legal` (69-line stub, no query) to `takedown_requests`, `takedown_appeals`, `cease_and_desist_logs`. Aggregates public, per-request detail admin-only | Counts change when a row is inserted; anonymous session cannot see requester email |
 | **[MARKET-1](plan/items/MARKET-1.md)** | P1 | Implementer | Real, cited AI-ecosystem/market/financial analysis for VC conversations — external market data already researched and sourced; 5-year projections tagged `[tahmin — doğrulanmamış]` per Rule 10 | Every figure sourced/dated; ships only after `TYPE-3` and `CONST-2` close |

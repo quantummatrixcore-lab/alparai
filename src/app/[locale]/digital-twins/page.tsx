@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Loader2, Send, BrainCircuit, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
+import { DIGITAL_TWINS, DIGITAL_TWINS_LIST } from "@/lib/agent-os/personas";
 
 export default function DigitalTwinsPage() {
   const [selectedTwin, setSelectedTwin] = useState<string | null>(null);

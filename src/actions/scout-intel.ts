@@ -4,6 +4,7 @@ import { requireAdmin } from "@/lib/auth/session";
 import { createClient } from "@/lib/supabase/server";
 import { logger } from "@/lib/utils/logger";
 import { revalidatePath } from "next/cache";
+import { EcosystemScout } from "@/lib/agent-os/scouts/ecosystem-scout";
 
 export async function fetchLatestIntel() {
   await requireAdmin();

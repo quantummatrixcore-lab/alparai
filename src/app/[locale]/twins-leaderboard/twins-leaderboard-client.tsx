@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
+import type { DigitalTwinPersona } from "@/lib/agent-os/personas";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {

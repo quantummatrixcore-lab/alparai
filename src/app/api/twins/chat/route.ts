@@ -5,6 +5,9 @@ import { fetchWithSsrfGuard } from "@/lib/security/ssrf";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { headers } from "next/headers";
 import { logger } from "@/lib/utils/logger";
+import { DIGITAL_TWINS } from "@/lib/agent-os/personas";
+import { ArbitrageEngine } from "@/lib/agent-os/arbitrage-engine";
+import { calculateAlignmentScore, selfHealResponse } from "@/lib/agent-os/alignment-engine";
 
 export async function POST(req: NextRequest) {
   try {

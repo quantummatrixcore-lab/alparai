@@ -70,13 +70,14 @@ describe("getWeightClassAnalysis", () => {
     expect(result).toEqual({ insufficient_data: true });
   });
 
-  it("throws when the database query fails", async () => {
+  it("returns insufficient_data when the database query fails", async () => {
     const mockSupabase = {
       rpc: vi.fn().mockResolvedValue({ data: null, error: { message: "boom" } }),
     };
 
     vi.mocked(createServerClient).mockResolvedValue(mockSupabase as never);
 
-    await expect(getWeightClassAnalysis()).rejects.toThrow("boom");
+    const result = await getWeightClassAnalysis();
+    expect(result).toEqual({ insufficient_data: true });
   });
 });

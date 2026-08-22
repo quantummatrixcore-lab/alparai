@@ -5748,5 +5748,13 @@
     "art6_title": "Kriptografik İzin ve Hak Hakikati",
     "art6_desc": "Sentetik medya, deepfake ve yapay zeka çıktısı olan tüm içerikler doğruluk damgasıyla imzalanmalıdır.",
     "art6_details": "Toplumsal manipülasyon ve bilgi kirliliğini önlemek için içeriklerin kaynağı kriptografik olarak doğrulanabilir olmalıdır."
+  },
+  "twins": {
+    "title": "Dijital İkizler Liderlik Tablosu",
+    "description": "Agent-OS Dijital İkizler performans ve mantık matrisi."
+  },
+  "adminSwarm": {
+    "title": "Yapay Zeka Sürü Orkestratörü",
+    "description": "Otonom Yapay Zeka Ajan Sürü Yürütme ve İzleme"
   }
 }

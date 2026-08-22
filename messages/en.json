@@ -5748,5 +5748,13 @@
     "art6_title": "Cryptographic Consent & Truth",
     "art6_desc": "Synthetic media, deepfakes, and all AI-generated content must be signed with a stamp of authenticity.",
     "art6_details": "To prevent social manipulation and information pollution, the source of content must be cryptographically verifiable in a public registry."
+  },
+  "twins": {
+    "title": "Digital Twins Leaderboard",
+    "description": "Agent-OS Digital Twins performance and logic matrix."
+  },
+  "adminSwarm": {
+    "title": "AI Swarm Orchestrator",
+    "description": "Autonomous AI Agent Swarm Execution & Monitoring"
   }
 }

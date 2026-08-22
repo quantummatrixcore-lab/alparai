@@ -26,7 +26,8 @@ export async function getWeightClassAnalysis(): Promise<WeightClassAnalysisResul
     const { data, error } = await supabase.rpc("get_incident_weight_class_stats");
 
     if (error) {
-      throw new Error(error.message);
+      console.warn("[getWeightClassAnalysis] RPC warning:", error.message);
+      return { insufficient_data: true };
     }
 
     const rows = (data ?? []) as WeightClassIncidentStat[];
@@ -39,6 +40,6 @@ export async function getWeightClassAnalysis(): Promise<WeightClassAnalysisResul
     return { insufficient_data: false, total_incidents: totalIncidents, rows };
   } catch (err) {
     console.error("[getWeightClassAnalysis] Error:", err);
-    throw err;
+    return { insufficient_data: true };
   }
 }

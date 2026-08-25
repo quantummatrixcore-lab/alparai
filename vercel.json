@@ -1,16 +1,1 @@
-{
-  "crons": [
-    {
-      "path": "/api/cron/import-incidents",
-      "schedule": "0 0 * * *"
-    },
-    {
-      "path": "/api/cron/k-weekly-refresh",
-      "schedule": "0 0 * * 0"
-    },
-    {
-      "path": "/api/cron/quota-snapshot",
-      "schedule": "0 0 1 * *"
-    }
-  ]
-}
+{ "installCommand": "pnpm install --no-frozen-lockfile" }

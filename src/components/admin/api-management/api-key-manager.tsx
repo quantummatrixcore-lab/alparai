@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { Trash2, Plus, ShieldCheck, Copy, Check } from "lucide-react";
 import type { Provider } from "./api-hub";

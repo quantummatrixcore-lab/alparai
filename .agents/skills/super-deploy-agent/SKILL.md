@@ -69,23 +69,33 @@ Ajan, deploy öncesinde `package.json` içindeki CLI komutlarının sırasını 
 - **Sentry (`@sentry/nextjs`):** Source map'lerin public Vercel çıktısına (client-side) sızıp sızmadığını AST ile doğrular.
 - **Playwright & Vitest:** Test ortamına ait mock verilerin veya şifrelerin (E2E testing) production bundle'ına sızmasını (dead-code elimination başarısızlığını) önler.
 
-## ⚡ 3. PARTİ OTONOM BAĞLANTI PROTOKOLÜ (ŞELALE MODELİ)
+## ⚡ EN VERİMLİ & EN HIZLI DEPLOY PROTOKOLÜ (ŞELALE HİYERARŞİSİ)
 
-Sen bir projeyi denetlerken veya 3. parti bir dış servisten (Supabase, Github, Redis vb.) veri çekmen/bağlanman gerektiğinde rastgele yöntemler kullanamazsın. Veri güvenliğini ve hızı maksimumda tutmak için her zaman aşağıdaki **Şelale Modeli (Fallback) Hiyerarşisini** izlemek zorundasın:
+Ajan, dağıtım (deploy) yaparken veya 3. parti servislere bağlanırken her zaman **en hızlı, en az kaynak tüketen ve en profesyonel** yöntemden başlayarak aşağıdaki sırayı takip eder:
 
-### Bağlantı Hiyerarşisi (Sırasıyla Denenir)
+### 🏆 Dağıtım ve Bağlantı Sıralaması (Sırasıyla Denenir)
 
-1. **1. ÖNCELİK: YEREL CLI (En Hızlı ve En Güvenli):** Sistemde kurulu olan CLI komutu her zaman ilk tercihindir.
-2. **2. ÖNCELİK: YEREL CONFIG VE .GITIGNORE:** CLI yanıt vermezse (veya login değilse), ağa çıkmadan önce projedeki yerel `.env` veya `.toml` dosyalarındaki konfigürasyonları AST ile oku. Asla dışarıya veri sızdırma.
-3. **3. ÖNCELİK: MCP (Model Context Protocol):** Agent-OS'in kurulu MCP sunucuları (Örn: `mcp_agent_bridge`, `git`, `openchrome`) üzerinden standart araç (Tool) erişimlerini dene.
-4. **4. ÖNCELİK: ÇIPLAK API TOKEN (Son Çare):** Hiçbir yöntem çalışmıyorsa, `NEXT_PUBLIC_` içermeyen "Bearer" API token'ları ile doğrudan REST (cURL/Fetch) isteği at.
+1. **1. ÖNCELİK: DOĞRUDAN API TOKEN & BULUT WEBHOOK (En Hızlı, Sıfır Gecikme, Mikro-Saniye):**
+   - **Neden İlk Tercih:** Yerel makinede CPU/RAM ve derleme vakti harcamaz. Ağ darboğazı yaratmaz, Vercel/Supabase küresel CDN'lerine mikro-saniyede sinyal gönderir.
+   - **Vercel:** Git Entegrasyonu (`origin/master` + `[deploy]` tag) veya Vercel Deploy API (`POST /v13/deployments` + `Bearer VERCEL_TOKEN`).
+   - **Supabase:** Supabase Management REST API (`POST /v1/projects/{ref}/query` + `SUPABASE_ACCESS_TOKEN` / `service_role`).
+   - **Upstash:** Upstash REST Pipeline API (`UPSTASH_REDIS_REST_URL`).
+   - **Resend:** Resend REST API (`POST /emails` + `RESEND_API_KEY`).
 
-### Araçlara Göre Özel Bağlantı Haritası
+2. **2. ÖNCELİK: YEREL CLI ARAÇLARI (CLI Fallback):**
+   - Eğer API veya Webhook gecikirse / yanıt vermezse doğrudan kurulu CLI çalıştırılır:
+   - **Vercel:** `npx vercel --prod --token=$VERCEL_TOKEN`
+   - **Supabase:** `npx supabase db push` veya `npx supabase migration up`
+   - **GitHub:** `gh pr merge` veya `gh run rerun`
 
-- **Supabase:** İlk olarak `supabase status`, `supabase db reset` (CLI). Olmazsa `supabase/config.toml` (Config). Son çare REST API (`sbp_` veya JWT Token ile).
-- **Redis (Upstash):** İlk olarak varsa `redis-cli`. Olmazsa `process.env.UPSTASH_REDIS_REST_URL` üzerinden (API Token) doğrudan istek.
-- **GitHub:** Her zaman önce `gh repo view` veya `gh pr list` (CLI). Eğer `gh` kurulu değilse Agent-OS `git` MCP sunucusunu kullan.
-- **Vercel:** Önce `vercel logs`, `vercel pull` (CLI). Olmazsa `.vercel/project.json` (Local Config).
+3. **3. ÖNCELİK: YEREL CONFIG & DOSYA TABANLI YÖNLENDİRME (Config Fallback):**
+   - CLI login düşerse projedeki yerel `.vercel/project.json`, `supabase/config.toml` ve `.env` dosyalarından proje referanslarını (project-id, ref) bularak doğrudan cURL / Fetch ile istek atar. Asla dışarıya veri sızdırmaz.
+
+4. **4. ÖNCELİK: MCP (Model Context Protocol) & TARAYICI ENTEGRASYONU:**
+   - Standart API/CLI erişimleri bloklanırsa Agent-OS'in MCP araçları (`openchrome`, `git`, `mcp_agent_bridge`) üzerinden onay ve doğrulama yapar.
+
+5. **5. ÖNCELİK: OTONOM SELF-HEALING (Kendi Kendini Onarma):**
+   - Herhangi bir aşamada derleme hatası (`MISSING_MESSAGE`, TypeScript hatası, Case-Sensitivity) çıkarsa insana sormadan logları okur, hatayı kodda çözer, commit atar ve 1. Öncelikten itibaren süreci yeniden başlatır (Maksimum 3 deneme).
 
 ## 📊 3. PARTİ CANLI LOG VE TELEMETRİ ÇEKME YÖNTEMLERİ
 

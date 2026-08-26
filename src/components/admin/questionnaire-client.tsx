@@ -86,6 +86,7 @@ export function QuestionnaireClient({
   i18n: I18nStrings;
 }) {
   const t = useTranslations("admin");
+  const [now] = useState(() => Date.now());
   const [running, setRunning] = useState(false);
   const [exporting, setExporting] = useState<string | null>(null);
   const [modelFilter, setModelFilter] = useState<"all" | "free" | "premium">("all");
@@ -319,65 +320,76 @@ export function QuestionnaireClient({
             </span>
           </div>
           <div className="space-y-2">
-            {runs.slice(0, 10).map((run) => (
-              <div
-                key={run.id}
-                className="bg-bg-tertiary/30 border-border-subtle flex items-center justify-between rounded-lg border px-4 py-3"
-              >
-                <div className="flex items-center gap-3">
-                  {run.status === "completed" ? (
-                    <CheckCircle2 className="text-success-400 h-4 w-4" />
-                  ) : run.status === "failed" ? (
-                    <AlertCircle className="text-danger-400 h-4 w-4" />
-                  ) : (
-                    <RotateCcw className="text-warning-400 h-4 w-4 animate-spin" />
-                  )}
-                  <div>
-                    <span className="font-mono text-xs text-white">
-                      {new Date(run.started_at).toLocaleString(isTurkish ? "tr-TR" : "en-US")}
-                    </span>
-                    <span className="text-fg-muted ml-3 text-xs">
-                      {run.total_answers}/{run.total_questions} {t("answers")}
-                    </span>
-                    <span className="text-fg-muted ml-3 text-xs">
-                      {(run.model_ids || []).length} {t("models")}
-                    </span>
+            {runs.slice(0, 10).map((run) => {
+              const isStale =
+                run.status === "running" &&
+                now - new Date(run.started_at).getTime() > 5 * 60 * 1000;
+              const effectiveStatus = isStale ? "failed" : run.status;
+
+              return (
+                <div
+                  key={run.id}
+                  className="bg-bg-tertiary/30 border-border-subtle flex items-center justify-between rounded-lg border px-4 py-3"
+                >
+                  <div className="flex items-center gap-3">
+                    {effectiveStatus === "completed" ? (
+                      <CheckCircle2 className="text-success-400 h-4 w-4" />
+                    ) : effectiveStatus === "failed" ? (
+                      <AlertCircle className="text-danger-400 h-4 w-4" />
+                    ) : (
+                      <RotateCcw className="text-warning-400 h-4 w-4 animate-spin" />
+                    )}
+                    <div>
+                      <span className="font-mono text-xs text-white">
+                        {new Date(run.started_at).toLocaleString(isTurkish ? "tr-TR" : "en-US")}
+                      </span>
+                      <span className="text-fg-muted ml-3 text-xs">
+                        {run.total_answers}/{run.total_questions} {t("answers")}
+                      </span>
+                      <span className="text-fg-muted ml-3 text-xs">
+                        {(run.model_ids || []).length} {t("models")}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {effectiveStatus === "completed" && (
+                      <button
+                        onClick={() => handleExport(run.id)}
+                        disabled={exporting !== null}
+                        className="bg-bg-secondary hover:bg-bg-tertiary border-border-subtle inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-bold text-white transition-all disabled:opacity-50"
+                      >
+                        <ClipboardList className="h-3.5 w-3.5" />
+                        {exporting === run.id
+                          ? isTurkish
+                            ? "Dışa Aktarılıyor..."
+                            : "Exporting..."
+                          : i18n.exportMd}
+                      </button>
+                    )}
+                    <Badge
+                      variant={
+                        effectiveStatus === "completed"
+                          ? "success"
+                          : effectiveStatus === "failed"
+                            ? "danger"
+                            : "default"
+                      }
+                      className="text-[10px]"
+                    >
+                      {effectiveStatus === "completed"
+                        ? i18n.statusCompleted
+                        : isStale
+                          ? isTurkish
+                            ? "Zaman Aşımı"
+                            : "Timed Out"
+                          : effectiveStatus === "failed"
+                            ? i18n.statusFailed
+                            : i18n.statusRunning}
+                    </Badge>
                   </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  {run.status === "completed" && (
-                    <button
-                      onClick={() => handleExport(run.id)}
-                      disabled={exporting !== null}
-                      className="bg-bg-secondary hover:bg-bg-tertiary border-border-subtle inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-bold text-white transition-all disabled:opacity-50"
-                    >
-                      <ClipboardList className="h-3.5 w-3.5" />
-                      {exporting === run.id
-                        ? isTurkish
-                          ? "Dışa Aktarılıyor..."
-                          : "Exporting..."
-                        : i18n.exportMd}
-                    </button>
-                  )}
-                  <Badge
-                    variant={
-                      run.status === "completed"
-                        ? "success"
-                        : run.status === "failed"
-                          ? "danger"
-                          : "default"
-                    }
-                    className="text-[10px]"
-                  >
-                    {run.status === "completed"
-                      ? i18n.statusCompleted
-                      : run.status === "failed"
-                        ? i18n.statusFailed
-                        : i18n.statusRunning}
-                  </Badge>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       )}

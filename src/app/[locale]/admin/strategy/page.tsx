@@ -106,7 +106,35 @@ export default async function StrategyOverviewPage({
   const risks = (risksRes.data ?? []) as StrategyRisk[];
   const valuations = (valuationsRes.data ?? []) as StrategyValuation[];
   const milestones = (milestonesRes.data ?? []) as StrategyMilestone[];
-  const runs = runsRes.data || [];
+
+  const rawRuns = (runsRes.data || []) as RunRow[];
+  // eslint-disable-next-line react-hooks/purity
+  const fiveMinutesAgo = Date.now() - 5 * 60 * 1000;
+
+  // Auto-heal stale running tasks that never completed
+  const runs = rawRuns.map((r) => {
+    if (r.status === "running" && new Date(r.started_at).getTime() < fiveMinutesAgo) {
+      return { ...r, status: "failed", completed_at: r.completed_at || r.started_at };
+    }
+    return r;
+  });
+
+  const staleRunIds = rawRuns
+    .filter((r) => r.status === "running" && new Date(r.started_at).getTime() < fiveMinutesAgo)
+    .map((r) => r.id);
+  if (staleRunIds.length > 0) {
+    void (async () => {
+      try {
+        await supabase
+          .from("strategic_runs")
+          .update({ status: "failed", completed_at: new Date().toISOString() })
+          .in("id", staleRunIds);
+      } catch (err) {
+        console.error("[StrategyOverviewPage] Failed to clean up stale runs:", err);
+      }
+    })();
+  }
+
   const latestSnapshot = (snapshotsRes.data?.[0] ??
     STRATEGY_METRICS_DEFAULTS) as StrategyMetricsSnapshot;
 

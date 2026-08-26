@@ -3,7 +3,6 @@ import { redirect } from "next/navigation";
 
 import { getCurrentUser } from "@/lib/auth/session";
 import { FileText } from "lucide-react";
-import { Link } from "@/i18n/routing";
 import { AnalysisDashboardClient } from "@/components/admin/analysis-dashboard-client";
 import { createServerClient } from "@/lib/supabase/server";
 import { AnalyticsHubTabs } from "@/components/admin/analytics-hub-tabs";
@@ -32,15 +31,16 @@ export default async function AnalysisPage({ params }: { params: Promise<{ local
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const paidModels = (aiModels || []).map((model: any) => ({
     ...model,
+    name: model.name || model.model_name || model.id || "Model",
     is_free: false,
   }));
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const freeModelsList = (freeModels || []).map((model: any) => ({
     id: model.id,
-    name: model.model_name,
+    name: model.model_name || model.name || model.id || "Free Model",
     created_at: model.created_at,
-    ai_providers: { name: model.provider },
+    ai_providers: { name: model.provider || "Provider" },
     is_free: true,
   }));
 
@@ -70,8 +70,8 @@ export default async function AnalysisPage({ params }: { params: Promise<{ local
       const hasRealScore = real != null && rawScore > 0;
 
       return {
-        model_id: model.id,
-        model_name: model.name,
+        model_id: model.id || "model",
+        model_name: model.name || model.id || "Model",
         provider: (model.ai_providers as { name: string } | null)?.name || "Unknown",
         audit_date: real?.last_audited_at
           ? new Date(real.last_audited_at).toISOString().slice(0, 10)

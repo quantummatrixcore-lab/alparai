@@ -44,14 +44,35 @@ export default async function AdvisoryBoardPage({
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "about" });
 
-  const supabase = await createServerClient();
-  const { data: members } = await supabase
-    .from("advisory_board_members")
-    .select("*")
-    .eq("is_active", true)
-    .order("display_order", { ascending: true });
+  let activeMembers: Array<{
+    id: string;
+    name?: string | null;
+    avatar_url?: string | null;
+    display_order?: number | null;
+    title_tr?: string | null;
+    title_en?: string | null;
+    institution_tr?: string | null;
+    institution_en?: string | null;
+    bio_tr?: string | null;
+    bio_en?: string | null;
+    website_url?: string | null;
+    press_url?: string | null;
+  }> = [];
 
-  const activeMembers = members && members.length > 0 ? members : [];
+  try {
+    const supabase = await createServerClient();
+    const { data: members } = await supabase
+      .from("advisory_board_members")
+      .select("*")
+      .eq("is_active", true)
+      .order("display_order", { ascending: true });
+
+    if (members && Array.isArray(members)) {
+      activeMembers = members;
+    }
+  } catch (err) {
+    console.error("[AdvisoryBoardPage] Failed to fetch members:", err);
+  }
 
   const isTr = locale === "tr";
 
@@ -135,7 +156,7 @@ export default async function AdvisoryBoardPage({
                           {}
                           <img
                             src={member.avatar_url}
-                            alt={member.name}
+                            alt={member.name || "Advisory Member"}
                             className="h-full w-full object-cover"
                             onError={(e) => {
                               // If external image fails, gracefully fallback to icon
@@ -160,22 +181,30 @@ export default async function AdvisoryBoardPage({
                         </div>
                       )}
                       <CardTitle className="text-fg-primary text-lg leading-tight font-bold">
-                        {member.name.startsWith("[Open Position]")
+                        {member.name?.startsWith("[Open Position]")
                           ? isTr
-                            ? "[Açık Pozisyon] " + member.name.replace("[Open Position] ", "")
+                            ? "[Açık Pozisyon] " +
+                              (member.name.replace("[Open Position] ", "") || "")
                             : member.name
-                          : member.name}
+                          : member.name ||
+                            (isTr ? "Danışma Kurulu Üyesi" : "Advisory Board Member")}
                       </CardTitle>
                       <div className="text-fg-secondary mt-1 text-sm font-medium">
-                        {isTr ? member.title_tr : member.title_en}
+                        {isTr
+                          ? member.title_tr || member.title_en || "Danışman"
+                          : member.title_en || member.title_tr || "Advisor"}
                       </div>
                       <div className="text-brand-400 mt-2 text-xs font-semibold tracking-wider uppercase">
-                        {isTr ? member.institution_tr : member.institution_en}
+                        {isTr
+                          ? member.institution_tr || member.institution_en || "ALPAR AI"
+                          : member.institution_en || member.institution_tr || "ALPAR AI"}
                       </div>
                     </CardHeader>
                     <CardContent>
                       <p className="text-fg-secondary text-sm leading-relaxed">
-                        {isTr ? member.bio_tr : member.bio_en}
+                        {isTr
+                          ? member.bio_tr || member.bio_en || ""
+                          : member.bio_en || member.bio_tr || ""}
                       </p>
                     </CardContent>
                     {(member.website_url || member.press_url) && (

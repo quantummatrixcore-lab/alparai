@@ -505,9 +505,9 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                           <div className="flex flex-col items-center gap-1">
                             <span
                               className="block max-w-[85px] truncate font-mono text-[11px]"
-                              title={a.model_name}
+                              title={a.model_name || a.model_id}
                             >
-                              {a.model_name.replace(" (360°)", "")}
+                              {(a.model_name || a.model_id || "Model").replace(" (360°)", "")}
                             </span>
                             {a.is_free && (
                               <span className="border-success-500/30 bg-success-500/20 text-success-400 rounded border px-1.5 py-0.5 font-sans text-[9px] font-semibold">

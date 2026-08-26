@@ -135,7 +135,7 @@ function PlanCard({
           <span />
         )}
         <span className="text-brand-400/70 group-hover:text-brand-400 text-[10px] font-bold tracking-wider uppercase opacity-0 transition-opacity group-hover:opacity-100">
-          {t("plan_view_details")} â†’
+          {t("plan_view_details")} →
         </span>
       </div>
     </motion.div>

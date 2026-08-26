@@ -3,7 +3,7 @@
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { Wordmark } from "./wordmark";
-import { Github, Twitter, Mail, Linkedin } from "lucide-react";
+import { Github, Twitter, Mail, Linkedin, Radio } from "lucide-react";
 import { Container } from "@/components/ui/layout";
 import { usePathname } from "next/navigation";
 
@@ -13,9 +13,6 @@ const platformLinks = [
   { href: "/leaderboard", key: "leaderboard" },
   { href: "/dilemmas", key: "dilemmas" },
   { href: "/submit", key: "submit_report" },
-  { href: "/transparency", key: "transparency" },
-  { href: "/ai-act", key: "ai_act" },
-  { href: "/challenges", key: "challenges" },
 ] as const;
 
 const companyLinks = [
@@ -24,27 +21,22 @@ const companyLinks = [
   { href: "/pricing", key: "pricing" },
   { href: "/trust-center", key: "security" },
   { href: "/academy", key: "academy" },
-  { href: "/press-kit", key: "presskit" },
 ] as const;
 
 const resourcesLinks = [
-  { href: "/blog", key: "blog", label: "Blog", external: false },
-  { href: "/methodology/k-benchmark", key: "methodology", label: "K-BENCHMARK", external: false },
-  {
-    href: "https://github.com/quantummatrixcore-lab/Alparai.com",
-    key: "github",
-    label: "GitHub",
-    external: true,
-  },
-  { href: "/api-docs", key: "apidocs", label: "API Docs", external: false },
+  { href: "/blog", key: "blog" },
+  { href: "/methodology/k-benchmark", key: "methodology" },
+  { href: "/ai-act", key: "ai_act" },
+  { href: "/transparency", key: "transparency" },
+  { href: "/api-docs", key: "apidocs" },
 ] as const;
 
-const legalLinks = [
-  { href: "/legal/privacy", key: "privacy" },
-  { href: "/legal/terms", key: "terms" },
-  { href: "/legal/cookies", key: "cookies" },
-  { href: "/legal/dmca", key: "dmca" },
-  { href: "/legal/moderation", key: "moderation" },
+const legalAndContactLinks = [
+  { href: "/legal/privacy", key: "privacy", isEmail: false },
+  { href: "/legal/terms", key: "terms", isEmail: false },
+  { href: "/legal/cookies", key: "cookies", isEmail: false },
+  { href: "mailto:hello@alparai.com", key: "hello@alparai.com", isEmail: true },
+  { href: "mailto:academy@alparai.com", key: "academy@alparai.com", isEmail: true },
 ] as const;
 
 export function Footer() {
@@ -63,18 +55,19 @@ export function Footer() {
 
   return (
     <footer className="border-border-subtle bg-bg-secondary border-t">
-      <Container className="py-12">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-          {/* Column 1: Brand Info */}
-          <div className="space-y-4 lg:col-span-1">
+      <Container className="py-14">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-12">
+          {/* Brand Info (4 cols) */}
+          <div className="space-y-4 sm:col-span-2 lg:col-span-4">
             <Wordmark size="sm" showTagline />
-            <p className="text-fg-muted text-xs leading-relaxed">{t("tagline")}</p>
-            <div className="flex items-center gap-2">
+            <p className="text-fg-muted max-w-sm text-xs leading-relaxed">{t("tagline")}</p>
+
+            <div className="flex items-center gap-2 pt-1">
               <a
                 href="https://github.com/quantummatrixcore-lab/Alparai.com"
                 target="_blank"
                 rel="noreferrer noopener"
-                className="text-fg-muted hover:bg-bg-tertiary hover:text-fg-primary inline-flex h-8 w-8 items-center justify-center rounded-md"
+                className="text-fg-muted hover:bg-bg-tertiary hover:text-fg-primary inline-flex h-8 w-8 items-center justify-center rounded-lg transition-colors"
                 aria-label={tCommon("github", { defaultValue: "GitHub" })}
               >
                 <Github className="h-4 w-4" />
@@ -83,7 +76,7 @@ export function Footer() {
                 href="https://twitter.com/alparai?utm_source=alparai_footer"
                 target="_blank"
                 rel="noreferrer noopener"
-                className="text-fg-muted hover:bg-bg-tertiary hover:text-fg-primary inline-flex h-8 w-8 items-center justify-center rounded-md"
+                className="text-fg-muted hover:bg-bg-tertiary hover:text-fg-primary inline-flex h-8 w-8 items-center justify-center rounded-lg transition-colors"
                 aria-label={tCommon("twitter", { defaultValue: "Twitter" })}
               >
                 <Twitter className="h-4 w-4" />
@@ -92,23 +85,28 @@ export function Footer() {
                 href="https://linkedin.com/company/alpar-ai?ref=alparai_platform&utm_source=alparai_footer"
                 target="_blank"
                 rel="noreferrer noopener"
-                className="text-fg-muted hover:bg-bg-tertiary hover:text-fg-primary inline-flex h-8 w-8 items-center justify-center rounded-md"
+                className="text-fg-muted hover:bg-bg-tertiary hover:text-fg-primary inline-flex h-8 w-8 items-center justify-center rounded-lg transition-colors"
                 aria-label={tCommon("linkedin", { defaultValue: "LinkedIn" })}
               >
                 <Linkedin className="h-4 w-4" />
               </a>
               <a
                 href="mailto:hello@alparai.com"
-                className="text-fg-muted hover:bg-bg-tertiary hover:text-fg-primary inline-flex h-8 w-8 items-center justify-center rounded-md"
+                className="text-fg-muted hover:bg-bg-tertiary hover:text-fg-primary inline-flex h-8 w-8 items-center justify-center rounded-lg transition-colors"
                 aria-label={tCommon("email", { defaultValue: "Email" })}
               >
                 <Mail className="h-4 w-4" />
               </a>
             </div>
+
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-[11px] font-semibold text-emerald-400">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+              <span>Sistemler Çevrimiçi · Canlı Doğrulama</span>
+            </div>
           </div>
 
-          {/* Column 2: Platform */}
-          <div>
+          {/* Platform (2 cols) */}
+          <div className="lg:col-span-2">
             <h4 className="text-fg-primary mb-3 text-xs font-black tracking-wider uppercase">
               {t("sections.platform")}
             </h4>
@@ -117,7 +115,7 @@ export function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-fg-muted hover:text-brand-400 inline-flex min-h-[24px] items-center py-1 text-xs transition-colors"
+                    className="text-fg-muted hover:text-brand-400 inline-flex min-h-[24px] items-center py-0.5 text-xs transition-colors"
                   >
                     {t(`links.${l.key}`)}
                   </Link>
@@ -126,8 +124,8 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Company */}
-          <div>
+          {/* Company (2 cols) */}
+          <div className="lg:col-span-2">
             <h4 className="text-fg-primary mb-3 text-xs font-black tracking-wider uppercase">
               {t("sections.company")}
             </h4>
@@ -136,7 +134,7 @@ export function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-fg-muted hover:text-brand-400 inline-flex min-h-[24px] items-center py-1 text-xs transition-colors"
+                    className="text-fg-muted hover:text-brand-400 inline-flex min-h-[24px] items-center py-0.5 text-xs transition-colors"
                   >
                     {t(`links.${l.key}`)}
                   </Link>
@@ -145,47 +143,17 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 4: Resources */}
-          <div>
+          {/* Resources (2 cols) */}
+          <div className="lg:col-span-2">
             <h4 className="text-fg-primary mb-3 text-xs font-black tracking-wider uppercase">
               {t("sections.resources")}
             </h4>
             <ul className="space-y-2">
               {resourcesLinks.map((l) => (
                 <li key={l.href}>
-                  {l.external ? (
-                    <a
-                      href={l.href}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      className="text-fg-muted hover:text-brand-400 inline-flex min-h-[24px] items-center py-1 text-xs transition-colors"
-                    >
-                      {l.label}
-                    </a>
-                  ) : (
-                    <Link
-                      href={l.href}
-                      className="text-fg-muted hover:text-brand-400 inline-flex min-h-[24px] items-center py-1 text-xs transition-colors"
-                    >
-                      {t(`links.${l.key}`)}
-                    </Link>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 5: Legal */}
-          <div>
-            <h4 className="text-fg-primary mb-3 text-xs font-black tracking-wider uppercase">
-              {t("sections.legal")}
-            </h4>
-            <ul className="space-y-2">
-              {legalLinks.map((l) => (
-                <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-fg-muted hover:text-brand-400 inline-flex min-h-[24px] items-center py-1 text-xs transition-colors"
+                    className="text-fg-muted hover:text-brand-400 inline-flex min-h-[24px] items-center py-0.5 text-xs transition-colors"
                   >
                     {t(`links.${l.key}`)}
                   </Link>
@@ -194,28 +162,31 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 6: Contact */}
-          <div>
+          {/* Legal & Contact (2 cols) */}
+          <div className="lg:col-span-2">
             <h4 className="text-fg-primary mb-3 text-xs font-black tracking-wider uppercase">
-              {t("sections.contact")}
+              {t("sections.legal")} & {t("sections.contact")}
             </h4>
-            <ul className="text-fg-muted space-y-2 text-xs">
-              <li>
-                <a
-                  href="mailto:hello@alparai.com"
-                  className="hover:text-brand-400 inline-flex min-h-[24px] items-center py-1 transition-colors"
-                >
-                  hello@alparai.com
-                </a>
-              </li>
-              <li>
-                <a
-                  href="mailto:academy@alparai.com"
-                  className="hover:text-brand-400 inline-flex min-h-[24px] items-center py-1 transition-colors"
-                >
-                  academy@alparai.com
-                </a>
-              </li>
+            <ul className="space-y-2">
+              {legalAndContactLinks.map((l) => (
+                <li key={l.href}>
+                  {l.isEmail ? (
+                    <a
+                      href={l.href}
+                      className="text-fg-muted hover:text-brand-400 inline-flex min-h-[24px] items-center py-0.5 text-xs transition-colors"
+                    >
+                      {l.key}
+                    </a>
+                  ) : (
+                    <Link
+                      href={l.href}
+                      className="text-fg-muted hover:text-brand-400 inline-flex min-h-[24px] items-center py-0.5 text-xs transition-colors"
+                    >
+                      {t(`links.${l.key}`)}
+                    </Link>
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
         </div>

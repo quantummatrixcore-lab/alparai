@@ -211,18 +211,19 @@ export default async function AcademyPage({ params }: { params: Promise<{ locale
             </div>
             <div className="relative">
               <div className="from-brand-500/20 absolute inset-0 rounded-full bg-gradient-to-tr to-transparent blur-3xl" />
-              <div className="bg-bg-tertiary border-border-subtle relative overflow-hidden rounded-2xl border p-8">
-                <ShieldCheck className="text-brand-400/50 absolute -right-4 -bottom-4 h-24 w-24" />
-                <h3 className="mb-4 text-xl font-bold">EU AI Act • Article 53</h3>
-                <p className="text-fg-muted relative z-10 text-sm leading-relaxed">
-                  Providers of general-purpose AI models shall provide... information and
-                  documentation to the AI Office and, upon request, to national competent
-                  authorities.
-                  <br />
-                  <br />
-                  Our Academy network ensures this documentation is academically verified and
-                  stress-tested before regulatory submission.
+              <div className="bg-bg-tertiary border-border-subtle relative rounded-2xl border p-8 shadow-xl backdrop-blur-md">
+                <div className="mb-4 flex items-center justify-between gap-4">
+                  <h3 className="text-fg-primary text-xl font-bold">{t("eu_ai_act_card_title")}</h3>
+                  <div className="bg-brand-500/10 text-brand-400 border-brand-500/20 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border">
+                    <ShieldCheck className="h-5 w-5" />
+                  </div>
+                </div>
+                <p className="text-fg-secondary mb-5 text-sm leading-relaxed">
+                  {t("eu_ai_act_card_quote")}
                 </p>
+                <div className="border-brand-500/20 bg-brand-500/5 text-fg-muted rounded-xl border p-4 text-xs leading-relaxed">
+                  {t("eu_ai_act_card_note")}
+                </div>
               </div>
             </div>
           </div>

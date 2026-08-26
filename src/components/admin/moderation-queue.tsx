@@ -139,7 +139,7 @@ function ModerationCard({ incident }: { incident: IncidentListItem }) {
         moderationNote: note || undefined,
       });
       if (res.ok) {
-        toast.success(decision === "approve" ? t("approve") + " âœ“" : t("reject") + " âœ“");
+        toast.success(decision === "approve" ? `${t("approve")} ✓` : `${t("reject")} ✓`);
       } else {
         toast.error(res.error ?? tCommon("loading"));
       }

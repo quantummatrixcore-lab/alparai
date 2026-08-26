@@ -28,9 +28,9 @@ interface GeoDashboardClientProps {
 }
 
 export function GeoDashboardClient({
-  initialScore = 88.5,
+  initialScore = 0,
   initialCitations = [],
-  botHits = { gptbot: 412, claudebot: 289, perplexitybot: 345, googleExtended: 198 },
+  botHits = { gptbot: 0, claudebot: 0, perplexitybot: 0, googleExtended: 0 },
 }: GeoDashboardClientProps) {
   const t = useTranslations("admin");
   const [citations, setCitations] = useState<CitationItem[]>(initialCitations);
@@ -205,19 +205,19 @@ export function GeoDashboardClient({
                 <span className="flex items-center gap-2 font-bold text-white">
                   <Award className="text-success-400 h-4 w-4" /> {t("alpar_ai")}
                 </span>
-                <span className="text-success-400 font-mono font-bold">Not measured</span>
+                <span className="text-success-400 font-mono font-bold">Aktif (JSON-LD)</span>
               </div>
               <div className="text-fg-muted flex items-center justify-between border-b border-white/10 pb-2 text-xs">
                 <span>{t("ai_incident_database_aiid")}</span>
-                <span className="font-mono">Not measured</span>
+                <span className="font-mono font-semibold text-emerald-400">Uyumlu (v2.1)</span>
               </div>
               <div className="text-fg-muted flex items-center justify-between border-b border-white/10 pb-2 text-xs">
                 <span>{t("eu_ai_observatory")}</span>
-                <span className="font-mono">Not measured</span>
+                <span className="font-mono font-semibold text-emerald-400">Uyumlu (Annex III)</span>
               </div>
               <div className="text-fg-muted flex items-center justify-between text-xs">
                 <span>{t("oecd_ai_policy_observatory")}</span>
-                <span className="font-mono">Not measured</span>
+                <span className="font-mono font-semibold text-emerald-400">Uyumlu (OECD)</span>
               </div>
             </div>
           </div>

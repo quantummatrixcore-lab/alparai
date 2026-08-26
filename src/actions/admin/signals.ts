@@ -126,7 +126,7 @@ export async function getSystemSignalsAction(): Promise<Signal[]> {
         threshold: 98,
         trend: "stable",
         status: "healthy",
-        description: "100% parity across EN, TR, DE, FR, RU locale keys",
+        description: "100% parity across EN, TR active locale keys",
       },
     ];
   } catch (err) {

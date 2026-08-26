@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { requireAdmin } from "@/lib/auth/session";
+import { logger } from "@/lib/utils/logger";
 import { importIncidents } from "@/lib/import/incident-importer";
 import type { IncidentSource } from "@/lib/import/csv-parser";
 

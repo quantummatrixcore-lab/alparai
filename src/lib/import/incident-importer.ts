@@ -12,6 +12,7 @@
 import "server-only";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { maskPII } from "@/lib/pii/guardian";
+import { logger } from "@/lib/utils/logger";
 import type { ImportIncidentRow, ImportStatementRow, IncidentSource } from "./csv-parser";
 
 const BATCH_SIZE = 50;

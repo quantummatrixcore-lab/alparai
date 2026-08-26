@@ -84,3 +84,63 @@ export function generateEUCompliancePassport(
           : "COMPLIANT",
   };
 }
+
+export function classifyEUIncidentRisk(incident: {
+  eu_act_risk_category?: string | null;
+  severity?: string | null;
+  category?: string | null;
+}): "Unacceptable Risk" | "High Risk" | "Specific Transparency" | "Minimal" {
+  if (incident.eu_act_risk_category) {
+    const raw = incident.eu_act_risk_category.trim();
+    if (raw.toLowerCase().includes("unacceptable") || raw.toLowerCase().includes("prohibited")) {
+      return "Unacceptable Risk";
+    }
+    if (raw.toLowerCase().includes("high")) {
+      return "High Risk";
+    }
+    if (raw.toLowerCase().includes("transparency") || raw.toLowerCase().includes("specific")) {
+      return "Specific Transparency";
+    }
+    if (raw.toLowerCase().includes("minimal") || raw.toLowerCase().includes("low")) {
+      return "Minimal";
+    }
+  }
+
+  const sev = (incident.severity || "").toLowerCase();
+  const cat = (incident.category || "").toLowerCase();
+
+  if (
+    sev === "critical" ||
+    cat.includes("safety") ||
+    cat.includes("security") ||
+    cat.includes("autonomous") ||
+    cat.includes("biometric") ||
+    cat.includes("subliminal")
+  ) {
+    return "Unacceptable Risk";
+  }
+  if (
+    sev === "high" ||
+    cat.includes("bias") ||
+    cat.includes("discrimination") ||
+    cat.includes("privacy") ||
+    cat.includes("legal") ||
+    cat.includes("medical") ||
+    cat.includes("financial") ||
+    cat.includes("employment")
+  ) {
+    return "High Risk";
+  }
+  if (
+    sev === "medium" ||
+    cat.includes("hallucination") ||
+    cat.includes("misinformation") ||
+    cat.includes("deepfake") ||
+    cat.includes("copyright") ||
+    cat.includes("transparency") ||
+    cat.includes("chatbot")
+  ) {
+    return "Specific Transparency";
+  }
+  return "Minimal";
+}

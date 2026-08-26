@@ -47,11 +47,13 @@ export async function submitVote(
     const rawIp = headersList.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "127.0.0.1";
     const ipHash = hashIp(rawIp);
 
+    const t = await getTranslations("dilemmas");
+
     // 2. Rate limit by salted IP hash
     const rateLimitKey = `${RATE_LIMIT_KEYS.dilemma_vote}:${ipHash ?? "anon"}`;
-    const { ok, retryAfter } = await checkRateLimit(rateLimitKey);
+    const { ok } = await checkRateLimit(rateLimitKey);
     if (!ok) {
-      return { error: `Too many votes. Please try again in ${retryAfter ?? 60} seconds.` };
+      return { error: t("rateLimited") };
     }
 
     const supabase = await createServerClient();
@@ -69,10 +71,10 @@ export async function submitVote(
 
     if (voteError) {
       if (voteError.code === "23505") {
-        return { error: "You have already voted on this dilemma." };
+        return { code: "ALREADY_VOTED", error: t("alreadyVoted") };
       }
       logger.error("Vote error", { pollId }, voteError instanceof Error ? voteError : undefined);
-      return { error: "Failed to record vote." };
+      return { error: t("voteFailed") };
     }
 
     // 4. Atomic increment via RPC — no read-modify-write race condition

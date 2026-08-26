@@ -187,9 +187,12 @@ export function VelocityDashboard() {
 
       {/* Scenario Detail Cards */}
       <div id="scenarios" className="space-y-4">
-        <h2 className="text-fg-primary text-xl font-bold tracking-tight">
-          {t("scenarios_heading")}
-        </h2>
+        <div>
+          <h2 className="text-fg-primary text-xl font-bold tracking-tight">
+            {t("scenarios_heading")}
+          </h2>
+          <p className="text-fg-muted mt-1 text-xs sm:text-sm">{t("scenarios_subheading")}</p>
+        </div>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {/* Scenario A */}
           <div className="border-brand-500/20 rounded-2xl border bg-neutral-900/60 p-6 shadow-xl backdrop-blur-xl">
@@ -197,15 +200,15 @@ export function VelocityDashboard() {
               <span className="text-brand-400 text-xs font-bold tracking-wider uppercase">
                 {t("scenario_a_tag")}
               </span>
-              <span className="bg-brand-500/10 text-brand-400 rounded-md px-2 py-0.5 text-[11px] font-semibold">
-                V = 1.0x
+              <span className="bg-brand-500/10 text-brand-400 border-brand-500/20 rounded-md border px-2.5 py-1 text-[11px] font-semibold">
+                Piyasa Hızı: 1.0x
               </span>
             </div>
             <h3 className="text-fg-primary mt-3 text-lg font-bold">{t("scenario_a_title")}</h3>
-            <p className="text-fg-muted mt-1 text-xs leading-relaxed">{t("scenario_a_desc")}</p>
+            <p className="text-fg-muted mt-2 text-xs leading-relaxed">{t("scenario_a_desc")}</p>
             <div className="mt-6 border-t border-white/5 pt-4">
-              <div className="text-fg-muted text-[11px]">{t("projected_arr")}</div>
-              <div className="text-fg-primary text-2xl font-extrabold">
+              <div className="text-fg-muted text-[11px] font-medium">{t("projected_arr")}</div>
+              <div className="text-fg-primary text-2xl font-extrabold tracking-tight">
                 ${projectionResult.scenarioA.projectedARR.toLocaleString()}
               </div>
             </div>
@@ -218,15 +221,15 @@ export function VelocityDashboard() {
               <span className="text-success-400 text-xs font-bold tracking-wider uppercase">
                 {t("scenario_b_tag")}
               </span>
-              <span className="bg-success-500/10 text-success-400 rounded-md px-2 py-0.5 text-[11px] font-semibold">
-                V = 1.8x
+              <span className="bg-success-500/10 text-success-400 border-success-500/20 rounded-md border px-2.5 py-1 text-[11px] font-semibold">
+                Hız Çarpanı: 1.8x
               </span>
             </div>
             <h3 className="text-fg-primary mt-3 text-lg font-bold">{t("scenario_b_title")}</h3>
-            <p className="text-fg-muted mt-1 text-xs leading-relaxed">{t("scenario_b_desc")}</p>
+            <p className="text-fg-muted mt-2 text-xs leading-relaxed">{t("scenario_b_desc")}</p>
             <div className="mt-6 border-t border-white/5 pt-4">
-              <div className="text-fg-muted text-[11px]">{t("projected_arr")}</div>
-              <div className="text-success-400 text-2xl font-extrabold">
+              <div className="text-fg-muted text-[11px] font-medium">{t("projected_arr")}</div>
+              <div className="text-success-400 text-2xl font-extrabold tracking-tight">
                 ${projectionResult.scenarioB.projectedARR.toLocaleString()}
               </div>
             </div>
@@ -239,15 +242,15 @@ export function VelocityDashboard() {
               <span className="text-brand-400 text-xs font-bold tracking-wider uppercase">
                 {t("scenario_c_tag")}
               </span>
-              <span className="bg-brand-500/10 text-brand-400 rounded-md px-2 py-0.5 text-[11px] font-semibold">
-                V = 3.5x
+              <span className="bg-brand-500/10 text-brand-400 border-brand-500/20 rounded-md border px-2.5 py-1 text-[11px] font-semibold">
+                Otonom Sıçrama: 3.5x
               </span>
             </div>
             <h3 className="text-fg-primary mt-3 text-lg font-bold">{t("scenario_c_title")}</h3>
-            <p className="text-fg-muted mt-1 text-xs leading-relaxed">{t("scenario_c_desc")}</p>
+            <p className="text-fg-muted mt-2 text-xs leading-relaxed">{t("scenario_c_desc")}</p>
             <div className="mt-6 border-t border-white/5 pt-4">
-              <div className="text-fg-muted text-[11px]">{t("projected_arr")}</div>
-              <div className="text-brand-400 text-2xl font-extrabold">
+              <div className="text-fg-muted text-[11px] font-medium">{t("projected_arr")}</div>
+              <div className="text-brand-400 text-2xl font-extrabold tracking-tight">
                 ${projectionResult.scenarioC.projectedARR.toLocaleString()}
               </div>
             </div>

@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { submitVote } from "@/actions/community/dilemmas";
 import { toast } from "sonner";
 import { useTranslations, useLocale } from "next-intl";
+import { Check } from "lucide-react";
 
 export type Poll = {
   id: string;
@@ -29,9 +30,29 @@ export function PollCard({ poll }: { poll: Poll }) {
   );
   const [turnstileError, setTurnstileError] = useState(false);
   const [isVoting, setIsVoting] = useState(false);
+  const [hasVoted, setHasVoted] = useState(false);
+  const [userChoice, setUserChoice] = useState<"yes" | "no" | "unsure" | null>(null);
+
+  // Optimistic counts
+  const [yesCount, setYesCount] = useState(poll.yes_count);
+  const [noCount, setNoCount] = useState(poll.no_count);
+  const [unsureCount, setUnsureCount] = useState(poll.unsure_count);
+
   const [turnstileKey, setTurnstileKey] = useState(0);
   const turnstileRef = useRef<TurnstileInstance>(null);
   const pendingVoteRef = useRef<"yes" | "no" | "unsure" | null>(null);
+
+  useEffect(() => {
+    try {
+      const storedVote = localStorage.getItem(`alpar_voted_poll_${poll.id}`);
+      if (storedVote === "yes" || storedVote === "no" || storedVote === "unsure") {
+        setHasVoted(true);
+        setUserChoice(storedVote);
+      }
+    } catch {
+      // localStorage not available
+    }
+  }, [poll.id]);
 
   const localizedTitle =
     locale === "tr" ? poll.title_tr || poll.title : poll.title_en || poll.title;
@@ -40,19 +61,38 @@ export function PollCard({ poll }: { poll: Poll }) {
       ? poll.description_tr || poll.description
       : poll.description_en || poll.description;
 
-  const totalVotes = poll.yes_count + poll.no_count + poll.unsure_count;
-  const yesPercent = totalVotes > 0 ? Math.round((poll.yes_count / totalVotes) * 100) : 0;
-  const noPercent = totalVotes > 0 ? Math.round((poll.no_count / totalVotes) * 100) : 0;
+  const totalVotes = yesCount + noCount + unsureCount;
+  const yesPercent = totalVotes > 0 ? Math.round((yesCount / totalVotes) * 100) : 0;
+  const noPercent = totalVotes > 0 ? Math.round((noCount / totalVotes) * 100) : 0;
   const unsurePercent = totalVotes > 0 ? 100 - yesPercent - noPercent : 0;
 
   const handleVote = async (voteType: "yes" | "no" | "unsure") => {
+    if (hasVoted) {
+      toast.info(t("alreadyVoted"), {
+        description: t("alreadyVotedDesc"),
+      });
+      return;
+    }
+
+    // Optimistic UI update
+    setHasVoted(true);
+    setUserChoice(voteType);
+    if (voteType === "yes") setYesCount((prev) => prev + 1);
+    else if (voteType === "no") setNoCount((prev) => prev + 1);
+    else if (voteType === "unsure") setUnsureCount((prev) => prev + 1);
+
+    try {
+      localStorage.setItem(`alpar_voted_poll_${poll.id}`, voteType);
+    } catch {
+      // Ignore
+    }
+
     setIsVoting(true);
     if (turnstileToken) {
       await executeVote(voteType, turnstileToken);
     } else if (turnstileRef.current && !turnstileError) {
       pendingVoteRef.current = voteType;
       turnstileRef.current.execute();
-      // Timeout fallback in case execute doesn't return
       setTimeout(() => {
         if (pendingVoteRef.current) {
           executeVote(pendingVoteRef.current, "fallback-session-token");
@@ -70,12 +110,18 @@ export function PollCard({ poll }: { poll: Poll }) {
     pendingVoteRef.current = null;
     try {
       turnstileRef.current?.reset();
-    } catch (_e) {
+    } catch {
       // Ignore reset errors
     }
 
     if (result.error) {
-      toast.error(result.error);
+      if (result.code === "ALREADY_VOTED" || result.error.toLowerCase().includes("already")) {
+        toast.info(t("alreadyVoted"), {
+          description: t("alreadyVotedDesc"),
+        });
+      } else {
+        toast.error(result.error);
+      }
     } else {
       if (result.awardedBadge) {
         toast.success(t("newBadgeTitle"), {
@@ -175,7 +221,6 @@ export function PollCard({ poll }: { poll: Poll }) {
                 }}
                 onError={() => {
                   setTurnstileError(true);
-                  // Silently log and allow graceful fallback without blocking UI
                   console.warn("[Turnstile] Falling back to session token for voting.");
                 }}
                 onExpire={() => {
@@ -196,24 +241,39 @@ export function PollCard({ poll }: { poll: Poll }) {
               variant="outline"
               disabled={isVoting}
               onClick={() => handleVote("yes")}
-              className="text-success-400 border-success-400/40 hover:bg-success-400/20 w-full font-bold transition-all disabled:opacity-40"
+              className={`w-full font-bold transition-all ${
+                userChoice === "yes"
+                  ? "border-success-400 bg-success-500/20 text-success-300 ring-success-400/40 ring-2"
+                  : "text-success-400 border-success-400/40 hover:bg-success-400/20"
+              }`}
             >
+              {userChoice === "yes" && <Check className="mr-1 h-3.5 w-3.5" />}
               {t("yes")}
             </Button>
             <Button
               variant="outline"
               disabled={isVoting}
               onClick={() => handleVote("unsure")}
-              className="text-fg-muted border-fg-muted/40 hover:bg-fg-muted/20 w-full font-bold transition-all disabled:opacity-40"
+              className={`w-full font-bold transition-all ${
+                userChoice === "unsure"
+                  ? "border-fg-muted bg-fg-muted/20 text-fg-primary ring-fg-muted/40 ring-2"
+                  : "text-fg-muted border-fg-muted/40 hover:bg-fg-muted/20"
+              }`}
             >
+              {userChoice === "unsure" && <Check className="mr-1 h-3.5 w-3.5" />}
               {t("unsureButton")}
             </Button>
             <Button
               variant="outline"
               disabled={isVoting}
               onClick={() => handleVote("no")}
-              className="text-danger-400 border-danger-400/40 hover:bg-danger-400/20 w-full font-bold transition-all disabled:opacity-40"
+              className={`w-full font-bold transition-all ${
+                userChoice === "no"
+                  ? "border-danger-400 bg-danger-500/20 text-danger-300 ring-danger-400/40 ring-2"
+                  : "text-danger-400 border-danger-400/40 hover:bg-danger-400/20"
+              }`}
             >
+              {userChoice === "no" && <Check className="mr-1 h-3.5 w-3.5" />}
               {t("no")}
             </Button>
           </div>

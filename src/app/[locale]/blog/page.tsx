@@ -218,10 +218,10 @@ export default async function BlogIndexPage({
               <Link
                 key={cat.slug}
                 href={href}
-                className={`rounded-full border px-4 py-1.5 text-xs font-bold tracking-wide transition-all ${
+                className={`inline-flex min-w-[76px] items-center justify-center rounded-full border px-4 py-2 text-xs font-semibold tracking-wide shadow-xs transition-all ${
                   isActive
-                    ? "bg-brand-500/15 border-brand-500 text-brand-400"
-                    : "border-border-subtle bg-bg-secondary/30 text-fg-secondary hover:border-white/20"
+                    ? "bg-brand-500/15 border-brand-500 text-brand-400 font-bold"
+                    : "border-border-subtle bg-bg-secondary/30 text-fg-secondary hover:text-fg-primary hover:border-white/20"
                 }`}
               >
                 {cat.label}

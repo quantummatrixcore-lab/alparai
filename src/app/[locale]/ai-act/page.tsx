@@ -17,6 +17,7 @@ import {
 import type { IncidentListItem } from "@/types";
 import { toIncidentListItems } from "@/lib/mappers";
 import { IncidentList } from "@/components/incidents/incident-list";
+import { classifyEUIncidentRisk } from "@/lib/compliance/eu-ai-act";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -49,7 +50,7 @@ export default async function AIActTrackerPage({
   const pageSize = 10;
   const supabase = await createServerClient();
 
-  // Query counts for different categories
+  // Query counts for different categories across all published incidents
   const [
     { count: unacceptableCount },
     { count: highRiskCount },
@@ -60,36 +61,53 @@ export default async function AIActTrackerPage({
       .from("incidents")
       .select("id", { count: "exact", head: true })
       .eq("status", "published")
-      .eq("eu_act_risk_category", "Unacceptable Risk"),
+      .or(
+        "eu_act_risk_category.ilike.%unacceptable%,severity.eq.critical,category.in.(safety,security,autonomous)",
+      ),
     supabase
       .from("incidents")
       .select("id", { count: "exact", head: true })
       .eq("status", "published")
-      .eq("eu_act_risk_category", "High Risk"),
+      .or(
+        "eu_act_risk_category.ilike.%high%,severity.eq.high,category.in.(bias,discrimination,privacy,legal,medical,financial,employment)",
+      ),
     supabase
       .from("incidents")
       .select("id", { count: "exact", head: true })
       .eq("status", "published")
-      .eq("eu_act_risk_category", "Specific Transparency"),
+      .or(
+        "eu_act_risk_category.ilike.%transparency%,severity.eq.medium,category.in.(hallucination,misinformation,deepfake,copyright)",
+      ),
     supabase
       .from("incidents")
       .select("id", { count: "exact", head: true })
       .eq("status", "published")
-      .eq("eu_act_risk_category", "Minimal"),
+      .or("eu_act_risk_category.ilike.%minimal%,severity.eq.low"),
   ]);
 
-  // Main incident list query
+  // Main incident list query across all published real-world incidents
   let query = supabase
     .from("incidents")
     .select(
       "id, title_masked, description_masked, title_tr, description_tr, severity, status, category, is_anonymous, incident_date, views_count, upvotes_count, created_at, ai_provider_id, user_id, cross_audit_truth_score, cross_audit_confidence, eu_act_risk_category, eu_act_serious_incident_class, eu_act_high_risk_system_category, eu_act_reporting_deadline_days",
       { count: "exact" },
     )
-    .eq("status", "published")
-    .not("eu_act_risk_category", "is", null);
+    .eq("status", "published");
 
-  if (risk) {
-    query = query.eq("eu_act_risk_category", risk);
+  if (risk === "Unacceptable Risk") {
+    query = query.or(
+      "eu_act_risk_category.ilike.%unacceptable%,severity.eq.critical,category.in.(safety,security,autonomous)",
+    );
+  } else if (risk === "High Risk") {
+    query = query.or(
+      "eu_act_risk_category.ilike.%high%,severity.eq.high,category.in.(bias,discrimination,privacy,legal,medical,financial,employment)",
+    );
+  } else if (risk === "Specific Transparency") {
+    query = query.or(
+      "eu_act_risk_category.ilike.%transparency%,severity.eq.medium,category.in.(hallucination,misinformation,deepfake,copyright)",
+    );
+  } else if (risk === "Minimal") {
+    query = query.or("eu_act_risk_category.ilike.%minimal%,severity.eq.low");
   }
 
   // Range/Pagination
@@ -114,8 +132,14 @@ export default async function AIActTrackerPage({
       Record<string, unknown> | undefined;
     const providerId = rawRow?.ai_provider_id as string | null;
     const provider = providerId ? providerMap.get(providerId) : null;
+    const euRiskCategory = classifyEUIncidentRisk({
+      eu_act_risk_category: rawRow?.eu_act_risk_category as string | null,
+      severity: rawRow?.severity as string | null,
+      category: rawRow?.category as string | null,
+    });
     return {
       ...item,
+      eu_act_risk_category: euRiskCategory,
       provider_name: provider?.name ?? tCommon("unknown"),
       provider_slug: provider?.slug ?? "",
     };

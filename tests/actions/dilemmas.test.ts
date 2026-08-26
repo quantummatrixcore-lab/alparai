@@ -65,7 +65,7 @@ describe("submitVote", () => {
   it("blocks vote when rate limited", async () => {
     vi.mocked(checkRateLimit).mockResolvedValue({ ok: false, retryAfter: 30 });
     const result = await submitVote(POLL_ID, "yes", "token");
-    expect(result.error).toContain("Too many votes");
+    expect(result.error).toBeTruthy();
   });
 
   it("returns error on duplicate vote (23505)", async () => {
@@ -81,7 +81,8 @@ describe("submitVote", () => {
         .mockReturnValue({ single: vi.fn().mockResolvedValue({ data: null, error: null }) }),
     });
     const result = await submitVote(POLL_ID, "yes", "token");
-    expect(result.error).toBe("You have already voted on this dilemma.");
+    expect(result.code).toBe("ALREADY_VOTED");
+    expect(result.error).toBeTruthy();
   });
 
   it("returns success and badge for authenticated user", async () => {

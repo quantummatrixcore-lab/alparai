@@ -78,7 +78,7 @@ export default async function SecurityPage({ params }: { params: Promise<{ local
   ];
 
   return (
-    <Container className="space-y-20 py-20">
+    <Container className="space-y-16 pt-4 pb-16 md:pt-8 md:pb-20">
       {/* Hero Section */}
       <div className="mx-auto max-w-3xl text-center">
         <span className="border-brand-500/30 bg-brand-500/10 text-brand-400 inline-flex items-center rounded-full border px-4 py-1 text-xs font-semibold tracking-wider uppercase">

@@ -12,7 +12,7 @@ function SubmitBtn({ label }: { label: string }) {
     <button
       type="submit"
       disabled={pending}
-      className="mt-6 w-full rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 py-3.5 text-sm font-bold text-white shadow-lg shadow-purple-500/25 transition-all hover:scale-[1.02] hover:shadow-purple-500/40 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+      className="mt-6 w-full rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 py-3.5 text-sm font-bold text-white shadow-lg shadow-purple-500/25 transition-all hover:scale-[1.02] hover:shadow-purple-500/40 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
     >
       {pending ? "..." : label}
     </button>
@@ -46,7 +46,7 @@ export function ConstitutionClient() {
     <div className="relative min-h-screen bg-[#050814] text-zinc-100 selection:bg-purple-500/30 selection:text-white">
       <div className="pointer-events-none absolute top-0 left-1/2 h-[700px] w-[1000px] -translate-x-1/2 rounded-full bg-gradient-to-b from-purple-600/20 via-indigo-600/10 to-transparent blur-[160px]" />
 
-      <div className="relative mx-auto max-w-5xl px-6 pt-32 pb-24">
+      <div className="relative mx-auto max-w-5xl px-6 pt-4 pb-20 md:pt-8 md:pb-24">
         <div className="text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1.5 text-xs font-black tracking-widest text-purple-300 uppercase shadow-[0_0_20px_rgba(168,85,247,0.2)]">
             <Globe className="h-4 w-4 text-purple-400" /> {t("badge")}
@@ -54,12 +54,12 @@ export function ConstitutionClient() {
 
           <h1 className="mt-6 text-4xl font-black tracking-tight text-white sm:text-6xl lg:text-7xl">
             {t("title").split("(")[0]} <br />
-            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-300 bg-clip-text text-transparent text-3xl sm:text-4xl mt-2 block">
+            <span className="mt-2 block bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-300 bg-clip-text text-3xl text-transparent sm:text-4xl">
               ({t("title").split("(")[1] || "Taslak v0.1 - Ortak Yazım ve Öneriye Açık)"}
             </span>
           </h1>
 
-          <p className="mx-auto mt-6 max-w-3xl text-lg font-medium leading-relaxed text-zinc-300 sm:text-xl">
+          <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed font-medium text-zinc-300 sm:text-xl">
             {t("desc")}
           </p>
         </div>
@@ -70,7 +70,9 @@ export function ConstitutionClient() {
               <HeartHandshake className="h-7 w-7" />
             </div>
             <div>
-              <div className="text-xs font-bold tracking-wider text-zinc-400 uppercase">{t("sign_title")}</div>
+              <div className="text-xs font-bold tracking-wider text-zinc-400 uppercase">
+                {t("sign_title")}
+              </div>
               <div className="text-xl font-bold tracking-tight text-white">{t("sign_desc")}</div>
             </div>
           </div>
@@ -97,35 +99,40 @@ export function ConstitutionClient() {
                     {art.num}
                   </div>
                   <h3 className="mt-3 text-xl font-bold text-white">{art.title}</h3>
-                  <p className="mt-2 text-sm font-semibold text-purple-200/90 leading-relaxed">{art.desc}</p>
-                  <p className="mt-3 text-xs font-medium text-zinc-400 leading-relaxed">{art.details}</p>
+                  <p className="mt-2 text-sm leading-relaxed font-semibold text-purple-200/90">
+                    {art.desc}
+                  </p>
+                  <p className="mt-3 text-xs leading-relaxed font-medium text-zinc-400">
+                    {art.details}
+                  </p>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        <div id="sign-section" className="mt-20 rounded-3xl border border-purple-500/30 bg-gradient-to-b from-zinc-900/90 via-zinc-900/60 to-zinc-950/90 p-8 shadow-2xl backdrop-blur-2xl md:p-12">
-          <div className="max-w-2xl mx-auto text-center">
+        <div
+          id="sign-section"
+          className="mt-20 rounded-3xl border border-purple-500/30 bg-gradient-to-b from-zinc-900/90 via-zinc-900/60 to-zinc-950/90 p-8 shadow-2xl backdrop-blur-2xl md:p-12"
+        >
+          <div className="mx-auto max-w-2xl text-center">
             <ShieldCheck className="mx-auto h-12 w-12 text-purple-400" />
             <h2 className="mt-4 text-3xl font-black text-white sm:text-4xl">{t("sign_title")}</h2>
-            <p className="mt-2 text-sm font-medium text-zinc-400">
-              {t("sign_desc")}
-            </p>
+            <p className="mt-2 text-sm font-medium text-zinc-400">{t("sign_desc")}</p>
 
             {signed ? (
               <div className="mt-8 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-6 text-emerald-300">
-                <CheckCircle2 className="mx-auto h-10 w-10 text-emerald-400 mb-2" />
+                <CheckCircle2 className="mx-auto mb-2 h-10 w-10 text-emerald-400" />
                 <h4 className="text-lg font-bold">{t("success_msg")}</h4>
-                <p className="mt-1 text-xs text-emerald-200/80">
-                  {t("success_desc", { name })}
-                </p>
+                <p className="mt-1 text-xs text-emerald-200/80">{t("success_desc", { name })}</p>
               </div>
             ) : (
               <form action={formAction} className="mt-8 space-y-4 text-left">
                 <input type="hidden" name="category" value="feature" />
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-zinc-300">{t("form_name")}</label>
+                  <label className="block text-xs font-bold tracking-wider text-zinc-300 uppercase">
+                    {t("form_name")}
+                  </label>
                   <input
                     type="text"
                     name="title"
@@ -133,25 +140,33 @@ export function ConstitutionClient() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Adınız Soyadınız / Öneriniz"
-                    className="mt-1.5 w-full rounded-xl border border-white/10 bg-zinc-950/80 px-4 py-3 text-sm text-white placeholder-zinc-500 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500"
+                    className="mt-1.5 w-full rounded-xl border border-white/10 bg-zinc-950/80 px-4 py-3 text-sm text-white placeholder-zinc-500 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 focus:outline-none"
                   />
-                  {state.fieldErrors?.title && <p className="text-red-400 text-xs mt-1">{state.fieldErrors.title[0]}</p>}
+                  {state.fieldErrors?.title && (
+                    <p className="mt-1 text-xs text-red-400">{state.fieldErrors.title[0]}</p>
+                  )}
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-zinc-300">{t("form_suggestion")}</label>
+                  <label className="block text-xs font-bold tracking-wider text-zinc-300 uppercase">
+                    {t("form_suggestion")}
+                  </label>
                   <textarea
                     name="description"
                     required
                     rows={4}
                     placeholder="Anayasaya eklenecek veya düzeltilecek önerileriniz..."
-                    className="mt-1.5 w-full rounded-xl border border-white/10 bg-zinc-950/80 px-4 py-3 text-sm text-white placeholder-zinc-500 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500"
+                    className="mt-1.5 w-full rounded-xl border border-white/10 bg-zinc-950/80 px-4 py-3 text-sm text-white placeholder-zinc-500 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 focus:outline-none"
                   />
-                  {state.fieldErrors?.description && <p className="text-red-400 text-xs mt-1">{state.fieldErrors.description[0]}</p>}
+                  {state.fieldErrors?.description && (
+                    <p className="mt-1 text-xs text-red-400">{state.fieldErrors.description[0]}</p>
+                  )}
                 </div>
 
                 <SubmitBtn label={t("form_submit")} />
-                {state.error && <p className="text-red-400 text-sm mt-2 text-center">{state.error}</p>}
+                {state.error && (
+                  <p className="mt-2 text-center text-sm text-red-400">{state.error}</p>
+                )}
               </form>
             )}
           </div>

@@ -8,7 +8,7 @@ export default function AboutPage() {
   const tBlog = useTranslations("blog");
 
   return (
-    <div className="min-h-screen bg-black px-6 pt-24 pb-12 text-white">
+    <div className="min-h-screen bg-black px-6 pt-4 pb-12 text-white md:pt-8 md:pb-16">
       <div className="mx-auto max-w-4xl space-y-24">
         {/* Vision */}
         <section className="space-y-6 text-center">

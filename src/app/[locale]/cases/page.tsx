@@ -32,7 +32,7 @@ export default async function CasesIndexPage({ params }: { params: Promise<{ loc
   return (
     <div className="min-h-screen pb-20">
       <ShowcasePageTracker pagePath="/cases" />
-      <div className="border-border-subtle bg-bg-secondary/20 border-b py-20 text-center">
+      <div className="border-border-subtle bg-bg-secondary/20 border-b pt-4 pb-12 text-center md:pt-8 md:pb-16">
         <Container>
           <span className="bg-brand-500/10 text-brand-400 inline-block rounded-full px-3 py-1 text-xs font-semibold">
             {t("badge")}

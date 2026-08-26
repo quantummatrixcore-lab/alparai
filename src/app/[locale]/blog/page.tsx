@@ -189,7 +189,7 @@ export default async function BlogIndexPage({
   ];
 
   return (
-    <Container className="space-y-12 py-12">
+    <Container className="space-y-12 pt-4 pb-12 md:pt-8 md:pb-16">
       <header className="max-w-3xl">
         <div className="border-brand-500/30 bg-brand-500/10 text-brand-400 mb-4 inline-flex items-center gap-2 rounded-sm border px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase">
           <BookOpen className="h-4 w-4" />

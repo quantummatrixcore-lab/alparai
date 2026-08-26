@@ -176,7 +176,7 @@ export default async function ComplianceChecklistPage({
 
   return (
     <main className="bg-bg-primary text-fg-primary min-h-screen selection:bg-blue-500/30">
-      <div className="relative overflow-hidden pt-28 pb-20">
+      <div className="relative overflow-hidden pt-4 pb-16 md:pt-8 md:pb-20">
         {/* Background Ambient Glows */}
         <div className="pointer-events-none absolute top-0 left-1/2 h-[600px] w-full max-w-7xl -translate-x-1/2 bg-gradient-to-b from-blue-600/15 via-indigo-600/5 to-transparent blur-3xl" />
 

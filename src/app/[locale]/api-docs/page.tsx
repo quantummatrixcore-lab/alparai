@@ -375,7 +375,7 @@ export default async function ApiDocsPage({ params }: { params: Promise<{ locale
   return (
     <div className="min-h-screen bg-[#060E17]">
       {/* Hero */}
-      <div className="border-b border-white/5 bg-[#0A1622] py-16">
+      <div className="border-b border-white/5 bg-[#0A1622] pt-4 pb-12 md:pt-8 md:pb-16">
         <Container>
           <Link
             href="/press-kit"

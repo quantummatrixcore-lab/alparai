@@ -18,7 +18,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "contact" });
   return (
-    <Container className="py-12">
+    <Container className="pt-4 pb-12 md:pt-8 md:pb-16">
       <header className="mb-10 text-center">
         <h1 className="text-fg-primary text-3xl font-bold tracking-tight">{t("title")}</h1>
         <p className="text-fg-muted mt-2 text-sm">{t("subtitle")}</p>

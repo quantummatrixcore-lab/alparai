@@ -58,7 +58,7 @@ export default async function DilemmasPage({ params }: { params: Promise<{ local
   }));
 
   return (
-    <Container className="py-12">
+    <Container className="pt-4 pb-12 md:pt-8 md:pb-16">
       <header className="mx-auto mb-8 max-w-3xl space-y-4 text-center">
         <h1 className="bg-gradient-brand bg-clip-text pb-2 text-4xl font-extrabold tracking-tight text-transparent md:text-5xl">
           {t("hubTitle")}

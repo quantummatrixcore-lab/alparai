@@ -78,7 +78,7 @@ export default async function ExpertsPage({ params }: { params: Promise<{ locale
   return (
     <div className="bg-bg-primary text-fg-primary min-h-screen">
       {/* Section 1: Hero */}
-      <div className="bg-bg-secondary/30 border-border-subtle relative overflow-hidden border-b py-20 lg:py-28">
+      <div className="bg-bg-secondary/30 border-border-subtle relative overflow-hidden border-b pt-4 pb-12 md:pt-8 md:pb-16">
         <div className="absolute inset-0 z-0">
           <div className="bg-success-500/5 absolute top-0 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full blur-[120px]" />
         </div>

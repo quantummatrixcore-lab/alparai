@@ -39,7 +39,7 @@ export default async function ReportFlaggingPage({
         }}
       />
 
-      <section className="mx-auto max-w-3xl px-4 pt-20 pb-24 sm:px-6">
+      <section className="mx-auto max-w-3xl px-4 pt-4 pb-20 sm:px-6 md:pt-8 md:pb-24">
         <div className="mb-10 text-center">
           <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-[hsl(260_60%_60%_/_0.3)] bg-[hsl(260_60%_30%_/_0.15)] px-4 py-1.5 text-sm font-medium text-[hsl(260_80%_80%)]">
             <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-[hsl(260_80%_70%)]" />

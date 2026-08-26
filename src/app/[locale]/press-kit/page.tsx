@@ -30,7 +30,7 @@ export default async function PressKitPage({ params }: { params: Promise<{ local
 
   return (
     <div>
-      <div className="border-b border-white/5 bg-[#0A1622] py-20 text-center">
+      <div className="border-b border-white/5 bg-[#0A1622] pt-4 pb-12 text-center md:pt-8 md:pb-16">
         <Container>
           <div className="mx-auto max-w-3xl space-y-4">
             <span className="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-bold tracking-wider text-emerald-400 uppercase">

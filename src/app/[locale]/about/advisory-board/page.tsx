@@ -1,4 +1,5 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
+import Image from "next/image";
 import { Container, Section } from "@/components/ui/layout";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -153,15 +154,12 @@ export default async function AdvisoryBoardPage({
                     <CardHeader className="pb-2">
                       {member.avatar_url ? (
                         <div className="border-brand-500/30 group-hover:border-brand-500/60 relative mb-4 h-16 w-16 overflow-hidden rounded-2xl border shadow-[0_0_15px_rgba(168,85,247,0.2)] transition-all">
-                          {}
-                          <img
+                          <Image
                             src={member.avatar_url}
                             alt={member.name || "Advisory Member"}
+                            width={64}
+                            height={64}
                             className="h-full w-full object-cover"
-                            onError={(e) => {
-                              // If external image fails, gracefully fallback to icon
-                              e.currentTarget.style.display = "none";
-                            }}
                           />
                         </div>
                       ) : (

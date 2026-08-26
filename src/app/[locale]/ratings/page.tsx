@@ -153,7 +153,7 @@ export default async function RatingsPage({
   return (
     <Container className="max-w-7xl py-12 text-slate-100">
       <div className="mb-12 flex flex-col space-y-6">
-        <div className="flex items-center space-x-3 text-sm font-semibold tracking-wider text-[#00FF88] uppercase">
+        <div className="text-emerald-accent flex items-center space-x-3 text-sm font-semibold tracking-wider uppercase">
           <ShieldCheck className="h-5 w-5 animate-pulse" />
           <span>{t("badge")}</span>
         </div>
@@ -166,14 +166,14 @@ export default async function RatingsPage({
         <div className="flex flex-wrap gap-4 pt-2">
           <Link
             href="/methodology/benchmarks"
-            className="flex items-center space-x-2 text-sm text-[#00FF88] hover:underline"
+            className="text-emerald-accent flex items-center space-x-2 text-sm hover:underline"
           >
             <Activity className="h-4 w-4" />
             <span>{t("methodology_link")}</span>
           </Link>
           <Link
             href="/insights/open-vs-closed"
-            className="flex items-center space-x-2 text-sm text-[#00FF88] hover:underline"
+            className="text-emerald-accent flex items-center space-x-2 text-sm hover:underline"
           >
             <Scale className="h-4 w-4" />
             <span>{tInsights("openVsClosedTitle")}</span>
@@ -196,7 +196,7 @@ export default async function RatingsPage({
             className="rounded-xl border border-slate-800/80 bg-slate-900/60 p-6 backdrop-blur-sm transition-all duration-300 hover:border-slate-700/60"
           >
             <div className="mb-3 flex items-center justify-between">
-              <span className="rounded-full border border-[#00FF88]/20 bg-[#00FF88]/10 px-2 py-0.5 text-xs font-bold text-[#00FF88]">
+              <span className="border-emerald-accent/20 bg-emerald-accent/10 text-emerald-accent rounded-full border px-2 py-0.5 text-xs font-bold">
                 {cat.id}
               </span>
             </div>
@@ -215,7 +215,7 @@ export default async function RatingsPage({
             name="q"
             defaultValue={q}
             placeholder={t("search_placeholder")}
-            className="w-full rounded-lg border border-slate-800 bg-slate-950 py-2 pr-4 pl-10 text-sm text-slate-200 placeholder-slate-500 transition-all focus:border-[#00FF88] focus:ring-1 focus:ring-[#00FF88]/30 focus:outline-none"
+            className="focus:border-emerald-accent focus:ring-emerald-accent/30 w-full rounded-lg border border-slate-800 bg-slate-950 py-2 pr-4 pl-10 text-sm text-slate-200 placeholder-slate-500 transition-all focus:ring-1 focus:outline-none"
           />
         </form>
       </div>
@@ -237,7 +237,7 @@ export default async function RatingsPage({
                       {cat.id}
                     </th>
                   ))}
-                  <th className="px-6 py-4 text-center font-bold text-[#00FF88]">
+                  <th className="text-emerald-accent px-6 py-4 text-center font-bold">
                     {t("overall_score")}
                   </th>
                 </tr>
@@ -262,9 +262,9 @@ export default async function RatingsPage({
                     <td className="px-6 py-4">
                       <Link
                         href={`/models/${item.providerSlug}/${item.modelId}`}
-                        className="flex items-center space-x-2 font-bold text-white transition-colors hover:text-[#00FF88]"
+                        className="hover:text-emerald-accent flex items-center space-x-2 font-bold text-white transition-colors"
                       >
-                        <Cpu className="h-4 w-4 text-slate-500 transition-colors group-hover:text-[#00FF88]" />
+                        <Cpu className="group-hover:text-emerald-accent h-4 w-4 text-slate-500 transition-colors" />
                         <span>{item.modelName}</span>
                         {item.isRetired && (
                           <span className="ml-2 rounded-full border border-rose-900/30 bg-rose-950/20 px-2 py-0.5 text-[10px] font-bold text-rose-400">
@@ -306,7 +306,7 @@ export default async function RatingsPage({
                       );
                     })}
                     <td className="px-6 py-4 text-center font-mono text-sm font-bold">
-                      <span className="rounded border border-[#00FF88]/20 bg-[#00FF88]/10 px-3 py-1 text-white transition-all group-hover:border-[#00FF88]/40 group-hover:bg-[#00FF88]/20">
+                      <span className="border-emerald-accent/20 bg-emerald-accent/10 group-hover:border-emerald-accent/40 group-hover:bg-emerald-accent/20 rounded border px-3 py-1 text-white transition-all">
                         {item.overallScore}%
                       </span>
                     </td>

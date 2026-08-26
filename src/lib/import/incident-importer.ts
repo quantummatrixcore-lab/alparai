@@ -12,8 +12,7 @@
 import "server-only";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { maskPII } from "@/lib/pii/guardian";
-import { logger } from "@/lib/utils/logger";
-import type { ImportIncidentRow, IncidentSource } from "./csv-parser";
+import type { ImportIncidentRow, ImportStatementRow, IncidentSource } from "./csv-parser";
 
 const BATCH_SIZE = 50;
 
@@ -214,6 +213,93 @@ export async function importIncidents(
 
   logger.info("Import pipeline completed", {
     source,
+    inserted: result.inserted,
+    skipped: result.skipped,
+    errors: result.errors.length,
+  });
+
+  return result;
+}
+
+export async function importPublicStatements(
+  rows: ImportStatementRow[],
+  _userId: string,
+): Promise<ImportResult> {
+  const result: ImportResult = { inserted: 0, updated: 0, skipped: 0, errors: [] };
+
+  if (rows.length === 0) return result;
+
+  const admin = createAdminClient();
+
+  for (let i = 0; i < rows.length; i += BATCH_SIZE) {
+    const batch = rows.slice(i, i + BATCH_SIZE);
+
+    const records = [];
+    for (const row of batch) {
+      // Find incident
+      let incidentId = row.incidentId;
+      let providerId: string | null = null;
+
+      if (!incidentId && row.externalId) {
+        const { data: inc } = await admin
+          .from("incidents")
+          .select("id, ai_provider_id")
+          .eq("import_external_id", row.externalId)
+          .maybeSingle();
+        if (inc) {
+          incidentId = inc.id;
+          providerId = inc.ai_provider_id;
+        }
+      } else if (incidentId) {
+        const { data: inc } = await admin
+          .from("incidents")
+          .select("ai_provider_id")
+          .eq("id", incidentId)
+          .maybeSingle();
+        if (inc) providerId = inc.ai_provider_id;
+      }
+
+      if (!incidentId || !providerId) {
+        result.errors.push(
+          `Row missing incident or provider context: externalId=${row.externalId}`,
+        );
+        result.skipped++;
+        continue;
+      }
+
+      records.push({
+        incident_id: incidentId,
+        ai_provider_id: providerId,
+        response_text: row.quote,
+        responder_name: "Public Statement Importer",
+        responder_email: "import@alparai.com",
+        responder_role: "Public Statement Archive",
+        is_official: true,
+        is_published: true,
+        published_at: new Date().toISOString(),
+      });
+    }
+
+    if (records.length > 0) {
+      const { data, error } = await admin
+        .from("ai_provider_responses")
+        .upsert(records, {
+          onConflict: "incident_id,ai_provider_id",
+          ignoreDuplicates: false,
+        })
+        .select("id");
+
+      if (error) {
+        logger.error("Batch statement import failed", { batchStart: i }, new Error(error.message));
+        result.errors.push(`Batch error: ${error.message}`);
+        result.skipped += records.length;
+      } else {
+        result.inserted += data?.length ?? 0;
+      }
+    }
+  }
+
+  logger.info("Public statements import completed", {
     inserted: result.inserted,
     skipped: result.skipped,
     errors: result.errors.length,

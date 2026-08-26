@@ -22,6 +22,7 @@ import type { IncidentDetail, ProviderResponse } from "@/types";
 import { Link } from "@/i18n/routing";
 import { TakedownButton } from "./takedown-button";
 import { PassportButton } from "./passport-button";
+import { PublicStatementModal } from "./public-statement-modal";
 import Image from "next/image";
 import { ViewTracker } from "./view-tracker";
 import { AffectedButton } from "./affected-button";
@@ -37,6 +38,8 @@ export function IncidentDetailView({
   comments,
   userAffected,
   currentUserId,
+  isModerator,
+  providerId,
 }: {
   incident: IncidentDetail;
   evidence: Array<{ id: string; file_name: string; file_url: string; file_type: string }>;
@@ -46,6 +49,8 @@ export function IncidentDetailView({
   comments: IncidentComment[];
   userAffected: boolean;
   currentUserId: string | null;
+  isModerator?: boolean;
+  providerId?: string;
 }) {
   const t = useTranslations("incident");
   const tCat = useTranslations("categories");
@@ -397,14 +402,21 @@ export function IncidentDetailView({
         </div>
 
         {providerResponse ? (
-          <ProviderResponseCard
-            providerName={providerResponse.provider_name}
-            response={providerResponse.response}
-            createdAt={providerResponse.created_at}
-            verified={providerResponse.verified}
-            responseType={providerResponse.response_type}
-            sourceUrl={providerResponse.source_url}
-          />
+          <div className="space-y-4">
+            <ProviderResponseCard
+              providerName={providerResponse.provider_name}
+              response={providerResponse.response}
+              createdAt={providerResponse.created_at}
+              verified={providerResponse.verified}
+              responseType={providerResponse.response_type}
+              sourceUrl={providerResponse.source_url}
+            />
+            {isModerator && providerId && providerResponse.response_type !== "public_statement" && (
+              <div className="flex justify-end">
+                <PublicStatementModal incidentId={incident.id} providerId={providerId} />
+              </div>
+            )}
+          </div>
         ) : (
           <Card variant="default" className="border-dashed">
             <CardContent className="flex items-center justify-between gap-3 py-6">
@@ -412,6 +424,9 @@ export function IncidentDetailView({
                 <p className="text-fg-primary text-sm font-medium">{t("ai_response_pending")}</p>
                 <p className="text-fg-muted text-xs">{tCommon("aiResponseDesc")}</p>
               </div>
+              {isModerator && providerId && (
+                <PublicStatementModal incidentId={incident.id} providerId={providerId} />
+              )}
             </CardContent>
           </Card>
         )}

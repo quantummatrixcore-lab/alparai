@@ -65,7 +65,7 @@ export default async function ProvidersPage({ params }: { params: Promise<{ loca
                       <a
                         href={provider.website_url}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                         className="hover:underline"
                       >
                         {new URL(provider.website_url).hostname.replace("www.", "")}

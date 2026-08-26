@@ -11,6 +11,11 @@ const SOURCES = [
   { value: "aiaaic_import", labelKey: "csv_import_source_aiaaic", color: "text-brand-400" },
   { value: "aiid_import", labelKey: "csv_import_source_aiid", color: "text-brand-400" },
   { value: "news_curated", labelKey: "csv_import_source_news", color: "text-success-400" },
+  {
+    value: "public_statements",
+    labelKey: "csv_import_source_statements",
+    color: "text-purple-400",
+  },
 ] as const;
 
 interface CsvUploadFormProps {

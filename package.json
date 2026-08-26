@@ -143,6 +143,9 @@
     ],
     "*.{json,md,css,yml,yaml}": [
       "prettier --write"
+    ],
+    "*": [
+      "secretlint"
     ]
   }
 }

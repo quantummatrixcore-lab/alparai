@@ -758,6 +758,7 @@
     "csv_import_source_aiid": "AI Incident Database (AIID)",
     "csv_import_source_label": "Source",
     "csv_import_source_news": "Curated News / Custom CSV",
+    "csv_import_source_statements": "Public Statements (CSV)",
     "csv_import_submit": "Import to Review Queue",
     "csv_import_submitting": "Importing”Â¦",
     "csv_import_success": "{inserted} incidents queued, {skipped} skipped.",

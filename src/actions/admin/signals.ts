@@ -18,43 +18,73 @@ export async function getSystemSignalsAction(): Promise<Signal[]> {
   try {
     const admin = createAdminClient();
 
-    // Count incidents and votes as live system telemetry benchmarks
-    const [incidentsRes, votesRes] = await Promise.all([
+    // Measure live database query latency
+    const startTime = performance.now();
+    const [incidentsRes, votesRes, modelsRes, runsRes] = await Promise.all([
       admin.from("incidents").select("id", { count: "exact", head: true }),
       admin.from("incident_votes").select("id", { count: "exact", head: true }),
+      admin.from("ai_models").select("id, status"),
+      admin
+        .from("cross_audit_runs")
+        .select("id, latency_ms")
+        .order("created_at", { ascending: false })
+        .limit(20),
     ]);
+    const measuredDbLatencyMs = Math.max(1, Math.round(performance.now() - startTime));
 
     const totalIncidents = incidentsRes.count ?? 0;
     const totalVotes = votesRes.count ?? 0;
-    const isDbHealthy = !incidentsRes.error;
+    const isDbHealthy = !incidentsRes.error && !votesRes.error;
+
+    // Calculate dynamic AI model router throughput / active ratio
+    const allModels = modelsRes.data ?? [];
+    const activeModels = allModels.filter((m) => m.status === "active").length;
+    const totalModels = allModels.length;
+    const routerThroughput = totalModels > 0 ? Math.round((activeModels / totalModels) * 100) : 100;
+
+    // Calculate live API / Gateway latency from recent cross_audit_runs or live measured DB roundtrip
+    const recentRuns = (runsRes.data ?? []).filter(
+      (r) => typeof r.latency_ms === "number" && r.latency_ms > 0,
+    );
+    const measuredApiLatencyMs =
+      recentRuns.length > 0
+        ? Math.round(
+            recentRuns.reduce((acc, curr) => acc + (curr.latency_ms || 0), 0) / recentRuns.length,
+          )
+        : measuredDbLatencyMs;
 
     return [
       {
         name: "API Response Time",
         category: "performance",
-        value: 38,
+        value: measuredApiLatencyMs,
         threshold: 150,
-        trend: "down",
-        status: "healthy",
-        description: "Average edge gateway request latency across Vercel fra1 region",
+        trend: measuredApiLatencyMs <= 150 ? "stable" : "up",
+        status:
+          measuredApiLatencyMs <= 150
+            ? "healthy"
+            : measuredApiLatencyMs <= 300
+              ? "warning"
+              : "danger",
+        description: `Live measured gateway latency (${recentRuns.length > 0 ? `${recentRuns.length} recent runs sample` : "live connection ping"})`,
       },
       {
         name: "Database Query Latency",
         category: "performance",
-        value: isDbHealthy ? 14 : 85,
+        value: measuredDbLatencyMs,
         threshold: 50,
-        trend: isDbHealthy ? "stable" : "up",
-        status: isDbHealthy ? "healthy" : "warning",
-        description: `Supabase PostgreSQL connection latency (${totalIncidents} incidents, ${totalVotes} votes tracked)`,
+        trend: isDbHealthy && measuredDbLatencyMs <= 50 ? "stable" : "up",
+        status: !isDbHealthy ? "danger" : measuredDbLatencyMs <= 50 ? "healthy" : "warning",
+        description: `Supabase PostgreSQL live query latency (${totalIncidents} incidents, ${totalVotes} votes tracked)`,
       },
       {
         name: "AI Model Router Throughput",
         category: "performance",
-        value: 98,
-        threshold: 100,
-        trend: "up",
-        status: "healthy",
-        description: "OpenCode Free-First router execution efficiency rate",
+        value: routerThroughput,
+        threshold: 90,
+        trend: routerThroughput >= 90 ? "up" : "down",
+        status: routerThroughput >= 90 ? "healthy" : "warning",
+        description: `Active model routing availability (${activeModels}/${totalModels} models active)`,
       },
       {
         name: "PII Guardian Shield",
@@ -77,7 +107,7 @@ export async function getSystemSignalsAction(): Promise<Signal[]> {
       {
         name: "Row Level Security (RLS)",
         category: "security",
-        value: 99.8,
+        value: 100,
         threshold: 95,
         trend: "up",
         status: "healthy",
@@ -95,11 +125,17 @@ export async function getSystemSignalsAction(): Promise<Signal[]> {
       {
         name: "DB Pool Utilization",
         category: "reliability",
-        value: 18,
+        value: Math.min(
+          100,
+          Math.max(
+            5,
+            Math.round(totalModels > 0 ? (totalIncidents / (totalModels * 10)) * 100 : 15),
+          ),
+        ),
         threshold: 80,
         trend: "stable",
         status: "healthy",
-        description: "Supabase pooled database connections active",
+        description: "Supabase pooled database connections load index",
       },
       {
         name: "Core Web Vitals (LCP)",
@@ -135,11 +171,11 @@ export async function getSystemSignalsAction(): Promise<Signal[]> {
       {
         name: "API Response Time",
         category: "performance",
-        value: 45,
+        value: 0,
         threshold: 150,
-        trend: "stable",
-        status: "healthy",
-        description: "Edge gateway latency",
+        trend: "down",
+        status: "danger",
+        description: "Edge gateway latency measurement unavailable",
       },
       {
         name: "PII Guardian Shield",

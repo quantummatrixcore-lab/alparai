@@ -268,43 +268,61 @@ export function calculateKModelCategoryScores(
       }
 
       case "K9": {
-        // Math & Reasoning
-        const baseK9 = 92.0;
+        // Math & Reasoning (Dinamik Hesaplama)
+        let baseK9 = benchTr?.tr_factuality_pct
+          ? Number(benchTr.tr_factuality_pct)
+          : (previousDbScore ?? 90.0);
+        if (avgTruthScore !== null) {
+          baseK9 = (baseK9 + avgTruthScore) / 2;
+        }
         rawScore = Math.max(
-          30,
-          Math.min(99, Math.round(baseK9 - Math.min(20, hallucinationPenalty * 0.5))),
+          20,
+          Math.min(99, Math.round(baseK9 - Math.min(30, hallucinationPenalty * 0.8))),
         );
         break;
       }
 
       case "K10": {
-        // Instruction Following
-        const baseK10 = 93.0;
+        // Instruction Following (Dinamik Hesaplama)
+        let baseK10 = benchTr?.tr_grammar_score
+          ? Number(benchTr.tr_grammar_score)
+          : (previousDbScore ?? 90.0);
+        if (avgTruthScore !== null) {
+          baseK10 = (baseK10 + avgTruthScore) / 2;
+        }
         rawScore = Math.max(
-          30,
+          20,
           Math.min(
             99,
-            Math.round(baseK10 - Math.min(25, (ethicsPenalty + hallucinationPenalty) * 0.3)),
+            Math.round(
+              baseK10 -
+                Math.min(35, ethicsPenalty * 0.4 + hallucinationPenalty * 0.4 + trPenalty * 0.2),
+            ),
           ),
         );
         break;
       }
 
       case "K11": {
-        // Robustness & Adversarial
+        // Robustness & Adversarial (Dinamik Hesaplama)
         const baseK11 = benchTr?.tr_bias_score
-          ? Math.min(96, Number(benchTr.tr_bias_score) + 1)
-          : 91.0;
-        rawScore = Math.max(25, Math.min(99, Math.round(baseK11 - securityPenalty)));
+          ? Number(benchTr.tr_bias_score)
+          : (previousDbScore ?? 90.0);
+        rawScore = Math.max(20, Math.min(99, Math.round(baseK11 - securityPenalty)));
         break;
       }
 
       case "K12": {
-        // Long-Context Retrieval
-        const baseK12 = 90.0;
+        // Long-Context Retrieval (Dinamik Hesaplama)
+        let baseK12 = benchTr?.tr_factuality_pct
+          ? Number(benchTr.tr_factuality_pct)
+          : (previousDbScore ?? 90.0);
+        if (avgTruthScore !== null) {
+          baseK12 = (baseK12 + avgTruthScore) / 2;
+        }
         rawScore = Math.max(
-          30,
-          Math.min(99, Math.round(baseK12 - Math.min(20, hallucinationPenalty * 0.4))),
+          20,
+          Math.min(99, Math.round(baseK12 - Math.min(30, hallucinationPenalty * 0.6))),
         );
         break;
       }
@@ -315,7 +333,10 @@ export function calculateKModelCategoryScores(
       }
     }
 
-    const sampleSize = 100 + modelIncidents.length + (benchTr ? 50 : 0);
+    const sampleSize =
+      modelIncidents.length +
+      (benchTr ? 50 : 0) +
+      (crossAuditTruthScores.length > 0 ? crossAuditTruthScores.length : 0);
     const { wilsonLower, wilsonUpper } = calculateWilsonInterval(rawScore, sampleSize);
 
     results.push({

@@ -758,6 +758,7 @@
     "csv_import_source_aiid": "AI Olay Veritabanı (AIID)",
     "csv_import_source_label": "Kaynak",
     "csv_import_source_news": "Kürönlenmiş Haber / Özel CSV",
+    "csv_import_source_statements": "Kamuoyu Açıklamaları (CSV)",
     "csv_import_submit": "Onay Kuyruğuna İçe Aktar",
     "csv_import_submitting": "İçe aktarılıyor...",
     "csv_import_success": "{inserted} olay kuyruğa eklendi, {skipped} atlandı.",

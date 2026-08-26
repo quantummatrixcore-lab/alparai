@@ -88,16 +88,6 @@ const validModels = new Set([
   'Midjourney v8'
 ]);
 
-const fabricatedModels = [
-  'Claude 3.5 Opus',
-  'Claude 4.5 Sonnet',
-  'Claude 4.5 Opus',
-  'Claude 4.6 Sonnet',
-  'Claude 4.7 Opus',
-  'Claude 4.8 Sonnet',
-  'Claude 4.8 Opus'
-];
-
 let failed = false;
 
 // We check all SQL files in supabase/migrations and models-catalog.ts if it exists
@@ -114,13 +104,6 @@ const MODEL_NAME_RE =
 function checkFile(filePath) {
   const content = readFileSync(filePath, 'utf-8');
 
-  for (const fakeModel of fabricatedModels) {
-    if (content.includes(`'${fakeModel}'`) || content.includes(`"${fakeModel}"`)) {
-      console.error(`ERROR: known fabricated model "${fakeModel}" in ${filePath}`);
-      failed = true;
-    }
-  }
-
   const quoted = content.match(/'[^'\n]{3,60}'|"[^"\n]{3,60}"/g) || [];
   for (const raw of quoted) {
     const value = raw.slice(1, -1).trim();
@@ -128,7 +111,6 @@ function checkFile(filePath) {
     if (!matches) continue;
     if (matches[0] !== value) continue; // only flag when the whole string is a model name
     if (validModels.has(value)) continue;
-    if (fabricatedModels.includes(value)) continue; // already reported above
     console.error(
       `ERROR: unverified model name "${value}" in ${filePath} — add it to validModels once confirmed released, or remove it`,
     );

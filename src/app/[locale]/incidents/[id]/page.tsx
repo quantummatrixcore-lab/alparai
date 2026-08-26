@@ -200,6 +200,8 @@ export default async function IncidentDetailPage({
         comments={comments}
         userAffected={userAffected}
         currentUserId={user?.id ?? null}
+        isModerator={isAdminOrModerator}
+        providerId={providerId ?? undefined}
       />
       <div className="border-brand-500/30 from-brand-500/10 my-8 rounded-xl border bg-gradient-to-r via-purple-500/10 to-transparent p-6 text-center shadow-lg">
         <h3 className="mb-2 text-lg font-bold text-white">

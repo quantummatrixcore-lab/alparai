@@ -5,10 +5,20 @@ import { logger } from "@/lib/utils/logger";
 const AI_BOT_USER_AGENTS = [
   "gptbot",
   "claudebot",
+  "anthropic-ai",
   "perplexitybot",
+  "perplexity-bot",
   "google-extended",
+  "googlebot",
   "cohere-ai",
   "bytespider",
+  "deepseek",
+  "deepseekbot",
+  "mistral",
+  "mistralai",
+  "applebot-extended",
+  "amazonbot",
+  "meta-externalagent",
 ];
 
 const DAILY_REDIS_LIMIT = 10_000; // Upstash free tier limit guard

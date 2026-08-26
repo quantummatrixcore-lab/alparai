@@ -43,5 +43,4 @@ chrome-profile/
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?
-
+360-admin-panel/

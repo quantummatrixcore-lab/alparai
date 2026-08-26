@@ -13,7 +13,7 @@ import Papa from "papaparse";
 import { z } from "zod";
 import type { Database } from "@/types/database";
 
-export type IncidentSource = "aiaaic_import" | "aiid_import" | "news_curated";
+export type IncidentSource = "aiaaic_import" | "aiid_import" | "news_curated" | "public_statements";
 
 export interface ImportIncidentRow {
   externalId: string;
@@ -222,7 +222,7 @@ function mapAiid(
     severityRaw === "medium" ||
     severityRaw === "low"
   ) {
-    severity = severityRaw as any;
+    severity = severityRaw;
   }
 
   if (!title || title.length < 8) {
@@ -391,4 +391,63 @@ export function parseIncidentCSV(csvText: string, source: IncidentSource): Parse
   });
 
   return { rows, errors, total: (parsed.data as unknown[]).length };
+}
+
+export interface ImportStatementRow {
+  incidentId?: string;
+  externalId?: string;
+  sourceUrl: string;
+  statementDate: string;
+  quote: string;
+}
+
+export function parseStatementCSV(csvText: string): {
+  rows: ImportStatementRow[];
+  errors: { row: number; message: string }[];
+  total: number;
+} {
+  const parsed = Papa.parse<Record<string, string>>(csvText, {
+    header: true,
+    skipEmptyLines: true,
+    transformHeader: (h) => h.trim().toLowerCase(),
+    transform: (value: string) => value.trim(),
+  });
+
+  const rows: ImportStatementRow[] = [];
+  const errors: { row: number; message: string }[] = [];
+
+  (parsed.data as Record<string, string>[]).forEach((raw, index) => {
+    const rowIndex = index + 2;
+    const incidentId = raw["incident_id"] || raw["incidentid"] || undefined;
+    const externalId = raw["external_id"] || raw["externalid"] || undefined;
+    const sourceUrl = raw["source_url"] || raw["url"] || raw["statement_url"];
+    const statementDateRaw = raw["date"] || raw["statement_date"];
+    const quote = raw["quote"] || raw["statement"] || raw["response"];
+
+    if (!incidentId && !externalId) {
+      errors.push({ row: rowIndex, message: "Must provide incident_id or external_id" });
+      return;
+    }
+    if (!sourceUrl) {
+      errors.push({ row: rowIndex, message: "Must provide source_url" });
+      return;
+    }
+    if (!quote) {
+      errors.push({ row: rowIndex, message: "Must provide quote" });
+      return;
+    }
+
+    const statementDate =
+      parseDate(statementDateRaw || "") || new Date().toISOString().slice(0, 10);
+
+    rows.push({
+      incidentId,
+      externalId,
+      sourceUrl,
+      statementDate,
+      quote,
+    });
+  });
+
+  return { rows, errors, total: parsed.data.length };
 }

@@ -38,6 +38,7 @@ export function SignInForm({ locale, next }: { locale: string; next?: string }) 
             href="/legal/terms"
             className="text-brand-400 font-semibold hover:underline"
             target="_blank"
+            rel="noopener noreferrer"
           >
             {t("terms_service")}
           </Link>{" "}
@@ -46,6 +47,7 @@ export function SignInForm({ locale, next }: { locale: string; next?: string }) 
             href="/legal/privacy"
             className="text-brand-400 font-semibold hover:underline"
             target="_blank"
+            rel="noopener noreferrer"
           >
             {t("terms_privacy")}
           </Link>

@@ -83,9 +83,9 @@ export function AdvisorChat() {
   };
 
   return (
-    <div className="flex min-h-[calc(100vh-5rem)] flex-col overflow-hidden rounded-2xl border border-white/20 bg-white/10 backdrop-blur text-white shadow-2xl md:flex-row transition-all duration-200 ease-out">
+    <div className="flex min-h-[calc(100vh-5rem)] flex-col overflow-hidden rounded-2xl border border-white/20 bg-white/10 text-white shadow-2xl backdrop-blur transition-all duration-200 ease-out md:flex-row">
       {/* Sol Panel: Profile & Bio */}
-      <aside className="flex w-full shrink-0 flex-col items-center border-b border-white/20 bg-zinc-900/40 p-6 md:w-[280px] md:border-r md:border-b-0 transition-all duration-200 ease-out">
+      <aside className="flex w-full shrink-0 flex-col items-center border-b border-white/20 bg-zinc-900/40 p-6 transition-all duration-200 ease-out md:w-[280px] md:border-r md:border-b-0">
         <div className="relative mb-4">
           <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-amber-500 to-amber-700 opacity-50 blur-sm" />
           <Image
@@ -94,7 +94,7 @@ export function AdvisorChat() {
             width={130}
             height={130}
             priority
-            className="relative rounded-full border-2 border-amber-500/40 bg-[#070709] p-2 shadow-inner"
+            className="bg-bg-primary relative rounded-full border-2 border-amber-500/40 p-2 shadow-inner"
           />
         </div>
 
@@ -132,7 +132,7 @@ export function AdvisorChat() {
       </aside>
 
       {/* Sağ Panel: Sohbet Alanı */}
-      <main className="flex flex-1 flex-col bg-[#070709] transition-all duration-200 ease-out">
+      <main className="bg-bg-primary flex flex-1 flex-col transition-all duration-200 ease-out">
         {/* Chat Header */}
         <header className="flex items-center justify-between border-b border-amber-500/20 bg-zinc-900/80 px-6 py-4 backdrop-blur-sm transition-all duration-200 ease-out">
           <div className="flex items-center gap-3">
@@ -151,7 +151,7 @@ export function AdvisorChat() {
         </header>
 
         {/* Mesaj Listesi */}
-        <div className="flex-1 space-y-4 overflow-y-auto p-4 md:p-6 bg-[#070709]">
+        <div className="bg-bg-primary flex-1 space-y-4 overflow-y-auto p-4 md:p-6">
           {messages.map((msg) => (
             <div
               key={msg.id}
@@ -161,7 +161,7 @@ export function AdvisorChat() {
                 className={`max-w-[88%] rounded-2xl p-4 shadow-lg transition-all duration-200 ease-out md:p-5 ${
                   msg.role === "ataturk"
                     ? "border border-amber-500/30 bg-zinc-900 text-amber-500 shadow-amber-500/20"
-                    : "ml-auto border border-brand-500/30 bg-brand-500/20 text-white shadow-brand-500/20"
+                    : "border-brand-500/30 bg-brand-500/20 shadow-brand-500/20 ml-auto border text-white"
                 }`}
               >
                 <p
@@ -169,8 +169,7 @@ export function AdvisorChat() {
                     msg.role === "ataturk" ? "font-serif" : "font-sans"
                   }`}
                   style={{
-                    fontFamily:
-                      msg.role === "ataturk" ? "var(--font-display)" : "var(--font-sans)",
+                    fontFamily: msg.role === "ataturk" ? "var(--font-display)" : "var(--font-sans)",
                   }}
                 >
                   {msg.content}
@@ -217,7 +216,10 @@ export function AdvisorChat() {
         </div>
 
         {/* Input Alanı */}
-        <form onSubmit={handleSubmit} className="border-t border-amber-500/20 bg-zinc-900/80 p-4 backdrop-blur-sm transition-all duration-200 ease-out">
+        <form
+          onSubmit={handleSubmit}
+          className="border-t border-amber-500/20 bg-zinc-900/80 p-4 backdrop-blur-sm transition-all duration-200 ease-out"
+        >
           <div className="flex gap-3">
             <input
               type="text"
@@ -225,7 +227,7 @@ export function AdvisorChat() {
               onChange={(e) => setInput(e.target.value)}
               placeholder="Paşam, size bir sorum var..."
               disabled={loading}
-              className="flex-1 rounded-xl border border-white/20 bg-white/10 backdrop-blur px-4 py-3 text-sm text-white placeholder-white/40 transition-all duration-200 ease-out focus:border-amber-500/50 focus:ring-2 focus:ring-amber-500/20 focus:outline-none disabled:opacity-50"
+              className="flex-1 rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder-white/40 backdrop-blur transition-all duration-200 ease-out focus:border-amber-500/50 focus:ring-2 focus:ring-amber-500/20 focus:outline-none disabled:opacity-50"
             />
             <button
               type="submit"

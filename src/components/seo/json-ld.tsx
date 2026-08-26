@@ -228,3 +228,75 @@ export function BlogArticleJsonLd({
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
   );
 }
+
+export interface ClaimReviewJsonLdProps {
+  url: string;
+  claimReviewed: string;
+  itemReviewed: {
+    name: string;
+    author: string;
+    datePublished?: string;
+    appearanceUrl?: string;
+  };
+  reviewRating: {
+    ratingValue: number | string;
+    bestRating?: number | string;
+    worstRating?: number | string;
+    alternateName?: string;
+    ratingExplanation?: string;
+  };
+  authorName?: string;
+  authorUrl?: string;
+  datePublished?: string;
+}
+
+export function ClaimReviewJsonLd({
+  url,
+  claimReviewed,
+  itemReviewed,
+  reviewRating,
+  authorName = APP_NAME,
+  authorUrl = APP_URL,
+  datePublished = new Date().toISOString(),
+}: ClaimReviewJsonLdProps) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "ClaimReview",
+    url,
+    claimReviewed,
+    datePublished,
+    author: {
+      "@type": "Organization",
+      name: authorName,
+      url: authorUrl,
+    },
+    itemReviewed: {
+      "@type": "Claim",
+      name: itemReviewed.name,
+      author: {
+        "@type": "Organization",
+        name: itemReviewed.author,
+      },
+      ...(itemReviewed.datePublished && { datePublished: itemReviewed.datePublished }),
+      ...(itemReviewed.appearanceUrl && {
+        appearance: {
+          "@type": "CreativeWork",
+          url: itemReviewed.appearanceUrl,
+        },
+      }),
+    },
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: reviewRating.ratingValue,
+      bestRating: reviewRating.bestRating ?? 5,
+      worstRating: reviewRating.worstRating ?? 1,
+      ...(reviewRating.alternateName && { alternateName: reviewRating.alternateName }),
+      ...(reviewRating.ratingExplanation && { ratingExplanation: reviewRating.ratingExplanation }),
+    },
+  };
+  return (
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
+  );
+}
+
+export const FactCheckJsonLd = ClaimReviewJsonLd;

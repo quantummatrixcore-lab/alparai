@@ -154,15 +154,17 @@ function ExpertApplicationRow({ application }: { application: ExpertApplicationI
                 leftIcon={<Check className="h-3.5 w-3.5" aria-label="Approve" />}
                 isLoading={pending}
                 onClick={() => handleReview("approve")}
+                aria-label={t("approve")}
               >
                 {t("approve")}
               </Button>
               <Button
                 size="sm"
                 variant="danger"
-                leftIcon={<X className="h-3.5 w-3.5" aria-label="Action" />}
+                leftIcon={<X className="h-3.5 w-3.5" aria-label="Reject" />}
                 isLoading={pending}
                 onClick={() => handleReview("reject")}
+                aria-label={t("reject")}
               >
                 {t("reject")}
               </Button>

@@ -306,7 +306,11 @@ function ModerationCard({ incident }: { incident: IncidentListItem }) {
                   {t("view", { defaultValue: "View" })}
                 </Button>
               </Link>
-              <Link href={`/incidents/${incident.id}/embed`} target="_blank">
+              <Link
+                href={`/incidents/${incident.id}/embed`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Button
                   size="sm"
                   variant="ghost"

@@ -386,7 +386,7 @@ export function InnovationsClient({
               <a
                 href={acceptingItem.external_url}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="text-brand-400 inline-flex items-center gap-1 hover:underline"
               >
                 {t("original_source")} <ExternalLink className="h-3 w-3" />

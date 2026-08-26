@@ -105,7 +105,7 @@ export default async function AdminDashboardPage({
     : "%100";
 
   return (
-    <div className="text-fg-primary selection:bg-brand-500/30 selection:text-brand-200 relative min-h-screen overflow-hidden bg-[#070709]">
+    <div className="text-fg-primary selection:bg-brand-500/30 selection:text-brand-200 bg-bg-primary relative min-h-screen overflow-hidden">
       {/* Cinematic Background Elements */}
       <div className="pointer-events-none fixed inset-0 z-0">
         <div className="bg-brand-600/10 absolute top-[-10%] left-[-10%] h-[40%] w-[40%] rounded-full blur-[120px]" />

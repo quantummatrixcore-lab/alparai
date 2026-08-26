@@ -373,9 +373,9 @@ export default async function ApiDocsPage({ params }: { params: Promise<{ locale
   const endpoints = getEndpoints(metrics);
 
   return (
-    <div className="min-h-screen bg-[#060E17]">
+    <div className="bg-bg-primary min-h-screen">
       {/* Hero */}
-      <div className="border-b border-white/5 bg-[#0A1622] pt-4 pb-12 md:pt-8 md:pb-16">
+      <div className="bg-bg-secondary border-b border-white/5 pt-4 pb-12 md:pt-8 md:pb-16">
         <Container>
           <Link
             href="/press-kit"
@@ -406,7 +406,7 @@ export default async function ApiDocsPage({ params }: { params: Promise<{ locale
             <h2 className="text-lg font-bold text-white">{t("endpoints_title")}</h2>
 
             {endpoints.map((ep) => (
-              <Card key={ep.path} className="border-white/5 bg-[#0F1E2E]">
+              <Card key={ep.path} className="bg-bg-secondary border-white/5">
                 <CardHeader className="pb-3">
                   <CardTitle className="flex flex-wrap items-center gap-3">
                     <span className="rounded border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 font-mono text-[11px] font-black text-emerald-400">
@@ -423,7 +423,7 @@ export default async function ApiDocsPage({ params }: { params: Promise<{ locale
                     <p className="mb-1.5 text-[10px] font-bold tracking-wider text-slate-500 uppercase">
                       {t("example_request")}
                     </p>
-                    <pre className="overflow-x-auto rounded-lg border border-white/5 bg-[#08121C] p-3 font-mono text-xs text-emerald-300">
+                    <pre className="bg-bg-tertiary overflow-x-auto rounded-lg border border-white/5 p-3 font-mono text-xs text-emerald-300">
                       {ep.example}
                     </pre>
                   </div>
@@ -432,7 +432,7 @@ export default async function ApiDocsPage({ params }: { params: Promise<{ locale
                     <p className="mb-1.5 text-[10px] font-bold tracking-wider text-slate-500 uppercase">
                       {t("example_response")}
                     </p>
-                    <pre className="overflow-x-auto rounded-lg border border-white/5 bg-[#08121C] p-3 font-mono text-xs text-slate-300">
+                    <pre className="bg-bg-tertiary overflow-x-auto rounded-lg border border-white/5 p-3 font-mono text-xs text-slate-300">
                       {ep.response}
                     </pre>
                   </div>
@@ -443,7 +443,7 @@ export default async function ApiDocsPage({ params }: { params: Promise<{ locale
 
           {/* Sticky sidebar */}
           <div className="space-y-4 lg:sticky lg:top-6 lg:self-start">
-            <Card className="border-white/5 bg-[#0F1E2E]">
+            <Card className="bg-bg-secondary border-white/5">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-sm text-white">
                   <Zap className="h-4 w-4 text-yellow-400" />
@@ -479,7 +479,7 @@ export default async function ApiDocsPage({ params }: { params: Promise<{ locale
               </CardContent>
             </Card>
 
-            <Card className="border-white/5 bg-[#0F1E2E]">
+            <Card className="bg-bg-secondary border-white/5">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-sm text-white">
                   <Globe className="h-4 w-4 text-blue-400" />
@@ -488,13 +488,13 @@ export default async function ApiDocsPage({ params }: { params: Promise<{ locale
               </CardHeader>
               <CardContent className="space-y-2 text-xs text-slate-400">
                 <p>{t("cors_desc")}</p>
-                <pre className="rounded border border-white/5 bg-[#08121C] p-2 font-mono text-[10px] text-slate-300">
+                <pre className="bg-bg-tertiary rounded border border-white/5 p-2 font-mono text-[10px] text-slate-300">
                   Access-Control-Allow-Origin: *
                 </pre>
               </CardContent>
             </Card>
 
-            <Card className="border-white/5 bg-[#0F1E2E]">
+            <Card className="bg-bg-secondary border-white/5">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-sm text-white">
                   <Shield className="h-4 w-4 text-emerald-400" />
@@ -502,14 +502,14 @@ export default async function ApiDocsPage({ params }: { params: Promise<{ locale
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-xs text-slate-400">
-                <pre className="rounded border border-white/5 bg-[#08121C] p-2 font-mono text-[10px] text-emerald-300">
+                <pre className="bg-bg-tertiary rounded border border-white/5 p-2 font-mono text-[10px] text-emerald-300">
                   https://alparai.com/api/v1
                 </pre>
                 <p className="mt-2">{t("base_url_desc")}</p>
               </CardContent>
             </Card>
 
-            <Card className="border-white/5 bg-[#0F1E2E]">
+            <Card className="bg-bg-secondary border-white/5">
               <CardContent className="p-4">
                 <p className="mb-2 flex items-center gap-2 text-xs font-semibold text-white">
                   <Code2 className="h-3.5 w-3.5 text-emerald-400" />

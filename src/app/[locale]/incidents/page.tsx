@@ -187,14 +187,14 @@ export default async function IncidentsPage({
   const sidebarNews = (newsResult.data ?? []) as SidebarNewsItem[];
 
   return (
-    <Container className="py-10">
-      <header className="mb-10 rounded-2xl border border-white/5 bg-[#050914] p-8 shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_100%_100%_at_50%_0%,#000_30%,transparent_100%)]" />
+    <Container className="pt-4 pb-12 md:pt-6 md:pb-16">
+      <header className="relative mb-8 overflow-hidden rounded-2xl border border-white/5 bg-[#050914] p-6 shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)] sm:p-8">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_100%_100%_at_50%_0%,#000_30%,transparent_100%)] bg-[size:40px_40px]" />
         <div className="relative z-10 flex flex-col items-center text-center">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-danger-500/30 bg-danger-500/10 px-3 py-1 text-[10px] font-black tracking-[0.2em] text-danger-400 uppercase shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
+          <div className="border-danger-500/30 bg-danger-500/10 text-danger-400 mb-4 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-[10px] font-black tracking-[0.2em] uppercase shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-danger-400 opacity-75"></span>
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-danger-500 shadow-[0_0_8px_rgba(230,57,70,1)]"></span>
+              <span className="bg-danger-400 absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"></span>
+              <span className="bg-danger-500 relative inline-flex h-2 w-2 rounded-full shadow-[0_0_8px_rgba(230,57,70,1)]"></span>
             </span>
             Bağımsız Denetim Mercii
           </div>

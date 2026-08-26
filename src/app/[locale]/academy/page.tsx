@@ -48,10 +48,10 @@ export default async function AcademyPage({ params }: { params: Promise<{ locale
   return (
     <div className="bg-bg-primary text-fg-primary selection:bg-brand-500/30 min-h-screen">
       {/* SECTION 1 - HERO */}
-      <section className="border-border-subtle relative overflow-hidden border-b pt-12 pb-20 md:pt-20 md:pb-32">
+      <section className="border-border-subtle relative overflow-hidden border-b pt-6 pb-12 md:pt-10 md:pb-16">
         <div className="from-brand-900/20 via-bg-primary to-bg-primary absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))]" />
         <Container className="relative">
-          <div className="mx-auto flex max-w-4xl flex-col items-center space-y-8 text-center">
+          <div className="mx-auto flex max-w-4xl flex-col items-center space-y-6 text-center">
             <Badge
               variant="outline"
               className="border-brand-500/30 text-brand-400 bg-brand-500/10 px-4 py-1.5 backdrop-blur-sm"
@@ -59,24 +59,24 @@ export default async function AcademyPage({ params }: { params: Promise<{ locale
               <GraduationCap className="mr-2 h-4 w-4" />
               {t("hero_badge")}
             </Badge>
-            <h1 className="bg-gradient-to-r from-white to-white/70 bg-clip-text text-4xl font-bold tracking-tight text-transparent md:text-6xl lg:text-7xl">
+            <h1 className="bg-gradient-to-r from-white to-white/70 bg-clip-text text-3xl font-black tracking-tight text-transparent sm:text-5xl md:text-6xl">
               {t("hero_title")}
             </h1>
-            <p className="text-fg-muted max-w-2xl text-lg leading-relaxed md:text-xl">
+            <p className="text-fg-muted max-w-2xl text-base leading-relaxed md:text-lg">
               {t("hero_subtitle")}
             </p>
-            <div className="flex flex-col gap-4 pt-4 sm:flex-row">
-              <a
-                href="#apply"
-                className="bg-brand-500 hover:bg-brand-400 inline-flex h-12 items-center justify-center rounded-md px-8 text-sm font-medium text-white shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-colors focus-visible:ring-1 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
-              >
-                {t("cta_expert")}
-              </a>
+            <div className="flex flex-col gap-3 pt-2 sm:flex-row">
               <a
                 href="#universities"
-                className="border-border-strong hover:bg-bg-tertiary inline-flex h-12 items-center justify-center rounded-md border px-8 text-sm font-medium transition-colors focus-visible:ring-1 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
+                className="bg-brand-500 hover:bg-brand-400 inline-flex h-11 items-center justify-center rounded-xl px-7 text-sm font-semibold text-white shadow-[0_0_20px_rgba(168,85,247,0.3)] transition-all hover:scale-105 focus-visible:ring-1 focus-visible:outline-none"
               >
                 {t("cta_universities")}
+              </a>
+              <a
+                href="#apply"
+                className="text-fg-primary inline-flex h-11 items-center justify-center rounded-xl border border-white/15 bg-white/5 px-7 text-sm font-semibold backdrop-blur-md transition-all hover:scale-105 hover:border-white/25 hover:bg-white/10 focus-visible:ring-1 focus-visible:outline-none"
+              >
+                {t("cta_expert")}
               </a>
             </div>
           </div>

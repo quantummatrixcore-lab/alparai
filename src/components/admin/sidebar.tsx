@@ -557,7 +557,14 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
                 <div className="border-brand-500/30 bg-brand-500/10 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border shadow-[0_0_15px_rgba(168,85,247,0.25)] transition duration-300 group-hover:scale-105">
                   <Logo size="sm" />
                 </div>
-                <Wordmark className="truncate text-xl tracking-tight" />
+                <span className="flex items-center gap-1.5 text-xl font-bold tracking-tight">
+                  <span className="to-brand-100 bg-gradient-to-r from-white via-slate-100 bg-clip-text text-transparent">
+                    ALPAR
+                  </span>
+                  <span className="from-accent-300 to-accent-500 bg-gradient-to-r bg-clip-text text-transparent">
+                    AI
+                  </span>
+                </span>
               </div>
             )}
           </Link>
@@ -585,7 +592,7 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
         <nav
           ref={navRef}
           onScroll={handleNavScroll}
-          className="scrollbar-hide flex-1 overflow-y-auto py-4"
+          className="scrollbar-hide min-h-0 flex-1 overflow-y-auto py-4"
         >
           {showSystem && renderNavGroup("founder", "Founder Command", Crown, founderItems)}
 
@@ -610,7 +617,7 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
         </nav>
 
         {/* User Profile Footer */}
-        <div className="border-border-subtle bg-bg-secondary/60 border-t p-4 backdrop-blur-md">
+        <div className="border-border-subtle bg-bg-secondary/80 shrink-0 border-t p-4 pb-6 backdrop-blur-md">
           {isCollapsed ? (
             <div className="flex flex-col items-center gap-4">
               <div className="border-brand-500/20 group relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border shadow-[0_0_8px_rgba(168,85,247,0.15)]">

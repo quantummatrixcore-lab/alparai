@@ -29,10 +29,10 @@ export function AdvisorRoster() {
           </div>
         </div>
         <Link
-          href={`/en/twins-leaderboard`}
+          href={`/twins-leaderboard`}
           className="group/link flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-bold text-slate-300 transition-all hover:bg-white/10 hover:text-white"
         >
-          Tümünü Gör (30)
+          {t("view_all", { defaultValue: "Tümünü Gör (30)" })}
           <ChevronRight className="h-3 w-3 transition-transform group-hover/link:translate-x-1" />
         </Link>
       </div>
@@ -72,7 +72,7 @@ export function AdvisorRoster() {
                   </span>
                 </div>
                 <Link
-                  href={`/en/admin/ai-hub/orchestrator`}
+                  href={`/admin/ai-hub/orchestrator`}
                   className="hover:bg-brand-500 rounded-full bg-white/10 p-1.5 text-white transition-all hover:text-white"
                 >
                   <ChevronRight className="h-4 w-4" />

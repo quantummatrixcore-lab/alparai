@@ -58,7 +58,7 @@ export default async function AdvisoryBoardPage({
   return (
     <div>
       {/* Premium Glassmorphism Header */}
-      <div className="bg-bg-secondary/10 border-border-subtle relative overflow-hidden border-b pt-32 pb-24 text-center">
+      <div className="bg-bg-secondary/10 border-border-subtle relative overflow-hidden border-b pt-6 pb-16 text-center md:pt-10 md:pb-20">
         {/* Subtle decorative glow */}
         <div className="bg-brand-500/10 pointer-events-none absolute -top-48 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full blur-[100px]" />
 
@@ -127,22 +127,39 @@ export default async function AdvisoryBoardPage({
                 {activeMembers.map((member) => (
                   <Card
                     key={member.id}
-                    className="bg-bg-secondary/10 border-border-subtle hover:border-brand-500/30 group shadow-sm transition-colors"
+                    className="bg-bg-secondary/10 border-border-subtle hover:border-brand-500/30 group shadow-sm transition-all duration-300 hover:shadow-lg"
                   >
                     <CardHeader className="pb-2">
-                      <div className="border-border-subtle bg-bg-secondary/50 group-hover:border-brand-500/20 group-hover:bg-brand-500/5 mb-4 flex h-10 w-10 items-center justify-center rounded-lg border transition-colors">
-                        {member.display_order === 1 && (
-                          <GraduationCap className="text-brand-400 h-6 w-6" />
-                        )}
-                        {member.display_order === 2 && (
-                          <ShieldAlert className="text-brand-400 h-6 w-6" />
-                        )}
-                        {member.display_order === 3 && <Scale className="text-brand-400 h-6 w-6" />}
-                        {(!member.display_order || member.display_order >= 4) && (
-                          <Users className="text-brand-400 h-6 w-6" />
-                        )}
-                      </div>
-                      <CardTitle className="text-fg-primary text-base leading-tight font-bold">
+                      {member.avatar_url ? (
+                        <div className="border-brand-500/30 group-hover:border-brand-500/60 relative mb-4 h-16 w-16 overflow-hidden rounded-2xl border shadow-[0_0_15px_rgba(168,85,247,0.2)] transition-all">
+                          {}
+                          <img
+                            src={member.avatar_url}
+                            alt={member.name}
+                            className="h-full w-full object-cover"
+                            onError={(e) => {
+                              // If external image fails, gracefully fallback to icon
+                              e.currentTarget.style.display = "none";
+                            }}
+                          />
+                        </div>
+                      ) : (
+                        <div className="border-border-subtle bg-bg-secondary/50 group-hover:border-brand-500/20 group-hover:bg-brand-500/5 mb-4 flex h-12 w-12 items-center justify-center rounded-2xl border transition-colors">
+                          {member.display_order === 1 && (
+                            <GraduationCap className="text-brand-400 h-6 w-6" />
+                          )}
+                          {member.display_order === 2 && (
+                            <ShieldAlert className="text-brand-400 h-6 w-6" />
+                          )}
+                          {member.display_order === 3 && (
+                            <Scale className="text-brand-400 h-6 w-6" />
+                          )}
+                          {(!member.display_order || member.display_order >= 4) && (
+                            <Users className="text-brand-400 h-6 w-6" />
+                          )}
+                        </div>
+                      )}
+                      <CardTitle className="text-fg-primary text-lg leading-tight font-bold">
                         {member.name.startsWith("[Open Position]")
                           ? isTr
                             ? "[Açık Pozisyon] " + member.name.replace("[Open Position] ", "")
@@ -162,16 +179,16 @@ export default async function AdvisoryBoardPage({
                       </p>
                     </CardContent>
                     {(member.website_url || member.press_url) && (
-                      <CardFooter className="gap-4 pt-4">
+                      <CardFooter className="flex flex-wrap gap-4 border-t border-white/5 pt-4">
                         {member.website_url && (
                           <a
                             href={member.website_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-brand-400 hover:text-brand-300 inline-flex items-center gap-1 text-xs font-semibold tracking-wide uppercase transition-colors"
+                            className="text-brand-400 hover:text-brand-300 inline-flex items-center gap-1.5 text-xs font-bold tracking-wide uppercase transition-colors"
                           >
-                            {t("advisoryBoardWebsiteLink")}
-                            <ArrowUpRight className="h-3 w-3" />
+                            {t("advisoryBoardWebsiteLink", { defaultValue: "Web Sitesi" })}
+                            <ArrowUpRight className="h-3.5 w-3.5" />
                           </a>
                         )}
                         {member.press_url && (
@@ -179,10 +196,10 @@ export default async function AdvisoryBoardPage({
                             href={member.press_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-brand-400 hover:text-brand-300 inline-flex items-center gap-1 text-xs font-semibold tracking-wide uppercase transition-colors"
+                            className="text-brand-400 hover:text-brand-300 inline-flex items-center gap-1.5 text-xs font-bold tracking-wide uppercase transition-colors"
                           >
-                            {t("advisoryBoardMediaOutletLink")}
-                            <ArrowUpRight className="h-3 w-3" />
+                            {t("advisoryBoardPressLink", { defaultValue: "Medya Kuruluşu" })}
+                            <ArrowUpRight className="h-3.5 w-3.5" />
                           </a>
                         )}
                       </CardFooter>

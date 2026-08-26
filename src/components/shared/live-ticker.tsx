@@ -7,7 +7,9 @@ import { useTranslations } from "next-intl";
 
 interface TickerIncident {
   id: string;
+  title_masked?: string | null;
   ai_provider: { name: string } | null;
+  ai_model?: { name: string } | null;
   category: string;
 }
 
@@ -18,50 +20,32 @@ export function LiveTicker() {
 
   useEffect(() => {
     async function fetchTickerData() {
-      // Fetch latest 3 critical incidents
+      // Fetch latest critical incidents with provider details
       const { data: latest } = await supabase
         .from("incidents")
-        .select("id, ai_provider:ai_providers(name), category")
+        .select(
+          "id, title_masked, category, ai_provider:ai_providers(name), ai_model:ai_models(name)",
+        )
         .eq("status", "published")
         .order("created_at", { ascending: false })
-        .limit(3);
+        .limit(5);
 
-      if (latest) {
+      if (latest && latest.length > 0) {
         setIncidents(latest as unknown as TickerIncident[]);
       }
 
-      // Fetch total verified count
-      const { data: stats } = await (
-        supabase as unknown as {
-          from: (table: string) => {
-            select: (cols: string) => {
-              eq: (
-                col: string,
-                val: string,
-              ) => {
-                single: () => Promise<{
-                  data: { stat_value: number | string } | null;
-                  error: unknown;
-                }>;
-              };
-            };
-          };
-        }
-      )
-        .from("platform_statistics")
-        .select("stat_value")
-        .eq("stat_key", "total_incidents")
-        .single();
+      // Fetch live verified count directly from incidents table
+      const { count } = await supabase
+        .from("incidents")
+        .select("id", { count: "exact", head: true })
+        .eq("status", "published");
 
-      if (stats?.stat_value !== undefined) {
-        setTotalCount(Number(stats.stat_value));
+      if (typeof count === "number") {
+        setTotalCount(count);
       }
     }
-    const timer = setTimeout(() => {
-      fetchTickerData();
-    }, 2500);
 
-    return () => clearTimeout(timer);
+    fetchTickerData();
   }, []);
 
   if (incidents.length === 0) return null;
@@ -76,12 +60,20 @@ export function LiveTicker() {
               <span className="bg-brand-500 h-1.5 w-1.5 animate-pulse rounded-full" />
               {t("live_telemetry")}
             </span>
-            {incidents.map((inc) => (
-              <span key={inc.id} className="text-fg-secondary">
-                {inc.ai_provider?.name || t("unknown")} — {inc.category} #{inc.id.substring(0, 8)}
-                <span className="text-brand-400 ml-1">{t("verified_badge")}</span>
-              </span>
-            ))}
+            {incidents.map((inc) => {
+              const providerName = inc.ai_provider?.name || inc.ai_model?.name || t("unknown");
+              const label = inc.title_masked
+                ? inc.title_masked.length > 40
+                  ? `${inc.title_masked.slice(0, 40)}…`
+                  : inc.title_masked
+                : inc.category;
+              return (
+                <span key={inc.id} className="text-fg-secondary">
+                  {providerName} — {label} #{inc.id.substring(0, 8)}
+                  <span className="text-brand-400 ml-1 font-semibold">{t("verified_badge")}</span>
+                </span>
+              );
+            })}
             • {totalCount} {t("total_cases")}
           </div>
         ))}

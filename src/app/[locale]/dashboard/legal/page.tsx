@@ -45,7 +45,7 @@ export default async function LegalDashboard({ params }: { params: Promise<{ loc
 
   if (takedowns.length === 0 && cndLogs.length === 0) {
     return (
-      <div className="bg-bg-primary relative min-h-screen overflow-hidden pt-32 pb-24">
+      <div className="bg-bg-primary relative min-h-screen overflow-hidden pt-6 pb-20 md:pt-10">
         <div className="bg-accent-soft/10 pointer-events-none absolute top-0 left-1/4 h-[500px] w-[500px] rounded-full blur-[120px]" />
         <div className="relative mx-auto max-w-5xl px-6">
           <div className="border-border-primary/40 mb-12 border-b pb-8">
@@ -130,7 +130,7 @@ export default async function LegalDashboard({ params }: { params: Promise<{ loc
   };
 
   return (
-    <div className="bg-bg-primary relative min-h-screen overflow-hidden pt-32 pb-24">
+    <div className="bg-bg-primary relative min-h-screen overflow-hidden pt-6 pb-20 md:pt-10">
       <div className="bg-accent-soft/10 pointer-events-none absolute top-0 left-1/4 h-[500px] w-[500px] rounded-full blur-[120px]" />
       <div className="relative mx-auto max-w-5xl px-6">
         <div className="border-border-primary/40 mb-12 border-b pb-8">

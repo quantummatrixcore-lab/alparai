@@ -19,7 +19,7 @@ export default async function AcademyAmbassadorPage({
   const t = await getTranslations({ locale, namespace: "academy" });
 
   return (
-    <div className="bg-bg-primary relative min-h-screen overflow-hidden pt-32 pb-24">
+    <div className="bg-bg-primary relative min-h-screen overflow-hidden pt-6 pb-20 md:pt-10">
       {/* Background gradients */}
       <div className="bg-accent-soft/10 pointer-events-none absolute top-0 right-1/4 h-[500px] w-[500px] rounded-full blur-[120px]" />
       <div className="bg-accent-glow/5 pointer-events-none absolute bottom-10 left-1/4 h-[400px] w-[400px] rounded-full blur-[100px]" />

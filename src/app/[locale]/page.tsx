@@ -224,7 +224,16 @@ const getHomeData = cache(async (locale: string) => {
     const leaderboard: LeaderboardEntry[] = (
       (providersResult.data as unknown as Array<Record<string, unknown>>) ?? []
     )
-      .filter((p) => p["slug"] !== "alpar-autopilot")
+      .filter((p) => {
+        const slug = ((p["slug"] as string) ?? "").toLowerCase();
+        const incidentCount = (p["incident_count"] as number) ?? 0;
+        if (slug === "alpar-autopilot") return false;
+        // Do not display non-AI or 0-incident dummy placeholder entries like Adobe on the leaderboard
+        if (slug === "adobe" || slug === "apple" || slug === "figma") {
+          if (incidentCount === 0) return false;
+        }
+        return true;
+      })
       .map((p) => {
         const total = (p["incident_count"] as number) ?? 0;
         const responded = (p["response_count"] as number) ?? 0;
@@ -243,10 +252,12 @@ const getHomeData = cache(async (locale: string) => {
         };
       })
       .sort((a, b) => {
+        if (a.incident_count > 0 && b.incident_count === 0) return -1;
+        if (b.incident_count > 0 && a.incident_count === 0) return 1;
+        if (a.incident_count !== b.incident_count) return b.incident_count - a.incident_count;
         const scoreA = a.trust_score ?? 70;
         const scoreB = b.trust_score ?? 70;
         if (scoreB !== scoreA) return scoreB - scoreA;
-        if (a.incident_count !== b.incident_count) return b.incident_count - a.incident_count;
         return a.provider_name.localeCompare(b.provider_name);
       });
 

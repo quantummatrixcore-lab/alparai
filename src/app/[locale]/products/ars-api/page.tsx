@@ -12,21 +12,23 @@ export default async function ArsApiPage({ params }: { params: Promise<{ locale:
   const metrics = await getGlobalMetrics();
 
   return (
-    <div className="pt-24 pb-16">
+    <div className="pt-2 pb-16 md:pt-6">
       <ShowcasePageTracker pagePath="/products/ars-api" />
       <Section>
         <Container>
           <div className="mx-auto max-w-3xl text-center">
-            <div className="mb-6 flex justify-center">
-              <div className="border-danger-500/30 bg-danger-500/10 text-danger-400 inline-flex items-center gap-2 rounded-sm border px-5 py-2 text-xs font-bold tracking-[0.2em] uppercase">
-                <Shield className="h-4 w-4" />
+            <div className="mb-4 flex justify-center">
+              <div className="border-danger-500/30 bg-danger-500/10 text-danger-400 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold tracking-wider uppercase backdrop-blur-md">
+                <Shield className="h-3.5 w-3.5" />
                 <span>{t("badge")}</span>
               </div>
             </div>
-            <h1 className="text-fg-primary mb-6 text-5xl font-black tracking-tight lg:text-6xl">
+            <h1 className="text-fg-primary mb-4 text-3xl font-black tracking-tight sm:text-5xl lg:text-6xl">
               {t("title")}
             </h1>
-            <p className="text-fg-secondary text-lg leading-relaxed">{t("subtitle")}</p>
+            <p className="text-fg-secondary text-base leading-relaxed sm:text-lg">
+              {t("subtitle")}
+            </p>
           </div>
 
           <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">

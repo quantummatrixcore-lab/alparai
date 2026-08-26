@@ -25,7 +25,7 @@ export default async function AcademyInstructorPage({
   }> = [];
 
   return (
-    <div className="bg-bg-primary relative min-h-screen overflow-hidden pt-32 pb-24">
+    <div className="bg-bg-primary relative min-h-screen overflow-hidden pt-6 pb-20 md:pt-10">
       {/* Background glow */}
       <div className="bg-accent-soft/5 pointer-events-none absolute top-0 left-1/3 h-[600px] w-[600px] rounded-full blur-[140px]" />
 

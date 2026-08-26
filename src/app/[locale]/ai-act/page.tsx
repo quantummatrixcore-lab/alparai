@@ -159,7 +159,7 @@ export default async function AIActTrackerPage({
   };
 
   return (
-    <Container className="py-10">
+    <Container className="pt-4 pb-12 md:pt-6 md:pb-16">
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_320px]">
         <div className="space-y-8">
           {/* Header */}

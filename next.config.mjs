@@ -8,7 +8,7 @@ const isTest =
 
 const cspRules = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.supabase.co https://*.sentry.io https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.google.com https://*.gstatic.com",
+  "script-src 'self' 'unsafe-inline' https://*.supabase.co https://*.sentry.io https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.google.com https://*.gstatic.com",
   "style-src 'self' https://fonts.googleapis.com https://accounts.google.com",
   "font-src 'self' https://fonts.gstatic.com data:",
   "img-src 'self' data: blob: https: https://*.googleusercontent.com",
@@ -105,6 +105,8 @@ const nextConfig = {
       { protocol: "https", hostname: "avatars.githubusercontent.com" },
       { protocol: "https", hostname: "lh3.googleusercontent.com" },
       { protocol: "https", hostname: "logo.clearbit.com" },
+      { protocol: "https", hostname: "ahmetrifatalbuz.com" },
+      { protocol: "https", hostname: "*.ahmetrifatalbuz.com" },
     ],
   },
   experimental: {
@@ -114,6 +116,12 @@ const nextConfig = {
       "@phosphor-icons/react",
       "recharts",
       "date-fns",
+      "@radix-ui/react-dialog",
+      "@radix-ui/react-dropdown-menu",
+      "@radix-ui/react-popover",
+      "@radix-ui/react-tooltip",
+      "clsx",
+      "tailwind-merge",
     ],
   },
   async headers() {

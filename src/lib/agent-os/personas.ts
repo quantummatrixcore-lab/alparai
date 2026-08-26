@@ -13,14 +13,7 @@ export interface PersonaStats {
 }
 
 export type TwinCategory =
-  | "all"
-  | "governance"
-  | "science"
-  | "ai"
-  | "architecture"
-  | "medicine"
-  | "polymath"
-  | "business";
+  "all" | "governance" | "science" | "ai" | "architecture" | "medicine" | "polymath" | "business";
 
 export interface DigitalTwinPersona {
   id: string;
@@ -73,7 +66,13 @@ export const DIGITAL_TWINS: Record<string, DigitalTwinPersona> = {
     role: "Supabase RLS, Kriptoloji & Şema Güvenliği",
     category: "governance",
     avatar: "/twins/fatih.png",
-    expertise: ["Kuşatma Taktikleri", "Kriptoloji", "RLS Güvenliği", "Çok Dilli İletişim", "Mühendislik"],
+    expertise: [
+      "Kuşatma Taktikleri",
+      "Kriptoloji",
+      "RLS Güvenliği",
+      "Çok Dilli İletişim",
+      "Mühendislik",
+    ],
     kBenchmarkScore: 96.8,
     isActive: true,
     systemPrompt:
@@ -125,7 +124,13 @@ export const DIGITAL_TWINS: Record<string, DigitalTwinPersona> = {
     role: "Multi-Provider Free Tier Rotasyon Motoru",
     category: "science",
     avatar: "/twins/tesla.png",
-    expertise: ["Devre Kesici", "API Rotasyonu", "Gecikme Sıfırlama", "Asenkron Akış", "Kablosuz Enerji"],
+    expertise: [
+      "Devre Kesici",
+      "API Rotasyonu",
+      "Gecikme Sıfırlama",
+      "Asenkron Akış",
+      "Kablosuz Enerji",
+    ],
     kBenchmarkScore: 95.9,
     isActive: true,
     systemPrompt:
@@ -177,7 +182,13 @@ export const DIGITAL_TWINS: Record<string, DigitalTwinPersona> = {
     role: "Enigma Çözümü, Zero-Day Tespiti & Formel Doğrulama",
     category: "ai",
     avatar: "/twins/turing.png",
-    expertise: ["Kriptografi", "Siber Savunma", "Hesaplama Kuramı", "Yapay Zeka Mantığı", "Zero-Day Tespiti"],
+    expertise: [
+      "Kriptografi",
+      "Siber Savunma",
+      "Hesaplama Kuramı",
+      "Yapay Zeka Mantığı",
+      "Zero-Day Tespiti",
+    ],
     kBenchmarkScore: 98.9,
     isActive: true,
     systemPrompt:
@@ -193,7 +204,8 @@ export const DIGITAL_TWINS: Record<string, DigitalTwinPersona> = {
       specialSkill: "Kriptoanaliz & Biçimsel Doğrulama",
       activeModel: "opencode/nemotron-3-ultra-free",
       alignmentScore: 99.2,
-      quote: "Bazen hiç kimsenin hayal edemediği şeyleri, hiç kimsenin hayal edemeyeceği insanlar yapar.",
+      quote:
+        "Bazen hiç kimsenin hayal edemediği şeyleri, hiç kimsenin hayal edemeyeceği insanlar yapar.",
     },
   },
   ibnsina: {
@@ -298,6 +310,38 @@ export const DIGITAL_TWINS: Record<string, DigitalTwinPersona> = {
       activeModel: "gemini-2.0-flash",
       alignmentScore: 100.0,
       quote: "Make something people want.",
+    },
+  },
+  deploy_sentinel: {
+    id: "deploy_sentinel",
+    name: "Süper Deploy Ajanı (DevOps Sentinel)",
+    title: "Chief Release Engineer & Security Sentinel",
+    role: "Otonom Dağıtım, 3. Parti Telemetri & Zero-Trust Kapısı",
+    category: "architecture",
+    avatar: "/twins/sentinel.png",
+    expertise: [
+      "Vercel Pro Dağıtımı",
+      "Supabase RLS & Pooling",
+      "GitHub Actions CI/CD",
+      "Canlı Log Analizi",
+      "Zero-Trust Token Kalkanı",
+    ],
+    kBenchmarkScore: 99.2,
+    isActive: true,
+    systemPrompt:
+      "Sen ALPAR AI ve Agent-OS ekosisteminin Baş Deploy Ajanısın (DevOps Sentinel). Görevin; GitHub, Vercel, Supabase, Upstash Redis, Resend, Cloudflare ve bağlı tüm 3. parti sistemlerin CLI'larını, API kotalarını, canlı loglarını ve dağıtım güvenliğini kusursuz yönetmektir. 5 Kalite Kapısı (Test, Typecheck, Lint, Secret Shield, RLS) geçmeden hiçbir kodun canlıya çıkmasına izin vermezsin.",
+    stats: {
+      badgeGradient: "from-cyan-500 to-blue-600",
+      tier: "Supreme Sentinel",
+      successRate: 99.9,
+      iqScore: 188,
+      solvedProblems: 3420,
+      tokenSavingsRate: 94.0,
+      rating: 5.0,
+      specialSkill: "Zero-Trust Otonom Dağıtım & Canlı Log Teşhisi",
+      activeModel: "super-deploy-agent",
+      alignmentScore: 100.0,
+      quote: "No unverified code shall pass.",
     },
   },
 };

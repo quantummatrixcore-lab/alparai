@@ -4,14 +4,16 @@ export default function PricingPage() {
   const t = useTranslations("pricing");
 
   return (
-    <div className="min-h-screen bg-black px-6 pt-24 pb-12 text-white selection:bg-white/30">
-      <div className="mx-auto max-w-7xl space-y-12">
-        <div className="space-y-4 text-center">
-          <span className="inline-block rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium tracking-wider text-zinc-400 uppercase">
+    <div className="selection:bg-brand-500/30 min-h-screen px-6 pt-4 pb-12 text-white md:pt-8 md:pb-16">
+      <div className="mx-auto max-w-7xl space-y-8 md:space-y-10">
+        <div className="space-y-3 text-center">
+          <span className="border-brand-500/30 bg-brand-500/10 text-brand-300 inline-block rounded-full border px-3.5 py-1 text-xs font-semibold tracking-wider uppercase backdrop-blur-md">
             {t("badge")}
           </span>
-          <h1 className="text-4xl font-bold tracking-tight md:text-5xl">{t("headline")}</h1>
-          <p className="mx-auto max-w-2xl text-lg text-zinc-400">{t("subtitle")}</p>
+          <h1 className="text-3xl font-black tracking-tight sm:text-4xl md:text-5xl">
+            {t("headline")}
+          </h1>
+          <p className="mx-auto max-w-2xl text-base text-zinc-400 md:text-lg">{t("subtitle")}</p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-3">

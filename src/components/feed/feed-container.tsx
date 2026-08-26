@@ -225,7 +225,7 @@ export function FeedContainer({
   }, [scoredIncidents, activeTab, watchedProviders, initialIncidents]);
 
   return (
-    <Container className="py-8">
+    <Container className="pt-4 pb-12 md:pt-6 md:pb-16">
       <header className="mb-8">
         <h1 className="text-fg-primary text-3xl font-extrabold tracking-tight sm:text-4xl">
           {activeTab === "for-you" && (locale === "tr" ? "Sizin İçin Akış" : "For You Feed")}

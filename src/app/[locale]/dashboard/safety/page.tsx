@@ -14,7 +14,7 @@ export default async function SafetyDashboard({ params }: { params: Promise<{ lo
   const t = await getTranslations({ locale, namespace: "dashboard" });
 
   return (
-    <div className="bg-bg-primary relative min-h-screen overflow-hidden pt-32 pb-24">
+    <div className="bg-bg-primary relative min-h-screen overflow-hidden pt-6 pb-20 md:pt-10">
       {/* Decorative gradients */}
       <div className="bg-accent-soft/10 pointer-events-none absolute top-0 left-1/4 h-[500px] w-[500px] rounded-full blur-[120px]" />
 

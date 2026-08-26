@@ -1,15 +1,5 @@
-# dependencies
-node_modules
-.pnpm-store
-package-lock.json
-
-# production
-build
-dist
-
-# misc
-.DS_Store
-*.pem
+# Logs
+logs
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -17,140 +7,41 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# env files (NEVER commit)
-.env
-.env.local
-.env.*.local
-.env.production
-.env.development
-.env.staging
-secrets/
-*.pem
-*.key
-*.p12
-*.pfx
+node_modules/
+package-lock.json
 
-# vercel
-.vercel
-
-# agent/browser
-agent-browser.json
-.browser_profile
-.opencode
-*.cookies
-*_cookies.txt
-chrome_tabs*.json
-scripts/temp_*
-
-# typescript
-*.tsbuildinfo
+# Next.js & Build
+.next/
+dist/
+dist-ssr/
+dist-public/
+exports/
+tsconfig.tsbuildinfo
 next-env.d.ts
 
-# testing
-coverage
-playwright-report
-test-results
+# Env & Secrets
+.env
+.env*.local
+.env.vercel*
+.env.*
 
-# editor
-.vscode
-.idea
-
-# dev artifacts
-ts-errors.txt
-ALPARAI-360-AUDIT-REPORT.md
-
-# os
-Thumbs.db
-
-# supabase
-supabase/.branches
-supabase/.temp
-
-.vercel
-.env*
-
-# graphify
-graph.json
-graph.html
-GRAPH_REPORT.md
-graphify-out/
-
-# private engine package (submodule — not for public repo)
-src/engine/
-
-# exports
-exports/
-
-# temp / check scripts
-tmp/
-check-*.mjs
-# ...but the enforcement layer lives in scripts/ and must always be committed.
-# Without this negation every new checker is silently dropped from commits.
-!scripts/check-*.mjs
-
-# chrome automation temp
-chrome-profile/
-chrome_err.txt
-chrome_out.txt
-ops/launch-chrome.mjs
-
-# scratch and lighthouse artifacts
-scratch/
-lighthouse-*.json
-
-chrome-temp/
-chrome-data/
-
-# Chrome browser profiles (NEVER commit)
-chrome-temp/
-.opencode/chrome-temp/
-
-chrome-temp-test/
-logs.json
-full_build_log.txt
-
-# next build output and temporary diffs
-.next/
-patch.diff
-
-# Credential files that no scanner caught because nothing here ignored them.
-# The rotation checklist lists GCP service-account JSON among the project's
-# credentials, yet *.json was never filtered - only *.pem/*.key/*.p12 were.
-*service-account*.json
-*credentials*.json
-gcp-*.json
-*.p8
-*.jks
-*.keystore
-id_rsa
-id_rsa.pub
-id_ed25519
-
-# Agent operational folders
-.agents/
-.openchrome/
+# Vercel & Tooling
+.vercel/
 artifacts/
+scratch/
+test-results/
 walkthrough.md
-dist-public/
+chrome-profile/
+.cookies
 
-# Large debug capture files
-agent-status.json
-page_html_*.txt
-scan-output.txt
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
-
-ercumenterden.com/.next
-ercumenterden.com/node_modules
-
-EE-Resim/
-
-# REPO-1 Cleanup
-/*.png
-/typecheck_output*.txt
-/database_old.ts
-/database_new.ts
-/chrome_tabs*.json
-/omni_tab_results.json
-/claude_dom.html
-/extracted_*.html
-/founder_panel_v2_raw.html

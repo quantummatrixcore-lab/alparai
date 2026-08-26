@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { useTranslations } from "next-intl";
-import { Users, Eye, AlertTriangle } from "lucide-react";
+import { Users, Eye } from "lucide-react";
 import { getPlausibleMetrics } from "@/actions/admin/analytics";
 
 export function PlausibleVisitorCard() {
@@ -37,17 +37,9 @@ export function PlausibleVisitorCard() {
     );
   }
 
-  if (metrics?.error) {
-    return (
-      <div className="border-warning-500/20 bg-warning-500/10 flex w-full items-center gap-3 rounded-2xl border p-4 backdrop-blur-2xl sm:rounded-3xl sm:p-6">
-        <AlertTriangle className="text-warning-400 h-6 w-6 shrink-0" />
-        <div className="flex flex-col">
-          <p className="text-warning-400 text-sm font-semibold">{t("plausible_live_visitors")}</p>
-          <p className="text-warning-300/80 text-xs">{metrics.error}</p>
-        </div>
-      </div>
-    );
-  }
+  const isConfigured = !metrics?.error;
+  const visitorsCount = isConfigured ? (metrics?.visitors ?? 0) : 0;
+  const pageviewsCount = isConfigured ? (metrics?.pageviews ?? 0) : 0;
 
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-6">
@@ -57,7 +49,7 @@ export function PlausibleVisitorCard() {
           <div>
             <p className="text-fg-muted text-sm font-medium">{t("plausible_visitors_30d")}</p>
             <p className="mt-1 text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl">
-              {metrics?.visitors?.toLocaleString() || "0"}
+              {visitorsCount.toLocaleString()}
             </p>
           </div>
           <div className="bg-brand-500/10 text-brand-400 flex h-12 w-12 items-center justify-center rounded-2xl">
@@ -72,7 +64,7 @@ export function PlausibleVisitorCard() {
           <div>
             <p className="text-fg-muted text-sm font-medium">{t("plausible_pageviews_30d")}</p>
             <p className="mt-1 text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl">
-              {metrics?.pageviews?.toLocaleString() || "0"}
+              {pageviewsCount.toLocaleString()}
             </p>
           </div>
           <div className="bg-brand-500/10 text-brand-400 flex h-12 w-12 items-center justify-center rounded-2xl">

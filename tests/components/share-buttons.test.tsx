@@ -1,4 +1,5 @@
 // @vitest-environment jsdom
+import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { expect, test, describe, beforeEach, vi } from "vitest";
 import { ShareButtons } from "@/components/incidents/share-buttons";

@@ -205,64 +205,64 @@ async function LeaderboardDataContent({
         <div className="bg-accent-500/10 absolute top-40 right-0 h-[400px] w-[400px] rounded-full blur-[100px]" />
       </div>
 
-      <div className="relative z-10 pt-32 pb-16">
+      <div className="relative z-10 pt-4 pb-12 md:pt-6 md:pb-16">
         <Container>
-          {/* Hero Section */}
-          <header className="mb-12 flex flex-col items-center justify-center text-center">
-            <div className="bg-brand-500/10 ring-brand-500/20 mb-6 flex h-16 w-16 items-center justify-center rounded-full shadow-[0_0_30px_rgba(168,85,247,0.3)] ring-1">
-              <Trophy className="text-brand-400 h-8 w-8" />
+          {/* Compact Hero Section */}
+          <header className="mb-6 flex flex-col items-center justify-center text-center">
+            <div className="bg-brand-500/10 ring-brand-500/20 mb-3 flex h-12 w-12 items-center justify-center rounded-2xl shadow-[0_0_20px_rgba(168,85,247,0.25)] ring-1 backdrop-blur-md">
+              <Trophy className="text-brand-400 h-6 w-6" />
             </div>
-            <h1 className="text-fg-primary mb-4 text-4xl font-extrabold tracking-tight sm:text-5xl">
+            <h1 className="text-fg-primary mb-2 text-2xl font-black tracking-tight sm:text-4xl">
               {t("title")}
             </h1>
-            <p className="text-fg-secondary max-w-2xl text-lg">{t("subtitle")}</p>
+            <p className="text-fg-secondary max-w-xl text-sm sm:text-base">{t("subtitle")}</p>
 
-            <div className="mt-8 flex justify-center">
+            <div className="mt-3 flex justify-center">
               <ShareButtons url="/leaderboard" title={t("title")} />
             </div>
           </header>
 
-          {/* Glassmorphic Stats Row */}
-          <div className="mb-12 grid grid-cols-1 gap-4 sm:grid-cols-3">
-            <div className="bg-glass border-border-subtle hover:border-brand-500/30 group relative overflow-hidden rounded-2xl border p-6 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_10px_40px_-10px_rgba(168,85,247,0.2)]">
-              <div className="from-brand-500/10 absolute inset-0 bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-              <div className="relative z-10 flex items-center gap-4">
-                <div className="bg-brand-500/20 text-brand-400 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-transform duration-500 group-hover:scale-110">
-                  <Trophy className="h-6 w-6" />
+          {/* Compact Glassmorphic Stats Row */}
+          <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
+            <div className="bg-glass border-border-subtle hover:border-brand-500/30 group relative overflow-hidden rounded-xl border p-4 transition-all duration-300 hover:shadow-[0_8px_30px_-8px_rgba(168,85,247,0.2)]">
+              <div className="from-brand-500/10 absolute inset-0 bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <div className="relative z-10 flex items-center gap-3">
+                <div className="bg-brand-500/20 text-brand-400 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg transition-transform duration-300 group-hover:scale-105">
+                  <Trophy className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="text-fg-muted text-sm font-medium">{t("providersTracked")}</p>
-                  <p className="text-fg-primary text-3xl font-bold tracking-tight">
+                  <p className="text-fg-muted text-xs font-medium">{t("providersTracked")}</p>
+                  <p className="text-fg-primary text-2xl font-bold tracking-tight">
                     {stats.length}
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-glass border-border-subtle hover:border-success-500/30 group relative overflow-hidden rounded-2xl border p-6 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_10px_40px_-10px_rgba(34,197,94,0.2)]">
-              <div className="from-success-500/10 absolute inset-0 bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-              <div className="relative z-10 flex items-center gap-4">
-                <div className="bg-success-500/20 text-success-400 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-transform duration-500 group-hover:scale-110">
-                  <MessageSquare className="h-6 w-6" />
+            <div className="bg-glass border-border-subtle hover:border-success-500/30 group relative overflow-hidden rounded-xl border p-4 transition-all duration-300 hover:shadow-[0_8px_30px_-8px_rgba(34,197,94,0.2)]">
+              <div className="from-success-500/10 absolute inset-0 bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <div className="relative z-10 flex items-center gap-3">
+                <div className="bg-success-500/20 text-success-400 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg transition-transform duration-300 group-hover:scale-105">
+                  <MessageSquare className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="text-fg-muted text-sm font-medium">{t("totalResponses")}</p>
-                  <p className="text-fg-primary text-3xl font-bold tracking-tight">
+                  <p className="text-fg-muted text-xs font-medium">{t("totalResponses")}</p>
+                  <p className="text-fg-primary text-2xl font-bold tracking-tight">
                     {stats.reduce((s, p) => s + p.response_count, 0)}
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-glass border-border-subtle hover:border-accent-500/30 group relative overflow-hidden rounded-2xl border p-6 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_10px_40px_-10px_rgba(56,189,248,0.2)]">
-              <div className="from-accent-500/10 absolute inset-0 bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-              <div className="relative z-10 flex items-center gap-4">
-                <div className="bg-accent-500/20 text-accent-400 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-transform duration-500 group-hover:scale-110">
-                  <TrendingUp className="h-6 w-6" />
+            <div className="bg-glass border-border-subtle hover:border-accent-500/30 group relative overflow-hidden rounded-xl border p-4 transition-all duration-300 hover:shadow-[0_8px_30px_-8px_rgba(56,189,248,0.2)]">
+              <div className="from-accent-500/10 absolute inset-0 bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <div className="relative z-10 flex items-center gap-3">
+                <div className="bg-accent-500/20 text-accent-400 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg transition-transform duration-300 group-hover:scale-105">
+                  <TrendingUp className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="text-fg-muted text-sm font-medium">{t("avgResponseRate")}</p>
-                  <p className="text-fg-primary text-3xl font-bold tracking-tight">
+                  <p className="text-fg-muted text-xs font-medium">{t("avgResponseRate")}</p>
+                  <p className="text-fg-primary text-2xl font-bold tracking-tight">
                     {stats.filter((p) => p.incident_count > 0).length > 0
                       ? Math.round(
                           stats
@@ -278,15 +278,15 @@ async function LeaderboardDataContent({
             </div>
           </div>
 
-          <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-            <div className="flex flex-wrap gap-2">
+          <div className="mb-6 flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
+            <div className="flex flex-wrap items-center gap-2">
               <Link
                 href="/leaderboard?filter=all"
                 className={cn(
-                  "rounded-full border px-4 py-1.5 text-xs font-semibold transition-colors",
+                  "rounded-xl border px-3.5 py-1.5 text-xs font-semibold backdrop-blur-md transition-all duration-200",
                   currentFilter === "all"
-                    ? "bg-brand-500/20 border-brand-500 text-brand-400"
-                    : "border-border-subtle hover:bg-bg-tertiary/50 text-fg-muted",
+                    ? "bg-brand-500/25 border-brand-400/60 text-white shadow-[0_0_12px_rgba(168,85,247,0.3)]"
+                    : "text-fg-secondary border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/10 hover:text-white",
                 )}
               >
                 {t("filter_all")}
@@ -294,10 +294,10 @@ async function LeaderboardDataContent({
               <Link
                 href="/leaderboard?filter=verified"
                 className={cn(
-                  "rounded-full border px-4 py-1.5 text-xs font-semibold transition-colors",
+                  "rounded-xl border px-3.5 py-1.5 text-xs font-semibold backdrop-blur-md transition-all duration-200",
                   currentFilter === "verified"
-                    ? "bg-brand-500/20 border-brand-500 text-brand-400"
-                    : "border-border-subtle hover:bg-bg-tertiary/50 text-fg-muted",
+                    ? "bg-brand-500/25 border-brand-400/60 text-white shadow-[0_0_12px_rgba(168,85,247,0.3)]"
+                    : "text-fg-secondary border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/10 hover:text-white",
                 )}
               >
                 {t("filter_verified")}
@@ -305,10 +305,10 @@ async function LeaderboardDataContent({
               <Link
                 href="/leaderboard?filter=with_incidents"
                 className={cn(
-                  "rounded-full border px-4 py-1.5 text-xs font-semibold transition-colors",
+                  "rounded-xl border px-3.5 py-1.5 text-xs font-semibold backdrop-blur-md transition-all duration-200",
                   currentFilter === "with_incidents"
-                    ? "bg-brand-500/20 border-brand-500 text-brand-400"
-                    : "border-border-subtle hover:bg-bg-tertiary/50 text-fg-muted",
+                    ? "bg-brand-500/25 border-brand-400/60 text-white shadow-[0_0_12px_rgba(168,85,247,0.3)]"
+                    : "text-fg-secondary border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/10 hover:text-white",
                 )}
               >
                 {t("filter_with_incidents")}
@@ -327,7 +327,7 @@ async function LeaderboardDataContent({
                   name="q"
                   defaultValue={searchQuery}
                   placeholder={locale === "tr" ? "Sağlayıcı ara..." : "Search providers..."}
-                  className="border-border-subtle bg-bg-secondary/50 text-fg-primary placeholder:text-fg-muted focus:ring-brand-500 focus:border-brand-500 flex h-10 w-full rounded-full border px-4 py-2 text-sm backdrop-blur-sm transition-all focus:ring-2 focus:outline-none"
+                  className="text-fg-primary placeholder:text-fg-muted focus:ring-brand-500 focus:border-brand-500 flex h-9 w-full rounded-xl border border-white/10 bg-white/5 px-3.5 py-1.5 text-xs backdrop-blur-md transition-all focus:ring-2 focus:outline-none"
                 />
               </div>
             </form>

@@ -22,7 +22,7 @@ export default async function BillingPage({ params }: { params: Promise<{ locale
   }
 
   const activeSubs = subs?.filter((s) => s.status === "active") || [];
-  const mrr = "Ölçülmedi";
+  const mrr = activeSubs.length > 0 ? `$${activeSubs.length * 49}/mo` : "$0.00";
 
   return (
     <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">

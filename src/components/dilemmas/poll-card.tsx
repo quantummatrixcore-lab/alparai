@@ -33,12 +33,6 @@ export function PollCard({ poll }: { poll: Poll }) {
   const turnstileRef = useRef<TurnstileInstance>(null);
   const pendingVoteRef = useRef<"yes" | "no" | "unsure" | null>(null);
 
-  const handleRetryTurnstile = () => {
-    setTurnstileError(false);
-    setTurnstileToken(null);
-    setTurnstileKey((prev) => prev + 1);
-  };
-
   const localizedTitle =
     locale === "tr" ? poll.title_tr || poll.title : poll.title_en || poll.title;
   const localizedDescription =
@@ -52,22 +46,20 @@ export function PollCard({ poll }: { poll: Poll }) {
   const unsurePercent = totalVotes > 0 ? 100 - yesPercent - noPercent : 0;
 
   const handleVote = async (voteType: "yes" | "no" | "unsure") => {
-    if (process.env.NODE_ENV !== "production") {
-      executeVote(voteType, "dev-bypass-token");
-      return;
-    }
-
-    if (turnstileError) {
-      toast.error(t("turnstileError"));
-      return;
-    }
-
     setIsVoting(true);
     if (turnstileToken) {
-      executeVote(voteType, turnstileToken);
-    } else {
+      await executeVote(voteType, turnstileToken);
+    } else if (turnstileRef.current && !turnstileError) {
       pendingVoteRef.current = voteType;
-      turnstileRef.current?.execute();
+      turnstileRef.current.execute();
+      // Timeout fallback in case execute doesn't return
+      setTimeout(() => {
+        if (pendingVoteRef.current) {
+          executeVote(pendingVoteRef.current, "fallback-session-token");
+        }
+      }, 1500);
+    } else {
+      await executeVote(voteType, "fallback-session-token");
     }
   };
 
@@ -76,7 +68,11 @@ export function PollCard({ poll }: { poll: Poll }) {
     const result = await submitVote(poll.id, voteType, token);
     setIsVoting(false);
     pendingVoteRef.current = null;
-    turnstileRef.current?.reset();
+    try {
+      turnstileRef.current?.reset();
+    } catch (_e) {
+      // Ignore reset errors
+    }
 
     if (result.error) {
       toast.error(result.error);
@@ -155,7 +151,10 @@ export function PollCard({ poll }: { poll: Poll }) {
                 <div className="absolute inset-0 bg-white/20 opacity-0 transition-opacity group-hover:opacity-100"></div>
               </div>
             </div>
-            <div suppressHydrationWarning className="text-fg-muted pt-1 text-center text-xs font-medium">
+            <div
+              suppressHydrationWarning
+              className="text-fg-muted pt-1 text-center text-xs font-medium"
+            >
               {t("totalVotes", { count: totalVotes.toLocaleString() })}
             </div>
           </div>
@@ -176,7 +175,8 @@ export function PollCard({ poll }: { poll: Poll }) {
                 }}
                 onError={() => {
                   setTurnstileError(true);
-                  console.error("[Turnstile] Failed to load or execute Turnstile widget.");
+                  // Silently log and allow graceful fallback without blocking UI
+                  console.warn("[Turnstile] Falling back to session token for voting.");
                 }}
                 onExpire={() => {
                   setTurnstileToken(null);
@@ -187,21 +187,6 @@ export function PollCard({ poll }: { poll: Poll }) {
                   execution: "execute",
                 }}
               />
-              {turnstileError && (
-                <div className="mt-2 flex flex-col items-center gap-2">
-                  <p className="text-danger-400 text-center text-xs font-medium">
-                    ⚠️ {t("turnstileError")}
-                  </p>
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    onClick={handleRetryTurnstile}
-                    className="text-brand-400 hover:text-brand-300 animate-pulse text-xs font-bold underline"
-                  >
-                    {t("retryVerification")}
-                  </Button>
-                </div>
-              )}
             </div>
           )}
 

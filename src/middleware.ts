@@ -92,15 +92,23 @@ export async function middleware(request: NextRequest) {
     const sessionResult = await updateSession(reqWithHeaders, intlResponse);
     response = sessionResult.response;
     const user = sessionResult.user;
+    const supabase = sessionResult.supabase;
 
-    // Fast-path unauthenticated redirect for admin routes (Role check is delegated to Server Components)
+    // Fast-path unauthenticated redirect for admin routes
     if (isAdminPath && !pathname.startsWith("/api/") && !isTestAuthBypassActive()) {
+      const locale = request.cookies.get("NEXT_LOCALE")?.value ?? "en";
+
       if (!user) {
-        const locale = request.cookies.get("NEXT_LOCALE")?.value ?? "en";
         const currentPath = request.nextUrl.pathname + request.nextUrl.search;
         const signinUrl = new URL(`/${locale}/auth/signin`, request.url);
         signinUrl.searchParams.set("next", currentPath);
         return NextResponse.redirect(signinUrl);
+      } else {
+        const { data } = await supabase.from("users").select("role").eq("id", user.id).single();
+        const role = data?.role || user.user_metadata?.role || "user";
+        if (role !== "admin" && role !== "ceo" && role !== "moderator" && role !== "advisor") {
+          return NextResponse.redirect(new URL(`/${locale}/`, request.url));
+        }
       }
     }
   } catch (err) {

@@ -19,7 +19,7 @@ export default async function InvestPage({ params }: { params: Promise<{ locale:
   return (
     <div className="min-h-screen bg-black text-white selection:bg-zinc-800">
       {/* Hero */}
-      <section className="relative overflow-hidden px-4 pt-32 pb-20 md:pt-48 md:pb-32">
+      <section className="relative overflow-hidden px-4 pt-8 pb-16 md:pt-14 md:pb-24">
         <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-b from-zinc-900/50 to-black" />
         <div className="relative z-10 mx-auto max-w-5xl">
           <div className="mb-8 inline-flex items-center rounded-full border border-zinc-800 bg-zinc-900/50 px-3 py-1 text-sm text-zinc-300">

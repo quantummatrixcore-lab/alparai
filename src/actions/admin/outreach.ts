@@ -195,3 +195,23 @@ export async function processOutreachQueueAction() {
     throw err;
   }
 }
+
+export async function getOutreachStats() {
+  try {
+    const supabase = createAdminClient();
+    const { data, error } = await supabase.from("outreach_queue").select("status");
+
+    if (error || !data) {
+      return { pending: 0, approved: 0, sent: 0, failed: 0, limit: 50 };
+    }
+
+    const pending = data.filter((r) => r.status === "pending").length;
+    const approved = data.filter((r) => r.status === "approved").length;
+    const sent = data.filter((r) => r.status === "sent").length;
+    const failed = data.filter((r) => r.status === "failed").length;
+
+    return { pending, approved, sent, failed, limit: 50 };
+  } catch {
+    return { pending: 0, approved: 0, sent: 0, failed: 0, limit: 50 };
+  }
+}

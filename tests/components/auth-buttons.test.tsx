@@ -1,4 +1,5 @@
 // @vitest-environment jsdom
+import React from "react";
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { expect, test, describe, vi, beforeEach } from "vitest";
 import { GoogleSignInButton, EmailMagicLinkForm } from "@/components/auth/auth-buttons";

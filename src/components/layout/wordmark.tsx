@@ -23,7 +23,7 @@ export function Wordmark({
 }: WordmarkProps) {
   const { logo, text } = sizeMap[size];
   return (
-    <div className={cn("inline-flex items-center gap-2.5", className)} {...props}>
+    <div className={cn("inline-flex items-center gap-2.5 flex-shrink-0", className)} {...props}>
       <Logo size={logo} />
       <div className="flex flex-col leading-none">
         <span className={cn("flex items-center gap-1.5 font-bold tracking-tight", text)}>

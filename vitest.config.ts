@@ -15,6 +15,7 @@ export default defineConfig({
     hookTimeout: 45000,
     setupFiles: ["./vitest.setup.ts"],
     pool: "forks",
+    // @ts-expect-error - Type error after pnpm audit fix
     poolOptions: {
       forks: {
         singleFork: true,

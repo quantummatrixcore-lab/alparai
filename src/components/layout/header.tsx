@@ -54,24 +54,24 @@ export function Header({
             href="https://github.com/quantummatrixcore-lab/alparai"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-fg-muted hover:text-brand-400 focus-visible:ring-brand-500 hidden h-9 min-h-[44px] w-9 min-w-[44px] touch-manipulation items-center justify-center rounded-full transition-colors focus-visible:ring-2 focus-visible:outline-none sm:flex"
+            className="text-fg-muted hover:text-brand-400 focus-visible:ring-brand-500 hidden h-9 min-h-[44px] w-9 min-w-[44px] touch-manipulation items-center justify-center rounded-full transition-colors focus-visible:ring-2 focus-visible:outline-none sm:flex flex-shrink-0"
             aria-label="GitHub Repository"
           >
             <Github className="h-5 w-5" />
           </a>
-          <LanguageSwitcher className="inline-flex" />
+          <LanguageSwitcher className="hidden sm:inline-flex flex-shrink-0" />
           <Link
             href="/submit"
             style={{ whiteSpace: "nowrap" }}
-            className="from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 focus-visible:ring-brand-500 hidden h-9 min-h-[44px] flex-shrink-0 touch-manipulation items-center gap-1.5 rounded-full bg-gradient-to-r px-4 text-xs font-bold text-white shadow-[0_0_15px_rgba(168,85,247,0.3)] transition-all hover:scale-105 hover:shadow-[0_0_25px_rgba(168,85,247,0.6)] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none active:scale-[0.98] sm:inline-flex"
+            className="from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 focus-visible:ring-brand-500 hidden h-9 min-h-[44px] flex-shrink-0 touch-manipulation items-center gap-1.5 rounded-full bg-gradient-to-r px-4 text-xs font-bold text-white shadow-[0_0_15px_rgba(168,85,247,0.3)] transition-all hover:scale-105 hover:shadow-[0_0_25px_rgba(168,85,247,0.6)] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none active:scale-[0.98] md:inline-flex"
           >
             <Plus className="h-3.5 w-3.5" aria-hidden="true" />
             {t("report")}
           </Link>
-          <div className="pl-1">
+          <div className="pl-1 flex-shrink-0">
             <UserMenu initialUser={user} />
           </div>
-          <div className="lg:hidden">
+          <div className="lg:hidden flex-shrink-0">
             <MobileNav user={user} />
           </div>
         </div>

@@ -17,3 +17,7 @@ CREATE POLICY "Service role access" ON public.provider_response_tokens
   TO service_role
   USING (true)
   WITH CHECK (true);
+
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.provider_response_tokens CASCADE;

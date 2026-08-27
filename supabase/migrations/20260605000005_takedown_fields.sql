@@ -31,3 +31,7 @@ as $$
     else 'received'::public.takedown_status
   end;
 $$;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

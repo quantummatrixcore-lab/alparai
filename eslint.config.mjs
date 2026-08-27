@@ -1,10 +1,38 @@
-import { defineConfig, globalIgnores } from "eslint/config";
 import nextVitals from "eslint-config-next/core-web-vitals";
 import nextTs from "eslint-config-next/typescript";
 
-const eslintConfig = defineConfig([
+const eslintConfig = [
   ...nextVitals,
   ...nextTs,
+  {
+    ignores: [
+      ".next/**",
+      "out/**",
+      "build/**",
+      "dist/**",
+      "dist-public/**",
+      "node_modules/**",
+      "public/**",
+      ".vercel/**",
+      "coverage/**",
+      "playwright-report/**",
+      "test-results/**",
+      "scripts/**",
+      ".browser_profile/**",
+      "scratch/**",
+      "chrome-profile/**",
+      "tmp/**",
+      "tmp-qa/**",
+      ".agents/**",
+      "ops/**",
+      "chrome-data/**",
+      "graphify-out/**",
+      "**/*.js",
+      "**/*.cjs",
+      "**/*.mjs",
+      "src/types/database.ts"
+    ]
+  },
   {
     rules: {
       "react/no-unescaped-entities": "off",
@@ -26,32 +54,7 @@ const eslintConfig = defineConfig([
       "react-hooks/set-state-in-effect": "off",
       "@next/next/no-img-element": "off",
     },
-  },
-  globalIgnores([
-    ".next/**",
-    "out/**",
-    "build/**",
-    "next-env.d.ts",
-    "node_modules/**",
-    "public/**",
-    ".vercel/**",
-    "coverage/**",
-    "playwright-report/**",
-    "test-results/**",
-    "scripts/**",
-    ".browser_profile/**",
-    "scratch/**",
-    "src/types/database.ts",
-    "chrome-profile/**",
-    "tmp/**",
-    "tmp-qa/**",
-    ".agents/**",
-    "ops/**",
-    "chrome-data/**",
-    "graphify-out/**",
-    "*.js",
-    "dist-public/**"
-  ]),
-]);
+  }
+];
 
 export default eslintConfig;

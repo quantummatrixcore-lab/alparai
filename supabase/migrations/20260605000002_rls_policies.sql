@@ -171,3 +171,7 @@ create policy "Admins can view audit log"
 
 create policy "Service role can insert audit log"
   on public.audit_log for insert with check (true);
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

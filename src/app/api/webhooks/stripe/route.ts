@@ -1,3 +1,4 @@
+import { waitUntil } from "@vercel/functions";
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { logger } from "@/lib/utils/logger";
@@ -54,7 +55,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "invalid_signature" }, { status: 400 });
   }
 
-  const admin = createAdminClient();
+  waitUntil((async () => {
+const admin = createAdminClient();
 
   switch (event.type) {
     case "checkout.session.completed": {
@@ -317,6 +319,8 @@ export async function POST(request: Request) {
       break;
     }
   }
+
+    })());
 
   return NextResponse.json({ received: true });
 }

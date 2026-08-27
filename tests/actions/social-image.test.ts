@@ -36,11 +36,13 @@ const mockGenerateImage = vi.fn().mockResolvedValue({
   mimeType: "image/jpeg",
 });
 
-vi.mock("@/lib/ai/adapters/vertex-imagen", () => ({
-  VertexImagenAdapter: vi.fn().mockImplementation(() => ({
-    generateImage: mockGenerateImage,
-  })),
-}));
+vi.mock("@/lib/ai/adapters/vertex-imagen", () => {
+  return {
+    VertexImagenAdapter: vi.fn(function() { return {
+      generateImage: mockGenerateImage,
+    }; }),
+  };
+});
 
 import { generateSocialImageAction } from "@/actions/social-image";
 

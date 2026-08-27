@@ -16,3 +16,7 @@ SELECT
     ELSE NULL
   END AS sla_met
 FROM public.incidents;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

@@ -93,3 +93,7 @@ UPDATE incidents
 SET published_at = incidents.created_at - (50 - numbered_incidents.rn) * INTERVAL '1 day'
 FROM numbered_incidents
 WHERE incidents.id = numbered_incidents.id;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

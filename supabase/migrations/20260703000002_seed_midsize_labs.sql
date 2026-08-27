@@ -80,3 +80,7 @@ SELECT
   id, 'misinformation', 'critical', '2026-05-28', 'US', 'en', 'published', true, 550
 FROM public.ai_providers WHERE slug = 'perplexity'
 ON CONFLICT DO NOTHING;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

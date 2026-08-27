@@ -131,3 +131,10 @@ drop trigger if exists trg_model_feature_votes_count on public.model_feature_vot
 create trigger trg_model_feature_votes_count
   after insert or delete on public.model_feature_votes
   for each row execute function public.tg_model_feature_votes_count();
+
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.model_feature_votes CASCADE;
+-- DROP TABLE IF EXISTS public.model_feature_requests CASCADE;
+-- DROP TABLE IF EXISTS public.model_review_votes CASCADE;
+-- DROP TABLE IF EXISTS public.model_reviews CASCADE;

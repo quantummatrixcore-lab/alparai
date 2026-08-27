@@ -5,13 +5,13 @@ import { NvidiaNgcAdapter } from "@/lib/ai/adapters/nvidia-ngc";
 const mockCreate = vi.fn();
 vi.mock("openai", () => {
   return {
-    default: vi.fn().mockImplementation(() => ({
+    default: vi.fn(function() { return {
       chat: {
         completions: {
           create: mockCreate,
         },
       },
-    })),
+    }; }),
   };
 });
 

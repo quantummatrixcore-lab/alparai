@@ -62,3 +62,7 @@ create policy "Users can upload their own avatar"
     bucket_id = 'avatars'
     and auth.uid()::text = (storage.foldername(name))[1]
   );
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

@@ -16,7 +16,6 @@ import {
 } from "@dnd-kit/core";
 import {
   SortableContext,
-  arrayMove,
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
   useSortable,
@@ -218,7 +217,7 @@ export function MasterPlanClient({ items, error }: MasterPlanClientProps) {
     [t],
   );
 
-  const [isPending, startTransition] = useTransition();
+  const [_isPending, startTransition] = useTransition();
   const [activeItem, setActiveItem] = useState<PlanItem | null>(null);
 
   const sensors = useSensors(

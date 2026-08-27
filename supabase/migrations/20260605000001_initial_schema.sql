@@ -396,3 +396,83 @@ insert into public.ai_providers (slug, name, description, website_url, contact_e
 -- Seed xAI models (for the Grok Passport case)
 insert into public.ai_models (provider_id, name, version, released_at, status)
 select id, 'Grok 3', '2024-2025', '2024-12-01', 'active' from public.ai_providers where slug = 'xai';
+
+
+-- RLS and Policies for users
+ALTER TABLE public.users ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Enable read access for all users on users" ON public.users FOR SELECT USING (true);
+
+
+-- RLS and Policies for ai_providers
+ALTER TABLE public.ai_providers ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Enable read access for all users on ai_providers" ON public.ai_providers FOR SELECT USING (true);
+
+
+-- RLS and Policies for ai_models
+ALTER TABLE public.ai_models ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Enable read access for all users on ai_models" ON public.ai_models FOR SELECT USING (true);
+
+
+-- RLS and Policies for incidents
+ALTER TABLE public.incidents ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Enable read access for all users on incidents" ON public.incidents FOR SELECT USING (true);
+
+
+-- RLS and Policies for evidence
+ALTER TABLE public.evidence ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Enable read access for all users on evidence" ON public.evidence FOR SELECT USING (true);
+
+
+-- RLS and Policies for ai_provider_responses
+ALTER TABLE public.ai_provider_responses ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Enable read access for all users on ai_provider_responses" ON public.ai_provider_responses FOR SELECT USING (true);
+
+
+-- RLS and Policies for suggestions
+ALTER TABLE public.suggestions ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Enable read access for all users on suggestions" ON public.suggestions FOR SELECT USING (true);
+
+
+-- RLS and Policies for suggestion_votes
+ALTER TABLE public.suggestion_votes ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Enable read access for all users on suggestion_votes" ON public.suggestion_votes FOR SELECT USING (true);
+
+
+-- RLS and Policies for consent_log
+ALTER TABLE public.consent_log ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Enable read access for all users on consent_log" ON public.consent_log FOR SELECT USING (true);
+
+
+-- RLS and Policies for takedown_requests
+ALTER TABLE public.takedown_requests ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Enable read access for all users on takedown_requests" ON public.takedown_requests FOR SELECT USING (true);
+
+
+-- RLS and Policies for audit_log
+ALTER TABLE public.audit_log ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Enable read access for all users on audit_log" ON public.audit_log FOR SELECT USING (true);
+
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.audit_log CASCADE;
+-- DROP TABLE IF EXISTS public.takedown_requests CASCADE;
+-- DROP TABLE IF EXISTS public.consent_log CASCADE;
+-- DROP TABLE IF EXISTS public.suggestion_votes CASCADE;
+-- DROP TABLE IF EXISTS public.suggestions CASCADE;
+-- DROP TABLE IF EXISTS public.ai_provider_responses CASCADE;
+-- DROP TABLE IF EXISTS public.evidence CASCADE;
+-- DROP TABLE IF EXISTS public.incidents CASCADE;
+-- DROP TABLE IF EXISTS public.ai_models CASCADE;
+-- DROP TABLE IF EXISTS public.ai_providers CASCADE;
+-- DROP TABLE IF EXISTS public.users CASCADE;

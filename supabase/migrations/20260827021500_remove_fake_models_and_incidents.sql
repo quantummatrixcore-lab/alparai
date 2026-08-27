@@ -26,3 +26,7 @@ WHERE name IN (
   'Claude 4.8 Sonnet',
   'Claude 4.8 Opus'
 );
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

@@ -6,9 +6,9 @@ import { isCostKillSwitchActive } from "@/lib/ai/cost-guard";
 vi.mock("@upstash/redis", () => {
   const mockGet = vi.fn();
   return {
-    Redis: vi.fn().mockImplementation(() => ({
+    Redis: vi.fn(function() { return {
       get: mockGet,
-    })),
+    }; }),
   };
 });
 
@@ -38,7 +38,7 @@ describe("isCostKillSwitchActive", () => {
     const redisInstance = new Redis({ url: "x", token: "y" });
     vi.mocked(redisInstance.get).mockResolvedValueOnce("true");
 
-    vi.mocked(Redis).mockReturnValue(redisInstance as any);
+    vi.mocked(Redis).mockImplementation(function() { return redisInstance as any; });
 
     const active = await isCostKillSwitchActive();
     expect(active).toBe(true);
@@ -52,7 +52,7 @@ describe("isCostKillSwitchActive", () => {
     const redisInstance = new Redis({ url: "x", token: "y" });
     vi.mocked(redisInstance.get).mockResolvedValueOnce("false");
 
-    vi.mocked(Redis).mockReturnValue(redisInstance as any);
+    vi.mocked(Redis).mockImplementation(function() { return redisInstance as any; });
 
     const active = await isCostKillSwitchActive();
     expect(active).toBe(false);
@@ -65,7 +65,7 @@ describe("isCostKillSwitchActive", () => {
     const redisInstance = new Redis({ url: "x", token: "y" });
     vi.mocked(redisInstance.get).mockRejectedValueOnce(new Error("Redis error"));
 
-    vi.mocked(Redis).mockReturnValue(redisInstance as any);
+    vi.mocked(Redis).mockImplementation(function() { return redisInstance as any; });
 
     const active = await isCostKillSwitchActive();
     expect(active).toBe(false);

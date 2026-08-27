@@ -26,3 +26,7 @@ CREATE POLICY "self_update_subscribers" ON public.newsletter_subscribers
 
 -- Service role (admin) her zaman bypass edebilir — RLS'i devre dışı bırakmadan
 -- Newsletter unsubscribe işlemleri artık server action + admin client üzerinden yapılacak
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

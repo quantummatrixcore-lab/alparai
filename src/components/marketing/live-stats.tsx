@@ -143,8 +143,8 @@ export function LiveStats({
                   item.borderHover,
                   item.shadowHover,
                   item.tooltip && "cursor-help",
+                  "shadow-inner shadow-white/5 ring-1 ring-white/5"
                 )}
-                style={{ boxShadow: `inset 0 0 40px ${item.glowColor}` }}
                 title={item.tooltip}
               >
                 {/* Shine effect */}
@@ -162,7 +162,7 @@ export function LiveStats({
                   <div>
                     <div
                       className={cn(
-                        "text-[32px] leading-none font-black tracking-tighter drop-shadow-md",
+                        "text-4xl leading-none font-black tracking-tighter drop-shadow-md",
                         item.accent,
                       )}
                     >

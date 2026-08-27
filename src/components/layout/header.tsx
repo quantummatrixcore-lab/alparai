@@ -59,7 +59,7 @@ export function Header({
           >
             <Github className="h-5 w-5" />
           </a>
-          <LanguageSwitcher className="hidden sm:inline-flex flex-shrink-0" />
+          <LanguageSwitcher className="hidden lg:inline-flex flex-shrink-0" />
           <Link
             href="/submit"
             style={{ whiteSpace: "nowrap" }}

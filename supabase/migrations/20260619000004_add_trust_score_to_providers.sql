@@ -14,3 +14,7 @@ UPDATE public.ai_providers SET trust_score = 80 WHERE slug = 'xai';
 UPDATE public.ai_providers SET trust_score = 70 WHERE slug = 'stability-ai';
 UPDATE public.ai_providers SET trust_score = 72 WHERE slug = 'eleutherai';
 UPDATE public.ai_providers SET trust_score = 95 WHERE slug = 'alpar-autopilot';
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

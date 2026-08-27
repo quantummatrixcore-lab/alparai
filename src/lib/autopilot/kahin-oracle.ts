@@ -12,7 +12,7 @@ export class KahinOracle {
   // Ajanların Kahin'e (NotebookLM) soru sorması
   async askKahin(agentRole: string, question: string): Promise<string> {
     return new Promise((resolve, reject) => {
-      console.log(`[Wolf Pack Oracle] ${agentRole} Kahin'e danışıyor: ${question}`);
+      console.info(`[Wolf Pack Oracle] ${agentRole} Kahin'e danışıyor: ${question}`);
 
       const child = spawn("node", [this.scriptPath, "ask", question]);
 
@@ -38,7 +38,7 @@ export class KahinOracle {
   // Kod tabanının Kahin'e senkronize edilmesi
   async syncCodebaseToKahin(codebaseSummary: string): Promise<void> {
     return new Promise((resolve, reject) => {
-      console.log(`[Wolf Pack Oracle] Kod tabanı Kahin'e (NotebookLM) senkronize ediliyor...`);
+      console.info(`[Wolf Pack Oracle] Kod tabanı Kahin'e (NotebookLM) senkronize ediliyor...`);
 
       const child = spawn("node", [this.scriptPath, "sync", codebaseSummary]);
 

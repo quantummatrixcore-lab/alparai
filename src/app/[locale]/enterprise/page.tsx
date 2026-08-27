@@ -1,5 +1,5 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { Container, Section } from "@/components/ui/layout";
+import { Container } from "@/components/ui/layout";
 import { Shield, Lock, Code, Building, CheckCircle, Calculator, PhoneCall } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { ShowcasePageTracker, TrackedCtaButton } from "@/components/analytics/showcase-tracker";

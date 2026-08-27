@@ -46,3 +46,34 @@ CREATE TABLE IF NOT EXISTS public.system_flags (
 INSERT INTO public.system_flags (key, value) 
 VALUES ('HARD_STOP_PAID_API', false)
 ON CONFLICT (key) DO NOTHING;
+
+
+-- RLS and Policies for tasks
+ALTER TABLE public.tasks ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Enable read access for all users on tasks" ON public.tasks FOR SELECT USING (true);
+
+
+-- RLS and Policies for heartbeats
+ALTER TABLE public.heartbeats ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Enable read access for all users on heartbeats" ON public.heartbeats FOR SELECT USING (true);
+
+
+-- RLS and Policies for cost_log
+ALTER TABLE public.cost_log ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Enable read access for all users on cost_log" ON public.cost_log FOR SELECT USING (true);
+
+
+-- RLS and Policies for system_flags
+ALTER TABLE public.system_flags ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Enable read access for all users on system_flags" ON public.system_flags FOR SELECT USING (true);
+
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.system_flags CASCADE;
+-- DROP TABLE IF EXISTS public.cost_log CASCADE;
+-- DROP TABLE IF EXISTS public.heartbeats CASCADE;
+-- DROP TABLE IF EXISTS public.tasks CASCADE;

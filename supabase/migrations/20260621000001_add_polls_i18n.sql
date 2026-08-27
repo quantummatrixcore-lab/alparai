@@ -49,3 +49,7 @@ UPDATE public.ai_polls SET description_en = description WHERE description_en IS 
 -- Set NOT NULL constraints
 ALTER TABLE public.ai_polls ALTER COLUMN title_en SET NOT NULL;
 ALTER TABLE public.ai_polls ALTER COLUMN description_en SET NOT NULL;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

@@ -14,6 +14,7 @@ describe("admin-question-bank", () => {
   describe("generateQuestionsFromIncidents", () => {
     it("should process new incidents into questions", async () => {
       const mockSupabase = {
+        auth: { getUser: vi.fn().mockResolvedValue({ data: { user: { id: "admin" } } }) },
         from: vi.fn((table: string) => {
           if (table === "k_benchmark_question_bank") {
             return {
@@ -32,7 +33,15 @@ describe("admin-question-bank", () => {
               }),
             };
           }
-          return {};
+          return {
+            select: vi.fn().mockReturnValue({
+              eq: vi.fn().mockReturnValue({
+                single: vi.fn().mockResolvedValue({
+                  data: { id: "admin", role: "admin" }
+                })
+              })
+            })
+          };
         }),
       };
 
@@ -47,6 +56,7 @@ describe("admin-question-bank", () => {
   describe("runBatchEvaluations", () => {
     it("should return success when evaluations are inserted", async () => {
       const mockSupabase = {
+        auth: { getUser: vi.fn().mockResolvedValue({ data: { user: { id: "admin" } } }) },
         from: vi.fn((table: string) => {
           if (table === "k_benchmark_question_bank") {
             return {
@@ -76,7 +86,15 @@ describe("admin-question-bank", () => {
               insert: vi.fn().mockResolvedValue({ error: null }),
             };
           }
-          return {};
+          return {
+            select: vi.fn().mockReturnValue({
+              eq: vi.fn().mockReturnValue({
+                single: vi.fn().mockResolvedValue({
+                  data: { id: "admin", role: "admin" }
+                })
+              })
+            })
+          };
         }),
       };
 

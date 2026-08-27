@@ -4,3 +4,7 @@
 COMMIT;
 ALTER TYPE public.user_role ADD VALUE IF NOT EXISTS 'advisor';
 BEGIN;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

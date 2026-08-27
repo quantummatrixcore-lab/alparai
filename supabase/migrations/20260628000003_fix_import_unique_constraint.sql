@@ -7,3 +7,7 @@ DROP INDEX IF EXISTS public.incidents_import_ext_id_source_idx;
 ALTER TABLE public.incidents 
 ADD CONSTRAINT incidents_import_source_external_id_key 
 UNIQUE (incident_source, import_external_id);
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

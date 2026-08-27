@@ -59,3 +59,7 @@ update public.incidents set
   title_tr = 'Algoritmik Ticaret Ani Çöküşü (Knight Capital)',
   description_tr = 'Yeterli test yapılmadan üretime alınan otomatik bir ticaret algoritması, piyasada büyük bir kaosa neden oldu ve firma için sadece 45 dakika içinde 440 milyon dolar zarar oluştu.'
 where id = '31327da7-c7e3-480c-ae20-bebc93ea6c34';
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

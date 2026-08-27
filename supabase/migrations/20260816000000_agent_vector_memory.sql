@@ -46,3 +46,13 @@ as $$
   order by agent_episodic_memory.embedding <=> query_embedding
   limit match_count;
 $$;
+
+
+-- RLS and Policies for agent_episodic_memory
+ALTER TABLE public.agent_episodic_memory ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Enable read access for all users on agent_episodic_memory" ON public.agent_episodic_memory FOR SELECT USING (true);
+
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.agent_episodic_memory CASCADE;

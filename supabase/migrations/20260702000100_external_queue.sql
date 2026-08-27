@@ -15,3 +15,6 @@ ALTER TABLE public.external_incidents_queue ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "ceo_admin_external_queue_select" ON public.external_incidents_queue FOR SELECT TO authenticated USING (public.is_ceo(auth.uid()) OR public.is_admin(auth.uid()));
 CREATE POLICY "ceo_admin_external_queue_modify" ON public.external_incidents_queue FOR ALL TO authenticated USING (public.is_ceo(auth.uid()) OR public.is_admin(auth.uid())) WITH CHECK (public.is_ceo(auth.uid()) OR public.is_admin(auth.uid()));
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.external_incidents_queue CASCADE;

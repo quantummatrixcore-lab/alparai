@@ -45,3 +45,7 @@ UPDATE public.ai_polls SET
 WHERE title IN ('Yapay Zeka İnsanlığı Yok Eder mi?', 'Will AI Destroy Humanity?')
    OR title_en = 'Will AI Destroy Humanity?'
    OR title_tr = 'Yapay Zeka İnsanlığı Yok Eder mi?';
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

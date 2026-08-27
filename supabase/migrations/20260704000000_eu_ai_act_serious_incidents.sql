@@ -11,3 +11,7 @@ COMMENT ON COLUMN public.incidents.eu_act_high_risk_system_category IS
   'High-risk AI system classification matching Annex III.';
 COMMENT ON COLUMN public.incidents.eu_act_reporting_deadline_days IS
   'Reporting deadline under Article 73 (2, 10, or 15 days).';
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

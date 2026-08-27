@@ -27,10 +27,10 @@ import { ShareButtons } from "@/components/incidents/share-buttons";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "leaderboard" });
+  const _t = await getTranslations({ locale, namespace: "leaderboard" });
   return {
-    title: t("title"),
-    description: t("meta_description"),
+    title: _t("title"),
+    description: _t("meta_description"),
   };
 }
 
@@ -56,7 +56,7 @@ export default async function LeaderboardPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: "leaderboard" });
+  const _t = await getTranslations({ locale, namespace: "leaderboard" });
 
   return (
     <>
@@ -83,7 +83,7 @@ async function LeaderboardDataContent({
 
   setRequestLocale(locale);
   const supabase = await createServerClient();
-  const t = await getTranslations({ locale, namespace: "leaderboard" });
+  const _t = await getTranslations({ locale, namespace: "leaderboard" });
 
   const { data: leaderboardData } = await supabase
     .from("provider_leaderboard")
@@ -213,12 +213,12 @@ async function LeaderboardDataContent({
               <Trophy className="text-brand-400 h-6 w-6" />
             </div>
             <h1 className="text-fg-primary text-fg-secondaryxl mb-2 font-black tracking-tight sm:text-4xl">
-              {t("title")}
+              {_t("title")}
             </h1>
-            <p className="text-fg-secondary max-w-xl text-sm sm:text-base">{t("subtitle")}</p>
+            <p className="text-fg-secondary max-w-xl text-sm sm:text-base">{_t("subtitle")}</p>
 
             <div className="mt-3 flex justify-center">
-              <ShareButtons url="/leaderboard" title={t("title")} />
+              <ShareButtons url="/leaderboard" title={_t("title")} />
             </div>
           </header>
 
@@ -231,7 +231,7 @@ async function LeaderboardDataContent({
                   <Trophy className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="text-fg-muted text-xs font-medium">{t("providersTracked")}</p>
+                  <p className="text-fg-muted text-xs font-medium">{_t("providersTracked")}</p>
                   <p className="text-fg-primary text-fg-secondaryxl font-bold tracking-tight">
                     {stats.length}
                   </p>
@@ -246,7 +246,7 @@ async function LeaderboardDataContent({
                   <MessageSquare className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="text-fg-muted text-xs font-medium">{t("totalResponses")}</p>
+                  <p className="text-fg-muted text-xs font-medium">{_t("totalResponses")}</p>
                   <p className="text-fg-primary text-fg-secondaryxl font-bold tracking-tight">
                     {stats.reduce((s, p) => s + p.response_count, 0)}
                   </p>
@@ -261,7 +261,7 @@ async function LeaderboardDataContent({
                   <TrendingUp className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="text-fg-muted text-xs font-medium">{t("avgResponseRate")}</p>
+                  <p className="text-fg-muted text-xs font-medium">{_t("avgResponseRate")}</p>
                   <p className="text-fg-primary text-fg-secondaryxl font-bold tracking-tight">
                     {stats.filter((p) => p.incident_count > 0).length > 0
                       ? Math.round(
@@ -289,7 +289,7 @@ async function LeaderboardDataContent({
                     : "text-fg-secondary border-border-subtle hover:border-border-strong bg-white/5 hover:bg-white/10 hover:text-white",
                 )}
               >
-                {t("filter_all")}
+                {_t("filter_all")}
               </Link>
               <Link
                 href="/leaderboard?filter=verified"
@@ -300,7 +300,7 @@ async function LeaderboardDataContent({
                     : "text-fg-secondary border-border-subtle hover:border-border-strong bg-white/5 hover:bg-white/10 hover:text-white",
                 )}
               >
-                {t("filter_verified")}
+                {_t("filter_verified")}
               </Link>
               <Link
                 href="/leaderboard?filter=with_incidents"
@@ -311,7 +311,7 @@ async function LeaderboardDataContent({
                     : "text-fg-secondary border-border-subtle hover:border-border-strong bg-white/5 hover:bg-white/10 hover:text-white",
                 )}
               >
-                {t("filter_with_incidents")}
+                {_t("filter_with_incidents")}
               </Link>
             </div>
 
@@ -338,12 +338,12 @@ async function LeaderboardDataContent({
             <CardContent className="text-fg-secondary flex items-start gap-3 p-4 text-xs font-semibold">
               <AlertCircle className="text-brand-400 mt-0.5 h-5 w-5 shrink-0" />
               <div className="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-2">
-                <span>{t("trust_score_info")}</span>
+                <span>{_t("trust_score_info")}</span>
                 <Link
                   href="/transparency"
                   className="text-brand-400 hover:text-brand-300 inline-flex items-center font-bold underline"
                 >
-                  {t("read_methodology_link")}
+                  {_t("read_methodology_link")}
                 </Link>
               </div>
             </CardContent>
@@ -393,7 +393,7 @@ async function LeaderboardDataContent({
               ) : (
                 <div className="w-full max-w-full overflow-x-auto">
                   <table className="w-full text-sm">
-                    <caption className="sr-only">{t("caption")}</caption>
+                    <caption className="sr-only">{_t("caption")}</caption>
                     <thead>
                       <tr className="border-border-subtle text-fg-muted border-b text-left text-xs font-semibold tracking-wider uppercase">
                         <th className="w-12 p-4">
@@ -401,7 +401,7 @@ async function LeaderboardDataContent({
                             href={getSortLink("score")}
                             className="group hover:text-fg-primary inline-flex items-center transition-colors"
                           >
-                            {t("rank")}
+                            {_t("rank")}
                             {renderSortIcon("score")}
                           </Link>
                         </th>
@@ -410,7 +410,7 @@ async function LeaderboardDataContent({
                             href={getSortLink("provider")}
                             className="group hover:text-fg-primary inline-flex items-center transition-colors"
                           >
-                            {t("provider")}
+                            {_t("provider")}
                             {renderSortIcon("provider")}
                           </Link>
                         </th>
@@ -419,7 +419,7 @@ async function LeaderboardDataContent({
                             href={getSortLink("incidents")}
                             className="group hover:text-fg-primary inline-flex w-full items-center justify-end transition-colors"
                           >
-                            {t("incidents")}
+                            {_t("incidents")}
                             {renderSortIcon("incidents")}
                           </Link>
                         </th>
@@ -429,7 +429,7 @@ async function LeaderboardDataContent({
                             className="group hover:text-fg-primary inline-flex w-full items-center justify-end transition-colors"
                           >
                             <MessageSquare className="mr-1 h-3 w-3" />
-                            {t("responses")}
+                            {_t("responses")}
                             {renderSortIcon("responses")}
                           </Link>
                         </th>
@@ -438,7 +438,7 @@ async function LeaderboardDataContent({
                             href={getSortLink("rate")}
                             className="group hover:text-fg-primary inline-flex w-full items-center justify-end transition-colors"
                           >
-                            {t("responseRate")}
+                            {_t("responseRate")}
                             {renderSortIcon("rate")}
                           </Link>
                         </th>
@@ -447,7 +447,7 @@ async function LeaderboardDataContent({
                             href={getSortLink("score")}
                             className="group hover:text-fg-primary inline-flex w-full items-center justify-end transition-colors"
                           >
-                            {t("trustScore")}
+                            {_t("trustScore")}
                             {renderSortIcon("score")}
                           </Link>
                         </th>
@@ -488,12 +488,12 @@ async function LeaderboardDataContent({
                               </div>
                               <span className="text-fg-primary">{p.name}</span>
                               {p.is_verified_respondent && (
-                                <span title={t("verified_respondent")}>
+                                <span title={_t("verified_respondent")}>
                                   <ShieldCheck className="h-4 w-4 shrink-0 text-emerald-400" />
                                 </span>
                               )}
                               {p.response_rate >= 80 && p.incident_count > 0 && (
-                                <span title={t("responsive_vendor")}>
+                                <span title={_t("responsive_vendor")}>
                                   <Clock className="text-brand-400 h-4 w-4 shrink-0" />
                                 </span>
                               )}

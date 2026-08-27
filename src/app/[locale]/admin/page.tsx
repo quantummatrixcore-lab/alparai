@@ -50,7 +50,7 @@ export default async function AdminDashboardPage({
   const t = await getTranslations({ locale, namespace: "admin" });
 
   const supabase = await createServerClient();
-  const [usersRes, incidentsRes, startupHealth, signals, funding, crons] = await Promise.all([
+  const [usersRes, incidentsRes, startupHealth, signals, _funding, _crons] = await Promise.all([
     supabase.from("users").select("*", { count: "exact", head: true }),
     supabase.from("incidents").select("*", { count: "exact", head: true }),
     getStartupHealth().catch(() => null),
@@ -64,13 +64,13 @@ export default async function AdminDashboardPage({
   const masterPlan = parseMasterPlan();
 
   const activeSubscribers =
-    startupHealth?.kpis.find((k) => k.label === "Newsletter Subscribers")?.totalCount ?? "0";
+    startupHealth?.kpis.find((k: { label: string; totalCount?: number | string }) => k.label === "Newsletter Subscribers")?.totalCount ?? "0";
   const mrr = startupHealth?.mrr ? `$${startupHealth.mrr}` : "—";
-  const latency = signals?.find((s) => s.name === "API Response Time")?.value
-    ? `${signals.find((s) => s.name === "API Response Time")?.value}ms`
+  const latency = signals?.find((s: { name: string; value?: number | string }) => s.name === "API Response Time")?.value
+    ? `${signals.find((s: { name: string; value?: number | string }) => s.name === "API Response Time")?.value}ms`
     : "18ms";
-  const rlsEnforcement = signals?.find((s) => s.name === "Row Level Security (RLS)")?.value
-    ? `${signals.find((s) => s.name === "Row Level Security (RLS)")?.value}%`
+  const rlsEnforcement = signals?.find((s: { name: string; value?: number | string }) => s.name === "Row Level Security (RLS)")?.value
+    ? `${signals.find((s: { name: string; value?: number | string }) => s.name === "Row Level Security (RLS)")?.value}%`
     : "100%";
 
   return (

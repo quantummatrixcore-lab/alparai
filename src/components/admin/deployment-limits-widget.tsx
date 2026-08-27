@@ -4,9 +4,9 @@ import { Activity, Server, Database, Cloud } from "lucide-react";
 
 export function DeploymentLimitsWidget() {
   return (
-    <div className="group border-border-subtle bg-bg-secondary rounded-2xl border p-6 backdrop-blur-xl transition-all duration-300 hover:border-emerald-500/50">
-      <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-emerald-400">
-        <Server className="h-5 w-5 text-emerald-500" />
+    <div className="group border-border-subtle bg-bg-secondary rounded-2xl border p-6 backdrop-blur-xl transition-all duration-300 hover:border-success-500/50">
+      <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-success-400">
+        <Server className="h-5 w-5 text-success-500" />
         Platform Kapasite Sınırları
       </h2>
 
@@ -21,11 +21,11 @@ export function DeploymentLimitsWidget() {
           <div className="grid grid-cols-2 gap-2 text-xs">
             <div className="border-border-subtle rounded border bg-black/40 p-2">
               <span className="text-fg-muted mb-1 block">Max RAM</span>
-              <span className="font-mono text-emerald-400">8192 MB</span>
+              <span className="font-mono text-success-400">8192 MB</span>
             </div>
             <div className="border-border-subtle rounded border bg-black/40 p-2">
               <span className="text-fg-muted mb-1 block">Timeout</span>
-              <span className="font-mono text-emerald-400">Ölçülmedi</span>
+              <span className="font-mono text-success-400">Ölçülmedi</span>
             </div>
           </div>
         </div>
@@ -40,11 +40,11 @@ export function DeploymentLimitsWidget() {
           <div className="grid grid-cols-2 gap-2 text-xs">
             <div className="border-border-subtle rounded border bg-black/40 p-2">
               <span className="text-fg-muted mb-1 block">Bağlantı (Pool)</span>
-              <span className="font-mono text-blue-400">API (Serverless)</span>
+              <span className="font-mono text-brand-400">API (Serverless)</span>
             </div>
             <div className="border-border-subtle rounded border bg-black/40 p-2">
               <span className="text-fg-muted mb-1 block">Veritabanı Boyutu</span>
-              <span className="font-mono text-blue-400">8GB Limit</span>
+              <span className="font-mono text-brand-400">8GB Limit</span>
             </div>
           </div>
         </div>
@@ -59,11 +59,11 @@ export function DeploymentLimitsWidget() {
           <div className="grid grid-cols-2 gap-2 text-xs">
             <div className="border-border-subtle rounded border bg-black/40 p-2">
               <span className="text-fg-muted mb-1 block">Runner RAM</span>
-              <span className="font-mono text-purple-400">7 GB</span>
+              <span className="font-mono text-accent-400">7 GB</span>
             </div>
             <div className="border-border-subtle rounded border bg-black/40 p-2">
               <span className="text-fg-muted mb-1 block">CPU Cores</span>
-              <span className="font-mono text-purple-400">2 Çekirdek</span>
+              <span className="font-mono text-accent-400">2 Çekirdek</span>
             </div>
           </div>
         </div>

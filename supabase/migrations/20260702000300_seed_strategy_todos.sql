@@ -69,3 +69,7 @@ INSERT INTO strategy_todos (title, priority, is_completed, created_at, updated_a
 ('ALPAR AI Certification Programı', 5, false, now(), now())
 
 ON CONFLICT DO NOTHING;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

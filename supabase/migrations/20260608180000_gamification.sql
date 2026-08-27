@@ -20,3 +20,7 @@ create policy "Everyone can view badges"
   using ( true );
 
 -- Insert trigger for points/levels could go here later if we add a user_profiles table.
+
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.user_badges CASCADE;

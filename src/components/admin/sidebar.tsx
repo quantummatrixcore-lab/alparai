@@ -37,8 +37,6 @@ import {
   Building2,
   Mail,
   Crown,
-  Video,
-  FileText,
 } from "lucide-react";
 import { cn, getInitials } from "@/lib/utils";
 import Image from "next/image";

@@ -44,3 +44,13 @@ chrome-profile/
 *.njsproj
 *.sln
 360-admin-panel/
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+*service-account*.json
+gcp-*.json
+chrome_tabs*.json
+ts-errors.txt
+patch.diff

@@ -46,3 +46,7 @@ BEGIN
   WHERE id = p_suggestion_id;
 END;
 $$;
+
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.suggestion_comments CASCADE;

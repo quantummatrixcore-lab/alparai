@@ -30,7 +30,7 @@ const ICON_MAP: Record<string, React.ReactNode> = {
   "silicon-valley-startup-team": <Rocket className="text-warning-400 h-6 w-6" />,
   "vc-angel-investor": <DollarSign className="text-success-400 h-6 w-6" />,
   "advisory-board": <Users className="text-brand-400 h-6 w-6" />,
-  "growth-gtm-hacker": <Sparkles className="h-6 w-6 text-pink-400" />,
+  "growth-gtm-hacker": <Sparkles className="h-6 w-6 text-accent-400" />,
   "regulatory-legal-assessor": <Scale className="text-accent-400 h-6 w-6" />,
   "futurist-strategist": <Eye className="text-brand-400 h-6 w-6" />,
   "red-team-security": <ShieldAlert className="text-danger-400 h-6 w-6" />,
@@ -182,7 +182,7 @@ export function ExpertAnalysisBoard() {
 
                     {/* Key Findings section */}
                     {report.keyFindings && report.keyFindings.length > 0 && (
-                      <div className="border-brand-500/20 space-y-1.5 rounded-lg border bg-purple-950/20 p-2.5">
+                      <div className="border-brand-500/20 space-y-1.5 rounded-lg border bg-brand-900/20 p-2.5">
                         <div className="text-brand-300 font-mono text-[10px] font-bold tracking-wider uppercase">
                           Strategic Findings
                         </div>
@@ -196,7 +196,7 @@ export function ExpertAnalysisBoard() {
 
                     {/* Recommended Actions section */}
                     {report.recommendedActions && report.recommendedActions.length > 0 && (
-                      <div className="border-success-500/20 space-y-1.5 rounded-lg border bg-emerald-950/20 p-2.5">
+                      <div className="border-success-500/20 space-y-1.5 rounded-lg border bg-success-900/20 p-2.5">
                         <div className="text-success-300 font-mono text-[10px] font-bold tracking-wider uppercase">
                           Recommended Actions
                         </div>
@@ -218,7 +218,7 @@ export function ExpertAnalysisBoard() {
                       </div>
                       <div className="bg-bg-secondary h-1.5 w-full overflow-hidden rounded-full">
                         <div
-                          className="to-success-400 h-full rounded-full bg-gradient-to-r from-cyan-500 transition-all duration-1000 ease-out"
+                          className="to-success-400 h-full rounded-full bg-gradient-to-r from-brand-500 transition-all duration-1000 ease-out"
                           style={{ width: `${report.confidenceScore}%` }}
                         />
                       </div>
@@ -228,7 +228,7 @@ export function ExpertAnalysisBoard() {
               </div>
 
               <div className="border-border-subtle/80 flex items-center justify-between border-t pt-3">
-                <span className="border-accent-800/60 text-accent-400 rounded border bg-cyan-950/60 px-2 py-0.5 font-mono text-[11px]">
+                <span className="border-accent-800/60 text-accent-400 rounded border bg-accent-900/60 px-2 py-0.5 font-mono text-[11px]">
                   <span>{t("chain")}</span> <span>{persona.capabilityDomain}</span>
                 </span>
                 <button

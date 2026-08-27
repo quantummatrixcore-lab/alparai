@@ -8,3 +8,7 @@ ALTER TABLE public.incidents ADD COLUMN IF NOT EXISTS import_attribution text;
 CREATE UNIQUE INDEX IF NOT EXISTS incidents_import_ext_id_source_idx 
 ON public.incidents (incident_source, import_external_id) 
 WHERE import_external_id IS NOT NULL;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

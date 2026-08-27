@@ -1,5 +1,5 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { Container, Section } from "@/components/ui/layout";
+import { Container } from "@/components/ui/layout";
 import { Shield, Zap, Lock, Code } from "lucide-react";
 import { ShowcasePageTracker, TrackedCtaButton } from "@/components/analytics/showcase-tracker";
 import { Link } from "@/i18n/routing";

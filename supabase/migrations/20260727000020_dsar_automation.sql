@@ -20,3 +20,7 @@ CREATE POLICY "Users can insert their own DSAR requests" ON public.dsar_requests
 
 CREATE POLICY "Admins can view and update all DSAR requests" ON public.dsar_requests
   FOR ALL TO authenticated USING (public.is_moderator(auth.uid())) WITH CHECK (public.is_moderator(auth.uid()));
+
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.dsar_requests CASCADE;

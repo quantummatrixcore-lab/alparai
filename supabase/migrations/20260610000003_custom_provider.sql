@@ -38,3 +38,7 @@ comment on column public.incidents.provider_custom_name is
 
 comment on column public.incidents.model_custom_name is
   'User-entered model name when not in the verified models list';
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

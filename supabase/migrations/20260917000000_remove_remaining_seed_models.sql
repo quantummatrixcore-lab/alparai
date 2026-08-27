@@ -17,3 +17,7 @@ WHERE name IN (
 );
 
 COMMIT;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

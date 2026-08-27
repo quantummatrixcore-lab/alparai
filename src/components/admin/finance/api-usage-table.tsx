@@ -38,22 +38,22 @@ export function ApiUsageTable({ data }: ApiUsageTableProps) {
   const getServiceColor = (service: string) => {
     switch (service.toLowerCase()) {
       case "gemini":
-        return "text-brand-500 bg-blue-50 dark:bg-blue-950/30";
+        return "text-brand-500 bg-brand-50 dark:bg-brand-950/30";
       case "anthropic":
-        return "text-warning-500 bg-orange-50 dark:bg-orange-950/30";
+        return "text-warning-500 bg-warning-50 dark:bg-warning-950/30";
       case "supabase":
-        return "text-success-500 bg-emerald-50 dark:bg-emerald-950/30";
+        return "text-success-500 bg-success-50 dark:bg-success-950/30";
       case "vercel":
-        return "text-fg-disabled bg-zinc-50 dark:bg-bg-elevated/50";
+        return "text-fg-disabled bg-bg-subtle dark:bg-bg-elevated/50";
       default:
-        return "text-zinc-600 bg-zinc-50 dark:bg-bg-elevated/50";
+        return "text-fg-muted bg-bg-subtle dark:bg-bg-elevated/50";
     }
   };
 
   return (
-    <div className="dark:border-border-subtle dark:bg-bg-tertiary overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm">
-      <div className="border-b border-zinc-100 p-6 dark:border-zinc-900">
-        <h4 className="font-semibold text-zinc-950 dark:text-zinc-50">
+    <div className="dark:border-border-subtle dark:bg-bg-tertiary overflow-hidden rounded-xl border border-border-subtle bg-bg-primary shadow-sm">
+      <div className="border-b border-border-subtle p-6 dark:border-border-subtle">
+        <h4 className="font-semibold text-fg-primary dark:text-fg-primary">
           {t("apiUsageMetricsTitle")}
         </h4>
         <p className="text-fg-disabled dark:text-fg-muted mt-1 text-xs">
@@ -64,14 +64,14 @@ export function ApiUsageTable({ data }: ApiUsageTableProps) {
       <div className="overflow-x-auto">
         <table className="w-full border-collapse text-left text-sm">
           <thead>
-            <tr className="text-fg-disabled dark:bg-bg-tertiary dark:text-fg-muted border-b border-zinc-100 bg-zinc-50/50 text-xs font-semibold dark:border-zinc-900">
+            <tr className="text-fg-disabled dark:bg-bg-tertiary dark:text-fg-muted border-b border-border-subtle bg-bg-subtle text-xs font-semibold dark:border-border-subtle">
               <th className="p-4">{t("tableService")}</th>
               <th className="p-4">{t("tableMetric")}</th>
               <th className="p-4 text-right">{t("tableUsageAmount")}</th>
               <th className="p-4 text-right">{t("tableTimestamp")}</th>
             </tr>
           </thead>
-          <tbody className="dark:text-fg-secondary divide-y divide-zinc-100 text-zinc-700 dark:divide-zinc-900">
+          <tbody className="dark:text-fg-secondary divide-y divide-border-subtle text-fg-secondary dark:divide-border-subtle">
             {data.length === 0 ? (
               <tr>
                 <td colSpan={4} className="text-fg-muted dark:text-fg-disabled p-8 text-center">
@@ -80,8 +80,8 @@ export function ApiUsageTable({ data }: ApiUsageTableProps) {
               </tr>
             ) : (
               data.map((item) => (
-                <tr key={item.id} className="dark:hover:bg-bg-elevated/20 hover:bg-zinc-50/50">
-                  <td className="dark:text-fg-primary p-4 font-medium text-zinc-900">
+                <tr key={item.id} className="dark:hover:bg-bg-elevated/20 hover:bg-bg-subtle/50">
+                  <td className="dark:text-fg-primary p-4 font-medium text-fg-primary">
                     <span
                       className={`inline-block rounded px-2.5 py-0.5 text-xs font-bold capitalize ${getServiceColor(item.service)}`}
                     >

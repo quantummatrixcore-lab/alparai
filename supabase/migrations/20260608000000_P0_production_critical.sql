@@ -48,3 +48,7 @@ alter table public.incidents add column if not exists pii_categories text[] not 
 
 create index if not exists idx_incidents_contains_pii on public.incidents(contains_pii) where contains_pii = true;
 create index if not exists idx_incidents_pii_categories on public.incidents using gin(pii_categories);
+
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.incident_votes CASCADE;

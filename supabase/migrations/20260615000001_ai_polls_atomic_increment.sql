@@ -20,3 +20,7 @@ $$;
 
 revoke all on function public.increment_poll_count(uuid, text) from public;
 grant execute on function public.increment_poll_count(uuid, text) to service_role;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

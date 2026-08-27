@@ -103,3 +103,9 @@ create policy "user_badges_public_read" on public.user_bounty_badges
 drop policy if exists "user_badges_mod_insert" on public.user_bounty_badges;
 create policy "user_badges_mod_insert" on public.user_bounty_badges
   for insert with check (public.is_moderator(auth.uid()));
+
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.user_bounty_badges CASCADE;
+-- DROP TABLE IF EXISTS public.bounty_badges CASCADE;
+-- DROP TABLE IF EXISTS public.bug_bounties CASCADE;

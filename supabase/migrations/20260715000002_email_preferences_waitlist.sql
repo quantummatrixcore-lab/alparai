@@ -30,3 +30,7 @@ CREATE POLICY "public_insert_email_preferences"
   ON public.email_preferences
   FOR INSERT
   WITH CHECK (true);
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

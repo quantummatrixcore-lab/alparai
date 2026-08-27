@@ -34,3 +34,7 @@ SELECT
   ) AS feed_score
 FROM public.incidents i
 WHERE i.status = 'published';
+
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.user_provider_watches CASCADE;

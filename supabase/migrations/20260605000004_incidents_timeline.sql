@@ -16,3 +16,7 @@ create index if not exists idx_incidents_status_published
 update public.incidents
   set published_at = created_at
   where status = 'published' and published_at is null;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

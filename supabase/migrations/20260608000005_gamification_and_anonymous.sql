@@ -15,3 +15,7 @@ create policy "Anonymous users can submit incidents"
 create policy "Anonymous users can insert consent records"
   on public.consent_log for insert
   with check (user_id is null);
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

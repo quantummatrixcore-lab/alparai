@@ -26,3 +26,7 @@ CREATE TRIGGER trg_api_keys_updated_at
   BEFORE UPDATE ON public.api_keys
   FOR EACH ROW
   EXECUTE FUNCTION public.set_updated_at();
+
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.api_keys CASCADE;

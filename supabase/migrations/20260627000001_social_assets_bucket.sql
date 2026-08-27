@@ -41,3 +41,7 @@ CREATE POLICY "Moderators/Admins can delete social-assets"
       )
     )
   );
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

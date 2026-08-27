@@ -18,9 +18,9 @@ const { mockLimit } = vi.hoisted(() => ({
 
 vi.mock("@upstash/ratelimit", () => ({
   Ratelimit: Object.assign(
-    vi.fn().mockImplementation(() => ({
-      limit: mockLimit,
-    })),
+    vi.fn().mockImplementation(function() {
+      return { limit: mockLimit };
+    }),
     {
       slidingWindow: vi.fn().mockReturnValue({} as never),
     },
@@ -28,7 +28,7 @@ vi.mock("@upstash/ratelimit", () => ({
 }));
 
 vi.mock("@upstash/redis", () => ({
-  Redis: vi.fn().mockImplementation(() => ({})),
+  Redis: vi.fn().mockImplementation(function() { return {}; }),
 }));
 
 describe("checkRateLimit", () => {

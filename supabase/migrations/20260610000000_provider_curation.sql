@@ -76,3 +76,7 @@ update public.ai_providers set logo_url = '/logos/providers/stability.svg' where
 update public.ai_providers set logo_url = '/logos/providers/baidu.svg' where slug = 'baidu' and logo_url is null;
 update public.ai_providers set logo_url = '/logos/providers/tencent.svg' where slug = 'tencent' and logo_url is null;
 update public.ai_providers set logo_url = '/logos/providers/alibaba.svg' where slug = 'alibaba' and logo_url is null;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

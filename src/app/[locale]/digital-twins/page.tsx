@@ -83,7 +83,7 @@ export default function DigitalTwinsPage() {
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap justify-center gap-2">
-                  {twin.expertise.map((exp: unknown, i: number) => (
+                  {twin.expertise.map((exp: unknown, _i: number) => (
                     <Badge
                       key={String(exp)}
                       variant="outline"
@@ -132,12 +132,12 @@ export default function DigitalTwinsPage() {
               {chatHistory.length === 0 ? (
                 <div className="text-fg-muted flex h-full flex-col items-center justify-center">
                   <BrainCircuit className="mb-4 h-16 w-16 opacity-50" />
-                  <p>Sohbeti başlatmak için bir soru sorun.</p>
+                  <p>Sohbeti başlatmak _için bir soru sorun.</p>
                 </div>
               ) : (
-                chatHistory.map((msg, i) => (
+                chatHistory.map((msg, _i) => (
                   <div
-                    key={i}
+                    key={_i}
                     className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
                   >
                     <div

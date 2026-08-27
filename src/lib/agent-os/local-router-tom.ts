@@ -22,7 +22,7 @@ export type TomIntent = z.infer<typeof TomIntentSchema>;
  * Simüle edilmiş Local LLM / gRPC isteği mantığı içerir.
  */
 export async function routeRequestLocal(prompt: string): Promise<TomIntent> {
-  console.log(`[TOM Router] Analyzing prompt locally: ${prompt.slice(0, 50)}...`);
+  console.info(`[TOM Router] Analyzing prompt locally: ${prompt.slice(0, 50)}...`);
 
   // Burada yerel vLLM (Qwen-7B) çağrısı yapılır ve JSON formatlama zorlanır.
   // Prototip amaçlı deterministik kural seti:

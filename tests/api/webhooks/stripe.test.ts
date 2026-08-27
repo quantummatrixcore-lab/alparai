@@ -37,9 +37,9 @@ vi.mock("@/lib/utils/logger", () => ({
 const mockConstructEvent = vi.fn();
 
 vi.mock("stripe", () => ({
-  default: vi.fn(() => ({
+  default: vi.fn(function() { return {
     webhooks: { constructEvent: mockConstructEvent },
-  })),
+  }; }),
 }));
 
 import { POST } from "@/app/api/webhooks/stripe/route";

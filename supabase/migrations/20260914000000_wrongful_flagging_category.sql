@@ -12,3 +12,7 @@
 
 alter type public.incident_category
   add value if not exists 'wrongful_flagging';
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

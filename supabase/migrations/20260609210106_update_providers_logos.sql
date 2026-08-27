@@ -23,3 +23,7 @@ UPDATE public.ai_providers SET logo_url = '/logos/providers/deepseek.svg' WHERE 
 
 -- Remove dummy/test providers like 'ibm' if they were manually added (but not if incidents exist)
 DELETE FROM public.ai_providers WHERE slug = 'ibm' AND NOT EXISTS (SELECT 1 FROM public.incidents WHERE ai_provider_id = public.ai_providers.id);
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

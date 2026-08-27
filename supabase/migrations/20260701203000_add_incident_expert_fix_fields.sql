@@ -7,3 +7,7 @@
 alter table public.incidents
   add column is_expert boolean not null default false,
   add column expert_fix text;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

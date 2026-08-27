@@ -131,3 +131,7 @@ INSERT INTO public.incidents (
     (SELECT id FROM public.ai_providers WHERE slug = 'stability'), 'hallucination', 'critical', '2016-05-07', 'US', 'en', 'published', NOW(), false, '{}'
   )
 ON CONFLICT (id) DO NOTHING;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

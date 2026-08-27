@@ -1,4 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
+
+vi.mock("@/lib/auth/session", () => ({
+  requireAdmin: vi.fn().mockResolvedValue({ id: "admin" }),
+}));
+
 import { runCrossAuditArenaAction, getTrustScoresAction } from "@/actions/admin/ai-orchestrator";
 
 vi.mock("@/lib/supabase/admin", () => ({

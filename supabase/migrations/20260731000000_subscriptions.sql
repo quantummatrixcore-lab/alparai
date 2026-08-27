@@ -28,3 +28,7 @@ CREATE TRIGGER set_subscriptions_updated_at
 BEFORE UPDATE ON public.subscriptions
 FOR EACH ROW
 EXECUTE FUNCTION public.set_updated_at();
+
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.subscriptions CASCADE;

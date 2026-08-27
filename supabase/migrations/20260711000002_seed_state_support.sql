@@ -155,3 +155,7 @@ VALUES
   'High prestige, very competitive. Requires US defense research alignment. Long-term target. Explore through US academic partner. Good for brand credibility.',
   'https://www.darpa.mil/program/explainable-artificial-intelligence'
 );
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

@@ -29,3 +29,7 @@ CREATE POLICY "expert_apps_mod_update" ON public.expert_applications
 
 -- Index for fast lookups
 CREATE INDEX IF NOT EXISTS idx_expert_apps_status ON public.expert_applications(status, created_at desc);
+
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.expert_applications CASCADE;

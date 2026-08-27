@@ -12,3 +12,7 @@ ALTER TABLE public.users
 
 CREATE INDEX IF NOT EXISTS idx_users_delete_scheduled ON public.users(delete_scheduled_for) WHERE delete_scheduled_for IS NOT NULL;
 CREATE INDEX IF NOT EXISTS idx_users_soft_deleted_at ON public.users(soft_deleted_at) WHERE is_soft_deleted = true;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

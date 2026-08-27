@@ -20,3 +20,7 @@ CREATE POLICY "Allow moderators full access on submission_fingerprints" ON publi
 
 CREATE INDEX IF NOT EXISTS idx_submission_fingerprints_fingerprint ON public.submission_fingerprints (fingerprint);
 CREATE INDEX IF NOT EXISTS idx_submission_fingerprints_ip_hash ON public.submission_fingerprints (ip_hash);
+
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.submission_fingerprints CASCADE;

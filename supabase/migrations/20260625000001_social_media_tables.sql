@@ -80,3 +80,9 @@ CREATE INDEX IF NOT EXISTS idx_social_posts_scheduled_at ON public.social_posts(
 CREATE INDEX IF NOT EXISTS idx_social_posts_linked_incident ON public.social_posts(linked_incident_id);
 CREATE INDEX IF NOT EXISTS idx_social_assets_linked_post ON public.social_assets(linked_post_id);
 CREATE INDEX IF NOT EXISTS idx_social_templates_hook ON public.social_templates(psychology_hook);
+
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.social_templates CASCADE;
+-- DROP TABLE IF EXISTS public.social_assets CASCADE;
+-- DROP TABLE IF EXISTS public.social_posts CASCADE;

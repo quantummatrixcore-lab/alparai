@@ -38,3 +38,7 @@ create policy "blog_posts_admin_all"
   to authenticated
   using (public.is_moderator(auth.uid()))
   with check (public.is_moderator(auth.uid()));
+
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.blog_posts CASCADE;

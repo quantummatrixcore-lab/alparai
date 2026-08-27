@@ -53,3 +53,7 @@ WHERE
   p.slug <> 'alpar-autopilot'
 GROUP BY
   p.id, p.slug, p.name, p.logo_url, p.is_verified, p.website_url, p.is_verified_respondent;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

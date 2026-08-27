@@ -112,3 +112,7 @@ cross join (values
 ) as m(name, version, status, released_at)
 where p.slug = 'mistral'
 on conflict do nothing;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

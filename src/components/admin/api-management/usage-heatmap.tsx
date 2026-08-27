@@ -18,7 +18,7 @@ const PROVIDER_COLORS: Record<string, { bg: string; text: string }> = {
   openai: { bg: "bg-warning-500", text: "text-warning-900" },
   anthropic: { bg: "bg-brand-500", text: "text-brand-900" },
   google: { bg: "bg-success-500", text: "text-success-900" },
-  supabase: { bg: "bg-pink-500", text: "text-pink-900" },
+  supabase: { bg: "bg-danger-400", text: "text-danger-900" },
   upstash: { bg: "bg-accent-500", text: "text-accent-900" },
   resend: { bg: "bg-brand-500", text: "text-brand-900" },
 };
@@ -27,11 +27,11 @@ function getHeatmapColor(value: number, maxValue: number) {
   const ratio = value / maxValue;
 
   if (ratio < 0.1) return "bg-bg-elevated";
-  if (ratio < 0.2) return "bg-zinc-700";
-  if (ratio < 0.4) return "bg-zinc-600";
-  if (ratio < 0.6) return "bg-zinc-500";
-  if (ratio < 0.8) return "bg-zinc-400";
-  return "bg-zinc-300";
+  if (ratio < 0.2) return "bg-bg-subtle";
+  if (ratio < 0.4) return "bg-border-subtle";
+  if (ratio < 0.6) return "bg-brand-900";
+  if (ratio < 0.8) return "bg-brand-700";
+  return "bg-brand-500";
 }
 
 export function UsageHeatmap({
@@ -76,7 +76,7 @@ export function UsageHeatmap({
           {providers.map((provider) => (
             <div key={provider.id} className="flex items-center gap-2">
               <div
-                className={`h-3 w-3 rounded ${PROVIDER_COLORS[provider.id]?.bg || "bg-zinc-500"}`}
+                className={`h-3 w-3 rounded ${PROVIDER_COLORS[provider.id]?.bg || "bg-border-subtle"}`}
               />
               <span className="text-fg-muted text-xs">{provider.name}</span>
             </div>
@@ -118,7 +118,7 @@ export function UsageHeatmap({
                       className={`flex h-8 cursor-pointer items-center justify-center rounded ring-white/30 transition-all hover:ring-2 ${colorClass}`}
                       title={`${providers.find((p) => p.id === providerId)?.name}: ${value.toLocaleString()} requests at hour ${hourIndex}`}
                     >
-                      <span className="text-[10px] font-semibold text-zinc-900 opacity-0 hover:opacity-100">
+                      <span className="text-[10px] font-semibold text-bg-primary opacity-0 hover:opacity-100">
                         {value > 999 ? `${(value / 1000).toFixed(1)}K` : value}
                       </span>
                     </div>
@@ -137,11 +137,11 @@ export function UsageHeatmap({
             <div className="flex gap-1">
               {[
                 "bg-bg-elevated",
-                "bg-zinc-700",
-                "bg-zinc-600",
-                "bg-zinc-500",
-                "bg-zinc-400",
-                "bg-zinc-300",
+                "bg-bg-subtle",
+                "bg-border-subtle",
+                "bg-brand-900",
+                "bg-brand-700",
+                "bg-brand-500",
               ].map((color, i) => (
                 <div key={i} className={`h-4 w-4 rounded ${color}`} />
               ))}

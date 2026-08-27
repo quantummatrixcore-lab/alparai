@@ -127,3 +127,8 @@ DROP TRIGGER IF EXISTS trg_update_incident_affected_count ON public.incident_aff
 CREATE TRIGGER trg_update_incident_affected_count
   AFTER INSERT OR DELETE ON public.incident_affected_users
   FOR EACH ROW EXECUTE FUNCTION public.tg_update_incident_affected_count();
+
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.incident_affected_users CASCADE;
+-- DROP TABLE IF EXISTS public.incident_comments CASCADE;

@@ -11,3 +11,6 @@ ALTER TABLE public.strategy_todos ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "ceo_admin_advisor_todos_select" ON public.strategy_todos FOR SELECT TO authenticated USING (public.is_ceo(auth.uid()) OR public.is_admin(auth.uid()) OR public.is_advisor(auth.uid()));
 CREATE POLICY "ceo_admin_todos_modify" ON public.strategy_todos FOR ALL TO authenticated USING (public.is_ceo(auth.uid()) OR public.is_admin(auth.uid())) WITH CHECK (public.is_ceo(auth.uid()) OR public.is_admin(auth.uid()));
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.strategy_todos CASCADE;

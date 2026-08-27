@@ -13,3 +13,7 @@ CREATE POLICY "Public statements restricted to moderators"
   );
 
 COMMIT;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

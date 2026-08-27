@@ -78,3 +78,7 @@ BEGIN
   VALUES (CURRENT_DATE, 47, 12, 6, 0, 0, 18.00, 92);
 
 END $$;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

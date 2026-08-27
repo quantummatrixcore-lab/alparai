@@ -49,3 +49,7 @@ VALUES
   ('X (Twitter)', 'https://x.com/alparai', 'Social', 'account_created', 'Verify account and set up bio'),
   ('OpenCollective', 'https://opencollective.com', 'Funding', 'not_started', 'Open source funding reception')
 ;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

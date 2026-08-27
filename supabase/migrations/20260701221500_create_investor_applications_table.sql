@@ -25,3 +25,7 @@ create policy "investor_applications_anon_insert" on public.investor_application
 -- Admins and CEO can do everything
 create policy "investor_applications_admin_all" on public.investor_applications
   for all using (public.is_admin(auth.uid()) or public.is_ceo(auth.uid()));
+
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.investor_applications CASCADE;

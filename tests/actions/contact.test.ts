@@ -2,11 +2,11 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
 
 vi.mock("resend", () => ({
-  Resend: vi.fn().mockImplementation(() => ({
+  Resend: vi.fn(function() { return {
     emails: {
       send: vi.fn().mockResolvedValue({ id: "email-123" }),
     },
-  })),
+  }; }),
 }));
 
 vi.mock("@/lib/supabase/admin", () => ({

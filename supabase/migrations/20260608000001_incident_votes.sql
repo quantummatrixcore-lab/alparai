@@ -90,3 +90,7 @@ drop trigger if exists trg_incident_votes_touch on public.incident_votes;
 create trigger trg_incident_votes_touch
   before update on public.incident_votes
   for each row execute function public.tg_incident_votes_touch();
+
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.incident_votes CASCADE;

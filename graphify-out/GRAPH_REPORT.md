@@ -1,16 +1,16 @@
 # Graph Report - Alparai  (2026-08-27)
 
 ## Corpus Check
-- 2120 files · ~2,775,806 words
+- 2121 files · ~2,736,497 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 10068 nodes · 16490 edges · 1046 communities (837 shown, 209 thin omitted)
+- 10088 nodes · 16513 edges · 1075 communities (863 shown, 212 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 152 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `d9df551d`
+- Built from commit: `52a60a2f`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -929,6 +929,7 @@
 - [[_COMMUNITY_Community 935|Community 935]]
 - [[_COMMUNITY_Community 936|Community 936]]
 - [[_COMMUNITY_Community 953|Community 953]]
+- [[_COMMUNITY_Community 988|Community 988]]
 - [[_COMMUNITY_Community 990|Community 990]]
 - [[_COMMUNITY_Community 991|Community 991]]
 - [[_COMMUNITY_Community 992|Community 992]]
@@ -939,6 +940,7 @@
 - [[_COMMUNITY_Community 997|Community 997]]
 - [[_COMMUNITY_Community 998|Community 998]]
 - [[_COMMUNITY_Community 999|Community 999]]
+- [[_COMMUNITY_Community 1000|Community 1000]]
 - [[_COMMUNITY_Community 1001|Community 1001]]
 - [[_COMMUNITY_Community 1002|Community 1002]]
 - [[_COMMUNITY_Community 1004|Community 1004]]
@@ -948,6 +950,7 @@
 - [[_COMMUNITY_Community 1008|Community 1008]]
 - [[_COMMUNITY_Community 1009|Community 1009]]
 - [[_COMMUNITY_Community 1010|Community 1010]]
+- [[_COMMUNITY_Community 1011|Community 1011]]
 - [[_COMMUNITY_Community 1012|Community 1012]]
 - [[_COMMUNITY_Community 1013|Community 1013]]
 - [[_COMMUNITY_Community 1019|Community 1019]]
@@ -955,10 +958,29 @@
 - [[_COMMUNITY_Community 1021|Community 1021]]
 - [[_COMMUNITY_Community 1025|Community 1025]]
 - [[_COMMUNITY_Community 1026|Community 1026]]
+- [[_COMMUNITY_Community 1044|Community 1044]]
 - [[_COMMUNITY_Community 1045|Community 1045]]
+- [[_COMMUNITY_Community 1046|Community 1046]]
+- [[_COMMUNITY_Community 1047|Community 1047]]
+- [[_COMMUNITY_Community 1048|Community 1048]]
+- [[_COMMUNITY_Community 1049|Community 1049]]
 - [[_COMMUNITY_Community 1050|Community 1050]]
+- [[_COMMUNITY_Community 1051|Community 1051]]
 - [[_COMMUNITY_Community 1052|Community 1052]]
+- [[_COMMUNITY_Community 1054|Community 1054]]
+- [[_COMMUNITY_Community 1055|Community 1055]]
+- [[_COMMUNITY_Community 1056|Community 1056]]
+- [[_COMMUNITY_Community 1057|Community 1057]]
+- [[_COMMUNITY_Community 1058|Community 1058]]
+- [[_COMMUNITY_Community 1059|Community 1059]]
+- [[_COMMUNITY_Community 1060|Community 1060]]
+- [[_COMMUNITY_Community 1061|Community 1061]]
+- [[_COMMUNITY_Community 1062|Community 1062]]
 - [[_COMMUNITY_Community 1063|Community 1063]]
+- [[_COMMUNITY_Community 1064|Community 1064]]
+- [[_COMMUNITY_Community 1065|Community 1065]]
+- [[_COMMUNITY_Community 1066|Community 1066]]
+- [[_COMMUNITY_Community 1067|Community 1067]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `createAdminClient()` - 394 edges
@@ -975,14 +997,14 @@
 ## Surprising Connections (you probably didn't know these)
 - `LocaleLayout()` --calls--> `headers`  [INFERRED]
   src/app/[locale]/layout.tsx → scripts/consolidate-reports.mjs
-- `searchTavily()` --calls--> `fetch`  [INFERRED]
-  src/app/api/admin/integrations/route.ts → scripts/swarm_router.js
 - `VercelLiveCostCard()` --calls--> `fetch`  [INFERRED]
   src/app/[locale]/admin/finance/page.tsx → scripts/swarm_router.js
 - `runHealthCheck()` --calls--> `fetch`  [INFERRED]
   .agents/scripts/health_check.ts → scripts/swarm_router.js
 - `checkDomain()` --calls--> `fetch`  [INFERRED]
   apps/extension/background.js → scripts/swarm_router.js
+- `init()` --calls--> `fetch`  [INFERRED]
+  apps/extension/popup.js → scripts/swarm_router.js
 
 ## Import Cycles
 - 1-file cycle: `src/lib/email/resend.ts -> src/lib/email/resend.ts`
@@ -991,71 +1013,71 @@
 - 2-file cycle: `src/lib/autopilot/index.ts -> src/lib/autopilot/worker.ts -> src/lib/autopilot/index.ts`
 - 2-file cycle: `src/lib/ai/openrouter-gateway.ts -> src/lib/audit/model-router.ts -> src/lib/ai/openrouter-gateway.ts`
 
-## Communities (1046 total, 209 thin omitted)
+## Communities (1075 total, 212 thin omitted)
 
 ### Community 0 - "Community 0"
-Cohesion: 0.09
-Nodes (29): submitVote(), BenchTrRow, GET(), GET(), JailbreakRow, Technique, VALID_TECHNIQUES, GET() (+21 more)
+Cohesion: 0.03
+Nodes (120): headers, beforeSend(), beforeSend(), beforeSend(), OnboardingResult, saveOnboardingData(), VALID_INTERESTS, VALID_ROLES (+112 more)
 
 ### Community 1 - "Community 1"
 Cohesion: 0.03
-Nodes (52): AutopilotWorkerConfig, getWeightClassAnalysis(), ModelWeightClass, WeightClassAnalysisResult, WeightClassIncidentStat, AdminAutopilotPage(), formatMs(), metadata (+44 more)
+Nodes (46): NewsletterState, getWeightClassAnalysis(), ModelWeightClass, WeightClassAnalysisResult, WeightClassIncidentStat, metadata, CARD_GRADIENTS, metadata (+38 more)
 
 ### Community 2 - "Community 2"
-Cohesion: 0.05
-Nodes (50): approveIncident(), getPendingIncidents(), rejectIncident(), resolveAlarm(), toggleFeatureFlag(), awardBadgesForBounty(), BountyRow, claimBounty() (+42 more)
+Cohesion: 0.04
+Nodes (40): run360ExpertAudit(), generateQuestionsFromIncidents(), runBatchEvaluations(), createUserByAdmin(), createUserSchema, supabaseAdmin, addSuggestionComment(), CommentWorkInput (+32 more)
 
 ### Community 3 - "Community 3"
 Cohesion: 0.03
-Nodes (75): formatTime(), renderInvalidToken(), RespondPage(), SubmitPage(), CategoryFilter, SortOption, WorkerTickButton(), VerifiedRespondentToggleProps (+67 more)
+Nodes (72): ContactState, ExpertState, InvestorState, ProviderResponseResult, ExpertForm(), AcademyPage(), renderInvalidToken(), RespondPage() (+64 more)
 
 ### Community 4 - "Community 4"
-Cohesion: 0.17
-Nodes (11): ChallengeVoteState, removeChallengeVote(), submitChallengeSubmission(), SubmitChallengeSubmissionState, submitChallengeVote(), ChallengesPage(), ChallengeList(), ChallengeRow (+3 more)
+Cohesion: 0.04
+Nodes (58): getCrossAuditDashboardData(), ChallengeVoteState, removeChallengeVote(), submitChallengeSubmission(), SubmitChallengeSubmissionState, submitChallengeVote(), deleteComment(), submitVendorResponseAction() (+50 more)
 
 ### Community 5 - "Community 5"
-Cohesion: 0.03
-Nodes (75): ContactState, ContactWorkInput, runContactWork(), submitContact(), NewsletterState, NewsletterWorkInput, runNewsletterWork(), subscribeNewsletter() (+67 more)
+Cohesion: 0.04
+Nodes (75): mockDb, bulkApproveIncidents(), bulkRejectIncidents(), moderateIncident(), moderateSchema, ModerationResult, ModerationWorkInput, runModerationWork() (+67 more)
 
 ### Community 6 - "Community 6"
-Cohesion: 0.44
-Nodes (6): ExpertAnalysisReport, runExpertAnalysisAction(), ICON_MAP, TaskDomain, EXPERT_PERSONAS, ExpertPersona
+Cohesion: 0.09
+Nodes (25): trackFunnelEvent(), ClosingSection, FounderStory, getHomeData, GetInvolved, HeroSectionAsync(), HowItWorks, LeaderboardPreview (+17 more)
 
 ### Community 7 - "Community 7"
 Cohesion: 0.03
-Nodes (25): CARD_GRADIENTS, metadata, ErrorProps, InvestorPortalPage(), InvestorPortalProps, OnboardingPage(), metadata, metadata (+17 more)
+Nodes (18): AIVelocityMetric, FinancialVelocityProjection, metadata, ErrorProps, InvestorPortalPage(), InvestorPortalProps, OnboardingPage(), ScoreHistoryChart() (+10 more)
 
 ### Community 8 - "Community 8"
 Cohesion: 0.04
-Nodes (61): AIActTrackerPage(), buildCitationText(), CitationLabels, fetchTranslationMap(), JournalistDashboard(), IncidentsPage(), MyIncidentsPage(), BrandPage() (+53 more)
+Nodes (68): generateMetadata(), RoadmapPage(), StrategyTabs, AIActTrackerPage(), buildCitationText(), CitationLabels, fetchTranslationMap(), JournalistDashboard() (+60 more)
 
 ### Community 9 - "Community 9"
-Cohesion: 0.08
-Nodes (34): runModerationWork(), extractCustomName(), incrementIncidentViews(), isCustomValue(), isUuid(), resolveLocale(), runSubmitWork(), runVoteWork() (+26 more)
+Cohesion: 0.07
+Nodes (33): extractCustomName(), incrementIncidentViews(), isCustomValue(), isUuid(), preTriageCheck(), resolveLocale(), runSubmitWork(), runVoteWork() (+25 more)
 
 ### Community 10 - "Community 10"
-Cohesion: 0.08
-Nodes (24): mockDb, reviewExpertApplication(), reviewExpertSchema, bulkApproveIncidents(), bulkRejectIncidents(), moderateIncident(), moderateSchema, ModerationResult (+16 more)
+Cohesion: 0.14
+Nodes (13): COLORS, roleOptions, UsersClientProps, CreateUserModal(), iconVariantClasses, QuickAction, QuickActionGrid(), QuickActionGridProps (+5 more)
 
 ### Community 11 - "Community 11"
-Cohesion: 0.10
-Nodes (15): LocaleLayout(), metadata, UtmData, UtmTracker(), ClientProviders(), CookieBanner, Header(), MobileBottomNav() (+7 more)
+Cohesion: 0.12
+Nodes (12): LocaleLayout(), metadata, ClientProviders(), CookieBanner, Header(), MobileBottomNav(), NavItem, navItems (+4 more)
 
 ### Community 12 - "Community 12"
-Cohesion: 0.06
-Nodes (31): analyzeCodeWithBlackbox(), CodeAnalysisResult, fetchContentFromUrl(), FetchContentResponse, GenerateResponse, generateStrategicResponse(), BlackboxCodeAnalysisSection(), BlackboxAdapter (+23 more)
+Cohesion: 0.08
+Nodes (27): geistMono, geistSans, metadata, analyzeCodeWithBlackbox(), CodeAnalysisResult, BlackboxCodeAnalysisSection(), BlackboxAdapter, CohereAdapter (+19 more)
 
 ### Community 13 - "Community 13"
-Cohesion: 0.32
-Nodes (6): getRetentionPolicies(), pruneExpiredRecords(), RetentionPolicy, mockDelete, mockLte, mockSelect
+Cohesion: 0.10
+Nodes (19): ApiDocsPage(), getEndpoints(), PressKitPage(), ArsApiPage(), metadata, metadata, metadata, metadata (+11 more)
 
 ### Community 14 - "Community 14"
-Cohesion: 0.08
-Nodes (24): IncidentDetailPage(), AffectedButton(), CommentSection(), CommentUser, IncidentComment, EvidenceTimeline(), TimelineEvent, IncidentDetailView() (+16 more)
+Cohesion: 0.22
+Nodes (8): getCurrentUserMock, mockDelete, mockEq, mockInsert, mockResolveEq, mockSelect, mockUser, requireUserMock
 
 ### Community 15 - "Community 15"
-Cohesion: 0.05
-Nodes (33): trackFunnelEvent(), LeaderboardDataContent(), ClosingSection, FounderStory, getHomeData, GetInvolved, HeroSectionAsync(), HowItWorks (+25 more)
+Cohesion: 0.06
+Nodes (28): SubmitPage(), EvidenceUploader(), EvidenceUploaderProps, SubmitButton(), ClientErrors, IncidentForm(), initialState, VideoEvent (+20 more)
 
 ### Community 16 - "Community 16"
 Cohesion: 0.03
@@ -1066,20 +1088,20 @@ Cohesion: 0.03
 Nodes (57): ALPAR AI — Antigravity Full Execution Plan v7.16 (H2 2026 → 2027), 🔍 ARCHITECT VERIFICATION PROTOCOL (v7.5 — how approvals actually get checked), CHANGELOG (v2 → v3), CHANGELOG (v3 → v4), CHANGELOG (v4 → v5), CHANGELOG (v5 → v6), CHANGELOG (v6 → v7), CHANGELOG (v7.10 → v7.11) — K-BENCHMARK: Multi-Category AI Rating Platform (+49 more)
 
 ### Community 18 - "Community 18"
-Cohesion: 0.12
-Nodes (11): ApiDocsPage(), getEndpoints(), PressKitPage(), ArsApiPage(), ApiPlayground(), EndpointSpec, PUBLIC_ENDPOINTS, PRESS_RELEASES (+3 more)
+Cohesion: 0.23
+Nodes (11): calculateRate(), countByStatus(), countTotal(), FundingConversionResult, getFundingConversion(), getStartupHealth(), KpiMetric, momGrowth() (+3 more)
 
 ### Community 19 - "Community 19"
 Cohesion: 0.10
 Nodes (20): 1.1 TÜBİTAK Destekleri, 1.2 KOSGEB Destekleri, 1.3 Ticaret Bakanlığı - Bilişim/Yazılım İhracatı Destekleri (E-Turquality / Bilişimin Yıldızları), 1.4 Teknokent (TGB) İstisnaları, 1. Yerel ve Küresel Hibe Programları (Government Grants), 2.1 Hızlandırma Programları (Accelerators), 2.2 Global ve Yerel VC Fonları, 2. Küresel VC Fonları ve Hızlandırıcılar (VC Funds & Accelerators) (+12 more)
 
 ### Community 20 - "Community 20"
-Cohesion: 0.07
-Nodes (37): POST(), CouncilMemberOpinion, CouncilRunOptions, CouncilSynthesisResult, DEFAULT_LABELS, PeerReviewEvaluation, runLLMCouncil(), adapters (+29 more)
+Cohesion: 0.08
+Nodes (38): ExpertAnalysisReport, runExpertAnalysisAction(), runLiveSystemAnalysis(), runLiveStrategyAnalysis(), analyzeIncident(), AnalyzeIncidentState, IncidentAnalysisResult, GET (+30 more)
 
 ### Community 21 - "Community 21"
-Cohesion: 0.09
-Nodes (22): Observe360Telemetry, metadata, SloDashboardPage(), ApiMetricsProps, AnimatedCounter(), AnimatedCounterProps, Gauge(), GaugeProps (+14 more)
+Cohesion: 0.07
+Nodes (29): Observe360Telemetry, ApiMetricsProps, CitationItem, GeoDashboardClient(), GeoDashboardClientProps, AnimatedCounter(), AnimatedCounterProps, DataFlowDiagram() (+21 more)
 
 ### Community 22 - "Community 22"
 Cohesion: 0.04
@@ -1099,7 +1121,7 @@ Nodes (42): 10. Dosya Yapısı (Eklenecek/Yenilenecek), 1. Mevcut Durum Özeti, 
 
 ### Community 26 - "Community 26"
 Cohesion: 0.03
-Nodes (80): getCrossAuditDashboardData(), IncidentRow, calculateRate(), countByStatus(), countTotal(), FundingConversionResult, getFundingConversion(), markGrantSubmitted() (+72 more)
+Nodes (91): reviewExpertApplication(), reviewExpertSchema, markGrantSubmitted(), updateGrantSchema, updateGrantStatus(), updateLinkedinContactStatus(), updateStatusSchema, getOutreachQueue() (+83 more)
 
 ### Community 27 - "Community 27"
 Cohesion: 0.05
@@ -1110,12 +1132,12 @@ Cohesion: 0.05
 Nodes (40): **📌 0\. ANALİZ METODOLOJİSİ & KAPSAMI**, **1\) Genel teşhis**, **🧭 1\. Profesyonel Yazılım Ekibi Analizi**, **🚀 2\. Profesyonel Startup Ekibi Analizi**, **2\) Yazılım ekibi gibi değerlendirme**, **💸 3\. Angel Investor / VC Perspektifi**, **3\) Startup ekibi gibi değerlendirme**, **🧠 4\. 1000/1000’e Ulaşmak İçin Gereken Güncellemeler** (+32 more)
 
 ### Community 29 - "Community 29"
-Cohesion: 0.11
-Nodes (22): ArenaVerdict, AuditResult, getTrustScoresAction(), runCrossAuditArenaAction(), TrustScoreRecord, triggerOrchestratorAction(), GET(), HeartbeatItemResult (+14 more)
+Cohesion: 0.09
+Nodes (26): ArenaVerdict, AuditResult, getTrustScoresAction(), runCrossAuditArenaAction(), TrustScoreRecord, triggerOrchestratorAction(), GET(), HeartbeatItemResult (+18 more)
 
 ### Community 30 - "Community 30"
-Cohesion: 0.14
-Nodes (14): CapacityMetrics, VendorQuota, computeQuotaStats(), formatDuration(), METRIC_LABEL_KEYS, parseQuotaDate(), ResourcesClient(), VENDOR_LABELS (+6 more)
+Cohesion: 0.08
+Nodes (27): getOpenCodeEfficiencyAction(), RUN_SCHEMA, CapacityMetrics, VendorQuota, ResourcesPage(), computeQuotaStats(), formatDuration(), METRIC_LABEL_KEYS (+19 more)
 
 ### Community 31 - "Community 31"
 Cohesion: 0.05
@@ -1126,16 +1148,16 @@ Cohesion: 0.07
 Nodes (26): For /graphify add and --watch, For /graphify query, For the commit hook and native CLAUDE.md integration, For --update and --cluster-only, /graphify, Honesty Rules, Interpreter guard for subcommands, Part A - Structural extraction for code files (+18 more)
 
 ### Community 33 - "Community 33"
-Cohesion: 0.19
-Nodes (12): BudgetSnapshot, computeElapsedMs(), computeRemainingMs(), estimateMaxAttempts(), isBudgetExceededMs(), isBudgetExceededTokens(), makeBudgetSnapshot(), BudgetConfig (+4 more)
+Cohesion: 0.08
+Nodes (33): BudgetSnapshot, computeElapsedMs(), computeRemainingMs(), estimateMaxAttempts(), isBudgetExceededMs(), isBudgetExceededTokens(), makeBudgetSnapshot(), definePolicy() (+25 more)
 
 ### Community 34 - "Community 34"
-Cohesion: 0.07
-Nodes (26): COLORS, roleOptions, UsersClientProps, ACTION_GROUPS, AuditLogClientProps, AuditLogItem, ENTITY_TYPES, UserProfile (+18 more)
+Cohesion: 0.08
+Nodes (24): getSystemSignalsAction(), BillingPage(), metadata, ApiMetricsClient, ApiMetricsPage(), metadata, metadata, SignalsPage() (+16 more)
 
 ### Community 35 - "Community 35"
-Cohesion: 0.10
-Nodes (23): GET, getHandler(), clamp(), publishVerifiedItem(), safeParseJSON(), VerificationResult, verifyExternalItem(), fetchGitHubIncidents() (+15 more)
+Cohesion: 0.13
+Nodes (18): GET, getHandler(), clamp(), publishVerifiedItem(), safeParseJSON(), VerificationResult, verifyExternalItem(), fetchGitHubIncidents() (+10 more)
 
 ### Community 36 - "Community 36"
 Cohesion: 0.08
@@ -1146,8 +1168,8 @@ Cohesion: 0.06
 Nodes (34): Administration, ALPAR AI — API Reference, Authentication, Authentication, Authentication, Contact, Data Export, Error Codes (+26 more)
 
 ### Community 38 - "Community 38"
-Cohesion: 0.12
-Nodes (25): AdminAutopilotResult, AdminAutopilotSnapshot, CronJobLog, getAdminAutopilotSnapshot(), toggleAutopilotWorker(), triggerAutopilotWorkerTick(), GET(), isAdmin() (+17 more)
+Cohesion: 0.09
+Nodes (30): AdminAutopilotResult, AdminAutopilotSnapshot, AutopilotWorkerConfig, CronJobLog, getAdminAutopilotSnapshot(), toggleAutopilotWorker(), triggerAutopilotWorkerTick(), GET() (+22 more)
 
 ### Community 39 - "Community 39"
 Cohesion: 0.06
@@ -1155,11 +1177,11 @@ Nodes (33): ALPAR AI’s Approach to Article 73 Compliance, Building the Missing
 
 ### Community 40 - "Community 40"
 Cohesion: 0.04
-Nodes (68): checkCodebaseHygiene(), CodebaseHygieneResult, mockDb, CodebaseHygieneReport, getCodebaseHygieneAction(), computeDualChannelTrustScoreAction(), DualChannelTrustScoreResult, getScoringConfigAction() (+60 more)
+Nodes (55): mockDb, computeDualChannelTrustScoreAction(), DualChannelTrustScoreResult, getScoringConfigAction(), memoryConfig, ScoringConfig, updateScoringConfigAction(), backfillProviderLeaderboard() (+47 more)
 
 ### Community 41 - "Community 41"
 Cohesion: 0.19
-Nodes (27): runLiveCrossAuditTest(), buildCacheKey(), computeCacheTtl(), getRedis(), readCache(), SEVERITY_TTL_MAP, writeCache(), ChallengeResult (+19 more)
+Nodes (26): runLiveCrossAuditTest(), buildCacheKey(), computeCacheTtl(), getRedis(), readCache(), SEVERITY_TTL_MAP, writeCache(), ChallengeResult (+18 more)
 
 ### Community 43 - "Community 43"
 Cohesion: 0.06
@@ -1167,11 +1189,11 @@ Nodes (32): #121 bağımlılık notasyonu tohumlandı (Mimar'ın kısım (a) yü
 
 ### Community 44 - "Community 44"
 Cohesion: 0.08
-Nodes (29): run(), importIncidentsAction(), ImportIncidentsResult, importSourceSchema, GET, getHandler(), CsvUploadForm(), CsvUploadFormProps (+21 more)
+Nodes (28): run(), importIncidentsAction(), ImportIncidentsResult, importSourceSchema, getHandler(), CsvUploadForm(), CsvUploadFormProps, SOURCES (+20 more)
 
 ### Community 45 - "Community 45"
-Cohesion: 0.12
-Nodes (26): createSocialPost(), getMarketingDrafts(), getSocialAccounts(), getSocialAssets(), getSocialPosts(), getSocialTemplates(), publishDraftToLinkedInAction(), updateSocialPost() (+18 more)
+Cohesion: 0.10
+Nodes (30): createSocialPost(), getMarketingDrafts(), getSocialAccounts(), getSocialAssets(), getSocialPosts(), getSocialTemplates(), fetchContentFromUrl(), FetchContentResponse (+22 more)
 
 ### Community 46 - "Community 46"
 Cohesion: 0.06
@@ -1190,8 +1212,8 @@ Cohesion: 0.06
 Nodes (31): scripts, agent:index, briefing, build, check:links, check:masterplan-length, check-plan, db:migrate (+23 more)
 
 ### Community 50 - "Community 50"
-Cohesion: 0.12
-Nodes (21): GET, getHandler(), IncidentRecord, ScoreRecord, BenchTrEvaluationRecord, CalculatedCategoryScore, calculateIncidentPenalty(), calculateKModelCategoryScores() (+13 more)
+Cohesion: 0.25
+Nodes (7): GET, mockEq, mockGte, mockOrder, mockSelect, mockUpsert, queryBuilder
 
 ### Community 51 - "Community 51"
 Cohesion: 0.18
@@ -1202,8 +1224,8 @@ Cohesion: 0.07
 Nodes (28): BLOK GÖREV — Antigravity/OpenCode, dalga sırasıyla, her dalga ayrı PR, Bulgu 0 (P0, tek satırlık kök neden) — sitede hiçbir web fontu yüklenmiyor, Bulgu 1 (P0, stratejik) — anasayfanın baskın CTA'sı ziyaretçilerin çoğunu dışlıyor, Bulgu 2 (P1) — dönüşüm ölçülemiyor, Founder'ın SEO/GEO sorusu: önerme yarı doğru, gerçek tablo ikisinin de yarım olduğu, MASTER_PLAN Arşiv — v12.73–v12.89, Mutabakat: dört satır artık olduğu gibi doğru değil, Psikolojik segment analizi (tasarım muhakemesi — ölçüm değil, enstrümantasyon gelene kadar hipotez) (+20 more)
 
 ### Community 53 - "Community 53"
-Cohesion: 0.05
-Nodes (50): exportRunToMarkdown(), getQuestionnaireRunAnswers(), getQuestionnaireRuns(), QuestionnaireResult, runQuestionnaire(), generateMetadata(), StrategyOverviewPage(), StrategyTabs (+42 more)
+Cohesion: 0.09
+Nodes (23): generateMetadata(), StrategyTabs, AnswerRow, generateMetadata(), RunRow, StrategyTabs, AnswerRow, I18nStrings (+15 more)
 
 ### Community 54 - "Community 54"
 Cohesion: 0.07
@@ -1214,12 +1236,12 @@ Cohesion: 0.07
 Nodes (27): 10. Fly VC, 11. b2venture, 12. Seedcamp, 13. Force Over Mass, 14. Speedinvest, 15. Frontline Ventures, 16. Atlantic Labs, 17. Join Capital (+19 more)
 
 ### Community 56 - "Community 56"
-Cohesion: 0.08
-Nodes (26): addGeoCitationAction(), AddGeoCitationInput, GeoCitationRow, getGeoStatsAction(), preTriageCheck(), DoraMetricRow, getObserve360Telemetry(), SlaAlarmRow (+18 more)
+Cohesion: 0.14
+Nodes (10): CronHealthClient, CronsPage(), AdminSectionCard(), CronHealthProps, CronJob, CronJob, CronsDashboardClient(), HealthDashboardClient() (+2 more)
 
 ### Community 57 - "Community 57"
-Cohesion: 0.05
-Nodes (33): updateLinkedinContactStatus(), updateStatusSchema, updatePlatformSchema, updatePlatformStatus(), AdvisoryBoardPage(), metadata, AdminAuditPage(), AuditLogClient (+25 more)
+Cohesion: 0.10
+Nodes (14): AdvisoryBoardPage(), metadata, DsarPage(), metadata, GovernanceHubTabs(), GrantApplication, LinkedinContact, MetricCardChart() (+6 more)
 
 ### Community 58 - "Community 58"
 Cohesion: 0.07
@@ -1234,12 +1256,12 @@ Cohesion: 0.14
 Nodes (6): ContentPlan, ContentStrategist, FlowGenerator, MarketingOrchestrator, PublishResult, SocialPublisher
 
 ### Community 61 - "Community 61"
-Cohesion: 0.14
-Nodes (19): DbApiKeyRow, deleteApiKey(), generateInboundClientKey(), getApiKeys(), saveApiKey(), ApiKeyItem, ApiKeyManager(), decryptAtRest() (+11 more)
+Cohesion: 0.15
+Nodes (18): DbApiKeyRow, deleteApiKey(), generateInboundClientKey(), getApiKeys(), saveApiKey(), ApiKeyItem, decryptAtRest(), encryptAtRest() (+10 more)
 
 ### Community 63 - "Community 63"
-Cohesion: 0.07
-Nodes (45): headers, AuthResult, getOrigin(), MeResult, signInWithGoogle(), signInWithGoogleIdToken(), signInWithMagicLink(), signOut() (+37 more)
+Cohesion: 0.26
+Nodes (9): AuthResult, getMe(), getOrigin(), MeResult, signInWithGoogle(), signInWithGoogleIdToken(), signInWithMagicLink(), signOut() (+1 more)
 
 ### Community 64 - "Community 64"
 Cohesion: 0.09
@@ -1254,16 +1276,16 @@ Cohesion: 0.09
 Nodes (22): dependencies, next, react, react-dom, devDependencies, eslint, eslint-config-next, tailwindcss (+14 more)
 
 ### Community 67 - "Community 67"
-Cohesion: 0.06
-Nodes (37): getModularArchitectureAction(), ModularArchitectureOverview, GET(), safeCompare(), POST(), CompletionRequest, POST(), ModularArchitectureAdminPage() (+29 more)
+Cohesion: 0.18
+Nodes (11): checkAndTriggerNewsSyncPassive(), syncNewsAction(), HomePage(), mockEq, mockFetch, mockInsert, mockLimit, mockMaybeSingle (+3 more)
 
 ### Community 68 - "Community 68"
-Cohesion: 0.08
-Nodes (29): CostTrendChart, DBApiUsage, DBMonthlyCost, metadata, VercelLiveCostCard(), VelocityPageProps, ZeroCostBanner(), AIVelocityWidget() (+21 more)
+Cohesion: 0.17
+Nodes (14): VelocityPageProps, AIVelocityWidget(), AIVelocityWidgetProps, ARRProjectionCharts(), ARRProjectionChartsProps, INITIAL_METRICS, VelocityDashboard(), VelocityMetricsCard() (+6 more)
 
 ### Community 69 - "Community 69"
-Cohesion: 0.11
-Nodes (26): defaultPolicy(), definePolicy(), isPolicy(), validateConfig(), computeIdempotencyKey(), parseClientIdempotencyKey(), redactForLog(), resolveIdempotencyKey() (+18 more)
+Cohesion: 0.16
+Nodes (18): computeIdempotencyKey(), parseClientIdempotencyKey(), redactForLog(), resolveIdempotencyKey(), toTelemetry(), configureTelemetry(), emitTelemetry(), getRedactionFields() (+10 more)
 
 ### Community 71 - "Community 71"
 Cohesion: 0.11
@@ -1290,12 +1312,12 @@ Cohesion: 0.09
 Nodes (21): afterBacklog, backlogSection, beforeBacklog, boardRows, content, createdFiles, dataRows, __dirname (+13 more)
 
 ### Community 77 - "Community 77"
-Cohesion: 0.11
-Nodes (6): AmbassadorFormProps, FellowshipFormProps, ForgotPasswordForm(), LiveTicker(), TickerIncident, supabase
+Cohesion: 0.16
+Nodes (5): AmbassadorFormProps, ForgotPasswordForm(), LiveTicker(), TickerIncident, supabase
 
 ### Community 78 - "Community 78"
-Cohesion: 0.20
-Nodes (12): getOpenCodeEfficiencyAction(), RUN_SCHEMA, buildEfficiencyReport(), classifyTier(), COST_PRICING_TABLE, EfficiencyTier, estimateCost(), mean() (+4 more)
+Cohesion: 0.14
+Nodes (10): getModularArchitectureAction(), ModularArchitectureAdminPage(), ModularArchitectureView, TwinsLeaderboardClient(), AdvisorRoster(), DIGITAL_TWINS, DIGITAL_TWINS_LIST, PersonaStats (+2 more)
 
 ### Community 79 - "Community 79"
 Cohesion: 0.18
@@ -1330,16 +1352,16 @@ Cohesion: 0.18
 Nodes (14): getVendorPortalDataAction(), SlaChartPoint, VendorIncident, VendorPortalData, VendorSlaMetric, VendorPortalPage(), VendorIncidentHistory(), VendorIncidentHistoryProps (+6 more)
 
 ### Community 87 - "Community 87"
-Cohesion: 0.14
-Nodes (11): APP_DESCRIPTION, APP_NAME, DEFAULT_RESPONSE_RATE, DEFAULT_TRUST_SCORE, DEFAULT_VALUATION_PRE_MONEY, INCIDENT_CATEGORIES, IncidentCategory, Severity (+3 more)
+Cohesion: 0.26
+Nodes (9): ModularArchitectureOverview, containerVariants, ICON_MAP, itemVariants, ModularArchitectureViewProps, GPT_360_AUDIT_SCORE, GptAuditScore, MODULAR_PILLARS (+1 more)
 
 ### Community 88 - "Community 88"
 Cohesion: 0.10
 Nodes (20): 10. 📐 STITCH MCP (Google — UI Design), 1. 🐙 GITHUB MCP SERVER, 2. 🔧 GIT CLI (Local — ALWAYS ACTIVE), 3. 🐳 DOCKER CLI (Hetzner/Coolify — Via SSH), 4. ▲ VERCEL CLI, 5. 🤖 NEXUS-DECA-CORE MCP (Custom Internal), 6. 🦀 CARGO CLI (Backend — Rust), 7. 🐍 PYTHON / UVICORN (LLM Gateway) (+12 more)
 
 ### Community 89 - "Community 89"
-Cohesion: 0.17
-Nodes (11): RealProvider, ApiManagementHub(), Provider, LatencyData, ModelHealthChart(), ProviderMatrix(), QuotaGauges(), StaticKeysList() (+3 more)
+Cohesion: 0.10
+Nodes (18): RealProvider, ApiKeysPage(), metadata, ApiManagementPage(), metadata, SettingsPage(), ApiManagementHub(), Provider (+10 more)
 
 ### Community 90 - "Community 90"
 Cohesion: 0.10
@@ -1370,12 +1392,12 @@ Cohesion: 0.10
 Nodes (19): bucketPolicies, columnDiscrepancies, consolidatedReport, dbEnums, dbFunctions, dbPolicies, dbTables, dbViews (+11 more)
 
 ### Community 97 - "Community 97"
-Cohesion: 0.14
-Nodes (16): fetchGitHubActionsBilling(), fetchSupabaseDbSizeGb(), fetchVercelBandwidthGb(), FocusCharge, formatDate(), GET, getHandler(), GitHubActionsBilling (+8 more)
+Cohesion: 0.24
+Nodes (7): GET, failJson(), mockFrom, mockRpc, mockUpsert, okJson(), successHandler()
 
 ### Community 98 - "Community 98"
-Cohesion: 0.07
-Nodes (30): GET(), handleToolCall(), IncidentCategory, IncidentSeverity, MCP_SERVER_INFO, MCP_TOOLS, POST(), ApprovalQueue() (+22 more)
+Cohesion: 0.12
+Nodes (14): ApprovalQueue(), QueueItem, DashboardData, EcosystemDashboard(), EcosystemNews, QueueItem, CATEGORY_STYLES, EcosystemNews (+6 more)
 
 ### Community 99 - "Community 99"
 Cohesion: 0.11
@@ -1406,8 +1428,8 @@ Cohesion: 0.19
 Nodes (17): buildRouteTable(), collectLinks(), isExternalOrIgnorable(), isScannedSourceFile(), isStaticAssetPath(), LINK_PATTERNS, LOCALES, main() (+9 more)
 
 ### Community 106 - "Community 106"
-Cohesion: 0.17
-Nodes (8): LinkedinAdminPage(), LinkedinContactsList, metadata, MarketingPage(), metadata, OutreachAdminPage(), SeoPerformancePage(), MarketingHubTabs()
+Cohesion: 0.24
+Nodes (16): acceptExternalIncident(), autoReviewAllPending(), createInnovation(), getConnectorStatuses(), getExternalQueue(), getInnovations(), triggerManualFetch(), updateExternalQueueStatus() (+8 more)
 
 ### Community 107 - "Community 107"
 Cohesion: 0.11
@@ -1438,16 +1460,16 @@ Cohesion: 0.11
 Nodes (17): Antigravity'ye: bu hata sınıfını kapatan enforcer (yeni madde #89, P0), Bu turda yapılan, Daha ağır bulgu — v12.49'un madde numaraları yanlıştı, Ek — ölçüm kapsama oranı (panonun kendi kör noktası), Kusur 1 — #87 ölü bir şirkete %100 verir, Kusur 2 — #88'in paydası bir dilek listesiydi, Kusur 3 — tüm kazanımlar eşit sayılıyordu, ve tutar sütunu bozuk, MASTER_PLAN Arşiv — v12.46–v12.54 (+9 more)
 
 ### Community 114 - "Community 114"
-Cohesion: 0.16
-Nodes (13): deleteComment(), submitComment(), toggleAffectedStatus(), currentUserMock, mockDelete, mockEq, mockInsert, mockMaybeSingle (+5 more)
+Cohesion: 0.15
+Nodes (11): generateMetadata(), StrategyTabs, ValuationPage(), chartData, DailyVolume, DigitalTwinUsage, formatCurrency(), personaData (+3 more)
 
 ### Community 115 - "Community 115"
-Cohesion: 0.23
-Nodes (9): BENCH_TR_TEST_PROMPTS, BenchTrResult, EVAL_MODELS, runBenchTrEvaluationAction(), recalculateTrustScoresAction(), TrustEngineResult, BenchTrRunButton(), calculateRankingTier() (+1 more)
+Cohesion: 0.18
+Nodes (7): ExpertAnalysisAdminPage(), BenchTrRow, KBenchmarkPage(), metadata, AnalyticsHubTabs(), BenchTrRunButton(), ExpertAnalysisBoard()
 
 ### Community 116 - "Community 116"
-Cohesion: 0.18
-Nodes (15): AdminDashboardPage(), BREAKERS, BreakerSnapshot, getCronStatus(), getRegistryReport(), HEARTBEATS, isServiceHealthy(), listRecentRuns() (+7 more)
+Cohesion: 0.20
+Nodes (15): GET(), BREAKERS, BreakerSnapshot, getCronStatus(), getRegistryReport(), HEARTBEATS, isServiceHealthy(), listRecentRuns() (+7 more)
 
 ### Community 117 - "Community 117"
 Cohesion: 0.16
@@ -1478,20 +1500,20 @@ Cohesion: 0.14
 Nodes (13): 1. Architectural Identity, 2. The Opus Execution Doctrine (Zero Entropy), 3. Mandatory Verification Pipeline, 4. Immutable Project Laws, 5. Security & Isolation Constraints, 6. Agent Boot & Context Management, 7. File Taxonomy, 8. Deployment Governance (+5 more)
 
 ### Community 124 - "Community 124"
-Cohesion: 0.14
-Nodes (16): checkAndTriggerNewsSyncPassive(), classifyAndTranslateNewsWithGemini(), NewsClassificationSchema, parseRSS(), RSS_FEEDS, runNewsSyncWork(), syncNewsAction(), HomePage() (+8 more)
+Cohesion: 0.12
+Nodes (15): CostTrendChart, DBApiUsage, DBMonthlyCost, metadata, VercelLiveCostCard(), ZeroCostBanner(), AlertBanner(), AlertBannerProps (+7 more)
 
 ### Community 125 - "Community 125"
-Cohesion: 0.17
-Nodes (7): ACTIVE_SERVICES, ALTERNATIVE_PROMPTS, ENV_ALIAS_GROUPS, searchAlternatives(), searchTavily(), getAlternativesFor(), getServiceById()
+Cohesion: 0.18
+Nodes (6): ACTIVE_SERVICES, ALTERNATIVE_PROMPTS, ENV_ALIAS_GROUPS, searchAlternatives(), getAlternativesFor(), getServiceById()
 
 ### Community 126 - "Community 126"
 Cohesion: 0.17
 Nodes (11): Adım 1 — Harp Akademisi (ZORUNLU), Adım 2 — Tasarım Kararı, Adım 3 — Uygulama, Adım 4 — Doğrulama, Adım 5 — NUTUK Protokolü (Commit), KİMLİK, KİŞİLİK, MODEL ROUTING (+3 more)
 
 ### Community 127 - "Community 127"
-Cohesion: 0.02
-Nodes (81): CrossAuditDashboardData, Notification, notifications, OutreachPageContent(), ERROR_KEYS, SignInPage(), ScoreRecord, AiHubTabs() (+73 more)
+Cohesion: 0.03
+Nodes (74): Notification, notifications, IncidentDetailPage(), LeaderboardDataContent(), MetricsHubTabs(), AdminSidebar(), SidebarUserShape, RiskFilter (+66 more)
 
 ### Community 128 - "Community 128"
 Cohesion: 0.30
@@ -1574,12 +1596,12 @@ Cohesion: 0.17
 Nodes (13): baseline, BASELINE_PATH, isExempt(), isScanned(), PERMANENT_EXEMPTIONS, ROOT, scan(), SCANNED_EXTENSIONS (+5 more)
 
 ### Community 148 - "Community 148"
-Cohesion: 0.16
-Nodes (9): AiAuditMetrics, getPlausibleMetrics(), AiBudgetTransparencyScore(), AiBudgetTransparencyScoreProps, CalendarAndSentiment(), OutreachAutopilot(), PlausibleVisitorCard(), PrioritizationWidget() (+1 more)
+Cohesion: 0.14
+Nodes (11): AiAuditMetrics, getPlausibleMetrics(), getOutreachStats(), AdminDashboardPage(), AiBudgetTransparencyScore(), AiBudgetTransparencyScoreProps, CalendarAndSentiment(), OutreachAutopilot() (+3 more)
 
 ### Community 149 - "Community 149"
-Cohesion: 0.09
-Nodes (24): runHealthCheck(), initAlparBadge(), apply(), MIGRATIONS, fetchGitHubRepos(), fetchHNStories(), main(), main() (+16 more)
+Cohesion: 0.07
+Nodes (26): runHealthCheck(), initAlparBadge(), fs, InfrastructureEngine, apply(), MIGRATIONS, LinkedInPoster, fetchGitHubRepos() (+18 more)
 
 ### Community 150 - "Community 150"
 Cohesion: 0.14
@@ -1650,8 +1672,8 @@ Cohesion: 0.15
 Nodes (12): 1. Sentry Errors (P0 Alert), 2. Submission Funnel Conversion (P1 Alert), 3. Cross-Audit Autopilot Failures (P0 Kill Switch), 4. Database Connection Limits (P1 Warning), 5. Database Recovery & RTO (Recovery Time Objective), ALPAR AI — Launch Day Runbook, 🔗 Copy-Ready CTA Links, 🔄 Emergency Rollback Procedure (+4 more)
 
 ### Community 167 - "Community 167"
-Cohesion: 0.26
-Nodes (10): LayoutNode, MasterPlanDepsGraph(), MasterPlanDepsGraphProps, buildDependencyGraph(), DependencyGraphData, findCriticalPath(), getBlockedTasks(), getStartableTasks() (+2 more)
+Cohesion: 0.15
+Nodes (15): createJulesSession(), CreateSessionParams, getApiKey(), getJulesHealth(), getJulesSession(), JulesActivity, JulesSession, listJulesSessions() (+7 more)
 
 ### Community 168 - "Community 168"
 Cohesion: 0.15
@@ -1662,8 +1684,8 @@ Cohesion: 0.21
 Nodes (9): ALLOWLIST_PATH, AUDIT_LOG_PATH, collectFiles(), __dirname, isFileAllowed(), loadAllowlist(), logAudit(), main() (+1 more)
 
 ### Community 170 - "Community 170"
-Cohesion: 0.08
-Nodes (27): DilemmasPage(), SuggestionDetailPage(), ExpertApplicationItem, ExpertApplicationRow(), ExpertApplicationsList(), InvestorApplicationItem, InvestorApplicationRow(), InvestorApplicationsList() (+19 more)
+Cohesion: 0.04
+Nodes (40): DilemmasPage(), SuggestionDetailPage(), CommunityHub(), CommunityHubProps, Poll, PollCard(), LOCALE_OPTIONS, LocaleOption (+32 more)
 
 ### Community 171 - "Community 171"
 Cohesion: 0.23
@@ -1734,8 +1756,8 @@ Cohesion: 0.22
 Nodes (8): graphify reference: extra exports and benchmark, Step 6b - Wiki (only if --wiki flag), Step 7 - Neo4j export (only if --neo4j or --neo4j-push flag), Step 7a - FalkorDB export (only if --falkordb or --falkordb-push flag), Step 7b - SVG export (only if --svg flag), Step 7c - GraphML export (only if --graphml flag), Step 7d - MCP server (only if --mcp flag), Step 8 - Token reduction benchmark (only if total_words > 5000)
 
 ### Community 188 - "Community 188"
-Cohesion: 0.17
-Nodes (10): detectLocale(), GET(), logAdminLogin(), safeNextPath(), LocaleOption, NotFoundClient(), localeMessages, DEFAULT_LOCALE (+2 more)
+Cohesion: 0.19
+Nodes (10): ERROR_KEYS, SignInPage(), EmailMagicLinkForm(), GoogleSignInButton(), MagicLinkState, Window, SignInForm(), isSafeNextPath() (+2 more)
 
 ### Community 189 - "Community 189"
 Cohesion: 0.29
@@ -1743,19 +1765,15 @@ Nodes (8): GET(), collectDoraMetrics(), DoraMetricsData, getDoraMetricsHistory()
 
 ### Community 190 - "Community 190"
 Cohesion: 0.03
-Nodes (74): runLiveSystemAnalysis(), runLiveStrategyAnalysis(), voteModelReview(), backfillIncidentsTR(), translateIncidentToTR(), TranslationResult, POST(), POST() (+66 more)
+Nodes (79): approveInvestor(), InvestorWorkInput, rejectInvestor(), runInvestorWork(), submitInvestor(), scoutNewAIIncidents(), GET, getHandler() (+71 more)
 
 ### Community 191 - "Community 191"
 Cohesion: 0.25
 Nodes (7): 1. "Sahte Güven" Konfigürasyon Filtresi, 2. Vercel Memory Limit (OOMKilled) Savunması, 3. İşletim Sistemi Case-Sensitivity (Büyük/Küçük Harf) Kalkanı, 4. Ölümcül SSG/Render Çökmesi (i18n `MISSING_MESSAGE`), İcraat Prosedürü, Vercel & Next.js Deploy Analisti (S-Tier Deploy Agent), 🚨 ÖLÜMCÜL CHECKLIST (Toplanan Verilerle Sabitlenmiş Kurallar)
 
-### Community 192 - "Community 192"
-Cohesion: 0.06
-Nodes (31): resend, resend, evaluateIncidentWithGemini(), runAutoModerationWork(), approveInvestor(), rejectInvestor(), GET, getHandler() (+23 more)
-
 ### Community 193 - "Community 193"
-Cohesion: 0.32
-Nodes (8): routing, assertTestBypassSafe(), getPlaywrightMockUser(), isTestAuthBypassActive(), updateSession(), config, intlMiddleware, middleware()
+Cohesion: 0.11
+Nodes (18): DoraMetricRow, getObserve360Telemetry(), SlaAlarmRow, GET(), HealthPage(), routing, isFeatureEnabled(), AI_BOT_USER_AGENTS (+10 more)
 
 ### Community 194 - "Community 194"
 Cohesion: 0.18
@@ -1838,8 +1856,8 @@ Cohesion: 0.18
 Nodes (9): dePath, en, enPath, frPath, fs, messagesDir, path, ruPath (+1 more)
 
 ### Community 214 - "Community 214"
-Cohesion: 0.31
-Nodes (7): ALLOWED_STORAGE_MIME_TYPES, uploadIncidentEvidence(), GET(), GET(), getGDriveClient(), SCOPES, uploadToDrive()
+Cohesion: 0.43
+Nodes (5): GET(), GET(), getGDriveClient(), SCOPES, uploadToDrive()
 
 ### Community 215 - "Community 215"
 Cohesion: 0.29
@@ -1950,8 +1968,8 @@ Cohesion: 0.27
 Nodes (6): CDPClient, fs, getTabs(), http, main(), path
 
 ### Community 243 - "Community 243"
-Cohesion: 0.24
-Nodes (7): expertApplicationSchema, ExpertState, ExpertWorkInput, ExpertWorkResult, runExpertWork(), submitExpert(), APP_EMAIL
+Cohesion: 0.15
+Nodes (13): esbuild@<=0.24.2, vite@>=5.0.0 <=5.4.11, vite@>=5.0.0 <5.4.15, vite@>=5.0.0 <5.4.16, vite@>=5.0.0 <5.4.17, vite@>=5.0.0 <5.4.18, vite@>=5.2.6 <=5.4.20, vite@<=5.4.19 (+5 more)
 
 ### Community 244 - "Community 244"
 Cohesion: 0.20
@@ -1962,12 +1980,12 @@ Cohesion: 0.20
 Nodes (9): fs, missingInPage, missingInSidebar, pageContent, pageLinks, pageSet, sidebarContent, sidebarLinks (+1 more)
 
 ### Community 246 - "Community 246"
-Cohesion: 0.11
-Nodes (29): createMetricsSnapshotAction(), deleteMilestoneAction(), deleteRiskAction(), deleteSwotItemAction(), saveValuationAction(), upsertMilestoneAction(), upsertRiskAction(), upsertSwotItemAction() (+21 more)
+Cohesion: 0.27
+Nodes (14): createMetricsSnapshotAction(), deleteMilestoneAction(), deleteRiskAction(), deleteSwotItemAction(), saveValuationAction(), upsertMilestoneAction(), upsertRiskAction(), upsertSwotItemAction() (+6 more)
 
 ### Community 247 - "Community 247"
-Cohesion: 0.22
-Nodes (8): DataFlowDiagram(), DataFlowDiagramProps, FlowEdge, FlowNode, Signal, SignalCategory, SignalsClient(), SignalsClientProps
+Cohesion: 0.24
+Nodes (10): createItemSchema, createOutreachItem(), processOutreachQueueAction(), triggerOutreachQueueAction(), UnsafeClient, updateOutreachStatus(), updateStatusSchema, OutreachPageContent() (+2 more)
 
 ### Community 248 - "Community 248"
 Cohesion: 0.38
@@ -2142,12 +2160,12 @@ Cohesion: 0.25
 Nodes (8): desired, __dirname, env, envPath, IP_SALT, main(), repoRoot, vFetch()
 
 ### Community 291 - "Community 291"
-Cohesion: 0.18
-Nodes (7): ALLOWED_DETECTORS, ALLOWED_PLATFORMS, ReportFlaggingState, submitFlaggingReport(), DETECTORS, initialState, PLATFORMS
+Cohesion: 0.22
+Nodes (4): ReportFlaggingState, DETECTORS, initialState, PLATFORMS
 
 ### Community 292 - "Community 292"
-Cohesion: 0.20
-Nodes (5): ClaimReviewJsonLdProps, IncidentJsonLd(), SoftwareApplicationJsonLd(), WebSiteJsonLd(), GITHUB_URL
+Cohesion: 0.14
+Nodes (8): ClaimReviewJsonLdProps, IncidentJsonLd(), OrganizationJsonLd(), SoftwareApplicationJsonLd(), WebSiteJsonLd(), APP_DESCRIPTION, APP_NAME, GITHUB_URL
 
 ### Community 293 - "Community 293"
 Cohesion: 0.29
@@ -2162,8 +2180,8 @@ Cohesion: 0.31
 Nodes (4): LinkedInBotResult, LinkedInOutreachContact, runLinkedInOutreachBot(), MockCDPWebSocket
 
 ### Community 296 - "Community 296"
-Cohesion: 0.15
-Nodes (12): OnboardingResult, saveOnboardingData(), VALID_INTERESTS, VALID_ROLES, currentUserMock, mockCount, mockSingle, mockSupabaseChain (+4 more)
+Cohesion: 0.22
+Nodes (8): currentUserMock, mockCount, mockSingle, mockSupabaseChain, mockUpdate, mockUser, rateLimitMock, updateErrorMock
 
 ### Community 297 - "Community 297"
 Cohesion: 0.29
@@ -2306,8 +2324,8 @@ Cohesion: 0.32
 Nodes (7): crypto, extract(), fs, getTabs(), http, path, runNativeWebSocket()
 
 ### Community 332 - "Community 332"
-Cohesion: 0.03
-Nodes (45): BountyBadgeWithStats, ExpertForm(), AcademyPage(), metadata, RedactionRequestRow, B2BDashboardPage(), BountyListItem, BountyRow() (+37 more)
+Cohesion: 0.04
+Nodes (36): BountyBadgeWithStats, metadata, RedactionRequestRow, BountyListItem, BountyRow(), EmbedPageProps, IncidentEmbedPage(), ModelPageProps (+28 more)
 
 ### Community 333 - "Community 333"
 Cohesion: 0.32
@@ -2362,16 +2380,16 @@ Cohesion: 0.25
 Nodes (7): Bug Bounty Program, Out of Scope, Reporting a Vulnerability, Safe Harbor, Scope, Security Policy, Supported Versions
 
 ### Community 346 - "Community 346"
-Cohesion: 0.14
-Nodes (11): addSuggestionComment(), CommentWorkInput, runSuggestionCommentWork(), runSuggestionVoteWork(), runSuggestionWork(), submitSuggestion(), SubmitSuggestionState, SuggestionWorkInput (+3 more)
+Cohesion: 0.09
+Nodes (23): AiProviderResponseInput, aiProviderResponseSchema, categoryValues, ContactFormInput, contactFormSchema, IncidentSubmissionInput, incidentSubmissionSchema, InvestorApplicationInput (+15 more)
 
 ### Community 347 - "Community 347"
 Cohesion: 0.29
 Nodes (6): 1. 🧪 THE TDD DOCTRINE (QA & Testing), 2. 🗄️ THE DATA DOCTRINE (Database Migrations), 3. 🔐 THE SEC-NEXUS (Zero-Trust Security), 4. 📡 TELEMETRY & OBSERVABILITY, 5. 🚨 CRISIS MANAGEMENT (Rollback Protocol), 🛡️ QUALITY-NEXUS — The FAANG Engineering Pillars
 
 ### Community 348 - "Community 348"
-Cohesion: 0.33
-Nodes (7): ALLOWED_ORIGINS, corsHeaders(), OPTIONS(), POST(), safeCompare(), mockFrom, mockMaybeSingle
+Cohesion: 0.18
+Nodes (6): AdminAutopilotPage(), formatMs(), formatTime(), WorkerTickButton(), AutopilotWorkerToggles(), VoiceIncidentReporter()
 
 ### Community 349 - "Community 349"
 Cohesion: 0.40
@@ -2383,19 +2401,19 @@ Nodes (6): ⚙️ AGENTIC WORKFLOW, 🦅 ANTIGRAVITY — V33 ZENITH ARCHITECT, �
 
 ### Community 351 - "Community 351"
 Cohesion: 0.17
-Nodes (8): CATEGORY_LABELS, COUNTRY_FLAGS, generateMetadata(), PRIORITY_CONFIG, StateSupportPage(), STATUS_CONFIG, StrategyTabs, StateSupport
+Nodes (10): AnalysisPage(), AnalysisDashboardClient(), Audit, ConsensusFinding, LiveAnalysisResult, P0Blocker, Props, RegistryData (+2 more)
 
 ### Community 352 - "Community 352"
-Cohesion: 0.06
-Nodes (35): loadEnvLocal(), REAL_INCIDENTS_SEED_DATA, RealIncidentSeedItem, seedRealIncidents(), beforeSend(), beforeSend(), beforeSend(), analyzeIncident() (+27 more)
+Cohesion: 0.26
+Nodes (9): CompletionRequest, POST(), calculateAlignmentScore(), selfHealResponse(), DigitalTwinPersona, mockInsert, mockRpc, mockSelect (+1 more)
 
 ### Community 353 - "Community 353"
 Cohesion: 0.25
 Nodes (7): mockAdminUser, mockEq, mockGenerateImage, mockGetPublicUrl, mockUpdate, mockUpload, requireAdminMock
 
 ### Community 354 - "Community 354"
-Cohesion: 0.22
-Nodes (8): POST(), mockCheckoutSessionsCreate, mockCustomersCreate, mockFrom, mockGetUser, mockSubInsert, mockSubMaybeSingle, mockSubSelect
+Cohesion: 0.25
+Nodes (7): GET, mockEq, mockLte, mockNeq, mockSelect, mockUpdate, queryBuilder
 
 ### Community 355 - "Community 355"
 Cohesion: 0.52
@@ -2710,8 +2728,8 @@ Cohesion: 0.22
 Nodes (12): BlogIndexPage(), BlogPostPage(), escapeHtml(), generateMetadata(), generateStaticParams(), renderMarkdown(), sitemap(), BlogArticleJsonLd() (+4 more)
 
 ### Community 433 - "Community 433"
-Cohesion: 0.33
-Nodes (6): computeBackoffMs(), isRetryableError(), sleep(), BackoffStrategy, RetryConfig, baseRetry
+Cohesion: 0.25
+Nodes (7): GET, mockFrom, mockIncidents, mockIncLimit, mockResendSend, mockSubIs, mockSubscribers
 
 ### Community 434 - "Community 434"
 Cohesion: 0.48
@@ -2722,8 +2740,12 @@ Cohesion: 0.43
 Nodes (6): buildZip(), crc32(), crc32Table, writeU16(), writeU32(), ZipEntry
 
 ### Community 436 - "Community 436"
-Cohesion: 0.23
-Nodes (11): toTelemetry(), configureTelemetry(), emitTelemetry(), getRedactionFields(), makeTelemetryPayload(), PlausibleEventLike, safeCaptureException(), SentryCaptureLike (+3 more)
+Cohesion: 0.27
+Nodes (11): BenchTrEvaluationRecord, CalculatedCategoryScore, calculateIncidentPenalty(), calculateKModelCategoryScores(), calculateSeverityWeight(), IncidentRecord, matchBenchTrEvaluation(), ModelRecord (+3 more)
+
+### Community 437 - "Community 437"
+Cohesion: 0.22
+Nodes (7): CrossAuditDashboardData, COLORS, CrossAuditDashboardClient(), CrossAuditDashboardClientProps, LiveCrossAuditResult, RISK_COLORS, StatCardProps
 
 ### Community 438 - "Community 438"
 Cohesion: 0.48
@@ -2746,8 +2768,8 @@ Cohesion: 0.33
 Nodes (5): Attribution, Contributor Covenant Code of Conduct, Enforcement, Our Pledge, Our Standards
 
 ### Community 443 - "Community 443"
-Cohesion: 0.17
-Nodes (14): generateAndStoreInvoiceAction(), normalizeTier(), POST(), generateInvoiceHtmlTemplate(), generatePdfBufferFromInvoice(), InvoiceData, processAutonomousPdfInvoice(), StoredInvoiceResult (+6 more)
+Cohesion: 0.32
+Nodes (9): generateAndStoreInvoiceAction(), normalizeTier(), POST(), generateInvoiceHtmlTemplate(), generatePdfBufferFromInvoice(), InvoiceData, processAutonomousPdfInvoice(), StoredInvoiceResult (+1 more)
 
 ### Community 444 - "Community 444"
 Cohesion: 0.33
@@ -3490,8 +3512,8 @@ Cohesion: 0.50
 Nodes (4): maximum, minimum, type, eu_act_non_discrimination
 
 ### Community 634 - "Community 634"
-Cohesion: 0.33
-Nodes (4): ApiTelemetryData, getApiTelemetryData(), RealApiKeyEntry, fetchTelemetry()
+Cohesion: 0.17
+Nodes (8): CATEGORY_LABELS, COUNTRY_FLAGS, generateMetadata(), PRIORITY_CONFIG, StateSupportPage(), STATUS_CONFIG, StrategyTabs, StateSupport
 
 ### Community 635 - "Community 635"
 Cohesion: 0.50
@@ -3709,6 +3731,10 @@ Nodes (3): buf, lines, tablesFound
 Cohesion: 0.50
 Nodes (3): bucketInserts, files, storagePolicies
 
+### Community 696 - "Community 696"
+Cohesion: 0.26
+Nodes (10): LayoutNode, MasterPlanDepsGraph(), MasterPlanDepsGraphProps, buildDependencyGraph(), DependencyGraphData, findCriticalPath(), getBlockedTasks(), getStartableTasks() (+2 more)
+
 ### Community 698 - "Community 698"
 Cohesion: 0.50
 Nodes (3): fs, http, WebSocket
@@ -3718,8 +3744,8 @@ Cohesion: 0.50
 Nodes (3): fs, http, promptText
 
 ### Community 701 - "Community 701"
-Cohesion: 0.33
-Nodes (3): AlternativeCards(), AlternativeCardsProps, LOGO_MAP
+Cohesion: 0.31
+Nodes (8): classifyAndTranslateNewsWithGemini(), NewsClassificationSchema, parseRSS(), RSS_FEEDS, runNewsSyncWork(), dnsLookup, fetchWithSsrfGuard(), isSafeUrl()
 
 ### Community 707 - "Community 707"
 Cohesion: 0.50
@@ -3818,12 +3844,12 @@ Cohesion: 0.36
 Nodes (7): require(), connectWebSocket(), crypto, getTabs(), http, run(), runNativeWebSocket()
 
 ### Community 765 - "Community 765"
-Cohesion: 0.03
-Nodes (45): run360ExpertAudit(), generateQuestionsFromIncidents(), runBatchEvaluations(), createUserByAdmin(), createUserSchema, supabaseAdmin, EmailPreferencesState, getEmailPreferences() (+37 more)
+Cohesion: 0.31
+Nodes (6): GET(), BenchmarkModel, FALLBACK_BENCHMARK_MODELS, getKBenchmarkScores(), ScoreRow, mockSelect
 
 ### Community 766 - "Community 766"
-Cohesion: 0.50
-Nodes (4): analyzeComplexity(), CLOUD_OMNI_CHAIN, ghostInferenceRoute(), LOCAL_GHOST_CHAIN
+Cohesion: 0.09
+Nodes (23): POST(), getDailyCost(), isCostKillSwitchActive(), CouncilMemberOpinion, CouncilRunOptions, CouncilSynthesisResult, DEFAULT_LABELS, PeerReviewEvaluation (+15 more)
 
 ### Community 770 - "Community 770"
 Cohesion: 0.32
@@ -3840,6 +3866,10 @@ Nodes (3): DORA_ROW, K_SCORES, SLA_ALARMS
 ### Community 779 - "Community 779"
 Cohesion: 0.33
 Nodes (5): 1. Executive Summary, 2. P0 Security Remediation Status, 3. P1 Code Quality & Integration Status, 4. Swarm Commander Directives (Post-Mission), ALPAR AI — Phase 1 (Backend & Security) Validation Report
+
+### Community 781 - "Community 781"
+Cohesion: 0.25
+Nodes (7): GET, mockEq, mockLte, mockSelect, mockSend, mockUpdate, queryBuilder
 
 ### Community 782 - "Community 782"
 Cohesion: 0.43
@@ -3860,6 +3890,14 @@ Nodes (5): plugins, rules, react/only-export-components, react/rules-of-hooks, $
 ### Community 936 - "Community 936"
 Cohesion: 0.22
 Nodes (8): @vercel/functions, framework, functions, src/app/api/**/*, ignoreCommand, installCommand, regions, maxDuration
+
+### Community 988 - "Community 988"
+Cohesion: 0.18
+Nodes (10): currentUserMock, mockDelete, mockEq, mockInsert, mockMaybeSingle, mockSelect, mockSingle, mockSupabaseChain (+2 more)
+
+### Community 990 - "Community 990"
+Cohesion: 0.29
+Nodes (6): checkCodebaseHygiene(), CodebaseHygieneResult, CodebaseHygieneReport, getCodebaseHygieneAction(), CodebaseHygieneAdminPage(), metadata
 
 ### Community 991 - "Community 991"
 Cohesion: 0.14
@@ -3893,6 +3931,10 @@ Nodes (4): Boot Sequence (New Agent):, Graphify Freshness Protocol:, Graphify (M
 Cohesion: 0.40
 Nodes (4): Görev Verme Prosedürü (Execution Flow), JULES-KOMUTANI (Google AI Agent Orchestrator), Kullanım Alanları (Ne Zaman Jules Kullanılır?), Ön Koşullar (Pre-flight Checks)
 
+### Community 1000 - "Community 1000"
+Cohesion: 0.28
+Nodes (7): B2BDashboardPage(), IncidentStatus, KanbanBoard(), KanbanBoardProps, KanbanIncident, SortableIncidentCard(), STATUS_COLUMNS
+
 ### Community 1002 - "Community 1002"
 Cohesion: 0.50
 Nodes (3): Advisory/Read-Only Mode (/uy), CORE DIRECTIVE, STRICT CONSTRAINTS
@@ -3921,32 +3963,88 @@ Nodes (3): Davranış Kuralları, Devlet Aklı (Büyük Türk Devleti) Swarm Pro
 Cohesion: 0.50
 Nodes (3): Core Directives, Gemini Spark - Autonomous Background Agent, How to Start Spark
 
+### Community 1011 - "Community 1011"
+Cohesion: 0.08
+Nodes (25): ALLOWED_AUDIO_MIME_TYPES, POST(), transcribeAudio(), voiceIncidentMetadataSchema, VoiceTranscriptionResult, voiceTranscriptionResultSchema, GET(), handleToolCall() (+17 more)
+
+### Community 1044 - "Community 1044"
+Cohesion: 0.29
+Nodes (3): SubmitSuggestionState, ConstitutionClient(), initialState
+
 ### Community 1045 - "Community 1045"
-Cohesion: 0.20
-Nodes (9): AnalysisDashboardClient(), Audit, ConsensusFinding, LiveAnalysisResult, P0Blocker, Props, RegistryData, ScoreEvolution (+1 more)
+Cohesion: 0.32
+Nodes (5): ChallengeList(), ChallengeRow, ChallengeSubmissions(), SubmissionRow, SubmissionForm()
+
+### Community 1046 - "Community 1046"
+Cohesion: 0.32
+Nodes (6): getRetentionPolicies(), pruneExpiredRecords(), RetentionPolicy, mockDelete, mockLte, mockSelect
+
+### Community 1047 - "Community 1047"
+Cohesion: 0.48
+Nodes (5): cleanCdata(), decodeHtmlEntities(), decoder, fetchRSSFeed(), fetchWithRetry()
+
+### Community 1048 - "Community 1048"
+Cohesion: 0.25
+Nodes (7): mockCheckoutSessionsCreate, mockCustomersCreate, mockFrom, mockGetUser, mockSubInsert, mockSubMaybeSingle, mockSubSelect
+
+### Community 1049 - "Community 1049"
+Cohesion: 0.33
+Nodes (6): fs, generatePngs(), iconsDir, path, publicDir, sharp
 
 ### Community 1050 - "Community 1050"
-Cohesion: 0.04
-Nodes (65): getMe(), autoModerateIncidentAction(), getLiveCapacityMetrics(), upvoteSuggestion(), logCookieConsent(), getIncidentPassport(), IncidentPassport, KBenchmarkRecalculateResult (+57 more)
+Cohesion: 0.07
+Nodes (29): IncidentRow, BENCH_TR_TEST_PROMPTS, BenchTrResult, EVAL_MODELS, runBenchTrEvaluationAction(), KBenchmarkRecalculateResult, recalculateKBenchmarkScoresAction(), recalculateTrustScoresAction() (+21 more)
+
+### Community 1051 - "Community 1051"
+Cohesion: 0.43
+Nodes (6): calculatePercentage(), formatDate(), isStale(), metadata, QuotaRow(), VendorQuota
 
 ### Community 1052 - "Community 1052"
-Cohesion: 0.40
-Nodes (3): geistMono, geistSans, metadata
+Cohesion: 0.33
+Nodes (5): cardVariants, containerVariants, QUADRANT_CONFIGS, SwotBoardClientProps, SwotItem
+
+### Community 1056 - "Community 1056"
+Cohesion: 0.29
+Nodes (3): ArbitrageEngine, ContextTier, IncidentSeverity
+
+### Community 1057 - "Community 1057"
+Cohesion: 0.29
+Nodes (5): mockConstructEvent, mockFrom, mockSubEq, mockSubTable, mockSubUpsert
+
+### Community 1060 - "Community 1060"
+Cohesion: 0.33
+Nodes (3): AlternativeCards(), AlternativeCardsProps, LOGO_MAP
+
+### Community 1061 - "Community 1061"
+Cohesion: 0.50
+Nodes (4): loadEnvLocal(), REAL_INCIDENTS_SEED_DATA, RealIncidentSeedItem, seedRealIncidents()
+
+### Community 1062 - "Community 1062"
+Cohesion: 0.70
+Nodes (4): detectLocale(), GET(), logAdminLogin(), safeNextPath()
+
+### Community 1064 - "Community 1064"
+Cohesion: 0.50
+Nodes (4): analyzeComplexity(), CLOUD_OMNI_CHAIN, ghostInferenceRoute(), LOCAL_GHOST_CHAIN
+
+### Community 1065 - "Community 1065"
+Cohesion: 0.50
+Nodes (4): calculateTrigramSimilarity(), DuplicateCheckResult, findDuplicateIncident(), IncidentItem
 
 ## Knowledge Gaps
-- **5046 isolated node(s):** `CodeReviewRequest`, `CodeReviewResponse`, `__filename`, `__dirname`, `ENGINES_DIR` (+5041 more)
+- **5061 isolated node(s):** `CodeReviewRequest`, `CodeReviewResponse`, `__filename`, `__dirname`, `ENGINES_DIR` (+5056 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **209 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **212 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `dependencies` connect `Community 22` to `Community 104`, `Community 936`?**
   _High betweenness centrality (0.026) - this node is a cross-community bridge._
-- **Why does `server-only` connect `Community 22` to `Community 12`?**
+- **Why does `server-only` connect `Community 22` to `Community 0`?**
   _High betweenness centrality (0.022) - this node is a cross-community bridge._
-- **Why does `createAdminClient()` connect `Community 2` to `Community 0`, `Community 1`, `Community 3`, `Community 5`, `Community 6`, `Community 7`, `Community 8`, `Community 9`, `Community 10`, `Community 12`, `Community 13`, `Community 15`, `Community 20`, `Community 1050`, `Community 26`, `Community 29`, `Community 35`, `Community 36`, `Community 38`, `Community 40`, `Community 41`, `Community 44`, `Community 50`, `Community 53`, `Community 56`, `Community 57`, `Community 443`, `Community 61`, `Community 190`, `Community 63`, `Community 192`, `Community 189`, `Community 67`, `Community 68`, `Community 332`, `Community 86`, `Community 218`, `Community 348`, `Community 352`, `Community 97`, `Community 354`, `Community 98`, `Community 106`, `Community 115`, `Community 125`, `Community 246`, `Community 634`, `Community 124`, `Community 765`?**
-  _High betweenness centrality (0.021) - this node is a cross-community bridge._
+- **Why does `createAdminClient()` connect `Community 26` to `Community 0`, `Community 1`, `Community 2`, `Community 3`, `Community 4`, `Community 5`, `Community 6`, `Community 7`, `Community 8`, `Community 9`, `Community 765`, `Community 12`, `Community 15`, `Community 18`, `Community 20`, `Community 148`, `Community 1046`, `Community 1050`, `Community 1051`, `Community 29`, `Community 34`, `Community 35`, `Community 36`, `Community 38`, `Community 40`, `Community 41`, `Community 1065`, `Community 44`, `Community 53`, `Community 443`, `Community 701`, `Community 61`, `Community 190`, `Community 189`, `Community 193`, `Community 67`, `Community 332`, `Community 86`, `Community 218`, `Community 352`, `Community 106`, `Community 1011`, `Community 246`, `Community 247`, `Community 124`, `Community 125`, `Community 766`?**
+  _High betweenness centrality (0.016) - this node is a cross-community bridge._
 - **Are the 5 inferred relationships involving `createAdminClient()` (e.g. with `runLiveSystemAnalysis()` and `promoteUser()`) actually correct?**
   _`createAdminClient()` has 5 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 3 inferred relationships involving `requireAdmin()` (e.g. with `promoteUser()` and `setUserRole()`) actually correct?**
@@ -3954,4 +4052,4 @@ _Questions this graph is uniquely positioned to answer:_
 - **Are the 3 inferred relationships involving `createClient()` (e.g. with `seedRealIncidents()` and `GET()`) actually correct?**
   _`createClient()` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `CodeReviewRequest`, `CodeReviewResponse`, `__filename` to the rest of the system?**
-  _5046 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _5061 weakly-connected nodes found - possible documentation gaps or missing edges._

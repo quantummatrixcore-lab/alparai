@@ -27,3 +27,8 @@ insert into public.ai_polls (title, description) values
 ('Otonom Araç İkilemi', 'Otonom bir araç, yola aniden çıkan 5 yayayı ezmemek için direksiyonu kırıp içindeki 1 yolcuyu feda etmeli mi?'),
 ('Otonom Silah Sistemleri', 'Yapay zeka güdümlü silah sistemlerinin, insan onayı olmadan hedefe ateş etme (ölümcül karar) yetkisi olmalı mı?'),
 ('AGI Yönetimi', 'Yapay Genel Zeka (AGI) insanlıktan çok daha akıllı hale geldiğinde, politik ve ekonomik yönetim tamamen yapay zekaya devredilmeli mi?');
+
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.ai_poll_votes CASCADE;
+-- DROP TABLE IF EXISTS public.ai_polls CASCADE;

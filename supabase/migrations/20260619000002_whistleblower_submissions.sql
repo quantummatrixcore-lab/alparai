@@ -32,3 +32,7 @@ create policy "whistleblower_public_insert"
   on public.whistleblower_submissions
   for insert
   with check (true);
+
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.whistleblower_submissions CASCADE;

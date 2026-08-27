@@ -86,12 +86,12 @@ export function MobileNav({
       {open && (
         <div
           id="mobile-nav-panel"
-          className="bg-bg-primary/95 fixed inset-0 z-50 flex flex-col backdrop-blur-sm"
+          className="bg-bg-primary/95 fixed inset-0 z-[150] flex flex-col backdrop-blur-sm"
           role="dialog"
           aria-modal="true"
           aria-label={tCommon("openMenu")}
         >
-          <div className="border-border-subtle flex items-center justify-between border-b p-4">
+          <div className="border-border-subtle flex shrink-0 items-center justify-between border-b p-4">
             <Wordmark size="md" />
             <button
               onClick={() => setOpen(false)}
@@ -101,7 +101,7 @@ export function MobileNav({
               <X className="h-5 w-5" />
             </button>
           </div>
-          <nav className="flex flex-1 flex-col gap-1 overflow-y-auto p-4">
+          <nav className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto p-4">
             {activeLinks.map((item) => {
               const isGroup = "group" in item;
               if (isGroup) {
@@ -132,7 +132,7 @@ export function MobileNav({
               );
             })}
           </nav>
-          <div className="border-border-subtle bg-bg-secondary/50 flex flex-col gap-4 border-t p-4">
+          <div className="border-border-subtle bg-bg-secondary/50 flex shrink-0 flex-col gap-4 border-t p-4">
             <Link
               href="/submit"
               className="from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 flex h-11 items-center justify-center gap-2 rounded-full bg-gradient-to-r px-6 text-sm font-bold text-white shadow-lg transition-all"

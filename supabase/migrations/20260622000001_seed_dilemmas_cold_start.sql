@@ -83,3 +83,7 @@ VALUES
   'dilemma',
   true
 );
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

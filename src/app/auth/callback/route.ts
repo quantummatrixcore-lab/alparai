@@ -39,43 +39,16 @@ function detectLocale(request: NextRequest): string {
   return DEFAULT_LOCALE;
 }
 
+import { logAdminLoginAction } from "@/actions/auth-audit";
+
 async function logAdminLogin(
   supabase: SupabaseClient<Database>,
   userId: string,
   request: NextRequest,
 ) {
-  try {
-    const { data: userProfile } = await supabase
-      .from("users")
-      .select("role")
-      .eq("id", userId)
-      .single();
-
-    if (userProfile && ["admin", "ceo", "moderator", "advisor"].includes(userProfile.role)) {
-      const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "127.0.0.1";
-      const ipHash = createHash("sha256").update(ip).digest("hex");
-
-      await supabase.from("audit_log").insert({
-        actor_id: userId,
-        action: "auth.login",
-        entity_type: "user",
-        entity_id: userId,
-        ip_hash: ipHash,
-        after_data: { role: userProfile.role },
-      });
-
-      try {
-        await supabase.from("admin_login_events").insert({
-          user_id: userId,
-          ip_hash: ipHash,
-        });
-      } catch {
-        // Fail-safe if migration table not present yet
-      }
-    }
-  } catch (err) {
-    logger.error("Failed to log admin login", undefined, err instanceof Error ? err : undefined);
-  }
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "127.0.0.1";
+  const ipHash = createHash("sha256").update(ip).digest("hex");
+  await logAdminLoginAction(userId, ipHash);
 }
 
 export async function GET(request: NextRequest) {

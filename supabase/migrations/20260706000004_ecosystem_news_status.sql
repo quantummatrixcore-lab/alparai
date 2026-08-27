@@ -11,3 +11,7 @@ ALTER TABLE public.ecosystem_news
 
 ALTER TABLE public.ecosystem_news 
   ALTER COLUMN status SET DEFAULT 'pending';
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

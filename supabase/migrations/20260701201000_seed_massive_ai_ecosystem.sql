@@ -280,3 +280,7 @@ WHERE p.slug = 'midjourney'
 AND NOT EXISTS (
   SELECT 1 FROM public.ai_models WHERE provider_id = p.id AND name = m.name AND version = m.version
 );
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

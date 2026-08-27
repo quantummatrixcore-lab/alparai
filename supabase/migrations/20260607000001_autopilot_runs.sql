@@ -37,3 +37,7 @@ create policy "Authenticated users can insert autopilot runs"
 create policy "Service role can update autopilot runs"
   on public.autopilot_runs for update
   using (auth.role() = 'service_role');
+
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.autopilot_runs CASCADE;

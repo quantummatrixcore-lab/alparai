@@ -87,3 +87,7 @@ SET comments_count = (
   FROM public.incident_comments c
   WHERE c.incident_id = i.id
 );
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

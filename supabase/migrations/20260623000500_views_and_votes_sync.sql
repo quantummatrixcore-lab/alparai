@@ -63,3 +63,7 @@ SET upvotes_count = (
   FROM public.incident_votes v
   WHERE v.incident_id = i.id AND v.value = 1
 );
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

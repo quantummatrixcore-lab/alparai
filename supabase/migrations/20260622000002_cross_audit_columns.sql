@@ -23,3 +23,7 @@ COMMENT ON COLUMN public.incidents.cross_audit_triage_models IS
   'Array of free-tier model IDs that contributed to the triage layer.';
 COMMENT ON COLUMN public.incidents.cross_audit_completed_at IS
   'Timestamp when the Cross-Audit evaluation pipeline completed.';
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

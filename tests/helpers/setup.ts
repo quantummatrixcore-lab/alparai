@@ -34,22 +34,22 @@ vi.mock("next-intl/server", () => ({
 }));
 
 vi.mock("@upstash/redis", () => ({
-  Redis: vi.fn().mockImplementation(() => ({
+  Redis: vi.fn().mockImplementation(function() { return {
     get: vi.fn().mockResolvedValue(null),
     set: vi.fn().mockResolvedValue("OK"),
     del: vi.fn().mockResolvedValue(1),
-  })),
+  }; }),
 }));
 
 vi.mock("@upstash/ratelimit", () => ({
   Ratelimit: Object.assign(
-    vi.fn().mockImplementation(() => ({
+    vi.fn().mockImplementation(function() { return {
       limit: vi.fn().mockResolvedValue({
         success: true,
         remaining: 10,
         reset: Date.now() + 60_000,
       }),
-    })),
+    }; }),
     {
       slidingWindow: vi.fn().mockReturnValue({} as never),
     },

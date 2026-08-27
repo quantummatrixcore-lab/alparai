@@ -88,3 +88,7 @@ insert into public.ecosystem_news (title_en, title_tr, summary_en, summary_tr, u
   'medium',
   false
 );
+
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.ecosystem_news CASCADE;

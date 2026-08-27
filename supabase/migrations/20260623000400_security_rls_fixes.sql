@@ -47,3 +47,7 @@ create policy "bounty_badges_public_select" on public.bounty_badges
 
 create policy "bounty_badges_admin_all" on public.bounty_badges
   for all using (public.is_moderator(auth.uid()));
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

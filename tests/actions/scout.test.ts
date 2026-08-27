@@ -36,12 +36,7 @@ beforeEach(() => {
 });
 
 function mockAdapter(response: { ok: boolean; data?: unknown; error?: string }) {
-  vi.mocked(VertexGeminiAdapter).mockImplementation(
-    () =>
-      ({
-        generateJson: vi.fn().mockResolvedValue(response),
-      }) as never,
-  );
+  vi.mocked(VertexGeminiAdapter).mockImplementation(function() { return { generateJson: vi.fn().mockResolvedValue(response) } as never; });
 }
 
 describe("scoutNewAIIncidents", () => {

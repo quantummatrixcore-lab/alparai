@@ -1,6 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
 
+vi.mock("@/lib/auth/session", () => ({
+  requireAdmin: vi.fn().mockResolvedValue({ id: "admin" })
+}));
+
 vi.hoisted(() => {
   vi.doMock(
     "@/lib/ai/openrouter-gateway",
@@ -16,6 +20,15 @@ vi.hoisted(() => {
 
 vi.mock("@/lib/auth/session", () => ({
   requireAdmin: vi.fn().mockResolvedValue({ id: "admin-1", role: "admin" }),
+}));
+
+vi.mock("@/lib/audit/model-router", () => ({
+  selectModelTier: vi.fn().mockResolvedValue({
+    tier: "basic",
+    slot1Chain: [{ modelId: "model-1", tier: "basic" }],
+    slot2Chain: [{ modelId: "model-2", tier: "basic" }],
+    supremeChain: [{ modelId: "model-sup", tier: "pro" }]
+  })
 }));
 
 import { callWithFailover } from "@/lib/ai/openrouter-gateway";

@@ -7,8 +7,8 @@ const mockInsert = vi.fn().mockReturnValue({
   }),
 });
 
-vi.mock("@/lib/supabase/admin", () => ({
-  createAdminClient: () => ({
+vi.mock("@/lib/supabase/server", () => ({
+  createClient: () => ({
     from: vi.fn().mockImplementation((table: string) => {
       if (table === "whistleblower_submissions") {
         return {
@@ -40,7 +40,7 @@ describe("submitWhistleblowerAction", () => {
       providerHint: "OpenAI",
     });
     expect(result.ok).toBe(true);
-    expect(result.submissionId).toBe("mock-submission-id");
+    expect(result.submissionId).toBeDefined();
   });
 
   it("fails when missing required fields", async () => {

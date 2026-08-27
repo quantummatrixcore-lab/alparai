@@ -142,7 +142,7 @@ export function HeroSection({
               <Link
                 href="/products/ars-api"
                 onClick={() => trackEvent("hero_cta_click", { action: "primary" })}
-                className="group bg-danger-500 relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl px-8 text-base font-black text-white shadow-[0_0_30px_rgba(230,57,70,0.4),inset_0_1px_0_rgba(255,255,255,0.3)] transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_0_50px_rgba(230,57,70,0.6),inset_0_1px_0_rgba(255,255,255,0.4)] active:scale-[0.98]"
+                className="group bg-danger-500 relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl px-8 text-base font-black text-white shadow-[0_0_30px_rgba(230,57,70,0.4),inset_0_1px_0_rgba(255,255,255,0.3)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_0_50px_rgba(230,57,70,0.6),inset_0_1px_0_rgba(255,255,255,0.4)] active:scale-95"
               >
                 <div className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-[100%]" />
                 <ShieldAlert className="relative z-10 h-5 w-5" />
@@ -154,7 +154,7 @@ export function HeroSection({
               <Link
                 href="/pricing"
                 onClick={() => trackEvent("hero_cta_click", { action: "pricing" })}
-                className="group border-brand-500/40 bg-brand-500/10 hover:border-brand-400 hover:bg-brand-500/20 relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl border px-8 text-base font-bold text-white shadow-[0_0_25px_rgba(168,85,247,0.2),inset_0_1px_0_rgba(255,255,255,0.2)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(168,85,247,0.4),inset_0_1px_0_rgba(255,255,255,0.3)] active:scale-[0.98]"
+                className="group border-brand-500/40 bg-brand-500/10 hover:border-brand-400 hover:bg-brand-500/20 relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl border px-8 text-base font-bold text-white shadow-[0_0_25px_rgba(168,85,247,0.2),inset_0_1px_0_rgba(255,255,255,0.2)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_0_40px_rgba(168,85,247,0.4),inset_0_1px_0_rgba(255,255,255,0.3)] active:scale-95"
               >
                 <CreditCard className="text-brand-400 relative z-10 h-5 w-5" />
                 <span className="relative z-10">
@@ -165,7 +165,7 @@ export function HeroSection({
               <Link
                 href="/incidents"
                 onClick={() => trackEvent("hero_cta_click", { action: "secondary" })}
-                className="group border-border-subtle hover:border-border-strong relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl border bg-white/5 px-8 text-base font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:bg-white/10 hover:shadow-[0_10px_40px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.2)] active:scale-[0.98]"
+                className="group border-border-subtle hover:border-border-strong relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl border bg-white/5 px-8 text-base font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-white/10 hover:shadow-[0_10px_40px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.2)] active:scale-95"
               >
                 <span className="relative z-10">
                   {t("cta_secondary", { defaultValue: "Kozmik Adalet Panosu" })}
@@ -346,7 +346,7 @@ export function HeroSection({
             <div className="relative z-10 mt-8 pl-16">
               <Link
                 href="/products/eu-ai-act"
-                className="bg-brand-500 hover:bg-brand-400 inline-flex h-10 items-center gap-2 rounded-xl px-5 text-sm font-bold text-white shadow-[0_0_20px_rgba(168,85,247,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_30px_rgba(168,85,247,0.5),inset_0_1px_0_rgba(255,255,255,0.3)] active:scale-[0.98]"
+                className="bg-brand-500 hover:bg-brand-400 inline-flex h-10 items-center gap-2 rounded-xl px-5 text-sm font-bold text-white shadow-[0_0_20px_rgba(168,85,247,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(168,85,247,0.5),inset_0_1px_0_rgba(255,255,255,0.3)] active:scale-95"
               >
                 {t("start_test", { defaultValue: "Start Test" })} <ArrowRight className="h-4 w-4" />
               </Link>
@@ -376,7 +376,7 @@ export function HeroSection({
             <div className="relative z-10 mt-8 pl-16">
               <Link
                 href="/bounties"
-                className="bg-warning-500 hover:bg-warning-400 focus-visible:ring-warning-500 inline-flex h-10 items-center gap-2 rounded-xl px-5 text-sm font-bold text-neutral-950 shadow-[0_0_20px_rgba(249,115,22,0.3),inset_0_1px_0_rgba(255,255,255,0.5)] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_30px_rgba(249,115,22,0.5),inset_0_1px_0_rgba(255,255,255,0.7)] active:scale-[0.98]"
+                className="bg-warning-500 hover:bg-warning-400 focus-visible:ring-warning-500 inline-flex h-10 items-center gap-2 rounded-xl px-5 text-sm font-bold text-neutral-950 shadow-[0_0_20px_rgba(249,115,22,0.3),inset_0_1px_0_rgba(255,255,255,0.5)] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(249,115,22,0.5),inset_0_1px_0_rgba(255,255,255,0.7)] active:scale-95"
               >
                 {t("bug_bounty_badge", { defaultValue: "Bug Bounty" })} {t("view_all") ?? "→"}
                 <ArrowRight className="h-4 w-4" />
@@ -443,10 +443,9 @@ function LiveStatCard({
   return (
     <div
       className={cn(
-        "group relative overflow-hidden rounded-2xl bg-white/5 p-3 text-center transition-all duration-300 hover:bg-white/10 sm:p-4",
+        "group relative overflow-hidden rounded-2xl bg-white/5 p-3 text-center transition-all duration-300 hover:bg-white/10 sm:p-4 shadow-inner shadow-white/5 ring-1 ring-white/10",
         tooltip && "cursor-help",
       )}
-      style={{ boxShadow: `inset 0 0 30px ${glowColor}, inset 0 1px 0 rgba(255,255,255,0.1)` }}
       title={tooltip}
     >
       <div className="absolute inset-0 bg-gradient-to-t from-transparent to-white/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -455,7 +454,7 @@ function LiveStatCard({
       >
         <AnimatedValue value={value} />
       </p>
-      <p className="text-fg-secondary relative z-10 mt-2 text-[9px] leading-tight font-black tracking-[0.2em] break-words uppercase sm:text-[10px]">
+      <p className="text-fg-secondary relative z-10 mt-2 text-xs leading-tight font-black tracking-[0.2em] break-words uppercase sm:text-xs">
         {label}
       </p>
     </div>

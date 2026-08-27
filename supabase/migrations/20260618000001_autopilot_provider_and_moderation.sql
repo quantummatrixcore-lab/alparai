@@ -7,3 +7,7 @@ ALTER TABLE public.incidents
 INSERT INTO public.ai_providers (name, slug, description, is_verified, website_url)
 VALUES ('ALPAR Autopilot', 'alpar-autopilot', 'Internal AI moderation and automation system', true, 'https://alparai.com')
 ON CONFLICT (slug) DO NOTHING;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

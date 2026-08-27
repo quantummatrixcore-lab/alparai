@@ -3,6 +3,9 @@ import "../helpers/setup";
 import { createMockSupabaseClient, createTestUser } from "../helpers/supabase-mock";
 
 vi.hoisted(() => {
+  vi.doMock("@/lib/supabase/admin", () => ({
+    createAdminClient: vi.fn(),
+  }));
   vi.doMock("@/lib/supabase/server", () => ({
     createServerClient: vi.fn(),
   }));
@@ -15,6 +18,7 @@ vi.hoisted(() => {
 });
 
 import { createServerClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { requireAdmin } from "@/lib/auth/session";
 import { runExternalFetchTask } from "@/lib/services/external-fetcher";
 import {
@@ -35,6 +39,7 @@ beforeEach(() => {
   vi.clearAllMocks();
   mockSupabaseClient = createMockSupabaseClient();
   vi.mocked(createServerClient).mockResolvedValue(mockSupabaseClient as never);
+  vi.mocked(createAdminClient).mockReturnValue(mockSupabaseClient as never);
   vi.mocked(requireAdmin).mockResolvedValue(mockAdmin as never);
 });
 

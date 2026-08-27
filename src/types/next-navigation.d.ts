@@ -1,4 +1,4 @@
-import type { ReadonlyURLSearchParams } from "next/dist/shared/lib/hooks-client-types";
+import type { _ReadonlyURLSearchParams } from "next/dist/shared/lib/hooks-client-types";
 
 declare module "next/navigation" {
   export interface AppRouterInstance {

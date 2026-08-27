@@ -61,7 +61,7 @@ describe("Autopilot Queue", () => {
     };
 
     vi.doMock("@upstash/redis", () => ({
-      Redis: vi.fn(() => mockRedis),
+      Redis: vi.fn(function() { return mockRedis; }),
     }));
 
     const { getQueue, enqueueAutopilotJob } = await import("@/lib/autopilot/queue");
@@ -97,7 +97,7 @@ describe("Autopilot Queue", () => {
     };
 
     vi.doMock("@upstash/redis", () => ({
-      Redis: vi.fn(() => mockRedis),
+      Redis: vi.fn(function() { return mockRedis; }),
     }));
 
     const { getQueue, enqueueAutopilotJob } = await import("@/lib/autopilot/queue");
@@ -120,7 +120,7 @@ describe("Autopilot Queue", () => {
     };
 
     vi.doMock("@upstash/redis", () => ({
-      Redis: vi.fn(() => mockRedis),
+      Redis: vi.fn(function() { return mockRedis; }),
     }));
 
     const { getQueue } = await import("@/lib/autopilot/queue");
@@ -138,7 +138,7 @@ describe("Autopilot Queue", () => {
     };
 
     vi.doMock("@upstash/redis", () => ({
-      Redis: vi.fn(() => mockRedis),
+      Redis: vi.fn(function() { return mockRedis; }),
     }));
 
     const { getQueue } = await import("@/lib/autopilot/queue");

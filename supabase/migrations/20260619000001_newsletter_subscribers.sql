@@ -23,3 +23,7 @@ CREATE POLICY "public_insert_subscribers" ON public.newsletter_subscribers
 -- Update policy: Anyone can update their subscription status (unsubscribing)
 CREATE POLICY "public_update_subscribers" ON public.newsletter_subscribers
   FOR UPDATE USING (true) WITH CHECK (true);
+
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.newsletter_subscribers CASCADE;

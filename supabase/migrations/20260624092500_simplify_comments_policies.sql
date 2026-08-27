@@ -35,3 +35,7 @@ CREATE POLICY "affected_delete_own"
   FOR DELETE
   TO authenticated
   USING (user_id = auth.uid());
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

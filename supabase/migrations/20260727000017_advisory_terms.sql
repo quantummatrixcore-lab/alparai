@@ -8,3 +8,7 @@ ALTER TABLE public.advisory_board_members
   ADD COLUMN IF NOT EXISTS is_active boolean NOT NULL DEFAULT true;
 
 CREATE INDEX IF NOT EXISTS idx_advisory_board_active ON public.advisory_board_members (is_active) WHERE is_active = true;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

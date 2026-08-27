@@ -6,3 +6,7 @@ ADD COLUMN IF NOT EXISTS locked_by VARCHAR(255);
 CREATE INDEX IF NOT EXISTS idx_automation_tasks_locked 
 ON automation_tasks(status, locked_at) 
 WHERE locked_at IS NULL;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

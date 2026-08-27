@@ -30,3 +30,7 @@ comment on column public.incidents.contains_pii is
 
 comment on column public.incidents.pii_categories is
   'Distinct PII category labels detected by the PII Guardian (e.g. {email,phone,id_document}).';
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

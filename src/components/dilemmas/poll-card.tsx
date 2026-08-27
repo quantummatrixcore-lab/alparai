@@ -38,7 +38,7 @@ export function PollCard({ poll }: { poll: Poll }) {
   const [noCount, setNoCount] = useState(poll.no_count);
   const [unsureCount, setUnsureCount] = useState(poll.unsure_count);
 
-  const [turnstileKey, setTurnstileKey] = useState(0);
+  const [turnstileKey, _setTurnstileKey] = useState(0);
   const turnstileRef = useRef<TurnstileInstance>(null);
   const pendingVoteRef = useRef<"yes" | "no" | "unsure" | null>(null);
 

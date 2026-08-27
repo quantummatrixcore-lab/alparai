@@ -72,3 +72,8 @@ VALUES
   ('anthropic', 'tokens_out', 210000, 'token', '2026-07-08 14:00:00+00'),
   ('supabase', 'requests', 45200, 'request', '2026-06-30 23:59:59+00'),
   ('supabase', 'requests', 58700, 'request', '2026-07-10 23:59:59+00');
+
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.finance_api_usage CASCADE;
+-- DROP TABLE IF EXISTS public.finance_monthly_costs CASCADE;

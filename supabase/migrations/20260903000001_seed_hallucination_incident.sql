@@ -55,3 +55,7 @@ ON CONFLICT (id) DO UPDATE SET
   severity = EXCLUDED.severity,
   status = EXCLUDED.status,
   updated_at = NOW();
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

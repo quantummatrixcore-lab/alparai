@@ -70,7 +70,7 @@ describe("Cost-Alarm Cron Job", () => {
     const setSpy = vi.spyOn(redisInstance, "set").mockResolvedValue("OK");
 
     // Re-mock Redis constructor to return our spied instance
-    vi.mocked(Redis).mockImplementation(() => redisInstance);
+    vi.mocked(Redis).mockImplementation(function() { return redisInstance; });
 
     // Set Upstash Redis env variables
     try {
@@ -123,7 +123,7 @@ describe("Cost-Alarm Cron Job", () => {
     });
 
     const redisInstance = new Redis({ url: "x", token: "y" });
-    vi.mocked(Redis).mockImplementation(() => redisInstance);
+    vi.mocked(Redis).mockImplementation(function() { return redisInstance; });
 
     const res = await GET(req as unknown as NextRequest);
     expect(res.status).toBe(200);
@@ -167,7 +167,7 @@ describe("Cost-Alarm Cron Job", () => {
 
     const redisInstance = new Redis({ url: "x", token: "y" });
     const setSpy = vi.spyOn(redisInstance, "set").mockResolvedValue("OK");
-    vi.mocked(Redis).mockImplementation(() => redisInstance);
+    vi.mocked(Redis).mockImplementation(function() { return redisInstance; });
 
     process.env.COST_LIMIT_MONTHLY = "20";
     process.env.UPSTASH_REDIS_REST_URL = "https://mock-redis.upstash.io";

@@ -18,3 +18,7 @@ WHERE id NOT IN (
   '4e03fbf0-ec19-42a5-af71-e0d186553067', -- Fatal Autonomous Vehicle Crash (Uber/Volvo)
   'fa11aab1-fa11-4700-8000-000000000031'  -- Grok Passport Incident (xAI)
 );
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

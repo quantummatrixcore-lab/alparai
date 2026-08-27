@@ -438,3 +438,7 @@ INSERT INTO incidents (
 UPDATE incidents
 SET published_at = published_at - (random() * 30 || ' days')::interval
 WHERE id::text LIKE 'a00000%';
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

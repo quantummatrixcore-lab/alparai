@@ -25,3 +25,7 @@ CREATE POLICY "Methodology versions admin write" ON public.methodology_versions
   WITH CHECK (public.is_admin(auth.uid()));
 
 CREATE INDEX idx_methodology_versions_published ON public.methodology_versions (published_at DESC);
+
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.methodology_versions CASCADE;

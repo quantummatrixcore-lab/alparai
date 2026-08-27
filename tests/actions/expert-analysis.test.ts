@@ -1,4 +1,36 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
+
+vi.mock("@/lib/auth/session", () => ({
+  requireAdmin: vi.fn().mockResolvedValue({ id: "admin" })
+}));
+
+vi.mock("@/lib/ai/openrouter-gateway", () => ({
+  callWithFailover: vi.fn().mockResolvedValue({
+    ok: true,
+    data: { content: "Mocked critique content" }
+  })
+}));
+
+vi.mock("@/lib/audit/model-router", () => ({
+  selectModelByCapability: vi.fn().mockResolvedValue([{ modelId: "mock-model" }])
+}));
+
+vi.mock("@/lib/supabase/admin", () => ({
+  createAdminClient: vi.fn().mockReturnValue({
+    from: vi.fn().mockReturnValue({
+      select: vi.fn().mockReturnValue({
+        eq: vi.fn().mockReturnValue({
+          order: vi.fn().mockReturnValue({
+            limit: vi.fn().mockResolvedValue({ data: [] })
+          }),
+          limit: vi.fn().mockResolvedValue({ data: [] })
+        }),
+        limit: vi.fn().mockResolvedValue({ data: [] })
+      })
+    })
+  })
+}));
+
 import { EXPERT_PERSONAS, type ExpertPersona } from "@/lib/config/expert-personas";
 import { runExpertAnalysisAction } from "@/actions/admin/expert-analysis";
 

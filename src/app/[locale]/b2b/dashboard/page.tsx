@@ -67,7 +67,7 @@ export default async function B2BDashboardPage({
             "use server";
             const sb = await createServerClient();
 
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+             
             await sb
               .from("incidents")
               .update({ status: status as any })

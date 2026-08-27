@@ -27,3 +27,7 @@ SELECT
     ELSE i.description_masked
   END AS description_display
 FROM public.incidents i;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

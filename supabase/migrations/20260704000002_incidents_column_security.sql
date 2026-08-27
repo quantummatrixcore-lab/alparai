@@ -69,3 +69,7 @@ grant select (
   eu_act_high_risk_system_category,
   eu_act_reporting_deadline_days
 ) on public.incidents to anon, authenticated;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

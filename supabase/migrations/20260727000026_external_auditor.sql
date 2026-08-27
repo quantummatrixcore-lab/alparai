@@ -26,3 +26,7 @@ CREATE POLICY "Allow auditor_role read access to methodology_versions" ON public
 DROP POLICY IF EXISTS "Allow auditor_role read access to audit_log" ON public.audit_log;
 CREATE POLICY "Allow auditor_role read access to audit_log" ON public.audit_log
   FOR SELECT TO auditor_role USING (true);
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

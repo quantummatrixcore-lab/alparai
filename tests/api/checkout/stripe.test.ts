@@ -36,10 +36,10 @@ const mockCheckoutSessionsCreate = vi.fn();
 const mockCustomersCreate = vi.fn();
 
 vi.mock("stripe", () => ({
-  default: vi.fn(() => ({
+  default: vi.fn(function() { return {
     checkout: { sessions: { create: mockCheckoutSessionsCreate } },
     customers: { create: mockCustomersCreate },
-  })),
+  }; }),
 }));
 
 vi.mock("@/lib/utils/logger", () => ({

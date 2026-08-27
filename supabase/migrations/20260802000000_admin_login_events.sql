@@ -66,3 +66,9 @@ CREATE TRIGGER on_auth_user_login
 -- DROP FUNCTION IF EXISTS public.handle_admin_login();
 -- DROP FUNCTION IF EXISTS public.get_request_ip();
 -- DROP TABLE IF EXISTS public.admin_login_events CASCADE;
+
+
+-- RLS and Policies for to
+ALTER TABLE public.to ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Enable read access for all users on to" ON public.to FOR SELECT USING (true);

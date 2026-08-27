@@ -42,15 +42,15 @@ vi.mock(
 );
 
 vi.mock("@/lib/ai/adapters/vertex-imagen", () => ({
-  VertexImagenAdapter: vi.fn().mockImplementation(() => ({
+  VertexImagenAdapter: vi.fn(function() { return {
     generateImage: generateImageMock,
-  })),
+  }; }),
 }));
 
 vi.mock("@/lib/ai/adapters/huggingface", () => ({
-  HuggingFaceAdapter: vi.fn().mockImplementation(() => ({
+  HuggingFaceAdapter: vi.fn(function() { return {
     generateImage: generateHfImageMock,
-  })),
+  }; }),
 }));
 
 import { publishToX } from "@/lib/marketing/publishers/x";

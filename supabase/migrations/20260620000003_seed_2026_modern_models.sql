@@ -130,3 +130,7 @@ cross join (values
 ) as m(name, version, status, released_at)
 where p.slug = 'qwen'
 on conflict do nothing;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

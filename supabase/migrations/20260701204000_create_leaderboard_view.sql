@@ -26,3 +26,7 @@ where
   p.slug <> 'alpar-autopilot'
 group by
   p.id, p.slug, p.name, p.logo_url, p.is_verified, p.website_url, p.trust_score;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

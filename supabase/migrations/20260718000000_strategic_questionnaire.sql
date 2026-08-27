@@ -64,3 +64,8 @@ CREATE POLICY "Admin can insert strategic_answers"
 
 ALTER PUBLICATION supabase_realtime ADD TABLE strategic_runs;
 ALTER PUBLICATION supabase_realtime ADD TABLE strategic_answers;
+
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.strategic_answers CASCADE;
+-- DROP TABLE IF EXISTS public.strategic_runs CASCADE;

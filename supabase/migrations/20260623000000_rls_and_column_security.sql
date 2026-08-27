@@ -34,3 +34,7 @@ create policy "incident_votes_mod_all"
   to authenticated
   using (public.is_moderator(auth.uid()))
   with check (public.is_moderator(auth.uid()));
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

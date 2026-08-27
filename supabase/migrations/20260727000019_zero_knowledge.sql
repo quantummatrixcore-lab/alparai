@@ -5,3 +5,7 @@
 ALTER TABLE public.incidents
   ADD COLUMN IF NOT EXISTS encrypted_evidence boolean NOT NULL DEFAULT false,
   ADD COLUMN IF NOT EXISTS evidence_ciphertext text;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

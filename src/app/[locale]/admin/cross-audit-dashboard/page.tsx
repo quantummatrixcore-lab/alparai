@@ -3,7 +3,6 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/auth/session";
 import { BarChart3 } from "lucide-react";
-import { Link } from "@/i18n/routing";
 import { AdminContainer, AdminPageHeader } from "@/components/admin/admin-design-kit";
 import { getCrossAuditDashboardData } from "@/actions/admin/cross-audit-metrics";
 const CrossAuditDashboardClient = dynamic(() =>

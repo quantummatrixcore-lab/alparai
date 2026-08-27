@@ -10,3 +10,7 @@ VALUES
   ('AI Auditor Bounty & Rozet Sistemi', 'Platformda en çok doğrulanmış kritik ihlal bildiren kullanıcılara "AI Auditor" rozeti verilmesi ve B2B sponsorlar aracılığıyla ödüllendirme mekanizması kurulması.', 'low', 'idea'),
   ('Admin Paneli Profesyonel Arayüz Güncellemesi', 'Admin panelinin görsel ağırlıklı, mini grafikler (sparklines) ve senkronize animasyonlu sağ menü düzeniyle daha profesyonel bir görünüme kavuşturulması.', 'high', 'in_progress')
 ON CONFLICT DO NOTHING;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

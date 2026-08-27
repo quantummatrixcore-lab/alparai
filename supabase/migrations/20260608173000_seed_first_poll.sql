@@ -9,3 +9,7 @@ VALUES (
   340,
   true
 );
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

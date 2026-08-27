@@ -17,3 +17,7 @@ ALTER TABLE grant_applications
   ADD COLUMN IF NOT EXISTS decision TEXT,
   ADD COLUMN IF NOT EXISTS date_decided TIMESTAMP WITH TIME ZONE,
   ADD COLUMN IF NOT EXISTS expiry_date TIMESTAMP WITH TIME ZONE;
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

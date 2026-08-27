@@ -25,3 +25,7 @@ INSERT INTO public.strategy_milestones (quarter, title, okr_text, progress, stat
   ('2026-Q3', 'Uzman Panel — 10 Onaylı Başvuru', 'Farklı disiplinlerden 10 uzman başvurusunu değerlendir ve onayla.', 20, 'planned', 'expert_count'),
   ('2026-Q4', 'Academy Beta Portalı', 'Akademisyenler için vaka kütüphanesi ve erişim platformu.', 0, 'planned', 'academy_beta'),
   ('2027-Q1', 'Global Sertifikasyon Programı', 'ALPAR AI Certified AI Auditor programı başlatılsın.', 0, 'planned', 'certification');
+
+
+-- ROLLBACK:
+-- -- Add rollback statements here

@@ -3,7 +3,7 @@
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { Wordmark } from "./wordmark";
-import { Github, Twitter, Mail, Linkedin, Radio } from "lucide-react";
+import { Github, Twitter, Mail, Linkedin } from "lucide-react";
 import { Container } from "@/components/ui/layout";
 import { usePathname } from "next/navigation";
 

@@ -3,8 +3,12 @@ import "../helpers/setup";
 import { createMockSupabaseClient, createTestUser } from "../helpers/supabase-mock";
 
 vi.hoisted(() => {
+  vi.doMock("@/lib/supabase/admin", () => ({
+    createAdminClient: vi.fn(),
+  }));
   vi.doMock("@/lib/supabase/server", () => ({
     createServerClient: vi.fn(),
+    createClient: vi.fn(),
   }));
   vi.doMock("@/lib/auth/session", () => ({
     requireCEO: vi.fn(),
@@ -13,6 +17,7 @@ vi.hoisted(() => {
 });
 
 import { createServerClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { requireCEO } from "@/lib/auth/session";
 import {
   upsertSwotItemAction,
@@ -32,6 +37,7 @@ beforeEach(() => {
   vi.clearAllMocks();
   mockSupabaseClient = createMockSupabaseClient();
   vi.mocked(createServerClient).mockResolvedValue(mockSupabaseClient as never);
+  vi.mocked(createAdminClient).mockReturnValue(mockSupabaseClient as never);
   vi.mocked(requireCEO).mockResolvedValue(mockCeo as never);
 });
 

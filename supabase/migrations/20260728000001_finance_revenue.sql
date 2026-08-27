@@ -35,3 +35,7 @@ create policy "Allow write for admins/ceo" on public.finance_revenue_metrics
 
 -- Note: Mock seed data removed per Item #13 cleanup protocol.
 -- Table remains empty until real revenue data is ingested via Stripe integration.
+
+
+-- ROLLBACK:
+-- DROP TABLE IF EXISTS public.finance_revenue_metrics CASCADE;

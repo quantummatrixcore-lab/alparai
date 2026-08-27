@@ -256,29 +256,45 @@ export default async function AdminDashboardPage({
               </div>
 
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-                {[
-                  { name: "ATATÜRK", model: "Gemini 3.1 Pro", role: "Supreme Commander", colorClass: "bg-indigo-500" },
-                  { name: "EDISON", model: "Nemotron 3.5", role: "Dev & Deploy", colorClass: "bg-amber-500" },
-                  { name: "DA VİNCİ", model: "Muse Spark", role: "UI/UX Architecture", colorClass: "bg-fuchsia-500" },
-                  { name: "FATİH", model: "Nemotron Ultra", role: "Security & RLS", colorClass: "bg-rose-500" },
-                ].map((agent) => (
-                  <div
-                    key={agent.name}
-                    className="relative overflow-hidden rounded-2xl border border-white/5 bg-black/40 p-4 transition-all hover:bg-black/60 hover:border-white/10 group/agent"
-                  >
-                    <div
-                      className={`absolute top-0 right-0 h-16 w-16 -translate-y-8 translate-x-8 rounded-full blur-[30px] opacity-20 ${agent.colorClass} transition-opacity group-hover/agent:opacity-40`}
-                    />
-                    <div className="flex justify-between items-start mb-3">
-                      <span className="text-[10px] font-bold tracking-wider text-zinc-500">
-                        {agent.role}
-                      </span>
-                      <span className="flex h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
-                    </div>
-                    <h4 className="text-sm font-black text-white">{agent.name}</h4>
-                    <p className="text-xs text-zinc-400 font-medium mt-1">{agent.model}</p>
+                <div className="relative overflow-hidden rounded-2xl border border-white/5 bg-black/40 p-4 transition-all hover:bg-black/60 hover:border-white/10 group/agent">
+                  <div className="absolute top-0 right-0 h-16 w-16 -translate-y-8 translate-x-8 rounded-full blur-[30px] opacity-20 bg-indigo-500 transition-opacity group-hover/agent:opacity-40" />
+                  <div className="flex justify-between items-start mb-3">
+                    <span className="text-[10px] font-bold tracking-wider text-zinc-500">Supreme Commander</span>
+                    <span className="flex h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
                   </div>
-                ))}
+                  <h4 className="text-sm font-black text-white">ATATÜRK</h4>
+                  <p className="text-xs text-zinc-400 font-medium mt-1">Gemini 3.1 Pro</p>
+                </div>
+                
+                <div className="relative overflow-hidden rounded-2xl border border-white/5 bg-black/40 p-4 transition-all hover:bg-black/60 hover:border-white/10 group/agent">
+                  <div className="absolute top-0 right-0 h-16 w-16 -translate-y-8 translate-x-8 rounded-full blur-[30px] opacity-20 bg-amber-500 transition-opacity group-hover/agent:opacity-40" />
+                  <div className="flex justify-between items-start mb-3">
+                    <span className="text-[10px] font-bold tracking-wider text-zinc-500">Dev & Deploy</span>
+                    <span className="flex h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
+                  </div>
+                  <h4 className="text-sm font-black text-white">EDISON</h4>
+                  <p className="text-xs text-zinc-400 font-medium mt-1">Nemotron 3.5</p>
+                </div>
+
+                <div className="relative overflow-hidden rounded-2xl border border-white/5 bg-black/40 p-4 transition-all hover:bg-black/60 hover:border-white/10 group/agent">
+                  <div className="absolute top-0 right-0 h-16 w-16 -translate-y-8 translate-x-8 rounded-full blur-[30px] opacity-20 bg-fuchsia-500 transition-opacity group-hover/agent:opacity-40" />
+                  <div className="flex justify-between items-start mb-3">
+                    <span className="text-[10px] font-bold tracking-wider text-zinc-500">UI/UX Architecture</span>
+                    <span className="flex h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
+                  </div>
+                  <h4 className="text-sm font-black text-white">DA VİNCİ</h4>
+                  <p className="text-xs text-zinc-400 font-medium mt-1">Muse Spark</p>
+                </div>
+
+                <div className="relative overflow-hidden rounded-2xl border border-white/5 bg-black/40 p-4 transition-all hover:bg-black/60 hover:border-white/10 group/agent">
+                  <div className="absolute top-0 right-0 h-16 w-16 -translate-y-8 translate-x-8 rounded-full blur-[30px] opacity-20 bg-rose-500 transition-opacity group-hover/agent:opacity-40" />
+                  <div className="flex justify-between items-start mb-3">
+                    <span className="text-[10px] font-bold tracking-wider text-zinc-500">Security & RLS</span>
+                    <span className="flex h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
+                  </div>
+                  <h4 className="text-sm font-black text-white">FATİH</h4>
+                  <p className="text-xs text-zinc-400 font-medium mt-1">Nemotron Ultra</p>
+                </div>
               </div>
             </div>
           </div>
@@ -356,8 +372,8 @@ export default async function AdminDashboardPage({
             <AdvisorRoster />
           </div>
 
-          {/* WIDGET: Founder Command Center */}
-          <div className="md:col-span-12 group relative overflow-hidden rounded-[3rem] border border-amber-500/10 bg-gradient-to-br from-amber-500/[0.02] to-transparent p-8 lg:p-10 backdrop-blur-3xl transition-all duration-500 hover:border-amber-500/30 hover:shadow-[0_0_60px_rgba(245,158,11,0.1)]">
+          {/* CELL: Database Limits */}
+          <div className="md:col-span-12 lg:col-span-12 group relative overflow-hidden rounded-[3rem] border border-amber-500/10 bg-gradient-to-br from-amber-500/[0.02] to-transparent p-8 lg:p-10 backdrop-blur-3xl transition-all duration-500 hover:border-amber-500/30 hover:shadow-[0_0_60px_rgba(245,158,11,0.1)]">
             <div className="absolute top-0 right-1/4 h-[500px] w-[500px] rounded-full bg-amber-500/10 blur-[150px] pointer-events-none" />
             <div className="relative z-10">
               <div className="flex items-center gap-4 mb-8">

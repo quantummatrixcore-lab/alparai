@@ -141,57 +141,66 @@ export default async function AdminDashboardPage({
                   <p className="text-xs text-zinc-400">{t("financial_ops_desc")}</p>
                 </div>
               </div>
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                {[
-                  {
-                    label: t("monthly_revenue"),
-                    value: mrr,
-                    trend: "+12.4%",
-                    icon: BarChart3,
-                    color: "text-emerald-400",
-                  },
-                  {
-                    label: "Total Users",
-                    value: totalUsers,
-                    trend: "+4.1%",
-                    icon: Users,
-                    color: "text-white",
-                  },
-                  {
-                    label: t("active_subscribers"),
-                    value: activeSubscribers,
-                    trend: "+8.2%",
-                    icon: Radio,
-                    color: "text-cyan-400",
-                  },
-                  {
-                    label: "Incidents",
-                    value: totalIncidents,
-                    trend: "Stable",
-                    icon: Layers,
-                    color: "text-amber-400",
-                  },
-                ].map((stat, i) => (
-                  <div
-                    key={i}
-                    className="flex flex-col justify-between rounded-2xl border border-white/5 bg-black/40 p-5 transition-all hover:bg-black/60"
-                  >
-                    <div className="flex justify-between items-start mb-4">
-                      <stat.icon className={`h-4 w-4 ${stat.color} opacity-70`} />
-                      <span className="text-[10px] font-bold text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded-full">
-                        {stat.trend}
-                      </span>
-                    </div>
-                    <div>
-                      <p className={`text-2xl sm:text-3xl font-black ${stat.color}`}>
-                        {stat.value}
-                      </p>
-                      <p className="text-[10px] font-bold tracking-wider text-zinc-500 uppercase mt-1">
-                        {stat.label}
-                      </p>
-                    </div>
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 overflow-hidden">
+                <div className="flex flex-col justify-between rounded-2xl border border-white/5 bg-black/40 p-5 transition-all hover:bg-black/60 overflow-hidden min-w-0">
+                  <div className="flex justify-between items-start mb-4">
+                    <BarChart3 className="h-4 w-4 text-emerald-400 opacity-70" />
+                    <span className="text-[10px] font-bold text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded-full">
+                      +12.4%
+                    </span>
                   </div>
-                ))}
+                  <div className="min-w-0">
+                    <p className="text-2xl sm:text-3xl font-black text-emerald-400">{mrr}</p>
+                    <p className="text-[10px] font-bold tracking-wider text-zinc-500 uppercase mt-1 truncate">
+                      {t("monthly_revenue")}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex flex-col justify-between rounded-2xl border border-white/5 bg-black/40 p-5 transition-all hover:bg-black/60 overflow-hidden min-w-0">
+                  <div className="flex justify-between items-start mb-4">
+                    <Users className="h-4 w-4 text-white opacity-70" />
+                    <span className="text-[10px] font-bold text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded-full">
+                      +4.1%
+                    </span>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-2xl sm:text-3xl font-black text-white">{totalUsers}</p>
+                    <p className="text-[10px] font-bold tracking-wider text-zinc-500 uppercase mt-1 truncate">
+                      Total Users
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex flex-col justify-between rounded-2xl border border-white/5 bg-black/40 p-5 transition-all hover:bg-black/60 overflow-hidden min-w-0">
+                  <div className="flex justify-between items-start mb-4">
+                    <Radio className="h-4 w-4 text-cyan-400 opacity-70" />
+                    <span className="text-[10px] font-bold text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded-full">
+                      +8.2%
+                    </span>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-2xl sm:text-3xl font-black text-cyan-400">{activeSubscribers}</p>
+                    <p className="text-[10px] font-bold tracking-wider text-zinc-500 uppercase mt-1 truncate">
+                      {t("active_subscribers")}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex flex-col justify-between rounded-2xl border border-white/5 bg-black/40 p-5 transition-all hover:bg-black/60 overflow-hidden min-w-0">
+                  <div className="flex justify-between items-start mb-4">
+                    <Layers className="h-4 w-4 text-amber-400 opacity-70" />
+                    <span className="text-[10px] font-bold text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded-full">
+                      Stable
+                    </span>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-2xl sm:text-3xl font-black text-amber-400">{totalIncidents}</p>
+                    <p className="text-[10px] font-bold tracking-wider text-zinc-500 uppercase mt-1 truncate">
+                      Incidents
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -255,45 +264,45 @@ export default async function AdminDashboardPage({
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 overflow-hidden">
                 <div className="relative overflow-hidden rounded-2xl border border-white/5 bg-black/40 p-4 transition-all hover:bg-black/60 hover:border-white/10 group/agent">
                   <div className="absolute top-0 right-0 h-16 w-16 -translate-y-8 translate-x-8 rounded-full blur-[30px] opacity-20 bg-indigo-500 transition-opacity group-hover/agent:opacity-40" />
                   <div className="flex justify-between items-start mb-3">
-                    <span className="text-[10px] font-bold tracking-wider text-zinc-500">Supreme Commander</span>
-                    <span className="flex h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
+                    <span className="text-[10px] font-bold tracking-wider text-zinc-500 min-w-0 truncate">Supreme Commander</span>
+                    <span className="flex h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] shrink-0" />
                   </div>
-                  <h4 className="text-sm font-black text-white">ATATÜRK</h4>
-                  <p className="text-xs text-zinc-400 font-medium mt-1">Gemini 3.1 Pro</p>
+                  <h4 className="text-sm font-black text-white truncate">ATATÜRK</h4>
+                  <p className="text-xs text-zinc-400 font-medium mt-1 truncate">Gemini 3.1 Pro</p>
                 </div>
                 
                 <div className="relative overflow-hidden rounded-2xl border border-white/5 bg-black/40 p-4 transition-all hover:bg-black/60 hover:border-white/10 group/agent">
                   <div className="absolute top-0 right-0 h-16 w-16 -translate-y-8 translate-x-8 rounded-full blur-[30px] opacity-20 bg-amber-500 transition-opacity group-hover/agent:opacity-40" />
                   <div className="flex justify-between items-start mb-3">
-                    <span className="text-[10px] font-bold tracking-wider text-zinc-500">Dev & Deploy</span>
-                    <span className="flex h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
+                    <span className="text-[10px] font-bold tracking-wider text-zinc-500 min-w-0 truncate">Dev & Deploy</span>
+                    <span className="flex h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] shrink-0" />
                   </div>
-                  <h4 className="text-sm font-black text-white">EDISON</h4>
-                  <p className="text-xs text-zinc-400 font-medium mt-1">Nemotron 3.5</p>
+                  <h4 className="text-sm font-black text-white truncate">EDISON</h4>
+                  <p className="text-xs text-zinc-400 font-medium mt-1 truncate">Nemotron 3.5</p>
                 </div>
 
                 <div className="relative overflow-hidden rounded-2xl border border-white/5 bg-black/40 p-4 transition-all hover:bg-black/60 hover:border-white/10 group/agent">
                   <div className="absolute top-0 right-0 h-16 w-16 -translate-y-8 translate-x-8 rounded-full blur-[30px] opacity-20 bg-fuchsia-500 transition-opacity group-hover/agent:opacity-40" />
                   <div className="flex justify-between items-start mb-3">
-                    <span className="text-[10px] font-bold tracking-wider text-zinc-500">UI/UX Architecture</span>
-                    <span className="flex h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
+                    <span className="text-[10px] font-bold tracking-wider text-zinc-500 min-w-0 truncate">UI/UX Architecture</span>
+                    <span className="flex h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] shrink-0" />
                   </div>
-                  <h4 className="text-sm font-black text-white">DA VİNCİ</h4>
-                  <p className="text-xs text-zinc-400 font-medium mt-1">Muse Spark</p>
+                  <h4 className="text-sm font-black text-white truncate">DA VİNCİ</h4>
+                  <p className="text-xs text-zinc-400 font-medium mt-1 truncate">Muse Spark</p>
                 </div>
 
                 <div className="relative overflow-hidden rounded-2xl border border-white/5 bg-black/40 p-4 transition-all hover:bg-black/60 hover:border-white/10 group/agent">
                   <div className="absolute top-0 right-0 h-16 w-16 -translate-y-8 translate-x-8 rounded-full blur-[30px] opacity-20 bg-rose-500 transition-opacity group-hover/agent:opacity-40" />
                   <div className="flex justify-between items-start mb-3">
-                    <span className="text-[10px] font-bold tracking-wider text-zinc-500">Security & RLS</span>
-                    <span className="flex h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
+                    <span className="text-[10px] font-bold tracking-wider text-zinc-500 min-w-0 truncate">Security & RLS</span>
+                    <span className="flex h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] shrink-0" />
                   </div>
-                  <h4 className="text-sm font-black text-white">FATİH</h4>
-                  <p className="text-xs text-zinc-400 font-medium mt-1">Nemotron Ultra</p>
+                  <h4 className="text-sm font-black text-white truncate">FATİH</h4>
+                  <p className="text-xs text-zinc-400 font-medium mt-1 truncate">Nemotron Ultra</p>
                 </div>
               </div>
             </div>
@@ -389,10 +398,10 @@ export default async function AdminDashboardPage({
               </div>
 
               <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-                <div className="rounded-[2rem] border border-white/5 bg-black/40 p-6 backdrop-blur-2xl transition-all hover:bg-black/60 hover:border-white/10">
+                <div className="rounded-[2rem] border border-white/5 bg-black/40 p-6 backdrop-blur-2xl transition-all hover:bg-black/60 hover:border-white/10 overflow-hidden">
                   <OutreachAutopilot />
                 </div>
-                <div className="rounded-[2rem] border border-white/5 bg-black/40 p-6 backdrop-blur-2xl transition-all hover:bg-black/60 hover:border-white/10">
+                <div className="rounded-[2rem] border border-white/5 bg-black/40 p-6 backdrop-blur-2xl transition-all hover:bg-black/60 hover:border-white/10 overflow-hidden">
                   <CalendarAndSentiment />
                 </div>
               </div>

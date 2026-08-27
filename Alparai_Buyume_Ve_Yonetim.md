@@ -106,8 +106,40 @@ Yatırımcı ve Hibe kurumlarının 2026 beklentilerine göre Alparai'nin hazır
 
 ### ✅ Eylem Planı (Somut Tarihler)
 1. **1 Eylül 2026**: TÜBİTAK 1507 başvuru dosyası hazırlanmaya başlanır
-2. **15 Eylül 2026**: YC W27 application draft tamamlanır
+2. **15 Eylül 2026**: YC W27 application draft tamamlanır (Son Başvuru: Ekim 2026)
 3. **20 Eylül 2026**: Notion Capital cold email gönderilir (hello@alparai.com)
-4. **1 Ekim 2026**: YC application submit edilir
+4. **1 Ekim 2026**: YC W27 application submit edilir (Ekim 2026)
 5. **15 Ekim 2026**: Speedinvest & Point Nine outreach
 6. **1 Kasım 2026**: KOSGEB başvurusu tamamlanır
+
+---
+
+## 4. TÜBİTAK 1507 Başvuru Adımları
+
+1. **PRODİS Kaydı:** Şirketin PRODİS (Proje Değerlendirme ve İzleme Sistemi) üzerinden kaydının oluşturulması ve mali verilerin girilmesi.
+2. **Proje Önerisi Hazırlığı:** Alparai'nin "AI Trust Infrastructure" tezinin Ar-Ge niteliği (yenilikçi yönü, teknik zorlukları) vurgulanarak proje öneri formunun (AGY101) doldurulması.
+3. **İş Paketleri ve Bütçe:** Projenin iş paketlerine (örn. PII Guardian Geliştirmesi, K-Benchmark Optimizasyonu) bölünmesi ve personel, donanım, hizmet alımı bütçelerinin detaylandırılması.
+4. **E-İmza ile Gönderim:** Hazırlanan projenin şirket yetkilisi tarafından e-imza ile TÜBİTAK'a sunulması.
+5. **Hakem Değerlendirmesi:** Atanan hakemlerle projenin teknik ve ticari fizibilitesinin görüşülmesi (sunum yapılması).
+
+## 5. VC İletişim Şablonu (Outreach Template)
+
+**Gönderici:** hello@alparai.com (veya ercument.erden@alparai.com)
+**Alıcı:** [VC Partner Name] @ Notion Capital
+**Konu:** Trust Infrastructure for AI: Alparai (YC W27 Applicant)
+
+Hi [Name],
+
+I'm reaching out because Notion Capital’s focus on B2B SaaS in Europe aligns perfectly with what we are building at Alparai. 
+
+We are developing the trust infrastructure for AI accountability. With the EU AI Act rolling out, enterprises are struggling with AI compliance and hallucination risks. Alparai provides a zero-cost shield, real-time AI incident tracking, and a PII Guardian, helping companies deploy AI safely.
+
+We are currently preparing our application for YC W27 (October 2026) and have started initial discussions for our pre-seed round. I would love to get your early feedback on our approach. 
+
+Are you available for a brief 15-minute chat next week?
+
+Best regards,
+
+Ercüment Erden
+Founder, Alparai
+https://alparai.com

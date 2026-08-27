@@ -60,8 +60,8 @@ export async function uploadIncidentEvidence(formData: FormData) {
     // Save the fileId to Supabase Database under the specific incidentId
     const supabase = await createClient();
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { error: dbError } = await (supabase as any)
+    type IncidentEvidenceTable = { from(t: string): { insert(d: unknown): Promise<{ error: unknown }> } };
+    const { error: dbError } = await (supabase as unknown as IncidentEvidenceTable)
       .from("incident_evidence")
       .insert({ incident_id: incidentId, gdrive_file_id: fileId });
 

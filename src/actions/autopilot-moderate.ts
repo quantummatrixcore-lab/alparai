@@ -245,7 +245,17 @@ export async function autoModerateIncidentAction(
   internalToken?: string
 ): Promise<{ ok: boolean; score?: number; status?: string; error?: string }> {
   try {
-    if (internalToken !== process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || "";
+    const tokenBuffer = Buffer.from(internalToken || "invalid");
+    const keyBuffer = Buffer.from(serviceKey);
+    let isAuthorized = false;
+
+    if (tokenBuffer.length === keyBuffer.length && keyBuffer.length > 0) {
+      const crypto = await import("crypto");
+      isAuthorized = crypto.timingSafeEqual(tokenBuffer, keyBuffer);
+    }
+
+    if (!isAuthorized) {
       const { requireAdmin } = await import("@/lib/auth/session");
       await requireAdmin();
     }

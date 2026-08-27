@@ -11,6 +11,7 @@ import {
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { maskPII } from "@/lib/pii/guardian";
+import { isSafeUrl } from "@/lib/security/ssrf";
 
 const NewsClassificationSchema = z.object({
   category: z.enum(["regulation", "incident", "research", "security", "news"]),
@@ -172,6 +173,11 @@ async function runNewsSyncWork(
 
   for (const feed of RSS_FEEDS) {
     try {
+      const safeCheck = await isSafeUrl(feed.url);
+      if (!safeCheck.safe) {
+        logger.warn(`SSRF attempt blocked for feed: ${feed.url}`, { error: safeCheck.error });
+        continue;
+      }
       const res = await fetch(feed.url, { signal: AbortSignal.timeout(8000) });
       if (!res.ok) {
         logger.warn(`Failed to fetch RSS feed: ${feed.url}`, { status: res.status });

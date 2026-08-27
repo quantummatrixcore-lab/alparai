@@ -54,8 +54,8 @@ export async function POST(req: Request, props: { params: Promise<{ twinId: stri
     const adminClient = createAdminClient();
     let isAuthorized = false;
     try {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const { data: keyData, error: keyError } = await (adminClient as any)
+      type ApiKeyQuery = { from(t: string): { select(s: string): { eq(c: string, v: string): { single(): Promise<{ data: { id: string; status: string } | null; error: { code?: string } | null }> } } } };
+      const { data: keyData, error: keyError } = await (adminClient as unknown as ApiKeyQuery)
         .from("api_keys")
         .select("id, status")
         .eq("key", apiKey)
@@ -211,15 +211,15 @@ export async function POST(req: Request, props: { params: Promise<{ twinId: stri
 
     // 9. Log Usage (Vekilharçlık Kaydı)
     try {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const { error: rpcError } = await (adminClient.rpc as any)("increment_persona_usage", {
+      type RpcMethod = (fn: string, args: unknown) => Promise<{ error: unknown }>;
+      const { error: rpcError } = await (adminClient.rpc as unknown as RpcMethod)("increment_persona_usage", {
         p_twin_id: twinId,
         p_tokens: totalTokens,
       });
 
       if (rpcError) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        await (adminClient as any).from("persona_usage_stats").insert({
+        type InsertMethod = { from(t: string): { insert(d: unknown): Promise<{ error: unknown }> } };
+        await (adminClient as unknown as InsertMethod).from("persona_usage_stats").insert({
           twin_id: twinId,
           tokens_used: totalTokens,
           request_count: 1,

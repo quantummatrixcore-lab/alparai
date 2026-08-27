@@ -112,8 +112,8 @@ async function runCrossAuditPipelineOnce(incidentId: string): Promise<TruthScore
     logger.info("[CrossAudit] Cache hit — skipping LLM calls", { incidentId, cacheKey });
 
     try {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      await (admin as any).from("cross_audit_runs").insert({
+      type CrossAuditInsert = { from(t: string): { insert(d: unknown): Promise<{ error: unknown }> } };
+      await (admin as unknown as CrossAuditInsert).from("cross_audit_runs").insert({
         incident_id: incidentId,
         model: cached.supremeCourtModel ?? "cache",
         tokens_in: 0,
@@ -407,18 +407,18 @@ async function runCrossAuditPipelineOnce(incidentId: string): Promise<TruthScore
     throw new Error(`Failed to persist results: ${updateError.message}`);
   }
 
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await (admin as any).from("cross_audit_runs").insert({
-      incident_id: incidentId,
-      model: supremeResult.model,
-      tokens_in: costEst.inputTokens,
-      tokens_out: costEst.outputTokens,
-      cost_usd: costEst.costUsd,
-      latency_ms: totalLatencyMs,
-      cache_hit: false,
-    });
-  } catch (err) {
+    try {
+      type CrossAuditInsert = { from(t: string): { insert(d: unknown): Promise<{ error: unknown }> } };
+      await (admin as unknown as CrossAuditInsert).from("cross_audit_runs").insert({
+        incident_id: incidentId,
+        model: supremeResult.model,
+        tokens_in: costEst.inputTokens,
+        tokens_out: costEst.outputTokens,
+        cost_usd: costEst.costUsd,
+        latency_ms: totalLatencyMs,
+        cache_hit: false,
+      });
+    } catch (err) {
     logger.error(
       "[CrossAudit] Failed to log telemetry to cross_audit_runs",
       {},

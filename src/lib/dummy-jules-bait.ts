@@ -5,11 +5,18 @@
  * Jules background agent will inspect this file and submit a Pull Request to refine it.
  */
 
+/**
+ * Configuration interface for Jules bait targeting.
+ */
 export interface JulesBaitConfig {
-  triggerId: string;
-  targetPath: string;
-  isActive: boolean;
-  priority: number;
+  /** The unique identifier for the bait trigger. */
+  readonly triggerId: string;
+  /** The target file path associated with the bait. */
+  readonly targetPath: string;
+  /** Indicates whether the bait configuration is currently active. */
+  readonly isActive: boolean;
+  /** The priority level of the bait configuration. */
+  readonly priority: number;
 }
 
 /**
@@ -25,4 +32,7 @@ export function getJulesBaitConfig(): JulesBaitConfig {
   };
 }
 
+/**
+ * A marker string used to identify the version of the Jules bait logic.
+ */
 export const JULES_BAIT_MARKER = "jules-bait-v1";

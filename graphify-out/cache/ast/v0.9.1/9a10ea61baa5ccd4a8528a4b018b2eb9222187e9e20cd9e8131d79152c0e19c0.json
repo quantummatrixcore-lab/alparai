@@ -1,0 +1,95 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_360_admin_panel_readme_md",
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "360-admin-panel/README.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_360_admin_panel_readme_alpar_360_g\u00f6zlem_kontrol_paneli",
+      "label": "ALPAR 360\u00b0 \u2014 G\u00f6zlem & Kontrol Paneli",
+      "file_type": "document",
+      "source_file": "360-admin-panel/README.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_360_admin_panel_readme_\u00e7al\u0131\u015ft\u0131rma",
+      "label": "\u00c7al\u0131\u015ft\u0131rma",
+      "file_type": "document",
+      "source_file": "360-admin-panel/README.md",
+      "source_location": "L5"
+    },
+    {
+      "id": "d_01_saas_products_alparai_360_admin_panel_readme_\u00f6zellikler",
+      "label": "\u00d6zellikler",
+      "file_type": "document",
+      "source_file": "360-admin-panel/README.md",
+      "source_location": "L16"
+    },
+    {
+      "id": "d_01_saas_products_alparai_360_admin_panel_readme_gereken_environment_variables",
+      "label": "Gereken Environment Variables",
+      "file_type": "document",
+      "source_file": "360-admin-panel/README.md",
+      "source_location": "L27"
+    },
+    {
+      "id": "d_01_saas_products_alparai_360_admin_panel_readme_geli\u015ftirme",
+      "label": "Geli\u015ftirme",
+      "file_type": "document",
+      "source_file": "360-admin-panel/README.md",
+      "source_location": "L38"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_360_admin_panel_readme_md",
+      "target": "d_01_saas_products_alparai_360_admin_panel_readme_alpar_360_g\u00f6zlem_kontrol_paneli",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "360-admin-panel/README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_360_admin_panel_readme_alpar_360_g\u00f6zlem_kontrol_paneli",
+      "target": "d_01_saas_products_alparai_360_admin_panel_readme_\u00e7al\u0131\u015ft\u0131rma",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "360-admin-panel/README.md",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_360_admin_panel_readme_alpar_360_g\u00f6zlem_kontrol_paneli",
+      "target": "d_01_saas_products_alparai_360_admin_panel_readme_\u00f6zellikler",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "360-admin-panel/README.md",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_360_admin_panel_readme_alpar_360_g\u00f6zlem_kontrol_paneli",
+      "target": "d_01_saas_products_alparai_360_admin_panel_readme_gereken_environment_variables",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "360-admin-panel/README.md",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_360_admin_panel_readme_alpar_360_g\u00f6zlem_kontrol_paneli",
+      "target": "d_01_saas_products_alparai_360_admin_panel_readme_geli\u015ftirme",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "360-admin-panel/README.md",
+      "source_location": "L38",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

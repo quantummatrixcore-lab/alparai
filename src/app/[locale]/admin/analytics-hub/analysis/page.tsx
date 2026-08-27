@@ -66,7 +66,7 @@ export default async function AnalysisPage({ params }: { params: Promise<{ local
       total_models: models.length,
       scoring_weights: { consensus: 0.4, verification: 0.3, security: 0.3 },
     },
-    audits: models.map((model: Record<string, unknown>) => {
+    audits: models.map((model: any) => {
       const real = realScores?.find((s) => s.model_id === model.id);
       const rawScore = real?.score ?? 0;
       // Normalize score: if rawScore is 0-100 (percentage), scale to 0-100 (scoreVal) and 0-1000 (total)

@@ -26,7 +26,7 @@ const PROVIDER_COLORS: Record<string, { bg: string; text: string }> = {
 function getHeatmapColor(value: number, maxValue: number) {
   const ratio = value / maxValue;
 
-  if (ratio < 0.1) return "bg-zinc-800";
+  if (ratio < 0.1) return "bg-bg-elevated";
   if (ratio < 0.2) return "bg-zinc-700";
   if (ratio < 0.4) return "bg-zinc-600";
   if (ratio < 0.6) return "bg-zinc-500";
@@ -70,7 +70,7 @@ export function UsageHeatmap({
 
   return (
     <div className="space-y-4">
-      <div className="bg-bg-elevated/80 rounded-xl border border-white/10 p-6">
+      <div className="bg-bg-elevated/80 border-border-subtle rounded-xl border p-6">
         {/* Legend */}
         <div className="mb-6 flex flex-wrap gap-4">
           {providers.map((provider) => (
@@ -130,13 +130,13 @@ export function UsageHeatmap({
         </div>
 
         {/* Legend for intensity */}
-        <div className="mt-6 border-t border-white/10 pt-4">
+        <div className="border-border-subtle mt-6 border-t pt-4">
           <p className="text-fg-muted mb-3 text-xs font-semibold">{t("intensity_scale")}</p>
           <div className="flex items-center gap-2">
             <span className="text-fg-disabled text-xs">{t("low")}</span>
             <div className="flex gap-1">
               {[
-                "bg-zinc-800",
+                "bg-bg-elevated",
                 "bg-zinc-700",
                 "bg-zinc-600",
                 "bg-zinc-500",
@@ -151,7 +151,7 @@ export function UsageHeatmap({
         </div>
 
         {/* Summary stats */}
-        <div className="mt-6 border-t border-white/10 pt-4">
+        <div className="border-border-subtle mt-6 border-t pt-4">
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
             {providers.map((provider) => {
               const totalRequests = dataToUse.reduce(

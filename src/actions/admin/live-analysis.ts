@@ -1,5 +1,6 @@
 "use server";
 
+import { requireAdmin } from "@/lib/auth/session";
 import { callWithFailover } from "@/lib/ai/openrouter-gateway";
 import { selectModelByCapability } from "@/lib/audit/model-router";
 import { logger } from "@/lib/utils/logger";
@@ -12,6 +13,7 @@ export async function runLiveSystemAnalysis(): Promise<{
   };
   error?: string;
 }> {
+  await requireAdmin();
   try {
     // Fetch real context for the LLM
     const { createAdminClient } = await import("@/lib/supabase/admin");

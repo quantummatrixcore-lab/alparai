@@ -53,7 +53,7 @@ const PRIORITY_CONFIG = {
   4: {
     label: "LOW",
     labelTR: "DÜŞÜK",
-    className: "bg-white/5 text-fg-muted border-white/10",
+    className: "bg-white/5 text-fg-muted border-border-subtle",
     dotClass: "bg-fg-muted",
   },
 } as const;
@@ -63,14 +63,14 @@ const STATUS_CONFIG = {
     icon: Clock,
     label: "Open",
     labelTR: "Açık",
-    className: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
+    className: "text-emerald-400 bg-emerald-500/10 border-success-500/20",
     glow: "shadow-[0_0_8px_rgba(52,211,153,0.2)]",
   },
   applied: {
     icon: TrendingUp,
     label: "Applied",
     labelTR: "Başvuruldu",
-    className: "text-amber-400 bg-amber-500/10 border-amber-500/20",
+    className: "text-amber-400 bg-amber-500/10 border-warning-500/20",
     glow: "shadow-[0_0_8px_rgba(251,191,36,0.2)]",
   },
   awarded: {
@@ -84,7 +84,7 @@ const STATUS_CONFIG = {
     icon: XCircle,
     label: "Closed",
     labelTR: "Kapandı",
-    className: "text-fg-muted bg-white/5 border-white/10",
+    className: "text-fg-muted bg-white/5 border-border-subtle",
     glow: "",
   },
   rejected: {
@@ -235,8 +235,8 @@ export default async function StateSupportPage({
   ];
 
   return (
-    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
-      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
+    <div className="bg-bg-primary text-fg-primary min-h-screen px-3 py-4 sm:px-6 sm:py-6 md:p-8">
+      <div className="bg-bg-secondary/40 ring-border-subtle space-y-8 rounded-3xl p-4 shadow-2xl ring-1 backdrop-blur-xl sm:p-6 md:p-8">
         <StrategyTabs />
         <Container>
           {/* Page Header */}
@@ -247,7 +247,7 @@ export default async function StateSupportPage({
                   <div className="bg-brand-500/10 border-brand-500/20 rounded-lg border p-2">
                     <Banknote className="text-brand-400 h-5 w-5" />
                   </div>
-                  <h1 className="text-2xl font-extrabold tracking-tight text-white md:text-3xl">
+                  <h1 className="text-fg-secondaryxl font-extrabold tracking-tight text-white md:text-3xl">
                     {t("state_support_title")}
                   </h1>
                 </div>
@@ -265,13 +265,13 @@ export default async function StateSupportPage({
           </div>
 
           {/* KPI Bar */}
-          <div className="mb-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
+          <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {kpis.map((kpi) => {
               const Icon = kpi.icon;
               return (
                 <div
                   key={kpi.label}
-                  className="border-border-subtle rounded-2xl border bg-zinc-900/40 p-5 ring-1 ring-white/10 backdrop-blur-sm backdrop-blur-xl"
+                  className="border-border-subtle bg-bg-secondary/40 ring-border-subtle rounded-2xl border p-5 ring-1 backdrop-blur-sm backdrop-blur-xl"
                   style={{ boxShadow: `inset 0 0 30px ${kpi.glow}` }}
                 >
                   <div className="flex items-start justify-between">
@@ -410,7 +410,7 @@ export default async function StateSupportPage({
 
                           {/* Category */}
                           <td className="px-4 py-4">
-                            <span className="text-fg-secondary rounded border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-bold uppercase">
+                            <span className="text-fg-secondary border-border-subtle rounded border bg-white/5 px-2 py-0.5 text-[10px] font-bold uppercase">
                               {catLabel
                                 ? locale === "tr"
                                   ? catLabel.tr
@@ -421,7 +421,7 @@ export default async function StateSupportPage({
 
                           {/* Max Amount */}
                           <td className="px-4 py-4 text-right">
-                            <span className="font-mono text-xs font-bold text-white/80">
+                            <span className="text-fg-secondary font-mono text-xs font-bold">
                               {formatAmount(program.max_amount_eur, program.currency, locale)}
                             </span>
                           </td>

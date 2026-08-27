@@ -154,7 +154,7 @@ export default async function AiPulsePage({ params }: { params: Promise<{ locale
   const geminiSpark = getSparkData("gemini");
 
   return (
-    <div className="rounded-3xl bg-zinc-900/40 px-3 py-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:px-6 md:p-8">
+    <div className="bg-bg-secondary/40 ring-border-subtle rounded-3xl px-3 py-4 shadow-2xl ring-1 backdrop-blur-xl sm:px-6 md:p-8">
       <MetricsHubTabs />
       <div className="animate-in fade-in space-y-8 duration-500">
         <div>
@@ -199,8 +199,8 @@ export default async function AiPulsePage({ params }: { params: Promise<{ locale
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           {/* Model Health Tracker */}
-          <Card className="overflow-hidden border-white/5 bg-zinc-900/40 ring-1 ring-white/10 backdrop-blur-xl lg:col-span-2">
-            <CardHeader className="flex flex-row items-center justify-between border-b border-white/5">
+          <Card className="border-border-subtle/50 bg-bg-secondary/40 ring-border-subtle overflow-hidden ring-1 backdrop-blur-xl lg:col-span-2">
+            <CardHeader className="border-border-subtle/50 flex flex-row items-center justify-between border-b">
               <CardTitle className="text-fg-muted flex items-center gap-2 text-sm font-bold tracking-wider uppercase">
                 <Pulse weight="duotone" className="h-4 w-4" /> {t("integrated_models_health")}
               </CardTitle>
@@ -220,7 +220,7 @@ export default async function AiPulsePage({ params }: { params: Promise<{ locale
                     className="flex items-center justify-between p-4 transition-colors hover:bg-white/[0.02]"
                   >
                     <div className="flex items-center gap-4">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5">
+                      <div className="border-border-subtle flex h-10 w-10 items-center justify-center rounded-xl border bg-white/5">
                         <Cpu weight="duotone" className="text-fg-muted h-5 w-5" />
                       </div>
                       <div>
@@ -245,15 +245,15 @@ export default async function AiPulsePage({ params }: { params: Promise<{ locale
           </Card>
 
           {/* Global AI News Feed */}
-          <Card className="overflow-hidden border-white/5 bg-zinc-900/40 ring-1 ring-white/10 backdrop-blur-xl">
-            <CardHeader className="border-b border-white/5">
+          <Card className="border-border-subtle/50 bg-bg-secondary/40 ring-border-subtle overflow-hidden ring-1 backdrop-blur-xl">
+            <CardHeader className="border-border-subtle/50 border-b">
               <CardTitle className="text-fg-muted flex items-center gap-2 text-sm font-bold tracking-wider uppercase">
                 <Radio weight="duotone" className="h-4 w-4" /> {t("global_intelligence")}
               </CardTitle>
             </CardHeader>
             <CardContent className="p-4">
               {newsFeed.length === 0 ? (
-                <p className="p-2 text-sm text-slate-500">{t("no_intelligence_data")}</p>
+                <p className="text-fg-muted p-2 text-sm">{t("no_intelligence_data")}</p>
               ) : (
                 <div className="space-y-4">
                   {newsFeed.map((news, i) => (

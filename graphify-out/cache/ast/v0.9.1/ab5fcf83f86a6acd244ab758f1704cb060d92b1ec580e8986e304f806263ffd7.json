@@ -1,0 +1,79 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_agents_skills_jules_commander_skill_md",
+      "label": "SKILL.md",
+      "file_type": "document",
+      "source_file": ".agents/skills/jules-commander/SKILL.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_skills_jules_commander_skill_jules_komutani_google_ai_agent_orchestrator",
+      "label": "JULES-KOMUTANI (Google AI Agent Orchestrator)",
+      "file_type": "document",
+      "source_file": ".agents/skills/jules-commander/SKILL.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_skills_jules_commander_skill_\u00f6n_ko\u015fullar_pre_flight_checks",
+      "label": "\u00d6n Ko\u015fullar (Pre-flight Checks)",
+      "file_type": "document",
+      "source_file": ".agents/skills/jules-commander/SKILL.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_skills_jules_commander_skill_g\u00f6rev_verme_prosed\u00fcr\u00fc_execution_flow",
+      "label": "G\u00f6rev Verme Prosed\u00fcr\u00fc (Execution Flow)",
+      "file_type": "document",
+      "source_file": ".agents/skills/jules-commander/SKILL.md",
+      "source_location": "L15"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_skills_jules_commander_skill_kullan\u0131m_alanlar\u0131_ne_zaman_jules_kullan\u0131l\u0131r",
+      "label": "Kullan\u0131m Alanlar\u0131 (Ne Zaman Jules Kullan\u0131l\u0131r?)",
+      "file_type": "document",
+      "source_file": ".agents/skills/jules-commander/SKILL.md",
+      "source_location": "L27"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_agents_skills_jules_commander_skill_md",
+      "target": "d_01_saas_products_alparai_agents_skills_jules_commander_skill_jules_komutani_google_ai_agent_orchestrator",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/skills/jules-commander/SKILL.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_skills_jules_commander_skill_jules_komutani_google_ai_agent_orchestrator",
+      "target": "d_01_saas_products_alparai_agents_skills_jules_commander_skill_\u00f6n_ko\u015fullar_pre_flight_checks",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/skills/jules-commander/SKILL.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_skills_jules_commander_skill_jules_komutani_google_ai_agent_orchestrator",
+      "target": "d_01_saas_products_alparai_agents_skills_jules_commander_skill_g\u00f6rev_verme_prosed\u00fcr\u00fc_execution_flow",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/skills/jules-commander/SKILL.md",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_skills_jules_commander_skill_jules_komutani_google_ai_agent_orchestrator",
+      "target": "d_01_saas_products_alparai_agents_skills_jules_commander_skill_kullan\u0131m_alanlar\u0131_ne_zaman_jules_kullan\u0131l\u0131r",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/skills/jules-commander/SKILL.md",
+      "source_location": "L27",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

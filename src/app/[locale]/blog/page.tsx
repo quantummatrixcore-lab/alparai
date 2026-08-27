@@ -221,7 +221,7 @@ export default async function BlogIndexPage({
                 className={`inline-flex min-w-[76px] items-center justify-center rounded-full border px-4 py-2 text-xs font-semibold tracking-wide shadow-xs transition-all ${
                   isActive
                     ? "bg-brand-500/15 border-brand-500 text-brand-400 font-bold"
-                    : "border-border-subtle bg-bg-secondary/30 text-fg-secondary hover:text-fg-primary hover:border-white/20"
+                    : "border-border-subtle bg-bg-secondary/30 text-fg-secondary hover:text-fg-primary hover:border-border-strong"
                 }`}
               >
                 {cat.label}
@@ -273,7 +273,7 @@ export default async function BlogIndexPage({
                     <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.08),transparent_70%)]" />
 
                     <div className="relative z-10 flex flex-1 items-center justify-center">
-                      <div className="bg-bg-primary/60 group-hover:bg-bg-primary/80 group-hover:border-brand-500/20 rounded-2xl border border-white/5 p-3 shadow-2xl backdrop-blur-md transition duration-300 group-hover:scale-105">
+                      <div className="bg-bg-primary/60 group-hover:bg-bg-primary/80 group-hover:border-brand-500/20 border-border-subtle/50 rounded-2xl border p-3 shadow-2xl backdrop-blur-md transition duration-300 group-hover:scale-105">
                         {getPostIcon(post.slug)}
                       </div>
                     </div>
@@ -335,7 +335,7 @@ export default async function BlogIndexPage({
                 <span className="text-brand-400 block text-xs font-black tracking-widest uppercase">
                   {t("newsletter_title")}
                 </span>
-                <h2 className="text-fg-primary text-2xl font-black tracking-tight sm:text-3xl">
+                <h2 className="text-fg-primary text-fg-secondaryxl font-black tracking-tight sm:text-3xl">
                   Stay updated with ALPAR Insights
                 </h2>
                 <p className="text-fg-muted max-w-lg text-sm leading-relaxed">

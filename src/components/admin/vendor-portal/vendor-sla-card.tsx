@@ -42,7 +42,7 @@ export function VendorSlaCard({ vendor }: VendorSlaCardProps) {
           <p className="text-fg-muted mt-1 font-mono text-xs">slug: {vendor.providerSlug}</p>
         </div>
         <div className="text-right">
-          <div className="text-fg-primary flex items-center gap-1 text-2xl font-black">
+          <div className="text-fg-primary text-fg-secondaryxl flex items-center gap-1 font-black">
             <ShieldCheck className="text-brand-400 inline-block h-5 w-5" />
             <span>{vendor.compositeScore.toFixed(1)}</span>
             <span className="text-fg-muted text-xs font-normal">/100</span>

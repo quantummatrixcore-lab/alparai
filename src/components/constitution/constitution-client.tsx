@@ -43,7 +43,7 @@ export function ConstitutionClient() {
   ];
 
   return (
-    <div className="relative min-h-screen bg-[#050814] text-zinc-100 selection:bg-purple-500/30 selection:text-white">
+    <div className="text-fg-primary relative min-h-screen bg-[#050814] selection:bg-purple-500/30 selection:text-white">
       <div className="pointer-events-none absolute top-0 left-1/2 h-[700px] w-[1000px] -translate-x-1/2 rounded-full bg-gradient-to-b from-purple-600/20 via-indigo-600/10 to-transparent blur-[160px]" />
 
       <div className="relative mx-auto max-w-5xl px-6 pt-4 pb-20 md:pt-8 md:pb-24">
@@ -59,18 +59,18 @@ export function ConstitutionClient() {
             </span>
           </h1>
 
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed font-medium text-zinc-300 sm:text-xl">
+          <p className="text-fg-secondary mx-auto mt-6 max-w-3xl text-lg leading-relaxed font-medium sm:text-xl">
             {t("desc")}
           </p>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-6 rounded-3xl border border-white/10 bg-zinc-900/60 p-6 backdrop-blur-xl sm:flex-row sm:px-10">
+        <div className="border-border-subtle bg-bg-secondary/60 mt-12 flex flex-col items-center justify-between gap-6 rounded-3xl border p-6 backdrop-blur-xl sm:flex-row sm:px-10">
           <div className="flex items-center gap-4">
             <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-purple-500/30 bg-purple-500/20 text-purple-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]">
               <HeartHandshake className="h-7 w-7" />
             </div>
             <div>
-              <div className="text-xs font-bold tracking-wider text-zinc-400 uppercase">
+              <div className="text-fg-muted text-xs font-bold tracking-wider uppercase">
                 {t("sign_title")}
               </div>
               <div className="text-xl font-bold tracking-tight text-white">{t("sign_desc")}</div>
@@ -86,13 +86,15 @@ export function ConstitutionClient() {
         </div>
 
         <div className="mt-16 space-y-6">
-          <h2 className="text-2xl font-black text-white sm:text-3xl">{t("articles_title")}</h2>
+          <h2 className="text-fg-secondaryxl font-black text-white sm:text-3xl">
+            {t("articles_title")}
+          </h2>
 
           <div className="grid gap-6 md:grid-cols-2">
             {articles.map((art, idx) => (
               <div
                 key={idx}
-                className="group relative flex flex-col justify-between rounded-3xl border border-white/10 bg-zinc-900/40 p-7 shadow-xl backdrop-blur-md transition-all duration-300 hover:border-purple-500/40 hover:bg-zinc-900/70"
+                className="group border-border-subtle bg-bg-secondary/40 hover:bg-bg-secondary/70 relative flex flex-col justify-between rounded-3xl border p-7 shadow-xl backdrop-blur-md transition-all duration-300 hover:border-purple-500/40"
               >
                 <div>
                   <div className="inline-block rounded-lg border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-black tracking-wider text-purple-400 uppercase">
@@ -102,7 +104,7 @@ export function ConstitutionClient() {
                   <p className="mt-2 text-sm leading-relaxed font-semibold text-purple-200/90">
                     {art.desc}
                   </p>
-                  <p className="mt-3 text-xs leading-relaxed font-medium text-zinc-400">
+                  <p className="text-fg-muted mt-3 text-xs leading-relaxed font-medium">
                     {art.details}
                   </p>
                 </div>
@@ -118,7 +120,7 @@ export function ConstitutionClient() {
           <div className="mx-auto max-w-2xl text-center">
             <ShieldCheck className="mx-auto h-12 w-12 text-purple-400" />
             <h2 className="mt-4 text-3xl font-black text-white sm:text-4xl">{t("sign_title")}</h2>
-            <p className="mt-2 text-sm font-medium text-zinc-400">{t("sign_desc")}</p>
+            <p className="text-fg-muted mt-2 text-sm font-medium">{t("sign_desc")}</p>
 
             {signed ? (
               <div className="mt-8 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-6 text-emerald-300">
@@ -130,7 +132,7 @@ export function ConstitutionClient() {
               <form action={formAction} className="mt-8 space-y-4 text-left">
                 <input type="hidden" name="category" value="feature" />
                 <div>
-                  <label className="block text-xs font-bold tracking-wider text-zinc-300 uppercase">
+                  <label className="text-fg-secondary block text-xs font-bold tracking-wider uppercase">
                     {t("form_name")}
                   </label>
                   <input
@@ -140,7 +142,7 @@ export function ConstitutionClient() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Adınız Soyadınız / Öneriniz"
-                    className="mt-1.5 w-full rounded-xl border border-white/10 bg-zinc-950/80 px-4 py-3 text-sm text-white placeholder-zinc-500 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 focus:outline-none"
+                    className="border-border-subtle mt-1.5 w-full rounded-xl border bg-zinc-950/80 px-4 py-3 text-sm text-white placeholder-zinc-500 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 focus:outline-none"
                   />
                   {state.fieldErrors?.title && (
                     <p className="mt-1 text-xs text-red-400">{state.fieldErrors.title[0]}</p>
@@ -148,7 +150,7 @@ export function ConstitutionClient() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold tracking-wider text-zinc-300 uppercase">
+                  <label className="text-fg-secondary block text-xs font-bold tracking-wider uppercase">
                     {t("form_suggestion")}
                   </label>
                   <textarea
@@ -156,7 +158,7 @@ export function ConstitutionClient() {
                     required
                     rows={4}
                     placeholder="Anayasaya eklenecek veya düzeltilecek önerileriniz..."
-                    className="mt-1.5 w-full rounded-xl border border-white/10 bg-zinc-950/80 px-4 py-3 text-sm text-white placeholder-zinc-500 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 focus:outline-none"
+                    className="border-border-subtle mt-1.5 w-full rounded-xl border bg-zinc-950/80 px-4 py-3 text-sm text-white placeholder-zinc-500 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 focus:outline-none"
                   />
                   {state.fieldErrors?.description && (
                     <p className="mt-1 text-xs text-red-400">{state.fieldErrors.description[0]}</p>

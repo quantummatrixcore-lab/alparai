@@ -72,6 +72,7 @@ When an audit, Incident Triage, or Cross-Audit request enters `callWithFailover(
 Each provider adapter (`GoogleAdapter`, `NvidiaNgcAdapter`, `OpenRouterAdapter`, `CohereAdapter`, `HuggingFaceAdapter`, `BlackboxAdapter`) encapsulates vendor-specific HTTP protocols, auth tokens, error codes, and format transformers into a unified `GatewayResult` interface.
 
 If Provider 1 returns an error (HTTP 429 Rate Limit, HTTP 503 Overloaded, or socket timeout):
+
 - The circuit breaker flags the adapter failure without crashing the host request.
 - The failure details (latency, status code, error body) are recorded for internal reliability logging.
 - Control instantly transfers to Provider 2 in the chain within milliseconds.
@@ -99,7 +100,7 @@ Here is a simplified architectural representation of how `callWithFailover()` ca
  */
 export async function callWithFailover(
   chain: readonly GatewayModel[],
-  request: GatewayRequest
+  request: GatewayRequest,
 ): Promise<GatewayResult> {
   const errors: GatewayError[] = [];
 

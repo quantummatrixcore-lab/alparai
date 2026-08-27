@@ -1,0 +1,79 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_legal_2_md",
+      "label": "LEGAL-2.md",
+      "file_type": "document",
+      "source_file": "docs/plan/items/LEGAL-2.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_legal_2_legal_2",
+      "label": "LEGAL-2",
+      "file_type": "document",
+      "source_file": "docs/plan/items/LEGAL-2.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_legal_2_why_p0",
+      "label": "Why P0",
+      "file_type": "document",
+      "source_file": "docs/plan/items/LEGAL-2.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_legal_2_scope",
+      "label": "Scope",
+      "file_type": "document",
+      "source_file": "docs/plan/items/LEGAL-2.md",
+      "source_location": "L15"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_legal_2_acceptance",
+      "label": "Acceptance",
+      "file_type": "document",
+      "source_file": "docs/plan/items/LEGAL-2.md",
+      "source_location": "L23"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_legal_2_md",
+      "target": "d_01_saas_products_alparai_docs_plan_items_legal_2_legal_2",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/LEGAL-2.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_legal_2_legal_2",
+      "target": "d_01_saas_products_alparai_docs_plan_items_legal_2_why_p0",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/LEGAL-2.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_legal_2_legal_2",
+      "target": "d_01_saas_products_alparai_docs_plan_items_legal_2_scope",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/LEGAL-2.md",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_legal_2_legal_2",
+      "target": "d_01_saas_products_alparai_docs_plan_items_legal_2_acceptance",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/LEGAL-2.md",
+      "source_location": "L23",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

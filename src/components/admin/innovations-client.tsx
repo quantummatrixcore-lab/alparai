@@ -205,7 +205,7 @@ export function InnovationsClient({
   };
 
   const statusColors = {
-    idea: "bg-neutral-800 text-neutral-400 border-neutral-700",
+    idea: "bg-bg-secondary text-fg-muted border-border-strong",
     in_progress: "bg-warning-500/20 text-warning-300 border-warning-500/30",
     done: "bg-success-500/20 text-success-300 border-success-500/30",
   };
@@ -213,9 +213,9 @@ export function InnovationsClient({
   return (
     <div className="space-y-10">
       {/* Upper header action */}
-      <div className="flex flex-col items-start justify-between gap-4 border-b border-white/10 pb-5 sm:flex-row sm:items-center">
+      <div className="border-border-subtle flex flex-col items-start justify-between gap-4 border-b pb-5 sm:flex-row sm:items-center">
         <div>
-          <h1 className="inline-flex items-center gap-2.5 text-2xl font-bold tracking-tight text-white">
+          <h1 className="text-fg-secondaryxl inline-flex items-center gap-2.5 font-bold tracking-tight text-white">
             <Lightbulb className="text-brand-400 h-6 w-6 drop-shadow-[0_0_8px_rgba(168,85,247,0.4)]" />
             {t("innovation_hub_data_pool")}
           </h1>
@@ -239,7 +239,7 @@ export function InnovationsClient({
           <button
             onClick={handleManualFetch}
             disabled={isFetching}
-            className="bg-bg-tertiary hover:bg-bg-tertiary/80 flex items-center gap-1.5 rounded-xl border border-white/10 px-4 py-2.5 text-xs font-bold text-white shadow-lg transition"
+            className="bg-bg-tertiary hover:bg-bg-tertiary/80 border-border-subtle flex items-center gap-1.5 rounded-xl border px-4 py-2.5 text-xs font-bold text-white shadow-lg transition"
           >
             {isFetching ? (
               <Loader2 className="h-4 w-4 animate-spin" />
@@ -263,7 +263,7 @@ export function InnovationsClient({
         {connectors.map((conn) => (
           <div
             key={conn.source}
-            className="bg-bg-secondary/40 rounded-xl border border-white/10 p-5 shadow-sm backdrop-blur-xl"
+            className="bg-bg-secondary/40 border-border-subtle rounded-xl border p-5 shadow-sm backdrop-blur-xl"
           >
             <div className="flex items-start justify-between">
               <h3 className="text-sm font-bold text-white">{conn.name}</h3>
@@ -292,9 +292,9 @@ export function InnovationsClient({
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
           <form
             onSubmit={handleCreateInnovation}
-            className="bg-bg-secondary w-full max-w-lg space-y-4 rounded-2xl border border-white/10 p-6 shadow-2xl"
+            className="bg-bg-secondary border-border-subtle w-full max-w-lg space-y-4 rounded-2xl border p-6 shadow-2xl"
           >
-            <div className="flex items-center justify-between border-b border-white/5 pb-3">
+            <div className="border-border-subtle/50 flex items-center justify-between border-b pb-3">
               <h3 className="text-lg font-bold text-white">{t("add_new_innovation")}</h3>
               <button
                 type="button"
@@ -367,9 +367,9 @@ export function InnovationsClient({
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
           <form
             onSubmit={handleAcceptIncident}
-            className="bg-bg-secondary w-full max-w-lg space-y-4 rounded-2xl border border-white/10 p-6 shadow-2xl"
+            className="bg-bg-secondary border-border-subtle w-full max-w-lg space-y-4 rounded-2xl border p-6 shadow-2xl"
           >
-            <div className="flex items-center justify-between border-b border-white/5 pb-3">
+            <div className="border-border-subtle/50 flex items-center justify-between border-b pb-3">
               <h3 className="text-lg font-bold text-white">{t("approve_publish_incident")}</h3>
               <button
                 type="button"
@@ -380,7 +380,7 @@ export function InnovationsClient({
               </button>
             </div>
 
-            <div className="text-fg-secondary space-y-2 rounded-xl border border-white/5 bg-neutral-950/40 p-4 text-xs">
+            <div className="text-fg-secondary border-border-subtle/50 bg-bg-secondary space-y-2 rounded-xl border p-4 text-xs">
               <p className="text-sm font-bold text-white">{acceptingItem.title}</p>
               <p className="line-clamp-4">{acceptingItem.body}</p>
               <a
@@ -393,7 +393,7 @@ export function InnovationsClient({
               </a>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <div className="space-y-1">
                 <label className="text-fg-secondary block text-xs font-bold">{t("category")}</label>
                 <select
@@ -456,7 +456,7 @@ export function InnovationsClient({
             {queue.map((item) => (
               <div
                 key={item.id}
-                className="bg-bg-secondary/40 space-y-3 rounded-xl border border-white/10 p-4 transition hover:border-white/20"
+                className="bg-bg-secondary/40 border-border-subtle hover:border-border-strong space-y-3 rounded-xl border p-4 transition"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>
@@ -494,7 +494,7 @@ export function InnovationsClient({
                   {item.body}
                 </p>
 
-                <div className="text-fg-muted flex items-center justify-between border-t border-white/5 pt-2 font-mono text-[10px]">
+                <div className="text-fg-muted border-border-subtle/50 flex items-center justify-between border-t pt-2 font-mono text-[10px]">
                   <span>
                     {t("score")}
                     {item.source_score}
@@ -512,7 +512,7 @@ export function InnovationsClient({
             ))}
 
             {queue.length === 0 && (
-              <div className="bg-bg-secondary/20 text-fg-muted space-y-2 rounded-xl border border-dashed border-white/10 p-8 text-center text-sm">
+              <div className="bg-bg-secondary/20 text-fg-muted border-border-subtle space-y-2 rounded-xl border border-dashed p-8 text-center text-sm">
                 <CheckCircle className="text-success-500 mx-auto h-8 w-8" />
                 <p>{t("queue_clean_no_new_external_incidents")}</p>
               </div>
@@ -531,7 +531,7 @@ export function InnovationsClient({
             {innovations.map((inv) => (
               <div
                 key={inv.id}
-                className="bg-bg-secondary/40 space-y-3 rounded-xl border border-white/10 p-4"
+                className="bg-bg-secondary/40 border-border-subtle space-y-3 rounded-xl border p-4"
               >
                 <div className="flex items-start justify-between gap-4">
                   <h4 className="text-sm font-bold text-white">{inv.title}</h4>

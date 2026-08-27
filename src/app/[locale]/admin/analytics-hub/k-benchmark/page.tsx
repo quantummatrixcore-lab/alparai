@@ -98,12 +98,12 @@ export default async function KBenchmarkPage({ params }: { params: Promise<{ loc
           />
         </div>
 
-        <div className="rounded-lg border border-emerald-500/20 bg-emerald-500/10 p-4 text-xs text-emerald-300">
+        <div className="border-success-500/20 rounded-lg border bg-emerald-500/10 p-4 text-xs text-emerald-300">
           <p className="mb-1 flex items-center gap-2 text-sm font-bold">{t("kbench_box_title")}</p>
           <p className="text-[11px] leading-relaxed">{t("kbench_box_desc")}</p>
         </div>
 
-        <div className="overflow-hidden rounded-xl border border-white/5 bg-zinc-900/40 ring-1 ring-white/10 backdrop-blur-xl">
+        <div className="border-border-subtle/50 bg-bg-secondary/40 ring-border-subtle overflow-hidden rounded-xl border ring-1 backdrop-blur-xl">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm text-white">
               <thead className="text-fg-muted bg-white/5 text-xs font-bold uppercase">
@@ -133,7 +133,7 @@ export default async function KBenchmarkPage({ params }: { params: Promise<{ loc
                     <tr key={score.id} className="transition-colors hover:bg-white/5">
                       <td className="px-6 py-4 font-mono text-xs text-white">
                         <div className="text-sm font-bold text-white">{modelDisplayName}</div>
-                        <span className="mt-1 inline-flex items-center gap-1 rounded border border-amber-500/20 bg-amber-500/10 px-2 py-0.5 text-[11px] font-semibold text-amber-300">
+                        <span className="border-warning-500/20 mt-1 inline-flex items-center gap-1 rounded border bg-amber-500/10 px-2 py-0.5 text-[11px] font-semibold text-amber-300">
                           {(() => {
                             const providerName =
                               ((score as Record<string, unknown>).provider_name as string) ||
@@ -187,7 +187,7 @@ export default async function KBenchmarkPage({ params }: { params: Promise<{ loc
             <BenchTrRunButton />
           </div>
 
-          <div className="overflow-hidden rounded-xl border border-white/5 bg-zinc-900/40 ring-1 ring-white/10 backdrop-blur-xl">
+          <div className="border-border-subtle/50 bg-bg-secondary/40 ring-border-subtle overflow-hidden rounded-xl border ring-1 backdrop-blur-xl">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm text-white">
                 <thead className="text-fg-muted bg-white/5 text-xs font-bold uppercase">

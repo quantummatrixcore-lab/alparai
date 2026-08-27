@@ -64,7 +64,7 @@ export function FeatureFlagsClient({ initialFlags }: FeatureFlagsClientProps) {
                       className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase transition-colors ${
                         flag.enabled
                           ? "border-success-500/30 bg-success-500/15 text-success-400 border shadow-[0_0_12px_rgba(16,185,129,0.15)]"
-                          : "border-border-strong text-fg-muted border bg-zinc-800/60"
+                          : "border-border-strong text-fg-muted bg-bg-elevated/60 border"
                       }`}
                     >
                       {flag.enabled ? (

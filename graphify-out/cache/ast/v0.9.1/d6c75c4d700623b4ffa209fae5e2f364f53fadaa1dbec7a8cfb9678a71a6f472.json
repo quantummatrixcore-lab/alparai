@@ -1,0 +1,79 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_bas\u0131n_lansman_davet_taslaklar_md",
+      "label": "LANSMAN_DAVET_TASLAKLAR.md",
+      "file_type": "document",
+      "source_file": "Bas\u0131n/LANSMAN_DAVET_TASLAKLAR.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_bas\u0131n_lansman_davet_taslaklar_alpar_ai_g\u00f6nderime_haz\u0131r_davet_taslaklar\u0131_5_temmuz_2026",
+      "label": "ALPAR AI \u2014 G\u00f6nderime Haz\u0131r Davet Taslaklar\u0131 (5 Temmuz 2026)",
+      "file_type": "document",
+      "source_file": "Bas\u0131n/LANSMAN_DAVET_TASLAKLAR.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_bas\u0131n_lansman_davet_taslaklar_a_medya_daveti\u0307_en_gazetecilere_ambargolu",
+      "label": "A) MEDYA DAVET\u0130 (EN \u2014 gazetecilere, ambargolu)",
+      "file_type": "document",
+      "source_file": "Bas\u0131n/LANSMAN_DAVET_TASLAKLAR.md",
+      "source_location": "L3"
+    },
+    {
+      "id": "d_01_saas_products_alparai_bas\u0131n_lansman_davet_taslaklar_b_uzman_\u00fcni\u0307versi\u0307te_daveti\u0307_tr_akademisyenlere",
+      "label": "B) UZMAN / \u00dcN\u0130VERS\u0130TE DAVET\u0130 (TR \u2014 akademisyenlere)",
+      "file_type": "document",
+      "source_file": "Bas\u0131n/LANSMAN_DAVET_TASLAKLAR.md",
+      "source_location": "L21"
+    },
+    {
+      "id": "d_01_saas_products_alparai_bas\u0131n_lansman_davet_taslaklar_c_g\u00f6nderi\u0307m_plani",
+      "label": "C) G\u00d6NDER\u0130M PLANI",
+      "file_type": "document",
+      "source_file": "Bas\u0131n/LANSMAN_DAVET_TASLAKLAR.md",
+      "source_location": "L37"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_bas\u0131n_lansman_davet_taslaklar_md",
+      "target": "d_01_saas_products_alparai_bas\u0131n_lansman_davet_taslaklar_alpar_ai_g\u00f6nderime_haz\u0131r_davet_taslaklar\u0131_5_temmuz_2026",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Bas\u0131n/LANSMAN_DAVET_TASLAKLAR.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_bas\u0131n_lansman_davet_taslaklar_alpar_ai_g\u00f6nderime_haz\u0131r_davet_taslaklar\u0131_5_temmuz_2026",
+      "target": "d_01_saas_products_alparai_bas\u0131n_lansman_davet_taslaklar_a_medya_daveti\u0307_en_gazetecilere_ambargolu",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Bas\u0131n/LANSMAN_DAVET_TASLAKLAR.md",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_bas\u0131n_lansman_davet_taslaklar_alpar_ai_g\u00f6nderime_haz\u0131r_davet_taslaklar\u0131_5_temmuz_2026",
+      "target": "d_01_saas_products_alparai_bas\u0131n_lansman_davet_taslaklar_b_uzman_\u00fcni\u0307versi\u0307te_daveti\u0307_tr_akademisyenlere",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Bas\u0131n/LANSMAN_DAVET_TASLAKLAR.md",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_bas\u0131n_lansman_davet_taslaklar_alpar_ai_g\u00f6nderime_haz\u0131r_davet_taslaklar\u0131_5_temmuz_2026",
+      "target": "d_01_saas_products_alparai_bas\u0131n_lansman_davet_taslaklar_c_g\u00f6nderi\u0307m_plani",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "Bas\u0131n/LANSMAN_DAVET_TASLAKLAR.md",
+      "source_location": "L37",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

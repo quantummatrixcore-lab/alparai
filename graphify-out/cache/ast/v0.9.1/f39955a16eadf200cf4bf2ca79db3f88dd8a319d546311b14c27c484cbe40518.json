@@ -1,0 +1,31 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_zeta_0a_md",
+      "label": "ZETA-0a.md",
+      "file_type": "document",
+      "source_file": "docs/plan/items/ZETA-0a.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_zeta_0a_zeta_0a",
+      "label": "ZETA-0a",
+      "file_type": "document",
+      "source_file": "docs/plan/items/ZETA-0a.md",
+      "source_location": "L1"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_zeta_0a_md",
+      "target": "d_01_saas_products_alparai_docs_plan_items_zeta_0a_zeta_0a",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/ZETA-0a.md",
+      "source_location": "L1",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

@@ -21,9 +21,9 @@ describe("Admin Analytics - getPlausibleMetrics", () => {
       json: async () => ({
         results: {
           visitors: { value: 100 },
-          pageviews: { value: 200 }
-        }
-      })
+          pageviews: { value: 200 },
+        },
+      }),
     });
 
     const result = await getPlausibleMetrics();
@@ -36,7 +36,7 @@ describe("Admin Analytics - getPlausibleMetrics", () => {
     global.fetch = vi.fn().mockResolvedValueOnce({
       ok: false,
       status: 500,
-      statusText: "Internal Server Error"
+      statusText: "Internal Server Error",
     });
 
     const result = await getPlausibleMetrics();

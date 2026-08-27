@@ -1,7 +1,11 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { redirect } from "next/navigation";
 import { Container } from "@/components/ui/layout";
-import { AdminContainer, AdminPageHeader, AdminSectionCard } from "@/components/admin/admin-design-kit";
+import {
+  AdminContainer,
+  AdminPageHeader,
+  AdminSectionCard,
+} from "@/components/admin/admin-design-kit";
 import { TakedownQueue, type TakedownItem } from "@/components/admin/takedown-queue";
 import { getCurrentUser } from "@/lib/auth/session";
 import { createAdminClient } from "@/lib/supabase/admin";

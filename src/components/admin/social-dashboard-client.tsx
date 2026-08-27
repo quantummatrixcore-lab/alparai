@@ -543,7 +543,7 @@ export function SocialDashboardClient({
   return (
     <div className="mx-auto max-w-7xl space-y-6 p-6">
       {/* 360° Observe: Social Performance Trend */}
-      <div className="rounded-xl border border-white/5 bg-neutral-950/40 p-6">
+      <div className="border-border-subtle/50 bg-bg-secondary rounded-xl border p-6">
         <h3 className="text-fg-primary mb-6 text-sm font-bold tracking-wide">
           {t("social_performance_trend_engagement")}
         </h3>
@@ -743,7 +743,7 @@ export function SocialDashboardClient({
                       <div className="flex flex-col justify-between gap-4 md:flex-row">
                         <div className="flex-1 space-y-2">
                           <div className="flex items-center gap-2">
-                            <div className="text-fg-primary flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-bold">
+                            <div className="text-fg-primary border-border-subtle flex items-center gap-2 rounded-full border bg-white/5 px-2.5 py-1 text-xs font-bold">
                               {getPlatformIcon(post.platform)}
                               <span className="capitalize">{post.platform}</span>
                             </div>
@@ -752,13 +752,13 @@ export function SocialDashboardClient({
                             </span>
                           </div>
                           <h3 className="text-fg-primary text-base font-bold">{post.title}</h3>
-                          <p className="text-fg-secondary border-border-subtle/50 rounded-lg border bg-black/20 p-4 font-mono text-xs leading-relaxed whitespace-pre-wrap">
+                          <p className="text-fg-secondary border-border-subtle/50 bg-bg-primary/20 rounded-lg border p-4 font-mono text-xs leading-relaxed whitespace-pre-wrap">
                             {post.body_text}
                           </p>
                         </div>
 
                         {post.image_url && (
-                          <div className="relative h-36 w-full shrink-0 overflow-hidden rounded-lg border border-white/10 md:w-36">
+                          <div className="border-border-subtle relative h-36 w-full shrink-0 overflow-hidden rounded-lg border md:w-36">
                             <Image
                               src={post.image_url}
                               alt={post.title}
@@ -791,7 +791,7 @@ export function SocialDashboardClient({
                         <div className="flex w-full items-center justify-end gap-2 sm:w-auto">
                           <button
                             onClick={() => handleCopy(post.id, post.body_text)}
-                            className="text-fg-secondary hover:text-fg-primary rounded-lg border border-white/10 bg-white/5 p-2 transition-all hover:bg-white/10"
+                            className="text-fg-secondary hover:text-fg-primary border-border-subtle rounded-lg border bg-white/5 p-2 transition-all hover:bg-white/10"
                             title={t("copy_to_clipboard")}
                           >
                             {copiedId === post.id ? (
@@ -802,7 +802,7 @@ export function SocialDashboardClient({
                           </button>
                           <button
                             onClick={() => handleOpenForm(post)}
-                            className="text-fg-secondary hover:text-fg-primary rounded-lg border border-white/10 bg-white/5 p-2 transition-all hover:bg-white/10"
+                            className="text-fg-secondary hover:text-fg-primary border-border-subtle rounded-lg border bg-white/5 p-2 transition-all hover:bg-white/10"
                             title={t("edit_draft")}
                           >
                             <Edit3 className="h-4 w-4" />
@@ -857,7 +857,7 @@ export function SocialDashboardClient({
 
             {/* LinkedIn Pending Approval Drafts Section */}
             {marketingDrafts.filter((d) => d.status === "pending_approval").length > 0 && (
-              <div className="mb-6 space-y-4 border-b border-white/10 pb-6">
+              <div className="border-border-subtle mb-6 space-y-4 border-b pb-6">
                 <h3 className="text-fg-primary flex items-center gap-2 text-sm font-bold">
                   <Linkedin className="text-brand-400 h-4 w-4" />
                   {t("linkedin_drafts_pending_founder_approval")}
@@ -872,7 +872,7 @@ export function SocialDashboardClient({
                       >
                         <div>
                           <div className="mb-3 flex items-center justify-between">
-                            <div className="text-fg-primary flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-bold">
+                            <div className="text-fg-primary border-border-subtle flex items-center gap-2 rounded-full border bg-white/5 px-2.5 py-1 text-xs font-bold">
                               <Linkedin className="text-brand-400 h-3 w-3" />
                               <span>{t("linkedin")}</span>
                             </div>
@@ -880,11 +880,11 @@ export function SocialDashboardClient({
                               {t("pending_approval")}
                             </span>
                           </div>
-                          <p className="text-fg-secondary border-border-subtle/50 line-clamp-6 rounded-lg border bg-black/20 p-3 font-mono text-xs whitespace-pre-wrap">
+                          <p className="text-fg-secondary border-border-subtle/50 bg-bg-primary/20 line-clamp-6 rounded-lg border p-3 font-mono text-xs whitespace-pre-wrap">
                             {draft.content}
                           </p>
                           {draft.media_url && (
-                            <div className="relative mt-3 h-[150px] max-h-[150px] w-full overflow-hidden rounded-lg border border-white/10">
+                            <div className="border-border-subtle relative mt-3 h-[150px] max-h-[150px] w-full overflow-hidden rounded-lg border">
                               <Image
                                 src={draft.media_url}
                                 alt="Draft attachment"
@@ -906,7 +906,7 @@ export function SocialDashboardClient({
                           <div className="flex items-center justify-end gap-2">
                             <button
                               onClick={() => handleCopy(draft.id, draft.content)}
-                              className="text-fg-secondary hover:text-fg-primary rounded-lg border border-white/10 bg-white/5 p-2 transition-all hover:bg-white/10"
+                              className="text-fg-secondary hover:text-fg-primary border-border-subtle rounded-lg border bg-white/5 p-2 transition-all hover:bg-white/10"
                               title={t("copy_to_clipboard")}
                             >
                               {copiedId === draft.id ? (
@@ -948,7 +948,7 @@ export function SocialDashboardClient({
                     >
                       <div>
                         <div className="mb-3 flex items-center justify-between">
-                          <div className="text-fg-primary flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-bold">
+                          <div className="text-fg-primary border-border-subtle flex items-center gap-2 rounded-full border bg-white/5 px-2.5 py-1 text-xs font-bold">
                             {getPlatformIcon(post.platform)}
                             <span className="capitalize">{post.platform}</span>
                           </div>
@@ -957,7 +957,7 @@ export function SocialDashboardClient({
                           </span>
                         </div>
                         <h3 className="text-fg-primary mb-2 text-sm font-bold">{post.title}</h3>
-                        <p className="text-fg-secondary border-border-subtle/50 line-clamp-6 rounded-lg border bg-black/20 p-3 font-mono text-xs whitespace-pre-wrap">
+                        <p className="text-fg-secondary border-border-subtle/50 bg-bg-primary/20 line-clamp-6 rounded-lg border p-3 font-mono text-xs whitespace-pre-wrap">
                           {post.body_text}
                         </p>
                       </div>
@@ -984,7 +984,7 @@ export function SocialDashboardClient({
                         <div className="flex items-center justify-end gap-2">
                           <button
                             onClick={() => handleCopy(post.id, post.body_text)}
-                            className="text-fg-secondary hover:text-fg-primary rounded-lg border border-white/10 bg-white/5 p-2 transition-all hover:bg-white/10"
+                            className="text-fg-secondary hover:text-fg-primary border-border-subtle rounded-lg border bg-white/5 p-2 transition-all hover:bg-white/10"
                             title={t("copy_to_clipboard")}
                           >
                             {copiedId === post.id ? (
@@ -998,14 +998,14 @@ export function SocialDashboardClient({
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={() => handleQuickPublish(post)}
-                            className="text-fg-secondary hover:text-fg-primary rounded-lg border border-white/10 bg-white/5 p-2 transition-all hover:bg-white/10"
+                            className="text-fg-secondary hover:text-fg-primary border-border-subtle rounded-lg border bg-white/5 p-2 transition-all hover:bg-white/10"
                             title={t("open_platform")}
                           >
                             <ExternalLink className="h-4 w-4" />
                           </a>
                           <button
                             onClick={() => handleOpenForm(post)}
-                            className="text-fg-primary flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-bold transition-all hover:bg-white/10"
+                            className="text-fg-primary border-border-subtle flex items-center gap-1.5 rounded-lg border bg-white/5 px-3 py-1.5 text-xs font-bold transition-all hover:bg-white/10"
                           >
                             <Edit3 className="h-3 w-3" /> {t("edit")}
                           </button>
@@ -1093,7 +1093,7 @@ export function SocialDashboardClient({
                         <div className="flex shrink-0 items-center gap-2 self-end md:self-center">
                           <button
                             onClick={() => handleOpenForm(post)}
-                            className="text-fg-primary flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-2.5 py-1.5 text-xs font-bold transition-all hover:bg-white/10"
+                            className="text-fg-primary border-border-subtle flex items-center gap-1.5 rounded-lg border bg-white/5 px-2.5 py-1.5 text-xs font-bold transition-all hover:bg-white/10"
                           >
                             <Edit3 className="h-3 w-3" /> {t("edit")}
                           </button>
@@ -1134,7 +1134,7 @@ export function SocialDashboardClient({
                     </span>
                   </div>
                   <h3 className="text-fg-primary mb-2 text-sm font-black">{template.name}</h3>
-                  <div className="border-border-subtle/50 mb-3 rounded-xl border bg-black/20 p-4">
+                  <div className="border-border-subtle/50 bg-bg-primary/20 mb-3 rounded-xl border p-4">
                     <p className="text-fg-secondary line-clamp-6 font-mono text-xs leading-relaxed whitespace-pre-line whitespace-pre-wrap">
                       {template.template_body}
                     </p>
@@ -1221,7 +1221,7 @@ export function SocialDashboardClient({
                                 });
                               }
                             }}
-                            className="rounded border border-white/10 bg-white/5 px-2 py-1 text-[10px] font-bold transition-all hover:bg-white/10"
+                            className="border-border-subtle rounded border bg-white/5 px-2 py-1 text-[10px] font-bold transition-all hover:bg-white/10"
                           >
                             {t("update")}
                           </button>
@@ -1491,7 +1491,7 @@ export function SocialDashboardClient({
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="space-y-1">
                   <label className="text-fg-secondary text-xs font-bold">
                     {tAdmin("platformLabel", { defaultValue: "Platform" })}

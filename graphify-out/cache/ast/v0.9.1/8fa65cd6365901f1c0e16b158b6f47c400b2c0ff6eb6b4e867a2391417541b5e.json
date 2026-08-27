@@ -1,0 +1,207 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_runbook_launch_day_md",
+      "label": "RUNBOOK_LAUNCH_DAY.md",
+      "file_type": "document",
+      "source_file": "docs/RUNBOOK_LAUNCH_DAY.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_runbook_launch_day_alpar_ai_launch_day_runbook",
+      "label": "ALPAR AI \u2014 Launch Day Runbook",
+      "file_type": "document",
+      "source_file": "docs/RUNBOOK_LAUNCH_DAY.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_runbook_launch_day_monitoring_alarm_thresholds",
+      "label": "\ud83d\udea8 Monitoring & Alarm Thresholds",
+      "file_type": "document",
+      "source_file": "docs/RUNBOOK_LAUNCH_DAY.md",
+      "source_location": "L9"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_runbook_launch_day_1_sentry_errors_p0_alert",
+      "label": "1. Sentry Errors (P0 Alert)",
+      "file_type": "document",
+      "source_file": "docs/RUNBOOK_LAUNCH_DAY.md",
+      "source_location": "L13"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_runbook_launch_day_2_submission_funnel_conversion_p1_alert",
+      "label": "2. Submission Funnel Conversion (P1 Alert)",
+      "file_type": "document",
+      "source_file": "docs/RUNBOOK_LAUNCH_DAY.md",
+      "source_location": "L22"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_runbook_launch_day_3_cross_audit_autopilot_failures_p0_kill_switch",
+      "label": "3. Cross-Audit Autopilot Failures (P0 Kill Switch)",
+      "file_type": "document",
+      "source_file": "docs/RUNBOOK_LAUNCH_DAY.md",
+      "source_location": "L31"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_runbook_launch_day_4_database_connection_limits_p1_warning",
+      "label": "4. Database Connection Limits (P1 Warning)",
+      "file_type": "document",
+      "source_file": "docs/RUNBOOK_LAUNCH_DAY.md",
+      "source_location": "L39"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_runbook_launch_day_5_database_recovery_rto_recovery_time_objective",
+      "label": "5. Database Recovery & RTO (Recovery Time Objective)",
+      "file_type": "document",
+      "source_file": "docs/RUNBOOK_LAUNCH_DAY.md",
+      "source_location": "L48"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_runbook_launch_day_pre_populated_environment_kill_switches",
+      "label": "\ud83d\udee0\ufe0f Pre-Populated Environment Kill-Switches",
+      "file_type": "document",
+      "source_file": "docs/RUNBOOK_LAUNCH_DAY.md",
+      "source_location": "L57"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_runbook_launch_day_t_25_to_t_0_launch_timeline_checklist",
+      "label": "\ud83d\uddd3\ufe0f T-25 to T-0 Launch Timeline Checklist",
+      "file_type": "document",
+      "source_file": "docs/RUNBOOK_LAUNCH_DAY.md",
+      "source_location": "L70"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_runbook_launch_day_emergency_rollback_procedure",
+      "label": "\ud83d\udd04 Emergency Rollback Procedure",
+      "file_type": "document",
+      "source_file": "docs/RUNBOOK_LAUNCH_DAY.md",
+      "source_location": "L99"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_runbook_launch_day_escalation_contacts_support",
+      "label": "\ud83d\udcde Escalation Contacts & Support",
+      "file_type": "document",
+      "source_file": "docs/RUNBOOK_LAUNCH_DAY.md",
+      "source_location": "L116"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_runbook_launch_day_copy_ready_cta_links",
+      "label": "\ud83d\udd17 Copy-Ready CTA Links",
+      "file_type": "document",
+      "source_file": "docs/RUNBOOK_LAUNCH_DAY.md",
+      "source_location": "L136"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_runbook_launch_day_md",
+      "target": "d_01_saas_products_alparai_docs_runbook_launch_day_alpar_ai_launch_day_runbook",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/RUNBOOK_LAUNCH_DAY.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_runbook_launch_day_alpar_ai_launch_day_runbook",
+      "target": "d_01_saas_products_alparai_docs_runbook_launch_day_monitoring_alarm_thresholds",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/RUNBOOK_LAUNCH_DAY.md",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_runbook_launch_day_monitoring_alarm_thresholds",
+      "target": "d_01_saas_products_alparai_docs_runbook_launch_day_1_sentry_errors_p0_alert",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/RUNBOOK_LAUNCH_DAY.md",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_runbook_launch_day_monitoring_alarm_thresholds",
+      "target": "d_01_saas_products_alparai_docs_runbook_launch_day_2_submission_funnel_conversion_p1_alert",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/RUNBOOK_LAUNCH_DAY.md",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_runbook_launch_day_monitoring_alarm_thresholds",
+      "target": "d_01_saas_products_alparai_docs_runbook_launch_day_3_cross_audit_autopilot_failures_p0_kill_switch",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/RUNBOOK_LAUNCH_DAY.md",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_runbook_launch_day_monitoring_alarm_thresholds",
+      "target": "d_01_saas_products_alparai_docs_runbook_launch_day_4_database_connection_limits_p1_warning",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/RUNBOOK_LAUNCH_DAY.md",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_runbook_launch_day_monitoring_alarm_thresholds",
+      "target": "d_01_saas_products_alparai_docs_runbook_launch_day_5_database_recovery_rto_recovery_time_objective",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/RUNBOOK_LAUNCH_DAY.md",
+      "source_location": "L48",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_runbook_launch_day_alpar_ai_launch_day_runbook",
+      "target": "d_01_saas_products_alparai_docs_runbook_launch_day_pre_populated_environment_kill_switches",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/RUNBOOK_LAUNCH_DAY.md",
+      "source_location": "L57",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_runbook_launch_day_alpar_ai_launch_day_runbook",
+      "target": "d_01_saas_products_alparai_docs_runbook_launch_day_t_25_to_t_0_launch_timeline_checklist",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/RUNBOOK_LAUNCH_DAY.md",
+      "source_location": "L70",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_runbook_launch_day_alpar_ai_launch_day_runbook",
+      "target": "d_01_saas_products_alparai_docs_runbook_launch_day_emergency_rollback_procedure",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/RUNBOOK_LAUNCH_DAY.md",
+      "source_location": "L99",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_runbook_launch_day_alpar_ai_launch_day_runbook",
+      "target": "d_01_saas_products_alparai_docs_runbook_launch_day_escalation_contacts_support",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/RUNBOOK_LAUNCH_DAY.md",
+      "source_location": "L116",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_runbook_launch_day_alpar_ai_launch_day_runbook",
+      "target": "d_01_saas_products_alparai_docs_runbook_launch_day_copy_ready_cta_links",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/RUNBOOK_LAUNCH_DAY.md",
+      "source_location": "L136",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

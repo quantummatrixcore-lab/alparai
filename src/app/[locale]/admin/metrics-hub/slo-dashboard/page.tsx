@@ -20,7 +20,7 @@ export default async function SloDashboardPage({
       <MetricsHubTabs />
       <AdminPageHeader title={t("slo_dashboard_title")} subtitle={t("slo_dashboard_subtitle")} />
 
-        <SloDashboardClient initialSlos={[]} initialDora={{}} />
+      <SloDashboardClient initialSlos={[]} initialDora={{}} />
     </AdminContainer>
   );
 }

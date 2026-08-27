@@ -1,0 +1,127 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_ops_runbook_md",
+      "label": "OPS_RUNBOOK.md",
+      "file_type": "document",
+      "source_file": "docs/OPS_RUNBOOK.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_ops_runbook_alpar_ai_operations_alerting_runbook",
+      "label": "ALPAR AI \u2014 Operations & Alerting Runbook",
+      "file_type": "document",
+      "source_file": "docs/OPS_RUNBOOK.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_ops_runbook_alerting_matrix",
+      "label": "Alerting Matrix",
+      "file_type": "document",
+      "source_file": "docs/OPS_RUNBOOK.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_ops_runbook_sentry_alert_rules_configuration",
+      "label": "Sentry Alert Rules Configuration",
+      "file_type": "document",
+      "source_file": "docs/OPS_RUNBOOK.md",
+      "source_location": "L18"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_ops_runbook_1_error_rate_alert_2_in_5_minutes",
+      "label": "1. Error Rate Alert (>2% in 5 minutes)",
+      "file_type": "document",
+      "source_file": "docs/OPS_RUNBOOK.md",
+      "source_location": "L22"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_ops_runbook_2_cron_failure_alert",
+      "label": "2. Cron Failure Alert",
+      "file_type": "document",
+      "source_file": "docs/OPS_RUNBOOK.md",
+      "source_location": "L33"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_ops_runbook_manual_triage_verification_runbook",
+      "label": "Manual Triage & Verification Runbook",
+      "file_type": "document",
+      "source_file": "docs/OPS_RUNBOOK.md",
+      "source_location": "L46"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_ops_runbook_database_recovery_drill_rto",
+      "label": "Database Recovery Drill & RTO",
+      "file_type": "document",
+      "source_file": "docs/OPS_RUNBOOK.md",
+      "source_location": "L59"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_ops_runbook_md",
+      "target": "d_01_saas_products_alparai_docs_ops_runbook_alpar_ai_operations_alerting_runbook",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/OPS_RUNBOOK.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_ops_runbook_alpar_ai_operations_alerting_runbook",
+      "target": "d_01_saas_products_alparai_docs_ops_runbook_alerting_matrix",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/OPS_RUNBOOK.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_ops_runbook_alpar_ai_operations_alerting_runbook",
+      "target": "d_01_saas_products_alparai_docs_ops_runbook_sentry_alert_rules_configuration",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/OPS_RUNBOOK.md",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_ops_runbook_sentry_alert_rules_configuration",
+      "target": "d_01_saas_products_alparai_docs_ops_runbook_1_error_rate_alert_2_in_5_minutes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/OPS_RUNBOOK.md",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_ops_runbook_sentry_alert_rules_configuration",
+      "target": "d_01_saas_products_alparai_docs_ops_runbook_2_cron_failure_alert",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/OPS_RUNBOOK.md",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_ops_runbook_alpar_ai_operations_alerting_runbook",
+      "target": "d_01_saas_products_alparai_docs_ops_runbook_manual_triage_verification_runbook",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/OPS_RUNBOOK.md",
+      "source_location": "L46",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_ops_runbook_manual_triage_verification_runbook",
+      "target": "d_01_saas_products_alparai_docs_ops_runbook_database_recovery_drill_rto",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/OPS_RUNBOOK.md",
+      "source_location": "L59",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

@@ -1,0 +1,127 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_029_codebase_hygiene_and_context_pruning_md",
+      "label": "029-codebase-hygiene-and-context-pruning.md",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/029-codebase-hygiene-and-context-pruning.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_029_codebase_hygiene_and_context_pruning_proposal_029_codebase_hygiene_dead_code_elimination_context_pruning",
+      "label": "PROPOSAL 029: Codebase Hygiene, Dead Code Elimination & Context Pruning",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/029-codebase-hygiene-and-context-pruning.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_029_codebase_hygiene_and_context_pruning_1_concept_rationale",
+      "label": "1. Concept & Rationale",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/029-codebase-hygiene-and-context-pruning.md",
+      "source_location": "L3"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_029_codebase_hygiene_and_context_pruning_2_execution_pillars",
+      "label": "2. Execution Pillars",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/029-codebase-hygiene-and-context-pruning.md",
+      "source_location": "L13"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_029_codebase_hygiene_and_context_pruning_a_dead_code_elimination_\u00f6l\u00fc_kod_ve_yetim_dosya_temizli\u011fi",
+      "label": "A. Dead Code Elimination (\u00d6l\u00fc Kod ve Yetim Dosya Temizli\u011fi)",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/029-codebase-hygiene-and-context-pruning.md",
+      "source_location": "L15"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_029_codebase_hygiene_and_context_pruning_b_documentation_context_pruning_ajan_ba\u011flam_hijyeni",
+      "label": "B. Documentation & Context Pruning (Ajan Ba\u011flam Hijyeni)",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/029-codebase-hygiene-and-context-pruning.md",
+      "source_location": "L21"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_029_codebase_hygiene_and_context_pruning_c_knowledge_graph_sync_graphify_ast_maintenance",
+      "label": "C. Knowledge Graph Sync (Graphify AST Maintenance)",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/029-codebase-hygiene-and-context-pruning.md",
+      "source_location": "L27"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_029_codebase_hygiene_and_context_pruning_3_master_plan_backlog_integration",
+      "label": "3. Master Plan Backlog Integration",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/029-codebase-hygiene-and-context-pruning.md",
+      "source_location": "L32"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_029_codebase_hygiene_and_context_pruning_md",
+      "target": "d_01_saas_products_alparai_docs_proposals_029_codebase_hygiene_and_context_pruning_proposal_029_codebase_hygiene_dead_code_elimination_context_pruning",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/029-codebase-hygiene-and-context-pruning.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_029_codebase_hygiene_and_context_pruning_proposal_029_codebase_hygiene_dead_code_elimination_context_pruning",
+      "target": "d_01_saas_products_alparai_docs_proposals_029_codebase_hygiene_and_context_pruning_1_concept_rationale",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/029-codebase-hygiene-and-context-pruning.md",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_029_codebase_hygiene_and_context_pruning_proposal_029_codebase_hygiene_dead_code_elimination_context_pruning",
+      "target": "d_01_saas_products_alparai_docs_proposals_029_codebase_hygiene_and_context_pruning_2_execution_pillars",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/029-codebase-hygiene-and-context-pruning.md",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_029_codebase_hygiene_and_context_pruning_2_execution_pillars",
+      "target": "d_01_saas_products_alparai_docs_proposals_029_codebase_hygiene_and_context_pruning_a_dead_code_elimination_\u00f6l\u00fc_kod_ve_yetim_dosya_temizli\u011fi",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/029-codebase-hygiene-and-context-pruning.md",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_029_codebase_hygiene_and_context_pruning_2_execution_pillars",
+      "target": "d_01_saas_products_alparai_docs_proposals_029_codebase_hygiene_and_context_pruning_b_documentation_context_pruning_ajan_ba\u011flam_hijyeni",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/029-codebase-hygiene-and-context-pruning.md",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_029_codebase_hygiene_and_context_pruning_2_execution_pillars",
+      "target": "d_01_saas_products_alparai_docs_proposals_029_codebase_hygiene_and_context_pruning_c_knowledge_graph_sync_graphify_ast_maintenance",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/029-codebase-hygiene-and-context-pruning.md",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_029_codebase_hygiene_and_context_pruning_proposal_029_codebase_hygiene_dead_code_elimination_context_pruning",
+      "target": "d_01_saas_products_alparai_docs_proposals_029_codebase_hygiene_and_context_pruning_3_master_plan_backlog_integration",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/029-codebase-hygiene-and-context-pruning.md",
+      "source_location": "L32",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

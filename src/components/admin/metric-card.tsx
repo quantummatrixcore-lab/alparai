@@ -38,7 +38,7 @@ export function TrendMetricCard({
     trend === "up" ? "text-success-400" : trend === "down" ? "text-danger-400" : "text-fg-muted";
 
   return (
-    <div className="bg-bg-elevated/80 rounded-xl border border-white/10 p-4 transition-all hover:border-white/20">
+    <div className="bg-bg-elevated/80 border-border-subtle hover:border-border-strong rounded-xl border p-4 transition-all">
       <div className="text-fg-muted flex items-center justify-between text-xs">
         <span>{title}</span>
         <span className="h-4 w-4" style={{ color: accentColor }}>
@@ -47,7 +47,7 @@ export function TrendMetricCard({
       </div>
 
       <div className="mt-2 flex items-baseline justify-between">
-        <span className="text-2xl font-black text-white">{value}</span>
+        <span className="text-fg-secondaryxl font-black text-white">{value}</span>
         {badge && <span className={`text-xs font-bold ${badgeColor}`}>{badge}</span>}
       </div>
 

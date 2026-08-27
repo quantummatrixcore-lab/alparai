@@ -1,0 +1,14 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_bas\u0131n_haber_1_ana_skandal_md",
+      "label": "HABER_1_ANA_SKANDAL.md",
+      "file_type": "document",
+      "source_file": "Bas\u0131n/HABER_1_ANA_SKANDAL.md",
+      "source_location": "L1"
+    }
+  ],
+  "edges": [],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

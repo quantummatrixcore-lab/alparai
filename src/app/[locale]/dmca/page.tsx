@@ -35,7 +35,7 @@ export default async function DmcaPage({ params }: { params: Promise<{ locale: s
       {/* Procedure Steps */}
       <div className="mx-auto max-w-4xl space-y-8">
         <div className="text-center">
-          <h2 className="text-fg-primary text-2xl font-bold tracking-tight">
+          <h2 className="text-fg-primary text-fg-secondaryxl font-bold tracking-tight">
             {t("procedure_title")}
           </h2>
           <p className="text-fg-muted mt-2 text-sm">{t("procedure_subtitle")}</p>

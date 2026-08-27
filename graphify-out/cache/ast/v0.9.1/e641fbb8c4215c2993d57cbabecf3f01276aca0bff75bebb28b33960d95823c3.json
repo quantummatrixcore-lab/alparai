@@ -1,0 +1,79 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_methodology_audits_sidebar_inventory_v10_43_md",
+      "label": "sidebar-inventory-v10.43.md",
+      "file_type": "document",
+      "source_file": "docs/METHODOLOGY_AUDITS/sidebar-inventory-v10.43.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_methodology_audits_sidebar_inventory_v10_43_acp_2_sidebar_navigation_inventory_audit_v10_43_item_156",
+      "label": "ACP-2 Sidebar Navigation Inventory Audit (v10.43 \u2014 Item 156)",
+      "file_type": "document",
+      "source_file": "docs/METHODOLOGY_AUDITS/sidebar-inventory-v10.43.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_methodology_audits_sidebar_inventory_v10_43_overview",
+      "label": "Overview",
+      "file_type": "document",
+      "source_file": "docs/METHODOLOGY_AUDITS/sidebar-inventory-v10.43.md",
+      "source_location": "L3"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_methodology_audits_sidebar_inventory_v10_43_inventory_matrix",
+      "label": "Inventory Matrix",
+      "file_type": "document",
+      "source_file": "docs/METHODOLOGY_AUDITS/sidebar-inventory-v10.43.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_methodology_audits_sidebar_inventory_v10_43_verification",
+      "label": "Verification",
+      "file_type": "document",
+      "source_file": "docs/METHODOLOGY_AUDITS/sidebar-inventory-v10.43.md",
+      "source_location": "L30"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_methodology_audits_sidebar_inventory_v10_43_md",
+      "target": "d_01_saas_products_alparai_docs_methodology_audits_sidebar_inventory_v10_43_acp_2_sidebar_navigation_inventory_audit_v10_43_item_156",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/METHODOLOGY_AUDITS/sidebar-inventory-v10.43.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_methodology_audits_sidebar_inventory_v10_43_acp_2_sidebar_navigation_inventory_audit_v10_43_item_156",
+      "target": "d_01_saas_products_alparai_docs_methodology_audits_sidebar_inventory_v10_43_overview",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/METHODOLOGY_AUDITS/sidebar-inventory-v10.43.md",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_methodology_audits_sidebar_inventory_v10_43_acp_2_sidebar_navigation_inventory_audit_v10_43_item_156",
+      "target": "d_01_saas_products_alparai_docs_methodology_audits_sidebar_inventory_v10_43_inventory_matrix",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/METHODOLOGY_AUDITS/sidebar-inventory-v10.43.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_methodology_audits_sidebar_inventory_v10_43_acp_2_sidebar_navigation_inventory_audit_v10_43_item_156",
+      "target": "d_01_saas_products_alparai_docs_methodology_audits_sidebar_inventory_v10_43_verification",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/METHODOLOGY_AUDITS/sidebar-inventory-v10.43.md",
+      "source_location": "L30",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

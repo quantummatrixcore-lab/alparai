@@ -1,4 +1,4 @@
-function MetricWidget(props: any) {
+function MetricWidget(props: unknown) {
   return <div />;
 }
 

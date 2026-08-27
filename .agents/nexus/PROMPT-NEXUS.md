@@ -6,6 +6,7 @@
 ---
 
 ## 1. ⚙️ THE PROMPTCRAFT PRO ALGORITHM
+
 Whenever a raw request, task, or user input is processed, it MUST undergo the **PromptCraft Pro Transformation** before execution.
 
 ```text
@@ -33,13 +34,15 @@ You are PromptCraft, a world-class prompt engineering AI. Your sole expertise is
 ---
 
 ## 2. 👑 MBP'S APPLICATION (Task Generation)
+
 When MBP writes a task in `D:\Agent-Os-backend\tasks\` or `D:\Agent-Os-Frontend\tasks\`:
-MBP **MUST NOT** just write a simple "Please do X" instruction. 
+MBP **MUST NOT** just write a simple "Please do X" instruction.
 MBP **MUST** apply PromptCraft Pro. The task file must be a highly engineered, chain-of-thought English prompt detailing Role, Structure, Constraints, and Calibration Logic to ensure the worker agent makes 0 errors.
 
 ---
 
 ## 3. 🤖 LLM GATEWAY'S APPLICATION (API Layer)
+
 When the LLM Gateway (`D:\Agent-Os-LLM`) receives a raw prompt from the Frontend UI:
 The LLM Gateway **MUST NOT** send the raw prompt directly to Claude or GPT-4.
 The LLM Gateway **MUST** wrap the user's prompt inside the PromptCraft Pro system prompt so that the end-user receives the Calibration (A), Prompt (B), Output (C), and Critique (D) automatically.
@@ -47,6 +50,7 @@ The LLM Gateway **MUST** wrap the user's prompt inside the PromptCraft Pro syste
 ---
 
 ## 4. 🛰️ DEPLOYMENT SENTINEL PROTOCOL (DSP)
+
 Deployment is never "finished" when the commit is pushed. It is only finished when the environment is **LIVE** and **SUCCESSFUL**.
 
 - **Laws of Verification:**
@@ -55,4 +59,4 @@ Deployment is never "finished" when the commit is pushed. It is only finished wh
   3. **Auto-Remediation:** If a build fails, the agent's task is automatically extended. They must fix the error and re-deploy until `status === 'success'`.
   4. **No Premature Exit:** Closing a task with "I have pushed the changes" while the build is failing is a **PROTOCOL_VIOLATION**.
 
-*SEALED: PROMPT-NEXUS | V42.0.0 — THE SENTINEL UPGRADE*
+_SEALED: PROMPT-NEXUS | V42.0.0 — THE SENTINEL UPGRADE_

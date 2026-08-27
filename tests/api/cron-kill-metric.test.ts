@@ -63,8 +63,6 @@ describe("GET /api/cron/kill-metric", () => {
           then: (cb: any) => cb({ count: 5, error: null }),
         }),
       }),
- 
- 
     } as any);
 
     const req = new Request("http://localhost/api/cron/kill-metric", {

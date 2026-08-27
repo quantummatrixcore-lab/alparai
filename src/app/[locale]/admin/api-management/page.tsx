@@ -24,7 +24,7 @@ export default async function ApiManagementPage({
   const t = await getTranslations({ locale, namespace: "admin" });
 
   return (
-    <div className="space-y-8 rounded-3xl bg-zinc-900/40 px-3 py-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:px-6 md:p-8">
+    <div className="bg-bg-secondary/40 ring-border-subtle space-y-8 rounded-3xl px-3 py-4 shadow-2xl ring-1 backdrop-blur-xl sm:px-6 md:p-8">
       <SystemHubTabs />
       <AdminPageHeader
         icon={<Zap className="text-brand-400 h-6 w-6" />}

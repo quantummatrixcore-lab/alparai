@@ -68,7 +68,7 @@ export function PrioritizationWidget({
       <div className="bg-accent-500/10 group-hover:bg-accent-500/20 absolute -top-24 -right-24 h-64 w-64 rounded-full blur-3xl transition-all duration-500" />
 
       <div className="relative z-10 space-y-6">
-        <div className="flex items-center justify-between border-b border-white/10 pb-4">
+        <div className="border-border-subtle flex items-center justify-between border-b pb-4">
           <div className="flex items-center gap-3">
             <div className="border-accent-500/30 bg-accent-500/10 text-accent-400 rounded-2xl border p-3">
               <Target className="h-6 w-6" />

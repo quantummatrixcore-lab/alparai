@@ -385,7 +385,7 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
 
     if (isCollapsed) {
       return (
-        <div className="mt-4 flex flex-col items-center space-y-2 border-b border-white/5 px-2 pb-4 last:border-0 last:pb-0">
+        <div className="border-border-subtle/50 mt-4 flex flex-col items-center space-y-2 border-b px-2 pb-4 last:border-0 last:pb-0">
           {groupItems.map((item) => {
             const Icon = item.icon;
             return (
@@ -426,7 +426,7 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
     }
 
     return (
-      <div className="mt-4 border-b border-white/5 pb-4 last:border-0 last:pb-0">
+      <div className="border-border-subtle/50 mt-4 border-b pb-4 last:border-0 last:pb-0">
         <button
           onClick={() => toggleGroup(id)}
           className="group text-fg-secondary hover:text-fg-primary flex w-full items-center justify-between px-4 py-2 transition-colors duration-200"
@@ -491,7 +491,7 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
   return (
     <>
       {/* Top Header Bar - Visible only on mobile/tablet */}
-      <header className="bg-bg-secondary/40 fixed inset-x-0 top-0 z-30 flex h-16 items-center justify-between border-b border-white/5 px-4 backdrop-blur-xl sm:px-6 lg:hidden">
+      <header className="bg-bg-secondary/40 border-border-subtle/50 fixed inset-x-0 top-0 z-30 flex h-16 items-center justify-between border-b px-4 backdrop-blur-xl sm:px-6 lg:hidden">
         <div className="flex min-w-0 items-center gap-2 sm:gap-3">
           <button
             onClick={() => setIsOpen(true)}
@@ -536,7 +536,7 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
       {/* Sidebar Drawer */}
       <aside
         className={cn(
-          "bg-bg-secondary/40 dark:bg-bg-tertiary/30 fixed inset-y-0 left-0 z-50 flex flex-col border-r border-white/10 shadow-[4px_0_24px_rgba(0,0,0,0.5),_inset_0_1px_1px_0_rgba(255,255,255,0.1)] ring-1 ring-white/5 backdrop-blur-2xl backdrop-contrast-125 backdrop-saturate-150 transition-all duration-300 ease-in-out",
+          "bg-bg-secondary/40 dark:bg-bg-tertiary/30 border-border-subtle fixed inset-y-0 left-0 z-50 flex flex-col border-r shadow-[4px_0_24px_rgba(0,0,0,0.5),_inset_0_1px_1px_0_rgba(255,255,255,0.1)] ring-1 ring-white/5 backdrop-blur-2xl backdrop-contrast-125 backdrop-saturate-150 transition-all duration-300 ease-in-out",
           isOpen
             ? "w-72 max-w-[calc(100vw-3rem)] translate-x-0"
             : "w-72 max-w-[calc(100vw-3rem)] -translate-x-full",
@@ -544,7 +544,7 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
           isCollapsed ? "lg:w-16" : "lg:w-64",
         )}
       >
-        <div className="flex h-16 shrink-0 items-center justify-between border-b border-white/5 px-4 sm:px-6">
+        <div className="border-border-subtle/50 flex h-16 shrink-0 items-center justify-between border-b px-4 sm:px-6">
           <Link
             href="/admin"
             className="group flex min-w-0 items-center gap-3"

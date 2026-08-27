@@ -131,7 +131,9 @@ export default async function BountiesPage({ params }: { params: Promise<{ local
           {items.length === 0 ? (
             <div className="mx-auto max-w-4xl p-8 text-center md:p-12">
               <Trophy className="text-warning-400 mx-auto mb-4 h-12 w-12 drop-shadow-[0_0_15px_rgba(245,158,11,0.5)]" />
-              <h2 className="text-fg-primary mb-3 text-2xl font-black">{t("program_title")}</h2>
+              <h2 className="text-fg-primary text-fg-secondaryxl mb-3 font-black">
+                {t("program_title")}
+              </h2>
               <p className="text-fg-secondary mx-auto mb-8 max-w-2xl text-sm leading-relaxed">
                 {t("program_desc")}
               </p>
@@ -210,7 +212,7 @@ function StatBlock({
         <div className="h-5 w-5">{icon}</div>
       </div>
       <div>
-        <p className="text-fg-primary text-2xl font-bold">{value}</p>
+        <p className="text-fg-primary text-fg-secondaryxl font-bold">{value}</p>
         <p className="text-fg-muted text-xs">{label}</p>
       </div>
     </div>

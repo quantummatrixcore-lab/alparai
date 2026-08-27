@@ -212,7 +212,7 @@ async function LeaderboardDataContent({
             <div className="bg-brand-500/10 ring-brand-500/20 mb-3 flex h-12 w-12 items-center justify-center rounded-2xl shadow-[0_0_20px_rgba(168,85,247,0.25)] ring-1 backdrop-blur-md">
               <Trophy className="text-brand-400 h-6 w-6" />
             </div>
-            <h1 className="text-fg-primary mb-2 text-2xl font-black tracking-tight sm:text-4xl">
+            <h1 className="text-fg-primary text-fg-secondaryxl mb-2 font-black tracking-tight sm:text-4xl">
               {t("title")}
             </h1>
             <p className="text-fg-secondary max-w-xl text-sm sm:text-base">{t("subtitle")}</p>
@@ -232,7 +232,7 @@ async function LeaderboardDataContent({
                 </div>
                 <div>
                   <p className="text-fg-muted text-xs font-medium">{t("providersTracked")}</p>
-                  <p className="text-fg-primary text-2xl font-bold tracking-tight">
+                  <p className="text-fg-primary text-fg-secondaryxl font-bold tracking-tight">
                     {stats.length}
                   </p>
                 </div>
@@ -247,7 +247,7 @@ async function LeaderboardDataContent({
                 </div>
                 <div>
                   <p className="text-fg-muted text-xs font-medium">{t("totalResponses")}</p>
-                  <p className="text-fg-primary text-2xl font-bold tracking-tight">
+                  <p className="text-fg-primary text-fg-secondaryxl font-bold tracking-tight">
                     {stats.reduce((s, p) => s + p.response_count, 0)}
                   </p>
                 </div>
@@ -262,7 +262,7 @@ async function LeaderboardDataContent({
                 </div>
                 <div>
                   <p className="text-fg-muted text-xs font-medium">{t("avgResponseRate")}</p>
-                  <p className="text-fg-primary text-2xl font-bold tracking-tight">
+                  <p className="text-fg-primary text-fg-secondaryxl font-bold tracking-tight">
                     {stats.filter((p) => p.incident_count > 0).length > 0
                       ? Math.round(
                           stats
@@ -286,7 +286,7 @@ async function LeaderboardDataContent({
                   "rounded-xl border px-3.5 py-1.5 text-xs font-semibold backdrop-blur-md transition-all duration-200",
                   currentFilter === "all"
                     ? "bg-brand-500/25 border-brand-400/60 text-white shadow-[0_0_12px_rgba(168,85,247,0.3)]"
-                    : "text-fg-secondary border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/10 hover:text-white",
+                    : "text-fg-secondary border-border-subtle hover:border-border-strong bg-white/5 hover:bg-white/10 hover:text-white",
                 )}
               >
                 {t("filter_all")}
@@ -297,7 +297,7 @@ async function LeaderboardDataContent({
                   "rounded-xl border px-3.5 py-1.5 text-xs font-semibold backdrop-blur-md transition-all duration-200",
                   currentFilter === "verified"
                     ? "bg-brand-500/25 border-brand-400/60 text-white shadow-[0_0_12px_rgba(168,85,247,0.3)]"
-                    : "text-fg-secondary border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/10 hover:text-white",
+                    : "text-fg-secondary border-border-subtle hover:border-border-strong bg-white/5 hover:bg-white/10 hover:text-white",
                 )}
               >
                 {t("filter_verified")}
@@ -308,7 +308,7 @@ async function LeaderboardDataContent({
                   "rounded-xl border px-3.5 py-1.5 text-xs font-semibold backdrop-blur-md transition-all duration-200",
                   currentFilter === "with_incidents"
                     ? "bg-brand-500/25 border-brand-400/60 text-white shadow-[0_0_12px_rgba(168,85,247,0.3)]"
-                    : "text-fg-secondary border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/10 hover:text-white",
+                    : "text-fg-secondary border-border-subtle hover:border-border-strong bg-white/5 hover:bg-white/10 hover:text-white",
                 )}
               >
                 {t("filter_with_incidents")}
@@ -327,7 +327,7 @@ async function LeaderboardDataContent({
                   name="q"
                   defaultValue={searchQuery}
                   placeholder={locale === "tr" ? "Sağlayıcı ara..." : "Search providers..."}
-                  className="text-fg-primary placeholder:text-fg-muted focus:ring-brand-500 focus:border-brand-500 flex h-9 w-full rounded-xl border border-white/10 bg-white/5 px-3.5 py-1.5 text-xs backdrop-blur-md transition-all focus:ring-2 focus:outline-none"
+                  className="text-fg-primary placeholder:text-fg-muted focus:ring-brand-500 focus:border-brand-500 border-border-subtle flex h-9 w-full rounded-xl border bg-white/5 px-3.5 py-1.5 text-xs backdrop-blur-md transition-all focus:ring-2 focus:outline-none"
                 />
               </div>
             </form>
@@ -533,12 +533,12 @@ async function LeaderboardDataContent({
                               className={cn(
                                 "inline-flex rounded border px-2 py-0.5 text-xs font-bold",
                                 p.trust_score >= 90
-                                  ? "border-emerald-500/20 bg-emerald-500/10 text-emerald-400"
+                                  ? "border-success-500/20 bg-emerald-500/10 text-emerald-400"
                                   : p.trust_score >= 70
                                     ? "border-blue-500/20 bg-blue-500/10 text-blue-400"
                                     : p.trust_score >= 50
-                                      ? "border-amber-500/20 bg-amber-500/10 text-amber-400"
-                                      : "border-red-500/20 bg-red-500/10 text-red-400",
+                                      ? "border-warning-500/20 bg-amber-500/10 text-amber-400"
+                                      : "border-danger-500/20 bg-red-500/10 text-red-400",
                               )}
                             >
                               {p.trust_score}/100

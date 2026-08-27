@@ -6,11 +6,11 @@
 image: node:20-alpine
 
 stages:
-  - sentinel_hygiene    # Aşama 1: Kod Hijyeni, i18n & Statik Kontrol
-  - quality_fortress    # Aşama 2: Typecheck & Birim Test Savunması
-  - devsecops_guard     # Aşama 3: Güvenlik, Bağımlılık Denetimi & Secret Taraması
-  - edge_deployment     # Aşama 4: Vercel Edge Production Dağıtımı
-  - post_deploy_verify  # Aşama 5: E2E Entegrasyon & Canlı Sağlık Doğrulaması
+  - sentinel_hygiene # Aşama 1: Kod Hijyeni, i18n & Statik Kontrol
+  - quality_fortress # Aşama 2: Typecheck & Birim Test Savunması
+  - devsecops_guard # Aşama 3: Güvenlik, Bağımlılık Denetimi & Secret Taraması
+  - edge_deployment # Aşama 4: Vercel Edge Production Dağıtımı
+  - post_deploy_verify # Aşama 5: E2E Entegrasyon & Canlı Sağlık Doğrulaması
 
 variables:
   PNPM_VERSION: "9.12.0"

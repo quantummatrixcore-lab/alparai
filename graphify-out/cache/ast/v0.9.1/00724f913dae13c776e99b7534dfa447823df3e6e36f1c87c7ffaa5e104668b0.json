@@ -1,0 +1,111 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_opus_briefing_md",
+      "label": "opus_briefing.md",
+      "file_type": "document",
+      "source_file": "docs/opus_briefing.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_opus_briefing_alpar_ai_opus_strateji\u0307_sentezi\u0307_15_ai_konsens\u00fcs\u00fc",
+      "label": "ALPAR AI \u2014 OPUS STRATEJ\u0130 SENTEZ\u0130 (15-AI KONSENS\u00dcS\u00dc)",
+      "file_type": "document",
+      "source_file": "docs/opus_briefing.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_opus_briefing_1_vi\u0307zyon_ve_ki\u0307mli\u0307k_de\u011fi\u0307\u015fi\u0307mi\u0307_the_moody_s_of_ai",
+      "label": "1. V\u0130ZYON VE K\u0130ML\u0130K DE\u011e\u0130\u015e\u0130M\u0130 (\"The Moody's of AI\")",
+      "file_type": "document",
+      "source_file": "docs/opus_briefing.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_opus_briefing_2_aci\u0307l_vi\u0307tri\u0307n_ve_ui_zafi\u0307yetleri\u0307_p0_p1",
+      "label": "2. AC\u0130L V\u0130TR\u0130N VE UI ZAF\u0130YETLER\u0130 (P0/P1)",
+      "file_type": "document",
+      "source_file": "docs/opus_briefing.md",
+      "source_location": "L12"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_opus_briefing_3_b2b_moneti\u0307zasyon_ve_geli\u0307r_aki\u015flari_phase_4",
+      "label": "3. B2B MONET\u0130ZASYON VE GEL\u0130R AKI\u015eLARI (Phase 4)",
+      "file_type": "document",
+      "source_file": "docs/opus_briefing.md",
+      "source_location": "L23"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_opus_briefing_4_moonshot_hedefler_piyasa_tekeli_kurma",
+      "label": "4. MOONSHOT HEDEFLER (Piyasa Tekeli Kurma)",
+      "file_type": "document",
+      "source_file": "docs/opus_briefing.md",
+      "source_location": "L32"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_opus_briefing_5_b\u00fcy\u00fcme_gtm_ve_i\u0307lk_1_000_kullanici",
+      "label": "5. B\u00dcY\u00dcME (GTM) VE \u0130LK 1.000 KULLANICI",
+      "file_type": "document",
+      "source_file": "docs/opus_briefing.md",
+      "source_location": "L38"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_opus_briefing_md",
+      "target": "d_01_saas_products_alparai_docs_opus_briefing_alpar_ai_opus_strateji\u0307_sentezi\u0307_15_ai_konsens\u00fcs\u00fc",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/opus_briefing.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_opus_briefing_alpar_ai_opus_strateji\u0307_sentezi\u0307_15_ai_konsens\u00fcs\u00fc",
+      "target": "d_01_saas_products_alparai_docs_opus_briefing_1_vi\u0307zyon_ve_ki\u0307mli\u0307k_de\u011fi\u0307\u015fi\u0307mi\u0307_the_moody_s_of_ai",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/opus_briefing.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_opus_briefing_alpar_ai_opus_strateji\u0307_sentezi\u0307_15_ai_konsens\u00fcs\u00fc",
+      "target": "d_01_saas_products_alparai_docs_opus_briefing_2_aci\u0307l_vi\u0307tri\u0307n_ve_ui_zafi\u0307yetleri\u0307_p0_p1",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/opus_briefing.md",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_opus_briefing_alpar_ai_opus_strateji\u0307_sentezi\u0307_15_ai_konsens\u00fcs\u00fc",
+      "target": "d_01_saas_products_alparai_docs_opus_briefing_3_b2b_moneti\u0307zasyon_ve_geli\u0307r_aki\u015flari_phase_4",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/opus_briefing.md",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_opus_briefing_alpar_ai_opus_strateji\u0307_sentezi\u0307_15_ai_konsens\u00fcs\u00fc",
+      "target": "d_01_saas_products_alparai_docs_opus_briefing_4_moonshot_hedefler_piyasa_tekeli_kurma",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/opus_briefing.md",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_opus_briefing_alpar_ai_opus_strateji\u0307_sentezi\u0307_15_ai_konsens\u00fcs\u00fc",
+      "target": "d_01_saas_products_alparai_docs_opus_briefing_5_b\u00fcy\u00fcme_gtm_ve_i\u0307lk_1_000_kullanici",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/opus_briefing.md",
+      "source_location": "L38",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

@@ -22,11 +22,11 @@ export default async function GEOPage({ params }: { params: Promise<{ locale: st
     <AdminContainer shell>
       <AdminPageHeader title={t("nav_geo")} subtitle={t("geo_ai_traffic_gauge")} />
 
-        <GeoDashboardClient
-          initialScore={stats.score}
-          initialCitations={stats.citations as GeoCitationRow[]}
-          botHits={stats.botHits}
-        />
+      <GeoDashboardClient
+        initialScore={stats.score}
+        initialCitations={stats.citations as GeoCitationRow[]}
+        botHits={stats.botHits}
+      />
     </AdminContainer>
   );
 }

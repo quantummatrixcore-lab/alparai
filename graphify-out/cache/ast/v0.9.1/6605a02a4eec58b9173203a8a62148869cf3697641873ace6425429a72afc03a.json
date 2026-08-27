@@ -1,0 +1,191 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_data_room_index_md",
+      "label": "index.md",
+      "file_type": "document",
+      "source_file": "docs/DATA_ROOM/index.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_data_room_index_alpar_ai_investor_data_room_pitch_narrative",
+      "label": "ALPAR AI - INVESTOR DATA ROOM & PITCH NARRATIVE",
+      "file_type": "document",
+      "source_file": "docs/DATA_ROOM/index.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_data_room_index_1_the_problem",
+      "label": "1. The Problem",
+      "file_type": "document",
+      "source_file": "docs/DATA_ROOM/index.md",
+      "source_location": "L3"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_data_room_index_2_the_insight",
+      "label": "2. The Insight",
+      "file_type": "document",
+      "source_file": "docs/DATA_ROOM/index.md",
+      "source_location": "L8"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_data_room_index_3_the_solution",
+      "label": "3. The Solution",
+      "file_type": "document",
+      "source_file": "docs/DATA_ROOM/index.md",
+      "source_location": "L13"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_data_room_index_4_the_vision_the_ssl_certificate_for_ai",
+      "label": "4. The Vision (The SSL Certificate for AI)",
+      "file_type": "document",
+      "source_file": "docs/DATA_ROOM/index.md",
+      "source_location": "L18"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_data_room_index_5_the_moat_why_we_cannot_be_copied",
+      "label": "5. The Moat (Why we cannot be copied)",
+      "file_type": "document",
+      "source_file": "docs/DATA_ROOM/index.md",
+      "source_location": "L27"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_data_room_index_6_technical_architecture_velocity_engine",
+      "label": "6. Technical Architecture & Velocity Engine",
+      "file_type": "document",
+      "source_file": "docs/DATA_ROOM/index.md",
+      "source_location": "L39"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_data_room_index_7_case_studies",
+      "label": "7. Case Studies",
+      "file_type": "document",
+      "source_file": "docs/DATA_ROOM/index.md",
+      "source_location": "L46"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_data_room_index_8_financial_projections",
+      "label": "8. Financial Projections",
+      "file_type": "document",
+      "source_file": "docs/DATA_ROOM/index.md",
+      "source_location": "L50"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_data_room_index_9_the_ask",
+      "label": "9. The Ask",
+      "file_type": "document",
+      "source_file": "docs/DATA_ROOM/index.md",
+      "source_location": "L61"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_data_room_index_10_team_advisory_board",
+      "label": "10. Team & Advisory Board",
+      "file_type": "document",
+      "source_file": "docs/DATA_ROOM/index.md",
+      "source_location": "L67"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_data_room_index_md",
+      "target": "d_01_saas_products_alparai_docs_data_room_index_alpar_ai_investor_data_room_pitch_narrative",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DATA_ROOM/index.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_data_room_index_alpar_ai_investor_data_room_pitch_narrative",
+      "target": "d_01_saas_products_alparai_docs_data_room_index_1_the_problem",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DATA_ROOM/index.md",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_data_room_index_alpar_ai_investor_data_room_pitch_narrative",
+      "target": "d_01_saas_products_alparai_docs_data_room_index_2_the_insight",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DATA_ROOM/index.md",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_data_room_index_alpar_ai_investor_data_room_pitch_narrative",
+      "target": "d_01_saas_products_alparai_docs_data_room_index_3_the_solution",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DATA_ROOM/index.md",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_data_room_index_alpar_ai_investor_data_room_pitch_narrative",
+      "target": "d_01_saas_products_alparai_docs_data_room_index_4_the_vision_the_ssl_certificate_for_ai",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DATA_ROOM/index.md",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_data_room_index_alpar_ai_investor_data_room_pitch_narrative",
+      "target": "d_01_saas_products_alparai_docs_data_room_index_5_the_moat_why_we_cannot_be_copied",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DATA_ROOM/index.md",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_data_room_index_alpar_ai_investor_data_room_pitch_narrative",
+      "target": "d_01_saas_products_alparai_docs_data_room_index_6_technical_architecture_velocity_engine",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DATA_ROOM/index.md",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_data_room_index_alpar_ai_investor_data_room_pitch_narrative",
+      "target": "d_01_saas_products_alparai_docs_data_room_index_7_case_studies",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DATA_ROOM/index.md",
+      "source_location": "L46",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_data_room_index_alpar_ai_investor_data_room_pitch_narrative",
+      "target": "d_01_saas_products_alparai_docs_data_room_index_8_financial_projections",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DATA_ROOM/index.md",
+      "source_location": "L50",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_data_room_index_alpar_ai_investor_data_room_pitch_narrative",
+      "target": "d_01_saas_products_alparai_docs_data_room_index_9_the_ask",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DATA_ROOM/index.md",
+      "source_location": "L61",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_data_room_index_alpar_ai_investor_data_room_pitch_narrative",
+      "target": "d_01_saas_products_alparai_docs_data_room_index_10_team_advisory_board",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DATA_ROOM/index.md",
+      "source_location": "L67",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

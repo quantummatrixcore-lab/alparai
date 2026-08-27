@@ -1,0 +1,79 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_design_admin_v2_innovations_md",
+      "label": "innovations.md",
+      "file_type": "document",
+      "source_file": "docs/DESIGN/admin-v2/innovations.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_design_admin_v2_innovations_screen_3_innovations_management_admin_innovations",
+      "label": "Screen 3: Innovations Management (`/admin/innovations`)",
+      "file_type": "document",
+      "source_file": "docs/DESIGN/admin-v2/innovations.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_design_admin_v2_innovations_1_overview",
+      "label": "1. Overview",
+      "file_type": "document",
+      "source_file": "docs/DESIGN/admin-v2/innovations.md",
+      "source_location": "L3"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_design_admin_v2_innovations_2_page_layout_12_column_grid",
+      "label": "2. Page Layout (12-Column Grid)",
+      "file_type": "document",
+      "source_file": "docs/DESIGN/admin-v2/innovations.md",
+      "source_location": "L12"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_design_admin_v2_innovations_3_ui_specifications_styling",
+      "label": "3. UI Specifications & Styling",
+      "file_type": "document",
+      "source_file": "docs/DESIGN/admin-v2/innovations.md",
+      "source_location": "L25"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_design_admin_v2_innovations_md",
+      "target": "d_01_saas_products_alparai_docs_design_admin_v2_innovations_screen_3_innovations_management_admin_innovations",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DESIGN/admin-v2/innovations.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_design_admin_v2_innovations_screen_3_innovations_management_admin_innovations",
+      "target": "d_01_saas_products_alparai_docs_design_admin_v2_innovations_1_overview",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DESIGN/admin-v2/innovations.md",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_design_admin_v2_innovations_screen_3_innovations_management_admin_innovations",
+      "target": "d_01_saas_products_alparai_docs_design_admin_v2_innovations_2_page_layout_12_column_grid",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DESIGN/admin-v2/innovations.md",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_design_admin_v2_innovations_screen_3_innovations_management_admin_innovations",
+      "target": "d_01_saas_products_alparai_docs_design_admin_v2_innovations_3_ui_specifications_styling",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DESIGN/admin-v2/innovations.md",
+      "source_location": "L25",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

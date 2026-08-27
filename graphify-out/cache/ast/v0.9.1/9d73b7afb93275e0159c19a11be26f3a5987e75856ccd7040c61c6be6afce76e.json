@@ -1,0 +1,319 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_md",
+      "label": "013-post-batch-improvements.md",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_proposal_013_post_batch_architecture_geo_growth_leverage",
+      "label": "Proposal 013: Post-Batch Architecture & GEO Growth Leverage",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_1_executive_summary",
+      "label": "1. Executive Summary",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_2_proposed_leverage_items",
+      "label": "2. Proposed Leverage Items",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L18"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_proposal_13_1_automated_geo_citation_verifier_cron_p1",
+      "label": "Proposal 13.1 \u2014 Automated GEO Citation Verifier Cron (P1)",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L20"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_proposal_13_2_antigravity_frontend_ui_generation_via_stitch_mcp_p1_founder_requested",
+      "label": "Proposal 13.2 \u2014 Antigravity Frontend UI Generation via Stitch MCP (P1 - Founder Requested)",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L26"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_proposal_13_3_mandatory_post_batch_innovation_reflection_protocol_p1_founder_directive",
+      "label": "Proposal 13.3 \u2014 Mandatory Post-Batch Innovation & Reflection Protocol (P1 - Founder Directive)",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L32"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_proposal_13_4_live_b2b_risk_score_webhooks_engine_p2",
+      "label": "Proposal 13.4 \u2014 Live B2B Risk Score Webhooks Engine (P2)",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L38"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_proposal_13_5_playwright_visual_regression_snapshot_suite_p2",
+      "label": "Proposal 13.5 \u2014 Playwright Visual Regression Snapshot Suite (P2)",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L44"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_3_governance_rule_compliance",
+      "label": "3. Governance & Rule Compliance",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L52"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_4_deepseek_v4_flash_opencode_executor_professional_post_batch_observations",
+      "label": "4. DeepSeek V4 Flash (OpenCode Executor) \u2014 Professional Post-Batch Observations",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L61"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_4_1_zod_v4_migration_surface_p3_technical_debt",
+      "label": "4.1 \u2014 Zod v4 Migration Surface (P3, technical debt)",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L67"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_4_2_nouncheckedindexedaccess_blind_spot_p2_correctness_risk",
+      "label": "4.2 \u2014 `noUncheckedIndexedAccess` Blind Spot (P2, correctness risk)",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L71"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_4_3_e2e_test_reliability_redis_smtp_dependencies_p2_flaky_test_risk",
+      "label": "4.3 \u2014 E2E Test Reliability: Redis + SMTP Dependencies (P2, flaky test risk)",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L75"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_4_4_sidebar_integrity_test_exception_list_traceability_p3_maintenance",
+      "label": "4.4 \u2014 Sidebar Integrity Test: Exception List Traceability (P3, maintenance)",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L79"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_4_5_translation_file_drift_risk_p2_i18n_maintenance",
+      "label": "4.5 \u2014 Translation File Drift Risk (P2, i18n maintenance)",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L83"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_4_6_graphify_pre_commit_hook_performance_p3_dx",
+      "label": "4.6 \u2014 Graphify Pre-Commit Hook Performance (P3, DX)",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L87"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_4_7_architectural_strength_rls_rollback_culture_p0_kudos",
+      "label": "4.7 \u2014 Architectural Strength: RLS + ROLLBACK Culture (P0, kudos)",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L91"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_4_8_next_bottleneck_user_facing_growth_mechanics_p1_strategic",
+      "label": "4.8 \u2014 Next Bottleneck: User-Facing Growth Mechanics (P1, strategic)",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L95"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_4_9_typescript_path_aliases_vs_relative_imports_p4_style",
+      "label": "4.9 \u2014 TypeScript Path Aliases vs. Relative Imports (P4, style)",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L99"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_md",
+      "target": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_proposal_013_post_batch_architecture_geo_growth_leverage",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_proposal_013_post_batch_architecture_geo_growth_leverage",
+      "target": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_1_executive_summary",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_proposal_013_post_batch_architecture_geo_growth_leverage",
+      "target": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_2_proposed_leverage_items",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_2_proposed_leverage_items",
+      "target": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_proposal_13_1_automated_geo_citation_verifier_cron_p1",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_2_proposed_leverage_items",
+      "target": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_proposal_13_2_antigravity_frontend_ui_generation_via_stitch_mcp_p1_founder_requested",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_2_proposed_leverage_items",
+      "target": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_proposal_13_3_mandatory_post_batch_innovation_reflection_protocol_p1_founder_directive",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_2_proposed_leverage_items",
+      "target": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_proposal_13_4_live_b2b_risk_score_webhooks_engine_p2",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_2_proposed_leverage_items",
+      "target": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_proposal_13_5_playwright_visual_regression_snapshot_suite_p2",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_proposal_013_post_batch_architecture_geo_growth_leverage",
+      "target": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_3_governance_rule_compliance",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L52",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_proposal_013_post_batch_architecture_geo_growth_leverage",
+      "target": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_4_deepseek_v4_flash_opencode_executor_professional_post_batch_observations",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L61",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_4_deepseek_v4_flash_opencode_executor_professional_post_batch_observations",
+      "target": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_4_1_zod_v4_migration_surface_p3_technical_debt",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L67",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_4_deepseek_v4_flash_opencode_executor_professional_post_batch_observations",
+      "target": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_4_2_nouncheckedindexedaccess_blind_spot_p2_correctness_risk",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L71",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_4_deepseek_v4_flash_opencode_executor_professional_post_batch_observations",
+      "target": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_4_3_e2e_test_reliability_redis_smtp_dependencies_p2_flaky_test_risk",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L75",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_4_deepseek_v4_flash_opencode_executor_professional_post_batch_observations",
+      "target": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_4_4_sidebar_integrity_test_exception_list_traceability_p3_maintenance",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L79",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_4_deepseek_v4_flash_opencode_executor_professional_post_batch_observations",
+      "target": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_4_5_translation_file_drift_risk_p2_i18n_maintenance",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L83",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_4_deepseek_v4_flash_opencode_executor_professional_post_batch_observations",
+      "target": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_4_6_graphify_pre_commit_hook_performance_p3_dx",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L87",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_4_deepseek_v4_flash_opencode_executor_professional_post_batch_observations",
+      "target": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_4_7_architectural_strength_rls_rollback_culture_p0_kudos",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L91",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_4_deepseek_v4_flash_opencode_executor_professional_post_batch_observations",
+      "target": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_4_8_next_bottleneck_user_facing_growth_mechanics_p1_strategic",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L95",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_4_deepseek_v4_flash_opencode_executor_professional_post_batch_observations",
+      "target": "d_01_saas_products_alparai_docs_proposals_013_post_batch_improvements_4_9_typescript_path_aliases_vs_relative_imports_p4_style",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/013-post-batch-improvements.md",
+      "source_location": "L99",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

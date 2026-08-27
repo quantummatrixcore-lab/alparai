@@ -25,7 +25,8 @@ export const ENTERPRISE_TARGETS: EnterpriseTarget[] = [
     targetRole: "Chief AI Officer / VP of Industrial AI",
     recipientEmail: "ai-governance@siemens.com",
     subject: "EU AI Act Compliance & Real-Time Incident Surveillance for Siemens Industrial AI",
-    customHook: "As Siemens expands autonomous automation and edge AI across industrial systems, Article 9 & 72 mandates of the EU AI Act require continuous post-market surveillance and risk mitigation.",
+    customHook:
+      "As Siemens expands autonomous automation and edge AI across industrial systems, Article 9 & 72 mandates of the EU AI Act require continuous post-market surveillance and risk mitigation.",
   },
   {
     id: "ENT-002",
@@ -34,7 +35,8 @@ export const ENTERPRISE_TARGETS: EnterpriseTarget[] = [
     targetRole: "Head of AI Trust & Compliance",
     recipientEmail: "ai-ethics@sap.com",
     subject: "Audit-Ready AI Accountability & Foundation Model Shielding for SAP Business AI",
-    customHook: "With SAP Business AI embedded across global enterprise workflows, fulfilling Article 50 transparency requirements and preventing systemic model drift demands independent audit infrastructure.",
+    customHook:
+      "With SAP Business AI embedded across global enterprise workflows, fulfilling Article 50 transparency requirements and preventing systemic model drift demands independent audit infrastructure.",
   },
   {
     id: "ENT-003",
@@ -43,7 +45,8 @@ export const ENTERPRISE_TARGETS: EnterpriseTarget[] = [
     targetRole: "Director of Autonomous Systems Safety",
     recipientEmail: "ai-safety@bmwgroup.com",
     subject: "High-Risk AI System Auditing & Incident Benchmarking for BMW Mobility AI",
-    customHook: "Automotive AI classified under Annex III of the EU AI Act requires rigorous, continuous safety audits and real-time failure taxonomy logging prior to and after deployment.",
+    customHook:
+      "Automotive AI classified under Annex III of the EU AI Act requires rigorous, continuous safety audits and real-time failure taxonomy logging prior to and after deployment.",
   },
   {
     id: "ENT-004",
@@ -52,7 +55,8 @@ export const ENTERPRISE_TARGETS: EnterpriseTarget[] = [
     targetRole: "Chief Risk Officer & Head of Algorithmic Underwriting",
     recipientEmail: "ai-risk-governance@allianz.com",
     subject: "EU AI Act Article 14 Human Oversight & Bias Auditing for Allianz Underwriting AI",
-    customHook: "High-risk financial AI models deployed for credit and insurance risk scoring must guarantee human oversight, explainability, and bias-free continuous monitoring under new EU regulations.",
+    customHook:
+      "High-risk financial AI models deployed for credit and insurance risk scoring must guarantee human oversight, explainability, and bias-free continuous monitoring under new EU regulations.",
   },
   {
     id: "ENT-005",
@@ -61,7 +65,8 @@ export const ENTERPRISE_TARGETS: EnterpriseTarget[] = [
     targetRole: "Head of Digital Health & AI Quality Assurance",
     recipientEmail: "digital-health-compliance@bayer.com",
     subject: "ISO/IEC 42001 & EU AI Act Governance Infrastructure for Bayer Life Sciences AI",
-    customHook: "Deploying AI in clinical decision support and drug discovery requires strict verification trails, zero-trust PII sanitization, and automated compliance reporting.",
+    customHook:
+      "Deploying AI in clinical decision support and drug discovery requires strict verification trails, zero-trust PII sanitization, and automated compliance reporting.",
   },
   {
     id: "ENT-006",
@@ -70,7 +75,8 @@ export const ENTERPRISE_TARGETS: EnterpriseTarget[] = [
     targetRole: "Global Head of Model Risk Management",
     recipientEmail: "model-risk@db.com",
     subject: "Real-Time AI Vulnerability Shielding & Regulatory Reporting for Deutsche Bank",
-    customHook: "As algorithmic decisioning comes under increased regulatory scrutiny from ESMA and the EU AI Office, automated incident detection and model risk auditing are critical enterprise safeguards.",
+    customHook:
+      "As algorithmic decisioning comes under increased regulatory scrutiny from ESMA and the EU AI Office, automated incident detection and model risk auditing are critical enterprise safeguards.",
   },
   {
     id: "ENT-007",
@@ -79,7 +85,8 @@ export const ENTERPRISE_TARGETS: EnterpriseTarget[] = [
     targetRole: "VP of Regulatory Affairs & AI Software",
     recipientEmail: "medical-ai-regulatory@philips.com",
     subject: "EU AI Act Annex III Compliance & Post-Market Surveillance for Philips Clinical AI",
-    customHook: "Medical AI applications facing dual MDR/EU AI Act oversight require continuous telemetry, prompt injection defense, and standardized incident escalation pathways.",
+    customHook:
+      "Medical AI applications facing dual MDR/EU AI Act oversight require continuous telemetry, prompt injection defense, and standardized incident escalation pathways.",
   },
   {
     id: "ENT-008",
@@ -88,7 +95,8 @@ export const ENTERPRISE_TARGETS: EnterpriseTarget[] = [
     targetRole: "Chief Information Security Officer / AI Governance Lead",
     recipientEmail: "ai-security@asml.com",
     subject: "Enterprise AI Security & Supply Chain Vulnerability Shielding for ASML",
-    customHook: "Protecting proprietary semiconductor IP while leveraging internal LLMs and predictive maintenance AI demands enterprise-grade trust infrastructure and leak prevention.",
+    customHook:
+      "Protecting proprietary semiconductor IP while leveraging internal LLMs and predictive maintenance AI demands enterprise-grade trust infrastructure and leak prevention.",
   },
   {
     id: "ENT-009",
@@ -97,7 +105,8 @@ export const ENTERPRISE_TARGETS: EnterpriseTarget[] = [
     targetRole: "VP of Engineering & Algorithmic Responsibility",
     recipientEmail: "ai-responsibility@spotify.com",
     subject: "Algorithmic Impact Assessment & Transparency Framework for Spotify AI Systems",
-    customHook: "Ensuring recommendation models comply with emerging EU transparency guidelines without compromising latency or user experience requires lightweight, independent verification infrastructure.",
+    customHook:
+      "Ensuring recommendation models comply with emerging EU transparency guidelines without compromising latency or user experience requires lightweight, independent verification infrastructure.",
   },
   {
     id: "ENT-10",
@@ -106,7 +115,8 @@ export const ENTERPRISE_TARGETS: EnterpriseTarget[] = [
     targetRole: "Head of Enterprise Data & AI Ethics",
     recipientEmail: "ai-governance@deliveryhero.com",
     subject: "Automated Dispatch & Labor AI Governance under EU AI Act Regulations",
-    customHook: "Worker-management and logistics optimization AI models require transparent auditing and non-discriminatory decision tracking to satisfy European labor and AI compliance standards.",
+    customHook:
+      "Worker-management and logistics optimization AI models require transparent auditing and non-discriminatory decision tracking to satisfy European labor and AI compliance standards.",
   },
 ];
 
@@ -235,7 +245,9 @@ export async function processOutreach() {
   console.log("=================================================");
   console.log("🚀 ALPAR AI Enterprise Outreach Engine v1.0");
   console.log(`From Address: ${SENDER}`);
-  console.log(`Execution Mode: ${EXECUTE_SEND ? "LIVE (REAL SEND)" : "🔒 DRY-RUN (SAFETY SHIELD ENABLED)"}`);
+  console.log(
+    `Execution Mode: ${EXECUTE_SEND ? "LIVE (REAL SEND)" : "🔒 DRY-RUN (SAFETY SHIELD ENABLED)"}`,
+  );
   console.log("=================================================\n");
 
   if (!process.env.RESEND_API_KEY && EXECUTE_SEND) {
@@ -261,12 +273,16 @@ export async function processOutreach() {
     const htmlContent = buildEnterpriseEmailHtml(target);
     const textContent = buildEnterpriseEmailText(target);
 
-    console.log(`[${i + 1}/${ENTERPRISE_TARGETS.length}] Processing ${target.id} - ${target.companyName} (${target.targetRole})`);
+    console.log(
+      `[${i + 1}/${ENTERPRISE_TARGETS.length}] Processing ${target.id} - ${target.companyName} (${target.targetRole})`,
+    );
     console.log(`   To: ${target.recipientEmail}`);
     console.log(`   Subject: ${target.subject}`);
 
     if (!EXECUTE_SEND) {
-      console.log(`   🔒 DRY-RUN MODE: Email preview generated (${htmlContent.length} bytes HTML). Not dispatched.`);
+      console.log(
+        `   🔒 DRY-RUN MODE: Email preview generated (${htmlContent.length} bytes HTML). Not dispatched.`,
+      );
       results.push({
         id: target.id,
         company: target.companyName,
@@ -324,15 +340,22 @@ export async function processOutreach() {
   console.log("📊 OUTREACH EXECUTION SUMMARY");
   console.log("=================================================");
   console.table(results);
-  
+
   if (!EXECUTE_SEND) {
-    console.log("\n💡 Note: No emails were sent to actual targets because EXECUTE_SEND is not set to 'true'.");
-    console.log("To execute live sending, run: EXECUTE_SEND=true npx tsx scripts/outreach/send-enterprise-emails.ts");
+    console.log(
+      "\n💡 Note: No emails were sent to actual targets because EXECUTE_SEND is not set to 'true'.",
+    );
+    console.log(
+      "To execute live sending, run: EXECUTE_SEND=true npx tsx scripts/outreach/send-enterprise-emails.ts",
+    );
   }
 }
 
 // Automatically execute if invoked directly
-if (require.main === module || (typeof process !== "undefined" && process.argv[1]?.includes("send-enterprise-emails"))) {
+if (
+  require.main === module ||
+  (typeof process !== "undefined" && process.argv[1]?.includes("send-enterprise-emails"))
+) {
   processOutreach().catch((err) => {
     console.error("Fatal error during outreach execution:", err);
     process.exit(1);

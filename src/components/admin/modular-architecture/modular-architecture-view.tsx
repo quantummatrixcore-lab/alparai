@@ -60,7 +60,7 @@ export function ModularArchitectureView({ data }: ModularArchitectureViewProps) 
         initial="hidden"
         animate="visible"
         variants={containerVariants}
-        className="bg-bg-tertiary/40 mx-auto max-w-7xl space-y-8 rounded-[2.5rem] p-6 text-white shadow-2xl ring-1 ring-white/10 backdrop-blur-2xl md:p-10 lg:p-12"
+        className="bg-bg-tertiary/40 ring-border-subtle mx-auto max-w-7xl space-y-8 rounded-[2.5rem] p-6 text-white shadow-2xl ring-1 backdrop-blur-2xl md:p-10 lg:p-12"
       >
         <motion.div variants={itemVariants}>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
@@ -79,9 +79,9 @@ export function ModularArchitectureView({ data }: ModularArchitectureViewProps) 
         {/* GPT 360 Benchmark Scorecard */}
         <motion.div
           variants={itemVariants}
-          className="grid grid-cols-1 overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.03] to-transparent md:grid-cols-3"
+          className="border-border-subtle grid grid-cols-1 overflow-hidden rounded-[2rem] border bg-gradient-to-br from-white/[0.03] to-transparent md:grid-cols-3"
         >
-          <div className="flex flex-col items-start justify-center border-b border-white/5 p-6 sm:p-8 md:border-r md:border-b-0">
+          <div className="border-border-subtle/50 flex flex-col items-start justify-center border-b p-6 sm:p-8 md:border-r md:border-b-0">
             <div className="text-fg-muted flex items-center gap-2 text-sm font-medium">
               <Award className="text-warning-400 h-5 w-5" />
               <span>{t("gpt_360_evaluation_score")}</span>
@@ -90,7 +90,7 @@ export function ModularArchitectureView({ data }: ModularArchitectureViewProps) 
               <span className="text-success-400 text-6xl font-black tracking-tighter lg:text-7xl">
                 {data.auditScore.overallScore}
               </span>
-              <span className="text-fg-disabled text-2xl font-bold">
+              <span className="text-fg-disabled text-fg-secondaryxl font-bold">
                 / {data.auditScore.maxScore}
               </span>
             </div>
@@ -99,7 +99,7 @@ export function ModularArchitectureView({ data }: ModularArchitectureViewProps) 
             </p>
           </div>
 
-          <div className="border-b border-white/5 p-6 sm:p-8 md:border-r md:border-b-0">
+          <div className="border-border-subtle/50 border-b p-6 sm:p-8 md:border-r md:border-b-0">
             <h3 className="text-success-400 mb-5 flex items-center gap-2 font-mono text-xs font-semibold tracking-widest uppercase">
               <span className="bg-success-400 h-2 w-2 rounded-full shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
               {t("top_strengths")}
@@ -108,7 +108,7 @@ export function ModularArchitectureView({ data }: ModularArchitectureViewProps) 
               {(data?.auditScore?.strengths || []).map((s) => (
                 <div
                   key={s.category}
-                  className="flex items-center justify-between rounded-xl border border-white/5 bg-black/40 px-3 py-2 transition-colors hover:bg-black/60"
+                  className="border-border-subtle/50 flex items-center justify-between rounded-xl border bg-black/40 px-3 py-2 transition-colors hover:bg-black/60"
                 >
                   <span className="text-fg-secondary text-xs">{s.category}</span>
                   <span className="text-success-400 font-mono text-sm font-bold">{s.score}</span>
@@ -126,7 +126,7 @@ export function ModularArchitectureView({ data }: ModularArchitectureViewProps) 
               {(data?.auditScore?.growthAreas || []).map((g) => (
                 <div
                   key={g.category}
-                  className="flex items-center justify-between rounded-xl border border-white/5 bg-black/40 px-3 py-2 transition-colors hover:bg-black/60"
+                  className="border-border-subtle/50 flex items-center justify-between rounded-xl border bg-black/40 px-3 py-2 transition-colors hover:bg-black/60"
                 >
                   <span className="text-fg-secondary text-xs">{g.category}</span>
                   <span className="text-warning-400 font-mono text-sm font-bold">{g.score}</span>
@@ -138,7 +138,7 @@ export function ModularArchitectureView({ data }: ModularArchitectureViewProps) 
 
         {/* 8 Modular Product Pillars */}
         <motion.div variants={itemVariants} className="pt-6">
-          <h2 className="mb-6 text-xl font-bold tracking-tight text-white lg:text-2xl">
+          <h2 className="lg:text-fg-secondaryxl mb-6 text-xl font-bold tracking-tight text-white">
             {t("the_8_modular_product_pillars")}
           </h2>
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -147,14 +147,14 @@ export function ModularArchitectureView({ data }: ModularArchitectureViewProps) 
                 key={pillar.id}
                 whileHover={{ y: -6, scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.05] to-transparent p-5 shadow-lg backdrop-blur-md transition-all hover:border-white/20 hover:shadow-2xl hover:shadow-white/5"
+                className="group border-border-subtle hover:border-border-strong relative flex flex-col justify-between overflow-hidden rounded-2xl border bg-gradient-to-b from-white/[0.05] to-transparent p-5 shadow-lg backdrop-blur-md transition-all hover:shadow-2xl hover:shadow-white/5"
               >
                 {/* Glow effect on hover */}
                 <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-white/0 via-white/0 to-white/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
                 <div className="space-y-4">
                   <div className="flex items-start justify-between">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-black/50 shadow-inner">
+                    <div className="border-border-subtle flex h-11 w-11 items-center justify-center rounded-xl border bg-black/50 shadow-inner">
                       {ICON_MAP[pillar.iconName]}
                     </div>
                     <span className="text-fg-muted rounded-full bg-white/5 px-2.5 py-1 font-mono text-[10px] font-medium tracking-widest">
@@ -175,7 +175,7 @@ export function ModularArchitectureView({ data }: ModularArchitectureViewProps) 
                   </div>
                 </div>
 
-                <div className="mt-6 border-t border-white/10 pt-4">
+                <div className="border-border-subtle mt-6 border-t pt-4">
                   <code className="text-fg-disabled group-hover:text-fg-muted block w-full truncate rounded-lg bg-black/40 px-3 py-2 font-mono text-[10px] transition-colors">
                     {pillar.route}
                   </code>

@@ -121,7 +121,7 @@ export function RiskMatrixClient({
       "group relative flex h-16 w-full cursor-pointer flex-col items-center justify-center rounded-2xl border p-2.5 shadow-lg backdrop-blur-md transition-all duration-300 select-none",
       colorStyles,
       isSelected &&
-        "ring-brand-400 z-20 scale-[1.04] border-white/50 shadow-2xl ring-2 ring-offset-2 ring-offset-slate-950",
+        "ring-brand-400 border-border-subtle/500 z-20 scale-[1.04] shadow-2xl ring-2 ring-offset-2 ring-offset-slate-950",
       count === 0 && "opacity-35 hover:opacity-75",
     );
   };
@@ -268,12 +268,12 @@ export function RiskMatrixClient({
   return (
     <div className="space-y-8">
       {/* KPI METRIC SUMMARY CARDS */}
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5">
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.05 }}
-          className="bg-bg-elevated/50 relative overflow-hidden rounded-2xl border border-white/10 p-4 shadow-xl backdrop-blur-xl"
+          className="bg-bg-elevated/50 border-border-subtle relative overflow-hidden rounded-2xl border p-4 shadow-xl backdrop-blur-xl"
         >
           <div className="flex items-center justify-between">
             <span className="text-fg-muted text-[11px] font-bold tracking-wider uppercase">
@@ -284,7 +284,9 @@ export function RiskMatrixClient({
             </div>
           </div>
           <div className="mt-3 flex items-baseline justify-between">
-            <span className="text-2xl font-black tracking-tight text-white">{stats.total}</span>
+            <span className="text-fg-secondaryxl font-black tracking-tight text-white">
+              {stats.total}
+            </span>
             <span className="text-fg-muted text-[10px] font-semibold">{stats.active} Active</span>
           </div>
           <div className="bg-brand-500/5 pointer-events-none absolute -right-6 -bottom-6 h-20 w-20 rounded-full blur-2xl" />
@@ -305,7 +307,9 @@ export function RiskMatrixClient({
             </div>
           </div>
           <div className="mt-3 flex items-baseline justify-between">
-            <span className="text-danger-400 text-2xl font-black tracking-tight">{stats.high}</span>
+            <span className="text-danger-400 text-fg-secondaryxl font-black tracking-tight">
+              {stats.high}
+            </span>
             <span className="text-danger-400/80 text-[10px] font-bold tracking-wider uppercase">
               Score ≥ 15
             </span>
@@ -328,7 +332,7 @@ export function RiskMatrixClient({
             </div>
           </div>
           <div className="mt-3 flex items-baseline justify-between">
-            <span className="text-warning-400 text-2xl font-black tracking-tight">
+            <span className="text-warning-400 text-fg-secondaryxl font-black tracking-tight">
               {stats.medium}
             </span>
             <span className="text-warning-400/80 text-[10px] font-bold tracking-wider uppercase">
@@ -353,7 +357,9 @@ export function RiskMatrixClient({
             </div>
           </div>
           <div className="mt-3 flex items-baseline justify-between">
-            <span className="text-success-400 text-2xl font-black tracking-tight">{stats.low}</span>
+            <span className="text-success-400 text-fg-secondaryxl font-black tracking-tight">
+              {stats.low}
+            </span>
             <span className="text-success-400/80 text-[10px] font-bold tracking-wider uppercase">
               Score 1-7
             </span>
@@ -365,7 +371,7 @@ export function RiskMatrixClient({
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.25 }}
-          className="bg-bg-elevated/50 relative col-span-2 overflow-hidden rounded-2xl border border-white/10 p-4 shadow-xl backdrop-blur-xl sm:col-span-2 lg:col-span-1"
+          className="bg-bg-elevated/50 border-border-subtle relative col-span-2 overflow-hidden rounded-2xl border p-4 shadow-xl backdrop-blur-xl sm:col-span-2 lg:col-span-1"
         >
           <div className="flex items-center justify-between">
             <span className="text-fg-muted text-[11px] font-bold tracking-wider uppercase">
@@ -376,7 +382,7 @@ export function RiskMatrixClient({
             </div>
           </div>
           <div className="mt-3 flex items-baseline justify-between">
-            <span className="text-accent-300 text-2xl font-black tracking-tight">
+            <span className="text-accent-300 text-fg-secondaryxl font-black tracking-tight">
               {stats.avgExposure}
               <span className="text-fg-muted text-xs font-normal"> / 25</span>
             </span>
@@ -390,7 +396,7 @@ export function RiskMatrixClient({
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
         {/* LEFT COLUMN: HEATMAP / SCATTER CHART (5 COLS) */}
         <div className="space-y-4 lg:col-span-5">
-          <div className="dark:bg-bg-tertiary/30 rounded-3xl border border-white/10 bg-white/5 p-5 shadow-[0_20px_50px_rgba(0,0,0,0.3),_inset_0_1px_1px_0_rgba(255,255,255,0.25)] ring-1 ring-white/5 backdrop-blur-3xl backdrop-contrast-125 backdrop-saturate-150">
+          <div className="dark:bg-bg-tertiary/30 border-border-subtle rounded-3xl border bg-white/5 p-5 shadow-[0_20px_50px_rgba(0,0,0,0.3),_inset_0_1px_1px_0_rgba(255,255,255,0.25)] ring-1 ring-white/5 backdrop-blur-3xl backdrop-contrast-125 backdrop-saturate-150">
             {/* Header & Mode Switcher */}
             <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
               <div className="flex items-center gap-2">
@@ -401,7 +407,7 @@ export function RiskMatrixClient({
               </div>
 
               {/* View Switcher Controls */}
-              <div className="bg-bg-tertiary/60 flex items-center gap-1 rounded-xl border border-white/10 p-1">
+              <div className="bg-bg-tertiary/60 border-border-subtle flex items-center gap-1 rounded-xl border p-1">
                 <button
                   type="button"
                   onClick={() => setViewMode("heatmap")}
@@ -511,7 +517,7 @@ export function RiskMatrixClient({
                 </div>
 
                 {/* MATRIX COLOR LEGEND */}
-                <div className="text-fg-muted mt-6 flex items-center justify-between gap-2 border-t border-white/10 pt-4 text-[10px] font-bold tracking-wider uppercase">
+                <div className="text-fg-muted border-border-subtle mt-6 flex items-center justify-between gap-2 border-t pt-4 text-[10px] font-bold tracking-wider uppercase">
                   <div className="flex items-center gap-1.5">
                     <span className="border-success-500/40 bg-success-500/25 h-3 w-3 rounded-md border" />
                     <span>{t("low_1_6")}</span>
@@ -603,8 +609,8 @@ export function RiskMatrixClient({
                             const isMedium = data.score >= 8 && data.score < 15;
 
                             return (
-                              <div className="bg-bg-tertiary/90 max-w-xs rounded-2xl border border-white/20 p-3.5 text-xs text-white shadow-2xl backdrop-blur-2xl">
-                                <div className="mb-2 flex items-center justify-between gap-2 border-b border-white/10 pb-2">
+                              <div className="bg-bg-tertiary/90 border-border-strong max-w-xs rounded-2xl border p-3.5 text-xs text-white shadow-2xl backdrop-blur-2xl">
+                                <div className="border-border-subtle mb-2 flex items-center justify-between gap-2 border-b pb-2">
                                   <span className="text-brand-400 font-mono font-black">
                                     {data.code}
                                   </span>
@@ -629,7 +635,7 @@ export function RiskMatrixClient({
                                     {data.description}
                                   </p>
                                 )}
-                                <div className="text-fg-secondary grid grid-cols-2 gap-2 border-t border-white/10 pt-2 text-[10px]">
+                                <div className="text-fg-secondary border-border-subtle grid grid-cols-2 gap-2 border-t pt-2 text-[10px]">
                                   <div>
                                     <span className="text-fg-disabled block">Probability:</span>
                                     <span className="font-semibold text-white">
@@ -678,14 +684,14 @@ export function RiskMatrixClient({
 
         {/* RIGHT COLUMN: RISK CARDS LIST & CONTROLS (7 COLS) */}
         <div className="flex flex-col space-y-4 lg:col-span-7">
-          <div className="dark:bg-bg-tertiary/30 flex flex-1 flex-col justify-between rounded-3xl border border-white/10 bg-white/5 p-5 shadow-[0_20px_50px_rgba(0,0,0,0.3),_inset_0_1px_1px_0_rgba(255,255,255,0.25)] ring-1 ring-white/5 backdrop-blur-3xl backdrop-contrast-125 backdrop-saturate-150">
+          <div className="dark:bg-bg-tertiary/30 border-border-subtle flex flex-1 flex-col justify-between rounded-3xl border bg-white/5 p-5 shadow-[0_20px_50px_rgba(0,0,0,0.3),_inset_0_1px_1px_0_rgba(255,255,255,0.25)] ring-1 ring-white/5 backdrop-blur-3xl backdrop-contrast-125 backdrop-saturate-150">
             <div>
               {/* Header + Register Risk Button */}
               <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <h3 className="flex items-center gap-2 text-xs font-extrabold tracking-wider text-white uppercase">
                     <span>{t("risk_matrix_logs")}</span>
-                    <span className="text-fg-muted rounded-full border border-white/10 bg-white/5 px-2 py-0.5 font-mono text-[10px]">
+                    <span className="text-fg-muted border-border-subtle rounded-full border bg-white/5 px-2 py-0.5 font-mono text-[10px]">
                       {filteredRisks.length} / {risks.length}
                     </span>
                   </h3>
@@ -714,7 +720,7 @@ export function RiskMatrixClient({
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search risks by code, title or mitigation..."
-                    className="focus:border-brand-500 focus:ring-brand-500 bg-bg-tertiary/60 w-full rounded-xl border border-white/10 py-2 pr-4 pl-9 text-xs text-white placeholder-slate-500 focus:ring-1 focus:outline-none"
+                    className="focus:border-brand-500 focus:ring-brand-500 bg-bg-tertiary/60 border-border-subtle w-full rounded-xl border py-2 pr-4 pl-9 text-xs text-white placeholder-slate-500 focus:ring-1 focus:outline-none"
                   />
                   {searchQuery && (
                     <button
@@ -746,7 +752,7 @@ export function RiskMatrixClient({
                         "rounded-lg border px-2.5 py-1 text-[10px] font-bold uppercase transition-all duration-200 select-none",
                         activeFilter === filter.id
                           ? "border-brand-500/50 bg-brand-500/20 text-brand-300 shadow-sm"
-                          : "text-fg-muted border-white/5 bg-white/5 hover:border-white/15 hover:text-white",
+                          : "text-fg-muted border-border-subtle/50 bg-white/5 hover:border-white/15 hover:text-white",
                       )}
                     >
                       {filter.label}
@@ -765,7 +771,7 @@ export function RiskMatrixClient({
                       exit={{ opacity: 0 }}
                       className="py-12 text-center"
                     >
-                      <HelpCircle className="mx-auto mb-2 h-8 w-8 text-slate-600" />
+                      <HelpCircle className="text-fg-secondary mx-auto mb-2 h-8 w-8" />
                       <p className="text-fg-muted text-xs italic">
                         {t("no_risks_found_in_this_category")}
                       </p>
@@ -837,7 +843,7 @@ export function RiskMatrixClient({
 
                           {/* Mitigation Plan section */}
                           {risk.mitigation_plan && (
-                            <div className="mt-3 border-t border-white/5 pt-2.5">
+                            <div className="border-border-subtle/50 mt-3 border-t pt-2.5">
                               <span className="text-fg-muted flex items-center gap-1.5 text-[10px] font-bold tracking-wider uppercase">
                                 <Shield className="text-success-400 h-3 w-3" />
                                 {t("mitigation_plan")}
@@ -849,7 +855,7 @@ export function RiskMatrixClient({
                           )}
 
                           {/* Footer Info & Badges */}
-                          <div className="text-fg-muted mt-3 flex flex-wrap items-center justify-between gap-3 border-t border-white/5 pt-2 text-[10px] font-bold tracking-wider uppercase">
+                          <div className="text-fg-muted border-border-subtle/50 mt-3 flex flex-wrap items-center justify-between gap-3 border-t pt-2 text-[10px] font-bold tracking-wider uppercase">
                             <div className="flex items-center gap-3">
                               {risk.target_date && (
                                 <span className="flex items-center gap-1">
@@ -872,7 +878,7 @@ export function RiskMatrixClient({
                                     ? "border-success-500/30 bg-success-500/10 text-success-300"
                                     : risk.status === "triggered"
                                       ? "border-danger-500/30 bg-danger-500/10 text-danger-300"
-                                      : "text-fg-muted border-white/10 bg-white/5",
+                                      : "text-fg-muted border-border-subtle bg-white/5",
                               )}
                             >
                               {risk.status === "active"
@@ -887,7 +893,7 @@ export function RiskMatrixClient({
 
                           {/* Hover action overlay */}
                           {!isReadOnly && (
-                            <div className="bg-bg-tertiary/80 absolute top-3 right-16 flex items-center gap-1 rounded-xl border border-white/10 px-1.5 py-1 opacity-0 shadow-xl backdrop-blur-md transition-all duration-200 group-hover:opacity-100">
+                            <div className="bg-bg-tertiary/80 border-border-subtle absolute top-3 right-16 flex items-center gap-1 rounded-xl border px-1.5 py-1 opacity-0 shadow-xl backdrop-blur-md transition-all duration-200 group-hover:opacity-100">
                               <button
                                 onClick={() => handleOpenEdit(risk)}
                                 title="Edit Risk"
@@ -926,7 +932,7 @@ export function RiskMatrixClient({
               transition={{ duration: 0.2 }}
               className="bg-bg-elevated w-full max-w-lg rounded-2xl border border-white/15 p-6 shadow-2xl backdrop-blur-2xl"
             >
-              <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-3">
+              <div className="border-border-subtle mb-4 flex items-center justify-between border-b pb-3">
                 <h3 className="flex items-center gap-2 text-base font-bold tracking-wider text-white uppercase">
                   <Shield className="text-brand-400 h-4 w-4" />
                   {activeRisk.id ? t("edit_risk_log") : t("register_strategic_risk")}
@@ -951,7 +957,7 @@ export function RiskMatrixClient({
                       value={activeRisk.code || ""}
                       onChange={(e) => setActiveRisk({ ...activeRisk, code: e.target.value })}
                       placeholder={t("risk_code_placeholder")}
-                      className="focus:border-brand-500 focus:ring-brand-500 bg-bg-tertiary/60 w-full rounded-xl border border-white/10 px-3.5 py-2.5 text-xs text-white focus:ring-1 focus:outline-none"
+                      className="focus:border-brand-500 focus:ring-brand-500 bg-bg-tertiary/60 border-border-subtle w-full rounded-xl border px-3.5 py-2.5 text-xs text-white focus:ring-1 focus:outline-none"
                     />
                   </div>
                   <div className="col-span-2">
@@ -964,7 +970,7 @@ export function RiskMatrixClient({
                       value={activeRisk.title || ""}
                       onChange={(e) => setActiveRisk({ ...activeRisk, title: e.target.value })}
                       placeholder={t("risk_title_placeholder")}
-                      className="focus:border-brand-500 focus:ring-brand-500 bg-bg-tertiary/60 w-full rounded-xl border border-white/10 px-3.5 py-2.5 text-xs text-white focus:ring-1 focus:outline-none"
+                      className="focus:border-brand-500 focus:ring-brand-500 bg-bg-tertiary/60 border-border-subtle w-full rounded-xl border px-3.5 py-2.5 text-xs text-white focus:ring-1 focus:outline-none"
                     />
                   </div>
                 </div>
@@ -977,12 +983,12 @@ export function RiskMatrixClient({
                     value={activeRisk.description || ""}
                     onChange={(e) => setActiveRisk({ ...activeRisk, description: e.target.value })}
                     rows={2}
-                    className="focus:border-brand-500 focus:ring-brand-500 bg-bg-tertiary/60 w-full rounded-xl border border-white/10 px-3.5 py-2 text-xs text-white focus:ring-1 focus:outline-none"
+                    className="focus:border-brand-500 focus:ring-brand-500 bg-bg-tertiary/60 border-border-subtle w-full rounded-xl border px-3.5 py-2 text-xs text-white focus:ring-1 focus:outline-none"
                   />
                 </div>
 
                 {/* VISUAL SLIDERS & LIVE SCORE PREVIEW */}
-                <div className="bg-bg-tertiary/40 space-y-3 rounded-xl border border-white/10 p-3.5">
+                <div className="bg-bg-tertiary/40 border-border-subtle space-y-3 rounded-xl border p-3.5">
                   <div className="text-fg-secondary flex items-center justify-between text-xs font-bold uppercase">
                     <span>Probability & Impact Picker</span>
                     {/* Live score readout */}
@@ -1020,7 +1026,7 @@ export function RiskMatrixClient({
                         onChange={(e) =>
                           setActiveRisk({ ...activeRisk, probability: Number(e.target.value) })
                         }
-                        className="focus:border-brand-500 bg-bg-elevated w-full rounded-xl border border-white/10 px-3 py-2 text-xs text-white focus:outline-none"
+                        className="focus:border-brand-500 bg-bg-elevated border-border-subtle w-full rounded-xl border px-3 py-2 text-xs text-white focus:outline-none"
                       >
                         <option value="1">1 - {t("risk_prob_very_low")}</option>
                         <option value="2">2 - {t("risk_prob_low")}</option>
@@ -1039,7 +1045,7 @@ export function RiskMatrixClient({
                         onChange={(e) =>
                           setActiveRisk({ ...activeRisk, impact: Number(e.target.value) })
                         }
-                        className="focus:border-brand-500 bg-bg-elevated w-full rounded-xl border border-white/10 px-3 py-2 text-xs text-white focus:outline-none"
+                        className="focus:border-brand-500 bg-bg-elevated border-border-subtle w-full rounded-xl border px-3 py-2 text-xs text-white focus:outline-none"
                       >
                         <option value="1">1 - {t("risk_impact_negligible")}</option>
                         <option value="2">2 - {t("risk_impact_minor")}</option>
@@ -1061,7 +1067,7 @@ export function RiskMatrixClient({
                       setActiveRisk({ ...activeRisk, mitigation_plan: e.target.value })
                     }
                     rows={2}
-                    className="focus:border-brand-500 focus:ring-brand-500 bg-bg-tertiary/60 w-full rounded-xl border border-white/10 px-3.5 py-2 text-xs text-white focus:ring-1 focus:outline-none"
+                    className="focus:border-brand-500 focus:ring-brand-500 bg-bg-tertiary/60 border-border-subtle w-full rounded-xl border px-3.5 py-2 text-xs text-white focus:ring-1 focus:outline-none"
                   />
                 </div>
 
@@ -1078,7 +1084,7 @@ export function RiskMatrixClient({
                           status: e.target.value as "active" | "mitigated" | "triggered" | "closed",
                         })
                       }
-                      className="focus:border-brand-500 bg-bg-tertiary/60 w-full rounded-xl border border-white/10 px-3 py-2 text-xs text-white focus:outline-none"
+                      className="focus:border-brand-500 bg-bg-tertiary/60 border-border-subtle w-full rounded-xl border px-3 py-2 text-xs text-white focus:outline-none"
                     >
                       <option value="active">{t("risk_active")}</option>
                       <option value="mitigated">{t("risk_mitigated")}</option>
@@ -1097,16 +1103,16 @@ export function RiskMatrixClient({
                       onChange={(e) =>
                         setActiveRisk({ ...activeRisk, target_date: e.target.value })
                       }
-                      className="focus:border-brand-500 bg-bg-tertiary/60 w-full rounded-xl border border-white/10 px-3 py-2 text-xs text-white focus:outline-none"
+                      className="focus:border-brand-500 bg-bg-tertiary/60 border-border-subtle w-full rounded-xl border px-3 py-2 text-xs text-white focus:outline-none"
                     />
                   </div>
                 </div>
 
-                <div className="mt-6 flex justify-end gap-2 border-t border-white/10 pt-4">
+                <div className="border-border-subtle mt-6 flex justify-end gap-2 border-t pt-4">
                   <button
                     type="button"
                     onClick={() => setIsModalOpen(false)}
-                    className="text-fg-secondary rounded-xl border border-white/10 px-4 py-2 text-xs font-semibold transition hover:bg-white/5 hover:text-white"
+                    className="text-fg-secondary border-border-subtle rounded-xl border px-4 py-2 text-xs font-semibold transition hover:bg-white/5 hover:text-white"
                   >
                     {t("cancel")}
                   </button>

@@ -54,15 +54,15 @@ export function EcosystemBenchmarkWidget() {
               <Sparkles className="text-brand-400 h-3.5 w-3.5" />
               <span>{t("ecosystem_badge")}</span>
             </div>
-            <h2 className="text-2xl font-black tracking-tight text-white md:text-3xl">
+            <h2 className="text-fg-secondaryxl font-black tracking-tight text-white md:text-3xl">
               {t("ecosystem_title")}
             </h2>
             <p className="text-fg-muted text-sm leading-relaxed">{t("ecosystem_description")}</p>
           </div>
 
           {/* Defensive Positioning Index Card */}
-          <div className="min-w-[280px] shrink-0 rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md">
-            <div className="flex items-center justify-between border-b border-white/10 pb-3">
+          <div className="border-border-subtle min-w-[280px] shrink-0 rounded-2xl border bg-white/5 p-5 backdrop-blur-md">
+            <div className="border-border-subtle flex items-center justify-between border-b pb-3">
               <span className="text-fg-muted flex items-center gap-1.5 text-[10px] font-extrabold tracking-widest uppercase">
                 <Target className="text-success-400 h-3.5 w-3.5" />
                 {t("ecosystem_moat_index_title")}
@@ -109,7 +109,7 @@ export function EcosystemBenchmarkWidget() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={t("ecosystem_search_placeholder")}
-            className="bg-bg-secondary/60 placeholder-fg-muted focus:border-brand-500 focus:ring-brand-500 w-full rounded-xl border border-white/10 py-2 pr-4 pl-9 text-xs text-white transition-all focus:ring-1 focus:outline-none"
+            className="bg-bg-secondary/60 placeholder-fg-muted focus:border-brand-500 focus:ring-brand-500 border-border-subtle w-full rounded-xl border py-2 pr-4 pl-9 text-xs text-white transition-all focus:ring-1 focus:outline-none"
           />
         </div>
 
@@ -119,7 +119,7 @@ export function EcosystemBenchmarkWidget() {
             className={`shrink-0 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all ${
               selectedPlayerName === null
                 ? "bg-brand-500 shadow-brand-500/20 text-white shadow-lg"
-                : "bg-bg-tertiary/40 text-fg-muted border border-white/5 hover:text-white"
+                : "bg-bg-tertiary/40 text-fg-muted border-border-subtle/50 border hover:text-white"
             }`}
           >
             {t("ecosystem_all_players", { count: players.length })}
@@ -133,7 +133,7 @@ export function EcosystemBenchmarkWidget() {
               className={`shrink-0 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all ${
                 selectedPlayerName === player.name
                   ? "bg-brand-500 shadow-brand-500/20 text-white shadow-lg"
-                  : "bg-bg-tertiary/40 text-fg-muted border border-white/5 hover:text-white"
+                  : "bg-bg-tertiary/40 text-fg-muted border-border-subtle/50 border hover:text-white"
               }`}
             >
               {player.name}
@@ -148,7 +148,7 @@ export function EcosystemBenchmarkWidget() {
           {filteredPlayers.map((player) => (
             <div
               key={player.name}
-              className="group bg-bg-secondary/40 hover:border-brand-500/40 hover:shadow-brand-500/5 flex flex-col justify-between rounded-2xl border border-white/10 p-6 backdrop-blur-md transition-all duration-300 hover:shadow-xl"
+              className="group bg-bg-secondary/40 hover:border-brand-500/40 hover:shadow-brand-500/5 border-border-subtle flex flex-col justify-between rounded-2xl border p-6 backdrop-blur-md transition-all duration-300 hover:shadow-xl"
             >
               <div className="space-y-4">
                 {/* Header */}
@@ -187,7 +187,7 @@ export function EcosystemBenchmarkWidget() {
                 </div>
 
                 {/* Failure Pitfalls */}
-                <div className="space-y-1.5 border-t border-white/5 pt-2">
+                <div className="border-border-subtle/50 space-y-1.5 border-t pt-2">
                   <div className="text-danger-400 flex items-center gap-1 text-[11px] font-bold tracking-wider uppercase">
                     <AlertTriangle className="h-3.5 w-3.5" />{" "}
                     {t("ecosystem_card_critical_pitfalls")}
@@ -204,7 +204,7 @@ export function EcosystemBenchmarkWidget() {
               </div>
 
               {/* ALPAR Moat Box */}
-              <div className="bg-brand-950/30 border-brand-500/20 -mx-6 mt-5 -mb-6 rounded-b-2xl border-t border-white/10 p-4 pt-4">
+              <div className="bg-brand-950/30 border-brand-500/20 border-border-subtle -mx-6 mt-5 -mb-6 rounded-b-2xl border-t p-4 pt-4">
                 <div className="text-brand-300 mb-1 flex items-center gap-1.5 text-[11px] font-extrabold tracking-wider uppercase">
                   <ShieldCheck className="text-brand-400 h-4 w-4" />
                   {t("ecosystem_card_alpar_advantage")}
@@ -217,7 +217,7 @@ export function EcosystemBenchmarkWidget() {
       )}
 
       {/* Deep-Dive Post-Mortem Comparison Table */}
-      <div className="bg-bg-secondary/40 space-y-6 rounded-2xl border border-white/10 p-6 backdrop-blur-md">
+      <div className="bg-bg-secondary/40 border-border-subtle space-y-6 rounded-2xl border p-6 backdrop-blur-md">
         <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
           <div>
             <h3 className="flex items-center gap-2 text-lg font-bold text-white">
@@ -226,7 +226,7 @@ export function EcosystemBenchmarkWidget() {
             </h3>
             <p className="text-fg-muted mt-1 text-xs">{t("ecosystem_matrix_description")}</p>
           </div>
-          <div className="text-fg-muted flex items-center gap-2 rounded-xl border border-white/5 bg-white/5 px-3 py-1.5 font-mono text-xs">
+          <div className="text-fg-muted border-border-subtle/50 flex items-center gap-2 rounded-xl border bg-white/5 px-3 py-1.5 font-mono text-xs">
             <Cpu className="text-brand-400 h-3.5 w-3.5" />
             <span>{t("ecosystem_matrix_models_tracked", { count: 5 })}</span>
           </div>
@@ -235,7 +235,7 @@ export function EcosystemBenchmarkWidget() {
         <div className="overflow-x-auto">
           <table className="text-fg-muted w-full border-collapse text-left text-xs">
             <thead>
-              <tr className="border-b border-white/10 bg-white/5 font-mono text-[10px] tracking-wider text-white uppercase">
+              <tr className="border-border-subtle border-b bg-white/5 font-mono text-[10px] tracking-wider text-white uppercase">
                 <th className="rounded-tl-xl p-3.5">{t("ecosystem_matrix_col_player")}</th>
                 <th className="p-3.5">{t("ecosystem_matrix_col_success")}</th>
                 <th className="p-3.5">{t("ecosystem_matrix_col_pitfalls")}</th>

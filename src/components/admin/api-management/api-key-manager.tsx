@@ -99,7 +99,7 @@ export function ApiKeyManager({ providers }: { providers: Provider[] }) {
           </button>
           <button
             onClick={() => setIsAddOpen(!isAddOpen)}
-            className="text-fg-secondary flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold transition-colors hover:bg-white/10"
+            className="text-fg-secondary border-border-subtle flex items-center gap-1.5 rounded-lg border bg-white/5 px-3 py-1.5 text-xs font-semibold transition-colors hover:bg-white/10"
           >
             <Plus className="h-3.5 w-3.5" />
             {t("add_key")}
@@ -115,17 +115,17 @@ export function ApiKeyManager({ providers }: { providers: Provider[] }) {
             </span>
             <button
               onClick={() => setGeneratedRawKey(null)}
-              className="text-xs text-zinc-400 hover:text-white"
+              className="text-fg-muted text-xs hover:text-white"
             >
               Dismiss
             </button>
           </div>
-          <p className="text-[11px] text-zinc-400">
+          <p className="text-fg-muted text-[11px]">
             This API Key will not be shown again. It is hashed (SHA-256) at rest for secure Auditor
             / Regulator API access.
           </p>
           <div className="flex items-center gap-2">
-            <code className="flex-1 rounded border border-emerald-500/20 bg-black/60 px-3 py-2 font-mono text-xs text-emerald-300 select-all">
+            <code className="border-success-500/20 flex-1 rounded border bg-black/60 px-3 py-2 font-mono text-xs text-emerald-300 select-all">
               {generatedRawKey}
             </code>
             <button
@@ -152,7 +152,7 @@ export function ApiKeyManager({ providers }: { providers: Provider[] }) {
             <h4 className="text-xs font-bold tracking-wider text-emerald-400 uppercase">
               Issue Inbound API Key for Auditor / Regulator / Enterprise Client
             </h4>
-            <span className="text-[11px] text-zinc-400">
+            <span className="text-fg-muted text-[11px]">
               Used for /api/v1/auditor & /api/v1/regulators
             </span>
           </div>
@@ -162,7 +162,7 @@ export function ApiKeyManager({ providers }: { providers: Provider[] }) {
               placeholder="Client / Regulator Name (e.g., KPMG Audit, SEC Regulator)"
               value={clientName}
               onChange={(e) => setClientName(e.target.value)}
-              className="rounded-lg border border-white/10 bg-black/40 px-3 py-1.5 text-xs text-white placeholder-zinc-500 focus:outline-none"
+              className="border-border-subtle rounded-lg border bg-black/40 px-3 py-1.5 text-xs text-white placeholder-zinc-500 focus:outline-none"
               required
             />
             <select
@@ -170,7 +170,7 @@ export function ApiKeyManager({ providers }: { providers: Provider[] }) {
               onChange={(e) =>
                 setClientTier(e.target.value as "free" | "developer" | "enterprise" | "auditor")
               }
-              className="rounded-lg border border-white/10 bg-black/40 px-3 py-1.5 text-xs text-white focus:outline-none"
+              className="border-border-subtle rounded-lg border bg-black/40 px-3 py-1.5 text-xs text-white focus:outline-none"
             >
               <option value="auditor">Auditor (Full Compliance SLA)</option>
               <option value="enterprise">Enterprise (High SLA)</option>
@@ -200,7 +200,7 @@ export function ApiKeyManager({ providers }: { providers: Provider[] }) {
       {isAddOpen && (
         <form
           onSubmit={handleSaveKey}
-          className="bg-bg-elevated/90 space-y-3 rounded-xl border border-white/10 p-4"
+          className="bg-bg-elevated/90 border-border-subtle space-y-3 rounded-xl border p-4"
         >
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-4">
             <input
@@ -208,7 +208,7 @@ export function ApiKeyManager({ providers }: { providers: Provider[] }) {
               placeholder={t("provider_e_g_openai_anthropic")}
               value={newProvider}
               onChange={(e) => setNewProvider(e.target.value)}
-              className="rounded-lg border border-white/10 bg-black/40 px-3 py-1.5 text-xs text-white placeholder-zinc-500 focus:outline-none"
+              className="border-border-subtle rounded-lg border bg-black/40 px-3 py-1.5 text-xs text-white placeholder-zinc-500 focus:outline-none"
               required
             />
             <input
@@ -216,13 +216,13 @@ export function ApiKeyManager({ providers }: { providers: Provider[] }) {
               placeholder={t("api_key_value")}
               value={newKey}
               onChange={(e) => setNewKey(e.target.value)}
-              className="rounded-lg border border-white/10 bg-black/40 px-3 py-1.5 text-xs text-white placeholder-zinc-500 focus:outline-none"
+              className="border-border-subtle rounded-lg border bg-black/40 px-3 py-1.5 text-xs text-white placeholder-zinc-500 focus:outline-none"
               required
             />
             <select
               value={newTier}
               onChange={(e) => setNewTier(e.target.value as "free" | "developer" | "enterprise")}
-              className="rounded-lg border border-white/10 bg-black/40 px-3 py-1.5 text-xs text-white focus:outline-none"
+              className="border-border-subtle rounded-lg border bg-black/40 px-3 py-1.5 text-xs text-white focus:outline-none"
             >
               <option value="free">{t("free")}</option>
               <option value="developer">{t("developer")}</option>
@@ -231,7 +231,7 @@ export function ApiKeyManager({ providers }: { providers: Provider[] }) {
             <select
               value={newClientType}
               onChange={(e) => setNewClientType(e.target.value as "internal" | "external")}
-              className="rounded-lg border border-white/10 bg-black/40 px-3 py-1.5 text-xs text-white focus:outline-none"
+              className="border-border-subtle rounded-lg border bg-black/40 px-3 py-1.5 text-xs text-white focus:outline-none"
             >
               <option value="external">{t("external_hashed")}</option>
               <option value="internal">{t("internal_encrypted")}</option>
@@ -259,11 +259,11 @@ export function ApiKeyManager({ providers }: { providers: Provider[] }) {
       {loading ? (
         <div className="text-fg-muted p-8 text-center text-xs">{t("loading_api_keys")}</div>
       ) : keys.length > 0 ? (
-        <div className="bg-bg-elevated/80 overflow-hidden rounded-xl border border-white/10">
+        <div className="bg-bg-elevated/80 border-border-subtle overflow-hidden rounded-xl border">
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-white/10 bg-zinc-800/50">
+                <tr className="border-border-subtle bg-bg-elevated/50 border-b">
                   <th className="px-6 py-3 text-left font-semibold text-white">{t("provider")}</th>
                   <th className="px-6 py-3 text-left font-semibold text-white">{t("tier")}</th>
                   <th className="px-6 py-3 text-left font-semibold text-white">
@@ -280,7 +280,7 @@ export function ApiKeyManager({ providers }: { providers: Provider[] }) {
                 {keys.map((key) => (
                   <tr
                     key={key.provider}
-                    className="border-b border-white/5 transition-colors hover:bg-zinc-800/30"
+                    className="border-border-subtle/50 hover:bg-bg-elevated/30 border-b transition-colors"
                   >
                     <td className="px-6 py-3 font-medium text-white">
                       {getProviderName(key.provider)}
@@ -315,7 +315,7 @@ export function ApiKeyManager({ providers }: { providers: Provider[] }) {
           </div>
         </div>
       ) : (
-        <div className="bg-bg-elevated/80 rounded-xl border border-white/10 p-12 text-center">
+        <div className="bg-bg-elevated/80 border-border-subtle rounded-xl border p-12 text-center">
           <p className="text-fg-muted">{t("no_api_keys_configured_yet")}</p>
           <button
             onClick={() => setIsAddOpen(true)}

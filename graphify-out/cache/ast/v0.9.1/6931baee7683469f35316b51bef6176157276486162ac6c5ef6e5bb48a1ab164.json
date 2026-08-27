@@ -1,0 +1,63 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_agents_skills_kurmay_akli_skill_md",
+      "label": "SKILL.md",
+      "file_type": "document",
+      "source_file": ".agents/skills/kurmay-akli/SKILL.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_skills_kurmay_akli_skill_devlet_akl\u0131_b\u00fcy\u00fck_t\u00fcrk_devleti_swarm_protokol\u00fc",
+      "label": "Devlet Akl\u0131 (B\u00fcy\u00fck T\u00fcrk Devleti) Swarm Protokol\u00fc",
+      "file_type": "document",
+      "source_file": ".agents/skills/kurmay-akli/SKILL.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_skills_kurmay_akli_skill_te\u015fkilat_yap\u0131lanmas\u0131_kurumlar_ve_g\u00f6revleri",
+      "label": "Te\u015fkilat Yap\u0131lanmas\u0131 (Kurumlar ve G\u00f6revleri)",
+      "file_type": "document",
+      "source_file": ".agents/skills/kurmay-akli/SKILL.md",
+      "source_location": "L14"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_skills_kurmay_akli_skill_davran\u0131\u015f_kurallar\u0131",
+      "label": "Davran\u0131\u015f Kurallar\u0131",
+      "file_type": "document",
+      "source_file": ".agents/skills/kurmay-akli/SKILL.md",
+      "source_location": "L36"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_agents_skills_kurmay_akli_skill_md",
+      "target": "d_01_saas_products_alparai_agents_skills_kurmay_akli_skill_devlet_akl\u0131_b\u00fcy\u00fck_t\u00fcrk_devleti_swarm_protokol\u00fc",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/skills/kurmay-akli/SKILL.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_skills_kurmay_akli_skill_devlet_akl\u0131_b\u00fcy\u00fck_t\u00fcrk_devleti_swarm_protokol\u00fc",
+      "target": "d_01_saas_products_alparai_agents_skills_kurmay_akli_skill_te\u015fkilat_yap\u0131lanmas\u0131_kurumlar_ve_g\u00f6revleri",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/skills/kurmay-akli/SKILL.md",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_skills_kurmay_akli_skill_devlet_akl\u0131_b\u00fcy\u00fck_t\u00fcrk_devleti_swarm_protokol\u00fc",
+      "target": "d_01_saas_products_alparai_agents_skills_kurmay_akli_skill_davran\u0131\u015f_kurallar\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/skills/kurmay-akli/SKILL.md",
+      "source_location": "L36",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

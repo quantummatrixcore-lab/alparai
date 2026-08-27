@@ -55,7 +55,7 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
       title: t("item1_title"),
       desc: t("item1_desc"),
       category: t("cat_mandatory_sla"),
-      color: "text-amber-400 border-amber-500/20 bg-amber-500/10",
+      color: "text-amber-400 border-warning-500/20 bg-amber-500/10",
     },
     {
       id: "2",
@@ -87,7 +87,7 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
       title: t("item5_title"),
       desc: t("item5_desc"),
       category: t("cat_regulatory_channel"),
-      color: "text-emerald-400 border-emerald-500/20 bg-emerald-500/10",
+      color: "text-emerald-400 border-success-500/20 bg-emerald-500/10",
     },
     {
       id: "6",
@@ -187,24 +187,24 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
             </p>
 
             {/* Banking & Telecom Sector Callout */}
-            <div className="mt-8 inline-flex flex-wrap items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-6 py-3 text-xs font-medium text-gray-300 backdrop-blur-sm">
+            <div className="border-border-subtle text-fg-primary mt-8 inline-flex flex-wrap items-center justify-center gap-3 rounded-2xl border bg-white/5 px-6 py-3 text-xs font-medium backdrop-blur-sm">
               <div className="flex items-center gap-1.5 text-blue-400">
                 <Building2 className="h-4 w-4" />
                 <span>{t("sector_banking_callout")}</span>
               </div>
-              <span className="text-gray-600">•</span>
+              <span className="text-fg-secondary">•</span>
               <div className="flex items-center gap-1.5 text-cyan-400">
                 <Radio className="h-4 w-4" />
                 <span>{t("sector_telecom_callout")}</span>
               </div>
-              <span className="text-gray-600">•</span>
+              <span className="text-fg-secondary">•</span>
               <span className="text-emerald-400">{t("banking_telecom_notice")}</span>
             </div>
           </div>
 
           {/* Key Stat Cards */}
           <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-3">
-            <Card className="border-amber-500/20 bg-amber-950/10 backdrop-blur-md">
+            <Card className="border-warning-500/20 bg-amber-950/10 backdrop-blur-md">
               <CardContent className="p-6 text-center">
                 <Clock className="mx-auto mb-3 h-8 w-8 text-amber-400" />
                 <div className="text-3xl font-black text-white">{t("stat_window")}</div>
@@ -264,7 +264,7 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
                         >
                           <IconComponent className="h-5 w-5" />
                         </div>
-                        <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-[10px] font-semibold text-gray-400">
+                        <span className="border-border-subtle text-fg-muted rounded-full border bg-white/5 px-2.5 py-0.5 text-[10px] font-semibold">
                           {item.category}
                         </span>
                       </div>
@@ -273,7 +273,7 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
                         {item.title}
                       </h3>
 
-                      <p className="text-sm leading-relaxed text-gray-400">{item.desc}</p>
+                      <p className="text-fg-muted text-sm leading-relaxed">{item.desc}</p>
                     </CardContent>
                   </Card>
                 );
@@ -291,7 +291,7 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
                 </div>
                 <h3 className="text-xl font-bold text-white">{t("banking_section_title")}</h3>
               </div>
-              <ul className="space-y-3 text-sm text-gray-300">
+              <ul className="text-fg-primary space-y-3 text-sm">
                 <li className="flex items-start gap-2">
                   <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-blue-400" />
                   <span>
@@ -321,7 +321,7 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
                 </div>
                 <h3 className="text-xl font-bold text-white">{t("telecom_section_title")}</h3>
               </div>
-              <ul className="space-y-3 text-sm text-gray-300">
+              <ul className="text-fg-primary space-y-3 text-sm">
                 <li className="flex items-start gap-2">
                   <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-cyan-400" />
                   <span>
@@ -345,9 +345,9 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
           </div>
 
           {/* Bottom CTA */}
-          <div className="mt-24 rounded-3xl border border-white/10 bg-gradient-to-r from-blue-900/30 via-indigo-900/20 to-purple-900/30 p-10 text-center shadow-2xl backdrop-blur-xl">
+          <div className="border-border-subtle mt-24 rounded-3xl border bg-gradient-to-r from-blue-900/30 via-indigo-900/20 to-purple-900/30 p-10 text-center shadow-2xl backdrop-blur-xl">
             <h2 className="mb-4 text-3xl font-bold text-white sm:text-4xl">{t("cta_title")}</h2>
-            <p className="mx-auto mb-8 max-w-2xl text-base text-gray-300">{t("cta_desc")}</p>
+            <p className="text-fg-primary mx-auto mb-8 max-w-2xl text-base">{t("cta_desc")}</p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
                 href="/enterprise"

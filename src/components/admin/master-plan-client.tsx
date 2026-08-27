@@ -142,7 +142,17 @@ function PlanCard({
   );
 }
 
-export function SortablePlanCard({ item, compact, onOpen, pendingDependencies }: any) {
+export function SortablePlanCard({
+  item,
+  compact,
+  onOpen,
+  pendingDependencies,
+}: {
+  item: PlanItem;
+  compact?: boolean;
+  onOpen: (item: PlanItem) => void;
+  pendingDependencies?: string[];
+}) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: item.id,
     data: { item },

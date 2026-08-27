@@ -1,0 +1,159 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_lb_1a_md",
+      "label": "LB-1a.md",
+      "file_type": "document",
+      "source_file": "docs/plan/items/LB-1a.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_lb_1a_lb_1a",
+      "label": "LB-1a",
+      "file_type": "document",
+      "source_file": "docs/plan/items/LB-1a.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_lb_1a_1_deletes_use_ilike_pattern_matching_not_an_explicit_id_list",
+      "label": "1. Deletes use `ILIKE` pattern matching, not an explicit id list",
+      "file_type": "document",
+      "source_file": "docs/plan/items/LB-1a.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_lb_1a_2_nothing_stops_the_fabrications_returning",
+      "label": "2. Nothing stops the fabrications returning",
+      "file_type": "document",
+      "source_file": "docs/plan/items/LB-1a.md",
+      "source_location": "L22"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_lb_1a_3_no_rls_policy_restricts_public_statement_inserts_to_moderators",
+      "label": "3. No RLS policy restricts `public_statement` inserts to moderators",
+      "file_type": "document",
+      "source_file": "docs/plan/items/LB-1a.md",
+      "source_location": "L29"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_lb_1a_4_the_cc_by_4_0_credit_names_nobody",
+      "label": "4. The CC BY 4.0 credit names nobody",
+      "file_type": "document",
+      "source_file": "docs/plan/items/LB-1a.md",
+      "source_location": "L37"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_lb_1a_also_outstanding",
+      "label": "Also outstanding",
+      "file_type": "document",
+      "source_file": "docs/plan/items/LB-1a.md",
+      "source_location": "L44"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_lb_1a_acceptance",
+      "label": "Acceptance",
+      "file_type": "document",
+      "source_file": "docs/plan/items/LB-1a.md",
+      "source_location": "L48"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_lb_1a_escalation_2026_08_20_this_migration_can_now_destroy_real_work",
+      "label": "Escalation, 2026-08-20 \u2014 this migration can now destroy real work",
+      "file_type": "document",
+      "source_file": "docs/plan/items/LB-1a.md",
+      "source_location": "L57"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_lb_1a_closed_2026_08_20_v13_72_all_five_requirements_met",
+      "label": "Closed 2026-08-20 (v13.72) \u2014 all five requirements met",
+      "file_type": "document",
+      "source_file": "docs/plan/items/LB-1a.md",
+      "source_location": "L74"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_lb_1a_md",
+      "target": "d_01_saas_products_alparai_docs_plan_items_lb_1a_lb_1a",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/LB-1a.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_lb_1a_lb_1a",
+      "target": "d_01_saas_products_alparai_docs_plan_items_lb_1a_1_deletes_use_ilike_pattern_matching_not_an_explicit_id_list",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/LB-1a.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_lb_1a_lb_1a",
+      "target": "d_01_saas_products_alparai_docs_plan_items_lb_1a_2_nothing_stops_the_fabrications_returning",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/LB-1a.md",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_lb_1a_lb_1a",
+      "target": "d_01_saas_products_alparai_docs_plan_items_lb_1a_3_no_rls_policy_restricts_public_statement_inserts_to_moderators",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/LB-1a.md",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_lb_1a_lb_1a",
+      "target": "d_01_saas_products_alparai_docs_plan_items_lb_1a_4_the_cc_by_4_0_credit_names_nobody",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/LB-1a.md",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_lb_1a_lb_1a",
+      "target": "d_01_saas_products_alparai_docs_plan_items_lb_1a_also_outstanding",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/LB-1a.md",
+      "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_lb_1a_lb_1a",
+      "target": "d_01_saas_products_alparai_docs_plan_items_lb_1a_acceptance",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/LB-1a.md",
+      "source_location": "L48",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_lb_1a_lb_1a",
+      "target": "d_01_saas_products_alparai_docs_plan_items_lb_1a_escalation_2026_08_20_this_migration_can_now_destroy_real_work",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/LB-1a.md",
+      "source_location": "L57",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_lb_1a_lb_1a",
+      "target": "d_01_saas_products_alparai_docs_plan_items_lb_1a_closed_2026_08_20_v13_72_all_five_requirements_met",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/LB-1a.md",
+      "source_location": "L74",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

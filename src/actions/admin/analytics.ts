@@ -1,6 +1,8 @@
 "use server";
 
+import { requireAdmin } from "@/lib/auth/session";
 export async function getPlausibleMetrics() {
+  await requireAdmin();
   try {
     const apiKey = process.env.PLAUSIBLE_API_KEY;
     const siteId = process.env.PLAUSIBLE_SITE_ID || "alparai.com";

@@ -4,13 +4,10 @@ import "../helpers/setup";
 
 // Mock global fetch
 const mockFetch = vi.fn();
- 
- 
+
 global.fetch = mockFetch as any;
 
 const withAutopilotMock = vi.fn().mockImplementation(async (_policy, _keys, fn, _options) => {
- 
- 
   const outcome = await fn({} as any);
   if (outcome.kind === "success") {
     return { kind: "ok", value: outcome.value };
@@ -51,8 +48,6 @@ describe("autopilot-sync news action", () => {
     vi.clearAllMocks();
     process.env.GEMINI_API_KEY = "test-gemini-key";
     withAutopilotMock.mockImplementation(async (_policy, _keys, fn, _options) => {
- 
- 
       const outcome = await fn({} as any);
       if (outcome.kind === "success") {
         return { kind: "ok", value: outcome.value };

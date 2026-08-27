@@ -1,0 +1,111 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_10_the_accountability_gap_and_alpar_ai_solution_md",
+      "label": "day-10-the-accountability-gap-and-alpar-ai-solution.md",
+      "file_type": "document",
+      "source_file": "docs/blog_drafts/the_grok_files/day-10-the-accountability-gap-and-alpar-ai-solution.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_10_the_accountability_gap_and_alpar_ai_solution_the_grok_files_day_10_the_accountability_gap_the_alpar_ai_vision",
+      "label": "The Grok Files \u2014 Day 10: The Accountability Gap & The ALPAR AI Vision",
+      "file_type": "document",
+      "source_file": "docs/blog_drafts/the_grok_files/day-10-the-accountability-gap-and-alpar-ai-solution.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_10_the_accountability_gap_and_alpar_ai_solution_executive_summary",
+      "label": "Executive Summary",
+      "file_type": "document",
+      "source_file": "docs/blog_drafts/the_grok_files/day-10-the-accountability-gap-and-alpar-ai-solution.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_10_the_accountability_gap_and_alpar_ai_solution_1_the_core_problem_the_ai_accountability_gap",
+      "label": "1. The Core Problem: The AI Accountability Gap",
+      "file_type": "document",
+      "source_file": "docs/blog_drafts/the_grok_files/day-10-the-accountability-gap-and-alpar-ai-solution.md",
+      "source_location": "L18"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_10_the_accountability_gap_and_alpar_ai_solution_2_the_alpar_ai_architecture_trust_infrastructure_for_ai_accountability",
+      "label": "2. The ALPAR AI Architecture: Trust Infrastructure for AI Accountability",
+      "file_type": "document",
+      "source_file": "docs/blog_drafts/the_grok_files/day-10-the-accountability-gap-and-alpar-ai-solution.md",
+      "source_location": "L28"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_10_the_accountability_gap_and_alpar_ai_solution_core_product_pillars",
+      "label": "Core Product Pillars",
+      "file_type": "document",
+      "source_file": "docs/blog_drafts/the_grok_files/day-10-the-accountability-gap-and-alpar-ai-solution.md",
+      "source_location": "L44"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_10_the_accountability_gap_and_alpar_ai_solution_3_the_path_forward_joining_the_accountability_movement",
+      "label": "3. The Path Forward: Joining the Accountability Movement",
+      "file_type": "document",
+      "source_file": "docs/blog_drafts/the_grok_files/day-10-the-accountability-gap-and-alpar-ai-solution.md",
+      "source_location": "L53"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_10_the_accountability_gap_and_alpar_ai_solution_md",
+      "target": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_10_the_accountability_gap_and_alpar_ai_solution_the_grok_files_day_10_the_accountability_gap_the_alpar_ai_vision",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog_drafts/the_grok_files/day-10-the-accountability-gap-and-alpar-ai-solution.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_10_the_accountability_gap_and_alpar_ai_solution_the_grok_files_day_10_the_accountability_gap_the_alpar_ai_vision",
+      "target": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_10_the_accountability_gap_and_alpar_ai_solution_executive_summary",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog_drafts/the_grok_files/day-10-the-accountability-gap-and-alpar-ai-solution.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_10_the_accountability_gap_and_alpar_ai_solution_the_grok_files_day_10_the_accountability_gap_the_alpar_ai_vision",
+      "target": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_10_the_accountability_gap_and_alpar_ai_solution_1_the_core_problem_the_ai_accountability_gap",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog_drafts/the_grok_files/day-10-the-accountability-gap-and-alpar-ai-solution.md",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_10_the_accountability_gap_and_alpar_ai_solution_the_grok_files_day_10_the_accountability_gap_the_alpar_ai_vision",
+      "target": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_10_the_accountability_gap_and_alpar_ai_solution_2_the_alpar_ai_architecture_trust_infrastructure_for_ai_accountability",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog_drafts/the_grok_files/day-10-the-accountability-gap-and-alpar-ai-solution.md",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_10_the_accountability_gap_and_alpar_ai_solution_2_the_alpar_ai_architecture_trust_infrastructure_for_ai_accountability",
+      "target": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_10_the_accountability_gap_and_alpar_ai_solution_core_product_pillars",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog_drafts/the_grok_files/day-10-the-accountability-gap-and-alpar-ai-solution.md",
+      "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_10_the_accountability_gap_and_alpar_ai_solution_the_grok_files_day_10_the_accountability_gap_the_alpar_ai_vision",
+      "target": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_10_the_accountability_gap_and_alpar_ai_solution_3_the_path_forward_joining_the_accountability_movement",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog_drafts/the_grok_files/day-10-the-accountability-gap-and-alpar-ai-solution.md",
+      "source_location": "L53",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

@@ -36,7 +36,10 @@ vi.hoisted(() => {
 import { createServerClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getCurrentUser } from "@/lib/auth/session";
-import { submitModelFeatureRequest, voteModelFeatureRequest } from "@/actions/models/model-features";
+import {
+  submitModelFeatureRequest,
+  voteModelFeatureRequest,
+} from "@/actions/models/model-features";
 
 let mockSupabase: ReturnType<typeof createMockSupabaseClient>;
 let mockAdminClient: ReturnType<typeof createMockSupabaseClient>;

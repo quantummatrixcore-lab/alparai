@@ -1,0 +1,143 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_44_strategy_review_md",
+      "label": "v13.44-strategy-review.md",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.44-strategy-review.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_44_strategy_review_v13_44_review_of_the_ten_point_sovereign_innovation_strategy_brief",
+      "label": "v13.44 \u2014 Review of the ten-point \"Sovereign Innovation\" strategy brief",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.44-strategy-review.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_44_strategy_review_the_structural_finding_six_of_ten_revenue_models_are_issuer_pays",
+      "label": "The structural finding: six of ten revenue models are issuer-pays",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.44-strategy-review.md",
+      "source_location": "L11"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_44_strategy_review_the_ssl_analogy_fails_for_lack_of_a_chokepoint",
+      "label": "The SSL analogy fails for lack of a chokepoint",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.44-strategy-review.md",
+      "source_location": "L32"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_44_strategy_review_the_predictive_engine_is_the_practice_the_company_campaigns_against",
+      "label": "The predictive engine is the practice the company campaigns against",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.44-strategy-review.md",
+      "source_location": "L43"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_44_strategy_review_the_diplomatic_cable_automation_is_legal_exposure_not_a_moat",
+      "label": "The diplomatic-cable automation is legal exposure, not a moat",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.44-strategy-review.md",
+      "source_location": "L53"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_44_strategy_review_two_proposals_are_underrated",
+      "label": "Two proposals are underrated",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.44-strategy-review.md",
+      "source_location": "L61"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_44_strategy_review_the_brief_prices_assets_that_do_not_yet_exist",
+      "label": "The brief prices assets that do not yet exist",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.44-strategy-review.md",
+      "source_location": "L72"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_44_strategy_review_recommendation_the_false_positive_registry_is_the_correct_first_block",
+      "label": "Recommendation: the false-positive registry is the correct first block",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.44-strategy-review.md",
+      "source_location": "L86"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_44_strategy_review_md",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_44_strategy_review_v13_44_review_of_the_ten_point_sovereign_innovation_strategy_brief",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.44-strategy-review.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_44_strategy_review_v13_44_review_of_the_ten_point_sovereign_innovation_strategy_brief",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_44_strategy_review_the_structural_finding_six_of_ten_revenue_models_are_issuer_pays",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.44-strategy-review.md",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_44_strategy_review_v13_44_review_of_the_ten_point_sovereign_innovation_strategy_brief",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_44_strategy_review_the_ssl_analogy_fails_for_lack_of_a_chokepoint",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.44-strategy-review.md",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_44_strategy_review_v13_44_review_of_the_ten_point_sovereign_innovation_strategy_brief",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_44_strategy_review_the_predictive_engine_is_the_practice_the_company_campaigns_against",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.44-strategy-review.md",
+      "source_location": "L43",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_44_strategy_review_v13_44_review_of_the_ten_point_sovereign_innovation_strategy_brief",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_44_strategy_review_the_diplomatic_cable_automation_is_legal_exposure_not_a_moat",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.44-strategy-review.md",
+      "source_location": "L53",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_44_strategy_review_v13_44_review_of_the_ten_point_sovereign_innovation_strategy_brief",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_44_strategy_review_two_proposals_are_underrated",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.44-strategy-review.md",
+      "source_location": "L61",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_44_strategy_review_v13_44_review_of_the_ten_point_sovereign_innovation_strategy_brief",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_44_strategy_review_the_brief_prices_assets_that_do_not_yet_exist",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.44-strategy-review.md",
+      "source_location": "L72",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_44_strategy_review_v13_44_review_of_the_ten_point_sovereign_innovation_strategy_brief",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_44_strategy_review_recommendation_the_false_positive_registry_is_the_correct_first_block",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.44-strategy-review.md",
+      "source_location": "L86",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

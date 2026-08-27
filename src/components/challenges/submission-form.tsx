@@ -49,7 +49,7 @@ export function SubmissionForm({ challengeId }: { challengeId: string }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mt-6 space-y-4 rounded-lg border border-white/10 bg-white/[0.02] p-4"
+      className="border-border-subtle mt-6 space-y-4 rounded-lg border bg-white/[0.02] p-4"
     >
       <h4 className="text-sm font-semibold tracking-wider text-white/60 uppercase">
         {t("submitYourWork")}
@@ -66,7 +66,7 @@ export function SubmissionForm({ challengeId }: { challengeId: string }) {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder={t("titlePlaceholder")}
-          className="focus:border-brand-500/50 focus:ring-brand-500/20 w-full rounded-lg border border-white/10 bg-white/[0.03] px-4 py-2.5 text-sm text-white transition outline-none placeholder:text-white/30 focus:ring-1"
+          className="focus:border-brand-500/50 focus:ring-brand-500/20 border-border-subtle w-full rounded-lg border bg-white/[0.03] px-4 py-2.5 text-sm text-white transition outline-none placeholder:text-white/30 focus:ring-1"
         />
         {fieldErrors.title && (
           <p className="text-danger-400 mt-1 text-xs">{fieldErrors.title[0]}</p>
@@ -79,7 +79,7 @@ export function SubmissionForm({ challengeId }: { challengeId: string }) {
           onChange={(e) => setDescription(e.target.value)}
           placeholder={t("descriptionPlaceholder")}
           rows={4}
-          className="focus:border-brand-500/50 focus:ring-brand-500/20 w-full rounded-lg border border-white/10 bg-white/[0.03] px-4 py-2.5 text-sm text-white transition outline-none placeholder:text-white/30 focus:ring-1"
+          className="focus:border-brand-500/50 focus:ring-brand-500/20 border-border-subtle w-full rounded-lg border bg-white/[0.03] px-4 py-2.5 text-sm text-white transition outline-none placeholder:text-white/30 focus:ring-1"
         />
         {fieldErrors.description && (
           <p className="text-danger-400 mt-1 text-xs">{fieldErrors.description[0]}</p>

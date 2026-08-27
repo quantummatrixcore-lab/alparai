@@ -1,0 +1,191 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_37_rca_md",
+      "label": "v13.37-rca.md",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.37-rca.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_37_rca_v13_37_root_cause_analysis_why_the_same_failure_keeps_recurring",
+      "label": "v13.37 \u2014 Root-cause analysis: why the same failure keeps recurring",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.37-rca.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_37_rca_1_the_measurements",
+      "label": "1. The measurements",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.37-rca.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_37_rca_2_root_cause",
+      "label": "2. Root cause",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.37-rca.md",
+      "source_location": "L26"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_37_rca_2a_checks_that_verify_shape_instead_of_substance",
+      "label": "2a. Checks that verify shape instead of substance",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.37-rca.md",
+      "source_location": "L36"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_37_rca_2b_goodhart_measuring_the_cheap_proxy",
+      "label": "2b. Goodhart \u2014 measuring the cheap proxy",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.37-rca.md",
+      "source_location": "L47"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_37_rca_2c_doctrine_as_prose_does_not_bind_delegated_agents",
+      "label": "2c. Doctrine as prose does not bind delegated agents",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.37-rca.md",
+      "source_location": "L53"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_37_rca_3_failure_inventory_attributed",
+      "label": "3. Failure inventory, attributed",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.37-rca.md",
+      "source_location": "L61"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_37_rca_architect_side_mine_including_prior_sessions",
+      "label": "Architect-side (mine, including prior sessions)",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.37-rca.md",
+      "source_location": "L65"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_37_rca_implementer_side_antigravity_opencode_from_the_record",
+      "label": "Implementer-side (Antigravity/OpenCode, from the record)",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.37-rca.md",
+      "source_location": "L75"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_37_rca_4_controls",
+      "label": "4. Controls",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.37-rca.md",
+      "source_location": "L87"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_37_rca_5_what_this_analysis_does_not_claim",
+      "label": "5. What this analysis does not claim",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.37-rca.md",
+      "source_location": "L107"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_37_rca_md",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_37_rca_v13_37_root_cause_analysis_why_the_same_failure_keeps_recurring",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.37-rca.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_37_rca_v13_37_root_cause_analysis_why_the_same_failure_keeps_recurring",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_37_rca_1_the_measurements",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.37-rca.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_37_rca_v13_37_root_cause_analysis_why_the_same_failure_keeps_recurring",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_37_rca_2_root_cause",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.37-rca.md",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_37_rca_2_root_cause",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_37_rca_2a_checks_that_verify_shape_instead_of_substance",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.37-rca.md",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_37_rca_2_root_cause",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_37_rca_2b_goodhart_measuring_the_cheap_proxy",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.37-rca.md",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_37_rca_2_root_cause",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_37_rca_2c_doctrine_as_prose_does_not_bind_delegated_agents",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.37-rca.md",
+      "source_location": "L53",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_37_rca_v13_37_root_cause_analysis_why_the_same_failure_keeps_recurring",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_37_rca_3_failure_inventory_attributed",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.37-rca.md",
+      "source_location": "L61",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_37_rca_3_failure_inventory_attributed",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_37_rca_architect_side_mine_including_prior_sessions",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.37-rca.md",
+      "source_location": "L65",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_37_rca_3_failure_inventory_attributed",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_37_rca_implementer_side_antigravity_opencode_from_the_record",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.37-rca.md",
+      "source_location": "L75",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_37_rca_v13_37_root_cause_analysis_why_the_same_failure_keeps_recurring",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_37_rca_4_controls",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.37-rca.md",
+      "source_location": "L87",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_37_rca_v13_37_root_cause_analysis_why_the_same_failure_keeps_recurring",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_37_rca_5_what_this_analysis_does_not_claim",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.37-rca.md",
+      "source_location": "L107",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

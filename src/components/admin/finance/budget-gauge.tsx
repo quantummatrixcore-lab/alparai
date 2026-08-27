@@ -38,7 +38,7 @@ export function BudgetGauge({ totalMonthly, totalBudget }: BudgetGaugeProps) {
             stroke="currentColor"
             fill="transparent"
             strokeWidth={stroke}
-            className="text-zinc-100 dark:text-zinc-900"
+            className="text-fg-primary dark:text-zinc-900"
             r={normalizedRadius}
             cx={radius}
             cy={radius}
@@ -59,7 +59,9 @@ export function BudgetGauge({ totalMonthly, totalBudget }: BudgetGaugeProps) {
 
         {/* Inner Text overlay */}
         <div className="absolute flex flex-col items-center justify-center">
-          <span className="text-2xl font-bold text-zinc-950 dark:text-zinc-50">{percentUsed}%</span>
+          <span className="text-fg-secondaryxl font-bold text-zinc-950 dark:text-zinc-50">
+            {percentUsed}%
+          </span>
           <span className="text-fg-disabled dark:text-fg-muted text-[10px] tracking-wider uppercase">
             {t("used")}
           </span>

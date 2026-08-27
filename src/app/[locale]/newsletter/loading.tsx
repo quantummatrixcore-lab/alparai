@@ -15,7 +15,7 @@ export default function Loading() {
           <Skeleton className="h-10 w-28 rounded-lg" />
         </div>
 
-        <div className="border-border-subtle mt-8 grid grid-cols-2 gap-4 border-t pt-6">
+        <div className="border-border-subtle mt-8 grid grid-cols-1 gap-4 border-t pt-6 sm:grid-cols-2">
           <div className="flex items-start gap-2.5">
             <Skeleton className="mt-0.5 h-4 w-4 shrink-0 rounded-full" />
             <div className="space-y-1">

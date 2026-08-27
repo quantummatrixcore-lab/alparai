@@ -1,0 +1,95 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_reports_phase_1_validation_md",
+      "label": "PHASE_1_VALIDATION.md",
+      "file_type": "document",
+      "source_file": "docs/reports/PHASE_1_VALIDATION.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_reports_phase_1_validation_alpar_ai_phase_1_backend_security_validation_report",
+      "label": "ALPAR AI \u2014 Phase 1 (Backend & Security) Validation Report",
+      "file_type": "document",
+      "source_file": "docs/reports/PHASE_1_VALIDATION.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_reports_phase_1_validation_1_executive_summary",
+      "label": "1. Executive Summary",
+      "file_type": "document",
+      "source_file": "docs/reports/PHASE_1_VALIDATION.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_reports_phase_1_validation_2_p0_security_remediation_status",
+      "label": "2. P0 Security Remediation Status",
+      "file_type": "document",
+      "source_file": "docs/reports/PHASE_1_VALIDATION.md",
+      "source_location": "L24"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_reports_phase_1_validation_3_p1_code_quality_integration_status",
+      "label": "3. P1 Code Quality & Integration Status",
+      "file_type": "document",
+      "source_file": "docs/reports/PHASE_1_VALIDATION.md",
+      "source_location": "L37"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_reports_phase_1_validation_4_swarm_commander_directives_post_mission",
+      "label": "4. Swarm Commander Directives (Post-Mission)",
+      "file_type": "document",
+      "source_file": "docs/reports/PHASE_1_VALIDATION.md",
+      "source_location": "L49"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_reports_phase_1_validation_md",
+      "target": "d_01_saas_products_alparai_docs_reports_phase_1_validation_alpar_ai_phase_1_backend_security_validation_report",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/reports/PHASE_1_VALIDATION.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_reports_phase_1_validation_alpar_ai_phase_1_backend_security_validation_report",
+      "target": "d_01_saas_products_alparai_docs_reports_phase_1_validation_1_executive_summary",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/reports/PHASE_1_VALIDATION.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_reports_phase_1_validation_alpar_ai_phase_1_backend_security_validation_report",
+      "target": "d_01_saas_products_alparai_docs_reports_phase_1_validation_2_p0_security_remediation_status",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/reports/PHASE_1_VALIDATION.md",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_reports_phase_1_validation_alpar_ai_phase_1_backend_security_validation_report",
+      "target": "d_01_saas_products_alparai_docs_reports_phase_1_validation_3_p1_code_quality_integration_status",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/reports/PHASE_1_VALIDATION.md",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_reports_phase_1_validation_alpar_ai_phase_1_backend_security_validation_report",
+      "target": "d_01_saas_products_alparai_docs_reports_phase_1_validation_4_swarm_commander_directives_post_mission",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/reports/PHASE_1_VALIDATION.md",
+      "source_location": "L49",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

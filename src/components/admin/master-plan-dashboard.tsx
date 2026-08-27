@@ -78,17 +78,17 @@ export function MasterPlanDashboard({ items }: MasterPlanDashboardProps) {
           </h3>
         </div>
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
-          <div className="flex flex-col items-center rounded-lg border border-white/5 bg-black/20 p-2">
+          <div className="border-border-subtle/50 bg-bg-primary/20 flex flex-col items-center rounded-lg border p-2">
             <CheckCircle2 className="text-success-400 mb-1 h-4 w-4" />
             <span className="text-success-400 text-lg font-bold">{completed}</span>
             <span className="text-fg-disabled text-[10px] font-semibold uppercase">Done</span>
           </div>
-          <div className="flex flex-col items-center rounded-lg border border-white/5 bg-black/20 p-2">
+          <div className="border-border-subtle/50 bg-bg-primary/20 flex flex-col items-center rounded-lg border p-2">
             <Clock className="text-warning-400 mb-1 h-4 w-4" />
             <span className="text-warning-400 text-lg font-bold">{pending}</span>
             <span className="text-fg-disabled text-[10px] font-semibold uppercase">Pend</span>
           </div>
-          <div className="flex flex-col items-center rounded-lg border border-white/5 bg-black/20 p-2">
+          <div className="border-border-subtle/50 bg-bg-primary/20 flex flex-col items-center rounded-lg border p-2">
             <Circle className="text-brand-400 mb-1 h-4 w-4" />
             <span className="text-brand-400 text-lg font-bold">{paused}</span>
             <span className="text-fg-disabled text-[10px] font-semibold uppercase">Pause</span>

@@ -12,5 +12,3 @@ afterEach(async () => {
     document.body.innerHTML = "";
   }
 });
-
-

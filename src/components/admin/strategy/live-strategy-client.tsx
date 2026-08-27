@@ -97,7 +97,7 @@ export function LiveStrategyClient({ context }: LiveStrategyClientProps) {
           <div className="bg-brand-500/10 pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full blur-3xl" />
 
           <div className="relative z-10">
-            <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-4">
+            <div className="border-border-subtle mb-4 flex items-center justify-between border-b pb-4">
               <h2 className="flex items-center gap-2 text-xl font-bold text-white">
                 <Bot className="text-brand-400 h-6 w-6" />
                 {t("canl_ai_strateji_raporu")}
@@ -105,7 +105,10 @@ export function LiveStrategyClient({ context }: LiveStrategyClientProps) {
               <div className="flex items-center gap-2">
                 <span className="text-fg-muted font-mono text-sm">{t("sa_lik_skoru")}</span>
                 <span
-                  className={cn("text-2xl font-black", getScoreColor(result.health_score || 0))}
+                  className={cn(
+                    "text-fg-secondaryxl font-black",
+                    getScoreColor(result.health_score || 0),
+                  )}
                 >
                   {result.health_score || "?"}
                 </span>
@@ -117,7 +120,9 @@ export function LiveStrategyClient({ context }: LiveStrategyClientProps) {
                 <h3 className="text-fg-secondary mb-2 text-xs font-semibold tracking-wider uppercase">
                   {t("y_netici_zeti")}
                 </h3>
-                <p className="text-sm leading-relaxed text-white/80">{result.executive_summary}</p>
+                <p className="text-fg-secondary text-sm leading-relaxed">
+                  {result.executive_summary}
+                </p>
               </div>
 
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">

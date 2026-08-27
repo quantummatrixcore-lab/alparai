@@ -98,7 +98,7 @@ export function SuggestionCommentList({
             <Card key={comment.id} className="bg-bg-secondary/40 border-border-subtle">
               <CardContent className="p-4 sm:p-6">
                 <div className="flex items-start gap-4">
-                  <Avatar className="h-10 w-10 border border-white/10">
+                  <Avatar className="border-border-subtle h-10 w-10 border">
                     <AvatarImage src={comment.users?.avatar_url || undefined} />
                     <AvatarFallback className="bg-bg-tertiary text-fg-muted">
                       {comment.users?.full_name?.charAt(0).toUpperCase() || "?"}

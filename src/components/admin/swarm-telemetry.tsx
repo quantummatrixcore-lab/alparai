@@ -62,14 +62,14 @@ export const ACTIVE_DIGITAL_TWINS: DigitalTwinStatus[] = [
 
 export function SwarmTelemetryWidget() {
   return (
-    <div className="space-y-6 rounded-2xl border border-neutral-800 bg-neutral-900/80 p-6 text-neutral-100 shadow-2xl backdrop-blur-xl">
-      <div className="flex items-center justify-between border-b border-neutral-800 pb-4">
+    <div className="border-border-subtle bg-bg-secondary text-fg-primary space-y-6 rounded-2xl border p-6 shadow-2xl backdrop-blur-xl">
+      <div className="border-border-subtle flex items-center justify-between border-b pb-4">
         <div>
           <h2 className="flex items-center gap-2 text-xl font-bold tracking-tight text-white">
             <span className="inline-block h-3 w-3 animate-pulse rounded-full bg-emerald-500" />
             ALPAR AI Digital Twin Swarm Telemetry
           </h2>
-          <p className="text-sm text-neutral-400">
+          <p className="text-fg-muted text-sm">
             Autonomous multi-agent orchestration & K-Matrix governance.
           </p>
         </div>
@@ -82,28 +82,28 @@ export function SwarmTelemetryWidget() {
         {ACTIVE_DIGITAL_TWINS.map((twin) => (
           <div
             key={twin.name}
-            className="group rounded-xl border border-neutral-700/60 bg-neutral-800/50 p-4 transition-all duration-200 hover:border-neutral-500"
+            className="group border-border-strong bg-bg-secondary rounded-xl border p-4 transition-all duration-200 hover:border-neutral-500"
           >
             <div className="flex items-start justify-between">
               <h3 className="font-semibold text-white transition-colors group-hover:text-amber-300">
                 {twin.name}
               </h3>
-              <span className="rounded bg-neutral-700 px-2 py-0.5 font-mono text-[10px] text-neutral-300">
+              <span className="text-fg-primary rounded bg-neutral-700 px-2 py-0.5 font-mono text-[10px]">
                 {twin.state}
               </span>
             </div>
-            <p className="mt-1 line-clamp-1 text-xs text-neutral-400">{twin.role}</p>
+            <p className="text-fg-muted mt-1 line-clamp-1 text-xs">{twin.role}</p>
 
-            <div className="mt-4 flex items-center justify-between border-t border-neutral-700/40 pt-3 text-xs">
-              <span className="font-mono text-neutral-400">
+            <div className="border-border-strong mt-4 flex items-center justify-between border-t pt-3 text-xs">
+              <span className="text-fg-muted font-mono">
                 Tokens: {twin.tokenUsage.toLocaleString()}
               </span>
               <span className="rounded border border-emerald-800/40 bg-emerald-950/40 px-1.5 py-0.5 font-mono text-[10px] text-emerald-400">
                 {twin.verificationBadge}
               </span>
             </div>
-            <div className="mt-2 truncate text-[11px] text-neutral-300">
-              <span className="text-neutral-500">Focus: </span>
+            <div className="text-fg-primary mt-2 truncate text-[11px]">
+              <span className="text-fg-muted">Focus: </span>
               {twin.focus}
             </div>
           </div>

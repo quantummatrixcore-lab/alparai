@@ -29,7 +29,7 @@ export function AnalyticsHubTabs() {
   ];
 
   return (
-    <div className="mb-8 border-b border-white/10">
+    <div className="border-border-subtle mb-8 border-b">
       <nav className="-mb-px flex space-x-6" aria-label="Tabs">
         {tabs.map((tab) => {
           const isActive = pathname.startsWith(tab.href);
@@ -40,7 +40,7 @@ export function AnalyticsHubTabs() {
               className={cn(
                 isActive
                   ? "border-brand-500 text-brand-400"
-                  : "text-fg-muted border-transparent hover:border-white/20 hover:text-white",
+                  : "text-fg-muted hover:border-border-strong border-transparent hover:text-white",
                 "group flex items-center border-b-2 px-1 py-4 text-sm font-medium whitespace-nowrap transition-colors",
               )}
             >

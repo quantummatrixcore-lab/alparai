@@ -76,7 +76,7 @@ export function WhyItMatters() {
           transition={{ duration: 0.6 }}
           className="mx-auto mb-12 max-w-2xl text-center"
         >
-          <h2 className="text-fg-primary text-2xl font-black tracking-tight sm:text-3xl">
+          <h2 className="text-fg-primary text-fg-secondaryxl font-black tracking-tight sm:text-3xl">
             {t("why_title")}
           </h2>
           <p className="text-fg-secondary mt-4 text-lg">{t("why_subtitle")}</p>
@@ -139,7 +139,7 @@ export function WhyItMatters() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mx-auto mt-12 max-w-3xl text-center"
         >
-          <p className="text-fg-secondary mx-auto max-w-2xl border-t border-white/5 pt-6 text-sm leading-relaxed font-semibold md:text-base">
+          <p className="text-fg-secondary border-border-subtle/50 mx-auto max-w-2xl border-t pt-6 text-sm leading-relaxed font-semibold md:text-base">
             {t("why_bridging_text")}
           </p>
         </motion.div>

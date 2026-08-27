@@ -50,8 +50,8 @@ export function LiveModelsDirectory({ initialModels }: LiveModelsDirectoryProps)
   };
 
   return (
-    <Card className="bg-bg-secondary/40 col-span-1 mt-6 overflow-hidden border-white/5 backdrop-blur-xl lg:col-span-3">
-      <CardHeader className="flex flex-col justify-between gap-4 border-b border-white/5 sm:flex-row sm:items-center">
+    <Card className="bg-bg-secondary/40 border-border-subtle/50 col-span-1 mt-6 overflow-hidden backdrop-blur-xl lg:col-span-3">
+      <CardHeader className="border-border-subtle/50 flex flex-col justify-between gap-4 border-b sm:flex-row sm:items-center">
         <div>
           <CardTitle className="text-fg-muted flex items-center gap-2 text-sm font-bold tracking-wider uppercase">
             <Cpu className="h-4 w-4" /> {t("live_ai_models_directory")}
@@ -69,7 +69,7 @@ export function LiveModelsDirectory({ initialModels }: LiveModelsDirectoryProps)
               placeholder={t("search_models")}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="placeholder:text-fg-muted/50 focus:ring-brand-500 w-full rounded-md border border-white/10 bg-white/5 py-1.5 pr-4 pl-9 text-sm text-white transition-all focus:ring-2 focus:outline-none sm:w-64"
+              className="placeholder:text-fg-muted/50 focus:ring-brand-500 border-border-subtle w-full rounded-md border bg-white/5 py-1.5 pr-4 pl-9 text-sm text-white transition-all focus:ring-2 focus:outline-none sm:w-64"
             />
           </div>
           <div className="flex rounded-md bg-white/5 p-1">
@@ -108,7 +108,7 @@ export function LiveModelsDirectory({ initialModels }: LiveModelsDirectoryProps)
       </CardHeader>
       <CardContent className="custom-scrollbar max-h-[600px] overflow-x-auto overflow-y-auto p-0">
         <table className="w-full text-left text-sm">
-          <thead className="text-fg-muted sticky top-0 z-10 border-b border-white/10 bg-white/5 text-xs uppercase backdrop-blur-md">
+          <thead className="text-fg-muted border-border-subtle sticky top-0 z-10 border-b bg-white/5 text-xs uppercase backdrop-blur-md">
             <tr>
               <th
                 scope="col"
@@ -179,7 +179,7 @@ export function LiveModelsDirectory({ initialModels }: LiveModelsDirectoryProps)
                 <tr key={model.id} className="transition-colors hover:bg-white/[0.02]">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5">
+                      <div className="border-border-subtle flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border bg-white/5">
                         <Cpu className="text-fg-muted h-4 w-4" />
                       </div>
                       <div>
@@ -189,7 +189,7 @@ export function LiveModelsDirectory({ initialModels }: LiveModelsDirectoryProps)
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="text-fg-secondary inline-flex items-center rounded-full border border-white/10 bg-white/5 px-2 py-1 text-xs font-medium">
+                    <span className="text-fg-secondary border-border-subtle inline-flex items-center rounded-full border bg-white/5 px-2 py-1 text-xs font-medium">
                       {model.provider}
                     </span>
                   </td>

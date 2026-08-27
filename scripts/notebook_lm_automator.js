@@ -1,54 +1,59 @@
-const http = require('http');
-const https = require('https');
-const crypto = require('crypto');
+const http = require("http");
+const https = require("https");
+const crypto = require("crypto");
 
 async function getTabs() {
   return new Promise((resolve, reject) => {
-    http.get('http://localhost:9222/json', (res) => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => {
-        try {
-          resolve(JSON.parse(data));
-        } catch (e) {
-          reject(e);
-        }
-      });
-    }).on('error', reject);
+    http
+      .get("http://localhost:9222/json", (res) => {
+        let data = "";
+        res.on("data", (chunk) => (data += chunk));
+        res.on("end", () => {
+          try {
+            resolve(JSON.parse(data));
+          } catch (e) {
+            reject(e);
+          }
+        });
+      })
+      .on("error", reject);
   });
 }
 
 function connectWebSocket(wsUrl, onOpen, onMessage) {
   return new Promise((resolve, reject) => {
     const url = new URL(wsUrl);
-    const key = crypto.randomBytes(16).toString('base64');
-    
+    const key = crypto.randomBytes(16).toString("base64");
+
     const options = {
       port: url.port,
       hostname: url.hostname,
       path: url.pathname,
       headers: {
-        'Connection': 'Upgrade',
-        'Upgrade': 'websocket',
-        'Sec-WebSocket-Key': key,
-        'Sec-WebSocket-Version': '13'
-      }
+        Connection: "Upgrade",
+        Upgrade: "websocket",
+        "Sec-WebSocket-Key": key,
+        "Sec-WebSocket-Version": "13",
+      },
     };
-    
+
     const req = http.request(options);
-    req.on('upgrade', (res, socket, head) => {
+    req.on("upgrade", (res, socket, head) => {
       onOpen(socket);
-      
-      socket.on('data', (data) => {
+
+      socket.on("data", (data) => {
         if (data.length < 2) return;
-        const opcode = data[0] & 0x0F;
-        if (opcode === 8) { socket.end(); return; }
+        const opcode = data[0] & 0x0f;
+        if (opcode === 8) {
+          socket.end();
+          return;
+        }
         if (opcode !== 1) return;
-        
+
         const isMasked = (data[1] & 0x80) !== 0;
-        let payloadLen = data[1] & 0x7F;
+        let payloadLen = data[1] & 0x7f;
         let offset = 2;
-        
+
         if (payloadLen === 126) {
           payloadLen = data.readUInt16BE(2);
           offset += 2;
@@ -56,32 +61,32 @@ function connectWebSocket(wsUrl, onOpen, onMessage) {
           payloadLen = Number(data.readBigUInt64BE(2));
           offset += 8;
         }
-        
+
         const mask = isMasked ? data.slice(offset, offset + 4) : null;
         if (isMasked) offset += 4;
-        
+
         const payload = data.slice(offset, offset + payloadLen);
         if (isMasked) {
           for (let i = 0; i < payloadLen; i++) {
             payload[i] ^= mask[i % 4];
           }
         }
-        
-        onMessage(payload.toString('utf8'), socket);
+
+        onMessage(payload.toString("utf8"), socket);
       });
       resolve(socket);
     });
-    
-    req.on('error', reject);
+
+    req.on("error", reject);
     req.end();
   });
 }
 
 function sendCommand(socket, method, params = {}, id = 1) {
   const message = JSON.stringify({ id, method, params });
-  const payload = Buffer.from(message, 'utf8');
+  const payload = Buffer.from(message, "utf8");
   const length = payload.length;
-  
+
   let header;
   if (length <= 125) {
     header = Buffer.alloc(6);
@@ -95,55 +100,63 @@ function sendCommand(socket, method, params = {}, id = 1) {
     header[1] = 127 | 0x80;
     header.writeBigUInt64BE(BigInt(length), 2);
   }
-  
+
   header[0] = 0x81;
   const mask = crypto.randomBytes(4);
   mask.copy(header, header.length - 4);
-  
+
   for (let i = 0; i < length; i++) {
     payload[i] ^= mask[i % 4];
   }
-  
+
   socket.write(Buffer.concat([header, payload]));
 }
 
 async function runNotebookAutomator() {
   const tabs = await getTabs();
-  const notebookTab = tabs.find(t => t.url && t.url.includes('notebook.google'));
-  
+  const notebookTab = tabs.find((t) => t.url && t.url.includes("notebook.google"));
+
   if (!notebookTab) {
     console.error("HATA: NotebookLM (Kahin) sekmesi açık değil.");
     process.exit(1);
   }
-  
+
   console.log(`Bağlanılıyor: ${notebookTab.title}`);
-  
+
   let cmdId = 1;
-  
-  connectWebSocket(notebookTab.webSocketDebuggerUrl, (socket) => {
-    console.log("[Wolf Pack] NotebookLM (CDP) bağlantısı kuruldu. Kahin devrede.");
-    
-    // Inject the Hive Mind notification
-    const script = `
+
+  connectWebSocket(
+    notebookTab.webSocketDebuggerUrl,
+    (socket) => {
+      console.log("[Wolf Pack] NotebookLM (CDP) bağlantısı kuruldu. Kahin devrede.");
+
+      // Inject the Hive Mind notification
+      const script = `
         console.log("Wolf Pack Kahin (NotebookLM) Ajanı Bağlandı. Ortak akıl senkronizasyonu hazır. 🐺");
     `;
-    
-    sendCommand(socket, 'Runtime.evaluate', {
-      expression: script
-    }, cmdId++);
-    
-    setTimeout(() => {
+
+      sendCommand(
+        socket,
+        "Runtime.evaluate",
+        {
+          expression: script,
+        },
+        cmdId++,
+      );
+
+      setTimeout(() => {
         console.log("[Wolf Pack] NotebookLM test injection başarılı.");
         socket.end();
         process.exit(0);
-    }, 2000);
-    
-  }, (msg, socket) => {
-    const res = JSON.parse(msg);
-    if (res.result && res.result.result) {
+      }, 2000);
+    },
+    (msg, socket) => {
+      const res = JSON.parse(msg);
+      if (res.result && res.result.result) {
         // console.log("=>", res.result.result.value);
-    }
-  });
+      }
+    },
+  );
 }
 
 runNotebookAutomator();

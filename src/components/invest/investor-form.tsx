@@ -45,12 +45,14 @@ export function InvestorForm() {
 
   if (state.ok) {
     return (
-      <Card variant="elevated" className="border-success-500/20 border bg-[#0F1E2E]">
+      <Card variant="elevated" className="border-success-500/20 bg-bg-navy border">
         <CardContent className="py-12 text-center">
           <div className="bg-success-500/10 mx-auto flex h-16 w-16 items-center justify-center rounded-full">
             <CheckCircle2 className="text-success-400 h-10 w-10" />
           </div>
-          <h3 className="text-fg-primary mt-6 text-2xl font-bold">{t("success_title")}</h3>
+          <h3 className="text-fg-primary text-fg-secondaryxl mt-6 font-bold">
+            {t("success_title")}
+          </h3>
           <p className="text-fg-muted mx-auto mt-4 max-w-md text-sm">
             {t("success_body", { name: state.fullName || "", email: state.email || "" })}
           </p>

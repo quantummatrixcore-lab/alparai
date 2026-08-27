@@ -1,6 +1,8 @@
 "use server";
 
 import { createServerClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
+import { requireAdmin } from "@/lib/auth/session";
 
 export type AiAuditMetrics = {
   integrityScore: number | null;
@@ -24,22 +26,16 @@ export async function run360ExpertAudit(): Promise<{
 }> {
   try {
     const supabase = await createServerClient();
+    const admin = createAdminClient();
 
-    // Verify admin access
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-
-    if (!user) {
-      return { ok: false, error: "Unauthorized" };
-    }
+    const adminUser = await requireAdmin();
 
     // Query real system stats from Supabase
     const [{ count: providersCount }, { count: modelsCount }, { count: incidentsCount }] =
       await Promise.all([
-        supabase.from("ai_providers").select("*", { count: "exact", head: true }),
-        supabase.from("ai_free_models").select("*", { count: "exact", head: true }),
-        supabase.from("incidents").select("*", { count: "exact", head: true }),
+        admin.from("ai_providers").select("id", { count: "exact", head: true }),
+        admin.from("ai_free_models").select("id", { count: "exact", head: true }),
+        admin.from("incidents").select("id", { count: "exact", head: true }),
       ]);
 
     const activeProviders = providersCount ?? 0;

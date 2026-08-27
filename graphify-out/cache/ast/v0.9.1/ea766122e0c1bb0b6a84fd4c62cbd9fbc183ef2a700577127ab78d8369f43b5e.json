@@ -1,0 +1,95 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_000_template_md",
+      "label": "000-TEMPLATE.md",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/000-TEMPLATE.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_000_template_proposal_short_title",
+      "label": "PROPOSAL: <Short Title>",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/000-TEMPLATE.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_000_template_1_g\u00f6zlem_problem",
+      "label": "1. G\u00f6zlem / Problem",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/000-TEMPLATE.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_000_template_2_\u00f6neri",
+      "label": "2. \u00d6neri",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/000-TEMPLATE.md",
+      "source_location": "L14"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_000_template_3_acceptance_criterion_opsiyonel",
+      "label": "3. Acceptance Criterion (opsiyonel)",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/000-TEMPLATE.md",
+      "source_location": "L18"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_000_template_4_risk_maliyet",
+      "label": "4. Risk / Maliyet",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/000-TEMPLATE.md",
+      "source_location": "L22"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_000_template_md",
+      "target": "d_01_saas_products_alparai_docs_proposals_000_template_proposal_short_title",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/000-TEMPLATE.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_000_template_proposal_short_title",
+      "target": "d_01_saas_products_alparai_docs_proposals_000_template_1_g\u00f6zlem_problem",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/000-TEMPLATE.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_000_template_proposal_short_title",
+      "target": "d_01_saas_products_alparai_docs_proposals_000_template_2_\u00f6neri",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/000-TEMPLATE.md",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_000_template_proposal_short_title",
+      "target": "d_01_saas_products_alparai_docs_proposals_000_template_3_acceptance_criterion_opsiyonel",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/000-TEMPLATE.md",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_000_template_proposal_short_title",
+      "target": "d_01_saas_products_alparai_docs_proposals_000_template_4_risk_maliyet",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/000-TEMPLATE.md",
+      "source_location": "L22",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

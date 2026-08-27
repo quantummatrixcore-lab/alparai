@@ -79,9 +79,8 @@ function getKnownModelIds(): Set<string> {
 async function fetchDegradedModelIds(): Promise<Set<string>> {
   try {
     const supabase = createAdminClient();
-     
- 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data: degradedData } = await (supabase as any)
       .from("ai_free_models")
       .select("id")
@@ -103,9 +102,7 @@ export async function selectModelByCapability(domain: TaskDomain): Promise<Model
     const supabase = createAdminClient();
     const degradedIds = await fetchDegradedModelIds();
 
-     
- 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data, error } = await (supabase as any)
       .from("ai_routing_chains")
       .select("models")

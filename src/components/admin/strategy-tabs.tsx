@@ -64,7 +64,7 @@ export function StrategyTabs() {
   ];
 
   return (
-    <div className="mb-6 flex flex-wrap items-center gap-2 border-b border-white/10 pb-4">
+    <div className="border-border-subtle mb-6 flex flex-wrap items-center gap-2 border-b pb-4">
       {tabs.map((tab) => {
         const Icon = tab.icon;
         const isActive = tab.exact ? pathname === tab.href : pathname.startsWith(tab.href);

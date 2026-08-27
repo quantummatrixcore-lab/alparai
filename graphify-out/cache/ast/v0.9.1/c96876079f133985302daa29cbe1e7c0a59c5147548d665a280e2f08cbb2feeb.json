@@ -1,0 +1,287 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_md",
+      "label": "the-grok-files-day-6.md",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_the_grok_files_day_6_canl\u0131_sistem_entegrasyonu_ve_api_g\u00fcvenlik_zafiyetleri",
+      "label": "The Grok Files: Day 6 \u2014 Canl\u0131 Sistem Entegrasyonu ve API G\u00fcvenlik Zafiyetleri",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_1_giri\u015f_otonom_ajanlar_ve_d\u0131\u015f_d\u00fcnya_etkile\u015fiminin_sald\u0131r\u0131_y\u00fczeyi",
+      "label": "1. Giri\u015f: Otonom Ajanlar ve D\u0131\u015f D\u00fcnya Etkile\u015fiminin Sald\u0131r\u0131 Y\u00fczeyi",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_2_dolayl\u0131_i\u0307stem_enjeksiyonu_indirect_prompt_injection_e_posta_web_ve_veri_taban\u0131_vekt\u00f6rleri",
+      "label": "2. Dolayl\u0131 \u0130stem Enjeksiyonu (Indirect Prompt Injection): E-posta, Web ve Veri Taban\u0131 Vekt\u00f6rleri",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L25"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_a_e_posta_entegrasyonu_vekt\u00f6r\u00fc_autonomous_mail_agent_exploit",
+      "label": "A. E-posta Entegrasyonu Vekt\u00f6r\u00fc (Autonomous Mail Agent Exploit)",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L45"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_b_web_i\u0307\u00e7eri\u011fi_ve_rag_vekt\u00f6r\u00fc_web_scraping_document_poisoning",
+      "label": "B. Web \u0130\u00e7eri\u011fi ve RAG Vekt\u00f6r\u00fc (Web Scraping / Document Poisoning)",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L58"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_c_veri_taban\u0131_zafiyeti_poisoned_database_records",
+      "label": "C. Veri Taban\u0131 Zafiyeti (Poisoned Database Records)",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L69"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_3_yetkisiz_api_\u00e7a\u011fr\u0131lar\u0131_ve_veri_s\u0131z\u0131nt\u0131_vekt\u00f6rleri_tool_abuse_exfiltration",
+      "label": "3. Yetkisiz API \u00c7a\u011fr\u0131lar\u0131 ve Veri S\u0131z\u0131nt\u0131 Vekt\u00f6rleri (Tool Abuse & Exfiltration)",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L75"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_a_a\u015f\u0131r\u0131_yetkilendirilmi\u015f_ara\u00e7lar_over_privileged_tool_callings",
+      "label": "A. A\u015f\u0131r\u0131 Yetkilendirilmi\u015f Ara\u00e7lar (Over-Privileged Tool Callings)",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L79"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_b_dolayl\u0131_veri_s\u0131z\u0131nt\u0131_vekt\u00f6rleri_indirect_exfiltration_via_markdown_ssrf_dns_log",
+      "label": "B. Dolayl\u0131 Veri S\u0131z\u0131nt\u0131 Vekt\u00f6rleri (Indirect Exfiltration via Markdown / SSRF / DNS Log)",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L86"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_4_zero_trust_mimarisinin_llm_entegrasyonlar\u0131ndaki_yoklu\u011fu",
+      "label": "4. Zero-Trust Mimarisinin LLM Entegrasyonlar\u0131ndaki Yoklu\u011fu",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L99"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_5_kar\u015f\u0131la\u015ft\u0131rmal\u0131_risk_tablosu_geleneksel_api_g\u00fcvenli\u011fi_vs_llm_entegrasyon_riski",
+      "label": "5. Kar\u015f\u0131la\u015ft\u0131rmal\u0131 Risk Tablosu: Geleneksel API G\u00fcvenli\u011fi vs. LLM Entegrasyon Riski",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L109"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_6_alpar_ai_zero_trust_agentic_guard_core_\u00e7\u00f6z\u00fcm_mimari_standartlar\u0131",
+      "label": "6. ALPAR AI Zero-Trust Agentic Guard Core: \u00c7\u00f6z\u00fcm Mimari Standartlar\u0131",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L121"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_1_boundary_sanitizer_ipi_i\u0307zolasyonu",
+      "label": "1. Boundary Sanitizer (IPI \u0130zolasyonu)",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L138"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_2_confused_deputy_\u00f6nleme_user_scoped_proxy_tokens",
+      "label": "2. Confused Deputy \u00d6nleme: User-Scoped Proxy Tokens",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L142"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_3_strict_schema_enforcer_tool_allowlisting",
+      "label": "3. Strict Schema Enforcer & Tool Allowlisting",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L146"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_4_human_in_the_loop_hitl_e\u015fik_sistemi",
+      "label": "4. Human-in-the-Loop (HITL) E\u015fik Sistemi",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L150"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_7_sonu\u00e7_ve_gelecek_perspektifi",
+      "label": "7. Sonu\u00e7 ve Gelecek Perspektifi",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L156"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_md",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_the_grok_files_day_6_canl\u0131_sistem_entegrasyonu_ve_api_g\u00fcvenlik_zafiyetleri",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_the_grok_files_day_6_canl\u0131_sistem_entegrasyonu_ve_api_g\u00fcvenlik_zafiyetleri",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_1_giri\u015f_otonom_ajanlar_ve_d\u0131\u015f_d\u00fcnya_etkile\u015fiminin_sald\u0131r\u0131_y\u00fczeyi",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_the_grok_files_day_6_canl\u0131_sistem_entegrasyonu_ve_api_g\u00fcvenlik_zafiyetleri",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_2_dolayl\u0131_i\u0307stem_enjeksiyonu_indirect_prompt_injection_e_posta_web_ve_veri_taban\u0131_vekt\u00f6rleri",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_2_dolayl\u0131_i\u0307stem_enjeksiyonu_indirect_prompt_injection_e_posta_web_ve_veri_taban\u0131_vekt\u00f6rleri",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_a_e_posta_entegrasyonu_vekt\u00f6r\u00fc_autonomous_mail_agent_exploit",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L45",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_2_dolayl\u0131_i\u0307stem_enjeksiyonu_indirect_prompt_injection_e_posta_web_ve_veri_taban\u0131_vekt\u00f6rleri",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_b_web_i\u0307\u00e7eri\u011fi_ve_rag_vekt\u00f6r\u00fc_web_scraping_document_poisoning",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L58",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_2_dolayl\u0131_i\u0307stem_enjeksiyonu_indirect_prompt_injection_e_posta_web_ve_veri_taban\u0131_vekt\u00f6rleri",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_c_veri_taban\u0131_zafiyeti_poisoned_database_records",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L69",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_the_grok_files_day_6_canl\u0131_sistem_entegrasyonu_ve_api_g\u00fcvenlik_zafiyetleri",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_3_yetkisiz_api_\u00e7a\u011fr\u0131lar\u0131_ve_veri_s\u0131z\u0131nt\u0131_vekt\u00f6rleri_tool_abuse_exfiltration",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L75",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_3_yetkisiz_api_\u00e7a\u011fr\u0131lar\u0131_ve_veri_s\u0131z\u0131nt\u0131_vekt\u00f6rleri_tool_abuse_exfiltration",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_a_a\u015f\u0131r\u0131_yetkilendirilmi\u015f_ara\u00e7lar_over_privileged_tool_callings",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L79",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_3_yetkisiz_api_\u00e7a\u011fr\u0131lar\u0131_ve_veri_s\u0131z\u0131nt\u0131_vekt\u00f6rleri_tool_abuse_exfiltration",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_b_dolayl\u0131_veri_s\u0131z\u0131nt\u0131_vekt\u00f6rleri_indirect_exfiltration_via_markdown_ssrf_dns_log",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L86",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_the_grok_files_day_6_canl\u0131_sistem_entegrasyonu_ve_api_g\u00fcvenlik_zafiyetleri",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_4_zero_trust_mimarisinin_llm_entegrasyonlar\u0131ndaki_yoklu\u011fu",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L99",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_the_grok_files_day_6_canl\u0131_sistem_entegrasyonu_ve_api_g\u00fcvenlik_zafiyetleri",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_5_kar\u015f\u0131la\u015ft\u0131rmal\u0131_risk_tablosu_geleneksel_api_g\u00fcvenli\u011fi_vs_llm_entegrasyon_riski",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L109",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_the_grok_files_day_6_canl\u0131_sistem_entegrasyonu_ve_api_g\u00fcvenlik_zafiyetleri",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_6_alpar_ai_zero_trust_agentic_guard_core_\u00e7\u00f6z\u00fcm_mimari_standartlar\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L121",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_6_alpar_ai_zero_trust_agentic_guard_core_\u00e7\u00f6z\u00fcm_mimari_standartlar\u0131",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_1_boundary_sanitizer_ipi_i\u0307zolasyonu",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L138",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_6_alpar_ai_zero_trust_agentic_guard_core_\u00e7\u00f6z\u00fcm_mimari_standartlar\u0131",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_2_confused_deputy_\u00f6nleme_user_scoped_proxy_tokens",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L142",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_6_alpar_ai_zero_trust_agentic_guard_core_\u00e7\u00f6z\u00fcm_mimari_standartlar\u0131",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_3_strict_schema_enforcer_tool_allowlisting",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L146",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_6_alpar_ai_zero_trust_agentic_guard_core_\u00e7\u00f6z\u00fcm_mimari_standartlar\u0131",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_4_human_in_the_loop_hitl_e\u015fik_sistemi",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L150",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_the_grok_files_day_6_canl\u0131_sistem_entegrasyonu_ve_api_g\u00fcvenlik_zafiyetleri",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_6_7_sonu\u00e7_ve_gelecek_perspektifi",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-6.md",
+      "source_location": "L156",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

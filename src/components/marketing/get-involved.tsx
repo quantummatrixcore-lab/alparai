@@ -59,7 +59,9 @@ export function GetInvolved() {
           transition={{ duration: 0.6 }}
           className="mx-auto mb-12 max-w-2xl text-center"
         >
-          <h2 className="text-fg-primary text-2xl font-bold sm:text-3xl">{t("join_title")}</h2>
+          <h2 className="text-fg-primary text-fg-secondaryxl font-bold sm:text-3xl">
+            {t("join_title")}
+          </h2>
           <p className="text-fg-secondary mt-4 text-lg">{t("join_subtitle")}</p>
         </motion.div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -92,7 +94,7 @@ export function GetInvolved() {
                             <Icon className="h-5 w-5" />
                           </div>
                           {cta.tagKey && (
-                            <span className="text-fg-secondary rounded-full border border-white/5 bg-white/5 px-2 py-0.5 text-[10px] font-bold tracking-wider uppercase">
+                            <span className="text-fg-secondary border-border-subtle/50 rounded-full border bg-white/5 px-2 py-0.5 text-[10px] font-bold tracking-wider uppercase">
                               {t(cta.tagKey)}
                             </span>
                           )}

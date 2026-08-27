@@ -1,0 +1,111 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_admin_6_md",
+      "label": "ADMIN-6.md",
+      "file_type": "document",
+      "source_file": "docs/plan/items/ADMIN-6.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_admin_6_admin_6",
+      "label": "ADMIN-6",
+      "file_type": "document",
+      "source_file": "docs/plan/items/ADMIN-6.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_admin_6_why_this_and_not_another_shell_migration",
+      "label": "Why this, and not another shell migration",
+      "file_type": "document",
+      "source_file": "docs/plan/items/ADMIN-6.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_admin_6_required_work",
+      "label": "Required work",
+      "file_type": "document",
+      "source_file": "docs/plan/items/ADMIN-6.md",
+      "source_location": "L23"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_admin_6_acceptance",
+      "label": "Acceptance",
+      "file_type": "document",
+      "source_file": "docs/plan/items/ADMIN-6.md",
+      "source_location": "L46"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_admin_6_step_1_partially_done_the_sweep_of_2026_08_20",
+      "label": "Step 1 partially done: the sweep of 2026-08-20",
+      "file_type": "document",
+      "source_file": "docs/plan/items/ADMIN-6.md",
+      "source_location": "L53"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_admin_6_final_verification_completed",
+      "label": "Final Verification (Completed)",
+      "file_type": "document",
+      "source_file": "docs/plan/items/ADMIN-6.md",
+      "source_location": "L150"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_admin_6_md",
+      "target": "d_01_saas_products_alparai_docs_plan_items_admin_6_admin_6",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/ADMIN-6.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_admin_6_admin_6",
+      "target": "d_01_saas_products_alparai_docs_plan_items_admin_6_why_this_and_not_another_shell_migration",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/ADMIN-6.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_admin_6_admin_6",
+      "target": "d_01_saas_products_alparai_docs_plan_items_admin_6_required_work",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/ADMIN-6.md",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_admin_6_admin_6",
+      "target": "d_01_saas_products_alparai_docs_plan_items_admin_6_acceptance",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/ADMIN-6.md",
+      "source_location": "L46",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_admin_6_admin_6",
+      "target": "d_01_saas_products_alparai_docs_plan_items_admin_6_step_1_partially_done_the_sweep_of_2026_08_20",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/ADMIN-6.md",
+      "source_location": "L53",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_admin_6_admin_6",
+      "target": "d_01_saas_products_alparai_docs_plan_items_admin_6_final_verification_completed",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/ADMIN-6.md",
+      "source_location": "L150",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

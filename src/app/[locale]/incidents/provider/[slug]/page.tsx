@@ -61,10 +61,10 @@ export default async function ProviderIncidentsPage({
 
   return (
     <Container className="py-10">
-      <header className="mb-8 rounded-xl border border-white/10 bg-white/5 p-6 shadow-lg">
+      <header className="border-border-subtle mb-8 rounded-xl border bg-white/5 p-6 shadow-lg">
         <div className="mb-2 flex items-center gap-3">
           <Cpu className="text-brand-400 h-6 w-6" />
-          <h1 className="text-2xl font-bold text-white">
+          <h1 className="text-fg-secondaryxl font-bold text-white">
             {t("header_title", { providerName: provider.name })}
           </h1>
         </div>
@@ -80,7 +80,7 @@ export default async function ProviderIncidentsPage({
         </h2>
 
         {incidentList.length === 0 ? (
-          <div className="text-fg-muted rounded-lg border border-white/10 bg-white/5 p-8 text-center text-sm">
+          <div className="text-fg-muted border-border-subtle rounded-lg border bg-white/5 p-8 text-center text-sm">
             {t("no_incidents")}
           </div>
         ) : (
@@ -89,7 +89,7 @@ export default async function ProviderIncidentsPage({
               <Link
                 key={inc.id}
                 href={`/incidents/${inc.id}`}
-                className="hover:border-brand-500/50 block rounded-lg border border-white/10 bg-white/5 p-4 transition hover:bg-white/10"
+                className="hover:border-brand-500/50 border-border-subtle block rounded-lg border bg-white/5 p-4 transition hover:bg-white/10"
               >
                 <div className="text-fg-muted mb-1 flex items-center justify-between text-xs">
                   <span className="text-brand-400 font-mono uppercase">{inc.category}</span>

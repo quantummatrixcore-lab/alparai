@@ -188,7 +188,7 @@ export default async function AIActTrackerPage({
         <div className="space-y-8">
           {/* Header */}
           <header className="space-y-4">
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-400">
+            <div className="border-success-500/20 inline-flex items-center gap-2 rounded-full border bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-400">
               <Shield className="h-3.5 w-3.5" />
               EU AI Act Tracker
             </div>
@@ -309,7 +309,7 @@ export default async function AIActTrackerPage({
 
         {/* Sidebar explaining Article 73 */}
         <aside className="space-y-6">
-          <Card className="border-emerald-500/20 bg-emerald-950/5">
+          <Card className="border-success-500/20 bg-emerald-950/5">
             <CardHeader className="pb-2">
               <CardTitle className="flex items-center gap-2 text-sm font-bold text-emerald-400">
                 <Info className="h-4 w-4" />
@@ -330,7 +330,7 @@ export default async function AIActTrackerPage({
             </CardContent>
           </Card>
 
-          <Card className="border-red-500/20 bg-red-950/5">
+          <Card className="border-danger-500/20 bg-red-950/5">
             <CardHeader className="pb-2">
               <CardTitle className="flex items-center gap-2 text-sm font-bold text-red-400">
                 <AlertTriangle className="h-4 w-4" />

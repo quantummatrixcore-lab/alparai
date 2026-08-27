@@ -342,11 +342,13 @@ const runSubmitWork = async (
       }
 
       waitUntil(
-        Promise.all(emailPromises).then(() => {
-          logger.info("Resend emails dispatched successfully", { incidentId });
-        }).catch((emailErr) => {
-          logger.error("Failed to send Resend emails", { error: emailErr, incidentId });
-        })
+        Promise.all(emailPromises)
+          .then(() => {
+            logger.info("Resend emails dispatched successfully", { incidentId });
+          })
+          .catch((emailErr) => {
+            logger.error("Failed to send Resend emails", { error: emailErr, incidentId });
+          }),
       );
     } catch (emailErr) {
       logger.error("Failed to send Resend emails", { error: emailErr, incidentId });
@@ -357,9 +359,9 @@ const runSubmitWork = async (
 
   // Auto-translate incident
   waitUntil(
-    translateIncidentToTR(incidentId).catch(err => {
+    translateIncidentToTR(incidentId).catch((err) => {
       logger.error("Failed to auto-translate incident", { incidentId, err });
-    })
+    }),
   );
 
   waitUntil(
@@ -369,9 +371,9 @@ const runSubmitWork = async (
       modelId: isCustomValue(raw.model_id) ? null : raw.model_id || null,
       title: raw.title,
       severity: (raw.severity as "low" | "medium" | "high" | "critical") || "medium",
-    }).catch(claimErr => {
+    }).catch((claimErr) => {
       logger.warn("Failed to trigger Claim & Respond alert", { incidentId, error: claimErr });
-    })
+    }),
   );
 
   return { kind: "success", value: { id: incidentId } };
@@ -520,13 +522,13 @@ export async function submitIncident(
           if (existingIncidentId && existingIncidentId !== "IN_PROGRESS") {
             logger.info(
               "[Idempotency] Duplicate submission detected. Returning existing incident ID.",
-              { clientIdempotencyKey, existingIncidentId }
+              { clientIdempotencyKey, existingIncidentId },
             );
             return { ok: true, incidentId: existingIncidentId };
           }
           logger.warn(
             "[Idempotency] Concurrent submission in progress with same idempotency key.",
-            { clientIdempotencyKey }
+            { clientIdempotencyKey },
           );
           return {
             ok: false,
@@ -746,7 +748,12 @@ export async function submitIncident(
           .eq("id", incidentId);
       } else {
         // Run rule-based pre-triage COGS check BEFORE invoking LLM moderation and cross-audit (pass incidentId to prevent self-collision)
-        const triage = await preTriageCheck(raw.title, raw.description, incidentId, hashIp(ip || "127.0.0.1") || undefined);
+        const triage = await preTriageCheck(
+          raw.title,
+          raw.description,
+          incidentId,
+          hashIp(ip || "127.0.0.1") || undefined,
+        );
         if (!triage.ok) {
           // Failed pre-triage: status set/kept as pending_review, bypassed AI, never auto-published
           await admin
@@ -759,7 +766,10 @@ export async function submitIncident(
             .eq("id", incidentId);
         } else {
           try {
-            const res = await autoModerateIncidentAction(incidentId);
+            const res = await autoModerateIncidentAction(
+              incidentId,
+              process.env.SUPABASE_SERVICE_ROLE_KEY,
+            );
             if (res.ok) {
               waitUntil(
                 runCrossAudit(incidentId).catch(async (err) => {
@@ -778,7 +788,7 @@ export async function submitIncident(
                       })
                       .eq("id", incidentId);
                   }
-                })
+                }),
               );
             } else {
               logger.error("Auto-moderation completed with non-ok result", { incidentId });
@@ -794,7 +804,9 @@ export async function submitIncident(
               }
             }
           } catch (err) {
-            logger.error("Async auto-moderation failed", { error: err instanceof Error ? err.message : String(err) });
+            logger.error("Async auto-moderation failed", {
+              error: err instanceof Error ? err.message : String(err),
+            });
             const adminClient = createAdminClient();
             if (adminClient) {
               await adminClient

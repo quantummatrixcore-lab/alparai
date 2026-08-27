@@ -1,0 +1,111 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_agents_swarm_doctrine_md",
+      "label": "SWARM_DOCTRINE.md",
+      "file_type": "document",
+      "source_file": ".agents/SWARM_DOCTRINE.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_swarm_doctrine_alpar_ai_swarm_doctrine",
+      "label": "ALPAR AI SWARM DOCTRINE",
+      "file_type": "document",
+      "source_file": ".agents/SWARM_DOCTRINE.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_swarm_doctrine_1_vizyon_vision",
+      "label": "1. Vizyon (Vision)",
+      "file_type": "document",
+      "source_file": ".agents/SWARM_DOCTRINE.md",
+      "source_location": "L3"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_swarm_doctrine_2_alt\u0131_swarm_prensibi_matrix",
+      "label": "2. Alt\u0131 Swarm Prensibi Matrix",
+      "file_type": "document",
+      "source_file": ".agents/SWARM_DOCTRINE.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_swarm_doctrine_3_alpar_ai_ajan_s\u00f6zle\u015fmesi_agent_agreement",
+      "label": "3. ALPAR AI Ajan S\u00f6zle\u015fmesi (Agent Agreement)",
+      "file_type": "document",
+      "source_file": ".agents/SWARM_DOCTRINE.md",
+      "source_location": "L16"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_swarm_doctrine_4_orkestrasyon_zinciri_orchestration_chain",
+      "label": "4. Orkestrasyon Zinciri (Orchestration Chain)",
+      "file_type": "document",
+      "source_file": ".agents/SWARM_DOCTRINE.md",
+      "source_location": "L23"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_swarm_doctrine_5_swarm_kurallar\u0131_immutable_laws",
+      "label": "5. Swarm Kurallar\u0131 (Immutable Laws)",
+      "file_type": "document",
+      "source_file": ".agents/SWARM_DOCTRINE.md",
+      "source_location": "L33"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_agents_swarm_doctrine_md",
+      "target": "d_01_saas_products_alparai_agents_swarm_doctrine_alpar_ai_swarm_doctrine",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/SWARM_DOCTRINE.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_swarm_doctrine_alpar_ai_swarm_doctrine",
+      "target": "d_01_saas_products_alparai_agents_swarm_doctrine_1_vizyon_vision",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/SWARM_DOCTRINE.md",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_swarm_doctrine_alpar_ai_swarm_doctrine",
+      "target": "d_01_saas_products_alparai_agents_swarm_doctrine_2_alt\u0131_swarm_prensibi_matrix",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/SWARM_DOCTRINE.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_swarm_doctrine_alpar_ai_swarm_doctrine",
+      "target": "d_01_saas_products_alparai_agents_swarm_doctrine_3_alpar_ai_ajan_s\u00f6zle\u015fmesi_agent_agreement",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/SWARM_DOCTRINE.md",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_swarm_doctrine_alpar_ai_swarm_doctrine",
+      "target": "d_01_saas_products_alparai_agents_swarm_doctrine_4_orkestrasyon_zinciri_orchestration_chain",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/SWARM_DOCTRINE.md",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_swarm_doctrine_alpar_ai_swarm_doctrine",
+      "target": "d_01_saas_products_alparai_agents_swarm_doctrine_5_swarm_kurallar\u0131_immutable_laws",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/SWARM_DOCTRINE.md",
+      "source_location": "L33",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

@@ -5,6 +5,7 @@ import {
   type InvoiceData,
   type StoredInvoiceResult,
 } from "@/lib/billing/invoices";
+import { requireAdmin } from "@/lib/auth/session";
 import { logger } from "@/lib/utils/logger";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 
@@ -15,6 +16,7 @@ export async function generateAndStoreInvoiceAction(
   data: InvoiceData,
 ): Promise<{ success: boolean; result?: StoredInvoiceResult; error?: string }> {
   try {
+    await requireAdmin();
     const targetKey = data.customerEmail || "anonymous";
     const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.billing_invoice}:${targetKey}`);
     if (!rl.ok) {

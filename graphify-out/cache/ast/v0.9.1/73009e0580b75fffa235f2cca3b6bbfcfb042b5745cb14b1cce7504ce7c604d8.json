@@ -1,0 +1,255 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_md",
+      "label": "the-grok-files-day-8.md",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_the_grok_files_g\u00fcn_8_sorumluluk_hatlar\u0131_ve_whistleblower_i\u0307hbar_eksikli\u011fi",
+      "label": "The Grok Files - G\u00fcn 8: Sorumluluk Hatlar\u0131 ve Whistleblower/\u0130hbar Eksikli\u011fi",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_executive_summary_giri\u015f",
+      "label": "\ud83d\udccc Executive Summary & Giri\u015f",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L14"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_1_\u015firket_i\u0307\u00e7i_g\u00fcvenlik_ara\u015ft\u0131rmac\u0131lar\u0131n\u0131n_ve_etik_kurullar\u0131n_susturulmas\u0131",
+      "label": "1. \u015eirket \u0130\u00e7i G\u00fcvenlik Ara\u015ft\u0131rmac\u0131lar\u0131n\u0131n ve Etik Kurullar\u0131n Susturulmas\u0131",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L22"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_a_sistematik_tasfiye_ve_yetki_k\u0131s\u0131tlama_vakalar\u0131",
+      "label": "A. Sistematik Tasfiye ve Yetki K\u0131s\u0131tlama Vakalar\u0131",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L45"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_b_finansal_\u015fantaj_ara\u00e7lar\u0131_a\u011f\u0131r_nda_ve_hisse_hak_kayb\u0131_clawback",
+      "label": "B. Finansal \u015eantaj Ara\u00e7lar\u0131: A\u011f\u0131r NDA ve Hisse Hak Kayb\u0131 (Clawback)",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L50"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_2_sakatlanan_bug_bounty_programlar\u0131_ve_tehdit_politikalar\u0131",
+      "label": "2. Sakatlanan Bug Bounty Programlar\u0131 ve Tehdit Politikalar\u0131",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L57"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_a_kapsam_d\u0131\u015f\u0131_out_of_scope_oyunlar\u0131",
+      "label": "A. \"Kapsam D\u0131\u015f\u0131\" (Out of Scope) Oyunlar\u0131",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L68"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_b_yasal_tehditler_ve_tehditk\u00e2r_safe_harbor_s\u00f6zle\u015fmeleri",
+      "label": "B. Yasal Tehditler ve Tehditk\u00e2r \"Safe Harbor\" S\u00f6zle\u015fmeleri",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L75"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_3_sorumlu_a\u00e7\u0131klama_responsible_disclosure_s\u00fcre\u00e7lerindeki_kurumsal_diren\u00e7",
+      "label": "3. Sorumlu A\u00e7\u0131klama (Responsible Disclosure) S\u00fcre\u00e7lerindeki Kurumsal Diren\u00e7",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L82"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_a_mimari_yeniden_tasar\u0131m_yerine_y\u00fczeysel_yamalar_band_aid_fixes",
+      "label": "A. Mimari Yeniden Tasar\u0131m Yerine Y\u00fczeysel Yamalar (Band-Aid Fixes)",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L105"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_b_i\u0307leti\u015fim_karartmas\u0131_ve_kriz_y\u00f6netimi_mant\u0131\u011f\u0131",
+      "label": "B. \u0130leti\u015fim Karartmas\u0131 ve Kriz Y\u00f6netimi Mant\u0131\u011f\u0131",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L111"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_4_alpar_ai_hesap_verebilirlik_ve_\u015feffafl\u0131k_standartlar\u0131",
+      "label": "4. ALPAR AI Hesap Verebilirlik ve \u015eeffafl\u0131k Standartlar\u0131",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L118"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_a_kriptografik_i\u0307hbar_ve_g\u00fcvenlik_denetim_altyap\u0131s\u0131_proof_of_disclosure",
+      "label": "A. Kriptografik \u0130hbar ve G\u00fcvenlik Denetim Altyap\u0131s\u0131 (Proof of Disclosure)",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L122"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_b_g\u00fcvenlik_ara\u015ft\u0131rmac\u0131lar\u0131_i\u0307\u00e7in_hakiki_safe_harbor_politikas\u0131",
+      "label": "B. G\u00fcvenlik Ara\u015ft\u0131rmac\u0131lar\u0131 \u0130\u00e7in Hakiki Safe Harbor Politikas\u0131",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L127"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_sonu\u00e7_ve_g\u00fcn_9_\u00f6n_i\u0307ncelemesi",
+      "label": "\ud83c\udfaf Sonu\u00e7 ve G\u00fcn 9 \u00d6n \u0130ncelemesi",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L134"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_md",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_the_grok_files_g\u00fcn_8_sorumluluk_hatlar\u0131_ve_whistleblower_i\u0307hbar_eksikli\u011fi",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_the_grok_files_g\u00fcn_8_sorumluluk_hatlar\u0131_ve_whistleblower_i\u0307hbar_eksikli\u011fi",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_executive_summary_giri\u015f",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_the_grok_files_g\u00fcn_8_sorumluluk_hatlar\u0131_ve_whistleblower_i\u0307hbar_eksikli\u011fi",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_1_\u015firket_i\u0307\u00e7i_g\u00fcvenlik_ara\u015ft\u0131rmac\u0131lar\u0131n\u0131n_ve_etik_kurullar\u0131n_susturulmas\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_1_\u015firket_i\u0307\u00e7i_g\u00fcvenlik_ara\u015ft\u0131rmac\u0131lar\u0131n\u0131n_ve_etik_kurullar\u0131n_susturulmas\u0131",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_a_sistematik_tasfiye_ve_yetki_k\u0131s\u0131tlama_vakalar\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L45",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_1_\u015firket_i\u0307\u00e7i_g\u00fcvenlik_ara\u015ft\u0131rmac\u0131lar\u0131n\u0131n_ve_etik_kurullar\u0131n_susturulmas\u0131",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_b_finansal_\u015fantaj_ara\u00e7lar\u0131_a\u011f\u0131r_nda_ve_hisse_hak_kayb\u0131_clawback",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L50",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_the_grok_files_g\u00fcn_8_sorumluluk_hatlar\u0131_ve_whistleblower_i\u0307hbar_eksikli\u011fi",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_2_sakatlanan_bug_bounty_programlar\u0131_ve_tehdit_politikalar\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L57",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_2_sakatlanan_bug_bounty_programlar\u0131_ve_tehdit_politikalar\u0131",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_a_kapsam_d\u0131\u015f\u0131_out_of_scope_oyunlar\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L68",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_2_sakatlanan_bug_bounty_programlar\u0131_ve_tehdit_politikalar\u0131",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_b_yasal_tehditler_ve_tehditk\u00e2r_safe_harbor_s\u00f6zle\u015fmeleri",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L75",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_the_grok_files_g\u00fcn_8_sorumluluk_hatlar\u0131_ve_whistleblower_i\u0307hbar_eksikli\u011fi",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_3_sorumlu_a\u00e7\u0131klama_responsible_disclosure_s\u00fcre\u00e7lerindeki_kurumsal_diren\u00e7",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L82",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_3_sorumlu_a\u00e7\u0131klama_responsible_disclosure_s\u00fcre\u00e7lerindeki_kurumsal_diren\u00e7",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_a_mimari_yeniden_tasar\u0131m_yerine_y\u00fczeysel_yamalar_band_aid_fixes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L105",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_3_sorumlu_a\u00e7\u0131klama_responsible_disclosure_s\u00fcre\u00e7lerindeki_kurumsal_diren\u00e7",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_b_i\u0307leti\u015fim_karartmas\u0131_ve_kriz_y\u00f6netimi_mant\u0131\u011f\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L111",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_the_grok_files_g\u00fcn_8_sorumluluk_hatlar\u0131_ve_whistleblower_i\u0307hbar_eksikli\u011fi",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_4_alpar_ai_hesap_verebilirlik_ve_\u015feffafl\u0131k_standartlar\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L118",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_4_alpar_ai_hesap_verebilirlik_ve_\u015feffafl\u0131k_standartlar\u0131",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_a_kriptografik_i\u0307hbar_ve_g\u00fcvenlik_denetim_altyap\u0131s\u0131_proof_of_disclosure",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L122",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_4_alpar_ai_hesap_verebilirlik_ve_\u015feffafl\u0131k_standartlar\u0131",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_b_g\u00fcvenlik_ara\u015ft\u0131rmac\u0131lar\u0131_i\u0307\u00e7in_hakiki_safe_harbor_politikas\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L127",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_the_grok_files_g\u00fcn_8_sorumluluk_hatlar\u0131_ve_whistleblower_i\u0307hbar_eksikli\u011fi",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_8_sonu\u00e7_ve_g\u00fcn_9_\u00f6n_i\u0307ncelemesi",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-8.md",
+      "source_location": "L134",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

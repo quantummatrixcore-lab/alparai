@@ -1,4 +1,3 @@
- 
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { z } from "zod";
@@ -32,7 +31,6 @@ export async function POST(req: Request) {
 
     const supabase = createAdminClient();
 
-     
     const { data, error } = await supabase
       .from("webhooks")
       .insert({ url, secret, provider_filter })

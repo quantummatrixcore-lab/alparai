@@ -81,16 +81,16 @@ export default async function IncidentEmbedPage({ params }: EmbedPageProps) {
 
   return (
     <div className="flex min-h-screen items-center justify-center p-3 sm:p-4">
-      <div className="border-border-subtle bg-bg-secondary/40 w-full max-w-md rounded-2xl border p-5 backdrop-blur-xl transition-all duration-300 hover:border-white/10">
+      <div className="border-border-subtle bg-bg-secondary/40 hover:border-border-subtle w-full max-w-md rounded-2xl border p-5 backdrop-blur-xl transition-all duration-300">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-white/5 pb-3">
+        <div className="border-border-subtle/50 flex items-center justify-between border-b pb-3">
           <div className="flex items-center gap-2">
             <span className="bg-brand-500 h-2 w-2 animate-pulse rounded-full" />
             <span className="text-fg-secondary text-[10px] font-black tracking-widest uppercase">
               {tCommon("monitor", { defaultValue: "ALPAR AI • MONITOR" })}
             </span>
           </div>
-          <span className="text-fg-muted rounded border border-white/5 bg-white/5 px-2 py-0.5 text-[9px] font-bold uppercase">
+          <span className="text-fg-muted border-border-subtle/50 rounded border bg-white/5 px-2 py-0.5 text-[9px] font-bold uppercase">
             {tCat(incident.category)}
           </span>
         </div>
@@ -120,7 +120,7 @@ export default async function IncidentEmbedPage({ params }: EmbedPageProps) {
 
         {/* Truth Score (if available) */}
         {truthScore !== null && (
-          <div className="mt-4 rounded-xl border border-white/5 bg-white/5 p-3">
+          <div className="border-border-subtle/50 mt-4 rounded-xl border bg-white/5 p-3">
             <div className="text-fg-secondary flex items-center justify-between text-[10px] font-extrabold tracking-wider uppercase">
               <span>{tFeed("truthScore")}</span>
               <span
@@ -151,7 +151,7 @@ export default async function IncidentEmbedPage({ params }: EmbedPageProps) {
         )}
 
         {/* Footer */}
-        <div className="mt-5 flex items-center justify-between border-t border-white/5 pt-3">
+        <div className="border-border-subtle/50 mt-5 flex items-center justify-between border-t pt-3">
           <div className="text-fg-muted flex items-center gap-1.5 text-[10px] font-semibold">
             <Clock className="h-3.5 w-3.5" />
             <span>

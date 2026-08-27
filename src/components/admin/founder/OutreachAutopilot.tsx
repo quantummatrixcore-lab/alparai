@@ -59,21 +59,21 @@ export function OutreachAutopilot() {
             <Clock className="h-4 w-4" />
             <p className="text-xs font-semibold">Pending</p>
           </div>
-          <p className="mt-2 text-2xl font-bold text-white">{stats.pending}</p>
+          <p className="text-fg-secondaryxl mt-2 font-bold text-white">{stats.pending}</p>
         </div>
         <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-4 transition-all hover:bg-white/[0.06]">
           <div className="flex items-center gap-2 text-emerald-400">
             <CheckCircle2 className="h-4 w-4" />
             <p className="text-xs font-semibold">Approved</p>
           </div>
-          <p className="mt-2 text-2xl font-bold text-white">{stats.approved}</p>
+          <p className="text-fg-secondaryxl mt-2 font-bold text-white">{stats.approved}</p>
         </div>
         <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-4 transition-all hover:bg-white/[0.06]">
           <div className="flex items-center gap-2 text-cyan-400">
             <Send className="h-4 w-4" />
             <p className="text-xs font-semibold">Sent (24h)</p>
           </div>
-          <p className="mt-2 text-2xl font-bold text-white">{stats.sent}</p>
+          <p className="text-fg-secondaryxl mt-2 font-bold text-white">{stats.sent}</p>
         </div>
         <div className="border-border-subtle relative overflow-hidden rounded-2xl border bg-white/[0.03] p-4">
           <div
@@ -84,21 +84,21 @@ export function OutreachAutopilot() {
             <Zap className="h-4 w-4" />
             <p className="text-xs font-semibold">Limit Usage</p>
           </div>
-          <p className="mt-2 text-2xl font-bold text-white">
+          <p className="text-fg-secondaryxl mt-2 font-bold text-white">
             {stats.sent + stats.approved} / {stats.limit}
           </p>
         </div>
       </div>
 
       {/* Outbound Guardian & Action */}
-      <div className="flex flex-col gap-4 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="border-success-500/20 flex flex-col gap-4 rounded-2xl border bg-emerald-500/5 p-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-start gap-4">
           <div className="rounded-full bg-emerald-500/20 p-2 text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
             <ShieldCheck className="h-6 w-6" />
           </div>
           <div>
             <h4 className="text-sm font-bold text-white">Outbound Guardian: ACTIVE</h4>
-            <p className="text-xs text-zinc-400">
+            <p className="text-fg-muted text-xs">
               Anti-leak scanning is enabled. All emails are verified against tone and context rules
               before execution.
             </p>

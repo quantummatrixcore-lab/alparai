@@ -16,7 +16,7 @@ export function QuotaGauges({ providers }: { providers: Provider[] }) {
         return (
           <div
             key={provider.id}
-            className="bg-bg-elevated/80 rounded-xl border border-white/10 p-6"
+            className="bg-bg-elevated/80 border-border-subtle rounded-xl border p-6"
           >
             <h3 className="text-sm font-bold text-white">{provider.name}</h3>
             <p className="text-fg-muted mt-1 text-xs">

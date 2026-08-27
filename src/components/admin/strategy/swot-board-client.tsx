@@ -286,7 +286,7 @@ export function SwotBoardClient({
         />
 
         {/* Quadrant Header */}
-        <div className="relative z-10 mb-4 flex items-center justify-between border-b border-white/5 pb-3.5">
+        <div className="border-border-subtle/50 relative z-10 mb-4 flex items-center justify-between border-b pb-3.5">
           <div className="flex items-center gap-2.5">
             <div
               className={cn(
@@ -340,7 +340,7 @@ export function SwotBoardClient({
                 exit={{ opacity: 0 }}
                 className="flex flex-col items-center justify-center py-10 text-center"
               >
-                <div className="text-fg-muted mb-2.5 rounded-2xl border border-white/5 bg-white/5 p-3">
+                <div className="text-fg-muted border-border-subtle/50 mb-2.5 rounded-2xl border bg-white/5 p-3">
                   <Layers className="h-6 w-6 opacity-40" />
                 </div>
                 <p className="text-fg-muted text-xs font-medium italic">{t("swot_no_items")}</p>
@@ -354,7 +354,7 @@ export function SwotBoardClient({
                   whileHover={{ y: -3, scale: 1.01, zIndex: 20 }}
                   className={cn(
                     "group relative rounded-2xl border p-4 transition-all duration-300",
-                    "bg-bg-tertiary/40 hover:bg-bg-tertiary/70 border-white/10 shadow-md backdrop-blur-md hover:border-white/20 hover:shadow-xl",
+                    "bg-bg-tertiary/40 hover:bg-bg-tertiary/70 border-border-subtle hover:border-border-strong shadow-md backdrop-blur-md hover:shadow-xl",
                   )}
                 >
                   {/* Category Accent Stripe on Left */}
@@ -380,7 +380,7 @@ export function SwotBoardClient({
                           </span>
                         )}
                         {item.status === "archived" && (
-                          <span className="text-fg-muted flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-1.5 py-0.5 text-[10px] font-semibold">
+                          <span className="text-fg-muted border-border-subtle flex items-center gap-1 rounded-md border bg-white/5 px-1.5 py-0.5 text-[10px] font-semibold">
                             <Archive className="h-3 w-3" />
                             {t("swot_status_archived")}
                           </span>
@@ -420,7 +420,7 @@ export function SwotBoardClient({
 
                   {/* Action Plan Box */}
                   {item.action_plan && (
-                    <div className="mt-3 ml-2 rounded-xl border border-white/5 bg-black/30 p-2.5 backdrop-blur-sm">
+                    <div className="border-border-subtle/50 mt-3 ml-2 rounded-xl border bg-black/30 p-2.5 backdrop-blur-sm">
                       <div className="mb-1 flex items-center gap-1.5">
                         <Lightbulb className="text-warning-400 h-3.5 w-3.5 shrink-0" />
                         <span className="text-warning-300/90 text-[10px] font-bold tracking-wider uppercase">
@@ -437,7 +437,7 @@ export function SwotBoardClient({
                   {item.target_date && (
                     <div className="text-fg-muted mt-3 ml-2 flex items-center gap-1.5 text-[11px] font-medium">
                       <Calendar className="text-brand-400 h-3.5 w-3.5" />
-                      <span className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5">
+                      <span className="border-border-subtle rounded-md border bg-white/5 px-2 py-0.5">
                         {item.target_date}
                       </span>
                     </div>
@@ -484,12 +484,12 @@ export function SwotBoardClient({
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
-        className="dark:bg-bg-tertiary/30 rounded-3xl border border-white/10 bg-white/5 p-5 shadow-[0_20px_50px_rgba(0,0,0,0.3),_inset_0_1px_1px_0_rgba(255,255,255,0.25)] backdrop-blur-2xl backdrop-contrast-125 backdrop-saturate-150"
+        className="dark:bg-bg-tertiary/30 border-border-subtle rounded-3xl border bg-white/5 p-5 shadow-[0_20px_50px_rgba(0,0,0,0.3),_inset_0_1px_1px_0_rgba(255,255,255,0.25)] backdrop-blur-2xl backdrop-contrast-125 backdrop-saturate-150"
       >
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           {/* Stats Badges */}
           <div className="flex flex-wrap items-center gap-3">
-            <div className="flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-3.5 py-2 shadow-inner">
+            <div className="border-border-subtle flex items-center gap-2 rounded-2xl border bg-white/5 px-3.5 py-2 shadow-inner">
               <Zap className="text-brand-400 h-4 w-4" />
               <div>
                 <span className="text-fg-muted block text-[10px] leading-none font-bold tracking-wider uppercase">
@@ -530,7 +530,7 @@ export function SwotBoardClient({
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Filter SWOT..."
-                className="bg-bg-tertiary/40 placeholder-fg-muted/60 focus:border-brand-500 focus:ring-brand-500 w-full rounded-2xl border border-white/10 py-2 pr-4 pl-9 text-xs text-white backdrop-blur-md focus:ring-1 focus:outline-none"
+                className="bg-bg-tertiary/40 placeholder-fg-muted/60 focus:border-brand-500 focus:ring-brand-500 border-border-subtle w-full rounded-2xl border py-2 pr-4 pl-9 text-xs text-white backdrop-blur-md focus:ring-1 focus:outline-none"
               />
               {searchQuery && (
                 <button
@@ -543,7 +543,7 @@ export function SwotBoardClient({
             </div>
 
             {/* Filter Category Pills */}
-            <div className="bg-bg-tertiary/30 flex items-center gap-1 overflow-x-auto rounded-2xl border border-white/10 p-1 backdrop-blur-md">
+            <div className="bg-bg-tertiary/30 border-border-subtle flex items-center gap-1 overflow-x-auto rounded-2xl border p-1 backdrop-blur-md">
               {(["all", "strength", "weakness", "opportunity", "threat"] as const).map(
                 (category) => {
                   const isActive = activeCategoryFilter === category;
@@ -601,7 +601,7 @@ export function SwotBoardClient({
               <div className="bg-brand-500/20 pointer-events-none absolute -top-20 left-1/2 h-32 w-64 -translate-x-1/2 rounded-full blur-3xl" />
 
               {/* Modal Header */}
-              <div className="relative mb-6 flex items-center justify-between border-b border-white/10 pb-4">
+              <div className="border-border-subtle relative mb-6 flex items-center justify-between border-b pb-4">
                 <div className="flex items-center gap-2">
                   <div className="border-brand-500/30 bg-brand-500/10 text-brand-400 rounded-xl border p-2">
                     <Sparkles className="h-5 w-5" />
@@ -618,7 +618,7 @@ export function SwotBoardClient({
 
                 <button
                   onClick={() => setIsModalOpen(false)}
-                  className="text-fg-muted rounded-xl border border-white/10 bg-white/5 p-2 transition hover:bg-white/10 hover:text-white"
+                  className="text-fg-muted border-border-subtle rounded-xl border bg-white/5 p-2 transition hover:bg-white/10 hover:text-white"
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -644,7 +644,7 @@ export function SwotBoardClient({
                             "rounded-xl border p-2.5 text-center text-xs font-bold transition-all duration-200",
                             isCatSelected
                               ? cfg.badgeStyle + " shadow-md"
-                              : "text-fg-muted border-white/10 bg-white/5 hover:border-white/20 hover:text-white",
+                              : "text-fg-muted border-border-subtle hover:border-border-strong bg-white/5 hover:text-white",
                           )}
                         >
                           {t(cfg.titleKey)}
@@ -669,7 +669,7 @@ export function SwotBoardClient({
                         ? t("swot_placeholder_strength")
                         : t("swot_placeholder_weakness")
                     }
-                    className="bg-bg-tertiary/60 placeholder-fg-muted/60 focus:border-brand-500 focus:ring-brand-500 w-full rounded-2xl border border-white/10 px-4 py-2.5 text-sm text-white backdrop-blur-md focus:ring-1 focus:outline-none"
+                    className="bg-bg-tertiary/60 placeholder-fg-muted/60 focus:border-brand-500 focus:ring-brand-500 border-border-subtle w-full rounded-2xl border px-4 py-2.5 text-sm text-white backdrop-blur-md focus:ring-1 focus:outline-none"
                   />
                 </div>
 
@@ -683,7 +683,7 @@ export function SwotBoardClient({
                     onChange={(e) => setActiveItem({ ...activeItem, description: e.target.value })}
                     rows={2.5}
                     placeholder="Provide additional context or rationale..."
-                    className="bg-bg-tertiary/60 placeholder-fg-muted/60 focus:border-brand-500 focus:ring-brand-500 w-full resize-none rounded-2xl border border-white/10 px-4 py-2.5 text-sm text-white backdrop-blur-md focus:ring-1 focus:outline-none"
+                    className="bg-bg-tertiary/60 placeholder-fg-muted/60 focus:border-brand-500 focus:ring-brand-500 border-border-subtle w-full resize-none rounded-2xl border px-4 py-2.5 text-sm text-white backdrop-blur-md focus:ring-1 focus:outline-none"
                   />
                 </div>
 
@@ -694,7 +694,7 @@ export function SwotBoardClient({
                     <label className="text-fg-secondary mb-1.5 block text-xs font-bold tracking-wider uppercase">
                       {t("swot_weight_label")}
                     </label>
-                    <div className="bg-bg-tertiary/40 flex rounded-2xl border border-white/10 p-1">
+                    <div className="bg-bg-tertiary/40 border-border-subtle flex rounded-2xl border p-1">
                       {(["low", "medium", "high"] as const).map((w) => (
                         <button
                           key={w}
@@ -726,7 +726,7 @@ export function SwotBoardClient({
                     <label className="text-fg-secondary mb-1.5 block text-xs font-bold tracking-wider uppercase">
                       {t("swot_status_label")}
                     </label>
-                    <div className="bg-bg-tertiary/40 flex rounded-2xl border border-white/10 p-1">
+                    <div className="bg-bg-tertiary/40 border-border-subtle flex rounded-2xl border p-1">
                       {(["active", "done", "archived"] as const).map((s) => (
                         <button
                           key={s}
@@ -760,7 +760,7 @@ export function SwotBoardClient({
                     onChange={(e) => setActiveItem({ ...activeItem, action_plan: e.target.value })}
                     rows={2}
                     placeholder="Key mitigation steps or tactical execution plan..."
-                    className="bg-bg-tertiary/60 placeholder-fg-muted/60 focus:border-brand-500 focus:ring-brand-500 w-full resize-none rounded-2xl border border-white/10 px-4 py-2 text-sm text-white backdrop-blur-md focus:ring-1 focus:outline-none"
+                    className="bg-bg-tertiary/60 placeholder-fg-muted/60 focus:border-brand-500 focus:ring-brand-500 border-border-subtle w-full resize-none rounded-2xl border px-4 py-2 text-sm text-white backdrop-blur-md focus:ring-1 focus:outline-none"
                   />
                 </div>
 
@@ -773,16 +773,16 @@ export function SwotBoardClient({
                     type="date"
                     value={activeItem.target_date || ""}
                     onChange={(e) => setActiveItem({ ...activeItem, target_date: e.target.value })}
-                    className="bg-bg-tertiary/60 focus:border-brand-500 focus:ring-brand-500 w-full rounded-2xl border border-white/10 px-4 py-2 text-sm text-white backdrop-blur-md focus:ring-1 focus:outline-none"
+                    className="bg-bg-tertiary/60 focus:border-brand-500 focus:ring-brand-500 border-border-subtle w-full rounded-2xl border px-4 py-2 text-sm text-white backdrop-blur-md focus:ring-1 focus:outline-none"
                   />
                 </div>
 
                 {/* Modal Footer Buttons */}
-                <div className="mt-6 flex items-center justify-end gap-3 border-t border-white/10 pt-4">
+                <div className="border-border-subtle mt-6 flex items-center justify-end gap-3 border-t pt-4">
                   <button
                     type="button"
                     onClick={() => setIsModalOpen(false)}
-                    className="text-fg-muted rounded-2xl border border-white/10 px-5 py-2.5 text-xs font-bold transition hover:bg-white/5 hover:text-white"
+                    className="text-fg-muted border-border-subtle rounded-2xl border px-5 py-2.5 text-xs font-bold transition hover:bg-white/5 hover:text-white"
                   >
                     {t("cancel")}
                   </button>

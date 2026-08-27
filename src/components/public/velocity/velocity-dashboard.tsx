@@ -64,7 +64,7 @@ export function VelocityDashboard() {
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-neutral-900/90 via-neutral-900/60 to-neutral-950/90 p-8 shadow-2xl backdrop-blur-2xl"
+        className="border-border-subtle relative overflow-hidden rounded-3xl border bg-gradient-to-br from-neutral-900/90 via-neutral-900/60 to-neutral-950/90 p-8 shadow-2xl backdrop-blur-2xl"
       >
         <div className="bg-accent-500/10 pointer-events-none absolute -top-32 -left-32 h-64 w-64 rounded-full blur-3xl" />
         <div className="bg-brand-500/10 pointer-events-none absolute -right-32 -bottom-32 h-64 w-64 rounded-full blur-3xl" />
@@ -109,7 +109,7 @@ export function VelocityDashboard() {
         <motion.div
           initial={{ opacity: 0, x: -15 }}
           animate={{ opacity: 1, x: 0 }}
-          className="rounded-2xl border border-white/10 bg-neutral-900/60 p-6 shadow-xl backdrop-blur-xl lg:col-span-1"
+          className="border-border-subtle bg-bg-secondary rounded-2xl border p-6 shadow-xl backdrop-blur-xl lg:col-span-1"
         >
           <div className="text-fg-primary flex items-center gap-2 text-sm font-bold">
             <Sliders className="text-accent-400 h-4 w-4" />
@@ -131,7 +131,7 @@ export function VelocityDashboard() {
                 step={25000}
                 value={baseARR}
                 onChange={(e) => setBaseARR(Number(e.target.value))}
-                className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-neutral-800 accent-cyan-400"
+                className="bg-bg-secondary h-2 w-full cursor-pointer appearance-none rounded-lg accent-cyan-400"
               />
               <div className="text-fg-muted mt-1 flex justify-between text-[10px]">
                 <span>$50k</span>
@@ -155,7 +155,7 @@ export function VelocityDashboard() {
                 step={5}
                 value={clients}
                 onChange={(e) => setClients(Number(e.target.value))}
-                className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-neutral-800 accent-emerald-400"
+                className="bg-bg-secondary h-2 w-full cursor-pointer appearance-none rounded-lg accent-emerald-400"
               />
               <div className="text-fg-muted mt-1 flex justify-between text-[10px]">
                 <span>5</span>
@@ -164,7 +164,7 @@ export function VelocityDashboard() {
               </div>
             </div>
 
-            <div className="space-y-2 rounded-xl border border-white/5 bg-neutral-950/40 p-4 text-xs">
+            <div className="border-border-subtle/50 bg-bg-secondary space-y-2 rounded-xl border p-4 text-xs">
               <div className="text-fg-muted flex justify-between">
                 <span>{t("calc_velocity_factor")}</span>
                 <span className="text-fg-primary font-mono">{velocityFactor}x</span>
@@ -195,7 +195,7 @@ export function VelocityDashboard() {
         </div>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {/* Scenario A */}
-          <div className="border-brand-500/20 rounded-2xl border bg-neutral-900/60 p-6 shadow-xl backdrop-blur-xl">
+          <div className="border-brand-500/20 bg-bg-secondary rounded-2xl border p-6 shadow-xl backdrop-blur-xl">
             <div className="flex items-center justify-between">
               <span className="text-brand-400 text-xs font-bold tracking-wider uppercase">
                 {t("scenario_a_tag")}
@@ -206,16 +206,16 @@ export function VelocityDashboard() {
             </div>
             <h3 className="text-fg-primary mt-3 text-lg font-bold">{t("scenario_a_title")}</h3>
             <p className="text-fg-muted mt-2 text-xs leading-relaxed">{t("scenario_a_desc")}</p>
-            <div className="mt-6 border-t border-white/5 pt-4">
+            <div className="border-border-subtle/50 mt-6 border-t pt-4">
               <div className="text-fg-muted text-[11px] font-medium">{t("projected_arr")}</div>
-              <div className="text-fg-primary text-2xl font-extrabold tracking-tight">
+              <div className="text-fg-primary text-fg-secondaryxl font-extrabold tracking-tight">
                 ${projectionResult.scenarioA.projectedARR.toLocaleString()}
               </div>
             </div>
           </div>
 
           {/* Scenario B */}
-          <div className="border-success-500/30 relative overflow-hidden rounded-2xl border bg-neutral-900/60 p-6 shadow-xl backdrop-blur-xl">
+          <div className="border-success-500/30 bg-bg-secondary relative overflow-hidden rounded-2xl border p-6 shadow-xl backdrop-blur-xl">
             <div className="bg-success-500/10 pointer-events-none absolute top-0 right-0 h-20 w-20 rounded-full blur-2xl" />
             <div className="flex items-center justify-between">
               <span className="text-success-400 text-xs font-bold tracking-wider uppercase">
@@ -227,16 +227,16 @@ export function VelocityDashboard() {
             </div>
             <h3 className="text-fg-primary mt-3 text-lg font-bold">{t("scenario_b_title")}</h3>
             <p className="text-fg-muted mt-2 text-xs leading-relaxed">{t("scenario_b_desc")}</p>
-            <div className="mt-6 border-t border-white/5 pt-4">
+            <div className="border-border-subtle/50 mt-6 border-t pt-4">
               <div className="text-fg-muted text-[11px] font-medium">{t("projected_arr")}</div>
-              <div className="text-success-400 text-2xl font-extrabold tracking-tight">
+              <div className="text-success-400 text-fg-secondaryxl font-extrabold tracking-tight">
                 ${projectionResult.scenarioB.projectedARR.toLocaleString()}
               </div>
             </div>
           </div>
 
           {/* Scenario C */}
-          <div className="border-brand-500/30 relative overflow-hidden rounded-2xl border bg-neutral-900/60 p-6 shadow-xl backdrop-blur-xl">
+          <div className="border-brand-500/30 bg-bg-secondary relative overflow-hidden rounded-2xl border p-6 shadow-xl backdrop-blur-xl">
             <div className="bg-brand-500/10 pointer-events-none absolute top-0 right-0 h-20 w-20 rounded-full blur-2xl" />
             <div className="flex items-center justify-between">
               <span className="text-brand-400 text-xs font-bold tracking-wider uppercase">
@@ -248,9 +248,9 @@ export function VelocityDashboard() {
             </div>
             <h3 className="text-fg-primary mt-3 text-lg font-bold">{t("scenario_c_title")}</h3>
             <p className="text-fg-muted mt-2 text-xs leading-relaxed">{t("scenario_c_desc")}</p>
-            <div className="mt-6 border-t border-white/5 pt-4">
+            <div className="border-border-subtle/50 mt-6 border-t pt-4">
               <div className="text-fg-muted text-[11px] font-medium">{t("projected_arr")}</div>
-              <div className="text-brand-400 text-2xl font-extrabold tracking-tight">
+              <div className="text-brand-400 text-fg-secondaryxl font-extrabold tracking-tight">
                 ${projectionResult.scenarioC.projectedARR.toLocaleString()}
               </div>
             </div>
@@ -259,14 +259,14 @@ export function VelocityDashboard() {
       </div>
 
       {/* Model Capability Audit Table */}
-      <div className="rounded-2xl border border-white/10 bg-neutral-900/60 p-6 shadow-xl backdrop-blur-xl">
+      <div className="border-border-subtle bg-bg-secondary rounded-2xl border p-6 shadow-xl backdrop-blur-xl">
         <div className="text-fg-primary mb-4 flex items-center gap-2 text-base font-bold">
           <Cpu className="text-accent-400 h-5 w-5" />
           <span>{t("table_title")}</span>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="text-fg-muted border-b border-white/10 text-[10px] tracking-wider uppercase">
+            <thead className="text-fg-muted border-border-subtle border-b text-[10px] tracking-wider uppercase">
               <tr>
                 <th className="px-4 py-3">{t("th_provider")}</th>
                 <th className="px-4 py-3">{t("th_model")}</th>

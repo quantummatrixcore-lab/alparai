@@ -68,7 +68,7 @@ export default async function AcademyFellowshipPage({
 
         {/* Application Form Component */}
         <div className="bg-bg-secondary/20 border-border-primary/30 mx-auto max-w-2xl rounded-3xl border p-8 shadow-lg backdrop-blur-md md:p-10">
-          <h3 className="text-fg-primary border-border-primary/20 mb-8 border-b pb-4 text-center text-2xl font-bold">
+          <h3 className="text-fg-primary border-border-primary/20 text-fg-secondaryxl mb-8 border-b pb-4 text-center font-bold">
             {t("fellowship_form_title")}
           </h3>
           <FellowshipForm locale={locale} />

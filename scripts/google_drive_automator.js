@@ -1,55 +1,60 @@
-const http = require('http');
-const https = require('https');
-const crypto = require('crypto');
+const http = require("http");
+const https = require("https");
+const crypto = require("crypto");
 
 async function getTabs() {
   return new Promise((resolve, reject) => {
-    http.get('http://localhost:9222/json', (res) => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => {
-        try {
-          resolve(JSON.parse(data));
-        } catch (e) {
-          reject(e);
-        }
-      });
-    }).on('error', reject);
+    http
+      .get("http://localhost:9222/json", (res) => {
+        let data = "";
+        res.on("data", (chunk) => (data += chunk));
+        res.on("end", () => {
+          try {
+            resolve(JSON.parse(data));
+          } catch (e) {
+            reject(e);
+          }
+        });
+      })
+      .on("error", reject);
   });
 }
 
 function connectWebSocket(wsUrl, onOpen, onMessage) {
   return new Promise((resolve, reject) => {
     const url = new URL(wsUrl);
-    const key = crypto.randomBytes(16).toString('base64');
-    
+    const key = crypto.randomBytes(16).toString("base64");
+
     const options = {
       port: url.port,
       hostname: url.hostname,
       path: url.pathname,
       headers: {
-        'Connection': 'Upgrade',
-        'Upgrade': 'websocket',
-        'Sec-WebSocket-Key': key,
-        'Sec-WebSocket-Version': '13'
-      }
+        Connection: "Upgrade",
+        Upgrade: "websocket",
+        "Sec-WebSocket-Key": key,
+        "Sec-WebSocket-Version": "13",
+      },
     };
-    
+
     const req = http.request(options);
-    req.on('upgrade', (res, socket, head) => {
+    req.on("upgrade", (res, socket, head) => {
       onOpen(socket);
-      
-      socket.on('data', (data) => {
+
+      socket.on("data", (data) => {
         // Basic WebSocket frame parsing
         if (data.length < 2) return;
-        const opcode = data[0] & 0x0F;
-        if (opcode === 8) { socket.end(); return; } // close
+        const opcode = data[0] & 0x0f;
+        if (opcode === 8) {
+          socket.end();
+          return;
+        } // close
         if (opcode !== 1) return; // only text frames
-        
+
         const isMasked = (data[1] & 0x80) !== 0;
-        let payloadLen = data[1] & 0x7F;
+        let payloadLen = data[1] & 0x7f;
         let offset = 2;
-        
+
         if (payloadLen === 126) {
           payloadLen = data.readUInt16BE(2);
           offset += 2;
@@ -57,33 +62,33 @@ function connectWebSocket(wsUrl, onOpen, onMessage) {
           payloadLen = Number(data.readBigUInt64BE(2));
           offset += 8;
         }
-        
+
         const mask = isMasked ? data.slice(offset, offset + 4) : null;
         if (isMasked) offset += 4;
-        
+
         const payload = data.slice(offset, offset + payloadLen);
         if (isMasked) {
           for (let i = 0; i < payloadLen; i++) {
             payload[i] ^= mask[i % 4];
           }
         }
-        
-        onMessage(payload.toString('utf8'), socket);
+
+        onMessage(payload.toString("utf8"), socket);
       });
       resolve(socket);
     });
-    
-    req.on('error', reject);
+
+    req.on("error", reject);
     req.end();
   });
 }
 
 function sendCommand(socket, method, params = {}, id = 1) {
   const message = JSON.stringify({ id, method, params });
-  
-  const payload = Buffer.from(message, 'utf8');
+
+  const payload = Buffer.from(message, "utf8");
   const length = payload.length;
-  
+
   let header;
   if (length <= 125) {
     header = Buffer.alloc(6);
@@ -97,58 +102,74 @@ function sendCommand(socket, method, params = {}, id = 1) {
     header[1] = 127 | 0x80;
     header.writeBigUInt64BE(BigInt(length), 2);
   }
-  
+
   header[0] = 0x81; // FIN + Text
   const mask = crypto.randomBytes(4);
   mask.copy(header, header.length - 4);
-  
+
   for (let i = 0; i < length; i++) {
     payload[i] ^= mask[i % 4];
   }
-  
+
   socket.write(Buffer.concat([header, payload]));
 }
 
 async function runDriveAutomator() {
   const tabs = await getTabs();
-  const driveTab = tabs.find(t => t.url && t.url.includes('drive.google.com'));
-  
+  const driveTab = tabs.find((t) => t.url && t.url.includes("drive.google.com"));
+
   if (!driveTab) {
     console.error("HATA: Google Drive sekmesi açık değil.");
     process.exit(1);
   }
-  
+
   console.log(`Bağlanılıyor: ${driveTab.title}`);
-  
+
   let cmdId = 1;
   const pending = new Map();
-  
-  connectWebSocket(driveTab.webSocketDebuggerUrl, (socket) => {
-    // We are connected!
-    console.log("[Wolf Pack] Google Drive (CDP) bağlantısı kuruldu.");
-    
-    // Simulate checking Drive ready state
-    sendCommand(socket, 'Runtime.evaluate', {
-      expression: 'document.title'
-    }, cmdId++);
-    
-    // Upload simulation trigger (just logging for now without physical files)
-    sendCommand(socket, 'Runtime.evaluate', {
-      expression: 'console.log("Wolf Pack: Drive Yedekleme Motoru aktif edildi. (P1 Otonom Yedekleme) 🐺");'
-    }, cmdId++);
-    
-    setTimeout(() => {
-        console.log("[Wolf Pack] Yedekleme simulasyonu başarılı. Drive API fallback aktif edilebilir.");
+
+  connectWebSocket(
+    driveTab.webSocketDebuggerUrl,
+    (socket) => {
+      // We are connected!
+      console.log("[Wolf Pack] Google Drive (CDP) bağlantısı kuruldu.");
+
+      // Simulate checking Drive ready state
+      sendCommand(
+        socket,
+        "Runtime.evaluate",
+        {
+          expression: "document.title",
+        },
+        cmdId++,
+      );
+
+      // Upload simulation trigger (just logging for now without physical files)
+      sendCommand(
+        socket,
+        "Runtime.evaluate",
+        {
+          expression:
+            'console.log("Wolf Pack: Drive Yedekleme Motoru aktif edildi. (P1 Otonom Yedekleme) 🐺");',
+        },
+        cmdId++,
+      );
+
+      setTimeout(() => {
+        console.log(
+          "[Wolf Pack] Yedekleme simulasyonu başarılı. Drive API fallback aktif edilebilir.",
+        );
         socket.end();
         process.exit(0);
-    }, 2000);
-    
-  }, (msg, socket) => {
-    const res = JSON.parse(msg);
-    if (res.result && res.result.result) {
+      }, 2000);
+    },
+    (msg, socket) => {
+      const res = JSON.parse(msg);
+      if (res.result && res.result.result) {
         // console.log("=>", res.result.result.value);
-    }
-  });
+      }
+    },
+  );
 }
 
 runDriveAutomator();

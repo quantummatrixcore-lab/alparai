@@ -8,7 +8,7 @@ import type { DigitalTwinPersona } from "./personas";
 export function calculateAlignmentScore(
   persona: DigitalTwinPersona,
   _userPrompt: string,
-  completionText: string
+  completionText: string,
 ): number {
   if (!completionText || completionText.trim().length === 0) {
     return 0;
@@ -19,14 +19,17 @@ export function calculateAlignmentScore(
   const lowerContent = completionText.toLowerCase();
   // 1. Check if persona expertise or keywords are reflected
   const matchedExpertise = persona.expertise.filter((exp) =>
-    lowerContent.includes(exp.toLowerCase())
+    lowerContent.includes(exp.toLowerCase()),
   );
   if (matchedExpertise.length > 0) {
     score += Math.min(matchedExpertise.length * 3, 10);
   }
 
   // 2. Check persona quote or signature keywords
-  if (persona.stats.specialSkill && lowerContent.includes(persona.stats.specialSkill.toLowerCase())) {
+  if (
+    persona.stats.specialSkill &&
+    lowerContent.includes(persona.stats.specialSkill.toLowerCase())
+  ) {
     score += 4;
   }
 
@@ -56,7 +59,7 @@ export async function selfHealResponse(
   persona: DigitalTwinPersona,
   _userPrompt: string,
   completionText: string,
-  currentScore: number
+  currentScore: number,
 ): Promise<string> {
   if (currentScore >= 85) {
     return completionText;

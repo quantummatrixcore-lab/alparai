@@ -44,7 +44,7 @@ export function GovernanceHubTabs() {
   ];
 
   return (
-    <div className="mb-8 border-b border-white/10">
+    <div className="border-border-subtle mb-8 border-b">
       <nav className="-mb-px flex space-x-1 overflow-x-auto" aria-label="Tabs">
         {tabs.map((tab) => {
           const Icon = tab.icon;
@@ -56,7 +56,7 @@ export function GovernanceHubTabs() {
                 "group flex min-w-max items-center gap-2 border-b-2 px-4 py-3 text-sm font-medium whitespace-nowrap transition-all",
                 tab.active
                   ? "border-success-500 text-success-400"
-                  : "text-fg-muted hover:border-border-strong border-transparent hover:text-zinc-200",
+                  : "text-fg-muted hover:border-border-strong hover:text-fg-secondary border-transparent",
               )}
               aria-current={tab.active ? "page" : undefined}
             >

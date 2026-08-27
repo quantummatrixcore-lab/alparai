@@ -1,8 +1,9 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createClient } from "@/lib/supabase/server";
 import { logger } from "@/lib/utils/logger";
+import { randomUUID } from "node:crypto";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { headers } from "next/headers";
 import {
@@ -31,25 +32,23 @@ async function runSubmitWhistleblowerWork(
   data: SubmitWhistleblowerInput,
 ): Promise<AttemptOutcome<{ id: string }>> {
   void ctx;
-  const admin = createAdminClient();
+  const supabase = await createClient();
+  const generatedId = randomUUID();
 
-  const { error, data: inserted } = await admin
-    .from("whistleblower_submissions")
-    .insert({
-      encrypted_content: data.encryptedContent,
-      category: data.category,
-      provider_hint: data.providerHint ? maskPII(data.providerHint).masked : null,
-      status: "pending",
-    })
-    .select("id")
-    .maybeSingle();
+  const { error } = await supabase.from("whistleblower_submissions").insert({
+    id: generatedId,
+    encrypted_content: data.encryptedContent,
+    category: data.category,
+    provider_hint: data.providerHint ? maskPII(data.providerHint).masked : null,
+    status: "pending",
+  });
 
   if (error) {
     logger.error("Failed to insert whistleblower submission", { error: error.message });
     return { kind: "retryable", error: error.message };
   }
 
-  return { kind: "success", value: { id: inserted?.id ?? "" } };
+  return { kind: "success", value: { id: generatedId } };
 }
 
 export async function submitWhistleblowerAction(

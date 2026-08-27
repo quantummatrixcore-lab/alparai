@@ -75,7 +75,7 @@ export function PlatformsList({ initialPlatforms }: { initialPlatforms: Platform
       </div>
 
       {stats.total > 0 && (
-        <Card className="border-white/10 bg-black/40 p-4">
+        <Card className="border-border-subtle bg-black/40 p-4">
           <h4 className="mb-4 text-sm font-semibold text-white">
             {t("platforms_pipeline_status")}
           </h4>
@@ -164,7 +164,7 @@ export function PlatformsList({ initialPlatforms }: { initialPlatforms: Platform
         </Card>
       )}
 
-      <div className="flex space-x-2 overflow-x-auto border-b border-white/10 pb-2">
+      <div className="border-border-subtle flex space-x-2 overflow-x-auto border-b pb-2">
         {(["all", "not_started", "account_created", "profile_complete", "active"] as const).map(
           (tab) => (
             <button
@@ -187,20 +187,20 @@ export function PlatformsList({ initialPlatforms }: { initialPlatforms: Platform
 
       <div className="space-y-4">
         {filtered.length === 0 ? (
-          <div className="text-fg-muted rounded-xl border border-white/10 bg-black/20 py-12 text-center">
+          <div className="text-fg-muted border-border-subtle bg-bg-primary/20 rounded-xl border py-12 text-center">
             {t("platforms_no_data")}
           </div>
         ) : (
           filtered.map((platform) => (
             <Card
               key={platform.id}
-              className="flex flex-col items-start justify-between gap-4 border-white/10 bg-black/40 p-4 md:flex-row md:items-center"
+              className="border-border-subtle flex flex-col items-start justify-between gap-4 bg-black/40 p-4 md:flex-row md:items-center"
             >
               <div className="flex-1">
                 <div className="flex items-center gap-2">
                   <h3 className="font-semibold text-white">{platform.platform_name}</h3>
                   {platform.category && (
-                    <span className="text-fg-muted rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-xs">
+                    <span className="text-fg-muted border-border-subtle rounded-full border bg-white/5 px-2 py-0.5 text-xs">
                       {platform.category}
                     </span>
                   )}
@@ -218,14 +218,14 @@ export function PlatformsList({ initialPlatforms }: { initialPlatforms: Platform
                     href={platform.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-fg-muted rounded-md border border-white/5 bg-white/5 p-2 transition-colors hover:bg-white/10 hover:text-white"
+                    className="text-fg-muted border-border-subtle/50 rounded-md border bg-white/5 p-2 transition-colors hover:bg-white/10 hover:text-white"
                     aria-label="Open link"
                   >
                     <ExternalLink className="h-4 w-4" />
                   </a>
                 )}
 
-                <div className="flex overflow-hidden rounded-md border border-white/10 bg-black/50">
+                <div className="border-border-subtle flex overflow-hidden rounded-md border bg-black/50">
                   <select
                     disabled={isPending}
                     value={platform.status}

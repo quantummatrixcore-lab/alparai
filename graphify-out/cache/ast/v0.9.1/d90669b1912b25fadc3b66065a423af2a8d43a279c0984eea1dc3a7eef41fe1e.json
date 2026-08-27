@@ -1,0 +1,67 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_agents_scripts_verify_all_py",
+      "label": "verify_all.py",
+      "file_type": "code",
+      "source_file": ".agents/scripts/verify_all.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_scripts_verify_all_flatten",
+      "label": "flatten()",
+      "file_type": "code",
+      "source_file": ".agents/scripts/verify_all.py",
+      "source_location": "L11"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_agents_scripts_verify_all_py",
+      "target": "json",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/scripts/verify_all.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_scripts_verify_all_py",
+      "target": "pathlib",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/scripts/verify_all.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_scripts_verify_all_py",
+      "target": "d_01_saas_products_alparai_agents_scripts_verify_all_flatten",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/scripts/verify_all.py",
+      "source_location": "L11",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "d_01_saas_products_alparai_agents_scripts_verify_all_flatten",
+      "callee": "items",
+      "is_member_call": true,
+      "source_file": "D:\\01_SaaS_Products\\Alparai\\.agents\\scripts\\verify_all.py",
+      "source_location": "L13",
+      "receiver": "d"
+    },
+    {
+      "caller_nid": "d_01_saas_products_alparai_agents_scripts_verify_all_flatten",
+      "callee": "update",
+      "is_member_call": true,
+      "source_file": "D:\\01_SaaS_Products\\Alparai\\.agents\\scripts\\verify_all.py",
+      "source_location": "L16",
+      "receiver": "out"
+    }
+  ]
+}

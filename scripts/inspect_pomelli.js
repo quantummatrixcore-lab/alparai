@@ -1,12 +1,14 @@
-const http = require('http');
+const http = require("http");
 
 async function getTabs() {
   return new Promise((resolve, reject) => {
-    http.get('http://localhost:9222/json', (res) => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => resolve(JSON.parse(data)));
-    }).on('error', reject);
+    http
+      .get("http://localhost:9222/json", (res) => {
+        let data = "";
+        res.on("data", (chunk) => (data += chunk));
+        res.on("end", () => resolve(JSON.parse(data)));
+      })
+      .on("error", reject);
   });
 }
 
@@ -41,33 +43,34 @@ class CDPClient {
   }
 
   async eval(expression) {
-    const res = await this.send('Runtime.evaluate', {
+    const res = await this.send("Runtime.evaluate", {
       expression,
       returnByValue: true,
-      awaitPromise: true
+      awaitPromise: true,
     });
     return res.result?.value;
   }
 }
 
-const sleep = ms => new Promise(r => setTimeout(r, ms));
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 async function main() {
   const tabs = await getTabs();
   // 1. Aktif sekmeyi bul (Yeni sekme AÇILMAZ!)
-  const activeTab = tabs.find(t => t.type === 'page' && !t.url.startsWith('devtools://')) || tabs[0];
+  const activeTab =
+    tabs.find((t) => t.type === "page" && !t.url.startsWith("devtools://")) || tabs[0];
   if (!activeTab) {
-    console.error('Aktif sekme bulunamadı!');
+    console.error("Aktif sekme bulunamadı!");
     process.exit(1);
   }
 
-  console.log('⚡ Hedef Aktif Sekme:', activeTab.title, activeTab.url);
+  console.log("⚡ Hedef Aktif Sekme:", activeTab.title, activeTab.url);
   const client = new CDPClient(activeTab.webSocketDebuggerUrl);
 
   // 2. Sayfayı Google Pomelli'ye yönlendir
-  const targetUrl = 'https://labs.google.com/u/0/pomelli/website';
-  console.log('🧭 Pomelli yönlendirmesi başlatılıyor:', targetUrl);
-  await client.send('Page.navigate', { url: targetUrl });
+  const targetUrl = "https://labs.google.com/u/0/pomelli/website";
+  console.log("🧭 Pomelli yönlendirmesi başlatılıyor:", targetUrl);
+  await client.send("Page.navigate", { url: targetUrl });
   await sleep(6000); // React hidrasyonu için bekle
 
   // 3. DOM Analizi ve Girdi Elemanlarının Tespiti
@@ -99,11 +102,12 @@ async function main() {
     })()
   `);
 
-  console.log('📊 DOM ANALİZ SONUCU:', JSON.stringify(domAnalysis, null, 2));
+  console.log("📊 DOM ANALİZ SONUCU:", JSON.stringify(domAnalysis, null, 2));
 
   // 4. 'Alparai Kurucu Yönetici Paneli' Prompt Enjeksiyonu
-  const testPrompt = 'Alparai Kurucu Yönetici Paneli - Çok Ajanlı Otonom Yapay Zeka Operasyon Merkezi ve Stratejik Karar Destek Platformu';
-  
+  const testPrompt =
+    "Alparai Kurucu Yönetici Paneli - Çok Ajanlı Otonom Yapay Zeka Operasyon Merkezi ve Stratejik Karar Destek Platformu";
+
   const injectionResult = await client.eval(`
     (() => {
       const inputEl = document.querySelector('input[type="url"], input[type="text"], textarea, [contenteditable="true"]');
@@ -146,8 +150,8 @@ async function main() {
     })()
   `);
 
-  console.log('🚀 ENJEKSİYON VE TEST SONUCU:', JSON.stringify(injectionResult, null, 2));
-  console.log('🔒 KURAL 6 Uyarınca tarayıcı açık bırakıldı.');
+  console.log("🚀 ENJEKSİYON VE TEST SONUCU:", JSON.stringify(injectionResult, null, 2));
+  console.log("🔒 KURAL 6 Uyarınca tarayıcı açık bırakıldı.");
   process.exit(0);
 }
 

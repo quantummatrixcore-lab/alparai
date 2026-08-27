@@ -52,7 +52,7 @@ export function ClosingSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="border-brand-500/20 bg-brand-500/5 flex flex-col justify-center rounded-2xl border p-8 backdrop-blur-sm"
           >
-            <h3 className="text-brand-400 text-2xl font-black tracking-tight">
+            <h3 className="text-brand-400 text-fg-secondaryxl font-black tracking-tight">
               {t("closing_good_news_title")}
             </h3>
             <p className="text-fg-secondary mt-4 text-sm leading-relaxed font-medium">

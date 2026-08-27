@@ -44,7 +44,7 @@ export function CommunityHub({ polls, suggestions, isLoggedIn: _isLoggedIn }: Co
             {activeTab === "dilemmas" && (
               <motion.div
                 layoutId="active-tab-bg"
-                className="absolute inset-0 rounded-full border border-white/5 bg-white/5 shadow-inner"
+                className="border-border-subtle/50 absolute inset-0 rounded-full border bg-white/5 shadow-inner"
                 transition={{ type: "spring", stiffness: 380, damping: 30 }}
               />
             )}
@@ -62,7 +62,7 @@ export function CommunityHub({ polls, suggestions, isLoggedIn: _isLoggedIn }: Co
             {activeTab === "suggestions" && (
               <motion.div
                 layoutId="active-tab-bg"
-                className="absolute inset-0 rounded-full border border-white/5 bg-white/5 shadow-inner"
+                className="border-border-subtle/50 absolute inset-0 rounded-full border bg-white/5 shadow-inner"
                 transition={{ type: "spring", stiffness: 380, damping: 30 }}
               />
             )}

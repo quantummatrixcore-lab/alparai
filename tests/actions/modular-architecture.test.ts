@@ -1,6 +1,10 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { getModularArchitectureAction } from "@/actions/admin/modular-architecture";
 import { MODULAR_PILLARS, GPT_360_AUDIT_SCORE } from "@/lib/config/modular-architecture";
+
+vi.mock("@/lib/auth/session", () => ({
+  requireAdmin: vi.fn().mockResolvedValue({ id: "admin-1", role: "admin" }),
+}));
 
 describe("Modular Product Architecture & GPT 360 Audit (Item 34)", () => {
   it("defines 8 modular pillars under single umbrella title", async () => {

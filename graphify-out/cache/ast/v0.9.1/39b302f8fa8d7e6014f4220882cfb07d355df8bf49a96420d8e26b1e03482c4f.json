@@ -1,0 +1,159 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_token_rotation_checklist_md",
+      "label": "TOKEN_ROTATION_CHECKLIST.md",
+      "file_type": "document",
+      "source_file": "docs/TOKEN_ROTATION_CHECKLIST.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_token_rotation_checklist_alpar_ai_token_rotation_checklist_smoke_test_runbook",
+      "label": "ALPAR AI \u2014 Token Rotation Checklist & Smoke Test Runbook",
+      "file_type": "document",
+      "source_file": "docs/TOKEN_ROTATION_CHECKLIST.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_token_rotation_checklist_rotation_checklist",
+      "label": "\ud83d\udd11 Rotation Checklist",
+      "file_type": "document",
+      "source_file": "docs/TOKEN_ROTATION_CHECKLIST.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_token_rotation_checklist_1_supabase_service_role_key_db_password",
+      "label": "1. Supabase Service Role Key & DB Password",
+      "file_type": "document",
+      "source_file": "docs/TOKEN_ROTATION_CHECKLIST.md",
+      "source_location": "L9"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_token_rotation_checklist_2_vercel_personal_team_access_token",
+      "label": "2. Vercel Personal/Team Access Token",
+      "file_type": "document",
+      "source_file": "docs/TOKEN_ROTATION_CHECKLIST.md",
+      "source_location": "L21"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_token_rotation_checklist_3_resend_api_key",
+      "label": "3. Resend API Key",
+      "file_type": "document",
+      "source_file": "docs/TOKEN_ROTATION_CHECKLIST.md",
+      "source_location": "L29"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_token_rotation_checklist_4_openrouter_api_key",
+      "label": "4. OpenRouter API Key",
+      "file_type": "document",
+      "source_file": "docs/TOKEN_ROTATION_CHECKLIST.md",
+      "source_location": "L38"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_token_rotation_checklist_5_google_vertex_ai_gcp_service_account_key",
+      "label": "5. Google Vertex AI / GCP Service Account Key",
+      "file_type": "document",
+      "source_file": "docs/TOKEN_ROTATION_CHECKLIST.md",
+      "source_location": "L46"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_token_rotation_checklist_6_upstash_redis_rest_url_token",
+      "label": "6. Upstash Redis Rest URL & Token",
+      "file_type": "document",
+      "source_file": "docs/TOKEN_ROTATION_CHECKLIST.md",
+      "source_location": "L55"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_token_rotation_checklist_production_smoke_test_runbook",
+      "label": "\ud83e\uddea Production Smoke Test Runbook",
+      "file_type": "document",
+      "source_file": "docs/TOKEN_ROTATION_CHECKLIST.md",
+      "source_location": "L64"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_token_rotation_checklist_md",
+      "target": "d_01_saas_products_alparai_docs_token_rotation_checklist_alpar_ai_token_rotation_checklist_smoke_test_runbook",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/TOKEN_ROTATION_CHECKLIST.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_token_rotation_checklist_alpar_ai_token_rotation_checklist_smoke_test_runbook",
+      "target": "d_01_saas_products_alparai_docs_token_rotation_checklist_rotation_checklist",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/TOKEN_ROTATION_CHECKLIST.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_token_rotation_checklist_rotation_checklist",
+      "target": "d_01_saas_products_alparai_docs_token_rotation_checklist_1_supabase_service_role_key_db_password",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/TOKEN_ROTATION_CHECKLIST.md",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_token_rotation_checklist_rotation_checklist",
+      "target": "d_01_saas_products_alparai_docs_token_rotation_checklist_2_vercel_personal_team_access_token",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/TOKEN_ROTATION_CHECKLIST.md",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_token_rotation_checklist_rotation_checklist",
+      "target": "d_01_saas_products_alparai_docs_token_rotation_checklist_3_resend_api_key",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/TOKEN_ROTATION_CHECKLIST.md",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_token_rotation_checklist_rotation_checklist",
+      "target": "d_01_saas_products_alparai_docs_token_rotation_checklist_4_openrouter_api_key",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/TOKEN_ROTATION_CHECKLIST.md",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_token_rotation_checklist_rotation_checklist",
+      "target": "d_01_saas_products_alparai_docs_token_rotation_checklist_5_google_vertex_ai_gcp_service_account_key",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/TOKEN_ROTATION_CHECKLIST.md",
+      "source_location": "L46",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_token_rotation_checklist_rotation_checklist",
+      "target": "d_01_saas_products_alparai_docs_token_rotation_checklist_6_upstash_redis_rest_url_token",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/TOKEN_ROTATION_CHECKLIST.md",
+      "source_location": "L55",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_token_rotation_checklist_alpar_ai_token_rotation_checklist_smoke_test_runbook",
+      "target": "d_01_saas_products_alparai_docs_token_rotation_checklist_production_smoke_test_runbook",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/TOKEN_ROTATION_CHECKLIST.md",
+      "source_location": "L64",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

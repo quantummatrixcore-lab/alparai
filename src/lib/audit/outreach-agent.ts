@@ -46,7 +46,7 @@ export async function processOutreachQueue(
 
     const { data: pending, error: fetchError } = await supabase
       .from("outreach_queue")
-      .select("*")
+      .select("id, recipient_email, subject, body_template")
       .eq("status", "approved")
       .order("created_at", { ascending: true })
       .limit(remainingQuota);

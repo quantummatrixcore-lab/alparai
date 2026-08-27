@@ -53,7 +53,7 @@ export function PublicStatementModal({
               type="url"
               name="sourceUrl"
               required
-              className="focus:ring-brand-500 flex h-10 w-full rounded-md border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white focus:ring-2 focus:outline-none"
+              className="focus:ring-brand-500 border-border-strong bg-bg-secondary flex h-10 w-full rounded-md border px-3 py-2 text-sm text-white focus:ring-2 focus:outline-none"
             />
           </div>
           <div className="space-y-2">
@@ -62,7 +62,7 @@ export function PublicStatementModal({
               type="date"
               name="statementDate"
               required
-              className="focus:ring-brand-500 flex h-10 w-full rounded-md border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white focus:ring-2 focus:outline-none"
+              className="focus:ring-brand-500 border-border-strong bg-bg-secondary flex h-10 w-full rounded-md border px-3 py-2 text-sm text-white focus:ring-2 focus:outline-none"
             />
           </div>
           <div className="space-y-2">
@@ -72,7 +72,7 @@ export function PublicStatementModal({
               required
               minLength={10}
               rows={5}
-              className="focus:ring-brand-500 flex w-full rounded-md border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white focus:ring-2 focus:outline-none"
+              className="focus:ring-brand-500 border-border-strong bg-bg-secondary flex w-full rounded-md border px-3 py-2 text-sm text-white focus:ring-2 focus:outline-none"
             ></textarea>
           </div>
           <div className="flex justify-end gap-2 pt-2">

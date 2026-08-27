@@ -1,7 +1,7 @@
 name: Nightly Health Check
 on:
   schedule:
-    - cron: '0 2 * * *'  # Her gece 02:00 UTC
+    - cron: "0 2 * * *" # Her gece 02:00 UTC
   workflow_dispatch:
 jobs:
   health:

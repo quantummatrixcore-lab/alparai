@@ -72,7 +72,7 @@ export default function FellowshipForm({}: FellowshipFormProps) {
         </div>
       )}
       {error && (
-        <div className="rounded-2xl border border-red-500/20 bg-red-500/10 p-4 text-sm font-medium text-red-400">
+        <div className="border-danger-500/20 rounded-2xl border bg-red-500/10 p-4 text-sm font-medium text-red-400">
           {error}
         </div>
       )}

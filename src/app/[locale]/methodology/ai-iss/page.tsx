@@ -52,37 +52,37 @@ export default async function AiIssMethodologyPage({
             {t("aiIssBadge")}
           </div>
           <h1 className="text-4xl font-black text-white md:text-5xl">{t("aiIssHeading")}</h1>
-          <p className="mx-auto max-w-2xl text-base text-slate-400">{t("aiIssSubheading")}</p>
+          <p className="text-fg-muted mx-auto max-w-2xl text-base">{t("aiIssSubheading")}</p>
         </header>
 
-        <section className="space-y-4 rounded-2xl border border-slate-800 bg-slate-900/60 p-8">
-          <h2 className="flex items-center gap-3 text-2xl font-bold text-white">
+        <section className="border-border-subtle bg-bg-secondary space-y-4 rounded-2xl border p-8">
+          <h2 className="text-fg-secondaryxl flex items-center gap-3 font-bold text-white">
             <FileText className="h-6 w-6 text-purple-400" />
             {t("aiIssWhatIsTitle")}
           </h2>
-          <p className="text-sm leading-relaxed text-slate-300">{t("aiIssWhatIsText")}</p>
+          <p className="text-fg-primary text-sm leading-relaxed">{t("aiIssWhatIsText")}</p>
         </section>
 
         <section className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          <div className="space-y-2 rounded-xl border border-slate-800 bg-slate-900/60 p-6">
+          <div className="border-border-subtle bg-bg-secondary space-y-2 rounded-xl border p-6">
             <Activity className="h-6 w-6 text-purple-400" />
             <h3 className="text-lg font-bold text-white">{t("aiIssImpactTitle")}</h3>
-            <p className="text-xs text-slate-400">{t("aiIssImpactDesc")}</p>
+            <p className="text-fg-muted text-xs">{t("aiIssImpactDesc")}</p>
           </div>
-          <div className="space-y-2 rounded-xl border border-slate-800 bg-slate-900/60 p-6">
+          <div className="border-border-subtle bg-bg-secondary space-y-2 rounded-xl border p-6">
             <Scale className="h-6 w-6 text-cyan-400" />
             <h3 className="text-lg font-bold text-white">{t("aiIssScopeTitle")}</h3>
-            <p className="text-xs text-slate-400">{t("aiIssScopeDesc")}</p>
+            <p className="text-fg-muted text-xs">{t("aiIssScopeDesc")}</p>
           </div>
-          <div className="space-y-2 rounded-xl border border-slate-800 bg-slate-900/60 p-6">
+          <div className="border-border-subtle bg-bg-secondary space-y-2 rounded-xl border p-6">
             <Zap className="h-6 w-6 text-amber-400" />
             <h3 className="text-lg font-bold text-white">{t("aiIssExploitabilityTitle")}</h3>
-            <p className="text-xs text-slate-400">{t("aiIssExploitabilityDesc")}</p>
+            <p className="text-fg-muted text-xs">{t("aiIssExploitabilityDesc")}</p>
           </div>
         </section>
 
         <section className="space-y-6">
-          <h2 className="text-2xl font-bold text-white">{t("aiIssBandsTitle")}</h2>
+          <h2 className="text-fg-secondaryxl font-bold text-white">{t("aiIssBandsTitle")}</h2>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {scoreBands.map((sb) => (
               <div key={sb.band} className={`rounded-xl border p-5 ${sb.color}`}>

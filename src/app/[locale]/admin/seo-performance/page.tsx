@@ -68,7 +68,7 @@ export default async function SeoPerformancePage({
       icon: Zap,
       color: "text-emerald-400",
       bg: "bg-emerald-500/10",
-      border: "border-emerald-500/20",
+      border: "border-success-500/20",
     },
     {
       label: "Lighthouse Score",
@@ -76,32 +76,32 @@ export default async function SeoPerformancePage({
       icon: TrendingUp,
       color: "text-amber-400",
       bg: "bg-amber-500/10",
-      border: "border-amber-500/20",
+      border: "border-warning-500/20",
     },
   ];
 
   const activeLanguagesText = `${SUPPORTED_LOCALES.map((l) => l.toUpperCase()).join(", ")} (${SUPPORTED_LOCALES.length} dil aktif)`;
 
   return (
-    <div className="rounded-3xl bg-zinc-900/40 px-3 py-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:px-6 md:p-8">
+    <div className="bg-bg-secondary/40 ring-border-subtle rounded-3xl px-3 py-4 shadow-2xl ring-1 backdrop-blur-xl sm:px-6 md:p-8">
       <MarketingHubTabs />
       <div className="animate-in fade-in space-y-8 duration-500">
         <div>
           <h1 className="text-3xl font-black tracking-tight text-white drop-shadow-md">
             SEO &amp; Performans Panosu
           </h1>
-          <p className="mt-2 text-sm text-slate-400">
+          <p className="text-fg-muted mt-2 text-sm">
             Canlı metrikler, arama indeksi görünürlüğü ve Core Web Vitals izleme.
           </p>
         </div>
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           {/* Sol Sütun: Metrikler */}
-          <div className="grid grid-cols-2 gap-4 lg:col-span-2">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:col-span-2">
             {metrics.map((m) => (
               <div
                 key={m.label}
-                className={`group flex flex-col justify-between overflow-hidden rounded-2xl border border-slate-800/60 bg-slate-900/60 p-6 backdrop-blur-xl transition-all hover:bg-slate-800/80`}
+                className={`group border-border-subtle bg-bg-secondary hover:bg-bg-secondary flex flex-col justify-between overflow-hidden rounded-2xl border p-6 backdrop-blur-xl transition-all`}
               >
                 <div className="mb-4 flex items-center justify-between">
                   <div className={`rounded-xl border ${m.border} ${m.bg} p-2.5 ${m.color}`}>
@@ -110,7 +110,7 @@ export default async function SeoPerformancePage({
                 </div>
                 <div>
                   <p className="text-3xl font-black tracking-tight text-white">{m.value}</p>
-                  <p className="mt-1 text-xs font-medium tracking-wide text-slate-400 uppercase">
+                  <p className="text-fg-muted mt-1 text-xs font-medium tracking-wide uppercase">
                     {m.label}
                   </p>
                 </div>
@@ -119,9 +119,9 @@ export default async function SeoPerformancePage({
           </div>
 
           {/* Sağ Sütun: Uyum Oranı Widget (Premium) */}
-          <div className="border-border-subtle relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border bg-zinc-900/40 p-8 text-center ring-1 ring-white/10 backdrop-blur-xl">
+          <div className="border-border-subtle bg-bg-secondary/40 ring-border-subtle relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border p-8 text-center ring-1 backdrop-blur-xl">
             <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent"></div>
-            <h2 className="relative z-10 mb-2 text-sm font-bold tracking-wider text-slate-300 uppercase">
+            <h2 className="text-fg-primary relative z-10 mb-2 text-sm font-bold tracking-wider uppercase">
               Teknik SEO Uyum Oranı
             </h2>
             <div className="relative z-10 my-4 flex items-center justify-center">
@@ -163,7 +163,7 @@ export default async function SeoPerformancePage({
           <h2 className="relative z-10 mb-4 flex items-center gap-2 text-lg font-bold text-white">
             <Globe className="text-brand-400 h-5 w-5" /> Canlı Veri Kaynakları &amp; SEO Altyapısı
           </h2>
-          <ul className="relative z-10 space-y-3 text-sm text-slate-400">
+          <ul className="text-fg-muted relative z-10 space-y-3 text-sm">
             <li className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="h-1.5 w-1.5 rounded-full bg-emerald-400"></div>

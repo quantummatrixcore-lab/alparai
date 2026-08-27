@@ -67,7 +67,7 @@ export function StatsCards({ stats }: { stats: EcosystemStats }) {
               <span className="text-fg-muted text-xs font-semibold tracking-wider uppercase">
                 {c.label}
               </span>
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/5 transition-transform group-hover:scale-110">
+              <div className="border-border-subtle flex h-8 w-8 items-center justify-center rounded-lg border bg-white/5 transition-transform group-hover:scale-110">
                 <Icon className={`h-4 w-4 ${c.color}`} />
               </div>
             </div>

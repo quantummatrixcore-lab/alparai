@@ -306,8 +306,8 @@ export function Manage360CommandPalette() {
 
       {isOpen && (
         <div className="animate-fade-in fixed inset-0 z-50 flex items-start justify-center bg-black/70 pt-16 backdrop-blur-md">
-          <div className="bg-bg-tertiary/95 mx-4 w-full max-w-xl overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
-            <div className="flex items-center border-b border-white/10 px-4 py-3.5">
+          <div className="bg-bg-tertiary/95 border-border-subtle mx-4 w-full max-w-xl overflow-hidden rounded-2xl border shadow-2xl">
+            <div className="border-border-subtle flex items-center border-b px-4 py-3.5">
               <Search className="text-fg-muted h-5 w-5" />
               <input
                 type="text"
@@ -317,7 +317,7 @@ export function Manage360CommandPalette() {
                 className="ml-3 flex-1 bg-transparent text-sm text-white placeholder-zinc-500 focus:outline-none"
                 autoFocus
               />
-              <kbd className="text-fg-muted rounded bg-zinc-800 px-2 py-0.5 text-xs">
+              <kbd className="text-fg-muted bg-bg-elevated rounded px-2 py-0.5 text-xs">
                 {t("esc")}
               </kbd>
             </div>
@@ -347,13 +347,13 @@ export function Manage360CommandPalette() {
                     <button
                       key={action.id}
                       onClick={action.action}
-                      className="hover:bg-brand-500/15 flex w-full items-center justify-between rounded-xl px-3.5 py-3 text-left text-sm text-zinc-200 transition-colors hover:text-white"
+                      className="hover:bg-brand-500/15 text-fg-secondary flex w-full items-center justify-between rounded-xl px-3.5 py-3 text-left text-sm transition-colors hover:text-white"
                     >
                       <div className="flex items-center space-x-3">
                         <Icon className={`h-4 w-4 ${catColor}`} />
                         <span className="font-medium">{action.title}</span>
                       </div>
-                      <span className="text-fg-muted rounded-md bg-zinc-800 px-2 py-0.5 text-[10px] font-bold tracking-wider uppercase">
+                      <span className="text-fg-muted bg-bg-elevated rounded-md px-2 py-0.5 text-[10px] font-bold tracking-wider uppercase">
                         {action.category}
                       </span>
                     </button>
@@ -362,7 +362,7 @@ export function Manage360CommandPalette() {
               )}
             </div>
 
-            <div className="bg-bg-tertiary/80 text-fg-disabled flex items-center justify-between border-t border-white/5 px-4 py-2.5 text-[11px]">
+            <div className="bg-bg-tertiary/80 text-fg-disabled border-border-subtle/50 flex items-center justify-between border-t px-4 py-2.5 text-[11px]">
               <span>
                 {t("alpar_ai_360_manage_surface")}
                 {allActions.length} {t("actions")}

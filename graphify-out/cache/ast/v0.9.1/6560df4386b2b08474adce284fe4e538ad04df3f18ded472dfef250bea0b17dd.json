@@ -1,0 +1,95 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_claude_skills_tom_skill_md",
+      "label": "SKILL.md",
+      "file_type": "document",
+      "source_file": ".claude/skills/tom/SKILL.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_claude_skills_tom_skill_tom_token_optimization_engine",
+      "label": "/tom \u2014 Token Optimization Engine",
+      "file_type": "document",
+      "source_file": ".claude/skills/tom/SKILL.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "d_01_saas_products_alparai_claude_skills_tom_skill_boundary_g_6_hardened_do_not_relax_without_an_explicit_user_exception",
+      "label": "Boundary (G-6, hardened \u2014 do not relax without an explicit user exception)",
+      "file_type": "document",
+      "source_file": ".claude/skills/tom/SKILL.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "d_01_saas_products_alparai_claude_skills_tom_skill_discovery_delegation_g_5_binding",
+      "label": "Discovery delegation (G-5, binding)",
+      "file_type": "document",
+      "source_file": ".claude/skills/tom/SKILL.md",
+      "source_location": "L14"
+    },
+    {
+      "id": "d_01_saas_products_alparai_claude_skills_tom_skill_procedure",
+      "label": "Procedure",
+      "file_type": "document",
+      "source_file": ".claude/skills/tom/SKILL.md",
+      "source_location": "L18"
+    },
+    {
+      "id": "d_01_saas_products_alparai_claude_skills_tom_skill_truth_protocol_reminders_while_writing_the_entry",
+      "label": "Truth Protocol reminders while writing the entry",
+      "file_type": "document",
+      "source_file": ".claude/skills/tom/SKILL.md",
+      "source_location": "L29"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_claude_skills_tom_skill_md",
+      "target": "d_01_saas_products_alparai_claude_skills_tom_skill_tom_token_optimization_engine",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/skills/tom/SKILL.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_claude_skills_tom_skill_tom_token_optimization_engine",
+      "target": "d_01_saas_products_alparai_claude_skills_tom_skill_boundary_g_6_hardened_do_not_relax_without_an_explicit_user_exception",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/skills/tom/SKILL.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_claude_skills_tom_skill_tom_token_optimization_engine",
+      "target": "d_01_saas_products_alparai_claude_skills_tom_skill_discovery_delegation_g_5_binding",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/skills/tom/SKILL.md",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_claude_skills_tom_skill_tom_token_optimization_engine",
+      "target": "d_01_saas_products_alparai_claude_skills_tom_skill_procedure",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/skills/tom/SKILL.md",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_claude_skills_tom_skill_tom_token_optimization_engine",
+      "target": "d_01_saas_products_alparai_claude_skills_tom_skill_truth_protocol_reminders_while_writing_the_entry",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/skills/tom/SKILL.md",
+      "source_location": "L29",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

@@ -79,7 +79,7 @@ export function HealthDashboardClient({ initialReport }: HealthDashboardClientPr
           type="button"
           onClick={handleRefresh}
           disabled={refreshing}
-          className="flex items-center gap-1.5 rounded border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/10 disabled:opacity-50"
+          className="border-border-subtle flex items-center gap-1.5 rounded border bg-white/5 px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/10 disabled:opacity-50"
         >
           <RefreshCw className={`h-3.5 w-3.5 ${refreshing ? "animate-spin" : ""}`} />
           {t("health_refresh_status")}
@@ -91,7 +91,7 @@ export function HealthDashboardClient({ initialReport }: HealthDashboardClientPr
           {(report.subsystems || []).map((sub) => (
             <div
               key={sub.name}
-              className="space-y-2 rounded-lg border border-white/10 bg-black/40 p-4 transition hover:border-white/20"
+              className="border-border-subtle hover:border-border-strong space-y-2 rounded-lg border bg-black/40 p-4 transition"
             >
               <div className="flex items-center justify-between">
                 <span className="font-mono text-xs font-bold text-white uppercase">{sub.name}</span>

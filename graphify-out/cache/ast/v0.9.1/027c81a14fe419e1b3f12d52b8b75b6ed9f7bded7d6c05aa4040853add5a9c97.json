@@ -1,0 +1,127 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_47_agent_hierarchy_md",
+      "label": "v13.47-agent-hierarchy.md",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.47-agent-hierarchy.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_47_agent_hierarchy_v13_47_the_agent_command_hierarchy_and_what_alignment_can_actually_measure",
+      "label": "v13.47 \u2014 The agent command hierarchy, and what \"alignment\" can actually measure",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.47-agent-hierarchy.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_47_agent_hierarchy_1_what_the_founder_asked_for",
+      "label": "1. What the Founder asked for",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.47-agent-hierarchy.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_47_agent_hierarchy_2_the_dispatcher_already_exists_three_times",
+      "label": "2. The dispatcher already exists three times",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.47-agent-hierarchy.md",
+      "source_location": "L15"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_47_agent_hierarchy_3_proposed_hierarchy",
+      "label": "3. Proposed hierarchy",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.47-agent-hierarchy.md",
+      "source_location": "L27"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_47_agent_hierarchy_4_two_delivery_paths",
+      "label": "4. Two delivery paths",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.47-agent-hierarchy.md",
+      "source_location": "L45"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_47_agent_hierarchy_5_what_alignment_percentage_can_and_cannot_measure",
+      "label": "5. What \"alignment percentage\" can and cannot measure",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.47-agent-hierarchy.md",
+      "source_location": "L62"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_47_agent_hierarchy_6_out_of_scope",
+      "label": "6. Out of scope",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.47-agent-hierarchy.md",
+      "source_location": "L88"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_47_agent_hierarchy_md",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_47_agent_hierarchy_v13_47_the_agent_command_hierarchy_and_what_alignment_can_actually_measure",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.47-agent-hierarchy.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_47_agent_hierarchy_v13_47_the_agent_command_hierarchy_and_what_alignment_can_actually_measure",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_47_agent_hierarchy_1_what_the_founder_asked_for",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.47-agent-hierarchy.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_47_agent_hierarchy_v13_47_the_agent_command_hierarchy_and_what_alignment_can_actually_measure",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_47_agent_hierarchy_2_the_dispatcher_already_exists_three_times",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.47-agent-hierarchy.md",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_47_agent_hierarchy_v13_47_the_agent_command_hierarchy_and_what_alignment_can_actually_measure",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_47_agent_hierarchy_3_proposed_hierarchy",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.47-agent-hierarchy.md",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_47_agent_hierarchy_v13_47_the_agent_command_hierarchy_and_what_alignment_can_actually_measure",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_47_agent_hierarchy_4_two_delivery_paths",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.47-agent-hierarchy.md",
+      "source_location": "L45",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_47_agent_hierarchy_v13_47_the_agent_command_hierarchy_and_what_alignment_can_actually_measure",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_47_agent_hierarchy_5_what_alignment_percentage_can_and_cannot_measure",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.47-agent-hierarchy.md",
+      "source_location": "L62",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_47_agent_hierarchy_v13_47_the_agent_command_hierarchy_and_what_alignment_can_actually_measure",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_47_agent_hierarchy_6_out_of_scope",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.47-agent-hierarchy.md",
+      "source_location": "L88",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

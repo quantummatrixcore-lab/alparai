@@ -26,10 +26,10 @@ export function ProvenanceTrail({
 
   return (
     <div
-      className="mt-8 space-y-4 rounded-lg border border-white/10 bg-white/5 p-6"
+      className="border-border-subtle mt-8 space-y-4 rounded-lg border bg-white/5 p-6"
       data-testid="provenance-trail"
     >
-      <div className="flex items-center justify-between border-b border-white/10 pb-3">
+      <div className="border-border-subtle flex items-center justify-between border-b pb-3">
         <span className="flex items-center gap-2 text-sm font-bold text-white">
           <ShieldCheck className="text-success-400 h-4 w-4" /> {t("provenance_title")}
         </span>

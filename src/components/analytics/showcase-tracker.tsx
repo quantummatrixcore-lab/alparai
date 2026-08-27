@@ -51,7 +51,7 @@ export function TrackedCtaButton({
   return (
     <a
       {...props}
-      onClick={(e: any) => {
+      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
         trackShowcaseCtaClick(pagePath, ctaAction, extraData);
         if (onClick) onClick(e);
       }}
@@ -66,7 +66,7 @@ interface TrackedLinkProps extends React.ComponentProps<typeof Link> {
   ctaAction: string;
   extraData?: Record<string, unknown>;
   children?: React.ReactNode;
-  onClick?: (e: any) => void;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 }
 
 export function TrackedLink({
@@ -80,7 +80,7 @@ export function TrackedLink({
   return (
     <Link
       {...props}
-      onClick={(e: any) => {
+      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
         trackShowcaseCtaClick(pagePath, ctaAction, extraData);
         if (onClick) onClick(e);
       }}

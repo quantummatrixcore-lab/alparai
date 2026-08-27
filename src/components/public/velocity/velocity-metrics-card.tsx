@@ -46,7 +46,7 @@ export function VelocityMetricsCard({
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        className="border-accent-500/30 hover:border-accent-500/50 relative overflow-hidden rounded-2xl border bg-neutral-900/70 p-6 shadow-[0_0_30px_rgba(6,182,212,0.15)] backdrop-blur-xl transition-all duration-300 lg:col-span-2"
+        className="border-accent-500/30 hover:border-accent-500/50 bg-bg-secondary relative overflow-hidden rounded-2xl border p-6 shadow-[0_0_30px_rgba(6,182,212,0.15)] backdrop-blur-xl transition-all duration-300 lg:col-span-2"
       >
         <div className="bg-accent-500/10 pointer-events-none absolute -top-24 -right-24 h-48 w-48 rounded-full blur-3xl" />
         <div className="flex items-center justify-between">
@@ -84,7 +84,7 @@ export function VelocityMetricsCard({
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="relative overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/60 p-6 shadow-xl backdrop-blur-xl transition-all duration-300 hover:border-white/20"
+        className="border-border-subtle bg-bg-secondary hover:border-border-strong relative overflow-hidden rounded-2xl border p-6 shadow-xl backdrop-blur-xl transition-all duration-300"
       >
         <div className="flex items-center justify-between">
           <span className="text-fg-muted text-xs font-medium">{t("avg_jump_title")}</span>
@@ -106,7 +106,7 @@ export function VelocityMetricsCard({
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="relative overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/60 p-6 shadow-xl backdrop-blur-xl transition-all duration-300 hover:border-white/20"
+        className="border-border-subtle bg-bg-secondary hover:border-border-strong relative overflow-hidden rounded-2xl border p-6 shadow-xl backdrop-blur-xl transition-all duration-300"
       >
         <div className="flex items-center justify-between">
           <span className="text-fg-muted text-xs font-medium">{t("base_arr_title")}</span>

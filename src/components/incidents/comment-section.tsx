@@ -117,7 +117,7 @@ export function CommentSection({
 
   return (
     <section id="comments" className="space-y-6">
-      <div className="flex items-center gap-2 border-b border-white/5 pb-3">
+      <div className="border-border-subtle/50 flex items-center gap-2 border-b pb-3">
         <MessageSquare className="text-brand-400 h-5 w-5" />
         <h3 className="text-fg-primary text-xl font-bold tracking-tight">{textTitle}</h3>
         <span className="bg-brand-500/10 text-brand-400 border-brand-500/20 rounded-full border px-2.5 py-0.5 text-xs font-bold">
@@ -126,7 +126,7 @@ export function CommentSection({
       </div>
 
       {comments.length === 0 ? (
-        <div className="bg-bg-secondary/20 rounded-xl border border-dashed border-white/10 py-10 text-center">
+        <div className="bg-bg-secondary/20 border-border-subtle rounded-xl border border-dashed py-10 text-center">
           <MessageSquare className="text-fg-disabled mx-auto mb-3 h-8 w-8" />
           <p className="text-fg-secondary text-sm font-medium">{textNoComments}</p>
         </div>
@@ -147,7 +147,7 @@ export function CommentSection({
                 key={comment.id}
                 className="border-border-subtle bg-bg-secondary/40 hover:bg-bg-secondary/60 flex gap-4 rounded-xl border p-4 transition-all duration-200"
               >
-                <div className="bg-bg-tertiary relative h-10 w-10 shrink-0 overflow-hidden rounded-full border border-white/10">
+                <div className="bg-bg-tertiary border-border-subtle relative h-10 w-10 shrink-0 overflow-hidden rounded-full border">
                   {avatarUrl ? (
                     <Image src={avatarUrl} alt={displayName} fill className="object-cover" />
                   ) : (
@@ -204,7 +204,7 @@ export function CommentSection({
                 value={commentText}
                 onChange={(e) => setCommentText(e.target.value)}
                 placeholder={textPlaceholder}
-                className="bg-bg-primary/50 focus:border-brand-500 placeholder:text-fg-disabled focus:ring-brand-500 min-h-24 w-full rounded-lg border border-white/10 p-3 text-sm focus:ring-1 focus:outline-none"
+                className="bg-bg-primary/50 focus:border-brand-500 placeholder:text-fg-disabled focus:ring-brand-500 border-border-subtle min-h-24 w-full rounded-lg border p-3 text-sm focus:ring-1 focus:outline-none"
                 maxLength={1000}
                 disabled={isPending}
               />

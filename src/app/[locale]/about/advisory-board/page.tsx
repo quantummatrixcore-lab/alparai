@@ -110,7 +110,7 @@ export default async function AdvisoryBoardPage({
                     <Sparkles className="h-3 w-3" />
                     {isTr ? "Kurul Oluşturulma Aşamasında" : "Board in Formation"}
                   </div>
-                  <h2 className="text-fg-primary text-2xl font-bold tracking-tight">
+                  <h2 className="text-fg-primary text-fg-secondaryxl font-bold tracking-tight">
                     {isTr ? "Açık Çağrı & Katılım Daveti" : "Open Call & Invitation"}
                   </h2>
                   <p className="text-fg-secondary leading-relaxed">{t("advisoryBoardEmpty")}</p>
@@ -206,7 +206,7 @@ export default async function AdvisoryBoardPage({
                       </p>
                     </CardContent>
                     {(member.website_url || member.press_url) && (
-                      <CardFooter className="flex flex-wrap gap-4 border-t border-white/5 pt-4">
+                      <CardFooter className="border-border-subtle/50 flex flex-wrap gap-4 border-t pt-4">
                         {member.website_url && (
                           <a
                             href={member.website_url}

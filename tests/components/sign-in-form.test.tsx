@@ -11,7 +11,6 @@ afterEach(() => {
   cleanup();
 });
 
-
 vi.mock("@/actions/auth/auth", () => ({
   signInWithGoogle: vi.fn(),
   signInWithMagicLink: vi.fn(),

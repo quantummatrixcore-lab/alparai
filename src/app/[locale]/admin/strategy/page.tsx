@@ -203,8 +203,8 @@ export default async function StrategyOverviewPage({
   };
 
   return (
-    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
-      <div className="rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
+    <div className="bg-bg-primary text-fg-primary min-h-screen px-3 py-4 sm:px-6 sm:py-6 md:p-8">
+      <div className="bg-bg-secondary/40 ring-border-subtle rounded-3xl p-4 shadow-2xl ring-1 backdrop-blur-xl sm:p-6 md:p-8">
         <StrategyTabs />
         <div className="py-4 sm:py-6">
           <Container>
@@ -213,7 +213,7 @@ export default async function StrategyOverviewPage({
               <div>
                 <div className="flex items-center gap-2">
                   <Compass className="text-brand-400 animate-spin-slow h-6 w-6" />
-                  <h1 className="text-2xl font-extrabold tracking-tight text-white md:text-3xl">
+                  <h1 className="text-fg-secondaryxl font-extrabold tracking-tight text-white md:text-3xl">
                     {t("strategic_advisory_board")}
                   </h1>
                 </div>
@@ -235,48 +235,48 @@ export default async function StrategyOverviewPage({
                 <HealthGauge score={dynamicSnapshot.health_score} />
 
                 {/* Core Metrics Card */}
-                <div className="border-border-subtle rounded-2xl border bg-zinc-900/40 p-6 ring-1 ring-white/10 backdrop-blur-md backdrop-blur-xl">
+                <div className="border-border-subtle bg-bg-secondary/40 ring-border-subtle rounded-2xl border p-6 ring-1 backdrop-blur-md backdrop-blur-xl">
                   <h3 className="mb-4 text-xs font-bold tracking-wider text-white uppercase">
                     {t("core_metrics_snapshot")}
                   </h3>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-bg-tertiary/20 rounded-xl border border-white/5 p-4">
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                    <div className="bg-bg-tertiary/20 border-border-subtle/50 rounded-xl border p-4">
                       <div className="text-fg-muted flex items-center justify-between">
                         <span className="text-[10px] font-bold tracking-wider uppercase">
                           {t("total_users")}
                         </span>
                         <Users className="h-4 w-4 text-blue-400" />
                       </div>
-                      <p className="mt-2 text-2xl font-extrabold text-white">
+                      <p className="text-fg-secondaryxl mt-2 font-extrabold text-white">
                         {dynamicSnapshot.total_users}
                       </p>
                     </div>
 
-                    <div className="bg-bg-tertiary/20 rounded-xl border border-white/5 p-4">
+                    <div className="bg-bg-tertiary/20 border-border-subtle/50 rounded-xl border p-4">
                       <div className="text-fg-muted flex items-center justify-between">
                         <span className="text-[10px] font-bold tracking-wider uppercase">
                           {t("incidents")}
                         </span>
                         <AlertCircle className="h-4 w-4 text-red-400" />
                       </div>
-                      <p className="mt-2 text-2xl font-extrabold text-white">
+                      <p className="text-fg-secondaryxl mt-2 font-extrabold text-white">
                         {dynamicSnapshot.total_incidents}
                       </p>
                     </div>
 
-                    <div className="bg-bg-tertiary/20 rounded-xl border border-white/5 p-4">
+                    <div className="bg-bg-tertiary/20 border-border-subtle/50 rounded-xl border p-4">
                       <div className="text-fg-muted flex items-center justify-between">
                         <span className="text-[10px] font-bold tracking-wider uppercase">
                           {t("providers_1")}
                         </span>
                         <Activity className="h-4 w-4 text-emerald-400" />
                       </div>
-                      <p className="mt-2 text-2xl font-extrabold text-white">
+                      <p className="text-fg-secondaryxl mt-2 font-extrabold text-white">
                         {dynamicSnapshot.active_providers}
                       </p>
                     </div>
 
-                    <div className="bg-bg-tertiary/20 rounded-xl border border-white/5 p-4">
+                    <div className="bg-bg-tertiary/20 border-border-subtle/50 rounded-xl border p-4">
                       <div className="text-fg-muted flex items-center justify-between">
                         <span className="text-[10px] font-bold tracking-wider uppercase">
                           {t("runway")}
@@ -290,7 +290,7 @@ export default async function StrategyOverviewPage({
                       </p>
                     </div>
                   </div>
-                  <div className="mt-4 border-t border-white/5 pt-4 text-center">
+                  <div className="border-border-subtle/50 mt-4 border-t pt-4 text-center">
                     <div className="text-fg-muted flex justify-between text-xs">
                       <span>{t("monthly_revenue_mrr")}</span>
                       <span className="font-mono font-bold text-white">
@@ -304,7 +304,7 @@ export default async function StrategyOverviewPage({
               {/* RIGHT COLUMN: Strategy Modules Summary Links */}
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:col-span-2">
                 {/* SWOT ANALİZİ CARD */}
-                <div className="border-border-subtle hover:border-brand-500/30 flex flex-col justify-between rounded-2xl border bg-zinc-900/40 p-6 ring-1 ring-white/10 backdrop-blur-xl transition-all duration-300">
+                <div className="border-border-subtle hover:border-brand-500/30 bg-bg-secondary/40 ring-border-subtle flex flex-col justify-between rounded-2xl border p-6 ring-1 backdrop-blur-xl transition-all duration-300">
                   <div>
                     <div className="mb-4 flex items-center justify-between">
                       <div className="rounded-lg border border-purple-500/25 bg-purple-500/10 p-2 text-purple-400">
@@ -343,7 +343,7 @@ export default async function StrategyOverviewPage({
                 </div>
 
                 {/* RİSK YÖNETİMİ CARD */}
-                <div className="border-border-subtle hover:border-brand-500/30 flex flex-col justify-between rounded-2xl border bg-zinc-900/40 p-6 ring-1 ring-white/10 backdrop-blur-xl transition-all duration-300">
+                <div className="border-border-subtle hover:border-brand-500/30 bg-bg-secondary/40 ring-border-subtle flex flex-col justify-between rounded-2xl border p-6 ring-1 backdrop-blur-xl transition-all duration-300">
                   <div>
                     <div className="mb-4 flex items-center justify-between">
                       <div className="rounded-lg border border-red-500/25 bg-red-500/10 p-2 text-red-400">
@@ -358,7 +358,7 @@ export default async function StrategyOverviewPage({
                       {t("prioritize_monitor_and_mitigate_legal_pr")}
                     </p>
                     <div className="mt-4 flex items-center gap-4 text-xs">
-                      <div className="flex-1 rounded-lg border border-white/10 bg-white/5 p-2 text-center">
+                      <div className="border-border-subtle flex-1 rounded-lg border bg-white/5 p-2 text-center">
                         <span className="text-fg-muted block text-[9px] font-bold tracking-wider uppercase">
                           {t("aktif_risk")}
                         </span>
@@ -366,7 +366,7 @@ export default async function StrategyOverviewPage({
                           {activeRisksCount}
                         </span>
                       </div>
-                      <div className="flex-1 rounded-lg border border-red-500/20 bg-red-500/10 p-2 text-center text-red-400">
+                      <div className="border-danger-500/20 flex-1 rounded-lg border bg-red-500/10 p-2 text-center text-red-400">
                         <span className="block text-[9px] font-bold tracking-wider uppercase">
                           {t("y_ksek_risk")}
                         </span>
@@ -384,7 +384,7 @@ export default async function StrategyOverviewPage({
                 </div>
 
                 {/* DEĞERLEME MODELİ CARD */}
-                <div className="border-border-subtle hover:border-brand-500/30 flex flex-col justify-between rounded-2xl border bg-zinc-900/40 p-6 ring-1 ring-white/10 backdrop-blur-xl transition-all duration-300">
+                <div className="border-border-subtle hover:border-brand-500/30 bg-bg-secondary/40 ring-border-subtle flex flex-col justify-between rounded-2xl border p-6 ring-1 backdrop-blur-xl transition-all duration-300">
                   <div>
                     <div className="mb-4 flex items-center justify-between">
                       <div className="rounded-lg border border-amber-500/25 bg-amber-500/10 p-2 text-amber-400">
@@ -398,7 +398,7 @@ export default async function StrategyOverviewPage({
                     <p className="text-fg-muted mt-2 text-xs">
                       {t("simulate_valuation_cap_metrics_across_be")}
                     </p>
-                    <div className="mt-4 rounded-lg border border-white/10 bg-white/5 p-2 text-center">
+                    <div className="border-border-subtle mt-4 rounded-lg border bg-white/5 p-2 text-center">
                       <span className="text-fg-muted block text-[9px] font-bold tracking-wider uppercase">
                         {t("last_calculated_valuation")}
                       </span>
@@ -419,7 +419,7 @@ export default async function StrategyOverviewPage({
                 </div>
 
                 {/* OKR MILESTONES CARD */}
-                <div className="border-border-subtle hover:border-brand-500/30 flex flex-col justify-between rounded-2xl border bg-zinc-900/40 p-6 ring-1 ring-white/10 backdrop-blur-xl transition-all duration-300">
+                <div className="border-border-subtle hover:border-brand-500/30 bg-bg-secondary/40 ring-border-subtle flex flex-col justify-between rounded-2xl border p-6 ring-1 backdrop-blur-xl transition-all duration-300">
                   <div>
                     <div className="mb-4 flex items-center justify-between">
                       <div className="rounded-lg border border-blue-500/25 bg-blue-500/10 p-2 text-blue-400">
@@ -462,7 +462,7 @@ export default async function StrategyOverviewPage({
                 </div>
 
                 {/* STRATEJİK DEĞERLENDİRME CARD */}
-                <div className="border-border-subtle hover:border-brand-500/30 flex flex-col justify-between rounded-2xl border bg-zinc-900/40 p-6 ring-1 ring-white/10 backdrop-blur-xl transition-all duration-300">
+                <div className="border-border-subtle hover:border-brand-500/30 bg-bg-secondary/40 ring-border-subtle flex flex-col justify-between rounded-2xl border p-6 ring-1 backdrop-blur-xl transition-all duration-300">
                   <div>
                     <div className="mb-4 flex items-center justify-between">
                       <div className="rounded-lg border border-emerald-500/25 bg-emerald-500/10 p-2 text-emerald-400">
@@ -479,7 +479,7 @@ export default async function StrategyOverviewPage({
                       {t("strategy_questionnaire_desc") ||
                         "Compare model evaluations, latencies, and costs on platform strategy."}
                     </p>
-                    <div className="mt-4 rounded-lg border border-white/10 bg-white/5 p-2 text-center text-xs">
+                    <div className="border-border-subtle mt-4 rounded-lg border bg-white/5 p-2 text-center text-xs">
                       <span className="text-fg-muted block text-[9px] font-bold tracking-wider uppercase">
                         {t("question_pool") || "Soru Havuzu"}
                       </span>
@@ -498,7 +498,7 @@ export default async function StrategyOverviewPage({
                 </div>
 
                 {/* 360° EKOSİSTEM ANALİZİ CARD */}
-                <div className="border-border-subtle hover:border-brand-500/30 flex flex-col justify-between rounded-2xl border bg-zinc-900/40 p-6 ring-1 ring-white/10 backdrop-blur-xl transition-all duration-300">
+                <div className="border-border-subtle hover:border-brand-500/30 bg-bg-secondary/40 ring-border-subtle flex flex-col justify-between rounded-2xl border p-6 ring-1 backdrop-blur-xl transition-all duration-300">
                   <div>
                     <div className="mb-4 flex items-center justify-between">
                       <div className="border-brand-500/25 bg-brand-500/10 text-brand-400 rounded-lg border p-2">
@@ -515,7 +515,7 @@ export default async function StrategyOverviewPage({
                       {t("ecosystem_benchmark_desc") ||
                         "Market post-mortem: OpenRouter, Blackbox AI, LMSYS, Scale AI & LangChain analysis."}
                     </p>
-                    <div className="mt-4 rounded-lg border border-white/10 bg-white/5 p-2 text-center text-xs">
+                    <div className="border-border-subtle mt-4 rounded-lg border bg-white/5 p-2 text-center text-xs">
                       <span className="text-fg-muted block text-[9px] font-bold tracking-wider uppercase">
                         Defensive Moat Index
                       </span>

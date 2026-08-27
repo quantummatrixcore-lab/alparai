@@ -177,7 +177,7 @@ function ModerationCard({ incident }: { incident: IncidentListItem }) {
       <CardContent className="flex h-full flex-col justify-between p-6">
         <div className="space-y-4">
           {/* Header Row */}
-          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/5 pb-3">
+          <div className="border-border-subtle/50 flex flex-wrap items-center justify-between gap-2 border-b pb-3">
             <div className="flex items-center gap-2">
               <Badge variant={getSeverityBadgeVariant(incident.severity)} dot>
                 {incident.severity}
@@ -214,7 +214,7 @@ function ModerationCard({ incident }: { incident: IncidentListItem }) {
 
           {incident.cross_audit_truth_score !== null &&
             incident.cross_audit_truth_score !== undefined && (
-              <div className="grid grid-cols-2 gap-2 rounded-xl border border-white/5 bg-neutral-950/40 p-3">
+              <div className="border-border-subtle/50 bg-bg-secondary grid grid-cols-2 gap-2 rounded-xl border p-3">
                 <div className="flex items-center justify-between text-[11px]">
                   <span className="text-fg-muted">Truth Score</span>
                   <span className="text-success-400 font-mono font-bold">
@@ -250,7 +250,7 @@ function ModerationCard({ incident }: { incident: IncidentListItem }) {
         </div>
 
         {/* Footer Actions */}
-        <div className="mt-6 flex flex-wrap gap-2 border-t border-white/5 pt-4">
+        <div className="border-border-subtle/50 mt-6 flex flex-wrap gap-2 border-t pt-4">
           <div className="flex flex-1 gap-2">
             <Button
               size="sm"

@@ -1,0 +1,271 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_md",
+      "label": "seed-data-room.md",
+      "file_type": "document",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_alpar_ai_seed_data_room_financial_model_matrix_201",
+      "label": "ALPAR AI \u2014 Seed Data Room & Financial Model Matrix (#201)",
+      "file_type": "document",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_1_data_room_index_document_architecture",
+      "label": "1. Data Room Index & Document Architecture",
+      "file_type": "document",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L13"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_2_unit_economics_ltv_cac_17x_mathematical_formulation",
+      "label": "2. Unit Economics & LTV/CAC > 17x Mathematical Formulation",
+      "file_type": "document",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L29"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_2_1_core_metrics_assumptions",
+      "label": "2.1 Core Metrics & Assumptions",
+      "file_type": "document",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L33"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_2_2_mathematical_formulas_calculations",
+      "label": "2.2 Mathematical Formulas & Calculations",
+      "file_type": "document",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L42"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_lifetime_value_ltv_formula",
+      "label": "Lifetime Value (LTV) Formula:",
+      "file_type": "document",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L44"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_ltv_cac_ratio_formula",
+      "label": "LTV / CAC Ratio Formula:",
+      "file_type": "document",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L52"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_cac_payback_period",
+      "label": "CAC Payback Period:",
+      "file_type": "document",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L60"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_3_eu_ai_act_article_73_market_analysis_regulatory_tailwinds",
+      "label": "3. EU AI Act Article 73 Market Analysis & Regulatory Tailwinds",
+      "file_type": "document",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L69"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_3_1_article_73_mandate_overview_eu_database_for_high_risk_ai_systems",
+      "label": "3.1 Article 73 Mandate Overview (EU Database for High-Risk AI Systems)",
+      "file_type": "document",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L71"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_key_statutory_requirements_under_article_73",
+      "label": "Key Statutory Requirements under Article 73:",
+      "file_type": "document",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L75"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_3_2_market_opportunity_alpar_ai_strategic_positioning",
+      "label": "3.2 Market Opportunity & ALPAR AI Strategic Positioning",
+      "file_type": "document",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L81"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_4_18_month_operational_burn_runway_table",
+      "label": "4. 18-Month Operational Burn & Runway Table",
+      "file_type": "document",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L106"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_4_1_18_month_financial_runway_schedule_750_000_target_raise",
+      "label": "4.1 18-Month Financial Runway Schedule (\u20ac750,000 Target Raise)",
+      "file_type": "document",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L110"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_4_2_monthly_burn_rate_breakdown_35_000_month",
+      "label": "4.2 Monthly Burn Rate Breakdown (\u20ac35,000 / month)",
+      "file_type": "document",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L119"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_5_technology_stack_proprietary_moat",
+      "label": "5. Technology Stack & Proprietary Moat",
+      "file_type": "document",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L128"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_md",
+      "target": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_alpar_ai_seed_data_room_financial_model_matrix_201",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_alpar_ai_seed_data_room_financial_model_matrix_201",
+      "target": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_1_data_room_index_document_architecture",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_alpar_ai_seed_data_room_financial_model_matrix_201",
+      "target": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_2_unit_economics_ltv_cac_17x_mathematical_formulation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_2_unit_economics_ltv_cac_17x_mathematical_formulation",
+      "target": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_2_1_core_metrics_assumptions",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_2_unit_economics_ltv_cac_17x_mathematical_formulation",
+      "target": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_2_2_mathematical_formulas_calculations",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_2_2_mathematical_formulas_calculations",
+      "target": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_lifetime_value_ltv_formula",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_2_2_mathematical_formulas_calculations",
+      "target": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_ltv_cac_ratio_formula",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L52",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_2_2_mathematical_formulas_calculations",
+      "target": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_cac_payback_period",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L60",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_alpar_ai_seed_data_room_financial_model_matrix_201",
+      "target": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_3_eu_ai_act_article_73_market_analysis_regulatory_tailwinds",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L69",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_3_eu_ai_act_article_73_market_analysis_regulatory_tailwinds",
+      "target": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_3_1_article_73_mandate_overview_eu_database_for_high_risk_ai_systems",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L71",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_3_1_article_73_mandate_overview_eu_database_for_high_risk_ai_systems",
+      "target": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_key_statutory_requirements_under_article_73",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L75",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_3_eu_ai_act_article_73_market_analysis_regulatory_tailwinds",
+      "target": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_3_2_market_opportunity_alpar_ai_strategic_positioning",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L81",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_alpar_ai_seed_data_room_financial_model_matrix_201",
+      "target": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_4_18_month_operational_burn_runway_table",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L106",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_4_18_month_operational_burn_runway_table",
+      "target": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_4_1_18_month_financial_runway_schedule_750_000_target_raise",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L110",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_4_18_month_operational_burn_runway_table",
+      "target": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_4_2_monthly_burn_rate_breakdown_35_000_month",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L119",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_alpar_ai_seed_data_room_financial_model_matrix_201",
+      "target": "d_01_saas_products_alparai_docs_fundraising_seed_data_room_5_technology_stack_proprietary_moat",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/fundraising/seed-data-room.md",
+      "source_location": "L128",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

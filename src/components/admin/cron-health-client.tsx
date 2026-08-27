@@ -94,7 +94,7 @@ export function CronHealthClient({ jobs, historyData }: CronHealthProps) {
       <AdminSectionCard title={t("active_cron_jobs") || "Active Cron Jobs"}>
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
-            <thead className="border-b border-white/10 text-xs font-semibold text-white/40 uppercase">
+            <thead className="border-border-subtle border-b text-xs font-semibold text-white/40 uppercase">
               <tr>
                 <th className="pr-4 pb-3">{t("job_name") || "Job Name"}</th>
                 <th className="pr-4 pb-3">{t("last_run") || "Last Run"}</th>
@@ -104,10 +104,10 @@ export function CronHealthClient({ jobs, historyData }: CronHealthProps) {
             </thead>
             <tbody className="divide-y divide-white/5">
               {jobs.map((job) => (
-                <tr key={job.name} className="text-white/80 transition-colors hover:bg-white/5">
+                <tr key={job.name} className="text-fg-secondary transition-colors hover:bg-white/5">
                   <td className="py-3 pr-4 font-mono text-sky-400">{job.name}</td>
                   <td className="py-3 pr-4 text-white/60">{job.lastRun}</td>
-                  <td className="py-3 pr-4 font-mono text-white/80">{job.executionTime}ms</td>
+                  <td className="text-fg-secondary py-3 pr-4 font-mono">{job.executionTime}ms</td>
                   <td className="py-3">
                     {job.status === "Active" ? (
                       <span className="bg-success-500/10 text-success-400 inline-flex items-center gap-1.5 rounded px-2 py-1 text-xs font-bold">

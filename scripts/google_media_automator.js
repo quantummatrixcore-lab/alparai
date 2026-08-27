@@ -1,12 +1,14 @@
-const http = require('http');
+const http = require("http");
 
 async function getTabs() {
   return new Promise((resolve, reject) => {
-    http.get('http://localhost:9222/json', (res) => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => resolve(JSON.parse(data)));
-    }).on('error', reject);
+    http
+      .get("http://localhost:9222/json", (res) => {
+        let data = "";
+        res.on("data", (chunk) => (data += chunk));
+        res.on("end", () => resolve(JSON.parse(data)));
+      })
+      .on("error", reject);
   });
 }
 
@@ -41,24 +43,26 @@ class CDPClient {
   }
 
   async eval(expression) {
-    const res = await this.send('Runtime.evaluate', {
+    const res = await this.send("Runtime.evaluate", {
       expression,
       returnByValue: true,
-      awaitPromise: true
+      awaitPromise: true,
     });
     return res.result?.value;
   }
 }
 
 async function main() {
-  const target = process.argv[2] || 'flow'; // 'flow' veya 'vids'
-  const promptText = process.argv[3] || 'Alparai AI B2B SaaS Kurumsal Tanıtım Videosu - Fütüristik ve Premium Tasarım';
+  const target = process.argv[2] || "flow"; // 'flow' veya 'vids'
+  const promptText =
+    process.argv[3] ||
+    "Alparai AI B2B SaaS Kurumsal Tanıtım Videosu - Fütüristik ve Premium Tasarım";
 
   const tabs = await getTabs();
-  
-  let targetUrl = target === 'flow' ? 'labs.google/fx' : 'docs.google.com/videos';
-  const targetTab = tabs.find(t => t.url.includes(targetUrl));
-  
+
+  let targetUrl = target === "flow" ? "labs.google/fx" : "docs.google.com/videos";
+  const targetTab = tabs.find((t) => t.url.includes(targetUrl));
+
   if (!targetTab) {
     console.error(`Aktif ${target.toUpperCase()} sekmesi bulunamadı!`);
     process.exit(1);
@@ -66,8 +70,8 @@ async function main() {
 
   console.log(`⚡ Hedef Sekme (${target}):`, targetTab.title);
   const client = new CDPClient(targetTab.webSocketDebuggerUrl);
-  
-  await client.send('Page.bringToFront');
+
+  await client.send("Page.bringToFront");
 
   // Hedef sayfada prompt enjeksiyonu ve tetikleme
   const script = `
@@ -114,7 +118,7 @@ async function main() {
 
   const result = await client.eval(script);
   console.log(`🚀 ${target.toUpperCase()} ENJEKSİYON SONUCU:`, JSON.stringify(result, null, 2));
-  
+
   process.exit(0);
 }
 

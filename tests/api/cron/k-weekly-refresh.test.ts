@@ -37,15 +37,12 @@ describe("K-Weekly-Refresh Cron Job", () => {
     });
 
     const originalEnv = process.env.NODE_ENV;
- 
- 
+
     (process.env as any).NODE_ENV = "production";
 
     const res = await GET(req as unknown as NextRequest);
     expect(res.status).toBe(401);
 
- 
- 
     (process.env as any).NODE_ENV = originalEnv;
   });
 

@@ -31,7 +31,7 @@ export function ChallengeList({
 
   if (!challenges.length) {
     return (
-      <div className="text-fg-secondary mt-12 rounded-xl border border-white/10 p-8 text-center">
+      <div className="text-fg-secondary border-border-subtle mt-12 rounded-xl border p-8 text-center">
         <p className="text-lg">{t("empty")}</p>
       </div>
     );
@@ -48,7 +48,7 @@ export function ChallengeList({
         return (
           <div
             key={challenge.id}
-            className="rounded-xl border border-white/10 bg-white/[0.02] p-6 transition hover:bg-white/[0.04]"
+            className="border-border-subtle rounded-xl border bg-white/[0.02] p-6 transition hover:bg-white/[0.04]"
           >
             <div className="flex items-start justify-between gap-4">
               <div className="flex-1">
@@ -80,7 +80,7 @@ export function ChallengeList({
             </div>
 
             {isExpanded && (
-              <div className="mt-6 border-t border-white/5 pt-6">
+              <div className="border-border-subtle/50 mt-6 border-t pt-6">
                 <ChallengeSubmissions challengeId={challenge.id} userId={userId} />
                 {userId && isActive && <SubmissionForm challengeId={challenge.id} />}
               </div>

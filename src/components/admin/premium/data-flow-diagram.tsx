@@ -43,7 +43,7 @@ export function DataFlowDiagram({ nodes, edges, title, className }: DataFlowDiag
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-xl border border-white/10 bg-[#050505] p-6",
+        "border-border-subtle relative overflow-hidden rounded-xl border bg-[#050505] p-6",
         className,
       )}
     >

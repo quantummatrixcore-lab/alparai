@@ -32,9 +32,10 @@ export async function triggerManualScout() {
     const newReports = await EcosystemScout.runAllScouts();
     revalidatePath("/admin/agent-os");
     return { ok: true, count: newReports.length };
-  } catch (err: any) {
-    logger.error("Manual scout trigger failed", { error: err.message });
-    return { ok: false, error: err.message };
+  } catch (err: unknown) {
+    const errorMsg = err instanceof Error ? err.message : String(err);
+    logger.error("Manual scout trigger failed", { error: errorMsg });
+    return { ok: false, error: errorMsg };
   }
 }
 

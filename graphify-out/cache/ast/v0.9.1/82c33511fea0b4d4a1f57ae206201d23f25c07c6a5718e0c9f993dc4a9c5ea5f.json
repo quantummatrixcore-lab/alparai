@@ -1,0 +1,159 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_40_ercumenterden_md",
+      "label": "v13.40-ercumenterden.md",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.40-ercumenterden.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_40_ercumenterden_v13_40_ercumenterden_com_content_specification",
+      "label": "v13.40 \u2014 ercumenterden.com content specification",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.40-ercumenterden.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_40_ercumenterden_why_this_is_urgent",
+      "label": "Why this is urgent",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.40-ercumenterden.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_40_ercumenterden_claims_that_must_be_removed_or_evidenced",
+      "label": "Claims that must be removed or evidenced",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.40-ercumenterden.md",
+      "source_location": "L14"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_40_ercumenterden_the_metrics_block",
+      "label": "The metrics block",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.40-ercumenterden.md",
+      "source_location": "L37"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_40_ercumenterden_konu\u015fmalar_medya",
+      "label": "\"Konu\u015fmalar & Medya\"",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.40-ercumenterden.md",
+      "source_location": "L47"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_40_ercumenterden_what_is_missing_and_should_lead",
+      "label": "What is missing and should lead",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.40-ercumenterden.md",
+      "source_location": "L55"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_40_ercumenterden_other_required_outcomes",
+      "label": "Other required outcomes",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.40-ercumenterden.md",
+      "source_location": "L74"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_40_ercumenterden_out_of_scope",
+      "label": "Out of scope",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.40-ercumenterden.md",
+      "source_location": "L90"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_40_ercumenterden_acceptance",
+      "label": "Acceptance",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.40-ercumenterden.md",
+      "source_location": "L96"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_40_ercumenterden_md",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_40_ercumenterden_v13_40_ercumenterden_com_content_specification",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.40-ercumenterden.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_40_ercumenterden_v13_40_ercumenterden_com_content_specification",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_40_ercumenterden_why_this_is_urgent",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.40-ercumenterden.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_40_ercumenterden_v13_40_ercumenterden_com_content_specification",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_40_ercumenterden_claims_that_must_be_removed_or_evidenced",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.40-ercumenterden.md",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_40_ercumenterden_v13_40_ercumenterden_com_content_specification",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_40_ercumenterden_the_metrics_block",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.40-ercumenterden.md",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_40_ercumenterden_v13_40_ercumenterden_com_content_specification",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_40_ercumenterden_konu\u015fmalar_medya",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.40-ercumenterden.md",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_40_ercumenterden_v13_40_ercumenterden_com_content_specification",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_40_ercumenterden_what_is_missing_and_should_lead",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.40-ercumenterden.md",
+      "source_location": "L55",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_40_ercumenterden_v13_40_ercumenterden_com_content_specification",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_40_ercumenterden_other_required_outcomes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.40-ercumenterden.md",
+      "source_location": "L74",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_40_ercumenterden_v13_40_ercumenterden_com_content_specification",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_40_ercumenterden_out_of_scope",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.40-ercumenterden.md",
+      "source_location": "L90",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_40_ercumenterden_v13_40_ercumenterden_com_content_specification",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_40_ercumenterden_acceptance",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.40-ercumenterden.md",
+      "source_location": "L96",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

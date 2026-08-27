@@ -20,7 +20,7 @@ function SourceBadge({ source }: { source: string }) {
   return (
     <span
       className={`inline-flex items-center gap-1 rounded-md border px-2 py-0.5 font-mono text-[10px] font-bold tracking-wider uppercase ${
-        colors[source?.toLowerCase()] || "text-fg-muted border-white/10 bg-zinc-800"
+        colors[source?.toLowerCase()] || "text-fg-muted border-border-subtle bg-bg-elevated"
       }`}
     >
       {source}
@@ -60,8 +60,8 @@ export function ApprovalQueue({ items: initialItems }: { items: QueueItem[] }) {
   };
 
   return (
-    <div className="bg-bg-tertiary/80 overflow-hidden rounded-2xl border border-white/10 shadow-2xl backdrop-blur-xl">
-      <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
+    <div className="bg-bg-tertiary/80 border-border-subtle overflow-hidden rounded-2xl border shadow-2xl backdrop-blur-xl">
+      <div className="border-border-subtle flex items-center justify-between border-b px-6 py-4">
         <div className="flex items-center space-x-3">
           <div className="border-warning-500/30 bg-warning-500/10 flex h-8 w-8 items-center justify-center rounded-xl border">
             <Clock className="text-warning-400 h-4 w-4" />

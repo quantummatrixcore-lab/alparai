@@ -99,7 +99,7 @@ export function Footer() {
               </a>
             </div>
 
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-[11px] font-semibold text-emerald-400">
+            <div className="border-success-500/20 inline-flex items-center gap-2 rounded-full border bg-emerald-500/10 px-3 py-1 text-[11px] font-semibold text-emerald-400">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
               <span>Sistemler Çevrimiçi · Canlı Doğrulama</span>
             </div>

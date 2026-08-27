@@ -9,4 +9,3 @@ export default async function MetricsHubRedirect({
   const { locale } = await params;
   redirect(`/${locale}/admin/metrics-hub/slo-dashboard`);
 }
-

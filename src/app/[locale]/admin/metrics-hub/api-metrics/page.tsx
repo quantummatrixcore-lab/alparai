@@ -158,14 +158,14 @@ export default async function ApiMetricsPage({ params }: { params: Promise<{ loc
         title={t("api_metrics_title")}
         subtitle={t("api_metrics_subtitle")}
         action={
-          <div className="flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs text-emerald-400">
+          <div className="border-success-500/20 flex items-center gap-2 rounded-full border bg-emerald-500/10 px-3 py-1 text-xs text-emerald-400">
             <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-500" />
             {t("api_metrics_live_status")}
           </div>
         }
       />
 
-        <ApiMetricsClient metrics={dbMetrics} trafficData={trafficData} endpoints={endpointsData} />
+      <ApiMetricsClient metrics={dbMetrics} trafficData={trafficData} endpoints={endpointsData} />
     </AdminContainer>
   );
 }

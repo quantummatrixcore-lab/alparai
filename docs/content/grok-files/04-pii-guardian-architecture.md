@@ -9,9 +9,9 @@
 
 ## The Unseen Hazard: Reporting Incidents Without Exposing Data
 
-When Article 73 of the EU Artificial Intelligence Act mandated that providers and deployers of high-risk AI systems must report serious incidents within 72 hours, it created a technical paradox. 
+When Article 73 of the EU Artificial Intelligence Act mandated that providers and deployers of high-risk AI systems must report serious incidents within 72 hours, it created a technical paradox.
 
-To comply with regulatory oversight, enterprise platforms must submit detailed incident traces: raw prompt logs, systemic outputs, context vectors, and intermediate token outputs. However, AI failure modes—ranging from hallucinated responses and prompt injection attacks to uncontrolled chat session dumps—frequently contain highly sensitive personally identifiable information (PII). 
+To comply with regulatory oversight, enterprise platforms must submit detailed incident traces: raw prompt logs, systemic outputs, context vectors, and intermediate token outputs. However, AI failure modes—ranging from hallucinated responses and prompt injection attacks to uncontrolled chat session dumps—frequently contain highly sensitive personally identifiable information (PII).
 
 Submitting raw, unmasked incident logs to regulatory authorities, third-party auditors, or public transparency databases immediately triggers severe violations under Article 83 of the General Data Protection Regulation (GDPR) and national data protection laws like Turkey's KVKK. Organizations face a high-stakes dilemma: **fail to report an AI incident and face fines of up to €15M (or 3% of global turnover), or report it with raw logs and suffer catastrophic GDPR data breach penalties of up to €20M (or 4% of global turnover).**
 
@@ -73,11 +73,11 @@ const PATTERNS: ReadonlyArray<{
     mask: "[REDACTED-IBAN]",
     ibanMod97: true,
   },
-  { 
-    name: "tc_kimlik", 
-    re: /\b[1-9](?:[\s.-]?\d){10}\b/g, 
-    mask: "[REDACTED-TC]", 
-    tcKimlik: true 
+  {
+    name: "tc_kimlik",
+    re: /\b[1-9](?:[\s.-]?\d){10}\b/g,
+    mask: "[REDACTED-TC]",
+    tcKimlik: true,
   },
   {
     name: "credit_card",
@@ -117,7 +117,7 @@ By decoupling raw regex matching from validation (such as verifying `isTcKimlikV
 
 ## The Hybrid Model: Combining Deterministic Guardrails with LLM Sentinel
 
-While deterministic checksums handle structured identifiers (cards, IDs, IP addresses, tokens), unstructured human prose (e.g., *"My name is Dr. Aris Thorne and I reside at Oakwood Manor..."*) requires context awareness.
+While deterministic checksums handle structured identifiers (cards, IDs, IP addresses, tokens), unstructured human prose (e.g., _"My name is Dr. Aris Thorne and I reside at Oakwood Manor..."_) requires context awareness.
 
 ALPAR AI enforces a **Two-Tier Hybrid Pipeline**:
 

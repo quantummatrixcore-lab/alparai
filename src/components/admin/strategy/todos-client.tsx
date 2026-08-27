@@ -111,7 +111,7 @@ export function RoadmapTodosClient({ initialTodos, isReadOnly, locale }: TodosCl
       {isAdding && (
         <form
           onSubmit={handleAdd}
-          className="bg-bg-secondary/40 rounded-xl border border-white/10 p-4"
+          className="bg-bg-secondary/40 border-border-subtle rounded-xl border p-4"
         >
           <div className="flex flex-col gap-3 sm:flex-row">
             <input
@@ -150,7 +150,7 @@ export function RoadmapTodosClient({ initialTodos, isReadOnly, locale }: TodosCl
               <button
                 type="button"
                 onClick={() => setIsAdding(false)}
-                className="border-border-subtle rounded-lg border px-3 py-2 text-sm font-semibold text-white/80 transition hover:bg-white/5"
+                className="border-border-subtle text-fg-secondary rounded-lg border px-3 py-2 text-sm font-semibold transition hover:bg-white/5"
               >
                 <X className="h-4 w-4" />
               </button>
@@ -166,7 +166,7 @@ export function RoadmapTodosClient({ initialTodos, isReadOnly, locale }: TodosCl
 
           return (
             <div key={priority} className="space-y-3">
-              <h3 className="text-fg-muted border-b border-white/5 pb-2 text-xs font-bold tracking-wider uppercase">
+              <h3 className="text-fg-muted border-border-subtle/50 border-b pb-2 text-xs font-bold tracking-wider uppercase">
                 {priorityLabels[priority]}
               </h3>
               <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
@@ -176,8 +176,8 @@ export function RoadmapTodosClient({ initialTodos, isReadOnly, locale }: TodosCl
                     className={cn(
                       "flex items-start gap-3 rounded-xl border p-3 transition",
                       todo.is_completed
-                        ? "bg-bg-tertiary/10 border-white/5 opacity-60"
-                        : "bg-bg-secondary/40 border-white/10 hover:border-white/20",
+                        ? "bg-bg-tertiary/10 border-border-subtle/50 opacity-60"
+                        : "bg-bg-secondary/40 border-border-subtle hover:border-border-strong",
                     )}
                   >
                     <button
@@ -187,7 +187,7 @@ export function RoadmapTodosClient({ initialTodos, isReadOnly, locale }: TodosCl
                         "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border transition",
                         todo.is_completed
                           ? "bg-brand-500 border-brand-500 text-white"
-                          : "border-white/20 bg-transparent text-transparent hover:border-white/40",
+                          : "border-border-strong bg-transparent text-transparent hover:border-white/40",
                       )}
                     >
                       <Check className="h-3.5 w-3.5" />

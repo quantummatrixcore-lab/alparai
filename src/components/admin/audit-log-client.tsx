@@ -90,7 +90,7 @@ function AuditDetailPanel({ log, onClose }: { log: AuditLogItem; onClose: () => 
       animate={{ opacity: 1, x: 0 }}
       className="space-y-6"
     >
-      <div className="bg-bg-secondary/40 grid gap-4 rounded-xl border border-white/5 p-4 shadow-lg backdrop-blur-md sm:grid-cols-3">
+      <div className="bg-bg-secondary/40 border-border-subtle/50 grid gap-4 rounded-xl border p-4 shadow-lg backdrop-blur-md sm:grid-cols-3">
         <div>
           <p className="text-fg-muted text-[10px] font-semibold tracking-wider uppercase">
             {t("audit_detail_action")}
@@ -129,7 +129,7 @@ function AuditDetailPanel({ log, onClose }: { log: AuditLogItem; onClose: () => 
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <div className="bg-bg-secondary/40 rounded-xl border border-white/5 p-4 shadow-lg backdrop-blur-md">
+        <div className="bg-bg-secondary/40 border-border-subtle/50 rounded-xl border p-4 shadow-lg backdrop-blur-md">
           <h4 className="text-fg-secondary mb-2 text-xs font-bold tracking-wider uppercase">
             {t("audit_detail_target_entity")}
           </h4>
@@ -144,7 +144,7 @@ function AuditDetailPanel({ log, onClose }: { log: AuditLogItem; onClose: () => 
             </div>
           </div>
         </div>
-        <div className="bg-bg-secondary/40 rounded-xl border border-white/5 p-4 shadow-lg backdrop-blur-md">
+        <div className="bg-bg-secondary/40 border-border-subtle/50 rounded-xl border p-4 shadow-lg backdrop-blur-md">
           <h4 className="text-fg-secondary mb-2 text-xs font-bold tracking-wider uppercase">
             {t("audit_detail_meta_details")}
           </h4>
@@ -176,7 +176,7 @@ function AuditDetailPanel({ log, onClose }: { log: AuditLogItem; onClose: () => 
             <span className="text-fg-muted text-[10px] font-bold tracking-wider uppercase">
               {t("audit_detail_before_state")}
             </span>
-            <div className="text-danger-300 max-h-56 overflow-y-auto rounded-xl border border-white/5 bg-black/50 p-4 font-mono text-[11px] shadow-inner backdrop-blur-md">
+            <div className="text-danger-300 border-border-subtle/50 max-h-56 overflow-y-auto rounded-xl border bg-black/50 p-4 font-mono text-[11px] shadow-inner backdrop-blur-md">
               {log.before_data ? (
                 <pre className="whitespace-pre-wrap">
                   {JSON.stringify(log.before_data, null, 2)}
@@ -191,7 +191,7 @@ function AuditDetailPanel({ log, onClose }: { log: AuditLogItem; onClose: () => 
             <span className="text-fg-muted text-[10px] font-bold tracking-wider uppercase">
               {t("audit_detail_after_state")}
             </span>
-            <div className="text-success-300 max-h-56 overflow-y-auto rounded-xl border border-white/5 bg-black/50 p-4 font-mono text-[11px] shadow-inner backdrop-blur-md">
+            <div className="text-success-300 border-border-subtle/50 max-h-56 overflow-y-auto rounded-xl border bg-black/50 p-4 font-mono text-[11px] shadow-inner backdrop-blur-md">
               {log.after_data ? (
                 <pre className="whitespace-pre-wrap">{JSON.stringify(log.after_data, null, 2)}</pre>
               ) : (
@@ -202,7 +202,7 @@ function AuditDetailPanel({ log, onClose }: { log: AuditLogItem; onClose: () => 
         </div>
       </div>
 
-      <div className="flex justify-end border-t border-white/5 pt-4">
+      <div className="border-border-subtle/50 flex justify-end border-t pt-4">
         <Button onClick={onClose} variant="outline" className="bg-white/5 hover:bg-white/10">
           {t("audit_detail_close")}
         </Button>
@@ -325,7 +325,7 @@ export function AuditLogClient({ initialLogs, locale }: AuditLogClientProps) {
 
   if (!isMounted) {
     return (
-      <div className="bg-bg-secondary/40 flex h-96 w-full items-center justify-center rounded-2xl border border-white/5 backdrop-blur-xl">
+      <div className="bg-bg-secondary/40 border-border-subtle/50 flex h-96 w-full items-center justify-center rounded-2xl border backdrop-blur-xl">
         <Activity className="text-brand-400 h-8 w-8 animate-spin" />
       </div>
     );
@@ -336,7 +336,7 @@ export function AuditLogClient({ initialLogs, locale }: AuditLogClientProps) {
       {/* 360Â° Observe: Log Volume Chart */}
       <motion.div
         variants={itemVariants}
-        className="bg-bg-secondary/40 relative overflow-hidden rounded-2xl border border-white/5 p-6 shadow-lg backdrop-blur-xl"
+        className="bg-bg-secondary/40 border-border-subtle/50 relative overflow-hidden rounded-2xl border p-6 shadow-lg backdrop-blur-xl"
       >
         <div className="bg-brand-500/5 absolute top-0 right-0 -mt-20 -mr-20 h-64 w-64 rounded-full blur-3xl" />
         <h3 className="mb-6 text-sm font-bold tracking-wide text-white">
@@ -429,7 +429,7 @@ export function AuditLogClient({ initialLogs, locale }: AuditLogClientProps) {
           label={t("audit_autopilot_runs") || "Autopilot Runs"}
           value={systemCount}
         />
-        <div className="bg-bg-secondary/40 group relative flex items-center justify-between overflow-hidden rounded-2xl border border-white/5 p-5 shadow-lg backdrop-blur-xl">
+        <div className="bg-bg-secondary/40 group border-border-subtle/50 relative flex items-center justify-between overflow-hidden rounded-2xl border p-5 shadow-lg backdrop-blur-xl">
           <div className="bg-brand-500/10 group-hover:bg-brand-500/20 absolute top-0 right-0 -mt-4 -mr-4 h-16 w-16 rounded-full blur-xl transition-all" />
           <div className="z-10 flex items-center gap-4">
             <Terminal className="text-brand-400 h-6 w-6" strokeWidth={1.5} />
@@ -456,7 +456,7 @@ export function AuditLogClient({ initialLogs, locale }: AuditLogClientProps) {
             placeholder={t("audit_search_placeholder") || "Search by action, actor, IP..."}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="bg-bg-secondary/60 focus:border-brand-500/50 w-full rounded-xl border-white/10 pl-10 text-sm backdrop-blur-md"
+            className="bg-bg-secondary/60 focus:border-brand-500/50 border-border-subtle w-full rounded-xl pl-10 text-sm backdrop-blur-md"
           />
         </div>
         <div className="flex flex-wrap gap-2">
@@ -475,12 +475,12 @@ export function AuditLogClient({ initialLogs, locale }: AuditLogClientProps) {
 
       {/* Main Audit Logs Table Card */}
       <motion.div variants={itemVariants}>
-        <Card className="bg-bg-secondary/40 overflow-hidden rounded-2xl border-white/5 shadow-xl backdrop-blur-xl">
+        <Card className="bg-bg-secondary/40 border-border-subtle/50 overflow-hidden rounded-2xl shadow-xl backdrop-blur-xl">
           <CardContent className="p-0">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm">
                 <thead>
-                  <tr className="text-fg-muted border-b border-white/5 bg-white/5 text-xs font-semibold tracking-wider uppercase">
+                  <tr className="text-fg-muted border-border-subtle/50 border-b bg-white/5 text-xs font-semibold tracking-wider uppercase">
                     <th className="p-4 pl-6">{t("audit_col_time_id") || "Time / ID"}</th>
                     <th className="p-4">{t("audit_col_actor") || "Actor"}</th>
                     <th className="p-4">{t("audit_col_action") || "Action"}</th>
@@ -519,7 +519,7 @@ export function AuditLogClient({ initialLogs, locale }: AuditLogClientProps) {
                         <td className="p-4">
                           {log.users ? (
                             <div className="flex items-center gap-2">
-                              <div className="group-hover:border-brand-500/30 group-hover:bg-brand-500/10 flex h-7 w-7 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-colors">
+                              <div className="group-hover:border-brand-500/30 group-hover:bg-brand-500/10 border-border-subtle flex h-7 w-7 items-center justify-center rounded-full border bg-white/5 transition-colors">
                                 <User className="text-fg-secondary group-hover:text-brand-400 h-3.5 w-3.5 transition-colors" />
                               </div>
                               <div className="flex flex-col">
@@ -592,7 +592,7 @@ export function AuditLogClient({ initialLogs, locale }: AuditLogClientProps) {
                           <Button
                             size="sm"
                             variant="outline"
-                            className="h-8 border-white/10 bg-white/5 px-2.5 text-[11px] opacity-0 transition-opacity duration-150 group-hover:opacity-100 hover:bg-white/10"
+                            className="border-border-subtle h-8 bg-white/5 px-2.5 text-[11px] opacity-0 transition-opacity duration-150 group-hover:opacity-100 hover:bg-white/10"
                           >
                             {t("audit_inspect_button")}
                             <ArrowRight className="ml-1 h-3 w-3" />

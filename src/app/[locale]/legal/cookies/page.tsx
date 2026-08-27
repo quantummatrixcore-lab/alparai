@@ -20,35 +20,37 @@ export default async function CookiesPage({ params }: { params: Promise<{ locale
       <p>{t("cookiesWhatText")}</p>
 
       <h2>{t("cookiesUsedTitle")}</h2>
-      <table>
-        <caption className="sr-only">{t("cookiesTableCaption")}</caption>
-        <thead>
-          <tr>
-            <th>{t("cookiesColName")}</th>
-            <th>{t("cookiesColPurpose")}</th>
-            <th>{t("cookiesColType")}</th>
-            <th>{t("cookiesColDuration")}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <code>sb-*-auth-token</code>
-            </td>
-            <td>{t("cookiesAuthSession")}</td>
-            <td>{t("cookiesEssential")}</td>
-            <td>{t("cookiesSession")}</td>
-          </tr>
-          <tr>
-            <td>
-              <code>alpar_cookie_consent</code>
-            </td>
-            <td>{t("cookiesConsentStore")}</td>
-            <td>{t("cookiesEssential")}</td>
-            <td>{t("cookies1Year")}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div className="w-full overflow-x-auto">
+        <table>
+          <caption className="sr-only">{t("cookiesTableCaption")}</caption>
+          <thead>
+            <tr>
+              <th>{t("cookiesColName")}</th>
+              <th>{t("cookiesColPurpose")}</th>
+              <th>{t("cookiesColType")}</th>
+              <th>{t("cookiesColDuration")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <code>sb-*-auth-token</code>
+              </td>
+              <td>{t("cookiesAuthSession")}</td>
+              <td>{t("cookiesEssential")}</td>
+              <td>{t("cookiesSession")}</td>
+            </tr>
+            <tr>
+              <td>
+                <code>alpar_cookie_consent</code>
+              </td>
+              <td>{t("cookiesConsentStore")}</td>
+              <td>{t("cookiesEssential")}</td>
+              <td>{t("cookies1Year")}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <p>{t("cookiesNoTrackText")}</p>
 
       <h2>{t("cookiesChoicesTitle")}</h2>

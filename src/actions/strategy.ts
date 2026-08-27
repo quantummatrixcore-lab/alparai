@@ -1,6 +1,7 @@
 "use server";
 
 import { createServerClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { requireCEO } from "@/lib/auth/session";
 import { revalidatePath } from "next/cache";
 import type { Json } from "@/types/database";
@@ -20,7 +21,7 @@ export async function upsertSwotItemAction(data: {
 }): Promise<{ success: boolean; id: string }> {
   try {
     const user = await requireCEO();
-    const supabase = await createServerClient();
+    const supabase = createAdminClient();
 
     const payload = {
       category: data.category,
@@ -68,7 +69,7 @@ export async function upsertSwotItemAction(data: {
 export async function deleteSwotItemAction(id: string): Promise<{ success: boolean }> {
   try {
     await requireCEO();
-    const supabase = await createServerClient();
+    const supabase = createAdminClient();
 
     const { error } = await supabase.from("strategy_swot_items").delete().eq("id", id);
     if (error) throw new Error(error.message);
@@ -97,7 +98,7 @@ export async function upsertRiskAction(data: {
 }): Promise<{ success: boolean; id: string }> {
   try {
     const user = await requireCEO();
-    const supabase = await createServerClient();
+    const supabase = createAdminClient();
 
     const payload = {
       code: data.code,
@@ -146,7 +147,7 @@ export async function upsertRiskAction(data: {
 export async function deleteRiskAction(id: string): Promise<{ success: boolean }> {
   try {
     await requireCEO();
-    const supabase = await createServerClient();
+    const supabase = createAdminClient();
 
     const { error } = await supabase.from("strategy_risks").delete().eq("id", id);
     if (error) throw new Error(error.message);
@@ -170,7 +171,7 @@ export async function saveValuationAction(data: {
 }) {
   try {
     const user = await requireCEO();
-    const supabase = await createServerClient();
+    const supabase = createAdminClient();
 
     const { data: inserted, error } = await supabase
       .from("strategy_valuations")
@@ -210,7 +211,7 @@ export async function upsertMilestoneAction(data: {
 }): Promise<{ success: boolean; id: string }> {
   try {
     const user = await requireCEO();
-    const supabase = await createServerClient();
+    const supabase = createAdminClient();
 
     const payload = {
       quarter: data.quarter,
@@ -257,7 +258,7 @@ export async function upsertMilestoneAction(data: {
 export async function deleteMilestoneAction(id: string): Promise<{ success: boolean }> {
   try {
     await requireCEO();
-    const supabase = await createServerClient();
+    const supabase = createAdminClient();
 
     const { error } = await supabase.from("strategy_milestones").delete().eq("id", id);
     if (error) throw new Error(error.message);
@@ -284,7 +285,7 @@ export async function createMetricsSnapshotAction(data: {
 }): Promise<{ success: boolean; id: string }> {
   try {
     await requireCEO();
-    const supabase = await createServerClient();
+    const supabase = createAdminClient();
 
     const { data: inserted, error } = await supabase
       .from("strategy_metrics_snapshots")

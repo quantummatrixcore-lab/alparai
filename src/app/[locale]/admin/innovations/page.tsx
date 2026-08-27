@@ -42,12 +42,12 @@ export default async function AdminInnovationsPage({
 
   return (
     <AdminContainer shell>
-        <InnovationsClient
-          initialInnovations={initialInnovations}
-          initialQueue={pendingQueue}
-          initialConnectors={connectorsData}
-          locale={locale}
-        />
+      <InnovationsClient
+        initialInnovations={initialInnovations}
+        initialQueue={pendingQueue}
+        initialConnectors={connectorsData}
+        locale={locale}
+      />
     </AdminContainer>
   );
 }

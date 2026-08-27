@@ -111,8 +111,8 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
 
         {/* Deep Dive Sub-Modules */}
         <div className="space-y-6">
-          <div className="border-b border-white/5 pb-4">
-            <h2 className="text-fg-primary text-2xl font-bold tracking-tight">
+          <div className="border-border-subtle/50 border-b pb-4">
+            <h2 className="text-fg-primary text-fg-secondaryxl font-bold tracking-tight">
               Metodolojik Detaylar & Teknik Çerçeveler
             </h2>
             <p className="text-fg-muted mt-1 text-sm">
@@ -183,7 +183,7 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
               className="border-border-subtle bg-bg-secondary/40 group flex flex-col justify-between rounded-2xl border p-6 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-amber-500/40"
             >
               <div>
-                <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-amber-500/20 bg-amber-500/10">
+                <div className="border-warning-500/20 mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border bg-amber-500/10">
                   <History className="h-5 w-5 text-amber-400" />
                 </div>
                 <h3 className="text-fg-primary text-lg font-bold transition-colors group-hover:text-amber-400">

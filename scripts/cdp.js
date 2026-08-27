@@ -1,7 +1,7 @@
-const fs = require('fs');
+const fs = require("fs");
 
 async function run() {
-  const wsUrl = 'ws://127.0.0.1:9222/devtools/page/E2E000B258D684EC21370E3218CF6EB3';
+  const wsUrl = "ws://127.0.0.1:9222/devtools/page/E2E000B258D684EC21370E3218CF6EB3";
   const ws = new WebSocket(wsUrl);
   let msgId = 1;
 
@@ -11,30 +11,30 @@ async function run() {
       const listener = (event) => {
         const msg = JSON.parse(event.data);
         if (msg.id === id) {
-          ws.removeEventListener('message', listener);
+          ws.removeEventListener("message", listener);
           if (msg.error) reject(msg.error);
           else resolve(msg.result);
         }
       };
-      ws.addEventListener('message', listener);
+      ws.addEventListener("message", listener);
       ws.send(JSON.stringify({ id, method, params }));
     });
   };
 
-  await new Promise(r => ws.addEventListener('open', r));
+  await new Promise((r) => ws.addEventListener("open", r));
 
-  console.log('Clicking Profil link...');
-  await sendCommand('Runtime.evaluate', { 
-    expression: "document.querySelector('a[href=\"/User/Profile\"]').click()" 
+  console.log("Clicking Profil link...");
+  await sendCommand("Runtime.evaluate", {
+    expression: "document.querySelector('a[href=\"/User/Profile\"]').click()",
   });
 
-  console.log('Waiting for load...');
-  await new Promise(r => setTimeout(r, 5000));
+  console.log("Waiting for load...");
+  await new Promise((r) => setTimeout(r, 5000));
 
-  const nav = await sendCommand('Runtime.evaluate', { expression: 'window.location.href' });
-  console.log('Current URL is:', nav.result.value);
+  const nav = await sendCommand("Runtime.evaluate", { expression: "window.location.href" });
+  console.log("Current URL is:", nav.result.value);
 
-  const extract = await sendCommand('Runtime.evaluate', {
+  const extract = await sendCommand("Runtime.evaluate", {
     returnByValue: true,
     expression: `
       Array.from(document.querySelectorAll('input, select, textarea')).map(i => {
@@ -45,9 +45,9 @@ async function run() {
         }
         return label + ': ' + i.value;
       })
-    `
+    `,
   });
-  console.log('Inputs found:');
+  console.log("Inputs found:");
   console.log(extract.result.value);
 
   ws.close();

@@ -6,27 +6,29 @@
 
 class GoogleEcosystemBridge {
   constructor() {
-    this.driveStatus = process.env.GOOGLE_DRIVE_API_KEY ? 'Connected' : 'Standby';
+    this.driveStatus = process.env.GOOGLE_DRIVE_API_KEY ? "Connected" : "Standby";
     this.aiStudioQuota = 1500; // Free tier limit
     this.usedQuota = 0;
   }
 
   async uploadReportToDrive(reportContent, filename) {
-    if (this.driveStatus !== 'Connected') {
+    if (this.driveStatus !== "Connected") {
       console.warn("⚠️ [Agent-OS] Google Drive bağlantısı pasif. Rapor lokale kaydediliyor.");
       return false;
     }
-    console.log(`🐺 [Agent-OS] ${filename} adlı rapor başarıyla Google Drive 'Wolf Pack' klasörüne arşivlendi.`);
+    console.log(
+      `🐺 [Agent-OS] ${filename} adlı rapor başarıyla Google Drive 'Wolf Pack' klasörüne arşivlendi.`,
+    );
     return true;
   }
 
   getAIStudioMetrics() {
     return {
-      status: 'Active',
+      status: "Active",
       dailyLimit: this.aiStudioQuota,
       used: this.usedQuota,
       remaining: this.aiStudioQuota - this.usedQuota,
-      fallbackEngine: 'Groq (Llama 3)'
+      fallbackEngine: "Groq (Llama 3)",
     };
   }
 

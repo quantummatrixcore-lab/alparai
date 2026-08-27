@@ -1,0 +1,127 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_security_md",
+      "label": "SECURITY.md",
+      "file_type": "document",
+      "source_file": "SECURITY.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_security_security_policy",
+      "label": "Security Policy",
+      "file_type": "document",
+      "source_file": "SECURITY.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_security_supported_versions",
+      "label": "Supported Versions",
+      "file_type": "document",
+      "source_file": "SECURITY.md",
+      "source_location": "L3"
+    },
+    {
+      "id": "d_01_saas_products_alparai_security_reporting_a_vulnerability",
+      "label": "Reporting a Vulnerability",
+      "file_type": "document",
+      "source_file": "SECURITY.md",
+      "source_location": "L9"
+    },
+    {
+      "id": "d_01_saas_products_alparai_security_bug_bounty_program",
+      "label": "Bug Bounty Program",
+      "file_type": "document",
+      "source_file": "SECURITY.md",
+      "source_location": "L19"
+    },
+    {
+      "id": "d_01_saas_products_alparai_security_safe_harbor",
+      "label": "Safe Harbor",
+      "file_type": "document",
+      "source_file": "SECURITY.md",
+      "source_location": "L24"
+    },
+    {
+      "id": "d_01_saas_products_alparai_security_scope",
+      "label": "Scope",
+      "file_type": "document",
+      "source_file": "SECURITY.md",
+      "source_location": "L35"
+    },
+    {
+      "id": "d_01_saas_products_alparai_security_out_of_scope",
+      "label": "Out of Scope",
+      "file_type": "document",
+      "source_file": "SECURITY.md",
+      "source_location": "L44"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_security_md",
+      "target": "d_01_saas_products_alparai_security_security_policy",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SECURITY.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_security_security_policy",
+      "target": "d_01_saas_products_alparai_security_supported_versions",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SECURITY.md",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_security_security_policy",
+      "target": "d_01_saas_products_alparai_security_reporting_a_vulnerability",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SECURITY.md",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_security_security_policy",
+      "target": "d_01_saas_products_alparai_security_bug_bounty_program",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SECURITY.md",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_security_bug_bounty_program",
+      "target": "d_01_saas_products_alparai_security_safe_harbor",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SECURITY.md",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_security_security_policy",
+      "target": "d_01_saas_products_alparai_security_scope",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SECURITY.md",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_security_scope",
+      "target": "d_01_saas_products_alparai_security_out_of_scope",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SECURITY.md",
+      "source_location": "L44",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

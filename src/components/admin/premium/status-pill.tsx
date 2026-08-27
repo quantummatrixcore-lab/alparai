@@ -47,7 +47,7 @@ export function StatusPill({
     >
       <div className="flex items-center gap-3">
         {icon && (
-          <div className="text-fg-muted flex h-8 w-8 items-center justify-center rounded-lg border border-white/5 bg-white/5">
+          <div className="text-fg-muted border-border-subtle/50 flex h-8 w-8 items-center justify-center rounded-lg border bg-white/5">
             {icon}
           </div>
         )}

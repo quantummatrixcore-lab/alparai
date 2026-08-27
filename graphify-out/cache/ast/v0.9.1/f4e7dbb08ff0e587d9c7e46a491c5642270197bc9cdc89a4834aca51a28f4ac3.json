@@ -1,0 +1,111 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_agents_nexus_quality_nexus_md",
+      "label": "QUALITY-NEXUS.md",
+      "file_type": "document",
+      "source_file": ".agents/nexus/QUALITY-NEXUS.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_nexus_quality_nexus_quality_nexus_the_faang_engineering_pillars",
+      "label": "\ud83d\udee1\ufe0f QUALITY-NEXUS \u2014 The FAANG Engineering Pillars",
+      "file_type": "document",
+      "source_file": ".agents/nexus/QUALITY-NEXUS.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_nexus_quality_nexus_1_the_tdd_doctrine_qa_testing",
+      "label": "1. \ud83e\uddea THE TDD DOCTRINE (QA & Testing)",
+      "file_type": "document",
+      "source_file": ".agents/nexus/QUALITY-NEXUS.md",
+      "source_location": "L8"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_nexus_quality_nexus_2_the_data_doctrine_database_migrations",
+      "label": "2. \ud83d\uddc4\ufe0f THE DATA DOCTRINE (Database Migrations)",
+      "file_type": "document",
+      "source_file": ".agents/nexus/QUALITY-NEXUS.md",
+      "source_location": "L17"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_nexus_quality_nexus_3_the_sec_nexus_zero_trust_security",
+      "label": "3. \ud83d\udd10 THE SEC-NEXUS (Zero-Trust Security)",
+      "file_type": "document",
+      "source_file": ".agents/nexus/QUALITY-NEXUS.md",
+      "source_location": "L24"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_nexus_quality_nexus_4_telemetry_observability",
+      "label": "4. \ud83d\udce1 TELEMETRY & OBSERVABILITY",
+      "file_type": "document",
+      "source_file": ".agents/nexus/QUALITY-NEXUS.md",
+      "source_location": "L32"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_nexus_quality_nexus_5_crisis_management_rollback_protocol",
+      "label": "5. \ud83d\udea8 CRISIS MANAGEMENT (Rollback Protocol)",
+      "file_type": "document",
+      "source_file": ".agents/nexus/QUALITY-NEXUS.md",
+      "source_location": "L43"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_agents_nexus_quality_nexus_md",
+      "target": "d_01_saas_products_alparai_agents_nexus_quality_nexus_quality_nexus_the_faang_engineering_pillars",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/nexus/QUALITY-NEXUS.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_nexus_quality_nexus_quality_nexus_the_faang_engineering_pillars",
+      "target": "d_01_saas_products_alparai_agents_nexus_quality_nexus_1_the_tdd_doctrine_qa_testing",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/nexus/QUALITY-NEXUS.md",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_nexus_quality_nexus_quality_nexus_the_faang_engineering_pillars",
+      "target": "d_01_saas_products_alparai_agents_nexus_quality_nexus_2_the_data_doctrine_database_migrations",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/nexus/QUALITY-NEXUS.md",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_nexus_quality_nexus_quality_nexus_the_faang_engineering_pillars",
+      "target": "d_01_saas_products_alparai_agents_nexus_quality_nexus_3_the_sec_nexus_zero_trust_security",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/nexus/QUALITY-NEXUS.md",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_nexus_quality_nexus_quality_nexus_the_faang_engineering_pillars",
+      "target": "d_01_saas_products_alparai_agents_nexus_quality_nexus_4_telemetry_observability",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/nexus/QUALITY-NEXUS.md",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_nexus_quality_nexus_quality_nexus_the_faang_engineering_pillars",
+      "target": "d_01_saas_products_alparai_agents_nexus_quality_nexus_5_crisis_management_rollback_protocol",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/nexus/QUALITY-NEXUS.md",
+      "source_location": "L43",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

@@ -1,1 +1,9 @@
-{"task_id":"UI-001","pipeline":"ui_design","priority":"P1","token_budget":20000,"model":"pro","files_touched":["src/components/ui/card.tsx"],"acceptance":"WCAG AA gecmeli, lint temiz, token disinda sinif yok"}
+{
+  "task_id": "UI-001",
+  "pipeline": "ui_design",
+  "priority": "P1",
+  "token_budget": 20000,
+  "model": "pro",
+  "files_touched": ["src/components/ui/card.tsx"],
+  "acceptance": "WCAG AA gecmeli, lint temiz, token disinda sinif yok"
+}

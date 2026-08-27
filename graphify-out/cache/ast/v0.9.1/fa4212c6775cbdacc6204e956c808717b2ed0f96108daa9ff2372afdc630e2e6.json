@@ -1,0 +1,95 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_aar_1_md",
+      "label": "AAR-1.md",
+      "file_type": "document",
+      "source_file": "docs/plan/items/AAR-1.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_aar_1_aar_1",
+      "label": "AAR-1",
+      "file_type": "document",
+      "source_file": "docs/plan/items/AAR-1.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_aar_1_why",
+      "label": "Why",
+      "file_type": "document",
+      "source_file": "docs/plan/items/AAR-1.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_aar_1_scope_fields_not_a_new_product",
+      "label": "Scope \u2014 fields, not a new product",
+      "file_type": "document",
+      "source_file": "docs/plan/items/AAR-1.md",
+      "source_location": "L14"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_aar_1_funding_note",
+      "label": "Funding note",
+      "file_type": "document",
+      "source_file": "docs/plan/items/AAR-1.md",
+      "source_location": "L26"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_aar_1_acceptance",
+      "label": "Acceptance",
+      "file_type": "document",
+      "source_file": "docs/plan/items/AAR-1.md",
+      "source_location": "L32"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_aar_1_md",
+      "target": "d_01_saas_products_alparai_docs_plan_items_aar_1_aar_1",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/AAR-1.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_aar_1_aar_1",
+      "target": "d_01_saas_products_alparai_docs_plan_items_aar_1_why",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/AAR-1.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_aar_1_aar_1",
+      "target": "d_01_saas_products_alparai_docs_plan_items_aar_1_scope_fields_not_a_new_product",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/AAR-1.md",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_aar_1_aar_1",
+      "target": "d_01_saas_products_alparai_docs_plan_items_aar_1_funding_note",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/AAR-1.md",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_aar_1_aar_1",
+      "target": "d_01_saas_products_alparai_docs_plan_items_aar_1_acceptance",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/AAR-1.md",
+      "source_location": "L32",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

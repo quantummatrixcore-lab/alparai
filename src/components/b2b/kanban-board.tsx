@@ -10,6 +10,8 @@ import {
   useSensors,
   DragOverlay,
   defaultDropAnimationSideEffects,
+  DragStartEvent,
+  DragEndEvent,
 } from "@dnd-kit/core";
 import {
   arrayMove,
@@ -38,21 +40,37 @@ type KanbanBoardProps = {
   onStatusChange: (id: string, newStatus: IncidentStatus) => void;
 };
 
-const STATUS_COLUMNS: { id: IncidentStatus; label: string; icon: React.ReactNode; color: string }[] = [
-  { id: "published", label: "Yeni İhlaller", icon: <AlertCircle className="w-4 h-4 text-danger-400" />, color: "border-danger-500/30" },
-  { id: "investigating", label: "İnceleniyor", icon: <Clock className="w-4 h-4 text-warning-400" />, color: "border-warning-500/30" },
-  { id: "resolved", label: "Yanıtlandı / Çözüldü", icon: <CheckCircle2 className="w-4 h-4 text-success-400" />, color: "border-success-500/30" },
+const STATUS_COLUMNS: {
+  id: IncidentStatus;
+  label: string;
+  icon: React.ReactNode;
+  color: string;
+}[] = [
+  {
+    id: "published",
+    label: "Yeni İhlaller",
+    icon: <AlertCircle className="text-danger-400 h-4 w-4" />,
+    color: "border-danger-500/30",
+  },
+  {
+    id: "investigating",
+    label: "İnceleniyor",
+    icon: <Clock className="text-warning-400 h-4 w-4" />,
+    color: "border-warning-500/30",
+  },
+  {
+    id: "resolved",
+    label: "Yanıtlandı / Çözüldü",
+    icon: <CheckCircle2 className="text-success-400 h-4 w-4" />,
+    color: "border-success-500/30",
+  },
 ];
 
 function SortableIncidentCard({ incident }: { incident: KanbanIncident }) {
-  const {
-    attributes,
-    listeners,
-    setNodeRef,
-    transform,
-    transition,
-    isDragging,
-  } = useSortable({ id: incident.id, data: { ...incident } });
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
+    id: incident.id,
+    data: { ...incident },
+  });
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -66,17 +84,27 @@ function SortableIncidentCard({ incident }: { incident: KanbanIncident }) {
       {...attributes}
       {...listeners}
       className={cn(
-        "bg-bg-secondary p-4 rounded-xl border border-white/10 cursor-grab hover:border-white/20 transition-colors shadow-sm",
-        isDragging && "opacity-50 ring-2 ring-brand-500 ring-offset-2 ring-offset-bg-primary z-50",
+        "bg-bg-secondary border-border-subtle hover:border-border-strong cursor-grab rounded-xl border p-4 shadow-sm transition-colors",
+        isDragging && "ring-brand-500 ring-offset-bg-primary z-50 opacity-50 ring-2 ring-offset-2",
       )}
     >
-      <div className="flex justify-between items-start mb-2">
-        <Badge variant={incident.severity === "critical" ? "danger" : incident.severity === "high" ? "warning" : "default"}>
+      <div className="mb-2 flex items-start justify-between">
+        <Badge
+          variant={
+            incident.severity === "critical"
+              ? "danger"
+              : incident.severity === "high"
+                ? "warning"
+                : "default"
+          }
+        >
           {incident.severity}
         </Badge>
-        <span className="text-xs text-fg-muted">{new Date(incident.date).toLocaleDateString()}</span>
+        <span className="text-fg-muted text-xs">
+          {new Date(incident.date).toLocaleDateString()}
+        </span>
       </div>
-      <h4 className="text-sm font-bold text-fg-primary line-clamp-2">{incident.title}</h4>
+      <h4 className="text-fg-primary line-clamp-2 text-sm font-bold">{incident.title}</h4>
     </div>
   );
 }
@@ -87,14 +115,14 @@ export function KanbanBoard({ incidents: initialIncidents, onStatusChange }: Kan
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
-    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
   );
 
-  const handleDragStart = (event: any) => {
-    setActiveId(event.active.id);
+  const handleDragStart = (event: DragStartEvent) => {
+    setActiveId(event.active.id as string);
   };
 
-  const handleDragEnd = (event: any) => {
+  const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
     setActiveId(null);
 
@@ -107,7 +135,7 @@ export function KanbanBoard({ incidents: initialIncidents, onStatusChange }: Kan
 
     // Check if dropping on a column
     const isOverColumn = STATUS_COLUMNS.some((col) => col.id === overId);
-    
+
     let newStatus = activeItem.status;
     if (isOverColumn) {
       newStatus = overId as IncidentStatus;
@@ -120,16 +148,16 @@ export function KanbanBoard({ incidents: initialIncidents, onStatusChange }: Kan
 
     if (activeItem.status !== newStatus) {
       setItems((prev) =>
-        prev.map((item) => (item.id === active.id ? { ...item, status: newStatus } : item))
+        prev.map((item) => (item.id === active.id ? { ...item, status: newStatus } : item)),
       );
-      onStatusChange(active.id, newStatus);
+      onStatusChange(String(active.id), newStatus);
     } else if (active.id !== over.id && !isOverColumn) {
-       // Optional sorting inside the same column
-       setItems((items) => {
-          const oldIndex = items.findIndex((i) => i.id === active.id);
-          const newIndex = items.findIndex((i) => i.id === over.id);
-          return arrayMove(items, oldIndex, newIndex);
-       });
+      // Optional sorting inside the same column
+      setItems((items) => {
+        const oldIndex = items.findIndex((i) => i.id === active.id);
+        const newIndex = items.findIndex((i) => i.id === over.id);
+        return arrayMove(items, oldIndex, newIndex);
+      });
     }
   };
 
@@ -146,23 +174,26 @@ export function KanbanBoard({ incidents: initialIncidents, onStatusChange }: Kan
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
     >
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         {STATUS_COLUMNS.map((column) => (
-          <div key={column.id} className={cn("bg-bg-tertiary/30 rounded-2xl p-4 border", column.color)}>
-            <div className="flex items-center gap-2 mb-4 px-2">
+          <div
+            key={column.id}
+            className={cn("bg-bg-tertiary/30 rounded-2xl border p-4", column.color)}
+          >
+            <div className="mb-4 flex items-center gap-2 px-2">
               {column.icon}
-              <h3 className="font-bold text-fg-primary">{column.label}</h3>
-              <span className="ml-auto bg-white/10 text-xs px-2 py-0.5 rounded-full text-fg-muted">
+              <h3 className="text-fg-primary font-bold">{column.label}</h3>
+              <span className="text-fg-muted ml-auto rounded-full bg-white/10 px-2 py-0.5 text-xs">
                 {items.filter((i) => i.status === column.id).length}
               </span>
             </div>
-            
+
             <SortableContext
               id={column.id}
-              items={items.filter((i) => i.status === column.id).map(i => i.id)}
+              items={items.filter((i) => i.status === column.id).map((i) => i.id)}
               strategy={verticalListSortingStrategy}
             >
-              <div className="flex flex-col gap-3 min-h-[500px]">
+              <div className="flex min-h-[500px] flex-col gap-3">
                 {items
                   .filter((i) => i.status === column.id)
                   .map((incident) => (

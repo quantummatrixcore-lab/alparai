@@ -1,0 +1,111 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_04_pii_and_credential_leakage_md",
+      "label": "day-04-pii-and-credential-leakage.md",
+      "file_type": "document",
+      "source_file": "docs/blog_drafts/the_grok_files/day-04-pii-and-credential-leakage.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_04_pii_and_credential_leakage_the_grok_files_day_4_pii_credential_leakage_in_training_retrieval_cascades",
+      "label": "The Grok Files \u2014 Day 4: PII & Credential Leakage in Training & Retrieval Cascades",
+      "file_type": "document",
+      "source_file": "docs/blog_drafts/the_grok_files/day-04-pii-and-credential-leakage.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_04_pii_and_credential_leakage_executive_summary",
+      "label": "Executive Summary",
+      "file_type": "document",
+      "source_file": "docs/blog_drafts/the_grok_files/day-04-pii-and-credential-leakage.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_04_pii_and_credential_leakage_1_tactical_failure_analysis_the_data_contamination_path",
+      "label": "1. Tactical Failure Analysis: The Data Contamination Path",
+      "file_type": "document",
+      "source_file": "docs/blog_drafts/the_grok_files/day-04-pii-and-credential-leakage.md",
+      "source_location": "L16"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_04_pii_and_credential_leakage_critical_exposure_vectors",
+      "label": "Critical Exposure Vectors",
+      "file_type": "document",
+      "source_file": "docs/blog_drafts/the_grok_files/day-04-pii-and-credential-leakage.md",
+      "source_location": "L23"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_04_pii_and_credential_leakage_2_regulatory_penalties_gdpr_kvkk_compliance",
+      "label": "2. Regulatory Penalties (GDPR & KVKK Compliance)",
+      "file_type": "document",
+      "source_file": "docs/blog_drafts/the_grok_files/day-04-pii-and-credential-leakage.md",
+      "source_location": "L31"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_04_pii_and_credential_leakage_3_the_alpar_ai_solution_server_side_pii_guardian_protocol",
+      "label": "3. The ALPAR AI Solution: Server-Side PII Guardian Protocol",
+      "file_type": "document",
+      "source_file": "docs/blog_drafts/the_grok_files/day-04-pii-and-credential-leakage.md",
+      "source_location": "L38"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_04_pii_and_credential_leakage_md",
+      "target": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_04_pii_and_credential_leakage_the_grok_files_day_4_pii_credential_leakage_in_training_retrieval_cascades",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog_drafts/the_grok_files/day-04-pii-and-credential-leakage.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_04_pii_and_credential_leakage_the_grok_files_day_4_pii_credential_leakage_in_training_retrieval_cascades",
+      "target": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_04_pii_and_credential_leakage_executive_summary",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog_drafts/the_grok_files/day-04-pii-and-credential-leakage.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_04_pii_and_credential_leakage_the_grok_files_day_4_pii_credential_leakage_in_training_retrieval_cascades",
+      "target": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_04_pii_and_credential_leakage_1_tactical_failure_analysis_the_data_contamination_path",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog_drafts/the_grok_files/day-04-pii-and-credential-leakage.md",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_04_pii_and_credential_leakage_1_tactical_failure_analysis_the_data_contamination_path",
+      "target": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_04_pii_and_credential_leakage_critical_exposure_vectors",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog_drafts/the_grok_files/day-04-pii-and-credential-leakage.md",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_04_pii_and_credential_leakage_the_grok_files_day_4_pii_credential_leakage_in_training_retrieval_cascades",
+      "target": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_04_pii_and_credential_leakage_2_regulatory_penalties_gdpr_kvkk_compliance",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog_drafts/the_grok_files/day-04-pii-and-credential-leakage.md",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_04_pii_and_credential_leakage_the_grok_files_day_4_pii_credential_leakage_in_training_retrieval_cascades",
+      "target": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_04_pii_and_credential_leakage_3_the_alpar_ai_solution_server_side_pii_guardian_protocol",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog_drafts/the_grok_files/day-04-pii-and-credential-leakage.md",
+      "source_location": "L38",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

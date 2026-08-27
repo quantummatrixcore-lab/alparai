@@ -28,7 +28,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               "checked:bg-brand-500 checked:border-brand-500",
               "focus-visible:ring-brand-500 focus-visible:ring-offset-bg-primary focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
               "disabled:cursor-not-allowed disabled:opacity-50",
-              error ? "border-danger-500" : "hover:border-brand-400/50 border-white/20",
+              error ? "border-danger-500" : "hover:border-brand-400/50 border-border-strong",
               className,
             )}
             {...props}

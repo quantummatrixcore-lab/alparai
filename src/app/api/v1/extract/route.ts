@@ -1,10 +1,22 @@
 import { NextResponse } from "next/server";
 import { logger } from "@/lib/utils/logger";
+import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
+import { headers } from "next/headers";
 
 export const runtime = "edge";
 
 export async function POST(req: Request) {
   try {
+    const hdrs = await headers();
+    const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.api_general}:${ip}`);
+    if (!rl.ok) {
+      return NextResponse.json(
+        { error: "rate_limited", retryAfter: rl.retryAfter },
+        { status: 429 },
+      );
+    }
+
     const { url } = await req.json();
     if (!url || typeof url !== "string") {
       return NextResponse.json({ error: "Invalid URL" }, { status: 400 });

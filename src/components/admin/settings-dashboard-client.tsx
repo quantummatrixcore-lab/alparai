@@ -52,7 +52,7 @@ export function SettingsDashboardClient() {
   return (
     <div className="space-y-8" data-testid="settings-dashboard">
       {/* Top Hero Card with ALPAR AI Brand Logo */}
-      <div className="from-bg-secondary via-bg-tertiary to-bg-elevated relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-r p-6 shadow-2xl backdrop-blur-xl">
+      <div className="from-bg-secondary via-bg-tertiary to-bg-elevated border-border-subtle relative overflow-hidden rounded-2xl border bg-gradient-to-r p-6 shadow-2xl backdrop-blur-xl">
         <div className="bg-brand-500/10 absolute top-0 right-0 -mt-8 -mr-8 h-48 w-48 rounded-full blur-3xl" />
         <div className="bg-accent-500/10 absolute bottom-0 left-1/3 -mb-8 h-48 w-48 rounded-full blur-3xl" />
 
@@ -81,14 +81,14 @@ export function SettingsDashboardClient() {
           </div>
 
           {/* Quick Metrics Bar */}
-          <div className="grid grid-cols-1 gap-3 rounded-xl border border-white/5 bg-black/30 p-3 sm:grid-cols-3">
+          <div className="border-border-subtle/50 grid grid-cols-1 gap-3 rounded-xl border bg-black/30 p-3 sm:grid-cols-3">
             <div className="px-2 text-center">
               <span className="text-fg-muted block text-[10px] font-bold tracking-wider uppercase">
                 PII Guard
               </span>
               <span className="text-success-400 text-sm font-extrabold">Active</span>
             </div>
-            <div className="border-x border-white/10 px-3 text-center">
+            <div className="border-border-subtle border-x px-3 text-center">
               <span className="text-fg-muted block text-[10px] font-bold tracking-wider uppercase">
                 SSRF Policy
               </span>
@@ -106,7 +106,7 @@ export function SettingsDashboardClient() {
         </div>
 
         {/* Tab Navigation Controls */}
-        <div className="mt-6 flex flex-wrap gap-2 border-t border-white/10 pt-4">
+        <div className="border-border-subtle mt-6 flex flex-wrap gap-2 border-t pt-4">
           <button
             type="button"
             onClick={() => setActiveTab("security")}
@@ -189,7 +189,7 @@ export function SettingsDashboardClient() {
                 </label>
               </div>
 
-              <div className="mt-4 space-y-2 rounded-xl border border-white/5 bg-black/40 p-4 text-xs">
+              <div className="border-border-subtle/50 mt-4 space-y-2 rounded-xl border bg-black/40 p-4 text-xs">
                 <p className="text-fg-secondary">{t("mask_emails_phone_numbers_and_tc_identit")}</p>
                 <div className="flex flex-wrap gap-2 pt-2">
                   <span className="border-success-500/20 bg-success-500/10 text-success-300 rounded border px-2 py-0.5 font-mono text-[10px]">
@@ -234,7 +234,7 @@ export function SettingsDashboardClient() {
                 </label>
               </div>
 
-              <div className="mt-4 space-y-2 rounded-xl border border-white/5 bg-black/40 p-4 text-xs">
+              <div className="border-border-subtle/50 mt-4 space-y-2 rounded-xl border bg-black/40 p-4 text-xs">
                 <p className="text-fg-secondary">{t("enforce_https_only_and_block_internal_ip")}</p>
                 <div className="flex flex-wrap gap-2 pt-2">
                   <span className="border-accent-500/20 bg-accent-500/10 text-accent-300 rounded border px-2 py-0.5 font-mono text-[10px]">
@@ -282,13 +282,13 @@ export function SettingsDashboardClient() {
                   />
                 </div>
 
-                <div className="flex items-center justify-between border-t border-white/5 pt-3">
+                <div className="border-border-subtle/50 flex items-center justify-between border-t pt-3">
                   <span className="text-fg-secondary text-xs">CORS Domain Isolation</span>
                   <input
                     type="checkbox"
                     checked={settings.corsRestricted}
                     onChange={(e) => setSettings({ ...settings, corsRestricted: e.target.checked })}
-                    className="text-brand-500 h-4 w-4 rounded border-white/20 bg-black/40"
+                    className="text-brand-500 border-border-strong h-4 w-4 rounded bg-black/40"
                   />
                 </div>
               </div>
@@ -322,7 +322,7 @@ export function SettingsDashboardClient() {
                 </label>
               </div>
 
-              <div className="text-fg-secondary mt-4 rounded-xl border border-white/5 bg-black/40 p-4 text-xs">
+              <div className="text-fg-secondary border-border-subtle/50 mt-4 rounded-xl border bg-black/40 p-4 text-xs">
                 Ingests public AI incidents into moderate queue every 24h via Vercel Cron.
               </div>
             </div>
@@ -362,7 +362,7 @@ export function SettingsDashboardClient() {
               </div>
 
               <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
-                <div className="rounded-xl border border-white/10 bg-black/40 p-4">
+                <div className="border-border-subtle rounded-xl border bg-black/40 p-4">
                   <span className="text-fg-muted block text-[10px] font-bold tracking-wider uppercase">
                     API Version
                   </span>
@@ -370,7 +370,7 @@ export function SettingsDashboardClient() {
                     v1.1 (REST + JSON-LD)
                   </span>
                 </div>
-                <div className="rounded-xl border border-white/10 bg-black/40 p-4">
+                <div className="border-border-subtle rounded-xl border bg-black/40 p-4">
                   <span className="text-fg-muted block text-[10px] font-bold tracking-wider uppercase">
                     Max Payload Size
                   </span>
@@ -384,11 +384,11 @@ export function SettingsDashboardClient() {
                       onChange={(e) =>
                         setSettings({ ...settings, maxPayloadMb: Number(e.target.value) })
                       }
-                      className="text-accent-400 w-16 rounded border border-white/10 bg-black/60 px-2 py-0.5 text-right font-mono text-xs"
+                      className="text-accent-400 border-border-subtle w-16 rounded border bg-black/60 px-2 py-0.5 text-right font-mono text-xs"
                     />
                   </div>
                 </div>
-                <div className="rounded-xl border border-white/10 bg-black/40 p-4">
+                <div className="border-border-subtle rounded-xl border bg-black/40 p-4">
                   <span className="text-fg-muted block text-[10px] font-bold tracking-wider uppercase">
                     Gateway Providers
                   </span>
@@ -419,7 +419,7 @@ export function SettingsDashboardClient() {
                 </div>
               </div>
 
-              <div className="space-y-6 rounded-xl border border-white/10 bg-black/40 p-6">
+              <div className="border-border-subtle space-y-6 rounded-xl border bg-black/40 p-6">
                 <div>
                   <div className="mb-2 flex items-center justify-between text-sm">
                     <label className="font-bold text-white">
@@ -492,7 +492,7 @@ export function SettingsDashboardClient() {
         )}
 
         {/* Bottom Save Bar */}
-        <div className="bg-bg-secondary/90 flex items-center justify-between rounded-2xl border border-white/10 p-4 shadow-xl backdrop-blur-xl">
+        <div className="bg-bg-secondary/90 border-border-subtle flex items-center justify-between rounded-2xl border p-4 shadow-xl backdrop-blur-xl">
           <button
             type="submit"
             disabled={isSaving}

@@ -113,7 +113,7 @@ Ercüment`);
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/5 pb-4">
+      <div className="border-border-subtle/50 flex flex-wrap items-center justify-between gap-4 border-b pb-4">
         <div className="flex gap-2">
           {(["pending", "approved", "sent", "failed", "all"] as const).map((f) => (
             <button
@@ -143,7 +143,7 @@ Ercüment`);
       </div>
 
       {showAddForm && (
-        <Card className="border-brand-500/20 bg-[#0F1E2E]">
+        <Card className="border-brand-500/20 bg-bg-navy">
           <CardHeader>
             <CardTitle className="text-white">{t("queue_new_outreach_campaign_email")}</CardTitle>
           </CardHeader>
@@ -160,7 +160,7 @@ Ercüment`);
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder={t("editor_techoutlet_com")}
-                    className="focus:border-brand-500 w-full rounded-md border border-white/10 bg-black/40 px-3 py-2 text-sm text-white outline-none"
+                    className="focus:border-brand-500 border-border-subtle w-full rounded-md border bg-black/40 px-3 py-2 text-sm text-white outline-none"
                   />
                 </div>
                 <div>
@@ -172,7 +172,7 @@ Ercüment`);
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder={t("jane_doe")}
-                    className="focus:border-brand-500 w-full rounded-md border border-white/10 bg-black/40 px-3 py-2 text-sm text-white outline-none"
+                    className="focus:border-brand-500 border-border-subtle w-full rounded-md border bg-black/40 px-3 py-2 text-sm text-white outline-none"
                   />
                 </div>
               </div>
@@ -187,7 +187,7 @@ Ercüment`);
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
                     placeholder={t("the_verge")}
-                    className="focus:border-brand-500 w-full rounded-md border border-white/10 bg-black/40 px-3 py-2 text-sm text-white outline-none"
+                    className="focus:border-brand-500 border-border-subtle w-full rounded-md border bg-black/40 px-3 py-2 text-sm text-white outline-none"
                   />
                 </div>
                 <div>
@@ -231,7 +231,7 @@ Ercüment`);
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
                   placeholder={t("embargoed_aug_2")}
-                  className="focus:border-brand-500 w-full rounded-md border border-white/10 bg-black/40 px-3 py-2 text-sm text-white outline-none"
+                  className="focus:border-brand-500 border-border-subtle w-full rounded-md border bg-black/40 px-3 py-2 text-sm text-white outline-none"
                 />
               </div>
 
@@ -245,7 +245,7 @@ Ercüment`);
                   value={body}
                   onChange={(e) => setBody(e.target.value)}
                   placeholder={t("write_message_template_here")}
-                  className="focus:border-brand-500 w-full rounded-md border border-white/10 bg-black/40 px-3 py-2 text-sm text-white outline-none"
+                  className="focus:border-brand-500 border-border-subtle w-full rounded-md border bg-black/40 px-3 py-2 text-sm text-white outline-none"
                 />
               </div>
 
@@ -269,12 +269,12 @@ Ercüment`);
 
       <div className="space-y-4">
         {filtered.length === 0 ? (
-          <div className="text-fg-muted rounded-xl border border-white/10 bg-black/20 py-12 text-center">
+          <div className="text-fg-muted border-border-subtle bg-bg-primary/20 rounded-xl border py-12 text-center">
             {t("no_outreach_items_found_in_this_filter")}
           </div>
         ) : (
           filtered.map((item) => (
-            <Card key={item.id} className="border-white/10 bg-black/40 p-5">
+            <Card key={item.id} className="border-border-subtle bg-black/40 p-5">
               <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                 <div className="space-y-2">
                   <div className="flex flex-wrap items-center gap-2">
@@ -320,7 +320,7 @@ Ercüment`);
                     </span>
                   </div>
 
-                  <div className="rounded border border-white/5 bg-black/20 p-3">
+                  <div className="border-border-subtle/50 bg-bg-primary/20 rounded border p-3">
                     <div className="text-fg-muted mb-2 text-xs font-semibold">
                       {t("subject")}
                       {item.subject}

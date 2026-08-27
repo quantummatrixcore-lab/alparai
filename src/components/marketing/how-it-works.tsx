@@ -26,7 +26,9 @@ export function HowItWorks() {
           transition={{ duration: 0.6 }}
           className="mx-auto mb-12 max-w-2xl text-center"
         >
-          <h2 className="text-fg-primary text-2xl font-bold sm:text-3xl">{t("how_title")}</h2>
+          <h2 className="text-fg-primary text-fg-secondaryxl font-bold sm:text-3xl">
+            {t("how_title")}
+          </h2>
           <p className="text-fg-secondary mt-4 text-lg">{t("how_subtitle")}</p>
         </motion.div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">

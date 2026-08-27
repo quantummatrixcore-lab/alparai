@@ -75,7 +75,7 @@ export function FeedSidebar({ leaderboard, news, poll }: FeedSidebarProps) {
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="bg-bg-secondary/40 rounded-2xl border border-white/5 p-5"
+        className="bg-bg-secondary/40 border-border-subtle/50 rounded-2xl border p-5"
       >
         <div className="mb-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -117,7 +117,7 @@ export function FeedSidebar({ leaderboard, news, poll }: FeedSidebarProps) {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="bg-bg-secondary/40 rounded-2xl border border-white/5 p-5"
+          className="bg-bg-secondary/40 border-border-subtle/50 rounded-2xl border p-5"
         >
           <span className="bg-brand-500/10 text-brand-400 border-brand-500/20 rounded-md border px-2 py-0.5 text-[9px] font-black tracking-[0.2em] uppercase">
             {locale === "tr" ? "Canlı Anket" : "Live Poll"}
@@ -159,7 +159,7 @@ export function FeedSidebar({ leaderboard, news, poll }: FeedSidebarProps) {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="bg-bg-secondary/40 rounded-2xl border border-white/5 p-5"
+          className="bg-bg-secondary/40 border-border-subtle/50 rounded-2xl border p-5"
         >
           <div className="mb-4 flex items-center gap-2">
             <TrendingUp className="text-brand-400 h-4 w-4" />
@@ -200,7 +200,7 @@ function VoteBar({
   return (
     <div className="flex items-center gap-2">
       <span className={`w-16 text-right text-[10px] font-bold ${textClass}`}>{label}</span>
-      <div className="relative h-3 flex-1 overflow-hidden rounded-sm border border-white/10 bg-white/5">
+      <div className="border-border-subtle relative h-3 flex-1 overflow-hidden rounded-sm border bg-white/5">
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: `${pct}%` }}
@@ -208,7 +208,7 @@ function VoteBar({
           className={`h-full rounded-sm ${colorClass}`}
         />
         {pct > 0 && (
-          <span className="absolute top-1/2 right-1 -translate-y-1/2 text-[9px] font-bold text-white/80">
+          <span className="text-fg-secondary absolute top-1/2 right-1 -translate-y-1/2 text-[9px] font-bold">
             %{pct}
           </span>
         )}

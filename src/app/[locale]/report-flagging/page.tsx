@@ -48,10 +48,10 @@ export default async function ReportFlaggingPage({
           <h1 className="mt-4 bg-gradient-to-br from-white via-slate-200 to-slate-400 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl">
             {t("title")}
           </h1>
-          <p className="mt-4 text-lg leading-relaxed text-slate-400">{t("subtitle")}</p>
+          <p className="text-fg-muted mt-4 text-lg leading-relaxed">{t("subtitle")}</p>
         </div>
 
-        <div className="relative rounded-2xl border border-white/10 bg-white/5 p-6 shadow-2xl backdrop-blur-xl sm:p-8">
+        <div className="border-border-subtle relative rounded-2xl border bg-white/5 p-6 shadow-2xl backdrop-blur-xl sm:p-8">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-px -z-10 rounded-2xl"
@@ -62,7 +62,7 @@ export default async function ReportFlaggingPage({
           <ReportFlaggingForm />
         </div>
 
-        <p className="mt-10 text-center text-sm leading-relaxed text-slate-500 italic">
+        <p className="text-fg-muted mt-10 text-center text-sm leading-relaxed italic">
           &ldquo;{t("tagline")}&rdquo;
         </p>
       </section>

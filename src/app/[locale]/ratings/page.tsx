@@ -151,7 +151,7 @@ export default async function RatingsPage({
   const activeCategoryList = categories ?? [];
 
   return (
-    <Container className="max-w-7xl py-12 text-slate-100">
+    <Container className="text-fg-primary max-w-7xl py-12">
       <div className="mb-12 flex flex-col space-y-6">
         <div className="text-emerald-accent flex items-center space-x-3 text-sm font-semibold tracking-wider uppercase">
           <ShieldCheck className="h-5 w-5 animate-pulse" />
@@ -160,7 +160,7 @@ export default async function RatingsPage({
         <h1 className="bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-4xl font-extrabold tracking-tight text-transparent md:text-5xl">
           {t("title")}
         </h1>
-        <p className="max-w-3xl text-lg leading-relaxed text-slate-400">{t("subtitle")}</p>
+        <p className="text-fg-muted max-w-3xl text-lg leading-relaxed">{t("subtitle")}</p>
 
         {/* Methodology and API links */}
         <div className="flex flex-wrap gap-4 pt-2">
@@ -180,7 +180,7 @@ export default async function RatingsPage({
           </Link>
           <Link
             href="/api-docs"
-            className="ml-4 flex items-center space-x-2 text-sm text-slate-400 hover:text-white hover:underline"
+            className="text-fg-muted ml-4 flex items-center space-x-2 text-sm hover:text-white hover:underline"
           >
             <ExternalLink className="h-4 w-4" />
             <span>{t("api_docs_link")}</span>
@@ -193,7 +193,7 @@ export default async function RatingsPage({
         {activeCategoryList.map((cat) => (
           <div
             key={cat.id}
-            className="rounded-xl border border-slate-800/80 bg-slate-900/60 p-6 backdrop-blur-sm transition-all duration-300 hover:border-slate-700/60"
+            className="border-border-subtle bg-bg-secondary hover:border-border-strong rounded-xl border p-6 backdrop-blur-sm transition-all duration-300"
           >
             <div className="mb-3 flex items-center justify-between">
               <span className="border-emerald-accent/20 bg-emerald-accent/10 text-emerald-accent rounded-full border px-2 py-0.5 text-xs font-bold">
@@ -201,34 +201,34 @@ export default async function RatingsPage({
               </span>
             </div>
             <h3 className="mb-2 text-base font-bold text-white">{cat.name}</h3>
-            <p className="text-xs leading-relaxed text-slate-400">{cat.description}</p>
+            <p className="text-fg-muted text-xs leading-relaxed">{cat.description}</p>
           </div>
         ))}
       </div>
 
       {/* Search and Filters */}
-      <div className="mb-8 flex flex-wrap items-center justify-between gap-4 rounded-xl border border-slate-800/60 bg-slate-900/40 p-4">
+      <div className="border-border-subtle bg-bg-secondary mb-8 flex flex-wrap items-center justify-between gap-4 rounded-xl border p-4">
         <form method="GET" action="" className="relative w-full max-w-md">
-          <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-500" />
+          <Search className="text-fg-muted absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
           <input
             type="text"
             name="q"
             defaultValue={q}
             placeholder={t("search_placeholder")}
-            className="focus:border-emerald-accent focus:ring-emerald-accent/30 w-full rounded-lg border border-slate-800 bg-slate-950 py-2 pr-4 pl-10 text-sm text-slate-200 placeholder-slate-500 transition-all focus:ring-1 focus:outline-none"
+            className="focus:border-emerald-accent focus:ring-emerald-accent/30 border-border-subtle bg-bg-secondary text-fg-primary w-full rounded-lg border py-2 pr-4 pl-10 text-sm placeholder-slate-500 transition-all focus:ring-1 focus:outline-none"
           />
         </form>
       </div>
 
       {/* Leaderboard Table */}
-      <div className="overflow-hidden rounded-xl border border-slate-800/80 bg-slate-900/30 backdrop-blur-md">
+      <div className="border-border-subtle bg-bg-secondary overflow-hidden rounded-xl border backdrop-blur-md">
         {sortedModels.length === 0 ? (
-          <div className="p-12 text-center text-slate-500">{t("no_data")}</div>
+          <div className="text-fg-muted p-12 text-center">{t("no_data")}</div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full border-collapse text-left">
               <thead>
-                <tr className="border-b border-slate-800/80 bg-slate-900/50 text-xs font-semibold tracking-wider text-slate-400 uppercase">
+                <tr className="border-border-subtle bg-bg-secondary text-fg-muted border-b text-xs font-semibold tracking-wider uppercase">
                   <th className="w-16 px-6 py-4 text-center">{t("rank")}</th>
                   <th className="px-6 py-4">{t("model")}</th>
                   <th className="px-6 py-4">{t("provider")}</th>
@@ -246,13 +246,13 @@ export default async function RatingsPage({
                 {sortedModels.map((item, index) => (
                   <tr
                     key={item.modelId}
-                    className="group transition-all duration-150 hover:bg-slate-900/20"
+                    className="group hover:bg-bg-secondary transition-all duration-150"
                   >
-                    <td className="px-6 py-4 text-center font-mono text-sm text-slate-400 group-hover:text-white">
+                    <td className="text-fg-muted px-6 py-4 text-center font-mono text-sm group-hover:text-white">
                       {index === 0 ? (
                         <Trophy className="mx-auto h-5 w-5 text-yellow-500" />
                       ) : index === 1 ? (
-                        <Trophy className="mx-auto h-5 w-5 text-slate-300" />
+                        <Trophy className="text-fg-primary mx-auto h-5 w-5" />
                       ) : index === 2 ? (
                         <Trophy className="mx-auto h-5 w-5 text-amber-600" />
                       ) : (
@@ -264,7 +264,7 @@ export default async function RatingsPage({
                         href={`/models/${item.providerSlug}/${item.modelId}`}
                         className="hover:text-emerald-accent flex items-center space-x-2 font-bold text-white transition-colors"
                       >
-                        <Cpu className="group-hover:text-emerald-accent h-4 w-4 text-slate-500 transition-colors" />
+                        <Cpu className="group-hover:text-emerald-accent text-fg-muted h-4 w-4 transition-colors" />
                         <span>{item.modelName}</span>
                         {item.isRetired && (
                           <span className="ml-2 rounded-full border border-rose-900/30 bg-rose-950/20 px-2 py-0.5 text-[10px] font-bold text-rose-400">
@@ -273,7 +273,7 @@ export default async function RatingsPage({
                         )}
                       </Link>
                     </td>
-                    <td className="px-6 py-4 text-sm text-slate-300">{item.providerName}</td>
+                    <td className="text-fg-primary px-6 py-4 text-sm">{item.providerName}</td>
                     {activeCategoryList.map((cat) => {
                       const score = item.categoryScores[cat.id];
                       const isK5OrHigher = ["K5", "K6", "K7", "K8"].includes(cat.id);
@@ -294,13 +294,13 @@ export default async function RatingsPage({
                                 {score}%
                               </span>
                               {isK5OrHigher && (
-                                <span className="text-[10px] leading-tight font-normal text-slate-500">
+                                <span className="text-fg-muted text-[10px] leading-tight font-normal">
                                   {t("baseline")}
                                 </span>
                               )}
                             </div>
                           ) : (
-                            <span className="text-slate-600">-</span>
+                            <span className="text-fg-secondary">-</span>
                           )}
                         </td>
                       );

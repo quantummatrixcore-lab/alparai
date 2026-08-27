@@ -1,0 +1,31 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_scripts_archive_gitlab_agent_bridge_sh",
+      "label": "gitlab_agent_bridge.sh",
+      "file_type": "code",
+      "source_file": "scripts/archive/gitlab_agent_bridge.sh",
+      "source_location": "L1",
+      "metadata": { "language": "bash", "kind": "file" }
+    },
+    {
+      "id": "d_01_saas_products_alparai_scripts_archive_gitlab_agent_bridge_sh__entry",
+      "label": "gitlab_agent_bridge.sh script",
+      "file_type": "code",
+      "source_file": "scripts/archive/gitlab_agent_bridge.sh",
+      "source_location": "L1",
+      "metadata": { "language": "bash", "kind": "bash_entrypoint" }
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_scripts_archive_gitlab_agent_bridge_sh",
+      "target": "d_01_saas_products_alparai_scripts_archive_gitlab_agent_bridge_sh__entry",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/archive/gitlab_agent_bridge.sh",
+      "source_location": "L1",
+      "weight": 1.0
+    }
+  ]
+}

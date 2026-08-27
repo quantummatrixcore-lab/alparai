@@ -67,7 +67,11 @@ export function LinkedinContactsList({ initialContacts }: { initialContacts: Lin
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
-        <TrendMetricCard title={t("linkedin_total_targets")} value={stats.total} icon={<UsersIcon />} />
+        <TrendMetricCard
+          title={t("linkedin_total_targets")}
+          value={stats.total}
+          icon={<UsersIcon />}
+        />
         <TrendMetricCard
           title={t("linkedin_added")}
           value={stats.added}
@@ -86,7 +90,7 @@ export function LinkedinContactsList({ initialContacts }: { initialContacts: Lin
       </div>
 
       {stats.total > 0 && (
-        <Card className="border-white/10 bg-black/40 p-4">
+        <Card className="border-border-subtle bg-black/40 p-4">
           <h4 className="mb-4 text-sm font-semibold text-white">{t("linkedin_pipeline_status")}</h4>
           <div className="h-32 w-full">
             <ResponsiveContainer width="100%" height="100%">
@@ -173,7 +177,7 @@ export function LinkedinContactsList({ initialContacts }: { initialContacts: Lin
         </Card>
       )}
 
-      <div className="flex space-x-2 border-b border-white/10 pb-2">
+      <div className="border-border-subtle flex space-x-2 border-b pb-2">
         {(["all", "to_add", "added", "messaged", "responded"] as const).map((tab) => (
           <button
             key={tab}
@@ -191,19 +195,19 @@ export function LinkedinContactsList({ initialContacts }: { initialContacts: Lin
 
       <div className="space-y-4">
         {filtered.length === 0 ? (
-          <div className="text-fg-muted rounded-xl border border-white/10 bg-black/20 py-12 text-center">
+          <div className="text-fg-muted border-border-subtle bg-bg-primary/20 rounded-xl border py-12 text-center">
             {t("linkedin_no_data")}
           </div>
         ) : (
           filtered.map((contact) => (
             <Card
               key={contact.id}
-              className="flex flex-col items-start justify-between gap-4 border-white/10 bg-black/40 p-4 md:flex-row md:items-center"
+              className="border-border-subtle flex flex-col items-start justify-between gap-4 bg-black/40 p-4 md:flex-row md:items-center"
             >
               <div className="flex-1">
                 <div className="flex items-center gap-2">
                   <h3 className="font-semibold text-white">{contact.full_name}</h3>
-                  <span className="text-fg-muted rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-xs">
+                  <span className="text-fg-muted border-border-subtle rounded-full border bg-white/5 px-2 py-0.5 text-xs">
                     {contact.category || t("linkedin_uncategorized")}
                   </span>
                   {contact.priority === 1 && (
@@ -228,14 +232,14 @@ export function LinkedinContactsList({ initialContacts }: { initialContacts: Lin
                     href={contact.profile_url}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-fg-muted rounded-md border border-white/5 bg-white/5 p-2 transition-colors hover:bg-white/10 hover:text-[#0077b5]"
+                    className="text-fg-muted border-border-subtle/50 rounded-md border bg-white/5 p-2 transition-colors hover:bg-white/10 hover:text-[#0077b5]"
                     aria-label="LinkedIn profile"
                   >
                     <Linkedin className="h-4 w-4" />
                   </a>
                 )}
 
-                <div className="flex overflow-hidden rounded-md border border-white/10 bg-black/50">
+                <div className="border-border-subtle flex overflow-hidden rounded-md border bg-black/50">
                   <button
                     disabled={isPending || contact.status === "to_add"}
                     onClick={() => handleUpdateStatus(contact.id, "to_add")}
@@ -246,21 +250,21 @@ export function LinkedinContactsList({ initialContacts }: { initialContacts: Lin
                   <button
                     disabled={isPending || contact.status === "added"}
                     onClick={() => handleUpdateStatus(contact.id, "added")}
-                    className={`border-l border-white/10 px-3 py-1.5 text-xs font-medium ${contact.status === "added" ? "bg-success-500/20 text-success-400" : "text-fg-muted hover:bg-white/5 hover:text-white"}`}
+                    className={`border-border-subtle border-l px-3 py-1.5 text-xs font-medium ${contact.status === "added" ? "bg-success-500/20 text-success-400" : "text-fg-muted hover:bg-white/5 hover:text-white"}`}
                   >
                     {t("linkedin_status_added")}
                   </button>
                   <button
                     disabled={isPending || contact.status === "messaged"}
                     onClick={() => handleUpdateStatus(contact.id, "messaged")}
-                    className={`border-l border-white/10 px-3 py-1.5 text-xs font-medium ${contact.status === "messaged" ? "bg-brand-500/20 text-brand-400" : "text-fg-muted hover:bg-white/5 hover:text-white"}`}
+                    className={`border-border-subtle border-l px-3 py-1.5 text-xs font-medium ${contact.status === "messaged" ? "bg-brand-500/20 text-brand-400" : "text-fg-muted hover:bg-white/5 hover:text-white"}`}
                   >
                     {t("linkedin_status_messaged")}
                   </button>
                   <button
                     disabled={isPending || contact.status === "responded"}
                     onClick={() => handleUpdateStatus(contact.id, "responded")}
-                    className={`border-l border-white/10 px-3 py-1.5 text-xs font-medium ${contact.status === "responded" ? "bg-brand-500/20 text-brand-400" : "text-fg-muted hover:bg-white/5 hover:text-white"}`}
+                    className={`border-border-subtle border-l px-3 py-1.5 text-xs font-medium ${contact.status === "responded" ? "bg-brand-500/20 text-brand-400" : "text-fg-muted hover:bg-white/5 hover:text-white"}`}
                   >
                     {t("linkedin_status_responded")}
                   </button>

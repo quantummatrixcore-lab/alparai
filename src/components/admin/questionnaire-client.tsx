@@ -499,7 +499,7 @@ export function QuestionnaireClient({
                                       ? "Devamını Oku →"
                                       : "Read More →"}
                                 </button>
-                                <div className="text-fg-muted mt-2 flex items-center gap-3 border-t border-white/5 pt-2 font-mono text-[10px]">
+                                <div className="text-fg-muted border-border-subtle/50 mt-2 flex items-center gap-3 border-t pt-2 font-mono text-[10px]">
                                   {ans.latency_ms != null && (
                                     <span className="inline-flex items-center gap-1">
                                       <Clock className="h-3 w-3" /> {ans.latency_ms}ms

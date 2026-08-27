@@ -1,0 +1,31 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_scripts_install_hooks_sh",
+      "label": "install-hooks.sh",
+      "file_type": "code",
+      "source_file": "scripts/install-hooks.sh",
+      "source_location": "L1",
+      "metadata": { "language": "bash", "kind": "file" }
+    },
+    {
+      "id": "d_01_saas_products_alparai_scripts_install_hooks_sh__entry",
+      "label": "install-hooks.sh script",
+      "file_type": "code",
+      "source_file": "scripts/install-hooks.sh",
+      "source_location": "L1",
+      "metadata": { "language": "bash", "kind": "bash_entrypoint" }
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_scripts_install_hooks_sh",
+      "target": "d_01_saas_products_alparai_scripts_install_hooks_sh__entry",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/install-hooks.sh",
+      "source_location": "L1",
+      "weight": 1.0
+    }
+  ]
+}

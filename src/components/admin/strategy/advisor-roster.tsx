@@ -8,12 +8,12 @@ export function AdvisorRoster() {
   const twinsList = Object.values(DIGITAL_TWINS).slice(0, 8); // Showcase top 8 in dashboard
 
   return (
-    <div className="group relative overflow-hidden rounded-3xl border border-white/10 bg-slate-900/50 p-6 backdrop-blur-3xl transition-all duration-500 hover:bg-slate-900/70 hover:shadow-[0_0_80px_rgba(var(--color-amber-500),0.1)]">
+    <div className="group border-border-subtle bg-bg-secondary hover:bg-bg-secondary relative overflow-hidden rounded-3xl border p-6 backdrop-blur-3xl transition-all duration-500 hover:shadow-[0_0_80px_rgba(var(--color-amber-500),0.1)]">
       {/* Neo-morphic glowing orb */}
       <div className="absolute -top-32 -right-32 h-64 w-64 rounded-full bg-amber-500/10 blur-[100px] transition-all duration-700 group-hover:bg-amber-500/20" />
       <div className="absolute -bottom-32 -left-32 h-64 w-64 rounded-full bg-cyan-500/10 blur-[100px] transition-all duration-700 group-hover:bg-cyan-500/20" />
 
-      <div className="relative z-10 mb-6 flex items-center justify-between border-b border-white/10 pb-4">
+      <div className="border-border-subtle relative z-10 mb-6 flex items-center justify-between border-b pb-4">
         <div className="flex items-center gap-3">
           <div className="relative flex items-center justify-center rounded-2xl border border-amber-500/30 bg-amber-500/10 p-3 text-amber-400">
             <Crown className="h-6 w-6" />
@@ -23,14 +23,14 @@ export function AdvisorRoster() {
             <h3 className="bg-gradient-to-br from-white to-slate-400 bg-clip-text text-xl font-bold tracking-tight text-transparent">
               The Council of 30 Sages
             </h3>
-            <p className="text-xs font-medium tracking-wide text-slate-400">
+            <p className="text-fg-muted text-xs font-medium tracking-wide">
               {t("advisor_roster_desc") || "Autonomous Cyber-Renaissance Intelligence"}
             </p>
           </div>
         </div>
         <Link
           href={`/twins-leaderboard`}
-          className="group/link flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-bold text-slate-300 transition-all hover:bg-white/10 hover:text-white"
+          className="group/link border-border-subtle text-fg-primary flex items-center gap-1 rounded-full border bg-white/5 px-4 py-1.5 text-xs font-bold transition-all hover:bg-white/10 hover:text-white"
         >
           {t("view_all", { defaultValue: "Tümünü Gör (30)" })}
           <ChevronRight className="h-3 w-3 transition-transform group-hover/link:translate-x-1" />
@@ -42,7 +42,7 @@ export function AdvisorRoster() {
           return (
             <div
               key={twin.id}
-              className="group/card relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/5 bg-black/40 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-black/60 hover:shadow-2xl"
+              className="group/card border-border-subtle/50 hover:border-border-strong relative flex flex-col justify-between overflow-hidden rounded-2xl border bg-black/40 p-5 transition-all duration-300 hover:-translate-y-1 hover:bg-black/60 hover:shadow-2xl"
             >
               {/* Dynamic Gradient Background for each card */}
               <div
@@ -51,20 +51,20 @@ export function AdvisorRoster() {
 
               <div className="relative z-10">
                 <div className="mb-3 flex items-center justify-between">
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-bold tracking-wider text-slate-300 uppercase">
+                  <span className="border-border-subtle text-fg-primary inline-flex items-center gap-1.5 rounded-full border bg-white/5 px-2.5 py-1 text-[10px] font-bold tracking-wider uppercase">
                     <Sparkles className="h-3 w-3 text-amber-400" />
                     {twin.stats.tier}
                   </span>
-                  <span className="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] font-bold text-emerald-400">
+                  <span className="border-success-500/20 rounded-full border bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] font-bold text-emerald-400">
                     %{twin.stats.successRate} WIN
                   </span>
                 </div>
 
                 <h4 className="mb-1 text-lg font-bold text-white drop-shadow-md">{twin.name}</h4>
-                <p className="line-clamp-2 text-xs font-medium text-slate-400">{twin.title}</p>
+                <p className="text-fg-muted line-clamp-2 text-xs font-medium">{twin.title}</p>
               </div>
 
-              <div className="relative z-10 mt-5 flex items-center justify-between border-t border-white/10 pt-4">
+              <div className="border-border-subtle relative z-10 mt-5 flex items-center justify-between border-t pt-4">
                 <div className="flex items-center gap-2">
                   <BrainCircuit className="h-4 w-4 text-cyan-400" />
                   <span className="font-mono text-xs font-bold text-cyan-400">

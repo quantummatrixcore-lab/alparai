@@ -118,7 +118,7 @@ export function LiveStats({
   ];
 
   return (
-    <div className="relative z-20 overflow-hidden border-y border-white/5 bg-[#050914] py-12">
+    <div className="border-border-subtle/50 bg-bg-deep relative z-20 overflow-hidden border-y py-12">
       {/* Background Orbs */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <div className="bg-brand-500/10 absolute top-1/2 left-1/4 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[100px]" />
@@ -137,7 +137,7 @@ export function LiveStats({
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.7, delay: idx * 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
                 className={cn(
-                  "group relative overflow-hidden rounded-3xl border border-white/5 bg-white/5 p-8 backdrop-blur-2xl transition-all duration-500",
+                  "group border-border-subtle/50 relative overflow-hidden rounded-3xl border bg-white/5 p-8 backdrop-blur-2xl transition-all duration-500",
                   "shadow-[0_10px_30px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.05)]",
                   item.bgHover,
                   item.borderHover,
@@ -153,7 +153,7 @@ export function LiveStats({
                 <div className="relative z-10 flex items-center gap-5">
                   <div
                     className={cn(
-                      "flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] transition-transform duration-500 group-hover:scale-110",
+                      "border-border-subtle flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border bg-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] transition-transform duration-500 group-hover:scale-110",
                       item.accent,
                     )}
                   >

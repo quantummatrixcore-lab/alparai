@@ -1,0 +1,111 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_agents_nexus_engine_nexus_md",
+      "label": "ENGINE-NEXUS.md",
+      "file_type": "document",
+      "source_file": ".agents/nexus/ENGINE-NEXUS.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_nexus_engine_nexus_engine_nexus_the_autonomous_tools_doctrine",
+      "label": "\u2699\ufe0f ENGINE-NEXUS \u2014 The Autonomous Tools Doctrine",
+      "file_type": "document",
+      "source_file": ".agents/nexus/ENGINE-NEXUS.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_nexus_engine_nexus_1_the_toolbox_protocol",
+      "label": "1. \ud83e\uddf0 THE TOOLBOX PROTOCOL",
+      "file_type": "document",
+      "source_file": ".agents/nexus/ENGINE-NEXUS.md",
+      "source_location": "L8"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_nexus_engine_nexus_2_engine_registry_34_engines",
+      "label": "2. \ud83c\udfdb\ufe0f ENGINE REGISTRY \u2014 34 Engines",
+      "file_type": "document",
+      "source_file": ".agents/nexus/ENGINE-NEXUS.md",
+      "source_location": "L15"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_nexus_engine_nexus_3_engine_life_cycle",
+      "label": "3. \ud83d\udee0\ufe0f ENGINE LIFE-CYCLE",
+      "file_type": "document",
+      "source_file": ".agents/nexus/ENGINE-NEXUS.md",
+      "source_location": "L59"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_nexus_engine_nexus_4_how_agents_use_engines",
+      "label": "4. \ud83d\udd17 HOW AGENTS USE ENGINES",
+      "file_type": "document",
+      "source_file": ".agents/nexus/ENGINE-NEXUS.md",
+      "source_location": "L68"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_nexus_engine_nexus_5_restrictions",
+      "label": "5. \ud83d\udeab RESTRICTIONS",
+      "file_type": "document",
+      "source_file": ".agents/nexus/ENGINE-NEXUS.md",
+      "source_location": "L81"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_agents_nexus_engine_nexus_md",
+      "target": "d_01_saas_products_alparai_agents_nexus_engine_nexus_engine_nexus_the_autonomous_tools_doctrine",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/nexus/ENGINE-NEXUS.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_nexus_engine_nexus_engine_nexus_the_autonomous_tools_doctrine",
+      "target": "d_01_saas_products_alparai_agents_nexus_engine_nexus_1_the_toolbox_protocol",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/nexus/ENGINE-NEXUS.md",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_nexus_engine_nexus_engine_nexus_the_autonomous_tools_doctrine",
+      "target": "d_01_saas_products_alparai_agents_nexus_engine_nexus_2_engine_registry_34_engines",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/nexus/ENGINE-NEXUS.md",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_nexus_engine_nexus_engine_nexus_the_autonomous_tools_doctrine",
+      "target": "d_01_saas_products_alparai_agents_nexus_engine_nexus_3_engine_life_cycle",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/nexus/ENGINE-NEXUS.md",
+      "source_location": "L59",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_nexus_engine_nexus_engine_nexus_the_autonomous_tools_doctrine",
+      "target": "d_01_saas_products_alparai_agents_nexus_engine_nexus_4_how_agents_use_engines",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/nexus/ENGINE-NEXUS.md",
+      "source_location": "L68",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_nexus_engine_nexus_engine_nexus_the_autonomous_tools_doctrine",
+      "target": "d_01_saas_products_alparai_agents_nexus_engine_nexus_5_restrictions",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/nexus/ENGINE-NEXUS.md",
+      "source_location": "L81",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

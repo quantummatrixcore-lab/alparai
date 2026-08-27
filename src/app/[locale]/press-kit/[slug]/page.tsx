@@ -78,36 +78,37 @@ export default async function BrandPage({
 
   const providerId = (provider as Record<string, unknown>)["id"] as string;
 
-  const [incidentsRes, modelsRes, allIncidentsRes, responsesRes, leaderboardRes] = await Promise.all([
-    supabase
-      .from("incidents")
-      .select(
-        "id, title_masked, description_masked, title_tr, description_tr, severity, status, category, is_anonymous, incident_date, views_count, upvotes_count, created_at, ai_provider_id, user_id, cross_audit_truth_score, cross_audit_confidence",
-      )
-      .eq("status", "published")
-      .eq("ai_provider_id", providerId)
-      .order("created_at", { ascending: false })
-      .limit(50),
-    supabase
-      .from("ai_models")
-      .select("id, name, version, status, released_at, provider_id, model_reviews(score_overall)")
-      .eq("provider_id", providerId)
-      .order("name"),
-    supabase
-      .from("incidents")
-      .select("id, severity, status, views_count")
-      .eq("ai_provider_id", providerId),
-    supabase
-      .from("ai_provider_responses")
-      .select("id, incident_id, is_official, is_published, created_at")
-      .eq("ai_provider_id", providerId)
-      .eq("is_published", true),
-    supabase
-      .from("provider_leaderboard")
-      .select("trust_score, incident_count, response_rate, response_count")
-      .eq("id", providerId)
-      .maybeSingle(),
-  ]);
+  const [incidentsRes, modelsRes, allIncidentsRes, responsesRes, leaderboardRes] =
+    await Promise.all([
+      supabase
+        .from("incidents")
+        .select(
+          "id, title_masked, description_masked, title_tr, description_tr, severity, status, category, is_anonymous, incident_date, views_count, upvotes_count, created_at, ai_provider_id, user_id, cross_audit_truth_score, cross_audit_confidence",
+        )
+        .eq("status", "published")
+        .eq("ai_provider_id", providerId)
+        .order("created_at", { ascending: false })
+        .limit(50),
+      supabase
+        .from("ai_models")
+        .select("id, name, version, status, released_at, provider_id, model_reviews(score_overall)")
+        .eq("provider_id", providerId)
+        .order("name"),
+      supabase
+        .from("incidents")
+        .select("id, severity, status, views_count")
+        .eq("ai_provider_id", providerId),
+      supabase
+        .from("ai_provider_responses")
+        .select("id, incident_id, is_official, is_published, created_at")
+        .eq("ai_provider_id", providerId)
+        .eq("is_published", true),
+      supabase
+        .from("provider_leaderboard")
+        .select("trust_score, incident_count, response_rate, response_count")
+        .eq("id", providerId)
+        .maybeSingle(),
+    ]);
 
   const providerRow = provider as Record<string, unknown>;
   const providerName = providerRow["name"] as string;
@@ -123,16 +124,23 @@ export default async function BrandPage({
   const responses = (responsesRes.data as Array<Record<string, unknown>>) ?? [];
 
   const leaderboardData = leaderboardRes.data as Record<string, unknown> | null;
-  const totalIncidents = leaderboardData?.incident_count as number ?? allIncidents.length;
-  const totalResponses = leaderboardData?.response_count as number ?? responses.length;
-  
+  const totalIncidents = (leaderboardData?.incident_count as number) ?? allIncidents.length;
+  const totalResponses = (leaderboardData?.response_count as number) ?? responses.length;
+
   const resolvedCount = responses.filter(
-    (r: any) =>
-      r.status === "resolved" || r.is_official || (r.ai_provider_id && r.is_published),
+    (r: unknown) =>
+      (r as Record<string, unknown>).status === "resolved" ||
+      (r as Record<string, unknown>).is_official ||
+      ((r as Record<string, unknown>).ai_provider_id &&
+        (r as Record<string, unknown>).is_published),
   ).length;
 
-  const trustScore = leaderboardData?.trust_score as number ?? calculateTrustScore(totalIncidents, totalResponses, resolvedCount);
-  const responseRate = leaderboardData?.response_rate as number ?? (totalIncidents > 0 ? Math.round((totalResponses / totalIncidents) * 100) : 0);
+  const trustScore =
+    (leaderboardData?.trust_score as number) ??
+    calculateTrustScore(totalIncidents, totalResponses, resolvedCount);
+  const responseRate =
+    (leaderboardData?.response_rate as number) ??
+    (totalIncidents > 0 ? Math.round((totalResponses / totalIncidents) * 100) : 0);
 
   const severityBreakdown = {
     critical: allIncidents.filter((i) => i["severity"] === "critical").length,
@@ -160,7 +168,7 @@ export default async function BrandPage({
             </div>
             <div className="flex-1 space-y-2">
               <div className="flex flex-wrap items-center gap-2">
-                <h1 className="text-fg-primary text-2xl font-bold">{providerName}</h1>
+                <h1 className="text-fg-primary text-fg-secondaryxl font-bold">{providerName}</h1>
                 {isVerified && (
                   <Badge variant="success" dot>
                     {t("verified")}
@@ -275,7 +283,7 @@ export default async function BrandPage({
               <Shield className="text-brand-400 h-5 w-5" />
             </div>
             <div>
-              <p className="text-fg-primary text-2xl font-bold">{trustScore}</p>
+              <p className="text-fg-primary text-fg-secondaryxl font-bold">{trustScore}</p>
               <p className="text-fg-muted text-xs">{t("trustScore")}</p>
             </div>
           </CardContent>
@@ -286,7 +294,7 @@ export default async function BrandPage({
               <AlertTriangle className="text-warning-500 h-5 w-5" />
             </div>
             <div>
-              <p className="text-fg-primary text-2xl font-bold">{totalIncidents}</p>
+              <p className="text-fg-primary text-fg-secondaryxl font-bold">{totalIncidents}</p>
               <p className="text-fg-muted text-xs">{t("totalIncidents")}</p>
             </div>
           </CardContent>
@@ -297,7 +305,7 @@ export default async function BrandPage({
               <CheckCircle2 className="text-success-500 h-5 w-5" />
             </div>
             <div>
-              <p className="text-fg-primary text-2xl font-bold">{responseRate}%</p>
+              <p className="text-fg-primary text-fg-secondaryxl font-bold">{responseRate}%</p>
               <p className="text-fg-muted text-xs">{t("responseRate")}</p>
             </div>
           </CardContent>
@@ -308,7 +316,7 @@ export default async function BrandPage({
               <Eye className="text-accent-400 h-5 w-5" />
             </div>
             <div>
-              <p className="text-fg-primary text-2xl font-bold">{avgViews}</p>
+              <p className="text-fg-primary text-fg-secondaryxl font-bold">{avgViews}</p>
               <p className="text-fg-muted text-xs">{t("avgViews")}</p>
             </div>
           </CardContent>
@@ -371,7 +379,12 @@ export default async function BrandPage({
             </div>
             <div className="flex items-center justify-between">
               <span className="text-fg-muted">{t("incidentsResponded")}</span>
-              <span className="text-accent-400 font-semibold">{new Set(responses.map((r: any) => r.incident_id)).size}</span>
+              <span className="text-accent-400 font-semibold">
+                {
+                  new Set(responses.map((r: unknown) => (r as Record<string, unknown>).incident_id))
+                    .size
+                }
+              </span>
             </div>
           </CardContent>
         </Card>

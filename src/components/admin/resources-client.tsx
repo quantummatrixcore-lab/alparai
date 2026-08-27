@@ -270,7 +270,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
         ) : (
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {/* Supabase DB */}
-            <div className="bg-bg-tertiary/20 flex flex-col justify-between rounded-xl border border-white/5 p-5">
+            <div className="bg-bg-tertiary/20 border-border-subtle/50 flex flex-col justify-between rounded-xl border p-5">
               <div>
                 <div className="flex items-start justify-between">
                   <span className="text-sm font-bold text-white">{t("resources_db_size")}</span>
@@ -290,7 +290,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
             </div>
 
             {/* Supabase Storage */}
-            <div className="bg-bg-tertiary/20 flex flex-col justify-between rounded-xl border border-white/5 p-5">
+            <div className="bg-bg-tertiary/20 border-border-subtle/50 flex flex-col justify-between rounded-xl border p-5">
               <div>
                 <div className="flex items-start justify-between">
                   <span className="text-sm font-bold text-white">
@@ -312,7 +312,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
             </div>
 
             {/* Upstash Redis */}
-            <div className="bg-bg-tertiary/20 flex flex-col justify-between rounded-xl border border-white/5 p-5">
+            <div className="bg-bg-tertiary/20 border-border-subtle/50 flex flex-col justify-between rounded-xl border p-5">
               <div>
                 <div className="flex items-start justify-between">
                   <span className="text-sm font-bold text-white">
@@ -339,7 +339,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
             </div>
 
             {/* Resend Email */}
-            <div className="bg-bg-tertiary/20 flex flex-col justify-between rounded-xl border border-white/5 p-5">
+            <div className="bg-bg-tertiary/20 border-border-subtle/50 flex flex-col justify-between rounded-xl border p-5">
               <div>
                 <div className="flex items-start justify-between">
                   <span className="text-sm font-bold text-white">{t("resources_emails_sent")}</span>
@@ -361,7 +361,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
             </div>
 
             {/* AI Gateway Spend */}
-            <div className="bg-bg-tertiary/20 flex flex-col justify-between rounded-xl border border-white/5 p-5 lg:col-span-2">
+            <div className="bg-bg-tertiary/20 border-border-subtle/50 flex flex-col justify-between rounded-xl border p-5 lg:col-span-2">
               <div>
                 <div className="flex items-start justify-between">
                   <span className="text-sm font-bold text-white">
@@ -395,7 +395,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
                     </Badge>
                   </div>
                 </div>
-                <div className="mt-4 grid grid-cols-2 gap-4">
+                <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
                   <div>
                     <span className="text-fg-muted block text-xs">
                       {t("resources_today_spend")}
@@ -465,7 +465,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
               return (
                 <div
                   key={`${quota.vendor}-${quota.metric}`}
-                  className="bg-bg-tertiary/20 flex flex-col rounded-xl border border-white/5 p-5"
+                  className="bg-bg-tertiary/20 border-border-subtle/50 flex flex-col rounded-xl border p-5"
                 >
                   <div className="flex items-start justify-between gap-2">
                     <div>
@@ -587,28 +587,28 @@ export function ResourcesClient({ locale }: { locale: string }) {
         ) : (
           <div className="space-y-6">
             <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
-              <div className="bg-bg-tertiary/20 rounded-xl border border-white/5 p-4">
+              <div className="bg-bg-tertiary/20 border-border-subtle/50 rounded-xl border p-4">
                 <span className="text-fg-muted block text-xs font-bold tracking-wide uppercase">
                   {t("resources_efficiency_total_runs")}
                 </span>
-                <span className="mt-1 block font-mono text-2xl font-black text-white">
+                <span className="text-fg-secondaryxl mt-1 block font-mono font-black text-white">
                   {efficiency.totalRuns}
                 </span>
               </div>
-              <div className="bg-bg-tertiary/20 rounded-xl border border-white/5 p-4">
+              <div className="bg-bg-tertiary/20 border-border-subtle/50 rounded-xl border p-4">
                 <span className="text-fg-muted block text-xs font-bold tracking-wide uppercase">
                   {t("resources_efficiency_free_pct")}
                 </span>
-                <span className="mt-1 block font-mono text-2xl font-black text-white">
+                <span className="text-fg-secondaryxl mt-1 block font-mono font-black text-white">
                   {efficiency.freePct.toFixed(1)}%
                 </span>
               </div>
-              <div className="bg-bg-tertiary/20 rounded-xl border border-white/5 p-4">
+              <div className="bg-bg-tertiary/20 border-border-subtle/50 rounded-xl border p-4">
                 <span className="text-fg-muted block text-xs font-bold tracking-wide uppercase">
                   {t("resources_efficiency_score")}
                 </span>
                 <div className="mt-1 flex items-center gap-2">
-                  <span className="block font-mono text-2xl font-black text-white">
+                  <span className="text-fg-secondaryxl block font-mono font-black text-white">
                     {efficiency.efficiencyScore.toFixed(1)}
                   </span>
                   {efficiency.targetDistancePct > 0 ? (
@@ -620,19 +620,19 @@ export function ResourcesClient({ locale }: { locale: string }) {
                   )}
                 </div>
               </div>
-              <div className="bg-bg-tertiary/20 rounded-xl border border-white/5 p-4">
+              <div className="bg-bg-tertiary/20 border-border-subtle/50 rounded-xl border p-4">
                 <span className="text-fg-muted block text-xs font-bold tracking-wide uppercase">
                   {t("resources_efficiency_avg_duration")}
                 </span>
-                <span className="mt-1 block font-mono text-2xl font-black text-white">
+                <span className="text-fg-secondaryxl mt-1 block font-mono font-black text-white">
                   {formatDuration(efficiency.avgDurationMs)}
                 </span>
               </div>
-              <div className="bg-bg-tertiary/20 rounded-xl border border-white/5 p-4">
+              <div className="bg-bg-tertiary/20 border-border-subtle/50 rounded-xl border p-4">
                 <span className="text-fg-muted block text-xs font-bold tracking-wide uppercase">
                   {t("resources_efficiency_success_rate")}
                 </span>
-                <span className="mt-1 block font-mono text-2xl font-black text-white">
+                <span className="text-fg-secondaryxl mt-1 block font-mono font-black text-white">
                   {(efficiency.successRate * 100).toFixed(1)}%
                 </span>
               </div>
@@ -686,7 +686,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
             <span className="text-fg-muted text-xs font-bold tracking-wide uppercase">
               {t("resources_incident_count")}
             </span>
-            <p className="mt-2 font-mono text-2xl font-black text-white">
+            <p className="text-fg-secondaryxl mt-2 font-mono font-black text-white">
               {metrics.rowCounts.incidents.toLocaleString()}
             </p>
           </div>
@@ -694,7 +694,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
             <span className="text-fg-muted text-xs font-bold tracking-wide uppercase">
               {t("resources_scores_count")}
             </span>
-            <p className="mt-2 font-mono text-2xl font-black text-white">
+            <p className="text-fg-secondaryxl mt-2 font-mono font-black text-white">
               {metrics.rowCounts.kModelScores.toLocaleString()}
             </p>
           </div>
@@ -702,7 +702,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
             <span className="text-fg-muted text-xs font-bold tracking-wide uppercase">
               {t("resources_queue_size")}
             </span>
-            <p className="mt-2 font-mono text-2xl font-black text-white">
+            <p className="text-fg-secondaryxl mt-2 font-mono font-black text-white">
               {metrics.rowCounts.externalIncidentsQueue.toLocaleString()}
             </p>
           </div>
@@ -750,7 +750,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
                   </td>
                   {/* Plan */}
                   <td className="text-fg-primary px-6 py-4 font-mono text-xs">
-                    <Badge variant="outline" className="border-white/10 bg-white/5 text-white">
+                    <Badge variant="outline" className="border-border-subtle bg-white/5 text-white">
                       {v.plan}
                     </Badge>
                   </td>
@@ -801,7 +801,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
                     {v.cost}
                   </td>
                   <td className="px-6 py-4 font-mono text-xs">
-                    <Badge variant="outline" className="border-white/10 bg-white/5 text-white">
+                    <Badge variant="outline" className="border-border-subtle bg-white/5 text-white">
                       {v.plan}
                     </Badge>
                   </td>
@@ -861,7 +861,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
           {SUBSCRIPTION_ADVANTAGES.map((sub) => (
             <div
               key={sub.id}
-              className="bg-bg-tertiary/20 flex flex-col justify-between rounded-xl border border-white/5 p-5 transition-all hover:border-white/10"
+              className="bg-bg-tertiary/20 border-border-subtle/50 hover:border-border-subtle flex flex-col justify-between rounded-xl border p-5 transition-all"
             >
               <div>
                 <div className="flex items-start justify-between gap-2">
@@ -899,7 +899,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
               </div>
 
               {sub.actionRequired && (
-                <div className="mt-4 border-t border-white/5 pt-3">
+                <div className="border-border-subtle/50 mt-4 border-t pt-3">
                   <a
                     href={sub.actionRequired.url}
                     target="_blank"
@@ -936,7 +936,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
           {FREE_AI_API_PROVIDERS.map((provider) => (
             <div
               key={provider.name}
-              className="bg-bg-tertiary/20 flex flex-col justify-between rounded-xl border border-white/5 p-5"
+              className="bg-bg-tertiary/20 border-border-subtle/50 flex flex-col justify-between rounded-xl border p-5"
             >
               <div>
                 <div className="flex items-start justify-between gap-2">
@@ -964,7 +964,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
                 </p>
 
                 <div className="mt-3 space-y-1 font-mono text-[11px]">
-                  <div className="flex justify-between text-white/80">
+                  <div className="text-fg-secondary flex justify-between">
                     <span className="text-fg-muted">
                       {isTR ? "Hız Limitleri:" : "Rate Limits:"}
                     </span>
@@ -978,7 +978,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
                       {provider.topModels.map((model) => (
                         <span
                           key={model}
-                          className="rounded border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] text-white"
+                          className="border-border-subtle rounded border bg-white/5 px-2 py-0.5 text-[10px] text-white"
                         >
                           {model}
                         </span>
@@ -988,7 +988,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
                 </div>
               </div>
 
-              <div className="mt-4 flex justify-end border-t border-white/5 pt-3">
+              <div className="border-border-subtle/50 mt-4 flex justify-end border-t pt-3">
                 <a
                   href={provider.url}
                   target="_blank"

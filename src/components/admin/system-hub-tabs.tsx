@@ -62,7 +62,7 @@ export function SystemHubTabs() {
                 "flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium whitespace-nowrap transition-all duration-300",
                 tab.isActive
                   ? "bg-warning-500/10 text-warning-400 shadow-warning-500/5 ring-warning-500/20 shadow-lg ring-1"
-                  : "bg-bg-elevated/50 text-fg-muted hover:bg-zinc-800/50 hover:text-white",
+                  : "bg-bg-elevated/50 text-fg-muted hover:bg-bg-elevated/50 hover:text-white",
               )}
             >
               <Icon

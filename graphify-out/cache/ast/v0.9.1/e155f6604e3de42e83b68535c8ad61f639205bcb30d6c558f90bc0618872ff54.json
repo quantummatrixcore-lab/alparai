@@ -1,0 +1,95 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_fund_3_md",
+      "label": "FUND-3.md",
+      "file_type": "document",
+      "source_file": "docs/plan/items/FUND-3.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_fund_3_fund_3",
+      "label": "FUND-3",
+      "file_type": "document",
+      "source_file": "docs/plan/items/FUND-3.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_fund_3_why_this_order",
+      "label": "Why this order",
+      "file_type": "document",
+      "source_file": "docs/plan/items/FUND-3.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_fund_3_the_route_in_order",
+      "label": "The route, in order",
+      "file_type": "document",
+      "source_file": "docs/plan/items/FUND-3.md",
+      "source_location": "L25"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_fund_3_rule_for_every_application",
+      "label": "Rule for every application",
+      "file_type": "document",
+      "source_file": "docs/plan/items/FUND-3.md",
+      "source_location": "L42"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_fund_3_acceptance",
+      "label": "Acceptance",
+      "file_type": "document",
+      "source_file": "docs/plan/items/FUND-3.md",
+      "source_location": "L48"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_fund_3_md",
+      "target": "d_01_saas_products_alparai_docs_plan_items_fund_3_fund_3",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/FUND-3.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_fund_3_fund_3",
+      "target": "d_01_saas_products_alparai_docs_plan_items_fund_3_why_this_order",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/FUND-3.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_fund_3_fund_3",
+      "target": "d_01_saas_products_alparai_docs_plan_items_fund_3_the_route_in_order",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/FUND-3.md",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_fund_3_fund_3",
+      "target": "d_01_saas_products_alparai_docs_plan_items_fund_3_rule_for_every_application",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/FUND-3.md",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_fund_3_fund_3",
+      "target": "d_01_saas_products_alparai_docs_plan_items_fund_3_acceptance",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/FUND-3.md",
+      "source_location": "L48",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

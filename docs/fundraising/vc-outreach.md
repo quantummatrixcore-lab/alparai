@@ -3,7 +3,7 @@
 **Company:** ALPAR AI Inc.  
 **Domain:** Trust Infrastructure for AI Accountability & EU AI Act Compliance  
 **Sender Address:** `ercument.erden@alparai.com`  
-**Target Round:** €750K Seed (€4.5M Post-Money Valuation)  
+**Target Round:** €750K Seed (€4.5M Post-Money Valuation)
 
 ---
 
@@ -12,6 +12,7 @@
 The following 20 European Venture Capital firms represent prime alignment with ALPAR AI's enterprise AI governance, open-core AGPL-3.0 strategy, and EU AI Act compliance market opportunity.
 
 ### 1. Earlybird VC
+
 - **Location:** Berlin, Germany / Munich, Germany
 - **Focus Area:** Deep Tech, Enterprise B2B SaaS, AI Infrastructure & RegTech
 - **Lead Partner:** Dr. Christian Saller (General Partner) / Andre Retterath (Partner)
@@ -20,6 +21,7 @@ The following 20 European Venture Capital firms represent prime alignment with A
 - **Warm-Intro Path:** Intro via portfolio founder network (Aleph Alpha ecosystem / Isar Aerospace advisory network) or direct founder outreach.
 
 ### 2. Point Nine Capital
+
 - **Location:** Berlin, Germany
 - **Focus Area:** Early-Stage B2B SaaS, Developer Tools, B2B Marketplaces
 - **Lead Partner:** Pawel Chudzinski (Managing Partner) / Christoph Janz (Managing Partner)
@@ -28,6 +30,7 @@ The following 20 European Venture Capital firms represent prime alignment with A
 - **Warm-Intro Path:** Intro via Point Nine SaaS Angel network or open-source developer ecosystem connections.
 
 ### 3. Balderton Capital
+
 - **Location:** London, United Kingdom / Paris, France
 - **Focus Area:** Multi-Stage European Tech, B2B SaaS, AI Infrastructure
 - **Lead Partner:** Suranga Chandratillake (General Partner) / Rana Yared (General Partner)
@@ -36,6 +39,7 @@ The following 20 European Venture Capital firms represent prime alignment with A
 - **Warm-Intro Path:** Intro through London B2B SaaS founder network or AI Safety Institute advisory contacts.
 
 ### 4. Lakestar
+
 - **Location:** Zurich, Switzerland / London, UK
 - **Focus Area:** Deep Tech, FinTech, Regulatory Technology & Enterprise AI
 - **Lead Partner:** Klaus Hommels (Founder & Chairman) / Stephen Nundy (Partner)
@@ -44,6 +48,7 @@ The following 20 European Venture Capital firms represent prime alignment with A
 - **Warm-Intro Path:** Intro via European sovereign tech policy advisory network or enterprise FinTech founders.
 
 ### 5. Northzone
+
 - **Location:** London, UK / Stockholm, Sweden
 - **Focus Area:** Early-Stage Enterprise SaaS, AI Platforms, Developer Infrastructure
 - **Lead Partner:** Michiel Kotting (Partner) / Kilian Pender (Partner)
@@ -52,6 +57,7 @@ The following 20 European Venture Capital firms represent prime alignment with A
 - **Warm-Intro Path:** Intro via Nordic/UK B2B tech network or Personio / Hopin portfolio alumni.
 
 ### 6. HV Capital
+
 - **Location:** Munich, Germany / Berlin, Germany
 - **Focus Area:** Early to Growth B2B SaaS, Enterprise Software, Cyber & RegTech
 - **Lead Partner:** Jan Miczaika (Partner) / Felix Klohr (Partner)
@@ -60,6 +66,7 @@ The following 20 European Venture Capital firms represent prime alignment with A
 - **Warm-Intro Path:** Intro via Munich/Berlin founder ecosystem or DACH enterprise tech network.
 
 ### 7. Project A
+
 - **Location:** Berlin, Germany
 - **Focus Area:** Operational VC, B2B SaaS, Developer Tools & Enterprise Tech
 - **Lead Partner:** Uwe Horstmann (General Partner) / Anton Waitz (General Partner)
@@ -68,6 +75,7 @@ The following 20 European Venture Capital firms represent prime alignment with A
 - **Warm-Intro Path:** Intro through Berlin tech ecosystem or Project A operational network.
 
 ### 8. Notion Capital
+
 - **Location:** London, United Kingdom
 - **Focus Area:** Pure-Play B2B SaaS, Enterprise Cloud, Cybersecurity & Compliance
 - **Lead Partner:** Stephen Chandler (Managing Partner) / Itxaso del Palacio (Partner)
@@ -76,6 +84,7 @@ The following 20 European Venture Capital firms represent prime alignment with A
 - **Warm-Intro Path:** Intro via London SaaS founder network or Notion Executive network.
 
 ### 9. Cherry Ventures
+
 - **Location:** Berlin, Germany
 - **Focus Area:** Founder-Led Seed Stage, B2B SaaS, AI Infrastructure
 - **Lead Partner:** Christian Meermann (Founding Partner) / Filip Dames (Founding Partner)
@@ -84,6 +93,7 @@ The following 20 European Venture Capital firms represent prime alignment with A
 - **Warm-Intro Path:** Intro via Cherry founder network or European open-source developer leads.
 
 ### 10. Fly VC
+
 - **Location:** Berlin, Germany
 - **Focus Area:** Seed-Stage B2B, Deep Tech, Developer Tools, Applied AI
 - **Lead Partner:** Gabriel Matuschka (Partner) / Marie-Helene Ametsbichler (Partner)
@@ -92,6 +102,7 @@ The following 20 European Venture Capital firms represent prime alignment with A
 - **Warm-Intro Path:** Direct outreach via technical product demo or Berlin DeepTech network.
 
 ### 11. b2venture
+
 - **Location:** St. Gallen, Switzerland / Zurich, Switzerland
 - **Focus Area:** Early-Stage European Tech, Enterprise SaaS, AI & RegTech
 - **Lead Partner:** Florian Schweitzer (Partner) / Obering. Dr. Christian Wieser (Partner)
@@ -100,6 +111,7 @@ The following 20 European Venture Capital firms represent prime alignment with A
 - **Warm-Intro Path:** Intro via St. Gallen alumni network or DACH angel syndicate.
 
 ### 12. Seedcamp
+
 - **Location:** London, United Kingdom
 - **Focus Area:** Pre-Seed & Seed Tech Champions across Europe
 - **Lead Partner:** Reshma Sohoni (Managing Partner) / Carlos Espinal (Managing Partner)
@@ -108,6 +120,7 @@ The following 20 European Venture Capital firms represent prime alignment with A
 - **Warm-Intro Path:** Intro through Seedcamp founder network (UiPath / Synthesia portfolio bridge).
 
 ### 13. Force Over Mass
+
 - **Location:** London, United Kingdom
 - **Focus Area:** Early-Stage B2B SaaS, FinTech, Risk & RegTech
 - **Lead Partner:** Martijn de Wever (CEO & Managing Partner)
@@ -116,6 +129,7 @@ The following 20 European Venture Capital firms represent prime alignment with A
 - **Warm-Intro Path:** Intro via London FinTech network or advisory channels.
 
 ### 14. Speedinvest
+
 - **Location:** Vienna, Austria / Berlin, Germany
 - **Focus Area:** DeepTech, Industrial Tech, SaaS & Infrastructure
 - **Lead Partner:** Markus Lang (Partner) / Namratha Kothapalli (Partner)
@@ -124,6 +138,7 @@ The following 20 European Venture Capital firms represent prime alignment with A
 - **Warm-Intro Path:** Intro via Speedinvest DeepTech platform team or Vienna tech ecosystem.
 
 ### 15. Frontline Ventures
+
 - **Location:** Dublin, Ireland / London, UK
 - **Focus Area:** Early-Stage B2B SaaS, Transatlantic Scaling, Enterprise Tools
 - **Lead Partner:** Will Prendergast (Partner) / William McQuillan (Partner)
@@ -132,6 +147,7 @@ The following 20 European Venture Capital firms represent prime alignment with A
 - **Warm-Intro Path:** Intro via Irish/UK SaaS founder network or Frontline Seed network.
 
 ### 16. Atlantic Labs
+
 - **Location:** Berlin, Germany
 - **Focus Area:** Pre-Seed / Seed Tech Builder, B2B SaaS, AI Infrastructure
 - **Lead Partner:** Christophe Maire (Founder & CEO) / Jens Lapinski (Partner)
@@ -140,6 +156,7 @@ The following 20 European Venture Capital firms represent prime alignment with A
 - **Warm-Intro Path:** Intro through Berlin founder ecosystem or Atlantic Labs studio contacts.
 
 ### 17. Join Capital
+
 - **Location:** Berlin, Germany
 - **Focus Area:** Early-Stage Industrial Tech, Enterprise B2B SaaS, RegTech
 - **Lead Partner:** Tobias Schirmer (Managing Partner) / Sebastian Wossagk (Managing Partner)
@@ -148,6 +165,7 @@ The following 20 European Venture Capital firms represent prime alignment with A
 - **Warm-Intro Path:** Intro via Join Capital industrial partner network.
 
 ### 18. Elevator Ventures
+
 - **Location:** Vienna, Austria
 - **Focus Area:** CEE & DACH FinTech, RegTech, Enterprise Security
 - **Lead Partner:** Maximilian Shafran (Managing Director)
@@ -156,6 +174,7 @@ The following 20 European Venture Capital firms represent prime alignment with A
 - **Warm-Intro Path:** Intro via Raiffeisen RBI FinTech accelerator or CEE RegTech partners.
 
 ### 19. Apex Ventures
+
 - **Location:** Vienna, Austria
 - **Focus Area:** DeepTech, Medical Tech, AI Infrastructure & RegTech
 - **Lead Partner:** Christoph H. Wecht (Partner) / Gordon Euller (Partner)
@@ -164,6 +183,7 @@ The following 20 European Venture Capital firms represent prime alignment with A
 - **Warm-Intro Path:** Intro via DACH academic/research AI network.
 
 ### 20. DTCP (Digital Transformation Capital Partners)
+
 - **Location:** Hamburg, Germany / Frankfurt, Germany
 - **Focus Area:** Enterprise B2B SaaS, Cybersecurity, AI Infrastructure
 - **Lead Partner:** Thomas Preuss (Partner) / Michael Schulz (Partner)
@@ -202,19 +222,22 @@ Founder & Chief Architect, ALPAR AI
 ercument.erden@alparai.com | https://alparai.com
 ```
 
-*(Word Count: 148 words — Strictly compliant with <150 words threshold).*
+_(Word Count: 148 words — Strictly compliant with <150 words threshold)._
 
 ---
 
 ## 3. Personalized Pitch Hooks
 
 ### Earlybird VC (Personalized Hook)
+
 > **Hook:** "Hi Dr. Saller, given Earlybird’s pioneering investments in European deep tech and sovereign software (e.g., Aleph Alpha), ALPAR AI directly solves the missing trust and regulatory layer required for enterprise adoption. Our EU AI Act §73 automated compliance engine guarantees audit readiness for high-risk deployments across DACH enterprise accounts."
 
 ### Point Nine Capital (Personalized Hook)
+
 > **Hook:** "Hi Pawel, as leading backers of API-first developer infrastructure and B2B SaaS champions, you know early open-core traction creates massive moats. ALPAR AI applies the developer-first paradigm to EU AI Act compliance, featuring 1,006 green unit tests, AGPL-3.0 open core, and seamless Next.js/Supabase integration."
 
 ### Balderton Capital (Personalized Hook)
+
 > **Hook:** "Hi Suranga, following Balderton’s deep thesis on AI safety and European tech sovereignty, ALPAR AI is building the independent verification layer for AI models. With mandatory EU AI Act enforcement fast approaching, our PII-sanitized incident registry provides European enterprises with an unalterable audit trail."
 
 ---

@@ -64,9 +64,7 @@ describe("AUTH-1 Test Bypass Isolation & Containment", () => {
       process.env.IS_PLAYWRIGHT_TEST = "true";
       delete process.env.NEXT_TEST_AUTH_BYPASS;
 
-      expect(() => assertTestBypassSafe()).toThrow(
-        /CRITICAL SECURITY VIOLATION/i,
-      );
+      expect(() => assertTestBypassSafe()).toThrow(/CRITICAL SECURITY VIOLATION/i);
     });
 
     it("should throw in production if NEXT_TEST_AUTH_BYPASS is true", () => {
@@ -74,9 +72,7 @@ describe("AUTH-1 Test Bypass Isolation & Containment", () => {
       delete process.env.IS_PLAYWRIGHT_TEST;
       process.env.NEXT_TEST_AUTH_BYPASS = "true";
 
-      expect(() => assertTestBypassSafe()).toThrow(
-        /CRITICAL SECURITY VIOLATION/i,
-      );
+      expect(() => assertTestBypassSafe()).toThrow(/CRITICAL SECURITY VIOLATION/i);
     });
 
     it("should not throw in production if flags are clean", () => {

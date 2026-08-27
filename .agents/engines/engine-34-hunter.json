@@ -5,12 +5,7 @@
   "description": "Neural Market Discovery Protocol. Scans the digital universe for free AI API resources and integrates them into the ecosystem.",
   "version": "1.0.0",
   "status": "healthy",
-  "capabilities": [
-    "discovery",
-    "integration",
-    "optimization",
-    "neural_market_scout"
-  ],
+  "capabilities": ["discovery", "integration", "optimization", "neural_market_scout"],
   "registered_at": "2026-05-21T23:50:00.000Z",
   "uptime_seconds": 0
 }

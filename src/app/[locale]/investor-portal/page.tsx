@@ -135,8 +135,8 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
   ];
 
   return (
-    <div className="min-h-screen bg-[#0A1622] pb-20 text-[#E2E8F0]">
-      <header className="border-b border-amber-500/20 bg-[#0F1E2E] py-4">
+    <div className="bg-bg-primary min-h-screen pb-20 text-[#E2E8F0]">
+      <header className="border-warning-500/20 bg-bg-navy border-b py-4">
         <Container
           size="default"
           className="flex flex-col items-center justify-between gap-4 sm:flex-row"
@@ -152,7 +152,7 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
               <p className="text-sm font-semibold text-white">
                 {t("welcome", { name: investorName })}
               </p>
-              <p className="text-xs text-slate-400">{investorCompany}</p>
+              <p className="text-fg-muted text-xs">{investorCompany}</p>
             </div>
             <a
               href={`mailto:hello@alparai.com?subject=${encodeURIComponent(`Meeting Request — ${investorName} (${investorCompany})`)}`}
@@ -167,104 +167,108 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
       <Container size="default" className="mt-10">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div className="space-y-8 lg:col-span-2">
-            <section className="rounded-xl border border-slate-800 bg-[#0F1E2E] p-6 md:p-8">
-              <h2 className="mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white md:text-2xl">
+            <section className="border-border-subtle bg-bg-navy rounded-xl border p-6 md:p-8">
+              <h2 className="md:text-fg-secondaryxl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white">
                 {t("exec_summary_title")}
               </h2>
-              <p className="mb-6 leading-relaxed text-slate-300">{t("exec_summary_p1")}</p>
-              <div className="grid grid-cols-2 gap-6 border-t border-slate-800 pt-4 text-sm md:grid-cols-3">
+              <p className="text-fg-primary mb-6 leading-relaxed">{t("exec_summary_p1")}</p>
+              <div className="border-border-subtle grid grid-cols-2 gap-6 border-t pt-4 text-sm md:grid-cols-3">
                 <div>
-                  <span className="block text-xs font-semibold text-slate-400 uppercase">
+                  <span className="text-fg-muted block text-xs font-semibold uppercase">
                     {t("founded_label")}
                   </span>
                   <span className="mt-1 block font-bold text-white">{t("founded_date")}</span>
-                  <span className="block text-[11px] text-slate-500">{t("founded_location")}</span>
+                  <span className="text-fg-muted block text-[11px]">{t("founded_location")}</span>
                 </div>
                 <div>
-                  <span className="block text-xs font-semibold text-slate-400 uppercase">
+                  <span className="text-fg-muted block text-xs font-semibold uppercase">
                     {t("stage_label")}
                   </span>
                   <span className="mt-1 block font-bold text-white">{t("stage_value")}</span>
                 </div>
                 <div>
-                  <span className="block text-xs font-semibold text-slate-400 uppercase">
+                  <span className="text-fg-muted block text-xs font-semibold uppercase">
                     {t("raising_label")}
                   </span>
                   <span className="mt-1 block font-bold text-amber-500">{t("raising_value")}</span>
-                  <span className="block text-[11px] text-slate-500">{t("raising_type")}</span>
+                  <span className="text-fg-muted block text-[11px]">{t("raising_type")}</span>
                 </div>
               </div>
             </section>
 
-            <section className="rounded-xl border border-slate-800 bg-[#0F1E2E] p-6 md:p-8">
-              <h2 className="mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white md:text-2xl">
+            <section className="border-border-subtle bg-bg-navy rounded-xl border p-6 md:p-8">
+              <h2 className="md:text-fg-secondaryxl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white">
                 {t("traction_title")}
               </h2>
               <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
                 {statsList.map((stat, idx) => (
                   <div
                     key={idx}
-                    className="rounded-lg border border-slate-800 bg-[#0A1622] p-4 text-center"
+                    className="border-border-subtle bg-bg-primary rounded-lg border p-4 text-center"
                   >
-                    <span className="block text-xl font-black text-emerald-400 md:text-2xl">
+                    <span className="md:text-fg-secondaryxl block text-xl font-black text-emerald-400">
                       {stat.value}
                     </span>
-                    <span className="mt-1 block text-[11px] leading-tight font-medium text-slate-400">
+                    <span className="text-fg-muted mt-1 block text-[11px] leading-tight font-medium">
                       {stat.label}
                     </span>
                   </div>
                 ))}
               </div>
-              <p className="mt-3 text-right text-[11px] text-slate-500">
+              <p className="text-fg-muted mt-3 text-right text-[11px]">
                 Last updated: {new Date().toLocaleDateString(locale === "tr" ? "tr-TR" : "en-US")}{" "}
                 {t("last_updated_suffix")}
               </p>
             </section>
 
-            <section className="rounded-xl border border-slate-800 bg-[#0F1E2E] p-6 md:p-8">
-              <h2 className="mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white md:text-2xl">
+            <section className="border-border-subtle bg-bg-navy rounded-xl border p-6 md:p-8">
+              <h2 className="md:text-fg-secondaryxl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white">
                 {t("founding_title")}
               </h2>
-              <div className="space-y-4 text-sm leading-relaxed text-slate-300">
+              <div className="text-fg-primary space-y-4 text-sm leading-relaxed">
                 <p>{t("founding_p1")}</p>
                 <p>{t("founding_p2")}</p>
                 <p>{t("founding_p3")}</p>
               </div>
             </section>
 
-            <section className="rounded-xl border border-slate-800 bg-[#0F1E2E] p-6 md:p-8">
-              <h2 className="mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white md:text-2xl">
+            <section className="border-border-subtle bg-bg-navy rounded-xl border p-6 md:p-8">
+              <h2 className="md:text-fg-secondaryxl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white">
                 {t("market_title")}
               </h2>
               <div className="grid grid-cols-1 gap-6 text-sm md:grid-cols-3">
-                <div className="rounded-lg border border-slate-800 bg-[#0A1622] p-5">
-                  <span className="block text-2xl font-black text-amber-500">{t("tam_value")}</span>
+                <div className="border-border-subtle bg-bg-primary rounded-lg border p-5">
+                  <span className="text-fg-secondaryxl block font-black text-amber-500">
+                    {t("tam_value")}
+                  </span>
                   <span className="mt-1 block font-bold text-white">{t("tam_label")}</span>
-                  <span className="mt-2 block text-xs text-slate-400">{t("tam_desc")}</span>
+                  <span className="text-fg-muted mt-2 block text-xs">{t("tam_desc")}</span>
                 </div>
-                <div className="rounded-lg border border-slate-800 bg-[#0A1622] p-5">
-                  <span className="block text-2xl font-black text-amber-500">{t("sam_value")}</span>
+                <div className="border-border-subtle bg-bg-primary rounded-lg border p-5">
+                  <span className="text-fg-secondaryxl block font-black text-amber-500">
+                    {t("sam_value")}
+                  </span>
                   <span className="mt-1 block font-bold text-white">{t("sam_label")}</span>
-                  <span className="mt-2 block text-xs text-slate-400">{t("sam_desc")}</span>
+                  <span className="text-fg-muted mt-2 block text-xs">{t("sam_desc")}</span>
                 </div>
-                <div className="rounded-lg border border-slate-800 bg-[#0A1622] p-5">
-                  <span className="block text-2xl font-black text-emerald-400">
+                <div className="border-border-subtle bg-bg-primary rounded-lg border p-5">
+                  <span className="text-fg-secondaryxl block font-black text-emerald-400">
                     {t("som_value")}
                   </span>
                   <span className="mt-1 block font-bold text-white">{t("som_label")}</span>
-                  <span className="mt-2 block text-xs text-slate-400">{t("som_desc")}</span>
+                  <span className="text-fg-muted mt-2 block text-xs">{t("som_desc")}</span>
                 </div>
               </div>
             </section>
 
-            <section className="rounded-xl border border-slate-800 bg-[#0F1E2E] p-6 md:p-8">
-              <h2 className="mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white md:text-2xl">
+            <section className="border-border-subtle bg-bg-navy rounded-xl border p-6 md:p-8">
+              <h2 className="md:text-fg-secondaryxl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white">
                 {t("business_title")}
               </h2>
-              <p className="mb-6 text-sm leading-relaxed text-slate-300">{t("business_desc")}</p>
-              <div className="overflow-x-auto rounded-lg border border-slate-800">
+              <p className="text-fg-primary mb-6 text-sm leading-relaxed">{t("business_desc")}</p>
+              <div className="border-border-subtle overflow-x-auto rounded-lg border">
                 <table className="min-w-full divide-y divide-slate-800 text-left text-sm">
-                  <thead className="bg-[#0A1622]">
+                  <thead className="bg-bg-primary">
                     <tr>
                       <th className="px-6 py-3 font-semibold text-white">{t("table_metric")}</th>
                       <th className="px-6 py-3 font-semibold text-white">{t("table_2026")}</th>
@@ -272,55 +276,57 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
                       <th className="px-6 py-3 font-semibold text-white">{t("table_2028")}</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800 bg-[#0F1E2E]">
+                  <tbody className="bg-bg-navy divide-y divide-slate-800">
                     <tr>
-                      <td className="px-6 py-4 font-medium text-slate-300">{t("row_mrr")}</td>
-                      <td className="px-6 py-4 text-slate-500 italic">{t("pre_revenue")}</td>
+                      <td className="text-fg-primary px-6 py-4 font-medium">{t("row_mrr")}</td>
+                      <td className="text-fg-muted px-6 py-4 italic">{t("pre_revenue")}</td>
                       <td className="px-6 py-4 font-bold text-emerald-400">$50,000</td>
                       <td className="px-6 py-4 font-bold text-emerald-400">$200,000</td>
                     </tr>
                     <tr>
-                      <td className="px-6 py-4 font-medium text-slate-300">{t("row_arr")}</td>
-                      <td className="px-6 py-4 text-slate-500 italic">{t("pre_revenue")}</td>
+                      <td className="text-fg-primary px-6 py-4 font-medium">{t("row_arr")}</td>
+                      <td className="text-fg-muted px-6 py-4 italic">{t("pre_revenue")}</td>
                       <td className="px-6 py-4 font-semibold text-white">$600,000</td>
                       <td className="px-6 py-4 font-bold text-emerald-400">$2,400,000</td>
                     </tr>
                     <tr>
-                      <td className="px-6 py-4 font-medium text-slate-300">{t("row_users")}</td>
-                      <td className="px-6 py-4 text-slate-300">1K</td>
-                      <td className="px-6 py-4 text-slate-300">10K</td>
-                      <td className="px-6 py-4 text-slate-300">50K</td>
+                      <td className="text-fg-primary px-6 py-4 font-medium">{t("row_users")}</td>
+                      <td className="text-fg-primary px-6 py-4">1K</td>
+                      <td className="text-fg-primary px-6 py-4">10K</td>
+                      <td className="text-fg-primary px-6 py-4">50K</td>
                     </tr>
                     <tr>
-                      <td className="px-6 py-4 font-medium text-slate-300">{t("row_providers")}</td>
-                      <td className="px-6 py-4 text-slate-300">2</td>
-                      <td className="px-6 py-4 text-slate-300">10</td>
-                      <td className="px-6 py-4 text-slate-300">25</td>
+                      <td className="text-fg-primary px-6 py-4 font-medium">
+                        {t("row_providers")}
+                      </td>
+                      <td className="text-fg-primary px-6 py-4">2</td>
+                      <td className="text-fg-primary px-6 py-4">10</td>
+                      <td className="text-fg-primary px-6 py-4">25</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <p className="mt-3 text-[11px] text-slate-500 italic">{t("projections_note")}</p>
+              <p className="text-fg-muted mt-3 text-[11px] italic">{t("projections_note")}</p>
             </section>
 
-            <section className="rounded-xl border border-slate-800 bg-[#0F1E2E] p-6 md:p-8">
-              <h2 className="mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white md:text-2xl">
+            <section className="border-border-subtle bg-bg-navy rounded-xl border p-6 md:p-8">
+              <h2 className="md:text-fg-secondaryxl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white">
                 {t("competitive_title")}
               </h2>
-              <div className="overflow-x-auto rounded-lg border border-slate-800">
+              <div className="border-border-subtle overflow-x-auto rounded-lg border">
                 <table className="min-w-full divide-y divide-slate-800 text-left text-sm">
-                  <thead className="bg-[#0A1622]">
+                  <thead className="bg-bg-primary">
                     <tr>
                       <th className="px-6 py-3 font-semibold text-white">{t("comp_feature")}</th>
                       <th className="px-6 py-3 font-semibold text-emerald-400">ALPAR AI</th>
-                      <th className="px-6 py-3 font-semibold text-slate-400">AIID</th>
-                      <th className="px-6 py-3 font-semibold text-slate-400">Credo AI</th>
-                      <th className="px-6 py-3 font-semibold text-slate-400">OneTrust</th>
+                      <th className="text-fg-muted px-6 py-3 font-semibold">AIID</th>
+                      <th className="text-fg-muted px-6 py-3 font-semibold">Credo AI</th>
+                      <th className="text-fg-muted px-6 py-3 font-semibold">OneTrust</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800 bg-[#0F1E2E] text-center">
+                  <tbody className="bg-bg-navy divide-y divide-slate-800 text-center">
                     <tr>
-                      <td className="px-6 py-4 text-left font-medium text-slate-300">
+                      <td className="text-fg-primary px-6 py-4 text-left font-medium">
                         {t("comp_row_community")}
                       </td>
                       <td className="px-6 py-4 font-bold text-emerald-400">✅</td>
@@ -329,7 +335,7 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
                       <td className="px-6 py-4 text-red-500">❌</td>
                     </tr>
                     <tr>
-                      <td className="px-6 py-4 text-left font-medium text-slate-300">
+                      <td className="text-fg-primary px-6 py-4 text-left font-medium">
                         {t("comp_row_opensource")}
                       </td>
                       <td className="px-6 py-4 font-bold text-emerald-400">✅</td>
@@ -338,7 +344,7 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
                       <td className="px-6 py-4 text-red-500">❌</td>
                     </tr>
                     <tr>
-                      <td className="px-6 py-4 text-left font-medium text-slate-300">
+                      <td className="text-fg-primary px-6 py-4 text-left font-medium">
                         {t("comp_row_provider")}
                       </td>
                       <td className="px-6 py-4 font-bold text-emerald-400">✅</td>
@@ -347,7 +353,7 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
                       <td className="px-6 py-4 text-red-500">❌</td>
                     </tr>
                     <tr>
-                      <td className="px-6 py-4 text-left font-medium text-slate-300">
+                      <td className="text-fg-primary px-6 py-4 text-left font-medium">
                         {t("comp_row_api")}
                       </td>
                       <td className="px-6 py-4 font-bold text-emerald-400">✅</td>
@@ -356,7 +362,7 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
                       <td className="px-6 py-4 font-bold text-emerald-400">✅</td>
                     </tr>
                     <tr>
-                      <td className="px-6 py-4 text-left font-medium text-slate-300">
+                      <td className="text-fg-primary px-6 py-4 text-left font-medium">
                         {t("comp_row_free")}
                       </td>
                       <td className="px-6 py-4 font-bold text-emerald-400">✅</td>
@@ -371,20 +377,20 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
           </div>
 
           <div className="space-y-8">
-            <div className="relative overflow-hidden rounded-xl border border-amber-500/20 bg-[#0F1E2E] p-6 shadow-md">
+            <div className="border-warning-500/20 bg-bg-navy relative overflow-hidden rounded-xl border p-6 shadow-md">
               <div className="absolute top-0 left-0 h-1 w-full bg-amber-500"></div>
               <h3 className="mb-4 text-lg font-bold text-white">{t("round_title")}</h3>
               <p
-                className="mb-6 text-sm leading-relaxed text-slate-300"
+                className="text-fg-primary mb-6 text-sm leading-relaxed"
                 dangerouslySetInnerHTML={{
                   __html: t("round_desc", { amount: "$500K - $1.5M" }),
                 }}
               />
 
-              <h4 className="mb-3 text-xs font-bold tracking-wider text-slate-400 uppercase">
+              <h4 className="text-fg-muted mb-3 text-xs font-bold tracking-wider uppercase">
                 {t("funds_title")}
               </h4>
-              <ul className="mb-6 space-y-2 text-sm text-slate-300">
+              <ul className="text-fg-primary mb-6 space-y-2 text-sm">
                 <li className="flex justify-between">
                   <span>🚀 {t("fund_team")}</span>
                   <span className="font-bold text-white">40%</span>
@@ -405,25 +411,25 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
 
               <Divider className="my-4" />
 
-              <h4 className="mb-2 text-xs font-bold tracking-wider text-slate-400 uppercase">
+              <h4 className="text-fg-muted mb-2 text-xs font-bold tracking-wider uppercase">
                 {t("privileges_title")}
               </h4>
-              <ul className="list-disc space-y-1 pl-4 text-xs text-slate-400">
+              <ul className="text-fg-muted list-disc space-y-1 pl-4 text-xs">
                 <li>{t("priv_prorata")}</li>
                 <li>{t("priv_board")}</li>
                 <li>{t("priv_advisory")}</li>
               </ul>
             </div>
 
-            <div className="rounded-xl border border-slate-800 bg-[#0F1E2E] p-6">
+            <div className="border-border-subtle bg-bg-navy rounded-xl border p-6">
               <h3 className="mb-4 text-lg font-bold text-white">{t("materials_title")}</h3>
               <div className="space-y-4">
-                <div className="flex items-center justify-between rounded border border-slate-800 bg-[#0A1622] p-3 transition-colors hover:border-amber-500/20">
+                <div className="border-border-subtle bg-bg-primary hover:border-warning-500/20 flex items-center justify-between rounded border p-3 transition-colors">
                   <div className="flex items-center gap-3">
                     <FileText className="h-5 w-5 text-amber-500" />
                     <div>
                       <p className="text-sm font-semibold text-white">{t("doc_pitch")}</p>
-                      <p className="text-[10px] text-slate-500">{t("doc_pitch_size")}</p>
+                      <p className="text-fg-muted text-[10px]">{t("doc_pitch_size")}</p>
                     </div>
                   </div>
                   <a
@@ -438,12 +444,12 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
                   </a>
                 </div>
 
-                <div className="flex items-center justify-between rounded border border-slate-800 bg-[#0A1622] p-3 transition-colors hover:border-amber-500/20">
+                <div className="border-border-subtle bg-bg-primary hover:border-warning-500/20 flex items-center justify-between rounded border p-3 transition-colors">
                   <div className="flex items-center gap-3">
                     <FileText className="h-5 w-5 text-amber-500" />
                     <div>
                       <p className="text-sm font-semibold text-white">{t("doc_onepager")}</p>
-                      <p className="text-[10px] text-slate-500">{t("doc_onepager_size")}</p>
+                      <p className="text-fg-muted text-[10px]">{t("doc_onepager_size")}</p>
                     </div>
                   </div>
                   <a
@@ -458,9 +464,9 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
                   </a>
                 </div>
 
-                <div className="rounded border border-slate-800 bg-[#0A1622] p-3">
-                  <p className="text-xs font-semibold text-slate-400">{t("doc_captable")}</p>
-                  <p className="mt-1 text-xs text-slate-500">{t("doc_captable_desc")}</p>
+                <div className="border-border-subtle bg-bg-primary rounded border p-3">
+                  <p className="text-fg-muted text-xs font-semibold">{t("doc_captable")}</p>
+                  <p className="text-fg-muted mt-1 text-xs">{t("doc_captable_desc")}</p>
                   <a
                     href={`mailto:hello@alparai.com?subject=${encodeURIComponent(`Cap Table Request — ${investorName}`)}`}
                     className="mt-2 block text-xs font-bold text-emerald-400 hover:text-emerald-300"
@@ -471,7 +477,7 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
               </div>
             </div>
 
-            <div className="space-y-3 rounded-xl border border-slate-800 bg-[#0F1E2E] p-6">
+            <div className="border-border-subtle bg-bg-navy space-y-3 rounded-xl border p-6">
               <h3 className="mb-2 text-lg font-bold text-white">{t("next_steps_title")}</h3>
 
               <a
@@ -484,7 +490,7 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
 
               <a
                 href={`mailto:hello@alparai.com?subject=${encodeURIComponent(`Document Request — ${investorName} (${investorCompany})`)}`}
-                className="flex items-center justify-between rounded border border-slate-800 bg-[#0A1622] p-3 font-semibold text-white transition-colors hover:border-emerald-500/20"
+                className="border-border-subtle bg-bg-primary hover:border-success-500/20 flex items-center justify-between rounded border p-3 font-semibold text-white transition-colors"
               >
                 <span>{t("cta_docs")}</span>
                 <ChevronRight className="h-4 w-4 text-emerald-400" />
@@ -492,7 +498,7 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
 
               <a
                 href={`mailto:hello@alparai.com?subject=${encodeURIComponent(`Investment Offer — ${investorName} (${investorCompany})`)}`}
-                className="flex items-center justify-between rounded border border-slate-800 bg-[#0A1622] p-3 font-semibold text-white transition-colors hover:border-emerald-500/20"
+                className="border-border-subtle bg-bg-primary hover:border-success-500/20 flex items-center justify-between rounded border p-3 font-semibold text-white transition-colors"
               >
                 <span>{t("cta_offer")}</span>
                 <ChevronRight className="h-4 w-4 text-emerald-400" />
@@ -515,16 +521,16 @@ function InvalidTokenView({
   accessHelp: string;
 }) {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[#0A1622] p-6 text-[#E2E8F0]">
-      <Card className="w-full max-w-md border border-red-500/20 bg-[#0F1E2E] text-center">
+    <div className="bg-bg-primary flex min-h-screen items-center justify-center p-6 text-[#E2E8F0]">
+      <Card className="border-danger-500/20 bg-bg-navy w-full max-w-md border text-center">
         <CardContent className="px-6 py-12">
           <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-red-500/10">
             <Lock className="h-8 w-8 text-red-400" />
           </div>
           <h2 className="mt-6 text-xl font-bold text-white">{accessDenied}</h2>
-          <p className="mt-3 text-sm leading-relaxed text-slate-400">{message}</p>
-          <div className="mt-8 border-t border-slate-800 pt-6">
-            <p className="text-xs text-slate-500">{accessHelp}</p>
+          <p className="text-fg-muted mt-3 text-sm leading-relaxed">{message}</p>
+          <div className="border-border-subtle mt-8 border-t pt-6">
+            <p className="text-fg-muted text-xs">{accessHelp}</p>
             <a
               href="mailto:hello@alparai.com?subject=Investor Access Renewal Request"
               className="mt-3 inline-block text-sm font-bold text-emerald-400 hover:text-emerald-300"

@@ -1,5 +1,6 @@
 "use server";
 
+import { requireAdmin } from "@/lib/auth/session";
 import { createAdminClient } from "@/lib/supabase/admin";
 
 export interface VendorSlaMetric {
@@ -45,6 +46,7 @@ export interface VendorPortalData {
 }
 
 export async function getVendorPortalDataAction(): Promise<VendorPortalData> {
+  await requireAdmin();
   try {
     const supabase = createAdminClient();
 

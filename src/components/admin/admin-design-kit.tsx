@@ -19,8 +19,13 @@ export function AdminContainer({
 }) {
   if (shell) {
     return (
-      <div className={cn("min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8", className)}>
-        <div className="mx-auto max-w-[1600px] space-y-8 rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
+      <div
+        className={cn(
+          "bg-bg-primary text-fg-primary min-h-screen px-3 py-4 sm:px-6 sm:py-6 md:p-8",
+          className,
+        )}
+      >
+        <div className="bg-bg-secondary/40 ring-border-subtle mx-auto max-w-[1600px] space-y-8 rounded-3xl p-4 shadow-2xl ring-1 backdrop-blur-xl sm:p-6 md:p-8">
           {children}
         </div>
       </div>
@@ -60,14 +65,14 @@ export function AdminPageHeader({
   return (
     <header
       className={cn(
-        "from-bg-secondary via-bg-tertiary to-bg-elevated relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-r p-6 shadow-2xl backdrop-blur-xl flex flex-col gap-4",
+        "from-bg-secondary via-bg-tertiary to-bg-elevated border-border-subtle relative flex flex-col gap-4 overflow-hidden rounded-2xl border bg-gradient-to-r p-6 shadow-2xl backdrop-blur-xl",
         className,
       )}
     >
       <div className="bg-brand-500/10 absolute top-0 right-0 -mt-10 -mr-10 h-40 w-40 rounded-full blur-3xl" />
       <div className="bg-accent-500/10 absolute bottom-0 left-1/3 -mb-10 h-40 w-40 rounded-full blur-3xl" />
 
-      {subnav && <div className="relative z-10 w-full mb-2">{subnav}</div>}
+      {subnav && <div className="relative z-10 mb-2 w-full">{subnav}</div>}
 
       {/* Breadcrumb Navigation */}
       {breadcrumb && (
@@ -80,7 +85,7 @@ export function AdminPageHeader({
               >
                 {item.label}
               </Link>
-              {index < breadcrumb.length - 1 && <span className="text-white/20">/</span>}
+              {index < breadcrumb.length - 1 && <span className="text-fg-muted/50">/</span>}
             </React.Fragment>
           ))}
         </nav>
@@ -93,7 +98,7 @@ export function AdminPageHeader({
           </div>
 
           <div>
-            <h1 className="text-fg-primary inline-flex items-center gap-3 text-2xl font-extrabold tracking-tight">
+            <h1 className="text-fg-primary text-fg-secondaryxl inline-flex items-center gap-3 font-extrabold tracking-tight">
               <span>{title}</span>
               {badge ? (
                 <span className="shrink-0">{badge}</span>
@@ -134,12 +139,12 @@ export function AdminSectionCard({
   return (
     <div
       className={cn(
-        "from-bg-secondary/90 to-bg-tertiary/90 relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b p-6 shadow-xl backdrop-blur-xl transition duration-300 hover:border-white/20",
+        "from-bg-secondary/90 to-bg-tertiary/90 border-border-subtle hover:border-border-strong relative overflow-hidden rounded-2xl border bg-gradient-to-b p-6 shadow-xl backdrop-blur-xl transition duration-300",
         className,
       )}
     >
       {title && (
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-white/5 pb-4">
+        <div className="border-border-subtle/50 mb-6 flex flex-wrap items-center justify-between gap-4 border-b pb-4">
           <div>
             <h3 className="flex items-center gap-2 text-base font-bold tracking-tight text-white">
               <Sparkles className="text-brand-400 h-4 w-4" />
@@ -227,14 +232,14 @@ export function MetricCard({
           </p>
         </div>
         {icon && (
-          <div className="rounded-xl border border-white/10 bg-white/5 p-2.5 text-white/80 shadow-inner">
+          <div className="border-border-subtle text-fg-secondary rounded-xl border bg-white/5 p-2.5 shadow-inner">
             {icon}
           </div>
         )}
       </div>
 
       {(delta || sparkline) && (
-        <div className="mt-4 flex items-center justify-between border-t border-white/5 pt-3">
+        <div className="border-border-subtle/50 mt-4 flex items-center justify-between border-t pt-3">
           {delta && (
             <span
               className={cn(
@@ -357,8 +362,8 @@ export function EmptyStateIllustration({
   };
 
   return (
-    <div className="flex flex-col items-center justify-center space-y-4 rounded-2xl border border-white/5 bg-black/20 p-8 text-center">
-      <div className="text-fg-muted rounded-2xl border border-white/10 bg-white/5 p-4">
+    <div className="border-border-subtle/50 bg-bg-primary/20 flex flex-col items-center justify-center space-y-4 rounded-2xl border p-8 text-center">
+      <div className="text-fg-muted border-border-subtle rounded-2xl border bg-white/5 p-4">
         {renderIcon()}
       </div>
       <div>

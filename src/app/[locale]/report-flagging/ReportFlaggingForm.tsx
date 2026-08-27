@@ -41,10 +41,10 @@ export default function ReportFlaggingForm() {
             <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </div>
-        <h2 className="text-2xl font-bold text-white">{t("successTitle")}</h2>
-        <p className="max-w-sm text-slate-400">{t("successMessage")}</p>
+        <h2 className="text-fg-secondaryxl font-bold text-white">{t("successTitle")}</h2>
+        <p className="text-fg-muted max-w-sm">{t("successMessage")}</p>
         <button
-          className="mt-2 rounded-lg border border-white/10 bg-white/5 px-5 py-2 text-sm font-medium text-slate-300 transition-all duration-200 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-[hsl(260_80%_70%)] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:outline-none"
+          className="border-border-subtle text-fg-primary mt-2 rounded-lg border bg-white/5 px-5 py-2 text-sm font-medium transition-all duration-200 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-[hsl(260_80%_70%)] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:outline-none"
           onClick={() => window.location.reload()}
           type="button"
         >
@@ -57,14 +57,14 @@ export default function ReportFlaggingForm() {
   return (
     <form action={formAction} className="flex flex-col gap-6" ref={formRef}>
       <div className="flex flex-col gap-1.5">
-        <label className="text-sm font-medium text-slate-300" htmlFor="detector_name">
+        <label className="text-fg-primary text-sm font-medium" htmlFor="detector_name">
           {t("detectorLabel")}
           <span aria-hidden="true" className="ml-1 text-[hsl(260_80%_70%)]">
             *
           </span>
         </label>
         <select
-          className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white transition-all duration-200 outline-none focus:border-[hsl(260_80%_60%_/_0.6)] focus:ring-2 focus:ring-[hsl(260_80%_70%_/_0.25)] [&>option]:bg-[hsl(240_15%_12%)] [&>option]:text-white"
+          className="border-border-subtle w-full rounded-lg border bg-white/5 px-4 py-2.5 text-sm text-white transition-all duration-200 outline-none focus:border-[hsl(260_80%_60%_/_0.6)] focus:ring-2 focus:ring-[hsl(260_80%_70%_/_0.25)] [&>option]:bg-[hsl(240_15%_12%)] [&>option]:text-white"
           id="detector_name"
           name="detector_name"
           required
@@ -79,14 +79,14 @@ export default function ReportFlaggingForm() {
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label className="text-sm font-medium text-slate-300" htmlFor="platform">
+        <label className="text-fg-primary text-sm font-medium" htmlFor="platform">
           {t("platformLabel")}
           <span aria-hidden="true" className="ml-1 text-[hsl(260_80%_70%)]">
             *
           </span>
         </label>
         <select
-          className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white transition-all duration-200 outline-none focus:border-[hsl(260_80%_60%_/_0.6)] focus:ring-2 focus:ring-[hsl(260_80%_70%_/_0.25)] [&>option]:bg-[hsl(240_15%_12%)] [&>option]:text-white"
+          className="border-border-subtle w-full rounded-lg border bg-white/5 px-4 py-2.5 text-sm text-white transition-all duration-200 outline-none focus:border-[hsl(260_80%_60%_/_0.6)] focus:ring-2 focus:ring-[hsl(260_80%_70%_/_0.25)] [&>option]:bg-[hsl(240_15%_12%)] [&>option]:text-white"
           id="platform"
           name="platform"
           required
@@ -101,14 +101,14 @@ export default function ReportFlaggingForm() {
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label className="text-sm font-medium text-slate-300" htmlFor="context">
+        <label className="text-fg-primary text-sm font-medium" htmlFor="context">
           {t("contextLabel")}
           <span aria-hidden="true" className="ml-1 text-[hsl(260_80%_70%)]">
             *
           </span>
         </label>
         <textarea
-          className="min-h-[140px] w-full resize-y rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white transition-all duration-200 outline-none placeholder:text-slate-600 focus:border-[hsl(260_80%_60%_/_0.6)] focus:ring-2 focus:ring-[hsl(260_80%_70%_/_0.25)]"
+          className="border-border-subtle placeholder:text-fg-secondary min-h-[140px] w-full resize-y rounded-lg border bg-white/5 px-4 py-3 text-sm text-white transition-all duration-200 outline-none focus:border-[hsl(260_80%_60%_/_0.6)] focus:ring-2 focus:ring-[hsl(260_80%_70%_/_0.25)]"
           id="context"
           minLength={20}
           name="context"
@@ -118,11 +118,11 @@ export default function ReportFlaggingForm() {
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label className="text-sm font-medium text-slate-300" htmlFor="evidence_url">
+        <label className="text-fg-primary text-sm font-medium" htmlFor="evidence_url">
           {t("evidenceLabel")}
         </label>
         <input
-          className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white transition-all duration-200 outline-none placeholder:text-slate-600 focus:border-[hsl(260_80%_60%_/_0.6)] focus:ring-2 focus:ring-[hsl(260_80%_70%_/_0.25)]"
+          className="border-border-subtle placeholder:text-fg-secondary w-full rounded-lg border bg-white/5 px-4 py-2.5 text-sm text-white transition-all duration-200 outline-none focus:border-[hsl(260_80%_60%_/_0.6)] focus:ring-2 focus:ring-[hsl(260_80%_70%_/_0.25)]"
           id="evidence_url"
           name="evidence_url"
           placeholder="https://..."
@@ -131,24 +131,24 @@ export default function ReportFlaggingForm() {
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label className="text-sm font-medium text-slate-300" htmlFor="email">
+        <label className="text-fg-primary text-sm font-medium" htmlFor="email">
           {t("emailLabel")}
         </label>
         <input
           autoComplete="email"
-          className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white transition-all duration-200 outline-none placeholder:text-slate-600 focus:border-[hsl(260_80%_60%_/_0.6)] focus:ring-2 focus:ring-[hsl(260_80%_70%_/_0.25)]"
+          className="border-border-subtle placeholder:text-fg-secondary w-full rounded-lg border bg-white/5 px-4 py-2.5 text-sm text-white transition-all duration-200 outline-none focus:border-[hsl(260_80%_60%_/_0.6)] focus:ring-2 focus:ring-[hsl(260_80%_70%_/_0.25)]"
           id="email"
           name="email"
           placeholder="you@example.com"
           type="email"
         />
-        <p className="text-xs text-slate-500">{t("emailHint")}</p>
+        <p className="text-fg-muted text-xs">{t("emailHint")}</p>
       </div>
 
       {state.error && (
         <p
           aria-live="polite"
-          className="rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-400"
+          className="border-danger-500/20 rounded-lg border bg-red-500/10 px-4 py-3 text-sm text-red-400"
           role="alert"
         >
           {state.error}

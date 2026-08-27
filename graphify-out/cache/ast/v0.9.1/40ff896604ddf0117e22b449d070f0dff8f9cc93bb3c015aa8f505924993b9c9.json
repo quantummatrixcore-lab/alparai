@@ -1,0 +1,207 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_md",
+      "label": "ENGINEERING_ASSESSMENT_2026-07-15.md",
+      "file_type": "document",
+      "source_file": "docs/ENGINEERING_ASSESSMENT_2026-07-15.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_alpar_ai_m\u00fchendislik_de\u011ferlendirmesi_profesyonel_g\u00f6r\u00fc\u015f",
+      "label": "ALPAR AI \u2014 M\u00fchendislik De\u011ferlendirmesi (Profesyonel G\u00f6r\u00fc\u015f)",
+      "file_type": "document",
+      "source_file": "docs/ENGINEERING_ASSESSMENT_2026-07-15.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_1_y\u00f6netici_\u00f6zeti_executive_summary",
+      "label": "1. Y\u00f6netici \u00d6zeti (Executive Summary)",
+      "file_type": "document",
+      "source_file": "docs/ENGINEERING_ASSESSMENT_2026-07-15.md",
+      "source_location": "L9"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_2_g\u00fc\u00e7l\u00fc_y\u00f6nler_strengths",
+      "label": "2. G\u00fc\u00e7l\u00fc Y\u00f6nler (Strengths)",
+      "file_type": "document",
+      "source_file": "docs/ENGINEERING_ASSESSMENT_2026-07-15.md",
+      "source_location": "L19"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_3_kritik_riskler_critical_risks",
+      "label": "3. Kritik Riskler (Critical Risks)",
+      "file_type": "document",
+      "source_file": "docs/ENGINEERING_ASSESSMENT_2026-07-15.md",
+      "source_location": "L32"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_r_1_do\u011frulanmam\u0131\u015f_da\u011f\u0131t\u0131m_highest",
+      "label": "R-1: Do\u011frulanmam\u0131\u015f Da\u011f\u0131t\u0131m (Highest)",
+      "file_type": "document",
+      "source_file": "docs/ENGINEERING_ASSESSMENT_2026-07-15.md",
+      "source_location": "L34"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_r_2_sim\u00fclasyon_kal\u0131nt\u0131lar\u0131_high",
+      "label": "R-2: Sim\u00fclasyon Kal\u0131nt\u0131lar\u0131 (High)",
+      "file_type": "document",
+      "source_file": "docs/ENGINEERING_ASSESSMENT_2026-07-15.md",
+      "source_location": "L42"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_r_3_360_panel_ger\u00e7ek_zamanl\u0131_de\u011fil_high",
+      "label": "R-3: 360\u00b0 Panel Ger\u00e7ek Zamanl\u0131 De\u011fil (High)",
+      "file_type": "document",
+      "source_file": "docs/ENGINEERING_ASSESSMENT_2026-07-15.md",
+      "source_location": "L50"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_r_4_bo\u015fta_duran_google_ultra_kredisi_medium",
+      "label": "R-4: Bo\u015fta Duran Google Ultra Kredisi (Medium)",
+      "file_type": "document",
+      "source_file": "docs/ENGINEERING_ASSESSMENT_2026-07-15.md",
+      "source_location": "L58"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_r_5_\u00e7ak\u0131\u015fan_abonelikler_low_medium",
+      "label": "R-5: \u00c7ak\u0131\u015fan Abonelikler (Low-Medium)",
+      "file_type": "document",
+      "source_file": "docs/ENGINEERING_ASSESSMENT_2026-07-15.md",
+      "source_location": "L66"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_4_\u00f6nerilen_\u00f6ncelik_s\u0131ras\u0131",
+      "label": "4. \u00d6nerilen \u00d6ncelik S\u0131ras\u0131",
+      "file_type": "document",
+      "source_file": "docs/ENGINEERING_ASSESSMENT_2026-07-15.md",
+      "source_location": "L76"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_5_teknik_bor\u00e7_technical_debt",
+      "label": "5. Teknik Bor\u00e7 (Technical Debt)",
+      "file_type": "document",
+      "source_file": "docs/ENGINEERING_ASSESSMENT_2026-07-15.md",
+      "source_location": "L90"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_6_sonu\u00e7",
+      "label": "6. Sonu\u00e7",
+      "file_type": "document",
+      "source_file": "docs/ENGINEERING_ASSESSMENT_2026-07-15.md",
+      "source_location": "L98"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_md",
+      "target": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_alpar_ai_m\u00fchendislik_de\u011ferlendirmesi_profesyonel_g\u00f6r\u00fc\u015f",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ENGINEERING_ASSESSMENT_2026-07-15.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_alpar_ai_m\u00fchendislik_de\u011ferlendirmesi_profesyonel_g\u00f6r\u00fc\u015f",
+      "target": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_1_y\u00f6netici_\u00f6zeti_executive_summary",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ENGINEERING_ASSESSMENT_2026-07-15.md",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_alpar_ai_m\u00fchendislik_de\u011ferlendirmesi_profesyonel_g\u00f6r\u00fc\u015f",
+      "target": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_2_g\u00fc\u00e7l\u00fc_y\u00f6nler_strengths",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ENGINEERING_ASSESSMENT_2026-07-15.md",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_alpar_ai_m\u00fchendislik_de\u011ferlendirmesi_profesyonel_g\u00f6r\u00fc\u015f",
+      "target": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_3_kritik_riskler_critical_risks",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ENGINEERING_ASSESSMENT_2026-07-15.md",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_3_kritik_riskler_critical_risks",
+      "target": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_r_1_do\u011frulanmam\u0131\u015f_da\u011f\u0131t\u0131m_highest",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ENGINEERING_ASSESSMENT_2026-07-15.md",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_3_kritik_riskler_critical_risks",
+      "target": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_r_2_sim\u00fclasyon_kal\u0131nt\u0131lar\u0131_high",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ENGINEERING_ASSESSMENT_2026-07-15.md",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_3_kritik_riskler_critical_risks",
+      "target": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_r_3_360_panel_ger\u00e7ek_zamanl\u0131_de\u011fil_high",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ENGINEERING_ASSESSMENT_2026-07-15.md",
+      "source_location": "L50",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_3_kritik_riskler_critical_risks",
+      "target": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_r_4_bo\u015fta_duran_google_ultra_kredisi_medium",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ENGINEERING_ASSESSMENT_2026-07-15.md",
+      "source_location": "L58",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_3_kritik_riskler_critical_risks",
+      "target": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_r_5_\u00e7ak\u0131\u015fan_abonelikler_low_medium",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ENGINEERING_ASSESSMENT_2026-07-15.md",
+      "source_location": "L66",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_alpar_ai_m\u00fchendislik_de\u011ferlendirmesi_profesyonel_g\u00f6r\u00fc\u015f",
+      "target": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_4_\u00f6nerilen_\u00f6ncelik_s\u0131ras\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ENGINEERING_ASSESSMENT_2026-07-15.md",
+      "source_location": "L76",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_alpar_ai_m\u00fchendislik_de\u011ferlendirmesi_profesyonel_g\u00f6r\u00fc\u015f",
+      "target": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_5_teknik_bor\u00e7_technical_debt",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ENGINEERING_ASSESSMENT_2026-07-15.md",
+      "source_location": "L90",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_alpar_ai_m\u00fchendislik_de\u011ferlendirmesi_profesyonel_g\u00f6r\u00fc\u015f",
+      "target": "d_01_saas_products_alparai_docs_engineering_assessment_2026_07_15_6_sonu\u00e7",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ENGINEERING_ASSESSMENT_2026-07-15.md",
+      "source_location": "L98",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

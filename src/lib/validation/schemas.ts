@@ -228,3 +228,13 @@ export const investorApplicationSchema = z.object({
 });
 
 export type InvestorApplicationInput = z.infer<typeof investorApplicationSchema>;
+
+// =============================================================================
+// AI Moderation
+// =============================================================================
+export const moderationResultSchema = z.object({
+  score: z.number().int().min(0).max(100),
+  reason: z.string().min(1),
+});
+
+export type ModerationResult = z.infer<typeof moderationResultSchema>;

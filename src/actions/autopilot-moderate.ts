@@ -242,8 +242,13 @@ https://alparai.com`,
 
 export async function autoModerateIncidentAction(
   incidentId: string,
+  internalToken?: string
 ): Promise<{ ok: boolean; score?: number; status?: string; error?: string }> {
   try {
+    if (internalToken !== process.env.SUPABASE_SERVICE_ROLE_KEY) {
+      const { requireAdmin } = await import("@/lib/auth/session");
+      await requireAdmin();
+    }
     const result = await withAutopilot<{ score: number; status: string }>(
       autoModerateIncidentPolicy,
       [incidentId],

@@ -305,7 +305,7 @@ export function IncidentDetailView({
               </div>
             </CardHeader>
             <CardContent className="space-y-4 pt-6">
-              <div className="bg-bg-secondary/40 flex flex-col justify-between gap-4 rounded-xl border border-white/5 p-5 sm:flex-row sm:items-center">
+              <div className="bg-bg-secondary/40 border-border-subtle/50 flex flex-col justify-between gap-4 rounded-xl border p-5 sm:flex-row sm:items-center">
                 <div>
                   <h4 className="text-fg-primary text-base font-bold">
                     {t("truth_score", { defaultValue: "TruthScore" })}
@@ -334,13 +334,13 @@ export function IncidentDetailView({
                   <h4 className="text-fg-primary text-sm font-bold">
                     {t("cross_audit_reasoning", { defaultValue: "Adjudication Reasoning" })}
                   </h4>
-                  <p className="text-fg-secondary bg-bg-secondary/20 rounded-lg border border-white/5 p-4 text-sm leading-relaxed whitespace-pre-wrap">
+                  <p className="text-fg-secondary bg-bg-secondary/20 border-border-subtle/50 rounded-lg border p-4 text-sm leading-relaxed whitespace-pre-wrap">
                     {incident.cross_audit_reasoning}
                   </p>
                 </div>
               )}
               {incident.cross_audit_model && (
-                <div className="text-fg-muted flex items-center justify-between border-t border-white/5 pt-2 text-[11px]">
+                <div className="text-fg-muted border-border-subtle/50 flex items-center justify-between border-t pt-2 text-[11px]">
                   <span>{t("auditorEngine")}</span>
                   <span className="font-mono font-bold">{incident.cross_audit_model}</span>
                 </div>
@@ -431,7 +431,7 @@ export function IncidentDetailView({
           </Card>
         )}
 
-        <div className="mt-8 border-t border-white/5 pt-8">
+        <div className="border-border-subtle/50 mt-8 border-t pt-8">
           <CommentSection
             incidentId={incident.id}
             comments={comments}

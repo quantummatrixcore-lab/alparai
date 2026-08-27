@@ -49,7 +49,7 @@ export function AlternativeCards({ alternatives }: AlternativeCardsProps) {
       {alternatives.map((alt) => (
         <div
           key={alt.id}
-          className="bg-bg-secondary/40 border-border-subtle group rounded-lg border p-3.5 transition-all duration-200 hover:border-white/10 hover:shadow-md"
+          className="bg-bg-secondary/40 border-border-subtle group hover:border-border-subtle rounded-lg border p-3.5 transition-all duration-200 hover:shadow-md"
         >
           <div className="mb-2.5 flex items-start justify-between">
             <div className="flex items-center gap-2.5">
@@ -80,7 +80,7 @@ export function AlternativeCards({ alternatives }: AlternativeCardsProps) {
             ))}
           </div>
 
-          <div className="flex items-center justify-between border-t border-white/5 pt-2">
+          <div className="border-border-subtle/50 flex items-center justify-between border-t pt-2">
             <span className="inline-flex items-center gap-1 rounded-md bg-white/5 px-2 py-1 font-mono text-[11px] font-bold text-white/70">
               {alt.pricing}
             </span>

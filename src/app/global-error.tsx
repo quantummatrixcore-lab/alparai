@@ -27,7 +27,7 @@ function GlobalErrorContent({ error, reset }: GlobalErrorProps) {
   return (
     <div className="flex flex-col items-center gap-6 text-center">
       <div>
-        <h1 className="text-fg-primary text-2xl font-bold">{title}</h1>
+        <h1 className="text-fg-primary text-fg-secondaryxl font-bold">{title}</h1>
         {error.digest && <p className="text-fg-muted mt-2 text-xs">{errorIdLabel}</p>}
       </div>
       <button

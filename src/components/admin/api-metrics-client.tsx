@@ -210,7 +210,7 @@ export function ApiMetricsClient({
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
             <thead>
-              <tr className="text-fg-muted border-b border-white/5 bg-neutral-950/20 text-xs font-semibold tracking-wider uppercase">
+              <tr className="text-fg-muted border-border-subtle/50 bg-bg-secondary border-b text-xs font-semibold tracking-wider uppercase">
                 <th className="p-4">{t("api_endpoint") || "Endpoint"}</th>
                 <th className="p-4">{t("api_method") || "Method"}</th>
                 <th className="p-4">{t("api_status") || "Status"}</th>
@@ -224,7 +224,7 @@ export function ApiMetricsClient({
                 <tr key={i} className="transition-colors hover:bg-white/[0.02]">
                   <td className="p-4 font-mono text-white">{ep.name}</td>
                   <td className="p-4">
-                    <span className="inline-flex items-center gap-1 rounded border border-white/10 bg-white/5 px-2 py-0.5 text-xs font-medium">
+                    <span className="border-border-subtle inline-flex items-center gap-1 rounded border bg-white/5 px-2 py-0.5 text-xs font-medium">
                       {ep.method}
                     </span>
                   </td>

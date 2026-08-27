@@ -20,7 +20,7 @@ export function CostTrendChart({ data }: CostTrendProps) {
   const t = useTranslations("finance");
 
   return (
-    <div className="rounded-xl border border-white/5 bg-neutral-950/40 p-6">
+    <div className="border-border-subtle/50 bg-bg-secondary rounded-xl border p-6">
       <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
         <div>
           <h4 className="text-fg-primary text-sm font-bold tracking-wide">{t("costTrendTitle")}</h4>

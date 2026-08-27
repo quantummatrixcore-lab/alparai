@@ -91,7 +91,7 @@ export function CronsDashboardClient() {
                 <div className="flex items-center gap-2">
                   <Clock className="text-success-400 h-4 w-4" />
                   <span className="font-mono text-sm font-bold text-white">{job.name}</span>
-                  <span className="text-fg-muted rounded border border-white/10 bg-white/5 px-2 py-0.5 font-mono text-[10px]">
+                  <span className="text-fg-muted border-border-subtle rounded border bg-white/5 px-2 py-0.5 font-mono text-[10px]">
                     {job.schedule}
                   </span>
                   <span className="bg-success-500/20 text-success-400 rounded px-2 py-0.5 font-mono text-[9px] font-bold uppercase">

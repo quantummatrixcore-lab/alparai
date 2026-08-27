@@ -9,6 +9,15 @@ import {
   type AttemptContext,
 } from "@/lib/autopilot";
 import { revalidatePath } from "next/cache";
+import { z } from "zod";
+import { maskPII } from "@/lib/pii/guardian";
+
+const NewsClassificationSchema = z.object({
+  category: z.enum(["regulation", "incident", "research", "security", "news"]),
+  severity: z.enum(["critical", "high", "medium", "low"]),
+  title_en: z.string(),
+  title_tr: z.string(),
+});
 import { resolveApiKey } from "@/lib/ai/api-keys";
 
 const RSS_FEEDS = [

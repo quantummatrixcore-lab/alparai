@@ -30,11 +30,11 @@ export function SlideOverPanel({ open, onClose, title, children, className }: Sl
         aria-modal="true"
         aria-labelledby={title ? titleId : undefined}
         className={cn(
-          "bg-bg-secondary animate-in slide-in-from-right fixed inset-y-0 right-0 z-50 flex w-full max-w-md flex-col border-l border-white/5 shadow-2xl transition-all duration-300 ease-in-out",
+          "bg-bg-secondary animate-in slide-in-from-right border-border-subtle/50 fixed inset-y-0 right-0 z-50 flex w-full max-w-md flex-col border-l shadow-2xl transition-all duration-300 ease-in-out",
           className,
         )}
       >
-        <div className="flex h-16 shrink-0 items-center justify-between border-b border-white/5 px-6">
+        <div className="border-border-subtle/50 flex h-16 shrink-0 items-center justify-between border-b px-6">
           {title && (
             <h2 id={titleId} className="text-fg-primary text-lg font-bold">
               {title}

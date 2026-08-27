@@ -85,7 +85,7 @@ export function Pagination({
           <Link
             href={getPageHref(currentPage - 1)}
             aria-label={t("previous")}
-            className="text-fg-muted hover:border-border-strong hover:text-fg-primary focus-visible:ring-brand-500 rounded-md inline-flex items-center border-t-2 border-transparent pt-4 pr-1 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+            className="text-fg-muted hover:border-border-strong hover:text-fg-primary focus-visible:ring-brand-500 inline-flex items-center rounded-md border-t-2 border-transparent pt-4 pr-1 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
           >
             <ChevronLeft className="text-fg-muted mr-2 h-4 w-4" aria-hidden="true" />
             {t("previous")}
@@ -118,7 +118,7 @@ export function Pagination({
               href={getPageHref(page as number)}
               aria-label={`Page ${page}`}
               className={cn(
-                "rounded-md inline-flex items-center border-t-2 px-4 pt-4 text-sm font-medium transition-colors",
+                "inline-flex items-center rounded-md border-t-2 px-4 pt-4 text-sm font-medium transition-colors",
                 "focus-visible:ring-brand-500 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
                 isCurrent
                   ? "border-brand-500 text-brand-400"
@@ -137,7 +137,7 @@ export function Pagination({
           <Link
             href={getPageHref(currentPage + 1)}
             aria-label={t("next")}
-            className="text-fg-muted hover:border-border-strong hover:text-fg-primary focus-visible:ring-brand-500 rounded-md inline-flex items-center border-t-2 border-transparent pt-4 pl-1 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+            className="text-fg-muted hover:border-border-strong hover:text-fg-primary focus-visible:ring-brand-500 inline-flex items-center rounded-md border-t-2 border-transparent pt-4 pl-1 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
           >
             {t("next")}
             <ChevronRight className="text-fg-muted ml-2 h-4 w-4" aria-hidden="true" />

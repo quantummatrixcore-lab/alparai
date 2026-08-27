@@ -289,7 +289,7 @@ export function ValuationCalculatorClient({
         {/* TAB 1: BERKUS METHOD FORM */}
         {activeTab === "berkus" && (
           <div className="border-border-subtle bg-bg-secondary/40 space-y-4 rounded-2xl border p-6 backdrop-blur-md">
-            <h3 className="border-b border-white/5 pb-2 text-sm font-bold tracking-wider text-white uppercase">
+            <h3 className="border-border-subtle/50 border-b pb-2 text-sm font-bold tracking-wider text-white uppercase">
               {t("val_berkus_title")}
             </h3>
             <p className="text-fg-muted text-xs leading-relaxed">{t("val_berkus_desc")}</p>
@@ -310,7 +310,7 @@ export function ValuationCalculatorClient({
                 return (
                   <div
                     key={key}
-                    className="flex flex-col justify-between gap-2 border-b border-white/5 pb-3 sm:flex-row sm:items-center"
+                    className="border-border-subtle/50 flex flex-col justify-between gap-2 border-b pb-3 sm:flex-row sm:items-center"
                   >
                     <span className="text-xs font-semibold text-white/90">{label}</span>
                     <input
@@ -331,11 +331,11 @@ export function ValuationCalculatorClient({
               })}
             </div>
 
-            <div className="mt-6 flex items-center justify-between rounded-xl border border-white/10 bg-white/5 p-4">
+            <div className="border-border-subtle mt-6 flex items-center justify-between rounded-xl border bg-white/5 p-4">
               <span className="text-sm font-extrabold text-white">
                 {t("val_berkus_calc_result")}
               </span>
-              <span className="text-success-400 font-mono text-2xl font-black">
+              <span className="text-success-400 text-fg-secondaryxl font-mono font-black">
                 {formatCurrency(berkusValuation)}
               </span>
             </div>
@@ -345,7 +345,7 @@ export function ValuationCalculatorClient({
         {/* TAB 2: SCORECARD METHOD FORM */}
         {activeTab === "scorecard" && (
           <div className="border-border-subtle bg-bg-secondary/40 space-y-4 rounded-2xl border p-6 backdrop-blur-md">
-            <h3 className="border-b border-white/5 pb-2 text-sm font-bold tracking-wider text-white uppercase">
+            <h3 className="border-border-subtle/50 border-b pb-2 text-sm font-bold tracking-wider text-white uppercase">
               {t("val_scorecard_title")}
             </h3>
             <p className="text-fg-muted text-xs leading-relaxed">{t("val_scorecard_desc")}</p>
@@ -364,7 +364,7 @@ export function ValuationCalculatorClient({
               </div>
             </div>
 
-            <div className="space-y-4 border-t border-white/5 pt-4">
+            <div className="border-border-subtle/50 space-y-4 border-t pt-4">
               {Object.keys(scorecardInputs).map((key) => {
                 const label =
                   key === "team"
@@ -384,7 +384,7 @@ export function ValuationCalculatorClient({
                 return (
                   <div
                     key={key}
-                    className="flex flex-col justify-between gap-2 border-b border-white/5 pb-3 sm:flex-row sm:items-center"
+                    className="border-border-subtle/50 flex flex-col justify-between gap-2 border-b pb-3 sm:flex-row sm:items-center"
                   >
                     <span className="text-xs font-semibold text-white/90">{label}</span>
                     <div className="flex items-center gap-2">
@@ -426,11 +426,11 @@ export function ValuationCalculatorClient({
               <span className="text-white">{scorecardMultiplier.toFixed(3)}x</span>
             </div>
 
-            <div className="mt-4 flex items-center justify-between rounded-xl border border-white/10 bg-white/5 p-4">
+            <div className="border-border-subtle mt-4 flex items-center justify-between rounded-xl border bg-white/5 p-4">
               <span className="text-sm font-extrabold text-white">
                 {t("val_scorecard_calc_result")}
               </span>
-              <span className="text-success-400 font-mono text-2xl font-black">
+              <span className="text-success-400 text-fg-secondaryxl font-mono font-black">
                 {formatCurrency(scorecardValuation)}
               </span>
             </div>
@@ -440,13 +440,13 @@ export function ValuationCalculatorClient({
         {/* TAB 3: VC METHOD FORM */}
         {activeTab === "vc" && (
           <div className="border-border-subtle bg-bg-secondary/40 space-y-4 rounded-2xl border p-6 backdrop-blur-md">
-            <h3 className="border-b border-white/5 pb-2 text-sm font-bold tracking-wider text-white uppercase">
+            <h3 className="border-border-subtle/50 border-b pb-2 text-sm font-bold tracking-wider text-white uppercase">
               {t("val_vc_title")}
             </h3>
             <p className="text-fg-muted text-xs leading-relaxed">{t("val_vc_desc")}</p>
 
             <div className="space-y-4 pt-2">
-              <div className="flex flex-col justify-between gap-2 border-b border-white/5 pb-3 sm:flex-row sm:items-center">
+              <div className="border-border-subtle/50 flex flex-col justify-between gap-2 border-b pb-3 sm:flex-row sm:items-center">
                 <span className="text-xs font-semibold text-white/90">
                   {t("val_vc_exit_val_label")}
                 </span>
@@ -458,7 +458,7 @@ export function ValuationCalculatorClient({
                 />
               </div>
 
-              <div className="flex flex-col justify-between gap-2 border-b border-white/5 pb-3 sm:flex-row sm:items-center">
+              <div className="border-border-subtle/50 flex flex-col justify-between gap-2 border-b pb-3 sm:flex-row sm:items-center">
                 <span className="text-xs font-semibold text-white/90">{t("val_vc_roi_label")}</span>
                 <input
                   type="number"
@@ -468,7 +468,7 @@ export function ValuationCalculatorClient({
                 />
               </div>
 
-              <div className="flex flex-col justify-between gap-2 border-b border-white/5 pb-3 sm:flex-row sm:items-center">
+              <div className="border-border-subtle/50 flex flex-col justify-between gap-2 border-b pb-3 sm:flex-row sm:items-center">
                 <span className="text-xs font-semibold text-white/90">
                   {t("val_vc_investment_label")}
                 </span>
@@ -486,9 +486,9 @@ export function ValuationCalculatorClient({
               <span className="text-white">{formatCurrency(vcPostMoney)}</span>
             </div>
 
-            <div className="mt-4 flex items-center justify-between rounded-xl border border-white/10 bg-white/5 p-4">
+            <div className="border-border-subtle mt-4 flex items-center justify-between rounded-xl border bg-white/5 p-4">
               <span className="text-sm font-extrabold text-white">{t("val_vc_calc_result")}</span>
-              <span className="text-success-400 font-mono text-2xl font-black">
+              <span className="text-success-400 text-fg-secondaryxl font-mono font-black">
                 {formatCurrency(vcValuation)}
               </span>
             </div>
@@ -498,31 +498,31 @@ export function ValuationCalculatorClient({
         {/* TAB 4: REVENUE MULTIPLIER FORM */}
         {activeTab === "revenue" && (
           <div className="border-border-subtle bg-bg-secondary/40 space-y-4 rounded-2xl border p-6 backdrop-blur-md">
-            <h3 className="border-b border-white/5 pb-2 text-sm font-bold tracking-wider text-white uppercase">
+            <h3 className="border-border-subtle/50 border-b pb-2 text-sm font-bold tracking-wider text-white uppercase">
               {t("val_revenue_title")}
             </h3>
             <p className="text-fg-muted text-xs leading-relaxed">{t("val_revenue_desc")}</p>
 
             <div className="space-y-4 pt-2">
-              <div className="flex justify-between border-b border-white/5 pb-3 text-xs">
+              <div className="border-border-subtle/50 flex justify-between border-b pb-3 text-xs">
                 <span className="text-fg-muted">{t("val_mrr_usd")}</span>
                 <span className="font-mono font-bold text-white">
                   {formatCurrency(revenueMetrics.mrr)}
                 </span>
               </div>
-              <div className="flex justify-between border-b border-white/5 pb-3 text-xs">
+              <div className="border-border-subtle/50 flex justify-between border-b pb-3 text-xs">
                 <span className="text-fg-muted">{t("val_arr_usd")}</span>
                 <span className="font-mono font-bold text-white">
                   {formatCurrency(revenueMetrics.arr)}
                 </span>
               </div>
-              <div className="flex justify-between border-b border-white/5 pb-3 text-xs">
+              <div className="border-border-subtle/50 flex justify-between border-b pb-3 text-xs">
                 <span className="text-fg-muted">{t("val_active_subs")}</span>
                 <span className="font-mono font-bold text-white">{revenueMetrics.activeSubs}</span>
               </div>
 
               {hasRevenue ? (
-                <div className="flex flex-col justify-between gap-2 border-b border-white/5 pb-3 sm:flex-row sm:items-center">
+                <div className="border-border-subtle/50 flex flex-col justify-between gap-2 border-b pb-3 sm:flex-row sm:items-center">
                   <span className="text-xs font-semibold text-white/90">
                     {t("val_revenue_multiplier")}
                   </span>
@@ -541,9 +541,9 @@ export function ValuationCalculatorClient({
             </div>
 
             {hasRevenue && (
-              <div className="mt-4 flex items-center justify-between rounded-xl border border-white/10 bg-white/5 p-4">
+              <div className="border-border-subtle mt-4 flex items-center justify-between rounded-xl border bg-white/5 p-4">
                 <span className="text-sm font-extrabold text-white">{t("val_revenue_title")}</span>
-                <span className="text-success-400 font-mono text-2xl font-black">
+                <span className="text-success-400 text-fg-secondaryxl font-mono font-black">
                   {formatCurrency(revenueValuation)}
                 </span>
               </div>
@@ -554,7 +554,7 @@ export function ValuationCalculatorClient({
         {/* TAB 5: CONSOLIDATED WEIGHTED DETAILS */}
         {activeTab === "average" && (
           <div className="border-border-subtle bg-bg-secondary/40 space-y-4 rounded-2xl border p-6 backdrop-blur-md">
-            <h3 className="border-b border-white/5 pb-2 text-sm font-bold tracking-wider text-white uppercase">
+            <h3 className="border-border-subtle/50 border-b pb-2 text-sm font-bold tracking-wider text-white uppercase">
               {t("val_consolidated_title")}
             </h3>
             <p className="text-fg-muted text-xs leading-relaxed">
@@ -564,19 +564,19 @@ export function ValuationCalculatorClient({
             </p>
 
             <div className="space-y-4 pt-2">
-              <div className="flex justify-between border-b border-white/5 pb-3 text-xs">
+              <div className="border-border-subtle/50 flex justify-between border-b pb-3 text-xs">
                 <span className="text-fg-muted">{t("val_low_range")}</span>
                 <span className="font-mono font-bold text-white">
                   {formatCurrency(lowValuation)}
                 </span>
               </div>
-              <div className="flex justify-between border-b border-white/5 pb-3 text-xs">
+              <div className="border-border-subtle/50 flex justify-between border-b pb-3 text-xs">
                 <span className="text-fg-muted">{t("val_base_range")}</span>
                 <span className="text-brand-300 font-mono font-bold">
                   {formatCurrency(baseValuation)}
                 </span>
               </div>
-              <div className="flex justify-between border-b border-white/5 pb-3 text-xs">
+              <div className="border-border-subtle/50 flex justify-between border-b pb-3 text-xs">
                 <span className="text-fg-muted">{t("val_high_range")}</span>
                 <span className="text-success-400 font-mono font-bold">
                   {formatCurrency(highValuation)}
@@ -584,7 +584,7 @@ export function ValuationCalculatorClient({
               </div>
             </div>
 
-            <div className="text-fg-muted rounded-xl border border-white/5 bg-neutral-900/40 p-4 text-[10px] leading-relaxed">
+            <div className="text-fg-muted border-border-subtle/50 bg-bg-secondary rounded-xl border p-4 text-[10px] leading-relaxed">
               {locale === "tr" ? (
                 <>
                   <strong>Ağırlıklı Ortalama Formülü:</strong>
@@ -609,13 +609,13 @@ export function ValuationCalculatorClient({
         {/* TAB 4: VALUATION HISTORY LOG */}
         {activeTab === "history" && (
           <div className="border-border-subtle bg-bg-secondary/40 space-y-4 rounded-2xl border p-6 backdrop-blur-md">
-            <h3 className="border-b border-white/5 pb-2 text-sm font-bold tracking-wider text-white uppercase">
+            <h3 className="border-border-subtle/50 border-b pb-2 text-sm font-bold tracking-wider text-white uppercase">
               {t("val_history_title")}
             </h3>
 
             <div className="overflow-x-auto">
               <table className="text-fg-secondary w-full text-left text-sm">
-                <thead className="text-fg-muted border-b border-white/5 text-[10px] font-bold tracking-wider uppercase">
+                <thead className="text-fg-muted border-border-subtle/50 border-b text-[10px] font-bold tracking-wider uppercase">
                   <tr>
                     <th className="pb-3">{t("val_col_date")}</th>
                     <th className="pb-3">{t("val_col_method")}</th>
@@ -670,26 +670,26 @@ export function ValuationCalculatorClient({
             </h3>
 
             <div className="space-y-4">
-              <div className="flex justify-between border-b border-white/5 pb-2 text-xs">
+              <div className="border-border-subtle/50 flex justify-between border-b pb-2 text-xs">
                 <span className="text-fg-muted">{t("val_berkus_method_label")}</span>
                 <span className="font-mono font-bold text-white">
                   {formatCurrency(berkusValuation)}
                 </span>
               </div>
-              <div className="flex justify-between border-b border-white/5 pb-2 text-xs">
+              <div className="border-border-subtle/50 flex justify-between border-b pb-2 text-xs">
                 <span className="text-fg-muted">{t("val_scorecard_method_label")}</span>
                 <span className="font-mono font-bold text-white">
                   {formatCurrency(scorecardValuation)}
                 </span>
               </div>
-              <div className="flex justify-between border-b border-white/5 pb-2 text-xs">
+              <div className="border-border-subtle/50 flex justify-between border-b pb-2 text-xs">
                 <span className="text-fg-muted">{t("val_vc_method_label")}</span>
                 <span className="font-mono font-bold text-white">
                   {formatCurrency(vcValuation)}
                 </span>
               </div>
               {hasRevenue && (
-                <div className="flex justify-between border-b border-white/5 pb-2 text-xs">
+                <div className="border-border-subtle/50 flex justify-between border-b pb-2 text-xs">
                   <span className="text-fg-muted">{t("val_revenue_method_label")}</span>
                   <span className="font-mono font-bold text-white">
                     {formatCurrency(revenueValuation)}
@@ -701,7 +701,7 @@ export function ValuationCalculatorClient({
                 <span className="text-fg-muted block text-[10px] font-bold tracking-wider uppercase">
                   {t("val_consolidated_avg_label")}
                 </span>
-                <span className="text-success-400 mt-1 block font-mono text-2xl font-black">
+                <span className="text-success-400 text-fg-secondaryxl mt-1 block font-mono font-black">
                   {formatCurrency(baseValuation)}
                 </span>
                 <div className="text-fg-muted border-success-500/10 mt-2 flex justify-around border-t pt-2 text-[10px]">
@@ -719,7 +719,7 @@ export function ValuationCalculatorClient({
           </div>
 
           {!isReadOnly && activeTab !== "history" && (
-            <div className="mt-6 space-y-3 border-t border-white/5 pt-4">
+            <div className="border-border-subtle/50 mt-6 space-y-3 border-t pt-4">
               <label className="text-fg-secondary mb-1 block text-xs font-bold tracking-wider uppercase">
                 {t("val_snapshot_notes_label")}
               </label>

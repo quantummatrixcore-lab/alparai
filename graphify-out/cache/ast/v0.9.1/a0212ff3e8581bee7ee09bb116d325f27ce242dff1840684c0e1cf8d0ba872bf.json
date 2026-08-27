@@ -1,0 +1,127 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_content_grok_files_03_open_source_trust_infrastructure_md",
+      "label": "03-open-source-trust-infrastructure.md",
+      "file_type": "document",
+      "source_file": "docs/content/grok-files/03-open-source-trust-infrastructure.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_content_grok_files_03_open_source_trust_infrastructure_why_open_source_trust_infrastructure_is_the_only_answer",
+      "label": "Why Open-Source Trust Infrastructure Is the Only Answer",
+      "file_type": "document",
+      "source_file": "docs/content/grok-files/03-open-source-trust-infrastructure.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_content_grok_files_03_open_source_trust_infrastructure_introduction_the_accountability_paradox_in_modern_ai",
+      "label": "Introduction: The Accountability Paradox in Modern AI",
+      "file_type": "document",
+      "source_file": "docs/content/grok-files/03-open-source-trust-infrastructure.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_content_grok_files_03_open_source_trust_infrastructure_proprietary_vs_open_trust_infrastructure_a_structural_comparison",
+      "label": "Proprietary vs. Open Trust Infrastructure: A Structural Comparison",
+      "file_type": "document",
+      "source_file": "docs/content/grok-files/03-open-source-trust-infrastructure.md",
+      "source_location": "L22"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_content_grok_files_03_open_source_trust_infrastructure_quis_custodiet_ipsos_custodes_who_watches_the_watchers",
+      "label": "\"Quis Custodiet Ipsos Custodes?\" \u2014 Who Watches the Watchers?",
+      "file_type": "document",
+      "source_file": "docs/content/grok-files/03-open-source-trust-infrastructure.md",
+      "source_location": "L36"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_content_grok_files_03_open_source_trust_infrastructure_alpar_ai_positioning_the_independent_layer",
+      "label": "ALPAR AI: Positioning 'The Independent Layer'",
+      "file_type": "document",
+      "source_file": "docs/content/grok-files/03-open-source-trust-infrastructure.md",
+      "source_location": "L52"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_content_grok_files_03_open_source_trust_infrastructure_core_architectural_pillars_of_alpar_ai",
+      "label": "Core Architectural Pillars of ALPAR AI",
+      "file_type": "document",
+      "source_file": "docs/content/grok-files/03-open-source-trust-infrastructure.md",
+      "source_location": "L71"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_content_grok_files_03_open_source_trust_infrastructure_the_path_forward_open_trust_as_an_industry_standard",
+      "label": "The Path Forward: Open Trust as an Industry Standard",
+      "file_type": "document",
+      "source_file": "docs/content/grok-files/03-open-source-trust-infrastructure.md",
+      "source_location": "L87"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_content_grok_files_03_open_source_trust_infrastructure_md",
+      "target": "d_01_saas_products_alparai_docs_content_grok_files_03_open_source_trust_infrastructure_why_open_source_trust_infrastructure_is_the_only_answer",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/content/grok-files/03-open-source-trust-infrastructure.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_content_grok_files_03_open_source_trust_infrastructure_why_open_source_trust_infrastructure_is_the_only_answer",
+      "target": "d_01_saas_products_alparai_docs_content_grok_files_03_open_source_trust_infrastructure_introduction_the_accountability_paradox_in_modern_ai",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/content/grok-files/03-open-source-trust-infrastructure.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_content_grok_files_03_open_source_trust_infrastructure_why_open_source_trust_infrastructure_is_the_only_answer",
+      "target": "d_01_saas_products_alparai_docs_content_grok_files_03_open_source_trust_infrastructure_proprietary_vs_open_trust_infrastructure_a_structural_comparison",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/content/grok-files/03-open-source-trust-infrastructure.md",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_content_grok_files_03_open_source_trust_infrastructure_why_open_source_trust_infrastructure_is_the_only_answer",
+      "target": "d_01_saas_products_alparai_docs_content_grok_files_03_open_source_trust_infrastructure_quis_custodiet_ipsos_custodes_who_watches_the_watchers",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/content/grok-files/03-open-source-trust-infrastructure.md",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_content_grok_files_03_open_source_trust_infrastructure_why_open_source_trust_infrastructure_is_the_only_answer",
+      "target": "d_01_saas_products_alparai_docs_content_grok_files_03_open_source_trust_infrastructure_alpar_ai_positioning_the_independent_layer",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/content/grok-files/03-open-source-trust-infrastructure.md",
+      "source_location": "L52",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_content_grok_files_03_open_source_trust_infrastructure_alpar_ai_positioning_the_independent_layer",
+      "target": "d_01_saas_products_alparai_docs_content_grok_files_03_open_source_trust_infrastructure_core_architectural_pillars_of_alpar_ai",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/content/grok-files/03-open-source-trust-infrastructure.md",
+      "source_location": "L71",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_content_grok_files_03_open_source_trust_infrastructure_why_open_source_trust_infrastructure_is_the_only_answer",
+      "target": "d_01_saas_products_alparai_docs_content_grok_files_03_open_source_trust_infrastructure_the_path_forward_open_trust_as_an_industry_standard",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/content/grok-files/03-open-source-trust-infrastructure.md",
+      "source_location": "L87",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

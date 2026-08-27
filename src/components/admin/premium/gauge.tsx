@@ -30,7 +30,7 @@ function getGlowColor(color: string): string {
 
 const sizeConfig = {
   sm: { width: 80, strokeWidth: 6, fontSize: "text-lg", labelSize: "text-[9px]" },
-  md: { width: 120, strokeWidth: 8, fontSize: "text-2xl", labelSize: "text-[10px]" },
+  md: { width: 120, strokeWidth: 8, fontSize: "text-fg-secondaryxl", labelSize: "text-[10px]" },
   lg: { width: 160, strokeWidth: 10, fontSize: "text-3xl", labelSize: "text-xs" },
 };
 

@@ -62,7 +62,7 @@ export default async function SignInPage({
   const showMagicLinkConfirmation = sent === "1" && email;
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#070913] px-4 py-16">
+    <div className="bg-bg-primary relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-16">
       {/* Background Gradients & Grid */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         {/* Subtle grid pattern */}
@@ -89,7 +89,7 @@ export default async function SignInPage({
         </div>
 
         {/* Glassmorphic Container Card */}
-        <div className="rounded-3xl border border-white/[0.08] bg-[#0F1424]/60 p-8 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)] backdrop-blur-2xl sm:p-10">
+        <div className="bg-bg-secondary/60 rounded-3xl border border-white/[0.08] p-8 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)] backdrop-blur-2xl sm:p-10">
           {/* Magic link confirmation */}
           {showMagicLinkConfirmation && (
             <div
@@ -123,7 +123,7 @@ export default async function SignInPage({
 
           {/* Welcome Text */}
           <div className="mb-8 text-center">
-            <h2 className="text-fg-primary text-2xl font-extrabold tracking-tight">
+            <h2 className="text-fg-primary text-fg-secondaryxl font-extrabold tracking-tight">
               {t("welcome_title")}
             </h2>
             <p className="text-fg-muted mt-1.5 text-sm font-medium">{t("welcome_subtitle")}</p>

@@ -33,8 +33,8 @@ export function LiveFeed({ items }: { items: EcosystemNews[] }) {
   };
 
   return (
-    <div className="bg-bg-tertiary/80 overflow-hidden rounded-2xl border border-white/10 shadow-2xl backdrop-blur-xl">
-      <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
+    <div className="bg-bg-tertiary/80 border-border-subtle overflow-hidden rounded-2xl border shadow-2xl backdrop-blur-xl">
+      <div className="border-border-subtle flex items-center justify-between border-b px-6 py-4">
         <div className="flex items-center space-x-3">
           <div className="flex h-8 w-8 items-center justify-center rounded-xl border border-sky-500/30 bg-sky-500/10">
             <Radio className="h-4 w-4 text-sky-400" />
@@ -67,9 +67,9 @@ export function LiveFeed({ items }: { items: EcosystemNews[] }) {
           <div className="divide-y divide-white/5">
             {items.map((item) => {
               const catStyle = CATEGORY_STYLES[item.category] || {
-                bg: "bg-zinc-800",
+                bg: "bg-bg-elevated",
                 text: "text-fg-muted",
-                border: "border-white/10",
+                border: "border-border-subtle",
               };
               return (
                 <div
@@ -121,7 +121,7 @@ export function LiveFeed({ items }: { items: EcosystemNews[] }) {
                   <button
                     onClick={() => handleArchive(item.id)}
                     title={t("archive_item")}
-                    className="text-fg-muted hover:border-danger-500/30 hover:bg-danger-500/10 hover:text-danger-400 flex h-8 w-8 items-center justify-center rounded-xl border border-white/10 bg-white/5 transition-colors"
+                    className="text-fg-muted hover:border-danger-500/30 hover:bg-danger-500/10 hover:text-danger-400 border-border-subtle flex h-8 w-8 items-center justify-center rounded-xl border bg-white/5 transition-colors"
                   >
                     <Archive className="h-4 w-4" />
                   </button>

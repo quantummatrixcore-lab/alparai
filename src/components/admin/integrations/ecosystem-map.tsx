@@ -37,23 +37,23 @@ export function EcosystemMap() {
   };
 
   return (
-    <div className="mb-12 w-full rounded-2xl border border-white/5 bg-neutral-950/20 p-8 backdrop-blur-3xl">
+    <div className="border-border-subtle/50 bg-bg-secondary mb-12 w-full rounded-2xl border p-8 backdrop-blur-3xl">
       <div className="mb-8 text-center">
-        <h2 className="bg-gradient-to-br from-white to-white/50 bg-clip-text text-2xl font-semibold tracking-tight text-transparent">
+        <h2 className="text-fg-secondaryxl bg-gradient-to-br from-white to-white/50 bg-clip-text font-semibold tracking-tight text-transparent">
           {t("ecosystem_map_title")}
         </h2>
-        <p className="mt-2 text-sm text-neutral-400">{t("ecosystem_map_subtitle")}</p>
+        <p className="text-fg-muted mt-2 text-sm">{t("ecosystem_map_subtitle")}</p>
       </div>
 
       <div className="flex flex-col items-center justify-center space-y-12 lg:flex-row lg:space-y-0 lg:space-x-12">
         {/* CENTER NODE */}
         <motion.div
           whileHover={{ scale: 1.05 }}
-          className="relative z-10 flex h-32 w-32 shrink-0 items-center justify-center rounded-full border border-white/20 bg-neutral-900 shadow-[0_0_40px_rgba(255,255,255,0.1)]"
+          className="border-border-strong bg-bg-secondary relative z-10 flex h-32 w-32 shrink-0 items-center justify-center rounded-full border shadow-[0_0_40px_rgba(255,255,255,0.1)]"
         >
           <div className="text-center">
             <div className="text-lg font-bold text-white">ALPAR AI</div>
-            <div className="text-[10px] tracking-widest text-neutral-500 uppercase">
+            <div className="text-fg-muted text-[10px] tracking-widest uppercase">
               {t("ecosystem_map_core")}
             </div>
           </div>
@@ -76,11 +76,11 @@ export function EcosystemMap() {
                 onMouseLeave={() => setActivePillar(null)}
                 className={`group relative overflow-hidden rounded-2xl border transition-all duration-500 ${
                   isActive
-                    ? "border-white/20 bg-neutral-900/80 shadow-lg shadow-white/5"
-                    : "border-white/5 bg-neutral-950/40 hover:bg-neutral-900/60"
+                    ? "border-border-strong bg-bg-secondary shadow-lg shadow-white/5"
+                    : "border-border-subtle/50 bg-bg-secondary hover:bg-bg-secondary"
                 } p-6`}
               >
-                <div className="mb-4 text-sm font-semibold tracking-wider text-neutral-300 uppercase">
+                <div className="text-fg-primary mb-4 text-sm font-semibold tracking-wider uppercase">
                   {pillar.label}
                 </div>
 
@@ -95,7 +95,7 @@ export function EcosystemMap() {
                       {tools.slice(0, 4).map((tool) => (
                         <div
                           key={tool.id}
-                          className="flex h-8 w-8 items-center justify-center rounded-lg bg-neutral-800 text-neutral-400"
+                          className="bg-bg-secondary text-fg-muted flex h-8 w-8 items-center justify-center rounded-lg"
                         >
                           {(() => {
                             const Logo = LOGO_MAP[tool.logo as keyof typeof LOGO_MAP];
@@ -108,7 +108,7 @@ export function EcosystemMap() {
                         </div>
                       ))}
                       {tools.length > 4 && (
-                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-neutral-800/50 text-[10px] text-neutral-500">
+                        <div className="bg-bg-secondary text-fg-muted flex h-8 w-8 items-center justify-center rounded-lg text-[10px]">
                           +{tools.length - 4}
                         </div>
                       )}
@@ -129,7 +129,7 @@ export function EcosystemMap() {
                           <motion.div
                             key={tool.id}
                             variants={itemVariants}
-                            className="flex cursor-default items-center gap-2 rounded-lg border border-white/5 bg-neutral-800/50 px-2 py-1.5 transition-colors hover:bg-neutral-800"
+                            className="border-border-subtle/50 bg-bg-secondary hover:bg-bg-secondary flex cursor-default items-center gap-2 rounded-lg border px-2 py-1.5 transition-colors"
                             style={{
                               boxShadow: `inset 0 0 0 1px ${tool.brandColor}20`,
                             }}
@@ -144,7 +144,7 @@ export function EcosystemMap() {
                                 );
                               })()}
                             </span>
-                            <span className="text-[11px] font-medium text-neutral-300">
+                            <span className="text-fg-primary text-[11px] font-medium">
                               {tool.name}
                             </span>
                           </motion.div>

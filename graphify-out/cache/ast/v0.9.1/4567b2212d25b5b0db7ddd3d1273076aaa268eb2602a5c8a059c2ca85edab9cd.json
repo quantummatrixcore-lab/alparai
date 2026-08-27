@@ -1,0 +1,159 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_outreach_vc_partner_list_and_drafts_md",
+      "label": "vc_partner_list_and_drafts.md",
+      "file_type": "document",
+      "source_file": "docs/outreach/vc_partner_list_and_drafts.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_outreach_vc_partner_list_and_drafts_alpar_ai_vc_partner_list_openchrome_ready_warm_intro_drafts_205",
+      "label": "ALPAR AI \u2014 VC Partner List & OpenChrome-Ready Warm Intro Drafts (#205)",
+      "file_type": "document",
+      "source_file": "docs/outreach/vc_partner_list_and_drafts.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_outreach_vc_partner_list_and_drafts_1_target_vc_partner_roster_top_20_european_regional_funds",
+      "label": "1. Target VC Partner Roster (Top 20 European & Regional Funds)",
+      "file_type": "document",
+      "source_file": "docs/outreach/vc_partner_list_and_drafts.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_outreach_vc_partner_list_and_drafts_a_european_tier_1_vcs_15_funds_ai_infrastructure_regtech_b2b_saas",
+      "label": "A. European Tier-1 VCs (15 Funds) \u2014 AI Infrastructure, RegTech & B2B SaaS",
+      "file_type": "document",
+      "source_file": "docs/outreach/vc_partner_list_and_drafts.md",
+      "source_location": "L12"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_outreach_vc_partner_list_and_drafts_b_regional_global_bridge_vcs_5_funds_cee_turkey_regional_leaders",
+      "label": "B. Regional & Global Bridge VCs (5 Funds) \u2014 CEE & Turkey Regional Leaders",
+      "file_type": "document",
+      "source_file": "docs/outreach/vc_partner_list_and_drafts.md",
+      "source_location": "L32"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_outreach_vc_partner_list_and_drafts_2_openchrome_ready_warm_intro_email_templates",
+      "label": "2. OpenChrome-Ready Warm Intro Email Templates",
+      "file_type": "document",
+      "source_file": "docs/outreach/vc_partner_list_and_drafts.md",
+      "source_location": "L44"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_outreach_vc_partner_list_and_drafts_openchrome_execution_configuration_metadata",
+      "label": "OpenChrome Execution Configuration Metadata:",
+      "file_type": "document",
+      "source_file": "docs/outreach/vc_partner_list_and_drafts.md",
+      "source_location": "L48"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_outreach_vc_partner_list_and_drafts_template_1_short_high_conversion_direct_intro_recommended_default",
+      "label": "Template 1: Short & High-Conversion Direct Intro (Recommended Default)",
+      "file_type": "document",
+      "source_file": "docs/outreach/vc_partner_list_and_drafts.md",
+      "source_location": "L62"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_outreach_vc_partner_list_and_drafts_template_2_regulatory_visionary_compliance_intro",
+      "label": "Template 2: Regulatory & Visionary Compliance Intro",
+      "file_type": "document",
+      "source_file": "docs/outreach/vc_partner_list_and_drafts.md",
+      "source_location": "L89"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_outreach_vc_partner_list_and_drafts_template_3_traction_unit_economics_driven_intro",
+      "label": "Template 3: Traction & Unit Economics-Driven Intro",
+      "file_type": "document",
+      "source_file": "docs/outreach/vc_partner_list_and_drafts.md",
+      "source_location": "L118"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_outreach_vc_partner_list_and_drafts_md",
+      "target": "d_01_saas_products_alparai_docs_outreach_vc_partner_list_and_drafts_alpar_ai_vc_partner_list_openchrome_ready_warm_intro_drafts_205",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/outreach/vc_partner_list_and_drafts.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_outreach_vc_partner_list_and_drafts_alpar_ai_vc_partner_list_openchrome_ready_warm_intro_drafts_205",
+      "target": "d_01_saas_products_alparai_docs_outreach_vc_partner_list_and_drafts_1_target_vc_partner_roster_top_20_european_regional_funds",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/outreach/vc_partner_list_and_drafts.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_outreach_vc_partner_list_and_drafts_1_target_vc_partner_roster_top_20_european_regional_funds",
+      "target": "d_01_saas_products_alparai_docs_outreach_vc_partner_list_and_drafts_a_european_tier_1_vcs_15_funds_ai_infrastructure_regtech_b2b_saas",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/outreach/vc_partner_list_and_drafts.md",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_outreach_vc_partner_list_and_drafts_1_target_vc_partner_roster_top_20_european_regional_funds",
+      "target": "d_01_saas_products_alparai_docs_outreach_vc_partner_list_and_drafts_b_regional_global_bridge_vcs_5_funds_cee_turkey_regional_leaders",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/outreach/vc_partner_list_and_drafts.md",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_outreach_vc_partner_list_and_drafts_alpar_ai_vc_partner_list_openchrome_ready_warm_intro_drafts_205",
+      "target": "d_01_saas_products_alparai_docs_outreach_vc_partner_list_and_drafts_2_openchrome_ready_warm_intro_email_templates",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/outreach/vc_partner_list_and_drafts.md",
+      "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_outreach_vc_partner_list_and_drafts_2_openchrome_ready_warm_intro_email_templates",
+      "target": "d_01_saas_products_alparai_docs_outreach_vc_partner_list_and_drafts_openchrome_execution_configuration_metadata",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/outreach/vc_partner_list_and_drafts.md",
+      "source_location": "L48",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_outreach_vc_partner_list_and_drafts_2_openchrome_ready_warm_intro_email_templates",
+      "target": "d_01_saas_products_alparai_docs_outreach_vc_partner_list_and_drafts_template_1_short_high_conversion_direct_intro_recommended_default",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/outreach/vc_partner_list_and_drafts.md",
+      "source_location": "L62",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_outreach_vc_partner_list_and_drafts_2_openchrome_ready_warm_intro_email_templates",
+      "target": "d_01_saas_products_alparai_docs_outreach_vc_partner_list_and_drafts_template_2_regulatory_visionary_compliance_intro",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/outreach/vc_partner_list_and_drafts.md",
+      "source_location": "L89",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_outreach_vc_partner_list_and_drafts_2_openchrome_ready_warm_intro_email_templates",
+      "target": "d_01_saas_products_alparai_docs_outreach_vc_partner_list_and_drafts_template_3_traction_unit_economics_driven_intro",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/outreach/vc_partner_list_and_drafts.md",
+      "source_location": "L118",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

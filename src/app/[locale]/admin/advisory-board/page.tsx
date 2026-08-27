@@ -77,8 +77,8 @@ export default async function AdvisoryBoardPage({
   const activeMembers = members && members.length > 0 ? members : DEFAULT_MEMBERS;
 
   return (
-    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
-      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
+    <div className="bg-bg-primary text-fg-primary min-h-screen px-3 py-4 sm:px-6 sm:py-6 md:p-8">
+      <div className="bg-bg-secondary/40 ring-border-subtle space-y-8 rounded-3xl p-4 shadow-2xl ring-1 backdrop-blur-xl sm:p-6 md:p-8">
         <GovernanceHubTabs />
         <div className="animate-in fade-in space-y-8 duration-500">
           <div>
@@ -111,8 +111,8 @@ export default async function AdvisoryBoardPage({
             />
           </div>
 
-          <div className="overflow-hidden rounded-xl border border-white/5 bg-zinc-900/40 ring-1 ring-white/10 backdrop-blur-xl">
-            <div className="border-b border-white/5 bg-white/5 p-4">
+          <div className="border-border-subtle/50 bg-bg-secondary/40 ring-border-subtle overflow-hidden rounded-xl border ring-1 backdrop-blur-xl">
+            <div className="border-border-subtle/50 border-b bg-white/5 p-4">
               <p className="text-fg-muted flex items-center gap-2 text-sm">
                 <WarningCircle weight="fill" className="text-amber-400" />
                 <strong>{t("advisory_rule_21")}</strong>
@@ -158,7 +158,7 @@ export default async function AdvisoryBoardPage({
                     <tr>
                       <td colSpan={4} className="px-6 py-12 text-center">
                         <div className="mx-auto flex max-w-md flex-col items-center justify-center text-center">
-                          <div className="mb-3 rounded-full border border-amber-500/20 bg-amber-500/10 p-3 text-amber-400">
+                          <div className="border-warning-500/20 mb-3 rounded-full border bg-amber-500/10 p-3 text-amber-400">
                             <WarningCircle size={32} weight="duotone" />
                           </div>
                           <h3 className="text-base font-bold text-white">

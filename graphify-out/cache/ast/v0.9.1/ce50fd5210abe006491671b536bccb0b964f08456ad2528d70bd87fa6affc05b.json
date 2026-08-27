@@ -1,0 +1,624 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_agents_md",
+      "label": "AGENTS.md",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_agents_md",
+      "label": "AGENTS.md",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_project",
+      "label": "Project",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L5"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_commands",
+      "label": "Commands",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L9"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_conventions",
+      "label": "Conventions",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L24"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_file_map",
+      "label": "File map",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L37"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_model_routing_token_economy_binding",
+      "label": "Model Routing (token economy \u2014 binding)",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L58"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_master_plan_evidence_rule",
+      "label": "MASTER_PLAN Evidence Rule",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L75"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_completion_rule_pushed_or_it_did_not_happen_g_7_binding",
+      "label": "Completion Rule \u2014 \"pushed or it did not happen\" (G-7, binding)",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L81"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_safety",
+      "label": "Safety",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L90"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_links",
+      "label": "Links",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L97"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_infrastructure_post_2026_06_06_rebuild",
+      "label": "Infrastructure (post 2026-06-06 rebuild)",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L109"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_google_oauth_configuration",
+      "label": "Google OAuth Configuration",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L117"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_oauth_consent_screen_fix_manual",
+      "label": "OAuth Consent Screen Fix (MANUAL)",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L126"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_postmortem_2026_06_06",
+      "label": "Postmortem \u2014 2026-06-06",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L138"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_pending_user_actions",
+      "label": "Pending user actions",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L149"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_engineering_operating_standard_v2_binding_on_every_ai_agent_in_this_repository",
+      "label": "Engineering Operating Standard (v2 \u2014 binding on every AI agent in this repository)",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L155"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_1_judgment",
+      "label": "1 \u00b7 Judgment",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L163"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_2_execution",
+      "label": "2 \u00b7 Execution",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L175"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_3_truth_protocol_violations_here_have_ended_agent_tenures",
+      "label": "3 \u00b7 Truth Protocol (violations here have ended agent tenures)",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L190"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_4_boundaries",
+      "label": "4 \u00b7 Boundaries",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L211"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_5_code_conventions_v10_33_from_proposal_013_4_4_4_9",
+      "label": "5 \u00b7 Code Conventions (v10.33 \u2014 from Proposal 013 \u00a74.4/\u00a74.9)",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L223"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_token_budget_policy_ajan_token_s\u0131n\u0131r_tablosu_binding",
+      "label": "Token Budget Policy \u2014 Ajan Token S\u0131n\u0131r Tablosu (Binding)",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L229"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_uygulama_kurallar\u0131",
+      "label": "Uygulama Kurallar\u0131:",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L244"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_momentum_k_matrix_project_prioritization_strategy_binding",
+      "label": "Momentum K-Matrix (Project Prioritization Strategy) - Binding",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L252"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_ajan_y\u00f6netim_kurallar\u0131_haf\u0131za_kayd\u0131",
+      "label": "Ajan Y\u00f6netim Kurallar\u0131 (Haf\u0131za Kayd\u0131)",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L261"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_design_standard_tasarim_komandolari_t\u00fcm_ajanlar_i\u0307\u00e7in_ba\u011flay\u0131c\u0131",
+      "label": "Design Standard (TASARIM KOMANDOLARI \u2014 T\u00fcm Ajanlar \u0130\u00e7in Ba\u011flay\u0131c\u0131)",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L266"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_tasar\u0131m_sistemi_kurallar\u0131",
+      "label": "Tasar\u0131m Sistemi Kurallar\u0131",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L272"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_bile\u015fen_mimarisi",
+      "label": "Bile\u015fen Mimarisi",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L280"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_g\u00f6rsel_kalite_minimumlar\u0131",
+      "label": "G\u00f6rsel Kalite Minimumlar\u0131",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L287"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_eri\u015filebilirlik_a11y_wcag_2_1_aa_zorunlu",
+      "label": "Eri\u015filebilirlik (a11y) \u2014 WCAG 2.1 AA Zorunlu",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L295"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_performans_disiplini",
+      "label": "Performans Disiplini",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L302"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_yasak_listesi",
+      "label": "Yasak Listesi",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L308"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_nutuk_protokol\u00fc_tasar\u0131m_commit_format\u0131",
+      "label": "NUTUK PROTOKOL\u00dc \u2014 Tasar\u0131m Commit Format\u0131",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L320"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_agents_md",
+      "target": "d_01_saas_products_alparai_agents_agents_md",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_agents_md",
+      "target": "d_01_saas_products_alparai_agents_project",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_agents_md",
+      "target": "d_01_saas_products_alparai_agents_commands",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_agents_md",
+      "target": "d_01_saas_products_alparai_agents_conventions",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_agents_md",
+      "target": "d_01_saas_products_alparai_agents_file_map",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_agents_md",
+      "target": "d_01_saas_products_alparai_agents_model_routing_token_economy_binding",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L58",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_agents_md",
+      "target": "d_01_saas_products_alparai_agents_master_plan_evidence_rule",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L75",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_agents_md",
+      "target": "d_01_saas_products_alparai_agents_completion_rule_pushed_or_it_did_not_happen_g_7_binding",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L81",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_agents_md",
+      "target": "d_01_saas_products_alparai_agents_safety",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L90",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_agents_md",
+      "target": "d_01_saas_products_alparai_agents_links",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L97",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_md",
+      "target": "d_01_saas_products_alparai_readme_md",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L99",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_md",
+      "target": "d_01_saas_products_alparai_docs_bootstrap_md",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L100",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_md",
+      "target": "d_01_saas_products_alparai_docs_architecture_md",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L101",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_md",
+      "target": "d_01_saas_products_alparai_graphify_out_graph_report_md",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L102",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_md",
+      "target": "d_01_saas_products_alparai_docs_security_md",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L103",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_md",
+      "target": "d_01_saas_products_alparai_docs_kvkk_md",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L104",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_md",
+      "target": "d_01_saas_products_alparai_docs_adr_md",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L105",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_md",
+      "target": "d_01_saas_products_alparai_contributing_md",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L106",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_md",
+      "target": "d_01_saas_products_alparai_license_md",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L107",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_agents_md",
+      "target": "d_01_saas_products_alparai_agents_infrastructure_post_2026_06_06_rebuild",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L109",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_agents_md",
+      "target": "d_01_saas_products_alparai_agents_google_oauth_configuration",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L117",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_google_oauth_configuration",
+      "target": "d_01_saas_products_alparai_agents_oauth_consent_screen_fix_manual",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L126",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_agents_md",
+      "target": "d_01_saas_products_alparai_agents_postmortem_2026_06_06",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L138",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_agents_md",
+      "target": "d_01_saas_products_alparai_agents_pending_user_actions",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L149",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_agents_md",
+      "target": "d_01_saas_products_alparai_agents_engineering_operating_standard_v2_binding_on_every_ai_agent_in_this_repository",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L155",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_engineering_operating_standard_v2_binding_on_every_ai_agent_in_this_repository",
+      "target": "d_01_saas_products_alparai_agents_1_judgment",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L163",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_engineering_operating_standard_v2_binding_on_every_ai_agent_in_this_repository",
+      "target": "d_01_saas_products_alparai_agents_2_execution",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L175",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_engineering_operating_standard_v2_binding_on_every_ai_agent_in_this_repository",
+      "target": "d_01_saas_products_alparai_agents_3_truth_protocol_violations_here_have_ended_agent_tenures",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L190",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_engineering_operating_standard_v2_binding_on_every_ai_agent_in_this_repository",
+      "target": "d_01_saas_products_alparai_agents_4_boundaries",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L211",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_engineering_operating_standard_v2_binding_on_every_ai_agent_in_this_repository",
+      "target": "d_01_saas_products_alparai_agents_5_code_conventions_v10_33_from_proposal_013_4_4_4_9",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L223",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_agents_md",
+      "target": "d_01_saas_products_alparai_agents_token_budget_policy_ajan_token_s\u0131n\u0131r_tablosu_binding",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L229",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_token_budget_policy_ajan_token_s\u0131n\u0131r_tablosu_binding",
+      "target": "d_01_saas_products_alparai_agents_uygulama_kurallar\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L244",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_agents_md",
+      "target": "d_01_saas_products_alparai_agents_momentum_k_matrix_project_prioritization_strategy_binding",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L252",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_agents_md",
+      "target": "d_01_saas_products_alparai_agents_ajan_y\u00f6netim_kurallar\u0131_haf\u0131za_kayd\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L261",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_agents_md",
+      "target": "d_01_saas_products_alparai_agents_design_standard_tasarim_komandolari_t\u00fcm_ajanlar_i\u0307\u00e7in_ba\u011flay\u0131c\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L266",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_design_standard_tasarim_komandolari_t\u00fcm_ajanlar_i\u0307\u00e7in_ba\u011flay\u0131c\u0131",
+      "target": "d_01_saas_products_alparai_agents_tasar\u0131m_sistemi_kurallar\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L272",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_design_standard_tasarim_komandolari_t\u00fcm_ajanlar_i\u0307\u00e7in_ba\u011flay\u0131c\u0131",
+      "target": "d_01_saas_products_alparai_agents_bile\u015fen_mimarisi",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L280",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_design_standard_tasarim_komandolari_t\u00fcm_ajanlar_i\u0307\u00e7in_ba\u011flay\u0131c\u0131",
+      "target": "d_01_saas_products_alparai_agents_g\u00f6rsel_kalite_minimumlar\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L287",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_design_standard_tasarim_komandolari_t\u00fcm_ajanlar_i\u0307\u00e7in_ba\u011flay\u0131c\u0131",
+      "target": "d_01_saas_products_alparai_agents_eri\u015filebilirlik_a11y_wcag_2_1_aa_zorunlu",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L295",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_design_standard_tasarim_komandolari_t\u00fcm_ajanlar_i\u0307\u00e7in_ba\u011flay\u0131c\u0131",
+      "target": "d_01_saas_products_alparai_agents_performans_disiplini",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L302",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_design_standard_tasarim_komandolari_t\u00fcm_ajanlar_i\u0307\u00e7in_ba\u011flay\u0131c\u0131",
+      "target": "d_01_saas_products_alparai_agents_yasak_listesi",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L308",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_design_standard_tasarim_komandolari_t\u00fcm_ajanlar_i\u0307\u00e7in_ba\u011flay\u0131c\u0131",
+      "target": "d_01_saas_products_alparai_agents_nutuk_protokol\u00fc_tasar\u0131m_commit_format\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L320",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

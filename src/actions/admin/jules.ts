@@ -1,5 +1,6 @@
 "use server";
 
+import { requireAdmin } from "@/lib/auth/session";
 import { logger } from "@/lib/utils/logger";
 
 const JULES_API_BASE = "https://jules.googleapis.com/v1alpha";
@@ -36,6 +37,7 @@ export async function createJulesSession(params: CreateSessionParams): Promise<{
   session?: JulesSession;
   error?: string;
 }> {
+  await requireAdmin();
   try {
     const apiKey = getApiKey();
     const [owner, repoName] = params.repo.split("/");
@@ -82,6 +84,7 @@ export async function listJulesSessions(): Promise<{
   sessions?: JulesSession[];
   error?: string;
 }> {
+  await requireAdmin();
   try {
     const apiKey = getApiKey();
     const response = await fetch(`${JULES_API_BASE}/sessions`, {
@@ -111,6 +114,7 @@ export async function getJulesSession(sessionId: string): Promise<{
   activities?: JulesActivity[];
   error?: string;
 }> {
+  await requireAdmin();
   try {
     const apiKey = getApiKey();
     const [sessionRes, activitiesRes] = await Promise.all([
@@ -153,6 +157,7 @@ export async function getJulesHealth(): Promise<{
   sessionCount: number;
   error?: string;
 }> {
+  await requireAdmin();
   try {
     const apiKey = process.env.JULES_API_KEY;
     if (!apiKey) return { connected: false, sessionCount: 0, error: "JULES_API_KEY not set" };

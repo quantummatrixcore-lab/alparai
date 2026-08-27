@@ -1,11 +1,11 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
-const enPath = path.join(__dirname, 'messages', 'en.json');
-const trPath = path.join(__dirname, 'messages', 'tr.json');
+const enPath = path.join(__dirname, "messages", "en.json");
+const trPath = path.join(__dirname, "messages", "tr.json");
 
-const en = JSON.parse(fs.readFileSync(enPath, 'utf8'));
-const tr = JSON.parse(fs.readFileSync(trPath, 'utf8'));
+const en = JSON.parse(fs.readFileSync(enPath, "utf8"));
+const tr = JSON.parse(fs.readFileSync(trPath, "utf8"));
 
 if (!en.admin.appeals) {
   en.admin.appeals = {
@@ -24,7 +24,7 @@ if (!en.admin.appeals) {
     submit: "Submit",
     cancel: "Cancel",
     confirm_approve: "Are you sure you want to approve this appeal?",
-    confirm_reject: "Are you sure you want to reject this appeal?"
+    confirm_reject: "Are you sure you want to reject this appeal?",
   };
 }
 
@@ -45,7 +45,7 @@ if (!tr.admin.appeals) {
     submit: "Gönder",
     cancel: "İptal",
     confirm_approve: "Bu itirazı onaylamak istediğinize emin misiniz?",
-    confirm_reject: "Bu itirazı reddetmek istediğinize emin misiniz?"
+    confirm_reject: "Bu itirazı reddetmek istediğinize emin misiniz?",
   };
 }
 

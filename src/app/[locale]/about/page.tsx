@@ -15,9 +15,9 @@ export default function AboutPage() {
           <h1 className="bg-gradient-to-br from-white to-white/50 bg-clip-text text-5xl font-bold tracking-tighter text-transparent md:text-7xl">
             {t("title")}
           </h1>
-          <div className="mt-12 rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-md">
+          <div className="border-border-subtle mt-12 rounded-3xl border bg-white/5 p-8 backdrop-blur-md">
             <h2 className="mb-4 text-3xl font-semibold">{t("vision_title")}</h2>
-            <p className="text-lg leading-relaxed text-zinc-400">{t("vision_desc")}</p>
+            <p className="text-fg-muted text-lg leading-relaxed">{t("vision_desc")}</p>
           </div>
         </section>
 
@@ -29,31 +29,31 @@ export default function AboutPage() {
           <div className="grid gap-6 md:grid-cols-2">
             <Link
               href="/about/advisory-board"
-              className="group flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/5 p-6 transition-colors hover:bg-white/10"
+              className="group border-border-subtle flex items-center justify-between gap-4 rounded-2xl border bg-white/5 p-6 transition-colors hover:bg-white/10"
             >
               <div>
                 <h3 className="text-xl font-medium">{t("advisory_board_title")}</h3>
-                <p className="text-zinc-400">{t("advisory_board_desc")}</p>
+                <p className="text-fg-muted">{t("advisory_board_desc")}</p>
               </div>
-              <ArrowUpRight className="h-6 w-6 shrink-0 text-zinc-500 transition-colors group-hover:text-white" />
+              <ArrowUpRight className="text-fg-muted h-6 w-6 shrink-0 transition-colors group-hover:text-white" />
             </Link>
             <Link
               href="/about/methodology-committee"
-              className="group flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/5 p-6 transition-colors hover:bg-white/10"
+              className="group border-border-subtle flex items-center justify-between gap-4 rounded-2xl border bg-white/5 p-6 transition-colors hover:bg-white/10"
             >
               <div>
                 <h3 className="text-xl font-medium">{tCommittee("title")}</h3>
-                <p className="text-zinc-400">{tCommittee("description")}</p>
+                <p className="text-fg-muted">{tCommittee("description")}</p>
               </div>
-              <ArrowUpRight className="h-6 w-6 shrink-0 text-zinc-500 transition-colors group-hover:text-white" />
+              <ArrowUpRight className="text-fg-muted h-6 w-6 shrink-0 transition-colors group-hover:text-white" />
             </Link>
           </div>
         </section>
 
         {/* MOUs */}
-        <section className="space-y-6 rounded-3xl border border-white/10 bg-gradient-to-br from-blue-900/20 to-purple-900/20 p-8 text-center backdrop-blur-lg">
+        <section className="border-border-subtle space-y-6 rounded-3xl border bg-gradient-to-br from-blue-900/20 to-purple-900/20 p-8 text-center backdrop-blur-lg">
           <h2 className="text-3xl font-semibold">{t("mou_title")}</h2>
-          <p className="mx-auto max-w-2xl text-lg text-zinc-300">{t("mou_desc")}</p>
+          <p className="text-fg-secondary mx-auto max-w-2xl text-lg">{t("mou_desc")}</p>
         </section>
       </div>
     </div>

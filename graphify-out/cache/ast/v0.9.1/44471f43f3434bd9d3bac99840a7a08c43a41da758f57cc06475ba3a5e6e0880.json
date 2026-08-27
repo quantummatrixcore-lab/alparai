@@ -1,0 +1,111 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_08_supply_chain_and_mcp_vulnerabilities_md",
+      "label": "day-08-supply-chain-and-mcp-vulnerabilities.md",
+      "file_type": "document",
+      "source_file": "docs/blog_drafts/the_grok_files/day-08-supply-chain-and-mcp-vulnerabilities.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_08_supply_chain_and_mcp_vulnerabilities_the_grok_files_day_8_ai_supply_chain_mcp_protocol_vulnerabilities",
+      "label": "The Grok Files \u2014 Day 8: AI Supply Chain & MCP Protocol Vulnerabilities",
+      "file_type": "document",
+      "source_file": "docs/blog_drafts/the_grok_files/day-08-supply-chain-and-mcp-vulnerabilities.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_08_supply_chain_and_mcp_vulnerabilities_executive_summary",
+      "label": "Executive Summary",
+      "file_type": "document",
+      "source_file": "docs/blog_drafts/the_grok_files/day-08-supply-chain-and-mcp-vulnerabilities.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_08_supply_chain_and_mcp_vulnerabilities_1_tactical_failure_analysis_mcp_integration_vulnerabilities",
+      "label": "1. Tactical Failure Analysis: MCP & Integration Vulnerabilities",
+      "file_type": "document",
+      "source_file": "docs/blog_drafts/the_grok_files/day-08-supply-chain-and-mcp-vulnerabilities.md",
+      "source_location": "L16"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_08_supply_chain_and_mcp_vulnerabilities_risk_vectors",
+      "label": "Risk Vectors",
+      "file_type": "document",
+      "source_file": "docs/blog_drafts/the_grok_files/day-08-supply-chain-and-mcp-vulnerabilities.md",
+      "source_location": "L24"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_08_supply_chain_and_mcp_vulnerabilities_2_supply_chain_risks_in_open_source_ai_packages",
+      "label": "2. Supply Chain Risks in Open-Source AI Packages",
+      "file_type": "document",
+      "source_file": "docs/blog_drafts/the_grok_files/day-08-supply-chain-and-mcp-vulnerabilities.md",
+      "source_location": "L32"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_08_supply_chain_and_mcp_vulnerabilities_3_the_alpar_ai_solution_zero_trust_mcp_gateway_sandbox_isolation",
+      "label": "3. The ALPAR AI Solution: Zero-Trust MCP Gateway & Sandbox Isolation",
+      "file_type": "document",
+      "source_file": "docs/blog_drafts/the_grok_files/day-08-supply-chain-and-mcp-vulnerabilities.md",
+      "source_location": "L39"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_08_supply_chain_and_mcp_vulnerabilities_md",
+      "target": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_08_supply_chain_and_mcp_vulnerabilities_the_grok_files_day_8_ai_supply_chain_mcp_protocol_vulnerabilities",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog_drafts/the_grok_files/day-08-supply-chain-and-mcp-vulnerabilities.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_08_supply_chain_and_mcp_vulnerabilities_the_grok_files_day_8_ai_supply_chain_mcp_protocol_vulnerabilities",
+      "target": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_08_supply_chain_and_mcp_vulnerabilities_executive_summary",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog_drafts/the_grok_files/day-08-supply-chain-and-mcp-vulnerabilities.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_08_supply_chain_and_mcp_vulnerabilities_the_grok_files_day_8_ai_supply_chain_mcp_protocol_vulnerabilities",
+      "target": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_08_supply_chain_and_mcp_vulnerabilities_1_tactical_failure_analysis_mcp_integration_vulnerabilities",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog_drafts/the_grok_files/day-08-supply-chain-and-mcp-vulnerabilities.md",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_08_supply_chain_and_mcp_vulnerabilities_1_tactical_failure_analysis_mcp_integration_vulnerabilities",
+      "target": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_08_supply_chain_and_mcp_vulnerabilities_risk_vectors",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog_drafts/the_grok_files/day-08-supply-chain-and-mcp-vulnerabilities.md",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_08_supply_chain_and_mcp_vulnerabilities_the_grok_files_day_8_ai_supply_chain_mcp_protocol_vulnerabilities",
+      "target": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_08_supply_chain_and_mcp_vulnerabilities_2_supply_chain_risks_in_open_source_ai_packages",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog_drafts/the_grok_files/day-08-supply-chain-and-mcp-vulnerabilities.md",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_08_supply_chain_and_mcp_vulnerabilities_the_grok_files_day_8_ai_supply_chain_mcp_protocol_vulnerabilities",
+      "target": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_08_supply_chain_and_mcp_vulnerabilities_3_the_alpar_ai_solution_zero_trust_mcp_gateway_sandbox_isolation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog_drafts/the_grok_files/day-08-supply-chain-and-mcp-vulnerabilities.md",
+      "source_location": "L39",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

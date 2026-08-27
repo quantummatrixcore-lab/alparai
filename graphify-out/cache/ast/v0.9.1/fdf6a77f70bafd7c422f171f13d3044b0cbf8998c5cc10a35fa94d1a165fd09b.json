@@ -1,0 +1,79 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_methodology_audits_roadmap_seed_v10_md",
+      "label": "roadmap-seed-v10.md",
+      "file_type": "document",
+      "source_file": "docs/METHODOLOGY_AUDITS/roadmap-seed-v10.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_methodology_audits_roadmap_seed_v10_alpar_ai_strategic_roadmap_seed_audit_report_item_89",
+      "label": "ALPAR AI \u2014 Strategic Roadmap Seed Audit Report (Item 89)",
+      "file_type": "document",
+      "source_file": "docs/METHODOLOGY_AUDITS/roadmap-seed-v10.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_methodology_audits_roadmap_seed_v10_1_migration_file_creation",
+      "label": "1. Migration File Creation",
+      "file_type": "document",
+      "source_file": "docs/METHODOLOGY_AUDITS/roadmap-seed-v10.md",
+      "source_location": "L9"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_methodology_audits_roadmap_seed_v10_2_remote_database_execution_row_verification",
+      "label": "2. Remote Database Execution & Row Verification",
+      "file_type": "document",
+      "source_file": "docs/METHODOLOGY_AUDITS/roadmap-seed-v10.md",
+      "source_location": "L18"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_methodology_audits_roadmap_seed_v10_conclusion",
+      "label": "Conclusion",
+      "file_type": "document",
+      "source_file": "docs/METHODOLOGY_AUDITS/roadmap-seed-v10.md",
+      "source_location": "L51"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_methodology_audits_roadmap_seed_v10_md",
+      "target": "d_01_saas_products_alparai_docs_methodology_audits_roadmap_seed_v10_alpar_ai_strategic_roadmap_seed_audit_report_item_89",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/METHODOLOGY_AUDITS/roadmap-seed-v10.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_methodology_audits_roadmap_seed_v10_alpar_ai_strategic_roadmap_seed_audit_report_item_89",
+      "target": "d_01_saas_products_alparai_docs_methodology_audits_roadmap_seed_v10_1_migration_file_creation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/METHODOLOGY_AUDITS/roadmap-seed-v10.md",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_methodology_audits_roadmap_seed_v10_alpar_ai_strategic_roadmap_seed_audit_report_item_89",
+      "target": "d_01_saas_products_alparai_docs_methodology_audits_roadmap_seed_v10_2_remote_database_execution_row_verification",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/METHODOLOGY_AUDITS/roadmap-seed-v10.md",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_methodology_audits_roadmap_seed_v10_alpar_ai_strategic_roadmap_seed_audit_report_item_89",
+      "target": "d_01_saas_products_alparai_docs_methodology_audits_roadmap_seed_v10_conclusion",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/METHODOLOGY_AUDITS/roadmap-seed-v10.md",
+      "source_location": "L51",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

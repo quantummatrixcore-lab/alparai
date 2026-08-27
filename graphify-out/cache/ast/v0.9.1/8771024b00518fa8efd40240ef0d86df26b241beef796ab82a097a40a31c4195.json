@@ -1,0 +1,91 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_agents_scripts_apply_moderation_py",
+      "label": "apply_moderation.py",
+      "file_type": "code",
+      "source_file": ".agents/scripts/apply_moderation.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_scripts_apply_moderation_setv",
+      "label": "setv()",
+      "file_type": "code",
+      "source_file": ".agents/scripts/apply_moderation.py",
+      "source_location": "L9"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_scripts_apply_moderation_flatten",
+      "label": "flatten()",
+      "file_type": "code",
+      "source_file": ".agents/scripts/apply_moderation.py",
+      "source_location": "L123"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_agents_scripts_apply_moderation_py",
+      "target": "json",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/scripts/apply_moderation.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_scripts_apply_moderation_py",
+      "target": "pathlib",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/scripts/apply_moderation.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_scripts_apply_moderation_py",
+      "target": "d_01_saas_products_alparai_agents_scripts_apply_moderation_setv",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/scripts/apply_moderation.py",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_scripts_apply_moderation_py",
+      "target": "d_01_saas_products_alparai_agents_scripts_apply_moderation_flatten",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/scripts/apply_moderation.py",
+      "source_location": "L123",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "d_01_saas_products_alparai_agents_scripts_apply_moderation_setv",
+      "callee": "split",
+      "is_member_call": true,
+      "source_file": "D:\\01_SaaS_Products\\Alparai\\.agents\\scripts\\apply_moderation.py",
+      "source_location": "L10",
+      "receiver": "k"
+    },
+    {
+      "caller_nid": "d_01_saas_products_alparai_agents_scripts_apply_moderation_flatten",
+      "callee": "items",
+      "is_member_call": true,
+      "source_file": "D:\\01_SaaS_Products\\Alparai\\.agents\\scripts\\apply_moderation.py",
+      "source_location": "L125",
+      "receiver": "obj"
+    },
+    {
+      "caller_nid": "d_01_saas_products_alparai_agents_scripts_apply_moderation_flatten",
+      "callee": "update",
+      "is_member_call": true,
+      "source_file": "D:\\01_SaaS_Products\\Alparai\\.agents\\scripts\\apply_moderation.py",
+      "source_location": "L128",
+      "receiver": "out"
+    }
+  ]
+}

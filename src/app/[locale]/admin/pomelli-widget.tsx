@@ -1,8 +1,10 @@
 export default function PomelliWidget() {
   return (
-    <div className="p-4 border rounded shadow bg-white dark:bg-gray-800">
-      <h2 className="text-xl font-bold mb-2">Pomelli Widget (Aktif)</h2>
-      <p className="text-gray-600 dark:text-gray-300">Pomelli (Google Labs) Odaklanma Arayüzü Başarıyla Entegre Edildi.</p>
+    <div className="dark:bg-bg-secondary rounded border bg-white p-4 shadow">
+      <h2 className="mb-2 text-xl font-bold">Pomelli Widget (Aktif)</h2>
+      <p className="text-fg-secondary dark:text-fg-primary">
+        Pomelli (Google Labs) Odaklanma Arayüzü Başarıyla Entegre Edildi.
+      </p>
     </div>
   );
 }

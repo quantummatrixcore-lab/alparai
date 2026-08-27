@@ -1,0 +1,175 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_md",
+      "label": "031-otopilot-swarm-protocol.md",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/031-otopilot-swarm-protocol.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_proposal_031_swarm_autopilot_trigger_protocol_otopilot",
+      "label": "Proposal 031: Swarm Autopilot Trigger Protocol (Otopilot)",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/031-otopilot-swarm-protocol.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_1_context_motivation",
+      "label": "1. Context & Motivation",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/031-otopilot-swarm-protocol.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_2_core_structure_the_autopilot_process_360_analysis",
+      "label": "2. Core Structure: The \"Autopilot\" Process (360\u00b0 Analysis)",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/031-otopilot-swarm-protocol.md",
+      "source_location": "L11"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_step_1_task_fracture",
+      "label": "Step 1: Task Fracture",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/031-otopilot-swarm-protocol.md",
+      "source_location": "L15"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_step_2_model_tiering_delegation",
+      "label": "Step 2: Model Tiering & Delegation",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/031-otopilot-swarm-protocol.md",
+      "source_location": "L21"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_step_3_max_swarm_deployment_parallel_execution",
+      "label": "Step 3: Max Swarm Deployment (Parallel Execution)",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/031-otopilot-swarm-protocol.md",
+      "source_location": "L29"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_step_4_strict_ram_preservation_auto_kill",
+      "label": "Step 4: Strict RAM Preservation (Auto-Kill)",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/031-otopilot-swarm-protocol.md",
+      "source_location": "L36"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_3_enforcement_rule_alignment",
+      "label": "3. Enforcement (Rule Alignment)",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/031-otopilot-swarm-protocol.md",
+      "source_location": "L41"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_4_example_invocation",
+      "label": "4. Example Invocation",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/031-otopilot-swarm-protocol.md",
+      "source_location": "L49"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_5_conclusion",
+      "label": "5. Conclusion",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/031-otopilot-swarm-protocol.md",
+      "source_location": "L70"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_md",
+      "target": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_proposal_031_swarm_autopilot_trigger_protocol_otopilot",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/031-otopilot-swarm-protocol.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_proposal_031_swarm_autopilot_trigger_protocol_otopilot",
+      "target": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_1_context_motivation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/031-otopilot-swarm-protocol.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_proposal_031_swarm_autopilot_trigger_protocol_otopilot",
+      "target": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_2_core_structure_the_autopilot_process_360_analysis",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/031-otopilot-swarm-protocol.md",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_2_core_structure_the_autopilot_process_360_analysis",
+      "target": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_step_1_task_fracture",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/031-otopilot-swarm-protocol.md",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_2_core_structure_the_autopilot_process_360_analysis",
+      "target": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_step_2_model_tiering_delegation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/031-otopilot-swarm-protocol.md",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_2_core_structure_the_autopilot_process_360_analysis",
+      "target": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_step_3_max_swarm_deployment_parallel_execution",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/031-otopilot-swarm-protocol.md",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_2_core_structure_the_autopilot_process_360_analysis",
+      "target": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_step_4_strict_ram_preservation_auto_kill",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/031-otopilot-swarm-protocol.md",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_proposal_031_swarm_autopilot_trigger_protocol_otopilot",
+      "target": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_3_enforcement_rule_alignment",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/031-otopilot-swarm-protocol.md",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_proposal_031_swarm_autopilot_trigger_protocol_otopilot",
+      "target": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_4_example_invocation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/031-otopilot-swarm-protocol.md",
+      "source_location": "L49",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_proposal_031_swarm_autopilot_trigger_protocol_otopilot",
+      "target": "d_01_saas_products_alparai_docs_proposals_031_otopilot_swarm_protocol_5_conclusion",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/031-otopilot-swarm-protocol.md",
+      "source_location": "L70",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

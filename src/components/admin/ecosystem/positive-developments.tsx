@@ -9,8 +9,8 @@ type EcosystemNews = Database["public"]["Tables"]["ecosystem_news"]["Row"];
 export function PositiveDevelopments({ items }: { items: EcosystemNews[] }) {
   const t = useTranslations("admin");
   return (
-    <div className="bg-bg-tertiary/80 overflow-hidden rounded-2xl border border-white/10 shadow-2xl backdrop-blur-xl">
-      <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
+    <div className="bg-bg-tertiary/80 border-border-subtle overflow-hidden rounded-2xl border shadow-2xl backdrop-blur-xl">
+      <div className="border-border-subtle flex items-center justify-between border-b px-6 py-4">
         <div className="flex items-center space-x-3">
           <div className="border-success-500/30 bg-success-500/10 flex h-8 w-8 items-center justify-center rounded-xl border">
             <Sparkles className="text-success-400 h-4 w-4" />

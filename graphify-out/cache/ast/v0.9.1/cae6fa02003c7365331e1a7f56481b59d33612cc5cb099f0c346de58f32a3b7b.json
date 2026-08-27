@@ -1,0 +1,31 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_bh_md",
+      "label": "BH.md",
+      "file_type": "document",
+      "source_file": "docs/plan/items/BH.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_bh_bh",
+      "label": "BH",
+      "file_type": "document",
+      "source_file": "docs/plan/items/BH.md",
+      "source_location": "L1"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_bh_md",
+      "target": "d_01_saas_products_alparai_docs_plan_items_bh_bh",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/BH.md",
+      "source_location": "L1",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

@@ -1,0 +1,111 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_applications_001_assets_demo_script_md",
+      "label": "demo-script.md",
+      "file_type": "document",
+      "source_file": "docs/APPLICATIONS/001-assets/demo-script.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_applications_001_assets_demo_script_alpar_ai_5_minute_live_demo_script_jury_pitch",
+      "label": "ALPAR AI \u2014 5-Minute Live Demo Script (Jury Pitch)",
+      "file_type": "document",
+      "source_file": "docs/APPLICATIONS/001-assets/demo-script.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_applications_001_assets_demo_script_step_1_public_ai_incident_registry_60_seconds",
+      "label": "Step 1: Public AI Incident Registry (60 Seconds)",
+      "file_type": "document",
+      "source_file": "docs/APPLICATIONS/001-assets/demo-script.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_applications_001_assets_demo_script_step_2_k_benchmark_model_ratings_90_seconds",
+      "label": "Step 2: K-BENCHMARK Model Ratings (90 Seconds)",
+      "file_type": "document",
+      "source_file": "docs/APPLICATIONS/001-assets/demo-script.md",
+      "source_location": "L15"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_applications_001_assets_demo_script_step_3_enterprise_b2b_risk_api_60_seconds",
+      "label": "Step 3: Enterprise B2B Risk API (60 Seconds)",
+      "file_type": "document",
+      "source_file": "docs/APPLICATIONS/001-assets/demo-script.md",
+      "source_location": "L23"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_applications_001_assets_demo_script_step_4_real_time_browser_extension_60_seconds",
+      "label": "Step 4: Real-time Browser Extension (60 Seconds)",
+      "file_type": "document",
+      "source_file": "docs/APPLICATIONS/001-assets/demo-script.md",
+      "source_location": "L31"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_applications_001_assets_demo_script_step_5_t\u00fcrkiye_i\u0307\u015f_bankas\u0131_group_synergy_closing_30_seconds",
+      "label": "Step 5: T\u00fcrkiye \u0130\u015f Bankas\u0131 Group Synergy Closing (30 Seconds)",
+      "file_type": "document",
+      "source_file": "docs/APPLICATIONS/001-assets/demo-script.md",
+      "source_location": "L38"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_applications_001_assets_demo_script_md",
+      "target": "d_01_saas_products_alparai_docs_applications_001_assets_demo_script_alpar_ai_5_minute_live_demo_script_jury_pitch",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/APPLICATIONS/001-assets/demo-script.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_applications_001_assets_demo_script_alpar_ai_5_minute_live_demo_script_jury_pitch",
+      "target": "d_01_saas_products_alparai_docs_applications_001_assets_demo_script_step_1_public_ai_incident_registry_60_seconds",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/APPLICATIONS/001-assets/demo-script.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_applications_001_assets_demo_script_alpar_ai_5_minute_live_demo_script_jury_pitch",
+      "target": "d_01_saas_products_alparai_docs_applications_001_assets_demo_script_step_2_k_benchmark_model_ratings_90_seconds",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/APPLICATIONS/001-assets/demo-script.md",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_applications_001_assets_demo_script_alpar_ai_5_minute_live_demo_script_jury_pitch",
+      "target": "d_01_saas_products_alparai_docs_applications_001_assets_demo_script_step_3_enterprise_b2b_risk_api_60_seconds",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/APPLICATIONS/001-assets/demo-script.md",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_applications_001_assets_demo_script_alpar_ai_5_minute_live_demo_script_jury_pitch",
+      "target": "d_01_saas_products_alparai_docs_applications_001_assets_demo_script_step_4_real_time_browser_extension_60_seconds",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/APPLICATIONS/001-assets/demo-script.md",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_applications_001_assets_demo_script_alpar_ai_5_minute_live_demo_script_jury_pitch",
+      "target": "d_01_saas_products_alparai_docs_applications_001_assets_demo_script_step_5_t\u00fcrkiye_i\u0307\u015f_bankas\u0131_group_synergy_closing_30_seconds",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/APPLICATIONS/001-assets/demo-script.md",
+      "source_location": "L38",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

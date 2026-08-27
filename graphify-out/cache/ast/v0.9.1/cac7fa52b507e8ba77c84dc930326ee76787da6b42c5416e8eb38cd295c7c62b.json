@@ -1,0 +1,175 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_md",
+      "label": "02-grok-trust-problem.md",
+      "file_type": "document",
+      "source_file": "docs/content/grok-files/02-grok-trust-problem.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_the_grok_files_1_the_trust_crisis_in_black_box_ai",
+      "label": "The Grok Files #1: The Trust Crisis in Black-Box AI",
+      "file_type": "document",
+      "source_file": "docs/content/grok-files/02-grok-trust-problem.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_introduction_the_promise_and_peril_of_unchecked_intelligence",
+      "label": "Introduction: The Promise and Peril of Unchecked Intelligence",
+      "file_type": "document",
+      "source_file": "docs/content/grok-files/02-grok-trust-problem.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_deconstructing_the_grok_public_incidents_vulnerability_dossier_198",
+      "label": "Deconstructing the Grok Public Incidents (Vulnerability Dossier #198)",
+      "file_type": "document",
+      "source_file": "docs/content/grok-files/02-grok-trust-problem.md",
+      "source_location": "L20"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_1_hallucination_cascades_and_misinformation_spread",
+      "label": "1. Hallucination Cascades and Misinformation Spread",
+      "file_type": "document",
+      "source_file": "docs/content/grok-files/02-grok-trust-problem.md",
+      "source_location": "L24"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_2_guardrail_bypass_and_safety_alignment_failures",
+      "label": "2. Guardrail Bypass and Safety Alignment Failures",
+      "file_type": "document",
+      "source_file": "docs/content/grok-files/02-grok-trust-problem.md",
+      "source_location": "L28"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_3_data_ingestion_privacy_blindspots",
+      "label": "3. Data Ingestion & Privacy Blindspots",
+      "file_type": "document",
+      "source_file": "docs/content/grok-files/02-grok-trust-problem.md",
+      "source_location": "L32"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_the_grok_incidents_through_the_eu_ai_act_lens",
+      "label": "The Grok Incidents Through the EU AI Act Lens",
+      "file_type": "document",
+      "source_file": "docs/content/grok-files/02-grok-trust-problem.md",
+      "source_location": "L38"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_the_conflict_of_interest_why_model_providers_cannot_self_audit",
+      "label": "The Conflict of Interest: Why Model Providers Cannot Self-Audit",
+      "file_type": "document",
+      "source_file": "docs/content/grok-files/02-grok-trust-problem.md",
+      "source_location": "L51"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_the_alpar_ai_solution_independent_trust_infrastructure",
+      "label": "The ALPAR AI Solution: Independent Trust Infrastructure",
+      "file_type": "document",
+      "source_file": "docs/content/grok-files/02-grok-trust-problem.md",
+      "source_location": "L65"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_conclusion",
+      "label": "Conclusion",
+      "file_type": "document",
+      "source_file": "docs/content/grok-files/02-grok-trust-problem.md",
+      "source_location": "L77"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_md",
+      "target": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_the_grok_files_1_the_trust_crisis_in_black_box_ai",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/content/grok-files/02-grok-trust-problem.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_the_grok_files_1_the_trust_crisis_in_black_box_ai",
+      "target": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_introduction_the_promise_and_peril_of_unchecked_intelligence",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/content/grok-files/02-grok-trust-problem.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_the_grok_files_1_the_trust_crisis_in_black_box_ai",
+      "target": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_deconstructing_the_grok_public_incidents_vulnerability_dossier_198",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/content/grok-files/02-grok-trust-problem.md",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_deconstructing_the_grok_public_incidents_vulnerability_dossier_198",
+      "target": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_1_hallucination_cascades_and_misinformation_spread",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/content/grok-files/02-grok-trust-problem.md",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_deconstructing_the_grok_public_incidents_vulnerability_dossier_198",
+      "target": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_2_guardrail_bypass_and_safety_alignment_failures",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/content/grok-files/02-grok-trust-problem.md",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_deconstructing_the_grok_public_incidents_vulnerability_dossier_198",
+      "target": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_3_data_ingestion_privacy_blindspots",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/content/grok-files/02-grok-trust-problem.md",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_the_grok_files_1_the_trust_crisis_in_black_box_ai",
+      "target": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_the_grok_incidents_through_the_eu_ai_act_lens",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/content/grok-files/02-grok-trust-problem.md",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_the_grok_files_1_the_trust_crisis_in_black_box_ai",
+      "target": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_the_conflict_of_interest_why_model_providers_cannot_self_audit",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/content/grok-files/02-grok-trust-problem.md",
+      "source_location": "L51",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_the_grok_files_1_the_trust_crisis_in_black_box_ai",
+      "target": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_the_alpar_ai_solution_independent_trust_infrastructure",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/content/grok-files/02-grok-trust-problem.md",
+      "source_location": "L65",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_the_grok_files_1_the_trust_crisis_in_black_box_ai",
+      "target": "d_01_saas_products_alparai_docs_content_grok_files_02_grok_trust_problem_conclusion",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/content/grok-files/02-grok-trust-problem.md",
+      "source_location": "L77",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

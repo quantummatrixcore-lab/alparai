@@ -69,8 +69,8 @@ export function StaticKeysList() {
   ];
 
   return (
-    <Card className="overflow-hidden border-white/10 bg-neutral-900/60 backdrop-blur-xl">
-      <CardHeader className="border-b border-white/10 bg-neutral-950/40">
+    <Card className="border-border-subtle bg-bg-secondary overflow-hidden backdrop-blur-xl">
+      <CardHeader className="border-border-subtle bg-bg-secondary border-b">
         <CardTitle className="flex items-center justify-between text-base">
           <span className="flex items-center gap-2 text-white">
             <Server className="text-brand-400 h-5 w-5" /> {t("api_keys_prov_inv")}
@@ -84,7 +84,7 @@ export function StaticKeysList() {
       <CardContent className="p-0">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
-            <thead className="text-fg-muted border-b border-white/5 bg-white/[0.02] text-xs font-semibold tracking-wider uppercase">
+            <thead className="text-fg-muted border-border-subtle/50 border-b bg-white/[0.02] text-xs font-semibold tracking-wider uppercase">
               <tr>
                 <th className="p-4">{t("api_keys_th_prov")}</th>
                 <th className="p-4">{t("api_keys_th_env")}</th>
@@ -98,7 +98,7 @@ export function StaticKeysList() {
                 <tr key={prov.envKey} className="group transition-colors hover:bg-white/5">
                   <td className="p-4">
                     <div className="flex items-center gap-3 font-sans font-bold text-white">
-                      <div className="group-hover:border-brand-500/50 group-hover:text-brand-400 flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-neutral-800 transition-colors">
+                      <div className="group-hover:border-brand-500/50 group-hover:text-brand-400 border-border-subtle bg-bg-secondary flex h-8 w-8 items-center justify-center rounded-lg border transition-colors">
                         <Key className="h-4 w-4" />
                       </div>
                       {prov.name}
@@ -108,7 +108,7 @@ export function StaticKeysList() {
                     </div>
                   </td>
                   <td className="text-fg-secondary p-4 text-[11px]">
-                    <div className="text-fg-muted flex w-fit items-center gap-2 rounded border border-white/10 bg-neutral-950 px-2 py-1">
+                    <div className="text-fg-muted border-border-subtle bg-bg-secondary flex w-fit items-center gap-2 rounded border px-2 py-1">
                       <EyeOff className="text-fg-muted h-3 w-3" />
                       {prov.envKey}
                     </div>

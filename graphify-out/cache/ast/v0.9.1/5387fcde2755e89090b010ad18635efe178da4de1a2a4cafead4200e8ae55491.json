@@ -1,0 +1,319 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_md",
+      "label": "the-grok-files-day-9.md",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_the_grok_files_g\u00fcn_9_otonom_ajan_riskleri_ve_kontrols\u00fcz_eylem_d\u00f6ng\u00fcleri",
+      "label": "The Grok Files: G\u00fcn 9 - Otonom Ajan Riskleri ve Kontrols\u00fcz Eylem D\u00f6ng\u00fcleri",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_giri\u015f_statik_sohbet_modellerinden_eylem_odakl\u0131_otonom_ajanlara_ge\u00e7i\u015f",
+      "label": "\ud83d\udccc Giri\u015f: Statik Sohbet Modellerinden Eylem Odakl\u0131 Otonom Ajanlara Ge\u00e7i\u015f",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_1_otonom_ajan_tehdit_modeli_olas\u0131l\u0131ksal_mant\u0131k_ile_deterministik_sistemlerin_\u00e7at\u0131\u015fmas\u0131",
+      "label": "\u26a1 1. Otonom Ajan Tehdit Modeli: Olas\u0131l\u0131ksal Mant\u0131k ile Deterministik Sistemlerin \u00c7at\u0131\u015fmas\u0131",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L20"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_a_kademeli_hata_yay\u0131l\u0131m\u0131_cascading_failures",
+      "label": "a) Kademeli Hata Yay\u0131l\u0131m\u0131 (Cascading Failures)",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L34"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_b_ba\u011flam_kaymas\u0131_context_drift_ve_hall\u00fcsinasyon_g\u00fcd\u00fcml\u00fc_eylemler",
+      "label": "b) Ba\u011flam Kaymas\u0131 (Context Drift) ve Hall\u00fcsinasyon G\u00fcd\u00fcml\u00fc Eylemler",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L38"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_c_niyet_eylem_uyu\u015fmazl\u0131\u011f\u0131_intent_action_mismatch",
+      "label": "c) Niyet-Eylem Uyu\u015fmazl\u0131\u011f\u0131 (Intent-Action Mismatch)",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L42"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_2_kontrols\u00fcz_eylem_d\u00f6ng\u00fcleri_ve_y\u0131k\u0131c\u0131_operasyon_vakalar\u0131",
+      "label": "\ud83d\udca3 2. Kontrols\u00fcz Eylem D\u00f6ng\u00fcleri ve Y\u0131k\u0131c\u0131 Operasyon Vakalar\u0131",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L48"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_1_sonsuz_\u00f6l\u00fcm_d\u00f6ng\u00fcs\u00fc_infinite_loop_of_death",
+      "label": "1. Sonsuz \u00d6l\u00fcm D\u00f6ng\u00fcs\u00fc (Infinite Loop of Death)",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L52"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_2_y\u0131k\u0131c\u0131_dosya_ve_sistem_operasyonlar\u0131_destructive_execution",
+      "label": "2. Y\u0131k\u0131c\u0131 Dosya ve Sistem Operasyonlar\u0131 (Destructive Execution)",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L62"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_3_kontrols\u00fcz_alt_ajan_spamlama_subagent_spawning_explosion",
+      "label": "3. Kontrols\u00fcz Alt-Ajan Spamlama (Subagent Spawning Explosion)",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L69"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_3_i\u0307nsan_m\u00fcdahalesi_human_in_the_loop_olmadan_kritik_yetki_kullan\u0131m\u0131",
+      "label": "\ud83d\udeab 3. \u0130nsan M\u00fcdahalesi (Human-in-the-Loop) Olmadan Kritik Yetki Kullan\u0131m\u0131",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L78"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_risk_vekt\u00f6rleri",
+      "label": "Risk Vekt\u00f6rleri:",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L89"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_4_ajanlar_aras\u0131_yetkilendirme_ve_kimlik_do\u011frulama_standartlar\u0131n\u0131n_eksikli\u011fi",
+      "label": "\ud83d\udd10 4. Ajanlar Aras\u0131 Yetkilendirme ve Kimlik Do\u011frulama Standartlar\u0131n\u0131n Eksikli\u011fi",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L97"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_standart_eksikli\u011finin_getirdi\u011fi_zafiyetler",
+      "label": "Standart Eksikli\u011finin Getirdi\u011fi Zafiyetler:",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L101"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_5_alpar_ai_\u00e7\u00f6z\u00fcm_mimarisi_hesap_verebilir_ve_s\u0131n\u0131rland\u0131r\u0131lm\u0131\u015f_ajan_mimarisi",
+      "label": "\ud83d\udee1\ufe0f 5. ALPAR AI \u00c7\u00f6z\u00fcm Mimarisi: Hesap Verebilir ve S\u0131n\u0131rland\u0131r\u0131lm\u0131\u015f Ajan Mimarisi",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L109"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_1_deterministik_g\u00fcvenlik_kap\u0131lar\u0131_sanity_gates_execution_sandboxes",
+      "label": "1. Deterministik G\u00fcvenlik Kap\u0131lar\u0131 (Sanity Gates & Execution Sandboxes)",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L113"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_2_zorunlu_human_in_the_loop_hitl_kesme_\u015falterleri_kill_switch",
+      "label": "2. Zorunlu Human-in-the-Loop (HITL) Kesme \u015ealterleri (Kill-Switch)",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L120"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_3_kriptografik_ajan_kimli\u011fi_ve_denetim_i\u0307zleri_proof_of_execution",
+      "label": "3. Kriptografik Ajan Kimli\u011fi ve Denetim \u0130zleri (Proof of Execution)",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L127"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_\u00f6zet_ve_sonu\u00e7",
+      "label": "\ud83d\udcca \u00d6zet ve Sonu\u00e7",
+      "file_type": "document",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L136"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_md",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_the_grok_files_g\u00fcn_9_otonom_ajan_riskleri_ve_kontrols\u00fcz_eylem_d\u00f6ng\u00fcleri",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_the_grok_files_g\u00fcn_9_otonom_ajan_riskleri_ve_kontrols\u00fcz_eylem_d\u00f6ng\u00fcleri",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_giri\u015f_statik_sohbet_modellerinden_eylem_odakl\u0131_otonom_ajanlara_ge\u00e7i\u015f",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_the_grok_files_g\u00fcn_9_otonom_ajan_riskleri_ve_kontrols\u00fcz_eylem_d\u00f6ng\u00fcleri",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_1_otonom_ajan_tehdit_modeli_olas\u0131l\u0131ksal_mant\u0131k_ile_deterministik_sistemlerin_\u00e7at\u0131\u015fmas\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_1_otonom_ajan_tehdit_modeli_olas\u0131l\u0131ksal_mant\u0131k_ile_deterministik_sistemlerin_\u00e7at\u0131\u015fmas\u0131",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_a_kademeli_hata_yay\u0131l\u0131m\u0131_cascading_failures",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_1_otonom_ajan_tehdit_modeli_olas\u0131l\u0131ksal_mant\u0131k_ile_deterministik_sistemlerin_\u00e7at\u0131\u015fmas\u0131",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_b_ba\u011flam_kaymas\u0131_context_drift_ve_hall\u00fcsinasyon_g\u00fcd\u00fcml\u00fc_eylemler",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_1_otonom_ajan_tehdit_modeli_olas\u0131l\u0131ksal_mant\u0131k_ile_deterministik_sistemlerin_\u00e7at\u0131\u015fmas\u0131",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_c_niyet_eylem_uyu\u015fmazl\u0131\u011f\u0131_intent_action_mismatch",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_the_grok_files_g\u00fcn_9_otonom_ajan_riskleri_ve_kontrols\u00fcz_eylem_d\u00f6ng\u00fcleri",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_2_kontrols\u00fcz_eylem_d\u00f6ng\u00fcleri_ve_y\u0131k\u0131c\u0131_operasyon_vakalar\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L48",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_2_kontrols\u00fcz_eylem_d\u00f6ng\u00fcleri_ve_y\u0131k\u0131c\u0131_operasyon_vakalar\u0131",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_1_sonsuz_\u00f6l\u00fcm_d\u00f6ng\u00fcs\u00fc_infinite_loop_of_death",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L52",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_2_kontrols\u00fcz_eylem_d\u00f6ng\u00fcleri_ve_y\u0131k\u0131c\u0131_operasyon_vakalar\u0131",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_2_y\u0131k\u0131c\u0131_dosya_ve_sistem_operasyonlar\u0131_destructive_execution",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L62",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_2_kontrols\u00fcz_eylem_d\u00f6ng\u00fcleri_ve_y\u0131k\u0131c\u0131_operasyon_vakalar\u0131",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_3_kontrols\u00fcz_alt_ajan_spamlama_subagent_spawning_explosion",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L69",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_the_grok_files_g\u00fcn_9_otonom_ajan_riskleri_ve_kontrols\u00fcz_eylem_d\u00f6ng\u00fcleri",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_3_i\u0307nsan_m\u00fcdahalesi_human_in_the_loop_olmadan_kritik_yetki_kullan\u0131m\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L78",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_3_i\u0307nsan_m\u00fcdahalesi_human_in_the_loop_olmadan_kritik_yetki_kullan\u0131m\u0131",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_risk_vekt\u00f6rleri",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L89",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_the_grok_files_g\u00fcn_9_otonom_ajan_riskleri_ve_kontrols\u00fcz_eylem_d\u00f6ng\u00fcleri",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_4_ajanlar_aras\u0131_yetkilendirme_ve_kimlik_do\u011frulama_standartlar\u0131n\u0131n_eksikli\u011fi",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L97",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_4_ajanlar_aras\u0131_yetkilendirme_ve_kimlik_do\u011frulama_standartlar\u0131n\u0131n_eksikli\u011fi",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_standart_eksikli\u011finin_getirdi\u011fi_zafiyetler",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L101",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_the_grok_files_g\u00fcn_9_otonom_ajan_riskleri_ve_kontrols\u00fcz_eylem_d\u00f6ng\u00fcleri",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_5_alpar_ai_\u00e7\u00f6z\u00fcm_mimarisi_hesap_verebilir_ve_s\u0131n\u0131rland\u0131r\u0131lm\u0131\u015f_ajan_mimarisi",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L109",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_5_alpar_ai_\u00e7\u00f6z\u00fcm_mimarisi_hesap_verebilir_ve_s\u0131n\u0131rland\u0131r\u0131lm\u0131\u015f_ajan_mimarisi",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_1_deterministik_g\u00fcvenlik_kap\u0131lar\u0131_sanity_gates_execution_sandboxes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L113",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_5_alpar_ai_\u00e7\u00f6z\u00fcm_mimarisi_hesap_verebilir_ve_s\u0131n\u0131rland\u0131r\u0131lm\u0131\u015f_ajan_mimarisi",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_2_zorunlu_human_in_the_loop_hitl_kesme_\u015falterleri_kill_switch",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L120",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_5_alpar_ai_\u00e7\u00f6z\u00fcm_mimarisi_hesap_verebilir_ve_s\u0131n\u0131rland\u0131r\u0131lm\u0131\u015f_ajan_mimarisi",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_3_kriptografik_ajan_kimli\u011fi_ve_denetim_i\u0307zleri_proof_of_execution",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L127",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_the_grok_files_g\u00fcn_9_otonom_ajan_riskleri_ve_kontrols\u00fcz_eylem_d\u00f6ng\u00fcleri",
+      "target": "d_01_saas_products_alparai_docs_blog_the_grok_files_day_9_\u00f6zet_ve_sonu\u00e7",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog/the-grok-files-day-9.md",
+      "source_location": "L136",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

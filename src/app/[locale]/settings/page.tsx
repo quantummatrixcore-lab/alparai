@@ -21,7 +21,10 @@ export default async function SettingsPage({ params }: { params: Promise<{ local
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "settings" });
   const user = await getCurrentUser();
-  if (!user) { redirect(`/${locale}/auth/signin?next=/${locale}/settings`); return null; }
+  if (!user) {
+    redirect(`/${locale}/auth/signin?next=/${locale}/settings`);
+    return null;
+  }
 
   const prefs = await getEmailPreferences(user.id);
   const admin = createAdminClient();
@@ -34,7 +37,7 @@ export default async function SettingsPage({ params }: { params: Promise<{ local
   return (
     <Container size="narrow" className="py-10">
       <header className="mb-6">
-        <h1 className="text-fg-primary text-2xl font-bold">{t("title")}</h1>
+        <h1 className="text-fg-primary text-fg-secondaryxl font-bold">{t("title")}</h1>
         <p className="text-fg-muted mt-1 text-sm">{t("subtitle")}</p>
       </header>
       <Card>

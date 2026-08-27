@@ -1,0 +1,195 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_invest_1_md",
+      "label": "INVEST-1.md",
+      "file_type": "document",
+      "source_file": "docs/plan/items/INVEST-1.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_invest_1_invest_1",
+      "label": "INVEST-1",
+      "file_type": "document",
+      "source_file": "docs/plan/items/INVEST-1.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_invest_1_binding_constraint_no_fabricated_percentage",
+      "label": "Binding constraint \u2014 no fabricated percentage",
+      "file_type": "document",
+      "source_file": "docs/plan/items/INVEST-1.md",
+      "source_location": "L8"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_invest_1_reuse_do_not_rebuild",
+      "label": "Reuse, do not rebuild",
+      "file_type": "document",
+      "source_file": "docs/plan/items/INVEST-1.md",
+      "source_location": "L33"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_invest_1_work",
+      "label": "Work",
+      "file_type": "document",
+      "source_file": "docs/plan/items/INVEST-1.md",
+      "source_location": "L51"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_invest_1_acceptance",
+      "label": "Acceptance",
+      "file_type": "document",
+      "source_file": "docs/plan/items/INVEST-1.md",
+      "source_location": "L65"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_invest_1_delivered_version_violates_the_spec_2026_08_18_f554505c",
+      "label": "Delivered version violates the spec (2026-08-18, `f554505c`)",
+      "file_type": "document",
+      "source_file": "docs/plan/items/INVEST-1.md",
+      "source_location": "L72"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_invest_1_required_correction",
+      "label": "Required correction",
+      "file_type": "document",
+      "source_file": "docs/plan/items/INVEST-1.md",
+      "source_location": "L99"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_invest_1_made_worse_not_fixed_2026_08_18_653a93f3",
+      "label": "Made worse, not fixed (2026-08-18, `653a93f3`)",
+      "file_type": "document",
+      "source_file": "docs/plan/items/INVEST-1.md",
+      "source_location": "L111"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_invest_1_substantially_corrected_2026_08_18_ecd601e8_credit_due",
+      "label": "Substantially corrected (2026-08-18, `ecd601e8`) \u2014 credit due",
+      "file_type": "document",
+      "source_file": "docs/plan/items/INVEST-1.md",
+      "source_location": "L121"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_invest_1_md",
+      "target": "d_01_saas_products_alparai_docs_plan_items_invest_1_invest_1",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/INVEST-1.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_invest_1_invest_1",
+      "target": "d_01_saas_products_alparai_docs_plan_items_invest_1_binding_constraint_no_fabricated_percentage",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/INVEST-1.md",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_invest_1_md",
+      "target": "d_01_saas_products_alparai_docs_plan_items_type_3_md",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/INVEST-1.md",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_invest_1_md",
+      "target": "d_01_saas_products_alparai_docs_plan_items_strat_1_md",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/INVEST-1.md",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_invest_1_md",
+      "target": "d_01_saas_products_alparai_docs_plan_items_legal_3_md",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/INVEST-1.md",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_invest_1_invest_1",
+      "target": "d_01_saas_products_alparai_docs_plan_items_invest_1_reuse_do_not_rebuild",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/INVEST-1.md",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_invest_1_invest_1",
+      "target": "d_01_saas_products_alparai_docs_plan_items_invest_1_work",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/INVEST-1.md",
+      "source_location": "L51",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_invest_1_invest_1",
+      "target": "d_01_saas_products_alparai_docs_plan_items_invest_1_acceptance",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/INVEST-1.md",
+      "source_location": "L65",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_invest_1_invest_1",
+      "target": "d_01_saas_products_alparai_docs_plan_items_invest_1_delivered_version_violates_the_spec_2026_08_18_f554505c",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/INVEST-1.md",
+      "source_location": "L72",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_invest_1_invest_1",
+      "target": "d_01_saas_products_alparai_docs_plan_items_invest_1_required_correction",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/INVEST-1.md",
+      "source_location": "L99",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_invest_1_invest_1",
+      "target": "d_01_saas_products_alparai_docs_plan_items_invest_1_made_worse_not_fixed_2026_08_18_653a93f3",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/INVEST-1.md",
+      "source_location": "L111",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_invest_1_md",
+      "target": "d_01_saas_products_alparai_docs_plan_items_const_2_md",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/INVEST-1.md",
+      "source_location": "L116",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_invest_1_invest_1",
+      "target": "d_01_saas_products_alparai_docs_plan_items_invest_1_substantially_corrected_2026_08_18_ecd601e8_credit_due",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/INVEST-1.md",
+      "source_location": "L121",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

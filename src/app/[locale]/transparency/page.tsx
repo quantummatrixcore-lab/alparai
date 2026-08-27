@@ -96,7 +96,7 @@ export default async function TransparencyPage({
               <FileText className="text-brand-400 h-5 w-5" />
             </div>
             <div>
-              <p className="text-fg-primary text-2xl font-bold">{totalIncidents ?? 0}</p>
+              <p className="text-fg-primary text-fg-secondaryxl font-bold">{totalIncidents ?? 0}</p>
               <p className="text-fg-muted text-xs">{tTransparency("totalReports")}</p>
             </div>
           </CardContent>
@@ -107,7 +107,7 @@ export default async function TransparencyPage({
               <CheckCircle2 className="text-success-500 h-5 w-5" />
             </div>
             <div>
-              <p className="text-fg-primary text-2xl font-bold">{publishRate}%</p>
+              <p className="text-fg-primary text-fg-secondaryxl font-bold">{publishRate}%</p>
               <p className="text-fg-muted text-xs">{tTransparency("publishRate")}</p>
             </div>
           </CardContent>
@@ -118,7 +118,7 @@ export default async function TransparencyPage({
               <Clock className="text-warning-500 h-5 w-5" />
             </div>
             <div>
-              <p className="text-fg-primary text-2xl font-bold">{verifiedThisWeek}</p>
+              <p className="text-fg-primary text-fg-secondaryxl font-bold">{verifiedThisWeek}</p>
               <p className="text-fg-muted text-xs">{tTransparency("verifiedThisWeek")}</p>
             </div>
           </CardContent>
@@ -129,7 +129,7 @@ export default async function TransparencyPage({
               <MessageSquare className="text-accent-400 h-5 w-5" />
             </div>
             <div>
-              <p className="text-fg-primary text-2xl font-bold">{responseRate}%</p>
+              <p className="text-fg-primary text-fg-secondaryxl font-bold">{responseRate}%</p>
               <p className="text-fg-muted text-xs">{tTransparency("providerResponseRate")}</p>
             </div>
           </CardContent>

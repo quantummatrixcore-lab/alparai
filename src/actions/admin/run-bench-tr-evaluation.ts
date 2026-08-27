@@ -1,5 +1,6 @@
 "use server";
 
+import { requireAdmin } from "@/lib/auth/session";
 import { createServerClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { logger } from "@/lib/utils/logger";
@@ -46,6 +47,7 @@ const EVAL_MODELS: GatewayModel[] = [
 ];
 
 export async function runBenchTrEvaluationAction(): Promise<BenchTrResult> {
+  await requireAdmin();
   try {
     const supabase = await createServerClient();
     const {

@@ -1,0 +1,79 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_neutrality_md",
+      "label": "NEUTRALITY.md",
+      "file_type": "document",
+      "source_file": "docs/NEUTRALITY.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_neutrality_alpar_ai_editorial_independence_neutrality_charter",
+      "label": "ALPAR AI Editorial Independence & Neutrality Charter",
+      "file_type": "document",
+      "source_file": "docs/NEUTRALITY.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_neutrality_1_core_principle",
+      "label": "1. Core Principle",
+      "file_type": "document",
+      "source_file": "docs/NEUTRALITY.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_neutrality_2_pinned_responses_and_tools_only",
+      "label": "2. Pinned Responses and Tools Only",
+      "file_type": "document",
+      "source_file": "docs/NEUTRALITY.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_neutrality_3_transparency",
+      "label": "3. Transparency",
+      "file_type": "document",
+      "source_file": "docs/NEUTRALITY.md",
+      "source_location": "L24"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_neutrality_md",
+      "target": "d_01_saas_products_alparai_docs_neutrality_alpar_ai_editorial_independence_neutrality_charter",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/NEUTRALITY.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_neutrality_alpar_ai_editorial_independence_neutrality_charter",
+      "target": "d_01_saas_products_alparai_docs_neutrality_1_core_principle",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/NEUTRALITY.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_neutrality_alpar_ai_editorial_independence_neutrality_charter",
+      "target": "d_01_saas_products_alparai_docs_neutrality_2_pinned_responses_and_tools_only",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/NEUTRALITY.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_neutrality_alpar_ai_editorial_independence_neutrality_charter",
+      "target": "d_01_saas_products_alparai_docs_neutrality_3_transparency",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/NEUTRALITY.md",
+      "source_location": "L24",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

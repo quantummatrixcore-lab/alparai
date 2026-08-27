@@ -119,7 +119,7 @@ export function AnalyticsDashboard({ snapshot, locale }: AnalyticsDashboardProps
       {/* Observability Section: Custom SVGs for Charts */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         {/* Success Rate Gauge */}
-        <div className="rounded-xl border border-white/5 bg-white/[0.02] p-6 backdrop-blur-md">
+        <div className="border-border-subtle/50 rounded-xl border bg-white/[0.02] p-6 backdrop-blur-md">
           <h3 className="mb-4 flex items-center gap-2 text-sm font-semibold text-white">
             <PieChart className="text-brand-400 h-4 w-4" />
             {t("success_rate") || "Success Rate Check"}
@@ -146,7 +146,9 @@ export function AnalyticsDashboard({ snapshot, locale }: AnalyticsDashboardProps
                 />
               </svg>
               <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-                <span className="text-2xl font-bold text-white">{successRate.toFixed(0)}%</span>
+                <span className="text-fg-secondaryxl font-bold text-white">
+                  {successRate.toFixed(0)}%
+                </span>
                 <span className="text-fg-muted text-[10px] tracking-wider uppercase">
                   {t("reliability")}
                 </span>
@@ -168,7 +170,7 @@ export function AnalyticsDashboard({ snapshot, locale }: AnalyticsDashboardProps
         </div>
 
         {/* Runs by Status Custom Vertical Bar Chart */}
-        <div className="rounded-xl border border-white/5 bg-white/[0.02] p-6 backdrop-blur-md lg:col-span-2">
+        <div className="border-border-subtle/50 rounded-xl border bg-white/[0.02] p-6 backdrop-blur-md lg:col-span-2">
           <h3 className="mb-4 flex items-center gap-2 text-sm font-semibold text-white">
             <BarChart className="text-brand-400 h-4 w-4" />
             {t("runs_by_status") || "Runs by Status"}
@@ -193,7 +195,7 @@ export function AnalyticsDashboard({ snapshot, locale }: AnalyticsDashboardProps
                       className={`w-4/5 rounded-t ${barColor} shadow-md transition-all duration-700 hover:brightness-110`}
                     />
                     {/* Tooltip */}
-                    <div className="pointer-events-none absolute bottom-full z-10 mb-1 rounded border border-white/10 bg-black px-2 py-1 text-xs whitespace-nowrap text-white opacity-0 shadow-xl transition-opacity duration-200 group-hover:opacity-100">
+                    <div className="border-border-subtle pointer-events-none absolute bottom-full z-10 mb-1 rounded border bg-black px-2 py-1 text-xs whitespace-nowrap text-white opacity-0 shadow-xl transition-opacity duration-200 group-hover:opacity-100">
                       {count} {t("runs")}
                     </div>
                   </div>
@@ -218,13 +220,13 @@ export function AnalyticsDashboard({ snapshot, locale }: AnalyticsDashboardProps
       {/* Queue Health & Circuit Breakers */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         {/* Queue Health */}
-        <div className="rounded-xl border border-white/5 bg-white/[0.02] p-6 backdrop-blur-md">
+        <div className="border-border-subtle/50 rounded-xl border bg-white/[0.02] p-6 backdrop-blur-md">
           <h3 className="mb-4 flex items-center gap-2 text-sm font-semibold text-white">
             <Clock className="text-brand-400 h-4 w-4" />
             {t("queue_status") || "Queue Status"}
           </h3>
           <div className="space-y-4">
-            <div className="flex items-center justify-between rounded-lg border border-white/5 bg-white/[0.02] p-4">
+            <div className="border-border-subtle/50 flex items-center justify-between rounded-lg border bg-white/[0.02] p-4">
               <div>
                 <p className="text-fg-muted text-xs tracking-wider uppercase">{t("queue_state")}</p>
                 <p className="mt-1 text-sm font-semibold text-white">
@@ -237,7 +239,7 @@ export function AnalyticsDashboard({ snapshot, locale }: AnalyticsDashboardProps
                 className={`h-3 w-3 rounded-full ${queue.available ? "bg-success-500 animate-ping" : "bg-danger-500"}`}
               />
             </div>
-            <div className="flex items-center justify-between rounded-lg border border-white/5 bg-white/[0.02] p-4">
+            <div className="border-border-subtle/50 flex items-center justify-between rounded-lg border bg-white/[0.02] p-4">
               <div>
                 <p className="text-fg-muted text-xs tracking-wider uppercase">
                   {t("pending_tasks")}
@@ -252,7 +254,7 @@ export function AnalyticsDashboard({ snapshot, locale }: AnalyticsDashboardProps
         </div>
 
         {/* Breaker Control */}
-        <div className="rounded-xl border border-white/5 bg-white/[0.02] p-6 backdrop-blur-md">
+        <div className="border-border-subtle/50 rounded-xl border bg-white/[0.02] p-6 backdrop-blur-md">
           <h3 className="mb-4 flex items-center gap-2 text-sm font-semibold text-white">
             <Zap className="text-brand-400 h-4 w-4" />
             {t("active_circuit_breakers")}
@@ -287,7 +289,7 @@ export function AnalyticsDashboard({ snapshot, locale }: AnalyticsDashboardProps
       </div>
 
       {/* Recent Runs Table including tokens! */}
-      <div className="rounded-xl border border-white/5 bg-white/[0.02] p-6 backdrop-blur-md">
+      <div className="border-border-subtle/50 rounded-xl border bg-white/[0.02] p-6 backdrop-blur-md">
         <h3 className="mb-4 text-sm font-semibold text-white">
           {t("recent_runs_table") || "Recent Runs"}
         </h3>
@@ -297,7 +299,7 @@ export function AnalyticsDashboard({ snapshot, locale }: AnalyticsDashboardProps
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
               <caption className="sr-only">{t("autopilot_runs_observability_table")}</caption>
-              <thead className="text-fg-muted border-b border-white/5 text-xs tracking-wider uppercase">
+              <thead className="text-fg-muted border-border-subtle/50 border-b text-xs tracking-wider uppercase">
                 <tr>
                   <th className="pb-3 font-medium">{t("run_id") || "Run ID"}</th>
                   <th className="pb-3 font-medium">{t("action") || "Action"}</th>
@@ -369,13 +371,15 @@ interface StatCardProps {
 
 function StatCard({ title, value, icon, description, colorClass = "text-white" }: StatCardProps) {
   return (
-    <div className="rounded-xl border border-white/5 bg-white/[0.02] p-5 backdrop-blur-md transition-all hover:bg-white/[0.03]">
+    <div className="border-border-subtle/50 rounded-xl border bg-white/[0.02] p-5 backdrop-blur-md transition-all hover:bg-white/[0.03]">
       <div className="flex items-center justify-between">
         <span className="text-fg-muted text-xs tracking-wider uppercase">{title}</span>
         {icon}
       </div>
       <div className="mt-2 flex items-baseline gap-2">
-        <span className={`text-2xl font-bold tracking-tight ${colorClass}`}>{value}</span>
+        <span className={`text-fg-secondaryxl font-bold tracking-tight ${colorClass}`}>
+          {value}
+        </span>
       </div>
       <span className="text-fg-muted mt-1 block text-[10px]">{description}</span>
     </div>

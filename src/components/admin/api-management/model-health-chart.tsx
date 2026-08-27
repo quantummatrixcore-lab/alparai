@@ -21,7 +21,7 @@ interface LatencyData {
 
 export function ModelHealthChart({ data }: { data: LatencyData[] }) {
   return (
-    <div className="bg-bg-elevated/80 rounded-xl border border-white/10 p-6">
+    <div className="bg-bg-elevated/80 border-border-subtle rounded-xl border p-6">
       <ResponsiveContainer width="100%" height={300}>
         <LineChart data={data} margin={{ top: 5, right: 30, left: 0, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />

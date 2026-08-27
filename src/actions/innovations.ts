@@ -1,6 +1,7 @@
 "use server";
 
 import { createServerClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { requireAdmin } from "@/lib/auth/session";
 import { revalidatePath } from "next/cache";
 import type { ExternalIncidentQueueItem, StrategyInnovation } from "@/types";
@@ -13,10 +14,12 @@ import { runExternalFetchTask } from "@/lib/services/external-fetcher";
 export async function getExternalQueue(): Promise<ExternalIncidentQueueItem[]> {
   try {
     await requireAdmin();
-    const supabase = await createServerClient();
+    const supabase = createAdminClient();
     const { data, error } = await supabase
       .from("external_incidents_queue")
-      .select("*")
+      .select(
+        "id, title, body, source, external_url, status, fetched_at, source_score, created_at, updated_at",
+      )
       .order("fetched_at", { ascending: false });
 
     if (error) throw new Error(error.message);
@@ -33,7 +36,7 @@ export async function updateExternalQueueStatus(
 ): Promise<{ success: boolean }> {
   try {
     await requireAdmin();
-    const supabase = await createServerClient();
+    const supabase = createAdminClient();
     const { error } = await supabase
       .from("external_incidents_queue")
       .update({ status, updated_at: new Date().toISOString() })
@@ -55,7 +58,7 @@ export async function acceptExternalIncident(
 ): Promise<{ success: boolean; incidentId: string }> {
   try {
     const user = await requireAdmin();
-    const supabase = await createServerClient();
+    const supabase = createAdminClient();
 
     // 1. Fetch from queue
     const { data: queueItem, error: fetchError } = await supabase
@@ -150,7 +153,7 @@ export async function getConnectorStatuses(): Promise<
 > {
   try {
     await requireAdmin();
-    const supabase = await createServerClient();
+    const supabase = createAdminClient();
 
     // Count pending items by source
     const { data: counts } = await supabase
@@ -185,10 +188,10 @@ export async function getConnectorStatuses(): Promise<
 export async function getInnovations(): Promise<StrategyInnovation[]> {
   try {
     await requireAdmin();
-    const supabase = await createServerClient();
+    const supabase = createAdminClient();
     const { data, error } = await supabase
       .from("strategy_innovations")
-      .select("*")
+      .select("id, title, description, priority, status, created_at, updated_at")
       .order("created_at", { ascending: true });
 
     if (error) throw new Error(error.message);
@@ -206,7 +209,7 @@ export async function createInnovation(
 ): Promise<{ success: boolean; id: string }> {
   try {
     await requireAdmin();
-    const supabase = await createServerClient();
+    const supabase = createAdminClient();
 
     const { data, error } = await supabase
       .from("strategy_innovations")
@@ -236,7 +239,7 @@ export async function updateInnovationStatus(
 ): Promise<{ success: boolean }> {
   try {
     await requireAdmin();
-    const supabase = await createServerClient();
+    const supabase = createAdminClient();
 
     const { error } = await supabase
       .from("strategy_innovations")
@@ -259,11 +262,11 @@ export async function autoReviewAllPending(): Promise<{
 }> {
   try {
     await requireAdmin();
-    const supabase = await createServerClient();
+    const supabase = createAdminClient();
 
     const { data: pendingItems, error } = await supabase
       .from("external_incidents_queue")
-      .select("*")
+      .select("id, title, body")
       .eq("status", "pending")
       .limit(10); // Process 10 at a time to prevent timeout/rate limit issues
 

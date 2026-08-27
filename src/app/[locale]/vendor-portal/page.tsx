@@ -40,21 +40,19 @@ export default async function VendorPortalPage({
     .order("created_at", { ascending: false })
     .limit(20);
 
-  const incidents: VendorPortalIncidentItem[] = (dbIncidents || []).map(
-    (inc) => ({
-      id: inc.id,
-      title: inc.title || "",
-      category: inc.category || "unknown",
-      severity: (inc.severity as VendorPortalIncidentItem["severity"]) || "medium",
-      status: inc.status || "published",
-      providerName: inc.provider_custom_name || "",
-      modelName: inc.model_custom_name || "",
-      description: inc.description || "",
-      createdAt: inc.created_at || new Date().toISOString(),
-      vendorResponseText: inc.vendor_response_text,
-      vendorResponseAt: inc.vendor_response_at,
-    })
-  );
+  const incidents: VendorPortalIncidentItem[] = (dbIncidents || []).map((inc) => ({
+    id: inc.id,
+    title: inc.title || "",
+    category: inc.category || "unknown",
+    severity: (inc.severity as VendorPortalIncidentItem["severity"]) || "medium",
+    status: inc.status || "published",
+    providerName: inc.provider_custom_name || "",
+    modelName: inc.model_custom_name || "",
+    description: inc.description || "",
+    createdAt: inc.created_at || new Date().toISOString(),
+    vendorResponseText: inc.vendor_response_text,
+    vendorResponseAt: inc.vendor_response_at,
+  }));
 
   return <VendorDefensePortalClient initialIncidents={incidents} />;
 }

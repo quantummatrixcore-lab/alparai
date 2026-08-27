@@ -1,0 +1,63 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_rate_1_md",
+      "label": "RATE-1.md",
+      "file_type": "document",
+      "source_file": "docs/plan/items/RATE-1.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_rate_1_rate_1",
+      "label": "RATE-1",
+      "file_type": "document",
+      "source_file": "docs/plan/items/RATE-1.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_rate_1_required_work",
+      "label": "Required work",
+      "file_type": "document",
+      "source_file": "docs/plan/items/RATE-1.md",
+      "source_location": "L11"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_rate_1_acceptance",
+      "label": "Acceptance",
+      "file_type": "document",
+      "source_file": "docs/plan/items/RATE-1.md",
+      "source_location": "L21"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_rate_1_md",
+      "target": "d_01_saas_products_alparai_docs_plan_items_rate_1_rate_1",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/RATE-1.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_rate_1_rate_1",
+      "target": "d_01_saas_products_alparai_docs_plan_items_rate_1_required_work",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/RATE-1.md",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_rate_1_rate_1",
+      "target": "d_01_saas_products_alparai_docs_plan_items_rate_1_acceptance",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/RATE-1.md",
+      "source_location": "L21",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

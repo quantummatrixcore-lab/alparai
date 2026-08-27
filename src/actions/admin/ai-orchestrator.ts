@@ -1,5 +1,6 @@
 "use server";
 
+import { requireAdmin } from "@/lib/auth/session";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { discoverFreeModels, type FreeModelRecord } from "@/lib/ai/discovery/fetch-models";
 import { revalidatePath } from "next/cache";
@@ -32,6 +33,7 @@ export interface TrustScoreRecord {
 }
 
 export async function getTrustScoresAction(): Promise<TrustScoreRecord[]> {
+  await requireAdmin();
   try {
     const supabase = createAdminClient();
     const { data, error } = await supabase
@@ -51,6 +53,7 @@ export async function getTrustScoresAction(): Promise<TrustScoreRecord[]> {
 }
 
 export async function runCrossAuditArenaAction(_promptText: string): Promise<ArenaVerdict> {
+  await requireAdmin();
   try {
     const supabase = createAdminClient();
     const freeModels = await discoverFreeModels();

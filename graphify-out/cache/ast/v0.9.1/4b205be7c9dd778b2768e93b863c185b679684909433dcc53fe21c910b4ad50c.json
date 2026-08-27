@@ -1,0 +1,79 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_agents_personas_oto_md",
+      "label": "OTO.md",
+      "file_type": "document",
+      "source_file": ".agents/personas/OTO.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_personas_oto_full_auto_mode_oto",
+      "label": "Full Auto Mode (/oto)",
+      "file_type": "document",
+      "source_file": ".agents/personas/OTO.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_personas_oto_core_directive",
+      "label": "CORE DIRECTIVE",
+      "file_type": "document",
+      "source_file": ".agents/personas/OTO.md",
+      "source_location": "L3"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_personas_oto_the_pipeline",
+      "label": "THE PIPELINE",
+      "file_type": "document",
+      "source_file": ".agents/personas/OTO.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_personas_oto_exert_complete_autonomy",
+      "label": "EXERT COMPLETE AUTONOMY",
+      "file_type": "document",
+      "source_file": ".agents/personas/OTO.md",
+      "source_location": "L12"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_agents_personas_oto_md",
+      "target": "d_01_saas_products_alparai_agents_personas_oto_full_auto_mode_oto",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/personas/OTO.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_personas_oto_full_auto_mode_oto",
+      "target": "d_01_saas_products_alparai_agents_personas_oto_core_directive",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/personas/OTO.md",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_personas_oto_full_auto_mode_oto",
+      "target": "d_01_saas_products_alparai_agents_personas_oto_the_pipeline",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/personas/OTO.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_personas_oto_full_auto_mode_oto",
+      "target": "d_01_saas_products_alparai_agents_personas_oto_exert_complete_autonomy",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/personas/OTO.md",
+      "source_location": "L12",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

@@ -1,0 +1,255 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_roadmap_md",
+      "label": "ROADMAP.md",
+      "file_type": "document",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_roadmap_alpar_ai_kompli\u0307_yol_hari\u0307tasi_prof_dr_mai\u0307l",
+      "label": "ALPAR AI \u2014 KOMPL\u0130 YOL HAR\u0130TASI + PROF. DR. MA\u0130L",
+      "file_type": "document",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_roadmap_profesyonel_\u00f6nceliklendirme_ile_t\u00fcm_yap\u0131lacaklar",
+      "label": "Profesyonel \u00d6nceliklendirme ile T\u00fcm Yap\u0131lacaklar",
+      "file_type": "document",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L3"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_roadmap_2_temmuz_2026",
+      "label": "2 Temmuz 2026",
+      "file_type": "document",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L5"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_roadmap_prof_dr_i\u0307smai\u0307l_hakki_aydin_mai\u0307li\u0307",
+      "label": "PROF. DR. \u0130SMA\u0130L HAKKI AYDIN MA\u0130L\u0130",
+      "file_type": "document",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L9"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_roadmap_sosyal_medya_hesaplari_a\u00e7ilmasi_gerekenler",
+      "label": "SOSYAL MEDYA HESAPLARI \u2014 A\u00c7ILMASI GEREKENLER",
+      "file_type": "document",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L64"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_roadmap_\u00f6ncelik_1_bu_hafta",
+      "label": "\u00d6ncelik 1 \u2014 Bu Hafta",
+      "file_type": "document",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L66"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_roadmap_\u00f6ncelik_2_bu_ay",
+      "label": "\u00d6ncelik 2 \u2014 Bu Ay",
+      "file_type": "document",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L91"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_roadmap_tam_yol_hari\u0307tasi_\u00f6nceli\u0307klendi\u0307ri\u0307lmi\u0307\u015f",
+      "label": "TAM YOL HAR\u0130TASI \u2014 \u00d6NCEL\u0130KLEND\u0130R\u0130LM\u0130\u015e",
+      "file_type": "document",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L108"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_roadmap_\u00f6nceli\u0307k_1_aci\u0307l_bu_hafta",
+      "label": "\u00d6NCEL\u0130K 1 \u2014 AC\u0130L (Bu Hafta)",
+      "file_type": "document",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L110"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_roadmap_\u00f6nceli\u0307k_2_kri\u0307ti\u0307k_bu_ay",
+      "label": "\u00d6NCEL\u0130K 2 \u2014 KR\u0130T\u0130K (Bu Ay)",
+      "file_type": "document",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L153"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_roadmap_\u00f6nceli\u0307k_3_\u00f6nemli\u0307_1_3_ay",
+      "label": "\u00d6NCEL\u0130K 3 \u2014 \u00d6NEML\u0130 (1-3 Ay)",
+      "file_type": "document",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L235"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_roadmap_\u00f6nceli\u0307k_4_orta_vadede_3_6_ay",
+      "label": "\u00d6NCEL\u0130K 4 \u2014 ORTA VADEDE (3-6 Ay)",
+      "file_type": "document",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L279"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_roadmap_\u00f6nceli\u0307k_5_uzun_vadede_6_24_ay",
+      "label": "\u00d6NCEL\u0130K 5 \u2014 UZUN VADEDE (6-24 Ay)",
+      "file_type": "document",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L306"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_roadmap_sosyal_medya_i\u0307\u00e7eri\u0307k_takvi\u0307mi\u0307_i\u0307lk_ay",
+      "label": "SOSYAL MEDYA \u0130\u00c7ER\u0130K TAKV\u0130M\u0130 \u2014 \u0130LK AY",
+      "file_type": "document",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L325"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_roadmap_unutulan_kritik_\u015feyler_\u00f6zet",
+      "label": "UNUTULAN KRITIK \u015eEYLER \u2014 \u00d6ZET",
+      "file_type": "document",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L339"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_roadmap_md",
+      "target": "d_01_saas_products_alparai_docs_roadmap_alpar_ai_kompli\u0307_yol_hari\u0307tasi_prof_dr_mai\u0307l",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_roadmap_alpar_ai_kompli\u0307_yol_hari\u0307tasi_prof_dr_mai\u0307l",
+      "target": "d_01_saas_products_alparai_docs_roadmap_profesyonel_\u00f6nceliklendirme_ile_t\u00fcm_yap\u0131lacaklar",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_roadmap_alpar_ai_kompli\u0307_yol_hari\u0307tasi_prof_dr_mai\u0307l",
+      "target": "d_01_saas_products_alparai_docs_roadmap_2_temmuz_2026",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_roadmap_md",
+      "target": "d_01_saas_products_alparai_docs_roadmap_prof_dr_i\u0307smai\u0307l_hakki_aydin_mai\u0307li\u0307",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_roadmap_md",
+      "target": "d_01_saas_products_alparai_docs_roadmap_sosyal_medya_hesaplari_a\u00e7ilmasi_gerekenler",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L64",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_roadmap_sosyal_medya_hesaplari_a\u00e7ilmasi_gerekenler",
+      "target": "d_01_saas_products_alparai_docs_roadmap_\u00f6ncelik_1_bu_hafta",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L66",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_roadmap_sosyal_medya_hesaplari_a\u00e7ilmasi_gerekenler",
+      "target": "d_01_saas_products_alparai_docs_roadmap_\u00f6ncelik_2_bu_ay",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L91",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_roadmap_md",
+      "target": "d_01_saas_products_alparai_docs_roadmap_tam_yol_hari\u0307tasi_\u00f6nceli\u0307klendi\u0307ri\u0307lmi\u0307\u015f",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L108",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_roadmap_tam_yol_hari\u0307tasi_\u00f6nceli\u0307klendi\u0307ri\u0307lmi\u0307\u015f",
+      "target": "d_01_saas_products_alparai_docs_roadmap_\u00f6nceli\u0307k_1_aci\u0307l_bu_hafta",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L110",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_roadmap_tam_yol_hari\u0307tasi_\u00f6nceli\u0307klendi\u0307ri\u0307lmi\u0307\u015f",
+      "target": "d_01_saas_products_alparai_docs_roadmap_\u00f6nceli\u0307k_2_kri\u0307ti\u0307k_bu_ay",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L153",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_roadmap_tam_yol_hari\u0307tasi_\u00f6nceli\u0307klendi\u0307ri\u0307lmi\u0307\u015f",
+      "target": "d_01_saas_products_alparai_docs_roadmap_\u00f6nceli\u0307k_3_\u00f6nemli\u0307_1_3_ay",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L235",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_roadmap_tam_yol_hari\u0307tasi_\u00f6nceli\u0307klendi\u0307ri\u0307lmi\u0307\u015f",
+      "target": "d_01_saas_products_alparai_docs_roadmap_\u00f6nceli\u0307k_4_orta_vadede_3_6_ay",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L279",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_roadmap_tam_yol_hari\u0307tasi_\u00f6nceli\u0307klendi\u0307ri\u0307lmi\u0307\u015f",
+      "target": "d_01_saas_products_alparai_docs_roadmap_\u00f6nceli\u0307k_5_uzun_vadede_6_24_ay",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L306",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_roadmap_md",
+      "target": "d_01_saas_products_alparai_docs_roadmap_sosyal_medya_i\u0307\u00e7eri\u0307k_takvi\u0307mi\u0307_i\u0307lk_ay",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L325",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_roadmap_md",
+      "target": "d_01_saas_products_alparai_docs_roadmap_unutulan_kritik_\u015feyler_\u00f6zet",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ROADMAP.md",
+      "source_location": "L339",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

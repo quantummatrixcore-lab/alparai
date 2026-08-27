@@ -138,7 +138,7 @@ export function Nav({
             {isActive && (
               <motion.span
                 layoutId="nav-active"
-                className="absolute inset-0 rounded-full border border-white/5 bg-white/5 shadow-inner"
+                className="border-border-subtle/50 absolute inset-0 rounded-full border bg-white/5 shadow-inner"
                 transition={{ type: "spring", stiffness: 380, damping: 30 }}
               />
             )}
@@ -223,7 +223,7 @@ export function Nav({
           {pathname.startsWith("/admin") && (
             <motion.span
               layoutId="nav-active"
-              className="absolute inset-0 rounded-full border border-white/5 bg-white/5 shadow-inner"
+              className="border-border-subtle/50 absolute inset-0 rounded-full border bg-white/5 shadow-inner"
               transition={{ type: "spring", stiffness: 380, damping: 30 }}
             />
           )}

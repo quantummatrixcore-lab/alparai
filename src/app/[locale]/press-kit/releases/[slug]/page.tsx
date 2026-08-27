@@ -33,7 +33,10 @@ export default async function PressReleasePage({
   const t = await getTranslations({ locale, namespace: "pressKit" });
 
   const release = PRESS_RELEASES.find((r) => r.slug === slug);
-  if (!release) { notFound(); return null; }
+  if (!release) {
+    notFound();
+    return null;
+  }
 
   const isEn = locale === "en";
   const title = release.title[isEn ? "en" : "tr"];
@@ -43,12 +46,12 @@ export default async function PressReleasePage({
   const contentParagraphs = content.split("\\n\\n").filter(Boolean);
 
   return (
-    <div className="min-h-screen bg-[#0A1622]">
-      <div className="border-b border-white/5 bg-[#0F1E2E] py-8">
+    <div className="bg-bg-primary min-h-screen">
+      <div className="border-border-subtle/50 bg-bg-navy border-b py-8">
         <Container>
           <Link
             href={`/${locale}/press-kit`}
-            className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-400 transition-colors hover:text-emerald-400"
+            className="text-fg-muted mb-8 inline-flex items-center gap-2 text-sm font-semibold transition-colors hover:text-emerald-400"
           >
             <ArrowLeft className="h-4 w-4" />
             {t("backToPressKit")}
@@ -56,13 +59,13 @@ export default async function PressReleasePage({
 
           <div className="mx-auto max-w-3xl space-y-6">
             <div className="flex flex-wrap items-center gap-4">
-              <span className="flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-bold tracking-wider text-emerald-400">
+              <span className="border-success-500/20 flex items-center gap-1.5 rounded-full border bg-emerald-500/10 px-3 py-1 text-xs font-bold tracking-wider text-emerald-400">
                 <Calendar className="h-3.5 w-3.5" />
                 {release.date}
               </span>
               <div className="flex gap-2">
                 {tags.slice(0, 3).map((tag) => (
-                  <span key={tag} className="text-[10px] tracking-wider text-slate-500 uppercase">
+                  <span key={tag} className="text-fg-muted text-[10px] tracking-wider uppercase">
                     #{tag}
                   </span>
                 ))}
@@ -73,7 +76,7 @@ export default async function PressReleasePage({
               {title}
             </h1>
 
-            <p className="text-xl leading-relaxed font-medium text-slate-300">
+            <p className="text-fg-primary text-xl leading-relaxed font-medium">
               {release.spot[isEn ? "en" : "tr"]}
             </p>
           </div>
@@ -93,29 +96,32 @@ export default async function PressReleasePage({
               }
               if (p.startsWith("*") && p.endsWith("*")) {
                 return (
-                  <p key={i} className="mt-8 border-t border-white/5 pt-6 text-slate-400 italic">
+                  <p
+                    key={i}
+                    className="border-border-subtle/50 text-fg-muted mt-8 border-t pt-6 italic"
+                  >
                     {p.replace(/\\*/g, "")}
                   </p>
                 );
               }
               return (
-                <p key={i} className="text-lg text-slate-300">
+                <p key={i} className="text-fg-primary text-lg">
                   {p}
                 </p>
               );
             })}
           </div>
 
-          <div className="mt-16 flex flex-col gap-6 border-t border-white/5 pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <div className="border-border-subtle/50 mt-16 flex flex-col gap-6 border-t pt-8 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-4">
               <span className="flex items-center gap-2 text-sm font-bold text-white">
-                <Share2 className="h-4 w-4 text-slate-400" /> Share:
+                <Share2 className="text-fg-muted h-4 w-4" /> Share:
               </span>
               <a
                 href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(`https://alparai.com/${locale}/press-kit/releases/${slug}?ref=alparai_platform`)}`}
                 target="_blank"
                 rel="noreferrer"
-                className="text-slate-400 transition-colors hover:text-[#1DA1F2]"
+                className="text-fg-muted transition-colors hover:text-[#1DA1F2]"
               >
                 <Twitter className="h-5 w-5" />
               </a>
@@ -123,7 +129,7 @@ export default async function PressReleasePage({
                 href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://alparai.com/${locale}/press-kit/releases/${slug}?ref=alparai_platform`)}`}
                 target="_blank"
                 rel="noreferrer"
-                className="text-slate-400 transition-colors hover:text-[#0A66C2]"
+                className="text-fg-muted transition-colors hover:text-[#0A66C2]"
               >
                 <Linkedin className="h-5 w-5" />
               </a>

@@ -144,7 +144,7 @@ export function CostOverviewCard({
             {!isFree && <span>{percentUsed}%</span>}
           </div>
           {!isFree && (
-            <div className="mt-2 h-1.5 w-full rounded-full bg-zinc-100 dark:bg-zinc-800">
+            <div className="dark:bg-bg-elevated mt-2 h-1.5 w-full rounded-full bg-zinc-100">
               <div
                 className={`h-1.5 rounded-full transition-all duration-500 ${
                   percentUsed >= 90

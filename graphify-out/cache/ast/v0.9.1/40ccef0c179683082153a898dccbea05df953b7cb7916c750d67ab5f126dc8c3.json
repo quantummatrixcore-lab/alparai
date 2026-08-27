@@ -1,0 +1,95 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_admin_7_md",
+      "label": "ADMIN-7.md",
+      "file_type": "document",
+      "source_file": "docs/plan/items/ADMIN-7.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_admin_7_admin_7",
+      "label": "ADMIN-7",
+      "file_type": "document",
+      "source_file": "docs/plan/items/ADMIN-7.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_admin_7_what_changed",
+      "label": "What changed",
+      "file_type": "document",
+      "source_file": "docs/plan/items/ADMIN-7.md",
+      "source_location": "L8"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_admin_7_required_correction",
+      "label": "Required correction",
+      "file_type": "document",
+      "source_file": "docs/plan/items/ADMIN-7.md",
+      "source_location": "L34"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_admin_7_acceptance",
+      "label": "Acceptance",
+      "file_type": "document",
+      "source_file": "docs/plan/items/ADMIN-7.md",
+      "source_location": "L44"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_admin_7_closed_2026_08_21_v13_74_verified_on_origin",
+      "label": "Closed 2026-08-21 (v13.74) \u2014 verified on origin",
+      "file_type": "document",
+      "source_file": "docs/plan/items/ADMIN-7.md",
+      "source_location": "L50"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_admin_7_md",
+      "target": "d_01_saas_products_alparai_docs_plan_items_admin_7_admin_7",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/ADMIN-7.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_admin_7_admin_7",
+      "target": "d_01_saas_products_alparai_docs_plan_items_admin_7_what_changed",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/ADMIN-7.md",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_admin_7_admin_7",
+      "target": "d_01_saas_products_alparai_docs_plan_items_admin_7_required_correction",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/ADMIN-7.md",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_admin_7_admin_7",
+      "target": "d_01_saas_products_alparai_docs_plan_items_admin_7_acceptance",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/ADMIN-7.md",
+      "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_admin_7_admin_7",
+      "target": "d_01_saas_products_alparai_docs_plan_items_admin_7_closed_2026_08_21_v13_74_verified_on_origin",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/ADMIN-7.md",
+      "source_location": "L50",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

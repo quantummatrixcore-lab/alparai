@@ -33,7 +33,7 @@ export default async function UnsubscribePage({ params, searchParams }: Unsubscr
   if (ok === "1") {
     return (
       <Container size="narrow" className="py-20">
-        <Card className="border-emerald-500/20 bg-emerald-500/5">
+        <Card className="border-success-500/20 bg-emerald-500/5">
           <CardHeader className="text-center">
             <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-500">
               <CheckCircle2 className="h-6 w-6" />
@@ -63,7 +63,7 @@ export default async function UnsubscribePage({ params, searchParams }: Unsubscr
   if (!userId || !token) {
     return (
       <Container size="narrow" className="py-20">
-        <Card className="border-red-500/20 bg-red-500/5">
+        <Card className="border-danger-500/20 bg-red-500/5">
           <CardHeader className="text-center">
             <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-500/10 text-red-500">
               <AlertTriangle className="h-6 w-6" />
@@ -89,7 +89,7 @@ export default async function UnsubscribePage({ params, searchParams }: Unsubscr
   if (!isValid) {
     return (
       <Container size="narrow" className="py-20">
-        <Card className="border-red-500/20 bg-red-500/5">
+        <Card className="border-danger-500/20 bg-red-500/5">
           <CardHeader className="text-center">
             <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-500/10 text-red-500">
               <AlertTriangle className="h-6 w-6" />
@@ -149,7 +149,7 @@ export default async function UnsubscribePage({ params, searchParams }: Unsubscr
     );
     return (
       <Container size="narrow" className="py-20">
-        <Card className="border-red-500/20 bg-red-500/5">
+        <Card className="border-danger-500/20 bg-red-500/5">
           <CardHeader className="text-center">
             <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-500/10 text-red-500">
               <AlertTriangle className="h-6 w-6" />
@@ -171,7 +171,7 @@ export default async function UnsubscribePage({ params, searchParams }: Unsubscr
 
   return (
     <Container size="narrow" className="py-20">
-      <Card className="border-emerald-500/20 bg-emerald-500/5">
+      <Card className="border-success-500/20 bg-emerald-500/5">
         <CardHeader className="text-center">
           <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-500">
             <CheckCircle2 className="h-6 w-6" />

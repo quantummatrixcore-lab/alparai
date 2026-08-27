@@ -146,7 +146,9 @@ export function PollCard({ poll }: { poll: Poll }) {
           <div className="bg-brand-500/10 text-brand-400 border-brand-500/20 mb-4 inline-block rounded-full border px-3 py-1 text-xs font-bold tracking-widest uppercase">
             {t("criticalQuestion")}
           </div>
-          <h3 className="text-fg-primary mb-4 text-2xl font-extrabold">{localizedTitle}</h3>
+          <h3 className="text-fg-primary text-fg-secondaryxl mb-4 font-extrabold">
+            {localizedTitle}
+          </h3>
           <p className="text-fg-secondary mb-8 text-sm leading-relaxed">{localizedDescription}</p>
         </div>
 
@@ -163,7 +165,7 @@ export function PollCard({ poll }: { poll: Poll }) {
               <span className="text-danger-400 font-bold tracking-wider uppercase">{t("no")}</span>
             </div>
 
-            <div className="bg-bg-tertiary/40 relative flex h-8 w-full overflow-hidden rounded-md border border-white/5">
+            <div className="bg-bg-tertiary/40 border-border-subtle/50 relative flex h-8 w-full overflow-hidden rounded-md border">
               <div
                 className="bg-success-500/90 group relative flex h-full items-center justify-start px-2 transition-all duration-1000 ease-out"
                 style={{ width: `${yesPercent}%` }}
@@ -180,7 +182,7 @@ export function PollCard({ poll }: { poll: Poll }) {
                 style={{ width: `${unsurePercent}%` }}
               >
                 {unsurePercent > 5 && (
-                  <span className="text-xs font-bold text-white/80 drop-shadow-md">
+                  <span className="text-fg-secondary text-xs font-bold drop-shadow-md">
                     %{unsurePercent}
                   </span>
                 )}
@@ -236,7 +238,7 @@ export function PollCard({ poll }: { poll: Poll }) {
           )}
 
           {/* Action buttons */}
-          <div className="grid grid-cols-3 gap-3 pt-2">
+          <div className="grid grid-cols-1 gap-3 pt-2 sm:grid-cols-3">
             <Button
               variant="outline"
               disabled={isVoting}

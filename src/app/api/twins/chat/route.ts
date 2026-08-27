@@ -9,8 +9,17 @@ import { DIGITAL_TWINS } from "@/lib/agent-os/personas";
 import { ArbitrageEngine } from "@/lib/agent-os/arbitrage-engine";
 import { calculateAlignmentScore, selfHealResponse } from "@/lib/agent-os/alignment-engine";
 
+import { getCurrentUser } from "@/lib/auth/session";
+
 export async function POST(req: NextRequest) {
   try {
+    const user = await getCurrentUser();
+    if (!user) {
+      return NextResponse.json(
+        { error: "Bu özelliği kullanmak için giriş yapmalısınız." },
+        { status: 401 },
+      );
+    }
     const body = await req.json().catch(() => ({}));
     const { twinId, message } = body;
 
@@ -85,7 +94,7 @@ export async function POST(req: NextRequest) {
           data.choices?.[0]?.message?.content || `${persona.name} stratejik analizini tamamladı.`;
         promptTokens = data.usage?.prompt_tokens || message.length;
         completionTokens = data.usage?.completion_tokens || reply.length / 4;
-      } catch (upstreamError: any) {
+      } catch (upstreamError: unknown) {
         logger.error("[Twins Chat API] Upstream call failed, switching to local persona engine", {
           error: upstreamError,
         });
@@ -156,7 +165,7 @@ export async function POST(req: NextRequest) {
         tier: persona.stats.tier,
       },
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     logger.error(
       "[Twins API] Unhandled Error",
       { error },

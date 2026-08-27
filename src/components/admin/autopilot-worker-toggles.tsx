@@ -70,7 +70,7 @@ export function AutopilotWorkerToggles({ workerConfigs, globalKillSwitch }: Prop
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm">
                 <caption className="sr-only">{t("autopilot_worker_configurations")}</caption>
-                <thead className="text-fg-muted border-b border-white/5">
+                <thead className="text-fg-muted border-border-subtle/50 border-b">
                   <tr>
                     <th className="py-3 font-medium">{t("worker_name")}</th>
                     <th className="py-3 font-medium">{t("worker_status")}</th>

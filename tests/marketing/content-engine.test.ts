@@ -133,8 +133,7 @@ describe("Marketing Content Engine & Publishers", () => {
       };
 
       mockAdminClient.from.mockImplementation(() => builder);
- 
- 
+
       (mockAdminClient as any).storage = {
         from: () => builder,
       };
@@ -175,8 +174,7 @@ describe("Marketing Content Engine & Publishers", () => {
       };
 
       mockAdminClient.from.mockImplementation(() => builder);
- 
- 
+
       (mockAdminClient as any).storage = {
         from: () => builder,
       };

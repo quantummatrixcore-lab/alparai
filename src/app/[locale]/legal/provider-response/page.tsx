@@ -31,29 +31,29 @@ export default async function ProviderResponseProtocolPage({
           <h1 className="text-4xl font-black text-white md:text-5xl">
             {t("providerResponseTitle")}
           </h1>
-          <p className="mx-auto max-w-2xl text-base text-slate-400">{t("providerResponseDesc")}</p>
+          <p className="text-fg-muted mx-auto max-w-2xl text-base">{t("providerResponseDesc")}</p>
         </header>
 
         <section className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div className="space-y-3 rounded-xl border border-slate-800 bg-slate-900/60 p-6">
+          <div className="border-border-subtle bg-bg-secondary space-y-3 rounded-xl border p-6">
             <Clock className="h-6 w-6 text-purple-400" />
             <h2 className="text-xl font-bold text-white">{t("prWindowTitle")}</h2>
-            <p className="text-xs leading-relaxed text-slate-400">{t("prWindowText")}</p>
+            <p className="text-fg-muted text-xs leading-relaxed">{t("prWindowText")}</p>
           </div>
-          <div className="space-y-3 rounded-xl border border-slate-800 bg-slate-900/60 p-6">
+          <div className="border-border-subtle bg-bg-secondary space-y-3 rounded-xl border p-6">
             <MessageSquare className="h-6 w-6 text-emerald-400" />
             <h2 className="text-xl font-bold text-white">{t("prBadgeVerifiedTitle")}</h2>
-            <p className="text-xs leading-relaxed text-slate-400">{t("prBadgeVerifiedText")}</p>
+            <p className="text-fg-muted text-xs leading-relaxed">{t("prBadgeVerifiedText")}</p>
           </div>
-          <div className="space-y-3 rounded-xl border border-slate-800 bg-slate-900/60 p-6">
+          <div className="border-border-subtle bg-bg-secondary space-y-3 rounded-xl border p-6">
             <AlertCircle className="h-6 w-6 text-amber-400" />
             <h2 className="text-xl font-bold text-white">{t("prBadgeNoResponseTitle")}</h2>
-            <p className="text-xs leading-relaxed text-slate-400">{t("prBadgeNoResponseText")}</p>
+            <p className="text-fg-muted text-xs leading-relaxed">{t("prBadgeNoResponseText")}</p>
           </div>
-          <div className="space-y-3 rounded-xl border border-slate-800 bg-slate-900/60 p-6">
+          <div className="border-border-subtle bg-bg-secondary space-y-3 rounded-xl border p-6">
             <ShieldCheck className="h-6 w-6 text-cyan-400" />
             <h2 className="text-xl font-bold text-white">{t("prNeutralityTitle")}</h2>
-            <p className="text-xs leading-relaxed text-slate-400">{t("prNeutralityText")}</p>
+            <p className="text-fg-muted text-xs leading-relaxed">{t("prNeutralityText")}</p>
           </div>
         </section>
       </div>

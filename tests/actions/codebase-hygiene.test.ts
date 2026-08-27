@@ -1,6 +1,10 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { getCodebaseHygieneAction } from "@/actions/admin/codebase-hygiene";
 import { checkCodebaseHygiene } from "../../scripts/codebase-hygiene";
+
+vi.mock("@/lib/auth/session", () => ({
+  requireAdmin: vi.fn().mockResolvedValue({ id: "admin-1", role: "admin" }),
+}));
 
 describe("Codebase Hygiene & Context Pruning (Item 35)", () => {
   it("returns clean codebase hygiene report with optimal context status", async () => {

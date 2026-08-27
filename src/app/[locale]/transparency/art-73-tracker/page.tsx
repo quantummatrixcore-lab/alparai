@@ -34,37 +34,39 @@ export default async function Art73TrackerPage({
 
         {/* Audit Queue Scaffold (Table Skeleton) */}
         <div className="bg-bg-secondary/10 border-border-primary/30 pointer-events-none mb-12 overflow-hidden rounded-3xl border opacity-40 select-none">
-          <table className="w-full border-collapse text-left">
-            <thead>
-              <tr className="border-border-primary/30 bg-bg-secondary/20 border-b">
-                <th className="text-fg-secondary p-5 text-xs font-bold tracking-wider uppercase">
-                  {t("obligation_header")}
-                </th>
-                <th className="text-fg-secondary p-5 text-xs font-bold tracking-wider uppercase">
-                  {t("status_header")}
-                </th>
-                <th className="text-fg-secondary p-5 text-xs font-bold tracking-wider uppercase">
-                  {t("verified_header")}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {Array.from({ length: 4 }).map((_, i) => (
-                <tr key={i} className="border-border-primary/10 border-b last:border-0">
-                  <td className="p-5">
-                    <div className="bg-fg-primary/20 mb-2 h-3 w-48 rounded" />
-                    <div className="bg-fg-secondary/20 h-2 w-32 rounded" />
-                  </td>
-                  <td className="p-5">
-                    <div className="bg-fg-secondary/20 h-6 w-20 rounded-full" />
-                  </td>
-                  <td className="p-5">
-                    <div className="bg-fg-secondary/20 h-2 w-24 rounded" />
-                  </td>
+          <div className="w-full overflow-x-auto">
+            <table className="w-full border-collapse text-left">
+              <thead>
+                <tr className="border-border-primary/30 bg-bg-secondary/20 border-b">
+                  <th className="text-fg-secondary p-5 text-xs font-bold tracking-wider uppercase">
+                    {t("obligation_header")}
+                  </th>
+                  <th className="text-fg-secondary p-5 text-xs font-bold tracking-wider uppercase">
+                    {t("status_header")}
+                  </th>
+                  <th className="text-fg-secondary p-5 text-xs font-bold tracking-wider uppercase">
+                    {t("verified_header")}
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <tr key={i} className="border-border-primary/10 border-b last:border-0">
+                    <td className="p-5">
+                      <div className="bg-fg-primary/20 mb-2 h-3 w-48 rounded" />
+                      <div className="bg-fg-secondary/20 h-2 w-32 rounded" />
+                    </td>
+                    <td className="p-5">
+                      <div className="bg-fg-secondary/20 h-6 w-20 rounded-full" />
+                    </td>
+                    <td className="p-5">
+                      <div className="bg-fg-secondary/20 h-2 w-24 rounded" />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
 
         {/* Empty State */}

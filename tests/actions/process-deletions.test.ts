@@ -18,8 +18,7 @@ let mockAdminClient: ReturnType<typeof createMockSupabaseClient>;
 beforeEach(() => {
   vi.clearAllMocks();
   mockAdminClient = createMockSupabaseClient();
- 
- 
+
   vi.mocked(createAdminClient).mockReturnValue(mockAdminClient as any);
 });
 
@@ -62,15 +61,11 @@ describe("Process Deletions Cron", () => {
             }
           },
           update: mockUpdate,
- 
- 
         } as any;
       }
       if (table === "email_preferences") {
         return {
           update: mockUpdate,
- 
- 
         } as any;
       }
       if (table === "redaction_requests") {
@@ -80,12 +75,9 @@ describe("Process Deletions Cron", () => {
               is: vi.fn().mockResolvedValue({ data: [], error: null }),
             }),
           }),
- 
- 
         } as any;
       }
- 
- 
+
       return {} as any;
     });
 

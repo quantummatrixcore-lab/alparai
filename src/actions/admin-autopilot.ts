@@ -98,9 +98,10 @@ export async function getAdminAutopilotSnapshot(limit = 100): Promise<AdminAutop
     const q = getQueue();
     const size = await q.size();
     const availableRaw = q.available;
-    const isAvailable: boolean = typeof availableRaw === 'function'
-      ? Boolean(await (availableRaw as () => number | Promise<number>)())
-      : Boolean(availableRaw);
+    const isAvailable: boolean =
+      typeof availableRaw === "function"
+        ? Boolean(await (availableRaw as () => number | Promise<number>)())
+        : Boolean(availableRaw);
 
     // 1. Cron run logs from DB
     const { data: cronLogsData } = await dbAdmin

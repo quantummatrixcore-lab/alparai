@@ -1,0 +1,63 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_parallel_execution_roster_md",
+      "label": "PARALLEL_EXECUTION_ROSTER.md",
+      "file_type": "document",
+      "source_file": "docs/PARALLEL_EXECUTION_ROSTER.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_parallel_execution_roster_parallel_execution_roster_antigravity_vs_opencode",
+      "label": "Parallel Execution Roster: Antigravity vs Opencode",
+      "file_type": "document",
+      "source_file": "docs/PARALLEL_EXECUTION_ROSTER.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_parallel_execution_roster_antigravity_backend_data_tier",
+      "label": "\ud83e\uddf2 Antigravity (Backend & Data Tier)",
+      "file_type": "document",
+      "source_file": "docs/PARALLEL_EXECUTION_ROSTER.md",
+      "source_location": "L5"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_parallel_execution_roster_opencode_frontend_presentation_tier",
+      "label": "\ud83d\udcbb Opencode (Frontend & Presentation Tier)",
+      "file_type": "document",
+      "source_file": "docs/PARALLEL_EXECUTION_ROSTER.md",
+      "source_location": "L22"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_parallel_execution_roster_md",
+      "target": "d_01_saas_products_alparai_docs_parallel_execution_roster_parallel_execution_roster_antigravity_vs_opencode",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PARALLEL_EXECUTION_ROSTER.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_parallel_execution_roster_parallel_execution_roster_antigravity_vs_opencode",
+      "target": "d_01_saas_products_alparai_docs_parallel_execution_roster_antigravity_backend_data_tier",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PARALLEL_EXECUTION_ROSTER.md",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_parallel_execution_roster_parallel_execution_roster_antigravity_vs_opencode",
+      "target": "d_01_saas_products_alparai_docs_parallel_execution_roster_opencode_frontend_presentation_tier",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PARALLEL_EXECUTION_ROSTER.md",
+      "source_location": "L22",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

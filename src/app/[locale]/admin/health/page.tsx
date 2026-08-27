@@ -19,12 +19,12 @@ export default async function HealthPage({ params }: { params: Promise<{ locale:
   const initialReport = await checkSystemHealth();
 
   return (
-    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
-      <div className="space-y-6 rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
+    <div className="bg-bg-primary text-fg-primary min-h-screen px-3 py-4 sm:px-6 sm:py-6 md:p-8">
+      <div className="bg-bg-secondary/40 ring-border-subtle space-y-6 rounded-3xl p-4 shadow-2xl ring-1 backdrop-blur-xl sm:p-6 md:p-8">
         <SystemHubTabs />
         <div>
           <div>
-            <h1 className="flex items-center gap-2 text-2xl font-bold tracking-tight text-white">
+            <h1 className="text-fg-secondaryxl flex items-center gap-2 font-bold tracking-tight text-white">
               <span className="relative flex h-3 w-3">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex h-3 w-3 rounded-full bg-emerald-500"></span>

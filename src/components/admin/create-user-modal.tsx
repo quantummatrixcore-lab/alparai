@@ -85,7 +85,7 @@ export function CreateUserModal({
               placeholder="e.g. Atatürk"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
-              className="border-white/10 bg-black/50"
+              className="border-border-subtle bg-black/50"
               disabled={isLoading}
             />
           </div>
@@ -99,7 +99,7 @@ export function CreateUserModal({
               placeholder="ataturk@alparai.local"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="border-white/10 bg-black/50"
+              className="border-border-subtle bg-black/50"
               disabled={isLoading}
             />
           </div>
@@ -110,7 +110,7 @@ export function CreateUserModal({
               onChange={(e) => setRole(e.target.value as "user" | "moderator" | "admin" | "ceo")}
               disabled={isLoading}
               options={roleOptions}
-              className="border-white/10 bg-black/50"
+              className="border-border-subtle bg-black/50"
             />
           </div>
           <div className="mt-4 flex justify-end gap-3">
@@ -119,7 +119,7 @@ export function CreateUserModal({
               variant="outline"
               onClick={() => setOpen(false)}
               disabled={isLoading}
-              className="border-white/10 bg-transparent text-white"
+              className="border-border-subtle bg-transparent text-white"
             >
               Cancel
             </Button>

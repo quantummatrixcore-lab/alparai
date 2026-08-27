@@ -15,7 +15,7 @@ export function TrustBar() {
     { icon: Ban, label: t("no_funding"), href: "/legal/neutrality" },
   ];
   return (
-    <div className="animate-fade-up flex flex-wrap justify-center gap-6 border-y border-white/10 bg-white/5 px-8 py-4 opacity-0 backdrop-blur-md">
+    <div className="animate-fade-up border-border-subtle flex flex-wrap justify-center gap-6 border-y bg-white/5 px-8 py-4 opacity-0 backdrop-blur-md">
       {items.map((item) => (
         <Link
           key={item.label}

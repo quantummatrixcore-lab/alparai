@@ -29,13 +29,13 @@ export default function AnalyzerPage() {
     <div className="flex min-h-screen flex-col items-center bg-zinc-950 p-8 text-white">
       <div className="w-full max-w-4xl space-y-8">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-zinc-100">{t("title")}</h1>
-          <p className="mt-2 text-zinc-400">{t("description")}</p>
+          <h1 className="text-fg-primary text-3xl font-bold tracking-tight">{t("title")}</h1>
+          <p className="text-fg-muted mt-2">{t("description")}</p>
         </div>
 
-        <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 shadow-xl backdrop-blur-md">
+        <div className="border-border-subtle bg-bg-secondary/50 rounded-xl border p-6 shadow-xl backdrop-blur-md">
           <textarea
-            className="h-64 w-full resize-none rounded-lg border border-zinc-800 bg-zinc-950 p-4 text-zinc-300 transition-all focus:ring-2 focus:ring-blue-500/50 focus:outline-none"
+            className="border-border-subtle text-fg-secondary h-64 w-full resize-none rounded-lg border bg-zinc-950 p-4 transition-all focus:ring-2 focus:ring-blue-500/50 focus:outline-none"
             placeholder={t("placeholder")}
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -52,11 +52,13 @@ export default function AnalyzerPage() {
         </div>
 
         {result && (
-          <div className="space-y-6 rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 shadow-xl backdrop-blur-md">
-            <h2 className="text-2xl font-semibold text-zinc-100">{t("result_title")}</h2>
+          <div className="border-border-subtle bg-bg-secondary/50 space-y-6 rounded-xl border p-6 shadow-xl backdrop-blur-md">
+            <h2 className="text-fg-secondaryxl text-fg-primary font-semibold">
+              {t("result_title")}
+            </h2>
 
             <div className="flex items-center space-x-4">
-              <span className="font-medium text-zinc-400">{t("score")}:</span>
+              <span className="text-fg-muted font-medium">{t("score")}:</span>
               <span
                 className={`text-3xl font-bold ${result.score > 70 ? "text-green-500" : result.score > 40 ? "text-yellow-500" : "text-red-500"}`}
               >
@@ -68,26 +70,26 @@ export default function AnalyzerPage() {
               <div>
                 <h3 className="mb-2 text-lg font-medium text-red-400">{t("risks")}</h3>
                 {result.risks.length > 0 ? (
-                  <ul className="list-inside list-disc space-y-1 text-zinc-300">
+                  <ul className="text-fg-secondary list-inside list-disc space-y-1">
                     {result.risks.map((risk, i) => (
                       <li key={i}>{risk}</li>
                     ))}
                   </ul>
                 ) : (
-                  <p className="text-zinc-500">-</p>
+                  <p className="text-fg-muted">-</p>
                 )}
               </div>
 
               <div>
                 <h3 className="mb-2 text-lg font-medium text-blue-400">{t("recommendations")}</h3>
                 {result.recommendations.length > 0 ? (
-                  <ul className="list-inside list-disc space-y-1 text-zinc-300">
+                  <ul className="text-fg-secondary list-inside list-disc space-y-1">
                     {result.recommendations.map((rec, i) => (
                       <li key={i}>{rec}</li>
                     ))}
                   </ul>
                 ) : (
-                  <p className="text-zinc-500">-</p>
+                  <p className="text-fg-muted">-</p>
                 )}
               </div>
             </div>

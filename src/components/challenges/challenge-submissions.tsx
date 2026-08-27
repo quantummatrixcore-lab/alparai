@@ -77,7 +77,10 @@ export function ChallengeSubmissions({
         const hasVoted = userVotes.has(sub.id);
 
         return (
-          <div key={sub.id} className="rounded-lg border border-white/5 bg-white/[0.01] p-4">
+          <div
+            key={sub.id}
+            className="border-border-subtle/50 rounded-lg border bg-white/[0.01] p-4"
+          >
             <div className="flex items-start justify-between gap-3">
               <div className="flex-1">
                 <p className="font-medium">{sub.title}</p>

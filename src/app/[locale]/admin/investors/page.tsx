@@ -55,8 +55,8 @@ export default async function AdminInvestorsPage({
   const pendingApps = applications.filter((a) => a.status === "pending");
 
   return (
-    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
-      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
+    <div className="bg-bg-primary text-fg-primary min-h-screen px-3 py-4 sm:px-6 sm:py-6 md:p-8">
+      <div className="bg-bg-secondary/40 ring-border-subtle space-y-8 rounded-3xl p-4 shadow-2xl ring-1 backdrop-blur-xl sm:p-6 md:p-8">
         <FundingHubTabs />
         <Container className="py-6">
           <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -88,7 +88,7 @@ export default async function AdminInvestorsPage({
             />
           </div>
           <header className="mb-6">
-            <h1 className="text-fg-primary inline-flex items-center gap-2 text-2xl font-bold">
+            <h1 className="text-fg-primary text-fg-secondaryxl inline-flex items-center gap-2 font-bold">
               <TrendingUp className="h-6 w-6 text-emerald-400" /> {t("investors_heading")}
             </h1>
             <p className="text-fg-muted mt-1 text-sm">{t("investors_desc")}</p>

@@ -21,7 +21,7 @@ export default async function VelocityPage({ params }: VelocityPageProps) {
   setRequestLocale(locale);
 
   return (
-    <div className="min-h-screen bg-neutral-950 px-4 py-8 sm:px-6 lg:px-8">
+    <div className="bg-bg-secondary min-h-screen px-4 py-8 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <VelocityDashboard />
       </div>

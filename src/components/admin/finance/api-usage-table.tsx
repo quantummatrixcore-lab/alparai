@@ -81,7 +81,7 @@ export function ApiUsageTable({ data }: ApiUsageTableProps) {
             ) : (
               data.map((item) => (
                 <tr key={item.id} className="dark:hover:bg-bg-elevated/20 hover:bg-zinc-50/50">
-                  <td className="p-4 font-medium text-zinc-900 dark:text-zinc-100">
+                  <td className="dark:text-fg-primary p-4 font-medium text-zinc-900">
                     <span
                       className={`inline-block rounded px-2.5 py-0.5 text-xs font-bold capitalize ${getServiceColor(item.service)}`}
                     >

@@ -37,7 +37,7 @@ export default async function AdminAutopilotAnalyticsPage({
   if (!result.ok || !result.snapshot) {
     return (
       <AdminContainer shell>
-        <Card className="border-white/5 bg-white/[0.02]">
+        <Card className="border-border-subtle/50 bg-white/[0.02]">
           <CardHeader>
             <CardTitle>{t("autopilot_analytics") || "Autopilot Analytics"}</CardTitle>
           </CardHeader>
@@ -53,11 +53,11 @@ export default async function AdminAutopilotAnalyticsPage({
     <AdminContainer shell>
       <AdminPageHeader
         title={t("autopilot_analytics") || "Autopilot Analytics"}
-        icon={<Sparkles className="h-6 w-6 text-brand-400" />}
+        icon={<Sparkles className="text-brand-400 h-6 w-6" />}
         breadcrumb={[
           { label: t("dashboard") || "Dashboard", href: "/admin" },
           { label: t("autopilot") || "Autopilot", href: "/admin/ai-hub/autopilot" },
-          { label: t("analytics") || "Analytics", href: "/admin/ai-hub/autopilot/analytics" }
+          { label: t("analytics") || "Analytics", href: "/admin/ai-hub/autopilot/analytics" },
         ]}
       />
 

@@ -43,7 +43,7 @@ export default function LocaleError({ error, reset }: ErrorProps) {
           </div>
 
           {/* Title */}
-          <h1 className="text-fg-primary text-2xl font-bold tracking-tight sm:text-3xl">
+          <h1 className="text-fg-primary text-fg-secondaryxl font-bold tracking-tight sm:text-3xl">
             {t("unexpectedError", { defaultValue: "Beklenmeyen bir hata oluştu." })}
           </h1>
 

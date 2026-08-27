@@ -1,5 +1,6 @@
 "use server";
 
+import { requireAdmin } from "@/lib/auth/session";
 import { callWithFailover } from "@/lib/ai/openrouter-gateway";
 import { selectModelByCapability } from "@/lib/audit/model-router";
 import { logger } from "@/lib/utils/logger";
@@ -14,6 +15,7 @@ export async function runLiveStrategyAnalysis(context: {
   doneMilestones: number;
   totalMilestones: number;
 }) {
+  await requireAdmin();
   try {
     const prompt = `
     Sen ALPAR AI platformunun 'Strateji Danışmanı' (Strategy AI) olarak hareket eden bir yapay zeka modelisin.

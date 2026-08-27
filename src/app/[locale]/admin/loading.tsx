@@ -5,8 +5,8 @@ export default function AdminLoading() {
   return (
     <AdminContainer shell>
       <div className="flex min-h-[50vh] flex-col items-center justify-center space-y-4">
-        <Loader2 className="h-8 w-8 animate-spin text-brand-400" />
-        <p className="text-sm text-fg-muted">Loading dashboard...</p>
+        <Loader2 className="text-brand-400 h-8 w-8 animate-spin" />
+        <p className="text-fg-muted text-sm">Loading dashboard...</p>
       </div>
     </AdminContainer>
   );

@@ -20,7 +20,7 @@ export function VendorIncidentHistory({ incidents }: VendorIncidentHistoryProps)
       case "medium":
         return "bg-warning-500/20 text-warning-300 border-warning-500/40";
       default:
-        return "bg-zinc-800 text-fg-muted border-border-strong";
+        return "bg-bg-elevated text-fg-muted border-border-strong";
     }
   };
 

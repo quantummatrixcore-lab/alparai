@@ -357,7 +357,7 @@ export function IncidentForm({
       return (
         <div className="mx-auto max-w-md space-y-8 px-4 py-16 text-center">
           <div className="space-y-3">
-            <h2 className="text-fg-primary text-2xl font-bold tracking-tight">
+            <h2 className="text-fg-primary text-fg-secondaryxl font-bold tracking-tight">
               {t("processing_title", { defaultValue: "Raporunuz Analiz Ediliyor" })}
             </h2>
             <p className="text-fg-muted text-sm">
@@ -836,16 +836,16 @@ export function IncidentForm({
               const borderColors = {
                 low: isActive
                   ? "border-brand-500/80 bg-brand-500/10 text-brand-400 font-bold"
-                  : "border-border-subtle bg-bg-secondary/20 hover:border-white/20 text-fg-secondary",
+                  : "border-border-subtle bg-bg-secondary/20 hover:border-border-strong text-fg-secondary",
                 medium: isActive
                   ? "border-success-500/80 bg-success-500/10 text-success-400 font-bold"
-                  : "border-border-subtle bg-bg-secondary/20 hover:border-white/20 text-fg-secondary",
+                  : "border-border-subtle bg-bg-secondary/20 hover:border-border-strong text-fg-secondary",
                 high: isActive
                   ? "border-warning-500/80 bg-warning-500/10 text-warning-400 font-bold"
-                  : "border-border-subtle bg-bg-secondary/20 hover:border-white/20 text-fg-secondary",
+                  : "border-border-subtle bg-bg-secondary/20 hover:border-border-strong text-fg-secondary",
                 critical: isActive
                   ? "border-danger-500/80 bg-danger-500/10 text-danger-400 font-bold"
-                  : "border-border-subtle bg-bg-secondary/20 hover:border-white/20 text-fg-secondary",
+                  : "border-border-subtle bg-bg-secondary/20 hover:border-border-strong text-fg-secondary",
               };
               return (
                 <button

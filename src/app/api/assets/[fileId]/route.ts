@@ -17,7 +17,7 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ fil
     });
 
     const mimeType = metadata.data.mimeType || "";
-    
+
     // Block sensitive files (e.g. JSON DB backups, SQL dumps)
     if (mimeType === "application/json" || mimeType.includes("sql") || mimeType.includes("csv")) {
       return new NextResponse("Access to this file type is forbidden", { status: 403 });
@@ -25,7 +25,11 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ fil
 
     // Verify folder boundary if configured
     const allowedFolderId = process.env.GDRIVE_ASSETS_FOLDER_ID;
-    if (allowedFolderId && metadata.data.parents && !metadata.data.parents.includes(allowedFolderId)) {
+    if (
+      allowedFolderId &&
+      metadata.data.parents &&
+      !metadata.data.parents.includes(allowedFolderId)
+    ) {
       return new NextResponse("Unauthorized Asset Location", { status: 403 });
     }
 

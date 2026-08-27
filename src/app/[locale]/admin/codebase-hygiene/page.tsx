@@ -9,75 +9,77 @@ export default async function CodebaseHygieneAdminPage() {
 
   await requireAdmin();
   return (
-    <div className="space-y-8 rounded-3xl bg-zinc-900/40 px-3 py-4 text-white shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:px-6 md:p-8">
+    <div className="bg-bg-secondary/40 ring-border-subtle space-y-8 rounded-3xl px-3 py-4 text-white shadow-2xl ring-1 backdrop-blur-xl sm:px-6 md:p-8">
       <div>
         <h1 className="flex items-center gap-3 text-3xl font-bold tracking-tight text-white">
           <Sparkles className="h-8 w-8 text-emerald-400" />
           {t("codebase_hygiene_context_pruning")}
         </h1>
-        <p className="mt-2 text-slate-400">{t("zero_junk_engineering_protocol_real_time")}</p>
+        <p className="text-fg-muted mt-2">{t("zero_junk_engineering_protocol_real_time")}</p>
       </div>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
-        <div className="space-y-2 rounded-xl border border-slate-800 bg-slate-900/80 p-5">
-          <div className="flex items-center justify-between text-slate-400">
+        <div className="border-border-subtle bg-bg-secondary space-y-2 rounded-xl border p-5">
+          <div className="text-fg-muted flex items-center justify-between">
             <span className="font-mono text-xs tracking-wider uppercase">
               {t("context_status")}
             </span>
             <CheckCircle2 className="h-5 w-5 text-emerald-400" />
           </div>
-          <p className="text-2xl font-bold text-emerald-400">{report.contextStatus}</p>
-          <p className="text-xs text-slate-400">{t("0_orphaned_files_detected")}</p>
+          <p className="text-fg-secondaryxl font-bold text-emerald-400">{report.contextStatus}</p>
+          <p className="text-fg-muted text-xs">{t("0_orphaned_files_detected")}</p>
         </div>
 
-        <div className="space-y-2 rounded-xl border border-slate-800 bg-slate-900/80 p-5">
-          <div className="flex items-center justify-between text-slate-400">
+        <div className="border-border-subtle bg-bg-secondary space-y-2 rounded-xl border p-5">
+          <div className="text-fg-muted flex items-center justify-between">
             <span className="font-mono text-xs tracking-wider uppercase">{t("source_files")}</span>
             <FileCode className="h-5 w-5 text-cyan-400" />
           </div>
-          <p className="text-2xl font-bold text-white">{report.totalSrcFiles}</p>
-          <p className="text-xs text-slate-400">{t("active_typescript_react_components")}</p>
+          <p className="text-fg-secondaryxl font-bold text-white">{report.totalSrcFiles}</p>
+          <p className="text-fg-muted text-xs">{t("active_typescript_react_components")}</p>
         </div>
 
-        <div className="space-y-2 rounded-xl border border-slate-800 bg-slate-900/80 p-5">
-          <div className="flex items-center justify-between text-slate-400">
+        <div className="border-border-subtle bg-bg-secondary space-y-2 rounded-xl border p-5">
+          <div className="text-fg-muted flex items-center justify-between">
             <span className="font-mono text-xs tracking-wider uppercase">{t("docs_files")}</span>
             <FileText className="h-5 w-5 text-amber-400" />
           </div>
-          <p className="text-2xl font-bold text-white">{report.totalDocsFiles}</p>
-          <p className="text-xs text-slate-400">{t("governance_proposal_specs")}</p>
+          <p className="text-fg-secondaryxl font-bold text-white">{report.totalDocsFiles}</p>
+          <p className="text-fg-muted text-xs">{t("governance_proposal_specs")}</p>
         </div>
 
-        <div className="space-y-2 rounded-xl border border-slate-800 bg-slate-900/80 p-5">
-          <div className="flex items-center justify-between text-slate-400">
+        <div className="border-border-subtle bg-bg-secondary space-y-2 rounded-xl border p-5">
+          <div className="text-fg-muted flex items-center justify-between">
             <span className="font-mono text-xs tracking-wider uppercase">
               {t("graphify_nodes")}
             </span>
             <Share2 className="h-5 w-5 text-purple-400" />
           </div>
-          <p className="text-2xl font-bold text-purple-400">{report.graphifyNodeCount}</p>
-          <p className="text-xs text-slate-400">{t("live_ast_knowledge_graph")}</p>
+          <p className="text-fg-secondaryxl font-bold text-purple-400">
+            {report.graphifyNodeCount}
+          </p>
+          <p className="text-fg-muted text-xs">{t("live_ast_knowledge_graph")}</p>
         </div>
       </div>
 
-      <div className="space-y-4 rounded-xl border border-slate-800 bg-slate-900/80 p-6">
+      <div className="border-border-subtle bg-bg-secondary space-y-4 rounded-xl border p-6">
         <h2 className="text-xl font-semibold text-white">{t("hygiene_context_protocols")}</h2>
         <div className="grid grid-cols-1 gap-4 text-sm md:grid-cols-3">
-          <div className="space-y-2 rounded-lg border border-slate-800 bg-slate-950/60 p-4">
+          <div className="border-border-subtle bg-bg-secondary space-y-2 rounded-lg border p-4">
             <h3 className="font-bold text-emerald-400">{t("a_dead_code_elimination")}</h3>
-            <p className="text-xs text-slate-300">
+            <p className="text-fg-primary text-xs">
               {t("unused_components_orphaned_routes_and_de")}
             </p>
           </div>
-          <div className="space-y-2 rounded-lg border border-slate-800 bg-slate-950/60 p-4">
+          <div className="border-border-subtle bg-bg-secondary space-y-2 rounded-lg border p-4">
             <h3 className="font-bold text-cyan-400">{t("b_context_economy")}</h3>
-            <p className="text-xs text-slate-300">
+            <p className="text-fg-primary text-xs">
               {t("ajan_boot_dok_manlar_docs_bootstrap_md_5")}
             </p>
           </div>
-          <div className="space-y-2 rounded-lg border border-slate-800 bg-slate-950/60 p-4">
+          <div className="border-border-subtle bg-bg-secondary space-y-2 rounded-lg border p-4">
             <h3 className="font-bold text-purple-400">{t("c_graphify_ast_sync")}</h3>
-            <p className="text-xs text-slate-300">
+            <p className="text-fg-primary text-xs">
               {t("pre_commit_hook_u_ile_6_100_d_ml_ast_mim")}
             </p>
           </div>

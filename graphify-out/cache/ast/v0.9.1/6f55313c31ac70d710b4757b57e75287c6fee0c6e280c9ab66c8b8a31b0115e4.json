@@ -1,0 +1,223 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_applications_startup_programs_md",
+      "label": "startup-programs.md",
+      "file_type": "document",
+      "source_file": "docs/APPLICATIONS/startup-programs.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_applications_startup_programs_alpar_ai_startup_program_applications",
+      "label": "ALPAR AI Startup Program Applications",
+      "file_type": "document",
+      "source_file": "docs/APPLICATIONS/startup-programs.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_applications_startup_programs_ready_to_apply_no_ai_provider_conflict",
+      "label": "Ready to Apply (No AI Provider Conflict)",
+      "file_type": "document",
+      "source_file": "docs/APPLICATIONS/startup-programs.md",
+      "source_location": "L3"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_applications_startup_programs_1_supabase_oss_program",
+      "label": "1. Supabase OSS Program",
+      "file_type": "document",
+      "source_file": "docs/APPLICATIONS/startup-programs.md",
+      "source_location": "L5"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_applications_startup_programs_t\u00fcrk\u00e7e",
+      "label": "T\u00fcrk\u00e7e:",
+      "file_type": "document",
+      "source_file": "docs/APPLICATIONS/startup-programs.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_applications_startup_programs_english",
+      "label": "English:",
+      "file_type": "document",
+      "source_file": "docs/APPLICATIONS/startup-programs.md",
+      "source_location": "L17"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_applications_startup_programs_2_vercel_for_startups",
+      "label": "2. Vercel for Startups",
+      "file_type": "document",
+      "source_file": "docs/APPLICATIONS/startup-programs.md",
+      "source_location": "L26"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_applications_startup_programs_t\u00fcrk\u00e7e_31",
+      "label": "T\u00fcrk\u00e7e:",
+      "file_type": "document",
+      "source_file": "docs/APPLICATIONS/startup-programs.md",
+      "source_location": "L31"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_applications_startup_programs_english_38",
+      "label": "English:",
+      "file_type": "document",
+      "source_file": "docs/APPLICATIONS/startup-programs.md",
+      "source_location": "L38"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_applications_startup_programs_3_github_for_startups",
+      "label": "3. GitHub for Startups",
+      "file_type": "document",
+      "source_file": "docs/APPLICATIONS/startup-programs.md",
+      "source_location": "L47"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_applications_startup_programs_t\u00fcrk\u00e7e_52",
+      "label": "T\u00fcrk\u00e7e:",
+      "file_type": "document",
+      "source_file": "docs/APPLICATIONS/startup-programs.md",
+      "source_location": "L52"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_applications_startup_programs_english_59",
+      "label": "English:",
+      "file_type": "document",
+      "source_file": "docs/APPLICATIONS/startup-programs.md",
+      "source_location": "L59"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_applications_startup_programs_blocked_nesnellik_politikas\u0131_madde_80",
+      "label": "Blocked (Nesnellik Politikas\u0131 \u2014 Madde #80)",
+      "file_type": "document",
+      "source_file": "docs/APPLICATIONS/startup-programs.md",
+      "source_location": "L67"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_applications_startup_programs_prerequisite_81_public_repo",
+      "label": "Prerequisite: #81 (Public Repo)",
+      "file_type": "document",
+      "source_file": "docs/APPLICATIONS/startup-programs.md",
+      "source_location": "L72"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_applications_startup_programs_md",
+      "target": "d_01_saas_products_alparai_docs_applications_startup_programs_alpar_ai_startup_program_applications",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/APPLICATIONS/startup-programs.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_applications_startup_programs_alpar_ai_startup_program_applications",
+      "target": "d_01_saas_products_alparai_docs_applications_startup_programs_ready_to_apply_no_ai_provider_conflict",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/APPLICATIONS/startup-programs.md",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_applications_startup_programs_ready_to_apply_no_ai_provider_conflict",
+      "target": "d_01_saas_products_alparai_docs_applications_startup_programs_1_supabase_oss_program",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/APPLICATIONS/startup-programs.md",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_applications_startup_programs_1_supabase_oss_program",
+      "target": "d_01_saas_products_alparai_docs_applications_startup_programs_t\u00fcrk\u00e7e",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/APPLICATIONS/startup-programs.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_applications_startup_programs_1_supabase_oss_program",
+      "target": "d_01_saas_products_alparai_docs_applications_startup_programs_english",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/APPLICATIONS/startup-programs.md",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_applications_startup_programs_ready_to_apply_no_ai_provider_conflict",
+      "target": "d_01_saas_products_alparai_docs_applications_startup_programs_2_vercel_for_startups",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/APPLICATIONS/startup-programs.md",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_applications_startup_programs_2_vercel_for_startups",
+      "target": "d_01_saas_products_alparai_docs_applications_startup_programs_t\u00fcrk\u00e7e_31",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/APPLICATIONS/startup-programs.md",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_applications_startup_programs_2_vercel_for_startups",
+      "target": "d_01_saas_products_alparai_docs_applications_startup_programs_english_38",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/APPLICATIONS/startup-programs.md",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_applications_startup_programs_ready_to_apply_no_ai_provider_conflict",
+      "target": "d_01_saas_products_alparai_docs_applications_startup_programs_3_github_for_startups",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/APPLICATIONS/startup-programs.md",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_applications_startup_programs_3_github_for_startups",
+      "target": "d_01_saas_products_alparai_docs_applications_startup_programs_t\u00fcrk\u00e7e_52",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/APPLICATIONS/startup-programs.md",
+      "source_location": "L52",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_applications_startup_programs_3_github_for_startups",
+      "target": "d_01_saas_products_alparai_docs_applications_startup_programs_english_59",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/APPLICATIONS/startup-programs.md",
+      "source_location": "L59",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_applications_startup_programs_alpar_ai_startup_program_applications",
+      "target": "d_01_saas_products_alparai_docs_applications_startup_programs_blocked_nesnellik_politikas\u0131_madde_80",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/APPLICATIONS/startup-programs.md",
+      "source_location": "L67",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_applications_startup_programs_alpar_ai_startup_program_applications",
+      "target": "d_01_saas_products_alparai_docs_applications_startup_programs_prerequisite_81_public_repo",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/APPLICATIONS/startup-programs.md",
+      "source_location": "L72",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

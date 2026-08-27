@@ -1,0 +1,111 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_agent_capabilities_md",
+      "label": "AGENT_CAPABILITIES.md",
+      "file_type": "document",
+      "source_file": "docs/AGENT_CAPABILITIES.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_agent_capabilities_agent_capabilities_multi_agent_workflow",
+      "label": "Agent Capabilities & Multi-Agent Workflow",
+      "file_type": "document",
+      "source_file": "docs/AGENT_CAPABILITIES.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_agent_capabilities_multi_agent_d\u00f6ng\u00fcs\u00fc_architect_executor_feedback_loop",
+      "label": "Multi-Agent D\u00f6ng\u00fcs\u00fc (Architect \u2194 Executor Feedback Loop)",
+      "file_type": "document",
+      "source_file": "docs/AGENT_CAPABILITIES.md",
+      "source_location": "L3"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_agent_capabilities_dosya_sahipli\u011fi_matrisi",
+      "label": "Dosya Sahipli\u011fi Matrisi",
+      "file_type": "document",
+      "source_file": "docs/AGENT_CAPABILITIES.md",
+      "source_location": "L49"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_agent_capabilities_1_antigravity_capabilities_backend_security_db_geo_engine_devops",
+      "label": "1. ANTIGRAVITY CAPABILITIES (Backend, Security, DB, GEO Engine & DevOps)",
+      "file_type": "document",
+      "source_file": "docs/AGENT_CAPABILITIES.md",
+      "source_location": "L60"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_agent_capabilities_2_opencode_deepseek_flash_capabilities_frontend_ui_components_presentation_tier",
+      "label": "2. OPENCODE / DEEPSEEK FLASH CAPABILITIES (Frontend UI, Components & Presentation Tier)",
+      "file_type": "document",
+      "source_file": "docs/AGENT_CAPABILITIES.md",
+      "source_location": "L75"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_agent_capabilities_3_available_mcp_tool_ecosystem_antigravity_agent_mcp_powers",
+      "label": "3. AVAILABLE MCP TOOL ECOSYSTEM (Antigravity & Agent MCP Powers)",
+      "file_type": "document",
+      "source_file": "docs/AGENT_CAPABILITIES.md",
+      "source_location": "L93"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_agent_capabilities_md",
+      "target": "d_01_saas_products_alparai_docs_agent_capabilities_agent_capabilities_multi_agent_workflow",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/AGENT_CAPABILITIES.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_agent_capabilities_agent_capabilities_multi_agent_workflow",
+      "target": "d_01_saas_products_alparai_docs_agent_capabilities_multi_agent_d\u00f6ng\u00fcs\u00fc_architect_executor_feedback_loop",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/AGENT_CAPABILITIES.md",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_agent_capabilities_multi_agent_d\u00f6ng\u00fcs\u00fc_architect_executor_feedback_loop",
+      "target": "d_01_saas_products_alparai_docs_agent_capabilities_dosya_sahipli\u011fi_matrisi",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/AGENT_CAPABILITIES.md",
+      "source_location": "L49",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_agent_capabilities_agent_capabilities_multi_agent_workflow",
+      "target": "d_01_saas_products_alparai_docs_agent_capabilities_1_antigravity_capabilities_backend_security_db_geo_engine_devops",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/AGENT_CAPABILITIES.md",
+      "source_location": "L60",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_agent_capabilities_agent_capabilities_multi_agent_workflow",
+      "target": "d_01_saas_products_alparai_docs_agent_capabilities_2_opencode_deepseek_flash_capabilities_frontend_ui_components_presentation_tier",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/AGENT_CAPABILITIES.md",
+      "source_location": "L75",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_agent_capabilities_agent_capabilities_multi_agent_workflow",
+      "target": "d_01_saas_products_alparai_docs_agent_capabilities_3_available_mcp_tool_ecosystem_antigravity_agent_mcp_powers",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/AGENT_CAPABILITIES.md",
+      "source_location": "L93",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

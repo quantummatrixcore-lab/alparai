@@ -1,0 +1,95 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_data_room_market_analysis_md",
+      "label": "market-analysis.md",
+      "file_type": "document",
+      "source_file": "docs/DATA_ROOM/market-analysis.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_data_room_market_analysis_alpar_ai_market_analysis",
+      "label": "ALPAR AI - Market Analysis",
+      "file_type": "document",
+      "source_file": "docs/DATA_ROOM/market-analysis.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_data_room_market_analysis_1_global_ai_market",
+      "label": "1. Global AI Market",
+      "file_type": "document",
+      "source_file": "docs/DATA_ROOM/market-analysis.md",
+      "source_location": "L5"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_data_room_market_analysis_2_ai_governance_market",
+      "label": "2. AI Governance Market",
+      "file_type": "document",
+      "source_file": "docs/DATA_ROOM/market-analysis.md",
+      "source_location": "L13"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_data_room_market_analysis_3_comparable_company_analysis",
+      "label": "3. Comparable Company Analysis",
+      "file_type": "document",
+      "source_file": "docs/DATA_ROOM/market-analysis.md",
+      "source_location": "L26"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_data_room_market_analysis_4_competitive_finding",
+      "label": "4. Competitive Finding",
+      "file_type": "document",
+      "source_file": "docs/DATA_ROOM/market-analysis.md",
+      "source_location": "L34"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_data_room_market_analysis_md",
+      "target": "d_01_saas_products_alparai_docs_data_room_market_analysis_alpar_ai_market_analysis",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DATA_ROOM/market-analysis.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_data_room_market_analysis_alpar_ai_market_analysis",
+      "target": "d_01_saas_products_alparai_docs_data_room_market_analysis_1_global_ai_market",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DATA_ROOM/market-analysis.md",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_data_room_market_analysis_alpar_ai_market_analysis",
+      "target": "d_01_saas_products_alparai_docs_data_room_market_analysis_2_ai_governance_market",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DATA_ROOM/market-analysis.md",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_data_room_market_analysis_alpar_ai_market_analysis",
+      "target": "d_01_saas_products_alparai_docs_data_room_market_analysis_3_comparable_company_analysis",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DATA_ROOM/market-analysis.md",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_data_room_market_analysis_alpar_ai_market_analysis",
+      "target": "d_01_saas_products_alparai_docs_data_room_market_analysis_4_competitive_finding",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DATA_ROOM/market-analysis.md",
+      "source_location": "L34",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

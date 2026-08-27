@@ -167,12 +167,12 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
 
           {/* Aggregate Telemetry Strip */}
           <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-            <div className="group hover:border-brand-500/40 relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-center backdrop-blur-xl transition-all duration-300 hover:bg-white/[0.06] hover:shadow-[0_0_30px_rgba(168,85,247,0.2)]">
+            <div className="group hover:border-brand-500/40 border-border-subtle relative overflow-hidden rounded-2xl border bg-white/[0.03] p-4 text-center backdrop-blur-xl transition-all duration-300 hover:bg-white/[0.06] hover:shadow-[0_0_30px_rgba(168,85,247,0.2)]">
               <div className="text-fg-muted mb-1 flex items-center justify-center gap-1.5 text-xs font-medium">
                 <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />
                 <span>Problems Solved</span>
               </div>
-              <div className="font-display text-2xl font-extrabold text-white sm:text-3xl">
+              <div className="font-display text-fg-secondaryxl font-extrabold text-white sm:text-3xl">
                 {aggregateMetrics.totalSolved.toLocaleString()}
               </div>
               <span className="font-mono text-[11px] font-medium text-emerald-400">
@@ -180,12 +180,12 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
               </span>
             </div>
 
-            <div className="group hover:border-brand-500/40 relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-center backdrop-blur-xl transition-all duration-300 hover:bg-white/[0.06] hover:shadow-[0_0_30px_rgba(168,85,247,0.2)]">
+            <div className="group hover:border-brand-500/40 border-border-subtle relative overflow-hidden rounded-2xl border bg-white/[0.03] p-4 text-center backdrop-blur-xl transition-all duration-300 hover:bg-white/[0.06] hover:shadow-[0_0_30px_rgba(168,85,247,0.2)]">
               <div className="text-fg-muted mb-1 flex items-center justify-center gap-1.5 text-xs font-medium">
                 <BrainCircuit className="text-brand-400 h-3.5 w-3.5" />
                 <span>Ortalama IQ Skoru</span>
               </div>
-              <div className="font-display from-brand-300 bg-gradient-to-r to-purple-400 bg-clip-text text-2xl font-extrabold text-transparent sm:text-3xl">
+              <div className="font-display from-brand-300 text-fg-secondaryxl bg-gradient-to-r to-purple-400 bg-clip-text font-extrabold text-transparent sm:text-3xl">
                 {aggregateMetrics.avgIQ}
               </div>
               <span className="text-brand-400 font-mono text-[11px] font-medium">
@@ -193,12 +193,12 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
               </span>
             </div>
 
-            <div className="group hover:border-brand-500/40 relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-center backdrop-blur-xl transition-all duration-300 hover:bg-white/[0.06] hover:shadow-[0_0_30px_rgba(168,85,247,0.2)]">
+            <div className="group hover:border-brand-500/40 border-border-subtle relative overflow-hidden rounded-2xl border bg-white/[0.03] p-4 text-center backdrop-blur-xl transition-all duration-300 hover:bg-white/[0.06] hover:shadow-[0_0_30px_rgba(168,85,247,0.2)]">
               <div className="text-fg-muted mb-1 flex items-center justify-center gap-1.5 text-xs font-medium">
                 <Coins className="h-3.5 w-3.5 text-amber-400" />
                 <span>Token Tasarrufu</span>
               </div>
-              <div className="font-display text-2xl font-extrabold text-amber-300 sm:text-3xl">
+              <div className="font-display text-fg-secondaryxl font-extrabold text-amber-300 sm:text-3xl">
                 %{aggregateMetrics.avgSavings}
               </div>
               <span className="font-mono text-[11px] font-medium text-amber-400">
@@ -206,12 +206,12 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
               </span>
             </div>
 
-            <div className="group hover:border-brand-500/40 relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-center backdrop-blur-xl transition-all duration-300 hover:bg-white/[0.06] hover:shadow-[0_0_30px_rgba(168,85,247,0.2)]">
+            <div className="group hover:border-brand-500/40 border-border-subtle relative overflow-hidden rounded-2xl border bg-white/[0.03] p-4 text-center backdrop-blur-xl transition-all duration-300 hover:bg-white/[0.06] hover:shadow-[0_0_30px_rgba(168,85,247,0.2)]">
               <div className="text-fg-muted mb-1 flex items-center justify-center gap-1.5 text-xs font-medium">
                 <TrendingUp className="h-3.5 w-3.5 text-cyan-400" />
                 <span>Task Success</span>
               </div>
-              <div className="font-display text-2xl font-extrabold text-cyan-300 sm:text-3xl">
+              <div className="font-display text-fg-secondaryxl font-extrabold text-cyan-300 sm:text-3xl">
                 %{aggregateMetrics.avgSuccess}
               </div>
               <span className="font-mono text-[11px] font-medium text-cyan-400">
@@ -219,12 +219,12 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
               </span>
             </div>
 
-            <div className="group hover:border-brand-500/40 relative col-span-2 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-center backdrop-blur-xl transition-all duration-300 hover:bg-white/[0.06] hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] sm:col-span-1">
+            <div className="group hover:border-brand-500/40 border-border-subtle relative col-span-2 overflow-hidden rounded-2xl border bg-white/[0.03] p-4 text-center backdrop-blur-xl transition-all duration-300 hover:bg-white/[0.06] hover:shadow-[0_0_30px_rgba(168,85,247,0.2)] sm:col-span-1">
               <div className="text-fg-muted mb-1 flex items-center justify-center gap-1.5 text-xs font-medium">
                 <Cpu className="h-3.5 w-3.5 text-rose-400" />
                 <span>Aktif Konsey</span>
               </div>
-              <div className="font-display text-2xl font-extrabold text-rose-300 sm:text-3xl">
+              <div className="font-display text-fg-secondaryxl font-extrabold text-rose-300 sm:text-3xl">
                 {aggregateMetrics.activeCount} Deha
               </div>
               <span className="font-mono text-[11px] font-medium text-rose-400">
@@ -240,7 +240,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
         <section aria-label="Zirvedeki Dehalar Podyumu" className="mb-16">
           <div className="mb-6 flex items-center justify-between">
             <div>
-              <h2 className="font-display flex items-center gap-2 text-xl font-bold text-white sm:text-2xl">
+              <h2 className="font-display sm:text-fg-secondaryxl flex items-center gap-2 text-xl font-bold text-white">
                 <Trophy className="h-6 w-6 text-amber-400" />
                 Bilge Kurul Zirve Podyumu (Top 3)
               </h2>
@@ -263,7 +263,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
             {podiumTwins.second && (
               <div className="group relative order-2 rounded-3xl border border-slate-400/20 bg-gradient-to-b from-slate-800/40 via-slate-900/60 to-slate-950/80 p-6 backdrop-blur-2xl transition-all duration-300 hover:-translate-y-2 hover:border-slate-300/50 hover:shadow-[0_0_35px_rgba(203,213,225,0.2)] md:order-1">
                 <div className="absolute -top-4 left-6 flex items-center gap-1.5 rounded-full border border-slate-300/30 bg-gradient-to-r from-slate-600 to-slate-400 px-3.5 py-1 shadow-lg">
-                  <Award className="h-4 w-4 text-slate-100" />
+                  <Award className="text-fg-primary h-4 w-4" />
                   <span className="text-xs font-bold tracking-wider text-white">
                     #2 SILVER RANK
                   </span>
@@ -271,19 +271,21 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
 
                 <div className="mt-4 flex items-center gap-4">
                   <div className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-red-500 to-amber-500 p-0.5 shadow-lg">
-                    <div className="flex h-full w-full items-center justify-center rounded-[14px] bg-slate-950">
+                    <div className="bg-bg-secondary flex h-full w-full items-center justify-center rounded-[14px]">
                       <Crown className="h-8 w-8 text-amber-400" />
                     </div>
                     <span className="absolute -right-1 -bottom-1 flex h-4 w-4">
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                      <span className="relative inline-flex h-4 w-4 rounded-full border-2 border-slate-950 bg-emerald-500" />
+                      <span className="border-border-subtle relative inline-flex h-4 w-4 rounded-full border-2 bg-emerald-500" />
                     </span>
                   </div>
                   <div>
                     <h3 className="font-display text-xl font-bold text-white transition-colors group-hover:text-amber-300">
                       {podiumTwins.second.name}
                     </h3>
-                    <p className="text-xs font-medium text-slate-300">{podiumTwins.second.title}</p>
+                    <p className="text-fg-primary text-xs font-medium">
+                      {podiumTwins.second.title}
+                    </p>
                     <Badge
                       variant="outline"
                       className="mt-1 border-red-500/30 bg-red-500/10 text-[10px] text-red-300"
@@ -297,7 +299,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                   "{podiumTwins.second.stats.quote}"
                 </p>
 
-                <div className="mt-5 space-y-2 border-t border-white/10 pt-4 text-xs">
+                <div className="border-border-subtle mt-5 space-y-2 border-t pt-4 text-xs">
                   <div className="flex items-center justify-between">
                     <span className="text-fg-muted">IQ & Cognitive Capacity</span>
                     <span className="font-bold text-amber-400">
@@ -353,16 +355,16 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
 
                 <div className="mt-4 flex items-center gap-4">
                   <div className="relative flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 via-rose-500 to-red-600 p-1 shadow-[0_0_25px_rgba(245,158,11,0.5)]">
-                    <div className="flex h-full w-full items-center justify-center rounded-[13px] bg-slate-950">
+                    <div className="bg-bg-secondary flex h-full w-full items-center justify-center rounded-[13px]">
                       <Sparkles className="h-10 w-10 animate-pulse text-amber-400" />
                     </div>
                     <span className="absolute -right-1 -bottom-1 flex h-5 w-5">
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-75" />
-                      <span className="relative inline-flex h-5 w-5 rounded-full border-2 border-slate-950 bg-amber-400" />
+                      <span className="border-border-subtle relative inline-flex h-5 w-5 rounded-full border-2 bg-amber-400" />
                     </span>
                   </div>
                   <div>
-                    <h3 className="font-display text-2xl font-black text-white transition-colors group-hover:text-amber-300">
+                    <h3 className="font-display text-fg-secondaryxl font-black text-white transition-colors group-hover:text-amber-300">
                       {podiumTwins.first.name}
                     </h3>
                     <p className="text-sm font-semibold text-amber-300/90">
@@ -447,12 +449,12 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
 
                 <div className="mt-4 flex items-center gap-4">
                   <div className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-600 p-0.5 shadow-lg">
-                    <div className="flex h-full w-full items-center justify-center rounded-[14px] bg-slate-950">
+                    <div className="bg-bg-secondary flex h-full w-full items-center justify-center rounded-[14px]">
                       <Compass className="h-8 w-8 text-emerald-400" />
                     </div>
                     <span className="absolute -right-1 -bottom-1 flex h-4 w-4">
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                      <span className="relative inline-flex h-4 w-4 rounded-full border-2 border-slate-950 bg-emerald-500" />
+                      <span className="border-border-subtle relative inline-flex h-4 w-4 rounded-full border-2 bg-emerald-500" />
                     </span>
                   </div>
                   <div>
@@ -475,7 +477,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                   "{podiumTwins.third.stats.quote}"
                 </p>
 
-                <div className="mt-5 space-y-2 border-t border-white/10 pt-4 text-xs">
+                <div className="border-border-subtle mt-5 space-y-2 border-t pt-4 text-xs">
                   <div className="flex items-center justify-between">
                     <span className="text-fg-muted">IQ & Cognitive Capacity</span>
                     <span className="font-bold text-emerald-400">
@@ -525,7 +527,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
             FILTERS, SEARCH & CONTROLS TOOLBAR
             ========================================================================= */}
         <section aria-label="Arama ve Filtreleme Kontrolleri" className="mb-8">
-          <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-4 shadow-xl backdrop-blur-2xl sm:p-6">
+          <div className="border-border-subtle rounded-3xl border bg-white/[0.02] p-4 shadow-xl backdrop-blur-2xl sm:p-6">
             {/* Top Toolbar: Search + Sort + View Mode */}
             <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
               {/* Search Bar */}
@@ -536,7 +538,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                   placeholder="Search visionaries, expertise, models, or skills..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="placeholder:text-fg-muted focus:border-brand-500 focus:ring-brand-500/20 w-full rounded-2xl border-white/15 bg-slate-900/60 py-2.5 pr-4 pl-11 text-sm text-white focus:ring-2"
+                  className="placeholder:text-fg-muted focus:border-brand-500 focus:ring-brand-500/20 bg-bg-secondary w-full rounded-2xl border-white/15 py-2.5 pr-4 pl-11 text-sm text-white focus:ring-2"
                 />
                 {searchQuery && (
                   <button
@@ -551,7 +553,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
 
               {/* Controls: Sorting & View Switcher */}
               <div className="flex flex-wrap items-center gap-3">
-                <div className="flex items-center gap-2 rounded-2xl border border-white/10 bg-slate-900/60 px-3 py-1.5">
+                <div className="border-border-subtle bg-bg-secondary flex items-center gap-2 rounded-2xl border px-3 py-1.5">
                   <SlidersHorizontal className="text-brand-400 h-4 w-4" />
                   <span className="text-fg-muted text-xs font-medium">Sort by:</span>
                   <select
@@ -560,26 +562,26 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                     className="cursor-pointer bg-transparent text-xs font-semibold text-white outline-none"
                     aria-label="Leaderboard sort criteria"
                   >
-                    <option value="iq" className="bg-slate-900 text-white">
+                    <option value="iq" className="bg-bg-secondary text-white">
                       IQ Score (Highest)
                     </option>
-                    <option value="problems" className="bg-slate-900 text-white">
+                    <option value="problems" className="bg-bg-secondary text-white">
                       Problems Solved Sayısı
                     </option>
-                    <option value="success" className="bg-slate-900 text-white">
+                    <option value="success" className="bg-bg-secondary text-white">
                       Görev Success Rate
                     </option>
-                    <option value="savings" className="bg-slate-900 text-white">
+                    <option value="savings" className="bg-bg-secondary text-white">
                       Token Savings Rate
                     </option>
-                    <option value="rating" className="bg-slate-900 text-white">
+                    <option value="rating" className="bg-bg-secondary text-white">
                       User Satisfaction
                     </option>
                   </select>
                 </div>
 
                 {/* View Mode Toggle */}
-                <div className="flex items-center rounded-2xl border border-white/10 bg-slate-900/60 p-1">
+                <div className="border-border-subtle bg-bg-secondary flex items-center rounded-2xl border p-1">
                   <button
                     onClick={() => setViewMode("grid")}
                     className={`flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-medium transition-all ${
@@ -609,7 +611,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
             </div>
 
             {/* Category Pills */}
-            <div className="mt-5 flex flex-wrap items-center gap-2 border-t border-white/10 pt-4">
+            <div className="border-border-subtle mt-5 flex flex-wrap items-center gap-2 border-t pt-4">
               {categories.map((cat) => {
                 const IconComponent = cat.icon;
                 const isActive = selectedCategory === cat.key;
@@ -620,7 +622,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                     className={`flex items-center gap-2 rounded-2xl px-4 py-2 text-xs font-semibold transition-all duration-200 ${
                       isActive
                         ? "border-brand-400/50 from-brand-600/90 border bg-gradient-to-r to-purple-600/90 text-white shadow-[0_0_20px_rgba(168,85,247,0.35)]"
-                        : "text-fg-secondary border border-white/5 bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.05] hover:text-white"
+                        : "text-fg-secondary border-border-subtle/50 border bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.05] hover:text-white"
                     }`}
                   >
                     <IconComponent
@@ -638,7 +640,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
             LEADERBOARD CONTENT: GRID VIEW OR MATRIX TABLE VIEW
             ========================================================================= */}
         {filteredAndSortedTwins.length === 0 ? (
-          <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-12 text-center backdrop-blur-xl">
+          <div className="border-border-subtle rounded-3xl border bg-white/[0.02] p-12 text-center backdrop-blur-xl">
             <BrainCircuit className="text-fg-muted mx-auto mb-3 h-12 w-12 opacity-40" />
             <h3 className="font-display text-lg font-bold text-white">
               No Matching Visionary Found
@@ -665,7 +667,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
               return (
                 <div
                   key={twin.id}
-                  className="group hover:border-brand-500/50 relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-slate-900/50 via-slate-900/30 to-slate-950/80 p-6 backdrop-blur-2xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_0_35px_rgba(168,85,247,0.25)]"
+                  className="group hover:border-brand-500/50 border-border-subtle relative flex flex-col justify-between overflow-hidden rounded-3xl border bg-gradient-to-b from-slate-900/50 via-slate-900/30 to-slate-950/80 p-6 backdrop-blur-2xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_0_35px_rgba(168,85,247,0.25)]"
                 >
                   {/* Top Bar: Rank + Tier */}
                   <div>
@@ -703,7 +705,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                       <div
                         className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${twin.stats.badgeGradient} p-0.5 shadow-md`}
                       >
-                        <div className="flex h-full w-full items-center justify-center rounded-[14px] bg-slate-950">
+                        <div className="bg-bg-secondary flex h-full w-full items-center justify-center rounded-[14px]">
                           <BrainCircuit className="h-7 w-7 text-white" />
                         </div>
                       </div>
@@ -716,14 +718,14 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                     </div>
 
                     {/* Quote Box */}
-                    <div className="mt-4 rounded-2xl border border-white/5 bg-white/[0.02] p-3">
+                    <div className="border-border-subtle/50 mt-4 rounded-2xl border bg-white/[0.02] p-3">
                       <p className="text-fg-secondary line-clamp-2 text-xs leading-relaxed italic">
                         "{twin.stats.quote}"
                       </p>
                     </div>
 
                     {/* Performance Metrics Breakdown */}
-                    <div className="mt-5 space-y-3 border-t border-white/10 pt-4 text-xs">
+                    <div className="border-border-subtle mt-5 space-y-3 border-t pt-4 text-xs">
                       {/* Metric 1: IQ Capacity */}
                       <div>
                         <div className="mb-1 flex justify-between text-xs">
@@ -774,13 +776,13 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
 
                       {/* Key Meta row */}
                       <div className="grid grid-cols-2 gap-2 pt-1 text-[11px]">
-                        <div className="rounded-xl border border-white/5 bg-slate-900/60 p-2 text-center">
+                        <div className="border-border-subtle/50 bg-bg-secondary rounded-xl border p-2 text-center">
                           <span className="text-fg-muted block">Problems Solved</span>
                           <span className="font-mono text-xs font-bold text-white">
                             {twin.stats.solvedProblems.toLocaleString()}
                           </span>
                         </div>
-                        <div className="rounded-xl border border-white/5 bg-slate-900/60 p-2 text-center">
+                        <div className="border-border-subtle/50 bg-bg-secondary rounded-xl border p-2 text-center">
                           <span className="text-fg-muted block">Token Tasarrufu</span>
                           <span className="text-xs font-bold text-amber-300">
                             %{twin.stats.tokenSavingsRate}
@@ -802,7 +804,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                       {twin.expertise.slice(0, 3).map((exp: string) => (
                         <span
                           key={exp}
-                          className="text-fg-secondary rounded-lg border border-white/5 bg-white/[0.03] px-2 py-0.5 text-[10px]"
+                          className="text-fg-secondary border-border-subtle/50 rounded-lg border bg-white/[0.03] px-2 py-0.5 text-[10px]"
                         >
                           {exp}
                         </span>
@@ -811,7 +813,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="mt-6 flex items-center gap-2 border-t border-white/10 pt-4">
+                  <div className="border-border-subtle mt-6 flex items-center gap-2 border-t pt-4">
                     <Button
                       onClick={() => setSelectedTwinModal(twin)}
                       variant="outline"
@@ -832,10 +834,10 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
           </div>
         ) : (
           /* MATRIX TABLE VIEW */
-          <div className="overflow-hidden rounded-3xl border border-white/10 bg-slate-900/50 shadow-2xl backdrop-blur-2xl">
+          <div className="border-border-subtle bg-bg-secondary overflow-hidden rounded-3xl border shadow-2xl backdrop-blur-2xl">
             <div className="overflow-x-auto">
               <table className="text-fg-secondary w-full text-left text-xs">
-                <thead className="text-fg-muted border-b border-white/10 bg-white/[0.04] text-[11px] tracking-wider uppercase">
+                <thead className="text-fg-muted border-border-subtle border-b bg-white/[0.04] text-[11px] tracking-wider uppercase">
                   <tr>
                     <th scope="col" className="px-6 py-4 font-semibold">
                       Rank & Visionary
@@ -879,7 +881,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                                     ? "bg-slate-300 text-slate-950"
                                     : rank === 3
                                       ? "bg-emerald-500 text-white"
-                                      : "text-fg-muted border border-white/10 bg-white/5"
+                                      : "text-fg-muted border-border-subtle border bg-white/5"
                               }`}
                             >
                               #{rank}
@@ -888,7 +890,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                               <div
                                 className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${twin.stats.badgeGradient} p-0.5`}
                               >
-                                <div className="flex h-full w-full items-center justify-center rounded-[10px] bg-slate-950">
+                                <div className="bg-bg-secondary flex h-full w-full items-center justify-center rounded-[10px]">
                                   <BrainCircuit className="h-4 w-4 text-white" />
                                 </div>
                               </div>
@@ -913,7 +915,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                           <div className="font-medium text-white">{twin.title}</div>
                           <Badge
                             variant="outline"
-                            className="text-fg-muted mt-0.5 border-white/10 text-[10px]"
+                            className="text-fg-muted border-border-subtle mt-0.5 text-[10px]"
                           >
                             {twin.category.toUpperCase()}
                           </Badge>
@@ -982,14 +984,14 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
             MIMAR SINAN STRUCTURAL DOCTRINE & MODEL ARBITRAGE PROTOCOL
             ========================================================================= */}
         <section aria-label="Architectural Standards and Cognitive Arbitrage" className="mt-16">
-          <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-slate-900/60 via-purple-950/20 to-slate-950/80 p-8 shadow-2xl backdrop-blur-2xl sm:p-10">
-            <div className="flex flex-col gap-6 border-b border-white/10 pb-8 lg:flex-row lg:items-center lg:justify-between">
+          <div className="border-border-subtle rounded-3xl border bg-gradient-to-br from-slate-900/60 via-purple-950/20 to-slate-950/80 p-8 shadow-2xl backdrop-blur-2xl sm:p-10">
+            <div className="border-border-subtle flex flex-col gap-6 border-b pb-8 lg:flex-row lg:items-center lg:justify-between">
               <div>
                 <div className="text-brand-400 mb-2 inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase">
                   <Compass className="h-4 w-4" />
                   <span>Mimar Sinan Structural Doctrine</span>
                 </div>
-                <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">
+                <h2 className="font-display text-fg-secondaryxl font-bold text-white sm:text-3xl">
                   Flawless Static Equilibrium & Model Arbitrage
                 </h2>
                 <p className="text-fg-secondary mt-2 max-w-2xl text-sm leading-relaxed">
@@ -1009,7 +1011,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
 
             {/* 3 Pillars of Structural Excellence */}
             <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
-              <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-5">
+              <div className="border-border-subtle/50 rounded-2xl border bg-white/[0.02] p-5">
                 <div className="bg-brand-500/10 text-brand-400 mb-3 flex h-10 w-10 items-center justify-center rounded-xl">
                   <ShieldCheck className="h-5 w-5" />
                 </div>
@@ -1022,7 +1024,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-5">
+              <div className="border-border-subtle/50 rounded-2xl border bg-white/[0.02] p-5">
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-amber-500/10 text-amber-400">
                   <Coins className="h-5 w-5" />
                 </div>
@@ -1036,7 +1038,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-5">
+              <div className="border-border-subtle/50 rounded-2xl border bg-white/[0.02] p-5">
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-400">
                   <Flame className="h-5 w-5" />
                 </div>
@@ -1057,8 +1059,8 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
           INTERACTIVE TWIN DETAIL MODAL
           ========================================================================= */}
       {selectedTwinModal && (
-        <div className="animate-in fade-in fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 p-4 backdrop-blur-xl duration-200">
-          <div className="relative w-full max-w-2xl rounded-3xl border border-white/15 bg-slate-900/95 p-6 shadow-2xl backdrop-blur-2xl sm:p-8">
+        <div className="animate-in fade-in bg-bg-secondary fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-xl duration-200">
+          <div className="bg-bg-secondary relative w-full max-w-2xl rounded-3xl border border-white/15 p-6 shadow-2xl backdrop-blur-2xl sm:p-8">
             {/* Close Button */}
             <button
               onClick={() => setSelectedTwinModal(null)}
@@ -1069,17 +1071,17 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
             </button>
 
             {/* Modal Header */}
-            <div className="flex items-center gap-4 border-b border-white/10 pb-6">
+            <div className="border-border-subtle flex items-center gap-4 border-b pb-6">
               <div
                 className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${selectedTwinModal.stats.badgeGradient} p-0.5 shadow-lg`}
               >
-                <div className="flex h-full w-full items-center justify-center rounded-[14px] bg-slate-950">
+                <div className="bg-bg-secondary flex h-full w-full items-center justify-center rounded-[14px]">
                   <BrainCircuit className="h-8 w-8 text-white" />
                 </div>
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <h3 className="font-display text-2xl font-bold text-white">
+                  <h3 className="font-display text-fg-secondaryxl font-bold text-white">
                     {selectedTwinModal.name}
                   </h3>
                   <Badge variant="outline" className="border-brand-500/40 text-brand-300 text-xs">
@@ -1107,32 +1109,32 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                 <span className="text-fg-muted mb-1.5 block text-xs font-semibold tracking-wider uppercase">
                   Cognitive Guidelines & Logic Algorithm
                 </span>
-                <p className="rounded-2xl border border-white/10 bg-slate-950/60 p-4 font-mono text-xs leading-relaxed text-slate-300">
+                <p className="border-border-subtle bg-bg-secondary text-fg-primary rounded-2xl border p-4 font-mono text-xs leading-relaxed">
                   {selectedTwinModal.systemPrompt}
                 </p>
               </div>
 
               {/* Detailed Metrics Grid */}
               <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4">
-                <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3 text-center">
+                <div className="border-border-subtle rounded-xl border bg-white/[0.02] p-3 text-center">
                   <span className="text-fg-muted block text-[11px]">IQ Skoru</span>
                   <span className="text-brand-300 text-sm font-bold">
                     {selectedTwinModal.stats.iqScore} IQ
                   </span>
                 </div>
-                <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3 text-center">
+                <div className="border-border-subtle rounded-xl border bg-white/[0.02] p-3 text-center">
                   <span className="text-fg-muted block text-[11px]">Cases Solved</span>
                   <span className="font-mono text-sm font-bold text-white">
                     {selectedTwinModal.stats.solvedProblems.toLocaleString()}
                   </span>
                 </div>
-                <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3 text-center">
+                <div className="border-border-subtle rounded-xl border bg-white/[0.02] p-3 text-center">
                   <span className="text-fg-muted block text-[11px]">Success Rate</span>
                   <span className="text-sm font-bold text-emerald-400">
                     %{selectedTwinModal.stats.successRate}
                   </span>
                 </div>
-                <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3 text-center">
+                <div className="border-border-subtle rounded-xl border bg-white/[0.02] p-3 text-center">
                   <span className="text-fg-muted block text-[11px]">Avg Response</span>
                   {}
                   <span className="font-mono text-sm font-bold text-cyan-300">
@@ -1151,7 +1153,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                     <Badge
                       key={exp}
                       variant="outline"
-                      className="border border-white/10 bg-white/10 text-xs text-white"
+                      className="border-border-subtle border bg-white/10 text-xs text-white"
                     >
                       {exp}
                     </Badge>
@@ -1161,7 +1163,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
             </div>
 
             {/* Modal Actions */}
-            <div className="mt-8 flex items-center justify-end gap-3 border-t border-white/10 pt-4">
+            <div className="border-border-subtle mt-8 flex items-center justify-end gap-3 border-t pt-4">
               <Button
                 onClick={() => setSelectedTwinModal(null)}
                 variant="ghost"

@@ -1,4 +1,4 @@
-import Redis from 'ioredis';
+import Redis from "ioredis";
 
 export class EventBus {
   private pubClient: Redis;
@@ -12,12 +12,14 @@ export class EventBus {
     this.handlers = new Map();
 
     // Sadece BİR KEZ dinle (Memory Leak RCE çözümü)
-    this.subClient.on('message', (chan: string, msg: string) => {
+    this.subClient.on("message", (chan: string, msg: string) => {
       const channelHandlers = this.handlers.get(chan);
       if (channelHandlers) {
         let parsedMsg = msg;
-        try { parsedMsg = JSON.parse(msg); } catch (_e) {}
-        channelHandlers.forEach(handler => handler(parsedMsg));
+        try {
+          parsedMsg = JSON.parse(msg);
+        } catch (_e) {}
+        channelHandlers.forEach((handler) => handler(parsedMsg));
       }
     });
   }

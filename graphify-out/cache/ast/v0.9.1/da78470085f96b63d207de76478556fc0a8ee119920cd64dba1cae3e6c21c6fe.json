@@ -1,0 +1,85 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_agents_scripts_apply_translations_py",
+      "label": "apply_translations.py",
+      "file_type": "code",
+      "source_file": ".agents/scripts/apply_translations.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_scripts_apply_translations_load",
+      "label": "load()",
+      "file_type": "code",
+      "source_file": ".agents/scripts/apply_translations.py",
+      "source_location": "L8"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_scripts_apply_translations_set_nested",
+      "label": "set_nested()",
+      "file_type": "code",
+      "source_file": ".agents/scripts/apply_translations.py",
+      "source_location": "L12"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_agents_scripts_apply_translations_py",
+      "target": "json",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/scripts/apply_translations.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_scripts_apply_translations_py",
+      "target": "pathlib",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/scripts/apply_translations.py",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_scripts_apply_translations_py",
+      "target": "d_01_saas_products_alparai_agents_scripts_apply_translations_load",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/scripts/apply_translations.py",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_scripts_apply_translations_py",
+      "target": "d_01_saas_products_alparai_agents_scripts_apply_translations_set_nested",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/scripts/apply_translations.py",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_scripts_apply_translations_py",
+      "target": "json",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/scripts/apply_translations.py",
+      "source_location": "L142",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "d_01_saas_products_alparai_agents_scripts_apply_translations_set_nested",
+      "callee": "split",
+      "is_member_call": true,
+      "source_file": "D:\\01_SaaS_Products\\Alparai\\.agents\\scripts\\apply_translations.py",
+      "source_location": "L13",
+      "receiver": "key_str"
+    }
+  ]
+}

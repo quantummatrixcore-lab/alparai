@@ -33,12 +33,12 @@ export default function NotFound() {
           </div>
 
           {/* 404 Large Gradient Text */}
-          <h1 className="from-fg-primary via-brand-300 to-fg-muted bg-gradient-to-b bg-clip-text text-7xl font-extrabold tracking-tighter text-transparent select-none sm:text-8xl md:text-9xl">
+          <h1 className="from-fg-primary via-brand-300 to-fg-muted sm:text-fg-secondaryxl bg-gradient-to-b bg-clip-text text-7xl font-extrabold tracking-tighter text-transparent select-none md:text-9xl">
             404
           </h1>
 
           {/* Page Not Found Title */}
-          <h2 className="text-fg-primary mt-4 text-2xl font-bold tracking-tight sm:text-3xl">
+          <h2 className="text-fg-primary text-fg-secondaryxl mt-4 font-bold tracking-tight sm:text-3xl">
             {pageNotFoundText}
           </h2>
 

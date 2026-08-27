@@ -48,7 +48,9 @@ export function ComplianceLeadForm({ t }: ComplianceLeadFormProps) {
             <ShieldCheck className="h-6 w-6" />
           </div>
           <div>
-            <h3 className="text-fg-primary text-2xl font-bold tracking-tight">{t.leadFormTitle}</h3>
+            <h3 className="text-fg-primary text-fg-secondaryxl font-bold tracking-tight">
+              {t.leadFormTitle}
+            </h3>
             <p className="text-fg-secondary text-sm">{t.leadFormSubtitle}</p>
           </div>
         </div>
@@ -81,7 +83,7 @@ export function ComplianceLeadForm({ t }: ComplianceLeadFormProps) {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={t.emailPlaceholder}
-                  className="focus:border-brand-500 focus:ring-brand-500 w-full rounded-xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-white placeholder-gray-500 transition-all focus:ring-1 focus:outline-none"
+                  className="focus:border-brand-500 focus:ring-brand-500 border-border-subtle w-full rounded-xl border bg-black/50 px-4 py-3 text-sm text-white placeholder-gray-500 transition-all focus:ring-1 focus:outline-none"
                 />
               </div>
 
@@ -95,7 +97,7 @@ export function ComplianceLeadForm({ t }: ComplianceLeadFormProps) {
                   value={org}
                   onChange={(e) => setOrg(e.target.value)}
                   placeholder={t.orgPlaceholder}
-                  className="focus:border-brand-500 focus:ring-brand-500 w-full rounded-xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-white placeholder-gray-500 transition-all focus:ring-1 focus:outline-none"
+                  className="focus:border-brand-500 focus:ring-brand-500 border-border-subtle w-full rounded-xl border bg-black/50 px-4 py-3 text-sm text-white placeholder-gray-500 transition-all focus:ring-1 focus:outline-none"
                 />
               </div>
             </div>
@@ -111,7 +113,7 @@ export function ComplianceLeadForm({ t }: ComplianceLeadFormProps) {
                   className={`flex items-center justify-center gap-2 rounded-xl border p-3 text-xs font-medium transition-all ${
                     sector === "banking"
                       ? "border-brand-500 bg-brand-500/20 shadow-brand-500/10 text-white shadow-lg"
-                      : "text-fg-muted border-white/10 bg-black/30 hover:border-white/20 hover:text-gray-200"
+                      : "text-fg-muted border-border-subtle hover:border-border-strong hover:text-fg-primary bg-black/30"
                   }`}
                 >
                   <Building2 className="text-brand-400 h-4 w-4" />
@@ -124,7 +126,7 @@ export function ComplianceLeadForm({ t }: ComplianceLeadFormProps) {
                   className={`flex items-center justify-center gap-2 rounded-xl border p-3 text-xs font-medium transition-all ${
                     sector === "telecom"
                       ? "border-brand-500 bg-brand-500/20 shadow-brand-500/10 text-white shadow-lg"
-                      : "text-fg-muted border-white/10 bg-black/30 hover:border-white/20 hover:text-gray-200"
+                      : "text-fg-muted border-border-subtle hover:border-border-strong hover:text-fg-primary bg-black/30"
                   }`}
                 >
                   <Radio className="text-accent-400 h-4 w-4" />
@@ -137,7 +139,7 @@ export function ComplianceLeadForm({ t }: ComplianceLeadFormProps) {
                   className={`flex items-center justify-center gap-2 rounded-xl border p-3 text-xs font-medium transition-all ${
                     sector === "enterprise"
                       ? "border-brand-500 bg-brand-500/20 shadow-brand-500/10 text-white shadow-lg"
-                      : "text-fg-muted border-white/10 bg-black/30 hover:border-white/20 hover:text-gray-200"
+                      : "text-fg-muted border-border-subtle hover:border-border-strong hover:text-fg-primary bg-black/30"
                   }`}
                 >
                   <ShieldCheck className="text-success-400 h-4 w-4" />

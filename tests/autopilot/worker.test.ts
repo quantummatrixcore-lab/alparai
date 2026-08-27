@@ -1,4 +1,3 @@
- 
 import { describe, it, expect, beforeEach, vi } from "vitest";
 
 const mockMaybeSingle = vi.fn().mockResolvedValue({ data: { enabled: true }, error: null });

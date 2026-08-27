@@ -20,7 +20,10 @@ export default async function ProfilePage({ params }: { params: Promise<{ locale
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "profile" });
   const user = await getCurrentUser();
-  if (!user) { redirect(`/${locale}/auth/signin?next=/${locale}/profile`); return null; }
+  if (!user) {
+    redirect(`/${locale}/auth/signin?next=/${locale}/profile`);
+    return null;
+  }
 
   const supabase = await createServerClient();
   const [{ count: myIncidents }, { count: mySuggestions }, { data: dbUser }] = await Promise.all([
@@ -77,23 +80,23 @@ export default async function ProfilePage({ params }: { params: Promise<{ locale
             </div>
           </div>
         </CardHeader>
-        <CardContent className="border-border-subtle grid grid-cols-2 gap-4 border-t pt-6 lg:grid-cols-3">
+        <CardContent className="border-border-subtle grid grid-cols-1 gap-4 border-t pt-6 sm:grid-cols-2 lg:grid-cols-3">
           <Link
             href="/my-incidents"
             className="bg-bg-tertiary hover:bg-bg-secondary hover:border-border-subtle flex flex-col justify-center rounded-md border border-transparent p-4 transition-all duration-200"
           >
-            <p className="text-fg-primary text-2xl font-bold">{myIncidents ?? 0}</p>
+            <p className="text-fg-primary text-fg-secondaryxl font-bold">{myIncidents ?? 0}</p>
             <p className="text-fg-muted text-xs">{t("incidentsReported")}</p>
           </Link>
           <div className="bg-bg-tertiary flex flex-col justify-center rounded-md p-4">
-            <p className="text-fg-primary text-2xl font-bold">{mySuggestions ?? 0}</p>
+            <p className="text-fg-primary text-fg-secondaryxl font-bold">{mySuggestions ?? 0}</p>
             <p className="text-fg-muted text-xs">{t("suggestionsMade")}</p>
           </div>
           <div className="bg-brand-500/10 border-brand-500/20 group relative flex flex-col justify-center overflow-hidden rounded-md border p-4">
             <div className="absolute -right-4 -bottom-4 opacity-10 transition-opacity group-hover:opacity-20">
               <Zap className="text-brand-500 h-24 w-24" />
             </div>
-            <p className="text-brand-500 relative z-10 flex items-center gap-1.5 text-2xl font-black">
+            <p className="text-brand-500 text-fg-secondaryxl relative z-10 flex items-center gap-1.5 font-black">
               {rep}
             </p>
             <p className="text-brand-400 relative z-10 text-xs font-medium">
@@ -115,9 +118,9 @@ export default async function ProfilePage({ params }: { params: Promise<{ locale
                     key={i}
                     className={`inline-flex items-center rounded-md border px-2.5 py-1 text-xs font-semibold shadow-sm ${
                       isFounding
-                        ? "border-amber-500/20 bg-gradient-to-r from-amber-500/10 to-orange-500/10 text-amber-400"
+                        ? "border-warning-500/20 bg-gradient-to-r from-amber-500/10 to-orange-500/10 text-amber-400"
                         : isEthicsAdvocate
-                          ? "border-emerald-500/20 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 text-emerald-400"
+                          ? "border-success-500/20 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 text-emerald-400"
                           : "bg-bg-elevated text-fg-primary border-border-strong"
                     }`}
                   >

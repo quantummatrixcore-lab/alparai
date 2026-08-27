@@ -9,4 +9,3 @@ export default async function AnalyticsHubRedirect({
   const { locale } = await params;
   redirect(`/${locale}/admin/analytics-hub/analysis`);
 }
-

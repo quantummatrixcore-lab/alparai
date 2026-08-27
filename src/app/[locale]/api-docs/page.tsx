@@ -375,11 +375,11 @@ export default async function ApiDocsPage({ params }: { params: Promise<{ locale
   return (
     <div className="bg-bg-primary min-h-screen">
       {/* Hero */}
-      <div className="bg-bg-secondary border-b border-white/5 pt-4 pb-12 md:pt-8 md:pb-16">
+      <div className="bg-bg-secondary border-border-subtle/50 border-b pt-4 pb-12 md:pt-8 md:pb-16">
         <Container>
           <Link
             href="/press-kit"
-            className="mb-6 inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-emerald-400"
+            className="text-fg-muted mb-6 inline-flex items-center gap-1.5 text-xs hover:text-emerald-400"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             {t("back_to_press")}
@@ -391,7 +391,7 @@ export default async function ApiDocsPage({ params }: { params: Promise<{ locale
             <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
               {t("title")}
             </h1>
-            <p className="mt-4 text-lg leading-relaxed text-slate-400">{t("description")}</p>
+            <p className="text-fg-muted mt-4 text-lg leading-relaxed">{t("description")}</p>
           </div>
         </Container>
       </div>
@@ -406,33 +406,33 @@ export default async function ApiDocsPage({ params }: { params: Promise<{ locale
             <h2 className="text-lg font-bold text-white">{t("endpoints_title")}</h2>
 
             {endpoints.map((ep) => (
-              <Card key={ep.path} className="bg-bg-secondary border-white/5">
+              <Card key={ep.path} className="bg-bg-secondary border-border-subtle/50">
                 <CardHeader className="pb-3">
                   <CardTitle className="flex flex-wrap items-center gap-3">
-                    <span className="rounded border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 font-mono text-[11px] font-black text-emerald-400">
+                    <span className="border-success-500/20 rounded border bg-emerald-500/10 px-2 py-0.5 font-mono text-[11px] font-black text-emerald-400">
                       {ep.method}
                     </span>
                     <code className="font-mono text-sm font-semibold text-white">{ep.path}</code>
-                    <span className="text-sm font-normal text-slate-400">{ep.summary}</span>
+                    <span className="text-fg-muted text-sm font-normal">{ep.summary}</span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <p className="text-sm text-slate-400">{ep.description}</p>
+                  <p className="text-fg-muted text-sm">{ep.description}</p>
 
                   <div>
-                    <p className="mb-1.5 text-[10px] font-bold tracking-wider text-slate-500 uppercase">
+                    <p className="text-fg-muted mb-1.5 text-[10px] font-bold tracking-wider uppercase">
                       {t("example_request")}
                     </p>
-                    <pre className="bg-bg-tertiary overflow-x-auto rounded-lg border border-white/5 p-3 font-mono text-xs text-emerald-300">
+                    <pre className="bg-bg-tertiary border-border-subtle/50 overflow-x-auto rounded-lg border p-3 font-mono text-xs text-emerald-300">
                       {ep.example}
                     </pre>
                   </div>
 
                   <div>
-                    <p className="mb-1.5 text-[10px] font-bold tracking-wider text-slate-500 uppercase">
+                    <p className="text-fg-muted mb-1.5 text-[10px] font-bold tracking-wider uppercase">
                       {t("example_response")}
                     </p>
-                    <pre className="bg-bg-tertiary overflow-x-auto rounded-lg border border-white/5 p-3 font-mono text-xs text-slate-300">
+                    <pre className="bg-bg-tertiary border-border-subtle/50 text-fg-primary overflow-x-auto rounded-lg border p-3 font-mono text-xs">
                       {ep.response}
                     </pre>
                   </div>
@@ -443,16 +443,16 @@ export default async function ApiDocsPage({ params }: { params: Promise<{ locale
 
           {/* Sticky sidebar */}
           <div className="space-y-4 lg:sticky lg:top-6 lg:self-start">
-            <Card className="bg-bg-secondary border-white/5">
+            <Card className="bg-bg-secondary border-border-subtle/50">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-sm text-white">
                   <Zap className="h-4 w-4 text-yellow-400" />
                   {t("rate_limits")}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3 text-xs text-slate-400">
-                <div className="flex items-center justify-between border-b border-white/5 pb-2">
-                  <span className="font-semibold text-slate-300">{t("free_tier")}</span>
+              <CardContent className="text-fg-muted space-y-3 text-xs">
+                <div className="border-border-subtle/50 flex items-center justify-between border-b pb-2">
+                  <span className="text-fg-primary font-semibold">{t("free_tier")}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span>{t("requests_per_day")}</span>
@@ -462,8 +462,8 @@ export default async function ApiDocsPage({ params }: { params: Promise<{ locale
                   <span>{t("burst_limit")}</span>
                   <span className="font-bold text-white">50</span>
                 </div>
-                <div className="mt-3 flex items-center justify-between border-t border-b border-white/5 pt-3 pb-2">
-                  <span className="font-semibold text-slate-300">{t("enterprise_tier")}</span>
+                <div className="border-border-subtle/50 mt-3 flex items-center justify-between border-t border-b pt-3 pb-2">
+                  <span className="text-fg-primary font-semibold">{t("enterprise_tier")}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span>{t("requests_per_day")}</span>
@@ -473,43 +473,43 @@ export default async function ApiDocsPage({ params }: { params: Promise<{ locale
                   <span>{t("sla")}</span>
                   <span className="font-bold text-white">99.99%</span>
                 </div>
-                <p className="border-t border-white/5 pt-3 text-[10px] leading-relaxed">
+                <p className="border-border-subtle/50 border-t pt-3 text-[10px] leading-relaxed">
                   {t("rate_limit_note")}
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="bg-bg-secondary border-white/5">
+            <Card className="bg-bg-secondary border-border-subtle/50">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-sm text-white">
                   <Globe className="h-4 w-4 text-blue-400" />
                   {t("cors_title")}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-2 text-xs text-slate-400">
+              <CardContent className="text-fg-muted space-y-2 text-xs">
                 <p>{t("cors_desc")}</p>
-                <pre className="bg-bg-tertiary rounded border border-white/5 p-2 font-mono text-[10px] text-slate-300">
+                <pre className="bg-bg-tertiary border-border-subtle/50 text-fg-primary rounded border p-2 font-mono text-[10px]">
                   Access-Control-Allow-Origin: *
                 </pre>
               </CardContent>
             </Card>
 
-            <Card className="bg-bg-secondary border-white/5">
+            <Card className="bg-bg-secondary border-border-subtle/50">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-sm text-white">
                   <Shield className="h-4 w-4 text-emerald-400" />
                   {t("base_url")}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="text-xs text-slate-400">
-                <pre className="bg-bg-tertiary rounded border border-white/5 p-2 font-mono text-[10px] text-emerald-300">
+              <CardContent className="text-fg-muted text-xs">
+                <pre className="bg-bg-tertiary border-border-subtle/50 rounded border p-2 font-mono text-[10px] text-emerald-300">
                   https://alparai.com/api/v1
                 </pre>
                 <p className="mt-2">{t("base_url_desc")}</p>
               </CardContent>
             </Card>
 
-            <Card className="bg-bg-secondary border-white/5">
+            <Card className="bg-bg-secondary border-border-subtle/50">
               <CardContent className="p-4">
                 <p className="mb-2 flex items-center gap-2 text-xs font-semibold text-white">
                   <Code2 className="h-3.5 w-3.5 text-emerald-400" />
@@ -521,7 +521,7 @@ export default async function ApiDocsPage({ params }: { params: Promise<{ locale
                 >
                   press@alparai.com
                 </a>
-                <p className="mt-1 text-[10px] text-slate-500">{t("research_contact_desc")}</p>
+                <p className="text-fg-muted mt-1 text-[10px]">{t("research_contact_desc")}</p>
               </CardContent>
             </Card>
           </div>

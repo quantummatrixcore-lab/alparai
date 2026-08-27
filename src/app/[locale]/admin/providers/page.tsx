@@ -34,20 +34,20 @@ export default async function ProvidersPage({ params }: { params: Promise<{ loca
   const models = await discoverAllModels();
 
   return (
-    <div className="animate-in fade-in space-y-8 rounded-3xl bg-zinc-900/40 px-3 py-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl duration-500 sm:px-6 md:p-8">
+    <div className="animate-in fade-in bg-bg-secondary/40 ring-border-subtle space-y-8 rounded-3xl px-3 py-4 shadow-2xl ring-1 backdrop-blur-xl duration-500 sm:px-6 md:p-8">
       <div>
         <h1 className="flex items-center gap-2 text-3xl font-black tracking-tight text-white drop-shadow-md">
           <Cpu className="text-brand-400 h-8 w-8" />
           {t("api_mgmt_h1")}
         </h1>
-        <p className="mt-2 text-sm text-zinc-400">{t("api_mgmt_subtitle")}</p>
+        <p className="text-fg-muted mt-2 text-sm">{t("api_mgmt_subtitle")}</p>
       </div>
 
-      <div className="rounded-xl border border-slate-800 bg-slate-900/80 p-6">
+      <div className="border-border-subtle bg-bg-secondary rounded-xl border p-6">
         <h2 className="mb-4 text-xl font-semibold text-white">{t("ai_providers_database")}</h2>
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm text-slate-300">
-            <thead className="bg-slate-800/60 text-xs text-slate-400 uppercase">
+          <table className="text-fg-primary w-full text-left text-sm">
+            <thead className="bg-bg-secondary text-fg-muted text-xs uppercase">
               <tr>
                 <th className="p-3">{String(t("name"))}</th>
                 <th className="p-3">{String(t("slug"))}</th>
@@ -57,9 +57,9 @@ export default async function ProvidersPage({ params }: { params: Promise<{ loca
             </thead>
             <tbody className="divide-y divide-slate-800">
               {providers.map((provider) => (
-                <tr key={provider.id} className="hover:bg-slate-800/40">
+                <tr key={provider.id} className="hover:bg-bg-secondary">
                   <td className="p-3 font-semibold text-white">{provider.name}</td>
-                  <td className="p-3 font-mono text-slate-400">{provider.slug}</td>
+                  <td className="text-fg-muted p-3 font-mono">{provider.slug}</td>
                   <td className="p-3 text-cyan-400">
                     {provider.website_url ? (
                       <a
@@ -80,7 +80,7 @@ export default async function ProvidersPage({ params }: { params: Promise<{ loca
                         {String(t("verified"))}
                       </span>
                     ) : (
-                      <span className="inline-flex items-center rounded border border-slate-700 bg-slate-800 px-2 py-0.5 text-xs font-medium text-slate-400">
+                      <span className="border-border-strong bg-bg-secondary text-fg-muted inline-flex items-center rounded border px-2 py-0.5 text-xs font-medium">
                         {t("pending")}
                       </span>
                     )}
@@ -90,22 +90,22 @@ export default async function ProvidersPage({ params }: { params: Promise<{ loca
             </tbody>
           </table>
           {(!providers || providers.length === 0) && (
-            <div className="p-6 text-center text-slate-500">{t("no_ai_providers_found")}</div>
+            <div className="text-fg-muted p-6 text-center">{t("no_ai_providers_found")}</div>
           )}
         </div>
       </div>
 
-      <div className="rounded-xl border border-slate-800 bg-slate-900/80 p-6">
+      <div className="border-border-subtle bg-bg-secondary rounded-xl border p-6">
         <div className="mb-4 flex items-center justify-between">
           <h2 className="flex items-center gap-2 text-xl font-semibold text-white">
             <Server className="text-brand-400 h-5 w-5" />
             Model Directory
           </h2>
-          <span className="text-xs text-slate-400">Total: {models.length}</span>
+          <span className="text-fg-muted text-xs">Total: {models.length}</span>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm text-slate-300">
-            <thead className="bg-slate-800/60 text-xs text-slate-400 uppercase">
+          <table className="text-fg-primary w-full text-left text-sm">
+            <thead className="bg-bg-secondary text-fg-muted text-xs uppercase">
               <tr>
                 <th className="p-3">Model Name</th>
                 <th className="p-3">Provider</th>
@@ -115,10 +115,10 @@ export default async function ProvidersPage({ params }: { params: Promise<{ loca
             </thead>
             <tbody className="divide-y divide-slate-800">
               {models.map((model) => (
-                <tr key={model.id} className="hover:bg-slate-800/40">
+                <tr key={model.id} className="hover:bg-bg-secondary">
                   <td className="p-3 font-medium text-white">{model.name}</td>
-                  <td className="p-3 text-slate-400">{model.provider}</td>
-                  <td className="p-3 font-mono text-slate-400">
+                  <td className="text-fg-muted p-3">{model.provider}</td>
+                  <td className="text-fg-muted p-3 font-mono">
                     {(model.context_length / 1000).toFixed(0)}k
                   </td>
                   <td className="p-3 font-mono text-emerald-400">
@@ -129,7 +129,7 @@ export default async function ProvidersPage({ params }: { params: Promise<{ loca
             </tbody>
           </table>
           {(!models || models.length === 0) && (
-            <div className="p-6 text-center text-slate-500">No models discovered</div>
+            <div className="text-fg-muted p-6 text-center">No models discovered</div>
           )}
         </div>
       </div>

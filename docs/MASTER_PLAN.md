@@ -7,6 +7,14 @@
 >
 > **Version:** v13.92 · **Updated:** 2026-08-20 · **Cap:** 600 lines (`scripts/check-master-plan-length.mjs`)
 
+## v13.93 — E2E Deploy Gate & State Independence (2026-08-27)
+
+**The gate is red.** A full `pnpm install && pnpm run validate` was executed to verify the E2E deploy pipeline ("Cumhuriyetin İlanı" directive). The build process failed on two critical fronts, blocking Vercel promotion:
+1. **Linting:** 2145 problems (30 errors, 2115 warnings) detected across the codebase, primarily `no-unused-vars` and `no-explicit-any`. CI cannot pass while these stand.
+2. **Typechecking (OOM):** `tsc --noEmit` crashed with `JavaScript heap out of memory` at ~2050MB, proving that the `cross-env NODE_OPTIONS="--max-old-space-size=8192"` flag in `package.json` is failing to propagate its 8GB allowance to the `tsc` child process on Windows/Vercel environments. 
+
+**Synthesis & Mandate:** The state's E2E independence requires a fully green CI/CD pipeline. The immediate tasks are to resolve the 30 hard ESLint errors and correctly wire the memory flag for `tsc` to prevent heap exhaustion. These must be resolved before the next feature lands.
+
 ## v13.92 — Coverage restored (2026-08-21)
 
 `4c436bd7`. The ten tests removed alongside the inbound-key feature are back, and the file now carries

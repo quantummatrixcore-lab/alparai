@@ -16,7 +16,7 @@ export default function FounderAdminPanel() {
     return (
       <div className="flex min-h-screen items-center justify-center bg-[#050505]">
         <div className="relative flex flex-col items-center">
-          <div className="h-16 w-16 animate-spin rounded-full border-4 border-emerald-500/20 border-t-emerald-500"></div>
+          <div className="border-success-500/20 h-16 w-16 animate-spin rounded-full border-4 border-t-emerald-500"></div>
           <p className="mt-4 font-mono text-sm tracking-widest text-emerald-400 uppercase">
             Agent-OS Karargahı Yükleniyor...
           </p>
@@ -26,9 +26,9 @@ export default function FounderAdminPanel() {
   }
 
   return (
-    <div className="min-h-screen bg-[#050505] p-4 font-sans text-gray-200 selection:bg-emerald-500/30 md:p-8">
+    <div className="text-fg-primary min-h-screen bg-[#050505] p-4 font-sans selection:bg-emerald-500/30 md:p-8">
       {/* Header Bar */}
-      <header className="mb-8 flex items-center justify-between rounded-2xl border border-gray-800 bg-gray-900/40 p-4 shadow-2xl shadow-emerald-900/10 backdrop-blur-md transition-all hover:border-emerald-500/30">
+      <header className="border-border-subtle bg-bg-secondary mb-8 flex items-center justify-between rounded-2xl border p-4 shadow-2xl shadow-emerald-900/10 backdrop-blur-md transition-all hover:border-emerald-500/30">
         <div className="flex items-center gap-4">
           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-cyan-600 shadow-lg shadow-emerald-500/20">
             <svg
@@ -49,7 +49,7 @@ export default function FounderAdminPanel() {
             <h1 className="bg-gradient-to-r from-emerald-400 to-cyan-300 bg-clip-text text-xl font-bold text-transparent">
               ALPAR AI COMMAND CENTER
             </h1>
-            <p className="font-mono text-xs text-gray-400">
+            <p className="text-fg-muted font-mono text-xs">
               Kurucu İrade: Ercüment Erden • Founder Admin Panel v2
             </p>
           </div>
@@ -66,7 +66,7 @@ export default function FounderAdminPanel() {
       {/* Grid Layout */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         {/* Sürü Yönetim & RAM */}
-        <div className="group rounded-2xl border border-gray-800 bg-gray-900/30 p-6 backdrop-blur-xl transition-all duration-300 hover:border-blue-500/50">
+        <div className="group border-border-subtle bg-bg-secondary rounded-2xl border p-6 backdrop-blur-xl transition-all duration-300 hover:border-blue-500/50">
           <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-blue-400">
             <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
@@ -79,21 +79,21 @@ export default function FounderAdminPanel() {
             Sürü Yönetimi (Gazi)
           </h2>
           <div className="space-y-4">
-            <div className="flex items-end justify-between border-b border-gray-800/50 pb-2">
-              <span className="text-sm text-gray-500">Aktif Ajanlar</span>
-              <span className="text-2xl font-bold text-white transition-colors group-hover:text-blue-400">
+            <div className="border-border-subtle flex items-end justify-between border-b pb-2">
+              <span className="text-fg-muted text-sm">Aktif Ajanlar</span>
+              <span className="text-fg-secondaryxl font-bold text-white transition-colors group-hover:text-blue-400">
                 4 Sürü
               </span>
             </div>
-            <div className="flex items-end justify-between border-b border-gray-800/50 pb-2">
-              <span className="text-sm text-gray-500">Auto-Kill Çöp Toplayıcı</span>
+            <div className="border-border-subtle flex items-end justify-between border-b pb-2">
+              <span className="text-fg-muted text-sm">Auto-Kill Çöp Toplayıcı</span>
               <span className="rounded bg-emerald-400/10 px-2 py-1 font-mono text-sm text-emerald-400">
                 Devrede
               </span>
             </div>
             <div className="flex items-end justify-between">
-              <span className="text-sm text-gray-500">RAM Tüketimi</span>
-              <span className="font-mono text-sm text-gray-300">Stabil (1.2 GB)</span>
+              <span className="text-fg-muted text-sm">RAM Tüketimi</span>
+              <span className="text-fg-primary font-mono text-sm">Stabil (1.2 GB)</span>
             </div>
           </div>
         </div>
@@ -102,7 +102,7 @@ export default function FounderAdminPanel() {
         <DeploymentLimitsWidget />
 
         {/* Ana Zeka (Gemini & Oracle) */}
-        <div className="group rounded-2xl border border-gray-800 bg-gray-900/30 p-6 backdrop-blur-xl transition-all duration-300 hover:border-purple-500/50">
+        <div className="group border-border-subtle bg-bg-secondary rounded-2xl border p-6 backdrop-blur-xl transition-all duration-300 hover:border-purple-500/50">
           <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-purple-400">
             <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
@@ -115,23 +115,23 @@ export default function FounderAdminPanel() {
             Omni-Hafıza & Zeka
           </h2>
           <div className="space-y-4">
-            <div className="flex items-end justify-between border-b border-gray-800/50 pb-2">
-              <span className="text-sm text-gray-500">Google AI Studio</span>
+            <div className="border-border-subtle flex items-end justify-between border-b pb-2">
+              <span className="text-fg-muted text-sm">Google AI Studio</span>
               <span className="font-mono text-sm text-emerald-400">Gemini 1.5 Pro</span>
             </div>
-            <div className="flex items-end justify-between border-b border-gray-800/50 pb-2">
-              <span className="text-sm text-gray-500">Oracle (NotebookLM)</span>
+            <div className="border-border-subtle flex items-end justify-between border-b pb-2">
+              <span className="text-fg-muted text-sm">Oracle (NotebookLM)</span>
               <span className="font-mono text-sm text-purple-400">Senkronize</span>
             </div>
             <div className="flex items-end justify-between">
-              <span className="text-sm text-gray-500">Zeka Rotatörü</span>
-              <span className="font-mono text-sm text-gray-300">Standby (Groq)</span>
+              <span className="text-fg-muted text-sm">Zeka Rotatörü</span>
+              <span className="text-fg-primary font-mono text-sm">Standby (Groq)</span>
             </div>
           </div>
         </div>
 
         {/* Stripe Bütçe Kilidi */}
-        <div className="group rounded-2xl border border-gray-800 bg-gray-900/30 p-6 backdrop-blur-xl transition-all duration-300 hover:border-amber-500/50">
+        <div className="group border-border-subtle bg-bg-secondary rounded-2xl border p-6 backdrop-blur-xl transition-all duration-300 hover:border-amber-500/50">
           <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-amber-400">
             <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
@@ -146,29 +146,29 @@ export default function FounderAdminPanel() {
           <div className="space-y-4">
             <div>
               <div className="mb-1 flex justify-between text-sm">
-                <span className="text-gray-500">Günlük Harcama Limit (Ölçülmedi)</span>
+                <span className="text-fg-muted">Günlük Harcama Limit (Ölçülmedi)</span>
                 <span className="font-mono text-white">Ölçülmedi</span>
               </div>
-              <div className="h-1.5 w-full rounded-full bg-gray-800">
+              <div className="bg-bg-secondary h-1.5 w-full rounded-full">
                 <div
                   className="h-1.5 rounded-full bg-gradient-to-r from-amber-500 to-orange-500"
                   style={{ width: "17%" }}
                 ></div>
               </div>
             </div>
-            <div className="mt-4 flex items-end justify-between border-b border-gray-800/50 pb-2">
-              <span className="text-sm text-gray-500">Hard-Stop Devresi</span>
+            <div className="border-border-subtle mt-4 flex items-end justify-between border-b pb-2">
+              <span className="text-fg-muted text-sm">Hard-Stop Devresi</span>
               <span className="font-mono text-sm text-emerald-400">Aktif (Zero-Cost Mode)</span>
             </div>
             <div className="flex items-end justify-between">
-              <span className="text-sm text-gray-500">Kalan Bütçe</span>
+              <span className="text-fg-muted text-sm">Kalan Bütçe</span>
               <span className="font-mono text-sm text-amber-400">Ölçülmedi</span>
             </div>
           </div>
         </div>
 
         {/* Siber Güvenlik (Cloudflare & Hunter) */}
-        <div className="rounded-2xl border border-gray-800 bg-gray-900/30 p-6 backdrop-blur-xl transition-all duration-300 hover:border-red-500/50 lg:col-span-2">
+        <div className="border-border-subtle bg-bg-secondary rounded-2xl border p-6 backdrop-blur-xl transition-all duration-300 hover:border-red-500/50 lg:col-span-2">
           <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-red-400">
             <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
@@ -181,17 +181,17 @@ export default function FounderAdminPanel() {
             Hunter Agent & WAF Surları
           </h2>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <div className="rounded-xl border border-gray-800 bg-black/40 p-4">
-              <p className="mb-1 text-xs text-gray-500">Cloudflare WAF</p>
-              <p className="text-xl font-bold text-gray-200">Kalkanlar Nöbette</p>
+            <div className="border-border-subtle rounded-xl border bg-black/40 p-4">
+              <p className="text-fg-muted mb-1 text-xs">Cloudflare WAF</p>
+              <p className="text-fg-primary text-xl font-bold">Kalkanlar Nöbette</p>
               <div className="mt-3 flex gap-2 text-xs">
                 <span className="rounded border border-green-800/50 bg-green-900/30 px-2 py-1 text-green-400">
                   Under Attack: Kapalı
                 </span>
               </div>
             </div>
-            <div className="rounded-xl border border-gray-800 bg-black/40 p-4">
-              <p className="mb-1 text-xs text-gray-500">Avcı Ajan (OSINT)</p>
+            <div className="border-border-subtle rounded-xl border bg-black/40 p-4">
+              <p className="text-fg-muted mb-1 text-xs">Avcı Ajan (OSINT)</p>
               <p className="text-xl font-bold text-red-400">HackerOne Devriyesi</p>
               <div className="mt-3 flex gap-2 text-xs">
                 <span className="rounded border border-red-800/50 bg-red-900/30 px-2 py-1 text-red-400">
@@ -203,7 +203,7 @@ export default function FounderAdminPanel() {
         </div>
 
         {/* Kurucu İrade CDP */}
-        <div className="group rounded-2xl border border-gray-800 bg-gradient-to-br from-gray-900/50 to-gray-900/20 p-6 backdrop-blur-xl transition-all duration-300 hover:border-cyan-500/50">
+        <div className="group border-border-subtle rounded-2xl border bg-gradient-to-br from-gray-900/50 to-gray-900/20 p-6 backdrop-blur-xl transition-all duration-300 hover:border-cyan-500/50">
           <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-cyan-400">
             <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path

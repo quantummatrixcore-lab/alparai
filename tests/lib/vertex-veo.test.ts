@@ -39,8 +39,6 @@ describe("VertexVeoAdapter", () => {
         }),
     };
 
- 
- 
     const fetchSpy = vi.spyOn(global, "fetch").mockResolvedValue(mockResponse as any);
 
     const adapter = new VertexVeoAdapter();

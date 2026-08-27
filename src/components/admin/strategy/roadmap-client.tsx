@@ -144,7 +144,7 @@ export function RoadmapClient({ initialMilestones, isReadOnly, _locale }: Roadma
               key={q}
               className="border-border-subtle bg-bg-secondary/40 flex flex-col rounded-2xl border p-5 backdrop-blur-md"
             >
-              <div className="mb-4 flex items-center justify-between border-b border-white/5 pb-2">
+              <div className="border-border-subtle/50 mb-4 flex items-center justify-between border-b pb-2">
                 <span className="font-mono text-sm font-black text-white">{q}</span>
                 {!isReadOnly && (
                   <button
@@ -165,7 +165,7 @@ export function RoadmapClient({ initialMilestones, isReadOnly, _locale }: Roadma
                   qMilestones.map((m) => (
                     <div
                       key={m.id}
-                      className="bg-bg-tertiary/20 group relative rounded-xl border border-white/5 p-4 transition hover:border-white/10"
+                      className="bg-bg-tertiary/20 group border-border-subtle/50 hover:border-border-subtle relative rounded-xl border p-4 transition"
                     >
                       <div className="flex items-start justify-between gap-2">
                         <div>
@@ -201,9 +201,9 @@ export function RoadmapClient({ initialMilestones, isReadOnly, _locale }: Roadma
                         </div>
                       </div>
 
-                      <div className="text-fg-muted mt-3 flex items-center justify-between gap-2 border-t border-white/5 pt-2 text-[9px] font-bold tracking-wider uppercase">
+                      <div className="text-fg-muted border-border-subtle/50 mt-3 flex items-center justify-between gap-2 border-t pt-2 text-[9px] font-bold tracking-wider uppercase">
                         {m.linked_metric ? (
-                          <span className="rounded border border-white/10 bg-white/5 px-1 py-0.5 text-white/70">
+                          <span className="border-border-subtle rounded border bg-white/5 px-1 py-0.5 text-white/70">
                             {m.linked_metric}
                           </span>
                         ) : (
@@ -218,7 +218,7 @@ export function RoadmapClient({ initialMilestones, isReadOnly, _locale }: Roadma
                                 ? "bg-brand-500/10 text-brand-400 border-brand-500/15"
                                 : m.status === "missed"
                                   ? "border-danger-500/15 bg-danger-500/10 text-danger-400"
-                                  : "text-fg-muted border-white/10 bg-white/5",
+                                  : "text-fg-muted border-border-subtle bg-white/5",
                           )}
                         >
                           {m.status === "planned"
@@ -233,7 +233,7 @@ export function RoadmapClient({ initialMilestones, isReadOnly, _locale }: Roadma
 
                       {/* Edit/Delete overlay */}
                       {!isReadOnly && (
-                        <div className="bg-bg-secondary/90 absolute top-2 right-2 flex items-center gap-1 rounded-lg border border-white/5 px-1 py-0.5 opacity-0 shadow-md transition-opacity group-hover:opacity-100">
+                        <div className="bg-bg-secondary/90 border-border-subtle/50 absolute top-2 right-2 flex items-center gap-1 rounded-lg border px-1 py-0.5 opacity-0 shadow-md transition-opacity group-hover:opacity-100">
                           <button
                             onClick={() => handleOpenEdit(m)}
                             className="text-fg-muted rounded p-1 transition hover:bg-white/5 hover:text-white"
@@ -321,7 +321,7 @@ export function RoadmapClient({ initialMilestones, isReadOnly, _locale }: Roadma
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <div>
                   <label className="text-fg-secondary mb-1 block text-xs font-bold tracking-wider uppercase">
                     {t("status")}
@@ -391,11 +391,11 @@ export function RoadmapClient({ initialMilestones, isReadOnly, _locale }: Roadma
                 </div>
               </div>
 
-              <div className="mt-6 flex justify-end gap-2 border-t border-white/5 pt-4">
+              <div className="border-border-subtle/50 mt-6 flex justify-end gap-2 border-t pt-4">
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="border-border-subtle rounded-xl border px-5 py-2.5 text-sm font-semibold text-white/80 transition hover:bg-white/5 hover:text-white"
+                  className="border-border-subtle text-fg-secondary rounded-xl border px-5 py-2.5 text-sm font-semibold transition hover:bg-white/5 hover:text-white"
                 >
                   {t("cancel")}
                 </button>

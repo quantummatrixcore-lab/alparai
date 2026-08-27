@@ -73,7 +73,7 @@ export function Test360Meter() {
 
       <div className="relative z-10 w-full min-w-0 space-y-6 overflow-hidden">
         {/* Header Bar */}
-        <div className="flex min-w-0 flex-col gap-4 border-b border-white/10 pb-5 sm:flex-row sm:items-center sm:justify-between">
+        <div className="border-border-subtle flex min-w-0 flex-col gap-4 border-b pb-5 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex min-w-0 items-center gap-3 sm:gap-3.5">
             <div className="border-accent-500/30 bg-accent-500/10 text-accent-400 relative shrink-0 rounded-2xl border p-2.5 shadow-[0_0_20px_rgba(6,182,212,0.15)] sm:p-3">
               <BrainCircuit className="h-5 w-5 animate-pulse sm:h-6 sm:w-6" />
@@ -84,7 +84,7 @@ export function Test360Meter() {
             </div>
             <div className="min-w-0 flex-1">
               <div className="flex min-w-0 flex-wrap items-center gap-2">
-                <h2 className="max-w-full truncate text-lg font-extrabold tracking-tight text-white sm:text-xl md:text-2xl">
+                <h2 className="md:text-fg-secondaryxl max-w-full truncate text-lg font-extrabold tracking-tight text-white sm:text-xl">
                   360° Cockpit Quality & Test Matrix
                 </h2>
                 <span className="border-success-500/30 bg-success-500/10 text-success-400 inline-flex shrink-0 items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-bold sm:text-xs">
@@ -126,7 +126,7 @@ export function Test360Meter() {
                 Overall 360° Score
               </p>
               <div className="mt-1 flex flex-wrap items-baseline gap-1.5">
-                <span className="text-2xl font-black tracking-tight text-white sm:text-3xl">
+                <span className="text-fg-secondaryxl font-black tracking-tight text-white sm:text-3xl">
                   {overallScore}
                 </span>
                 {typeof overallScore === "number" && (
@@ -167,7 +167,7 @@ export function Test360Meter() {
                 360° Crawl Coverage
               </p>
               <div className="mt-1 flex flex-wrap items-baseline gap-1.5">
-                <span className="text-2xl font-black tracking-tight text-white sm:text-3xl">
+                <span className="text-fg-secondaryxl font-black tracking-tight text-white sm:text-3xl">
                   {metrics?.botGuardScore != null ? `${metrics.botGuardScore}%` : "Not measured"}
                 </span>
               </div>
@@ -205,7 +205,7 @@ export function Test360Meter() {
                 Layout Integrity
               </p>
               <div className="mt-1 flex flex-wrap items-baseline gap-1.5">
-                <span className="text-2xl font-black tracking-tight text-white sm:text-3xl">
+                <span className="text-fg-secondaryxl font-black tracking-tight text-white sm:text-3xl">
                   {metrics?.integrityScore != null ? `${metrics.integrityScore}%` : "Not measured"}
                 </span>
               </div>
@@ -243,7 +243,7 @@ export function Test360Meter() {
                 Zero-Token Engine
               </p>
               <div className="mt-1 flex flex-wrap items-baseline gap-1.5">
-                <span className="text-2xl font-black tracking-tight text-white sm:text-3xl">
+                <span className="text-fg-secondaryxl font-black tracking-tight text-white sm:text-3xl">
                   {metrics?.resilienceScore != null
                     ? `${metrics.resilienceScore}%`
                     : "Not measured"}
@@ -279,9 +279,9 @@ export function Test360Meter() {
 
         {/* AI Swarm Audit Insights Details */}
         {metrics && (
-          <div className="w-full min-w-0 overflow-hidden rounded-2xl border border-white/10 bg-black/40 p-4 backdrop-blur-md sm:p-5">
-            <div className="mb-3 flex min-w-0 flex-col gap-1.5 border-b border-white/10 pb-3 sm:flex-row sm:items-center sm:justify-between">
-              <h3 className="flex min-w-0 items-center gap-2 text-xs font-extrabold tracking-wide text-zinc-200 sm:text-sm">
+          <div className="border-border-subtle w-full min-w-0 overflow-hidden rounded-2xl border bg-black/40 p-4 backdrop-blur-md sm:p-5">
+            <div className="border-border-subtle mb-3 flex min-w-0 flex-col gap-1.5 border-b pb-3 sm:flex-row sm:items-center sm:justify-between">
+              <h3 className="text-fg-secondary flex min-w-0 items-center gap-2 text-xs font-extrabold tracking-wide sm:text-sm">
                 <CheckCircle2 className="text-success-400 h-4 w-4 shrink-0" />
                 <span className="truncate">{t("test_360_swarm_findings")}</span>
               </h3>
@@ -293,7 +293,7 @@ export function Test360Meter() {
               {metrics.aiInsights.map((insight, i) => (
                 <div
                   key={i}
-                  className="text-fg-secondary flex w-full min-w-0 items-start gap-2.5 overflow-hidden rounded-xl border border-white/5 bg-white/[0.02] p-3 text-xs font-medium transition-all hover:border-white/10 hover:bg-white/[0.04]"
+                  className="text-fg-secondary border-border-subtle/50 hover:border-border-subtle flex w-full min-w-0 items-start gap-2.5 overflow-hidden rounded-xl border bg-white/[0.02] p-3 text-xs font-medium transition-all hover:bg-white/[0.04]"
                 >
                   <span className="text-accent-400 mt-0.5 shrink-0 font-bold">›</span>
                   <p className="min-w-0 leading-relaxed break-words">{insight}</p>

@@ -116,12 +116,12 @@ export default async function AdminDashboardPage({
 
       <div className="relative z-10 mx-auto max-w-7xl space-y-8 px-3 py-6 sm:px-6 md:p-8 lg:p-10">
         {/* Top Bar: Title + Status + Action Buttons */}
-        <header className="group relative flex flex-col gap-6 overflow-hidden rounded-3xl border border-white/20 bg-zinc-900/40 p-6 backdrop-blur-3xl backdrop-blur-xl transition-all duration-300 ease-out hover:bg-zinc-900/60 hover:shadow-[0_0_80px_rgba(var(--color-brand-500),0.1)] md:flex-row md:items-center md:justify-between">
+        <header className="group border-border-strong bg-bg-secondary/40 hover:bg-bg-secondary/60 relative flex flex-col gap-6 overflow-hidden rounded-3xl border p-6 backdrop-blur-3xl backdrop-blur-xl transition-all duration-300 ease-out hover:shadow-[0_0_80px_rgba(var(--color-brand-500),0.1)] md:flex-row md:items-center md:justify-between">
           {/* Header Internal Glow */}
           <div className="via-brand-500/10 pointer-events-none absolute -inset-x-20 -top-20 h-[150px] w-full bg-gradient-to-r from-transparent to-transparent opacity-0 blur-3xl transition-opacity duration-300 ease-out group-hover:opacity-100" />
 
           <div className="relative z-10 space-y-3">
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-3 py-1 text-xs font-semibold tracking-wider text-emerald-400 uppercase shadow-[0_0_15px_rgba(16,185,129,0.1)]">
+            <div className="border-success-500/20 inline-flex items-center gap-2 rounded-full border bg-emerald-500/5 px-3 py-1 text-xs font-semibold tracking-wider text-emerald-400 uppercase shadow-[0_0_15px_rgba(16,185,129,0.1)]">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
               {t("badge_spatial_cockpit")}
             </div>
@@ -136,7 +136,7 @@ export default async function AdminDashboardPage({
           <div className="relative z-10 flex flex-wrap items-center gap-3">
             <Link
               href={`/${locale}/admin/strategy/master-plan`}
-              className="group/btn relative inline-flex items-center gap-2 overflow-hidden rounded-2xl border border-amber-500/20 bg-amber-500/10 px-5 py-3 text-sm font-medium text-amber-300 transition-all duration-300 hover:border-amber-400/40 hover:bg-amber-400/20 hover:text-amber-100 hover:shadow-[0_0_20px_rgba(251,191,36,0.15)]"
+              className="group/btn border-warning-500/20 relative inline-flex items-center gap-2 overflow-hidden rounded-2xl border bg-amber-500/10 px-5 py-3 text-sm font-medium text-amber-300 transition-all duration-300 hover:border-amber-400/40 hover:bg-amber-400/20 hover:text-amber-100 hover:shadow-[0_0_20px_rgba(251,191,36,0.15)]"
             >
               <div className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-amber-400/0 via-amber-400/10 to-amber-400/0 group-hover/btn:animate-[shimmer_1.5s_infinite]" />
               <FileText className="h-4 w-4 text-amber-400" />
@@ -154,11 +154,11 @@ export default async function AdminDashboardPage({
 
             <button
               aria-label={t("command_palette")}
-              className="group text-fg-primary flex items-center gap-3 rounded-2xl border border-white/20 bg-white/5 px-5 py-3 text-sm font-medium backdrop-blur-xl transition-all duration-300 hover:border-white/20 hover:bg-white/10 hover:text-white"
+              className="group text-fg-primary border-border-strong hover:border-border-strong flex items-center gap-3 rounded-2xl border bg-white/5 px-5 py-3 text-sm font-medium backdrop-blur-xl transition-all duration-300 hover:bg-white/10 hover:text-white"
             >
               <Search className="text-fg-muted h-4 w-4 transition-colors group-hover:text-white" />
               <span>{t("command_palette")}</span>
-              <kbd className="text-fg-muted ml-2 hidden h-5 items-center gap-0.5 rounded-md border border-white/20 bg-black/20 px-2 font-mono text-[10px] font-semibold md:inline-flex">
+              <kbd className="text-fg-muted border-border-strong bg-bg-primary/20 ml-2 hidden h-5 items-center gap-0.5 rounded-md border px-2 font-mono text-[10px] font-semibold md:inline-flex">
                 <span>⌘</span>
                 <span>K</span>
               </kbd>
@@ -190,7 +190,7 @@ export default async function AdminDashboardPage({
           <PrioritizationWidget items={masterPlan.items} error={masterPlan.error} />
 
           {/* WIDGET 1: Financial & Operations Cockpit */}
-          <section className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/20 bg-zinc-900/40 p-6 backdrop-blur-3xl backdrop-blur-xl transition-all duration-300 ease-out hover:-translate-y-1 hover:border-emerald-500/30 hover:bg-zinc-900/70 hover:shadow-[0_0_50px_rgba(16,185,129,0.1)] md:p-8">
+          <section className="group border-border-strong bg-bg-secondary/40 hover:bg-bg-secondary/70 relative flex flex-col justify-between overflow-hidden rounded-3xl border p-6 backdrop-blur-3xl backdrop-blur-xl transition-all duration-300 ease-out hover:-translate-y-1 hover:border-emerald-500/30 hover:shadow-[0_0_50px_rgba(16,185,129,0.1)] md:p-8">
             <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-emerald-500/10 blur-[80px] transition-all duration-300 ease-out group-hover:bg-emerald-500/20" />
 
             <div className="space-y-6">
@@ -207,7 +207,7 @@ export default async function AdminDashboardPage({
                     <p className="text-fg-muted text-xs">{t("financial_ops_desc")}</p>
                   </div>
                 </div>
-                <span className="text-fg-muted rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold">
+                <span className="text-fg-muted border-border-strong rounded-full border bg-white/10 px-3 py-1 text-xs font-semibold">
                   {t("mrr_label")}
                 </span>
               </div>
@@ -328,7 +328,7 @@ export default async function AdminDashboardPage({
           </section>
 
           {/* WIDGET 2: AI Core & System Health Cockpit */}
-          <section className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/20 bg-zinc-900/40 p-6 backdrop-blur-3xl backdrop-blur-xl transition-all duration-300 ease-out hover:-translate-y-1 hover:border-cyan-500/30 hover:bg-zinc-900/70 hover:shadow-[0_0_50px_rgba(6,182,212,0.1)] md:p-8">
+          <section className="group border-border-strong bg-bg-secondary/40 hover:bg-bg-secondary/70 relative flex flex-col justify-between overflow-hidden rounded-3xl border p-6 backdrop-blur-3xl backdrop-blur-xl transition-all duration-300 ease-out hover:-translate-y-1 hover:border-cyan-500/30 hover:shadow-[0_0_50px_rgba(6,182,212,0.1)] md:p-8">
             <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-cyan-500/10 blur-[80px] transition-all duration-300 ease-out group-hover:bg-cyan-500/20" />
 
             <div className="space-y-6">
@@ -456,7 +456,7 @@ export default async function AdminDashboardPage({
                     <Link
                       key={route.href}
                       href={route.href}
-                      className="group/item text-fg-primary flex items-center justify-between rounded-xl border border-white/5 bg-white/10 px-3 py-2.5 text-xs font-medium backdrop-blur-md transition-all duration-200 hover:border-cyan-500/40 hover:bg-cyan-500/10 hover:text-cyan-300"
+                      className="group/item text-fg-primary border-border-subtle/50 flex items-center justify-between rounded-xl border bg-white/10 px-3 py-2.5 text-xs font-medium backdrop-blur-md transition-all duration-200 hover:border-cyan-500/40 hover:bg-cyan-500/10 hover:text-cyan-300"
                     >
                       <span className="flex items-center gap-2 truncate">
                         <route.icon className="h-3.5 w-3.5 shrink-0 text-cyan-400/70 group-hover/item:text-cyan-400" />
@@ -469,7 +469,7 @@ export default async function AdminDashboardPage({
               </div>
             </div>
 
-            <div className="mt-6 flex items-center justify-between border-t border-white/5 pt-4 text-xs">
+            <div className="border-border-subtle/50 mt-6 flex items-center justify-between border-t pt-4 text-xs">
               <span className="text-fg-muted">{t("edge_connected")}</span>
               <Link
                 href={`/${locale}/admin/health`}
@@ -481,7 +481,7 @@ export default async function AdminDashboardPage({
           </section>
 
           {/* WIDGET 3: Security, Compliance & Moderation Cockpit */}
-          <section className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/20 bg-zinc-900/40 p-6 backdrop-blur-3xl backdrop-blur-xl transition-all duration-300 ease-out hover:-translate-y-1 hover:border-rose-500/30 hover:bg-zinc-900/70 hover:shadow-[0_0_50px_rgba(244,63,94,0.1)] md:p-8">
+          <section className="group border-border-strong bg-bg-secondary/40 hover:bg-bg-secondary/70 relative flex flex-col justify-between overflow-hidden rounded-3xl border p-6 backdrop-blur-3xl backdrop-blur-xl transition-all duration-300 ease-out hover:-translate-y-1 hover:border-rose-500/30 hover:shadow-[0_0_50px_rgba(244,63,94,0.1)] md:p-8">
             <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-rose-500/10 blur-[80px] transition-all duration-300 ease-out group-hover:bg-rose-500/20" />
 
             <div className="space-y-6">
@@ -590,7 +590,7 @@ export default async function AdminDashboardPage({
                     <Link
                       key={route.href}
                       href={route.href}
-                      className="group/item text-fg-primary flex items-center justify-between rounded-xl border border-white/5 bg-white/10 px-3 py-2.5 text-xs font-medium backdrop-blur-md transition-all duration-200 hover:border-rose-500/40 hover:bg-rose-500/10 hover:text-rose-300"
+                      className="group/item text-fg-primary border-border-subtle/50 flex items-center justify-between rounded-xl border bg-white/10 px-3 py-2.5 text-xs font-medium backdrop-blur-md transition-all duration-200 hover:border-rose-500/40 hover:bg-rose-500/10 hover:text-rose-300"
                     >
                       <span className="flex items-center gap-2 truncate">
                         <route.icon className="h-3.5 w-3.5 shrink-0 text-rose-400/70 group-hover/item:text-rose-400" />
@@ -603,7 +603,7 @@ export default async function AdminDashboardPage({
               </div>
             </div>
 
-            <div className="mt-6 flex items-center justify-between border-t border-white/5 pt-4 text-xs">
+            <div className="border-border-subtle/50 mt-6 flex items-center justify-between border-t pt-4 text-xs">
               <span className="text-fg-muted">{t("kvkk_gdpr_compliant")}</span>
               <Link
                 href={`/${locale}/admin/audit`}
@@ -615,7 +615,7 @@ export default async function AdminDashboardPage({
           </section>
 
           {/* WIDGET 4: Strategy, Growth & Outreach Cockpit */}
-          <section className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/20 bg-zinc-900/40 p-6 backdrop-blur-3xl backdrop-blur-xl transition-all duration-300 ease-out hover:-translate-y-1 hover:border-purple-500/30 hover:bg-zinc-900/70 hover:shadow-[0_0_50px_rgba(168,85,247,0.1)] md:p-8">
+          <section className="group border-border-strong bg-bg-secondary/40 hover:bg-bg-secondary/70 relative flex flex-col justify-between overflow-hidden rounded-3xl border p-6 backdrop-blur-3xl backdrop-blur-xl transition-all duration-300 ease-out hover:-translate-y-1 hover:border-purple-500/30 hover:shadow-[0_0_50px_rgba(168,85,247,0.1)] md:p-8">
             <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-purple-500/10 blur-[80px] transition-all duration-300 ease-out group-hover:bg-purple-500/20" />
 
             <div className="space-y-6">
@@ -758,7 +758,7 @@ export default async function AdminDashboardPage({
                     <Link
                       key={route.href}
                       href={route.href}
-                      className="group/item text-fg-primary flex items-center justify-between rounded-xl border border-white/5 bg-white/10 px-3 py-2.5 text-xs font-medium backdrop-blur-md transition-all duration-200 hover:border-purple-500/40 hover:bg-purple-500/10 hover:text-purple-300"
+                      className="group/item text-fg-primary border-border-subtle/50 flex items-center justify-between rounded-xl border bg-white/10 px-3 py-2.5 text-xs font-medium backdrop-blur-md transition-all duration-200 hover:border-purple-500/40 hover:bg-purple-500/10 hover:text-purple-300"
                     >
                       <span className="flex items-center gap-2 truncate">
                         <route.icon className="h-3.5 w-3.5 shrink-0 text-purple-400/70 group-hover/item:text-purple-400" />
@@ -771,7 +771,7 @@ export default async function AdminDashboardPage({
               </div>
             </div>
 
-            <div className="mt-6 flex items-center justify-between border-t border-white/5 pt-4 text-xs">
+            <div className="border-border-subtle/50 mt-6 flex items-center justify-between border-t pt-4 text-xs">
               <span className="text-fg-muted">{t("corporate_email_rule")}</span>
               <Link
                 href={`/${locale}/admin/strategy/master-plan`}
@@ -783,7 +783,7 @@ export default async function AdminDashboardPage({
           </section>
 
           {/* WIDGET 5: Founder Command (Outreach & Media) */}
-          <section className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/20 bg-zinc-900/40 p-6 backdrop-blur-3xl backdrop-blur-xl transition-all duration-300 ease-out hover:-translate-y-1 hover:border-indigo-500/30 hover:bg-zinc-900/70 hover:shadow-[0_0_50px_rgba(99,102,241,0.1)] md:p-8 lg:col-span-2">
+          <section className="group border-border-strong bg-bg-secondary/40 hover:bg-bg-secondary/70 relative flex flex-col justify-between overflow-hidden rounded-3xl border p-6 backdrop-blur-3xl backdrop-blur-xl transition-all duration-300 ease-out hover:-translate-y-1 hover:border-indigo-500/30 hover:shadow-[0_0_50px_rgba(99,102,241,0.1)] md:p-8 lg:col-span-2">
             <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-indigo-500/10 blur-[80px] transition-all duration-300 ease-out group-hover:bg-indigo-500/20" />
 
             <div className="space-y-6">

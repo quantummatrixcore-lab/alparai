@@ -71,8 +71,7 @@ test.describe("SSE Status Tracking in Submit Flow", () => {
       }
 
       // Assign mock to window
- 
- 
+
       (window as any).EventSource = MockEventSource;
     });
 

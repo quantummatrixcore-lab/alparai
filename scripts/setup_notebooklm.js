@@ -1,12 +1,14 @@
-const http = require('http');
+const http = require("http");
 
 async function getTabs() {
   return new Promise((resolve, reject) => {
-    http.get('http://localhost:9222/json', (res) => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => resolve(JSON.parse(data)));
-    }).on('error', reject);
+    http
+      .get("http://localhost:9222/json", (res) => {
+        let data = "";
+        res.on("data", (chunk) => (data += chunk));
+        res.on("end", () => resolve(JSON.parse(data)));
+      })
+      .on("error", reject);
   });
 }
 
@@ -41,10 +43,10 @@ class CDPClient {
   }
 
   async eval(expression) {
-    const res = await this.send('Runtime.evaluate', {
+    const res = await this.send("Runtime.evaluate", {
       expression,
       returnByValue: true,
-      awaitPromise: true
+      awaitPromise: true,
     });
     return res.result?.value;
   }
@@ -52,25 +54,27 @@ class CDPClient {
 
 async function main() {
   const tabs = await getTabs();
-  
+
   // NotebookLM sekmesini bul (Eğer yoksa aktif sekmeyi kullan)
-  const notebookTab = tabs.find(t => t.url.includes('notebook.google')) || tabs.find(t => t.type === 'page' && !t.url.startsWith('devtools://'));
-  
+  const notebookTab =
+    tabs.find((t) => t.url.includes("notebook.google")) ||
+    tabs.find((t) => t.type === "page" && !t.url.startsWith("devtools://"));
+
   if (!notebookTab) {
-    console.error('Sekme bulunamadı!');
+    console.error("Sekme bulunamadı!");
     process.exit(1);
   }
 
-  console.log('⚡ Hedef Sekme:', notebookTab.title, notebookTab.url);
+  console.log("⚡ Hedef Sekme:", notebookTab.title, notebookTab.url);
   const client = new CDPClient(notebookTab.webSocketDebuggerUrl);
-  
+
   // Sekmeyi ön plana getir
-  await client.send('Page.bringToFront');
+  await client.send("Page.bringToFront");
 
   // URL notebook.google değilse yönlendir
-  if (!notebookTab.url.includes('notebook.google')) {
-    await client.send('Page.navigate', { url: 'https://notebook.google.com/' });
-    await new Promise(r => setTimeout(r, 4000));
+  if (!notebookTab.url.includes("notebook.google")) {
+    await client.send("Page.navigate", { url: "https://notebook.google.com/" });
+    await new Promise((r) => setTimeout(r, 4000));
   }
 
   // Kullanıcıya görsel bir Alert (Yönlendirme) enjekte et
@@ -122,8 +126,8 @@ async function main() {
   `;
 
   await client.eval(alertScript);
-  console.log('✅ Yönlendirme arayüzü sekmeye enjekte edildi.');
-  
+  console.log("✅ Yönlendirme arayüzü sekmeye enjekte edildi.");
+
   process.exit(0);
 }
 

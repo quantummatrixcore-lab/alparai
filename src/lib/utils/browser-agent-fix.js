@@ -17,5 +17,5 @@ module.exports = {
   safeNavigate: `
     // Kullanim: window.location.href = url yerine
     // Her zaman mevcut sekmede navigate et
-  `
+  `,
 };

@@ -116,7 +116,7 @@ export function UsersClient({ users, userRole, locale }: UsersClientProps) {
 
   if (!isMounted) {
     return (
-      <div className="bg-bg-secondary/40 flex h-96 w-full items-center justify-center rounded-2xl border border-white/5 backdrop-blur-xl">
+      <div className="bg-bg-secondary/40 border-border-subtle/50 flex h-96 w-full items-center justify-center rounded-2xl border backdrop-blur-xl">
         <Activity className="text-brand-400 h-8 w-8 animate-spin" />
       </div>
     );
@@ -128,7 +128,7 @@ export function UsersClient({ users, userRole, locale }: UsersClientProps) {
       <div className="mb-8 grid grid-cols-1 gap-6 lg:grid-cols-3">
         {/* Core KPI Summary */}
         <motion.div variants={itemVariants} className="flex flex-col gap-4 lg:col-span-1">
-          <div className="bg-bg-secondary/40 group relative overflow-hidden rounded-2xl border border-white/5 p-6 shadow-lg backdrop-blur-xl">
+          <div className="bg-bg-secondary/40 group border-border-subtle/50 relative overflow-hidden rounded-2xl border p-6 shadow-lg backdrop-blur-xl">
             <div className="absolute top-0 right-0 -mt-10 -mr-10 h-32 w-32 rounded-full bg-emerald-500/10 blur-3xl transition-all group-hover:bg-emerald-500/20" />
             <div className="text-fg-muted mb-4 flex items-center justify-between">
               <span className="text-xs font-bold tracking-wider uppercase">
@@ -145,29 +145,29 @@ export function UsersClient({ users, userRole, locale }: UsersClientProps) {
             <div className="mt-4 flex gap-2">
               <Badge
                 variant="success"
-                className="border-emerald-500/20 bg-emerald-500/10 text-emerald-400"
+                className="border-success-500/20 bg-emerald-500/10 text-emerald-400"
               >
                 {verifiedCount} {t("verified") || "Verified"}
               </Badge>
             </div>
           </div>
 
-          <div className="grid flex-1 grid-cols-2 gap-4">
-            <div className="bg-bg-secondary/40 relative overflow-hidden rounded-2xl border border-white/5 p-5 shadow-lg backdrop-blur-xl">
+          <div className="grid flex-1 grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="bg-bg-secondary/40 border-border-subtle/50 relative overflow-hidden rounded-2xl border p-5 shadow-lg backdrop-blur-xl">
               <div className="to-brand-500 absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-purple-500" />
               <div className="text-fg-muted mb-2 text-[10px] font-bold tracking-wider uppercase">
                 {t("admins") || "Admins"}
               </div>
-              <div className="flex items-center gap-2 text-2xl font-bold text-white">
+              <div className="text-fg-secondaryxl flex items-center gap-2 font-bold text-white">
                 <Shield className="h-4 w-4 text-purple-400" /> {adminCount}
               </div>
             </div>
-            <div className="bg-bg-secondary/40 relative overflow-hidden rounded-2xl border border-white/5 p-5 shadow-lg backdrop-blur-xl">
+            <div className="bg-bg-secondary/40 border-border-subtle/50 relative overflow-hidden rounded-2xl border p-5 shadow-lg backdrop-blur-xl">
               <div className="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-blue-500 to-cyan-500" />
               <div className="text-fg-muted mb-2 text-[10px] font-bold tracking-wider uppercase">
                 {t("moderators") || "Moderators"}
               </div>
-              <div className="flex items-center gap-2 text-2xl font-bold text-white">
+              <div className="text-fg-secondaryxl flex items-center gap-2 font-bold text-white">
                 <ShieldCheck className="h-4 w-4 text-blue-400" /> {moderatorCount}
               </div>
             </div>
@@ -177,7 +177,7 @@ export function UsersClient({ users, userRole, locale }: UsersClientProps) {
         {/* Growth Area Chart */}
         <motion.div
           variants={itemVariants}
-          className="bg-bg-secondary/40 flex flex-col rounded-2xl border border-white/5 p-6 shadow-lg backdrop-blur-xl lg:col-span-1"
+          className="bg-bg-secondary/40 border-border-subtle/50 flex flex-col rounded-2xl border p-6 shadow-lg backdrop-blur-xl lg:col-span-1"
         >
           <h3 className="mb-1 font-bold tracking-tight text-white">User Growth Trend</h3>
           <p className="text-fg-muted mb-6 text-xs">Monthly active registrations</p>
@@ -226,7 +226,7 @@ export function UsersClient({ users, userRole, locale }: UsersClientProps) {
         {/* Role Distribution Pie Chart */}
         <motion.div
           variants={itemVariants}
-          className="bg-bg-secondary/40 flex flex-col rounded-2xl border border-white/5 p-6 shadow-lg backdrop-blur-xl lg:col-span-1"
+          className="bg-bg-secondary/40 border-border-subtle/50 flex flex-col rounded-2xl border p-6 shadow-lg backdrop-blur-xl lg:col-span-1"
         >
           <h3 className="mb-1 font-bold tracking-tight text-white">Role Distribution</h3>
           <p className="text-fg-muted mb-2 text-xs">Platform authority segmentation</p>
@@ -291,7 +291,7 @@ export function UsersClient({ users, userRole, locale }: UsersClientProps) {
         <motion.div variants={itemVariants} className="space-y-4">
           <SegmentedControl options={roleOptions} value={roleFilter} onChange={setRoleFilter} />
 
-          <Card className="bg-bg-secondary/40 overflow-hidden border-white/5 backdrop-blur-xl">
+          <Card className="bg-bg-secondary/40 border-border-subtle/50 overflow-hidden backdrop-blur-xl">
             <CardContent className="p-0">
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
@@ -333,12 +333,12 @@ export function UsersClient({ users, userRole, locale }: UsersClientProps) {
                               <Badge
                                 variant="success"
                                 dot
-                                className="border-emerald-500/20 bg-emerald-500/10 text-emerald-400"
+                                className="border-success-500/20 bg-emerald-500/10 text-emerald-400"
                               >
                                 {t("verified")}
                               </Badge>
                             ) : (
-                              <Badge variant="muted" className="border-white/10 bg-white/5">
+                              <Badge variant="muted" className="border-border-subtle bg-white/5">
                                 {t("active")}
                               </Badge>
                             )}

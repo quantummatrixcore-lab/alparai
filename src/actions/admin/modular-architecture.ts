@@ -1,5 +1,6 @@
 "use server";
 
+import { requireAdmin } from "@/lib/auth/session";
 import {
   MODULAR_PILLARS,
   GPT_360_AUDIT_SCORE,
@@ -15,6 +16,7 @@ export interface ModularArchitectureOverview {
 }
 
 export async function getModularArchitectureAction(): Promise<ModularArchitectureOverview> {
+  await requireAdmin();
   try {
     return {
       umbrellaTitle: "AlparAI = AI Trust Infrastructure",

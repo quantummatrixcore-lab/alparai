@@ -27,7 +27,10 @@ describe("POST /api/admin/advisor", () => {
       role: "admin",
       createdAt: new Date(),
     } as unknown as ReturnType<typeof getCurrentUser> extends Promise<infer U> ? U : never);
-    vi.mocked(checkRateLimit).mockResolvedValue({ ok: true, retryAfter: 0 } as unknown as ReturnType<typeof checkRateLimit> extends Promise<infer R> ? R : never);
+    vi.mocked(checkRateLimit).mockResolvedValue({
+      ok: true,
+      retryAfter: 0,
+    } as unknown as ReturnType<typeof checkRateLimit> extends Promise<infer R> ? R : never);
   });
 
   afterEach(() => {

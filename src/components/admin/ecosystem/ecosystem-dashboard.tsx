@@ -38,7 +38,7 @@ export function EcosystemDashboard({ data }: { data: DashboardData }) {
             <LivePulseRing status="healthy" />
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-xl font-black tracking-tight text-white sm:text-2xl">
+                <h1 className="sm:text-fg-secondaryxl text-xl font-black tracking-tight text-white">
                   {t("ecosystem_hub_title") || "Ecosystem Intelligence Hub"}
                 </h1>
                 <span className="border-brand-500/30 bg-brand-500/20 text-brand-300 rounded-full border px-3 py-0.5 text-xs font-extrabold">

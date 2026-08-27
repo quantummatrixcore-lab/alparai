@@ -167,7 +167,7 @@ function VoteBar({
           className={`h-full rounded-sm ${colorClass}`}
         />
         {pct > 0 && (
-          <span className="absolute top-1/2 right-1 -translate-y-1/2 text-[10px] font-bold text-white/80">
+          <span className="text-fg-secondary absolute top-1/2 right-1 -translate-y-1/2 text-[10px] font-bold">
             %{pct}
           </span>
         )}

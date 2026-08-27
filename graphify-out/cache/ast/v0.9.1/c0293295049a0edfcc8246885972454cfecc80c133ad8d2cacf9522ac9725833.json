@@ -1,0 +1,47 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_campaigns_the_grok_files_day1_md",
+      "label": "the_grok_files_day1.md",
+      "file_type": "document",
+      "source_file": "docs/campaigns/the_grok_files_day1.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_campaigns_the_grok_files_day1_the_grok_files_day_1_when_ai_asks_for_your_passport",
+      "label": "The Grok Files \u2014 Day 1: When AI Asks for Your Passport",
+      "file_type": "document",
+      "source_file": "docs/campaigns/the_grok_files_day1.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_campaigns_the_grok_files_day1_post_copy",
+      "label": "Post Copy",
+      "file_type": "document",
+      "source_file": "docs/campaigns/the_grok_files_day1.md",
+      "source_location": "L8"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_campaigns_the_grok_files_day1_md",
+      "target": "d_01_saas_products_alparai_docs_campaigns_the_grok_files_day1_the_grok_files_day_1_when_ai_asks_for_your_passport",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/campaigns/the_grok_files_day1.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_campaigns_the_grok_files_day1_the_grok_files_day_1_when_ai_asks_for_your_passport",
+      "target": "d_01_saas_products_alparai_docs_campaigns_the_grok_files_day1_post_copy",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/campaigns/the_grok_files_day1.md",
+      "source_location": "L8",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

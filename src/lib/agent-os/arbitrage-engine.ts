@@ -15,10 +15,7 @@ export class ArbitrageEngine {
       case "xl":
       case "deep":
         // For large context or strategic depth (Atatürk, Turing, Da Vinci)
-        return (
-          process.env.DEFAULT_LLM_MODEL ||
-          "google/gemini-2.0-flash-exp:free"
-        );
+        return process.env.DEFAULT_LLM_MODEL || "google/gemini-2.0-flash-exp:free";
       case "l":
       case "code":
         return "deepseek/deepseek-chat";
@@ -26,10 +23,7 @@ export class ArbitrageEngine {
       case "fast":
         return "google/gemini-2.0-flash";
       default:
-        return (
-          process.env.DEFAULT_LLM_MODEL ||
-          "google/gemini-2.0-flash-exp:free"
-        );
+        return process.env.DEFAULT_LLM_MODEL || "google/gemini-2.0-flash-exp:free";
     }
   }
 
@@ -52,7 +46,7 @@ export class ArbitrageEngine {
   }
 
   /**
-   * Determines how many Omni-Oracle tabs should be spawned concurrently 
+   * Determines how many Omni-Oracle tabs should be spawned concurrently
    * based on incident severity to prevent RAM exhaustion.
    */
   static getAllocationCount(severity: IncidentSeverity): number {
@@ -60,9 +54,9 @@ export class ArbitrageEngine {
       case "P0":
         return 16; // Full Swarm Consensus
       case "P1":
-        return 5;  // Core Committee Consensus
+        return 5; // Core Committee Consensus
       case "P2":
-        return 3;  // Fast Triage
+        return 3; // Fast Triage
       default:
         return 3;
     }

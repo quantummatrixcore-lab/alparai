@@ -1,0 +1,127 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_data_room_financial_projections_md",
+      "label": "financial-projections.md",
+      "file_type": "document",
+      "source_file": "docs/DATA_ROOM/financial-projections.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_data_room_financial_projections_alpar_ai_financial_projections_methodology",
+      "label": "ALPAR AI - Financial Projections & Methodology",
+      "file_type": "document",
+      "source_file": "docs/DATA_ROOM/financial-projections.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_data_room_financial_projections_1_methodology_assumptions",
+      "label": "1. Methodology & Assumptions",
+      "file_type": "document",
+      "source_file": "docs/DATA_ROOM/financial-projections.md",
+      "source_location": "L5"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_data_room_financial_projections_revenue_paths",
+      "label": "Revenue Paths",
+      "file_type": "document",
+      "source_file": "docs/DATA_ROOM/financial-projections.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_data_room_financial_projections_cost_structure",
+      "label": "Cost Structure",
+      "file_type": "document",
+      "source_file": "docs/DATA_ROOM/financial-projections.md",
+      "source_location": "L16"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_data_room_financial_projections_growth_assumptions",
+      "label": "Growth Assumptions",
+      "file_type": "document",
+      "source_file": "docs/DATA_ROOM/financial-projections.md",
+      "source_location": "L22"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_data_room_financial_projections_2_five_year_projections",
+      "label": "2. Five-Year Projections",
+      "file_type": "document",
+      "source_file": "docs/DATA_ROOM/financial-projections.md",
+      "source_location": "L26"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_data_room_financial_projections_base_case_extrapolating_current_trailing_growth",
+      "label": "Base Case (Extrapolating current trailing growth)",
+      "file_type": "document",
+      "source_file": "docs/DATA_ROOM/financial-projections.md",
+      "source_location": "L30"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_data_room_financial_projections_md",
+      "target": "d_01_saas_products_alparai_docs_data_room_financial_projections_alpar_ai_financial_projections_methodology",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DATA_ROOM/financial-projections.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_data_room_financial_projections_alpar_ai_financial_projections_methodology",
+      "target": "d_01_saas_products_alparai_docs_data_room_financial_projections_1_methodology_assumptions",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DATA_ROOM/financial-projections.md",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_data_room_financial_projections_1_methodology_assumptions",
+      "target": "d_01_saas_products_alparai_docs_data_room_financial_projections_revenue_paths",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DATA_ROOM/financial-projections.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_data_room_financial_projections_1_methodology_assumptions",
+      "target": "d_01_saas_products_alparai_docs_data_room_financial_projections_cost_structure",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DATA_ROOM/financial-projections.md",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_data_room_financial_projections_1_methodology_assumptions",
+      "target": "d_01_saas_products_alparai_docs_data_room_financial_projections_growth_assumptions",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DATA_ROOM/financial-projections.md",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_data_room_financial_projections_alpar_ai_financial_projections_methodology",
+      "target": "d_01_saas_products_alparai_docs_data_room_financial_projections_2_five_year_projections",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DATA_ROOM/financial-projections.md",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_data_room_financial_projections_2_five_year_projections",
+      "target": "d_01_saas_products_alparai_docs_data_room_financial_projections_base_case_extrapolating_current_trailing_growth",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/DATA_ROOM/financial-projections.md",
+      "source_location": "L30",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

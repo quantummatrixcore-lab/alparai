@@ -27,7 +27,7 @@ export async function getCostsData() {
   // 2. Fetch monthly costs from DB
   const { data: dbCostsData, error: costsError } = await supabase
     .from("finance_monthly_costs" as never)
-    .select("*")
+    .select("month, service, amount_usd, budget_usd")
     .order("month", { ascending: true });
 
   if (costsError) {
@@ -39,7 +39,7 @@ export async function getCostsData() {
   // 3. Fetch API usage from DB
   const { data: dbUsageData, error: usageError } = await supabase
     .from("finance_api_usage" as never)
-    .select("*")
+    .select("id, service, metric_name, value, unit, recorded_at")
     .order("recorded_at", { ascending: false });
 
   if (usageError) {

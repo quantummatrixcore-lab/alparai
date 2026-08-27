@@ -151,7 +151,7 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
         <div className="bg-success-500/10 pointer-events-none absolute top-1/4 left-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[140px]" />
         <div className="bg-accent-500/10 pointer-events-none absolute right-10 bottom-10 h-[400px] w-[400px] rounded-full blur-[120px]" />
 
-        <div className="border-border-subtle/80 bg-bg-elevated/80 relative w-full max-w-lg rounded-3xl border p-8 text-slate-100 shadow-2xl backdrop-blur-2xl sm:p-10">
+        <div className="border-border-subtle/80 bg-bg-elevated/80 text-fg-primary relative w-full max-w-lg rounded-3xl border p-8 shadow-2xl backdrop-blur-2xl sm:p-10">
           <div className="mb-6 flex items-center justify-center">
             <div className="border-success-500/30 from-success-500/20 text-success-400 shadow-success-500/10 flex h-14 w-14 items-center justify-center rounded-2xl border bg-gradient-to-br to-cyan-500/20 shadow-lg">
               <ShieldCheck className="h-7 w-7" />
@@ -163,7 +163,7 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
               <Sparkles className="h-3.5 w-3.5" />
               {t("login_badge")}
             </span>
-            <h1 className="bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-2xl font-bold tracking-tight text-transparent sm:text-3xl">
+            <h1 className="text-fg-secondaryxl bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text font-bold tracking-tight text-transparent sm:text-3xl">
               {t("login_title")}
             </h1>
             <p className="text-fg-muted mt-2 text-sm leading-relaxed">{t("login_desc")}</p>
@@ -213,7 +213,7 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
                     setAuthToken(company.token);
                     setAuthenticatedVendor(company);
                   }}
-                  className="border-border-strong/60 text-fg-secondary hover:border-success-500/40 flex items-center gap-1.5 rounded-lg border bg-slate-800/60 px-2.5 py-1.5 text-xs transition-all hover:text-white"
+                  className="border-border-strong/60 text-fg-secondary hover:border-success-500/40 bg-bg-secondary flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs transition-all hover:text-white"
                 >
                   <Building2 className="text-success-400 h-3 w-3" />
                   {company.name}
@@ -230,7 +230,7 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
   const respondedCount = incidents.filter((i) => Boolean(i.vendorResponseText)).length;
 
   return (
-    <div className="mx-auto max-w-7xl space-y-8 px-4 py-8 text-slate-100 sm:px-6 lg:px-8">
+    <div className="text-fg-primary mx-auto max-w-7xl space-y-8 px-4 py-8 sm:px-6 lg:px-8">
       {/* Top Header Bar */}
       <div className="border-border-subtle/80 bg-bg-elevated/60 relative overflow-hidden rounded-3xl border p-6 shadow-2xl backdrop-blur-xl sm:p-8">
         <div className="bg-success-500/10 pointer-events-none absolute -top-20 -right-20 h-80 w-80 rounded-full blur-[100px]" />
@@ -242,7 +242,7 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
             </div>
             <div>
               <div className="flex items-center gap-3">
-                <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                <h1 className="text-fg-secondaryxl font-bold tracking-tight text-white sm:text-3xl">
                   {authenticatedVendor.name}
                 </h1>
                 <span className="border-success-500/20 bg-success-500/10 text-success-400 rounded-full border px-2.5 py-0.5 text-xs font-semibold">
@@ -256,7 +256,7 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
           <div className="flex w-full items-center justify-between gap-3 md:w-auto md:justify-end">
             <button
               onClick={() => setAuthenticatedVendor(null)}
-              className="border-border-strong/60 text-fg-secondary flex items-center gap-2 rounded-xl border bg-slate-800/60 px-4 py-2 text-xs font-medium transition-all hover:bg-slate-800 hover:text-white"
+              className="border-border-strong/60 text-fg-secondary bg-bg-secondary hover:bg-bg-secondary flex items-center gap-2 rounded-xl border px-4 py-2 text-xs font-medium transition-all hover:text-white"
             >
               <LogOut className="h-3.5 w-3.5" />
               {t("logout_btn")}
@@ -268,17 +268,19 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
         <div className="border-border-subtle/60 mt-6 grid grid-cols-2 gap-4 border-t pt-6 sm:grid-cols-3">
           <div className="border-border-subtle/50 bg-bg-tertiary/40 rounded-2xl border p-4">
             <p className="text-fg-muted text-xs font-medium">{t("total_incidents_stat")}</p>
-            <p className="mt-1 text-2xl font-bold text-white">{incidents.length}</p>
+            <p className="text-fg-secondaryxl mt-1 font-bold text-white">{incidents.length}</p>
           </div>
           <div className="border-warning-800/30 rounded-2xl border bg-amber-950/20 p-4">
             <p className="text-warning-300/80 text-xs font-medium">{t("pending_response_stat")}</p>
-            <p className="text-warning-400 mt-1 text-2xl font-bold">{needsResponseCount}</p>
+            <p className="text-warning-400 text-fg-secondaryxl mt-1 font-bold">
+              {needsResponseCount}
+            </p>
           </div>
           <div className="border-success-800/30 col-span-2 rounded-2xl border bg-emerald-950/20 p-4 sm:col-span-1">
             <p className="text-success-300/80 text-xs font-medium">
               {t("defense_statements_stat")}
             </p>
-            <p className="text-success-400 mt-1 text-2xl font-bold">{respondedCount}</p>
+            <p className="text-success-400 text-fg-secondaryxl mt-1 font-bold">{respondedCount}</p>
           </div>
         </div>
       </div>
@@ -316,8 +318,8 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
                   onClick={() => setFilterTab("all")}
                   className={`flex-1 rounded-lg py-1.5 font-medium transition-all ${
                     filterTab === "all"
-                      ? "bg-slate-800 text-white shadow-sm"
-                      : "text-fg-muted hover:text-slate-200"
+                      ? "bg-bg-secondary text-white shadow-sm"
+                      : "text-fg-muted hover:text-fg-primary"
                   }`}
                 >
                   {t("status_all")}
@@ -326,8 +328,8 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
                   onClick={() => setFilterTab("needs_response")}
                   className={`flex-1 rounded-lg py-1.5 font-medium transition-all ${
                     filterTab === "needs_response"
-                      ? "text-warning-300 bg-slate-800 shadow-sm"
-                      : "text-fg-muted hover:text-slate-200"
+                      ? "text-warning-300 bg-bg-secondary shadow-sm"
+                      : "text-fg-muted hover:text-fg-primary"
                   }`}
                 >
                   {t("status_needs_response")} ({needsResponseCount})
@@ -336,8 +338,8 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
                   onClick={() => setFilterTab("responded")}
                   className={`flex-1 rounded-lg py-1.5 font-medium transition-all ${
                     filterTab === "responded"
-                      ? "text-success-300 bg-slate-800 shadow-sm"
-                      : "text-fg-muted hover:text-slate-200"
+                      ? "text-success-300 bg-bg-secondary shadow-sm"
+                      : "text-fg-muted hover:text-fg-primary"
                   }`}
                 >
                   {t("status_responded")}
@@ -367,12 +369,12 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
                       }}
                       className={`w-full space-y-2.5 rounded-xl border p-4 text-left text-xs transition-all ${
                         isSelected
-                          ? "border-success-500/50 shadow-success-500/5 ring-success-500/20 bg-slate-800/80 shadow-lg ring-1"
-                          : "border-border-subtle/60 bg-bg-tertiary/40 hover:border-border-strong/60 hover:bg-slate-800/40"
+                          ? "border-success-500/50 shadow-success-500/5 ring-success-500/20 bg-bg-secondary shadow-lg ring-1"
+                          : "border-border-subtle/60 bg-bg-tertiary/40 hover:border-border-strong/60 hover:bg-bg-secondary"
                       }`}
                     >
                       <div className="flex items-center justify-between gap-2">
-                        <span className="truncate font-semibold text-slate-200">
+                        <span className="text-fg-primary truncate font-semibold">
                           {incident.modelName}
                         </span>
                         {isResponded ? (
@@ -400,7 +402,7 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
                               ? "bg-danger-500/10 text-danger-400"
                               : incident.severity === "high"
                                 ? "bg-warning-500/10 text-warning-400"
-                                : "text-fg-muted bg-slate-800"
+                                : "text-fg-muted bg-bg-secondary"
                           }`}
                         >
                           {incident.severity}
@@ -422,7 +424,7 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
               <div className="border-border-subtle/80 space-y-3 border-b pb-5">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div className="flex items-center gap-2">
-                    <span className="border-border-strong text-success-400 rounded-lg border bg-slate-800 px-2.5 py-1 text-xs font-semibold">
+                    <span className="border-border-strong text-success-400 bg-bg-secondary rounded-lg border px-2.5 py-1 text-xs font-semibold">
                       {selectedIncident.modelName}
                     </span>
                     <span className="text-fg-muted text-xs">
@@ -524,7 +526,7 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
                       </span>
                     )}
                   </div>
-                  <div className="border-success-500/20 rounded-xl border bg-emerald-950/10 p-4 font-mono text-xs leading-relaxed whitespace-pre-wrap text-slate-200">
+                  <div className="border-success-500/20 text-fg-primary rounded-xl border bg-emerald-950/10 p-4 font-mono text-xs leading-relaxed whitespace-pre-wrap">
                     {selectedIncident.vendorResponseText}
                   </div>
                 </div>
@@ -532,7 +534,7 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
             </div>
           ) : (
             <div className="border-border-subtle/80 bg-bg-elevated/60 text-fg-muted rounded-2xl border p-12 text-center text-xs backdrop-blur-xl">
-              <MessageSquare className="mx-auto mb-3 h-10 w-10 text-slate-600" />
+              <MessageSquare className="text-fg-secondary mx-auto mb-3 h-10 w-10" />
               {t("select_incident")}
             </div>
           )}

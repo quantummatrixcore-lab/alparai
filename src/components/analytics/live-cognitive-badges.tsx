@@ -65,10 +65,10 @@ export function LiveCognitiveBadges() {
         };
       default:
         return {
-          icon: <BrainCircuit className="h-4 w-4 text-zinc-500" />,
-          border: "border-white/5",
-          bg: "bg-zinc-900/50",
-          text: "text-zinc-500",
+          icon: <BrainCircuit className="text-fg-muted h-4 w-4" />,
+          border: "border-border-subtle/50",
+          bg: "bg-bg-secondary/50",
+          text: "text-fg-muted",
         };
     }
   };
@@ -78,12 +78,12 @@ export function LiveCognitiveBadges() {
   const tcsflCfg = getStatusConfig(pipeline.tcsfl);
 
   return (
-    <div className="flex flex-col items-center space-y-4 rounded-2xl border border-white/5 bg-zinc-950/60 p-4 shadow-xl backdrop-blur-md">
-      <div className="flex items-center space-x-2 text-xs font-bold tracking-wider text-zinc-400 uppercase">
+    <div className="border-border-subtle/50 flex flex-col items-center space-y-4 rounded-2xl border bg-zinc-950/60 p-4 shadow-xl backdrop-blur-md">
+      <div className="text-fg-muted flex items-center space-x-2 text-xs font-bold tracking-wider uppercase">
         <BrainCircuit className="h-4 w-4" /> Cognitive Routing Pipeline
         <button
           onClick={simulatePipeline}
-          className="ml-4 inline-flex items-center gap-1 rounded bg-zinc-800 px-2 py-1 text-[10px] text-zinc-300 hover:bg-zinc-700"
+          className="bg-bg-elevated text-fg-secondary ml-4 inline-flex items-center gap-1 rounded px-2 py-1 text-[10px] hover:bg-zinc-700"
         >
           <Play className="h-3 w-3" /> Simüle Et
         </button>
@@ -101,7 +101,7 @@ export function LiveCognitiveBadges() {
             >
               TOM
             </span>
-            <span className="text-[9px] text-zinc-500">Niyet / Triage</span>
+            <span className="text-fg-muted text-[9px]">Niyet / Triage</span>
           </div>
         </div>
 
@@ -120,7 +120,7 @@ export function LiveCognitiveBadges() {
             >
               HEPH
             </span>
-            <span className="text-[9px] text-zinc-500">Kod / İcra</span>
+            <span className="text-fg-muted text-[9px]">Kod / İcra</span>
           </div>
         </div>
 
@@ -139,7 +139,7 @@ export function LiveCognitiveBadges() {
             >
               TCSFL
             </span>
-            <span className="text-[9px] text-zinc-500">Doğrulama / AST</span>
+            <span className="text-fg-muted text-[9px]">Doğrulama / AST</span>
           </div>
         </div>
       </div>

@@ -238,7 +238,7 @@ export function IncidentCard({
                   {t("anonymous")}
                 </Badge>
               )}
-              <span className="bg-bg-tertiary/80 text-fg-muted rounded border border-white/5 px-2 py-0.5 text-[10px] font-bold">
+              <span className="bg-bg-tertiary/80 text-fg-muted border-border-subtle/50 rounded border px-2 py-0.5 text-[10px] font-bold">
                 {getFormattedBadgeDate(incident.incident_date, locale)}
               </span>
             </div>
@@ -263,7 +263,7 @@ export function IncidentCard({
                 </span>
                 <Link
                   href={`/incidents/${incident.id}#affected`}
-                  className="text-fg-secondary hover:border-brand-500/30 hover:bg-brand-500/10 hover:text-brand-400 inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-white/5 bg-white/5 px-2.5 py-1 text-xs font-semibold transition-all"
+                  className="text-fg-secondary hover:border-brand-500/30 hover:bg-brand-500/10 hover:text-brand-400 border-border-subtle/50 inline-flex cursor-pointer items-center gap-1.5 rounded-full border bg-white/5 px-2.5 py-1 text-xs font-semibold transition-all"
                 >
                   <ThumbsUp className="h-3.5 w-3.5" aria-hidden="true" />
                   <span>{t("me_too", { defaultValue: "Ben de Yaşadım" })}</span>
@@ -273,7 +273,7 @@ export function IncidentCard({
                 </Link>
                 <Link
                   href={`/incidents/${incident.id}#comments`}
-                  className="text-fg-secondary hover:border-accent-500/30 hover:bg-accent-500/10 hover:text-accent-400 inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-white/5 bg-white/5 px-2.5 py-1 text-xs font-semibold transition-all"
+                  className="text-fg-secondary hover:border-accent-500/30 hover:bg-accent-500/10 hover:text-accent-400 border-border-subtle/50 inline-flex cursor-pointer items-center gap-1.5 rounded-full border bg-white/5 px-2.5 py-1 text-xs font-semibold transition-all"
                 >
                   <MessageSquare className="h-3.5 w-3.5" aria-hidden="true" />
                   <span>{t("comment_action", { defaultValue: "Yorum Yap" })}</span>
@@ -282,7 +282,7 @@ export function IncidentCard({
                   </span>
                 </Link>
               </div>
-              <div className="flex items-center gap-2 border-l border-white/10 pl-3">
+              <div className="border-border-subtle flex items-center gap-2 border-l pl-3">
                 {/* X */}
                 <motion.a
                   whileHover={{ scale: 1.2, y: -1 }}
@@ -290,7 +290,7 @@ export function IncidentCard({
                   href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(displayTitle)}&url=${encodeURIComponent(getShareUrlForPlatform("x"))}`}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="p-0.5 text-zinc-100 transition-colors hover:text-white"
+                  className="text-fg-primary p-0.5 transition-colors hover:text-white"
                   aria-label={tFeed("shareOnX")}
                   onClick={(e) => e.stopPropagation()}
                 >

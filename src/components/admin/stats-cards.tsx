@@ -123,7 +123,7 @@ export function StatsCards({ stats }: { stats: AdminStats }) {
         <motion.div
           key={c.label}
           variants={itemVariants}
-          className="group relative flex flex-col overflow-hidden rounded-xl border border-white/5 bg-neutral-900/40 p-4 shadow-lg backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-neutral-800/60 hover:shadow-2xl"
+          className="group border-border-subtle/50 bg-bg-secondary hover:border-border-strong hover:bg-bg-secondary relative flex flex-col overflow-hidden rounded-xl border p-4 shadow-lg backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
         >
           {/* Spotlight Hover Gradient */}
           <div
@@ -135,7 +135,7 @@ export function StatsCards({ stats }: { stats: AdminStats }) {
           />
           <div className="relative z-10 flex items-center justify-between">
             <div
-              className={`inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/5 bg-white/5 ${c.color} ${c.glow} transition-transform duration-300 group-hover:scale-110`}
+              className={`border-border-subtle/50 inline-flex h-9 w-9 items-center justify-center rounded-lg border bg-white/5 ${c.color} ${c.glow} transition-transform duration-300 group-hover:scale-110`}
             >
               {c.icon}
             </div>

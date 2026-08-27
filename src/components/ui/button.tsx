@@ -64,7 +64,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           "transition-all duration-200 ease-out",
           "focus-visible:ring-brand-500 focus-visible:ring-offset-bg-primary focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
           "disabled:cursor-not-allowed",
-          "whitespace-nowrap select-none touch-manipulation",
+          "touch-manipulation whitespace-nowrap select-none",
           variantClasses[variant],
           sizeClasses[size],
           className,

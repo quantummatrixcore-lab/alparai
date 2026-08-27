@@ -33,8 +33,8 @@ export default async function DsarPage({ params }: { params: Promise<{ locale: s
   };
 
   return (
-    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
-      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
+    <div className="bg-bg-primary text-fg-primary min-h-screen px-3 py-4 sm:px-6 sm:py-6 md:p-8">
+      <div className="bg-bg-secondary/40 ring-border-subtle space-y-8 rounded-3xl p-4 shadow-2xl ring-1 backdrop-blur-xl sm:p-6 md:p-8">
         <GovernanceHubTabs />
         <div className="animate-in fade-in space-y-8 duration-500">
           <div>
@@ -86,7 +86,7 @@ export default async function DsarPage({ params }: { params: Promise<{ locale: s
             <p className="text-[11px] leading-relaxed">{t("dsar_box_desc")}</p>
           </div>
 
-          <div className="overflow-hidden rounded-xl border border-white/5 bg-zinc-900/40 ring-1 ring-white/10 backdrop-blur-xl">
+          <div className="border-border-subtle/50 bg-bg-secondary/40 ring-border-subtle overflow-hidden rounded-xl border ring-1 backdrop-blur-xl">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm text-white">
                 <thead className="text-fg-muted bg-white/5 text-xs font-bold uppercase">

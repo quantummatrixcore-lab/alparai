@@ -1,5 +1,6 @@
 "use server";
 
+import { requireAdmin } from "@/lib/auth/session";
 import fs from "fs";
 import path from "path";
 import { z } from "zod";
@@ -27,6 +28,7 @@ const RUN_SCHEMA = z.object({
 });
 
 export async function getOpenCodeEfficiencyAction(): Promise<OpenCodeEfficiencyReport> {
+  await requireAdmin();
   try {
     const dir = path.join(process.cwd(), "ops", "opencode-runs");
     const records: OpenCodeRunRecord[] = [];

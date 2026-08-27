@@ -1,0 +1,67 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_agents_scripts_verify_final_py",
+      "label": "verify_final.py",
+      "file_type": "code",
+      "source_file": ".agents/scripts/verify_final.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_scripts_verify_final_flat",
+      "label": "flat()",
+      "file_type": "code",
+      "source_file": ".agents/scripts/verify_final.py",
+      "source_location": "L10"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_agents_scripts_verify_final_py",
+      "target": "json",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/scripts/verify_final.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_scripts_verify_final_py",
+      "target": "pathlib",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/scripts/verify_final.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_scripts_verify_final_py",
+      "target": "d_01_saas_products_alparai_agents_scripts_verify_final_flat",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/scripts/verify_final.py",
+      "source_location": "L10",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "d_01_saas_products_alparai_agents_scripts_verify_final_flat",
+      "callee": "items",
+      "is_member_call": true,
+      "source_file": "D:\\01_SaaS_Products\\Alparai\\.agents\\scripts\\verify_final.py",
+      "source_location": "L12",
+      "receiver": "d"
+    },
+    {
+      "caller_nid": "d_01_saas_products_alparai_agents_scripts_verify_final_flat",
+      "callee": "update",
+      "is_member_call": true,
+      "source_file": "D:\\01_SaaS_Products\\Alparai\\.agents\\scripts\\verify_final.py",
+      "source_location": "L15",
+      "receiver": "r"
+    }
+  ]
+}

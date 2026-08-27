@@ -49,7 +49,7 @@ export function NotFoundClient({
           </div>
 
           {/* 404 Number */}
-          <p className="from-brand-300 via-danger-400 to-brand-500 bg-gradient-to-r bg-clip-text text-8xl font-black tracking-tighter text-transparent drop-shadow-2xl select-none md:text-[10rem] lg:text-[12rem]">
+          <p className="from-brand-300 via-danger-400 to-brand-500 text-fg-secondaryxl bg-gradient-to-r bg-clip-text font-black tracking-tighter text-transparent drop-shadow-2xl select-none md:text-[10rem] lg:text-[12rem]">
             {code}
           </p>
 
@@ -68,7 +68,7 @@ export function NotFoundClient({
             <div className="transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-[1.02]">
               <Link
                 href="/"
-                className="border-border-subtle bg-bg-secondary hover:border-brand-500/40 hover:shadow-brand-500/5 focus-visible:ring-brand-500 flex items-center gap-3 rounded-xl border p-5 text-left transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none hover:shadow-lg"
+                className="border-border-subtle bg-bg-secondary hover:border-brand-500/40 hover:shadow-brand-500/5 focus-visible:ring-brand-500 flex items-center gap-3 rounded-xl border p-5 text-left transition-all duration-300 ease-in-out hover:shadow-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
               >
                 <div
                   className="bg-brand-500/10 border-brand-500/20 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border"
@@ -86,7 +86,7 @@ export function NotFoundClient({
             <div className="transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-[1.02]">
               <Link
                 href="/incidents"
-                className="border-border-subtle bg-bg-secondary hover:border-brand-500/40 hover:shadow-brand-500/5 focus-visible:ring-brand-500 flex items-center gap-3 rounded-xl border p-5 text-left transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none hover:shadow-lg"
+                className="border-border-subtle bg-bg-secondary hover:border-brand-500/40 hover:shadow-brand-500/5 focus-visible:ring-brand-500 flex items-center gap-3 rounded-xl border p-5 text-left transition-all duration-300 ease-in-out hover:shadow-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
               >
                 <div
                   className="bg-brand-500/10 border-brand-500/20 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border"
@@ -106,7 +106,7 @@ export function NotFoundClient({
           <div className="mt-10">
             <Link
               href="/"
-              className="text-fg-muted hover:text-brand-400 focus-visible:ring-brand-500 rounded-md inline-flex items-center gap-2 text-sm font-semibold transition-colors duration-200 ease-in-out focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+              className="text-fg-muted hover:text-brand-400 focus-visible:ring-brand-500 inline-flex items-center gap-2 rounded-md text-sm font-semibold transition-colors duration-200 ease-in-out focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
             >
               <ArrowLeft className="h-4 w-4" aria-hidden="true" />
               {backLabel}

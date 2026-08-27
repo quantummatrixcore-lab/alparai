@@ -9,14 +9,14 @@ import { z } from "zod";
 export interface ValidationResult {
   isValid: boolean;
   errors: string[];
-  astTrace?: any;
+  astTrace?: unknown;
 }
 
 // Güvenlik kuralları ve yasaklı anahtar kelimeler
 const FORBIDDEN_PATTERNS = [
   /eval\s*\(/i,
   /setTimeout\s*\(\s*['"]/i, // String execution in setTimeout
-  /process\.env/i,         // Hardcoded env access bypassing safe wrappers
+  /process\.env/i, // Hardcoded env access bypassing safe wrappers
 ];
 
 /**
@@ -45,7 +45,7 @@ export function validateHephaestusOutput(codePayload: string): ValidationResult 
 
   return {
     isValid: errors.length === 0,
-    errors
+    errors,
   };
 }
 
@@ -54,10 +54,10 @@ export function validateHephaestusOutput(codePayload: string): ValidationResult 
  */
 function checkBasicBrackets(code: string): boolean {
   const stack = [];
-  const map: Record<string, string> = { '}': '{', ']': '[', ')': '(' };
+  const map: Record<string, string> = { "}": "{", "]": "[", ")": "(" };
   for (const char of code) {
-    if (char === '{' || char === '[' || char === '(') stack.push(char);
-    else if (char === '}' || char === ']' || char === ')') {
+    if (char === "{" || char === "[" || char === "(") stack.push(char);
+    else if (char === "}" || char === "]" || char === ")") {
       if (stack.pop() !== map[char]) return true; // Error
     }
   }

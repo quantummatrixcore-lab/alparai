@@ -89,7 +89,7 @@ export function LeaderboardPreview({ entries }: { entries: LeaderboardEntry[] })
                       <span>
                         {formatNumber(e.incident_count)} {t("incidents").toLowerCase()}
                       </span>
-                      <span className="text-slate-700">•</span>
+                      <span className="text-fg-secondary">•</span>
                       <span
                         className={cn(
                           "inline-flex items-center text-[10px] font-bold tracking-wide",

@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
 
 async function fetchHNStories(query: string, count: number = 5) {
   const url = `https://hn.algolia.com/api/v1/search_by_date?query=${encodeURIComponent(query)}&tags=story&hitsPerPage=${count}`;
@@ -11,7 +11,7 @@ async function fetchHNStories(query: string, count: number = 5) {
       title: hit.title,
       url: hit.url || `https://news.ycombinator.com/item?id=${hit.objectID}`,
       points: hit.points,
-      author: hit.author
+      author: hit.author,
     }));
   } catch (error) {
     console.error(`HackerNews Çekilirken Hata (${query}):`, error);
@@ -25,8 +25,8 @@ async function fetchGitHubRepos(date: string, count: number = 5) {
   try {
     const res = await fetch(url, {
       headers: {
-        'User-Agent': 'Alpar-AI-Agent-OS'
-      }
+        "User-Agent": "Alpar-AI-Agent-OS",
+      },
     });
     if (!res.ok) throw new Error(`GitHub API Hatası: ${res.statusText}`);
     const data = await res.json();
@@ -35,7 +35,7 @@ async function fetchGitHubRepos(date: string, count: number = 5) {
       url: repo.html_url,
       stars: repo.stargazers_count,
       description: repo.description,
-      language: repo.language
+      language: repo.language,
     }));
   } catch (error) {
     console.error(`GitHub Repoları Çekilirken Hata:`, error);
@@ -44,21 +44,21 @@ async function fetchGitHubRepos(date: string, count: number = 5) {
 }
 
 async function main() {
-  console.log('Teşkilat-ı Mahsusa: Sabah Brifingi Başlatılıyor...');
-  
+  console.log("Teşkilat-ı Mahsusa: Sabah Brifingi Başlatılıyor...");
+
   const today = new Date();
-  const dateStr = today.toISOString().split('T')[0] ?? "2026-08-15";
-  
+  const dateStr = today.toISOString().split("T")[0] ?? "2026-08-15";
+
   // 7 gün öncesini hesapla (yeni çıkan repo bulmak için)
   const lastWeek = new Date();
   lastWeek.setDate(today.getDate() - 7);
-  const lastWeekStr = lastWeek.toISOString().split('T')[0] ?? "2026-08-08";
+  const lastWeekStr = lastWeek.toISOString().split("T")[0] ?? "2026-08-08";
 
-  console.log('HackerNews taranıyor...');
-  const hnLLM = await fetchHNStories('LLM', 5);
-  const hnAgent = await fetchHNStories('AI Agent', 5);
-  
-  console.log('GitHub taranıyor...');
+  console.log("HackerNews taranıyor...");
+  const hnLLM = await fetchHNStories("LLM", 5);
+  const hnAgent = await fetchHNStories("AI Agent", 5);
+
+  console.log("GitHub taranıyor...");
   const githubRepos = await fetchGitHubRepos(lastWeekStr, 10);
 
   // Markdown Oluştur
@@ -68,8 +68,8 @@ async function main() {
   md += `## 🐙 GitHub'da Yükselen Yeni Projeler (Son 7 Gün)\n`;
   if (githubRepos.length > 0) {
     githubRepos.forEach((r: any) => {
-      md += `- **[${r.name}](${r.url})** (⭐ ${r.stars} | 🛠️ ${r.language || 'N/A'})\n`;
-      md += `  - ${r.description || 'Açıklama yok'}\n`;
+      md += `- **[${r.name}](${r.url})** (⭐ ${r.stars} | 🛠️ ${r.language || "N/A"})\n`;
+      md += `  - ${r.description || "Açıklama yok"}\n`;
     });
   } else {
     md += `- _Yeni dikkat çeken proje bulunamadı._\n`;
@@ -96,18 +96,18 @@ async function main() {
   md += `\n---\n*Rapor Sonu. Kopyala-Yapıştır dönemi bitmiştir. Sadece vizyonu yönet.*`;
 
   // Dosyayı kaydet
-  const dirPath = path.join(process.cwd(), 'docs', 'reports', 'briefings');
+  const dirPath = path.join(process.cwd(), "docs", "reports", "briefings");
   if (!fs.existsSync(dirPath)) {
     fs.mkdirSync(dirPath, { recursive: true });
   }
 
   const filePath = path.join(dirPath, `${dateStr}-brifing.md`);
-  fs.writeFileSync(filePath, md, 'utf-8');
-  
+  fs.writeFileSync(filePath, md, "utf-8");
+
   console.log(`Brifing başarıyla oluşturuldu: ${filePath}`);
 }
 
-main().catch(err => {
-  console.error('Brifing oluşturulurken ölümcül hata:', err);
+main().catch((err) => {
+  console.error("Brifing oluşturulurken ölümcül hata:", err);
   process.exit(1);
 });

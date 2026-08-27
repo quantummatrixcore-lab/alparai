@@ -464,7 +464,7 @@ export default async function FinancePage({ params }: { params: Promise<{ locale
                     <div className="text-fg-primary mb-3 text-sm font-medium">{vendorLabel}</div>
                     {displayUsed !== undefined && displayTotal !== undefined ? (
                       <>
-                        <div className="text-fg-primary mb-2 text-2xl font-bold">
+                        <div className="text-fg-primary text-fg-secondaryxl mb-2 font-bold">
                           {displayUsed.toLocaleString()}{" "}
                           <span className="text-fg-tertiary text-sm">
                             / {displayTotal.toLocaleString()}

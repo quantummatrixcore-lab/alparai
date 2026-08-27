@@ -1,0 +1,95 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_methodology_audits_content_pipeline_v10_md",
+      "label": "content-pipeline-v10.md",
+      "file_type": "document",
+      "source_file": "docs/METHODOLOGY_AUDITS/content-pipeline-v10.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_methodology_audits_content_pipeline_v10_e2e_pipeline_verification_alpar_ai_content_engine",
+      "label": "E2E Pipeline Verification: ALPAR AI Content Engine",
+      "file_type": "document",
+      "source_file": "docs/METHODOLOGY_AUDITS/content-pipeline-v10.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_methodology_audits_content_pipeline_v10_1_triggering_the_cron_job",
+      "label": "1. Triggering the Cron Job",
+      "file_type": "document",
+      "source_file": "docs/METHODOLOGY_AUDITS/content-pipeline-v10.md",
+      "source_location": "L5"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_methodology_audits_content_pipeline_v10_2_gateway_multi_provider_failover",
+      "label": "2. Gateway Multi-Provider Failover",
+      "file_type": "document",
+      "source_file": "docs/METHODOLOGY_AUDITS/content-pipeline-v10.md",
+      "source_location": "L9"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_methodology_audits_content_pipeline_v10_3_database_validation",
+      "label": "3. Database Validation",
+      "file_type": "document",
+      "source_file": "docs/METHODOLOGY_AUDITS/content-pipeline-v10.md",
+      "source_location": "L20"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_methodology_audits_content_pipeline_v10_4_conclusion",
+      "label": "4. Conclusion",
+      "file_type": "document",
+      "source_file": "docs/METHODOLOGY_AUDITS/content-pipeline-v10.md",
+      "source_location": "L38"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_methodology_audits_content_pipeline_v10_md",
+      "target": "d_01_saas_products_alparai_docs_methodology_audits_content_pipeline_v10_e2e_pipeline_verification_alpar_ai_content_engine",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/METHODOLOGY_AUDITS/content-pipeline-v10.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_methodology_audits_content_pipeline_v10_e2e_pipeline_verification_alpar_ai_content_engine",
+      "target": "d_01_saas_products_alparai_docs_methodology_audits_content_pipeline_v10_1_triggering_the_cron_job",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/METHODOLOGY_AUDITS/content-pipeline-v10.md",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_methodology_audits_content_pipeline_v10_e2e_pipeline_verification_alpar_ai_content_engine",
+      "target": "d_01_saas_products_alparai_docs_methodology_audits_content_pipeline_v10_2_gateway_multi_provider_failover",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/METHODOLOGY_AUDITS/content-pipeline-v10.md",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_methodology_audits_content_pipeline_v10_e2e_pipeline_verification_alpar_ai_content_engine",
+      "target": "d_01_saas_products_alparai_docs_methodology_audits_content_pipeline_v10_3_database_validation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/METHODOLOGY_AUDITS/content-pipeline-v10.md",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_methodology_audits_content_pipeline_v10_e2e_pipeline_verification_alpar_ai_content_engine",
+      "target": "d_01_saas_products_alparai_docs_methodology_audits_content_pipeline_v10_4_conclusion",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/METHODOLOGY_AUDITS/content-pipeline-v10.md",
+      "source_location": "L38",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

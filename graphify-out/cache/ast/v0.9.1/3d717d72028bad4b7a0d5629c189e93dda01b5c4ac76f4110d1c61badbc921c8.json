@@ -1,0 +1,111 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_adr_0011_prompt_engine_topology_md",
+      "label": "0011-prompt-engine-topology.md",
+      "file_type": "document",
+      "source_file": "docs/adr/0011-prompt-engine-topology.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_adr_0011_prompt_engine_topology_adr_011_prompt_engine_topology_one_engine_named_parts",
+      "label": "ADR-011: Prompt engine topology \u2014 one engine, named parts",
+      "file_type": "document",
+      "source_file": "docs/adr/0011-prompt-engine-topology.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_adr_0011_prompt_engine_topology_context",
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "docs/adr/0011-prompt-engine-topology.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_adr_0011_prompt_engine_topology_decision",
+      "label": "Decision",
+      "file_type": "document",
+      "source_file": "docs/adr/0011-prompt-engine-topology.md",
+      "source_location": "L31"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_adr_0011_prompt_engine_topology_consequences",
+      "label": "Consequences",
+      "file_type": "document",
+      "source_file": "docs/adr/0011-prompt-engine-topology.md",
+      "source_location": "L50"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_adr_0011_prompt_engine_topology_correction_2026_08_17_same_day",
+      "label": "Correction (2026-08-17, same day)",
+      "file_type": "document",
+      "source_file": "docs/adr/0011-prompt-engine-topology.md",
+      "source_location": "L64"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_adr_0011_prompt_engine_topology_related",
+      "label": "Related",
+      "file_type": "document",
+      "source_file": "docs/adr/0011-prompt-engine-topology.md",
+      "source_location": "L79"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_adr_0011_prompt_engine_topology_md",
+      "target": "d_01_saas_products_alparai_docs_adr_0011_prompt_engine_topology_adr_011_prompt_engine_topology_one_engine_named_parts",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0011-prompt-engine-topology.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_adr_0011_prompt_engine_topology_adr_011_prompt_engine_topology_one_engine_named_parts",
+      "target": "d_01_saas_products_alparai_docs_adr_0011_prompt_engine_topology_context",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0011-prompt-engine-topology.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_adr_0011_prompt_engine_topology_adr_011_prompt_engine_topology_one_engine_named_parts",
+      "target": "d_01_saas_products_alparai_docs_adr_0011_prompt_engine_topology_decision",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0011-prompt-engine-topology.md",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_adr_0011_prompt_engine_topology_adr_011_prompt_engine_topology_one_engine_named_parts",
+      "target": "d_01_saas_products_alparai_docs_adr_0011_prompt_engine_topology_consequences",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0011-prompt-engine-topology.md",
+      "source_location": "L50",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_adr_0011_prompt_engine_topology_adr_011_prompt_engine_topology_one_engine_named_parts",
+      "target": "d_01_saas_products_alparai_docs_adr_0011_prompt_engine_topology_correction_2026_08_17_same_day",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0011-prompt-engine-topology.md",
+      "source_location": "L64",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_adr_0011_prompt_engine_topology_adr_011_prompt_engine_topology_one_engine_named_parts",
+      "target": "d_01_saas_products_alparai_docs_adr_0011_prompt_engine_topology_related",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/adr/0011-prompt-engine-topology.md",
+      "source_location": "L79",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

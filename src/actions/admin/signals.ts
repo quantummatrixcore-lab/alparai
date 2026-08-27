@@ -1,5 +1,6 @@
 "use server";
 
+import { requireAdmin } from "@/lib/auth/session";
 import { createAdminClient } from "@/lib/supabase/admin";
 
 export type SignalCategory = "performance" | "security" | "reliability" | "ux";
@@ -15,6 +16,7 @@ export interface Signal {
 }
 
 export async function getSystemSignalsAction(): Promise<Signal[]> {
+  await requireAdmin();
   try {
     const admin = createAdminClient();
 

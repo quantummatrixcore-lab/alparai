@@ -3,7 +3,7 @@
 **Yayın:** TÜRKINFORM Son Dakika Haberler  
 **Yayın Tarihi:** 25 Haziran 2026 — 15:53 (Güncelleme: 16:15)  
 **Yazar:** Sema Ersoy  
-**Kaynak:** [Turkinform](https://turkinform.com.tr/turk-girisimcinin-yasadigi-grok-skandali-kisisel-verilerimiz-risk-altinda-mi)  
+**Kaynak:** [Turkinform](https://turkinform.com.tr/turk-girisimcinin-yasadigi-grok-skandali-kisisel-verilerimiz-risk-altinda-mi)
 
 ---
 

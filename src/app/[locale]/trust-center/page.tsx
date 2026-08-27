@@ -93,7 +93,9 @@ export default async function SecurityPage({ params }: { params: Promise<{ local
       {/* Compliance Badges */}
       <div className="space-y-10">
         <div className="mx-auto max-w-xl text-center">
-          <h2 className="text-fg-primary text-2xl font-bold tracking-tight">{t("badges_title")}</h2>
+          <h2 className="text-fg-primary text-fg-secondaryxl font-bold tracking-tight">
+            {t("badges_title")}
+          </h2>
           <p className="text-fg-muted mt-2 text-sm">{t("badges_subtitle")}</p>
         </div>
 
@@ -122,7 +124,7 @@ export default async function SecurityPage({ params }: { params: Promise<{ local
       {/* Roadmap Timeline */}
       <div className="space-y-10">
         <div className="mx-auto max-w-xl text-center">
-          <h2 className="text-fg-primary text-2xl font-bold tracking-tight">
+          <h2 className="text-fg-primary text-fg-secondaryxl font-bold tracking-tight">
             {t("timeline_title")}
           </h2>
           <p className="text-fg-muted mt-2 text-sm">{t("timeline_subtitle")}</p>
@@ -149,7 +151,9 @@ export default async function SecurityPage({ params }: { params: Promise<{ local
       {/* Encryption & Compliance Status */}
       <div className="space-y-10">
         <div className="mx-auto max-w-xl text-center">
-          <h2 className="text-fg-primary text-2xl font-bold tracking-tight">{t("crypto_title")}</h2>
+          <h2 className="text-fg-primary text-fg-secondaryxl font-bold tracking-tight">
+            {t("crypto_title")}
+          </h2>
           <p className="text-fg-muted mt-2 text-sm">{t("crypto_subtitle")}</p>
         </div>
 
@@ -179,7 +183,7 @@ export default async function SecurityPage({ params }: { params: Promise<{ local
       {/* Detailed Standards Section */}
       <div className="space-y-10">
         <div className="mx-auto max-w-xl text-center">
-          <h2 className="text-fg-primary text-2xl font-bold tracking-tight">
+          <h2 className="text-fg-primary text-fg-secondaryxl font-bold tracking-tight">
             {t("standards_detail_title")}
           </h2>
         </div>

@@ -87,14 +87,14 @@ export function OutreachPageContent({ initialQueue }: { initialQueue: OutreachQu
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-wrap items-center gap-2 border-b border-white/5 pb-4">
+      <div className="border-border-subtle/50 flex flex-wrap items-center gap-2 border-b pb-4">
         <button
           onClick={() => setActiveTab("queue")}
           className={cn(
             "rounded-full px-4 py-2 text-sm font-semibold transition-all",
             activeTab === "queue"
               ? "bg-brand-500/20 text-brand-300 border-brand-500/30 border"
-              : "text-slate-400 hover:bg-white/5 hover:text-white",
+              : "text-fg-muted hover:bg-white/5 hover:text-white",
           )}
         >
           {t("outreach_queue")}
@@ -105,7 +105,7 @@ export function OutreachPageContent({ initialQueue }: { initialQueue: OutreachQu
             "rounded-full px-4 py-2 text-sm font-semibold transition-all",
             activeTab === "media"
               ? "bg-brand-500/20 text-brand-300 border-brand-500/30 border"
-              : "text-slate-400 hover:bg-white/5 hover:text-white",
+              : "text-fg-muted hover:bg-white/5 hover:text-white",
           )}
         >
           {t("outreach_media_pitch")}
@@ -116,7 +116,7 @@ export function OutreachPageContent({ initialQueue }: { initialQueue: OutreachQu
             "rounded-full px-4 py-2 text-sm font-semibold transition-all",
             activeTab === "expert"
               ? "bg-brand-500/20 text-brand-300 border-brand-500/30 border"
-              : "text-slate-400 hover:bg-white/5 hover:text-white",
+              : "text-fg-muted hover:bg-white/5 hover:text-white",
           )}
         >
           {t("outreach_expert_invite")}
@@ -127,7 +127,7 @@ export function OutreachPageContent({ initialQueue }: { initialQueue: OutreachQu
             "rounded-full px-4 py-2 text-sm font-semibold transition-all",
             activeTab === "plan"
               ? "border border-emerald-500/30 bg-emerald-500/20 text-emerald-300"
-              : "text-slate-400 hover:bg-white/5 hover:text-white",
+              : "text-fg-muted hover:bg-white/5 hover:text-white",
           )}
         >
           {t("outreach_strategy")}
@@ -137,11 +137,11 @@ export function OutreachPageContent({ initialQueue }: { initialQueue: OutreachQu
       <div className="mt-6">
         {activeTab === "queue" && (
           <div className="space-y-6">
-            <Card className="border-white/5 bg-[#0F1E2E]">
+            <Card className="border-border-subtle/50 bg-bg-navy">
               <CardContent className="flex flex-col items-center justify-between gap-4 p-6 md:flex-row">
                 <div className="space-y-1">
                   <h3 className="text-lg font-bold text-white">Outreach Dispatch Control</h3>
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-slate-400">
+                  <div className="text-fg-muted flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
                     <span>
                       Sent (24h): <strong className="text-emerald-400">{sentLast24h} / 50</strong>
                     </span>
@@ -158,7 +158,7 @@ export function OutreachPageContent({ initialQueue }: { initialQueue: OutreachQu
                   className={cn(
                     "rounded-lg px-4 py-2 text-sm font-bold shadow-md transition-all",
                     approvedCount === 0 || isSending
-                      ? "cursor-not-allowed border border-white/5 bg-slate-800 text-slate-500"
+                      ? "border-border-subtle/50 bg-bg-secondary text-fg-muted cursor-not-allowed border"
                       : "bg-emerald-500 text-slate-950 hover:bg-emerald-400 active:scale-95",
                   )}
                 >
@@ -171,8 +171,8 @@ export function OutreachPageContent({ initialQueue }: { initialQueue: OutreachQu
         )}
 
         {activeTab === "media" && (
-          <Card className="border-white/5 bg-[#0F1E2E]">
-            <CardHeader className="flex flex-row items-center justify-between border-b border-white/5 bg-black/20 pb-4">
+          <Card className="border-border-subtle/50 bg-bg-navy">
+            <CardHeader className="border-border-subtle/50 bg-bg-primary/20 flex flex-row items-center justify-between border-b pb-4">
               <CardTitle className="text-lg text-emerald-400">
                 {t("embargoed_press_pitch_en")}
               </CardTitle>
@@ -185,7 +185,7 @@ export function OutreachPageContent({ initialQueue }: { initialQueue: OutreachQu
               </button>
             </CardHeader>
             <CardContent className="pt-6">
-              <pre className="font-sans text-sm leading-relaxed whitespace-pre-wrap text-slate-300">
+              <pre className="text-fg-primary font-sans text-sm leading-relaxed whitespace-pre-wrap">
                 {MEDIA_PITCH}
               </pre>
             </CardContent>
@@ -193,8 +193,8 @@ export function OutreachPageContent({ initialQueue }: { initialQueue: OutreachQu
         )}
 
         {activeTab === "expert" && (
-          <Card className="border-white/5 bg-[#0F1E2E]">
-            <CardHeader className="flex flex-row items-center justify-between border-b border-white/5 bg-black/20 pb-4">
+          <Card className="border-border-subtle/50 bg-bg-navy">
+            <CardHeader className="border-border-subtle/50 bg-bg-primary/20 flex flex-row items-center justify-between border-b pb-4">
               <CardTitle className="text-lg text-emerald-400">
                 {t("academic_expert_invite_tr")}
               </CardTitle>
@@ -207,10 +207,10 @@ export function OutreachPageContent({ initialQueue }: { initialQueue: OutreachQu
               </button>
             </CardHeader>
             <CardContent className="pt-6">
-              <pre className="font-sans text-sm leading-relaxed whitespace-pre-wrap text-slate-300">
+              <pre className="text-fg-primary font-sans text-sm leading-relaxed whitespace-pre-wrap">
                 {EXPERT_PITCH}
               </pre>
-              <div className="mt-6 rounded-lg bg-white/5 p-4 text-xs text-slate-400">
+              <div className="text-fg-muted mt-6 rounded-lg bg-white/5 p-4 text-xs">
                 <Info className="text-brand-400 mb-2 h-4 w-4" />
                 {t("en_s_r_m_ayn_yap_da_tu_m_nchen_eth_oxfor")}
               </div>
@@ -220,22 +220,22 @@ export function OutreachPageContent({ initialQueue }: { initialQueue: OutreachQu
 
         {activeTab === "plan" && (
           <div className="grid gap-6 md:grid-cols-2">
-            <Card className="border-white/5 bg-[#0F1E2E]">
-              <CardHeader className="border-b border-white/5 bg-black/20">
+            <Card className="border-border-subtle/50 bg-bg-navy">
+              <CardHeader className="border-border-subtle/50 bg-bg-primary/20 border-b">
                 <CardTitle className="text-brand-300">{t("targeting_strategy")}</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4 pt-6 text-sm text-slate-300">
+              <CardContent className="text-fg-primary space-y-4 pt-6 text-sm">
                 <div>
                   <strong className="mb-1 block text-white">{t("expert_invites_this_week")}</strong>
-                  <ul className="list-inside list-disc space-y-1 text-slate-400">
+                  <ul className="text-fg-muted list-inside list-disc space-y-1">
                     <li>{t("target_5_people_at_tr_university_ai_ethi")}</li>
                     <li>{t("expected_response_rate_20_40")}</li>
                     <li>{t("value_prop_academic_co_authorship_for_q4")}</li>
                   </ul>
                 </div>
-                <div className="border-t border-white/5 pt-4">
+                <div className="border-border-subtle/50 border-t pt-4">
                   <strong className="mb-1 block text-white">{t("media_outlets_embargoed")}</strong>
-                  <ul className="list-inside list-disc space-y-1 text-slate-400">
+                  <ul className="text-fg-muted list-inside list-disc space-y-1">
                     <li>{t("send_window_july_27_29")}</li>
                     <li>{t("too_early_forgotten_too_late_doesn_t_fit")}</li>
                     <li>{t("targets_ai_policy_reporters_techcrunch_a")}</li>
@@ -246,7 +246,7 @@ export function OutreachPageContent({ initialQueue }: { initialQueue: OutreachQu
               </CardContent>
             </Card>
 
-            <Card className="border-emerald-500/20 bg-emerald-500/5">
+            <Card className="border-success-500/20 bg-emerald-500/5">
               <CardHeader className="border-b border-emerald-500/10 bg-emerald-500/10">
                 <CardTitle className="flex items-center gap-2 text-emerald-400">
                   <Info className="h-5 w-5" />

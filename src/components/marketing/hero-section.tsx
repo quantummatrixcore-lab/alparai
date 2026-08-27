@@ -72,7 +72,7 @@ export function HeroSection({
   return (
     <section className="bg-bg-primary selection:bg-brand-500/30 relative overflow-hidden pt-28 pb-20">
       {/* Cyber-Dark Ambient Background */}
-      <div aria-hidden="true" className="absolute inset-0 z-0 overflow-hidden bg-[#050914]">
+      <div aria-hidden="true" className="bg-bg-deep absolute inset-0 z-0 overflow-hidden">
         {/* Dynamic Grid */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_100%_100%_at_50%_0%,#000_30%,transparent_100%)] bg-[size:80px_80px]" />
 
@@ -109,7 +109,7 @@ export function HeroSection({
           >
             {/* Eyebrow badge (Glassmorphic) */}
             <motion.div variants={itemVariants} className="mb-6 flex">
-              <div className="group hover:border-danger-500/50 relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-black tracking-[0.25em] text-white uppercase shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] backdrop-blur-xl transition-all duration-300 hover:bg-white/10 hover:shadow-[0_0_30px_rgba(230,57,70,0.2)]">
+              <div className="group hover:border-danger-500/50 border-border-subtle relative inline-flex items-center gap-2 overflow-hidden rounded-full border bg-white/5 px-4 py-2 text-[11px] font-black tracking-[0.25em] text-white uppercase shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] backdrop-blur-xl transition-all duration-300 hover:bg-white/10 hover:shadow-[0_0_30px_rgba(230,57,70,0.2)]">
                 <span className="from-danger-500/0 via-danger-500/20 to-danger-500/0 absolute inset-0 bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <Zap className="text-danger-400 h-3.5 w-3.5" />
                 <span className="relative z-10">{t("eyebrow")}</span>
@@ -165,7 +165,7 @@ export function HeroSection({
               <Link
                 href="/incidents"
                 onClick={() => trackEvent("hero_cta_click", { action: "secondary" })}
-                className="group relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl border border-white/10 bg-white/5 px-8 text-base font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:border-white/20 hover:bg-white/10 hover:shadow-[0_10px_40px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.2)] active:scale-[0.98]"
+                className="group border-border-subtle hover:border-border-strong relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl border bg-white/5 px-8 text-base font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:bg-white/10 hover:shadow-[0_10px_40px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.2)] active:scale-[0.98]"
               >
                 <span className="relative z-10">
                   {t("cta_secondary", { defaultValue: "Kozmik Adalet Panosu" })}
@@ -233,9 +233,9 @@ export function HeroSection({
             </div>
 
             {/* Stats Panel - Deep Glassmorphism */}
-            <div className="bg-bg-tertiary/40 relative overflow-hidden rounded-3xl border border-white/5 p-6 shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-3xl">
+            <div className="bg-bg-tertiary/40 border-border-subtle/50 relative overflow-hidden rounded-3xl border p-6 shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-3xl">
               <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent mix-blend-overlay" />
-              <div className="relative z-10 grid grid-cols-3 gap-3 sm:gap-6">
+              <div className="relative z-10 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-6">
                 <LiveStatCard
                   value={totalIncidents}
                   label={t("stats_incidents")}
@@ -259,7 +259,7 @@ export function HeroSection({
             </div>
 
             {/* Leaderboard Panel - Deep Glassmorphism */}
-            <div className="bg-bg-tertiary/40 relative overflow-hidden rounded-3xl border border-white/5 p-6 shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-3xl">
+            <div className="bg-bg-tertiary/40 border-border-subtle/50 relative overflow-hidden rounded-3xl border p-6 shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-3xl">
               <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent mix-blend-overlay" />
               <div className="relative z-10 mb-5 flex items-center justify-between">
                 <h3 className="text-fg-primary flex items-center gap-2 text-sm font-black tracking-wider uppercase">
@@ -292,7 +292,7 @@ export function HeroSection({
                   </p>
                 )}
               </div>
-              <div className="relative z-10 mt-5 border-t border-white/5 pt-4">
+              <div className="border-border-subtle/50 relative z-10 mt-5 border-t pt-4">
                 <Link
                   href="/leaderboard"
                   className="text-fg-muted block text-center text-xs font-bold tracking-wider uppercase transition-colors hover:text-white"
@@ -321,7 +321,7 @@ export function HeroSection({
           className="mt-20 grid grid-cols-1 items-stretch gap-6 lg:grid-cols-2"
         >
           {/* Left: AI Act Compliance Card */}
-          <div className="group bg-bg-tertiary/40 hover:bg-bg-tertiary/60 hover:border-brand-500/30 relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border border-white/5 p-8 shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-3xl transition-all duration-500 hover:shadow-[0_30px_60px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.2)]">
+          <div className="group bg-bg-tertiary/40 hover:bg-bg-tertiary/60 hover:border-brand-500/30 border-border-subtle/50 relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border p-8 shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-3xl transition-all duration-500 hover:shadow-[0_30px_60px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.2)]">
             <div className="bg-brand-500/10 group-hover:bg-brand-500/20 absolute top-0 right-0 h-64 w-64 translate-x-1/2 -translate-y-1/2 rounded-full blur-[80px] transition-all duration-500" />
 
             <div className="relative z-10 flex items-start gap-5">
@@ -354,7 +354,7 @@ export function HeroSection({
           </div>
 
           {/* Right: Bug Bounty Card */}
-          <div className="group bg-bg-tertiary/40 hover:bg-bg-tertiary/60 hover:border-warning-500/30 relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border border-white/5 p-8 shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-3xl transition-all duration-500 hover:shadow-[0_30px_60px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.2)]">
+          <div className="group bg-bg-tertiary/40 hover:bg-bg-tertiary/60 hover:border-warning-500/30 border-border-subtle/50 relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border p-8 shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-3xl transition-all duration-500 hover:shadow-[0_30px_60px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.2)]">
             <div className="bg-warning-500/10 group-hover:bg-warning-500/20 absolute top-0 right-0 h-64 w-64 translate-x-1/2 -translate-y-1/2 rounded-full blur-[80px] transition-all duration-500" />
 
             <div className="relative z-10 flex items-start gap-5">

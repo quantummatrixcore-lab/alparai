@@ -3,13 +3,13 @@ name: Wolf Pack - Google Media Automator (Cron)
 on:
   schedule:
     # Runs at 00:00 UTC every Sunday (Haftada 1 Pazartesi gecesi)
-    - cron: '0 0 * * 0'
+    - cron: "0 0 * * 0"
   workflow_dispatch: # Manuel tetikleme için
 
 jobs:
   run-automator:
     runs-on: windows-latest
-    
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -17,7 +17,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Start Google Chrome in Headless Debugging Mode
         run: |

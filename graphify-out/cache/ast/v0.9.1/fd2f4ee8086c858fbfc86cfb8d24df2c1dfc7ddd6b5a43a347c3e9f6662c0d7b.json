@@ -1,0 +1,143 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_content_grok_files_04_pii_guardian_architecture_md",
+      "label": "04-pii-guardian-architecture.md",
+      "file_type": "document",
+      "source_file": "docs/content/grok-files/04-pii-guardian-architecture.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_content_grok_files_04_pii_guardian_architecture_why_ai_incident_reports_are_a_privacy_minefield_and_how_we_solved_it",
+      "label": "Why AI Incident Reports Are a Privacy Minefield (And How We Solved It)",
+      "file_type": "document",
+      "source_file": "docs/content/grok-files/04-pii-guardian-architecture.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_content_grok_files_04_pii_guardian_architecture_the_unseen_hazard_reporting_incidents_without_exposing_data",
+      "label": "The Unseen Hazard: Reporting Incidents Without Exposing Data",
+      "file_type": "document",
+      "source_file": "docs/content/grok-files/04-pii-guardian-architecture.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_content_grok_files_04_pii_guardian_architecture_why_traditional_pii_scanners_fail_on_llm_logs",
+      "label": "Why Traditional PII Scanners Fail on LLM Logs",
+      "file_type": "document",
+      "source_file": "docs/content/grok-files/04-pii-guardian-architecture.md",
+      "source_location": "L22"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_content_grok_files_04_pii_guardian_architecture_pii_guardian_architecture_high_performance_pure_function_masking",
+      "label": "PII Guardian Architecture: High-Performance Pure-Function Masking",
+      "file_type": "document",
+      "source_file": "docs/content/grok-files/04-pii-guardian-architecture.md",
+      "source_location": "L34"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_content_grok_files_04_pii_guardian_architecture_1_multi_stage_deterministic_detection_pipeline",
+      "label": "1. Multi-Stage Deterministic Detection Pipeline",
+      "file_type": "document",
+      "source_file": "docs/content/grok-files/04-pii-guardian-architecture.md",
+      "source_location": "L38"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_content_grok_files_04_pii_guardian_architecture_production_code_snippet_algorithmic_verification_in_guardian_ts",
+      "label": "Production Code Snippet: Algorithmic Verification in `guardian.ts`",
+      "file_type": "document",
+      "source_file": "docs/content/grok-files/04-pii-guardian-architecture.md",
+      "source_location": "L50"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_content_grok_files_04_pii_guardian_architecture_the_hybrid_model_combining_deterministic_guardrails_with_llm_sentinel",
+      "label": "The Hybrid Model: Combining Deterministic Guardrails with LLM Sentinel",
+      "file_type": "document",
+      "source_file": "docs/content/grok-files/04-pii-guardian-architecture.md",
+      "source_location": "L118"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_content_grok_files_04_pii_guardian_architecture_operational_impact_zero_leak_incident_compliance",
+      "label": "Operational Impact: Zero-Leak Incident Compliance",
+      "file_type": "document",
+      "source_file": "docs/content/grok-files/04-pii-guardian-architecture.md",
+      "source_location": "L148"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_content_grok_files_04_pii_guardian_architecture_md",
+      "target": "d_01_saas_products_alparai_docs_content_grok_files_04_pii_guardian_architecture_why_ai_incident_reports_are_a_privacy_minefield_and_how_we_solved_it",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/content/grok-files/04-pii-guardian-architecture.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_content_grok_files_04_pii_guardian_architecture_why_ai_incident_reports_are_a_privacy_minefield_and_how_we_solved_it",
+      "target": "d_01_saas_products_alparai_docs_content_grok_files_04_pii_guardian_architecture_the_unseen_hazard_reporting_incidents_without_exposing_data",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/content/grok-files/04-pii-guardian-architecture.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_content_grok_files_04_pii_guardian_architecture_why_ai_incident_reports_are_a_privacy_minefield_and_how_we_solved_it",
+      "target": "d_01_saas_products_alparai_docs_content_grok_files_04_pii_guardian_architecture_why_traditional_pii_scanners_fail_on_llm_logs",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/content/grok-files/04-pii-guardian-architecture.md",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_content_grok_files_04_pii_guardian_architecture_why_ai_incident_reports_are_a_privacy_minefield_and_how_we_solved_it",
+      "target": "d_01_saas_products_alparai_docs_content_grok_files_04_pii_guardian_architecture_pii_guardian_architecture_high_performance_pure_function_masking",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/content/grok-files/04-pii-guardian-architecture.md",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_content_grok_files_04_pii_guardian_architecture_pii_guardian_architecture_high_performance_pure_function_masking",
+      "target": "d_01_saas_products_alparai_docs_content_grok_files_04_pii_guardian_architecture_1_multi_stage_deterministic_detection_pipeline",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/content/grok-files/04-pii-guardian-architecture.md",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_content_grok_files_04_pii_guardian_architecture_why_ai_incident_reports_are_a_privacy_minefield_and_how_we_solved_it",
+      "target": "d_01_saas_products_alparai_docs_content_grok_files_04_pii_guardian_architecture_production_code_snippet_algorithmic_verification_in_guardian_ts",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/content/grok-files/04-pii-guardian-architecture.md",
+      "source_location": "L50",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_content_grok_files_04_pii_guardian_architecture_why_ai_incident_reports_are_a_privacy_minefield_and_how_we_solved_it",
+      "target": "d_01_saas_products_alparai_docs_content_grok_files_04_pii_guardian_architecture_the_hybrid_model_combining_deterministic_guardrails_with_llm_sentinel",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/content/grok-files/04-pii-guardian-architecture.md",
+      "source_location": "L118",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_content_grok_files_04_pii_guardian_architecture_why_ai_incident_reports_are_a_privacy_minefield_and_how_we_solved_it",
+      "target": "d_01_saas_products_alparai_docs_content_grok_files_04_pii_guardian_architecture_operational_impact_zero_leak_incident_compliance",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/content/grok-files/04-pii-guardian-architecture.md",
+      "source_location": "L148",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

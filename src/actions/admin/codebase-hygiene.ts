@@ -1,5 +1,6 @@
 "use server";
 
+import { requireAdmin } from "@/lib/auth/session";
 import fs from "fs";
 import path from "path";
 
@@ -13,6 +14,7 @@ export interface CodebaseHygieneReport {
 }
 
 export async function getCodebaseHygieneAction(): Promise<CodebaseHygieneReport> {
+  await requireAdmin();
   try {
     const root = process.cwd();
     let totalSrc = 0;

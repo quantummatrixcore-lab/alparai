@@ -58,7 +58,7 @@ export default async function EnterprisePage({ params }: { params: Promise<{ loc
         </div>
 
         <div className="mt-32">
-          <div className="mx-auto max-w-4xl rounded-3xl border border-white/5 bg-gradient-to-b from-[#0F1E2E] to-[#060E17] p-8 shadow-2xl lg:p-12">
+          <div className="border-border-subtle/50 mx-auto max-w-4xl rounded-3xl border bg-gradient-to-b from-[#0F1E2E] to-[#060E17] p-8 shadow-2xl lg:p-12">
             <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
               <div>
                 <Calculator className="text-brand-400 mb-6 h-12 w-12" />
@@ -86,7 +86,7 @@ export default async function EnterprisePage({ params }: { params: Promise<{ loc
                   </div>
                 </div>
               </div>
-              <div className="bg-bg-primary rounded-2xl border border-white/5 p-8 text-center">
+              <div className="bg-bg-primary border-border-subtle/50 rounded-2xl border p-8 text-center">
                 <div className="mb-6">
                   <p className="text-fg-muted mb-2 text-sm font-medium">
                     {t("pricing_starting_at")}

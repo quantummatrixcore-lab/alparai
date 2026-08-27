@@ -108,7 +108,7 @@ export default async function CeaseDesistArchivePage({
             {t("cease_desist_subtitle")}
           </p>
 
-          <div className="text-fg-muted flex flex-wrap gap-4 border-t border-red-500/20 pt-4 font-mono text-xs">
+          <div className="text-fg-muted border-danger-500/20 flex flex-wrap gap-4 border-t pt-4 font-mono text-xs">
             <div className="flex items-center gap-1.5">
               <Eye className="h-4 w-4 text-red-400" />
               <span>
@@ -129,7 +129,7 @@ export default async function CeaseDesistArchivePage({
 
       {/* Log Feed or Empty State */}
       {logs.length === 0 ? (
-        <div className="to-bg-secondary/30 rounded-2xl border border-red-500/20 bg-gradient-to-br from-red-950/20 p-12 text-center backdrop-blur-md">
+        <div className="to-bg-secondary/30 border-danger-500/20 rounded-2xl border bg-gradient-to-br from-red-950/20 p-12 text-center backdrop-blur-md">
           <FileWarning className="mx-auto h-12 w-12 text-red-400/60" />
           <h3 className="text-fg-primary mt-4 text-base font-semibold">
             {t("cease_desist_empty")}
@@ -148,7 +148,7 @@ export default async function CeaseDesistArchivePage({
                 <div className="absolute top-0 right-0 h-1 w-32 bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-50" />
 
                 {/* Card Top Metadata */}
-                <div className="flex flex-wrap items-center justify-between gap-4 border-b border-red-500/20 pb-4">
+                <div className="border-danger-500/20 flex flex-wrap items-center justify-between gap-4 border-b pb-4">
                   <div className="flex items-center gap-3">
                     <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-red-500/30 bg-red-950/50 text-red-400 shadow-inner">
                       <Building2 className="h-5 w-5" />

@@ -1,5 +1,6 @@
 "use server";
 
+import { requireAdmin } from "@/lib/auth/session";
 import { callWithFailover } from "@/lib/ai/openrouter-gateway";
 import { selectModelByCapability } from "@/lib/audit/model-router";
 import { EXPERT_PERSONAS } from "@/lib/config/expert-personas";
@@ -22,6 +23,7 @@ export async function runExpertAnalysisAction(
   expertId: string,
   contextPrompt?: string,
 ): Promise<ExpertAnalysisReport> {
+  await requireAdmin();
   try {
     const persona = EXPERT_PERSONAS.find((p) => p.id === expertId);
     if (!persona) {

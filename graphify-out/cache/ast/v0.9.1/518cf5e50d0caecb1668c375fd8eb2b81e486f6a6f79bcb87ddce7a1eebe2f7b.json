@@ -1,0 +1,239 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_md",
+      "label": "reddit-hn-launch-drafts.md",
+      "file_type": "document",
+      "source_file": "docs/GTM/reddit-hn-launch-drafts.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_alpar_ai_launch_drafts_anti_bot_protocols_omega_2",
+      "label": "\ud83d\ude80 ALPAR AI \u2014 Launch Drafts & Anti-Bot Protocols (OMEGA-2)",
+      "file_type": "document",
+      "source_file": "docs/GTM/reddit-hn-launch-drafts.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_1_strategic_positioning_matrix",
+      "label": "1. Strategic Positioning Matrix",
+      "file_type": "document",
+      "source_file": "docs/GTM/reddit-hn-launch-drafts.md",
+      "source_location": "L12"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_2_hacker_news_show_hn_submission_package",
+      "label": "2. \ud83d\udfe0 Hacker News (Show HN) Submission Package",
+      "file_type": "document",
+      "source_file": "docs/GTM/reddit-hn-launch-drafts.md",
+      "source_location": "L24"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_2_1_title_options",
+      "label": "2.1 Title Options",
+      "file_type": "document",
+      "source_file": "docs/GTM/reddit-hn-launch-drafts.md",
+      "source_location": "L26"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_2_2_hacker_news_submission_post_body",
+      "label": "2.2 Hacker News Submission Post Body",
+      "file_type": "document",
+      "source_file": "docs/GTM/reddit-hn-launch-drafts.md",
+      "source_location": "L32"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_2_3_pre_mortem_faq_objection_handling_strategy",
+      "label": "2.3 Pre-Mortem FAQ & Objection Handling Strategy",
+      "file_type": "document",
+      "source_file": "docs/GTM/reddit-hn-launch-drafts.md",
+      "source_location": "L67"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_q1_why_use_alpar_ai_when_i_already_use_datadog_langsmith_arize",
+      "label": "Q1: \"Why use ALPAR AI when I already use Datadog / LangSmith / Arize?\"",
+      "file_type": "document",
+      "source_file": "docs/GTM/reddit-hn-launch-drafts.md",
+      "source_location": "L69"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_q2_is_agpl_3_0_too_restrictive_for_enterprise_adoption",
+      "label": "Q2: \"Is AGPL-3.0 too restrictive for enterprise adoption?\"",
+      "file_type": "document",
+      "source_file": "docs/GTM/reddit-hn-launch-drafts.md",
+      "source_location": "L73"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_q3_how_does_the_pii_guardian_prevent_false_positives",
+      "label": "Q3: \"How does the PII Guardian prevent false positives?\"",
+      "file_type": "document",
+      "source_file": "docs/GTM/reddit-hn-launch-drafts.md",
+      "source_location": "L77"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_3_reddit_launch_drafts",
+      "label": "3. \ud83e\udd16 Reddit Launch Drafts",
+      "file_type": "document",
+      "source_file": "docs/GTM/reddit-hn-launch-drafts.md",
+      "source_location": "L83"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_3_1_r_machinelearning",
+      "label": "3.1 r/MachineLearning",
+      "file_type": "document",
+      "source_file": "docs/GTM/reddit-hn-launch-drafts.md",
+      "source_location": "L85"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_3_2_r_saas",
+      "label": "3.2 r/SaaS",
+      "file_type": "document",
+      "source_file": "docs/GTM/reddit-hn-launch-drafts.md",
+      "source_location": "L110"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_3_3_r_localllama",
+      "label": "3.3 r/LocalLLaMA",
+      "file_type": "document",
+      "source_file": "docs/GTM/reddit-hn-launch-drafts.md",
+      "source_location": "L137"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_4_openchrome_anti_bot_stealth_execution_checklist",
+      "label": "4. OpenChrome Anti-Bot Stealth Execution Checklist",
+      "file_type": "document",
+      "source_file": "docs/GTM/reddit-hn-launch-drafts.md",
+      "source_location": "L162"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_md",
+      "target": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_alpar_ai_launch_drafts_anti_bot_protocols_omega_2",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/GTM/reddit-hn-launch-drafts.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_alpar_ai_launch_drafts_anti_bot_protocols_omega_2",
+      "target": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_1_strategic_positioning_matrix",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/GTM/reddit-hn-launch-drafts.md",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_alpar_ai_launch_drafts_anti_bot_protocols_omega_2",
+      "target": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_2_hacker_news_show_hn_submission_package",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/GTM/reddit-hn-launch-drafts.md",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_2_hacker_news_show_hn_submission_package",
+      "target": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_2_1_title_options",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/GTM/reddit-hn-launch-drafts.md",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_2_hacker_news_show_hn_submission_package",
+      "target": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_2_2_hacker_news_submission_post_body",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/GTM/reddit-hn-launch-drafts.md",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_2_hacker_news_show_hn_submission_package",
+      "target": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_2_3_pre_mortem_faq_objection_handling_strategy",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/GTM/reddit-hn-launch-drafts.md",
+      "source_location": "L67",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_2_3_pre_mortem_faq_objection_handling_strategy",
+      "target": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_q1_why_use_alpar_ai_when_i_already_use_datadog_langsmith_arize",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/GTM/reddit-hn-launch-drafts.md",
+      "source_location": "L69",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_2_3_pre_mortem_faq_objection_handling_strategy",
+      "target": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_q2_is_agpl_3_0_too_restrictive_for_enterprise_adoption",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/GTM/reddit-hn-launch-drafts.md",
+      "source_location": "L73",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_2_3_pre_mortem_faq_objection_handling_strategy",
+      "target": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_q3_how_does_the_pii_guardian_prevent_false_positives",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/GTM/reddit-hn-launch-drafts.md",
+      "source_location": "L77",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_alpar_ai_launch_drafts_anti_bot_protocols_omega_2",
+      "target": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_3_reddit_launch_drafts",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/GTM/reddit-hn-launch-drafts.md",
+      "source_location": "L83",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_3_reddit_launch_drafts",
+      "target": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_3_1_r_machinelearning",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/GTM/reddit-hn-launch-drafts.md",
+      "source_location": "L85",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_3_reddit_launch_drafts",
+      "target": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_3_2_r_saas",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/GTM/reddit-hn-launch-drafts.md",
+      "source_location": "L110",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_3_reddit_launch_drafts",
+      "target": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_3_3_r_localllama",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/GTM/reddit-hn-launch-drafts.md",
+      "source_location": "L137",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_alpar_ai_launch_drafts_anti_bot_protocols_omega_2",
+      "target": "d_01_saas_products_alparai_docs_gtm_reddit_hn_launch_drafts_4_openchrome_anti_bot_stealth_execution_checklist",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/GTM/reddit-hn-launch-drafts.md",
+      "source_location": "L162",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

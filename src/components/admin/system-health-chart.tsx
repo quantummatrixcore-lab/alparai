@@ -7,7 +7,7 @@ export function SystemHealthChart() {
 
   return (
     <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
-      <div className="bg-bg-secondary/40 rounded-2xl border border-white/5 p-6 shadow-lg backdrop-blur-xl">
+      <div className="bg-bg-secondary/40 border-border-subtle/50 rounded-2xl border p-6 shadow-lg backdrop-blur-xl">
         <div className="mb-6">
           <h3 className="font-bold tracking-tight text-white">
             {t("health_chart_title_incidents", { defaultValue: "Incidents vs Resolutions" })}
@@ -25,7 +25,7 @@ export function SystemHealthChart() {
         </div>
       </div>
 
-      <div className="bg-bg-secondary/40 rounded-2xl border border-white/5 p-6 shadow-lg backdrop-blur-xl">
+      <div className="bg-bg-secondary/40 border-border-subtle/50 rounded-2xl border p-6 shadow-lg backdrop-blur-xl">
         <div className="mb-6">
           <h3 className="font-bold tracking-tight text-white">
             {t("health_chart_title_api", { defaultValue: "API Gateway Traffic" })}

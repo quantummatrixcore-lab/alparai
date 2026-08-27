@@ -1,0 +1,63 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_public_brand_assets_readme_md",
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "public/brand-assets/README.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_public_brand_assets_readme_alpar_ai_brand_assets_guidelines",
+      "label": "ALPAR AI \u2014 Brand Assets Guidelines",
+      "file_type": "document",
+      "source_file": "public/brand-assets/README.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_public_brand_assets_readme_color_palette",
+      "label": "Color Palette",
+      "file_type": "document",
+      "source_file": "public/brand-assets/README.md",
+      "source_location": "L5"
+    },
+    {
+      "id": "d_01_saas_products_alparai_public_brand_assets_readme_asset_types",
+      "label": "Asset Types",
+      "file_type": "document",
+      "source_file": "public/brand-assets/README.md",
+      "source_location": "L12"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_public_brand_assets_readme_md",
+      "target": "d_01_saas_products_alparai_public_brand_assets_readme_alpar_ai_brand_assets_guidelines",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "public/brand-assets/README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_public_brand_assets_readme_alpar_ai_brand_assets_guidelines",
+      "target": "d_01_saas_products_alparai_public_brand_assets_readme_color_palette",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "public/brand-assets/README.md",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_public_brand_assets_readme_alpar_ai_brand_assets_guidelines",
+      "target": "d_01_saas_products_alparai_public_brand_assets_readme_asset_types",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "public/brand-assets/README.md",
+      "source_location": "L12",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

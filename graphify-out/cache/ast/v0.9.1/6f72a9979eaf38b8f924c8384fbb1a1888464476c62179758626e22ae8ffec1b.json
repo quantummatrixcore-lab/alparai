@@ -1,0 +1,95 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_35_deploy_gate_md",
+      "label": "v13.35-deploy-gate.md",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.35-deploy-gate.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_35_deploy_gate_v13_35_360_audit_the_deploy_gate_exists_but_verifies_nothing",
+      "label": "v13.35 \u2014 360\u00b0 audit: the deploy gate exists but verifies nothing",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.35-deploy-gate.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_35_deploy_gate_the_central_finding",
+      "label": "The central finding",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.35-deploy-gate.md",
+      "source_location": "L9"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_35_deploy_gate_measured_baseline_2026_08_12_this_container",
+      "label": "Measured baseline (2026-08-12, this container)",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.35-deploy-gate.md",
+      "source_location": "L18"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_35_deploy_gate_gate_decision_founder_2026_08_12_hard",
+      "label": "Gate decision (Founder, 2026-08-12): hard",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.35-deploy-gate.md",
+      "source_location": "L28"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v13_35_deploy_gate_founder_action_list_manual_to_be_executed_by_antigravity_s_browser_agent",
+      "label": "FOUNDER ACTION LIST \u2014 manual, to be executed by Antigravity's browser agent",
+      "file_type": "document",
+      "source_file": "docs/plan/v13.35-deploy-gate.md",
+      "source_location": "L32"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_35_deploy_gate_md",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_35_deploy_gate_v13_35_360_audit_the_deploy_gate_exists_but_verifies_nothing",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.35-deploy-gate.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_35_deploy_gate_v13_35_360_audit_the_deploy_gate_exists_but_verifies_nothing",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_35_deploy_gate_the_central_finding",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.35-deploy-gate.md",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_35_deploy_gate_v13_35_360_audit_the_deploy_gate_exists_but_verifies_nothing",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_35_deploy_gate_measured_baseline_2026_08_12_this_container",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.35-deploy-gate.md",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_35_deploy_gate_v13_35_360_audit_the_deploy_gate_exists_but_verifies_nothing",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_35_deploy_gate_gate_decision_founder_2026_08_12_hard",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.35-deploy-gate.md",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v13_35_deploy_gate_v13_35_360_audit_the_deploy_gate_exists_but_verifies_nothing",
+      "target": "d_01_saas_products_alparai_docs_plan_v13_35_deploy_gate_founder_action_list_manual_to_be_executed_by_antigravity_s_browser_agent",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v13.35-deploy-gate.md",
+      "source_location": "L32",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

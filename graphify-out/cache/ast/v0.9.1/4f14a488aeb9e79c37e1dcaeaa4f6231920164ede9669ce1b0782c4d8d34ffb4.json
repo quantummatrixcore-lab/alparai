@@ -1,0 +1,159 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_015_ataturk_digital_twin_md",
+      "label": "015-ataturk-digital-twin.md",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/015-ataturk-digital-twin.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_015_ataturk_digital_twin_proposal_015_atat\u00fcrk_dijital_i\u0307kizi_digital_twin_projesi",
+      "label": "PROPOSAL-015: Atat\u00fcrk Dijital \u0130kizi (Digital Twin) Projesi",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/015-ataturk-digital-twin.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_015_ataturk_digital_twin_1_vision_concept",
+      "label": "1. Vision & Concept",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/015-ataturk-digital-twin.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_015_ataturk_digital_twin_2_core_requirements",
+      "label": "2. Core Requirements",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/015-ataturk-digital-twin.md",
+      "source_location": "L12"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_015_ataturk_digital_twin_3_request_for_ai_swarm_consultation",
+      "label": "3. Request for AI Swarm Consultation",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/015-ataturk-digital-twin.md",
+      "source_location": "L18"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_015_ataturk_digital_twin_4_next_steps",
+      "label": "4. Next Steps",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/015-ataturk-digital-twin.md",
+      "source_location": "L22"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_015_ataturk_digital_twin_5_consultant_responses",
+      "label": "5. Consultant Responses",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/015-ataturk-digital-twin.md",
+      "source_location": "L28"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_015_ataturk_digital_twin_consultant_1_data_ingestion_consistency",
+      "label": "Consultant 1 (Data Ingestion & Consistency)",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/015-ataturk-digital-twin.md",
+      "source_location": "L30"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_015_ataturk_digital_twin_consultant_2_conflict_resolution",
+      "label": "Consultant 2 (Conflict Resolution)",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/015-ataturk-digital-twin.md",
+      "source_location": "L36"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_proposals_015_ataturk_digital_twin_consultant_3_infrastructure_hosting",
+      "label": "Consultant 3 (Infrastructure & Hosting)",
+      "file_type": "document",
+      "source_file": "docs/PROPOSALS/015-ataturk-digital-twin.md",
+      "source_location": "L42"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_015_ataturk_digital_twin_md",
+      "target": "d_01_saas_products_alparai_docs_proposals_015_ataturk_digital_twin_proposal_015_atat\u00fcrk_dijital_i\u0307kizi_digital_twin_projesi",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/015-ataturk-digital-twin.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_015_ataturk_digital_twin_proposal_015_atat\u00fcrk_dijital_i\u0307kizi_digital_twin_projesi",
+      "target": "d_01_saas_products_alparai_docs_proposals_015_ataturk_digital_twin_1_vision_concept",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/015-ataturk-digital-twin.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_015_ataturk_digital_twin_proposal_015_atat\u00fcrk_dijital_i\u0307kizi_digital_twin_projesi",
+      "target": "d_01_saas_products_alparai_docs_proposals_015_ataturk_digital_twin_2_core_requirements",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/015-ataturk-digital-twin.md",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_015_ataturk_digital_twin_proposal_015_atat\u00fcrk_dijital_i\u0307kizi_digital_twin_projesi",
+      "target": "d_01_saas_products_alparai_docs_proposals_015_ataturk_digital_twin_3_request_for_ai_swarm_consultation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/015-ataturk-digital-twin.md",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_015_ataturk_digital_twin_proposal_015_atat\u00fcrk_dijital_i\u0307kizi_digital_twin_projesi",
+      "target": "d_01_saas_products_alparai_docs_proposals_015_ataturk_digital_twin_4_next_steps",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/015-ataturk-digital-twin.md",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_015_ataturk_digital_twin_proposal_015_atat\u00fcrk_dijital_i\u0307kizi_digital_twin_projesi",
+      "target": "d_01_saas_products_alparai_docs_proposals_015_ataturk_digital_twin_5_consultant_responses",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/015-ataturk-digital-twin.md",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_015_ataturk_digital_twin_5_consultant_responses",
+      "target": "d_01_saas_products_alparai_docs_proposals_015_ataturk_digital_twin_consultant_1_data_ingestion_consistency",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/015-ataturk-digital-twin.md",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_015_ataturk_digital_twin_5_consultant_responses",
+      "target": "d_01_saas_products_alparai_docs_proposals_015_ataturk_digital_twin_consultant_2_conflict_resolution",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/015-ataturk-digital-twin.md",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_proposals_015_ataturk_digital_twin_5_consultant_responses",
+      "target": "d_01_saas_products_alparai_docs_proposals_015_ataturk_digital_twin_consultant_3_infrastructure_hosting",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/PROPOSALS/015-ataturk-digital-twin.md",
+      "source_location": "L42",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

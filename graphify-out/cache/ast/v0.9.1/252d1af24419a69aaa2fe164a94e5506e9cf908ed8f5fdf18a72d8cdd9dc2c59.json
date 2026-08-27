@@ -1,0 +1,111 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_type_2_md",
+      "label": "TYPE-2.md",
+      "file_type": "document",
+      "source_file": "docs/plan/items/TYPE-2.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_type_2_type_2",
+      "label": "TYPE-2",
+      "file_type": "document",
+      "source_file": "docs/plan/items/TYPE-2.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_type_2_where_this_stands",
+      "label": "Where this stands",
+      "file_type": "document",
+      "source_file": "docs/plan/items/TYPE-2.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_type_2_the_suppressions_to_remove",
+      "label": "The suppressions to remove",
+      "file_type": "document",
+      "source_file": "docs/plan/items/TYPE-2.md",
+      "source_location": "L29"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_type_2_also_outstanding",
+      "label": "Also outstanding",
+      "file_type": "document",
+      "source_file": "docs/plan/items/TYPE-2.md",
+      "source_location": "L47"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_type_2_acceptance",
+      "label": "Acceptance",
+      "file_type": "document",
+      "source_file": "docs/plan/items/TYPE-2.md",
+      "source_location": "L59"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_type_2_closed_2026_08_20_v13_66_measured_not_reported",
+      "label": "Closed 2026-08-20 (v13.66) \u2014 measured, not reported",
+      "file_type": "document",
+      "source_file": "docs/plan/items/TYPE-2.md",
+      "source_location": "L67"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_type_2_md",
+      "target": "d_01_saas_products_alparai_docs_plan_items_type_2_type_2",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/TYPE-2.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_type_2_type_2",
+      "target": "d_01_saas_products_alparai_docs_plan_items_type_2_where_this_stands",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/TYPE-2.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_type_2_type_2",
+      "target": "d_01_saas_products_alparai_docs_plan_items_type_2_the_suppressions_to_remove",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/TYPE-2.md",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_type_2_type_2",
+      "target": "d_01_saas_products_alparai_docs_plan_items_type_2_also_outstanding",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/TYPE-2.md",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_type_2_type_2",
+      "target": "d_01_saas_products_alparai_docs_plan_items_type_2_acceptance",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/TYPE-2.md",
+      "source_location": "L59",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_type_2_type_2",
+      "target": "d_01_saas_products_alparai_docs_plan_items_type_2_closed_2026_08_20_v13_66_measured_not_reported",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/TYPE-2.md",
+      "source_location": "L67",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

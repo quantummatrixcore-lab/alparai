@@ -57,21 +57,21 @@ export function SwarmCommandCenter() {
   const standbyCount = swarmUnits.filter((u) => u.status === "standby").length;
 
   return (
-    <section className="group bg-bg-elevated/40 relative overflow-hidden rounded-2xl border border-white/10 p-5 shadow-2xl backdrop-blur-2xl transition-all duration-300 hover:border-white/20 sm:rounded-3xl sm:p-6 md:p-8">
+    <section className="group bg-bg-elevated/40 border-border-subtle hover:border-border-strong relative overflow-hidden rounded-2xl border p-5 shadow-2xl backdrop-blur-2xl transition-all duration-300 sm:rounded-3xl sm:p-6 md:p-8">
       {/* Background Ambient Glow */}
       <div className="bg-danger-600/10 group-hover:bg-danger-600/15 pointer-events-none absolute -top-32 -left-32 h-64 w-64 rounded-full blur-3xl transition-all duration-500" />
       <div className="bg-brand-600/10 group-hover:bg-brand-600/15 pointer-events-none absolute -right-32 -bottom-32 h-64 w-64 rounded-full blur-3xl transition-all duration-500" />
 
       <div className="relative z-10 space-y-6">
         {/* Header Bar */}
-        <div className="flex flex-col gap-3 border-b border-white/10 pb-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="border-border-subtle flex flex-col gap-3 border-b pb-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
             <div className="border-danger-500/30 bg-danger-500/10 text-danger-500 flex h-11 w-11 items-center justify-center rounded-2xl border shadow-inner">
               <Shield className="h-6 w-6" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="text-xl font-bold tracking-tight text-white sm:text-2xl">
+                <h2 className="sm:text-fg-secondaryxl text-xl font-bold tracking-tight text-white">
                   SWARM KOMUTA MERKEZİ
                 </h2>
                 <span className="border-danger-500/30 bg-danger-500/10 text-danger-400 inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-bold">
@@ -104,7 +104,7 @@ export function SwarmCommandCenter() {
             return (
               <div
                 key={unit.name}
-                className="group/card bg-bg-tertiary/60 relative flex flex-col justify-between rounded-xl border border-white/10 p-3.5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-white/25 hover:shadow-lg"
+                className="group/card bg-bg-tertiary/60 border-border-subtle relative flex flex-col justify-between rounded-xl border p-3.5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-white/25 hover:shadow-lg"
                 style={{
                   borderTopColor: `${unit.color}80`,
                   borderTopWidth: "2px",
@@ -141,7 +141,7 @@ export function SwarmCommandCenter() {
 
                   {/* Unit Name */}
                   <div>
-                    <h3 className="text-sm font-extrabold text-zinc-100 group-hover/card:text-white">
+                    <h3 className="text-fg-primary text-sm font-extrabold group-hover/card:text-white">
                       {unit.name}
                     </h3>
                     <p className="text-fg-muted mt-0.5 text-[11px] font-medium">{unit.role}</p>

@@ -13,18 +13,18 @@ export default function PricingPage() {
           <h1 className="text-3xl font-black tracking-tight sm:text-4xl md:text-5xl">
             {t("headline")}
           </h1>
-          <p className="mx-auto max-w-2xl text-base text-zinc-400 md:text-lg">{t("subtitle")}</p>
+          <p className="text-fg-muted mx-auto max-w-2xl text-base md:text-lg">{t("subtitle")}</p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-3">
           {/* Free Tier */}
-          <div className="flex flex-col rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-lg">
-            <h2 className="text-2xl font-bold">{t("free_title")}</h2>
+          <div className="border-border-subtle flex flex-col rounded-2xl border bg-white/5 p-8 backdrop-blur-lg">
+            <h2 className="text-fg-secondaryxl font-bold">{t("free_title")}</h2>
             <div className="mt-4 mb-6 flex items-baseline gap-2">
               <span className="text-4xl font-bold">{t("free_price")}</span>
-              <span className="text-zinc-400">{t("free_period")}</span>
+              <span className="text-fg-muted">{t("free_period")}</span>
             </div>
-            <p className="mb-8 flex-1 text-sm text-zinc-400">{t("free_desc")}</p>
+            <p className="text-fg-muted mb-8 flex-1 text-sm">{t("free_desc")}</p>
             <ul className="mb-8 space-y-3 text-sm">
               <li className="flex items-center gap-3">✓ {t("free_feature_1")}</li>
               <li className="flex items-center gap-3">✓ {t("free_feature_2")}</li>
@@ -37,14 +37,14 @@ export default function PricingPage() {
           </div>
 
           {/* Startup Tier */}
-          <div className="relative flex flex-col overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-8 shadow-2xl shadow-white/5 backdrop-blur-xl">
+          <div className="border-border-strong relative flex flex-col overflow-hidden rounded-2xl border bg-white/10 p-8 shadow-2xl shadow-white/5 backdrop-blur-xl">
             <div className="absolute top-0 left-1/2 h-1 w-full -translate-x-1/2 bg-gradient-to-r from-transparent via-white/50 to-transparent"></div>
-            <h2 className="text-2xl font-bold">{t("startup_title")}</h2>
+            <h2 className="text-fg-secondaryxl font-bold">{t("startup_title")}</h2>
             <div className="mt-4 mb-6 flex items-baseline gap-2">
               <span className="text-4xl font-bold">{t("startup_price")}</span>
-              <span className="text-zinc-400">{t("startup_period")}</span>
+              <span className="text-fg-muted">{t("startup_period")}</span>
             </div>
-            <p className="mb-8 flex-1 text-sm text-zinc-400">{t("startup_desc")}</p>
+            <p className="text-fg-muted mb-8 flex-1 text-sm">{t("startup_desc")}</p>
             <ul className="mb-8 space-y-3 text-sm">
               <li className="flex items-center gap-3">✓ {t("startup_feature_1")}</li>
               <li className="flex items-center gap-3 text-emerald-400">
@@ -52,18 +52,18 @@ export default function PricingPage() {
               </li>
               <li className="flex items-center gap-3">✓ {t("startup_feature_3")}</li>
             </ul>
-            <button className="w-full rounded-lg border border-white/20 bg-white/10 py-3 font-medium text-white transition-colors hover:bg-white/20">
+            <button className="border-border-strong w-full rounded-lg border bg-white/10 py-3 font-medium text-white transition-colors hover:bg-white/20">
               {t("startup_cta")}
             </button>
           </div>
 
           {/* Enterprise Tier */}
-          <div className="flex flex-col rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-lg">
-            <h2 className="text-2xl font-bold">{t("enterprise_title")}</h2>
+          <div className="border-border-subtle flex flex-col rounded-2xl border bg-white/5 p-8 backdrop-blur-lg">
+            <h2 className="text-fg-secondaryxl font-bold">{t("enterprise_title")}</h2>
             <div className="mt-4 mb-6 flex items-baseline gap-2">
               <span className="text-4xl font-bold">{t("enterprise_price")}</span>
             </div>
-            <p className="mb-8 flex-1 text-sm text-zinc-400">{t("enterprise_desc")}</p>
+            <p className="text-fg-muted mb-8 flex-1 text-sm">{t("enterprise_desc")}</p>
             <ul className="mb-8 space-y-3 text-sm">
               <li className="flex items-center gap-3">✓ {t("enterprise_feature_1")}</li>
               <li className="flex items-center gap-3 text-emerald-400">
@@ -72,13 +72,13 @@ export default function PricingPage() {
               <li className="flex items-center gap-3">✓ {t("enterprise_feature_3")}</li>
               <li className="flex items-center gap-3">✓ {t("enterprise_feature_4")}</li>
             </ul>
-            <button className="w-full rounded-lg border border-white/10 bg-white/5 py-3 font-medium text-white transition-colors hover:bg-white/10">
+            <button className="border-border-subtle w-full rounded-lg border bg-white/5 py-3 font-medium text-white transition-colors hover:bg-white/10">
               {t("enterprise_cta")}
             </button>
           </div>
         </div>
 
-        <div className="pt-8 text-center text-sm text-zinc-500">
+        <div className="text-fg-muted pt-8 text-center text-sm">
           <p>
             {t("neutrality_notice")}{" "}
             <a href="#" className="underline">

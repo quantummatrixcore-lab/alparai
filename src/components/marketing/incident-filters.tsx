@@ -81,7 +81,7 @@ export function IncidentFilters({
             { value: "truth_score", label: t("sort_truth_score") },
           ]}
         />
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
           <CategoryPill
             label={tCommon("all")}
             value=""

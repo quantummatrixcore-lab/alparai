@@ -29,7 +29,7 @@ export function SignInForm({ locale, next }: { locale: string; next?: string }) 
           type="checkbox"
           checked={agreed}
           onChange={(e) => setAgreed(e.target.checked)}
-          className="text-brand-500 focus:ring-brand-500 focus:ring-offset-bg-primary mt-0.5 h-4 w-4 shrink-0 rounded border-white/20 bg-transparent transition-colors focus:ring-2 focus:ring-offset-1"
+          className="text-brand-500 focus:ring-brand-500 focus:ring-offset-bg-primary border-border-strong mt-0.5 h-4 w-4 shrink-0 rounded bg-transparent transition-colors focus:ring-2 focus:ring-offset-1"
           aria-describedby="auth-consent-text"
         />
         <span id="auth-consent-text" className="text-fg-muted text-xs leading-relaxed">
@@ -69,7 +69,7 @@ export function SignInForm({ locale, next }: { locale: string; next?: string }) 
           <div className="w-full border-t border-white/[0.08]" />
         </div>
         <div className="relative flex justify-center">
-          <span className="text-fg-muted text-fg-muted bg-[#0B0F1C] px-3.5 text-[10px] font-extrabold tracking-[0.2em] uppercase">
+          <span className="text-fg-muted bg-bg-primary px-3.5 text-[10px] font-extrabold tracking-[0.2em] uppercase">
             {t("or_continue_email")}
           </span>
         </div>
@@ -79,7 +79,7 @@ export function SignInForm({ locale, next }: { locale: string; next?: string }) 
       <EmailMagicLinkForm disabled={!agreed} />
 
       {/* 5. DORA Elite Trust Signals */}
-      <div className="grid grid-cols-3 gap-2 rounded-xl border border-white/[0.06] bg-white/[0.015] p-3 text-[11px]">
+      <div className="grid grid-cols-1 gap-2 rounded-xl border border-white/[0.06] bg-white/[0.015] p-3 text-[11px] sm:grid-cols-3">
         <div className="flex flex-col items-center justify-center text-center">
           <Shield className="text-success-400 mb-1 h-4 w-4" />
           <span className="text-fg-secondary font-medium">{t("benefit_secure")}</span>

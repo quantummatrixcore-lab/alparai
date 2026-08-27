@@ -1,0 +1,31 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_security_s1_secrets_scan_md",
+      "label": "S1-secrets-scan.md",
+      "file_type": "document",
+      "source_file": "docs/security/S1-secrets-scan.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_security_s1_secrets_scan_s1_secrets_scan",
+      "label": "S1 Secrets Scan",
+      "file_type": "document",
+      "source_file": "docs/security/S1-secrets-scan.md",
+      "source_location": "L1"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_security_s1_secrets_scan_md",
+      "target": "d_01_saas_products_alparai_docs_security_s1_secrets_scan_s1_secrets_scan",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/security/S1-secrets-scan.md",
+      "source_location": "L1",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

@@ -36,8 +36,8 @@ export async function RelatedIncidents({
   if (!relatedRows || relatedRows.length === 0) return null;
 
   return (
-    <section className="mt-16 border-t border-white/5 pt-10">
-      <h3 className="text-fg-primary text-xl font-black tracking-tight sm:text-2xl">
+    <section className="border-border-subtle/50 mt-16 border-t pt-10">
+      <h3 className="text-fg-primary sm:text-fg-secondaryxl text-xl font-black tracking-tight">
         {locale === "tr" ? "Benzer Olay Raporları" : "Related Incident Reports"}
       </h3>
       <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -61,7 +61,7 @@ export async function RelatedIncidents({
               <Card
                 key={incident.id}
                 variant="glass"
-                className="border-border-subtle group h-full transition-all duration-300 hover:border-white/10"
+                className="border-border-subtle group hover:border-border-subtle h-full transition-all duration-300"
               >
                 <CardContent className="flex h-full flex-col p-5">
                   <div className="flex items-center justify-between">
@@ -108,7 +108,7 @@ export async function RelatedIncidents({
                     </div>
                   )}
 
-                  <div className="text-fg-muted mt-4 flex items-center gap-1.5 border-t border-white/5 pt-3 text-[10px] font-semibold">
+                  <div className="text-fg-muted border-border-subtle/50 mt-4 flex items-center gap-1.5 border-t pt-3 text-[10px] font-semibold">
                     <Clock className="h-3 w-3" />
                     <span>
                       {formatDate(

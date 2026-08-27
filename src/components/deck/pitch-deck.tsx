@@ -254,13 +254,13 @@ export function PitchDeckViewer() {
   };
 
   return (
-    <div className="selection:bg-brand-500 relative flex h-screen w-screen flex-col overflow-hidden bg-[#0a0a0f] text-slate-100 antialiased selection:text-white">
+    <div className="selection:bg-brand-500 text-fg-primary relative flex h-screen w-screen flex-col overflow-hidden bg-[#0a0a0f] antialiased selection:text-white">
       {/* Background ambient lighting effects */}
       <div className="bg-brand-600/10 pointer-events-none absolute -top-40 left-1/4 h-[600px] w-[600px] rounded-full blur-[150px]" />
       <div className="bg-brand-600/10 pointer-events-none absolute right-1/4 -bottom-40 h-[500px] w-[500px] rounded-full blur-[140px]" />
 
       {/* Top Header Navigation Bar */}
-      <header className="relative z-30 flex shrink-0 items-center justify-between border-b border-white/10 bg-[#0a0a0f]/80 px-4 py-3 backdrop-blur-xl sm:px-8">
+      <header className="border-border-subtle relative z-30 flex shrink-0 items-center justify-between border-b bg-[#0a0a0f]/80 px-4 py-3 backdrop-blur-xl sm:px-8">
         <div className="flex items-center gap-4">
           <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
             <Wordmark size="md" />
@@ -298,7 +298,7 @@ export function PitchDeckViewer() {
         <div className="flex items-center gap-2">
           <button
             onClick={handleShare}
-            className="text-fg-secondary flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium transition-colors hover:bg-white/10 hover:text-white"
+            className="text-fg-secondary border-border-subtle flex items-center gap-1.5 rounded-lg border bg-white/5 px-3 py-1.5 text-xs font-medium transition-colors hover:bg-white/10 hover:text-white"
             title="Copy Deck URL"
           >
             {copiedLink ? (
@@ -314,7 +314,7 @@ export function PitchDeckViewer() {
             className={`flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors ${
               showGridView
                 ? "border-brand-500 bg-brand-500/20 text-brand-300"
-                : "text-fg-secondary border-white/10 bg-white/5 hover:bg-white/10 hover:text-white"
+                : "text-fg-secondary border-border-subtle bg-white/5 hover:bg-white/10 hover:text-white"
             }`}
             title="Grid Overview (G)"
           >
@@ -324,7 +324,7 @@ export function PitchDeckViewer() {
 
           <button
             onClick={toggleFullscreen}
-            className="text-fg-secondary flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 p-1.5 text-xs font-medium transition-colors hover:bg-white/10 hover:text-white"
+            className="text-fg-secondary border-border-subtle flex items-center gap-1.5 rounded-lg border bg-white/5 p-1.5 text-xs font-medium transition-colors hover:bg-white/10 hover:text-white"
             title="Fullscreen (F)"
           >
             {isFullscreen ? (
@@ -354,10 +354,10 @@ export function PitchDeckViewer() {
             initial="enter"
             animate="center"
             exit="exit"
-            className="relative flex h-full w-full max-w-6xl scrollbar-none flex-col justify-between overflow-y-auto rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.07] to-white/[0.02] p-6 shadow-2xl backdrop-blur-2xl sm:p-10 lg:p-12"
+            className="border-border-subtle relative flex h-full w-full max-w-6xl scrollbar-none flex-col justify-between overflow-y-auto rounded-3xl border bg-gradient-to-b from-white/[0.07] to-white/[0.02] p-6 shadow-2xl backdrop-blur-2xl sm:p-10 lg:p-12"
           >
             {/* Top Slide Metadata Badge Header */}
-            <div className="flex shrink-0 items-center justify-between border-b border-white/10 pb-6">
+            <div className="border-border-subtle flex shrink-0 items-center justify-between border-b pb-6">
               <div className="flex items-center gap-3">
                 <span className="bg-brand-500/20 text-brand-300 border-brand-500/30 flex h-7 items-center justify-center rounded-lg border px-3 font-mono text-xs font-bold">
                   SLIDE {SLIDES_META[currentSlide - 1]?.numberStr}
@@ -388,7 +388,7 @@ export function PitchDeckViewer() {
             </div>
 
             {/* Slide Footer Info */}
-            <div className="text-fg-disabled flex shrink-0 items-center justify-between border-t border-white/10 pt-6 text-xs">
+            <div className="text-fg-disabled border-border-subtle flex shrink-0 items-center justify-between border-t pt-6 text-xs">
               <div className="flex items-center gap-2">
                 <Shield className="text-brand-400 h-3.5 w-3.5" />
                 <span className="text-fg-muted font-semibold">ALPAR AI</span>
@@ -405,12 +405,12 @@ export function PitchDeckViewer() {
       </main>
 
       {/* Bottom Control Bar */}
-      <footer className="relative z-30 flex shrink-0 items-center justify-between border-t border-white/10 bg-[#0a0a0f]/80 px-4 py-3 backdrop-blur-xl sm:px-8">
+      <footer className="border-border-subtle relative z-30 flex shrink-0 items-center justify-between border-t bg-[#0a0a0f]/80 px-4 py-3 backdrop-blur-xl sm:px-8">
         <div className="flex items-center gap-2">
           <button
             onClick={prevSlide}
             disabled={currentSlide === 1}
-            className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold text-white transition-all hover:bg-white/15 disabled:pointer-events-none disabled:opacity-30"
+            className="border-border-subtle flex items-center gap-2 rounded-xl border bg-white/5 px-4 py-2 text-xs font-semibold text-white transition-all hover:bg-white/15 disabled:pointer-events-none disabled:opacity-30"
           >
             <ChevronLeft className="h-4 w-4" />
             <span>Previous</span>
@@ -457,14 +457,14 @@ export function PitchDeckViewer() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex flex-col bg-[#0a0a0f]/95 p-6 backdrop-blur-2xl sm:p-10"
           >
-            <div className="flex items-center justify-between border-b border-white/10 pb-6">
+            <div className="border-border-subtle flex items-center justify-between border-b pb-6">
               <div>
                 <h2 className="text-xl font-bold text-white">Slide Navigator</h2>
                 <p className="text-fg-muted text-xs">Select any slide to jump directly</p>
               </div>
               <button
                 onClick={() => setShowGridView(false)}
-                className="text-fg-secondary rounded-xl border border-white/10 bg-white/5 p-2 transition-colors hover:bg-white/10 hover:text-white"
+                className="text-fg-secondary border-border-subtle rounded-xl border bg-white/5 p-2 transition-colors hover:bg-white/10 hover:text-white"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -478,7 +478,7 @@ export function PitchDeckViewer() {
                   className={`group relative flex flex-col justify-between rounded-2xl border p-5 text-left transition-all hover:scale-[1.02] ${
                     currentSlide === s.id
                       ? "border-brand-500 bg-brand-500/10 shadow-brand-500/20 shadow-lg"
-                      : "border-white/10 bg-white/5 hover:border-white/30 hover:bg-white/10"
+                      : "border-border-subtle bg-white/5 hover:border-white/30 hover:bg-white/10"
                   }`}
                 >
                   <div className="flex items-center justify-between pb-3">
@@ -524,7 +524,7 @@ function Slide1() {
           enterprise autonomous AI agent deployments.
         </p>
 
-        <div className="space-y-2 rounded-2xl border border-white/10 bg-white/5 p-4">
+        <div className="border-border-subtle space-y-2 rounded-2xl border bg-white/5 p-4">
           <p className="text-brand-400 text-xs font-bold tracking-wider uppercase">Core Mission</p>
           <p className="text-fg-secondary text-sm leading-relaxed">
             As autonomous AI agents make high-stakes operational and financial decisions, ALPAR AI
@@ -548,7 +548,7 @@ function Slide1() {
           </div>
 
           <div className="mt-4 space-y-4">
-            <div className="flex items-center justify-between border-b border-white/10 pb-3">
+            <div className="border-border-subtle flex items-center justify-between border-b pb-3">
               <span className="text-fg-muted font-mono text-xs">Agent Execution Hash</span>
               <span className="text-brand-300 font-mono text-xs font-bold">0x7f8a...e9b2</span>
             </div>
@@ -571,7 +571,7 @@ function Slide1() {
               </div>
             </div>
 
-            <div className="text-fg-muted rounded-xl border border-white/5 bg-black/40 p-3 font-mono text-[11px] leading-relaxed">
+            <div className="text-fg-muted border-border-subtle/50 rounded-xl border bg-black/40 p-3 font-mono text-[11px] leading-relaxed">
               &quot;proof&quot;:
               &quot;sha256-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855&quot;,
               <br />
@@ -588,7 +588,7 @@ function Slide2() {
   return (
     <div className="space-y-8">
       <div className="max-w-3xl space-y-2">
-        <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
+        <h2 className="text-fg-secondaryxl font-extrabold text-white sm:text-4xl">
           Autonomous AI Deployment Outpaces Trust & Compliance Capabilities
         </h2>
         <p className="text-fg-secondary text-sm sm:text-base">
@@ -632,7 +632,7 @@ function Slide2() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 rounded-2xl border border-white/10 bg-white/5 p-6 sm:grid-cols-2">
+      <div className="border-border-subtle grid grid-cols-1 gap-4 rounded-2xl border bg-white/5 p-6 sm:grid-cols-2">
         <div className="flex items-center gap-4">
           <span className="text-brand-400 text-4xl font-black tracking-tight sm:text-5xl">
             $10M+
@@ -668,7 +668,7 @@ function Slide3() {
   return (
     <div className="space-y-8">
       <div className="max-w-3xl space-y-2">
-        <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
+        <h2 className="text-fg-secondaryxl font-extrabold text-white sm:text-4xl">
           Real-Time Accountability Infrastructure for the AI Era
         </h2>
         <p className="text-fg-secondary text-sm sm:text-base">
@@ -713,12 +713,12 @@ function Slide3() {
       </div>
 
       {/* Architectural Flow Diagram */}
-      <div className="space-y-4 rounded-2xl border border-white/10 bg-black/40 p-6">
+      <div className="border-border-subtle space-y-4 rounded-2xl border bg-black/40 p-6">
         <p className="text-fg-muted text-center text-xs font-bold tracking-wider uppercase">
           ALPAR AI Runtime Pipeline Architecture
         </p>
         <div className="grid grid-cols-2 gap-3 text-center font-mono text-xs sm:grid-cols-5">
-          <div className="flex flex-col justify-center rounded-xl border border-white/10 bg-white/5 p-3">
+          <div className="border-border-subtle flex flex-col justify-center rounded-xl border bg-white/5 p-3">
             <span className="text-fg-muted text-[10px]">Step 1</span>
             <span className="mt-1 font-bold text-white">User / Agent Prompt</span>
           </div>
@@ -748,7 +748,7 @@ function Slide4() {
   return (
     <div className="space-y-8">
       <div className="max-w-3xl space-y-2">
-        <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
+        <h2 className="text-fg-secondaryxl font-extrabold text-white sm:text-4xl">
           The Regulatory Enforcement Window is Open (EU AI Act & Global Mandates)
         </h2>
         <p className="text-fg-secondary text-sm sm:text-base">
@@ -786,7 +786,7 @@ function Slide4() {
           <span className="text-warning-400 text-xs font-bold tracking-wider uppercase">
             Maximum Statutory Penalty
           </span>
-          <p className="text-2xl font-black text-white sm:text-3xl">
+          <p className="text-fg-secondaryxl font-black text-white sm:text-3xl">
             Up to €35,000,000 or 7% of Global Turnover
           </p>
           <p className="text-fg-muted text-xs">
@@ -809,7 +809,7 @@ function Slide5() {
   return (
     <div className="space-y-8">
       <div className="max-w-3xl space-y-2">
-        <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
+        <h2 className="text-fg-secondaryxl font-extrabold text-white sm:text-4xl">
           A $45B+ Infrastructure Opportunity at the Intersection of Security & AI
         </h2>
         <p className="text-fg-secondary text-sm sm:text-base">
@@ -819,7 +819,7 @@ function Slide5() {
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-        <div className="relative space-y-3 overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6">
+        <div className="border-border-subtle relative space-y-3 overflow-hidden rounded-2xl border bg-white/5 p-6">
           <div className="bg-brand-500/10 absolute top-0 right-0 h-16 w-16 rounded-bl-3xl" />
           <span className="text-brand-400 text-xs font-bold tracking-wider uppercase">
             TAM (Total Addressable)
@@ -853,7 +853,7 @@ function Slide5() {
         </div>
       </div>
 
-      <div className="text-fg-muted rounded-2xl border border-white/10 bg-black/30 p-4 text-center text-xs">
+      <div className="text-fg-muted border-border-subtle rounded-2xl border bg-black/30 p-4 text-center text-xs">
         Source: Gartner AI Security & Risk Management Telemetry Forecast (2025–2028)
       </div>
     </div>
@@ -864,7 +864,7 @@ function Slide6() {
   return (
     <div className="space-y-8">
       <div className="max-w-3xl space-y-2">
-        <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
+        <h2 className="text-fg-secondaryxl font-extrabold text-white sm:text-4xl">
           Enterprise-Grade Architecture Built for Speed and Security
         </h2>
         <p className="text-fg-secondary text-sm sm:text-base">
@@ -874,7 +874,7 @@ function Slide6() {
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-        <div className="space-y-2 rounded-2xl border border-white/10 bg-white/5 p-5">
+        <div className="border-border-subtle space-y-2 rounded-2xl border bg-white/5 p-5">
           <div className="text-brand-400 flex items-center gap-2 text-sm font-bold">
             <Cpu className="h-4 w-4" />
             <span>PII Guardian Pipeline</span>
@@ -884,7 +884,7 @@ function Slide6() {
           </p>
         </div>
 
-        <div className="space-y-2 rounded-2xl border border-white/10 bg-white/5 p-5">
+        <div className="border-border-subtle space-y-2 rounded-2xl border bg-white/5 p-5">
           <div className="text-brand-400 flex items-center gap-2 text-sm font-bold">
             <Lock className="h-4 w-4" />
             <span>Audit Ledger Engine</span>
@@ -894,7 +894,7 @@ function Slide6() {
           </p>
         </div>
 
-        <div className="space-y-2 rounded-2xl border border-white/10 bg-white/5 p-5">
+        <div className="border-border-subtle space-y-2 rounded-2xl border bg-white/5 p-5">
           <div className="text-success-400 flex items-center gap-2 text-sm font-bold">
             <Shield className="h-4 w-4" />
             <span>Server Action Isolation</span>
@@ -927,7 +927,7 @@ function Slide7() {
   return (
     <div className="space-y-8">
       <div className="max-w-3xl space-y-2">
-        <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
+        <h2 className="text-fg-secondaryxl font-extrabold text-white sm:text-4xl">
           High-Margin Usage-Based SaaS + Enterprise Certification
         </h2>
         <p className="text-fg-secondary text-sm sm:text-base">
@@ -937,12 +937,12 @@ function Slide7() {
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-        <div className="flex flex-col justify-between space-y-4 rounded-2xl border border-white/10 bg-white/5 p-6">
+        <div className="border-border-subtle flex flex-col justify-between space-y-4 rounded-2xl border bg-white/5 p-6">
           <div className="space-y-2">
             <span className="text-fg-muted text-xs font-bold tracking-wider uppercase">
               1. Developer Tier (PLG)
             </span>
-            <p className="text-2xl font-black text-white">Free</p>
+            <p className="text-fg-secondaryxl font-black text-white">Free</p>
             <p className="text-fg-secondary text-xs leading-relaxed">
               Free tier with monthly verification tokens for API key usage and open-source CLI
               integration.
@@ -961,8 +961,8 @@ function Slide7() {
             <span className="text-brand-300 text-xs font-bold tracking-wider uppercase">
               2. Pro & Growth Tier
             </span>
-            <p className="text-brand-300 text-2xl font-black">Pricing under revision</p>
-            <p className="text-xs leading-relaxed text-slate-200">
+            <p className="text-brand-300 text-fg-secondaryxl font-black">Pricing under revision</p>
+            <p className="text-fg-primary text-xs leading-relaxed">
               Advanced rate limits, automated incident reporting, custom PII rules, and dedicated
               cross-audit logs.
             </p>
@@ -977,8 +977,8 @@ function Slide7() {
             <span className="text-brand-300 text-xs font-bold tracking-wider uppercase">
               3. Enterprise Tier
             </span>
-            <p className="text-brand-300 text-2xl font-black">Pricing under revision</p>
-            <p className="text-xs leading-relaxed text-slate-200">
+            <p className="text-brand-300 text-fg-secondaryxl font-black">Pricing under revision</p>
+            <p className="text-fg-primary text-xs leading-relaxed">
               Dedicated Supabase instances, custom compliance connectors (SOC2, EU AI Act), 99.99%
               SLA, and formal audit sign-off.
             </p>
@@ -1003,7 +1003,7 @@ function Slide8() {
   return (
     <div className="space-y-8">
       <div className="max-w-3xl space-y-2">
-        <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
+        <h2 className="text-fg-secondaryxl font-extrabold text-white sm:text-4xl">
           Developer-Led Adoption + Enterprise Top-Down Sales
         </h2>
         <p className="text-fg-secondary text-sm sm:text-base">
@@ -1038,12 +1038,12 @@ function Slide8() {
         </div>
       </div>
 
-      <div className="space-y-2 rounded-2xl border border-white/10 bg-black/40 p-6">
+      <div className="border-border-subtle space-y-2 rounded-2xl border bg-black/40 p-6">
         <p className="text-fg-muted text-center text-xs font-bold tracking-wider uppercase">
           GTM Conversion Funnel
         </p>
         <div className="flex flex-col items-center justify-between gap-4 text-center font-mono text-xs sm:flex-row">
-          <div className="w-full rounded-xl border border-white/10 bg-white/5 p-3">
+          <div className="border-border-subtle w-full rounded-xl border bg-white/5 p-3">
             1. Open Source Dev Downloads
           </div>
           <ArrowRight className="text-brand-400 hidden h-4 w-4 shrink-0 sm:block" />
@@ -1077,7 +1077,7 @@ function Slide9() {
   return (
     <div className="space-y-8">
       <div className="max-w-3xl space-y-2">
-        <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
+        <h2 className="text-fg-secondaryxl font-extrabold text-white sm:text-4xl">
           Unrivaled Cryptographic Proof & Open Infrastructure
         </h2>
         <p className="text-fg-secondary text-sm sm:text-base">
@@ -1087,13 +1087,13 @@ function Slide9() {
       </div>
 
       {/* 2x2 Matrix Visual */}
-      <div className="relative space-y-4 rounded-2xl border border-white/10 bg-black/40 p-6">
+      <div className="border-border-subtle relative space-y-4 rounded-2xl border bg-black/40 p-6">
         <p className="text-fg-muted text-center text-xs font-bold tracking-wider uppercase">
           Competitive Positioning Matrix
         </p>
-        <div className="bg-bg-tertiary/40 relative grid h-64 grid-cols-2 gap-4 rounded-xl border border-white/10 p-4">
+        <div className="bg-bg-tertiary/40 border-border-subtle relative grid h-64 grid-cols-1 gap-4 rounded-xl border p-4 sm:grid-cols-2">
           {/* Top Left */}
-          <div className="text-fg-muted rounded-lg border border-white/5 bg-white/[0.02] p-3 text-xs">
+          <div className="text-fg-muted border-border-subtle/50 rounded-lg border bg-white/[0.02] p-3 text-xs">
             <span className="text-fg-secondary font-semibold">Traditional GRC (OneTrust)</span>
             <p className="mt-1 text-[10px]">
               High Legal Auditability / Low Real-Time AI API Integration
@@ -1105,17 +1105,17 @@ function Slide9() {
               <span className="text-brand-300 text-sm">ALPAR AI</span>
               <Sparkles className="text-brand-400 h-4 w-4 animate-pulse" />
             </div>
-            <p className="text-[11px] font-normal text-slate-200">
+            <p className="text-fg-primary text-[11px] font-normal">
               High Legal Auditability + High Real-Time Enforcement & Cryptographic Proof
             </p>
           </div>
           {/* Bottom Left */}
-          <div className="text-fg-disabled rounded-lg border border-white/5 bg-white/[0.02] p-3 text-xs">
+          <div className="text-fg-disabled border-border-subtle/50 rounded-lg border bg-white/[0.02] p-3 text-xs">
             <span className="text-fg-muted font-semibold">Legacy Logging</span>
             <p className="mt-1 text-[10px]">Low Auditability / Low AI Real-Time Context</p>
           </div>
           {/* Bottom Right */}
-          <div className="text-fg-muted rounded-lg border border-white/5 bg-white/[0.02] p-3 text-xs">
+          <div className="text-fg-muted border-border-subtle/50 rounded-lg border bg-white/[0.02] p-3 text-xs">
             <span className="text-fg-secondary font-semibold">
               LLM Telemetry (LangSmith, Datadog)
             </span>
@@ -1127,13 +1127,13 @@ function Slide9() {
       </div>
 
       <div className="text-fg-secondary grid grid-cols-1 gap-3 font-mono text-xs sm:grid-cols-3">
-        <div className="rounded-xl border border-white/10 bg-white/5 p-3 text-center">
+        <div className="border-border-subtle rounded-xl border bg-white/5 p-3 text-center">
           <span className="text-brand-300 font-bold">AGPL-3.0 Open Core</span>
         </div>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-3 text-center">
+        <div className="border-border-subtle rounded-xl border bg-white/5 p-3 text-center">
           <span className="text-brand-300 font-bold">Cryptographic Ledger Integrity</span>
         </div>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-3 text-center">
+        <div className="border-border-subtle rounded-xl border bg-white/5 p-3 text-center">
           <span className="text-success-400 font-bold">Zero-Knowledge PII Masking</span>
         </div>
       </div>
@@ -1145,7 +1145,7 @@ function Slide10() {
   return (
     <div className="space-y-8">
       <div className="max-w-3xl space-y-2">
-        <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
+        <h2 className="text-fg-secondaryxl font-extrabold text-white sm:text-4xl">
           Founded by Systems Architects & Security Engineers
         </h2>
         <p className="text-fg-secondary text-sm sm:text-base">
@@ -1201,7 +1201,7 @@ function Slide11() {
   return (
     <div className="space-y-8">
       <div className="max-w-3xl space-y-2">
-        <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
+        <h2 className="text-fg-secondaryxl font-extrabold text-white sm:text-4xl">
           Path to $10M ARR in 36 Months with 85%+ Gross Margins
         </h2>
         <p className="text-fg-secondary text-sm sm:text-base">
@@ -1211,7 +1211,7 @@ function Slide11() {
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-        <div className="space-y-2 rounded-2xl border border-white/10 bg-white/5 p-6">
+        <div className="border-border-subtle space-y-2 rounded-2xl border bg-white/5 p-6">
           <span className="text-fg-muted text-xs font-bold tracking-wider uppercase">
             Year 1 Projection
           </span>
@@ -1261,7 +1261,7 @@ function Slide12() {
   return (
     <div className="space-y-8">
       <div className="max-w-3xl space-y-2">
-        <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
+        <h2 className="text-fg-secondaryxl font-extrabold text-white sm:text-4xl">
           Raising $2.5M Seed Capital to Scale the AI Trust Layer
         </h2>
         <p className="text-fg-secondary text-sm sm:text-base">
@@ -1272,7 +1272,7 @@ function Slide12() {
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         <div className="border-brand-500/30 bg-brand-950/20 space-y-2 rounded-2xl border p-6">
-          <span className="text-brand-300 text-2xl font-black">60%</span>
+          <span className="text-brand-300 text-fg-secondaryxl font-black">60%</span>
           <p className="text-xs font-bold tracking-wider text-white uppercase">
             Engineering & Product
           </p>
@@ -1283,7 +1283,7 @@ function Slide12() {
         </div>
 
         <div className="border-brand-500/30 space-y-2 rounded-2xl border bg-purple-950/20 p-6">
-          <span className="text-brand-300 text-2xl font-black">25%</span>
+          <span className="text-brand-300 text-fg-secondaryxl font-black">25%</span>
           <p className="text-xs font-bold tracking-wider text-white uppercase">Go-To-Market</p>
           <p className="text-fg-secondary text-xs leading-relaxed">
             Enterprise sales team, developer advocacy, open-source community management, and EU AI
@@ -1292,7 +1292,7 @@ function Slide12() {
         </div>
 
         <div className="border-success-500/30 space-y-2 rounded-2xl border bg-emerald-950/20 p-6">
-          <span className="text-success-400 text-2xl font-black">15%</span>
+          <span className="text-success-400 text-fg-secondaryxl font-black">15%</span>
           <p className="text-xs font-bold tracking-wider text-white uppercase">Security & Audits</p>
           <p className="text-fg-secondary text-xs leading-relaxed">
             SOC2 Type II, ISO 27001, and independent third-party EU AI Act compliance
@@ -1301,7 +1301,7 @@ function Slide12() {
         </div>
       </div>
 
-      <div className="space-y-3 rounded-2xl border border-white/10 bg-black/40 p-6 text-center">
+      <div className="border-border-subtle space-y-3 rounded-2xl border bg-black/40 p-6 text-center">
         <p className="text-fg-muted text-xs font-bold tracking-wider uppercase">
           Target 18-Month Milestones
         </p>

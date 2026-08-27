@@ -1,10 +1,10 @@
 /**
  * 🏛️ Sovereign Engine Registry (TypeScript)
- * 
+ *
  * Loads all 33 engine definitions from the engines/ directory
  * and provides a unified interface for querying, health-checking,
  * and executing engines.
- * 
+ *
  * Usage:
  *   import { registry } from './lib/engine-registry';
  *   const all = await registry.listEngines();
@@ -12,14 +12,14 @@
  *   const health = await registry.healthCheck();
  */
 
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const ENGINES_DIR = path.resolve(__dirname, '..', '..', 'engines');
-const LIVE_API_URL = 'http://37.27.251.29:9080/health/deep';
+const ENGINES_DIR = path.resolve(__dirname, "..", "..", "engines");
+const LIVE_API_URL = "http://37.27.251.29:9080/health/deep";
 
 export interface EngineDefinition {
   id: string;
@@ -49,10 +49,15 @@ export class EngineRegistry {
           const liveEngines = data?.engines?.engines || [];
           for (const e of liveEngines) {
             const def: EngineDefinition = {
-              id: e.id, key: e.key, name: e.name, description: e.description,
-              version: e.version || '3.3.0', status: e.status,
+              id: e.id,
+              key: e.key,
+              name: e.name,
+              description: e.description,
+              version: e.version || "3.3.0",
+              status: e.status,
               capabilities: e.capabilities || [],
-              registered_at: data.timestamp, uptime_seconds: data.uptime_seconds,
+              registered_at: data.timestamp,
+              uptime_seconds: data.uptime_seconds,
             };
             this.engines.set(e.key, def);
             this.engines.set(e.id, def);
@@ -67,13 +72,14 @@ export class EngineRegistry {
     }
 
     // JSON fallback
-    const files = fs.readdirSync(ENGINES_DIR)
-      .filter(f => f.endsWith('.json'))
+    const files = fs
+      .readdirSync(ENGINES_DIR)
+      .filter((f) => f.endsWith(".json"))
       .sort();
 
     for (const file of files) {
       const filePath = path.join(ENGINES_DIR, file);
-      const content = fs.readFileSync(filePath, 'utf-8');
+      const content = fs.readFileSync(filePath, "utf-8");
       const engine: EngineDefinition = JSON.parse(content);
       this.engines.set(engine.key, engine);
       this.engines.set(engine.id, engine);
@@ -93,12 +99,12 @@ export class EngineRegistry {
   }
 
   getSource(): string {
-    return this.isLive() ? `Live backend (${this.liveDataTimestamp})` : 'JSON files (cached)';
+    return this.isLive() ? `Live backend (${this.liveDataTimestamp})` : "JSON files (cached)";
   }
 
   listEngines(): EngineDefinition[] {
     return Array.from(this.engines.values())
-      .filter((v, i, a) => a.findIndex(e => e.id === v.id) === i)
+      .filter((v, i, a) => a.findIndex((e) => e.id === v.id) === i)
       .sort((a, b) => a.id.localeCompare(b.id));
   }
 
@@ -107,29 +113,35 @@ export class EngineRegistry {
   }
 
   getHealthy(): EngineDefinition[] {
-    return this.listEngines().filter(e => e.status === 'healthy');
+    return this.listEngines().filter((e) => e.status === "healthy");
   }
 
   getDegraded(): EngineDefinition[] {
-    return this.listEngines().filter(e => e.status !== 'healthy');
+    return this.listEngines().filter((e) => e.status !== "healthy");
   }
 
-  healthCheck(): { total: number; healthy: number; degraded: number; healthyList: string[]; degradedList: string[] } {
+  healthCheck(): {
+    total: number;
+    healthy: number;
+    degraded: number;
+    healthyList: string[];
+    degradedList: string[];
+  } {
     const all = this.listEngines();
-    const healthy = all.filter(e => e.status === 'healthy');
-    const degraded = all.filter(e => e.status !== 'healthy');
+    const healthy = all.filter((e) => e.status === "healthy");
+    const degraded = all.filter((e) => e.status !== "healthy");
     return {
       total: all.length,
       healthy: healthy.length,
       degraded: degraded.length,
-      healthyList: healthy.map(e => e.key),
-      degradedList: degraded.map(e => `${e.key}: ${e.status}`),
+      healthyList: healthy.map((e) => e.key),
+      degradedList: degraded.map((e) => `${e.key}: ${e.status}`),
     };
   }
 
   getByCapability(capability: string): EngineDefinition[] {
-    return this.listEngines().filter(e =>
-      e.capabilities.some(c => c.toLowerCase().includes(capability.toLowerCase()))
+    return this.listEngines().filter((e) =>
+      e.capabilities.some((c) => c.toLowerCase().includes(capability.toLowerCase())),
     );
   }
 

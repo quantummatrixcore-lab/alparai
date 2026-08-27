@@ -188,7 +188,7 @@ export default async function IncidentsPage({
 
   return (
     <Container className="pt-4 pb-12 md:pt-6 md:pb-16">
-      <header className="relative mb-8 overflow-hidden rounded-2xl border border-white/5 bg-[#050914] p-6 shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)] sm:p-8">
+      <header className="border-border-subtle/50 bg-bg-deep relative mb-8 overflow-hidden rounded-2xl border p-6 shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)] sm:p-8">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_100%_100%_at_50%_0%,#000_30%,transparent_100%)] bg-[size:40px_40px]" />
         <div className="relative z-10 flex flex-col items-center text-center">
           <div className="border-danger-500/30 bg-danger-500/10 text-danger-400 mb-4 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-[10px] font-black tracking-[0.2em] uppercase shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
@@ -201,7 +201,7 @@ export default async function IncidentsPage({
           <h1 className="text-4xl font-black tracking-tight text-white drop-shadow-2xl sm:text-5xl">
             {t("page_title")}
           </h1>
-          <p className="mt-4 max-w-2xl text-base font-medium text-gray-400">
+          <p className="text-fg-muted mt-4 max-w-2xl text-base font-medium">
             {t("page_subtitle", { count: totalCount })}
           </p>
         </div>

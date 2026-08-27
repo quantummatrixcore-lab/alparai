@@ -1,0 +1,95 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_07_bias_amplification_in_automated_hiring_md",
+      "label": "day-07-bias-amplification-in-automated-hiring.md",
+      "file_type": "document",
+      "source_file": "docs/blog_drafts/the_grok_files/day-07-bias-amplification-in-automated-hiring.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_07_bias_amplification_in_automated_hiring_the_grok_files_day_7_algorithmic_bias_discrimination_in_automated_screening",
+      "label": "The Grok Files \u2014 Day 7: Algorithmic Bias & Discrimination in Automated Screening",
+      "file_type": "document",
+      "source_file": "docs/blog_drafts/the_grok_files/day-07-bias-amplification-in-automated-hiring.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_07_bias_amplification_in_automated_hiring_executive_summary",
+      "label": "Executive Summary",
+      "file_type": "document",
+      "source_file": "docs/blog_drafts/the_grok_files/day-07-bias-amplification-in-automated-hiring.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_07_bias_amplification_in_automated_hiring_1_tactical_failure_analysis_proxy_discrimination",
+      "label": "1. Tactical Failure Analysis: Proxy Discrimination",
+      "file_type": "document",
+      "source_file": "docs/blog_drafts/the_grok_files/day-07-bias-amplification-in-automated-hiring.md",
+      "source_location": "L16"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_07_bias_amplification_in_automated_hiring_2_regulatory_compliance_mandates_eu_ai_act_nyc_automated_employment_decision_tools_law",
+      "label": "2. Regulatory Compliance Mandates (EU AI Act & NYC Automated Employment Decision Tools Law)",
+      "file_type": "document",
+      "source_file": "docs/blog_drafts/the_grok_files/day-07-bias-amplification-in-automated-hiring.md",
+      "source_location": "L26"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_07_bias_amplification_in_automated_hiring_3_the_alpar_ai_solution_algorithmic_fairness_auditing_metric_tracking",
+      "label": "3. The ALPAR AI Solution: Algorithmic Fairness Auditing & Metric Tracking",
+      "file_type": "document",
+      "source_file": "docs/blog_drafts/the_grok_files/day-07-bias-amplification-in-automated-hiring.md",
+      "source_location": "L33"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_07_bias_amplification_in_automated_hiring_md",
+      "target": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_07_bias_amplification_in_automated_hiring_the_grok_files_day_7_algorithmic_bias_discrimination_in_automated_screening",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog_drafts/the_grok_files/day-07-bias-amplification-in-automated-hiring.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_07_bias_amplification_in_automated_hiring_the_grok_files_day_7_algorithmic_bias_discrimination_in_automated_screening",
+      "target": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_07_bias_amplification_in_automated_hiring_executive_summary",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog_drafts/the_grok_files/day-07-bias-amplification-in-automated-hiring.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_07_bias_amplification_in_automated_hiring_the_grok_files_day_7_algorithmic_bias_discrimination_in_automated_screening",
+      "target": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_07_bias_amplification_in_automated_hiring_1_tactical_failure_analysis_proxy_discrimination",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog_drafts/the_grok_files/day-07-bias-amplification-in-automated-hiring.md",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_07_bias_amplification_in_automated_hiring_the_grok_files_day_7_algorithmic_bias_discrimination_in_automated_screening",
+      "target": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_07_bias_amplification_in_automated_hiring_2_regulatory_compliance_mandates_eu_ai_act_nyc_automated_employment_decision_tools_law",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog_drafts/the_grok_files/day-07-bias-amplification-in-automated-hiring.md",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_07_bias_amplification_in_automated_hiring_the_grok_files_day_7_algorithmic_bias_discrimination_in_automated_screening",
+      "target": "d_01_saas_products_alparai_docs_blog_drafts_the_grok_files_day_07_bias_amplification_in_automated_hiring_3_the_alpar_ai_solution_algorithmic_fairness_auditing_metric_tracking",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/blog_drafts/the_grok_files/day-07-bias-amplification-in-automated-hiring.md",
+      "source_location": "L33",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

@@ -61,4 +61,3 @@ vi.mock("@sentry/nextjs", () => ({
   captureException: vi.fn(),
   init: vi.fn(),
 }));
-

@@ -29,19 +29,19 @@ export default async function ArsApiPage({ params }: { params: Promise<{ locale:
         </div>
 
         <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <div className="bg-glass rounded-2xl border border-white/5 p-6 shadow-xl">
+          <div className="bg-glass border-border-subtle/50 rounded-2xl border p-6 shadow-xl">
             <Zap className="text-warning-400 mb-4 h-8 w-8" />
             <h3 className="text-fg-primary mb-2 text-xl font-bold">{t("telemetry_title")}</h3>
             <p className="text-fg-secondary text-sm">{t("telemetry_desc")}</p>
           </div>
-          <div className="bg-glass rounded-2xl border border-white/5 p-6 shadow-xl">
+          <div className="bg-glass border-border-subtle/50 rounded-2xl border p-6 shadow-xl">
             <Lock className="text-brand-400 mb-4 h-8 w-8" />
             <h3 className="text-fg-primary mb-2 text-xl font-bold">{t("precision_title")}</h3>
             <p className="text-fg-secondary text-sm">
               {t("precision_desc", { count: metrics.totalIncidents })}
             </p>
           </div>
-          <div className="bg-glass rounded-2xl border border-white/5 p-6 shadow-xl">
+          <div className="bg-glass border-border-subtle/50 rounded-2xl border p-6 shadow-xl">
             <Code className="text-success-400 mb-4 h-8 w-8" />
             <h3 className="text-fg-primary mb-2 text-xl font-bold">{t("dev_first_title")}</h3>
             <p className="text-fg-secondary text-sm">{t("dev_first_desc")}</p>
@@ -49,8 +49,10 @@ export default async function ArsApiPage({ params }: { params: Promise<{ locale:
         </div>
 
         <div className="mt-16 text-center">
-          <div className="bg-glass inline-block rounded-2xl border border-white/5 p-8 shadow-2xl">
-            <h2 className="text-fg-primary mb-4 text-2xl font-bold">{t("early_access_title")}</h2>
+          <div className="bg-glass border-border-subtle/50 inline-block rounded-2xl border p-8 shadow-2xl">
+            <h2 className="text-fg-primary text-fg-secondaryxl mb-4 font-bold">
+              {t("early_access_title")}
+            </h2>
             <p className="text-fg-secondary mb-6 max-w-md">{t("early_access_desc")}</p>
             <TrackedCtaButton pagePath="/products/ars-api" ctaAction="request_api_access" asChild>
               <Link

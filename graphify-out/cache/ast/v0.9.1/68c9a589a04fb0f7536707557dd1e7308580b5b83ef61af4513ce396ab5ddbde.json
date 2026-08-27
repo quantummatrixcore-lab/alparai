@@ -1,0 +1,143 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_ops_chaos_md",
+      "label": "OPS_CHAOS.md",
+      "file_type": "document",
+      "source_file": "docs/OPS_CHAOS.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_ops_chaos_alpar_ai_chaos_engineering_playbook",
+      "label": "ALPAR AI - Chaos Engineering Playbook",
+      "file_type": "document",
+      "source_file": "docs/OPS_CHAOS.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_ops_chaos_1_fault_injection_scenarios_graceful_degradation",
+      "label": "1. Fault Injection Scenarios & Graceful Degradation",
+      "file_type": "document",
+      "source_file": "docs/OPS_CHAOS.md",
+      "source_location": "L5"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_ops_chaos_scenario_1_supabase_500_database_unreachable",
+      "label": "Scenario 1: Supabase 500 / Database Unreachable",
+      "file_type": "document",
+      "source_file": "docs/OPS_CHAOS.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_ops_chaos_scenario_2_upstash_redis_timeout_downtime",
+      "label": "Scenario 2: Upstash Redis Timeout / Downtime",
+      "file_type": "document",
+      "source_file": "docs/OPS_CHAOS.md",
+      "source_location": "L15"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_ops_chaos_scenario_3_vertex_ai_api_429_rate_limit_quota_exceeded",
+      "label": "Scenario 3: Vertex AI API 429 (Rate Limit / Quota Exceeded)",
+      "file_type": "document",
+      "source_file": "docs/OPS_CHAOS.md",
+      "source_location": "L22"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_ops_chaos_scenario_4_openrouter_down_gateway_timeout",
+      "label": "Scenario 4: OpenRouter Down / Gateway Timeout",
+      "file_type": "document",
+      "source_file": "docs/OPS_CHAOS.md",
+      "source_location": "L29"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_ops_chaos_2_chaos_engineering_drill_log",
+      "label": "2. Chaos Engineering Drill Log",
+      "file_type": "document",
+      "source_file": "docs/OPS_CHAOS.md",
+      "source_location": "L38"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_ops_chaos_drill_id_drill_2026_07_12_redis",
+      "label": "Drill ID: `DRILL-2026-07-12-REDIS`",
+      "file_type": "document",
+      "source_file": "docs/OPS_CHAOS.md",
+      "source_location": "L40"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_ops_chaos_md",
+      "target": "d_01_saas_products_alparai_docs_ops_chaos_alpar_ai_chaos_engineering_playbook",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/OPS_CHAOS.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_ops_chaos_alpar_ai_chaos_engineering_playbook",
+      "target": "d_01_saas_products_alparai_docs_ops_chaos_1_fault_injection_scenarios_graceful_degradation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/OPS_CHAOS.md",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_ops_chaos_1_fault_injection_scenarios_graceful_degradation",
+      "target": "d_01_saas_products_alparai_docs_ops_chaos_scenario_1_supabase_500_database_unreachable",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/OPS_CHAOS.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_ops_chaos_1_fault_injection_scenarios_graceful_degradation",
+      "target": "d_01_saas_products_alparai_docs_ops_chaos_scenario_2_upstash_redis_timeout_downtime",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/OPS_CHAOS.md",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_ops_chaos_1_fault_injection_scenarios_graceful_degradation",
+      "target": "d_01_saas_products_alparai_docs_ops_chaos_scenario_3_vertex_ai_api_429_rate_limit_quota_exceeded",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/OPS_CHAOS.md",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_ops_chaos_1_fault_injection_scenarios_graceful_degradation",
+      "target": "d_01_saas_products_alparai_docs_ops_chaos_scenario_4_openrouter_down_gateway_timeout",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/OPS_CHAOS.md",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_ops_chaos_alpar_ai_chaos_engineering_playbook",
+      "target": "d_01_saas_products_alparai_docs_ops_chaos_2_chaos_engineering_drill_log",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/OPS_CHAOS.md",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_ops_chaos_2_chaos_engineering_drill_log",
+      "target": "d_01_saas_products_alparai_docs_ops_chaos_drill_id_drill_2026_07_12_redis",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/OPS_CHAOS.md",
+      "source_location": "L40",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

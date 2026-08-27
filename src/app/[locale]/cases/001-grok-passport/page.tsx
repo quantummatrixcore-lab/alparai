@@ -62,7 +62,9 @@ export default async function Case001Page({ params }: { params: Promise<{ locale
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
           {/* Main Content (Timeline) */}
           <div className="lg:col-span-2">
-            <h2 className="text-fg-primary mb-8 text-2xl font-bold">{t("timeline_title")}</h2>
+            <h2 className="text-fg-primary text-fg-secondaryxl mb-8 font-bold">
+              {t("timeline_title")}
+            </h2>
             <div className="before:via-border-subtle relative space-y-8 before:absolute before:inset-0 before:ml-5 before:h-full before:w-0.5 before:-translate-x-px before:bg-gradient-to-b before:from-transparent before:to-transparent md:before:mx-auto md:before:translate-x-0">
               {timelineEvents.map((event) => (
                 <div

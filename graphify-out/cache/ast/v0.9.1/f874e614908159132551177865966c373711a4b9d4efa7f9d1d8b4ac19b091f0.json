@@ -1,0 +1,175 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_md",
+      "label": "vc-outreach-list.md",
+      "file_type": "document",
+      "source_file": "docs/fundraising/vc-outreach-list.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_alpar_ai_vc_outreach_list_autonomous_warm_intro_protocols_alpha_3",
+      "label": "ALPAR AI \u2014 VC Outreach List & Autonomous Warm-Intro Protocols (ALPHA-3)",
+      "file_type": "document",
+      "source_file": "docs/fundraising/vc-outreach-list.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_executive_investment_briefing",
+      "label": "Executive Investment Briefing",
+      "file_type": "document",
+      "source_file": "docs/fundraising/vc-outreach-list.md",
+      "source_location": "L13"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_1_top_20_vc_target_partner_directory",
+      "label": "1. Top 20 VC Target Partner Directory",
+      "file_type": "document",
+      "source_file": "docs/fundraising/vc-outreach-list.md",
+      "source_location": "L35"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_2_autonomous_warm_intro_outreach_email_templates",
+      "label": "2. Autonomous Warm-Intro & Outreach Email Templates",
+      "file_type": "document",
+      "source_file": "docs/fundraising/vc-outreach-list.md",
+      "source_location": "L64"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_template_1_warm_introduction_request_to_mutual_connection_advisor",
+      "label": "Template 1: Warm Introduction Request (To Mutual Connection / Advisor)",
+      "file_type": "document",
+      "source_file": "docs/fundraising/vc-outreach-list.md",
+      "source_location": "L68"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_template_2_partner_direct_outreach_targeted_cold_email",
+      "label": "Template 2: Partner Direct Outreach (Targeted Cold Email)",
+      "file_type": "document",
+      "source_file": "docs/fundraising/vc-outreach-list.md",
+      "source_location": "L107"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_template_3_follow_up_cadence_autonomous_automation_protocol",
+      "label": "Template 3: Follow-up Cadence & Autonomous Automation Protocol",
+      "file_type": "document",
+      "source_file": "docs/fundraising/vc-outreach-list.md",
+      "source_location": "L139"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_day_4_follow_up_soft_bump",
+      "label": "Day 4 Follow-up (Soft Bump)",
+      "file_type": "document",
+      "source_file": "docs/fundraising/vc-outreach-list.md",
+      "source_location": "L145"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_day_8_follow_up_traction_product_highlight",
+      "label": "Day 8 Follow-up (Traction & Product Highlight)",
+      "file_type": "document",
+      "source_file": "docs/fundraising/vc-outreach-list.md",
+      "source_location": "L162"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_3_autonomous_openchrome_outreach_protocol",
+      "label": "3. Autonomous OpenChrome Outreach Protocol",
+      "file_type": "document",
+      "source_file": "docs/fundraising/vc-outreach-list.md",
+      "source_location": "L183"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_md",
+      "target": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_alpar_ai_vc_outreach_list_autonomous_warm_intro_protocols_alpha_3",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/fundraising/vc-outreach-list.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_alpar_ai_vc_outreach_list_autonomous_warm_intro_protocols_alpha_3",
+      "target": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_executive_investment_briefing",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/fundraising/vc-outreach-list.md",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_alpar_ai_vc_outreach_list_autonomous_warm_intro_protocols_alpha_3",
+      "target": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_1_top_20_vc_target_partner_directory",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/fundraising/vc-outreach-list.md",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_alpar_ai_vc_outreach_list_autonomous_warm_intro_protocols_alpha_3",
+      "target": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_2_autonomous_warm_intro_outreach_email_templates",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/fundraising/vc-outreach-list.md",
+      "source_location": "L64",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_2_autonomous_warm_intro_outreach_email_templates",
+      "target": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_template_1_warm_introduction_request_to_mutual_connection_advisor",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/fundraising/vc-outreach-list.md",
+      "source_location": "L68",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_2_autonomous_warm_intro_outreach_email_templates",
+      "target": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_template_2_partner_direct_outreach_targeted_cold_email",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/fundraising/vc-outreach-list.md",
+      "source_location": "L107",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_2_autonomous_warm_intro_outreach_email_templates",
+      "target": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_template_3_follow_up_cadence_autonomous_automation_protocol",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/fundraising/vc-outreach-list.md",
+      "source_location": "L139",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_template_3_follow_up_cadence_autonomous_automation_protocol",
+      "target": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_day_4_follow_up_soft_bump",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/fundraising/vc-outreach-list.md",
+      "source_location": "L145",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_template_3_follow_up_cadence_autonomous_automation_protocol",
+      "target": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_day_8_follow_up_traction_product_highlight",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/fundraising/vc-outreach-list.md",
+      "source_location": "L162",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_alpar_ai_vc_outreach_list_autonomous_warm_intro_protocols_alpha_3",
+      "target": "d_01_saas_products_alparai_docs_fundraising_vc_outreach_list_3_autonomous_openchrome_outreach_protocol",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/fundraising/vc-outreach-list.md",
+      "source_location": "L183",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

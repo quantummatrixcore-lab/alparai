@@ -1,0 +1,29 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_vercel_json",
+      "label": "vercel.json",
+      "file_type": "code",
+      "source_file": "vercel.json",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_vercel_installcommand",
+      "label": "installCommand",
+      "file_type": "code",
+      "source_file": "vercel.json",
+      "source_location": "L1"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_vercel_json",
+      "target": "d_01_saas_products_alparai_vercel_installcommand",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "vercel.json",
+      "source_location": "L1",
+      "weight": 1.0
+    }
+  ]
+}

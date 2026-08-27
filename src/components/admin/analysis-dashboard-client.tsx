@@ -242,7 +242,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
             type="checkbox"
             checked={showFreeModels}
             onChange={(e) => setShowFreeModels(e.target.checked)}
-            className="text-brand-500 cursor-pointer rounded border-white/20 bg-neutral-900"
+            className="text-brand-500 border-border-strong bg-bg-secondary cursor-pointer rounded"
           />
           <span className="text-fg-secondary text-sm font-medium">
             {t("show_free_models", { defaultValue: "Show Free Models" })}
@@ -264,7 +264,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
         <div className="bg-bg-secondary/80 border-brand-500/40 relative overflow-hidden rounded-2xl border p-6 shadow-xl backdrop-blur-xl">
           <div className="bg-brand-500/20 absolute -top-10 -right-10 rounded-full p-20 blur-3xl"></div>
           <div className="relative z-10">
-            <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-4">
+            <div className="border-border-subtle mb-4 flex items-center justify-between border-b pb-4">
               <h2 className="flex items-center gap-2 text-xl font-bold text-white">
                 <Bot className="text-brand-400 h-6 w-6" />
                 {t("canl_qa_sistem_raporu")}
@@ -273,7 +273,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                 <span className="text-fg-muted font-mono text-sm">{t("skor")}</span>
                 <span
                   className={cn(
-                    "text-2xl font-black",
+                    "text-fg-secondaryxl font-black",
                     getScoreColor(liveResult.overall_score || 0),
                   )}
                 >
@@ -287,7 +287,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                 <h3 className="text-fg-secondary mb-2 text-xs font-semibold tracking-wider uppercase">
                   {t("y_netici_zeti")}
                 </h3>
-                <p className="text-sm leading-relaxed text-white/80">
+                <p className="text-fg-secondary text-sm leading-relaxed">
                   {liveResult.executive_summary}
                 </p>
               </div>
@@ -341,7 +341,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
         {/* Top Metrics Bento Row */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {/* Metric 1: Average Score */}
-          <div className="group hover:border-brand-500/30 relative flex flex-col overflow-hidden rounded-lg border border-white/10 bg-neutral-900/60 p-5 shadow-md backdrop-blur-xl transition-all duration-300">
+          <div className="group hover:border-brand-500/30 border-border-subtle bg-bg-secondary relative flex flex-col overflow-hidden rounded-lg border p-5 shadow-md backdrop-blur-xl transition-all duration-300">
             <div className="from-brand-500 absolute top-0 left-0 h-1 w-full bg-gradient-to-r to-transparent opacity-50 transition-all transition-opacity group-hover:opacity-100"></div>
             <div className="mb-4 flex items-start justify-between">
               <span className="text-fg-muted text-xs font-semibold tracking-widest uppercase">
@@ -403,7 +403,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
           </div>
 
           {/* Metric 2: Total Frontiers */}
-          <div className="group hover:border-accent-500/30 relative flex flex-col overflow-hidden rounded-lg border border-white/10 bg-neutral-900/60 p-5 shadow-md backdrop-blur-xl transition-all duration-300">
+          <div className="group hover:border-accent-500/30 border-border-subtle bg-bg-secondary relative flex flex-col overflow-hidden rounded-lg border p-5 shadow-md backdrop-blur-xl transition-all duration-300">
             <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-cyan-500 to-transparent opacity-50 transition-all transition-opacity group-hover:opacity-100"></div>
             <div className="mb-4 flex items-start justify-between">
               <span className="text-fg-muted text-xs font-semibold tracking-widest uppercase">
@@ -425,10 +425,10 @@ export function AnalysisDashboardClient({ registryData }: Props) {
           {/* Metric 3: Open P0 Blockers */}
           <div
             className={cn(
-              "group relative flex flex-col overflow-hidden rounded-lg border bg-neutral-900/60 p-5 shadow-md backdrop-blur-xl transition-all duration-300",
+              "group bg-bg-secondary relative flex flex-col overflow-hidden rounded-lg border p-5 shadow-md backdrop-blur-xl transition-all duration-300",
               openP0Count > 0
                 ? "border-danger-500/30 hover:border-danger-500/50 bg-rose-950/5"
-                : "hover:border-brand-500/30 border-white/10",
+                : "hover:border-brand-500/30 border-border-subtle",
             )}
           >
             {openP0Count > 0 && (
@@ -461,7 +461,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
           </div>
 
           {/* Metric 4: Resolved P0 Blockers */}
-          <div className="group hover:border-success-500/30 relative flex flex-col overflow-hidden rounded-lg border border-white/10 bg-neutral-900/60 p-5 shadow-md backdrop-blur-xl transition-all duration-300">
+          <div className="group hover:border-success-500/30 border-border-subtle bg-bg-secondary relative flex flex-col overflow-hidden rounded-lg border p-5 shadow-md backdrop-blur-xl transition-all duration-300">
             <div className="from-success-500 absolute top-0 left-0 h-1 w-full bg-gradient-to-r to-transparent opacity-50 transition-opacity group-hover:opacity-100"></div>
             <div className="mb-4 flex items-start justify-between">
               <span className="text-fg-muted text-xs font-semibold tracking-widest uppercase">
@@ -484,7 +484,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
         {/* Bento Main Grid Section */}
         <div className="grid gap-6 lg:grid-cols-3">
           {/* Model Comparison Matrix (Spans 2 Columns) */}
-          <div className="border-t-brand-500/30 flex flex-col justify-between rounded-lg border border-white/10 bg-neutral-900/60 p-6 shadow-md backdrop-blur-xl lg:col-span-2">
+          <div className="border-t-brand-500/30 border-border-subtle bg-bg-secondary flex flex-col justify-between rounded-lg border p-6 shadow-md backdrop-blur-xl lg:col-span-2">
             <div>
               <div className="mb-6 flex items-center justify-between">
                 <h3 className="text-md flex items-center gap-2 font-semibold text-white">
@@ -498,7 +498,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
               <div className="overflow-x-auto">
                 <table className="text-fg-muted w-full min-w-[500px] border-collapse text-left text-sm">
                   <thead>
-                    <tr className="text-fg-muted border-b border-white/10 text-xs tracking-wider uppercase">
+                    <tr className="text-fg-muted border-border-subtle border-b text-xs tracking-wider uppercase">
                       <th className="py-3 pr-4 font-semibold">{t("model_core")}</th>
                       {filteredAudits.map((a) => (
                         <th key={a.model_id} className="px-2 py-3 text-center font-semibold">
@@ -533,7 +533,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                                   "inline-block min-w-[32px] rounded border px-2 py-1 text-center font-bold",
                                   hasScore
                                     ? getScoreColor(score)
-                                    : "text-fg-muted/40 border-white/5 bg-neutral-950/20",
+                                    : "text-fg-muted/40 border-border-subtle/50 bg-bg-secondary",
                                 )}
                               >
                                 {hasScore ? score : "—"}
@@ -543,7 +543,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                         })}
                       </tr>
                     ))}
-                    <tr className="bg-brand-950/20 border-t-2 border-white/10 text-sm font-bold">
+                    <tr className="bg-brand-950/20 border-border-subtle border-t-2 text-sm font-bold">
                       <td className="text-brand-400 py-4 pr-4 font-sans">
                         {t("total_score", { defaultValue: "TOTAL SCORE" })}
                       </td>
@@ -567,14 +567,14 @@ export function AnalysisDashboardClient({ registryData }: Props) {
           {/* Right column: Audit Consensus & Telemetry Feed */}
           <div className="flex flex-col justify-between space-y-6">
             {/* Audit Consensus */}
-            <div className="rounded-lg border border-white/10 border-t-cyan-500/30 bg-neutral-900/60 p-6 shadow-md backdrop-blur-xl">
+            <div className="border-border-subtle bg-bg-secondary rounded-lg border border-t-cyan-500/30 p-6 shadow-md backdrop-blur-xl">
               <h3 className="text-md mb-4 flex items-center gap-2 font-semibold text-white">
                 <CheckCircle2 className="text-accent-400 h-5 w-5" />
                 {t("consensus_core_alignment")}
               </h3>
               <div className="space-y-4">
                 {/* Unanimous Pass */}
-                <div className="flex items-center justify-between rounded border border-white/5 bg-neutral-950/40 p-3 shadow-[inset_0_0_10px_rgba(255,255,255,0.02)]">
+                <div className="border-border-subtle/50 bg-bg-secondary flex items-center justify-between rounded border p-3 shadow-[inset_0_0_10px_rgba(255,255,255,0.02)]">
                   <div className="flex items-center gap-2.5">
                     <div className="border-accent-500/30 bg-accent-500/10 flex h-8 w-8 items-center justify-center rounded-full border shadow-[0_0_10px_rgba(6,182,212,0.2)]">
                       <CheckCircle2 className="text-accent-400 h-4 w-4" />
@@ -588,13 +588,13 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                       </div>
                     </div>
                   </div>
-                  <span className="text-accent-400 font-mono text-2xl font-extrabold tracking-tighter drop-shadow-[0_0_8px_rgba(6,182,212,0.3)]">
+                  <span className="text-accent-400 text-fg-secondaryxl font-mono font-extrabold tracking-tighter drop-shadow-[0_0_8px_rgba(6,182,212,0.3)]">
                     {registryData.consensus_findings.unanimous.length}
                   </span>
                 </div>
 
                 {/* Strong Consensus */}
-                <div className="flex items-center justify-between rounded border border-white/5 bg-neutral-950/40 p-3 shadow-[inset_0_0_10px_rgba(255,255,255,0.02)]">
+                <div className="border-border-subtle/50 bg-bg-secondary flex items-center justify-between rounded border p-3 shadow-[inset_0_0_10px_rgba(255,255,255,0.02)]">
                   <div className="flex items-center gap-2.5">
                     <div className="bg-brand-500/10 border-brand-500/30 flex h-8 w-8 items-center justify-center rounded-full border shadow-[0_0_10px_rgba(168,85,247,0.2)]">
                       <TrendingUp className="text-brand-400 h-4 w-4" />
@@ -608,7 +608,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                       </div>
                     </div>
                   </div>
-                  <span className="text-brand-400 font-mono text-2xl font-extrabold tracking-tighter drop-shadow-[0_0_8px_rgba(168,85,247,0.3)]">
+                  <span className="text-brand-400 text-fg-secondaryxl font-mono font-extrabold tracking-tighter drop-shadow-[0_0_8px_rgba(168,85,247,0.3)]">
                     {registryData.consensus_findings.strong_consensus.length}
                   </span>
                 </div>
@@ -616,8 +616,8 @@ export function AnalysisDashboardClient({ registryData }: Props) {
             </div>
 
             {/* Telemetry Feed Log Window */}
-            <div className="border-accent-500/20 flex min-h-[220px] flex-grow flex-col rounded-lg border bg-neutral-950/80 p-5 shadow-[0_0_20px_rgba(6,182,212,0.08)] backdrop-blur-2xl">
-              <div className="mb-3 flex items-center justify-between border-b border-white/10 pb-2">
+            <div className="border-accent-500/20 bg-bg-secondary flex min-h-[220px] flex-grow flex-col rounded-lg border p-5 shadow-[0_0_20px_rgba(6,182,212,0.08)] backdrop-blur-2xl">
+              <div className="border-border-subtle mb-3 flex items-center justify-between border-b pb-2">
                 <span className="text-accent-400 flex items-center gap-1.5 font-mono text-xs font-bold tracking-wider uppercase">
                   <span className="bg-accent-400 h-2 w-2 animate-ping rounded-full"></span>
                   {t("telemetry_feed")}
@@ -661,7 +661,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
         {/* Third Row: Unique Insights Carousel & Access Management */}
         <div className="grid gap-6 lg:grid-cols-3">
           {/* Access Management */}
-          <div className="rounded-lg border border-white/10 border-t-white/20 bg-neutral-900/60 p-6 shadow-md backdrop-blur-xl lg:col-span-2">
+          <div className="border-border-subtle bg-bg-secondary rounded-lg border border-t-white/20 p-6 shadow-md backdrop-blur-xl lg:col-span-2">
             <div className="mb-5 flex items-center justify-between">
               <h3 className="text-md flex items-center gap-2 font-semibold text-white">
                 <Lock className="text-brand-400 h-5 w-5" />
@@ -674,7 +674,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
 
             <div className="grid gap-4 md:grid-cols-2">
               {/* Production Key */}
-              <div className="hover:border-brand-500/30 rounded border border-white/5 bg-neutral-950/60 p-4 transition-all duration-300">
+              <div className="hover:border-brand-500/30 border-border-subtle/50 bg-bg-secondary rounded border p-4 transition-all duration-300">
                 <div className="mb-2 flex items-start justify-between">
                   <span className="text-xs font-semibold text-white">
                     {t("prod_gateway_master")}
@@ -683,7 +683,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                     {t("active")}
                   </span>
                 </div>
-                <div className="mt-3 flex items-center justify-between rounded border border-white/5 bg-neutral-900 p-2">
+                <div className="border-border-subtle/50 bg-bg-secondary mt-3 flex items-center justify-between rounded border p-2">
                   <code className="text-fg-muted font-mono text-xs tracking-widest">
                     {t("sk_prod_8f9a")}
                   </code>
@@ -700,16 +700,16 @@ export function AnalysisDashboardClient({ registryData }: Props) {
               </div>
 
               {/* Staging Key */}
-              <div className="rounded border border-white/5 bg-neutral-950/40 p-4 opacity-50">
+              <div className="border-border-subtle/50 bg-bg-secondary rounded border p-4 opacity-50">
                 <div className="mb-2 flex items-start justify-between">
                   <span className="text-fg-muted text-xs font-semibold">
                     {t("stag_sandbox_client")}
                   </span>
-                  <span className="text-fg-muted rounded border border-white/10 bg-neutral-800 px-2 py-0.5 font-mono text-[9px] tracking-wider uppercase">
+                  <span className="text-fg-muted border-border-subtle bg-bg-secondary rounded border px-2 py-0.5 font-mono text-[9px] tracking-wider uppercase">
                     {t("revoked")}
                   </span>
                 </div>
-                <div className="mt-3 flex items-center justify-between rounded border border-white/5 bg-neutral-900/50 p-2">
+                <div className="border-border-subtle/50 bg-bg-secondary mt-3 flex items-center justify-between rounded border p-2">
                   <code className="text-fg-disabled font-mono text-xs tracking-widest">
                     {t("sk_stag_2b1c")}
                   </code>
@@ -732,14 +732,14 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                 <div className="flex gap-1.5">
                   <button
                     onClick={handlePrevInsight}
-                    className="rounded-md border border-white/10 p-1 transition-all duration-200 hover:bg-white/5"
+                    className="border-border-subtle rounded-md border p-1 transition-all duration-200 hover:bg-white/5"
                     aria-label="Previous"
                   >
                     <ChevronLeft className="h-4 w-4 text-white" />
                   </button>
                   <button
                     onClick={handleNextInsight}
-                    className="rounded-md border border-white/10 p-1 transition-all duration-200 hover:bg-white/5"
+                    className="border-border-subtle rounded-md border p-1 transition-all duration-200 hover:bg-white/5"
                     aria-label="Next"
                   >
                     <ChevronRight className="h-4 w-4 text-white" />
@@ -775,7 +775,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                 </div>
               </div>
             </div>
-            <div className="mt-4 flex items-center justify-between border-t border-white/5 pt-3">
+            <div className="border-border-subtle/50 mt-4 flex items-center justify-between border-t pt-3">
               <span className="text-fg-muted text-[10px]">
                 {t("reported")}: {filteredAudits[carouselIndex]?.audit_date}
               </span>
@@ -784,8 +784,8 @@ export function AnalysisDashboardClient({ registryData }: Props) {
         </div>
 
         {/* P0 Blocker Tracker Card */}
-        <div className="rounded-lg border border-white/10 bg-neutral-900/60 p-6 shadow-md backdrop-blur-xl">
-          <div className="flex flex-col gap-4 border-b border-white/10 pb-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="border-border-subtle bg-bg-secondary rounded-lg border p-6 shadow-md backdrop-blur-xl">
+          <div className="border-border-subtle flex flex-col gap-4 border-b pb-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h3 className="text-md flex items-center gap-2 font-semibold text-white">
                 <AlertTriangle className="text-brand-400 h-5 w-5" />
@@ -801,10 +801,10 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                   placeholder={t("search_blockers")}
                   value={p0Search}
                   onChange={(e) => setP0Search(e.target.value)}
-                  className="focus:border-brand-500 focus:ring-brand-500 placeholder-fg-muted rounded-md border border-white/10 bg-neutral-950/80 py-2 pr-4 pl-9 text-xs text-white transition-all duration-200 focus:ring-1 focus:outline-none"
+                  className="focus:border-brand-500 focus:ring-brand-500 placeholder-fg-muted border-border-subtle bg-bg-secondary rounded-md border py-2 pr-4 pl-9 text-xs text-white transition-all duration-200 focus:ring-1 focus:outline-none"
                 />
               </div>
-              <div className="flex rounded-lg border border-white/10 bg-neutral-950/80 p-1">
+              <div className="border-border-subtle bg-bg-secondary flex rounded-lg border p-1">
                 <button
                   onClick={() => setP0Filter("all")}
                   className={cn(
@@ -870,7 +870,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                         >
                           {item.title}
                         </h4>
-                        <span className="text-fg-secondary rounded-full border border-white/5 bg-neutral-900 px-2 py-0.5 text-[10px] font-semibold uppercase">
+                        <span className="text-fg-secondary border-border-subtle/50 bg-bg-secondary rounded-full border px-2 py-0.5 text-[10px] font-semibold uppercase">
                           {item.category}
                         </span>
                         {!isResolved && (
@@ -908,8 +908,8 @@ export function AnalysisDashboardClient({ registryData }: Props) {
         </div>
 
         {/* War Room: Soft Launch Monitoring Card */}
-        <div className="rounded-lg border border-white/10 bg-neutral-900/60 p-6 shadow-md backdrop-blur-xl">
-          <div className="flex flex-col gap-4 border-b border-white/10 pb-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="border-border-subtle bg-bg-secondary rounded-lg border p-6 shadow-md backdrop-blur-xl">
+          <div className="border-border-subtle flex flex-col gap-4 border-b pb-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h3 className="text-md flex items-center gap-2 font-semibold text-white">
                 <Database className="text-accent-400 h-5 w-5 animate-pulse" />
@@ -929,7 +929,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                   href="https://vercel.com/quantummatrixcore-lab/alparai-com/analytics"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:border-brand-500/30 flex items-center justify-between rounded-lg border border-white/5 bg-neutral-950/40 p-3 transition-all duration-200 hover:bg-neutral-950/60"
+                  className="hover:border-brand-500/30 border-border-subtle/50 bg-bg-secondary hover:bg-bg-secondary flex items-center justify-between rounded-lg border p-3 transition-all duration-200"
                 >
                   <span className="text-xs font-medium text-white">{t("vercel_monitoring")}</span>
                   <ExternalLink className="text-fg-muted h-4 w-4" />
@@ -938,7 +938,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                   href="https://supabase.com/dashboard/project/azszpzyvxjduhemkjsdh/api"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:border-brand-500/30 flex items-center justify-between rounded-lg border border-white/5 bg-neutral-950/40 p-3 transition-all duration-200 hover:bg-neutral-950/60"
+                  className="hover:border-brand-500/30 border-border-subtle/50 bg-bg-secondary hover:bg-bg-secondary flex items-center justify-between rounded-lg border p-3 transition-all duration-200"
                 >
                   <span className="text-xs font-medium text-white">{t("supabase_monitoring")}</span>
                   <ExternalLink className="text-fg-muted h-4 w-4" />
@@ -947,7 +947,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                   href="https://sentry.io/organizations/quantummatrixcore/projects/alpar-ai/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:border-brand-500/30 flex items-center justify-between rounded-lg border border-white/5 bg-neutral-950/40 p-3 transition-all duration-200 hover:bg-neutral-950/60"
+                  className="hover:border-brand-500/30 border-border-subtle/50 bg-bg-secondary hover:bg-bg-secondary flex items-center justify-between rounded-lg border p-3 transition-all duration-200"
                 >
                   <span className="text-xs font-medium text-white">{t("sentry_monitoring")}</span>
                   <ExternalLink className="text-fg-muted h-4 w-4" />
@@ -961,19 +961,19 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                 {t("active_rate_limits")}
               </h4>
               <div className="grid gap-3">
-                <div className="flex items-center justify-between rounded-lg border border-white/5 bg-neutral-950/40 p-3">
+                <div className="border-border-subtle/50 bg-bg-secondary flex items-center justify-between rounded-lg border p-3">
                   <span className="text-fg-secondary text-xs">{t("incident_rate_limit")}</span>
                   <span className="border-accent-500/20 bg-accent-500/10 text-accent-400 rounded border px-2 py-0.5 text-[10px] font-bold">
                     {t("edge")}
                   </span>
                 </div>
-                <div className="flex items-center justify-between rounded-lg border border-white/5 bg-neutral-950/40 p-3">
+                <div className="border-border-subtle/50 bg-bg-secondary flex items-center justify-between rounded-lg border p-3">
                   <span className="text-fg-secondary text-xs">{t("comment_rate_limit")}</span>
                   <span className="border-accent-500/20 bg-accent-500/10 text-accent-400 rounded border px-2 py-0.5 text-[10px] font-bold">
                     {t("edge")}
                   </span>
                 </div>
-                <div className="flex items-center justify-between rounded-lg border border-white/5 bg-neutral-950/40 p-3">
+                <div className="border-border-subtle/50 bg-bg-secondary flex items-center justify-between rounded-lg border p-3">
                   <span className="text-fg-secondary text-xs">{t("affected_rate_limit")}</span>
                   <span className="border-accent-500/20 bg-accent-500/10 text-accent-400 rounded border px-2 py-0.5 text-[10px] font-bold">
                     {t("edge")}

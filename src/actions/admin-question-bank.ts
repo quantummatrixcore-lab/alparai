@@ -2,8 +2,11 @@
 
 import { createClient } from "@/lib/supabase/server";
 
+import { requireAdmin } from "@/lib/auth/session";
+
 export async function generateQuestionsFromIncidents(limit = 10) {
   try {
+    await requireAdmin();
     const supabase = await createClient();
 
     // 1. Fetch existing incident IDs to avoid duplicates
@@ -66,6 +69,7 @@ export async function generateQuestionsFromIncidents(limit = 10) {
 
 export async function runBatchEvaluations(batchSize = 5) {
   try {
+    await requireAdmin();
     const supabase = await createClient();
 
     // 1. Fetch active questions

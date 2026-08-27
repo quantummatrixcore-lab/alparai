@@ -1,0 +1,287 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_claude_md",
+      "label": "CLAUDE.md",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_claude_alpar_ai_claude_context_file",
+      "label": "ALPAR AI \u2014 Claude Context File",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_claude_project",
+      "label": "Project",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L3"
+    },
+    {
+      "id": "d_01_saas_products_alparai_claude_commands",
+      "label": "Commands",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "d_01_saas_products_alparai_claude_conventions",
+      "label": "Conventions",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L18"
+    },
+    {
+      "id": "d_01_saas_products_alparai_claude_standing_rules",
+      "label": "Standing Rules",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L28"
+    },
+    {
+      "id": "d_01_saas_products_alparai_claude_a_claims_must_be_true",
+      "label": "A \u2014 Claims must be true",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L38"
+    },
+    {
+      "id": "d_01_saas_products_alparai_claude_b_duties_are_separate",
+      "label": "B \u2014 Duties are separate",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L58"
+    },
+    {
+      "id": "d_01_saas_products_alparai_claude_c_enforcement_is_itself_enforced",
+      "label": "C \u2014 Enforcement is itself enforced",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L76"
+    },
+    {
+      "id": "d_01_saas_products_alparai_claude_d_work_stays_visible",
+      "label": "D \u2014 Work stays visible",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L86"
+    },
+    {
+      "id": "d_01_saas_products_alparai_claude_e_cost_discipline",
+      "label": "E \u2014 Cost discipline",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L94"
+    },
+    {
+      "id": "d_01_saas_products_alparai_claude_f_safety",
+      "label": "F \u2014 Safety",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L105"
+    },
+    {
+      "id": "d_01_saas_products_alparai_claude_g_communication",
+      "label": "G \u2014 Communication",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L113"
+    },
+    {
+      "id": "d_01_saas_products_alparai_claude_h_reading_discipline",
+      "label": "H \u2014 Reading discipline",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L123"
+    },
+    {
+      "id": "d_01_saas_products_alparai_claude_model_routing",
+      "label": "Model routing",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L130"
+    },
+    {
+      "id": "d_01_saas_products_alparai_claude_alias_map_old_identifier_new",
+      "label": "Alias map \u2014 old identifier \u2192 new",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L141"
+    },
+    {
+      "id": "d_01_saas_products_alparai_claude_file_map",
+      "label": "File Map",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L150"
+    },
+    {
+      "id": "d_01_saas_products_alparai_claude_key_architecture",
+      "label": "Key Architecture",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L162"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_claude_md",
+      "target": "d_01_saas_products_alparai_claude_alpar_ai_claude_context_file",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_claude_alpar_ai_claude_context_file",
+      "target": "d_01_saas_products_alparai_claude_project",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_claude_alpar_ai_claude_context_file",
+      "target": "d_01_saas_products_alparai_claude_commands",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_claude_alpar_ai_claude_context_file",
+      "target": "d_01_saas_products_alparai_claude_conventions",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_claude_alpar_ai_claude_context_file",
+      "target": "d_01_saas_products_alparai_claude_standing_rules",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_claude_standing_rules",
+      "target": "d_01_saas_products_alparai_claude_a_claims_must_be_true",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_claude_standing_rules",
+      "target": "d_01_saas_products_alparai_claude_b_duties_are_separate",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L58",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_claude_standing_rules",
+      "target": "d_01_saas_products_alparai_claude_c_enforcement_is_itself_enforced",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L76",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_claude_standing_rules",
+      "target": "d_01_saas_products_alparai_claude_d_work_stays_visible",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L86",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_claude_standing_rules",
+      "target": "d_01_saas_products_alparai_claude_e_cost_discipline",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L94",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_claude_standing_rules",
+      "target": "d_01_saas_products_alparai_claude_f_safety",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L105",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_claude_standing_rules",
+      "target": "d_01_saas_products_alparai_claude_g_communication",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L113",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_claude_standing_rules",
+      "target": "d_01_saas_products_alparai_claude_h_reading_discipline",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L123",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_claude_standing_rules",
+      "target": "d_01_saas_products_alparai_claude_model_routing",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L130",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_claude_standing_rules",
+      "target": "d_01_saas_products_alparai_claude_alias_map_old_identifier_new",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L141",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_claude_alpar_ai_claude_context_file",
+      "target": "d_01_saas_products_alparai_claude_file_map",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L150",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_claude_alpar_ai_claude_context_file",
+      "target": "d_01_saas_products_alparai_claude_key_architecture",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L162",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

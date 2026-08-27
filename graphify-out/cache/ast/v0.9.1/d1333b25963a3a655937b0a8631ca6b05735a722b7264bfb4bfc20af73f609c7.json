@@ -1,0 +1,127 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_intake_1_md",
+      "label": "INTAKE-1.md",
+      "file_type": "document",
+      "source_file": "docs/plan/items/INTAKE-1.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_intake_1_intake_1",
+      "label": "INTAKE-1",
+      "file_type": "document",
+      "source_file": "docs/plan/items/INTAKE-1.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_intake_1_what_the_form_asks_for_today",
+      "label": "What the form asks for today",
+      "file_type": "document",
+      "source_file": "docs/plan/items/INTAKE-1.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_intake_1_what_to_change",
+      "label": "What to change",
+      "file_type": "document",
+      "source_file": "docs/plan/items/INTAKE-1.md",
+      "source_location": "L25"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_intake_1_the_principle",
+      "label": "The principle",
+      "file_type": "document",
+      "source_file": "docs/plan/items/INTAKE-1.md",
+      "source_location": "L45"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_intake_1_acceptance",
+      "label": "Acceptance",
+      "file_type": "document",
+      "source_file": "docs/plan/items/INTAKE-1.md",
+      "source_location": "L50"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_intake_1_closed",
+      "label": "Closed",
+      "file_type": "document",
+      "source_file": "docs/plan/items/INTAKE-1.md",
+      "source_location": "L57"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_intake_1_closed_2026_08_21_v13_87_verified_on_origin_at_babb4435",
+      "label": "Closed 2026-08-21 (v13.87) \u2014 verified on origin at `babb4435`",
+      "file_type": "document",
+      "source_file": "docs/plan/items/INTAKE-1.md",
+      "source_location": "L61"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_intake_1_md",
+      "target": "d_01_saas_products_alparai_docs_plan_items_intake_1_intake_1",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/INTAKE-1.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_intake_1_intake_1",
+      "target": "d_01_saas_products_alparai_docs_plan_items_intake_1_what_the_form_asks_for_today",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/INTAKE-1.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_intake_1_intake_1",
+      "target": "d_01_saas_products_alparai_docs_plan_items_intake_1_what_to_change",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/INTAKE-1.md",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_intake_1_intake_1",
+      "target": "d_01_saas_products_alparai_docs_plan_items_intake_1_the_principle",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/INTAKE-1.md",
+      "source_location": "L45",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_intake_1_intake_1",
+      "target": "d_01_saas_products_alparai_docs_plan_items_intake_1_acceptance",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/INTAKE-1.md",
+      "source_location": "L50",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_intake_1_intake_1",
+      "target": "d_01_saas_products_alparai_docs_plan_items_intake_1_closed",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/INTAKE-1.md",
+      "source_location": "L57",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_intake_1_intake_1",
+      "target": "d_01_saas_products_alparai_docs_plan_items_intake_1_closed_2026_08_21_v13_87_verified_on_origin_at_babb4435",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/INTAKE-1.md",
+      "source_location": "L61",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

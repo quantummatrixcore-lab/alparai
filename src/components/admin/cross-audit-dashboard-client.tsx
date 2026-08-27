@@ -66,7 +66,7 @@ export function CrossAuditDashboardClient({ data }: CrossAuditDashboardClientPro
 
   if (!isMounted) {
     return (
-      <div className="bg-bg-secondary/40 flex h-96 w-full items-center justify-center rounded-2xl border border-white/5 backdrop-blur-xl">
+      <div className="bg-bg-secondary/40 border-border-subtle/50 flex h-96 w-full items-center justify-center rounded-2xl border backdrop-blur-xl">
         <Activity className="text-brand-400 h-8 w-8 animate-spin" />
       </div>
     );
@@ -133,7 +133,7 @@ export function CrossAuditDashboardClient({ data }: CrossAuditDashboardClientPro
           </p>
           <div className="flex flex-col gap-4 sm:flex-row">
             <textarea
-              className="bg-bg-tertiary focus:border-brand-500/50 flex-1 resize-none rounded-lg border border-white/10 p-3 text-sm text-white focus:outline-none"
+              className="bg-bg-tertiary focus:border-brand-500/50 border-border-subtle flex-1 resize-none rounded-lg border p-3 text-sm text-white focus:outline-none"
               rows={3}
               placeholder="Örn: Kullanıcı hesabından izinsiz 5000 TL çekilmiş ve sistem uyarı vermemiş..."
               value={testInput}
@@ -155,19 +155,19 @@ export function CrossAuditDashboardClient({ data }: CrossAuditDashboardClientPro
           </div>
 
           {testResult && (
-            <div className="animate-in fade-in slide-in-from-bottom-4 mt-6 border-t border-white/10 pt-6 duration-500">
+            <div className="animate-in fade-in slide-in-from-bottom-4 border-border-subtle mt-6 border-t pt-6 duration-500">
               <div className="mb-6 flex items-center justify-between">
                 <h3 className="font-bold tracking-wide text-white">
                   Değerlendirme Sonucu (Audit Verdict)
                 </h3>
                 <div className="flex gap-4">
-                  <div className="bg-bg-tertiary/60 flex items-center gap-3 rounded-xl border border-white/5 px-4 py-2">
+                  <div className="bg-bg-tertiary/60 border-border-subtle/50 flex items-center gap-3 rounded-xl border px-4 py-2">
                     <span className="text-fg-muted text-xs font-bold uppercase">TRUTH SCORE</span>
                     <span className="text-success-400 font-mono text-lg font-black">
                       {testResult.truth_score}/100
                     </span>
                   </div>
-                  <div className="bg-bg-tertiary/60 flex items-center gap-3 rounded-xl border border-white/5 px-4 py-2">
+                  <div className="bg-bg-tertiary/60 border-border-subtle/50 flex items-center gap-3 rounded-xl border px-4 py-2">
                     <span className="text-fg-muted text-xs font-bold uppercase">RISK LEVEL</span>
                     <span
                       className={cn(
@@ -210,7 +210,7 @@ export function CrossAuditDashboardClient({ data }: CrossAuditDashboardClientPro
                       className="border-border-subtle bg-bg-secondary/40 hover:border-brand-500/30 group relative rounded-xl border p-4 transition-all duration-300"
                     >
                       <div className="from-brand-500 absolute top-0 right-0 left-0 h-[1.5px] bg-gradient-to-r to-cyan-500 opacity-10 transition-opacity duration-300 group-hover:opacity-100" />
-                      <div className="mb-3 flex items-center justify-between gap-2 border-b border-white/5 pb-2">
+                      <div className="border-border-subtle/50 mb-3 flex items-center justify-between gap-2 border-b pb-2">
                         <div className="text-brand-400 flex items-center gap-1.5 text-xs font-bold tracking-wider uppercase">
                           <Cpu className="text-accent-400 h-3.5 w-3.5" />
                           {m.name}
@@ -295,7 +295,7 @@ export function CrossAuditDashboardClient({ data }: CrossAuditDashboardClientPro
       {/* 2. Charts Grid */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         {/* Trend Chart */}
-        <div className="bg-bg-secondary/40 rounded-2xl border border-white/5 p-6 shadow-lg backdrop-blur-xl">
+        <div className="bg-bg-secondary/40 border-border-subtle/50 rounded-2xl border p-6 shadow-lg backdrop-blur-xl">
           <div className="mb-6">
             <h3 className="font-bold tracking-tight text-white">
               {t("metrics_trend_title") || "Historical Score Evolution"}
@@ -352,7 +352,7 @@ export function CrossAuditDashboardClient({ data }: CrossAuditDashboardClientPro
         </div>
 
         {/* Model Comparison Leaderboard */}
-        <div className="bg-bg-secondary/40 rounded-2xl border border-white/5 p-6 shadow-lg backdrop-blur-xl">
+        <div className="bg-bg-secondary/40 border-border-subtle/50 rounded-2xl border p-6 shadow-lg backdrop-blur-xl">
           <div className="mb-6">
             <h3 className="font-bold tracking-tight text-white">
               {t("metrics_model_comparison_title") || "AI Provider Accountability Bench"}
@@ -413,7 +413,7 @@ export function CrossAuditDashboardClient({ data }: CrossAuditDashboardClientPro
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         {/* Category Distribution */}
-        <div className="bg-bg-secondary/40 rounded-2xl border border-white/5 p-6 shadow-lg backdrop-blur-xl">
+        <div className="bg-bg-secondary/40 border-border-subtle/50 rounded-2xl border p-6 shadow-lg backdrop-blur-xl">
           <div className="mb-6">
             <h3 className="font-bold tracking-tight text-white">
               {t("metrics_category_distribution_title") || "Incident Categories Breakdown"}
@@ -472,7 +472,7 @@ export function CrossAuditDashboardClient({ data }: CrossAuditDashboardClientPro
         </div>
 
         {/* EU AI Act Risk Distribution */}
-        <div className="bg-bg-secondary/40 rounded-2xl border border-white/5 p-6 shadow-lg backdrop-blur-xl">
+        <div className="bg-bg-secondary/40 border-border-subtle/50 rounded-2xl border p-6 shadow-lg backdrop-blur-xl">
           <div className="mb-6">
             <h3 className="font-bold tracking-tight text-white">
               {t("metrics_risk_distribution_title") || "EU AI Act Regulatory Risk Distribution"}
@@ -542,12 +542,12 @@ interface StatCardProps {
 
 function StatCard({ title, value, icon, description, colorClass = "text-white" }: StatCardProps) {
   return (
-    <div className="bg-bg-secondary/40 rounded-2xl border border-white/5 p-5 shadow-lg backdrop-blur-xl">
+    <div className="bg-bg-secondary/40 border-border-subtle/50 rounded-2xl border p-5 shadow-lg backdrop-blur-xl">
       <div className="text-fg-muted flex items-center justify-between">
         <span className="text-xs font-semibold tracking-wider uppercase">{title}</span>
         {icon}
       </div>
-      <h3 className={`mt-3 text-2xl font-bold tracking-tight ${colorClass}`}>{value}</h3>
+      <h3 className={`text-fg-secondaryxl mt-3 font-bold tracking-tight ${colorClass}`}>{value}</h3>
       {description && <p className="text-fg-muted mt-1 text-[11px] font-medium">{description}</p>}
     </div>
   );

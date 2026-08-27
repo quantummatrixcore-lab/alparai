@@ -65,8 +65,6 @@ describe("Cross-Audit Engine (Debate Protocol)", () => {
         }),
       }),
       update: mockAdminClient._mocks.mockUpdate,
- 
- 
     } as any);
 
     // 2. Mock callWithFailover sequence for Debate Protocol (7 calls)
@@ -228,8 +226,6 @@ describe("Cross-Audit Engine (Debate Protocol)", () => {
         }),
       }),
       update: mockAdminClient._mocks.mockUpdate,
- 
- 
     } as any);
 
     const result = await runCrossAudit("inc-invalid");
@@ -304,8 +300,6 @@ describe("Cross-Audit Engine (Debate Protocol)", () => {
           }),
         }),
         update: mockAdminClient._mocks.mockUpdate,
- 
- 
       } as any);
 
       const result = await runCrossAudit("inc-123");

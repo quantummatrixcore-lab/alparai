@@ -80,14 +80,14 @@ export function ServiceBlock({
   const spec = SERVICE_LIMIT_SPECS[service.id];
 
   return (
-    <div className="bg-bg-secondary/40 border-border-subtle overflow-hidden rounded-xl border backdrop-blur-sm transition-all duration-300 hover:border-white/10 hover:bg-neutral-900/10">
+    <div className="bg-bg-secondary/40 border-border-subtle hover:border-border-subtle hover:bg-bg-secondary overflow-hidden rounded-xl border backdrop-blur-sm transition-all duration-300">
       <button
         onClick={onToggle}
         className="group flex w-full flex-col justify-between gap-4 p-5 text-left transition-colors hover:bg-white/[0.01] sm:flex-row sm:items-center"
       >
         <div className="flex flex-1 items-center gap-4">
           {/* Logo with clean glowing borders */}
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-white/5 bg-neutral-950/40 p-2.5 shadow-inner">
+          <div className="border-border-subtle/50 bg-bg-secondary flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border p-2.5 shadow-inner">
             {Logo ? (
               <Logo className="h-full w-full drop-shadow-[0_0_4px_rgba(255,255,255,0.15)] filter" />
             ) : (
@@ -119,7 +119,7 @@ export function ServiceBlock({
         </div>
 
         {/* Zero cost telemetry limit status */}
-        <div className="flex items-center justify-between gap-6 border-t border-white/5 pt-3 sm:justify-end sm:border-0 sm:pt-0">
+        <div className="border-border-subtle/50 flex items-center justify-between gap-6 border-t pt-3 sm:justify-end sm:border-0 sm:pt-0">
           {spec && statusType === "connected" && (
             <div className="hidden min-w-[140px] text-left sm:text-right md:block">
               <p className="text-fg-muted font-mono text-[9px] font-bold tracking-wider uppercase">
@@ -155,7 +155,7 @@ export function ServiceBlock({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="text-fg-muted hover:text-fg-primary rounded-lg border border-transparent p-2 transition-all duration-200 hover:border-white/5 hover:bg-white/5"
+                className="text-fg-muted hover:text-fg-primary hover:border-border-subtle/50 rounded-lg border border-transparent p-2 transition-all duration-200 hover:bg-white/5"
                 title={t("open_dashboard")}
               >
                 <Globe weight="duotone" className="h-4 w-4" />
@@ -182,7 +182,7 @@ export function ServiceBlock({
             transition={{ duration: 0.2, ease: "easeInOut" }}
             className="overflow-hidden"
           >
-            <div className="border-border-subtle border-t bg-neutral-950/20">
+            <div className="border-border-subtle bg-bg-secondary border-t">
               <div className="space-y-3 p-5">
                 <div className="flex items-center justify-between">
                   <h4 className="text-fg-primary text-xs font-bold tracking-wider uppercase">

@@ -65,7 +65,7 @@ export function ARRProjectionCharts({ scenarioResult }: ARRProjectionChartsProps
   };
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-neutral-900/60 p-6 shadow-2xl backdrop-blur-xl">
+    <div className="border-border-subtle bg-bg-secondary rounded-2xl border p-6 shadow-2xl backdrop-blur-xl">
       <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
         <div>
           <h3 className="text-fg-primary text-lg font-bold tracking-tight">{t("chart_title")}</h3>
@@ -73,7 +73,7 @@ export function ARRProjectionCharts({ scenarioResult }: ARRProjectionChartsProps
         </div>
 
         {/* Tab Filters */}
-        <div className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-neutral-950/60 p-1">
+        <div className="border-border-subtle bg-bg-secondary flex items-center gap-1.5 rounded-xl border p-1">
           {(["all", "A", "B", "C"] as const).map((tab) => (
             <button
               key={tab}

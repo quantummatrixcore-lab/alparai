@@ -1,0 +1,79 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_hyg_4_md",
+      "label": "HYG-4.md",
+      "file_type": "document",
+      "source_file": "docs/plan/items/HYG-4.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_hyg_4_hyg_4",
+      "label": "HYG-4",
+      "file_type": "document",
+      "source_file": "docs/plan/items/HYG-4.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_hyg_4_root_cause_found_2026_08_18",
+      "label": "Root cause found 2026-08-18",
+      "file_type": "document",
+      "source_file": "docs/plan/items/HYG-4.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_hyg_4_process_fix_not_just_a_data_fix",
+      "label": "Process fix, not just a data fix",
+      "file_type": "document",
+      "source_file": "docs/plan/items/HYG-4.md",
+      "source_location": "L48"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_hyg_4_acceptance",
+      "label": "Acceptance",
+      "file_type": "document",
+      "source_file": "docs/plan/items/HYG-4.md",
+      "source_location": "L56"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_hyg_4_md",
+      "target": "d_01_saas_products_alparai_docs_plan_items_hyg_4_hyg_4",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/HYG-4.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_hyg_4_hyg_4",
+      "target": "d_01_saas_products_alparai_docs_plan_items_hyg_4_root_cause_found_2026_08_18",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/HYG-4.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_hyg_4_hyg_4",
+      "target": "d_01_saas_products_alparai_docs_plan_items_hyg_4_process_fix_not_just_a_data_fix",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/HYG-4.md",
+      "source_location": "L48",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_hyg_4_hyg_4",
+      "target": "d_01_saas_products_alparai_docs_plan_items_hyg_4_acceptance",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/HYG-4.md",
+      "source_location": "L56",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

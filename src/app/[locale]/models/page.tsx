@@ -173,9 +173,9 @@ export default async function ModelsPage({ params, searchParams }: ModelPageProp
 
       {/* Enterprise Stat Cards Grid */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="hover:border-brand-500/40 relative overflow-hidden rounded-2xl border border-white/10 bg-slate-900/40 p-5 shadow-xl backdrop-blur-xl transition-all duration-300 hover:bg-slate-900/60">
+        <div className="hover:border-brand-500/40 border-border-subtle bg-bg-secondary hover:bg-bg-secondary relative overflow-hidden rounded-2xl border p-5 shadow-xl backdrop-blur-xl transition-all duration-300">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold tracking-wider text-slate-400 uppercase">
+            <span className="text-fg-muted text-xs font-bold tracking-wider uppercase">
               {t("stat_total_models")}
             </span>
             <div className="border-brand-500/20 bg-brand-500/10 text-brand-400 flex h-9 w-9 items-center justify-center rounded-xl border">
@@ -183,28 +183,28 @@ export default async function ModelsPage({ params, searchParams }: ModelPageProp
             </div>
           </div>
           <div className="mt-3 text-3xl font-extrabold text-white">{totalModelsCount}</div>
-          <div className="mt-1 flex items-center gap-1 text-xs text-slate-400">
+          <div className="text-fg-muted mt-1 flex items-center gap-1 text-xs">
             <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
             <span>{t("stat_total_models_sub")}</span>
           </div>
         </div>
 
-        <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-slate-900/40 p-5 shadow-xl backdrop-blur-xl transition-all duration-300 hover:border-amber-500/40 hover:bg-slate-900/60">
+        <div className="border-border-subtle bg-bg-secondary hover:bg-bg-secondary relative overflow-hidden rounded-2xl border p-5 shadow-xl backdrop-blur-xl transition-all duration-300 hover:border-amber-500/40">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold tracking-wider text-slate-400 uppercase">
+            <span className="text-fg-muted text-xs font-bold tracking-wider uppercase">
               {t("stat_rated_models")}
             </span>
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-amber-500/20 bg-amber-500/10 text-amber-400">
+            <div className="border-warning-500/20 flex h-9 w-9 items-center justify-center rounded-xl border bg-amber-500/10 text-amber-400">
               <Star className="h-5 w-5 fill-amber-400/20" />
             </div>
           </div>
           <div className="mt-3 text-3xl font-extrabold text-white">{ratedModelsCount}</div>
-          <div className="mt-1 text-xs text-slate-400">{t("stat_rated_models_sub")}</div>
+          <div className="text-fg-muted mt-1 text-xs">{t("stat_rated_models_sub")}</div>
         </div>
 
-        <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-slate-900/40 p-5 shadow-xl backdrop-blur-xl transition-all duration-300 hover:border-indigo-500/40 hover:bg-slate-900/60">
+        <div className="border-border-subtle bg-bg-secondary hover:bg-bg-secondary relative overflow-hidden rounded-2xl border p-5 shadow-xl backdrop-blur-xl transition-all duration-300 hover:border-indigo-500/40">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold tracking-wider text-slate-400 uppercase">
+            <span className="text-fg-muted text-xs font-bold tracking-wider uppercase">
               {t("stat_providers")}
             </span>
             <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-indigo-500/20 bg-indigo-500/10 text-indigo-400">
@@ -212,12 +212,12 @@ export default async function ModelsPage({ params, searchParams }: ModelPageProp
             </div>
           </div>
           <div className="mt-3 text-3xl font-extrabold text-white">{uniqueProvidersCount}</div>
-          <div className="mt-1 text-xs text-slate-400">{t("stat_providers_sub")}</div>
+          <div className="text-fg-muted mt-1 text-xs">{t("stat_providers_sub")}</div>
         </div>
 
-        <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-slate-900/40 p-5 shadow-xl backdrop-blur-xl transition-all duration-300 hover:border-purple-500/40 hover:bg-slate-900/60">
+        <div className="border-border-subtle bg-bg-secondary hover:bg-bg-secondary relative overflow-hidden rounded-2xl border p-5 shadow-xl backdrop-blur-xl transition-all duration-300 hover:border-purple-500/40">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold tracking-wider text-slate-400 uppercase">
+            <span className="text-fg-muted text-xs font-bold tracking-wider uppercase">
               {t("stat_audits")}
             </span>
             <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-purple-500/20 bg-purple-500/10 text-purple-400">
@@ -225,32 +225,32 @@ export default async function ModelsPage({ params, searchParams }: ModelPageProp
             </div>
           </div>
           <div className="mt-3 text-3xl font-extrabold text-white">{totalAuditsCount}</div>
-          <div className="mt-1 text-xs text-slate-400">{t("stat_audits_sub")}</div>
+          <div className="text-fg-muted mt-1 text-xs">{t("stat_audits_sub")}</div>
         </div>
       </div>
 
       {/* Glassmorphism Filter and Sort Form */}
       <form
         method="GET"
-        className="relative mx-auto flex max-w-5xl flex-col gap-4 rounded-2xl border border-white/10 bg-slate-900/40 p-4 shadow-2xl backdrop-blur-xl sm:flex-row sm:items-center"
+        className="border-border-subtle bg-bg-secondary relative mx-auto flex max-w-5xl flex-col gap-4 rounded-2xl border p-4 shadow-2xl backdrop-blur-xl sm:flex-row sm:items-center"
       >
         <div className="relative flex-1">
-          <Search className="pointer-events-none absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2 text-slate-400" />
+          <Search className="text-fg-muted pointer-events-none absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2" />
           <input
             type="text"
             name="search"
             defaultValue={search || ""}
             placeholder={t("search_placeholder")}
-            className="focus:border-brand-500 focus:ring-brand-500/20 w-full rounded-xl border border-white/10 bg-slate-950/60 py-2.5 pr-4 pl-11 text-sm text-white placeholder-slate-400 transition-all focus:ring-2 focus:outline-none"
+            className="focus:border-brand-500 focus:ring-brand-500/20 border-border-subtle bg-bg-secondary w-full rounded-xl border py-2.5 pr-4 pl-11 text-sm text-white placeholder-slate-400 transition-all focus:ring-2 focus:outline-none"
           />
         </div>
         <div className="flex items-center gap-3">
           <div className="relative flex items-center">
-            <SlidersHorizontal className="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400" />
+            <SlidersHorizontal className="text-fg-muted pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
             <select
               name="sort"
               defaultValue={sort || "name"}
-              className="focus:border-brand-500 focus:ring-brand-500/20 cursor-pointer rounded-xl border border-white/10 bg-slate-950/60 py-2.5 pr-8 pl-9 text-sm text-white transition-all focus:ring-2 focus:outline-none"
+              className="focus:border-brand-500 focus:ring-brand-500/20 border-border-subtle bg-bg-secondary cursor-pointer rounded-xl border py-2.5 pr-8 pl-9 text-sm text-white transition-all focus:ring-2 focus:outline-none"
             >
               <option value="name">{t("sort_name")}</option>
               <option value="rating">{t("sort_rating")}</option>
@@ -268,9 +268,9 @@ export default async function ModelsPage({ params, searchParams }: ModelPageProp
       </form>
 
       {/* Enterprise Glassmorphic Table/List View */}
-      <div className="overflow-hidden rounded-2xl border border-white/10 bg-slate-900/40 shadow-2xl backdrop-blur-xl">
+      <div className="border-border-subtle bg-bg-secondary overflow-hidden rounded-2xl border shadow-2xl backdrop-blur-xl">
         {/* Table Header (Hidden on Mobile) */}
-        <div className="hidden border-b border-white/10 bg-slate-950/60 px-6 py-4 text-xs font-black tracking-widest text-slate-400 uppercase md:grid md:grid-cols-[2fr_1.2fr_1.2fr_1.2fr_0.8fr_0.8fr_40px] md:items-center md:gap-4">
+        <div className="border-border-subtle bg-bg-secondary text-fg-muted hidden border-b px-6 py-4 text-xs font-black tracking-widest uppercase md:grid md:grid-cols-[2fr_1.2fr_1.2fr_1.2fr_0.8fr_0.8fr_40px] md:items-center md:gap-4">
           <div>{t("table_model_name")}</div>
           <div>{t("table_provider")}</div>
           <div>{t("table_status")}</div>
@@ -289,7 +289,7 @@ export default async function ModelsPage({ params, searchParams }: ModelPageProp
               <h3 className="mb-2 text-xl font-bold text-white">
                 {search ? t("no_results_title") : t("empty_title")}
               </h3>
-              <p className="max-w-sm text-sm text-slate-400">
+              <p className="text-fg-muted max-w-sm text-sm">
                 {search ? t("no_results_subtitle") : t("empty_subtitle")}
               </p>
             </div>
@@ -309,14 +309,14 @@ export default async function ModelsPage({ params, searchParams }: ModelPageProp
                 <Link
                   key={model.id}
                   href={`/models/${model.provider_id}/${model.id}`}
-                  className="group flex flex-col gap-4 p-6 transition-all duration-300 hover:bg-slate-800/40 md:grid md:grid-cols-[2fr_1.2fr_1.2fr_1.2fr_0.8fr_0.8fr_40px] md:items-center md:gap-4 md:px-6 md:py-4"
+                  className="group hover:bg-bg-secondary flex flex-col gap-4 p-6 transition-all duration-300 md:grid md:grid-cols-[2fr_1.2fr_1.2fr_1.2fr_0.8fr_0.8fr_40px] md:items-center md:gap-4 md:px-6 md:py-4"
                 >
                   {/* Model Name & Version */}
                   <div className="space-y-1">
                     <h3 className="group-hover:text-brand-400 text-base font-bold text-white transition-colors">
                       {model.name}
                     </h3>
-                    <p className="font-mono text-xs text-slate-400">
+                    <p className="text-fg-muted font-mono text-xs">
                       {model.version && t("version", { version: model.version })}
                       {model.released_at && ` • ${t("released", { date: model.released_at })}`}
                     </p>
@@ -331,14 +331,14 @@ export default async function ModelsPage({ params, searchParams }: ModelPageProp
                         width={26}
                         height={26}
                         unoptimized
-                        className="rounded-lg border border-white/10 bg-slate-800 object-contain p-1"
+                        className="border-border-subtle bg-bg-secondary rounded-lg border object-contain p-1"
                       />
                     ) : (
-                      <div className="text-brand-300 flex h-7 w-7 items-center justify-center rounded-lg border border-white/10 bg-slate-800 text-[11px] font-bold">
+                      <div className="text-brand-300 border-border-subtle bg-bg-secondary flex h-7 w-7 items-center justify-center rounded-lg border text-[11px] font-bold">
                         {provider?.name?.[0] || "AI"}
                       </div>
                     )}
-                    <span className="text-sm font-semibold text-slate-200">
+                    <span className="text-fg-primary text-sm font-semibold">
                       {provider?.name || t("unknown_provider")}
                     </span>
                   </div>
@@ -349,7 +349,7 @@ export default async function ModelsPage({ params, searchParams }: ModelPageProp
                       variant={statusVariants[model.status] || "default"}
                       size="sm"
                       dot
-                      className="w-fit border-white/10"
+                      className="border-border-subtle w-fit"
                     >
                       {t(model.status)}
                     </Badge>
@@ -364,30 +364,30 @@ export default async function ModelsPage({ params, searchParams }: ModelPageProp
                           className={`h-3.5 w-3.5 ${
                             star <= Math.round(avgScore)
                               ? "fill-amber-400 text-amber-400"
-                              : "text-slate-700"
+                              : "text-fg-secondary"
                           }`}
                         />
                       ))}
                     </div>
-                    <span className="inline-flex items-center rounded-md border border-amber-500/20 bg-amber-500/10 px-1.5 py-0.5 text-xs font-extrabold text-amber-300">
+                    <span className="border-warning-500/20 inline-flex items-center rounded-md border bg-amber-500/10 px-1.5 py-0.5 text-xs font-extrabold text-amber-300">
                       {avgScore > 0 ? avgScore.toFixed(1) : "-"}
                     </span>
                   </div>
 
                   {/* Reviews */}
-                  <div className="flex items-center gap-2 text-slate-300 md:justify-center md:gap-0">
-                    <MessageSquare className="h-4 w-4 shrink-0 text-slate-400 md:hidden" />
+                  <div className="text-fg-primary flex items-center gap-2 md:justify-center md:gap-0">
+                    <MessageSquare className="text-fg-muted h-4 w-4 shrink-0 md:hidden" />
                     <span className="text-sm font-bold">{stats.count}</span>
-                    <span className="ml-1 text-xs text-slate-400 md:hidden">
+                    <span className="text-fg-muted ml-1 text-xs md:hidden">
                       ({t("reviews", { count: stats.count })})
                     </span>
                   </div>
 
                   {/* Suggestions */}
-                  <div className="flex items-center gap-2 text-slate-300 md:justify-center md:gap-0">
-                    <Lightbulb className="h-4 w-4 shrink-0 text-slate-400 md:hidden" />
+                  <div className="text-fg-primary flex items-center gap-2 md:justify-center md:gap-0">
+                    <Lightbulb className="text-fg-muted h-4 w-4 shrink-0 md:hidden" />
                     <span className="text-sm font-bold">{featuresCount}</span>
-                    <span className="ml-1 text-xs text-slate-400 md:hidden">
+                    <span className="text-fg-muted ml-1 text-xs md:hidden">
                       ({t("suggestions_label")})
                     </span>
                   </div>
@@ -395,7 +395,7 @@ export default async function ModelsPage({ params, searchParams }: ModelPageProp
                   {/* Action */}
                   <div className="flex justify-end">
                     <div className="group-hover:bg-brand-500/20 flex h-8 w-8 items-center justify-center rounded-xl bg-white/5 transition-all duration-200">
-                      <ChevronRight className="group-hover:text-brand-300 h-4 w-4 text-slate-400 transition duration-200 group-hover:translate-x-0.5" />
+                      <ChevronRight className="group-hover:text-brand-300 text-fg-muted h-4 w-4 transition duration-200 group-hover:translate-x-0.5" />
                     </div>
                   </div>
                 </Link>

@@ -1,0 +1,79 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_agents_nexus_i18n_nexus_md",
+      "label": "I18N-NEXUS.md",
+      "file_type": "document",
+      "source_file": ".agents/nexus/I18N-NEXUS.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_nexus_i18n_nexus_i18n_nexus_the_absolute_localization_doctrine",
+      "label": "\ud83c\udf10 I18N-NEXUS \u2014 The Absolute Localization Doctrine",
+      "file_type": "document",
+      "source_file": ".agents/nexus/I18N-NEXUS.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_nexus_i18n_nexus_1_the_zero_hardcoding_law",
+      "label": "1. \ud83d\udd24 THE \"ZERO HARDCODING\" LAW",
+      "file_type": "document",
+      "source_file": ".agents/nexus/I18N-NEXUS.md",
+      "source_location": "L8"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_nexus_i18n_nexus_2_the_mirror_json_law_synchronization",
+      "label": "2. \ud83e\ude9e THE \"MIRROR JSON\" LAW (Synchronization)",
+      "file_type": "document",
+      "source_file": ".agents/nexus/I18N-NEXUS.md",
+      "source_location": "L17"
+    },
+    {
+      "id": "d_01_saas_products_alparai_agents_nexus_i18n_nexus_3_locale_routing_guard",
+      "label": "3. \ud83d\udee3\ufe0f LOCALE ROUTING GUARD",
+      "file_type": "document",
+      "source_file": ".agents/nexus/I18N-NEXUS.md",
+      "source_location": "L24"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_agents_nexus_i18n_nexus_md",
+      "target": "d_01_saas_products_alparai_agents_nexus_i18n_nexus_i18n_nexus_the_absolute_localization_doctrine",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/nexus/I18N-NEXUS.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_nexus_i18n_nexus_i18n_nexus_the_absolute_localization_doctrine",
+      "target": "d_01_saas_products_alparai_agents_nexus_i18n_nexus_1_the_zero_hardcoding_law",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/nexus/I18N-NEXUS.md",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_nexus_i18n_nexus_i18n_nexus_the_absolute_localization_doctrine",
+      "target": "d_01_saas_products_alparai_agents_nexus_i18n_nexus_2_the_mirror_json_law_synchronization",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/nexus/I18N-NEXUS.md",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_agents_nexus_i18n_nexus_i18n_nexus_the_absolute_localization_doctrine",
+      "target": "d_01_saas_products_alparai_agents_nexus_i18n_nexus_3_locale_routing_guard",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/nexus/I18N-NEXUS.md",
+      "source_location": "L24",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

@@ -1,0 +1,95 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_ai_analysis_integration_guide_md",
+      "label": "AI_ANALYSIS_INTEGRATION_GUIDE.md",
+      "file_type": "document",
+      "source_file": "docs/AI_ANALYSIS_INTEGRATION_GUIDE.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_ai_analysis_integration_guide_alpar_ai_ai_multi_model_analysis_integration_guide",
+      "label": "ALPAR AI - AI Multi-Model Analysis Integration Guide",
+      "file_type": "document",
+      "source_file": "docs/AI_ANALYSIS_INTEGRATION_GUIDE.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_ai_analysis_integration_guide_1_architectural_overview",
+      "label": "1. ARCHITECTURAL OVERVIEW",
+      "file_type": "document",
+      "source_file": "docs/AI_ANALYSIS_INTEGRATION_GUIDE.md",
+      "source_location": "L3"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_ai_analysis_integration_guide_2_cross_audit_debate_flow",
+      "label": "2. CROSS-AUDIT (DEBATE) FLOW",
+      "file_type": "document",
+      "source_file": "docs/AI_ANALYSIS_INTEGRATION_GUIDE.md",
+      "source_location": "L36"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_ai_analysis_integration_guide_3_transparency_ultimatum",
+      "label": "3. TRANSPARENCY ULTIMATUM",
+      "file_type": "document",
+      "source_file": "docs/AI_ANALYSIS_INTEGRATION_GUIDE.md",
+      "source_location": "L47"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_ai_analysis_integration_guide_4_dynamic_sourcing",
+      "label": "4. DYNAMIC SOURCING",
+      "file_type": "document",
+      "source_file": "docs/AI_ANALYSIS_INTEGRATION_GUIDE.md",
+      "source_location": "L56"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_ai_analysis_integration_guide_md",
+      "target": "d_01_saas_products_alparai_docs_ai_analysis_integration_guide_alpar_ai_ai_multi_model_analysis_integration_guide",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/AI_ANALYSIS_INTEGRATION_GUIDE.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_ai_analysis_integration_guide_alpar_ai_ai_multi_model_analysis_integration_guide",
+      "target": "d_01_saas_products_alparai_docs_ai_analysis_integration_guide_1_architectural_overview",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/AI_ANALYSIS_INTEGRATION_GUIDE.md",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_ai_analysis_integration_guide_alpar_ai_ai_multi_model_analysis_integration_guide",
+      "target": "d_01_saas_products_alparai_docs_ai_analysis_integration_guide_2_cross_audit_debate_flow",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/AI_ANALYSIS_INTEGRATION_GUIDE.md",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_ai_analysis_integration_guide_alpar_ai_ai_multi_model_analysis_integration_guide",
+      "target": "d_01_saas_products_alparai_docs_ai_analysis_integration_guide_3_transparency_ultimatum",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/AI_ANALYSIS_INTEGRATION_GUIDE.md",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_ai_analysis_integration_guide_alpar_ai_ai_multi_model_analysis_integration_guide",
+      "target": "d_01_saas_products_alparai_docs_ai_analysis_integration_guide_4_dynamic_sourcing",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/AI_ANALYSIS_INTEGRATION_GUIDE.md",
+      "source_location": "L56",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

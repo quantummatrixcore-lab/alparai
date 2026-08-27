@@ -37,8 +37,7 @@ describe("isCostKillSwitchActive", () => {
 
     const redisInstance = new Redis({ url: "x", token: "y" });
     vi.mocked(redisInstance.get).mockResolvedValueOnce("true");
- 
- 
+
     vi.mocked(Redis).mockReturnValue(redisInstance as any);
 
     const active = await isCostKillSwitchActive();
@@ -52,8 +51,7 @@ describe("isCostKillSwitchActive", () => {
 
     const redisInstance = new Redis({ url: "x", token: "y" });
     vi.mocked(redisInstance.get).mockResolvedValueOnce("false");
- 
- 
+
     vi.mocked(Redis).mockReturnValue(redisInstance as any);
 
     const active = await isCostKillSwitchActive();
@@ -66,8 +64,7 @@ describe("isCostKillSwitchActive", () => {
 
     const redisInstance = new Redis({ url: "x", token: "y" });
     vi.mocked(redisInstance.get).mockRejectedValueOnce(new Error("Redis error"));
- 
- 
+
     vi.mocked(Redis).mockReturnValue(redisInstance as any);
 
     const active = await isCostKillSwitchActive();

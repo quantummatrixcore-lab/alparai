@@ -45,8 +45,8 @@ export default async function RoadmapPage({ params }: { params: Promise<{ locale
   const initialTodos = (todosData ?? []) as StrategyTodo[];
 
   return (
-    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
-      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
+    <div className="bg-bg-primary text-fg-primary min-h-screen px-3 py-4 sm:px-6 sm:py-6 md:p-8">
+      <div className="bg-bg-secondary/40 ring-border-subtle space-y-8 rounded-3xl p-4 shadow-2xl ring-1 backdrop-blur-xl sm:p-6 md:p-8">
         <StrategyTabs />
         <Container>
           {/* Page Header */}
@@ -54,7 +54,7 @@ export default async function RoadmapPage({ params }: { params: Promise<{ locale
             <div>
               <div className="flex items-center gap-2">
                 <Compass className="h-6 w-6 text-blue-400" />
-                <h1 className="text-2xl font-extrabold tracking-tight text-white md:text-3xl">
+                <h1 className="text-fg-secondaryxl font-extrabold tracking-tight text-white md:text-3xl">
                   {t("strategic_milestone_roadmap")}
                 </h1>
               </div>
@@ -89,7 +89,7 @@ export default async function RoadmapPage({ params }: { params: Promise<{ locale
                 <p className="text-fg-secondary mt-3 text-xs leading-relaxed">
                   {t("a_global_repository_documenting_and_publ")}
                 </p>
-                <div className="mt-5 flex items-center justify-between border-t border-white/5 pt-3">
+                <div className="border-border-subtle/50 mt-5 flex items-center justify-between border-t pt-3">
                   <span className="text-fg-muted text-[10px] font-bold tracking-wider uppercase">
                     {t("status")}
                   </span>
@@ -113,7 +113,7 @@ export default async function RoadmapPage({ params }: { params: Promise<{ locale
                 <p className="text-fg-secondary mt-3 text-xs leading-relaxed">
                   {t("scoring_models_based_on_transparency_non")}
                 </p>
-                <div className="mt-5 flex items-center justify-between border-t border-white/5 pt-3">
+                <div className="border-border-subtle/50 mt-5 flex items-center justify-between border-t pt-3">
                   <span className="text-fg-muted text-[10px] font-bold tracking-wider uppercase">
                     {t("status")}
                   </span>
@@ -124,8 +124,8 @@ export default async function RoadmapPage({ params }: { params: Promise<{ locale
               </div>
 
               {/* Scenario C */}
-              <div className="relative overflow-hidden rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-5 backdrop-blur-md">
-                <div className="absolute top-0 right-0 rounded-bl-xl border-b border-l border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-[10px] font-extrabold tracking-wider text-emerald-400 uppercase">
+              <div className="border-success-500/20 relative overflow-hidden rounded-2xl border bg-emerald-500/5 p-5 backdrop-blur-md">
+                <div className="border-success-500/20 absolute top-0 right-0 rounded-bl-xl border-b border-l bg-emerald-500/10 px-3 py-1 text-[10px] font-extrabold tracking-wider text-emerald-400 uppercase">
                   {t("scenario_c")}
                 </div>
                 <span className="text-[10px] font-extrabold tracking-widest text-emerald-400 uppercase">
@@ -135,11 +135,11 @@ export default async function RoadmapPage({ params }: { params: Promise<{ locale
                 <p className="text-fg-secondary mt-3 text-xs leading-relaxed">
                   {t("independent_arbitration_panel_providing_")}
                 </p>
-                <div className="mt-5 flex items-center justify-between border-t border-white/5 pt-3">
+                <div className="border-border-subtle/50 mt-5 flex items-center justify-between border-t pt-3">
                   <span className="text-fg-muted text-[10px] font-bold tracking-wider uppercase">
                     {t("status")}
                   </span>
-                  <span className="rounded border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 text-[9px] font-black text-emerald-400 uppercase">
+                  <span className="border-success-500/20 rounded border bg-emerald-500/10 px-2 py-0.5 text-[9px] font-black text-emerald-400 uppercase">
                     {t("planned")}
                   </span>
                 </div>

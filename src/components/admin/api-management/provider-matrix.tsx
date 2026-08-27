@@ -33,7 +33,7 @@ export function ProviderMatrix({ providers }: { providers: Provider[] }) {
       {providers.map((provider) => (
         <div
           key={provider.id}
-          className={`rounded-xl border p-5 transition-all ${getStatusBg(provider.status)} hover:border-white/20`}
+          className={`rounded-xl border p-5 transition-all ${getStatusBg(provider.status)} hover:border-border-strong`}
         >
           {/* Header */}
           <div className="flex items-start justify-between gap-3">
@@ -60,7 +60,7 @@ export function ProviderMatrix({ providers }: { providers: Provider[] }) {
           </div>
 
           {/* Daily Activity */}
-          <div className="mt-3 flex items-center justify-between border-t border-white/10 pt-3">
+          <div className="border-border-subtle mt-3 flex items-center justify-between border-t pt-3">
             <div className="text-xs">
               <p className="text-fg-muted">{t("daily_requests")}</p>
               <p className="font-mono text-sm font-bold text-white">

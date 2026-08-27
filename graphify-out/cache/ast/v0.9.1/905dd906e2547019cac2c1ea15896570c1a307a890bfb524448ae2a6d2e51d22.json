@@ -1,0 +1,31 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_hyg_2_md",
+      "label": "HYG-2.md",
+      "file_type": "document",
+      "source_file": "docs/plan/items/HYG-2.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_hyg_2_hyg_2",
+      "label": "HYG-2",
+      "file_type": "document",
+      "source_file": "docs/plan/items/HYG-2.md",
+      "source_location": "L1"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_hyg_2_md",
+      "target": "d_01_saas_products_alparai_docs_plan_items_hyg_2_hyg_2",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/HYG-2.md",
+      "source_location": "L1",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

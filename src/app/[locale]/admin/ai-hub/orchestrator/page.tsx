@@ -53,31 +53,31 @@ export default async function AiOrchestratorAdminPage({
   return (
     <AdminContainer shell>
       <AiHubTabs />
-        <AdminPageHeader
-          icon={<Cpu className="h-7 w-7 text-emerald-400" />}
-          title={t("ai_orchestrator_cross_audit_arena") || "AI Orchestrator & Cross-Audit Arena"}
-          subtitle={
-            t("stealth_multi_agent_cross_audit_trust_ba") ||
-            "Stealth multi-agent cross-audit & AI trust balance"
-          }
-          action={<OrchestratorTriggerButton />}
-          breadcrumb={[
-            { label: "Admin", href: "/admin" },
-            { label: "AI Hub", href: "/admin/ai-hub" },
-            { label: "Orchestrator", href: "/admin/ai-hub/orchestrator" },
-          ]}
-        />
+      <AdminPageHeader
+        icon={<Cpu className="h-7 w-7 text-emerald-400" />}
+        title={t("ai_orchestrator_cross_audit_arena") || "AI Orchestrator & Cross-Audit Arena"}
+        subtitle={
+          t("stealth_multi_agent_cross_audit_trust_ba") ||
+          "Stealth multi-agent cross-audit & AI trust balance"
+        }
+        action={<OrchestratorTriggerButton />}
+        breadcrumb={[
+          { label: "Admin", href: "/admin" },
+          { label: "AI Hub", href: "/admin/ai-hub" },
+          { label: "Orchestrator", href: "/admin/ai-hub/orchestrator" },
+        ]}
+      />
 
-        <AiOrchestratorClient
-          freeModels={freeModels}
-          trustScores={trustScores}
-          chains={(chains as never) || null}
-          costSavingsStr={costSavingsStr}
-          avgTrustScore={avgTrustScore}
-          totalAudits={totalAudits}
-          autopilotSnapshot={autopilotSnapshot}
-          locale={locale}
-        />
+      <AiOrchestratorClient
+        freeModels={freeModels}
+        trustScores={trustScores}
+        chains={(chains as never) || null}
+        costSavingsStr={costSavingsStr}
+        avgTrustScore={avgTrustScore}
+        totalAudits={totalAudits}
+        autopilotSnapshot={autopilotSnapshot}
+        locale={locale}
+      />
     </AdminContainer>
   );
 }

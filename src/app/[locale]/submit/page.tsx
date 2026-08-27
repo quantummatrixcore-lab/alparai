@@ -79,7 +79,7 @@ export default async function SubmitPage({ params }: { params: Promise<{ locale:
         <Card className="border-brand-500/20 bg-brand-500/5">
           <CardContent className="flex flex-col items-center py-16 text-center">
             <Shield className="text-brand-400 mb-6 h-16 w-16" />
-            <h2 className="text-fg-primary mb-3 text-2xl font-bold">
+            <h2 className="text-fg-primary text-fg-secondaryxl mb-3 font-bold">
               {t("account_required_title")}
             </h2>
             <p className="text-fg-secondary mx-auto mb-8 max-w-md text-sm leading-relaxed">

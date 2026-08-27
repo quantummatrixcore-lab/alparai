@@ -35,7 +35,7 @@ export function ForgotPasswordForm() {
     return (
       <div className="flex min-h-screen items-center justify-center p-4">
         <div className="border-border-subtle bg-bg-elevated w-full max-w-md rounded-2xl border p-8 text-center text-white">
-          <h1 className="mb-2 text-2xl font-bold">{t("email_sent_title")}</h1>
+          <h1 className="text-fg-secondaryxl mb-2 font-bold">{t("email_sent_title")}</h1>
           <p className="text-fg-muted text-sm">{t("email_sent_desc", { email })}</p>
         </div>
       </div>
@@ -48,7 +48,7 @@ export function ForgotPasswordForm() {
         onSubmit={handleSubmit}
         className="border-border-subtle bg-bg-elevated w-full max-w-md space-y-4 rounded-2xl border p-8"
       >
-        <h1 className="text-2xl font-bold text-white">{t("forgot_password_title")}</h1>
+        <h1 className="text-fg-secondaryxl font-bold text-white">{t("forgot_password_title")}</h1>
         <p className="text-fg-muted text-sm">{t("forgot_password_subtitle")}</p>
         {error && <p className="text-danger-400 text-sm">{error}</p>}
         <div>
@@ -62,7 +62,7 @@ export function ForgotPasswordForm() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder={t("email_placeholder")}
             required
-            className="border-border-strong focus:border-brand-500 w-full rounded-lg border bg-slate-800 px-4 py-3 text-white placeholder-slate-500 focus:outline-none"
+            className="border-border-strong focus:border-brand-500 bg-bg-secondary w-full rounded-lg border px-4 py-3 text-white placeholder-slate-500 focus:outline-none"
           />
         </div>
         <button

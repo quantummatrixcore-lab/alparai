@@ -30,7 +30,7 @@ export function PlausibleVisitorCard() {
 
   if (loading) {
     return (
-      <div className="bg-bg-elevated/30 flex h-24 w-full animate-pulse flex-col justify-center rounded-2xl border border-white/10 p-6 backdrop-blur-2xl sm:rounded-3xl">
+      <div className="bg-bg-elevated/30 border-border-subtle flex h-24 w-full animate-pulse flex-col justify-center rounded-2xl border p-6 backdrop-blur-2xl sm:rounded-3xl">
         <div className="h-4 w-1/3 rounded-full bg-white/10"></div>
         <div className="mt-4 h-6 w-1/2 rounded-full bg-white/10"></div>
       </div>
@@ -48,7 +48,7 @@ export function PlausibleVisitorCard() {
         <div className="relative z-10 flex items-center justify-between">
           <div>
             <p className="text-fg-muted text-sm font-medium">{t("plausible_visitors_30d")}</p>
-            <p className="mt-1 text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl">
+            <p className="text-fg-primary mt-1 text-3xl font-bold tracking-tight sm:text-4xl">
               {visitorsCount.toLocaleString()}
             </p>
           </div>
@@ -63,7 +63,7 @@ export function PlausibleVisitorCard() {
         <div className="relative z-10 flex items-center justify-between">
           <div>
             <p className="text-fg-muted text-sm font-medium">{t("plausible_pageviews_30d")}</p>
-            <p className="mt-1 text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl">
+            <p className="text-fg-primary mt-1 text-3xl font-bold tracking-tight sm:text-4xl">
               {pageviewsCount.toLocaleString()}
             </p>
           </div>

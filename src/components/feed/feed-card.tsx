@@ -121,13 +121,13 @@ export function FeedCard({
     >
       <Card
         variant="glass"
-        className="border-border-subtle relative transition-all duration-300 hover:border-white/10"
+        className="border-border-subtle hover:border-border-subtle relative transition-all duration-300"
       >
         <CardContent className="p-4 sm:p-6">
           {/* Header */}
           <div className="flex flex-wrap items-center justify-between gap-2.5 sm:flex-nowrap">
             <div className="flex items-center gap-3">
-              <div className="text-brand-400 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 font-bold uppercase">
+              <div className="text-brand-400 border-border-subtle flex h-10 w-10 shrink-0 items-center justify-center rounded-full border bg-white/5 font-bold uppercase">
                 {incident.provider_name ? incident.provider_name.charAt(0) : "A"}
               </div>
               <div>
@@ -216,7 +216,7 @@ export function FeedCard({
 
           {/* Truth Score progress bar */}
           {incident.cross_audit_truth_score !== null && (
-            <div className="mt-6 border-y border-white/5 py-4">
+            <div className="border-border-subtle/50 mt-6 border-y py-4">
               <div className="text-fg-secondary mb-2 flex items-center justify-between text-xs">
                 <span className="font-bold tracking-wide uppercase">{tFeed("truthScore")}</span>
                 <span
@@ -232,7 +232,7 @@ export function FeedCard({
                   {incident.cross_audit_truth_score}/100
                 </span>
               </div>
-              <div className="h-2 w-full overflow-hidden rounded-full border border-white/10 bg-white/5">
+              <div className="border-border-subtle h-2 w-full overflow-hidden rounded-full border bg-white/5">
                 <div
                   className={cn(
                     "h-full rounded-full transition-all duration-500",
@@ -249,7 +249,7 @@ export function FeedCard({
           )}
 
           {/* Engagement row */}
-          <div className="mt-6 flex items-center justify-between border-t border-white/5 pt-2">
+          <div className="border-border-subtle/50 mt-6 flex items-center justify-between border-t pt-2">
             <div className="flex items-center gap-3">
               {/* Upvote */}
               <button
@@ -258,7 +258,7 @@ export function FeedCard({
                   "inline-flex h-9 items-center gap-2 rounded-full border px-3 text-xs font-bold transition-all duration-300",
                   upvoted
                     ? "bg-brand-500/20 text-brand-400 border-brand-500/35"
-                    : "text-fg-secondary border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/10",
+                    : "text-fg-secondary border-border-subtle hover:border-border-strong bg-white/5 hover:bg-white/10",
                 )}
               >
                 <ThumbsUp className={cn("h-4 w-4", upvoted && "animate-bounce fill-current")} />
@@ -268,7 +268,7 @@ export function FeedCard({
               {/* Comments */}
               <Link
                 href={`/incidents/${incident.id}#comments`}
-                className="text-fg-secondary hover:border-accent-500/30 hover:bg-accent-500/10 hover:text-accent-400 inline-flex h-9 items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 text-xs font-bold transition-all duration-300"
+                className="text-fg-secondary hover:border-accent-500/30 hover:bg-accent-500/10 hover:text-accent-400 border-border-subtle inline-flex h-9 items-center gap-2 rounded-full border bg-white/5 px-3 text-xs font-bold transition-all duration-300"
               >
                 <MessageSquare className="h-4 w-4" />
                 <span>{incident.evidence_count}</span>
@@ -277,7 +277,7 @@ export function FeedCard({
               {/* Affected users */}
               <Link
                 href={`/incidents/${incident.id}#affected`}
-                className="text-fg-secondary hover:border-warning-500/30 hover:bg-warning-500/10 hover:text-warning-400 inline-flex h-9 items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 text-xs font-bold transition-all duration-300"
+                className="text-fg-secondary hover:border-warning-500/30 hover:bg-warning-500/10 hover:text-warning-400 border-border-subtle inline-flex h-9 items-center gap-2 rounded-full border bg-white/5 px-3 text-xs font-bold transition-all duration-300"
               >
                 <Users className="h-4 w-4" />
                 <span>{incident.affected_count || 0}</span>
@@ -292,7 +292,7 @@ export function FeedCard({
                   "inline-flex h-9 items-center gap-2 rounded-full border px-3 text-xs font-bold transition-all duration-300",
                   showShare
                     ? "bg-brand-500/20 text-brand-400 border-brand-500/35"
-                    : "text-fg-secondary border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/10",
+                    : "text-fg-secondary border-border-subtle hover:border-border-strong bg-white/5 hover:bg-white/10",
                 )}
               >
                 <Share2 className="h-4 w-4" />
@@ -307,7 +307,7 @@ export function FeedCard({
                     initial={{ opacity: 0, scale: 0.95, y: 8 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95, y: 8 }}
-                    className="bg-bg-elevated/95 absolute right-0 bottom-11 z-50 flex items-center gap-2 rounded-full border border-white/10 p-2 shadow-2xl backdrop-blur-xl"
+                    className="bg-bg-elevated/95 border-border-subtle absolute right-0 bottom-11 z-50 flex items-center gap-2 rounded-full border p-2 shadow-2xl backdrop-blur-xl"
                   >
                     {/* X */}
                     <motion.a
@@ -315,7 +315,7 @@ export function FeedCard({
                       href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(displayTitle)}&url=${encodeURIComponent(getShareUrlForPlatform("x"))}`}
                       target="_blank"
                       rel="noreferrer noopener"
-                      className="flex h-8 w-8 items-center justify-center rounded-full bg-white/5 text-zinc-100 transition-colors hover:text-white"
+                      className="text-fg-primary flex h-8 w-8 items-center justify-center rounded-full bg-white/5 transition-colors hover:text-white"
                       aria-label={tFeed("shareOnX")}
                     >
                       <XIcon className="h-4 w-4" />

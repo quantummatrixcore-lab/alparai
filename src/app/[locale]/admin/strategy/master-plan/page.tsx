@@ -37,15 +37,15 @@ export default async function MasterPlanPage({ params }: { params: Promise<{ loc
   const { items, error } = parseMasterPlan();
 
   return (
-    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
-      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
+    <div className="bg-bg-primary text-fg-primary min-h-screen px-3 py-4 sm:px-6 sm:py-6 md:p-8">
+      <div className="bg-bg-secondary/40 ring-border-subtle space-y-8 rounded-3xl p-4 shadow-2xl ring-1 backdrop-blur-xl sm:p-6 md:p-8">
         <StrategyTabs />
         <Container>
           <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
             <div>
               <div className="flex items-center gap-2">
                 <Compass className="text-brand-400 h-6 w-6" />
-                <h1 className="text-2xl font-extrabold tracking-tight text-white md:text-3xl">
+                <h1 className="text-fg-secondaryxl font-extrabold tracking-tight text-white md:text-3xl">
                   {t("master_plan_title")}
                 </h1>
               </div>

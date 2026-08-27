@@ -40,8 +40,8 @@ export default function DigitalTwinsPage() {
       if (data.modelUsed) {
         setModelUsed(data.modelUsed);
       }
-    } catch (error: any) {
-      toast.error(error.message);
+    } catch (error: unknown) {
+      toast.error(error instanceof Error ? error.message : String(error));
     } finally {
       setIsLoading(false);
     }
@@ -69,7 +69,7 @@ export default function DigitalTwinsPage() {
           {DIGITAL_TWINS_LIST.map((twin) => (
             <Card
               key={twin.id}
-              className="group hover:shadow-brand-500/20 cursor-pointer border-white/10 bg-white/5 backdrop-blur-md transition-all hover:bg-white/10 hover:shadow-xl"
+              className="group hover:shadow-brand-500/20 border-border-subtle cursor-pointer bg-white/5 backdrop-blur-md transition-all hover:bg-white/10 hover:shadow-xl"
               onClick={() => setSelectedTwin(twin.id)}
             >
               <CardHeader className="text-center">
@@ -83,9 +83,13 @@ export default function DigitalTwinsPage() {
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap justify-center gap-2">
-                  {twin.expertise.map((exp: any, i: number) => (
-                    <Badge key={exp} variant="outline" className="border-brand-500/30 text-xs">
-                      {exp}
+                  {twin.expertise.map((exp: unknown, i: number) => (
+                    <Badge
+                      key={String(exp)}
+                      variant="outline"
+                      className="border-brand-500/30 text-xs"
+                    >
+                      {String(exp)}
                     </Badge>
                   ))}
                 </div>
@@ -107,11 +111,11 @@ export default function DigitalTwinsPage() {
             ← İkiz Seçimine Dön
           </Button>
 
-          <Card className="flex h-[600px] flex-col border-white/10 bg-black/40 backdrop-blur-xl">
-            <CardHeader className="border-b border-white/10 bg-white/5 pb-4">
+          <Card className="border-border-subtle flex h-[600px] flex-col bg-black/40 backdrop-blur-xl">
+            <CardHeader className="border-border-subtle border-b bg-white/5 pb-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <CardTitle className="text-2xl">{activePersona.name}</CardTitle>
+                  <CardTitle className="text-fg-secondaryxl">{activePersona.name}</CardTitle>
                   <CardDescription>{activePersona.title}</CardDescription>
                 </div>
                 {modelUsed && (
@@ -157,7 +161,7 @@ export default function DigitalTwinsPage() {
                 </div>
               )}
             </CardContent>
-            <div className="border-t border-white/10 p-4">
+            <div className="border-border-subtle border-t p-4">
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
@@ -169,7 +173,7 @@ export default function DigitalTwinsPage() {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder={`${activePersona.name} ikizine sorunuzu yöneltin...`}
-                  className="flex-1 border-white/20 bg-white/5"
+                  className="border-border-strong flex-1 bg-white/5"
                   disabled={isLoading}
                 />
                 <Button

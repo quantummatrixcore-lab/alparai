@@ -16,22 +16,22 @@ export default async function SignalsPage({ params }: { params: Promise<{ locale
 
   return (
     <AdminContainer shell>
-          <MetricsHubTabs />
-          <AdminPageHeader
-            icon={<Activity className="h-6 w-6 text-cyan-400" />}
-            title={t("signals_title") || "Telemetry & Signal Control"}
-            subtitle={
-              t("signals_subtitle") ||
-              "Live real-time system metrics, performance telemetry, and health gauges."
-            }
-            breadcrumb={[
-              { label: "Admin", href: "/admin" },
-              { label: "Metrics Hub", href: "/admin/metrics-hub" },
-              { label: "Signals", href: "/admin/metrics-hub/signals" },
-            ]}
-          />
+      <MetricsHubTabs />
+      <AdminPageHeader
+        icon={<Activity className="h-6 w-6 text-cyan-400" />}
+        title={t("signals_title") || "Telemetry & Signal Control"}
+        subtitle={
+          t("signals_subtitle") ||
+          "Live real-time system metrics, performance telemetry, and health gauges."
+        }
+        breadcrumb={[
+          { label: "Admin", href: "/admin" },
+          { label: "Metrics Hub", href: "/admin/metrics-hub" },
+          { label: "Signals", href: "/admin/metrics-hub/signals" },
+        ]}
+      />
 
-          <SignalsClient initialSignals={signals} />
+      <SignalsClient initialSignals={signals} />
     </AdminContainer>
   );
 }

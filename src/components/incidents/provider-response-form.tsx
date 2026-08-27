@@ -57,7 +57,9 @@ export function ProviderResponseForm({
       <Card variant="elevated" className="border-success-500/30 bg-success-500/5">
         <CardContent className="py-12 text-center">
           <CheckCircle2 className="text-success-500 mx-auto h-16 w-16" />
-          <h2 className="text-fg-primary mt-4 text-2xl font-bold">{t("success_title")}</h2>
+          <h2 className="text-fg-primary text-fg-secondaryxl mt-4 font-bold">
+            {t("success_title")}
+          </h2>
           <p className="text-fg-muted mt-2 text-sm">{t("success_desc")}</p>
         </CardContent>
       </Card>

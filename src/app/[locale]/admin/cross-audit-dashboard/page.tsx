@@ -41,12 +41,15 @@ export default async function CrossAuditDashboardPage({
     <AdminContainer shell>
       <AdminPageHeader
         title={t("cross_audit_dashboard_heading") || "Cross-Audit Dashboard"}
-        subtitle={t("cross_audit_dashboard_subheading") || "Real-time auditing metrics, ethics alignment & regulatory classification logs."}
+        subtitle={
+          t("cross_audit_dashboard_subheading") ||
+          "Real-time auditing metrics, ethics alignment & regulatory classification logs."
+        }
         icon={<BarChart3 className="text-brand-400 h-6 w-6" />}
         breadcrumb={[
           { label: t("dashboard") || "Dashboard", href: "/admin" },
           { label: t("moderation") || "Moderation", href: "/admin/moderation" },
-          { label: t("metrics") || "Metrics", href: "/admin/cross-audit-dashboard" }
+          { label: t("metrics") || "Metrics", href: "/admin/cross-audit-dashboard" },
         ]}
       />
 

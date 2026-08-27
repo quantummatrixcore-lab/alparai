@@ -1,0 +1,95 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_investor_002_financial_projection_3y_md",
+      "label": "002-financial-projection-3y.md",
+      "file_type": "document",
+      "source_file": "docs/INVESTOR/002-financial-projection-3y.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_investor_002_financial_projection_3y_alpar_ai_3_year_financial_model_unit_economics_163",
+      "label": "ALPAR AI \u2014 3-Year Financial Model & Unit Economics (#163)",
+      "file_type": "document",
+      "source_file": "docs/INVESTOR/002-financial-projection-3y.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_investor_002_financial_projection_3y_1_executive_summary",
+      "label": "1. Executive Summary",
+      "file_type": "document",
+      "source_file": "docs/INVESTOR/002-financial-projection-3y.md",
+      "source_location": "L3"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_investor_002_financial_projection_3y_2_revenue_streams",
+      "label": "2. Revenue Streams",
+      "file_type": "document",
+      "source_file": "docs/INVESTOR/002-financial-projection-3y.md",
+      "source_location": "L9"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_investor_002_financial_projection_3y_3_cost_breakdown_cogs",
+      "label": "3. Cost Breakdown & COGS",
+      "file_type": "document",
+      "source_file": "docs/INVESTOR/002-financial-projection-3y.md",
+      "source_location": "L20"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_investor_002_financial_projection_3y_4_gross_margin_unit_economics",
+      "label": "4. Gross Margin & Unit Economics",
+      "file_type": "document",
+      "source_file": "docs/INVESTOR/002-financial-projection-3y.md",
+      "source_location": "L28"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_investor_002_financial_projection_3y_md",
+      "target": "d_01_saas_products_alparai_docs_investor_002_financial_projection_3y_alpar_ai_3_year_financial_model_unit_economics_163",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/INVESTOR/002-financial-projection-3y.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_investor_002_financial_projection_3y_alpar_ai_3_year_financial_model_unit_economics_163",
+      "target": "d_01_saas_products_alparai_docs_investor_002_financial_projection_3y_1_executive_summary",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/INVESTOR/002-financial-projection-3y.md",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_investor_002_financial_projection_3y_alpar_ai_3_year_financial_model_unit_economics_163",
+      "target": "d_01_saas_products_alparai_docs_investor_002_financial_projection_3y_2_revenue_streams",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/INVESTOR/002-financial-projection-3y.md",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_investor_002_financial_projection_3y_alpar_ai_3_year_financial_model_unit_economics_163",
+      "target": "d_01_saas_products_alparai_docs_investor_002_financial_projection_3y_3_cost_breakdown_cogs",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/INVESTOR/002-financial-projection-3y.md",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_investor_002_financial_projection_3y_alpar_ai_3_year_financial_model_unit_economics_163",
+      "target": "d_01_saas_products_alparai_docs_investor_002_financial_projection_3y_4_gross_margin_unit_economics",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/INVESTOR/002-financial-projection-3y.md",
+      "source_location": "L28",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

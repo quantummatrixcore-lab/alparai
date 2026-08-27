@@ -1,0 +1,1391 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_md",
+      "label": "v12.11x.md",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_master_plan_ar\u015fiv_v12_110_v12_119",
+      "label": "MASTER_PLAN Ar\u015fiv \u2014 v12.110\u2013v12.119",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_110_i\u0307ki_kesin_karar_kal\u0131c\u0131_olarak_kapat\u0131ld\u0131_81_repo_127_giri\u015f_yapt\u0131r\u0131m_katman\u0131n\u0131n_di\u015fsizli\u011fi_qwen_kimi_denetimleri",
+      "label": "v12.110 \u2014 \u0130ki kesin karar kal\u0131c\u0131 olarak kapat\u0131ld\u0131 (#81 repo, #127 giri\u015f) + yapt\u0131r\u0131m katman\u0131n\u0131n di\u015fsizli\u011fi + Qwen/Kimi denetimleri",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_karar_1_81_kal\u0131c\u0131_olarak_iptal_edildi_sorunun_kendisi_imk\u00e2ns\u0131z_bir_se\u00e7enek_i\u00e7eriyordu",
+      "label": "Karar 1 \u2014 #81 kal\u0131c\u0131 olarak iptal edildi: sorunun kendisi imk\u00e2ns\u0131z bir se\u00e7enek i\u00e7eriyordu",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L13"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_karar_2_127_kal\u0131c\u0131_olarak_kapat\u0131ld\u0131_giri\u015f_zorunlulu\u011fu_korunuyor",
+      "label": "Karar 2 \u2014 #127 kal\u0131c\u0131 olarak kapat\u0131ld\u0131: giri\u015f zorunlulu\u011fu korunuyor",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L21"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_antigravity_do\u011frulamas\u0131_bu_tur_5_5_ger\u00e7ekten_tamamlanm\u0131\u015f_ilk_tam_onay",
+      "label": "Antigravity do\u011frulamas\u0131 \u2014 bu tur 5/5 ger\u00e7ekten tamamlanm\u0131\u015f (ilk tam onay)",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L27"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_yapt\u0131r\u0131m_katman\u0131n\u0131n_di\u015fi_yok_iki_\u00f6l\u00e7\u00fclm\u00fc\u015f_kusur_132",
+      "label": "Yapt\u0131r\u0131m katman\u0131n\u0131n di\u015fi yok \u2014 iki \u00f6l\u00e7\u00fclm\u00fc\u015f kusur (#132)",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L33"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_qwen_denetimi_kodu_ger\u00e7ekten_g\u00f6rm\u00fc\u015f_ilk_d\u0131\u015f_rapor",
+      "label": "Qwen denetimi \u2014 kodu ger\u00e7ekten g\u00f6rm\u00fc\u015f ilk d\u0131\u015f rapor",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L39"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_kimi_denetimi_iddialar\u0131n_\u00e7o\u011fu_yanl\u0131\u015f_iki_stratejik_fikir_de\u011ferli",
+      "label": "Kimi denetimi \u2014 iddialar\u0131n \u00e7o\u011fu yanl\u0131\u015f, iki stratejik fikir de\u011ferli",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L45"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_d\u0131\u015f_denetimlerden_\u00e7\u0131kan_as\u0131l_ders",
+      "label": "D\u0131\u015f denetimlerden \u00e7\u0131kan as\u0131l ders",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L55"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_antigravity_blok_g\u00f6revleri_\u00f6ncelik_s\u0131ras\u0131yla",
+      "label": "Antigravity blok g\u00f6revleri (\u00f6ncelik s\u0131ras\u0131yla)",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L59"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_panel_durumu",
+      "label": "Panel durumu",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L67"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_111_g\u00fcvenli\u0307k_olayi_depo_yanl\u0131\u015fl\u0131kla_public_yap\u0131ld\u0131_k\u00f6k_neden_mimar_kararlar\u0131_uygulay\u0131c\u0131_ya_ula\u015fm\u0131yor_8_yeni_madde",
+      "label": "v12.111 \u2014 \ud83d\udd34 G\u00dcVENL\u0130K OLAYI: depo yanl\u0131\u015fl\u0131kla public yap\u0131ld\u0131 + k\u00f6k neden (Mimar kararlar\u0131 Uygulay\u0131c\u0131'ya ula\u015fm\u0131yor) + 8 yeni madde",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L75"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_olay_alparai_platform_public_yap\u0131ld\u0131_strateji_ve_finans_belgeleri_a\u00e7\u0131\u011fa_\u00e7\u0131kt\u0131",
+      "label": "\ud83d\udd34 Olay \u2014 `alparai-platform` public yap\u0131ld\u0131, strateji ve finans belgeleri a\u00e7\u0131\u011fa \u00e7\u0131kt\u0131",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L79"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_k\u00f6k_neden_ve_neden_g\u00f6revler_tekrar_\u00e7\u0131k\u0131yor_sorusunun_da_cevab\u0131_bu_144",
+      "label": "K\u00f6k neden \u2014 ve neden \"g\u00f6revler tekrar \u00e7\u0131k\u0131yor\" sorusunun da cevab\u0131 bu (#144)",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L91"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_bu_turun_di\u011fer_bulgular\u0131_\u00fc\u00e7_paralel_haiku_ajan\u0131_g_5",
+      "label": "Bu turun di\u011fer bulgular\u0131 (\u00fc\u00e7 paralel Haiku ajan\u0131, G-5)",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L99"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_antigravity_blok_g\u00f6revleri_yeni_s\u0131ra",
+      "label": "Antigravity blok g\u00f6revleri (yeni s\u0131ra)",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L113"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_panel_durumu_125",
+      "label": "Panel durumu",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L125"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_112_dal_birle\u015ftirildi_mimar_art\u0131k_master_da_\u00e7al\u0131\u015f\u0131yor_k\u00f6k_nedenin_fiil\u00ee_\u00e7\u00f6z\u00fcm\u00fc_100_d\u00fczeltmesi_lansman_zinciri",
+      "label": "v12.112 \u2014 Dal birle\u015ftirildi, Mimar art\u0131k `master`'da \u00e7al\u0131\u015f\u0131yor (k\u00f6k nedenin fiil\u00ee \u00e7\u00f6z\u00fcm\u00fc) + \"%100\" d\u00fczeltmesi + lansman zinciri",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L133"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_1_k\u00f6k_neden_fiilen_\u00e7\u00f6z\u00fcld\u00fc_mimar_bundan_sonra_master_\u00fczerinde_\u00e7al\u0131\u015f\u0131r",
+      "label": "1. K\u00f6k neden fiilen \u00e7\u00f6z\u00fcld\u00fc \u2014 Mimar bundan sonra `master` \u00fczerinde \u00e7al\u0131\u015f\u0131r",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L135"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_2_100_tamamland\u0131_iddias\u0131_d\u00fczeltme_ama_su\u00e7lama_de\u011fil",
+      "label": "2. \"%100 tamamland\u0131\" iddias\u0131 \u2014 d\u00fczeltme, ama su\u00e7lama de\u011fil",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L143"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_3_panelde_9_maddelik_\u015fi\u015fkinlik_bulundu_ve_d\u00fczeltildi",
+      "label": "3. Panelde 9 maddelik \u015fi\u015fkinlik bulundu ve d\u00fczeltildi",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L153"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_4_81_founder_karar\u0131_verildi",
+      "label": "4. #81 \u2014 Founder karar\u0131 verildi",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L159"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_5_lansman_altyap\u0131s\u0131_beklenenden_\u00e7ok_daha_haz\u0131r",
+      "label": "5. Lansman altyap\u0131s\u0131 \u2014 beklenenden \u00e7ok daha haz\u0131r",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L163"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_antigravity_blok_g\u00f6rev_s\u0131ras\u0131",
+      "label": "Antigravity blok g\u00f6rev s\u0131ras\u0131",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L169"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_panel_durumu_175",
+      "label": "Panel durumu",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L175"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_113_lansman_\u00f6n_ko\u015ful_zinciri_ve_g\u00fcvenlik_k\u0131s\u0131tland\u0131rmas\u0131_81_private_s\u0131f_taramas\u0131",
+      "label": "v12.113 \u2014 Lansman \u00f6n ko\u015ful zinciri ve g\u00fcvenlik k\u0131s\u0131tland\u0131rmas\u0131 (#81 private + s\u0131f taramas\u0131)",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L185"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_context",
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L187"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_yap\u0131lan_i\u015fler_mimar_taraf\u0131_v12_112_b\u00f6l\u00fcm\u00fcnde_yaz\u0131lan",
+      "label": "Yap\u0131lan i\u015fler (Mimar taraf\u0131, v12.112 b\u00f6l\u00fcm\u00fcnde yaz\u0131lan)",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L200"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_81_g\u00fcvenlik_karar\u0131_kapal\u0131_yap\u0131sal_nedenler",
+      "label": "#81 g\u00fcvenlik karar\u0131 \u2014 kapal\u0131 yap\u0131sal nedenler",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L208"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_\u015fekil_lansman_zinciri_enforcements",
+      "label": "\u015eekil \u2014 lansman zinciri enforcements",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L216"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_antigravity_blok_g\u00f6rev_s\u0131ras\u0131_g\u00fcncelleme",
+      "label": "Antigravity blok g\u00f6rev s\u0131ras\u0131 (g\u00fcncelleme)",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L228"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_panel_durumu_238",
+      "label": "Panel durumu",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L238"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_115_100_iddias\u0131_yeniden_do\u011fruland\u0131_ger\u00e7ek_oran_94_2_65_69_2_eski_p0_madde_taze_kan\u0131tla_kapat\u0131ld\u0131_lansman_zinciri_durumu_netle\u015fti",
+      "label": "v12.115 \u2014 \"%100\" iddias\u0131 yeniden do\u011fruland\u0131: ger\u00e7ek oran %94,2 (65/69) + 2 eski P0 madde taze kan\u0131tla kapat\u0131ld\u0131 + lansman zinciri durumu netle\u015fti",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L257"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_context_259",
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L259"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgular_do\u011frudan_git_show_origin_master_python3_hedefli_grep_pnpm_audit_g_5_uyumlu_pahal\u0131_model_yaln\u0131zca_sentez_yapt\u0131_ham_veri_toplama_scriptli_otomatikti",
+      "label": "Bulgular (do\u011frudan `git show origin/master` + `python3` + hedefli `grep`/`pnpm audit`, G-5 uyumlu \u2014 pahal\u0131 model yaln\u0131zca sentez yapt\u0131, ham veri toplama scriptli/otomatikti)",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L263"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_tablo_d\u00fczeltmesi_2_sat\u0131r_kan\u0131tla",
+      "label": "Tablo d\u00fczeltmesi (2 sat\u0131r, kan\u0131tla)",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L285"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_de\u011ferlendirme_vc_dan\u0131\u015fma_kurulu_bak\u0131\u015f\u0131",
+      "label": "De\u011ferlendirme (VC/dan\u0131\u015fma kurulu bak\u0131\u015f\u0131)",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L290"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_panel_durumu_294",
+      "label": "Panel durumu",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L294"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_sonraki_blok_g\u00f6revler_antigravity",
+      "label": "Sonraki blok g\u00f6revler (Antigravity)",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L298"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_116_backlog_ilk_kez_fiilen_100_ama_bu_projenin_bitti\u011fi_de\u011fil_\u00f6l\u00e7\u00fcm_\u00e7a\u011f\u0131n\u0131n_ba\u015flad\u0131\u011f\u0131_anlam\u0131na_geliyor_canl\u0131_api_anahtar\u0131_s\u0131z\u0131nt\u0131s\u0131",
+      "label": "v12.116 \u2014 Backlog ilk kez fiilen %100; ama bu, projenin bitti\u011fi de\u011fil **\u00f6l\u00e7\u00fcm \u00e7a\u011f\u0131n\u0131n ba\u015flad\u0131\u011f\u0131** anlam\u0131na geliyor (+ \ud83d\udd34 canl\u0131 API anahtar\u0131 s\u0131z\u0131nt\u0131s\u0131)",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L312"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_0_bu_turun_en_ciddi_bulgusu_canl\u0131_gcp_api_anahtar\u0131_master_plan_da_d\u00fcz_metin_ve_s\u0131r_taray\u0131c\u0131s\u0131_bu_dosyay\u0131_yap\u0131sal_olarak_g\u00f6remiyor",
+      "label": "\ud83d\udd34 Bulgu 0 (bu turun en ciddi bulgusu) \u2014 canl\u0131 GCP API anahtar\u0131 MASTER_PLAN'da d\u00fcz metin, ve s\u0131r taray\u0131c\u0131s\u0131 bu dosyay\u0131 yap\u0131sal olarak g\u00f6remiyor",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L318"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_1_b\u00fct\u00fcnl\u00fck_100_\u00fcn_i\u00e7inde_bir_kapan\u0131\u015f_hatas\u0131_var_ve_hata_mimar_\u0131n_kendi_spesifikasyonunda",
+      "label": "Bulgu 1 (b\u00fct\u00fcnl\u00fck) \u2014 %100'\u00fcn i\u00e7inde bir kapan\u0131\u015f hatas\u0131 var, ve hata **Mimar'\u0131n kendi spesifikasyonunda**",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L326"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_doktrin_eklemesi_ba\u011flay\u0131c\u0131_gate_kap\u0131_maddesi_kavram\u0131",
+      "label": "Doktrin eklemesi (ba\u011flay\u0131c\u0131) \u2014 \"GATE\" (kap\u0131) maddesi kavram\u0131",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L332"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_2_yapt\u0131r\u0131m_tutarl\u0131l\u0131k_script_i_master_da_zaten_k\u0131rm\u0131z\u0131yd\u0131_kimse_g\u00f6rmemi\u015fti",
+      "label": "Bulgu 2 (yapt\u0131r\u0131m) \u2014 tutarl\u0131l\u0131k script'i master'da zaten k\u0131rm\u0131z\u0131yd\u0131, kimse g\u00f6rmemi\u015fti",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L338"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_3_operasyon_beklenenden_sa\u011flam_\u00fc\u00e7_ger\u00e7ek_bo\u015fluk",
+      "label": "Bulgu 3 (operasyon) \u2014 beklenenden sa\u011flam; \u00fc\u00e7 ger\u00e7ek bo\u015fluk",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L342"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_4_ticari_bu_turun_en_pahal\u0131_bulgusu_gelir_kap\u0131lar\u0131_fiziksel_olarak_kapal\u0131",
+      "label": "Bulgu 4 (ticari \u2014 bu turun en pahal\u0131 bulgusu) \u2014 gelir kap\u0131lar\u0131 fiziksel olarak kapal\u0131",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L348"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_5_\u00f6l\u00e7\u00fcm_tek_geri_al\u0131namaz_zamanlama_riski",
+      "label": "Bulgu 5 (\u00f6l\u00e7\u00fcm \u2014 **tek geri al\u0131namaz zamanlama riski**)",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L354"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_6_elde_tutma_sonucu_bildirmiyoruz",
+      "label": "Bulgu 6 (elde tutma) \u2014 sonucu bildirmiyoruz",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L362"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_panel_durumu_366",
+      "label": "Panel durumu",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L366"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_sonraki_blok_g\u00f6revler_antigravity_370",
+      "label": "Sonraki blok g\u00f6revler (Antigravity)",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L370"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_117_100_iddias\u0131_d\u00f6rd\u00fcnc\u00fc_kez_\u00f6l\u00e7\u00fcld\u00fc_ger\u00e7ek_oran_93_5_\u00fc\u00e7_kapan\u0131\u015f_kendi_kabul_kriterini_kar\u015f\u0131lam\u0131yor_yeni_tedarik_zinciri_bulgusu_157",
+      "label": "v12.117 \u2014 \"%100\" iddias\u0131 d\u00f6rd\u00fcnc\u00fc kez \u00f6l\u00e7\u00fcld\u00fc: ger\u00e7ek oran %93,5; \u00fc\u00e7 kapan\u0131\u015f kendi kabul kriterini kar\u015f\u0131lam\u0131yor + yeni tedarik zinciri bulgusu (#157)",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L387"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_1_151_kap\u0131n\u0131n_yar\u0131s\u0131_a\u00e7\u0131ld\u0131_\u00f6deme_h\u00e2l\u00e2_katman_vermiyor",
+      "label": "Bulgu 1 \u2014 #151: kap\u0131n\u0131n yar\u0131s\u0131 a\u00e7\u0131ld\u0131, \u00f6deme h\u00e2l\u00e2 katman vermiyor",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L395"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_2_152_uydurma_grafik_gitti_huni_hi\u00e7_gelmedi_h\u00e2l\u00e2_lansman\u0131_bloklar",
+      "label": "Bulgu 2 \u2014 #152: uydurma grafik gitti, huni hi\u00e7 gelmedi (**h\u00e2l\u00e2 lansman\u0131 bloklar**)",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L401"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_3_154_do\u011fru_ba\u015fl\u0131k_alt\u0131nda_yanl\u0131\u015f_\u015fey_\u00f6l\u00e7\u00fclm\u00fc\u015f",
+      "label": "Bulgu 3 \u2014 #154: do\u011fru ba\u015fl\u0131k alt\u0131nda yanl\u0131\u015f \u015fey \u00f6l\u00e7\u00fclm\u00fc\u015f",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L409"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_panel_durumu_413",
+      "label": "Panel durumu",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L413"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_antigravity_blok_g\u00f6revleri_\u00f6ncelik_s\u0131ras\u0131_ba\u011flay\u0131c\u0131",
+      "label": "Antigravity blok g\u00f6revleri (\u00f6ncelik s\u0131ras\u0131 ba\u011flay\u0131c\u0131)",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L417"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_118_google_oauth_un_neden_d\u00fczelmedi\u011fi_bulundu_d\u00fczeltme_yaz\u0131lm\u0131\u015f_sonra_geri_al\u0131nm\u0131\u015f_public_depo_koruma_katman\u0131n\u0131n_etraf\u0131ndan_yay\u0131nlanm\u0131\u015f_lansman_kanallar\u0131_tek_tek_\u00f6l\u00e7\u00fcld\u00fc",
+      "label": "v12.118 \u2014 Google OAuth'un neden d\u00fczelmedi\u011fi bulundu (d\u00fczeltme yaz\u0131lm\u0131\u015f, sonra geri al\u0131nm\u0131\u015f) + public depo koruma katman\u0131n\u0131n etraf\u0131ndan yay\u0131nlanm\u0131\u015f + lansman kanallar\u0131 tek tek \u00f6l\u00e7\u00fcld\u00fc",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L435"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_1_google_oauth_do\u011fru_d\u00fczeltme_yaz\u0131lm\u0131\u015f_sonra_geri_al\u0131nm\u0131\u015f",
+      "label": "Bulgu 1 \u2014 Google OAuth: do\u011fru d\u00fczeltme yaz\u0131lm\u0131\u015f, sonra geri al\u0131nm\u0131\u015f",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L439"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_2_public_depo_koruma_katman\u0131n\u0131n_etraf\u0131ndan_yay\u0131nlanm\u0131\u015f",
+      "label": "Bulgu 2 \u2014 \ud83d\udd34 Public depo, koruma katman\u0131n\u0131n **etraf\u0131ndan** yay\u0131nlanm\u0131\u015f",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L452"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_3_hackerone_iddia_ger\u00e7e\u011fin_\u00f6n\u00fcne_ge\u00e7mi\u015f",
+      "label": "Bulgu 3 \u2014 HackerOne: iddia ger\u00e7e\u011fin \u00f6n\u00fcne ge\u00e7mi\u015f",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L464"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_4_lansman_kanallar\u0131_i\u00e7erik_haz\u0131r_iki_kanal_bloklu",
+      "label": "Bulgu 4 \u2014 Lansman kanallar\u0131: i\u00e7erik haz\u0131r, iki kanal bloklu",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L470"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_5_ba\u015fvurular_biri_haz\u0131r_ikisi_eksik_bir_kay\u0131t_yan\u0131lt\u0131c\u0131",
+      "label": "Bulgu 5 \u2014 Ba\u015fvurular: biri haz\u0131r, ikisi eksik, bir kay\u0131t yan\u0131lt\u0131c\u0131",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L476"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_her_\u015fey_eksiksiz_uygun_mu_do\u011frudan_cevap",
+      "label": "\"Her \u015fey eksiksiz uygun mu?\" \u2014 do\u011frudan cevap",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L484"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_panel_durumu_488",
+      "label": "Panel durumu",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L488"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_antigravity_blok_g\u00f6revleri_\u00f6ncelik_s\u0131ras\u0131_ba\u011flay\u0131c\u0131_492",
+      "label": "Antigravity blok g\u00f6revleri (\u00f6ncelik s\u0131ras\u0131 ba\u011flay\u0131c\u0131)",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L492"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_119_opus_stratejik_vizyon_g\u00fcncellemesi_token_b\u00fct\u00e7esi_anti_halusinasyon_doktrini_agent_os_entegrasyon_yol_haritas\u0131_lansman_kap\u0131s\u0131_revizyonu",
+      "label": "v12.119 \u2014 Opus Stratejik Vizyon G\u00fcncellemesi: Token B\u00fct\u00e7esi Anti-Halusinasyon Doktrini + Agent-Os Entegrasyon Yol Haritas\u0131 + Lansman Kap\u0131s\u0131 Revizyonu",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L512"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_durum_g\u00fcncellemesi",
+      "label": "Durum g\u00fcncellemesi",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L514"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_panel_durumu_534",
+      "label": "Panel durumu",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L534"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_yeni_blok_g\u00f6revler_opus_stratejik_vizyon_v12_119",
+      "label": "Yeni Blok G\u00f6revler \u2014 Opus Stratejik Vizyon (v12.119)",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L538"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_antigravity_blok_g\u00f6revleri_\u00f6ncelik_s\u0131ras\u0131_ba\u011flay\u0131c\u0131_561",
+      "label": "Antigravity blok g\u00f6revleri (\u00f6ncelik s\u0131ras\u0131 ba\u011flay\u0131c\u0131)",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L561"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_stratejik_vizyon_opus_analizi",
+      "label": "Stratejik Vizyon \u2014 Opus Analizi",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L573"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_1_google_oauth_do\u011fru_d\u00fczeltme_yaz\u0131lm\u0131\u015f_sonra_geri_al\u0131nm\u0131\u015f_587",
+      "label": "Bulgu 1 \u2014 Google OAuth: do\u011fru d\u00fczeltme yaz\u0131lm\u0131\u015f, sonra geri al\u0131nm\u0131\u015f",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L587"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_2_public_depo_koruma_katman\u0131n\u0131n_etraf\u0131ndan_yay\u0131nlanm\u0131\u015f_600",
+      "label": "Bulgu 2 \u2014 \ud83d\udd34 Public depo, koruma katman\u0131n\u0131n **etraf\u0131ndan** yay\u0131nlanm\u0131\u015f",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L600"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_3_hackerone_iddia_ger\u00e7e\u011fin_\u00f6n\u00fcne_ge\u00e7mi\u015f_612",
+      "label": "Bulgu 3 \u2014 HackerOne: iddia ger\u00e7e\u011fin \u00f6n\u00fcne ge\u00e7mi\u015f",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L612"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_4_lansman_kanallar\u0131_i\u00e7erik_haz\u0131r_iki_kanal_bloklu_618",
+      "label": "Bulgu 4 \u2014 Lansman kanallar\u0131: i\u00e7erik haz\u0131r, iki kanal bloklu",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L618"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_5_ba\u015fvurular_biri_haz\u0131r_ikisi_eksik_bir_kay\u0131t_yan\u0131lt\u0131c\u0131_624",
+      "label": "Bulgu 5 \u2014 Ba\u015fvurular: biri haz\u0131r, ikisi eksik, bir kay\u0131t yan\u0131lt\u0131c\u0131",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L624"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_her_\u015fey_eksiksiz_uygun_mu_do\u011frudan_cevap_632",
+      "label": "\"Her \u015fey eksiksiz uygun mu?\" \u2014 do\u011frudan cevap",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L632"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_panel_durumu_636",
+      "label": "Panel durumu",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L636"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_antigravity_blok_g\u00f6revleri_\u00f6ncelik_s\u0131ras\u0131_ba\u011flay\u0131c\u0131_640",
+      "label": "Antigravity blok g\u00f6revleri (\u00f6ncelik s\u0131ras\u0131 ba\u011flay\u0131c\u0131)",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L640"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_119_opus_stratejik_vizyon_g\u00fcncellemesi_token_b\u00fct\u00e7esi_anti_halusinasyon_doktrini_agent_os_entegrasyon_yol_haritas\u0131_lansman_kap\u0131s\u0131_revizyonu_660",
+      "label": "v12.119 \u2014 Opus Stratejik Vizyon G\u00fcncellemesi: Token B\u00fct\u00e7esi Anti-Halusinasyon Doktrini + Agent-Os Entegrasyon Yol Haritas\u0131 + Lansman Kap\u0131s\u0131 Revizyonu",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L660"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_durum_g\u00fcncellemesi_662",
+      "label": "Durum g\u00fcncellemesi",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L662"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_panel_durumu_682",
+      "label": "Panel durumu",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L682"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_yeni_blok_g\u00f6revler_opus_stratejik_vizyon_v12_119_686",
+      "label": "Yeni Blok G\u00f6revler \u2014 Opus Stratejik Vizyon (v12.119)",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L686"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_antigravity_blok_g\u00f6revleri_\u00f6ncelik_s\u0131ras\u0131_ba\u011flay\u0131c\u0131_709",
+      "label": "Antigravity blok g\u00f6revleri (\u00f6ncelik s\u0131ras\u0131 ba\u011flay\u0131c\u0131)",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L709"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_stratejik_vizyon_opus_analizi_721",
+      "label": "Stratejik Vizyon \u2014 Opus Analizi",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L721"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_v12_11x_faz_4_pazar_h\u00e2kimiyeti_ekosistem_entegrasyonu_opus_s\u0131n\u0131rs\u0131z_zek\u00e2_vizyonu",
+      "label": "Faz 4: Pazar H\u00e2kimiyeti & Ekosistem Entegrasyonu (Opus S\u0131n\u0131rs\u0131z Zek\u00e2 Vizyonu)",
+      "file_type": "document",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L737"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_md",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_master_plan_ar\u015fiv_v12_110_v12_119",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_master_plan_ar\u015fiv_v12_110_v12_119",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_110_i\u0307ki_kesin_karar_kal\u0131c\u0131_olarak_kapat\u0131ld\u0131_81_repo_127_giri\u015f_yapt\u0131r\u0131m_katman\u0131n\u0131n_di\u015fsizli\u011fi_qwen_kimi_denetimleri",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_110_i\u0307ki_kesin_karar_kal\u0131c\u0131_olarak_kapat\u0131ld\u0131_81_repo_127_giri\u015f_yapt\u0131r\u0131m_katman\u0131n\u0131n_di\u015fsizli\u011fi_qwen_kimi_denetimleri",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_karar_1_81_kal\u0131c\u0131_olarak_iptal_edildi_sorunun_kendisi_imk\u00e2ns\u0131z_bir_se\u00e7enek_i\u00e7eriyordu",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_110_i\u0307ki_kesin_karar_kal\u0131c\u0131_olarak_kapat\u0131ld\u0131_81_repo_127_giri\u015f_yapt\u0131r\u0131m_katman\u0131n\u0131n_di\u015fsizli\u011fi_qwen_kimi_denetimleri",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_karar_2_127_kal\u0131c\u0131_olarak_kapat\u0131ld\u0131_giri\u015f_zorunlulu\u011fu_korunuyor",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_110_i\u0307ki_kesin_karar_kal\u0131c\u0131_olarak_kapat\u0131ld\u0131_81_repo_127_giri\u015f_yapt\u0131r\u0131m_katman\u0131n\u0131n_di\u015fsizli\u011fi_qwen_kimi_denetimleri",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_antigravity_do\u011frulamas\u0131_bu_tur_5_5_ger\u00e7ekten_tamamlanm\u0131\u015f_ilk_tam_onay",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_110_i\u0307ki_kesin_karar_kal\u0131c\u0131_olarak_kapat\u0131ld\u0131_81_repo_127_giri\u015f_yapt\u0131r\u0131m_katman\u0131n\u0131n_di\u015fsizli\u011fi_qwen_kimi_denetimleri",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_yapt\u0131r\u0131m_katman\u0131n\u0131n_di\u015fi_yok_iki_\u00f6l\u00e7\u00fclm\u00fc\u015f_kusur_132",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_110_i\u0307ki_kesin_karar_kal\u0131c\u0131_olarak_kapat\u0131ld\u0131_81_repo_127_giri\u015f_yapt\u0131r\u0131m_katman\u0131n\u0131n_di\u015fsizli\u011fi_qwen_kimi_denetimleri",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_qwen_denetimi_kodu_ger\u00e7ekten_g\u00f6rm\u00fc\u015f_ilk_d\u0131\u015f_rapor",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_110_i\u0307ki_kesin_karar_kal\u0131c\u0131_olarak_kapat\u0131ld\u0131_81_repo_127_giri\u015f_yapt\u0131r\u0131m_katman\u0131n\u0131n_di\u015fsizli\u011fi_qwen_kimi_denetimleri",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_kimi_denetimi_iddialar\u0131n_\u00e7o\u011fu_yanl\u0131\u015f_iki_stratejik_fikir_de\u011ferli",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L45",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_110_i\u0307ki_kesin_karar_kal\u0131c\u0131_olarak_kapat\u0131ld\u0131_81_repo_127_giri\u015f_yapt\u0131r\u0131m_katman\u0131n\u0131n_di\u015fsizli\u011fi_qwen_kimi_denetimleri",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_d\u0131\u015f_denetimlerden_\u00e7\u0131kan_as\u0131l_ders",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L55",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_110_i\u0307ki_kesin_karar_kal\u0131c\u0131_olarak_kapat\u0131ld\u0131_81_repo_127_giri\u015f_yapt\u0131r\u0131m_katman\u0131n\u0131n_di\u015fsizli\u011fi_qwen_kimi_denetimleri",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_antigravity_blok_g\u00f6revleri_\u00f6ncelik_s\u0131ras\u0131yla",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L59",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_110_i\u0307ki_kesin_karar_kal\u0131c\u0131_olarak_kapat\u0131ld\u0131_81_repo_127_giri\u015f_yapt\u0131r\u0131m_katman\u0131n\u0131n_di\u015fsizli\u011fi_qwen_kimi_denetimleri",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_panel_durumu",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L67",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_master_plan_ar\u015fiv_v12_110_v12_119",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_111_g\u00fcvenli\u0307k_olayi_depo_yanl\u0131\u015fl\u0131kla_public_yap\u0131ld\u0131_k\u00f6k_neden_mimar_kararlar\u0131_uygulay\u0131c\u0131_ya_ula\u015fm\u0131yor_8_yeni_madde",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L75",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_111_g\u00fcvenli\u0307k_olayi_depo_yanl\u0131\u015fl\u0131kla_public_yap\u0131ld\u0131_k\u00f6k_neden_mimar_kararlar\u0131_uygulay\u0131c\u0131_ya_ula\u015fm\u0131yor_8_yeni_madde",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_olay_alparai_platform_public_yap\u0131ld\u0131_strateji_ve_finans_belgeleri_a\u00e7\u0131\u011fa_\u00e7\u0131kt\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L79",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_111_g\u00fcvenli\u0307k_olayi_depo_yanl\u0131\u015fl\u0131kla_public_yap\u0131ld\u0131_k\u00f6k_neden_mimar_kararlar\u0131_uygulay\u0131c\u0131_ya_ula\u015fm\u0131yor_8_yeni_madde",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_k\u00f6k_neden_ve_neden_g\u00f6revler_tekrar_\u00e7\u0131k\u0131yor_sorusunun_da_cevab\u0131_bu_144",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L91",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_111_g\u00fcvenli\u0307k_olayi_depo_yanl\u0131\u015fl\u0131kla_public_yap\u0131ld\u0131_k\u00f6k_neden_mimar_kararlar\u0131_uygulay\u0131c\u0131_ya_ula\u015fm\u0131yor_8_yeni_madde",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_bu_turun_di\u011fer_bulgular\u0131_\u00fc\u00e7_paralel_haiku_ajan\u0131_g_5",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L99",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_111_g\u00fcvenli\u0307k_olayi_depo_yanl\u0131\u015fl\u0131kla_public_yap\u0131ld\u0131_k\u00f6k_neden_mimar_kararlar\u0131_uygulay\u0131c\u0131_ya_ula\u015fm\u0131yor_8_yeni_madde",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_antigravity_blok_g\u00f6revleri_yeni_s\u0131ra",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L113",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_111_g\u00fcvenli\u0307k_olayi_depo_yanl\u0131\u015fl\u0131kla_public_yap\u0131ld\u0131_k\u00f6k_neden_mimar_kararlar\u0131_uygulay\u0131c\u0131_ya_ula\u015fm\u0131yor_8_yeni_madde",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_panel_durumu_125",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L125",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_master_plan_ar\u015fiv_v12_110_v12_119",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_112_dal_birle\u015ftirildi_mimar_art\u0131k_master_da_\u00e7al\u0131\u015f\u0131yor_k\u00f6k_nedenin_fiil\u00ee_\u00e7\u00f6z\u00fcm\u00fc_100_d\u00fczeltmesi_lansman_zinciri",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L133",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_112_dal_birle\u015ftirildi_mimar_art\u0131k_master_da_\u00e7al\u0131\u015f\u0131yor_k\u00f6k_nedenin_fiil\u00ee_\u00e7\u00f6z\u00fcm\u00fc_100_d\u00fczeltmesi_lansman_zinciri",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_1_k\u00f6k_neden_fiilen_\u00e7\u00f6z\u00fcld\u00fc_mimar_bundan_sonra_master_\u00fczerinde_\u00e7al\u0131\u015f\u0131r",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L135",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_112_dal_birle\u015ftirildi_mimar_art\u0131k_master_da_\u00e7al\u0131\u015f\u0131yor_k\u00f6k_nedenin_fiil\u00ee_\u00e7\u00f6z\u00fcm\u00fc_100_d\u00fczeltmesi_lansman_zinciri",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_2_100_tamamland\u0131_iddias\u0131_d\u00fczeltme_ama_su\u00e7lama_de\u011fil",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L143",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_112_dal_birle\u015ftirildi_mimar_art\u0131k_master_da_\u00e7al\u0131\u015f\u0131yor_k\u00f6k_nedenin_fiil\u00ee_\u00e7\u00f6z\u00fcm\u00fc_100_d\u00fczeltmesi_lansman_zinciri",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_3_panelde_9_maddelik_\u015fi\u015fkinlik_bulundu_ve_d\u00fczeltildi",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L153",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_112_dal_birle\u015ftirildi_mimar_art\u0131k_master_da_\u00e7al\u0131\u015f\u0131yor_k\u00f6k_nedenin_fiil\u00ee_\u00e7\u00f6z\u00fcm\u00fc_100_d\u00fczeltmesi_lansman_zinciri",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_4_81_founder_karar\u0131_verildi",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L159",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_112_dal_birle\u015ftirildi_mimar_art\u0131k_master_da_\u00e7al\u0131\u015f\u0131yor_k\u00f6k_nedenin_fiil\u00ee_\u00e7\u00f6z\u00fcm\u00fc_100_d\u00fczeltmesi_lansman_zinciri",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_5_lansman_altyap\u0131s\u0131_beklenenden_\u00e7ok_daha_haz\u0131r",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L163",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_112_dal_birle\u015ftirildi_mimar_art\u0131k_master_da_\u00e7al\u0131\u015f\u0131yor_k\u00f6k_nedenin_fiil\u00ee_\u00e7\u00f6z\u00fcm\u00fc_100_d\u00fczeltmesi_lansman_zinciri",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_antigravity_blok_g\u00f6rev_s\u0131ras\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L169",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_112_dal_birle\u015ftirildi_mimar_art\u0131k_master_da_\u00e7al\u0131\u015f\u0131yor_k\u00f6k_nedenin_fiil\u00ee_\u00e7\u00f6z\u00fcm\u00fc_100_d\u00fczeltmesi_lansman_zinciri",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_panel_durumu_175",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L175",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_master_plan_ar\u015fiv_v12_110_v12_119",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_113_lansman_\u00f6n_ko\u015ful_zinciri_ve_g\u00fcvenlik_k\u0131s\u0131tland\u0131rmas\u0131_81_private_s\u0131f_taramas\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L185",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_113_lansman_\u00f6n_ko\u015ful_zinciri_ve_g\u00fcvenlik_k\u0131s\u0131tland\u0131rmas\u0131_81_private_s\u0131f_taramas\u0131",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_context",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L187",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_113_lansman_\u00f6n_ko\u015ful_zinciri_ve_g\u00fcvenlik_k\u0131s\u0131tland\u0131rmas\u0131_81_private_s\u0131f_taramas\u0131",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_yap\u0131lan_i\u015fler_mimar_taraf\u0131_v12_112_b\u00f6l\u00fcm\u00fcnde_yaz\u0131lan",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L200",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_113_lansman_\u00f6n_ko\u015ful_zinciri_ve_g\u00fcvenlik_k\u0131s\u0131tland\u0131rmas\u0131_81_private_s\u0131f_taramas\u0131",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_81_g\u00fcvenlik_karar\u0131_kapal\u0131_yap\u0131sal_nedenler",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L208",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_113_lansman_\u00f6n_ko\u015ful_zinciri_ve_g\u00fcvenlik_k\u0131s\u0131tland\u0131rmas\u0131_81_private_s\u0131f_taramas\u0131",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_\u015fekil_lansman_zinciri_enforcements",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L216",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_113_lansman_\u00f6n_ko\u015ful_zinciri_ve_g\u00fcvenlik_k\u0131s\u0131tland\u0131rmas\u0131_81_private_s\u0131f_taramas\u0131",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_antigravity_blok_g\u00f6rev_s\u0131ras\u0131_g\u00fcncelleme",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L228",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_113_lansman_\u00f6n_ko\u015ful_zinciri_ve_g\u00fcvenlik_k\u0131s\u0131tland\u0131rmas\u0131_81_private_s\u0131f_taramas\u0131",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_panel_durumu_238",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L238",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_master_plan_ar\u015fiv_v12_110_v12_119",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_115_100_iddias\u0131_yeniden_do\u011fruland\u0131_ger\u00e7ek_oran_94_2_65_69_2_eski_p0_madde_taze_kan\u0131tla_kapat\u0131ld\u0131_lansman_zinciri_durumu_netle\u015fti",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L257",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_115_100_iddias\u0131_yeniden_do\u011fruland\u0131_ger\u00e7ek_oran_94_2_65_69_2_eski_p0_madde_taze_kan\u0131tla_kapat\u0131ld\u0131_lansman_zinciri_durumu_netle\u015fti",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_context_259",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L259",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_115_100_iddias\u0131_yeniden_do\u011fruland\u0131_ger\u00e7ek_oran_94_2_65_69_2_eski_p0_madde_taze_kan\u0131tla_kapat\u0131ld\u0131_lansman_zinciri_durumu_netle\u015fti",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgular_do\u011frudan_git_show_origin_master_python3_hedefli_grep_pnpm_audit_g_5_uyumlu_pahal\u0131_model_yaln\u0131zca_sentez_yapt\u0131_ham_veri_toplama_scriptli_otomatikti",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L263",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_115_100_iddias\u0131_yeniden_do\u011fruland\u0131_ger\u00e7ek_oran_94_2_65_69_2_eski_p0_madde_taze_kan\u0131tla_kapat\u0131ld\u0131_lansman_zinciri_durumu_netle\u015fti",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_tablo_d\u00fczeltmesi_2_sat\u0131r_kan\u0131tla",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L285",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_115_100_iddias\u0131_yeniden_do\u011fruland\u0131_ger\u00e7ek_oran_94_2_65_69_2_eski_p0_madde_taze_kan\u0131tla_kapat\u0131ld\u0131_lansman_zinciri_durumu_netle\u015fti",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_de\u011ferlendirme_vc_dan\u0131\u015fma_kurulu_bak\u0131\u015f\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L290",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_115_100_iddias\u0131_yeniden_do\u011fruland\u0131_ger\u00e7ek_oran_94_2_65_69_2_eski_p0_madde_taze_kan\u0131tla_kapat\u0131ld\u0131_lansman_zinciri_durumu_netle\u015fti",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_panel_durumu_294",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L294",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_115_100_iddias\u0131_yeniden_do\u011fruland\u0131_ger\u00e7ek_oran_94_2_65_69_2_eski_p0_madde_taze_kan\u0131tla_kapat\u0131ld\u0131_lansman_zinciri_durumu_netle\u015fti",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_sonraki_blok_g\u00f6revler_antigravity",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L298",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_master_plan_ar\u015fiv_v12_110_v12_119",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_116_backlog_ilk_kez_fiilen_100_ama_bu_projenin_bitti\u011fi_de\u011fil_\u00f6l\u00e7\u00fcm_\u00e7a\u011f\u0131n\u0131n_ba\u015flad\u0131\u011f\u0131_anlam\u0131na_geliyor_canl\u0131_api_anahtar\u0131_s\u0131z\u0131nt\u0131s\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L312",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_116_backlog_ilk_kez_fiilen_100_ama_bu_projenin_bitti\u011fi_de\u011fil_\u00f6l\u00e7\u00fcm_\u00e7a\u011f\u0131n\u0131n_ba\u015flad\u0131\u011f\u0131_anlam\u0131na_geliyor_canl\u0131_api_anahtar\u0131_s\u0131z\u0131nt\u0131s\u0131",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_0_bu_turun_en_ciddi_bulgusu_canl\u0131_gcp_api_anahtar\u0131_master_plan_da_d\u00fcz_metin_ve_s\u0131r_taray\u0131c\u0131s\u0131_bu_dosyay\u0131_yap\u0131sal_olarak_g\u00f6remiyor",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L318",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_116_backlog_ilk_kez_fiilen_100_ama_bu_projenin_bitti\u011fi_de\u011fil_\u00f6l\u00e7\u00fcm_\u00e7a\u011f\u0131n\u0131n_ba\u015flad\u0131\u011f\u0131_anlam\u0131na_geliyor_canl\u0131_api_anahtar\u0131_s\u0131z\u0131nt\u0131s\u0131",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_1_b\u00fct\u00fcnl\u00fck_100_\u00fcn_i\u00e7inde_bir_kapan\u0131\u015f_hatas\u0131_var_ve_hata_mimar_\u0131n_kendi_spesifikasyonunda",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L326",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_116_backlog_ilk_kez_fiilen_100_ama_bu_projenin_bitti\u011fi_de\u011fil_\u00f6l\u00e7\u00fcm_\u00e7a\u011f\u0131n\u0131n_ba\u015flad\u0131\u011f\u0131_anlam\u0131na_geliyor_canl\u0131_api_anahtar\u0131_s\u0131z\u0131nt\u0131s\u0131",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_doktrin_eklemesi_ba\u011flay\u0131c\u0131_gate_kap\u0131_maddesi_kavram\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L332",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_116_backlog_ilk_kez_fiilen_100_ama_bu_projenin_bitti\u011fi_de\u011fil_\u00f6l\u00e7\u00fcm_\u00e7a\u011f\u0131n\u0131n_ba\u015flad\u0131\u011f\u0131_anlam\u0131na_geliyor_canl\u0131_api_anahtar\u0131_s\u0131z\u0131nt\u0131s\u0131",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_2_yapt\u0131r\u0131m_tutarl\u0131l\u0131k_script_i_master_da_zaten_k\u0131rm\u0131z\u0131yd\u0131_kimse_g\u00f6rmemi\u015fti",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L338",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_116_backlog_ilk_kez_fiilen_100_ama_bu_projenin_bitti\u011fi_de\u011fil_\u00f6l\u00e7\u00fcm_\u00e7a\u011f\u0131n\u0131n_ba\u015flad\u0131\u011f\u0131_anlam\u0131na_geliyor_canl\u0131_api_anahtar\u0131_s\u0131z\u0131nt\u0131s\u0131",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_3_operasyon_beklenenden_sa\u011flam_\u00fc\u00e7_ger\u00e7ek_bo\u015fluk",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L342",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_116_backlog_ilk_kez_fiilen_100_ama_bu_projenin_bitti\u011fi_de\u011fil_\u00f6l\u00e7\u00fcm_\u00e7a\u011f\u0131n\u0131n_ba\u015flad\u0131\u011f\u0131_anlam\u0131na_geliyor_canl\u0131_api_anahtar\u0131_s\u0131z\u0131nt\u0131s\u0131",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_4_ticari_bu_turun_en_pahal\u0131_bulgusu_gelir_kap\u0131lar\u0131_fiziksel_olarak_kapal\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L348",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_116_backlog_ilk_kez_fiilen_100_ama_bu_projenin_bitti\u011fi_de\u011fil_\u00f6l\u00e7\u00fcm_\u00e7a\u011f\u0131n\u0131n_ba\u015flad\u0131\u011f\u0131_anlam\u0131na_geliyor_canl\u0131_api_anahtar\u0131_s\u0131z\u0131nt\u0131s\u0131",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_5_\u00f6l\u00e7\u00fcm_tek_geri_al\u0131namaz_zamanlama_riski",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L354",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_116_backlog_ilk_kez_fiilen_100_ama_bu_projenin_bitti\u011fi_de\u011fil_\u00f6l\u00e7\u00fcm_\u00e7a\u011f\u0131n\u0131n_ba\u015flad\u0131\u011f\u0131_anlam\u0131na_geliyor_canl\u0131_api_anahtar\u0131_s\u0131z\u0131nt\u0131s\u0131",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_6_elde_tutma_sonucu_bildirmiyoruz",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L362",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_116_backlog_ilk_kez_fiilen_100_ama_bu_projenin_bitti\u011fi_de\u011fil_\u00f6l\u00e7\u00fcm_\u00e7a\u011f\u0131n\u0131n_ba\u015flad\u0131\u011f\u0131_anlam\u0131na_geliyor_canl\u0131_api_anahtar\u0131_s\u0131z\u0131nt\u0131s\u0131",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_panel_durumu_366",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L366",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_116_backlog_ilk_kez_fiilen_100_ama_bu_projenin_bitti\u011fi_de\u011fil_\u00f6l\u00e7\u00fcm_\u00e7a\u011f\u0131n\u0131n_ba\u015flad\u0131\u011f\u0131_anlam\u0131na_geliyor_canl\u0131_api_anahtar\u0131_s\u0131z\u0131nt\u0131s\u0131",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_sonraki_blok_g\u00f6revler_antigravity_370",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L370",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_master_plan_ar\u015fiv_v12_110_v12_119",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_117_100_iddias\u0131_d\u00f6rd\u00fcnc\u00fc_kez_\u00f6l\u00e7\u00fcld\u00fc_ger\u00e7ek_oran_93_5_\u00fc\u00e7_kapan\u0131\u015f_kendi_kabul_kriterini_kar\u015f\u0131lam\u0131yor_yeni_tedarik_zinciri_bulgusu_157",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L387",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_117_100_iddias\u0131_d\u00f6rd\u00fcnc\u00fc_kez_\u00f6l\u00e7\u00fcld\u00fc_ger\u00e7ek_oran_93_5_\u00fc\u00e7_kapan\u0131\u015f_kendi_kabul_kriterini_kar\u015f\u0131lam\u0131yor_yeni_tedarik_zinciri_bulgusu_157",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_1_151_kap\u0131n\u0131n_yar\u0131s\u0131_a\u00e7\u0131ld\u0131_\u00f6deme_h\u00e2l\u00e2_katman_vermiyor",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L395",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_117_100_iddias\u0131_d\u00f6rd\u00fcnc\u00fc_kez_\u00f6l\u00e7\u00fcld\u00fc_ger\u00e7ek_oran_93_5_\u00fc\u00e7_kapan\u0131\u015f_kendi_kabul_kriterini_kar\u015f\u0131lam\u0131yor_yeni_tedarik_zinciri_bulgusu_157",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_2_152_uydurma_grafik_gitti_huni_hi\u00e7_gelmedi_h\u00e2l\u00e2_lansman\u0131_bloklar",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L401",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_117_100_iddias\u0131_d\u00f6rd\u00fcnc\u00fc_kez_\u00f6l\u00e7\u00fcld\u00fc_ger\u00e7ek_oran_93_5_\u00fc\u00e7_kapan\u0131\u015f_kendi_kabul_kriterini_kar\u015f\u0131lam\u0131yor_yeni_tedarik_zinciri_bulgusu_157",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_3_154_do\u011fru_ba\u015fl\u0131k_alt\u0131nda_yanl\u0131\u015f_\u015fey_\u00f6l\u00e7\u00fclm\u00fc\u015f",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L409",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_117_100_iddias\u0131_d\u00f6rd\u00fcnc\u00fc_kez_\u00f6l\u00e7\u00fcld\u00fc_ger\u00e7ek_oran_93_5_\u00fc\u00e7_kapan\u0131\u015f_kendi_kabul_kriterini_kar\u015f\u0131lam\u0131yor_yeni_tedarik_zinciri_bulgusu_157",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_panel_durumu_413",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L413",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_117_100_iddias\u0131_d\u00f6rd\u00fcnc\u00fc_kez_\u00f6l\u00e7\u00fcld\u00fc_ger\u00e7ek_oran_93_5_\u00fc\u00e7_kapan\u0131\u015f_kendi_kabul_kriterini_kar\u015f\u0131lam\u0131yor_yeni_tedarik_zinciri_bulgusu_157",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_antigravity_blok_g\u00f6revleri_\u00f6ncelik_s\u0131ras\u0131_ba\u011flay\u0131c\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L417",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_master_plan_ar\u015fiv_v12_110_v12_119",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_118_google_oauth_un_neden_d\u00fczelmedi\u011fi_bulundu_d\u00fczeltme_yaz\u0131lm\u0131\u015f_sonra_geri_al\u0131nm\u0131\u015f_public_depo_koruma_katman\u0131n\u0131n_etraf\u0131ndan_yay\u0131nlanm\u0131\u015f_lansman_kanallar\u0131_tek_tek_\u00f6l\u00e7\u00fcld\u00fc",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L435",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_118_google_oauth_un_neden_d\u00fczelmedi\u011fi_bulundu_d\u00fczeltme_yaz\u0131lm\u0131\u015f_sonra_geri_al\u0131nm\u0131\u015f_public_depo_koruma_katman\u0131n\u0131n_etraf\u0131ndan_yay\u0131nlanm\u0131\u015f_lansman_kanallar\u0131_tek_tek_\u00f6l\u00e7\u00fcld\u00fc",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_1_google_oauth_do\u011fru_d\u00fczeltme_yaz\u0131lm\u0131\u015f_sonra_geri_al\u0131nm\u0131\u015f",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L439",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_118_google_oauth_un_neden_d\u00fczelmedi\u011fi_bulundu_d\u00fczeltme_yaz\u0131lm\u0131\u015f_sonra_geri_al\u0131nm\u0131\u015f_public_depo_koruma_katman\u0131n\u0131n_etraf\u0131ndan_yay\u0131nlanm\u0131\u015f_lansman_kanallar\u0131_tek_tek_\u00f6l\u00e7\u00fcld\u00fc",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_2_public_depo_koruma_katman\u0131n\u0131n_etraf\u0131ndan_yay\u0131nlanm\u0131\u015f",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L452",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_118_google_oauth_un_neden_d\u00fczelmedi\u011fi_bulundu_d\u00fczeltme_yaz\u0131lm\u0131\u015f_sonra_geri_al\u0131nm\u0131\u015f_public_depo_koruma_katman\u0131n\u0131n_etraf\u0131ndan_yay\u0131nlanm\u0131\u015f_lansman_kanallar\u0131_tek_tek_\u00f6l\u00e7\u00fcld\u00fc",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_3_hackerone_iddia_ger\u00e7e\u011fin_\u00f6n\u00fcne_ge\u00e7mi\u015f",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L464",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_118_google_oauth_un_neden_d\u00fczelmedi\u011fi_bulundu_d\u00fczeltme_yaz\u0131lm\u0131\u015f_sonra_geri_al\u0131nm\u0131\u015f_public_depo_koruma_katman\u0131n\u0131n_etraf\u0131ndan_yay\u0131nlanm\u0131\u015f_lansman_kanallar\u0131_tek_tek_\u00f6l\u00e7\u00fcld\u00fc",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_4_lansman_kanallar\u0131_i\u00e7erik_haz\u0131r_iki_kanal_bloklu",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L470",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_118_google_oauth_un_neden_d\u00fczelmedi\u011fi_bulundu_d\u00fczeltme_yaz\u0131lm\u0131\u015f_sonra_geri_al\u0131nm\u0131\u015f_public_depo_koruma_katman\u0131n\u0131n_etraf\u0131ndan_yay\u0131nlanm\u0131\u015f_lansman_kanallar\u0131_tek_tek_\u00f6l\u00e7\u00fcld\u00fc",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_5_ba\u015fvurular_biri_haz\u0131r_ikisi_eksik_bir_kay\u0131t_yan\u0131lt\u0131c\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L476",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_118_google_oauth_un_neden_d\u00fczelmedi\u011fi_bulundu_d\u00fczeltme_yaz\u0131lm\u0131\u015f_sonra_geri_al\u0131nm\u0131\u015f_public_depo_koruma_katman\u0131n\u0131n_etraf\u0131ndan_yay\u0131nlanm\u0131\u015f_lansman_kanallar\u0131_tek_tek_\u00f6l\u00e7\u00fcld\u00fc",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_her_\u015fey_eksiksiz_uygun_mu_do\u011frudan_cevap",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L484",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_118_google_oauth_un_neden_d\u00fczelmedi\u011fi_bulundu_d\u00fczeltme_yaz\u0131lm\u0131\u015f_sonra_geri_al\u0131nm\u0131\u015f_public_depo_koruma_katman\u0131n\u0131n_etraf\u0131ndan_yay\u0131nlanm\u0131\u015f_lansman_kanallar\u0131_tek_tek_\u00f6l\u00e7\u00fcld\u00fc",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_panel_durumu_488",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L488",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_118_google_oauth_un_neden_d\u00fczelmedi\u011fi_bulundu_d\u00fczeltme_yaz\u0131lm\u0131\u015f_sonra_geri_al\u0131nm\u0131\u015f_public_depo_koruma_katman\u0131n\u0131n_etraf\u0131ndan_yay\u0131nlanm\u0131\u015f_lansman_kanallar\u0131_tek_tek_\u00f6l\u00e7\u00fcld\u00fc",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_antigravity_blok_g\u00f6revleri_\u00f6ncelik_s\u0131ras\u0131_ba\u011flay\u0131c\u0131_492",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L492",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_master_plan_ar\u015fiv_v12_110_v12_119",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_119_opus_stratejik_vizyon_g\u00fcncellemesi_token_b\u00fct\u00e7esi_anti_halusinasyon_doktrini_agent_os_entegrasyon_yol_haritas\u0131_lansman_kap\u0131s\u0131_revizyonu",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L512",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_119_opus_stratejik_vizyon_g\u00fcncellemesi_token_b\u00fct\u00e7esi_anti_halusinasyon_doktrini_agent_os_entegrasyon_yol_haritas\u0131_lansman_kap\u0131s\u0131_revizyonu",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_durum_g\u00fcncellemesi",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L514",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_119_opus_stratejik_vizyon_g\u00fcncellemesi_token_b\u00fct\u00e7esi_anti_halusinasyon_doktrini_agent_os_entegrasyon_yol_haritas\u0131_lansman_kap\u0131s\u0131_revizyonu",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_panel_durumu_534",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L534",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_119_opus_stratejik_vizyon_g\u00fcncellemesi_token_b\u00fct\u00e7esi_anti_halusinasyon_doktrini_agent_os_entegrasyon_yol_haritas\u0131_lansman_kap\u0131s\u0131_revizyonu",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_yeni_blok_g\u00f6revler_opus_stratejik_vizyon_v12_119",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L538",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_119_opus_stratejik_vizyon_g\u00fcncellemesi_token_b\u00fct\u00e7esi_anti_halusinasyon_doktrini_agent_os_entegrasyon_yol_haritas\u0131_lansman_kap\u0131s\u0131_revizyonu",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_antigravity_blok_g\u00f6revleri_\u00f6ncelik_s\u0131ras\u0131_ba\u011flay\u0131c\u0131_561",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L561",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_119_opus_stratejik_vizyon_g\u00fcncellemesi_token_b\u00fct\u00e7esi_anti_halusinasyon_doktrini_agent_os_entegrasyon_yol_haritas\u0131_lansman_kap\u0131s\u0131_revizyonu",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_stratejik_vizyon_opus_analizi",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L573",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_119_opus_stratejik_vizyon_g\u00fcncellemesi_token_b\u00fct\u00e7esi_anti_halusinasyon_doktrini_agent_os_entegrasyon_yol_haritas\u0131_lansman_kap\u0131s\u0131_revizyonu",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_1_google_oauth_do\u011fru_d\u00fczeltme_yaz\u0131lm\u0131\u015f_sonra_geri_al\u0131nm\u0131\u015f_587",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L587",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_119_opus_stratejik_vizyon_g\u00fcncellemesi_token_b\u00fct\u00e7esi_anti_halusinasyon_doktrini_agent_os_entegrasyon_yol_haritas\u0131_lansman_kap\u0131s\u0131_revizyonu",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_2_public_depo_koruma_katman\u0131n\u0131n_etraf\u0131ndan_yay\u0131nlanm\u0131\u015f_600",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L600",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_119_opus_stratejik_vizyon_g\u00fcncellemesi_token_b\u00fct\u00e7esi_anti_halusinasyon_doktrini_agent_os_entegrasyon_yol_haritas\u0131_lansman_kap\u0131s\u0131_revizyonu",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_3_hackerone_iddia_ger\u00e7e\u011fin_\u00f6n\u00fcne_ge\u00e7mi\u015f_612",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L612",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_119_opus_stratejik_vizyon_g\u00fcncellemesi_token_b\u00fct\u00e7esi_anti_halusinasyon_doktrini_agent_os_entegrasyon_yol_haritas\u0131_lansman_kap\u0131s\u0131_revizyonu",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_4_lansman_kanallar\u0131_i\u00e7erik_haz\u0131r_iki_kanal_bloklu_618",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L618",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_119_opus_stratejik_vizyon_g\u00fcncellemesi_token_b\u00fct\u00e7esi_anti_halusinasyon_doktrini_agent_os_entegrasyon_yol_haritas\u0131_lansman_kap\u0131s\u0131_revizyonu",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_bulgu_5_ba\u015fvurular_biri_haz\u0131r_ikisi_eksik_bir_kay\u0131t_yan\u0131lt\u0131c\u0131_624",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L624",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_119_opus_stratejik_vizyon_g\u00fcncellemesi_token_b\u00fct\u00e7esi_anti_halusinasyon_doktrini_agent_os_entegrasyon_yol_haritas\u0131_lansman_kap\u0131s\u0131_revizyonu",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_her_\u015fey_eksiksiz_uygun_mu_do\u011frudan_cevap_632",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L632",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_119_opus_stratejik_vizyon_g\u00fcncellemesi_token_b\u00fct\u00e7esi_anti_halusinasyon_doktrini_agent_os_entegrasyon_yol_haritas\u0131_lansman_kap\u0131s\u0131_revizyonu",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_panel_durumu_636",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L636",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_119_opus_stratejik_vizyon_g\u00fcncellemesi_token_b\u00fct\u00e7esi_anti_halusinasyon_doktrini_agent_os_entegrasyon_yol_haritas\u0131_lansman_kap\u0131s\u0131_revizyonu",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_antigravity_blok_g\u00f6revleri_\u00f6ncelik_s\u0131ras\u0131_ba\u011flay\u0131c\u0131_640",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L640",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_master_plan_ar\u015fiv_v12_110_v12_119",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_119_opus_stratejik_vizyon_g\u00fcncellemesi_token_b\u00fct\u00e7esi_anti_halusinasyon_doktrini_agent_os_entegrasyon_yol_haritas\u0131_lansman_kap\u0131s\u0131_revizyonu_660",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L660",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_119_opus_stratejik_vizyon_g\u00fcncellemesi_token_b\u00fct\u00e7esi_anti_halusinasyon_doktrini_agent_os_entegrasyon_yol_haritas\u0131_lansman_kap\u0131s\u0131_revizyonu_660",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_durum_g\u00fcncellemesi_662",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L662",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_119_opus_stratejik_vizyon_g\u00fcncellemesi_token_b\u00fct\u00e7esi_anti_halusinasyon_doktrini_agent_os_entegrasyon_yol_haritas\u0131_lansman_kap\u0131s\u0131_revizyonu_660",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_panel_durumu_682",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L682",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_119_opus_stratejik_vizyon_g\u00fcncellemesi_token_b\u00fct\u00e7esi_anti_halusinasyon_doktrini_agent_os_entegrasyon_yol_haritas\u0131_lansman_kap\u0131s\u0131_revizyonu_660",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_yeni_blok_g\u00f6revler_opus_stratejik_vizyon_v12_119_686",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L686",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_119_opus_stratejik_vizyon_g\u00fcncellemesi_token_b\u00fct\u00e7esi_anti_halusinasyon_doktrini_agent_os_entegrasyon_yol_haritas\u0131_lansman_kap\u0131s\u0131_revizyonu_660",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_antigravity_blok_g\u00f6revleri_\u00f6ncelik_s\u0131ras\u0131_ba\u011flay\u0131c\u0131_709",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L709",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_119_opus_stratejik_vizyon_g\u00fcncellemesi_token_b\u00fct\u00e7esi_anti_halusinasyon_doktrini_agent_os_entegrasyon_yol_haritas\u0131_lansman_kap\u0131s\u0131_revizyonu_660",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_stratejik_vizyon_opus_analizi_721",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L721",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_v12_11x_v12_119_opus_stratejik_vizyon_g\u00fcncellemesi_token_b\u00fct\u00e7esi_anti_halusinasyon_doktrini_agent_os_entegrasyon_yol_haritas\u0131_lansman_kap\u0131s\u0131_revizyonu_660",
+      "target": "d_01_saas_products_alparai_docs_plan_v12_11x_faz_4_pazar_h\u00e2kimiyeti_ekosistem_entegrasyonu_opus_s\u0131n\u0131rs\u0131z_zek\u00e2_vizyonu",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/v12.11x.md",
+      "source_location": "L737",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

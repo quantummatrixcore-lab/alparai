@@ -76,14 +76,14 @@ export function AIVelocityWidget({
   return (
     <div
       className={cn(
-        "from-bg-secondary/90 via-bg-tertiary/90 to-bg-elevated/90 relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br p-6 shadow-2xl backdrop-blur-xl transition-all duration-300 hover:border-white/20",
+        "from-bg-secondary/90 via-bg-tertiary/90 to-bg-elevated/90 border-border-subtle hover:border-border-strong relative overflow-hidden rounded-2xl border bg-gradient-to-br p-6 shadow-2xl backdrop-blur-xl transition-all duration-300",
         className,
       )}
     >
       <div className="bg-brand-500/10 pointer-events-none absolute -top-20 -right-20 h-64 w-64 rounded-full blur-3xl" />
       <div className="bg-success-500/10 pointer-events-none absolute -bottom-20 -left-20 h-64 w-64 rounded-full blur-3xl" />
 
-      <div className="relative z-10 mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-5">
+      <div className="border-border-subtle relative z-10 mb-6 flex flex-wrap items-center justify-between gap-4 border-b pb-5">
         <div className="flex items-center gap-3">
           <div className="border-brand-500/30 bg-brand-500/10 text-accent-400 flex h-11 w-11 items-center justify-center rounded-xl border shadow-[0_0_15px_rgba(6,182,212,0.2)]">
             <Gauge className="h-6 w-6" />
@@ -112,9 +112,9 @@ export function AIVelocityWidget({
       </div>
 
       <div className="relative z-10 mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4 shadow-inner">
+        <div className="border-border-subtle rounded-xl border bg-white/5 p-4 shadow-inner">
           <div className="flex items-center justify-between text-xs text-white/70">
-            <span className="flex items-center gap-1.5 font-semibold text-white/80">
+            <span className="text-fg-secondary flex items-center gap-1.5 font-semibold">
               <TrendingUp className="text-success-400 h-4 w-4" />{" "}
               {t("avg_capability_jump") || "Avg Capability Jump"}
             </span>
@@ -123,7 +123,7 @@ export function AIVelocityWidget({
             </span>
           </div>
           <div className="mt-3 flex items-baseline justify-between">
-            <span className="font-mono text-2xl font-extrabold text-white">
+            <span className="text-fg-secondaryxl font-mono font-extrabold text-white">
               {t("not_measured") || "Not measured"}
             </span>
             <span className="text-fg-muted text-[11px]">
@@ -135,9 +135,9 @@ export function AIVelocityWidget({
           </div>
         </div>
 
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4 shadow-inner">
+        <div className="border-border-subtle rounded-xl border bg-white/5 p-4 shadow-inner">
           <div className="flex items-center justify-between text-xs text-white/70">
-            <span className="flex items-center gap-1.5 font-semibold text-white/80">
+            <span className="text-fg-secondary flex items-center gap-1.5 font-semibold">
               <Cpu className="text-brand-400 h-4 w-4" />{" "}
               {t("release_cycle_cadence") || "Release Cycle Cadence"}
             </span>
@@ -146,7 +146,7 @@ export function AIVelocityWidget({
             </span>
           </div>
           <div className="mt-3 flex items-baseline justify-between">
-            <span className="font-mono text-2xl font-extrabold text-white">
+            <span className="text-fg-secondaryxl font-mono font-extrabold text-white">
               {releaseCycleDays}d
             </span>
             <span className="text-fg-muted text-[11px]">
@@ -158,9 +158,9 @@ export function AIVelocityWidget({
           </div>
         </div>
 
-        <div className="rounded-xl border border-white/10 bg-white/5 p-4 shadow-inner">
+        <div className="border-border-subtle rounded-xl border bg-white/5 p-4 shadow-inner">
           <div className="flex items-center justify-between text-xs text-white/70">
-            <span className="flex items-center gap-1.5 font-semibold text-white/80">
+            <span className="text-fg-secondary flex items-center gap-1.5 font-semibold">
               <ShieldAlert className="text-warning-400 h-4 w-4" />{" "}
               {t("ai_incident_density") || "AI Incident Density"}
             </span>
@@ -169,7 +169,9 @@ export function AIVelocityWidget({
             </span>
           </div>
           <div className="mt-3 flex items-baseline justify-between">
-            <span className="font-mono text-2xl font-extrabold text-white">{incidentDensity}</span>
+            <span className="text-fg-secondaryxl font-mono font-extrabold text-white">
+              {incidentDensity}
+            </span>
             <span className="text-fg-muted text-[11px]">
               {t("per_1k_model_prompts") || "per 1k model prompts"}
             </span>
@@ -187,7 +189,7 @@ export function AIVelocityWidget({
             {t("dynamic_arr_projections") || "Dynamic ARR Growth Projections"}
           </h4>
 
-          <div className="inline-flex rounded-xl border border-white/10 bg-black/40 p-1">
+          <div className="border-border-subtle inline-flex rounded-xl border bg-black/40 p-1">
             {(["A", "B", "C"] as const).map((scKey) => {
               const details =
                 scKey === "A"
@@ -220,7 +222,7 @@ export function AIVelocityWidget({
         </div>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <div className="rounded-xl border border-white/10 bg-black/20 p-3.5">
+          <div className="border-border-subtle bg-bg-primary/20 rounded-xl border p-3.5">
             <label className="text-fg-muted flex items-center justify-between text-xs font-semibold">
               <span>{t("baseline_arr_usd") || "Baseline ARR ($ USD)"}</span>
               <span className="font-mono text-white">${baseARR.toLocaleString()}</span>
@@ -236,7 +238,7 @@ export function AIVelocityWidget({
             />
           </div>
 
-          <div className="rounded-xl border border-white/10 bg-black/20 p-3.5">
+          <div className="border-border-subtle bg-bg-primary/20 rounded-xl border p-3.5">
             <label className="text-fg-muted flex items-center justify-between text-xs font-semibold">
               <span>{t("enterprise_b2b_clients") || "Enterprise B2B Clients"}</span>
               <span className="font-mono text-white">
@@ -273,7 +275,7 @@ export function AIVelocityWidget({
             </div>
 
             <div className="flex items-center gap-4 text-right">
-              <div className="rounded-xl border border-white/10 bg-black/30 p-3">
+              <div className="border-border-subtle rounded-xl border bg-black/30 p-3">
                 <p className="text-fg-muted text-[10px] font-bold tracking-wider uppercase">
                   Demand Multiplier
                 </p>
@@ -282,7 +284,7 @@ export function AIVelocityWidget({
                 </p>
               </div>
 
-              <div className="rounded-xl border border-white/10 bg-black/30 p-3">
+              <div className="border-border-subtle rounded-xl border bg-black/30 p-3">
                 <p className="text-fg-muted text-[10px] font-bold tracking-wider uppercase">
                   Projected Monthly
                 </p>
@@ -293,7 +295,7 @@ export function AIVelocityWidget({
             </div>
           </div>
 
-          <div className="mt-6 space-y-2.5 border-t border-white/10 pt-4">
+          <div className="border-border-subtle mt-6 space-y-2.5 border-t pt-4">
             {[projections.scenarioA, projections.scenarioB, projections.scenarioC].map((sc) => {
               const maxARR = projections.scenarioC.projectedARR || 1;
               const widthPct = Math.max(8, Math.min(100, (sc.projectedARR / maxARR) * 100));

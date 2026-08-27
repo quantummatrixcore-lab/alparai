@@ -286,7 +286,7 @@ export function FeedContainer({
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="bg-bg-secondary/10 flex flex-col items-center justify-center rounded-2xl border border-dashed border-white/5 py-20"
+                  className="bg-bg-secondary/10 border-border-subtle/50 flex flex-col items-center justify-center rounded-2xl border border-dashed py-20"
                 >
                   <AlertCircle className="text-fg-disabled mb-4 h-10 w-10" />
                   <p className="text-fg-secondary text-sm font-semibold">

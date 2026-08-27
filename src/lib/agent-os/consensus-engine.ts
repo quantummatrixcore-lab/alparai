@@ -3,8 +3,8 @@ import "server-only";
 export type Verdict = "VERIFIED" | "LIKELY" | "DISPUTED" | "REJECTED";
 
 export interface ModelResponse {
-  provider: string;     // Örn: "Claude", "Qwen"
-  trustWeight: number;  // Örn: 0.95, 0.85
+  provider: string; // Örn: "Claude", "Qwen"
+  trustWeight: number; // Örn: 0.95, 0.85
   isConfirmed: boolean; // Modelin bu olayı onaylayıp onaylamadığı (True/False tespiti)
   rawText?: string;
 }
@@ -23,7 +23,13 @@ export interface ConsensusResult {
  */
 export function calculateTruthScore(responses: ModelResponse[]): ConsensusResult {
   if (responses.length === 0) {
-    return { truthScore: 0, verdict: "DISPUTED", totalVotingWeight: 0, approvedWeight: 0, details: [] };
+    return {
+      truthScore: 0,
+      verdict: "DISPUTED",
+      totalVotingWeight: 0,
+      approvedWeight: 0,
+      details: [],
+    };
   }
 
   let totalVotingWeight = 0;
@@ -42,7 +48,7 @@ export function calculateTruthScore(responses: ModelResponse[]): ConsensusResult
       verdict: "DISPUTED",
       totalVotingWeight: 0,
       approvedWeight: 0,
-      details: responses
+      details: responses,
     };
   }
 
@@ -63,6 +69,6 @@ export function calculateTruthScore(responses: ModelResponse[]): ConsensusResult
     verdict,
     totalVotingWeight,
     approvedWeight,
-    details: responses
+    details: responses,
   };
 }

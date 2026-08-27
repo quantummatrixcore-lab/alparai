@@ -31,7 +31,7 @@ export default async function StartupHealthPage({
 
   if (!healthData) {
     return (
-      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-6 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl md:p-8">
+      <div className="bg-bg-secondary/40 ring-border-subtle space-y-8 rounded-3xl p-6 shadow-2xl ring-1 backdrop-blur-xl md:p-8">
         <AdminContainer>
           <AdminPageHeader
             icon={<Activity className="h-6 w-6 text-rose-400" />}
@@ -54,8 +54,8 @@ export default async function StartupHealthPage({
   const { kpis, scorePct, measuredAt, uptimePct, zeroCostBurnStr } = healthData;
 
   return (
-    <div className="min-h-screen bg-[#070709] px-3 py-4 text-zinc-100 sm:px-6 sm:py-6 md:p-8">
-      <div className="space-y-8 rounded-3xl bg-zinc-900/40 p-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:p-6 md:p-8">
+    <div className="bg-bg-primary text-fg-primary min-h-screen px-3 py-4 sm:px-6 sm:py-6 md:p-8">
+      <div className="bg-bg-secondary/40 ring-border-subtle space-y-8 rounded-3xl p-4 shadow-2xl ring-1 backdrop-blur-xl sm:p-6 md:p-8">
         <AdminContainer>
           <AdminPageHeader
             icon={<Activity className="h-6 w-6 text-emerald-400" />}
@@ -72,7 +72,7 @@ export default async function StartupHealthPage({
           />
 
           {/* Top Level Health KPIs */}
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
             <MetricCard
               label="Health Score"
               value={`${scorePct}%`}
@@ -121,7 +121,7 @@ export default async function StartupHealthPage({
                 return (
                   <div
                     key={kpi.label}
-                    className="relative overflow-hidden rounded-xl border border-white/10 bg-black/20 p-5 backdrop-blur-md transition duration-300 hover:border-white/20"
+                    className="border-border-subtle bg-bg-primary/20 hover:border-border-strong relative overflow-hidden rounded-xl border p-5 backdrop-blur-md transition duration-300"
                   >
                     <div className="flex items-center justify-between">
                       <span className="text-fg-muted text-xs font-bold tracking-wider uppercase">
@@ -170,12 +170,12 @@ export default async function StartupHealthPage({
               title={t("grant_state_funding_conversion") || "Grant & State Funding Conversion"}
             >
               <div className="space-y-4">
-                <div className="flex items-center justify-between rounded-xl border border-white/5 bg-white/5 p-4">
+                <div className="border-border-subtle/50 flex items-center justify-between rounded-xl border bg-white/5 p-4">
                   <div>
                     <p className="text-fg-muted text-xs">
                       {t("funding_applications_won") || "Funding Applications Won"}
                     </p>
-                    <p className="font-mono text-2xl font-bold text-emerald-400">
+                    <p className="text-fg-secondaryxl font-mono font-bold text-emerald-400">
                       {fundingData?.combinedWon ?? 2}
                     </p>
                   </div>
@@ -183,7 +183,7 @@ export default async function StartupHealthPage({
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="rounded-xl border border-white/5 bg-black/20 p-4">
+                  <div className="border-border-subtle/50 bg-bg-primary/20 rounded-xl border p-4">
                     <p className="text-fg-muted text-xs">
                       {t("applications_submitted") || "Applications Submitted"}
                     </p>
@@ -191,7 +191,7 @@ export default async function StartupHealthPage({
                       {fundingData?.combinedApplied ?? 4}
                     </p>
                   </div>
-                  <div className="rounded-xl border border-white/5 bg-black/20 p-4">
+                  <div className="border-border-subtle/50 bg-bg-primary/20 rounded-xl border p-4">
                     <p className="text-fg-muted text-xs">
                       {t("catalog_opportunities") || "Catalog Opportunities"}
                     </p>
@@ -207,12 +207,12 @@ export default async function StartupHealthPage({
               title={t("infra_operational_burn") || "Infrastructure & Operational Burn"}
             >
               <div className="space-y-4">
-                <div className="flex items-center justify-between rounded-xl border border-white/5 bg-white/5 p-4">
+                <div className="border-border-subtle/50 flex items-center justify-between rounded-xl border bg-white/5 p-4">
                   <div>
                     <p className="text-fg-muted text-xs">
                       {t("monthly_infrastructure_cost") || "Monthly Infrastructure Cost"}
                     </p>
-                    <p className="font-mono text-2xl font-bold text-purple-400">
+                    <p className="text-fg-secondaryxl font-mono font-bold text-purple-400">
                       $0.00{" "}
                       <span className="font-sans text-xs font-semibold text-emerald-400">
                         ({t("free_tier") || "Free Tier"})
@@ -223,11 +223,11 @@ export default async function StartupHealthPage({
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="rounded-xl border border-white/5 bg-black/20 p-4">
+                  <div className="border-border-subtle/50 bg-bg-primary/20 rounded-xl border p-4">
                     <p className="text-fg-muted text-xs">{t("vercel_region") || "Vercel Region"}</p>
                     <p className="font-mono text-sm font-bold text-white">fra1 (Frankfurt)</p>
                   </div>
-                  <div className="rounded-xl border border-white/5 bg-black/20 p-4">
+                  <div className="border-border-subtle/50 bg-bg-primary/20 rounded-xl border p-4">
                     <p className="text-fg-muted text-xs">
                       {t("supabase_db_region") || "Supabase DB Region"}
                     </p>

@@ -17,7 +17,7 @@ export function Logo({ className, size = "md", ...props }: LogoProps) {
   return (
     <span
       className={cn(
-        "group/logo relative inline-flex shrink-0 select-none items-center justify-center",
+        "group/logo relative inline-flex shrink-0 items-center justify-center select-none",
         className,
       )}
       style={{ width: px, height: px }}

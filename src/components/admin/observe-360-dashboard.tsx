@@ -49,7 +49,7 @@ export function Observe360Dashboard() {
 
   return (
     <div className="border-brand-500/20 to-brand-950/30 mb-8 overflow-hidden rounded-2xl border bg-gradient-to-br from-zinc-950 via-zinc-900 p-6 shadow-2xl backdrop-blur-xl">
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
+      <div className="border-border-subtle flex flex-wrap items-center justify-between gap-4 border-b pb-4">
         <div className="flex items-center space-x-3">
           <LivePulseRing status="healthy" />
           <div>
@@ -66,7 +66,7 @@ export function Observe360Dashboard() {
         <button
           onClick={fetchTelemetry}
           disabled={loading}
-          className="text-fg-secondary flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold transition-colors hover:bg-white/10"
+          className="text-fg-secondary border-border-subtle flex items-center gap-1.5 rounded-lg border bg-white/5 px-3 py-1.5 text-xs font-semibold transition-colors hover:bg-white/10"
         >
           <RefreshCw className={`h-3.5 w-3.5 ${loading ? "animate-spin" : ""}`} />
           <span>{t("sync_telemetry")}</span>
@@ -75,13 +75,13 @@ export function Observe360Dashboard() {
 
       <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {/* 1. Incidents Registry */}
-        <div className="hover:border-brand-500/30 bg-bg-elevated/80 rounded-xl border border-white/10 p-4 transition-all">
+        <div className="hover:border-brand-500/30 bg-bg-elevated/80 border-border-subtle rounded-xl border p-4 transition-all">
           <div className="text-fg-muted flex items-center justify-between text-xs">
             <span>{t("1_incidents_registry")}</span>
             <Shield className="text-brand-400 h-4 w-4" />
           </div>
           <div className="mt-2 flex items-baseline justify-between">
-            <span className="text-2xl font-black text-white">
+            <span className="text-fg-secondaryxl font-black text-white">
               {telemetry ? telemetry.incidents.total : "—"}
             </span>
             <span className="text-brand-300 text-xs font-bold">
@@ -98,13 +98,13 @@ export function Observe360Dashboard() {
         </div>
 
         {/* 2. Health & SLO */}
-        <div className="hover:border-brand-500/30 bg-bg-elevated/80 rounded-xl border border-white/10 p-4 transition-all">
+        <div className="hover:border-brand-500/30 bg-bg-elevated/80 border-border-subtle rounded-xl border p-4 transition-all">
           <div className="text-fg-muted flex items-center justify-between text-xs">
             <span>{t("2_health_slo")}</span>
             <Activity className="text-success-400 h-4 w-4" />
           </div>
           <div className="mt-2 flex items-baseline justify-between">
-            <span className="text-2xl font-black text-white">
+            <span className="text-fg-secondaryxl font-black text-white">
               {telemetry?.healthSlo.status ?? (loading ? "—" : "UNKNOWN")}
             </span>
             <span className={`text-xs font-bold ${healthColor}`}>
@@ -121,13 +121,13 @@ export function Observe360Dashboard() {
         </div>
 
         {/* 3. Security & RLS */}
-        <div className="hover:border-brand-500/30 bg-bg-elevated/80 rounded-xl border border-white/10 p-4 transition-all">
+        <div className="hover:border-brand-500/30 bg-bg-elevated/80 border-border-subtle rounded-xl border p-4 transition-all">
           <div className="text-fg-muted flex items-center justify-between text-xs">
             <span>{t("3_security_rls")}</span>
             <SupabaseIcon size={14} />
           </div>
           <div className="mt-2 flex items-baseline justify-between">
-            <span className="text-2xl font-black text-white">{t("hardened")}</span>
+            <span className="text-fg-secondaryxl font-black text-white">{t("hardened")}</span>
             <span className="text-success-400 text-xs font-bold">{t("passed")}</span>
           </div>
           <p className="text-fg-muted mt-2 text-[11px]">
@@ -137,13 +137,13 @@ export function Observe360Dashboard() {
         </div>
 
         {/* 4. DORA Metrics */}
-        <div className="hover:border-brand-500/30 bg-bg-elevated/80 rounded-xl border border-white/10 p-4 transition-all">
+        <div className="hover:border-brand-500/30 bg-bg-elevated/80 border-border-subtle rounded-xl border p-4 transition-all">
           <div className="text-fg-muted flex items-center justify-between text-xs">
             <span>{t("4_dora_metrics")}</span>
             <Zap className="h-4 w-4 text-sky-400" />
           </div>
           <div className="mt-2 flex items-baseline justify-between">
-            <span className="text-2xl font-black text-white">
+            <span className="text-fg-secondaryxl font-black text-white">
               {telemetry?.dora.instrumented ? `${telemetry.dora.deployFrequency ?? 0}/day` : "—"}
             </span>
             <span className="text-xs font-bold text-sky-400">
@@ -158,13 +158,13 @@ export function Observe360Dashboard() {
         </div>
 
         {/* 5. Cost (AI Gateway) */}
-        <div className="hover:border-brand-500/30 bg-bg-elevated/80 rounded-xl border border-white/10 p-4 transition-all">
+        <div className="hover:border-brand-500/30 bg-bg-elevated/80 border-border-subtle rounded-xl border p-4 transition-all">
           <div className="text-fg-muted flex items-center justify-between text-xs">
             <span>{t("5_ai_gateway_cost")}</span>
             <DollarSign className="text-success-400 h-4 w-4" />
           </div>
           <div className="mt-2 flex items-baseline justify-between">
-            <span className="text-2xl font-black text-white">
+            <span className="text-fg-secondaryxl font-black text-white">
               ${telemetry?.cost.dailySpendUsd.toFixed(2) ?? "—"} {t("day")}
             </span>
             <span className="text-success-400 text-xs font-bold">{t("tracked")}</span>
@@ -176,13 +176,13 @@ export function Observe360Dashboard() {
         </div>
 
         {/* 6. Growth & Users */}
-        <div className="hover:border-brand-500/30 bg-bg-elevated/80 rounded-xl border border-white/10 p-4 transition-all">
+        <div className="hover:border-brand-500/30 bg-bg-elevated/80 border-border-subtle rounded-xl border p-4 transition-all">
           <div className="text-fg-muted flex items-center justify-between text-xs">
             <span>{t("6_growth_users")}</span>
             <TrendingUp className="text-brand-400 h-4 w-4" />
           </div>
           <div className="mt-2 flex items-baseline justify-between">
-            <span className="text-2xl font-black text-white">
+            <span className="text-fg-secondaryxl font-black text-white">
               {telemetry ? `${telemetry.growth.totalUsers} Users` : "—"}
             </span>
             <span className="text-brand-400 text-xs font-bold">{t("active")}</span>
@@ -197,13 +197,13 @@ export function Observe360Dashboard() {
         </div>
 
         {/* 7. Capacity & Infra */}
-        <div className="hover:border-brand-500/30 bg-bg-elevated/80 rounded-xl border border-white/10 p-4 transition-all">
+        <div className="hover:border-brand-500/30 bg-bg-elevated/80 border-border-subtle rounded-xl border p-4 transition-all">
           <div className="text-fg-muted flex items-center justify-between text-xs">
             <span>{t("7_capacity_infra")}</span>
             <HardDrive className="text-warning-400 h-4 w-4" />
           </div>
           <div className="mt-2 flex items-baseline justify-between">
-            <span className="text-2xl font-black text-white">
+            <span className="text-fg-secondaryxl font-black text-white">
               {telemetry ? `${telemetry.capacity.dbSizeMb} MB` : "—"}
             </span>
             <span className="text-warning-400 text-xs font-bold">
@@ -226,13 +226,13 @@ export function Observe360Dashboard() {
         </div>
 
         {/* 8. K-BENCHMARK */}
-        <div className="hover:border-brand-500/30 bg-bg-elevated/80 rounded-xl border border-white/10 p-4 transition-all">
+        <div className="hover:border-brand-500/30 bg-bg-elevated/80 border-border-subtle rounded-xl border p-4 transition-all">
           <div className="text-fg-muted flex items-center justify-between text-xs">
             <span>{t("8_k_benchmark")}</span>
             <Award className="text-brand-400 h-4 w-4" />
           </div>
           <div className="mt-2 flex items-baseline justify-between">
-            <span className="text-2xl font-black text-white">
+            <span className="text-fg-secondaryxl font-black text-white">
               {telemetry ? `${telemetry.kBenchmark.totalModelsRated} Models` : "—"}
             </span>
             <span className="text-brand-300 text-xs font-bold">{t("rated")}</span>

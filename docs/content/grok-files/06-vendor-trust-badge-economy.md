@@ -11,13 +11,13 @@
 
 In traditional enterprise software, regulatory compliance (SOC 2, ISO 27001, GDPR) has historically been viewed as a tax—an expensive, tedious cost center required to pass procurement security questionnaires.
 
-With the enforcement of the **EU Artificial Intelligence Act (EU AI Act)** and global transparency directives, AI model vendors and SaaS providers face a fundamental shift. Enterprise buyers are no longer asking simply *"What can your model do?"* or *"What is your context window size?"* Enterprise risk officers, legal counsels, and procurement leaders now demand answers to critical risk questions:
+With the enforcement of the **EU Artificial Intelligence Act (EU AI Act)** and global transparency directives, AI model vendors and SaaS providers face a fundamental shift. Enterprise buyers are no longer asking simply _"What can your model do?"_ or _"What is your context window size?"_ Enterprise risk officers, legal counsels, and procurement leaders now demand answers to critical risk questions:
 
-- *How do you log and audit AI safety incidents under EU AI Act Article 73?*
-- *Is your audit infrastructure independently verified, or are you marking your own homework?*
-- *Can you prove tamper-proof data handling without exposing raw PII?*
+- _How do you log and audit AI safety incidents under EU AI Act Article 73?_
+- _Is your audit infrastructure independently verified, or are you marking your own homework?_
+- _Can you prove tamper-proof data handling without exposing raw PII?_
 
-For AI vendors, answering these questions manually on every sales call creates immense friction, lengthening sales cycles from weeks to quarters. 
+For AI vendors, answering these questions manually on every sales call creates immense friction, lengthening sales cycles from weeks to quarters.
 
 At **ALPAR AI**, we built the **Vendor Trust Badge Economy** ($299/month Vendor Portal)—a verification infrastructure that turns compliance from a defensive hurdle into a powerful, high-converting top-line growth vector.
 
@@ -53,6 +53,7 @@ To illustrate the financial impact of the Trust Badge Economy, let us analyze a 
 ### The Challenge Before ALPAR AI
 
 Prior to implementing the ALPAR AI Trust Badge:
+
 - **Sales Cycle Duration:** Average of 114 days due to prolonged legal and compliance review cycles.
 - **Procurement Stalls:** 42% of enterprise deals stalled during the security questionnaire phase regarding EU AI Act liability and incident logging.
 - **Conversion Rate:** Demo-to-paid conversion rate hovered at **14.2%**.
@@ -69,14 +70,14 @@ In Q2 2026, OmniText AI integrated ALPAR AI's audit layer:
 
 Within 90 days of activating the $299/month Vendor Portal subscription:
 
-| Metric | Before Trust Badge | After Trust Badge | Change |
-| :--- | :--- | :--- | :--- |
-| **Demo-to-Closed Deal Rate** | 14.2% | **32.4%** | **+128.1% Increase** |
-| **Avg. Procurement Duration** | 114 days | **38 days** | **66.6% Reduction** |
-| **Enterprise ARR Growth** | $420,000 | **$1,180,000** | **+180.9% Expansion** |
-| **Customer Acquisition Cost (CAC)** | $18,400 | **$8,200** | **55.4% Reduction** |
+| Metric                              | Before Trust Badge | After Trust Badge | Change                |
+| :---------------------------------- | :----------------- | :---------------- | :-------------------- |
+| **Demo-to-Closed Deal Rate**        | 14.2%              | **32.4%**         | **+128.1% Increase**  |
+| **Avg. Procurement Duration**       | 114 days           | **38 days**       | **66.6% Reduction**   |
+| **Enterprise ARR Growth**           | $420,000           | **$1,180,000**    | **+180.9% Expansion** |
+| **Customer Acquisition Cost (CAC)** | $18,400            | **$8,200**        | **55.4% Reduction**   |
 
-> *"The ALPAR AI Trust Badge completely eliminated enterprise procurement friction for us. Instead of spending months explaining our logging compliance to enterprise security teams, we send them to our live ALPAR AI audit badge page. The deal closes in days."*  
+> _"The ALPAR AI Trust Badge completely eliminated enterprise procurement friction for us. Instead of spending months explaining our logging compliance to enterprise security teams, we send them to our live ALPAR AI audit badge page. The deal closes in days."_  
 > — **Chief Revenue Officer, OmniText AI**
 
 ---

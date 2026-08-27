@@ -142,7 +142,7 @@ export function ImportQueueClient({ initialIncidents, locale: _locale }: ImportQ
   return (
     <div className="space-y-6">
       {/* 360° Observe: Queue Distribution Chart */}
-      <div className="rounded-xl border border-white/5 bg-neutral-950/40 p-6">
+      <div className="border-border-subtle/50 bg-bg-secondary rounded-xl border p-6">
         <h3 className="text-fg-primary mb-6 text-sm font-bold tracking-wide">
           {t("queue_distribution_by_severity")}
         </h3>
@@ -191,7 +191,7 @@ export function ImportQueueClient({ initialIncidents, locale: _locale }: ImportQ
 
       <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
         <div>
-          <h1 className="text-2xl font-black text-white">{t("import_q_title")}</h1>
+          <h1 className="text-fg-secondaryxl font-black text-white">{t("import_q_title")}</h1>
           <p className="text-fg-secondary mt-1 text-xs">{t("import_q_subtitle")}</p>
         </div>
 
@@ -278,7 +278,7 @@ export function ImportQueueClient({ initialIncidents, locale: _locale }: ImportQ
                   selectedIds.length === filteredIncidents.length && filteredIncidents.length > 0
                 }
                 onChange={handleSelectAll}
-                className="bg-bg-tertiary text-brand-600 focus:ring-brand-500 focus:ring-offset-bg-primary h-4 w-4 rounded border-white/10"
+                className="bg-bg-tertiary text-brand-600 focus:ring-brand-500 focus:ring-offset-bg-primary border-border-subtle h-4 w-4 rounded"
               />
               <div className="w-16">{t("import_q_source")}</div>
               <div className="flex-1">{t("import_q_title_details")}</div>
@@ -301,7 +301,7 @@ export function ImportQueueClient({ initialIncidents, locale: _locale }: ImportQ
                     type="checkbox"
                     checked={isSelected}
                     onChange={() => handleSelectOne(incident.id)}
-                    className="bg-bg-tertiary text-brand-600 focus:ring-brand-500 focus:ring-offset-bg-primary mt-1 h-4 w-4 rounded border-white/10"
+                    className="bg-bg-tertiary text-brand-600 focus:ring-brand-500 focus:ring-offset-bg-primary border-border-subtle mt-1 h-4 w-4 rounded"
                   />
 
                   {/* Source badge */}
@@ -356,7 +356,7 @@ export function ImportQueueClient({ initialIncidents, locale: _locale }: ImportQ
 
                   {/* Category */}
                   <div className="w-24 pt-0.5 text-center">
-                    <span className="text-fg-secondary rounded border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-bold tracking-wide uppercase">
+                    <span className="text-fg-secondary border-border-subtle rounded border bg-white/5 px-2.5 py-1 text-[10px] font-bold tracking-wide uppercase">
                       {incident.category}
                     </span>
                   </div>

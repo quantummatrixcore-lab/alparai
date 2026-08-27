@@ -3,7 +3,7 @@
 **Document Reference:** TR-2026-01  
 **Publication Date:** June 2026  
 **Scope:** Global Operations & Platform Governance  
-**Status:** Initial Draft / Public Skeleton  
+**Status:** Initial Draft / Public Skeleton
 
 ---
 
@@ -73,6 +73,7 @@ ALPAR AI proactively submits compliance disclosures, algorithmic risk assessment
 ## 6. Data Privacy & PII Protection
 
 Data privacy is enforced by technical architecture rather than procedural promise.
+
 - **Row-Level Security (RLS):** 100% of PostgreSQL tables enforce strict RLS policies prohibiting unauthorized cross-tenant or unauthenticated data access.
 - **PII Guardian:** Every user-submitted free-text string passes through `src/lib/pii/guardian.ts` before database persistence, redacting telephone numbers, national identification numbers, email addresses, and IP headers.
 

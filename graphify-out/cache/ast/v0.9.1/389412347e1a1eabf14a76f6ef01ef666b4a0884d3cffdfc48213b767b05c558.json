@@ -1,0 +1,79 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_runner_1_md",
+      "label": "RUNNER-1.md",
+      "file_type": "document",
+      "source_file": "docs/plan/items/RUNNER-1.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_runner_1_runner_1",
+      "label": "RUNNER-1",
+      "file_type": "document",
+      "source_file": "docs/plan/items/RUNNER-1.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_runner_1_reprioritised_to_top_of_board_v13_43",
+      "label": "Reprioritised to top of board (v13.43)",
+      "file_type": "document",
+      "source_file": "docs/plan/items/RUNNER-1.md",
+      "source_location": "L5"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_runner_1_reopened_the_closure_was_verified_false_v13_44",
+      "label": "Reopened \u2014 the closure was verified false (v13.44)",
+      "file_type": "document",
+      "source_file": "docs/plan/items/RUNNER-1.md",
+      "source_location": "L21"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_runner_1_root_cause_found_closed_v13_47_2026_08_17",
+      "label": "Root cause found \u2014 closed (v13.47, 2026-08-17)",
+      "file_type": "document",
+      "source_file": "docs/plan/items/RUNNER-1.md",
+      "source_location": "L42"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_runner_1_md",
+      "target": "d_01_saas_products_alparai_docs_plan_items_runner_1_runner_1",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/RUNNER-1.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_runner_1_runner_1",
+      "target": "d_01_saas_products_alparai_docs_plan_items_runner_1_reprioritised_to_top_of_board_v13_43",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/RUNNER-1.md",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_runner_1_runner_1",
+      "target": "d_01_saas_products_alparai_docs_plan_items_runner_1_reopened_the_closure_was_verified_false_v13_44",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/RUNNER-1.md",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_runner_1_runner_1",
+      "target": "d_01_saas_products_alparai_docs_plan_items_runner_1_root_cause_found_closed_v13_47_2026_08_17",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/RUNNER-1.md",
+      "source_location": "L42",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

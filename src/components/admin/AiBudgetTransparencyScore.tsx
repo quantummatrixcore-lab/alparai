@@ -50,7 +50,7 @@ export function AiBudgetTransparencyScore({
       <div className="bg-success-500/10 group-hover:bg-success-500/20 pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full blur-3xl transition-all duration-500" />
 
       {/* Header */}
-      <div className="relative z-10 flex min-w-0 flex-col gap-4 border-b border-white/10 pb-5 sm:flex-row sm:items-center sm:justify-between sm:pb-6">
+      <div className="border-border-subtle relative z-10 flex min-w-0 flex-col gap-4 border-b pb-5 sm:flex-row sm:items-center sm:justify-between sm:pb-6">
         <div className="flex min-w-0 items-center gap-3.5">
           <div className="border-accent-500/30 bg-accent-500/10 text-accent-400 flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border shadow-[0_0_20px_rgba(6,182,212,0.15)] sm:h-12 sm:w-12">
             <ShieldCheck className="h-5 w-5 sm:h-6 sm:w-6" />
@@ -73,7 +73,7 @@ export function AiBudgetTransparencyScore({
 
         <div className="flex shrink-0 items-center justify-between gap-2 sm:justify-end">
           {/* Timeframe Selector */}
-          <div className="flex items-center rounded-xl border border-white/10 bg-white/5 p-1 backdrop-blur-md">
+          <div className="border-border-subtle flex items-center rounded-xl border bg-white/5 p-1 backdrop-blur-md">
             {(["24h", "7d", "30d"] as const).map((tf) => (
               <button
                 key={tf}
@@ -82,7 +82,7 @@ export function AiBudgetTransparencyScore({
                   "rounded-lg px-2.5 py-1 text-xs font-semibold transition-all",
                   activeTimeframe === tf
                     ? "border-accent-500/30 bg-accent-500/20 text-accent-300 border shadow-sm"
-                    : "text-fg-muted hover:text-zinc-200",
+                    : "text-fg-muted hover:text-fg-secondary",
                 )}
               >
                 {tf.toUpperCase()}
@@ -92,7 +92,7 @@ export function AiBudgetTransparencyScore({
 
           <button
             onClick={handleRefresh}
-            className="text-fg-secondary flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 backdrop-blur-md transition-all hover:border-white/20 hover:bg-white/10 hover:text-white"
+            className="text-fg-secondary border-border-subtle hover:border-border-strong flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border bg-white/5 backdrop-blur-md transition-all hover:bg-white/10 hover:text-white"
             title={t("refresh_data") || "Verileri Yenile"}
             aria-label={t("refresh") || "Refresh"}
           >
@@ -104,7 +104,7 @@ export function AiBudgetTransparencyScore({
       {/* Grid Content */}
       <div className="relative z-10 mt-6 grid w-full min-w-0 grid-cols-1 gap-6 lg:grid-cols-12">
         {/* Main Radial Gauge Section (5 cols) */}
-        <div className="flex w-full min-w-0 flex-col items-center justify-center overflow-hidden rounded-2xl border border-white/5 bg-white/[0.02] p-4 backdrop-blur-xl sm:p-6 lg:col-span-5">
+        <div className="border-border-subtle/50 flex w-full min-w-0 flex-col items-center justify-center overflow-hidden rounded-2xl border bg-white/[0.02] p-4 backdrop-blur-xl sm:p-6 lg:col-span-5">
           <div className="relative flex items-center justify-center">
             {/* SVG Circular Radial Gauge */}
             <svg className="h-40 w-40 -rotate-90 transform sm:h-48 sm:w-48" viewBox="0 0 160 160">
@@ -142,7 +142,7 @@ export function AiBudgetTransparencyScore({
 
             {/* Inner Gauge Text - Perfectly Symmetrical & Centered */}
             <div className="absolute inset-0 flex flex-col items-center justify-center p-3 text-center">
-              <span className="text-2xl font-black tracking-tight text-white drop-shadow-sm sm:text-3xl">
+              <span className="text-fg-secondaryxl font-black tracking-tight text-white drop-shadow-sm sm:text-3xl">
                 %{score !== undefined ? score : "Ölçülmedi"}
               </span>
               <span className="text-success-400 mt-1 max-w-[100px] text-[9px] leading-tight font-bold tracking-widest uppercase">
@@ -162,7 +162,7 @@ export function AiBudgetTransparencyScore({
         {/* Breakdown & Linear Gauge Bar Section (7 cols) */}
         <div className="flex w-full min-w-0 flex-col justify-between space-y-5 lg:col-span-7">
           {/* Linear Bar Gauge for Token Budget */}
-          <div className="w-full min-w-0 overflow-hidden rounded-2xl border border-white/5 bg-white/[0.03] p-4">
+          <div className="border-border-subtle/50 w-full min-w-0 overflow-hidden rounded-2xl border bg-white/[0.03] p-4">
             <div className="flex min-w-0 flex-col gap-1 text-xs font-semibold sm:flex-row sm:items-center sm:justify-between">
               <span className="text-fg-secondary flex min-w-0 items-center gap-2">
                 <Zap className="text-warning-400 h-4 w-4 shrink-0" />{" "}
@@ -180,7 +180,7 @@ export function AiBudgetTransparencyScore({
             </div>
 
             {/* Progress Bar Container */}
-            <div className="relative mt-3 h-3 w-full overflow-hidden rounded-full bg-zinc-800/80 p-0.5 ring-1 ring-white/10">
+            <div className="bg-bg-elevated/80 ring-border-subtle relative mt-3 h-3 w-full overflow-hidden rounded-full p-0.5 ring-1">
               <div
                 className="via-brand-500 to-success-400 h-full rounded-full bg-gradient-to-r from-cyan-500 shadow-[0_0_12px_rgba(6,182,212,0.4)] transition-all duration-700 ease-out"
                 style={{ width: totalBudgetTokens !== undefined ? `${budgetUsagePct}%` : "0%" }}
@@ -202,7 +202,7 @@ export function AiBudgetTransparencyScore({
 
           {/* 3 Metric Mini Cards */}
           <div className="grid w-full min-w-0 grid-cols-1 gap-3 sm:grid-cols-3">
-            <div className="hover:border-accent-500/30 min-w-0 overflow-hidden rounded-xl border border-white/5 bg-white/[0.02] p-3 transition-colors">
+            <div className="hover:border-accent-500/30 border-border-subtle/50 min-w-0 overflow-hidden rounded-xl border bg-white/[0.02] p-3 transition-colors">
               <p className="text-fg-muted truncate text-[11px] font-medium">
                 {t("hallucination_rate") || "Halüsinasyon Oranı"}
               </p>
@@ -216,7 +216,7 @@ export function AiBudgetTransparencyScore({
               </div>
             </div>
 
-            <div className="hover:border-brand-500/30 min-w-0 overflow-hidden rounded-xl border border-white/5 bg-white/[0.02] p-3 transition-colors">
+            <div className="hover:border-brand-500/30 border-border-subtle/50 min-w-0 overflow-hidden rounded-xl border bg-white/[0.02] p-3 transition-colors">
               <p className="text-fg-muted truncate text-[11px] font-medium">
                 {t("verified_claim") || "Doğrulanmış İddia"}
               </p>
@@ -230,7 +230,7 @@ export function AiBudgetTransparencyScore({
               </div>
             </div>
 
-            <div className="hover:border-warning-500/30 min-w-0 overflow-hidden rounded-xl border border-white/5 bg-white/[0.02] p-3 transition-colors">
+            <div className="hover:border-warning-500/30 border-border-subtle/50 min-w-0 overflow-hidden rounded-xl border bg-white/[0.02] p-3 transition-colors">
               <p className="text-fg-muted truncate text-[11px] font-medium">
                 Tasarruf Edilen Token
               </p>
@@ -248,7 +248,7 @@ export function AiBudgetTransparencyScore({
       </div>
 
       {/* Footer Info Strip */}
-      <div className="text-fg-muted relative z-10 mt-6 flex min-w-0 flex-col gap-2 overflow-hidden border-t border-white/5 pt-4 text-xs sm:flex-row sm:items-center sm:justify-between">
+      <div className="text-fg-muted border-border-subtle/50 relative z-10 mt-6 flex min-w-0 flex-col gap-2 overflow-hidden border-t pt-4 text-xs sm:flex-row sm:items-center sm:justify-between">
         <div className="flex min-w-0 items-center gap-2">
           <Activity className="text-accent-400 h-3.5 w-3.5 shrink-0 animate-pulse" />
           <span className="truncate">

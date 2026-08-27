@@ -3,34 +3,34 @@
  * Author: Mimar Sinan (Alparai Agent-OS)
  */
 
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 class ClaudeArtifactBridge {
   constructor(apiKey = process.env.CLAUDE_API_KEY) {
     this.apiKey = apiKey;
-    this.baseUrl = 'https://api.anthropic.com/v1/messages';
+    this.baseUrl = "https://api.anthropic.com/v1/messages";
   }
 
   async extractArtifacts(prompt) {
     if (!this.apiKey) {
-      console.warn('[ClaudeBridge] CLAUDE_API_KEY atanmamış. Simülasyon modunda çalışılıyor.');
+      console.warn("[ClaudeBridge] CLAUDE_API_KEY atanmamış. Simülasyon modunda çalışılıyor.");
       return this.getMockArtifactResponse(prompt);
     }
 
     try {
       const response = await fetch(this.baseUrl, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'x-api-key': this.apiKey,
-          'anthropic-version': '2023-06-01',
-          'content-type': 'application/json'
+          "x-api-key": this.apiKey,
+          "anthropic-version": "2023-06-01",
+          "content-type": "application/json",
         },
         body: JSON.stringify({
-          model: 'claude-3-5-sonnet-20241022',
+          model: "claude-3-5-sonnet-20241022",
           max_tokens: 4096,
-          messages: [{ role: 'user', content: prompt }]
-        })
+          messages: [{ role: "user", content: prompt }],
+        }),
       });
 
       if (!response.ok) {
@@ -38,9 +38,9 @@ class ClaudeArtifactBridge {
       }
 
       const data = await response.json();
-      return this.parseCodeBlocks(data.content?.[0]?.text || '');
+      return this.parseCodeBlocks(data.content?.[0]?.text || "");
     } catch (error) {
-      console.error('[ClaudeBridge] Hata:', error.message);
+      console.error("[ClaudeBridge] Hata:", error.message);
       return { error: error.message };
     }
   }
@@ -52,29 +52,29 @@ class ClaudeArtifactBridge {
 
     while ((match = codeBlockRegex.exec(text)) !== null) {
       artifacts.push({
-        language: match[1] || 'text',
-        code: match[2].trim()
+        language: match[1] || "text",
+        code: match[2].trim(),
       });
     }
 
     return {
       rawText: text,
       artifactsFound: artifacts.length,
-      artifacts: artifacts
+      artifacts: artifacts,
     };
   }
 
   getMockArtifactResponse(prompt) {
     return {
-      status: 'simulated',
-      message: 'CLAUDE_API_KEY eksik olduğu için mock yanıt üretildi.',
+      status: "simulated",
+      message: "CLAUDE_API_KEY eksik olduğu için mock yanıt üretildi.",
       promptReceived: prompt,
       artifacts: [
         {
-          language: 'html',
-          code: '<div class="alparai-card"><h3>Simüle Claude Component</h3></div>'
-        }
-      ]
+          language: "html",
+          code: '<div class="alparai-card"><h3>Simüle Claude Component</h3></div>',
+        },
+      ],
     };
   }
 }
@@ -83,7 +83,7 @@ module.exports = ClaudeArtifactBridge;
 
 if (require.main === module) {
   const bridge = new ClaudeArtifactBridge();
-  bridge.extractArtifacts('Generate a simple dashboard card HTML').then(res => {
-    console.log('[ClaudeBridge CLI Test Output]:', JSON.stringify(res, null, 2));
+  bridge.extractArtifacts("Generate a simple dashboard card HTML").then((res) => {
+    console.log("[ClaudeBridge CLI Test Output]:", JSON.stringify(res, null, 2));
   });
 }

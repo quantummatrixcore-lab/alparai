@@ -69,9 +69,9 @@ export default async function OpenVsClosedPage({
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="border-border-subtle overflow-hidden rounded-xl border">
+              <div className="overflow-x-auto">
                 <table className="w-full border-collapse text-left">
-                  <thead className="bg-bg-tertiary">
+                  <thead className="border-border-subtle bg-bg-tertiary border-b">
                     <tr>
                       <th className="text-fg-secondary p-4 text-xs font-bold tracking-wider uppercase">
                         {t("weightClassHeader")}

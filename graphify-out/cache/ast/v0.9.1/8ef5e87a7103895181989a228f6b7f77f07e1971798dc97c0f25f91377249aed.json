@@ -1,0 +1,143 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_oecd_taxonomy_map_md",
+      "label": "OECD_TAXONOMY_MAP.md",
+      "file_type": "document",
+      "source_file": "docs/OECD_TAXONOMY_MAP.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_oecd_taxonomy_map_alpar_ai_oecd_ai_taxonomy_map",
+      "label": "ALPAR AI \u2014 OECD AI Taxonomy Map",
+      "file_type": "document",
+      "source_file": "docs/OECD_TAXONOMY_MAP.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_oecd_taxonomy_map_oecd_taxonomy_mapping_definition",
+      "label": "\ud83d\uddfa\ufe0f OECD Taxonomy Mapping Definition",
+      "file_type": "document",
+      "source_file": "docs/OECD_TAXONOMY_MAP.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_oecd_taxonomy_map_1_people_planet_context_and_impact",
+      "label": "1. People & Planet (Context and Impact)",
+      "file_type": "document",
+      "source_file": "docs/OECD_TAXONOMY_MAP.md",
+      "source_location": "L11"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_oecd_taxonomy_map_2_business_model_application_domain",
+      "label": "2. Business Model (Application Domain)",
+      "file_type": "document",
+      "source_file": "docs/OECD_TAXONOMY_MAP.md",
+      "source_location": "L19"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_oecd_taxonomy_map_3_ai_system_technology_type",
+      "label": "3. AI System (Technology Type)",
+      "file_type": "document",
+      "source_file": "docs/OECD_TAXONOMY_MAP.md",
+      "source_location": "L27"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_oecd_taxonomy_map_4_data_input_data_characteristics",
+      "label": "4. Data & Input (Data Characteristics)",
+      "file_type": "document",
+      "source_file": "docs/OECD_TAXONOMY_MAP.md",
+      "source_location": "L34"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_oecd_taxonomy_map_5_action_output_system_behavior",
+      "label": "5. Action & Output (System Behavior)",
+      "file_type": "document",
+      "source_file": "docs/OECD_TAXONOMY_MAP.md",
+      "source_location": "L41"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_oecd_taxonomy_map_oecd_feed_output_format",
+      "label": "\ud83d\udce1 OECD Feed Output Format",
+      "file_type": "document",
+      "source_file": "docs/OECD_TAXONOMY_MAP.md",
+      "source_location": "L50"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_oecd_taxonomy_map_md",
+      "target": "d_01_saas_products_alparai_docs_oecd_taxonomy_map_alpar_ai_oecd_ai_taxonomy_map",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/OECD_TAXONOMY_MAP.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_oecd_taxonomy_map_alpar_ai_oecd_ai_taxonomy_map",
+      "target": "d_01_saas_products_alparai_docs_oecd_taxonomy_map_oecd_taxonomy_mapping_definition",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/OECD_TAXONOMY_MAP.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_oecd_taxonomy_map_oecd_taxonomy_mapping_definition",
+      "target": "d_01_saas_products_alparai_docs_oecd_taxonomy_map_1_people_planet_context_and_impact",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/OECD_TAXONOMY_MAP.md",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_oecd_taxonomy_map_oecd_taxonomy_mapping_definition",
+      "target": "d_01_saas_products_alparai_docs_oecd_taxonomy_map_2_business_model_application_domain",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/OECD_TAXONOMY_MAP.md",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_oecd_taxonomy_map_oecd_taxonomy_mapping_definition",
+      "target": "d_01_saas_products_alparai_docs_oecd_taxonomy_map_3_ai_system_technology_type",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/OECD_TAXONOMY_MAP.md",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_oecd_taxonomy_map_oecd_taxonomy_mapping_definition",
+      "target": "d_01_saas_products_alparai_docs_oecd_taxonomy_map_4_data_input_data_characteristics",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/OECD_TAXONOMY_MAP.md",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_oecd_taxonomy_map_oecd_taxonomy_mapping_definition",
+      "target": "d_01_saas_products_alparai_docs_oecd_taxonomy_map_5_action_output_system_behavior",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/OECD_TAXONOMY_MAP.md",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_oecd_taxonomy_map_alpar_ai_oecd_ai_taxonomy_map",
+      "target": "d_01_saas_products_alparai_docs_oecd_taxonomy_map_oecd_feed_output_format",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/OECD_TAXONOMY_MAP.md",
+      "source_location": "L50",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

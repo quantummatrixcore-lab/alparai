@@ -142,7 +142,7 @@ export function ShareButtons({
           target="_blank"
           rel="noreferrer noopener"
           onClick={() => trackEvent("Incident Shared", { platform: "x" })}
-          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/20 bg-black text-white shadow-sm transition-all duration-200 hover:border-white/40 hover:bg-neutral-900 hover:shadow-white/10"
+          className="border-border-strong hover:bg-bg-secondary inline-flex h-9 w-9 items-center justify-center rounded-lg border bg-black text-white shadow-sm transition-all duration-200 hover:border-white/40 hover:shadow-white/10"
           aria-label={t("share_x")}
         >
           <XIcon className="h-4 w-4" />
@@ -215,7 +215,7 @@ export function ShareButtons({
           whileTap={{ scale: 0.95 }}
           onClick={onCopy}
           className={cn(
-            "text-fg-secondary inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-neutral-900/60 backdrop-blur-md transition-colors duration-200",
+            "text-fg-secondary border-border-subtle bg-bg-secondary inline-flex h-9 w-9 items-center justify-center rounded-lg border backdrop-blur-md transition-colors duration-200",
             copied
               ? "border-accent-500/40 bg-accent-500/20 text-accent-400"
               : "hover:border-accent-500/20 hover:bg-accent-500/10 hover:text-accent-400",

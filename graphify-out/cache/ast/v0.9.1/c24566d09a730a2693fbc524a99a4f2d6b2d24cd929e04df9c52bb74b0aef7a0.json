@@ -1,0 +1,127 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_market_1_md",
+      "label": "MARKET-1.md",
+      "file_type": "document",
+      "source_file": "docs/MARKET-1.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_market_1_ai_market_analysis_opportunities_in_ai_safety_and_compliance",
+      "label": "AI Market Analysis: Opportunities in AI Safety and Compliance",
+      "file_type": "document",
+      "source_file": "docs/MARKET-1.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_market_1_executive_summary",
+      "label": "Executive Summary",
+      "file_type": "document",
+      "source_file": "docs/MARKET-1.md",
+      "source_location": "L3"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_market_1_market_context",
+      "label": "Market Context",
+      "file_type": "document",
+      "source_file": "docs/MARKET-1.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_market_1_the_problem",
+      "label": "The Problem",
+      "file_type": "document",
+      "source_file": "docs/MARKET-1.md",
+      "source_location": "L13"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_market_1_the_alparai_solution_agent_os",
+      "label": "The Alparai Solution (Agent-OS)",
+      "file_type": "document",
+      "source_file": "docs/MARKET-1.md",
+      "source_location": "L19"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_market_1_go_to_market_gtm_strategy",
+      "label": "Go-to-Market (GTM) Strategy",
+      "file_type": "document",
+      "source_file": "docs/MARKET-1.md",
+      "source_location": "L27"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_market_1_competitive_advantage",
+      "label": "Competitive Advantage",
+      "file_type": "document",
+      "source_file": "docs/MARKET-1.md",
+      "source_location": "L33"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_market_1_md",
+      "target": "d_01_saas_products_alparai_docs_market_1_ai_market_analysis_opportunities_in_ai_safety_and_compliance",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/MARKET-1.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_market_1_ai_market_analysis_opportunities_in_ai_safety_and_compliance",
+      "target": "d_01_saas_products_alparai_docs_market_1_executive_summary",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/MARKET-1.md",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_market_1_ai_market_analysis_opportunities_in_ai_safety_and_compliance",
+      "target": "d_01_saas_products_alparai_docs_market_1_market_context",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/MARKET-1.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_market_1_ai_market_analysis_opportunities_in_ai_safety_and_compliance",
+      "target": "d_01_saas_products_alparai_docs_market_1_the_problem",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/MARKET-1.md",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_market_1_ai_market_analysis_opportunities_in_ai_safety_and_compliance",
+      "target": "d_01_saas_products_alparai_docs_market_1_the_alparai_solution_agent_os",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/MARKET-1.md",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_market_1_ai_market_analysis_opportunities_in_ai_safety_and_compliance",
+      "target": "d_01_saas_products_alparai_docs_market_1_go_to_market_gtm_strategy",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/MARKET-1.md",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_market_1_ai_market_analysis_opportunities_in_ai_safety_and_compliance",
+      "target": "d_01_saas_products_alparai_docs_market_1_competitive_advantage",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/MARKET-1.md",
+      "source_location": "L33",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

@@ -98,7 +98,9 @@ export async function getDoraMetricsHistory(days: number = 90) {
 
   const { data, error } = await db
     .from("dora_metrics")
-    .select("*")
+    .select(
+      "metric_date, deployment_frequency, lead_time_seconds, change_failure_rate, mttr_seconds, metadata",
+    )
     .gte("metric_date", startDate)
     .order("metric_date", { ascending: true });
 

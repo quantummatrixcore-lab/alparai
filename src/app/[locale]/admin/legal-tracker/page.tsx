@@ -63,7 +63,7 @@ export default function LegalTrackerPage() {
       default:
         return {
           label: status,
-          className: "bg-gray-500/10 text-gray-400 border-gray-500/20",
+          className: "bg-gray-500/10 text-fg-muted border-gray-500/20",
           icon: Clock,
         };
     }
@@ -74,7 +74,7 @@ export default function LegalTrackerPage() {
       {/* Header */}
       <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
         <div>
-          <h1 className="text-fg-primary flex items-center gap-3 text-2xl font-bold tracking-tight">
+          <h1 className="text-fg-primary text-fg-secondaryxl flex items-center gap-3 font-bold tracking-tight">
             <Scale className="text-brand-400 h-7 w-7" />
             {t("legal_tracker_title")}
           </h1>
@@ -87,7 +87,7 @@ export default function LegalTrackerPage() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-bg-secondary/40 relative overflow-hidden rounded-2xl border border-white/5 p-6 shadow-xl backdrop-blur-xl lg:col-span-1"
+          className="bg-bg-secondary/40 border-border-subtle/50 relative overflow-hidden rounded-2xl border p-6 shadow-xl backdrop-blur-xl lg:col-span-1"
         >
           <div className="bg-danger-500/10 pointer-events-none absolute top-0 right-0 -mt-10 -mr-10 h-32 w-32 rounded-full blur-3xl" />
 
@@ -166,7 +166,7 @@ export default function LegalTrackerPage() {
             </h2>
           </div>
 
-          <div className="bg-bg-secondary/40 flex flex-col justify-between rounded-xl border border-white/5 p-5 backdrop-blur-md">
+          <div className="bg-bg-secondary/40 border-border-subtle/50 flex flex-col justify-between rounded-xl border p-5 backdrop-blur-md">
             <div>
               <div className="mb-2 flex items-center justify-between">
                 <h3 className="text-fg-primary font-bold">xAI Corp.</h3>
@@ -178,7 +178,7 @@ export default function LegalTrackerPage() {
                 {t("pending_xai_desc") || "Resmi ihtarname (KVKK Madde 13) cevabi bekleniyor."}
               </p>
             </div>
-            <div className="mt-auto flex items-center justify-between border-t border-white/5 pt-3">
+            <div className="border-border-subtle/50 mt-auto flex items-center justify-between border-t pt-3">
               <div>
                 <span className="text-fg-muted mb-0.5 block text-[10px] font-bold uppercase">
                   {t("countdown")}
@@ -196,7 +196,7 @@ export default function LegalTrackerPage() {
             </div>
           </div>
 
-          <div className="bg-bg-secondary/40 flex flex-col justify-between rounded-xl border border-white/5 p-5 backdrop-blur-md">
+          <div className="bg-bg-secondary/40 border-border-subtle/50 flex flex-col justify-between rounded-xl border p-5 backdrop-blur-md">
             <div>
               <div className="mb-2 flex items-center justify-between">
                 <h3 className="text-fg-primary font-bold">KVKK / ICO / CNIL</h3>
@@ -209,7 +209,7 @@ export default function LegalTrackerPage() {
                   "Veri ihlali bildirimi degerlendirmesi bekleniyor."}
               </p>
             </div>
-            <div className="mt-auto flex items-center justify-between border-t border-white/5 pt-3">
+            <div className="border-border-subtle/50 mt-auto flex items-center justify-between border-t pt-3">
               <div>
                 <span className="text-fg-muted mb-0.5 block text-[10px] font-bold uppercase">
                   {t("countdown")}
@@ -234,14 +234,14 @@ export default function LegalTrackerPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="bg-bg-secondary/40 rounded-2xl border border-white/5 p-6 shadow-xl backdrop-blur-xl"
+        className="bg-bg-secondary/40 border-border-subtle/50 rounded-2xl border p-6 shadow-xl backdrop-blur-xl"
       >
         <h2 className="text-fg-primary mb-6 flex items-center gap-2 text-lg font-bold">
           <Calendar className="text-brand-400 h-5 w-5" />
           {t("legal_action_timeline")}
         </h2>
 
-        <div className="relative space-y-8 border-l-2 border-white/10 pl-6">
+        <div className="border-border-subtle relative space-y-8 border-l-2 pl-6">
           <div className="relative">
             <div className="bg-success-500 ring-bg-secondary absolute -left-[31px] rounded-full p-1 text-white ring-4">
               <Check className="h-3 w-3" />
@@ -325,9 +325,9 @@ export default function LegalTrackerPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="bg-bg-secondary/40 overflow-hidden rounded-2xl border border-white/5 shadow-xl backdrop-blur-xl"
+        className="bg-bg-secondary/40 border-border-subtle/50 overflow-hidden rounded-2xl border shadow-xl backdrop-blur-xl"
       >
-        <div className="border-b border-white/5 p-6">
+        <div className="border-border-subtle/50 border-b p-6">
           <h2 className="text-fg-primary flex items-center gap-2 text-lg font-bold">
             <Send className="text-brand-400 h-5 w-5" />
             {t("official_notifications")}
@@ -337,7 +337,7 @@ export default function LegalTrackerPage() {
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-left">
             <thead>
-              <tr className="border-b border-white/5 bg-white/[0.02]">
+              <tr className="border-border-subtle/50 border-b bg-white/[0.02]">
                 <th className="text-fg-muted px-6 py-4 text-xs font-semibold tracking-wider whitespace-nowrap uppercase">
                   #
                 </th>

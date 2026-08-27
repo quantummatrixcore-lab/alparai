@@ -2,7 +2,7 @@ import { z } from "zod";
 
 /**
  * ENGINE TOM - Local/Edge Orchestration Router
- * Dış LLM API'leri yerine yerel model (Qwen vb.) kullanılarak 
+ * Dış LLM API'leri yerine yerel model (Qwen vb.) kullanılarak
  * katı şemalar (Zod) ile niyet (intent) ayrıştıran yönlendirici motor.
  */
 
@@ -12,7 +12,7 @@ export const TomIntentSchema = z.object({
   complexity: z.enum(["LOW", "MEDIUM", "HIGH", "CRITICAL"]),
   targetEngine: z.enum(["HEPHAESTUS", "TCSFL", "DIRECT_BYPASS"]),
   contextPayload: z.record(z.any()),
-  estimatedTokens: z.number().optional()
+  estimatedTokens: z.number().optional(),
 });
 
 export type TomIntent = z.infer<typeof TomIntentSchema>;
@@ -23,19 +23,20 @@ export type TomIntent = z.infer<typeof TomIntentSchema>;
  */
 export async function routeRequestLocal(prompt: string): Promise<TomIntent> {
   console.log(`[TOM Router] Analyzing prompt locally: ${prompt.slice(0, 50)}...`);
-  
+
   // Burada yerel vLLM (Qwen-7B) çağrısı yapılır ve JSON formatlama zorlanır.
   // Prototip amaçlı deterministik kural seti:
-  
-  const isSyntaxFix = prompt.toLowerCase().includes("syntax") || prompt.toLowerCase().includes("lint");
-  
+
+  const isSyntaxFix =
+    prompt.toLowerCase().includes("syntax") || prompt.toLowerCase().includes("lint");
+
   if (isSyntaxFix) {
     // Zero-LLM Bypass (TCSFL Short-Circuit)
     return {
       intentType: "BUGFIX",
       complexity: "LOW",
       targetEngine: "DIRECT_BYPASS",
-      contextPayload: { requiresCodeSynth: false }
+      contextPayload: { requiresCodeSynth: false },
     };
   }
 
@@ -44,6 +45,6 @@ export async function routeRequestLocal(prompt: string): Promise<TomIntent> {
     intentType: "FEATURE",
     complexity: "HIGH",
     targetEngine: "HEPHAESTUS",
-    contextPayload: { requiresCodeSynth: true, astValidationRequired: true }
+    contextPayload: { requiresCodeSynth: true, astValidationRequired: true },
   };
 }

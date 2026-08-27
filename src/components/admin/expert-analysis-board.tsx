@@ -136,7 +136,7 @@ export function ExpertAnalysisBoard() {
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="border-border-strong rounded-lg border bg-slate-800/60 p-2.5">
+                    <div className="border-border-strong bg-bg-secondary rounded-lg border p-2.5">
                       {ICON_MAP[persona.id] ?? <Brain className="text-accent-400 h-6 w-6" />}
                     </div>
                     <div>
@@ -160,8 +160,8 @@ export function ExpertAnalysisBoard() {
                 </p>
 
                 {report && (
-                  <div className="bg-bg-tertiary/80 mt-3 space-y-3 rounded-xl border border-white/10 p-4 text-xs backdrop-blur-xl">
-                    <div className="text-fg-muted flex items-center justify-between border-b border-white/10 pb-2 font-mono text-[10px]">
+                  <div className="bg-bg-tertiary/80 border-border-subtle mt-3 space-y-3 rounded-xl border p-4 text-xs backdrop-blur-xl">
+                    <div className="text-fg-muted border-border-subtle flex items-center justify-between border-b pb-2 font-mono text-[10px]">
                       <span className="text-accent-300 flex items-center gap-1 font-bold">
                         <Bot className="text-accent-400 h-3.5 w-3.5" /> {report.modelUsed}
                       </span>
@@ -176,7 +176,7 @@ export function ExpertAnalysisBoard() {
                       </span>
                     </div>
 
-                    <p className="font-sans text-xs leading-relaxed whitespace-pre-line text-slate-200">
+                    <p className="text-fg-primary font-sans text-xs leading-relaxed whitespace-pre-line">
                       {report.critique}
                     </p>
 
@@ -209,14 +209,14 @@ export function ExpertAnalysisBoard() {
                     )}
 
                     {/* Dynamic Percentage Statistic Nodes (Confidence Score) */}
-                    <div className="mt-3 border-t border-white/10 pt-3">
+                    <div className="border-border-subtle mt-3 border-t pt-3">
                       <div className="text-fg-muted mb-1 flex items-center justify-between font-mono text-[10px]">
                         <span>{t("confidence_score", { defaultValue: "Confidence Score" })}</span>
                         <span className="text-success-400 font-bold">
                           {report.confidenceScore}%
                         </span>
                       </div>
-                      <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
+                      <div className="bg-bg-secondary h-1.5 w-full overflow-hidden rounded-full">
                         <div
                           className="to-success-400 h-full rounded-full bg-gradient-to-r from-cyan-500 transition-all duration-1000 ease-out"
                           style={{ width: `${report.confidenceScore}%` }}

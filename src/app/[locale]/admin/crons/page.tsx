@@ -20,9 +20,9 @@ export default async function CronsPage({ params }: { params: Promise<{ locale: 
   await requireAdmin();
 
   return (
-    <div className="space-y-8 rounded-3xl bg-zinc-900/40 px-3 py-4 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl sm:px-6 md:p-8">
+    <div className="bg-bg-secondary/40 ring-border-subtle space-y-8 rounded-3xl px-3 py-4 shadow-2xl ring-1 backdrop-blur-xl sm:px-6 md:p-8">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-white">
+        <h1 className="text-fg-secondaryxl font-bold tracking-tight text-white">
           {t("scheduled_jobs_cron_topology")} & {t("cron_health") || "Cron Sağlığı"}
         </h1>
         <p className="text-fg-muted text-sm">{t("monitor_supabase_pg_cron_jobs_execution_")}</p>
@@ -30,7 +30,7 @@ export default async function CronsPage({ params }: { params: Promise<{ locale: 
 
       <CronsDashboardClient />
 
-      <div className="border-t border-white/10 pt-6">
+      <div className="border-border-subtle border-t pt-6">
         <CronHealthClient jobs={[]} historyData={[]} />
       </div>
     </div>

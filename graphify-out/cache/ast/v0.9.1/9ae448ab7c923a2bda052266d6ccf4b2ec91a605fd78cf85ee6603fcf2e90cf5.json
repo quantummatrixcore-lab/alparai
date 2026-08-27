@@ -1,0 +1,159 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_tests_e2e_readme_md",
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "tests/e2e/README.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_tests_e2e_readme_e2e_coverage_charter",
+      "label": "E2E Coverage Charter",
+      "file_type": "document",
+      "source_file": "tests/e2e/README.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_tests_e2e_readme_coverage_summary_21_spec_files_95_test_cases",
+      "label": "Coverage Summary (21 spec files, ~95 test cases)",
+      "file_type": "document",
+      "source_file": "tests/e2e/README.md",
+      "source_location": "L3"
+    },
+    {
+      "id": "d_01_saas_products_alparai_tests_e2e_readme_gap_analysis",
+      "label": "Gap Analysis",
+      "file_type": "document",
+      "source_file": "tests/e2e/README.md",
+      "source_location": "L30"
+    },
+    {
+      "id": "d_01_saas_products_alparai_tests_e2e_readme_covered_paths_68_routes_tested_across_all_specs",
+      "label": "Covered paths (68 routes tested across all specs)",
+      "file_type": "document",
+      "source_file": "tests/e2e/README.md",
+      "source_location": "L32"
+    },
+    {
+      "id": "d_01_saas_products_alparai_tests_e2e_readme_uncovered_paths_high_priority",
+      "label": "Uncovered paths \u2014 HIGH priority",
+      "file_type": "document",
+      "source_file": "tests/e2e/README.md",
+      "source_location": "L51"
+    },
+    {
+      "id": "d_01_saas_products_alparai_tests_e2e_readme_under_covered_paths_medium_priority",
+      "label": "Under-covered paths \u2014 MEDIUM priority",
+      "file_type": "document",
+      "source_file": "tests/e2e/README.md",
+      "source_location": "L59"
+    },
+    {
+      "id": "d_01_saas_products_alparai_tests_e2e_readme_missing_test_types",
+      "label": "Missing test types",
+      "file_type": "document",
+      "source_file": "tests/e2e/README.md",
+      "source_location": "L67"
+    },
+    {
+      "id": "d_01_saas_products_alparai_tests_e2e_readme_coverage_percentage_estimate",
+      "label": "Coverage percentage estimate",
+      "file_type": "document",
+      "source_file": "tests/e2e/README.md",
+      "source_location": "L76"
+    },
+    {
+      "id": "d_01_saas_products_alparai_tests_e2e_readme_recommended_next_tests_by_priority",
+      "label": "Recommended next tests (by priority)",
+      "file_type": "document",
+      "source_file": "tests/e2e/README.md",
+      "source_location": "L83"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_tests_e2e_readme_md",
+      "target": "d_01_saas_products_alparai_tests_e2e_readme_e2e_coverage_charter",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/e2e/README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_tests_e2e_readme_e2e_coverage_charter",
+      "target": "d_01_saas_products_alparai_tests_e2e_readme_coverage_summary_21_spec_files_95_test_cases",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/e2e/README.md",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_tests_e2e_readme_e2e_coverage_charter",
+      "target": "d_01_saas_products_alparai_tests_e2e_readme_gap_analysis",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/e2e/README.md",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_tests_e2e_readme_gap_analysis",
+      "target": "d_01_saas_products_alparai_tests_e2e_readme_covered_paths_68_routes_tested_across_all_specs",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/e2e/README.md",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_tests_e2e_readme_gap_analysis",
+      "target": "d_01_saas_products_alparai_tests_e2e_readme_uncovered_paths_high_priority",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/e2e/README.md",
+      "source_location": "L51",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_tests_e2e_readme_gap_analysis",
+      "target": "d_01_saas_products_alparai_tests_e2e_readme_under_covered_paths_medium_priority",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/e2e/README.md",
+      "source_location": "L59",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_tests_e2e_readme_gap_analysis",
+      "target": "d_01_saas_products_alparai_tests_e2e_readme_missing_test_types",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/e2e/README.md",
+      "source_location": "L67",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_tests_e2e_readme_e2e_coverage_charter",
+      "target": "d_01_saas_products_alparai_tests_e2e_readme_coverage_percentage_estimate",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/e2e/README.md",
+      "source_location": "L76",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_tests_e2e_readme_e2e_coverage_charter",
+      "target": "d_01_saas_products_alparai_tests_e2e_readme_recommended_next_tests_by_priority",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/e2e/README.md",
+      "source_location": "L83",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

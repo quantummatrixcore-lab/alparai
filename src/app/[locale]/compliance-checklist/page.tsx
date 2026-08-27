@@ -198,24 +198,24 @@ export default async function ComplianceChecklistPage({
               {t("hero_subtitle")}
             </p>
 
-            <div className="mt-8 inline-flex flex-wrap items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-6 py-3 text-xs font-medium text-gray-300 backdrop-blur-sm">
+            <div className="border-border-subtle text-fg-primary mt-8 inline-flex flex-wrap items-center justify-center gap-3 rounded-2xl border bg-white/5 px-6 py-3 text-xs font-medium backdrop-blur-sm">
               <div className="flex items-center gap-1.5 text-blue-400">
                 <Building2 className="h-4 w-4" />
                 <span>{t("callout_banking")}</span>
               </div>
-              <span className="text-gray-600">•</span>
+              <span className="text-fg-secondary">•</span>
               <div className="flex items-center gap-1.5 text-emerald-400">
                 <Radio className="h-4 w-4" />
                 <span>{t("callout_telecom")}</span>
               </div>
-              <span className="text-gray-600">•</span>
+              <span className="text-fg-secondary">•</span>
               <span className="text-amber-400">{t("callout_standard")}</span>
             </div>
           </div>
 
           {/* Key Stat Highlights */}
           <div className="mt-14 mb-16 grid grid-cols-1 gap-6 sm:grid-cols-3">
-            <Card className="border-amber-500/20 bg-amber-950/10 backdrop-blur-md">
+            <Card className="border-warning-500/20 bg-amber-950/10 backdrop-blur-md">
               <CardContent className="p-6 text-center">
                 <Clock className="mx-auto mb-3 h-8 w-8 text-amber-400" />
                 <div className="text-3xl font-black text-white">{t("stat_window")}</div>

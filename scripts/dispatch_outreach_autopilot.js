@@ -1,15 +1,15 @@
-const fs = require('fs');
-const dotenv = require('dotenv');
-const { createClient } = require('@supabase/supabase-js');
-const { Resend } = require('resend');
+const fs = require("fs");
+const dotenv = require("dotenv");
+const { createClient } = require("@supabase/supabase-js");
+const { Resend } = require("resend");
 
-const envConfig = fs.existsSync('.env.local') ? dotenv.parse(fs.readFileSync('.env.local')) : {};
+const envConfig = fs.existsSync(".env.local") ? dotenv.parse(fs.readFileSync(".env.local")) : {};
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL || envConfig.NEXT_PUBLIC_SUPABASE_URL;
 const key = process.env.SUPABASE_SERVICE_ROLE_KEY || envConfig.SUPABASE_SERVICE_ROLE_KEY;
 const resendKey = process.env.RESEND_API_KEY || envConfig.RESEND_API_KEY;
 
 if (!url || !key || !resendKey) {
-  console.error('Missing credentials: url=', !!url, 'key=', !!key, 'resendKey=', !!resendKey);
+  console.error("Missing credentials: url=", !!url, "key=", !!key, "resendKey=", !!resendKey);
   process.exit(1);
 }
 
@@ -18,11 +18,11 @@ const resend = new Resend(resendKey);
 
 const newOutreachTargets = [
   {
-    recipient_email: 'stuart.russell@cs.berkeley.edu',
-    recipient_name: 'Prof. Stuart Russell',
-    template_type: 'expert',
-    company: 'UC Berkeley (CHAI)',
-    subject: 'Invitation: ALPAR AI Methodology Advisory Board (AI Security & Governance)',
+    recipient_email: "stuart.russell@cs.berkeley.edu",
+    recipient_name: "Prof. Stuart Russell",
+    template_type: "expert",
+    company: "UC Berkeley (CHAI)",
+    subject: "Invitation: ALPAR AI Methodology Advisory Board (AI Security & Governance)",
     body_template: `Dear Prof. Stuart Russell,
 
 On behalf of ALPAR AI (https://alparai.com), we would like to invite you to join our independent Methodology Advisory Board.
@@ -34,14 +34,14 @@ Your guidance on statistical verification models (K-BENCHMARK) and safety auditi
 Best regards,
 Ercüment Erden
 Founder, ALPAR AI
-ercument.erden@alparai.com`
+ercument.erden@alparai.com`,
   },
   {
-    recipient_email: 'max.tegmark@mit.edu',
-    recipient_name: 'Prof. Max Tegmark',
-    template_type: 'expert',
-    company: 'Future of Life Institute / MIT',
-    subject: 'Invitation: ALPAR AI Methodology Advisory Board (AI Safety & Incident Registry)',
+    recipient_email: "max.tegmark@mit.edu",
+    recipient_name: "Prof. Max Tegmark",
+    template_type: "expert",
+    company: "Future of Life Institute / MIT",
+    subject: "Invitation: ALPAR AI Methodology Advisory Board (AI Safety & Incident Registry)",
     body_template: `Dear Prof. Max Tegmark,
 
 On behalf of ALPAR AI (https://alparai.com), we are reaching out to invite your participation in our Methodology Advisory Board.
@@ -53,14 +53,14 @@ We would be honored to align our safety scoring methodology with FLI guidelines.
 Best regards,
 Ercüment Erden
 Founder, ALPAR AI
-ercument.erden@alparai.com`
+ercument.erden@alparai.com`,
   },
   {
-    recipient_email: 'paul.christiano@alignment.org',
-    recipient_name: 'Dr. Paul Christiano',
-    template_type: 'expert',
-    company: 'Alignment Research Center (ARC)',
-    subject: 'Invitation: ALPAR AI Safety & Alignment Auditing Panel',
+    recipient_email: "paul.christiano@alignment.org",
+    recipient_name: "Dr. Paul Christiano",
+    template_type: "expert",
+    company: "Alignment Research Center (ARC)",
+    subject: "Invitation: ALPAR AI Safety & Alignment Auditing Panel",
     body_template: `Dear Dr. Paul Christiano,
 
 ALPAR AI (https://alparai.com) is building transparent, open-source AI safety infrastructure to audit model hallucinations and evaluation drift.
@@ -70,14 +70,14 @@ We welcome your insights on aligning automated red-teaming benchmarks with empir
 Best regards,
 Ercüment Erden
 Founder, ALPAR AI
-ercument.erden@alparai.com`
+ercument.erden@alparai.com`,
   },
   {
-    recipient_email: 'cade.metz@nytimes.com',
-    recipient_name: 'Cade Metz',
-    template_type: 'media',
-    company: 'The New York Times',
-    subject: 'EU AI Act Article 73 & Independent AI Incident Registry (ALPAR AI)',
+    recipient_email: "cade.metz@nytimes.com",
+    recipient_name: "Cade Metz",
+    template_type: "media",
+    company: "The New York Times",
+    subject: "EU AI Act Article 73 & Independent AI Incident Registry (ALPAR AI)",
     body_template: `Dear Cade Metz,
 
 I am reaching out from ALPAR AI (https://alparai.com), an AGPL-3.0 open-source infrastructure tracking enterprise AI failures, hallucination incidents, and EU AI Act compliance metrics.
@@ -87,14 +87,14 @@ We offer live safety scores (K-BENCHMARK) across major frontier AI providers and
 Best regards,
 Ercüment Erden
 Founder, ALPAR AI
-ercument.erden@alparai.com`
+ercument.erden@alparai.com`,
   },
   {
-    recipient_email: 'melissa.heikkila@technologyreview.com',
-    recipient_name: 'Melissa Heikkilä',
-    template_type: 'media',
-    company: 'MIT Technology Review',
-    subject: 'EU AI Act Article 73 & Independent AI Incident Registry (ALPAR AI)',
+    recipient_email: "melissa.heikkila@technologyreview.com",
+    recipient_name: "Melissa Heikkilä",
+    template_type: "media",
+    company: "MIT Technology Review",
+    subject: "EU AI Act Article 73 & Independent AI Incident Registry (ALPAR AI)",
     body_template: `Dear Melissa Heikkilä,
 
 I am reaching out from ALPAR AI (https://alparai.com), an AGPL-3.0 open-source trust infrastructure for AI accountability and EU AI Act Article 73 compliance tracking.
@@ -104,14 +104,14 @@ We provide open datasets on real-world model vulnerabilities and evaluation metr
 Best regards,
 Ercüment Erden
 Founder, ALPAR AI
-ercument.erden@alparai.com`
+ercument.erden@alparai.com`,
   },
   {
-    recipient_email: 'compliance@mistral.ai',
-    recipient_name: 'Mistral AI Compliance Team',
-    template_type: 'media',
-    company: 'Mistral AI',
-    subject: 'ALPAR AI Trust Badge — Madde 73 Uyumu İçin Hazır Embedded Çözüm',
+    recipient_email: "compliance@mistral.ai",
+    recipient_name: "Mistral AI Compliance Team",
+    template_type: "media",
+    company: "Mistral AI",
+    subject: "ALPAR AI Trust Badge — Madde 73 Uyumu İçin Hazır Embedded Çözüm",
     body_template: `Sayın Uyum ve AI Yönetim Ekibi,
 
 AB Yapay Zekâ Yasası Madde 73 kapsamında, şeffaflık ve kayıt tutma gereksinimlerini karşılamak isteyen sistem sağlayıcıları için geliştirdiğimiz ALPAR AI Trust Badge çözümünü sunmak isteriz.
@@ -120,30 +120,30 @@ ALPAR AI Trust Badge, yapay zekâ modelinizin bağımsız ve gerçek zamanlı do
 
 Saygılarımızla,
 ALPAR AI Ekibi
-hello@alparai.com | https://alparai.com`
-  }
+hello@alparai.com | https://alparai.com`,
+  },
 ];
 
 async function runAutopilot() {
-  console.log('--- STARTING AUTOPILOT OUTREACH DISPATCH ---');
+  console.log("--- STARTING AUTOPILOT OUTREACH DISPATCH ---");
   const executionResults = [];
 
   for (const target of newOutreachTargets) {
     // 1. Check if recipient already received this subject
     const { data: existing } = await supabase
-      .from('outreach_queue')
-      .select('id, status')
-      .eq('recipient_email', target.recipient_email)
-      .eq('subject', target.subject);
+      .from("outreach_queue")
+      .select("id, status")
+      .eq("recipient_email", target.recipient_email)
+      .eq("subject", target.subject);
 
-    if (existing && existing.some(e => e.status === 'sent')) {
-      console.log('Skipping already sent email to:', target.recipient_email);
+    if (existing && existing.some((e) => e.status === "sent")) {
+      console.log("Skipping already sent email to:", target.recipient_email);
       continue;
     }
 
     // 2. Insert as approved into DB
     const { data: dbData, error: dbError } = await supabase
-      .from('outreach_queue')
+      .from("outreach_queue")
       .insert({
         recipient_email: target.recipient_email,
         recipient_name: target.recipient_name,
@@ -151,38 +151,49 @@ async function runAutopilot() {
         template_type: target.template_type,
         subject: target.subject,
         body_template: target.body_template,
-        status: 'approved'
+        status: "approved",
       })
       .select()
       .single();
 
     if (dbError) {
-      console.error('DB Insert Error for', target.recipient_email, dbError);
+      console.error("DB Insert Error for", target.recipient_email, dbError);
       continue;
     }
 
     const dbId = dbData.id;
-    const fromAddress = target.template_type === 'media' && target.company === 'Mistral AI'
-      ? 'ALPAR AI <hello@alparai.com>'
-      : 'Ercüment Erden <ercument.erden@alparai.com>';
+    const fromAddress =
+      target.template_type === "media" && target.company === "Mistral AI"
+        ? "ALPAR AI <hello@alparai.com>"
+        : "Ercüment Erden <ercument.erden@alparai.com>";
 
     // 3. Send via Resend API
     const { data: resendData, error: resendError } = await resend.emails.send({
       from: fromAddress,
       to: target.recipient_email,
       subject: target.subject,
-      text: target.body_template
+      text: target.body_template,
     });
 
     if (resendError) {
-      console.error('Resend Error for', target.recipient_email, resendError);
-      await supabase.from('outreach_queue').update({ status: 'failed' }).eq('id', dbId);
-      executionResults.push({ db_id: dbId, recipient: target.recipient_email, status: 'failed', error: resendError });
+      console.error("Resend Error for", target.recipient_email, resendError);
+      await supabase.from("outreach_queue").update({ status: "failed" }).eq("id", dbId);
+      executionResults.push({
+        db_id: dbId,
+        recipient: target.recipient_email,
+        status: "failed",
+        error: resendError,
+      });
     } else {
       const resendId = resendData.id;
       const sentAt = new Date().toISOString();
-      await supabase.from('outreach_queue').update({ status: 'sent', sent_at: sentAt }).eq('id', dbId);
-      console.log(`[SUCCESS] Email sent to ${target.recipient_email}. DB ID: ${dbId}, Resend ID: ${resendId}`);
+      await supabase
+        .from("outreach_queue")
+        .update({ status: "sent", sent_at: sentAt })
+        .eq("id", dbId);
+      console.log(
+        `[SUCCESS] Email sent to ${target.recipient_email}. DB ID: ${dbId}, Resend ID: ${resendId}`,
+      );
       executionResults.push({
         db_id: dbId,
         recipient: target.recipient_email,
@@ -190,12 +201,12 @@ async function runAutopilot() {
         subject: target.subject,
         resend_id: resendId,
         sent_at: sentAt,
-        status: 'sent'
+        status: "sent",
       });
     }
   }
 
-  console.log('--- EXECUTION SUMMARY ---');
+  console.log("--- EXECUTION SUMMARY ---");
   console.log(JSON.stringify(executionResults, null, 2));
 }
 

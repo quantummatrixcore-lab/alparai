@@ -40,7 +40,7 @@ export function FeedTabs({ activeTab, onChange, isLoggedIn = false }: FeedTabsPr
   ];
 
   return (
-    <div className="mb-6 flex scrollbar-none gap-2 overflow-x-auto border-b border-white/5">
+    <div className="border-border-subtle/50 mb-6 flex scrollbar-none gap-2 overflow-x-auto border-b">
       {tabs.map((tab) => {
         const Icon = tab.icon;
         const isActive = activeTab === tab.id;

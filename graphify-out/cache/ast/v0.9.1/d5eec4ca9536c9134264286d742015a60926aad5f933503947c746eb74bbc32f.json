@@ -1,0 +1,14 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_agents_personas_coder_md",
+      "label": "coder.md",
+      "file_type": "document",
+      "source_file": ".agents/personas/coder.md",
+      "source_location": "L1"
+    }
+  ],
+  "edges": [],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

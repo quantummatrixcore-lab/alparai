@@ -53,7 +53,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
           variantClasses[variant],
           paddingClasses[padding],
           interactive &&
-            "hover:border-brand-500/30 focus-visible:ring-brand-500 cursor-pointer hover:scale-[1.015] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none hover:shadow-[0_0_30px_rgba(168,85,247,0.1)]",
+            "hover:border-brand-500/30 focus-visible:ring-brand-500 cursor-pointer hover:scale-[1.015] hover:shadow-[0_0_30px_rgba(168,85,247,0.1)] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
           className,
         )}
         {...props}

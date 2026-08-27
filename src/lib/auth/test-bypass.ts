@@ -1,12 +1,12 @@
 /**
  * Test Auth Bypass Guard & Isolation Helper
- * 
+ *
  * Strict multi-layer containment:
  * 1. NEVER allowed in production (process.env.NODE_ENV === "production")
  * 2. Requires process.env.NODE_ENV === "test"
  * 3. Requires process.env.NEXT_TEST_AUTH_BYPASS === "true"
  * 4. Requires process.env.IS_PLAYWRIGHT_TEST === "true"
- * 
+ *
  * Any attempt to bypass auth outside these exact conditions is strictly rejected.
  */
 

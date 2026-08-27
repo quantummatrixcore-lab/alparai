@@ -27,7 +27,7 @@ export function ExpertForm() {
         <div className="bg-brand-500/10 mb-4 flex h-16 w-16 items-center justify-center rounded-full">
           <CheckCircle2 className="text-brand-400 h-8 w-8" />
         </div>
-        <h3 className="text-2xl font-semibold">{t("form_success_title")}</h3>
+        <h3 className="text-fg-secondaryxl font-semibold">{t("form_success_title")}</h3>
         <p className="text-fg-muted">{t("form_success_body")}</p>
         <Button variant="outline" className="mt-4" onClick={() => setIsSuccess(false)}>
           {t("form_submit_another")}

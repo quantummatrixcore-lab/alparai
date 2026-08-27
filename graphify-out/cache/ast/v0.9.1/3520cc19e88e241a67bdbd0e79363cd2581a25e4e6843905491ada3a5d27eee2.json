@@ -1,0 +1,47 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_lang_2_md",
+      "label": "LANG-2.md",
+      "file_type": "document",
+      "source_file": "docs/plan/items/LANG-2.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_lang_2_lang_2",
+      "label": "LANG-2",
+      "file_type": "document",
+      "source_file": "docs/plan/items/LANG-2.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_plan_items_lang_2_re_measured_2026_08_14_v13_42",
+      "label": "Re-measured 2026-08-14, v13.42",
+      "file_type": "document",
+      "source_file": "docs/plan/items/LANG-2.md",
+      "source_location": "L5"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_lang_2_md",
+      "target": "d_01_saas_products_alparai_docs_plan_items_lang_2_lang_2",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/LANG-2.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_plan_items_lang_2_lang_2",
+      "target": "d_01_saas_products_alparai_docs_plan_items_lang_2_re_measured_2026_08_14_v13_42",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/plan/items/LANG-2.md",
+      "source_location": "L5",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

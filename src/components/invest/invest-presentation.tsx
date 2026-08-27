@@ -332,7 +332,7 @@ export function InvestPresentation({ locale }: { locale: string }) {
                     ? `SLAYT ${currentSlide + 1} / ${slides.length}`
                     : `SLIDE ${currentSlide + 1} / ${slides.length}`}
                 </span>
-                <h2 className="text-fg-primary text-2xl font-black tracking-tight sm:text-3xl">
+                <h2 className="text-fg-primary text-fg-secondaryxl font-black tracking-tight sm:text-3xl">
                   {slide.title}
                 </h2>
               </div>
@@ -364,14 +364,16 @@ export function InvestPresentation({ locale }: { locale: string }) {
             )}
 
             {slide.metrics && (
-              <div className="grid grid-cols-2 gap-4 pt-4">
+              <div className="grid grid-cols-1 gap-4 pt-4 sm:grid-cols-2">
                 {slide.metrics.map((metric, index) => (
                   <div
                     key={index}
                     className="border-border-subtle bg-bg-secondary/40 rounded-xl border p-4 text-center"
                   >
                     <p className="text-fg-muted text-xs font-semibold uppercase">{metric.label}</p>
-                    <p className="text-brand-400 mt-1 text-2xl font-black">{metric.value}</p>
+                    <p className="text-brand-400 text-fg-secondaryxl mt-1 font-black">
+                      {metric.value}
+                    </p>
                   </div>
                 ))}
               </div>

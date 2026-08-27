@@ -5,10 +5,17 @@
  * Jules background agent will inspect this file and submit a Pull Request to refine it.
  */
 
+/**
+ * Configuration options for the Jules autonomous agent bait trigger.
+ */
 export interface JulesBaitConfig {
+  /** Unique identifier for the bait trigger event */
   triggerId: string;
+  /** File path relative to repository root where the bait resides */
   targetPath: string;
+  /** Indicates whether this bait target is currently active */
   isActive: boolean;
+  /** Processing priority level for the background agent */
   priority: number;
 }
 
@@ -25,4 +32,7 @@ export function getJulesBaitConfig(): JulesBaitConfig {
   };
 }
 
-export const JULES_BAIT_MARKER = "jules-bait-v1";
+/**
+ * Constant marker string used by Jules agent to verify successful bait deployment.
+ */
+export const JULES_BAIT_MARKER: string = "jules-bait-v1";

@@ -257,17 +257,17 @@ export default async function AdminDashboardPage({
 
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
                 {[
-                  { name: "ATATÜRK", model: "Gemini 3.1 Pro", role: "Supreme Commander", color: "indigo" },
-                  { name: "EDISON", model: "Nemotron 3.5", role: "Dev & Deploy", color: "amber" },
-                  { name: "DA VİNCİ", model: "Muse Spark", role: "UI/UX Architecture", color: "fuchsia" },
-                  { name: "FATİH", model: "Nemotron Ultra", role: "Security & RLS", color: "rose" },
+                  { name: "ATATÜRK", model: "Gemini 3.1 Pro", role: "Supreme Commander", colorClass: "bg-indigo-500" },
+                  { name: "EDISON", model: "Nemotron 3.5", role: "Dev & Deploy", colorClass: "bg-amber-500" },
+                  { name: "DA VİNCİ", model: "Muse Spark", role: "UI/UX Architecture", colorClass: "bg-fuchsia-500" },
+                  { name: "FATİH", model: "Nemotron Ultra", role: "Security & RLS", colorClass: "bg-rose-500" },
                 ].map((agent) => (
                   <div
                     key={agent.name}
                     className="relative overflow-hidden rounded-2xl border border-white/5 bg-black/40 p-4 transition-all hover:bg-black/60 hover:border-white/10 group/agent"
                   >
                     <div
-                      className={`absolute top-0 right-0 h-16 w-16 -translate-y-8 translate-x-8 rounded-full blur-[30px] opacity-20 bg-${agent.color}-500 transition-opacity group-hover/agent:opacity-40`}
+                      className={`absolute top-0 right-0 h-16 w-16 -translate-y-8 translate-x-8 rounded-full blur-[30px] opacity-20 ${agent.colorClass} transition-opacity group-hover/agent:opacity-40`}
                     />
                     <div className="flex justify-between items-start mb-3">
                       <span className="text-[10px] font-bold tracking-wider text-zinc-500">

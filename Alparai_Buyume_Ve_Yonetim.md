@@ -64,13 +64,32 @@ Yatırımcı ve Hibe kurumlarının 2026 beklentilerine göre Alparai'nin hazır
 
 ---
 
-## 4. Ek: Faz 2 Pazarlama Stratejisi (Phase 2 Marketing Strategy)
+## 4. Marketing Takvimi (1 Aylık Viral İçerik Planı)
 
-*Referans: `docs/PROPOSALS/001-90-day-seed-strategy.md` içindeki Faz 2 (Gün 30-60) stratejisi*
+- **Hafta 1:** LinkedIn 'AI Accountability' article (EN), X thread 'Grok Passport davası özeti' (TR+EN)
+- **Hafta 2:** Reddit r/MachineLearning post, Hacker News 'Show HN: Alparai' submission taslağı
+- **Hafta 3:** LinkedIn carousel '5 EU AI Act ihlali', X thread 'K-Benchmark nedir'
+- **Hafta 4:** LinkedIn 'Why trust infrastructure matters', X/LinkedIn lansman duyuru
 
-### Phase 2: Open Data Launch & PR Flywheel (Days 30 - 60)
+## 5. Fon & Yatırım Haritası (Güncel 2026)
 
-**Goal:** Launch the "First 1000 AI Failures" dataset.
+### TR Devlet Destekleri
+- TÜBİTAK TEYDEB 1507/1511 (AI/RegTech projesi için uygun)
+- KOSGEB Dijital Dönüşüm Desteği
+- Kalkınma Ajansları (GMKA, İSTKA) hibeler
 
-*   **Launch Event:** Release the 1000-incident dataset under CC-BY to researchers and media.
-*   **Streisand Shield PR Loop:** Publicly shame non-responsive providers (e.g. "OpenAI: 46 incidents, 0% response").
+### AB & Global VC
+- Sequoia Surges (London/Berlin ofisleri — RegTech odaklı)
+- Notion Capital (EU SaaS)
+- Point Nine Capital (EU SaaS)
+- Speedinvest (Vienna — LegalTech/RegTech)
+
+### Hızlandırma Programları
+- YCombinator (W27 batch — başvuru: Ekim 2026)
+- EU Startup Nations Standard programı
+- Google for Startups (Cloud credits + mentorship)
+
+### Eylem Planı
+1. TÜBİTAK 1507 başvurusu hazırlığı (Q3 2026)
+2. YC application draft (Q4 2026)
+3. Notion Capital cold outreach (hello@alparai.com üzerinden)

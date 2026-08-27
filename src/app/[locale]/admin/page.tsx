@@ -389,15 +389,15 @@ export default async function AdminDashboardPage({
                 <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-400">
                   <Power className="h-7 w-7" />
                 </div>
-                <div>
-                  <h2 className="text-2xl font-black text-white tracking-tight">Founder Console</h2>
-                  <p className="text-sm font-medium text-zinc-400 mt-1">
+                <div className="min-w-0">
+                  <h2 className="text-2xl font-black text-white tracking-tight truncate">Founder Console</h2>
+                  <p className="text-sm font-medium text-zinc-400 mt-1 truncate">
                     Autonomous Outreach & Sentiment Tracking
                   </p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+              <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 overflow-hidden">
                 <div className="rounded-[2rem] border border-white/5 bg-black/40 p-6 backdrop-blur-2xl transition-all hover:bg-black/60 hover:border-white/10 overflow-hidden">
                   <OutreachAutopilot />
                 </div>

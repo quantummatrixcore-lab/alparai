@@ -9,10 +9,14 @@ vi.hoisted(() => {
   vi.doMock("@/lib/auth/session", () => ({
     requireAdmin: vi.fn(),
   }));
+  vi.doMock("@/lib/services/external-fetcher", () => ({
+    runExternalFetchTask: vi.fn(),
+  }));
 });
 
 import { createServerClient } from "@/lib/supabase/server";
 import { requireAdmin } from "@/lib/auth/session";
+import { runExternalFetchTask } from "@/lib/services/external-fetcher";
 import {
   getExternalQueue,
   updateExternalQueueStatus,
@@ -171,39 +175,34 @@ describe("acceptExternalIncident", () => {
 
 describe("triggerManualFetch", () => {
   it("fetches successfully", async () => {
-    const mockFetch = vi.fn().mockResolvedValue({
-      ok: true,
-      json: () => Promise.resolve({ total_fetched: 10, inserted_or_updated: 5 }),
+    vi.mocked(runExternalFetchTask).mockResolvedValue({
+      total_fetched: 10,
+      inserted_or_updated: 5,
+      total_positive: 0,
+      positive_inserted: 0,
+      ai_verified_published: 0,
+      verification_skipped_or_failed: 0,
     });
-    vi.stubGlobal("fetch", mockFetch);
 
     const result = await triggerManualFetch();
     expect(result.success).toBe(true);
     expect(result.message).toContain("Fetched: 10");
-    vi.unstubAllGlobals();
   });
 
   it("returns failure on fetch error", async () => {
-    const mockFetch = vi.fn().mockResolvedValue({
-      ok: false,
-      statusText: "Internal Server Error",
-    });
-    vi.stubGlobal("fetch", mockFetch);
+    vi.mocked(runExternalFetchTask).mockRejectedValue(new Error("Fetch failed"));
 
     const result = await triggerManualFetch();
     expect(result.success).toBe(false);
     expect(result.message).toContain("Fetch failed");
-    vi.unstubAllGlobals();
   });
 
   it("returns failure on network exception", async () => {
-    const mockFetch = vi.fn().mockRejectedValue(new Error("Network error"));
-    vi.stubGlobal("fetch", mockFetch);
+    vi.mocked(runExternalFetchTask).mockRejectedValue(new Error("Network error"));
 
     const result = await triggerManualFetch();
     expect(result.success).toBe(false);
     expect(result.message).toBe("Network error");
-    vi.unstubAllGlobals();
   });
 });
 

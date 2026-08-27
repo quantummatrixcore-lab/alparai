@@ -3,6 +3,9 @@ import "../helpers/setup";
 import { createMockSupabaseClient } from "../helpers/supabase-mock";
 
 vi.hoisted(() => {
+  vi.doMock("next/cache", () => ({
+    revalidatePath: vi.fn(),
+  }));
   vi.doMock("@/lib/supabase/admin", () => ({
     createAdminClient: vi.fn(),
   }));

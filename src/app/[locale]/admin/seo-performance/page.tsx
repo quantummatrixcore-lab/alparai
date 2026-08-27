@@ -88,7 +88,7 @@ export default async function SeoPerformancePage({
       <div className="animate-in fade-in space-y-8 duration-500">
         <div>
           <h1 className="text-3xl font-black tracking-tight text-white drop-shadow-md">
-            SEO & Performans Panosu
+            SEO &amp; Performans Panosu
           </h1>
           <p className="mt-2 text-sm text-slate-400">
             Canlı metrikler, arama indeksi görünürlüğü ve Core Web Vitals izleme.
@@ -153,7 +153,7 @@ export default async function SeoPerformancePage({
               </div>
             </div>
             <p className="relative z-10 flex items-center gap-1.5 text-xs font-medium text-emerald-400/80">
-              <CheckCircle2 className="h-3.5 w-3.5" /> Schema.org & JSON-LD Aktif
+              <CheckCircle2 className="h-3.5 w-3.5" /> Schema.org &amp; JSON-LD Aktif
             </p>
           </div>
         </div>
@@ -161,7 +161,7 @@ export default async function SeoPerformancePage({
         <div className="border-border-subtle bg-bg-secondary/60 relative overflow-hidden rounded-2xl border p-6 backdrop-blur-xl">
           <div className="from-brand-500/5 absolute inset-0 bg-gradient-to-r via-transparent to-transparent"></div>
           <h2 className="relative z-10 mb-4 flex items-center gap-2 text-lg font-bold text-white">
-            <Globe className="text-brand-400 h-5 w-5" /> Canlı Veri Kaynakları & SEO Altyapısı
+            <Globe className="text-brand-400 h-5 w-5" /> Canlı Veri Kaynakları &amp; SEO Altyapısı
           </h2>
           <ul className="relative z-10 space-y-3 text-sm text-slate-400">
             <li className="flex items-center justify-between">

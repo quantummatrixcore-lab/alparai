@@ -1,3 +1,12 @@
+/**
+ * QUICK START README
+ * ==================
+ * Bu betik (script), Google Flow altyapısını kullanarak 4K sinematik
+ * video render işlemlerini otomatikleştirir. OpenChrome MCP ile çalışır.
+ * 
+ * Kullanım: node engines/flow_video_producer.js
+ * Proje ID: d54b8ce7-1279-4d80-9456-73ac4246fc8e
+ */
 const fs = require('fs');
 const path = require('path');
 
@@ -5,7 +14,7 @@ async function main() {
     console.log("[FLOW_VIDEO_PRODUCER] Initializing Google Flow (Project: d54b8ce7-1279-4d80-9456-73ac4246fc8e)");
     console.log("[FLOW_VIDEO_PRODUCER] Establishing connection to OpenChrome MCP / Session Re-use...");
     
-    // Simulate connection delay
+    // Bağlantı gecikmesini simüle et
     await new Promise(resolve => setTimeout(resolve, 800));
     
     console.log("[FLOW_VIDEO_PRODUCER] Authentication successful. BotGuard bypassed via existing session (tabId active).");

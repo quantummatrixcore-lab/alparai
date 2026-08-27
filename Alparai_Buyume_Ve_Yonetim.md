@@ -64,32 +64,50 @@ Yatırımcı ve Hibe kurumlarının 2026 beklentilerine göre Alparai'nin hazır
 
 ---
 
-## 4. Marketing Takvimi (1 Aylık Viral İçerik Planı)
+## Viral İçerik Takvimi — Eylül 2026
 
-- **Hafta 1:** LinkedIn 'AI Accountability' article (EN), X thread 'Grok Passport davası özeti' (TR+EN)
-- **Hafta 2:** Reddit r/MachineLearning post, Hacker News 'Show HN: Alparai' submission taslağı
-- **Hafta 3:** LinkedIn carousel '5 EU AI Act ihlali', X thread 'K-Benchmark nedir'
-- **Hafta 4:** LinkedIn 'Why trust infrastructure matters', X/LinkedIn lansman duyuru
+| Tarih | Platform | İçerik | Hedef | Durum |
+|---|---|---|---|---|
+| 1 Eyl | LinkedIn | "AI Accountability: The Missing Infrastructure" (EN makale) | VC/enterprise | Hazır |
+| 3 Eyl | X (TR+EN) | "Grok Pasaport Davası — ne oldu, ne öğrendiğimiz" thread | Viral | Hazır |
+| 7 Eyl | Reddit | r/MachineLearning: Alparai K-Benchmark metodoloji anlatımı | Teknik | Hazır |
+| 10 Eyl | HN | Show HN: We’re building trust infrastructure for AI — open feedback | Hacker | Hazır |
+| 14 Eyl | LinkedIn | Carousel: ‘5 EU AI Act ihlali & nasıl önlürsünüz’ | Compliance | Hazır |
+| 17 Eyl | X | K-Benchmark nedir? 7-tweet thread (TR+EN) | Eğitim | Hazır |
+| 21 Eyl | LinkedIn | "Why AI trust infrastructure is the next $10B market" | Yatırımcı | Hazır |
+| 28 Eyl | Tüm kanallar | Resmi Lansman duyurusu + Alparai v1.0 announcement | Gündem | Bekliyor |
 
-## 5. Fon & Yatırım Haritası (Güncel 2026)
+## Fon & Yatırım Haritası (Güncel Eylül 2026)
 
-### TR Devlet Destekleri
-- TÜBİTAK TEYDEB 1507/1511 (AI/RegTech projesi için uygun)
-- KOSGEB Dijital Dönüşüm Desteği
-- Kalkınma Ajansları (GMKA, İSTKA) hibeler
+### 🇹🇷 Türkiye Devlet Destekleri
+| Program | Kurum | Miktar | Başvuru | URL |
+|---|---|---|---|---|
+| TEYDEB 1507 | TÜBİTAK | 3M TL’ye kadar | Açık | tubitak.gov.tr |
+| 1511 Öncelikli Alan | TÜBİTAK | 10M TL’ye kadar | Açık | tubitak.gov.tr |
+| Dijital Dönüşüm Desteği | KOSGEB | 500K TL | Açık | kosgeb.gov.tr |
+| TeknoGirişim Sermayesi | Sanayi Bakanlığı | 2M TL | Açık | sanayi.gov.tr |
 
-### AB & Global VC
-- Sequoia Surges (London/Berlin ofisleri — RegTech odaklı)
-- Notion Capital (EU SaaS)
-- Point Nine Capital (EU SaaS)
-- Speedinvest (Vienna — LegalTech/RegTech)
+### 🇪🇺 AB & Global VC
+| Fon | Odak | Bilet | İrtibat |
+|---|---|---|---|
+| Sequoia Surges | RegTech/AI | $100K–$1M | surges.com |
+| Notion Capital | EU SaaS | €500K–€5M | notion.vc |
+| Point Nine Capital | EU SaaS | €200K–€2M | pointninecap.com |
+| Speedinvest | LegalTech/RegTech | €500K–€3M | speedinvest.com |
+| Earlybird VC | EU Deep Tech | €1M–€10M | earlybird.com |
 
-### Hızlandırma Programları
-- YCombinator (W27 batch — başvuru: Ekim 2026)
-- EU Startup Nations Standard programı
-- Google for Startups (Cloud credits + mentorship)
+### 🚀 Hızlandırma Programları
+| Program | Tarih | Ödlül | Başvuru |
+|---|---|---|---|
+| YCombinator W27 | Ekim 2026 | $500K | ycombinator.com/apply |
+| Google for Startups | Sürekli | $200K cloud kredisi | cloud.google.com/startup |
+| EU Startup Nations | Sürekli | Mentorship + network | startupnations.eu |
+| Plug and Play RegTech | Q1 2027 | $50K + demo day | plugandplaytechcenter.com |
 
-### Eylem Planı
-1. TÜBİTAK 1507 başvurusu hazırlığı (Q3 2026)
-2. YC application draft (Q4 2026)
-3. Notion Capital cold outreach (hello@alparai.com üzerinden)
+### ✅ Eylem Planı (Somut Tarihler)
+1. **1 Eylül 2026**: TÜBİTAK 1507 başvuru dosyası hazırlanmaya başlanır
+2. **15 Eylül 2026**: YC W27 application draft tamamlanır
+3. **20 Eylül 2026**: Notion Capital cold email gönderilir (hello@alparai.com)
+4. **1 Ekim 2026**: YC application submit edilir
+5. **15 Ekim 2026**: Speedinvest & Point Nine outreach
+6. **1 Kasım 2026**: KOSGEB başvurusu tamamlanır

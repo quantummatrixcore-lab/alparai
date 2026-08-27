@@ -316,11 +316,11 @@ export default async function AdminDashboardPage({
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400">
                     <ShieldCheck className="h-5 w-5" />
                   </div>
-                  <div>
-                    <h3 className="text-white font-bold tracking-tight">
+                  <div className="min-w-0">
+                    <h3 className="text-white font-bold tracking-tight truncate">
                       {t("security_radar_title")}
                     </h3>
-                    <p className="text-xs text-zinc-400">Zero Trust Matrix</p>
+                    <p className="text-xs text-zinc-400 truncate">Zero Trust Matrix</p>
                   </div>
                 </div>
               </div>

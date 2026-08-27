@@ -6,8 +6,8 @@ import { revalidatePath } from "next/cache";
 import type { ExternalIncidentQueueItem, StrategyInnovation } from "@/types";
 import type { Database } from "@/types/database";
 import { callWithFailover } from "@/lib/ai/openrouter-gateway";
-import { selectModelByCapability } from "@/lib/audit/model-router";
 import { logger } from "@/lib/utils/logger";
+import { runExternalFetchTask } from "@/lib/services/external-fetcher";
 
 export async function getExternalQueue(): Promise<ExternalIncidentQueueItem[]> {
   try {
@@ -121,25 +121,8 @@ export async function triggerManualFetch(): Promise<{ success: boolean; message:
   try {
     await requireAdmin();
     try {
-      // Run the GET endpoint locally or call the logic directly
-      // Let's run a fetch to local route (since Next server action runs inside same env)
-      // To make it easy, we can just call fetch on local api route
-      // But since absolute URL is needed for fetch on server side, we can dynamically build it
-      const url = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
-      const secret = process.env.CRON_SECRET || "";
-
-      const res = await fetch(`${url}/api/cron/fetch-external`, {
-        headers: {
-          Authorization: `Bearer ${secret}`,
-        },
-        next: { revalidate: 0 },
-      });
-
-      if (!res.ok) {
-        throw new Error(`Fetch failed: ${res.statusText}`);
-      }
-
-      const data = await res.json();
+      const data = await runExternalFetchTask();
+      revalidatePath("/[locale]/admin", "layout");
       return {
         success: true,
         message: `Fetched: ${data.total_fetched}, Inserted: ${data.inserted_or_updated}`,

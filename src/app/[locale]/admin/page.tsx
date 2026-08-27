@@ -123,9 +123,9 @@ export default async function AdminDashboardPage({
         </header>
 
         {/* BENTO GRID: 12-COL LAYOUT */}
-        <div className="grid grid-cols-1 md:grid-cols-12 auto-rows-[minmax(280px,auto)] gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 auto-rows-[minmax(280px,auto)] gap-6 lg:gap-8">
           {/* CELL: KPI Hero */}
-          <div className="md:col-span-12 lg:col-span-8 group relative overflow-hidden rounded-[2.5rem] border border-white/5 bg-gradient-to-br from-white/[0.03] to-white/[0.01] p-8 backdrop-blur-3xl transition-all duration-500 hover:border-white/10 hover:shadow-2xl">
+          <div className="lg:col-span-12 group relative overflow-hidden rounded-[2.5rem] border border-white/5 bg-gradient-to-br from-white/[0.03] to-white/[0.01] p-8 backdrop-blur-3xl transition-all duration-500 hover:border-white/10 hover:shadow-2xl">
             <div className="absolute top-0 right-0 p-8 opacity-20 transition-opacity group-hover:opacity-40">
               <Globe className="h-48 w-48 text-brand-400" strokeWidth={0.5} />
             </div>
@@ -141,7 +141,7 @@ export default async function AdminDashboardPage({
                   <p className="text-xs text-zinc-400">{t("financial_ops_desc")}</p>
                 </div>
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 {[
                   {
                     label: t("monthly_revenue"),
@@ -196,45 +196,48 @@ export default async function AdminDashboardPage({
             </div>
           </div>
 
-          {/* CELL: Telemetry / Latency */}
-          <div className="md:col-span-6 lg:col-span-4 group relative overflow-hidden rounded-[2.5rem] border border-white/5 bg-white/[0.02] p-8 backdrop-blur-3xl transition-all duration-500 hover:border-cyan-500/30 hover:shadow-[0_0_40px_rgba(6,182,212,0.1)]">
-            <div className="absolute -bottom-20 -right-20 h-64 w-64 rounded-full bg-cyan-500/10 blur-[100px] group-hover:bg-cyan-500/20 transition-colors" />
-            <div className="relative z-10 flex h-full flex-col justify-between">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
-                  <Activity className="h-5 w-5" />
-                </div>
-                <div>
-                  <h3 className="text-white font-bold tracking-tight">
-                    {t("ai_core_system_health_title")}
-                  </h3>
-                  <p className="text-xs text-zinc-400">Live Edge Telemetry</p>
-                </div>
-              </div>
-              <div className="flex flex-col gap-6 mt-8">
-                <div>
-                  <p className="text-xs text-zinc-400 font-medium mb-1">{t("avg_latency")}</p>
-                  <div className="flex items-end gap-2">
-                    <span className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-cyan-300 to-cyan-600">
-                      {latency}
-                    </span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:col-span-12 gap-6 lg:gap-8">
+            <PlausibleVisitorCard />
+            {/* CELL: Telemetry / Latency */}
+            <div className="group relative overflow-hidden rounded-[2.5rem] border border-white/5 bg-white/[0.02] p-8 backdrop-blur-3xl transition-all duration-500 hover:border-cyan-500/30 hover:shadow-[0_0_40px_rgba(6,182,212,0.1)]">
+              <div className="absolute -bottom-20 -right-20 h-64 w-64 rounded-full bg-cyan-500/10 blur-[100px] group-hover:bg-cyan-500/20 transition-colors" />
+              <div className="relative z-10 flex h-full flex-col justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
+                    <Activity className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-white font-bold tracking-tight">
+                      {t("ai_core_system_health_title")}
+                    </h3>
+                    <p className="text-xs text-zinc-400">Live Edge Telemetry</p>
                   </div>
                 </div>
-                <div className="h-[60px] w-full flex items-end gap-1 opacity-80">
-                  {[40, 30, 50, 40, 60, 30, 20, 45, 30, 25, 40, 35].map((h, i) => (
-                    <div
-                      key={i}
-                      className="w-full bg-cyan-500/30 rounded-t-sm transition-all hover:bg-cyan-400"
-                      style={{ height: `${h}%` }}
-                    />
-                  ))}
+                <div className="flex flex-col gap-6 mt-8">
+                  <div>
+                    <p className="text-xs text-zinc-400 font-medium mb-1">{t("avg_latency")}</p>
+                    <div className="flex items-end gap-2">
+                      <span className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-cyan-300 to-cyan-600">
+                        {latency}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="h-[60px] w-full flex items-end gap-1 opacity-80">
+                    {[40, 30, 50, 40, 60, 30, 20, 45, 30, 25, 40, 35].map((h, i) => (
+                      <div
+                        key={i}
+                        className="w-full bg-cyan-500/30 rounded-t-sm transition-all hover:bg-cyan-400"
+                        style={{ height: `${h}%` }}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* CELL: Swarm Agents */}
-          <div className="md:col-span-12 lg:col-span-8 group relative overflow-hidden rounded-[2.5rem] border border-white/5 bg-white/[0.02] p-8 backdrop-blur-3xl transition-all duration-500 hover:border-indigo-500/30 hover:shadow-[0_0_40px_rgba(99,102,241,0.1)]">
+          <div className="lg:col-span-8 group relative overflow-hidden rounded-[2.5rem] border border-white/5 bg-white/[0.02] p-8 backdrop-blur-3xl transition-all duration-500 hover:border-indigo-500/30 hover:shadow-[0_0_40px_rgba(99,102,241,0.1)]">
             <div className="flex h-full flex-col justify-between">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
@@ -326,26 +329,21 @@ export default async function AdminDashboardPage({
             </div>
           </div>
 
-          {/* CELL: AI Budget Score */}
-          <div className="md:col-span-6 lg:col-span-4 h-full relative overflow-hidden rounded-[2.5rem] border border-white/5 bg-white/[0.02] p-6 backdrop-blur-3xl transition-all duration-500 hover:border-white/10 hover:shadow-xl">
-            <AiBudgetTransparencyScore
-              score={98.4}
-              totalBudgetTokens={10000}
-              consumedTokens={4820}
-              hallucinationRate={1.2}
-              verifiedClaimsCount={totalIncidents}
-              savedTokens={18450}
-            />
-          </div>
-
-          {/* CELL: Test 360 Meter */}
-          <div className="md:col-span-6 lg:col-span-4 h-full relative overflow-hidden rounded-[2.5rem] border border-white/5 bg-white/[0.02] p-6 backdrop-blur-3xl transition-all duration-500 hover:border-white/10 hover:shadow-xl">
-            <Test360Meter />
-          </div>
-
-          {/* CELL: Plausible Traffic */}
-          <div className="md:col-span-12 lg:col-span-4 h-full relative overflow-hidden rounded-[2.5rem] border border-white/5 bg-white/[0.02] p-6 backdrop-blur-3xl transition-all duration-500 hover:border-white/10 hover:shadow-xl">
-            <PlausibleVisitorCard />
+          {/* CELL: AI Budget Score & Test 360 Meter */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:col-span-12 gap-6 lg:gap-8">
+            <div className="h-full relative overflow-hidden rounded-[2.5rem] border border-white/5 bg-white/[0.02] p-6 backdrop-blur-3xl transition-all duration-500 hover:border-white/10 hover:shadow-xl">
+              <AiBudgetTransparencyScore
+                score={98.4}
+                totalBudgetTokens={10000}
+                consumedTokens={4820}
+                hallucinationRate={1.2}
+                verifiedClaimsCount={totalIncidents}
+                savedTokens={18450}
+              />
+            </div>
+            <div className="h-full relative overflow-hidden rounded-[2.5rem] border border-white/5 bg-white/[0.02] p-6 backdrop-blur-3xl transition-all duration-500 hover:border-white/10 hover:shadow-xl">
+              <Test360Meter />
+            </div>
           </div>
 
           {/* CELL: Master Plan Prioritization */}

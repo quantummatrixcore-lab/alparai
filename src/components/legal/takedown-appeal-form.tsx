@@ -73,40 +73,50 @@ export function TakedownAppealForm({
         >
           {!takedownId && (
             <div className="space-y-1">
-              <label className="text-fg-muted text-xs font-medium">
+              <label htmlFor="takedown_id" className="text-fg-muted text-xs font-medium">
                 {t("takedownIdLabel", {
                   defaultValue: "Takedown / Request Reference ID (Optional)",
                 })}
               </label>
-              <Input name="takedown_id" placeholder="e.g. 550e8400-e29b-41d4-a716-446655440000" />
+              <Input
+                id="takedown_id"
+                name="takedown_id"
+                placeholder="e.g. 550e8400-e29b-41d4-a716-446655440000"
+              />
             </div>
           )}
 
           {!incidentId && (
             <div className="space-y-1">
-              <label className="text-fg-muted text-xs font-medium">
+              <label htmlFor="incident_id" className="text-fg-muted text-xs font-medium">
                 {t("incidentIdLabel", { defaultValue: "Incident ID (Optional)" })}
               </label>
-              <Input name="incident_id" placeholder="e.g. 123e4567-e89b-12d3-a456-426614174000" />
+              <Input
+                id="incident_id"
+                name="incident_id"
+                placeholder="e.g. 123e4567-e89b-12d3-a456-426614174000"
+              />
             </div>
           )}
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div className="space-y-1">
-              <label className="text-fg-muted text-xs font-medium">
+              <label htmlFor="appellant_name" className="text-fg-muted text-xs font-medium">
                 {t("appellantNameLabel", { defaultValue: "Your Full Name *" })}
               </label>
               <Input
+                id="appellant_name"
                 name="appellant_name"
                 required
                 placeholder={t("appellantNamePlaceholder", { defaultValue: "Jane Doe" })}
               />
             </div>
             <div className="space-y-1">
-              <label className="text-fg-muted text-xs font-medium">
+              <label htmlFor="appellant_email" className="text-fg-muted text-xs font-medium">
                 {t("appellantEmailLabel", { defaultValue: "Contact Email Address *" })}
               </label>
               <Input
+                id="appellant_email"
                 name="appellant_email"
                 type="email"
                 required
@@ -116,10 +126,11 @@ export function TakedownAppealForm({
           </div>
 
           <div className="space-y-1">
-            <label className="text-fg-muted text-xs font-medium">
+            <label htmlFor="reason" className="text-fg-muted text-xs font-medium">
               {t("appealReasonLabel", { defaultValue: "Reason & Counter-Evidence for Appeal *" })}
             </label>
             <Textarea
+              id="reason"
               name="reason"
               required
               minLength={20}
@@ -133,10 +144,15 @@ export function TakedownAppealForm({
           </div>
 
           <div className="space-y-1">
-            <label className="text-fg-muted text-xs font-medium">
+            <label htmlFor="evidence_url" className="text-fg-muted text-xs font-medium">
               {t("evidenceUrlLabel", { defaultValue: "Evidence Document / Proof Link (URL)" })}
             </label>
-            <Input name="evidence_url" type="url" placeholder="https://drive.google.com/..." />
+            <Input
+              id="evidence_url"
+              name="evidence_url"
+              type="url"
+              placeholder="https://drive.google.com/..."
+            />
           </div>
 
           <div className="pt-2">

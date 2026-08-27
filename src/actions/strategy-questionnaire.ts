@@ -78,6 +78,8 @@ export async function runQuestionnaire(modelIds?: string[]): Promise<{
 
         for (let i = 0; i < allQuestions.length; i += BATCH_SIZE) {
           const chunk = allQuestions.slice(i, i + BATCH_SIZE);
+          const chunkInserts: Record<string, unknown>[] = [];
+
           await Promise.all(
             chunk.map(async (q, chunkIndex) => {
               const qi = i + chunkIndex;
@@ -96,7 +98,7 @@ export async function runQuestionnaire(modelIds?: string[]): Promise<{
                 const latencyMs = Math.round(performance.now() - startTime);
 
                 if (result.ok) {
-                  await supabase.from("strategic_answers").insert({
+                  chunkInserts.push({
                     run_id: runId,
                     model_id: model.id,
                     model_name: modelLabel,
@@ -108,7 +110,7 @@ export async function runQuestionnaire(modelIds?: string[]): Promise<{
                     tokens_used: result.data.usage?.totalTokens || 0,
                   });
                 } else {
-                  await supabase.from("strategic_answers").insert({
+                  chunkInserts.push({
                     run_id: runId,
                     model_id: model.id,
                     model_name: modelLabel,
@@ -121,7 +123,7 @@ export async function runQuestionnaire(modelIds?: string[]): Promise<{
                 }
               } catch (err) {
                 const latencyMs = Math.round(performance.now() - startTime);
-                await supabase.from("strategic_answers").insert({
+                chunkInserts.push({
                   run_id: runId,
                   model_id: model.id,
                   model_name: modelLabel,
@@ -135,6 +137,10 @@ export async function runQuestionnaire(modelIds?: string[]): Promise<{
               totalAnswers++;
             }),
           );
+
+          if (chunkInserts.length > 0) {
+            await supabase.from("strategic_answers").insert(chunkInserts);
+          }
         }
       }
 
@@ -173,7 +179,7 @@ export async function getQuestionnaireRuns() {
 
     const { data: runs } = await supabase
       .from("strategic_runs")
-      .select("*")
+      .select("id, status, model_ids, total_questions, total_answers, started_at, completed_at")
       .order("started_at", { ascending: false })
       .limit(20);
 
@@ -199,7 +205,9 @@ export async function getQuestionnaireRunAnswers(runId: string) {
 
     const { data: answers } = await supabase
       .from("strategic_answers")
-      .select("*")
+      .select(
+        "id, run_id, model_id, model_name, question_index, question_id, section, answer_text, error_message, latency_ms, tokens_used, created_at",
+      )
       .eq("run_id", runId)
       .order("question_index", { ascending: true });
 
@@ -230,7 +238,7 @@ export async function exportRunToMarkdown(runId: string): Promise<{ ok: boolean;
 
     const { data: run, error: runErr } = await supabase
       .from("strategic_runs")
-      .select("*")
+      .select("id, started_at")
       .eq("id", runId)
       .single();
 
@@ -240,7 +248,9 @@ export async function exportRunToMarkdown(runId: string): Promise<{ ok: boolean;
 
     const { data: answers, error: answersErr } = await supabase
       .from("strategic_answers")
-      .select("*")
+      .select(
+        "model_id, model_name, question_id, answer_text, error_message, latency_ms, tokens_used",
+      )
       .eq("run_id", runId)
       .order("question_index", { ascending: true });
 

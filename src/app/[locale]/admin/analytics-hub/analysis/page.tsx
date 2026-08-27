@@ -28,25 +28,33 @@ export default async function AnalysisPage({ params }: { params: Promise<{ local
   const { data: aiModels } = await supabase.from("ai_models").select("*, ai_providers(name)");
   const { data: freeModels } = await supabase.from("ai_free_models").select("*");
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const paidModels = (aiModels || []).map((model: any) => ({
-    ...model,
-    name: model.name || model.model_name || model.id || "Model",
+  const paidModels = (aiModels || []).map((model: unknown) => ({
+    ...(model as object),
+    name:
+      (model as Record<string, unknown>).name ||
+      (model as Record<string, unknown>).model_name ||
+      (model as Record<string, unknown>).id ||
+      "Model",
     is_free: false,
   }));
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const freeModelsList = (freeModels || []).map((model: any) => ({
-    id: model.id,
-    name: model.model_name || model.name || model.id || "Free Model",
-    created_at: model.created_at,
-    ai_providers: { name: model.provider || "Provider" },
+  const freeModelsList = (freeModels || []).map((model: unknown) => ({
+    id: (model as Record<string, unknown>).id,
+    name:
+      (model as Record<string, unknown>).model_name ||
+      (model as Record<string, unknown>).name ||
+      (model as Record<string, unknown>).id ||
+      "Free Model",
+    created_at: (model as Record<string, unknown>).created_at,
+    ai_providers: { name: (model as Record<string, unknown>).provider || "Provider" },
     is_free: true,
   }));
 
   const allModels = [...paidModels, ...freeModelsList];
-  const uniqueModels = Array.from(new Map(allModels.map((m) => [m.name, m])).values());
-  const models = uniqueModels;
+  const uniqueModels = Array.from(
+    new Map(allModels.map((m: Record<string, unknown>) => [m.name, m])).values(),
+  );
+  const models: Record<string, unknown>[] = uniqueModels as Record<string, unknown>[];
 
   const { data: realScores } = await supabase.from("k_model_scores").select("*");
 
@@ -58,7 +66,7 @@ export default async function AnalysisPage({ params }: { params: Promise<{ local
       total_models: models.length,
       scoring_weights: { consensus: 0.4, verification: 0.3, security: 0.3 },
     },
-    audits: models.map((model) => {
+    audits: models.map((model: Record<string, unknown>) => {
       const real = realScores?.find((s) => s.model_id === model.id);
       const rawScore = real?.score ?? 0;
       // Normalize score: if rawScore is 0-100 (percentage), scale to 0-100 (scoreVal) and 0-1000 (total)

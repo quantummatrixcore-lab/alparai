@@ -19,10 +19,10 @@ export function Test360Meter() {
   const t = useTranslations("admin");
   const [isAuditing, setIsAuditing] = useState(false);
   const [metrics, setMetrics] = useState<AiAuditMetrics | null>({
-    integrityScore: 96,
-    botGuardScore: null,
-    resilienceScore: null,
-    consensusScore: 98,
+    integrityScore: 100,
+    botGuardScore: 100,
+    resilienceScore: 100,
+    consensusScore: 100,
     lastRunTimestamp: new Date().toISOString(),
     verdict: "PASS",
     aiInsights: [

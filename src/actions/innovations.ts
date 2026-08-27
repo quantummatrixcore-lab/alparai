@@ -6,6 +6,7 @@ import { revalidatePath } from "next/cache";
 import type { ExternalIncidentQueueItem, StrategyInnovation } from "@/types";
 import type { Database } from "@/types/database";
 import { callWithFailover } from "@/lib/ai/openrouter-gateway";
+import { selectModelByCapability } from "@/lib/audit/model-router";
 import { logger } from "@/lib/utils/logger";
 import { runExternalFetchTask } from "@/lib/services/external-fetcher";
 

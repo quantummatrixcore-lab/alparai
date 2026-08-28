@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
@@ -111,7 +111,7 @@ export function RevenueShare() {
       {/* Üst Kısım - Başlık ve Aksiyon */}
       <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
         <div>
-          <h2 className="text-fg-primary text-fg-secondaryxl font-semibold tracking-tight">
+          <h2 className="text-fg-primary text-2xl font-semibold tracking-tight">
             Gelir Paylaşımı
           </h2>
           <p className="text-fg-muted mt-1 text-sm">
@@ -319,3 +319,4 @@ export function RevenueShare() {
     </div>
   );
 }
+

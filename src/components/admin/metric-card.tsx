@@ -47,7 +47,7 @@ export function TrendMetricCard({
       </div>
 
       <div className="mt-2 flex items-baseline justify-between">
-        <span className="text-fg-secondaryxl font-black text-white">{value}</span>
+        <span className="text-2xl font-black text-white">{value}</span>
         {badge && <span className={`text-xs font-bold ${badgeColor}`}>{badge}</span>}
       </div>
 
@@ -68,3 +68,4 @@ export function TrendMetricCard({
     </div>
   );
 }
+

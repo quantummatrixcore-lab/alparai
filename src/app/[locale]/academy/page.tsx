@@ -37,12 +37,15 @@ export default async function AcademyPage({ params }: { params: Promise<{ locale
   const t = await getTranslations({ locale: resolvedParams.locale, namespace: "academy" });
 
   const supabase = await createClient();
-  const [{ data: stats }, { count: providersCount }] = await Promise.all([
-    supabase.from("transparency_stats").select("total_incidents").single(),
+  const [{ count: incidentsCount }, { count: providersCount }] = await Promise.all([
+    supabase
+      .from("incidents")
+      .select("*", { count: "exact", head: true })
+      .eq("status", "published"),
     supabase.from("ai_providers").select("*", { count: "exact", head: true }),
   ]);
 
-  const totalIncidents = stats?.total_incidents ? `${stats.total_incidents}+` : "350+";
+  const totalIncidents = incidentsCount ? `${incidentsCount}+` : "350+";
   const displayProviders = providersCount ? `${providersCount}+` : "40+";
 
   return (

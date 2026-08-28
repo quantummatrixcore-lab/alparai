@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -591,7 +591,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
                 <span className="text-fg-muted block text-xs font-bold tracking-wide uppercase">
                   {t("resources_efficiency_total_runs")}
                 </span>
-                <span className="text-fg-secondaryxl mt-1 block font-mono font-black text-white">
+                <span className="text-2xl mt-1 block font-mono font-black text-white">
                   {efficiency.totalRuns}
                 </span>
               </div>
@@ -599,7 +599,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
                 <span className="text-fg-muted block text-xs font-bold tracking-wide uppercase">
                   {t("resources_efficiency_free_pct")}
                 </span>
-                <span className="text-fg-secondaryxl mt-1 block font-mono font-black text-white">
+                <span className="text-2xl mt-1 block font-mono font-black text-white">
                   {efficiency.freePct.toFixed(1)}%
                 </span>
               </div>
@@ -608,7 +608,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
                   {t("resources_efficiency_score")}
                 </span>
                 <div className="mt-1 flex items-center gap-2">
-                  <span className="text-fg-secondaryxl block font-mono font-black text-white">
+                  <span className="text-2xl block font-mono font-black text-white">
                     {efficiency.efficiencyScore.toFixed(1)}
                   </span>
                   {efficiency.targetDistancePct > 0 ? (
@@ -624,7 +624,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
                 <span className="text-fg-muted block text-xs font-bold tracking-wide uppercase">
                   {t("resources_efficiency_avg_duration")}
                 </span>
-                <span className="text-fg-secondaryxl mt-1 block font-mono font-black text-white">
+                <span className="text-2xl mt-1 block font-mono font-black text-white">
                   {formatDuration(efficiency.avgDurationMs)}
                 </span>
               </div>
@@ -632,7 +632,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
                 <span className="text-fg-muted block text-xs font-bold tracking-wide uppercase">
                   {t("resources_efficiency_success_rate")}
                 </span>
-                <span className="text-fg-secondaryxl mt-1 block font-mono font-black text-white">
+                <span className="text-2xl mt-1 block font-mono font-black text-white">
                   {(efficiency.successRate * 100).toFixed(1)}%
                 </span>
               </div>
@@ -686,7 +686,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
             <span className="text-fg-muted text-xs font-bold tracking-wide uppercase">
               {t("resources_incident_count")}
             </span>
-            <p className="text-fg-secondaryxl mt-2 font-mono font-black text-white">
+            <p className="text-2xl mt-2 font-mono font-black text-white">
               {metrics.rowCounts.incidents.toLocaleString()}
             </p>
           </div>
@@ -694,7 +694,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
             <span className="text-fg-muted text-xs font-bold tracking-wide uppercase">
               {t("resources_scores_count")}
             </span>
-            <p className="text-fg-secondaryxl mt-2 font-mono font-black text-white">
+            <p className="text-2xl mt-2 font-mono font-black text-white">
               {metrics.rowCounts.kModelScores.toLocaleString()}
             </p>
           </div>
@@ -702,7 +702,7 @@ export function ResourcesClient({ locale }: { locale: string }) {
             <span className="text-fg-muted text-xs font-bold tracking-wide uppercase">
               {t("resources_queue_size")}
             </span>
-            <p className="text-fg-secondaryxl mt-2 font-mono font-black text-white">
+            <p className="text-2xl mt-2 font-mono font-black text-white">
               {metrics.rowCounts.externalIncidentsQueue.toLocaleString()}
             </p>
           </div>
@@ -1006,3 +1006,4 @@ export function ResourcesClient({ locale }: { locale: string }) {
     </div>
   );
 }
+

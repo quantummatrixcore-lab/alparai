@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useTranslations } from "next-intl";
 
@@ -59,7 +59,7 @@ export function BudgetGauge({ totalMonthly, totalBudget }: BudgetGaugeProps) {
 
         {/* Inner Text overlay */}
         <div className="absolute flex flex-col items-center justify-center">
-          <span className="text-fg-secondaryxl font-bold text-zinc-950 dark:text-zinc-50">
+          <span className="text-2xl font-bold text-zinc-950 dark:text-zinc-50">
             {percentUsed}%
           </span>
           <span className="text-fg-disabled dark:text-fg-muted text-[10px] tracking-wider uppercase">
@@ -87,3 +87,4 @@ export function BudgetGauge({ totalMonthly, totalBudget }: BudgetGaugeProps) {
     </div>
   );
 }
+

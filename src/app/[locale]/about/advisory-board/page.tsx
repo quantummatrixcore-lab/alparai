@@ -1,5 +1,7 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
+
+export const dynamic = "force-dynamic";
 import { Container, Section } from "@/components/ui/layout";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import {

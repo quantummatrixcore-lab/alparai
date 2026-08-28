@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import {
@@ -215,7 +215,7 @@ export function InnovationsClient({
       {/* Upper header action */}
       <div className="border-border-subtle flex flex-col items-start justify-between gap-4 border-b pb-5 sm:flex-row sm:items-center">
         <div>
-          <h1 className="text-fg-secondaryxl inline-flex items-center gap-2.5 font-bold tracking-tight text-white">
+          <h1 className="text-2xl inline-flex items-center gap-2.5 font-bold tracking-tight text-white">
             <Lightbulb className="text-brand-400 h-6 w-6 drop-shadow-[0_0_8px_rgba(168,85,247,0.4)]" />
             {t("innovation_hub_data_pool")}
           </h1>
@@ -567,3 +567,4 @@ export function InnovationsClient({
     </div>
   );
 }
+

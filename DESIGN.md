@@ -1,0 +1,14 @@
+﻿# ALPAR AI Command Center - Design System
+- **Style:** Futuristic, professional SaaS Dashboard, Bento-grid layout
+- **Color Palette:**
+  - Background: Deep space black (`#09090b`)
+  - Panels/Cards: Dark charcoal with glassmorphism (`#18181b` with 40% opacity and blur)
+  - Primary Accents: Cyberpunk Neon Cyan (`#00f0ff`) and Neon Purple (`#8a2be2`)
+  - Secondary Accents: Emerald Green (`#10b981`) for success/health metrics
+  - Text: High contrast white (`#ffffff`) for primary, slate gray (`#94a3b8`) for secondary
+- **Typography:** Inter or Geist Sans for UI elements, JetBrains Mono for metrics and code
+- **Components:**
+  - Glossy pill-shaped status badges
+  - Hover effects with soft neon glows
+  - Thin borders (`#27272a`) to separate grid items
+- **Device:** Desktop primarily, ultra-wide dashboard view.

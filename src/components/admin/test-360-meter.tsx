@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
@@ -84,7 +84,7 @@ export function Test360Meter() {
             </div>
             <div className="min-w-0 flex-1">
               <div className="flex min-w-0 flex-wrap items-center gap-2">
-                <h2 className="md:text-fg-secondaryxl max-w-full truncate text-lg font-extrabold tracking-tight text-white sm:text-xl">
+                <h2 className="md:text-2xl max-w-full truncate text-lg font-extrabold tracking-tight text-white sm:text-xl">
                   360° Cockpit Quality & Test Matrix
                 </h2>
                 <span className="border-success-500/30 bg-success-500/10 text-success-400 inline-flex shrink-0 items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-bold sm:text-xs">
@@ -126,7 +126,7 @@ export function Test360Meter() {
                 Overall 360° Score
               </p>
               <div className="mt-1 flex flex-wrap items-baseline gap-1.5">
-                <span className="text-fg-secondaryxl font-black tracking-tight text-white sm:text-3xl">
+                <span className="text-2xl font-black tracking-tight text-white sm:text-3xl">
                   {overallScore}
                 </span>
                 {typeof overallScore === "number" && (
@@ -167,7 +167,7 @@ export function Test360Meter() {
                 360° Crawl Coverage
               </p>
               <div className="mt-1 flex flex-wrap items-baseline gap-1.5">
-                <span className="text-fg-secondaryxl font-black tracking-tight text-white sm:text-3xl">
+                <span className="text-2xl font-black tracking-tight text-white sm:text-3xl">
                   {metrics?.botGuardScore != null ? `${metrics.botGuardScore}%` : "Not measured"}
                 </span>
               </div>
@@ -205,7 +205,7 @@ export function Test360Meter() {
                 Layout Integrity
               </p>
               <div className="mt-1 flex flex-wrap items-baseline gap-1.5">
-                <span className="text-fg-secondaryxl font-black tracking-tight text-white sm:text-3xl">
+                <span className="text-2xl font-black tracking-tight text-white sm:text-3xl">
                   {metrics?.integrityScore != null ? `${metrics.integrityScore}%` : "Not measured"}
                 </span>
               </div>
@@ -243,7 +243,7 @@ export function Test360Meter() {
                 Zero-Token Engine
               </p>
               <div className="mt-1 flex flex-wrap items-baseline gap-1.5">
-                <span className="text-fg-secondaryxl font-black tracking-tight text-white sm:text-3xl">
+                <span className="text-2xl font-black tracking-tight text-white sm:text-3xl">
                   {metrics?.resilienceScore != null
                     ? `${metrics.resilienceScore}%`
                     : "Not measured"}
@@ -306,3 +306,4 @@ export function Test360Meter() {
     </section>
   );
 }
+

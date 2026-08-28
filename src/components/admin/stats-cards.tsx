@@ -24,9 +24,11 @@ export interface AdminStats {
   recent_24h: number;
 }
 
-export function StatsCards({ stats }: { stats: AdminStats }) {
+import React from "react";
+
+export const StatsCards = React.memo(function StatsCards({ stats }: { stats: AdminStats }) {
   const t = useTranslations("admin");
-  const cards = [
+  const cards = React.useMemo(() => [
     {
       icon: <FileText className="h-4 w-4" />,
       label: t("stats_total"),
@@ -92,7 +94,7 @@ export function StatsCards({ stats }: { stats: AdminStats }) {
       gradient: "from-neutral-500 to-transparent",
       glow: "",
     },
-  ];
+  ], [stats, t]);
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -117,13 +119,13 @@ export function StatsCards({ stats }: { stats: AdminStats }) {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-4"
+      className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 w-full"
     >
       {cards.map((c) => (
         <motion.div
           key={c.label}
           variants={itemVariants}
-          className="group border-border-subtle/50 bg-bg-secondary hover:border-border-strong hover:bg-bg-secondary relative flex flex-col overflow-hidden rounded-xl border p-4 shadow-lg backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+          className="group border-border-subtle/50 bg-bg-secondary hover:border-border-strong hover:bg-bg-secondary relative flex flex-col justify-between overflow-hidden rounded-xl border p-3 sm:p-4 shadow-lg backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl min-w-0"
         >
           {/* Spotlight Hover Gradient */}
           <div
@@ -135,24 +137,24 @@ export function StatsCards({ stats }: { stats: AdminStats }) {
           />
           <div className="relative z-10 flex items-center justify-between">
             <div
-              className={`border-border-subtle/50 inline-flex h-9 w-9 items-center justify-center rounded-lg border bg-white/5 ${c.color} ${c.glow} transition-transform duration-300 group-hover:scale-110`}
+              className={`border-border-subtle/50 inline-flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-lg border bg-white/5 ${c.color} ${c.glow} transition-transform duration-300 group-hover:scale-110 shrink-0`}
             >
               {c.icon}
             </div>
             {c.badge && (
-              <span className="border-warning-500/30 bg-warning-500/20 text-warning-400 inline-flex h-5 min-w-5 animate-pulse items-center justify-center rounded-full border px-1.5 text-[10px] font-bold shadow-[0_0_10px_rgba(245,158,11,0.25)]">
+              <span className="border-warning-500/30 bg-warning-500/20 text-warning-400 inline-flex h-5 min-w-5 animate-pulse items-center justify-center rounded-full border px-1.5 text-[10px] font-bold shadow-[0_0_10px_rgba(245,158,11,0.25)] shrink-0">
                 {c.badge}
               </span>
             )}
           </div>
-          <p className="relative z-10 mt-4 font-mono text-3xl font-black tracking-tighter text-white drop-shadow-sm transition-transform duration-300 group-hover:translate-x-1">
+          <p className="relative z-10 mt-3 sm:mt-4 font-mono text-xl sm:text-2xl md:text-3xl font-black tracking-tighter text-white drop-shadow-sm transition-transform duration-300 group-hover:translate-x-1 truncate">
             {c.value.toLocaleString()}
           </p>
-          <p className="text-fg-muted relative z-10 mt-1.5 font-sans text-xs font-medium tracking-wide">
+          <p className="text-fg-muted relative z-10 mt-1 sm:mt-1.5 font-sans text-[11px] sm:text-xs font-medium tracking-wide truncate">
             {c.label}
           </p>
         </motion.div>
       ))}
     </motion.div>
   );
-}
+});

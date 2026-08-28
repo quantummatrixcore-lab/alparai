@@ -4,24 +4,16 @@ import { resolve } from "node:path";
 export default defineConfig({
   resolve: {
     alias: {
-      "@": resolve(__dirname, "src"),
-      "server-only": resolve(__dirname, "src/lib/__mocks__/server-only.ts"),
+      "@": resolve(import.meta.dirname, "src"),
+      "server-only": resolve(import.meta.dirname, "src/lib/__mocks__/server-only.ts"),
     },
   },
   test: {
-    environment: "node",
+    environment: "jsdom",
     globals: true,
     testTimeout: 30000,
     hookTimeout: 45000,
     setupFiles: ["./vitest.setup.ts"],
-    pool: "forks",
-    // @ts-expect-error - Type error after pnpm audit fix
-    poolOptions: {
-      forks: {
-        singleFork: true,
-        execArgv: ["--max-old-space-size=8192"],
-      },
-    },
     fileParallelism: false,
     include: ["src/**/*.{test,spec}.{ts,tsx}", "tests/**/*.{test,spec}.{ts,tsx}"],
     exclude: ["tests/e2e/**", "node_modules/**"],

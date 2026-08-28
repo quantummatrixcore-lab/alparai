@@ -36,16 +36,15 @@ async function getHandler(request: NextRequest) {
     const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
     const { data: recentTriage, error: triageErr } = await admin
       .from("moderation_sla")
-      .select("triage_duration_hours")
-      .gte("created_at", sevenDaysAgo)
-      .not("reviewed_at", "is", null);
+      .select("minutes_waiting")
+      .gte("created_at", sevenDaysAgo);
 
     if (triageErr) {
       throw new Error(`Failed to query SLA view: ${triageErr.message}`);
     }
 
     const durations = (recentTriage || [])
-      .map((r: { triage_duration_hours: number | null }) => Number(r.triage_duration_hours))
+      .map((r) => (r.minutes_waiting ? Number(r.minutes_waiting) / 60 : 0))
       .filter((d) => !isNaN(d))
       .sort((a, b) => a - b);
 

@@ -56,18 +56,22 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  icons: {
-    icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/icons/android-chrome-192x192.png", type: "image/png", sizes: "192x192" },
-      { url: "/icons/android-chrome-512x512.png", type: "image/png", sizes: "512x512" },
-    ],
-    apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
-  },
   manifest: "/manifest.webmanifest",
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? "",
   },
+  appleWebApp: {
+    capable: true,
+    title: "ALPAR AI",
+    statusBarStyle: "black-translucent",
+  },
+  formatDetection: {
+    telephone: false,
+    date: false,
+    email: false,
+    address: false,
+  },
+  category: "technology",
 };
 
 export const viewport: Viewport = {

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import * as React from "react";
 import {
@@ -109,39 +109,52 @@ export function AnalysisDashboardClient({ registryData }: Props) {
   const [liveResult, setLiveResult] = React.useState<LiveAnalysisResult | null>(null);
   const [showFreeModels, setShowFreeModels] = React.useState(true);
 
-  const [logs, _setLogs] = React.useState<string[]>([]);
-
+  const [logs] = React.useState<string[]>([]);
   const [copiedKey, setCopiedKey] = React.useState<string | null>(null);
+  const copyTimerRef = React.useRef<NodeJS.Timeout | null>(null);
 
   React.useEffect(() => {
-    // Real logs would stream from a monitoring endpoint
-    // Currently showing empty state until logging backend is connected
+    return () => {
+      if (copyTimerRef.current) {
+        clearTimeout(copyTimerRef.current);
+      }
+    };
   }, []);
 
-  const handleCopyKey = (key: string) => {
+  const handleCopyKey = React.useCallback((key: string) => {
     navigator.clipboard.writeText(key);
     setCopiedKey(key);
-    setTimeout(() => setCopiedKey(null), 2000);
-  };
+    if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
+    copyTimerRef.current = setTimeout(() => setCopiedKey(null), 2000);
+  }, []);
 
-  const filteredAudits = showFreeModels
-    ? registryData.audits
-    : registryData.audits.filter((audit) => !audit.is_free);
+  const filteredAudits = React.useMemo(() => {
+    return showFreeModels
+      ? registryData.audits
+      : registryData.audits.filter((audit) => !audit.is_free);
+  }, [showFreeModels, registryData.audits]);
 
   const totalModels = filteredAudits.length;
   const p0Tracker = registryData.p0_tracker;
-  const openP0Count = p0Tracker.filter(
-    (b) => b.status === "open" || b.status === "in-progress",
-  ).length;
-  const resolvedP0Count = p0Tracker.filter((b) => b.status === "resolved").length;
+
+  const { openP0Count, resolvedP0Count } = React.useMemo(() => {
+    let open = 0;
+    let resolved = 0;
+    for (const b of p0Tracker) {
+      if (b.status === "open" || b.status === "in-progress") open++;
+      else if (b.status === "resolved") resolved++;
+    }
+    return { openP0Count: open, resolvedP0Count: resolved };
+  }, [p0Tracker]);
 
   const evolution = registryData.score_evolution;
-  const latestRound = evolution[evolution.length - 1];
-  const previousRound = evolution.length > 1 ? evolution[evolution.length - 2] : null;
-
-  const currentAvg = latestRound?.average_score ?? 400;
-  const previousAvg = previousRound?.average_score ?? 400;
-  const scoreDiff = currentAvg - previousAvg;
+  const { currentAvg, scoreDiff } = React.useMemo(() => {
+    const latestRound = evolution[evolution.length - 1];
+    const previousRound = evolution.length > 1 ? evolution[evolution.length - 2] : null;
+    const cAvg = latestRound?.average_score ?? 400;
+    const pAvg = previousRound?.average_score ?? 400;
+    return { currentAvg: cAvg, scoreDiff: cAvg - pAvg };
+  }, [evolution]);
 
   React.useEffect(() => {
     if (carouselIndex >= filteredAudits.length && filteredAudits.length > 0) {
@@ -149,16 +162,16 @@ export function AnalysisDashboardClient({ registryData }: Props) {
     }
   }, [filteredAudits.length, carouselIndex]);
 
-  const handleNextInsight = () => {
+  const handleNextInsight = React.useCallback(() => {
     setCarouselIndex((prev) => (prev + 1) % Math.max(1, filteredAudits.length));
-  };
+  }, [filteredAudits.length]);
 
-  const handlePrevInsight = () => {
+  const handlePrevInsight = React.useCallback(() => {
     setCarouselIndex(
       (prev) =>
         (prev - 1 + Math.max(1, filteredAudits.length)) % Math.max(1, filteredAudits.length),
     );
-  };
+  }, [filteredAudits.length]);
 
   const handleRunLiveAnalysis = async () => {
     setIsLiveAnalyzing(true);
@@ -200,20 +213,24 @@ export function AnalysisDashboardClient({ registryData }: Props) {
     }
   };
 
-  const filteredP0Blockers = p0Tracker.filter((item) => {
-    const matchesFilter =
-      p0Filter === "all" ||
-      (p0Filter === "open" && (item.status === "open" || item.status === "in-progress")) ||
-      (p0Filter === "resolved" && item.status === "resolved");
+  const filteredP0Blockers = React.useMemo(() => {
+    const searchLower = p0Search.toLowerCase();
+    return p0Tracker.filter((item) => {
+      const matchesFilter =
+        p0Filter === "all" ||
+        (p0Filter === "open" && (item.status === "open" || item.status === "in-progress")) ||
+        (p0Filter === "resolved" && item.status === "resolved");
 
-    const matchesSearch =
-      item.title.toLowerCase().includes(p0Search.toLowerCase()) ||
-      item.category.toLowerCase().includes(p0Search.toLowerCase());
+      const matchesSearch =
+        !searchLower ||
+        item.title.toLowerCase().includes(searchLower) ||
+        item.category.toLowerCase().includes(searchLower);
 
-    return matchesFilter && matchesSearch;
-  });
+      return matchesFilter && matchesSearch;
+    });
+  }, [p0Tracker, p0Filter, p0Search]);
 
-  const categories = [
+  const categories = React.useMemo(() => [
     { key: "vision_mission", label: t("cat_vision_mission") },
     { key: "message_content", label: t("cat_message_content") },
     { key: "ux_ui_design", label: t("cat_ux_ui_design") },
@@ -224,7 +241,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
     { key: "traction_social_proof", label: t("cat_traction_social_proof") },
     { key: "investor_readiness", label: t("cat_investor_readiness") },
     { key: "societal_impact", label: t("cat_societal_impact") },
-  ];
+  ], [t]);
 
   const getScoreColor = (score: number) => {
     if (score >= 80) return "text-accent-400 bg-accent-500/10 border-accent-500/20";
@@ -273,7 +290,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                 <span className="text-fg-muted font-mono text-sm">{t("skor")}</span>
                 <span
                   className={cn(
-                    "text-fg-secondaryxl font-black",
+                    "text-2xl font-black",
                     getScoreColor(liveResult.overall_score || 0),
                   )}
                 >
@@ -588,7 +605,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                       </div>
                     </div>
                   </div>
-                  <span className="text-accent-400 text-fg-secondaryxl font-mono font-extrabold tracking-tighter drop-shadow-[0_0_8px_rgba(6,182,212,0.3)]">
+                  <span className="text-accent-400 text-2xl font-mono font-extrabold tracking-tighter drop-shadow-[0_0_8px_rgba(6,182,212,0.3)]">
                     {registryData.consensus_findings.unanimous.length}
                   </span>
                 </div>
@@ -608,7 +625,7 @@ export function AnalysisDashboardClient({ registryData }: Props) {
                       </div>
                     </div>
                   </div>
-                  <span className="text-brand-400 text-fg-secondaryxl font-mono font-extrabold tracking-tighter drop-shadow-[0_0_8px_rgba(168,85,247,0.3)]">
+                  <span className="text-brand-400 text-2xl font-mono font-extrabold tracking-tighter drop-shadow-[0_0_8px_rgba(168,85,247,0.3)]">
                     {registryData.consensus_findings.strong_consensus.length}
                   </span>
                 </div>
@@ -987,3 +1004,4 @@ export function AnalysisDashboardClient({ registryData }: Props) {
     </div>
   );
 }
+

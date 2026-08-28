@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useMemo } from "react";
 import { useTranslations } from "next-intl";
@@ -284,7 +284,7 @@ export function RiskMatrixClient({
             </div>
           </div>
           <div className="mt-3 flex items-baseline justify-between">
-            <span className="text-fg-secondaryxl font-black tracking-tight text-white">
+            <span className="text-2xl font-black tracking-tight text-white">
               {stats.total}
             </span>
             <span className="text-fg-muted text-[10px] font-semibold">{stats.active} Active</span>
@@ -307,7 +307,7 @@ export function RiskMatrixClient({
             </div>
           </div>
           <div className="mt-3 flex items-baseline justify-between">
-            <span className="text-danger-400 text-fg-secondaryxl font-black tracking-tight">
+            <span className="text-danger-400 text-2xl font-black tracking-tight">
               {stats.high}
             </span>
             <span className="text-danger-400/80 text-[10px] font-bold tracking-wider uppercase">
@@ -332,7 +332,7 @@ export function RiskMatrixClient({
             </div>
           </div>
           <div className="mt-3 flex items-baseline justify-between">
-            <span className="text-warning-400 text-fg-secondaryxl font-black tracking-tight">
+            <span className="text-warning-400 text-2xl font-black tracking-tight">
               {stats.medium}
             </span>
             <span className="text-warning-400/80 text-[10px] font-bold tracking-wider uppercase">
@@ -357,7 +357,7 @@ export function RiskMatrixClient({
             </div>
           </div>
           <div className="mt-3 flex items-baseline justify-between">
-            <span className="text-success-400 text-fg-secondaryxl font-black tracking-tight">
+            <span className="text-success-400 text-2xl font-black tracking-tight">
               {stats.low}
             </span>
             <span className="text-success-400/80 text-[10px] font-bold tracking-wider uppercase">
@@ -382,7 +382,7 @@ export function RiskMatrixClient({
             </div>
           </div>
           <div className="mt-3 flex items-baseline justify-between">
-            <span className="text-accent-300 text-fg-secondaryxl font-black tracking-tight">
+            <span className="text-accent-300 text-2xl font-black tracking-tight">
               {stats.avgExposure}
               <span className="text-fg-muted text-xs font-normal"> / 25</span>
             </span>
@@ -1139,3 +1139,4 @@ export function RiskMatrixClient({
     </div>
   );
 }
+

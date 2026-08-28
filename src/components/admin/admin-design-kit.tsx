@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
@@ -98,7 +98,7 @@ export function AdminPageHeader({
           </div>
 
           <div>
-            <h1 className="text-fg-primary text-fg-secondaryxl inline-flex items-center gap-3 font-extrabold tracking-tight">
+            <h1 className="text-fg-primary text-2xl inline-flex items-center gap-3 font-extrabold tracking-tight">
               <span>{title}</span>
               {badge ? (
                 <span className="shrink-0">{badge}</span>
@@ -374,3 +374,4 @@ export function EmptyStateIllustration({
     </div>
   );
 }
+

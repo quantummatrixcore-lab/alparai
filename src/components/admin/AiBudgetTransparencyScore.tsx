@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
@@ -142,7 +142,7 @@ export function AiBudgetTransparencyScore({
 
             {/* Inner Gauge Text - Perfectly Symmetrical & Centered */}
             <div className="absolute inset-0 flex flex-col items-center justify-center p-3 text-center">
-              <span className="text-fg-secondaryxl font-black tracking-tight text-white drop-shadow-sm sm:text-3xl">
+              <span className="text-2xl font-black tracking-tight text-white drop-shadow-sm sm:text-3xl">
                 %{score !== undefined ? score : "Ölçülmedi"}
               </span>
               <span className="text-success-400 mt-1 max-w-[100px] text-[9px] leading-tight font-bold tracking-widest uppercase">
@@ -267,3 +267,4 @@ export function AiBudgetTransparencyScore({
     </div>
   );
 }
+

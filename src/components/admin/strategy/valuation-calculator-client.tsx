@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
@@ -335,7 +335,7 @@ export function ValuationCalculatorClient({
               <span className="text-sm font-extrabold text-white">
                 {t("val_berkus_calc_result")}
               </span>
-              <span className="text-success-400 text-fg-secondaryxl font-mono font-black">
+              <span className="text-success-400 text-2xl font-mono font-black">
                 {formatCurrency(berkusValuation)}
               </span>
             </div>
@@ -430,7 +430,7 @@ export function ValuationCalculatorClient({
               <span className="text-sm font-extrabold text-white">
                 {t("val_scorecard_calc_result")}
               </span>
-              <span className="text-success-400 text-fg-secondaryxl font-mono font-black">
+              <span className="text-success-400 text-2xl font-mono font-black">
                 {formatCurrency(scorecardValuation)}
               </span>
             </div>
@@ -488,7 +488,7 @@ export function ValuationCalculatorClient({
 
             <div className="border-border-subtle mt-4 flex items-center justify-between rounded-xl border bg-white/5 p-4">
               <span className="text-sm font-extrabold text-white">{t("val_vc_calc_result")}</span>
-              <span className="text-success-400 text-fg-secondaryxl font-mono font-black">
+              <span className="text-success-400 text-2xl font-mono font-black">
                 {formatCurrency(vcValuation)}
               </span>
             </div>
@@ -543,7 +543,7 @@ export function ValuationCalculatorClient({
             {hasRevenue && (
               <div className="border-border-subtle mt-4 flex items-center justify-between rounded-xl border bg-white/5 p-4">
                 <span className="text-sm font-extrabold text-white">{t("val_revenue_title")}</span>
-                <span className="text-success-400 text-fg-secondaryxl font-mono font-black">
+                <span className="text-success-400 text-2xl font-mono font-black">
                   {formatCurrency(revenueValuation)}
                 </span>
               </div>
@@ -701,7 +701,7 @@ export function ValuationCalculatorClient({
                 <span className="text-fg-muted block text-[10px] font-bold tracking-wider uppercase">
                   {t("val_consolidated_avg_label")}
                 </span>
-                <span className="text-success-400 text-fg-secondaryxl mt-1 block font-mono font-black">
+                <span className="text-success-400 text-2xl mt-1 block font-mono font-black">
                   {formatCurrency(baseValuation)}
                 </span>
                 <div className="text-fg-muted border-success-500/10 mt-2 flex justify-around border-t pt-2 text-[10px]">
@@ -755,3 +755,4 @@ export function ValuationCalculatorClient({
     </div>
   );
 }
+

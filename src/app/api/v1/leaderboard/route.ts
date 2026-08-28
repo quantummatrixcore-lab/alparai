@@ -54,9 +54,9 @@ export async function GET(request: Request) {
   const supabase = await createServerClient();
 
   const { data, error } = await supabase
-    .from("provider_leaderboard")
+    .from("ai_providers")
     .select(
-      "id, slug, name, logo_url, is_verified, website_url, trust_score, incident_count, response_count",
+      "id, slug, name, logo_url, is_verified, website_url, trust_score",
     )
     .order("trust_score", { ascending: false });
 
@@ -77,8 +77,8 @@ export async function GET(request: Request) {
       is_verified: boolean | null;
       website_url: string | null;
       trust_score: number | null;
-      incident_count: number | null;
-      response_count: number | null;
+      incident_count?: number | null;
+      response_count?: number | null;
     }>
   )
     .sort((a, b) => {

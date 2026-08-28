@@ -130,9 +130,7 @@ export function LiveTicker() {
       >
         {renderTickerItems()}
       </div>
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
+      <style>{`
         @keyframes alparMarquee {
           0% { transform: translateX(0%); }
           100% { transform: translateX(-100%); }
@@ -140,9 +138,7 @@ export function LiveTicker() {
         .animate-marquee {
           animation: alparMarquee 35s linear infinite;
         }
-      `,
-        }}
-      />
+      `}</style>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
@@ -39,7 +39,7 @@ export function EcosystemMap() {
   return (
     <div className="border-border-subtle/50 bg-bg-secondary mb-12 w-full rounded-2xl border p-8 backdrop-blur-3xl">
       <div className="mb-8 text-center">
-        <h2 className="text-fg-secondaryxl bg-gradient-to-br from-white to-white/50 bg-clip-text font-semibold tracking-tight text-transparent">
+        <h2 className="text-2xl bg-gradient-to-br from-white to-white/50 bg-clip-text font-semibold tracking-tight text-transparent">
           {t("ecosystem_map_title")}
         </h2>
         <p className="text-fg-muted mt-2 text-sm">{t("ecosystem_map_subtitle")}</p>
@@ -161,3 +161,4 @@ export function EcosystemMap() {
     </div>
   );
 }
+

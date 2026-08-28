@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import {
@@ -547,7 +547,7 @@ function StatCard({ title, value, icon, description, colorClass = "text-white" }
         <span className="text-xs font-semibold tracking-wider uppercase">{title}</span>
         {icon}
       </div>
-      <h3 className={`text-fg-secondaryxl mt-3 font-bold tracking-tight ${colorClass}`}>{value}</h3>
+      <h3 className={`text-2xl mt-3 font-bold tracking-tight ${colorClass}`}>{value}</h3>
       {description && <p className="text-fg-muted mt-1 text-[11px] font-medium">{description}</p>}
     </div>
   );
@@ -561,3 +561,4 @@ function EmptyState() {
     </div>
   );
 }
+

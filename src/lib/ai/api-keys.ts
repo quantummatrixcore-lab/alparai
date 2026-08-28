@@ -45,6 +45,9 @@ export async function resolveApiKey(provider: string, envVar: string): Promise<s
   if (provider === "huggingface" && isValidKeyFormat(process.env.HF_API_KEY)) {
     return process.env.HF_API_KEY!;
   }
+  if (provider === "groq" && isValidKeyFormat(process.env.GROQ_API_KEY)) {
+    return process.env.GROQ_API_KEY!;
+  }
   if (
     (provider === "vertex" || provider === "google_vertex") &&
     isValidKeyFormat(process.env.VERTEX_API_KEY)

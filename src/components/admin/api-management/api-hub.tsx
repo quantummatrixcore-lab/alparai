@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import { ProviderMatrix } from "./provider-matrix";
@@ -81,7 +81,7 @@ export function ApiManagementHub() {
       <div className="bg-bg-elevated/50 border-border-subtle flex items-center justify-between rounded-lg border px-4 py-3">
         <div>
           <p className="text-fg-muted text-xs">{t("total_daily_api_spend_ai_gateway_rpc")}</p>
-          <p className="text-fg-secondaryxl font-bold text-white">${totalDailyCost.toFixed(2)}</p>
+          <p className="text-2xl font-bold text-white">${totalDailyCost.toFixed(2)}</p>
         </div>
         <button
           onClick={loadTelemetry}
@@ -220,3 +220,4 @@ export function ApiManagementHub() {
     </div>
   );
 }
+

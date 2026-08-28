@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import * as React from "react";
 import { useTranslations } from "next-intl";
@@ -123,7 +123,7 @@ export function AIVelocityWidget({
             </span>
           </div>
           <div className="mt-3 flex items-baseline justify-between">
-            <span className="text-fg-secondaryxl font-mono font-extrabold text-white">
+            <span className="text-2xl font-mono font-extrabold text-white">
               {t("not_measured") || "Not measured"}
             </span>
             <span className="text-fg-muted text-[11px]">
@@ -146,7 +146,7 @@ export function AIVelocityWidget({
             </span>
           </div>
           <div className="mt-3 flex items-baseline justify-between">
-            <span className="text-fg-secondaryxl font-mono font-extrabold text-white">
+            <span className="text-2xl font-mono font-extrabold text-white">
               {releaseCycleDays}d
             </span>
             <span className="text-fg-muted text-[11px]">
@@ -169,7 +169,7 @@ export function AIVelocityWidget({
             </span>
           </div>
           <div className="mt-3 flex items-baseline justify-between">
-            <span className="text-fg-secondaryxl font-mono font-extrabold text-white">
+            <span className="text-2xl font-mono font-extrabold text-white">
               {incidentDensity}
             </span>
             <span className="text-fg-muted text-[11px]">
@@ -344,3 +344,4 @@ export function AIVelocityWidget({
     </div>
   );
 }
+

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
@@ -100,7 +100,7 @@ export function SloDashboardClient({
                 {dora.summary?.deployment_frequency_rating || "—"}
               </span>
             </div>
-            <p className="text-fg-secondaryxl mt-2 font-black text-white">
+            <p className="text-2xl mt-2 font-black text-white">
               {dora.current?.deployment_frequency ?? "—"}{" "}
               <span className="text-fg-muted text-xs font-normal">{t("per_day") || "/ day"}</span>
             </p>
@@ -118,7 +118,7 @@ export function SloDashboardClient({
                 {dora.summary?.lead_time_rating || "—"}
               </span>
             </div>
-            <p className="text-fg-secondaryxl mt-2 font-black text-white">
+            <p className="text-2xl mt-2 font-black text-white">
               {dora.current?.lead_time_minutes ?? "—"}{" "}
               <span className="text-fg-muted text-xs font-normal">{t("min")}</span>
             </p>
@@ -136,7 +136,7 @@ export function SloDashboardClient({
                 {dora.summary?.change_failure_rate_rating || "—"}
               </span>
             </div>
-            <p className="text-fg-secondaryxl mt-2 font-black text-white">
+            <p className="text-2xl mt-2 font-black text-white">
               {dora.current?.change_failure_rate ?? "—"}%
             </p>
             <p className="text-fg-muted mt-1 text-[10px]">
@@ -153,7 +153,7 @@ export function SloDashboardClient({
                 {dora.summary?.mttr_rating || "—"}
               </span>
             </div>
-            <p className="text-fg-secondaryxl mt-2 font-black text-white">
+            <p className="text-2xl mt-2 font-black text-white">
               {dora.current?.mttr_minutes ?? "—"}{" "}
               <span className="text-fg-muted text-xs font-normal">{t("min")}</span>
             </p>
@@ -205,7 +205,7 @@ export function SloDashboardClient({
           <div className="flex flex-col items-center gap-2">
             <div className="flex gap-4">
               <div className="text-center">
-                <p className="text-success-400 text-fg-secondaryxl font-mono font-black">
+                <p className="text-success-400 text-2xl font-mono font-black">
                   {initialSlos.filter((s) => s.status === "healthy").length}
                 </p>
                 <p className="text-fg-muted text-[10px] font-bold">
@@ -213,7 +213,7 @@ export function SloDashboardClient({
                 </p>
               </div>
               <div className="text-center">
-                <p className="text-warning-400 text-fg-secondaryxl font-mono font-black">
+                <p className="text-warning-400 text-2xl font-mono font-black">
                   {initialSlos.filter((s) => s.status === "warning").length}
                 </p>
                 <p className="text-fg-muted text-[10px] font-bold">
@@ -221,7 +221,7 @@ export function SloDashboardClient({
                 </p>
               </div>
               <div className="text-center">
-                <p className="text-danger-400 text-fg-secondaryxl font-mono font-black">
+                <p className="text-danger-400 text-2xl font-mono font-black">
                   {initialSlos.filter((s) => s.status === "danger").length}
                 </p>
                 <p className="text-fg-muted text-[10px] font-bold">{t("slo_breach") || "Breach"}</p>
@@ -285,3 +285,4 @@ export function SloDashboardClient({
     </div>
   );
 }
+

@@ -380,12 +380,9 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
             <div className="border-warning-500/20 bg-bg-navy relative overflow-hidden rounded-xl border p-6 shadow-md">
               <div className="absolute top-0 left-0 h-1 w-full bg-amber-500"></div>
               <h3 className="mb-4 text-lg font-bold text-white">{t("round_title")}</h3>
-              <p
-                className="text-fg-primary mb-6 text-sm leading-relaxed"
-                dangerouslySetInnerHTML={{
-                  __html: t("round_desc", { amount: "$500K - $1.5M" }),
-                }}
-              />
+              <p className="text-fg-primary mb-6 text-sm leading-relaxed">
+                {t("round_desc", { amount: "$500K - $1.5M" })}
+              </p>
 
               <h4 className="text-fg-muted mb-3 text-xs font-bold tracking-wider uppercase">
                 {t("funds_title")}

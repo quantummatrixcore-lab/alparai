@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useMemo } from "react";
 import { Check, X, Shield, ExternalLink } from "lucide-react";
@@ -191,7 +191,7 @@ export function ImportQueueClient({ initialIncidents, locale: _locale }: ImportQ
 
       <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
         <div>
-          <h1 className="text-fg-secondaryxl font-black text-white">{t("import_q_title")}</h1>
+          <h1 className="text-2xl font-black text-white">{t("import_q_title")}</h1>
           <p className="text-fg-secondary mt-1 text-xs">{t("import_q_subtitle")}</p>
         </div>
 
@@ -381,3 +381,4 @@ export function ImportQueueClient({ initialIncidents, locale: _locale }: ImportQ
     </div>
   );
 }
+

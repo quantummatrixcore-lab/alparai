@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
@@ -92,7 +92,7 @@ export function JulesDashboard({ sessions, connected, defaultRepo }: JulesDashbo
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-fg-secondaryxl flex items-center gap-3 font-bold text-white">
+          <h1 className="text-2xl flex items-center gap-3 font-bold text-white">
             <svg className="h-8 w-8" viewBox="0 0 24 24" fill="none">
               <circle cx="12" cy="12" r="10" fill="#4285F4" opacity="0.15" />
               <path
@@ -297,3 +297,4 @@ export function JulesDashboard({ sessions, connected, defaultRepo }: JulesDashbo
     </div>
   );
 }
+

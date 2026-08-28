@@ -39,7 +39,7 @@ export default async function TransparencyPage({
   const supabase = await createServerClient();
 
   // Query optimized with the new transparency_stats view
-  const { data: statsRow } = await supabase.from("transparency_stats").select("*").maybeSingle();
+  const { data: statsRow } = await supabase.from("transparency_stats_view").select("*").maybeSingle();
 
   const stats = statsRow as {
     total_incidents: number | null;

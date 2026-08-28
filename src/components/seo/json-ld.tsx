@@ -8,6 +8,24 @@ import {
   SUPPORTED_LOCALES,
 } from "@/lib/constants";
 
+/**
+ * Safely serializes data to a JSON string for injection into <script type="application/ld+json">.
+ * Escapes characters that could break out of the script tag or introduce HTML/script injection:
+ * - `<` -> `\u003c`
+ * - `>` -> `\u003e`
+ * - `&` -> `\u0026`
+ * - `\u2028` (Line Separator) -> `\u2028`
+ * - `\u2029` (Paragraph Separator) -> `\u2029`
+ */
+export function safeJsonLd(data: unknown): string {
+  return JSON.stringify(data)
+    .replace(/</g, "\\u003c")
+    .replace(/>/g, "\\u003e")
+    .replace(/&/g, "\\u0026")
+    .replace(/\u2028/g, "\\u2028")
+    .replace(/\u2029/g, "\\u2029");
+}
+
 export function OrganizationJsonLd() {
   const data = {
     "@context": "https://schema.org",
@@ -27,7 +45,7 @@ export function OrganizationJsonLd() {
     knowsAbout: ["AI Accountability", "AI Incident Reporting", "AI Safety", "Machine Learning"],
   };
   return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
   );
 }
 
@@ -48,7 +66,7 @@ export function WebSiteJsonLd() {
     },
   };
   return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
   );
 }
 
@@ -74,7 +92,7 @@ export function SoftwareApplicationJsonLd() {
     inLanguage: [...SUPPORTED_LOCALES],
   };
   return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
   );
 }
 
@@ -90,7 +108,7 @@ export function BreadcrumbJsonLd({ items }: { items: Array<{ name: string; url: 
     })),
   };
   return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
   );
 }
 
@@ -108,7 +126,7 @@ export function FAQJsonLd({ items }: { items: Array<{ question: string; answer: 
     })),
   };
   return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
   );
 }
 
@@ -143,7 +161,7 @@ export function IncidentJsonLd({
     inLanguage: [...SUPPORTED_LOCALES],
   };
   return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
   );
 }
 
@@ -186,7 +204,7 @@ export function ModelJsonLd({
       }),
   };
   return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
   );
 }
 
@@ -225,7 +243,7 @@ export function BlogArticleJsonLd({
     inLanguage: [...SUPPORTED_LOCALES],
   };
   return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
   );
 }
 
@@ -295,7 +313,7 @@ export function ClaimReviewJsonLd({
     },
   };
   return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
   );
 }
 

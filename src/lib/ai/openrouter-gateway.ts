@@ -27,6 +27,7 @@ import { OpenRouterAdapter } from "./adapters/openrouter";
 import { CohereAdapter } from "./adapters/cohere";
 import { HuggingFaceAdapter } from "./adapters/huggingface";
 import { GoogleAdapter } from "./adapters/google";
+import { GroqAdapter } from "./adapters/groq";
 import { BlackboxAdapter } from "./adapters/blackbox";
 import { NvidiaNgcAdapter } from "./adapters/nvidia-ngc";
 import { isCostKillSwitchActive, getDailyCost } from "./cost-guard";
@@ -384,6 +385,7 @@ const adapters: Record<string, ProviderAdapter> = {
   cohere: new CohereAdapter(),
   huggingface: new HuggingFaceAdapter(),
   google: new GoogleAdapter(),
+  groq: new GroqAdapter(),
   blackbox: new BlackboxAdapter(),
   nvidia: new NvidiaNgcAdapter(),
 };
@@ -495,7 +497,22 @@ export async function callWithFailover(
     const modelKey = `${model.provider}:${model.id}`;
     attemptedModels.push(modelKey);
 
-    const result = await callModel({ ...request, model });
+    let result: GatewayResult;
+    try {
+      result = await callModel({ ...request, model });
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : String(err);
+      logger.error("[Gateway] Unhandled exception in adapter call, cycling to next model", {
+        failedModel: modelKey,
+        error: errorMessage,
+      });
+      lastError = {
+        code: "api_error",
+        message: `Unhandled exception: ${errorMessage}`,
+        model: modelKey,
+      };
+      continue;
+    }
 
     if (result.ok) {
       logger.info("[Gateway] Failover success", {
@@ -508,7 +525,11 @@ export async function callWithFailover(
 
     lastError = result.error;
 
-    if (result.error.code === "rate_limit" || result.error.code === "timeout") {
+    if (
+      result.error.code === "rate_limit" ||
+      result.error.code === "timeout" ||
+      result.error.code === "api_error"
+    ) {
       logger.warn("[Gateway] Failover cycling to next model", {
         failedModel: modelKey,
         reason: result.error.code,
@@ -526,11 +547,12 @@ export async function callWithFailover(
       continue; // Skip models where API keys are missing and proceed to fallback
     }
 
-    logger.warn("[Gateway] Non-retryable error, cycling to next fallback model", {
+    logger.warn("[Gateway] Non-retryable error, breaking failover chain", {
       failedModel: modelKey,
       reason: result.error.code,
       attemptedModels,
     });
+    break;
   }
 
   logger.error("[Gateway] All failover models exhausted across all providers", {

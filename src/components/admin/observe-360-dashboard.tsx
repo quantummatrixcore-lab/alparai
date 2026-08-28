@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import {
@@ -81,7 +81,7 @@ export function Observe360Dashboard() {
             <Shield className="text-brand-400 h-4 w-4" />
           </div>
           <div className="mt-2 flex items-baseline justify-between">
-            <span className="text-fg-secondaryxl font-black text-white">
+            <span className="text-2xl font-black text-white">
               {telemetry ? telemetry.incidents.total : "—"}
             </span>
             <span className="text-brand-300 text-xs font-bold">
@@ -104,7 +104,7 @@ export function Observe360Dashboard() {
             <Activity className="text-success-400 h-4 w-4" />
           </div>
           <div className="mt-2 flex items-baseline justify-between">
-            <span className="text-fg-secondaryxl font-black text-white">
+            <span className="text-2xl font-black text-white">
               {telemetry?.healthSlo.status ?? (loading ? "—" : "UNKNOWN")}
             </span>
             <span className={`text-xs font-bold ${healthColor}`}>
@@ -127,7 +127,7 @@ export function Observe360Dashboard() {
             <SupabaseIcon size={14} />
           </div>
           <div className="mt-2 flex items-baseline justify-between">
-            <span className="text-fg-secondaryxl font-black text-white">{t("hardened")}</span>
+            <span className="text-2xl font-black text-white">{t("hardened")}</span>
             <span className="text-success-400 text-xs font-bold">{t("passed")}</span>
           </div>
           <p className="text-fg-muted mt-2 text-[11px]">
@@ -143,7 +143,7 @@ export function Observe360Dashboard() {
             <Zap className="h-4 w-4 text-sky-400" />
           </div>
           <div className="mt-2 flex items-baseline justify-between">
-            <span className="text-fg-secondaryxl font-black text-white">
+            <span className="text-2xl font-black text-white">
               {telemetry?.dora.instrumented ? `${telemetry.dora.deployFrequency ?? 0}/day` : "—"}
             </span>
             <span className="text-xs font-bold text-sky-400">
@@ -164,7 +164,7 @@ export function Observe360Dashboard() {
             <DollarSign className="text-success-400 h-4 w-4" />
           </div>
           <div className="mt-2 flex items-baseline justify-between">
-            <span className="text-fg-secondaryxl font-black text-white">
+            <span className="text-2xl font-black text-white">
               ${telemetry?.cost.dailySpendUsd.toFixed(2) ?? "—"} {t("day")}
             </span>
             <span className="text-success-400 text-xs font-bold">{t("tracked")}</span>
@@ -182,7 +182,7 @@ export function Observe360Dashboard() {
             <TrendingUp className="text-brand-400 h-4 w-4" />
           </div>
           <div className="mt-2 flex items-baseline justify-between">
-            <span className="text-fg-secondaryxl font-black text-white">
+            <span className="text-2xl font-black text-white">
               {telemetry ? `${telemetry.growth.totalUsers} Users` : "—"}
             </span>
             <span className="text-brand-400 text-xs font-bold">{t("active")}</span>
@@ -203,7 +203,7 @@ export function Observe360Dashboard() {
             <HardDrive className="text-warning-400 h-4 w-4" />
           </div>
           <div className="mt-2 flex items-baseline justify-between">
-            <span className="text-fg-secondaryxl font-black text-white">
+            <span className="text-2xl font-black text-white">
               {telemetry ? `${telemetry.capacity.dbSizeMb} MB` : "—"}
             </span>
             <span className="text-warning-400 text-xs font-bold">
@@ -232,7 +232,7 @@ export function Observe360Dashboard() {
             <Award className="text-brand-400 h-4 w-4" />
           </div>
           <div className="mt-2 flex items-baseline justify-between">
-            <span className="text-fg-secondaryxl font-black text-white">
+            <span className="text-2xl font-black text-white">
               {telemetry ? `${telemetry.kBenchmark.totalModelsRated} Models` : "—"}
             </span>
             <span className="text-brand-300 text-xs font-bold">{t("rated")}</span>
@@ -246,3 +246,4 @@ export function Observe360Dashboard() {
     </div>
   );
 }
+

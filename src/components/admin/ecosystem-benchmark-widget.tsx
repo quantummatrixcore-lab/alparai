@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
@@ -54,7 +54,7 @@ export function EcosystemBenchmarkWidget() {
               <Sparkles className="text-brand-400 h-3.5 w-3.5" />
               <span>{t("ecosystem_badge")}</span>
             </div>
-            <h2 className="text-fg-secondaryxl font-black tracking-tight text-white md:text-3xl">
+            <h2 className="text-2xl font-black tracking-tight text-white md:text-3xl">
               {t("ecosystem_title")}
             </h2>
             <p className="text-fg-muted text-sm leading-relaxed">{t("ecosystem_description")}</p>
@@ -297,3 +297,4 @@ export function EcosystemBenchmarkWidget() {
     </div>
   );
 }
+

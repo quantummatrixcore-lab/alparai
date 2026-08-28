@@ -1,6 +1,8 @@
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "pricing" });
@@ -40,17 +42,17 @@ export default async function EnterprisePricingPage({
           {/* Free Plan */}
           <div className="bg-bg-secondary/30 border-border-primary/50 hover:border-border-primary relative flex flex-col justify-between rounded-3xl border p-8 backdrop-blur-md transition-all duration-300">
             <div>
-              <h3 className="text-fg-primary mb-2 text-xl font-bold">{t("plan_free")}</h3>
+              <h3 className="text-fg-primary mb-2 text-xl font-bold">{t("free_title")}</h3>
               <p className="text-fg-secondary mb-6 text-sm leading-relaxed">
-                {t("plan_free_desc")}
+                {t("free_desc")}
               </p>
               <div className="mb-8 flex items-baseline">
-                <span className="text-fg-primary text-4xl font-extrabold">{t("price_free")}</span>
-                <span className="text-fg-secondary ml-2 text-sm">/ {t("price_free_period")}</span>
+                <span className="text-fg-primary text-4xl font-extrabold">{t("free_price")}</span>
+                <span className="text-fg-secondary ml-2 text-sm">/ {t("free_period")}</span>
               </div>
             </div>
             <button className="bg-bg-secondary border-border-primary text-fg-primary hover:bg-bg-secondary/80 w-full rounded-2xl border px-6 py-4 font-medium transition-all duration-200">
-              {t("cta_free")}
+              {t("free_cta")}
             </button>
           </div>
 
@@ -60,22 +62,22 @@ export default async function EnterprisePricingPage({
               Popular
             </div>
             <div>
-              <h3 className="text-fg-primary mb-2 text-xl font-bold">{t("plan_enterprise")}</h3>
+              <h3 className="text-fg-primary mb-2 text-xl font-bold">{t("enterprise_title")}</h3>
               <p className="text-fg-secondary mb-6 text-sm leading-relaxed">
-                {t("plan_enterprise_desc")}
+                {t("enterprise_desc")}
               </p>
               <div className="mb-8 flex items-baseline">
                 <span className="text-fg-primary text-4xl font-extrabold">
-                  {t("price_enterprise")}
+                  {t("enterprise_price")}
                 </span>
                 <span className="text-fg-secondary ml-2 text-sm">
-                  / {t("price_enterprise_period")}
+                  / {t("enterprise_period")}
                 </span>
               </div>
 
               {/* Features List */}
               <div className="border-border-primary/40 mb-8 border-t pt-6">
-                <h4 className="text-fg-primary mb-4 text-sm font-bold">{t("features_title")}</h4>
+                <h4 className="text-fg-primary mb-4 text-sm font-bold">{t("enterprise_feature_compliance")}</h4>
                 <ul className="text-fg-secondary space-y-3 text-sm">
                   <li className="flex items-center space-x-3">
                     <svg
@@ -87,7 +89,7 @@ export default async function EnterprisePricingPage({
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
-                    <span>{t("feat_private_bench")}</span>
+                    <span>{t("enterprise_feature_1")}</span>
                   </li>
                   <li className="flex items-center space-x-3">
                     <svg
@@ -99,7 +101,7 @@ export default async function EnterprisePricingPage({
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
-                    <span>{t("feat_alerts")}</span>
+                    <span>{t("enterprise_feature_2")}</span>
                   </li>
                   <li className="flex items-center space-x-3">
                     <svg
@@ -111,7 +113,7 @@ export default async function EnterprisePricingPage({
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
-                    <span>{t("feat_audit_history")}</span>
+                    <span>{t("enterprise_feature_3")}</span>
                   </li>
                   <li className="flex items-center space-x-3">
                     <svg
@@ -123,7 +125,7 @@ export default async function EnterprisePricingPage({
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
-                    <span>{t("feat_api_access")}</span>
+                    <span>{t("enterprise_feature_4")}</span>
                   </li>
                 </ul>
               </div>
@@ -134,7 +136,7 @@ export default async function EnterprisePricingPage({
                 href="/contact"
                 className="bg-accent-soft hover:bg-accent-soft/90 text-bg-primary mb-4 block w-full rounded-2xl px-6 py-4 text-center font-semibold transition-all duration-200"
               >
-                {t("cta_enterprise")}
+                {t("enterprise_cta")}
               </Link>
             </div>
           </div>

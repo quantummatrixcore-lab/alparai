@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { Bot, Loader2, Target, AlertTriangle } from "lucide-react";
@@ -106,7 +106,7 @@ export function LiveStrategyClient({ context }: LiveStrategyClientProps) {
                 <span className="text-fg-muted font-mono text-sm">{t("sa_lik_skoru")}</span>
                 <span
                   className={cn(
-                    "text-fg-secondaryxl font-black",
+                    "text-2xl font-black",
                     getScoreColor(result.health_score || 0),
                   )}
                 >
@@ -168,3 +168,4 @@ export function LiveStrategyClient({ context }: LiveStrategyClientProps) {
     </div>
   );
 }
+

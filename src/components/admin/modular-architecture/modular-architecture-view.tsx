@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion, type Variants } from "framer-motion";
 import { useTranslations } from "next-intl";
@@ -90,7 +90,7 @@ export function ModularArchitectureView({ data }: ModularArchitectureViewProps) 
               <span className="text-success-400 text-6xl font-black tracking-tighter lg:text-7xl">
                 {data.auditScore.overallScore}
               </span>
-              <span className="text-fg-disabled text-fg-secondaryxl font-bold">
+              <span className="text-fg-disabled text-2xl font-bold">
                 / {data.auditScore.maxScore}
               </span>
             </div>
@@ -138,7 +138,7 @@ export function ModularArchitectureView({ data }: ModularArchitectureViewProps) 
 
         {/* 8 Modular Product Pillars */}
         <motion.div variants={itemVariants} className="pt-6">
-          <h2 className="lg:text-fg-secondaryxl mb-6 text-xl font-bold tracking-tight text-white">
+          <h2 className="lg:text-2xl mb-6 text-xl font-bold tracking-tight text-white">
             {t("the_8_modular_product_pillars")}
           </h2>
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -188,3 +188,4 @@ export function ModularArchitectureView({ data }: ModularArchitectureViewProps) 
     </div>
   );
 }
+

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import * as React from "react";
 import { useTransition } from "react";
@@ -146,7 +146,7 @@ export function AnalyticsDashboard({ snapshot, locale }: AnalyticsDashboardProps
                 />
               </svg>
               <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-                <span className="text-fg-secondaryxl font-bold text-white">
+                <span className="text-2xl font-bold text-white">
                   {successRate.toFixed(0)}%
                 </span>
                 <span className="text-fg-muted text-[10px] tracking-wider uppercase">
@@ -377,7 +377,7 @@ function StatCard({ title, value, icon, description, colorClass = "text-white" }
         {icon}
       </div>
       <div className="mt-2 flex items-baseline gap-2">
-        <span className={`text-fg-secondaryxl font-bold tracking-tight ${colorClass}`}>
+        <span className={`text-2xl font-bold tracking-tight ${colorClass}`}>
           {value}
         </span>
       </div>
@@ -385,3 +385,4 @@ function StatCard({ title, value, icon, description, colorClass = "text-white" }
     </div>
   );
 }
+

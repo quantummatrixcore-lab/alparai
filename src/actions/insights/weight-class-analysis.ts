@@ -30,7 +30,7 @@ export async function getWeightClassAnalysis(): Promise<WeightClassAnalysisResul
       return { insufficient_data: true };
     }
 
-    const rows = (data ?? []) as WeightClassIncidentStat[];
+    const rows = (data ?? []) as unknown as WeightClassIncidentStat[];
     const totalIncidents = rows.reduce((sum, row) => sum + row.incident_count, 0);
 
     if (totalIncidents < MIN_INCIDENTS) {

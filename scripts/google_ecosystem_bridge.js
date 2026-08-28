@@ -41,4 +41,6 @@ class GoogleEcosystemBridge {
   }
 }
 
-module.exports = new GoogleEcosystemBridge();
+const googleEcosystemBridge = new GoogleEcosystemBridge();
+export default googleEcosystemBridge;
+export { GoogleEcosystemBridge };

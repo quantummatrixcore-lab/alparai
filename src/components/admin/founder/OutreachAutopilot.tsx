@@ -53,38 +53,38 @@ export function OutreachAutopilot() {
   return (
     <div className="space-y-6">
       {/* Metrics Row */}
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-        <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-4 transition-all hover:bg-white/[0.06]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 w-full">
+        <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 sm:p-4 transition-all hover:bg-white/[0.06] min-w-0">
           <div className="flex items-center gap-2 text-amber-400">
-            <Clock className="h-4 w-4" />
-            <p className="text-xs font-semibold">Pending</p>
+            <Clock className="h-4 w-4 shrink-0" />
+            <p className="text-xs font-semibold truncate">Pending</p>
           </div>
-          <p className="text-fg-secondaryxl mt-2 font-bold text-white">{stats.pending}</p>
+          <p className="text-xl sm:text-2xl mt-2 font-bold text-white font-mono">{stats.pending}</p>
         </div>
-        <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-4 transition-all hover:bg-white/[0.06]">
+        <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 sm:p-4 transition-all hover:bg-white/[0.06] min-w-0">
           <div className="flex items-center gap-2 text-emerald-400">
-            <CheckCircle2 className="h-4 w-4" />
-            <p className="text-xs font-semibold">Approved</p>
+            <CheckCircle2 className="h-4 w-4 shrink-0" />
+            <p className="text-xs font-semibold truncate">Approved</p>
           </div>
-          <p className="text-fg-secondaryxl mt-2 font-bold text-white">{stats.approved}</p>
+          <p className="text-xl sm:text-2xl mt-2 font-bold text-white font-mono">{stats.approved}</p>
         </div>
-        <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-4 transition-all hover:bg-white/[0.06]">
+        <div className="border-border-subtle rounded-2xl border bg-white/[0.03] p-3.5 sm:p-4 transition-all hover:bg-white/[0.06] min-w-0">
           <div className="flex items-center gap-2 text-cyan-400">
-            <Send className="h-4 w-4" />
-            <p className="text-xs font-semibold">Sent (24h)</p>
+            <Send className="h-4 w-4 shrink-0" />
+            <p className="text-xs font-semibold truncate">Sent (24h)</p>
           </div>
-          <p className="text-fg-secondaryxl mt-2 font-bold text-white">{stats.sent}</p>
+          <p className="text-xl sm:text-2xl mt-2 font-bold text-white font-mono">{stats.sent}</p>
         </div>
-        <div className="border-border-subtle relative overflow-hidden rounded-2xl border bg-white/[0.03] p-4">
+        <div className="border-border-subtle relative overflow-hidden rounded-2xl border bg-white/[0.03] p-3.5 sm:p-4 min-w-0">
           <div
             className="absolute bottom-0 left-0 h-1 bg-indigo-500 transition-all duration-1000"
             style={{ width: `${percentage}%` }}
           />
           <div className="flex items-center gap-2 text-indigo-400">
-            <Zap className="h-4 w-4" />
-            <p className="text-xs font-semibold">Limit Usage</p>
+            <Zap className="h-4 w-4 shrink-0" />
+            <p className="text-xs font-semibold truncate">Limit Usage</p>
           </div>
-          <p className="text-fg-secondaryxl mt-2 font-bold text-white">
+          <p className="text-xl sm:text-2xl mt-2 font-bold text-white font-mono truncate">
             {stats.sent + stats.approved} / {stats.limit}
           </p>
         </div>
@@ -116,3 +116,4 @@ export function OutreachAutopilot() {
     </div>
   );
 }
+

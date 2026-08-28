@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 export default function FounderAdminPanel() {
   return (
     <div className="flex h-screen w-full overflow-hidden bg-slate-50 font-sans text-slate-900">

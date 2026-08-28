@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useTranslations } from "next-intl";
 import { StatsCards } from "./stats-cards";
@@ -38,7 +38,7 @@ export function EcosystemDashboard({ data }: { data: DashboardData }) {
             <LivePulseRing status="healthy" />
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="sm:text-fg-secondaryxl text-xl font-black tracking-tight text-white">
+                <h1 className="sm:text-2xl text-xl font-black tracking-tight text-white">
                   {t("ecosystem_hub_title") || "Ecosystem Intelligence Hub"}
                 </h1>
                 <span className="border-brand-500/30 bg-brand-500/20 text-brand-300 rounded-full border px-3 py-0.5 text-xs font-extrabold">
@@ -106,3 +106,4 @@ export function EcosystemDashboard({ data }: { data: DashboardData }) {
     </div>
   );
 }
+

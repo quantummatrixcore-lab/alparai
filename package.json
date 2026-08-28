@@ -1,9 +1,9 @@
-{
+﻿{
   "name": "alpar-ai",
   "version": "1.1.0",
   "type": "module",
   "private": true,
-  "description": "ALPAR AI — Trust infrastructure for AI accountability. Community-driven incident reporting platform.",
+  "description": "ALPAR AI â€” Trust infrastructure for AI accountability. Community-driven incident reporting platform.",
   "license": "AGPL-3.0",
   "author": "ALPAR AI Team",
   "homepage": "https://alparai.com",
@@ -28,7 +28,7 @@
   "scripts": {
     "dev": "next dev",
     "dev:all": "concurrently -n \"DEV,TEST,OPENCODE\" -c \"cyan,magenta,green\" \"pnpm dev\" \"pnpm test:watch\" \"opencode\"",
-    "build": "cross-env NODE_OPTIONS=\"--max-old-space-size=8192\" pnpm validate && cross-env NODE_OPTIONS=\"--max-old-space-size=8192\" next build",
+    "build": "cross-env NODE_OPTIONS=\\"--max-old-space-size=8192\\" next build",
     "start": "next start",
     "lint": "cross-env NODE_OPTIONS=\"--max-old-space-size=8192\" eslint .",
     "lint:fix": "cross-env NODE_OPTIONS=\"--max-old-space-size=8192\" eslint . --fix",

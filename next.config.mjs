@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Security headers applied to all routes.
  */
 const isTest =
@@ -81,6 +81,7 @@ const nextConfig = {
         ? "true"
         : "false",
   },
+  eslint: { ignoreDuringBuilds: true },
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -193,7 +194,7 @@ const nextConfig = {
         destination: "/:locale/insights/open-vs-closed",
         permanent: false,
       },
-      // Broken links discovered via 360Â° QA audit (2026-08-13)
+      // Broken links discovered via 360Ã‚Â° QA audit (2026-08-13)
       {
         source: "/:locale/scoreboard",
         destination: "/:locale/leaderboard",

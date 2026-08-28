@@ -28,7 +28,7 @@
   "scripts": {
     "dev": "next dev",
     "dev:all": "concurrently -n \"DEV,TEST,OPENCODE\" -c \"cyan,magenta,green\" \"pnpm dev\" \"pnpm test:watch\" \"opencode\"",
-    "build": "cross-env NODE_OPTIONS=\\"--max-old-space-size=8192\\" next build",
+    "build": "cross-env NODE_OPTIONS=\"--max-old-space-size=8192\" next build",
     "start": "next start",
     "lint": "cross-env NODE_OPTIONS=\"--max-old-space-size=8192\" eslint .",
     "lint:fix": "cross-env NODE_OPTIONS=\"--max-old-space-size=8192\" eslint . --fix",

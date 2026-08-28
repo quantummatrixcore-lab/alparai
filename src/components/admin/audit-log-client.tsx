@@ -333,7 +333,7 @@ export function AuditLogClient({ initialLogs, locale }: AuditLogClientProps) {
 
   return (
     <motion.div variants={containerVariants} initial="hidden" animate="show" className="space-y-6">
-      {/* 360Â° Observe: Log Volume Chart */}
+      {/* 360° Observe: Log Volume Chart */}
       <motion.div
         variants={itemVariants}
         className="bg-bg-secondary/40 border-border-subtle/50 relative overflow-hidden rounded-2xl border p-6 shadow-lg backdrop-blur-xl"

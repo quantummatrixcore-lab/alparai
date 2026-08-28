@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Security headers applied to all routes.
  */
 const isTest =

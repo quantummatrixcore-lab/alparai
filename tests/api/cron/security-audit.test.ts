@@ -2,9 +2,15 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { GET } from "@/app/api/cron/security-audit/route";
 import { exec } from "child_process";
 
-vi.mock("child_process", () => ({
-  exec: vi.fn(),
-}));
+vi.mock("child_process", () => {
+  const mockExec = vi.fn();
+  return {
+    default: {
+      exec: mockExec,
+    },
+    exec: mockExec,
+  };
+});
 
 describe("Security Audit Cron Job", () => {
   beforeEach(() => {

@@ -9,16 +9,22 @@ import {
   SERVICE_DEFINITIONS,
 } from "@/lib/engine-registry";
 
-vi.mock("fs/promises", () => ({
-  readFile: vi.fn().mockResolvedValue(
+vi.mock("fs/promises", () => {
+  const mockReadFile = vi.fn().mockResolvedValue(
     JSON.stringify({
       crons: [
         { path: "/api/cron/cost-alarm", schedule: "0 * * * *" },
         { path: "/api/cron/retro-audit", schedule: "0 0 * * *" },
       ],
     }),
-  ),
-}));
+  );
+  return {
+    default: {
+      readFile: mockReadFile,
+    },
+    readFile: mockReadFile,
+  };
+});
 
 describe("engine-registry Subsystem", () => {
   beforeEach(() => {

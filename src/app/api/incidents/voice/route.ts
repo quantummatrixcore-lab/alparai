@@ -150,10 +150,19 @@ export async function POST(request: Request) {
       );
     }
 
-    const formData = await request.formData();
+    let formData: FormData;
+    try {
+      formData = await request.formData();
+    } catch (_err) {
+      return NextResponse.json(
+        { success: false, error: "Invalid multipart/form-data payload" },
+        { status: 400 },
+      );
+    }
+
     const audioFile = (formData.get("audio") || formData.get("file")) as File | null;
 
-    if (!audioFile || !(audioFile instanceof File)) {
+    if (!audioFile || typeof audioFile === "string") {
       return NextResponse.json(
         {
           success: false,

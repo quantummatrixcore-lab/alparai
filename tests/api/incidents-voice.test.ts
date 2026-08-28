@@ -47,13 +47,14 @@ describe("Qwen Omni ASR Voice Incident API Route", () => {
 
   it("should return 400 if audio file is empty", async () => {
     const formData = new FormData();
-    const emptyFile = new File([], "empty.m4a", { type: "audio/m4a" });
+    const emptyFile = new File([new Uint8Array(0)], "empty.m4a", { type: "audio/m4a" });
     formData.append("audio", emptyFile);
 
     const req = new Request("http://localhost/api/incidents/voice", {
       method: "POST",
-      body: formData,
+      headers: { "Content-Type": "multipart/form-data; boundary=---test" },
     });
+    Object.defineProperty(req, "formData", { value: () => Promise.resolve(formData) });
 
     const res = await POST(req);
     expect(res.status).toBe(400);
@@ -65,15 +66,16 @@ describe("Qwen Omni ASR Voice Incident API Route", () => {
 
   it("should return 400 if audio mime type is unsupported", async () => {
     const formData = new FormData();
-    const invalidFile = new File(["test data"], "invalid.exe", {
+    const invalidFile = new File([new Uint8Array([1, 2, 3])], "invalid.exe", {
       type: "application/x-msdownload",
     });
     formData.append("audio", invalidFile);
 
     const req = new Request("http://localhost/api/incidents/voice", {
       method: "POST",
-      body: formData,
+      headers: { "Content-Type": "multipart/form-data; boundary=---test" },
     });
+    Object.defineProperty(req, "formData", { value: () => Promise.resolve(formData) });
 
     const res = await POST(req);
     expect(res.status).toBe(400);
@@ -94,8 +96,9 @@ describe("Qwen Omni ASR Voice Incident API Route", () => {
 
     const req = new Request("http://localhost/api/incidents/voice", {
       method: "POST",
-      body: formData,
+      headers: { "Content-Type": "multipart/form-data; boundary=---test" },
     });
+    Object.defineProperty(req, "formData", { value: () => Promise.resolve(formData) });
 
     const res = await POST(req);
     expect(res.status).toBe(503);

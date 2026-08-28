@@ -42,16 +42,11 @@ describe("Moderation SLA Alarm Cron Job", () => {
       lt: vi.fn().mockResolvedValue({ data: [], error: null }),
     }));
 
-    // 2. Mock moderation_sla check (durations: 1.2h, 2h, 2.5h -> p95 = 2.5h)
+    // 2. Mock moderation_sla check (durations: 72m, 120m, 150m -> p95 = 2.5h)
     mockFrom.mockImplementationOnce(() => ({
       select: vi.fn().mockReturnThis(),
-      gte: vi.fn().mockReturnThis(),
-      not: vi.fn().mockResolvedValue({
-        data: [
-          { triage_duration_hours: 1.2 },
-          { triage_duration_hours: 2.0 },
-          { triage_duration_hours: 2.5 },
-        ],
+      gte: vi.fn().mockResolvedValue({
+        data: [{ minutes_waiting: 72 }, { minutes_waiting: 120 }, { minutes_waiting: 150 }],
         error: null,
       }),
     }));

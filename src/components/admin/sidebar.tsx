@@ -37,6 +37,10 @@ import {
   Building2,
   Mail,
   Crown,
+  Scale,
+  Flame,
+  Key,
+  Lock,
 } from "lucide-react";
 import { cn, getInitials } from "@/lib/utils";
 import Image from "next/image";
@@ -133,7 +137,54 @@ export function AdminSidebar({ user }: { user: SidebarUserShape }) {
   };
 
   const overviewItems = [
-    { href: "/admin", label: t("dashboard"), icon: LayoutDashboard, active: pathname === "/admin" },
+    {
+      href: "/admin",
+      label: "Command Deck",
+      icon: LayoutDashboard,
+      active: pathname === "/admin" || pathname === "/en/admin" || pathname === "/tr/admin",
+    },
+    {
+      href: "/admin/incidents",
+      label: "Incident Triage",
+      icon: ShieldAlert,
+      active: pathname.startsWith("/admin/incidents"),
+    },
+    {
+      href: "/admin/cross-audit",
+      label: "Cross-Audit Matrix",
+      icon: BrainCircuit,
+      active: pathname.startsWith("/admin/cross-audit"),
+    },
+    {
+      href: "/admin/compliance",
+      label: "EU AI Act Radar",
+      icon: Scale,
+      active: pathname.startsWith("/admin/compliance"),
+    },
+    {
+      href: "/admin/transparency",
+      label: "Streisand Legal Desk",
+      icon: Flame,
+      active: pathname.startsWith("/admin/transparency"),
+    },
+    {
+      href: "/admin/challenges",
+      label: "Red-Teaming Bank",
+      icon: Target,
+      active: pathname.startsWith("/admin/challenges"),
+    },
+    {
+      href: "/admin/api-keys",
+      label: "B2B Risk API Keys",
+      icon: Key,
+      active: pathname.startsWith("/admin/api-keys"),
+    },
+    {
+      href: "/admin/vault",
+      label: "PII Security Vault",
+      icon: Lock,
+      active: pathname.startsWith("/admin/vault"),
+    },
   ];
 
   const operationsItems = [

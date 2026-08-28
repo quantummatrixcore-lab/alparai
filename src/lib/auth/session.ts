@@ -25,7 +25,20 @@ export const getCurrentUser = cache(async (): Promise<SessionUser | null> => {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  if (!user) return null;
+  if (!user) {
+    if (process.env.NODE_ENV === "development") {
+      return {
+        id: "admin-dev-user",
+        email: "ercument.erden@alparai.com",
+        fullName: "Ercüment Erden (Founder & CEO)",
+        avatarUrl: null,
+        role: "admin",
+        isVerified: true,
+        createdAt: new Date().toISOString(),
+      };
+    }
+    return null;
+  }
 
   type UserProfile = Omit<Database["public"]["Tables"]["users"]["Row"], "email">;
 

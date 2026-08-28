@@ -96,7 +96,8 @@ export async function middleware(request: NextRequest) {
 
     // Fast-path unauthenticated redirect for admin routes
     if (isAdminPath && !pathname.startsWith("/api/") && !isTestAuthBypassActive()) {
-      const locale = request.cookies.get("NEXT_LOCALE")?.value ?? "en";
+      const urlLocale = request.nextUrl.pathname.match(/^\/(en|tr)\b/)?.[1];
+      const locale = urlLocale || request.cookies.get('NEXT_LOCALE')?.value || 'en';
 
       if (!user) {
         const currentPath = request.nextUrl.pathname + request.nextUrl.search;

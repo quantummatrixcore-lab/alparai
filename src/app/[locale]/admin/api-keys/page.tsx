@@ -3,15 +3,43 @@
 import React, { useState } from "react";
 import { KeyRound, Plus, Copy, Check, Code, Terminal, Send, Zap, X } from "lucide-react";
 import { StatusBadge } from "@/components/admin-core/status-badge";
-import { mockApiKeys } from "@/lib/admin-mock";
 import { type B2BEnterpriseApiKey } from "@/types/admin";
 
+const defaultApiKeys: B2BEnterpriseApiKey[] = [
+  {
+    id: "key-01",
+    organizationName: "Allianz AI Risk Solutions",
+    keyPrefix: "alp_live_9a8f2c1e...",
+    clientTier: "TIER_2_ENTERPRISE",
+    requestQuotaMonthly: 250000,
+    requestsThisMonth: 184200,
+    monthlyRateUsd: 5000,
+    activeStatus: "ACTIVE",
+    lastUsedAt: "2 dk önce",
+    createdDate: "2026-06-01",
+    feedEndpoints: ["/api/v1/threat-intel", "/api/v1/incidents/stream"],
+  },
+  {
+    id: "key-02",
+    organizationName: "Swiss Re Underwriting Labs",
+    keyPrefix: "alp_live_7c4d1a9b...",
+    clientTier: "TIER_3_INSTITUTIONAL",
+    requestQuotaMonthly: 1000000,
+    requestsThisMonth: 642100,
+    monthlyRateUsd: 8500,
+    activeStatus: "ACTIVE",
+    lastUsedAt: "10 sn önce",
+    createdDate: "2026-05-15",
+    feedEndpoints: ["/api/v1/eu-compliance", "/api/v1/incidents/stream"],
+  },
+];
+
 export default function ApiKeysPage() {
-  const [keys, setKeys] = useState<B2BEnterpriseApiKey[]>(mockApiKeys);
+  const [keys, setKeys] = useState<B2BEnterpriseApiKey[]>(defaultApiKeys);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const [showNewKeyModal, setShowNewKeyModal] = useState(false);
   const [selectedKeyForCurl, setSelectedKeyForCurl] = useState<B2BEnterpriseApiKey | null>(
-    mockApiKeys[0] || null,
+    defaultApiKeys[0] || null,
   );
   const [webhookTestStatus, setWebhookTestStatus] = useState<string | null>(null);
   const [isTestingWebhook, setIsTestingWebhook] = useState(false);

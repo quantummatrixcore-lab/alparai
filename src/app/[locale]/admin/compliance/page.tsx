@@ -16,7 +16,6 @@ import {
   Download,
 } from "lucide-react";
 import { MetricCard } from "@/components/admin-core/metric-card";
-import { mockComplianceSummary } from "@/lib/admin-mock";
 
 interface ComplianceArticle {
   articleCode: string;
@@ -103,7 +102,12 @@ export default function CompliancePage() {
     const auditData = {
       standard: "EU AI Act (Regulation 2024/1689)",
       timestamp: new Date().toISOString(),
-      complianceSummary: mockComplianceSummary,
+      complianceSummary: {
+        overallScore: 93.2,
+        prohibitedPracticesDetected: 4,
+        highRiskSystemCount: 184,
+        criticalSLACountdowns: 3,
+      },
       articles: articlesData,
       fineSimulation: {
         violationType,

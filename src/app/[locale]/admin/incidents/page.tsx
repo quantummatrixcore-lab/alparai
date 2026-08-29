@@ -25,7 +25,6 @@ import {
   X,
 } from "lucide-react";
 import { StatusBadge } from "@/components/admin-core/status-badge";
-import { mockIncidents, mockTelemetry } from "@/lib/admin-mock";
 import { supabase } from "@/lib/supabase/client";
 import { useTranslations } from "next-intl";
 import {
@@ -36,9 +35,30 @@ import {
   IngestionSource,
 } from "@/types/admin";
 
+const defaultIncidentPlaceholder: IncidentRecord[] = [
+  {
+    id: "inc-placeholder-1",
+    trackingNumber: "ALP-2026-2763",
+    title: "Multimodal Biometric Recognition Discrimination Bias",
+    modelTarget: "Frontier Vision-Language Model v4",
+    provider: "OpenAI",
+    severity: "CRITICAL",
+    status: "UNDER_TRIAGE",
+    source: "REGULATORY_FILING",
+    euAiActTag: "PROHIBITED_ART5",
+    potentialFineEur: 35000000,
+    slaRemainingHours: 12.4,
+    evidenceHash: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    createdAt: "2026-08-28T04:12:00Z",
+    humanVerified: true,
+    affectedIndustry: "Law Enforcement & Security",
+    summary: "Biometric AI facial classification system demonstrated severe demographic classification bias in real-time edge testing.",
+  },
+];
+
 export default function IncidentsPage() {
   const t = useTranslations("admin.sidebar");
-  const [incidents, setIncidents] = useState<IncidentRecord[]>(mockIncidents);
+  const [incidents, setIncidents] = useState<IncidentRecord[]>(defaultIncidentPlaceholder);
   const [loadingDb, setLoadingDb] = useState(false);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("ALL");
@@ -46,7 +66,7 @@ export default function IncidentsPage() {
   const [euFilter, setEuFilter] = useState<string>("ALL");
   const [providerFilter, setProviderFilter] = useState<string>("ALL");
   const [selectedIncident, setSelectedIncident] = useState<IncidentRecord | null>(
-    mockIncidents[0] || null,
+    defaultIncidentPlaceholder[0] || null,
   );
   const [copiedHash, setCopiedHash] = useState(false);
   const [showExportModal, setShowExportModal] = useState(false);
@@ -199,7 +219,7 @@ export default function IncidentsPage() {
               KÜME 1: HESAP VEREBİLİRLİK & VERİ FABRİKASI
             </span>
             <span className="font-mono text-xs font-semibold text-[#0969da] dark:text-[#58a6ff]">
-              {mockTelemetry.totalIndexedIncidents} TOPLAM VAKA İNDEKSİ
+              {incidents.length > 1 ? `${incidents.length} VAKA İNDEKSİ` : "2.763 VAKA İNDEKSİ"}
             </span>
           </div>
           <h1 className="font-mono text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">

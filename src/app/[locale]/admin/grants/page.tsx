@@ -1,91 +1,133 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Landmark, CheckCircle2, Clock, DollarSign, Plus } from "lucide-react";
 import { MetricCard } from "@/components/admin-core/metric-card";
-import { mockGrants } from "@/lib/admin-mock";
+import { useTranslations } from "next-intl";
+
+interface GrantItem {
+  id: string;
+  program: string;
+  requestedBudgetTry: number;
+  deadlineDate: string;
+  completionPercentage: number;
+  status: "APPROVED" | "UNDER_EVALUATION" | "IN_PREPARATION";
+}
+
+const initialGrants: GrantItem[] = [
+  {
+    id: "GR-01",
+    program: "TÜBİTAK 1507 KOBİ Ar-Ge Başlangıç",
+    requestedBudgetTry: 2400000,
+    deadlineDate: "2026-09-30",
+    completionPercentage: 85,
+    status: "UNDER_EVALUATION",
+  },
+  {
+    id: "GR-02",
+    program: "KOSGEB Ar-Ge, Ür-Ge ve İnovasyon",
+    requestedBudgetTry: 1850000,
+    deadlineDate: "2026-07-15",
+    completionPercentage: 100,
+    status: "APPROVED",
+  },
+  {
+    id: "GR-03",
+    program: "Horizon Europe CL4 AI Trust & Governance",
+    requestedBudgetTry: 14500000,
+    deadlineDate: "2026-11-20",
+    completionPercentage: 60,
+    status: "IN_PREPARATION",
+  },
+];
 
 export default function GrantsPage() {
+  const t = useTranslations("admin.sidebar");
+  const [grants] = useState<GrantItem[]>(initialGrants);
+
+  const totalRequested = grants.reduce((acc, g) => acc + g.requestedBudgetTry, 0);
+  const totalApproved = grants.filter(g => g.status === "APPROVED").reduce((acc, g) => acc + g.requestedBudgetTry, 0);
+  const inEvalCount = grants.filter(g => g.status === "UNDER_EVALUATION").length;
+
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 font-mono text-xs">
       {/* Header */}
       <div className="flex flex-col justify-between gap-4 border-b border-[#d0d7de] pb-4 md:flex-row md:items-center dark:border-[#30363d]">
         <div>
           <div className="mb-1 flex items-center gap-2">
-            <span className="rounded border border-zinc-700 bg-zinc-800 px-2 py-0.5 font-mono text-[10px] text-[#656d76] dark:text-[#c9d1d9]">
-              KÜME 3: SERMAYE & FİNANS
+            <span className="rounded border border-zinc-700 bg-zinc-800 px-2 py-0.5 text-[10px] text-[#656d76] dark:text-[#c9d1d9]">
+              {t("cluster3Title")}
             </span>
-            <span className="font-mono text-xs font-semibold text-cyan-400">
+            <span className="text-xs font-semibold text-cyan-400">
               NON-DILUTIVE GRANT AUTOPILOT
             </span>
           </div>
-          <h1 className="font-mono text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
-            Devlet Destekleri & Hibe Otopilotu (TÜBİTAK / KOSGEB / AB)
+          <h1 className="text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
+            {t("grants")}
           </h1>
-          <p className="mt-0.5 text-xs text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
-            Hisse kaybı olmadan (non-dilutive) Ar-Ge hibe programlarının durum takibi ve bütçe
-            yönetimi
+          <p className="mt-0.5 text-xs text-[#656d76] dark:text-[#8b949e]">
+            Non-dilutive R&D grant portfolio, application milestones, and budget tracking.
           </p>
         </div>
 
-        <button className="flex items-center gap-1.5 rounded-md border border-emerald-500/40 bg-emerald-600 px-3 py-1.5 font-mono text-xs font-semibold !text-white shadow-sm transition-colors hover:bg-emerald-500">
+        <button className="flex items-center gap-1.5 rounded-md border border-emerald-500/40 bg-emerald-600 px-3 py-1.5 text-xs font-semibold !text-white shadow-sm transition-colors hover:bg-emerald-500">
           <Plus className="h-3.5 w-3.5 text-white" />
-          <span className="!text-white">Yeni Hibe Başvurusu Ekle</span>
+          <span className="!text-white">New Grant Proposal</span>
         </button>
       </div>
 
       {/* Metrics */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         <MetricCard
-          label="Toplam Talep Edilen Hibe"
-          value="18.750.000 ₺"
-          subtext="TÜBİTAK 1507, KOSGEB ve Horizon Europe AI"
+          label="Total Requested Grants"
+          value={`${totalRequested.toLocaleString()} ₺`}
+          subtext="TÜBİTAK, KOSGEB & Horizon Europe"
           changeType="positive"
           icon={Landmark}
         />
         <MetricCard
-          label="Onaylanan Fon"
-          value="1.850.000 ₺"
-          subtext="KOSGEB Ar-Ge İnovasyon Desteği Mühürlendi"
+          label="Secured & Approved"
+          value={`${totalApproved.toLocaleString()} ₺`}
+          subtext="Executed & Sealed"
           changeType="positive"
           icon={CheckCircle2}
         />
         <MetricCard
-          label="Değerlendirmedeki Proje"
-          value="2 Program"
-          subtext="TÜBİTAK Hakem Değerlendirme Aşamasında"
+          label="Programs Under Evaluation"
+          value={`${inEvalCount} Programs`}
+          subtext="Jury & Peer Review Stage"
           icon={Clock}
         />
       </div>
 
       {/* Grants Table */}
       <div className="space-y-4 rounded-md border border-[#d0d7de] bg-[#ffffff] p-5 shadow-sm dark:border-[#30363d] dark:bg-[#161b22] dark:shadow-none">
-        <h2 className="font-mono text-sm font-bold text-[#1f2328] dark:text-[#f0f6fc]">
-          Aktif Devlet Desteği ve Hibe Programları
+        <h2 className="text-sm font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+          Active Grant Programs & Pipeline
         </h2>
 
         <div className="overflow-x-auto">
-          <table className="w-full text-left font-mono text-xs">
+          <table className="w-full text-left">
             <thead>
-              <tr className="border-b border-[#d0d7de] text-zinc-400 dark:border-[#30363d] dark:text-[#8b949e] dark:text-[#656d76]">
+              <tr className="border-b border-[#d0d7de] text-[#656d76] dark:border-[#30363d] dark:text-[#8b949e]">
                 <th className="pb-2">PROGRAM</th>
-                <th className="pb-2">TALEP EDİLEN BÜTÇE</th>
-                <th className="pb-2">SON TARİH</th>
-                <th className="pb-2">HAZIRLIK ORANI</th>
-                <th className="pb-2 text-right">DURUM</th>
+                <th className="pb-2">REQUESTED BUDGET</th>
+                <th className="pb-2">DEADLINE</th>
+                <th className="pb-2">PREPARATION</th>
+                <th className="pb-2 text-right">STATUS</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#d0d7de] dark:divide-[#30363d]">
-              {mockGrants.map((g) => (
+              {grants.map((g) => (
                 <tr
                   key={g.id}
                   className="transition-colors hover:bg-[#f6f8fa] dark:hover:bg-[#21262d]"
                 >
-                  <td className="py-3 font-bold text-zinc-200">{g.program.replace(/_/g, " ")}</td>
-                  <td className="py-3 font-bold text-emerald-400">
+                  <td className="py-3 font-bold text-[#1f2328] dark:text-[#f0f6fc]">{g.program}</td>
+                  <td className="py-3 font-bold text-emerald-600 dark:text-emerald-400">
                     {g.requestedBudgetTry.toLocaleString()} ₺
                   </td>
-                  <td className="py-3 text-[#656d76] dark:text-[#c9d1d9]">{g.deadlineDate}</td>
+                  <td className="py-3 text-[#656d76] dark:text-[#8b949e]">{g.deadlineDate}</td>
                   <td className="py-3">
                     <div className="flex items-center gap-2">
                       <div className="h-1.5 w-24 overflow-hidden rounded-full bg-zinc-800">
@@ -94,7 +136,7 @@ export default function GrantsPage() {
                           style={{ width: `${g.completionPercentage}%` }}
                         />
                       </div>
-                      <span className="text-[10px] text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
+                      <span className="text-[10px] text-[#656d76] dark:text-[#8b949e]">
                         %{g.completionPercentage}
                       </span>
                     </div>

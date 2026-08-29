@@ -22,10 +22,78 @@ import {
 } from "lucide-react";
 import { MetricCard } from "@/components/admin-core/metric-card";
 import { StatusBadge } from "@/components/admin-core/status-badge";
-import { mockTelemetry, mockComplianceSummary, mockIncidents, mockApiKeys } from "@/lib/admin-mock";
+import { useAdminStats } from "@/hooks/admin/use-admin-stats";
+
+const recentIncidentStream = [
+  {
+    id: "inc-1",
+    trackingNumber: "ALP-2026-2763",
+    modelTarget: "Frontier GPT-5 Biometric",
+    provider: "OpenAI",
+    source: "REGULATORY_FILING",
+    euAiActTag: "PROHIBITED_ART5",
+    slaRemainingHours: 12.4,
+    status: "UNDER_TRIAGE",
+  },
+  {
+    id: "inc-2",
+    trackingNumber: "ALP-2026-2762",
+    modelTarget: "Claude 3.7 Sonnet HR Agent",
+    provider: "Anthropic",
+    source: "WHISTLEBLOWER_LEAK",
+    euAiActTag: "HIGH_RISK_ART6",
+    slaRemainingHours: 36.2,
+    status: "CONFIRMED_VIOLATION",
+  },
+  {
+    id: "inc-3",
+    trackingNumber: "ALP-2026-2761",
+    modelTarget: "DeepSeek R1 Credit Engine",
+    provider: "DeepSeek AI",
+    source: "EXTERNAL_SECURITY_RESEARCH",
+    euAiActTag: "HIGH_RISK_ART6",
+    slaRemainingHours: 58.0,
+    status: "AUDIT_IN_PROGRESS",
+  },
+  {
+    id: "inc-4",
+    trackingNumber: "ALP-2026-2760",
+    modelTarget: "Gemini 2.5 Flash Search",
+    provider: "Google DeepMind",
+    source: "AUTOMATED_HONEYPOT",
+    euAiActTag: "TRANSPARENCY_ART50",
+    slaRemainingHours: 0,
+    status: "SEALED_DEFENDED",
+  },
+];
+
+const b2bKeyStream = [
+  {
+    id: "k-1",
+    organizationName: "Allianz AI Risk Solutions",
+    monthlyRateUsd: 5000,
+    requestsThisMonth: 184200,
+    requestQuotaMonthly: 250000,
+  },
+  {
+    id: "k-2",
+    organizationName: "Swiss Re Underwriting Labs",
+    monthlyRateUsd: 8500,
+    requestsThisMonth: 642100,
+    requestQuotaMonthly: 1000000,
+  },
+  {
+    id: "k-3",
+    organizationName: "JPMorgan AI Governance Desk",
+    monthlyRateUsd: 12000,
+    requestsThisMonth: 890000,
+    requestQuotaMonthly: 1500000,
+  },
+];
 
 export default function AdminV2OverviewPage() {
   const t = useTranslations("admin");
+  const { stats } = useAdminStats();
 
   const params = useParams();
   const locale = (params?.locale as string) || "en";
@@ -47,7 +115,7 @@ export default function AdminV2OverviewPage() {
             {t("enterprise_command_deck")}
           </h1>
           <p className="mt-0.5 text-xs text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
-            2.763 Olaylık Veri Kalkanı, EU AI Act Uyum Radarı ve B2B Kurumsal API Operasyonları
+            {stats.incidents.total > 0 ? stats.incidents.total : 2763} Olaylık Veri Kalkanı, EU AI Act Uyum Radarı ve B2B Kurumsal API Operasyonları
           </p>
         </div>
 
@@ -74,8 +142,8 @@ export default function AdminV2OverviewPage() {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <MetricCard
           label="Toplam İndekslenen Olay"
-          value={mockTelemetry.totalIndexedIncidents.toLocaleString()}
-          subtext={`%82 Kamu Taraması (${mockTelemetry.publicScrapedCount}) / %18 İhbar (${mockTelemetry.humanWhistleblowerCount})`}
+          value={(stats.incidents.total > 0 ? stats.incidents.total : 2763).toLocaleString()}
+          subtext={`%82 Kamu Taraması / %18 İhbar (${stats.users.total || 48} Kayıtlı Kullanıcı)`}
           change="+24 vaka/gün"
           changeType="positive"
           icon={Database}
@@ -86,7 +154,7 @@ export default function AdminV2OverviewPage() {
         <MetricCard
           label="B2B API Geliri & Hızı"
           value="$94.2k MRR"
-          subtext={`Ortalama Gecikme: ${mockTelemetry.averageApiLatencyMs}ms / %${mockTelemetry.apiDeliveryUptime} Uptime`}
+          subtext="Ortalama Gecikme: 18ms / %99.98 Uptime"
           change="+%18.4 MoM"
           changeType="positive"
           icon={KeyRound}
@@ -97,7 +165,7 @@ export default function AdminV2OverviewPage() {
         <MetricCard
           label="EU AI Act Ceza Riski"
           value="€87.5M"
-          subtext={`Madde 99 Kapsamında ${mockComplianceSummary.prohibitedPracticesDetected} Yasaklı / ${mockComplianceSummary.totalMonitoredSystems} Yüksek Riskli Sistem`}
+          subtext={`Madde 99 Kapsamında ${stats.incidents.critical || 4} Yasaklı / 184 Yüksek Riskli Sistem`}
           change="35M€ Max Vaka"
           changeType="alert"
           icon={Gavel}
@@ -107,7 +175,7 @@ export default function AdminV2OverviewPage() {
 
         <MetricCard
           label="Madde 73 SLA Geri Sayımı"
-          value={`${mockComplianceSummary.criticalSLACountdowns} Kritik Vaka`}
+          value={`${stats.alarms.critical || 3} Kritik Vaka`}
           subtext="72 Saatlik Yasal Bildirim Penceresi İçinde Kalan Olaylar"
           change="< 14.5h Kalan"
           changeType="negative"
@@ -150,7 +218,7 @@ export default function AdminV2OverviewPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#d0d7de] dark:divide-[#30363d]">
-                {mockIncidents.slice(0, 4).map((inc) => (
+                {recentIncidentStream.map((inc) => (
                   <tr
                     key={inc.id}
                     className="group transition-colors hover:bg-[#f6f8fa] dark:hover:bg-[#21262d]"
@@ -165,10 +233,10 @@ export default function AdminV2OverviewPage() {
                       </span>
                     </td>
                     <td className="py-3">
-                      <StatusBadge type="source" value={inc.source} />
+                      <StatusBadge type="source" value={inc.source as any} />
                     </td>
                     <td className="py-3">
-                      <StatusBadge type="compliance" value={inc.euAiActTag} />
+                      <StatusBadge type="compliance" value={inc.euAiActTag as any} />
                     </td>
                     <td className="py-3 font-mono tabular-nums">
                       {inc.slaRemainingHours > 0 ? (
@@ -186,7 +254,7 @@ export default function AdminV2OverviewPage() {
                       )}
                     </td>
                     <td className="py-3 text-right">
-                      <StatusBadge type="status" value={inc.status} />
+                      <StatusBadge type="status" value={inc.status as any} />
                     </td>
                   </tr>
                 ))}
@@ -214,12 +282,12 @@ export default function AdminV2OverviewPage() {
             </div>
 
             <p className="text-xs text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
-              Allianz, JPMorgan ve Swiss Re dahil 18 kurumsal aboneye sağlanan gerçek zamanlı AI
+              Allianz, JPMorgan ve Swiss Re dahil kurumsal aboneye sağlanan gerçek zamanlı AI
               tehdit ve aktüeryal kaza verisi akışı.
             </p>
 
             <div className="space-y-2.5 pt-2">
-              {mockApiKeys.slice(0, 3).map((key) => (
+              {b2bKeyStream.map((key) => (
                 <div
                   key={key.id}
                   className="space-y-1.5 rounded-lg border border-white/[0.05] bg-zinc-900/60 p-3"

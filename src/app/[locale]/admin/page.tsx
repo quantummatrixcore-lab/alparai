@@ -93,99 +93,14 @@ const b2bKeyStream = [
 
 export default function AdminV2OverviewPage() {
   const t = useTranslations("admin");
+  const td = useTranslations("admin.dashboard");
   const { stats } = useAdminStats();
 
   const params = useParams();
   const locale = (params?.locale as string) || "en";
 
-  return (
-    <div className="space-y-6">
-      {/* 1. Executive OS Header */}
-      <div className="flex flex-col justify-between gap-4 border-b border-[#d0d7de] pb-4 md:flex-row md:items-center dark:border-[#30363d]">
-        <div>
-          <div className="mb-1 flex items-center gap-2">
-            <span className="rounded border border-zinc-700 bg-zinc-800 px-2 py-0.5 font-mono text-[10px] text-[#656d76] dark:text-[#c9d1d9]">
-              EXECUTIVE OS
-            </span>
-            <span className="font-mono text-xs font-semibold tracking-wider text-cyan-400 uppercase">
-              360° MASTER COMMAND DECK
-            </span>
-          </div>
-          <h1 className="font-mono text-xl font-bold tracking-tight text-[#1f2328] md:text-2xl dark:text-[#f0f6fc]">
-            {t("enterprise_command_deck")}
-          </h1>
-          <p className="mt-0.5 text-xs text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
-            {stats.incidents.total > 0 ? stats.incidents.total : 2763} Olaylık Veri Kalkanı, EU AI Act Uyum Radarı ve B2B Kurumsal API Operasyonları
-          </p>
-        </div>
-
-        {/* Action Controls */}
-        <div className="flex items-center gap-2.5">
-          <Link
-            href={`/${locale}/admin/incidents`}
-            className="flex items-center gap-1.5 rounded-md border border-[#d0d7de] bg-zinc-900/80 px-3 py-1.5 font-mono text-xs text-[#656d76] shadow-sm transition-colors hover:border-cyan-500/30 hover:text-[#1f2328] dark:border-[#30363d] dark:text-[#c9d1d9] dark:text-[#f0f6fc]"
-          >
-            <ShieldAlert className="h-3.5 w-3.5 text-amber-400" />
-            <span>Olay Masası</span>
-          </Link>
-          <Link
-            href={`/${locale}/admin/api-keys`}
-            className="flex items-center gap-1.5 rounded-md border border-cyan-500/40 bg-cyan-600 px-3 py-1.5 font-mono text-xs font-semibold !text-white shadow-sm transition-colors hover:bg-cyan-500"
-          >
-            <KeyRound className="h-3.5 w-3.5 text-white" />
-            <span className="!text-white">B2B API & Hunter</span>
-          </Link>
-        </div>
-      </div>
-
-      {/* 2. Top Metric KPI Deck (4 Core Pillars) */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <MetricCard
-          label="Toplam İndekslenen Olay"
-          value={(stats.incidents.total > 0 ? stats.incidents.total : 2763).toLocaleString()}
-          subtext={`%82 Kamu Taraması / %18 İhbar (${stats.users.total || 48} Kayıtlı Kullanıcı)`}
-          change="+24 vaka/gün"
-          changeType="positive"
-          icon={Database}
-          badge="DATA MOAT"
-          sparkline="up"
-        />
-
-        <MetricCard
-          label="B2B API Geliri & Hızı"
-          value="$94.2k MRR"
-          subtext="Ortalama Gecikme: 18ms / %99.98 Uptime"
-          change="+%18.4 MoM"
-          changeType="positive"
-          icon={KeyRound}
-          badge="TIER 1-3"
-          sparkline="up"
-        />
-
-        <MetricCard
-          label="EU AI Act Ceza Riski"
-          value="€87.5M"
-          subtext={`Madde 99 Kapsamında ${stats.incidents.critical || 4} Yasaklı / 184 Yüksek Riskli Sistem`}
-          change="35M€ Max Vaka"
-          changeType="alert"
-          icon={Gavel}
-          badge="ART 99"
-          sparkline="down"
-        />
-
-        <MetricCard
-          label="Madde 73 SLA Geri Sayımı"
-          value={`${stats.alarms.critical || 3} Kritik Vaka`}
-          subtext="72 Saatlik Yasal Bildirim Penceresi İçinde Kalan Olaylar"
-          change="< 14.5h Kalan"
-          changeType="negative"
-          icon={Clock}
-          badge="72h SLA"
-          sparkline="down"
-        />
-      </div>
-
-      {/* 3. Mid Grid: Live Incident Triage + EU AI Act Compliance Barometer */}
+  const liveIncidentSection = React.useMemo(
+    () => (
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         {/* Left 2 Cols: Real-Time Incident Ingestion Stream */}
         <div className="space-y-4 rounded-xl border border-[#d0d7de] bg-zinc-950/70 p-5 shadow-2xl shadow-black/80 backdrop-blur-xl lg:col-span-2 dark:border-[#30363d]">
@@ -193,14 +108,14 @@ export default function AdminV2OverviewPage() {
             <div className="flex items-center gap-2">
               <ShieldAlert className="h-4 w-4 text-cyan-400" />
               <h2 className="font-mono text-sm font-bold tracking-wide text-[#1f2328] dark:text-[#f0f6fc]">
-                Canlı Olay Masası & SLA Takibi
+                {td("liveIncidentDesk")}
               </h2>
             </div>
             <Link
               href={`/${locale}/admin/incidents`}
               className="flex items-center gap-1 font-mono text-xs text-zinc-400 transition-colors hover:text-cyan-300 dark:text-[#8b949e] dark:text-[#656d76]"
             >
-              <span>Tüm 2.763 Olayı İncele</span>
+              <span>{td("viewAllIncidents")}</span>
               <ArrowRight className="h-3 w-3" />
             </Link>
           </div>
@@ -209,12 +124,12 @@ export default function AdminV2OverviewPage() {
             <table className="w-full table-fixed text-left font-mono text-xs">
               <thead>
                 <tr className="border-b border-[#d0d7de] text-zinc-400 dark:border-[#30363d] dark:text-[#8b949e] dark:text-[#656d76]">
-                  <th className="w-32 pb-2.5 font-medium">TAKİP NO</th>
-                  <th className="w-44 pb-2.5 font-medium">HEDEF MODEL</th>
-                  <th className="w-36 pb-2.5 font-medium">KAYNAK</th>
-                  <th className="w-40 pb-2.5 font-medium">AB MADDESİ</th>
-                  <th className="w-28 pb-2.5 font-medium">SLA KALAN</th>
-                  <th className="w-28 pb-2.5 text-right font-medium">DURUM</th>
+                  <th className="w-32 pb-2.5 font-medium">{td("thTracking")}</th>
+                  <th className="w-44 pb-2.5 font-medium">{td("thTarget")}</th>
+                  <th className="w-36 pb-2.5 font-medium">{td("thSource")}</th>
+                  <th className="w-40 pb-2.5 font-medium">{td("thClause")}</th>
+                  <th className="w-28 pb-2.5 font-medium">{td("thSla")}</th>
+                  <th className="w-28 pb-2.5 text-right font-medium">{td("thStatus")}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#d0d7de] dark:divide-[#30363d]">
@@ -247,10 +162,12 @@ export default function AdminV2OverviewPage() {
                               : "text-amber-400"
                           }`}
                         >
-                          {inc.slaRemainingHours} saat
+                          {inc.slaRemainingHours} {td("hours")}
                         </span>
                       ) : (
-                        <span className="text-[#656d76] dark:text-[#8b949e]">Tamamlandı</span>
+                        <span className="text-[#656d76] dark:text-[#8b949e]">
+                          {td("completed")}
+                        </span>
                       )}
                     </td>
                     <td className="py-3 text-right">
@@ -270,7 +187,7 @@ export default function AdminV2OverviewPage() {
               <div className="flex items-center gap-2">
                 <KeyRound className="h-4 w-4 text-cyan-400" />
                 <h2 className="font-mono text-sm font-bold tracking-wide text-[#1f2328] dark:text-[#f0f6fc]">
-                  B2B Kurumsal API Akışı
+                  {td("b2bFlow")}
                 </h2>
               </div>
               <Link
@@ -282,8 +199,7 @@ export default function AdminV2OverviewPage() {
             </div>
 
             <p className="text-xs text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
-              Allianz, JPMorgan ve Swiss Re dahil kurumsal aboneye sağlanan gerçek zamanlı AI
-              tehdit ve aktüeryal kaza verisi akışı.
+              {td("b2bFlowDesc")}
             </p>
 
             <div className="space-y-2.5 pt-2">
@@ -297,15 +213,15 @@ export default function AdminV2OverviewPage() {
                       {key.organizationName}
                     </span>
                     <span className="font-mono font-medium text-emerald-400 tabular-nums">
-                      ${key.monthlyRateUsd.toLocaleString()}/ay
+                      ${key.monthlyRateUsd.toLocaleString()}/{td("month")}
                     </span>
                   </div>
                   <div className="flex items-center justify-between font-mono text-[11px] text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
                     <span className="tabular-nums">
                       {(key.requestsThisMonth / 1000).toFixed(0)}k /{" "}
-                      {(key.requestQuotaMonthly / 1000).toFixed(0)}k İstek
+                      {(key.requestQuotaMonthly / 1000).toFixed(0)}k {td("requests")}
                     </span>
-                    <span className="font-semibold text-emerald-400">Aktif</span>
+                    <span className="font-semibold text-emerald-400">{td("active")}</span>
                   </div>
                   <div className="h-1 w-full overflow-hidden rounded-full bg-zinc-800">
                     <div
@@ -324,16 +240,20 @@ export default function AdminV2OverviewPage() {
           </div>
 
           <div className="flex items-center justify-between border-t border-[#d0d7de] pt-3 font-mono text-xs text-zinc-400 dark:border-[#30363d] dark:text-[#8b949e] dark:text-[#656d76]">
-            <span>Toplam Aylık Tüketim:</span>
-            <span className="font-bold text-zinc-200 tabular-nums">12.9M İstek</span>
+            <span>{td("totalMonthly")}</span>
+            <span className="font-bold text-zinc-200 tabular-nums">{td("totalMonthlyValue")}</span>
           </div>
         </div>
       </div>
+    ),
+    [td, locale],
+  );
 
-      {/* 4. Bottom 5-Cluster Navigation Quick Deck */}
+  const quickDeckSection = React.useMemo(
+    () => (
       <div className="space-y-3 rounded-xl border border-[#d0d7de] bg-zinc-950/70 p-5 shadow-2xl shadow-black/80 backdrop-blur-xl dark:border-[#30363d]">
         <h3 className="font-mono text-xs font-bold tracking-wider text-zinc-400 uppercase dark:text-[#8b949e] dark:text-[#656d76]">
-          360° Yönetim Kümeleri Hızlı Erişim
+          {td("quickDeck")}
         </h3>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-5">
           <Link
@@ -341,11 +261,11 @@ export default function AdminV2OverviewPage() {
             className="group transform-gpu rounded-lg border border-white/[0.05] bg-zinc-900/60 p-3.5 text-left transition-all hover:-translate-y-0.5 hover:border-cyan-500/30"
           >
             <div className="flex items-center justify-between font-mono text-xs font-bold text-zinc-200 group-hover:text-cyan-300">
-              <span>Çoklu Model</span>
+              <span>{td("crossAudit")}</span>
               <ArrowUpRight className="h-3.5 w-3.5 text-[#656d76] group-hover:text-cyan-400 dark:text-[#8b949e]" />
             </div>
             <p className="mt-1 text-[11px] text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
-              5-Model Konsensüs Denetimi
+              {td("crossAuditDesc")}
             </p>
           </Link>
 
@@ -354,11 +274,11 @@ export default function AdminV2OverviewPage() {
             className="group transform-gpu rounded-lg border border-white/[0.05] bg-zinc-900/60 p-3.5 text-left transition-all hover:-translate-y-0.5 hover:border-cyan-500/30"
           >
             <div className="flex items-center justify-between font-mono text-xs font-bold text-zinc-200 group-hover:text-cyan-300">
-              <span>Sosyal Stüdyo</span>
+              <span>{td("socialStudio")}</span>
               <ArrowUpRight className="h-3.5 w-3.5 text-[#656d76] group-hover:text-cyan-400 dark:text-[#8b949e]" />
             </div>
             <p className="mt-1 text-[11px] text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
-              Peak-Hour İçerik & Veo 2
+              {td("socialStudioDesc")}
             </p>
           </Link>
 
@@ -367,11 +287,11 @@ export default function AdminV2OverviewPage() {
             className="group transform-gpu rounded-lg border border-white/[0.05] bg-zinc-900/60 p-3.5 text-left transition-all hover:-translate-y-0.5 hover:border-cyan-500/30"
           >
             <div className="flex items-center justify-between font-mono text-xs font-bold text-zinc-200 group-hover:text-cyan-300">
-              <span>VC & Data Room</span>
+              <span>{td("vcRoom")}</span>
               <ArrowUpRight className="h-3.5 w-3.5 text-[#656d76] group-hover:text-cyan-400 dark:text-[#8b949e]" />
             </div>
             <p className="mt-1 text-[11px] text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
-              Sequoia & Index Pipeline
+              {td("vcRoomDesc")}
             </p>
           </Link>
 
@@ -380,11 +300,11 @@ export default function AdminV2OverviewPage() {
             className="group transform-gpu rounded-lg border border-white/[0.05] bg-zinc-900/60 p-3.5 text-left transition-all hover:-translate-y-0.5 hover:border-cyan-500/30"
           >
             <div className="flex items-center justify-between font-mono text-xs font-bold text-zinc-200 group-hover:text-cyan-300">
-              <span>Hibe Otopilotu</span>
+              <span>{td("grantAuto")}</span>
               <ArrowUpRight className="h-3.5 w-3.5 text-[#656d76] group-hover:text-cyan-400 dark:text-[#8b949e]" />
             </div>
             <p className="mt-1 text-[11px] text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
-              18.7M₺ TÜBİTAK / KOSGEB
+              {td("grantAutoDesc")}
             </p>
           </Link>
 
@@ -393,15 +313,111 @@ export default function AdminV2OverviewPage() {
             className="group transform-gpu rounded-lg border border-white/[0.05] bg-zinc-900/60 p-3.5 text-left transition-all hover:-translate-y-0.5 hover:border-cyan-500/30"
           >
             <div className="flex items-center justify-between font-mono text-xs font-bold text-zinc-200 group-hover:text-cyan-300">
-              <span>Veri Kalkanı</span>
+              <span>{td("dataMoat")}</span>
               <ArrowUpRight className="h-3.5 w-3.5 text-[#656d76] group-hover:text-cyan-400 dark:text-[#8b949e]" />
             </div>
             <p className="mt-1 text-[11px] text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
-              2.763 Olay & Bot Taraması
+              {td("dataMoatDesc")}
             </p>
           </Link>
         </div>
       </div>
+    ),
+    [td, locale],
+  );
+
+  return (
+    <div className="space-y-6">
+      {/* 1. Executive OS Header */}
+      <div className="flex flex-col justify-between gap-4 border-b border-[#d0d7de] pb-4 md:flex-row md:items-center dark:border-[#30363d]">
+        <div>
+          <div className="mb-1 flex items-center gap-2">
+            <span className="rounded border border-zinc-700 bg-zinc-800 px-2 py-0.5 font-mono text-[10px] text-[#656d76] dark:text-[#c9d1d9]">
+              EXECUTIVE OS
+            </span>
+            <span className="font-mono text-xs font-semibold tracking-wider text-cyan-400 uppercase">
+              360° MASTER COMMAND DECK
+            </span>
+          </div>
+          <h1 className="font-mono text-xl font-bold tracking-tight text-[#1f2328] md:text-2xl dark:text-[#f0f6fc]">
+            {t("enterprise_command_deck")}
+          </h1>
+          <p className="mt-0.5 text-xs text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
+            {td("subtitle", { count: stats.incidents.total > 0 ? stats.incidents.total : 2763 })}
+          </p>
+        </div>
+
+        {/* Action Controls */}
+        <div className="flex items-center gap-2.5">
+          <Link
+            href={`/${locale}/admin/incidents`}
+            className="flex items-center gap-1.5 rounded-md border border-[#d0d7de] bg-zinc-900/80 px-3 py-1.5 font-mono text-xs text-[#656d76] shadow-sm transition-colors hover:border-cyan-500/30 hover:text-[#1f2328] dark:border-[#30363d] dark:text-[#c9d1d9] dark:text-[#f0f6fc]"
+          >
+            <ShieldAlert className="h-3.5 w-3.5 text-amber-400" />
+            <span>{td("incidentDesk")}</span>
+          </Link>
+          <Link
+            href={`/${locale}/admin/api-keys`}
+            className="flex items-center gap-1.5 rounded-md border border-cyan-500/40 bg-cyan-600 px-3 py-1.5 font-mono text-xs font-semibold !text-white shadow-sm transition-colors hover:bg-cyan-500"
+          >
+            <KeyRound className="h-3.5 w-3.5 text-white" />
+            <span className="!text-white">{td("b2bApi")}</span>
+          </Link>
+        </div>
+      </div>
+
+      {/* 2. Top Metric KPI Deck (4 Core Pillars) */}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <MetricCard
+          label={td("totalIncidents")}
+          value={(stats.incidents.total > 0 ? stats.incidents.total : 2763).toLocaleString()}
+          subtext={td("totalIncidentsSubtext", { users: stats.users.total || 48 })}
+          change={td("totalIncidentsChange")}
+          changeType="positive"
+          icon={Database}
+          badge="DATA MOAT"
+          sparkline="up"
+        />
+
+        <MetricCard
+          label={td("b2bRevenue")}
+          value="$94.2k MRR"
+          subtext={td("b2bRevenueSubtext")}
+          change="+%18.4 MoM"
+          changeType="positive"
+          icon={KeyRound}
+          badge="TIER 1-3"
+          sparkline="up"
+        />
+
+        <MetricCard
+          label={td("euRisk")}
+          value="€87.5M"
+          subtext={td("euRiskSubtext", { critical: stats.incidents.critical || 4 })}
+          change={td("euRiskChange")}
+          changeType="alert"
+          icon={Gavel}
+          badge="ART 99"
+          sparkline="down"
+        />
+
+        <MetricCard
+          label={td("slaCountdown")}
+          value={td("slaCountdownValue", { critical: stats.alarms.critical || 3 })}
+          subtext={td("slaCountdownSubtext")}
+          change={td("slaCountdownChange")}
+          changeType="negative"
+          icon={Clock}
+          badge="72h SLA"
+          sparkline="down"
+        />
+      </div>
+
+      {/* 3. Mid Grid: Live Incident Triage + EU AI Act Compliance Barometer */}
+      {liveIncidentSection}
+
+      {/* 4. Bottom 5-Cluster Navigation Quick Deck */}
+      {quickDeckSection}
     </div>
   );
 }

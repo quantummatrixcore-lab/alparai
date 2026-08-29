@@ -8,8 +8,8 @@ const isTest =
 
 const cspRules = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://*.supabase.co https://*.sentry.io https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.google.com https://*.gstatic.com",
-  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com",
+  "script-src 'self' https://*.supabase.co https://*.sentry.io https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.google.com https://*.gstatic.com",
+  "style-src 'self' https://fonts.googleapis.com https://accounts.google.com",
   "font-src 'self' https://fonts.gstatic.com data:",
   "img-src 'self' data: blob: https: https://*.googleusercontent.com",
   "connect-src 'self' https://*.supabase.co https://*.sentry.io wss://*.supabase.co https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.googleapis.com",
@@ -123,7 +123,21 @@ const nextConfig = {
       "@radix-ui/react-tooltip",
       "clsx",
       "tailwind-merge",
+      "@supabase/supabase-js",
+      "@sentry/nextjs",
+      "lodash"
     ],
+    // Zero-Cost: Vercel serverless memory & build footprint optimization (Momentum & Venture)
+    webpackBuildWorker: true,
+    parallelServerCompiles: true,
+    parallelServerBuildTraces: true,
+    outputFileTracingExcludes: {
+      "*": [
+        "node_modules/@swc/core-linux-x64-gnu",
+        "node_modules/@swc/core-linux-x64-musl",
+        "node_modules/@esbuild/linux-x64",
+      ],
+    },
   },
   async headers() {
     return [
@@ -192,7 +206,7 @@ const nextConfig = {
       {
         source: "/:locale/insights",
         destination: "/:locale/insights/open-vs-closed",
-        permanent: false,
+        permanent: true,
       },
       // Broken links discovered via 360Ã‚Â° QA audit (2026-08-13)
       {
@@ -208,7 +222,7 @@ const nextConfig = {
       {
         source: "/:locale/community",
         destination: "/:locale/academy",
-        permanent: false,
+        permanent: true,
       },
       // Deprecated locale redirects (de, fr, ru -> en)
       {

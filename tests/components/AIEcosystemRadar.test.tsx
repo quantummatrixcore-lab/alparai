@@ -1,7 +1,10 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
-import { AIEcosystemRadar, RadarData } from "../../src/components/admin/widgets/AIEcosystemRadar";
+import {
+  AIEcosystemRadar,
+  type RadarData,
+} from "../../src/components/admin/widgets/AIEcosystemRadar";
 
 vi.mock("next-intl", () => ({
   useTranslations: () => (key: string, params?: Record<string, unknown>) => {

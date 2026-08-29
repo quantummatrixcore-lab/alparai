@@ -52,14 +52,21 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
       .maybeSingle();
 
     if (error) {
-      logger.error("API v1 incident by id error", { id }, error instanceof Error ? error : undefined);
+      logger.error(
+        "API v1 incident by id error",
+        { id },
+        error instanceof Error ? error : undefined,
+      );
       return NextResponse.json(
         { error: "internal_error" },
         { status: 500, headers: corsHeaders(origin) },
       );
     }
     if (!data) {
-      return NextResponse.json({ error: "not_found" }, { status: 404, headers: corsHeaders(origin) });
+      return NextResponse.json(
+        { error: "not_found" },
+        { status: 404, headers: corsHeaders(origin) },
+      );
     }
 
     const row = data as Record<string, unknown>;
@@ -92,7 +99,11 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
       },
     );
   } catch (err) {
-    logger.error("API v1 incident unhandled error", undefined, err instanceof Error ? err : undefined);
+    logger.error(
+      "API v1 incident unhandled error",
+      undefined,
+      err instanceof Error ? err : undefined,
+    );
     return NextResponse.json(
       { error: "internal_error" },
       { status: 500, headers: corsHeaders(origin) },

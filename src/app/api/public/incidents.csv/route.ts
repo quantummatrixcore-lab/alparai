@@ -20,7 +20,15 @@ export async function GET() {
       return new NextResponse("Error generating CSV", { status: 500 });
     }
 
-    const headers = ["id", "title", "vendor", "severity", "created_at", "source_url", "description"];
+    const headers = [
+      "id",
+      "title",
+      "vendor",
+      "severity",
+      "created_at",
+      "source_url",
+      "description",
+    ];
     const rows = data.map((item: any) => [
       `"${item.id}"`,
       `"${(item.title_masked || "").replace(/"/g, '""')}"`,

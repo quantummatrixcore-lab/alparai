@@ -21,40 +21,45 @@ interface SlopsquattingRow {
 }
 
 export async function GET(request: Request) {
-  await requireAdmin();
-  const { searchParams } = new URL(request.url);
-  const ecosystem = searchParams.get("ecosystem");
-  const limit = Math.min(Number(searchParams.get("limit") ?? "20"), 100);
-  const confirmedReal = searchParams.get("confirmed_real");
+  try {
+    await requireAdmin();
+    const { searchParams } = new URL(request.url);
+    const ecosystem = searchParams.get("ecosystem");
+    const limit = Math.min(Number(searchParams.get("limit") ?? "20"), 100);
+    const confirmedReal = searchParams.get("confirmed_real");
 
-  const supabase = createAdminClient();
-  let query = supabase
-    .from("slopsquatting_reports")
-    .select(
-      "id, package_name, ecosystem, first_seen_at, confirmed_real, source_url, hallucinated_by_model_id",
-    )
-    .order("first_seen_at", { ascending: false })
-    .limit(limit);
+    const supabase = createAdminClient();
+    let query = supabase
+      .from("slopsquatting_reports")
+      .select(
+        "id, package_name, ecosystem, first_seen_at, confirmed_real, source_url, hallucinated_by_model_id",
+      )
+      .order("first_seen_at", { ascending: false })
+      .limit(limit);
 
-  if (ecosystem && VALID_ECOSYSTEMS.includes(ecosystem as Ecosystem)) {
-    query = query.eq("ecosystem", ecosystem);
+    if (ecosystem && VALID_ECOSYSTEMS.includes(ecosystem as Ecosystem)) {
+      query = query.eq("ecosystem", ecosystem);
+    }
+    if (confirmedReal !== null) {
+      query = query.eq("confirmed_real", confirmedReal === "true");
+    }
+
+    const { data, error } = (await query) as {
+      data: SlopsquattingRow[] | null;
+      error: { message: string } | null;
+    };
+    if (error) {
+      return NextResponse.json({ error: "Database error" }, { status: 500 });
+    }
+
+    return NextResponse.json(
+      { count: data?.length ?? 0, reports: data, _meta: { ecosystem: ecosystem ?? "all", limit } },
+      { headers: { "Cache-Control": "public, s-maxage=60, stale-while-revalidate=120" } },
+    );
+  } catch (error) {
+    console.error("[GET_ERROR]", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
-  if (confirmedReal !== null) {
-    query = query.eq("confirmed_real", confirmedReal === "true");
-  }
-
-  const { data, error } = (await query) as {
-    data: SlopsquattingRow[] | null;
-    error: { message: string } | null;
-  };
-  if (error) {
-    return NextResponse.json({ error: "Database error" }, { status: 500 });
-  }
-
-  return NextResponse.json(
-    { count: data?.length ?? 0, reports: data, _meta: { ecosystem: ecosystem ?? "all", limit } },
-    { headers: { "Cache-Control": "public, s-maxage=60, stale-while-revalidate=120" } },
-  );
 }
 
 export async function POST(request: Request) {

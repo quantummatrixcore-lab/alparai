@@ -9,6 +9,7 @@ interface ServiceHealth {
 
 interface HealthCheckDetail {
   status: "healthy" | "unhealthy";
+  overall?: "healthy" | "degraded";
   services: ServiceHealth[];
   timestamp: string;
 }
@@ -206,33 +207,38 @@ async function checkGoogleOAuth(): Promise<ServiceHealth> {
   return { name: "google_oauth", status: "healthy", latencyMs: null };
 }
 
-export async function GET(): Promise<NextResponse<HealthCheckDetail>> {
-  const services = await Promise.all([
-    checkSupabase(),
-    checkRedis(),
-    checkVercel(),
-    checkSentry(),
-    checkResend(),
-    checkGemini(),
-    checkAnthropic(),
-    checkGoogleOAuth(),
-  ]);
+export async function GET(): Promise<NextResponse<HealthCheckDetail | { error: string }>> {
+  try {
+    const services = await Promise.all([
+      checkSupabase(),
+      checkRedis(),
+      checkVercel(),
+      checkSentry(),
+      checkResend(),
+      checkGemini(),
+      checkAnthropic(),
+      checkGoogleOAuth(),
+    ]);
 
-  const unhealthy = services.filter((s) => s.status === "unhealthy");
-  const supabaseService = services.find((s) => s.name === "supabase");
-  const isSupabaseOk = supabaseService?.status !== "unhealthy";
-  const overallStatus = isSupabaseOk && unhealthy.length === 0 ? "healthy" : "degraded";
+    const unhealthy = services.filter((s) => s.status === "unhealthy");
+    const supabaseService = services.find((s) => s.name === "supabase");
+    const isSupabaseOk = supabaseService?.status !== "unhealthy";
+    const overallStatus = isSupabaseOk && unhealthy.length === 0 ? "healthy" : "degraded";
 
-  return NextResponse.json(
-    {
-      status: "healthy",
-      overall: overallStatus,
-      services,
-      timestamp: new Date().toISOString(),
-    },
-    {
-      status: 200,
-      headers: { "Cache-Control": "no-store, max-age=0" },
-    },
-  );
+    return NextResponse.json(
+      {
+        status: "healthy",
+        overall: overallStatus,
+        services,
+        timestamp: new Date().toISOString(),
+      },
+      {
+        status: 200,
+        headers: { "Cache-Control": "no-store, max-age=0" },
+      },
+    );
+  } catch (error) {
+    console.error("[GET_ERROR]", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  }
 }

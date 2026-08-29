@@ -26,9 +26,6 @@ export async function GET() {
     });
   } catch (error) {
     console.error("Cron monitor error:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch cron monitor status" },
-      { status: 500 },
-    );
+    return NextResponse.json({ error: "Failed to fetch cron monitor status" }, { status: 500 });
   }
 }

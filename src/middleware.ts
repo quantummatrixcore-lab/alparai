@@ -35,11 +35,6 @@ export async function middleware(request: NextRequest) {
     });
   }
 
-  // Ensure /api/health bypasses i18n completely
-  if (request.nextUrl.pathname.startsWith("/api/health")) {
-    return NextResponse.next();
-  }
-
   const requestId = request.headers.get("x-request-id") ?? crypto.randomUUID();
   const requestHeaders = new Headers(request.headers);
   // Strip dangerous internal headers
@@ -136,7 +131,8 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!api/cron|api/webhook|_next/static|_next/image|_vercel|auth/callback|auth/v1/|images/|icons/|fonts/|favicon\\.ico|robots\\.txt|sitemap\\.xml|manifest\\.webmanifest|.*\\.(?:svg|png|jpg|jpeg|gif|webp|css|js|ico|woff|woff2|ttf|eot|json|xml|txt|webmanifest)).*)",
-    "/api/((?!cron|webhook).*)",
+    // Zero-Cost Arbitrage: Statik dosyalar, webhook'lar ve health endpoint'i Edge middleware'e girmeden doğrudan işlenir
+    "/((?!api/health|api/cron|api/webhook|_next/static|_next/image|_vercel|auth/callback|auth/v1/|images/|icons/|fonts/|favicon\\.ico|robots\\.txt|sitemap\\.xml|manifest\\.webmanifest|.*\\.(?:svg|png|jpg|jpeg|gif|webp|css|js|ico|woff|woff2|ttf|eot|json|xml|txt|webmanifest|pdf|mp4|webm|mp3|ogg|wav)).*)",
+    "/api/((?!health|cron|webhook).*)",
   ],
 };

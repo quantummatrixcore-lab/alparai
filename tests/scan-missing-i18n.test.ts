@@ -39,10 +39,12 @@ describe("Admin i18n Translation Key Audit", () => {
     const sidebarContent = fs.readFileSync(sidebarPath, "utf-8");
     const tMatches = [...sidebarContent.matchAll(/t\(["']([^"']+)["']\)/g)].map((m) => m[1]);
 
+    const sidebarEn = adminEn.sidebar || adminEn;
+    const sidebarTr = adminTr.sidebar || adminTr;
     const missing: string[] = [];
     for (const key of tMatches) {
       if (!key) continue;
-      if (adminEn[key] === undefined || adminTr[key] === undefined) {
+      if (sidebarEn[key] === undefined || sidebarTr[key] === undefined) {
         missing.push(key);
       }
     }

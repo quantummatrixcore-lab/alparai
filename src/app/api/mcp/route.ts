@@ -80,13 +80,18 @@ const MCP_TOOLS = [
 ];
 
 export async function GET() {
-  return NextResponse.json({
-    status: "online",
-    server: MCP_SERVER_INFO,
-    protocolVersion: "2024-11-05",
-    tools: MCP_TOOLS.map((t) => t.name),
-    endpoint: "/api/mcp",
-  });
+  try {
+    return NextResponse.json({
+      status: "online",
+      server: MCP_SERVER_INFO,
+      protocolVersion: "2024-11-05",
+      tools: MCP_TOOLS.map((t) => t.name),
+      endpoint: "/api/mcp",
+    });
+  } catch (error) {
+    console.error("[GET_ERROR]", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  }
 }
 
 export async function POST(req: NextRequest) {

@@ -317,4 +317,4 @@ export function ClaimReviewJsonLd({
   );
 }
 
-export const FactCheckJsonLd = ClaimReviewJsonLd;
+const FactCheckJsonLd = ClaimReviewJsonLd;

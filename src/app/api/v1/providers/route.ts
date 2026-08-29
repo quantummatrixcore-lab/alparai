@@ -83,7 +83,11 @@ export async function GET(request: Request) {
       },
     );
   } catch (err) {
-    logger.error("API v1 providers unhandled error", undefined, err instanceof Error ? err : undefined);
+    logger.error(
+      "API v1 providers unhandled error",
+      undefined,
+      err instanceof Error ? err : undefined,
+    );
     return NextResponse.json(
       { error: "internal_error" },
       { status: 500, headers: corsHeaders(origin) },

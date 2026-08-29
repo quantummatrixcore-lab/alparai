@@ -5,11 +5,21 @@ import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { logger } from "@/lib/utils/logger";
 
 export async function GET(request: NextRequest) {
-  return handleUnsubscribe(request);
+  try {
+    return handleUnsubscribe(request);
+  } catch (error) {
+    console.error("[GET_ERROR]", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  }
 }
 
 export async function POST(request: NextRequest) {
-  return handleUnsubscribe(request);
+  try {
+    return handleUnsubscribe(request);
+  } catch (error) {
+    console.error("[POST_ERROR]", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  }
 }
 
 async function handleUnsubscribe(request: NextRequest) {

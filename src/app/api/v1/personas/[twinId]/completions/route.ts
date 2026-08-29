@@ -54,7 +54,21 @@ export async function POST(req: Request, props: { params: Promise<{ twinId: stri
     const adminClient = createAdminClient();
     let isAuthorized = false;
     try {
-      type ApiKeyQuery = { from(t: string): { select(s: string): { eq(c: string, v: string): { single(): Promise<{ data: { id: string; status: string } | null; error: { code?: string } | null }> } } } };
+      type ApiKeyQuery = {
+        from(t: string): {
+          select(s: string): {
+            eq(
+              c: string,
+              v: string,
+            ): {
+              single(): Promise<{
+                data: { id: string; status: string } | null;
+                error: { code?: string } | null;
+              }>;
+            };
+          };
+        };
+      };
       const { data: keyData, error: keyError } = await (adminClient as unknown as ApiKeyQuery)
         .from("api_keys")
         .select("id, status")
@@ -212,13 +226,18 @@ export async function POST(req: Request, props: { params: Promise<{ twinId: stri
     // 9. Log Usage (Vekilharçlık Kaydı)
     try {
       type RpcMethod = (fn: string, args: unknown) => Promise<{ error: unknown }>;
-      const { error: rpcError } = await (adminClient.rpc as unknown as RpcMethod)("increment_persona_usage", {
-        p_twin_id: twinId,
-        p_tokens: totalTokens,
-      });
+      const { error: rpcError } = await (adminClient.rpc as unknown as RpcMethod)(
+        "increment_persona_usage",
+        {
+          p_twin_id: twinId,
+          p_tokens: totalTokens,
+        },
+      );
 
       if (rpcError) {
-        type InsertMethod = { from(t: string): { insert(d: unknown): Promise<{ error: unknown }> } };
+        type InsertMethod = {
+          from(t: string): { insert(d: unknown): Promise<{ error: unknown }> };
+        };
         await (adminClient as unknown as InsertMethod).from("persona_usage_stats").insert({
           twin_id: twinId,
           tokens_used: totalTokens,

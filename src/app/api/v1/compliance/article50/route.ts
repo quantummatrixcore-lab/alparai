@@ -19,80 +19,88 @@ const article50PostSchema = z.object({
 });
 
 export async function GET(request: Request) {
-  const hdrs = await headers();
-  const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
-  const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.api_general}:${ip}`);
+  try {
+    const hdrs = await headers();
+    const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.api_general}:${ip}`);
 
-  if (!rl.ok) {
-    return NextResponse.json({ error: "rate_limited", retryAfter: rl.retryAfter }, { status: 429 });
-  }
+    if (!rl.ok) {
+      return NextResponse.json(
+        { error: "rate_limited", retryAfter: rl.retryAfter },
+        { status: 429 },
+      );
+    }
 
-  const { searchParams } = new URL(request.url);
-  const providerId = searchParams.get("provider_id");
+    const { searchParams } = new URL(request.url);
+    const providerId = searchParams.get("provider_id");
 
-  const supabase = await createServerClient();
+    const supabase = await createServerClient();
 
-  if (providerId) {
-    const { data: statusData, error: statusError } = await supabase
+    if (providerId) {
+      const { data: statusData, error: statusError } = await supabase
+        .from("art50_transparency_status")
+        .select("*")
+        .eq("provider_id", providerId)
+        .maybeSingle();
+
+      if (statusError) {
+        logger.error(
+          "Art 50 GET status error",
+          undefined,
+          statusError instanceof Error ? statusError : undefined,
+        );
+        return NextResponse.json({ error: "internal_error" }, { status: 500 });
+      }
+
+      const { data: providerData } = await supabase
+        .from("ai_providers")
+        .select("id, name, slug, trust_score")
+        .eq("id", providerId)
+        .maybeSingle();
+
+      return NextResponse.json({
+        data: {
+          provider: providerData ?? null,
+          transparency_status: statusData ?? {
+            provider_id: providerId,
+            c2pa_provenance_enabled: false,
+            watermarking_technology: "none",
+            ai_disclosure_compliant: false,
+          },
+        },
+        meta: {
+          article: "EU AI Act Article 50 (Transparency Obligations)",
+          generated_at: new Date().toISOString(),
+        },
+      });
+    }
+
+    const { data: allStatuses, error: listError } = await supabase
       .from("art50_transparency_status")
-      .select("*")
-      .eq("provider_id", providerId)
-      .maybeSingle();
+      .select("*, ai_providers(name, slug)")
+      .order("created_at", { ascending: false });
 
-    if (statusError) {
+    if (listError) {
       logger.error(
-        "Art 50 GET status error",
+        "Art 50 GET list error",
         undefined,
-        statusError instanceof Error ? statusError : undefined,
+        listError instanceof Error ? listError : undefined,
       );
       return NextResponse.json({ error: "internal_error" }, { status: 500 });
     }
 
-    const { data: providerData } = await supabase
-      .from("ai_providers")
-      .select("id, name, slug, trust_score")
-      .eq("id", providerId)
-      .maybeSingle();
-
     return NextResponse.json({
-      data: {
-        provider: providerData ?? null,
-        transparency_status: statusData ?? {
-          provider_id: providerId,
-          c2pa_provenance_enabled: false,
-          watermarking_technology: "none",
-          ai_disclosure_compliant: false,
-        },
-      },
+      data: allStatuses ?? [],
       meta: {
+        count: (allStatuses ?? []).length,
         article: "EU AI Act Article 50 (Transparency Obligations)",
         generated_at: new Date().toISOString(),
       },
     });
+  } catch (error) {
+    console.error("[GET_ERROR]", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
-
-  const { data: allStatuses, error: listError } = await supabase
-    .from("art50_transparency_status")
-    .select("*, ai_providers(name, slug)")
-    .order("created_at", { ascending: false });
-
-  if (listError) {
-    logger.error(
-      "Art 50 GET list error",
-      undefined,
-      listError instanceof Error ? listError : undefined,
-    );
-    return NextResponse.json({ error: "internal_error" }, { status: 500 });
-  }
-
-  return NextResponse.json({
-    data: allStatuses ?? [],
-    meta: {
-      count: (allStatuses ?? []).length,
-      article: "EU AI Act Article 50 (Transparency Obligations)",
-      generated_at: new Date().toISOString(),
-    },
-  });
 }
 
 export async function POST(request: Request) {

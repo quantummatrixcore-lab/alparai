@@ -93,7 +93,10 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
   try {
     const { searchParams } = new URL(req.url);
     const providerRaw = searchParams.get("provider") || searchParams.get("p") || "alpar";
-    const providerKey = providerRaw.toLowerCase().trim().replace(/[^a-z0-9_-]/g, "");
+    const providerKey = providerRaw
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9_-]/g, "");
 
     const known = KNOWN_PROVIDERS[providerKey];
     const fallbackName =

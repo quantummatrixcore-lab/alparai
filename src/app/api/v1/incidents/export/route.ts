@@ -1,14 +1,65 @@
 import "server-only";
 import { NextResponse } from "next/server";
-import { createServerClient } from "@/lib/supabase/server";
+import { headers } from "next/headers";
+import { createAdminClient } from "@/lib/supabase/admin";
+import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
+import { timingSafeEqual } from "crypto";
+
+function safeCompare(a: string, b: string): boolean {
+  const aBuf = Buffer.from(a);
+  const bBuf = Buffer.from(b);
+  if (aBuf.length !== bBuf.length) {
+    return false;
+  }
+  return timingSafeEqual(aBuf, bBuf);
+}
 
 export async function GET(request: Request) {
   try {
+    const hdrs = await headers();
+    const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+
+    // B2B Export Rate limit check
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.api_enterprise}:${ip}`);
+    if (!rl.ok) {
+      return NextResponse.json(
+        { error: "rate_limited", retryAfter: rl.retryAfter },
+        { status: 429 },
+      );
+    }
+
+    const authHeader = hdrs.get("authorization");
+    const apiKey = hdrs.get("x-api-key");
+    const validKey = process.env.PUBLIC_API_KEY;
+
+    let isAuthenticated = false;
+
+    if (apiKey && validKey && safeCompare(apiKey, validKey)) {
+      isAuthenticated = true;
+    }
+
+    const supabase = createAdminClient();
+
+    if (!isAuthenticated && authHeader?.startsWith("Bearer ")) {
+      const token = authHeader.replace("Bearer ", "");
+      const {
+        data: { user },
+        error: authError,
+      } = await supabase.auth.getUser(token);
+      if (user && !authError) {
+        isAuthenticated = true;
+      }
+    }
+
+    if (!isAuthenticated) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const url = new URL(request.url);
     const format = url.searchParams.get("format") ?? "json";
-    const limit = Math.min(parseInt(url.searchParams.get("limit") ?? "500", 10), 1000);
+    // Defaults to 2700 incidents for database export as requested
+    const limit = Math.min(parseInt(url.searchParams.get("limit") ?? "2700", 10), 3000);
 
-    const supabase = await createServerClient();
     const { data: incidents, error } = await supabase
       .from("incidents")
       .select(
@@ -32,7 +83,7 @@ export async function GET(request: Request) {
     }
 
     if (format === "csv") {
-      const headers = "id,title,severity,category,eu_risk_category,created_at\n";
+      const csvHeaders = "id,title,severity,category,eu_risk_category,created_at\n";
       const rows = (incidents || [])
         .map((i) =>
           [
@@ -46,7 +97,7 @@ export async function GET(request: Request) {
         )
         .join("\n");
 
-      return new NextResponse(headers + rows, {
+      return new NextResponse(csvHeaders + rows, {
         status: 200,
         headers: {
           "Content-Type": "text/csv; charset=utf-8",

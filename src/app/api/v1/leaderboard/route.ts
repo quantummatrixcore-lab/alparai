@@ -56,13 +56,15 @@ export async function GET(request: Request) {
 
     const { data, error } = await supabase
       .from("ai_providers")
-      .select(
-        "id, slug, name, logo_url, is_verified, website_url, trust_score",
-      )
+      .select("id, slug, name, logo_url, is_verified, website_url, trust_score")
       .order("trust_score", { ascending: false });
 
     if (error) {
-      logger.error("API v1 leaderboard error", undefined, error instanceof Error ? error : undefined);
+      logger.error(
+        "API v1 leaderboard error",
+        undefined,
+        error instanceof Error ? error : undefined,
+      );
       return NextResponse.json(
         { error: "internal_error" },
         { status: 500, headers: corsHeaders(origin) },
@@ -128,7 +130,11 @@ export async function GET(request: Request) {
       },
     );
   } catch (err) {
-    logger.error("API v1 leaderboard unhandled error", undefined, err instanceof Error ? err : undefined);
+    logger.error(
+      "API v1 leaderboard unhandled error",
+      undefined,
+      err instanceof Error ? err : undefined,
+    );
     return NextResponse.json(
       { error: "internal_error" },
       { status: 500, headers: corsHeaders(origin) },

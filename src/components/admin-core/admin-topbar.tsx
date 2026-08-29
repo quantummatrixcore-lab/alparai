@@ -16,7 +16,7 @@ export function AdminTopbar() {
   const currentSection = segments[segments.length - 1] || t("overviewBreadcrumb");
 
   return (
-    <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b border-[#d0d7de] bg-[#f6f8fa] px-6 select-none dark:border-[#30363d] dark:bg-[#161b22]">
+    <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b border-[#d0d7de] bg-[#f6f8fa] pr-6 pl-14 select-none md:px-6 dark:border-[#30363d] dark:bg-[#161b22]">
       {/* Left: Breadcrumbs & Path */}
       <div className="flex items-center gap-2 font-mono text-xs">
         <span className="font-medium text-[#656d76] dark:text-[#8b949e]">ADMIN-OS</span>

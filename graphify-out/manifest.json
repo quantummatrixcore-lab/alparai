@@ -3285,8 +3285,8 @@
     "semantic_hash": ""
   },
   "src/app/layout.tsx": {
-    "mtime": 1787872877.3507886,
-    "ast_hash": "473a6a36c98c1ce60f467a40dfaf1773",
+    "mtime": 1787973756.552604,
+    "ast_hash": "a4521a66dd97dcbab615856857005e31",
     "semantic_hash": ""
   },
   "src/app/llms-full.txt/route.ts": {
@@ -9230,48 +9230,48 @@
     "semantic_hash": ""
   },
   "public/brand-assets/icon-black.svg": {
-    "mtime": 1786957247.6022673,
-    "ast_hash": "6594ce82c0cf81b78a4a08ec89009aa5",
+    "mtime": 1787973369.7052298,
+    "ast_hash": "913c08cdd190caea892efe1abfd91693",
     "semantic_hash": ""
   },
   "public/brand-assets/icon-primary.svg": {
-    "mtime": 1786957247.6022673,
-    "ast_hash": "ef84726a8ae60cc42f51ad1ff60e7321",
+    "mtime": 1787973369.7039318,
+    "ast_hash": "bbbbdc24f757a209017233a6edd95d73",
     "semantic_hash": ""
   },
   "public/brand-assets/icon-white.svg": {
-    "mtime": 1786957247.6022673,
-    "ast_hash": "fe9a4ac2a387ed655c785467928b13f4",
+    "mtime": 1787973369.7052298,
+    "ast_hash": "825be731d9e7e740943e84bc2911e0ab",
     "semantic_hash": ""
   },
   "public/brand-assets/logo-dark-theme.svg": {
-    "mtime": 1786957247.6022673,
-    "ast_hash": "d8d0e4498124c539d8c301181898b583",
+    "mtime": 1787973369.706422,
+    "ast_hash": "75a77ec3ffd5f15e456e3566ed984782",
     "semantic_hash": ""
   },
   "public/brand-assets/logo-light-theme.svg": {
-    "mtime": 1786957247.6022673,
-    "ast_hash": "eadae3fbbcf03b4faa09a7983ec50634",
+    "mtime": 1787973369.706422,
+    "ast_hash": "8ffcd18959d397d4e9fd13c9543bfa26",
     "semantic_hash": ""
   },
   "public/brand-assets/logo-monochrome-black.svg": {
-    "mtime": 1786957247.6022673,
-    "ast_hash": "76869040a92758060da0da0da3f48ecc",
+    "mtime": 1787973369.7074275,
+    "ast_hash": "0255a6b2a33d44911c4b67bcdb60d240",
     "semantic_hash": ""
   },
   "public/brand-assets/logo-monochrome-white.svg": {
-    "mtime": 1786957247.6055129,
-    "ast_hash": "b1bfd66192973f4caeeb156a26bd2775",
+    "mtime": 1787973369.7074275,
+    "ast_hash": "846c2750299dd8172abf1804bafd148b",
     "semantic_hash": ""
   },
   "public/favicon.svg": {
-    "mtime": 1787867048.5698035,
-    "ast_hash": "b2bfe9c171cb4ab99d17fa707cc69062",
+    "mtime": 1787973369.7039318,
+    "ast_hash": "bbbbdc24f757a209017233a6edd95d73",
     "semantic_hash": ""
   },
   "public/logo.svg": {
-    "mtime": 1786957247.6314156,
-    "ast_hash": "d8d0e4498124c539d8c301181898b583",
+    "mtime": 1787973369.7039318,
+    "ast_hash": "75a77ec3ffd5f15e456e3566ed984782",
     "semantic_hash": ""
   },
   "public/logos/providers/ai21.svg": {
@@ -10405,18 +10405,18 @@
     "semantic_hash": ""
   },
   "public/icons/android-chrome-192x192.png": {
-    "mtime": 1787867048.608,
-    "ast_hash": "71f7bc6866e8f220843158733c7bebe3",
+    "mtime": 1787973406.416,
+    "ast_hash": "b9fa45b0942fda1f40d85ac9a45c9520",
     "semantic_hash": ""
   },
   "public/icons/android-chrome-512x512.png": {
-    "mtime": 1787867048.63,
-    "ast_hash": "7180503f9f2878032452d18372d3bea5",
+    "mtime": 1787973406.433,
+    "ast_hash": "c8ed7272cbe50d479c1a9286e84d3fb4",
     "semantic_hash": ""
   },
   "public/icons/apple-touch-icon.png": {
-    "mtime": 1787867048.639,
-    "ast_hash": "556d813dd242379ac2ad2834264cdcfc",
+    "mtime": 1787973406.41,
+    "ast_hash": "3d0780331b1078a8d54978ca044f87fe",
     "semantic_hash": ""
   },
   "public/linkedin_banner_1128x191.png": {
@@ -10435,8 +10435,8 @@
     "semantic_hash": ""
   },
   "public/logo.png": {
-    "mtime": 1787900851.26,
-    "ast_hash": "f08c230c297ebf93a32f1cf9068d95d1",
+    "mtime": 1787973406.482,
+    "ast_hash": "66ffc730e1874f3153e69578c72fbdc7",
     "semantic_hash": ""
   },
   "public/og-banner.png": {
@@ -11175,8 +11175,8 @@
     "semantic_hash": ""
   },
   "src/components/admin-core/admin-sidebar.tsx": {
-    "mtime": 1787971140.755782,
-    "ast_hash": "a109d38646bac42fce55764393def3bf",
+    "mtime": 1787973383.525984,
+    "ast_hash": "43d5f82198fa8110bb8e13ed4e605448",
     "semantic_hash": ""
   },
   "src/components/admin-core/admin-topbar.tsx": {

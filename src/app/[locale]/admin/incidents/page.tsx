@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import {
   ShieldAlert,
   Search,
@@ -26,6 +26,8 @@ import {
 } from "lucide-react";
 import { StatusBadge } from "@/components/admin-core/status-badge";
 import { mockIncidents, mockTelemetry } from "@/lib/admin-mock";
+import { supabase } from "@/lib/supabase/client";
+import { useTranslations } from "next-intl";
 import {
   type IncidentRecord,
   SeverityLevel,
@@ -35,7 +37,9 @@ import {
 } from "@/types/admin";
 
 export default function IncidentsPage() {
+  const t = useTranslations("admin.sidebar");
   const [incidents, setIncidents] = useState<IncidentRecord[]>(mockIncidents);
+  const [loadingDb, setLoadingDb] = useState(false);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("ALL");
   const [severityFilter, setSeverityFilter] = useState<string>("ALL");
@@ -47,6 +51,47 @@ export default function IncidentsPage() {
   const [copiedHash, setCopiedHash] = useState(false);
   const [showExportModal, setShowExportModal] = useState(false);
   const [actionNotice, setActionNotice] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchRealIncidents() {
+      try {
+        setLoadingDb(true);
+        const { data, error } = await supabase
+          .from("incidents")
+          .select("id, title, description, status, severity, created_at, ai_providers(name)")
+          .order("created_at", { ascending: false })
+          .limit(50);
+
+        if (!error && data && data.length > 0) {
+          const mapped: IncidentRecord[] = data.map((row: any) => ({
+            id: row.id,
+            trackingNumber: `ALP-2026-${row.id.slice(0, 4)}`,
+            title: row.title || "Untitled AI Incident",
+            modelTarget: row.ai_providers?.name || "Autonomous AI System",
+            provider: row.ai_providers?.name || "Global AI Lab",
+            severity: (row.severity?.toUpperCase() || "HIGH") as any,
+            status: (row.status?.toUpperCase() || "UNDER_TRIAGE") as any,
+            source: "REGULATORY_FILING",
+            euAiActTag: "HIGH_RISK_ART6",
+            potentialFineEur: 15000000,
+            slaRemainingHours: 48.0,
+            evidenceHash: row.id.replace(/-/g, "") + "0000000000000000",
+            createdAt: row.created_at || new Date().toISOString(),
+            humanVerified: true,
+            affectedIndustry: "Enterprise & Tech",
+            summary: row.description || row.title || "Incident details undergoing triage.",
+          }));
+          setIncidents(mapped);
+          setSelectedIncident(mapped[0] || null);
+        }
+      } catch (err) {
+        console.error("Failed to load real incidents from Supabase:", err);
+      } finally {
+        setLoadingDb(false);
+      }
+    }
+    fetchRealIncidents();
+  }, []);
 
   // Multi-facet filtering
   const filtered = useMemo(() => {

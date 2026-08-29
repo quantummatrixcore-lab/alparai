@@ -1,50 +1,15 @@
 "use client";
 
 import React, { useState } from "react";
-import { Users, Shield, UserCheck, Lock, Search, Plus, Filter } from "lucide-react";
+import { Users, Shield, UserCheck, Lock, Search, Plus, Loader2 } from "lucide-react";
 import { MetricCard } from "@/components/admin-core/metric-card";
+import { useAdminUsers } from "@/hooks/admin/use-admin-users";
+import { useTranslations } from "next-intl";
 
 export default function UsersPage() {
+  const t = useTranslations("admin.sidebar");
   const [search, setSearch] = useState("");
-
-  const users = [
-    {
-      id: "USR-01",
-      name: "Dr. Michael Chen",
-      email: "m.chen@oxford-ethics.ac.uk",
-      role: "AKADEMİK HAKEM",
-      status: "VERIFIED",
-      registered: "2026-06-10",
-      actionsCount: 42,
-    },
-    {
-      id: "USR-02",
-      name: "Sophia Kowalski",
-      email: "s.kowalski@allianz-ai-risk.de",
-      role: "KURUMSAL CISO",
-      status: "VERIFIED",
-      registered: "2026-07-01",
-      actionsCount: 180,
-    },
-    {
-      id: "USR-03",
-      name: "Zero-Knowledge Hunter #42",
-      email: "encrypted_vault_42@sec.alparai.com",
-      role: "DOĞRULANMIŞ İHBARCI",
-      status: "ANONYMOUS_SEALED",
-      registered: "2026-08-15",
-      actionsCount: 8,
-    },
-    {
-      id: "USR-04",
-      name: "Admin Operations Desk",
-      email: "root@alparai.com",
-      role: "SUPER_ADMIN",
-      status: "ACTIVE_2FA",
-      registered: "2026-05-01",
-      actionsCount: 1420,
-    },
-  ];
+  const { users, totalCount, loading, error } = useAdminUsers({ search });
 
   return (
     <div className="space-y-6">
@@ -78,22 +43,21 @@ export default function UsersPage() {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-4">
         <MetricCard
           label="Toplam Kayıtlı Kullanıcı"
-          value="4.820"
-          subtext="Araştırmacı, CISO, Hakem & İhbarcı"
-          change="+%14.2"
+          value={totalCount.toString()}
+          subtext="Canlı Supabase Veritabanı"
           changeType="positive"
           icon={Users}
         />
         <MetricCard
           label="Anonim İhbarcı Kasası"
-          value="498 Kişi"
+          value="Korumalı"
           subtext="Sıfır-Bilgi Kriptografik Kimlikler"
           icon={Lock}
         />
         <MetricCard
-          label="Kurumsal Hesaplar"
-          value="18 Şirket"
-          subtext="Allianz, Swiss Re, JPMorgan, Nordic"
+          label="Yetkili Roller"
+          value={users.filter(u => u.role === "admin" || u.role === "moderator" || u.role === "expert").length.toString()}
+          subtext="Yönetici, Moderatör & Uzman"
           icon={UserCheck}
         />
         <MetricCard
@@ -118,54 +82,73 @@ export default function UsersPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="İsim veya e-posta ara..."
-              className="w-full rounded border border-[#d0d7de] bg-zinc-950 py-1 pr-2 pl-8 text-xs text-zinc-200 dark:border-[#30363d]"
+              className="w-full rounded border border-[#d0d7de] bg-[#f6f8fa] py-1 pr-2 pl-8 text-xs text-[#1f2328] focus:outline-none dark:border-[#30363d] dark:bg-[#0d1117] dark:text-[#f0f6fc]"
             />
           </div>
         </div>
 
-        <div className="overflow-x-auto">
-          <table className="w-full text-left">
-            <thead>
-              <tr className="border-b border-[#d0d7de] text-zinc-400 dark:border-[#30363d] dark:text-[#8b949e] dark:text-[#656d76]">
-                <th className="pb-2">KOD</th>
-                <th className="pb-2">KULLANICI ADI</th>
-                <th className="pb-2">E-POSTA / KİMLİK</th>
-                <th className="pb-2">ROL</th>
-                <th className="pb-2">İŞLEM SAYISI</th>
-                <th className="pb-2 text-right">DURUM</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-[#d0d7de] dark:divide-[#30363d]">
-              {users.map((u) => (
-                <tr
-                  key={u.id}
-                  className="transition-colors hover:bg-[#f6f8fa] dark:hover:bg-[#21262d]"
-                >
-                  <td className="py-3 font-bold text-zinc-200">{u.id}</td>
-                  <td className="py-3 font-semibold text-[#1f2328] dark:text-[#f0f6fc]">
-                    {u.name}
-                  </td>
-                  <td className="py-3 text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
-                    {u.email}
-                  </td>
-                  <td className="py-3">
-                    <span className="rounded border border-zinc-700 bg-zinc-800 px-2 py-0.5 text-[10px] font-bold text-cyan-300">
-                      {u.role}
-                    </span>
-                  </td>
-                  <td className="py-3 font-semibold text-[#656d76] dark:text-[#c9d1d9]">
-                    {u.actionsCount} İşlem
-                  </td>
-                  <td className="py-3 text-right">
-                    <span className="rounded border border-emerald-800 bg-emerald-950/60 px-2 py-0.5 text-[10px] font-bold text-emerald-300">
-                      {u.status}
-                    </span>
-                  </td>
+        {loading ? (
+          <div className="flex h-32 items-center justify-center gap-2 text-[#656d76] dark:text-[#8b949e]">
+            <Loader2 className="h-5 w-5 animate-spin text-cyan-500" />
+            <span>Supabase veritabanına bağlanılıyor...</span>
+          </div>
+        ) : error ? (
+          <div className="rounded border border-red-500/30 bg-red-500/10 p-4 text-red-600 dark:text-red-400">
+            Kullanıcılar yüklenirken hata oluştu: {error.message}
+          </div>
+        ) : users.length === 0 ? (
+          <div className="flex h-32 flex-col items-center justify-center text-center text-[#656d76] dark:text-[#8b949e]">
+            <p>Eşleşen kullanıcı kaydı bulunamadı.</p>
+          </div>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full text-left">
+              <thead>
+                <tr className="border-b border-[#d0d7de] text-[#656d76] dark:border-[#30363d] dark:text-[#8b949e]">
+                  <th className="pb-2">KOD</th>
+                  <th className="pb-2">KULLANICI ADI</th>
+                  <th className="pb-2">E-POSTA</th>
+                  <th className="pb-2">ROL</th>
+                  <th className="pb-2">KAYIT TARİHİ</th>
+                  <th className="pb-2 text-right">DURUM</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody className="divide-y divide-[#d0d7de] dark:divide-[#30363d]">
+                {users.map((u) => (
+                  <tr
+                    key={u.id}
+                    className="transition-colors hover:bg-[#f6f8fa] dark:hover:bg-[#21262d]"
+                  >
+                    <td className="py-3 font-bold text-[#1f2328] dark:text-[#f0f6fc]">{u.id.slice(0, 8)}...</td>
+                    <td className="py-3 font-semibold text-[#1f2328] dark:text-[#f0f6fc]">
+                      {u.full_name || "İsimsiz Kullanıcı"}
+                    </td>
+                    <td className="py-3 text-[#656d76] dark:text-[#8b949e]">
+                      {u.email}
+                    </td>
+                    <td className="py-3">
+                      <span className="rounded border border-cyan-800/40 bg-cyan-950/40 px-2 py-0.5 text-[10px] font-bold text-cyan-600 dark:text-cyan-300">
+                        {u.role.toUpperCase()}
+                      </span>
+                    </td>
+                    <td className="py-3 text-[#656d76] dark:text-[#8b949e]">
+                      {new Date(u.created_at).toLocaleDateString("tr-TR")}
+                    </td>
+                    <td className="py-3 text-right">
+                      <span className={`rounded border px-2 py-0.5 text-[10px] font-bold ${
+                        u.is_banned
+                          ? "border-red-800 bg-red-950/40 text-red-400"
+                          : "border-emerald-800 bg-emerald-950/40 text-emerald-400"
+                      }`}>
+                        {u.is_banned ? "YASAKLI" : "AKTİF"}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </div>
   );

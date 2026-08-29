@@ -7,13 +7,13 @@ import { ThemeToggle } from "./theme-toggle";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
 
 export function AdminTopbar() {
-  const t = useTranslations("admin");
+  const t = useTranslations("admin.sidebar");
 
   const pathname = usePathname();
 
   // Extract breadcrumbs from path
   const segments = pathname?.split("/").filter(Boolean) || [];
-  const currentSection = segments[segments.length - 1] || "Genel Bakış";
+  const currentSection = segments[segments.length - 1] || t("overviewBreadcrumb");
 
   return (
     <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b border-[#d0d7de] bg-[#f6f8fa] px-6 select-none dark:border-[#30363d] dark:bg-[#161b22]">
@@ -31,7 +31,7 @@ export function AdminTopbar() {
         <Search className="pointer-events-none absolute top-1/2 left-3 h-3.5 w-3.5 -translate-y-1/2 text-[#656d76] dark:text-[#8b949e]" />
         <input
           type="text"
-          placeholder="Olay ID, Model veya Regülasyon Ara (Cmd+K)..."
+          placeholder={t("searchPlaceholder")}
           className="w-full rounded-md border border-[#d0d7de] bg-[#ffffff] py-1.5 pr-10 pl-9 font-mono text-xs text-[#1f2328] placeholder-[#656d76] transition-all focus:border-[#0969da] focus:ring-1 focus:ring-[#0969da] focus:outline-none dark:border-[#30363d] dark:bg-[#0d1117] dark:text-[#f0f6fc] dark:placeholder-[#8b949e] dark:focus:border-[#58a6ff] dark:focus:ring-[#58a6ff]"
         />
         <span className="pointer-events-none absolute top-1/2 right-2.5 -translate-y-1/2 rounded border border-[#d0d7de] bg-[#f6f8fa] px-1.5 py-0.5 font-mono text-[9.5px] text-[#656d76] dark:border-[#30363d] dark:bg-[#21262d] dark:text-[#8b949e]">
@@ -44,14 +44,14 @@ export function AdminTopbar() {
         {/* Ingestion Velocity */}
         <div className="hidden items-center gap-1.5 rounded-md border border-[#d0d7de] bg-[#ffffff] px-2.5 py-1 font-mono text-[11px] text-[#656d76] lg:flex dark:border-[#30363d] dark:bg-[#0d1117] dark:text-[#8b949e]">
           <Database className="h-3 w-3 text-[#0969da] dark:text-[#58a6ff]" />
-          <span className="text-[#1f2328] dark:text-[#c9d1d9]">2.763 Vaka</span>
-          <span className="font-semibold text-[#1a7f37] dark:text-[#3fb950]">(+24/gün)</span>
+          <span className="text-[#1f2328] dark:text-[#c9d1d9]">2.763 {t("activeIncidents")}</span>
+          <span className="font-semibold text-[#1a7f37] dark:text-[#3fb950]">{t("dailyRate")}</span>
         </div>
 
         {/* EU AI Act SLA Warning Pill */}
         <div className="flex items-center gap-1.5 rounded-md border border-[#d4a72c] bg-[#fff8c5] px-2.5 py-1 font-mono text-[11px] text-[#9a6700] dark:border-[#bb8009] dark:bg-[#382800] dark:text-[#f0b72f]">
           <AlertTriangle className="h-3 w-3 text-[#9a6700] dark:text-[#f0b72f]" />
-          <span>EU SLA: 3 Kritik</span>
+          <span>{t("slaCritical")}</span>
         </div>
 
         {/* Language Switcher */}

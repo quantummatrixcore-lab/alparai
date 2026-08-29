@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { Logo } from "@/components/layout/logo";
 import {
   LayoutDashboard,
@@ -54,6 +55,7 @@ interface NavCluster {
 }
 
 export function AdminSidebar() {
+  const t = useTranslations("admin.sidebar");
   const pathname = usePathname();
   const params = useParams();
   const locale = (params?.locale as string) || "en";
@@ -70,50 +72,50 @@ export function AdminSidebar() {
   const clusters: NavCluster[] = [
     {
       id: "cluster-1",
-      title: "1. HESAP VEREBİLİRLİK & HUKUK",
-      shortTitle: "HUKUK",
+      title: t("cluster1Title"),
+      shortTitle: t("cluster1Short"),
       items: [
         {
-          label: "Genel Komuta Masası",
+          label: t("dashboard"),
           href: `/${locale}/admin`,
           icon: LayoutDashboard,
         },
         {
-          label: "Olay Masası (Triage)",
+          label: t("incidents"),
           href: `/${locale}/admin/incidents`,
           icon: ShieldAlert,
           badge: "2.763",
           badgeType: "count",
         },
         {
-          label: "Çoklu Model Denetimi",
+          label: t("crossAudit"),
           href: `/${locale}/admin/cross-audit`,
           icon: Scale,
         },
         {
-          label: "EU AI Act Uyum Radarı",
+          label: t("compliance"),
           href: `/${locale}/admin/compliance`,
           icon: Gavel,
           badge: "72h SLA",
           badgeType: "alert",
         },
         {
-          label: "Küresel Hukuk Takipçisi",
+          label: t("legalTracker"),
           href: `/${locale}/admin/legal-tracker`,
           icon: Globe,
         },
         {
-          label: "Streisand Hukuk Kalkanı",
+          label: t("transparency"),
           href: `/${locale}/admin/transparency`,
           icon: ShieldCheck,
         },
         {
-          label: "Red-Team Bounties",
+          label: t("challenges"),
           href: `/${locale}/admin/challenges`,
           icon: Award,
         },
         {
-          label: "İçerik Moderasyonu",
+          label: t("moderation"),
           href: `/${locale}/admin/moderation`,
           icon: Filter,
         },
@@ -121,28 +123,28 @@ export function AdminSidebar() {
     },
     {
       id: "cluster-2",
-      title: "2. BÜYÜME & İLETİŞİM",
-      shortTitle: "BÜYÜME",
+      title: t("cluster2Title"),
+      shortTitle: t("cluster2Short"),
       items: [
         {
-          label: "Sosyal Medya Stüdyosu",
+          label: t("social"),
           href: `/${locale}/admin/social`,
           icon: Share2,
           badge: "8 Kanal",
           badgeType: "default",
         },
         {
-          label: "Topluluk İkilemleri (/dilemmas)",
+          label: t("dilemmas"),
           href: `/${locale}/admin/dilemmas`,
           icon: Vote,
         },
         {
-          label: "Kurumsal Mail Hub",
+          label: t("mail"),
           href: `/${locale}/admin/mail`,
           icon: Mail,
         },
         {
-          label: "SEO, CEO & Ziyaretçi",
+          label: t("seo"),
           href: `/${locale}/admin/seo`,
           icon: Search,
         },
@@ -150,30 +152,30 @@ export function AdminSidebar() {
     },
     {
       id: "cluster-3",
-      title: "3. SERMAYE & STRATEJİ",
-      shortTitle: "SERMAYE",
+      title: t("cluster3Title"),
+      shortTitle: t("cluster3Short"),
       items: [
         {
-          label: "Strateji, SWOT & Değerleme",
+          label: t("strategy"),
           href: `/${locale}/admin/strategy`,
           icon: Target,
           badge: "$48M+",
           badgeType: "default",
         },
         {
-          label: "VC Yatırımcı CRM",
+          label: t("investors"),
           href: `/${locale}/admin/investors`,
           icon: Building2,
         },
         {
-          label: "Hibe Otopilotu (TÜBİTAK/YC)",
+          label: t("grants"),
           href: `/${locale}/admin/grants`,
           icon: Landmark,
           badge: "18.7M₺",
           badgeType: "default",
         },
         {
-          label: "Stripe Finans Masası",
+          label: t("finance"),
           href: `/${locale}/admin/finance`,
           icon: CreditCard,
         },
@@ -181,33 +183,33 @@ export function AdminSidebar() {
     },
     {
       id: "cluster-4",
-      title: "4. EKOSİSTEM & TEKNOLOJİ",
-      shortTitle: "TEKNO",
+      title: t("cluster4Title"),
+      shortTitle: t("cluster4Short"),
       items: [
         {
-          label: "B2B API & Veri Satışı",
+          label: t("apiKeys"),
           href: `/${locale}/admin/api-keys`,
           icon: KeyRound,
           badge: "$94k MRR",
           badgeType: "default",
         },
         {
-          label: "Veri Kalkanı & Tarayıcılar",
+          label: t("dataMoat"),
           href: `/${locale}/admin/data-moat`,
           icon: Database,
         },
         {
-          label: "AI Sinyal & Kriz Radarı",
+          label: t("aiSignals"),
           href: `/${locale}/admin/ai-signals`,
           icon: Radio,
         },
         {
-          label: "İnovasyon & Ar-Ge Yol Haritası",
+          label: t("innovations"),
           href: `/${locale}/admin/innovations`,
           icon: Sparkles,
         },
         {
-          label: "Kod Hijyeni & Mimari",
+          label: t("systemHealth"),
           href: `/${locale}/admin/system-health`,
           icon: Cpu,
         },
@@ -215,31 +217,31 @@ export function AdminSidebar() {
     },
     {
       id: "cluster-5",
-      title: "5. AKADEMİ & YÖNETİŞİM",
-      shortTitle: "YÖNETİŞİM",
+      title: t("cluster5Title"),
+      shortTitle: t("cluster5Short"),
       items: [
         {
-          label: "Kullanıcılar & İhbarcılar",
+          label: t("users"),
           href: `/${locale}/admin/users`,
           icon: Users,
         },
         {
-          label: "Uzman & Bilirkişi Ağı",
+          label: t("experts"),
           href: `/${locale}/admin/experts`,
           icon: UserCheck,
         },
         {
-          label: "Üniversite Hakem Kurulu",
+          label: t("academy"),
           href: `/${locale}/admin/academy`,
           icon: GraduationCap,
         },
         {
-          label: "Sıfır-Bilgi PII Kasası",
+          label: t("vault"),
           href: `/${locale}/admin/vault`,
           icon: Lock,
         },
         {
-          label: "Sistem & Rol Ayarları",
+          label: t("settings"),
           href: `/${locale}/admin/settings`,
           icon: Sliders,
         },
@@ -280,7 +282,7 @@ export function AdminSidebar() {
                   ALPAR <span className="text-cyan-600 dark:text-cyan-400">AI</span>
                 </span>
                 <span className="truncate font-mono text-[9px] font-semibold tracking-wider text-[#656d76] uppercase dark:text-[#8b949e]">
-                  Executive OS v3.5
+                  {t("executiveOS")}
                 </span>
               </div>
             </Link>
@@ -288,7 +290,7 @@ export function AdminSidebar() {
               type="button"
               onClick={() => setIsCollapsed(true)}
               className="rounded-md p-1 text-[#656d76] transition-colors hover:bg-[#eaeef2] hover:text-[#1f2328] dark:text-[#8b949e] dark:hover:bg-[#21262d] dark:hover:text-[#f0f6fc]"
-              title="Menüyü Daralt"
+              title={t("collapseMenu")}
             >
               <PanelLeftClose className="h-4 w-4" />
             </button>
@@ -299,7 +301,7 @@ export function AdminSidebar() {
               type="button"
               onClick={() => setIsCollapsed(false)}
               className="flex h-8 w-8 items-center justify-center rounded-md border border-[#d0d7de] bg-[#ffffff] p-1 text-[#656d76] transition-all hover:bg-[#f6f8fa] hover:text-[#1f2328] dark:border-[#30363d] dark:bg-[#161b22] dark:text-[#8b949e] dark:hover:bg-[#21262d] dark:hover:text-[#f0f6fc]"
-              title="Menüyü Genişlet"
+              title={t("expandMenu")}
             >
               <Logo size="sm" />
             </button>

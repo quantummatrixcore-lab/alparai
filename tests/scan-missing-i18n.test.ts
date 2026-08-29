@@ -33,11 +33,10 @@ describe("Admin i18n Translation Key Audit", () => {
     expect(missingInEn).toEqual([]);
   });
 
-  it("scans src/components/admin/sidebar.tsx for missing translation keys", () => {
-    const sidebarContent = fs.readFileSync(
-      path.join(rootDir, "src", "components", "admin", "sidebar.tsx"),
-      "utf-8",
-    );
+  it("scans admin-sidebar.tsx for translation keys if applicable", () => {
+    const sidebarPath = path.join(rootDir, "src", "components", "admin-core", "admin-sidebar.tsx");
+    expect(fs.existsSync(sidebarPath)).toBe(true);
+    const sidebarContent = fs.readFileSync(sidebarPath, "utf-8");
     const tMatches = [...sidebarContent.matchAll(/t\(["']([^"']+)["']\)/g)].map((m) => m[1]);
 
     const missing: string[] = [];

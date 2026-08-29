@@ -50,14 +50,14 @@
     "hash": "5c4b39c1421f9f7c6e5350223b85460175c25e0cab11a97657fbab6c6f3ef9e6"
   },
   "D:\\01_SaaS_Products\\Alparai\\messages\\en.json": {
-    "size": 342540,
-    "mtime_ns": 1787914573546433100,
-    "hash": "46d9c29f4a24e462fa71b069bc495c83576cb82f306e752888ed50604149d8a0"
+    "size": 343306,
+    "mtime_ns": 1787971135198429700,
+    "hash": "5a551e77fb716f451bbb74f52e358c1e7dccc95bc57b619e4c575bc100495a9f"
   },
   "D:\\01_SaaS_Products\\Alparai\\messages\\tr.json": {
-    "size": 371740,
-    "mtime_ns": 1787914573554217000,
-    "hash": "3dadce92c77f5043282f4650b18b7a9a5322db35615e3f99c8d8fbe6e5de887d"
+    "size": 372558,
+    "mtime_ns": 1787971135297684500,
+    "hash": "0d3ac2dd63d59627aa75f6afa2ff052df0ba7fb1e229cf082dad7cc788d0eddb"
   },
   "D:\\01_SaaS_Products\\Alparai\\ops\\create-shortcut.ps1": {
     "size": 419,
@@ -190,9 +190,9 @@
     "hash": "05d4e6fd69d408741e5897539dbcedbb4ff49b5d15eb63f04a2e7021747561b7"
   },
   "D:\\01_SaaS_Products\\Alparai\\package.json": {
-    "size": 5812,
-    "mtime_ns": 1787901790167870700,
-    "hash": "41d1584ac77089fc34b7a9730e8b688ae7461ccb34008fd4304671e7ae7b1d75"
+    "size": 5673,
+    "mtime_ns": 1787971135305156600,
+    "hash": "8c712cae8ab8d215eb3467f9810f7a8ae1a0dd2792aa978aaf7daaef1b8f9d34"
   },
   "D:\\01_SaaS_Products\\Alparai\\public\\data\\k-benchmark-results.json": {
     "size": 8720,

@@ -29,7 +29,7 @@ describe("360 Degree Admin Panel Integrity Audit", () => {
     }
 
     const pageFiles = getAllPageFiles(adminAppDir);
-    expect(pageFiles.length).toBeGreaterThan(30);
+    expect(pageFiles.length).toBeGreaterThanOrEqual(18);
 
     for (const pageFile of pageFiles) {
       const content = fs.readFileSync(pageFile, "utf-8");
@@ -38,30 +38,26 @@ describe("360 Degree Admin Panel Integrity Audit", () => {
   });
 
   it("verifies sidebar navigation links map to existing page files", () => {
-    const sidebarPath = path.join(rootDir, "src", "components", "admin", "sidebar.tsx");
+    const sidebarPath = path.join(rootDir, "src", "components", "admin-core", "admin-sidebar.tsx");
     const sidebarContent = fs.readFileSync(sidebarPath, "utf-8");
 
-    // Extract all hrefs starting with /admin
-    const hrefMatches = [...sidebarContent.matchAll(/href:\s*["'](\/admin[^"']*)["']/g)];
+    // Extract all href template strings starting with `/${locale}/admin`
+    const hrefMatches = [...sidebarContent.matchAll(/href:\s*`\/\$\{locale\}\/admin([^`]*)`/g)];
     const hrefs = hrefMatches.map((m) => m[1]);
 
-    expect(hrefs.length).toBeGreaterThan(15);
+    expect(hrefs.length).toBeGreaterThanOrEqual(20);
 
     const missingRoutes: string[] = [];
 
-    for (const href of hrefs) {
-      if (!href) continue;
-      // Strip query parameters or trailing slashes
-      const routePath = href.split("?")[0]!;
-      const relativeRoute = routePath.replace(/^\/admin/, "");
-
-      let targetFile = path.join(adminAppDir, relativeRoute, "page.tsx");
-      if (relativeRoute === "" || relativeRoute === "/") {
+    for (const relativeRoute of hrefs) {
+      const routeClean = (relativeRoute || "").split("?")[0]!;
+      let targetFile = path.join(adminAppDir, routeClean, "page.tsx");
+      if (routeClean === "" || routeClean === "/") {
         targetFile = path.join(adminAppDir, "page.tsx");
       }
 
       if (!fs.existsSync(targetFile)) {
-        missingRoutes.push(href);
+        missingRoutes.push(relativeRoute);
       }
     }
 

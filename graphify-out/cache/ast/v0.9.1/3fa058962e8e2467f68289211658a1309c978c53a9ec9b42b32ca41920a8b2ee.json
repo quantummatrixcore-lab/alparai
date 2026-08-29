@@ -1,0 +1,63 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_alparai_supreme_startup_md",
+      "label": "ALPARAI_SUPREME_STARTUP.md",
+      "file_type": "document",
+      "source_file": "ALPARAI_SUPREME_STARTUP.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_alparai_supreme_startup_alparai_supreme_otopi\u0307lot_ba\u015flatma_protokol\u00fc",
+      "label": "\ud83e\udd85 ALPARAI SUPREME OTOP\u0130LOT BA\u015eLATMA PROTOKOL\u00dc",
+      "file_type": "document",
+      "source_file": "ALPARAI_SUPREME_STARTUP.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_alparai_supreme_startup_mevcut_durum_ve_yapilacak_i\u0307\u015fler",
+      "label": "\ud83d\udccb MEVCUT DURUM VE YAPILACAK \u0130\u015eLER",
+      "file_type": "document",
+      "source_file": "ALPARAI_SUPREME_STARTUP.md",
+      "source_location": "L9"
+    },
+    {
+      "id": "d_01_saas_products_alparai_alparai_supreme_startup_hemen_\u00e7ali\u015ftirilacak_tek_komut_tali\u0307mat",
+      "label": "\u26a1 HEMEN \u00c7ALI\u015eTIRILACAK TEK KOMUT / TAL\u0130MAT:",
+      "file_type": "document",
+      "source_file": "ALPARAI_SUPREME_STARTUP.md",
+      "source_location": "L17"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_alparai_supreme_startup_md",
+      "target": "d_01_saas_products_alparai_alparai_supreme_startup_alparai_supreme_otopi\u0307lot_ba\u015flatma_protokol\u00fc",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ALPARAI_SUPREME_STARTUP.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_alparai_supreme_startup_alparai_supreme_otopi\u0307lot_ba\u015flatma_protokol\u00fc",
+      "target": "d_01_saas_products_alparai_alparai_supreme_startup_mevcut_durum_ve_yapilacak_i\u0307\u015fler",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ALPARAI_SUPREME_STARTUP.md",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_alparai_supreme_startup_alparai_supreme_otopi\u0307lot_ba\u015flatma_protokol\u00fc",
+      "target": "d_01_saas_products_alparai_alparai_supreme_startup_hemen_\u00e7ali\u015ftirilacak_tek_komut_tali\u0307mat",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ALPARAI_SUPREME_STARTUP.md",
+      "source_location": "L17",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

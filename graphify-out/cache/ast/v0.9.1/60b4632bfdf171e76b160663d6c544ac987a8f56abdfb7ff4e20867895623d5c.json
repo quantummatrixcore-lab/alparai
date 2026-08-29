@@ -1,0 +1,399 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_changelog_md",
+      "label": "CHANGELOG.md",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_changelog_changelog",
+      "label": "Changelog",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_changelog_3_5_1_2026_08_29",
+      "label": "[3.5.1] - 2026-08-29",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L8"
+    },
+    {
+      "id": "d_01_saas_products_alparai_changelog_performance_infrastructure",
+      "label": "\ud83d\ude80 Performance & Infrastructure",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "d_01_saas_products_alparai_changelog_features_enhancements",
+      "label": "\u2728 Features & Enhancements",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L14"
+    },
+    {
+      "id": "d_01_saas_products_alparai_changelog_bug_fixes_stability",
+      "label": "\ud83d\udee0 Bug Fixes & Stability",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L18"
+    },
+    {
+      "id": "d_01_saas_products_alparai_changelog_1_1_0_https_github_com_quantummatrixcore_lab_alparai_com_compare_v1_0_1_v1_1_0_2026_07_23",
+      "label": "[1.1.0](https://github.com/quantummatrixcore-lab/Alparai.com/compare/v1.0.1...v1.1.0) (2026-07-23)",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L21"
+    },
+    {
+      "id": "d_01_saas_products_alparai_changelog_features",
+      "label": "Features",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L23"
+    },
+    {
+      "id": "d_01_saas_products_alparai_changelog_bug_fixes",
+      "label": "Bug Fixes",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L29"
+    },
+    {
+      "id": "d_01_saas_products_alparai_changelog_1_0_1_https_github_com_quantummatrixcore_lab_alparai_com_compare_v1_0_0_v1_0_1_2026_07_23",
+      "label": "[1.0.1](https://github.com/quantummatrixcore-lab/Alparai.com/compare/v1.0.0...v1.0.1) (2026-07-23)",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L33"
+    },
+    {
+      "id": "d_01_saas_products_alparai_changelog_bug_fixes_35",
+      "label": "Bug Fixes",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L35"
+    },
+    {
+      "id": "d_01_saas_products_alparai_changelog_1_0_0_2026_07_23",
+      "label": "1.0.0 (2026-07-23)",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L39"
+    },
+    {
+      "id": "d_01_saas_products_alparai_changelog_features_41",
+      "label": "Features",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L41"
+    },
+    {
+      "id": "d_01_saas_products_alparai_changelog_bug_fixes_188",
+      "label": "Bug Fixes",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L188"
+    },
+    {
+      "id": "d_01_saas_products_alparai_changelog_performance_improvements",
+      "label": "Performance Improvements",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L259"
+    },
+    {
+      "id": "d_01_saas_products_alparai_changelog_1_2_0_2026_06_23",
+      "label": "[1.2.0] - 2026-06-23",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L263"
+    },
+    {
+      "id": "d_01_saas_products_alparai_changelog_added",
+      "label": "Added",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L265"
+    },
+    {
+      "id": "d_01_saas_products_alparai_changelog_fixed",
+      "label": "Fixed",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L274"
+    },
+    {
+      "id": "d_01_saas_products_alparai_changelog_1_1_0_2026_06_22",
+      "label": "[1.1.0] - 2026-06-22",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L279"
+    },
+    {
+      "id": "d_01_saas_products_alparai_changelog_added_281",
+      "label": "Added",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L281"
+    },
+    {
+      "id": "d_01_saas_products_alparai_changelog_fixed_287",
+      "label": "Fixed",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L287"
+    },
+    {
+      "id": "d_01_saas_products_alparai_changelog_removed",
+      "label": "Removed",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L292"
+    },
+    {
+      "id": "d_01_saas_products_alparai_changelog_1_0_0_2026_06_05",
+      "label": "[1.0.0] - 2026-06-05",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L297"
+    },
+    {
+      "id": "d_01_saas_products_alparai_changelog_added_299",
+      "label": "Added",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L299"
+    },
+    {
+      "id": "d_01_saas_products_alparai_changelog_security",
+      "label": "Security",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L319"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_changelog_md",
+      "target": "d_01_saas_products_alparai_changelog_changelog",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_changelog_changelog",
+      "target": "d_01_saas_products_alparai_changelog_3_5_1_2026_08_29",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_changelog_3_5_1_2026_08_29",
+      "target": "d_01_saas_products_alparai_changelog_performance_infrastructure",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_changelog_3_5_1_2026_08_29",
+      "target": "d_01_saas_products_alparai_changelog_features_enhancements",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_changelog_3_5_1_2026_08_29",
+      "target": "d_01_saas_products_alparai_changelog_bug_fixes_stability",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_changelog_changelog",
+      "target": "d_01_saas_products_alparai_changelog_1_1_0_https_github_com_quantummatrixcore_lab_alparai_com_compare_v1_0_1_v1_1_0_2026_07_23",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_changelog_1_1_0_https_github_com_quantummatrixcore_lab_alparai_com_compare_v1_0_1_v1_1_0_2026_07_23",
+      "target": "d_01_saas_products_alparai_changelog_features",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_changelog_1_1_0_https_github_com_quantummatrixcore_lab_alparai_com_compare_v1_0_1_v1_1_0_2026_07_23",
+      "target": "d_01_saas_products_alparai_changelog_bug_fixes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_changelog_changelog",
+      "target": "d_01_saas_products_alparai_changelog_1_0_1_https_github_com_quantummatrixcore_lab_alparai_com_compare_v1_0_0_v1_0_1_2026_07_23",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_changelog_1_0_1_https_github_com_quantummatrixcore_lab_alparai_com_compare_v1_0_0_v1_0_1_2026_07_23",
+      "target": "d_01_saas_products_alparai_changelog_bug_fixes_35",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_changelog_changelog",
+      "target": "d_01_saas_products_alparai_changelog_1_0_0_2026_07_23",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_changelog_1_0_0_2026_07_23",
+      "target": "d_01_saas_products_alparai_changelog_features_41",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_changelog_1_0_0_2026_07_23",
+      "target": "d_01_saas_products_alparai_changelog_bug_fixes_188",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L188",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_changelog_1_0_0_2026_07_23",
+      "target": "d_01_saas_products_alparai_changelog_performance_improvements",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L259",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_changelog_changelog",
+      "target": "d_01_saas_products_alparai_changelog_1_2_0_2026_06_23",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L263",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_changelog_1_2_0_2026_06_23",
+      "target": "d_01_saas_products_alparai_changelog_added",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L265",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_changelog_1_2_0_2026_06_23",
+      "target": "d_01_saas_products_alparai_changelog_fixed",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L274",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_changelog_changelog",
+      "target": "d_01_saas_products_alparai_changelog_1_1_0_2026_06_22",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L279",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_changelog_1_1_0_2026_06_22",
+      "target": "d_01_saas_products_alparai_changelog_added_281",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L281",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_changelog_1_1_0_2026_06_22",
+      "target": "d_01_saas_products_alparai_changelog_fixed_287",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L287",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_changelog_1_1_0_2026_06_22",
+      "target": "d_01_saas_products_alparai_changelog_removed",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L292",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_changelog_changelog",
+      "target": "d_01_saas_products_alparai_changelog_1_0_0_2026_06_05",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L297",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_changelog_1_0_0_2026_06_05",
+      "target": "d_01_saas_products_alparai_changelog_added_299",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L299",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_changelog_1_0_0_2026_06_05",
+      "target": "d_01_saas_products_alparai_changelog_security",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L319",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

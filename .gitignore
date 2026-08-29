@@ -27,6 +27,8 @@ next-env.d.ts
 
 # Vercel & Tooling
 .vercel/
+.turbo/
+coverage/
 artifacts/
 scratch/
 test-results/

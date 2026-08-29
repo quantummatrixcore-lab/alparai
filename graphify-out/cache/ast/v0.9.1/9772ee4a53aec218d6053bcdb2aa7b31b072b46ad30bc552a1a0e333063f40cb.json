@@ -1,0 +1,127 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_scripts_readme_scripts_md",
+      "label": "README_SCRIPTS.md",
+      "file_type": "document",
+      "source_file": "scripts/README_SCRIPTS.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_scripts_readme_scripts_alparai_scripts_m\u00fchendislik_rehberi",
+      "label": "Alparai Scripts - M\u00fchendislik Rehberi",
+      "file_type": "document",
+      "source_file": "scripts/README_SCRIPTS.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_scripts_readme_scripts_anahtar_ara\u00e7lar_ve_kullan\u0131mlar\u0131",
+      "label": "\ud83d\ude80 Anahtar Ara\u00e7lar ve Kullan\u0131mlar\u0131",
+      "file_type": "document",
+      "source_file": "scripts/README_SCRIPTS.md",
+      "source_location": "L5"
+    },
+    {
+      "id": "d_01_saas_products_alparai_scripts_readme_scripts_g\u00fcvenlik_ve_denetim_security_audit",
+      "label": "G\u00fcvenlik ve Denetim (Security & Audit)",
+      "file_type": "document",
+      "source_file": "scripts/README_SCRIPTS.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "d_01_saas_products_alparai_scripts_readme_scripts_uluslararas\u0131la\u015ft\u0131rma_i18n",
+      "label": "Uluslararas\u0131la\u015ft\u0131rma (i18n)",
+      "file_type": "document",
+      "source_file": "scripts/README_SCRIPTS.md",
+      "source_location": "L11"
+    },
+    {
+      "id": "d_01_saas_products_alparai_scripts_readme_scripts_test_ve_do\u011frulama_validation",
+      "label": "Test ve Do\u011frulama (Validation)",
+      "file_type": "document",
+      "source_file": "scripts/README_SCRIPTS.md",
+      "source_location": "L15"
+    },
+    {
+      "id": "d_01_saas_products_alparai_scripts_readme_scripts_mimari_geli\u015ftirme_architecture",
+      "label": "Mimari Geli\u015ftirme (Architecture)",
+      "file_type": "document",
+      "source_file": "scripts/README_SCRIPTS.md",
+      "source_location": "L18"
+    },
+    {
+      "id": "d_01_saas_products_alparai_scripts_readme_scripts_otopilot_autopilot_g\u00f6rev_y\u00f6netimi",
+      "label": "\ud83d\udee0\ufe0f Otopilot (Autopilot) & G\u00f6rev Y\u00f6netimi",
+      "file_type": "document",
+      "source_file": "scripts/README_SCRIPTS.md",
+      "source_location": "L21"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_scripts_readme_scripts_md",
+      "target": "d_01_saas_products_alparai_scripts_readme_scripts_alparai_scripts_m\u00fchendislik_rehberi",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/README_SCRIPTS.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_scripts_readme_scripts_alparai_scripts_m\u00fchendislik_rehberi",
+      "target": "d_01_saas_products_alparai_scripts_readme_scripts_anahtar_ara\u00e7lar_ve_kullan\u0131mlar\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/README_SCRIPTS.md",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_scripts_readme_scripts_anahtar_ara\u00e7lar_ve_kullan\u0131mlar\u0131",
+      "target": "d_01_saas_products_alparai_scripts_readme_scripts_g\u00fcvenlik_ve_denetim_security_audit",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/README_SCRIPTS.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_scripts_readme_scripts_anahtar_ara\u00e7lar_ve_kullan\u0131mlar\u0131",
+      "target": "d_01_saas_products_alparai_scripts_readme_scripts_uluslararas\u0131la\u015ft\u0131rma_i18n",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/README_SCRIPTS.md",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_scripts_readme_scripts_anahtar_ara\u00e7lar_ve_kullan\u0131mlar\u0131",
+      "target": "d_01_saas_products_alparai_scripts_readme_scripts_test_ve_do\u011frulama_validation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/README_SCRIPTS.md",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_scripts_readme_scripts_anahtar_ara\u00e7lar_ve_kullan\u0131mlar\u0131",
+      "target": "d_01_saas_products_alparai_scripts_readme_scripts_mimari_geli\u015ftirme_architecture",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/README_SCRIPTS.md",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_scripts_readme_scripts_alparai_scripts_m\u00fchendislik_rehberi",
+      "target": "d_01_saas_products_alparai_scripts_readme_scripts_otopilot_autopilot_g\u00f6rev_y\u00f6netimi",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/README_SCRIPTS.md",
+      "source_location": "L21",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

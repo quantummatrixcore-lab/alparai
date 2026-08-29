@@ -12,6 +12,7 @@ interface TickerIncident {
   ai_provider: { name: string } | null;
   ai_model?: { name: string } | null;
   category: string;
+  created_at?: string;
 }
 
 export function LiveTicker() {
@@ -36,11 +37,11 @@ export function LiveTicker() {
       const { data: latest } = await supabase
         .from("incidents")
         .select(
-          "id, title_masked, category, ai_provider:ai_providers(name), ai_model:ai_models(name)",
+          "id, title_masked, category, created_at, ai_provider:ai_providers(name), ai_model:ai_models(name)",
         )
         .eq("status", "published")
         .order("created_at", { ascending: false })
-        .limit(6);
+        .limit(8);
 
       if (latest && latest.length > 0) {
         setIncidents(latest as unknown as TickerIncident[]);
@@ -60,14 +61,12 @@ export function LiveTicker() {
     fetchTickerData();
   }, [isAdmin]);
 
-  if (isAdmin) {
+  if (isAdmin || incidents.length === 0) {
     return null;
   }
 
-  if (incidents.length === 0) return null;
-
   // Resolve clean, professional provider label (never return "Bilinmiyor")
-  const resolveProvider = (inc: TickerIncident) => {
+  const resolveProvider = (inc: TickerIncident): string => {
     if (
       inc.ai_provider?.name &&
       inc.ai_provider.name.trim() &&
@@ -86,72 +85,132 @@ export function LiveTicker() {
     if (raw.includes("deepseek")) return "DeepSeek";
     if (raw.includes("microsoft") || raw.includes("copilot")) return "Microsoft AI";
     if (raw.includes("grok") || raw.includes("xai")) return "xAI";
-    if (raw.startsWith("[hn]")) return "HackerNews";
-    if (raw.startsWith("[reddit]")) return locale === "tr" ? "Topluluk Raporu" : "Community Report";
 
-    return locale === "tr" ? "Küresel YZ Gözlemi" : "Global AI Incident";
+    return locale === "tr" ? "Küresel YZ" : "Global AI";
   };
 
-  // Resolve clean, professional title label
-  const resolveTitle = (inc: TickerIncident) => {
-    let title = inc.title_masked || "";
-    // Clean prefix tags
-    title = title.replace(/^\[(?:HN|Reddit|Tech)\]\s*/i, "");
+  // Clean title: remove publisher tags ([The Register], [HN], etc.) and apply word-boundary truncation
+  const cleanTitle = (rawTitle?: string | null, fallbackCategory = ""): string => {
+    let title = (rawTitle || "").trim();
+
+    // Strip all [...] bracket prefixes or suffixes
+    title = title.replace(/\[[^\]]+\]\s*/g, "").trim();
+
+    // Strip trailing source attributions like "- The Register", "— BBC"
+    title = title
+      .replace(
+        /\s*[-—|]\s*(?:The Register|BBC|Reuters|TechCrunch|Bloomberg|Ars Technica|The Verge|VentureBeat).*$/i,
+        "",
+      )
+      .trim();
+
     if (!title) {
-      return inc.category || (locale === "tr" ? "Doğrulanmış Olay" : "Verified Incident");
+      return fallbackCategory || (locale === "tr" ? "Doğrulanmış Olay" : "Verified Incident");
     }
-    return title.length > 45 ? `${title.slice(0, 45)}…` : title;
+
+    const maxLen = 65;
+    if (title.length <= maxLen) return title;
+
+    // Word boundary ellipsis
+    const truncated = title.slice(0, maxLen);
+    const lastSpace = truncated.lastIndexOf(" ");
+    return `${lastSpace > 30 ? truncated.slice(0, lastSpace) : truncated}…`;
   };
 
-  const renderTickerItems = () => (
-    <div className="flex shrink-0 items-center space-x-8 px-4">
-      <span className="text-brand-400 flex items-center gap-2 font-bold tracking-wider uppercase">
-        <span className="bg-brand-500 h-1.5 w-1.5 animate-pulse rounded-full" />
-        {t("live_telemetry")}
-      </span>
-      {incidents.map((inc) => {
-        const providerName = resolveProvider(inc);
-        const label = resolveTitle(inc);
-        return (
-          <Link
-            key={inc.id}
-            href={`/incidents`}
-            className="text-fg-secondary hover:text-brand-300 inline-flex items-center transition-colors"
-          >
-            <span className="text-fg-primary font-semibold">{providerName}</span>
-            <span className="text-fg-muted mx-1.5">—</span>
-            <span>{label}</span>
-            <span className="text-fg-muted ml-1">#{inc.id.substring(0, 8)}</span>
-            <span className="text-brand-400 bg-brand-500/10 border-brand-500/20 ml-2 rounded-full border px-1.5 py-0.5 text-[9px] font-bold">
-              {t("verified_badge", { defaultValue: "Doğrulandı" })}
-            </span>
-          </Link>
-        );
-      })}
-      <span className="text-fg-muted font-medium">
-        • {totalCount} {t("total_cases", { defaultValue: "Toplam Vaka" })}
-      </span>
-    </div>
-  );
+  // Format category badge cleanly
+  const formatCategory = (cat?: string): string => {
+    if (!cat) return locale === "tr" ? "Doğrulandı" : "Verified";
+    const cleaned = cat.replace(/_/g, " ").trim();
+    return cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
+  };
 
   return (
-    <div className="bg-brand-500/10 border-brand-500/20 relative flex w-full overflow-hidden border-b py-1.5 select-none">
-      <div className="animate-marquee flex w-max shrink-0 items-center text-[11px] font-medium tracking-wide whitespace-nowrap hover:[animation-play-state:paused]">
-        {renderTickerItems()}
+    <div className="relative flex h-8 w-full items-center overflow-hidden border-b border-white/[0.08] bg-[#09090b]/95 text-[11px] backdrop-blur-md select-none">
+      {/* Pinned Left Radar / Telemetry Badge */}
+      <div className="relative z-20 flex h-full shrink-0 items-center gap-2 border-r border-white/[0.08] bg-[#09090b] px-3 font-mono text-[10px] font-bold tracking-wider text-[#00f0ff] uppercase shadow-[4px_0_12px_rgba(0,0,0,0.5)]">
+        <span className="relative flex h-2 w-2 shrink-0">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#00f0ff] opacity-75" />
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-[#00f0ff]" />
+        </span>
+        <span className="flex items-center gap-1">
+          <span className="text-white">{t("live_telemetry")}</span>
+          {totalCount > 0 && (
+            <span className="font-normal text-slate-400">({totalCount.toLocaleString()})</span>
+          )}
+        </span>
       </div>
-      <div
-        aria-hidden
-        className="animate-marquee flex w-max shrink-0 items-center text-[11px] font-medium tracking-wide whitespace-nowrap hover:[animation-play-state:paused]"
-      >
-        {renderTickerItems()}
+
+      {/* Edge Gradient Mask Overlays */}
+      <div className="pointer-events-none absolute inset-y-0 left-[140px] z-10 w-8 bg-gradient-to-r from-[#09090b] to-transparent sm:left-[170px]" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-[#09090b] to-transparent" />
+
+      {/* Marquee Track Container */}
+      <div className="relative flex flex-1 overflow-hidden">
+        <div className="animate-marquee flex w-max shrink-0 items-center gap-6 pr-6 hover:[animation-play-state:paused]">
+          {incidents.map((inc) => {
+            const provider = resolveProvider(inc);
+            const title = cleanTitle(inc.title_masked, inc.category);
+            const category = formatCategory(inc.category);
+
+            return (
+              <Link
+                key={inc.id}
+                href={`/incidents/${inc.id}`}
+                className="group flex items-center gap-2 rounded-md px-2 py-0.5 transition-colors hover:bg-white/[0.06]"
+              >
+                <span className="font-semibold text-slate-100 transition-colors group-hover:text-[#00f0ff]">
+                  {provider}
+                </span>
+                <span className="text-slate-600">—</span>
+                <span className="max-w-[380px] truncate text-slate-300 transition-colors group-hover:text-white">
+                  {title}
+                </span>
+                <span className="rounded border border-white/[0.08] bg-white/[0.06] px-1.5 py-0.5 font-mono text-[9px] font-medium text-slate-400 transition-colors group-hover:border-[#00f0ff]/30 group-hover:text-[#00f0ff]">
+                  {category}
+                </span>
+              </Link>
+            );
+          })}
+        </div>
+
+        <div
+          aria-hidden
+          className="animate-marquee flex w-max shrink-0 items-center gap-6 pr-6 hover:[animation-play-state:paused]"
+        >
+          {incidents.map((inc) => {
+            const provider = resolveProvider(inc);
+            const title = cleanTitle(inc.title_masked, inc.category);
+            const category = formatCategory(inc.category);
+
+            return (
+              <Link
+                key={`clone-${inc.id}`}
+                href={`/incidents/${inc.id}`}
+                className="group flex items-center gap-2 rounded-md px-2 py-0.5 transition-colors hover:bg-white/[0.06]"
+              >
+                <span className="font-semibold text-slate-100 transition-colors group-hover:text-[#00f0ff]">
+                  {provider}
+                </span>
+                <span className="text-slate-600">—</span>
+                <span className="max-w-[380px] truncate text-slate-300 transition-colors group-hover:text-white">
+                  {title}
+                </span>
+                <span className="rounded border border-white/[0.08] bg-white/[0.06] px-1.5 py-0.5 font-mono text-[9px] font-medium text-slate-400 transition-colors group-hover:border-[#00f0ff]/30 group-hover:text-[#00f0ff]">
+                  {category}
+                </span>
+              </Link>
+            );
+          })}
+        </div>
       </div>
+
       <style>{`
         @keyframes alparMarquee {
           0% { transform: translateX(0%); }
           100% { transform: translateX(-100%); }
         }
         .animate-marquee {
-          animation: alparMarquee 35s linear infinite;
+          animation: alparMarquee 40s linear infinite;
         }
       `}</style>
     </div>

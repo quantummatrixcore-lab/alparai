@@ -1,0 +1,175 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_linkedin_optimizasyon_md",
+      "label": "LinkedIn_Optimizasyon.md",
+      "file_type": "document",
+      "source_file": "LinkedIn_Optimizasyon.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_linkedin_optimizasyon_alpar_ai_kurucu_erc\u00fcment_erden_linkedin_optimizasyon_raporu",
+      "label": "ALPAR AI & Kurucu (Erc\u00fcment Erden) LinkedIn Optimizasyon Raporu",
+      "file_type": "document",
+      "source_file": "LinkedIn_Optimizasyon.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_linkedin_optimizasyon_faz_1_ki\u015fisel_linkedin_profil_optimizasyonu_erc\u00fcment_erden",
+      "label": "FAZ 1: Ki\u015fisel LinkedIn Profil Optimizasyonu (Erc\u00fcment Erden)",
+      "file_type": "document",
+      "source_file": "LinkedIn_Optimizasyon.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "d_01_saas_products_alparai_linkedin_optimizasyon_1_headline_unvan_optimizasyonu",
+      "label": "1. Headline (Unvan) Optimizasyonu",
+      "file_type": "document",
+      "source_file": "LinkedIn_Optimizasyon.md",
+      "source_location": "L9"
+    },
+    {
+      "id": "d_01_saas_products_alparai_linkedin_optimizasyon_2_hakk\u0131nda_about_k\u0131sm\u0131",
+      "label": "2. Hakk\u0131nda (About) K\u0131sm\u0131",
+      "file_type": "document",
+      "source_file": "LinkedIn_Optimizasyon.md",
+      "source_location": "L16"
+    },
+    {
+      "id": "d_01_saas_products_alparai_linkedin_optimizasyon_3_\u00f6ne_\u00e7\u0131kanlar_deneyim",
+      "label": "3. \u00d6ne \u00c7\u0131kanlar & Deneyim",
+      "file_type": "document",
+      "source_file": "LinkedIn_Optimizasyon.md",
+      "source_location": "L33"
+    },
+    {
+      "id": "d_01_saas_products_alparai_linkedin_optimizasyon_faz_2_\u015firket_profili_optimizasyonu_alpar_ai",
+      "label": "FAZ 2: \u015eirket Profili Optimizasyonu (ALPAR AI)",
+      "file_type": "document",
+      "source_file": "LinkedIn_Optimizasyon.md",
+      "source_location": "L40"
+    },
+    {
+      "id": "d_01_saas_products_alparai_linkedin_optimizasyon_1_\u015firket_slogan\u0131_tagline",
+      "label": "1. \u015eirket Slogan\u0131 (Tagline)",
+      "file_type": "document",
+      "source_file": "LinkedIn_Optimizasyon.md",
+      "source_location": "L42"
+    },
+    {
+      "id": "d_01_saas_products_alparai_linkedin_optimizasyon_2_\u015firket_hakk\u0131nda_overview",
+      "label": "2. \u015eirket Hakk\u0131nda (Overview)",
+      "file_type": "document",
+      "source_file": "LinkedIn_Optimizasyon.md",
+      "source_location": "L46"
+    },
+    {
+      "id": "d_01_saas_products_alparai_linkedin_optimizasyon_3_harekete_ge\u00e7irici_mesaj_call_to_action",
+      "label": "3. Harekete Ge\u00e7irici Mesaj (Call to Action)",
+      "file_type": "document",
+      "source_file": "LinkedIn_Optimizasyon.md",
+      "source_location": "L61"
+    },
+    {
+      "id": "d_01_saas_products_alparai_linkedin_optimizasyon_4_i\u0307\u00e7erik_stratejisi_i\u0307lk_30_g\u00fcn",
+      "label": "4. \u0130\u00e7erik Stratejisi (\u0130lk 30 G\u00fcn)",
+      "file_type": "document",
+      "source_file": "LinkedIn_Optimizasyon.md",
+      "source_location": "L65"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_linkedin_optimizasyon_md",
+      "target": "d_01_saas_products_alparai_linkedin_optimizasyon_alpar_ai_kurucu_erc\u00fcment_erden_linkedin_optimizasyon_raporu",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "LinkedIn_Optimizasyon.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_linkedin_optimizasyon_alpar_ai_kurucu_erc\u00fcment_erden_linkedin_optimizasyon_raporu",
+      "target": "d_01_saas_products_alparai_linkedin_optimizasyon_faz_1_ki\u015fisel_linkedin_profil_optimizasyonu_erc\u00fcment_erden",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "LinkedIn_Optimizasyon.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_linkedin_optimizasyon_faz_1_ki\u015fisel_linkedin_profil_optimizasyonu_erc\u00fcment_erden",
+      "target": "d_01_saas_products_alparai_linkedin_optimizasyon_1_headline_unvan_optimizasyonu",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "LinkedIn_Optimizasyon.md",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_linkedin_optimizasyon_faz_1_ki\u015fisel_linkedin_profil_optimizasyonu_erc\u00fcment_erden",
+      "target": "d_01_saas_products_alparai_linkedin_optimizasyon_2_hakk\u0131nda_about_k\u0131sm\u0131",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "LinkedIn_Optimizasyon.md",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_linkedin_optimizasyon_faz_1_ki\u015fisel_linkedin_profil_optimizasyonu_erc\u00fcment_erden",
+      "target": "d_01_saas_products_alparai_linkedin_optimizasyon_3_\u00f6ne_\u00e7\u0131kanlar_deneyim",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "LinkedIn_Optimizasyon.md",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_linkedin_optimizasyon_alpar_ai_kurucu_erc\u00fcment_erden_linkedin_optimizasyon_raporu",
+      "target": "d_01_saas_products_alparai_linkedin_optimizasyon_faz_2_\u015firket_profili_optimizasyonu_alpar_ai",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "LinkedIn_Optimizasyon.md",
+      "source_location": "L40",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_linkedin_optimizasyon_faz_2_\u015firket_profili_optimizasyonu_alpar_ai",
+      "target": "d_01_saas_products_alparai_linkedin_optimizasyon_1_\u015firket_slogan\u0131_tagline",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "LinkedIn_Optimizasyon.md",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_linkedin_optimizasyon_faz_2_\u015firket_profili_optimizasyonu_alpar_ai",
+      "target": "d_01_saas_products_alparai_linkedin_optimizasyon_2_\u015firket_hakk\u0131nda_overview",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "LinkedIn_Optimizasyon.md",
+      "source_location": "L46",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_linkedin_optimizasyon_faz_2_\u015firket_profili_optimizasyonu_alpar_ai",
+      "target": "d_01_saas_products_alparai_linkedin_optimizasyon_3_harekete_ge\u00e7irici_mesaj_call_to_action",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "LinkedIn_Optimizasyon.md",
+      "source_location": "L61",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_linkedin_optimizasyon_faz_2_\u015firket_profili_optimizasyonu_alpar_ai",
+      "target": "d_01_saas_products_alparai_linkedin_optimizasyon_4_i\u0307\u00e7erik_stratejisi_i\u0307lk_30_g\u00fcn",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "LinkedIn_Optimizasyon.md",
+      "source_location": "L65",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

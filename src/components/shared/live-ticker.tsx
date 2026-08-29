@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase/client";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
+import { usePathname } from "next/navigation";
 
 interface TickerIncident {
   id: string;
@@ -16,10 +17,20 @@ interface TickerIncident {
 export function LiveTicker() {
   const t = useTranslations("common");
   const locale = useLocale();
+  const pathname = usePathname();
+  const isAdmin =
+    pathname &&
+    (/^\/(?:en|tr|[a-z]{2})\/admin(-v2)?(?:\/|$)/.test(pathname) ||
+      pathname === "/admin" ||
+      pathname.startsWith("/admin") ||
+      pathname.includes("/admin-v2") ||
+      pathname.includes("/admin/"));
+
   const [incidents, setIncidents] = useState<TickerIncident[]>([]);
   const [totalCount, setTotalCount] = useState(0);
 
   useEffect(() => {
+    if (isAdmin) return;
     async function fetchTickerData() {
       // Fetch latest verified incidents
       const { data: latest } = await supabase
@@ -47,7 +58,11 @@ export function LiveTicker() {
     }
 
     fetchTickerData();
-  }, []);
+  }, [isAdmin]);
+
+  if (isAdmin) {
+    return null;
+  }
 
   if (incidents.length === 0) return null;
 

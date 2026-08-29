@@ -1,0 +1,111 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_docs_admin_360_live_audit_report_md",
+      "label": "ADMIN_360_LIVE_AUDIT_REPORT.md",
+      "file_type": "document",
+      "source_file": "docs/ADMIN_360_LIVE_AUDIT_REPORT.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_admin_360_live_audit_report_alpar_ai_360_enterprise_admin_control_center_live_audit_report",
+      "label": "ALPAR AI \u2014 360\u00b0 Enterprise Admin Control Center Live Audit Report",
+      "file_type": "document",
+      "source_file": "docs/ADMIN_360_LIVE_AUDIT_REPORT.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_admin_360_live_audit_report_executive_summary",
+      "label": "\ud83c\udfdb\ufe0f Executive Summary",
+      "file_type": "document",
+      "source_file": "docs/ADMIN_360_LIVE_AUDIT_REPORT.md",
+      "source_location": "L15"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_admin_360_live_audit_report_sovereign_isolation_zero_leakage_policy_compliance",
+      "label": "\ud83d\udee1\ufe0f Sovereign Isolation & Zero-Leakage Policy Compliance",
+      "file_type": "document",
+      "source_file": "docs/ADMIN_360_LIVE_AUDIT_REPORT.md",
+      "source_location": "L21"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_admin_360_live_audit_report_the_8_core_admin_desks_verified",
+      "label": "\ud83c\udfd7\ufe0f The 8 Core Admin Desks Verified",
+      "file_type": "document",
+      "source_file": "docs/ADMIN_360_LIVE_AUDIT_REPORT.md",
+      "source_location": "L30"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_admin_360_live_audit_report_live_browser_agent_cdp_verification_trail",
+      "label": "\ud83c\udf10 Live Browser Agent (CDP) Verification Trail",
+      "file_type": "document",
+      "source_file": "docs/ADMIN_360_LIVE_AUDIT_REPORT.md",
+      "source_location": "L45"
+    },
+    {
+      "id": "d_01_saas_products_alparai_docs_admin_360_live_audit_report_final_sign_off",
+      "label": "\ud83c\udfaf Final Sign-Off",
+      "file_type": "document",
+      "source_file": "docs/ADMIN_360_LIVE_AUDIT_REPORT.md",
+      "source_location": "L60"
+    }
+  ],
+  "edges": [
+    {
+      "source": "d_01_saas_products_alparai_docs_admin_360_live_audit_report_md",
+      "target": "d_01_saas_products_alparai_docs_admin_360_live_audit_report_alpar_ai_360_enterprise_admin_control_center_live_audit_report",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ADMIN_360_LIVE_AUDIT_REPORT.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_admin_360_live_audit_report_alpar_ai_360_enterprise_admin_control_center_live_audit_report",
+      "target": "d_01_saas_products_alparai_docs_admin_360_live_audit_report_executive_summary",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ADMIN_360_LIVE_AUDIT_REPORT.md",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_admin_360_live_audit_report_alpar_ai_360_enterprise_admin_control_center_live_audit_report",
+      "target": "d_01_saas_products_alparai_docs_admin_360_live_audit_report_sovereign_isolation_zero_leakage_policy_compliance",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ADMIN_360_LIVE_AUDIT_REPORT.md",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_admin_360_live_audit_report_alpar_ai_360_enterprise_admin_control_center_live_audit_report",
+      "target": "d_01_saas_products_alparai_docs_admin_360_live_audit_report_the_8_core_admin_desks_verified",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ADMIN_360_LIVE_AUDIT_REPORT.md",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_admin_360_live_audit_report_alpar_ai_360_enterprise_admin_control_center_live_audit_report",
+      "target": "d_01_saas_products_alparai_docs_admin_360_live_audit_report_live_browser_agent_cdp_verification_trail",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ADMIN_360_LIVE_AUDIT_REPORT.md",
+      "source_location": "L45",
+      "weight": 1.0
+    },
+    {
+      "source": "d_01_saas_products_alparai_docs_admin_360_live_audit_report_alpar_ai_360_enterprise_admin_control_center_live_audit_report",
+      "target": "d_01_saas_products_alparai_docs_admin_360_live_audit_report_final_sign_off",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/ADMIN_360_LIVE_AUDIT_REPORT.md",
+      "source_location": "L60",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

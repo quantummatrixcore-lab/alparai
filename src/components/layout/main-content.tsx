@@ -13,9 +13,10 @@ export function MainContent({ children }: { children: React.ReactNode }) {
   // Determine if this is an admin page
   const isAdmin =
     pathname &&
-    (/^\/[a-z]{2}\/admin(?:\/|$)/.test(pathname) ||
+    (/^\/[a-z]{2}\/admin(-v2)?(?:\/|$)/.test(pathname) ||
       pathname === "/admin" ||
       pathname.startsWith("/admin") ||
+      pathname.includes("/admin-v2") ||
       pathname.includes("/admin/"));
 
   // Apply clean standard padding-top to all public subpages to clear fixed header + ticker

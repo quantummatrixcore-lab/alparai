@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@400;500;600;700;800;900&display=swap");
-@import "tailwindcss"; /* ===========================================================================
+@import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
+/* ===========================================================================
    ALPAR AI — Design Tokens
    Primary: deep navy (trust/authority) | Danger: alert red (urgency/action)
    Success: guardian teal (safety/verified) | Warning: signal amber (highlights)
@@ -468,4 +470,8 @@ a,
     display: none;
   }
 }
-html, body { overflow-x: hidden !important; max-width: 100vw; }
+html,
+body {
+  overflow-x: hidden !important;
+  max-width: 100vw;
+}

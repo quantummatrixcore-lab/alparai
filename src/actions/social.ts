@@ -3,12 +3,7 @@
 import { createServerClient } from "@/lib/supabase/server";
 import { requireAdmin } from "@/lib/auth/session";
 import { revalidatePath } from "next/cache";
-import type {
-  SocialPost,
-  SocialTemplate,
-  SocialAsset,
-  SocialAccount,
-} from "@/components/admin/social-dashboard-client";
+import type { SocialPost, SocialTemplate, SocialAsset, SocialAccount } from "@/types/social";
 
 export async function getSocialPosts(): Promise<SocialPost[]> {
   try {

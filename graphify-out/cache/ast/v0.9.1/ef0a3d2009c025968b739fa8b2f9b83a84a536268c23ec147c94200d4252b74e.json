@@ -1,0 +1,14 @@
+{
+  "nodes": [
+    {
+      "id": "d_01_saas_products_alparai_design_md",
+      "label": "DESIGN.md",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L1"
+    }
+  ],
+  "edges": [],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

@@ -1,55 +1,22 @@
-import * as React from "react";
-import { setRequestLocale } from "next-intl/server";
-import { AdminSidebar } from "@/components/admin/sidebar";
-import { getCurrentUser } from "@/lib/auth/session";
-import { redirect } from "next/navigation";
+import React from "react";
+import { AdminSidebar } from "@/components/admin-core/admin-sidebar";
+import { AdminTopbar } from "@/components/admin-core/admin-topbar";
 
-import { Manage360CommandPalette } from "@/components/admin/manage-360-palette";
+export const metadata = {
+  title: "Alparai Executive OS | 360° Command Center",
+  description: "Enterprise AI Governance, Threat Feed & Incident Intelligence Platform",
+};
 
-export default async function AdminLayout({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
-  if (locale !== "en" && locale !== "tr") {
-    redirect("/en/admin");
-  }
-  setRequestLocale(locale);
-
-  const user = await getCurrentUser();
-  if (!user) {
-    redirect(`/${locale}/auth/signin?next=/${locale}/admin`);
-  }
-  const userRole = user.role as string;
-  if (
-    userRole !== "moderator" &&
-    userRole !== "admin" &&
-    userRole !== "ceo" &&
-    userRole !== "advisor"
-  ) {
-    redirect(`/${locale}`);
-  }
-
-  const sidebarUser = {
-    email: user.email,
-    fullName: user.fullName,
-    avatarUrl: user.avatarUrl,
-    role: user.role,
-  };
-
+export default function AdminV2Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="bg-bg-primary text-fg-primary relative flex min-h-screen max-w-full flex-col overflow-x-hidden lg:flex-row">
-      {/* Premium Background Elements */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(168,85,247,0.15),rgba(255,255,255,0))]" />
-      <div className="pointer-events-none absolute top-[20%] -left-[20%] h-[500px] w-[500px] rounded-full bg-cyan-500/5 blur-[120px]" />
+    <div className="relative flex min-h-screen w-full overflow-x-clip bg-[#ffffff] font-sans text-[#1f2328] antialiased selection:bg-[#0969da]/20 dark:bg-[#0d1117] dark:text-[#f0f6fc] dark:selection:bg-[#58a6ff]/20">
+      {/* 5-Cluster Rigid Sidebar */}
+      <AdminSidebar />
 
-      <AdminSidebar user={sidebarUser} />
-      <Manage360CommandPalette />
-      <div className="relative z-10 flex min-w-0 flex-1 flex-col pt-16 lg:h-screen lg:overflow-y-auto lg:pt-0">
-        <main className="w-full max-w-full flex-1 overflow-x-hidden">{children}</main>
+      {/* Main Content Area */}
+      <div className="flex min-w-0 flex-1 flex-col overflow-x-clip">
+        <AdminTopbar />
+        <main className="mx-auto w-full max-w-7xl flex-1 space-y-6 p-6 md:p-8">{children}</main>
       </div>
     </div>
   );

@@ -1,600 +1,214 @@
-import dynamic from "next/dynamic";
-import { requireAdmin } from "@/lib/auth/session";
-import { getTranslations } from "next-intl/server";
-import { setRequestLocale } from "next-intl/server";
-import { Container } from "@/components/ui/layout";
-import { requireAdvisor } from "@/lib/auth/session";
-import { createAdminClient } from "@/lib/supabase/admin";
-import { HealthGauge } from "@/components/admin/strategy/health-gauge";
-import { LiveStrategyClient } from "@/components/admin/strategy/live-strategy-client";
-import {
-  QuestionnaireClient,
-  type RunRow,
-  type AnswerRow,
-} from "@/components/admin/questionnaire-client";
-import { EcosystemBenchmarkWidget } from "@/components/admin/ecosystem-benchmark-widget";
-import { AdvisorRoster } from "@/components/admin/strategy/advisor-roster";
-import { QUESTIONNAIRE_MODELS } from "@/lib/ai/openrouter-gateway";
-import { Link } from "@/i18n/routing";
-const StrategyTabs = dynamic(() =>
-  import("@/components/admin/strategy-tabs").then((m) => m.StrategyTabs),
-);
+"use client";
 
-import { STRATEGY_METRICS_DEFAULTS, DEFAULT_VALUATION_PRE_MONEY } from "@/lib/constants";
-import { QUESTIONS } from "@/lib/strategy/questions";
-import {
-  ShieldAlert,
-  TrendingUp,
-  Grid as GridIcon,
-  Compass,
-  Users,
-  AlertCircle,
-  Activity,
-  DollarSign,
-  ChevronRight,
-  Cpu,
-  Target,
-} from "lucide-react";
-import type {
-  SwotItem,
-  StrategyRisk,
-  StrategyValuation,
-  StrategyMilestone,
-  StrategyMetricsSnapshot,
-} from "@/types";
+import React, { useState } from "react";
+import { Target, TrendingUp, ShieldAlert, DollarSign, Layers, CheckCircle2 } from "lucide-react";
+import { MetricCard } from "@/components/admin-core/metric-card";
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
-  await requireAdmin();
-  const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "admin" });
-  return { title: `${t("strategy_header") || "Strategy Board"} | ALPAR AI` };
-}
-
-export default async function StrategyOverviewPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: "admin" });
-
-  // Authenticate user & check advisor access
-  const user = await requireAdvisor();
-  const isReadOnly = (user.role as string) === "advisor";
-
-  const supabase = createAdminClient();
-
-  // Fetch all strategy components
-  const [
-    swotRes,
-    risksRes,
-    valuationsRes,
-    milestonesRes,
-    snapshotsRes,
-    liveIncidentsRes,
-    liveUsersRes,
-    liveProvidersRes,
-    liveMrrRes,
-    runsRes,
-  ] = await Promise.all([
-    supabase.from("strategy_swot_items").select("*").order("category"),
-    supabase.from("strategy_risks").select("*").order("code"),
-    supabase
-      .from("strategy_valuations")
-      .select("*")
-      .order("snapshot_date", { ascending: false })
-      .limit(5),
-    supabase.from("strategy_milestones").select("*").order("quarter"),
-    supabase
-      .from("strategy_metrics_snapshots")
-      .select("*")
-      .order("snapshot_date", { ascending: false })
-      .limit(1),
-    supabase.from("incidents").select("id", { count: "exact", head: true }),
-    supabase.from("users").select("id", { count: "exact", head: true }),
-    supabase.from("ai_providers").select("id", { count: "exact", head: true }),
-    supabase
-      .from("finance_revenue_metrics")
-      .select("mrr_usd")
-      .order("month", { ascending: false })
-      .limit(1),
-    supabase.from("strategic_runs").select("*").order("started_at", { ascending: false }).limit(20),
-  ]);
-
-  const swotItems = (swotRes.data ?? []) as SwotItem[];
-  const risks = (risksRes.data ?? []) as StrategyRisk[];
-  const valuations = (valuationsRes.data ?? []) as StrategyValuation[];
-  const milestones = (milestonesRes.data ?? []) as StrategyMilestone[];
-
-  const rawRuns = (runsRes.data || []) as RunRow[];
-  // eslint-disable-next-line react-hooks/purity
-  const fiveMinutesAgo = Date.now() - 5 * 60 * 1000;
-
-  // Auto-heal stale running tasks that never completed
-  const runs = rawRuns.map((r) => {
-    if (r.status === "running" && new Date(r.started_at).getTime() < fiveMinutesAgo) {
-      return { ...r, status: "failed", completed_at: r.completed_at || r.started_at };
-    }
-    return r;
-  });
-
-  const staleRunIds = rawRuns
-    .filter((r) => r.status === "running" && new Date(r.started_at).getTime() < fiveMinutesAgo)
-    .map((r) => r.id);
-  if (staleRunIds.length > 0) {
-    void (async () => {
-      try {
-        await supabase
-          .from("strategic_runs")
-          .update({ status: "failed", completed_at: new Date().toISOString() })
-          .in("id", staleRunIds);
-      } catch (err) {
-        console.error("[StrategyOverviewPage] Failed to clean up stale runs:", err);
-      }
-    })();
-  }
-
-  const latestSnapshot = (snapshotsRes.data?.[0] ??
-    STRATEGY_METRICS_DEFAULTS) as StrategyMetricsSnapshot;
-
-  // Dynamically overwrite with real-time live data
-  const liveIncidentsCount = liveIncidentsRes.count ?? latestSnapshot.total_incidents;
-  const liveUsersCount = liveUsersRes.count ?? latestSnapshot.total_users;
-  const liveProvidersCount = liveProvidersRes.count ?? latestSnapshot.active_providers;
-  const liveMrrCents = liveMrrRes.data?.[0]
-    ? Number(liveMrrRes.data[0].mrr_usd) * 100
-    : latestSnapshot.mrr_cents;
-
-  const dynamicSnapshot = {
-    ...latestSnapshot,
-    total_incidents: liveIncidentsCount,
-    total_users: liveUsersCount,
-    active_providers: liveProvidersCount,
-    mrr_cents: liveMrrCents,
-  };
-
-  // Process SWOT counts
-  const strengthsCount = swotItems.filter((i) => i.category === "strength").length;
-  const weaknessesCount = swotItems.filter((i) => i.category === "weakness").length;
-  const opportunitiesCount = swotItems.filter((i) => i.category === "opportunity").length;
-  const threatsCount = swotItems.filter((i) => i.category === "threat").length;
-
-  // Process Risks
-  const highRisksCount = risks.filter((r) => r.probability * r.impact >= 15).length;
-  const activeRisksCount = risks.filter(
-    (r) => r.status === "active" || r.status === "triggered",
-  ).length;
-
-  // Process Milestones
-  const doneMilestones = milestones.filter((m) => m.status === "done").length;
-  const totalMilestones = milestones.length;
-  const avgOkrProgress =
-    totalMilestones > 0
-      ? Math.round(
-          milestones.reduce((acc, m) => acc + (Number(m.progress) || 0), 0) / totalMilestones,
-        )
-      : 0;
-
-  const latestRunId = runs?.[0]?.id ?? null;
-  let allAnswers: unknown[] = [];
-  if (latestRunId) {
-    const { data: answersData } = await supabase
-      .from("strategic_answers")
-      .select("*")
-      .eq("run_id", latestRunId)
-      .order("question_index", { ascending: true });
-    allAnswers = answersData || [];
-  }
-
-  const models = QUESTIONNAIRE_MODELS.map((m) => ({
-    id: m.id,
-    label: m.id.replace(/:free$/, "").replace(/^.*\//, ""),
-    tier: m.tier,
-  }));
-
-  // Formatting helper for currency
-  const formatCurrency = (cents: number) => {
-    return new Intl.NumberFormat(locale === "tr" ? "tr-TR" : "en-US", {
-      style: "currency",
-      currency: "USD",
-      maximumFractionDigits: 0,
-    }).format(cents / 100);
-  };
+export default function StrategyPage() {
+  const [activeTab, setActiveTab] = useState<"SWOT" | "VALUATION" | "RISKS">("VALUATION");
 
   return (
-    <div className="bg-bg-primary text-fg-primary min-h-screen px-3 py-4 sm:px-6 sm:py-6 md:p-8">
-      <div className="bg-bg-secondary/40 ring-border-subtle rounded-3xl p-4 shadow-2xl ring-1 backdrop-blur-xl sm:p-6 md:p-8">
-        <StrategyTabs />
-        <div className="py-4 sm:py-6">
-          <Container>
-            {/* Page Header */}
-            <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
-              <div>
-                <div className="flex items-center gap-2">
-                  <Compass className="text-brand-400 animate-spin-slow h-6 w-6" />
-                  <h1 className="text-fg-secondaryxl font-extrabold tracking-tight text-white md:text-3xl">
-                    {t("strategic_advisory_board")}
-                  </h1>
-                </div>
-                <p className="text-fg-muted mt-1 text-sm">
-                  {t("real_time_company_health_metrics_swot_ri")}
-                </p>
-              </div>
-              {isReadOnly && (
-                <span className="bg-brand-500/10 text-brand-300 border-brand-500/20 rounded-full border px-3 py-1 text-xs font-semibold tracking-wider uppercase">
-                  {t("read_only_advisor")}
-                </span>
-              )}
-            </div>
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex flex-col justify-between gap-4 border-b border-[#d0d7de] pb-4 md:flex-row md:items-center dark:border-[#30363d]">
+        <div>
+          <div className="mb-1 flex items-center gap-2">
+            <span className="rounded border border-zinc-700 bg-zinc-800 px-2 py-0.5 font-mono text-[10px] text-[#656d76] dark:text-[#c9d1d9]">
+              KÜME 3: SERMAYE & STRATEJİ
+            </span>
+            <span className="font-mono text-xs font-semibold text-emerald-400">
+              EXECUTIVE STRATEGY & VALUATION RADAR
+            </span>
+          </div>
+          <h1 className="font-mono text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
+            Kurumsal Strateji, SWOT & Şirket Değerleme Masası (/strategy)
+          </h1>
+          <p className="mt-0.5 text-xs text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
+            SaaS şirket değerlemesi ($48M - $120M), 360° SWOT matrisi ve kurumsal tehdit/risk
+            haritası
+          </p>
+        </div>
 
-            {/* Dashboard Grid Layout */}
-            <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-              {/* LEFT COLUMN: Health Score and Core Metrics Snapshots */}
-              <div className="flex flex-col gap-6 lg:col-span-1">
-                <HealthGauge score={dynamicSnapshot.health_score} />
-
-                {/* Core Metrics Card */}
-                <div className="border-border-subtle bg-bg-secondary/40 ring-border-subtle rounded-2xl border p-6 ring-1 backdrop-blur-md backdrop-blur-xl">
-                  <h3 className="mb-4 text-xs font-bold tracking-wider text-white uppercase">
-                    {t("core_metrics_snapshot")}
-                  </h3>
-                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                    <div className="bg-bg-tertiary/20 border-border-subtle/50 rounded-xl border p-4">
-                      <div className="text-fg-muted flex items-center justify-between">
-                        <span className="text-[10px] font-bold tracking-wider uppercase">
-                          {t("total_users")}
-                        </span>
-                        <Users className="h-4 w-4 text-blue-400" />
-                      </div>
-                      <p className="text-fg-secondaryxl mt-2 font-extrabold text-white">
-                        {dynamicSnapshot.total_users}
-                      </p>
-                    </div>
-
-                    <div className="bg-bg-tertiary/20 border-border-subtle/50 rounded-xl border p-4">
-                      <div className="text-fg-muted flex items-center justify-between">
-                        <span className="text-[10px] font-bold tracking-wider uppercase">
-                          {t("incidents")}
-                        </span>
-                        <AlertCircle className="h-4 w-4 text-red-400" />
-                      </div>
-                      <p className="text-fg-secondaryxl mt-2 font-extrabold text-white">
-                        {dynamicSnapshot.total_incidents}
-                      </p>
-                    </div>
-
-                    <div className="bg-bg-tertiary/20 border-border-subtle/50 rounded-xl border p-4">
-                      <div className="text-fg-muted flex items-center justify-between">
-                        <span className="text-[10px] font-bold tracking-wider uppercase">
-                          {t("providers_1")}
-                        </span>
-                        <Activity className="h-4 w-4 text-emerald-400" />
-                      </div>
-                      <p className="text-fg-secondaryxl mt-2 font-extrabold text-white">
-                        {dynamicSnapshot.active_providers}
-                      </p>
-                    </div>
-
-                    <div className="bg-bg-tertiary/20 border-border-subtle/50 rounded-xl border p-4">
-                      <div className="text-fg-muted flex items-center justify-between">
-                        <span className="text-[10px] font-bold tracking-wider uppercase">
-                          {t("runway")}
-                        </span>
-                        <DollarSign className="h-4 w-4 text-amber-400" />
-                      </div>
-                      <p className="mt-2 text-xl font-extrabold text-white">
-                        {dynamicSnapshot.runway_months
-                          ? `${dynamicSnapshot.runway_months} ${t("mo")}`
-                          : t("unknown")}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="border-border-subtle/50 mt-4 border-t pt-4 text-center">
-                    <div className="text-fg-muted flex justify-between text-xs">
-                      <span>{t("monthly_revenue_mrr")}</span>
-                      <span className="font-mono font-bold text-white">
-                        {formatCurrency(dynamicSnapshot.mrr_cents)}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* RIGHT COLUMN: Strategy Modules Summary Links */}
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:col-span-2">
-                {/* SWOT ANALİZİ CARD */}
-                <div className="border-border-subtle hover:border-brand-500/30 bg-bg-secondary/40 ring-border-subtle flex flex-col justify-between rounded-2xl border p-6 ring-1 backdrop-blur-xl transition-all duration-300">
-                  <div>
-                    <div className="mb-4 flex items-center justify-between">
-                      <div className="rounded-lg border border-purple-500/25 bg-purple-500/10 p-2 text-purple-400">
-                        <GridIcon className="h-5 w-5" />
-                      </div>
-                      <span className="text-fg-muted font-mono text-[9px] font-bold tracking-wider uppercase">
-                        {t("module_01")}
-                      </span>
-                    </div>
-                    <h2 className="text-lg font-bold text-white">{t("swot_matrix")}</h2>
-                    <p className="text-fg-muted mt-2 text-xs">
-                      {t("track_internal_strengths_weaknesses_and_")}
-                    </p>
-                    <div className="mt-4 grid grid-cols-2 gap-2 text-center text-xs">
-                      <div className="rounded-lg border border-emerald-500/10 bg-emerald-500/5 p-1.5 font-bold text-emerald-400">
-                        S: {strengthsCount}
-                      </div>
-                      <div className="rounded-lg border border-red-500/10 bg-red-500/5 p-1.5 font-bold text-red-400">
-                        W: {weaknessesCount}
-                      </div>
-                      <div className="rounded-lg border border-blue-500/10 bg-blue-500/5 p-1.5 font-bold text-blue-400">
-                        O: {opportunitiesCount}
-                      </div>
-                      <div className="rounded-lg border border-amber-500/10 bg-amber-500/5 p-1.5 font-bold text-amber-400">
-                        T: {threatsCount}
-                      </div>
-                    </div>
-                  </div>
-                  <Link
-                    href="/admin/strategy/swot"
-                    className="text-brand-400 hover:text-brand-300 mt-6 flex items-center gap-1 text-xs font-bold transition"
-                  >
-                    {t("manage_swot")}
-                    <ChevronRight className="h-3 w-3" />
-                  </Link>
-                </div>
-
-                {/* RİSK YÖNETİMİ CARD */}
-                <div className="border-border-subtle hover:border-brand-500/30 bg-bg-secondary/40 ring-border-subtle flex flex-col justify-between rounded-2xl border p-6 ring-1 backdrop-blur-xl transition-all duration-300">
-                  <div>
-                    <div className="mb-4 flex items-center justify-between">
-                      <div className="rounded-lg border border-red-500/25 bg-red-500/10 p-2 text-red-400">
-                        <ShieldAlert className="h-5 w-5" />
-                      </div>
-                      <span className="text-fg-muted font-mono text-[9px] font-bold tracking-wider uppercase">
-                        {t("module_02")}
-                      </span>
-                    </div>
-                    <h2 className="text-lg font-bold text-white">{t("risk_analysis_matrix")}</h2>
-                    <p className="text-fg-muted mt-2 text-xs">
-                      {t("prioritize_monitor_and_mitigate_legal_pr")}
-                    </p>
-                    <div className="mt-4 flex items-center gap-4 text-xs">
-                      <div className="border-border-subtle flex-1 rounded-lg border bg-white/5 p-2 text-center">
-                        <span className="text-fg-muted block text-[9px] font-bold tracking-wider uppercase">
-                          {t("aktif_risk")}
-                        </span>
-                        <span className="text-lg font-extrabold text-white">
-                          {activeRisksCount}
-                        </span>
-                      </div>
-                      <div className="border-danger-500/20 flex-1 rounded-lg border bg-red-500/10 p-2 text-center text-red-400">
-                        <span className="block text-[9px] font-bold tracking-wider uppercase">
-                          {t("y_ksek_risk")}
-                        </span>
-                        <span className="text-lg font-extrabold">{highRisksCount}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <Link
-                    href="/admin/strategy/risks"
-                    className="text-brand-400 hover:text-brand-300 mt-6 flex items-center gap-1 text-xs font-bold transition"
-                  >
-                    {t("manage_risks")}
-                    <ChevronRight className="h-3 w-3" />
-                  </Link>
-                </div>
-
-                {/* DEĞERLEME MODELİ CARD */}
-                <div className="border-border-subtle hover:border-brand-500/30 bg-bg-secondary/40 ring-border-subtle flex flex-col justify-between rounded-2xl border p-6 ring-1 backdrop-blur-xl transition-all duration-300">
-                  <div>
-                    <div className="mb-4 flex items-center justify-between">
-                      <div className="rounded-lg border border-amber-500/25 bg-amber-500/10 p-2 text-amber-400">
-                        <TrendingUp className="h-5 w-5" />
-                      </div>
-                      <span className="text-fg-muted font-mono text-[9px] font-bold tracking-wider uppercase">
-                        {t("module_03")}
-                      </span>
-                    </div>
-                    <h2 className="text-lg font-bold text-white">{t("company_valuation")}</h2>
-                    <p className="text-fg-muted mt-2 text-xs">
-                      {t("simulate_valuation_cap_metrics_across_be")}
-                    </p>
-                    <div className="border-border-subtle mt-4 rounded-lg border bg-white/5 p-2 text-center">
-                      <span className="text-fg-muted block text-[9px] font-bold tracking-wider uppercase">
-                        {t("last_calculated_valuation")}
-                      </span>
-                      <span className="text-lg font-extrabold text-emerald-400">
-                        {valuations.length > 0
-                          ? formatCurrency(valuations[0]!.result_pre_money * 100)
-                          : formatCurrency(DEFAULT_VALUATION_PRE_MONEY * 100)}
-                      </span>
-                    </div>
-                  </div>
-                  <Link
-                    href="/admin/strategy/valuation"
-                    className="text-brand-400 hover:text-brand-300 mt-6 flex items-center gap-1 text-xs font-bold transition"
-                  >
-                    {t("calculate_valuation")}
-                    <ChevronRight className="h-3 w-3" />
-                  </Link>
-                </div>
-
-                {/* OKR MILESTONES CARD */}
-                <div className="border-border-subtle hover:border-brand-500/30 bg-bg-secondary/40 ring-border-subtle flex flex-col justify-between rounded-2xl border p-6 ring-1 backdrop-blur-xl transition-all duration-300">
-                  <div>
-                    <div className="mb-4 flex items-center justify-between">
-                      <div className="rounded-lg border border-blue-500/25 bg-blue-500/10 p-2 text-blue-400">
-                        <Compass className="h-5 w-5" />
-                      </div>
-                      <span className="text-fg-muted font-mono text-[9px] font-bold tracking-wider uppercase">
-                        {t("module_04")}
-                      </span>
-                    </div>
-                    <h2 className="text-lg font-bold text-white">{t("strategic_roadmap")}</h2>
-                    <p className="text-fg-muted mt-2 text-xs">
-                      {t("map_quarterly_okrs_and_milestone_complet")}
-                    </p>
-                    <div className="mt-4">
-                      <div className="text-fg-muted mb-1 flex justify-between text-[10px] font-bold tracking-wider uppercase">
-                        <span>{t("roadmap_progress")}</span>
-                        <span>{avgOkrProgress}%</span>
-                      </div>
-                      <div className="h-2 w-full overflow-hidden rounded-full bg-white/5">
-                        <div
-                          className="bg-brand-500 h-full rounded-full transition-all duration-1000"
-                          style={{ width: `${avgOkrProgress}%` }}
-                        />
-                      </div>
-                      <span className="text-fg-muted mt-1.5 block text-[10px]">
-                        {t("donemilestones_of_totalmilestones_milest", {
-                          doneMilestones,
-                          totalMilestones,
-                        })}
-                      </span>
-                    </div>
-                  </div>
-                  <Link
-                    href="/admin/strategy/roadmap"
-                    className="text-brand-400 hover:text-brand-300 mt-6 flex items-center gap-1 text-xs font-bold transition"
-                  >
-                    {t("manage_milestones")}
-                    <ChevronRight className="h-3 w-3" />
-                  </Link>
-                </div>
-
-                {/* STRATEJİK DEĞERLENDİRME CARD */}
-                <div className="border-border-subtle hover:border-brand-500/30 bg-bg-secondary/40 ring-border-subtle flex flex-col justify-between rounded-2xl border p-6 ring-1 backdrop-blur-xl transition-all duration-300">
-                  <div>
-                    <div className="mb-4 flex items-center justify-between">
-                      <div className="rounded-lg border border-emerald-500/25 bg-emerald-500/10 p-2 text-emerald-400">
-                        <Cpu className="h-5 w-5" />
-                      </div>
-                      <span className="text-fg-muted font-mono text-[9px] font-bold tracking-wider uppercase">
-                        {t("module_05")}
-                      </span>
-                    </div>
-                    <h2 className="text-lg font-bold text-white">
-                      {t("strategy_questionnaire") || "Strategic Questionnaire"}
-                    </h2>
-                    <p className="text-fg-muted mt-2 text-xs">
-                      {t("strategy_questionnaire_desc") ||
-                        "Compare model evaluations, latencies, and costs on platform strategy."}
-                    </p>
-                    <div className="border-border-subtle mt-4 rounded-lg border bg-white/5 p-2 text-center text-xs">
-                      <span className="text-fg-muted block text-[9px] font-bold tracking-wider uppercase">
-                        {t("question_pool") || "Soru Havuzu"}
-                      </span>
-                      <span className="text-lg font-extrabold text-white">
-                        {QUESTIONS.length} {t("active_questions") || "Aktif Soru"}
-                      </span>
-                    </div>
-                  </div>
-                  <a
-                    href="#questionnaire"
-                    className="text-brand-400 hover:text-brand-300 mt-6 flex items-center gap-1 text-xs font-bold transition"
-                  >
-                    {t("run_questionnaire") || "Run Evaluation"}
-                    <ChevronRight className="h-3 w-3" />
-                  </a>
-                </div>
-
-                {/* 360° EKOSİSTEM ANALİZİ CARD */}
-                <div className="border-border-subtle hover:border-brand-500/30 bg-bg-secondary/40 ring-border-subtle flex flex-col justify-between rounded-2xl border p-6 ring-1 backdrop-blur-xl transition-all duration-300">
-                  <div>
-                    <div className="mb-4 flex items-center justify-between">
-                      <div className="border-brand-500/25 bg-brand-500/10 text-brand-400 rounded-lg border p-2">
-                        <Target className="h-5 w-5" />
-                      </div>
-                      <span className="text-fg-muted font-mono text-[9px] font-bold tracking-wider uppercase">
-                        {t("module_06") || "Module 06"}
-                      </span>
-                    </div>
-                    <h2 className="text-lg font-bold text-white">
-                      {t("ecosystem_benchmark") || "360° Ecosystem Benchmarking"}
-                    </h2>
-                    <p className="text-fg-muted mt-2 text-xs">
-                      {t("ecosystem_benchmark_desc") ||
-                        "Market post-mortem: OpenRouter, Blackbox AI, LMSYS, Scale AI & LangChain analysis."}
-                    </p>
-                    <div className="border-border-subtle mt-4 rounded-lg border bg-white/5 p-2 text-center text-xs">
-                      <span className="text-fg-muted block text-[9px] font-bold tracking-wider uppercase">
-                        Defensive Moat Index
-                      </span>
-                      <span className="text-lg font-extrabold text-emerald-400">ölçülmedi</span>
-                    </div>
-                  </div>
-                  <a
-                    href="#ecosystem-benchmark"
-                    className="text-brand-400 hover:text-brand-300 mt-6 flex items-center gap-1 text-xs font-bold transition"
-                  >
-                    View Benchmark
-                    <ChevronRight className="h-3 w-3" />
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* AI Advisor Roster */}
-            <AdvisorRoster />
-
-            {/* Live AI Strategy Analysis */}
-            <div className="mt-8">
-              <LiveStrategyClient
-                context={{
-                  strengths: strengthsCount,
-                  weaknesses: weaknessesCount,
-                  opportunities: opportunitiesCount,
-                  threats: threatsCount,
-                  highRisks: highRisksCount,
-                  activeRisks: activeRisksCount,
-                  doneMilestones,
-                  totalMilestones,
-                }}
-              />
-            </div>
-
-            {/* Strategy Questionnaire Module */}
-            <div id="questionnaire" className="mt-12">
-              <QuestionnaireClient
-                runs={(runs as unknown as RunRow[]) || []}
-                answers={(allAnswers as unknown as AnswerRow[]) || []}
-                latestRunId={latestRunId}
-                models={models}
-                locale={locale}
-                i18n={{
-                  runButton: t("questionnaire_run_button") || "Run Evaluation",
-                  runAgainButton: t("questionnaire_run_again_button") || "Run Again",
-                  running: t("questionnaire_running") || "Running...",
-                  history: t("questionnaire_history") || "Run History",
-                  tableQuestion: t("questionnaire_question") || "Question",
-                  tableModel: t("questionnaire_model") || "Model",
-                  tableAnswer: t("questionnaire_answer") || "Answer",
-                  exportMd: t("questionnaire_export") || "Export MD",
-                  noRuns: t("questionnaire_no_runs") || "No evaluations yet.",
-                  noAnswers: t("questionnaire_no_answers") || "No answers.",
-                  statusCompleted: t("questionnaire_status_completed") || "Completed",
-                  statusFailed: t("questionnaire_failed") || "Failed",
-                  statusRunning: t("questionnaire_running_lower") || "Running",
-                  tokens: t("questionnaire_tokens") || "Tokens",
-                  latency: t("questionnaire_latency") || "Latency",
-                  selectAll: t("questionnaire_select_all") || "Select All",
-                  questionsCount:
-                    t("questionnaire_questions_count", { total: QUESTIONS.length }) ||
-                    `${QUESTIONS.length} Questions`,
-                  modelsLabel: t("questionnaire_models") || "Models",
-                  close: t("questionnaire_close") || "Close",
-                  error: t("questionnaire_error") || "Error",
-                  totalRuns: t("questionnaire_total_runs") || "Total Runs",
-                }}
-              />
-            </div>
-
-            {/* 360° Ecosystem Post-Mortem & Benchmarking Module */}
-            <div id="ecosystem-benchmark" className="mt-12">
-              <EcosystemBenchmarkWidget />
-            </div>
-          </Container>
+        {/* Tab Switcher */}
+        <div className="flex items-center gap-1 rounded-lg border border-[#d0d7de] bg-zinc-900 p-1 dark:border-[#30363d]">
+          {(["VALUATION", "SWOT", "RISKS"] as const).map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`rounded px-3 py-1.5 font-mono text-xs transition-colors ${
+                activeTab === tab
+                  ? "border border-zinc-700 bg-zinc-800 font-bold text-[#1f2328] shadow-sm dark:text-[#f0f6fc]"
+                  : "text-zinc-400 hover:text-zinc-200 dark:text-[#8b949e] dark:text-[#656d76]"
+              }`}
+            >
+              {tab === "VALUATION"
+                ? "Değerleme Modeli"
+                : tab === "SWOT"
+                  ? "SWOT Matrisi"
+                  : "Kurumsal Riskler"}
+            </button>
+          ))}
         </div>
       </div>
+
+      {/* Top Metrics */}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <MetricCard
+          label="Hesaplanan Şirket Değerlemesi"
+          value="$48.5M - $85.0M"
+          subtext="2.763 Vaka Veri Kalkanı & B2B ARR Çarpanı (25x - 40x)"
+          changeType="positive"
+          icon={DollarSign}
+        />
+        <MetricCard
+          label="Data Moat Savunulabilirlik"
+          value="%94.8 MOAT"
+          subtext="Eşsiz Vaka Sayısı ve VirusTotal Çarkı"
+          changeType="positive"
+          icon={Target}
+        />
+        <MetricCard
+          label="Pazar Fırsat Büyüklüğü (TAM)"
+          value="$48.2 Milyar"
+          subtext="2030 Küresel AI Güvenlik & Liability Sigorta Pazarı"
+          icon={TrendingUp}
+        />
+      </div>
+
+      {/* Tab 1: Valuation */}
+      {activeTab === "VALUATION" && (
+        <div className="grid grid-cols-1 gap-6 font-mono text-xs lg:grid-cols-2">
+          <div className="space-y-4 rounded-md border border-[#d0d7de] bg-[#ffffff] p-5 shadow-sm dark:border-[#30363d] dark:bg-[#161b22] dark:shadow-none">
+            <h2 className="text-sm font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+              B2B Veri & SaaS Değerleme Metodolojisi
+            </h2>
+            <div className="space-y-3 font-sans text-xs leading-relaxed text-[#656d76] dark:text-[#c9d1d9]">
+              <p>
+                Alparai salt bir yazılım firması değil;{" "}
+                <strong>AI Hata ve Zafiyet Veri Tekelidir (Data Moat).</strong> Şirket değerlemesi
+                geleneksel 10x SaaS çarpanı yerine, Bloomberg ve Veri Güvenliği şirketlerinin
+                uyguladığı <strong>25x - 40x ARR çarpanı</strong> ile hesaplanır.
+              </p>
+              <div className="space-y-1.5 rounded border border-[#d0d7de] bg-zinc-950 p-3 font-mono text-xs dark:border-[#30363d]">
+                <div className="flex justify-between text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
+                  <span>Mevcut Yıllıklandırılmış Gelir (ARR):</span>
+                  <span className="font-bold text-[#1f2328] dark:text-[#f0f6fc]">$1.33M</span>
+                </div>
+                <div className="flex justify-between text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
+                  <span>Veri Kalkanı Premium Katsayısı:</span>
+                  <span className="font-bold text-emerald-400">+35x Çarpan</span>
+                </div>
+                <div className="flex justify-between border-t border-[#d0d7de] pt-2 text-sm font-bold text-emerald-400 dark:border-[#30363d]">
+                  <span>Mevcut Seed/Seri A Değerlemesi:</span>
+                  <span>$46.5M - $53.2M</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-4 rounded-md border border-[#d0d7de] bg-[#ffffff] p-5 shadow-sm dark:border-[#30363d] dark:bg-[#161b22] dark:shadow-none">
+            <h2 className="text-sm font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+              3 Yıllık Değerleme Projeksiyonu
+            </h2>
+            <div className="space-y-3 font-sans text-xs text-[#656d76] dark:text-[#c9d1d9]">
+              <div className="flex items-center justify-between rounded border border-[#d0d7de] bg-zinc-950 p-2.5 font-mono dark:border-[#30363d]">
+                <span>1. Yıl Sonu (2026):</span>
+                <span className="font-bold text-zinc-200">
+                  $1.95M ARR → <strong>$48M-$78M Değerleme</strong>
+                </span>
+              </div>
+              <div className="flex items-center justify-between rounded border border-[#d0d7de] bg-zinc-950 p-2.5 font-mono dark:border-[#30363d]">
+                <span>2. Yıl Sonu (2027):</span>
+                <span className="font-bold text-cyan-400">
+                  $8.12M ARR → <strong>$160M-$240M Değerleme</strong>
+                </span>
+              </div>
+              <div className="flex items-center justify-between rounded border border-[#d0d7de] bg-zinc-950 p-2.5 font-mono dark:border-[#30363d]">
+                <span>3. Yıl Sonu (2028):</span>
+                <span className="font-bold text-emerald-400">
+                  $25.0M ARR → <strong>$500M+ Unicorn Adayı</strong>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Tab 2: SWOT */}
+      {activeTab === "SWOT" && (
+        <div className="grid grid-cols-1 gap-4 font-mono text-xs sm:grid-cols-2">
+          <div className="space-y-2 rounded-lg border border-emerald-800/60 bg-emerald-950/30 p-4">
+            <h3 className="text-sm font-bold text-emerald-300">GÜÇLÜ YÖNLER (STRENGTHS)</h3>
+            <ul className="list-inside list-disc space-y-1 font-sans text-xs text-[#656d76] dark:text-[#c9d1d9]">
+              <li>2.763 hazır vaka ile pazarın en büyük açık & doğrulanmış veri seti</li>
+              <li>EU AI Act Madde 73 (72h SLA) ve Madde 99 ceza hesaplama tekeli</li>
+              <li>5-Model Byzantine çapraz denetim mimarisi (Sıfır tek model bağımlılığı)</li>
+              <li>Sıfır-Bilgi PII temizliği (MERNİS, IBAN, Luhn)</li>
+            </ul>
+          </div>
+
+          <div className="space-y-2 rounded-lg border border-amber-800/60 bg-amber-950/30 p-4">
+            <h3 className="text-sm font-bold text-amber-300">FIRSATLAR (OPPORTUNITIES)</h3>
+            <ul className="list-inside list-disc space-y-1 font-sans text-xs text-[#656d76] dark:text-[#c9d1d9]">
+              <li>Allianz / Swiss Re gibi sigorta devlerinin aktüeryal veri açlığı</li>
+              <li>Ağustos 2026 EU AI Act zorunluluklarının yarattığı devasa panik dalgası</li>
+              <li>VirusTotal benzeri topluluk büyüme çarkıyla milyonlarca ihbar çekimi</li>
+            </ul>
+          </div>
+
+          <div className="space-y-2 rounded-lg border border-blue-800/60 bg-blue-950/30 p-4">
+            <h3 className="text-sm font-bold text-blue-300">ZAYIF YÖNLER (WEAKNESSES)</h3>
+            <ul className="list-inside list-disc space-y-1 font-sans text-xs text-[#656d76] dark:text-[#c9d1d9]">
+              <li>Kamuoyu bilinirliğinin erken aşamada olması (Growth ekibi ölçekleniyor)</li>
+              <li>Manuel ihbar inceleme ekibinin büyüme hızına yetiştirilmesi gereği</li>
+            </ul>
+          </div>
+
+          <div className="space-y-2 rounded-lg border border-rose-800/60 bg-rose-950/30 p-4">
+            <h3 className="text-sm font-bold text-rose-300">TEHDİTLER (THREATS)</h3>
+            <ul className="list-inside list-disc space-y-1 font-sans text-xs text-[#656d76] dark:text-[#c9d1d9]">
+              <li>
+                Büyük teknoloji şirketlerinden gelebilecek SLAPP yayından kaldırma davaları
+                (Streisand kalkanı ile önlendi)
+              </li>
+              <li>Kapalı model üreticilerinin güvenlik verilerini gizleme çabaları</li>
+            </ul>
+          </div>
+        </div>
+      )}
+
+      {/* Tab 3: Risks */}
+      {activeTab === "RISKS" && (
+        <div className="space-y-4 rounded-md border border-[#d0d7de] bg-[#ffffff] p-5 font-mono text-xs shadow-sm dark:border-[#30363d] dark:bg-[#161b22] dark:shadow-none">
+          <h2 className="text-sm font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+            Kurumsal Risk & Tehdit Matrisi
+          </h2>
+          <div className="space-y-3">
+            <div className="flex items-center justify-between rounded border border-[#d0d7de] bg-zinc-950 p-3 dark:border-[#30363d]">
+              <div>
+                <span className="font-bold text-zinc-200">Hukuki SLAPP Riski:</span>
+                <p className="mt-0.5 font-sans text-xs text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
+                  Büyük firmaların zafiyet ifşalarına karşı dava tehditleri.
+                </p>
+              </div>
+              <span className="rounded border border-emerald-800 bg-emerald-950/60 px-2 py-1 font-bold text-emerald-300">
+                MİTİGE EDİLDİ (Anti-SLAPP Kalkanı)
+              </span>
+            </div>
+            <div className="flex items-center justify-between rounded border border-[#d0d7de] bg-zinc-950 p-3 dark:border-[#30363d]">
+              <div>
+                <span className="font-bold text-zinc-200">Veri Sızıntısı & PII Riski:</span>
+                <p className="mt-0.5 font-sans text-xs text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
+                  İhbarcının kişisel verilerinin yanlışlıkla yayılması.
+                </p>
+              </div>
+              <span className="rounded border border-emerald-800 bg-emerald-950/60 px-2 py-1 font-bold text-emerald-300">
+                SIFIR RİSK (Zero-Knowledge Hash)
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

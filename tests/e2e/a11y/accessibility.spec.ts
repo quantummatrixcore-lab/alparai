@@ -20,7 +20,7 @@ test.describe("Accessibility (WCAG 2.2 AA)", () => {
       });
       await page.goto(path);
       await page.waitForLoadState("networkidle");
-      const results = await new AxeBuilder({ page })
+      const results = await new AxeBuilder({ page: page as any })
         .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"])
         .analyze();
       const violations = results.violations.filter(

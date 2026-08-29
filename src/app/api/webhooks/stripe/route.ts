@@ -41,7 +41,7 @@ export async function POST(request: Request) {
   }
 
   const Stripe = (await import("stripe")).default;
-  const stripe = new Stripe(STRIPE_SECRET_KEY, { apiVersion: "2026-07-29.dahlia" });
+  const stripe = new Stripe(STRIPE_SECRET_KEY, { apiVersion: "2026-06-24.dahlia" as any });
 
   let event;
   try {
@@ -55,272 +55,281 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "invalid_signature" }, { status: 400 });
   }
 
-  waitUntil((async () => {
-const admin = createAdminClient();
+  waitUntil(
+    (async () => {
+      const admin = createAdminClient();
 
-  switch (event.type) {
-    case "checkout.session.completed": {
-      const session = event.data.object;
-      let userId = session.metadata?.user_id || session.client_reference_id;
-      const rawTier = session.metadata?.tier || "pro";
-      const customerId =
-        typeof session.customer === "string" ? session.customer : session.customer?.id;
-      const subscriptionId =
-        typeof session.subscription === "string" ? session.subscription : session.subscription?.id;
-      const { apiKeyTier, userTier } = normalizeTier(rawTier);
+      switch (event.type) {
+        case "checkout.session.completed": {
+          const session = event.data.object;
+          let userId = session.metadata?.user_id || session.client_reference_id;
+          const rawTier = session.metadata?.tier || "pro";
+          const customerId =
+            typeof session.customer === "string" ? session.customer : session.customer?.id;
+          const subscriptionId =
+            typeof session.subscription === "string"
+              ? session.subscription
+              : session.subscription?.id;
+          const { apiKeyTier, userTier } = normalizeTier(rawTier);
 
-      if (!userId && customerId) {
-        const { data: userByCust } = await admin
-          .from("users")
-          .select("id")
-          .eq("stripe_customer_id", customerId)
-          .single();
-        if (userByCust?.id) {
-          userId = userByCust.id;
+          if (!userId && customerId) {
+            const { data: userByCust } = await admin
+              .from("users")
+              .select("id")
+              .eq("stripe_customer_id", customerId)
+              .single();
+            if (userByCust?.id) {
+              userId = userByCust.id;
+            }
+          }
+
+          if (userId) {
+            const { error: subErr } = await admin.from("subscriptions").upsert(
+              {
+                user_id: userId,
+                stripe_customer_id: customerId || null,
+                stripe_subscription_id: subscriptionId || null,
+                plan: userTier,
+                status: "active",
+              },
+              { onConflict: "user_id" },
+            );
+
+            if (subErr) {
+              logger.error("Failed to upsert subscription on checkout completion", {
+                userId,
+                error: subErr.message,
+              });
+            }
+
+            const { error: keyErr } = await admin
+              .from("api_keys")
+              .update({ tier: apiKeyTier })
+              .eq("provider", userId);
+
+            if (keyErr) {
+              logger.error("Failed to update api_keys tier on checkout completion", {
+                userId,
+                error: keyErr.message,
+              });
+            }
+
+            const { error: userErr } = await admin
+              .from("users")
+              .update({
+                subscription_tier: userTier,
+                ...(customerId ? { stripe_customer_id: customerId } : {}),
+              })
+              .eq("id", userId);
+
+            if (userErr) {
+              logger.error("Failed to update user subscription_tier on checkout completion", {
+                userId,
+                error: userErr.message,
+              });
+            }
+
+            logger.info(
+              "Stripe checkout session completed & tier upgrade applied via admin client",
+              {
+                userId,
+                customerId,
+                subscriptionId,
+                rawTier,
+                userTier,
+                apiKeyTier,
+              },
+            );
+
+            // SIGMA-6: Autonomous PDF Invoice generation & Supabase Storage upload
+            const invoiceId = `inv_${session.id.slice(-12)}_${Date.now()}`;
+            const amountTotal = session.amount_total || 2900;
+            const currency = session.currency || "usd";
+            const customerEmail = session.customer_details?.email || undefined;
+            await processAutonomousPdfInvoice({
+              invoiceId,
+              userId,
+              customerEmail,
+              amount: amountTotal,
+              currency,
+              plan: userTier,
+            });
+          } else {
+            logger.warn("Stripe checkout.session.completed received without resolved userId", {
+              sessionId: session.id,
+              customerId,
+            });
+          }
+          break;
+        }
+
+        case "customer.subscription.created": {
+          const subscription = event.data.object;
+          const customerId =
+            typeof subscription.customer === "string"
+              ? subscription.customer
+              : subscription.customer?.id;
+          const subscriptionId = subscription.id;
+          const rawTier = subscription.metadata?.tier || "vendor";
+          const { apiKeyTier, userTier } = normalizeTier(rawTier);
+
+          let userId = subscription.metadata?.user_id;
+          if (!userId && customerId) {
+            const { data: userByCust } = await admin
+              .from("users")
+              .select("id")
+              .eq("stripe_customer_id", customerId)
+              .single();
+            if (userByCust?.id) {
+              userId = userByCust.id;
+            }
+          }
+
+          if (userId) {
+            await admin.from("subscriptions").upsert(
+              {
+                user_id: userId,
+                stripe_customer_id: customerId || null,
+                stripe_subscription_id: subscriptionId,
+                plan: userTier,
+                status: subscription.status || "active",
+              },
+              { onConflict: "user_id" },
+            );
+
+            await admin.from("api_keys").update({ tier: apiKeyTier }).eq("provider", userId);
+            await admin
+              .from("users")
+              .update({
+                subscription_tier: userTier,
+                ...(customerId ? { stripe_customer_id: customerId } : {}),
+              })
+              .eq("id", userId);
+
+            logger.info(
+              "Stripe customer.subscription.created tier upgrade applied via admin client",
+              {
+                userId,
+                customerId,
+                subscriptionId,
+                userTier,
+                apiKeyTier,
+              },
+            );
+          } else {
+            logger.warn("Stripe customer.subscription.created received without resolved userId", {
+              subscriptionId,
+              customerId,
+            });
+          }
+          break;
+        }
+
+        case "customer.subscription.updated": {
+          const subscription = event.data.object;
+          const isActive = subscription.status === "active" || subscription.status === "trialing";
+          const periodEnd = subscription.items?.data?.[0]?.current_period_end;
+          const rawTier = subscription.metadata?.tier || "pro";
+          const { apiKeyTier, userTier } = normalizeTier(rawTier);
+          const customerId =
+            typeof subscription.customer === "string"
+              ? subscription.customer
+              : subscription.customer?.id;
+
+          await admin
+            .from("subscriptions")
+            .update({
+              status: subscription.status,
+              plan: isActive ? userTier : "free",
+              current_period_end: periodEnd ? new Date(periodEnd * 1000).toISOString() : null,
+            })
+            .eq("stripe_subscription_id", subscription.id);
+
+          let userId = subscription.metadata?.user_id;
+          if (!userId) {
+            const { data: subData } = await admin
+              .from("subscriptions")
+              .select("user_id")
+              .eq("stripe_subscription_id", subscription.id)
+              .single();
+            userId = subData?.user_id;
+          }
+          if (!userId && customerId) {
+            const { data: userByCust } = await admin
+              .from("users")
+              .select("id")
+              .eq("stripe_customer_id", customerId)
+              .single();
+            if (userByCust?.id) {
+              userId = userByCust.id;
+            }
+          }
+
+          if (userId) {
+            if (isActive) {
+              await admin.from("api_keys").update({ tier: apiKeyTier }).eq("provider", userId);
+              await admin.from("users").update({ subscription_tier: userTier }).eq("id", userId);
+              logger.info("Stripe subscription updated (active)", {
+                userId,
+                subscriptionId: subscription.id,
+                userTier,
+                apiKeyTier,
+              });
+            } else {
+              await admin.from("api_keys").update({ tier: "free" }).eq("provider", userId);
+              await admin.from("users").update({ subscription_tier: "free" }).eq("id", userId);
+              logger.info("Stripe subscription updated (inactive)", {
+                userId,
+                subscriptionId: subscription.id,
+              });
+            }
+          }
+          break;
+        }
+
+        case "customer.subscription.deleted": {
+          const subscription = event.data.object;
+          const customerId =
+            typeof subscription.customer === "string"
+              ? subscription.customer
+              : subscription.customer?.id;
+          let userId = subscription.metadata?.user_id;
+
+          if (!userId) {
+            const { data: subData } = await admin
+              .from("subscriptions")
+              .select("user_id")
+              .eq("stripe_subscription_id", subscription.id)
+              .single();
+            userId = subData?.user_id;
+          }
+          if (!userId && customerId) {
+            const { data: userByCust } = await admin
+              .from("users")
+              .select("id")
+              .eq("stripe_customer_id", customerId)
+              .single();
+            if (userByCust?.id) {
+              userId = userByCust.id;
+            }
+          }
+
+          await admin
+            .from("subscriptions")
+            .update({ status: "canceled", plan: "free" })
+            .eq("stripe_subscription_id", subscription.id);
+
+          if (userId) {
+            await admin.from("api_keys").update({ tier: "free" }).eq("provider", userId);
+            await admin.from("users").update({ subscription_tier: "free" }).eq("id", userId);
+          }
+
+          logger.info("Stripe subscription canceled", { subscriptionId: subscription.id, userId });
+          break;
         }
       }
-
-      if (userId) {
-        const { error: subErr } = await admin.from("subscriptions").upsert(
-          {
-            user_id: userId,
-            stripe_customer_id: customerId || null,
-            stripe_subscription_id: subscriptionId || null,
-            plan: userTier,
-            status: "active",
-          },
-          { onConflict: "user_id" },
-        );
-
-        if (subErr) {
-          logger.error("Failed to upsert subscription on checkout completion", {
-            userId,
-            error: subErr.message,
-          });
-        }
-
-        const { error: keyErr } = await admin
-          .from("api_keys")
-          .update({ tier: apiKeyTier })
-          .eq("provider", userId);
-
-        if (keyErr) {
-          logger.error("Failed to update api_keys tier on checkout completion", {
-            userId,
-            error: keyErr.message,
-          });
-        }
-
-        const { error: userErr } = await admin
-          .from("users")
-          .update({
-            subscription_tier: userTier,
-            ...(customerId ? { stripe_customer_id: customerId } : {}),
-          })
-          .eq("id", userId);
-
-        if (userErr) {
-          logger.error("Failed to update user subscription_tier on checkout completion", {
-            userId,
-            error: userErr.message,
-          });
-        }
-
-        logger.info("Stripe checkout session completed & tier upgrade applied via admin client", {
-          userId,
-          customerId,
-          subscriptionId,
-          rawTier,
-          userTier,
-          apiKeyTier,
-        });
-
-        // SIGMA-6: Autonomous PDF Invoice generation & Supabase Storage upload
-        const invoiceId = `inv_${session.id.slice(-12)}_${Date.now()}`;
-        const amountTotal = session.amount_total || 2900;
-        const currency = session.currency || "usd";
-        const customerEmail = session.customer_details?.email || undefined;
-        await processAutonomousPdfInvoice({
-          invoiceId,
-          userId,
-          customerEmail,
-          amount: amountTotal,
-          currency,
-          plan: userTier,
-        });
-      } else {
-        logger.warn("Stripe checkout.session.completed received without resolved userId", {
-          sessionId: session.id,
-          customerId,
-        });
-      }
-      break;
-    }
-
-    case "customer.subscription.created": {
-      const subscription = event.data.object;
-      const customerId =
-        typeof subscription.customer === "string"
-          ? subscription.customer
-          : subscription.customer?.id;
-      const subscriptionId = subscription.id;
-      const rawTier = subscription.metadata?.tier || "vendor";
-      const { apiKeyTier, userTier } = normalizeTier(rawTier);
-
-      let userId = subscription.metadata?.user_id;
-      if (!userId && customerId) {
-        const { data: userByCust } = await admin
-          .from("users")
-          .select("id")
-          .eq("stripe_customer_id", customerId)
-          .single();
-        if (userByCust?.id) {
-          userId = userByCust.id;
-        }
-      }
-
-      if (userId) {
-        await admin.from("subscriptions").upsert(
-          {
-            user_id: userId,
-            stripe_customer_id: customerId || null,
-            stripe_subscription_id: subscriptionId,
-            plan: userTier,
-            status: subscription.status || "active",
-          },
-          { onConflict: "user_id" },
-        );
-
-        await admin.from("api_keys").update({ tier: apiKeyTier }).eq("provider", userId);
-        await admin
-          .from("users")
-          .update({
-            subscription_tier: userTier,
-            ...(customerId ? { stripe_customer_id: customerId } : {}),
-          })
-          .eq("id", userId);
-
-        logger.info("Stripe customer.subscription.created tier upgrade applied via admin client", {
-          userId,
-          customerId,
-          subscriptionId,
-          userTier,
-          apiKeyTier,
-        });
-      } else {
-        logger.warn("Stripe customer.subscription.created received without resolved userId", {
-          subscriptionId,
-          customerId,
-        });
-      }
-      break;
-    }
-
-    case "customer.subscription.updated": {
-      const subscription = event.data.object;
-      const isActive = subscription.status === "active" || subscription.status === "trialing";
-      const periodEnd = subscription.items?.data?.[0]?.current_period_end;
-      const rawTier = subscription.metadata?.tier || "pro";
-      const { apiKeyTier, userTier } = normalizeTier(rawTier);
-      const customerId =
-        typeof subscription.customer === "string"
-          ? subscription.customer
-          : subscription.customer?.id;
-
-      await admin
-        .from("subscriptions")
-        .update({
-          status: subscription.status,
-          plan: isActive ? userTier : "free",
-          current_period_end: periodEnd ? new Date(periodEnd * 1000).toISOString() : null,
-        })
-        .eq("stripe_subscription_id", subscription.id);
-
-      let userId = subscription.metadata?.user_id;
-      if (!userId) {
-        const { data: subData } = await admin
-          .from("subscriptions")
-          .select("user_id")
-          .eq("stripe_subscription_id", subscription.id)
-          .single();
-        userId = subData?.user_id;
-      }
-      if (!userId && customerId) {
-        const { data: userByCust } = await admin
-          .from("users")
-          .select("id")
-          .eq("stripe_customer_id", customerId)
-          .single();
-        if (userByCust?.id) {
-          userId = userByCust.id;
-        }
-      }
-
-      if (userId) {
-        if (isActive) {
-          await admin.from("api_keys").update({ tier: apiKeyTier }).eq("provider", userId);
-          await admin.from("users").update({ subscription_tier: userTier }).eq("id", userId);
-          logger.info("Stripe subscription updated (active)", {
-            userId,
-            subscriptionId: subscription.id,
-            userTier,
-            apiKeyTier,
-          });
-        } else {
-          await admin.from("api_keys").update({ tier: "free" }).eq("provider", userId);
-          await admin.from("users").update({ subscription_tier: "free" }).eq("id", userId);
-          logger.info("Stripe subscription updated (inactive)", {
-            userId,
-            subscriptionId: subscription.id,
-          });
-        }
-      }
-      break;
-    }
-
-    case "customer.subscription.deleted": {
-      const subscription = event.data.object;
-      const customerId =
-        typeof subscription.customer === "string"
-          ? subscription.customer
-          : subscription.customer?.id;
-      let userId = subscription.metadata?.user_id;
-
-      if (!userId) {
-        const { data: subData } = await admin
-          .from("subscriptions")
-          .select("user_id")
-          .eq("stripe_subscription_id", subscription.id)
-          .single();
-        userId = subData?.user_id;
-      }
-      if (!userId && customerId) {
-        const { data: userByCust } = await admin
-          .from("users")
-          .select("id")
-          .eq("stripe_customer_id", customerId)
-          .single();
-        if (userByCust?.id) {
-          userId = userByCust.id;
-        }
-      }
-
-      await admin
-        .from("subscriptions")
-        .update({ status: "canceled", plan: "free" })
-        .eq("stripe_subscription_id", subscription.id);
-
-      if (userId) {
-        await admin.from("api_keys").update({ tier: "free" }).eq("provider", userId);
-        await admin.from("users").update({ subscription_tier: "free" }).eq("id", userId);
-      }
-
-      logger.info("Stripe subscription canceled", { subscriptionId: subscription.id, userId });
-      break;
-    }
-  }
-
-    })());
+    })(),
+  );
 
   return NextResponse.json({ received: true });
 }

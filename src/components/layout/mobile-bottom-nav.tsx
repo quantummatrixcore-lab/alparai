@@ -24,6 +24,17 @@ const navItems: NavItem[] = [
 export function MobileBottomNav() {
   const pathname = usePathname();
   const t = useTranslations("nav");
+  const isAdmin =
+    pathname &&
+    (/^\/(?:en|tr|[a-z]{2})\/admin(-v2)?(?:\/|$)/.test(pathname) ||
+      pathname === "/admin" ||
+      pathname.startsWith("/admin") ||
+      pathname.includes("/admin-v2") ||
+      pathname.includes("/admin/"));
+
+  if (isAdmin) {
+    return null;
+  }
 
   return (
     <div className="bg-bg-secondary/90 border-border-subtle safe-bottom fixed right-0 bottom-0 left-0 z-40 flex items-center justify-around border-t px-4 py-2 shadow-2xl backdrop-blur-md lg:hidden">

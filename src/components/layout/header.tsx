@@ -26,9 +26,11 @@ export function Header({
   const pathname = usePathname();
   const isAdmin =
     pathname &&
-    (/^\/[a-z]{2}\/admin(?:\/|$)/.test(pathname) ||
+    (/^\/[a-z]{2}\/admin(-v2)?(?:\/|$)/.test(pathname) ||
       pathname === "/admin" ||
-      pathname.startsWith("/admin"));
+      pathname.startsWith("/admin") ||
+      pathname.includes("/admin-v2") ||
+      pathname.includes("/admin/"));
 
   if (isAdmin) {
     return null;
@@ -54,12 +56,12 @@ export function Header({
             href="https://github.com/quantummatrixcore-lab/alparai"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-fg-muted hover:text-brand-400 focus-visible:ring-brand-500 hidden h-9 min-h-[44px] w-9 min-w-[44px] touch-manipulation items-center justify-center rounded-full transition-colors focus-visible:ring-2 focus-visible:outline-none sm:flex flex-shrink-0"
+            className="text-fg-muted hover:text-brand-400 focus-visible:ring-brand-500 hidden h-9 min-h-[44px] w-9 min-w-[44px] flex-shrink-0 touch-manipulation items-center justify-center rounded-full transition-colors focus-visible:ring-2 focus-visible:outline-none sm:flex"
             aria-label="GitHub Repository"
           >
             <Github className="h-5 w-5" />
           </a>
-          <LanguageSwitcher className="hidden lg:inline-flex flex-shrink-0" />
+          <LanguageSwitcher className="hidden flex-shrink-0 lg:inline-flex" />
           <Link
             href="/submit"
             style={{ whiteSpace: "nowrap" }}
@@ -68,10 +70,10 @@ export function Header({
             <Plus className="h-3.5 w-3.5" aria-hidden="true" />
             {t("report")}
           </Link>
-          <div className="pl-1 flex-shrink-0">
+          <div className="flex-shrink-0 pl-1">
             <UserMenu initialUser={user} />
           </div>
-          <div className="lg:hidden flex-shrink-0">
+          <div className="flex-shrink-0 lg:hidden">
             <MobileNav user={user} />
           </div>
         </div>

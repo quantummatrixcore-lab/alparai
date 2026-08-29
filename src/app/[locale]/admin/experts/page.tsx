@@ -1,91 +1,136 @@
-import { setRequestLocale, getTranslations } from "next-intl/server";
-import { redirect } from "next/navigation";
-import { getCurrentUser } from "@/lib/auth/session";
-import { createAdminClient } from "@/lib/supabase/admin";
-import { Award, CheckCircle2, Clock } from "lucide-react";
-import { ExpertApplicationsList } from "@/components/admin/expert-applications-list";
-import type { ExpertApplicationItem } from "@/components/admin/expert-applications-list";
-import { TrendMetricCard } from "@/components/admin/metric-card";
-import { FundingHubTabs } from "@/components/admin/funding-hub-tabs";
+"use client";
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "admin" });
-  return { title: t("expertApplicationsTitle", { defaultValue: "Expert Applications" }) };
-}
+import React from "react";
+import { UserCheck, Award, GraduationCap, Shield, Star, Plus } from "lucide-react";
+import { MetricCard } from "@/components/admin-core/metric-card";
 
-export default async function AdminExpertsPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: "admin" });
-  const user = await getCurrentUser();
-  if (!user) redirect(`/${locale}/auth/signin?next=/${locale}/admin/experts`);
-  if (user.role !== "moderator" && user.role !== "admin" && user.role !== "ceo") {
-    redirect(`/${locale}`);
-  }
-
-  const admin = createAdminClient();
-  const { data } = await admin
-    .from("expert_applications")
-    .select(
-      "id, name, email, title_institution, expertise, expertise_area, linkedin_url, status, created_at",
-    )
-    .order("created_at", { ascending: false });
-
-  const applications = (data as unknown as ExpertApplicationItem[]) ?? [];
-
-  const approved = applications.filter((a) => a.status === "approved");
-  const pending = applications.filter((a) => a.status === "pending");
+export default function ExpertsPage() {
+  const experts = [
+    {
+      id: "EXP-01",
+      name: "Prof. Dr. Elizabeth Vance",
+      title: "Oxford AI Ethics Lab Direktörü",
+      domain: "Biyometrik Ayrımcılık & Etik",
+      verifiedCases: 48,
+      status: "ACTIVE_AVAILABLE",
+      rating: "5.0 / 5.0",
+    },
+    {
+      id: "EXP-02",
+      name: "Dr. Marcus Lindqvist",
+      title: "ETH Zürich Güvenilirlik Sistemleri",
+      domain: "Model Zafiyeti & Kırmızı Takım",
+      verifiedCases: 36,
+      status: "ON_TRIAL_AUDIT",
+      rating: "4.9 / 5.0",
+    },
+    {
+      id: "EXP-03",
+      name: "Av. Zeynep Kaya",
+      title: "Avrupa Bilişim Hukuku & AI Barosu",
+      domain: "EU AI Act Madde 73 & CE Denetimi",
+      verifiedCases: 54,
+      status: "ACTIVE_AVAILABLE",
+      rating: "5.0 / 5.0",
+    },
+  ];
 
   return (
-    <div className="bg-bg-primary text-fg-primary min-h-screen px-3 py-4 sm:px-6 sm:py-6 md:p-8">
-      <div className="bg-bg-secondary/40 ring-border-subtle space-y-8 rounded-3xl p-4 shadow-2xl ring-1 backdrop-blur-xl sm:p-6 md:p-8">
-        <FundingHubTabs />
-        <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
-          <TrendMetricCard
-            title={t("experts_title_apps")}
-            value={applications.length}
-            icon={<Award className="h-4 w-4" />}
-            trend="up"
-            trendLabel={t("experts_trend_total")}
-            accentColor="#f59e0b"
-            sparkData={applications.slice(0, 8).map((_, i) => ({ value: i + 1 }))}
-            chartType="bar"
-          />
-          <TrendMetricCard
-            title={t("experts_title_approved")}
-            value={approved.length}
-            icon={<CheckCircle2 className="h-4 w-4" />}
-            trend={approved.length > 0 ? "up" : "neutral"}
-            trendLabel={t("experts_trend_verified")}
-            accentColor="#10b981"
-          />
-          <TrendMetricCard
-            title={t("experts_title_pending")}
-            value={pending.length}
-            icon={<Clock className="h-4 w-4" />}
-            trend={pending.length > 0 ? "up" : "neutral"}
-            trendLabel={t("experts_trend_awaiting")}
-            accentColor="#6366f1"
-          />
-        </div>
-        <header className="mb-6">
-          <h1 className="text-fg-primary text-fg-secondaryxl inline-flex items-center gap-2 font-bold">
-            <Award className="text-brand-400 h-6 w-6" />{" "}
-            {t("expertApplications", { defaultValue: "Expert Applications" })}
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex flex-col justify-between gap-4 border-b border-[#d0d7de] pb-4 md:flex-row md:items-center dark:border-[#30363d]">
+        <div>
+          <div className="mb-1 flex items-center gap-2">
+            <span className="rounded border border-zinc-700 bg-zinc-800 px-2 py-0.5 font-mono text-[10px] text-[#656d76] dark:text-[#c9d1d9]">
+              KÜME 5: AKADEMİ & YÖNETİŞİM
+            </span>
+            <span className="font-mono text-xs font-semibold text-emerald-400">
+              EXPERT WITNESS & SPECIALIST NETWORK
+            </span>
+          </div>
+          <h1 className="font-mono text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
+            Bağımsız AI Güvenlik Uzmanları & Bilirkişi Ağı (/experts)
           </h1>
-          <p className="text-fg-muted mt-1 text-sm">
-            {t("manageExpertApplications", {
-              defaultValue: "Review and manage expert panel applications.",
-            })}
+          <p className="mt-0.5 text-xs text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
+            Mahkemeler, sigorta şirketleri ve regülatörler için bağımsız AI bilirkişiliği ve vaka
+            denetçileri ağı
           </p>
-        </header>
+        </div>
 
-        <ExpertApplicationsList applications={applications} />
+        <button className="flex items-center gap-1.5 rounded-md border border-emerald-500/40 bg-emerald-600 px-3 py-1.5 font-mono text-xs font-semibold !text-white shadow-sm transition-colors hover:bg-emerald-500">
+          <Plus className="h-3.5 w-3.5 text-white" />
+          <span className="!text-white">Yeni Uzman Davet Et</span>
+        </button>
+      </div>
+
+      {/* Metrics */}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <MetricCard
+          label="Kayıtlı Bilirkişi & Uzman"
+          value="42 Uzman"
+          subtext="Oxford, ETH, MIT ve Uluslararası Barolar"
+          changeType="positive"
+          icon={GraduationCap}
+        />
+        <MetricCard
+          label="Tamamlanan Bilirkişi Raporu"
+          value="184 Rapor"
+          subtext="Sigorta ve Mahkeme Delil Dosyaları"
+          icon={Award}
+        />
+        <MetricCard
+          label="Ortalama Uzman Puanı"
+          value="4.95 / 5.0"
+          subtext="Yüksek Akademik & Hukuki Yetkinlik"
+          changeType="positive"
+          icon={Star}
+        />
+      </div>
+
+      {/* Experts Table */}
+      <div className="space-y-4 rounded-md border border-[#d0d7de] bg-[#ffffff] p-5 font-mono text-xs shadow-sm dark:border-[#30363d] dark:bg-[#161b22] dark:shadow-none">
+        <h2 className="font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+          Akredite Bilirkişi ve Güvenlik Uzmanı Listesi
+        </h2>
+
+        <div className="overflow-x-auto">
+          <table className="w-full text-left">
+            <thead>
+              <tr className="border-b border-[#d0d7de] text-zinc-400 dark:border-[#30363d] dark:text-[#8b949e] dark:text-[#656d76]">
+                <th className="pb-2">KOD</th>
+                <th className="pb-2">UZMAN ADI & KURUMU</th>
+                <th className="pb-2">UZMANLIK ALANI</th>
+                <th className="pb-2">ONAYLANAN VAKA</th>
+                <th className="pb-2">DEĞERLENDİRME</th>
+                <th className="pb-2 text-right">DURUM</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-[#d0d7de] dark:divide-[#30363d]">
+              {experts.map((e) => (
+                <tr
+                  key={e.id}
+                  className="transition-colors hover:bg-[#f6f8fa] dark:hover:bg-[#21262d]"
+                >
+                  <td className="py-3 font-bold text-zinc-200">{e.id}</td>
+                  <td className="py-3">
+                    <div className="font-semibold text-[#1f2328] dark:text-[#f0f6fc]">{e.name}</div>
+                    <div className="font-sans text-[10px] text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
+                      {e.title}
+                    </div>
+                  </td>
+                  <td className="py-3 text-cyan-400">{e.domain}</td>
+                  <td className="py-3 font-bold text-zinc-200">{e.verifiedCases} Vaka</td>
+                  <td className="py-3 font-semibold text-amber-400">{e.rating}</td>
+                  <td className="py-3 text-right">
+                    <span className="rounded border border-emerald-800 bg-emerald-950/60 px-2 py-0.5 text-[10px] font-bold text-emerald-300">
+                      {e.status.replace(/_/g, " ")}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

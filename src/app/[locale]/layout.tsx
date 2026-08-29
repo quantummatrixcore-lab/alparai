@@ -24,6 +24,7 @@ import { PwaRegister } from "@/components/pwa-register";
 import { PlausibleWithConsent } from "@/components/plausible-consent";
 import { UtmTracker } from "@/components/analytics/utm-tracker";
 import { ReferralTracker } from "@/components/marketing/referral-tracker";
+import { ThemeProvider } from "next-themes";
 import "../globals.css";
 
 export const metadata = {
@@ -52,14 +53,18 @@ export default async function LocaleLayout({
   const headerUser = null;
 
   const headersList = await headers();
-  const pathname = headersList.get("x-pathname") || "";
+  const pathname =
+    headersList.get("x-pathname") || headersList.get("x-middleware-request-x-pathname") || "";
   const isEmbed = pathname.endsWith("/embed");
+  const isAdmin =
+    pathname.includes("/admin") ||
+    pathname.includes("/admin-v2") ||
+    /^\/[a-z]{2}\/admin/.test(pathname);
   const dir = locale === "ar" || locale === "fa" ? "rtl" : "ltr";
 
   return (
     <html lang={locale} dir={dir} suppressHydrationWarning>
-      <head>
-      </head>
+      <head></head>
       <body className="bg-bg-primary text-fg-primary relative min-h-screen w-full overflow-x-hidden font-sans antialiased">
         <a
           href="#main-content"
@@ -67,36 +72,38 @@ export default async function LocaleLayout({
         >
           {tCommon("skipToContent", { defaultValue: "Skip to main content" })}
         </a>
-        <PostHogProvider>
-          <NextIntlClientProvider messages={messages}>
-            {isEmbed ? (
-              <main className="m-0 min-h-screen bg-transparent p-0">{children}</main>
-            ) : (
-              <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden pb-16 lg:pb-0">
-                <div className="fixed top-0 right-0 left-0 z-[60]">
-                  <LiveTicker />
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <PostHogProvider>
+            <NextIntlClientProvider messages={messages}>
+              {isEmbed || isAdmin ? (
+                <main className="m-0 min-h-screen w-full bg-transparent p-0">{children}</main>
+              ) : (
+                <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden pb-16 lg:pb-0">
+                  <div className="fixed top-0 right-0 left-0 z-[60]">
+                    <LiveTicker />
+                  </div>
+                  <div className="mt-8">
+                    <Header user={headerUser} />
+                  </div>
+                  <MainContent>{children}</MainContent>
+                  <Footer />
                 </div>
-                <div className="mt-8">
-                  <Header user={headerUser} />
-                </div>
-                <MainContent>{children}</MainContent>
-                <Footer />
-              </div>
-            )}
-            {!isEmbed && <MobileBottomNav />}
-            <ClientProviders />
-            {!isEmbed && <ScrollToTop />}
-            <PwaRegister />
-            <OrganizationJsonLd />
-            <SoftwareApplicationJsonLd />
-            <WebSiteJsonLd />
-            <PlausibleWithConsent />
-            <UtmTracker />
-            <ReferralTracker />
-            <Analytics />
-            <SpeedInsights />
-          </NextIntlClientProvider>
-        </PostHogProvider>
+              )}
+              {!isEmbed && !isAdmin && <MobileBottomNav />}
+              <ClientProviders />
+              {!isEmbed && !isAdmin && <ScrollToTop />}
+              <PwaRegister />
+              <OrganizationJsonLd />
+              <SoftwareApplicationJsonLd />
+              <WebSiteJsonLd />
+              <PlausibleWithConsent />
+              <UtmTracker />
+              <ReferralTracker />
+              <Analytics />
+              <SpeedInsights />
+            </NextIntlClientProvider>
+          </PostHogProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

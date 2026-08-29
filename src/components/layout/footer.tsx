@@ -45,9 +45,11 @@ export function Footer() {
   const pathname = usePathname();
   const isAdmin =
     pathname &&
-    (/^\/(?:en|tr)\/admin(?:\/|$)/.test(pathname) ||
+    (/^\/(?:en|tr|[a-z]{2})\/admin(-v2)?(?:\/|$)/.test(pathname) ||
       pathname === "/admin" ||
-      pathname.startsWith("/admin"));
+      pathname.startsWith("/admin") ||
+      pathname.includes("/admin-v2") ||
+      pathname.includes("/admin/"));
 
   if (isAdmin) {
     return null;

@@ -50,14 +50,14 @@
     "hash": "5c4b39c1421f9f7c6e5350223b85460175c25e0cab11a97657fbab6c6f3ef9e6"
   },
   "D:\\01_SaaS_Products\\Alparai\\messages\\en.json": {
-    "size": 345246,
-    "mtime_ns": 1787979019210555600,
-    "hash": "76369ddcbe332c9d8689a27c933d6f4f96e6c5b872f79f1aa7c003353d8206c1"
+    "size": 343306,
+    "mtime_ns": 1787971135198429700,
+    "hash": "5a551e77fb716f451bbb74f52e358c1e7dccc95bc57b619e4c575bc100495a9f"
   },
   "D:\\01_SaaS_Products\\Alparai\\messages\\tr.json": {
-    "size": 374562,
-    "mtime_ns": 1787979019207555500,
-    "hash": "41453fbaad4e08486a2d1a1ac10297ccb52606adef7f4820d274e33c86adc757"
+    "size": 372558,
+    "mtime_ns": 1787971135297684500,
+    "hash": "0d3ac2dd63d59627aa75f6afa2ff052df0ba7fb1e229cf082dad7cc788d0eddb"
   },
   "D:\\01_SaaS_Products\\Alparai\\ops\\create-shortcut.ps1": {
     "size": 419,
@@ -190,9 +190,9 @@
     "hash": "05d4e6fd69d408741e5897539dbcedbb4ff49b5d15eb63f04a2e7021747561b7"
   },
   "D:\\01_SaaS_Products\\Alparai\\package.json": {
-    "size": 5607,
-    "mtime_ns": 1788036466373722200,
-    "hash": "9a28f92c1ae3fcd5aa5295be3380167cb53741932bd177adc5383eb53a58db58"
+    "size": 5673,
+    "mtime_ns": 1787971135305156600,
+    "hash": "8c712cae8ab8d215eb3467f9810f7a8ae1a0dd2792aa978aaf7daaef1b8f9d34"
   },
   "D:\\01_SaaS_Products\\Alparai\\public\\data\\k-benchmark-results.json": {
     "size": 8720,
@@ -1520,9 +1520,9 @@
     "hash": "7e92fbe801404eedd10dc305f8cd418ad8d3edd93c7f67c9dbaa0a986001579e"
   },
   "D:\\01_SaaS_Products\\Alparai\\CHANGELOG.md": {
-    "size": 47690,
-    "mtime_ns": 1787979564263527700,
-    "hash": "60b4632bfdf171e76b160663d6c544ac987a8f56abdfb7ff4e20867895623d5c"
+    "size": 46542,
+    "mtime_ns": 1787812078064901600,
+    "hash": "41c6888e5cc1e0ef86d369857ec5de3ddd14443e808855be7a55a8abc4b737e8"
   },
   "D:\\01_SaaS_Products\\Alparai\\CLAUDE.md": {
     "size": 10853,
@@ -3948,45 +3948,5 @@
     "size": 6320,
     "mtime_ns": 1787946801899961200,
     "hash": "725bff97b8c919aa16c22555969e8692ad112e085d86f62cb4958e4dabb63391"
-  },
-  "D:\\01_SaaS_Products\\Alparai\\knip.json": {
-    "size": 587,
-    "mtime_ns": 1788033319105598200,
-    "hash": "4e0dcf0922eb57768b609ff9890ecf5e8646940df7b6763926d86a65117df8db"
-  },
-  "D:\\01_SaaS_Products\\Alparai\\turbo.json": {
-    "size": 581,
-    "mtime_ns": 1788032955422930900,
-    "hash": "6e4dcd4a3f4a1453d2e4a5c40a3c7fc57f485b11ec47cc9381ed8058ae467fcd"
-  },
-  "D:\\01_SaaS_Products\\Alparai\\ALPARAI_SUPREME_STARTUP.md": {
-    "size": 1304,
-    "mtime_ns": 1788035343318507700,
-    "hash": "3fa058962e8e2467f68289211658a1309c978c53a9ec9b42b32ca41920a8b2ee"
-  },
-  "D:\\01_SaaS_Products\\Alparai\\ATATURK_MASTER_360_AUDIT_V2.md": {
-    "size": 4460,
-    "mtime_ns": 1788033837806492900,
-    "hash": "dd57034b40c2816e1ae36486cda49686c6386cd5b3180764d8d88c11340dcb5e"
-  },
-  "D:\\01_SaaS_Products\\Alparai\\REPORTS\\knip_architecture_analysis.md": {
-    "size": 3179,
-    "mtime_ns": 1788033274890175000,
-    "hash": "8ee850a9e59d3ea2306e169e4edfb2bba051a6a28b64aaeb4e9a150f7b548720"
-  },
-  "D:\\01_SaaS_Products\\Alparai\\REPORTS\\morning_summary.md": {
-    "size": 1449,
-    "mtime_ns": 1788035667438025200,
-    "hash": "9af8a3958cfaca31859cf8327620e2a6a20ab413693da4118270ccc79751e10d"
-  },
-  "D:\\01_SaaS_Products\\Alparai\\prioritization_matrix.md": {
-    "size": 1619,
-    "mtime_ns": 1788032928906690200,
-    "hash": "579284df7466ddb32d665188ea791afa35084a99acb6f2be61da3117cc115aa2"
-  },
-  "D:\\01_SaaS_Products\\Alparai\\scripts\\README_SCRIPTS.md": {
-    "size": 1782,
-    "mtime_ns": 1788032922932591100,
-    "hash": "9772ee4a53aec218d6053bcdb2aa7b31b072b46ad30bc552a1a0e333063f40cb"
   }
 }

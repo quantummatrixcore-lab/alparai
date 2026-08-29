@@ -1,0 +1,28 @@
+{
+  "$schema": "https://unpkg.com/knip@3/schema.json",
+  "entry": [
+    "src/index.ts",
+    "src/main.tsx",
+    "src/app/**/*.{js,jsx,ts,tsx}",
+    "src/pages/**/*.{js,jsx,ts,tsx}",
+    "scripts/**/*.{js,mjs,cjs,ts}"
+  ],
+  "project": [
+    "src/**/*.{js,jsx,ts,tsx}"
+  ],
+  "ignore": [
+    "**/*.test.{js,jsx,ts,tsx}",
+    "**/*.spec.{js,jsx,ts,tsx}",
+    "public/**",
+    "dist/**",
+    ".next/**"
+  ],
+  "next": {
+    "entry": [
+      "next.config.{js,cjs,mjs}",
+      "src/app/**/*.{js,jsx,ts,tsx}",
+      "src/pages/**/*.{js,jsx,ts,tsx}",
+      "src/middleware.{js,ts}"
+    ]
+  }
+}

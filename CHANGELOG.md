@@ -5,6 +5,19 @@ All notable changes to ALPAR AI will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.5.1] - 2026-08-29
+
+### 🚀 Performance & Infrastructure
+- **Tailwind v4 Migration:** Upgraded the core styling engine to Tailwind CSS v4, yielding a monumental reduction in CSS payload size and blazing-fast JIT build times.
+- **Middleware Edge Optimization:** Streamlined edge middleware execution paths, drastically reducing compute overhead and lowering edge infrastructure costs without sacrificing routing speed.
+
+### ✨ Features & Enhancements
+- **Admin i18n Expansion:** Delivered comprehensive internationalization (i18n) across the entire admin dashboard, empowering global administrators with a seamless, localized 360-degree observability experience.
+- **B2B API Export Rate-Limit:** Deployed sophisticated token-bucket rate limiting algorithms to B2B data export endpoints, guaranteeing enterprise-grade stability and protecting core resources against abusive burst traffic.
+
+### 🛠 Bug Fixes & Stability
+- **AST-based Try-Catch Repairs:** Executed precision AST-level code modifications to resolve deeply rooted edge-case exception handling issues, establishing unbreakable reliability across complex asynchronous workflows.
+
 ## [1.1.0](https://github.com/quantummatrixcore-lab/Alparai.com/compare/v1.0.1...v1.1.0) (2026-07-23)
 
 ### Features

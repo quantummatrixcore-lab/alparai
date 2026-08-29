@@ -18,49 +18,56 @@ interface TrustRankingRow {
 }
 
 export async function GET(request: Request) {
-  await requireAdmin();
-  const hdrs = await headers();
-  const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
-  const ipHash = hashIp(ip);
+  try {
+    const auth = await requireAdmin();
+    if (auth instanceof NextResponse) return auth;
 
-  const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.api_general}:${ipHash}`);
-  if (!rl.ok) {
+    const hdrs = await headers();
+    const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+    const ipHash = hashIp(ip);
+
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.api_general}:${ipHash}`);
+    if (!rl.ok) {
+      return NextResponse.json(
+        { error: `Rate limited. Retry in ${rl.retryAfter}s.` },
+        { status: 429 },
+      );
+    }
+
+    const { searchParams } = new URL(request.url);
+    const limit = Math.min(Number(searchParams.get("limit") ?? "20"), 50);
+
+    const supabase = createAdminClient();
+    const { data, error } = (await supabase
+      .from("vendor_trust_rankings")
+      .select(
+        "id, provider_slug, provider_name, composite_score, incident_penalty, response_rate_bonus, ranking_tier, last_evaluated_at",
+      )
+      .order("composite_score", { ascending: false })
+      .limit(limit)) as {
+      data: TrustRankingRow[] | null;
+      error: { message: string } | null;
+    };
+
+    if (error) {
+      return NextResponse.json({ error: "Database error" }, { status: 500 });
+    }
+
     return NextResponse.json(
-      { error: `Rate limited. Retry in ${rl.retryAfter}s.` },
-      { status: 429 },
-    );
-  }
-
-  const { searchParams } = new URL(request.url);
-  const limit = Math.min(Number(searchParams.get("limit") ?? "20"), 50);
-
-  const supabase = createAdminClient();
-  const { data, error } = (await supabase
-    .from("vendor_trust_rankings")
-    .select(
-      "id, provider_slug, provider_name, composite_score, incident_penalty, response_rate_bonus, ranking_tier, last_evaluated_at",
-    )
-    .order("composite_score", { ascending: false })
-    .limit(limit)) as {
-    data: TrustRankingRow[] | null;
-    error: { message: string } | null;
-  };
-
-  if (error) {
-    return NextResponse.json({ error: "Database error" }, { status: 500 });
-  }
-
-  return NextResponse.json(
-    {
-      count: data?.length ?? 0,
-      rankings: data ?? [],
-      generated_at: new Date().toISOString(),
-    },
-    {
-      headers: {
-        "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600",
-        "Content-Type": "application/json",
+      {
+        count: data?.length ?? 0,
+        rankings: data ?? [],
+        generated_at: new Date().toISOString(),
       },
-    },
-  );
+      {
+        headers: {
+          "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600",
+          "Content-Type": "application/json",
+        },
+      },
+    );
+  } catch (error) {
+    console.error("Trust ranking API error:", error);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+  }
 }

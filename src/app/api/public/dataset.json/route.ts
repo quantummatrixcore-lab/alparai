@@ -15,47 +15,52 @@ interface DatasetItem {
 }
 
 export async function GET() {
-  const supabase = await createServerClient();
+  try {
+    const supabase = await createServerClient();
 
-  const { data, error } = await supabase
-    .from("incidents")
-    .select(
-      "id, title_masked, description_masked, provider_custom_name, severity, created_at, published_at, source_url, ai_providers(name)",
-    )
-    .eq("status", "published")
-    .order("created_at", { ascending: false })
-    .limit(1000);
+    const { data, error } = await supabase
+      .from("incidents")
+      .select(
+        "id, title_masked, description_masked, provider_custom_name, severity, created_at, published_at, source_url, ai_providers(name)",
+      )
+      .eq("status", "published")
+      .order("created_at", { ascending: false })
+      .limit(1000);
 
-  if (error || !data) {
-    return NextResponse.json({ error: "Failed to generate dataset" }, { status: 500 });
-  }
+    if (error || !data) {
+      return NextResponse.json({ error: "Failed to generate dataset" }, { status: 500 });
+    }
 
-  const incidents: DatasetItem[] = data.map((row) => ({
-    id: row.id,
-    title: row.title_masked ?? "",
-    description: row.description_masked ?? "",
-    vendor: row.ai_providers?.name ?? row.provider_custom_name ?? "Unknown",
-    severity: row.severity,
-    created_at: row.created_at,
-    published_at: row.published_at,
-    source_url: row.source_url,
-  }));
+    const incidents: DatasetItem[] = data.map((row: any) => ({
+      id: row.id,
+      title: row.title_masked ?? "",
+      description: row.description_masked ?? "",
+      vendor: row.ai_providers?.name ?? row.provider_custom_name ?? "Unknown",
+      severity: row.severity,
+      created_at: row.created_at,
+      published_at: row.published_at,
+      source_url: row.source_url,
+    }));
 
-  return NextResponse.json(
-    {
-      dataset_name: "ALPAR AI Registry Open Dataset",
-      version: "1.0",
-      license: "AGPL-3.0",
-      exported_at: new Date().toISOString(),
-      record_count: incidents.length,
-      incidents,
-    },
-    {
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-        "Cache-Control": "public, max-age=600, s-maxage=1200",
-        "Access-Control-Allow-Origin": "*",
+    return NextResponse.json(
+      {
+        dataset_name: "ALPAR AI Registry Open Dataset",
+        version: "1.0",
+        license: "AGPL-3.0",
+        exported_at: new Date().toISOString(),
+        record_count: incidents.length,
+        incidents,
       },
-    },
-  );
+      {
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+          "Cache-Control": "public, max-age=600, s-maxage=1200",
+          "Access-Control-Allow-Origin": "*",
+        },
+      },
+    );
+  } catch (error) {
+    console.error("Dataset generation error:", error);
+    return NextResponse.json({ error: "Internal dataset error" }, { status: 500 });
+  }
 }

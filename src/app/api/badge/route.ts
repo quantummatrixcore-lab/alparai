@@ -90,34 +90,42 @@ export async function OPTIONS(): Promise<NextResponse> {
 }
 
 export async function GET(req: NextRequest): Promise<NextResponse> {
-  const { searchParams } = new URL(req.url);
-  const providerRaw = searchParams.get("provider") || searchParams.get("p") || "alpar";
-  const providerKey = providerRaw.toLowerCase().trim();
+  try {
+    const { searchParams } = new URL(req.url);
+    const providerRaw = searchParams.get("provider") || searchParams.get("p") || "alpar";
+    const providerKey = providerRaw.toLowerCase().trim().replace(/[^a-z0-9_-]/g, "");
 
-  const known = KNOWN_PROVIDERS[providerKey];
-  const fallbackName =
-    providerKey.length > 0
-      ? providerKey.charAt(0).toUpperCase() + providerKey.slice(1)
-      : "Provider";
+    const known = KNOWN_PROVIDERS[providerKey];
+    const fallbackName =
+      providerKey.length > 0
+        ? providerKey.charAt(0).toUpperCase() + providerKey.slice(1)
+        : "Provider";
 
-  const data: BadgeProviderData = {
-    ...(known ?? {
-      provider: providerKey,
-      name: fallbackName,
-      score: 88.5,
-      grade: "AA",
-      verified: true,
-      benchmarkVersion: "K-BENCHMARK v4.2",
-      metrics: { safety: 88.0, accountability: 89.0, transparency: 87.5, reliability: 89.5 },
-    }),
-    timestamp: new Date().toISOString(),
-  };
+    const data: BadgeProviderData = {
+      ...(known ?? {
+        provider: providerKey,
+        name: fallbackName,
+        score: 88.5,
+        grade: "AA",
+        verified: true,
+        benchmarkVersion: "K-BENCHMARK v4.2",
+        metrics: { safety: 88.0, accountability: 89.0, transparency: 87.5, reliability: 89.5 },
+      }),
+      timestamp: new Date().toISOString(),
+    };
 
-  return NextResponse.json(data, {
-    status: 200,
-    headers: {
-      ...corsHeaders,
-      "Cache-Control": "public, max-age=300, s-maxage=300",
-    },
-  });
+    return NextResponse.json(data, {
+      status: 200,
+      headers: {
+        ...corsHeaders,
+        "Cache-Control": "public, max-age=300, s-maxage=300",
+      },
+    });
+  } catch (error) {
+    console.error("Badge generation error:", error);
+    return NextResponse.json(
+      { error: "Failed to generate badge" },
+      { status: 500, headers: corsHeaders },
+    );
+  }
 }

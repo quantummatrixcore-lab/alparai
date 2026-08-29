@@ -18,57 +18,64 @@ interface BenchTrRow {
 }
 
 export async function GET(request: Request) {
-  await requireAdmin();
-  const hdrs = await headers();
-  const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
-  const ipHash = hashIp(ip);
+  try {
+    const auth = await requireAdmin();
+    if (auth instanceof NextResponse) return auth;
 
-  const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.api_general}:${ipHash}`);
-  if (!rl.ok) {
+    const hdrs = await headers();
+    const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+    const ipHash = hashIp(ip);
+
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.api_general}:${ipHash}`);
+    if (!rl.ok) {
+      return NextResponse.json(
+        { error: `Rate limited. Retry in ${rl.retryAfter}s.` },
+        { status: 429 },
+      );
+    }
+
+    const { searchParams } = new URL(request.url);
+    const provider = searchParams.get("provider");
+    const limit = Math.min(Number(searchParams.get("limit") ?? "20"), 50);
+
+    const supabase = createAdminClient();
+    let query = supabase
+      .from("bench_tr_evaluations")
+      .select(
+        "id, model_name, provider_slug, tr_grammar_score, tr_bias_score, tr_factuality_pct, eval_dataset_ver, created_at",
+      )
+      .order("tr_factuality_pct", { ascending: false })
+      .limit(limit);
+
+    if (provider) {
+      query = query.eq("provider_slug", provider);
+    }
+
+    const { data, error } = (await query) as {
+      data: BenchTrRow[] | null;
+      error: { message: string } | null;
+    };
+
+    if (error) {
+      return NextResponse.json({ error: "Database error" }, { status: 500 });
+    }
+
     return NextResponse.json(
-      { error: `Rate limited. Retry in ${rl.retryAfter}s.` },
-      { status: 429 },
-    );
-  }
-
-  const { searchParams } = new URL(request.url);
-  const provider = searchParams.get("provider");
-  const limit = Math.min(Number(searchParams.get("limit") ?? "20"), 50);
-
-  const supabase = createAdminClient();
-  let query = supabase
-    .from("bench_tr_evaluations")
-    .select(
-      "id, model_name, provider_slug, tr_grammar_score, tr_bias_score, tr_factuality_pct, eval_dataset_ver, created_at",
-    )
-    .order("tr_factuality_pct", { ascending: false })
-    .limit(limit);
-
-  if (provider) {
-    query = query.eq("provider_slug", provider);
-  }
-
-  const { data, error } = (await query) as {
-    data: BenchTrRow[] | null;
-    error: { message: string } | null;
-  };
-
-  if (error) {
-    return NextResponse.json({ error: "Database error" }, { status: 500 });
-  }
-
-  return NextResponse.json(
-    {
-      count: data?.length ?? 0,
-      evaluations: data ?? [],
-      benchmark: "BENCH-TR (Turkish LLM Evaluation Benchmark)",
-      generated_at: new Date().toISOString(),
-    },
-    {
-      headers: {
-        "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600",
-        "Content-Type": "application/json",
+      {
+        count: data?.length ?? 0,
+        evaluations: data ?? [],
+        benchmark: "BENCH-TR (Turkish LLM Evaluation Benchmark)",
+        generated_at: new Date().toISOString(),
       },
-    },
-  );
+      {
+        headers: {
+          "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600",
+          "Content-Type": "application/json",
+        },
+      },
+    );
+  } catch (error) {
+    console.error("Bench-TR API error:", error);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+  }
 }

@@ -32,53 +32,61 @@ export async function OPTIONS(request: Request) {
 
 export async function GET(request: Request) {
   const origin = request.headers.get("origin");
-  const hdrs = await headers();
-  const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
-  const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.api_general}:${ip}`);
-  if (!rl.ok) {
+  try {
+    const hdrs = await headers();
+    const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.api_general}:${ip}`);
+    if (!rl.ok) {
+      return NextResponse.json(
+        { error: "rate_limited", retryAfter: rl.retryAfter },
+        {
+          status: 429,
+          headers: {
+            ...corsHeaders(origin),
+            "Retry-After": rl.retryAfter?.toString() ?? "60",
+            "X-RateLimit-Limit": rl.limit?.toString() ?? "100",
+            "X-RateLimit-Remaining": rl.remaining?.toString() ?? "0",
+            "X-RateLimit-Reset": rl.retryAfter?.toString() ?? "60",
+          },
+        },
+      );
+    }
+
+    const supabase = await createServerClient();
+    const { data, error } = await supabase
+      .from("ai_providers")
+      .select("id, name, slug, description, website_url, logo_url, is_verified, trust_score")
+      .order("trust_score", { ascending: false });
+
+    if (error) {
+      logger.error("API v1 providers error", undefined, error instanceof Error ? error : undefined);
+      return NextResponse.json(
+        { error: "internal_error" },
+        { status: 500, headers: corsHeaders(origin) },
+      );
+    }
+
     return NextResponse.json(
-      { error: "rate_limited", retryAfter: rl.retryAfter },
       {
-        status: 429,
+        data: data ?? [],
+        meta: { count: (data ?? []).length, generated_at: new Date().toISOString() },
+      },
+      {
+        status: 200,
         headers: {
           ...corsHeaders(origin),
-          "Retry-After": rl.retryAfter?.toString() ?? "60",
+          "Cache-Control": "public, max-age=60, s-maxage=300, stale-while-revalidate=600",
           "X-RateLimit-Limit": rl.limit?.toString() ?? "100",
-          "X-RateLimit-Remaining": rl.remaining?.toString() ?? "0",
-          "X-RateLimit-Reset": rl.retryAfter?.toString() ?? "60",
+          "X-RateLimit-Remaining": rl.remaining?.toString() ?? "100",
+          "X-RateLimit-Reset": rl.retryAfter?.toString() ?? "0",
         },
       },
     );
-  }
-
-  const supabase = await createServerClient();
-  const { data, error } = await supabase
-    .from("ai_providers")
-    .select("id, name, slug, description, website_url, logo_url, is_verified, trust_score")
-    .order("trust_score", { ascending: false });
-
-  if (error) {
-    logger.error("API v1 providers error", undefined, error instanceof Error ? error : undefined);
+  } catch (err) {
+    logger.error("API v1 providers unhandled error", undefined, err instanceof Error ? err : undefined);
     return NextResponse.json(
       { error: "internal_error" },
       { status: 500, headers: corsHeaders(origin) },
     );
   }
-
-  return NextResponse.json(
-    {
-      data: data ?? [],
-      meta: { count: (data ?? []).length, generated_at: new Date().toISOString() },
-    },
-    {
-      status: 200,
-      headers: {
-        ...corsHeaders(origin),
-        "Cache-Control": "public, max-age=60, s-maxage=300, stale-while-revalidate=600",
-        "X-RateLimit-Limit": rl.limit?.toString() ?? "100",
-        "X-RateLimit-Remaining": rl.remaining?.toString() ?? "100",
-        "X-RateLimit-Reset": rl.retryAfter?.toString() ?? "0",
-      },
-    },
-  );
 }

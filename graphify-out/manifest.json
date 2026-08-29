@@ -6330,13 +6330,13 @@
     "semantic_hash": ""
   },
   "tests/admin-all-41-routes.test.ts": {
-    "mtime": 1787812168.0432856,
-    "ast_hash": "648e67dd16ca160333a6401616219307",
+    "mtime": 1787971722.9787323,
+    "ast_hash": "6a218b1f3a33b27b6f0a430eac9d2a12",
     "semantic_hash": ""
   },
   "tests/admin-pages-360-audit.test.ts": {
-    "mtime": 1787812168.0751398,
-    "ast_hash": "0ae8a68652b4601e4672a1f2b9abe1c8",
+    "mtime": 1787972411.758139,
+    "ast_hash": "c8b97ba17769f77f85fdf524653a00d9",
     "semantic_hash": ""
   },
   "tests/api/auditor.test.ts": {
@@ -7040,8 +7040,8 @@
     "semantic_hash": ""
   },
   "tests/scan-missing-i18n.test.ts": {
-    "mtime": 1787812177.1476786,
-    "ast_hash": "a5dcedaa8eb08fddc7732201273493d7",
+    "mtime": 1787972089.8647687,
+    "ast_hash": "809cc2510e8197482619423fa6b8fd75",
     "semantic_hash": ""
   },
   "tests/security/ssrf.test.ts": {

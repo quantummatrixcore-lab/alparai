@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useParams } from "next/navigation";
+import { Logo } from "@/components/layout/logo";
 import {
   LayoutDashboard,
   ShieldAlert,
@@ -273,14 +274,12 @@ export function AdminSidebar() {
         {!isCollapsed ? (
           <>
             <Link href={`/${locale}/admin`} className="group flex min-w-0 items-center gap-2.5">
-              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-[#1f2328] font-mono text-xs font-bold text-[#ffffff] dark:bg-[#f0f6fc] dark:text-[#0d1117]">
-                A
-              </div>
+              <Logo size="sm" />
               <div className="flex min-w-0 flex-col">
-                <span className="truncate font-mono text-xs font-bold tracking-wider text-[#1f2328] uppercase dark:text-[#f0f6fc]">
-                  ALPAR AI
+                <span className="truncate text-xs font-black tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
+                  ALPAR <span className="text-cyan-600 dark:text-cyan-400">AI</span>
                 </span>
-                <span className="truncate font-mono text-[10px] text-[#656d76] dark:text-[#8b949e]">
+                <span className="truncate font-mono text-[9px] font-semibold tracking-wider text-[#656d76] uppercase dark:text-[#8b949e]">
                   Executive OS v3.5
                 </span>
               </div>
@@ -299,10 +298,10 @@ export function AdminSidebar() {
             <button
               type="button"
               onClick={() => setIsCollapsed(false)}
-              className="flex h-8 w-8 items-center justify-center rounded-md border border-[#d0d7de] bg-[#ffffff] text-[#656d76] transition-all hover:bg-[#f6f8fa] hover:text-[#1f2328] dark:border-[#30363d] dark:bg-[#161b22] dark:text-[#8b949e] dark:hover:bg-[#21262d] dark:hover:text-[#f0f6fc]"
+              className="flex h-8 w-8 items-center justify-center rounded-md border border-[#d0d7de] bg-[#ffffff] p-1 text-[#656d76] transition-all hover:bg-[#f6f8fa] hover:text-[#1f2328] dark:border-[#30363d] dark:bg-[#161b22] dark:text-[#8b949e] dark:hover:bg-[#21262d] dark:hover:text-[#f0f6fc]"
               title="Menüyü Genişlet"
             >
-              <PanelLeft className="h-4 w-4" />
+              <Logo size="sm" />
             </button>
           </div>
         )}

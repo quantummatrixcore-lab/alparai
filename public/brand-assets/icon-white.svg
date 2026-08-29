@@ -1,16 +1,76 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 80" width="100" height="80" role="img" aria-label="ALPAR AI Icon">
-  <g transform="translate(10, 0)">
-    <path d="M 50,10 V 70" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
-    <path d="M 50,15 C 30,16 16,20 16,28 V 50 C 16,60 32,66 50,67" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
-    <path d="M 50,32 H 28" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" />
-    <path d="M 28,32 L 18,50 H 38 Z" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round" />
-    <path d="M 21,50 C 21,54 35,54 35,50 Z" fill="#FFFFFF" opacity="0.85" />
-    <path d="M 38,60 H 62" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
-    <path d="M 50,24 H 68 L 78,14 H 82" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-    <circle cx="82" cy="14" r="3.5" fill="#FFFFFF" />
-    <path d="M 50,38 H 80" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" />
-    <circle cx="80" cy="38" r="3.5" fill="#FFFFFF" />
-    <path d="M 50,52 H 68 L 78,62 H 82" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-    <circle cx="82" cy="62" r="3.5" fill="#FFFFFF" />
-  </g>
+<svg viewBox="0 0 100 100" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Left Facet Gradient: Violet to Indigo -->
+    <linearGradient id="alpar-shield-left" x1="20" y1="12" x2="50" y2="88" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#C084FC" />
+      <stop offset="50%" stop-color="#9333EA" />
+      <stop offset="100%" stop-color="#4F46E5" />
+    </linearGradient>
+
+    <!-- Right Facet Gradient: Cyan to Deep Navy -->
+    <linearGradient id="alpar-shield-right" x1="80" y1="12" x2="50" y2="88" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#22D3EE" />
+      <stop offset="60%" stop-color="#0284C7" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+
+    <!-- Central Diamond Core Gradient -->
+    <linearGradient id="alpar-core-grad" x1="50" y1="36" x2="50" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#A855F7" />
+    </linearGradient>
+
+    <!-- Glowing Core Filter -->
+    <filter id="alpar-glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="3.5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Left Shield Facet (Defense & Authority) -->
+  <path
+    d="M 50,12 L 20,25 V 50 C 20,70 38,83 50,88 Z"
+    fill="#FFFFFF"
+    fill-opacity="0.95"
+  />
+
+  <!-- Right Shield Facet (Intelligence & Speed) -->
+  <path
+    d="M 50,12 L 80,25 V 50 C 80,70 62,83 50,88 Z"
+    fill="#E2E8F0"
+    fill-opacity="0.85"
+  />
+
+  <!-- High-Tech Inner Perimeter Accent -->
+  <path
+    d="M 50,18 L 26,29 V 49 C 26,65 40,76 50,81 V 18"
+    stroke="#FFFFFF"
+    stroke-width="1.5"
+    stroke-opacity="0.25"
+    stroke-linecap="round"
+  />
+  <path
+    d="M 50,18 L 74,29 V 49 C 74,65 60,76 50,81"
+    stroke="#22D3EE"
+    stroke-width="1.2"
+    stroke-opacity="0.3"
+    stroke-linecap="round"
+  />
+
+  <!-- Glowing Quantum Core Diamond -->
+  <path
+    d="M 50,36 L 62,50 L 50,64 L 38,50 Z"
+    fill="url(#alpar-core-grad)"
+    filter="url(#alpar-glow)"
+    opacity="0.95"
+  />
+
+  <!-- Central Starburst Spark of Truth -->
+  <path
+    d="M 50,42 L 52.5,47.5 L 58,50 L 52.5,52.5 L 50,58 L 47.5,52.5 L 42,50 L 47.5,47.5 Z"
+    fill="#FFFFFF"
+  />
 </svg>

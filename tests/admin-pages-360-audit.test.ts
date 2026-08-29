@@ -43,14 +43,14 @@ describe("360 Degree Admin Panel Integrity Audit", () => {
 
     // Extract all href template strings starting with `/${locale}/admin`
     const hrefMatches = [...sidebarContent.matchAll(/href:\s*`\/\$\{locale\}\/admin([^`]*)`/g)];
-    const hrefs = hrefMatches.map((m) => m[1]);
+    const hrefs = hrefMatches.map((m) => m[1] ?? "");
 
     expect(hrefs.length).toBeGreaterThanOrEqual(20);
 
     const missingRoutes: string[] = [];
 
     for (const relativeRoute of hrefs) {
-      const routeClean = (relativeRoute || "").split("?")[0]!;
+      const routeClean = relativeRoute.split("?")[0]!;
       let targetFile = path.join(adminAppDir, routeClean, "page.tsx");
       if (routeClean === "" || routeClean === "/") {
         targetFile = path.join(adminAppDir, "page.tsx");

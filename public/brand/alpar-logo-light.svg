@@ -1,55 +1,42 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80" fill="none" role="img" aria-label="ALPAR AI">
+<svg viewBox="0 0 320 80" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="logo-shield-left" x1="20" y1="12" x2="50" y2="88" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#C084FC" />
-      <stop offset="50%" stop-color="#9333EA" />
-      <stop offset="100%" stop-color="#4F46E5" />
+    <linearGradient id="alpar-text-grad-light-alpar" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
     </linearGradient>
-
-    <linearGradient id="logo-shield-right" x1="80" y1="12" x2="50" y2="88" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#22D3EE" />
-      <stop offset="60%" stop-color="#0284C7" />
-      <stop offset="100%" stop-color="#0F172A" />
+    <linearGradient id="alpar-text-grad-light-ai" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#7c3aed" />
     </linearGradient>
-
-    <linearGradient id="logo-core-grad" x1="50" y1="36" x2="50" y2="64" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#FFFFFF" />
-      <stop offset="100%" stop-color="#A855F7" />
+    <linearGradient id="alpar-wm-shield-left-light" x1="20" y1="12" x2="50" y2="88" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#d946ef" />
+      <stop offset="50%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#3b82f6" />
     </linearGradient>
-
-    <linearGradient id="logo-text-alpar" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#FFFFFF" />
-      <stop offset="100%" stop-color="#E2E8F0" />
+    <linearGradient id="alpar-wm-shield-right-light" x1="80" y1="12" x2="50" y2="88" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#22d3ee" />
+      <stop offset="60%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#0f172a" />
     </linearGradient>
-
-    <linearGradient id="logo-text-ai" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#22D3EE" />
-      <stop offset="100%" stop-color="#06B6D4" />
+    <linearGradient id="alpar-wm-core-light" x1="50" y1="36" x2="50" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#a855f7" />
     </linearGradient>
-
-    <filter id="logo-glow" x="-40%" y="-40%" width="180%" height="180%">
-      <feGaussianBlur stdDeviation="3.5" result="blur" />
-      <feMerge>
-        <feMergeNode in="blur" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
-    </filter>
   </defs>
 
-  <!-- Left: Signature Shield Icon (Scaled 0.75x) -->
-  <g transform="translate(10, 2) scale(0.76)">
-    <path d="M 50,12 L 20,25 V 50 C 20,70 38,83 50,88 Z" fill="url(#logo-shield-left)" fill-opacity="0.95" />
-    <path d="M 50,12 L 80,25 V 50 C 80,70 62,83 50,88 Z" fill="url(#logo-shield-right)" fill-opacity="0.85" />
-    <path d="M 50,18 L 26,29 V 49 C 26,65 40,76 50,81 V 18" stroke="#FFFFFF" stroke-width="1.5" stroke-opacity="0.25" stroke-linecap="round" />
-    <path d="M 50,18 L 74,29 V 49 C 74,65 60,76 50,81" stroke="#22D3EE" stroke-width="1.2" stroke-opacity="0.3" stroke-linecap="round" />
-    <path d="M 50,36 L 62,50 L 50,64 L 38,50 Z" fill="url(#logo-core-grad)" filter="url(#logo-glow)" opacity="0.95" />
-    <path d="M 50,42 L 52.5,47.5 L 58,50 L 52.5,52.5 L 50,58 L 47.5,52.5 L 42,50 L 47.5,47.5 Z" fill="#FFFFFF" />
+  <g transform="translate(10, 8) scale(0.64)">
+    <path d="M 50,12 L 20,25 V 50 C 20,70 38,83 50,88 Z" fill="url(#alpar-wm-shield-left-light)" fill-opacity="0.95" />
+    <path d="M 50,12 L 80,25 V 50 C 80,70 62,83 50,88 Z" fill="url(#alpar-wm-shield-right-light)" fill-opacity="0.85" />
+    <path d="M 50,18 L 26,29 V 49 C 26,65 40,76 50,81 V 18" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.25" stroke-linecap="round" />
+    <path d="M 50,36 L 62,50 L 50,64 L 38,50 Z" fill="url(#alpar-wm-core-light)" />
+    <path d="M 50,42 L 52.5,47.5 L 58,50 L 52.5,52.5 L 50,58 L 47.5,52.5 L 42,50 L 47.5,47.5 Z" fill="#ffffff" />
   </g>
 
-  <!-- Right: Wordmark -->
-  <g transform="translate(95, 0)" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif">
-    <text x="0" y="47" font-size="32" font-weight="900" letter-spacing="-0.8" fill="#0F172A">ALPAR</text>
-    <text x="114" y="47" font-size="32" font-weight="900" letter-spacing="-0.2" fill="url(#logo-text-ai)">AI</text>
-    <text x="2" y="64" font-size="9" font-weight="700" letter-spacing="2.8" fill="#94A3B8" text-transform="uppercase">TRUST INFRASTRUCTURE</text>
-  </g>
+  <text x="82" y="47" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="900" letter-spacing="-0.5px">
+    <tspan fill="url(#alpar-text-grad-light-alpar)">ALPAR </tspan>
+    <tspan fill="url(#alpar-text-grad-light-ai)">AI</tspan>
+  </text>
+  <text x="84" y="62" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="700" fill="#64748b" letter-spacing="2.5px">
+    GLOBAL AI INCIDENT RADAR
+  </text>
 </svg>

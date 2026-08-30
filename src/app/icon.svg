@@ -1,28 +1,27 @@
 <svg viewBox="0 0 100 100" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Left Facet Gradient: Violet to Indigo -->
+    <!-- Left Facet Gradient: Violet / Fuchsia to Indigo -->
     <linearGradient id="alpar-shield-left" x1="20" y1="12" x2="50" y2="88" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#C084FC" />
-      <stop offset="50%" stop-color="#9333EA" />
-      <stop offset="100%" stop-color="#4F46E5" />
+      <stop offset="0%" stop-color="#d946ef" />
+      <stop offset="50%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#3b82f6" />
     </linearGradient>
 
-    <!-- Right Facet Gradient: Cyan to Deep Navy -->
+    <!-- Right Facet Gradient: Cyan to Deep Space Navy -->
     <linearGradient id="alpar-shield-right" x1="80" y1="12" x2="50" y2="88" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#22D3EE" />
-      <stop offset="60%" stop-color="#0284C7" />
-      <stop offset="100%" stop-color="#0F172A" />
+      <stop offset="0%" stop-color="#22d3ee" />
+      <stop offset="60%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#0f172a" />
     </linearGradient>
 
-    <!-- Central Diamond Core Gradient -->
-    <linearGradient id="alpar-core-grad" x1="50" y1="36" x2="50" y2="64" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#FFFFFF" />
-      <stop offset="100%" stop-color="#A855F7" />
+    <!-- Inner AI Spark Diamond Glow Gradient -->
+    <linearGradient id="alpar-core-glow-grad" x1="50" y1="36" x2="50" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#a855f7" />
     </linearGradient>
 
-    <!-- Glowing Core Filter -->
-    <filter id="alpar-glow" x="-40%" y="-40%" width="180%" height="180%">
-      <feGaussianBlur stdDeviation="3.5" result="blur" />
+    <filter id="alpar-core-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
       <feMerge>
         <feMergeNode in="blur" />
         <feMergeNode in="SourceGraphic" />
@@ -30,47 +29,18 @@
     </filter>
   </defs>
 
-  <!-- Left Shield Facet (Defense & Authority) -->
-  <path
-    d="M 50,12 L 20,25 V 50 C 20,70 38,83 50,88 Z"
-    fill="url(#alpar-shield-left)"
-    fill-opacity="0.95"
-  />
+  <!-- Left Shield Facet (Defense & Sovereignty) -->
+  <path d="M 50,12 L 20,25 V 50 C 20,70 38,83 50,88 Z" fill="url(#alpar-shield-left)" fill-opacity="0.95" />
 
   <!-- Right Shield Facet (Intelligence & Speed) -->
-  <path
-    d="M 50,12 L 80,25 V 50 C 80,70 62,83 50,88 Z"
-    fill="url(#alpar-shield-right)"
-    fill-opacity="0.85"
-  />
+  <path d="M 50,12 L 80,25 V 50 C 80,70 62,83 50,88 Z" fill="url(#alpar-shield-right)" fill-opacity="0.85" />
 
-  <!-- High-Tech Inner Perimeter Accent -->
-  <path
-    d="M 50,18 L 26,29 V 49 C 26,65 40,76 50,81 V 18"
-    stroke="#FFFFFF"
-    stroke-width="1.5"
-    stroke-opacity="0.25"
-    stroke-linecap="round"
-  />
-  <path
-    d="M 50,18 L 74,29 V 49 C 74,65 60,76 50,81"
-    stroke="#22D3EE"
-    stroke-width="1.2"
-    stroke-opacity="0.3"
-    stroke-linecap="round"
-  />
+  <!-- Inner Cyber Contour Line -->
+  <path d="M 50,18 L 26,29 V 49 C 26,65 40,76 50,81 V 18" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.25" stroke-linecap="round" />
 
-  <!-- Glowing Quantum Core Diamond -->
-  <path
-    d="M 50,36 L 62,50 L 50,64 L 38,50 Z"
-    fill="url(#alpar-core-grad)"
-    filter="url(#alpar-glow)"
-    opacity="0.95"
-  />
+  <!-- Central Glowing AI Diamond -->
+  <path d="M 50,36 L 62,50 L 50,64 L 38,50 Z" fill="url(#alpar-core-glow-grad)" filter="url(#alpar-core-glow)" />
 
-  <!-- Central Starburst Spark of Truth -->
-  <path
-    d="M 50,42 L 52.5,47.5 L 58,50 L 52.5,52.5 L 50,58 L 47.5,52.5 L 42,50 L 47.5,47.5 Z"
-    fill="#FFFFFF"
-  />
+  <!-- Inner Clarity Starburst -->
+  <path d="M 50,42 L 52.5,47.5 L 58,50 L 52.5,52.5 L 50,58 L 47.5,52.5 L 42,50 L 47.5,47.5 Z" fill="#ffffff" />
 </svg>

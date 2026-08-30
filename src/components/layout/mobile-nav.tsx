@@ -71,6 +71,17 @@ export function MobileNav({
     setOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   return (
     <div className="lg:hidden">
       <button
@@ -85,29 +96,29 @@ export function MobileNav({
       {open && (
         <div
           id="mobile-nav-panel"
-          className="bg-bg-primary/95 fixed inset-0 z-[150] flex flex-col backdrop-blur-sm"
+          className="fixed inset-0 z-[99999] flex min-h-screen w-screen flex-col bg-[#070e17] text-white pointer-events-auto shadow-2xl"
           role="dialog"
           aria-modal="true"
           aria-label={tCommon("openMenu")}
         >
-          <div className="border-border-subtle flex shrink-0 items-center justify-between border-b p-4">
+          <div className="border-b border-white/10 flex shrink-0 items-center justify-between bg-[#0A1622] p-4 shadow-md">
             <Wordmark size="md" />
             <button
               onClick={() => setOpen(false)}
-              className="text-fg-secondary hover:bg-bg-tertiary focus-visible:ring-brand-500 inline-flex h-10 w-10 items-center justify-center rounded-md focus-visible:ring-2 focus-visible:outline-none"
+              className="text-zinc-300 hover:bg-white/10 hover:text-white focus-visible:ring-brand-500 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 focus-visible:ring-2 focus-visible:outline-none transition-colors"
               aria-label={tCommon("closeMenu")}
             >
               <X className="h-5 w-5" />
             </button>
           </div>
-          <nav className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto p-4">
+          <nav className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto p-4 bg-[#070e17]">
             {activeLinks.map((item) => {
               const isGroup = "group" in item;
               if (isGroup) {
                 return (
                   <div
                     key={item.group}
-                    className="text-fg-muted mt-4 px-4 pb-1 text-xs font-bold tracking-wider uppercase"
+                    className="text-zinc-500 mt-4 px-4 pb-1 text-xs font-bold tracking-wider uppercase"
                   >
                     {t(item.group)}
                   </div>
@@ -119,11 +130,12 @@ export function MobileNav({
                 <Link
                   key={item.href}
                   href={item.href}
+                  onClick={() => setOpen(false)}
                   className={cn(
-                    "focus-visible:ring-brand-500 rounded-md px-4 py-3 text-base font-medium transition-colors focus-visible:ring-2 focus-visible:outline-none",
+                    "focus-visible:ring-brand-500 rounded-xl px-4 py-3.5 text-base font-semibold transition-all focus-visible:ring-2 focus-visible:outline-none",
                     isActive
-                      ? "bg-bg-tertiary text-brand-400"
-                      : "text-fg-secondary hover:bg-bg-tertiary hover:text-fg-primary",
+                      ? "bg-brand-500/15 text-brand-400 border border-brand-500/30"
+                      : "text-zinc-300 hover:bg-white/5 hover:text-white",
                   )}
                 >
                   {t(item.key)}
@@ -131,16 +143,17 @@ export function MobileNav({
               );
             })}
           </nav>
-          <div className="border-border-subtle bg-bg-secondary/50 flex shrink-0 flex-col gap-4 border-t p-4">
+          <div className="border-t border-white/10 bg-[#0A1622] flex shrink-0 flex-col gap-4 p-4 pb-8 safe-bottom">
             <Link
               href="/submit"
-              className="from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 flex h-11 items-center justify-center gap-2 rounded-full bg-gradient-to-r px-6 text-sm font-bold text-white shadow-lg transition-all"
+              onClick={() => setOpen(false)}
+              className="from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 flex h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-r px-6 text-sm font-bold text-white shadow-[0_0_20px_rgba(168,85,247,0.4)] transition-all"
             >
               <Plus className="h-4 w-4" aria-hidden="true" />
               {t("report")}
             </Link>
-            <div className="flex items-center justify-between">
-              <span className="text-fg-muted text-xs">{t("language_switcher")}</span>
+            <div className="flex items-center justify-between pt-1">
+              <span className="text-zinc-400 text-xs font-medium">{t("language_switcher")}</span>
               <LanguageSwitcher direction="up" />
             </div>
           </div>

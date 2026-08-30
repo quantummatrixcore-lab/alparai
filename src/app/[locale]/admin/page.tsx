@@ -185,7 +185,11 @@ export default function AdminV2OverviewPage() {
         const prohibitedCount =
           incidentsData?.filter((i: any) => i.category === "prohibited_practices").length || 0;
         const riskFine = prohibitedCount * 35.0 + criticalCount * 15.0;
-        setEuRiskStr(`€${riskFine > 0 ? riskFine.toFixed(1) : "0.0"}M`);
+        if (riskFine >= 1000) {
+          setEuRiskStr(`€${(riskFine / 1000).toFixed(2)} Mrd`);
+        } else {
+          setEuRiskStr(`€${riskFine > 0 ? riskFine.toFixed(1) : "0.0"}M`);
+        }
       } catch (err) {
         console.error("Error loading real dashboard data:", err);
       } finally {

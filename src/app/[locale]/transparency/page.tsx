@@ -61,17 +61,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-export default async function TransparencyPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: "legal" });
-  const tTransparency = await getTranslations({ locale, namespace: "transparency" });
-  const tIncident = await getTranslations({ locale, namespace: "incident" });
-
+async function loadTransparencyData() {
   const supabase = await createServerClient();
   const adminClientInstance = createAdminClient();
   const db = adminClientInstance || supabase;
@@ -150,6 +140,46 @@ export default async function TransparencyPage({
     (totalIncidents > 0 && totalResponses > 0
       ? Math.min(100, Math.round((totalResponses / totalIncidents) * 100))
       : 0);
+
+  return {
+    totalIncidents,
+    pendingIncidents,
+    totalAllIncidents,
+    verifiedThisWeek,
+    totalProviders,
+    totalResponses,
+    totalUsers,
+    totalTakedowns,
+    publishRate,
+    responseRate,
+    recentIncidents,
+  };
+}
+
+export default async function TransparencyPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: "legal" });
+  const tTransparency = await getTranslations({ locale, namespace: "transparency" });
+  const tIncident = await getTranslations({ locale, namespace: "incident" });
+
+  const {
+    totalIncidents,
+    pendingIncidents,
+    totalAllIncidents,
+    verifiedThisWeek,
+    totalProviders,
+    totalResponses,
+    totalUsers,
+    totalTakedowns,
+    publishRate,
+    responseRate,
+    recentIncidents,
+  } = await loadTransparencyData();
 
   return (
     <Container className="py-12">

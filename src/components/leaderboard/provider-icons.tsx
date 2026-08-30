@@ -780,6 +780,19 @@ export function hasProviderIcon(nameOrSlug?: string | null): boolean {
   return !!key && !!PROVIDER_ICON_MAP[key];
 }
 
+export function ProviderVectorIcon({
+  nameOrSlug,
+  size = "100%",
+  className = "",
+  ...props
+}: ProviderIconProps & { nameOrSlug?: string | null }) {
+  const key = normalizeProviderKey(nameOrSlug);
+  if (!key) return null;
+  const Component = PROVIDER_ICON_MAP[key];
+  if (!Component) return null;
+  return <Component size={size} className={className} {...props} />;
+}
+
 export function getProviderIconComponent(nameOrSlug?: string | null): React.ComponentType<ProviderIconProps> | null {
   const key = normalizeProviderKey(nameOrSlug);
   if (!key) return null;

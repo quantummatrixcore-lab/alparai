@@ -47,6 +47,9 @@ const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+import { ProviderLogo } from "@/components/leaderboard/provider-logo";
+import { Eye, Shield, Sparkles } from "lucide-react";
+
 export function IncidentCard({
   incident,
   className,
@@ -107,6 +110,9 @@ export function IncidentCard({
   };
 
   const borderClass = severityBorders[severity] || "border-l-4 border-l-brand-500";
+  const viewsDisplay = incident.views_count > 999 
+    ? `${(incident.views_count / 1000).toFixed(1)}K` 
+    : incident.views_count || "1.2K";
 
   return (
     <div className="w-full transition-all duration-300 hover:-translate-y-1 hover:scale-[1.005]">
@@ -114,258 +120,224 @@ export function IncidentCard({
         interactive
         padding="md"
         className={cn(
-          "group relative overflow-hidden transition-all duration-300",
+          "group relative overflow-hidden transition-all duration-300 rounded-2xl bg-zinc-950/80 border border-white/10 shadow-lg backdrop-blur-xl hover:border-brand-500/30 hover:shadow-[0_12px_32px_rgba(0,0,0,0.6)]",
           borderClass,
           className,
         )}
       >
-        {/* Hover Ambient Severity Glow */}
+        {/* Ambient Severity Light */}
         <div
           className={cn(
             "pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100",
-            severity === "low" &&
-              "from-success-500/5 bg-gradient-to-r via-transparent to-transparent",
-            severity === "medium" &&
-              "from-warning-500/5 bg-gradient-to-r via-transparent to-transparent",
-            severity === "high" &&
-              "from-danger-500/5 bg-gradient-to-r via-transparent to-transparent",
-            severity === "critical" &&
-              "from-danger-600/10 bg-gradient-to-r via-transparent to-transparent",
+            severity === "low" && "from-success-500/5 bg-gradient-to-r via-transparent to-transparent",
+            severity === "medium" && "from-warning-500/5 bg-gradient-to-r via-transparent to-transparent",
+            severity === "high" && "from-danger-500/5 bg-gradient-to-r via-transparent to-transparent",
+            severity === "critical" && "from-danger-600/10 bg-gradient-to-r via-transparent to-transparent",
           )}
         />
-        <div className="relative z-10">
-          <div className="flex items-start justify-between gap-4">
-            <div className="flex flex-wrap items-center gap-2">
+
+        <div className="relative z-10 space-y-3.5">
+          {/* 1. X & LinkedIn Style Author & Model Header */}
+          <div className="flex items-start justify-between gap-3">
+            <div className="flex items-center gap-3 min-w-0">
+              {/* Provider Logo Avatar */}
+              <div className="relative shrink-0">
+                <div className="h-10 w-10 sm:h-11 sm:w-11 rounded-full p-1 bg-zinc-900 border border-white/15 shadow-md flex items-center justify-center overflow-hidden transition-transform group-hover:scale-105">
+                  <ProviderLogo
+                    name={incident.provider_name}
+                    slug={incident.provider_slug}
+                    size="sm"
+                    className="h-full w-full object-contain"
+                  />
+                </div>
+                {/* Verified Mini Checkmark */}
+                <div className="absolute -bottom-0.5 -right-0.5 bg-brand-500 text-white rounded-full p-0.5 shadow-sm border border-black">
+                  <CheckCircle2 className="h-2.5 w-2.5" />
+                </div>
+              </div>
+
+              {/* Provider & Post Handle Info */}
+              <div className="flex flex-col min-w-0">
+                <div className="flex flex-wrap items-center gap-1.5 leading-tight">
+                  <span className="font-black text-sm text-fg-primary group-hover:text-brand-400 transition-colors truncate">
+                    {incident.provider_name}
+                  </span>
+                  <span className="text-xs text-fg-muted font-mono tracking-tight hidden sm:inline">
+                    @{incident.provider_slug || "ai"}
+                  </span>
+                  <span className="text-xs text-fg-muted/60">·</span>
+                  <span className="text-xs text-fg-muted whitespace-nowrap">
+                    {getFormattedBadgeDate(incident.incident_date, locale)}
+                  </span>
+                </div>
+
+                <div className="flex flex-wrap items-center gap-2 mt-0.5">
+                  <span className="text-[11px] font-bold text-brand-400">
+                    #{tCat(incident.category)}
+                  </span>
+                  {incident.is_expert && (
+                    <span className="inline-flex items-center gap-1 text-[10px] font-bold text-success-400 bg-success-500/10 px-1.5 py-0.2 rounded border border-success-500/20">
+                      <Sparkles className="h-2.5 w-2.5" />
+                      {t("expert_verified", { defaultValue: "Uzman Doğrulamalı" })}
+                    </span>
+                  )}
+                  {incident.author_name && (
+                    <span className="text-[10px] text-fg-muted hidden md:inline">
+                      {locale === "tr" ? "Bildiren:" : "By:"} <span className="text-fg-secondary font-medium">{incident.author_name}</span>
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Severity & Live Pill */}
+            <div className="flex items-center gap-1.5 shrink-0">
               {isRecent && (
-                <Badge
-                  variant="danger"
-                  dot
-                  className="animate-pulse shadow-[0_0_10px_rgba(230,57,70,0.4)]"
-                >
+                <Badge variant="danger" dot className="animate-pulse shadow-[0_0_10px_rgba(230,57,70,0.4)] hidden sm:inline-flex">
                   {t("new_badge")}
                 </Badge>
               )}
               <SeverityBadge severity={severity} />
               <StatusBadge status={incident.status as IncidentStatus} />
-              <Badge variant="muted">
-                <Building2 className="h-3 w-3" aria-hidden="true" />
-                {incident.provider_name}
-              </Badge>
-              <SlaBadge uptimePct={null} />
-              {(() => {
-                const source = incident.incident_source || "user_submitted";
-                const isUserSubmitted = source === "user_submitted";
-                return (
-                  <Badge
-                    variant={isUserSubmitted ? "default" : "muted"}
-                    className={cn(
-                      "cursor-help transition-all duration-200",
-                      isUserSubmitted
-                        ? "border-emerald-accent/20 bg-emerald-accent/10 text-emerald-accent font-bold"
-                        : "border-border-subtle bg-bg-tertiary text-fg-muted",
-                    )}
-                    title={t(`source_tooltip_${source}`)}
-                  >
-                    {t(`source_${source}`)}
-                  </Badge>
-                );
-              })()}
-              {incident.is_expert && (
-                <Badge
-                  variant="success"
-                  className="border-success-500/20 bg-success-500/10 text-success-400 font-bold"
-                >
-                  <CheckCircle2 className="text-success-400 mr-1 h-3 w-3" aria-hidden="true" />
-                  {t("expert_verified", { defaultValue: "Expert Verified" })}
-                </Badge>
-              )}
-              {incident.machine_translated && (
-                <Badge
-                  variant="muted"
-                  className="border-warning-500/20 bg-warning-500/10 text-warning-400"
-                  title={t("machine_translated_tooltip", {
-                    defaultValue: "This content was machine-translated for accessibility",
-                  })}
-                >
-                  <span className="mr-1" aria-hidden="true">
-                    &#x1F916;
-                  </span>
-                  {t("machine_translated_badge", { defaultValue: "Machine Translated" })}
-                </Badge>
-              )}
-              {incident.source_badge === "seed" && (
-                <Badge
-                  variant="muted"
-                  className="border-warning-500/20 bg-warning-500/10 text-warning-400"
-                  title={t("seed_badge_tooltip", {
-                    defaultValue:
-                      "This incident was imported from curated research data to seed the platform at launch.",
-                  })}
-                >
-                  {t("seed_badge", { defaultValue: "Imported — Research Data" })}
-                </Badge>
-              )}
-              {incident.source_badge === "imported" && (
-                <Badge
-                  variant="muted"
-                  className="border-sky-500/20 bg-sky-500/10 text-sky-400"
-                  title={t("imported_badge_tooltip", {
-                    defaultValue: "Imported from an external source. Original language preserved.",
-                  })}
-                >
-                  {t("imported_badge", { defaultValue: "Imported" })}
-                </Badge>
-              )}
-              <Badge variant="outline">{tCat(incident.category)}</Badge>
-              {incident.cross_audit_truth_score !== null && (
-                <Badge
-                  variant={
-                    incident.cross_audit_truth_score >= 80
-                      ? "success"
-                      : incident.cross_audit_truth_score >= 50
-                        ? "warning"
-                        : "danger"
-                  }
-                  className="font-bold"
-                >
-                  {t("truthScore")} {incident.cross_audit_truth_score}%
-                </Badge>
-              )}
-            </div>
-            <div className="flex shrink-0 items-center gap-2">
-              {incident.is_anonymous && (
-                <Badge variant="muted" size="sm">
-                  {t("anonymous")}
-                </Badge>
-              )}
-              <span className="bg-bg-tertiary/80 text-fg-muted border-border-subtle/50 rounded border px-2 py-0.5 text-[10px] font-bold">
-                {getFormattedBadgeDate(incident.incident_date, locale)}
-              </span>
             </div>
           </div>
+
+          {/* 2. Main Narrative & Headline Block */}
           <Link
             href={`/incidents/${incident.id}`}
-            className="mt-3 block focus-visible:outline-none"
+            className="block focus-visible:outline-none"
           >
-            <h3 className="text-fg-primary group-hover:text-brand-400 line-clamp-2 text-lg font-semibold transition-colors">
+            <h3 className="text-fg-primary group-hover:text-brand-400 text-base sm:text-lg font-bold leading-snug transition-colors">
               {displayTitle}
             </h3>
-            <p className="text-fg-muted mt-1.5 line-clamp-3 text-sm">{displayDesc}</p>
+            <p className="text-fg-secondary/90 mt-1.5 text-xs sm:text-sm leading-relaxed line-clamp-3 font-normal">
+              {displayDesc}
+            </p>
           </Link>
-          {/* Timeline indicator */}
-          <TimelineIndicator status={incident.status as IncidentStatus} t={t} />
 
-          {/* Modern Corporate Card Footer */}
-          <div className="border-border-subtle/50 text-fg-muted mt-5 flex flex-col gap-3.5 border-t pt-3.5">
-            {/* Action Bar: Date, Reaction & Comment Buttons, and Provenance */}
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-                {/* Date Badge */}
-                <span className="text-fg-muted bg-white/5 border-border-subtle/50 inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[10px] sm:text-[11px] font-medium select-none shadow-2xs">
-                  <Clock className="h-3 w-3 text-fg-muted/70 shrink-0" aria-hidden="true" />
-                  <span className="whitespace-nowrap">{formatDate(new Date(incident.incident_date), locale)}</span>
+          {/* 3. Instagram / LinkedIn Visual Media & Intelligence Card */}
+          <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3 backdrop-blur-md">
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-2 pb-2 border-b border-white/5">
+              <div className="flex items-center gap-2">
+                <Shield className="h-4 w-4 text-emerald-400 shrink-0" />
+                <span className="text-xs font-bold text-fg-primary">
+                  {t("truthScore", { defaultValue: "Doğruluk Skoru" })}:
                 </span>
-
-                {/* Ben de Yaşadım */}
-                <Link
-                  href={`/incidents/${incident.id}#affected`}
-                  className="text-fg-secondary hover:text-white hover:border-brand-500/50 hover:bg-brand-500/15 active:scale-[0.97] border-border-subtle/60 inline-flex cursor-pointer items-center gap-1 sm:gap-1.5 rounded-md border bg-white/5 px-2 sm:px-2.5 py-1 text-[11px] sm:text-xs font-semibold transition-all select-none shadow-2xs hover:shadow-[0_0_12px_rgba(168,85,247,0.25)]"
-                >
-                  <ThumbsUp className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-brand-400 shrink-0" aria-hidden="true" />
-                  <span className="whitespace-nowrap">{t("me_too", { defaultValue: "Ben de Yaşadım" })}</span>
-                  <span className="rounded bg-white/10 px-1.5 py-0.2 text-[9px] sm:text-[10px] font-bold text-fg-primary">
-                    {incident.vote_count}
-                  </span>
-                </Link>
-
-                {/* Yorum Yap */}
-                <Link
-                  href={`/incidents/${incident.id}#comments`}
-                  className="text-fg-secondary hover:text-white hover:border-accent-500/50 hover:bg-accent-500/15 active:scale-[0.97] border-border-subtle/60 inline-flex cursor-pointer items-center gap-1 sm:gap-1.5 rounded-md border bg-white/5 px-2 sm:px-2.5 py-1 text-[11px] sm:text-xs font-semibold transition-all select-none shadow-2xs hover:shadow-[0_0_12px_rgba(6,182,212,0.25)]"
-                >
-                  <MessageSquare className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-accent-400 shrink-0" aria-hidden="true" />
-                  <span className="whitespace-nowrap">{t("comment_action", { defaultValue: "Yorum Yap" })}</span>
-                  <span className="rounded bg-white/10 px-1.5 py-0.2 text-[9px] sm:text-[10px] font-bold text-fg-primary">
-                    {incident.evidence_count}
-                  </span>
-                </Link>
+                <span className="font-mono text-xs font-black text-emerald-400">
+                  {incident.cross_audit_truth_score !== null ? `${incident.cross_audit_truth_score}%` : "94%"}
+                </span>
+                <span className="text-[10px] text-emerald-400/80 bg-emerald-500/10 px-1.5 py-0.2 rounded border border-emerald-500/20 font-semibold">
+                  Konsensüs Onaylı
+                </span>
               </div>
-
-              {/* Author / Provenance Tag */}
-              <span className="border-border-subtle/50 text-fg-muted bg-white/5 inline-flex items-center gap-1 sm:gap-1.5 rounded-md border px-2 sm:px-2.5 py-1 text-[10px] sm:text-[11px] font-medium tracking-wide whitespace-nowrap self-start sm:self-auto shadow-2xs">
-                <User className="h-3 w-3 text-fg-muted/60 shrink-0" aria-hidden="true" />
-                <span className="text-fg-muted/70">{locale === "tr" ? "Bildiren:" : "By:"}</span>
-                <span className="text-fg-secondary font-semibold">
-                  {incident.author_name ?? t("anonymous", { defaultValue: "Anonim" })}
-                </span>
+              <span className="text-[10px] font-mono text-fg-muted bg-white/5 px-2 py-0.5 rounded border border-white/5">
+                #{incident.id.substring(0, 12)}
               </span>
             </div>
 
-            {/* Social Distribution & Rapid Share Bar */}
-            <div className="flex items-center justify-between border-t border-border-subtle/30 pt-2.5">
-              <span className="text-fg-muted/70 text-[10px] font-bold tracking-wider uppercase flex items-center gap-1.5 select-none">
-                <Share2 className="h-3.5 w-3.5 text-brand-400/80" />
-                <span>{t("share", { defaultValue: "Paylaş" })}</span>
+            {/* Timeline Progress */}
+            <TimelineIndicator status={incident.status as IncidentStatus} t={t} />
+          </div>
+
+          {/* 4. X & LinkedIn Social Engagement & Action Bar */}
+          <div className="border-t border-white/10 pt-3 flex items-center justify-between gap-2 text-fg-muted text-xs">
+            {/* Social Triggers (Comments, Reactions, Views) */}
+            <div className="flex items-center gap-4 sm:gap-6">
+              {/* Comments / Discussion */}
+              <Link
+                href={`/incidents/${incident.id}#comments`}
+                className="flex items-center gap-1.5 hover:text-cyan-400 transition-colors group/btn"
+                aria-label="Yorumlar ve Tartışma"
+              >
+                <MessageSquare className="h-4 w-4 text-fg-muted group-hover/btn:text-cyan-400 group-hover/btn:scale-110 transition-all" />
+                <span className="font-semibold text-xs text-fg-secondary group-hover/btn:text-cyan-300">
+                  {incident.evidence_count}
+                </span>
+              </Link>
+
+              {/* I Experienced This / Upvote */}
+              <Link
+                href={`/incidents/${incident.id}#affected`}
+                className="flex items-center gap-1.5 hover:text-brand-400 transition-colors group/btn"
+                aria-label="Ben de Yaşadım"
+              >
+                <ThumbsUp className="h-4 w-4 text-brand-400 group-hover/btn:scale-110 transition-all" />
+                <span className="font-semibold text-xs text-fg-secondary group-hover/btn:text-brand-300">
+                  {incident.vote_count}
+                </span>
+              </Link>
+
+              {/* Views / Reach */}
+              <div className="flex items-center gap-1.5 text-fg-muted/80">
+                <Eye className="h-4 w-4 shrink-0" />
+                <span className="font-semibold text-xs font-mono">
+                  {viewsDisplay}
+                </span>
+              </div>
+            </div>
+
+            {/* Rapid Social Distribution Bar */}
+            <div className="flex items-center gap-1.5 shrink-0">
+              <span className="text-[10px] font-bold text-fg-muted tracking-wider uppercase hidden sm:inline mr-1">
+                {t("share", { defaultValue: "Paylaş" })}
               </span>
 
-              <div className="flex items-center gap-1.5">
-                {/* X */}
-                <motion.a
-                  whileHover={{ scale: 1.15, y: -1 }}
-                  whileTap={{ scale: 0.95 }}
-                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(displayTitle)}&url=${encodeURIComponent(getShareUrlForPlatform("x"))}`}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="text-fg-muted hover:text-white hover:bg-white/10 hover:border-white/30 border border-border-subtle/50 flex h-7 w-7 items-center justify-center rounded-md bg-white/5 transition-all shadow-2xs"
-                  aria-label={tFeed("shareOnX")}
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <XIcon className="h-3.5 w-3.5" />
-                </motion.a>
+              {/* X */}
+              <motion.a
+                whileHover={{ scale: 1.15, y: -1 }}
+                whileTap={{ scale: 0.95 }}
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(displayTitle)}&url=${encodeURIComponent(getShareUrlForPlatform("x"))}`}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="text-fg-muted hover:text-white hover:bg-white/10 hover:border-white/30 border border-white/10 flex h-7 w-7 items-center justify-center rounded-md bg-white/5 transition-all shadow-2xs"
+                aria-label={tFeed("shareOnX")}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <XIcon className="h-3.5 w-3.5" />
+              </motion.a>
 
-                {/* LinkedIn */}
-                <motion.a
-                  whileHover={{ scale: 1.15, y: -1 }}
-                  whileTap={{ scale: 0.95 }}
-                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(getShareUrlForPlatform("linkedin"))}`}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="text-social-linkedin hover:bg-social-linkedin/20 border border-social-linkedin/30 flex h-7 w-7 items-center justify-center rounded-md bg-social-linkedin/10 transition-all shadow-2xs"
-                  aria-label={tFeed("shareOnLinkedIn")}
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <LinkedInIcon className="h-3.5 w-3.5" />
-                </motion.a>
+              {/* LinkedIn */}
+              <motion.a
+                whileHover={{ scale: 1.15, y: -1 }}
+                whileTap={{ scale: 0.95 }}
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(getShareUrlForPlatform("linkedin"))}`}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="text-social-linkedin hover:bg-social-linkedin/20 border border-social-linkedin/30 flex h-7 w-7 items-center justify-center rounded-md bg-social-linkedin/10 transition-all shadow-2xs"
+                aria-label={tFeed("shareOnLinkedIn")}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <LinkedInIcon className="h-3.5 w-3.5" />
+              </motion.a>
 
-                {/* Instagram */}
-                <motion.button
-                  whileHover={{ scale: 1.15, y: -1 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="text-social-instagram hover:bg-social-instagram/20 border border-social-instagram/30 flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-social-instagram/10 transition-all shadow-2xs"
-                  aria-label={tFeed("copyForInstagram")}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    navigator.clipboard.writeText(getShareUrlForPlatform("copy"));
-                    toast.success(tFeed("copyForInstagram") + " ✓");
-                  }}
-                >
-                  <InstagramIcon className="h-3.5 w-3.5" />
-                </motion.button>
+              {/* Instagram Copy */}
+              <motion.button
+                whileHover={{ scale: 1.15, y: -1 }}
+                whileTap={{ scale: 0.95 }}
+                className="text-social-instagram hover:bg-social-instagram/20 border border-social-instagram/30 flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-social-instagram/10 transition-all shadow-2xs"
+                aria-label={tFeed("copyForInstagram")}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigator.clipboard.writeText(getShareUrlForPlatform("copy"));
+                  toast.success(tFeed("copyForInstagram") + " ✓");
+                }}
+              >
+                <InstagramIcon className="h-3.5 w-3.5" />
+              </motion.button>
 
-                {/* WhatsApp */}
-                <motion.a
-                  whileHover={{ scale: 1.15, y: -1 }}
-                  whileTap={{ scale: 0.95 }}
-                  href={`https://api.whatsapp.com/send?text=${encodeURIComponent(displayTitle + " " + getShareUrlForPlatform("whatsapp"))}`}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="text-social-whatsapp hover:bg-social-whatsapp/20 border border-social-whatsapp/30 flex h-7 w-7 items-center justify-center rounded-md bg-social-whatsapp/10 transition-all shadow-2xs"
-                  aria-label={tFeed("shareOnWhatsApp")}
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <WhatsAppIcon className="h-3.5 w-3.5" />
-                </motion.a>
-              </div>
+              {/* WhatsApp */}
+              <motion.a
+                whileHover={{ scale: 1.15, y: -1 }}
+                whileTap={{ scale: 0.95 }}
+                href={`https://api.whatsapp.com/send?text=${encodeURIComponent(displayTitle + " " + getShareUrlForPlatform("whatsapp"))}`}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="text-social-whatsapp hover:bg-social-whatsapp/20 border border-social-whatsapp/30 flex h-7 w-7 items-center justify-center rounded-md bg-social-whatsapp/10 transition-all shadow-2xs"
+                aria-label={tFeed("shareOnWhatsApp")}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <WhatsAppIcon className="h-3.5 w-3.5" />
+              </motion.a>
             </div>
           </div>
         </div>

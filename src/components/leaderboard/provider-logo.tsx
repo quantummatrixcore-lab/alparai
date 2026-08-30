@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { getProviderIconComponent, normalizeProviderKey } from "./provider-icons";
+import { ProviderVectorIcon, hasProviderIcon } from "./provider-icons";
 
 export interface ProviderLogoProps {
   src?: string | null;
@@ -62,16 +62,16 @@ export function ProviderLogo({
 }: ProviderLogoProps) {
   const [imgError, setImgError] = useState(false);
   const sizePx = SIZE_NUMBERS[size] || 48;
+  const hasIcon = hasProviderIcon(slug || name);
 
   // 1. Try vector component matching by slug or name for pixel-perfect instant rendering
-  const IconComponent = getProviderIconComponent(slug || name);
-  if (IconComponent && (!src || src.startsWith("/logos/providers/") || imgError)) {
+  if (hasIcon && (!src || src.startsWith("/logos/providers/") || imgError)) {
     return (
       <div
         className={`relative flex h-full w-full items-center justify-center overflow-hidden rounded-md p-1 transition-transform duration-300 hover:scale-105 ${className}`}
         title={name}
       >
-        <IconComponent size="100%" className="h-full w-full object-contain" />
+        <ProviderVectorIcon nameOrSlug={slug || name} size="100%" className="h-full w-full object-contain" />
       </div>
     );
   }

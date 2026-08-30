@@ -514,3 +514,22 @@ export const personasCompletionsResponseSchema = z.object({
     .optional(),
   alignment_score: z.number().optional(),
 });
+
+// 26. GET /api/v1/eu-ai-act
+export const euAiActResponseSchema = z.object({
+  framework: z.string(),
+  version: z.string(),
+  riskTiers: z.array(
+    z.object({
+      tier: z.string(),
+      articles: z.array(z.string()).optional(),
+      description: z.string(),
+      status: z.string().optional(),
+      incidentReportingDeadlineHours: z.number().optional(),
+      passportExportEndpoint: z.string().optional(),
+      provenanceEndpoint: z.string().optional(),
+    }),
+  ),
+  documentationUrl: z.string(),
+  supportEmail: z.string(),
+});

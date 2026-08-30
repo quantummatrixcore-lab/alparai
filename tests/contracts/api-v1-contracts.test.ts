@@ -55,6 +55,7 @@ const routeSchemaMap: Record<string, z.ZodTypeAny> = {
   "compliance/article50": schemas.article50ResponseSchema,
   "k-benchmark": schemas.auditorBenchmarkResponseSchema,
   "personas/[twinId]/completions": schemas.personasCompletionsResponseSchema,
+  "eu-ai-act": schemas.euAiActResponseSchema,
 };
 
 describe("API v1 Contract Coverage", () => {

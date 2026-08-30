@@ -68,14 +68,14 @@ export default function SEOPage() {
       <div className="flex flex-col justify-between gap-4 border-b border-[#d0d7de] pb-4 md:flex-row md:items-center dark:border-[#30363d]">
         <div>
           <div className="mb-1 flex items-center gap-2">
-            <span className="rounded border border-zinc-700 bg-zinc-800 px-2 py-0.5 font-mono text-[10px] text-[#656d76] dark:text-[#c9d1d9]">
+            <span className="rounded border border-zinc-700 bg-zinc-800 px-2 py-0.5 font-sans text-[10px] text-[#656d76] dark:text-[#c9d1d9]">
               KÜME 2: BÜYÜME & İLETİŞİM
             </span>
-            <span className="font-mono text-xs font-semibold text-emerald-400">
+            <span className="font-sans text-xs font-semibold text-emerald-400">
               SEO, CEO VISIBILITY & TRAFFIC TELEMETRY
             </span>
           </div>
-          <h1 className="font-mono text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
+          <h1 className="font-sans text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
             SEO, CEO Görünürlüğü & Ziyaretçi Analitiği Masası (/seo)
           </h1>
           <p className="mt-0.5 text-xs text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
@@ -120,7 +120,7 @@ export default function SEOPage() {
       </div>
 
       {/* Main Grid: Keywords + CEO Mentions */}
-      <div className="grid grid-cols-1 gap-6 font-mono text-xs lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 font-sans text-xs lg:grid-cols-2">
         {/* Keywords */}
         <div className="space-y-4 rounded-md border border-[#d0d7de] bg-[#ffffff] p-5 shadow-sm dark:border-[#30363d] dark:bg-[#161b22] dark:shadow-none">
           <h2 className="font-bold text-[#1f2328] dark:text-[#f0f6fc]">
@@ -166,12 +166,12 @@ export default function SEOPage() {
                 key={m.title}
                 className="space-y-1 rounded-md border border-[#d0d7de] bg-zinc-950 p-3 transition-colors hover:border-zinc-700 dark:border-[#30363d]"
               >
-                <div className="flex items-center justify-between font-mono text-[10px]">
+                <div className="flex items-center justify-between font-sans text-[10px]">
                   <span className="font-bold text-cyan-400">{m.outlet}</span>
                   <span className="text-[#656d76] dark:text-[#8b949e]">{m.date}</span>
                 </div>
                 <div className="font-semibold text-[#1f2328] dark:text-[#f0f6fc]">{m.title}</div>
-                <div className="font-mono text-[11px] text-emerald-400">{m.impact}</div>
+                <div className="font-sans text-[11px] text-emerald-400">{m.impact}</div>
               </div>
             ))}
           </div>

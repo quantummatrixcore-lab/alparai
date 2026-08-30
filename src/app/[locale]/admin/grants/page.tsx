@@ -46,11 +46,13 @@ export default function GrantsPage() {
   const [grants] = useState<GrantItem[]>(initialGrants);
 
   const totalRequested = grants.reduce((acc, g) => acc + g.requestedBudgetTry, 0);
-  const totalApproved = grants.filter(g => g.status === "APPROVED").reduce((acc, g) => acc + g.requestedBudgetTry, 0);
-  const inEvalCount = grants.filter(g => g.status === "UNDER_EVALUATION").length;
+  const totalApproved = grants
+    .filter((g) => g.status === "APPROVED")
+    .reduce((acc, g) => acc + g.requestedBudgetTry, 0);
+  const inEvalCount = grants.filter((g) => g.status === "UNDER_EVALUATION").length;
 
   return (
-    <div className="space-y-6 font-mono text-xs">
+    <div className="space-y-6 font-sans text-xs">
       {/* Header */}
       <div className="flex flex-col justify-between gap-4 border-b border-[#d0d7de] pb-4 md:flex-row md:items-center dark:border-[#30363d]">
         <div>

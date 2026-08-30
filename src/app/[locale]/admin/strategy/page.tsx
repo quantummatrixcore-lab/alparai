@@ -13,14 +13,14 @@ export default function StrategyPage() {
       <div className="flex flex-col justify-between gap-4 border-b border-[#d0d7de] pb-4 md:flex-row md:items-center dark:border-[#30363d]">
         <div>
           <div className="mb-1 flex items-center gap-2">
-            <span className="rounded border border-zinc-700 bg-zinc-800 px-2 py-0.5 font-mono text-[10px] text-[#656d76] dark:text-[#c9d1d9]">
+            <span className="rounded border border-zinc-700 bg-zinc-800 px-2 py-0.5 font-sans text-[10px] text-[#656d76] dark:text-[#c9d1d9]">
               KÜME 3: SERMAYE & STRATEJİ
             </span>
-            <span className="font-mono text-xs font-semibold text-emerald-400">
+            <span className="font-sans text-xs font-semibold text-emerald-400">
               EXECUTIVE STRATEGY & VALUATION RADAR
             </span>
           </div>
-          <h1 className="font-mono text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
+          <h1 className="font-sans text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
             Kurumsal Strateji, SWOT & Şirket Değerleme Masası (/strategy)
           </h1>
           <p className="mt-0.5 text-xs text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
@@ -77,7 +77,7 @@ export default function StrategyPage() {
 
       {/* Tab 1: Valuation */}
       {activeTab === "VALUATION" && (
-        <div className="grid grid-cols-1 gap-6 font-mono text-xs lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-6 font-sans text-xs lg:grid-cols-2">
           <div className="space-y-4 rounded-md border border-[#d0d7de] bg-[#ffffff] p-5 shadow-sm dark:border-[#30363d] dark:bg-[#161b22] dark:shadow-none">
             <h2 className="text-sm font-bold text-[#1f2328] dark:text-[#f0f6fc]">
               B2B Veri & SaaS Değerleme Metodolojisi
@@ -89,7 +89,7 @@ export default function StrategyPage() {
                 geleneksel 10x SaaS çarpanı yerine, Bloomberg ve Veri Güvenliği şirketlerinin
                 uyguladığı <strong>25x - 40x ARR çarpanı</strong> ile hesaplanır.
               </p>
-              <div className="space-y-1.5 rounded border border-[#d0d7de] bg-zinc-950 p-3 font-mono text-xs dark:border-[#30363d]">
+              <div className="space-y-1.5 rounded border border-[#d0d7de] bg-zinc-950 p-3 font-sans text-xs dark:border-[#30363d]">
                 <div className="flex justify-between text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
                   <span>Mevcut Yıllıklandırılmış Gelir (ARR):</span>
                   <span className="font-bold text-[#1f2328] dark:text-[#f0f6fc]">$1.33M</span>
@@ -111,19 +111,19 @@ export default function StrategyPage() {
               3 Yıllık Değerleme Projeksiyonu
             </h2>
             <div className="space-y-3 font-sans text-xs text-[#656d76] dark:text-[#c9d1d9]">
-              <div className="flex items-center justify-between rounded border border-[#d0d7de] bg-zinc-950 p-2.5 font-mono dark:border-[#30363d]">
+              <div className="flex items-center justify-between rounded border border-[#d0d7de] bg-zinc-950 p-2.5 font-sans dark:border-[#30363d]">
                 <span>1. Yıl Sonu (2026):</span>
                 <span className="font-bold text-zinc-200">
                   $1.95M ARR → <strong>$48M-$78M Değerleme</strong>
                 </span>
               </div>
-              <div className="flex items-center justify-between rounded border border-[#d0d7de] bg-zinc-950 p-2.5 font-mono dark:border-[#30363d]">
+              <div className="flex items-center justify-between rounded border border-[#d0d7de] bg-zinc-950 p-2.5 font-sans dark:border-[#30363d]">
                 <span>2. Yıl Sonu (2027):</span>
                 <span className="font-bold text-cyan-400">
                   $8.12M ARR → <strong>$160M-$240M Değerleme</strong>
                 </span>
               </div>
-              <div className="flex items-center justify-between rounded border border-[#d0d7de] bg-zinc-950 p-2.5 font-mono dark:border-[#30363d]">
+              <div className="flex items-center justify-between rounded border border-[#d0d7de] bg-zinc-950 p-2.5 font-sans dark:border-[#30363d]">
                 <span>3. Yıl Sonu (2028):</span>
                 <span className="font-bold text-emerald-400">
                   $25.0M ARR → <strong>$500M+ Unicorn Adayı</strong>
@@ -136,7 +136,7 @@ export default function StrategyPage() {
 
       {/* Tab 2: SWOT */}
       {activeTab === "SWOT" && (
-        <div className="grid grid-cols-1 gap-4 font-mono text-xs sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 font-sans text-xs sm:grid-cols-2">
           <div className="space-y-2 rounded-lg border border-emerald-800/60 bg-emerald-950/30 p-4">
             <h3 className="text-sm font-bold text-emerald-300">GÜÇLÜ YÖNLER (STRENGTHS)</h3>
             <ul className="list-inside list-disc space-y-1 font-sans text-xs text-[#656d76] dark:text-[#c9d1d9]">

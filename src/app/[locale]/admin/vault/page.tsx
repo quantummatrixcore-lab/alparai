@@ -38,14 +38,14 @@ export default function VaultPage() {
       <div className="flex flex-col justify-between gap-4 border-b border-[#d0d7de] pb-4 md:flex-row md:items-center dark:border-[#30363d]">
         <div>
           <div className="mb-1 flex items-center gap-2">
-            <span className="rounded border border-zinc-700 bg-zinc-800 px-2 py-0.5 font-mono text-[10px] text-[#656d76] dark:text-[#c9d1d9]">
+            <span className="rounded border border-zinc-700 bg-zinc-800 px-2 py-0.5 font-sans text-[10px] text-[#656d76] dark:text-[#c9d1d9]">
               KÜME 5: AKADEMİ & YÖNETİŞİM
             </span>
-            <span className="font-mono text-xs font-semibold text-emerald-400">
+            <span className="font-sans text-xs font-semibold text-emerald-400">
               ZERO-KNOWLEDGE PII GUARDIAN
             </span>
           </div>
-          <h1 className="font-mono text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
+          <h1 className="font-sans text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
             Sıfır-Bilgi PII Kasası & Arındırma Günlüğü
           </h1>
           <p className="mt-0.5 text-xs text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
@@ -81,12 +81,12 @@ export default function VaultPage() {
 
       {/* Redaction Logs Table */}
       <div className="space-y-4 rounded-md border border-[#d0d7de] bg-[#ffffff] p-5 shadow-sm dark:border-[#30363d] dark:bg-[#161b22] dark:shadow-none">
-        <h2 className="font-mono text-sm font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+        <h2 className="font-sans text-sm font-bold text-[#1f2328] dark:text-[#f0f6fc]">
           Son Gerçekleşen Otomatik PII Maskeleme Olayları
         </h2>
 
         <div className="overflow-x-auto">
-          <table className="w-full text-left font-mono text-xs">
+          <table className="w-full text-left font-sans text-xs">
             <thead>
               <tr className="border-b border-[#d0d7de] text-zinc-400 dark:border-[#30363d] dark:text-[#8b949e] dark:text-[#656d76]">
                 <th className="pb-2">İŞLEM NO</th>
@@ -106,7 +106,7 @@ export default function VaultPage() {
                   <td className="py-3 font-bold text-zinc-200">{l.id}</td>
                   <td className="py-3 text-[#656d76] dark:text-[#c9d1d9]">{l.source}</td>
                   <td className="py-3 font-semibold text-amber-400">{l.detectedType}</td>
-                  <td className="py-3 font-mono text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
+                  <td className="py-3 font-sans text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
                     {l.maskedValue}
                   </td>
                   <td className="py-3 text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">

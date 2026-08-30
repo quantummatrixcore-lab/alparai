@@ -443,18 +443,18 @@ function LiveStatCard({
   return (
     <div
       className={cn(
-        "group relative overflow-hidden rounded-2xl bg-white/5 p-3 text-center transition-all duration-300 hover:bg-white/10 sm:p-4 shadow-inner shadow-white/5 ring-1 ring-white/10",
+        "group relative overflow-hidden rounded-2xl bg-white/5 p-3 text-center shadow-inner ring-1 shadow-white/5 ring-white/10 transition-all duration-300 hover:bg-white/10 sm:p-4",
         tooltip && "cursor-help",
       )}
       title={tooltip}
     >
       <div className="absolute inset-0 bg-gradient-to-t from-transparent to-white/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       <p
-        className={`relative z-10 font-mono text-3xl font-black tracking-tight sm:text-4xl ${accentClass} drop-shadow-md transition-transform duration-300 group-hover:scale-105`}
+        className={`relative z-10 font-sans text-3xl font-black tracking-tight sm:text-4xl ${accentClass} drop-shadow-md transition-transform duration-300 group-hover:scale-105`}
       >
         <AnimatedValue value={value} />
       </p>
-      <p className="text-fg-secondary relative z-10 mt-2 text-[11px] leading-snug font-bold tracking-wider uppercase text-balance sm:text-xs">
+      <p className="text-fg-secondary relative z-10 mt-2 text-[11px] leading-snug font-bold tracking-wider text-balance uppercase sm:text-xs">
         {label}
       </p>
     </div>
@@ -491,14 +491,14 @@ function ProviderBar({
   return (
     <div className="group flex items-center gap-4 rounded-lg p-1 transition-colors hover:bg-white/5">
       <span
-        className={`w-5 text-center font-mono text-xs font-black ${rankColors[rank - 1] ?? "text-fg-muted"}`}
+        className={`w-5 text-center font-sans text-xs font-black ${rankColors[rank - 1] ?? "text-fg-muted"}`}
       >
         #{rank}
       </span>
       <div className="flex-1">
         <div className="mb-1.5 flex items-center justify-between">
           <span className="text-fg-primary text-[13px] font-bold tracking-tight">{name}</span>
-          <span className="text-fg-muted font-mono text-xs font-medium">
+          <span className="text-fg-muted font-sans text-xs font-semibold">
             {count.toLocaleString()}
           </span>
         </div>

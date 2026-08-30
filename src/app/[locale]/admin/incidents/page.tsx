@@ -52,7 +52,8 @@ const defaultIncidentPlaceholder: IncidentRecord[] = [
     createdAt: "2026-08-28T04:12:00Z",
     humanVerified: true,
     affectedIndustry: "Law Enforcement & Security",
-    summary: "Biometric AI facial classification system demonstrated severe demographic classification bias in real-time edge testing.",
+    summary:
+      "Biometric AI facial classification system demonstrated severe demographic classification bias in real-time edge testing.",
   },
 ];
 
@@ -582,7 +583,7 @@ export default function IncidentsPage() {
                     <span>{copiedHash ? "Kopyalandı" : "Kopyala"}</span>
                   </button>
                 </div>
-                <p className="font-mono text-[10px] break-all text-[#656d76] dark:text-[#8b949e]">
+                <p className="font-sans text-[10px] break-all text-[#656d76] dark:text-[#8b949e]">
                   {selectedIncident.evidenceHash}
                 </p>
               </div>

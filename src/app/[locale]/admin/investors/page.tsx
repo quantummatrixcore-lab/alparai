@@ -50,7 +50,7 @@ export default function InvestorsPage() {
   const [investors] = useState<InvestorItem[]>(initialInvestors);
 
   return (
-    <div className="space-y-6 font-mono text-xs">
+    <div className="space-y-6 font-sans text-xs">
       {/* Header */}
       <div className="flex flex-col justify-between gap-4 border-b border-[#d0d7de] pb-4 md:flex-row md:items-center dark:border-[#30363d]">
         <div>
@@ -58,9 +58,7 @@ export default function InvestorsPage() {
             <span className="rounded border border-zinc-700 bg-zinc-800 px-2 py-0.5 text-[10px] text-[#656d76] dark:text-[#c9d1d9]">
               {t("cluster3Title")}
             </span>
-            <span className="text-xs font-semibold text-emerald-400">
-              SERIES SEED / A PIPELINE
-            </span>
+            <span className="text-xs font-semibold text-emerald-400">SERIES SEED / A PIPELINE</span>
           </div>
           <h1 className="text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
             {t("investors")}
@@ -123,13 +121,19 @@ export default function InvestorsPage() {
                   key={inv.id}
                   className="transition-colors hover:bg-[#f6f8fa] dark:hover:bg-[#21262d]"
                 >
-                  <td className="py-3 font-bold text-[#1f2328] dark:text-[#f0f6fc]">{inv.firmName}</td>
-                  <td className="py-3 font-semibold text-blue-500 dark:text-blue-400">{inv.contactPartner}</td>
+                  <td className="py-3 font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+                    {inv.firmName}
+                  </td>
+                  <td className="py-3 font-semibold text-blue-500 dark:text-blue-400">
+                    {inv.contactPartner}
+                  </td>
                   <td className="py-3 text-[#656d76] dark:text-[#8b949e]">{inv.stage}</td>
                   <td className="py-3 font-bold text-emerald-600 dark:text-emerald-400">
                     {inv.checkSizeUsd}
                   </td>
-                  <td className="py-3 text-[#656d76] dark:text-[#8b949e]">{inv.dataRoomAccessCount} Visits</td>
+                  <td className="py-3 text-[#656d76] dark:text-[#8b949e]">
+                    {inv.dataRoomAccessCount} Visits
+                  </td>
                   <td className="py-3 text-right">
                     <span
                       className={`rounded border px-2 py-0.5 text-[10px] font-bold ${

@@ -38,14 +38,14 @@ export default function ModerationPage() {
       <div className="flex flex-col justify-between gap-4 border-b border-[#d0d7de] pb-4 md:flex-row md:items-center dark:border-[#30363d]">
         <div>
           <div className="mb-1 flex items-center gap-2">
-            <span className="rounded border border-zinc-700 bg-zinc-800 px-2 py-0.5 font-mono text-[10px] text-[#656d76] dark:text-[#c9d1d9]">
+            <span className="rounded border border-zinc-700 bg-zinc-800 px-2 py-0.5 font-sans text-[10px] text-[#656d76] dark:text-[#c9d1d9]">
               KÜME 1: HESAP VEREBİLİRLİK
             </span>
-            <span className="font-mono text-xs font-semibold text-amber-400">
+            <span className="font-sans text-xs font-semibold text-amber-400">
               COMMUNITY & SUBMISSION MODERATION
             </span>
           </div>
-          <h1 className="font-mono text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
+          <h1 className="font-sans text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
             Topluluk İçerik & İhbar Moderasyon Masası
           </h1>
           <p className="mt-0.5 text-xs text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">

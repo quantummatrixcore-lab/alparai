@@ -27,7 +27,9 @@ export default function ChallengesPage() {
         setLoading(true);
         const { data, error } = await supabase
           .from("bug_bounties")
-          .select("id, incident_id, status, severity_score, actual_reward_cents, estimated_reward_cents, created_at")
+          .select(
+            "id, incident_id, status, severity_score, actual_reward_cents, estimated_reward_cents, created_at",
+          )
           .order("created_at", { ascending: false })
           .limit(20);
 
@@ -47,10 +49,12 @@ export default function ChallengesPage() {
     .filter((b) => b.status === "paid")
     .reduce((acc, b) => acc + (b.actual_reward_cents || 0) / 100, 0);
 
-  const pendingCount = bounties.filter((b) => b.status === "open" || b.status === "validated").length;
+  const pendingCount = bounties.filter(
+    (b) => b.status === "open" || b.status === "validated",
+  ).length;
 
   return (
-    <div className="space-y-6 font-mono text-xs">
+    <div className="space-y-6 font-sans text-xs">
       {/* Header */}
       <div className="flex flex-col justify-between gap-4 border-b border-[#d0d7de] pb-4 md:flex-row md:items-center dark:border-[#30363d]">
         <div>
@@ -134,7 +138,9 @@ export default function ChallengesPage() {
                     key={b.id}
                     className="transition-colors hover:bg-[#f6f8fa] dark:hover:bg-[#21262d]"
                   >
-                    <td className="py-3 font-bold text-[#1f2328] dark:text-[#f0f6fc]">{b.id.slice(0, 8)}...</td>
+                    <td className="py-3 font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+                      {b.id.slice(0, 8)}...
+                    </td>
                     <td className="py-3 font-semibold text-purple-500 dark:text-purple-400">
                       {b.incident_id ? `${b.incident_id.slice(0, 8)}...` : "General"}
                     </td>
@@ -142,7 +148,10 @@ export default function ChallengesPage() {
                       Score: {b.severity_score}/100
                     </td>
                     <td className="py-3 font-bold text-emerald-600 dark:text-emerald-400">
-                      €{((b.actual_reward_cents || b.estimated_reward_cents || 0) / 100).toLocaleString()}
+                      €
+                      {(
+                        (b.actual_reward_cents || b.estimated_reward_cents || 0) / 100
+                      ).toLocaleString()}
                     </td>
                     <td className="py-3 text-[#656d76] dark:text-[#8b949e]">
                       {new Date(b.created_at).toLocaleDateString()}

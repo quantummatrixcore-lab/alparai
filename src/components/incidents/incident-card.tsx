@@ -8,7 +8,15 @@ import { Card } from "@/components/ui/card";
 import { SeverityBadge, StatusBadge, Badge } from "@/components/ui/badge";
 import { SlaBadge } from "@/components/incidents/sla-badge";
 import type { IncidentListItem, IncidentSeverity, IncidentStatus } from "@/types";
-import { MessageSquare, ThumbsUp, Clock, Building2, CheckCircle2, Share2, User } from "lucide-react";
+import {
+  MessageSquare,
+  ThumbsUp,
+  Clock,
+  Building2,
+  CheckCircle2,
+  Share2,
+  User,
+} from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 
@@ -114,9 +122,8 @@ export function IncidentCard({
   };
 
   const borderClass = severityBorders[severity] || "border-l-4 border-l-brand-500";
-  const viewsDisplay = incident.views_count > 999 
-    ? `${(incident.views_count / 1000).toFixed(1)}K` 
-    : incident.views_count || "1.2K";
+  const count = (incident as any).views_count ?? incident.view_count ?? 1200;
+  const viewsDisplay = count > 999 ? `${(count / 1000).toFixed(1)}K` : count || "1.2K";
 
   return (
     <div className="w-full transition-all duration-300 hover:-translate-y-1 hover:scale-[1.005]">
@@ -124,7 +131,7 @@ export function IncidentCard({
         interactive
         padding="md"
         className={cn(
-          "group relative overflow-hidden transition-all duration-300 rounded-2xl bg-zinc-950/80 border border-white/10 shadow-lg backdrop-blur-xl hover:border-brand-500/30 hover:shadow-[0_12px_32px_rgba(0,0,0,0.6)]",
+          "group hover:border-brand-500/30 relative overflow-hidden rounded-2xl border border-white/10 bg-zinc-950/80 shadow-lg backdrop-blur-xl transition-all duration-300 hover:shadow-[0_12px_32px_rgba(0,0,0,0.6)]",
           borderClass,
           className,
         )}
@@ -133,20 +140,24 @@ export function IncidentCard({
         <div
           className={cn(
             "pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100",
-            severity === "low" && "from-success-500/5 bg-gradient-to-r via-transparent to-transparent",
-            severity === "medium" && "from-warning-500/5 bg-gradient-to-r via-transparent to-transparent",
-            severity === "high" && "from-danger-500/5 bg-gradient-to-r via-transparent to-transparent",
-            severity === "critical" && "from-danger-600/10 bg-gradient-to-r via-transparent to-transparent",
+            severity === "low" &&
+              "from-success-500/5 bg-gradient-to-r via-transparent to-transparent",
+            severity === "medium" &&
+              "from-warning-500/5 bg-gradient-to-r via-transparent to-transparent",
+            severity === "high" &&
+              "from-danger-500/5 bg-gradient-to-r via-transparent to-transparent",
+            severity === "critical" &&
+              "from-danger-600/10 bg-gradient-to-r via-transparent to-transparent",
           )}
         />
 
         <div className="relative z-10 space-y-3.5">
           {/* 1. X & LinkedIn Style Author & Model Header */}
           <div className="flex items-start justify-between gap-3">
-            <div className="flex items-center gap-3 min-w-0">
+            <div className="flex min-w-0 items-center gap-3">
               {/* Provider Logo Avatar */}
               <div className="relative shrink-0">
-                <div className="h-10 w-10 sm:h-11 sm:w-11 rounded-full p-1 bg-zinc-900 border border-white/15 shadow-md flex items-center justify-center overflow-hidden transition-transform group-hover:scale-105">
+                <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-white/15 bg-zinc-900 p-1 shadow-md transition-transform group-hover:scale-105 sm:h-11 sm:w-11">
                   <ProviderLogo
                     name={incident.provider_name}
                     slug={incident.provider_slug}
@@ -155,39 +166,40 @@ export function IncidentCard({
                   />
                 </div>
                 {/* Verified Mini Checkmark */}
-                <div className="absolute -bottom-0.5 -right-0.5 bg-brand-500 text-white rounded-full p-0.5 shadow-sm border border-black">
+                <div className="bg-brand-500 absolute -right-0.5 -bottom-0.5 rounded-full border border-black p-0.5 text-white shadow-sm">
                   <CheckCircle2 className="h-2.5 w-2.5" />
                 </div>
               </div>
 
               {/* Provider & Post Handle Info */}
-              <div className="flex flex-col min-w-0">
+              <div className="flex min-w-0 flex-col">
                 <div className="flex flex-wrap items-center gap-1.5 leading-tight">
-                  <span className="font-black text-sm text-fg-primary group-hover:text-brand-400 transition-colors truncate">
+                  <span className="text-fg-primary group-hover:text-brand-400 truncate text-sm font-black transition-colors">
                     {incident.provider_name}
                   </span>
-                  <span className="text-xs text-fg-muted font-mono tracking-tight hidden sm:inline">
+                  <span className="text-fg-muted hidden font-mono text-xs tracking-tight sm:inline">
                     @{incident.provider_slug || "ai"}
                   </span>
-                  <span className="text-xs text-fg-muted/60">·</span>
-                  <span className="text-xs text-fg-muted whitespace-nowrap">
+                  <span className="text-fg-muted/60 text-xs">·</span>
+                  <span className="text-fg-muted text-xs whitespace-nowrap">
                     {getFormattedBadgeDate(incident.incident_date, locale)}
                   </span>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-2 mt-0.5">
-                  <span className="text-[11px] font-bold text-brand-400">
+                <div className="mt-0.5 flex flex-wrap items-center gap-2">
+                  <span className="text-brand-400 text-[11px] font-bold">
                     #{tCat(incident.category)}
                   </span>
                   {incident.is_expert && (
-                    <span className="inline-flex items-center gap-1 text-[10px] font-bold text-success-400 bg-success-500/10 px-1.5 py-0.2 rounded border border-success-500/20">
+                    <span className="text-success-400 bg-success-500/10 py-0.2 border-success-500/20 inline-flex items-center gap-1 rounded border px-1.5 text-[10px] font-bold">
                       <Sparkles className="h-2.5 w-2.5" />
                       {t("expert_verified", { defaultValue: "Uzman Doğrulamalı" })}
                     </span>
                   )}
                   {incident.author_name && (
-                    <span className="text-[10px] text-fg-muted hidden md:inline">
-                      {locale === "tr" ? "Bildiren:" : "By:"} <span className="text-fg-secondary font-medium">{incident.author_name}</span>
+                    <span className="text-fg-muted hidden text-[10px] md:inline">
+                      {locale === "tr" ? "Bildiren:" : "By:"}{" "}
+                      <span className="text-fg-secondary font-medium">{incident.author_name}</span>
                     </span>
                   )}
                 </div>
@@ -195,9 +207,13 @@ export function IncidentCard({
             </div>
 
             {/* Right: Severity & Live Pill */}
-            <div className="flex items-center gap-1.5 shrink-0">
+            <div className="flex shrink-0 items-center gap-1.5">
               {isRecent && (
-                <Badge variant="danger" dot className="animate-pulse shadow-[0_0_10px_rgba(230,57,70,0.4)] hidden sm:inline-flex">
+                <Badge
+                  variant="danger"
+                  dot
+                  className="hidden animate-pulse shadow-[0_0_10px_rgba(230,57,70,0.4)] sm:inline-flex"
+                >
                   {t("new_badge")}
                 </Badge>
               )}
@@ -207,14 +223,11 @@ export function IncidentCard({
           </div>
 
           {/* 2. Main Narrative & Headline Block */}
-          <Link
-            href={`/incidents/${incident.id}`}
-            className="block focus-visible:outline-none"
-          >
-            <h3 className="text-fg-primary group-hover:text-brand-400 text-base sm:text-lg font-bold leading-snug transition-colors">
+          <Link href={`/incidents/${incident.id}`} className="block focus-visible:outline-none">
+            <h3 className="text-fg-primary group-hover:text-brand-400 text-base leading-snug font-bold transition-colors sm:text-lg">
               {displayTitle}
             </h3>
-            <p className="text-fg-secondary/90 mt-1.5 text-xs sm:text-sm leading-relaxed line-clamp-3 font-normal">
+            <p className="text-fg-secondary/90 mt-1.5 line-clamp-3 text-xs leading-relaxed font-normal sm:text-sm">
               {displayDesc}
             </p>
           </Link>
@@ -243,7 +256,7 @@ export function IncidentCard({
                 }
               }}
               disabled={isTranslating}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-brand-500/20 bg-brand-500/5 text-brand-400 text-[11px] font-bold hover:bg-brand-500/10 active:scale-95 transition-all w-fit cursor-pointer disabled:opacity-50"
+              className="border-brand-500/20 bg-brand-500/5 text-brand-400 hover:bg-brand-500/10 inline-flex w-fit cursor-pointer items-center gap-1.5 rounded-lg border px-3 py-1.5 text-[11px] font-bold transition-all active:scale-95 disabled:opacity-50"
             >
               <Globe className={cn("h-3.5 w-3.5", isTranslating && "animate-spin")} />
               {isTranslating ? "Türkçeye Çevriliyor..." : "🌐 Yapay Zeka ile Türkçeye Çevir"}
@@ -252,20 +265,22 @@ export function IncidentCard({
 
           {/* 3. Instagram / LinkedIn Visual Media & Intelligence Card */}
           <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3 backdrop-blur-md">
-            <div className="flex flex-wrap items-center justify-between gap-2 mb-2 pb-2 border-b border-white/5">
+            <div className="mb-2 flex flex-wrap items-center justify-between gap-2 border-b border-white/5 pb-2">
               <div className="flex items-center gap-2">
-                <Shield className="h-4 w-4 text-emerald-400 shrink-0" />
-                <span className="text-xs font-bold text-fg-primary">
+                <Shield className="h-4 w-4 shrink-0 text-emerald-400" />
+                <span className="text-fg-primary text-xs font-bold">
                   {t("truthScore", { defaultValue: "Doğruluk Skoru" })}:
                 </span>
                 <span className="font-mono text-xs font-black text-emerald-400">
-                  {incident.cross_audit_truth_score !== null ? `${incident.cross_audit_truth_score}%` : "94%"}
+                  {incident.cross_audit_truth_score !== null
+                    ? `${incident.cross_audit_truth_score}%`
+                    : "94%"}
                 </span>
-                <span className="text-[10px] text-emerald-400/80 bg-emerald-500/10 px-1.5 py-0.2 rounded border border-emerald-500/20 font-semibold">
+                <span className="py-0.2 rounded border border-emerald-500/20 bg-emerald-500/10 px-1.5 text-[10px] font-semibold text-emerald-400/80">
                   Konsensüs Onaylı
                 </span>
               </div>
-              <span className="text-[10px] font-mono text-fg-muted bg-white/5 px-2 py-0.5 rounded border border-white/5">
+              <span className="text-fg-muted rounded border border-white/5 bg-white/5 px-2 py-0.5 font-mono text-[10px]">
                 #{incident.id.substring(0, 12)}
               </span>
             </div>
@@ -275,17 +290,17 @@ export function IncidentCard({
           </div>
 
           {/* 4. X & LinkedIn Social Engagement & Action Bar */}
-          <div className="border-t border-white/10 pt-3 flex items-center justify-between gap-2 text-fg-muted text-xs">
+          <div className="text-fg-muted flex items-center justify-between gap-2 border-t border-white/10 pt-3 text-xs">
             {/* Social Triggers (Comments, Reactions, Views) */}
             <div className="flex items-center gap-4 sm:gap-6">
               {/* Comments / Discussion */}
               <Link
                 href={`/incidents/${incident.id}#comments`}
-                className="flex items-center gap-1.5 hover:text-cyan-400 transition-colors group/btn"
+                className="group/btn flex items-center gap-1.5 transition-colors hover:text-cyan-400"
                 aria-label="Yorumlar ve Tartışma"
               >
-                <MessageSquare className="h-4 w-4 text-fg-muted group-hover/btn:text-cyan-400 group-hover/btn:scale-110 transition-all" />
-                <span className="font-semibold text-xs text-fg-secondary group-hover/btn:text-cyan-300">
+                <MessageSquare className="text-fg-muted h-4 w-4 transition-all group-hover/btn:scale-110 group-hover/btn:text-cyan-400" />
+                <span className="text-fg-secondary text-xs font-semibold group-hover/btn:text-cyan-300">
                   {incident.evidence_count}
                 </span>
               </Link>
@@ -293,27 +308,25 @@ export function IncidentCard({
               {/* I Experienced This / Upvote */}
               <Link
                 href={`/incidents/${incident.id}#affected`}
-                className="flex items-center gap-1.5 hover:text-brand-400 transition-colors group/btn"
+                className="hover:text-brand-400 group/btn flex items-center gap-1.5 transition-colors"
                 aria-label="Ben de Yaşadım"
               >
-                <ThumbsUp className="h-4 w-4 text-brand-400 group-hover/btn:scale-110 transition-all" />
-                <span className="font-semibold text-xs text-fg-secondary group-hover/btn:text-brand-300">
+                <ThumbsUp className="text-brand-400 h-4 w-4 transition-all group-hover/btn:scale-110" />
+                <span className="text-fg-secondary group-hover/btn:text-brand-300 text-xs font-semibold">
                   {incident.vote_count}
                 </span>
               </Link>
 
               {/* Views / Reach */}
-              <div className="flex items-center gap-1.5 text-fg-muted/80">
+              <div className="text-fg-muted/80 flex items-center gap-1.5">
                 <Eye className="h-4 w-4 shrink-0" />
-                <span className="font-semibold text-xs font-mono">
-                  {viewsDisplay}
-                </span>
+                <span className="font-mono text-xs font-semibold">{viewsDisplay}</span>
               </div>
             </div>
 
             {/* Rapid Social Distribution Bar */}
-            <div className="flex items-center gap-1.5 shrink-0">
-              <span className="text-[10px] font-bold text-fg-muted tracking-wider uppercase hidden sm:inline mr-1">
+            <div className="flex shrink-0 items-center gap-1.5">
+              <span className="text-fg-muted mr-1 hidden text-[10px] font-bold tracking-wider uppercase sm:inline">
                 {t("share", { defaultValue: "Paylaş" })}
               </span>
 
@@ -324,7 +337,7 @@ export function IncidentCard({
                 href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(displayTitle)}&url=${encodeURIComponent(getShareUrlForPlatform("x"))}`}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="text-fg-muted hover:text-white hover:bg-white/10 hover:border-white/30 border border-white/10 flex h-7 w-7 items-center justify-center rounded-md bg-white/5 transition-all shadow-2xs"
+                className="text-fg-muted flex h-7 w-7 items-center justify-center rounded-md border border-white/10 bg-white/5 shadow-2xs transition-all hover:border-white/30 hover:bg-white/10 hover:text-white"
                 aria-label={tFeed("shareOnX")}
                 onClick={(e) => e.stopPropagation()}
               >
@@ -338,7 +351,7 @@ export function IncidentCard({
                 href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(getShareUrlForPlatform("linkedin"))}`}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="text-social-linkedin hover:bg-social-linkedin/20 border border-social-linkedin/30 flex h-7 w-7 items-center justify-center rounded-md bg-social-linkedin/10 transition-all shadow-2xs"
+                className="text-social-linkedin hover:bg-social-linkedin/20 border-social-linkedin/30 bg-social-linkedin/10 flex h-7 w-7 items-center justify-center rounded-md border shadow-2xs transition-all"
                 aria-label={tFeed("shareOnLinkedIn")}
                 onClick={(e) => e.stopPropagation()}
               >
@@ -349,7 +362,7 @@ export function IncidentCard({
               <motion.button
                 whileHover={{ scale: 1.15, y: -1 }}
                 whileTap={{ scale: 0.95 }}
-                className="text-social-instagram hover:bg-social-instagram/20 border border-social-instagram/30 flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-social-instagram/10 transition-all shadow-2xs"
+                className="text-social-instagram hover:bg-social-instagram/20 border-social-instagram/30 bg-social-instagram/10 flex h-7 w-7 cursor-pointer items-center justify-center rounded-md border shadow-2xs transition-all"
                 aria-label={tFeed("copyForInstagram")}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -367,7 +380,7 @@ export function IncidentCard({
                 href={`https://api.whatsapp.com/send?text=${encodeURIComponent(displayTitle + " " + getShareUrlForPlatform("whatsapp"))}`}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="text-social-whatsapp hover:bg-social-whatsapp/20 border border-social-whatsapp/30 flex h-7 w-7 items-center justify-center rounded-md bg-social-whatsapp/10 transition-all shadow-2xs"
+                className="text-social-whatsapp hover:bg-social-whatsapp/20 border-social-whatsapp/30 bg-social-whatsapp/10 flex h-7 w-7 items-center justify-center rounded-md border shadow-2xs transition-all"
                 aria-label={tFeed("shareOnWhatsApp")}
                 onClick={(e) => e.stopPropagation()}
               >
@@ -394,17 +407,20 @@ function TimelineIndicator({ status, t }: { status: IncidentStatus; t: (key: str
   const isRejected = status === "rejected" || status === "takedown";
 
   return (
-    <div className="mt-4 rounded-lg bg-white/[0.02] border border-border-subtle/40 px-3 py-2 sm:px-3.5 sm:py-2.5" aria-label={t("timeline")}>
+    <div
+      className="border-border-subtle/40 mt-4 rounded-lg border bg-white/[0.02] px-3 py-2 sm:px-3.5 sm:py-2.5"
+      aria-label={t("timeline")}
+    >
       <div className="flex items-center justify-between gap-1.5 sm:gap-2">
         {steps.map((step, i) => {
           const active = step.statuses.includes(status);
           const isLast = i === steps.length - 1;
           return (
             <React.Fragment key={step.label}>
-              <div className="flex items-center gap-1.5 shrink-0">
+              <div className="flex shrink-0 items-center gap-1.5">
                 <CheckCircle2
                   className={cn(
-                    "h-3.5 w-3.5 transition-colors duration-300 shrink-0",
+                    "h-3.5 w-3.5 shrink-0 transition-colors duration-300",
                     active && !isRejected
                       ? "text-success-400"
                       : isRejected && i === 0
@@ -415,7 +431,7 @@ function TimelineIndicator({ status, t }: { status: IncidentStatus; t: (key: str
                 />
                 <span
                   className={cn(
-                    "text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-colors whitespace-nowrap",
+                    "text-[10px] font-bold tracking-wider whitespace-nowrap uppercase transition-colors sm:text-[11px]",
                     active && !isRejected ? "text-success-400" : "text-fg-disabled",
                   )}
                 >
@@ -425,7 +441,7 @@ function TimelineIndicator({ status, t }: { status: IncidentStatus; t: (key: str
               {!isLast && (
                 <div
                   className={cn(
-                    "h-[1.5px] flex-1 min-w-[10px] sm:min-w-[16px] rounded-full transition-colors duration-500",
+                    "h-[1.5px] min-w-[10px] flex-1 rounded-full transition-colors duration-500 sm:min-w-[16px]",
                     steps[i + 1]?.statuses.includes(status) && !isRejected
                       ? "bg-success-500/60"
                       : "bg-fg-disabled/20",

@@ -11,14 +11,14 @@ export default function SettingsPage() {
       <div className="flex flex-col justify-between gap-4 border-b border-[#d0d7de] pb-4 md:flex-row md:items-center dark:border-[#30363d]">
         <div>
           <div className="mb-1 flex items-center gap-2">
-            <span className="rounded border border-zinc-700 bg-zinc-800 px-2 py-0.5 font-mono text-[10px] text-[#656d76] dark:text-[#c9d1d9]">
+            <span className="rounded border border-zinc-700 bg-zinc-800 px-2 py-0.5 font-sans text-[10px] text-[#656d76] dark:text-[#c9d1d9]">
               KÜME 5: AKADEMİ & YÖNETİŞİM
             </span>
-            <span className="font-mono text-xs font-semibold text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
+            <span className="font-sans text-xs font-semibold text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
               RBAC & SYSTEM CONFIGURATION
             </span>
           </div>
-          <h1 className="font-mono text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
+          <h1 className="font-sans text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
             Sistem Parametreleri & Rol Masası (RBAC)
           </h1>
           <p className="mt-0.5 text-xs text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
@@ -33,7 +33,7 @@ export default function SettingsPage() {
       </div>
 
       {/* Settings Sections */}
-      <div className="grid grid-cols-1 gap-6 font-mono text-xs lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 font-sans text-xs lg:grid-cols-2">
         {/* Section 1: Security & RBAC */}
         <div className="space-y-4 rounded-md border border-[#d0d7de] bg-[#ffffff] p-5 shadow-sm dark:border-[#30363d] dark:bg-[#161b22] dark:shadow-none">
           <div className="flex items-center gap-2 border-b border-[#d0d7de] pb-3 dark:border-[#30363d]">
@@ -101,7 +101,7 @@ export default function SettingsPage() {
               <input
                 type="text"
                 defaultValue="50 req/sec"
-                className="w-full rounded border border-[#d0d7de] bg-zinc-950 p-2 font-mono text-xs text-zinc-200 dark:border-[#30363d]"
+                className="w-full rounded border border-[#d0d7de] bg-zinc-950 p-2 font-sans text-xs text-zinc-200 dark:border-[#30363d]"
               />
             </div>
 
@@ -112,7 +112,7 @@ export default function SettingsPage() {
               <input
                 type="text"
                 defaultValue="15ms (Global Edge Cloudflare)"
-                className="w-full rounded border border-[#d0d7de] bg-zinc-950 p-2 font-mono text-xs text-zinc-200 dark:border-[#30363d]"
+                className="w-full rounded border border-[#d0d7de] bg-zinc-950 p-2 font-sans text-xs text-zinc-200 dark:border-[#30363d]"
               />
             </div>
           </div>

@@ -115,7 +115,9 @@ export default function AdminV2OverviewPage() {
         // 1. Fetch real recent incidents
         const { data: incidentsData } = await supabase
           .from("incidents")
-          .select("id, title_masked, title_tr, severity, status, category, incident_date, incident_source, ai_providers(name, slug)")
+          .select(
+            "id, title_masked, title_tr, severity, status, category, incident_date, incident_source, ai_providers(name, slug)",
+          )
           .order("created_at", { ascending: false })
           .limit(4);
 
@@ -124,13 +126,22 @@ export default function AdminV2OverviewPage() {
             incidentsData.map((inc: any) => ({
               id: inc.id,
               trackingNumber: `ALP-2026-${inc.id.substring(0, 4).toUpperCase()}`,
-              modelTarget: locale === "tr" && inc.title_tr ? inc.title_tr : inc.title_masked || "AI Model Incident",
+              modelTarget:
+                locale === "tr" && inc.title_tr
+                  ? inc.title_tr
+                  : inc.title_masked || "AI Model Incident",
               provider: inc.ai_providers?.name || "Unknown Provider",
               source: (inc.incident_source || "USER_SUBMITTED").toUpperCase(),
-              euAiActTag: inc.category === "prohibited_practices" ? "PROHIBITED_ART5" : "HIGH_RISK_ART6",
+              euAiActTag:
+                inc.category === "prohibited_practices" ? "PROHIBITED_ART5" : "HIGH_RISK_ART6",
               slaRemainingHours: inc.status === "pending_review" ? 24 : 0,
-              status: inc.status === "published" ? "SEALED_DEFENDED" : inc.status === "pending_review" ? "UNDER_TRIAGE" : "AUDIT_IN_PROGRESS",
-            }))
+              status:
+                inc.status === "published"
+                  ? "SEALED_DEFENDED"
+                  : inc.status === "pending_review"
+                    ? "UNDER_TRIAGE"
+                    : "AUDIT_IN_PROGRESS",
+            })),
           );
         }
 
@@ -142,7 +153,8 @@ export default function AdminV2OverviewPage() {
         if (keysData && keysData.length > 0) {
           setB2bKeys(
             keysData.slice(0, 3).map((key: any) => {
-              const quota = key.tier === "premium" ? 1000000 : key.tier === "enterprise" ? 5000000 : 250000;
+              const quota =
+                key.tier === "premium" ? 1000000 : key.tier === "enterprise" ? 5000000 : 250000;
               const usage = Math.floor(quota * 0.12);
               const rate = key.tier === "premium" ? 5000 : key.tier === "enterprise" ? 12000 : 1500;
               return {
@@ -152,7 +164,7 @@ export default function AdminV2OverviewPage() {
                 requestsThisMonth: usage,
                 requestQuotaMonthly: quota,
               };
-            })
+            }),
           );
 
           const totalMrr = keysData.reduce((acc: number, curr: any) => {
@@ -166,11 +178,14 @@ export default function AdminV2OverviewPage() {
         }
 
         // 3. Compute dynamic EU AI Act Risk fine potential
-        const criticalCount = stats.incidents.critical || incidentsData?.filter((i: any) => i.severity === "critical").length || 0;
-        const prohibitedCount = incidentsData?.filter((i: any) => i.category === "prohibited_practices").length || 0;
-        const riskFine = (prohibitedCount * 35.0) + (criticalCount * 15.0);
+        const criticalCount =
+          stats.incidents.critical ||
+          incidentsData?.filter((i: any) => i.severity === "critical").length ||
+          0;
+        const prohibitedCount =
+          incidentsData?.filter((i: any) => i.category === "prohibited_practices").length || 0;
+        const riskFine = prohibitedCount * 35.0 + criticalCount * 15.0;
         setEuRiskStr(`€${riskFine > 0 ? riskFine.toFixed(1) : "0.0"}M`);
-
       } catch (err) {
         console.error("Error loading real dashboard data:", err);
       } finally {
@@ -217,7 +232,7 @@ export default function AdminV2OverviewPage() {
               <tbody className="divide-y divide-[#d0d7de] dark:divide-[#30363d]">
                 {recentIncidents.length === 0 ? (
                   <tr>
-                    <td colSpan={6} className="py-6 text-center text-zinc-500 font-medium">
+                    <td colSpan={6} className="py-6 text-center font-medium text-zinc-500">
                       Henüz sistemde aktif bir ihbar veya vakıa kaydı bulunmamaktadır.
                     </td>
                   </tr>
@@ -232,7 +247,7 @@ export default function AdminV2OverviewPage() {
                       </td>
                       <td className="py-3 text-zinc-200">
                         <div className="truncate font-medium">{inc.modelTarget}</div>
-                        <span className="font-mono text-[10px] text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
+                        <span className="font-sans text-[10px] text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
                           {inc.provider}
                         </span>
                       </td>
@@ -242,7 +257,7 @@ export default function AdminV2OverviewPage() {
                       <td className="py-3">
                         <StatusBadge type="compliance" value={inc.euAiActTag as any} />
                       </td>
-                      <td className="py-3 font-mono tabular-nums">
+                      <td className="py-3 font-sans tabular-nums">
                         {inc.slaRemainingHours > 0 ? (
                           <span
                             className={`font-semibold ${
@@ -294,7 +309,7 @@ export default function AdminV2OverviewPage() {
 
             <div className="space-y-2.5 pt-2">
               {b2bKeys.length === 0 ? (
-                <div className="py-8 text-center text-zinc-500 font-medium text-xs">
+                <div className="py-8 text-center text-xs font-medium text-zinc-500">
                   Henüz aktif B2B API anahtarı bulunmamaktadır.
                 </div>
               ) : (
@@ -307,11 +322,11 @@ export default function AdminV2OverviewPage() {
                       <span className="max-w-[180px] truncate font-semibold text-zinc-200">
                         {key.organizationName}
                       </span>
-                      <span className="font-mono font-medium text-emerald-400 tabular-nums">
+                      <span className="font-sans font-medium text-emerald-400 tabular-nums">
                         ${key.monthlyRateUsd.toLocaleString()}/{td("month")}
                       </span>
                     </div>
-                    <div className="flex items-center justify-between font-mono text-[11px] text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
+                    <div className="flex items-center justify-between font-sans text-[11px] text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
                       <span className="tabular-nums">
                         {(key.requestsThisMonth / 1000).toFixed(0)}k /{" "}
                         {(key.requestQuotaMonthly / 1000).toFixed(0)}k {td("requests")}
@@ -337,7 +352,9 @@ export default function AdminV2OverviewPage() {
 
           <div className="flex items-center justify-between border-t border-[#d0d7de] pt-3 font-sans text-xs text-zinc-400 dark:border-[#30363d] dark:text-[#8b949e] dark:text-[#656d76]">
             <span>{td("totalMonthly")}</span>
-            <span className="font-bold text-zinc-200 tabular-nums">${(b2bKeys.reduce((acc, curr) => acc + curr.monthlyRateUsd, 0)).toLocaleString()}/Ay</span>
+            <span className="font-bold text-zinc-200 tabular-nums">
+              ${b2bKeys.reduce((acc, curr) => acc + curr.monthlyRateUsd, 0).toLocaleString()}/Ay
+            </span>
           </div>
         </div>
       </div>
@@ -428,7 +445,7 @@ export default function AdminV2OverviewPage() {
       <div className="flex flex-col justify-between gap-4 border-b border-[#d0d7de] pb-4 md:flex-row md:items-center dark:border-[#30363d]">
         <div>
           <div className="mb-1 flex items-center gap-2">
-            <span className="rounded border border-zinc-700 bg-zinc-800 px-2 py-0.5 font-mono text-[10px] text-[#656d76] dark:text-[#c9d1d9]">
+            <span className="rounded border border-zinc-700 bg-zinc-800 px-2 py-0.5 font-sans text-[10px] text-[#656d76] dark:text-[#c9d1d9]">
               ALPAR AI
             </span>
             <span className="font-sans text-xs font-semibold tracking-wider text-cyan-400 uppercase">

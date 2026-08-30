@@ -317,4 +317,234 @@ export function ClaimReviewJsonLd({
   );
 }
 
-const FactCheckJsonLd = ClaimReviewJsonLd;
+export function CollectionPageJsonLd({
+  name,
+  description,
+  url,
+  items,
+}: {
+  name: string;
+  description: string;
+  url: string;
+  items?: Array<{ name: string; url: string; description?: string }>;
+}) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name,
+    description,
+    url,
+    publisher: {
+      "@type": "Organization",
+      name: APP_NAME,
+      url: APP_URL,
+    },
+    ...(items && items.length > 0 && {
+      mainEntity: {
+        "@type": "ItemList",
+        itemListElement: items.map((item, idx) => ({
+          "@type": "ListItem",
+          position: idx + 1,
+          name: item.name,
+          url: item.url,
+          ...(item.description && { description: item.description }),
+        })),
+      },
+    }),
+  };
+  return (
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
+  );
+}
+
+export function AboutPageJsonLd({
+  name = "About ALPAR AI",
+  description,
+  url,
+  members,
+}: {
+  name?: string;
+  description?: string;
+  url: string;
+  members?: Array<{ name: string; role: string; url?: string }>;
+}) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name,
+    description: description ?? APP_DESCRIPTION,
+    url,
+    mainEntity: {
+      "@type": "Organization",
+      name: APP_NAME,
+      url: APP_URL,
+      logo: `${APP_URL}/icons/android-chrome-512x512.png`,
+      ...(members && members.length > 0 && {
+        member: members.map((m) => ({
+          "@type": "Person",
+          name: m.name,
+          jobTitle: m.role,
+          ...(m.url && { url: m.url }),
+        })),
+      }),
+    },
+  };
+  return (
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
+  );
+}
+
+export function PricingProductJsonLd({
+  plans,
+  url,
+}: {
+  plans: Array<{ name: string; description: string; price: string | number; currency?: string }>;
+  url: string;
+}) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "ALPAR AI Platform & Compliance Solutions",
+    description: "Enterprise & community-tier AI accountability, risk monitoring, and incident reporting.",
+    url,
+    offers: plans.map((p) => ({
+      "@type": "Offer",
+      name: p.name,
+      description: p.description,
+      price: typeof p.price === "number" ? p.price.toString() : p.price,
+      priceCurrency: p.currency ?? "USD",
+      availability: "https://schema.org/InStock",
+      url,
+    })),
+  };
+  return (
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
+  );
+}
+
+export function DatasetJsonLd({
+  name,
+  description,
+  url,
+}: {
+  name: string;
+  description: string;
+  url: string;
+}) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    name,
+    description,
+    url,
+    license: "https://www.gnu.org/licenses/agpl-3.0.html",
+    isAccessibleForFree: true,
+    creator: {
+      "@type": "Organization",
+      name: APP_NAME,
+      url: APP_URL,
+    },
+  };
+  return (
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
+  );
+}
+
+export function EducationalOrganizationJsonLd({
+  name = "ALPAR AI Academy",
+  description,
+  url,
+  courses,
+}: {
+  name?: string;
+  description?: string;
+  url: string;
+  courses?: Array<{ name: string; description: string }>;
+}) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    name,
+    description: description ?? "AI Safety and Governance educational curriculum by ALPAR AI.",
+    url,
+    parentOrganization: {
+      "@type": "Organization",
+      name: APP_NAME,
+      url: APP_URL,
+    },
+    ...(courses && courses.length > 0 && {
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "ALPAR Academy Programs",
+        itemListElement: courses.map((c) => ({
+          "@type": "Course",
+          name: c.name,
+          description: c.description,
+          provider: {
+            "@type": "Organization",
+            name: APP_NAME,
+          },
+        })),
+      },
+    }),
+  };
+  return (
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
+  );
+}
+
+export function TechArticleJsonLd({
+  headline,
+  description,
+  url,
+  datePublished,
+}: {
+  headline: string;
+  description: string;
+  url: string;
+  datePublished?: string;
+}) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    headline,
+    description,
+    url,
+    datePublished: datePublished ?? new Date().toISOString(),
+    publisher: {
+      "@type": "Organization",
+      name: APP_NAME,
+      url: APP_URL,
+    },
+    inLanguage: [...SUPPORTED_LOCALES],
+  };
+  return (
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
+  );
+}
+
+export function ContactPageJsonLd({
+  url,
+  description,
+}: {
+  url: string;
+  description?: string;
+}) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: `Contact & Whistleblower Portal — ${APP_NAME}`,
+    description: description ?? "Secure whistleblower submission and general inquiry contact point.",
+    url,
+    mainEntity: {
+      "@type": "Organization",
+      name: APP_NAME,
+      url: APP_URL,
+      email: "hello@alparai.com",
+    },
+  };
+  return (
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
+  );
+}
+

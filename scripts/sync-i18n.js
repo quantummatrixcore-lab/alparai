@@ -1,9 +1,13 @@
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const localesDir = path.join(__dirname, "../messages");
 const baseFile = path.join(localesDir, "en.json");
-const otherLocales = ["tr.json", "de.json", "fr.json", "ru.json"];
+const otherLocales = ["tr.json"];
 
 function syncStructure(baseObj, targetObj) {
   const result = {};

@@ -2,6 +2,8 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { VisitorAnalytics } from "../../src/components/admin/widgets/VisitorAnalytics";
+import DefaultVisitorAnalytics from "../../src/components/admin/widgets/VisitorAnalytics";
+import { VisitorAnalytics as BarrelVisitorAnalytics } from "../../src/components/admin/widgets";
 import type { VisitorEvent } from "../../src/lib/ai/visitor-predictor";
 
 vi.mock("next-intl", () => ({
@@ -16,6 +18,14 @@ vi.mock("next-intl", () => ({
 }));
 
 describe("VisitorAnalytics Component — AI Predictor Integration", () => {
+  it("verifies export parity between named, default, and barrel exports", () => {
+    expect(DefaultVisitorAnalytics).toBeDefined();
+    expect(VisitorAnalytics).toBeDefined();
+    expect(BarrelVisitorAnalytics).toBeDefined();
+    expect(DefaultVisitorAnalytics).toBe(VisitorAnalytics);
+    expect(BarrelVisitorAnalytics).toBe(VisitorAnalytics);
+  });
+
   it("renders correctly with default props", () => {
     render(<VisitorAnalytics enableRealtimeSimulation={false} />);
     expect(screen.getByText(/CEO Analitik/i)).toBeDefined();

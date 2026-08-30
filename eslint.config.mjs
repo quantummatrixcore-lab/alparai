@@ -30,7 +30,9 @@ const eslintConfig = [
       "**/*.js",
       "**/*.cjs",
       "**/*.mjs",
-      "src/types/database.ts"
+      "src/types/database.ts",
+      "**/.*",
+      "**/.mock*"
     ]
   },
   {

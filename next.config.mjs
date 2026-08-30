@@ -8,11 +8,11 @@ const isTest =
 
 const cspRules = [
   "default-src 'self'",
-  "script-src 'self' https://*.supabase.co https://*.sentry.io https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.google.com https://*.gstatic.com",
-  "style-src 'self' https://fonts.googleapis.com https://accounts.google.com",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.supabase.co https://*.sentry.io https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.google.com https://*.gstatic.com https://va.vercel-scripts.com",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com",
   "font-src 'self' https://fonts.gstatic.com data:",
-  "img-src 'self' data: blob: https: https://*.googleusercontent.com",
-  "connect-src 'self' https://*.supabase.co https://*.sentry.io wss://*.supabase.co https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.googleapis.com",
+  "img-src 'self' data: blob: https: https://*.googleusercontent.com https://avatars.githubusercontent.com https://*.supabase.co https://logo.clearbit.com",
+  "connect-src 'self' https://*.supabase.co https://*.sentry.io wss://*.supabase.co https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.googleapis.com https://*.posthog.com https://*.upstash.io https://va.vercel-scripts.com",
   "frame-src 'self' https://challenges.cloudflare.com https://accounts.google.com https://*.google.com",
   "worker-src 'self' blob:",
   "frame-ancestors 'none'",
@@ -34,38 +34,50 @@ const securityHeaders = [
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   {
     key: "Permissions-Policy",
-    value: "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+    value:
+      "camera=(), microphone=(), geolocation=(), payment=(), usb=(), screen-wake-lock=(), accelerometer=(), gyroscope=(), magnetometer=(), interest-cohort=()",
   },
   ...(isTest
     ? []
     : [
         {
           key: "Strict-Transport-Security",
-          value: "max-age=31536000; includeSubDomains; preload",
+          value: "max-age=63072000; includeSubDomains; preload",
         },
       ]),
-  { key: "X-DNS-Prefetch-Control", value: "on" },
   { key: "Cross-Origin-Opener-Policy", value: "same-origin-allow-popups" },
+  { key: "Cross-Origin-Resource-Policy", value: "same-origin" },
+  { key: "X-Permitted-Cross-Domain-Policies", value: "none" },
+  { key: "X-DNS-Prefetch-Control", value: "on" },
+  { key: "X-XSS-Protection", value: "1; mode=block" },
 ];
 
-const embedCsp = csp.replace("frame-ancestors 'none'", "frame-ancestors 'self' https://*.alparai.com https://*.vercel.app");
+const embedCsp = csp.replace(
+  "frame-ancestors 'none'",
+  "frame-ancestors 'self' https://*.alparai.com https://*.vercel.app",
+);
 const embedHeaders = [
   { key: "Content-Security-Policy", value: embedCsp },
   { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "X-Frame-Options", value: "SAMEORIGIN" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   {
     key: "Permissions-Policy",
-    value: "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+    value:
+      "camera=(), microphone=(), geolocation=(), payment=(), usb=(), screen-wake-lock=(), accelerometer=(), gyroscope=(), magnetometer=(), interest-cohort=()",
   },
   ...(isTest
     ? []
     : [
         {
           key: "Strict-Transport-Security",
-          value: "max-age=31536000; includeSubDomains; preload",
+          value: "max-age=63072000; includeSubDomains; preload",
         },
       ]),
+  { key: "Cross-Origin-Resource-Policy", value: "cross-origin" },
+  { key: "X-Permitted-Cross-Domain-Policies", value: "none" },
   { key: "X-DNS-Prefetch-Control", value: "on" },
+  { key: "X-XSS-Protection", value: "1; mode=block" },
 ];
 
 import path from "path";
@@ -81,9 +93,15 @@ const nextConfig = {
         ? "true"
         : "false",
   },
-  eslint: { ignoreDuringBuilds: true },
   typescript: {
     ignoreBuildErrors: true,
+  },
+  outputFileTracingExcludes: {
+    "*": [
+      "node_modules/@swc/core-linux-x64-gnu",
+      "node_modules/@swc/core-linux-x64-musl",
+      "node_modules/@esbuild/linux-x64",
+    ],
   },
   reactStrictMode: true,
   poweredByHeader: false,
@@ -131,13 +149,6 @@ const nextConfig = {
     webpackBuildWorker: true,
     parallelServerCompiles: true,
     parallelServerBuildTraces: true,
-    outputFileTracingExcludes: {
-      "*": [
-        "node_modules/@swc/core-linux-x64-gnu",
-        "node_modules/@swc/core-linux-x64-musl",
-        "node_modules/@esbuild/linux-x64",
-      ],
-    },
   },
   async headers() {
     return [
@@ -208,7 +219,7 @@ const nextConfig = {
         destination: "/:locale/insights/open-vs-closed",
         permanent: true,
       },
-      // Broken links discovered via 360Ã‚Â° QA audit (2026-08-13)
+      // Broken links discovered via 360° QA audit
       {
         source: "/:locale/scoreboard",
         destination: "/:locale/leaderboard",
@@ -217,6 +228,51 @@ const nextConfig = {
       {
         source: "/:locale/auth/login",
         destination: "/:locale/auth/signin",
+        permanent: true,
+      },
+      {
+        source: "/auth/login",
+        destination: "/auth/signin",
+        permanent: true,
+      },
+      {
+        source: "/:locale/login",
+        destination: "/:locale/auth/signin",
+        permanent: true,
+      },
+      {
+        source: "/login",
+        destination: "/auth/signin",
+        permanent: true,
+      },
+      {
+        source: "/:locale/report",
+        destination: "/:locale/submit",
+        permanent: true,
+      },
+      {
+        source: "/report",
+        destination: "/submit",
+        permanent: true,
+      },
+      {
+        source: "/:locale/checkout",
+        destination: "/:locale/pricing",
+        permanent: true,
+      },
+      {
+        source: "/checkout",
+        destination: "/pricing",
+        permanent: true,
+      },
+      {
+        source: "/:locale/cases/001",
+        destination: "/:locale/cases/001-grok-passport",
+        permanent: true,
+      },
+      {
+        source: "/cases/001",
+        destination: "/cases/001-grok-passport",
         permanent: true,
       },
       {

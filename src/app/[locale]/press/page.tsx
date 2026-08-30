@@ -54,22 +54,30 @@ export default async function PressPage({ params }: { params: Promise<{ locale: 
             <span>{t("logo_assets_title")}</span>
           </div>
           <p className="text-fg-muted text-xs leading-relaxed">{t("logo_assets_desc")}</p>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
             <a
-              href="/logo.svg"
-              download="alpar-ai-logo.svg"
+              href="/brand/alpar-logo.svg"
+              download="alpar-logo.svg"
               className="bg-brand-500/10 border-brand-500/30 text-brand-400 hover:bg-brand-500/20 flex items-center gap-2 rounded-md border px-3 py-2 text-xs font-semibold"
             >
               <Download className="h-4 w-4" />
               <span>{t("download_logo_svg")}</span>
             </a>
             <a
-              href="/logo.png"
-              download="alpar-ai-logo.png"
+              href="/brand/alpar-logo.png"
+              download="alpar-logo.png"
               className="bg-bg-elevated border-border-subtle text-fg-primary hover:bg-bg-secondary flex items-center gap-2 rounded-md border px-3 py-2 text-xs font-semibold"
             >
               <Download className="text-fg-muted h-4 w-4" />
               <span>{t("download_logo_png")}</span>
+            </a>
+            <a
+              href="/brand-assets.zip"
+              download="alpar-brand-assets.zip"
+              className="bg-brand-500/20 border-brand-500/40 text-brand-300 hover:bg-brand-500/30 flex items-center gap-2 rounded-md border px-3 py-2 text-xs font-semibold"
+            >
+              <Download className="h-4 w-4" />
+              <span>{isEn ? "Brand Kit (.ZIP)" : "Marka Paketi (.ZIP)"}</span>
             </a>
           </div>
         </Card>

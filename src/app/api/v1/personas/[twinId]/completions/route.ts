@@ -76,7 +76,10 @@ export async function POST(req: Request, props: { params: Promise<{ twinId: stri
         .single();
 
       if (keyError) {
-        if (keyError.code === "42P01" || keyError.code === "PGRST116") {
+        if (
+          process.env.NODE_ENV === "test" &&
+          (keyError.code === "42P01" || keyError.code === "PGRST116")
+        ) {
           if (apiKey.startsWith("sk-") || apiKey === "alpar-test-key") {
             isAuthorized = true;
           }
@@ -85,7 +88,10 @@ export async function POST(req: Request, props: { params: Promise<{ twinId: stri
         isAuthorized = true;
       }
     } catch {
-      if (apiKey.startsWith("sk-") || apiKey === "alpar-test-key") {
+      if (
+        process.env.NODE_ENV === "test" &&
+        (apiKey.startsWith("sk-") || apiKey === "alpar-test-key")
+      ) {
         isAuthorized = true;
       }
     }

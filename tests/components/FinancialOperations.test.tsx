@@ -2,6 +2,8 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { FinancialOperations } from "../../src/components/admin/widgets/FinancialOperations";
+import DefaultFinancialOperations from "../../src/components/admin/widgets/FinancialOperations";
+import { FinancialOperations as BarrelFinancialOperations } from "../../src/components/admin/widgets";
 
 vi.mock("next-intl", () => ({
   useTranslations: () => (key: string) => {
@@ -35,7 +37,15 @@ vi.mock("next-intl", () => ({
 }));
 
 describe("FinancialOperations Component", () => {
-  it("renders correctly with all translation keys and sections", () => {
+  it("verifies export parity between named, default, and barrel exports", () => {
+    expect(DefaultFinancialOperations).toBeDefined();
+    expect(FinancialOperations).toBeDefined();
+    expect(BarrelFinancialOperations).toBeDefined();
+    expect(DefaultFinancialOperations).toBe(FinancialOperations);
+    expect(BarrelFinancialOperations).toBe(FinancialOperations);
+  });
+
+  it("renders correctly with all translation keys and sections via named export", () => {
     render(<FinancialOperations />);
     expect(screen.getByText(/FİNANSAL OPERASYONLAR/i)).toBeDefined();
     expect(screen.getByText(/POZİTİF RUNWAY/i)).toBeDefined();
@@ -45,5 +55,11 @@ describe("FinancialOperations Component", () => {
     expect(screen.getByText(/AI Model & Token Maliyet Dağılımı/i)).toBeDefined();
     expect(screen.getByText(/Abonelik & Gelir Katmanları/i)).toBeDefined();
     expect(screen.getByText(/Stripe Webhook Eşzamanlı/i)).toBeDefined();
+  });
+
+  it("renders correctly via default export", () => {
+    render(<DefaultFinancialOperations />);
+    expect(screen.getByText(/FİNANSAL OPERASYONLAR/i)).toBeDefined();
+    expect(screen.getByText(/POZİTİF RUNWAY/i)).toBeDefined();
   });
 });

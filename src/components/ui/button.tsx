@@ -4,7 +4,15 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 
-type ButtonVariant = "primary" | "secondary" | "outline" | "ghost" | "danger" | "success";
+type ButtonVariant =
+  | "primary"
+  | "secondary"
+  | "outline"
+  | "ghost"
+  | "danger"
+  | "success"
+  | "glass"
+  | "accent";
 type ButtonSize = "sm" | "md" | "lg" | "icon";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -17,17 +25,21 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "bg-brand-500 text-white hover:bg-brand-600 active:bg-brand-700 hover:shadow-glow-brand disabled:opacity-50",
+    "bg-brand-500 text-white hover:bg-brand-600 active:bg-brand-700 hover:shadow-glow-brand active:scale-[0.97] shadow-md shadow-brand-500/20 disabled:opacity-50 disabled:active:scale-100",
   secondary:
-    "bg-bg-elevated text-fg-primary border border-border-subtle hover:border-brand-500 hover:bg-bg-tertiary disabled:opacity-50",
+    "bg-bg-elevated text-fg-primary border border-border-subtle hover:border-brand-500/50 hover:bg-bg-tertiary active:bg-bg-primary active:scale-[0.97] disabled:opacity-50 disabled:active:scale-100",
   outline:
-    "bg-transparent text-fg-primary border border-border-strong hover:border-brand-500 hover:text-brand-400 disabled:opacity-50",
+    "bg-transparent text-fg-primary border border-border-strong hover:border-brand-500 hover:text-brand-400 active:bg-brand-500/10 active:scale-[0.97] disabled:opacity-50 disabled:active:scale-100",
   ghost:
-    "bg-transparent text-fg-secondary hover:bg-bg-tertiary hover:text-fg-primary disabled:opacity-50",
+    "bg-transparent text-fg-secondary hover:bg-white/5 hover:text-fg-primary active:bg-white/10 active:scale-[0.97] disabled:opacity-50 disabled:active:scale-100",
   danger:
-    "bg-danger-500 text-white hover:bg-danger-600 active:bg-danger-600 hover:shadow-glow-danger disabled:opacity-50",
+    "bg-danger-500 text-white hover:bg-danger-600 active:bg-danger-700 hover:shadow-glow-danger active:scale-[0.97] shadow-md shadow-danger-500/20 disabled:opacity-50 disabled:active:scale-100",
   success:
-    "bg-success-500 text-black hover:bg-success-600 active:bg-success-600 hover:shadow-glow-success disabled:opacity-50",
+    "bg-success-500 text-white hover:bg-success-600 active:bg-success-700 hover:shadow-glow-success active:scale-[0.97] shadow-md shadow-success-500/20 disabled:opacity-50 disabled:active:scale-100",
+  glass:
+    "bg-white/5 text-white border border-white/10 hover:border-white/20 hover:bg-white/10 active:bg-white/15 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] hover:shadow-[0_0_25px_rgba(255,255,255,0.1)] active:scale-[0.97] disabled:opacity-50 disabled:active:scale-100",
+  accent:
+    "bg-accent-500 text-neutral-950 font-bold hover:bg-accent-400 active:bg-accent-600 hover:shadow-glow-accent active:scale-[0.97] shadow-md shadow-accent-500/20 disabled:opacity-50 disabled:active:scale-100",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {

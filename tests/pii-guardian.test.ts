@@ -64,6 +64,24 @@ describe("PII Guardian", () => {
     it("detects OpenAI key", () => {
       expect(detectPIITypes("Key: sk-proj-abcdefghij1234567890")).toContain("api_key");
     });
+    it("detects Stripe secret key", () => {
+      expect(detectPIITypes("stripe key: sk_live_51AbcDefGhIjKlMnOpQrStUvWxYz")).toContain("api_key");
+      const r = maskPII("Key: sk_live_51AbcDefGhIjKlMnOpQrStUvWxYz");
+      expect(r.masked).toBe("Key: [REDACTED-API-KEY]");
+      expect(r.piiFound).toBe(true);
+    });
+    it("detects Google API key", () => {
+      expect(detectPIITypes("Google key: AIzaSyA1B2C3D4E5F6G7H8I9J0K1L2M3N4O5P6Q")).toContain("api_key");
+      const r = maskPII("Key: AIzaSyA1B2C3D4E5F6G7H8I9J0K1L2M3N4O5P6Q");
+      expect(r.masked).toBe("Key: [REDACTED-API-KEY]");
+      expect(r.piiFound).toBe(true);
+    });
+    it("detects HuggingFace token", () => {
+      expect(detectPIITypes("HF token: hf_AbCdEfGhIjKlMnOpQrStUvWxYz12345678")).toContain("api_key");
+      const r = maskPII("Token: hf_AbCdEfGhIjKlMnOpQrStUvWxYz12345678");
+      expect(r.masked).toBe("Token: [REDACTED-API-KEY]");
+      expect(r.piiFound).toBe(true);
+    });
     it("detects xAI key", () => {
       expect(detectPIITypes("xai-abcdefghij1234567890")).toContain("api_key");
     });

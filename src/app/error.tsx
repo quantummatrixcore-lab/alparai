@@ -30,7 +30,7 @@ export default function GlobalError({
   return (
     <Container size="narrow" className="py-24 text-center">
       <AlertTriangle className="text-warning-500 mx-auto h-12 w-12" />
-      <h1 className="text-fg-primary text-fg-secondaryxl mt-4 font-semibold">
+      <h1 className="text-fg-primary text-2xl mt-4 font-semibold">
         {t("somethingWentWrong")}
       </h1>
       <p className="text-fg-muted mt-2 text-sm">{t("unexpectedError")}</p>

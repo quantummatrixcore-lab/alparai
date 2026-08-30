@@ -10,6 +10,7 @@ import type { Database } from "@/types/database";
 
 export async function createClient() {
   const cookieStore = await cookies();
+  const isProduction = process.env.NODE_ENV === "production";
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://placeholder.supabase.co";
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "placeholder-anon-key";
@@ -21,7 +22,15 @@ export async function createClient() {
       },
       setAll(cookiesToSet) {
         try {
-          cookiesToSet.forEach(({ name, value, options }) => cookieStore.set(name, value, options));
+          cookiesToSet.forEach(({ name, value, options }) =>
+            cookieStore.set(name, value, {
+              ...options,
+              sameSite: options?.sameSite ?? "lax",
+              secure: options?.secure ?? isProduction,
+              httpOnly: options?.httpOnly ?? true,
+              path: options?.path ?? "/",
+            }),
+          );
         } catch {
           // Called from a Server Component; safe to ignore if middleware refreshes sessions.
         }

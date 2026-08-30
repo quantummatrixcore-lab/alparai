@@ -130,5 +130,23 @@ describe("VisitorPredictor — Alan Turing Mathematical Engine", () => {
     expect(result.anomalyStatus.isAnomaly).toBe(true);
     expect(result.anomalyStatus.type).toBe("SURGE");
     expect(result.anomalyStatus.zScore).toBeGreaterThanOrEqual(2.58);
+    expect(result.anomalyStatus.pValApprox).toBeLessThanOrEqual(0.01);
+  });
+
+  it("should calculate standard normal CDF and two-tailed p-values accurately", async () => {
+    const { standardNormalCDF, calculateZScorePValue } = await import("./visitor-predictor");
+
+    // Standard Normal CDF Phi(z) properties
+    expect(standardNormalCDF(0)).toBeCloseTo(0.5, 4);
+    expect(standardNormalCDF(1.96)).toBeCloseTo(0.975, 3);
+    expect(standardNormalCDF(-1.96)).toBeCloseTo(0.025, 3);
+    expect(standardNormalCDF(2.576)).toBeCloseTo(0.995, 3);
+
+    // Two-tailed p-values: P(|Z| >= |z|) = 2 * (1 - Phi(|z|))
+    expect(calculateZScorePValue(0)).toBe(1.0);
+    expect(calculateZScorePValue(1.96)).toBeCloseTo(0.05, 2);
+    expect(calculateZScorePValue(-1.96)).toBeCloseTo(0.05, 2);
+    expect(calculateZScorePValue(2.58)).toBeCloseTo(0.0099, 3);
+    expect(calculateZScorePValue(3.0)).toBeCloseTo(0.0027, 3);
   });
 });

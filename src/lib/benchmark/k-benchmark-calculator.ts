@@ -118,8 +118,19 @@ function calculateSeverityWeight(severity: string): number {
 
 function calculateIncidentPenalty(inc: IncidentRecord): number {
   const severityWeight = calculateSeverityWeight(inc.severity);
-  const engagementModifier = 1 + 0.1 * Math.log1p(inc.upvotes_count || 0);
+  // Güvenlik Kilidi: Outlier & Negative Upvotes (Limit asymptotic infinity)
+  const safeUpvotes = Math.max(0, inc.upvotes_count || 0);
+  const engagementModifier = 1 + 0.1 * Math.log1p(safeUpvotes);
   return severityWeight * engagementModifier;
+}
+
+/**
+ * Güvenlik Kilidi: Falsy 0 Hatasını (0 Puanın Yoksayılması) ve NaN sızıntılarını önler.
+ */
+function parseValidScore(val: any, fallback: number): number {
+  if (val === undefined || val === null) return fallback;
+  const num = Number(val);
+  return Number.isFinite(num) ? num : fallback;
 }
 
 /**
@@ -195,11 +206,11 @@ export function calculateKModelCategoryScores(
       euPenalty += 8.0;
     }
 
-    if (typeof inc.eu_act_data_privacy_score === "number")
+    if (typeof inc.eu_act_data_privacy_score === "number" && Number.isFinite(inc.eu_act_data_privacy_score))
       euScores.push(inc.eu_act_data_privacy_score);
-    if (typeof inc.eu_act_non_discrimination_score === "number")
+    if (typeof inc.eu_act_non_discrimination_score === "number" && Number.isFinite(inc.eu_act_non_discrimination_score))
       euScores.push(inc.eu_act_non_discrimination_score);
-    if (typeof inc.eu_act_transparency_score === "number")
+    if (typeof inc.eu_act_transparency_score === "number" && Number.isFinite(inc.eu_act_transparency_score))
       euScores.push(inc.eu_act_transparency_score);
 
     // K11: Robustness & Adversarial
@@ -228,20 +239,15 @@ export function calculateKModelCategoryScores(
     switch (catId) {
       case "K5": {
         // Ethics & Safety
-        const baseK5 = benchTr?.tr_bias_score
-          ? Number(benchTr.tr_bias_score)
-          : (previousDbScore ?? 95.0);
+        const baseK5 = parseValidScore(benchTr?.tr_bias_score, previousDbScore ?? 95.0);
         rawScore = Math.max(30, Math.min(99, Math.round(baseK5 - ethicsPenalty)));
         break;
       }
 
       case "K6": {
         // Hallucination & Factuality (Dinamik Hesaplama)
-        let baseK6 = benchTr?.tr_factuality_pct
-          ? Number(benchTr.tr_factuality_pct)
-          : (previousDbScore ?? 94.0);
-
-        if (avgTruthScore !== null) {
+        let baseK6 = parseValidScore(benchTr?.tr_factuality_pct, previousDbScore ?? 94.0);
+        if (avgTruthScore !== null && Number.isFinite(avgTruthScore)) {
           baseK6 = (baseK6 + avgTruthScore) / 2;
         }
         rawScore = Math.max(25, Math.min(99, Math.round(baseK6 - hallucinationPenalty)));
@@ -250,9 +256,7 @@ export function calculateKModelCategoryScores(
 
       case "K7": {
         // Turkish Competence (Türkçe Yetkinlik - Dinamik Hesaplama)
-        const baseK7 = benchTr?.tr_grammar_score
-          ? Number(benchTr.tr_grammar_score)
-          : (previousDbScore ?? 90.0);
+        const baseK7 = parseValidScore(benchTr?.tr_grammar_score, previousDbScore ?? 90.0);
         rawScore = Math.max(30, Math.min(99, Math.round(baseK7 - trPenalty)));
         break;
       }
@@ -260,7 +264,7 @@ export function calculateKModelCategoryScores(
       case "K8": {
         // EU AI Act Reasoning & Compliance (AB AI Yasası - Dinamik Hesaplama)
         let baseK8 = previousDbScore ?? 94.0;
-        if (avgEuScore !== null) {
+        if (avgEuScore !== null && Number.isFinite(avgEuScore)) {
           baseK8 = (baseK8 + avgEuScore) / 2;
         }
         rawScore = Math.max(20, Math.min(99, Math.round(baseK8 - euPenalty)));
@@ -269,10 +273,8 @@ export function calculateKModelCategoryScores(
 
       case "K9": {
         // Math & Reasoning (Dinamik Hesaplama)
-        let baseK9 = benchTr?.tr_factuality_pct
-          ? Number(benchTr.tr_factuality_pct)
-          : (previousDbScore ?? 90.0);
-        if (avgTruthScore !== null) {
+        let baseK9 = parseValidScore(benchTr?.tr_factuality_pct, previousDbScore ?? 90.0);
+        if (avgTruthScore !== null && Number.isFinite(avgTruthScore)) {
           baseK9 = (baseK9 + avgTruthScore) / 2;
         }
         rawScore = Math.max(
@@ -284,10 +286,8 @@ export function calculateKModelCategoryScores(
 
       case "K10": {
         // Instruction Following (Dinamik Hesaplama)
-        let baseK10 = benchTr?.tr_grammar_score
-          ? Number(benchTr.tr_grammar_score)
-          : (previousDbScore ?? 90.0);
-        if (avgTruthScore !== null) {
+        let baseK10 = parseValidScore(benchTr?.tr_grammar_score, previousDbScore ?? 90.0);
+        if (avgTruthScore !== null && Number.isFinite(avgTruthScore)) {
           baseK10 = (baseK10 + avgTruthScore) / 2;
         }
         rawScore = Math.max(
@@ -305,19 +305,15 @@ export function calculateKModelCategoryScores(
 
       case "K11": {
         // Robustness & Adversarial (Dinamik Hesaplama)
-        const baseK11 = benchTr?.tr_bias_score
-          ? Number(benchTr.tr_bias_score)
-          : (previousDbScore ?? 90.0);
+        const baseK11 = parseValidScore(benchTr?.tr_bias_score, previousDbScore ?? 90.0);
         rawScore = Math.max(20, Math.min(99, Math.round(baseK11 - securityPenalty)));
         break;
       }
 
       case "K12": {
         // Long-Context Retrieval (Dinamik Hesaplama)
-        let baseK12 = benchTr?.tr_factuality_pct
-          ? Number(benchTr.tr_factuality_pct)
-          : (previousDbScore ?? 90.0);
-        if (avgTruthScore !== null) {
+        let baseK12 = parseValidScore(benchTr?.tr_factuality_pct, previousDbScore ?? 90.0);
+        if (avgTruthScore !== null && Number.isFinite(avgTruthScore)) {
           baseK12 = (baseK12 + avgTruthScore) / 2;
         }
         rawScore = Math.max(
@@ -328,15 +324,20 @@ export function calculateKModelCategoryScores(
       }
 
       default: {
-        rawScore = previousDbScore ?? 90.0;
+        rawScore = parseValidScore(previousDbScore, 90.0);
         break;
       }
     }
 
-    const sampleSize =
+    if (!Number.isFinite(rawScore)) {
+      rawScore = 90.0; // Fail-safe (NaN preventer for Wilson interval)
+    }
+
+    const sampleSize = Math.max(0, 
       modelIncidents.length +
       (benchTr ? 50 : 0) +
-      (crossAuditTruthScores.length > 0 ? crossAuditTruthScores.length : 0);
+      (crossAuditTruthScores.length > 0 ? crossAuditTruthScores.length : 0)
+    );
     const { wilsonLower, wilsonUpper } = calculateWilsonInterval(rawScore, sampleSize);
 
     results.push({

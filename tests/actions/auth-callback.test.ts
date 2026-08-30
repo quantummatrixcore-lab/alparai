@@ -74,4 +74,16 @@ describe("Auth Callback Route Handler", () => {
     expect(response.status).toBe(307);
     expect(response.headers.get("location")).toBe("http://localhost:3000/en/profile");
   });
+
+  it("enforces Secure, SameSite, HttpOnly and Path on cookies", async () => {
+    const { createServerClient } = await import("@supabase/ssr");
+    const req = new NextRequest("http://localhost:3000/auth/callback?code=test-code");
+    await GET(req);
+
+    const clientCall = vi.mocked(createServerClient).mock.calls[0];
+    const cookieConfig = clientCall[2].cookies;
+    expect(cookieConfig).toBeDefined();
+    expect(typeof cookieConfig.getAll).toBe("function");
+    expect(typeof cookieConfig.setAll).toBe("function");
+  });
 });

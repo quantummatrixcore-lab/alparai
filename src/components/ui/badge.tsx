@@ -8,16 +8,27 @@ import type { Database } from "@/types/database";
 type IncidentSeverity = Database["public"]["Enums"]["incident_severity"];
 type IncidentStatus = Database["public"]["Enums"]["incident_status"];
 
-type BadgeVariant = "default" | "brand" | "success" | "warning" | "danger" | "outline" | "muted";
+type BadgeVariant =
+  | "default"
+  | "brand"
+  | "success"
+  | "warning"
+  | "danger"
+  | "outline"
+  | "muted"
+  | "glass"
+  | "accent";
 
 const variantClasses: Record<BadgeVariant, string> = {
-  default: "bg-bg-tertiary text-fg-primary border border-border-subtle",
-  brand: "bg-brand-500/15 text-brand-300 border border-brand-500/30",
-  success: "bg-success-500/15 text-success-400 border border-success-500/30",
-  warning: "bg-warning-500/15 text-warning-400 border border-warning-500/30",
-  danger: "bg-danger-500/15 text-danger-400 border border-danger-500/30",
+  default: "bg-bg-tertiary text-fg-primary border border-border-subtle shadow-sm",
+  brand: "bg-brand-500/15 text-brand-300 border border-brand-500/30 shadow-[0_0_12px_rgba(168,85,247,0.15)]",
+  success: "bg-success-500/15 text-success-400 border border-success-500/30 shadow-[0_0_12px_rgba(39,174,96,0.15)]",
+  warning: "bg-warning-500/15 text-warning-400 border border-warning-500/30 shadow-[0_0_12px_rgba(245,158,11,0.15)]",
+  danger: "bg-danger-500/15 text-danger-400 border border-danger-500/30 shadow-[0_0_12px_rgba(230,57,70,0.15)]",
   outline: "bg-transparent text-fg-secondary border border-border-strong",
-  muted: "bg-bg-tertiary text-fg-muted border border-transparent",
+  muted: "bg-bg-tertiary/70 text-fg-muted border border-transparent",
+  glass: "bg-white/5 text-fg-primary border border-white/15 backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]",
+  accent: "bg-accent-500/15 text-accent-300 border border-accent-500/30 shadow-[0_0_12px_rgba(6,182,212,0.15)]",
 };
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
@@ -37,9 +48,9 @@ export function Badge({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full font-medium",
-        "tracking-wider uppercase",
-        size === "sm" ? "text-fg-secondaryxs px-2 py-0.5" : "px-2.5 py-1 text-xs",
+        "inline-flex items-center gap-1.5 rounded-full font-semibold transition-all duration-200",
+        "tracking-wider uppercase select-none",
+        size === "sm" ? "px-2 py-0.5 text-[10px]" : "px-2.5 py-1 text-xs",
         variantClasses[variant],
         className,
       )}
@@ -48,12 +59,13 @@ export function Badge({
       {dot && (
         <span
           className={cn(
-            "h-1.5 w-1.5 rounded-full",
-            variant === "success" && "bg-success-500",
-            variant === "danger" && "bg-danger-500",
-            variant === "warning" && "bg-warning-500",
-            variant === "brand" && "bg-brand-500",
-            (variant === "default" || variant === "muted" || variant === "outline") &&
+            "h-1.5 w-1.5 rounded-full shrink-0",
+            variant === "success" && "bg-success-500 shadow-[0_0_6px_rgba(39,174,96,0.8)]",
+            variant === "danger" && "bg-danger-500 shadow-[0_0_6px_rgba(230,57,70,0.8)]",
+            variant === "warning" && "bg-warning-500 shadow-[0_0_6px_rgba(245,158,11,0.8)]",
+            variant === "brand" && "bg-brand-500 shadow-[0_0_6px_rgba(168,85,247,0.8)]",
+            variant === "accent" && "bg-accent-400 shadow-[0_0_6px_rgba(6,182,212,0.8)]",
+            (variant === "default" || variant === "muted" || variant === "outline" || variant === "glass") &&
               "bg-fg-muted",
           )}
           aria-hidden="true"

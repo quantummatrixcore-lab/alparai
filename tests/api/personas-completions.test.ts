@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import "../helpers/setup";
 
 // Mock Supabase admin client
@@ -164,5 +164,57 @@ describe("Persona Completions Route with Alignment Engine", () => {
     expect(fetchSpy).toHaveBeenCalledTimes(1); // Initial fetch (self-healing applies deterministic persona framing)
     expect(json.choices[0].message.content).toContain("Mustafa Kemal Atatürk");
     expect(typeof json.alignment_score).toBe("number");
+  });
+
+  describe("SEC-001: Strict Production API Key Verification", () => {
+    const originalEnv = process.env.NODE_ENV;
+
+    beforeEach(() => {
+      (process.env as Record<string, string | undefined>).NODE_ENV = "production";
+    });
+
+    afterEach(() => {
+      (process.env as Record<string, string | undefined>).NODE_ENV = originalEnv;
+    });
+
+    it("rejects arbitrary sk- key in production when not in DB", async () => {
+      mockSingle.mockResolvedValueOnce({
+        data: null,
+        error: { code: "PGRST116" },
+      });
+
+      const req = new Request("http://localhost/api/v1/personas/ataturk/completions", {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer sk-unauthorized-fake-key-12345",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ messages: [{ role: "user", content: "Test query" }] }),
+      });
+
+      const res = await POST(req, { params: Promise.resolve({ twinId: "ataturk" }) });
+      expect(res.status).toBe(401);
+      const json = await res.json();
+      expect(json.error.code).toBe("invalid_api_key");
+    });
+
+    it("accepts valid active key in DB in production", async () => {
+      mockSingle.mockResolvedValueOnce({
+        data: { id: "prod-key-1", status: "active" },
+        error: null,
+      });
+
+      const req = new Request("http://localhost/api/v1/personas/ataturk/completions", {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer sk-valid-prod-key",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ messages: [{ role: "user", content: "Test query" }] }),
+      });
+
+      const res = await POST(req, { params: Promise.resolve({ twinId: "ataturk" }) });
+      expect(res.status).toBe(200);
+    });
   });
 });

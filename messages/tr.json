@@ -2867,7 +2867,7 @@
       "collapseMenu": "Menüyü Daralt",
       "expandMenu": "Menüyü Genişlet",
       "searchPlaceholder": "Olay ID, Model veya Regülasyon Ara (Cmd+K)...",
-      "executiveOS": "Executive OS v3.5",
+      "executiveOS": "Admin",
       "activeIncidents": "Vaka",
       "dailyRate": "(+24/gün)",
       "slaCritical": "EU SLA: 3 Kritik",
@@ -4959,7 +4959,7 @@
     "request_feature": "Özellik isteğinde bulun",
     "review_body": "Değerlendirme Detayları (en fazla 3000 karakter)",
     "review_title": "Değerlendirme Başlığı",
-    "reviews": "{count} değerlendirme",
+    "reviews": "{count, plural, one {değerlendirme} other {değerlendirme}}",
     "safety_rating": "Güvenlik",
     "search_placeholder": "Model veya sağlayıcı ara...",
     "sign_in_button": "Giriş Yap",
@@ -5519,6 +5519,11 @@
     "tooltip": "Çalışma süresi: {uptime}% · MTTR: {mttr} saat",
     "tooltip_unknown": "SLA verisi mevcut değil",
     "unknown": "SLA Yok"
+  },
+  "status": {
+    "degraded": "Performans Düşüşü",
+    "down": "Kapalı",
+    "operational": "Çalışıyor"
   },
   "status_page": {
     "all_operational": "Tüm Sistemler Çalışır Durumda",

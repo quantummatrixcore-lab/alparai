@@ -263,7 +263,7 @@ export function IncidentCard({
                 </span>
                 <Link
                   href={`/incidents/${incident.id}#affected`}
-                  className="text-fg-secondary hover:border-brand-500/30 hover:bg-brand-500/10 hover:text-brand-400 border-border-subtle/50 inline-flex cursor-pointer items-center gap-1.5 rounded-full border bg-white/5 px-2.5 py-1 text-xs font-semibold transition-all"
+                  className="text-fg-secondary hover:border-brand-500/40 hover:bg-brand-500/15 hover:text-brand-300 active:scale-[0.95] active:bg-brand-500/25 border-border-subtle/50 inline-flex cursor-pointer items-center gap-1.5 rounded-full border bg-white/5 px-2.5 py-1 text-xs font-semibold transition-all select-none shadow-sm hover:shadow-[0_0_15px_rgba(168,85,247,0.2)]"
                 >
                   <ThumbsUp className="h-3.5 w-3.5" aria-hidden="true" />
                   <span>{t("me_too", { defaultValue: "Ben de Yaşadım" })}</span>
@@ -273,7 +273,7 @@ export function IncidentCard({
                 </Link>
                 <Link
                   href={`/incidents/${incident.id}#comments`}
-                  className="text-fg-secondary hover:border-accent-500/30 hover:bg-accent-500/10 hover:text-accent-400 border-border-subtle/50 inline-flex cursor-pointer items-center gap-1.5 rounded-full border bg-white/5 px-2.5 py-1 text-xs font-semibold transition-all"
+                  className="text-fg-secondary hover:border-accent-500/40 hover:bg-accent-500/15 hover:text-accent-300 active:scale-[0.95] active:bg-accent-500/25 border-border-subtle/50 inline-flex cursor-pointer items-center gap-1.5 rounded-full border bg-white/5 px-2.5 py-1 text-xs font-semibold transition-all select-none shadow-sm hover:shadow-[0_0_15px_rgba(6,182,212,0.2)]"
                 >
                   <MessageSquare className="h-3.5 w-3.5" aria-hidden="true" />
                   <span>{t("comment_action", { defaultValue: "Yorum Yap" })}</span>

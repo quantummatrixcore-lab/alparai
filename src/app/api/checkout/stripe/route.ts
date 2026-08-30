@@ -39,36 +39,36 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
 
-  // Dynamic import to avoid bundle issues when Stripe key is absent
-  const Stripe = (await import("stripe")).default;
-  const stripe = new Stripe(STRIPE_SECRET_KEY, { apiVersion: "2026-06-24.dahlia" as any });
-
-  const admin = createAdminClient();
-
-  // Get or create Stripe customer
-  const { data: existingSub } = await admin
-    .from("subscriptions")
-    .select("stripe_customer_id")
-    .eq("user_id", user.id)
-    .maybeSingle();
-
-  let customerId = existingSub?.stripe_customer_id;
-
-  if (!customerId) {
-    const customer = await stripe.customers.create({
-      email: user.email ?? undefined,
-      metadata: { user_id: user.id },
-    });
-    customerId = customer.id;
-
-    await admin.from("subscriptions").insert({
-      user_id: user.id,
-      stripe_customer_id: customerId,
-      status: "inactive",
-    });
-  }
-
   try {
+    // Dynamic import to avoid bundle issues when Stripe key is absent
+    const Stripe = (await import("stripe")).default;
+    const stripe = new Stripe(STRIPE_SECRET_KEY, { apiVersion: "2026-06-24.dahlia" as any });
+
+    const admin = createAdminClient();
+
+    // Get or create Stripe customer
+    const { data: existingSub } = await admin
+      .from("subscriptions")
+      .select("stripe_customer_id")
+      .eq("user_id", user.id)
+      .maybeSingle();
+
+    let customerId = existingSub?.stripe_customer_id;
+
+    if (!customerId) {
+      const customer = await stripe.customers.create({
+        email: user.email ?? undefined,
+        metadata: { user_id: user.id },
+      });
+      customerId = customer.id;
+
+      await admin.from("subscriptions").insert({
+        user_id: user.id,
+        stripe_customer_id: customerId,
+        status: "inactive",
+      });
+    }
+
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
       mode: "subscription",

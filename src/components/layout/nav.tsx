@@ -182,7 +182,7 @@ export function Nav({
             </button>
 
             {isGroupOpen && (
-              <div className="border-border-subtle bg-bg-elevated/95 animate-in fade-in slide-in-from-top-1 absolute top-8 left-0 z-50 mt-1 w-52 rounded-xl border p-1 shadow-2xl backdrop-blur-md duration-200">
+              <div className="border-border-subtle/80 bg-bg-elevated/95 animate-in fade-in slide-in-from-top-1 absolute top-8 left-0 z-50 mt-1.5 w-56 rounded-2xl border p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.6),0_0_30px_rgba(168,85,247,0.1),inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-2xl duration-200">
                 {group.items.map((subItem) => {
                   const SubIcon = subItem.icon;
                   const isSubActive = pathname.startsWith(subItem.href);
@@ -192,13 +192,13 @@ export function Nav({
                       href={subItem.href}
                       onClick={() => setOpenGroup(null)}
                       className={cn(
-                        "flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold transition-colors duration-200",
+                        "flex items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-semibold transition-all duration-200 active:scale-[0.98]",
                         isSubActive
-                          ? "bg-brand-500/10 text-brand-400"
-                          : "text-fg-secondary hover:text-fg-primary hover:bg-white/5",
+                          ? "bg-brand-500/15 text-brand-300 shadow-sm"
+                          : "text-fg-secondary hover:text-fg-primary hover:bg-white/10",
                       )}
                     >
-                      <SubIcon className="h-4 w-4" />
+                      <SubIcon className="h-4 w-4 shrink-0" />
                       {t(subItem.labelKey)}
                     </Link>
                   );

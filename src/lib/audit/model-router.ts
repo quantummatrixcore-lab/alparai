@@ -1,8 +1,6 @@
 import { createAdminClient } from "@/lib/supabase/admin";
 import { logger } from "@/lib/utils/logger";
 import {
-  OPENCODE_FREE_MODELS,
-  NVIDIA_NIM_MODELS,
   MATH_LOGIC_CHAIN as FALLBACK_MATH_LOGIC,
   CREATIVE_COPY_CHAIN as FALLBACK_CREATIVE_COPY,
   RISK_AUDIT_CHAIN as FALLBACK_RISK_AUDIT,

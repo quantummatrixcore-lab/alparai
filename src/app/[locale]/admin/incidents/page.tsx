@@ -56,6 +56,15 @@ const defaultIncidentPlaceholder: IncidentRecord[] = [
   },
 ];
 
+function calculateSlaRemainingHours(createdAt?: string | null, totalSlaHours = 72.0): number {
+  if (!createdAt) return totalSlaHours;
+  const createdTime = new Date(createdAt).getTime();
+  if (isNaN(createdTime)) return totalSlaHours;
+  const elapsedHours = (Date.now() - createdTime) / (1000 * 60 * 60);
+  const remaining = totalSlaHours - elapsedHours;
+  return Math.max(0, parseFloat(remaining.toFixed(1)));
+}
+
 export default function IncidentsPage() {
   const t = useTranslations("admin.sidebar");
   const [incidents, setIncidents] = useState<IncidentRecord[]>(defaultIncidentPlaceholder);
@@ -83,24 +92,29 @@ export default function IncidentsPage() {
           .limit(50);
 
         if (!error && data && data.length > 0) {
-          const mapped: IncidentRecord[] = data.map((row: any) => ({
-            id: row.id,
-            trackingNumber: `ALP-2026-${row.id.slice(0, 4)}`,
-            title: row.title || "Untitled AI Incident",
-            modelTarget: row.ai_providers?.name || "Autonomous AI System",
-            provider: row.ai_providers?.name || "Global AI Lab",
-            severity: (row.severity?.toUpperCase() || "HIGH") as any,
-            status: (row.status?.toUpperCase() || "UNDER_TRIAGE") as any,
-            source: "REGULATORY_FILING",
-            euAiActTag: "HIGH_RISK_ART6",
-            potentialFineEur: 15000000,
-            slaRemainingHours: 48.0,
-            evidenceHash: row.id.replace(/-/g, "") + "0000000000000000",
-            createdAt: row.created_at || new Date().toISOString(),
-            humanVerified: true,
-            affectedIndustry: "Enterprise & Tech",
-            summary: row.description || row.title || "Incident details undergoing triage.",
-          }));
+          const mapped: IncidentRecord[] = data.map((row: any) => {
+            const createdAt = row.created_at || new Date().toISOString();
+            const slaRemainingHours = calculateSlaRemainingHours(createdAt);
+
+            return {
+              id: row.id,
+              trackingNumber: `ALP-2026-${row.id.slice(0, 4)}`,
+              title: row.title || "Untitled AI Incident",
+              modelTarget: row.ai_providers?.name || "Autonomous AI System",
+              provider: row.ai_providers?.name || "Global AI Lab",
+              severity: (row.severity?.toUpperCase() || "HIGH") as any,
+              status: (row.status?.toUpperCase() || "UNDER_TRIAGE") as any,
+              source: "REGULATORY_FILING",
+              euAiActTag: "HIGH_RISK_ART6",
+              potentialFineEur: 15000000,
+              slaRemainingHours,
+              evidenceHash: row.id.replace(/-/g, "") + "0000000000000000",
+              createdAt,
+              humanVerified: true,
+              affectedIndustry: "Enterprise & Tech",
+              summary: row.description || row.title || "Incident details undergoing triage.",
+            };
+          });
           setIncidents(mapped);
           setSelectedIncident(mapped[0] || null);
         }

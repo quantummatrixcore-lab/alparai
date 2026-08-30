@@ -10,11 +10,13 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const variantClasses = {
-  default: "bg-bg-secondary border border-border-subtle",
-  elevated: "bg-bg-elevated border border-border-subtle shadow-xl",
-  outline: "bg-transparent border border-border-strong",
-  gradient: "bg-gradient-to-br from-bg-secondary to-bg-tertiary border border-brand-500/20",
-  glass: "bg-glass",
+  default: "bg-bg-secondary/90 border border-border-subtle shadow-md backdrop-blur-md",
+  elevated:
+    "bg-bg-elevated/95 border border-border-subtle/80 shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-xl",
+  outline: "bg-transparent border border-border-strong hover:border-brand-500/40 transition-colors",
+  gradient:
+    "bg-gradient-to-br from-bg-secondary via-bg-tertiary/90 to-bg-secondary border border-brand-500/20 shadow-[0_15px_35px_rgba(147,51,234,0.1)] backdrop-blur-xl",
+  glass: "bg-glass-card hover:border-white/20 transition-all",
 };
 
 const paddingClasses = {
@@ -53,7 +55,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
           variantClasses[variant],
           paddingClasses[padding],
           interactive &&
-            "hover:border-brand-500/30 focus-visible:ring-brand-500 cursor-pointer hover:scale-[1.015] hover:shadow-[0_0_30px_rgba(168,85,247,0.1)] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
+            "hover:border-brand-500/40 focus-visible:ring-brand-500 cursor-pointer hover:scale-[1.012] hover:-translate-y-0.5 active:scale-[0.99] hover:shadow-[0_15px_40px_rgba(168,85,247,0.15)] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
           className,
         )}
         {...props}

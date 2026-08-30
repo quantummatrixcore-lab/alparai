@@ -328,15 +328,15 @@ export default function AdminV2OverviewPage() {
 
   return (
     <div className="space-y-6">
-      {/* 1. Executive OS Header */}
+      {/* 1. Header */}
       <div className="flex flex-col justify-between gap-4 border-b border-[#d0d7de] pb-4 md:flex-row md:items-center dark:border-[#30363d]">
         <div>
           <div className="mb-1 flex items-center gap-2">
             <span className="rounded border border-zinc-700 bg-zinc-800 px-2 py-0.5 font-mono text-[10px] text-[#656d76] dark:text-[#c9d1d9]">
-              EXECUTIVE OS
+              ALPAR AI
             </span>
             <span className="font-mono text-xs font-semibold tracking-wider text-cyan-400 uppercase">
-              360° MASTER COMMAND DECK
+              ADMIN
             </span>
           </div>
           <h1 className="font-mono text-xl font-bold tracking-tight text-[#1f2328] md:text-2xl dark:text-[#f0f6fc]">

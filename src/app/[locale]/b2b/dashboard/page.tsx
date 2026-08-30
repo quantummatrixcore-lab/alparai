@@ -16,7 +16,7 @@ export default async function B2BDashboardPage({
 
   const user = await getCurrentUser();
   if (!user || user.role !== "admin") {
-    redirect({ href: "/auth/login?returnTo=/b2b/dashboard", locale });
+    redirect({ href: "/auth/signin?returnTo=/b2b/dashboard", locale });
   }
 
   const supabase = await createServerClient();

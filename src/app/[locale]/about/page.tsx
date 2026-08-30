@@ -1,8 +1,30 @@
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
+import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { ArrowUpRight } from "lucide-react";
+import type { Metadata } from "next";
+import { constructPageMetadata } from "@/lib/seo/metadata";
+import { AboutPageJsonLd, BreadcrumbJsonLd } from "@/components/seo/json-ld";
+import { APP_URL } from "@/lib/constants";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "about" });
+
+  return constructPageMetadata({
+    locale,
+    pathname: "/about",
+    title: t("title"),
+    description: t("vision_desc"),
+  });
+}
 
 export default function AboutPage() {
+  const locale = useLocale();
   const t = useTranslations("about");
   const tCommittee = useTranslations("about_methodology_committee");
   const tBlog = useTranslations("blog");
@@ -55,6 +77,18 @@ export default function AboutPage() {
           <h2 className="text-3xl font-semibold">{t("mou_title")}</h2>
           <p className="text-fg-secondary mx-auto max-w-2xl text-lg">{t("mou_desc")}</p>
         </section>
+
+        <BreadcrumbJsonLd
+          items={[
+            { name: "Home", url: `${APP_URL}/${locale}` },
+            { name: t("title"), url: `${APP_URL}/${locale}/about` },
+          ]}
+        />
+        <AboutPageJsonLd
+          name={t("title")}
+          description={t("vision_desc")}
+          url={`${APP_URL}/${locale}/about`}
+        />
       </div>
     </div>
   );

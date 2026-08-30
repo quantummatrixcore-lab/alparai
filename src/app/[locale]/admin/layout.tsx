@@ -3,7 +3,7 @@ import { AdminSidebar } from "@/components/admin-core/admin-sidebar";
 import { AdminTopbar } from "@/components/admin-core/admin-topbar";
 
 export const metadata = {
-  title: "Alparai Executive OS | 360° Command Center",
+  title: "Alparai Admin",
   description: "Enterprise AI Governance, Threat Feed & Incident Intelligence Platform",
 };
 

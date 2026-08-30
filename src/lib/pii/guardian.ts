@@ -106,10 +106,10 @@ const PATTERNS: ReadonlyArray<{
     re: /(https?:\/\/[^\s]+(?:token|key|apikey|api_key|access_token|secret|password|pwd)=[^\s&"'>]+)/gi,
     mask: "[REDACTED-URL-TOKEN]",
   },
-  // Generic API key patterns (sk-…, ghp_…, AKIA…)
+  // Generic API key patterns (sk-…, sk_…, AIza…, hf_…, ghp_…, AKIA…)
   {
     name: "api_key",
-    re: /\b(?:sk-[A-Za-z0-9-]{20,}|ghp_[A-Za-z0-9]{30,}|AKIA[0-9A-Z]{16}|xai-[A-Za-z0-9]{20,})\b/g,
+    re: /\b(?:sk-[A-Za-z0-9-]{20,}|sk_[A-Za-z0-9_]{20,}|AIza[0-9A-Za-z\-_]{35}|hf_[A-Za-z0-9_]{20,}|ghp_[A-Za-z0-9]{30,}|AKIA[0-9A-Z]{16}|xai-[A-Za-z0-9]{20,})\b/g,
     mask: "[REDACTED-API-KEY]",
   },
   // Turkish passport (letter + 8 digits or U + 8 characters) + TR Driver's License heuristic

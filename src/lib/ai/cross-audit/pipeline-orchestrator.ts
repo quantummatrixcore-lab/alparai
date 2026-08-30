@@ -370,9 +370,14 @@ async function runCrossAuditPipelineOnce(incidentId: string): Promise<TruthScore
 
   const triageModels = [initA.model, initB.model];
 
-  const isHighOrUnacceptableRisk = ["High-Risk", "Unacceptable-Risk"].includes(
-    supremeResult.euActRiskCategory || "",
-  );
+  const rawRiskCategory = (supremeResult.euActRiskCategory || "").trim();
+  const normalizedRisk = rawRiskCategory.toLowerCase().replace(/[-\s_]+/g, "");
+  const isHighOrUnacceptableRisk =
+    normalizedRisk === "highrisk" ||
+    normalizedRisk === "unacceptablerisk" ||
+    ["high-risk", "high risk", "unacceptable-risk", "unacceptable risk"].includes(
+      rawRiskCategory.toLowerCase(),
+    );
   const updatePayload: Database["public"]["Tables"]["incidents"]["Update"] = {
     cross_audit_truth_score: supremeResult.truthScore,
     cross_audit_confidence: supremeResult.confidence,

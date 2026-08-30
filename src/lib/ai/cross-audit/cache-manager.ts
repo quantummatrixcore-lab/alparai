@@ -33,8 +33,13 @@ export function getRedis(): Redis | null {
 }
 
 export function computeCacheTtl(severity?: string | null): number {
-  if (severity && SEVERITY_TTL_MAP[severity]) {
-    return SEVERITY_TTL_MAP[severity]!;
+  if (!severity) return 3600;
+  const normalized = severity.toLowerCase().trim().replace(/[\s_]+/g, "-");
+  if (SEVERITY_TTL_MAP[normalized]) {
+    return SEVERITY_TTL_MAP[normalized]!;
+  }
+  if (SEVERITY_TTL_MAP[`${normalized}-risk`]) {
+    return SEVERITY_TTL_MAP[`${normalized}-risk`]!;
   }
   return 3600;
 }

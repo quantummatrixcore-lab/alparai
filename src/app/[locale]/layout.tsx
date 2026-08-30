@@ -25,11 +25,20 @@ import { PlausibleWithConsent } from "@/components/plausible-consent";
 import { UtmTracker } from "@/components/analytics/utm-tracker";
 import { ReferralTracker } from "@/components/marketing/referral-tracker";
 import { ThemeProvider } from "next-themes";
+import { constructPageMetadata } from "@/lib/seo/metadata";
 import "../globals.css";
 
-export const metadata = {
-  metadataBase: new URL("https://alparai.com"),
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  return constructPageMetadata({
+    locale,
+    pathname: "",
+  });
+}
 
 export function generateStaticParams() {
   return routing.locales.map((locale: string) => ({ locale }));
@@ -65,7 +74,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} dir={dir} suppressHydrationWarning>
       <head></head>
-      <body className="bg-bg-primary text-fg-primary relative min-h-screen w-full overflow-x-hidden font-sans antialiased">
+      <body className="bg-bg-primary text-fg-primary relative min-h-screen w-full overflow-x-clip font-sans antialiased">
         <a
           href="#main-content"
           className="bg-brand-500 sr-only text-white focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-md focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:outline-none"
@@ -78,7 +87,7 @@ export default async function LocaleLayout({
               {isEmbed || isAdmin ? (
                 <main className="m-0 min-h-screen w-full bg-transparent p-0">{children}</main>
               ) : (
-                <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden pb-16 lg:pb-0">
+                <div className="relative flex min-h-screen w-full flex-col overflow-x-clip pb-16 lg:pb-0">
                   <div className="fixed top-0 right-0 left-0 z-[60]">
                     <LiveTicker />
                   </div>

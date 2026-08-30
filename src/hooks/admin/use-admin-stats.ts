@@ -42,6 +42,37 @@ export interface AdminSystemStats {
   };
 }
 
+export interface IncidentStatRow {
+  status: string | null;
+  severity: string | null;
+}
+
+export interface UserStatRow {
+  role: string | null;
+  is_banned: boolean | null;
+}
+
+export interface SlaAlarmStatRow {
+  resolved: boolean | null;
+}
+
+export interface AutopilotRunStatRow {
+  status: string | null;
+  created_at?: string | null;
+}
+
+export interface GrantApplicationStatRow {
+  status: string | null;
+}
+
+export interface FeatureFlagStatRow {
+  enabled: boolean | null;
+}
+
+export interface DsarRequestStatRow {
+  status: string | null;
+}
+
 const initialStats: AdminSystemStats = {
   incidents: { total: 0, pending: 0, approved: 0, rejected: 0, critical: 0 },
   users: { total: 0, moderators: 0, experts: 0, banned: 0 },
@@ -87,46 +118,66 @@ export function useAdminStats(): UseAdminStatsResult {
         supabase.from("dsar_requests").select("status"),
       ]);
 
+      const incidentsData = (incidentsRes.data || []) as unknown as IncidentStatRow[];
+      const usersData = (usersRes.data || []) as unknown as UserStatRow[];
+      const alarmsData = (alarmsRes.data || []) as unknown as SlaAlarmStatRow[];
+      const autopilotData = (autopilotRes.data || []) as unknown as AutopilotRunStatRow[];
+      const grantsData = (grantsRes.data || []) as unknown as GrantApplicationStatRow[];
+      const flagsData = (flagsRes.data || []) as unknown as FeatureFlagStatRow[];
+      const dsarData = (dsarRes.data || []) as unknown as DsarRequestStatRow[];
+
       const newStats: AdminSystemStats = {
         incidents: {
-          total: incidentsRes.data?.length || 0,
-          pending: (incidentsRes.data || []).filter((i: any) => i.status === "pending").length,
-          approved: (incidentsRes.data || []).filter((i: any) => i.status === "published" || i.status === "approved").length,
-          rejected: (incidentsRes.data || []).filter((i: any) => i.status === "rejected").length,
-          critical: (incidentsRes.data || []).filter(
-            (i: any) => i.severity === "critical" || i.severity === "CRITICAL"
+          total: incidentsData.length,
+          pending: incidentsData.filter((i: IncidentStatRow) => i.status === "pending").length,
+          approved: incidentsData.filter(
+            (i: IncidentStatRow) => i.status === "published" || i.status === "approved"
+          ).length,
+          rejected: incidentsData.filter((i: IncidentStatRow) => i.status === "rejected").length,
+          critical: incidentsData.filter(
+            (i: IncidentStatRow) => i.severity === "critical" || i.severity === "CRITICAL"
           ).length,
         },
         users: {
-          total: usersRes.data?.length || 0,
-          moderators: (usersRes.data || []).filter((u: any) => u.role === "moderator" || u.role === "admin" || u.role === "ceo").length,
-          experts: (usersRes.data || []).filter((u: any) => u.role === "expert" || u.role === "advisor").length,
-          banned: (usersRes.data || []).filter((u: any) => Boolean(u.is_banned)).length,
+          total: usersData.length,
+          moderators: usersData.filter(
+            (u: UserStatRow) => u.role === "moderator" || u.role === "admin" || u.role === "ceo"
+          ).length,
+          experts: usersData.filter(
+            (u: UserStatRow) => u.role === "expert" || u.role === "advisor"
+          ).length,
+          banned: usersData.filter((u: UserStatRow) => Boolean(u.is_banned)).length,
         },
         alarms: {
-          total: alarmsRes.data?.length || 0,
-          critical: (alarmsRes.data || []).filter((a: any) => !a.resolved).length,
-          unresolved: (alarmsRes.data || []).filter((a: any) => !a.resolved).length,
+          total: alarmsData.length,
+          critical: alarmsData.filter((a: SlaAlarmStatRow) => !a.resolved).length,
+          unresolved: alarmsData.filter((a: SlaAlarmStatRow) => !a.resolved).length,
         },
         autopilot: {
-          activeRuns: (autopilotRes.data || []).filter(
-            (r: any) => r.status === "running" || r.status === "in_progress"
+          activeRuns: autopilotData.filter(
+            (r: AutopilotRunStatRow) => r.status === "running" || r.status === "in_progress"
           ).length,
-          failedToday: (autopilotRes.data || []).filter((r: any) => r.status === "failed").length,
-          completedToday: (autopilotRes.data || []).filter((r: any) => r.status === "completed").length,
+          failedToday: autopilotData.filter((r: AutopilotRunStatRow) => r.status === "failed").length,
+          completedToday: autopilotData.filter(
+            (r: AutopilotRunStatRow) => r.status === "completed"
+          ).length,
         },
         grants: {
-          totalApplications: grantsRes.data?.length || 0,
-          awardedCount: (grantsRes.data || []).filter((g: any) => g.status === "awarded" || g.status === "approved").length,
-          pendingCount: (grantsRes.data || []).filter((g: any) => g.status === "submitted" || g.status === "review").length,
+          totalApplications: grantsData.length,
+          awardedCount: grantsData.filter(
+            (g: GrantApplicationStatRow) => g.status === "awarded" || g.status === "approved"
+          ).length,
+          pendingCount: grantsData.filter(
+            (g: GrantApplicationStatRow) => g.status === "submitted" || g.status === "review"
+          ).length,
         },
         featureFlags: {
-          total: flagsRes.data?.length || 0,
-          enabled: (flagsRes.data || []).filter((f: any) => f.enabled).length,
+          total: flagsData.length,
+          enabled: flagsData.filter((f: FeatureFlagStatRow) => Boolean(f.enabled)).length,
         },
         dsar: {
-          pendingRequests: (dsarRes.data || []).filter(
-            (d: any) => d.status === "pending" || d.status === "in_progress"
+          pendingRequests: dsarData.filter(
+            (d: DsarRequestStatRow) => d.status === "pending" || d.status === "in_progress"
           ).length,
         },
       };

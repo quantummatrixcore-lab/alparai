@@ -117,6 +117,43 @@ function normalizePath(rawPath: string): string {
   return clean.startsWith("/") ? clean : `/${clean}`;
 }
 
+/**
+ * Computes the Cumulative Distribution Function (CDF) of the standard normal distribution Phi(z)
+ * using the Abramowitz and Stegun rational approximation (Formula 26.2.17).
+ * Absolute error < 7.5e-8.
+ */
+export function standardNormalCDF(z: number): number {
+  if (isNaN(z)) return 0.5;
+  const absZ = Math.abs(z);
+
+  // Polynomial approximation coefficients (A&S 26.2.17)
+  const p = 0.2316419;
+  const b1 = 0.31938153;
+  const b2 = -0.356563782;
+  const b3 = 1.781477937;
+  const b4 = -1.821255978;
+  const b5 = 1.330274429;
+
+  const t = 1 / (1 + p * absZ);
+  const pdf = (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5 * absZ * absZ);
+  const tailProbability =
+    pdf * (b1 * t + b2 * Math.pow(t, 2) + b3 * Math.pow(t, 3) + b4 * Math.pow(t, 4) + b5 * Math.pow(t, 5));
+
+  return z >= 0 ? 1 - tailProbability : tailProbability;
+}
+
+/**
+ * Computes the exact two-tailed p-value for a standard normal Z-score test:
+ * P(|Z| >= |z|) = 2 * (1 - Phi(|z|))
+ */
+export function calculateZScorePValue(z: number): number {
+  if (isNaN(z)) return 1.0;
+  const absZ = Math.abs(z);
+  const tail = 1 - standardNormalCDF(absZ);
+  const twoTailedP = 2 * tail;
+  return Number(Math.max(0, Math.min(1, twoTailedP)).toFixed(4));
+}
+
 export class VisitorPredictor {
   private config: Required<PredictorConfig>;
   private transitionCounts: Map<string, Map<string, number>> = new Map();
@@ -489,14 +526,18 @@ export class VisitorPredictor {
     const sumSqErr = validErrors.reduce((acc, err) => acc + err * err, 0);
     const variance = sumSqErr / Math.max(1, validErrors.length);
 
-    // Multi-step future projection
+    // Multi-step future projection with Holt-Winters Damped Trend
+    // Cumulative damping over horizon h follows geometric series sum: sum_{i=1}^h phi^i = phi * (1 - phi^h) / (1 - phi)
     const forecasts: number[] = [];
-    const dampingFactor = 0.95;
+    const dampingFactor: number = 0.95;
 
     for (let h = 1; h <= stepsAhead; h++) {
-      const dampedTrend = trend * Math.pow(dampingFactor, h);
+      const cumulativeDamping =
+        dampingFactor === 1
+          ? h
+          : (dampingFactor * (1 - Math.pow(dampingFactor, h))) / (1 - dampingFactor);
       const sFuture = seasonals[(n + h - 1) % L] ?? 0;
-      const proj = level + h * dampedTrend + sFuture;
+      const proj = level + cumulativeDamping * trend + sFuture;
       forecasts.push(Math.max(0, proj));
     }
 
@@ -550,7 +591,7 @@ export class VisitorPredictor {
         zScore: 0,
         observedRate: latestVal,
         expectedRate: latestVal,
-        pValApprox: 0.5,
+        pValApprox: 1.0,
       };
     }
 
@@ -565,7 +606,7 @@ export class VisitorPredictor {
     const zScore = (latest - mean) / stdDev;
     const absZ = Math.abs(zScore);
 
-    const pValApprox = Number((Math.exp(-0.5 * zScore * zScore) / (stdDev * Math.sqrt(2 * Math.PI))).toFixed(4));
+    const pValApprox = calculateZScorePValue(zScore);
 
     if (absZ >= 2.58) {
       return {
@@ -647,7 +688,7 @@ export class VisitorPredictor {
         zScore: 0,
         observedRate: base,
         expectedRate: base,
-        pValApprox: 0.5,
+        pValApprox: 1.0,
       },
       metrics: {
         algorithm: "Bayesian-Prior-Baseline (Cold Start Mode)",

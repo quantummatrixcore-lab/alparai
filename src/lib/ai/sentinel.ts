@@ -36,7 +36,8 @@ export type ThreatType =
   | "generic_secret";
 
 const PATTERNS: Record<ThreatType, RegExp> = {
-  api_key: /(?:(?:sk|pk|rk|tk)_[a-zA-Z0-9]{20,}|AIza[0-9A-Za-z\-_]{35}|[Ss][Kk]-[a-zA-Z0-9]{20,})/g,
+  api_key:
+    /(?:(?:sk|pk|rk|tk)_[a-zA-Z0-9_]{20,}|AIza[0-9A-Za-z\-_]{35}|[Ss][Kk]-[a-zA-Z0-9]{20,}|hf_[a-zA-Z0-9_]{20,})/g,
   jwt_token: /eyJ[a-zA-Z0-9_-]{10,}\.[a-zA-Z0-9_-]{10,}\.[a-zA-Z0-9_-]{10,}/g,
   aws_key: /(?:AKIA|ASIA)[0-9A-Z]{16}/g,
   github_token:

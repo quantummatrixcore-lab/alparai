@@ -16,26 +16,24 @@ import {
 import { createServerClient } from "@/lib/supabase/server";
 import { CalendlyEmbed } from "@/components/marketing/calendly-embed";
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale: _locale } = await params;
-  const title = "Join the Advisory Board — ALPAR AI";
-  const description =
-    "Help shape the future of AI accountability. Apply to join ALPAR AI's Advisory Board.";
+import { constructPageMetadata } from "@/lib/seo/metadata";
+import { AboutPageJsonLd, BreadcrumbJsonLd } from "@/components/seo/json-ld";
+import { APP_URL } from "@/lib/constants";
 
-  return {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const isTr = locale === "tr";
+  const title = isTr ? "Danışma Kurulu — ALPAR AI" : "Join the Advisory Board — ALPAR AI";
+  const description = isTr
+    ? "Yapay zeka hesap verilebilirliğinin geleceğine yön verin. ALPAR AI Danışma Kurulu üyeleri ve açık katılım çağrısı."
+    : "Help shape the future of AI accountability. Meet the ALPAR AI Advisory Board and explore active invitations.";
+
+  return constructPageMetadata({
+    locale,
+    pathname: "/about/advisory-board",
     title,
     description,
-    openGraph: {
-      title,
-      description,
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-    },
-  };
+  });
 }
 
 export default async function AdvisoryBoardPage({
@@ -245,6 +243,24 @@ export default async function AdvisoryBoardPage({
           </div>
         </Container>
       </Section>
+
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: `${APP_URL}/${locale}` },
+          { name: "About", url: `${APP_URL}/${locale}/about` },
+          { name: isTr ? "Danışma Kurulu" : "Advisory Board", url: `${APP_URL}/${locale}/about/advisory-board` },
+        ]}
+      />
+      <AboutPageJsonLd
+        name={isTr ? "ALPAR AI Danışma Kurulu" : "ALPAR AI Advisory Board"}
+        description={isTr ? "ALPAR AI Danışma Kurulu Üyeleri ve Bağımsız Denetim Vizyonu" : "ALPAR AI Advisory Board Members and Governance"}
+        url={`${APP_URL}/${locale}/about/advisory-board`}
+        members={activeMembers.map((m) => ({
+          name: m.name || "Advisory Member",
+          role: (isTr ? m.title_tr || m.title_en : m.title_en || m.title_tr) || "Advisor",
+          url: m.website_url || undefined,
+        }))}
+      />
     </div>
   );
 }

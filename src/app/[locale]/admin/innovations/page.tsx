@@ -8,7 +8,7 @@ export default function InnovationsPage() {
   const roadmap = [
     {
       phase: "Q3 2026 (Mevcut)",
-      title: "360° Master Executive OS & B2B API Gateway",
+      title: "Alparai Admin & B2B API Gateway",
       status: "COMPLETED",
       progress: 100,
       desc: "5-Küme kurumsal mimari, 2.763 vaka veri kalkanı ve Tier 1-3 API dağıtımı.",

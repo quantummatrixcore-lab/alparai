@@ -1,6 +1,33 @@
-import { useTranslations } from "next-intl";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { useTranslations, useLocale } from "next-intl";
+import type { Metadata } from "next";
+import { constructPageMetadata } from "@/lib/seo/metadata";
+import { PricingProductJsonLd, BreadcrumbJsonLd, FAQJsonLd } from "@/components/seo/json-ld";
+import { APP_URL } from "@/lib/constants";
 
-export default function PricingPage() {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "pricing" });
+
+  return constructPageMetadata({
+    locale,
+    pathname: "/pricing",
+    title: `${t("headline")} — ALPAR AI`,
+    description: t("subtitle"),
+    keywords: ["AI pricing", "AI compliance plans", "incident registry pricing", "AI safety audit cost"],
+  });
+}
+
+export default function PricingPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const locale = useLocale();
   const t = useTranslations("pricing");
 
   return (
@@ -19,7 +46,7 @@ export default function PricingPage() {
         <div className="grid gap-8 md:grid-cols-3">
           {/* Free Tier */}
           <div className="border-border-subtle flex flex-col rounded-2xl border bg-white/5 p-8 backdrop-blur-lg">
-            <h2 className="text-fg-secondaryxl font-bold">{t("free_title")}</h2>
+            <h2 className="text-2xl font-bold text-white">{t("free_title")}</h2>
             <div className="mt-4 mb-6 flex items-baseline gap-2">
               <span className="text-4xl font-bold">{t("free_price")}</span>
               <span className="text-fg-muted">{t("free_period")}</span>
@@ -39,7 +66,7 @@ export default function PricingPage() {
           {/* Startup Tier */}
           <div className="border-border-strong relative flex flex-col overflow-hidden rounded-2xl border bg-white/10 p-8 shadow-2xl shadow-white/5 backdrop-blur-xl">
             <div className="absolute top-0 left-1/2 h-1 w-full -translate-x-1/2 bg-gradient-to-r from-transparent via-white/50 to-transparent"></div>
-            <h2 className="text-fg-secondaryxl font-bold">{t("startup_title")}</h2>
+            <h2 className="text-2xl font-bold text-white">{t("startup_title")}</h2>
             <div className="mt-4 mb-6 flex items-baseline gap-2">
               <span className="text-4xl font-bold">{t("startup_price")}</span>
               <span className="text-fg-muted">{t("startup_period")}</span>
@@ -59,7 +86,7 @@ export default function PricingPage() {
 
           {/* Enterprise Tier */}
           <div className="border-border-subtle flex flex-col rounded-2xl border bg-white/5 p-8 backdrop-blur-lg">
-            <h2 className="text-fg-secondaryxl font-bold">{t("enterprise_title")}</h2>
+            <h2 className="text-2xl font-bold text-white">{t("enterprise_title")}</h2>
             <div className="mt-4 mb-6 flex items-baseline gap-2">
               <span className="text-4xl font-bold">{t("enterprise_price")}</span>
             </div>
@@ -86,6 +113,48 @@ export default function PricingPage() {
             </a>
           </p>
         </div>
+
+        <BreadcrumbJsonLd
+          items={[
+            { name: "Home", url: `${APP_URL}/${locale}` },
+            { name: "Pricing", url: `${APP_URL}/${locale}/pricing` },
+          ]}
+        />
+        <PricingProductJsonLd
+          url={`${APP_URL}/${locale}/pricing`}
+          plans={[
+            {
+              name: "Community",
+              description: "Free community tier for public incident searches and reporting.",
+              price: "0",
+              currency: "USD",
+            },
+            {
+              name: "Startup & SME",
+              description: "Full AI risk monitoring, API integration, and compliance dashboards.",
+              price: "49",
+              currency: "USD",
+            },
+            {
+              name: "Enterprise & Government",
+              description: "Custom AI Act auditing, automated provider defense filing, and dedicated SLAs.",
+              price: "499",
+              currency: "USD",
+            },
+          ]}
+        />
+        <FAQJsonLd
+          items={[
+            {
+              question: "Is incident reporting and search free on ALPAR AI?",
+              answer: "Yes, public searches and incident reports submitted by individuals are 100% free and open access.",
+            },
+            {
+              question: "What is included in the Enterprise compliance plan?",
+              answer: "Enterprise includes automated EU AI Act compliance checks, provider response workflows, SLA guarantees, and API data feeds.",
+            },
+          ]}
+        />
       </div>
     </div>
   );

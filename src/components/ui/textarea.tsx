@@ -29,14 +29,15 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           aria-invalid={!!error}
           aria-describedby={error ? `${inputId}-error` : hint ? `${inputId}-hint` : undefined}
           className={cn(
-            "bg-bg-secondary text-fg-primary min-h-[100px] w-full rounded-md border px-3 py-2 text-sm",
-            "placeholder:text-fg-muted resize-y",
-            "transition-colors duration-200",
-            "focus-visible:ring-brand-500 focus-visible:ring-offset-bg-primary focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
+            "bg-bg-secondary/80 text-fg-primary min-h-[100px] w-full rounded-xl border px-3.5 py-2.5 text-sm backdrop-blur-sm",
+            "placeholder:text-fg-muted/70 resize-y",
+            "transition-all duration-200",
+            "hover:border-border-strong",
+            "focus-visible:border-brand-500 focus-visible:ring-brand-500/30 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary focus-visible:outline-none focus-visible:shadow-[0_0_20px_rgba(168,85,247,0.15)]",
             "disabled:cursor-not-allowed disabled:opacity-50",
             error
-              ? "border-danger-500 focus-visible:ring-danger-500"
-              : "border-border-subtle focus-visible:border-brand-500",
+              ? "border-danger-500 focus-visible:ring-danger-500/30 focus-visible:border-danger-500"
+              : "border-border-subtle",
             className,
           )}
           {...props}

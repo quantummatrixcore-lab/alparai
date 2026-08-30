@@ -12,6 +12,67 @@ assertTestBypassSafe();
 
 const intlMiddleware = createIntlMiddleware(routing);
 
+function applySecurityHeaders(
+  res: NextResponse,
+  req: NextRequest,
+  requestId?: string,
+): NextResponse {
+  const { pathname } = req.nextUrl;
+  const isEmbed = pathname.includes("/embed");
+  const isTest =
+    process.env.NODE_ENV === "test" &&
+    process.env.IS_PLAYWRIGHT_TEST === "true" &&
+    process.env.NEXT_TEST_AUTH_BYPASS === "true";
+
+  if (requestId) {
+    res.headers.set("x-request-id", requestId);
+  }
+
+  const cspDirectives = [
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.supabase.co https://*.sentry.io https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.google.com https://*.gstatic.com https://va.vercel-scripts.com",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com",
+    "font-src 'self' https://fonts.gstatic.com data:",
+    "img-src 'self' data: blob: https: https://*.googleusercontent.com https://avatars.githubusercontent.com https://*.supabase.co https://logo.clearbit.com",
+    "connect-src 'self' https://*.supabase.co https://*.sentry.io wss://*.supabase.co https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.googleapis.com https://*.posthog.com https://*.upstash.io https://va.vercel-scripts.com",
+    "frame-src 'self' https://challenges.cloudflare.com https://accounts.google.com https://*.google.com",
+    "worker-src 'self' blob:",
+    isEmbed
+      ? "frame-ancestors 'self' https://*.alparai.com https://*.vercel.app"
+      : "frame-ancestors 'none'",
+    "base-uri 'self'",
+    "form-action 'self' https://accounts.google.com",
+    "object-src 'none'",
+  ];
+
+  if (!isTest) {
+    cspDirectives.push("upgrade-insecure-requests");
+  }
+
+  res.headers.set("Content-Security-Policy", cspDirectives.join("; "));
+  res.headers.set("X-Content-Type-Options", "nosniff");
+  res.headers.set("X-Frame-Options", isEmbed ? "SAMEORIGIN" : "DENY");
+  res.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  res.headers.set(
+    "Permissions-Policy",
+    "camera=(), microphone=(), geolocation=(), payment=(), usb=(), screen-wake-lock=(), accelerometer=(), gyroscope=(), magnetometer=(), interest-cohort=()",
+  );
+  res.headers.set("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
+  res.headers.set("Cross-Origin-Resource-Policy", isEmbed ? "cross-origin" : "same-origin");
+  res.headers.set("X-Permitted-Cross-Domain-Policies", "none");
+  res.headers.set("X-DNS-Prefetch-Control", "on");
+  res.headers.set("X-XSS-Protection", "1; mode=block");
+
+  if (!isTest) {
+    res.headers.set(
+      "Strict-Transport-Security",
+      "max-age=63072000; includeSubDomains; preload",
+    );
+  }
+
+  return res;
+}
+
 export async function middleware(request: NextRequest) {
   // CVE-2025-29927 Mitigation: Reject or strip forged internal Next.js routing headers
   if (
@@ -48,7 +109,8 @@ export async function middleware(request: NextRequest) {
   if (unsupportedAdminLocaleMatch) {
     const pref = request.cookies.get("NEXT_LOCALE")?.value === "tr" ? "tr" : "en";
     const target = pathname.replace(/^\/(de|fr|ru)/, `/${pref}`);
-    return NextResponse.redirect(new URL(target + request.nextUrl.search, request.url));
+    const redirectRes = NextResponse.redirect(new URL(target + request.nextUrl.search, request.url));
+    return applySecurityHeaders(redirectRes, request, requestId);
   }
 
   const isAdminPath = pathname.startsWith("/admin") || /^\/[a-z]{2}\/admin(\/|$)/.test(pathname);
@@ -75,11 +137,12 @@ export async function middleware(request: NextRequest) {
       undefined,
       err instanceof Error ? err : undefined,
     );
-    return NextResponse.next({
+    const fallbackRes = NextResponse.next({
       request: {
         headers: requestHeaders,
       },
     });
+    return applySecurityHeaders(fallbackRes, request, requestId);
   }
 
   let response: NextResponse;
@@ -103,12 +166,14 @@ export async function middleware(request: NextRequest) {
         const currentPath = request.nextUrl.pathname + request.nextUrl.search;
         const signinUrl = new URL(`/${locale}/auth/signin`, request.url);
         signinUrl.searchParams.set("next", currentPath);
-        return NextResponse.redirect(signinUrl);
+        const redirectRes = NextResponse.redirect(signinUrl);
+        return applySecurityHeaders(redirectRes, request, requestId);
       } else {
         const { data } = await supabase.from("users").select("role").eq("id", user.id).single();
         const role = data?.role || user.user_metadata?.role || "user";
         if (role !== "admin" && role !== "ceo" && role !== "moderator" && role !== "advisor") {
-          return NextResponse.redirect(new URL(`/${locale}/`, request.url));
+          const redirectRes = NextResponse.redirect(new URL(`/${locale}/`, request.url));
+          return applySecurityHeaders(redirectRes, request, requestId);
         }
       }
     }
@@ -121,12 +186,7 @@ export async function middleware(request: NextRequest) {
     response = intlResponse;
   }
 
-  response.headers.set("x-request-id", requestId);
-  response.headers.set("X-Content-Type-Options", "nosniff");
-  response.headers.set("X-Frame-Options", "DENY");
-  response.headers.set("X-XSS-Protection", "1; mode=block");
-  response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
-  return response;
+  return applySecurityHeaders(response, request, requestId);
 }
 
 export const config = {

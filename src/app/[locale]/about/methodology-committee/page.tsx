@@ -1,6 +1,9 @@
 import { createServerClient } from "@/lib/supabase/server";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
+import { constructPageMetadata } from "@/lib/seo/metadata";
+import { AboutPageJsonLd, BreadcrumbJsonLd } from "@/components/seo/json-ld";
+import { APP_URL } from "@/lib/constants";
 
 interface CommitteeMember {
   id: string;
@@ -14,10 +17,12 @@ interface CommitteeMember {
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "about_methodology_committee" });
-  return {
+  return constructPageMetadata({
+    locale,
+    pathname: "/about/methodology-committee",
     title: `${t("title")} | ALPAR AI`,
     description: t("description"),
-  };
+  });
 }
 
 export default async function MethodologyCommitteePage({
@@ -107,6 +112,23 @@ export default async function MethodologyCommitteePage({
             <p className="text-fg-secondary text-sm leading-relaxed">{t("empty_text")}</p>
           </div>
         )}
+
+        <BreadcrumbJsonLd
+          items={[
+            { name: "Home", url: `${APP_URL}/${locale}` },
+            { name: "About", url: `${APP_URL}/${locale}/about` },
+            { name: t("title"), url: `${APP_URL}/${locale}/about/methodology-committee` },
+          ]}
+        />
+        <AboutPageJsonLd
+          name={`${t("title")} — ALPAR AI`}
+          description={t("description")}
+          url={`${APP_URL}/${locale}/about/methodology-committee`}
+          members={typedMembers.map((m) => ({
+            name: m.name,
+            role: `${m.role} - ${m.institution}`,
+          }))}
+        />
       </div>
     </div>
   );

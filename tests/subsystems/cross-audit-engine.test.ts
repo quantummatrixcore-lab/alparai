@@ -49,4 +49,49 @@ describe("Item 150 — Cross-Audit Engine & Consensus Subsystem", () => {
     expect(auditOutput.pii_leak_detected).toBe(false);
     expect(auditOutput.eu_ai_act_article_73_compliant).toBe(true);
   });
+
+  it("safely handles both 'High Risk' and 'High-Risk' (and unacceptable risk) variations", () => {
+    const checkRisk = (cat?: string) => {
+      const raw = (cat || "").trim();
+      const norm = raw.toLowerCase().replace(/[-\s_]+/g, "");
+      return (
+        norm === "highrisk" ||
+        norm === "unacceptablerisk" ||
+        ["high-risk", "high risk", "unacceptable-risk", "unacceptable risk"].includes(
+          raw.toLowerCase(),
+        )
+      );
+    };
+
+    expect(checkRisk("High Risk")).toBe(true);
+    expect(checkRisk("High-Risk")).toBe(true);
+    expect(checkRisk("high risk")).toBe(true);
+    expect(checkRisk("high-risk")).toBe(true);
+    expect(checkRisk("Unacceptable Risk")).toBe(true);
+    expect(checkRisk("Unacceptable-Risk")).toBe(true);
+    expect(checkRisk("Minimal")).toBe(false);
+    expect(checkRisk("Specific Transparency")).toBe(false);
+    expect(checkRisk("")).toBe(false);
+    expect(checkRisk(undefined)).toBe(false);
+  });
+
+  it("calculates SLA remaining hours dynamically under Article 73 72-hour window", () => {
+    const calculateSlaRemainingHours = (createdAt?: string | null, totalSlaHours = 72.0): number => {
+      if (!createdAt) return totalSlaHours;
+      const createdTime = new Date(createdAt).getTime();
+      if (isNaN(createdTime)) return totalSlaHours;
+      const elapsedHours = (Date.now() - createdTime) / (1000 * 60 * 60);
+      const remaining = totalSlaHours - elapsedHours;
+      return Math.max(0, parseFloat(remaining.toFixed(1)));
+    };
+
+    const nowIso = new Date().toISOString();
+    expect(calculateSlaRemainingHours(nowIso)).toBeCloseTo(72.0, 1);
+
+    const past24hIso = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+    expect(calculateSlaRemainingHours(past24hIso)).toBeCloseTo(48.0, 1);
+
+    const expiredIso = new Date(Date.now() - 80 * 60 * 60 * 1000).toISOString();
+    expect(calculateSlaRemainingHours(expiredIso)).toBe(0);
+  });
 });

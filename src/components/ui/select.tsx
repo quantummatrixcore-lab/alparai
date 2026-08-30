@@ -33,15 +33,16 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
           aria-invalid={!!error}
           aria-describedby={error ? `${inputId}-error` : hint ? `${inputId}-hint` : undefined}
           className={cn(
-            "bg-bg-secondary text-fg-primary w-full rounded-md border px-3 py-2 text-sm",
-            "transition-colors duration-200",
-            "focus-visible:ring-brand-500 focus-visible:ring-offset-bg-primary focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
+            "bg-bg-secondary/80 text-fg-primary w-full rounded-xl border px-3.5 py-2.5 text-sm backdrop-blur-sm",
+            "transition-all duration-200",
+            "hover:border-border-strong",
+            "focus-visible:border-brand-500 focus-visible:ring-brand-500/30 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary focus-visible:outline-none focus-visible:shadow-[0_0_20px_rgba(168,85,247,0.15)]",
             "disabled:cursor-not-allowed disabled:opacity-50",
             "appearance-none bg-right bg-no-repeat pr-10",
             "bg-[url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%239CA3AF%22 stroke-width=%222%22%3e%3cpath d=%22M6 9l6 6 6-6%22/%3e%3c/svg%3e')] bg-[length:16px_16px] bg-[position:right_0.75rem_center]",
             error
-              ? "border-danger-500 focus-visible:ring-danger-500"
-              : "border-border-subtle focus-visible:border-brand-500",
+              ? "border-danger-500 focus-visible:ring-danger-500/30 focus-visible:border-danger-500"
+              : "border-border-subtle",
             className,
           )}
           {...props}

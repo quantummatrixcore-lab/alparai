@@ -2867,7 +2867,7 @@
       "collapseMenu": "Collapse Menu",
       "expandMenu": "Expand Menu",
       "searchPlaceholder": "Search Incident ID, Model or Regulation (Cmd+K)...",
-      "executiveOS": "Executive OS v3.5",
+      "executiveOS": "Admin",
       "activeIncidents": "Incidents",
       "dailyRate": "(+24/day)",
       "slaCritical": "EU SLA: 3 Critical",
@@ -4959,7 +4959,7 @@
     "request_feature": "Request a feature",
     "review_body": "Review Details (max 3000 chars)",
     "review_title": "Review Title",
-    "reviews": "{count, plural, =1 {review} other {reviews}}",
+    "reviews": "{count, plural, one {review} other {reviews}}",
     "safety_rating": "Safety",
     "search_placeholder": "Search models or providers...",
     "sign_in_button": "Sign In",
@@ -5519,6 +5519,11 @@
     "tooltip": "Uptime: {uptime}% · MTTR: {mttr}h",
     "tooltip_unknown": "No SLA data available",
     "unknown": "SLA N/A"
+  },
+  "status": {
+    "degraded": "Degraded",
+    "down": "Down",
+    "operational": "Operational"
   },
   "status_page": {
     "all_operational": "All Systems Operational",

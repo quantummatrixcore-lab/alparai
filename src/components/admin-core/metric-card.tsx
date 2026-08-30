@@ -77,12 +77,12 @@ export const MetricCard = memo(function MetricCard({
     <div className="group relative flex min-h-[132px] transform-gpu flex-col justify-between overflow-hidden rounded-md border border-[#d0d7de] bg-[#ffffff] p-4.5 shadow-sm transition-all duration-200 contain-content hover:-translate-y-0.5 hover:border-[#0969da] dark:border-[#30363d] dark:bg-[#161b22] dark:shadow-none dark:hover:border-[#58a6ff]">
       {/* Header Row: Label & Badge/Icon */}
       <div className="z-10 flex items-center justify-between gap-2">
-        <span className="line-clamp-1 font-mono text-[11px] font-medium tracking-wider text-[#656d76] uppercase dark:text-[#8b949e]">
+        <span className="line-clamp-1 font-sans text-[11px] font-medium tracking-wider text-[#656d76] uppercase dark:text-[#8b949e]">
           {label}
         </span>
         <div className="flex shrink-0 items-center gap-1.5">
           {badge && (
-            <span className="rounded-md border border-[#d0d7de] bg-[#f6f8fa] px-1.5 py-0.5 font-mono text-[10px] font-medium text-[#656d76] dark:border-[#30363d] dark:bg-[#21262d] dark:text-[#c9d1d9]">
+            <span className="rounded-md border border-[#d0d7de] bg-[#f6f8fa] px-1.5 py-0.5 font-sans text-[10px] font-medium text-[#656d76] dark:border-[#30363d] dark:bg-[#21262d] dark:text-[#c9d1d9]">
               {badge}
             </span>
           )}
@@ -96,12 +96,12 @@ export const MetricCard = memo(function MetricCard({
 
       {/* Value & Change Tag Row */}
       <div className="z-10 mt-2.5 flex items-baseline justify-between gap-3">
-        <span className="font-mono text-2xl font-bold tracking-tight text-[#1f2328] tabular-nums lg:text-3xl dark:text-[#f0f6fc]">
+        <span className="font-sans text-2xl font-bold tracking-tight text-[#1f2328] tabular-nums lg:text-3xl dark:text-[#f0f6fc]">
           {value}
         </span>
         {change && (
           <span
-            className={`rounded border px-2 py-0.5 font-mono text-[11px] font-medium ${changeStyles} shrink-0`}
+            className={`rounded border px-2 py-0.5 font-sans text-[11px] font-medium ${changeStyles} shrink-0`}
           >
             {change}
           </span>

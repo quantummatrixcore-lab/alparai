@@ -114,14 +114,14 @@ export default function ApiKeysPage() {
       <div className="flex flex-col justify-between gap-4 border-b border-[#d0d7de] pb-4 md:flex-row md:items-center dark:border-[#30363d]">
         <div>
           <div className="mb-1.5 flex items-center gap-2">
-            <span className="rounded border border-[#d0d7de] bg-[#eaeef2] px-2 py-0.5 font-mono text-[10px] text-[#656d76] dark:border-[#30363d] dark:bg-[#21262d] dark:text-[#8b949e]">
+            <span className="rounded border border-[#d0d7de] bg-[#eaeef2] px-2 py-0.5 font-sans text-[10px] text-[#656d76] dark:border-[#30363d] dark:bg-[#21262d] dark:text-[#8b949e]">
               KÜME 4: EKOSİSTEM & GELİR MOTORU
             </span>
-            <span className="font-mono text-xs font-semibold text-[#1a7f37] dark:text-[#3fb950]">
+            <span className="font-sans text-xs font-semibold text-[#1a7f37] dark:text-[#3fb950]">
               $94,000 MRR AKTİF
             </span>
           </div>
-          <h1 className="font-mono text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
+          <h1 className="font-sans text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
             B2B API & Veri Satış Masası
           </h1>
           <p className="mt-0.5 text-xs text-[#656d76] dark:text-[#8b949e]">
@@ -133,7 +133,7 @@ export default function ApiKeysPage() {
         <div className="flex items-center gap-2">
           <button
             onClick={() => setShowNewKeyModal(true)}
-            className="flex items-center gap-1.5 rounded-md bg-[#238636] px-3 py-1.5 font-mono text-xs font-medium text-white shadow-sm transition-all hover:bg-[#2ea043]"
+            className="flex items-center gap-1.5 rounded-md bg-[#238636] px-3 py-1.5 font-sans text-xs font-medium text-white shadow-sm transition-all hover:bg-[#2ea043]"
           >
             <Plus className="h-3.5 w-3.5" />
             <span>Yeni B2B Anahtarı Üret</span>
@@ -143,56 +143,56 @@ export default function ApiKeysPage() {
 
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <div className="rounded-md border border-[#d0d7de] bg-[#ffffff] p-3.5 dark:border-[#30363d] dark:bg-[#161b22]">
-          <span className="font-mono text-[11px] text-[#656d76] dark:text-[#8b949e]">
+          <span className="font-sans text-[11px] text-[#656d76] dark:text-[#8b949e]">
             Aylık Tekrarlayan Gelir (MRR)
           </span>
           <div className="mt-1 flex items-baseline gap-2">
-            <span className="font-mono text-xl font-bold text-[#1a7f37] dark:text-[#3fb950]">
+            <span className="font-sans text-xl font-bold text-[#1a7f37] dark:text-[#3fb950]">
               $94,000
             </span>
-            <span className="font-mono text-[10px] font-semibold text-[#1a7f37] dark:text-[#3fb950]">
+            <span className="font-sans text-[10px] font-semibold text-[#1a7f37] dark:text-[#3fb950]">
               +18.4% MoM
             </span>
           </div>
         </div>
 
         <div className="rounded-md border border-[#d0d7de] bg-[#ffffff] p-3.5 dark:border-[#30363d] dark:bg-[#161b22]">
-          <span className="font-mono text-[11px] text-[#656d76] dark:text-[#8b949e]">
+          <span className="font-sans text-[11px] text-[#656d76] dark:text-[#8b949e]">
             Aktif B2B Kurumsal Müşteri
           </span>
           <div className="mt-1 flex items-baseline gap-2">
-            <span className="font-mono text-xl font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+            <span className="font-sans text-xl font-bold text-[#1f2328] dark:text-[#f0f6fc]">
               14 Kurum
             </span>
-            <span className="font-mono text-[10px] text-[#0969da] dark:text-[#58a6ff]">
+            <span className="font-sans text-[10px] text-[#0969da] dark:text-[#58a6ff]">
               Allianz, AXA, CISO
             </span>
           </div>
         </div>
 
         <div className="rounded-md border border-[#d0d7de] bg-[#ffffff] p-3.5 dark:border-[#30363d] dark:bg-[#161b22]">
-          <span className="font-mono text-[11px] text-[#656d76] dark:text-[#8b949e]">
+          <span className="font-sans text-[11px] text-[#656d76] dark:text-[#8b949e]">
             Ortalama API Gecikmesi
           </span>
           <div className="mt-1 flex items-baseline gap-2">
-            <span className="font-mono text-xl font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+            <span className="font-sans text-xl font-bold text-[#1f2328] dark:text-[#f0f6fc]">
               14 ms
             </span>
-            <span className="font-mono text-[10px] text-[#1a7f37] dark:text-[#3fb950]">
+            <span className="font-sans text-[10px] text-[#1a7f37] dark:text-[#3fb950]">
               %99.98 SLA
             </span>
           </div>
         </div>
 
         <div className="rounded-md border border-[#d0d7de] bg-[#ffffff] p-3.5 dark:border-[#30363d] dark:bg-[#161b22]">
-          <span className="font-mono text-[11px] text-[#656d76] dark:text-[#8b949e]">
+          <span className="font-sans text-[11px] text-[#656d76] dark:text-[#8b949e]">
             Bu Ay Sunulan Olay Akışı
           </span>
           <div className="mt-1 flex items-baseline gap-2">
-            <span className="font-mono text-xl font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+            <span className="font-sans text-xl font-bold text-[#1f2328] dark:text-[#f0f6fc]">
               1.42 Milyon
             </span>
-            <span className="font-mono text-[10px] text-[#656d76] dark:text-[#8b949e]">
+            <span className="font-sans text-[10px] text-[#656d76] dark:text-[#8b949e]">
               Sorgu / Çağrı
             </span>
           </div>
@@ -201,10 +201,10 @@ export default function ApiKeysPage() {
 
       <div className="overflow-hidden rounded-md border border-[#d0d7de] bg-[#ffffff] shadow-sm dark:border-[#30363d] dark:bg-[#161b22]">
         <div className="flex items-center justify-between border-b border-[#d0d7de] bg-[#f6f8fa] px-4 py-2.5 dark:border-[#30363d] dark:bg-[#0d1117]">
-          <span className="font-mono text-xs font-semibold text-[#1f2328] dark:text-[#f0f6fc]">
+          <span className="font-sans text-xs font-semibold text-[#1f2328] dark:text-[#f0f6fc]">
             LİSANSLI B2B KURUMSAL ENTEGRASYONLAR
           </span>
-          <span className="font-mono text-[10px] text-[#656d76] dark:text-[#8b949e]">
+          <span className="font-sans text-[10px] text-[#656d76] dark:text-[#8b949e]">
             {keys.length} Aktif Lisans Anahtarı
           </span>
         </div>
@@ -220,12 +220,12 @@ export default function ApiKeysPage() {
                 <div className="flex flex-col justify-between gap-3 md:flex-row md:items-center">
                   <div className="space-y-1">
                     <div className="flex items-center gap-2">
-                      <span className="font-mono text-xs font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+                      <span className="font-sans text-xs font-bold text-[#1f2328] dark:text-[#f0f6fc]">
                         {k.organizationName}
                       </span>
                       <StatusBadge type="tier" value={k.clientTier} />
                       <span
-                        className={`rounded border px-1.5 py-0.5 font-mono text-[10px] ${
+                        className={`rounded border px-1.5 py-0.5 font-sans text-[10px] ${
                           k.activeStatus === "ACTIVE"
                             ? "border-[#4ac26b]/40 bg-[#dafbe1] text-[#1a7f37] dark:bg-[#04260f] dark:text-[#3fb950]"
                             : "border-[#ff8182]/40 bg-[#ffebe9] text-[#cf222e] dark:bg-[#490202] dark:text-[#ff7b72]"
@@ -235,7 +235,7 @@ export default function ApiKeysPage() {
                       </span>
                     </div>
 
-                    <div className="flex items-center gap-3 font-mono text-xs text-[#656d76] dark:text-[#8b949e]">
+                    <div className="flex items-center gap-3 font-sans text-xs text-[#656d76] dark:text-[#8b949e]">
                       <div className="flex items-center gap-1.5">
                         <code>{k.keyPrefix}</code>
                         <button
@@ -261,7 +261,7 @@ export default function ApiKeysPage() {
 
                   <div className="flex items-center gap-4">
                     <div className="w-36 space-y-1">
-                      <div className="flex justify-between font-mono text-[10px] text-[#656d76] dark:text-[#8b949e]">
+                      <div className="flex justify-between font-sans text-[10px] text-[#656d76] dark:text-[#8b949e]">
                         <span>Kota Kullanımı</span>
                         <span>{usagePercent}%</span>
                       </div>
@@ -276,14 +276,14 @@ export default function ApiKeysPage() {
                     <div className="flex items-center gap-1.5">
                       <button
                         onClick={() => setSelectedKeyForCurl(k)}
-                        className="rounded border border-[#d0d7de] bg-[#ffffff] px-2.5 py-1 font-mono text-xs text-[#1f2328] transition-colors hover:bg-[#f6f8fa] dark:border-[#30363d] dark:bg-[#21262d] dark:text-[#f0f6fc] dark:hover:bg-[#30363d]"
+                        className="rounded border border-[#d0d7de] bg-[#ffffff] px-2.5 py-1 font-sans text-xs text-[#1f2328] transition-colors hover:bg-[#f6f8fa] dark:border-[#30363d] dark:bg-[#21262d] dark:text-[#f0f6fc] dark:hover:bg-[#30363d]"
                         title="cURL Snippet Göster"
                       >
                         <Code className="h-3.5 w-3.5" />
                       </button>
                       <button
                         onClick={() => handleToggleKey(k.id)}
-                        className={`rounded border px-2.5 py-1 font-mono text-xs transition-colors ${
+                        className={`rounded border px-2.5 py-1 font-sans text-xs transition-colors ${
                           k.activeStatus === "ACTIVE"
                             ? "border-[#ff8182]/40 text-[#cf222e] hover:bg-[#ffebe9] dark:text-[#ff7b72] dark:hover:bg-[#490202]"
                             : "border-[#4ac26b]/40 text-[#1a7f37] hover:bg-[#dafbe1] dark:text-[#3fb950] dark:hover:bg-[#04260f]"
@@ -303,16 +303,16 @@ export default function ApiKeysPage() {
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <div className="space-y-3 rounded-md border border-[#d0d7de] bg-[#ffffff] p-4 dark:border-[#30363d] dark:bg-[#161b22]">
           <div className="flex items-center justify-between">
-            <span className="flex items-center gap-2 font-mono text-xs font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+            <span className="flex items-center gap-2 font-sans text-xs font-bold text-[#1f2328] dark:text-[#f0f6fc]">
               <Terminal className="h-4 w-4 text-[#0969da] dark:text-[#58a6ff]" />
               B2B Threat-Intel API Örnek Çağrısı
             </span>
-            <span className="font-mono text-[10px] text-[#656d76] dark:text-[#8b949e]">
+            <span className="font-sans text-[10px] text-[#656d76] dark:text-[#8b949e]">
               Seçili Müşteri: {selectedKeyForCurl?.organizationName || "Allianz"}
             </span>
           </div>
 
-          <div className="relative overflow-x-auto rounded border border-[#d0d7de] bg-[#f6f8fa] p-3 font-mono text-xs text-[#1f2328] dark:border-[#30363d] dark:bg-[#0d1117] dark:text-[#c9d1d9]">
+          <div className="relative overflow-x-auto rounded border border-[#d0d7de] bg-[#f6f8fa] p-3 font-sans text-xs text-[#1f2328] dark:border-[#30363d] dark:bg-[#0d1117] dark:text-[#c9d1d9]">
             <pre className="text-[11px] leading-relaxed">
               curl -X GET "https://api.alparai.com/v1/incidents/stream" \\ -H "Authorization: Bearer
               " + (selectedKeyForCurl?.keyPrefix || 'alp_live_sec_...') + " \\ -H "Accept:
@@ -323,11 +323,11 @@ export default function ApiKeysPage() {
 
         <div className="space-y-3 rounded-md border border-[#d0d7de] bg-[#ffffff] p-4 dark:border-[#30363d] dark:bg-[#161b22]">
           <div className="flex items-center justify-between">
-            <span className="flex items-center gap-2 font-mono text-xs font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+            <span className="flex items-center gap-2 font-sans text-xs font-bold text-[#1f2328] dark:text-[#f0f6fc]">
               <Zap className="h-4 w-4 text-[#9a6700] dark:text-[#d29922]" />
               Canlı Webhook Olay Gönderim Testi
             </span>
-            <span className="font-mono text-[10px] text-[#1a7f37] dark:text-[#3fb950]">
+            <span className="font-sans text-[10px] text-[#1a7f37] dark:text-[#3fb950]">
               Hedef: CISO SIEM Entegrasyonu
             </span>
           </div>
@@ -341,7 +341,7 @@ export default function ApiKeysPage() {
             <button
               onClick={runWebhookTest}
               disabled={isTestingWebhook}
-              className="flex items-center gap-1.5 rounded-md bg-[#0969da] px-3 py-1.5 font-mono text-xs font-medium text-white transition-colors hover:bg-[#0854ad] disabled:opacity-50"
+              className="flex items-center gap-1.5 rounded-md bg-[#0969da] px-3 py-1.5 font-sans text-xs font-medium text-white transition-colors hover:bg-[#0854ad] disabled:opacity-50"
             >
               <Send className="h-3.5 w-3.5" />
               <span>{isTestingWebhook ? "Test Gönderiliyor..." : "Webhook Test Pingi At"}</span>
@@ -349,7 +349,7 @@ export default function ApiKeysPage() {
           </div>
 
           {webhookTestStatus && (
-            <div className="rounded border border-[#4ac26b]/40 bg-[#dafbe1] p-2.5 font-mono text-xs text-[#1a7f37] dark:bg-[#04260f] dark:text-[#3fb950]">
+            <div className="rounded border border-[#4ac26b]/40 bg-[#dafbe1] p-2.5 font-sans text-xs text-[#1a7f37] dark:bg-[#04260f] dark:text-[#3fb950]">
               {webhookTestStatus}
             </div>
           )}
@@ -363,7 +363,7 @@ export default function ApiKeysPage() {
             className="animate-in fade-in zoom-in w-full max-w-md space-y-4 rounded-lg border border-[#d0d7de] bg-[#ffffff] p-5 shadow-2xl duration-150 dark:border-[#30363d] dark:bg-[#161b22]"
           >
             <div className="flex items-center justify-between border-b border-[#d0d7de] pb-3 dark:border-[#30363d]">
-              <h3 className="font-mono text-sm font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+              <h3 className="font-sans text-sm font-bold text-[#1f2328] dark:text-[#f0f6fc]">
                 Yeni B2B Kurumsal API Anahtarı Üret
               </h3>
               <button
@@ -375,7 +375,7 @@ export default function ApiKeysPage() {
               </button>
             </div>
 
-            <div className="space-y-3 font-mono text-xs">
+            <div className="space-y-3 font-sans text-xs">
               <div>
                 <label className="mb-1 block text-[#656d76] dark:text-[#8b949e]">
                   Kurum / Müşteri Adı:
@@ -426,13 +426,13 @@ export default function ApiKeysPage() {
               <button
                 type="button"
                 onClick={() => setShowNewKeyModal(false)}
-                className="rounded border border-[#d0d7de] px-3 py-1.5 font-mono text-xs text-[#656d76] hover:bg-[#f6f8fa] dark:border-[#30363d] dark:text-[#8b949e] dark:hover:bg-[#21262d]"
+                className="rounded border border-[#d0d7de] px-3 py-1.5 font-sans text-xs text-[#656d76] hover:bg-[#f6f8fa] dark:border-[#30363d] dark:text-[#8b949e] dark:hover:bg-[#21262d]"
               >
                 İptal
               </button>
               <button
                 type="submit"
-                className="rounded bg-[#238636] px-3 py-1.5 font-mono text-xs font-semibold text-white hover:bg-[#2ea043]"
+                className="rounded bg-[#238636] px-3 py-1.5 font-sans text-xs font-semibold text-white hover:bg-[#2ea043]"
               >
                 Anahtarı Oluştur & Kaydet
               </button>

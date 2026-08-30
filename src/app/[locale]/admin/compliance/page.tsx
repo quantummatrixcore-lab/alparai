@@ -129,14 +129,14 @@ export default function CompliancePage() {
       <div className="flex flex-col justify-between gap-4 border-b border-[#d0d7de] pb-4 md:flex-row md:items-center dark:border-[#30363d]">
         <div>
           <div className="mb-1.5 flex items-center gap-2">
-            <span className="rounded border border-[#d0d7de] bg-[#eaeef2] px-2 py-0.5 font-mono text-[10px] text-[#656d76] dark:border-[#30363d] dark:bg-[#21262d] dark:text-[#8b949e]">
+            <span className="rounded border border-[#d0d7de] bg-[#eaeef2] px-2 py-0.5 font-sans text-[10px] text-[#656d76] dark:border-[#30363d] dark:bg-[#21262d] dark:text-[#8b949e]">
               KÜME 1: HESAP VEREBİLİRLİK & REGÜLASYON
             </span>
-            <span className="font-mono text-xs font-semibold text-[#9a6700] dark:text-[#d29922]">
+            <span className="font-sans text-xs font-semibold text-[#9a6700] dark:text-[#d29922]">
               EU AI ACT (REGULATION 2024/1689) & NIST RMF
             </span>
           </div>
-          <h1 className="font-mono text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
+          <h1 className="font-sans text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
             EU AI Act Uyum Radarı & Ceza / Denetim Masası
           </h1>
           <p className="mt-0.5 text-xs text-[#656d76] dark:text-[#8b949e]">
@@ -148,7 +148,7 @@ export default function CompliancePage() {
         <div className="flex items-center gap-2">
           <button
             onClick={exportComplianceJson}
-            className="flex items-center gap-1.5 rounded-md border border-[#d0d7de] bg-[#ffffff] px-3 py-1.5 font-mono text-xs font-medium text-[#1f2328] shadow-sm transition-colors hover:bg-[#f6f8fa] dark:border-[#30363d] dark:bg-[#21262d] dark:text-[#f0f6fc] dark:hover:bg-[#30363d]"
+            className="flex items-center gap-1.5 rounded-md border border-[#d0d7de] bg-[#ffffff] px-3 py-1.5 font-sans text-xs font-medium text-[#1f2328] shadow-sm transition-colors hover:bg-[#f6f8fa] dark:border-[#30363d] dark:bg-[#21262d] dark:text-[#f0f6fc] dark:hover:bg-[#30363d]"
           >
             <Download className="h-3.5 w-3.5" />
             <span>JSON İndir</span>
@@ -156,7 +156,7 @@ export default function CompliancePage() {
           <button
             onClick={handleGenerateAuditReport}
             disabled={isGeneratingReport}
-            className="flex items-center gap-1.5 rounded-md bg-[#238636] px-3 py-1.5 font-mono text-xs font-medium text-white shadow-sm transition-colors hover:bg-[#2ea043] disabled:opacity-50"
+            className="flex items-center gap-1.5 rounded-md bg-[#238636] px-3 py-1.5 font-sans text-xs font-medium text-white shadow-sm transition-colors hover:bg-[#2ea043] disabled:opacity-50"
           >
             <FileDown className="h-3.5 w-3.5" />
             <span>
@@ -167,7 +167,7 @@ export default function CompliancePage() {
       </div>
 
       {generatedReportSuccess && (
-        <div className="animate-in fade-in flex items-center justify-between rounded-md border border-[#4ac26b]/40 bg-[#dafbe1] p-3 font-mono text-xs text-[#1a7f37] duration-200 dark:bg-[#04260f] dark:text-[#3fb950]">
+        <div className="animate-in fade-in flex items-center justify-between rounded-md border border-[#4ac26b]/40 bg-[#dafbe1] p-3 font-sans text-xs text-[#1a7f37] duration-200 dark:bg-[#04260f] dark:text-[#3fb950]">
           <div className="flex items-center gap-2">
             <CheckCircle2 className="h-4 w-4" />
             <span>{generatedReportSuccess}</span>
@@ -218,12 +218,12 @@ export default function CompliancePage() {
         <div className="space-y-4 rounded-md border border-[#d0d7de] bg-[#ffffff] p-4 shadow-sm lg:col-span-1 dark:border-[#30363d] dark:bg-[#161b22]">
           <div className="flex items-center gap-2 border-b border-[#d0d7de] pb-3 dark:border-[#30363d]">
             <Calculator className="h-4 w-4 text-[#0969da] dark:text-[#58a6ff]" />
-            <h3 className="font-mono text-xs font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+            <h3 className="font-sans text-xs font-bold text-[#1f2328] dark:text-[#f0f6fc]">
               Madde 99 İdari Para Cezası Hesaplayıcısı
             </h3>
           </div>
 
-          <div className="space-y-3 font-mono text-xs">
+          <div className="space-y-3 font-sans text-xs">
             <div>
               <label className="mb-1 block text-[#656d76] dark:text-[#8b949e]">
                 İhlal Edilen Yasa Maddesi:
@@ -256,7 +256,7 @@ export default function CompliancePage() {
               <span className="block text-[10px] font-semibold tracking-wider text-[#cf222e] uppercase dark:text-[#ff7b72]">
                 Maksimum Yasal Yaptırım Riski (Ceza Tavanı)
               </span>
-              <div className="font-mono text-2xl font-bold text-[#cf222e] dark:text-[#ff7b72]">
+              <div className="font-sans text-2xl font-bold text-[#cf222e] dark:text-[#ff7b72]">
                 €{calculatedFineEur.toLocaleString("tr-TR")}
               </div>
               <p className="text-[11px] leading-relaxed text-[#cf222e]/80 dark:text-[#ff7b72]/80">
@@ -270,10 +270,10 @@ export default function CompliancePage() {
         {/* Articles Table */}
         <div className="flex flex-col overflow-hidden rounded-md border border-[#d0d7de] bg-[#ffffff] shadow-sm lg:col-span-2 dark:border-[#30363d] dark:bg-[#161b22]">
           <div className="flex items-center justify-between border-b border-[#d0d7de] bg-[#f6f8fa] px-4 py-2.5 dark:border-[#30363d] dark:bg-[#0d1117]">
-            <span className="font-mono text-xs font-semibold text-[#1f2328] dark:text-[#f0f6fc]">
+            <span className="font-sans text-xs font-semibold text-[#1f2328] dark:text-[#f0f6fc]">
               EU AI ACT MADDE BAZLI UYUM MATRİSİ
             </span>
-            <span className="font-mono text-[10px] text-[#656d76] dark:text-[#8b949e]">
+            <span className="font-sans text-[10px] text-[#656d76] dark:text-[#8b949e]">
               2.763 Vaka Korelasyonu
             </span>
           </div>
@@ -287,10 +287,10 @@ export default function CompliancePage() {
                 <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
                   <div className="space-y-1">
                     <div className="flex items-center gap-2">
-                      <span className="font-mono text-xs font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+                      <span className="font-sans text-xs font-bold text-[#1f2328] dark:text-[#f0f6fc]">
                         {art.articleCode}: {art.title}
                       </span>
-                      <span className="py-0.2 rounded border border-[#d0d7de] bg-[#eaeef2] px-1.5 font-mono text-[10px] text-[#656d76] dark:border-[#30363d] dark:bg-[#21262d] dark:text-[#8b949e]">
+                      <span className="py-0.2 rounded border border-[#d0d7de] bg-[#eaeef2] px-1.5 font-sans text-[10px] text-[#656d76] dark:border-[#30363d] dark:bg-[#21262d] dark:text-[#8b949e]">
                         {art.riskCategory}
                       </span>
                     </div>
@@ -299,10 +299,10 @@ export default function CompliancePage() {
 
                   <div className="flex items-center gap-3 self-end sm:self-center">
                     <div className="text-right">
-                      <span className="font-mono text-xs font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+                      <span className="font-sans text-xs font-bold text-[#1f2328] dark:text-[#f0f6fc]">
                         %{art.compliancePercentage}
                       </span>
-                      <span className="block font-mono text-[10px] text-[#656d76] dark:text-[#8b949e]">
+                      <span className="block font-sans text-[10px] text-[#656d76] dark:text-[#8b949e]">
                         {art.incidentCount} Vaka
                       </span>
                     </div>

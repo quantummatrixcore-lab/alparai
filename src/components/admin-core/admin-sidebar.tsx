@@ -319,7 +319,7 @@ export const AdminSidebar = memo(function AdminSidebar() {
                   <span className="truncate text-xs font-black tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
                     ALPAR <span className="text-cyan-600 dark:text-cyan-400">AI</span>
                   </span>
-                  <span className="truncate font-mono text-[9px] font-semibold tracking-wider text-[#656d76] uppercase dark:text-[#8b949e]">
+                  <span className="truncate font-sans text-[9px] font-semibold tracking-wider text-[#656d76] uppercase dark:text-[#8b949e]">
                     {t("executiveOS")}
                   </span>
                 </div>
@@ -360,7 +360,7 @@ export const AdminSidebar = memo(function AdminSidebar() {
                   <button
                     type="button"
                     onClick={() => toggleCluster(cluster.id)}
-                    className={`flex w-full items-center justify-between rounded px-2 py-1 font-mono text-[10px] font-semibold tracking-wider uppercase transition-colors ${
+                    className={`flex w-full items-center justify-between rounded px-2 py-1 font-sans text-[10px] font-semibold tracking-wider uppercase transition-colors ${
                       hasActiveItem
                         ? "bg-[#eaeef2]/60 text-[#1f2328] dark:bg-[#161b22] dark:text-[#f0f6fc]"
                         : "text-[#656d76] hover:bg-[#eaeef2]/40 hover:text-[#1f2328] dark:text-[#8b949e] dark:hover:bg-[#161b22]/40 dark:hover:text-[#f0f6fc]"
@@ -436,7 +436,7 @@ export const AdminSidebar = memo(function AdminSidebar() {
         </div>
 
         <div
-          className={`flex items-center border-t border-[#d0d7de] bg-[#f6f8fa] p-3 dark:border-[#30363d] dark:bg-[#0d1117] ${isCollapsed ? "justify-center" : "justify-between"} shrink-0 font-mono text-[11px] text-[#656d76] dark:text-[#8b949e]`}
+          className={`flex items-center border-t border-[#d0d7de] bg-[#f6f8fa] p-3 dark:border-[#30363d] dark:bg-[#0d1117] ${isCollapsed ? "justify-center" : "justify-between"} shrink-0 font-sans text-[11px] text-[#656d76] dark:text-[#8b949e]`}
         >
           {!isCollapsed ? (
             <>

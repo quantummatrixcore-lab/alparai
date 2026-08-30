@@ -124,14 +124,14 @@ export default function DataMoatPage() {
       <div className="flex flex-col justify-between gap-4 border-b border-[#d0d7de] pb-4 md:flex-row md:items-center dark:border-[#30363d]">
         <div>
           <div className="mb-1.5 flex items-center gap-2">
-            <span className="rounded border border-[#d0d7de] bg-[#eaeef2] px-2 py-0.5 font-mono text-[10px] text-[#656d76] dark:border-[#30363d] dark:bg-[#21262d] dark:text-[#8b949e]">
+            <span className="rounded border border-[#d0d7de] bg-[#eaeef2] px-2 py-0.5 font-sans text-[10px] text-[#656d76] dark:border-[#30363d] dark:bg-[#21262d] dark:text-[#8b949e]">
               KÜME 4: EKOSİSTEM & VERİ FABRİKASI
             </span>
-            <span className="font-mono text-xs font-semibold text-[#0969da] dark:text-[#58a6ff]">
+            <span className="font-sans text-xs font-semibold text-[#0969da] dark:text-[#58a6ff]">
               VIRUSTOTAL-STYLE DATA FLYWHEEL ENGINE
             </span>
           </div>
-          <h1 className="font-mono text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
+          <h1 className="font-sans text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
             Veri Kalkanı & Otonom Tarayıcı Komutası (Data Moat)
           </h1>
           <p className="mt-0.5 text-xs text-[#656d76] dark:text-[#8b949e]">
@@ -144,7 +144,7 @@ export default function DataMoatPage() {
           <button
             onClick={handleTriggerAll}
             disabled={isTriggeringAll}
-            className="flex items-center gap-1.5 rounded-md bg-[#0969da] px-3 py-1.5 font-mono text-xs font-medium text-white shadow-sm transition-colors hover:bg-[#0854ad] disabled:opacity-50"
+            className="flex items-center gap-1.5 rounded-md bg-[#0969da] px-3 py-1.5 font-sans text-xs font-medium text-white shadow-sm transition-colors hover:bg-[#0854ad] disabled:opacity-50"
           >
             <RefreshCw className={`h-3.5 w-3.5 ${isTriggeringAll ? "animate-spin" : ""}`} />
             <span>{isTriggeringAll ? "Tüm Filo Taranıyor..." : "Tüm Tarayıcıları Tetikle"}</span>
@@ -153,7 +153,7 @@ export default function DataMoatPage() {
       </div>
 
       {activeCrawlerLog && (
-        <div className="animate-in fade-in flex items-center justify-between rounded-md border border-[#54aeff]/40 bg-[#ddf4ff] p-3 font-mono text-xs text-[#0969da] duration-200 dark:bg-[#04213d] dark:text-[#58a6ff]">
+        <div className="animate-in fade-in flex items-center justify-between rounded-md border border-[#54aeff]/40 bg-[#ddf4ff] p-3 font-sans text-xs text-[#0969da] duration-200 dark:bg-[#04213d] dark:text-[#58a6ff]">
           <div className="flex items-center gap-2">
             <Radio className="h-4 w-4 animate-pulse" />
             <span>{activeCrawlerLog}</span>
@@ -200,10 +200,10 @@ export default function DataMoatPage() {
       {/* Scrapers Control Table */}
       <div className="overflow-hidden rounded-md border border-[#d0d7de] bg-[#ffffff] shadow-sm dark:border-[#30363d] dark:bg-[#161b22]">
         <div className="flex items-center justify-between border-b border-[#d0d7de] bg-[#f6f8fa] px-4 py-2.5 dark:border-[#30363d] dark:bg-[#0d1117]">
-          <span className="font-mono text-xs font-semibold text-[#1f2328] dark:text-[#f0f6fc]">
+          <span className="font-sans text-xs font-semibold text-[#1f2328] dark:text-[#f0f6fc]">
             OTONOM KÜRESEL VERİ ÇEKME & ZENGİNLEŞTİRME FİLOSU
           </span>
-          <span className="font-mono text-[10px] text-[#656d76] dark:text-[#8b949e]">
+          <span className="font-sans text-[10px] text-[#656d76] dark:text-[#8b949e]">
             {scrapers.length} Aktif Tarayıcı Kulvarı
           </span>
         </div>
@@ -217,11 +217,11 @@ export default function DataMoatPage() {
               <div className="flex flex-col justify-between gap-3 md:flex-row md:items-center">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-xs font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+                    <span className="font-sans text-xs font-bold text-[#1f2328] dark:text-[#f0f6fc]">
                       {s.name}
                     </span>
                     <span
-                      className={`py-0.2 rounded border px-1.5 font-mono text-[10px] ${
+                      className={`py-0.2 rounded border px-1.5 font-sans text-[10px] ${
                         s.status === "CRAWLING"
                           ? "animate-pulse border-[#54aeff]/40 bg-[#ddf4ff] text-[#0969da] dark:bg-[#04213d] dark:text-[#58a6ff]"
                           : "border-[#4ac26b]/40 bg-[#dafbe1] text-[#1a7f37] dark:bg-[#04260f] dark:text-[#3fb950]"
@@ -230,17 +230,17 @@ export default function DataMoatPage() {
                       {s.status === "CRAWLING" ? "Taranıyor..." : "Çevrimiçi"}
                     </span>
                   </div>
-                  <p className="font-mono text-xs text-[#656d76] dark:text-[#8b949e]">
+                  <p className="font-sans text-xs text-[#656d76] dark:text-[#8b949e]">
                     Hedef: <code>{s.target}</code> • Periyot: {s.frequency}
                   </p>
                 </div>
 
                 <div className="flex items-center gap-4">
                   <div className="text-right">
-                    <span className="font-mono text-xs font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+                    <span className="font-sans text-xs font-bold text-[#1f2328] dark:text-[#f0f6fc]">
                       +{s.ingestedToday} Vaka Bugün
                     </span>
-                    <span className="block font-mono text-[10px] text-[#1a7f37] dark:text-[#3fb950]">
+                    <span className="block font-sans text-[10px] text-[#1a7f37] dark:text-[#3fb950]">
                       %{s.successRate} Doğruluk
                     </span>
                   </div>
@@ -248,7 +248,7 @@ export default function DataMoatPage() {
                   <button
                     onClick={() => handleTriggerScraper(s.id)}
                     disabled={s.status === "CRAWLING"}
-                    className="flex items-center gap-1 rounded border border-[#d0d7de] bg-[#ffffff] px-2.5 py-1 font-mono text-xs text-[#1f2328] transition-colors hover:bg-[#f6f8fa] disabled:opacity-50 dark:border-[#30363d] dark:bg-[#21262d] dark:text-[#f0f6fc] dark:hover:bg-[#30363d]"
+                    className="flex items-center gap-1 rounded border border-[#d0d7de] bg-[#ffffff] px-2.5 py-1 font-sans text-xs text-[#1f2328] transition-colors hover:bg-[#f6f8fa] disabled:opacity-50 dark:border-[#30363d] dark:bg-[#21262d] dark:text-[#f0f6fc] dark:hover:bg-[#30363d]"
                   >
                     <Play className="h-3 w-3 text-[#1a7f37] dark:text-[#3fb950]" />
                     <span>Şimdi Tara</span>
@@ -262,11 +262,11 @@ export default function DataMoatPage() {
 
       {/* Ingestion Pipeline Visualization */}
       <div className="space-y-3 rounded-md border border-[#d0d7de] bg-[#ffffff] p-4 shadow-sm dark:border-[#30363d] dark:bg-[#161b22]">
-        <span className="flex items-center gap-2 font-mono text-xs font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+        <span className="flex items-center gap-2 font-sans text-xs font-bold text-[#1f2328] dark:text-[#f0f6fc]">
           <Sparkles className="h-4 w-4 text-[#8250df] dark:text-[#a371f7]" />4 Aşamalı Otonom Veri
           Zenginleştirme & Değerleme Hattı
         </span>
-        <div className="grid grid-cols-1 gap-3 pt-2 font-mono text-xs md:grid-cols-4">
+        <div className="grid grid-cols-1 gap-3 pt-2 font-sans text-xs md:grid-cols-4">
           <div className="space-y-1 rounded border border-[#d0d7de] bg-[#f6f8fa] p-3 dark:border-[#30363d] dark:bg-[#0d1117]">
             <span className="block text-[10px] font-bold text-[#0969da] dark:text-[#58a6ff]">
               ADIM 1: CRAWL & SCRAPE

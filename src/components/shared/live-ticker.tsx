@@ -18,21 +18,23 @@ export function LiveTicker() {
   const t = useTranslations("common");
   const locale = useLocale();
   const pathname = usePathname();
-  const isAdmin =
+  const isExcludedPage =
     pathname &&
     (/^\/(?:en|tr|[a-z]{2})\/admin(-v2)?(?:\/|$)/.test(pathname) ||
       pathname === "/admin" ||
       pathname.startsWith("/admin") ||
       pathname.includes("/admin-v2") ||
-      pathname.includes("/admin/"));
+      pathname.includes("/admin/") ||
+      pathname.includes("/auth/") ||
+      pathname.startsWith("/auth") ||
+      /^\/(?:en|tr|[a-z]{2})\/auth(?:\/|$)/.test(pathname));
 
   const [incidents, setIncidents] = useState<TickerIncident[]>([]);
   const [totalCount, setTotalCount] = useState(0);
 
   useEffect(() => {
-    if (isAdmin) return;
+    if (isExcludedPage) return;
     async function fetchTickerData() {
-      // Fetch latest verified incidents
       const { data: latest } = await supabase
         .from("incidents")
         .select(
@@ -46,7 +48,6 @@ export function LiveTicker() {
         setIncidents(latest as unknown as TickerIncident[]);
       }
 
-      // Fetch total verified count
       const { count } = await supabase
         .from("incidents")
         .select("id", { count: "exact", head: true })
@@ -58,15 +59,12 @@ export function LiveTicker() {
     }
 
     fetchTickerData();
-  }, [isAdmin]);
+  }, [isExcludedPage]);
 
-  if (isAdmin) {
+  if (isExcludedPage || incidents.length === 0) {
     return null;
   }
 
-  if (incidents.length === 0) return null;
-
-  // Resolve clean, professional provider label (never return "Bilinmiyor")
   const resolveProvider = (inc: TickerIncident) => {
     if (
       inc.ai_provider?.name &&
@@ -92,10 +90,8 @@ export function LiveTicker() {
     return locale === "tr" ? "Küresel YZ Gözlemi" : "Global AI Incident";
   };
 
-  // Resolve clean, professional title label
   const resolveTitle = (inc: TickerIncident) => {
     let title = inc.title_masked || "";
-    // Clean prefix tags
     title = title.replace(/^\[(?:HN|Reddit|Tech)\]\s*/i, "");
     if (!title) {
       return inc.category || (locale === "tr" ? "Doğrulanmış Olay" : "Verified Incident");
@@ -103,8 +99,8 @@ export function LiveTicker() {
     return title.length > 45 ? `${title.slice(0, 45)}…` : title;
   };
 
-  const renderTickerItems = () => (
-    <div className="flex shrink-0 items-center space-x-8 px-4">
+  const renderItems = (prefix: string) => (
+    <div className="flex shrink-0 items-center space-x-8 px-6">
       <span className="text-brand-400 flex items-center gap-2 font-bold tracking-wider uppercase">
         <span className="bg-brand-500 h-1.5 w-1.5 animate-pulse rounded-full" />
         {t("live_telemetry")}
@@ -114,7 +110,7 @@ export function LiveTicker() {
         const label = resolveTitle(inc);
         return (
           <Link
-            key={inc.id}
+            key={`${prefix}-${inc.id}`}
             href={`/incidents`}
             className="text-fg-secondary hover:text-brand-300 inline-flex items-center transition-colors"
           >
@@ -135,23 +131,24 @@ export function LiveTicker() {
   );
 
   return (
-    <div className="bg-brand-500/10 border-brand-500/20 relative flex w-full overflow-hidden border-b py-1.5 select-none">
-      <div className="animate-marquee flex w-max shrink-0 items-center text-[11px] font-medium tracking-wide whitespace-nowrap hover:[animation-play-state:paused]">
-        {renderTickerItems()}
-      </div>
-      <div
-        aria-hidden
-        className="animate-marquee flex w-max shrink-0 items-center text-[11px] font-medium tracking-wide whitespace-nowrap hover:[animation-play-state:paused]"
-      >
-        {renderTickerItems()}
+    <div className="bg-bg-secondary/90 border-brand-500/20 backdrop-blur-md relative flex h-7 w-full max-w-full overflow-x-hidden overflow-y-hidden border-b py-1 select-none">
+      <div className="animate-marquee-track flex w-max shrink-0 items-center text-[11px] font-medium tracking-wide whitespace-nowrap hover:[animation-play-state:paused]">
+        {renderItems("track1")}
+        {renderItems("track2")}
       </div>
       <style>{`
-        @keyframes alparMarquee {
+        @keyframes alparContinuousMarquee {
           0% { transform: translateX(0%); }
-          100% { transform: translateX(-100%); }
+          100% { transform: translateX(-50%); }
         }
-        .animate-marquee {
-          animation: alparMarquee 35s linear infinite;
+        .animate-marquee-track {
+          display: flex;
+          width: max-content;
+          will-change: transform;
+          animation: alparContinuousMarquee 45s linear infinite;
+        }
+        .animate-marquee-track:hover {
+          animation-play-state: paused;
         }
       `}</style>
     </div>

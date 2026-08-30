@@ -65,6 +65,10 @@ export default async function LocaleLayout({
   const pathname =
     headersList.get("x-pathname") || headersList.get("x-middleware-request-x-pathname") || "";
   const isEmbed = pathname.endsWith("/embed");
+  const isAuth =
+    pathname.includes("/auth/") ||
+    pathname.startsWith("/auth") ||
+    /^\/[a-z]{2}\/auth/.test(pathname);
   const isAdmin =
     pathname.includes("/admin") ||
     pathname.includes("/admin-v2") ||
@@ -72,9 +76,9 @@ export default async function LocaleLayout({
   const dir = locale === "ar" || locale === "fa" ? "rtl" : "ltr";
 
   return (
-    <html lang={locale} dir={dir} suppressHydrationWarning>
+    <html lang={locale} dir={dir} suppressHydrationWarning className="overflow-x-clip max-w-full">
       <head></head>
-      <body className="bg-bg-primary text-fg-primary relative min-h-screen w-full overflow-x-clip font-sans antialiased">
+      <body className="bg-bg-primary text-fg-primary relative min-h-screen w-full max-w-full overflow-x-clip font-sans antialiased">
         <a
           href="#main-content"
           className="bg-brand-500 sr-only text-white focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-md focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:outline-none"
@@ -84,11 +88,13 @@ export default async function LocaleLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <PostHogProvider>
             <NextIntlClientProvider messages={messages}>
-              {isEmbed || isAdmin ? (
-                <main className="m-0 min-h-screen w-full bg-transparent p-0">{children}</main>
+              {isEmbed || isAdmin || isAuth ? (
+                <main className="m-0 min-h-screen w-full max-w-full overflow-x-clip bg-transparent p-0">
+                  {children}
+                </main>
               ) : (
-                <div className="relative flex min-h-screen w-full flex-col overflow-x-clip pb-16 lg:pb-0">
-                  <div className="fixed top-0 right-0 left-0 z-[60]">
+                <div className="relative flex min-h-screen w-full max-w-full flex-col overflow-x-clip pb-16 lg:pb-0">
+                  <div className="fixed top-0 right-0 left-0 z-[60] w-full max-w-full overflow-hidden">
                     <LiveTicker />
                   </div>
                   <div className="mt-8">
@@ -98,9 +104,9 @@ export default async function LocaleLayout({
                   <Footer />
                 </div>
               )}
-              {!isEmbed && !isAdmin && <MobileBottomNav />}
+              {!isEmbed && !isAdmin && !isAuth && <MobileBottomNav />}
               <ClientProviders />
-              {!isEmbed && !isAdmin && <ScrollToTop />}
+              {!isEmbed && !isAdmin && !isAuth && <ScrollToTop />}
               <PwaRegister />
               <OrganizationJsonLd />
               <SoftwareApplicationJsonLd />

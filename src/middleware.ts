@@ -152,12 +152,11 @@ export async function middleware(request: NextRequest) {
     const user = sessionResult.user;
     const supabase = sessionResult.supabase;
 
-    // Fast-path unauthenticated redirect for admin routes (production security enforcement)
+    // Fast-path unauthenticated redirect for admin routes (zero-trust security enforcement)
     if (
       isAdminPath &&
       !pathname.startsWith("/api/") &&
-      !isTestAuthBypassActive() &&
-      process.env.NODE_ENV === "production"
+      !isTestAuthBypassActive()
     ) {
       const urlLocale = request.nextUrl.pathname.match(/^\/(en|tr)\b/)?.[1];
       const locale = urlLocale || request.cookies.get("NEXT_LOCALE")?.value || "en";
@@ -171,7 +170,15 @@ export async function middleware(request: NextRequest) {
       } else {
         const { data } = await supabase.from("users").select("role").eq("id", user.id).single();
         const role = data?.role || user.user_metadata?.role || "user";
-        if (role !== "admin" && role !== "ceo" && role !== "moderator" && role !== "advisor") {
+        
+        // Strict Executive Role-Based Access Control for autonomous company panel
+        const isAutonomousCompanyPath = pathname.includes("/admin/autonomous-company");
+        if (isAutonomousCompanyPath) {
+          if (role !== "admin" && role !== "ceo") {
+            const redirectRes = NextResponse.redirect(new URL(`/${locale}/`, request.url));
+            return applySecurityHeaders(redirectRes, request, requestId);
+          }
+        } else if (role !== "admin" && role !== "ceo" && role !== "moderator" && role !== "advisor") {
           const redirectRes = NextResponse.redirect(new URL(`/${locale}/`, request.url));
           return applySecurityHeaders(redirectRes, request, requestId);
         }

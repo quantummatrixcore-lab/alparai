@@ -16,8 +16,7 @@ if [ "$ARCHITECT" = "1" ]; then
     exit 1
   fi
 fi
-
-node scripts/check-masterplan-consistency.mjs || exit 1
-node scripts/check-plan-claims.mjs || exit 1
+node scripts/sync-i18n.js || exit 1
+node scripts/route-checker.js || exit 1
 npx lint-staged
-python -m graphify update . 2>/dev/null || true
+

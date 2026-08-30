@@ -81,9 +81,10 @@ describe("Auth Callback Route Handler", () => {
     await GET(req);
 
     const clientCall = vi.mocked(createServerClient).mock.calls[0];
-    const cookieConfig = clientCall[2].cookies;
+    expect(clientCall).toBeDefined();
+    const cookieConfig = clientCall![2].cookies;
     expect(cookieConfig).toBeDefined();
-    expect(typeof cookieConfig.getAll).toBe("function");
-    expect(typeof cookieConfig.setAll).toBe("function");
+    expect(typeof cookieConfig?.getAll).toBe("function");
+    expect(typeof cookieConfig?.setAll).toBe("function");
   });
 });

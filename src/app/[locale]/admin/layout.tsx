@@ -22,11 +22,13 @@ export default async function AdminV2Layout({
 
   if (!user) {
     redirect({ href: "/auth/signin?returnTo=/admin", locale });
+    return null;
   }
 
   const userRole = user.role;
-  if (userRole !== "admin" && userRole !== "ceo" && userRole !== "moderator" && userRole !== "advisor") {
+  if (userRole !== "admin" && userRole !== "ceo" && userRole !== "moderator") {
     redirect({ href: "/", locale });
+    return null;
   }
 
   return (

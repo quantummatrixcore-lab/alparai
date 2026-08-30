@@ -20,15 +20,17 @@ export default async function AutonomousCompanyPage({
   const user = await getCurrentUser();
   if (!user) {
     redirect({ href: "/auth/signin?returnTo=/admin/autonomous-company", locale });
+    return null;
   }
 
   // Strict Executive RBAC Gate: Only admin and ceo roles permitted
   if (user.role !== "admin" && user.role !== "ceo") {
     redirect({ href: "/", locale });
+    return null;
   }
 
   return (
-    <div className="min-h-screen bg-bg-primary text-fg-primary py-6">
+    <div className="bg-bg-primary text-fg-primary min-h-screen py-6">
       <AutonomousCompanyCanvas />
     </div>
   );

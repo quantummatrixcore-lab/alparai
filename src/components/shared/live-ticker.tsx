@@ -42,7 +42,7 @@ export function LiveTicker() {
         )
         .eq("status", "published")
         .order("created_at", { ascending: false })
-        .limit(6);
+        .limit(8);
 
       if (latest && latest.length > 0) {
         setIncidents(latest as unknown as TickerIncident[]);
@@ -92,19 +92,31 @@ export function LiveTicker() {
 
   const resolveTitle = (inc: TickerIncident) => {
     let title = inc.title_masked || "";
-    title = title.replace(/^\[(?:HN|Reddit|Tech)\]\s*/i, "");
+    title = title.replace(/^\[(?:HN|Reddit|Tech|The Register)\]\s*/i, "");
     if (!title) {
       return inc.category || (locale === "tr" ? "Doğrulanmış Olay" : "Verified Incident");
     }
-    return title.length > 45 ? `${title.slice(0, 45)}…` : title;
+    return title.length > 55 ? `${title.slice(0, 55)}…` : title;
+  };
+
+  const getProviderBadgeStyle = (provider: string) => {
+    const p = provider.toLowerCase();
+    if (p.includes("openai") || p.includes("chatgpt"))
+      return "bg-emerald-500/15 text-emerald-300 border-emerald-500/30";
+    if (p.includes("anthropic") || p.includes("claude"))
+      return "bg-amber-500/15 text-amber-300 border-amber-500/30";
+    if (p.includes("google") || p.includes("gemini"))
+      return "bg-blue-500/15 text-blue-300 border-blue-500/30";
+    if (p.includes("meta") || p.includes("llama"))
+      return "bg-indigo-500/15 text-indigo-300 border-indigo-500/30";
+    if (p.includes("deepseek")) return "bg-cyan-500/15 text-cyan-300 border-cyan-500/30";
+    if (p.includes("xai") || p.includes("grok"))
+      return "bg-rose-500/15 text-rose-300 border-rose-500/30";
+    return "bg-zinc-500/15 text-zinc-300 border-zinc-500/30";
   };
 
   const renderItems = (prefix: string) => (
-    <div className="flex shrink-0 items-center space-x-8 px-6">
-      <span className="text-brand-400 flex items-center gap-2 font-bold tracking-wider uppercase">
-        <span className="bg-brand-500 h-1.5 w-1.5 animate-pulse rounded-full" />
-        {t("live_telemetry")}
-      </span>
+    <div className="flex shrink-0 items-center gap-3.5 px-3">
       {incidents.map((inc) => {
         const providerName = resolveProvider(inc);
         const label = resolveTitle(inc);
@@ -112,30 +124,62 @@ export function LiveTicker() {
           <Link
             key={`${prefix}-${inc.id}`}
             href={`/incidents`}
-            className="text-fg-secondary hover:text-brand-300 inline-flex items-center transition-colors"
+            className="group flex shrink-0 items-center gap-2.5 rounded-lg border border-white/[0.08] bg-zinc-900/90 px-3 py-1 text-xs shadow-sm transition-all hover:border-cyan-500/40 hover:bg-zinc-800/90"
           >
-            <span className="text-fg-primary font-semibold">{providerName}</span>
-            <span className="text-fg-muted mx-1.5">—</span>
-            <span>{label}</span>
-            <span className="text-fg-muted ml-1">#{inc.id.substring(0, 8)}</span>
-            <span className="text-brand-400 bg-brand-500/10 border-brand-500/20 ml-2 rounded-full border px-1.5 py-0.5 text-[9px] font-bold">
+            <span
+              className={`rounded border px-1.5 py-0.5 font-mono text-[10px] font-bold tracking-wide uppercase ${getProviderBadgeStyle(
+                providerName,
+              )}`}
+            >
+              {providerName}
+            </span>
+            <span className="max-w-md font-medium text-zinc-200 transition-colors group-hover:text-cyan-300">
+              {label}
+            </span>
+            <span className="font-mono text-[10px] font-semibold text-zinc-400">
+              #{inc.id.substring(0, 8)}
+            </span>
+            <span className="inline-flex items-center gap-1 rounded border border-emerald-500/30 bg-emerald-500/10 px-1.5 py-0.5 text-[9px] font-semibold text-emerald-400">
+              <svg
+                className="h-2.5 w-2.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3"
+              >
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
               {t("verified_badge", { defaultValue: "Doğrulandı" })}
             </span>
           </Link>
         );
       })}
-      <span className="text-fg-muted font-medium">
-        • {totalCount} {t("total_cases", { defaultValue: "Toplam Vaka" })}
-      </span>
     </div>
   );
 
   return (
-    <div className="bg-bg-secondary/90 border-brand-500/20 backdrop-blur-md relative flex h-7 w-full max-w-full overflow-x-hidden overflow-y-hidden border-b py-1 select-none">
-      <div className="animate-marquee-track flex w-max shrink-0 items-center text-[11px] font-medium tracking-wide whitespace-nowrap hover:[animation-play-state:paused]">
+    <div className="relative flex h-8 w-full max-w-full items-center overflow-hidden border-y border-white/[0.08] bg-zinc-950/95 backdrop-blur-md select-none">
+      {/* Fixed Left Corporate Brand Anchor */}
+      <div className="z-20 flex h-full shrink-0 items-center gap-2 border-r border-white/10 bg-zinc-950 px-3.5 shadow-lg">
+        <span className="relative flex h-2 w-2">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+        </span>
+        <span className="font-mono text-[10px] font-bold tracking-wider text-zinc-200 uppercase">
+          {locale === "tr" ? "CANLI RADAR" : "LIVE RADAR"}
+        </span>
+      </div>
+
+      {/* Gradient Fade Masks */}
+      <div className="pointer-events-none absolute top-0 bottom-0 left-[125px] z-10 w-12 bg-gradient-to-r from-zinc-950 to-transparent" />
+      <div className="pointer-events-none absolute top-0 right-0 bottom-0 z-10 w-16 bg-gradient-to-l from-zinc-950 to-transparent" />
+
+      {/* Marquee Track */}
+      <div className="animate-marquee-track flex w-max shrink-0 items-center hover:[animation-play-state:paused]">
         {renderItems("track1")}
         {renderItems("track2")}
       </div>
+
       <style>{`
         @keyframes alparContinuousMarquee {
           0% { transform: translateX(0%); }
@@ -145,7 +189,7 @@ export function LiveTicker() {
           display: flex;
           width: max-content;
           will-change: transform;
-          animation: alparContinuousMarquee 45s linear infinite;
+          animation: alparContinuousMarquee 40s linear infinite;
         }
         .animate-marquee-track:hover {
           animation-play-state: paused;

@@ -1,43 +1,71 @@
-<svg viewBox="0 0 320 80" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 340 90" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="alpar-text-grad-alpar" x1="0%" y1="0%" x2="100%" y2="0%">
+    <!-- Text Gradients -->
+    <linearGradient id="alpar-brand-text-alpar" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#ffffff" />
-      <stop offset="70%" stop-color="#f1f5f9" />
-      <stop offset="100%" stop-color="#e2e8f0" />
+      <stop offset="60%" stop-color="#f8fafc" />
+      <stop offset="100%" stop-color="#cbd5e1" />
     </linearGradient>
-    <linearGradient id="alpar-text-grad-ai" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#67e8f9" />
-      <stop offset="100%" stop-color="#a855f7" />
+    <linearGradient id="alpar-brand-text-ai" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#a855f7" />
+      <stop offset="100%" stop-color="#ec4899" />
     </linearGradient>
-    <linearGradient id="alpar-wm-shield-left" x1="20" y1="12" x2="50" y2="88" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#d946ef" />
-      <stop offset="50%" stop-color="#8b5cf6" />
-      <stop offset="100%" stop-color="#3b82f6" />
+
+    <!-- Shield Left Facet -->
+    <linearGradient id="alpar-svg-wing-left" x1="15" y1="12" x2="50" y2="90" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#c084fc" />
+      <stop offset="40%" stop-color="#9333ea" />
+      <stop offset="100%" stop-color="#4f46e5" />
     </linearGradient>
-    <linearGradient id="alpar-wm-shield-right" x1="80" y1="12" x2="50" y2="88" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#22d3ee" />
-      <stop offset="60%" stop-color="#0284c7" />
-      <stop offset="100%" stop-color="#0f172a" />
+
+    <!-- Shield Right Facet -->
+    <linearGradient id="alpar-svg-wing-right" x1="85" y1="12" x2="50" y2="90" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#1e1b4b" />
     </linearGradient>
-    <linearGradient id="alpar-wm-core" x1="50" y1="36" x2="50" y2="64" gradientUnits="userSpaceOnUse">
+
+    <!-- Monogram 'A' Core Apex -->
+    <linearGradient id="alpar-svg-core-beam" x1="30" y1="30" x2="70" y2="70" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#a855f7" />
+      <stop offset="100%" stop-color="#ec4899" />
+    </linearGradient>
+
+    <!-- Starburst Core -->
+    <linearGradient id="alpar-svg-spark" x1="45" y1="45" x2="55" y2="55" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#ffffff" />
-      <stop offset="100%" stop-color="#a855f7" />
+      <stop offset="100%" stop-color="#c084fc" />
     </linearGradient>
+
+    <filter id="alpar-svg-bloom" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
   </defs>
 
-  <g transform="translate(10, 8) scale(0.64)">
-    <path d="M 50,12 L 20,25 V 50 C 20,70 38,83 50,88 Z" fill="url(#alpar-wm-shield-left)" fill-opacity="0.95" />
-    <path d="M 50,12 L 80,25 V 50 C 80,70 62,83 50,88 Z" fill="url(#alpar-wm-shield-right)" fill-opacity="0.85" />
-    <path d="M 50,18 L 26,29 V 49 C 26,65 40,76 50,81 V 18" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.25" stroke-linecap="round" />
-    <path d="M 50,36 L 62,50 L 50,64 L 38,50 Z" fill="url(#alpar-wm-core)" />
-    <path d="M 50,42 L 52.5,47.5 L 58,50 L 52.5,52.5 L 50,58 L 47.5,52.5 L 42,50 L 47.5,47.5 Z" fill="#ffffff" />
+  <!-- Left Icon Emblem -->
+  <g transform="translate(10, 8) scale(0.8)">
+    <path d="M 50,8 L 16,24 V 52 C 16,73 34,88 50,94 V 58 L 32,58 L 50,22 Z" fill="url(#alpar-svg-wing-left)" fill-opacity="0.95" />
+    <path d="M 50,8 L 84,24 V 52 C 84,73 66,88 50,94 V 58 L 68,58 L 50,22 Z" fill="url(#alpar-svg-wing-right)" fill-opacity="0.9" />
+    <path d="M 50,22 L 64,52 H 36 L 50,22 Z" fill="url(#alpar-svg-core-beam)" fill-opacity="0.85" filter="url(#alpar-svg-bloom)" />
+    <path d="M 50,33 L 57,48 H 43 L 50,33 Z" fill="#0b0f19" />
+    <rect x="28" y="55" width="44" height="4.5" rx="2.25" fill="#ffffff" fill-opacity="0.95" filter="url(#alpar-svg-bloom)" />
+    <path d="M 50,44 L 51.8,48.2 L 56,50 L 51.8,51.8 L 50,56 L 48.2,51.8 L 44,50 L 48.2,48.2 Z" fill="url(#alpar-svg-spark)" filter="url(#alpar-svg-bloom)" />
   </g>
 
-  <text x="82" y="47" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="900" letter-spacing="-0.5px">
-    <tspan fill="url(#alpar-text-grad-alpar)">ALPAR </tspan>
-    <tspan fill="url(#alpar-text-grad-ai)">AI</tspan>
+  <!-- Typography: ALPAR AI -->
+  <text x="96" y="52" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="900" letter-spacing="-0.5px">
+    <tspan fill="url(#alpar-brand-text-alpar)">ALPAR </tspan>
+    <tspan fill="url(#alpar-brand-text-ai)">AI</tspan>
   </text>
-  <text x="84" y="62" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="700" fill="#94a3b8" letter-spacing="2.5px">
-    GLOBAL AI INCIDENT RADAR
+  
+  <!-- Subtitle Tagline -->
+  <text x="98" y="68" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" font-weight="700" fill="#94a3b8" letter-spacing="2.2px">
+    INDEPENDENT AI INCIDENT REGISTRY
   </text>
 </svg>

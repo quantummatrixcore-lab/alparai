@@ -4,6 +4,7 @@ import { Link, usePathname } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { Menu, X, Plus } from "lucide-react";
 import { Wordmark } from "./wordmark";
 import { LanguageSwitcher } from "./language-switcher";
@@ -44,12 +45,17 @@ export function MobileNav({
   } | null;
 }) {
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const t = useTranslations("nav");
   const tCommon = useTranslations("common");
 
   const isMod = user && (user.role === "moderator" || user.role === "admin" || user.role === "ceo");
   const activeLinks = isMod ? [...links, { href: "/admin", key: "admin" } as const] : links;
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (open) {
@@ -71,17 +77,6 @@ export function MobileNav({
     setOpen(false);
   }, [pathname]);
 
-  useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
-
   return (
     <div className="lg:hidden">
       <button
@@ -93,10 +88,10 @@ export function MobileNav({
       >
         <Menu className="h-5 w-5" />
       </button>
-      {open && (
+      {open && mounted && createPortal(
         <div
           id="mobile-nav-panel"
-          className="fixed inset-0 z-[99999] flex min-h-screen w-screen flex-col bg-[#070e17] text-white pointer-events-auto shadow-2xl"
+          className="fixed inset-0 z-[999999] flex min-h-screen w-screen flex-col bg-[#070e17] text-white pointer-events-auto shadow-2xl overflow-hidden"
           role="dialog"
           aria-modal="true"
           aria-label={tCommon("openMenu")}
@@ -157,7 +152,8 @@ export function MobileNav({
               <LanguageSwitcher direction="up" />
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

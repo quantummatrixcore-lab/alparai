@@ -49,6 +49,7 @@ const topLevelItems: NavItem[] = [
     icon: Scale,
   },
   { href: "/ai-act", labelKey: "ai_act", icon: ShieldCheck },
+  { href: "/academy", labelKey: "academy", icon: GraduationCap },
 ];
 
 const navGroups: NavGroup[] = [
@@ -62,7 +63,6 @@ const navGroups: NavGroup[] = [
       { href: "/products/datasets", labelKey: "datasets", icon: BarChart3 },
       { href: "/products/browser-extension", labelKey: "browser_extension", icon: Eye },
       { href: "/products/eu-ai-act", labelKey: "eu_ai_act", icon: Scale },
-      { href: "/academy", labelKey: "academy", icon: GraduationCap },
       { href: "/enterprise", labelKey: "enterprise", icon: Building },
     ],
   },

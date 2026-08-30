@@ -17,15 +17,15 @@ export function ScrollToTop() {
       type="button"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       className={cn(
-        "fixed right-6 bottom-6 z-40 flex h-10 w-10 items-center justify-center rounded-full",
-        "bg-bg-elevated border-border-strong text-fg-primary border",
-        "hover:border-brand-500 hover:text-brand-400",
+        "fixed right-4 bottom-20 z-30 flex h-9 w-9 items-center justify-center rounded-full sm:right-6 sm:bottom-6 sm:h-10 sm:w-10",
+        "bg-bg-elevated border-border-strong text-fg-primary border shadow-2xl backdrop-blur-md",
+        "hover:border-brand-500 hover:text-brand-400 hover:scale-105 active:scale-95",
         "focus-visible:ring-brand-500 focus-visible:ring-offset-bg-primary focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
-        "shadow-xl transition-all",
+        "transition-all",
       )}
       aria-label="Scroll to top"
     >
-      <ChevronDown className="h-5 w-5 rotate-180" aria-hidden="true" />
+      <ChevronDown className="h-4 w-4 rotate-180 sm:h-5 sm:w-5" aria-hidden="true" />
     </button>
   );
 }

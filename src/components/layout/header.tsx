@@ -36,8 +36,8 @@ export function Header({
     return null;
   }
   return (
-    <div className="pointer-events-none fixed top-8 z-[100] flex w-full justify-center p-4 sm:p-6">
-      <header className="bg-glass hover:border-brand-500/20 pointer-events-auto flex h-14 w-full max-w-[1400px] items-center justify-between gap-2 rounded-full px-4 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] transition-all duration-500 hover:shadow-[0_8px_32px_rgba(168,85,247,0.15)] xl:gap-4">
+    <div className="pointer-events-none fixed top-8 z-[100] flex w-full justify-center px-3 py-2 sm:p-6">
+      <header className="bg-[#0A1622]/95 hover:border-brand-500/30 border border-white/10 pointer-events-auto flex h-13 sm:h-14 w-full max-w-[1400px] items-center justify-between gap-2 rounded-full px-3.5 sm:px-4 shadow-[0_12px_40px_rgba(0,0,0,0.6)] backdrop-blur-2xl transition-all duration-500 hover:shadow-[0_8px_32px_rgba(168,85,247,0.25)] xl:gap-4">
         <div className="flex min-w-0 items-center gap-2 xl:gap-4 2xl:gap-8">
           <Link
             href="/"

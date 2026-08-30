@@ -3,27 +3,28 @@
 import * as React from "react";
 import { Link, usePathname } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
-import { useTranslations } from "next-intl";
-import { Activity, FileText, Plus, Trophy, Info } from "lucide-react";
+import { useLocale } from "next-intl";
+import { Activity, FileText, Plus, Trophy, Scale } from "lucide-react";
 
 interface NavItem {
   href: string;
-  key: string;
+  labelTr: string;
+  labelEn: string;
   icon: React.ComponentType<{ className?: string }>;
   isAction?: boolean;
 }
 
 const navItems: NavItem[] = [
-  { href: "/feed", key: "feed", icon: Activity },
-  { href: "/incidents", key: "incidents", icon: FileText },
-  { href: "/submit", key: "report", icon: Plus, isAction: true },
-  { href: "/leaderboard", key: "leaderboard", icon: Trophy },
-  { href: "/about", key: "about", icon: Info },
+  { href: "/feed", labelTr: "Akış", labelEn: "Feed", icon: Activity },
+  { href: "/incidents", labelTr: "Olaylar", labelEn: "Incidents", icon: FileText },
+  { href: "/submit", labelTr: "Bildir", labelEn: "Report", icon: Plus, isAction: true },
+  { href: "/leaderboard", labelTr: "Liderlik", labelEn: "Ranks", icon: Trophy },
+  { href: "/dilemmas", labelTr: "İkilemler", labelEn: "Dilemmas", icon: Scale },
 ];
 
 export function MobileBottomNav() {
   const pathname = usePathname();
-  const t = useTranslations("nav");
+  const locale = useLocale();
   const isAdmin =
     pathname &&
     (/^\/(?:en|tr|[a-z]{2})\/admin(-v2)?(?:\/|$)/.test(pathname) ||
@@ -37,18 +38,19 @@ export function MobileBottomNav() {
   }
 
   return (
-    <div className="bg-bg-secondary/90 border-border-subtle safe-bottom fixed right-0 bottom-0 left-0 z-40 flex items-center justify-around border-t px-4 py-2 shadow-2xl backdrop-blur-md lg:hidden">
+    <div className="bg-[#0A1622]/95 border-border-subtle/60 safe-bottom fixed right-0 bottom-0 left-0 z-40 flex items-center justify-around border-t px-2 py-1.5 shadow-[0_-8px_30px_rgba(0,0,0,0.5)] backdrop-blur-xl lg:hidden">
       {navItems.map((item) => {
         const Icon = item.icon;
         const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+        const label = locale === "tr" ? item.labelTr : item.labelEn;
 
         if (item.isAction) {
           return (
             <Link
               key={item.href}
               href={item.href}
-              className="bg-brand-500 hover:bg-brand-400 border-brand-400/20 z-50 -mt-6 flex h-12 w-12 flex-col items-center justify-center rounded-full border text-white shadow-lg transition-transform hover:scale-105 active:scale-95"
-              aria-label={t(item.key)}
+              className="bg-brand-500 hover:bg-brand-400 border-brand-400/30 z-50 -mt-5 flex h-12 w-12 flex-col items-center justify-center rounded-full border text-white shadow-[0_0_20px_rgba(168,85,247,0.4)] transition-transform hover:scale-105 active:scale-95"
+              aria-label={label}
             >
               <Icon className="h-6 w-6" />
             </Link>
@@ -60,15 +62,15 @@ export function MobileBottomNav() {
             key={item.href}
             href={item.href}
             className={cn(
-              "flex min-h-[44px] min-w-[44px] flex-col items-center justify-center gap-0.5 rounded-xl px-3 py-1 transition-all duration-300",
+              "flex min-h-[44px] min-w-[48px] flex-col items-center justify-center gap-0.5 rounded-xl px-2 py-1 transition-all duration-300",
               isActive
-                ? "text-brand-400 bg-brand-500/5 font-bold"
+                ? "text-brand-400 bg-brand-500/10 font-bold"
                 : "text-fg-secondary hover:text-fg-primary",
             )}
           >
-            <Icon className="h-5 w-5" />
-            <span className="text-[9px] font-semibold tracking-wider uppercase">
-              {t(item.key).split(" ")[0]} {/* keep label brief */}
+            <Icon className={cn("h-5 w-5", isActive && "text-brand-400")} />
+            <span className="text-[10px] font-bold tracking-tight">
+              {label}
             </span>
           </Link>
         );

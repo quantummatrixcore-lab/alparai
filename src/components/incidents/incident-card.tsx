@@ -258,22 +258,22 @@ export function IncidentCard({
           {/* Modern Corporate Card Footer */}
           <div className="border-border-subtle/50 text-fg-muted mt-5 flex flex-col gap-3.5 border-t pt-3.5">
             {/* Action Bar: Date, Reaction & Comment Buttons, and Provenance */}
-            <div className="flex flex-wrap items-center justify-between gap-2.5">
-              <div className="flex flex-wrap items-center gap-2">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
                 {/* Date Badge */}
-                <span className="text-fg-muted bg-white/5 border-border-subtle/50 inline-flex items-center gap-1.5 rounded-md border px-2 py-1 text-[11px] font-medium select-none shadow-2xs">
-                  <Clock className="h-3.5 w-3.5 text-fg-muted/70 shrink-0" aria-hidden="true" />
+                <span className="text-fg-muted bg-white/5 border-border-subtle/50 inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[10px] sm:text-[11px] font-medium select-none shadow-2xs">
+                  <Clock className="h-3 w-3 text-fg-muted/70 shrink-0" aria-hidden="true" />
                   <span className="whitespace-nowrap">{formatDate(new Date(incident.incident_date), locale)}</span>
                 </span>
 
                 {/* Ben de Yaşadım */}
                 <Link
                   href={`/incidents/${incident.id}#affected`}
-                  className="text-fg-secondary hover:text-white hover:border-brand-500/50 hover:bg-brand-500/15 active:scale-[0.97] border-border-subtle/60 inline-flex cursor-pointer items-center gap-1.5 rounded-md border bg-white/5 px-2.5 py-1 text-xs font-semibold transition-all select-none shadow-2xs hover:shadow-[0_0_12px_rgba(168,85,247,0.25)]"
+                  className="text-fg-secondary hover:text-white hover:border-brand-500/50 hover:bg-brand-500/15 active:scale-[0.97] border-border-subtle/60 inline-flex cursor-pointer items-center gap-1 sm:gap-1.5 rounded-md border bg-white/5 px-2 sm:px-2.5 py-1 text-[11px] sm:text-xs font-semibold transition-all select-none shadow-2xs hover:shadow-[0_0_12px_rgba(168,85,247,0.25)]"
                 >
-                  <ThumbsUp className="h-3.5 w-3.5 text-brand-400 shrink-0" aria-hidden="true" />
+                  <ThumbsUp className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-brand-400 shrink-0" aria-hidden="true" />
                   <span className="whitespace-nowrap">{t("me_too", { defaultValue: "Ben de Yaşadım" })}</span>
-                  <span className="rounded bg-white/10 px-1.5 py-0.5 text-[10px] font-bold text-fg-primary">
+                  <span className="rounded bg-white/10 px-1.5 py-0.2 text-[9px] sm:text-[10px] font-bold text-fg-primary">
                     {incident.vote_count}
                   </span>
                 </Link>
@@ -281,18 +281,18 @@ export function IncidentCard({
                 {/* Yorum Yap */}
                 <Link
                   href={`/incidents/${incident.id}#comments`}
-                  className="text-fg-secondary hover:text-white hover:border-accent-500/50 hover:bg-accent-500/15 active:scale-[0.97] border-border-subtle/60 inline-flex cursor-pointer items-center gap-1.5 rounded-md border bg-white/5 px-2.5 py-1 text-xs font-semibold transition-all select-none shadow-2xs hover:shadow-[0_0_12px_rgba(6,182,212,0.25)]"
+                  className="text-fg-secondary hover:text-white hover:border-accent-500/50 hover:bg-accent-500/15 active:scale-[0.97] border-border-subtle/60 inline-flex cursor-pointer items-center gap-1 sm:gap-1.5 rounded-md border bg-white/5 px-2 sm:px-2.5 py-1 text-[11px] sm:text-xs font-semibold transition-all select-none shadow-2xs hover:shadow-[0_0_12px_rgba(6,182,212,0.25)]"
                 >
-                  <MessageSquare className="h-3.5 w-3.5 text-accent-400 shrink-0" aria-hidden="true" />
+                  <MessageSquare className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-accent-400 shrink-0" aria-hidden="true" />
                   <span className="whitespace-nowrap">{t("comment_action", { defaultValue: "Yorum Yap" })}</span>
-                  <span className="rounded bg-white/10 px-1.5 py-0.5 text-[10px] font-bold text-fg-primary">
+                  <span className="rounded bg-white/10 px-1.5 py-0.2 text-[9px] sm:text-[10px] font-bold text-fg-primary">
                     {incident.evidence_count}
                   </span>
                 </Link>
               </div>
 
               {/* Author / Provenance Tag */}
-              <span className="border-border-subtle/50 text-fg-muted bg-white/5 inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 text-[11px] font-medium tracking-wide whitespace-nowrap self-start sm:self-auto shadow-2xs">
+              <span className="border-border-subtle/50 text-fg-muted bg-white/5 inline-flex items-center gap-1 sm:gap-1.5 rounded-md border px-2 sm:px-2.5 py-1 text-[10px] sm:text-[11px] font-medium tracking-wide whitespace-nowrap self-start sm:self-auto shadow-2xs">
                 <User className="h-3 w-3 text-fg-muted/60 shrink-0" aria-hidden="true" />
                 <span className="text-fg-muted/70">{locale === "tr" ? "Bildiren:" : "By:"}</span>
                 <span className="text-fg-secondary font-semibold">

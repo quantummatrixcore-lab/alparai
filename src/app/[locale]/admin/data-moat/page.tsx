@@ -17,6 +17,7 @@ import {
   Check,
 } from "lucide-react";
 import { MetricCard } from "@/components/admin-core/metric-card";
+import { CANONICAL_INCIDENT_COUNT } from "@/lib/constants";
 
 interface ScraperSource {
   id: string;
@@ -79,7 +80,7 @@ export default function DataMoatPage() {
 
   const [isTriggeringAll, setIsTriggeringAll] = useState(false);
   const [activeCrawlerLog, setActiveCrawlerLog] = useState<string | null>(null);
-  const [totalIncidentCount, setTotalIncidentCount] = useState<number>(2763);
+  const [totalIncidentCount, setTotalIncidentCount] = useState<number>(CANONICAL_INCIDENT_COUNT);
 
   const handleTriggerScraper = (id: string) => {
     setScrapers((prev) => prev.map((s) => (s.id === id ? { ...s, status: "CRAWLING" } : s)));
@@ -112,7 +113,7 @@ export default function DataMoatPage() {
       );
       setTotalIncidentCount((c) => c + 60);
       setActiveCrawlerLog(
-        "Tam tarama döngüsü tamamlandı: 60 yeni olay doğrulandı, vektörleştirildi ve 2.763 tabanına eklendi.",
+        `Tam tarama döngüsü tamamlandı: 60 yeni olay doğrulandı, vektörleştirildi ve ${CANONICAL_INCIDENT_COUNT.toLocaleString("tr-TR")} tabanına eklendi.`,
       );
     }, 2400);
   };

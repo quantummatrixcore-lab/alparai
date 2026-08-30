@@ -1,9 +1,16 @@
-import { createServerClient } from "@/lib/supabase/server";
-import { getTranslations } from "next-intl/server";
+export const revalidate = 3600; // 1-hour ISR Edge CDN cache
+
+import { setRequestLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
+import { createClient as createSupabaseClient } from "@supabase/supabase-js";
+import type { Database } from "@/types/database";
 import { constructPageMetadata } from "@/lib/seo/metadata";
 import { AboutPageJsonLd, BreadcrumbJsonLd } from "@/components/seo/json-ld";
 import { APP_URL } from "@/lib/constants";
+
+export function generateStaticParams() {
+  return [{ locale: "tr" }, { locale: "en" }];
+}
 
 interface CommitteeMember {
   id: string;
@@ -25,21 +32,38 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   });
 }
 
+function getPublicSupabase() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://placeholder.supabase.co";
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "placeholder-anon-key";
+  return createSupabaseClient<Database>(supabaseUrl, supabaseAnonKey, {
+    auth: {
+      persistSession: false,
+      autoRefreshToken: false,
+    },
+  });
+}
+
 export default async function MethodologyCommitteePage({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "about_methodology_committee" });
-  const supabase = await createServerClient();
+  let typedMembers: CommitteeMember[] = [];
 
-  const { data: members } = await supabase
-    .from("methodology_committee_members" as unknown as "incidents")
-    .select("id, name, institution, role, avatar_url, joined_at")
-    .order("name", { ascending: true });
+  try {
+    const supabase = getPublicSupabase();
+    const { data: members } = await supabase
+      .from("methodology_committee_members" as unknown as "incidents")
+      .select("id, name, institution, role, avatar_url, joined_at")
+      .order("name", { ascending: true });
 
-  const typedMembers = (members || []) as unknown as CommitteeMember[];
+    typedMembers = ((members || []) as unknown as CommitteeMember[]);
+  } catch (err) {
+    console.error("[MethodologyCommitteePage] Failed to fetch members:", err);
+  }
 
   return (
     <div className="bg-bg-primary relative min-h-screen overflow-hidden pt-6 pb-20 md:pt-10">

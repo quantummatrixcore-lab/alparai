@@ -5,6 +5,12 @@ on:
     - cron: "0 9 * * 1" # Every Monday at 09:00 UTC
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions: read-all
+
 jobs:
   multi-model-audit:
     runs-on: ubuntu-latest

@@ -484,7 +484,7 @@ async function LeaderboardDataContent({
                               className="text-fg-primary hover:text-brand-400 group flex items-center gap-3 font-medium transition-colors"
                             >
                               <div className="border-border-subtle bg-bg-primary relative h-10 w-10 shrink-0 overflow-hidden rounded-md border shadow-sm transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_0_15px_rgba(231,76,60,0.3)]">
-                                <ProviderLogo src={p.logo_url} name={p.name} size="sm" />
+                                <ProviderLogo src={p.logo_url} name={p.name} slug={p.slug} size="sm" />
                               </div>
                               <span className="text-fg-primary">{p.name}</span>
                               {p.is_verified_respondent && (

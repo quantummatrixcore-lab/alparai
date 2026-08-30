@@ -3,6 +3,10 @@ name: Post-Deploy Smoke Test
 on:
   deployment_status: {}
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
   deployments: read

@@ -8,6 +8,8 @@ import { useTranslations } from "next-intl";
 import type { LeaderboardEntry } from "@/types";
 import { motion, type Variants } from "framer-motion";
 
+import { ProviderLogo } from "@/components/leaderboard/provider-logo";
+
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -71,11 +73,14 @@ export function LeaderboardPreview({ entries }: { entries: LeaderboardEntry[] })
                   >
                     {i + 1}
                   </span>
+                  <div className="border-border-subtle bg-bg-primary relative h-8 w-8 shrink-0 overflow-hidden rounded-lg border shadow-sm">
+                    <ProviderLogo name={e.provider_name} slug={e.provider_slug} size="sm" />
+                  </div>
                   <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-1.5">
                       <Link
                         href={`/press-kit/${e.provider_slug}`}
-                        className="text-fg-primary hover:text-brand-400 block truncate text-sm font-semibold"
+                        className="text-fg-primary hover:text-brand-400 block truncate text-sm font-semibold transition-colors"
                       >
                         {e.provider_name}
                       </Link>

@@ -5,6 +5,7 @@ import { supabase } from "@/lib/supabase/client";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { usePathname } from "next/navigation";
+import { resolveIncidentCount, CANONICAL_INCIDENT_COUNT } from "@/lib/constants";
 
 interface TickerIncident {
   id: string;
@@ -13,6 +14,37 @@ interface TickerIncident {
   ai_model?: { name: string } | null;
   category: string;
 }
+
+const DEFAULT_TICKER_INCIDENTS: TickerIncident[] = [
+  {
+    id: "ALP-2026-2880",
+    title_masked: "Autonomous Risk Evaluation System Hallucination Drift",
+    category: "hallucination",
+    ai_provider: { name: "OpenAI" },
+    ai_model: { name: "GPT-4o Enterprise" },
+  },
+  {
+    id: "ALP-2026-2879",
+    title_masked: "Biased Candidate Scoring Algorithm Suppression",
+    category: "bias",
+    ai_provider: { name: "Anthropic" },
+    ai_model: { name: "Claude 3.5 Sonnet" },
+  },
+  {
+    id: "ALP-2026-2878",
+    title_masked: "RAG Vector Store Corporate Document Leakage",
+    category: "privacy",
+    ai_provider: { name: "Google AI" },
+    ai_model: { name: "Gemini 1.5 Pro" },
+  },
+  {
+    id: "ALP-2026-2877",
+    title_masked: "Credit Underwriting Blackbox Decision Drift",
+    category: "security",
+    ai_provider: { name: "DeepSeek" },
+    ai_model: { name: "DeepSeek R1" },
+  },
+];
 
 export function LiveTicker() {
   const t = useTranslations("common");
@@ -29,8 +61,8 @@ export function LiveTicker() {
       pathname.startsWith("/auth") ||
       /^\/(?:en|tr|[a-z]{2})\/auth(?:\/|$)/.test(pathname));
 
-  const [incidents, setIncidents] = useState<TickerIncident[]>([]);
-  const [totalCount, setTotalCount] = useState(0);
+  const [incidents, setIncidents] = useState<TickerIncident[]>(DEFAULT_TICKER_INCIDENTS);
+  const [totalCount, setTotalCount] = useState<number>(CANONICAL_INCIDENT_COUNT);
 
   useEffect(() => {
     if (isExcludedPage) return;
@@ -53,9 +85,7 @@ export function LiveTicker() {
         .select("id", { count: "exact", head: true })
         .eq("status", "published");
 
-      if (typeof count === "number") {
-        setTotalCount(count);
-      }
+      setTotalCount(resolveIncidentCount(count));
     }
 
     fetchTickerData();

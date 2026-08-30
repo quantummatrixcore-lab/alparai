@@ -299,3 +299,4 @@ export const FinancialOperations = React.memo(function FinancialOperations() {
 });
 
 export default FinancialOperations;
+

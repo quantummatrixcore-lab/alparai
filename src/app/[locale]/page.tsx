@@ -14,6 +14,13 @@ import { toIncidentListItems, type TranslationMap } from "@/lib/mappers";
 import { checkAndTriggerNewsSyncPassive } from "@/actions/autopilot-sync";
 import dynamicImport from "next/dynamic";
 import { logger } from "@/lib/utils/logger";
+import {
+  resolveIncidentCount,
+  resolveCountsBySource,
+  CANONICAL_INCIDENT_COUNT,
+  CANONICAL_COUNTS_BY_SOURCE,
+  CANONICAL_TOTAL_COUNTRIES,
+} from "@/lib/constants";
 
 const LiveStats = dynamicImport(() =>
   import("@/components/marketing/live-stats").then((mod) => mod.LiveStats),
@@ -143,19 +150,9 @@ const getHomeData = cache(async (locale: string) => {
       );
     }
 
-    const countsBySource = {
-      user_submitted: 0,
-      aiaaic_import: 0,
-      aiid_import: 0,
-      news_curated: 0,
-      court_record: 0,
-    };
-    ((sourcesResult.data as Array<{ incident_source: string | null }>) ?? []).forEach((row) => {
-      const src = row.incident_source || "user_submitted";
-      if (src in countsBySource) {
-        countsBySource[src as keyof typeof countsBySource]++;
-      }
-    });
+    const countsBySource = resolveCountsBySource(
+      sourcesResult.data as Array<{ incident_source: string | null }> | null,
+    );
 
     const providerMap = new Map(
       (
@@ -382,9 +379,9 @@ const getHomeData = cache(async (locale: string) => {
     const finalLeaderboard = leaderboard.length > 0 ? leaderboard : defaultLeaderboard;
 
     return {
-      incidentsCountResult: { count: incidentsCountResult.count || 371 },
+      incidentsCountResult: { count: resolveIncidentCount(incidentsCountResult.count) },
       providersResult,
-      uniqueCountriesCount: uniqueCountriesCount || 18,
+      uniqueCountriesCount: uniqueCountriesCount || CANONICAL_TOTAL_COUNTRIES,
       topProvidersForHero:
         topProvidersForHero.length > 0
           ? topProvidersForHero
@@ -393,37 +390,22 @@ const getHomeData = cache(async (locale: string) => {
               { name: "Anthropic", count: 28, slug: "anthropic" },
               { name: "Google", count: 35, slug: "google" },
             ],
-      countsBySource:
-        countsBySource.user_submitted > 0
-          ? countsBySource
-          : {
-              user_submitted: 142,
-              aiaaic_import: 85,
-              aiid_import: 64,
-              news_curated: 52,
-              court_record: 28,
-            },
+      countsBySource,
       incidents: finalIncidents,
       leaderboard: finalLeaderboard,
     };
   } catch (err) {
     logger.error("Failed to load home data", undefined, err instanceof Error ? err : undefined);
     return {
-      incidentsCountResult: { count: 371 },
+      incidentsCountResult: { count: CANONICAL_INCIDENT_COUNT },
       providersResult: { data: [] },
-      uniqueCountriesCount: 18,
+      uniqueCountriesCount: CANONICAL_TOTAL_COUNTRIES,
       topProvidersForHero: [
         { name: "OpenAI", count: 42, slug: "openai" },
         { name: "Anthropic", count: 28, slug: "anthropic" },
         { name: "Google", count: 35, slug: "google" },
       ],
-      countsBySource: {
-        user_submitted: 142,
-        aiaaic_import: 85,
-        aiid_import: 64,
-        news_curated: 52,
-        court_record: 28,
-      },
+      countsBySource: { ...CANONICAL_COUNTS_BY_SOURCE },
       incidents: [
         {
           id: "inc-demo-1",

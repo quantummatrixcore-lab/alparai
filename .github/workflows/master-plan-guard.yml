@@ -8,6 +8,12 @@ on:
     paths:
       - "docs/MASTER_PLAN.md"
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions: read-all
+
 jobs:
   check-author:
     runs-on: ubuntu-latest

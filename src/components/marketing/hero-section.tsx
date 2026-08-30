@@ -454,7 +454,7 @@ function LiveStatCard({
       >
         <AnimatedValue value={value} />
       </p>
-      <p className="text-fg-secondary relative z-10 mt-2 text-xs leading-tight font-black tracking-[0.2em] break-words uppercase sm:text-xs">
+      <p className="text-fg-secondary relative z-10 mt-2 text-[11px] leading-snug font-bold tracking-wider uppercase text-balance sm:text-xs">
         {label}
       </p>
     </div>

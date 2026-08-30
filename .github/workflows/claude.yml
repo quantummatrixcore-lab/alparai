@@ -6,6 +6,15 @@ on:
   issues:
     types: [labeled]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
 jobs:
   claude-executor:
     if: ${{ github.event.label.name == 'claude' || (github.event.comment && contains(github.event.comment.body, '@claude')) }}

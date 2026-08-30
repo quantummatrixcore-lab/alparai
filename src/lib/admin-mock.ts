@@ -14,16 +14,10 @@ import {
   type GrantRecord,
   type RedTeamBounty,
 } from "@/types/admin";
+import { CANONICAL_DATA_MOAT_TELEMETRY } from "@/lib/constants";
 
 export const mockTelemetry: DataMoatTelemetry = {
-  totalIndexedIncidents: 2763,
-  publicScrapedCount: 2265,
-  humanWhistleblowerCount: 498,
-  dailyIngestionRate: 24,
-  activeScraperBots: 18,
-  deduplicationRatio: 0.914,
-  apiDeliveryUptime: 99.98,
-  averageApiLatencyMs: 14.2,
+  ...CANONICAL_DATA_MOAT_TELEMETRY,
 };
 
 export const mockComplianceSummary: EUAIActComplianceSummary = {
@@ -36,8 +30,8 @@ export const mockComplianceSummary: EUAIActComplianceSummary = {
 
 export const mockIncidents: IncidentRecord[] = [
   {
-    id: "inc-2763",
-    trackingNumber: "ALP-2026-2763",
+    id: "inc-2880",
+    trackingNumber: "ALP-2026-2880",
     title: "Autonomous HR Screening System Biometric & Cognitive Bias Drift",
     modelTarget: "GPT-4o Enterprise Agent",
     provider: "OpenAI",
@@ -55,8 +49,8 @@ export const mockIncidents: IncidentRecord[] = [
       "Candidate psychometric scoring pipeline systematically down-ranked non-native English speakers in automated interviews.",
   },
   {
-    id: "inc-2762",
-    trackingNumber: "ALP-2026-2762",
+    id: "inc-2879",
+    trackingNumber: "ALP-2026-2879",
     title: "Health Insurance Premium Underwriting Blackbox Hallucination",
     modelTarget: "Claude 3.5 Sonnet Bedrock",
     provider: "Anthropic",
@@ -74,8 +68,8 @@ export const mockIncidents: IncidentRecord[] = [
       "Automated claim rejection agent hallucinated pre-existing conditions based on generic prescription records.",
   },
   {
-    id: "inc-2761",
-    trackingNumber: "ALP-2026-2761",
+    id: "inc-2878",
+    trackingNumber: "ALP-2026-2878",
     title: "Banking Customer Service Assistant System Prompt & PII Extraction",
     modelTarget: "Gemini 1.5 Flash Enterprise",
     provider: "Google",
@@ -93,8 +87,8 @@ export const mockIncidents: IncidentRecord[] = [
       "Direct jailbreak prompt induced the banking chatbot to disclose internal compliance routing guidelines and KYC logs.",
   },
   {
-    id: "inc-2760",
-    trackingNumber: "ALP-2026-2760",
+    id: "inc-2877",
+    trackingNumber: "ALP-2026-2877",
     title: "Deepfake Emotion Manipulation in Child Interactive Tutor App",
     modelTarget: "Custom Open-Source LLM",
     provider: "Meta / Llama-based",
@@ -201,7 +195,7 @@ export const mockInvestors: InvestorRecord[] = [
     dataRoomAccessCount: 14,
     lastContact: "2026-08-27",
     notes:
-      "Very excited about EU AI Act Article 73 72-hour SLA radar and 2,763 incident data moat.",
+      "Very excited about EU AI Act Article 73 72-hour SLA radar and 2,880 incident data moat.",
   },
   {
     id: "inv-02",

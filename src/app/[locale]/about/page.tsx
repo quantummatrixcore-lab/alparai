@@ -1,4 +1,6 @@
-import { getTranslations } from "next-intl/server";
+export const revalidate = 3600; // 1-hour ISR Edge CDN cache
+
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { ArrowUpRight } from "lucide-react";
@@ -6,6 +8,10 @@ import type { Metadata } from "next";
 import { constructPageMetadata } from "@/lib/seo/metadata";
 import { AboutPageJsonLd, BreadcrumbJsonLd } from "@/components/seo/json-ld";
 import { APP_URL } from "@/lib/constants";
+
+export function generateStaticParams() {
+  return [{ locale: "tr" }, { locale: "en" }];
+}
 
 export async function generateMetadata({
   params,

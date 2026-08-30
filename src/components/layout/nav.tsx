@@ -25,6 +25,8 @@ interface NavItem {
   href: string;
   labelKey: string;
   icon: ComponentType<{ className?: string }>;
+  badge?: string;
+  badgeColor?: string;
 }
 
 interface NavGroup {
@@ -35,9 +37,22 @@ interface NavGroup {
 }
 
 const topLevelItems: NavItem[] = [
-  { href: "/incidents", labelKey: "incidents", icon: BarChart3 },
+  {
+    href: "/incidents",
+    labelKey: "incidents",
+    icon: BarChart3,
+    badge: "2.880+",
+    badgeColor: "bg-danger-500/10 text-danger-400 border-danger-500/20",
+  },
   { href: "/leaderboard", labelKey: "leaderboard", icon: Trophy },
-  { href: "/academy", labelKey: "academy", icon: GraduationCap },
+  {
+    href: "/dilemmas",
+    labelKey: "dilemmas",
+    icon: Scale,
+    badge: "CANLI",
+    badgeColor: "bg-brand-500/10 text-brand-300 border-brand-500/30 animate-pulse",
+  },
+  { href: "/ai-act", labelKey: "ai_act", icon: ShieldCheck },
   { href: "/pricing", labelKey: "pricing", icon: CreditCard },
 ];
 
@@ -51,23 +66,22 @@ const navGroups: NavGroup[] = [
       { href: "/products/datasets", labelKey: "datasets", icon: BarChart3 },
       { href: "/products/browser-extension", labelKey: "browser_extension", icon: Eye },
       { href: "/products/eu-ai-act", labelKey: "eu_ai_act", icon: Scale },
+      { href: "/academy", labelKey: "academy", icon: GraduationCap },
       { href: "/enterprise", labelKey: "enterprise", icon: Building },
     ],
   },
   {
-    id: "resources",
-    labelKey: "resources",
-    icon: BookOpen,
+    id: "transparency",
+    labelKey: "transparency",
+    icon: Eye,
     items: [
-      { href: "/methodology", labelKey: "methodology", icon: Scale },
       { href: "/transparency", labelKey: "transparency", icon: Eye },
       { href: "/velocity", labelKey: "velocity", icon: BarChart3 },
-      { href: "/ai-act", labelKey: "ai_act", icon: Scale },
-      { href: "/dilemmas", labelKey: "dilemmas", icon: Scale },
-      { href: "/blog", labelKey: "blog", icon: BookOpen },
-      { href: "/about", labelKey: "about", icon: Users },
+      { href: "/methodology", labelKey: "methodology", icon: Scale },
       { href: "/about/advisory-board", labelKey: "advisory_board", icon: Users },
       { href: "/press-kit", labelKey: "presskit", icon: BookOpen },
+      { href: "/blog", labelKey: "blog", icon: BookOpen },
+      { href: "/about", labelKey: "about", icon: Users },
     ],
   },
 ];
@@ -142,9 +156,19 @@ export function Nav({
                 transition={{ type: "spring", stiffness: 380, damping: 30 }}
               />
             )}
-            <span className="relative z-10 flex items-center gap-1">
+            <span className="relative z-10 flex items-center gap-1.5">
               <Icon className="hidden h-3.5 w-3.5 lg:block" aria-hidden="true" />
               <span>{t(item.labelKey)}</span>
+              {item.badge && (
+                <span
+                  className={cn(
+                    "rounded-full border px-1.5 py-0.2 text-[9px] font-bold tracking-wider uppercase",
+                    item.badgeColor || "border-brand-500/30 bg-brand-500/10 text-brand-300",
+                  )}
+                >
+                  {item.badge}
+                </span>
+              )}
             </span>
           </Link>
         );

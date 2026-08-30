@@ -23,11 +23,12 @@ import {
 import { MetricCard } from "@/components/admin-core/metric-card";
 import { StatusBadge } from "@/components/admin-core/status-badge";
 import { useAdminStats } from "@/hooks/admin/use-admin-stats";
+import { CANONICAL_INCIDENT_COUNT } from "@/lib/constants";
 
 const recentIncidentStream = [
   {
     id: "inc-1",
-    trackingNumber: "ALP-2026-2763",
+    trackingNumber: "ALP-2026-2880",
     modelTarget: "Frontier GPT-5 Biometric",
     provider: "OpenAI",
     source: "REGULATORY_FILING",
@@ -37,7 +38,7 @@ const recentIncidentStream = [
   },
   {
     id: "inc-2",
-    trackingNumber: "ALP-2026-2762",
+    trackingNumber: "ALP-2026-2879",
     modelTarget: "Claude 3.7 Sonnet HR Agent",
     provider: "Anthropic",
     source: "WHISTLEBLOWER_LEAK",
@@ -47,7 +48,7 @@ const recentIncidentStream = [
   },
   {
     id: "inc-3",
-    trackingNumber: "ALP-2026-2761",
+    trackingNumber: "ALP-2026-2878",
     modelTarget: "DeepSeek R1 Credit Engine",
     provider: "DeepSeek AI",
     source: "EXTERNAL_SECURITY_RESEARCH",
@@ -57,7 +58,7 @@ const recentIncidentStream = [
   },
   {
     id: "inc-4",
-    trackingNumber: "ALP-2026-2760",
+    trackingNumber: "ALP-2026-2877",
     modelTarget: "Gemini 2.5 Flash Search",
     provider: "Google DeepMind",
     source: "AUTOMATED_HONEYPOT",
@@ -343,7 +344,7 @@ export default function AdminV2OverviewPage() {
             {t("enterprise_command_deck")}
           </h1>
           <p className="mt-0.5 text-xs text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
-            {td("subtitle", { count: stats.incidents.total > 0 ? stats.incidents.total : 2763 })}
+            {td("subtitle", { count: stats.incidents.total || CANONICAL_INCIDENT_COUNT })}
           </p>
         </div>
 
@@ -370,7 +371,7 @@ export default function AdminV2OverviewPage() {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <MetricCard
           label={td("totalIncidents")}
-          value={(stats.incidents.total > 0 ? stats.incidents.total : 2763).toLocaleString()}
+          value={(stats.incidents.total || CANONICAL_INCIDENT_COUNT).toLocaleString()}
           subtext={td("totalIncidentsSubtext", { users: stats.users.total || 48 })}
           change={td("totalIncidentsChange")}
           changeType="positive"

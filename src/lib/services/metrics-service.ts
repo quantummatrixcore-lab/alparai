@@ -1,5 +1,9 @@
 import "server-only";
 import { createClient } from "@/lib/supabase/server";
+import {
+  resolveIncidentCount,
+  CANONICAL_TOTAL_PROVIDERS,
+} from "@/lib/constants";
 
 export interface GlobalMetrics {
   totalIncidents: number;
@@ -28,8 +32,8 @@ export async function getGlobalMetrics(): Promise<GlobalMetrics> {
   ]);
 
   // Fallback defaults if counts fail
-  const totalIncidents = incidentsRes.count ?? 0;
-  const totalProviders = providersRes.count ?? 0;
+  const totalIncidents = resolveIncidentCount(incidentsRes.count);
+  const totalProviders = providersRes.count || CANONICAL_TOTAL_PROVIDERS;
   const totalOfficialResponses = responsesRes.count ?? 0;
 
   // Calculate average trust score

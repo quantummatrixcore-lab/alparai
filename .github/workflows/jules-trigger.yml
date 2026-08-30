@@ -11,6 +11,12 @@ on:
         required: false
         default: "Inspect src/lib/dummy-jules-bait.ts for doc, typo, or type improvements and create a Pull Request."
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions: read-all
+
 jobs:
   trigger-jules:
     name: Trigger Jules Agent

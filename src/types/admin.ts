@@ -22,7 +22,7 @@ export type EUAIActCategory =
 
 export interface IncidentRecord {
   id: string;
-  trackingNumber: string; // e.g. ALP-2026-2763
+  trackingNumber: string; // e.g. ALP-2026-2880
   title: string;
   modelTarget: string; // e.g. "OpenAI GPT-4o", "Anthropic Claude 3.5 Sonnet", "Google Gemini 1.5 Pro"
   provider: string; // "OpenAI", "Anthropic", "Google", "Meta", "DeepSeek"

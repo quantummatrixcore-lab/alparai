@@ -38,7 +38,7 @@ import {
 const defaultIncidentPlaceholder: IncidentRecord[] = [
   {
     id: "inc-placeholder-1",
-    trackingNumber: "ALP-2026-2763",
+    trackingNumber: "ALP-2026-2880",
     title: "Multimodal Biometric Recognition Discrimination Bias",
     modelTarget: "Frontier Vision-Language Model v4",
     provider: "OpenAI",

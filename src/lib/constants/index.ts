@@ -80,3 +80,6 @@ export const STRATEGY_METRICS_DEFAULTS = {
 } as const;
 
 export const DEFAULT_VALUATION_PRE_MONEY = 2340000 as const; // $2,340,000
+
+export * from "./canonical-stats";
+

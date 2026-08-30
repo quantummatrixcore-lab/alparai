@@ -1,6 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/routing";
-import Image from "next/image";
 import {
   Star,
   MessageSquare,
@@ -16,6 +15,7 @@ import {
 } from "lucide-react";
 import { createServerClient } from "@/lib/supabase/server";
 import { Badge } from "@/components/ui/badge";
+import { ProviderLogo } from "@/components/leaderboard/provider-logo";
 import { MODELS_CATALOG } from "@/lib/constants/models-catalog";
 
 export const revalidate = 30;
@@ -324,20 +324,14 @@ export default async function ModelsPage({ params, searchParams }: ModelPageProp
 
                   {/* Provider */}
                   <div className="flex items-center gap-2.5">
-                    {provider?.logo_url ? (
-                      <Image
-                        src={provider.logo_url}
-                        alt={provider.name}
-                        width={26}
-                        height={26}
-                        unoptimized
-                        className="border-border-subtle bg-bg-secondary rounded-lg border object-contain p-1"
+                    <div className="relative h-7 w-7 shrink-0 overflow-hidden rounded-lg border border-border-subtle bg-bg-secondary shadow-sm">
+                      <ProviderLogo
+                        src={provider?.logo_url}
+                        name={provider?.name || "AI"}
+                        slug={provider?.slug}
+                        size="xs"
                       />
-                    ) : (
-                      <div className="text-brand-300 border-border-subtle bg-bg-secondary flex h-7 w-7 items-center justify-center rounded-lg border text-[11px] font-bold">
-                        {provider?.name?.[0] || "AI"}
-                      </div>
-                    )}
+                    </div>
                     <span className="text-fg-primary text-sm font-semibold">
                       {provider?.name || t("unknown_provider")}
                     </span>

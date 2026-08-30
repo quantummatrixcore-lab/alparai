@@ -164,7 +164,7 @@ export default async function BrandPage({
         <CardHeader>
           <div className="flex items-start gap-4">
             <div className="border-border-subtle bg-bg-tertiary relative h-16 w-16 shrink-0 overflow-hidden rounded-md border shadow-sm">
-              <ProviderLogo src={providerLogo} name={providerName} size="lg" />
+              <ProviderLogo src={providerLogo} name={providerName} slug={providerSlug} size="lg" />
             </div>
             <div className="flex-1 space-y-2">
               <div className="flex flex-wrap items-center gap-2">

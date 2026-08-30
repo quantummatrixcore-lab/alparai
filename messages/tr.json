@@ -5665,7 +5665,7 @@
     "methodologyAuditingDesc": "Kamusal taraflılık, gizlilik ve güvenlik denetimlerinin yayınlanması için verilen krediler.",
     "methodologyAuditingTitle": "Bağımsız Denetim",
     "methodologyFormula": "(Doğrulanmış Olaylar × -5) + (Yanıt Hızı × +20) + (Şeffaflık Raporu × +15) + (Kullanıcı Değerlendirmesi × +10) + (Denetim Puanı × +30)",
-    "methodologyFormulaNote": "* 0'“100 ölçeğine göre normalleştirilmiştir. Düşük puanlar, ele alınmamış AI olaylarının yüksek oranını gösterir.",
+    "methodologyFormulaNote": "* 0-100 ölçeğine göre normalleştirilmiştir. Düşük puanlar, ele alınmamış AI olaylarının yüksek oranını gösterir.",
     "methodologyFormulaTitle": "Güven Puanı =",
     "methodologyIncidentsDesc": "Negatif etki. Her doğrulanmış olay, sağlayıcı puanını düşürür.",
     "methodologyIncidentsTitle": "Doğrulanmış Olaylar",
@@ -5718,7 +5718,15 @@
     "transparencyCommitment": "Taahhüdümüz",
     "trustScoreMethodology": "Güven Puanı™ Metodolojisi",
     "trustScoreMethodologyDesc": "ALPAR AI, yapay zeka sağlayıcılarının şeffaflığını ve halka karşı hesap verebilirliğini ölçmek için 0-100 ölçeğinde bir Güven Puanı hesaplar.",
-    "verifiedThisWeek": "Bu hafta doğrulananlar"
+    "verifiedThisWeek": "Bu hafta doğrulananlar",
+    "recentPublishedIncidents": "Son Doğrulanan ve Yayınlanan Olaylar",
+    "recentPublishedIncidentsDesc": "ALPAR AI bağımsız denetim hattından geçerek kamuoyuna açılan en son doğrulanmış yapay zeka ihlal kayıtları.",
+    "viewAllIncidents": "Tüm Olayları İncele",
+    "exploreAllButton": "Tüm Doğrulanmış Olayları Keşfet",
+    "verifiedIncident": "Doğrulanmış Olay",
+    "noIncidentsYet": "Henüz doğrulanmış olay kaydı bulunmuyor.",
+    "subPortalsTitle": "Şeffaflık & Hukuk Kalkanı Merkezleri",
+    "subPortalsSubtitle": "İhtarname arşivleri, yasal tehdit günlükleri ve AB Yapay Zeka Yasası uyum panoları."
   },
   "trust": {
     "methodology": "Metodoloji",

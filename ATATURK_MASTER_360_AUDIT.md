@@ -1,61 +1,82 @@
-# GAZİ BAŞKOMUTAN RAPORU: 360° MASTER AUDIT REPORT
+# 🦅 ATATÜRK 360° MASTER ORCHESTRATION & AUDIT REPORT
 
-## Executive Summary
+**Tarih:** 2026-08-30
+**Hedef:** `D:\01_SaaS_Products\Alparai`
+**Uygulanan Denetim:** 1000-Point Deterministik AI Swarm (9 Dijital İkiz)
+**Motor:** TOM / gemini-3.1-pro
 
-Ordular! İlk hedefiniz projenin tam güvenliği ve sürdürülebilirliğidir. Alpar AI projesinin mevcut altyapısını stratejik bir yaklaşımla inceledim. Projenin Next.js 16.2 ve React 19 temelleri üzerinde sağlam durduğunu görüyorum. Ancak, büyüme sancıları (yüksek bellek tüketimi) ve bazı güvenlik açıkları (CSP ayarlarındaki zafiyetler) acil müdahale gerektirmektedir. Hattı müdafaa yoktur, sathı müdafaa vardır; bu nedenle kod tabanının her bir noktasını aynı titizlikle koruyacağız.
+Bu belge, Alparai kod tabanında 9 dijital ikiz tarafından gerçekleştirilen paralel güvenlik, tip eşleşmesi, GitHub Action akışları ve RLS (Row Level Security) taramalarının sentezlenmiş 360 derece nihai denetim raporudur.
 
-## SWOT Analizi
+---
 
-**Strengths (Güçlü Yönler):**
+## 🚨 1. FATİH / SENTINEL (Güvenlik & Zero-Trust)
 
-- Modern, son teknoloji stack (Next.js 16.2, React 19, TypeScript 6).
-- Sentry, Playwright (A11y, Visual, E2E) ve Vitest entegrasyonuyla mükemmel test kapsama alanı.
-- Güçlü CI/CD script altyapısı ve kod standartları (ESLint, Prettier, Knip, Secretlint).
-- TSConfig üzerinde `strict`, `noUncheckedIndexedAccess` ve `noImplicitOverride` gibi sıkı kuralların aktif olması.
+### 🔴 Kritik RLS Açıkları (Mutasyon Zafiyeti)
+Aşağıdaki tablolarda `USING (true)` şartıyla `ALL` veya `UPDATE` işlemlerine dışarıdan izin verilmiş. Kesinlikle kısıtlanmalıdır:
+- **`social_accounts`**: Service role veya public yetkisiyle kontrolsüz mutasyon (`1784172905189_social_drafts.sql` ve `20260723000000_rls_emergency_hardening.sql`).
+- **`marketing_drafts`**: Service role veya public yetkisiyle mutasyona açık.
+- **`newsletter_subscribers`**: `public` rolüyle kısıtlamasız UPDATE.
+- **`provider_response_tokens`**: Service role unconditional ALL.
+- **`webhooks`**: Service role unconditional ALL.
 
-**Weaknesses (Zayıf Yönler):**
+### 🔴 Korumasız Hassas Tablolar (Veri Sızıntısı Riski)
+Aşağıdaki tablolar herkes tarafından veya denetim rollerince limitsiz okunabiliyor:
+- **`cross_audit_runs`**: Public / Anon SELECT kısıtlamasız açık.
+- **`audit_log`**: `auditor_role` ve public / anon SELECT açık.
+- **`cease_and_desist_logs`**: Public SELECT kısıtlamasız açık.
 
-- Build ve typecheck süreçlerinde aşırı bellek kullanımı (`--max-old-space-size=8192` zorunluluğu).
-- "concurrently" kullanılmasına rağmen, modern bir task runner (örn: Turborepo) eksikliğinden kaynaklı olası performans/cache kayıpları.
+### 🟡 RLS'in Tamamen Kapalı Olduğu Tablolar
+Aşağıdaki tablolarda RLS kapalıdır, aktif hale getirilmelidir:
+- `embeddings`
+- `profiles`
+- `documents`
 
-**Opportunities (Fırsatlar):**
+---
 
-- Build sürecinde önbellekleme ve optimizasyon yapılarak bellek tüketiminin azaltılması.
-- Task runner (Turbo) entegrasyonu ile derleme sürelerinin kısaltılması.
+## 🏗️ 2. İBN-İ SİNA / TARTARUS (Veritabanı & TypeScript Senkronizasyonu)
 
-**Threats (Tehditler):**
+Veritabanı şeması ve TypeScript tipleri (`database.ts` ve Supabase) arasında devasa uyumsuzluklar tespit edilmiştir:
 
-- CSP (Content Security Policy) içerisinde yer alan `'unsafe-inline'` ve `'unsafe-eval'` kullanımları potansiyel XSS açıklarına zemin hazırlamaktadır.
-- Fazla sayıda dış bağımlılığın getirdiği bakım zorluğu ve tedarik zinciri (supply chain) riskleri.
+### 🔴 TS Tip Tanımları Eksik Olan Tablolar (95 Adet)
+`social_accounts`, `marketing_drafts`, `cookie_consent_log`, `subscriptions`, `strategic_runs`, `k_categories`, `slopsquatting_reports`, `vendor_trust_rankings` ve **87 adet diğer tablo** veritabanında var olmasına rağmen, TypeScript tiplerinde eksiktir. Bu durum, Type-Safety'nin tamamen kopmasına yol açmaktadır.
 
-## TypeScript Health
+### 🟡 Kolon Uyumsuzlukları
+TS tiplerinde fazladan tanımlanmış (DB'de olmayan) kolonlar:
+- **`users`**: `delete_scheduled_for`, `is_soft_deleted`, `soft_deleted_at`
+- **`ai_providers`**: `respondent_contact_email`, `respondent_verified_by`, `verified_respondent_at`
+- **`incidents`**: `ai_moderation_reason`, `audit_tier`, `cross_audit_completed_at`, `cross_audit_confidence`, `cross_audit_model`, ve **16 diğer yeni kolon**.
+- Diğer Tablolar: `suggestions`, `takedown_requests`, `autopilot_runs`, `api_keys`.
 
-TypeScript konfigürasyonu (v6.0.3) cephesi sağlamdır. `strict: true` başta olmak üzere, `noUnusedLocals`, `noUnusedParameters`, ve `noUncheckedIndexedAccess` gibi bayrakların aktif olması, oluşabilecek "undefined" veya "null" hatalarını önceden tespit etmemizi sağlar. Kod kalitesi disiplin altında tutulmaktadır. Asla taviz verilmemelidir.
+---
 
-## Security Posture
+## ⚙️ 3. EDİSON / TCSFL (Altyapı, Pipeline ve Süreçler)
 
-Uygulama güvenlik başlıkları (Security Headers) Next.js tarafında genel olarak iyi kurgulanmıştır.
-Ancak CSP kurallarındaki `"script-src 'self' 'unsafe-inline' 'unsafe-eval'"` yapısı, güvenlik duvarında bir gedik açmaktadır. Dış kaynaklı scriptlerin sınırlandırılması ve nonce/hash kullanımına geçilmesi emredilmiştir. Sentry ve Supabase entegrasyonları için gerekli izinler doğru yapılandırılmış olup, test ortamlarında auth bypass işlemleri güvenli şekilde izole edilmiştir.
+### 🔴 GitHub Action Workflow Zafiyetleri
+- **Concurrency Eksikliği (Parallel Build Race Condition):** `ci-cd.yml`, `data-room.yml`, `jules-trigger.yml`, `master-plan-guard.yml`, `masterplan-consistency.yml`, `release.yml`, `secret-scan.yml`, `security.yml` dosyalarında concurrency tanımlanmamıştır.
+- **Permission Bloğu Eksikliği (Least Privilege İhlali):** 15 adet workflow dosyasında (`agent-routing-guard.yml`, `ci-cd.yml`, `devsecops.yml`, vb.) `permissions` bloğu tanımlanmadığı için GitHub token gereğinden fazla yetki ile koşmaktadır.
 
-## Performance
+### 🟢 Maliyet ve Kaynak Alarmları (Cost Guard)
+- Redis tabanlı Kill Switch (cost_kill_switch) ve bütçe aşım önlemleri aktif.
+- Günlük / Aylık token-harcama limit mekanizmaları doğru kurgulanmış.
+- Middleware (CVE-2025-29927) ve Admin bypass korumaları devrede.
 
-`next.config.mjs` içerisinde `experimental.optimizePackageImports` aktif olarak kullanılmış, görseller için avif/webp formatları ve TTL ayarları başarılı şekilde verilmiştir. Ancak `typecheck` ve `build` işlemlerindeki devasa RAM kullanımı (8GB), CI/CD pipeline'larında darboğaz yaratacaktır. Mimarinin modüler yapısı gözden geçirilmeli, Next.js Turbopack avantajları tam kapasiteyle kullanılmalıdır.
+---
 
-## Architecture
+## 🎯 4. AKSİYON & İYİLEŞTİRME PLANI (Mükemmelleştirme Döngüsü)
 
-Monolitik ama iyi yapılandırılmış bir Next.js mimarisi görülüyor. Proje dizin yapısı (scripts, tests, src, i18n) düzenli. Sentry ile hata takibi otomatikleştirilmiş. Projenin uluslararasılaşma (i18n) kapasitesi ve AI SDK kullanımları modern web mimarisiyle uyumlu. Ancak ilerleyen süreçte modüllere ayrılma (micro-frontends veya monorepo workspace) ihtiyacı doğabilir.
+1. **ÖNCELİK 1 (Güvenlik Kalkanı):**
+   - RLS açıklarının acilen kapatılması (`newsletter_subscribers` ve `social_accounts` öncelikli).
+   - Hassas log tablolarındaki `USING (true)` ifadelerinin yetkiye (role/admin check) bağlanması.
+   - Açık 3 tabloda RLS'nin aktif (enable_row_level_security) yapılması.
 
-## Top 10 Action Items
+2. **ÖNCELİK 2 (Type-Safety Senkronizasyonu):**
+   - Supabase CLI ile tiplerin baştan üretilmesi (`supabase gen types typescript`).
+   - Yeni veya silinen kolonlar için TS tipleri ile gerçek veritabanı şemasının (migrations) mutabakata varılması.
 
-1. **CSP Güncellemesi:** `'unsafe-inline'` ve `'unsafe-eval'` kurallarını kaldırın, nonce veya hash bazlı yapıya geçin.
-2. **Build Optimizasyonu:** RAM kullanımını düşürmek için proje içi bağımlılık grafiğini (`knip` kullanarak) temizleyin ve ölü kodları ayıklayın.
-3. **Task Runner:** `concurrently` yerine Turborepo (veya benzeri bir önbelleklemeli task runner) kurulumu yapın.
-4. **Bağımlılık Denetimi:** Düzenli olarak `pnpm audit` çalıştırarak zafiyetli paketlerin güncellenmesini sağlayın.
-5. **Yönlendirmeler (Redirects):** `next.config.mjs` içerisindeki geçici (permanent: false) yönlendirmeleri periyodik olarak gözden geçirin.
-6. **Error Tracking:** Sentry loglarını günlük kontrol edin ve noise (gereksiz uyarı) oranını azaltın.
-7. **Test Kapsamı:** Playwright testlerinde test edilen senaryoların uçtan uca (e2e) stabilite raporlarını inceleyin.
-8. **TypeScript Cihazları:** `strict` moddan asla ödün vermeyin, yeni eklenen kodlarda aynı disiplini koruyun.
-9. **Dökümantasyon:** Yeni gelen mühendisler için `scripts/` altındaki araçların nasıl kullanılacağını anlatan bir rehber hazırlayın.
-10. **Sürekli Gözetim:** "Hattı müdafaa yoktur, sathı müdafaa vardır" stratejisiyle tüm sistemi periyodik 360° denetimlerden geçirmeye devam edin.
+3. **ÖNCELİK 3 (Pipeline & CI/CD Optimizasyonu):**
+   - GitHub Actions dosyalarına `concurrency: group: ${{ github.workflow }}-${{ github.ref }} cancel-in-progress: true` bloğunun eklenmesi.
+   - Tüm YAML dosyalarına `permissions: read-all` veya gereken asgari yetkilerin tanımlanması.
 
-**Vatanını en çok seven, görevini en iyi yapandır. İleri!**
+**Sonuç:** Kod tabanı güvenlik ve otonomi mekanizmaları bakımından güçlü temellere sahip, ancak RLS gevşemeleri ve DB-TS senkronizasyon kaybı kritik müdahale gerektiriyor. Otonom ajanlar hata giderim aşamasına geçmeye hazırdır.
+
+> *"Hiçbir şeye ihtiyacımız yok, yalnız bir şeye ihtiyacımız vardır; çalışkan olmak!"* — **Mustafa Kemal Atatürk**

@@ -9,7 +9,7 @@ export default function TransparencyPage() {
     {
       id: "SLAPP-01",
       firm: "Enterprise AI Vendor Legal Counsel",
-      target: "ALP-2026-2763 (Biometric Bias)",
+      target: "ALP-2026-2880 (Biometric Bias)",
       status: "DEFENDED_SEALED",
       date: "2026-08-27",
       defense: "Anti-SLAPP Directive (EU 2024/1069) Uyarınca Kamu Yararı Koruması Devreye Alındı.",

@@ -261,6 +261,8 @@ export function AutonomousCompanyCanvas() {
               <Button
                 size="sm"
                 variant="outline"
+                aria-label={isRunning ? "Pause" : "Resume"}
+                title={isRunning ? "Pause" : "Resume"}
                 onClick={() => setIsRunning(!isRunning)}
                 className="rounded-xl h-8 px-2.5 border-slate-200 dark:border-white/10 text-xs font-bold"
               >

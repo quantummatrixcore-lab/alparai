@@ -5,6 +5,9 @@ export interface VelocityMetric {
   benchmark_elo: number;
   release_date: string;
   capability_jump_pct: number;
+  category?: string;
+  context_window?: string;
+  arena_rank?: number;
   created_at?: string;
 }
 

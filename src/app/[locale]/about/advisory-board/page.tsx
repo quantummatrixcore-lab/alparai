@@ -1,7 +1,7 @@
+export const revalidate = 3600; // 1-hour ISR Edge CDN cache
+
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
-
-export const dynamic = "force-dynamic";
 import { Container, Section } from "@/components/ui/layout";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -13,12 +13,17 @@ import {
   Mail,
   Sparkles,
 } from "lucide-react";
-import { createServerClient } from "@/lib/supabase/server";
+import { createClient as createSupabaseClient } from "@supabase/supabase-js";
+import type { Database } from "@/types/database";
 import { CalendlyEmbed } from "@/components/marketing/calendly-embed";
 
 import { constructPageMetadata } from "@/lib/seo/metadata";
 import { AboutPageJsonLd, BreadcrumbJsonLd } from "@/components/seo/json-ld";
 import { APP_URL } from "@/lib/constants";
+
+export function generateStaticParams() {
+  return [{ locale: "tr" }, { locale: "en" }];
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -33,6 +38,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     pathname: "/about/advisory-board",
     title,
     description,
+  });
+}
+
+function getPublicSupabase() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://placeholder.supabase.co";
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "placeholder-anon-key";
+  return createSupabaseClient<Database>(supabaseUrl, supabaseAnonKey, {
+    auth: {
+      persistSession: false,
+      autoRefreshToken: false,
+    },
   });
 }
 
@@ -61,7 +77,7 @@ export default async function AdvisoryBoardPage({
   }> = [];
 
   try {
-    const supabase = await createServerClient();
+    const supabase = getPublicSupabase();
     const { data: members } = await supabase
       .from("advisory_board_members")
       .select("*")

@@ -117,7 +117,7 @@ export default function SocialStudioPage() {
     {
       id: "SOC-01",
       platform: "LinkedIn & X",
-      hook: "🚨 2.763 AI Zafiyeti Açıklandı: EU AI Act Madde 73 Neden Tüm Şirketleri Değiştirecek?",
+      hook: "🚨 2.880 AI Zafiyeti Açıklandı: EU AI Act Madde 73 Neden Tüm Şirketleri Değiştirecek?",
       time: "Bugün 09:30 (Peak Hour)",
       status: "SCHEDULED",
       reach: "Est. 45k",
@@ -125,7 +125,7 @@ export default function SocialStudioPage() {
     {
       id: "SOC-02",
       platform: "Reddit & Hacker News",
-      hook: "⚡ Show HN: Alparai – Open-source 2,763 AI Incident Dataset with EU AI Act Mapping & Live API",
+      hook: "⚡ Show HN: Alparai – Open-source 2,880 AI Incident Dataset with EU AI Act Mapping & Live API",
       time: "Bugün 14:00 (SF Peak)",
       status: "READY_TO_POST",
       reach: "Est. 80k",

@@ -5665,7 +5665,7 @@
     "methodologyAuditingDesc": "Credits given for publishing public bias, privacy, and safety audits.",
     "methodologyAuditingTitle": "Independent Auditing",
     "methodologyFormula": "(Verified Incidents Ã— -5) + (Response Speed Ã— +20) + (Transparency Report Ã— +15) + (User Rating Ã— +10) + (Audit Score Ã— +30)",
-    "methodologyFormulaNote": "* Normalized to a 0–100 scale. Lower scores indicate higher rates of unaddressed AI incidents.",
+    "methodologyFormulaNote": "* Normalized to a 0-100 scale. Lower scores indicate higher rates of unaddressed AI incidents.",
     "methodologyFormulaTitle": "Trust Score =",
     "methodologyIncidentsDesc": "Negative impact. Each verified incident reduces the provider score.",
     "methodologyIncidentsTitle": "Verified Incidents",
@@ -5718,7 +5718,15 @@
     "transparencyCommitment": "Our commitment",
     "trustScoreMethodology": "Trust Score™ Methodology",
     "trustScoreMethodologyDesc": "ALPAR AI calculates a Trust Score for each AI provider on a 0-100 scale to quantify their transparency and accountability to the public.",
-    "verifiedThisWeek": "Verified this week"
+    "verifiedThisWeek": "Verified this week",
+    "recentPublishedIncidents": "Recent Verified & Published Incidents",
+    "recentPublishedIncidentsDesc": "Latest real-world AI incident records audited, verified, and published to the public transparency ledger.",
+    "viewAllIncidents": "Explore All Incidents",
+    "exploreAllButton": "Explore All Verified Incidents",
+    "verifiedIncident": "Verified Incident",
+    "noIncidentsYet": "No verified incidents recorded yet.",
+    "subPortalsTitle": "Transparency & Legal Shield Hubs",
+    "subPortalsSubtitle": "Cease & Desist archives, legal threat registries, and EU AI Act compliance trackers."
   },
   "trust": {
     "methodology": "Peer-reviewed Methodology",

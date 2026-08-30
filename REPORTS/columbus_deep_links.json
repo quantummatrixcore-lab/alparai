@@ -1,0 +1,3032 @@
+{
+  "prodIssues": [
+    {
+      "rawUrl": "/favicon.svg",
+      "clean": "/favicon.svg",
+      "file": "src/app/layout.tsx",
+      "line": 62,
+      "isTest": false,
+      "snippet": "{ url: \"/favicon.svg\", type: \"image/svg+xml\" },"
+    },
+    {
+      "rawUrl": "/favicon.ico",
+      "clean": "/favicon.ico",
+      "file": "src/app/layout.tsx",
+      "line": 63,
+      "isTest": false,
+      "snippet": "{ url: \"/favicon.ico\", sizes: \"32x32\" },"
+    },
+    {
+      "rawUrl": "/auth/login?returnTo=/b2b/dashboard",
+      "clean": "/auth/login",
+      "file": "src/app/[locale]/b2b/dashboard/page.tsx",
+      "line": 19,
+      "isTest": false,
+      "snippet": "redirect({ href: \"/auth/login?returnTo=/b2b/dashboard\", locale });"
+    },
+    {
+      "rawUrl": "/cases/${c.slug}",
+      "clean": "/cases/${c.slug}",
+      "file": "src/app/[locale]/cases/page.tsx",
+      "line": 55,
+      "isTest": false,
+      "snippet": "href={`/cases/${c.slug}`}"
+    },
+    {
+      "rawUrl": "/embed",
+      "clean": "/embed",
+      "file": "src/app/[locale]/layout.tsx",
+      "line": 58,
+      "isTest": false,
+      "snippet": "const isEmbed = pathname.endsWith(\"/embed\");"
+    },
+    {
+      "rawUrl": "/admin-v2",
+      "clean": "/admin-v2",
+      "file": "src/app/[locale]/layout.tsx",
+      "line": 61,
+      "isTest": false,
+      "snippet": "pathname.includes(\"/admin-v2\") ||"
+    },
+    {
+      "rawUrl": "/report",
+      "clean": "/report",
+      "file": "src/components/admin/widgets/VisitorAnalytics.tsx",
+      "line": 74,
+      "isTest": false,
+      "snippet": "const paths = [\"/\", \"/incidents\", \"/report\", \"/pricing\", \"/checkout\", \"/about\"];"
+    },
+    {
+      "rawUrl": "/checkout",
+      "clean": "/checkout",
+      "file": "src/components/admin/widgets/VisitorAnalytics.tsx",
+      "line": 74,
+      "isTest": false,
+      "snippet": "const paths = [\"/\", \"/incidents\", \"/report\", \"/pricing\", \"/checkout\", \"/about\"];"
+    },
+    {
+      "rawUrl": "/api/v1/eu-ai-act",
+      "clean": "/api/v1/eu-ai-act",
+      "file": "src/components/api-docs/api-playground.tsx",
+      "line": 58,
+      "isTest": false,
+      "snippet": "path: \"/api/v1/eu-ai-act\","
+    },
+    {
+      "rawUrl": "/admin-v2",
+      "clean": "/admin-v2",
+      "file": "src/components/layout/footer.tsx",
+      "line": 51,
+      "isTest": false,
+      "snippet": "pathname.includes(\"/admin-v2\") ||"
+    },
+    {
+      "rawUrl": "/admin-v2",
+      "clean": "/admin-v2",
+      "file": "src/components/layout/header.tsx",
+      "line": 32,
+      "isTest": false,
+      "snippet": "pathname.includes(\"/admin-v2\") ||"
+    },
+    {
+      "rawUrl": "/admin-v2",
+      "clean": "/admin-v2",
+      "file": "src/components/layout/main-content.tsx",
+      "line": 19,
+      "isTest": false,
+      "snippet": "pathname.includes(\"/admin-v2\") ||"
+    },
+    {
+      "rawUrl": "/admin-v2",
+      "clean": "/admin-v2",
+      "file": "src/components/layout/mobile-bottom-nav.tsx",
+      "line": 32,
+      "isTest": false,
+      "snippet": "pathname.includes(\"/admin-v2\") ||"
+    },
+    {
+      "rawUrl": "/admin-v2",
+      "clean": "/admin-v2",
+      "file": "src/components/shared/live-ticker.tsx",
+      "line": 26,
+      "isTest": false,
+      "snippet": "pathname.includes(\"/admin-v2\") ||"
+    },
+    {
+      "rawUrl": "/report",
+      "clean": "/report",
+      "file": "src/lib/ai/visitor-predictor.ts",
+      "line": 677,
+      "isTest": false,
+      "snippet": "{ path: \"/report\", probability: 0.16, confidence: 0.85 },"
+    },
+    {
+      "rawUrl": "/[locale]/admin/dual-channel-scoring",
+      "clean": "/admin/dual-channel-scoring",
+      "file": "src/lib/config/modular-architecture.ts",
+      "line": 28,
+      "isTest": false,
+      "snippet": "route: \"/[locale]/admin/dual-channel-scoring\","
+    },
+    {
+      "rawUrl": "/[locale]/admin/ai-hub/orchestrator",
+      "clean": "/admin/ai-hub/orchestrator",
+      "file": "src/lib/config/modular-architecture.ts",
+      "line": 37,
+      "isTest": false,
+      "snippet": "route: \"/[locale]/admin/ai-hub/orchestrator\","
+    },
+    {
+      "rawUrl": "/[locale]/admin/analytics-hub/expert-analysis",
+      "clean": "/admin/analytics-hub/expert-analysis",
+      "file": "src/lib/config/modular-architecture.ts",
+      "line": 64,
+      "isTest": false,
+      "snippet": "route: \"/[locale]/admin/analytics-hub/expert-analysis\","
+    },
+    {
+      "rawUrl": "/[locale]/insights",
+      "clean": "/insights",
+      "file": "src/lib/config/modular-architecture.ts",
+      "line": 73,
+      "isTest": false,
+      "snippet": "route: \"/[locale]/insights\","
+    },
+    {
+      "rawUrl": "/[locale]/documentation",
+      "clean": "/documentation",
+      "file": "src/lib/config/modular-architecture.ts",
+      "line": 82,
+      "isTest": false,
+      "snippet": "route: \"/[locale]/documentation\","
+    },
+    {
+      "rawUrl": "/api/cron/",
+      "clean": "/api/cron",
+      "file": "src/lib/engine/registry/cron.ts",
+      "line": 31,
+      "isTest": false,
+      "snippet": "const id = r.path.replace(\"/api/cron/\", \"cron-\").replace(/[?&]/g, \"-\");"
+    },
+    {
+      "rawUrl": "/api/cron/",
+      "clean": "/api/cron",
+      "file": "src/lib/engine-registry.ts",
+      "line": 387,
+      "isTest": false,
+      "snippet": "const id = r.path.replace(\"/api/cron/\", \"cron-\").replace(/[?&]/g, \"-\");"
+    },
+    {
+      "rawUrl": "/api/",
+      "clean": "/api",
+      "file": "src/middleware.ts",
+      "line": 60,
+      "isTest": false,
+      "snippet": "if (pathname.startsWith(\"/api/\")) {"
+    },
+    {
+      "rawUrl": "/api/",
+      "clean": "/api",
+      "file": "src/middleware.ts",
+      "line": 95,
+      "isTest": false,
+      "snippet": "!pathname.startsWith(\"/api/\") &&"
+    }
+  ],
+  "testIssues": [
+    {
+      "rawUrl": "/report",
+      "clean": "/report",
+      "file": "src/lib/ai/visitor-predictor.test.ts",
+      "line": 24,
+      "isTest": true,
+      "snippet": "{ timestamp: \"2026-08-28T00:02:00Z\", path: \"/report\", sessionId: \"s1\" },"
+    },
+    {
+      "rawUrl": "/landing",
+      "clean": "/landing",
+      "file": "src/lib/ai/visitor-predictor.test.ts",
+      "line": 49,
+      "isTest": true,
+      "snippet": "{ timestamp: \"2026-08-28T00:00:00Z\", path: \"/landing\", sessionId: \"s1\" },"
+    },
+    {
+      "rawUrl": "/checkout",
+      "clean": "/checkout",
+      "file": "src/lib/ai/visitor-predictor.test.ts",
+      "line": 51,
+      "isTest": true,
+      "snippet": "{ timestamp: \"2026-08-28T00:02:00Z\", path: \"/checkout\", sessionId: \"s1\" },"
+    },
+    {
+      "rawUrl": "/checkout",
+      "clean": "/checkout",
+      "file": "src/lib/ai/visitor-predictor.test.ts",
+      "line": 59,
+      "isTest": true,
+      "snippet": "expect(step2[0]?.path).toBe(\"/checkout\");"
+    }
+  ],
+  "allAuditedLinks": [
+    {
+      "rawUrl": "/?error=signout_failed",
+      "file": "src/app/api/auth/signout/route.ts",
+      "line": 10,
+      "valid": true,
+      "isTest": false,
+      "snippet": "return NextResponse.redirect(new URL(\"/?error=signout_failed\", request.url));"
+    },
+    {
+      "rawUrl": "/profile",
+      "file": "src/app/auth/callback/route.ts",
+      "line": 22,
+      "valid": true,
+      "isTest": false,
+      "snippet": "if (url.pathname === \"/\" || url.pathname === \"\") return \"/profile\";"
+    },
+    {
+      "rawUrl": "/favicon.svg",
+      "file": "src/app/layout.tsx",
+      "line": 62,
+      "valid": false,
+      "isTest": false,
+      "snippet": "{ url: \"/favicon.svg\", type: \"image/svg+xml\" },"
+    },
+    {
+      "rawUrl": "/favicon.ico",
+      "file": "src/app/layout.tsx",
+      "line": 63,
+      "valid": false,
+      "isTest": false,
+      "snippet": "{ url: \"/favicon.ico\", sizes: \"32x32\" },"
+    },
+    {
+      "rawUrl": "/icons/apple-touch-icon.png",
+      "file": "src/app/layout.tsx",
+      "line": 65,
+      "valid": true,
+      "isTest": false,
+      "snippet": "apple: [{ url: \"/icons/apple-touch-icon.png\", sizes: \"180x180\" }],"
+    },
+    {
+      "rawUrl": "/admin",
+      "file": "src/app/manifest.ts",
+      "line": 9,
+      "valid": true,
+      "isTest": false,
+      "snippet": "start_url: \"/admin\","
+    },
+    {
+      "rawUrl": "/en",
+      "file": "src/app/page.tsx",
+      "line": 4,
+      "valid": true,
+      "isTest": false,
+      "snippet": "redirect(\"/en\");"
+    },
+    {
+      "rawUrl": "/${locale}/about/advisory-board",
+      "file": "src/app/[locale]/about/advisory_board/page.tsx",
+      "line": 9,
+      "valid": true,
+      "isTest": false,
+      "snippet": "redirect(`/${locale}/about/advisory-board`);"
+    },
+    {
+      "rawUrl": "/about/advisory-board",
+      "file": "src/app/[locale]/about/page.tsx",
+      "line": 31,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/about/advisory-board\""
+    },
+    {
+      "rawUrl": "/about/methodology-committee",
+      "file": "src/app/[locale]/about/page.tsx",
+      "line": 41,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/about/methodology-committee\""
+    },
+    {
+      "rawUrl": "/academy/ambassador",
+      "file": "src/app/[locale]/academy/page.tsx",
+      "line": 169,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: \"/academy/ambassador\","
+    },
+    {
+      "rawUrl": "/academy/student-ambassadors",
+      "file": "src/app/[locale]/academy/page.tsx",
+      "line": 173,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/academy/student-ambassadors\", icon: Users, title: t(\"ambassador_title\") },"
+    },
+    {
+      "rawUrl": "/academy/fellowship",
+      "file": "src/app/[locale]/academy/page.tsx",
+      "line": 174,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/academy/fellowship\", icon: Award, title: t(\"programs_fellowship_title\") },"
+    },
+    {
+      "rawUrl": "/academy/instructor",
+      "file": "src/app/[locale]/academy/page.tsx",
+      "line": 176,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: \"/academy/instructor\","
+    },
+    {
+      "rawUrl": "/${locale}/admin/incidents",
+      "file": "src/app/[locale]/admin/page.tsx",
+      "line": 115,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={`/${locale}/admin/incidents`}"
+    },
+    {
+      "rawUrl": "/${locale}/admin/api-keys",
+      "file": "src/app/[locale]/admin/page.tsx",
+      "line": 194,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={`/${locale}/admin/api-keys`}"
+    },
+    {
+      "rawUrl": "/${locale}/admin/cross-audit",
+      "file": "src/app/[locale]/admin/page.tsx",
+      "line": 260,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={`/${locale}/admin/cross-audit`}"
+    },
+    {
+      "rawUrl": "/${locale}/admin/social",
+      "file": "src/app/[locale]/admin/page.tsx",
+      "line": 273,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={`/${locale}/admin/social`}"
+    },
+    {
+      "rawUrl": "/${locale}/admin/investors",
+      "file": "src/app/[locale]/admin/page.tsx",
+      "line": 286,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={`/${locale}/admin/investors`}"
+    },
+    {
+      "rawUrl": "/${locale}/admin/grants",
+      "file": "src/app/[locale]/admin/page.tsx",
+      "line": 299,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={`/${locale}/admin/grants`}"
+    },
+    {
+      "rawUrl": "/${locale}/admin/data-moat",
+      "file": "src/app/[locale]/admin/page.tsx",
+      "line": 312,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={`/${locale}/admin/data-moat`}"
+    },
+    {
+      "rawUrl": "/${locale}/admin/incidents",
+      "file": "src/app/[locale]/admin/page.tsx",
+      "line": 353,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={`/${locale}/admin/incidents`}"
+    },
+    {
+      "rawUrl": "/${locale}/admin/api-keys",
+      "file": "src/app/[locale]/admin/page.tsx",
+      "line": 360,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={`/${locale}/admin/api-keys`}"
+    },
+    {
+      "rawUrl": "/ai-act",
+      "file": "src/app/[locale]/ai-act/page.tsx",
+      "line": 206,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={isActive ? \"/ai-act\" : `/ai-act?risk=${filter.value}`}"
+    },
+    {
+      "rawUrl": "/ai-act?risk=${filter.value}",
+      "file": "src/app/[locale]/ai-act/page.tsx",
+      "line": 206,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={isActive ? \"/ai-act\" : `/ai-act?risk=${filter.value}`}"
+    },
+    {
+      "rawUrl": "/submit",
+      "file": "src/app/[locale]/ai-act/page.tsx",
+      "line": 355,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/submit\""
+    },
+    {
+      "rawUrl": "/api/v1/stats",
+      "file": "src/app/[locale]/api-docs/page.tsx",
+      "line": 27,
+      "valid": true,
+      "isTest": false,
+      "snippet": "path: \"/api/v1/stats\","
+    },
+    {
+      "rawUrl": "/api/v1/leaderboard",
+      "file": "src/app/[locale]/api-docs/page.tsx",
+      "line": 48,
+      "valid": true,
+      "isTest": false,
+      "snippet": "path: \"/api/v1/leaderboard\","
+    },
+    {
+      "rawUrl": "/api/v1/providers",
+      "file": "src/app/[locale]/api-docs/page.tsx",
+      "line": 72,
+      "valid": true,
+      "isTest": false,
+      "snippet": "path: \"/api/v1/providers\","
+    },
+    {
+      "rawUrl": "/api/v1/incidents",
+      "file": "src/app/[locale]/api-docs/page.tsx",
+      "line": 93,
+      "valid": true,
+      "isTest": false,
+      "snippet": "path: \"/api/v1/incidents\","
+    },
+    {
+      "rawUrl": "/api/v1/slopsquatting",
+      "file": "src/app/[locale]/api-docs/page.tsx",
+      "line": 147,
+      "valid": true,
+      "isTest": false,
+      "snippet": "path: \"/api/v1/slopsquatting\","
+    },
+    {
+      "rawUrl": "/api/v1/regulators",
+      "file": "src/app/[locale]/api-docs/page.tsx",
+      "line": 167,
+      "valid": true,
+      "isTest": false,
+      "snippet": "path: \"/api/v1/regulators\","
+    },
+    {
+      "rawUrl": "/api/mcp",
+      "file": "src/app/[locale]/api-docs/page.tsx",
+      "line": 181,
+      "valid": true,
+      "isTest": false,
+      "snippet": "path: \"/api/mcp\","
+    },
+    {
+      "rawUrl": "/api/v1/playbooks",
+      "file": "src/app/[locale]/api-docs/page.tsx",
+      "line": 194,
+      "valid": true,
+      "isTest": false,
+      "snippet": "path: \"/api/v1/playbooks\","
+    },
+    {
+      "rawUrl": "/api/v1/jailbreaks",
+      "file": "src/app/[locale]/api-docs/page.tsx",
+      "line": 214,
+      "valid": true,
+      "isTest": false,
+      "snippet": "path: \"/api/v1/jailbreaks\","
+    },
+    {
+      "rawUrl": "/api/v1/provenance",
+      "file": "src/app/[locale]/api-docs/page.tsx",
+      "line": 235,
+      "valid": true,
+      "isTest": false,
+      "snippet": "path: \"/api/v1/provenance\","
+    },
+    {
+      "rawUrl": "/api/v1/trust-ranking",
+      "file": "src/app/[locale]/api-docs/page.tsx",
+      "line": 250,
+      "valid": true,
+      "isTest": false,
+      "snippet": "path: \"/api/v1/trust-ranking\","
+    },
+    {
+      "rawUrl": "/api/v1/bench-tr",
+      "file": "src/app/[locale]/api-docs/page.tsx",
+      "line": 264,
+      "valid": true,
+      "isTest": false,
+      "snippet": "path: \"/api/v1/bench-tr\","
+    },
+    {
+      "rawUrl": "/api/v1/whistleblower",
+      "file": "src/app/[locale]/api-docs/page.tsx",
+      "line": 286,
+      "valid": true,
+      "isTest": false,
+      "snippet": "path: \"/api/v1/whistleblower\","
+    },
+    {
+      "rawUrl": "/api/v1/litigation/export",
+      "file": "src/app/[locale]/api-docs/page.tsx",
+      "line": 302,
+      "valid": true,
+      "isTest": false,
+      "snippet": "path: \"/api/v1/litigation/export\","
+    },
+    {
+      "rawUrl": "/api/v1/extract",
+      "file": "src/app/[locale]/api-docs/page.tsx",
+      "line": 319,
+      "valid": true,
+      "isTest": false,
+      "snippet": "path: \"/api/v1/extract\","
+    },
+    {
+      "rawUrl": "/api/v1/risk/audit",
+      "file": "src/app/[locale]/api-docs/page.tsx",
+      "line": 331,
+      "valid": true,
+      "isTest": false,
+      "snippet": "path: \"/api/v1/risk/audit\","
+    },
+    {
+      "rawUrl": "/api/v1/oecd/feed",
+      "file": "src/app/[locale]/api-docs/page.tsx",
+      "line": 344,
+      "valid": true,
+      "isTest": false,
+      "snippet": "path: \"/api/v1/oecd/feed\","
+    },
+    {
+      "rawUrl": "/api/v1/incidents/export",
+      "file": "src/app/[locale]/api-docs/page.tsx",
+      "line": 356,
+      "valid": true,
+      "isTest": false,
+      "snippet": "path: \"/api/v1/incidents/export\","
+    },
+    {
+      "rawUrl": "/press-kit",
+      "file": "src/app/[locale]/api-docs/page.tsx",
+      "line": 381,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/press-kit\""
+    },
+    {
+      "rawUrl": "/profile",
+      "file": "src/app/[locale]/auth/callback/route.ts",
+      "line": 21,
+      "valid": true,
+      "isTest": false,
+      "snippet": "if (url.pathname === \"/\" || url.pathname === \"\") return \"/profile\";"
+    },
+    {
+      "rawUrl": "/legal/terms",
+      "file": "src/app/[locale]/auth/signin/page.tsx",
+      "line": 138,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href=\"/legal/terms\" className=\"text-brand-400 font-semibold hover:underline\">"
+    },
+    {
+      "rawUrl": "/legal/privacy",
+      "file": "src/app/[locale]/auth/signin/page.tsx",
+      "line": 142,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href=\"/legal/privacy\" className=\"text-brand-400 font-semibold hover:underline\">"
+    },
+    {
+      "rawUrl": "/auth/login?returnTo=/b2b/dashboard",
+      "file": "src/app/[locale]/b2b/dashboard/page.tsx",
+      "line": 19,
+      "valid": false,
+      "isTest": false,
+      "snippet": "redirect({ href: \"/auth/login?returnTo=/b2b/dashboard\", locale });"
+    },
+    {
+      "rawUrl": "/blog/${post.slug}",
+      "file": "src/app/[locale]/blog/page.tsx",
+      "line": 265,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={`/blog/${post.slug}`}"
+    },
+    {
+      "rawUrl": "/blog",
+      "file": "src/app/[locale]/blog/[slug]/page.tsx",
+      "line": 180,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/blog\""
+    },
+    {
+      "rawUrl": "/incidents/${bounty.incident_id}",
+      "file": "src/app/[locale]/bounties/page.tsx",
+      "line": 245,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={`/incidents/${bounty.incident_id}`}"
+    },
+    {
+      "rawUrl": "/cases/001-grok-passport",
+      "file": "src/app/[locale]/case/001/page.tsx",
+      "line": 9,
+      "valid": true,
+      "isTest": false,
+      "snippet": "permanentRedirect({ href: \"/cases/001-grok-passport\", locale });"
+    },
+    {
+      "rawUrl": "/cases/${c.slug}",
+      "file": "src/app/[locale]/cases/page.tsx",
+      "line": 55,
+      "valid": false,
+      "isTest": false,
+      "snippet": "href={`/cases/${c.slug}`}"
+    },
+    {
+      "rawUrl": "/enterprise",
+      "file": "src/app/[locale]/compliance/page.tsx",
+      "line": 353,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/enterprise\""
+    },
+    {
+      "rawUrl": "/incidents/${citeItem.id}",
+      "file": "src/app/[locale]/dashboard/journalist/page.tsx",
+      "line": 320,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={citeItem ? `/incidents/${citeItem.id}` : \"/incidents\"}"
+    },
+    {
+      "rawUrl": "/incidents",
+      "file": "src/app/[locale]/dashboard/journalist/page.tsx",
+      "line": 320,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={citeItem ? `/incidents/${citeItem.id}` : \"/incidents\"}"
+    },
+    {
+      "rawUrl": "/incidents",
+      "file": "src/app/[locale]/dashboard/journalist/page.tsx",
+      "line": 336,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href=\"/incidents\" className=\"text-brand-400 text-sm hover:underline\">"
+    },
+    {
+      "rawUrl": "/press-kit",
+      "file": "src/app/[locale]/dashboard/journalist/page.tsx",
+      "line": 457,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/press-kit\""
+    },
+    {
+      "rawUrl": "/cases/001-grok-passport",
+      "file": "src/app/[locale]/dashboard/journalist/page.tsx",
+      "line": 496,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/cases/001-grok-passport\""
+    },
+    {
+      "rawUrl": "/contact",
+      "file": "src/app/[locale]/enterprise/page.tsx",
+      "line": 104,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/contact\""
+    },
+    {
+      "rawUrl": "/cases/001-grok-passport",
+      "file": "src/app/[locale]/incidents/case-001/page.tsx",
+      "line": 9,
+      "valid": true,
+      "isTest": false,
+      "snippet": "permanentRedirect({ href: \"/cases/001-grok-passport\", locale });"
+    },
+    {
+      "rawUrl": "/incidents/${inc.id}",
+      "file": "src/app/[locale]/incidents/provider/[slug]/page.tsx",
+      "line": 91,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={`/incidents/${inc.id}`}"
+    },
+    {
+      "rawUrl": "/submit",
+      "file": "src/app/[locale]/incidents/provider/[slug]/page.tsx",
+      "line": 114,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/submit\""
+    },
+    {
+      "rawUrl": "/${locale}/submit",
+      "file": "src/app/[locale]/incidents/[id]/page.tsx",
+      "line": 218,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={`/${locale}/submit`}"
+    },
+    {
+      "rawUrl": "/legal/neutrality",
+      "file": "src/app/[locale]/incidents/[id]/respond/page.tsx",
+      "line": 105,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href=\"/legal/neutrality\" className=\"text-brand-400 font-medium hover:underline\">"
+    },
+    {
+      "rawUrl": "/about",
+      "file": "src/app/[locale]/invest/page.tsx",
+      "line": 45,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/about\""
+    },
+    {
+      "rawUrl": "/embed",
+      "file": "src/app/[locale]/layout.tsx",
+      "line": 58,
+      "valid": false,
+      "isTest": false,
+      "snippet": "const isEmbed = pathname.endsWith(\"/embed\");"
+    },
+    {
+      "rawUrl": "/admin",
+      "file": "src/app/[locale]/layout.tsx",
+      "line": 60,
+      "valid": true,
+      "isTest": false,
+      "snippet": "pathname.includes(\"/admin\") ||"
+    },
+    {
+      "rawUrl": "/admin-v2",
+      "file": "src/app/[locale]/layout.tsx",
+      "line": 61,
+      "valid": false,
+      "isTest": false,
+      "snippet": "pathname.includes(\"/admin-v2\") ||"
+    },
+    {
+      "rawUrl": "/leaderboard",
+      "file": "src/app/[locale]/leaderboard/page.tsx",
+      "line": 221,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<ShareButtons url=\"/leaderboard\" title={_t(\"title\")} />"
+    },
+    {
+      "rawUrl": "/leaderboard?filter=all",
+      "file": "src/app/[locale]/leaderboard/page.tsx",
+      "line": 284,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/leaderboard?filter=all\""
+    },
+    {
+      "rawUrl": "/leaderboard?filter=verified",
+      "file": "src/app/[locale]/leaderboard/page.tsx",
+      "line": 295,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/leaderboard?filter=verified\""
+    },
+    {
+      "rawUrl": "/leaderboard?filter=with_incidents",
+      "file": "src/app/[locale]/leaderboard/page.tsx",
+      "line": 306,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/leaderboard?filter=with_incidents\""
+    },
+    {
+      "rawUrl": "/transparency",
+      "file": "src/app/[locale]/leaderboard/page.tsx",
+      "line": 343,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/transparency\""
+    },
+    {
+      "rawUrl": "/submit",
+      "file": "src/app/[locale]/leaderboard/page.tsx",
+      "line": 370,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/submit\""
+    },
+    {
+      "rawUrl": "/submit",
+      "file": "src/app/[locale]/leaderboard/page.tsx",
+      "line": 386,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/submit\""
+    },
+    {
+      "rawUrl": "/press-kit/${p.slug}",
+      "file": "src/app/[locale]/leaderboard/page.tsx",
+      "line": 483,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={`/press-kit/${p.slug}`}"
+    },
+    {
+      "rawUrl": "/${locale}/legal/takedown",
+      "file": "src/app/[locale]/legal/takedown/appeal/page.tsx",
+      "line": 29,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={`/${locale}/legal/takedown`}"
+    },
+    {
+      "rawUrl": "/${locale}/legal/takedown/appeal",
+      "file": "src/app/[locale]/legal/takedown/page.tsx",
+      "line": 50,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={`/${locale}/legal/takedown/appeal`}"
+    },
+    {
+      "rawUrl": "/legal/takedown",
+      "file": "src/app/[locale]/legal/terms/page.tsx",
+      "line": 53,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href=\"/legal/takedown\" className=\"text-brand-400 hover:underline\">"
+    },
+    {
+      "rawUrl": "/ratings",
+      "file": "src/app/[locale]/methodology/benchmarks/page.tsx",
+      "line": 141,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/ratings\""
+    },
+    {
+      "rawUrl": "/methodology/ai-iss",
+      "file": "src/app/[locale]/methodology/page.tsx",
+      "line": 125,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/methodology/ai-iss\""
+    },
+    {
+      "rawUrl": "/methodology/k-benchmark",
+      "file": "src/app/[locale]/methodology/page.tsx",
+      "line": 144,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/methodology/k-benchmark\""
+    },
+    {
+      "rawUrl": "/methodology/benchmarks",
+      "file": "src/app/[locale]/methodology/page.tsx",
+      "line": 163,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/methodology/benchmarks\""
+    },
+    {
+      "rawUrl": "/methodology/corrections",
+      "file": "src/app/[locale]/methodology/page.tsx",
+      "line": 182,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/methodology/corrections\""
+    },
+    {
+      "rawUrl": "/models/${model.provider_id}/${model.id}",
+      "file": "src/app/[locale]/models/page.tsx",
+      "line": 311,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={`/models/${model.provider_id}/${model.id}`}"
+    },
+    {
+      "rawUrl": "/models",
+      "file": "src/app/[locale]/models/[providerId]/[modelId]/page.tsx",
+      "line": 135,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/models\""
+    },
+    {
+      "rawUrl": "/incidents/${inc.id}",
+      "file": "src/app/[locale]/models/[providerId]/[modelId]/page.tsx",
+      "line": 343,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href={`/incidents/${inc.id}`} className=\"text-base font-semibold text-slate-200 hover:text-brand-400 transition-colors\">"
+    },
+    {
+      "rawUrl": "/incidents/${inc.id}",
+      "file": "src/app/[locale]/models/[providerId]/[modelId]/page.tsx",
+      "line": 351,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href={`/incidents/${inc.id}`} className=\"text-xs text-brand-400 hover:underline flex items-center gap-1\">"
+    },
+    {
+      "rawUrl": "/${locale}/auth/signin?next=/${locale}/my-incidents",
+      "file": "src/app/[locale]/my-incidents/page.tsx",
+      "line": 22,
+      "valid": true,
+      "isTest": false,
+      "snippet": "redirect(`/${locale}/auth/signin?next=/${locale}/my-incidents`);"
+    },
+    {
+      "rawUrl": "/${locale}/auth/signin?next=/${locale}/onboarding",
+      "file": "src/app/[locale]/onboarding/page.tsx",
+      "line": 24,
+      "valid": true,
+      "isTest": false,
+      "snippet": "redirect(`/${locale}/auth/signin?next=/${locale}/onboarding`);"
+    },
+    {
+      "rawUrl": "/brand/alpar-logo.svg",
+      "file": "src/app/[locale]/press/page.tsx",
+      "line": 59,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/brand/alpar-logo.svg\""
+    },
+    {
+      "rawUrl": "/brand/alpar-logo.png",
+      "file": "src/app/[locale]/press/page.tsx",
+      "line": 67,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/brand/alpar-logo.png\""
+    },
+    {
+      "rawUrl": "/brand-assets.zip",
+      "file": "src/app/[locale]/press/page.tsx",
+      "line": 75,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/brand-assets.zip\""
+    },
+    {
+      "rawUrl": "/press-kit/releases/${release.slug}",
+      "file": "src/app/[locale]/press/page.tsx",
+      "line": 162,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={`/press-kit/releases/${release.slug}`}"
+    },
+    {
+      "rawUrl": "/${locale}/press-kit/releases/${release.slug}",
+      "file": "src/app/[locale]/press-kit/page.tsx",
+      "line": 172,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={`/${locale}/press-kit/releases/${release.slug}`}"
+    },
+    {
+      "rawUrl": "/brand-assets.zip",
+      "file": "src/app/[locale]/press-kit/page.tsx",
+      "line": 217,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/brand-assets.zip\""
+    },
+    {
+      "rawUrl": "/api-docs",
+      "file": "src/app/[locale]/press-kit/page.tsx",
+      "line": 253,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/api-docs\""
+    },
+    {
+      "rawUrl": "/${locale}/press-kit",
+      "file": "src/app/[locale]/press-kit/releases/[slug]/page.tsx",
+      "line": 53,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={`/${locale}/press-kit`}"
+    },
+    {
+      "rawUrl": "/${locale}/models/${m.provider_id}/${m.id}",
+      "file": "src/app/[locale]/press-kit/[slug]/page.tsx",
+      "line": 237,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link key={m.id} href={`/${locale}/models/${m.provider_id}/${m.id}`}>"
+    },
+    {
+      "rawUrl": "/${locale}/onboarding?role=provider&claim=${providerSlug}",
+      "file": "src/app/[locale]/press-kit/[slug]/page.tsx",
+      "line": 270,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={`/${locale}/onboarding?role=provider&claim=${providerSlug}`}"
+    },
+    {
+      "rawUrl": "/contact",
+      "file": "src/app/[locale]/pricing/enterprise/page.tsx",
+      "line": 136,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/contact\""
+    },
+    {
+      "rawUrl": "/contact",
+      "file": "src/app/[locale]/products/ars-api/page.tsx",
+      "line": 59,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/contact\""
+    },
+    {
+      "rawUrl": "/contact",
+      "file": "src/app/[locale]/products/datasets/page.tsx",
+      "line": 63,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/contact\""
+    },
+    {
+      "rawUrl": "/${locale}/auth/signin?next=/${locale}/profile",
+      "file": "src/app/[locale]/profile/page.tsx",
+      "line": 24,
+      "valid": true,
+      "isTest": false,
+      "snippet": "redirect(`/${locale}/auth/signin?next=/${locale}/profile`);"
+    },
+    {
+      "rawUrl": "/my-incidents",
+      "file": "src/app/[locale]/profile/page.tsx",
+      "line": 85,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/my-incidents\""
+    },
+    {
+      "rawUrl": "/methodology/benchmarks",
+      "file": "src/app/[locale]/ratings/page.tsx",
+      "line": 168,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/methodology/benchmarks\""
+    },
+    {
+      "rawUrl": "/insights/open-vs-closed",
+      "file": "src/app/[locale]/ratings/page.tsx",
+      "line": 175,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/insights/open-vs-closed\""
+    },
+    {
+      "rawUrl": "/api-docs",
+      "file": "src/app/[locale]/ratings/page.tsx",
+      "line": 182,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/api-docs\""
+    },
+    {
+      "rawUrl": "/models/${item.providerSlug}/${item.modelId}",
+      "file": "src/app/[locale]/ratings/page.tsx",
+      "line": 264,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={`/models/${item.providerSlug}/${item.modelId}`}"
+    },
+    {
+      "rawUrl": "/${locale}/auth/signin?next=/${locale}/settings",
+      "file": "src/app/[locale]/settings/page.tsx",
+      "line": 25,
+      "valid": true,
+      "isTest": false,
+      "snippet": "redirect(`/${locale}/auth/signin?next=/${locale}/settings`);"
+    },
+    {
+      "rawUrl": "/${locale}/legal/privacy",
+      "file": "src/app/[locale]/settings/page.tsx",
+      "line": 69,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<a href={`/${locale}/legal/privacy`} className=\"text-brand-400 hover:underline\">"
+    },
+    {
+      "rawUrl": "/submit/whistleblower",
+      "file": "src/app/[locale]/submit/page.tsx",
+      "line": 66,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/submit/whistleblower\""
+    },
+    {
+      "rawUrl": "/auth/signin",
+      "file": "src/app/[locale]/submit/page.tsx",
+      "line": 89,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href=\"/auth/signin\">"
+    },
+    {
+      "rawUrl": "/${locale}/dilemmas",
+      "file": "src/app/[locale]/suggestions/page.tsx",
+      "line": 12,
+      "valid": true,
+      "isTest": false,
+      "snippet": "redirect(`/${locale}/dilemmas`);"
+    },
+    {
+      "rawUrl": "/dilemmas?tab=suggestions",
+      "file": "src/app/[locale]/suggestions/[id]/page.tsx",
+      "line": 73,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/dilemmas?tab=suggestions\""
+    },
+    {
+      "rawUrl": "/${locale}/digital-twins",
+      "file": "src/app/[locale]/twins-leaderboard/twins-leaderboard-client.tsx",
+      "line": 253,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={`/${locale}/digital-twins`}"
+    },
+    {
+      "rawUrl": "/${locale}/digital-twins",
+      "file": "src/app/[locale]/twins-leaderboard/twins-leaderboard-client.tsx",
+      "line": 337,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href={`/${locale}/digital-twins`} className=\"w-1/2\">"
+    },
+    {
+      "rawUrl": "/${locale}/digital-twins",
+      "file": "src/app/[locale]/twins-leaderboard/twins-leaderboard-client.tsx",
+      "line": 431,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href={`/${locale}/digital-twins`} className=\"w-1/2\">"
+    },
+    {
+      "rawUrl": "/${locale}/digital-twins",
+      "file": "src/app/[locale]/twins-leaderboard/twins-leaderboard-client.tsx",
+      "line": 515,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href={`/${locale}/digital-twins`} className=\"w-1/2\">"
+    },
+    {
+      "rawUrl": "/${locale}/digital-twins",
+      "file": "src/app/[locale]/twins-leaderboard/twins-leaderboard-client.tsx",
+      "line": 824,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href={`/${locale}/digital-twins`} className=\"w-1/2\">"
+    },
+    {
+      "rawUrl": "/${locale}/digital-twins",
+      "file": "src/app/[locale]/twins-leaderboard/twins-leaderboard-client.tsx",
+      "line": 967,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href={`/${locale}/digital-twins`}>"
+    },
+    {
+      "rawUrl": "/${locale}/digital-twins",
+      "file": "src/app/[locale]/twins-leaderboard/twins-leaderboard-client.tsx",
+      "line": 1004,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href={`/${locale}/digital-twins`}>"
+    },
+    {
+      "rawUrl": "/${locale}/digital-twins",
+      "file": "src/app/[locale]/twins-leaderboard/twins-leaderboard-client.tsx",
+      "line": 1174,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href={`/${locale}/digital-twins`}>"
+    },
+    {
+      "rawUrl": "/${locale}",
+      "file": "src/app/[locale]/unsubscribe/page.tsx",
+      "line": 49,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href={`/${locale}`} className=\"text-sm text-cyan-500 hover:underline\">"
+    },
+    {
+      "rawUrl": "/${locale}/settings",
+      "file": "src/app/[locale]/unsubscribe/page.tsx",
+      "line": 53,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href={`/${locale}/settings`} className=\"text-sm text-cyan-500 hover:underline\">"
+    },
+    {
+      "rawUrl": "/${locale}",
+      "file": "src/app/[locale]/unsubscribe/page.tsx",
+      "line": 76,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href={`/${locale}`} className=\"text-cyan-500 hover:underline\">"
+    },
+    {
+      "rawUrl": "/${locale}",
+      "file": "src/app/[locale]/unsubscribe/page.tsx",
+      "line": 102,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href={`/${locale}`} className=\"text-cyan-500 hover:underline\">"
+    },
+    {
+      "rawUrl": "/${locale}",
+      "file": "src/app/[locale]/unsubscribe/page.tsx",
+      "line": 162,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href={`/${locale}`} className=\"text-cyan-500 hover:underline\">"
+    },
+    {
+      "rawUrl": "/${locale}",
+      "file": "src/app/[locale]/unsubscribe/page.tsx",
+      "line": 185,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href={`/${locale}`} className=\"text-sm text-cyan-500 hover:underline\">"
+    },
+    {
+      "rawUrl": "/${locale}/settings",
+      "file": "src/app/[locale]/unsubscribe/page.tsx",
+      "line": 189,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href={`/${locale}/settings`} className=\"text-sm text-cyan-500 hover:underline\">"
+    },
+    {
+      "rawUrl": "/incidents",
+      "file": "src/components/admin/widgets/VisitorAnalytics.tsx",
+      "line": 74,
+      "valid": true,
+      "isTest": false,
+      "snippet": "const paths = [\"/\", \"/incidents\", \"/report\", \"/pricing\", \"/checkout\", \"/about\"];"
+    },
+    {
+      "rawUrl": "/report",
+      "file": "src/components/admin/widgets/VisitorAnalytics.tsx",
+      "line": 74,
+      "valid": false,
+      "isTest": false,
+      "snippet": "const paths = [\"/\", \"/incidents\", \"/report\", \"/pricing\", \"/checkout\", \"/about\"];"
+    },
+    {
+      "rawUrl": "/pricing",
+      "file": "src/components/admin/widgets/VisitorAnalytics.tsx",
+      "line": 74,
+      "valid": true,
+      "isTest": false,
+      "snippet": "const paths = [\"/\", \"/incidents\", \"/report\", \"/pricing\", \"/checkout\", \"/about\"];"
+    },
+    {
+      "rawUrl": "/checkout",
+      "file": "src/components/admin/widgets/VisitorAnalytics.tsx",
+      "line": 74,
+      "valid": false,
+      "isTest": false,
+      "snippet": "const paths = [\"/\", \"/incidents\", \"/report\", \"/pricing\", \"/checkout\", \"/about\"];"
+    },
+    {
+      "rawUrl": "/about",
+      "file": "src/components/admin/widgets/VisitorAnalytics.tsx",
+      "line": 74,
+      "valid": true,
+      "isTest": false,
+      "snippet": "const paths = [\"/\", \"/incidents\", \"/report\", \"/pricing\", \"/checkout\", \"/about\"];"
+    },
+    {
+      "rawUrl": "/incidents",
+      "file": "src/components/admin/widgets/VisitorAnalytics.tsx",
+      "line": 97,
+      "valid": true,
+      "isTest": false,
+      "snippet": "path: paths[nextIdx] || \"/incidents\","
+    },
+    {
+      "rawUrl": "/${locale}/admin",
+      "file": "src/components/admin-core/admin-sidebar.tsx",
+      "line": 96,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: `/${locale}/admin`,"
+    },
+    {
+      "rawUrl": "/${locale}/admin/incidents",
+      "file": "src/components/admin-core/admin-sidebar.tsx",
+      "line": 101,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: `/${locale}/admin/incidents`,"
+    },
+    {
+      "rawUrl": "/${locale}/admin/cross-audit",
+      "file": "src/components/admin-core/admin-sidebar.tsx",
+      "line": 108,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: `/${locale}/admin/cross-audit`,"
+    },
+    {
+      "rawUrl": "/${locale}/admin/compliance",
+      "file": "src/components/admin-core/admin-sidebar.tsx",
+      "line": 113,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: `/${locale}/admin/compliance`,"
+    },
+    {
+      "rawUrl": "/${locale}/admin/legal-tracker",
+      "file": "src/components/admin-core/admin-sidebar.tsx",
+      "line": 120,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: `/${locale}/admin/legal-tracker`,"
+    },
+    {
+      "rawUrl": "/${locale}/admin/transparency",
+      "file": "src/components/admin-core/admin-sidebar.tsx",
+      "line": 125,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: `/${locale}/admin/transparency`,"
+    },
+    {
+      "rawUrl": "/${locale}/admin/challenges",
+      "file": "src/components/admin-core/admin-sidebar.tsx",
+      "line": 130,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: `/${locale}/admin/challenges`,"
+    },
+    {
+      "rawUrl": "/${locale}/admin/moderation",
+      "file": "src/components/admin-core/admin-sidebar.tsx",
+      "line": 135,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: `/${locale}/admin/moderation`,"
+    },
+    {
+      "rawUrl": "/${locale}/admin/social",
+      "file": "src/components/admin-core/admin-sidebar.tsx",
+      "line": 147,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: `/${locale}/admin/social`,"
+    },
+    {
+      "rawUrl": "/${locale}/admin/dilemmas",
+      "file": "src/components/admin-core/admin-sidebar.tsx",
+      "line": 154,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: `/${locale}/admin/dilemmas`,"
+    },
+    {
+      "rawUrl": "/${locale}/admin/mail",
+      "file": "src/components/admin-core/admin-sidebar.tsx",
+      "line": 159,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: `/${locale}/admin/mail`,"
+    },
+    {
+      "rawUrl": "/${locale}/admin/seo",
+      "file": "src/components/admin-core/admin-sidebar.tsx",
+      "line": 164,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: `/${locale}/admin/seo`,"
+    },
+    {
+      "rawUrl": "/${locale}/admin/strategy",
+      "file": "src/components/admin-core/admin-sidebar.tsx",
+      "line": 176,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: `/${locale}/admin/strategy`,"
+    },
+    {
+      "rawUrl": "/${locale}/admin/investors",
+      "file": "src/components/admin-core/admin-sidebar.tsx",
+      "line": 183,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: `/${locale}/admin/investors`,"
+    },
+    {
+      "rawUrl": "/${locale}/admin/grants",
+      "file": "src/components/admin-core/admin-sidebar.tsx",
+      "line": 188,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: `/${locale}/admin/grants`,"
+    },
+    {
+      "rawUrl": "/${locale}/admin/finance",
+      "file": "src/components/admin-core/admin-sidebar.tsx",
+      "line": 195,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: `/${locale}/admin/finance`,"
+    },
+    {
+      "rawUrl": "/${locale}/admin/api-keys",
+      "file": "src/components/admin-core/admin-sidebar.tsx",
+      "line": 207,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: `/${locale}/admin/api-keys`,"
+    },
+    {
+      "rawUrl": "/${locale}/admin/data-moat",
+      "file": "src/components/admin-core/admin-sidebar.tsx",
+      "line": 214,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: `/${locale}/admin/data-moat`,"
+    },
+    {
+      "rawUrl": "/${locale}/admin/ai-signals",
+      "file": "src/components/admin-core/admin-sidebar.tsx",
+      "line": 219,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: `/${locale}/admin/ai-signals`,"
+    },
+    {
+      "rawUrl": "/${locale}/admin/innovations",
+      "file": "src/components/admin-core/admin-sidebar.tsx",
+      "line": 224,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: `/${locale}/admin/innovations`,"
+    },
+    {
+      "rawUrl": "/${locale}/admin/system-health",
+      "file": "src/components/admin-core/admin-sidebar.tsx",
+      "line": 229,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: `/${locale}/admin/system-health`,"
+    },
+    {
+      "rawUrl": "/${locale}/admin/users",
+      "file": "src/components/admin-core/admin-sidebar.tsx",
+      "line": 241,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: `/${locale}/admin/users`,"
+    },
+    {
+      "rawUrl": "/${locale}/admin/experts",
+      "file": "src/components/admin-core/admin-sidebar.tsx",
+      "line": 246,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: `/${locale}/admin/experts`,"
+    },
+    {
+      "rawUrl": "/${locale}/admin/academy",
+      "file": "src/components/admin-core/admin-sidebar.tsx",
+      "line": 251,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: `/${locale}/admin/academy`,"
+    },
+    {
+      "rawUrl": "/${locale}/admin/vault",
+      "file": "src/components/admin-core/admin-sidebar.tsx",
+      "line": 256,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: `/${locale}/admin/vault`,"
+    },
+    {
+      "rawUrl": "/${locale}/admin/settings",
+      "file": "src/components/admin-core/admin-sidebar.tsx",
+      "line": 261,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: `/${locale}/admin/settings`,"
+    },
+    {
+      "rawUrl": "/${locale}/admin",
+      "file": "src/components/admin-core/admin-sidebar.tsx",
+      "line": 316,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href={`/${locale}/admin`} className=\"group flex min-w-0 items-center gap-2.5\">"
+    },
+    {
+      "rawUrl": "/${locale}",
+      "file": "src/components/admin-core/admin-sidebar.tsx",
+      "line": 444,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={`/${locale}`}"
+    },
+    {
+      "rawUrl": "/api/v1/stats",
+      "file": "src/components/api-docs/api-playground.tsx",
+      "line": 18,
+      "valid": true,
+      "isTest": false,
+      "snippet": "path: \"/api/v1/stats\","
+    },
+    {
+      "rawUrl": "/api/v1/leaderboard",
+      "file": "src/components/api-docs/api-playground.tsx",
+      "line": 24,
+      "valid": true,
+      "isTest": false,
+      "snippet": "path: \"/api/v1/leaderboard\","
+    },
+    {
+      "rawUrl": "/api/v1/providers",
+      "file": "src/components/api-docs/api-playground.tsx",
+      "line": 30,
+      "valid": true,
+      "isTest": false,
+      "snippet": "path: \"/api/v1/providers\","
+    },
+    {
+      "rawUrl": "/api/v1/incidents",
+      "file": "src/components/api-docs/api-playground.tsx",
+      "line": 36,
+      "valid": true,
+      "isTest": false,
+      "snippet": "path: \"/api/v1/incidents\","
+    },
+    {
+      "rawUrl": "/api/v1/playbooks",
+      "file": "src/components/api-docs/api-playground.tsx",
+      "line": 46,
+      "valid": true,
+      "isTest": false,
+      "snippet": "path: \"/api/v1/playbooks\","
+    },
+    {
+      "rawUrl": "/api/v1/provenance",
+      "file": "src/components/api-docs/api-playground.tsx",
+      "line": 52,
+      "valid": true,
+      "isTest": false,
+      "snippet": "path: \"/api/v1/provenance\","
+    },
+    {
+      "rawUrl": "/api/v1/eu-ai-act",
+      "file": "src/components/api-docs/api-playground.tsx",
+      "line": 58,
+      "valid": false,
+      "isTest": false,
+      "snippet": "path: \"/api/v1/eu-ai-act\","
+    },
+    {
+      "rawUrl": "/${locale}/profile",
+      "file": "src/components/auth/onboarding-wizard.tsx",
+      "line": 324,
+      "valid": true,
+      "isTest": false,
+      "snippet": "onClick={() => router.push(`/${locale}/profile`)}"
+    },
+    {
+      "rawUrl": "/legal/neutrality",
+      "file": "src/components/auth/onboarding-wizard.tsx",
+      "line": 338,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href=\"/legal/neutrality\" className=\"text-brand-400 font-medium hover:underline\">"
+    },
+    {
+      "rawUrl": "/legal/terms",
+      "file": "src/components/auth/sign-in-form.tsx",
+      "line": 38,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/legal/terms\""
+    },
+    {
+      "rawUrl": "/legal/privacy",
+      "file": "src/components/auth/sign-in-form.tsx",
+      "line": 47,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/legal/privacy\""
+    },
+    {
+      "rawUrl": "/contact",
+      "file": "src/components/compliance/compliance-checklist-client.tsx",
+      "line": 429,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/contact\""
+    },
+    {
+      "rawUrl": "/suggestions/new",
+      "file": "src/components/dilemmas/community-hub.tsx",
+      "line": 112,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href=\"/suggestions/new\">"
+    },
+    {
+      "rawUrl": "/press-kit/${incident.provider_slug}",
+      "file": "src/components/feed/feed-card.tsx",
+      "line": 136,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={`/press-kit/${incident.provider_slug}`}"
+    },
+    {
+      "rawUrl": "/incidents/${incident.id}",
+      "file": "src/components/feed/feed-card.tsx",
+      "line": 185,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href={`/incidents/${incident.id}`} className=\"mt-2 block\">"
+    },
+    {
+      "rawUrl": "/leaderboard",
+      "file": "src/components/feed/feed-sidebar.tsx",
+      "line": 88,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/leaderboard\""
+    },
+    {
+      "rawUrl": "/auth/signin",
+      "file": "src/components/incidents/comment-section.tsx",
+      "line": 228,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href=\"/auth/signin\">"
+    },
+    {
+      "rawUrl": "/incidents/${incident.id}",
+      "file": "src/components/incidents/incident-card.tsx",
+      "line": 247,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={`/incidents/${incident.id}`}"
+    },
+    {
+      "rawUrl": "/incidents/${incident.id}",
+      "file": "src/components/incidents/incident-detail.tsx",
+      "line": 454,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<ShareButtons url={`/incidents/${incident.id}`} title={displayTitle} />"
+    },
+    {
+      "rawUrl": "/press-kit/${incident.provider_slug}",
+      "file": "src/components/incidents/incident-detail.tsx",
+      "line": 475,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={`/press-kit/${incident.provider_slug}`}"
+    },
+    {
+      "rawUrl": "/incidents/${state.incidentId}",
+      "file": "src/components/incidents/incident-form.tsx",
+      "line": 255,
+      "valid": true,
+      "isTest": false,
+      "snippet": "router.push(`/incidents/${state.incidentId}`);"
+    },
+    {
+      "rawUrl": "/incidents/${state.incidentId}",
+      "file": "src/components/incidents/incident-form.tsx",
+      "line": 292,
+      "valid": true,
+      "isTest": false,
+      "snippet": "router.push(`/incidents/${state.incidentId}`);"
+    },
+    {
+      "rawUrl": "/incidents",
+      "file": "src/components/incidents/incident-form.tsx",
+      "line": 443,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href=\"/incidents\">"
+    },
+    {
+      "rawUrl": "/incidents",
+      "file": "src/components/incidents/incident-form.tsx",
+      "line": 468,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Button variant=\"outline\" onClick={() => router.push(\"/incidents\")}>"
+    },
+    {
+      "rawUrl": "/submit",
+      "file": "src/components/incidents/incident-list.tsx",
+      "line": 48,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/submit\""
+    },
+    {
+      "rawUrl": "/incidents/${incident.id}",
+      "file": "src/components/incidents/related-incidents.tsx",
+      "line": 74,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href={`/incidents/${incident.id}`} className=\"mt-4 flex-1\">"
+    },
+    {
+      "rawUrl": "/constitution",
+      "file": "src/components/layout/footer.tsx",
+      "line": 11,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/constitution\", key: \"constitution\" },"
+    },
+    {
+      "rawUrl": "/incidents",
+      "file": "src/components/layout/footer.tsx",
+      "line": 12,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/incidents\", key: \"incidents\" },"
+    },
+    {
+      "rawUrl": "/leaderboard",
+      "file": "src/components/layout/footer.tsx",
+      "line": 13,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/leaderboard\", key: \"leaderboard\" },"
+    },
+    {
+      "rawUrl": "/dilemmas",
+      "file": "src/components/layout/footer.tsx",
+      "line": 14,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/dilemmas\", key: \"dilemmas\" },"
+    },
+    {
+      "rawUrl": "/submit",
+      "file": "src/components/layout/footer.tsx",
+      "line": 15,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/submit\", key: \"submit_report\" },"
+    },
+    {
+      "rawUrl": "/about",
+      "file": "src/components/layout/footer.tsx",
+      "line": 19,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/about\", key: \"about\" },"
+    },
+    {
+      "rawUrl": "/about/advisory-board",
+      "file": "src/components/layout/footer.tsx",
+      "line": 20,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/about/advisory-board\", key: \"advisory_board\" },"
+    },
+    {
+      "rawUrl": "/pricing",
+      "file": "src/components/layout/footer.tsx",
+      "line": 21,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/pricing\", key: \"pricing\" },"
+    },
+    {
+      "rawUrl": "/trust-center",
+      "file": "src/components/layout/footer.tsx",
+      "line": 22,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/trust-center\", key: \"security\" },"
+    },
+    {
+      "rawUrl": "/academy",
+      "file": "src/components/layout/footer.tsx",
+      "line": 23,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/academy\", key: \"academy\" },"
+    },
+    {
+      "rawUrl": "/blog",
+      "file": "src/components/layout/footer.tsx",
+      "line": 27,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/blog\", key: \"blog\" },"
+    },
+    {
+      "rawUrl": "/methodology/k-benchmark",
+      "file": "src/components/layout/footer.tsx",
+      "line": 28,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/methodology/k-benchmark\", key: \"methodology\" },"
+    },
+    {
+      "rawUrl": "/ai-act",
+      "file": "src/components/layout/footer.tsx",
+      "line": 29,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/ai-act\", key: \"ai_act\" },"
+    },
+    {
+      "rawUrl": "/transparency",
+      "file": "src/components/layout/footer.tsx",
+      "line": 30,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/transparency\", key: \"transparency\" },"
+    },
+    {
+      "rawUrl": "/api-docs",
+      "file": "src/components/layout/footer.tsx",
+      "line": 31,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/api-docs\", key: \"apidocs\" },"
+    },
+    {
+      "rawUrl": "/legal/privacy",
+      "file": "src/components/layout/footer.tsx",
+      "line": 35,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/legal/privacy\", key: \"privacy\", isEmail: false },"
+    },
+    {
+      "rawUrl": "/legal/terms",
+      "file": "src/components/layout/footer.tsx",
+      "line": 36,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/legal/terms\", key: \"terms\", isEmail: false },"
+    },
+    {
+      "rawUrl": "/legal/cookies",
+      "file": "src/components/layout/footer.tsx",
+      "line": 37,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/legal/cookies\", key: \"cookies\", isEmail: false },"
+    },
+    {
+      "rawUrl": "/admin",
+      "file": "src/components/layout/footer.tsx",
+      "line": 49,
+      "valid": true,
+      "isTest": false,
+      "snippet": "pathname === \"/admin\" ||"
+    },
+    {
+      "rawUrl": "/admin",
+      "file": "src/components/layout/footer.tsx",
+      "line": 50,
+      "valid": true,
+      "isTest": false,
+      "snippet": "pathname.startsWith(\"/admin\") ||"
+    },
+    {
+      "rawUrl": "/admin-v2",
+      "file": "src/components/layout/footer.tsx",
+      "line": 51,
+      "valid": false,
+      "isTest": false,
+      "snippet": "pathname.includes(\"/admin-v2\") ||"
+    },
+    {
+      "rawUrl": "/admin/",
+      "file": "src/components/layout/footer.tsx",
+      "line": 52,
+      "valid": true,
+      "isTest": false,
+      "snippet": "pathname.includes(\"/admin/\"));"
+    },
+    {
+      "rawUrl": "/admin",
+      "file": "src/components/layout/header.tsx",
+      "line": 30,
+      "valid": true,
+      "isTest": false,
+      "snippet": "pathname === \"/admin\" ||"
+    },
+    {
+      "rawUrl": "/admin",
+      "file": "src/components/layout/header.tsx",
+      "line": 31,
+      "valid": true,
+      "isTest": false,
+      "snippet": "pathname.startsWith(\"/admin\") ||"
+    },
+    {
+      "rawUrl": "/admin-v2",
+      "file": "src/components/layout/header.tsx",
+      "line": 32,
+      "valid": false,
+      "isTest": false,
+      "snippet": "pathname.includes(\"/admin-v2\") ||"
+    },
+    {
+      "rawUrl": "/admin/",
+      "file": "src/components/layout/header.tsx",
+      "line": 33,
+      "valid": true,
+      "isTest": false,
+      "snippet": "pathname.includes(\"/admin/\"));"
+    },
+    {
+      "rawUrl": "/submit",
+      "file": "src/components/layout/header.tsx",
+      "line": 66,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/submit\""
+    },
+    {
+      "rawUrl": "/admin",
+      "file": "src/components/layout/language-switcher.tsx",
+      "line": 37,
+      "valid": true,
+      "isTest": false,
+      "snippet": "const isAdmin = pathname.startsWith(\"/admin\");"
+    },
+    {
+      "rawUrl": "/${code}${currentPath}${window.location.search}",
+      "file": "src/components/layout/language-switcher.tsx",
+      "line": 84,
+      "valid": true,
+      "isTest": false,
+      "snippet": "window.location.origin + `/${code}${currentPath}${window.location.search}`;"
+    },
+    {
+      "rawUrl": "/admin",
+      "file": "src/components/layout/main-content.tsx",
+      "line": 17,
+      "valid": true,
+      "isTest": false,
+      "snippet": "pathname === \"/admin\" ||"
+    },
+    {
+      "rawUrl": "/admin",
+      "file": "src/components/layout/main-content.tsx",
+      "line": 18,
+      "valid": true,
+      "isTest": false,
+      "snippet": "pathname.startsWith(\"/admin\") ||"
+    },
+    {
+      "rawUrl": "/admin-v2",
+      "file": "src/components/layout/main-content.tsx",
+      "line": 19,
+      "valid": false,
+      "isTest": false,
+      "snippet": "pathname.includes(\"/admin-v2\") ||"
+    },
+    {
+      "rawUrl": "/admin/",
+      "file": "src/components/layout/main-content.tsx",
+      "line": 20,
+      "valid": true,
+      "isTest": false,
+      "snippet": "pathname.includes(\"/admin/\"));"
+    },
+    {
+      "rawUrl": "/feed",
+      "file": "src/components/layout/mobile-bottom-nav.tsx",
+      "line": 17,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/feed\", key: \"feed\", icon: Activity },"
+    },
+    {
+      "rawUrl": "/incidents",
+      "file": "src/components/layout/mobile-bottom-nav.tsx",
+      "line": 18,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/incidents\", key: \"incidents\", icon: FileText },"
+    },
+    {
+      "rawUrl": "/submit",
+      "file": "src/components/layout/mobile-bottom-nav.tsx",
+      "line": 19,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/submit\", key: \"report\", icon: Plus, isAction: true },"
+    },
+    {
+      "rawUrl": "/leaderboard",
+      "file": "src/components/layout/mobile-bottom-nav.tsx",
+      "line": 20,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/leaderboard\", key: \"leaderboard\", icon: Trophy },"
+    },
+    {
+      "rawUrl": "/about",
+      "file": "src/components/layout/mobile-bottom-nav.tsx",
+      "line": 21,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/about\", key: \"about\", icon: Info },"
+    },
+    {
+      "rawUrl": "/admin",
+      "file": "src/components/layout/mobile-bottom-nav.tsx",
+      "line": 30,
+      "valid": true,
+      "isTest": false,
+      "snippet": "pathname === \"/admin\" ||"
+    },
+    {
+      "rawUrl": "/admin",
+      "file": "src/components/layout/mobile-bottom-nav.tsx",
+      "line": 31,
+      "valid": true,
+      "isTest": false,
+      "snippet": "pathname.startsWith(\"/admin\") ||"
+    },
+    {
+      "rawUrl": "/admin-v2",
+      "file": "src/components/layout/mobile-bottom-nav.tsx",
+      "line": 32,
+      "valid": false,
+      "isTest": false,
+      "snippet": "pathname.includes(\"/admin-v2\") ||"
+    },
+    {
+      "rawUrl": "/admin/",
+      "file": "src/components/layout/mobile-bottom-nav.tsx",
+      "line": 33,
+      "valid": true,
+      "isTest": false,
+      "snippet": "pathname.includes(\"/admin/\"));"
+    },
+    {
+      "rawUrl": "/incidents",
+      "file": "src/components/layout/mobile-nav.tsx",
+      "line": 17,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/incidents\", key: \"incidents\" },"
+    },
+    {
+      "rawUrl": "/leaderboard",
+      "file": "src/components/layout/mobile-nav.tsx",
+      "line": 18,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/leaderboard\", key: \"leaderboard\" },"
+    },
+    {
+      "rawUrl": "/academy",
+      "file": "src/components/layout/mobile-nav.tsx",
+      "line": 19,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/academy\", key: \"academy\" },"
+    },
+    {
+      "rawUrl": "/pricing",
+      "file": "src/components/layout/mobile-nav.tsx",
+      "line": 20,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/pricing\", key: \"pricing\" },"
+    },
+    {
+      "rawUrl": "/products/ars-api",
+      "file": "src/components/layout/mobile-nav.tsx",
+      "line": 22,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/products/ars-api\", key: \"ars_api\" },"
+    },
+    {
+      "rawUrl": "/products/datasets",
+      "file": "src/components/layout/mobile-nav.tsx",
+      "line": 23,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/products/datasets\", key: \"datasets\" },"
+    },
+    {
+      "rawUrl": "/products/browser-extension",
+      "file": "src/components/layout/mobile-nav.tsx",
+      "line": 24,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/products/browser-extension\", key: \"browser_extension\" },"
+    },
+    {
+      "rawUrl": "/products/eu-ai-act",
+      "file": "src/components/layout/mobile-nav.tsx",
+      "line": 25,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/products/eu-ai-act\", key: \"eu_ai_act\" },"
+    },
+    {
+      "rawUrl": "/enterprise",
+      "file": "src/components/layout/mobile-nav.tsx",
+      "line": 26,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/enterprise\", key: \"enterprise\" },"
+    },
+    {
+      "rawUrl": "/methodology",
+      "file": "src/components/layout/mobile-nav.tsx",
+      "line": 28,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/methodology\", key: \"methodology\" },"
+    },
+    {
+      "rawUrl": "/transparency",
+      "file": "src/components/layout/mobile-nav.tsx",
+      "line": 29,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/transparency\", key: \"transparency\" },"
+    },
+    {
+      "rawUrl": "/velocity",
+      "file": "src/components/layout/mobile-nav.tsx",
+      "line": 30,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/velocity\", key: \"velocity\" },"
+    },
+    {
+      "rawUrl": "/ai-act",
+      "file": "src/components/layout/mobile-nav.tsx",
+      "line": 31,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/ai-act\", key: \"ai_act\" },"
+    },
+    {
+      "rawUrl": "/dilemmas",
+      "file": "src/components/layout/mobile-nav.tsx",
+      "line": 32,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/dilemmas\", key: \"dilemmas\" },"
+    },
+    {
+      "rawUrl": "/blog",
+      "file": "src/components/layout/mobile-nav.tsx",
+      "line": 33,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/blog\", key: \"blog\" },"
+    },
+    {
+      "rawUrl": "/about",
+      "file": "src/components/layout/mobile-nav.tsx",
+      "line": 34,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/about\", key: \"about\" },"
+    },
+    {
+      "rawUrl": "/about/advisory-board",
+      "file": "src/components/layout/mobile-nav.tsx",
+      "line": 35,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/about/advisory-board\", key: \"advisory_board\" },"
+    },
+    {
+      "rawUrl": "/challenges",
+      "file": "src/components/layout/mobile-nav.tsx",
+      "line": 36,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/challenges\", key: \"challenges\" },"
+    },
+    {
+      "rawUrl": "/press-kit",
+      "file": "src/components/layout/mobile-nav.tsx",
+      "line": 37,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/press-kit\", key: \"presskit\" },"
+    },
+    {
+      "rawUrl": "/admin",
+      "file": "src/components/layout/mobile-nav.tsx",
+      "line": 53,
+      "valid": true,
+      "isTest": false,
+      "snippet": "const activeLinks = isMod ? [...links, { href: \"/admin\", key: \"admin\" } as const] : links;"
+    },
+    {
+      "rawUrl": "/submit",
+      "file": "src/components/layout/mobile-nav.tsx",
+      "line": 137,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/submit\""
+    },
+    {
+      "rawUrl": "/incidents",
+      "file": "src/components/layout/nav.tsx",
+      "line": 38,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/incidents\", labelKey: \"incidents\", icon: BarChart3 },"
+    },
+    {
+      "rawUrl": "/leaderboard",
+      "file": "src/components/layout/nav.tsx",
+      "line": 39,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/leaderboard\", labelKey: \"leaderboard\", icon: Trophy },"
+    },
+    {
+      "rawUrl": "/academy",
+      "file": "src/components/layout/nav.tsx",
+      "line": 40,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/academy\", labelKey: \"academy\", icon: GraduationCap },"
+    },
+    {
+      "rawUrl": "/pricing",
+      "file": "src/components/layout/nav.tsx",
+      "line": 41,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/pricing\", labelKey: \"pricing\", icon: CreditCard },"
+    },
+    {
+      "rawUrl": "/products/ars-api",
+      "file": "src/components/layout/nav.tsx",
+      "line": 50,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/products/ars-api\", labelKey: \"ars_api\", icon: Shield },"
+    },
+    {
+      "rawUrl": "/products/datasets",
+      "file": "src/components/layout/nav.tsx",
+      "line": 51,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/products/datasets\", labelKey: \"datasets\", icon: BarChart3 },"
+    },
+    {
+      "rawUrl": "/products/browser-extension",
+      "file": "src/components/layout/nav.tsx",
+      "line": 52,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/products/browser-extension\", labelKey: \"browser_extension\", icon: Eye },"
+    },
+    {
+      "rawUrl": "/products/eu-ai-act",
+      "file": "src/components/layout/nav.tsx",
+      "line": 53,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/products/eu-ai-act\", labelKey: \"eu_ai_act\", icon: Scale },"
+    },
+    {
+      "rawUrl": "/enterprise",
+      "file": "src/components/layout/nav.tsx",
+      "line": 54,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/enterprise\", labelKey: \"enterprise\", icon: Building },"
+    },
+    {
+      "rawUrl": "/methodology",
+      "file": "src/components/layout/nav.tsx",
+      "line": 62,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/methodology\", labelKey: \"methodology\", icon: Scale },"
+    },
+    {
+      "rawUrl": "/transparency",
+      "file": "src/components/layout/nav.tsx",
+      "line": 63,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/transparency\", labelKey: \"transparency\", icon: Eye },"
+    },
+    {
+      "rawUrl": "/velocity",
+      "file": "src/components/layout/nav.tsx",
+      "line": 64,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/velocity\", labelKey: \"velocity\", icon: BarChart3 },"
+    },
+    {
+      "rawUrl": "/ai-act",
+      "file": "src/components/layout/nav.tsx",
+      "line": 65,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/ai-act\", labelKey: \"ai_act\", icon: Scale },"
+    },
+    {
+      "rawUrl": "/dilemmas",
+      "file": "src/components/layout/nav.tsx",
+      "line": 66,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/dilemmas\", labelKey: \"dilemmas\", icon: Scale },"
+    },
+    {
+      "rawUrl": "/blog",
+      "file": "src/components/layout/nav.tsx",
+      "line": 67,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/blog\", labelKey: \"blog\", icon: BookOpen },"
+    },
+    {
+      "rawUrl": "/about",
+      "file": "src/components/layout/nav.tsx",
+      "line": 68,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/about\", labelKey: \"about\", icon: Users },"
+    },
+    {
+      "rawUrl": "/about/advisory-board",
+      "file": "src/components/layout/nav.tsx",
+      "line": 69,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/about/advisory-board\", labelKey: \"advisory_board\", icon: Users },"
+    },
+    {
+      "rawUrl": "/press-kit",
+      "file": "src/components/layout/nav.tsx",
+      "line": 70,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ href: \"/press-kit\", labelKey: \"presskit\", icon: BookOpen },"
+    },
+    {
+      "rawUrl": "/admin",
+      "file": "src/components/layout/nav.tsx",
+      "line": 214,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/admin\""
+    },
+    {
+      "rawUrl": "/admin",
+      "file": "src/components/layout/nav.tsx",
+      "line": 217,
+      "valid": true,
+      "isTest": false,
+      "snippet": "pathname.startsWith(\"/admin\")"
+    },
+    {
+      "rawUrl": "/admin",
+      "file": "src/components/layout/nav.tsx",
+      "line": 221,
+      "valid": true,
+      "isTest": false,
+      "snippet": "aria-current={pathname.startsWith(\"/admin\") ? \"page\" : undefined}"
+    },
+    {
+      "rawUrl": "/admin",
+      "file": "src/components/layout/nav.tsx",
+      "line": 223,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{pathname.startsWith(\"/admin\") && ("
+    },
+    {
+      "rawUrl": "/auth/signin",
+      "file": "src/components/layout/user-menu.tsx",
+      "line": 45,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/auth/signin\""
+    },
+    {
+      "rawUrl": "/profile",
+      "file": "src/components/layout/user-menu.tsx",
+      "line": 105,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/profile\""
+    },
+    {
+      "rawUrl": "/my-incidents",
+      "file": "src/components/layout/user-menu.tsx",
+      "line": 113,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/my-incidents\""
+    },
+    {
+      "rawUrl": "/settings",
+      "file": "src/components/layout/user-menu.tsx",
+      "line": 121,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/settings\""
+    },
+    {
+      "rawUrl": "/admin",
+      "file": "src/components/layout/user-menu.tsx",
+      "line": 130,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/admin\""
+    },
+    {
+      "rawUrl": "/legal/privacy",
+      "file": "src/components/legal/cookie-banner.tsx",
+      "line": 105,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href=\"/legal/privacy\" className=\"text-brand-400 hover:underline\">"
+    },
+    {
+      "rawUrl": "/auth/signin",
+      "file": "src/components/marketing/checkout-button.tsx",
+      "line": 39,
+      "valid": true,
+      "isTest": false,
+      "snippet": "router.push(\"/auth/signin\");"
+    },
+    {
+      "rawUrl": "/submit",
+      "file": "src/components/marketing/closing-section.tsx",
+      "line": 31,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/submit\""
+    },
+    {
+      "rawUrl": "/insights/open-vs-closed",
+      "file": "src/components/marketing/closing-section.tsx",
+      "line": 38,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/insights/open-vs-closed\""
+    },
+    {
+      "rawUrl": "/submit",
+      "file": "src/components/marketing/closing-section.tsx",
+      "line": 63,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/submit\""
+    },
+    {
+      "rawUrl": "/insights/open-vs-closed",
+      "file": "src/components/marketing/closing-section.tsx",
+      "line": 70,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/insights/open-vs-closed\""
+    },
+    {
+      "rawUrl": "/submit",
+      "file": "src/components/marketing/founder-story.tsx",
+      "line": 55,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/submit\""
+    },
+    {
+      "rawUrl": "/submit",
+      "file": "src/components/marketing/get-involved.tsx",
+      "line": 17,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: \"/submit\","
+    },
+    {
+      "rawUrl": "/dashboard/journalist",
+      "file": "src/components/marketing/get-involved.tsx",
+      "line": 26,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: \"/dashboard/journalist\","
+    },
+    {
+      "rawUrl": "/dashboard/legal",
+      "file": "src/components/marketing/get-involved.tsx",
+      "line": 35,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: \"/dashboard/legal\","
+    },
+    {
+      "rawUrl": "/dashboard/safety",
+      "file": "src/components/marketing/get-involved.tsx",
+      "line": 44,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: \"/dashboard/safety\","
+    },
+    {
+      "rawUrl": "/products/ars-api",
+      "file": "src/components/marketing/hero-section.tsx",
+      "line": 143,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/products/ars-api\""
+    },
+    {
+      "rawUrl": "/pricing",
+      "file": "src/components/marketing/hero-section.tsx",
+      "line": 155,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/pricing\""
+    },
+    {
+      "rawUrl": "/incidents",
+      "file": "src/components/marketing/hero-section.tsx",
+      "line": 166,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/incidents\""
+    },
+    {
+      "rawUrl": "/leaderboard",
+      "file": "src/components/marketing/hero-section.tsx",
+      "line": 269,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/leaderboard\""
+    },
+    {
+      "rawUrl": "/leaderboard",
+      "file": "src/components/marketing/hero-section.tsx",
+      "line": 297,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/leaderboard\""
+    },
+    {
+      "rawUrl": "/products/eu-ai-act",
+      "file": "src/components/marketing/hero-section.tsx",
+      "line": 348,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/products/eu-ai-act\""
+    },
+    {
+      "rawUrl": "/bounties",
+      "file": "src/components/marketing/hero-section.tsx",
+      "line": 378,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/bounties\""
+    },
+    {
+      "rawUrl": "/leaderboard",
+      "file": "src/components/marketing/leaderboard-preview.tsx",
+      "line": 35,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href=\"/leaderboard\" className=\"text-brand-400 text-sm hover:underline\">"
+    },
+    {
+      "rawUrl": "/press-kit/${e.provider_slug}",
+      "file": "src/components/marketing/leaderboard-preview.tsx",
+      "line": 77,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={`/press-kit/${e.provider_slug}`}"
+    },
+    {
+      "rawUrl": "/submit",
+      "file": "src/components/marketing/live-feed.tsx",
+      "line": 37,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/submit\""
+    },
+    {
+      "rawUrl": "/dilemmas?tab=suggestions",
+      "file": "src/components/marketing/new-suggestion-form.tsx",
+      "line": 39,
+      "valid": true,
+      "isTest": false,
+      "snippet": "const timer = setTimeout(() => router.push(\"/dilemmas?tab=suggestions\"), 1200);"
+    },
+    {
+      "rawUrl": "/dashboard/journalist",
+      "file": "src/components/marketing/segment-routing.tsx",
+      "line": 14,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: \"/dashboard/journalist\","
+    },
+    {
+      "rawUrl": "/dashboard/legal",
+      "file": "src/components/marketing/segment-routing.tsx",
+      "line": 26,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: \"/dashboard/legal\","
+    },
+    {
+      "rawUrl": "/dashboard/safety",
+      "file": "src/components/marketing/segment-routing.tsx",
+      "line": 38,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: \"/dashboard/safety\","
+    },
+    {
+      "rawUrl": "/dashboard/compliance",
+      "file": "src/components/marketing/segment-routing.tsx",
+      "line": 50,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href: \"/dashboard/compliance\","
+    },
+    {
+      "rawUrl": "/suggestions/${item.id}",
+      "file": "src/components/marketing/suggestion-card.tsx",
+      "line": 34,
+      "valid": true,
+      "isTest": false,
+      "snippet": "<Link href={`/suggestions/${item.id}`} className=\"block\">"
+    },
+    {
+      "rawUrl": "/methodology",
+      "file": "src/components/marketing/trust-bar.tsx",
+      "line": 13,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ icon: BookOpen, label: t(\"methodology\"), href: \"/methodology\" },"
+    },
+    {
+      "rawUrl": "/legal/neutrality",
+      "file": "src/components/marketing/trust-bar.tsx",
+      "line": 14,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ icon: Shield, label: t(\"neutrality\"), href: \"/legal/neutrality\" },"
+    },
+    {
+      "rawUrl": "/legal/neutrality",
+      "file": "src/components/marketing/trust-bar.tsx",
+      "line": 15,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ icon: Ban, label: t(\"no_funding\"), href: \"/legal/neutrality\" },"
+    },
+    {
+      "rawUrl": "/admin",
+      "file": "src/components/shared/live-ticker.tsx",
+      "line": 24,
+      "valid": true,
+      "isTest": false,
+      "snippet": "pathname === \"/admin\" ||"
+    },
+    {
+      "rawUrl": "/admin",
+      "file": "src/components/shared/live-ticker.tsx",
+      "line": 25,
+      "valid": true,
+      "isTest": false,
+      "snippet": "pathname.startsWith(\"/admin\") ||"
+    },
+    {
+      "rawUrl": "/admin-v2",
+      "file": "src/components/shared/live-ticker.tsx",
+      "line": 26,
+      "valid": false,
+      "isTest": false,
+      "snippet": "pathname.includes(\"/admin-v2\") ||"
+    },
+    {
+      "rawUrl": "/admin/",
+      "file": "src/components/shared/live-ticker.tsx",
+      "line": 27,
+      "valid": true,
+      "isTest": false,
+      "snippet": "pathname.includes(\"/admin/\"));"
+    },
+    {
+      "rawUrl": "/incidents",
+      "file": "src/components/shared/live-ticker.tsx",
+      "line": 118,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href={`/incidents`}"
+    },
+    {
+      "rawUrl": "/incidents",
+      "file": "src/components/ui/not-found-client.tsx",
+      "line": 88,
+      "valid": true,
+      "isTest": false,
+      "snippet": "href=\"/incidents\""
+    },
+    {
+      "rawUrl": "/incidents",
+      "file": "src/lib/ai/visitor-predictor.test.ts",
+      "line": 23,
+      "valid": true,
+      "isTest": true,
+      "snippet": "{ timestamp: \"2026-08-28T00:01:00Z\", path: \"/incidents\", sessionId: \"s1\" },"
+    },
+    {
+      "rawUrl": "/report",
+      "file": "src/lib/ai/visitor-predictor.test.ts",
+      "line": 24,
+      "valid": false,
+      "isTest": true,
+      "snippet": "{ timestamp: \"2026-08-28T00:02:00Z\", path: \"/report\", sessionId: \"s1\" },"
+    },
+    {
+      "rawUrl": "/incidents",
+      "file": "src/lib/ai/visitor-predictor.test.ts",
+      "line": 27,
+      "valid": true,
+      "isTest": true,
+      "snippet": "{ timestamp: \"2026-08-28T00:01:30Z\", path: \"/incidents\", sessionId: \"s2\" },"
+    },
+    {
+      "rawUrl": "/pricing",
+      "file": "src/lib/ai/visitor-predictor.test.ts",
+      "line": 28,
+      "valid": true,
+      "isTest": true,
+      "snippet": "{ timestamp: \"2026-08-28T00:02:30Z\", path: \"/pricing\", sessionId: \"s2\" },"
+    },
+    {
+      "rawUrl": "/about",
+      "file": "src/lib/ai/visitor-predictor.test.ts",
+      "line": 31,
+      "valid": true,
+      "isTest": true,
+      "snippet": "{ timestamp: \"2026-08-28T00:01:45Z\", path: \"/about\", sessionId: \"s3\" },"
+    },
+    {
+      "rawUrl": "/incidents",
+      "file": "src/lib/ai/visitor-predictor.test.ts",
+      "line": 43,
+      "valid": true,
+      "isTest": true,
+      "snippet": "expect(nextPaths[0]?.path).toBe(\"/incidents\");"
+    },
+    {
+      "rawUrl": "/landing",
+      "file": "src/lib/ai/visitor-predictor.test.ts",
+      "line": 49,
+      "valid": false,
+      "isTest": true,
+      "snippet": "{ timestamp: \"2026-08-28T00:00:00Z\", path: \"/landing\", sessionId: \"s1\" },"
+    },
+    {
+      "rawUrl": "/pricing",
+      "file": "src/lib/ai/visitor-predictor.test.ts",
+      "line": 50,
+      "valid": true,
+      "isTest": true,
+      "snippet": "{ timestamp: \"2026-08-28T00:01:00Z\", path: \"/pricing\", sessionId: \"s1\" },"
+    },
+    {
+      "rawUrl": "/checkout",
+      "file": "src/lib/ai/visitor-predictor.test.ts",
+      "line": 51,
+      "valid": false,
+      "isTest": true,
+      "snippet": "{ timestamp: \"2026-08-28T00:02:00Z\", path: \"/checkout\", sessionId: \"s1\" },"
+    },
+    {
+      "rawUrl": "/checkout",
+      "file": "src/lib/ai/visitor-predictor.test.ts",
+      "line": 59,
+      "valid": false,
+      "isTest": true,
+      "snippet": "expect(step2[0]?.path).toBe(\"/checkout\");"
+    },
+    {
+      "rawUrl": "/incidents",
+      "file": "src/lib/ai/visitor-predictor.test.ts",
+      "line": 74,
+      "valid": true,
+      "isTest": true,
+      "snippet": "path: j % 2 === 0 ? \"/\" : \"/incidents\","
+    },
+    {
+      "rawUrl": "/incidents",
+      "file": "src/lib/ai/visitor-predictor.test.ts",
+      "line": 96,
+      "valid": true,
+      "isTest": true,
+      "snippet": "{ timestamp: 2000, path: \"/incidents\", sessionId: \"s1\" },"
+    },
+    {
+      "rawUrl": "/incidents",
+      "file": "src/lib/ai/visitor-predictor.test.ts",
+      "line": 98,
+      "valid": true,
+      "isTest": true,
+      "snippet": "{ timestamp: 4000, path: \"/incidents\", sessionId: \"s2\" },"
+    },
+    {
+      "rawUrl": "/incidents",
+      "file": "src/lib/ai/visitor-predictor.ts",
+      "line": 676,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ path: \"/incidents\", probability: 0.28, confidence: 0.88 },"
+    },
+    {
+      "rawUrl": "/report",
+      "file": "src/lib/ai/visitor-predictor.ts",
+      "line": 677,
+      "valid": false,
+      "isTest": false,
+      "snippet": "{ path: \"/report\", probability: 0.16, confidence: 0.85 },"
+    },
+    {
+      "rawUrl": "/pricing",
+      "file": "src/lib/ai/visitor-predictor.ts",
+      "line": 678,
+      "valid": true,
+      "isTest": false,
+      "snippet": "{ path: \"/pricing\", probability: 0.14, confidence: 0.82 },"
+    },
+    {
+      "rawUrl": "/[locale]/incidents",
+      "file": "src/lib/config/modular-architecture.ts",
+      "line": 19,
+      "valid": true,
+      "isTest": false,
+      "snippet": "route: \"/[locale]/incidents\","
+    },
+    {
+      "rawUrl": "/[locale]/admin/dual-channel-scoring",
+      "file": "src/lib/config/modular-architecture.ts",
+      "line": 28,
+      "valid": false,
+      "isTest": false,
+      "snippet": "route: \"/[locale]/admin/dual-channel-scoring\","
+    },
+    {
+      "rawUrl": "/[locale]/admin/ai-hub/orchestrator",
+      "file": "src/lib/config/modular-architecture.ts",
+      "line": 37,
+      "valid": false,
+      "isTest": false,
+      "snippet": "route: \"/[locale]/admin/ai-hub/orchestrator\","
+    },
+    {
+      "rawUrl": "/[locale]/transparency/art-73-tracker",
+      "file": "src/lib/config/modular-architecture.ts",
+      "line": 46,
+      "valid": true,
+      "isTest": false,
+      "snippet": "route: \"/[locale]/transparency/art-73-tracker\","
+    },
+    {
+      "rawUrl": "/[locale]/api/cron/ai-heartbeat",
+      "file": "src/lib/config/modular-architecture.ts",
+      "line": 55,
+      "valid": true,
+      "isTest": false,
+      "snippet": "route: \"/[locale]/api/cron/ai-heartbeat\","
+    },
+    {
+      "rawUrl": "/[locale]/admin/analytics-hub/expert-analysis",
+      "file": "src/lib/config/modular-architecture.ts",
+      "line": 64,
+      "valid": false,
+      "isTest": false,
+      "snippet": "route: \"/[locale]/admin/analytics-hub/expert-analysis\","
+    },
+    {
+      "rawUrl": "/[locale]/insights",
+      "file": "src/lib/config/modular-architecture.ts",
+      "line": 73,
+      "valid": false,
+      "isTest": false,
+      "snippet": "route: \"/[locale]/insights\","
+    },
+    {
+      "rawUrl": "/[locale]/documentation",
+      "file": "src/lib/config/modular-architecture.ts",
+      "line": 82,
+      "valid": false,
+      "isTest": false,
+      "snippet": "route: \"/[locale]/documentation\","
+    },
+    {
+      "rawUrl": "/api/cron/",
+      "file": "src/lib/engine/registry/cron.ts",
+      "line": 31,
+      "valid": false,
+      "isTest": false,
+      "snippet": "const id = r.path.replace(\"/api/cron/\", \"cron-\").replace(/[?&]/g, \"-\");"
+    },
+    {
+      "rawUrl": "/api/cron/",
+      "file": "src/lib/engine-registry.ts",
+      "line": 387,
+      "valid": false,
+      "isTest": false,
+      "snippet": "const id = r.path.replace(\"/api/cron/\", \"cron-\").replace(/[?&]/g, \"-\");"
+    },
+    {
+      "rawUrl": "/${pref}",
+      "file": "src/middleware.ts",
+      "line": 50,
+      "valid": true,
+      "isTest": false,
+      "snippet": "const target = pathname.replace(/^\\/(de|fr|ru)/, `/${pref}`);"
+    },
+    {
+      "rawUrl": "/admin",
+      "file": "src/middleware.ts",
+      "line": 54,
+      "valid": true,
+      "isTest": false,
+      "snippet": "const isAdminPath = pathname.startsWith(\"/admin\") || /^\\/[a-z]{2}\\/admin(\\/|$)/.test(pathname);"
+    },
+    {
+      "rawUrl": "/api/",
+      "file": "src/middleware.ts",
+      "line": 60,
+      "valid": false,
+      "isTest": false,
+      "snippet": "if (pathname.startsWith(\"/api/\")) {"
+    },
+    {
+      "rawUrl": "/api/",
+      "file": "src/middleware.ts",
+      "line": 95,
+      "valid": false,
+      "isTest": false,
+      "snippet": "!pathname.startsWith(\"/api/\") &&"
+    },
+    {
+      "rawUrl": "/${locale}/auth/signin",
+      "file": "src/middleware.ts",
+      "line": 104,
+      "valid": true,
+      "isTest": false,
+      "snippet": "const signinUrl = new URL(`/${locale}/auth/signin`, request.url);"
+    },
+    {
+      "rawUrl": "/${locale}/",
+      "file": "src/middleware.ts",
+      "line": 111,
+      "valid": true,
+      "isTest": false,
+      "snippet": "return NextResponse.redirect(new URL(`/${locale}/`, request.url));"
+    }
+  ]
+}

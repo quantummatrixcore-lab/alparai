@@ -8,7 +8,7 @@ import { Card } from "@/components/ui/card";
 import { SeverityBadge, StatusBadge, Badge } from "@/components/ui/badge";
 import { SlaBadge } from "@/components/incidents/sla-badge";
 import type { IncidentListItem, IncidentSeverity, IncidentStatus } from "@/types";
-import { MessageSquare, ThumbsUp, Clock, Building2, CheckCircle2 } from "lucide-react";
+import { MessageSquare, ThumbsUp, Clock, Building2, CheckCircle2, Share2, User } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 
@@ -254,43 +254,69 @@ export function IncidentCard({
           </Link>
           {/* Timeline indicator */}
           <TimelineIndicator status={incident.status as IncidentStatus} t={t} />
-          <div className="text-fg-muted mt-4 flex items-center justify-between text-xs">
-            <div className="flex flex-wrap items-center gap-4">
-              <div className="flex items-center gap-3">
-                <span className="inline-flex items-center gap-1">
-                  <Clock className="h-3.5 w-3.5" aria-hidden="true" />
-                  {formatDate(new Date(incident.incident_date), locale)}
+
+          {/* Modern Corporate Card Footer */}
+          <div className="border-border-subtle/50 text-fg-muted mt-5 flex flex-col gap-3.5 border-t pt-3.5">
+            {/* Action Bar: Date, Reaction & Comment Buttons, and Provenance */}
+            <div className="flex flex-wrap items-center justify-between gap-2.5">
+              <div className="flex flex-wrap items-center gap-2">
+                {/* Date Badge */}
+                <span className="text-fg-muted bg-white/5 border-border-subtle/50 inline-flex items-center gap-1.5 rounded-md border px-2 py-1 text-[11px] font-medium select-none shadow-2xs">
+                  <Clock className="h-3.5 w-3.5 text-fg-muted/70 shrink-0" aria-hidden="true" />
+                  <span className="whitespace-nowrap">{formatDate(new Date(incident.incident_date), locale)}</span>
                 </span>
+
+                {/* Ben de Yaşadım */}
                 <Link
                   href={`/incidents/${incident.id}#affected`}
-                  className="text-fg-secondary hover:border-brand-500/40 hover:bg-brand-500/15 hover:text-brand-300 active:scale-[0.95] active:bg-brand-500/25 border-border-subtle/50 inline-flex cursor-pointer items-center gap-1.5 rounded-full border bg-white/5 px-2.5 py-1 text-xs font-semibold transition-all select-none shadow-sm hover:shadow-[0_0_15px_rgba(168,85,247,0.2)]"
+                  className="text-fg-secondary hover:text-white hover:border-brand-500/50 hover:bg-brand-500/15 active:scale-[0.97] border-border-subtle/60 inline-flex cursor-pointer items-center gap-1.5 rounded-md border bg-white/5 px-2.5 py-1 text-xs font-semibold transition-all select-none shadow-2xs hover:shadow-[0_0_12px_rgba(168,85,247,0.25)]"
                 >
-                  <ThumbsUp className="h-3.5 w-3.5" aria-hidden="true" />
-                  <span>{t("me_too", { defaultValue: "Ben de Yaşadım" })}</span>
-                  <span className="ml-1 rounded bg-white/10 px-1.5 py-0.5 text-[10px]">
+                  <ThumbsUp className="h-3.5 w-3.5 text-brand-400 shrink-0" aria-hidden="true" />
+                  <span className="whitespace-nowrap">{t("me_too", { defaultValue: "Ben de Yaşadım" })}</span>
+                  <span className="rounded bg-white/10 px-1.5 py-0.5 text-[10px] font-bold text-fg-primary">
                     {incident.vote_count}
                   </span>
                 </Link>
+
+                {/* Yorum Yap */}
                 <Link
                   href={`/incidents/${incident.id}#comments`}
-                  className="text-fg-secondary hover:border-accent-500/40 hover:bg-accent-500/15 hover:text-accent-300 active:scale-[0.95] active:bg-accent-500/25 border-border-subtle/50 inline-flex cursor-pointer items-center gap-1.5 rounded-full border bg-white/5 px-2.5 py-1 text-xs font-semibold transition-all select-none shadow-sm hover:shadow-[0_0_15px_rgba(6,182,212,0.2)]"
+                  className="text-fg-secondary hover:text-white hover:border-accent-500/50 hover:bg-accent-500/15 active:scale-[0.97] border-border-subtle/60 inline-flex cursor-pointer items-center gap-1.5 rounded-md border bg-white/5 px-2.5 py-1 text-xs font-semibold transition-all select-none shadow-2xs hover:shadow-[0_0_12px_rgba(6,182,212,0.25)]"
                 >
-                  <MessageSquare className="h-3.5 w-3.5" aria-hidden="true" />
-                  <span>{t("comment_action", { defaultValue: "Yorum Yap" })}</span>
-                  <span className="ml-1 rounded bg-white/10 px-1.5 py-0.5 text-[10px]">
+                  <MessageSquare className="h-3.5 w-3.5 text-accent-400 shrink-0" aria-hidden="true" />
+                  <span className="whitespace-nowrap">{t("comment_action", { defaultValue: "Yorum Yap" })}</span>
+                  <span className="rounded bg-white/10 px-1.5 py-0.5 text-[10px] font-bold text-fg-primary">
                     {incident.evidence_count}
                   </span>
                 </Link>
               </div>
-              <div className="border-border-subtle flex items-center gap-2 border-l pl-3">
+
+              {/* Author / Provenance Tag */}
+              <span className="border-border-subtle/50 text-fg-muted bg-white/5 inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 text-[11px] font-medium tracking-wide whitespace-nowrap self-start sm:self-auto shadow-2xs">
+                <User className="h-3 w-3 text-fg-muted/60 shrink-0" aria-hidden="true" />
+                <span className="text-fg-muted/70">{locale === "tr" ? "Bildiren:" : "By:"}</span>
+                <span className="text-fg-secondary font-semibold">
+                  {incident.author_name ?? t("anonymous", { defaultValue: "Anonim" })}
+                </span>
+              </span>
+            </div>
+
+            {/* Social Distribution & Rapid Share Bar */}
+            <div className="flex items-center justify-between border-t border-border-subtle/30 pt-2.5">
+              <span className="text-fg-muted/70 text-[10px] font-bold tracking-wider uppercase flex items-center gap-1.5 select-none">
+                <Share2 className="h-3.5 w-3.5 text-brand-400/80" />
+                <span>{t("share", { defaultValue: "Paylaş" })}</span>
+              </span>
+
+              <div className="flex items-center gap-1.5">
                 {/* X */}
                 <motion.a
-                  whileHover={{ scale: 1.2, y: -1 }}
-                  whileTap={{ scale: 0.9 }}
+                  whileHover={{ scale: 1.15, y: -1 }}
+                  whileTap={{ scale: 0.95 }}
                   href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(displayTitle)}&url=${encodeURIComponent(getShareUrlForPlatform("x"))}`}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="text-fg-primary p-0.5 transition-colors hover:text-white"
+                  className="text-fg-muted hover:text-white hover:bg-white/10 hover:border-white/30 border border-border-subtle/50 flex h-7 w-7 items-center justify-center rounded-md bg-white/5 transition-all shadow-2xs"
                   aria-label={tFeed("shareOnX")}
                   onClick={(e) => e.stopPropagation()}
                 >
@@ -299,23 +325,23 @@ export function IncidentCard({
 
                 {/* LinkedIn */}
                 <motion.a
-                  whileHover={{ scale: 1.2, y: -1 }}
-                  whileTap={{ scale: 0.9 }}
+                  whileHover={{ scale: 1.15, y: -1 }}
+                  whileTap={{ scale: 0.95 }}
                   href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(getShareUrlForPlatform("linkedin"))}`}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="text-social-linkedin hover:text-social-linkedin/80 p-0.5 transition-colors"
+                  className="text-social-linkedin hover:bg-social-linkedin/20 border border-social-linkedin/30 flex h-7 w-7 items-center justify-center rounded-md bg-social-linkedin/10 transition-all shadow-2xs"
                   aria-label={tFeed("shareOnLinkedIn")}
                   onClick={(e) => e.stopPropagation()}
                 >
                   <LinkedInIcon className="h-3.5 w-3.5" />
                 </motion.a>
 
-                {/* Instagram (Copy Link) */}
+                {/* Instagram */}
                 <motion.button
-                  whileHover={{ scale: 1.2, y: -1 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="text-social-instagram hover:text-social-instagram/80 cursor-pointer p-0.5 transition-colors"
+                  whileHover={{ scale: 1.15, y: -1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="text-social-instagram hover:bg-social-instagram/20 border border-social-instagram/30 flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-social-instagram/10 transition-all shadow-2xs"
                   aria-label={tFeed("copyForInstagram")}
                   onClick={(e) => {
                     e.stopPropagation();
@@ -328,12 +354,12 @@ export function IncidentCard({
 
                 {/* WhatsApp */}
                 <motion.a
-                  whileHover={{ scale: 1.2, y: -1 }}
-                  whileTap={{ scale: 0.9 }}
+                  whileHover={{ scale: 1.15, y: -1 }}
+                  whileTap={{ scale: 0.95 }}
                   href={`https://api.whatsapp.com/send?text=${encodeURIComponent(displayTitle + " " + getShareUrlForPlatform("whatsapp"))}`}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="text-social-whatsapp hover:text-social-whatsapp/80 p-0.5 transition-colors"
+                  className="text-social-whatsapp hover:bg-social-whatsapp/20 border border-social-whatsapp/30 flex h-7 w-7 items-center justify-center rounded-md bg-social-whatsapp/10 transition-all shadow-2xs"
                   aria-label={tFeed("shareOnWhatsApp")}
                   onClick={(e) => e.stopPropagation()}
                 >
@@ -341,9 +367,6 @@ export function IncidentCard({
                 </motion.a>
               </div>
             </div>
-            <span className="ml-3 truncate text-[11px] sm:ml-4 sm:text-xs sm:whitespace-nowrap">
-              {t("by")} {incident.author_name ?? t("anonymous")}
-            </span>
           </div>
         </div>
       </Card>
@@ -364,46 +387,48 @@ function TimelineIndicator({ status, t }: { status: IncidentStatus; t: (key: str
   const isRejected = status === "rejected" || status === "takedown";
 
   return (
-    <div className="mt-4 flex items-center gap-1" aria-label={t("timeline")}>
-      {steps.map((step, i) => {
-        const active = step.statuses.includes(status);
-        const isLast = i === steps.length - 1;
-        return (
-          <React.Fragment key={step.label}>
-            <div className="flex flex-col items-center gap-1">
-              <CheckCircle2
-                className={cn(
-                  "h-3.5 w-3.5 transition-colors duration-300",
-                  active && !isRejected
-                    ? "text-success-500"
-                    : isRejected && i === 0
-                      ? "text-danger-500"
-                      : "text-fg-disabled",
-                )}
-                aria-hidden="true"
-              />
-              <span
-                className={cn(
-                  "text-[9px] font-semibold tracking-wider uppercase transition-colors",
-                  active && !isRejected ? "text-success-400" : "text-fg-disabled",
-                )}
-              >
-                {step.label}
-              </span>
-            </div>
-            {!isLast && (
-              <div
-                className={cn(
-                  "mb-3.5 h-[1px] flex-1 transition-colors duration-500",
-                  steps[i + 1]?.statuses.includes(status) && !isRejected
-                    ? "bg-success-500/60"
-                    : "bg-fg-disabled/20",
-                )}
-              />
-            )}
-          </React.Fragment>
-        );
-      })}
+    <div className="mt-4 rounded-lg bg-white/[0.02] border border-border-subtle/40 px-3 py-2 sm:px-3.5 sm:py-2.5" aria-label={t("timeline")}>
+      <div className="flex items-center justify-between gap-1.5 sm:gap-2">
+        {steps.map((step, i) => {
+          const active = step.statuses.includes(status);
+          const isLast = i === steps.length - 1;
+          return (
+            <React.Fragment key={step.label}>
+              <div className="flex items-center gap-1.5 shrink-0">
+                <CheckCircle2
+                  className={cn(
+                    "h-3.5 w-3.5 transition-colors duration-300 shrink-0",
+                    active && !isRejected
+                      ? "text-success-400"
+                      : isRejected && i === 0
+                        ? "text-danger-400"
+                        : "text-fg-disabled",
+                  )}
+                  aria-hidden="true"
+                />
+                <span
+                  className={cn(
+                    "text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-colors whitespace-nowrap",
+                    active && !isRejected ? "text-success-400" : "text-fg-disabled",
+                  )}
+                >
+                  {step.label}
+                </span>
+              </div>
+              {!isLast && (
+                <div
+                  className={cn(
+                    "h-[1.5px] flex-1 min-w-[10px] sm:min-w-[16px] rounded-full transition-colors duration-500",
+                    steps[i + 1]?.statuses.includes(status) && !isRejected
+                      ? "bg-success-500/60"
+                      : "bg-fg-disabled/20",
+                  )}
+                />
+              )}
+            </React.Fragment>
+          );
+        })}
+      </div>
     </div>
   );
 }

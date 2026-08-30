@@ -44,7 +44,7 @@ export default function SEOPage() {
   const ceoMentions = [
     {
       outlet: "Financial Times Tech Digest",
-      title: "Why Alparai's 2,763 Incident Dataset is the Real Benchmark for AI Safety",
+      title: "Why Alparai's 2,880 Incident Dataset is the Real Benchmark for AI Safety",
       date: "2026-08-25",
       impact: "Tier 1 Global Press",
     },

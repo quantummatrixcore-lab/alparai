@@ -58,7 +58,7 @@ export default function TransparencyPage() {
         />
         <MetricCard
           label="Kriptografik Mühürler"
-          value="2.763 Vaka"
+          value="2.880 Vaka"
           subtext="SHA-256 Zaman Damgasıyla Değiştirilemez Delil"
           icon={Lock}
         />

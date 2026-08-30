@@ -333,7 +333,7 @@ export default function ApiKeysPage() {
           </div>
 
           <p className="text-xs text-[#656d76] dark:text-[#8b949e]">
-            Kayıtlı kurumsal uç noktaya son 2.763 olaydan rastgele bir zafiyet bildirimini gerçek
+            Kayıtlı kurumsal uç noktaya son 2.880 olaydan rastgele bir zafiyet bildirimini gerçek
             zamanlı test edin.
           </p>
 

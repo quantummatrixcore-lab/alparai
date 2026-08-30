@@ -50,6 +50,7 @@ const topLevelItems: NavItem[] = [
   },
   { href: "/ai-act", labelKey: "ai_act", icon: ShieldCheck },
   { href: "/academy", labelKey: "academy", icon: GraduationCap },
+  { href: "/about/advisory-board", labelKey: "advisory_board", icon: Users },
 ];
 
 const navGroups: NavGroup[] = [

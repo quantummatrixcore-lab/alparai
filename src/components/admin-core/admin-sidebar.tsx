@@ -100,7 +100,7 @@ export const AdminSidebar = memo(function AdminSidebar() {
             label: t("incidents"),
             href: `/${locale}/admin/incidents`,
             icon: ShieldAlert,
-            badge: "2.763",
+            badge: "2.880",
             badgeType: "count",
           },
           {

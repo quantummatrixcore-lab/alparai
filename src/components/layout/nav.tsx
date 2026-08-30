@@ -41,19 +41,14 @@ const topLevelItems: NavItem[] = [
     href: "/incidents",
     labelKey: "incidents",
     icon: BarChart3,
-    badge: "2.880+",
-    badgeColor: "bg-danger-500/10 text-danger-400 border-danger-500/20",
   },
   { href: "/leaderboard", labelKey: "leaderboard", icon: Trophy },
   {
     href: "/dilemmas",
     labelKey: "dilemmas",
     icon: Scale,
-    badge: "CANLI",
-    badgeColor: "bg-brand-500/10 text-brand-300 border-brand-500/30 animate-pulse",
   },
   { href: "/ai-act", labelKey: "ai_act", icon: ShieldCheck },
-  { href: "/pricing", labelKey: "pricing", icon: CreditCard },
 ];
 
 const navGroups: NavGroup[] = [
@@ -62,6 +57,7 @@ const navGroups: NavGroup[] = [
     labelKey: "products",
     icon: Shield,
     items: [
+      { href: "/pricing", labelKey: "pricing", icon: CreditCard },
       { href: "/products/ars-api", labelKey: "ars_api", icon: Shield },
       { href: "/products/datasets", labelKey: "datasets", icon: BarChart3 },
       { href: "/products/browser-extension", labelKey: "browser_extension", icon: Eye },
@@ -135,7 +131,10 @@ export function Nav({
   const isMod = user && (user.role === "moderator" || user.role === "admin" || user.role === "ceo");
 
   return (
-    <nav ref={navRef} className={cn("hidden items-center gap-0.5 lg:flex", className)}>
+    <nav
+      ref={navRef}
+      className={cn("hidden flex-shrink-0 items-center gap-0.5 lg:flex", className)}
+    >
       {topLevelItems.map((item) => {
         const Icon = item.icon;
         const isActive = pathname.startsWith(item.href);
@@ -144,7 +143,7 @@ export function Nav({
             key={item.href}
             href={item.href}
             className={cn(
-              "focus-visible:ring-brand-500 relative inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold whitespace-nowrap transition-colors duration-300 outline-none focus-visible:ring-2 xl:gap-1.5 xl:px-2.5 xl:text-xs",
+              "focus-visible:ring-brand-500 relative inline-flex flex-shrink-0 items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold whitespace-nowrap transition-colors duration-300 outline-none focus-visible:ring-2 xl:gap-1.5 xl:px-2.5 xl:text-xs",
               isActive ? "text-brand-400" : "text-fg-secondary hover:text-fg-primary",
             )}
             aria-current={isActive ? "page" : undefined}
@@ -162,7 +161,7 @@ export function Nav({
               {item.badge && (
                 <span
                   className={cn(
-                    "rounded-full border px-1.5 py-0.2 text-[9px] font-bold tracking-wider uppercase",
+                    "py-0.2 rounded-full border px-1.5 text-[9px] font-bold tracking-wider uppercase",
                     item.badgeColor || "border-brand-500/30 bg-brand-500/10 text-brand-300",
                   )}
                 >

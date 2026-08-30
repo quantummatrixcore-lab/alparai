@@ -37,17 +37,17 @@ export function Header({
   }
   return (
     <div className="pointer-events-none fixed top-8 z-[100] flex w-full justify-center px-3 py-2 sm:p-6">
-      <header className="bg-[#0A1622]/95 hover:border-brand-500/30 border border-white/10 pointer-events-auto flex h-13 sm:h-14 w-full max-w-[1400px] items-center justify-between gap-2 rounded-full px-3.5 sm:px-4 shadow-[0_12px_40px_rgba(0,0,0,0.6)] backdrop-blur-2xl transition-all duration-500 hover:shadow-[0_8px_32px_rgba(168,85,247,0.25)] xl:gap-4">
-        <div className="flex min-w-0 items-center gap-2 xl:gap-4 2xl:gap-8">
+      <header className="hover:border-brand-500/30 pointer-events-auto flex h-13 w-full max-w-[1400px] items-center justify-between gap-2 rounded-full border border-white/10 bg-[#0A1622]/95 px-3.5 shadow-[0_12px_40px_rgba(0,0,0,0.6)] backdrop-blur-2xl transition-all duration-500 hover:shadow-[0_8px_32px_rgba(168,85,247,0.25)] sm:h-14 sm:px-4 xl:gap-4">
+        <div className="flex flex-shrink-0 items-center gap-3 xl:gap-5 2xl:gap-8">
           <Link
             href="/"
-            className="focus-visible:ring-brand-500 group relative flex items-center rounded-full pl-1 focus-visible:ring-2 focus-visible:outline-none"
+            className="focus-visible:ring-brand-500 group relative flex flex-shrink-0 items-center rounded-full pl-1 focus-visible:ring-2 focus-visible:outline-none"
             aria-label={tCommon("alparAi", { defaultValue: "ALPAR AI" }) + " home"}
           >
             <div className="from-brand-500/0 via-brand-500/10 to-brand-500/0 absolute -inset-2 rounded-full bg-gradient-to-r opacity-0 blur transition-opacity duration-500 group-hover:opacity-100"></div>
             <Wordmark size="md" />
           </Link>
-          <div className="hidden lg:block">
+          <div className="hidden flex-shrink-0 items-center lg:flex">
             <Nav user={user} />
           </div>
         </div>

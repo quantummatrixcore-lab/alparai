@@ -1,4 +1,7 @@
+"use client";
+
 import * as React from "react";
+import { toast } from "sonner";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Building2,
@@ -57,13 +60,17 @@ export function IncidentDetailView({
   const tCommon = useTranslations("common");
   const locale = useLocale();
 
+  const [trTitle, setTrTitle] = React.useState<string | null>(incident.title_tr || null);
+  const [trDesc, setTrDesc] = React.useState<string | null>(incident.description_tr || null);
+  const [isTranslating, setIsTranslating] = React.useState(false);
+
   const displayTitle =
-    locale === "tr" && incident.title_tr && incident.title_tr.length > 0
-      ? incident.title_tr
+    locale === "tr" && trTitle && trTitle.length > 0
+      ? trTitle
       : incident.title_masked;
   const displayDesc =
-    locale === "tr" && incident.description_tr && incident.description_tr.length > 0
-      ? incident.description_tr
+    locale === "tr" && trDesc && trDesc.length > 0
+      ? trDesc
       : incident.description_masked;
 
   const timelineEvents: TimelineEvent[] = [
@@ -231,9 +238,39 @@ export function IncidentDetailView({
               </UIBadge>
             )}
           </div>
-          <h1 className="text-fg-primary text-3xl leading-tight font-bold tracking-tight">
+           <h1 className="text-fg-primary text-3xl leading-tight font-bold tracking-tight">
             {displayTitle}
           </h1>
+          {locale === "tr" && !trTitle && (
+            <button
+              onClick={async (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                try {
+                  setIsTranslating(true);
+                  const { getOrTranslateIncidentTR } = await import("@/actions/translations");
+                  const result = await getOrTranslateIncidentTR(incident.id);
+                  if (result) {
+                    setTrTitle(result.title_tr);
+                    setTrDesc(result.description_tr);
+                    toast.success("Vaka başarıyla Türkçeye çevrildi! ✓");
+                  } else {
+                    toast.error("Çeviri başarısız oldu.");
+                  }
+                } catch (err) {
+                  console.error(err);
+                  toast.error("Bağlantı hatası.");
+                } finally {
+                  setIsTranslating(false);
+                }
+              }}
+              disabled={isTranslating}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-brand-500/20 bg-brand-500/5 text-brand-400 text-xs font-bold hover:bg-brand-500/10 active:scale-95 transition-all w-fit cursor-pointer disabled:opacity-50 mt-2 mb-1"
+            >
+              <Globe className={cn("h-3.5 w-3.5", isTranslating && "animate-spin")} />
+              {isTranslating ? "Türkçeye Çevriliyor..." : "🌐 Yapay Zeka ile Türkçeye Çevir"}
+            </button>
+          )}
           <div className="text-fg-muted flex flex-wrap items-center gap-4 text-xs">
             <span className="inline-flex items-center gap-1">
               <Clock className="h-3.5 w-3.5" />

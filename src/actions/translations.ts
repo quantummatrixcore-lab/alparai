@@ -119,6 +119,86 @@ Description: "${incident.description}"
   }
 }
 
+export async function getOrTranslateIncidentTR(
+  incidentId: string,
+): Promise<{ title_tr: string; description_tr: string } | null> {
+  try {
+    const admin = createAdminClient();
+    const { data: incident, error } = await admin
+      .from("incidents")
+      .select("id, title, description, title_tr, description_tr, language")
+      .eq("id", incidentId)
+      .single();
+
+    if (error || !incident) return null;
+
+    if (incident.title_tr && incident.title_tr.trim().length > 0) {
+      return {
+        title_tr: incident.title_tr,
+        description_tr: incident.description_tr || "",
+      };
+    }
+
+    if (incident.language !== "en") {
+      return null;
+    }
+
+    logger.info("[Public TR Translate] Starting translate on-demand", { incidentId });
+
+    const systemPrompt =
+      "You are a professional EN-to-TR translator for ALPAR AI, an AI accountability agency.";
+    const userPrompt = `Translate the following AI incident title and description into Turkish.
+Preserve the factual, neutral, and professional tone.
+Output ONLY a JSON object with "title_tr" and "description_tr" keys. Do not include markdown formatting or backticks outside the JSON.
+
+Title: "${incident.title}"
+Description: "${incident.description}"
+
+{
+  "title_tr": "translated title...",
+  "description_tr": "translated description..."
+}`;
+
+    const res = await callWithFailover(
+      {
+        systemPrompt,
+        userMessage: userPrompt,
+        temperature: 0.1,
+        responseFormat: "json",
+      },
+      await selectModelByCapability("creative_copy"),
+    );
+
+    if (res.ok && res.data?.content) {
+      const parsed = JSON.parse(res.data.content);
+      if (parsed.title_tr && parsed.description_tr) {
+        await (
+          admin.from("incidents") as unknown as {
+            update: (values: unknown) => {
+              eq: (col: string, val: string) => Promise<{ error: { message: string } | null }>;
+            };
+          }
+        )
+          .update({
+            title_tr: parsed.title_tr,
+            description_tr: parsed.description_tr,
+            machine_translated: true,
+          })
+          .eq("id", incidentId);
+
+        return {
+          title_tr: parsed.title_tr,
+          description_tr: parsed.description_tr,
+        };
+      }
+    }
+    return null;
+  } catch (err) {
+    logger.error("[getOrTranslateIncidentTR] Error:", { incidentId, error: String(err) });
+    return null;
+  }
+}
+
 export async function backfillIncidentsTR(
   batchSize: number = 10,
 ): Promise<{ processed: number; success: number }> {

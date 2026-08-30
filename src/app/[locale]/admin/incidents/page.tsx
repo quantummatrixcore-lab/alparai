@@ -67,16 +67,14 @@ function calculateSlaRemainingHours(createdAt?: string | null, totalSlaHours = 7
 
 export default function IncidentsPage() {
   const t = useTranslations("admin.sidebar");
-  const [incidents, setIncidents] = useState<IncidentRecord[]>(defaultIncidentPlaceholder);
+  const [incidents, setIncidents] = useState<IncidentRecord[]>([]);
   const [loadingDb, setLoadingDb] = useState(false);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("ALL");
   const [severityFilter, setSeverityFilter] = useState<string>("ALL");
   const [euFilter, setEuFilter] = useState<string>("ALL");
   const [providerFilter, setProviderFilter] = useState<string>("ALL");
-  const [selectedIncident, setSelectedIncident] = useState<IncidentRecord | null>(
-    defaultIncidentPlaceholder[0] || null,
-  );
+  const [selectedIncident, setSelectedIncident] = useState<IncidentRecord | null>(null);
   const [copiedHash, setCopiedHash] = useState(false);
   const [showExportModal, setShowExportModal] = useState(false);
   const [actionNotice, setActionNotice] = useState<string | null>(null);

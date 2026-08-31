@@ -1,7 +1,13 @@
 {
   "about": {
     "title": "About Us",
-    "content": "Alparai is a pioneering AI company that bridges technology and humanity with innovative solutions that transcend borders. We guide corporate and individual transformation with systems developed to universal standards."
+    "content": "Alparai is a pioneering AI company that bridges technology and humanity with innovative solutions that transcend borders. We guide corporate and individual transformation with systems developed to universal standards.",
+    "advisoryBoardTitle": "Independent AI Advisory Board",
+    "advisoryBoardSubtitle": "Leading scholars, legal authorities, and AI safety experts guiding our democratic oversight and verification protocols.",
+    "advisoryBoardEmpty": "The ALPAR AI Advisory Board is currently welcoming applications from global AI ethicists, legal scholars, and forensic engineers.",
+    "advisoryBoardJoinCTA": "Apply for Advisory Board",
+    "advisoryBoardWebsiteLink": "Academic Profile",
+    "advisoryBoardPressLink": "Media Coverage"
   },
   "about_methodology_committee": {
     "description": "The independent academic and scientific body supervising ALPAR AI's benchmark methodologies, Wilson score intervals, and cross-model debate arbitration standards.",
@@ -5206,57 +5212,52 @@
       "title": "ALPAR Risk Score API"
     },
     "browser_extension_page": {
-      "alerts_desc": "Get instant warnings when visiting AI tools with known privacy violations or high incident rates.",
-      "alerts_title": "In-Browser Alerts",
-      "badge": "Consumer Protection",
-      "coming_soon_desc": "The ALPAR AI Guard extension is currently in development. Join the waitlist to get early access to our consumer protection tools.",
-      "coming_soon_title": "Coming to Chrome & Firefox",
-      "join_waitlist": "Join Waitlist",
-      "scanner_desc": "Automatically detects and blocks PII (Personally Identifiable Information) before it is sent to external AI providers.",
-      "scanner_title": "Prompt Scanner",
-      "subtitle": "Real-time protection for your daily AI interactions. Our browser extension warns you about hallucinating models, privacy-invasive prompts, and biased AI systems before you interact with them.",
-      "title": "ALPAR AI Guard",
-      "trust_scores_desc": "See ALPAR Trust Scores injected directly into AI product pages and directories.",
-      "trust_scores_title": "Trust Scores Everywhere"
+      "title": "ALPAR AI Real-Time Browser Extension",
+      "subtitle": "Instant AI accountability, hallucination warnings, and model trust scores right inside your browser.",
+      "live_detection_title": "Real-Time AI Verification",
+      "live_detection_desc": "Detect AI-generated text, deepfakes, and biased content across social feeds, news sites, and search results.",
+      "trust_scores_title": "Instant Provider Trust Scores",
+      "trust_scores_desc": "View live reliability metrics, incident records, and safety rankings for ChatGPT, Claude, Gemini, and Grok.",
+      "coming_soon_title": "Extension in Final Testing",
+      "coming_soon_desc": "Our Chromium and Firefox extensions are undergoing final security review. Join the early access waitlist.",
+      "join_waitlist": "Join Extension Waitlist"
     },
     "datasets": {
-      "badge": "Open Data & Research",
-      "cta": {
-        "button": "Request Dataset Access",
-        "desc": "We provide bulk dataset access to verified research institutions and policy organizations.",
-        "title": "Access the Data"
-      },
+      "title": "AI Safety & Incident Datasets",
+      "subtitle": "Comprehensive, structured, and verified incident telemetry for AI researchers, auditors, and compliance teams.",
       "features": {
         "exports": {
-          "desc": "Download incident reports in JSON, CSV, and Parquet formats, ready for immediate analysis in your data pipeline.",
-          "title": "Structured Exports"
-        },
-        "license": {
-          "desc": "Free for academic and non-commercial research purposes to support the global AI safety community.",
-          "title": "Academic License"
+          "title": "Machine-Readable Data Exports",
+          "desc": "Download high-integrity JSON, CSV, and Parquet feeds updated continuously with forensic evidence logs."
         },
         "taxonomy": {
-          "desc": "Incidents are mapped to CSET, AIID, and EU AI Act risk categorizations for standardized research.",
-          "title": "Taxonomy Aligned"
+          "title": "Standardized Risk Taxonomy",
+          "desc": "Incidents categorized under NIST AI RMF, EU AI Act risk tiers, and IEEE safety frameworks."
+        },
+        "license": {
+          "title": "Open Academic & Commercial Licenses",
+          "desc": "Free open access for academic researchers, universities, and non-profit safety labs."
         }
       },
-      "subtitle": "Access curated, structured, and cross-audited datasets of AI failures. Built for researchers, red-teamers, and policy makers to advance the safety of artificial intelligence.",
-      "title": "ALPAR AI Datasets"
+      "cta": {
+        "title": "Access Raw Safety Telemetry",
+        "desc": "Integrate ALPAR AI datasets into your model evaluation and red-teaming pipelines.",
+        "button": "Explore Datasets"
+      }
     },
     "eu_ai_act": "EU AI Act Compliance SaaS",
     "eu_ai_act_page": {
-      "art73_desc": "Ensure your organization meets the strict incident reporting timelines required by the EU AI Act.",
-      "art73_title": "Article 73 Readiness",
-      "audit_trails_desc": "Immutable logs of all internal AI incidents, resolutions, and regulatory communications.",
-      "audit_trails_title": "Automated Audit Trails",
-      "badge": "Compliance SaaS",
-      "join_beta_desc": "Our compliance dashboard is currently in closed beta. Sign up to secure your spot and start your compliance journey early.",
-      "join_beta_title": "Join the Beta",
-      "join_waitlist": "Join the Waitlist",
-      "risk_cat_desc": "Automatically classify your AI systems into Unacceptable, High, Limited, or Minimal risk tiers.",
-      "risk_cat_title": "Risk Categorization",
-      "subtitle": "Automate your Article 73 incident reporting and compliance lifecycle. Identify high-risk AI models, map incidents to regulatory frameworks, and generate one-click audit reports.",
-      "title": "EU AI Act Compliance"
+      "title": "EU AI Act Compliance & Incident Radar",
+      "subtitle": "Automated compliance audits, Article 73 reporting workflows, and continuous risk monitoring for high-risk AI models.",
+      "art73_title": "Automated Article 73 Serious Incident Reporting",
+      "art73_desc": "Direct cryptographic logging and structured incident dispatch compliant with European AI Office standards.",
+      "audit_trails_title": "Immutable Forensic Audit Trails",
+      "audit_trails_desc": "Tamper-proof verifiable evidence bundles preserving prompt-response chains and hallucination logs.",
+      "risk_cat_title": "Dynamic Risk Categorization",
+      "risk_cat_desc": "Real-time risk scoring mapping your AI stack against prohibited, high-risk, and systemic risk tiers.",
+      "join_beta_title": "Request Enterprise Compliance Access",
+      "join_beta_desc": "Get early access to our automated Article 73 audit pipeline and enterprise governance tools.",
+      "join_waitlist": "Join Enterprise Waitlist"
     }
   },
   "profile": {
@@ -5533,7 +5534,15 @@
   "suggestions": {
     "create_title": "New Suggestion",
     "subtitle": "Community Suggestions",
-    "title": "Suggestions"
+    "title": "Suggestions",
+    "signInToSuggest": "Sign in to submit a proposal",
+    "newSuggestion": "Submit New Platform Proposal",
+    "shareIdea": "Share your vision for AI governance, feature requests, or methodology improvements.",
+    "meta_title": "Community Suggestions & Roadmap Proposals",
+    "pageTitle": "Platform Proposal",
+    "anon": "Anonymous Community Contributor",
+    "back_to_suggestions": "← Back to Suggestions",
+    "by": "Proposed by"
   },
   "system-status": {
     "degraded": "Degraded Performance",
@@ -5658,7 +5667,12 @@
     "verifiedIncident": "Verified Incident",
     "noIncidentsYet": "No verified incidents recorded yet.",
     "subPortalsTitle": "Transparency & Legal Shield Hubs",
-    "subPortalsSubtitle": "Cease & Desist archives, legal threat registries, and EU AI Act compliance trackers."
+    "subPortalsSubtitle": "Cease & Desist archives, legal threat registries, and EU AI Act compliance trackers.",
+    "obligation_header": "Legal Obligation",
+    "status_header": "Compliance Status",
+    "verified_header": "Verification Proof",
+    "empty_state_title": "No Public Article 73 Breaches Logged",
+    "empty_state_desc": "All monitored foundation models are currently operating within the European AI Office compliance thresholds."
   },
   "trust": {
     "methodology": "Peer-reviewed Methodology",

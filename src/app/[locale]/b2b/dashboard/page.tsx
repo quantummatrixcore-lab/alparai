@@ -4,7 +4,22 @@ import { createServerClient } from "@/lib/supabase/server";
 import { Container } from "@/components/ui/layout";
 import { KanbanBoard, type KanbanIncident } from "@/components/b2b/kanban-board";
 import { redirect } from "@/i18n/routing";
-import { ShieldAlert } from "lucide-react";
+import { constructPageMetadata } from "@/lib/seo/metadata";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  return constructPageMetadata({
+    locale,
+    pathname: "/b2b/dashboard",
+    title: locale === "tr" ? "Muhatap Yönetim Paneli" : "Defendant Management Hub",
+    description: "Defendant Management Portal for AI Providers",
+    noIndex: true,
+  });
+}
 
 export default async function B2BDashboardPage({
   params,

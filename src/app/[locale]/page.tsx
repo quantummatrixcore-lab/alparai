@@ -20,7 +20,9 @@ import {
   CANONICAL_INCIDENT_COUNT,
   CANONICAL_COUNTS_BY_SOURCE,
   CANONICAL_TOTAL_COUNTRIES,
+  APP_URL,
 } from "@/lib/constants";
+import { constructPageMetadata } from "@/lib/seo/metadata";
 
 const LiveStats = dynamicImport(() =>
   import("@/components/marketing/live-stats").then((mod) => mod.LiveStats),
@@ -51,32 +53,13 @@ const ClosingSection = dynamicImport(() =>
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "app" });
-  return {
+  return constructPageMetadata({
+    locale,
+    pathname: "",
     title: t("title"),
     description: t("description"),
-    openGraph: {
-      title: t("title"),
-      description: t("description"),
-      images: ["/og-image.jpg"],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: t("title"),
-      description: t("description"),
-      images: ["/og-image.jpg"],
-    },
-    alternates: {
-      canonical: `/${locale}`,
-      languages: {
-        "x-default": "/en",
-        en: "/en",
-        tr: "/tr",
-        de: "/de",
-        fr: "/fr",
-        ru: "/ru",
-      },
-    },
-  };
+    image: `${APP_URL}/brand-assets/og-image.png`,
+  });
 }
 
 const getHomeData = cache(async (locale: string) => {

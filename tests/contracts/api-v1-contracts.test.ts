@@ -288,4 +288,137 @@ describe("API v1 Contract Schema Validators", () => {
     const result = schemas.statsResponseSchema.safeParse(data);
     expect(result.success).toBe(true);
   });
+
+  it("should validate a valid risk audit response", () => {
+    const data: z.infer<typeof schemas.riskAuditResponseSchema> = {
+      eu_act_risk_category: "high",
+      eu_act_serious_incident_class: "Annex III.1",
+      risk_score: 0.82,
+      reasoning: "Critical safety risk identified",
+    };
+    const result = schemas.riskAuditResponseSchema.safeParse(data);
+    expect(result.success).toBe(true);
+  });
+
+  it("should validate a valid auditor root response", () => {
+    const data: z.infer<typeof schemas.auditorRootResponseSchema> = {
+      service: "alpar-auditor-service",
+      version: "1.0.0",
+      status: "healthy",
+      grid: {
+        active_engines: 41,
+        fast_route_cache: true,
+        zero_latency: true,
+      },
+      stats: {
+        total_incidents: 2908,
+        k_benchmark_evaluations: 150,
+        monitored_models: 25,
+      },
+      endpoints: {
+        audit_logs: "/api/v1/auditor/audit-logs",
+        k_benchmark: "/api/v1/auditor/k-benchmark",
+        methodology: "/api/v1/auditor/methodology",
+      },
+      timestamp: new Date().toISOString(),
+    };
+    const result = schemas.auditorRootResponseSchema.safeParse(data);
+    expect(result.success).toBe(true);
+  });
+
+  it("should validate a valid EU AI Act response", () => {
+    const data: z.infer<typeof schemas.euAiActResponseSchema> = {
+      framework: "EU AI Act Regulation (EU) 2024/1689",
+      version: "2024.1",
+      riskTiers: [
+        {
+          tier: "Unacceptable Risk",
+          articles: ["Article 5"],
+          description: "Prohibited AI practices",
+          status: "Enforced",
+        },
+      ],
+      documentationUrl: "https://alpar.ai/docs/eu-ai-act",
+      supportEmail: "compliance@alpar.ai",
+    };
+    const result = schemas.euAiActResponseSchema.safeParse(data);
+    expect(result.success).toBe(true);
+  });
+
+  it("should validate a valid whistleblower receipt response", () => {
+    const data: z.infer<typeof schemas.whistleblowerResponseSchema> = {
+      message: "Whistleblower report secured with zero-knowledge encryption.",
+      receipt: {
+        submission_id: "37c6cf08-9d39-4798-b75b-f0602d4cefe1",
+        receipt_hash: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        submitted_at: new Date().toISOString(),
+        anonymity_status: "cryptographically_isolated",
+      },
+    };
+    const result = schemas.whistleblowerResponseSchema.safeParse(data);
+    expect(result.success).toBe(true);
+  });
+
+  it("should validate a valid provenance response", () => {
+    const data: z.infer<typeof schemas.provenanceResponseSchema> = {
+      provenance: {
+        c2pa_detected: true,
+        c2pa_manifest_url: "https://manifest.c2pa.org/v1/sample",
+        synthid_detected: false,
+        media_hash: "sha256:abcd1234efgh5678",
+        verification_status: "verified_authentic",
+        verified_at: new Date().toISOString(),
+        alpar_provenance_seal: "ALPAR-SEAL-2026-OK",
+      },
+    };
+    const result = schemas.provenanceResponseSchema.safeParse(data);
+    expect(result.success).toBe(true);
+  });
+
+  it("should validate a valid slopsquatting response", () => {
+    const data: z.infer<typeof schemas.slopsquattingResponseSchema> = {
+      count: 1,
+      reports: [
+        {
+          id: "37c6cf08-9d39-4798-b75b-f0602d4cefe1",
+          package_name: "colors-ai-extended",
+          ecosystem: "npm",
+          first_seen_at: "2026-07-01T00:00:00Z",
+          confirmed_real: false,
+          source_url: null,
+          hallucinated_by_model_id: "gpt-4o",
+        },
+      ],
+      _meta: {
+        ecosystem: "npm",
+        limit: 10,
+      },
+    };
+    const result = schemas.slopsquattingResponseSchema.safeParse(data);
+    expect(result.success).toBe(true);
+  });
+
+  it("should validate a valid playbooks response", () => {
+    const data: z.infer<typeof schemas.playbooksResponseSchema> = {
+      count: 1,
+      playbooks: [
+        {
+          id: "37c6cf08-9d39-4798-b75b-f0602d4cefe1",
+          sector: "finance",
+          title: "Algorithmic Trading Compliance Playbook",
+          framework: "EU AI Act & MiFID II",
+          summary: "Checklist for algorithmic model risk management.",
+          checklist: { steps: ["Pre-trade checks", "Stress testing"] },
+          created_at: "2026-06-01T00:00:00Z",
+          updated_at: "2026-07-01T00:00:00Z",
+        },
+      ],
+      _meta: {
+        sector: "finance",
+        limit: 10,
+      },
+    };
+    const result = schemas.playbooksResponseSchema.safeParse(data);
+    expect(result.success).toBe(true);
+  });
 });

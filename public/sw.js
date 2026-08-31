@@ -1,8 +1,9 @@
-const CACHE_NAME = "alparai-pwa-v3";
+const CACHE_NAME = "alparai-pwa-v4";
 const STATIC_ASSETS = [
   "/manifest.webmanifest",
-  "/favicon.png",
+  "/favicon.ico",
   "/favicon.svg",
+  "/brand-assets/og-image.png",
   "/icons/android-chrome-192x192.png",
   "/icons/android-chrome-512x512.png",
   "/icons/apple-touch-icon.png",

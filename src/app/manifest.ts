@@ -3,12 +3,12 @@ import { APP_NAME, APP_DESCRIPTION } from "@/lib/constants";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "ALPAR AI Mission Control",
+    name: "ALPAR AI — Trust Infrastructure for AI Accountability",
     short_name: APP_NAME,
     description: APP_DESCRIPTION,
-    start_url: "/admin",
+    start_url: "/",
     display: "standalone",
-    background_color: "#050505",
+    background_color: "#0A1622",
     theme_color: "#0A1622",
     orientation: "portrait-primary",
     icons: [
@@ -26,6 +26,6 @@ export default function manifest(): MetadataRoute.Manifest {
       },
       { src: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
-    categories: ["news", "social", "productivity"],
+    categories: ["news", "social", "productivity", "utilities", "business"],
   };
 }

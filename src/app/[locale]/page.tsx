@@ -276,104 +276,9 @@ const getHomeData = cache(async (locale: string) => {
         .filter(Boolean),
     ).size;
 
-    const defaultIncidents = [
-      {
-        id: "inc-demo-1",
-        title_masked: "AI Model Hallucination in Automated Financial Risk Assessment",
-        description_masked:
-          "Autonomous risk evaluation system generated false risk scores due to unverified training telemetry data.",
-        severity: "critical",
-        status: "published",
-        category: "hallucination",
-        is_anonymous: false,
-        incident_date: "2026-08-15T12:00:00.000Z",
-        view_count: 1420,
-        upvotes_count: 389,
-        created_at: "2026-08-15T12:00:00.000Z",
-        provider_name: "OpenAI GPT-4o",
-        provider_slug: "openai",
-        cross_audit_truth_score: 94,
-        cross_audit_confidence: 98,
-        incident_source: "news_curated",
-      },
-      {
-        id: "inc-demo-2",
-        title_masked: "Biased Content Suppression in Automated HR Screening Engine",
-        description_masked:
-          "Recruitment scoring algorithm systematically penalized candidates based on regional dialect patterns.",
-        severity: "high",
-        status: "published",
-        category: "bias",
-        is_anonymous: true,
-        incident_date: "2026-08-15T12:00:00.000Z",
-        view_count: 980,
-        upvotes_count: 215,
-        created_at: "2026-08-15T12:00:00.000Z",
-        provider_name: "Anthropic Claude 3.5 Sonnet",
-        provider_slug: "anthropic",
-        cross_audit_truth_score: 91,
-        cross_audit_confidence: 95,
-        incident_source: "user_submitted",
-      },
-      {
-        id: "inc-demo-3",
-        title_masked: "Uncontrolled Data Leakage via Public API Retrieval Pipeline",
-        description_masked:
-          "Retrieval-augmented generation (RAG) vector cache exposed internal corporate document chunks.",
-        severity: "critical",
-        status: "published",
-        category: "privacy",
-        is_anonymous: false,
-        incident_date: "2026-08-15T12:00:00.000Z",
-        view_count: 2150,
-        upvotes_count: 612,
-        created_at: "2026-08-15T12:00:00.000Z",
-        provider_name: "Google Gemini 1.5 Pro",
-        provider_slug: "google",
-        cross_audit_truth_score: 97,
-        cross_audit_confidence: 99,
-        incident_source: "court_record",
-      },
-    ] as unknown as IncidentListItem[];
+    const defaultIncidents: IncidentListItem[] = [];
 
-    const defaultLeaderboard: LeaderboardEntry[] = [
-      {
-        provider_id: "prov-1",
-        provider_name: "OpenAI",
-        provider_slug: "openai",
-        incident_count: 42,
-        resolved_count: 38,
-        avg_severity: 4.2,
-        trend: -5,
-        trust_score: 92,
-        response_rate: 90,
-        is_verified_respondent: true,
-      },
-      {
-        provider_id: "prov-2",
-        provider_name: "Anthropic",
-        provider_slug: "anthropic",
-        incident_count: 28,
-        resolved_count: 26,
-        avg_severity: 3.8,
-        trend: -2,
-        trust_score: 95,
-        response_rate: 93,
-        is_verified_respondent: true,
-      },
-      {
-        provider_id: "prov-3",
-        provider_name: "Google DeepMind",
-        provider_slug: "google",
-        incident_count: 35,
-        resolved_count: 31,
-        avg_severity: 3.9,
-        trend: -8,
-        trust_score: 89,
-        response_rate: 88,
-        is_verified_respondent: true,
-      },
-    ];
+    const defaultLeaderboard: LeaderboardEntry[] = [];
 
     const finalIncidents = incidents.length > 0 ? incidents : defaultIncidents;
     const finalLeaderboard = leaderboard.length > 0 ? leaderboard : defaultLeaderboard;
@@ -406,42 +311,9 @@ const getHomeData = cache(async (locale: string) => {
         { name: "Google", count: 35, slug: "google" },
       ],
       countsBySource: { ...CANONICAL_COUNTS_BY_SOURCE },
-      incidents: [
-        {
-          id: "inc-demo-1",
-          title_masked: "AI Model Hallucination in Automated Financial Risk Assessment",
-          description_masked:
-            "Autonomous risk evaluation system generated false risk scores due to unverified training telemetry data.",
-          severity: "critical",
-          status: "published",
-          category: "hallucination",
-          is_anonymous: false,
-          incident_date: "2026-08-15T12:00:00.000Z",
-          view_count: 1420,
-          upvotes_count: 389,
-          created_at: "2026-08-15T12:00:00.000Z",
-          provider_name: "OpenAI GPT-4o",
-          provider_slug: "openai",
-          cross_audit_truth_score: 94,
-          cross_audit_confidence: 98,
-          incident_source: "news_curated",
-        },
-      ] as unknown as IncidentListItem[],
-      leaderboard: [
-        {
-          provider_id: "prov-1",
-          provider_name: "OpenAI",
-          provider_slug: "openai",
-          incident_count: 42,
-          resolved_count: 38,
-          avg_severity: 4.2,
-          trend: -5,
-          trust_score: 92,
-          response_rate: 90,
-          is_verified_respondent: true,
-        },
-      ],
-    };
+      incidents: [],
+      leaderboard: []
+      };
   }
 });
 

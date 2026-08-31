@@ -215,7 +215,7 @@ export function VelocityDashboard() {
       case "Mistral AI":
         return "bg-orange-500/10 text-orange-400 border-orange-500/30";
       default:
-        return "bg-white/10 text-fg-primary border-white/20";
+        return "bg-white/10 text-fg-primary border-border-strong";
     }
   };
 

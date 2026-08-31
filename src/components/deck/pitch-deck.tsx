@@ -366,7 +366,7 @@ export function PitchDeckViewer() {
                   {SLIDES_META[currentSlide - 1]?.category}
                 </span>
               </div>
-              <span className="text-fg-secondary rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium">
+              <span className="text-fg-secondary rounded-full border border-border-subtle bg-white/5 px-3 py-1 text-xs font-medium">
                 {SLIDES_META[currentSlide - 1]?.badge}
               </span>
             </div>

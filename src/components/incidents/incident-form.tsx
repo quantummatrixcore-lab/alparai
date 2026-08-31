@@ -357,7 +357,7 @@ export function IncidentForm({
       return (
         <div className="mx-auto max-w-md space-y-8 px-4 py-16 text-center">
           <div className="space-y-3">
-            <h2 className="text-fg-primary text-fg-secondaryxl font-bold tracking-tight">
+            <h2 className="text-fg-primary text-2xl font-bold tracking-tight">
               {t("processing_title", { defaultValue: "Raporunuz Analiz Ediliyor" })}
             </h2>
             <p className="text-fg-muted text-sm">

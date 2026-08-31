@@ -123,7 +123,7 @@ export default async function SignInPage({
 
           {/* Welcome Text */}
           <div className="mb-8 text-center">
-            <h2 className="text-fg-primary text-fg-secondaryxl font-extrabold tracking-tight">
+            <h2 className="text-fg-primary text-2xl font-extrabold tracking-tight">
               {t("welcome_title")}
             </h2>
             <p className="text-fg-muted mt-1.5 text-sm font-medium">{t("welcome_subtitle")}</p>

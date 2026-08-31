@@ -64,7 +64,7 @@ export function BountyBadgesShowcase({
   return (
     <section className="mb-12">
       <div className="mb-6">
-        <h2 className="text-fg-primary md:text-fg-secondaryxl text-xl font-extrabold tracking-tight">
+        <h2 className="text-fg-primary md:text-2xl text-xl font-extrabold tracking-tight">
           {labels.title}
         </h2>
         <p className="text-fg-muted text-sm">{labels.subtitle}</p>

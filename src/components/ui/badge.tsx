@@ -27,7 +27,7 @@ const variantClasses: Record<BadgeVariant, string> = {
   danger: "bg-danger-500/15 text-danger-400 border border-danger-500/30 shadow-[0_0_12px_rgba(230,57,70,0.15)]",
   outline: "bg-transparent text-fg-secondary border border-border-strong",
   muted: "bg-bg-tertiary/70 text-fg-muted border border-transparent",
-  glass: "bg-white/5 text-fg-primary border border-white/15 backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]",
+  glass: "bg-white/5 text-fg-primary border border-border-subtle backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]",
   accent: "bg-accent-500/15 text-accent-300 border border-accent-500/30 shadow-[0_0_12px_rgba(6,182,212,0.15)]",
 };
 

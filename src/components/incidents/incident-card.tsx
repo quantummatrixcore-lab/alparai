@@ -131,7 +131,7 @@ export function IncidentCard({
         interactive
         padding="md"
         className={cn(
-          "group hover:border-brand-500/30 relative overflow-hidden rounded-2xl border border-white/10 bg-zinc-950/80 shadow-lg backdrop-blur-xl transition-all duration-300 hover:shadow-[0_12px_32px_rgba(0,0,0,0.6)]",
+          "group hover:border-brand-500/30 relative overflow-hidden rounded-2xl border border-border-subtle bg-bg-secondary/80 shadow-lg backdrop-blur-xl transition-all duration-300 hover:shadow-[0_12px_32px_rgba(0,0,0,0.6)]",
           borderClass,
           className,
         )}
@@ -157,7 +157,7 @@ export function IncidentCard({
             <div className="flex min-w-0 items-center gap-3">
               {/* Provider Logo Avatar */}
               <div className="relative shrink-0">
-                <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-white/15 bg-zinc-900 p-1 shadow-md transition-transform group-hover:scale-105 sm:h-11 sm:w-11">
+                <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-border-subtle bg-bg-secondary p-1 shadow-md transition-transform group-hover:scale-105 sm:h-11 sm:w-11">
                   <ProviderLogo
                     name={incident.provider_name}
                     slug={incident.provider_slug}
@@ -264,8 +264,8 @@ export function IncidentCard({
           )}
 
           {/* 3. Instagram / LinkedIn Visual Media & Intelligence Card */}
-          <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3 backdrop-blur-md">
-            <div className="mb-2 flex flex-wrap items-center justify-between gap-2 border-b border-white/5 pb-2">
+          <div className="rounded-xl border border-border-subtle bg-white/[0.03] p-3 backdrop-blur-md">
+            <div className="mb-2 flex flex-wrap items-center justify-between gap-2 border-b border-border-subtle/50 pb-2">
               <div className="flex items-center gap-2">
                 <Shield className="h-4 w-4 shrink-0 text-emerald-400" />
                 <span className="text-fg-primary text-xs font-bold">
@@ -280,7 +280,7 @@ export function IncidentCard({
                   Konsensüs Onaylı
                 </span>
               </div>
-              <span className="text-fg-muted rounded border border-white/5 bg-white/5 px-2 py-0.5 font-mono text-[10px]">
+              <span className="text-fg-muted rounded border border-border-subtle bg-white/5 px-2 py-0.5 font-mono text-[10px]">
                 #{incident.id.substring(0, 12)}
               </span>
             </div>
@@ -290,7 +290,7 @@ export function IncidentCard({
           </div>
 
           {/* 4. X & LinkedIn Social Engagement & Action Bar */}
-          <div className="text-fg-muted flex items-center justify-between gap-2 border-t border-white/10 pt-3 text-xs">
+          <div className="text-fg-muted flex items-center justify-between gap-2 border-t border-border-subtle pt-3 text-xs">
             {/* Social Triggers (Comments, Reactions, Views) */}
             <div className="flex items-center gap-4 sm:gap-6">
               {/* Comments / Discussion */}
@@ -337,7 +337,7 @@ export function IncidentCard({
                 href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(displayTitle)}&url=${encodeURIComponent(getShareUrlForPlatform("x"))}`}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="text-fg-muted flex h-7 w-7 items-center justify-center rounded-md border border-white/10 bg-white/5 shadow-2xs transition-all hover:border-white/30 hover:bg-white/10 hover:text-white"
+                className="text-fg-muted flex h-7 w-7 items-center justify-center rounded-md border border-border-subtle bg-white/5 shadow-2xs transition-all hover:border-white/30 hover:bg-white/10 hover:text-white"
                 aria-label={tFeed("shareOnX")}
                 onClick={(e) => e.stopPropagation()}
               >

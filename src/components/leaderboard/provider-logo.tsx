@@ -109,7 +109,7 @@ export function ProviderLogo({
 
   return (
     <div
-      className={`flex items-center justify-center rounded-md font-black tracking-tight ${palette.bg} ${palette.fg} h-full w-full border border-white/5 shadow-inner ${className}`}
+      className={`flex items-center justify-center rounded-md font-black tracking-tight ${palette.bg} ${palette.fg} h-full w-full border border-border-subtle shadow-inner ${className}`}
       aria-label={`${name} logo placeholder`}
       title={name}
     >

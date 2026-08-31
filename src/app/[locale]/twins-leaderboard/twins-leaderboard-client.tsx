@@ -172,7 +172,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                 <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />
                 <span>Problems Solved</span>
               </div>
-              <div className="font-display text-fg-secondaryxl font-extrabold text-white sm:text-3xl">
+              <div className="font-display text-2xl font-extrabold text-white sm:text-3xl">
                 {aggregateMetrics.totalSolved.toLocaleString()}
               </div>
               <span className="font-mono text-[11px] font-medium text-emerald-400">
@@ -185,7 +185,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                 <BrainCircuit className="text-brand-400 h-3.5 w-3.5" />
                 <span>Ortalama IQ Skoru</span>
               </div>
-              <div className="font-display from-brand-300 text-fg-secondaryxl bg-gradient-to-r to-purple-400 bg-clip-text font-extrabold text-transparent sm:text-3xl">
+              <div className="font-display from-brand-300 text-2xl bg-gradient-to-r to-purple-400 bg-clip-text font-extrabold text-transparent sm:text-3xl">
                 {aggregateMetrics.avgIQ}
               </div>
               <span className="text-brand-400 font-mono text-[11px] font-medium">
@@ -198,7 +198,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                 <Coins className="h-3.5 w-3.5 text-amber-400" />
                 <span>Token Tasarrufu</span>
               </div>
-              <div className="font-display text-fg-secondaryxl font-extrabold text-amber-300 sm:text-3xl">
+              <div className="font-display text-2xl font-extrabold text-amber-300 sm:text-3xl">
                 %{aggregateMetrics.avgSavings}
               </div>
               <span className="font-mono text-[11px] font-medium text-amber-400">
@@ -211,7 +211,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                 <TrendingUp className="h-3.5 w-3.5 text-cyan-400" />
                 <span>Task Success</span>
               </div>
-              <div className="font-display text-fg-secondaryxl font-extrabold text-cyan-300 sm:text-3xl">
+              <div className="font-display text-2xl font-extrabold text-cyan-300 sm:text-3xl">
                 %{aggregateMetrics.avgSuccess}
               </div>
               <span className="font-mono text-[11px] font-medium text-cyan-400">
@@ -224,7 +224,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                 <Cpu className="h-3.5 w-3.5 text-rose-400" />
                 <span>Aktif Konsey</span>
               </div>
-              <div className="font-display text-fg-secondaryxl font-extrabold text-rose-300 sm:text-3xl">
+              <div className="font-display text-2xl font-extrabold text-rose-300 sm:text-3xl">
                 {aggregateMetrics.activeCount} Deha
               </div>
               <span className="font-mono text-[11px] font-medium text-rose-400">
@@ -240,7 +240,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
         <section aria-label="Zirvedeki Dehalar Podyumu" className="mb-16">
           <div className="mb-6 flex items-center justify-between">
             <div>
-              <h2 className="font-display sm:text-fg-secondaryxl flex items-center gap-2 text-xl font-bold text-white">
+              <h2 className="font-display sm:text-2xl flex items-center gap-2 text-xl font-bold text-white">
                 <Trophy className="h-6 w-6 text-amber-400" />
                 Bilge Kurul Zirve Podyumu (Top 3)
               </h2>
@@ -261,7 +261,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
           <div className="grid grid-cols-1 items-end gap-6 md:grid-cols-3">
             {/* RANK 2: FATİH SULTAN MEHMET (SILVER) */}
             {podiumTwins.second && (
-              <div className="group relative order-2 rounded-3xl border border-slate-400/20 bg-gradient-to-b from-slate-800/40 via-slate-900/60 to-slate-950/80 p-6 backdrop-blur-2xl transition-all duration-300 hover:-translate-y-2 hover:border-slate-300/50 hover:shadow-[0_0_35px_rgba(203,213,225,0.2)] md:order-1">
+              <div className="group relative order-2 rounded-3xl border border-border-subtle bg-gradient-to-b from-bg-secondary/40 via-bg-tertiary/60 to-bg-primary/80 p-6 backdrop-blur-2xl transition-all duration-300 hover:-translate-y-2 hover:border-slate-300/50 hover:shadow-[0_0_35px_rgba(203,213,225,0.2)] md:order-1">
                 <div className="absolute -top-4 left-6 flex items-center gap-1.5 rounded-full border border-slate-300/30 bg-gradient-to-r from-slate-600 to-slate-400 px-3.5 py-1 shadow-lg">
                   <Award className="text-fg-primary h-4 w-4" />
                   <span className="text-xs font-bold tracking-wider text-white">
@@ -330,7 +330,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                   <Button
                     onClick={() => setSelectedTwinModal(podiumTwins.second as DigitalTwinPersona)}
                     variant="outline"
-                    className="w-1/2 border-white/15 bg-white/5 text-xs hover:border-white/30 hover:bg-white/10"
+                    className="w-1/2 border-border-subtle bg-white/5 text-xs hover:border-white/30 hover:bg-white/10"
                   >
                     View Profile
                   </Button>
@@ -364,7 +364,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                     </span>
                   </div>
                   <div>
-                    <h3 className="font-display text-fg-secondaryxl font-black text-white transition-colors group-hover:text-amber-300">
+                    <h3 className="font-display text-2xl font-black text-white transition-colors group-hover:text-amber-300">
                       {podiumTwins.first.name}
                     </h3>
                     <p className="text-sm font-semibold text-amber-300/90">
@@ -991,7 +991,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                   <Compass className="h-4 w-4" />
                   <span>Mimar Sinan Structural Doctrine</span>
                 </div>
-                <h2 className="font-display text-fg-secondaryxl font-bold text-white sm:text-3xl">
+                <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">
                   Flawless Static Equilibrium & Model Arbitrage
                 </h2>
                 <p className="text-fg-secondary mt-2 max-w-2xl text-sm leading-relaxed">
@@ -1081,7 +1081,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <h3 className="font-display text-fg-secondaryxl font-bold text-white">
+                  <h3 className="font-display text-2xl font-bold text-white">
                     {selectedTwinModal.name}
                   </h3>
                   <Badge variant="outline" className="border-brand-500/40 text-brand-300 text-xs">

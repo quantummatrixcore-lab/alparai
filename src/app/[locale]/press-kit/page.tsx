@@ -132,7 +132,7 @@ export default async function PressKitPage({ params }: { params: Promise<{ local
                     <span className="text-fg-muted text-xs">{t("darkThemeLabel")}</span>
                   </div>
                   <div className="border-border-subtle/50 bg-bg-primary flex flex-col items-center justify-center gap-4 rounded-lg border p-6 text-center">
-                    <div className="text-fg-secondaryxl font-black tracking-tighter text-emerald-400">
+                    <div className="text-2xl font-black tracking-tighter text-emerald-400">
                       ALPAR AI
                     </div>
                     <span className="text-fg-muted text-xs">{t("standardLogotype")}</span>

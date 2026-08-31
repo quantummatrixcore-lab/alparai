@@ -38,7 +38,7 @@ export function Header({
 
   return (
     <div className="pointer-events-none fixed top-6 z-[100] flex w-full justify-center px-3 sm:px-6">
-      <header role="banner" className="hover:border-brand-500/40 pointer-events-auto flex h-13 w-full max-w-[1280px] items-center justify-between gap-2 rounded-full border border-white/10 bg-[#080D17]/95 px-3.5 shadow-[0_12px_40px_rgba(0,0,0,0.7),0_0_20px_rgba(168,85,247,0.1)] backdrop-blur-2xl transition-all duration-300 sm:h-14 sm:px-5">
+      <header role="banner" className="hover:border-brand-500/40 pointer-events-auto flex h-13 w-full max-w-[1280px] items-center justify-between gap-2 rounded-full border border-border-subtle bg-bg-primary/95 px-3.5 shadow-[0_12px_40px_rgba(0,0,0,0.7),0_0_20px_rgba(168,85,247,0.1)] backdrop-blur-2xl transition-all duration-300 sm:h-14 sm:px-5">
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-brand-500 focus:text-white focus:rounded"
@@ -64,7 +64,7 @@ export function Header({
             href="https://github.com/quantummatrixcore-lab/alparai"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-zinc-400 hover:text-white focus-visible:ring-brand-500 hidden h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] transition-colors hover:border-white/20 hover:bg-white/[0.08] focus-visible:ring-2 focus-visible:outline-none sm:flex"
+            className="text-fg-muted hover:text-white focus-visible:ring-brand-500 hidden h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border-subtle bg-white/[0.04] transition-colors hover:border-border-strong hover:bg-white/[0.08] focus-visible:ring-2 focus-visible:outline-none sm:flex"
             aria-label="GitHub Repository"
           >
             <Github className="h-4 w-4" />

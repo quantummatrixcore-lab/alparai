@@ -56,7 +56,7 @@ export default async function AiIssMethodologyPage({
         </header>
 
         <section className="border-border-subtle bg-bg-secondary space-y-4 rounded-2xl border p-8">
-          <h2 className="text-fg-secondaryxl flex items-center gap-3 font-bold text-white">
+          <h2 className="text-2xl flex items-center gap-3 font-bold text-white">
             <FileText className="h-6 w-6 text-purple-400" />
             {t("aiIssWhatIsTitle")}
           </h2>
@@ -82,7 +82,7 @@ export default async function AiIssMethodologyPage({
         </section>
 
         <section className="space-y-6">
-          <h2 className="text-fg-secondaryxl font-bold text-white">{t("aiIssBandsTitle")}</h2>
+          <h2 className="text-2xl font-bold text-white">{t("aiIssBandsTitle")}</h2>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {scoreBands.map((sb) => (
               <div key={sb.band} className={`rounded-xl border p-5 ${sb.color}`}>

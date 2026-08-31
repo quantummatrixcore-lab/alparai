@@ -212,7 +212,7 @@ async function LeaderboardDataContent({
             <div className="bg-brand-500/10 ring-brand-500/20 mb-3 flex h-12 w-12 items-center justify-center rounded-2xl shadow-[0_0_20px_rgba(168,85,247,0.25)] ring-1 backdrop-blur-md">
               <Trophy className="text-brand-400 h-6 w-6" />
             </div>
-            <h1 className="text-fg-primary text-fg-secondaryxl mb-2 font-black tracking-tight sm:text-4xl">
+            <h1 className="text-fg-primary text-2xl mb-2 font-black tracking-tight sm:text-4xl">
               {_t("title")}
             </h1>
             <p className="text-fg-secondary max-w-xl text-sm sm:text-base">{_t("subtitle")}</p>
@@ -232,7 +232,7 @@ async function LeaderboardDataContent({
                 </div>
                 <div>
                   <p className="text-fg-muted text-xs font-medium">{_t("providersTracked")}</p>
-                  <p className="text-fg-primary text-fg-secondaryxl font-bold tracking-tight">
+                  <p className="text-fg-primary text-2xl font-bold tracking-tight">
                     {stats.length}
                   </p>
                 </div>
@@ -247,7 +247,7 @@ async function LeaderboardDataContent({
                 </div>
                 <div>
                   <p className="text-fg-muted text-xs font-medium">{_t("totalResponses")}</p>
-                  <p className="text-fg-primary text-fg-secondaryxl font-bold tracking-tight">
+                  <p className="text-fg-primary text-2xl font-bold tracking-tight">
                     {stats.reduce((s, p) => s + p.response_count, 0)}
                   </p>
                 </div>
@@ -262,7 +262,7 @@ async function LeaderboardDataContent({
                 </div>
                 <div>
                   <p className="text-fg-muted text-xs font-medium">{_t("avgResponseRate")}</p>
-                  <p className="text-fg-primary text-fg-secondaryxl font-bold tracking-tight">
+                  <p className="text-fg-primary text-2xl font-bold tracking-tight">
                     {stats.filter((p) => p.incident_count > 0).length > 0
                       ? Math.round(
                           stats

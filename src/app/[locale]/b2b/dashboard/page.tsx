@@ -5,6 +5,7 @@ import { Container } from "@/components/ui/layout";
 import { KanbanBoard, type KanbanIncident } from "@/components/b2b/kanban-board";
 import { redirect } from "@/i18n/routing";
 import { constructPageMetadata } from "@/lib/seo/metadata";
+import { ShieldAlert } from "lucide-react";
 
 export async function generateMetadata({
   params,

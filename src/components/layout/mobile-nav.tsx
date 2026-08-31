@@ -91,16 +91,16 @@ export function MobileNav({
       {open && mounted && createPortal(
         <div
           id="mobile-nav-panel"
-          className="fixed inset-0 z-[999999] flex min-h-screen w-screen flex-col bg-[#070e17] text-white pointer-events-auto shadow-2xl overflow-hidden"
+          className="fixed inset-0 z-[999999] flex min-h-screen w-screen flex-col bg-bg-primary text-white pointer-events-auto shadow-2xl overflow-hidden"
           role="dialog"
           aria-modal="true"
           aria-label="Mobile navigation menu"
         >
-          <div className="border-b border-white/10 flex shrink-0 items-center justify-between bg-[#0A1622] p-4 shadow-md">
+          <div className="border-b border-border-subtle flex shrink-0 items-center justify-between bg-bg-secondary p-4 shadow-md">
             <Wordmark size="md" />
             <button
               onClick={() => setOpen(false)}
-              className="text-zinc-300 hover:bg-white/10 hover:text-white focus-visible:ring-brand-500 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 focus-visible:ring-2 focus-visible:outline-none transition-colors"
+              className="text-fg-secondary hover:bg-white/10 hover:text-white focus-visible:ring-brand-500 inline-flex h-10 w-10 items-center justify-center rounded-full border border-border-subtle focus-visible:ring-2 focus-visible:outline-none transition-colors"
               aria-label="Close menu"
             >
               <X className="h-5 w-5" aria-hidden="true" />
@@ -109,7 +109,7 @@ export function MobileNav({
           <nav
             role="navigation"
             aria-label="Mobile navigation"
-            className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto p-4 bg-[#070e17]"
+            className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto p-4 bg-bg-primary"
           >
             {activeLinks.map((item) => {
               const isGroup = "group" in item;
@@ -117,7 +117,7 @@ export function MobileNav({
                 return (
                   <div
                     key={item.group}
-                    className="text-zinc-500 mt-4 px-4 pb-1 text-xs font-bold tracking-wider uppercase"
+                    className="text-fg-disabled mt-4 px-4 pb-1 text-xs font-bold tracking-wider uppercase"
                   >
                     {t(item.group)}
                   </div>
@@ -134,7 +134,7 @@ export function MobileNav({
                     "focus-visible:ring-brand-500 rounded-xl px-4 py-3.5 text-base font-semibold transition-all focus-visible:ring-2 focus-visible:outline-none",
                     isActive
                       ? "bg-brand-500/15 text-brand-400 border border-brand-500/30"
-                      : "text-zinc-300 hover:bg-white/5 hover:text-white",
+                      : "text-fg-secondary hover:bg-white/5 hover:text-white",
                   )}
                 >
                   {t(item.key)}
@@ -142,7 +142,7 @@ export function MobileNav({
               );
             })}
           </nav>
-          <div className="border-t border-white/10 bg-[#0A1622] flex shrink-0 flex-col gap-4 p-4 pb-8 safe-bottom">
+          <div className="border-t border-border-subtle bg-bg-secondary flex shrink-0 flex-col gap-4 p-4 pb-8 safe-bottom">
             <Link
               href="/submit"
               onClick={() => setOpen(false)}
@@ -152,7 +152,7 @@ export function MobileNav({
               {t("report")}
             </Link>
             <div className="flex items-center justify-between pt-1">
-              <span className="text-zinc-400 text-xs font-medium">{t("language_switcher")}</span>
+              <span className="text-fg-muted text-xs font-medium">{t("language_switcher")}</span>
               <LanguageSwitcher direction="up" />
             </div>
           </div>

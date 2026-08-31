@@ -37,7 +37,7 @@ export default async function SettingsPage({ params }: { params: Promise<{ local
   return (
     <Container size="narrow" className="py-10">
       <header className="mb-6">
-        <h1 className="text-fg-primary text-fg-secondaryxl font-bold">{t("title")}</h1>
+        <h1 className="text-fg-primary text-2xl font-bold">{t("title")}</h1>
         <p className="text-fg-muted mt-1 text-sm">{t("subtitle")}</p>
       </header>
       <Card>

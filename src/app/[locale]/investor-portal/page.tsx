@@ -168,7 +168,7 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div className="space-y-8 lg:col-span-2">
             <section className="border-border-subtle bg-bg-navy rounded-xl border p-6 md:p-8">
-              <h2 className="md:text-fg-secondaryxl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white">
+              <h2 className="md:text-2xl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white">
                 {t("exec_summary_title")}
               </h2>
               <p className="text-fg-primary mb-6 leading-relaxed">{t("exec_summary_p1")}</p>
@@ -197,7 +197,7 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
             </section>
 
             <section className="border-border-subtle bg-bg-navy rounded-xl border p-6 md:p-8">
-              <h2 className="md:text-fg-secondaryxl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white">
+              <h2 className="md:text-2xl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white">
                 {t("traction_title")}
               </h2>
               <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
@@ -206,7 +206,7 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
                     key={idx}
                     className="border-border-subtle bg-bg-primary rounded-lg border p-4 text-center"
                   >
-                    <span className="md:text-fg-secondaryxl block text-xl font-black text-emerald-400">
+                    <span className="md:text-2xl block text-xl font-black text-emerald-400">
                       {stat.value}
                     </span>
                     <span className="text-fg-muted mt-1 block text-[11px] leading-tight font-medium">
@@ -222,7 +222,7 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
             </section>
 
             <section className="border-border-subtle bg-bg-navy rounded-xl border p-6 md:p-8">
-              <h2 className="md:text-fg-secondaryxl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white">
+              <h2 className="md:text-2xl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white">
                 {t("founding_title")}
               </h2>
               <div className="text-fg-primary space-y-4 text-sm leading-relaxed">
@@ -233,26 +233,26 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
             </section>
 
             <section className="border-border-subtle bg-bg-navy rounded-xl border p-6 md:p-8">
-              <h2 className="md:text-fg-secondaryxl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white">
+              <h2 className="md:text-2xl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white">
                 {t("market_title")}
               </h2>
               <div className="grid grid-cols-1 gap-6 text-sm md:grid-cols-3">
                 <div className="border-border-subtle bg-bg-primary rounded-lg border p-5">
-                  <span className="text-fg-secondaryxl block font-black text-amber-500">
+                  <span className="text-2xl block font-black text-amber-500">
                     {t("tam_value")}
                   </span>
                   <span className="mt-1 block font-bold text-white">{t("tam_label")}</span>
                   <span className="text-fg-muted mt-2 block text-xs">{t("tam_desc")}</span>
                 </div>
                 <div className="border-border-subtle bg-bg-primary rounded-lg border p-5">
-                  <span className="text-fg-secondaryxl block font-black text-amber-500">
+                  <span className="text-2xl block font-black text-amber-500">
                     {t("sam_value")}
                   </span>
                   <span className="mt-1 block font-bold text-white">{t("sam_label")}</span>
                   <span className="text-fg-muted mt-2 block text-xs">{t("sam_desc")}</span>
                 </div>
                 <div className="border-border-subtle bg-bg-primary rounded-lg border p-5">
-                  <span className="text-fg-secondaryxl block font-black text-emerald-400">
+                  <span className="text-2xl block font-black text-emerald-400">
                     {t("som_value")}
                   </span>
                   <span className="mt-1 block font-bold text-white">{t("som_label")}</span>
@@ -262,7 +262,7 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
             </section>
 
             <section className="border-border-subtle bg-bg-navy rounded-xl border p-6 md:p-8">
-              <h2 className="md:text-fg-secondaryxl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white">
+              <h2 className="md:text-2xl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white">
                 {t("business_title")}
               </h2>
               <p className="text-fg-primary mb-6 text-sm leading-relaxed">{t("business_desc")}</p>
@@ -310,7 +310,7 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
             </section>
 
             <section className="border-border-subtle bg-bg-navy rounded-xl border p-6 md:p-8">
-              <h2 className="md:text-fg-secondaryxl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white">
+              <h2 className="md:text-2xl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white">
                 {t("competitive_title")}
               </h2>
               <div className="border-border-subtle overflow-x-auto rounded-lg border">

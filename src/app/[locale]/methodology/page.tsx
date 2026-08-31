@@ -131,7 +131,7 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
         {/* Deep Dive Sub-Modules */}
         <div className="space-y-6">
           <div className="border-border-subtle/50 border-b pb-4">
-            <h2 className="text-fg-primary text-fg-secondaryxl font-bold tracking-tight">
+            <h2 className="text-fg-primary text-2xl font-bold tracking-tight">
               Metodolojik Detaylar & Teknik Çerçeveler
             </h2>
             <p className="text-fg-muted mt-1 text-sm">

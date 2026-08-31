@@ -22,7 +22,7 @@ export default async function NewsletterPage({ params }: { params: Promise<{ loc
           <div className="bg-brand-500/10 border-brand-500/20 text-brand-400 mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl border">
             <Mail className="h-6 w-6" />
           </div>
-          <CardTitle className="text-fg-primary text-fg-secondaryxl font-black tracking-tight">
+          <CardTitle className="text-fg-primary text-2xl font-black tracking-tight">
             {t("title")}
           </CardTitle>
           <CardDescription className="text-fg-secondary mt-2 text-sm">

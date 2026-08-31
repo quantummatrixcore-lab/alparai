@@ -369,7 +369,7 @@ export function VelocityDashboard() {
             <p className="text-fg-muted mt-2 text-xs leading-relaxed">{t("scenario_a_desc")}</p>
             <div className="border-border-subtle/50 mt-6 border-t pt-4">
               <div className="text-fg-muted text-[11px] font-medium">{t("projected_arr")}</div>
-              <div className="text-fg-primary text-fg-secondaryxl font-extrabold tracking-tight">
+              <div className="text-fg-primary text-2xl font-extrabold tracking-tight">
                 ${projectionResult.scenarioA.projectedARR.toLocaleString()}
               </div>
             </div>
@@ -390,7 +390,7 @@ export function VelocityDashboard() {
             <p className="text-fg-muted mt-2 text-xs leading-relaxed">{t("scenario_b_desc")}</p>
             <div className="border-border-subtle/50 mt-6 border-t pt-4">
               <div className="text-fg-muted text-[11px] font-medium">{t("projected_arr")}</div>
-              <div className="text-success-400 text-fg-secondaryxl font-extrabold tracking-tight">
+              <div className="text-success-400 text-2xl font-extrabold tracking-tight">
                 ${projectionResult.scenarioB.projectedARR.toLocaleString()}
               </div>
             </div>
@@ -411,7 +411,7 @@ export function VelocityDashboard() {
             <p className="text-fg-muted mt-2 text-xs leading-relaxed">{t("scenario_c_desc")}</p>
             <div className="border-border-subtle/50 mt-6 border-t pt-4">
               <div className="text-fg-muted text-[11px] font-medium">{t("projected_arr")}</div>
-              <div className="text-brand-400 text-fg-secondaryxl font-extrabold tracking-tight">
+              <div className="text-brand-400 text-2xl font-extrabold tracking-tight">
                 ${projectionResult.scenarioC.projectedARR.toLocaleString()}
               </div>
             </div>
@@ -454,7 +454,7 @@ export function VelocityDashboard() {
         </div>
 
         {/* Provider Filter Tabs */}
-        <div className="mb-4 flex flex-wrap items-center gap-1.5 border-b border-white/5 pb-3">
+        <div className="mb-4 flex flex-wrap items-center gap-1.5 border-b border-border-subtle pb-3">
           <span className="text-fg-muted text-xs mr-1 flex items-center gap-1 font-medium">
             <Layers className="h-3.5 w-3.5" /> Sağlayıcı:
           </span>
@@ -549,7 +549,7 @@ export function VelocityDashboard() {
                 </th>
               </tr>
             </thead>
-            <tbody className="text-fg-primary divide-y divide-white/5 font-medium">
+            <tbody className="text-fg-primary divide-y divide-border-subtle font-medium">
               {filteredAndSortedMetrics.length === 0 ? (
                 <tr>
                   <td colSpan={5} className="py-8 text-center text-fg-muted text-xs">

@@ -17,10 +17,10 @@ export default async function InvestPage({ params }: { params: Promise<{ locale:
   const t = await getTranslations({ locale, namespace: "invest" });
 
   return (
-    <div className="selection:bg-bg-elevated min-h-screen bg-black text-white">
+    <div className="selection:bg-bg-elevated min-h-screen bg-bg-primary text-fg-primary">
       {/* Hero */}
       <section className="relative overflow-hidden px-4 pt-4 pb-12 md:pt-8 md:pb-16">
-        <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-b from-zinc-900/50 to-black" />
+        <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-b from-bg-secondary/50 to-bg-primary" />
         <div className="relative z-10 mx-auto max-w-5xl">
           <div className="border-border-subtle bg-bg-secondary/50 text-fg-secondary mb-8 inline-flex items-center rounded-full border px-3 py-1 text-sm">
             <span className="mr-2 flex h-2 w-2 animate-pulse rounded-full bg-emerald-500"></span>
@@ -37,7 +37,7 @@ export default async function InvestPage({ params }: { params: Promise<{ locale:
           <div className="flex flex-col gap-4 sm:flex-row">
             <a
               href="mailto:invest@alparai.com"
-              className="inline-flex items-center justify-center rounded-lg bg-white px-8 py-4 text-base font-medium text-black transition-colors hover:bg-zinc-200"
+              className="inline-flex items-center justify-center rounded-lg bg-fg-primary px-8 py-4 text-base font-medium text-bg-primary transition-colors hover:bg-fg-secondary"
             >
               {t("request_deck")}
             </a>
@@ -52,7 +52,7 @@ export default async function InvestPage({ params }: { params: Promise<{ locale:
       </section>
 
       {/* Metrics */}
-      <section className="border-t border-zinc-900 px-4 py-20">
+      <section className="border-t border-border-subtle px-4 py-16 md:py-24">
         <div className="mx-auto max-w-5xl">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             <div>
@@ -76,7 +76,7 @@ export default async function InvestPage({ params }: { params: Promise<{ locale:
       </section>
 
       {/* Why Now */}
-      <section className="bg-zinc-950 px-4 py-24">
+      <section className="bg-bg-primary px-4 py-16 md:py-24">
         <div className="mx-auto max-w-5xl">
           <h2 className="mb-16 text-3xl font-bold md:text-5xl">{t("why_now_title")}</h2>
           <div className="grid gap-8 md:grid-cols-3">
@@ -100,13 +100,13 @@ export default async function InvestPage({ params }: { params: Promise<{ locale:
       </section>
 
       {/* Contact */}
-      <section className="border-t border-zinc-900 px-4 py-32 text-center">
+      <section className="border-t border-border-subtle px-4 py-16 md:py-24 text-center">
         <div className="mx-auto max-w-3xl">
           <h2 className="mb-8 text-3xl font-bold md:text-5xl">{t("join_round_title")}</h2>
           <p className="text-fg-muted mb-10 text-xl">{t("join_round_desc")}</p>
           <a
             href="mailto:invest@alparai.com"
-            className="inline-flex items-center justify-center rounded-full bg-white px-10 py-5 text-lg font-medium text-black transition-colors hover:bg-zinc-200"
+            className="inline-flex items-center justify-center rounded-full bg-fg-primary px-10 py-5 text-lg font-medium text-bg-primary transition-colors hover:bg-fg-secondary"
           >
             {t("contact_founder")}
             <ArrowRight className="ml-2 h-5 w-5" />

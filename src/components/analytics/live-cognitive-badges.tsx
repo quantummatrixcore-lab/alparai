@@ -78,12 +78,12 @@ export function LiveCognitiveBadges() {
   const tcsflCfg = getStatusConfig(pipeline.tcsfl);
 
   return (
-    <div className="border-border-subtle/50 flex flex-col items-center space-y-4 rounded-2xl border bg-zinc-950/60 p-4 shadow-xl backdrop-blur-md">
+    <div className="border-border-subtle/50 flex flex-col items-center space-y-4 rounded-2xl border bg-bg-secondary/60 p-4 shadow-xl backdrop-blur-md">
       <div className="text-fg-muted flex items-center space-x-2 text-xs font-bold tracking-wider uppercase">
         <BrainCircuit className="h-4 w-4" /> Cognitive Routing Pipeline
         <button
           onClick={simulatePipeline}
-          className="bg-bg-elevated text-fg-secondary ml-4 inline-flex items-center gap-1 rounded px-2 py-1 text-[10px] hover:bg-zinc-700"
+          className="bg-bg-elevated text-fg-secondary ml-4 inline-flex items-center gap-1 rounded px-2 py-1 text-[10px] hover:bg-bg-tertiary"
         >
           <Play className="h-3 w-3" /> Simüle Et
         </button>
@@ -106,7 +106,7 @@ export function LiveCognitiveBadges() {
         </div>
 
         <div
-          className={`h-0.5 w-4 sm:w-8 ${pipeline.hephaestus !== "IDLE" ? "bg-purple-500/50" : "bg-white/5"} transition-colors duration-500`}
+          className={`h-0.5 w-4 sm:w-8 ${pipeline.hephaestus !== "IDLE" ? "bg-purple-500/50" : "bg-border-subtle"} transition-colors duration-500`}
         />
 
         {/* HEPHAESTUS Badge */}
@@ -125,7 +125,7 @@ export function LiveCognitiveBadges() {
         </div>
 
         <div
-          className={`h-0.5 w-4 sm:w-8 ${pipeline.tcsfl !== "IDLE" ? "bg-purple-500/50" : "bg-white/5"} transition-colors duration-500`}
+          className={`h-0.5 w-4 sm:w-8 ${pipeline.tcsfl !== "IDLE" ? "bg-purple-500/50" : "bg-border-subtle"} transition-colors duration-500`}
         />
 
         {/* TCSFL Badge */}

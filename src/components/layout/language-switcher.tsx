@@ -67,15 +67,15 @@ export function LanguageSwitcher({
         onClick={handleToggle}
         title={locale === "tr" ? "Switch to English" : "Türkçe'ye Geç"}
         className={cn(
-          "group inline-flex h-8 items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-2.5 text-xs font-semibold text-zinc-300 transition-all duration-200",
+          "group inline-flex h-8 items-center gap-1.5 rounded-full border border-border-subtle bg-white/[0.04] px-2.5 text-xs font-semibold text-fg-secondary transition-all duration-200",
           "hover:border-brand-500/40 hover:bg-brand-500/10 hover:text-white",
           "focus-visible:ring-2 focus-visible:ring-brand-500/50 focus-visible:outline-none cursor-pointer"
         )}
         aria-label="Switch language"
         aria-current="true"
       >
-        <Globe className="h-3.5 w-3.5 text-zinc-400 group-hover:text-brand-300 transition-colors" aria-hidden="true" />
-        <span className="font-mono text-[11px] font-bold tracking-wider text-zinc-200 uppercase group-hover:text-white">
+        <Globe className="h-3.5 w-3.5 text-fg-muted group-hover:text-brand-300 transition-colors" aria-hidden="true" />
+        <span className="font-mono text-[11px] font-bold tracking-wider text-fg-primary uppercase group-hover:text-white">
           {locale.toUpperCase()}
         </span>
       </button>

@@ -126,7 +126,7 @@ export default async function AdvisoryBoardPage({
                     <Sparkles className="h-3 w-3" />
                     {isTr ? "Kurul Oluşturulma Aşamasında" : "Board in Formation"}
                   </div>
-                  <h2 className="text-fg-primary text-fg-secondaryxl font-bold tracking-tight">
+                  <h2 className="text-fg-primary text-2xl font-bold tracking-tight">
                     {isTr ? "Açık Çağrı & Katılım Daveti" : "Open Call & Invitation"}
                   </h2>
                   <p className="text-fg-secondary leading-relaxed">{t("advisoryBoardEmpty")}</p>

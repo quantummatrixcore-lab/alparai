@@ -50,7 +50,7 @@ export function InvestorForm() {
           <div className="bg-success-500/10 mx-auto flex h-16 w-16 items-center justify-center rounded-full">
             <CheckCircle2 className="text-success-400 h-10 w-10" />
           </div>
-          <h3 className="text-fg-primary text-fg-secondaryxl mt-6 font-bold">
+          <h3 className="text-fg-primary text-2xl mt-6 font-bold">
             {t("success_title")}
           </h3>
           <p className="text-fg-muted mx-auto mt-4 max-w-md text-sm">

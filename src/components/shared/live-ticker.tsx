@@ -142,7 +142,7 @@ export function LiveTicker() {
     if (p.includes("deepseek")) return "bg-cyan-500/15 text-cyan-300 border-cyan-500/30";
     if (p.includes("xai") || p.includes("grok"))
       return "bg-rose-500/15 text-rose-300 border-rose-500/30";
-    return "bg-zinc-500/15 text-zinc-300 border-zinc-500/30";
+    return "bg-zinc-500/15 text-fg-secondary border-zinc-500/30";
   };
 
   const renderItems = (prefix: string) => (
@@ -154,7 +154,7 @@ export function LiveTicker() {
           <Link
             key={`${prefix}-${inc.id}`}
             href={`/incidents`}
-            className="group flex shrink-0 items-center gap-2.5 rounded-lg border border-white/[0.08] bg-zinc-900/90 px-3 py-1 text-xs shadow-sm transition-all hover:border-cyan-500/40 hover:bg-zinc-800/90"
+            className="group flex shrink-0 items-center gap-2.5 rounded-lg border border-border-subtle bg-bg-secondary/90 px-3 py-1 text-xs shadow-sm transition-all hover:border-cyan-500/40 hover:bg-bg-tertiary/90"
           >
             <span
               className={`rounded border px-1.5 py-0.5 font-mono text-[10px] font-bold tracking-wide uppercase ${getProviderBadgeStyle(
@@ -163,10 +163,10 @@ export function LiveTicker() {
             >
               {providerName}
             </span>
-            <span className="max-w-md font-medium text-zinc-200 transition-colors group-hover:text-cyan-300">
+            <span className="max-w-md font-medium text-fg-primary transition-colors group-hover:text-cyan-300">
               {label}
             </span>
-            <span className="font-mono text-[10px] font-semibold text-zinc-400">
+            <span className="font-mono text-[10px] font-semibold text-fg-muted">
               #{inc.id.substring(0, 8)}
             </span>
             <span className="inline-flex items-center gap-1 rounded border border-emerald-500/30 bg-emerald-500/10 px-1.5 py-0.5 text-[9px] font-semibold text-emerald-400">
@@ -188,21 +188,21 @@ export function LiveTicker() {
   );
 
   return (
-    <div className="relative flex h-8 w-full max-w-full items-center overflow-hidden border-y border-white/[0.08] bg-zinc-950/95 backdrop-blur-md select-none">
+    <div className="relative flex h-8 w-full max-w-full items-center overflow-hidden border-y border-border-subtle bg-bg-primary/95 backdrop-blur-md select-none">
       {/* Fixed Left Corporate Brand Anchor */}
-      <div className="z-20 flex h-full shrink-0 items-center gap-2 border-r border-white/10 bg-zinc-950 px-3.5 shadow-lg">
+      <div className="z-20 flex h-full shrink-0 items-center gap-2 border-r border-border-subtle bg-bg-primary px-3.5 shadow-lg">
         <span className="relative flex h-2 w-2">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
           <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
         </span>
-        <span className="font-mono text-[10px] font-bold tracking-wider text-zinc-200 uppercase">
+        <span className="font-mono text-[10px] font-bold tracking-wider text-fg-primary uppercase">
           {locale === "tr" ? "CANLI RADAR" : "LIVE RADAR"}
         </span>
       </div>
 
       {/* Gradient Fade Masks */}
-      <div className="pointer-events-none absolute top-0 bottom-0 left-[125px] z-10 w-12 bg-gradient-to-r from-zinc-950 to-transparent" />
-      <div className="pointer-events-none absolute top-0 right-0 bottom-0 z-10 w-16 bg-gradient-to-l from-zinc-950 to-transparent" />
+      <div className="pointer-events-none absolute top-0 bottom-0 left-[125px] z-10 w-12 bg-gradient-to-r from-bg-primary to-transparent" />
+      <div className="pointer-events-none absolute top-0 right-0 bottom-0 z-10 w-16 bg-gradient-to-l from-bg-primary to-transparent" />
 
       {/* Marquee Track */}
       <div className="animate-marquee-track flex w-max shrink-0 items-center hover:[animation-play-state:paused]">

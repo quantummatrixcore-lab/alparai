@@ -146,7 +146,7 @@ export function PollCard({ poll }: { poll: Poll }) {
           <div className="bg-brand-500/10 text-brand-400 border-brand-500/20 mb-4 inline-block rounded-full border px-3 py-1 text-xs font-bold tracking-widest uppercase">
             {t("criticalQuestion")}
           </div>
-          <h3 className="text-fg-primary text-fg-secondaryxl mb-4 font-extrabold">
+          <h3 className="text-fg-primary text-2xl mb-4 font-extrabold">
             {localizedTitle}
           </h3>
           <p className="text-fg-secondary mb-8 text-sm leading-relaxed">{localizedDescription}</p>

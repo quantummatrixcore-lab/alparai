@@ -168,7 +168,7 @@ export default async function BrandPage({
             </div>
             <div className="flex-1 space-y-2">
               <div className="flex flex-wrap items-center gap-2">
-                <h1 className="text-fg-primary text-fg-secondaryxl font-bold">{providerName}</h1>
+                <h1 className="text-fg-primary text-2xl font-bold">{providerName}</h1>
                 {isVerified && (
                   <Badge variant="success" dot>
                     {t("verified")}
@@ -283,7 +283,7 @@ export default async function BrandPage({
               <Shield className="text-brand-400 h-5 w-5" />
             </div>
             <div>
-              <p className="text-fg-primary text-fg-secondaryxl font-bold">{trustScore}</p>
+              <p className="text-fg-primary text-2xl font-bold">{trustScore}</p>
               <p className="text-fg-muted text-xs">{t("trustScore")}</p>
             </div>
           </CardContent>
@@ -294,7 +294,7 @@ export default async function BrandPage({
               <AlertTriangle className="text-warning-500 h-5 w-5" />
             </div>
             <div>
-              <p className="text-fg-primary text-fg-secondaryxl font-bold">{totalIncidents}</p>
+              <p className="text-fg-primary text-2xl font-bold">{totalIncidents}</p>
               <p className="text-fg-muted text-xs">{t("totalIncidents")}</p>
             </div>
           </CardContent>
@@ -305,7 +305,7 @@ export default async function BrandPage({
               <CheckCircle2 className="text-success-500 h-5 w-5" />
             </div>
             <div>
-              <p className="text-fg-primary text-fg-secondaryxl font-bold">{responseRate}%</p>
+              <p className="text-fg-primary text-2xl font-bold">{responseRate}%</p>
               <p className="text-fg-muted text-xs">{t("responseRate")}</p>
             </div>
           </CardContent>
@@ -316,7 +316,7 @@ export default async function BrandPage({
               <Eye className="text-accent-400 h-5 w-5" />
             </div>
             <div>
-              <p className="text-fg-primary text-fg-secondaryxl font-bold">{avgViews}</p>
+              <p className="text-fg-primary text-2xl font-bold">{avgViews}</p>
               <p className="text-fg-muted text-xs">{t("avgViews")}</p>
             </div>
           </CardContent>

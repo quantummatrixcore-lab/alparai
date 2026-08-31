@@ -38,7 +38,7 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
 
         {/* Categories Details */}
         <section className="space-y-6">
-          <h2 className="border-border-subtle text-fg-secondaryxl flex items-center space-x-2 border-b pb-3 font-bold text-white">
+          <h2 className="border-border-subtle text-2xl flex items-center space-x-2 border-b pb-3 font-bold text-white">
             <Shield className="text-emerald-accent h-6 w-6" />
             <span>{t("categoriesTitle")}</span>
           </h2>
@@ -88,7 +88,7 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
 
         {/* Adjudication Engine */}
         <section className="space-y-4">
-          <h2 className="border-border-subtle text-fg-secondaryxl flex items-center space-x-2 border-b pb-3 font-bold text-white">
+          <h2 className="border-border-subtle text-2xl flex items-center space-x-2 border-b pb-3 font-bold text-white">
             <GitCompare className="text-emerald-accent h-6 w-6" />
             <span>{t("adjudication_heading")}</span>
           </h2>
@@ -97,7 +97,7 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
 
         {/* Adjudication Chain Models */}
         <section className="space-y-4">
-          <h2 className="border-border-subtle text-fg-secondaryxl flex items-center space-x-2 border-b pb-3 font-bold text-white">
+          <h2 className="border-border-subtle text-2xl flex items-center space-x-2 border-b pb-3 font-bold text-white">
             <GitCompare className="text-emerald-accent h-6 w-6" />
             <span>{t("adjudication_title")}</span>
           </h2>
@@ -128,7 +128,7 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
 
         {/* Statistical Rigor */}
         <section className="space-y-4">
-          <h2 className="border-border-subtle text-fg-secondaryxl flex items-center space-x-2 border-b pb-3 font-bold text-white">
+          <h2 className="border-border-subtle text-2xl flex items-center space-x-2 border-b pb-3 font-bold text-white">
             <Scale className="text-emerald-accent h-6 w-6" />
             <span>{t("statistical_rigor_title")}</span>
           </h2>

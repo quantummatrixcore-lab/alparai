@@ -68,7 +68,7 @@ export default async function ArsApiPage({ params }: { params: Promise<{ locale:
 
         <div className="mt-16 text-center">
           <div className="bg-glass border-border-subtle/50 inline-block rounded-2xl border p-8 shadow-2xl">
-            <h2 className="text-fg-primary text-fg-secondaryxl mb-4 font-bold">
+            <h2 className="text-fg-primary text-2xl mb-4 font-bold">
               {t("early_access_title")}
             </h2>
             <p className="text-fg-secondary mb-6 max-w-md">{t("early_access_desc")}</p>

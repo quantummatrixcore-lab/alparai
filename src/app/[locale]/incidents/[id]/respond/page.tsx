@@ -116,7 +116,7 @@ function renderInvalidToken(t: (key: string) => string) {
       <Card variant="elevated" className="border-danger-500/20 bg-danger-500/5">
         <CardContent className="py-12">
           <AlertCircle className="text-danger-400 mx-auto h-16 w-16" />
-          <h1 className="text-fg-primary text-fg-secondaryxl mt-4 font-bold">
+          <h1 className="text-fg-primary text-2xl mt-4 font-bold">
             {t("invalid_token")}
           </h1>
           <p className="text-fg-muted mt-2 text-sm">{t("invalid_token_desc")}</p>

@@ -127,7 +127,7 @@ export default async function ModelDetailPage({ params }: ModelDetailPageProps) 
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-bg-primary py-16 md:py-24 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl space-y-10">
         {/* Breadcrumb / Back Link */}
         <div className="flex items-center gap-2">
@@ -174,9 +174,9 @@ export default async function ModelDetailPage({ params }: ModelDetailPageProps) 
                 {model.name}
               </h1>
 
-              <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400">
+              <div className="flex flex-wrap items-center gap-4 text-xs text-fg-muted">
                 {model.version && (
-                  <span className="bg-slate-800/80 border-slate-700/60 rounded-lg border px-3 py-1 font-mono text-slate-200">
+                  <span className="bg-bg-tertiary border-border-subtle rounded-lg border px-3 py-1 font-mono text-fg-secondary">
                     v{model.version}
                   </span>
                 )}
@@ -198,7 +198,7 @@ export default async function ModelDetailPage({ params }: ModelDetailPageProps) 
 
             {/* Quick Metrics Cards */}
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-              <div className="border-border-subtle bg-slate-900/80 rounded-2xl border p-4 text-center">
+              <div className="border-border-subtle bg-bg-secondary rounded-2xl border p-4 text-center">
                 <div className="text-fg-muted text-xs font-semibold uppercase">{t("table_rating")}</div>
                 <div className="text-2xl font-black text-amber-400">
                   {scoreOverallAvg > 0 ? scoreOverallAvg.toFixed(1) : "—"}
@@ -206,13 +206,13 @@ export default async function ModelDetailPage({ params }: ModelDetailPageProps) 
                 <div className="text-fg-muted text-[11px]">{reviews.length} {t("reviews_count", { count: reviews.length })}</div>
               </div>
 
-              <div className="border-border-subtle bg-slate-900/80 rounded-2xl border p-4 text-center">
+              <div className="border-border-subtle bg-bg-secondary rounded-2xl border p-4 text-center">
                 <div className="text-fg-muted text-xs font-semibold uppercase">{t("table_suggestions")}</div>
                 <div className="text-brand-400 text-2xl font-black">{features.length}</div>
                 <div className="text-fg-muted text-[11px]">{t("feature_requests_count", { count: features.length })}</div>
               </div>
 
-              <div className="border-border-subtle bg-slate-900/80 col-span-2 rounded-2xl border p-4 text-center sm:col-span-1">
+              <div className="border-border-subtle bg-bg-secondary col-span-2 rounded-2xl border p-4 text-center sm:col-span-1">
                 <div className="text-fg-muted text-xs font-semibold uppercase">Incidents</div>
                 <div className={`text-2xl font-black ${incidents.length > 0 ? "text-rose-400" : "text-emerald-400"}`}>
                   {incidents.length}
@@ -251,10 +251,10 @@ export default async function ModelDetailPage({ params }: ModelDetailPageProps) 
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {categoryScores.map((c: any) => (
-                <div key={c.category_id} className="border-border-subtle bg-slate-900/60 rounded-2xl border p-4 space-y-2">
-                  <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">{c.category_id}</div>
-                  <div className="text-2xl font-black text-white">{Number(c.score).toFixed(0)}<span className="text-xs text-slate-400 font-normal">/100</span></div>
-                  <div className="text-[11px] text-slate-500 font-mono">Wilson: [{c.wilson_lower}-{c.wilson_upper}]</div>
+                <div key={c.category_id} className="border-border-subtle bg-bg-secondary/60 rounded-2xl border p-4 space-y-2">
+                  <div className="text-xs font-bold text-fg-muted uppercase tracking-wider">{c.category_id}</div>
+                  <div className="text-2xl font-black text-white">{Number(c.score).toFixed(0)}<span className="text-xs text-fg-muted font-normal">/100</span></div>
+                  <div className="text-[11px] text-fg-muted font-mono">Wilson: [{c.wilson_lower}-{c.wilson_upper}]</div>
                 </div>
               ))}
             </div>
@@ -265,7 +265,7 @@ export default async function ModelDetailPage({ params }: ModelDetailPageProps) 
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
           {/* Left Column: Community Reviews List */}
           <div className="space-y-6 lg:col-span-2">
-            <div className="flex items-center justify-between border-b border-white/10 pb-4">
+            <div className="flex items-center justify-between border-b border-border-subtle pb-4">
               <h2 className="text-2xl font-bold text-white flex items-center gap-2">
                 <MessageSquare className="h-6 w-6 text-brand-400" />
                 {t("reviews_heading")} ({reviews.length})
@@ -273,10 +273,10 @@ export default async function ModelDetailPage({ params }: ModelDetailPageProps) 
             </div>
 
             {reviews.length === 0 ? (
-              <div className="border-border-subtle bg-bg-secondary/40 rounded-2xl border p-12 text-center text-slate-400">
+              <div className="border-border-subtle bg-bg-secondary/40 rounded-2xl border p-12 text-center text-fg-muted">
                 <Star className="mx-auto mb-3 h-10 w-10 text-slate-600" />
-                <p className="text-base font-semibold text-slate-200">{t("no_reviews_title")}</p>
-                <p className="text-sm text-slate-400">{t("no_reviews_subtitle")}</p>
+                <p className="text-base font-semibold text-fg-secondary">{t("no_reviews_title")}</p>
+                <p className="text-sm text-fg-muted">{t("no_reviews_subtitle")}</p>
               </div>
             ) : (
               <div className="space-y-4">
@@ -296,10 +296,10 @@ export default async function ModelDetailPage({ params }: ModelDetailPageProps) 
         </div>
 
         {/* Feature Requests & Roadmap Suggestions Grid */}
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 pt-10 border-t border-white/10">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 pt-10 border-t border-border-subtle">
           {/* Left Column: Feature Requests List */}
           <div className="space-y-6 lg:col-span-2">
-            <div className="flex items-center justify-between border-b border-white/10 pb-4">
+            <div className="flex items-center justify-between border-b border-border-subtle pb-4">
               <h2 className="text-2xl font-bold text-white flex items-center gap-2">
                 <Lightbulb className="h-6 w-6 text-amber-400" />
                 {t("feature_requests_heading")} ({features.length})
@@ -307,10 +307,10 @@ export default async function ModelDetailPage({ params }: ModelDetailPageProps) 
             </div>
 
             {features.length === 0 ? (
-              <div className="border-border-subtle bg-bg-secondary/40 rounded-2xl border p-12 text-center text-slate-400">
+              <div className="border-border-subtle bg-bg-secondary/40 rounded-2xl border p-12 text-center text-fg-muted">
                 <Lightbulb className="mx-auto mb-3 h-10 w-10 text-slate-600" />
-                <p className="text-base font-semibold text-slate-200">{t("no_features_title")}</p>
-                <p className="text-sm text-slate-400">{t("no_features_subtitle")}</p>
+                <p className="text-base font-semibold text-fg-secondary">{t("no_features_title")}</p>
+                <p className="text-sm text-fg-muted">{t("no_features_subtitle")}</p>
               </div>
             ) : (
               <div className="space-y-4">
@@ -336,14 +336,14 @@ export default async function ModelDetailPage({ params }: ModelDetailPageProps) 
               <AlertTriangle className="h-5 w-5" />
               Related AI Incident Reports ({incidents.length})
             </h2>
-            <div className="divide-y divide-white/5">
+            <div className="divide-y divide-border-subtle">
               {incidents.map((inc: any) => (
                 <div key={inc.id} className="py-4 flex items-center justify-between gap-4">
                   <div className="space-y-1">
-                    <Link href={`/incidents/${inc.id}`} className="text-base font-semibold text-slate-200 hover:text-brand-400 transition-colors">
+                    <Link href={`/incidents/${inc.id}`} className="text-base font-semibold text-fg-secondary hover:text-brand-400 transition-colors">
                       {inc.title}
                     </Link>
-                    <div className="flex items-center gap-2 text-xs text-slate-400">
+                    <div className="flex items-center gap-2 text-xs text-fg-muted">
                       <Badge variant={inc.severity === "critical" ? "danger" : "warning"}>{inc.severity}</Badge>
                       <span>{inc.category}</span>
                     </div>

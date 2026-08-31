@@ -29,7 +29,7 @@ export function JuryDutySwipe() {
   };
 
   return (
-    <div className="relative flex h-[500px] w-full max-w-sm flex-col items-center justify-center overflow-hidden rounded-3xl border border-white/10 bg-[#0c0e12] p-4 shadow-2xl">
+    <div className="relative flex h-[500px] w-full max-w-sm flex-col items-center justify-center overflow-hidden rounded-3xl border border-border-subtle bg-bg-primary p-4 shadow-2xl">
       <div className="text-fg-muted absolute top-4 flex w-full items-center justify-between px-6 text-sm font-semibold">
         <span className="flex items-center gap-1 text-emerald-400">
           <XCircle className="h-4 w-4" /> Innocent
@@ -55,7 +55,7 @@ export function JuryDutySwipe() {
                 if (swipe > 100) handleSwipe(card.id, "right");
                 else if (swipe < -100) handleSwipe(card.id, "left");
               }}
-              className={`absolute flex h-[350px] w-[300px] cursor-grab flex-col justify-between rounded-2xl border border-white/5 bg-[#111318] p-6 shadow-xl active:cursor-grabbing ${index === 0 ? "z-10" : "z-0"}`}
+              className={`absolute flex h-[350px] w-[300px] cursor-grab flex-col justify-between rounded-2xl border border-border-subtle bg-bg-secondary p-6 shadow-xl active:cursor-grabbing ${index === 0 ? "z-10" : "z-0"}`}
               style={{ zIndex: cards.length - index }}
             >
               <div>

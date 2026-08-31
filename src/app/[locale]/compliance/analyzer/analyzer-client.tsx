@@ -26,7 +26,7 @@ export function AnalyzerClient() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center bg-zinc-950 p-8 text-white">
+    <div className="flex min-h-screen flex-col items-center bg-bg-primary py-16 md:py-24 px-4 sm:px-6 lg:px-8 text-fg-primary">
       <div className="w-full max-w-4xl space-y-8">
         <div>
           <h1 className="text-fg-primary text-3xl font-bold tracking-tight">{t("title")}</h1>
@@ -35,7 +35,7 @@ export function AnalyzerClient() {
 
         <div className="border-border-subtle bg-bg-secondary/50 rounded-xl border p-6 shadow-xl backdrop-blur-md">
           <textarea
-            className="border-border-subtle text-fg-secondary h-64 w-full resize-none rounded-lg border bg-zinc-950 p-4 transition-all focus:ring-2 focus:ring-blue-500/50 focus:outline-none"
+            className="border-border-subtle text-fg-secondary h-64 w-full resize-none rounded-lg border bg-bg-primary p-4 transition-all focus:ring-2 focus:ring-blue-500/50 focus:outline-none"
             placeholder={t("placeholder")}
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -53,7 +53,7 @@ export function AnalyzerClient() {
 
         {result && (
           <div className="border-border-subtle bg-bg-secondary/50 space-y-6 rounded-xl border p-6 shadow-xl backdrop-blur-md">
-            <h2 className="text-fg-secondaryxl text-fg-primary font-semibold">
+            <h2 className="text-2xl text-fg-primary font-semibold">
               {t("result_title")}
             </h2>
 

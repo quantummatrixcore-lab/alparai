@@ -38,13 +38,13 @@ export function FounderStory() {
             <CardContent className="relative z-10 p-8 sm:p-12">
               <div className="text-fg-secondary space-y-6 text-lg leading-relaxed">
                 <p>
-                  <strong className="text-danger-400 text-fg-secondaryxl mb-3 block font-black tracking-tight">
+                  <strong className="text-danger-400 text-2xl mb-3 block font-black tracking-tight">
                     {t("highlight")}
                   </strong>
                   {t("p1")}
                 </p>
                 <p>{t("p2")}</p>
-                <div className="border-danger-500 bg-danger-500/5 text-fg-primary text-fg-secondaryxl my-8 rounded-r-lg border-l-4 px-6 py-4 font-black italic">
+                <div className="border-danger-500 bg-danger-500/5 text-fg-primary text-2xl my-8 rounded-r-lg border-l-4 px-6 py-4 font-black italic">
                   &ldquo;{t("quote")}&rdquo;
                 </div>
                 <p>{t("p3")}</p>

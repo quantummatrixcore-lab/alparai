@@ -25,7 +25,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   setRequestLocale(locale);
 
   return (
-    <main className="min-h-screen bg-bg-primary pt-24 pb-20">
+    <main className="min-h-screen bg-bg-primary py-16 md:py-24">
       <Section className="relative">
         <Container>
           <div className="mx-auto max-w-4xl text-center">
@@ -74,7 +74,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               </ul>
             </div>
 
-            <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#0c0e12] p-8 shadow-2xl">
+            <div className="relative overflow-hidden rounded-2xl border border-border-subtle bg-bg-secondary p-8 shadow-2xl">
               <div className="bg-brand-600/20 absolute -top-20 -right-20 h-64 w-64 rounded-full blur-[80px]"></div>
               <div className="relative z-10 space-y-8">
                 <div>
@@ -85,7 +85,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                     hardens, and innovates the platform 24/7.
                   </p>
                 </div>
-                <div className="border-t border-white/10 pt-8">
+                <div className="border-t border-border-subtle pt-8">
                   <h3 className="mb-2 text-xl font-bold text-white">Built for the Future</h3>
                   <p className="text-fg-muted text-sm">
                     We don't just adapt to regulations; we anticipate them. Our architecture is

@@ -37,7 +37,7 @@ const variantClasses: Record<ButtonVariant, string> = {
   success:
     "bg-success-500 text-white hover:bg-success-600 active:bg-success-700 hover:shadow-glow-success active:scale-[0.97] shadow-md shadow-success-500/20 disabled:opacity-50 disabled:active:scale-100",
   glass:
-    "bg-white/5 text-white border border-white/10 hover:border-white/20 hover:bg-white/10 active:bg-white/15 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] hover:shadow-[0_0_25px_rgba(255,255,255,0.1)] active:scale-[0.97] disabled:opacity-50 disabled:active:scale-100",
+    "bg-white/5 text-white border border-border-subtle hover:border-border-strong hover:bg-white/10 active:bg-white/15 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] hover:shadow-[0_0_25px_rgba(255,255,255,0.1)] active:scale-[0.97] disabled:opacity-50 disabled:active:scale-100",
   accent:
     "bg-accent-500 text-neutral-950 font-bold hover:bg-accent-400 active:bg-accent-600 hover:shadow-glow-accent active:scale-[0.97] shadow-md shadow-accent-500/20 disabled:opacity-50 disabled:active:scale-100",
 };

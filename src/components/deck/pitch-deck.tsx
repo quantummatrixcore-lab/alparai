@@ -588,7 +588,7 @@ function Slide2() {
   return (
     <div className="space-y-8">
       <div className="max-w-3xl space-y-2">
-        <h2 className="text-fg-secondaryxl font-extrabold text-white sm:text-4xl">
+        <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
           Autonomous AI Deployment Outpaces Trust & Compliance Capabilities
         </h2>
         <p className="text-fg-secondary text-sm sm:text-base">
@@ -668,7 +668,7 @@ function Slide3() {
   return (
     <div className="space-y-8">
       <div className="max-w-3xl space-y-2">
-        <h2 className="text-fg-secondaryxl font-extrabold text-white sm:text-4xl">
+        <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
           Real-Time Accountability Infrastructure for the AI Era
         </h2>
         <p className="text-fg-secondary text-sm sm:text-base">
@@ -748,7 +748,7 @@ function Slide4() {
   return (
     <div className="space-y-8">
       <div className="max-w-3xl space-y-2">
-        <h2 className="text-fg-secondaryxl font-extrabold text-white sm:text-4xl">
+        <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
           The Regulatory Enforcement Window is Open (EU AI Act & Global Mandates)
         </h2>
         <p className="text-fg-secondary text-sm sm:text-base">
@@ -786,7 +786,7 @@ function Slide4() {
           <span className="text-warning-400 text-xs font-bold tracking-wider uppercase">
             Maximum Statutory Penalty
           </span>
-          <p className="text-fg-secondaryxl font-black text-white sm:text-3xl">
+          <p className="text-2xl font-black text-white sm:text-3xl">
             Up to €35,000,000 or 7% of Global Turnover
           </p>
           <p className="text-fg-muted text-xs">
@@ -809,7 +809,7 @@ function Slide5() {
   return (
     <div className="space-y-8">
       <div className="max-w-3xl space-y-2">
-        <h2 className="text-fg-secondaryxl font-extrabold text-white sm:text-4xl">
+        <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
           A $45B+ Infrastructure Opportunity at the Intersection of Security & AI
         </h2>
         <p className="text-fg-secondary text-sm sm:text-base">
@@ -864,7 +864,7 @@ function Slide6() {
   return (
     <div className="space-y-8">
       <div className="max-w-3xl space-y-2">
-        <h2 className="text-fg-secondaryxl font-extrabold text-white sm:text-4xl">
+        <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
           Enterprise-Grade Architecture Built for Speed and Security
         </h2>
         <p className="text-fg-secondary text-sm sm:text-base">
@@ -927,7 +927,7 @@ function Slide7() {
   return (
     <div className="space-y-8">
       <div className="max-w-3xl space-y-2">
-        <h2 className="text-fg-secondaryxl font-extrabold text-white sm:text-4xl">
+        <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
           High-Margin Usage-Based SaaS + Enterprise Certification
         </h2>
         <p className="text-fg-secondary text-sm sm:text-base">
@@ -942,7 +942,7 @@ function Slide7() {
             <span className="text-fg-muted text-xs font-bold tracking-wider uppercase">
               1. Developer Tier (PLG)
             </span>
-            <p className="text-fg-secondaryxl font-black text-white">Free</p>
+            <p className="text-2xl font-black text-white">Free</p>
             <p className="text-fg-secondary text-xs leading-relaxed">
               Free tier with monthly verification tokens for API key usage and open-source CLI
               integration.
@@ -961,7 +961,7 @@ function Slide7() {
             <span className="text-brand-300 text-xs font-bold tracking-wider uppercase">
               2. Pro & Growth Tier
             </span>
-            <p className="text-brand-300 text-fg-secondaryxl font-black">Pricing under revision</p>
+            <p className="text-brand-300 text-2xl font-black">Pricing under revision</p>
             <p className="text-fg-primary text-xs leading-relaxed">
               Advanced rate limits, automated incident reporting, custom PII rules, and dedicated
               cross-audit logs.
@@ -977,7 +977,7 @@ function Slide7() {
             <span className="text-brand-300 text-xs font-bold tracking-wider uppercase">
               3. Enterprise Tier
             </span>
-            <p className="text-brand-300 text-fg-secondaryxl font-black">Pricing under revision</p>
+            <p className="text-brand-300 text-2xl font-black">Pricing under revision</p>
             <p className="text-fg-primary text-xs leading-relaxed">
               Dedicated Supabase instances, custom compliance connectors (SOC2, EU AI Act), 99.99%
               SLA, and formal audit sign-off.
@@ -1003,7 +1003,7 @@ function Slide8() {
   return (
     <div className="space-y-8">
       <div className="max-w-3xl space-y-2">
-        <h2 className="text-fg-secondaryxl font-extrabold text-white sm:text-4xl">
+        <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
           Developer-Led Adoption + Enterprise Top-Down Sales
         </h2>
         <p className="text-fg-secondary text-sm sm:text-base">
@@ -1077,7 +1077,7 @@ function Slide9() {
   return (
     <div className="space-y-8">
       <div className="max-w-3xl space-y-2">
-        <h2 className="text-fg-secondaryxl font-extrabold text-white sm:text-4xl">
+        <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
           Unrivaled Cryptographic Proof & Open Infrastructure
         </h2>
         <p className="text-fg-secondary text-sm sm:text-base">
@@ -1145,7 +1145,7 @@ function Slide10() {
   return (
     <div className="space-y-8">
       <div className="max-w-3xl space-y-2">
-        <h2 className="text-fg-secondaryxl font-extrabold text-white sm:text-4xl">
+        <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
           Founded by Systems Architects & Security Engineers
         </h2>
         <p className="text-fg-secondary text-sm sm:text-base">
@@ -1201,7 +1201,7 @@ function Slide11() {
   return (
     <div className="space-y-8">
       <div className="max-w-3xl space-y-2">
-        <h2 className="text-fg-secondaryxl font-extrabold text-white sm:text-4xl">
+        <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
           Path to $10M ARR in 36 Months with 85%+ Gross Margins
         </h2>
         <p className="text-fg-secondary text-sm sm:text-base">
@@ -1261,7 +1261,7 @@ function Slide12() {
   return (
     <div className="space-y-8">
       <div className="max-w-3xl space-y-2">
-        <h2 className="text-fg-secondaryxl font-extrabold text-white sm:text-4xl">
+        <h2 className="text-2xl font-extrabold text-white sm:text-4xl">
           Raising $2.5M Seed Capital to Scale the AI Trust Layer
         </h2>
         <p className="text-fg-secondary text-sm sm:text-base">
@@ -1272,7 +1272,7 @@ function Slide12() {
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         <div className="border-brand-500/30 bg-brand-950/20 space-y-2 rounded-2xl border p-6">
-          <span className="text-brand-300 text-fg-secondaryxl font-black">60%</span>
+          <span className="text-brand-300 text-2xl font-black">60%</span>
           <p className="text-xs font-bold tracking-wider text-white uppercase">
             Engineering & Product
           </p>
@@ -1283,7 +1283,7 @@ function Slide12() {
         </div>
 
         <div className="border-brand-500/30 space-y-2 rounded-2xl border bg-purple-950/20 p-6">
-          <span className="text-brand-300 text-fg-secondaryxl font-black">25%</span>
+          <span className="text-brand-300 text-2xl font-black">25%</span>
           <p className="text-xs font-bold tracking-wider text-white uppercase">Go-To-Market</p>
           <p className="text-fg-secondary text-xs leading-relaxed">
             Enterprise sales team, developer advocacy, open-source community management, and EU AI
@@ -1292,7 +1292,7 @@ function Slide12() {
         </div>
 
         <div className="border-success-500/30 space-y-2 rounded-2xl border bg-emerald-950/20 p-6">
-          <span className="text-success-400 text-fg-secondaryxl font-black">15%</span>
+          <span className="text-success-400 text-2xl font-black">15%</span>
           <p className="text-xs font-bold tracking-wider text-white uppercase">Security & Audits</p>
           <p className="text-fg-secondary text-xs leading-relaxed">
             SOC2 Type II, ISO 27001, and independent third-party EU AI Act compliance

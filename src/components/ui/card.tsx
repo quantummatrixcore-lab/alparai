@@ -16,7 +16,7 @@ const variantClasses = {
   outline: "bg-transparent border border-border-strong hover:border-brand-500/40 transition-colors",
   gradient:
     "bg-gradient-to-br from-bg-secondary via-bg-tertiary/90 to-bg-secondary border border-brand-500/20 shadow-[0_15px_35px_rgba(147,51,234,0.1)] backdrop-blur-xl",
-  glass: "bg-glass-card hover:border-white/20 transition-all",
+  glass: "bg-glass-card hover:border-border-strong transition-all",
 };
 
 const paddingClasses = {

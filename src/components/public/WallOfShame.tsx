@@ -202,7 +202,7 @@ export function WallOfShame() {
   );
 
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-start overflow-hidden bg-[#050608] px-4 py-8 font-sans text-white sm:px-6 lg:px-8">
+    <div className="relative flex min-h-screen flex-col items-center justify-start overflow-hidden bg-bg-primary px-4 py-16 md:py-24 font-sans text-white sm:px-6 lg:px-8">
       {/* Background Neon Grid and Red Haze */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute top-0 left-1/2 h-[600px] w-[1000px] -translate-x-1/2 -translate-y-1/3 rounded-full bg-red-950/25 blur-[160px]" />
@@ -231,7 +231,7 @@ export function WallOfShame() {
             WALL OF SHAME
           </motion.h1>
 
-          <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-zinc-400 sm:text-base">
+          <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-fg-muted sm:text-base">
             Yapay Zeka Anayasası ve Agora-T Halk Mahkemesi tarafından suçlu bulunan, etik ihlal gerçekleştiren ve
             toplumsal güvenliği riske atan yapay zeka modelleri ve şirketlerinin kalıcı kamu sicil kaydı.
           </p>
@@ -239,7 +239,7 @@ export function WallOfShame() {
           {/* Core Telemetry Stats */}
           <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
             <div className="rounded-2xl border border-red-900/40 bg-black/60 p-4 backdrop-blur-md transition-colors hover:border-red-500/40">
-              <div className="flex items-center justify-between text-xs font-mono text-zinc-500 uppercase">
+              <div className="flex items-center justify-between text-xs font-mono text-fg-disabled uppercase">
                 <span>Mahkum Şirketler</span>
                 <AlertOctagon className="h-4 w-4 text-red-500" />
               </div>
@@ -248,16 +248,16 @@ export function WallOfShame() {
             </div>
 
             <div className="rounded-2xl border border-red-900/40 bg-black/60 p-4 backdrop-blur-md transition-colors hover:border-red-500/40">
-              <div className="flex items-center justify-between text-xs font-mono text-zinc-500 uppercase">
+              <div className="flex items-center justify-between text-xs font-mono text-fg-disabled uppercase">
                 <span>Tahmini Toplam Zarar</span>
                 <Flame className="h-4 w-4 text-amber-500" />
               </div>
               <p className="mt-2 text-2xl font-black text-amber-400 sm:text-3xl">{totalDamages}</p>
-              <p className="mt-1 text-[11px] text-zinc-400">Veri Sızıntısı & Telif</p>
+              <p className="mt-1 text-[11px] text-fg-muted">Veri Sızıntısı & Telif</p>
             </div>
 
             <div className="rounded-2xl border border-red-900/40 bg-black/60 p-4 backdrop-blur-md transition-colors hover:border-red-500/40">
-              <div className="flex items-center justify-between text-xs font-mono text-zinc-500 uppercase">
+              <div className="flex items-center justify-between text-xs font-mono text-fg-disabled uppercase">
                 <span>Ortalama Tehdit</span>
                 <TrendingUp className="h-4 w-4 text-red-400" />
               </div>
@@ -266,12 +266,12 @@ export function WallOfShame() {
             </div>
 
             <div className="rounded-2xl border border-red-900/40 bg-black/60 p-4 backdrop-blur-md transition-colors hover:border-red-500/40">
-              <div className="flex items-center justify-between text-xs font-mono text-zinc-500 uppercase">
+              <div className="flex items-center justify-between text-xs font-mono text-fg-disabled uppercase">
                 <span>Jüri Mutabakatı</span>
                 <Gavel className="h-4 w-4 text-purple-400" />
               </div>
               <p className="mt-2 text-2xl font-black text-purple-300 sm:text-3xl">100%</p>
-              <p className="mt-1 text-[11px] text-zinc-400">Halk Jürisi Onaylı</p>
+              <p className="mt-1 text-[11px] text-fg-muted">Halk Jürisi Onaylı</p>
             </div>
           </div>
         </div>
@@ -287,7 +287,7 @@ export function WallOfShame() {
                   "cursor-pointer rounded-xl px-3 py-1.5 text-xs font-semibold transition-all duration-200",
                   selectedCategory === cat.id
                     ? "border border-red-500/60 bg-red-600/20 text-white shadow-[0_0_12px_rgba(239,68,68,0.4)]"
-                    : "border border-zinc-800 bg-zinc-900/60 text-zinc-400 hover:border-zinc-700 hover:text-white",
+                    : "border border-border-subtle bg-bg-secondary/60 text-fg-muted hover:border-border-strong hover:text-white",
                 )}
               >
                 {cat.label}
@@ -296,13 +296,13 @@ export function WallOfShame() {
           </div>
 
           <div className="relative w-full sm:w-72">
-            <Search className="text-zinc-500 absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
+            <Search className="text-fg-disabled absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Model veya ihlal ara..."
-              className="h-10 w-full rounded-xl border border-zinc-800 bg-zinc-900/80 pr-4 pl-9 text-xs text-white placeholder-zinc-500 backdrop-blur-md transition-all focus:border-red-500/60 focus:ring-1 focus:ring-red-500 focus:outline-none"
+              className="h-10 w-full rounded-xl border border-border-subtle bg-bg-secondary/80 pr-4 pl-9 text-xs text-fg-primary placeholder-fg-disabled backdrop-blur-md transition-all focus:border-red-500/60 focus:ring-1 focus:ring-red-500 focus:outline-none"
             />
           </div>
         </div>
@@ -347,14 +347,14 @@ export function WallOfShame() {
 
                   {/* Provider & Model Info */}
                   <div className="mt-4 flex items-center gap-3">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-red-900/50 bg-zinc-900/80 text-2xl shadow-inner">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-red-900/50 bg-bg-secondary/80 text-2xl shadow-inner">
                       {entity.logo}
                     </div>
                     <div className="min-w-0">
                       <h3 className="truncate text-lg font-black text-white group-hover:text-red-400 transition-colors">
                         {entity.name}
                       </h3>
-                      <p className="text-xs font-medium text-zinc-400">Üretici: {entity.provider}</p>
+                      <p className="text-xs font-medium text-fg-muted">Üretici: {entity.provider}</p>
                     </div>
                   </div>
 
@@ -364,7 +364,7 @@ export function WallOfShame() {
                       <FileWarning className="mt-0.5 h-4 w-4 shrink-0 text-red-400" />
                       <div>
                         <h4 className="text-xs font-bold text-red-200 leading-snug">{entity.violationTitle}</h4>
-                        <p className="mt-1 line-clamp-2 text-[11px] text-zinc-400 leading-relaxed">
+                        <p className="mt-1 line-clamp-2 text-[11px] text-fg-muted leading-relaxed">
                           {entity.violationDescription}
                         </p>
                       </div>
@@ -372,24 +372,24 @@ export function WallOfShame() {
                   </div>
 
                   {/* Case Ref & Articles */}
-                  <div className="mt-4 space-y-1.5 text-[11px] font-mono text-zinc-400">
+                  <div className="mt-4 space-y-1.5 text-[11px] font-mono text-fg-muted">
                     <div className="flex justify-between">
-                      <span className="text-zinc-500">Dava No:</span>
+                      <span className="text-fg-disabled">Dava No:</span>
                       <span className="font-bold text-purple-400">{entity.caseRef}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-zinc-500">Mahkumiyet:</span>
-                      <span className="text-zinc-300">{entity.verdictDate}</span>
+                      <span className="text-fg-disabled">Mahkumiyet:</span>
+                      <span className="text-fg-secondary">{entity.verdictDate}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-zinc-500">Maddi Yaptırım:</span>
+                      <span className="text-fg-disabled">Maddi Yaptırım:</span>
                       <span className="font-bold text-amber-400">{entity.damagesEst}</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Bottom Actions */}
-                <div className="mt-6 flex items-center justify-between border-t border-zinc-900 pt-4">
+                <div className="mt-6 flex items-center justify-between border-t border-border-subtle pt-4">
                   <button
                     onClick={() => setActiveModalEntity(entity)}
                     className="cursor-pointer inline-flex items-center gap-1.5 text-xs font-bold text-red-400 hover:text-red-300 transition-colors"
@@ -413,10 +413,10 @@ export function WallOfShame() {
 
         {/* Empty State */}
         {filteredEntities.length === 0 && (
-          <div className="my-16 rounded-2xl border border-zinc-800 bg-zinc-950/60 p-12 text-center backdrop-blur-md">
+          <div className="my-16 rounded-2xl border border-border-subtle bg-bg-primary/60 p-12 text-center backdrop-blur-md">
             <ShieldAlert className="mx-auto h-12 w-12 text-zinc-600" />
             <h3 className="mt-4 text-base font-bold text-white">Arama kriterlerine uygun sicil kaydı bulunamadı.</h3>
-            <p className="mt-1 text-xs text-zinc-400">Filtreleri sıfırlayarak tüm mahkum AI listesine erişebilirsiniz.</p>
+            <p className="mt-1 text-xs text-fg-muted">Filtreleri sıfırlayarak tüm mahkum AI listesine erişebilirsiniz.</p>
             <button
               onClick={() => {
                 setSelectedCategory("all");
@@ -438,7 +438,7 @@ export function WallOfShame() {
                 <span>Halk Denetim Mekanizması</span>
               </div>
               <h2 className="text-2xl font-black text-white sm:text-3xl">Bir Yapay Zeka Suçu mu Tespit Ettiniz?</h2>
-              <p className="max-w-2xl text-xs text-zinc-400 sm:text-sm">
+              <p className="max-w-2xl text-xs text-fg-muted sm:text-sm">
                 Gizlilik ihlalleri, telif korsanlığı, izinsiz deepfake veya taraflı model çıktılarını derhal Agora-T
                 Mahkemesi ve Jüri Duruşması dökümüne iletin.
               </p>
@@ -492,7 +492,7 @@ export function WallOfShame() {
                 </div>
                 <button
                   onClick={() => setActiveModalEntity(null)}
-                  className="cursor-pointer rounded-full border border-zinc-800 p-2 text-zinc-400 hover:bg-zinc-800 hover:text-white transition-colors"
+                  className="cursor-pointer rounded-full border border-zinc-800 p-2 text-fg-muted hover:bg-zinc-800 hover:text-white transition-colors"
                 >
                   <X className="h-5 w-5" />
                 </button>
@@ -500,9 +500,9 @@ export function WallOfShame() {
 
               <div className="mt-6 space-y-6 text-sm">
                 <div>
-                  <h4 className="text-xs font-mono font-bold text-zinc-400 uppercase tracking-wider">İhlal Gerekçesi</h4>
+                  <h4 className="text-xs font-mono font-bold text-fg-muted uppercase tracking-wider">İhlal Gerekçesi</h4>
                   <p className="mt-1 text-base font-bold text-white">{activeModalEntity.violationTitle}</p>
-                  <p className="mt-2 text-xs leading-relaxed text-zinc-300">{activeModalEntity.violationDescription}</p>
+                  <p className="mt-2 text-xs leading-relaxed text-fg-secondary">{activeModalEntity.violationDescription}</p>
                 </div>
 
                 <div className="rounded-2xl border border-red-950/80 bg-red-950/30 p-4">
@@ -515,7 +515,7 @@ export function WallOfShame() {
                 </div>
 
                 <div>
-                  <h4 className="text-xs font-mono font-bold text-zinc-400 uppercase tracking-wider">
+                  <h4 className="text-xs font-mono font-bold text-fg-muted uppercase tracking-wider">
                     İhlal Edilen Anayasa & Yasa Maddeleri
                   </h4>
                   <ul className="mt-2 space-y-1.5">
@@ -529,7 +529,7 @@ export function WallOfShame() {
                 </div>
 
                 <div>
-                  <h4 className="text-xs font-mono font-bold text-zinc-400 uppercase tracking-wider">
+                  <h4 className="text-xs font-mono font-bold text-fg-muted uppercase tracking-wider">
                     Uygulanan Yaptırım ve Cezai Hüküm
                   </h4>
                   <div className="mt-2 rounded-xl border border-purple-500/30 bg-purple-950/30 p-3.5 text-xs text-purple-200">
@@ -539,7 +539,7 @@ export function WallOfShame() {
               </div>
 
               <div className="mt-8 flex items-center justify-between border-t border-zinc-800 pt-4">
-                <span className="text-xs font-mono text-zinc-500">Karar Tarihi: {activeModalEntity.verdictDate}</span>
+                <span className="text-xs font-mono text-fg-disabled">Karar Tarihi: {activeModalEntity.verdictDate}</span>
                 <Link
                   href={`/agora-t?case=${activeModalEntity.caseRef}`}
                   className="cursor-pointer inline-flex items-center gap-2 rounded-xl bg-red-600 px-4 py-2 text-xs font-bold text-white hover:bg-red-500 transition-colors"

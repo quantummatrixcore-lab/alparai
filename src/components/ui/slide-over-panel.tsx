@@ -30,7 +30,7 @@ export function SlideOverPanel({ open, onClose, title, children, className }: Sl
         aria-modal="true"
         aria-labelledby={title ? titleId : undefined}
         className={cn(
-          "bg-bg-secondary/95 animate-in slide-in-from-right border-white/10 fixed inset-y-0 right-0 z-50 flex w-full max-w-md flex-col border-l shadow-[-25px_0_60px_rgba(0,0,0,0.7)] backdrop-blur-2xl transition-all duration-300 ease-in-out",
+          "bg-bg-secondary/95 animate-in slide-in-from-right border-border-subtle fixed inset-y-0 right-0 z-50 flex w-full max-w-md flex-col border-l shadow-[-25px_0_60px_rgba(0,0,0,0.7)] backdrop-blur-2xl transition-all duration-300 ease-in-out",
           className,
         )}
       >

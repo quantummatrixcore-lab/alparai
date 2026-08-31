@@ -96,7 +96,7 @@ export default function EcosystemDashboard() {
 
   return (
     <div className="border-border-subtle rounded-xl border bg-[#0D1117] p-6 text-white shadow-2xl">
-      <h2 className="text-fg-secondaryxl mb-6 flex items-center gap-2 font-bold">
+      <h2 className="text-2xl mb-6 flex items-center gap-2 font-bold">
         🐺 ALPAR Sürü Karargahı (Ecosystem API)
       </h2>
 

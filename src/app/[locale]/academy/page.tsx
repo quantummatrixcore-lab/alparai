@@ -77,7 +77,7 @@ export default async function AcademyPage({ params }: { params: Promise<{ locale
               </a>
               <a
                 href="#apply"
-                className="text-fg-primary inline-flex h-11 items-center justify-center rounded-xl border border-white/15 bg-white/5 px-7 text-sm font-semibold backdrop-blur-md transition-all hover:scale-105 hover:border-white/25 hover:bg-white/10 focus-visible:ring-1 focus-visible:outline-none"
+                className="text-fg-primary inline-flex h-11 items-center justify-center rounded-xl border border-border-subtle bg-white/5 px-7 text-sm font-semibold backdrop-blur-md transition-all hover:scale-105 hover:border-white/25 hover:bg-white/10 focus-visible:ring-1 focus-visible:outline-none"
               >
                 {t("cta_expert")}
               </a>
@@ -349,7 +349,7 @@ export default async function AcademyPage({ params }: { params: Promise<{ locale
               <h2 className="mb-6 text-4xl font-bold md:text-5xl">{t("apply_title")}</h2>
               <p className="text-fg-muted mb-12 text-xl">{t("apply_subtitle")}</p>
               <div className="bg-bg-secondary border-border-subtle mb-8 rounded-2xl border p-8">
-                <h3 className="text-fg-secondaryxl mb-4 font-semibold text-white">
+                <h3 className="text-2xl mb-4 font-semibold text-white">
                   {t("apply_card_title")}
                 </h3>
                 <p className="text-fg-secondary mb-6 leading-relaxed">{t("apply_card_desc")}</p>

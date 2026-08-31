@@ -163,7 +163,7 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
               <Sparkles className="h-3.5 w-3.5" />
               {t("login_badge")}
             </span>
-            <h1 className="text-fg-secondaryxl bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text font-bold tracking-tight text-transparent sm:text-3xl">
+            <h1 className="text-2xl bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text font-bold tracking-tight text-transparent sm:text-3xl">
               {t("login_title")}
             </h1>
             <p className="text-fg-muted mt-2 text-sm leading-relaxed">{t("login_desc")}</p>
@@ -242,7 +242,7 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
             </div>
             <div>
               <div className="flex items-center gap-3">
-                <h1 className="text-fg-secondaryxl font-bold tracking-tight text-white sm:text-3xl">
+                <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
                   {authenticatedVendor.name}
                 </h1>
                 <span className="border-success-500/20 bg-success-500/10 text-success-400 rounded-full border px-2.5 py-0.5 text-xs font-semibold">
@@ -268,11 +268,11 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
         <div className="border-border-subtle/60 mt-6 grid grid-cols-2 gap-4 border-t pt-6 sm:grid-cols-3">
           <div className="border-border-subtle/50 bg-bg-tertiary/40 rounded-2xl border p-4">
             <p className="text-fg-muted text-xs font-medium">{t("total_incidents_stat")}</p>
-            <p className="text-fg-secondaryxl mt-1 font-bold text-white">{incidents.length}</p>
+            <p className="text-2xl mt-1 font-bold text-white">{incidents.length}</p>
           </div>
           <div className="border-warning-800/30 rounded-2xl border bg-amber-950/20 p-4">
             <p className="text-warning-300/80 text-xs font-medium">{t("pending_response_stat")}</p>
-            <p className="text-warning-400 text-fg-secondaryxl mt-1 font-bold">
+            <p className="text-warning-400 text-2xl mt-1 font-bold">
               {needsResponseCount}
             </p>
           </div>
@@ -280,7 +280,7 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
             <p className="text-success-300/80 text-xs font-medium">
               {t("defense_statements_stat")}
             </p>
-            <p className="text-success-400 text-fg-secondaryxl mt-1 font-bold">{respondedCount}</p>
+            <p className="text-success-400 text-2xl mt-1 font-bold">{respondedCount}</p>
           </div>
         </div>
       </div>

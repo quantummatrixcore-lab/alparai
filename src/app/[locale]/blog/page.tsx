@@ -336,7 +336,7 @@ export default async function BlogIndexPage({
                 <span className="text-brand-400 block text-xs font-black tracking-widest uppercase">
                   {t("newsletter_title")}
                 </span>
-                <h2 className="text-fg-primary text-fg-secondaryxl font-black tracking-tight sm:text-3xl">
+                <h2 className="text-fg-primary text-2xl font-black tracking-tight sm:text-3xl">
                   Stay updated with ALPAR Insights
                 </h2>
                 <p className="text-fg-muted max-w-lg text-sm leading-relaxed">

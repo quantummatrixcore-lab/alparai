@@ -76,7 +76,7 @@ export function WhyItMatters() {
           transition={{ duration: 0.6 }}
           className="mx-auto mb-12 max-w-2xl text-center"
         >
-          <h2 className="text-fg-primary text-fg-secondaryxl font-black tracking-tight sm:text-3xl">
+          <h2 className="text-fg-primary text-2xl font-black tracking-tight sm:text-3xl">
             {t("why_title")}
           </h2>
           <p className="text-fg-secondary mt-4 text-lg">{t("why_subtitle")}</p>

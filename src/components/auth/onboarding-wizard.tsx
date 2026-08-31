@@ -145,7 +145,7 @@ export function OnboardingWizard({ locale }: OnboardingWizardProps) {
               />
             </div>
           </div>
-          <CardTitle className="text-fg-secondaryxl font-black tracking-tight">
+          <CardTitle className="text-2xl font-black tracking-tight">
             {t("title")}
           </CardTitle>
           <CardDescription>{t("subtitle")}</CardDescription>
@@ -289,7 +289,7 @@ export function OnboardingWizard({ locale }: OnboardingWizardProps) {
               </div>
 
               <div className="max-w-md space-y-2">
-                <h2 className="text-fg-primary text-fg-secondaryxl font-black tracking-tight">
+                <h2 className="text-fg-primary text-2xl font-black tracking-tight">
                   {t("successTitle")}
                 </h2>
                 <p className="text-fg-muted text-sm leading-relaxed">{t("successDesc")}</p>

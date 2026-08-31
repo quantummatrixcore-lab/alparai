@@ -115,7 +115,7 @@ export function DigitalTwinsClient() {
             <CardHeader className="border-border-subtle border-b bg-white/5 pb-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <CardTitle className="text-fg-secondaryxl">{activePersona.name}</CardTitle>
+                  <CardTitle className="text-2xl">{activePersona.name}</CardTitle>
                   <CardDescription>{activePersona.title}</CardDescription>
                 </div>
                 {modelUsed && (

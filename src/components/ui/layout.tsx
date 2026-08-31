@@ -24,7 +24,7 @@ export function Container({
 
 export function Section({ className, children, ...props }: React.HTMLAttributes<HTMLElement>) {
   return (
-    <section className={cn("py-12 md:py-16 lg:py-20", className)} {...props}>
+    <section className={cn("py-16 md:py-24", className)} {...props}>
       {children}
     </section>
   );

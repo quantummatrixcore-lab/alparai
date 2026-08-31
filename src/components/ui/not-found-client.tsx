@@ -49,7 +49,7 @@ export function NotFoundClient({
           </div>
 
           {/* 404 Number */}
-          <p className="from-brand-300 via-danger-400 to-brand-500 text-fg-secondaryxl bg-gradient-to-r bg-clip-text font-black tracking-tighter text-transparent drop-shadow-2xl select-none md:text-[10rem] lg:text-[12rem]">
+          <p className="from-brand-300 via-danger-400 to-brand-500 text-2xl bg-gradient-to-r bg-clip-text font-black tracking-tighter text-transparent drop-shadow-2xl select-none md:text-[10rem] lg:text-[12rem]">
             {code}
           </p>
 

@@ -43,7 +43,7 @@ export default async function VisionPage({ params }: { params: Promise<{ locale:
   ];
 
   return (
-    <main className="min-h-screen bg-[#0c0e12] pt-24 pb-20 bg-bg-primary">
+    <main className="min-h-screen bg-bg-primary py-16 md:py-24">
       <Section className="relative overflow-hidden">
         {/* Glow effect */}
         <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 opacity-30 blur-[120px]">
@@ -72,7 +72,7 @@ export default async function VisionPage({ params }: { params: Promise<{ locale:
           <div className="mx-auto max-w-5xl">
             <div className="grid gap-6 md:grid-cols-3">
               {pillars.map((item, index) => (
-                <div key={index} className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#111318] p-8 transition-all hover:border-brand-500/50">
+                <div key={index} className="group relative overflow-hidden rounded-2xl border border-border-subtle bg-bg-secondary p-8 transition-all hover:border-brand-500/50">
                   <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/5 group-hover:bg-brand-500/10 transition-colors">
                     {item.icon}
                   </div>

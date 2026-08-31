@@ -37,7 +37,7 @@ export async function RelatedIncidents({
 
   return (
     <section className="border-border-subtle/50 mt-16 border-t pt-10">
-      <h3 className="text-fg-primary sm:text-fg-secondaryxl text-xl font-black tracking-tight">
+      <h3 className="text-fg-primary sm:text-2xl text-xl font-black tracking-tight">
         {locale === "tr" ? "Benzer Olay Raporları" : "Related Incident Reports"}
       </h3>
       <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">

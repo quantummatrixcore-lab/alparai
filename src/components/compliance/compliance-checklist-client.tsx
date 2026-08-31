@@ -205,7 +205,7 @@ export function ComplianceChecklistClient({ t, items }: ComplianceChecklistClien
       {/* 12-Point Checklist Grid */}
       <div>
         <div className="mb-8 text-center">
-          <h2 className="text-fg-secondaryxl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl">
+          <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl">
             {t.checklistHeading}
           </h2>
           <p className="text-fg-muted mx-auto mt-2 max-w-2xl text-sm sm:text-base">
@@ -292,7 +292,7 @@ export function ComplianceChecklistClient({ t, items }: ComplianceChecklistClien
               <div className="bg-brand-500/10 text-brand-400 ring-brand-500/30 mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl ring-1">
                 <Download className="h-7 w-7" />
               </div>
-              <h3 className="text-fg-secondaryxl font-extrabold text-white sm:text-3xl">
+              <h3 className="text-2xl font-extrabold text-white sm:text-3xl">
                 {t.leadFormTitle}
               </h3>
               <p className="text-fg-secondary mt-2 text-sm sm:text-base">{t.leadFormSubtitle}</p>
@@ -418,7 +418,7 @@ export function ComplianceChecklistClient({ t, items }: ComplianceChecklistClien
       {/* Bottom Enterprise CTA Banner */}
       <Card className="border-brand-500/20 bg-bg-elevated/80 backdrop-blur-md">
         <CardContent className="p-8 text-center sm:p-10">
-          <h3 className="text-fg-secondaryxl font-bold text-white sm:text-3xl">
+          <h3 className="text-2xl font-bold text-white sm:text-3xl">
             {t.bottomCtaTitle}
           </h3>
           <p className="text-fg-secondary mx-auto mt-2 max-w-2xl text-sm sm:text-base">

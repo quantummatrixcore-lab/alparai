@@ -43,7 +43,7 @@ export function ConstitutionClient() {
   ];
 
   return (
-    <div className="text-fg-primary relative min-h-screen bg-[#050814] selection:bg-purple-500/30 selection:text-white">
+    <div className="text-fg-primary relative min-h-screen bg-bg-primary selection:bg-purple-500/30 selection:text-white">
       <div className="pointer-events-none absolute top-0 left-1/2 h-[700px] w-[1000px] -translate-x-1/2 rounded-full bg-gradient-to-b from-purple-600/20 via-indigo-600/10 to-transparent blur-[160px]" />
 
       <div className="relative mx-auto max-w-5xl px-6 pt-4 pb-20 md:pt-8 md:pb-24">
@@ -86,7 +86,7 @@ export function ConstitutionClient() {
         </div>
 
         <div className="mt-16 space-y-6">
-          <h2 className="text-fg-secondaryxl font-black text-white sm:text-3xl">
+          <h2 className="text-2xl font-black text-white sm:text-3xl">
             {t("articles_title")}
           </h2>
 
@@ -115,7 +115,7 @@ export function ConstitutionClient() {
 
         <div
           id="sign-section"
-          className="mt-20 rounded-3xl border border-purple-500/30 bg-gradient-to-b from-zinc-900/90 via-zinc-900/60 to-zinc-950/90 p-8 shadow-2xl backdrop-blur-2xl md:p-12"
+          className="mt-20 rounded-3xl border border-purple-500/30 bg-gradient-to-b from-bg-secondary/90 via-bg-secondary/60 to-bg-primary/90 p-8 shadow-2xl backdrop-blur-2xl md:p-12"
         >
           <div className="mx-auto max-w-2xl text-center">
             <ShieldCheck className="mx-auto h-12 w-12 text-purple-400" />
@@ -142,7 +142,7 @@ export function ConstitutionClient() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Adınız Soyadınız / Öneriniz"
-                    className="border-border-subtle mt-1.5 w-full rounded-xl border bg-zinc-950/80 px-4 py-3 text-sm text-white placeholder-zinc-500 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 focus:outline-none"
+                    className="border-border-subtle mt-1.5 w-full rounded-xl border bg-bg-primary/80 px-4 py-3 text-sm text-white placeholder-fg-disabled focus:border-purple-500 focus:ring-1 focus:ring-purple-500 focus:outline-none"
                   />
                   {state.fieldErrors?.title && (
                     <p className="mt-1 text-xs text-red-400">{state.fieldErrors.title[0]}</p>
@@ -158,7 +158,7 @@ export function ConstitutionClient() {
                     required
                     rows={4}
                     placeholder="Anayasaya eklenecek veya düzeltilecek önerileriniz..."
-                    className="border-border-subtle mt-1.5 w-full rounded-xl border bg-zinc-950/80 px-4 py-3 text-sm text-white placeholder-zinc-500 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 focus:outline-none"
+                    className="border-border-subtle mt-1.5 w-full rounded-xl border bg-bg-primary/80 px-4 py-3 text-sm text-white placeholder-fg-disabled focus:border-purple-500 focus:ring-1 focus:ring-purple-500 focus:outline-none"
                   />
                   {state.fieldErrors?.description && (
                     <p className="mt-1 text-xs text-red-400">{state.fieldErrors.description[0]}</p>

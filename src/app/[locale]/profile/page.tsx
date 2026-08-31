@@ -85,18 +85,18 @@ export default async function ProfilePage({ params }: { params: Promise<{ locale
             href="/my-incidents"
             className="bg-bg-tertiary hover:bg-bg-secondary hover:border-border-subtle flex flex-col justify-center rounded-md border border-transparent p-4 transition-all duration-200"
           >
-            <p className="text-fg-primary text-fg-secondaryxl font-bold">{myIncidents ?? 0}</p>
+            <p className="text-fg-primary text-2xl font-bold">{myIncidents ?? 0}</p>
             <p className="text-fg-muted text-xs">{t("incidentsReported")}</p>
           </Link>
           <div className="bg-bg-tertiary flex flex-col justify-center rounded-md p-4">
-            <p className="text-fg-primary text-fg-secondaryxl font-bold">{mySuggestions ?? 0}</p>
+            <p className="text-fg-primary text-2xl font-bold">{mySuggestions ?? 0}</p>
             <p className="text-fg-muted text-xs">{t("suggestionsMade")}</p>
           </div>
           <div className="bg-brand-500/10 border-brand-500/20 group relative flex flex-col justify-center overflow-hidden rounded-md border p-4">
             <div className="absolute -right-4 -bottom-4 opacity-10 transition-opacity group-hover:opacity-20">
               <Zap className="text-brand-500 h-24 w-24" />
             </div>
-            <p className="text-brand-500 text-fg-secondaryxl relative z-10 flex items-center gap-1.5 font-black">
+            <p className="text-brand-500 text-2xl relative z-10 flex items-center gap-1.5 font-black">
               {rep}
             </p>
             <p className="text-brand-400 relative z-10 text-xs font-medium">

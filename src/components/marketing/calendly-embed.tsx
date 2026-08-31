@@ -40,7 +40,7 @@ export function CalendlyEmbed({
         <div className="border-brand-500/30 bg-brand-500/10 text-brand-400 mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl border backdrop-blur-md">
           <Calendar className="h-6 w-6" />
         </div>
-        <h3 className="text-fg-primary text-fg-secondaryxl font-bold tracking-tight">
+        <h3 className="text-fg-primary text-2xl font-bold tracking-tight">
           {title ||
             (isTr
               ? "Danışma Kurulu Başvuru & Görüşme Randevusu"

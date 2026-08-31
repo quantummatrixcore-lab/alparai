@@ -64,7 +64,7 @@ export default async function ProviderIncidentsPage({
       <header className="border-border-subtle mb-8 rounded-xl border bg-white/5 p-6 shadow-lg">
         <div className="mb-2 flex items-center gap-3">
           <Cpu className="text-brand-400 h-6 w-6" />
-          <h1 className="text-fg-secondaryxl font-bold text-white">
+          <h1 className="text-2xl font-bold text-white">
             {t("header_title", { providerName: provider.name })}
           </h1>
         </div>

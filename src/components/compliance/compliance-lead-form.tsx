@@ -48,7 +48,7 @@ export function ComplianceLeadForm({ t }: ComplianceLeadFormProps) {
             <ShieldCheck className="h-6 w-6" />
           </div>
           <div>
-            <h3 className="text-fg-primary text-fg-secondaryxl font-bold tracking-tight">
+            <h3 className="text-fg-primary text-2xl font-bold tracking-tight">
               {t.leadFormTitle}
             </h3>
             <p className="text-fg-secondary text-sm">{t.leadFormSubtitle}</p>

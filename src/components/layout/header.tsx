@@ -38,7 +38,13 @@ export function Header({
 
   return (
     <div className="pointer-events-none fixed top-6 z-[100] flex w-full justify-center px-3 sm:px-6">
-      <header className="hover:border-brand-500/40 pointer-events-auto flex h-13 w-full max-w-[1280px] items-center justify-between gap-2 rounded-full border border-white/10 bg-[#080D17]/95 px-3.5 shadow-[0_12px_40px_rgba(0,0,0,0.7),0_0_20px_rgba(168,85,247,0.1)] backdrop-blur-2xl transition-all duration-300 sm:h-14 sm:px-5">
+      <header role="banner" className="hover:border-brand-500/40 pointer-events-auto flex h-13 w-full max-w-[1280px] items-center justify-between gap-2 rounded-full border border-white/10 bg-[#080D17]/95 px-3.5 shadow-[0_12px_40px_rgba(0,0,0,0.7),0_0_20px_rgba(168,85,247,0.1)] backdrop-blur-2xl transition-all duration-300 sm:h-14 sm:px-5">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-brand-500 focus:text-white focus:rounded"
+        >
+          Skip to main content
+        </a>
         {/* Left Side: Logo & Main Navigation */}
         <div className="flex min-w-0 items-center gap-3 xl:gap-5">
           <Link

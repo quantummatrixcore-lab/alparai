@@ -93,6 +93,9 @@ const nextConfig = {
         ? "true"
         : "false",
   },
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production",
+  },
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -133,6 +136,7 @@ const nextConfig = {
       "lucide-react",
       "framer-motion",
       "@phosphor-icons/react",
+      "@radix-ui/react-icons",
       "recharts",
       "date-fns",
       "@radix-ui/react-dialog",

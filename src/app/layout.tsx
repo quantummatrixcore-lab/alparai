@@ -3,12 +3,11 @@ import type { Metadata, Viewport } from "next";
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "https://alparai.com"),
   title: {
-    default: "ALPAR AI — Trust infrastructure for AI accountability",
-    template: "%s · ALPAR AI",
+    default: "AlparAI",
+    template: "%s | AlparAI",
   },
-  description:
-    "Community-driven incident reporting platform for AI systems. Like Trustpilot, but for AI.",
-  applicationName: "ALPAR AI",
+  description: "AI Accountability & Incident Reporting Platform",
+  applicationName: "AlparAI",
   keywords: [
     "AI accountability",
     "AI incidents",
@@ -16,9 +15,9 @@ export const metadata: Metadata = {
     "AI safety",
     "trust infrastructure",
   ],
-  authors: [{ name: "ALPAR AI" }],
-  creator: "ALPAR AI",
-  publisher: "ALPAR AI",
+  authors: [{ name: "AlparAI" }],
+  creator: "@alparai",
+  publisher: "AlparAI",
   alternates: {
     canonical: "/",
     languages: {
@@ -29,19 +28,18 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    siteName: "ALPAR AI",
-    title: "ALPAR AI — Trust infrastructure for AI accountability",
-    description:
-      "Community-driven incident reporting platform for AI systems. Like Trustpilot, but for AI.",
+    siteName: "AlparAI",
+    title: "AlparAI — AI Accountability & Incident Reporting Platform",
+    description: "AI Accountability & Incident Reporting Platform",
     locale: "en_US",
     url: "/",
-    images: ["https://alparai.com/og-image.png"],
+    images: [{ url: "/brand-assets/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     site: "@alparai",
     creator: "@alparai",
-    images: ["https://alparai.com/og-image.png"],
+    images: ["/brand-assets/og-image.png"],
   },
   robots: {
     index: true,
@@ -67,7 +65,7 @@ export const metadata: Metadata = {
   },
   appleWebApp: {
     capable: true,
-    title: "ALPAR AI",
+    title: "AlparAI",
     statusBarStyle: "black-translucent",
   },
   formatDetection: {

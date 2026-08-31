@@ -134,6 +134,8 @@ export function Nav({
   return (
     <nav
       ref={navRef}
+      role="navigation"
+      aria-label="Main navigation"
       className={cn("hidden flex-shrink-0 items-center gap-1 xl:gap-1.5 lg:flex", className)}
     >
       {topLevelItems.map((item) => {
@@ -180,7 +182,7 @@ export function Nav({
                   : "text-zinc-300 hover:text-white hover:bg-white/[0.04]",
               )}
               aria-expanded={isGroupOpen}
-              aria-haspopup="true"
+              aria-haspopup="menu"
             >
               <span className="relative z-10 flex items-center gap-1.5">
                 <GroupIcon className="h-3.5 w-3.5 opacity-80" aria-hidden="true" />
@@ -196,7 +198,11 @@ export function Nav({
             </button>
 
             {isGroupOpen && (
-              <div className="border-border-subtle/80 bg-[#0C121E]/95 animate-in fade-in slide-in-from-top-1 absolute top-full left-0 z-50 mt-2 w-60 rounded-2xl border p-2 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(168,85,247,0.15)] backdrop-blur-2xl duration-200">
+              <div
+                role="menu"
+                aria-orientation="vertical"
+                className="border-border-subtle/80 bg-[#0C121E]/95 animate-in fade-in slide-in-from-top-1 absolute top-full left-0 z-50 mt-2 w-60 rounded-2xl border p-2 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(168,85,247,0.15)] backdrop-blur-2xl duration-200"
+              >
                 {group.items.map((subItem) => {
                   const SubIcon = subItem.icon;
                   const isSubActive = pathname.startsWith(subItem.href);
@@ -204,6 +210,7 @@ export function Nav({
                     <Link
                       key={subItem.href}
                       href={subItem.href}
+                      role="menuitem"
                       onClick={() => setOpenGroup(null)}
                       className={cn(
                         "flex items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-medium transition-all duration-150 active:scale-[0.98]",
@@ -212,7 +219,7 @@ export function Nav({
                           : "text-zinc-300 hover:text-white hover:bg-white/[0.06]",
                       )}
                     >
-                      <SubIcon className="h-4 w-4 shrink-0 text-zinc-400" />
+                      <SubIcon className="h-4 w-4 shrink-0 text-zinc-400" aria-hidden="true" />
                       <span>{t(subItem.labelKey)}</span>
                     </Link>
                   );

@@ -28,7 +28,7 @@ export function constructPageMetadata(options: PageMetadataOptions): Metadata {
     title,
     description,
     keywords = [],
-    image = `${APP_URL}/og-image.png`,
+    image = `${APP_URL}/brand-assets/og-image.png`,
     noIndex = false,
     type = "website",
   } = options;

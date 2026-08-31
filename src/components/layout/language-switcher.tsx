@@ -71,9 +71,10 @@ export function LanguageSwitcher({
           "hover:border-brand-500/40 hover:bg-brand-500/10 hover:text-white",
           "focus-visible:ring-2 focus-visible:ring-brand-500/50 focus-visible:outline-none cursor-pointer"
         )}
-        aria-label={locale === "tr" ? "Switch to English" : "Türkçe'ye Geç"}
+        aria-label="Switch language"
+        aria-current="true"
       >
-        <Globe className="h-3.5 w-3.5 text-zinc-400 group-hover:text-brand-300 transition-colors" />
+        <Globe className="h-3.5 w-3.5 text-zinc-400 group-hover:text-brand-300 transition-colors" aria-hidden="true" />
         <span className="font-mono text-[11px] font-bold tracking-wider text-zinc-200 uppercase group-hover:text-white">
           {locale.toUpperCase()}
         </span>

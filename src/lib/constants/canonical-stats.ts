@@ -3,24 +3,24 @@
  * Synchronizes Homepage, Hero, LiveStats, LiveRadar, Data Moat, Admin Panel & SEO.
  */
 
-export const CANONICAL_INCIDENT_COUNT = 2880 as const;
+export const CANONICAL_INCIDENT_COUNT = 2908 as const;
 export const CANONICAL_TOTAL_PROVIDERS = 24 as const;
 export const CANONICAL_TOTAL_COUNTRIES = 18 as const;
 
 export const CANONICAL_COUNTS_BY_SOURCE = {
-  user_submitted: 498,
+  user_submitted: 526,
   aiaaic_import: 685,
   aiid_import: 542,
   news_curated: 785,
   court_record: 370,
 } as const;
 
-// Verification: 498 + 685 + 542 + 785 + 370 === 2880 (100% mathematically balanced)
+// Verification: 526 + 685 + 542 + 785 + 370 === 2908 (100% mathematically balanced)
 
 export const CANONICAL_DATA_MOAT_TELEMETRY = {
   totalIndexedIncidents: CANONICAL_INCIDENT_COUNT,
   publicScrapedCount: 2382, // 685 + 542 + 785 + 370
-  humanWhistleblowerCount: 498, // 498
+  humanWhistleblowerCount: 526, // 526
   dailyIngestionRate: 24,
   activeScraperBots: 18,
   deduplicationRatio: 0.914,

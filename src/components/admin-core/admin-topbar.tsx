@@ -44,7 +44,7 @@ export function AdminTopbar() {
         {/* Ingestion Velocity */}
         <div className="hidden items-center gap-1.5 rounded-md border border-[#d0d7de] bg-[#ffffff] px-2.5 py-1 font-sans text-[11px] text-[#656d76] lg:flex dark:border-[#30363d] dark:bg-[#0d1117] dark:text-[#8b949e]">
           <Database className="h-3 w-3 text-[#0969da] dark:text-[#58a6ff]" />
-          <span className="text-[#1f2328] dark:text-[#c9d1d9]">2.880 {t("activeIncidents")}</span>
+          <span className="text-[#1f2328] dark:text-[#c9d1d9]">2.908 {t("activeIncidents")}</span>
           <span className="font-semibold text-[#1a7f37] dark:text-[#3fb950]">{t("dailyRate")}</span>
         </div>
 

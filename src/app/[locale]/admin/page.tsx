@@ -28,7 +28,7 @@ import { CANONICAL_INCIDENT_COUNT } from "@/lib/constants";
 const recentIncidentStream = [
   {
     id: "inc-1",
-    trackingNumber: "ALP-2026-2880",
+    trackingNumber: "ALP-2026-2908",
     modelTarget: "Frontier GPT-5 Biometric",
     provider: "OpenAI",
     source: "REGULATORY_FILING",

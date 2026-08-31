@@ -38,7 +38,7 @@ import {
 const defaultIncidentPlaceholder: IncidentRecord[] = [
   {
     id: "inc-placeholder-1",
-    trackingNumber: "ALP-2026-2880",
+    trackingNumber: "ALP-2026-2908",
     title: "Multimodal Biometric Recognition Discrimination Bias",
     modelTarget: "Frontier Vision-Language Model v4",
     provider: "OpenAI",
@@ -232,7 +232,7 @@ export default function IncidentsPage() {
               KÜME 1: HESAP VEREBİLİRLİK & VERİ FABRİKASI
             </span>
             <span className="font-sans text-xs font-semibold text-[#0969da] dark:text-[#58a6ff]">
-              {incidents.length > 1 ? `${incidents.length} VAKA İNDEKSİ` : "2.880 VAKA İNDEKSİ"}
+              {incidents.length > 1 ? `${incidents.length} VAKA İNDEKSİ` : "2.908 VAKA İNDEKSİ"}
             </span>
           </div>
           <h1 className="font-sans text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
@@ -263,7 +263,7 @@ export default function IncidentsPage() {
           </span>
           <div className="mt-1 flex items-baseline gap-2">
             <span className="font-sans text-lg font-bold text-[#1f2328] dark:text-[#f0f6fc]">
-              2.880
+              2.908
             </span>
             <span className="font-sans text-[10px] font-semibold text-[#1a7f37] dark:text-[#3fb950]">
               +24/gün

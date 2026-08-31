@@ -30,8 +30,8 @@ export const mockComplianceSummary: EUAIActComplianceSummary = {
 
 export const mockIncidents: IncidentRecord[] = [
   {
-    id: "inc-2880",
-    trackingNumber: "ALP-2026-2880",
+    id: "inc-2908",
+    trackingNumber: "ALP-2026-2908",
     title: "Autonomous HR Screening System Biometric & Cognitive Bias Drift",
     modelTarget: "GPT-4o Enterprise Agent",
     provider: "OpenAI",

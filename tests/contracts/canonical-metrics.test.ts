@@ -9,10 +9,10 @@ import {
 import { mockTelemetry } from "@/lib/admin-mock";
 
 describe("Canonical Metrics Single Source of Truth Suite", () => {
-  it("enforces 2880 as canonical incident count", () => {
-    expect(CANONICAL_INCIDENT_COUNT).toBe(2880);
-    expect(CANONICAL_DATA_MOAT_TELEMETRY.totalIndexedIncidents).toBe(2880);
-    expect(mockTelemetry.totalIndexedIncidents).toBe(2880);
+  it("enforces 2908 as canonical incident count", () => {
+    expect(CANONICAL_INCIDENT_COUNT).toBe(2908);
+    expect(CANONICAL_DATA_MOAT_TELEMETRY.totalIndexedIncidents).toBe(2908);
+    expect(mockTelemetry.totalIndexedIncidents).toBe(2908);
   });
 
   it("verifies source breakdown sum matches total indexed incidents perfectly", () => {
@@ -23,27 +23,27 @@ describe("Canonical Metrics Single Source of Truth Suite", () => {
       CANONICAL_COUNTS_BY_SOURCE.news_curated +
       CANONICAL_COUNTS_BY_SOURCE.court_record;
 
-    expect(sum).toBe(2880);
+    expect(sum).toBe(2908);
   });
 
-  it("verifies telemetry public scraped + whistleblower sum equals 2880", () => {
+  it("verifies telemetry public scraped + whistleblower sum equals 2908", () => {
     const scrapedAndWhistleblower =
       CANONICAL_DATA_MOAT_TELEMETRY.publicScrapedCount +
       CANONICAL_DATA_MOAT_TELEMETRY.humanWhistleblowerCount;
-    expect(scrapedAndWhistleblower).toBe(2880);
+    expect(scrapedAndWhistleblower).toBe(2908);
   });
 
   it("resolveIncidentCount fallback behavior", () => {
-    expect(resolveIncidentCount(null)).toBe(2880);
-    expect(resolveIncidentCount(undefined)).toBe(2880);
-    expect(resolveIncidentCount(0)).toBe(2880);
-    expect(resolveIncidentCount(-5)).toBe(2880);
+    expect(resolveIncidentCount(null)).toBe(2908);
+    expect(resolveIncidentCount(undefined)).toBe(2908);
+    expect(resolveIncidentCount(0)).toBe(2908);
+    expect(resolveIncidentCount(-5)).toBe(2908);
     expect(resolveIncidentCount(3500)).toBe(3500);
   });
 
   it("resolveCountsBySource fallback behavior", () => {
     const fallback = resolveCountsBySource(null);
-    expect(fallback.user_submitted).toBe(498);
+    expect(fallback.user_submitted).toBe(526);
     expect(fallback.news_curated).toBe(785);
 
     const custom = resolveCountsBySource([

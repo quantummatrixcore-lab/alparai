@@ -17,7 +17,7 @@ interface TickerIncident {
 
 const DEFAULT_TICKER_INCIDENTS: TickerIncident[] = [
   {
-    id: "ALP-2026-2880",
+    id: "ALP-2026-2908",
     title_masked: "Autonomous Risk Evaluation System Hallucination Drift",
     category: "hallucination",
     ai_provider: { name: "OpenAI" },

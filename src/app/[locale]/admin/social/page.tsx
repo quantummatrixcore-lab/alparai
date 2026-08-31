@@ -117,7 +117,7 @@ export default function SocialStudioPage() {
     {
       id: "SOC-01",
       platform: "LinkedIn & X",
-      hook: "🚨 2.880 AI Zafiyeti Açıklandı: EU AI Act Madde 73 Neden Tüm Şirketleri Değiştirecek?",
+      hook: "🚨 2.908 AI Zafiyeti Açıklandı: EU AI Act Madde 73 Neden Tüm Şirketleri Değiştirecek?",
       time: "Bugün 09:30 (Peak Hour)",
       status: "SCHEDULED",
       reach: "Est. 45k",

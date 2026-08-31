@@ -104,16 +104,14 @@ export function MobileNav({
 
     return () => {
       document.body.style.overflow = originalBodyOverflow;
-      document.documentElement.style.overflow = originalHtmlHtmlOverflow(originalHtmlOverflow);
+      document.documentElement.style.overflow = originalHtmlOverflow;
       document.body.style.touchAction = originalTouchAction;
       window.removeEventListener("keydown", handleKey);
     };
   }, [open]);
 
   // Helper for safe style reset
-  function originalHtmlHtmlOverflow(val: string) {
-    return val;
-  }
+  
 
   useEffect(() => {
     setOpen(false);

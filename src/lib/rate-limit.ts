@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { type NextRequest, type NextResponse } from 'next/server';
 import { rateLimited } from '@/lib/api/response';
 
 const requests = new Map<string, { count: number; resetAt: number }>();

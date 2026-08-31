@@ -76,7 +76,7 @@ describe('Translation Integrity Contracts', () => {
 
   test('en.json and tr.json must have 100% parity with zero missing keys across all leaves', () => {
     const getLeaves = (obj: Record<string, any>, prefix = ''): string[] => {
-      let leaves: string[] = [];
+      const leaves: string[] = [];
       for (const k in obj) {
         const full = prefix ? `${prefix}.${k}` : k;
         if (typeof obj[k] === 'object' && obj[k] !== null && !Array.isArray(obj[k])) {

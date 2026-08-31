@@ -1,4 +1,4 @@
-import { ProviderAdapter, GatewayRequest, GatewayResult } from "../types";
+import { type ProviderAdapter, type GatewayRequest, type GatewayResult } from "../types";
 
 export class GroqAdapter implements ProviderAdapter {
   async call(request: GatewayRequest): Promise<GatewayResult> {

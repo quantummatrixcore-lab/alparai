@@ -1,4 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
+import { NextRequest } from "next/server";
 import { GET, OPTIONS } from "@/app/api/v1/incidents/route";
 
 vi.mock("server-only", () => ({}));
@@ -37,7 +38,7 @@ describe("Public API v1 Incidents Route (Item 155)", () => {
   });
 
   it("rejects request missing both Authorization and x-api-key headers with 401", async () => {
-    const req = new Request("http://localhost:3000/api/v1/incidents", { method: "GET" });
+    const req = new NextRequest("http://localhost:3000/api/v1/incidents", { method: "GET" });
     const res = await GET(req);
     expect(res.status).toBe(401);
     const body = await res.json();

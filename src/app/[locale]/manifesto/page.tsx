@@ -25,6 +25,8 @@ export default async function ManifestoPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  setRequestLocale(locale);
+
   return (
     <div className="bg-bg-primary">
       <ConstitutionClient />

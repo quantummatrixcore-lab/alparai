@@ -5257,7 +5257,8 @@
       "risk_cat_desc": "Real-time risk scoring mapping your AI stack against prohibited, high-risk, and systemic risk tiers.",
       "join_beta_title": "Request Enterprise Compliance Access",
       "join_beta_desc": "Get early access to our automated Article 73 audit pipeline and enterprise governance tools.",
-      "join_waitlist": "Join Enterprise Waitlist"
+      "join_waitlist": "Join Enterprise Waitlist",
+      "badge": "Enterprise Compliance"
     }
   },
   "profile": {

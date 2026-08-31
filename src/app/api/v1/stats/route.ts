@@ -1,7 +1,8 @@
 import "server-only";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { createServerClient } from "@/lib/supabase/server";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
+import { rateLimit } from "@/lib/rate-limit";
 import { headers } from "next/headers";
 import { logger } from "@/lib/utils/logger";
 
@@ -30,7 +31,10 @@ export async function OPTIONS(request: Request) {
   });
 }
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
+  const rateLimitResponse = rateLimit(request);
+  if (rateLimitResponse) return rateLimitResponse;
+
   const origin = request.headers.get("origin");
   try {
     const hdrs = await headers();

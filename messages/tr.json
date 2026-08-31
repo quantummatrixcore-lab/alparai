@@ -5257,7 +5257,8 @@
       "risk_cat_desc": "YZ mimarinizi yasaklı, yüksek riskli ve sistemik risk katmanlarıyla eşleştiren gerçek zamanlı risk skorlaması.",
       "join_beta_title": "Kurumsal Uyum Erişim Talebi",
       "join_beta_desc": "Otomatik Madde 73 denetim hattımıza ve kurumsal yönetişim araçlarımıza erken erişim sağlayın.",
-      "join_waitlist": "Kurumsal Bekleme Listesine Katıl"
+      "join_waitlist": "Kurumsal Bekleme Listesine Katıl",
+      "badge": "Kurumsal Uyum Modülü"
     }
   },
   "profile": {

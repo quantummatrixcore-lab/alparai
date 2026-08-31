@@ -11,10 +11,19 @@ import { PRESS_RELEASES } from "@/lib/constants/press-releases";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "pressKit" });
   return {
-    title: `${t("title")} — ALPAR AI`,
-    description: t("subtitle"),
+    title: `Press Kit | AlparAI`,
+    description: `AlparAI brand assets, press releases, and media resources`,
+    openGraph: {
+      title: `Press Kit | AlparAI`,
+      description: `AlparAI brand assets, press releases, and media resources`,
+      images: ["/brand-assets/og-image.png"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `Press Kit | AlparAI`,
+      images: ["/brand-assets/og-image.png"],
+    },
   };
 }
 

@@ -10,8 +10,20 @@ export const revalidate = 60;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "dilemmas" });
-  return { title: t("pageTitle") };
+  return {
+    title: `AI Dilemmas | AlparAI`,
+    description: `Explore critical AI ethical dilemmas and case studies`,
+    openGraph: {
+      title: `AI Dilemmas | AlparAI`,
+      description: `Explore critical AI ethical dilemmas and case studies`,
+      images: ["/brand-assets/og-image.png"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `AI Dilemmas | AlparAI`,
+      images: ["/brand-assets/og-image.png"],
+    },
+  };
 }
 
 export default async function DilemmasPage({ params }: { params: Promise<{ locale: string }> }) {

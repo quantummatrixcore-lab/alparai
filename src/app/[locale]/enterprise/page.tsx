@@ -11,7 +11,7 @@ export default async function EnterprisePage({ params }: { params: Promise<{ loc
   const t = await getTranslations({ locale, namespace: "enterprise" });
 
   return (
-    <div className="pt-4 pb-16 md:pt-8 md:pb-20">
+    <div className="bg-bg-primary pt-4 pb-16 md:pt-8 md:pb-20">
       <ShowcasePageTracker pagePath="/enterprise" />
       <Container>
         <div className="mx-auto max-w-4xl text-center">

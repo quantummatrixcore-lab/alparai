@@ -5672,7 +5672,8 @@
     "status_header": "Compliance Status",
     "verified_header": "Verification Proof",
     "empty_state_title": "No Public Article 73 Breaches Logged",
-    "empty_state_desc": "All monitored foundation models are currently operating within the European AI Office compliance thresholds."
+    "empty_state_desc": "All monitored foundation models are currently operating within the European AI Office compliance thresholds.",
+    "empty_state_subtitle": "Compliance data will appear here"
   },
   "trust": {
     "methodology": "Peer-reviewed Methodology",

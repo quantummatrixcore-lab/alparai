@@ -31,7 +31,7 @@ export default function PricingPage({
   const t = useTranslations("pricing");
 
   return (
-    <div className="selection:bg-brand-500/30 min-h-screen px-6 pt-4 pb-12 text-white md:pt-8 md:pb-16">
+    <div className="bg-bg-primary selection:bg-brand-500/30 min-h-screen px-6 pt-4 pb-12 text-white md:pt-8 md:pb-16">
       <div className="mx-auto max-w-7xl space-y-8 md:space-y-10">
         <div className="space-y-3 text-center">
           <span className="border-brand-500/30 bg-brand-500/10 text-brand-300 inline-block rounded-full border px-3.5 py-1 text-xs font-semibold tracking-wider uppercase backdrop-blur-md">

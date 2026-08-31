@@ -1,0 +1,1 @@
+ALTER TABLE wall_of_shame_entries ENABLE ROW LEVEL SECURITY; CREATE POLICY "Allow public read" ON wall_of_shame_entries FOR SELECT USING(true); CREATE POLICY "Allow auth insert" ON wall_of_shame_entries FOR INSERT TO authenticated WITH CHECK(true);

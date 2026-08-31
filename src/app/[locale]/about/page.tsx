@@ -15,7 +15,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   setRequestLocale(locale);
 
   return (
-    <main className="min-h-screen bg-[#0A1622] pt-24 pb-20">
+    <main className="min-h-screen bg-bg-primary pt-24 pb-20">
       <Section className="relative">
         <Container>
           <div className="mx-auto max-w-4xl text-center">

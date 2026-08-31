@@ -29,7 +29,7 @@ export default async function PressKitPage({ params }: { params: Promise<{ local
   const isEn = locale === "en";
 
   return (
-    <div>
+    <div className="bg-bg-primary min-h-screen">
       <div className="border-border-subtle/50 bg-bg-primary border-b pt-4 pb-12 text-center md:pt-8 md:pb-16">
         <Container>
           <div className="mx-auto max-w-3xl space-y-4">

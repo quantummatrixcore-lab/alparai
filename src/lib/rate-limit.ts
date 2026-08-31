@@ -1,4 +1,5 @@
-﻿import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
+import { rateLimited } from '@/lib/api/response';
 
 const requests = new Map<string, { count: number; resetAt: number }>();
 
@@ -16,10 +17,8 @@ export function rateLimit(req: NextRequest, maxRequests = 60, windowMs = 60_000)
   
   record.count++;
   if (record.count > maxRequests) {
-    return NextResponse.json({ error: 'Too many requests' }, {
-      status: 429,
-      headers: { 'Retry-After': String(Math.ceil((record.resetAt - now) / 1000)) },
-    });
+    const retryAfter = Math.ceil((record.resetAt - now) / 1000);
+    return rateLimited('Too many requests', retryAfter);
   }
   return null;
 }

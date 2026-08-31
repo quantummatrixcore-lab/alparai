@@ -142,11 +142,11 @@ export function Nav({
         const Icon = item.icon;
         const isActive = pathname.startsWith(item.href);
         return (
-          <Link
+            <Link
             key={item.href}
             href={item.href}
             className={cn(
-              "focus-visible:ring-brand-500 relative inline-flex flex-shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold whitespace-nowrap transition-all duration-200 outline-none focus-visible:ring-2",
+              "focus-visible:ring-brand-500 relative inline-flex min-h-[36px] flex-shrink-0 items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-semibold whitespace-nowrap transition-all duration-200 outline-none focus-visible:ring-2",
               isActive ? "text-brand-300" : "text-fg-secondary hover:text-white hover:bg-white/[0.04]",
             )}
             aria-current={isActive ? "page" : undefined}
@@ -176,7 +176,7 @@ export function Nav({
             <button
               onClick={() => setOpenGroup(isGroupOpen ? null : group.id)}
               className={cn(
-                "focus-visible:ring-brand-500 relative inline-flex cursor-pointer items-center gap-1 rounded-full px-3 py-1.5 text-xs font-semibold whitespace-nowrap transition-all duration-200 outline-none focus-visible:ring-2",
+                "focus-visible:ring-brand-500 relative inline-flex min-h-[36px] cursor-pointer items-center gap-1 rounded-full px-3.5 py-1.5 text-xs font-semibold whitespace-nowrap transition-all duration-200 outline-none focus-visible:ring-2",
                 isGroupActive || isGroupOpen
                   ? "text-brand-300 bg-brand-500/10"
                   : "text-fg-secondary hover:text-white hover:bg-white/[0.04]",
@@ -213,7 +213,7 @@ export function Nav({
                       role="menuitem"
                       onClick={() => setOpenGroup(null)}
                       className={cn(
-                        "flex items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-medium transition-all duration-150 active:scale-[0.98]",
+                        "flex min-h-[40px] items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-medium transition-all duration-150 active:scale-[0.98]",
                         isSubActive
                           ? "bg-brand-500/20 text-brand-200 font-semibold shadow-sm"
                           : "text-fg-secondary hover:text-white hover:bg-white/[0.06]",
@@ -234,7 +234,7 @@ export function Nav({
         <Link
           href="/admin"
           className={cn(
-            "focus-visible:ring-brand-500 relative inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold whitespace-nowrap transition-all duration-200 outline-none focus-visible:ring-2",
+            "focus-visible:ring-brand-500 relative inline-flex min-h-[36px] items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-semibold whitespace-nowrap transition-all duration-200 outline-none focus-visible:ring-2",
             pathname.startsWith("/admin")
               ? "text-brand-300"
               : "text-fg-secondary hover:text-white hover:bg-white/[0.04]",

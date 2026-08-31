@@ -55,8 +55,9 @@ export function UserMenu({ initialUser }: { initialUser: SessionUserShape | null
   return (
     <div className="relative" ref={ref}>
       <button
+        type="button"
         onClick={() => setOpen((o) => !o)}
-        className="bg-bg-tertiary border-border-strong text-fg-primary hover:border-brand-500 inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border"
+        className="bg-bg-tertiary border-border-strong text-fg-primary hover:border-brand-500 inline-flex min-h-[44px] min-w-[44px] h-10 w-10 items-center justify-center overflow-hidden rounded-full border transition-colors focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:outline-none cursor-pointer"
         aria-label={tCommon("account")}
         aria-expanded={open}
         aria-haspopup="menu"
@@ -83,7 +84,7 @@ export function UserMenu({ initialUser }: { initialUser: SessionUserShape | null
       {open && (
         <div
           role="menu"
-          className="border-border-subtle bg-bg-elevated absolute top-12 right-0 z-50 w-64 overflow-hidden rounded-lg border shadow-2xl"
+          className="border-border-subtle bg-bg-elevated absolute top-12 right-0 z-50 w-64 overflow-hidden rounded-xl border shadow-2xl backdrop-blur-xl"
         >
           <div className="border-border-subtle border-b p-3">
             <p className="text-fg-primary truncate text-sm font-semibold">
@@ -104,7 +105,7 @@ export function UserMenu({ initialUser }: { initialUser: SessionUserShape | null
             <Link
               href="/profile"
               role="menuitem"
-              className="text-fg-secondary hover:bg-bg-tertiary hover:text-fg-primary flex items-center gap-2 px-3 py-2 text-sm"
+              className="text-fg-secondary hover:bg-bg-tertiary hover:text-fg-primary flex min-h-[40px] items-center gap-2.5 px-3.5 py-2 text-sm transition-colors"
               onClick={() => setOpen(false)}
             >
               <UserIcon className="h-4 w-4" /> {t("profile")}
@@ -112,7 +113,7 @@ export function UserMenu({ initialUser }: { initialUser: SessionUserShape | null
             <Link
               href="/my-incidents"
               role="menuitem"
-              className="text-fg-secondary hover:bg-bg-tertiary hover:text-fg-primary flex items-center gap-2 px-3 py-2 text-sm"
+              className="text-fg-secondary hover:bg-bg-tertiary hover:text-fg-primary flex min-h-[40px] items-center gap-2.5 px-3.5 py-2 text-sm transition-colors"
               onClick={() => setOpen(false)}
             >
               <BarChart3 className="h-4 w-4" /> {t("myIncidents")}
@@ -120,7 +121,7 @@ export function UserMenu({ initialUser }: { initialUser: SessionUserShape | null
             <Link
               href="/settings"
               role="menuitem"
-              className="text-fg-secondary hover:bg-bg-tertiary hover:text-fg-primary flex items-center gap-2 px-3 py-2 text-sm"
+              className="text-fg-secondary hover:bg-bg-tertiary hover:text-fg-primary flex min-h-[40px] items-center gap-2.5 px-3.5 py-2 text-sm transition-colors"
               onClick={() => setOpen(false)}
             >
               <Settings className="h-4 w-4" /> {t("settings")}
@@ -129,7 +130,7 @@ export function UserMenu({ initialUser }: { initialUser: SessionUserShape | null
               <Link
                 href="/admin"
                 role="menuitem"
-                className="text-brand-300 hover:bg-bg-tertiary flex items-center gap-2 px-3 py-2 text-sm"
+                className="text-brand-300 hover:bg-bg-tertiary flex min-h-[40px] items-center gap-2.5 px-3.5 py-2 text-sm transition-colors"
                 onClick={() => setOpen(false)}
               >
                 <ShieldCheck className="h-4 w-4" /> {t("adminPanel")}
@@ -141,7 +142,7 @@ export function UserMenu({ initialUser }: { initialUser: SessionUserShape | null
               <button
                 type="submit"
                 role="menuitem"
-                className="text-danger-400 hover:bg-danger-500/10 flex w-full items-center gap-2 px-3 py-2 text-sm"
+                className="text-danger-400 hover:bg-danger-500/10 flex min-h-[40px] w-full items-center gap-2.5 px-3.5 py-2 text-sm transition-colors cursor-pointer"
               >
                 <LogOut className="h-4 w-4" /> {t("signOut")}
               </button>

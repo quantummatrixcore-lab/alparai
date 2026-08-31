@@ -12,18 +12,14 @@ import {
   SoftwareApplicationJsonLd,
   WebSiteJsonLd,
 } from "@/components/seo/json-ld";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import { fontSans, fontDisplay, fontMono } from "@/lib/fonts";
 import { PostHogProvider } from "@/components/posthog-provider";
-
 import { Footer } from "@/components/layout/footer";
 import { MobileBottomNav } from "@/components/layout/mobile-bottom-nav";
 import { ClientProviders } from "@/components/client-providers";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { PwaRegister } from "@/components/pwa-register";
-import { PlausibleWithConsent } from "@/components/plausible-consent";
-import { UtmTracker } from "@/components/analytics/utm-tracker";
-import { ReferralTracker } from "@/components/marketing/referral-tracker";
+import { DeferredTelemetry } from "@/components/analytics/deferred-telemetry";
 import { ThemeProvider } from "next-themes";
 import { constructPageMetadata } from "@/lib/seo/metadata";
 import "../globals.css";
@@ -76,7 +72,12 @@ export default async function LocaleLayout({
   const dir = locale === "ar" || locale === "fa" ? "rtl" : "ltr";
 
   return (
-    <html lang={locale} dir={dir} suppressHydrationWarning className="overflow-x-clip max-w-full">
+    <html
+      lang={locale}
+      dir={dir}
+      suppressHydrationWarning
+      className={`overflow-x-clip max-w-full ${fontSans.variable} ${fontDisplay.variable} ${fontMono.variable}`}
+    >
       <head></head>
       <body className="bg-bg-primary text-fg-primary relative min-h-screen w-full max-w-full overflow-x-clip font-sans antialiased">
         <a
@@ -111,11 +112,7 @@ export default async function LocaleLayout({
               <OrganizationJsonLd />
               <SoftwareApplicationJsonLd />
               <WebSiteJsonLd />
-              <PlausibleWithConsent />
-              <UtmTracker />
-              <ReferralTracker />
-              <Analytics />
-              <SpeedInsights />
+              <DeferredTelemetry />
             </NextIntlClientProvider>
           </PostHogProvider>
         </ThemeProvider>

@@ -12,6 +12,8 @@ import {
   type SidebarNewsItem,
   type SidebarPollData,
 } from "@/components/dilemmas/sidebar-engagement";
+import { CollectionPageJsonLd } from "@/components/seo/json-ld";
+import { APP_URL } from "@/lib/constants";
 import type { IncidentListItem } from "@/types";
 import { toIncidentListItems, type TranslationMap } from "@/lib/mappers";
 import type { Database } from "@/types/database";
@@ -188,6 +190,16 @@ export default async function IncidentsPage({
 
   return (
     <Container className="pt-4 pb-12 md:pt-6 md:pb-16">
+      <CollectionPageJsonLd
+        name={t("page_title")}
+        description={t("page_subtitle", { count: totalCount })}
+        url={`${APP_URL}/${locale}/incidents`}
+        items={items.map((item) => ({
+          name: item.title_masked,
+          url: `${APP_URL}/${locale}/incidents/${item.id}`,
+          description: item.description_masked,
+        }))}
+      />
       <header className="border-border-subtle/50 bg-bg-deep relative mb-8 overflow-hidden rounded-2xl border p-6 shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)] sm:p-8">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_100%_100%_at_50%_0%,#000_30%,transparent_100%)] bg-[size:40px_40px]" />
         <div className="relative z-10 flex flex-col items-center text-center">

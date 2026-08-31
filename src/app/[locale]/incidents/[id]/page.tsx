@@ -24,14 +24,48 @@ export async function generateMetadata({
   const supabase = await createServerClient();
   const { data } = await supabase
     .from("incidents")
-    .select("title_masked, title_tr")
+    .select("title_masked, title_tr, description_masked, description_tr, severity, category")
     .eq("id", id)
     .maybeSingle();
   const row = data as Record<string, unknown> | null;
   const title =
     locale === "tr" && row?.title_tr ? (row.title_tr as string) : (row?.title_masked as string);
+  const description =
+    locale === "tr" && row?.description_tr
+      ? (row.description_tr as string)
+      : (row?.description_masked as string);
+  const pageUrl = `${APP_URL}/${locale}/incidents/${id}`;
+
   return {
-    title: title ?? "Incident",
+    title: title ? `${title} | ALPAR AI` : "AI Incident Audit | ALPAR AI",
+    description: description ? description.slice(0, 160) : undefined,
+    alternates: {
+      canonical: pageUrl,
+      languages: {
+        en: `${APP_URL}/en/incidents/${id}`,
+        tr: `${APP_URL}/tr/incidents/${id}`,
+      },
+    },
+    openGraph: {
+      title: title ?? "AI Incident Report",
+      description: description ?? "Independent AI Incident & Safety Audit",
+      url: pageUrl,
+      type: "article",
+      images: [
+        {
+          url: `${APP_URL}/${locale}/incidents/${id}/opengraph-image`,
+          width: 1200,
+          height: 630,
+          alt: title ?? "AI Incident Audit",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: title ?? "AI Incident Report",
+      description: description ?? "Independent AI Incident & Safety Audit",
+      images: [`${APP_URL}/${locale}/incidents/${id}/opengraph-image`],
+    },
   };
 }
 
@@ -183,12 +217,31 @@ export default async function IncidentDetailPage({
   return (
     <Container className="py-10">
       <IncidentJsonLd
-        title={incident.title_masked}
-        description={incident.description_masked}
-        dateOccurred={incident.incident_date}
+        title={locale === "tr" && incident.title_tr ? incident.title_tr : incident.title_masked}
+        description={
+          locale === "tr" && incident.description_tr
+            ? incident.description_tr
+            : incident.description_masked
+        }
+        dateOccurred={incident.incident_date || incident.created_at}
+        dateModified={incident.created_at || incident.incident_date}
         url={`${APP_URL}/${locale}/incidents/${id}`}
         severity={incident.severity}
         provider={incident.provider_name}
+        modelName={incident.model_name}
+        category={incident.category}
+        locale={locale}
+        images={[
+          `${APP_URL}/${locale}/incidents/${id}/opengraph-image`,
+          ...evidence
+            .filter((e) => e.file_type.startsWith("image/"))
+            .map((e) => e.file_url),
+        ]}
+        authorName={incident.is_anonymous ? null : incident.author_name}
+        truthScore={incident.cross_audit_truth_score}
+        upvotes={incident.upvotes}
+        downvotes={incident.downvotes}
+        affectedCount={incident.affected_count}
       />
       {isAdminOrModerator && <StatusBanner status={incident.status} />}
       <IncidentDetailView

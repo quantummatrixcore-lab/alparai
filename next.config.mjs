@@ -165,6 +165,24 @@ const nextConfig = {
         headers: embedHeaders,
       },
       {
+        source: "/(brand-assets|icons|images|favicons|brand|logo)/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/(favicon.ico|favicon.svg|manifest.webmanifest|robots.txt|sitemap.xml)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=86400, stale-while-revalidate=604800",
+          },
+        ],
+      },
+      {
         source: "/((?!.*embed).*)",
         headers: securityHeaders,
       },

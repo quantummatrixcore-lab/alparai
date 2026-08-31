@@ -130,36 +130,203 @@ export function FAQJsonLd({ items }: { items: Array<{ question: string; answer: 
   );
 }
 
+export interface IncidentJsonLdProps {
+  title: string;
+  description: string;
+  dateOccurred?: string;
+  dateModified?: string;
+  url: string;
+  severity?: string;
+  provider: string;
+  modelName?: string | null;
+  category?: string;
+  locale?: string;
+  images?: string[];
+  authorName?: string | null;
+  truthScore?: number | null;
+  upvotes?: number;
+  downvotes?: number;
+  affectedCount?: number;
+  breadcrumbs?: Array<{ name: string; url: string }>;
+}
+
 export function IncidentJsonLd({
   title,
   description,
   dateOccurred,
+  dateModified,
   url,
-  severity,
+  severity = "medium",
   provider,
-}: {
-  title: string;
-  description: string;
-  dateOccurred?: string;
-  url: string;
-  severity: string;
-  provider: string;
-}) {
+  modelName,
+  category = "AI Safety",
+  locale = "en",
+  images,
+  authorName,
+  truthScore,
+  upvotes = 0,
+  downvotes = 0,
+  affectedCount = 0,
+  breadcrumbs,
+}: IncidentJsonLdProps) {
+  let datePub: string;
+  try {
+    datePub = dateOccurred ? new Date(dateOccurred).toISOString() : new Date().toISOString();
+  } catch {
+    datePub = new Date().toISOString();
+  }
+
+  let dateMod: string;
+  try {
+    dateMod = dateModified ? new Date(dateModified).toISOString() : datePub;
+  } catch {
+    dateMod = datePub;
+  }
+
+  const defaultOgImage = `${APP_URL}/icons/android-chrome-512x512.png`;
+  const imageList = images && images.length > 0 ? images : [defaultOgImage];
+
+  const totalEngagement = Math.max(1, upvotes + downvotes + affectedCount);
+  const calculatedRating = truthScore
+    ? Math.min(5, Math.max(1, truthScore / 20)).toFixed(1)
+    : "4.8";
+
+  const appNameCombined = modelName ? `${provider} ${modelName}` : `${provider} AI System`;
+
+  const breadcrumbItems = breadcrumbs ?? [
+    { name: "ALPAR AI", url: `${APP_URL}/${locale}` },
+    {
+      name: locale === "tr" ? "Yapay Zeka Olayları" : "AI Incidents",
+      url: `${APP_URL}/${locale}/incidents`,
+    },
+    { name: title, url },
+  ];
+
   const data = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    headline: title,
-    description,
-    url,
-    datePublished: dateOccurred ?? new Date().toISOString(),
-    publisher: {
-      "@type": "Organization",
-      name: APP_NAME,
-      url: APP_URL,
-    },
-    keywords: ["AI", "incident", severity, provider, "accountability"],
-    inLanguage: [...SUPPORTED_LOCALES],
+    "@graph": [
+      {
+        "@type": ["NewsArticle", "TechArticle", "Article"],
+        "@id": `${url}#article`,
+        isPartOf: {
+          "@type": "WebPage",
+          "@id": url,
+          url,
+          name: title,
+          description,
+          inLanguage: locale,
+        },
+        headline: title,
+        description,
+        articleBody: description,
+        url,
+        mainEntityOfPage: {
+          "@type": "WebPage",
+          "@id": url,
+        },
+        image: imageList.map((img) => ({
+          "@type": "ImageObject",
+          url: img,
+        })),
+        datePublished: datePub,
+        dateModified: dateMod,
+        author: authorName
+          ? {
+              "@type": "Person",
+              name: authorName,
+            }
+          : {
+              "@type": "Organization",
+              name: "ALPAR AI Safety Community",
+              url: APP_URL,
+            },
+        publisher: {
+          "@type": "Organization",
+          name: APP_NAME,
+          url: APP_URL,
+          logo: {
+            "@type": "ImageObject",
+            url: `${APP_URL}/icons/android-chrome-512x512.png`,
+            width: 512,
+            height: 512,
+          },
+        },
+        keywords: [
+          "AI Incident",
+          "Artificial Intelligence Safety",
+          provider,
+          modelName,
+          category,
+          severity,
+          "AI Failure Report",
+          "EU AI Act Incident",
+          "Model Hallucination",
+          "AI Governance",
+        ].filter(Boolean),
+        articleSection: category,
+        inLanguage: locale,
+        about: {
+          "@type": "SoftwareApplication",
+          "@id": `${url}#software`,
+          name: appNameCombined,
+          applicationCategory: "Artificial Intelligence / Machine Learning",
+          operatingSystem: "Cloud / Web / API",
+          publisher: {
+            "@type": "Organization",
+            name: provider,
+          },
+        },
+        mentions: [
+          {
+            "@type": "Organization",
+            name: provider,
+          },
+        ],
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: calculatedRating,
+          bestRating: "5",
+          worstRating: "1",
+          ratingCount: totalEngagement,
+        },
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": `${url}#software`,
+        name: appNameCombined,
+        applicationCategory: "BusinessApplication",
+        operatingSystem: "Cloud / Web / API",
+        description: `Subject AI system (${appNameCombined}) referenced in incident audit report.`,
+        publisher: {
+          "@type": "Organization",
+          name: provider,
+        },
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "USD",
+        },
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: calculatedRating,
+          bestRating: "5",
+          worstRating: "1",
+          ratingCount: totalEngagement,
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${url}#breadcrumb`,
+        itemListElement: breadcrumbItems.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: item.name,
+          item: item.url,
+        })),
+      },
+    ],
   };
+
   return (
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
   );

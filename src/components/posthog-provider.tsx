@@ -27,12 +27,26 @@ function PostHogPageview() {
 export function PostHogProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (typeof window !== "undefined" && !posthog.__loaded) {
-      posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY || "phc_dummy", {
-        api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com",
-        person_profiles: "identified_only",
-        capture_pageview: false,
-        capture_pageleave: true,
-      });
+      const initPostHog = () => {
+        if (!posthog.__loaded) {
+          posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY || "phc_dummy", {
+            api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com",
+            person_profiles: "identified_only",
+            capture_pageview: false,
+            capture_pageleave: true,
+            autocapture: false,
+            disable_session_recording: true,
+          });
+        }
+      };
+
+      if ("requestIdleCallback" in window) {
+        const handle = window.requestIdleCallback(initPostHog, { timeout: 3000 });
+        return () => window.cancelIdleCallback(handle);
+      } else {
+        const timer = setTimeout(initPostHog, 1500);
+        return () => clearTimeout(timer);
+      }
     }
   }, []);
 

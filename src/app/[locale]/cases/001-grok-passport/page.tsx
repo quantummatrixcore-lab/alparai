@@ -2,13 +2,37 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/layout";
 import { ShieldAlert, Calendar, User, Building, FileText, Clock } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { IncidentJsonLd } from "@/components/seo/json-ld";
+import { APP_URL } from "@/lib/constants";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "cases" });
+  const title = `${t("case_001_title")} | ALPAR AI Case Audit`;
+  const description = t("case_001_desc");
+  const url = `${APP_URL}/${locale}/cases/001-grok-passport`;
+
   return {
-    title: t("case_001_title"),
-    description: t("case_001_desc"),
+    title,
+    description,
+    alternates: {
+      canonical: url,
+      languages: {
+        en: `${APP_URL}/en/cases/001-grok-passport`,
+        tr: `${APP_URL}/tr/cases/001-grok-passport`,
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
 }
 
@@ -42,6 +66,22 @@ export default async function Case001Page({ params }: { params: Promise<{ locale
 
   return (
     <div className="min-h-screen pb-20">
+      <IncidentJsonLd
+        title={tCases("case_001_title")}
+        description={tCases("case_001_desc")}
+        dateOccurred="2024-08-01"
+        url={`${APP_URL}/${locale}/cases/001-grok-passport`}
+        severity="critical"
+        provider="xAI"
+        modelName="Grok-2"
+        category="Privacy & Identity Leaks"
+        locale={locale}
+        breadcrumbs={[
+          { name: "ALPAR AI", url: `${APP_URL}/${locale}` },
+          { name: locale === "tr" ? "Vaka İncelemeleri" : "Case Studies", url: `${APP_URL}/${locale}/cases` },
+          { name: tCases("case_001_title"), url: `${APP_URL}/${locale}/cases/001-grok-passport` },
+        ]}
+      />
       {/* Header */}
       <div className="border-border-subtle bg-bg-secondary/20 border-b py-20 text-center">
         <Container>

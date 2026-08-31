@@ -6,6 +6,8 @@ import { createServerClient } from "@/lib/supabase/server";
 import { Container } from "@/components/ui/layout";
 import { Shield, Activity, Cpu } from "lucide-react";
 import { Link } from "@/i18n/routing";
+import { CollectionPageJsonLd } from "@/components/seo/json-ld";
+import { APP_URL } from "@/lib/constants";
 
 export async function generateMetadata({
   params,
@@ -61,6 +63,16 @@ export default async function ProviderIncidentsPage({
 
   return (
     <Container className="py-10">
+      <CollectionPageJsonLd
+        name={t("header_title", { providerName: provider.name })}
+        description={provider.description || t("header_default_desc")}
+        url={`${APP_URL}/${locale}/incidents/provider/${slug}`}
+        items={incidentList.map((inc) => ({
+          name: inc.title_masked ?? "AI Incident",
+          url: `${APP_URL}/${locale}/incidents/${inc.id}`,
+          description: `${inc.category} incident involving ${provider.name}`,
+        }))}
+      />
       <header className="border-border-subtle mb-8 rounded-xl border bg-white/5 p-6 shadow-lg">
         <div className="mb-2 flex items-center gap-3">
           <Cpu className="text-brand-400 h-6 w-6" />

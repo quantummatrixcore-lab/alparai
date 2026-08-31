@@ -70,7 +70,7 @@ export default async function EuAiActPage({ params }: { params: Promise<{ locale
             <TrackedCtaButton
               pagePath="/products/eu-ai-act"
               ctaAction="join_waitlist"
-              href="mailto:hello@alparai.com?subject=EU AI Act Beta Access"
+              href="mailto:contact@alparai.com?subject=EU AI Act Beta Access"
               className="bg-brand-600 hover:bg-brand-500 inline-flex h-12 items-center justify-center rounded-md px-8 text-sm font-bold text-white transition-all hover:scale-105"
             >
               {t("join_waitlist")}
@@ -82,7 +82,3 @@ export default async function EuAiActPage({ params }: { params: Promise<{ locale
   );
 }
 
-export const metadata = {
-  title: "ALPAR AI",
-  description: "The trust infrastructure for AI accountability.",
-};

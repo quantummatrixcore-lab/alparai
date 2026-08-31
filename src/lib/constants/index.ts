@@ -6,7 +6,7 @@ export const APP_NAME = "ALPAR AI" as const;
 export const APP_DESCRIPTION =
   "Trust infrastructure for AI accountability. Community-driven incident reporting platform." as const;
 export const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? ("https://alparai.com" as const);
-export const APP_EMAIL = "hello@alparai.com" as const;
+export const APP_EMAIL = "contact@alparai.com" as const;
 export const APP_TAKEDOWN_EMAIL = process.env.TAKEDOWN_EMAIL ?? ("takedown@alparai.com" as const);
 
 export const DEFAULT_LOCALE = "en" as const;

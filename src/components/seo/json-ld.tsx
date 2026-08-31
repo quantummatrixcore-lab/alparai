@@ -37,7 +37,7 @@ export function OrganizationJsonLd() {
     sameAs: [GITHUB_URL, TWITTER_URL, LINKEDIN_URL],
     contactPoint: {
       "@type": "ContactPoint",
-      email: "hello@alparai.com",
+      email: "contact@alparai.com",
       contactType: "customer support",
       availableLanguage: ["English", "Turkish"],
     },
@@ -707,7 +707,7 @@ export function ContactPageJsonLd({
       "@type": "Organization",
       name: APP_NAME,
       url: APP_URL,
-      email: "hello@alparai.com",
+      email: "contact@alparai.com",
     },
   };
   return (

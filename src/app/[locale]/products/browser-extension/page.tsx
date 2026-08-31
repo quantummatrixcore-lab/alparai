@@ -74,7 +74,7 @@ export default async function BrowserExtensionPage({
             <TrackedCtaButton
               pagePath="/products/browser-extension"
               ctaAction="join_waitlist"
-              href="mailto:hello@alparai.com?subject=ALPAR Guard Waitlist"
+              href="mailto:contact@alparai.com?subject=ALPAR Guard Waitlist"
               className="bg-brand-600 hover:bg-brand-500 inline-flex h-12 items-center justify-center rounded-md px-8 text-sm font-bold text-white transition-all hover:scale-105"
             >
               {t("join_waitlist")}
@@ -86,7 +86,3 @@ export default async function BrowserExtensionPage({
   );
 }
 
-export const metadata = {
-  title: "ALPAR AI",
-  description: "The trust infrastructure for AI accountability.",
-};

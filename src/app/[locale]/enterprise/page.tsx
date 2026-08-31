@@ -136,7 +136,3 @@ export default async function EnterprisePage({ params }: { params: Promise<{ loc
   );
 }
 
-export const metadata = {
-  title: "ALPAR AI",
-  description: "The trust infrastructure for AI accountability.",
-};

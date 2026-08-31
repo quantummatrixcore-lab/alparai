@@ -80,7 +80,7 @@ export function generateInvoiceHtmlTemplate(data: InvoiceData): string {
     Total Paid: ${formattedAmount} ${currencyUpper}
   </div>
   <div class="footer">
-    ALPAR AI — Trust Infrastructure for AI Accountability. AGPL-3.0. hello@alparai.com
+    ALPAR AI — Trust Infrastructure for AI Accountability. AGPL-3.0. contact@alparai.com
   </div>
 </body>
 </html>`;

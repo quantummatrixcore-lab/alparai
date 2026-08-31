@@ -134,7 +134,7 @@ export default async function AdvisoryBoardPage({
 
                 <div className="flex-shrink-0">
                   <a
-                    href="mailto:hello@alparai.com?subject=ALPAR%20AI%20Advisory%20Board%20Application"
+                    href="mailto:contact@alparai.com?subject=ALPAR%20AI%20Advisory%20Board%20Application"
                     className="bg-brand-500 hover:bg-brand-600 shadow-brand-500/20 inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-bold text-white shadow-lg transition-all active:scale-95"
                   >
                     <Mail className="h-4 w-4" />

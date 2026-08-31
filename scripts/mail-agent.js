@@ -1,0 +1,72 @@
+import nodemailer from 'nodemailer';
+import imaps from 'imap-simple';
+import { simpleParser } from 'mailparser';
+
+const config = {
+  imap: {
+    user: 'ercument.erden@alparai.com',
+    password: process.env.ZOHO_APP_PASSWORD || 'ENTER_APP_PASSWORD_HERE',
+    host: 'imappro.zoho.eu',
+    port: 993,
+    tls: true,
+    authTimeout: 30000
+  },
+  smtp: {
+    host: 'smtppro.zoho.eu',
+    port: 465,
+    secure: true,
+    auth: {
+      user: 'ercument.erden@alparai.com',
+      pass: process.env.ZOHO_APP_PASSWORD || 'ENTER_APP_PASSWORD_HERE',
+    }
+  }
+};
+
+export async function sendMail(to, subject, text, html) {
+  const transporter = nodemailer.createTransport(config.smtp);
+  try {
+    const info = await transporter.sendMail({
+      from: 'ALPAR AI <ercument.erden@alparai.com>',
+      to, subject, text, html
+    });
+    console.log('[MAIL AGENT] Message sent:', info.messageId);
+    return info;
+  } catch (err) {
+    console.error('[MAIL AGENT] Error sending email:', err);
+  }
+}
+
+export async function checkUnreadMails() {
+  console.log('[MAIL AGENT] Connecting to Zoho IMAP...');
+  try {
+    const connection = await imaps.connect({ imap: config.imap });
+    await connection.openBox('INBOX');
+    const messages = await connection.search(['UNSEEN'], { bodies: ['HEADER', 'TEXT', ''], markSeen: true });
+    if (messages.length === 0) {
+      console.log('[MAIL AGENT] No unread messages.');
+      connection.end();
+      return [];
+    }
+    const parsedMails = [];
+    for (const msg of messages) {
+      const allParts = msg.parts.find(p => p.which === '');
+      const id = msg.attributes.uid;
+      const mail = await simpleParser("Imap-Id: " + id + "\r\n" + allParts.body);
+      console.log('[MAIL AGENT] Read from:', mail.from?.text, '| Subject:', mail.subject);
+      parsedMails.push({ uid: id, from: mail.from?.text, subject: mail.subject, text: mail.text });
+    }
+    connection.end();
+    return parsedMails;
+  } catch (err) {
+    console.error('[MAIL AGENT] IMAP Error:', err);
+  }
+}
+
+if (process.argv[1].endsWith('mail-agent.js')) {
+  if (config.imap.password === 'ENTER_APP_PASSWORD_HERE') {
+    console.error('[ERROR] ZOHO_APP_PASSWORD eksik!');
+    process.exit(1);
+  }
+  console.log('--- ALPAR AI MAIL AUTOPILOT INITIALIZING ---');
+  checkUnreadMails();
+}

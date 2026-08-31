@@ -91,7 +91,3 @@ export default async function DatasetsPage({ params }: { params: Promise<{ local
   );
 }
 
-export const metadata = {
-  title: "ALPAR AI",
-  description: "The trust infrastructure for AI accountability.",
-};

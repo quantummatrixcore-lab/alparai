@@ -155,7 +155,7 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
               <p className="text-fg-muted text-xs">{investorCompany}</p>
             </div>
             <a
-              href={`mailto:hello@alparai.com?subject=${encodeURIComponent(`Meeting Request — ${investorName} (${investorCompany})`)}`}
+              href={`mailto:contact@alparai.com?subject=${encodeURIComponent(`Meeting Request — ${investorName} (${investorCompany})`)}`}
               className="text-bg-primary rounded bg-emerald-500 px-4 py-2 text-xs font-bold transition-colors hover:bg-emerald-600"
             >
               {t("schedule_call")}
@@ -465,7 +465,7 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
                   <p className="text-fg-muted text-xs font-semibold">{t("doc_captable")}</p>
                   <p className="text-fg-muted mt-1 text-xs">{t("doc_captable_desc")}</p>
                   <a
-                    href={`mailto:hello@alparai.com?subject=${encodeURIComponent(`Cap Table Request — ${investorName}`)}`}
+                    href={`mailto:contact@alparai.com?subject=${encodeURIComponent(`Cap Table Request — ${investorName}`)}`}
                     className="mt-2 block text-xs font-bold text-emerald-400 hover:text-emerald-300"
                   >
                     {t("doc_request")}
@@ -478,7 +478,7 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
               <h3 className="mb-2 text-lg font-bold text-white">{t("next_steps_title")}</h3>
 
               <a
-                href={`mailto:hello@alparai.com?subject=${encodeURIComponent(`Investment Discussion — ${investorName} (${investorCompany})`)}`}
+                href={`mailto:contact@alparai.com?subject=${encodeURIComponent(`Investment Discussion — ${investorName} (${investorCompany})`)}`}
                 className="text-bg-primary flex items-center justify-between rounded bg-emerald-500 p-3 font-bold transition-colors hover:bg-emerald-600"
               >
                 <span>{t("cta_call")}</span>
@@ -486,7 +486,7 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
               </a>
 
               <a
-                href={`mailto:hello@alparai.com?subject=${encodeURIComponent(`Document Request — ${investorName} (${investorCompany})`)}`}
+                href={`mailto:contact@alparai.com?subject=${encodeURIComponent(`Document Request — ${investorName} (${investorCompany})`)}`}
                 className="border-border-subtle bg-bg-primary hover:border-success-500/20 flex items-center justify-between rounded border p-3 font-semibold text-white transition-colors"
               >
                 <span>{t("cta_docs")}</span>
@@ -494,7 +494,7 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
               </a>
 
               <a
-                href={`mailto:hello@alparai.com?subject=${encodeURIComponent(`Investment Offer — ${investorName} (${investorCompany})`)}`}
+                href={`mailto:contact@alparai.com?subject=${encodeURIComponent(`Investment Offer — ${investorName} (${investorCompany})`)}`}
                 className="border-border-subtle bg-bg-primary hover:border-success-500/20 flex items-center justify-between rounded border p-3 font-semibold text-white transition-colors"
               >
                 <span>{t("cta_offer")}</span>
@@ -529,10 +529,10 @@ function InvalidTokenView({
           <div className="border-border-subtle mt-8 border-t pt-6">
             <p className="text-fg-muted text-xs">{accessHelp}</p>
             <a
-              href="mailto:hello@alparai.com?subject=Investor Access Renewal Request"
+              href="mailto:contact@alparai.com?subject=Investor Access Renewal Request"
               className="mt-3 inline-block text-sm font-bold text-emerald-400 hover:text-emerald-300"
             >
-              hello@alparai.com
+              contact@alparai.com
             </a>
           </div>
         </CardContent>

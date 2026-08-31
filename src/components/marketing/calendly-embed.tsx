@@ -118,7 +118,7 @@ export function CalendlyEmbed({
                 {isTr ? "Takvimi Yeni Sekmede Aç" : "Open Calendar in New Tab"}
               </a>
               <a
-                href="mailto:hello@alparai.com?subject=Advisory%20Board%20Application"
+                href="mailto:contact@alparai.com?subject=Advisory%20Board%20Application"
                 className="border-border-subtle bg-bg-tertiary text-fg-primary hover:bg-bg-secondary inline-flex items-center justify-center gap-2 rounded-lg border px-6 py-3 text-sm font-bold transition-colors"
               >
                 <Mail className="h-4 w-4" />
@@ -148,7 +148,7 @@ export function CalendlyEmbed({
           </a>
           <span className="text-border-subtle">•</span>
           <a
-            href="mailto:hello@alparai.com?subject=Advisory%20Board%20Direct%20Application"
+            href="mailto:contact@alparai.com?subject=Advisory%20Board%20Direct%20Application"
             className="text-fg-secondary hover:text-fg-primary inline-flex items-center gap-1 font-semibold transition-colors"
           >
             <Mail className="h-3.5 w-3.5" />

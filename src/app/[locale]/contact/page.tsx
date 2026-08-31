@@ -39,10 +39,10 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                 <Mail className="text-brand-400 h-4 w-4" /> {t("general")}
               </p>
               <a
-                href="mailto:hello@alparai.com"
+                href="mailto:contact@alparai.com"
                 className="text-fg-muted hover:text-brand-400 mt-1 block text-sm"
               >
-                hello@alparai.com
+                contact@alparai.com
               </a>
             </CardContent>
           </Card>

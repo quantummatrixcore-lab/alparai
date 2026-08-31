@@ -50,10 +50,10 @@ export default async function DmcaPage({ params }: { params: Promise<{ locale: s
                   {t(`step_${step}_desc`)}{" "}
                   {step === "6" && (
                     <a
-                      href="mailto:hello@alparai.com"
+                      href="mailto:contact@alparai.com"
                       className="text-brand-400 font-bold hover:underline"
                     >
-                      hello@alparai.com
+                      contact@alparai.com
                     </a>
                   )}
                 </p>

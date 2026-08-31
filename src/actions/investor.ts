@@ -280,7 +280,7 @@ export async function approveInvestor(id: string): Promise<{ ok: boolean; error?
           from: `Ercüment Erden <${APP_EMAIL}>`,
           to: appData.email,
           subject: "You have investor access to ALPAR AI",
-          text: `Hello ${appData.full_name},\n\nThank you for your interest in ALPAR AI. We've reviewed your application and are pleased to grant you access to our investor portal.\n\nAccess your private investor portal:\n${link}\n\nThis link is unique to you and should not be shared. It expires in 30 days. If you need renewed access, simply contact us.\n\nWe look forward to speaking with you.\n\nBest,\nErcüment Erden\nFounder, ALPAR AI\nhello@alparai.com`,
+          text: `Hello ${appData.full_name},\n\nThank you for your interest in ALPAR AI. We've reviewed your application and are pleased to grant you access to our investor portal.\n\nAccess your private investor portal:\n${link}\n\nThis link is unique to you and should not be shared. It expires in 30 days. If you need renewed access, simply contact us.\n\nWe look forward to speaking with you.\n\nBest,\nErcüment Erden\nFounder, ALPAR AI\ncontact@alparai.com`,
           html: `
           <p>Hello ${appData.full_name},</p>
           <p>Thank you for your interest in ALPAR AI. We've reviewed your application and are pleased to grant you access to our investor portal.</p>
@@ -289,7 +289,7 @@ export async function approveInvestor(id: string): Promise<{ ok: boolean; error?
           <p style="font-size: 13px; color: #666;">This link is unique to you and should not be shared. It expires in 30 days. If you need renewed access, simply contact us.</p>
           <br />
           <p>We look forward to speaking with you.</p>
-          <p>Best,<br /><strong>Ercüment Erden</strong><br />Founder, ALPAR AI<br />hello@alparai.com</p>
+          <p>Best,<br /><strong>Ercüment Erden</strong><br />Founder, ALPAR AI<br />contact@alparai.com</p>
         `,
         });
       } catch (e) {

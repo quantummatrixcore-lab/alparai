@@ -35,7 +35,7 @@ const legalAndContactLinks = [
   { href: "/legal/privacy", key: "privacy", isEmail: false },
   { href: "/legal/terms", key: "terms", isEmail: false },
   { href: "/legal/cookies", key: "cookies", isEmail: false },
-  { href: "mailto:hello@alparai.com", key: "hello@alparai.com", isEmail: true },
+  { href: "mailto:contact@alparai.com", key: "contact@alparai.com", isEmail: true },
   { href: "mailto:academy@alparai.com", key: "academy@alparai.com", isEmail: true },
 ] as const;
 
@@ -93,7 +93,7 @@ export function Footer() {
                 <Linkedin className="h-4 w-4" />
               </a>
               <a
-                href="mailto:hello@alparai.com"
+                href="mailto:contact@alparai.com"
                 className="text-fg-muted hover:bg-bg-tertiary hover:text-fg-primary inline-flex h-8 w-8 items-center justify-center rounded-lg transition-colors"
                 aria-label={tCommon("email", { defaultValue: "Email" })}
               >

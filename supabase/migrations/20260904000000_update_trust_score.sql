@@ -14,7 +14,7 @@ SELECT
   p.logo_url,
   p.is_verified,
   p.website_url,
-  GREATEST(0, LEAST(100, 100 - (coalesce(count(distinct i.id), 0) * 2) + (coalesce(count(distinct r.id), 0) * 5)))::integer AS trust_score,
+  GREATEST(0, LEAST(100, 85 - (coalesce(count(distinct i.id), 0) * 2.5) + (coalesce(count(distinct r.id), 0) * 4)))::integer AS trust_score,
   p.is_verified_respondent,
   coalesce(count(distinct i.id), 0) AS incident_count,
   coalesce(count(distinct r.id), 0) AS response_count,

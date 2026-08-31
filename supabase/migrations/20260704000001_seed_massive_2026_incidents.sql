@@ -417,20 +417,8 @@ INSERT INTO incidents (
   'Florida, OpenAI ve Sam Altman''a dava açtı ve şirketi çocukları tehlikeye atmak ve bağımlı yapmak, toplu katliam saldırganlarına yardım ve yataklık etmek ve kullanıcıları intihara teşvik etmekle suçladı. AI şirketine karşı ilk eyalet düzeyinde yaptırım.',
   '52abe4a4-b303-445e-96af-98cf8d156d31', 'harassment', 'critical', '2026-06-01',
   'US', 'en', 'published', NOW(), 0, 0, 0, 0, false, '{}'
-),
-
--- 30. ChatGPT Grok Gemini fail medical audit (duplicate coverage for emphasis)
-(
-  'a0000030-0000-4000-8000-000000000030', null, false,
-  'ChatGPT Gemini and Grok confidently generated dangerous medical advice 50% of time',
-  'Study published in BMJ Open found 50% of medical advice from ChatGPT, Gemini, and Grok contained problematic information. 19.6% highly problematic. Models delivered answers with confidence and certainty even when unable to provide accurate medical references.',
-  'ChatGPT Gemini and Grok confidently generated dangerous medical advice 50% of time',
-  'Study published in BMJ Open found 50% of medical advice from ChatGPT, Gemini, and Grok contained problematic information. 19.6% highly problematic. Models delivered answers with confidence and certainty even when unable to provide accurate medical references.',
-  'ChatGPT Gemini ve Grok, zamanın yarısında tehlikeli tıbbi tavsiyeleri güvenle üretti',
-  'BMJ Open''da yayımlanan çalışma, ChatGPT, Gemini ve Grok''un tıbbi tavsiyelerinin %50''sinin sorunlu bilgi içerdiğini tespit etti. %19.6''sı yüksek sorunlu. Modeller, doğru tıbbi referanslar sağlayamadıkları halde güven ve kesinlikle yanıtlar verdi.',
-  '52abe4a4-b303-445e-96af-98cf8d156d31', 'hallucination', 'critical', '2026-04-15',
-  'US', 'en', 'published', NOW(), 0, 0, 0, 0, false, '{}'
 );
+
 
 -- ============================================================================
 -- Update published_at to spread over time for freshness

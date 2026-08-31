@@ -22,7 +22,7 @@ export async function POST(
       return NextResponse.json({ error: "Invalid vote decision. Must be 'guilty', 'innocent', or 'abstain'." }, { status: 400 });
     }
 
-    const supabase = createAdminClient();
+    const supabase = createAdminClient() as any;
 
     // Verify case exists and is open for voting
     const { data: juryCase, error: caseErr } = await supabase

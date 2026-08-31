@@ -24,7 +24,7 @@ export async function GET(request: Request) {
     const limit = Math.min(Number(searchParams.get("limit") ?? "20"), 50);
     const offset = Math.max(Number(searchParams.get("offset") ?? "0"), 0);
 
-    const supabase = createAdminClient();
+    const supabase = createAdminClient() as any;
     let query: any = supabase
       .from("jury_cases")
       .select(`
@@ -87,7 +87,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Title and description are required." }, { status: 400 });
     }
 
-    const supabase = createAdminClient();
+    const supabase = createAdminClient() as any;
 
     const { data: rep } = await supabase
       .from("user_reputation")

@@ -18,7 +18,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Fingerprint is required for Anti-Sybil evaluation" }, { status: 400 });
     }
 
-    const supabase = createAdminClient();
+    const supabase = createAdminClient() as any;
 
     // Call evaluate_sybil_risk_rpc
     const { data, error } = await supabase.rpc("evaluate_sybil_risk_rpc", {

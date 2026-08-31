@@ -508,13 +508,13 @@ export default async function TransparencyPage({
             <div className="text-brand-400 font-semibold">
               {tTransparency("methodologyFormula", {
                 defaultValue:
-                  "(Verified Incidents × -5) + (Response Speed × +20) + (Transparency Report × +15) + (User Rating × +10) + (Audit Score × +30)",
+                  "85 - (incidents × 2.5) + (responses × 4)",
               })}
             </div>
             <div className="text-fg-muted pt-2 text-[10px]">
               {tTransparency("methodologyFormulaNote", {
                 defaultValue:
-                  "* Normalized to a 0–100 scale. Lower scores indicate higher rates of unaddressed AI incidents.",
+                  "* Bounded to [0, 100] range: GREATEST(0, LEAST(100, 85 - (incidents × 2.5) + (responses × 4)))",
               })}
             </div>
           </div>

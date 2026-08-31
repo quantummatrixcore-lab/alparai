@@ -26,7 +26,7 @@ export async function GET(request: Request) {
     const limit = Math.min(Number(searchParams.get("limit") ?? "25"), 100);
     const offset = Math.max(Number(searchParams.get("offset") ?? "0"), 0);
 
-    const supabase = createAdminClient();
+    const supabase = createAdminClient() as any;
     let query: any = supabase
       .from("ai_rap_sheet_entries")
       .select(`
@@ -107,7 +107,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "entity_name and offense_summary are required" }, { status: 400 });
     }
 
-    const supabase = createAdminClient();
+    const supabase = createAdminClient() as any;
     const { data, error } = await supabase
       .from("ai_rap_sheet_entries")
       .insert([{

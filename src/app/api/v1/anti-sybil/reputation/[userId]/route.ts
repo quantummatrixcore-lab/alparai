@@ -11,7 +11,7 @@ export async function GET(
   try {
     const { userId } = await params;
     const currentUser = await getCurrentUser();
-    const supabase = createAdminClient();
+    const supabase = createAdminClient() as any;
 
     // Get user reputation
     const { data: rep, error: repErr } = await supabase
@@ -36,7 +36,7 @@ export async function GET(
     };
 
     // If own profile or admin/moderator, also fetch reputation history logs
-    let logs = [];
+    let logs: any[] = [];
     if (currentUser?.id === userId || currentUser?.role === "admin" || currentUser?.role === "moderator") {
       const { data: logsData } = await supabase
         .from("reputation_logs")

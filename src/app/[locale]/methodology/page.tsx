@@ -49,8 +49,8 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
           </p>
         </div>
 
-        {/* 3 Core Mathematical Pillars */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        {/* 4 Core Mathematical Pillars */}
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Dual Channel Scoring */}
           <Card className="border-border-subtle bg-bg-secondary/60 hover:border-brand-500/40 relative flex flex-col justify-between overflow-hidden shadow-2xl backdrop-blur-xl transition-all duration-300">
             <div className="bg-brand-500/10 pointer-events-none absolute top-0 right-0 h-32 w-32 rounded-full blur-3xl" />
@@ -85,6 +85,25 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
               <p>{t("wilson_desc")}</p>
               <div className="border-border-subtle/60 bg-bg-primary/70 text-success-300 rounded-lg border p-3 font-mono text-xs">
                 W_Lower = (p̂ + z²/2n - z√(p̂(1-p̂)/n + z²/4n²)) / (1 + z²/n)
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Provider TrustScore */}
+          <Card className="border-border-subtle bg-bg-secondary/60 hover:border-purple-500/40 relative flex flex-col justify-between overflow-hidden shadow-2xl backdrop-blur-xl transition-all duration-300">
+            <div className="bg-purple-500/10 pointer-events-none absolute top-0 right-0 h-32 w-32 rounded-full blur-3xl" />
+            <CardHeader className="pb-4">
+              <div className="border-purple-500/20 bg-purple-500/10 mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl border">
+                <ShieldCheck className="h-6 w-6 text-purple-400" />
+              </div>
+              <CardTitle className="text-fg-primary text-xl font-bold">
+                {t("trustscore_title", { defaultValue: "Provider TrustScore™" })}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="text-fg-secondary space-y-4 text-sm leading-relaxed">
+              <p>{t("trustscore_desc", { defaultValue: "Quantifies provider accountability dynamically: base 85 score, deducting 2.5 per verified incident, and rewarding 4.0 per published response." })}</p>
+              <div className="border-border-subtle/60 bg-bg-primary/70 rounded-lg border p-3 font-mono text-xs text-purple-300">
+                Trust Score = 85 - (incidents × 2.5) + (responses × 4)
               </div>
             </CardContent>
           </Card>

@@ -10,7 +10,7 @@ export async function GET(
 ) {
   try {
     const { id } = await params;
-    const supabase = createAdminClient();
+    const supabase = createAdminClient() as any;
 
     const { data, error } = await supabase
       .from("ai_rap_sheet_entries")
@@ -45,7 +45,7 @@ export async function PATCH(
     if (is_active !== undefined) updates.is_active = is_active;
     if (penalty_details !== undefined) updates.penalty_details = penalty_details;
 
-    const supabase = createAdminClient();
+    const supabase = createAdminClient() as any;
     const { data, error } = await supabase
       .from("ai_rap_sheet_entries")
       .update(updates)

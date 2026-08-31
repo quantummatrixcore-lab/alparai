@@ -14,7 +14,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "user_id, numeric change_amount, and reason are required" }, { status: 400 });
     }
 
-    const supabase = createAdminClient();
+    const supabase = createAdminClient() as any;
     const { data, error } = await supabase.rpc("adjust_user_reputation_rpc", {
       p_user_id: user_id,
       p_change_amount: change_amount,

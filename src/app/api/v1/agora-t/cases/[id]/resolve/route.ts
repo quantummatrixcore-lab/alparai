@@ -11,7 +11,7 @@ export async function POST(
   try {
     await requireModerator();
     const { id: caseId } = await params;
-    const supabase = createAdminClient();
+    const supabase = createAdminClient() as any;
 
     // Call atomic resolution RPC
     const { data, error } = await supabase.rpc("resolve_agora_case_rpc", {
@@ -23,7 +23,7 @@ export async function POST(
       return NextResponse.json({ error: error.message || "Failed to resolve case" }, { status: 500 });
     }
 
-    logger.info(`Agora-T Case ${caseId} resolved with verdict: ${data.verdict}`);
+    logger.info(`Agora-T Case ${caseId} resolved with verdict: ${data?.verdict}`);
     return NextResponse.json({
       success: true,
       resolution: data

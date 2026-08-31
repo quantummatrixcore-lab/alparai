@@ -10,7 +10,7 @@ export async function GET(
 ) {
   try {
     const { id } = await params;
-    const supabase = createAdminClient();
+    const supabase = createAdminClient() as any;
 
     const { data: juryCase, error: caseErr } = await supabase
       .from("jury_cases")
@@ -60,7 +60,7 @@ export async function PATCH(
     if (resolution_summary) updates.resolution_summary = resolution_summary;
     if (category) updates.category = category;
 
-    const supabase = createAdminClient();
+    const supabase = createAdminClient() as any;
     const { data, error } = await supabase
       .from("jury_cases")
       .update(updates)

@@ -12,6 +12,10 @@ function error(msg) {
   hasError = true;
 }
 
+function warn(msg) {
+  console.warn('[GUARDIAN WARN]', msg);
+}
+
 function success(msg) {
   console.log('[OK]', msg);
 }
@@ -33,12 +37,16 @@ function countDeepKeys(obj) {
 function checkMessages() {
   const messagesDir = path.join(basePath, 'messages');
   const files = ['en.json', 'tr.json'];
+  let en = {};
+  let tr = {};
   
   files.forEach(file => {
     const filePath = path.join(messagesDir, file);
     if (fs.existsSync(filePath)) {
       try {
         const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+        if (file === 'en.json') en = data;
+        if (file === 'tr.json') tr = data;
         const topLevelCount = Object.keys(data).length;
         const deepCount = countDeepKeys(data);
         
@@ -62,6 +70,18 @@ function checkMessages() {
       error(`${file} not found in messages directory.`);
     }
   });
+
+  // Check nested namespaces
+  const nestedChecks = [
+    ['about', 'advisoryBoardTitle'],
+    ['suggestions', 'signInToSuggest'],
+    ['transparency', 'obligation_header'],
+    ['products', 'eu_ai_act_page'],
+  ];
+  for (const [ns, key] of nestedChecks) {
+    if (!en[ns]?.[key]) warn(`EN missing: ${ns}.${key}`);
+    if (!tr[ns]?.[key]) warn(`TR missing: ${ns}.${key}`);
+  }
 }
 
 function walk(dir, fileCallback) {

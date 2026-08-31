@@ -7,6 +7,8 @@ describe('Translation Integrity Contracts', () => {
 
   let enData: Record<string, any>;
   let trData: Record<string, any>;
+  let en: Record<string, any>;
+  let tr: Record<string, any>;
 
   const countDeepKeys = (obj: any): number => {
     let count = 0;
@@ -25,6 +27,8 @@ describe('Translation Integrity Contracts', () => {
     expect(fs.existsSync(trPath)).toBe(true);
     enData = JSON.parse(fs.readFileSync(enPath, 'utf8'));
     trData = JSON.parse(fs.readFileSync(trPath, 'utf8'));
+    en = enData;
+    tr = trData;
   });
 
   const getNestedKey = (obj: any, keyPath: string) => {
@@ -67,5 +71,20 @@ describe('Translation Integrity Contracts', () => {
     const trKeys = Object.keys(trData).sort();
     expect(enKeys.length).toBeGreaterThanOrEqual(80);
     expect(trKeys.length).toBeGreaterThanOrEqual(80);
+  });
+
+  it('should have about.advisoryBoardTitle in both locales', () => {
+    expect(en.about?.advisoryBoardTitle).toBeDefined();
+    expect(tr.about?.advisoryBoardTitle).toBeDefined();
+  });
+
+  it('should have suggestions.signInToSuggest in both locales', () => {
+    expect(en.suggestions?.signInToSuggest).toBeDefined();
+    expect(tr.suggestions?.signInToSuggest).toBeDefined();
+  });
+
+  it('should have transparency keys in both locales', () => {
+    expect(en.transparency?.obligation_header).toBeDefined();
+    expect(tr.transparency?.obligation_header).toBeDefined();
   });
 });

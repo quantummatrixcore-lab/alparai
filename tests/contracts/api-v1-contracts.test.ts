@@ -56,6 +56,18 @@ const routeSchemaMap: Record<string, z.ZodTypeAny> = {
   "k-benchmark": schemas.auditorBenchmarkResponseSchema,
   "personas/[twinId]/completions": schemas.personasCompletionsResponseSchema,
   "eu-ai-act": schemas.euAiActResponseSchema,
+  "agora-t/cases": schemas.agoraTCasesResponseSchema,
+  "agora-t/cases/[id]": schemas.agoraTCaseDetailResponseSchema,
+  "agora-t/cases/[id]/resolve": schemas.agoraTResolveResponseSchema,
+  "agora-t/cases/[id]/vote": schemas.agoraTVoteResponseSchema,
+  "agora-t/jurors": schemas.agoraTJurorsResponseSchema,
+  "anti-sybil/check": schemas.antiSybilCheckResponseSchema,
+  "anti-sybil/reputation/[userId]": schemas.antiSybilReputationUserResponseSchema,
+  "anti-sybil/reputation/adjust": schemas.antiSybilReputationAdjustResponseSchema,
+  "jury/vote": schemas.juryVoteResponseSchema,
+  "rap-sheet": schemas.rapSheetResponseSchema,
+  "rap-sheet/[id]": schemas.rapSheetDetailResponseSchema,
+  "rap-sheet/export": schemas.rapSheetExportResponseSchema,
 };
 
 describe("API v1 Contract Coverage", () => {

@@ -43,7 +43,7 @@ export default async function VisionPage({ params }: { params: Promise<{ locale:
   ];
 
   return (
-    <main className="min-h-screen bg-[#0c0e12] pt-24 pb-20">
+    <main className="min-h-screen bg-[#0c0e12] pt-24 pb-20 bg-bg-primary">
       <Section className="relative overflow-hidden">
         {/* Glow effect */}
         <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 opacity-30 blur-[120px]">

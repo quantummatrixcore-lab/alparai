@@ -82,11 +82,11 @@ export function MobileNav({
       <button
         onClick={() => setOpen(true)}
         className="text-fg-secondary hover:bg-bg-tertiary hover:text-fg-primary focus-visible:ring-brand-500 inline-flex h-10 w-10 items-center justify-center rounded-md focus-visible:ring-2 focus-visible:outline-none"
-        aria-label={tCommon("openMenu")}
+        aria-label="Open menu"
         aria-expanded={open}
         aria-controls="mobile-nav-panel"
       >
-        <Menu className="h-5 w-5" />
+        <Menu className="h-5 w-5" aria-hidden="true" />
       </button>
       {open && mounted && createPortal(
         <div
@@ -94,19 +94,23 @@ export function MobileNav({
           className="fixed inset-0 z-[999999] flex min-h-screen w-screen flex-col bg-[#070e17] text-white pointer-events-auto shadow-2xl overflow-hidden"
           role="dialog"
           aria-modal="true"
-          aria-label={tCommon("openMenu")}
+          aria-label="Mobile navigation menu"
         >
           <div className="border-b border-white/10 flex shrink-0 items-center justify-between bg-[#0A1622] p-4 shadow-md">
             <Wordmark size="md" />
             <button
               onClick={() => setOpen(false)}
               className="text-zinc-300 hover:bg-white/10 hover:text-white focus-visible:ring-brand-500 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 focus-visible:ring-2 focus-visible:outline-none transition-colors"
-              aria-label={tCommon("closeMenu")}
+              aria-label="Close menu"
             >
-              <X className="h-5 w-5" />
+              <X className="h-5 w-5" aria-hidden="true" />
             </button>
           </div>
-          <nav className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto p-4 bg-[#070e17]">
+          <nav
+            role="navigation"
+            aria-label="Mobile navigation"
+            className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto p-4 bg-[#070e17]"
+          >
             {activeLinks.map((item) => {
               const isGroup = "group" in item;
               if (isGroup) {

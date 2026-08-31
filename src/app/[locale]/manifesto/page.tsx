@@ -1,4 +1,4 @@
-﻿import { setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import { ConstitutionClient } from "@/components/constitution/constitution-client";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -25,7 +25,9 @@ export default async function ManifestoPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  setRequestLocale(locale);
-
-  return <ConstitutionClient />;
+  return (
+    <div className="bg-bg-primary">
+      <ConstitutionClient />
+    </div>
+  );
 }

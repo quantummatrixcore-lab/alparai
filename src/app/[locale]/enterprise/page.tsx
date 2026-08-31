@@ -5,6 +5,24 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ShowcasePageTracker, TrackedCtaButton } from "@/components/analytics/showcase-tracker";
 import { Link } from "@/i18n/routing";
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  return {
+    title: `Enterprise Solutions | AlparAI`,
+    description: `Enterprise AI safety, compliance auditing, and governance solutions`,
+    openGraph: {
+      title: `Enterprise Solutions | AlparAI`,
+      description: `Enterprise AI safety, compliance auditing, and governance solutions`,
+      images: ["/brand-assets/og-image.png"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `Enterprise Solutions | AlparAI`,
+      images: ["/brand-assets/og-image.png"],
+    },
+  };
+}
+
 export default async function EnterprisePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);

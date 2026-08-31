@@ -8,6 +8,24 @@ import { Badge } from "@/components/ui/badge";
 import { formatDate } from "@/lib/utils";
 import { ShieldAlert } from "lucide-react";
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  return {
+    title: `Legal Threats & Takedown Tracker | AlparAI`,
+    description: `Public transparency repository tracking legal threats, subpoenas, and takedown demands`,
+    openGraph: {
+      title: `Legal Threats & Takedown Tracker | AlparAI`,
+      description: `Public transparency repository tracking legal threats, subpoenas, and takedown demands`,
+      images: ["/brand-assets/og-image.png"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `Legal Threats & Takedown Tracker | AlparAI`,
+      images: ["/brand-assets/og-image.png"],
+    },
+  };
+}
+
 interface ReportRow {
   id: string;
   request_type: string;

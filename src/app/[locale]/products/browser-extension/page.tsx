@@ -3,6 +3,24 @@ import { Container } from "@/components/ui/layout";
 import { ShieldCheck, Eye, Search, AlertTriangle } from "lucide-react";
 import { ShowcasePageTracker, TrackedCtaButton } from "@/components/analytics/showcase-tracker";
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  return {
+    title: `Browser Extension | AlparAI`,
+    description: `Real-time AI model transparency and incident alerting extension`,
+    openGraph: {
+      title: `Browser Extension | AlparAI`,
+      description: `Real-time AI model transparency and incident alerting extension`,
+      images: ["/brand-assets/og-image.png"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `Browser Extension | AlparAI`,
+      images: ["/brand-assets/og-image.png"],
+    },
+  };
+}
+
 export default async function BrowserExtensionPage({
   params,
 }: {

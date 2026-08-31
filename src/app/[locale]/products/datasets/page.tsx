@@ -4,6 +4,24 @@ import { Database, Download, FileJson, Scale } from "lucide-react";
 import { ShowcasePageTracker, TrackedCtaButton } from "@/components/analytics/showcase-tracker";
 import { Link } from "@/i18n/routing";
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  return {
+    title: `Datasets & Benchmarks | AlparAI`,
+    description: `Standardized datasets and benchmarks for AI incident evaluation and safety testing`,
+    openGraph: {
+      title: `Datasets & Benchmarks | AlparAI`,
+      description: `Standardized datasets and benchmarks for AI incident evaluation and safety testing`,
+      images: ["/brand-assets/og-image.png"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `Datasets & Benchmarks | AlparAI`,
+      images: ["/brand-assets/og-image.png"],
+    },
+  };
+}
+
 export default async function DatasetsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);

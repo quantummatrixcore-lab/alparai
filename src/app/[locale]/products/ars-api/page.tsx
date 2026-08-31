@@ -5,6 +5,24 @@ import { ShowcasePageTracker, TrackedCtaButton } from "@/components/analytics/sh
 import { Link } from "@/i18n/routing";
 import { getGlobalMetrics } from "@/lib/services/metrics-service";
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  return {
+    title: `ARS API | AlparAI`,
+    description: `Autonomous Risk Scoring and incident evaluation API for AI systems`,
+    openGraph: {
+      title: `ARS API | AlparAI`,
+      description: `Autonomous Risk Scoring and incident evaluation API for AI systems`,
+      images: ["/brand-assets/og-image.png"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `ARS API | AlparAI`,
+      images: ["/brand-assets/og-image.png"],
+    },
+  };
+}
+
 export default async function ArsApiPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);

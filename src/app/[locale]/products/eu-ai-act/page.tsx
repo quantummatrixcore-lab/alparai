@@ -3,6 +3,24 @@ import { Container } from "@/components/ui/layout";
 import { Target, CheckCircle2, FileText, Settings } from "lucide-react";
 import { ShowcasePageTracker, TrackedCtaButton } from "@/components/analytics/showcase-tracker";
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  return {
+    title: `EU AI Act Compliance | AlparAI`,
+    description: `Automated compliance auditing and readiness assessment for EU AI Act obligations`,
+    openGraph: {
+      title: `EU AI Act Compliance | AlparAI`,
+      description: `Automated compliance auditing and readiness assessment for EU AI Act obligations`,
+      images: ["/brand-assets/og-image.png"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `EU AI Act Compliance | AlparAI`,
+      images: ["/brand-assets/og-image.png"],
+    },
+  };
+}
+
 export default async function EuAiActPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);

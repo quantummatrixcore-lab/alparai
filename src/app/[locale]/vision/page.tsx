@@ -2,12 +2,23 @@ import { useTranslations } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { Container, Section } from "@/components/ui/layout";
 import { Scale, Users, Globe, BookOpen } from "lucide-react";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "The Constitution | Alpar AI",
-  description: "Society is writing the Constitution of AI. We are just providing the platform. Join the global movement to govern Artificial Intelligence.",
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  return {
+    title: `Vision | AlparAI`,
+    description: `Our vision for a safer, more accountable AI ecosystem`,
+    openGraph: {
+      title: `Vision | AlparAI`,
+      description: `Our vision for a safer, more accountable AI ecosystem`,
+      images: ["/brand-assets/og-image.png"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `Vision | AlparAI`,
+      images: ["/brand-assets/og-image.png"],
+    },
+  };
+}
 
 export default async function VisionPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

@@ -2,13 +2,23 @@ import { useTranslations } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { Container, Section } from "@/components/ui/layout";
 import { ShieldCheck, Target, Users } from "lucide-react";
-import { type Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "About Us | Alpar AI",
-  description:
-    "Learn about the team and mission behind Alpar AI, the premier Autonomous Compliance and Sovereign Intelligence platform.",
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  return {
+    title: `About Us | AlparAI`,
+    description: `Learn about the team and mission behind Alpar AI, the premier Autonomous Compliance and Sovereign Intelligence platform.`,
+    openGraph: {
+      title: `About Us | AlparAI`,
+      description: `Learn about the team and mission behind Alpar AI, the premier Autonomous Compliance and Sovereign Intelligence platform.`,
+      images: ["/brand-assets/og-image.png"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `About Us | AlparAI`,
+      images: ["/brand-assets/og-image.png"],
+    },
+  };
+}
 
 export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

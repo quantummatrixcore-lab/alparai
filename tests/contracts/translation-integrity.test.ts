@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { describe, it, expect, test, beforeAll } from 'vitest';
 
 describe('Translation Integrity Contracts', () => {
   const enPath = path.resolve(__dirname, '../../messages/en.json');

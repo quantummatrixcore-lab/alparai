@@ -37,7 +37,7 @@ export function Header({
   }
   return (
     <div className="pointer-events-none fixed top-8 z-[100] flex w-full justify-center px-3 py-2 sm:p-6">
-      <header className="hover:border-brand-500/30 pointer-events-auto flex h-13 w-full max-w-[1400px] items-center justify-between gap-2 rounded-full border border-white/10 bg-[#0A1622]/95 px-3.5 shadow-[0_12px_40px_rgba(0,0,0,0.6)] backdrop-blur-2xl transition-all duration-500 hover:shadow-[0_8px_32px_rgba(168,85,247,0.25)] sm:h-14 sm:px-4 xl:gap-4">
+      <header className="hover:border-brand-500/30 pointer-events-auto flex h-13 w-full max-w-[1400px] items-center justify-between gap-2 rounded-full border border-white/10 bg-[#0A1622]/95 px-4 shadow-[0_12px_40px_rgba(0,0,0,0.6)] backdrop-blur-2xl transition-all duration-500 hover:shadow-[0_8px_32px_rgba(168,85,247,0.25)] sm:h-14 sm:px-6 xl:gap-4">
         <div className="flex flex-shrink-0 items-center gap-3 xl:gap-5 2xl:gap-8">
           <Link
             href="/"
@@ -70,7 +70,7 @@ export function Header({
             <Plus className="h-3.5 w-3.5" aria-hidden="true" />
             {t("report")}
           </Link>
-          <div className="flex-shrink-0 pl-1">
+          <div className="flex-shrink-0 px-1">
             <UserMenu initialUser={user} />
           </div>
           <div className="flex-shrink-0 lg:hidden">

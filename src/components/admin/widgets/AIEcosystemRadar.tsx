@@ -28,37 +28,39 @@ export const AIEcosystemRadar = React.memo(function AIEcosystemRadar({
   const t = useTranslations("admin.ai_ecosystem_radar");
 
   return (
-    <div className="rounded-xl border border-[#27272a] bg-[#121216]/80 p-3.5 sm:p-4 backdrop-blur-md w-full min-w-0">
-      <div className="flex items-center gap-2 mb-3 sm:mb-4 border-b border-[#27272a] pb-2 min-w-0">
-        <Activity className="h-4 w-4 text-[#00f0ff] shrink-0" />
-        <h3 className="text-xs sm:text-sm font-bold text-white truncate">{t("title")}</h3>
+    <div className="w-full min-w-0 rounded-xl border border-[#27272a] bg-[#121216]/80 p-3.5 backdrop-blur-md sm:p-4">
+      <div className="mb-3 flex min-w-0 items-center gap-2 border-b border-[#27272a] pb-2 sm:mb-4">
+        <Activity className="h-4 w-4 shrink-0 text-[#00f0ff]" />
+        <h3 className="truncate text-xs font-bold text-white sm:text-sm">{t("title")}</h3>
       </div>
-      
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
         <div className="min-w-0">
-          <p className="text-[11px] sm:text-xs text-slate-400">{t("current_leader")}</p>
-          <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
-            <p className="font-mono text-xs sm:text-sm font-bold text-[#dcb8ff] truncate">{data.leader}</p>
-            <span className="rounded bg-[#8a2be2]/20 px-1.5 py-0.5 text-[10px] font-bold text-[#dcb8ff] border border-[#8a2be2]/40 shrink-0">
+          <p className="text-[11px] text-slate-400 sm:text-xs">{t("current_leader")}</p>
+          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+            <p className="truncate font-mono text-xs font-bold text-[#dcb8ff] sm:text-sm">
+              {data.leader}
+            </p>
+            <span className="shrink-0 rounded border border-[#8a2be2]/40 bg-[#8a2be2]/20 px-1.5 py-0.5 text-[10px] font-bold text-[#dcb8ff]">
               {t("iq_score", { score: data.iq_score })}
             </span>
           </div>
         </div>
         <div className="min-w-0">
-          <p className="text-[11px] sm:text-xs text-slate-400">{t("token_trend")}</p>
-          <p className="font-mono text-xs sm:text-sm font-bold text-emerald-400 flex items-center gap-1">
+          <p className="text-[11px] text-slate-400 sm:text-xs">{t("token_trend")}</p>
+          <p className="flex items-center gap-1 font-mono text-xs font-bold text-emerald-400 sm:text-sm">
             <Zap className="h-3 w-3 shrink-0" /> {data.token_trend}
           </p>
         </div>
         <div className="min-w-0">
-          <p className="text-[11px] sm:text-xs text-slate-400">{t("openai_api")}</p>
-          <p className="font-mono text-xs sm:text-sm font-bold text-emerald-400 flex items-center gap-1">
+          <p className="text-[11px] text-slate-400 sm:text-xs">{t("openai_api")}</p>
+          <p className="flex items-center gap-1 font-mono text-xs font-bold text-emerald-400 sm:text-sm">
             <Server className="h-3 w-3 shrink-0" /> {data.openai_status}
           </p>
         </div>
         <div className="min-w-0">
-          <p className="text-[11px] sm:text-xs text-slate-400">{t("anthropic_api")}</p>
-          <p className="font-mono text-xs sm:text-sm font-bold text-emerald-400 flex items-center gap-1">
+          <p className="text-[11px] text-slate-400 sm:text-xs">{t("anthropic_api")}</p>
+          <p className="flex items-center gap-1 font-mono text-xs font-bold text-emerald-400 sm:text-sm">
             <Server className="h-3 w-3 shrink-0" /> {data.anthropic_status}
           </p>
         </div>
@@ -66,6 +68,3 @@ export const AIEcosystemRadar = React.memo(function AIEcosystemRadar({
     </div>
   );
 });
-
-export default AIEcosystemRadar;
-

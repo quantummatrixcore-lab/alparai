@@ -77,7 +77,10 @@ function generateSyntheticHistory(baseVisitors: number, hours = 2): VisitorEvent
     const bucketTime = now - i * 5 * 60 * 1000;
     // Diurnal & rhythmic variation
     const variation = Math.sin((i / totalBuckets) * Math.PI * 2) * 12;
-    const bucketVisitorCount = Math.max(8, Math.round(baseVisitors / 4 + variation + (Math.random() * 6 - 3)));
+    const bucketVisitorCount = Math.max(
+      8,
+      Math.round(baseVisitors / 4 + variation + (Math.random() * 6 - 3)),
+    );
 
     for (let v = 0; v < bucketVisitorCount; v++) {
       const sessionId = `sim_sess_${i}_${v}`;
@@ -158,7 +161,8 @@ export const VisitorAnalytics = React.memo(function VisitorAnalytics({
       setEventBuffer((prev) => {
         const twoHoursAgo = now - 2 * 60 * 60 * 1000;
         const filtered = prev.filter((e) => {
-          const ts = typeof e.timestamp === "number" ? e.timestamp : new Date(e.timestamp).getTime();
+          const ts =
+            typeof e.timestamp === "number" ? e.timestamp : new Date(e.timestamp).getTime();
           return ts >= twoHoursAgo;
         });
         return [...filtered, ...newMicroEvents];
@@ -205,7 +209,7 @@ export const VisitorAnalytics = React.memo(function VisitorAnalytics({
 
     const lineStr = points.map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
     const areaStr = `${points.map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ")} ${width},${height} 0,${height}`;
-    
+
     // 90% Confidence Interval Polygon Band
     const upperPointsStr = points.map((p) => `${p.x.toFixed(1)},${p.yUpper.toFixed(1)}`).join(" ");
     const lowerPointsReversedStr = points
@@ -225,21 +229,23 @@ export const VisitorAnalytics = React.memo(function VisitorAnalytics({
 
   return (
     <div
-      className={`relative overflow-hidden rounded-xl border border-[#27272a] bg-[#121216]/90 p-3.5 sm:p-4 backdrop-blur-md w-full min-w-0 transition-all duration-300 hover:border-[#00f0ff]/40 shadow-xl ${className}`}
+      className={`relative w-full min-w-0 overflow-hidden rounded-xl border border-[#27272a] bg-[#121216]/90 p-3.5 shadow-xl backdrop-blur-md transition-all duration-300 hover:border-[#00f0ff]/40 sm:p-4 ${className}`}
     >
       {/* Background Ambient Glows */}
       <div className="pointer-events-none absolute -top-16 -right-16 h-32 w-32 rounded-full bg-[#00f0ff]/10 blur-2xl" />
       <div className="pointer-events-none absolute -bottom-16 -left-16 h-32 w-32 rounded-full bg-[#10b981]/10 blur-2xl" />
 
       {/* Header Bar */}
-      <div className="relative z-10 flex items-center justify-between gap-2 border-b border-[#27272a] pb-2.5 mb-3 sm:mb-4 min-w-0">
-        <div className="flex items-center gap-2 min-w-0">
+      <div className="relative z-10 mb-3 flex min-w-0 items-center justify-between gap-2 border-b border-[#27272a] pb-2.5 sm:mb-4">
+        <div className="flex min-w-0 items-center gap-2">
           <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-[#10b981]/40 bg-[#10b981]/15 text-[#10b981] shadow-[0_0_10px_rgba(16,185,129,0.25)]">
             <Users className="h-4 w-4 shrink-0" />
           </div>
           <div className="min-w-0">
-            <h3 className="text-xs sm:text-sm font-bold text-white truncate">CEO Analitik: Canlı Ziyaretçi</h3>
-            <div className="flex items-center gap-1 text-[10px] text-slate-400 font-mono">
+            <h3 className="truncate text-xs font-bold text-white sm:text-sm">
+              CEO Analitik: Canlı Ziyaretçi
+            </h3>
+            <div className="flex items-center gap-1 font-mono text-[10px] text-slate-400">
               <Sparkles className="h-2.5 w-2.5 text-[#00f0ff]" />
               <span className="truncate">Turing v1.4 AI Tahmin Motoru</span>
             </div>
@@ -247,86 +253,95 @@ export const VisitorAnalytics = React.memo(function VisitorAnalytics({
         </div>
 
         {/* AI Confidence & Detail Toggle */}
-        <div className="flex items-center gap-1.5 shrink-0">
+        <div className="flex shrink-0 items-center gap-1.5">
           <span
-            className="inline-flex items-center gap-1 rounded-full border border-[#00f0ff]/30 bg-[#00f0ff]/10 px-2 py-0.5 text-[10px] font-bold font-mono text-[#00f0ff]"
+            className="inline-flex items-center gap-1 rounded-full border border-[#00f0ff]/30 bg-[#00f0ff]/10 px-2 py-0.5 font-mono text-[10px] font-bold text-[#00f0ff]"
             title={`Algoritma Doğruluğu: %${prediction.metrics.accuracyPct}`}
           >
-            <Zap className="h-2.5 w-2.5" />
-            %{Math.round(prediction.confidenceScore * 100)} Güven
+            <Zap className="h-2.5 w-2.5" />%{Math.round(prediction.confidenceScore * 100)} Güven
           </span>
           <button
             onClick={() => setIsExpanded((prev) => !prev)}
-            className="flex h-6 w-6 items-center justify-center rounded-md border border-[#27272a] bg-[#18181b] text-slate-400 hover:text-white hover:border-white/20 transition-all"
+            className="flex h-6 w-6 items-center justify-center rounded-md border border-[#27272a] bg-[#18181b] text-slate-400 transition-all hover:border-white/20 hover:text-white"
             aria-label="AI Detaylarını Aç/Kapat"
             title="Detaylı Markov ve Zaman Serisi Analizi"
           >
-            {isExpanded ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
+            {isExpanded ? (
+              <ChevronUp className="h-3.5 w-3.5" />
+            ) : (
+              <ChevronDown className="h-3.5 w-3.5" />
+            )}
           </button>
         </div>
       </div>
 
       {/* Primary Metrics Grid */}
-      <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5">
+      <div className="relative z-10 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-3.5">
         {/* Metric 1: Sitedeki Aktif Kişi */}
-        <div className="rounded-lg border border-[#27272a] bg-[#18181b]/60 p-2.5 sm:p-3 backdrop-blur-sm min-w-0">
-          <div className="flex items-center justify-between text-slate-400 text-[11px] sm:text-xs">
+        <div className="min-w-0 rounded-lg border border-[#27272a] bg-[#18181b]/60 p-2.5 backdrop-blur-sm sm:p-3">
+          <div className="flex items-center justify-between text-[11px] text-slate-400 sm:text-xs">
             <span>Sitedeki Aktif Kişi</span>
             <span className="flex items-center gap-1 font-mono text-[10px] text-emerald-400">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-ping" />
+              <span className="h-1.5 w-1.5 animate-ping rounded-full bg-emerald-400" />
               Canlı
             </span>
           </div>
-          <p className="mt-1 font-mono text-sm sm:text-base font-extrabold text-emerald-400 flex items-center gap-1.5">
+          <p className="mt-1 flex items-center gap-1.5 font-mono text-sm font-extrabold text-emerald-400 sm:text-base">
             <Globe className="h-3.5 w-3.5 shrink-0 text-emerald-400" />
             <span>{visitors}</span>
-            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse ml-0.5 shrink-0" />
+            <span className="ml-0.5 h-2 w-2 shrink-0 animate-pulse rounded-full bg-emerald-400" />
           </p>
-          <div className="mt-1 flex items-center justify-between text-[10px] text-slate-400 font-mono truncate">
+          <div className="mt-1 flex items-center justify-between truncate font-mono text-[10px] text-slate-400">
             <span>Son yenilenme</span>
-            <span>{lastCalculatedAt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" })}</span>
+            <span>
+              {lastCalculatedAt.toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+              })}
+            </span>
           </div>
         </div>
 
         {/* Metric 2: Gelecek 1 Saat AI Tahmini */}
-        <div className="rounded-lg border border-[#00f0ff]/30 bg-[#00f0ff]/5 p-2.5 sm:p-3 backdrop-blur-sm min-w-0">
-          <div className="flex items-center justify-between text-slate-400 text-[11px] sm:text-xs">
-            <span className="text-[#00f0ff] font-medium truncate">Gelecek 1 Saat Tahmini</span>
-            <Clock className="h-3 w-3 text-[#00f0ff] shrink-0" />
+        <div className="min-w-0 rounded-lg border border-[#00f0ff]/30 bg-[#00f0ff]/5 p-2.5 backdrop-blur-sm sm:p-3">
+          <div className="flex items-center justify-between text-[11px] text-slate-400 sm:text-xs">
+            <span className="truncate font-medium text-[#00f0ff]">Gelecek 1 Saat Tahmini</span>
+            <Clock className="h-3 w-3 shrink-0 text-[#00f0ff]" />
           </div>
           <div className="mt-1 flex items-baseline gap-1.5">
-            <p className="font-mono text-sm sm:text-base font-extrabold text-white">
+            <p className="font-mono text-sm font-extrabold text-white sm:text-base">
               ~{prediction.nextHourTotalVisitors}
             </p>
-            <span className="text-[10px] font-mono text-[#00f0ff] font-bold">
-              kişi / saat
-            </span>
+            <span className="font-mono text-[10px] font-bold text-[#00f0ff]">kişi / saat</span>
           </div>
-          <div className="mt-1 flex items-center justify-between text-[10px] text-slate-400 font-mono">
+          <div className="mt-1 flex items-center justify-between font-mono text-[10px] text-slate-400">
             <span>Tahmini Sayfa Görüntüleme</span>
-            <span className="text-slate-300 font-bold">~{prediction.nextHourTotalPageviews} pv</span>
+            <span className="font-bold text-slate-300">
+              ~{prediction.nextHourTotalPageviews} pv
+            </span>
           </div>
         </div>
 
         {/* Metric 3: SEO Organik Trafik */}
-        <div className="rounded-lg border border-[#27272a] bg-[#18181b]/60 p-2.5 sm:p-3 backdrop-blur-sm min-w-0">
-          <p className="text-[11px] sm:text-xs text-slate-400">SEO Organik Trafik</p>
-          <p className="mt-1 font-mono text-sm sm:text-base font-extrabold text-[#00f0ff] flex items-center gap-1">
+        <div className="min-w-0 rounded-lg border border-[#27272a] bg-[#18181b]/60 p-2.5 backdrop-blur-sm sm:p-3">
+          <p className="text-[11px] text-slate-400 sm:text-xs">SEO Organik Trafik</p>
+          <p className="mt-1 flex items-center gap-1 font-mono text-sm font-extrabold text-[#00f0ff] sm:text-base">
             <ArrowUpRight className="h-3.5 w-3.5 shrink-0" /> {growthRate}
           </p>
-          <div className="mt-1 text-[10px] text-slate-400 font-mono truncate">
+          <div className="mt-1 truncate font-mono text-[10px] text-slate-400">
             Organik Arama Payı: %68.2
           </div>
         </div>
 
         {/* Metric 4: Anomali Z-Skoru & Güvenlik Kalkanı */}
         <div
-          className={`rounded-lg border p-2.5 sm:p-3 backdrop-blur-sm min-w-0 transition-all ${
+          className={`min-w-0 rounded-lg border p-2.5 backdrop-blur-sm transition-all sm:p-3 ${
             isSurge
               ? "border-red-500/50 bg-red-500/10 shadow-[0_0_15px_rgba(239,68,68,0.15)]"
               : isDrop
-              ? "border-amber-500/50 bg-amber-500/10 shadow-[0_0_15px_rgba(245,158,11,0.15)]"
-              : "border-[#27272a] bg-[#18181b]/60"
+                ? "border-amber-500/50 bg-amber-500/10 shadow-[0_0_15px_rgba(245,158,11,0.15)]"
+                : "border-[#27272a] bg-[#18181b]/60"
           }`}
         >
           <div className="flex items-center justify-between text-[11px] sm:text-xs">
@@ -337,7 +352,7 @@ export const VisitorAnalytics = React.memo(function VisitorAnalytics({
                 {anomalyType}
               </span>
             ) : (
-              <span className="flex items-center gap-1 font-mono text-[10px] text-emerald-400 font-bold">
+              <span className="flex items-center gap-1 font-mono text-[10px] font-bold text-emerald-400">
                 <CheckCircle2 className="h-3 w-3" />
                 Kararlı
               </span>
@@ -345,17 +360,17 @@ export const VisitorAnalytics = React.memo(function VisitorAnalytics({
           </div>
           <div className="mt-1 flex items-baseline gap-1.5 font-mono">
             <p
-              className={`text-sm sm:text-base font-extrabold ${
+              className={`text-sm font-extrabold sm:text-base ${
                 isSurge ? "text-red-400" : isDrop ? "text-amber-400" : "text-emerald-400"
               }`}
             >
               {zScore >= 0 ? `+${zScore.toFixed(2)}` : zScore.toFixed(2)} σ
             </p>
-            <span className="text-[10px] text-slate-400 font-mono">
+            <span className="font-mono text-[10px] text-slate-400">
               ({prediction.anomalyStatus.isAnomaly ? "Eşik Aşıldı" : "Normal Dağılım"})
             </span>
           </div>
-          <div className="mt-1 flex items-center justify-between text-[10px] text-slate-400 font-mono truncate">
+          <div className="mt-1 flex items-center justify-between truncate font-mono text-[10px] text-slate-400">
             <span>Beklenen Hız</span>
             <span>{prediction.anomalyStatus.expectedRate} / 5dk</span>
           </div>
@@ -363,8 +378,8 @@ export const VisitorAnalytics = React.memo(function VisitorAnalytics({
       </div>
 
       {/* 1-Hour Forecast Visualizer: Mini Sparkline & Confidence Band */}
-      <div className="relative z-10 mt-3 pt-3 border-t border-[#27272a]">
-        <div className="flex items-center justify-between text-[11px] text-slate-300 font-medium mb-1.5">
+      <div className="relative z-10 mt-3 border-t border-[#27272a] pt-3">
+        <div className="mb-1.5 flex items-center justify-between text-[11px] font-medium text-slate-300">
           <div className="flex items-center gap-1.5">
             <TrendingUp className="h-3.5 w-3.5 text-[#00f0ff]" />
             <span>Gelecek 60 Dakika Tahmin Eğrisi (5dk Dilimler)</span>
@@ -374,13 +389,14 @@ export const VisitorAnalytics = React.memo(function VisitorAnalytics({
               <span className="inline-block h-1.5 w-3 rounded bg-[#00f0ff]" /> Tahmin
             </span>
             <span className="flex items-center gap-1">
-              <span className="inline-block h-1.5 w-3 rounded bg-[#00f0ff]/20 border border-[#00f0ff]/40" /> %90 CI
+              <span className="inline-block h-1.5 w-3 rounded border border-[#00f0ff]/40 bg-[#00f0ff]/20" />{" "}
+              %90 CI
             </span>
           </div>
         </div>
 
         {/* Responsive SVG Chart */}
-        <div className="relative h-14 w-full bg-[#0a0a0e]/60 rounded-lg p-1.5 border border-[#27272a]/80">
+        <div className="relative h-14 w-full rounded-lg border border-[#27272a]/80 bg-[#0a0a0e]/60 p-1.5">
           <svg
             className="h-full w-full overflow-visible"
             viewBox="0 0 280 48"
@@ -411,12 +427,7 @@ export const VisitorAnalytics = React.memo(function VisitorAnalytics({
             )}
 
             {/* Area Fill */}
-            {areaPoints && (
-              <polygon
-                points={areaPoints}
-                fill="url(#forecastAreaGrad)"
-              />
-            )}
+            {areaPoints && <polygon points={areaPoints} fill="url(#forecastAreaGrad)" />}
 
             {/* Forecast Spline Line */}
             {linePoints && (
@@ -482,17 +493,19 @@ export const VisitorAnalytics = React.memo(function VisitorAnalytics({
         </div>
 
         {/* Hover Tooltip / Status Display */}
-        <div className="mt-1.5 flex items-center justify-between text-[10px] font-mono text-slate-400">
+        <div className="mt-1.5 flex items-center justify-between font-mono text-[10px] text-slate-400">
           {hoveredInterval ? (
             <div className="flex items-center gap-2 text-[#00f0ff]">
               <span className="font-bold">+{hoveredInterval.minuteOffset} dk:</span>
-              <span className="text-white font-bold">{hoveredInterval.predictedVisitors} ziyaretçi</span>
+              <span className="font-bold text-white">
+                {hoveredInterval.predictedVisitors} ziyaretçi
+              </span>
               <span className="text-slate-400">
                 (90% CI: {hoveredInterval.lowerBound90} - {hoveredInterval.upperBound90})
               </span>
             </div>
           ) : (
-            <div className="flex items-center justify-between w-full">
+            <div className="flex w-full items-center justify-between">
               <span>+5 dk: {chartData[0]?.predictedVisitors ?? 0} kişi</span>
               <span className="text-slate-500">•</span>
               <span>+30 dk: {chartData[5]?.predictedVisitors ?? 0} kişi</span>
@@ -505,33 +518,35 @@ export const VisitorAnalytics = React.memo(function VisitorAnalytics({
 
       {/* Expandable Advanced Section: Markov User Flow & Model Quality */}
       {isExpanded && (
-        <div className="relative z-10 mt-3 pt-3 border-t border-[#27272a] space-y-3 text-xs animate-in fade-in duration-200">
+        <div className="animate-in fade-in relative z-10 mt-3 space-y-3 border-t border-[#27272a] pt-3 text-xs duration-200">
           {/* Markov Path Probability Distribution */}
           <div>
-            <div className="flex items-center gap-1.5 text-slate-300 font-medium mb-1.5 text-[11px]">
+            <div className="mb-1.5 flex items-center gap-1.5 text-[11px] font-medium text-slate-300">
               <Compass className="h-3.5 w-3.5 text-[#dcb8ff]" />
               <span>Markov Zinciri: En Olası Gelecek Ziyaretçi Rotaları</span>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
+            <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-4">
               {prediction.topPredictedPaths.slice(0, 4).map((p) => (
                 <div
                   key={p.path}
                   className="flex items-center justify-between rounded-md border border-[#27272a] bg-[#18181b]/80 px-2 py-1 font-mono text-[10px]"
                 >
-                  <span className="text-slate-300 truncate max-w-[70px]">{p.path}</span>
-                  <span className="font-bold text-[#00f0ff]">%{Math.round(p.probability * 100)}</span>
+                  <span className="max-w-[70px] truncate text-slate-300">{p.path}</span>
+                  <span className="font-bold text-[#00f0ff]">
+                    %{Math.round(p.probability * 100)}
+                  </span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Turing Model Quality & Shannon Entropy */}
-          <div className="rounded-lg border border-[#27272a] bg-[#0d0d12] p-2.5 font-mono text-[10px] space-y-1 text-slate-400">
-            <div className="flex items-center justify-between text-slate-300 font-bold">
+          <div className="space-y-1 rounded-lg border border-[#27272a] bg-[#0d0d12] p-2.5 font-mono text-[10px] text-slate-400">
+            <div className="flex items-center justify-between font-bold text-slate-300">
               <span className="truncate">{prediction.metrics.algorithm}</span>
               <span className="text-emerald-400">%{prediction.metrics.accuracyPct} Doğruluk</span>
             </div>
-            <div className="grid grid-cols-3 gap-2 pt-1 border-t border-[#27272a]/60 text-[10px]">
+            <div className="grid grid-cols-3 gap-2 border-t border-[#27272a]/60 pt-1 text-[10px]">
               <div>
                 <span className="text-slate-500">MAPE:</span>{" "}
                 <span className="text-slate-200">%{prediction.metrics.mape}</span>
@@ -551,6 +566,3 @@ export const VisitorAnalytics = React.memo(function VisitorAnalytics({
     </div>
   );
 });
-
-export default VisitorAnalytics;
-

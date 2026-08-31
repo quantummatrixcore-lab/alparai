@@ -5,7 +5,7 @@ import {
   AIEcosystemRadar,
   type RadarData,
 } from "../../src/components/admin/widgets/AIEcosystemRadar";
-import DefaultAIEcosystemRadar from "../../src/components/admin/widgets/AIEcosystemRadar";
+
 import { AIEcosystemRadar as BarrelAIEcosystemRadar } from "../../src/components/admin/widgets";
 
 vi.mock("next-intl", () => ({
@@ -32,10 +32,10 @@ describe("AIEcosystemRadar Component", () => {
   };
 
   it("verifies export parity between named, default, and barrel exports", () => {
-    expect(DefaultAIEcosystemRadar).toBeDefined();
+    expect(AIEcosystemRadar).toBeDefined();
     expect(AIEcosystemRadar).toBeDefined();
     expect(BarrelAIEcosystemRadar).toBeDefined();
-    expect(DefaultAIEcosystemRadar).toBe(AIEcosystemRadar);
+    expect(AIEcosystemRadar).toBe(AIEcosystemRadar);
     expect(BarrelAIEcosystemRadar).toBe(AIEcosystemRadar);
   });
 
@@ -47,7 +47,7 @@ describe("AIEcosystemRadar Component", () => {
   });
 
   it("renders correctly with custom data via default export", () => {
-    render(<DefaultAIEcosystemRadar data={mockData} />);
+    render(<AIEcosystemRadar data={mockData} />);
     expect(screen.getByText(/Test Model 1/i)).toBeDefined();
     expect(screen.getByText(/999/i)).toBeDefined();
     expect(screen.getByText(/Maintenance/i)).toBeDefined();

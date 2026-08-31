@@ -1,4 +1,4 @@
--- Seed strategy innovations table with I-series proposals (I1-I8)
+-- PRODUCTION SEED\n-- Seed strategy innovations table with I-series proposals (I1-I8)
 -- Timestamp: 20260715000001
 
 INSERT INTO public.strategy_innovations (title, description, priority, status)

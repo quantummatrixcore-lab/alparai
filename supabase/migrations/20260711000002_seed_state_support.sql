@@ -1,4 +1,4 @@
--- Seed: strategy_state_support — 12 curated global & local programs
+-- PRODUCTION SEED\n-- Seed: strategy_state_support — 12 curated global & local programs
 -- Ordered by priority ASC, fit_score DESC
 -- Created: 2026-07-11
 

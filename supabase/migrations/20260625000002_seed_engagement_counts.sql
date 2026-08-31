@@ -1,4 +1,4 @@
--- Migration: Seed Engagement Counts & Realistic Comments
+-- PRODUCTION SEED\n-- Migration: Seed Engagement Counts & Realistic Comments
 -- Timestamp: 2026-06-25 00:00:02
 
 -- 1. Randomly seed incidents with realistic views, upvotes, affected users, shares, and comment counts

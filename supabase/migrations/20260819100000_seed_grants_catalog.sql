@@ -1,4 +1,4 @@
--- Migration: Seed Startup Ecosystem Grants Catalog
+-- PRODUCTION SEED\n-- Migration: Seed Startup Ecosystem Grants Catalog
 -- Deletes old placeholder grants and inserts the 9 catalog program items
 
 DELETE FROM public.grant_applications;

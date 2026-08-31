@@ -28,7 +28,7 @@
   "scripts": {
     "dev": "next dev",
     "dev:all": "turbo run dev test:watch",
-    "build": "cross-env NODE_OPTIONS=\"--max-old-space-size=8192\" next build",
+    "build": "node scripts/guardian.js && next build",
     "start": "next start",
     "lint": "cross-env NODE_OPTIONS=\"--max-old-space-size=8192\" eslint .",
     "lint:fix": "cross-env NODE_OPTIONS=\"--max-old-space-size=8192\" eslint . --fix",
@@ -56,7 +56,9 @@
     "db:seed:incidents": "npx tsx scripts/seed-real-incidents.ts",
     "prepare": "husky",
     "hooks:install": "bash scripts/install-hooks.sh",
-    "briefing": "npx tsx scripts/morning-briefing.ts"
+    "briefing": "npx tsx scripts/morning-briefing.ts",
+    "guard": "node scripts/guardian.js",
+    "precommit": "node scripts/guardian.js && npx vitest run tests/contracts/translation-integrity.test.ts"
   },
   "dependencies": {
     "@ai-sdk/gateway": "4.0.36",

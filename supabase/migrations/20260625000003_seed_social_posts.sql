@@ -1,4 +1,4 @@
--- Migration: Seed Launch Social Posts Drafts
+-- PRODUCTION SEED\n-- Migration: Seed Launch Social Posts Drafts
 -- Timestamp: 2026-06-25 00:00:03
 
 DO $$

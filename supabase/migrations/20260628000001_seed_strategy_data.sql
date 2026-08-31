@@ -1,4 +1,4 @@
--- Migration: Seed Strategic Strategy Data (SWOT & Risks)
+-- PRODUCTION SEED\n-- Migration: Seed Strategic Strategy Data (SWOT & Risks)
 -- Timestamp: 2026-06-28 00:00:01
 
 DO $$

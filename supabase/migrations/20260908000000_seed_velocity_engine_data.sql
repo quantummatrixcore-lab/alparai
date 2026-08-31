@@ -1,4 +1,4 @@
--- 20260908000000_seed_velocity_engine_data.sql
+-- PRODUCTION SEED\n-- 20260908000000_seed_velocity_engine_data.sql
 -- Seed real frontier AI model benchmark data for Velocity Engine public dashboard
 
 -- Seed ai_velocity_metrics

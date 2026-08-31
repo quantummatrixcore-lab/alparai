@@ -1,4 +1,4 @@
--- Migration: 20260903000001_seed_hallucination_incident.sql
+-- PRODUCTION SEED\n-- Migration: 20260903000001_seed_hallucination_incident.sql
 -- Description: Seed Category-1 AI Agent Hallucination Self-Incident for ALPAR AI Transparency Protocol
 
 INSERT INTO public.incidents (

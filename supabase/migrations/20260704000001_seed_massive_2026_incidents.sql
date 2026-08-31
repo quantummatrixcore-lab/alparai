@@ -1,4 +1,4 @@
--- ALPAR AI — Seed: 40+ Major 2026 AI Incidents
+-- PRODUCTION SEED\n-- ALPAR AI — Seed: 40+ Major 2026 AI Incidents
 -- Created: 2026-07-04
 -- Purpose: Cold-start acceleration with documented, high-severity incidents
 -- Sources: OECD, AIID, GitHub, court filings, news reports, academic studies

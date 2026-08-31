@@ -1,4 +1,4 @@
--- Seed strategy_todos from ALPAR AI ROADMAP.md
+-- PRODUCTION SEED\n-- Seed strategy_todos from ALPAR AI ROADMAP.md
 -- Only INSERT, no DELETE. ON CONFLICT DO NOTHING ensures idempotency.
 
 INSERT INTO strategy_todos (title, priority, is_completed, created_at, updated_at) VALUES

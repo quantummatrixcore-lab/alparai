@@ -1,4 +1,4 @@
--- Migration: Replace LinkedIn placeholder contacts with real AI Safety & Governance leaders
+-- PRODUCTION SEED\n-- Migration: Replace LinkedIn placeholder contacts with real AI Safety & Governance leaders
 -- Timestamp: 20260729000001
 -- ROLLBACK: DELETE FROM public.linkedin_contacts WHERE full_name IN ('Dario Amodei', 'Daniela Amodei', '[REDACTED_NAME]', 'Yann LeCun', 'Yoshua Bengio', 'Demis Hassabis', 'Pushmeet Kohli', 'Dan Hendrycks', 'Paul Christiano', 'Jan Leike', 'Collin Burns', 'Helen Toner', 'Jack Clark', 'Jared Kaplan', '[REDACTED_NAME]', 'Nick Bostrom', 'Tristan Harris', 'Joy Buolamwini', 'Timnit Gebru', 'Arvind Narayanan', 'Sayash Kapoor', 'Margaret Mitchell', 'Percy Liang', 'Danqi Chen', 'Christopher Manning', 'Ellie Pavlick', 'Dawn Song', 'Dan Boneh', 'Anca Dragan', 'Chelsea Finn', 'Pieter Abbeel', 'Sergey Levine', 'Alexander Rush', 'Yejin Choi', 'Ilya Sutskever', 'Andrej Karpathy', 'Samy Bengio');
 

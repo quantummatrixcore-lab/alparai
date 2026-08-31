@@ -1,4 +1,4 @@
--- Seed 50 LinkedIn Contacts
+-- PRODUCTION SEED\n-- Seed 50 LinkedIn Contacts
 INSERT INTO public.linkedin_contacts (full_name, title, category, status, priority, notes)
 VALUES 
   ('Rumman Chowdhury', 'AI Ethicist & Data Scientist', 'AI Ethics Leader', 'to_add', 1, 'Key figure in AI accountability'),

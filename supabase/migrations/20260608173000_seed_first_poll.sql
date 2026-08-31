@@ -1,4 +1,4 @@
--- Seed the first AI Dilemma poll
+-- PRODUCTION SEED\n-- Seed the first AI Dilemma poll
 INSERT INTO ai_polls (id, title, description, yes_count, no_count, unsure_count, is_active)
 VALUES (
   gen_random_uuid(),

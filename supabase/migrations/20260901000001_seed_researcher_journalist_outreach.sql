@@ -1,4 +1,4 @@
--- Migration: Seed real AI safety researchers and tech journalists into outreach_queue
+-- PRODUCTION SEED\n-- Migration: Seed real AI safety researchers and tech journalists into outreach_queue
 -- Timestamp: 20260901000001
 
 INSERT INTO public.outreach_queue (recipient_email, recipient_name, company, template_type, subject, body_template, status)

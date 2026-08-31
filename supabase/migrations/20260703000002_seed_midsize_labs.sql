@@ -1,4 +1,4 @@
--- Migration: Seed midsize labs for B2B motion (2026-07-03)
+-- PRODUCTION SEED\n-- Migration: Seed midsize labs for B2B motion (2026-07-03)
 
 -- 1. Ensure midsize labs are NOT verified (they must "claim" their profile)
 UPDATE public.ai_providers

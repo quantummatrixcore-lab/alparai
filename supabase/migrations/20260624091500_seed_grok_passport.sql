@@ -1,4 +1,4 @@
--- Seed the famous Grok Passport incident
+-- PRODUCTION SEED\n-- Seed the famous Grok Passport incident
 -- AI Provider: xAI (c29699bb-c7fa-48a4-9963-3e11fdf3a7eb)
 INSERT INTO public.incidents (
   id, user_id, is_anonymous, title, description, title_masked, description_masked, 

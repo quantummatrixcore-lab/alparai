@@ -1,4 +1,4 @@
--- Seed Turkish translations for critical seed incidents using their actual database UUIDs
+-- PRODUCTION SEED\n-- Seed Turkish translations for critical seed incidents using their actual database UUIDs
 UPDATE public.incidents SET
   title_tr = 'Yapay zeka yanlış ilaç dozu tavsiye etti',
   description_tr = 'ChatGPT, yerleşik tıbbi kılavuzlarla çelişen tehlikeli bir ilaç dozu önerdi. Kullanıcı doktora danışmadan önce bu tavsiyeyi neredeyse uygulayacaktı.'

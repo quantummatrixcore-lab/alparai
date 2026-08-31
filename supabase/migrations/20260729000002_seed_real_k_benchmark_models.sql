@@ -1,4 +1,4 @@
--- Migration: Seed real AI models and BENCH-TR evaluations for K-BENCHMARK
+-- PRODUCTION SEED\n-- Migration: Seed real AI models and BENCH-TR evaluations for K-BENCHMARK
 -- Timestamp: 20260729000002
 -- ROLLBACK: DELETE FROM public.bench_tr_evaluations WHERE model_name IN ('Gemini 2.0 Flash', 'OpenAI o1', 'Mistral Large 2411', 'Qwen 2.5 72B Instruct');
 

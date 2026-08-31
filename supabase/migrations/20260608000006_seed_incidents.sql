@@ -1,4 +1,4 @@
--- ALPAR AI — Seed Data: 50 Real AI Incidents
+-- PRODUCTION SEED\n-- ALPAR AI — Seed Data: 50 Real AI Incidents
 -- Created: 2026-06-08
 -- Purpose: Break cold-start problem with real, documented AI incidents
 -- Source: Public records, AIID database, academic papers, news reports

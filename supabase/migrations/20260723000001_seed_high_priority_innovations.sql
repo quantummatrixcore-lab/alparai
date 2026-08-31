@@ -1,4 +1,4 @@
--- Seed strategy innovations table with High-Priority Pilot Batch (I9, I10, I11) and update I5 status
+-- PRODUCTION SEED\n-- Seed strategy innovations table with High-Priority Pilot Batch (I9, I10, I11) and update I5 status
 -- Timestamp: 20260723000001
 
 -- 1. Update I5 Browser Extension status to 'done' (SHIPPED in v10.70)

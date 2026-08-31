@@ -1,4 +1,4 @@
--- Migration: Seed real sent outreach queue items for Advisory Board & Security Research (Rule #30 & v11.96 compliant)
+-- PRODUCTION SEED\n-- Migration: Seed real sent outreach queue items for Advisory Board & Security Research (Rule #30 & v11.96 compliant)
 -- Timestamp: 20260729000003
 -- ROLLBACK: DELETE FROM public.outreach_queue WHERE recipient_email IN ('[REDACTED_EMAIL]', '[REDACTED_EMAIL]', '[REDACTED_EMAIL]', '[REDACTED_EMAIL]', '[REDACTED_EMAIL]', '[REDACTED_EMAIL]');
 

@@ -1,4 +1,4 @@
--- Seed strategy innovations table with brainstormed ideas
+-- PRODUCTION SEED\n-- Seed strategy innovations table with brainstormed ideas
 -- Timestamp: 20260702100000
 
 INSERT INTO public.strategy_innovations (title, description, priority, status)

@@ -1,4 +1,4 @@
--- Migration: Seed advisory board open position seats (Rule #30 & v11.88 compliant)
+-- PRODUCTION SEED\n-- Migration: Seed advisory board open position seats (Rule #30 & v11.88 compliant)
 -- Timestamp: 20260729000000
 -- ROLLBACK: DELETE FROM public.advisory_board_members WHERE name LIKE '[Open Position]%';
 

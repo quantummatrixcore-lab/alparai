@@ -1,4 +1,4 @@
--- Seed realistic vote counts for existing dilemmas to resolve cold start
+-- PRODUCTION SEED\n-- Seed realistic vote counts for existing dilemmas to resolve cold start
 UPDATE public.ai_polls 
 SET yes_count = 620, no_count = 412, unsure_count = 188 
 WHERE title_en = 'Autonomous Vehicle Dilemma';

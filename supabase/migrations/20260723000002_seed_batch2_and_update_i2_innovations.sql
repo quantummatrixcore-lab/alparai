@@ -1,4 +1,4 @@
--- Seed strategy innovations Batch 2 (I12-I18) and update I1 and I2 statuses
+-- PRODUCTION SEED\n-- Seed strategy innovations Batch 2 (I12-I18) and update I1 and I2 statuses
 -- Timestamp: 20260723000002
 
 -- 1. Update I1 status to 'done' (SHIPPED in 66707f8)

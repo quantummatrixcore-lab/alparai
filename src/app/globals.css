@@ -45,8 +45,8 @@
   --color-warning-600: #b45309;
 
   /* Surfaces */
-  --color-bg-primary: #0a0f1e;
-  --color-bg-secondary: #0f172a;
+  --color-bg-primary: #09090b;
+  --color-bg-secondary: #18181b;
   --color-bg-tertiary: #131b2f;
   --color-bg-elevated: #1e293b;
   --color-border-subtle: rgba(255, 255, 255, 0.08);
@@ -189,7 +189,7 @@ body {
    =========================================================================== */
 
 @utility bg-glass {
-  background-color: rgba(15, 23, 42, 0.55);
+  background-color: rgba(24, 24, 27, 0.4);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.08);

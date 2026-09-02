@@ -94,6 +94,18 @@ export function constructPageMetadata(options: PageMetadataOptions): Metadata {
       canonical: canonicalUrl,
       languages: languageAlternates,
     },
+    icons: {
+      icon: [
+        { url: "/favicon.ico", sizes: "any" },
+        { url: "/favicon.svg", type: "image/svg+xml" },
+        { url: "/icons/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
+      ],
+      apple: [
+        { url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+        { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      ],
+      shortcut: "/favicon.ico",
+    },
     openGraph: {
       type,
       siteName: APP_NAME,

@@ -64,8 +64,8 @@ export function ProviderLogo({
   const sizePx = SIZE_NUMBERS[size] || 48;
   const hasIcon = hasProviderIcon(slug || name);
 
-  // 1. Try vector component matching by slug or name for pixel-perfect instant rendering
-  if (hasIcon && (!src || src.startsWith("/logos/providers/") || imgError)) {
+  // 1. Prioritize built-in vector component for pixel-perfect instant rendering & zero broken images
+  if (hasIcon) {
     return (
       <div
         className={`relative flex h-full w-full items-center justify-center overflow-hidden rounded-md p-1 transition-transform duration-300 hover:scale-105 ${className}`}

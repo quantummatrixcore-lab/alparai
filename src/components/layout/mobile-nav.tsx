@@ -27,6 +27,7 @@ import {
 } from "lucide-react";
 import { Wordmark } from "./wordmark";
 import { LanguageSwitcher } from "./language-switcher";
+import { ThemeToggle } from "./theme-toggle";
 
 interface NavLinkItem {
   href: string;
@@ -226,7 +227,10 @@ export function MobileNav({
               </Link>
               <div className="flex min-h-[44px] items-center justify-between pt-1">
                 <span className="text-fg-muted text-xs font-medium">{t("language_switcher")}</span>
-                <LanguageSwitcher direction="up" />
+                <div className="flex items-center gap-2">
+                  <ThemeToggle className="flex h-8.5 w-8.5 shrink-0" />
+                  <LanguageSwitcher direction="up" />
+                </div>
               </div>
             </div>
           </div>,

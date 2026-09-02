@@ -28,7 +28,7 @@
     "scripts": {
         "dev": "next dev",
         "dev:all": "turbo run dev test:watch",
-        "build": "node scripts/guardian.js && next build",
+        "build": "node scripts/guardian.js && next build --webpack",
         "start": "next start",
         "lint": "cross-env NODE_OPTIONS=\"--max-old-space-size=8192\" eslint .",
         "lint:fix": "cross-env NODE_OPTIONS=\"--max-old-space-size=8192\" eslint . --fix",
@@ -61,10 +61,10 @@
         "precommit": "node scripts/guardian.js && npx vitest run tests/contracts/translation-integrity.test.ts"
     },
     "dependencies": {
-        "@ai-sdk/gateway": "4.0.36",
-        "@ai-sdk/openai": "4.0.42",
+        "@ai-sdk/gateway": "4.0.70",
+        "@ai-sdk/openai": "4.0.53",
         "@ai-sdk/provider-utils": "5.0.25",
-        "@ai-sdk/react": "4.0.61",
+        "@ai-sdk/react": "4.0.90",
         "@ai-sdk/ui-utils": "1.2.11",
         "@dnd-kit/core": "6.3.1",
         "@dnd-kit/sortable": "10.0.0",
@@ -82,7 +82,7 @@
         "@vercel/analytics": "2.0.1",
         "@vercel/functions": "3.9.3",
         "@vercel/speed-insights": "2.0.0",
-        "ai": "7.0.58",
+        "ai": "7.0.87",
         "clsx": "2.1.1",
         "date-fns": "4.4.0",
         "framer-motion": "12.42.2",
@@ -116,8 +116,8 @@
         "@playwright/test": "1.62.0",
         "@secretlint/secretlint-rule-preset-recommend": "13.0.4",
         "@tailwindcss/postcss": "4.3.3",
-        "@testing-library/react": "16.1.0",
-        "@types/node": "26.1.1",
+        "@testing-library/react": "^16.1.0",
+        "@types/node": "^26.1.1",
         "@types/papaparse": "5.5.2",
         "@types/react": "19.0.0",
         "@types/react-dom": "19.0.0",
@@ -143,7 +143,7 @@
         "turbo": "^2.10.12",
         "typescript": "6.0.3",
         "vite": "5.4.11",
-        "vitest": "2.1.8"
+        "vitest": "^2.1.8"
     },
     "lint-staged": {
         "*.{ts,tsx,js,jsx}": [
@@ -156,6 +156,24 @@
         "*": [
             "secretlint"
         ]
+    },
+    "resolutions": {
+        "esbuild@<=0.24.2": ">=0.25.0",
+        "vite@>=5.0.0 <=5.4.11": ">=5.4.12",
+        "vite@>=5.0.0 <5.4.15": ">=5.4.15",
+        "vite@>=5.0.0 <5.4.18": ">=5.4.18",
+        "vite@>=5.0.0 <=5.4.18": ">=5.4.19",
+        "vite@>=5.0.0 <5.4.17": ">=5.4.17",
+        "vite@<=5.4.19": ">=5.4.20",
+        "vite@>=5.2.6 <=5.4.20": ">=5.4.21",
+        "vite@>=5.0.0 <5.4.16": ">=5.4.16",
+        "vite@<=6.4.1": ">=6.4.2",
+        "vite@<=6.4.2": ">=6.4.3",
+        "vitest@<3.2.6": ">=3.2.6",
+        "postcss": ">=8.5.23",
+        "@ai-sdk/provider-utils": ">=5.0.26",
+        "semver": ">=5.7.2",
+        "sharp": ">=0.35.3"
     },
     "pnpm": {
         "overrides": {
@@ -170,7 +188,11 @@
             "vite@>=5.0.0 <5.4.16": ">=5.4.16",
             "vite@<=6.4.1": ">=6.4.2",
             "vite@<=6.4.2": ">=6.4.3",
-            "vitest@<3.2.6": ">=3.2.6"
+            "vitest@<3.2.6": ">=3.2.6",
+            "postcss": ">=8.5.23",
+            "@ai-sdk/provider-utils": ">=5.0.26",
+            "semver": ">=5.7.2",
+            "sharp": ">=0.35.3"
         }
     }
 }

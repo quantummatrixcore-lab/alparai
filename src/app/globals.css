@@ -109,14 +109,44 @@
 }
 
 /* ===========================================================================
-   Base styles
+   Base styles & Dynamic Color Scheme
    =========================================================================== */
+:root,
+html {
+  color-scheme: dark;
+  --color-bg-primary: #09090b;
+  --color-bg-secondary: #18181b;
+  --color-bg-tertiary: #131b2f;
+  --color-bg-elevated: #1e293b;
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.15);
+  --color-fg-primary: #ffffff;
+  --color-fg-secondary: #cbd5e1;
+  --color-fg-muted: #94a3b8;
+  --color-fg-disabled: #475569;
+}
+
+html.light,
+html:not(.dark) {
+  color-scheme: light;
+  --color-bg-primary: #f8fafc;
+  --color-bg-secondary: #ffffff;
+  --color-bg-tertiary: #f1f5f9;
+  --color-bg-elevated: #e2e8f0;
+  --color-border-subtle: rgba(0, 0, 0, 0.08);
+  --color-border-strong: rgba(0, 0, 0, 0.16);
+  --color-fg-primary: #0f172a;
+  --color-fg-secondary: #334155;
+  --color-fg-muted: #64748b;
+  --color-fg-disabled: #94a3b8;
+}
+
 * {
   border-color: var(--color-border-subtle);
+  transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
 html {
-  color-scheme: dark;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;

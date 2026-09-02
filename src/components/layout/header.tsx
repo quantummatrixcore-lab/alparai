@@ -5,6 +5,7 @@ import { Wordmark } from "./wordmark";
 import { Nav } from "./nav";
 import { MobileNav } from "./mobile-nav";
 import { LanguageSwitcher } from "./language-switcher";
+import { ThemeToggle } from "./theme-toggle";
 import { UserMenu } from "./user-menu";
 import { useTranslations } from "next-intl";
 import { Plus, Github } from "lucide-react";
@@ -73,6 +74,7 @@ export function Header({
             <Github className="h-4 w-4" />
           </a>
 
+          <ThemeToggle className="hidden sm:flex shrink-0" />
           <LanguageSwitcher className="hidden sm:inline-flex shrink-0" />
 
           <Link

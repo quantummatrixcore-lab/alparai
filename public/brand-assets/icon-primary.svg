@@ -1,46 +1,52 @@
 <svg viewBox="0 0 100 100" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Left Facet Gradient: Violet / Fuchsia to Indigo -->
-    <linearGradient id="alpar-shield-left" x1="20" y1="12" x2="50" y2="88" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#d946ef" />
-      <stop offset="50%" stop-color="#8b5cf6" />
-      <stop offset="100%" stop-color="#3b82f6" />
+    <!-- Titanium Silver Chiseled Left Facet -->
+    <linearGradient id="alpar-fav-titanium" x1="20" y1="10" x2="50" y2="90" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="35%" stop-color="#e2e8f0" />
+      <stop offset="75%" stop-color="#94a3b8" />
+      <stop offset="100%" stop-color="#64748b" />
     </linearGradient>
 
-    <!-- Right Facet Gradient: Cyan to Deep Space Navy -->
-    <linearGradient id="alpar-shield-right" x1="80" y1="12" x2="50" y2="88" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#22d3ee" />
-      <stop offset="60%" stop-color="#0284c7" />
+    <!-- Electric Cobalt Prismatic Right Facet -->
+    <linearGradient id="alpar-fav-cobalt" x1="50" y1="10" x2="85" y2="90" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="30%" stop-color="#0284c7" />
+      <stop offset="70%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+
+    <!-- Inner Refraction Core / Crossbeam -->
+    <linearGradient id="alpar-fav-cyan-beam" x1="30" y1="50" x2="70" y2="85" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00f0ff" />
+      <stop offset="50%" stop-color="#0284c7" />
       <stop offset="100%" stop-color="#0f172a" />
     </linearGradient>
 
-    <!-- Inner AI Spark Diamond Glow Gradient -->
-    <linearGradient id="alpar-core-glow-grad" x1="50" y1="36" x2="50" y2="64" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#ffffff" />
-      <stop offset="100%" stop-color="#a855f7" />
-    </linearGradient>
-
-    <filter id="alpar-core-glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="3" result="blur" />
-      <feMerge>
-        <feMergeNode in="blur" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
-    </filter>
+    <!-- Background Plate for High Visibility -->
+    <rect id="alpar-fav-bg" width="100" height="100" rx="22" fill="#090d16" />
   </defs>
 
-  <!-- Left Shield Facet (Defense & Sovereignty) -->
-  <path d="M 50,12 L 20,25 V 50 C 20,70 38,83 50,88 Z" fill="url(#alpar-shield-left)" fill-opacity="0.95" />
+  <!-- High-Contrast Icon Backing -->
+  <use href="#alpar-fav-bg" />
+  <rect width="100" height="100" rx="22" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" />
 
-  <!-- Right Shield Facet (Intelligence & Speed) -->
-  <path d="M 50,12 L 80,25 V 50 C 80,70 62,83 50,88 Z" fill="url(#alpar-shield-right)" fill-opacity="0.85" />
-
-  <!-- Inner Cyber Contour Line -->
-  <path d="M 50,18 L 26,29 V 49 C 26,65 40,76 50,81 V 18" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.25" stroke-linecap="round" />
-
-  <!-- Central Glowing AI Diamond -->
-  <path d="M 50,36 L 62,50 L 50,64 L 38,50 Z" fill="url(#alpar-core-glow-grad)" filter="url(#alpar-core-glow)" />
-
-  <!-- Inner Clarity Starburst -->
-  <path d="M 50,42 L 52.5,47.5 L 58,50 L 52.5,52.5 L 50,58 L 47.5,52.5 L 42,50 L 47.5,47.5 Z" fill="#ffffff" />
+  <!-- Iconic Monolithic Prismatic 'A' Emblem -->
+  <g transform="translate(0, 0)">
+    <!-- Ambient Shadow Base -->
+    <polygon points="50,14 16,86 84,86" fill="#030712" fill-opacity="0.5" />
+    
+    <!-- Left Titanium Pillar -->
+    <polygon points="50,14 18,86 35,86 50,48" fill="url(#alpar-fav-titanium)" />
+    
+    <!-- Right Cobalt Prismatic Pillar -->
+    <polygon points="50,14 50,48 65,86 82,86" fill="url(#alpar-fav-cobalt)" />
+    
+    <!-- Inner Crossbar Optical Prism -->
+    <polygon points="33,69 67,69 50,44" fill="url(#alpar-fav-cyan-beam)" />
+    <polygon points="35,69 65,69 50,82" fill="#090d16" />
+    
+    <!-- Precision Center Light Point -->
+    <circle cx="50" cy="46" r="2.5" fill="#ffffff" />
+  </g>
 </svg>

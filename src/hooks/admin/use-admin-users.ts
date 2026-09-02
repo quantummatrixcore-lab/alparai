@@ -72,7 +72,7 @@ export function useAdminUsers({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       let query: any = supabase
         .from("users")
-        .select("id, email, role, full_name, is_banned, created_at, last_sign_in_at", { count: "exact" });
+        .select("id, email, role, full_name, created_at, is_verified", { count: "exact" });
 
       if (role !== "all") {
         query = query.eq("role", role);

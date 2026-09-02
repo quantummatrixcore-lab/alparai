@@ -43,6 +43,15 @@ const initialInvestors: InvestorItem[] = [
     dataRoomAccessCount: 22,
     status: "DILIGENCE",
   },
+  {
+    id: "INV-04",
+    firmName: "Yapay Zeka Fabrikası (İş Bankası / Maxis)",
+    contactPartner: "İş Kuleleri YZF Komitesi & SoftTech",
+    stage: "Seed / Acceleration",
+    checkSizeUsd: "$250k - $500k + PoC",
+    dataRoomAccessCount: 16,
+    status: "FIRST_CALL",
+  },
 ];
 
 export default function InvestorsPage() {

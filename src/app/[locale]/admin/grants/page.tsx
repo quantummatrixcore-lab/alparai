@@ -39,6 +39,14 @@ const initialGrants: GrantItem[] = [
     completionPercentage: 60,
     status: "IN_PREPARATION",
   },
+  {
+    id: "GR-04",
+    program: "Teknopark İstanbul Cube Go / Kuluçka (4691 Teşvik)",
+    requestedBudgetTry: 5000000,
+    deadlineDate: "2026-09-15",
+    completionPercentage: 90,
+    status: "UNDER_EVALUATION",
+  },
 ];
 
 export default function GrantsPage() {

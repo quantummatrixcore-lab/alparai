@@ -53,4 +53,15 @@ for (const item of sizes) {
 // Clean up temporary HTML
 if (fs.existsSync(htmlPath)) fs.unlinkSync(htmlPath);
 
-console.log('Done rendering all PNG icons!');
+// Render LinkedIn Banner
+const bannerSvg = path.join(projectRoot, 'public', 'brand', 'linkedin_company_banner_v4.svg');
+const bannerDest = path.join(projectRoot, 'public', 'linkedin_banner_1128x191.png');
+const bannerCmd = `"${chromePath}" --headless=new --disable-gpu --screenshot="${bannerDest}" --window-size=1128,191 "file:///${bannerSvg.replace(/\\/g, '/')}"`;
+try {
+    execSync(bannerCmd, { stdio: 'ignore' });
+    console.log('✔ Rendered: LinkedIn Banner (1128x191) -> public/linkedin_banner_1128x191.png');
+} catch (e) {
+    console.error('❌ Failed rendering banner:', e.message);
+}
+
+console.log('Done rendering all PNG icons and banners!');

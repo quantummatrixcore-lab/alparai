@@ -30,7 +30,7 @@ export function Wordmark({
           <span className="to-brand-100 bg-gradient-to-r from-white via-slate-100 bg-clip-text text-transparent">
             ALPAR
           </span>
-          <span className="from-accent-300 to-accent-500 bg-gradient-to-r bg-clip-text text-transparent">
+          <span className="from-sky-400 via-cyan-400 to-blue-500 bg-gradient-to-r bg-clip-text text-transparent font-black">
             AI
           </span>
         </span>

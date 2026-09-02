@@ -1,31 +1,52 @@
 <svg viewBox="0 0 100 100" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="alpar-fav-wing-left" x1="15" y1="12" x2="50" y2="90" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#c084fc" />
-      <stop offset="40%" stop-color="#9333ea" />
-      <stop offset="100%" stop-color="#4f46e5" />
-    </linearGradient>
-    <linearGradient id="alpar-fav-wing-right" x1="85" y1="12" x2="50" y2="90" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#38bdf8" />
-      <stop offset="50%" stop-color="#6366f1" />
-      <stop offset="100%" stop-color="#1e1b4b" />
-    </linearGradient>
-    <linearGradient id="alpar-fav-core-beam" x1="30" y1="30" x2="70" y2="70" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#38bdf8" />
-      <stop offset="50%" stop-color="#a855f7" />
-      <stop offset="100%" stop-color="#ec4899" />
-    </linearGradient>
-    <linearGradient id="alpar-fav-spark" x1="45" y1="45" x2="55" y2="55" gradientUnits="userSpaceOnUse">
+    <!-- Titanium Silver Chiseled Left Facet -->
+    <linearGradient id="alpar-fav-titanium" x1="20" y1="10" x2="50" y2="90" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#ffffff" />
-      <stop offset="100%" stop-color="#c084fc" />
+      <stop offset="35%" stop-color="#e2e8f0" />
+      <stop offset="75%" stop-color="#94a3b8" />
+      <stop offset="100%" stop-color="#64748b" />
     </linearGradient>
+
+    <!-- Electric Cobalt Prismatic Right Facet -->
+    <linearGradient id="alpar-fav-cobalt" x1="50" y1="10" x2="85" y2="90" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="30%" stop-color="#0284c7" />
+      <stop offset="70%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+
+    <!-- Inner Refraction Core / Crossbeam -->
+    <linearGradient id="alpar-fav-cyan-beam" x1="30" y1="50" x2="70" y2="85" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00f0ff" />
+      <stop offset="50%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <!-- Background Plate for High Visibility -->
+    <rect id="alpar-fav-bg" width="100" height="100" rx="22" fill="#090d16" />
   </defs>
 
-  <rect width="100" height="100" rx="22" fill="#0B0F19" />
-  <path d="M 50,14 L 20,28 V 53 C 20,72 36,85 50,90 V 58 L 34,58 L 50,26 Z" fill="url(#alpar-fav-wing-left)" fill-opacity="0.95" />
-  <path d="M 50,14 L 80,28 V 53 C 80,72 64,85 50,90 V 58 L 66,58 L 50,26 Z" fill="url(#alpar-fav-wing-right)" fill-opacity="0.9" />
-  <path d="M 50,26 L 63,53 H 37 L 50,26 Z" fill="url(#alpar-fav-core-beam)" />
-  <path d="M 50,35 L 56,49 H 44 L 50,35 Z" fill="#0B0F19" />
-  <rect x="30" y="55" width="40" height="4.5" rx="2.25" fill="#ffffff" />
-  <path d="M 50,45 L 51.5,48.5 L 55,50 L 51.5,51.5 L 50,55 L 48.5,51.5 L 45,50 L 48.5,48.5 Z" fill="url(#alpar-fav-spark)" />
+  <!-- High-Contrast Icon Backing -->
+  <use href="#alpar-fav-bg" />
+  <rect width="100" height="100" rx="22" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" />
+
+  <!-- Iconic Monolithic Prismatic 'A' Emblem -->
+  <g transform="translate(0, 0)">
+    <!-- Ambient Shadow Base -->
+    <polygon points="50,14 16,86 84,86" fill="#030712" fill-opacity="0.5" />
+    
+    <!-- Left Titanium Pillar -->
+    <polygon points="50,14 18,86 35,86 50,48" fill="url(#alpar-fav-titanium)" />
+    
+    <!-- Right Cobalt Prismatic Pillar -->
+    <polygon points="50,14 50,48 65,86 82,86" fill="url(#alpar-fav-cobalt)" />
+    
+    <!-- Inner Crossbar Optical Prism -->
+    <polygon points="33,69 67,69 50,44" fill="url(#alpar-fav-cyan-beam)" />
+    <polygon points="35,69 65,69 50,82" fill="#090d16" />
+    
+    <!-- Precision Center Light Point -->
+    <circle cx="50" cy="46" r="2.5" fill="#ffffff" />
+  </g>
 </svg>

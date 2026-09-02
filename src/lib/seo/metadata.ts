@@ -42,8 +42,8 @@ export function constructPageMetadata(options: PageMetadataOptions): Metadata {
     : "ALPAR AI — Trust infrastructure for AI accountability";
 
   const defaultDesc = isTr
-    ? "Yapay zeka sistemleri için topluluk odaklı ihlal bildirim ve denetim platformu. AI için Trustpilot ve şeffaflık merkezi."
-    : APP_DESCRIPTION;
+    ? "Yapay zeka sistemleri için bağımsız denetim ve hesap verebilirlik mahkemesi. 660+ model için tarafsız güvenlik ve EU AI Act uyum sicili."
+    : "The Supreme Court of AI Accountability. Independent cross-model auditing, threat defense and EU AI Act compliance platform.";
 
   const pageTitle = title || defaultTitle;
   const pageDescription = description || defaultDesc;
@@ -97,12 +97,14 @@ export function constructPageMetadata(options: PageMetadataOptions): Metadata {
     icons: {
       icon: [
         { url: "/favicon.ico", sizes: "any" },
+        { url: "/icon.png", sizes: "192x192", type: "image/png" },
         { url: "/favicon.svg", type: "image/svg+xml" },
         { url: "/icons/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
       ],
       apple: [
-        { url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+        { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
         { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+        { url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
       ],
       shortcut: "/favicon.ico",
     },

@@ -101,9 +101,9 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
               </CardTitle>
             </CardHeader>
             <CardContent className="text-fg-secondary space-y-4 text-sm leading-relaxed">
-              <p>{t("trustscore_desc", { defaultValue: "Quantifies provider accountability dynamically: base 85 score, deducting 2.5 per verified incident, and rewarding 4.0 per published response." })}</p>
+              <p>{t("trustscore_desc", { defaultValue: "Actuarial accountability index: Dynamic Bayesian prior (75-90 base), severity weighting (Critical: 15, High: 8, Med: 4), 120-day exponential half-life decay, and up to 60% MTTR remediation rebate." })}</p>
               <div className="border-border-subtle/60 bg-bg-primary/70 rounded-lg border p-3 font-mono text-xs text-purple-300">
-                Trust Score = 85 - (incidents × 2.5) + (responses × 4)
+                Score = Base(P) - Σ [Weight(Sev) × e^(-Δt/120) × Rebate(MTTR)] + Resp + Gov
               </div>
             </CardContent>
           </Card>

@@ -32,37 +32,86 @@ export async function recalculateTrustScoresAction(): Promise<TrustEngineResult>
     }
 
     let updatedCount = 0;
+    const now = Date.now();
+    const HALF_LIFE_DAYS = 120;
+    const MS_PER_DAY = 1000 * 60 * 60 * 24;
+
+    interface IncidentRecord {
+      id: string;
+      severity: string | null;
+      created_at: string;
+      resolved_at: string | null;
+    }
 
     const metricsPromises = providers.map(async (provider) => {
-      const [{ count: incidentCount }, { count: responseCount }] = await Promise.all([
-        supabase
-          .from("incidents")
-          .select("id", { count: "exact", head: true })
-          .eq("ai_provider_id", provider.id)
-          .eq("status", "published"),
-        supabase
-          .from("incidents")
-          .select("id", { count: "exact", head: true })
-          .eq("ai_provider_id", provider.id)
-          .eq("status", "published")
-          .not("resolved_at", "is", null),
-      ]);
+      const { data: incidentRows, error: incErr } = await supabase
+        .from("incidents")
+        .select("id, severity, created_at, resolved_at")
+        .eq("ai_provider_id", provider.id)
+        .eq("status", "published");
 
-      const incidents = incidentCount ?? 0;
-      const responses = responseCount ?? 0;
+      if (incErr) {
+        logger.warn(`Failed to fetch incidents for provider ${provider.slug}: ${incErr.message}`);
+      }
 
-      const incidentPenalty = Math.min(50, Number((incidents * 2.5).toFixed(2)));
-      const responseRate = incidents > 0 ? responses / incidents : 1;
+      const incidents: IncidentRecord[] = (incidentRows as unknown as IncidentRecord[]) || [];
+      const totalIncidents = incidents.length;
+      let totalWeightedPenalty = 0;
+      let resolvedCount = 0;
+
+      for (const inc of incidents) {
+        // 1. Actuarial severity weight
+        let severityWeight = 3.0;
+        const sev = (inc.severity || "").toLowerCase();
+        if (sev === "critical") severityWeight = 15.0;
+        else if (sev === "high") severityWeight = 8.0;
+        else if (sev === "medium") severityWeight = 4.0;
+        else if (sev === "low") severityWeight = 1.5;
+
+        // 2. Exponential time decay: exp(-ageDays / 120)
+        const incidentAgeDays = Math.max(0, (now - new Date(inc.created_at).getTime()) / MS_PER_DAY);
+        const timeDecay = Math.exp(-incidentAgeDays / HALF_LIFE_DAYS);
+
+        // 3. MTTR Remediation rebate
+        let remediationFactor = 1.0;
+        if (inc.resolved_at) {
+          resolvedCount++;
+          const durationHours = Math.max(
+            0,
+            (new Date(inc.resolved_at).getTime() - new Date(inc.created_at).getTime()) / (1000 * 60 * 60)
+          );
+          if (durationHours <= 24) remediationFactor = 0.40; // 60% rebate for fast fix
+          else if (durationHours <= 168) remediationFactor = 0.65; // 35% rebate for 7d fix
+          else remediationFactor = 0.80; // 20% rebate
+        }
+
+        totalWeightedPenalty += severityWeight * timeDecay * remediationFactor;
+      }
+
+      // 4. Anti-Zero-Data Prior & Base Score
+      // Unverified providers with 0 activity sit at 75 (Neutral Benchmark), NOT a blind 100!
+      // Verified providers with 0 incidents sit at 90 (Proven baseline).
+      let baseScore: number;
+      if (totalIncidents === 0) {
+        baseScore = provider.is_verified ? 90.0 : 75.0;
+      } else {
+        baseScore = provider.is_verified ? 94.0 : 88.0;
+      }
+
+      // 5. Response Velocity & Governance Premium
+      const responseRate = totalIncidents > 0 ? resolvedCount / totalIncidents : 0;
       const responseBonus = Number((responseRate * 5.0).toFixed(2));
-      const verificationBonus = provider.is_verified ? 2.0 : 0.0;
-      const rawScore = 95.0 - incidentPenalty + responseBonus + verificationBonus;
-      const compositeScore = Math.max(0, Math.min(100, Number(rawScore.toFixed(2))));
+      const verificationBonus = provider.is_verified ? 3.0 : 0.0;
+
+      // 6. Final Composite Score
+      const rawComposite = baseScore - totalWeightedPenalty + responseBonus + verificationBonus;
+      const compositeScore = Math.max(10.0, Math.min(100.0, Number(rawComposite.toFixed(2))));
 
       return {
         provider_slug: provider.slug,
         provider_name: provider.name,
         composite_score: compositeScore,
-        incident_penalty: incidentPenalty,
+        incident_penalty: Number(totalWeightedPenalty.toFixed(2)),
         response_rate_bonus: responseBonus,
         ranking_tier: calculateRankingTier(compositeScore),
         last_evaluated_at: new Date().toISOString(),

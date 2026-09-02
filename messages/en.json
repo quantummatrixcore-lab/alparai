@@ -3442,7 +3442,8 @@
     "unknown_provider": "Unknown Provider",
     "verified_badge": "(Verified)",
     "viewCount": "views",
-    "yes": "Yes"
+    "yes": "Yes",
+    "toggleTheme": "Toggle theme"
   },
   "compliance": {
     "banking_item1_label": "Credit Scoring AI (Annex III §5b):",

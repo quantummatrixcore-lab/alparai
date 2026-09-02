@@ -3442,7 +3442,8 @@
     "unknown_provider": "Bilinmeyen Sağlayıcı",
     "verified_badge": "(Doğrulandı)",
     "viewCount": "görüntülenme",
-    "yes": "Evet"
+    "yes": "Evet",
+    "toggleTheme": "Temayı değiştir"
   },
   "compliance": {
     "banking_item1_label": "Kredi Puanlama Yapay Zekası (Ek III §5b):",

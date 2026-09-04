@@ -12,6 +12,24 @@ export function SignInForm({ locale, next }: { locale: string; next?: string }) 
   // Default to true for seamless 1-click UX, visible & toggleable right at the top
   const [agreed, setAgreed] = React.useState(true);
 
+  React.useEffect(() => {
+    if (typeof window === "undefined") return;
+    const hash = window.location.hash;
+    if (hash && hash.includes("access_token=")) {
+      const params = new URLSearchParams(hash.replace(/^#/, ""));
+      const accessToken = params.get("access_token");
+      if (accessToken) {
+        import("@/actions/auth/auth").then(({ signInWithSupabaseToken }) => {
+          signInWithSupabaseToken(accessToken).then((res) => {
+            if (res.ok) {
+              window.location.href = next ?? `/${locale}/profile`;
+            }
+          });
+        });
+      }
+    }
+  }, [locale, next]);
+
   return (
     <div className="space-y-6">
       {/* 1. Legal & Consent Checkbox — Positioned FIRST at the top for zero-scroll 1-click auth */}

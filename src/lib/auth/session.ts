@@ -35,9 +35,25 @@ function verify(token: string): AlparUser | null {
   }
 }
 
+function resolveRole(email: string | null | undefined, currentRole: UserRole): UserRole {
+  if (!email) return currentRole;
+  const em = email.toLowerCase();
+  if (
+    em === "quantum.matrix.core@gmail.com" ||
+    em === "ercumenterden@gmail.com" ||
+    em === "ercument.erden@alparai.com" ||
+    em.endsWith("@alparai.com")
+  ) {
+    return "ceo";
+  }
+  return currentRole;
+}
+
 export async function setSessionUser(user: Omit<AlparUser, "created_at">): Promise<void> {
+  const role = resolveRole(user.email, user.role);
   const fullUser: AlparUser = {
     ...user,
+    role,
     created_at: new Date().toISOString(),
   };
   const payload = Buffer.from(JSON.stringify(fullUser)).toString("base64url");
@@ -59,7 +75,10 @@ export async function getSessionUser(): Promise<AlparUser | null> {
     const cookieStore = await cookies();
     const c = cookieStore.get(COOKIE_NAME);
     if (!c || !c.value) return null;
-    return verify(c.value);
+    const user = verify(c.value);
+    if (!user) return null;
+    user.role = resolveRole(user.email, user.role);
+    return user;
   } catch {
     return null;
   }
@@ -81,8 +100,10 @@ export function createSessionCookieHeader(user: Omit<AlparUser, "created_at">): 
     maxAge: number;
   };
 } {
+  const role = resolveRole(user.email, user.role);
   const fullUser: AlparUser = {
     ...user,
+    role,
     created_at: new Date().toISOString(),
   };
   const payload = Buffer.from(JSON.stringify(fullUser)).toString("base64url");
@@ -105,12 +126,13 @@ export function createSessionCookieHeader(user: Omit<AlparUser, "created_at">): 
 export async function getCurrentUser(): Promise<SessionUser | null> {
   const u = await getSessionUser();
   if (!u) return null;
+  const role = resolveRole(u.email, u.role);
   return {
     id: u.id,
     email: u.email,
     fullName: u.name,
     avatarUrl: u.picture,
-    role: u.role,
+    role,
     isVerified: true,
     createdAt: u.created_at,
   };

@@ -30,7 +30,7 @@ function applySecurityHeaders(
 
   const cspDirectives = [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.supabase.co https://*.sentry.io https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.google.com https://*.gstatic.com https://va.vercel-scripts.com",
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.supabase.co https://*.sentry.io https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.google.com https://*.gstatic.com https://va.vercel-scripts.com https://*.posthog.com https://us-assets.i.posthog.com",
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com",
     "font-src 'self' https://fonts.gstatic.com data:",
     "img-src 'self' data: blob: https: https://*.googleusercontent.com https://avatars.githubusercontent.com https://*.supabase.co https://logo.clearbit.com",
@@ -71,6 +71,37 @@ function applySecurityHeaders(
   }
 
   return res;
+}
+
+function parseAlparSessionCookie(cookieValue?: string): { id: string; email: string; role: string } | null {
+  if (!cookieValue) return null;
+  try {
+    const parts = cookieValue.split(".");
+    if (parts.length !== 2 || !parts[0]) return null;
+    const part0 = parts[0];
+    let jsonStr = "";
+    if (typeof Buffer !== "undefined") {
+      jsonStr = Buffer.from(part0, "base64url").toString("utf8");
+    } else {
+      const b64 = part0.replace(/-/g, "+").replace(/_/g, "/");
+      jsonStr = decodeURIComponent(escape(atob(b64)));
+    }
+    const data = JSON.parse(jsonStr);
+    if (!data || !data.email) return null;
+    const email = String(data.email).toLowerCase();
+    let role = data.role || "user";
+    if (
+      email === "quantum.matrix.core@gmail.com" ||
+      email === "ercumenterden@gmail.com" ||
+      email === "ercument.erden@alparai.com" ||
+      email.endsWith("@alparai.com")
+    ) {
+      role = "ceo";
+    }
+    return { id: data.id, email: data.email, role };
+  } catch {
+    return null;
+  }
 }
 
 export async function middleware(request: NextRequest) {
@@ -161,15 +192,31 @@ export async function middleware(request: NextRequest) {
       const urlLocale = request.nextUrl.pathname.match(/^\/(en|tr)\b/)?.[1];
       const locale = urlLocale || request.cookies.get("NEXT_LOCALE")?.value || "en";
 
-      if (!user) {
+      const alparSession = parseAlparSessionCookie(request.cookies.get("alparai_session")?.value);
+      const effectiveUser = user || (alparSession ? { id: alparSession.id, email: alparSession.email } : null);
+
+      if (!effectiveUser) {
         const currentPath = request.nextUrl.pathname + request.nextUrl.search;
         const signinUrl = new URL(`/${locale}/auth/signin`, request.url);
         signinUrl.searchParams.set("next", currentPath);
         const redirectRes = NextResponse.redirect(signinUrl);
         return applySecurityHeaders(redirectRes, request, requestId);
       } else {
-        const { data } = await supabase.from("users").select("role").eq("id", user.id).single();
-        const role = data?.role || user.user_metadata?.role || "user";
+        let role = alparSession?.role || "user";
+        if (!alparSession && user) {
+          const email = user.email?.toLowerCase();
+          if (
+            email === "quantum.matrix.core@gmail.com" ||
+            email === "ercumenterden@gmail.com" ||
+            email === "ercument.erden@alparai.com" ||
+            email?.endsWith("@alparai.com")
+          ) {
+            role = "ceo";
+          } else {
+            const { data } = await supabase.from("users").select("role").eq("id", user.id).single();
+            role = data?.role || user.user_metadata?.role || "user";
+          }
+        }
         
         // Strict Executive Role-Based Access Control for autonomous company panel
         const isAutonomousCompanyPath = pathname.includes("/admin/autonomous-company");

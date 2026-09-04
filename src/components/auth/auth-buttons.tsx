@@ -69,20 +69,16 @@ export function GoogleSignInButton({
   const buttonRef = React.useRef<HTMLDivElement>(null);
   const [gisLoaded, setGisLoaded] = useState(false);
 
-  const fallbackOAuthRedirect = async () => {
-    const { signInWithGoogle } = await import("@/actions/auth/auth");
-    const res = await signInWithGoogle(next);
-    if (res.ok && res.url) {
-      window.location.href = res.url;
-    } else {
-      toast.error(res.error || t("server_error"));
-    }
+  const fallbackOAuthRedirect = () => {
+    window.location.href = `/api/auth/google?next=${encodeURIComponent(next)}`;
   };
 
   React.useEffect(() => {
+    const rawClientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
     const clientId =
-      process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ||
-      "341717447635-hsdu69hk692lkveikkpc8398v8rhu40b.apps.googleusercontent.com";
+      rawClientId && !rawClientId.includes("SENSITIVE") && rawClientId.includes(".apps.googleusercontent.com")
+        ? rawClientId
+        : "341717447635-hsdu69hk692lkveikkpc8398v8rhu40b.apps.googleusercontent.com";
 
     const loadGis = async () => {
       try {
@@ -155,18 +151,14 @@ export function GoogleSignInButton({
       />
 
       {!gisLoaded && (
-        <Button
-          type="button"
-          variant="ghost"
-          size="lg"
-          isLoading={pending}
-          disabled={disabled}
+        <a
+          href={`/api/auth/google?next=${encodeURIComponent(next)}`}
           className={cn(
-            "w-full border border-white/[0.08] bg-white/[0.03] hover:border-white/[0.16] hover:bg-white/[0.07] active:bg-white/[0.1]",
-            "rounded-xl text-sm font-semibold tracking-wide text-white shadow-lg transition-all duration-300",
-            "hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(168,85,247,0.18)] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:translate-y-0 disabled:hover:shadow-none",
+            "inline-flex items-center justify-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:border-white/[0.16] hover:bg-white/[0.07] active:bg-white/[0.1]",
+            "h-12 min-h-[48px] px-6 w-full text-sm font-semibold tracking-wide text-white shadow-lg transition-all duration-300",
+            "hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(168,85,247,0.18)]",
+            disabled && "pointer-events-none opacity-40 hover:translate-y-0 hover:shadow-none",
           )}
-          onClick={fallbackOAuthRedirect}
         >
           <svg
             className="mr-1 h-5 w-5 shrink-0"
@@ -192,7 +184,7 @@ export function GoogleSignInButton({
             />
           </svg>
           {t("signin_with_google")}
-        </Button>
+        </a>
       )}
 
       {pending && (

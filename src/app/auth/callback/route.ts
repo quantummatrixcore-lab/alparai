@@ -52,13 +52,24 @@ async function logAdminLogin(
 }
 
 export async function GET(request: NextRequest) {
-  const { searchParams, origin } = new URL(request.url);
+  const { searchParams } = new URL(request.url);
+  const host = request.headers.get("x-forwarded-host") ?? request.headers.get("host") ?? "www.alparai.com";
+  const origin = host.includes("localhost") ? "https://www.alparai.com" : `https://${host}`;
   const code = searchParams.get("code");
   const tokenHash = searchParams.get("token_hash");
   const type = searchParams.get("type");
   const errorParam = searchParams.get("error");
   const errorDescription = searchParams.get("error_description");
-  const next = safeNextPath(searchParams.get("next"));
+  let nextParam = searchParams.get("next");
+  const stateParam = searchParams.get("state");
+  if (!nextParam && stateParam) {
+    try {
+      const decoded = Buffer.from(stateParam, "base64url").toString();
+      const parsed = JSON.parse(decoded);
+      if (parsed?.next) nextParam = parsed.next;
+    } catch {}
+  }
+  const next = safeNextPath(nextParam);
   const locale = detectLocale(request);
   const hasLocalePrefix = SUPPORTED_LOCALES.some(
     (l) => next === `/${l}` || next.startsWith(`/${l}/`),
@@ -107,9 +118,30 @@ export async function GET(request: NextRequest) {
 
   try {
     if (code) {
-      const clientId = process.env.GOOGLE_CLIENT_ID || "341717447635-hsdu69hk692lkveikkpc8398v8rhu40b.apps.googleusercontent.com";
-      const clientSecret = process.env.GOOGLE_CLIENT_SECRET || "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";
-      const redirectUri = `${origin}/auth/callback`;
+      // 1. Primary: Exchange Supabase Auth code for session
+      const { data: sessionData, error: sessionError } = await supabase.auth.exchangeCodeForSession(code);
+      if (!sessionError && sessionData?.user) {
+        const user = sessionData.user;
+        const { createSessionCookieHeader } = await import("@/lib/auth/session");
+        const cookie = createSessionCookieHeader({
+          id: user.id,
+          email: user.email || "",
+          name: user.user_metadata?.full_name || user.user_metadata?.name || user.email?.split("@")[0] || "User",
+          picture: user.user_metadata?.avatar_url || user.user_metadata?.picture || "",
+          role: (user.app_metadata?.role as any) || "user",
+        });
+
+        response.cookies.set(cookie.name, cookie.value, cookie.options);
+        return response;
+      }
+
+      const envClientId = process.env.GOOGLE_CLIENT_ID;
+      const clientId =
+        envClientId && !envClientId.includes("SENSITIVE") && envClientId.includes(".apps.googleusercontent.com")
+          ? envClientId
+          : "341717447635-hsdu69hk692lkveikkpc8398v8rhu40b.apps.googleusercontent.com";
+      const redirectUri = "https://www.alparai.com/auth/callback";
+      const clientSecret = process.env.GOOGLE_CLIENT_SECRET || "";
 
       const tokenRes = await fetch("https://oauth2.googleapis.com/token", {
         method: "POST",
@@ -143,9 +175,23 @@ export async function GET(request: NextRequest) {
         return response;
       }
 
-      logger.warn("Google OAuth code exchange failed", { tokenData });
+      logger.warn("OAuth code exchange failed", { sessionError, tokenData });
       return NextResponse.redirect(
-        `${origin}/${locale}/auth/signin?error=oauth&reason=${encodeURIComponent(tokenData.error || "exchange_failed")}`,
+        `${origin}/${locale}/auth/signin?error=oauth&reason=${encodeURIComponent(sessionError?.message || tokenData.error || "exchange_failed")}`,
+      );
+    }
+
+    if (tokenHash && type) {
+      const { error } = await supabase.auth.verifyOtp({
+        token_hash: tokenHash,
+        type: type as EmailOtpType,
+      });
+      if (!error) {
+        return response;
+      }
+      logger.error("Token hash verification failed", { type }, error);
+      return NextResponse.redirect(
+        `${origin}/${locale}/auth/signin?error=oauth&reason=${encodeURIComponent(error.message)}`,
       );
     }
 

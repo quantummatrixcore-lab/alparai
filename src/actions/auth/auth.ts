@@ -15,14 +15,14 @@ export interface AuthResult {
 }
 
 function getOrigin(hdrs: Headers) {
-  if (process.env.NODE_ENV === "production" || process.env.VERCEL_ENV === "production") {
-    return "https://alparai.com";
-  }
   const origin = hdrs.get("origin");
-  if (origin) return origin;
-  const host = hdrs.get("x-forwarded-host") ?? hdrs.get("host") ?? "localhost:3000";
-  const protocol = hdrs.get("x-forwarded-proto") ?? (host.includes("localhost") ? "http" : "https");
-  return `${protocol}://${host}`;
+  if (origin && !origin.includes("localhost:3000")) return origin;
+  const host = hdrs.get("x-forwarded-host") ?? hdrs.get("host");
+  if (host) {
+    const proto = hdrs.get("x-forwarded-proto") ?? (host.includes("localhost") || host.includes("127.0.0.1") ? "http" : "https");
+    return `${proto}://${host}`;
+  }
+  return process.env.NEXT_PUBLIC_APP_URL || "https://www.alparai.com";
 }
 
 export async function signInWithGoogleIdToken(token: string, nonce: string): Promise<AuthResult> {
@@ -40,9 +40,13 @@ export async function signInWithGoogleIdToken(token: string, nonce: string): Pro
       console.error("[signInWithGoogleIdToken] Google verification returned status:", verifyRes.status);
       return { ok: false, error: "Google ID Token verification failed" };
     }
+    const payload = (await verifyRes.json()) as any;
 
-    const payload = await verifyRes.json();
-    const expectedClientId = process.env.GOOGLE_CLIENT_ID || "341717447635-hsdu69hk692lkveikkpc8398v8rhu40b.apps.googleusercontent.com";
+    const envClientId = process.env.GOOGLE_CLIENT_ID;
+    const expectedClientId =
+      envClientId && !envClientId.includes("SENSITIVE") && envClientId.includes(".apps.googleusercontent.com")
+        ? envClientId
+        : "341717447635-hsdu69hk692lkveikkpc8398v8rhu40b.apps.googleusercontent.com";
     if (payload.aud !== expectedClientId) {
       console.error("[signInWithGoogleIdToken] Audience mismatch:", payload.aud, expectedClientId);
       return { ok: false, error: "Invalid Google Client ID audience" };
@@ -159,3 +163,30 @@ export async function getMe(): Promise<MeResult> {
     throw err;
   }
 }
+
+export async function signInWithSupabaseToken(accessToken: string): Promise<AuthResult> {
+  try {
+    const { createClient } = await import("@supabase/supabase-js");
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://azszpzyvxjduhemkjsdh.supabase.co";
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+    const supabase = createClient(supabaseUrl, supabaseAnonKey);
+    const { data: { user }, error } = await supabase.auth.getUser(accessToken);
+    if (error || !user) {
+      console.error("[signInWithSupabaseToken] getUser failed:", error);
+      return { ok: false, error: error?.message || "Invalid session token" };
+    }
+    const { setSessionUser } = await import("@/lib/auth/session");
+    await setSessionUser({
+      id: user.id,
+      email: user.email || "",
+      name: user.user_metadata?.full_name || user.user_metadata?.name || user.email?.split("@")[0] || "User",
+      picture: user.user_metadata?.avatar_url || user.user_metadata?.picture || "",
+      role: (user.app_metadata?.role as any) || "user",
+    });
+    return { ok: true };
+  } catch (err) {
+    console.error("[signInWithSupabaseToken] Error:", err);
+    return { ok: false, error: "Token login failed" };
+  }
+}
+

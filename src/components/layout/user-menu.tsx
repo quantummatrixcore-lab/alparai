@@ -69,6 +69,8 @@ export function UserMenu({ initialUser }: { initialUser: SessionUserShape | null
             width={40}
             height={40}
             className="h-full w-full object-cover"
+            unoptimized
+            priority
           />
         ) : (
           <span className="text-sm font-semibold">

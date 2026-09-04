@@ -99,9 +99,7 @@ export function FeedCard({
 
   const getShareUrlForPlatform = React.useCallback(
     (platform: string) => {
-      const relativeUrl = `/incidents/${incident.id}?ref=${platform}`;
-      if (typeof window === "undefined") return `https://alparai.com${relativeUrl}`;
-      return `${window.location.origin}${relativeUrl}`;
+      return `https://www.alparai.com/incidents/${incident.id}?ref=${platform}`;
     },
     [incident.id],
   );

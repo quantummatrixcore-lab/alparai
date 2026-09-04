@@ -329,6 +329,7 @@ export const AdminSidebar = memo(function AdminSidebar() {
                 onClick={() => setIsCollapsed(true)}
                 className="rounded-md p-1 text-[#656d76] transition-colors hover:bg-[#eaeef2] hover:text-[#1f2328] dark:text-[#8b949e] dark:hover:bg-[#21262d] dark:hover:text-[#f0f6fc]"
                 title={t("collapseMenu")}
+                aria-label={t("collapseMenu")}
               >
                 <PanelLeftClose className="h-4 w-4" />
               </button>
@@ -340,6 +341,7 @@ export const AdminSidebar = memo(function AdminSidebar() {
                 onClick={() => setIsCollapsed(false)}
                 className="flex h-8 w-8 items-center justify-center rounded-md border border-[#d0d7de] bg-[#ffffff] p-1 text-[#656d76] transition-all hover:bg-[#f6f8fa] hover:text-[#1f2328] dark:border-[#30363d] dark:bg-[#161b22] dark:text-[#8b949e] dark:hover:bg-[#21262d] dark:hover:text-[#f0f6fc]"
                 title={t("expandMenu")}
+                aria-label={t("expandMenu")}
               >
                 <Logo size="sm" />
               </button>

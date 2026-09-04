@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { createServerClient } from "@/lib/supabase/server";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 export async function GET(_request: Request, props: { params: Promise<{ id: string }> }) {
   const params = await props.params;

@@ -28,7 +28,7 @@
     "scripts": {
         "dev": "next dev",
         "dev:all": "turbo run dev test:watch",
-        "build": "node scripts/guardian.js && next build --webpack",
+        "build": "cross-env NODE_OPTIONS=\"--max-old-space-size=4096\" node scripts/guardian.js && cross-env NODE_OPTIONS=\"--max-old-space-size=4096\" next build --webpack",
         "start": "next start",
         "lint": "cross-env NODE_OPTIONS=\"--max-old-space-size=8192\" eslint .",
         "lint:fix": "cross-env NODE_OPTIONS=\"--max-old-space-size=8192\" eslint . --fix",

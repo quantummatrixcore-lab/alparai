@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-09-04T16:20:01.223Z",
+  "ercuos_p0": {
+    "status": "PASS",
+    "passed": 15,
+    "total": 15
+  },
+  "immune_360": {
+    "status": "PASS",
+    "score": 82,
+    "autoHealed": 2
+  },
+  "tunnel_heartbeat": {
+    "status": "ONLINE",
+    "statusCode": 307,
+    "latency_ms": 888
+  },
+  "overall_status": "FULLY_OPERATIONAL_GREEN",
+  "total_duration": "20.38s"
+}

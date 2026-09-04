@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-09-04T15:35:29.704Z",
+  "timestamp": "2026-09-04T16:20:03.573Z",
   "target": "http://localhost:3003",
   "inspections": {},
   "defectsFound": 2,
@@ -8,7 +8,7 @@
     "spatial_visual": {
       "status": "DEFECTS_FOUND",
       "score": 85,
-      "latency": "885ms",
+      "latency": "2634ms",
       "defects": [
         {
           "type": "SECURITY",
@@ -19,16 +19,16 @@
     "closed_loop_ast": {
       "status": "HEALTHY",
       "score": 100,
-      "filesScanned": 2018,
+      "filesScanned": 2020,
       "found": 2,
       "autoHealed": 2
     },
     "predictive_cwv": {
-      "status": "OPTIMAL",
-      "score": 80,
+      "status": "NEEDS_OPTIMIZATION",
+      "score": 60,
       "metrics": {
-        "ttfb": "689ms (Target: <= 800ms)",
-        "predicted_lcp": "2856ms (Target: <= 2500ms)",
+        "ttfb": "1896ms (Target: <= 800ms)",
+        "predicted_lcp": "5028ms (Target: <= 2500ms)",
         "predicted_cls": "0.08",
         "payload_size": "646.3 KB"
       }
@@ -46,6 +46,6 @@
       "action": "Wrapped with DOMPurify.sanitize"
     }
   ],
-  "overallScore": 88,
-  "duration": "3.14s"
+  "overallScore": 82,
+  "duration": "18.03s"
 }

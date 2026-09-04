@@ -1,0 +1,51 @@
+{
+  "timestamp": "2026-09-04T15:35:29.704Z",
+  "target": "http://localhost:3003",
+  "inspections": {},
+  "defectsFound": 2,
+  "defectsAutoHealed": 2,
+  "pillars": {
+    "spatial_visual": {
+      "status": "DEFECTS_FOUND",
+      "score": 85,
+      "latency": "885ms",
+      "defects": [
+        {
+          "type": "SECURITY",
+          "message": "CSP allows unsafe-inline without nonces"
+        }
+      ]
+    },
+    "closed_loop_ast": {
+      "status": "HEALTHY",
+      "score": 100,
+      "filesScanned": 2018,
+      "found": 2,
+      "autoHealed": 2
+    },
+    "predictive_cwv": {
+      "status": "OPTIMAL",
+      "score": 80,
+      "metrics": {
+        "ttfb": "689ms (Target: <= 800ms)",
+        "predicted_lcp": "2856ms (Target: <= 2500ms)",
+        "predicted_cls": "0.08",
+        "payload_size": "646.3 KB"
+      }
+    }
+  },
+  "healLog": [
+    {
+      "file": "D:\\01_SaaS_Products\\Alparai\\scripts\\vibe_security_guardian.js",
+      "rule": "XSS_DANGEROUSLY_SET_INNER_HTML",
+      "action": "Wrapped with DOMPurify.sanitize"
+    },
+    {
+      "file": "D:\\01_SaaS_Products\\Alparai\\src\\components\\seo\\json-ld.tsx",
+      "rule": "XSS_DANGEROUSLY_SET_INNER_HTML",
+      "action": "Wrapped with DOMPurify.sanitize"
+    }
+  ],
+  "overallScore": 88,
+  "duration": "3.14s"
+}

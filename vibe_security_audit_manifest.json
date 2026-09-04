@@ -1,0 +1,191 @@
+{
+  "timestamp": "2026-09-04T14:38:01.073Z",
+  "target": "D:\\01_SaaS_Products\\Alparai",
+  "totalScanned": 3246,
+  "findingsCount": 30,
+  "criticalCount": 4,
+  "highCount": 26,
+  "mediumCount": 0,
+  "findings": [
+    {
+      "severity": "CRITICAL",
+      "cwe": "CWE-798",
+      "file": "src\\lib\\ai\\sentinel.test.ts",
+      "message": "Hardcoded Private Key / Secret Token hardcoded in source file!"
+    },
+    {
+      "severity": "CRITICAL",
+      "cwe": "CWE-798",
+      "file": "src\\lib\\supabase\\admin.ts",
+      "message": "Hardcoded Supabase Service Role Secret hardcoded in source file!"
+    },
+    {
+      "severity": "CRITICAL",
+      "cwe": "CWE-798",
+      "file": "tests\\api\\cron\\verify-geo-citations.test.ts",
+      "message": "Hardcoded Private Key / Secret Token hardcoded in source file!"
+    },
+    {
+      "severity": "CRITICAL",
+      "cwe": "CWE-798",
+      "file": "tests\\api\\personas-completions.test.ts",
+      "message": "Hardcoded Private Key / Secret Token hardcoded in source file!"
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-95",
+      "file": "dist-public\\tests\\e2e\\admin-pwa.spec.ts",
+      "message": "Direct eval() Execution detected; potential RCE or command injection vector."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-95",
+      "file": "docs\\METHODOLOGY_AUDITS\\lighthouse-home.json",
+      "message": "Direct eval() Execution detected; potential RCE or command injection vector."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-95",
+      "file": "docs\\METHODOLOGY_AUDITS\\lighthouse-submit.json",
+      "message": "Direct eval() Execution detected; potential RCE or command injection vector."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-95",
+      "file": "graphify-out\\graph.json",
+      "message": "Direct eval() Execution detected; potential RCE or command injection vector."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-95",
+      "file": "ops\\linkedin-assets\\admin-nav.js",
+      "message": "Direct eval() Execution detected; potential RCE or command injection vector."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-95",
+      "file": "ops\\linkedin-assets\\step1-edit.js",
+      "message": "Direct eval() Execution detected; potential RCE or command injection vector."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-95",
+      "file": "scripts\\archive\\extract_api_key.js",
+      "message": "Direct eval() Execution detected; potential RCE or command injection vector."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-95",
+      "file": "scripts\\browser_automation.js",
+      "message": "Direct eval() Execution detected; potential RCE or command injection vector."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-95",
+      "file": "scripts\\google_media_automator.js",
+      "message": "Direct eval() Execution detected; potential RCE or command injection vector."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-95",
+      "file": "scripts\\inspect_pomelli.js",
+      "message": "Direct eval() Execution detected; potential RCE or command injection vector."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-95",
+      "file": "scripts\\qa-test-2.js",
+      "message": "Direct eval() Execution detected; potential RCE or command injection vector."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-95",
+      "file": "scripts\\setup_notebooklm.js",
+      "message": "Direct eval() Execution detected; potential RCE or command injection vector."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-95",
+      "file": "scripts\\vibe_security_guardian.js",
+      "message": "Direct eval() Execution detected; potential RCE or command injection vector."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-95",
+      "file": "tests\\e2e\\admin-pwa.spec.ts",
+      "message": "Direct eval() Execution detected; potential RCE or command injection vector."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-95",
+      "file": "tests\\e2e\\flows\\sse-submit.spec.ts",
+      "message": "Direct eval() Execution detected; potential RCE or command injection vector."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-338",
+      "file": "docs\\METHODOLOGY_AUDITS\\lighthouse-home.json",
+      "message": "Insecure PRNG (Math.random()) used in authentication/token context. Use crypto.randomBytes() or crypto.randomUUID()."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-338",
+      "file": "docs\\METHODOLOGY_AUDITS\\lighthouse-incidents.json",
+      "message": "Insecure PRNG (Math.random()) used in authentication/token context. Use crypto.randomBytes() or crypto.randomUUID()."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-338",
+      "file": "scripts\\jules-extractor.js",
+      "message": "Insecure PRNG (Math.random()) used in authentication/token context. Use crypto.randomBytes() or crypto.randomUUID()."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-338",
+      "file": "scripts\\jules-key-hunter.js",
+      "message": "Insecure PRNG (Math.random()) used in authentication/token context. Use crypto.randomBytes() or crypto.randomUUID()."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-338",
+      "file": "scripts\\vibe_security_guardian.js",
+      "message": "Insecure PRNG (Math.random()) used in authentication/token context. Use crypto.randomBytes() or crypto.randomUUID()."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-338",
+      "file": "src\\components\\admin\\widgets\\VisitorAnalytics.tsx",
+      "message": "Insecure PRNG (Math.random()) used in authentication/token context. Use crypto.randomBytes() or crypto.randomUUID()."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-338",
+      "file": "src\\lib\\ai\\visitor-predictor.ts",
+      "message": "Insecure PRNG (Math.random()) used in authentication/token context. Use crypto.randomBytes() or crypto.randomUUID()."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-338",
+      "file": "src\\lib\\autopilot\\queue.ts",
+      "message": "Insecure PRNG (Math.random()) used in authentication/token context. Use crypto.randomBytes() or crypto.randomUUID()."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-284",
+      "file": "database/migrations",
+      "message": "Found 6 SQL migration table declarations without explicit ENABLE ROW LEVEL SECURITY."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-79",
+      "file": "src\\app\\[locale]\\blog\\[slug]\\page.tsx",
+      "message": "dangerouslySetInnerHTML used without DOMPurify or HTML sanitization."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-79",
+      "file": "src\\components\\seo\\json-ld.tsx",
+      "message": "dangerouslySetInnerHTML used without DOMPurify or HTML sanitization."
+    }
+  ]
+}

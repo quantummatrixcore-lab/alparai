@@ -94,3 +94,11 @@ $$ language 'plpgsql';
 CREATE TRIGGER trg_check_sybil_suspect
 BEFORE UPDATE ON user_reputation
 FOR EACH ROW EXECUTE PROCEDURE check_sybil_suspect();
+
+-- Enable Row Level Security on all tables
+ALTER TABLE user_reputation ENABLE ROW LEVEL SECURITY;
+ALTER TABLE reputation_logs ENABLE ROW LEVEL SECURITY;
+ALTER TABLE jury_cases ENABLE ROW LEVEL SECURITY;
+ALTER TABLE jurors ENABLE ROW LEVEL SECURITY;
+ALTER TABLE jury_votes ENABLE ROW LEVEL SECURITY;
+ALTER TABLE wall_of_shame_entries ENABLE ROW LEVEL SECURITY;

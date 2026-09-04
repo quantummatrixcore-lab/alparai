@@ -28,7 +28,7 @@ class InMemoryQueue implements QueueHandle {
   private jobs: QueueJob[] = [];
 
   async enqueue(job: QueueJob): Promise<string | null> {
-    const id = job.id || `job_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+    const id = job.id || `job_${Date.now()}_${crypto.randomUUID().slice(0, 8)}`;
     const fullJob: QueueJob = { ...job, id, payload: job.data };
     this.jobs.push(fullJob);
     return id;
@@ -68,7 +68,7 @@ class RedisQueue implements QueueHandle {
         );
         return null;
       }
-      const id = job.id || `job_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+      const id = job.id || `job_${Date.now()}_${crypto.randomUUID().slice(0, 8)}`;
       const fullJob: QueueJob = { ...job, id, payload: job.data };
       await this.redis.rpush(QUEUE_KEY, JSON.stringify(fullJob));
       await this.redis.sadd(INDEX_KEY, id);

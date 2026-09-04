@@ -1,0 +1,109 @@
+{
+  "version": "2.0.0",
+  "name": "ANTIGRAVITY_THREAT_INTELLIGENCE_ROSTER",
+  "description": "Comprehensive Threat Intelligence, CVE, OSINT and Vulnerability Data Feeds for Autonomous Research Agents",
+  "active_sources": [
+    {
+      "name": "GitHub Discussions & Issues",
+      "category": "Developer Discussions",
+      "query_pattern": "site:github.com/*/issues [target_keyword]",
+      "focus": "Production bugs, zero-day workarounds, unpatched edge cases"
+    },
+    {
+      "name": "HackerNews (YCombinator)",
+      "category": "Tech News & Postmortems",
+      "query_pattern": "site:news.ycombinator.com [target_keyword]",
+      "focus": "Architecture breakdowns, security postmortems, real-world breaches"
+    },
+    {
+      "name": "Reddit Technical Subreddits",
+      "category": "Community OSINT",
+      "query_pattern": "site:reddit.com/r/(netsec|LocalLLaMA|programming|cybersecurity) [target_keyword]",
+      "focus": "Practitioner experiences, unpublished exploit techniques, LLM tricks"
+    },
+    {
+      "name": "HackerOne Hacktivity",
+      "category": "Bug Bounty Disclosures",
+      "query_pattern": "site:hackerone.com/reports [target_keyword]",
+      "focus": "Real-world rewarded vulnerabilities, BOLA, SSRF, IDOR payloads"
+    },
+    {
+      "name": "OWASP GenAI & Top 10",
+      "category": "Standards",
+      "query_pattern": "site:owasp.org [target_keyword]",
+      "focus": "Consensus vulnerability taxonomies and mitigation guides"
+    },
+    {
+      "name": "Local Codebase Guardian",
+      "category": "Static Analysis",
+      "runner": "scripts/vibe_security_guardian.cjs",
+      "focus": "Source code, secrets, eval(), RLS migrations, PRNG, dangerouslySetInnerHTML"
+    }
+  ],
+  "recommended_expansion_sources": [
+    {
+      "id": "EXP-01",
+      "name": "Huntr.dev (Protect AI)",
+      "category": "AI / ML Bug Bounty",
+      "url": "https://huntr.com",
+      "importance": "CRITICAL",
+      "why_needed": "Dünyanın 1 numaralı AI/ML açık kaynak güvenlik platformu. LangChain, LlamaIndex, vLLM, Ollama, Supabase gibi AI araçlarındaki sıfırıncı gün (0-day) açıklarının yayınlandığı ana merkez."
+    },
+    {
+      "id": "EXP-02",
+      "name": "MITRE ATLAS (Adversarial Threat Landscape for AI)",
+      "category": "AI Threat Matrix",
+      "url": "https://atlas.mitre.org",
+      "importance": "HIGH",
+      "why_needed": "Yapay zeka sistemlerine yönelik saldırı tekniklerinin (prompt injection, model evasion, training data poisoning) resmi MITRE taksonomisi."
+    },
+    {
+      "id": "EXP-03",
+      "name": "NVD & CISA KEV (Known Exploited Vulnerabilities)",
+      "category": "Active Exploitation Feeds",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+      "importance": "CRITICAL",
+      "why_needed": "Hackerların dünya genelinde aktif olarak sömürdüğü zafiyetlerin resmi listesi. Bir açığın teorik mi yoksa canlı saldırıda mı kullanıldığını anında doğrular."
+    },
+    {
+      "id": "EXP-04",
+      "name": "OSV.dev (Google Open Source Vulnerabilities)",
+      "category": "Package Dependency Database",
+      "url": "https://osv.dev",
+      "importance": "HIGH",
+      "why_needed": "npm, PyPI, Go paketlerindeki bilinen tüm güvenlik açıklarının anlık API entegrasyonu."
+    },
+    {
+      "id": "EXP-05",
+      "name": "Exploit-DB & Packet Storm",
+      "category": "Proof of Concept (PoC)",
+      "url": "https://www.exploit-db.com",
+      "importance": "HIGH",
+      "why_needed": "Yeni çıkan CVE'ler için yayınlanan çalışan istismar kodları. Güvenlik önleminin o koda karşı dayanıklı olup olmadığını doğrular."
+    },
+    {
+      "id": "EXP-06",
+      "name": "arXiv Cryptography and Security (cs.CR)",
+      "category": "Academic Research",
+      "url": "https://arxiv.org/list/cs.CR/recent",
+      "importance": "MEDIUM",
+      "why_needed": "Akademisyenlerin keşfettiği henüz kamuya mal olmamış yeni nesil LLM jailbreak, side-channel ve kriptografik saldırı makaleleri."
+    },
+    {
+      "id": "EXP-07",
+      "name": "Cloudflare & Supabase Security Bulletins",
+      "category": "Infrastructure Advisories",
+      "url": "https://blog.cloudflare.com, https://supabase.com/blog",
+      "importance": "CRITICAL",
+      "why_needed": "Kullandığımız omurga altyapıların (Postgres, Cloudflare Edge, Next.js) özel güvenlik duyuruları ve yama takvimleri."
+    },
+    {
+      "id": "EXP-08",
+      "name": "Gitleaks & Git History Deep Scanner",
+      "category": "Codebase Historical Audit",
+      "type": "Local Engine Tool",
+      "importance": "CRITICAL",
+      "why_needed": "Yalnızca mevcut dosyaları değil, geçmiş git commit'leri (`git log`) ve silinmiş dosyaları tarayarak tarihte kalmış anahtar sızıntılarını yakalar."
+    }
+  ]
+}

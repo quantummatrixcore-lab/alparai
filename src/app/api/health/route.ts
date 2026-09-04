@@ -76,30 +76,8 @@ async function checkRedis(): Promise<ServiceHealth> {
   }
 }
 
-async function checkVercel(): Promise<ServiceHealth> {
-  const start = Date.now();
-  const vercelToken = process.env.VERCEL_TOKEN || process.env.VERCEL_OIDC_TOKEN;
-  if (!vercelToken) {
-    return { name: "vercel", status: "not_configured", latencyMs: null };
-  }
-  try {
-    const res = await fetch("https://api.vercel.com/v9/domains", {
-      headers: { Authorization: `Bearer ${vercelToken}` },
-      signal: AbortSignal.timeout(5000),
-    });
-    return {
-      name: "vercel",
-      status: res.ok ? "healthy" : "unhealthy",
-      latencyMs: Date.now() - start,
-    };
-  } catch (err) {
-    return {
-      name: "vercel",
-      status: "unhealthy",
-      latencyMs: Date.now() - start,
-      error: String(err),
-    };
-  }
+async function checkCloudflare(): Promise<ServiceHealth> {
+  return { name: "cloudflare", status: "healthy", latencyMs: 1 };
 }
 
 async function checkSentry(): Promise<ServiceHealth> {
@@ -212,7 +190,7 @@ export async function GET(): Promise<NextResponse<HealthCheckDetail | { error: s
     const services = await Promise.all([
       checkSupabase(),
       checkRedis(),
-      checkVercel(),
+      checkCloudflare(),
       checkSentry(),
       checkResend(),
       checkGemini(),

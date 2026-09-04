@@ -71,6 +71,7 @@ export function UserMenu({ initialUser }: { initialUser: SessionUserShape | null
             className="h-full w-full object-cover"
             unoptimized
             priority
+            referrerPolicy="no-referrer"
           />
         ) : (
           <span className="text-sm font-semibold">

@@ -56,3 +56,7 @@ CREATE POLICY "Enable read access for all users on agent_episodic_memory" ON pub
 
 -- ROLLBACK:
 -- DROP TABLE IF EXISTS public.agent_episodic_memory CASCADE;
+
+
+-- [OMEGA GATE AUTO-HEAL] Enforce RLS on newly defined tables
+ALTER TABLE agent_episodic_memory ENABLE ROW LEVEL SECURITY;

@@ -1,5 +1,5 @@
-// @ts-nocheck
 import React from "react";
+import { describe, it, expect, beforeEach } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { JuryDutySwipe } from "../../src/components/public/JuryDutySwipe";
 import { vi } from "vitest";

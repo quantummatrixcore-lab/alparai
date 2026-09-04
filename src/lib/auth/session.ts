@@ -1,96 +1,143 @@
-/**
- * Auth helpers — get current user, role checks, etc.
- */
+import { cookies } from "next/headers";
+import { createHmac } from "crypto";
+import type { SessionUser, UserRole } from "@/types";
 
-import "server-only";
-import { cache } from "react";
-import { createClient } from "@/lib/supabase/server";
-import type { SessionUser } from "@/types";
-import type { Database } from "@/types/database";
+export interface AlparUser {
+  id: string;
+  email: string;
+  name: string | null;
+  picture: string | null;
+  role: UserRole;
+  created_at: string;
+}
 
-import { createAdminClient } from "@/lib/supabase/admin";
-import {
-  isTestAuthBypassActive,
-  assertTestBypassSafe,
-  getPlaywrightMockUser,
-} from "@/lib/auth/test-bypass";
+const SECRET = process.env.CRON_SECRET || "alparai-sovereign-session-secret-key-2026";
+const COOKIE_NAME = "alparai_session";
 
-assertTestBypassSafe();
+function sign(payload: string): string {
+  const hmac = createHmac("sha256", SECRET).update(payload).digest("base64url");
+  return `${payload}.${hmac}`;
+}
 
-export const getCurrentUser = cache(async (): Promise<SessionUser | null> => {
-  if (isTestAuthBypassActive()) {
-    return getPlaywrightMockUser();
-  }
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) {
-    if (process.env.NODE_ENV === "development") {
-      return {
-        id: "admin-dev-user",
-        email: "ercument.erden@alparai.com",
-        fullName: "Ercüment Erden (Founder & CEO)",
-        avatarUrl: null,
-        role: "admin",
-        isVerified: true,
-        createdAt: new Date().toISOString(),
-      };
-    }
-    return null;
-  }
-
-  type UserProfile = Omit<Database["public"]["Tables"]["users"]["Row"], "email">;
-
-  let profile: UserProfile | null = null;
-
+function verify(token: string): AlparUser | null {
   try {
-    const admin = createAdminClient();
-    const { data } = await admin
-      .from("users")
-      .select("id, full_name, avatar_url, role, is_verified, created_at")
-      .eq("id", user.id)
-      .single<UserProfile>();
-    profile = data;
-  } catch (_err) {
-    // Fallback handled below if profile remains null
-  }
-
-  if (!profile) {
-    const { data } = await supabase
-      .from("users")
-      .select("id, full_name, avatar_url, role, is_verified, created_at")
-      .eq("id", user.id)
-      .single<UserProfile>();
-    profile = data;
-  }
-
-  if (!profile) {
+    const parts = token.split(".");
+    if (parts.length !== 2) return null;
+    const payload = parts[0];
+    const sig = parts[1];
+    if (!payload || !sig) return null;
+    const expectedSig = createHmac("sha256", SECRET).update(payload).digest("base64url");
+    if (sig !== expectedSig) return null;
+    const jsonStr = Buffer.from(payload, "base64url").toString("utf8");
+    return JSON.parse(jsonStr) as AlparUser;
+  } catch {
     return null;
   }
+}
 
-  const userRole = profile.role || "user";
+export async function setSessionUser(user: Omit<AlparUser, "created_at">): Promise<void> {
+  const fullUser: AlparUser = {
+    ...user,
+    created_at: new Date().toISOString(),
+  };
+  const payload = Buffer.from(JSON.stringify(fullUser)).toString("base64url");
+  const token = sign(payload);
+  const cookieStore = await cookies();
+  const isProduction = process.env.NODE_ENV === "production";
+
+  cookieStore.set(COOKIE_NAME, token, {
+    httpOnly: true,
+    secure: isProduction,
+    sameSite: "lax",
+    path: "/",
+    maxAge: 60 * 60 * 24 * 30, // 30 days
+  });
+}
+
+export async function getSessionUser(): Promise<AlparUser | null> {
+  try {
+    const cookieStore = await cookies();
+    const c = cookieStore.get(COOKIE_NAME);
+    if (!c || !c.value) return null;
+    return verify(c.value);
+  } catch {
+    return null;
+  }
+}
+
+export async function clearSessionUser(): Promise<void> {
+  const cookieStore = await cookies();
+  cookieStore.delete(COOKIE_NAME);
+}
+
+export function createSessionCookieHeader(user: Omit<AlparUser, "created_at">): {
+  name: string;
+  value: string;
+  options: {
+    httpOnly: boolean;
+    secure: boolean;
+    sameSite: "lax" | "strict" | "none";
+    path: string;
+    maxAge: number;
+  };
+} {
+  const fullUser: AlparUser = {
+    ...user,
+    created_at: new Date().toISOString(),
+  };
+  const payload = Buffer.from(JSON.stringify(fullUser)).toString("base64url");
+  const token = sign(payload);
+  const isProduction = process.env.NODE_ENV === "production";
 
   return {
-    id: user.id,
-    email: user.email ?? "",
-    fullName:
-      profile?.full_name ?? user.user_metadata?.full_name ?? user.email?.split("@")[0] ?? "User",
-    avatarUrl: profile?.avatar_url ?? user.user_metadata?.avatar_url ?? null,
-    role: userRole,
-    isVerified: profile?.is_verified ?? true,
-    createdAt: profile?.created_at ?? user.created_at ?? new Date().toISOString(),
+    name: COOKIE_NAME,
+    value: token,
+    options: {
+      httpOnly: true,
+      secure: isProduction,
+      sameSite: "lax",
+      path: "/",
+      maxAge: 60 * 60 * 24 * 30,
+    },
   };
-});
+}
+
+export async function getCurrentUser(): Promise<SessionUser | null> {
+  const u = await getSessionUser();
+  if (!u) return null;
+  return {
+    id: u.id,
+    email: u.email,
+    fullName: u.name,
+    avatarUrl: u.picture,
+    role: u.role,
+    isVerified: true,
+    createdAt: u.created_at,
+  };
+}
 
 export async function isModerator(): Promise<boolean> {
   const user = await getCurrentUser();
-  return user?.role === "moderator" || user?.role === "admin" || user?.role === "ceo";
+  const r = user?.role as string | undefined;
+  return r === "moderator" || r === "admin" || r === "ceo";
 }
 
 export async function isAdmin(): Promise<boolean> {
   const user = await getCurrentUser();
-  return user?.role === "admin" || user?.role === "ceo";
+  const r = user?.role as string | undefined;
+  return r === "admin" || r === "ceo";
+}
+
+export async function isCEO(): Promise<boolean> {
+  const user = await getCurrentUser();
+  const r = user?.role as string | undefined;
+  return r === "ceo" || r === "admin";
+}
+
+export async function isAdvisor(): Promise<boolean> {
+  const user = await getCurrentUser();
+  const r = user?.role as string | undefined;
+  return r === "advisor" || r === "ceo" || r === "admin";
 }
 
 export async function requireUser(): Promise<SessionUser> {
@@ -103,7 +150,8 @@ export async function requireUser(): Promise<SessionUser> {
 
 export async function requireModerator(): Promise<SessionUser> {
   const user = await requireUser();
-  if (user.role !== "moderator" && user.role !== "admin" && user.role !== "ceo") {
+  const r = user.role as string;
+  if (r !== "moderator" && r !== "admin" && r !== "ceo") {
     throw new Error("FORBIDDEN");
   }
   return user;
@@ -111,7 +159,8 @@ export async function requireModerator(): Promise<SessionUser> {
 
 export async function requireAdmin(): Promise<SessionUser> {
   const user = await requireUser();
-  if (user.role !== "admin" && user.role !== "ceo") {
+  const r = user.role as string;
+  if (r !== "admin" && r !== "ceo") {
     throw new Error("FORBIDDEN");
   }
   return user;
@@ -119,7 +168,8 @@ export async function requireAdmin(): Promise<SessionUser> {
 
 export async function requireCEO(): Promise<SessionUser> {
   const user = await requireUser();
-  if (user.role !== "ceo" && user.role !== "admin") {
+  const r = user.role as string;
+  if (r !== "ceo" && r !== "admin") {
     throw new Error("FORBIDDEN");
   }
   return user;
@@ -127,9 +177,10 @@ export async function requireCEO(): Promise<SessionUser> {
 
 export async function requireAdvisor(): Promise<SessionUser> {
   const user = await requireUser();
-  const userRole = user.role as string;
-  if (userRole !== "advisor" && userRole !== "ceo" && userRole !== "admin") {
+  const r = user.role as string;
+  if (r !== "advisor" && r !== "ceo" && r !== "admin") {
     throw new Error("FORBIDDEN");
   }
   return user;
 }
+

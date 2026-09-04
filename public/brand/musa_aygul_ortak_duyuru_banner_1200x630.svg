@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <!-- Background Canvas Gradients -->
+    <linearGradient id="bannerBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#02050e"/>
+      <stop offset="40%" stop-color="#060c1d"/>
+      <stop offset="75%" stop-color="#040816"/>
+      <stop offset="100%" stop-color="#010307"/>
+    </linearGradient>
+
+    <!-- Radial Cyan Glow (Right Flank behind Seal) -->
+    <radialGradient id="sealBackGlow" cx="80%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.32"/>
+      <stop offset="40%" stop-color="#38bdf8" stop-opacity="0.14"/>
+      <stop offset="75%" stop-color="#a855f7" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Gold Accent Gradients -->
+    <linearGradient id="goldHeadGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+
+    <linearGradient id="cyanHeadGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="60%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#00f0ff"/>
+    </linearGradient>
+
+    <!-- Grid Pattern -->
+    <pattern id="auditGrid" width="36" height="36" patternUnits="userSpaceOnUse">
+      <path d="M 36 0 L 0 0 0 36" fill="none" stroke="#38bdf8" stroke-width="0.5" stroke-opacity="0.08"/>
+      <circle cx="36" cy="36" r="1.1" fill="#38bdf8" fill-opacity="0.16"/>
+    </pattern>
+
+    <!-- Laser Ray Gradient -->
+    <linearGradient id="laserGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0"/>
+      <stop offset="30%" stop-color="#38bdf8" stop-opacity="0.6"/>
+      <stop offset="70%" stop-color="#00f0ff" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+
+    <filter id="cardGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.7"/>
+    </filter>
+  </defs>
+
+  <!-- ================= CANVAS BASE ================= -->
+  <rect width="1200" height="630" fill="url(#bannerBg)"/>
+  <rect width="1200" height="630" fill="url(#auditGrid)"/>
+  <rect width="1200" height="630" fill="url(#sealBackGlow)"/>
+
+  <!-- High-Tech Ambient Laser Beams -->
+  <line x1="60" y1="535" x2="1140" y2="535" stroke="url(#laserGrad)" stroke-width="1.2"/>
+  <line x1="60" y1="95" x2="680" y2="95" stroke="#38bdf8" stroke-width="0.8" stroke-opacity="0.2"/>
+
+  <!-- ================= LEFT FLANK: CONTENT & TYPOGRAPHY ================= -->
+
+  <!-- Top Pill / Institutional Tag -->
+  <g transform="translate(60, 50)">
+    <rect x="0" y="0" width="490" height="32" rx="16" fill="#08152e" stroke="#1e3a5f" stroke-width="1.2"/>
+    <circle cx="16" cy="16" r="4.5" fill="#f59e0b"/>
+    <text x="32" y="21" fill="#fef08a" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="800" letter-spacing="1.5">
+      STRATEJİK AKADEMİK &amp; HUKUKİ TAHKİM ORTAKLIĞI
+    </text>
+  </g>
+
+  <!-- Super Headline -->
+  <text x="60" y="145" fill="url(#goldHeadGrad)" font-family="'Times New Roman', 'Cinzel', serif" font-size="20" font-weight="700" letter-spacing="4">
+    YAPAY ZEKÂDA TAHKİM VE YARGI ÇAĞI RESMEN BAŞLIYOR
+  </text>
+
+  <!-- Main Title -->
+  <text x="60" y="198" fill="url(#cyanHeadGrad)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="44" font-weight="900" letter-spacing="-0.5">
+    PROF. DR. MUSA AYGÜL
+  </text>
+  <text x="60" y="246" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="900" letter-spacing="-0.2">
+    &amp; ALPAR AI KONSEYİ
+  </text>
+
+  <!-- Subtitle Paragraph -->
+  <text x="60" y="284" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15.5" font-weight="500">
+    The Supreme Court of AI Accountability, uluslararası ticari tahkim ve
+  </text>
+  <text x="60" y="306" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15.5" font-weight="500">
+    milletlerarası özel hukukun seçkin otoritesi ile adli tıp birliğini mühürlüyor.
+  </text>
+
+  <!-- Key Pillars (3 Structural Cards) -->
+  <g transform="translate(60, 335)">
+    <!-- Card 1: Bağımsız Tahkim -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="195" height="105" rx="8" fill="#081226" stroke="#1e293b" stroke-width="1" filter="url(#cardGlow)"/>
+      <rect x="0" y="0" width="195" height="3" rx="1.5" fill="#f59e0b"/>
+      <text x="14" y="24" fill="#fbbf24" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5" font-weight="800" letter-spacing="1">01 / TAHKİM HEYETİ</text>
+      <text x="14" y="44" fill="#f8fafc" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13.5" font-weight="700">Bağımsız Hakemlik</text>
+      <text x="14" y="64" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="500">Otonom kararlar ve</text>
+      <text x="14" y="80" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="500">algoritmik ihtilaflara</text>
+      <text x="14" y="96" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="700">Yargısal Tahkim Çözümü</text>
+    </g>
+
+    <!-- Card 2: Güvenlik Mührü -->
+    <g transform="translate(210, 0)">
+      <rect x="0" y="0" width="195" height="105" rx="8" fill="#081226" stroke="#1e293b" stroke-width="1" filter="url(#cardGlow)"/>
+      <rect x="0" y="0" width="195" height="3" rx="1.5" fill="#38bdf8"/>
+      <text x="14" y="24" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5" font-weight="800" letter-spacing="1">02 / GÜVENLİK MÜHRÜ</text>
+      <text x="14" y="44" fill="#f8fafc" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13.5" font-weight="700">Akademik Tescil</text>
+      <text x="14" y="64" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="500">660+ Model için adli</text>
+      <text x="14" y="80" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="500">tıp denetimi &amp; onaylı</text>
+      <text x="14" y="96" fill="#fbbf24" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="700">Kriptografik Sertifika</text>
+    </g>
+
+    <!-- Card 3: EU AI Act 72h SLA -->
+    <g transform="translate(420, 0)">
+      <rect x="0" y="0" width="195" height="105" rx="8" fill="#081226" stroke="#1e293b" stroke-width="1" filter="url(#cardGlow)"/>
+      <rect x="0" y="0" width="195" height="3" rx="1.5" fill="#a855f7"/>
+      <text x="14" y="24" fill="#c084fc" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5" font-weight="800" letter-spacing="1">03 / REGÜLASYON SLA</text>
+      <text x="14" y="44" fill="#f8fafc" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13.5" font-weight="700">EU AI Act Kalkanı</text>
+      <text x="14" y="64" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="500">35M € cezalara karşı</text>
+      <text x="14" y="80" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="500">72 saatlik adli denetim</text>
+      <text x="14" y="96" fill="#a855f7" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="700">ve Hukuki Zırh</text>
+    </g>
+  </g>
+
+  <!-- ================= BOTTOM FOOTER ATTRIBUTION ================= -->
+  <g transform="translate(60, 565)">
+    <!-- Founder & Professor Badge -->
+    <text x="0" y="16" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13.5" font-weight="800">
+      Ercüment Erden <tspan fill="#64748b" font-weight="400">(Kurucu, Alpar AI)</tspan>
+      <tspan fill="#38bdf8"> · </tspan>
+      Prof. Dr. Musa Aygül <tspan fill="#64748b" font-weight="400">(Selçuk Üniversitesi Hukuk Fakültesi)</tspan>
+    </text>
+    <text x="0" y="36" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11.5" font-weight="600" letter-spacing="0.5">
+      TEKNOPARK ISTANBUL CUBE INCUBATION · ALPARAI.COM · 16.866+ EXECUTIVE COMMUNITY
+    </text>
+  </g>
+
+  <!-- ================= RIGHT FLANK: THE FLOATING ARBITRATION SEAL ================= -->
+  <g transform="translate(920, 310)">
+    <!-- Ambient Multilayer Glowing Rings behind Seal -->
+    <circle cx="0" cy="0" r="240" fill="none" stroke="#38bdf8" stroke-width="0.8" stroke-dasharray="6,12" stroke-opacity="0.3"/>
+    <circle cx="0" cy="0" r="220" fill="none" stroke="#f59e0b" stroke-width="0.8" stroke-dasharray="2,6" stroke-opacity="0.4"/>
+    <circle cx="0" cy="0" r="260" fill="none" stroke="#a855f7" stroke-width="0.5" stroke-dasharray="10,20" stroke-opacity="0.2"/>
+
+    <!-- Dynamic Orbit Nodes -->
+    <circle cx="-170" cy="-120" r="4.5" fill="#38bdf8" filter="url(#cardGlow)"/>
+    <circle cx="160" cy="140" r="4" fill="#fbbf24"/>
+    <circle cx="210" cy="-80" r="3.5" fill="#00f0ff"/>
+
+    <!-- Embedded Scaled Master Seal (Scale 0.46 = ~460px diameter) -->
+    <g transform="translate(-230, -230) scale(0.46)">
+      <!-- Embedded Vector Seal Instance -->
+      <use href="#masterSealInstance" xlink:href="#masterSealInstance"/>
+    </g>
+
+    <!-- Verification Hologram Floating Tag -->
+    <g transform="translate(-110, 205)">
+      <rect x="0" y="0" width="220" height="30" rx="6" fill="#0b1739" stroke="#38bdf8" stroke-width="1.2" filter="url(#cardGlow)"/>
+      <circle cx="14" cy="15" r="4" fill="#10b981"/>
+      <text x="28" y="19" fill="#f8fafc" font-family="'Consolas', monospace" font-size="10.5" font-weight="700" letter-spacing="0.8">
+        SEAL STATUS: VERIFIED ✓
+      </text>
+    </g>
+  </g>
+
+  <!-- Embedded Seal Def for <use> -->
+  <defs>
+    <g id="masterSealInstance">
+      <!-- Include the seal elements inside <use> -->
+      
+  <defs>
+    <!-- Background Space Gradient -->
+    <radialGradient id="spaceGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0b1739"/>
+      <stop offset="45%" stop-color="#050a1b"/>
+      <stop offset="85%" stop-color="#02040c"/>
+      <stop offset="100%" stop-color="#010207"/>
+    </radialGradient>
+
+    <!-- Imperial Gold Gradient -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="25%" stop-color="#f59e0b"/>
+      <stop offset="50%" stop-color="#d97706"/>
+      <stop offset="75%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </linearGradient>
+
+    <linearGradient id="goldRimGrad" x1="10%" y1="0%" x2="90%" y2="100%">
+      <stop offset="0%" stop-color="#fffbeb"/>
+      <stop offset="20%" stop-color="#fbbf24"/>
+      <stop offset="40%" stop-color="#b45309"/>
+      <stop offset="60%" stop-color="#fef08a"/>
+      <stop offset="80%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </linearGradient>
+
+    <!-- Lustrous Pearl Gradient -->
+    <radialGradient id="pearlGrad" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="40%" stop-color="#fef08a"/>
+      <stop offset="80%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </radialGradient>
+
+    <!-- Leaf Gradients -->
+    <linearGradient id="goldLeafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="50%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#92400e"/>
+    </linearGradient>
+    <linearGradient id="goldLeafLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="40%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+
+    <!-- Electric Cyan & Azure (Alpar DNA) -->
+    <linearGradient id="cyanBeam" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a5f3fc"/>
+      <stop offset="40%" stop-color="#38bdf8"/>
+      <stop offset="80%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+
+    <!-- Royal Violet / Sovereignty -->
+    <linearGradient id="violetBeam" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e9d5ff"/>
+      <stop offset="40%" stop-color="#a855f7"/>
+      <stop offset="80%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#4c1d95"/>
+    </linearGradient>
+
+    <!-- Core Hologram Radial -->
+    <radialGradient id="coreHolo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.32"/>
+      <stop offset="40%" stop-color="#a855f7" stop-opacity="0.14"/>
+      <stop offset="70%" stop-color="#0284c7" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Security Micro-Grid Pattern -->
+    <pattern id="secGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#38bdf8" stroke-width="0.4" stroke-opacity="0.12"/>
+      <circle cx="20" cy="20" r="0.8" fill="#fbbf24" fill-opacity="0.25"/>
+    </pattern>
+
+    <!-- Text Curved Paths -->
+    <!-- Top Arc (Clockwise, radius 405) -->
+    <path id="topTextArc" d="M 95,500 A 405,405 0 1,1 905,500" fill="none"/>
+    <!-- Bottom Arc (Left-to-Right, radius 405) -->
+    <path id="bottomTextArc" d="M 95,500 A 405,405 0 0,0 905,500" fill="none"/>
+    
+    <!-- Secondary Inner Text Arcs (Radius 332) -->
+    <path id="innerTopArc" d="M 168,500 A 332,332 0 1,1 832,500" fill="none"/>
+    <path id="innerBottomArc" d="M 168,500 A 332,332 0 0,0 832,500" fill="none"/>
+
+    <!-- Subtle Drop Shadow -->
+    <filter id="goldDrop" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.8"/>
+    </filter>
+    <filter id="glowGold" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- ================= BASE CANVAS ================= -->
+  <rect width="1000" height="1000" fill="#020409"/>
+
+  <!-- ================= OUTER SERRATED SEAL RIM ================= -->
+  <g filter="url(#goldDrop)">
+    <polygon points="992.0,500.0 971.6,520.6 990.1,542.9 968.0,561.6 984.5,585.4 960.8,602.2 975.2,627.3 950.2,641.9 962.3,668.3 936.1,680.6 945.9,707.9 918.7,717.9 926.1,746.0 898.1,753.6 903.0,782.2 874.5,787.3 876.9,816.3 848.0,818.9 847.9,847.9 818.9,848.0 816.3,876.9 787.3,874.5 782.2,903.0 753.6,898.1 746.0,926.1 717.9,918.7 707.9,945.9 680.6,936.1 668.3,962.3 641.9,950.2 627.3,975.2 602.2,960.8 585.4,984.5 561.6,968.0 542.9,990.1 520.6,971.6 500.0,992.0 479.4,971.6 457.1,990.1 438.4,968.0 414.6,984.5 397.8,960.8 372.7,975.2 358.1,950.2 331.7,962.3 319.4,936.1 292.1,945.9 282.1,918.7 254.0,926.1 246.4,898.1 217.8,903.0 212.7,874.5 183.7,876.9 181.1,848.0 152.1,847.9 152.0,818.9 123.1,816.3 125.5,787.3 97.0,782.2 101.9,753.6 73.9,746.0 81.3,717.9 54.1,707.9 63.9,680.6 37.7,668.3 49.8,641.9 24.8,627.3 39.2,602.2 15.5,585.4 32.0,561.6 9.9,542.9 28.4,520.6 8.0,500.0 28.4,479.4 9.9,457.1 32.0,438.4 15.5,414.6 39.2,397.8 24.8,372.7 49.8,358.1 37.7,331.7 63.9,319.4 54.1,292.1 81.3,282.1 73.9,254.0 101.9,246.4 97.0,217.8 125.5,212.7 123.1,183.7 152.0,181.1 152.1,152.1 181.1,152.0 183.7,123.1 212.7,125.5 217.8,97.0 246.4,101.9 254.0,73.9 282.1,81.3 292.1,54.1 319.4,63.9 331.7,37.7 358.1,49.8 372.7,24.8 397.8,39.2 414.6,15.5 438.4,32.0 457.1,9.9 479.4,28.4 500.0,8.0 520.6,28.4 542.9,9.9 561.6,32.0 585.4,15.5 602.2,39.2 627.3,24.8 641.9,49.8 668.3,37.7 680.6,63.9 707.9,54.1 717.9,81.3 746.0,73.9 753.6,101.9 782.2,97.0 787.3,125.5 816.3,123.1 818.9,152.0 847.9,152.1 848.0,181.1 876.9,183.7 874.5,212.7 903.0,217.8 898.1,246.4 926.1,254.0 918.7,282.1 945.9,292.1 936.1,319.4 962.3,331.7 950.2,358.1 975.2,372.7 960.8,397.8 984.5,414.6 968.0,438.4 990.1,457.1 971.6,479.4" fill="url(#goldRimGrad)" stroke="#78350f" stroke-width="1.5"/>
+  </g>
+
+  <!-- Concentric Gold Rings -->
+  <circle cx="500" cy="500" r="472" fill="none" stroke="#78350f" stroke-width="2"/>
+  <circle cx="500" cy="500" r="468" fill="url(#spaceGlow)"/>
+  <circle cx="500" cy="500" r="468" fill="url(#secGrid)"/>
+
+  <!-- Beaded Golden Pearls Band -->
+  <circle cx="500" cy="500" r="458" fill="none" stroke="#b45309" stroke-width="1.2" stroke-dasharray="2,4"/>
+  <g id="beads"><circle cx="958.00" cy="500.00" r="2.8" fill="url(#pearlGrad)"/><circle cx="955.49" cy="547.87" r="2.8" fill="url(#pearlGrad)"/><circle cx="947.99" cy="595.22" r="2.8" fill="url(#pearlGrad)"/><circle cx="935.58" cy="641.53" r="2.8" fill="url(#pearlGrad)"/><circle cx="918.40" cy="686.29" r="2.8" fill="url(#pearlGrad)"/><circle cx="896.64" cy="729.00" r="2.8" fill="url(#pearlGrad)"/><circle cx="870.53" cy="769.21" r="2.8" fill="url(#pearlGrad)"/><circle cx="840.36" cy="806.46" r="2.8" fill="url(#pearlGrad)"/><circle cx="806.46" cy="840.36" r="2.8" fill="url(#pearlGrad)"/><circle cx="769.21" cy="870.53" r="2.8" fill="url(#pearlGrad)"/><circle cx="729.00" cy="896.64" r="2.8" fill="url(#pearlGrad)"/><circle cx="686.29" cy="918.40" r="2.8" fill="url(#pearlGrad)"/><circle cx="641.53" cy="935.58" r="2.8" fill="url(#pearlGrad)"/><circle cx="595.22" cy="947.99" r="2.8" fill="url(#pearlGrad)"/><circle cx="547.87" cy="955.49" r="2.8" fill="url(#pearlGrad)"/><circle cx="500.00" cy="958.00" r="2.8" fill="url(#pearlGrad)"/><circle cx="452.13" cy="955.49" r="2.8" fill="url(#pearlGrad)"/><circle cx="404.78" cy="947.99" r="2.8" fill="url(#pearlGrad)"/><circle cx="358.47" cy="935.58" r="2.8" fill="url(#pearlGrad)"/><circle cx="313.71" cy="918.40" r="2.8" fill="url(#pearlGrad)"/><circle cx="271.00" cy="896.64" r="2.8" fill="url(#pearlGrad)"/><circle cx="230.79" cy="870.53" r="2.8" fill="url(#pearlGrad)"/><circle cx="193.54" cy="840.36" r="2.8" fill="url(#pearlGrad)"/><circle cx="159.64" cy="806.46" r="2.8" fill="url(#pearlGrad)"/><circle cx="129.47" cy="769.21" r="2.8" fill="url(#pearlGrad)"/><circle cx="103.36" cy="729.00" r="2.8" fill="url(#pearlGrad)"/><circle cx="81.60" cy="686.29" r="2.8" fill="url(#pearlGrad)"/><circle cx="64.42" cy="641.53" r="2.8" fill="url(#pearlGrad)"/><circle cx="52.01" cy="595.22" r="2.8" fill="url(#pearlGrad)"/><circle cx="44.51" cy="547.87" r="2.8" fill="url(#pearlGrad)"/><circle cx="42.00" cy="500.00" r="2.8" fill="url(#pearlGrad)"/><circle cx="44.51" cy="452.13" r="2.8" fill="url(#pearlGrad)"/><circle cx="52.01" cy="404.78" r="2.8" fill="url(#pearlGrad)"/><circle cx="64.42" cy="358.47" r="2.8" fill="url(#pearlGrad)"/><circle cx="81.60" cy="313.71" r="2.8" fill="url(#pearlGrad)"/><circle cx="103.36" cy="271.00" r="2.8" fill="url(#pearlGrad)"/><circle cx="129.47" cy="230.79" r="2.8" fill="url(#pearlGrad)"/><circle cx="159.64" cy="193.54" r="2.8" fill="url(#pearlGrad)"/><circle cx="193.54" cy="159.64" r="2.8" fill="url(#pearlGrad)"/><circle cx="230.79" cy="129.47" r="2.8" fill="url(#pearlGrad)"/><circle cx="271.00" cy="103.36" r="2.8" fill="url(#pearlGrad)"/><circle cx="313.71" cy="81.60" r="2.8" fill="url(#pearlGrad)"/><circle cx="358.47" cy="64.42" r="2.8" fill="url(#pearlGrad)"/><circle cx="404.78" cy="52.01" r="2.8" fill="url(#pearlGrad)"/><circle cx="452.13" cy="44.51" r="2.8" fill="url(#pearlGrad)"/><circle cx="500.00" cy="42.00" r="2.8" fill="url(#pearlGrad)"/><circle cx="547.87" cy="44.51" r="2.8" fill="url(#pearlGrad)"/><circle cx="595.22" cy="52.01" r="2.8" fill="url(#pearlGrad)"/><circle cx="641.53" cy="64.42" r="2.8" fill="url(#pearlGrad)"/><circle cx="686.29" cy="81.60" r="2.8" fill="url(#pearlGrad)"/><circle cx="729.00" cy="103.36" r="2.8" fill="url(#pearlGrad)"/><circle cx="769.21" cy="129.47" r="2.8" fill="url(#pearlGrad)"/><circle cx="806.46" cy="159.64" r="2.8" fill="url(#pearlGrad)"/><circle cx="840.36" cy="193.54" r="2.8" fill="url(#pearlGrad)"/><circle cx="870.53" cy="230.79" r="2.8" fill="url(#pearlGrad)"/><circle cx="896.64" cy="271.00" r="2.8" fill="url(#pearlGrad)"/><circle cx="918.40" cy="313.71" r="2.8" fill="url(#pearlGrad)"/><circle cx="935.58" cy="358.47" r="2.8" fill="url(#pearlGrad)"/><circle cx="947.99" cy="404.78" r="2.8" fill="url(#pearlGrad)"/><circle cx="955.49" cy="452.13" r="2.8" fill="url(#pearlGrad)"/></g>
+
+  <!-- Solid Gold Outer Rail -->
+  <circle cx="500" cy="500" r="446" fill="none" stroke="url(#goldRimGrad)" stroke-width="4.5"/>
+  <circle cx="500" cy="500" r="442" fill="none" stroke="#78350f" stroke-width="1.5"/>
+
+  <!-- ================= PRIMARY INSCRIPTION ZONE (r=442 to r=365) ================= -->
+  <circle cx="500" cy="500" r="442" fill="#071026" stroke="#1e293b" stroke-width="1"/>
+  <!-- Subtle Radial Sheen on Band -->
+  <circle cx="500" cy="500" r="442" fill="url(#coreHolo)"/>
+  
+  <!-- Outer Ring Top Text: AKADEMİK TAHKİM VE YAPAY ZEKÂ GÜVENLİK MÜHRÜ -->
+  <text font-family="'Times New Roman', 'Cinzel', 'Georgia', serif" font-size="25.5" font-weight="900" fill="url(#goldGrad)" letter-spacing="4" filter="url(#glowGold)">
+    <textPath href="#topTextArc" xlink:href="#topTextArc" startOffset="50%" text-anchor="middle">
+      ★ AKADEMİK TAHKİM VE YAPAY ZEKÂ GÜVENLİK MÜHRÜ ★
+    </textPath>
+  </text>
+
+  <!-- Outer Ring Bottom Text: PROF. DR. MUSA AYGÜL · ALPAR AI SUPREME COURT -->
+  <text font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Montserrat', sans-serif" font-size="21.5" font-weight="800" fill="#e2e8f0" letter-spacing="3.2">
+    <textPath href="#bottomTextArc" xlink:href="#bottomTextArc" startOffset="50%" text-anchor="middle">
+      PROF. DR. MUSA AYGÜL · ALPAR AI SUPREME SENTRY
+    </textPath>
+  </text>
+
+  <!-- Gold Inner Rail Separator -->
+  <circle cx="500" cy="500" r="366" fill="none" stroke="#78350f" stroke-width="1.5"/>
+  <circle cx="500" cy="500" r="364" fill="none" stroke="url(#goldRimGrad)" stroke-width="3.5"/>
+  <circle cx="500" cy="500" r="360" fill="none" stroke="#78350f" stroke-width="1.5"/>
+
+  <!-- ================= SECONDARY LATIN & TELEMETRY BAND (r=360 to r=308) ================= -->
+  <circle cx="500" cy="500" r="360" fill="#030816"/>
+  <!-- Micro Guilloche Hatching -->
+  <circle cx="500" cy="500" r="360" fill="none" stroke="#38bdf8" stroke-width="0.7" stroke-dasharray="1,4" stroke-opacity="0.3"/>
+  <circle cx="500" cy="500" r="310" fill="none" stroke="#38bdf8" stroke-width="0.7" stroke-dasharray="1,4" stroke-opacity="0.3"/>
+
+  <!-- Latin Maxim Top Arc -->
+  <text font-family="'Times New Roman', 'Cinzel', serif" font-size="14.5" font-weight="700" fill="#fef08a" letter-spacing="3.8">
+    <textPath href="#innerTopArc" xlink:href="#innerTopArc" startOffset="50%" text-anchor="middle">
+      • LEX ARBITRI • LEX ALGORITHMICA • VERITAS ET JUSTITIA •
+    </textPath>
+  </text>
+
+  <!-- Telemetry Bottom Arc -->
+  <text font-family="'Consolas', 'Courier New', monospace" font-size="12" font-weight="700" fill="#38bdf8" letter-spacing="2.8">
+    <textPath href="#innerBottomArc" xlink:href="#innerBottomArc" startOffset="50%" text-anchor="middle">
+      SHA-256 VERIFIED · EU AI ACT 72H SLA · TEKNOPARK ISTANBUL
+    </textPath>
+  </text>
+
+  <!-- Third Gold Ring -->
+  <circle cx="500" cy="500" r="308" fill="none" stroke="url(#goldRimGrad)" stroke-width="2.5"/>
+  <circle cx="500" cy="500" r="305" fill="none" stroke="#00f0ff" stroke-width="0.8" stroke-opacity="0.5"/>
+
+  <!-- ================= CENTRAL MEDALLION ZONE (r < 305) ================= -->
+  <circle cx="500" cy="500" r="304" fill="url(#spaceGlow)"/>
+  <circle cx="500" cy="500" r="304" fill="url(#coreHolo)"/>
+  <circle cx="500" cy="500" r="304" fill="url(#secGrid)"/>
+
+  <!-- Radiant Coordinate Rings & Crosshair Telemetry -->
+  <circle cx="500" cy="500" r="240" fill="none" stroke="#38bdf8" stroke-width="0.8" stroke-dasharray="3,6" stroke-opacity="0.25"/>
+  <circle cx="500" cy="500" r="170" fill="none" stroke="#a855f7" stroke-width="0.8" stroke-dasharray="4,8" stroke-opacity="0.25"/>
+  <line x1="220" y1="500" x2="780" y2="500" stroke="#38bdf8" stroke-width="0.6" stroke-opacity="0.2" stroke-dasharray="4,8"/>
+  <line x1="500" y1="220" x2="500" y2="780" stroke="#38bdf8" stroke-width="0.6" stroke-opacity="0.2" stroke-dasharray="4,8"/>
+
+  <!-- ================= LAUREL WREATH (DEFNE DALLARI) ================= -->
+  <g id="laurelWreath">
+    
+      <g transform="translate(229.5, 427.5) rotate(30.0) scale(0.75)">
+        <!-- Leaf Pair -->
+        <path d="M0,0 C-10,-15 -22,-18 -26,-2 C-22,12 -8,10 0,0 Z" fill="url(#goldLeafGrad)" stroke="#78350f" stroke-width="0.7"/>
+        <path d="M0,0 C10,-15 22,-18 26,-2 C22,12 8,10 0,0 Z" fill="url(#goldLeafLight)" stroke="#78350f" stroke-width="0.7"/>
+        <!-- Central Berry / Diamond Node -->
+        <circle cx="0" cy="-6" r="2.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.5"/>
+      </g>
+    
+      <g transform="translate(770.5, 427.5) rotate(-30.0) scale(0.75)">
+        <path d="M0,0 C-10,-15 -22,-18 -26,-2 C-22,12 -8,10 0,0 Z" fill="url(#goldLeafLight)" stroke="#78350f" stroke-width="0.7"/>
+        <path d="M0,0 C10,-15 22,-18 26,-2 C22,12 8,10 0,0 Z" fill="url(#goldLeafGrad)" stroke="#78350f" stroke-width="0.7"/>
+        <circle cx="0" cy="-6" r="2.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.5"/>
+      </g>
+    
+      <g transform="translate(231.9, 400.4) rotate(35.4) scale(0.7769230769230769)">
+        <!-- Leaf Pair -->
+        <path d="M0,0 C-10,-15 -22,-18 -26,-2 C-22,12 -8,10 0,0 Z" fill="url(#goldLeafGrad)" stroke="#78350f" stroke-width="0.7"/>
+        <path d="M0,0 C10,-15 22,-18 26,-2 C22,12 8,10 0,0 Z" fill="url(#goldLeafLight)" stroke="#78350f" stroke-width="0.7"/>
+        <!-- Central Berry / Diamond Node -->
+        <circle cx="0" cy="-6" r="2.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.5"/>
+      </g>
+    
+      <g transform="translate(768.1, 400.4) rotate(-35.4) scale(0.7769230769230769)">
+        <path d="M0,0 C-10,-15 -22,-18 -26,-2 C-22,12 -8,10 0,0 Z" fill="url(#goldLeafLight)" stroke="#78350f" stroke-width="0.7"/>
+        <path d="M0,0 C10,-15 22,-18 26,-2 C22,12 8,10 0,0 Z" fill="url(#goldLeafGrad)" stroke="#78350f" stroke-width="0.7"/>
+        <circle cx="0" cy="-6" r="2.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.5"/>
+      </g>
+    
+      <g transform="translate(237.4, 373.2) rotate(40.8) scale(0.8038461538461539)">
+        <!-- Leaf Pair -->
+        <path d="M0,0 C-10,-15 -22,-18 -26,-2 C-22,12 -8,10 0,0 Z" fill="url(#goldLeafGrad)" stroke="#78350f" stroke-width="0.7"/>
+        <path d="M0,0 C10,-15 22,-18 26,-2 C22,12 8,10 0,0 Z" fill="url(#goldLeafLight)" stroke="#78350f" stroke-width="0.7"/>
+        <!-- Central Berry / Diamond Node -->
+        <circle cx="0" cy="-6" r="2.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.5"/>
+      </g>
+    
+      <g transform="translate(762.6, 373.2) rotate(-40.8) scale(0.8038461538461539)">
+        <path d="M0,0 C-10,-15 -22,-18 -26,-2 C-22,12 -8,10 0,0 Z" fill="url(#goldLeafLight)" stroke="#78350f" stroke-width="0.7"/>
+        <path d="M0,0 C10,-15 22,-18 26,-2 C22,12 8,10 0,0 Z" fill="url(#goldLeafGrad)" stroke="#78350f" stroke-width="0.7"/>
+        <circle cx="0" cy="-6" r="2.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.5"/>
+      </g>
+    
+      <g transform="translate(246.2, 346.6) rotate(46.2) scale(0.8307692307692308)">
+        <!-- Leaf Pair -->
+        <path d="M0,0 C-10,-15 -22,-18 -26,-2 C-22,12 -8,10 0,0 Z" fill="url(#goldLeafGrad)" stroke="#78350f" stroke-width="0.7"/>
+        <path d="M0,0 C10,-15 22,-18 26,-2 C22,12 8,10 0,0 Z" fill="url(#goldLeafLight)" stroke="#78350f" stroke-width="0.7"/>
+        <!-- Central Berry / Diamond Node -->
+        <circle cx="0" cy="-6" r="2.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.5"/>
+      </g>
+    
+      <g transform="translate(753.8, 346.6) rotate(-46.2) scale(0.8307692307692308)">
+        <path d="M0,0 C-10,-15 -22,-18 -26,-2 C-22,12 -8,10 0,0 Z" fill="url(#goldLeafLight)" stroke="#78350f" stroke-width="0.7"/>
+        <path d="M0,0 C10,-15 22,-18 26,-2 C22,12 8,10 0,0 Z" fill="url(#goldLeafGrad)" stroke="#78350f" stroke-width="0.7"/>
+        <circle cx="0" cy="-6" r="2.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.5"/>
+      </g>
+    
+      <g transform="translate(258.5, 321.0) rotate(51.5) scale(0.8576923076923078)">
+        <!-- Leaf Pair -->
+        <path d="M0,0 C-10,-15 -22,-18 -26,-2 C-22,12 -8,10 0,0 Z" fill="url(#goldLeafGrad)" stroke="#78350f" stroke-width="0.7"/>
+        <path d="M0,0 C10,-15 22,-18 26,-2 C22,12 8,10 0,0 Z" fill="url(#goldLeafLight)" stroke="#78350f" stroke-width="0.7"/>
+        <!-- Central Berry / Diamond Node -->
+        <circle cx="0" cy="-6" r="2.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.5"/>
+      </g>
+    
+      <g transform="translate(741.5, 321.0) rotate(-51.5) scale(0.8576923076923078)">
+        <path d="M0,0 C-10,-15 -22,-18 -26,-2 C-22,12 -8,10 0,0 Z" fill="url(#goldLeafLight)" stroke="#78350f" stroke-width="0.7"/>
+        <path d="M0,0 C10,-15 22,-18 26,-2 C22,12 8,10 0,0 Z" fill="url(#goldLeafGrad)" stroke="#78350f" stroke-width="0.7"/>
+        <circle cx="0" cy="-6" r="2.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.5"/>
+      </g>
+    
+      <g transform="translate(274.3, 297.3) rotate(56.9) scale(0.8846153846153846)">
+        <!-- Leaf Pair -->
+        <path d="M0,0 C-10,-15 -22,-18 -26,-2 C-22,12 -8,10 0,0 Z" fill="url(#goldLeafGrad)" stroke="#78350f" stroke-width="0.7"/>
+        <path d="M0,0 C10,-15 22,-18 26,-2 C22,12 8,10 0,0 Z" fill="url(#goldLeafLight)" stroke="#78350f" stroke-width="0.7"/>
+        <!-- Central Berry / Diamond Node -->
+        <circle cx="0" cy="-6" r="2.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.5"/>
+      </g>
+    
+      <g transform="translate(725.7, 297.3) rotate(-56.9) scale(0.8846153846153846)">
+        <path d="M0,0 C-10,-15 -22,-18 -26,-2 C-22,12 -8,10 0,0 Z" fill="url(#goldLeafLight)" stroke="#78350f" stroke-width="0.7"/>
+        <path d="M0,0 C10,-15 22,-18 26,-2 C22,12 8,10 0,0 Z" fill="url(#goldLeafGrad)" stroke="#78350f" stroke-width="0.7"/>
+        <circle cx="0" cy="-6" r="2.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.5"/>
+      </g>
+    
+      <g transform="translate(293.3, 276.0) rotate(62.3) scale(0.9115384615384615)">
+        <!-- Leaf Pair -->
+        <path d="M0,0 C-10,-15 -22,-18 -26,-2 C-22,12 -8,10 0,0 Z" fill="url(#goldLeafGrad)" stroke="#78350f" stroke-width="0.7"/>
+        <path d="M0,0 C10,-15 22,-18 26,-2 C22,12 8,10 0,0 Z" fill="url(#goldLeafLight)" stroke="#78350f" stroke-width="0.7"/>
+        <!-- Central Berry / Diamond Node -->
+        <circle cx="0" cy="-6" r="2.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.5"/>
+      </g>
+    
+      <g transform="translate(706.7, 276.0) rotate(-62.3) scale(0.9115384615384615)">
+        <path d="M0,0 C-10,-15 -22,-18 -26,-2 C-22,12 -8,10 0,0 Z" fill="url(#goldLeafLight)" stroke="#78350f" stroke-width="0.7"/>
+        <path d="M0,0 C10,-15 22,-18 26,-2 C22,12 8,10 0,0 Z" fill="url(#goldLeafGrad)" stroke="#78350f" stroke-width="0.7"/>
+        <circle cx="0" cy="-6" r="2.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.5"/>
+      </g>
+    
+      <g transform="translate(315.3, 257.6) rotate(67.7) scale(0.9384615384615385)">
+        <!-- Leaf Pair -->
+        <path d="M0,0 C-10,-15 -22,-18 -26,-2 C-22,12 -8,10 0,0 Z" fill="url(#goldLeafGrad)" stroke="#78350f" stroke-width="0.7"/>
+        <path d="M0,0 C10,-15 22,-18 26,-2 C22,12 8,10 0,0 Z" fill="url(#goldLeafLight)" stroke="#78350f" stroke-width="0.7"/>
+        <!-- Central Berry / Diamond Node -->
+        <circle cx="0" cy="-6" r="2.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.5"/>
+      </g>
+    
+      <g transform="translate(684.7, 257.6) rotate(-67.7) scale(0.9384615384615385)">
+        <path d="M0,0 C-10,-15 -22,-18 -26,-2 C-22,12 -8,10 0,0 Z" fill="url(#goldLeafLight)" stroke="#78350f" stroke-width="0.7"/>
+        <path d="M0,0 C10,-15 22,-18 26,-2 C22,12 8,10 0,0 Z" fill="url(#goldLeafGrad)" stroke="#78350f" stroke-width="0.7"/>
+        <circle cx="0" cy="-6" r="2.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.5"/>
+      </g>
+    
+      <g transform="translate(339.6, 242.5) rotate(73.1) scale(0.9653846153846154)">
+        <!-- Leaf Pair -->
+        <path d="M0,0 C-10,-15 -22,-18 -26,-2 C-22,12 -8,10 0,0 Z" fill="url(#goldLeafGrad)" stroke="#78350f" stroke-width="0.7"/>
+        <path d="M0,0 C10,-15 22,-18 26,-2 C22,12 8,10 0,0 Z" fill="url(#goldLeafLight)" stroke="#78350f" stroke-width="0.7"/>
+        <!-- Central Berry / Diamond Node -->
+        <circle cx="0" cy="-6" r="2.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.5"/>
+      </g>
+    
+      <g transform="translate(660.4, 242.5) rotate(-73.1) scale(0.9653846153846154)">
+        <path d="M0,0 C-10,-15 -22,-18 -26,-2 C-22,12 -8,10 0,0 Z" fill="url(#goldLeafLight)" stroke="#78350f" stroke-width="0.7"/>
+        <path d="M0,0 C10,-15 22,-18 26,-2 C22,12 8,10 0,0 Z" fill="url(#goldLeafGrad)" stroke="#78350f" stroke-width="0.7"/>
+        <circle cx="0" cy="-6" r="2.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.5"/>
+      </g>
+    
+      <g transform="translate(365.7, 231.1) rotate(78.5) scale(0.9923076923076923)">
+        <!-- Leaf Pair -->
+        <path d="M0,0 C-10,-15 -22,-18 -26,-2 C-22,12 -8,10 0,0 Z" fill="url(#goldLeafGrad)" stroke="#78350f" stroke-width="0.7"/>
+        <path d="M0,0 C10,-15 22,-18 26,-2 C22,12 8,10 0,0 Z" fill="url(#goldLeafLight)" stroke="#78350f" stroke-width="0.7"/>
+        <!-- Central Berry / Diamond Node -->
+        <circle cx="0" cy="-6" r="2.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.5"/>
+      </g>
+    
+      <g transform="translate(634.3, 231.1) rotate(-78.5) scale(0.9923076923076923)">
+        <path d="M0,0 C-10,-15 -22,-18 -26,-2 C-22,12 -8,10 0,0 Z" fill="url(#goldLeafLight)" stroke="#78350f" stroke-width="0.7"/>
+        <path d="M0,0 C10,-15 22,-18 26,-2 C22,12 8,10 0,0 Z" fill="url(#goldLeafGrad)" stroke="#78350f" stroke-width="0.7"/>
+        <circle cx="0" cy="-6" r="2.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.5"/>
+      </g>
+    
+      <g transform="translate(393.0, 223.4) rotate(83.8) scale(1.0192307692307692)">
+        <!-- Leaf Pair -->
+        <path d="M0,0 C-10,-15 -22,-18 -26,-2 C-22,12 -8,10 0,0 Z" fill="url(#goldLeafGrad)" stroke="#78350f" stroke-width="0.7"/>
+        <path d="M0,0 C10,-15 22,-18 26,-2 C22,12 8,10 0,0 Z" fill="url(#goldLeafLight)" stroke="#78350f" stroke-width="0.7"/>
+        <!-- Central Berry / Diamond Node -->
+        <circle cx="0" cy="-6" r="2.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.5"/>
+      </g>
+    
+      <g transform="translate(607.0, 223.4) rotate(-83.8) scale(1.0192307692307692)">
+        <path d="M0,0 C-10,-15 -22,-18 -26,-2 C-22,12 -8,10 0,0 Z" fill="url(#goldLeafLight)" stroke="#78350f" stroke-width="0.7"/>
+        <path d="M0,0 C10,-15 22,-18 26,-2 C22,12 8,10 0,0 Z" fill="url(#goldLeafGrad)" stroke="#78350f" stroke-width="0.7"/>
+        <circle cx="0" cy="-6" r="2.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.5"/>
+      </g>
+    
+      <g transform="translate(420.7, 219.4) rotate(89.2) scale(1.0461538461538462)">
+        <!-- Leaf Pair -->
+        <path d="M0,0 C-10,-15 -22,-18 -26,-2 C-22,12 -8,10 0,0 Z" fill="url(#goldLeafGrad)" stroke="#78350f" stroke-width="0.7"/>
+        <path d="M0,0 C10,-15 22,-18 26,-2 C22,12 8,10 0,0 Z" fill="url(#goldLeafLight)" stroke="#78350f" stroke-width="0.7"/>
+        <!-- Central Berry / Diamond Node -->
+        <circle cx="0" cy="-6" r="2.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.5"/>
+      </g>
+    
+      <g transform="translate(579.3, 219.4) rotate(-89.2) scale(1.0461538461538462)">
+        <path d="M0,0 C-10,-15 -22,-18 -26,-2 C-22,12 -8,10 0,0 Z" fill="url(#goldLeafLight)" stroke="#78350f" stroke-width="0.7"/>
+        <path d="M0,0 C10,-15 22,-18 26,-2 C22,12 8,10 0,0 Z" fill="url(#goldLeafGrad)" stroke="#78350f" stroke-width="0.7"/>
+        <circle cx="0" cy="-6" r="2.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.5"/>
+      </g>
+    
+      <g transform="translate(448.5, 218.7) rotate(94.6) scale(1.073076923076923)">
+        <!-- Leaf Pair -->
+        <path d="M0,0 C-10,-15 -22,-18 -26,-2 C-22,12 -8,10 0,0 Z" fill="url(#goldLeafGrad)" stroke="#78350f" stroke-width="0.7"/>
+        <path d="M0,0 C10,-15 22,-18 26,-2 C22,12 8,10 0,0 Z" fill="url(#goldLeafLight)" stroke="#78350f" stroke-width="0.7"/>
+        <!-- Central Berry / Diamond Node -->
+        <circle cx="0" cy="-6" r="2.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.5"/>
+      </g>
+    
+      <g transform="translate(551.5, 218.7) rotate(-94.6) scale(1.073076923076923)">
+        <path d="M0,0 C-10,-15 -22,-18 -26,-2 C-22,12 -8,10 0,0 Z" fill="url(#goldLeafLight)" stroke="#78350f" stroke-width="0.7"/>
+        <path d="M0,0 C10,-15 22,-18 26,-2 C22,12 8,10 0,0 Z" fill="url(#goldLeafGrad)" stroke="#78350f" stroke-width="0.7"/>
+        <circle cx="0" cy="-6" r="2.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.5"/>
+      </g>
+    
+      <g transform="translate(475.6, 221.1) rotate(100.0) scale(1.1)">
+        <!-- Leaf Pair -->
+        <path d="M0,0 C-10,-15 -22,-18 -26,-2 C-22,12 -8,10 0,0 Z" fill="url(#goldLeafGrad)" stroke="#78350f" stroke-width="0.7"/>
+        <path d="M0,0 C10,-15 22,-18 26,-2 C22,12 8,10 0,0 Z" fill="url(#goldLeafLight)" stroke="#78350f" stroke-width="0.7"/>
+        <!-- Central Berry / Diamond Node -->
+        <circle cx="0" cy="-6" r="2.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.5"/>
+      </g>
+    
+      <g transform="translate(524.4, 221.1) rotate(-100.0) scale(1.1)">
+        <path d="M0,0 C-10,-15 -22,-18 -26,-2 C-22,12 -8,10 0,0 Z" fill="url(#goldLeafLight)" stroke="#78350f" stroke-width="0.7"/>
+        <path d="M0,0 C10,-15 22,-18 26,-2 C22,12 8,10 0,0 Z" fill="url(#goldLeafGrad)" stroke="#78350f" stroke-width="0.7"/>
+        <circle cx="0" cy="-6" r="2.2" fill="#fbbf24" stroke="#92400e" stroke-width="0.5"/>
+      </g>
+    
+  </g>
+
+  <!-- Laurel Base Ribbon Bow -->
+  <g transform="translate(500, 742)">
+    <path d="M-18,0 C-30,12 -38,28 -34,35 C-24,38 -10,22 0,10 C10,22 24,38 34,35 C38,28 30,12 18,0 Z" fill="url(#goldGrad)" stroke="#78350f" stroke-width="1"/>
+    <circle cx="0" cy="6" r="4.5" fill="#fef08a" stroke="#92400e" stroke-width="1"/>
+  </g>
+
+  <!-- ================= ALPAR AI PRISMATIC SHIELD (CENTRAL HERALDIC CORE) ================= -->
+  <!-- Backlight Glow for Shield -->
+  <circle cx="500" cy="460" r="110" fill="#38bdf8" fill-opacity="0.18" filter="url(#glowGold)"/>
+
+  <g transform="translate(500, 460) scale(1.65)" filter="url(#goldDrop)">
+    <!-- Left Shield Facet -->
+    <path d="M 0,-70 L -45,-50 V -12 C -45,18 -18,38 0,46 Z" fill="url(#violetBeam)" stroke="#cbd5e1" stroke-width="0.8" stroke-opacity="0.8"/>
+    <!-- Right Shield Facet -->
+    <path d="M 0,-70 L 45,-50 V -12 C 45,18 18,38 0,46 Z" fill="url(#cyanBeam)" stroke="#cbd5e1" stroke-width="0.8" stroke-opacity="0.8"/>
+    <!-- Inner Fine Chisel Contour -->
+    <path d="M 0,-62 L -36,-44 V -13 C -36,13 -14,30 0,37 V -62" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.4" fill="none"/>
+    <path d="M 0,-62 L 36,-44 V -13 C 36,13 14,30 0,37 V -62" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.3" fill="none"/>
+
+    <!-- Central Diamond Apex (Prismatic Monolith) -->
+    <polygon points="0,-35 18,-15 0,5 -18,-15" fill="url(#goldGrad)" stroke="#ffffff" stroke-width="0.8"/>
+    <!-- Pure White Star Core -->
+    <polygon points="0,-27 4,-17 14,-15 4,-13 0,-3 -4,-13 -14,-15 -4,-17" fill="#ffffff"/>
+  </g>
+
+  <!-- ================= SCALES OF JUSTICE (ADALET TERAZİSİ) ================= -->
+  <g id="scalesOfJustice" filter="url(#goldDrop)">
+    <!-- Central Pillar Finial (Top Finial Diamond / Seljuk Crown) -->
+    <g transform="translate(500, 260)">
+      <!-- Ornamental Finial -->
+      <polygon points="0,-18 12,-6 0,6 -12,-6" fill="url(#goldGrad)" stroke="#78350f" stroke-width="1"/>
+      <circle cx="0" cy="-6" r="3" fill="#ffffff"/>
+      <rect x="-3.5" y="6" width="7" height="22" fill="url(#goldRimGrad)" stroke="#78350f" stroke-width="0.8"/>
+      <!-- Cross Joint Pivot -->
+      <circle cx="0" cy="30" r="7.5" fill="url(#goldGrad)" stroke="#78350f" stroke-width="1.2"/>
+      <circle cx="0" cy="30" r="3.5" fill="#fef08a"/>
+    </g>
+
+    <!-- Horizontal Balance Beam (Slightly tapered classical beam) -->
+    <path d="M 330,290 C 380,287 450,288 500,290 C 550,288 620,287 670,290 C 674,290 674,294 670,294 C 620,292 550,292 500,291 C 450,292 380,292 330,294 C 326,294 326,290 330,290 Z" fill="url(#goldRimGrad)" stroke="#78350f" stroke-width="1"/>
+
+    <!-- Left Balance Pan Assembly -->
+    <g transform="translate(335, 292)">
+      <!-- Pivot Ring -->
+      <circle cx="0" cy="0" r="4.5" fill="url(#goldGrad)" stroke="#78350f" stroke-width="1"/>
+      <!-- Suspension Strings/Chains -->
+      <line x1="-1" y1="4" x2="-36" y2="92" stroke="url(#goldGrad)" stroke-width="1.2" stroke-dasharray="2,2"/>
+      <line x1="0" y1="4" x2="0" y2="90" stroke="url(#goldGrad)" stroke-width="1.2" stroke-dasharray="2,2"/>
+      <line x1="1" y1="4" x2="36" y2="92" stroke="url(#goldGrad)" stroke-width="1.2" stroke-dasharray="2,2"/>
+      <!-- Pan (Kefe) -->
+      <path d="M -44,92 C -30,118 30,118 44,92 C 34,90 -34,90 -44,92 Z" fill="url(#goldRimGrad)" stroke="#78350f" stroke-width="1.2"/>
+      <ellipse cx="0" cy="92" rx="44" ry="4.5" fill="url(#goldGrad)" stroke="#92400e" stroke-width="0.8"/>
+      <!-- Glowing Pure Integrity Orb in Pan -->
+      <circle cx="0" cy="85" r="7.5" fill="#38bdf8" filter="url(#glowGold)"/>
+      <circle cx="0" cy="85" r="4.5" fill="#ffffff"/>
+    </g>
+
+    <!-- Right Balance Pan Assembly -->
+    <g transform="translate(665, 292)">
+      <circle cx="0" cy="0" r="4.5" fill="url(#goldGrad)" stroke="#78350f" stroke-width="1"/>
+      <line x1="-1" y1="4" x2="-36" y2="92" stroke="url(#goldGrad)" stroke-width="1.2" stroke-dasharray="2,2"/>
+      <line x1="0" y1="4" x2="0" y2="90" stroke="url(#goldGrad)" stroke-width="1.2" stroke-dasharray="2,2"/>
+      <line x1="1" y1="4" x2="36" y2="92" stroke="url(#goldGrad)" stroke-width="1.2" stroke-dasharray="2,2"/>
+      <!-- Pan (Kefe) -->
+      <path d="M -44,92 C -30,118 30,118 44,92 C 34,90 -34,90 -44,92 Z" fill="url(#goldRimGrad)" stroke="#78350f" stroke-width="1.2"/>
+      <ellipse cx="0" cy="92" rx="44" ry="4.5" fill="url(#goldGrad)" stroke="#92400e" stroke-width="0.8"/>
+      <!-- Glowing Pure Law Orb in Pan -->
+      <circle cx="0" cy="85" r="7.5" fill="#a855f7" filter="url(#glowGold)"/>
+      <circle cx="0" cy="85" r="4.5" fill="#ffffff"/>
+    </g>
+  </g>
+
+  <!-- ================= SOVEREIGN RIBBON BANNER (ALTIN YARGI BANDEROLÜ) ================= -->
+  <g transform="translate(500, 615)" filter="url(#goldDrop)">
+    <!-- Back Ribbon Folds -->
+    <path d="M -235,16 L -270,-10 L -235,-24 L -215,-10 Z" fill="#78350f" stroke="#451a03" stroke-width="1"/>
+    <path d="M 235,16 L 270,-10 L 235,-24 L 215,-10 Z" fill="#78350f" stroke="#451a03" stroke-width="1"/>
+
+    <!-- Left & Right Banner Tails -->
+    <polygon points="-240,-12 -285,14 -265,35 -225,12" fill="url(#goldGrad)" stroke="#78350f" stroke-width="1"/>
+    <polygon points="240,-12 285,14 265,35 225,12" fill="url(#goldGrad)" stroke="#78350f" stroke-width="1"/>
+
+    <!-- Main Curved Banner Body -->
+    <path d="M -230,-14 C -120,-28 120,-28 230,-14 C 238,12 235,26 225,32 C 120,18 -120,18 -225,32 C -235,26 -238,12 -230,-14 Z" fill="url(#goldRimGrad)" stroke="#78350f" stroke-width="1.5"/>
+
+    <!-- Inner Border Line on Banner -->
+    <path d="M -220,-8 C -115,-22 115,-22 220,-8" fill="none" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.6"/>
+    <path d="M -218,22 C -115,8 115,8 218,22" fill="none" stroke="#78350f" stroke-width="0.8" stroke-opacity="0.7"/>
+
+    <!-- Ribbon Text -->
+    <text x="0" y="8" font-family="'Times New Roman', 'Cinzel', serif" font-size="18.5" font-weight="900" fill="#451a03" text-anchor="middle" letter-spacing="3.2">
+      MİLLETLERARASI TAHKİM &amp; AI GÜVENLİĞİ
+    </text>
+    <text x="0" y="24" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="800" fill="#78350f" text-anchor="middle" letter-spacing="2">
+      SELÇUK HUKUK FAKÜLTESİ · ALPAR AI TAHKİM DİVANI
+    </text>
+  </g>
+
+  <!-- ================= AUTHENTICITY BADGES & YEAR ================= -->
+  <!-- Institutional Foundation Badge (EST. 2026) -->
+  <g transform="translate(500, 685)">
+    <polygon points="-46,-12 46,-12 55,0 46,12 -46,12 -55,0" fill="#09152e" stroke="url(#goldGrad)" stroke-width="1.2"/>
+    <text x="0" y="4.5" font-family="'Segoe UI', monospace, sans-serif" font-size="11" font-weight="900" fill="#fbbf24" text-anchor="middle" letter-spacing="2.5">
+      EST. 2026
+    </text>
+  </g>
+
+  <!-- Left & Right Heraldic Stars on Rim (8-Pointed Prismatic Stars) -->
+  <g transform="translate(132, 500) scale(1.1)" filter="url(#glowGold)">
+    <polygon points="0,-18 5,-5 18,0 5,5 0,18 -5,5 -18,0 -5,-5" fill="url(#goldGrad)"/>
+    <polygon points="0,-12 3,-3 12,0 3,3 0,12 -3,3 -12,0 -3,-3" fill="#ffffff"/>
+  </g>
+  <g transform="translate(868, 500) scale(1.1)" filter="url(#glowGold)">
+    <polygon points="0,-18 5,-5 18,0 5,5 0,18 -5,5 -18,0 -5,-5" fill="url(#goldGrad)"/>
+    <polygon points="0,-12 3,-3 12,0 3,3 0,12 -3,3 -12,0 -3,-3" fill="#ffffff"/>
+  </g>
+
+
+    </g>
+  </defs>
+</svg>

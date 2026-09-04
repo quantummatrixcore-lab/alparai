@@ -54,3 +54,12 @@ gcp-*.json
 chrome_tabs*.json
 ts-errors.txt
 patch.diff
+
+# Turbo & Build Cache
+.turbo/
+.turbo
+
+# Temporary execution scripts & backups
+sleep.*
+turn_off_monitor.ps1
+*.bak

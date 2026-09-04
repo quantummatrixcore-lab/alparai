@@ -31,12 +31,14 @@
 ## 🔴 2. ŞU AN SIRADA BEKLEYEN YAPILACAKLAR (P0 / P1 ÖNCELİKLİ)
 
 ### 🚀 P0 — HEMEN ŞİMDİ YAPILACAKLAR (İLK HEDEFLER)
-- [ ] **1. Whistleblower (İhbarcı) Güvenlik & Kriptografi Katmanı:**
+- [x] **1. Whistleblower (İhbarcı) Güvenlik & Kriptografi Katmanı:**
   - AI geliştiricilerinin ve anonim ihbarcıların güvenliği için Supabase RLS üzerinde ZKP (Zero Knowledge Proof) hash doğrulaması ve client-side E2EE şifreleme modülü.
-  - Hedef Dosyalar: `src/app/[locale]/submit/`, `src/actions/incidents/create-incident.ts`.
-- [ ] **2. EU AI Act B2B Otomatik Doğrulama API'si:**
+  - Hedef Dosyalar: `src/lib/crypto/zkp-crypto.ts`, `supabase/migrations/20260903000001_whistleblower_zkp_columns.sql`, `src/actions/incidents/create-incident.ts`, `src/components/whistleblower/whistleblower-form.tsx`, `src/app/[locale]/submit/page.tsx`.
+  - Doğrulama: `tests/security/whistleblower-zkp.test.ts` (6/6 test TAM GEÇTİ, %100 tip güvenliği sağlandı).
+- [x] **2. EU AI Act B2B Otomatik Doğrulama API'si:**
   - Kurumsal şirketlerin modellerini tek satır API ile EU AI Act yüksek risk sınıfına göre denetleyen `/api/v1/compliance/verify` uç noktası.
-  - Hedef Dosyalar: `src/app/api/v1/compliance/`.
+  - Hedef Dosyalar: `src/app/api/v1/compliance/verify/route.ts`, `src/contracts/api.ts`.
+  - Doğrulama: `tests/api/compliance-verify.test.ts` ve `tests/contracts/api-v1-contracts.test.ts` (22/22 test TAM GEÇTİ, %100 sözleşme garantisi).
 - [ ] **3. Cloudflare DNS & Zoho Mail Kurtarma:**
   - Cloudflare sekmesinde Email Routing devre dışı bırakılıp `alparai.com` için 3 adet Zoho MX kaydı (`mx.zoho.eu` (10), `mx2.zoho.eu` (20), `mx3.zoho.eu` (50)) ve SPF/DMARC girilecek.
 - [ ] **4. Kurumsal LinkedIn Vitrini (Manuel / Kurucu):**

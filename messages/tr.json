@@ -4299,7 +4299,8 @@
     "voice_incident_transcribing": "Ses çözümleniyor (ASR)...",
     "whistleblower_desc": "Gönderimleriniz AB Yapay Zeka Yasası (EU AI Act) Whistleblower standartlarıyla koruma altındadır. Kimlik bilgileriniz PII Guardian tarafından otomatik olarak temizlenir ve asla 3. taraflarla paylaşılmaz.",
     "whistleblower_encryption_notice": "Muhbir gönderimleri uçtan uca şifrelenir. Kaynağı ALPAR AI dahil hiç kimse tespit edemez.",
-    "whistleblower_title": "Korumalı Bilgi Uçurma Kanalı (Whistleblower Protection)"
+    "whistleblower_title": "Korumalı Bilgi Uçurma Kanalı (Whistleblower Protection)",
+    "anonymous_whistleblower_btn": "ZKP ile Anonim Bildir (Giriş Gerekmez)"
   },
   "insights": {
     "closed": "Kapalı",
@@ -5995,6 +5996,9 @@
     "title": "Anonim İhbar Bildirimi",
     "transmitting": "İletiliyor...",
     "yourRecoveryKey": "Kurtarma Anahtarınız — Hemen Kaydedin",
-    "zeroKnowledge": "Sıfır Bilgi Şifrelemesi"
+    "zeroKnowledge": "Sıfır Bilgi Şifrelemesi",
+    "zkpReceiptTitle": "Sıfır-Bilgi Kriptografik Makbuzu",
+    "zkpReceiptDesc": "Bu matematiksel makbuz, kimliğinizi ifşa etmeden ihbarınızın durumunu anonim olarak doğrulamanızı sağlar.",
+    "copyZkpReceipt": "Kriptografik makbuzu kopyala"
   }
 }

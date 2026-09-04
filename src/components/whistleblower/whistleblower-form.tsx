@@ -4,9 +4,10 @@ import * as React from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Shield, Lock, AlertCircle, CheckCircle2, KeyRound } from "lucide-react";
-import { submitWhistleblowerAction } from "@/actions/legal/whistleblower";
+import { Shield, Lock, AlertCircle, CheckCircle2, KeyRound, Fingerprint } from "lucide-react";
+import { createWhistleblowerIncidentAction } from "@/actions/incidents/create-incident";
 import { encryptZeroKnowledge } from "@/lib/crypto/client-crypto";
+import { generateZkpProof } from "@/lib/crypto/zkp-crypto";
 
 export function WhistleblowerForm() {
   const t = useTranslations("whistleblower");
@@ -21,6 +22,7 @@ export function WhistleblowerForm() {
   const [displayContent, setDisplayContent] = React.useState("");
   const [errorMessage, setErrorMessage] = React.useState("");
   const [keyFragment, setKeyFragment] = React.useState<string>("");
+  const [zkpReceipt, setZkpReceipt] = React.useState<string>("");
   const CATEGORIES = [
     { id: "safety", label: tCat("safety") },
     { id: "privacy", label: tCat("privacy") },
@@ -35,11 +37,7 @@ export function WhistleblowerForm() {
 
   /**
    * Visual scramble micro-animation runs in parallel with the REAL AES-GCM
-   * encryption in `encryptZeroKnowledge()`. The animation is purely cosmetic
-   * (no security claim). The actual security comes from Web Crypto AES-GCM,
-   * never from this display string.
-   *
-   * Replaces the previous `btoa()` placeholder which was NOT encryption.
+   * encryption in `encryptZeroKnowledge()`.
    */
   const runVisualEncryption = (realEncryptedPromise: Promise<string>) => {
     let ticks = 0;
@@ -70,6 +68,7 @@ export function WhistleblowerForm() {
     setStatus("encrypting");
     setErrorMessage("");
     setKeyFragment("");
+    setZkpReceipt("");
 
     try {
       const encryptionPromise = encryptZeroKnowledge(content);
@@ -77,12 +76,26 @@ export function WhistleblowerForm() {
       const result = await encryptionPromise;
       setKeyFragment(result.keyFragment);
 
+      // Generate Zero-Knowledge Proof (ZKP) Commitment & Nullifier
+      const zkpProof = await generateZkpProof(encrypted);
+      setZkpReceipt(zkpProof.receipt);
+
       setStatus("submitting");
       try {
-        const res = await submitWhistleblowerAction({
-          encryptedContent: encrypted,
+        const isCritical =
+          content.toLowerCase().includes("zero-day") ||
+          content.toLowerCase().includes("backdoor") ||
+          content.toLowerCase().includes("rce") ||
+          content.toLowerCase().includes("data leak");
+
+        const res = await createWhistleblowerIncidentAction({
+          encryptedPayload: encrypted,
           category,
           providerHint: providerHint.trim() || null,
+          zkpCommitment: zkpProof.commitment,
+          nullifierHash: zkpProof.nullifierHash,
+          proofToken: zkpProof.proofToken,
+          zeroDayRisk: isCritical ? "CRITICAL" : "NONE",
         });
 
         if (res.ok) {
@@ -135,6 +148,30 @@ export function WhistleblowerForm() {
               className="text-fg-secondary hover:text-fg-primary text-xs font-semibold underline-offset-2 hover:underline"
             >
               {t("copyRecoveryKey")}
+            </button>
+          </div>
+        )}
+
+        {zkpReceipt && (
+          <div className="border-brand-500/30 bg-brand-500/5 w-full max-w-xl space-y-3 rounded-lg border p-4 text-left">
+            <div className="flex items-center gap-2">
+              <Fingerprint className="text-brand-400 h-5 w-5" />
+              <p className="text-fg-primary text-sm font-bold">{t("zkpReceiptTitle")}</p>
+            </div>
+            <p className="text-fg-muted text-xs leading-relaxed">{t("zkpReceiptDesc")}</p>
+            <code className="bg-bg-secondary border-border-subtle text-brand-300 block overflow-x-auto rounded-md border p-3 font-mono text-xs break-all">
+              {zkpReceipt}
+            </code>
+            <button
+              type="button"
+              onClick={() => {
+                if (typeof navigator !== "undefined" && navigator.clipboard) {
+                  navigator.clipboard.writeText(zkpReceipt).catch(() => {});
+                }
+              }}
+              className="text-brand-400 hover:text-brand-300 text-xs font-semibold underline-offset-2 hover:underline"
+            >
+              {t("copyZkpReceipt")}
             </button>
           </div>
         )}

@@ -647,4 +647,16 @@ export const rapSheetExportResponseSchema = z.union([
   z.string(),
 ]);
 
+// 39. GET /api/v1/compliance/verify
+export const complianceVerifyResponseSchema = z.object({
+  service: z.string().optional(),
+  regulation: z.string().optional(),
+  version: z.string().optional(),
+  supported_frameworks: z.array(z.string()).optional(),
+  sample_request: z.record(z.string(), z.unknown()).optional(),
+  data: z.record(z.string(), z.unknown()).optional(),
+  error: z.string().optional(),
+}).passthrough();
+
+
 

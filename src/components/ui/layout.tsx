@@ -23,8 +23,9 @@ export function Container({
 }
 
 export function Section({ className, children, ...props }: React.HTMLAttributes<HTMLElement>) {
+  const safeClassName = className?.replace(/\breveal-on-scroll\b/g, "");
   return (
-    <section className={cn("py-16 md:py-24", className)} {...props}>
+    <section className={cn("py-16 md:py-24", safeClassName)} {...props}>
       {children}
     </section>
   );

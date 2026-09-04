@@ -344,23 +344,13 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <>
-      <Suspense fallback={<Skeleton className="h-[600px] w-full rounded-none" />}>
-        <HeroSectionAsync locale={locale} />
-      </Suspense>
+      <HeroSectionAsync locale={locale} />
 
       <TrustBar />
 
       <SegmentRouting />
 
-      <Suspense
-        fallback={
-          <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-            <Skeleton className="h-[200px] w-full rounded-2xl" />
-          </div>
-        }
-      >
-        <LiveStatsAsync locale={locale} />
-      </Suspense>
+      <LiveStatsAsync locale={locale} />
 
       <WhyItMatters />
 
@@ -368,18 +358,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       <HowItWorks />
 
-      <Section className="reveal-on-scroll scroll-mt-16">
+      <Section className="scroll-mt-16">
         <Container>
-          <Suspense
-            fallback={
-              <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_360px]">
-                <Skeleton className="h-[800px] w-full rounded-2xl" />
-                <Skeleton className="h-[800px] w-full rounded-2xl" />
-              </div>
-            }
-          >
-            <LiveFeedAndLeaderboardAsync locale={locale} />
-          </Suspense>
+          <LiveFeedAndLeaderboardAsync locale={locale} />
         </Container>
       </Section>
 

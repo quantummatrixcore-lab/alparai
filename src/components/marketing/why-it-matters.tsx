@@ -63,14 +63,14 @@ export function WhyItMatters() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <Section className="reveal-on-scroll relative scroll-mt-16 overflow-hidden">
+    <Section className="relative scroll-mt-16 overflow-hidden">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_50%,rgba(230,57,70,0.03),transparent)]"
       />
       <Container>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
@@ -88,8 +88,8 @@ export function WhyItMatters() {
             return (
               <motion.div
                 key={stat.titleKey}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                initial={{ opacity: 1, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: i * 0.15 }}
                 whileHover={{ y: -6, scale: 1.02 }}
                 className="group relative"
@@ -133,7 +133,7 @@ export function WhyItMatters() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}

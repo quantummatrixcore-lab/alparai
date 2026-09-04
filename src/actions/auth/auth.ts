@@ -33,26 +33,30 @@ export async function signInWithGoogleIdToken(token: string, nonce: string): Pro
     if (!rl.ok) {
       return { ok: false, error: `Too many attempts. Try again in ${rl.retryAfter}s.` };
     }
-    const supabase = await createServerClient();
-    const { error } = await supabase.auth.signInWithIdToken({
-      provider: "google",
-      token,
-      nonce,
-    });
-    if (error) {
-      logger.error(
-        "signInWithGoogleIdToken failed",
-        { action: "signInWithGoogleIdToken", code: error.code, status: error.status },
-        error,
-      );
-      console.error(
-        "[signInWithGoogleIdToken] Supabase Auth Error:",
-        `code=${error.code}`,
-        `status=${error.status}`,
-        error.message,
-      );
-      return { ok: false, error: error.message };
+
+    // Direct Google Token Verification
+    const verifyRes = await fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${encodeURIComponent(token)}`);
+    if (!verifyRes.ok) {
+      console.error("[signInWithGoogleIdToken] Google verification returned status:", verifyRes.status);
+      return { ok: false, error: "Google ID Token verification failed" };
     }
+
+    const payload = await verifyRes.json();
+    const expectedClientId = process.env.GOOGLE_CLIENT_ID || "341717447635-hsdu69hk692lkveikkpc8398v8rhu40b.apps.googleusercontent.com";
+    if (payload.aud !== expectedClientId) {
+      console.error("[signInWithGoogleIdToken] Audience mismatch:", payload.aud, expectedClientId);
+      return { ok: false, error: "Invalid Google Client ID audience" };
+    }
+
+    const { setSessionUser } = await import("@/lib/auth/session");
+    await setSessionUser({
+      id: payload.sub,
+      email: payload.email || "",
+      name: payload.name || payload.email?.split("@")[0] || "User",
+      picture: payload.picture || "",
+      role: "user",
+    });
+
     return { ok: true };
   } catch (err) {
     console.error("[signInWithGoogleIdToken] Error:", err);
@@ -60,7 +64,6 @@ export async function signInWithGoogleIdToken(token: string, nonce: string): Pro
   }
 }
 
-// Uses standard Supabase OAuth redirect flow.
 export async function signInWithGoogle(next = "/profile"): Promise<AuthResult> {
   try {
     const hdrs = await headers();

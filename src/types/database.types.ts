@@ -4646,25 +4646,37 @@ export type Database = {
           category: string
           encrypted_content: string
           id: string
+          nullifier_hash: string | null
+          proof_metadata: Json | null
           provider_hint: string | null
           status: string
           submitted_at: string
+          zero_day_risk: string | null
+          zkp_commitment: string | null
         }
         Insert: {
           category?: string
           encrypted_content?: string
           id?: string
+          nullifier_hash?: string | null
+          proof_metadata?: Json | null
           provider_hint?: string | null
           status?: string
           submitted_at?: string
+          zero_day_risk?: string | null
+          zkp_commitment?: string | null
         }
         Update: {
           category?: string
           encrypted_content?: string
           id?: string
+          nullifier_hash?: string | null
+          proof_metadata?: Json | null
           provider_hint?: string | null
           status?: string
           submitted_at?: string
+          zero_day_risk?: string | null
+          zkp_commitment?: string | null
         }
         Relationships: []
       }

@@ -4299,7 +4299,8 @@
     "voice_incident_transcribing": "Transcribing audio (ASR)...",
     "whistleblower_desc": "Disclosures comply with EU AI Act whistleblower protections. Personal details are cryptographically hashed and automatically sanitized by PII Guardian before storage.",
     "whistleblower_encryption_notice": "Whistleblower submissions are encrypted end-to-end. Not even ALPAR AI can identify the source.",
-    "whistleblower_title": "Protected Whistleblower & Safe Disclosure Channel"
+    "whistleblower_title": "Protected Whistleblower & Safe Disclosure Channel",
+    "anonymous_whistleblower_btn": "Submit Anonymously via ZKP (No Sign-In Required)"
   },
   "insights": {
     "closed": "Closed",
@@ -5995,6 +5996,9 @@
     "title": "Anonymous Whistleblower Submission",
     "transmitting": "Transmitting...",
     "yourRecoveryKey": "Your Recovery Key — Save It Now",
-    "zeroKnowledge": "Zero-Knowledge Encryption"
+    "zeroKnowledge": "Zero-Knowledge Encryption",
+    "zkpReceiptTitle": "Zero-Knowledge Cryptographic Receipt",
+    "zkpReceiptDesc": "This mathematical receipt allows you to verify your report status anonymously without revealing who you are.",
+    "copyZkpReceipt": "Copy cryptographic receipt"
   }
 }

@@ -4,7 +4,7 @@ import { Container } from "@/components/ui/layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { IncidentForm } from "@/components/incidents/incident-form";
 import { getCurrentUser } from "@/lib/auth/session";
-import { Shield, ShieldCheck, LogIn } from "lucide-react";
+import { Shield, ShieldCheck, LogIn, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/routing";
 import type { AIProvider, AIModel } from "@/types";
@@ -92,6 +92,14 @@ export default async function SubmitPage({ params }: { params: Promise<{ locale:
                 </Button>
               </Link>
               <p className="text-fg-muted text-xs">{t("signin_google_desc")}</p>
+
+              <div className="pt-4 border-t border-border-subtle/50">
+                <Link href="/submit/whistleblower">
+                  <Button variant="outline" size="md" leftIcon={<Lock className="h-4 w-4 text-purple-400" />}>
+                    {t("anonymous_whistleblower_btn")}
+                  </Button>
+                </Link>
+              </div>
             </div>
           </CardContent>
         </Card>

@@ -1,4 +1,4 @@
-﻿import { describe, it, expect } from "vitest";
+import { describe, it, expect } from "vitest";
 import {
   safeJsonLd,
   IncidentJsonLd,
@@ -76,8 +76,9 @@ describe("Zero-Trust Security Audit: JSON-LD XSS & Script Injection Prevention",
     expect(innerHtml).not.toContain(">");
 
     const parsed = JSON.parse(innerHtml);
-    expect(parsed["@type"]).toBe("Article");
-    expect(parsed.headline).toBe("Attack Title </script><script>window.pwned=true</script>");
+    const articleNode = parsed["@graph"].find((node: any) => node["@id"].endsWith("#article"));
+    expect(articleNode["@type"]).toContain("Article");
+    expect(articleNode.headline).toBe("Attack Title </script><script>window.pwned=true</script>");
   });
 
   it("should render ClaimReviewJsonLd component safely with nested attack strings", () => {

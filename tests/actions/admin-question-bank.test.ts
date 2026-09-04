@@ -6,6 +6,12 @@ vi.mock("@/lib/supabase/server", () => ({
   createClient: vi.fn(),
 }));
 
+vi.mock("@/lib/auth/session", () => ({
+  requireAdmin: vi.fn().mockResolvedValue({ id: "admin", email: "admin@alparai.com", role: "admin" }),
+  getCurrentUser: vi.fn().mockResolvedValue({ id: "admin", email: "admin@alparai.com", role: "admin" }),
+}));
+
+
 describe("admin-question-bank", () => {
   beforeEach(() => {
     vi.clearAllMocks();

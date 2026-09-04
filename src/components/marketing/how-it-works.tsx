@@ -17,10 +17,10 @@ export function HowItWorks() {
   const t = useTranslations("hero");
 
   return (
-    <Section className="bg-bg-secondary/30 reveal-on-scroll scroll-mt-16">
+    <Section className="bg-bg-secondary/30 scroll-mt-16">
       <Container>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
@@ -37,7 +37,7 @@ export function HowItWorks() {
             return (
               <motion.div
                 key={step.titleKey}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 1, y: 0 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}

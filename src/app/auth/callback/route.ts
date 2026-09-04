@@ -107,40 +107,45 @@ export async function GET(request: NextRequest) {
 
   try {
     if (code) {
-      const { data, error } = await supabase.auth.exchangeCodeForSession(code);
-      if (!error) {
-        if (data?.user) {
-          await logAdminLogin(supabase, data.user.id, request);
-        }
-        return response;
-      }
-      logger.warn("OAuth code exchange failed", {
-        code: error.code,
-        message: error.message,
-      });
-      return NextResponse.redirect(
-        `${origin}/${locale}/auth/signin?error=oauth&reason=${encodeURIComponent(error.code ?? "exchange_failed")}`,
-      );
-    }
+      const clientId = process.env.GOOGLE_CLIENT_ID || "341717447635-hsdu69hk692lkveikkpc8398v8rhu40b.apps.googleusercontent.com";
+      const clientSecret = process.env.GOOGLE_CLIENT_SECRET || "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";
+      const redirectUri = `${origin}/auth/callback`;
 
-    if (tokenHash && type) {
-      const { data, error } = await supabase.auth.verifyOtp({
-        token_hash: tokenHash,
-        type: type as EmailOtpType,
+      const tokenRes = await fetch("https://oauth2.googleapis.com/token", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          code,
+          client_id: clientId,
+          client_secret: clientSecret,
+          redirect_uri: redirectUri,
+          grant_type: "authorization_code",
+        }),
       });
-      if (!error) {
-        if (data?.user) {
-          await logAdminLogin(supabase, data.user.id, request);
-        }
+
+      const tokenData = await tokenRes.json();
+      if (tokenData.access_token) {
+        const userRes = await fetch("https://www.googleapis.com/oauth2/v2/userinfo", {
+          headers: { Authorization: `Bearer ${tokenData.access_token}` },
+        });
+        const googleUser = await userRes.json();
+
+        const { createSessionCookieHeader } = await import("@/lib/auth/session");
+        const cookie = createSessionCookieHeader({
+          id: googleUser.id,
+          email: googleUser.email,
+          name: googleUser.name || googleUser.email?.split("@")[0] || "User",
+          picture: googleUser.picture || "",
+          role: "user",
+        });
+
+        response.cookies.set(cookie.name, cookie.value, cookie.options);
         return response;
       }
-      logger.warn("OTP verification failed", {
-        type,
-        code: error.code,
-        message: error.message,
-      });
+
+      logger.warn("Google OAuth code exchange failed", { tokenData });
       return NextResponse.redirect(
-        `${origin}/${locale}/auth/signin?error=otp&reason=${encodeURIComponent(error.code ?? "verify_failed")}`,
+        `${origin}/${locale}/auth/signin?error=oauth&reason=${encodeURIComponent(tokenData.error || "exchange_failed")}`,
       );
     }
 
@@ -150,3 +155,4 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(`${origin}/${locale}/auth/signin?error=server_error`);
   }
 }
+

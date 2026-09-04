@@ -68,6 +68,7 @@ const routeSchemaMap: Record<string, z.ZodTypeAny> = {
   "rap-sheet": schemas.rapSheetResponseSchema,
   "rap-sheet/[id]": schemas.rapSheetDetailResponseSchema,
   "rap-sheet/export": schemas.rapSheetExportResponseSchema,
+  "compliance/verify": schemas.complianceVerifyResponseSchema,
 };
 
 describe("API v1 Contract Coverage", () => {

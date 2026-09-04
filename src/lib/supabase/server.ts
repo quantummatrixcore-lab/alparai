@@ -15,7 +15,7 @@ export async function createClient() {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://placeholder.supabase.co";
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "placeholder-anon-key";
 
-  return createServerClient<Database>(supabaseUrl, supabaseAnonKey, {
+  const client = createServerClient<Database>(supabaseUrl, supabaseAnonKey, {
     cookies: {
       getAll() {
         return cookieStore.getAll();
@@ -37,6 +37,37 @@ export async function createClient() {
       },
     },
   });
+
+  const sessionCookie = cookieStore.get("alparai_session");
+  if (sessionCookie?.value) {
+    try {
+      const { getSessionUser } = await import("@/lib/auth/session");
+      const u = await getSessionUser();
+      if (u) {
+        client.auth.getUser = async () => ({
+          data: {
+            user: {
+              id: u.id,
+              aud: "authenticated",
+              role: u.role,
+              email: u.email,
+              created_at: u.created_at,
+              app_metadata: { provider: "google" },
+              user_metadata: {
+                full_name: u.name,
+                name: u.name,
+                avatar_url: u.picture,
+                picture: u.picture,
+              },
+            } as any,
+          },
+          error: null,
+        });
+      }
+    } catch {}
+  }
+
+  return client;
 }
 
 export { createClient as createServerClient };

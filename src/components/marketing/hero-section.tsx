@@ -18,9 +18,9 @@ import { Container } from "@/components/ui/layout";
 import { cn } from "@/lib/utils";
 import { trackEvent } from "@/lib/analytics";
 
-// Animation Variants for Staggering
+// Animation Variants for Staggering (Safe initial state prevents stuck opacity in React 19)
 const containerVariants: Variants = {
-  hidden: { opacity: 0 },
+  hidden: { opacity: 1 },
   visible: {
     opacity: 1,
     transition: {
@@ -31,7 +31,7 @@ const containerVariants: Variants = {
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 1, y: 0 },
   visible: {
     opacity: 1,
     y: 0,
@@ -216,7 +216,7 @@ export function HeroSection({
 
           {/* RIGHT: Live Data Panel (Glassmorphic Masterpiece) */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
+            initial={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
             transition={{ duration: 1, delay: 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
             className="flex min-w-0 flex-col gap-6 lg:col-span-5"
@@ -314,7 +314,7 @@ export function HeroSection({
 
         {/* Bottom Section: Side-by-Side Highlight Cards */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
@@ -413,8 +413,8 @@ function AnimatedValue({ value }: { value: number | string }) {
   return (
     <motion.span
       ref={ref}
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+      initial={{ opacity: 1, scale: 1 }}
+      animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       className={cn(
         "inline-block",

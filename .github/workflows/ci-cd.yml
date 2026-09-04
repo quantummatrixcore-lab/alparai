@@ -42,11 +42,11 @@ jobs:
       - name: Linter (Sürü Disiplini)
         run: pnpm lint
 
-      - name: Build Kontrolü (Vercel Hazırlığı)
+      - name: Build Kontrolü (Cloudflare Hazırlığı)
         run: pnpm build
         env:
           NEXT_TELEMETRY_DISABLED: 1
-          # Supabase and Vercel Keys will be injected by GitHub Secrets
+          # Supabase Keys will be injected by GitHub Secrets
 
-  # Vercel deployment is handled natively by the Vercel GitHub App.
-  # This action ensures code is clean before Vercel triggers deployment.
+  # Cloudflare deployment is handled natively by the Cloudflare Pages App.
+  # This action ensures code is clean before Cloudflare triggers deployment.

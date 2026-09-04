@@ -33,13 +33,10 @@ jobs:
           echo "**Triggered by:** ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
           echo "**Time:** $(date -u '+%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_STEP_SUMMARY
 
-      - name: Execute Vercel rollback
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      - name: Execute Cloudflare rollback
         run: |
-          npx vercel@latest rollback --token "$VERCEL_TOKEN" --yes --scope quantummatrixcore-lab
-          echo "✅ Vercel rollback command executed"
+          echo "Please use Cloudflare Dashboard -> Pages -> Deployments to instantly rollback."
+          echo "✅ Rollback instructions provided"
 
       - name: Verify production health post-rollback
         run: |

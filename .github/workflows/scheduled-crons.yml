@@ -2,7 +2,7 @@ name: Scheduled Cron Jobs
 
 on:
   schedule:
-    # Run once daily at 04:00 UTC as a fallback (Vercel Crons on Pro plan handle active schedule)
+    # Run once daily at 04:00 UTC as a fallback (Cloudflare Pages / Workers Cron handle active schedule)
     - cron: "0 4 * * *"
   workflow_dispatch:
 
@@ -21,7 +21,7 @@ jobs:
         run: |
           curl -X GET "https://alparai.com/api/cron/translate-backfill" \
             -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
-            -H "x-vercel-cron: 1" \
+            -H "x-cloudflare-cron: 1" \
             --fail --show-error
 
       - name: Trigger ai-heartbeat model health check (Every 10 minutes)
@@ -29,7 +29,7 @@ jobs:
         run: |
           curl -X GET "https://alparai.com/api/cron/ai-heartbeat" \
             -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
-            -H "x-vercel-cron: 1" \
+            -H "x-cloudflare-cron: 1" \
             --fail --show-error
 
       - name: Hourly and Daily Cron Dispatcher
@@ -49,7 +49,7 @@ jobs:
             echo "Triggering: $path"
             curl -X GET "https://alparai.com$path" \
               -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
-              -H "x-vercel-cron: 1" \
+              -H "x-cloudflare-cron: 1" \
               --fail --show-error || echo "::error::Failed to trigger $path"
           }
 

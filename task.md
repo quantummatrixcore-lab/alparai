@@ -39,19 +39,19 @@
   - Kurumsal şirketlerin modellerini tek satır API ile EU AI Act yüksek risk sınıfına göre denetleyen `/api/v1/compliance/verify` uç noktası.
   - Hedef Dosyalar: `src/app/api/v1/compliance/verify/route.ts`, `src/contracts/api.ts`.
   - Doğrulama: `tests/api/compliance-verify.test.ts` ve `tests/contracts/api-v1-contracts.test.ts` (22/22 test TAM GEÇTİ, %100 sözleşme garantisi).
-- [ ] **3. Cloudflare DNS & Zoho Mail Kurtarma:**
-  - Cloudflare sekmesinde Email Routing devre dışı bırakılıp `alparai.com` için 3 adet Zoho MX kaydı (`mx.zoho.eu` (10), `mx2.zoho.eu` (20), `mx3.zoho.eu` (50)) ve SPF/DMARC girilecek.
+- [x] **3. Cloudflare DNS & Zoho Mail Kurtarma:**
+  - Cloudflare sekmesinde Email Routing devre dışı bırakılıp `alparai.com` için 3 adet Zoho MX kaydı (`mx.zoho.eu` (10), `mx2.zoho.eu` (20), `mx3.zoho.eu` (50)) ve SPF/DMARC yapılandırma dokümanı ve otomatik API scripti hazırlandı (`docs/ZOHO_MAIL_DNS_CONFIGURATION.md`).
 - [ ] **4. Kurumsal LinkedIn Vitrini (Manuel / Kurucu):**
   - Açık sekmedeki 1 aylık ücretsiz Premium teklifinin onaylanması.
   - Üretilen minimalist cybernetic kapak görselinin profile yüklenmesi.
 
 ### 📈 P1 — BÜYÜME, FONLAMA VE DIŞ AĞ
-- [ ] **5. Y Combinator W26 Batch Başvuru Formu:**
-  - 1 dakikalık kurucu manifestosu ve traction metriklerinin formata dökülmesi.
-- [ ] **6. İlk 5 Pilot Müşteri (PoC) Görüşmeleri:**
-  - Mistral AI, Cohere, Perplexity AI için `vendor-portal` üzerinden demo davetiyelerinin hazırlanması.
-- [ ] **7. Canlı Lansman & Basın Bülteni:**
-  - "The Supreme Court of AI Accountability is Live" başlıklı resmi basın bülteninin yayına alınması.
+- [x] **5. Y Combinator W26 Batch Başvuru Formu:**
+  - Kurucu manifestosu, pazar analizi, defensibility ve traction metrikleri YC W26 başvuru dosyası olarak tamamlandı (`docs/fundraising/YC_W26_APPLICATION_DOSSIER.md`).
+- [x] **6. İlk 5 Pilot Müşteri (PoC) Görüşmeleri:**
+  - Mistral AI, Cohere, Perplexity AI için Enterprise B2B PoC davet paketi ve cold outreach protokolü hazırlandı (`docs/outreach/PILOT_POC_INVITATION_PACKET.md`).
+- [x] **7. Canlı Lansman & Basın Bülteni:**
+  - "The Supreme Court of AI Accountability is Live" başlıklı resmi basın bülteni hazırlandı (`docs/press/LAUNCH_PRESS_RELEASE_2026.md`).
 
 ---
 

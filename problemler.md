@@ -76,3 +76,7 @@
 * **Semptom:** SEO ve script bileşenlerinde XSS açığı potansiyeli.
 * **KESİN ÇÖZÜM:**
   * `v45_ast_omega_gate.js` ve `v48_super_innovation_360_engine.js` AST seviyesinde kodları sanitize edip otomatik onarmaktadır.
+
+### 🚨 GITHUB ACTIONS VERCEL TUZAĞI (ÇÖZÜLDÜ)
+**Problem:** Ajanların lokal tünel (cloudflared) açmaya çalışmasının KÖK SEBEBİ bulundu. Ajanlar `.env` dosyasından Vercel'i silse de, `.github/workflows/production.yml` içindeki **"Vercel Edge Deploy"** job'ını silmeyi unuttukları için GitHub her push işleminde projeyi Vercel'e göndermeye çalışıyor ve çöküyordu. Bu çökme yüzünden ajanlar panikleyip laptop'ı sunucuya çeviriyordu.
+**Çözüm:** Tüm GitHub Actions workflow (`production.yml`, `ci-cd.yml`, `rollback.yml`, `scheduled-crons.yml`) dosyalarındaki Vercel komutları **TAMAMEN İMHA EDİLDİ**. Sistem %100 Cloudflare Sovereign mimarisine göre yeniden yazıldı.

@@ -30,6 +30,7 @@ import { GoogleAdapter } from "./adapters/google";
 import { GroqAdapter } from "./adapters/groq";
 import { BlackboxAdapter } from "./adapters/blackbox";
 import { NvidiaNgcAdapter } from "./adapters/nvidia-ngc";
+import { SovereignAdapter } from "./adapters/sovereign";
 import { isCostKillSwitchActive, getDailyCost } from "./cost-guard";
 
 // Export the type interfaces from the common types file to keep backward compatibility
@@ -281,6 +282,24 @@ export const RISK_AUDIT_CHAIN: readonly GatewayModel[] = [
 // 4. Fast Triage, Summarization, Classification (Qwen / Llama / OpenCode Free Optimized)
 export const FAST_TRIAGE_CHAIN: readonly GatewayModel[] = [
   {
+    id: "llama3.1:8b",
+    provider: "sovereign",
+    tier: "free",
+    maxTokens: 2048,
+    modelClass: "flash",
+    capability: "medium",
+    specialties: ["fast_triage", "creative_copy"],
+  },
+  {
+    id: "qwen2.5-coder:7b",
+    provider: "sovereign",
+    tier: "free",
+    maxTokens: 2048,
+    modelClass: "flash",
+    capability: "medium",
+    specialties: ["code_generation", "fast_triage"],
+  },
+  {
     id: "opencode/deepseek-v4-flash-free",
     provider: "openrouter",
     tier: "free",
@@ -388,6 +407,7 @@ const adapters: Record<string, ProviderAdapter> = {
   groq: new GroqAdapter(),
   blackbox: new BlackboxAdapter(),
   nvidia: new NvidiaNgcAdapter(),
+  sovereign: new SovereignAdapter(),
 };
 
 /**

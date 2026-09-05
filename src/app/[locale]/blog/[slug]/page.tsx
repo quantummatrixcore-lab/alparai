@@ -165,9 +165,7 @@ export default async function BlogPostPage({
     tags = ["report", "autopilot"];
   }
 
-  const rawHtml = renderMarkdown(content);
-  const DOMPurify = require("isomorphic-dompurify");
-  const html = DOMPurify.sanitize(rawHtml);
+  const html = renderMarkdown(content);
 
   return (
     <Container size="narrow" className="py-12">

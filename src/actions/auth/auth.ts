@@ -121,16 +121,21 @@ export async function signInWithMagicLink(email: string): Promise<AuthResult> {
   }
 }
 
-export async function signOut(): Promise<void> {
+export async function performSignOut(): Promise<void> {
   try {
+    const { clearSessionUser } = await import("@/lib/auth/session");
+    await clearSessionUser();
     const supabase = await createServerClient();
     await supabase.auth.signOut();
-    revalidatePath("/");
-    redirect("/");
   } catch (err) {
-    console.error("[signOut] Error:", err);
-    throw err;
+    console.error("[performSignOut] Error:", err);
   }
+  revalidatePath("/", "layout");
+}
+
+export async function signOut(): Promise<void> {
+  await performSignOut();
+  redirect("/");
 }
 
 export interface MeResult {

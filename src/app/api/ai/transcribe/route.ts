@@ -9,7 +9,12 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const formData = await request.formData();
+    let formData: FormData;
+    try {
+      formData = await request.formData();
+    } catch (_err) {
+      return NextResponse.json({ error: "Invalid multipart/form-data payload or missing audio" }, { status: 400 });
+    }
     const audioFile = formData.get("audio") as File | null;
 
     if (!audioFile) {

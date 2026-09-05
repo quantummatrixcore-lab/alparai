@@ -3,7 +3,7 @@
 import * as React from "react";
 import { useState } from "react";
 import { Link } from "@/i18n/routing";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { User as UserIcon, LogOut, Settings, ShieldCheck, BarChart3 } from "lucide-react";
 import { getInitials } from "@/lib/utils";
 import { getMe } from "@/actions/auth/auth";
@@ -20,9 +20,28 @@ interface SessionUserShape {
 export function UserMenu({ initialUser }: { initialUser: SessionUserShape | null }) {
   const t = useTranslations("auth");
   const tCommon = useTranslations("common");
+  const locale = useLocale();
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState<SessionUserShape | null>(initialUser);
   const ref = React.useRef<HTMLDivElement>(null);
+
+  const handleSignOut = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setUser(null);
+    setOpen(false);
+    try {
+      await fetch("/api/auth/signout", { method: "POST" });
+    } catch {
+      // Non-fatal
+    }
+    if (typeof window !== "undefined") {
+      try {
+        localStorage.clear();
+        sessionStorage.clear();
+      } catch {}
+      window.location.href = `/${locale || "en"}`;
+    }
+  };
 
   React.useEffect(() => {
     if (initialUser) return;
@@ -141,7 +160,7 @@ export function UserMenu({ initialUser }: { initialUser: SessionUserShape | null
             )}
           </div>
           <div className="border-border-subtle border-t py-1">
-            <form action="/api/auth/signout" method="post">
+            <form action="/api/auth/signout" method="post" onSubmit={handleSignOut}>
               <button
                 type="submit"
                 role="menuitem"

@@ -151,13 +151,15 @@ export function GoogleSignInButton({
       />
 
       {!gisLoaded && (
-        <a
-          href={`/api/auth/google?next=${encodeURIComponent(next)}`}
+        <button
+          type="button"
+          onClick={fallbackOAuthRedirect}
+          disabled={disabled}
           className={cn(
             "inline-flex items-center justify-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:border-white/[0.16] hover:bg-white/[0.07] active:bg-white/[0.1]",
-            "h-12 min-h-[48px] px-6 w-full text-sm font-semibold tracking-wide text-white shadow-lg transition-all duration-300",
+            "h-12 min-h-[48px] px-6 w-full text-sm font-semibold tracking-wide text-white shadow-lg transition-all duration-300 cursor-pointer",
             "hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(168,85,247,0.18)]",
-            disabled && "pointer-events-none opacity-40 hover:translate-y-0 hover:shadow-none",
+            disabled && "cursor-not-allowed opacity-40 hover:translate-y-0 hover:shadow-none",
           )}
         >
           <svg
@@ -184,7 +186,7 @@ export function GoogleSignInButton({
             />
           </svg>
           {t("signin_with_google")}
-        </a>
+        </button>
       )}
 
       {pending && (

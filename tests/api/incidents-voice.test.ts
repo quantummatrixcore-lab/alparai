@@ -34,8 +34,10 @@ describe("Qwen Omni ASR Voice Incident API Route", () => {
 
     const req = new Request("http://localhost/api/incidents/voice", {
       method: "POST",
+      headers: { "Content-Type": "multipart/form-data; boundary=---test" },
       body: formData,
     });
+    Object.defineProperty(req, "formData", { value: () => Promise.resolve(formData) });
 
     const res = await POST(req);
     expect(res.status).toBe(400);

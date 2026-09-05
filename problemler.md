@@ -16,6 +16,21 @@
 
 ---
 
+## ❌ PROBLEM 0.1: KULLANICININ TARAYICISINDA İZİNSİZ YENİ SEKME AÇMA (START-PROCESS / HEADED POPUP) YASAĞI
+
+### 🔴 NE OLDU VE KRONİK HATA NEDİR?
+1. Ajan, kullanıcının izni olmadan arka plandan `Start-Process` veya `openchrome` ile kullanıcının masaüstünde yeni tarayıcı sekmeleri ve popup pencereleri açmıştır.
+2. Bu durum kullanıcının mevcut çalışma ortamını, odaklandığı sekmeyi ve oturum çerezlerini bozmuş; kullanıcının kontrolü kaybetmesine yol açmıştır.
+
+### 🛑 KESİN VE DEĞİŞTİRİLEMEZ KURAL (ANAYASA):
+1. **ASLA VE ASLA KULLANICININ BİLGİSAYARINDA İZİNSİZ YENİ SEKME AÇILAMAZ (`Start-Process "http..."`, yeni pencere fırlatma KESİNLİKLE YASAKTIR)!**
+2. **Kullanıcı tarayıcısında zaten ilgili sayfayı açmıştır. Ajan yeni sekme fırlatmak yerine, kullanıcının bulunduğu sayfadaki konfigürasyon adımlarını net, tane tane talimatlarla ekrandan yönlendirmelidir.**
+3. **Kullanıcının tarayıcı alanına müdahale edilmeyecek, sadece kullanıcıya tıklanabilir markdown linki veya doğrudan dolduracağı form alanları sunulacaktır.**
+4. **OPENCHROME HEADED VE AUTOFALLBACK YASAĞI**: OpenChrome MCP aracı çağrılırken `autoFallback: true` varsayılanı, Cloudflare/WAF veya erişim engeli gördüğünde otomatik olarak masaüstünde `headed: true` Chrome penceresi fırlatmaktadır. Bu tuzak KESİNLİKLE YASAKLANMIŞTIR! OpenChrome görsel pencereleri asla açılmayacak; tüm doğrulamalar arka planda sessizce Node.js, headless fetch veya curl ile yapılacaktır. Hiçbir koşulda kullanıcının ekranına pencere/sekme düşmeyecektir!
+
+---
+
+
 # 📋 ALPARAI & ANTIGRAVITY KRONİK PROBLEMLER VE KESİN ÇÖZÜMLER (PROBLEMLER.MD)
 
 > **BELGE AMACI:** Bu belge, ajanların geçmişte düştüğü kritik yanılgıları, operasyonel hataları ve bunların **kesin, değiştirilemez mühendislik çözümlerini** kayıt altına alır. Her ajan bir hata yapmadan önce bu listeyi referans almak ZORUNDADIR.
@@ -24,27 +39,24 @@
 
 ## 1. Problem: Vercel Fatura Kilidi Tuzağı & "Faturayı Ödeyin" Yanılgısı
 * **Tarih:** 2026-09-04
-* **Semptom:** Canlı sitede `Error 1033 (Cloudflare Tunnel Error / 530)` veya API yanıtında `Payment required - DEPLOYMENT_DISABLED` görülmesi.
-* **Ajanın Yaptığı Hata:** Ajan, `.env` dosyasındaki eski `VERCEL_ORG_ID` değişkenini görerek kullanıcının Vercel paneline gidip fatura ödemesini istemiştir.
-* **Kök Neden:** Alparai'nin geçmişte Vercel'de kalmış eski bir kaydı bulunması, ancak projenin aslında **Cloudflare Tunnel + Yerel Sovereign Node.js** mimarisine geçirilmiş olması.
-* **KESİN ÇÖZÜM:**
-  1. **Vercel'e Para Ödenmeyecektir.** Alparai egemen bir platformdur.
-  2. Canlı yayın akışı: `Kullanıcı -> Cloudflare Domain (alparai.com) -> Cloudflare Tunnel (cloudflared) -> Localhost:3003 (Next.js)`.
-  3. Eğer site açılmıyorsa Vercel'e değil, `localhost:3003` sunucusunun ve Cloudflare tünelinin açık olup olmadığına bakılacaktır.
-  4. `task-2839` (Next.js Port 3003) her zaman aktif tutulacaktır.
+* **Semptom:** Canlı sitede fatura uyarısı veya deploy engeli görülmesi.
+* **Kök Neden:** Eski Vercel artıklarının ajanlar tarafından canlı sunucu sanılması.
+* **KESİN ÇÖZÜM (ANAYASAL):**
+  1. **Vercel Tamamen Kaldırılmıştır:** Alparai egemen bir platformdur; Vercel'e sıfır kuruş ödenmez.
+  2. **Canlı Yayın Akışı:** Kodlar GitHub'a push edilir ve Deploy Ajanı (v50) tarafından doğrudan Cloudflare Pages / Workers Edge ortamına derlenir.
+  3. **Sıfır Laptop Hosting:** Kullanıcının bilgisayarında arka plan dev sunucusu veya tünel çalıştırılmaz.
 
 ---
 
-## 2. Problem: Cloudflare Error 1033 (Arka Uç Sunucusuna Erişilemiyor)
+## 2. Problem: Cloudflare Error 1033 (Yerel Tünel Çökmesi)
 * **Semptom:** Tarayıcıda `Error 1033: Cloudflare Tunnel error`.
-* **Kök Neden:** Cloudflare Edge sunucusu isteği aldı, ancak yerel makinedeki `cloudflared` daemon'ı yerel `localhost:3003` portuna ulaşamadı (port kapalı veya kilitli).
-* **KESİN ÇÖZÜM:**
-  1. `http://localhost:3003` adresine bir HTTP GET isteği gönder.
-  2. Eğer yanıt gelmiyorsa: `node node_modules/next/dist/bin/next dev -p 3003` komutunu arka planda başlat.
-  3. Port ayağa kalktıktan 2 saniye sonra tünel otomatik olarak yeşile döner.
+* **Kök Neden:** Yerel makinedeki tünelin kapanması veya arka uç sunucusunun ölmesi.
+* **KESİN ÇÖZÜM (ANAYASAL):**
+  1. Yerel tünel yöntemi tamamen yasaklanmıştır (Kural 11).
+  2. Alparai doğrudan Cloudflare Pages Edge üzerinden global CDN ile servis edilir.
+  3. Kullanıcı laptopu kapatsa dahi site Cloudflare Edge üzerinde 7/24 kesintisiz çalışır. Error 1033 fiziksel olarak imkansız hale getirilmiştir.
 
 ---
-
 ## 3. Problem: Husky / Cross-Env Pre-Push Kanca Bozulması
 * **Semptom:** `git push` komutunun `cross-env: not found` hatası vererek derlemeyi engellemesi.
 * **Kök Neden:** Windows ortamında global cross-env yolunun husky scriptinde eksik kalması.

@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import { createHmac } from "crypto";
 import type { SessionUser, UserRole } from "@/types";
+import { isTestAuthBypassActive, getPlaywrightMockUser } from "./test-bypass";
 
 export interface AlparUser {
   id: string;
@@ -124,6 +125,9 @@ export function createSessionCookieHeader(user: Omit<AlparUser, "created_at">): 
 }
 
 export async function getCurrentUser(): Promise<SessionUser | null> {
+  if (isTestAuthBypassActive()) {
+    return getPlaywrightMockUser();
+  }
   const u = await getSessionUser();
   if (!u) return null;
   const role = resolveRole(u.email, u.role);

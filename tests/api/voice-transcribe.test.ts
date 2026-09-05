@@ -7,10 +7,12 @@ vi.mock("@/lib/auth/session", () => ({
 
 describe("VOICE-1: Voice Transcribe API Route", () => {
   it("returns 400 when no audio file is provided", async () => {
+    const formData = new FormData();
     const req = new Request("http://localhost:3000/api/ai/transcribe", {
       method: "POST",
-      body: new FormData(),
+      body: formData,
     });
+    Object.defineProperty(req, "formData", { value: () => Promise.resolve(formData) });
     const res = await POST(req);
     expect(res.status).toBe(400);
     const data = await res.json();
@@ -27,6 +29,7 @@ describe("VOICE-1: Voice Transcribe API Route", () => {
       method: "POST",
       body: formData,
     });
+    Object.defineProperty(req, "formData", { value: () => Promise.resolve(formData) });
 
     const res = await POST(req);
     expect(res.status).toBe(503);

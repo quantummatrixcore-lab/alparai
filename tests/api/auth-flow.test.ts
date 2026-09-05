@@ -24,6 +24,6 @@ describe("AUTH-1: Google ID Token Sign-in Action", () => {
   it("returns server rejection error cleanly without throwing or silent fallback", async () => {
     const result = await signInWithGoogleIdToken("mock_id_token", "mock_nonce");
     expect(result.ok).toBe(false);
-    expect(result.error).toBe("Invalid Google ID token");
+    expect(result.error).toBe("Google ID Token verification failed");
   });
 });

@@ -30,6 +30,19 @@
 
 ---
 
+## ❌ PROBLEM 0.2: AJANLARIN YENİ ÜRETİM SUNUCUSUNDAN (DEHOST XEON 45.143.4.92) HABERSİZ OLMASI SAPLANTISI
+
+### 🔴 NE OLDU VE KRONİK HATA NEDİR?
+1. Ajanlar kod yazıp testleri tamamladıktan sonra, projenin canlı üretim altyapısını bilmeden ezbere hareket etmekte; yeni sunucudan (DeHost Dedicated Xeon E5-2699 v4, 16C/32T, 62 GB RAM @ `45.143.4.92`) habersiz davranmaktadır.
+2. Bu sebeple ajanlar push sonrası sistemin nerede derlenip nerede çalıştığını takip edememekte veya yerel makineyi sunucu sanma yanılgısına düşmektedir.
+
+### 🛑 KESİN VE DEĞİŞTİRİLEMEZ KURAL (ANAYASA):
+1. **Canlı Üretim Sunucusu:** Tüm üretim sistemleri (Alparai `alparai.com`, Agent-OS `os.ercumenterden.com`, Coolify, Docker Konteynerleri, PostgreSQL ve Uzak Ollama) DeHost Dedicated Xeon Sunucusunda (`45.143.4.92`) çalışır.
+2. **Konteyner ve Orkestrasyon:** Sunucu üzerinde Coolify + Docker konteyner motoru devrededir.
+3. **Otonom Dağıtım (Deploy):** `git push origin master` işlemi sonrasında DeHost sunucusu (`45.143.4.92`) üzerindeki Coolify webhooks aracılığıyla kodu çeker ve canlı Docker konteynerini sıfır kesintiyle günceller.
+4. **Yerel Bilgisayarın Rolü:** Kullanıcının bilgisayarı bir üretim sunucusu DEĞİLDİR, yalnızca geliştirme ve test iş istasyonudur.
+
+---
 
 # 📋 ALPARAI & ANTIGRAVITY KRONİK PROBLEMLER VE KESİN ÇÖZÜMLER (PROBLEMLER.MD)
 

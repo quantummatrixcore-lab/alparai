@@ -6,6 +6,20 @@ This file is read by the `opencode` CLI to understand the project.
 
 ALPAR AI — Trust infrastructure for AI accountability. Next.js 15 + Supabase + Tailwind v4 + next-intl. AGPL-3.0.
 
+## 🌐 Sovereign Production Server Infrastructure (DeHost Dedicated Xeon)
+
+- **Production Server**: DeHost Enterprise Xeon E5-2699 v4 (16 Cores / 32 Threads, 62 GB RAM, Dedicated IP: `45.143.4.92`).
+- **Control Plane**: Coolify Cloud Native Container Orchestration + Docker Engine.
+- **Hosted Services**:
+  - `alparai.com` (Production Web Application & APIs - Docker container).
+  - `os.ercumenterden.com` (Agent-OS Sovereign Platform - Docker container).
+  - High-capacity local/remote PostgreSQL & vector databases.
+  - Remote Sovereign Ollama AI service (16C/32T compute node).
+- **Workstation vs. Production Boundary**:
+  - The local AMD Ryzen workstation is strictly a development environment.
+  - NEVER run production daemons, background `next dev`, or `cloudflared tunnel` on the local machine.
+  - All deployments are delivered to the DeHost server (`45.143.4.92`) via GitHub `master` push -> Coolify webhook/auto-deploy.
+
 ## Commands
 
 ```bash

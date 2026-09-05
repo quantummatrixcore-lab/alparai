@@ -112,7 +112,7 @@
    Base styles & Dynamic Color Scheme
    =========================================================================== */
 :root,
-html {
+html.dark {
   color-scheme: dark;
   --color-bg-primary: #09090b;
   --color-bg-secondary: #18181b;
@@ -126,8 +126,7 @@ html {
   --color-fg-disabled: #475569;
 }
 
-html.light,
-html:not(.dark) {
+html.light {
   color-scheme: light;
   --color-bg-primary: #f8fafc;
   --color-bg-secondary: #ffffff;

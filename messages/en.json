@@ -3443,7 +3443,10 @@
     "verified_badge": "(Verified)",
     "viewCount": "views",
     "yes": "Yes",
-    "toggleTheme": "Toggle theme"
+    "toggleTheme": "Toggle theme",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "themeSystem": "System"
   },
   "compliance": {
     "banking_item1_label": "Credit Scoring AI (Annex III §5b):",

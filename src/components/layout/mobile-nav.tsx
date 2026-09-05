@@ -228,7 +228,7 @@ export function MobileNav({
               <div className="flex min-h-[44px] items-center justify-between pt-1">
                 <span className="text-fg-muted text-xs font-medium">{t("language_switcher")}</span>
                 <div className="flex items-center gap-2">
-                  <ThemeToggle className="flex h-8.5 w-8.5 shrink-0" />
+                  <ThemeToggle className="flex h-8.5 w-8.5 shrink-0" direction="up" />
                   <LanguageSwitcher direction="up" />
                 </div>
               </div>

@@ -3443,7 +3443,10 @@
     "verified_badge": "(Doğrulandı)",
     "viewCount": "görüntülenme",
     "yes": "Evet",
-    "toggleTheme": "Temayı değiştir"
+    "toggleTheme": "Temayı değiştir",
+    "themeLight": "Açık",
+    "themeDark": "Koyu",
+    "themeSystem": "Sistem"
   },
   "compliance": {
     "banking_item1_label": "Kredi Puanlama Yapay Zekası (Ek III §5b):",

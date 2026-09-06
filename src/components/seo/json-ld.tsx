@@ -26,6 +26,12 @@ export function safeJsonLd(data: unknown): string {
     .replace(/\u2029/g, "\\u2029");
 }
 
+export function JsonLd({ data }: { data: unknown }) {
+  return (
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
+  );
+}
+
 export function OrganizationJsonLd() {
   const data = {
     "@context": "https://schema.org",
@@ -45,7 +51,7 @@ export function OrganizationJsonLd() {
     knowsAbout: ["AI Accountability", "AI Incident Reporting", "AI Safety", "Machine Learning"],
   };
   return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
+    <JsonLd data={data} />
   );
 }
 
@@ -66,7 +72,7 @@ export function WebSiteJsonLd() {
     },
   };
   return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
+    <JsonLd data={data} />
   );
 }
 
@@ -92,7 +98,7 @@ export function SoftwareApplicationJsonLd() {
     inLanguage: [...SUPPORTED_LOCALES],
   };
   return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
+    <JsonLd data={data} />
   );
 }
 
@@ -108,7 +114,7 @@ export function BreadcrumbJsonLd({ items }: { items: Array<{ name: string; url: 
     })),
   };
   return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
+    <JsonLd data={data} />
   );
 }
 
@@ -126,7 +132,7 @@ export function FAQJsonLd({ items }: { items: Array<{ question: string; answer: 
     })),
   };
   return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
+    <JsonLd data={data} />
   );
 }
 
@@ -328,7 +334,7 @@ export function IncidentJsonLd({
   };
 
   return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
+    <JsonLd data={data} />
   );
 }
 
@@ -371,7 +377,7 @@ export function ModelJsonLd({
       }),
   };
   return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
+    <JsonLd data={data} />
   );
 }
 
@@ -410,7 +416,7 @@ export function BlogArticleJsonLd({
     inLanguage: [...SUPPORTED_LOCALES],
   };
   return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
+    <JsonLd data={data} />
   );
 }
 
@@ -480,7 +486,7 @@ export function ClaimReviewJsonLd({
     },
   };
   return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
+    <JsonLd data={data} />
   );
 }
 
@@ -520,7 +526,7 @@ export function CollectionPageJsonLd({
     }),
   };
   return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
+    <JsonLd data={data} />
   );
 }
 
@@ -557,7 +563,7 @@ export function AboutPageJsonLd({
     },
   };
   return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
+    <JsonLd data={data} />
   );
 }
 
@@ -585,7 +591,7 @@ export function PricingProductJsonLd({
     })),
   };
   return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
+    <JsonLd data={data} />
   );
 }
 
@@ -613,7 +619,7 @@ export function DatasetJsonLd({
     },
   };
   return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
+    <JsonLd data={data} />
   );
 }
 
@@ -656,7 +662,7 @@ export function EducationalOrganizationJsonLd({
     }),
   };
   return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
+    <JsonLd data={data} />
   );
 }
 
@@ -686,7 +692,7 @@ export function TechArticleJsonLd({
     inLanguage: [...SUPPORTED_LOCALES],
   };
   return (
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
+    <JsonLd data={data} />
   );
 }
 

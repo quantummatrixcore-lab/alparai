@@ -31,7 +31,7 @@ export default async function ModerationPage({ params }: { params: Promise<{ loc
         <span className="border-brand-500/30 bg-brand-500/10 text-brand-400 inline-flex items-center rounded-full border px-4 py-1 text-xs font-semibold tracking-wider uppercase">
           {t("badge")}
         </span>
-        <h1 className="text-fg-primary mt-6 text-4xl font-black tracking-tight sm:text-5xl">
+        <h1 className="text-balance text-fg-primary mt-6 text-4xl font-black tracking-tight sm:text-5xl">
           {t("headline")}
         </h1>
         <p className="text-fg-secondary mt-4 text-lg leading-relaxed">{t("subtitle")}</p>
@@ -40,7 +40,7 @@ export default async function ModerationPage({ params }: { params: Promise<{ loc
       {/* Rules Grid */}
       <div className="mx-auto max-w-4xl space-y-8">
         <div className="text-center">
-          <h2 className="text-fg-primary text-2xl font-bold tracking-tight">
+          <h2 className="text-balance text-fg-primary text-2xl font-bold tracking-tight">
             {t("rules_title")}
           </h2>
           <p className="text-fg-muted mt-2 text-sm">{t("rules_subtitle")}</p>
@@ -55,7 +55,7 @@ export default async function ModerationPage({ params }: { params: Promise<{ loc
                   <div className={`w-fit rounded-lg bg-white/5 p-3 ${rule.color}`}>
                     <Icon className="h-6 w-6" />
                   </div>
-                  <h3 className="text-fg-primary text-lg font-bold">
+                  <h3 className="text-balance text-fg-primary text-lg font-bold">
                     {t(`rule_${rule.key}_title`)}
                   </h3>
                   <p className="text-fg-muted text-xs leading-relaxed">
@@ -76,7 +76,7 @@ export default async function ModerationPage({ params }: { params: Promise<{ loc
               <Scale className="h-6 w-6" />
             </div>
             <div className="space-y-2">
-              <h2 className="text-fg-primary text-lg font-bold">{t("dispute_title")}</h2>
+              <h2 className="text-balance text-fg-primary text-lg font-bold">{t("dispute_title")}</h2>
               <p className="text-fg-secondary text-xs leading-relaxed">{t("dispute_desc")}</p>
             </div>
           </div>

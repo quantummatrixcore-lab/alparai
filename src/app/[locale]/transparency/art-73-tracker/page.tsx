@@ -26,7 +26,7 @@ export default async function Art73TrackerPage({
       <div className="relative mx-auto max-w-5xl px-6">
         {/* Header */}
         <div className="border-border-primary/40 mb-12 border-b pb-8">
-          <h1 className="from-fg-primary via-fg-secondary to-accent mb-3 bg-gradient-to-r bg-clip-text text-3xl font-bold text-transparent md:text-4xl">
+          <h1 className="text-balance from-fg-primary via-fg-secondary to-accent mb-3 bg-gradient-to-r bg-clip-text text-3xl font-bold text-transparent md:text-4xl">
             {t("title")}
           </h1>
           <p className="text-fg-secondary max-w-3xl text-sm leading-relaxed">{t("subtitle")}</p>
@@ -86,7 +86,7 @@ export default async function Art73TrackerPage({
               />
             </svg>
           </div>
-          <h3 className="text-fg-primary mb-3 text-xl font-bold">{t("empty_state_title")}</h3>
+          <h3 className="text-balance text-fg-primary mb-3 text-xl font-bold">{t("empty_state_title")}</h3>
           <p className="text-fg-secondary text-sm leading-relaxed">{t("empty_state_desc")}</p>
         </div>
       </div>

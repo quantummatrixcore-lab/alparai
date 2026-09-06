@@ -49,7 +49,7 @@ export default async function LegalDashboard({ params }: { params: Promise<{ loc
         <div className="bg-accent-soft/10 pointer-events-none absolute top-0 left-1/4 h-[500px] w-[500px] rounded-full blur-[120px]" />
         <div className="relative mx-auto max-w-5xl px-6">
           <div className="border-border-primary/40 mb-12 border-b pb-8">
-            <h1 className="from-fg-primary to-fg-secondary mb-2 bg-gradient-to-r bg-clip-text text-3xl font-bold text-transparent">
+            <h1 className="text-balance from-fg-primary to-fg-secondary mb-2 bg-gradient-to-r bg-clip-text text-3xl font-bold text-transparent">
               {t("legal_title")}
             </h1>
             <p className="text-fg-secondary text-sm">{t("legal_desc")}</p>
@@ -134,7 +134,7 @@ export default async function LegalDashboard({ params }: { params: Promise<{ loc
       <div className="bg-accent-soft/10 pointer-events-none absolute top-0 left-1/4 h-[500px] w-[500px] rounded-full blur-[120px]" />
       <div className="relative mx-auto max-w-5xl px-6">
         <div className="border-border-primary/40 mb-12 border-b pb-8">
-          <h1 className="from-fg-primary to-fg-secondary mb-2 bg-gradient-to-r bg-clip-text text-3xl font-bold text-transparent">
+          <h1 className="text-balance from-fg-primary to-fg-secondary mb-2 bg-gradient-to-r bg-clip-text text-3xl font-bold text-transparent">
             {t("legal_title")}
           </h1>
           <p className="text-fg-secondary text-sm">{t("legal_desc")}</p>
@@ -143,7 +143,7 @@ export default async function LegalDashboard({ params }: { params: Promise<{ loc
         {/* Aggregates Grid */}
         <div className="mb-12 grid gap-6 md:grid-cols-3">
           <div className="bg-bg-secondary/20 border-border-primary/30 rounded-2xl border p-6">
-            <h3 className="text-fg-secondary mb-4 text-sm font-semibold tracking-wider uppercase">
+            <h3 className="text-balance text-fg-secondary mb-4 text-sm font-semibold tracking-wider uppercase">
               {t("takedown_volume_by_status")}
             </h3>
             <div className="space-y-3">
@@ -163,13 +163,13 @@ export default async function LegalDashboard({ params }: { params: Promise<{ loc
             </div>
           </div>
           <div className="bg-bg-secondary/20 border-border-primary/30 flex flex-col justify-center rounded-2xl border p-6">
-            <h3 className="text-fg-secondary mb-2 text-sm font-semibold tracking-wider uppercase">
+            <h3 className="text-balance text-fg-secondary mb-2 text-sm font-semibold tracking-wider uppercase">
               {t("median_review_time")}
             </h3>
             <div className="text-fg-primary text-4xl font-bold">{medianTimeText}</div>
           </div>
           <div className="bg-bg-secondary/20 border-border-primary/30 flex flex-col justify-center rounded-2xl border p-6">
-            <h3 className="text-fg-secondary mb-2 text-sm font-semibold tracking-wider uppercase">
+            <h3 className="text-balance text-fg-secondary mb-2 text-sm font-semibold tracking-wider uppercase">
               {t("sla_compliance")}
             </h3>
             <div className="text-fg-primary text-4xl font-bold">{slaShareText}</div>
@@ -178,7 +178,7 @@ export default async function LegalDashboard({ params }: { params: Promise<{ loc
 
         <div className="mb-12 grid gap-6 md:grid-cols-2">
           <div className="bg-bg-secondary/20 border-border-primary/30 rounded-2xl border p-6">
-            <h3 className="text-fg-secondary mb-4 text-sm font-semibold tracking-wider uppercase">
+            <h3 className="text-balance text-fg-secondary mb-4 text-sm font-semibold tracking-wider uppercase">
               {t("cnd_threat_levels")}
             </h3>
             <div className="space-y-3">
@@ -199,7 +199,7 @@ export default async function LegalDashboard({ params }: { params: Promise<{ loc
 
         {publishedCnd.length > 0 && (
           <div>
-            <h3 className="text-fg-primary mb-6 text-xl font-bold">{t("recent_cnd")}</h3>
+            <h3 className="text-balance text-fg-primary mb-6 text-xl font-bold">{t("recent_cnd")}</h3>
             <div className="space-y-6">
               {publishedCnd.map((cnd) => (
                 <div

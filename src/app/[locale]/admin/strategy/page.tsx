@@ -20,7 +20,7 @@ export default function StrategyPage() {
               EXECUTIVE STRATEGY & VALUATION RADAR
             </span>
           </div>
-          <h1 className="font-sans text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
+          <h1 className="text-balance font-sans text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
             Kurumsal Strateji, SWOT & Şirket Değerleme Masası (/strategy)
           </h1>
           <p className="mt-0.5 text-xs text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
@@ -79,7 +79,7 @@ export default function StrategyPage() {
       {activeTab === "VALUATION" && (
         <div className="grid grid-cols-1 gap-6 font-sans text-xs lg:grid-cols-2">
           <div className="space-y-4 rounded-md border border-[#d0d7de] bg-[#ffffff] p-5 shadow-sm dark:border-[#30363d] dark:bg-[#161b22] dark:shadow-none">
-            <h2 className="text-sm font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+            <h2 className="text-balance text-sm font-bold text-[#1f2328] dark:text-[#f0f6fc]">
               B2B Veri & SaaS Değerleme Metodolojisi
             </h2>
             <div className="space-y-3 font-sans text-xs leading-relaxed text-[#656d76] dark:text-[#c9d1d9]">
@@ -107,7 +107,7 @@ export default function StrategyPage() {
           </div>
 
           <div className="space-y-4 rounded-md border border-[#d0d7de] bg-[#ffffff] p-5 shadow-sm dark:border-[#30363d] dark:bg-[#161b22] dark:shadow-none">
-            <h2 className="text-sm font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+            <h2 className="text-balance text-sm font-bold text-[#1f2328] dark:text-[#f0f6fc]">
               3 Yıllık Değerleme Projeksiyonu
             </h2>
             <div className="space-y-3 font-sans text-xs text-[#656d76] dark:text-[#c9d1d9]">
@@ -138,7 +138,7 @@ export default function StrategyPage() {
       {activeTab === "SWOT" && (
         <div className="grid grid-cols-1 gap-4 font-sans text-xs sm:grid-cols-2">
           <div className="space-y-2 rounded-lg border border-emerald-800/60 bg-emerald-950/30 p-4">
-            <h3 className="text-sm font-bold text-emerald-300">GÜÇLÜ YÖNLER (STRENGTHS)</h3>
+            <h3 className="text-balance text-sm font-bold text-emerald-300">GÜÇLÜ YÖNLER (STRENGTHS)</h3>
             <ul className="list-inside list-disc space-y-1 font-sans text-xs text-[#656d76] dark:text-[#c9d1d9]">
               <li>2.908 hazır vaka ile pazarın en büyük açık & doğrulanmış veri seti</li>
               <li>EU AI Act Madde 73 (72h SLA) ve Madde 99 ceza hesaplama tekeli</li>
@@ -148,7 +148,7 @@ export default function StrategyPage() {
           </div>
 
           <div className="space-y-2 rounded-lg border border-amber-800/60 bg-amber-950/30 p-4">
-            <h3 className="text-sm font-bold text-amber-300">FIRSATLAR (OPPORTUNITIES)</h3>
+            <h3 className="text-balance text-sm font-bold text-amber-300">FIRSATLAR (OPPORTUNITIES)</h3>
             <ul className="list-inside list-disc space-y-1 font-sans text-xs text-[#656d76] dark:text-[#c9d1d9]">
               <li>Allianz / Swiss Re gibi sigorta devlerinin aktüeryal veri açlığı</li>
               <li>Ağustos 2026 EU AI Act zorunluluklarının yarattığı devasa panik dalgası</li>
@@ -157,7 +157,7 @@ export default function StrategyPage() {
           </div>
 
           <div className="space-y-2 rounded-lg border border-blue-800/60 bg-blue-950/30 p-4">
-            <h3 className="text-sm font-bold text-blue-300">ZAYIF YÖNLER (WEAKNESSES)</h3>
+            <h3 className="text-balance text-sm font-bold text-blue-300">ZAYIF YÖNLER (WEAKNESSES)</h3>
             <ul className="list-inside list-disc space-y-1 font-sans text-xs text-[#656d76] dark:text-[#c9d1d9]">
               <li>Kamuoyu bilinirliğinin erken aşamada olması (Growth ekibi ölçekleniyor)</li>
               <li>Manuel ihbar inceleme ekibinin büyüme hızına yetiştirilmesi gereği</li>
@@ -165,7 +165,7 @@ export default function StrategyPage() {
           </div>
 
           <div className="space-y-2 rounded-lg border border-rose-800/60 bg-rose-950/30 p-4">
-            <h3 className="text-sm font-bold text-rose-300">TEHDİTLER (THREATS)</h3>
+            <h3 className="text-balance text-sm font-bold text-rose-300">TEHDİTLER (THREATS)</h3>
             <ul className="list-inside list-disc space-y-1 font-sans text-xs text-[#656d76] dark:text-[#c9d1d9]">
               <li>
                 Büyük teknoloji şirketlerinden gelebilecek SLAPP yayından kaldırma davaları
@@ -180,7 +180,7 @@ export default function StrategyPage() {
       {/* Tab 3: Risks */}
       {activeTab === "RISKS" && (
         <div className="space-y-4 rounded-md border border-[#d0d7de] bg-[#ffffff] p-5 font-mono text-xs shadow-sm dark:border-[#30363d] dark:bg-[#161b22] dark:shadow-none">
-          <h2 className="text-sm font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+          <h2 className="text-balance text-sm font-bold text-[#1f2328] dark:text-[#f0f6fc]">
             Kurumsal Risk & Tehdit Matrisi
           </h2>
           <div className="space-y-3">

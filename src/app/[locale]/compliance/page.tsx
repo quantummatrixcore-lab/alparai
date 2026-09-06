@@ -177,7 +177,7 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
             </div>
 
             {/* Hero Title */}
-            <h1 className="mb-6 text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="text-balance mb-6 text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
               {t("header_title")}
             </h1>
 
@@ -243,7 +243,7 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
           {/* 12-Point Checklist Grid */}
           <div className="mt-24">
             <div className="mb-12 text-center">
-              <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              <h2 className="text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl">
                 {t("checklist_section_title")}
               </h2>
               <p className="text-fg-secondary mt-3">{t("checklist_section_desc")}</p>
@@ -269,7 +269,7 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
                         </span>
                       </div>
 
-                      <h3 className="mb-2 text-lg font-bold text-white transition-colors group-hover:text-blue-400">
+                      <h3 className="text-balance mb-2 text-lg font-bold text-white transition-colors group-hover:text-blue-400">
                         {item.title}
                       </h3>
 
@@ -289,7 +289,7 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/20 text-blue-400">
                   <Building2 className="h-5 w-5" />
                 </div>
-                <h3 className="text-xl font-bold text-white">{t("banking_section_title")}</h3>
+                <h3 className="text-balance text-xl font-bold text-white">{t("banking_section_title")}</h3>
               </div>
               <ul className="text-fg-primary space-y-3 text-sm">
                 <li className="flex items-start gap-2">
@@ -319,7 +319,7 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/20 text-cyan-400">
                   <Radio className="h-5 w-5" />
                 </div>
-                <h3 className="text-xl font-bold text-white">{t("telecom_section_title")}</h3>
+                <h3 className="text-balance text-xl font-bold text-white">{t("telecom_section_title")}</h3>
               </div>
               <ul className="text-fg-primary space-y-3 text-sm">
                 <li className="flex items-start gap-2">
@@ -346,7 +346,7 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
 
           {/* Bottom CTA */}
           <div className="border-border-subtle mt-24 rounded-3xl border bg-gradient-to-r from-blue-900/30 via-indigo-900/20 to-purple-900/30 p-10 text-center shadow-2xl backdrop-blur-xl">
-            <h2 className="mb-4 text-3xl font-bold text-white sm:text-4xl">{t("cta_title")}</h2>
+            <h2 className="text-balance mb-4 text-3xl font-bold text-white sm:text-4xl">{t("cta_title")}</h2>
             <p className="text-fg-primary mx-auto mb-8 max-w-2xl text-base">{t("cta_desc")}</p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link

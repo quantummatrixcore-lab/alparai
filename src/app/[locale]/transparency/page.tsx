@@ -188,7 +188,7 @@ export default async function TransparencyPage({
         <Badge variant="brand" size="sm">
           {t("transparencyTitle", { defaultValue: "Transparency Report" })}
         </Badge>
-        <h1 className="text-fg-primary text-3xl font-bold tracking-tight md:text-4xl">
+        <h1 className="text-balance text-fg-primary text-3xl font-bold tracking-tight md:text-4xl">
           {t("transparencyHeading", { defaultValue: "How ALPAR AI works" })}
         </h1>
         <p className="text-fg-muted mx-auto max-w-2xl text-sm leading-relaxed">
@@ -263,7 +263,7 @@ export default async function TransparencyPage({
                 <Radio className="h-3.5 w-3.5 animate-pulse text-brand-400" />
                 {tTransparency("telemetryLive", { defaultValue: "Live Telemetry Feed" })}
               </div>
-              <h2 className="text-fg-primary mt-1 text-xl font-bold tracking-tight">
+              <h2 className="text-balance text-fg-primary mt-1 text-xl font-bold tracking-tight">
                 {tTransparency("recentPublishedIncidents", {
                   defaultValue: "Recent Verified & Published Incidents",
                 })}
@@ -317,7 +317,7 @@ export default async function TransparencyPage({
                       </span>
                     </div>
 
-                    <h3 className="text-fg-primary line-clamp-2 text-sm font-bold group-hover:text-brand-300 transition-colors">
+                    <h3 className="text-balance text-fg-primary line-clamp-2 text-sm font-bold group-hover:text-brand-300 transition-colors">
                       {displayTitle}
                     </h3>
 

@@ -56,7 +56,7 @@ export default function SystemHealthPage() {
               SYSTEM ARCHITECTURE & CODEBASE HYGIENE
             </span>
           </div>
-          <h1 className="font-sans text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
+          <h1 className="text-balance font-sans text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
             Kod Hijyeni & Modüler Mimari Masası (/codebase-hygiene)
           </h1>
           <p className="mt-0.5 text-xs text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
@@ -101,7 +101,7 @@ export default function SystemHealthPage() {
 
       {/* Modules Table */}
       <div className="space-y-4 rounded-md border border-[#d0d7de] bg-[#ffffff] p-5 font-mono text-xs shadow-sm dark:border-[#30363d] dark:bg-[#161b22] dark:shadow-none">
-        <h2 className="font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+        <h2 className="text-balance font-bold text-[#1f2328] dark:text-[#f0f6fc]">
           Modüler Mikro-Motorlar ve Sağlık Durumu
         </h2>
 

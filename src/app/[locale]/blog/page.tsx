@@ -196,7 +196,7 @@ export default async function BlogIndexPage({
           <BookOpen className="h-4 w-4" />
           {t("eyebrow")}
         </div>
-        <h1 className="text-fg-primary mb-3 text-4xl font-black tracking-tight md:text-5xl">
+        <h1 className="text-balance text-fg-primary mb-3 text-4xl font-black tracking-tight md:text-5xl">
           {t("title")}
         </h1>
         <p className="text-fg-muted text-lg">{t("description")}</p>
@@ -307,7 +307,7 @@ export default async function BlogIndexPage({
                         {post.readingTime} {t("min")}
                       </span>
                     </div>
-                    <h2 className="text-fg-primary group-hover:text-brand-400 text-xl font-bold transition-colors">
+                    <h2 className="text-balance text-fg-primary group-hover:text-brand-400 text-xl font-bold transition-colors">
                       {title}
                     </h2>
                     <p className="text-fg-muted line-clamp-3 text-sm">{description}</p>
@@ -320,7 +320,7 @@ export default async function BlogIndexPage({
       ) : (
         <div className="border-border-subtle/50 bg-bg-secondary/10 rounded-xl border py-24 text-center">
           <BookOpen className="text-fg-muted mx-auto mb-4 h-12 w-12" />
-          <h3 className="text-fg-primary text-lg font-bold">{t("no_articles")}</h3>
+          <h3 className="text-balance text-fg-primary text-lg font-bold">{t("no_articles")}</h3>
           <p className="text-fg-muted mt-1 text-sm">{t("no_articles_desc")}</p>
         </div>
       )}
@@ -336,7 +336,7 @@ export default async function BlogIndexPage({
                 <span className="text-brand-400 block text-xs font-black tracking-widest uppercase">
                   {t("newsletter_title")}
                 </span>
-                <h2 className="text-fg-primary text-2xl font-black tracking-tight sm:text-3xl">
+                <h2 className="text-balance text-fg-primary text-2xl font-black tracking-tight sm:text-3xl">
                   Stay updated with ALPAR Insights
                 </h2>
                 <p className="text-fg-muted max-w-lg text-sm leading-relaxed">

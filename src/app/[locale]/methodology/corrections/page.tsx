@@ -49,7 +49,7 @@ export default async function MethodologyCorrectionsPage({
         <Badge variant="brand" size="sm" className="mb-3">
           {t("corrections_title")}
         </Badge>
-        <h1 className="text-fg-primary mb-3 text-3xl font-bold tracking-tight">
+        <h1 className="text-balance text-fg-primary mb-3 text-3xl font-bold tracking-tight">
           {t("corrections_title")}
         </h1>
         <p className="text-fg-muted text-sm">{t("corrections_subtitle")}</p>

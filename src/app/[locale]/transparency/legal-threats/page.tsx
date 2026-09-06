@@ -74,7 +74,7 @@ export default async function LegalThreatsPage({
         <Badge variant="brand" size="sm">
           {t("streisand_title")}
         </Badge>
-        <h1 className="text-fg-primary mt-3 text-3xl font-bold tracking-tight">
+        <h1 className="text-balance text-fg-primary mt-3 text-3xl font-bold tracking-tight">
           {t("streisand_title")}
         </h1>
         <p className="text-fg-muted mt-2 text-sm">{t("streisand_subtitle")}</p>

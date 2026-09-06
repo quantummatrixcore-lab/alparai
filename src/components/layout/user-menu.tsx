@@ -25,21 +25,42 @@ export function UserMenu({ initialUser }: { initialUser: SessionUserShape | null
   const [user, setUser] = useState<SessionUserShape | null>(initialUser);
   const ref = React.useRef<HTMLDivElement>(null);
 
-  const handleSignOut = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSignOut = async (e?: React.SyntheticEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     setUser(null);
     setOpen(false);
-    try {
-      await fetch("/api/auth/signout", { method: "POST" });
-    } catch {
-      // Non-fatal
-    }
+
     if (typeof window !== "undefined") {
       try {
         localStorage.clear();
         sessionStorage.clear();
+        document.cookie.split(";").forEach((cookie) => {
+          const eqPos = cookie.indexOf("=");
+          const name = eqPos > -1 ? cookie.substring(0, eqPos).trim() : cookie.trim();
+          document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+          document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=${window.location.hostname}`;
+        });
       } catch {}
-      window.location.href = `/${locale || "en"}`;
+    }
+
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 2000);
+      await fetch("/api/auth/signout", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        signal: controller.signal,
+      });
+      clearTimeout(timeoutId);
+    } catch {
+      // Non-fatal
+    }
+
+    if (typeof window !== "undefined") {
+      window.location.href = `/${locale || "tr"}?logout=${Date.now()}`;
     }
   };
 
@@ -160,15 +181,14 @@ export function UserMenu({ initialUser }: { initialUser: SessionUserShape | null
             )}
           </div>
           <div className="border-border-subtle border-t py-1">
-            <form action="/api/auth/signout" method="post" onSubmit={handleSignOut}>
-              <button
-                type="submit"
-                role="menuitem"
-                className="text-danger-400 hover:bg-danger-500/10 flex min-h-[40px] w-full items-center gap-2.5 px-3.5 py-2 text-sm transition-colors cursor-pointer"
-              >
-                <LogOut className="h-4 w-4" /> {t("signOut")}
-              </button>
-            </form>
+            <button
+              type="button"
+              onClick={handleSignOut}
+              role="menuitem"
+              className="text-danger-400 hover:bg-danger-500/10 flex min-h-[40px] w-full items-center gap-2.5 px-3.5 py-2 text-sm transition-colors cursor-pointer"
+            >
+              <LogOut className="h-4 w-4" /> {t("signOut")}
+            </button>
           </div>
         </div>
       )}

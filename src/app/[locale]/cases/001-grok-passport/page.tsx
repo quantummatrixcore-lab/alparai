@@ -89,7 +89,7 @@ export default async function Case001Page({ params }: { params: Promise<{ locale
             <ShieldAlert className="h-4 w-4" />
             CASE #001
           </span>
-          <h1 className="text-fg-primary mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl">
+          <h1 className="text-balance text-fg-primary mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl">
             {tCases("case_001_title")}
           </h1>
           <p className="text-fg-muted mx-auto mt-4 max-w-2xl text-base leading-relaxed">
@@ -102,7 +102,7 @@ export default async function Case001Page({ params }: { params: Promise<{ locale
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
           {/* Main Content (Timeline) */}
           <div className="lg:col-span-2">
-            <h2 className="text-fg-primary text-2xl mb-8 font-bold">
+            <h2 className="text-balance text-fg-primary text-2xl mb-8 font-bold">
               {t("timeline_title")}
             </h2>
             <div className="before:via-border-subtle relative space-y-8 before:absolute before:inset-0 before:ml-5 before:h-full before:w-0.5 before:-translate-x-px before:bg-gradient-to-b before:from-transparent before:to-transparent md:before:mx-auto md:before:translate-x-0">
@@ -175,7 +175,7 @@ export default async function Case001Page({ params }: { params: Promise<{ locale
             </Card>
 
             <div className="space-y-4">
-              <h3 className="text-fg-primary text-lg font-bold">{t("evidence_title")}</h3>
+              <h3 className="text-balance text-fg-primary text-lg font-bold">{t("evidence_title")}</h3>
               <div className="space-y-2">
                 {evidenceFiles.map((evidence, idx) => (
                   <div
@@ -190,7 +190,7 @@ export default async function Case001Page({ params }: { params: Promise<{ locale
             </div>
 
             <div className="space-y-4">
-              <h3 className="text-fg-primary text-lg font-bold">{t("legal_title")}</h3>
+              <h3 className="text-balance text-fg-primary text-lg font-bold">{t("legal_title")}</h3>
               <div className="space-y-3">
                 {legalActions.map((action, idx) => (
                   <div key={idx} className="flex items-start gap-3">

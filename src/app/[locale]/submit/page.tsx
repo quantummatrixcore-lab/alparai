@@ -55,7 +55,7 @@ export default async function SubmitPage({ params }: { params: Promise<{ locale:
   return (
     <Container size="narrow" className="py-12">
       <header className="mb-8 space-y-2">
-        <h1 className="text-fg-primary text-3xl font-bold tracking-tight">
+        <h1 className="text-balance text-fg-primary text-3xl font-bold tracking-tight">
           {t("submit_page_title")}
         </h1>
         <p className="text-fg-muted text-sm">{t("submit_page_subtitle")}</p>
@@ -79,7 +79,7 @@ export default async function SubmitPage({ params }: { params: Promise<{ locale:
         <Card className="border-brand-500/20 bg-brand-500/5">
           <CardContent className="flex flex-col items-center py-16 text-center">
             <Shield className="text-brand-400 mb-6 h-16 w-16" />
-            <h2 className="text-fg-primary text-2xl mb-3 font-bold">
+            <h2 className="text-balance text-fg-primary text-2xl mb-3 font-bold">
               {t("account_required_title")}
             </h2>
             <p className="text-fg-secondary mx-auto mb-8 max-w-md text-sm leading-relaxed">

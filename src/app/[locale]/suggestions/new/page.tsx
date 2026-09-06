@@ -42,7 +42,7 @@ export default async function NewSuggestionPage({
   return (
     <Container size="narrow" className="py-12">
       <header className="mb-6">
-        <h1 className="text-fg-primary text-3xl font-bold tracking-tight">{t("newSuggestion")}</h1>
+        <h1 className="text-balance text-fg-primary text-3xl font-bold tracking-tight">{t("newSuggestion")}</h1>
         <p className="text-fg-muted mt-1 text-sm">{t("shareIdea")}</p>
       </header>
       <NewSuggestionForm />

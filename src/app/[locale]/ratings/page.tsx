@@ -157,7 +157,7 @@ export default async function RatingsPage({
           <ShieldCheck className="h-5 w-5 animate-pulse" />
           <span>{t("badge")}</span>
         </div>
-        <h1 className="bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-4xl font-extrabold tracking-tight text-transparent md:text-5xl">
+        <h1 className="text-balance bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-4xl font-extrabold tracking-tight text-transparent md:text-5xl">
           {t("title")}
         </h1>
         <p className="text-fg-muted max-w-3xl text-lg leading-relaxed">{t("subtitle")}</p>
@@ -200,7 +200,7 @@ export default async function RatingsPage({
                 {cat.id}
               </span>
             </div>
-            <h3 className="mb-2 text-base font-bold text-white">{cat.name}</h3>
+            <h3 className="text-balance mb-2 text-base font-bold text-white">{cat.name}</h3>
             <p className="text-fg-muted text-xs leading-relaxed">{cat.description}</p>
           </div>
         ))}

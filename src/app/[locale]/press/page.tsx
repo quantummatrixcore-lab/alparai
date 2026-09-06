@@ -38,7 +38,7 @@ export default async function PressPage({ params }: { params: Promise<{ locale: 
         <span className="bg-brand-500/10 text-brand-400 inline-block rounded-full px-3 py-1 text-xs font-semibold">
           {t("badge")}
         </span>
-        <h1 className="text-fg-primary text-4xl font-extrabold tracking-tight sm:text-5xl">
+        <h1 className="text-balance text-fg-primary text-4xl font-extrabold tracking-tight sm:text-5xl">
           {t("title")}
         </h1>
         <p className="text-fg-muted mx-auto max-w-2xl text-base leading-relaxed">
@@ -107,7 +107,7 @@ export default async function PressPage({ params }: { params: Promise<{ locale: 
         </div>
 
         <div className="space-y-4">
-          <h3 className="text-fg-primary text-sm font-bold">{t("color_palette")}</h3>
+          <h3 className="text-balance text-fg-primary text-sm font-bold">{t("color_palette")}</h3>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
             {brandColors.map((color, idx) => (
               <div
@@ -151,7 +151,7 @@ export default async function PressPage({ params }: { params: Promise<{ locale: 
                   </span>
                   <span>{release.tags[isEn ? "en" : "tr"].join(" • ")}</span>
                 </div>
-                <h3 className="text-fg-primary text-lg font-bold">
+                <h3 className="text-balance text-fg-primary text-lg font-bold">
                   {release.title[isEn ? "en" : "tr"]}
                 </h3>
                 <p className="text-fg-muted text-xs leading-relaxed">

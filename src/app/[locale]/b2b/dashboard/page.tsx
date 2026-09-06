@@ -65,7 +65,7 @@ export default async function B2BDashboardPage({
             <ShieldAlert className="h-3 w-3" />
             Defendant Portal - Beta
           </div>
-          <h1 className="text-4xl font-black tracking-tight text-white drop-shadow-2xl">
+          <h1 className="text-balance text-4xl font-black tracking-tight text-white drop-shadow-2xl">
             {locale === "tr" ? "Muhatap Yönetim Paneli" : "Defendant Management Hub"}
           </h1>
           <p className="text-fg-muted mt-4 max-w-2xl text-base font-medium">

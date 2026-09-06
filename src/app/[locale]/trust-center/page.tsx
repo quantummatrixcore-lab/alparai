@@ -84,7 +84,7 @@ export default async function SecurityPage({ params }: { params: Promise<{ local
         <span className="border-brand-500/30 bg-brand-500/10 text-brand-400 inline-flex items-center rounded-full border px-4 py-1 text-xs font-semibold tracking-wider uppercase">
           {t("badge")}
         </span>
-        <h1 className="text-fg-primary mt-6 text-4xl font-black tracking-tight sm:text-5xl">
+        <h1 className="text-balance text-fg-primary mt-6 text-4xl font-black tracking-tight sm:text-5xl">
           {t("headline")}
         </h1>
         <p className="text-fg-secondary mt-4 text-lg leading-relaxed">{t("subtitle")}</p>
@@ -93,7 +93,7 @@ export default async function SecurityPage({ params }: { params: Promise<{ local
       {/* Compliance Badges */}
       <div className="space-y-10">
         <div className="mx-auto max-w-xl text-center">
-          <h2 className="text-fg-primary text-2xl font-bold tracking-tight">
+          <h2 className="text-balance text-fg-primary text-2xl font-bold tracking-tight">
             {t("badges_title")}
           </h2>
           <p className="text-fg-muted mt-2 text-sm">{t("badges_subtitle")}</p>
@@ -108,7 +108,7 @@ export default async function SecurityPage({ params }: { params: Promise<{ local
                   <div className={`w-fit rounded-lg bg-white/5 p-3 ${badge.color}`}>
                     <Icon className="h-6 w-6" />
                   </div>
-                  <h3 className="text-fg-primary text-lg font-bold">
+                  <h3 className="text-balance text-fg-primary text-lg font-bold">
                     {t(`badge_${badge.key}_title`)}
                   </h3>
                   <p className="text-fg-muted text-xs leading-relaxed">
@@ -124,7 +124,7 @@ export default async function SecurityPage({ params }: { params: Promise<{ local
       {/* Roadmap Timeline */}
       <div className="space-y-10">
         <div className="mx-auto max-w-xl text-center">
-          <h2 className="text-fg-primary text-2xl font-bold tracking-tight">
+          <h2 className="text-balance text-fg-primary text-2xl font-bold tracking-tight">
             {t("timeline_title")}
           </h2>
           <p className="text-fg-muted mt-2 text-sm">{t("timeline_subtitle")}</p>
@@ -138,7 +138,7 @@ export default async function SecurityPage({ params }: { params: Promise<{ local
                 <span className="text-brand-400 text-xs font-bold tracking-wider uppercase">
                   {step.date}
                 </span>
-                <h3 className="text-fg-primary text-lg font-bold">{t(`time_${step.key}_title`)}</h3>
+                <h3 className="text-balance text-fg-primary text-lg font-bold">{t(`time_${step.key}_title`)}</h3>
                 <p className="text-fg-muted text-sm leading-relaxed">
                   {t(`time_${step.key}_desc`)}
                 </p>
@@ -151,7 +151,7 @@ export default async function SecurityPage({ params }: { params: Promise<{ local
       {/* Encryption & Compliance Status */}
       <div className="space-y-10">
         <div className="mx-auto max-w-xl text-center">
-          <h2 className="text-fg-primary text-2xl font-bold tracking-tight">
+          <h2 className="text-balance text-fg-primary text-2xl font-bold tracking-tight">
             {t("crypto_title")}
           </h2>
           <p className="text-fg-muted mt-2 text-sm">{t("crypto_subtitle")}</p>
@@ -171,7 +171,7 @@ export default async function SecurityPage({ params }: { params: Promise<{ local
                       {t(item.statusKey)}
                     </span>
                   </div>
-                  <h3 className="text-fg-primary text-lg font-bold">{t(item.titleKey)}</h3>
+                  <h3 className="text-balance text-fg-primary text-lg font-bold">{t(item.titleKey)}</h3>
                   <p className="text-fg-muted text-xs leading-relaxed">{t(item.descKey)}</p>
                 </CardContent>
               </Card>
@@ -183,26 +183,26 @@ export default async function SecurityPage({ params }: { params: Promise<{ local
       {/* Detailed Standards Section */}
       <div className="space-y-10">
         <div className="mx-auto max-w-xl text-center">
-          <h2 className="text-fg-primary text-2xl font-bold tracking-tight">
+          <h2 className="text-balance text-fg-primary text-2xl font-bold tracking-tight">
             {t("standards_detail_title")}
           </h2>
         </div>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           <Card className="border-border-subtle bg-bg-secondary/40">
             <CardContent className="space-y-4 p-6">
-              <h3 className="text-fg-primary text-lg font-bold">{t("standards_soc2_title")}</h3>
+              <h3 className="text-balance text-fg-primary text-lg font-bold">{t("standards_soc2_title")}</h3>
               <p className="text-fg-muted text-sm leading-relaxed">{t("standards_soc2_desc")}</p>
             </CardContent>
           </Card>
           <Card className="border-border-subtle bg-bg-secondary/40">
             <CardContent className="space-y-4 p-6">
-              <h3 className="text-fg-primary text-lg font-bold">{t("standards_iso_title")}</h3>
+              <h3 className="text-balance text-fg-primary text-lg font-bold">{t("standards_iso_title")}</h3>
               <p className="text-fg-muted text-sm leading-relaxed">{t("standards_iso_desc")}</p>
             </CardContent>
           </Card>
           <Card className="border-border-subtle bg-bg-secondary/40">
             <CardContent className="space-y-4 p-6">
-              <h3 className="text-fg-primary text-lg font-bold">{t("standards_aes_title")}</h3>
+              <h3 className="text-balance text-fg-primary text-lg font-bold">{t("standards_aes_title")}</h3>
               <p className="text-fg-muted text-sm leading-relaxed">{t("standards_aes_desc")}</p>
             </CardContent>
           </Card>
@@ -215,7 +215,7 @@ export default async function SecurityPage({ params }: { params: Promise<{ local
           <div className="bg-danger-500/10 text-danger-400 mx-auto w-fit rounded-full p-4">
             <Mail className="h-8 w-8" />
           </div>
-          <h2 className="text-fg-primary text-xl font-bold">{t("disclosure_title")}</h2>
+          <h2 className="text-balance text-fg-primary text-xl font-bold">{t("disclosure_title")}</h2>
           <p className="text-fg-secondary text-sm leading-relaxed">
             {t("disclosure_subtitle")}{" "}
             <a

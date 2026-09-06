@@ -278,7 +278,7 @@ export default async function JournalistDashboard({
 
       <div className="relative mx-auto max-w-5xl px-6">
         <div className="border-border-primary/40 mb-10 border-b pb-8">
-          <h1 className="from-fg-primary to-fg-secondary mb-2 bg-gradient-to-r bg-clip-text text-3xl font-bold text-transparent">
+          <h1 className="text-balance from-fg-primary to-fg-secondary mb-2 bg-gradient-to-r bg-clip-text text-3xl font-bold text-transparent">
             {t("journalist_title")}
           </h1>
           <p className="text-fg-secondary text-sm">{t("journalist_desc")}</p>
@@ -294,7 +294,7 @@ export default async function JournalistDashboard({
             </CardHeader>
             <CardContent className="space-y-5 text-sm">
               <div>
-                <h3 className="text-fg-primary mb-1 text-xs font-bold tracking-wider uppercase">
+                <h3 className="text-balance text-fg-primary mb-1 text-xs font-bold tracking-wider uppercase">
                   {t("journalist_verification_means_title")}
                 </h3>
                 <p className="text-fg-secondary leading-relaxed">
@@ -302,7 +302,7 @@ export default async function JournalistDashboard({
                 </p>
               </div>
               <div>
-                <h3 className="text-fg-primary mb-1 text-xs font-bold tracking-wider uppercase">
+                <h3 className="text-balance text-fg-primary mb-1 text-xs font-bold tracking-wider uppercase">
                   {t("journalist_verification_not_title")}
                 </h3>
                 <p className="text-fg-secondary leading-relaxed">
@@ -310,7 +310,7 @@ export default async function JournalistDashboard({
                 </p>
               </div>
               <div className="border-border-subtle border-t pt-4">
-                <h3 className="text-fg-primary mb-1 text-xs font-bold tracking-wider uppercase">
+                <h3 className="text-balance text-fg-primary mb-1 text-xs font-bold tracking-wider uppercase">
                   {t("journalist_verification_embargo_title")}
                 </h3>
                 <p className="text-fg-secondary leading-relaxed">
@@ -329,7 +329,7 @@ export default async function JournalistDashboard({
 
           <section>
             <div className="mb-4 flex items-center justify-between">
-              <h2 className="text-fg-primary inline-flex items-center gap-2 text-xl font-semibold">
+              <h2 className="text-balance text-fg-primary inline-flex items-center gap-2 text-xl font-semibold">
                 <ShieldCheck className="text-success-400 h-5 w-5" aria-hidden="true" />
                 {t("journalist_feed_title")}
               </h2>
@@ -388,7 +388,7 @@ export default async function JournalistDashboard({
 
           <section id="citation">
             <div className="mb-4">
-              <h2 className="text-fg-primary inline-flex items-center gap-2 text-xl font-semibold">
+              <h2 className="text-balance text-fg-primary inline-flex items-center gap-2 text-xl font-semibold">
                 <Quote className="text-brand-400 h-5 w-5" aria-hidden="true" />
                 {t("journalist_citation_title")}
               </h2>
@@ -426,7 +426,7 @@ export default async function JournalistDashboard({
 
           <section>
             <div className="mb-4 flex items-center justify-between">
-              <h2 className="text-fg-primary inline-flex items-center gap-2 text-xl font-semibold">
+              <h2 className="text-balance text-fg-primary inline-flex items-center gap-2 text-xl font-semibold">
                 <Trophy className="text-warning-500 h-5 w-5" aria-hidden="true" />
                 {t("journalist_provider_snapshot_title")}
               </h2>
@@ -436,7 +436,7 @@ export default async function JournalistDashboard({
           </section>
 
           <section>
-            <h2 className="text-fg-primary mb-4 inline-flex items-center gap-2 text-xl font-semibold">
+            <h2 className="text-balance text-fg-primary mb-4 inline-flex items-center gap-2 text-xl font-semibold">
               <FileText className="text-brand-400 h-5 w-5" aria-hidden="true" />
               {t("journalist_press_resources_title")}
             </h2>

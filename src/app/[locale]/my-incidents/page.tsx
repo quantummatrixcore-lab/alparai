@@ -37,7 +37,7 @@ export default async function MyIncidentsPage({ params }: { params: Promise<{ lo
   return (
     <Container className="py-10">
       <header className="mb-6">
-        <h1 className="text-fg-primary text-2xl font-bold">{t("title")}</h1>
+        <h1 className="text-balance text-fg-primary text-2xl font-bold">{t("title")}</h1>
         <p className="text-fg-muted mt-1 text-sm">{t("subtitle", { count: items.length })}</p>
       </header>
       <IncidentList incidents={items} />

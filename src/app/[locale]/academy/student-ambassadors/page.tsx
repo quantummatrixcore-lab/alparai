@@ -24,7 +24,7 @@ export default async function StudentAmbassadorsPage({
         <Badge variant="brand" size="sm">
           {t("ambassador_title")}
         </Badge>
-        <h1 className="text-fg-primary mt-3 text-3xl font-bold tracking-tight">
+        <h1 className="text-balance text-fg-primary mt-3 text-3xl font-bold tracking-tight">
           {t("ambassador_title")}
         </h1>
         <p className="text-fg-muted mt-2 text-sm">{t("ambassador_subtitle")}</p>
@@ -34,7 +34,7 @@ export default async function StudentAmbassadorsPage({
         <Card>
           <CardContent className="p-6 text-center">
             <GraduationCap className="text-brand-400 mx-auto mb-3 h-8 w-8" />
-            <h3 className="text-fg-primary mb-2 font-semibold">
+            <h3 className="text-balance text-fg-primary mb-2 font-semibold">
               {t("student_ambassador_workshops_title")}
             </h3>
             <p className="text-fg-muted text-xs">{t("student_ambassador_workshops_desc")}</p>
@@ -43,7 +43,7 @@ export default async function StudentAmbassadorsPage({
         <Card>
           <CardContent className="p-6 text-center">
             <Globe className="text-brand-400 mx-auto mb-3 h-8 w-8" />
-            <h3 className="text-fg-primary mb-2 font-semibold">
+            <h3 className="text-balance text-fg-primary mb-2 font-semibold">
               {t("student_ambassador_network_title")}
             </h3>
             <p className="text-fg-muted text-xs">{t("student_ambassador_network_desc")}</p>
@@ -52,7 +52,7 @@ export default async function StudentAmbassadorsPage({
         <Card>
           <CardContent className="p-6 text-center">
             <Trophy className="text-brand-400 mx-auto mb-3 h-8 w-8" />
-            <h3 className="text-fg-primary mb-2 font-semibold">
+            <h3 className="text-balance text-fg-primary mb-2 font-semibold">
               {t("student_ambassador_leadership_title")}
             </h3>
             <p className="text-fg-muted text-xs">{t("student_ambassador_leadership_desc")}</p>

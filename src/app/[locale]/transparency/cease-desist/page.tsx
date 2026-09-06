@@ -100,7 +100,7 @@ export default async function CeaseDesistArchivePage({
             {t("cease_desist_badge")}
           </div>
 
-          <h1 className="text-fg-primary text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl">
+          <h1 className="text-balance text-fg-primary text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl">
             {t("cease_desist_title")}
           </h1>
 
@@ -131,7 +131,7 @@ export default async function CeaseDesistArchivePage({
       {logs.length === 0 ? (
         <div className="to-bg-secondary/30 border-danger-500/20 rounded-2xl border bg-gradient-to-br from-red-950/20 p-12 text-center backdrop-blur-md">
           <FileWarning className="mx-auto h-12 w-12 text-red-400/60" />
-          <h3 className="text-fg-primary mt-4 text-base font-semibold">
+          <h3 className="text-balance text-fg-primary mt-4 text-base font-semibold">
             {t("cease_desist_empty")}
           </h3>
         </div>
@@ -157,7 +157,7 @@ export default async function CeaseDesistArchivePage({
                       <span className="font-mono text-xs tracking-wider text-red-300/70 uppercase">
                         {t("cease_desist_provider")}
                       </span>
-                      <h2 className="text-fg-primary text-base font-bold">{providerName}</h2>
+                      <h2 className="text-balance text-fg-primary text-base font-bold">{providerName}</h2>
                     </div>
                   </div>
 

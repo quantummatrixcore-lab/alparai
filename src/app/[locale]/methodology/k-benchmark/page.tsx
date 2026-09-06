@@ -15,18 +15,18 @@ export default async function KBenchmarkPage({ params }: { params: Promise<{ loc
 
   return (
     <Container className="py-12">
-      <h1 className="text-fg-primary mb-2 text-3xl font-bold">{t("heading")}</h1>
+      <h1 className="text-balance text-fg-primary mb-2 text-3xl font-bold">{t("heading")}</h1>
       <p className="text-fg-muted mb-8 max-w-2xl">{t("subheading")}</p>
 
       <Section>
-        <h2 className="text-fg-primary text-2xl mb-4 font-semibold">
+        <h2 className="text-balance text-fg-primary text-2xl mb-4 font-semibold">
           {t("whatIsTitle")}
         </h2>
         <p className="text-fg-muted mb-6 leading-relaxed">{t("whatIsText")}</p>
       </Section>
 
       <Section>
-        <h2 className="text-fg-primary text-2xl mb-4 font-semibold">
+        <h2 className="text-balance text-fg-primary text-2xl mb-4 font-semibold">
           {t("categoriesTitle")}
         </h2>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -44,7 +44,7 @@ export default async function KBenchmarkPage({ params }: { params: Promise<{ loc
       </Section>
 
       <Section>
-        <h2 className="text-fg-primary text-2xl mb-4 font-semibold">
+        <h2 className="text-balance text-fg-primary text-2xl mb-4 font-semibold">
           {t("scoringTitle")}
         </h2>
         <p className="text-fg-muted mb-4 leading-relaxed">{t("scoringText")}</p>
@@ -57,7 +57,7 @@ export default async function KBenchmarkPage({ params }: { params: Promise<{ loc
       </Section>
 
       <Section>
-        <h2 className="text-fg-primary text-2xl mb-4 font-semibold">
+        <h2 className="text-balance text-fg-primary text-2xl mb-4 font-semibold">
           {t("pipelineTitle")}
         </h2>
         <div className="flex flex-wrap items-center gap-3">
@@ -73,7 +73,7 @@ export default async function KBenchmarkPage({ params }: { params: Promise<{ loc
       </Section>
 
       <Section>
-        <h2 className="text-fg-primary text-2xl mb-4 font-semibold">
+        <h2 className="text-balance text-fg-primary text-2xl mb-4 font-semibold">
           {t("dataSourcesTitle")}
         </h2>
         <p className="text-fg-muted leading-relaxed">{t("dataSourcesText")}</p>

@@ -41,7 +41,7 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
             <ShieldCheck className="h-4 w-4" />
             <span>K-BENCHMARK & AI-ISS STANDARDI</span>
           </div>
-          <h1 className="text-fg-primary text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl">
+          <h1 className="text-balance text-fg-primary text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl">
             {t("title")}
           </h1>
           <p className="text-fg-secondary mt-4 text-base leading-relaxed sm:text-lg">
@@ -131,7 +131,7 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
         {/* Deep Dive Sub-Modules */}
         <div className="space-y-6">
           <div className="border-border-subtle/50 border-b pb-4">
-            <h2 className="text-fg-primary text-2xl font-bold tracking-tight">
+            <h2 className="text-balance text-fg-primary text-2xl font-bold tracking-tight">
               Metodolojik Detaylar & Teknik Çerçeveler
             </h2>
             <p className="text-fg-muted mt-1 text-sm">
@@ -148,7 +148,7 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
                 <div className="border-brand-500/20 bg-brand-500/10 mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border">
                   <Zap className="text-brand-400 h-5 w-5" />
                 </div>
-                <h3 className="text-fg-primary group-hover:text-brand-400 text-lg font-bold transition-colors">
+                <h3 className="text-balance text-fg-primary group-hover:text-brand-400 text-lg font-bold transition-colors">
                   {t("aiIssTitle")}
                 </h3>
                 <p className="text-fg-muted mt-2 text-xs leading-relaxed">{t("aiIssDesc")}</p>
@@ -167,7 +167,7 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
                 <div className="border-success-500/20 bg-success-500/10 mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border">
                   <Layers className="text-success-400 h-5 w-5" />
                 </div>
-                <h3 className="text-fg-primary group-hover:text-success-400 text-lg font-bold transition-colors">
+                <h3 className="text-balance text-fg-primary group-hover:text-success-400 text-lg font-bold transition-colors">
                   {t("kBenchmarkTitle")}
                 </h3>
                 <p className="text-fg-muted mt-2 text-xs leading-relaxed">{t("kBenchmarkDesc")}</p>
@@ -186,7 +186,7 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
                 <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-purple-500/20 bg-purple-500/10">
                   <FileCode2 className="h-5 w-5 text-purple-400" />
                 </div>
-                <h3 className="text-fg-primary text-lg font-bold transition-colors group-hover:text-purple-400">
+                <h3 className="text-balance text-fg-primary text-lg font-bold transition-colors group-hover:text-purple-400">
                   {t("benchmarksTitle")}
                 </h3>
                 <p className="text-fg-muted mt-2 text-xs leading-relaxed">{t("benchmarksDesc")}</p>
@@ -205,7 +205,7 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
                 <div className="border-warning-500/20 mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border bg-amber-500/10">
                   <History className="h-5 w-5 text-amber-400" />
                 </div>
-                <h3 className="text-fg-primary text-lg font-bold transition-colors group-hover:text-amber-400">
+                <h3 className="text-balance text-fg-primary text-lg font-bold transition-colors group-hover:text-amber-400">
                   {t("corrections_title")}
                 </h3>
                 <p className="text-fg-muted mt-2 text-xs leading-relaxed">

@@ -39,7 +39,7 @@ export default async function EnterprisePage({ params }: { params: Promise<{ loc
               <span>{t("title")}</span>
             </div>
           </div>
-          <h1 className="text-fg-primary mb-6 text-5xl font-black tracking-tight lg:text-7xl">
+          <h1 className="text-balance text-fg-primary mb-6 text-5xl font-black tracking-tight lg:text-7xl">
             {t("hero_title")}
           </h1>
           <p className="text-fg-secondary text-lg leading-relaxed lg:text-xl">{t("subtitle")}</p>
@@ -49,7 +49,7 @@ export default async function EnterprisePage({ params }: { params: Promise<{ loc
           <Card className="border-border-subtle bg-bg-secondary hover:border-brand-500/30 shadow-2xl transition-colors">
             <CardContent className="p-8">
               <Shield className="text-brand-400 mb-6 h-10 w-10" />
-              <h3 className="text-fg-primary mb-3 text-xl font-bold">
+              <h3 className="text-balance text-fg-primary mb-3 text-xl font-bold">
                 {t("features.vraas.title")}
               </h3>
               <p className="text-fg-secondary">{t("features.vraas.desc")}</p>
@@ -59,7 +59,7 @@ export default async function EnterprisePage({ params }: { params: Promise<{ loc
           <Card className="border-border-subtle bg-bg-secondary hover:border-success-500/30 shadow-2xl transition-colors">
             <CardContent className="p-8">
               <Code className="text-success-400 mb-6 h-10 w-10" />
-              <h3 className="text-fg-primary mb-3 text-xl font-bold">{t("features.api.title")}</h3>
+              <h3 className="text-balance text-fg-primary mb-3 text-xl font-bold">{t("features.api.title")}</h3>
               <p className="text-fg-secondary">{t("features.api.desc")}</p>
             </CardContent>
           </Card>
@@ -67,7 +67,7 @@ export default async function EnterprisePage({ params }: { params: Promise<{ loc
           <Card className="border-border-subtle bg-bg-secondary hover:border-accent-500/30 shadow-2xl transition-colors">
             <CardContent className="p-8">
               <Lock className="text-accent-400 mb-6 h-10 w-10" />
-              <h3 className="text-fg-primary mb-3 text-xl font-bold">
+              <h3 className="text-balance text-fg-primary mb-3 text-xl font-bold">
                 {t("features.compliance.title")}
               </h3>
               <p className="text-fg-secondary">{t("features.compliance.desc")}</p>
@@ -80,7 +80,7 @@ export default async function EnterprisePage({ params }: { params: Promise<{ loc
             <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
               <div>
                 <Calculator className="text-brand-400 mb-6 h-12 w-12" />
-                <h2 className="text-fg-primary mb-4 text-3xl font-bold">{t("risk_calc_title")}</h2>
+                <h2 className="text-balance text-fg-primary mb-4 text-3xl font-bold">{t("risk_calc_title")}</h2>
                 <p className="text-fg-secondary mb-8">{t("risk_calc_desc")}</p>
 
                 <div className="space-y-4">

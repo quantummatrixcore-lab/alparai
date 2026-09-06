@@ -208,7 +208,7 @@ export default function AdminV2OverviewPage() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <ShieldAlert className="h-4 w-4 text-cyan-400" />
-              <h2 className="font-sans text-sm font-bold tracking-wide text-[#1f2328] dark:text-[#f0f6fc]">
+              <h2 className="text-balance font-sans text-sm font-bold tracking-wide text-[#1f2328] dark:text-[#f0f6fc]">
                 {td("liveIncidentDesk")}
               </h2>
             </div>
@@ -295,7 +295,7 @@ export default function AdminV2OverviewPage() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <KeyRound className="h-4 w-4 text-cyan-400" />
-                <h2 className="font-sans text-sm font-bold tracking-wide text-[#1f2328] dark:text-[#f0f6fc]">
+                <h2 className="text-balance font-sans text-sm font-bold tracking-wide text-[#1f2328] dark:text-[#f0f6fc]">
                   {td("b2bFlow")}
                 </h2>
               </div>
@@ -369,7 +369,7 @@ export default function AdminV2OverviewPage() {
   const quickDeckSection = React.useMemo(
     () => (
       <div className="space-y-3 rounded-xl border border-[#d0d7de] bg-zinc-950/70 p-5 shadow-2xl shadow-black/80 backdrop-blur-xl dark:border-[#30363d]">
-        <h3 className="font-sans text-xs font-bold tracking-wider text-zinc-400 uppercase dark:text-[#8b949e] dark:text-[#656d76]">
+        <h3 className="text-balance font-sans text-xs font-bold tracking-wider text-zinc-400 uppercase dark:text-[#8b949e] dark:text-[#656d76]">
           {td("quickDeck")}
         </h3>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-5">
@@ -456,7 +456,7 @@ export default function AdminV2OverviewPage() {
               ADMIN
             </span>
           </div>
-          <h1 className="font-sans text-xl font-bold tracking-tight text-[#1f2328] md:text-2xl dark:text-[#f0f6fc]">
+          <h1 className="text-balance font-sans text-xl font-bold tracking-tight text-[#1f2328] md:text-2xl dark:text-[#f0f6fc]">
             {t("enterprise_command_deck")}
           </h1>
           <p className="mt-0.5 text-xs text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">

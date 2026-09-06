@@ -26,7 +26,7 @@ export default async function DmcaPage({ params }: { params: Promise<{ locale: s
         <span className="border-danger-500/30 bg-danger-500/10 text-danger-400 inline-flex items-center rounded-full border px-4 py-1 text-xs font-semibold tracking-wider uppercase">
           {t("badge")}
         </span>
-        <h1 className="text-fg-primary mt-6 text-4xl font-black tracking-tight sm:text-5xl">
+        <h1 className="text-balance text-fg-primary mt-6 text-4xl font-black tracking-tight sm:text-5xl">
           {t("headline")}
         </h1>
         <p className="text-fg-secondary mt-4 text-lg leading-relaxed">{t("subtitle")}</p>
@@ -35,7 +35,7 @@ export default async function DmcaPage({ params }: { params: Promise<{ locale: s
       {/* Procedure Steps */}
       <div className="mx-auto max-w-4xl space-y-8">
         <div className="text-center">
-          <h2 className="text-fg-primary text-2xl font-bold tracking-tight">
+          <h2 className="text-balance text-fg-primary text-2xl font-bold tracking-tight">
             {t("procedure_title")}
           </h2>
           <p className="text-fg-muted mt-2 text-sm">{t("procedure_subtitle")}</p>
@@ -45,7 +45,7 @@ export default async function DmcaPage({ params }: { params: Promise<{ locale: s
           {steps.map((step) => (
             <Card key={step} className="border-border-subtle bg-bg-secondary/40">
               <CardContent className="space-y-3 p-6">
-                <h3 className="text-fg-primary text-base font-bold">{t(`step_${step}_title`)}</h3>
+                <h3 className="text-balance text-fg-primary text-base font-bold">{t(`step_${step}_title`)}</h3>
                 <p className="text-fg-muted text-xs leading-relaxed">
                   {t(`step_${step}_desc`)}{" "}
                   {step === "6" && (
@@ -71,7 +71,7 @@ export default async function DmcaPage({ params }: { params: Promise<{ locale: s
               <ShieldAlert className="h-6 w-6" />
             </div>
             <div className="space-y-2">
-              <h2 className="text-fg-primary text-lg font-bold">{t("counter_title")}</h2>
+              <h2 className="text-balance text-fg-primary text-lg font-bold">{t("counter_title")}</h2>
               <p className="text-fg-secondary text-xs leading-relaxed">{t("counter_desc")}</p>
             </div>
           </div>

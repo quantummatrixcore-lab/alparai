@@ -28,7 +28,7 @@ export default async function WhistleblowerPage({
           <Lock className="h-3.5 w-3.5" />
           {tCommon("secureAndAnonymous", { defaultValue: "SECURE & ANONYMOUS" })}
         </div>
-        <h1 className="text-fg-primary text-3xl font-bold tracking-tight">{t("title")}</h1>
+        <h1 className="text-balance text-fg-primary text-3xl font-bold tracking-tight">{t("title")}</h1>
         <p className="text-fg-muted text-sm">{t("subtitle")}</p>
       </header>
 

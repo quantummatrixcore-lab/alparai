@@ -33,7 +33,7 @@ export default async function AcademyInstructorPage({
         {/* Header */}
         <div className="border-border-primary/40 mb-12 flex flex-col gap-6 border-b pb-8 md:flex-row md:items-end md:justify-between">
           <div>
-            <h1 className="from-fg-primary via-fg-secondary to-accent mb-3 bg-gradient-to-r bg-clip-text text-3xl font-bold text-transparent md:text-4xl">
+            <h1 className="text-balance from-fg-primary via-fg-secondary to-accent mb-3 bg-gradient-to-r bg-clip-text text-3xl font-bold text-transparent md:text-4xl">
               {t("title")}
             </h1>
             <p className="text-fg-secondary max-w-2xl text-sm">{t("subtitle")}</p>
@@ -60,7 +60,7 @@ export default async function AcademyInstructorPage({
         <div className="grid items-start gap-8 lg:grid-cols-3">
           {/* Locked Curriculum Outline */}
           <div className="pointer-events-none space-y-6 opacity-45 select-none lg:col-span-2">
-            <h2 className="text-fg-primary mb-2 text-xl font-bold">{t("curriculum_title")}</h2>
+            <h2 className="text-balance text-fg-primary mb-2 text-xl font-bold">{t("curriculum_title")}</h2>
             <p className="text-fg-secondary mb-6 text-sm">{t("curriculum_desc")}</p>
 
             {curriculumUnits.length > 0 ? (
@@ -69,7 +69,7 @@ export default async function AcademyInstructorPage({
                   key={unit.id}
                   className="bg-bg-secondary/20 border-border-primary/30 rounded-2xl border p-6"
                 >
-                  <h3 className="text-md text-fg-primary mb-4 font-bold">{unit.title}</h3>
+                  <h3 className="text-balance text-md text-fg-primary mb-4 font-bold">{unit.title}</h3>
                   <div className="space-y-3">
                     {unit.lessons.map((lesson) => (
                       <div
@@ -132,7 +132,7 @@ export default async function AcademyInstructorPage({
                 />
               </svg>
             </div>
-            <h3 className="text-fg-primary mb-3 text-lg font-bold">{t("empty_state_title")}</h3>
+            <h3 className="text-balance text-fg-primary mb-3 text-lg font-bold">{t("empty_state_title")}</h3>
             <p className="text-fg-secondary mb-6 text-sm leading-relaxed">
               {t("empty_state_desc")}
             </p>

@@ -8,9 +8,16 @@ export async function POST(request: NextRequest) {
     console.error("[Signout Route Error]:", error);
   }
 
-  const locale = request.cookies.get("NEXT_LOCALE")?.value || "en";
-  const redirectUrl = new URL(`/${locale}`, request.url);
-  const response = NextResponse.redirect(redirectUrl, { status: 303 });
+  const isJson =
+    request.headers.get("accept")?.includes("application/json") ||
+    request.headers.get("content-type")?.includes("application/json");
+
+  const locale = request.cookies.get("NEXT_LOCALE")?.value || "tr";
+  const redirectUrl = new URL(`/${locale}?logout=${Date.now()}`, request.url);
+
+  const response = isJson
+    ? NextResponse.json({ ok: true, signedOut: true })
+    : NextResponse.redirect(redirectUrl, { status: 303 });
 
   // Explicitly invalidate sovereign session cookie
   response.cookies.set("alparai_session", "", {
@@ -22,10 +29,15 @@ export async function POST(request: NextRequest) {
     secure: process.env.NODE_ENV === "production",
   });
 
-  // Also purge any legacy supabase cookies
+  // Also purge any legacy supabase or session cookies
   const allCookies = request.cookies.getAll();
   for (const c of allCookies) {
-    if (c.name.startsWith("sb-") || c.name.includes("supabase")) {
+    if (
+      c.name.startsWith("sb-") ||
+      c.name.includes("supabase") ||
+      c.name.includes("session") ||
+      c.name.includes("auth")
+    ) {
       response.cookies.set(c.name, "", {
         path: "/",
         maxAge: 0,

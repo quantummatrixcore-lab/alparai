@@ -168,7 +168,7 @@ export default async function BrandPage({
             </div>
             <div className="flex-1 space-y-2">
               <div className="flex flex-wrap items-center gap-2">
-                <h1 className="text-fg-primary text-2xl font-bold">{providerName}</h1>
+                <h1 className="text-balance text-fg-primary text-2xl font-bold">{providerName}</h1>
                 {isVerified && (
                   <Badge variant="success" dot>
                     {t("verified")}
@@ -263,7 +263,7 @@ export default async function BrandPage({
               <span className="bg-brand-500/10 text-brand-400 border-brand-500/20 inline-flex rounded-full border px-2.5 py-0.5 text-xs font-semibold tracking-wider uppercase">
                 {t("unclaimed_profile")}
               </span>
-              <h3 className="text-fg-primary text-base font-bold">{t("claim_cta_title")}</h3>
+              <h3 className="text-balance text-fg-primary text-base font-bold">{t("claim_cta_title")}</h3>
               <p className="text-fg-secondary max-w-2xl text-sm">{t("claim_cta_desc")}</p>
             </div>
             <Link
@@ -391,7 +391,7 @@ export default async function BrandPage({
       </div>
 
       <div className="space-y-3">
-        <h2 className="text-fg-primary text-lg font-semibold">
+        <h2 className="text-balance text-fg-primary text-lg font-semibold">
           {t("incidentsReported", { count: incidents.length })}
         </h2>
         <IncidentList incidents={incidents} />

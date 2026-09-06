@@ -27,7 +27,7 @@ export default async function ChallengesPage({ params }: { params: Promise<{ loc
 
   return (
     <Container className="py-12">
-      <h1 className="text-3xl font-bold tracking-tight">{t("pageTitle")}</h1>
+      <h1 className="text-balance text-3xl font-bold tracking-tight">{t("pageTitle")}</h1>
       <p className="text-fg-secondary mt-2 max-w-2xl">{t("subtitle")}</p>
 
       <ChallengeList challenges={challenges ?? []} locale={locale} userId={user?.id} />

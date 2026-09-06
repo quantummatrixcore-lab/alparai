@@ -82,7 +82,7 @@ export default async function SignInPage({
               className="drop-shadow-[0_0_35px_rgba(168,85,247,0.45)] filter transition-all duration-500 hover:scale-105"
             />
           </div>
-          <h1 className="text-fg-primary text-3xl font-extrabold tracking-tight drop-shadow-md">
+          <h1 className="text-balance text-fg-primary text-3xl font-extrabold tracking-tight drop-shadow-md">
             {t("signin_title")}
           </h1>
           <p className="text-fg-muted mt-2.5 text-sm font-medium tracking-wide">{t("tagline")}</p>
@@ -123,7 +123,7 @@ export default async function SignInPage({
 
           {/* Welcome Text */}
           <div className="mb-8 text-center">
-            <h2 className="text-fg-primary text-2xl font-extrabold tracking-tight">
+            <h2 className="text-balance text-fg-primary text-2xl font-extrabold tracking-tight">
               {t("welcome_title")}
             </h2>
             <p className="text-fg-muted mt-1.5 text-sm font-medium">{t("welcome_subtitle")}</p>

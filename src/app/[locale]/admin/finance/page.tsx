@@ -53,7 +53,7 @@ export default function FinancePage() {
               STRIPE CONNECT & REVENUE LEDGER
             </span>
           </div>
-          <h1 className="font-sans text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
+          <h1 className="text-balance font-sans text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
             Stripe Finans & Nakit Akış Masası
           </h1>
           <p className="mt-0.5 text-xs text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
@@ -90,7 +90,7 @@ export default function FinancePage() {
 
       {/* Transactions Table */}
       <div className="space-y-4 rounded-md border border-[#d0d7de] bg-[#ffffff] p-5 shadow-sm dark:border-[#30363d] dark:bg-[#161b22] dark:shadow-none">
-        <h2 className="font-sans text-sm font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+        <h2 className="text-balance font-sans text-sm font-bold text-[#1f2328] dark:text-[#f0f6fc]">
           Son Kurumsal Faturalandırma ve Tahsilatlar
         </h2>
 

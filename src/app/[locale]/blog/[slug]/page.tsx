@@ -186,7 +186,7 @@ export default async function BlogPostPage({
 
       <article>
         <header className="mb-8 space-y-4">
-          <h1 className="text-fg-primary text-4xl leading-tight font-black tracking-tight md:text-5xl">
+          <h1 className="text-balance text-fg-primary text-4xl leading-tight font-black tracking-tight md:text-5xl">
             {title}
           </h1>
           <p className="text-fg-secondary text-lg">{description}</p>

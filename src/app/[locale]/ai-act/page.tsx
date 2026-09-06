@@ -192,7 +192,7 @@ export default async function AIActTrackerPage({
               <Shield className="h-3.5 w-3.5" />
               EU AI Act Tracker
             </div>
-            <h1 className="text-fg-primary text-4xl font-extrabold tracking-tight">{t("title")}</h1>
+            <h1 className="text-balance text-fg-primary text-4xl font-extrabold tracking-tight">{t("title")}</h1>
             <p className="text-fg-muted text-lg">{t("subtitle")}</p>
           </header>
 

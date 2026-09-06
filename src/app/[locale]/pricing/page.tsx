@@ -38,7 +38,7 @@ export default async function PricingPage({
           <span className="border-brand-500/30 bg-brand-500/10 text-brand-300 inline-block rounded-full border px-3.5 py-1 text-xs font-semibold tracking-wider uppercase backdrop-blur-md">
             {t("badge")}
           </span>
-          <h1 className="text-3xl font-black tracking-tight sm:text-4xl md:text-5xl">
+          <h1 className="text-balance text-3xl font-black tracking-tight sm:text-4xl md:text-5xl">
             {t("headline")}
           </h1>
           <p className="text-fg-muted mx-auto max-w-2xl text-base md:text-lg">{t("subtitle")}</p>
@@ -47,7 +47,7 @@ export default async function PricingPage({
         <div className="grid gap-8 md:grid-cols-3">
           {/* Free Tier */}
           <div className="border-border-subtle flex flex-col rounded-2xl border bg-white/5 p-8 backdrop-blur-lg">
-            <h2 className="text-2xl font-bold text-white">{t("free_title")}</h2>
+            <h2 className="text-balance text-2xl font-bold text-white">{t("free_title")}</h2>
             <div className="mt-4 mb-6 flex items-baseline gap-2">
               <span className="text-4xl font-bold">{t("free_price")}</span>
               <span className="text-fg-muted">{t("free_period")}</span>
@@ -70,7 +70,7 @@ export default async function PricingPage({
           {/* Startup Tier */}
           <div className="border-border-strong relative flex flex-col overflow-hidden rounded-2xl border bg-white/10 p-8 shadow-2xl shadow-white/5 backdrop-blur-xl">
             <div className="absolute top-0 left-1/2 h-1 w-full -translate-x-1/2 bg-gradient-to-r from-transparent via-white/50 to-transparent"></div>
-            <h2 className="text-2xl font-bold text-white">{t("startup_title")}</h2>
+            <h2 className="text-balance text-2xl font-bold text-white">{t("startup_title")}</h2>
             <div className="mt-4 mb-6 flex items-baseline gap-2">
               <span className="text-4xl font-bold">{t("startup_price")}</span>
               <span className="text-fg-muted">{t("startup_period")}</span>
@@ -93,7 +93,7 @@ export default async function PricingPage({
 
           {/* Enterprise Tier */}
           <div className="border-border-subtle flex flex-col rounded-2xl border bg-white/5 p-8 backdrop-blur-lg">
-            <h2 className="text-2xl font-bold text-white">{t("enterprise_title")}</h2>
+            <h2 className="text-balance text-2xl font-bold text-white">{t("enterprise_title")}</h2>
             <div className="mt-4 mb-6 flex items-baseline gap-2">
               <span className="text-4xl font-bold">{t("enterprise_price")}</span>
             </div>

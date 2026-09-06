@@ -136,7 +136,7 @@ export default function CompliancePage() {
               EU AI ACT (REGULATION 2024/1689) & NIST RMF
             </span>
           </div>
-          <h1 className="font-sans text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
+          <h1 className="text-balance font-sans text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
             EU AI Act Uyum Radarı & Ceza / Denetim Masası
           </h1>
           <p className="mt-0.5 text-xs text-[#656d76] dark:text-[#8b949e]">
@@ -218,7 +218,7 @@ export default function CompliancePage() {
         <div className="space-y-4 rounded-md border border-[#d0d7de] bg-[#ffffff] p-4 shadow-sm lg:col-span-1 dark:border-[#30363d] dark:bg-[#161b22]">
           <div className="flex items-center gap-2 border-b border-[#d0d7de] pb-3 dark:border-[#30363d]">
             <Calculator className="h-4 w-4 text-[#0969da] dark:text-[#58a6ff]" />
-            <h3 className="font-sans text-xs font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+            <h3 className="text-balance font-sans text-xs font-bold text-[#1f2328] dark:text-[#f0f6fc]">
               Madde 99 İdari Para Cezası Hesaplayıcısı
             </h3>
           </div>

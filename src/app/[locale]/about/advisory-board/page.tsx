@@ -104,7 +104,7 @@ export default async function AdvisoryBoardPage({
           <div className="border-brand-500/30 bg-brand-500/5 text-brand-400 mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-full border backdrop-blur-md">
             <Users className="h-6 w-6" />
           </div>
-          <h1 className="text-fg-primary text-4xl font-extrabold tracking-tight sm:text-5xl">
+          <h1 className="text-balance text-fg-primary text-4xl font-extrabold tracking-tight sm:text-5xl">
             {t("advisoryBoardTitle")}
           </h1>
           <p className="text-fg-secondary mx-auto mt-4 max-w-2xl text-lg font-medium">
@@ -126,7 +126,7 @@ export default async function AdvisoryBoardPage({
                     <Sparkles className="h-3 w-3" />
                     {isTr ? "Kurul Oluşturulma Aşamasında" : "Board in Formation"}
                   </div>
-                  <h2 className="text-fg-primary text-2xl font-bold tracking-tight">
+                  <h2 className="text-balance text-fg-primary text-2xl font-bold tracking-tight">
                     {isTr ? "Açık Çağrı & Katılım Daveti" : "Open Call & Invitation"}
                   </h2>
                   <p className="text-fg-secondary leading-relaxed">{t("advisoryBoardEmpty")}</p>
@@ -148,7 +148,7 @@ export default async function AdvisoryBoardPage({
             <>
               {/* Sought Profiles Section Heading */}
               <div className="mb-12 text-center">
-                <h3 className="text-fg-primary text-xl font-bold tracking-tight">
+                <h3 className="text-balance text-fg-primary text-xl font-bold tracking-tight">
                   {isTr
                     ? "Danışma Kurulunda Aradığımız Uzmanlıklar"
                     : "Expertise We Seek for the Advisory Board"}

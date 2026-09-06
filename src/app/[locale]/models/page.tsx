@@ -163,7 +163,7 @@ export default async function ModelsPage({ params, searchParams }: ModelPageProp
           <Sparkles className="text-brand-400 h-3.5 w-3.5 animate-pulse" />
           <span>{t("enterprise_badge")}</span>
         </div>
-        <h1 className="text-fg-primary to-brand-300 bg-gradient-to-r from-white via-slate-100 bg-clip-text text-4xl font-black tracking-tight text-transparent sm:text-5xl lg:text-6xl">
+        <h1 className="text-balance text-fg-primary to-brand-300 bg-gradient-to-r from-white via-slate-100 bg-clip-text text-4xl font-black tracking-tight text-transparent sm:text-5xl lg:text-6xl">
           {t("page_title")}
         </h1>
         <p className="text-fg-muted mx-auto max-w-2xl text-base leading-relaxed font-normal sm:text-lg">
@@ -286,7 +286,7 @@ export default async function ModelsPage({ params, searchParams }: ModelPageProp
               <div className="bg-brand-500/10 border-brand-500/20 mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border">
                 <Lightbulb className="text-brand-400 h-8 w-8" />
               </div>
-              <h3 className="mb-2 text-xl font-bold text-white">
+              <h3 className="text-balance mb-2 text-xl font-bold text-white">
                 {search ? t("no_results_title") : t("empty_title")}
               </h3>
               <p className="text-fg-muted max-w-sm text-sm">
@@ -313,7 +313,7 @@ export default async function ModelsPage({ params, searchParams }: ModelPageProp
                 >
                   {/* Model Name & Version */}
                   <div className="space-y-1">
-                    <h3 className="group-hover:text-brand-400 text-base font-bold text-white transition-colors">
+                    <h3 className="text-balance group-hover:text-brand-400 text-base font-bold text-white transition-colors">
                       {model.name}
                     </h3>
                     <p className="text-fg-muted font-mono text-xs">

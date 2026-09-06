@@ -24,7 +24,7 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
           <BookOpen className="h-5 w-5" />
           <span>{t("methodology_badge")}</span>
         </div>
-        <h1 className="bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-4xl font-extrabold tracking-tight text-transparent md:text-5xl">
+        <h1 className="text-balance bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-4xl font-extrabold tracking-tight text-transparent md:text-5xl">
           {t("title")}
         </h1>
         <p className="text-fg-muted text-lg leading-relaxed">{t("subtitle")}</p>
@@ -38,49 +38,49 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
 
         {/* Categories Details */}
         <section className="space-y-6">
-          <h2 className="border-border-subtle text-2xl flex items-center space-x-2 border-b pb-3 font-bold text-white">
+          <h2 className="text-balance border-border-subtle text-2xl flex items-center space-x-2 border-b pb-3 font-bold text-white">
             <Shield className="text-emerald-accent h-6 w-6" />
             <span>{t("categoriesTitle")}</span>
           </h2>
 
           <div className="space-y-6">
             <div className="border-border-subtle bg-bg-secondary hover:border-border-strong rounded-xl border p-6 transition-all">
-              <h3 className="mb-2 text-lg font-bold text-white">{t("k5_title")}</h3>
+              <h3 className="text-balance mb-2 text-lg font-bold text-white">{t("k5_title")}</h3>
               <p className="text-fg-muted text-sm leading-relaxed">{t("k5_desc")}</p>
             </div>
 
             <div className="border-border-subtle bg-bg-secondary hover:border-border-strong rounded-xl border p-6 transition-all">
-              <h3 className="mb-2 text-lg font-bold text-white">{t("k6_title")}</h3>
+              <h3 className="text-balance mb-2 text-lg font-bold text-white">{t("k6_title")}</h3>
               <p className="text-fg-muted text-sm leading-relaxed">{t("k6_desc")}</p>
             </div>
 
             <div className="border-border-subtle bg-bg-secondary hover:border-border-strong rounded-xl border p-6 transition-all">
-              <h3 className="mb-2 text-lg font-bold text-white">{t("k7_title")}</h3>
+              <h3 className="text-balance mb-2 text-lg font-bold text-white">{t("k7_title")}</h3>
               <p className="text-fg-muted text-sm leading-relaxed">{t("k7_desc")}</p>
             </div>
 
             <div className="border-border-subtle bg-bg-secondary hover:border-border-strong rounded-xl border p-6 transition-all">
-              <h3 className="mb-2 text-lg font-bold text-white">{t("k8_title")}</h3>
+              <h3 className="text-balance mb-2 text-lg font-bold text-white">{t("k8_title")}</h3>
               <p className="text-fg-muted text-sm leading-relaxed">{t("k8_desc")}</p>
             </div>
 
             <div className="border-border-subtle bg-bg-secondary hover:border-border-strong rounded-xl border p-6 transition-all">
-              <h3 className="mb-2 text-lg font-bold text-white">{t("k9_title")}</h3>
+              <h3 className="text-balance mb-2 text-lg font-bold text-white">{t("k9_title")}</h3>
               <p className="text-fg-muted text-sm leading-relaxed">{t("k9_desc")}</p>
             </div>
 
             <div className="border-border-subtle bg-bg-secondary hover:border-border-strong rounded-xl border p-6 transition-all">
-              <h3 className="mb-2 text-lg font-bold text-white">{t("k10_title")}</h3>
+              <h3 className="text-balance mb-2 text-lg font-bold text-white">{t("k10_title")}</h3>
               <p className="text-fg-muted text-sm leading-relaxed">{t("k10_desc")}</p>
             </div>
 
             <div className="border-border-subtle bg-bg-secondary hover:border-border-strong rounded-xl border p-6 transition-all">
-              <h3 className="mb-2 text-lg font-bold text-white">{t("k11_title")}</h3>
+              <h3 className="text-balance mb-2 text-lg font-bold text-white">{t("k11_title")}</h3>
               <p className="text-fg-muted text-sm leading-relaxed">{t("k11_desc")}</p>
             </div>
 
             <div className="border-border-subtle bg-bg-secondary hover:border-border-strong rounded-xl border p-6 transition-all">
-              <h3 className="mb-2 text-lg font-bold text-white">{t("k12_title")}</h3>
+              <h3 className="text-balance mb-2 text-lg font-bold text-white">{t("k12_title")}</h3>
               <p className="text-fg-muted text-sm leading-relaxed">{t("k12_desc")}</p>
             </div>
           </div>
@@ -88,7 +88,7 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
 
         {/* Adjudication Engine */}
         <section className="space-y-4">
-          <h2 className="border-border-subtle text-2xl flex items-center space-x-2 border-b pb-3 font-bold text-white">
+          <h2 className="text-balance border-border-subtle text-2xl flex items-center space-x-2 border-b pb-3 font-bold text-white">
             <GitCompare className="text-emerald-accent h-6 w-6" />
             <span>{t("adjudication_heading")}</span>
           </h2>
@@ -97,7 +97,7 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
 
         {/* Adjudication Chain Models */}
         <section className="space-y-4">
-          <h2 className="border-border-subtle text-2xl flex items-center space-x-2 border-b pb-3 font-bold text-white">
+          <h2 className="text-balance border-border-subtle text-2xl flex items-center space-x-2 border-b pb-3 font-bold text-white">
             <GitCompare className="text-emerald-accent h-6 w-6" />
             <span>{t("adjudication_title")}</span>
           </h2>
@@ -128,7 +128,7 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
 
         {/* Statistical Rigor */}
         <section className="space-y-4">
-          <h2 className="border-border-subtle text-2xl flex items-center space-x-2 border-b pb-3 font-bold text-white">
+          <h2 className="text-balance border-border-subtle text-2xl flex items-center space-x-2 border-b pb-3 font-bold text-white">
             <Scale className="text-emerald-accent h-6 w-6" />
             <span>{t("statistical_rigor_title")}</span>
           </h2>

@@ -131,7 +131,7 @@ export default function DataMoatPage() {
               VIRUSTOTAL-STYLE DATA FLYWHEEL ENGINE
             </span>
           </div>
-          <h1 className="font-sans text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
+          <h1 className="text-balance font-sans text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
             Veri Kalkanı & Otonom Tarayıcı Komutası (Data Moat)
           </h1>
           <p className="mt-0.5 text-xs text-[#656d76] dark:text-[#8b949e]">

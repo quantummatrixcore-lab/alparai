@@ -106,7 +106,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ locale
         </CardContent>
         {badges.length > 0 && (
           <div className="border-border-subtle bg-bg-secondary/30 border-t p-6">
-            <h3 className="text-fg-primary mb-3 flex items-center gap-2 text-sm font-semibold">
+            <h3 className="text-balance text-fg-primary mb-3 flex items-center gap-2 text-sm font-semibold">
               <Award className="text-warning-500 h-4 w-4" /> {t("earnedBadges")}
             </h3>
             <div className="flex flex-wrap gap-2">
@@ -145,7 +145,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ locale
         )}
         {interests.length > 0 && (
           <div className="border-border-subtle bg-bg-secondary/20 border-t p-6">
-            <h3 className="text-fg-primary mb-3 flex items-center gap-2 text-sm font-semibold">
+            <h3 className="text-balance text-fg-primary mb-3 flex items-center gap-2 text-sm font-semibold">
               {t("interests")}
             </h3>
             <div className="flex flex-wrap gap-2">

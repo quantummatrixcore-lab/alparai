@@ -18,7 +18,7 @@ export default function SettingsPage() {
               RBAC & SYSTEM CONFIGURATION
             </span>
           </div>
-          <h1 className="font-sans text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
+          <h1 className="text-balance font-sans text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
             Sistem Parametreleri & Rol Masası (RBAC)
           </h1>
           <p className="mt-0.5 text-xs text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
@@ -38,7 +38,7 @@ export default function SettingsPage() {
         <div className="space-y-4 rounded-md border border-[#d0d7de] bg-[#ffffff] p-5 shadow-sm dark:border-[#30363d] dark:bg-[#161b22] dark:shadow-none">
           <div className="flex items-center gap-2 border-b border-[#d0d7de] pb-3 dark:border-[#30363d]">
             <Shield className="h-4 w-4 text-emerald-400" />
-            <h2 className="font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+            <h2 className="text-balance font-bold text-[#1f2328] dark:text-[#f0f6fc]">
               Güvenlik ve Yetkilendirme (RBAC)
             </h2>
           </div>
@@ -88,7 +88,7 @@ export default function SettingsPage() {
         <div className="space-y-4 rounded-md border border-[#d0d7de] bg-[#ffffff] p-5 shadow-sm dark:border-[#30363d] dark:bg-[#161b22] dark:shadow-none">
           <div className="flex items-center gap-2 border-b border-[#d0d7de] pb-3 dark:border-[#30363d]">
             <Sliders className="h-4 w-4 text-cyan-400" />
-            <h2 className="font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+            <h2 className="text-balance font-bold text-[#1f2328] dark:text-[#f0f6fc]">
               B2B API Hız Sınırları & Telemetri
             </h2>
           </div>

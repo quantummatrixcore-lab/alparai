@@ -27,7 +27,7 @@ export default async function AcademyAmbassadorPage({
       <div className="relative mx-auto max-w-4xl px-6">
         {/* Header */}
         <div className="mb-16 text-center">
-          <h1 className="from-fg-primary via-fg-secondary to-accent mb-6 bg-gradient-to-r bg-clip-text text-3xl font-bold tracking-tight text-transparent md:text-5xl">
+          <h1 className="text-balance from-fg-primary via-fg-secondary to-accent mb-6 bg-gradient-to-r bg-clip-text text-3xl font-bold tracking-tight text-transparent md:text-5xl">
             {t("ambassador_title")}
           </h1>
           <p className="text-fg-secondary mx-auto max-w-2xl text-lg leading-relaxed">
@@ -68,7 +68,7 @@ export default async function AcademyAmbassadorPage({
 
         {/* Application Form Component */}
         <div className="bg-bg-secondary/20 border-border-primary/30 mx-auto max-w-2xl rounded-3xl border p-8 shadow-lg backdrop-blur-md md:p-10">
-          <h3 className="text-fg-primary border-border-primary/20 text-2xl mb-8 border-b pb-4 text-center font-bold">
+          <h3 className="text-balance text-fg-primary border-border-primary/20 text-2xl mb-8 border-b pb-4 text-center font-bold">
             {t("ambassador_form_title")}
           </h3>
           <AmbassadorForm locale={locale} />

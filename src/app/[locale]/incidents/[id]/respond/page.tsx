@@ -79,7 +79,7 @@ export default async function RespondPage({
   return (
     <Container className="max-w-3xl py-12">
       <header className="mb-8">
-        <h1 className="text-fg-primary text-3xl font-bold tracking-tight">{t("title")}</h1>
+        <h1 className="text-balance text-fg-primary text-3xl font-bold tracking-tight">{t("title")}</h1>
         <p className="text-fg-muted mt-2 text-sm">{t("subtitle")}</p>
       </header>
 
@@ -88,7 +88,7 @@ export default async function RespondPage({
         <CardContent className="flex items-start gap-3 p-4">
           <FileText className="text-brand-400 mt-0.5 h-5 w-5" />
           <div>
-            <h3 className="text-fg-primary text-sm font-semibold">{t("incident_referenced")}</h3>
+            <h3 className="text-balance text-fg-primary text-sm font-semibold">{t("incident_referenced")}</h3>
             <p className="text-fg-muted mt-1 font-mono text-sm">{incident.title_masked}</p>
           </div>
         </CardContent>
@@ -116,7 +116,7 @@ function renderInvalidToken(t: (key: string) => string) {
       <Card variant="elevated" className="border-danger-500/20 bg-danger-500/5">
         <CardContent className="py-12">
           <AlertCircle className="text-danger-400 mx-auto h-16 w-16" />
-          <h1 className="text-fg-primary text-2xl mt-4 font-bold">
+          <h1 className="text-balance text-fg-primary text-2xl mt-4 font-bold">
             {t("invalid_token")}
           </h1>
           <p className="text-fg-muted mt-2 text-sm">{t("invalid_token_desc")}</p>

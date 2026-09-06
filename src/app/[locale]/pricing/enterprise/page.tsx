@@ -29,7 +29,7 @@ export default async function EnterprisePricingPage({
       <div className="relative mx-auto max-w-6xl px-6">
         {/* Header */}
         <div className="mb-16 text-center">
-          <h1 className="from-fg-primary via-fg-secondary to-accent mb-6 bg-gradient-to-r bg-clip-text text-4xl font-bold tracking-tight text-transparent md:text-5xl">
+          <h1 className="text-balance from-fg-primary via-fg-secondary to-accent mb-6 bg-gradient-to-r bg-clip-text text-4xl font-bold tracking-tight text-transparent md:text-5xl">
             {t("title")}
           </h1>
           <p className="text-fg-secondary mx-auto max-w-2xl text-lg leading-relaxed">
@@ -42,7 +42,7 @@ export default async function EnterprisePricingPage({
           {/* Free Plan */}
           <div className="bg-bg-secondary/30 border-border-primary/50 hover:border-border-primary relative flex flex-col justify-between rounded-3xl border p-8 backdrop-blur-md transition-all duration-300">
             <div>
-              <h3 className="text-fg-primary mb-2 text-xl font-bold">{t("free_title")}</h3>
+              <h3 className="text-balance text-fg-primary mb-2 text-xl font-bold">{t("free_title")}</h3>
               <p className="text-fg-secondary mb-6 text-sm leading-relaxed">
                 {t("free_desc")}
               </p>
@@ -62,7 +62,7 @@ export default async function EnterprisePricingPage({
               Popular
             </div>
             <div>
-              <h3 className="text-fg-primary mb-2 text-xl font-bold">{t("enterprise_title")}</h3>
+              <h3 className="text-balance text-fg-primary mb-2 text-xl font-bold">{t("enterprise_title")}</h3>
               <p className="text-fg-secondary mb-6 text-sm leading-relaxed">
                 {t("enterprise_desc")}
               </p>

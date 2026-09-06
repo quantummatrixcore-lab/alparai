@@ -1,6 +1,0 @@
-{
-  "name": "alparai-ercu-jit-engine",
-  "version": "1.0.0",
-  "type": "commonjs",
-  "description": "High-throughput JIT Swarm Dispatcher for Alparai SaaS"
-}

@@ -72,7 +72,7 @@ export default function GrantsPage() {
               NON-DILUTIVE GRANT AUTOPILOT
             </span>
           </div>
-          <h1 className="text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
+          <h1 className="text-balance text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
             {t("grants")}
           </h1>
           <p className="mt-0.5 text-xs text-[#656d76] dark:text-[#8b949e]">
@@ -112,7 +112,7 @@ export default function GrantsPage() {
 
       {/* Grants Table */}
       <div className="space-y-4 rounded-md border border-[#d0d7de] bg-[#ffffff] p-5 shadow-sm dark:border-[#30363d] dark:bg-[#161b22] dark:shadow-none">
-        <h2 className="text-sm font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+        <h2 className="text-balance text-sm font-bold text-[#1f2328] dark:text-[#f0f6fc]">
           Active Grant Programs & Pipeline
         </h2>
 

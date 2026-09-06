@@ -212,7 +212,7 @@ async function LeaderboardDataContent({
             <div className="bg-brand-500/10 ring-brand-500/20 mb-3 flex h-12 w-12 items-center justify-center rounded-2xl shadow-[0_0_20px_rgba(168,85,247,0.25)] ring-1 backdrop-blur-md">
               <Trophy className="text-brand-400 h-6 w-6" />
             </div>
-            <h1 className="text-fg-primary text-2xl mb-2 font-black tracking-tight sm:text-4xl">
+            <h1 className="text-balance text-fg-primary text-2xl mb-2 font-black tracking-tight sm:text-4xl">
               {_t("title")}
             </h1>
             <p className="text-fg-secondary max-w-xl text-sm sm:text-base">{_t("subtitle")}</p>
@@ -358,7 +358,7 @@ async function LeaderboardDataContent({
                     <div className="bg-brand-500/10 ring-brand-500/5 mb-6 flex h-16 w-16 items-center justify-center rounded-full ring-4">
                       <Trophy className="text-brand-400 h-8 w-8" />
                     </div>
-                    <h3 className="text-fg-primary mb-2 text-xl font-bold">
+                    <h3 className="text-balance text-fg-primary mb-2 text-xl font-bold">
                       {locale === "tr" ? "Sıralama Hazırlanıyor" : "Leaderboard in Progress"}
                     </h3>
                     <p className="text-fg-secondary mb-6 text-sm leading-relaxed">

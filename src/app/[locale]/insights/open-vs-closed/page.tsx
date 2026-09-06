@@ -43,7 +43,7 @@ export default async function OpenVsClosedPage({
         <Badge variant="brand" size="sm">
           {t("openVsClosedTitle")}
         </Badge>
-        <h1 className="text-fg-primary text-3xl font-bold tracking-tight">
+        <h1 className="text-balance text-fg-primary text-3xl font-bold tracking-tight">
           {t("openVsClosedTitle")}
         </h1>
         <p className="text-fg-muted mx-auto max-w-2xl text-sm">{t("openVsClosedDescription")}</p>
@@ -55,7 +55,7 @@ export default async function OpenVsClosedPage({
             <div className="bg-warning-500/10 flex h-12 w-12 items-center justify-center rounded-full">
               <Info className="text-warning-500 h-6 w-6" />
             </div>
-            <h2 className="text-fg-primary text-xl font-bold">{t("insufficientTitle")}</h2>
+            <h2 className="text-balance text-fg-primary text-xl font-bold">{t("insufficientTitle")}</h2>
             <p className="text-fg-muted max-w-md text-sm">{t("insufficientDesc")}</p>
           </CardContent>
         </Card>

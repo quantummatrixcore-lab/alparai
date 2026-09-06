@@ -210,7 +210,7 @@ export default async function IncidentsPage({
             </span>
             Bağımsız Denetim Mercii
           </div>
-          <h1 className="text-4xl font-black tracking-tight text-white drop-shadow-2xl sm:text-5xl">
+          <h1 className="text-balance text-4xl font-black tracking-tight text-white drop-shadow-2xl sm:text-5xl">
             {t("page_title")}
           </h1>
           <p className="text-fg-muted mt-4 max-w-2xl text-base font-medium">

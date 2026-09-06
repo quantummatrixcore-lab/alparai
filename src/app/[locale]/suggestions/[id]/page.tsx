@@ -88,7 +88,7 @@ export default async function SuggestionDetailPage({
             </span>
           </div>
 
-          <h1 className="text-fg-primary text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
+          <h1 className="text-balance text-fg-primary text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
             {suggestion.title}
           </h1>
 

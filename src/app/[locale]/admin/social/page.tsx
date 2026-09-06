@@ -165,7 +165,7 @@ export default function SocialStudioPage() {
               8 MERKEZİ PLATFORM & GOOGLE FLOW
             </span>
           </div>
-          <h1 className="font-sans text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
+          <h1 className="text-balance font-sans text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
             360° Sosyal Medya & Topluluk Komuta Stüdyosu
           </h1>
           <p className="mt-0.5 text-xs text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
@@ -215,7 +215,7 @@ export default function SocialStudioPage() {
       {/* 8 Channels Grid */}
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <h2 className="font-sans text-xs font-bold tracking-wider text-zinc-400 uppercase dark:text-[#8b949e] dark:text-[#656d76]">
+          <h2 className="text-balance font-sans text-xs font-bold tracking-wider text-zinc-400 uppercase dark:text-[#8b949e] dark:text-[#656d76]">
             Bağlı 8 Sosyal & Geliştirici Kanalı
           </h2>
           <div className="flex items-center gap-1">
@@ -263,7 +263,7 @@ export default function SocialStudioPage() {
 
       {/* Post Queue Table */}
       <div className="space-y-4 rounded-md border border-[#d0d7de] bg-[#ffffff] p-5 font-mono text-xs shadow-sm dark:border-[#30363d] dark:bg-[#161b22] dark:shadow-none">
-        <h2 className="font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+        <h2 className="text-balance font-bold text-[#1f2328] dark:text-[#f0f6fc]">
           Zamanlanmış Çok Kanallı Gönderi & Video Kuyruğu
         </h2>
 

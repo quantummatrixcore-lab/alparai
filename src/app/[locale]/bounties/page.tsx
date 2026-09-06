@@ -92,7 +92,7 @@ export default async function BountiesPage({ params }: { params: Promise<{ local
           <Sparkles className="h-4 w-4" />
           {t("eyebrow")}
         </div>
-        <h1 className="from-warning-300 via-warning-500 to-warning-300 mb-3 bg-gradient-to-r bg-clip-text text-4xl font-black tracking-tight text-transparent md:text-5xl">
+        <h1 className="text-balance from-warning-300 via-warning-500 to-warning-300 mb-3 bg-gradient-to-r bg-clip-text text-4xl font-black tracking-tight text-transparent md:text-5xl">
           {t("title")}
         </h1>
         <p className="text-fg-muted text-lg">{t("description")}</p>
@@ -131,7 +131,7 @@ export default async function BountiesPage({ params }: { params: Promise<{ local
           {items.length === 0 ? (
             <div className="mx-auto max-w-4xl p-8 text-center md:p-12">
               <Trophy className="text-warning-400 mx-auto mb-4 h-12 w-12 drop-shadow-[0_0_15px_rgba(245,158,11,0.5)]" />
-              <h2 className="text-fg-primary text-2xl mb-3 font-black">
+              <h2 className="text-balance text-fg-primary text-2xl mb-3 font-black">
                 {t("program_title")}
               </h2>
               <p className="text-fg-secondary mx-auto mb-8 max-w-2xl text-sm leading-relaxed">
@@ -140,19 +140,19 @@ export default async function BountiesPage({ params }: { params: Promise<{ local
 
               <div className="mb-10 grid grid-cols-1 gap-6 text-left md:grid-cols-3">
                 <div className="border-border-subtle bg-bg-secondary/20 rounded-xl border p-5">
-                  <h3 className="text-fg-primary mb-2 text-base font-bold">
+                  <h3 className="text-balance text-fg-primary mb-2 text-base font-bold">
                     {t("program_step1_title")}
                   </h3>
                   <p className="text-fg-muted text-xs leading-relaxed">{t("program_step1_desc")}</p>
                 </div>
                 <div className="border-border-subtle bg-bg-secondary/20 rounded-xl border p-5">
-                  <h3 className="text-fg-primary mb-2 text-base font-bold">
+                  <h3 className="text-balance text-fg-primary mb-2 text-base font-bold">
                     {t("program_step2_title")}
                   </h3>
                   <p className="text-fg-muted text-xs leading-relaxed">{t("program_step2_desc")}</p>
                 </div>
                 <div className="border-border-subtle bg-bg-secondary/20 rounded-xl border p-5">
-                  <h3 className="text-fg-primary mb-2 text-base font-bold">
+                  <h3 className="text-balance text-fg-primary mb-2 text-base font-bold">
                     {t("program_step3_title")}
                   </h3>
                   <p className="text-fg-muted text-xs leading-relaxed">{t("program_step3_desc")}</p>

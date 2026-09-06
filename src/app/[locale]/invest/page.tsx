@@ -26,7 +26,7 @@ export default async function InvestPage({ params }: { params: Promise<{ locale:
             <span className="mr-2 flex h-2 w-2 animate-pulse rounded-full bg-emerald-500"></span>
             {t("badge")}
           </div>
-          <h1 className="mb-8 text-5xl font-bold tracking-tight md:text-7xl">
+          <h1 className="text-balance mb-8 text-5xl font-bold tracking-tight md:text-7xl">
             {t("hero_title_1")}
             <br />
             <span className="text-fg-muted">{t("hero_title_2")}</span>
@@ -78,21 +78,21 @@ export default async function InvestPage({ params }: { params: Promise<{ locale:
       {/* Why Now */}
       <section className="bg-bg-primary px-4 py-16 md:py-24">
         <div className="mx-auto max-w-5xl">
-          <h2 className="mb-16 text-3xl font-bold md:text-5xl">{t("why_now_title")}</h2>
+          <h2 className="text-balance mb-16 text-3xl font-bold md:text-5xl">{t("why_now_title")}</h2>
           <div className="grid gap-8 md:grid-cols-3">
             <div className="border-border-subtle bg-bg-secondary/50 rounded-2xl border p-8">
               <Globe2 className="text-fg-muted mb-6 h-10 w-10" />
-              <h3 className="mb-4 text-xl font-semibold">{t("eu_act_title")}</h3>
+              <h3 className="text-balance mb-4 text-xl font-semibold">{t("eu_act_title")}</h3>
               <p className="text-fg-muted">{t("eu_act_desc")}</p>
             </div>
             <div className="border-border-subtle bg-bg-secondary/50 rounded-2xl border p-8">
               <Zap className="text-fg-muted mb-6 h-10 w-10" />
-              <h3 className="mb-4 text-xl font-semibold">{t("enterprise_demand_title")}</h3>
+              <h3 className="text-balance mb-4 text-xl font-semibold">{t("enterprise_demand_title")}</h3>
               <p className="text-fg-muted">{t("enterprise_demand_desc")}</p>
             </div>
             <div className="border-border-subtle bg-bg-secondary/50 rounded-2xl border p-8">
               <ShieldCheck className="text-fg-muted mb-6 h-10 w-10" />
-              <h3 className="mb-4 text-xl font-semibold">{t("data_moat_title")}</h3>
+              <h3 className="text-balance mb-4 text-xl font-semibold">{t("data_moat_title")}</h3>
               <p className="text-fg-muted">{t("data_moat_desc")}</p>
             </div>
           </div>
@@ -102,7 +102,7 @@ export default async function InvestPage({ params }: { params: Promise<{ locale:
       {/* Contact */}
       <section className="border-t border-border-subtle px-4 py-16 md:py-24 text-center">
         <div className="mx-auto max-w-3xl">
-          <h2 className="mb-8 text-3xl font-bold md:text-5xl">{t("join_round_title")}</h2>
+          <h2 className="text-balance mb-8 text-3xl font-bold md:text-5xl">{t("join_round_title")}</h2>
           <p className="text-fg-muted mb-10 text-xl">{t("join_round_desc")}</p>
           <a
             href="mailto:invest@alparai.com"

@@ -63,3 +63,4 @@ patch.diff
 sleep.*
 turn_off_monitor.ps1
 *.bak
+.deprecated_archive/

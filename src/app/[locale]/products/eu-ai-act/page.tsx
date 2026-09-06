@@ -37,7 +37,7 @@ export default async function EuAiActPage({ params }: { params: Promise<{ locale
               <span>{t("badge")}</span>
             </div>
           </div>
-          <h1 className="text-fg-primary mb-6 text-5xl font-black tracking-tight lg:text-6xl">
+          <h1 className="text-balance text-fg-primary mb-6 text-5xl font-black tracking-tight lg:text-6xl">
             {t("title")}
           </h1>
           <p className="text-fg-secondary text-lg leading-relaxed">{t("subtitle")}</p>
@@ -46,24 +46,24 @@ export default async function EuAiActPage({ params }: { params: Promise<{ locale
         <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           <div className="bg-glass border-border-subtle/50 rounded-2xl border p-6 shadow-xl">
             <CheckCircle2 className="text-success-400 mb-4 h-8 w-8" />
-            <h3 className="text-fg-primary mb-2 text-xl font-bold">{t("art73_title")}</h3>
+            <h3 className="text-balance text-fg-primary mb-2 text-xl font-bold">{t("art73_title")}</h3>
             <p className="text-fg-secondary text-sm">{t("art73_desc")}</p>
           </div>
           <div className="bg-glass border-border-subtle/50 rounded-2xl border p-6 shadow-xl">
             <FileText className="text-brand-400 mb-4 h-8 w-8" />
-            <h3 className="text-fg-primary mb-2 text-xl font-bold">{t("audit_trails_title")}</h3>
+            <h3 className="text-balance text-fg-primary mb-2 text-xl font-bold">{t("audit_trails_title")}</h3>
             <p className="text-fg-secondary text-sm">{t("audit_trails_desc")}</p>
           </div>
           <div className="bg-glass border-border-subtle/50 rounded-2xl border p-6 shadow-xl">
             <Settings className="text-warning-400 mb-4 h-8 w-8" />
-            <h3 className="text-fg-primary mb-2 text-xl font-bold">{t("risk_cat_title")}</h3>
+            <h3 className="text-balance text-fg-primary mb-2 text-xl font-bold">{t("risk_cat_title")}</h3>
             <p className="text-fg-secondary text-sm">{t("risk_cat_desc")}</p>
           </div>
         </div>
 
         <div className="mt-16 text-center">
           <div className="bg-glass border-border-subtle/50 inline-block rounded-2xl border p-8 shadow-2xl">
-            <h2 className="text-fg-primary text-2xl mb-4 font-bold">
+            <h2 className="text-balance text-fg-primary text-2xl mb-4 font-bold">
               {t("join_beta_title")}
             </h2>
             <p className="text-fg-secondary mb-6 max-w-md">{t("join_beta_desc")}</p>

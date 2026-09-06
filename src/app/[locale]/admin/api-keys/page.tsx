@@ -121,7 +121,7 @@ export default function ApiKeysPage() {
               $94,000 MRR AKTİF
             </span>
           </div>
-          <h1 className="font-sans text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
+          <h1 className="text-balance font-sans text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
             B2B API & Veri Satış Masası
           </h1>
           <p className="mt-0.5 text-xs text-[#656d76] dark:text-[#8b949e]">
@@ -363,7 +363,7 @@ export default function ApiKeysPage() {
             className="animate-in fade-in zoom-in w-full max-w-md space-y-4 rounded-lg border border-[#d0d7de] bg-[#ffffff] p-5 shadow-2xl duration-150 dark:border-[#30363d] dark:bg-[#161b22]"
           >
             <div className="flex items-center justify-between border-b border-[#d0d7de] pb-3 dark:border-[#30363d]">
-              <h3 className="font-sans text-sm font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+              <h3 className="text-balance font-sans text-sm font-bold text-[#1f2328] dark:text-[#f0f6fc]">
                 Yeni B2B Kurumsal API Anahtarı Üret
               </h3>
               <button

@@ -87,7 +87,7 @@ export default async function ExpertsPage({ params }: { params: Promise<{ locale
             <span className="text-success-400 text-xs font-black tracking-[0.2em] uppercase">
               {t("hero_eyebrow")}
             </span>
-            <h1 className="text-fg-primary mt-4 text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl">
+            <h1 className="text-balance text-fg-primary mt-4 text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl">
               {t("hero_title")}
             </h1>
             <p className="text-fg-secondary mx-auto mt-6 max-w-2xl text-lg leading-relaxed md:text-xl">
@@ -109,7 +109,7 @@ export default async function ExpertsPage({ params }: { params: Promise<{ locale
       <Section className="py-16">
         <Container>
           <div className="mb-12 text-center">
-            <h2 className="text-fg-primary text-3xl font-extrabold tracking-tight">
+            <h2 className="text-balance text-fg-primary text-3xl font-extrabold tracking-tight">
               {t("who_title")}
             </h2>
             <p className="text-fg-muted mx-auto mt-3 max-w-xl text-sm md:text-base">
@@ -151,7 +151,7 @@ export default async function ExpertsPage({ params }: { params: Promise<{ locale
         <Container>
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
             <div>
-              <h2 className="text-fg-primary text-3xl font-extrabold tracking-tight">
+              <h2 className="text-balance text-fg-primary text-3xl font-extrabold tracking-tight">
                 {t("benefits_title")}
               </h2>
               <p className="text-fg-muted mt-3 text-base leading-relaxed">
@@ -178,7 +178,7 @@ export default async function ExpertsPage({ params }: { params: Promise<{ locale
             {/* Decorative Card Stack or graphic */}
             <div className="from-success-500/5 to-brand-500/5 border-border-subtle flex flex-col items-center justify-center rounded-2xl border bg-gradient-to-br p-8 text-center">
               <Award className="text-success-400 h-16 w-16 animate-pulse" />
-              <h3 className="mt-4 text-xl font-bold text-white">{t("badge_title")}</h3>
+              <h3 className="text-balance mt-4 text-xl font-bold text-white">{t("badge_title")}</h3>
               <p className="text-fg-muted mt-2 max-w-xs text-sm">{t("badge_description")}</p>
             </div>
           </div>
@@ -189,7 +189,7 @@ export default async function ExpertsPage({ params }: { params: Promise<{ locale
       <Section id="apply-form" className="py-16">
         <Container className="max-w-2xl">
           <div className="mb-10 text-center">
-            <h2 className="text-fg-primary text-3xl font-extrabold tracking-tight">
+            <h2 className="text-balance text-fg-primary text-3xl font-extrabold tracking-tight">
               {t("form_title")}
             </h2>
             <p className="text-fg-muted mt-2 text-sm">{t("form_subtitle")}</p>

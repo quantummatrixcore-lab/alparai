@@ -62,7 +62,7 @@ export default async function AcademyPage({ params }: { params: Promise<{ locale
               <GraduationCap className="mr-2 h-4 w-4" />
               {t("hero_badge")}
             </Badge>
-            <h1 className="bg-gradient-to-r from-white to-white/70 bg-clip-text text-3xl font-black tracking-tight text-transparent sm:text-5xl md:text-6xl">
+            <h1 className="text-balance bg-gradient-to-r from-white to-white/70 bg-clip-text text-3xl font-black tracking-tight text-transparent sm:text-5xl md:text-6xl">
               {t("hero_title")}
             </h1>
             <p className="text-fg-muted max-w-2xl text-base leading-relaxed md:text-lg">
@@ -90,18 +90,18 @@ export default async function AcademyPage({ params }: { params: Promise<{ locale
       <section className="border-border-subtle bg-bg-secondary/50 border-b py-24">
         <Container>
           <div className="mx-auto mb-16 max-w-3xl md:text-center">
-            <h2 className="mb-4 text-3xl font-bold">{t("partnership_title")}</h2>
+            <h2 className="text-balance mb-4 text-3xl font-bold">{t("partnership_title")}</h2>
             <p className="text-fg-muted text-lg">{t("partnership_subtitle")}</p>
           </div>
           <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2">
             <div className="bg-bg-tertiary border-border-subtle hover:border-brand-500/30 rounded-2xl border p-8 transition-colors">
               <BookOpen className="text-brand-400 mb-6 h-10 w-10" />
-              <h3 className="mb-3 text-xl font-semibold">{t("card_curriculum_title")}</h3>
+              <h3 className="text-balance mb-3 text-xl font-semibold">{t("card_curriculum_title")}</h3>
               <p className="text-fg-muted leading-relaxed">{t("card_curriculum_desc")}</p>
             </div>
             <div className="bg-bg-tertiary border-border-subtle hover:border-brand-500/30 rounded-2xl border p-8 transition-colors">
               <Database className="text-brand-400 mb-6 h-10 w-10" />
-              <h3 className="mb-3 text-xl font-semibold">{t("card_research_title")}</h3>
+              <h3 className="text-balance mb-3 text-xl font-semibold">{t("card_research_title")}</h3>
               <p className="text-fg-muted leading-relaxed">{t("card_research_desc")}</p>
             </div>
           </div>
@@ -135,7 +135,7 @@ export default async function AcademyPage({ params }: { params: Promise<{ locale
       <section className="border-border-subtle bg-bg-secondary/30 border-b py-24">
         <Container>
           <div className="mx-auto mb-16 max-w-3xl md:text-center">
-            <h2 className="mb-4 text-3xl font-bold">{t("expert_title")}</h2>
+            <h2 className="text-balance mb-4 text-3xl font-bold">{t("expert_title")}</h2>
             <p className="text-fg-muted text-lg">{t("expert_subtitle")}</p>
           </div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -161,7 +161,7 @@ export default async function AcademyPage({ params }: { params: Promise<{ locale
       <section className="border-border-subtle border-b py-24">
         <Container>
           <div className="mx-auto mb-16 max-w-3xl md:text-center">
-            <h2 className="mb-4 text-3xl font-bold">{t("programs_title")}</h2>
+            <h2 className="text-balance mb-4 text-3xl font-bold">{t("programs_title")}</h2>
           </div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {[
@@ -199,7 +199,7 @@ export default async function AcademyPage({ params }: { params: Promise<{ locale
         <Container>
           <div className="grid items-center gap-16 lg:grid-cols-2">
             <div>
-              <h2 className="mb-6 text-3xl font-bold">{t("regulatory_title")}</h2>
+              <h2 className="text-balance mb-6 text-3xl font-bold">{t("regulatory_title")}</h2>
               <p className="text-fg-muted mb-8 text-lg leading-relaxed">
                 {t("regulatory_subtitle")}
               </p>
@@ -216,7 +216,7 @@ export default async function AcademyPage({ params }: { params: Promise<{ locale
               <div className="from-brand-500/20 absolute inset-0 rounded-full bg-gradient-to-tr to-transparent blur-3xl" />
               <div className="bg-bg-tertiary border-border-subtle relative rounded-2xl border p-8 shadow-xl backdrop-blur-md">
                 <div className="mb-4 flex items-center justify-between gap-4">
-                  <h3 className="text-fg-primary text-xl font-bold">{t("eu_ai_act_card_title")}</h3>
+                  <h3 className="text-balance text-fg-primary text-xl font-bold">{t("eu_ai_act_card_title")}</h3>
                   <div className="bg-brand-500/10 text-brand-400 border-brand-500/20 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border">
                     <ShieldCheck className="h-5 w-5" />
                   </div>
@@ -236,21 +236,21 @@ export default async function AcademyPage({ params }: { params: Promise<{ locale
       {/* SECTION 6 - SCOPE AREAS */}
       <section className="border-border-subtle bg-bg-secondary/50 border-b py-24">
         <Container>
-          <h2 className="mb-12 text-3xl font-bold md:text-center">{t("scope_title")}</h2>
+          <h2 className="text-balance mb-12 text-3xl font-bold md:text-center">{t("scope_title")}</h2>
           <div className="grid gap-8 md:grid-cols-3">
             <div className="border-border-subtle bg-bg-primary rounded-2xl border p-8">
               <Eye className="text-brand-400 mb-4 h-8 w-8" />
-              <h3 className="mb-3 text-xl font-semibold">{t("scope_tech")}</h3>
+              <h3 className="text-balance mb-3 text-xl font-semibold">{t("scope_tech")}</h3>
               <p className="text-fg-muted">{t("scope_tech_desc")}</p>
             </div>
             <div className="border-border-subtle bg-bg-primary rounded-2xl border p-8">
               <Users className="text-brand-400 mb-4 h-8 w-8" />
-              <h3 className="mb-3 text-xl font-semibold">{t("scope_ethics")}</h3>
+              <h3 className="text-balance mb-3 text-xl font-semibold">{t("scope_ethics")}</h3>
               <p className="text-fg-muted">{t("scope_ethics_desc")}</p>
             </div>
             <div className="border-border-subtle bg-bg-primary rounded-2xl border p-8">
               <FileText className="text-brand-400 mb-4 h-8 w-8" />
-              <h3 className="mb-3 text-xl font-semibold">{t("scope_legal")}</h3>
+              <h3 className="text-balance mb-3 text-xl font-semibold">{t("scope_legal")}</h3>
               <p className="text-fg-muted">{t("scope_legal_desc")}</p>
             </div>
           </div>
@@ -261,7 +261,7 @@ export default async function AcademyPage({ params }: { params: Promise<{ locale
       <section className="border-border-subtle border-b py-24">
         <Container>
           <div className="mx-auto mb-16 max-w-3xl md:text-center">
-            <h2 className="mb-4 text-3xl font-bold">{t("roadmap_title")}</h2>
+            <h2 className="text-balance mb-4 text-3xl font-bold">{t("roadmap_title")}</h2>
           </div>
           <div className="before:via-border-strong relative mx-auto max-w-4xl before:absolute before:inset-0 before:ml-5 before:h-full before:w-0.5 before:-translate-x-px before:bg-gradient-to-b before:from-transparent before:to-transparent md:before:mx-auto md:before:translate-x-0">
             {[
@@ -302,7 +302,7 @@ export default async function AcademyPage({ params }: { params: Promise<{ locale
       <section id="universities" className="border-border-subtle bg-bg-secondary/30 border-b py-24">
         <Container>
           <div className="mx-auto mb-16 max-w-3xl md:text-center">
-            <h2 className="mb-4 text-3xl font-bold">{t("uni_title")}</h2>
+            <h2 className="text-balance mb-4 text-3xl font-bold">{t("uni_title")}</h2>
             <p className="text-fg-muted text-lg">{t("uni_subtitle")}</p>
           </div>
           <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
@@ -346,10 +346,10 @@ export default async function AcademyPage({ params }: { params: Promise<{ locale
         <Container className="relative">
           <div className="mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-2">
             <div>
-              <h2 className="mb-6 text-4xl font-bold md:text-5xl">{t("apply_title")}</h2>
+              <h2 className="text-balance mb-6 text-4xl font-bold md:text-5xl">{t("apply_title")}</h2>
               <p className="text-fg-muted mb-12 text-xl">{t("apply_subtitle")}</p>
               <div className="bg-bg-secondary border-border-subtle mb-8 rounded-2xl border p-8">
-                <h3 className="text-2xl mb-4 font-semibold text-white">
+                <h3 className="text-balance text-2xl mb-4 font-semibold text-white">
                   {t("apply_card_title")}
                 </h3>
                 <p className="text-fg-secondary mb-6 leading-relaxed">{t("apply_card_desc")}</p>

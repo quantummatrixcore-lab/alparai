@@ -74,7 +74,7 @@ export default async function MethodologyCommitteePage({
       <div className="relative mx-auto max-w-5xl px-6">
         {/* Header */}
         <div className="mb-16 text-center">
-          <h1 className="from-fg-primary via-fg-secondary to-accent mb-6 bg-gradient-to-r bg-clip-text text-4xl font-bold tracking-tight text-transparent md:text-5xl">
+          <h1 className="text-balance from-fg-primary via-fg-secondary to-accent mb-6 bg-gradient-to-r bg-clip-text text-4xl font-bold tracking-tight text-transparent md:text-5xl">
             {t("title")}
           </h1>
           <p className="text-fg-secondary mx-auto max-w-2xl text-lg leading-relaxed">
@@ -105,7 +105,7 @@ export default async function MethodologyCommitteePage({
                     </div>
                   )}
                   <div>
-                    <h3 className="text-fg-primary group-hover:text-accent font-semibold transition-colors duration-200">
+                    <h3 className="text-balance text-fg-primary group-hover:text-accent font-semibold transition-colors duration-200">
                       {member.name}
                     </h3>
                     <p className="text-fg-secondary text-sm font-medium">{member.role}</p>
@@ -132,7 +132,7 @@ export default async function MethodologyCommitteePage({
                 />
               </svg>
             </div>
-            <h3 className="text-fg-primary mb-3 text-xl font-bold">{t("empty_title")}</h3>
+            <h3 className="text-balance text-fg-primary mb-3 text-xl font-bold">{t("empty_title")}</h3>
             <p className="text-fg-secondary text-sm leading-relaxed">{t("empty_text")}</p>
           </div>
         )}

@@ -97,7 +97,7 @@ export default async function IncidentEmbedPage({ params }: EmbedPageProps) {
 
         {/* Content */}
         <div className="mt-4">
-          <h2 className="text-fg-primary hover:text-brand-400 line-clamp-2 text-base leading-snug font-extrabold tracking-tight transition-colors">
+          <h2 className="text-balance text-fg-primary hover:text-brand-400 line-clamp-2 text-base leading-snug font-extrabold tracking-tight transition-colors">
             <a href={targetUrl} target="_blank" rel="noopener noreferrer">
               {displayTitle}
             </a>

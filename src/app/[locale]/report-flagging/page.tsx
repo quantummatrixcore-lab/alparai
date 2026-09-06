@@ -45,7 +45,7 @@ export default async function ReportFlaggingPage({
             <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-[hsl(260_80%_70%)]" />
             {t("badge")}
           </span>
-          <h1 className="mt-4 bg-gradient-to-br from-white via-slate-200 to-slate-400 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl">
+          <h1 className="text-balance mt-4 bg-gradient-to-br from-white via-slate-200 to-slate-400 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl">
             {t("title")}
           </h1>
           <p className="text-fg-muted mt-4 text-lg leading-relaxed">{t("subtitle")}</p>

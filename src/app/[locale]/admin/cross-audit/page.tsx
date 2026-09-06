@@ -97,7 +97,7 @@ export default function CrossAuditPage() {
               %96.4 BYZANTINE KONSENSÜS QUORUM
             </span>
           </div>
-          <h1 className="font-sans text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
+          <h1 className="text-balance font-sans text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
             Çoklu Model Çapraz Denetim Masası (Cross-Audit)
           </h1>
           <p className="mt-0.5 text-xs text-[#656d76] dark:text-[#8b949e]">

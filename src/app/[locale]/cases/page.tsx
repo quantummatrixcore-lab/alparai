@@ -37,7 +37,7 @@ export default async function CasesIndexPage({ params }: { params: Promise<{ loc
           <span className="bg-brand-500/10 text-brand-400 inline-block rounded-full px-3 py-1 text-xs font-semibold">
             {t("badge")}
           </span>
-          <h1 className="text-fg-primary mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl">
+          <h1 className="text-balance text-fg-primary mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl">
             {t("headline")}
           </h1>
           <p className="text-fg-muted mx-auto mt-4 max-w-2xl text-base leading-relaxed">

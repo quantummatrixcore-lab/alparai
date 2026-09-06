@@ -42,7 +42,7 @@ export default async function ModelHistoryPage({
 
   return (
     <Container className="py-12">
-      <h1 className="text-fg-primary mb-2 text-3xl font-bold">
+      <h1 className="text-balance text-fg-primary mb-2 text-3xl font-bold">
         {t("historyFor", { name: model.name })}
       </h1>
       <p className="text-fg-muted mb-8">{t("historyDesc")}</p>
@@ -50,7 +50,7 @@ export default async function ModelHistoryPage({
       <div className="grid gap-6 md:grid-cols-2">
         {(scores ?? []).map((s) => (
           <div key={s.category_id} className="border-border-subtle rounded-lg border p-4">
-            <h3 className="text-fg-primary mb-3 font-semibold">{t(`cat_${s.category_id}`)}</h3>
+            <h3 className="text-balance text-fg-primary mb-3 font-semibold">{t(`cat_${s.category_id}`)}</h3>
             <ScoreHistoryChart
               score={s.score ?? 0}
               lower={s.wilson_lower ?? 0}

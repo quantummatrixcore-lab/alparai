@@ -56,7 +56,7 @@ export default async function VisionPage({ params }: { params: Promise<{ locale:
               <BookOpen className="h-4 w-4" />
               <span>The AI Constitution</span>
             </div>
-            <h1 className="mb-8 text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-7xl">
+            <h1 className="text-balance mb-8 text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-7xl">
               Society is writing the <br/>
               <span className="bg-gradient-to-r from-brand-400 to-cyan-400 bg-clip-text text-transparent">Constitution of AI</span>
             </h1>
@@ -76,7 +76,7 @@ export default async function VisionPage({ params }: { params: Promise<{ locale:
                   <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/5 group-hover:bg-brand-500/10 transition-colors">
                     {item.icon}
                   </div>
-                  <h3 className="mb-4 text-2xl font-bold text-white">{item.title}</h3>
+                  <h3 className="text-balance mb-4 text-2xl font-bold text-white">{item.title}</h3>
                   <p className="text-base leading-relaxed text-fg-muted">
                     {item.description}
                   </p>

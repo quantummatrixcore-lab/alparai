@@ -45,7 +45,7 @@ export default async function PressKitPage({ params }: { params: Promise<{ local
             <span className="border-success-500/20 rounded-full border bg-emerald-500/10 px-3 py-1 text-xs font-bold tracking-wider text-emerald-400 uppercase">
               {t("mediaResources")}
             </span>
-            <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+            <h1 className="text-balance text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
               {t("title")}
             </h1>
             <p className="text-fg-muted mx-auto max-w-xl text-lg leading-relaxed">
@@ -169,7 +169,7 @@ export default async function PressKitPage({ params }: { params: Promise<{ local
 
             {/* Press Releases */}
             <div className="space-y-4 pt-6">
-              <h2 className="flex items-center gap-2 text-xl font-bold text-white">
+              <h2 className="text-balance flex items-center gap-2 text-xl font-bold text-white">
                 <FileText className="h-5 w-5 text-emerald-400" /> {t("pressReleasesTitle")}
               </h2>
               <p className="text-fg-muted text-sm">{t("pressReleasesDesc")}</p>
@@ -197,7 +197,7 @@ export default async function PressKitPage({ params }: { params: Promise<{ local
                           ))}
                         </div>
                       </div>
-                      <h3 className="text-lg leading-tight font-bold text-white transition-colors group-hover:text-emerald-400">
+                      <h3 className="text-balance text-lg leading-tight font-bold text-white transition-colors group-hover:text-emerald-400">
                         {release.title[isEn ? "en" : "tr"]}
                       </h3>
                       <p className="text-fg-muted line-clamp-2 text-sm leading-relaxed">
@@ -220,7 +220,7 @@ export default async function PressKitPage({ params }: { params: Promise<{ local
                 <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-400">
                   <Download className="h-6 w-6" />
                 </div>
-                <h3 className="text-sm font-bold text-white">{t("downloadTitle")}</h3>
+                <h3 className="text-balance text-sm font-bold text-white">{t("downloadTitle")}</h3>
                 <p className="text-fg-muted text-xs">{t("downloadDesc")}</p>
                 <a
                   href="/brand-assets.zip"

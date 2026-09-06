@@ -69,7 +69,7 @@ export default function InvestorsPage() {
             </span>
             <span className="text-xs font-semibold text-emerald-400">SERIES SEED / A PIPELINE</span>
           </div>
-          <h1 className="text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
+          <h1 className="text-balance text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
             {t("investors")}
           </h1>
           <p className="mt-0.5 text-xs text-[#656d76] dark:text-[#8b949e]">
@@ -108,7 +108,7 @@ export default function InvestorsPage() {
 
       {/* Investors Table */}
       <div className="space-y-4 rounded-md border border-[#d0d7de] bg-[#ffffff] p-5 shadow-sm dark:border-[#30363d] dark:bg-[#161b22] dark:shadow-none">
-        <h2 className="text-sm font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+        <h2 className="text-balance text-sm font-bold text-[#1f2328] dark:text-[#f0f6fc]">
           Institutional Investor Roster & Status
         </h2>
 

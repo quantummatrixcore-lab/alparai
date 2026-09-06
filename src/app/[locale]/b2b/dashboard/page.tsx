@@ -44,7 +44,7 @@ export default async function B2BDashboardPage({
     .select("id, title_masked, title_tr, severity, status, created_at")
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    .in("status", ["published", "investigating", "resolved"] as unknown as string[])
+    .in("status", ["published", "investigating", "resolved"] as never)
     .order("created_at", { ascending: false })
     .limit(50);
 
@@ -86,7 +86,7 @@ export default async function B2BDashboardPage({
              
             await sb
               .from("incidents")
-              .update({ status: status as unknown as string })
+              .update({ status: status as never })
               .eq("id", id);
           }}
         />

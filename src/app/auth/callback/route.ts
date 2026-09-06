@@ -128,7 +128,7 @@ export async function GET(request: NextRequest) {
           email: user.email || "",
           name: user.user_metadata?.full_name || user.user_metadata?.name || user.email?.split("@")[0] || "User",
           picture: user.user_metadata?.avatar_url || user.user_metadata?.picture || "",
-          role: (user.app_metadata?.role as string) || "user",
+          role: (user.app_metadata?.role as "user" | "moderator" | "admin" | "ceo" | "instructor") || "user",
         });
 
         response.cookies.set(cookie.name, cookie.value, cookie.options);

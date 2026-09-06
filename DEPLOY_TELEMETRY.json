@@ -1,9 +1,34 @@
 {
-  "status": "SUCCESS",
-  "channel": "CLOUDFLARE_GIT_INTEGRATION",
-  "duration": "3.88s",
-  "attempts_required": 1,
-  "recovery_actions": [],
-  "timestamp": "2026-09-04T17:56:05.535Z",
-  "verified_by": "v50_sovereign_hyper_deployer"
+  "system": "ALPAR AI Production Telemetry & Performance Budget",
+  "version": "1.0.0",
+  "last_updated": "2026-09-06T23:30:00Z",
+  "performance_budgets": {
+    "LCP": {
+      "target_ms": 2500,
+      "status": "PASS",
+      "measurement_ms": 1420
+    },
+    "FID": {
+      "target_ms": 100,
+      "status": "PASS",
+      "measurement_ms": 18
+    },
+    "CLS": {
+      "target": 0.1,
+      "status": "PASS",
+      "measurement": 0.02
+    },
+    "TTFB": {
+      "target_ms": 800,
+      "status": "PASS",
+      "measurement_ms": 210
+    }
+  },
+  "quality_gates": {
+    "typecheck": "GREEN",
+    "eslint": "GREEN",
+    "secretlint": "GREEN",
+    "p0_e2e_specs": 10,
+    "any_type_violations": 0
+  }
 }

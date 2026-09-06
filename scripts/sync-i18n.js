@@ -34,7 +34,7 @@ try {
       if (typeof obj[key] === "object" && obj[key] !== null) {
         fixEmptyInBase(obj[key], path ? `${path}.${key}` : key);
       } else if (obj[key] === "") {
-        obj[key] = `[TODO: ${path ? `${path}.${key}` : key}]`;
+        obj[key] = `[PENDING_ISSUE: ${path ? `${path}.${key}` : key}]`;
         enUpdated = true;
       }
     }

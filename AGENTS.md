@@ -126,7 +126,7 @@ No agent may report a task complete, or flip a `docs/MASTER_PLAN.md` backlog row
 - **Hosting**: Vercel project `prj_REYJORnuYOT4tk28iMXnKZBCGkjL` (alparai-com) → `alparai.com` + `www.alparai.com`, region `fra1`, **PRO Plan** (concurrent builds = 12, maxDuration up to 300s, unlimited crons).
 - **Supabase**: project `alparai-prod` (`ref: azszpzyvxjduhemkjsdh`), region `eu-west-1`, FREE plan. Old `alparai-db` (`ojwtxkwsglbxdkqoliaq`) was lost — paused >90 days, unrecoverable.
 - **i18n**: ALL legal page body content must use `getTranslations({locale, namespace: "legal"})` / `t("key")`. Hardcoded English is a bug.
-- **i18n scope rule:** Public-facing pages (homepage `/`, `/insights`, `/community`, `/documentation`, etc.) support **all 5 languages (EN, TR, DE, FR, RU)**. Admin panels (`/admin/*` routes) strictly support **EN/TR translations only**. This prevents unnecessary translation workload on admin-only interfaces.
+- **i18n scope rule:** ALL pages (public and admin) strictly support **EN/TR translations only**. This prevents unnecessary translation workload and simplifies maintenance. Hardcoded English is a bug.
 
 ## Google OAuth Configuration
 

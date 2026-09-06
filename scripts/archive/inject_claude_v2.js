@@ -7,7 +7,7 @@ const promptText = `Claude, sen şu an Agent-OS (Dünyanın İlk Yapay Zeka İş
 
 Senden çok kapsamlı bir "Blok Planlama (Master Plan)" çıkarmanı istiyorum. Aşağıdaki yapılacaklar listesindeki (to-do) her bir kritik konuyu derinlemesine analiz et ve bize devasa bir mimari yol haritası sun:
 
-YAPILACAKLAR VE PLANLANACAKLAR LİSTESİ (TODO):
+YAPILACAKLAR VE PLANLANACAKLAR LİSTESİ (PENDING_ISSUE):
 1. Bütün Sürüyü (Wolf Pack / Ajanları) Nasıl Yöneteceğiz? Komuta kontrol merkezi nasıl olmalı, görev dağılımları ve otonom iletişim protokolleri nasıl işleyecek?
 2. Ajan Skilleri Nerede Duracak? Skilleri (Ajan yeteneklerini) Google Drive'a mı yükleyeceğiz, yoksa Google NotebookLM üzerinden mi (Kalıcı hafıza/Oracle olarak) besleyeceğiz? Hangisi daha performanslı ve ucuz olur?
 3. Google Ekosisteminin Tam Entegrasyonu: Google AI Studio (Ana Zeka), Drive, Cloud Console, Colab, NotebookLM bu altyapıları Agent-OS'un içine tam entegre edecek otonom köprüler nasıl kurulmalı?

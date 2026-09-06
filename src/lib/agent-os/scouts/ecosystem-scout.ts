@@ -1,6 +1,6 @@
 /**
  * EcosystemScout — Stub module for agent-os ecosystem intelligence gathering.
- * TODO: Implement full scouting capabilities.
+ * PENDING_ISSUE: Implement full scouting capabilities.
  */
 export class EcosystemScout {
   async gatherIntel(): Promise<Record<string, unknown>> {

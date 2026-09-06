@@ -1,4 +1,3 @@
-import DOMPurify from 'isomorphic-dompurify';
 import {
   APP_NAME,
   APP_DESCRIPTION,

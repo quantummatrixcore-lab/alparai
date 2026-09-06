@@ -3,9 +3,16 @@ import OpenAI from "openai";
 import { logger } from "@/lib/utils/logger";
 import type { ProviderAdapter, GatewayRequest, GatewayResult } from "../types";
 
-// Tek iç uç: kutudaki Ollama (OpenAI-uyumlu /v1). GPU yok, 8B sınıfı modeller.
-// Env: AI_GATEWAY_URL (varsayılan http://127.0.0.1:11434/v1), AI_CHAT_MODEL (varsayılan llama3.1:8b)
-const SOVEREIGN_BASE_URL = process.env.AI_GATEWAY_URL || "http://127.0.0.1:11434/v1";
+// Sovereign ErcuOS & DeHost Internal Bridge:
+// Env precedence: ERCUOS_API_URL -> AI_GATEWAY_URL -> default local Ollama/ErcuOS on DeHost container network
+const SOVEREIGN_BASE_URL =
+  process.env.ERCUOS_API_URL ||
+  process.env.AI_GATEWAY_URL ||
+  "http://127.0.0.1:11434/v1";
+const SOVEREIGN_API_KEY =
+  process.env.ERCUOS_API_KEY ||
+  process.env.AI_GATEWAY_KEY ||
+  "sovereign-internal";
 const REQUEST_TIMEOUT_MS = 60_000;
 const MAX_RETRIES = 0;
 
@@ -17,7 +24,7 @@ export class SovereignAdapter implements ProviderAdapter {
   async call(request: GatewayRequest): Promise<GatewayResult> {
     const client = new OpenAI({
       baseURL: SOVEREIGN_BASE_URL,
-      apiKey: "ollama",
+      apiKey: SOVEREIGN_API_KEY,
       timeout: REQUEST_TIMEOUT_MS,
       maxRetries: MAX_RETRIES,
     });

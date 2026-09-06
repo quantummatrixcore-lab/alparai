@@ -66,7 +66,7 @@ function measureLanguage(lang) {
 }
 
 function main() {
-  const languages = ["de", "fr", "ru", "tr"];
+  const languages = ["tr"];
   for (const lang of languages) {
     measureLanguage(lang);
   }

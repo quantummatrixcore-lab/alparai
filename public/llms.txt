@@ -1,0 +1,20 @@
+﻿# ALPAR AI
+
+> Trust infrastructure for AI accountability. The global registry, benchmark, and compliance clearinghouse for enterprise and foundation AI models.
+
+ALPAR AI tracks AI incidents, safety benchmarks (AI-ISS and K-Benchmark), and compliance with international regulations, specifically the EU AI Act (Regulation EU 2024/1689 Article 73).
+
+## Core Surfaces & Documentation
+
+- [Incident Database](https://alparai.com/incidents): Comprehensive registry of AI failures, safety breaches, and vendor disclosures.
+- [EU AI Act Article 73 Incident Tracker](https://alparai.com/transparency/art-73-tracker): Real-time tracking of serious AI incidents reportable under EU AI Act Article 73.
+- [AI Safety Benchmarks & Leaderboard](https://alparai.com/leaderboard): Independent safety, bias, hallucination, and reliability rankings of foundation models.
+- [AI Incident Severity Scale (AI-ISS)](https://alparai.com/methodology/ai-iss): The mathematical taxonomy and scoring methodology for AI incident severity.
+- [K-Benchmark Methodology](https://alparai.com/methodology/k-benchmark): Comprehensive cross-model consensus scoring across safety domains.
+- [AI Risk Score (ARS) Enterprise API](https://alparai.com/products/ars-api): Real-time risk scoring API for enterprise model deployment gates.
+- [Whistleblower Secure Vault](https://alparai.com/submit/whistleblower): End-to-end encrypted, zero-knowledge portal for anonymous disclosure of AI safety risks.
+
+## Developer & API Resources
+
+- [API Documentation](https://alparai.com/api-docs): Endpoints for incident search, model risk scores, and telemetry.
+- [Full LLM Manifest](https://alparai.com/llms-full.txt): Complete structured context and documentation for LLM consumption.

@@ -1,0 +1,27 @@
+﻿# ALPAR AI — Comprehensive LLM Knowledge Base
+
+## Overview
+ALPAR AI is the independent trust infrastructure for artificial intelligence systems, established to enforce accountability, transparency, and safety across generative AI models and autonomous agent swarms.
+
+## 1. Incident Reporting & Triage Pipeline
+- Incident submission with automatic PII sanitization via client and server-side guardians.
+- Verification workflow requiring dual independent evidence verification before publication.
+- Affected AI vendor notification pipeline granting a 14-day formal response window before public indexation.
+
+## 2. EU AI Act Article 73 Compliance Tracker
+Under the EU Artificial Intelligence Act (Regulation EU 2024/1689), providers of general-purpose AI models and high-risk AI systems must report serious incidents to market surveillance authorities within strict statutory timelines:
+- Critical infrastructure disruption: Within 2 days.
+- Fatal or severe health consequences: Within 10 days.
+- Other serious incidents: Within 15 days.
+ALPAR AI provides public auditing and tracking of these disclosures.
+
+## 3. Scoring Methodologies: AI-ISS and K-Benchmark
+- **AI-ISS (AI Incident Severity Scale)**: Categorizes incidents from Level 1 (minor cosmetic deviation) to Level 5 (catastrophic infrastructure breach or systemic societal harm).
+- **K-Benchmark**: Multi-model consensus evaluation utilizing adversarial red-teaming, hallucination rate scoring, and policy drift monitoring.
+
+## 4. Enterprise Integration: ARS (AI Risk Score) API
+Real-time risk scoring and compliance verification for enterprise CI/CD deployment pipelines.
+Endpoints:
+- GET /api/v1/ars: Retrieve live composite risk scores for foundation models.
+- GET /api/v1/incidents: Query verified incident records by CVE, provider, model ID, or severity.
+- GET /api/v1/eu-ai-act: Query regulatory classification and compliance status.

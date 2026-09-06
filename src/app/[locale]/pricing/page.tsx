@@ -1,9 +1,9 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { useTranslations, useLocale } from "next-intl";
 import type { Metadata } from "next";
 import { constructPageMetadata } from "@/lib/seo/metadata";
 import { PricingProductJsonLd, BreadcrumbJsonLd, FAQJsonLd } from "@/components/seo/json-ld";
 import { APP_URL } from "@/lib/constants";
+import { Link } from "@/i18n/routing";
 
 export async function generateMetadata({
   params,
@@ -22,13 +22,14 @@ export async function generateMetadata({
   });
 }
 
-export default function PricingPage({
+export default async function PricingPage({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  const locale = useLocale();
-  const t = useTranslations("pricing");
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: "pricing" });
 
   return (
     <div className="bg-bg-primary selection:bg-brand-500/30 min-h-screen px-6 pt-4 pb-12 text-white md:pt-8 md:pb-16">
@@ -58,9 +59,12 @@ export default function PricingPage({
               <li className="flex items-center gap-3">✓ {t("free_feature_3")}</li>
               <li className="flex items-center gap-3">✓ {t("free_feature_4")}</li>
             </ul>
-            <button className="w-full rounded-lg bg-white py-3 font-medium text-black transition-colors hover:bg-zinc-200">
+            <Link
+              href="/onboarding"
+              className="block w-full text-center rounded-lg bg-white py-3 font-medium text-black transition-colors hover:bg-zinc-200"
+            >
               {t("free_cta")}
-            </button>
+            </Link>
           </div>
 
           {/* Startup Tier */}
@@ -79,9 +83,12 @@ export default function PricingPage({
               </li>
               <li className="flex items-center gap-3">✓ {t("startup_feature_3")}</li>
             </ul>
-            <button className="border-border-strong w-full rounded-lg border bg-white/10 py-3 font-medium text-white transition-colors hover:bg-white/20">
+            <Link
+              href="/contact"
+              className="block w-full text-center border-border-strong rounded-lg border bg-white/10 py-3 font-medium text-white transition-colors hover:bg-white/20"
+            >
               {t("startup_cta")}
-            </button>
+            </Link>
           </div>
 
           {/* Enterprise Tier */}
@@ -99,18 +106,21 @@ export default function PricingPage({
               <li className="flex items-center gap-3">✓ {t("enterprise_feature_3")}</li>
               <li className="flex items-center gap-3">✓ {t("enterprise_feature_4")}</li>
             </ul>
-            <button className="border-border-subtle w-full rounded-lg border bg-white/5 py-3 font-medium text-white transition-colors hover:bg-white/10">
+            <Link
+              href="/enterprise"
+              className="block w-full text-center border-border-subtle rounded-lg border bg-white/5 py-3 font-medium text-white transition-colors hover:bg-white/10"
+            >
               {t("enterprise_cta")}
-            </button>
+            </Link>
           </div>
         </div>
 
         <div className="text-fg-muted pt-8 text-center text-sm">
           <p>
             {t("neutrality_notice")}{" "}
-            <a href="#" className="underline">
+            <Link href="/legal/neutrality" className="underline">
               {t("neutrality_link")}
-            </a>
+            </Link>
           </p>
         </div>
 

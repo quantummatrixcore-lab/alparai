@@ -264,6 +264,46 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/:locale/register",
+        destination: "/:locale/auth/signin",
+        permanent: true,
+      },
+      {
+        source: "/register",
+        destination: "/auth/signin",
+        permanent: true,
+      },
+      {
+        source: "/:locale/signup",
+        destination: "/:locale/auth/signin",
+        permanent: true,
+      },
+      {
+        source: "/signup",
+        destination: "/auth/signin",
+        permanent: true,
+      },
+      {
+        source: "/:locale/auth/register",
+        destination: "/:locale/auth/signin",
+        permanent: true,
+      },
+      {
+        source: "/auth/register",
+        destination: "/auth/signin",
+        permanent: true,
+      },
+      {
+        source: "/:locale/auth/signup",
+        destination: "/:locale/auth/signin",
+        permanent: true,
+      },
+      {
+        source: "/auth/signup",
+        destination: "/auth/signin",
+        permanent: true,
+      },
+      {
         source: "/:locale/report",
         destination: "/:locale/submit",
         permanent: true,

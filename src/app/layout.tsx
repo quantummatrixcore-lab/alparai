@@ -3,12 +3,11 @@ import type { Metadata, Viewport } from "next";
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "https://alparai.com"),
   title: {
-    default: "ALPAR AI — Trust infrastructure for AI accountability",
-    template: "%s · ALPAR AI",
+    default: "AlparAI",
+    template: "%s | AlparAI",
   },
-  description:
-    "Community-driven incident reporting platform for AI systems. Like Trustpilot, but for AI.",
-  applicationName: "ALPAR AI",
+  description: "AI Accountability & Incident Reporting Platform",
+  applicationName: "AlparAI",
   keywords: [
     "AI accountability",
     "AI incidents",
@@ -16,31 +15,31 @@ export const metadata: Metadata = {
     "AI safety",
     "trust infrastructure",
   ],
-  authors: [{ name: "ALPAR AI" }],
-  creator: "ALPAR AI",
-  publisher: "ALPAR AI",
+  authors: [{ name: "AlparAI" }],
+  creator: "@alparai",
+  publisher: "AlparAI",
   alternates: {
     canonical: "/",
     languages: {
+      "x-default": "/en",
       en: "/en",
       tr: "/tr",
     },
   },
   openGraph: {
     type: "website",
-    siteName: "ALPAR AI",
-    title: "ALPAR AI — Trust infrastructure for AI accountability",
-    description:
-      "Community-driven incident reporting platform for AI systems. Like Trustpilot, but for AI.",
+    siteName: "AlparAI",
+    title: "AlparAI — AI Accountability & Incident Reporting Platform",
+    description: "AI Accountability & Incident Reporting Platform",
     locale: "en_US",
     url: "/",
-    images: ["https://alparai.com/og-image.png"],
+    images: [{ url: "/brand-assets/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     site: "@alparai",
     creator: "@alparai",
-    images: ["https://alparai.com/og-image.png"],
+    images: ["/brand-assets/og-image.png"],
   },
   robots: {
     index: true,
@@ -53,15 +52,29 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
+  manifest: "/manifest.webmanifest",
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/icons/android-chrome-192x192.png", type: "image/png", sizes: "192x192" },
-      { url: "/icons/android-chrome-512x512.png", type: "image/png", sizes: "512x512" },
+      { url: "/favicon.ico", sizes: "32x32" },
     ],
-    apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180" }],
   },
-  manifest: "/manifest.webmanifest",
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? "",
+  },
+  appleWebApp: {
+    capable: true,
+    title: "AlparAI",
+    statusBarStyle: "black-translucent",
+  },
+  formatDetection: {
+    telephone: false,
+    date: false,
+    email: false,
+    address: false,
+  },
+  category: "technology",
 };
 
 export const viewport: Viewport = {

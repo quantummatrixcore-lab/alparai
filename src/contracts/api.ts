@@ -223,21 +223,21 @@ export const dsarExportResponseSchema = z.object({
     created_at: z.string().nullable().optional(),
     last_sign_in_at: z.string().nullable().optional(),
   }),
-  profile: z.any().nullable(),
-  incidents: z.array(z.any()),
-  comments: z.array(z.any()),
-  votes: z.array(z.any()),
-  expert_applications: z.array(z.any()),
+  profile: z.unknown().nullable(),
+  incidents: z.array(z.unknown()),
+  comments: z.array(z.unknown()),
+  votes: z.array(z.unknown()),
+  expert_applications: z.array(z.unknown()),
 }); // 11. GET /api/v1/dsar/download
 export const dsarDownloadResponseSchema = z.union([
   z.object({
     user_id: z.string().uuid(),
     email: z.string().nullable().optional(),
     generated_at: z.string(),
-    profile: z.any().nullable(),
-    incidents: z.array(z.any()),
-    comments: z.array(z.any()),
-    votes: z.array(z.any()),
+    profile: z.unknown().nullable(),
+    incidents: z.array(z.unknown()),
+    comments: z.array(z.unknown()),
+    votes: z.array(z.unknown()),
   }),
   z.string(), // CSV format is plain string
 ]);
@@ -305,7 +305,7 @@ export const auditorAuditLogsResponseSchema = z.object({
 });
 
 // 15. GET /api/v1/dsar/portable
-export const dsarPortableResponseSchema = z.any(); // Returns ZIP binary stream
+export const dsarPortableResponseSchema = z.unknown(); // Returns ZIP binary stream
 
 // 16. GET /api/v1/regulators
 export const regulatorsResponseSchema = z.union([
@@ -370,7 +370,7 @@ export const playbooksResponseSchema = z.object({
       title: z.string(),
       framework: z.string(),
       summary: z.string(),
-      checklist: z.any(),
+      checklist: z.unknown(),
       created_at: z.string(),
       updated_at: z.string(),
     }),
@@ -493,3 +493,170 @@ export const litigationExportResponseSchema = z.object({
 export const article50ResponseSchema = z.object({
   ok: z.boolean().optional(),
 });
+
+// 25. POST /api/v1/personas/[twinId]/completions
+export const personasCompletionsResponseSchema = z.object({
+  id: z.string().optional(),
+  object: z.string().optional(),
+  created: z.number().optional(),
+  model: z.string().optional(),
+  choices: z
+    .array(
+      z.object({
+        index: z.number().optional(),
+        message: z.object({
+          role: z.string().optional(),
+          content: z.string().optional(),
+        }),
+        finish_reason: z.string().nullable().optional(),
+      }),
+    )
+    .optional(),
+  alignment_score: z.number().optional(),
+});
+
+// 26. GET /api/v1/eu-ai-act
+export const euAiActResponseSchema = z.object({
+  framework: z.string(),
+  version: z.string(),
+  riskTiers: z.array(
+    z.object({
+      tier: z.string(),
+      articles: z.array(z.string()).optional(),
+      description: z.string(),
+      status: z.string().optional(),
+      incidentReportingDeadlineHours: z.number().optional(),
+      passportExportEndpoint: z.string().optional(),
+      provenanceEndpoint: z.string().optional(),
+    }),
+  ),
+  documentationUrl: z.string(),
+  supportEmail: z.string(),
+});
+
+// 27. GET /api/v1/agora-t/cases
+export const agoraTCasesResponseSchema = z.object({
+  cases: z.array(
+    z.object({
+      id: z.string().uuid(),
+      title: z.string(),
+      description: z.string(),
+      incident_id: z.string().uuid().nullable().optional(),
+      category: z.string(),
+      status: z.string(),
+      target_provider_id: z.string().uuid().nullable().optional(),
+      target_model_id: z.string().uuid().nullable().optional(),
+      target_user_id: z.string().uuid().nullable().optional(),
+      created_by: z.string().uuid(),
+      quorum_required: z.number(),
+      guilty_score: z.number().nullable().optional(),
+      innocent_score: z.number().nullable().optional(),
+      abstain_score: z.number().nullable().optional(),
+      resolution_verdict: z.string().nullable().optional(),
+      resolution_summary: z.string().nullable().optional(),
+      resolved_at: z.string().nullable().optional(),
+      created_at: z.string(),
+      updated_at: z.string(),
+    }),
+  ),
+  total: z.number(),
+  limit: z.number(),
+  offset: z.number(),
+});
+
+// 28. POST /api/v1/agora-t/cases/[id]/resolve
+export const agoraTResolveResponseSchema = z.object({
+  success: z.boolean().optional(),
+  resolution: z.unknown().optional(),
+  error: z.string().optional(),
+}).passthrough();
+
+// 29. GET /api/v1/agora-t/cases/[id]
+export const agoraTCaseDetailResponseSchema = z.object({
+  case: z.record(z.string(), z.unknown()).optional(),
+  success: z.boolean().optional(),
+  error: z.string().optional(),
+}).passthrough();
+
+// 30. POST /api/v1/agora-t/cases/[id]/vote
+export const agoraTVoteResponseSchema = z.object({
+  success: z.boolean().optional(),
+  message: z.string().optional(),
+  vote: z.unknown().optional(),
+  vote_weight: z.number().optional(),
+  error: z.string().optional(),
+}).passthrough();
+
+// 31. GET/POST /api/v1/agora-t/jurors
+export const agoraTJurorsResponseSchema = z.object({
+  jurors: z.array(z.unknown()).optional(),
+  candidates: z.array(z.unknown()).optional(),
+  success: z.boolean().optional(),
+  assigned_jurors: z.array(z.unknown()).optional(),
+  error: z.string().optional(),
+}).passthrough();
+
+// 32. POST /api/v1/anti-sybil/check
+export const antiSybilCheckResponseSchema = z.object({
+  risk_score: z.number().optional(),
+  is_sybil: z.boolean().optional(),
+  details: z.unknown().optional(),
+  error: z.string().optional(),
+}).passthrough();
+
+// 33. GET /api/v1/anti-sybil/reputation/[userId]
+export const antiSybilReputationUserResponseSchema = z.object({
+  user_id: z.string().optional(),
+  reputation: z.unknown().optional(),
+  error: z.string().optional(),
+}).passthrough();
+
+// 34. POST /api/v1/anti-sybil/reputation/adjust
+export const antiSybilReputationAdjustResponseSchema = z.object({
+  success: z.boolean().optional(),
+  reputation: z.unknown().optional(),
+  error: z.string().optional(),
+}).passthrough();
+
+// 35. POST /api/v1/jury/vote
+export const juryVoteResponseSchema = z.object({
+  success: z.boolean().optional(),
+  vote_id: z.string().optional(),
+  error: z.string().optional(),
+}).passthrough();
+
+// 36. GET /api/v1/rap-sheet
+export const rapSheetResponseSchema = z.object({
+  records: z.array(z.unknown()).optional(),
+  count: z.number().optional(),
+  error: z.string().optional(),
+}).passthrough();
+
+// 37. GET /api/v1/rap-sheet/[id]
+export const rapSheetDetailResponseSchema = z.object({
+  record: z.unknown().optional(),
+  error: z.string().optional(),
+}).passthrough();
+
+// 38. GET /api/v1/rap-sheet/export
+export const rapSheetExportResponseSchema = z.union([
+  z.object({
+    data: z.array(z.unknown()).optional(),
+    exported_at: z.string().optional(),
+  }).passthrough(),
+  z.string(),
+]);
+
+// 39. GET /api/v1/compliance/verify
+export const complianceVerifyResponseSchema = z.object({
+  service: z.string().optional(),
+  regulation: z.string().optional(),
+  version: z.string().optional(),
+  supported_frameworks: z.array(z.string()).optional(),
+  sample_request: z.record(z.string(), z.unknown()).optional(),
+  data: z.record(z.string(), z.unknown()).optional(),
+  error: z.string().optional(),
+}).passthrough();
+
+
+

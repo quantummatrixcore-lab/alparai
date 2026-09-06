@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3240 1080" width="3240" height="1080">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGradPano" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#03060f"/>
+      <stop offset="30%" stop-color="#0a1224"/>
+      <stop offset="50%" stop-color="#03060f"/>
+      <stop offset="70%" stop-color="#0a1224"/>
+      <stop offset="100%" stop-color="#03060f"/>
+    </linearGradient>
+
+    <!-- Supernova Cyan Center -->
+    <radialGradient id="supernovaCenter" cx="50%" cy="45%" r="45%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.35"/>
+      <stop offset="35%" stop-color="#0284c7" stop-opacity="0.14"/>
+      <stop offset="70%" stop-color="#1e1b4b" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#03060f" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="facetTitanium" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#f1f5f9"/>
+      <stop offset="70%" stop-color="#94a3b8"/>
+      <stop offset="100%" stop-color="#475569"/>
+    </linearGradient>
+
+    <linearGradient id="facetCobalt" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="30%" stop-color="#0284c7"/>
+      <stop offset="70%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+
+    <linearGradient id="facetBeam" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#00f0ff"/>
+      <stop offset="50%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+
+    <pattern id="gridPano" width="45" height="45" patternUnits="userSpaceOnUse">
+      <path d="M 45 0 L 0 0 0 45" fill="none" stroke="#38bdf8" stroke-width="0.75" stroke-opacity="0.07"/>
+      <circle cx="45" cy="45" r="1.2" fill="#38bdf8" fill-opacity="0.15"/>
+    </pattern>
+  </defs>
+
+  <rect width="3240" height="1080" fill="url(#bgGradPano)"/>
+  <rect width="3240" height="1080" fill="url(#supernovaCenter)"/>
+  <rect width="3240" height="1080" fill="url(#gridPano)"/>
+
+  <!-- CONTINUOUS SEAMLESS AXES -->
+  <line x1="0" y1="90" x2="3240" y2="90" stroke="#38bdf8" stroke-width="1.5" stroke-opacity="0.2"/>
+  <line x1="0" y1="990" x2="3240" y2="990" stroke="#38bdf8" stroke-width="1.5" stroke-opacity="0.2"/>
+  <line x1="0" y1="540" x2="3240" y2="540" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="10 8" stroke-opacity="0.22"/>
+
+  <!-- PANEL BOUNDARY DIVIDERS (GUIDES) -->
+  <line x1="1080" y1="0" x2="1080" y2="1080" stroke="#38bdf8" stroke-width="1" stroke-dasharray="6 6" stroke-opacity="0.3"/>
+  <line x1="2160" y1="0" x2="2160" y2="1080" stroke="#38bdf8" stroke-width="1" stroke-dasharray="6 6" stroke-opacity="0.3"/>
+
+  <!-- EMBEDDED PANEL 1 CONTENT (0 to 1080) -->
+  <g transform="translate(80, 160)">
+    <text x="0" y="0" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="800" letter-spacing="3">01 // THE SYSTEM COLLAPSE</text>
+    <text x="0" y="70" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="44" font-weight="900">THE ERA OF</text>
+    <text x="0" y="125" fill="#f87171" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="44" font-weight="900">UNCHECKED AI</text>
+    <text x="0" y="180" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="44" font-weight="900">ENDS HERE.</text>
+    <text x="0" y="235" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="500">Every second, billion-parameter models hallucinate,</text>
+    <text x="0" y="265" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="500">leak weights, and breach compliance boundaries.</text>
+    
+    <rect x="0" y="310" width="460" height="68" rx="10" fill="#0b1322" stroke="#1e293b"/>
+    <text x="30" y="35" fill="#ef4444" font-weight="900">! CATASTROPHIC HALLUCINATION</text>
+    <text x="30" y="55" fill="#64748b" font-size="12">Unverifiable decisions in critical systems.</text>
+
+    <rect x="0" y="395" width="460" height="68" rx="10" fill="#0b1322" stroke="#1e293b"/>
+    <text x="30" y="35" fill="#f59e0b" font-weight="900">⚠️ EU AI ACT SANCTIONS</text>
+    <text x="30" y="55" fill="#64748b" font-size="12">Fines up to €35M or 7% of annual revenue.</text>
+
+    <rect x="0" y="480" width="460" height="68" rx="10" fill="#0b1322" stroke="#1e293b"/>
+    <text x="30" y="35" fill="#a855f7" font-weight="900">⚡ PROMPT INJECTION &amp; EXPLOITS</text>
+    <text x="30" y="55" fill="#64748b" font-size="12">Zero-day model extraction and jailbreaks.</text>
+  </g>
+
+  <!-- EMBEDDED PANEL 2 CONTENT (1080 to 2160) -->
+  <g transform="translate(1620, 390)">
+    <circle cx="0" cy="0" r="230" fill="none" stroke="#38bdf8" stroke-width="1" stroke-dasharray="8 6" stroke-opacity="0.25"/>
+    <circle cx="0" cy="0" r="190" fill="none" stroke="#6366f1" stroke-width="0.8" stroke-opacity="0.3"/>
+    
+    <g transform="translate(-160, -160) scale(3.2)">
+      <polygon points="50,12 18,86 35,86 50,48" fill="url(#facetTitanium)"/>
+      <polygon points="50,12 50,48 65,86 82,86" fill="url(#facetCobalt)"/>
+      <polygon points="33,69 67,69 50,44" fill="url(#facetBeam)"/>
+      <polygon points="36,69 64,69 50,81" fill="#050914"/>
+      <polygon points="50,12 47,48 53,48" fill="#ffffff" fill-opacity="0.95"/>
+      <circle cx="50" cy="46" r="3" fill="#ffffff"/>
+      <circle cx="50" cy="46" r="6" fill="#00f0ff" fill-opacity="0.5"/>
+    </g>
+  </g>
+  <g transform="translate(1620, 720)">
+    <text x="0" y="0" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="800" letter-spacing="3" text-anchor="middle">02 // THE VERDICT</text>
+    <text x="0" y="65" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="62" font-weight="900" text-anchor="middle">ALPAR<tspan fill="#38bdf8">.AI</tspan></text>
+    <text x="0" y="115" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="21" font-weight="800" text-anchor="middle">THE SUPREME COURT OF AI ACCOUNTABILITY</text>
+    <text x="0" y="155" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="500" text-anchor="middle">Autonomous Auditing · Algorithmic Defense · Cryptographic Trust</text>
+  </g>
+
+  <!-- EMBEDDED PANEL 3 CONTENT (2160 to 3240) -->
+  <g transform="translate(2240, 160)">
+    <text x="0" y="0" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="800" letter-spacing="3">03 // THE ENFORCEMENT</text>
+    <text x="0" y="70" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="44" font-weight="900">VERIFIABLE TRUST.</text>
+    <text x="0" y="125" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="44" font-weight="900">AT MACHINE SPEED.</text>
+    <text x="0" y="180" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="500">Autonomous continuous auditing and cryptographic proof</text>
+    <text x="0" y="210" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="500">of enterprise model security.</text>
+
+    <rect x="0" y="255" width="460" height="74" rx="10" fill="#0b1322" stroke="#1e293b"/>
+    <text x="30" y="38" fill="#38bdf8" font-weight="900">⚡ 660+ MODELS MONITORED</text>
+    <text x="30" y="58" fill="#64748b" font-size="12">Jailbreak &amp; bias sentry in real-time.</text>
+
+    <rect x="0" y="345" width="460" height="74" rx="10" fill="#0b1322" stroke="#1e293b"/>
+    <text x="30" y="38" fill="#10b981" font-weight="900">✓ EU AI ACT 72-HOUR SLA</text>
+    <text x="30" y="58" fill="#64748b" font-size="12">Fast-track regulatory compliance certification.</text>
+
+    <rect x="0" y="435" width="460" height="74" rx="10" fill="#0b1322" stroke="#1e293b"/>
+    <text x="30" y="38" fill="#a78bfa" font-weight="900">🛡️ CRYPTOGRAPHIC CERTIFICATES</text>
+    <text x="30" y="58" fill="#64748b" font-size="12">Tamper-proof on-chain &amp; off-chain verification.</text>
+
+    <rect x="0" y="540" width="460" height="60" rx="12" fill="#0284c7" stroke="#38bdf8"/>
+    <text x="230" y="36" fill="#ffffff" font-size="16" font-weight="900" text-anchor="middle">SCAN YOUR MODEL NOW →</text>
+  </g>
+</svg>

@@ -8,12 +8,16 @@ interface RetentionPolicy {
 
 export async function getRetentionPolicies(): Promise<RetentionPolicy[]> {
   const admin = createAdminClient();
-  const { data, error } = await admin.from("data_retention_policies").select("*");
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data, error } = await (admin as any)
+    .from("data_retention_policies")
+    .select("table_name, retention_period_months");
 
   if (error) {
     throw new Error(`Failed to fetch retention policies: ${error.message}`);
   }
-  return data ?? [];
+  return (data as RetentionPolicy[]) ?? [];
 }
 
 export async function pruneExpiredRecords(

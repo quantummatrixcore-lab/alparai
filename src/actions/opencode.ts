@@ -17,43 +17,48 @@ export type OpenCodeRunPayload = {
 };
 
 export async function recordOpenCodeRun(payload: OpenCodeRunPayload) {
-  if (process.env.NODE_ENV === "production") {
-    // Cannot write to local FS on Vercel production
-    return { success: false, error: "Read-only file system on production" };
-  }
-
   try {
-    const now = new Date();
-    const timestampStr = now.toISOString().replace(/:/g, "-").replace(/\./g, "-");
+    if (process.env.NODE_ENV === "production") {
+      // Cannot write to local FS on Vercel production
+      return { success: false, error: "Read-only file system on production" };
+    }
 
-    let sha = payload.git_sha;
-    if (!sha) {
-      try {
-        sha = execSync("git rev-parse HEAD", { encoding: "utf-8", stdio: "pipe" }).trim();
-      } catch {
-        sha = "unknown";
+    try {
+      const now = new Date();
+      const timestampStr = now.toISOString().replace(/:/g, "-").replace(/\./g, "-");
+
+      let sha = payload.git_sha;
+      if (!sha) {
+        try {
+          sha = execSync("git rev-parse HEAD", { encoding: "utf-8", stdio: "pipe" }).trim();
+        } catch {
+          sha = "unknown";
+        }
       }
+
+      const logData = {
+        ...payload,
+        git_sha: sha,
+        timestamp: now.toISOString(),
+      };
+
+      const dir = path.join(process.cwd(), "ops", "opencode-runs");
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+      }
+
+      const fileName = `${timestampStr}-task-${payload.task_ref}.json`;
+      const filePath = path.join(dir, fileName);
+
+      fs.writeFileSync(filePath, JSON.stringify(logData, null, 2), "utf-8");
+
+      return { success: true, file: fileName };
+    } catch (error) {
+      console.error("Failed to record OpenCode run:", error);
+      return { success: false, error: String(error) };
     }
-
-    const logData = {
-      ...payload,
-      git_sha: sha,
-      timestamp: now.toISOString(),
-    };
-
-    const dir = path.join(process.cwd(), "ops", "opencode-runs");
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
-    }
-
-    const fileName = `${timestampStr}-task-${payload.task_ref}.json`;
-    const filePath = path.join(dir, fileName);
-
-    fs.writeFileSync(filePath, JSON.stringify(logData, null, 2), "utf-8");
-
-    return { success: true, file: fileName };
-  } catch (error) {
-    console.error("Failed to record OpenCode run:", error);
-    return { success: false, error: String(error) };
+  } catch (err) {
+    console.error("[recordOpenCodeRun] Error:", err);
+    throw err;
   }
 }

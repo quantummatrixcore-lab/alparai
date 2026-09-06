@@ -1,0 +1,12 @@
+blank_issues_enabled: false
+contact_links:
+  - name: '?? Whistleblower & Ethical Disclosure Desk'
+    url: 'mailto:ihbar@alparai.com'
+    about: 'Confidential disclosure for AI safety violations, critical hallucinations, or PII leaks.'
+  - name: '?? Vulnerability Disclosure (Security)'
+    url: 'mailto:security@alparai.com'
+    about: 'Responsible security disclosures under our SECURITY.md policy.'
+  - name: '?? Community Discussions & AI Governance'
+    url: 'https://github.com/quantummatrixcore-lab/alparai/discussions'
+    about: 'Ask questions, share ideas, and discuss AI trust frameworks.'
+

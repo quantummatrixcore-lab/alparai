@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1584 396" width="1584" height="396">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050811"/>
+      <stop offset="50%" stop-color="#0a1020"/>
+      <stop offset="100%" stop-color="#040710"/>
+    </linearGradient>
+
+    <!-- Cyan Glow -->
+    <radialGradient id="cyanGlow" cx="82%" cy="50%" r="45%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.22"/>
+      <stop offset="60%" stop-color="#0284c7" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#050811" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Indigo Accent Glow -->
+    <radialGradient id="indigoGlow" cx="60%" cy="20%" r="35%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#050811" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Prismatic A Gradients -->
+    <linearGradient id="facetLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="40%" stop-color="#e2e8f0"/>
+      <stop offset="100%" stop-color="#94a3b8"/>
+    </linearGradient>
+
+    <linearGradient id="facetRight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+
+    <linearGradient id="facetCenter" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#cbd5e1"/>
+    </linearGradient>
+
+    <!-- Grid Pattern -->
+    <pattern id="auditGrid" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path d="M 44 0 L 0 0 0 44" fill="none" stroke="#38bdf8" stroke-width="0.6" stroke-opacity="0.08"/>
+      <circle cx="44" cy="44" r="1.2" fill="#38bdf8" fill-opacity="0.18"/>
+    </pattern>
+  </defs>
+
+  <!-- Base Canvas -->
+  <rect width="1584" height="396" fill="url(#bgGrad)"/>
+  <rect width="1584" height="396" fill="url(#cyanGlow)"/>
+  <rect width="1584" height="396" fill="url(#indigoGlow)"/>
+  <rect width="1584" height="396" fill="url(#auditGrid)"/>
+
+  <!-- Left Zone Protection for Profile Avatar: Avatar sits between x:60 and x:360 -->
+
+  <!-- Top Institutional Ticker -->
+  <g transform="translate(400, 68)">
+    <rect x="0" y="0" width="310" height="24" rx="12" fill="#0c192c" stroke="#1e3a5f" stroke-width="1"/>
+    <circle cx="14" cy="12" r="4" fill="#38bdf8"/>
+    <text x="28" y="16" fill="#7dd3fc" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="700" letter-spacing="1.5">GLOBAL AI AUDITING &amp; TRUST REGISTRY</text>
+  </g>
+
+  <!-- Main Headline Typography -->
+  <text x="400" y="145" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="37" font-weight="900" letter-spacing="-0.2">
+    THE SUPREME COURT OF AI ACCOUNTABILITY
+  </text>
+
+  <!-- Subheadline -->
+  <text x="400" y="195" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="17.5" font-weight="500" letter-spacing="0.2">
+    Independent Model Governance · EU AI Act 72h SLA · Whistleblower Protection
+  </text>
+
+  <!-- Pillars Badge Row -->
+  <g transform="translate(400, 245)">
+    <!-- Badge 1 -->
+    <rect x="0" y="0" width="170" height="34" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="85" y="22" fill="#f1f5f9" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="700" text-anchor="middle" letter-spacing="0.5">660+ AI MODELS</text>
+
+    <!-- Badge 2 -->
+    <rect x="185" y="0" width="180" height="34" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="275" y="22" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="700" text-anchor="middle" letter-spacing="0.5">2,900+ INCIDENTS</text>
+
+    <!-- Badge 3 -->
+    <rect x="380" y="0" width="200" height="34" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="480" y="22" fill="#a78bfa" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="700" text-anchor="middle" letter-spacing="0.5">EU AI ACT CONFORMITY</text>
+  </g>
+
+  <!-- URL Branding Bottom Right -->
+  <text x="440" y="335" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" letter-spacing="1">
+    POWERED BY <tspan fill="#38bdf8">ALPARAI.COM</tspan> · TEKNOPARK ISTANBUL CUBE
+  </text>
+
+  <!-- Hero Monolithic Prismatic "A" Emblem (Right Flank) -->
+  <g transform="translate(1310, 88)">
+    <!-- Ambient Glow behind Logo -->
+    <circle cx="100" cy="110" r="130" fill="#38bdf8" fill-opacity="0.12" filter="blur(20px)"/>
+
+    <!-- Left Facet -->
+    <polygon points="100,10 40,210 95,210 100,10" fill="url(#facetLeft)"/>
+    
+    <!-- Right Facet -->
+    <polygon points="100,10 160,210 105,210 100,10" fill="url(#facetRight)"/>
+    
+    <!-- Crossbar Diamond / Keystroke -->
+    <polygon points="100,105 70,165 130,165" fill="#050811"/>
+    <polygon points="100,118 78,160 122,160" fill="url(#facetCenter)"/>
+    
+    <!-- Center Apex Shard -->
+    <polygon points="100,10 94,105 106,105" fill="#ffffff" fill-opacity="0.9"/>
+  </g>
+</svg>

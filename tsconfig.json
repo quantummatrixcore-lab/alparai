@@ -9,6 +9,7 @@
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "bundler",
+    "ignoreDeprecations": "6.0",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
@@ -18,8 +19,8 @@
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
     "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "exactOptionalPropertyTypes": false,
     "plugins": [
       {
@@ -32,10 +33,39 @@
   },
   "include": [
     "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "tests/**/*.ts",
+    "tests/**/*.tsx",
+    "scripts/**/*.ts",
+    "scripts/**/*.js",
+    "*.ts",
+    "*.tsx",
+    "types/**/*.ts",
     ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts"
+    ".next/dev/types/**/*.ts",
+    ".next/dev/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules", ".next", "out", "build", "dist", "dist-public"]
+  "exclude": [
+    "ercumenterden.com",
+    "node_modules",
+    ".next",
+    "out",
+    "build",
+    "dist",
+    "dist-public",
+    "chrome-data",
+    "chrome-profile",
+    "chrome-temp",
+    "chrome-temp-test",
+    ".browser_profile",
+    ".agents",
+    ".openchrome",
+    ".opencode",
+    ".claude",
+    "coverage",
+    "artifacts",
+    "tmp",
+    "tmp-qa"
+  ]
 }

@@ -1,0 +1,103 @@
+<svg viewBox="0 0 1128 191" width="1128" height="191" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Deep Obsidian Space Gradient -->
+    <linearGradient id="li-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070a12" />
+      <stop offset="45%" stop-color="#0c1222" />
+      <stop offset="85%" stop-color="#0a0f1d" />
+      <stop offset="100%" stop-color="#03060c" />
+    </linearGradient>
+
+    <!-- Subtle Cyan & Cobalt Ambient Aura -->
+    <radialGradient id="li-aura-right" cx="80%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#2563eb" stop-opacity="0.18" />
+      <stop offset="60%" stop-color="#0284c7" stop-opacity="0.06" />
+      <stop offset="100%" stop-color="#03060c" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Titanium Silver Chiseled Left Facet -->
+    <linearGradient id="li-facet-titanium" x1="20" y1="10" x2="50" y2="90" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="35%" stop-color="#e2e8f0" />
+      <stop offset="75%" stop-color="#94a3b8" />
+      <stop offset="100%" stop-color="#64748b" />
+    </linearGradient>
+
+    <!-- Electric Cobalt Prismatic Right Facet -->
+    <linearGradient id="li-facet-cobalt" x1="50" y1="10" x2="85" y2="90" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="30%" stop-color="#0284c7" />
+      <stop offset="70%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+
+    <!-- Inner Refraction Core / Crossbeam -->
+    <linearGradient id="li-facet-cyan-beam" x1="30" y1="50" x2="70" y2="85" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00f0ff" />
+      <stop offset="50%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1128" height="191" fill="url(#li-bg)" />
+  <rect width="1128" height="191" fill="url(#li-aura-right)" />
+
+  <!-- Subtle Perspective Grid -->
+  <g stroke="#ffffff" stroke-opacity="0.04" stroke-width="1">
+    <line x1="0" y1="48" x2="1128" y2="48" />
+    <line x1="0" y1="96" x2="1128" y2="96" />
+    <line x1="0" y1="144" x2="1128" y2="144" />
+    <line x1="300" y1="0" x2="300" y2="191" />
+    <line x1="550" y1="0" x2="550" y2="191" />
+    <line x1="800" y1="0" x2="800" y2="191" />
+    <line x1="1000" y1="0" x2="1000" y2="191" />
+  </g>
+
+  <!-- High-Tech Border Bottom Accent -->
+  <line x1="0" y1="190" x2="1128" y2="190" stroke="#2563eb" stroke-opacity="0.4" stroke-width="2" />
+
+  <!-- CENTER-LEFT CONTENT (x=240 to leave room for avatar) -->
+  <g transform="translate(240, 42)">
+    <!-- Badge -->
+    <rect width="210" height="22" rx="11" fill="#2563eb" fill-opacity="0.15" stroke="#38bdf8" stroke-opacity="0.3" stroke-width="1" />
+    <circle cx="12" cy="11" r="3.5" fill="#38bdf8" />
+    <text x="24" y="15" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" fill="#38bdf8" letter-spacing="1.5px">
+      GLOBAL TRUST REGISTRY
+    </text>
+
+    <!-- Main Headline -->
+    <text x="0" y="56" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="32" font-weight="900" fill="#ffffff" letter-spacing="-0.5px">
+      ALPAR <tspan fill="#38bdf8">AI</tspan>
+    </text>
+
+    <!-- Subtitle / Value Proposition -->
+    <text x="0" y="84" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#94a3b8" letter-spacing="0.2px">
+      The Supreme Court of AI Accountability &amp; Model Auditing
+    </text>
+
+    <!-- Feature Pillars -->
+    <text x="0" y="108" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#64748b" letter-spacing="0.8px">
+      INDEPENDENT INCIDENT REGISTRY  •  CONTINUOUS MODEL AUDITING  •  EU AI ACT COMPLIANCE
+    </text>
+  </g>
+
+  <!-- RIGHT HERO EMBLEM (Monolithic Prismatic 'A') -->
+  <g transform="translate(930, 20) scale(1.5)">
+    <!-- Ambient Shadow Base -->
+    <polygon points="50,12 14,88 86,88" fill="#030712" fill-opacity="0.5" />
+
+    <!-- Left Titanium Pillar -->
+    <polygon points="50,12 16,88 34,88 50,48" fill="url(#li-facet-titanium)" />
+
+    <!-- Right Cobalt Prismatic Pillar -->
+    <polygon points="50,12 50,48 66,88 84,88" fill="url(#li-facet-cobalt)" />
+
+    <!-- Inner Crossbar Optical Prism -->
+    <polygon points="32,70 68,70 50,44" fill="url(#li-facet-cyan-beam)" />
+    <polygon points="34,70 66,70 50,84" fill="#090d16" />
+
+    <!-- Precision Center Light Point -->
+    <circle cx="50" cy="46" r="2.5" fill="#ffffff" />
+  </g>
+</svg>

@@ -242,47 +242,67 @@ https://alparai.com`,
 
 export async function autoModerateIncidentAction(
   incidentId: string,
+  internalToken?: string
 ): Promise<{ ok: boolean; score?: number; status?: string; error?: string }> {
-  const result = await withAutopilot<{ score: number; status: string }>(
-    autoModerateIncidentPolicy,
-    [incidentId],
-    (ctx) => runAutoModerationWork(ctx, incidentId),
-    { context: { userId: null, ipHash: null, clientIdempotencyKey: `auto-mod:${incidentId}` } },
-  );
-
-  if (result.kind === "ok") {
-    try {
-      revalidatePath("/incidents");
-      revalidatePath("/admin");
-    } catch (e) {
-      console.error("Ignored error:", e);
-    }
-    return { ok: true, score: result.value.score, status: result.value.status };
-  }
-
   try {
-    const admin = createAdminClient();
-    await admin
-      .from("incidents")
-      .update({
-        processing_stage: "failed",
-        moderator_notes: `[AutoModeration Failed] All autopilot moderation attempts failed. Last error: ${result.kind === "exhausted" ? result.error : "unknown failure"}`,
-      })
-      .eq("id", incidentId)
-      .eq("processing_stage", "analyzing");
-    try {
-      revalidatePath("/incidents");
-      revalidatePath("/admin");
-    } catch (e) {
-      console.error("Ignored error:", e);
-    }
-  } catch (dbErr) {
-    logger.error(
-      "Failed to write auto-moderation failure to database",
-      { incidentId },
-      dbErr instanceof Error ? dbErr : undefined,
-    );
-  }
+    const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || "";
+    const tokenBuffer = Buffer.from(internalToken || "invalid");
+    const keyBuffer = Buffer.from(serviceKey);
+    let isAuthorized = false;
 
-  return { ok: false, error: result.kind === "exhausted" ? result.error : result.kind };
+    if (tokenBuffer.length === keyBuffer.length && keyBuffer.length > 0) {
+      const crypto = await import("crypto");
+      isAuthorized = crypto.timingSafeEqual(tokenBuffer, keyBuffer);
+    }
+
+    if (!isAuthorized) {
+      const { requireAdmin } = await import("@/lib/auth/session");
+      await requireAdmin();
+    }
+    const result = await withAutopilot<{ score: number; status: string }>(
+      autoModerateIncidentPolicy,
+      [incidentId],
+      (ctx) => runAutoModerationWork(ctx, incidentId),
+      { context: { userId: null, ipHash: null, clientIdempotencyKey: `auto-mod:${incidentId}` } },
+    );
+
+    if (result.kind === "ok") {
+      try {
+        revalidatePath("/incidents");
+        revalidatePath("/admin");
+      } catch (e) {
+        console.error("Ignored error:", e);
+      }
+      return { ok: true, score: result.value.score, status: result.value.status };
+    }
+
+    try {
+      const admin = createAdminClient();
+      await admin
+        .from("incidents")
+        .update({
+          processing_stage: "failed",
+          moderator_notes: `[AutoModeration Failed] All autopilot moderation attempts failed. Last error: ${result.kind === "exhausted" ? result.error : "unknown failure"}`,
+        })
+        .eq("id", incidentId)
+        .eq("processing_stage", "analyzing");
+      try {
+        revalidatePath("/incidents");
+        revalidatePath("/admin");
+      } catch (e) {
+        console.error("Ignored error:", e);
+      }
+    } catch (dbErr) {
+      logger.error(
+        "Failed to write auto-moderation failure to database",
+        { incidentId },
+        dbErr instanceof Error ? dbErr : undefined,
+      );
+    }
+
+    return { ok: false, error: result.kind === "exhausted" ? result.error : result.kind };
+  } catch (err) {
+    console.error("[autoModerateIncidentAction] Error:", err);
+    throw err;
+  }
 }

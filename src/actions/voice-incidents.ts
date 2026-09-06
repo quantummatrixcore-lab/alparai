@@ -3,6 +3,8 @@
 import { maskPII } from "@/lib/pii/guardian";
 import { logger } from "@/lib/utils/logger";
 import { submitIncident, type SubmitIncidentState } from "@/actions/incidents";
+import { headers } from "next/headers";
+import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 
 /**
  * 113 Supported Languages ASR catalog (ISO-639-1 / BCP-47 codes).
@@ -33,116 +35,119 @@ export async function transcribeAudioBlob(
   confidence: number;
   durationSeconds: number;
 }> {
-  let transcriptText = "";
-  let confidence = 0.96;
-  const detectedLanguage = requestedLocale || "tr";
+  try {
+    let transcriptText = "";
+    let confidence = 0.96;
+    const detectedLanguage = requestedLocale || "tr";
 
-  if (process.env.QWEN_API_KEY) {
-    try {
-      const base64Audio = audioBuffer.toString("base64");
-      const res = await fetch(
-        "https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation",
-        {
+    if (process.env.QWEN_API_KEY) {
+      try {
+        const base64Audio = audioBuffer.toString("base64");
+        const res = await fetch(
+          "https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation",
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${process.env.QWEN_API_KEY}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              model: "qwen-omni-turbo",
+              input: {
+                messages: [
+                  {
+                    role: "user",
+                    content: [
+                      { audio: `data:${mimeType};base64,${base64Audio}` },
+                      {
+                        text: "Transcribe this audio incident report accurately. Detect speech language automatically out of 113 supported ASR languages.",
+                      },
+                    ],
+                  },
+                ],
+              },
+            }),
+          },
+        );
+
+        if (res.ok) {
+          const json = (await res.json()) as {
+            output?: { choices?: Array<{ message?: { content?: Array<{ text?: string }> } }> };
+          };
+          const outputText = json.output?.choices?.[0]?.message?.content?.[0]?.text;
+          if (outputText) {
+            transcriptText = outputText;
+            confidence = 0.98;
+          }
+        }
+      } catch (err) {
+        logger.error("[Voice ASR] Qwen API fetch failed", { error: err });
+      }
+    }
+
+    // Fallback to OpenRouter Multimodal if Qwen fails or key is missing
+    if (!transcriptText && process.env.OPENROUTER_API_KEY) {
+      try {
+        const base64Audio = audioBuffer.toString("base64");
+        const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${process.env.QWEN_API_KEY}`,
+            Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            model: "qwen-omni-turbo",
-            input: {
-              messages: [
-                {
-                  role: "user",
-                  content: [
-                    { audio: `data:${mimeType};base64,${base64Audio}` },
-                    {
-                      text: "Transcribe this audio incident report accurately. Detect speech language automatically out of 113 supported ASR languages.",
-                    },
-                  ],
-                },
-              ],
-            },
+            model: "google/gemini-2.0-flash-001",
+            messages: [
+              {
+                role: "user",
+                content: [
+                  {
+                    type: "text",
+                    text: "Audio transcription request: Transcribe speech in this audio accurately. Output ONLY transcription text.",
+                  },
+                  {
+                    type: "image_url",
+                    image_url: { url: `data:${mimeType};base64,${base64Audio}` },
+                  },
+                ],
+              },
+            ],
           }),
-        },
-      );
+        });
 
-      if (res.ok) {
-        const json = (await res.json()) as {
-          output?: { choices?: Array<{ message?: { content?: Array<{ text?: string }> } }> };
-        };
-        const outputText = json.output?.choices?.[0]?.message?.content?.[0]?.text;
-        if (outputText) {
-          transcriptText = outputText;
-          confidence = 0.98;
+        if (res.ok) {
+          const json = (await res.json()) as {
+            choices?: Array<{ message?: { content?: string } }>;
+          };
+          const text = json.choices?.[0]?.message?.content?.trim();
+          if (text) {
+            transcriptText = text;
+            confidence = 0.95;
+          }
         }
+      } catch (err) {
+        logger.error("[Voice ASR] OpenRouter API fetch failed", { error: err });
       }
-    } catch (err) {
-      logger.error("[Voice ASR] Qwen API fetch failed", { error: err });
     }
-  }
 
-  // Fallback to OpenRouter Multimodal if Qwen fails or key is missing
-  if (!transcriptText && process.env.OPENROUTER_API_KEY) {
-    try {
-      const base64Audio = audioBuffer.toString("base64");
-      const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model: "google/gemini-2.0-flash-001",
-          messages: [
-            {
-              role: "user",
-              content: [
-                {
-                  type: "text",
-                  text: "Audio transcription request: Transcribe speech in this audio accurately. Output ONLY transcription text.",
-                },
-                {
-                  type: "image_url",
-                  image_url: { url: `data:${mimeType};base64,${base64Audio}` },
-                },
-              ],
-            },
-          ],
-        }),
-      });
-
-      if (res.ok) {
-        const json = (await res.json()) as {
-          choices?: Array<{ message?: { content?: string } }>;
-        };
-        const text = json.choices?.[0]?.message?.content?.trim();
-        if (text) {
-          transcriptText = text;
-          confidence = 0.95;
-        }
-      }
-    } catch (err) {
-      logger.error("[Voice ASR] OpenRouter API fetch failed", { error: err });
+    if (!transcriptText) {
+      throw new Error("Voice transcription failed or service is not configured");
     }
+
+    // Sanitize transcription with PII Guardian
+    const piiSanitized = maskPII(transcriptText);
+    const durationSeconds = Math.max(1, Math.round(audioBuffer.byteLength / 16000));
+
+    return {
+      transcript: piiSanitized.masked,
+      detectedLanguage,
+      confidence,
+      durationSeconds,
+    };
+  } catch (err) {
+    console.error("[transcribeAudioBlob] Error:", err);
+    throw err;
   }
-
-  // Development / Mock fallback when external API keys are unavailable
-  if (!transcriptText) {
-    transcriptText = `[ASR Ready - 113 Languages] Voice incident report recorded in ${requestedLocale.toUpperCase()}. Audio buffer size: ${audioBuffer.byteLength} bytes.`;
-    confidence = 0.9;
-  }
-
-  // Sanitize transcription with PII Guardian
-  const piiSanitized = maskPII(transcriptText);
-  const durationSeconds = Math.max(1, Math.round(audioBuffer.byteLength / 16000));
-
-  return {
-    transcript: piiSanitized.masked,
-    detectedLanguage,
-    confidence,
-    durationSeconds,
-  };
 }
 
 /**
@@ -152,6 +157,15 @@ export async function submitVoiceIncidentAction(
   formData: FormData,
 ): Promise<VoiceIncidentActionResult> {
   try {
+    const hdrs = await headers();
+    const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.voice_incident}:${ip}`);
+    if (!rl.ok) {
+      return {
+        success: false,
+        error: `Rate limit exceeded. Please retry in ${rl.retryAfter ?? 60}s.`,
+      };
+    }
     const file = formData.get("audio") || formData.get("file");
     if (!file || !(file instanceof Blob)) {
       return { success: false, error: "No audio file provided in request FormData" };

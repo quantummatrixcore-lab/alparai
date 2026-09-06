@@ -1,10 +1,11 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createClient } from "@/lib/supabase/server";
 import { maskPII } from "@/lib/pii/guardian";
 import { logger } from "@/lib/utils/logger";
 import { getCurrentUser } from "@/lib/auth/session";
+import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { z } from "zod";
 
 const vendorResponseSchema = z.object({
@@ -42,12 +43,22 @@ export async function submitVendorResponseAction(
       return { ok: false, error: "Unauthorized" };
     }
 
+    // Güvenlik Yaması: IDOR Zafiyetini engellemek için geçici olarak sadece Admin yetkisi zorunlu kılındı.
+    // Orijinal sağlayıcılar src/actions/provider-response.ts üzerinden token ile yanıt vermelidir.
+    const { requireAdmin } = await import("@/lib/auth/session");
+    await requireAdmin();
+
+    const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.provider_response}:${user.id}`);
+    if (!rl.ok) {
+      return { ok: false, error: `Rate limit exceeded. Please wait ${rl.retryAfter ?? 60}s.` };
+    }
+
     // Mask any sensitive PII in vendor response before storing
     const piiResult = maskPII(responseText.trim());
     const maskedText = piiResult.masked;
     const vendorResponseAt = new Date().toISOString();
 
-    const supabase = createAdminClient();
+    const supabase = await createClient();
 
     const { error: updateError } = await supabase
       .from("incidents")

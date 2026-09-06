@@ -1,0 +1,40 @@
+export const CHART_COLORS = {
+  brand: {
+    primary: "#A855F7",
+    secondary: "#818CF8",
+    accent: "#C084FC",
+    light: "#D8B4FE",
+  },
+  accent: {
+    emerald: "#00FF88",
+    emeraldMuted: "rgba(0, 255, 136, 0.15)",
+    cyan: "#06B6D4",
+    cyanMuted: "rgba(6, 182, 212, 0.15)",
+    amber: "#F59E0B",
+    amberMuted: "rgba(245, 158, 11, 0.15)",
+    rose: "#F43F5E",
+    roseMuted: "rgba(244, 63, 94, 0.15)",
+  },
+  neutrals: {
+    line: "rgba(255, 255, 255, 0.2)",
+    grid: "rgba(255, 255, 255, 0.05)",
+    fill: "rgba(255, 255, 255, 0.4)",
+    muted: "rgba(255, 255, 255, 0.6)",
+  },
+  severity: {
+    critical: "#EF4444",
+    high: "#F59E0B",
+    medium: "#3B82F6",
+    low: "#22C55E",
+  },
+  categorical: [
+    "#A855F7",
+    "#00FF88",
+    "#06B6D4",
+    "#F59E0B",
+    "#F43F5E",
+    "#818CF8",
+    "#22C55E",
+    "#FB923C",
+  ],
+} as const;

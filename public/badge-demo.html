@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ALPAR AI — Trust Badge Embed Demo</title>
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: #111827;
+      --border: #1f2937;
+      --text: #f9fafb;
+      --text-muted: #9ca3af;
+      --accent: #10b981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #ffffff 0%, #9ca3af 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .card h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    .badge-preview {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      border: 1px dashed var(--border);
+      min-height: 80px;
+    }
+
+    .code-block {
+      display: block;
+      background: #030712;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.85rem;
+      color: #34d399;
+      overflow-x: auto;
+      margin-top: 16px;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>ALPAR AI Trust Badge</h1>
+      <p class="subtitle">Embeddable verification snippet for AI Vendors & Models</p>
+    </header>
+
+    <div class="demo-grid">
+      <!-- Example 1: Standard Target Integration -->
+      <div class="card">
+        <h2>1. Standard Target Integration</h2>
+        <p>Injects directly into <code>&lt;div id="alparai-trust-badge"&gt;&lt;/div&gt;</code></p>
+        
+        <div class="badge-preview">
+          <div id="alparai-trust-badge"></div>
+        </div>
+
+        <div class="code-block">&lt;div id="alparai-trust-badge"&gt;&lt;/div&gt;
+&lt;script src="https://alparai.com/badge.js" async&gt;&lt;/script&gt;</div>
+      </div>
+
+      <!-- Example 2: Custom Provider & Light Theme -->
+      <div class="card" style="--card-bg: #f8fafc; --text: #0f172a; --border: #cbd5e1; --text-muted: #64748b;">
+        <h2 style="color: #0f172a;">2. Light Theme & Custom Target</h2>
+        <p>Using <code>data-theme="light"</code> with custom provider label</p>
+        
+        <div class="badge-preview" style="background: #ffffff; border-color: #cbd5e1;">
+          <div id="custom-badge-container" data-theme="light" data-provider="Claude 3.5 Sonnet"></div>
+        </div>
+
+        <div class="code-block" style="background: #f1f5f9; color: #047857; border-color: #cbd5e1;">&lt;div id="custom-badge-container" data-theme="light" data-provider="Claude 3.5 Sonnet"&gt;&lt;/div&gt;
+&lt;script src="https://alparai.com/badge.js" data-target="custom-badge-container" async&gt;&lt;/script&gt;</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load Badge Script for Standard Demo -->
+  <script src="/badge.js" async></script>
+</body>
+</html>

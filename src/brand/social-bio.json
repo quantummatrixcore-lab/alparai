@@ -1,0 +1,17 @@
+{
+  "company_name": "ALPAR AI",
+  "tagline": "Trust Infrastructure for AI Accountability",
+  "website": "https://alparai.com",
+  "contact_email": "quantum.matrix.core@gmail.com",
+  "industry": "Artificial Intelligence / Trust & Safety",
+  "established": "2026",
+  "bios": {
+    "linkedin": "ALPAR AI builds the global trust infrastructure for artificial intelligence accountability. By documenting incidents, mapping structural risks, and enabling continuous model auditing, we provide researchers, enterprises, and regulators with the data needed to build safe, transparent AI ecosystems.",
+    "twitter": "Trust infrastructure for AI accountability. Documenting AI failures, auditing models, and mapping systemic risks in real-time. 🔗 alparai.com",
+    "github": "Official GitHub organization for ALPAR AI. Developer SDKs, open API integrations, and public datasets for AI safety, compliance, and auditing.",
+    "youtube": "ALPAR AI - YouTube channel focused on AI safety, model auditing demos, incident walkthroughs, and industry regulatory analysis.",
+    "instagram": "Visualizing AI safety and accountability. Incident case studies, infosec breakdowns, and weekly AI risk reports by ALPAR AI. 🛡️",
+    "tiktok": "AI safety explained simply. Real AI failures, model risk audits, and weekly technology digest by ALPAR AI."
+  },
+  "hashtags": ["AIAccountability", "AISafety", "AITransparency", "ResponsibleAI", "ALPARAI"]
+}

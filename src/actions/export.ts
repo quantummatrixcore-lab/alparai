@@ -56,25 +56,32 @@ const runIncidentsExportWork = async (
 };
 
 export async function exportIncidentsCSV(): Promise<{ ok: boolean; csv?: string; error?: string }> {
-  const admin = await requireAdmin();
-  if (!admin) return { ok: false, error: "Forbidden" };
-  const hdrs = await headers();
-  const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? null;
-  const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.export_request}:${admin.id}:${ip ?? "anon"}`);
-  if (!rl.ok) {
-    return { ok: false, error: `Too many exports. Try again in ${rl.retryAfter}s.` };
+  try {
+    const admin = await requireAdmin();
+    if (!admin) return { ok: false, error: "Forbidden" };
+    const hdrs = await headers();
+    const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? null;
+    const rl = await checkRateLimit(
+      `${RATE_LIMIT_KEYS.export_request}:${admin.id}:${ip ?? "anon"}`,
+    );
+    if (!rl.ok) {
+      return { ok: false, error: `Too many exports. Try again in ${rl.retryAfter}s.` };
+    }
+    const result = await withAutopilot<{ csv: string; rowCount: number }>(
+      exportDataPolicy,
+      ["incidents", admin.id],
+      (ctx) => runIncidentsExportWork(ctx, { adminId: admin.id }),
+      { context: { userId: admin.id, ipHash: hashIp(ip), clientIdempotencyKey: null } },
+    );
+    if (result.kind === "ok" || result.kind === "replayed") {
+      if (result.kind === "ok") return { ok: true, csv: result.value.csv };
+      return { ok: true, csv: "" };
+    }
+    return { ok: false, error: "Export failed" };
+  } catch (err) {
+    console.error("[exportIncidentsCSV] Error:", err);
+    throw err;
   }
-  const result = await withAutopilot<{ csv: string; rowCount: number }>(
-    exportDataPolicy,
-    ["incidents", admin.id],
-    (ctx) => runIncidentsExportWork(ctx, { adminId: admin.id }),
-    { context: { userId: admin.id, ipHash: hashIp(ip), clientIdempotencyKey: null } },
-  );
-  if (result.kind === "ok" || result.kind === "replayed") {
-    if (result.kind === "ok") return { ok: true, csv: result.value.csv };
-    return { ok: true, csv: "" };
-  }
-  return { ok: false, error: "Export failed" };
 }
 
 interface AuditExportInput {
@@ -115,23 +122,30 @@ const runAuditExportWork = async (
 };
 
 export async function exportAuditLogCSV(): Promise<{ ok: boolean; csv?: string; error?: string }> {
-  const admin = await requireAdmin();
-  if (!admin) return { ok: false, error: "Forbidden" };
-  const hdrs = await headers();
-  const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? null;
-  const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.export_request}:${admin.id}:${ip ?? "anon"}`);
-  if (!rl.ok) {
-    return { ok: false, error: `Too many exports. Try again in ${rl.retryAfter}s.` };
+  try {
+    const admin = await requireAdmin();
+    if (!admin) return { ok: false, error: "Forbidden" };
+    const hdrs = await headers();
+    const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? null;
+    const rl = await checkRateLimit(
+      `${RATE_LIMIT_KEYS.export_request}:${admin.id}:${ip ?? "anon"}`,
+    );
+    if (!rl.ok) {
+      return { ok: false, error: `Too many exports. Try again in ${rl.retryAfter}s.` };
+    }
+    const result = await withAutopilot<{ csv: string; rowCount: number }>(
+      exportDataPolicy,
+      ["audit_log", admin.id],
+      (ctx) => runAuditExportWork(ctx, { adminId: admin.id }),
+      { context: { userId: admin.id, ipHash: hashIp(ip), clientIdempotencyKey: null } },
+    );
+    if (result.kind === "ok" || result.kind === "replayed") {
+      if (result.kind === "ok") return { ok: true, csv: result.value.csv };
+      return { ok: true, csv: "" };
+    }
+    return { ok: false, error: "Export failed" };
+  } catch (err) {
+    console.error("[exportAuditLogCSV] Error:", err);
+    throw err;
   }
-  const result = await withAutopilot<{ csv: string; rowCount: number }>(
-    exportDataPolicy,
-    ["audit_log", admin.id],
-    (ctx) => runAuditExportWork(ctx, { adminId: admin.id }),
-    { context: { userId: admin.id, ipHash: hashIp(ip), clientIdempotencyKey: null } },
-  );
-  if (result.kind === "ok" || result.kind === "replayed") {
-    if (result.kind === "ok") return { ok: true, csv: result.value.csv };
-    return { ok: true, csv: "" };
-  }
-  return { ok: false, error: "Export failed" };
 }

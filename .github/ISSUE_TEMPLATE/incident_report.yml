@@ -1,0 +1,58 @@
+﻿name: "🚨 Report an AI Incident"
+description: "Submit a public incident report regarding an autonomous AI model or application."
+title: "[INCIDENT]: "
+labels: ["incident-report", "triage-needed"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for contributing to the **ALPAR AI** Public Incident Registry.
+        Your report helps create an independent, transparent record for AI accountability (EU AI Act & KVKK).
+        **Note:** Please do not include unmasked personal identification data (PII).
+  - type: input
+    id: ai_model
+    attributes:
+      label: AI Model / System Name
+      description: "Which AI model or system was involved? (e.g. OpenAI GPT-4o, Claude 3.5 Sonnet, DeepSeek V3, Midjourney)"
+      placeholder: "e.g., Anthropic Claude 3.5 Sonnet"
+    validations:
+      required: true
+  - type: dropdown
+    id: incident_category
+    attributes:
+      label: Incident Category
+      description: "Select the primary category of the incident."
+      options:
+        - "Hallucination / Fact Distortion"
+        - "PII / Privacy Data Leakage"
+        - "Algorithmic Bias / Discrimination"
+        - "Autonomous Drift / Unintended Execution"
+        - "Copyright / IP Infringement"
+        - "Harmful Content / Jailbreak"
+        - "Security Vulnerability / Prompt Injection"
+        - "Other"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Incident Description
+      description: "Detailed description of what occurred and the real-world impact."
+      placeholder: "Explain the scenario, what prompt or action triggered the incident, and what harm or discrepancy resulted..."
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence & Reproduction
+      description: "Provide links, chat transcripts, prompts, or reproduction steps."
+      placeholder: "Prompt used, model output, timestamps, and public links..."
+    validations:
+      required: false
+  - type: checkboxes
+    id: pii_confirmation
+    attributes:
+      label: Zero-PII Acknowledgment
+      options:
+        - label: "I confirm that I have removed or masked all private personal identifiers (passwords, phone numbers, personal addresses, financial data) from this report."
+          required: true

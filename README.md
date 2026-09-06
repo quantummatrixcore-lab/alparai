@@ -1,204 +1,157 @@
-# ALPAR AI
+﻿<div align="center">
 
-> Trust infrastructure for AI accountability. Community-driven incident reporting platform. Like Trustpilot, but for AI systems.
+# 🛡️ ALPAR AI
 
-🌐 **[alparai.com](https://alparai.com)** · 📧 [hello@alparai.com](mailto:hello@alparai.com) · 📜 [AGPL-3.0](./LICENSE)
+### The Sovereign Trust & Accountability Infrastructure for Autonomous Artificial Intelligence
+**Independent Public Incident Registry • Zero-PII Guardian • 72h Vendor Dispute Console**
+
+[![Live Platform](https://img.shields.io/badge/Production-alparai.com-00F0FF?style=for-the-badge&logo=googlechrome&logoColor=white)](https://alparai.com)
+[![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue.svg?style=for-the-badge)](./LICENSE)
+[![EU AI Act Ready](https://img.shields.io/badge/EU_AI_Act-Reg_2024%2F1689_Compliant-06D6A0?style=for-the-badge)](https://eur-lex.europa.eu/eli/reg/2024/1689/oj)
+
+<br/>
 
 [![CI](https://github.com/quantummatrixcore-lab/alparai/actions/workflows/ci.yml/badge.svg)](https://github.com/quantummatrixcore-lab/alparai/actions/workflows/ci.yml)
-[![Security](https://github.com/quantummatrixcore-lab/alparai/actions/workflows/security.yml/badge.svg)](https://github.com/quantummatrixcore-lab/alparai/actions/workflows/security.yml)
-[![Deploy](https://github.com/quantummatrixcore-lab/alparai/actions/workflows/deploy.yml/badge.svg)](https://github.com/quantummatrixcore-lab/alparai/actions/workflows/deploy.yml)
-[![AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue.svg)](./LICENSE)
+[![Next.js 16](https://img.shields.io/badge/Next.js-16.2-black?logo=next.js)](https://nextjs.org/)
+[![React 19](https://img.shields.io/badge/React-19.2-61DAFB?logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript 5](https://img.shields.io/badge/TypeScript-5.x_Strict-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS v4](https://img.shields.io/badge/Tailwind-CSS_v4-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL_RLS-3ECF8E?logo=supabase&logoColor=white)](https://supabase.com/)
+[![Code Quality](https://img.shields.io/badge/AST_Gate-100%25_Green-brightgreen)](https://github.com/quantummatrixcore-lab/alparai)
 
-## Why
-
-AI is everywhere. When an AI system causes harm — a hallucination that ruins a paper, a biased loan decision, a privacy leak — users have nowhere to report it. The public record is scattered across Twitter, forums, and Reddit. We fix that.
-
-ALPAR is a public, independent, verifiable record of how AI systems behave in the real world. **Users report. AI providers respond. The public decides.**
-
-## Highlights
-
-- 🔐 **Sign in with Google** (Supabase Auth) — no passwords.
-- 🛡️ **PII Guardian** — emails, phone numbers, IDs, IBANs, credit cards, access tokens are automatically masked before publication.
-- 🌍 **EN + TR bilingual** (i18n with `next-intl`, `/en/...` and `/tr/...`).
-- 🏛️ **Intermediary legal model** — like Trustpilot / sikayetvar.com. We host user content; users are responsible for what they submit. (See [Terms](./src/app/[locale]/legal/terms/page.tsx) and [KVKK compliance](./docs/KVKK.md).)
-- 🤖 **AI providers' right to respond** — verified providers can post an official response on any incident.
-- 📊 **Leaderboard** — ranked by Trust Score (response rate, resolution rate, and response time).
-- 💡 **Suggestion system** — community votes, we build what matters.
-- ⚖️ **Takedown queue** — 7-day SLA, GDPR/KVKK aligned.
-- 📜 **AGPL-3.0** — anyone can audit, run, and contribute.
-- 🟢 **EU-hosted** — Supabase Frankfurt, Upstash Frankfurt, Plausible EU, Sentry EU.
-
-## Tech stack
-
-- **Framework:** Next.js 15 (App Router, React Server Components, Server Actions)
-- **Language:** TypeScript (strict)
-- **Styling:** Tailwind CSS v4 (CSS-first `@theme`), Framer Motion
-- **Auth:** Supabase Auth (Google OAuth)
-- **Database:** Supabase Postgres + Row Level Security
-- **Storage:** Supabase Storage (evidence + avatars)
-- **i18n:** next-intl (EN primary, TR secondary)
-- **Email:** Resend
-- **Rate limiting:** Upstash Redis
-- **Monitoring:** Sentry
-- **Analytics:** Plausible (cookieless)
-- **Testing:** Vitest + Playwright (planned)
-- **Lint:** ESLint (next + TS strict) + Prettier
-
-## Quickstart
-
-```bash
-git clone https://github.com/quantummatrixcore-lab/alparai
-cd alparai
-cp .env.example .env.local
-# fill in Supabase, Resend, Upstash, etc. — see CONTRIBUTING.md
-pnpm install
-pnpm db:reset      # apply Supabase migrations
-pnpm dev           # http://localhost:3000
-```
-
-> **Note:** full setup guide is in [CONTRIBUTING.md](./CONTRIBUTING.md).
-
-## Architecture
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                         Browser (User)                          │
-└─────────────────────────────────────────────────────────────────┘
-                              │ HTTPS
-                              ▼
-┌─────────────────────────────────────────────────────────────────┐
-│  Next.js 15 (App Router, RSC, Server Actions)                  │
-│  • i18n middleware  • CSP/HSTS  • Rate limiting  • PII Guardian │
-└─────────────────────────────────────────────────────────────────┘
-        │              │              │              │
-        ▼              ▼              ▼              ▼
-   Supabase        Upstash         Sentry       Plausible
-   Auth/DB/        Redis           (errors)     (analytics)
-   Storage         (limits)         EU            EU
-   (Frankfurt)
-```
-
-See [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) for the full picture.
-
-## Project structure
-
-```
-src/
-├── app/                       # App Router
-│   ├── [locale]/              # Localized routes (/en, /tr)
-│   │   ├── page.tsx           # Home
-│   │   ├── submit/            # Submit incident
-│   │   ├── incidents/         # Browse + detail
-│   │   ├── brand/[slug]/      # Provider pages
-│   │   ├── leaderboard/       # AI provider ranking
-│   │   ├── suggestions/       # Feature requests
-│   │   ├── legal/             # Privacy, Terms, Takedown, Cookies
-│   │   ├── pricing/           # Pricing tiers
-│   │   ├── security/          # Security & compliance
-│   │   ├── dmca/              # DMCA policy
-│   │   ├── moderation/        # Moderation policy
-│   │   ├── blog/              # Blog + articles
-│   │   ├── academy/           # Expert application
-│   │   ├── admin/             # Moderator panel
-│   │   ├── auth/              # Sign-in + OAuth callback
-│   │   ├── profile/           # User profile
-│   │   ├── about/             # About page
-│   │   └── contact/           # Contact form
-│   ├── layout.tsx             # Root layout (minimal)
-│   ├── error.tsx              # Global error boundary
-│   ├── not-found.tsx          # 404
-│   ├── robots.ts              # /robots.txt
-│   ├── sitemap.ts             # /sitemap.xml
-│   ├── manifest.ts            # /manifest.webmanifest
-│   ├── opengraph-image.tsx    # OG image (edge-rendered)
-│   ├── icon.tsx               # Favicon
-│   └── apple-icon.tsx         # Apple touch icon
-├── actions/                   # Server Actions (mutations)
-│   ├── incidents.ts
-│   ├── suggestions.ts
-│   ├── takedown.ts
-│   ├── auth.ts
-│   ├── admin.ts
-│   └── contact.ts
-├── components/
-│   ├── ui/                    # Primitives (Button, Card, …)
-│   ├── layout/                # Header, Footer, Nav, Logo
-│   ├── incidents/             # Cards, forms, detail view
-│   ├── auth/                  # Sign-in, consent
-│   ├── admin/                 # Moderation queue, stats
-│   ├── legal/                 # Cookie banner, legal layout
-│   ├── marketing/             # Hero, leaderboard, CTAs
-│   └── client-providers.tsx   # Toaster, CookieBanner
-├── i18n/                      # next-intl config
-│   ├── routing.ts
-│   └── request.ts
-├── lib/
-│   ├── supabase/              # Typed Supabase clients
-│   ├── auth/                  # Session helpers
-│   ├── pii/                   # PII Guardian
-│   ├── validation/            # Zod schemas
-│   ├── utils/                 # cn, formatters, rate limit
-│   └── constants/             # APP_NAME, categories, …
-├── types/                     # Database + app types
-├── middleware.ts              # i18n + session refresh
-└── globals.css                # Design tokens (Tailwind v4)
-supabase/
-└── migrations/                # SQL migrations
-messages/
-├── en.json
-└── tr.json
-docs/                          # Documentation (English)
-```
-
-## Roles
-
-| Role        | Can                                                          |
-| ----------- | ------------------------------------------------------------ |
-| `user`      | Sign in, submit incidents, vote, comment, suggest features   |
-| `moderator` | All of `user` + approve/reject incidents, review takedowns   |
-| `admin`     | All of `moderator` + manage users, providers, view audit log |
-
-The `users` table is auto-populated via a Postgres trigger on `auth.users` insert. Role assignment is manual (we promote trusted contributors).
-
-## Security
-
-- **CSP** locked to self + Supabase + Sentry + Google avatars + GFonts.
-- **HSTS** with `preload`, **X-Frame-Options: DENY**, **X-Content-Type-Options: nosniff**.
-- **RLS** enabled on every table; helper functions `is_moderator()` / `is_admin()` gate moderator actions.
-- **PII Guardian** masks PII server-side before insert.
-- **Rate limits**: 5 incidents/hour, 10 suggestions/day, 10 sign-ins/15min, 100 req/min general (Upstash).
-- **PII as `server-only`** — server modules cannot be bundled into the client.
-
-Read [docs/SECURITY.md](./docs/SECURITY.md) for the full security model.
-
-## Legal
-
-We operate as an **intermediary platform** in line with:
-
-- EU E-Commerce Directive (2000/31/EC), Article 14
-- Turkish E-Commerce Law (6563 sayılı Kanun)
-- GDPR + KVKK
-
-We do not pre-moderate submissions (except automated PII scanning). Liability for the accuracy of submissions rests with the user. See [Terms](./src/app/[locale]/legal/terms/page.tsx) and [Takedown Policy](./src/app/[locale]/legal/takedown/page.tsx).
-
-## Open Source
-
-ALPAR AI is open source under **AGPL-3.0**.
-
-**What's open:** Frontend, data schema, validation pipeline, GDPR/KVKK compliance code, and the full incident lifecycle — because "we're transparent" requires proof, not promises.
-
-**What's closed:** The moderation engine and spam detection layer — making these public would let bad actors reverse-engineer bypass methods. This is the same approach taken by AIID and most accountability platforms.
-
-> AGPL-3.0 means: if you run a hosted instance or fork this, you must release your changes under the same license. Commercial licensing available — contact [hello@alparai.com](mailto:hello@alparai.com).
-
-## Contributing
-
-We welcome contributions. See [CONTRIBUTING.md](./CONTRIBUTING.md).
-
-## License
-
-[AGPL-3.0](./LICENSE) — any derivative work (including a hosted instance) must be released under the same license.
+</div>
 
 ---
 
-Made with care for the AI era. · [alparai.com](https://alparai.com)
+## 🌍 The Mission: Why ALPAR AI?
+
+Artificial intelligence is rapidly transitioning from passive chat interfaces to **autonomous agents** that execute financial transactions, summarize medical data, render legal opinions, and autonomously manipulate production databases.
+
+When an AI system causes real-world harm—such as a catastrophic hallucination in financial modeling, biased discriminatory scoring, unauthorized PII exfiltration, or autonomous agent escape—the public record is fragmented across Twitter/X threads, Discord channels, and Reddit forums.
+
+**ALPAR AI fixes the accountability crisis.**
+
+We provide the independent, tamper-proof, community-driven audit and reporting layer for artificial intelligence systems worldwide. 
+
+> **Community Reports. AI Model Makers Respond. The Public Decides.**
+
+---
+
+## 🏛️ The 4 Sovereign Pillars
+
+```mermaid
+graph TD
+    User["👤 Community / User"] -->|Submit Incident / Evidence| Edge["⚡ Next.js 16 Edge Gateway"]
+    Edge -->|Real-time Masking & Regex| PII["🔒 Zero-PII Guardian (Luhn + RegEx)"]
+    PII -->|Cryptographic Record| DB[("🗄️ Supabase PostgreSQL + RLS")]
+    DB -->|Instant Webhook Alert| Vendor["🏛️ 72h Vendor Dispute Console (Anthropic, OpenAI, Google)"]
+    Vendor -->|Verified Right of Reply| DB
+    DB -->|Public Transparency Feed| Public["📊 Real-Time Trust Scoreboard & LLM Audits"]
+```
+
+### 1. 🚨 Autonomous Incident Registry
+A tamper-proof, public registry documenting real-world AI failures across LLMs, Multimodal models, and Autonomous Agents. Every submission undergoes structured categorization: Hallucination, PII Exfiltration, Algorithmic Bias, Autonomous Drift, Copyright Breach, and Prompt Injection.
+
+### 2. 🔒 Zero-PII Guardian
+To prevent the platform from becoming a vector for dox attacks or privacy leaks, all user-submitted prompts and screenshots pass through server-side PII scrubbing using the Luhn algorithm and strict regex masks (masking credit cards, phone numbers, Turkish TC IDs, IBANs, API keys, and personal email addresses).
+
+### 3. ⏱️ 72h Vendor Dispute Console
+Model creators (OpenAI, Anthropic, Google, Mistral, and local frontier labs) receive immediate notification and an SLA-backed 72-hour window to submit an official counter-analysis or mitigation patch, preserving objective fairness.
+
+### 4. ⚖️ EU AI Act & KVKK Compliance Shield
+Direct technical alignment with **EU Regulation 2024/1689 (Articles 74, 85, and 90)** and Turkish KVKK requirements. Provides pre-built incident reporting templates that satisfy regulatory auditing mandates before monetary penalties take effect in August 2026.
+
+---
+
+## ⚡ Technical Stack & Architecture
+
+| Layer | Technology | Rationale |
+| :--- | :--- | :--- |
+| **Framework** | **Next.js 16.2 (App Router)** | React 19 Server Components, Server Actions, zero-waterfall data fetching. |
+| **Styling** | **Tailwind CSS v4** | CSS-first `@theme` configuration, zero-runtime overhead, sub-millisecond hydration. |
+| **Database & Auth** | **Supabase PostgreSQL** | Strict Row Level Security (RLS), Google OAuth, Frankfurt EU Data Center. |
+| **Internationalization** | **next-intl (Bilingual)** | Native bi-directional localization (`/en`, `/tr`) with zero layout shift. |
+| **Rate Limiting** | **Upstash Redis (Serverless)** | Token-bucket sliding window algorithm protecting against Sybil and DoS attacks. |
+| **Monitoring** | **Sentry EU** | Real-time telemetry, Core Web Vitals profiling, and zero-leak error boundaries. |
+| **Security Headers** | **Strict CSP + HSTS** | Frame-ancestors `none`, X-Content-Type-Options `nosniff`, Strict Referrer. |
+
+---
+
+## 🚀 Quickstart for Developers
+
+### Prerequisites
+* **Node.js**: `>= 20.0.0`
+* **Package Manager**: `pnpm >= 9.12.0`
+
+### Installation
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/quantummatrixcore-lab/alparai.git
+cd alparai
+
+# 2. Install dependencies
+pnpm install
+
+# 3. Configure environment variables
+cp .env.example .env.local
+
+# 4. Launch development server
+pnpm dev
+```
+
+Visit [http://localhost:3000](http://localhost:3000) to view the application.
+
+---
+
+## 🛡️ Clean-Room Open Source Boundary
+
+ALPAR AI follows an **Open Core (AGPL-3.0)** architecture. We maintain complete transparency regarding what is public and what remains managed:
+
+| Component | License | Details |
+| :--- | :--- | :--- |
+| **Incident Registry Frontend** | **AGPL-3.0 (Public)** | 100% open source. Anyone can audit, run, and contribute. |
+| **PII Guardian & Anonymizer** | **AGPL-3.0 (Public)** | Open regex and Luhn validation schemas. |
+| **Data Schemas & Validations** | **AGPL-3.0 (Public)** | Supabase migrations and Zod validation contracts. |
+| **Vendor Dispute Console** | **Managed B2B** | Closed-loop enterprise arbitration and SLA dispatch network. |
+| **Underwriting API** | **Commercial API** | InsurTech risk-scoring feeds for enterprise AI policy underwriting. |
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions from AI safety researchers, legal scholars, developers, and designers.
+
+1. Review [CONTRIBUTING.md](./CONTRIBUTING.md) for contribution guidelines and development workflow.
+2. Read [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md) to maintain our respectful, evidence-based standard.
+3. Submit an issue using our [GitHub Issue Templates](https://github.com/quantummatrixcore-lab/alparai/issues/new/choose).
+
+---
+
+## 🔒 Security & Vulnerability Disclosure
+
+For security audits or responsible disclosure, please review [SECURITY.md](./SECURITY.md).  
+To report urgent security or ethics breaches confidentially:
+* 🛡️ **Whistleblower Desk:** [ihbar@alparai.com](mailto:ihbar@alparai.com)
+* 📧 **General Security:** [security@alparai.com](mailto:security@alparai.com)
+
+---
+
+## 📜 Legal & Regulatory Notice
+
+ALPAR AI operates as an **independent hosting intermediary** under:
+* **EU E-Commerce Directive (2000/31/EC)**, Article 14
+* **EU Digital Services Act (Regulation 2022/2065)**
+* **Turkish Law No. 6563** (Regulation of Electronic Commerce)
+* **GDPR & 6698 Sayılı KVKK**
+
+Submissions are reviewed via automated PII filters and post-publication notice-and-takedown procedures. AI system owners have a guaranteed right of reply.
+
+---
+
+<div align="center">
+
+**Crafted with conviction for the Autonomous AI Era.**  
+[Website](https://alparai.com) • [GitHub](https://github.com/quantummatrixcore-lab/alparai) • [Contact](mailto:hello@alparai.com)
+
+</div>

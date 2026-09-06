@@ -1,37 +1,24 @@
 {
-  "timestamp": "2026-09-04T16:20:03.573Z",
+  "timestamp": "2026-09-06T21:09:20.622Z",
   "target": "http://localhost:3003",
   "inspections": {},
-  "defectsFound": 2,
-  "defectsAutoHealed": 2,
+  "defectsFound": 3,
+  "defectsAutoHealed": 3,
   "pillars": {
     "spatial_visual": {
-      "status": "DEFECTS_FOUND",
-      "score": 85,
-      "latency": "2634ms",
-      "defects": [
-        {
-          "type": "SECURITY",
-          "message": "CSP allows unsafe-inline without nonces"
-        }
-      ]
+      "status": "PENDING",
+      "score": 0
     },
     "closed_loop_ast": {
       "status": "HEALTHY",
       "score": 100,
-      "filesScanned": 2020,
-      "found": 2,
-      "autoHealed": 2
+      "filesScanned": 2039,
+      "found": 3,
+      "autoHealed": 3
     },
     "predictive_cwv": {
-      "status": "NEEDS_OPTIMIZATION",
-      "score": 60,
-      "metrics": {
-        "ttfb": "1896ms (Target: <= 800ms)",
-        "predicted_lcp": "5028ms (Target: <= 2500ms)",
-        "predicted_cls": "0.08",
-        "payload_size": "646.3 KB"
-      }
+      "status": "PENDING",
+      "score": 0
     }
   },
   "healLog": [
@@ -41,11 +28,16 @@
       "action": "Wrapped with DOMPurify.sanitize"
     },
     {
+      "file": "D:\\01_SaaS_Products\\Alparai\\src\\app\\[locale]\\blog\\[slug]\\page.tsx",
+      "rule": "XSS_DANGEROUSLY_SET_INNER_HTML",
+      "action": "Wrapped with DOMPurify.sanitize"
+    },
+    {
       "file": "D:\\01_SaaS_Products\\Alparai\\src\\components\\seo\\json-ld.tsx",
       "rule": "XSS_DANGEROUSLY_SET_INNER_HTML",
       "action": "Wrapped with DOMPurify.sanitize"
     }
   ],
-  "overallScore": 82,
-  "duration": "18.03s"
+  "overallScore": 33,
+  "duration": "10.80s"
 }

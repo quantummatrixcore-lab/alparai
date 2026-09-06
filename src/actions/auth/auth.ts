@@ -40,7 +40,8 @@ export async function signInWithGoogleIdToken(token: string, nonce: string): Pro
       console.error("[signInWithGoogleIdToken] Google verification returned status:", verifyRes.status);
       return { ok: false, error: "Google ID Token verification failed" };
     }
-    const payload = (await verifyRes.json()) as any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const payload = (await verifyRes.json()) as any;
 
     const envClientId = process.env.GOOGLE_CLIENT_ID;
     const expectedClientId =
@@ -181,13 +182,15 @@ export async function signInWithSupabaseToken(accessToken: string): Promise<Auth
       return { ok: false, error: error?.message || "Invalid session token" };
     }
     const { setSessionUser } = await import("@/lib/auth/session");
-    await setSessionUser({
-      id: user.id,
-      email: user.email || "",
-      name: user.user_metadata?.full_name || user.user_metadata?.name || user.email?.split("@")[0] || "User",
-      picture: user.user_metadata?.avatar_url || user.user_metadata?.picture || "",
-      role: (user.app_metadata?.role as any) || "user",
-    });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      await setSessionUser({
+            id: user.id,
+            email: user.email || "",
+            name: user.user_metadata?.full_name || user.user_metadata?.name || user.email?.split("@")[0] || "User",
+            picture: user.user_metadata?.avatar_url || user.user_metadata?.picture || "",
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            role: (user.app_metadata?.role as any) || "user",
+          });
     return { ok: true };
   } catch (err) {
     console.error("[signInWithSupabaseToken] Error:", err);

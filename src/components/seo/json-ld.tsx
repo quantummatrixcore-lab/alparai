@@ -334,7 +334,7 @@ export function IncidentJsonLd({
   };
 
   return (
-    <JsonLd data={data} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
   );
 }
 
@@ -486,7 +486,7 @@ export function ClaimReviewJsonLd({
     },
   };
   return (
-    <JsonLd data={data} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
   );
 }
 

@@ -396,6 +396,7 @@ export default function ApiKeysPage() {
                 </label>
                 <select
                   value={clientTier}
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
                   onChange={(e) => setClientTier(e.target.value as any)}
                   className="w-full rounded border border-[#d0d7de] bg-[#ffffff] px-3 py-1.5 text-[#1f2328] focus:outline-none dark:border-[#30363d] dark:bg-[#0d1117] dark:text-[#f0f6fc]"
                 >

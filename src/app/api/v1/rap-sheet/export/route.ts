@@ -20,6 +20,7 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const format = searchParams.get("format") ?? "json";
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const supabase = createAdminClient() as any;
     const { data, error } = await supabase
       .from("ai_rap_sheet_entries")
@@ -34,6 +35,7 @@ export async function GET(request: Request) {
 
     if (format === "csv") {
       const headersCsv = "id,entity_type,entity_name,violation_category,severity,penalty_type,listed_at,offense_summary\n";
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const rows = ((data as any[]) ?? []).map((row: any) => {
         const cleanSummary = (row.offense_summary || "").replace(/"/g, '""');
         return `"${row.id}","${row.entity_type}","${row.entity_name}","${row.violation_category}","${row.severity}","${row.penalty_type}","${row.listed_at}","${cleanSummary}"`;

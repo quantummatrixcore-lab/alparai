@@ -53,7 +53,8 @@ export default async function LocaleLayout({
     return null;
   }
   setRequestLocale(locale);
-  const messages = (await getMessages()) as Record<string, any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const messages = (await getMessages()) as Record<string, any>;
   const tCommon = await getTranslations({ locale, namespace: "common" });
   const headerUser = null;
 

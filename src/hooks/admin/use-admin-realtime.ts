@@ -69,22 +69,24 @@ export function useAdminRealtime<T extends { [key: string]: unknown } = Record<s
       subscriptionConfig.filter = filter;
     }
 
-    channel
-      .on(
-        "postgres_changes" as any,
-        subscriptionConfig,
-        (payload: RealtimePostgresChangesPayload<T>) => {
-          onChangeRef.current?.(payload);
-          if (payload.eventType === "INSERT") {
-            onInsertRef.current?.(payload);
-          } else if (payload.eventType === "UPDATE") {
-            onUpdateRef.current?.(payload);
-          } else if (payload.eventType === "DELETE") {
-            onDeleteRef.current?.(payload);
-          }
-        }
-      )
-      .subscribe();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      channel
+            .on(
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              "postgres_changes" as any,
+              subscriptionConfig,
+              (payload: RealtimePostgresChangesPayload<T>) => {
+                onChangeRef.current?.(payload);
+                if (payload.eventType === "INSERT") {
+                  onInsertRef.current?.(payload);
+                } else if (payload.eventType === "UPDATE") {
+                  onUpdateRef.current?.(payload);
+                } else if (payload.eventType === "DELETE") {
+                  onDeleteRef.current?.(payload);
+                }
+              }
+            )
+            .subscribe();
 
     return () => {
       supabase.removeChannel(channel);

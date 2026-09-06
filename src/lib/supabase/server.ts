@@ -59,7 +59,7 @@ export async function createClient() {
                 avatar_url: u.picture,
                 picture: u.picture,
               },
-            } as any,
+            } as unknown as import("@supabase/supabase-js").User,
           },
           error: null,
         });

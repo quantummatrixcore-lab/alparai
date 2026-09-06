@@ -127,7 +127,8 @@ function calculateIncidentPenalty(inc: IncidentRecord): number {
 /**
  * Güvenlik Kilidi: Falsy 0 Hatasını (0 Puanın Yoksayılması) ve NaN sızıntılarını önler.
  */
-function parseValidScore(val: any, fallback: number): number {
+function parseValidScore(// eslint-disable-next-line @typescript-eslint/no-explicit-any
+    val: any, fallback: number): number {
   if (val === undefined || val === null) return fallback;
   const num = Number(val);
   return Number.isFinite(num) ? num : fallback;

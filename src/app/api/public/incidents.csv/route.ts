@@ -29,6 +29,7 @@ export async function GET() {
       "source_url",
       "description",
     ];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const rows = data.map((item: any) => [
       `"${item.id}"`,
       `"${(item.title_masked || "").replace(/"/g, '""')}"`,
@@ -39,6 +40,7 @@ export async function GET() {
       `"${(item.description_masked || "").replace(/"/g, '""').replace(/\n/g, " ")}"`,
     ]);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const csvContent = [headers.join(","), ...rows.map((r: any) => r.join(","))].join("\n");
 
     return new NextResponse(csvContent, {

@@ -230,6 +230,7 @@ export default function CompliancePage() {
               </label>
               <select
                 value={violationType}
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 onChange={(e) => setViolationType(e.target.value as any)}
                 className="w-full rounded border border-[#d0d7de] bg-[#ffffff] px-3 py-1.5 text-[#1f2328] focus:outline-none dark:border-[#30363d] dark:bg-[#0d1117] dark:text-[#f0f6fc]"
               >

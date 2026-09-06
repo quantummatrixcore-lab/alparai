@@ -1138,6 +1138,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                   <span className="text-fg-muted block text-[11px]">Avg Response</span>
                   {}
                   <span className="font-mono text-sm font-bold text-cyan-300">
+                    {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                     {(selectedTwinModal.stats as any).latency || "145ms"}
                   </span>
                 </div>

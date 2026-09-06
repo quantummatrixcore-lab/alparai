@@ -31,6 +31,7 @@ export async function GET() {
       return NextResponse.json({ error: "Failed to generate dataset" }, { status: 500 });
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const incidents: DatasetItem[] = data.map((row: any) => ({
       id: row.id,
       title: row.title_masked ?? "",

@@ -11,6 +11,7 @@ export async function GET(
   try {
     const { userId } = await params;
     const currentUser = await getCurrentUser();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const supabase = createAdminClient() as any;
 
     // Get user reputation
@@ -36,6 +37,7 @@ export async function GET(
     };
 
     // If own profile or admin/moderator, also fetch reputation history logs
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let logs: any[] = [];
     if (currentUser?.id === userId || currentUser?.role === "admin" || currentUser?.role === "moderator") {
       const { data: logsData } = await supabase

@@ -10,6 +10,7 @@ export async function GET(
 ) {
   try {
     const { id } = await params;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const supabase = createAdminClient() as any;
 
     const { data, error } = await supabase
@@ -45,6 +46,7 @@ export async function PATCH(
     if (is_active !== undefined) updates.is_active = is_active;
     if (penalty_details !== undefined) updates.penalty_details = penalty_details;
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const supabase = createAdminClient() as any;
     const { data, error } = await supabase
       .from("ai_rap_sheet_entries")

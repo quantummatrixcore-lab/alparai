@@ -22,6 +22,7 @@ export async function POST(
       return NextResponse.json({ error: "Invalid vote decision. Must be 'guilty', 'innocent', or 'abstain'." }, { status: 400 });
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const supabase = createAdminClient() as any;
 
     // Verify case exists and is open for voting

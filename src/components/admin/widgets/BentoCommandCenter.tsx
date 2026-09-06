@@ -60,6 +60,7 @@ export function BentoCommandCenter() {
               return (
                 <button
                   key={tab.id}
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
                   onClick={() => setActiveTab(tab.id as any)}
                   className={`flex shrink-0 items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-bold transition-all sm:px-3 ${
                     isCurrent

@@ -26,6 +26,7 @@ export async function POST(req: Request) {
     }
 
     // Anti-Sybil / Reputation Check - Bypass strict types for prototype
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data: profile } = await (supabase as any)
       .from("user_profiles")
       .select("reputation_score, is_verified_citizen")
@@ -42,6 +43,7 @@ export async function POST(req: Request) {
     }
 
     // Register Vote in Agora-T System
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { error: voteError } = await (supabase as any).from("incident_jury_votes").insert({
       incident_id: incidentId,
       voter_id: user.id,

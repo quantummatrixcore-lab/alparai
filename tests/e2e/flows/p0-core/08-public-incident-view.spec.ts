@@ -1,0 +1,8 @@
+import { test, expect } from "@playwright/test";
+
+test.describe("P0 - View Flow: Public Incident", () => {
+  test("Public incident page renders correctly", async ({ page }) => {
+    await page.goto("/en/incidents");
+    await expect(page.getByText(/Incidents|İhlaller/i).first()).toBeVisible();
+  });
+});

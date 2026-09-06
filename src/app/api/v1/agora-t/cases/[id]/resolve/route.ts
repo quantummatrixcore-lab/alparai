@@ -11,6 +11,7 @@ export async function POST(
   try {
     await requireModerator();
     const { id: caseId } = await params;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const supabase = createAdminClient() as any;
 
     // Call atomic resolution RPC

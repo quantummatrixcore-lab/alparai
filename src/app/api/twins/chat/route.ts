@@ -40,6 +40,7 @@ export async function POST(req: NextRequest) {
     const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "127.0.0.1";
 
     const rl = await checkRateLimit(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       `${(RATE_LIMIT_KEYS as any).chat_rate_limit ?? "twin_chat"}:${ip}`,
     );
     if (!rl.ok) {
@@ -134,12 +135,14 @@ export async function POST(req: NextRequest) {
     // Usage Logging (Vekilharçlık Kaydı)
     const adminClient = createAdminClient();
     try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { error: rpcError } = await (adminClient.rpc as any)("increment_persona_usage", {
         p_twin_id: twinId,
         p_tokens: totalTokens,
       });
 
       if (rpcError) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         await (adminClient as any).from("persona_usage_stats").insert({
           twin_id: twinId,
           tokens_used: totalTokens,

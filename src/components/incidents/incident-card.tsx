@@ -120,7 +120,8 @@ export function IncidentCard({
   };
 
   const borderClass = severityBorders[severity] || "border-l-4 border-l-brand-500";
-  const count = (incident as any).views_count ?? incident.view_count ?? 1200;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const count = (incident as any).views_count ?? incident.view_count ?? 1200;
   const viewsDisplay = count > 999 ? `${(count / 1000).toFixed(1)}K` : count || "1.2K";
 
   return (

@@ -8,6 +8,7 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     const caseId = searchParams.get("case_id");
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const supabase = createAdminClient() as any;
 
     if (caseId) {
@@ -58,6 +59,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "case_id and non-empty juror_ids array required" }, { status: 400 });
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const supabase = createAdminClient() as any;
     const assignments = juror_ids.map((id: string) => ({
       case_id,

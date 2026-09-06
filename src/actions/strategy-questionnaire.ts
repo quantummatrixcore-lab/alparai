@@ -78,7 +78,8 @@ export async function runQuestionnaire(modelIds?: string[]): Promise<{
 
         for (let i = 0; i < allQuestions.length; i += BATCH_SIZE) {
           const chunk = allQuestions.slice(i, i + BATCH_SIZE);
-          const chunkInserts: any[] = [];
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const chunkInserts: any[] = [];
 
           await Promise.all(
             chunk.map(async (q, chunkIndex) => {

@@ -5335,38 +5335,18 @@
       "title": "ALPAR Risk Score API"
     },
     "browser_extension_page": {
-      "coming_soon_desc": "Our Chromium and Firefox extensions are undergoing final security review. Join the early access waitlist.",
-      "coming_soon_title": "Extension in Final Testing",
-      "join_waitlist": "Join Extension Waitlist",
-      "live_detection_desc": "Detect AI-generated text, deepfakes, and biased content across social feeds, news sites, and search results.",
-      "live_detection_title": "Real-Time AI Verification",
-      "subtitle": "Instant AI accountability, hallucination warnings, and model trust scores right inside your browser.",
-      "title": "ALPAR AI Real-Time Browser Extension",
-      "trust_scores_desc": "View live reliability metrics, incident records, and safety rankings for ChatGPT, Claude, Gemini, and Grok.",
-      "trust_scores_title": "Instant Provider Trust Scores"
+      "badge": "ALPHA ACCESS",
+      "title": "AI Transparency Browser Extension",
+      "subtitle": "Real-time AI model transparency and incident alerting extension",
+      "alerts_title": "Real-Time Threat Alerts",
+      "alerts_desc": "Instant notifications when interacting with non-compliant or compromised LLM endpoints.",
+      "scanner_title": "Prompt Injection Shield",
+      "scanner_desc": "Client-side heuristic detection of indirect prompt injection attempts."
     },
     "datasets": {
-      "cta": {
-        "button": "Explore Datasets",
-        "desc": "Integrate ALPAR AI datasets into your model evaluation and red-teaming pipelines.",
-        "title": "Access Raw Safety Telemetry"
-      },
-      "features": {
-        "exports": {
-          "desc": "Download high-integrity JSON, CSV, and Parquet feeds updated continuously with forensic evidence logs.",
-          "title": "Machine-Readable Data Exports"
-        },
-        "license": {
-          "desc": "Free open access for academic researchers, universities, and non-profit safety labs.",
-          "title": "Open Academic & Commercial Licenses"
-        },
-        "taxonomy": {
-          "desc": "Incidents categorized under NIST AI RMF, EU AI Act risk tiers, and IEEE safety frameworks.",
-          "title": "Standardized Risk Taxonomy"
-        }
-      },
-      "subtitle": "Comprehensive, structured, and verified incident telemetry for AI researchers, auditors, and compliance teams.",
-      "title": "AI Safety & Incident Datasets"
+      "badge": "OPEN BENCHMARKS",
+      "title": "Datasets & Benchmarks",
+      "subtitle": "Standardized datasets and benchmarks for AI incident evaluation and safety testing"
     },
     "eu_ai_act": "EU AI Act Compliance SaaS",
     "eu_ai_act_page": {
@@ -5762,7 +5742,7 @@
     "methodologyResponseDesc": "Positive impact. Prompt official responses to incidents increase score.",
     "methodologyResponseTitle": "Response Rate & Speed",
     "noIncidentsYet": "No verified incidents recorded yet.",
-    "obligation_header": "Legal Obligation",
+    "obligation_header": "Obligation",
     "pendingModeration": "Pending moderation",
     "pendingReview": "Pending review",
     "providerResponseRate": "Provider response rate",
@@ -5782,7 +5762,7 @@
     "roadmapIntro": "To guarantee trust and institutional readiness, ALPAR AI is pursuing industry-standard compliance certifications.",
     "roadmapTitle": "Security Certifications Roadmap",
     "soc2Desc": "Target: Q3 2026. Setting up continuous security logging, audit trails, and strict data access policies.",
-    "status_header": "Compliance Status",
+    "status_header": "Status",
     "streisand_category_ai_firm": "AI Firm",
     "streisand_category_individual": "Individual",
     "streisand_category_legal": "Legal Representative",
@@ -5816,7 +5796,9 @@
     "verifiedIncident": "Verified Incident",
     "verifiedThisWeek": "Verified this week",
     "verified_header": "Verification Proof",
-    "viewAllIncidents": "Explore All Incidents"
+    "viewAllIncidents": "Explore All Incidents",
+    "title": "EU AI Act Article 73 Tracker",
+    "subtitle": "Real-time compliance monitoring and obligation ledger for GPAI model providers."
   },
   "trust": {
     "methodology": "Peer-reviewed Methodology",

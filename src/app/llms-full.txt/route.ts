@@ -1,17 +1,24 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 
+export const dynamic = "force-dynamic";
 export const revalidate = 3600; // Cache for 1 hour
 
 export async function GET() {
-  const admin = createAdminClient();
-
-  const { data: incidents } = await admin
-    .from("incidents")
-    .select("id, title, description, category, severity, incident_date, source_url")
-    .eq("status", "published")
-    .order("created_at", { ascending: false })
-    .limit(50);
+  let incidents: any[] = [];
+  try {
+    const admin = createAdminClient();
+    const res = await admin
+      .from("incidents")
+      .select("id, title, description, category, severity, incident_date, source_url")
+      .eq("status", "published")
+      .order("created_at", { ascending: false })
+      .limit(50);
+    if (res.data) incidents = res.data;
+  } catch (e) {
+    // Fallback in environments without direct database secrets
+    incidents = [];
+  }
 
   let fullContent = `# ALPAR AI — Full Incident Feed (LLM Full Dump)
 

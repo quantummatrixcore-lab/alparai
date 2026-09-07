@@ -5335,38 +5335,18 @@
       "title": "ALPAR Risk Skor API"
     },
     "browser_extension_page": {
-      "coming_soon_desc": "Chromium ve Firefox eklentilerimiz son güvenlik denetiminden geçmektedir. Erken erişim bekleme listesine katılın.",
-      "coming_soon_title": "Eklenti Son Test Aşamasında",
-      "join_waitlist": "Eklenti Bekleme Listesine Katıl",
-      "live_detection_desc": "Sosyal medya akışlarında, haber sitelerinde ve arama sonuçlarında YZ içeriklerini, deepfake ve taraflı çıktıları tespit edin.",
-      "live_detection_title": "Gerçek Zamanlı YZ Doğrulaması",
-      "subtitle": "Tarayıcınızın içinde anlık YZ hesap verebilirlik uyarıları, halüsinasyon tespiti ve model güven skorları.",
-      "title": "ALPAR AI Gerçek Zamanlı Tarayıcı Eklentisi",
-      "trust_scores_desc": "ChatGPT, Claude, Gemini ve Grok için canlı güvenilirlik metriklerini, vaka kayıtlarını ve güvenlik sıralamalarını görüntüleyin.",
-      "trust_scores_title": "Anlık Sağlayıcı Güven Skorları"
+      "badge": "ERKEN ERİŞİM",
+      "title": "Yapay Zeka Şeffaflık Tarayıcı Eklentisi",
+      "subtitle": "Gerçek zamanlı yapay zeka model şeffaflığı ve olay uyarı eklentisi",
+      "alerts_title": "Gerçek Zamanlı Tehdit Uyarıları",
+      "alerts_desc": "Uyumsuz veya güvenliği ihlal edilmiş LLM uç noktalarıyla etkileşime girildiğinde anlık bildirimler.",
+      "scanner_title": "Prompt Enjeksiyon Kalkanı",
+      "scanner_desc": "Dolaylı prompt enjeksiyon girişimlerinin istemci tarafında sezgisel tespiti."
     },
     "datasets": {
-      "cta": {
-        "button": "Veri Setlerini İncele",
-        "desc": "ALPAR AI veri setlerini model değerlendirme ve kırmızı takım (red-teaming) süreçlerinize entegre edin.",
-        "title": "Ham Güvenlik Telemetrisine Erişin"
-      },
-      "features": {
-        "exports": {
-          "desc": "Adli kanıt loglarıyla sürekli güncellenen yüksek doğruluklu JSON, CSV ve Parquet veri akışları.",
-          "title": "Makine Tarafından Okunabilir Veri Dışa Aktarımı"
-        },
-        "license": {
-          "desc": "Akademik araştırmacılar, üniversiteler ve kar amacı gütmeyen güvenlik laboratuvarları için ücretsiz açık erişim.",
-          "title": "Açık Akademik ve Ticari Lisanslar"
-        },
-        "taxonomy": {
-          "desc": "NIST AI RMF, AB YZ Yasası risk katmanları ve IEEE güvenlik çerçevelerine göre sınıflandırılmış vakalar.",
-          "title": "Standartlaştırılmış Risk Sınıflandırması"
-        }
-      },
-      "subtitle": "YZ araştırmacıları, denetçiler ve uyum ekipleri için kapsamlı, yapılandırılmış ve doğrulanmış telemetri verileri.",
-      "title": "YZ Güvenlik & Vaka Veri Setleri"
+      "badge": "AÇIK KIYASLAMA VERİLERİ",
+      "title": "Veri Setleri ve Kıyaslama Testleri",
+      "subtitle": "Yapay zeka olay değerlendirmesi ve güvenlik testleri için standartlaştırılmış veri setleri."
     },
     "eu_ai_act": "AB YZ Yasası Uyum SaaS",
     "eu_ai_act_page": {
@@ -5762,7 +5742,7 @@
     "methodologyResponseDesc": "Pozitif etki. Olaylara verilen hızlı resmi yanıtlar puanı artırır.",
     "methodologyResponseTitle": "Yanıt Oranı ve Hızı",
     "noIncidentsYet": "Henüz doğrulanmış olay kaydı bulunmuyor.",
-    "obligation_header": "Yasal Yükümlülük",
+    "obligation_header": "Yükümlülük",
     "pendingModeration": "Moderasyon bekliyor",
     "pendingReview": "İnceleme bekliyor",
     "providerResponseRate": "Sağlayıcı yanıt oranı",
@@ -5782,7 +5762,7 @@
     "roadmapIntro": "Kurumsal entegrasyonu ve tam şeffaflığı garanti altına almak amacıyla, ALPAR AI endüstri standartlarında uyumluluk sertifikalarını hedeflemektedir.",
     "roadmapTitle": "Güvenlik Sertifikasyon Yol Haritası",
     "soc2Desc": "Hedef: 2026'nın 3. çeyreği. Sürekli güvenlik günlük kaydı, denetim izleri ve sıkı veri erişim politikaları kurulumu.",
-    "status_header": "Uyum Durumu",
+    "status_header": "Durum",
     "streisand_category_ai_firm": "Yapay Zeka Şirketi",
     "streisand_category_individual": "Birey",
     "streisand_category_legal": "Hukuki Temsilci",
@@ -5816,7 +5796,9 @@
     "verifiedIncident": "Doğrulanmış Olay",
     "verifiedThisWeek": "Bu hafta doğrulananlar",
     "verified_header": "Doğrulama Kanıtı",
-    "viewAllIncidents": "Tüm Olayları İncele"
+    "viewAllIncidents": "Tüm Olayları İncele",
+    "title": "AB Yapay Zeka Yasası Madde 73 Takipçisi",
+    "subtitle": "Genel amaçlı yapay zeka sağlayıcıları için gerçek zamanlı uyumluluk izleme ve yükümlülük defteri."
   },
   "trust": {
     "methodology": "Metodoloji",

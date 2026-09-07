@@ -86,9 +86,9 @@ export function resolveCountsBySource(
   });
 
   const sum = Object.values(counts).reduce((a, b) => a + b, 0);
-  if (sum === 0 || Math.abs(sum - target) > 50) {
+  if (totalTarget && totalTarget > 0 && (sum === 0 || Math.abs(sum - totalTarget) > 50)) {
     // Proportional scaling to strictly guarantee breakdown sum equals the total counter displayed
-    const factor = target / (sum > 0 ? sum : CANONICAL_INCIDENT_COUNT);
+    const factor = totalTarget / (sum > 0 ? sum : CANONICAL_INCIDENT_COUNT);
     const baseU = sum > 0 ? counts.user_submitted : CANONICAL_COUNTS_BY_SOURCE.user_submitted;
     const baseA = sum > 0 ? counts.aiaaic_import : CANONICAL_COUNTS_BY_SOURCE.aiaaic_import;
     const baseI = sum > 0 ? counts.aiid_import : CANONICAL_COUNTS_BY_SOURCE.aiid_import;
@@ -98,7 +98,7 @@ export function resolveCountsBySource(
     const a = Math.round(baseA * factor);
     const i = Math.round(baseI * factor);
     const n = Math.round(baseN * factor);
-    const c = target - (u + a + i + n);
+    const c = totalTarget - (u + a + i + n);
 
     return {
       user_submitted: u,

@@ -1,12 +1,12 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 
 // In-memory cookie store
-const cookieJar = new Map<string, { value: string; options?: any }>();
+const cookieJar = new Map<string, { value: string; options?: unknown }>();
 
 vi.mock("next/headers", () => ({
   cookies: vi.fn(async () => ({
     get: (name: string) => cookieJar.get(name),
-    set: (name: string, value: string, options?: any) => {
+    set: (name: string, value: string, options?: unknown) => {
       cookieJar.set(name, { value, options });
     },
     delete: (name: string) => {

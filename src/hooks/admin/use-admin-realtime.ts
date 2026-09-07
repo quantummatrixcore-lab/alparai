@@ -69,7 +69,7 @@ export function useAdminRealtime<T extends { [key: string]: unknown } = Record<s
       subscriptionConfig.filter = filter;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+     
       channel
             .on(
               // eslint-disable-next-line @typescript-eslint/no-explicit-any

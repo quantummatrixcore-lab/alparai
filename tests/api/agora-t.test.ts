@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { GET, POST } from "@/app/api/v1/agora-t/cases/route";
 import { POST as votePost } from "@/app/api/v1/agora-t/cases/[id]/vote/route";
 import { POST as resolvePost } from "@/app/api/v1/agora-t/cases/[id]/resolve/route";
@@ -30,7 +30,6 @@ const mockSelect = vi.fn();
 const mockInsert = vi.fn();
 const mockUpsert = vi.fn();
 const mockUpdate = vi.fn();
-const mockRpc = vi.fn();
 
 vi.mock("@/lib/supabase/admin", () => ({
   createAdminClient: () => ({

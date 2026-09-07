@@ -182,7 +182,7 @@ export async function signInWithSupabaseToken(accessToken: string): Promise<Auth
       return { ok: false, error: error?.message || "Invalid session token" };
     }
     const { setSessionUser } = await import("@/lib/auth/session");
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+     
       await setSessionUser({
             id: user.id,
             email: user.email || "",

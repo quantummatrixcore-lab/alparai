@@ -110,7 +110,7 @@ test.describe("Accessibility", () => {
   test("Home page has no axe accessibility violations", async ({ page }) => {
     await page.goto("/en");
     await page.waitForLoadState("domcontentloaded");
-    const results = await new AxeBuilder({ page: page as any })
+    const results = await new AxeBuilder({ page: page as never })
       .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
       .disableRules(["color-contrast"])
       .analyze();
@@ -120,7 +120,7 @@ test.describe("Accessibility", () => {
   test("Submit page has no axe accessibility violations", async ({ page }) => {
     await page.goto("/en/submit");
     await page.waitForLoadState("domcontentloaded");
-    const results = await new AxeBuilder({ page: page as any })
+    const results = await new AxeBuilder({ page: page as never })
       .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
       .disableRules(["color-contrast"])
       .analyze();
@@ -130,7 +130,7 @@ test.describe("Accessibility", () => {
   test("AI Act Tracker page has no axe accessibility violations", async ({ page }) => {
     await page.goto("/en/ai-act");
     await page.waitForLoadState("domcontentloaded");
-    const results = await new AxeBuilder({ page: page as any })
+    const results = await new AxeBuilder({ page: page as never })
       .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
       .disableRules(["color-contrast"])
       .analyze();

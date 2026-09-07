@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Container, Section } from "@/components/ui/layout";
 import { Flame, CheckCircle, ShieldOff, ShieldAlert } from "lucide-react";
@@ -59,8 +59,6 @@ const stats = [
 
 export function WhyItMatters() {
   const t = useTranslations("hero");
-  const ref = React.useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
     <Section className="relative scroll-mt-16 overflow-hidden">
@@ -82,7 +80,7 @@ export function WhyItMatters() {
           <p className="text-fg-secondary mt-4 text-lg">{t("why_subtitle")}</p>
         </motion.div>
 
-        <div ref={ref} className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat, i) => {
             const Icon = stat.icon;
             return (

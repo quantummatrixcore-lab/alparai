@@ -60,6 +60,7 @@ export function UserMenu({ initialUser }: { initialUser: SessionUserShape | null
     }
 
     if (typeof window !== "undefined") {
+      // eslint-disable-next-line @next/next/no-location-assign-relative-destination -- Full reload required to purge cached auth cookies and server layout state
       window.location.href = `/${locale || "tr"}?logout=${Date.now()}`;
     }
   };

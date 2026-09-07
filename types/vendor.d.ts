@@ -59,6 +59,8 @@ declare module "@sentry/nextjs" {
 }
 
 declare module "next-intl" {
+  import type { ReactNode, ReactElement } from "react";
+
   export type AbstractIntlMessages = Record<string, unknown>;
 
   export interface TranslationValues {
@@ -67,7 +69,7 @@ declare module "next-intl" {
 
   export interface IntlTranslationFunction {
     (key: string, values?: TranslationValues): string;
-    rich(key: string, values?: Record<string, unknown>): import("react").ReactNode;
+    rich(key: string, values?: Record<string, unknown>): ReactNode;
     markup(key: string, values?: Record<string, unknown>): string;
     raw(key: string): unknown;
     has(key: string): boolean;
@@ -82,12 +84,12 @@ declare module "next-intl" {
   export interface NextIntlClientProviderProps {
     locale?: string;
     messages?: AbstractIntlMessages;
-    children?: import("react").ReactNode;
+    children?: ReactNode;
     timeZone?: string;
     now?: Date;
   }
 
-  export function NextIntlClientProvider(props: NextIntlClientProviderProps): import("react").ReactElement;
+  export function NextIntlClientProvider(props: NextIntlClientProviderProps): ReactElement;
 }
 
 declare module "next-intl/server" {
@@ -145,7 +147,7 @@ declare module "next-intl/routing" {
 declare module "next-intl/navigation" {
   import type { ComponentType, AnchorHTMLAttributes } from "react";
 
-  export interface NavigationHelpers<Routing = unknown> {
+  export interface NavigationHelpers<_Routing = unknown> {
     Link: ComponentType<
       AnchorHTMLAttributes<HTMLAnchorElement> & {
         href: string;

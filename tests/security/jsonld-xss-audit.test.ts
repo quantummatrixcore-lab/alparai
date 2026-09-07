@@ -2,8 +2,6 @@ import { describe, it, expect } from "vitest";
 import {
   safeJsonLd,
   IncidentJsonLd,
-  ModelJsonLd,
-  BlogArticleJsonLd,
   ClaimReviewJsonLd,
 } from "@/components/seo/json-ld";
 
@@ -76,7 +74,7 @@ describe("Zero-Trust Security Audit: JSON-LD XSS & Script Injection Prevention",
     expect(innerHtml).not.toContain(">");
 
     const parsed = JSON.parse(innerHtml);
-    const articleNode = parsed["@graph"].find((node: any) => node["@id"].endsWith("#article"));
+    const articleNode = parsed["@graph"].find((node: { "@id": string }) => node["@id"].endsWith("#article"));
     expect(articleNode["@type"]).toContain("Article");
     expect(articleNode.headline).toBe("Attack Title </script><script>window.pwned=true</script>");
   });

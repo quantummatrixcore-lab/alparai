@@ -3,10 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { supabase } from "@/lib/supabase/client";
 import { useAdminRealtime } from "./use-admin-realtime";
-import {
-  CANONICAL_INCIDENT_COUNT,
-  resolveIncidentCount,
-} from "@/lib/constants";
+import { CANONICAL_INCIDENT_COUNT } from "@/lib/constants";
 
 export interface AdminSystemStats {
   incidents: {

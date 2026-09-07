@@ -65,7 +65,7 @@ export class SovereignAdapter implements ProviderAdapter {
       };
     } catch (err) {
       const latencyMs = Math.round(performance.now() - startTime);
-      logger.warn(`[Sovereign] Yerel model hatasi (${request.model.id}): ${(err as Error).message}`);
+      logger.warn(`[Sovereign] Yerel model hatasi (${request.model.id}) [${latencyMs}ms]: ${(err as Error).message}`);
       return {
         ok: false,
         error: {

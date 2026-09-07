@@ -25,7 +25,7 @@ test.describe("Admin Panel 360° Testing", () => {
     await page.waitForLoadState("networkidle");
 
     // Check for critical elements
-    const hasKanban = await page
+    const _hasKanban = await page
       .locator("[class*='kanban'], [class*='board'], [class*='sortable']")
       .count()
       .then((c) => c > 0)
@@ -107,7 +107,7 @@ test.describe("Admin Panel 360° Testing", () => {
     expect(cardText).not.toContain("undefined");
 
     // Check for gauge or visual indicator
-    const gaugeElements = await page.locator("svg, [role='progressbar']").count();
+    const _gaugeElements = await page.locator("svg, [role='progressbar']").count();
     // Some visual element should be present (though may be 0 if component not rendered yet)
   });
 
@@ -195,7 +195,7 @@ test.describe("Admin Panel 360° Testing", () => {
     // If buttons exist, verify they're clickable (not disabled by default)
     if (buttons > 0) {
       const firstButton = page.locator("button").first();
-      const isDisabled = await firstButton.isDisabled().catch(() => false);
+      const _isDisabled = await firstButton.isDisabled().catch(() => false);
       // Some buttons may be disabled, which is OK
     }
   });

@@ -22,7 +22,7 @@ export function JuryDutySwipe() {
     },
   ]);
 
-  const handleSwipe = (id: number, direction: "left" | "right") => {
+  const handleSwipe = (id: number, _direction: "left" | "right") => {
     // Right = Guilty, Left = Innocent
     setCards((prev) => prev.filter((c) => c.id !== id));
     // In production, this would trigger an API call to record the vote.
@@ -50,7 +50,7 @@ export function JuryDutySwipe() {
               exit={{ scale: 0.9, opacity: 0, x: -200 }}
               drag="x"
               dragConstraints={{ left: -100, right: 100 }}
-              onDragEnd={(e, { offset, velocity }) => {
+              onDragEnd={(_e, { offset }) => {
                 const swipe = offset.x;
                 if (swipe > 100) handleSwipe(card.id, "right");
                 else if (swipe < -100) handleSwipe(card.id, "left");

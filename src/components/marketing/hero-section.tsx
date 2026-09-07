@@ -430,13 +430,13 @@ function AnimatedValue({ value }: { value: number | string }) {
 function LiveStatCard({
   value,
   label,
-  glowColor,
+  glowColor: _glowColor,
   accentClass,
   tooltip,
 }: {
   value: number | string;
   label: string;
-  glowColor: string;
+  glowColor?: string;
   accentClass: string;
   tooltip?: string;
 }) {

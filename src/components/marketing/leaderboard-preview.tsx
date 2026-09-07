@@ -2,7 +2,7 @@
 
 import { Link } from "@/i18n/routing";
 import { Card, CardContent } from "@/components/ui/card";
-import { Trophy, TrendingDown, TrendingUp, Minus, ShieldCheck } from "lucide-react";
+import { Trophy, ShieldCheck } from "lucide-react";
 import { cn, formatNumber } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import type { LeaderboardEntry } from "@/types";
@@ -50,9 +50,7 @@ export function LeaderboardPreview({ entries }: { entries: LeaderboardEntry[] })
             viewport={{ once: true, margin: "-40px" }}
             className="divide-border-subtle divide-y"
           >
-            {entries.slice(0, 10).map((e, i) => {
-              const trend = e.trend > 0 ? "up" : e.trend < 0 ? "down" : "flat";
-              return (
+            {entries.slice(0, 10).map((e, i) => (
                 <motion.li
                   variants={itemVariants}
                   key={e.provider_id}
@@ -132,8 +130,7 @@ export function LeaderboardPreview({ entries }: { entries: LeaderboardEntry[] })
                     {e.trust_score ?? 70}/100
                   </span>
                 </motion.li>
-              );
-            })}
+              ))}
           </motion.ol>
         </CardContent>
       </Card>

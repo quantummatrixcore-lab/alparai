@@ -5,7 +5,6 @@ import { supabase } from "@/lib/supabase/client";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { usePathname } from "next/navigation";
-import { resolveIncidentCount, CANONICAL_INCIDENT_COUNT } from "@/lib/constants";
 
 interface TickerIncident {
   id: string;
@@ -62,7 +61,6 @@ export function LiveTicker() {
       /^\/(?:en|tr|[a-z]{2})\/auth(?:\/|$)/.test(pathname));
 
   const [incidents, setIncidents] = useState<TickerIncident[]>(DEFAULT_TICKER_INCIDENTS);
-  const [totalCount, setTotalCount] = useState<number>(CANONICAL_INCIDENT_COUNT);
 
   useEffect(() => {
     if (isExcludedPage) return;
@@ -79,13 +77,6 @@ export function LiveTicker() {
       if (latest && latest.length > 0) {
         setIncidents(latest as unknown as TickerIncident[]);
       }
-
-      const { count } = await supabase
-        .from("incidents")
-        .select("id", { count: "exact", head: true })
-        .eq("status", "published");
-
-      setTotalCount(resolveIncidentCount(count));
     }
 
     fetchTickerData();

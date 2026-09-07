@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { APP_NAME, APP_DESCRIPTION, APP_URL, SUPPORTED_LOCALES } from "@/lib/constants";
+import { APP_NAME, APP_URL, SUPPORTED_LOCALES } from "@/lib/constants";
 
 export interface PageMetadataOptions {
   locale: string;

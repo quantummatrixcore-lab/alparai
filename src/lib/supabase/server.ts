@@ -7,6 +7,7 @@ import "server-only";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import type { Database } from "@/types/database";
+import type { User } from "@supabase/supabase-js";
 
 export async function createClient() {
   const cookieStore = await cookies();
@@ -59,7 +60,7 @@ export async function createClient() {
                 avatar_url: u.picture,
                 picture: u.picture,
               },
-            } as unknown as import("@supabase/supabase-js").User,
+            } as unknown as User,
           },
           error: null,
         });

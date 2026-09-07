@@ -1,6 +1,6 @@
 import React from "react";
 import { describe, it, expect, beforeEach } from "vitest";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { JuryDutySwipe } from "../../src/components/public/JuryDutySwipe";
 import { vi } from "vitest";
 
@@ -14,13 +14,13 @@ describe("JuryDutySwipe Component - Anti-Sybil Feature", () => {
 
   it("Anti-Sybil: User with low reputation should not be able to vote and should see an error", async () => {
     // Mock the API rejecting the vote due to Anti-Sybil rules (e.g. 403 Forbidden)
-    (global.fetch as any).mockResolvedValueOnce({
+    vi.mocked(global.fetch).mockResolvedValueOnce({
       ok: false,
       status: 403,
       json: async () => ({
         error: "Vote rejected: Your reputation score is too low (Anti-Sybil Protection).",
       }),
-    });
+    } as unknown as Response);
 
     render(<JuryDutySwipe />);
 

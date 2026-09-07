@@ -56,7 +56,7 @@ vi.mock("@/lib/supabase/admin", () => ({
       }
       return {};
     },
-    rpc: (fn: string, args: any) => {
+    rpc: (fn: string, args?: Record<string, unknown>) => {
       if (fn === "evaluate_sybil_risk_rpc") {
         return Promise.resolve({
           data: {
@@ -70,7 +70,7 @@ vi.mock("@/lib/supabase/admin", () => ({
       if (fn === "adjust_user_reputation_rpc") {
         return Promise.resolve({
           data: {
-            user_id: args.p_user_id,
+            user_id: args?.p_user_id,
             previous_score: 75,
             new_score: 85,
             trust_level: "trusted",

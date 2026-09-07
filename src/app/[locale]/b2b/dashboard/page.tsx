@@ -43,7 +43,7 @@ export default async function B2BDashboardPage({
     .from("incidents")
     .select("id, title_masked, title_tr, severity, status, created_at")
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+     
     .in("status", ["published", "investigating", "resolved"] as never)
     .order("created_at", { ascending: false })
     .limit(50);

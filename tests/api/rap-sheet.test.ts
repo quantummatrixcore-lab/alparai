@@ -28,9 +28,9 @@ vi.mock("@/lib/supabase/admin", () => ({
   createAdminClient: () => ({
     from: (table: string) => {
       if (table === "ai_rap_sheet_entries") {
-        const queryChain: any = {
-          eq: function() { return queryChain; },
-          order: function() {
+        const queryChain: Record<string, unknown> = {};
+        queryChain.eq = function() { return queryChain; };
+        queryChain.order = function() {
             return {
               range: async () => ({
                 data: [{
@@ -59,8 +59,7 @@ vi.mock("@/lib/supabase/admin", () => ({
                 error: null
               })
             };
-          }
-        };
+          };
 
         return {
           select: () => queryChain,

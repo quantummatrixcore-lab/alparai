@@ -32,7 +32,7 @@ describe("GDPR Account Deletion Actions", () => {
       error: null,
     });
 
-    console.log("MOCK UPDATE RETURNS:", mockAdminClient.from("users").update({})); const result = await requestUserDeletionAction({ ok: false }, new FormData());
+    const result = await requestUserDeletionAction({ ok: false }, new FormData());
     expect(result.ok).toBe(true);
     expect(mockAdminClient.from).toHaveBeenCalledWith("users");
     expect(mockAdminClient._mocks.mockUpdate).toHaveBeenCalled();

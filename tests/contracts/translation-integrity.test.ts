@@ -6,16 +6,17 @@ describe('Translation Integrity Contracts', () => {
   const enPath = path.resolve(__dirname, '../../messages/en.json');
   const trPath = path.resolve(__dirname, '../../messages/tr.json');
 
-  let enData: Record<string, any>;
-  let trData: Record<string, any>;
-  let en: Record<string, any>;
-  let tr: Record<string, any>;
+  let enData: Record<string, unknown>;
+  let trData: Record<string, unknown>;
+  let en: Record<string, unknown>;
+  let tr: Record<string, unknown>;
 
-  const countDeepKeys = (obj: any): number => {
+  const countDeepKeys = (obj: Record<string, unknown>): number => {
     let count = 0;
     for (const k in obj) {
-      if (typeof obj[k] === 'object' && obj[k] !== null) {
-        count += countDeepKeys(obj[k]);
+      const val = obj[k];
+      if (typeof val === 'object' && val !== null) {
+        count += countDeepKeys(val as Record<string, unknown>);
       } else {
         count++;
       }
@@ -32,8 +33,8 @@ describe('Translation Integrity Contracts', () => {
     tr = trData;
   });
 
-  const getNestedKey = (obj: any, keyPath: string) => {
-    return keyPath.split('.').reduce((acc, part) => (acc ? acc[part] : undefined), obj);
+  const getNestedKey = (obj: unknown, keyPath: string): unknown => {
+    return keyPath.split('.').reduce((acc: unknown, part: string) => (acc && typeof acc === 'object' ? (acc as Record<string, unknown>)[part] : undefined), obj);
   };
 
   test('en.json and tr.json should contain minimum 80 top-level namespaces and 3000 deep keys', () => {
@@ -75,12 +76,13 @@ describe('Translation Integrity Contracts', () => {
   });
 
   test('en.json and tr.json must have 100% parity with zero missing keys across all leaves', () => {
-    const getLeaves = (obj: Record<string, any>, prefix = ''): string[] => {
+    const getLeaves = (obj: Record<string, unknown>, prefix = ''): string[] => {
       const leaves: string[] = [];
       for (const k in obj) {
         const full = prefix ? `${prefix}.${k}` : k;
-        if (typeof obj[k] === 'object' && obj[k] !== null && !Array.isArray(obj[k])) {
-          leaves.push(...getLeaves(obj[k], full));
+        const val = obj[k];
+        if (typeof val === 'object' && val !== null && !Array.isArray(val)) {
+          leaves.push(...getLeaves(val as Record<string, unknown>, full));
         } else {
           leaves.push(full);
         }
@@ -102,12 +104,12 @@ describe('Translation Integrity Contracts', () => {
   });
 
   test('no translation leaf should be null, undefined, or empty string', () => {
-    const checkNoEmpty = (obj: Record<string, any>, lang: string, prefix = '') => {
+    const checkNoEmpty = (obj: Record<string, unknown>, lang: string, prefix = '') => {
       for (const k in obj) {
         const full = prefix ? `${prefix}.${k}` : k;
         const val = obj[k];
         if (typeof val === 'object' && val !== null && !Array.isArray(val)) {
-          checkNoEmpty(val, lang, full);
+          checkNoEmpty(val as Record<string, unknown>, lang, full);
         } else if (typeof val === 'string') {
           expect(val.trim().length, `Empty translation string at [${lang}] ${full}`).toBeGreaterThan(0);
         }
@@ -119,34 +121,34 @@ describe('Translation Integrity Contracts', () => {
   });
 
   it('should have about.advisoryBoardTitle in both locales', () => {
-    expect(en.about?.advisoryBoardTitle).toBeDefined();
-    expect(tr.about?.advisoryBoardTitle).toBeDefined();
+    expect(getNestedKey(en, 'about.advisoryBoardTitle')).toBeDefined();
+    expect(getNestedKey(tr, 'about.advisoryBoardTitle')).toBeDefined();
   });
 
   it('should have suggestions.signInToSuggest in both locales', () => {
-    expect(en.suggestions?.signInToSuggest).toBeDefined();
-    expect(tr.suggestions?.signInToSuggest).toBeDefined();
+    expect(getNestedKey(en, 'suggestions.signInToSuggest')).toBeDefined();
+    expect(getNestedKey(tr, 'suggestions.signInToSuggest')).toBeDefined();
   });
 
   it('should have transparency keys in both locales', () => {
-    expect(en.transparency?.obligation_header).toBeDefined();
-    expect(tr.transparency?.obligation_header).toBeDefined();
+    expect(getNestedKey(en, 'transparency.obligation_header')).toBeDefined();
+    expect(getNestedKey(tr, 'transparency.obligation_header')).toBeDefined();
   });
 
   it('should have products.eu_ai_act_page correctly configured in both locales', () => {
-    expect(en.products?.eu_ai_act_page?.badge).toBeDefined();
-    expect(tr.products?.eu_ai_act_page?.badge).toBeDefined();
-    expect(en.products?.eu_ai_act_page?.title).toBeDefined();
-    expect(tr.products?.eu_ai_act_page?.title).toBeDefined();
+    expect(getNestedKey(en, 'products.eu_ai_act_page.badge')).toBeDefined();
+    expect(getNestedKey(tr, 'products.eu_ai_act_page.badge')).toBeDefined();
+    expect(getNestedKey(en, 'products.eu_ai_act_page.title')).toBeDefined();
+    expect(getNestedKey(tr, 'products.eu_ai_act_page.title')).toBeDefined();
   });
 
   it('should have admin, pricing, and constitution in both locales', () => {
-    expect(en.admin?.admin_title).toBeDefined();
-    expect(tr.admin?.admin_title).toBeDefined();
-    expect(en.pricing?.title).toBeDefined();
-    expect(tr.pricing?.title).toBeDefined();
-    expect(en.constitution?.title).toBeDefined();
-    expect(tr.constitution?.title).toBeDefined();
+    expect(getNestedKey(en, 'admin.admin_title')).toBeDefined();
+    expect(getNestedKey(tr, 'admin.admin_title')).toBeDefined();
+    expect(getNestedKey(en, 'pricing.title')).toBeDefined();
+    expect(getNestedKey(tr, 'pricing.title')).toBeDefined();
+    expect(getNestedKey(en, 'constitution.title')).toBeDefined();
+    expect(getNestedKey(tr, 'constitution.title')).toBeDefined();
   });
 });
 

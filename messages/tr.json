@@ -5558,8 +5558,8 @@
     "time_q1_title": "Q1 2027 — ISO 27001 Sertifikasyonu",
     "time_q3_desc": "Resmi SOC 2 Type II bağımsız denetim sürecini tamamlayıp raporu yayınlamak.",
     "time_q3_title": "Q3 2026 — SOC 2 Denetimi",
-    "time_q4_desc": "İstemci tarafında şifrelenmiş anonim ihbar kutularını devreye almak.",
-    "time_q4_title": "Q4 2026 — Uçtan Uca Şifreleme",
+    "time_q4_desc": "Mevcut Web Crypto istemci taraflı şifrelemeye ek olarak donanımsal HSM mühürleri ve çoklu taraf (MPC) anahtar saklamayı devreye almak.",
+    "time_q4_title": "Q4 2026 — Donanımsal HSM & MPC Kriptografisi",
     "timeline_subtitle": "Ek sertifikasyonlar elde etmek ve altyapımızı güçlendirmek için belirlediğimiz takvim.",
     "timeline_title": "Güvenlik Yol Haritası",
     "title": "Güvenlik & Uyumluluk — ALPAR AI"

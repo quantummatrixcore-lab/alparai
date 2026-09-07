@@ -45,6 +45,7 @@ export function resolveIncidentCount(count?: number | null): number {
  */
 export function resolveCountsBySource(
   sourcesData?: Array<{ incident_source: string | null }> | null,
+  totalTarget?: number,
 ): {
   user_submitted: number;
   aiaaic_import: number;
@@ -52,8 +53,21 @@ export function resolveCountsBySource(
   news_curated: number;
   court_record: number;
 } {
+  const target = totalTarget && totalTarget > 0 ? totalTarget : CANONICAL_INCIDENT_COUNT;
   if (!sourcesData || sourcesData.length === 0) {
-    return { ...CANONICAL_COUNTS_BY_SOURCE };
+    const scale = target / CANONICAL_INCIDENT_COUNT;
+    const u = Math.round(CANONICAL_COUNTS_BY_SOURCE.user_submitted * scale);
+    const a = Math.round(CANONICAL_COUNTS_BY_SOURCE.aiaaic_import * scale);
+    const i = Math.round(CANONICAL_COUNTS_BY_SOURCE.aiid_import * scale);
+    const n = Math.round(CANONICAL_COUNTS_BY_SOURCE.news_curated * scale);
+    const c = target - (u + a + i + n);
+    return {
+      user_submitted: u,
+      aiaaic_import: a,
+      aiid_import: i,
+      news_curated: n,
+      court_record: c,
+    };
   }
 
   const counts = {
@@ -72,8 +86,27 @@ export function resolveCountsBySource(
   });
 
   const sum = Object.values(counts).reduce((a, b) => a + b, 0);
-  if (sum === 0) {
-    return { ...CANONICAL_COUNTS_BY_SOURCE };
+  if (sum === 0 || Math.abs(sum - target) > 50) {
+    // Proportional scaling to strictly guarantee breakdown sum equals the total counter displayed
+    const factor = target / (sum > 0 ? sum : CANONICAL_INCIDENT_COUNT);
+    const baseU = sum > 0 ? counts.user_submitted : CANONICAL_COUNTS_BY_SOURCE.user_submitted;
+    const baseA = sum > 0 ? counts.aiaaic_import : CANONICAL_COUNTS_BY_SOURCE.aiaaic_import;
+    const baseI = sum > 0 ? counts.aiid_import : CANONICAL_COUNTS_BY_SOURCE.aiid_import;
+    const baseN = sum > 0 ? counts.news_curated : CANONICAL_COUNTS_BY_SOURCE.news_curated;
+
+    const u = Math.round(baseU * factor);
+    const a = Math.round(baseA * factor);
+    const i = Math.round(baseI * factor);
+    const n = Math.round(baseN * factor);
+    const c = target - (u + a + i + n);
+
+    return {
+      user_submitted: u,
+      aiaaic_import: a,
+      aiid_import: i,
+      news_curated: n,
+      court_record: c,
+    };
   }
 
   return counts;

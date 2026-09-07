@@ -5558,8 +5558,8 @@
     "time_q1_title": "Q1 2027 — ISO 27001 Audit",
     "time_q3_desc": "Complete formal SOC 2 Type II third-party audit and publish report.",
     "time_q3_title": "Q3 2026 — SOC 2 Audit",
-    "time_q4_desc": "Implement client-side encrypted whistleblower submission boxes.",
-    "time_q4_title": "Q4 2026 — End-to-End Cryptography",
+    "time_q4_desc": "Expanding on existing client-side Web Crypto encryption with hardware HSM sealing and multi-party computation (MPC) keys.",
+    "time_q4_title": "Q4 2026 — Hardware HSM & MPC Key Custody",
     "timeline_subtitle": "Our timeline for achieving additional certifications and hardening our infrastructure.",
     "timeline_title": "Security Roadmap",
     "title": "Security & Compliance — ALPAR AI"

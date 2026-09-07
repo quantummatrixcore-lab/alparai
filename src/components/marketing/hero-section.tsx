@@ -140,14 +140,14 @@ export function HeroSection({
               className="mt-10 flex flex-wrap gap-4 sm:flex-row sm:items-center"
             >
               <Link
-                href="/products/ars-api"
-                onClick={() => trackEvent("hero_cta_click", { action: "primary" })}
+                href="/submit"
+                onClick={() => trackEvent("hero_cta_click", { action: "report_incident" })}
                 className="group bg-danger-500 relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl px-8 text-base font-black text-white shadow-[0_0_30px_rgba(230,57,70,0.4),inset_0_1px_0_rgba(255,255,255,0.3)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_0_50px_rgba(230,57,70,0.6),inset_0_1px_0_rgba(255,255,255,0.4)] active:scale-95"
               >
                 <div className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-[100%]" />
                 <ShieldAlert className="relative z-10 h-5 w-5" />
                 <span className="relative z-10">
-                  {t("cta_primary", { defaultValue: "Risk API'yi İncele" })}
+                  {t("cta_primary", { defaultValue: "Olay Bildir" })}
                 </span>
               </Link>
 

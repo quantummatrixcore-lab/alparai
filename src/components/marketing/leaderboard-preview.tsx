@@ -118,16 +118,18 @@ export function LeaderboardPreview({ entries }: { entries: LeaderboardEntry[] })
                   </div>
                   <span
                     className={cn(
-                      "inline-flex items-center gap-1 text-xs font-medium",
-                      trend === "up" && "text-danger-400",
-                      trend === "down" && "text-success-500",
-                      trend === "flat" && "text-fg-muted",
+                      "inline-flex rounded border px-2 py-0.5 text-xs font-bold font-mono",
+                      (e.trust_score ?? 70) >= 90
+                        ? "border-emerald-500/20 bg-emerald-500/10 text-emerald-400"
+                        : (e.trust_score ?? 70) >= 70
+                          ? "border-blue-500/20 bg-blue-500/10 text-blue-400"
+                          : (e.trust_score ?? 70) >= 50
+                            ? "border-amber-500/20 bg-amber-500/10 text-amber-400"
+                            : "border-red-500/20 bg-red-500/10 text-red-400",
                     )}
+                    title={t("trustScore")}
                   >
-                    {trend === "up" && <TrendingUp className="h-3 w-3" />}
-                    {trend === "down" && <TrendingDown className="h-3 w-3" />}
-                    {trend === "flat" && <Minus className="h-3 w-3" />}
-                    {Math.abs(e.trend)}
+                    {e.trust_score ?? 70}/100
                   </span>
                 </motion.li>
               );

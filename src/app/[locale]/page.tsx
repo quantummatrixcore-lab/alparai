@@ -77,8 +77,11 @@ const getHomeData = cache(async (locale: string) => {
             "id, title_masked, description_masked, title_tr, description_tr, severity, status, category, is_anonymous, incident_date, views_count, upvotes_count, created_at, ai_provider_id, user_id, cross_audit_truth_score, cross_audit_confidence, incident_source",
           )
           .eq("status", "published")
+          .not("title_masked", "ilike", "%test%")
+          .not("title_masked", "ilike", "%cypress%")
+          .not("title_masked", "ilike", "%playwright%")
           .order("published_at", { ascending: false })
-          .limit(5),
+          .limit(10),
         admin
           .from("incidents")
           .select("id", { count: "exact", head: true })
@@ -133,8 +136,10 @@ const getHomeData = cache(async (locale: string) => {
       );
     }
 
+    const totalIncidentCount = resolveIncidentCount(incidentsCountResult.count);
     const countsBySource = resolveCountsBySource(
       sourcesResult.data as Array<{ incident_source: string | null }> | null,
+      totalIncidentCount,
     );
 
     const providerMap = new Map(
@@ -186,7 +191,8 @@ const getHomeData = cache(async (locale: string) => {
       }
     }
 
-    const incidents: IncidentListItem[] = toIncidentListItems(
+    const seenIncidentTitles = new Set<string>();
+    const allMappedIncidents = toIncidentListItems(
       rawHomeData,
       translationMap,
       locale,
@@ -200,6 +206,15 @@ const getHomeData = cache(async (locale: string) => {
         provider_slug: provider?.slug ?? "",
       };
     });
+
+    const incidents: IncidentListItem[] = allMappedIncidents
+      .filter((item) => {
+        const titleKey = (item.title_masked || item.title_tr || "").toLowerCase().trim();
+        if (!titleKey || seenIncidentTitles.has(titleKey)) return false;
+        seenIncidentTitles.add(titleKey);
+        return true;
+      })
+      .slice(0, 5);
 
     const leaderboard: LeaderboardEntry[] = (
       (providersResult.data as unknown as Array<Record<string, unknown>>) ?? []
@@ -218,6 +233,8 @@ const getHomeData = cache(async (locale: string) => {
         const total = (p["incident_count"] as number) ?? 0;
         const responded = (p["response_count"] as number) ?? 0;
         const responseRate = total > 0 ? Math.round((responded / total) * 100) : null;
+        // Canonical Transparency TrustScore: 85 baseline - (2.5 * incidents) + (4 * responses)
+        const computedScore = Math.max(0, Math.min(100, Math.round(85 - (total * 2.5) + (responded * 4))));
         return {
           provider_id: p["id"] as string,
           provider_name: (p["name"] as string) ?? "",
@@ -226,18 +243,16 @@ const getHomeData = cache(async (locale: string) => {
           resolved_count: responded,
           avg_severity: 0,
           trend: 0,
-          trust_score: (p["trust_score"] as number) ?? 70,
+          trust_score: computedScore,
           response_rate: responseRate,
           is_verified_respondent: !!p["is_verified_respondent"],
         };
       })
       .sort((a, b) => {
-        if (a.incident_count > 0 && b.incident_count === 0) return -1;
-        if (b.incident_count > 0 && a.incident_count === 0) return 1;
-        if (a.incident_count !== b.incident_count) return b.incident_count - a.incident_count;
         const scoreA = a.trust_score ?? 70;
         const scoreB = b.trust_score ?? 70;
         if (scoreB !== scoreA) return scoreB - scoreA;
+        if (b.incident_count !== a.incident_count) return b.incident_count - a.incident_count;
         return a.provider_name.localeCompare(b.provider_name);
       });
 

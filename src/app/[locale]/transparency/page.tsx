@@ -93,7 +93,7 @@ async function loadTransparencyData() {
       .select("id", { count: "exact", head: true })
       .eq("status", "published")
       .gte("created_at", sevenDaysAgo),
-    db.from("ai_providers").select("id", { count: "exact", head: true }),
+    db.from("ai_providers").select("id", { count: "exact", head: true }).neq("slug", "alpar-autopilot"),
     db.from("ai_provider_responses").select("id", { count: "exact", head: true }),
     db.from("users").select("id", { count: "exact", head: true }),
     db.from("takedown_requests").select("id", { count: "exact", head: true }),
@@ -104,8 +104,11 @@ async function loadTransparencyData() {
         "id, title_masked, description_masked, title_tr, description_tr, severity, status, category, incident_date, created_at, published_at, views_count, upvotes_count, ai_provider_id, ai_providers (id, name, slug, logo_url)",
       )
       .eq("status", "published")
+      .not("title_masked", "ilike", "%test%")
+      .not("title_masked", "ilike", "%cypress%")
+      .not("title_masked", "ilike", "%playwright%")
       .order("published_at", { ascending: false, nullsFirst: false })
-      .limit(6),
+      .limit(12),
   ]);
 
   const viewStats = statsViewResult?.data as {
@@ -115,7 +118,16 @@ async function loadTransparencyData() {
   } | null;
 
   const directPublishedCount = publishedIncidentsResult?.count ?? null;
-  const recentIncidents = (recentIncidentsResult?.data as unknown as IncidentCardData[]) ?? [];
+  const rawRecent = (recentIncidentsResult?.data as unknown as IncidentCardData[]) ?? [];
+  const seenTitles = new Set<string>();
+  const recentIncidents = rawRecent
+    .filter((item) => {
+      const titleKey = (item.title_masked || item.title_tr || "").toLowerCase().trim();
+      if (!titleKey || seenTitles.has(titleKey)) return false;
+      seenTitles.add(titleKey);
+      return true;
+    })
+    .slice(0, 6);
 
   // Determine total incidents with single source of truth resolution
   const totalIncidents = resolveIncidentCount(directPublishedCount ?? viewStats?.total_incidents);
@@ -126,7 +138,7 @@ async function loadTransparencyData() {
     viewStats?.verified_this_week ??
     (totalIncidents > 0 ? Math.min(totalIncidents, 14) : 0);
 
-  const totalProviders = providersResult?.count ?? 57;
+  const totalProviders = providersResult?.count ?? 56;
   const totalResponses = responsesResult?.count ?? 0;
   const totalUsers = usersResult?.count ?? (totalIncidents > 0 ? Math.max(120, totalIncidents) : 0);
   const totalTakedowns = takedownsResult?.count ?? 0;

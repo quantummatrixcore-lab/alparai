@@ -111,6 +111,9 @@ async function LeaderboardDataContent({
     const responded = p.response_count ?? 0;
     const responseRate = p.response_rate ?? (total > 0 ? Math.round((responded / total) * 100) : 0);
 
+    // Canonical Transparency TrustScore: 85 baseline - (2.5 * incidents) + (4 * responses) clamped [0, 100]
+    const canonicalScore = Math.max(0, Math.min(100, Math.round(85 - (total * 2.5) + (responded * 4))));
+
     return {
       id: p.id ?? "",
       slug: p.slug ?? "",
@@ -118,7 +121,7 @@ async function LeaderboardDataContent({
       logo_url: p.logo_url,
       is_verified: !!p.is_verified,
       website_url: p.website_url,
-      trust_score: p.trust_score ?? 70,
+      trust_score: canonicalScore,
       incident_count: total,
       response_count: responded,
       response_rate: responseRate,

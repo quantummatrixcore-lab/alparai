@@ -430,12 +430,9 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
                     </div>
                   </div>
                   <a
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      alert("Upload pitch deck separately once portal configuration is live.");
-                    }}
-                    className="text-emerald-400 hover:text-emerald-300"
+                    href="#download-pitch"
+                    title={t("doc_pitch")}
+                    className="text-emerald-400 hover:text-emerald-300 p-1.5 rounded hover:bg-white/5 transition-colors"
                   >
                     <Download className="h-4 w-4" />
                   </a>
@@ -450,12 +447,9 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
                     </div>
                   </div>
                   <a
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      alert("Upload one-pager separately once portal configuration is live.");
-                    }}
-                    className="text-emerald-400 hover:text-emerald-300"
+                    href="#download-onepager"
+                    title={t("doc_onepager")}
+                    className="text-emerald-400 hover:text-emerald-300 p-1.5 rounded hover:bg-white/5 transition-colors"
                   >
                     <Download className="h-4 w-4" />
                   </a>

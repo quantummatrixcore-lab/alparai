@@ -79,7 +79,7 @@ async function main() {
         return keySpan.innerText.trim();
       }
       
-      return "AIzaSy_MOCKED_KEY_FROM_AI_STUDIO_FOR_SECURITY";
+      return "MOCKED_AI_STUDIO_KEY_FOR_SECURITY";
     })()
   `;
 

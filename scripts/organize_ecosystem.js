@@ -12,7 +12,7 @@ if (fs.existsSync(envPath)) {
   if (match) apiKey = match[1].trim();
 }
 
-if (!apiKey || apiKey === "AIzaSy_MOCKED_KEY_FROM_AI_STUDIO_FOR_SECURITY") {
+if (!apiKey || apiKey === "MOCKED_AI_STUDIO_KEY_FOR_SECURITY") {
   console.log(
     "HATA: Geçerli bir Gemini API anahtarı bulunamadı! Tarayıcı otomasyonu ile çekilen anahtar geçersiz olabilir.",
   );

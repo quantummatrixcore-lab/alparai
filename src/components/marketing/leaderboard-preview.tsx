@@ -100,15 +100,18 @@ export function LeaderboardPreview({ entries }: { entries: LeaderboardEntry[] })
                           "inline-flex items-center text-[10px] font-bold tracking-wide",
                           e.response_rate == null
                             ? "text-fg-muted"
-                            : e.response_rate >= 70
-                              ? "text-success-400"
-                              : e.response_rate >= 30
-                                ? "text-warning-400"
-                                : "text-danger-400",
+                            : e.response_rate > 0
+                              ? e.response_rate >= 70
+                                ? "text-success-400"
+                                : "text-warning-400"
+                              : "text-amber-400",
                         )}
+                        title={e.response_rate === 0 ? t("silence_penalty_tooltip") : undefined}
                       >
                         {e.response_rate != null
-                          ? `${e.response_rate}% ${t("responseRate")}`
+                          ? e.response_rate > 0
+                            ? `${e.response_rate}% ${t("responseRate")}`
+                            : `${t("pending_rebuttal")}`
                           : `N/A ${t("responseRate")}`}
                       </span>
                     </p>

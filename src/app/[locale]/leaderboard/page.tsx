@@ -507,23 +507,33 @@ async function LeaderboardDataContent({
                           </td>
                           <td className="p-4 text-right">
                             {p.incident_count > 0 ? (
-                              <Badge
-                                variant={
-                                  p.response_rate >= 80
-                                    ? "success"
-                                    : p.response_rate >= 50
-                                      ? "warning"
-                                      : "danger"
-                                }
-                                size="sm"
-                              >
-                                {p.response_rate >= 80 ? (
-                                  <TrendingUp className="mr-1 h-3 w-3" />
-                                ) : p.response_rate < 50 ? (
-                                  <TrendingDown className="mr-1 h-3 w-3" />
-                                ) : null}
-                                {p.response_rate}%
-                              </Badge>
+                              p.response_rate > 0 ? (
+                                <Badge
+                                  variant={
+                                    p.response_rate >= 80
+                                      ? "success"
+                                      : p.response_rate >= 50
+                                        ? "warning"
+                                        : "danger"
+                                  }
+                                  size="sm"
+                                >
+                                  {p.response_rate >= 80 ? (
+                                    <TrendingUp className="mr-1 h-3 w-3" />
+                                  ) : p.response_rate < 50 ? (
+                                    <TrendingDown className="mr-1 h-3 w-3" />
+                                  ) : null}
+                                  {p.response_rate}%
+                                </Badge>
+                              ) : (
+                                <span
+                                  title={_t("silence_penalty_tooltip")}
+                                  className="border-warning-500/30 bg-warning-500/10 text-warning-400 inline-flex cursor-help items-center gap-1 rounded-md border px-2 py-0.5 text-[11px] font-semibold"
+                                >
+                                  <Clock className="h-3 w-3 shrink-0" />
+                                  {_t("pending_rebuttal")}
+                                </span>
+                              )
                             ) : (
                               <span className="text-fg-muted text-xs">—</span>
                             )}

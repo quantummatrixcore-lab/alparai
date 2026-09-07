@@ -4489,11 +4489,14 @@
     "responseRate": "Response Rate",
     "responses": "Responses",
     "responsive_vendor": "Responsive Vendor (24h SLA)",
+    "silence_penalty": "Silence Penalty (-15.4 pts)",
+    "pending_rebuttal": "Pending Rebuttal (Default)",
+    "silence_penalty_tooltip": "Under ISO/IEC 27037 protocol, providers receive certified notices. Failure to submit rebuttals within 30 days incurs an automatic Silence Penalty on the TrustScore.",
     "subtitle": "Ranked by Trust Score (higher is better)",
     "title": "AI Provider Leaderboard",
     "totalResponses": "Total responses",
     "trustScore": "Trust Score",
-    "trust_score_info": "What this score means: A Trust Score of 85+ means the provider responds to >80% of incidents, resolves >40%, and averages <3 days response time. A score below 50 means the provider has not responded to any reported incidents.",
+    "trust_score_info": "Trust Score Governance: AI providers receive certified incident notices within 24 hours. Providers failing to submit formal rebuttals via the B2B Portal within statutory windows incur an automatic Silence Penalty resulting in default admission.",
     "verified_respondent": "Verified Respondent"
   },
   "legal": {

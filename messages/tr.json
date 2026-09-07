@@ -4489,11 +4489,14 @@
     "responseRate": "Yanıt Oranı",
     "responses": "Yanıtlar",
     "responsive_vendor": "Hızlı Yanıt Veren (24s SLA)",
+    "silence_penalty": "Sessizlik Cezası (-15.4 puan)",
+    "pending_rebuttal": "Savunma Bekleniyor (Cevapsız)",
+    "silence_penalty_tooltip": "ISO/IEC 27037 protokolü kapsamında sağlayıcılara resmi bildirim iletilir. 30 gün içinde savunma vermeyen modellere otomatik Sessizlik Cezası uygulanır.",
     "subtitle": "Güven Skoruna göre sıralanır (yüksek iyidir)",
     "title": "Yapay Zeka Sağlayıcı Sıralaması",
     "totalResponses": "Toplam yanıt",
     "trustScore": "Güven Skoru",
-    "trust_score_info": "Bu skor ne anlama geliyor: 85+ Güven Skoru, sağlayıcının olayların >%80'ine yanıt verdiği, >%40'ını çözdüğü ve ortalama <3 gün yanıt süresine sahip olduğu anlamına gelir. 50'nin altındaki bir skor ise sağlayıcının bildirilen hiçbir olaya yanıt vermediğini gösterir.",
+    "trust_score_info": "Güven Skoru Denetimi: Sağlayıcılara adli ihlal kayıtları 24 saat içinde tebliğ edilir. Yasal pencerede B2B Portal üzerinden resmi savunma sunmayan modellerin Güven Skoruna otomatik Sessizlik Cezası uygulanarak varsayılan kusur karinesi işletilir.",
     "verified_respondent": "Doğrulanmış Yanıtlayıcı"
   },
   "legal": {

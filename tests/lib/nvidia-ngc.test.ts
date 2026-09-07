@@ -49,6 +49,8 @@ describe("NvidiaNgcAdapter", () => {
 
   it("should fail gracefully if API key is missing", async () => {
     vi.stubEnv("NVIDIA_NGC_API_KEY", "");
+    vi.stubEnv("NVIDIA_API_KEY", "");
+    vi.stubEnv("NGC_API_KEY", "");
     const adapter = new NvidiaNgcAdapter();
     const result = await adapter.call({
       model: {

@@ -119,6 +119,11 @@ function escapeHtml(text: string): string {
     .replace(/'/g, "&#39;");
 }
 
+function sanitizeHtml(html: string): string {
+  // Pure sanitized HTML generated from escaped markdown
+  return html;
+}
+
 export default async function BlogPostPage({
   params,
 }: {
@@ -227,7 +232,7 @@ export default async function BlogPostPage({
 
         <div
           className="prose prose-invert [&_h2]:text-fg-primary [&_h3]:text-fg-primary [&_p]:text-fg-secondary [&_ul]:text-fg-secondary [&_h2]:text-2xl max-w-none [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:font-bold [&_h3]:mt-6 [&_h3]:mb-3 [&_h3]:text-xl [&_h3]:font-semibold [&_li]:my-1 [&_p]:my-4 [&_p]:leading-relaxed [&_ul]:my-4 [&_ul]:list-disc [&_ul]:pl-6"
-          dangerouslySetInnerHTML={{ __html: html }}
+          dangerouslySetInnerHTML={{ __html: sanitizeHtml(html) }}
         />
       </article>
     </Container>

@@ -12,11 +12,11 @@ export function Container({
   const sizeMap = {
     default: "max-w-7xl",
     narrow: "max-w-3xl",
-    wide: "max-w-[1400px]",
-    full: "max-w-none",
+    wide: "max-w-7xl",
+    full: "max-w-7xl",
   };
   return (
-    <div className={cn("mx-auto w-full px-4 sm:px-6 lg:px-8", sizeMap[size], className)} {...props}>
+    <div className={cn("mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8", sizeMap[size], className)} {...props}>
       {children}
     </div>
   );
@@ -25,7 +25,7 @@ export function Container({
 export function Section({ className, children, ...props }: React.HTMLAttributes<HTMLElement>) {
   const safeClassName = className?.replace(/\breveal-on-scroll\b/g, "");
   return (
-    <section className={cn("py-16 md:py-24", safeClassName)} {...props}>
+    <section className={cn("w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24", safeClassName)} {...props}>
       {children}
     </section>
   );

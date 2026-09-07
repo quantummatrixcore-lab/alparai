@@ -189,6 +189,27 @@ export function IncidentCard({
                   <span className="text-brand-400 text-[11px] font-bold">
                     #{tCat(incident.category)}
                   </span>
+                  {incident.incident_source === "news_curated" ? (
+                    <span className="border-purple-500/25 bg-purple-500/10 text-purple-400 inline-flex items-center gap-1 rounded border px-1.5 py-0.5 text-[10px] font-bold">
+                      <Globe className="h-2.5 w-2.5" />
+                      {locale === "tr" ? "Sektörel İnceleme" : "Curated Report"}
+                    </span>
+                  ) : incident.incident_source === "aiaaic_import" || incident.incident_source === "aiid_import" ? (
+                    <span className="border-amber-500/25 bg-amber-500/10 text-amber-400 inline-flex items-center gap-1 rounded border px-1.5 py-0.5 text-[10px] font-bold">
+                      <Building2 className="h-2.5 w-2.5" />
+                      {locale === "tr" ? "Akademik Arşiv" : "Academic Archive"}
+                    </span>
+                  ) : incident.incident_source === "court_record" ? (
+                    <span className="border-rose-500/25 bg-rose-500/10 text-rose-400 inline-flex items-center gap-1 rounded border px-1.5 py-0.5 text-[10px] font-bold">
+                      <Shield className="h-2.5 w-2.5" />
+                      {locale === "tr" ? "Dava / Mahkeme Kaydı" : "Court Filing"}
+                    </span>
+                  ) : (
+                    <span className="border-blue-500/25 bg-blue-500/10 text-blue-400 inline-flex items-center gap-1 rounded border px-1.5 py-0.5 text-[10px] font-bold">
+                      <CheckCircle2 className="h-2.5 w-2.5" />
+                      {locale === "tr" ? "Doğrulanmış Model Hatası" : "Empirical AI Failure"}
+                    </span>
+                  )}
                   {incident.is_expert && (
                     <span className="text-success-400 bg-success-500/10 py-0.2 border-success-500/20 inline-flex items-center gap-1 rounded border px-1.5 text-[10px] font-bold">
                       <Sparkles className="h-2.5 w-2.5" />

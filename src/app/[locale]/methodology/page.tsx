@@ -105,6 +105,15 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
               <div className="border-border-subtle/60 bg-bg-primary/70 rounded-lg border p-3 font-mono text-xs text-purple-300">
                 Score = Base(P) - Σ [Weight(Sev) × e^(-Δt/120) × Rebate(MTTR)] + Resp + Gov
               </div>
+              <div className="border-border-subtle/40 bg-purple-500/5 rounded-lg border p-2.5 text-[11px] text-purple-200">
+                <span className="font-bold">{locale === "tr" ? "Operasyonel Şeffaflık Formülü:" : "Operational Baseline Formula:"}</span>{" "}
+                <code className="font-mono text-purple-300 font-bold">85 - (2.5 × Olay) + (4 × Yanıt)</code>
+                <p className="text-fg-muted mt-1 text-[10px]">
+                  {locale === "tr"
+                    ? "Hiç olayı bulunmayan sağlayıcılar için başlangıç tabanı 85 puandır. Çözülen her resmi yanıt skoru artırır."
+                    : "Calibrated 85-point baseline for unflagged providers. Certified rebuttals restore up to +4 pts each."}
+                </p>
+              </div>
             </CardContent>
           </Card>
 

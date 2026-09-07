@@ -55,7 +55,10 @@ export default async function IncidentsPage({
       "id, title_masked, description_masked, title_tr, description_tr, severity, status, category, is_anonymous, incident_date, views_count, upvotes_count, created_at, ai_provider_id, user_id, cross_audit_truth_score, cross_audit_confidence, incident_source",
       { count: "exact" },
     )
-    .eq("status", "published");
+    .eq("status", "published")
+    .not("title_masked", "ilike", "%test%")
+    .not("title_masked", "ilike", "%cypress%")
+    .not("title_masked", "ilike", "%playwright%");
 
   if (category)
     query = query.eq("category", category as Database["public"]["Enums"]["incident_category"]);

@@ -658,5 +658,25 @@ export const complianceVerifyResponseSchema = z.object({
   error: z.string().optional(),
 }).passthrough();
 
+// 40. GET /api/v1/oracle/trust-score
+export const trustScoreOracleResponseSchema = z.object({
+  model_id: z.string().optional(),
+  provider: z.string().optional(),
+  trust_score: z.number().optional(),
+  grade: z.string().optional(),
+  verified_incidents_count: z.number().optional(),
+  hallucination_rate_pct: z.number().optional(),
+  bias_index: z.number().optional(),
+  compliance_status: z.object({
+    eu_ai_act: z.string(),
+    kvkk_gdpr: z.string(),
+    oecd_principles: z.string(),
+  }).optional(),
+  last_updated: z.string().optional(),
+  oracle_signature: z.string().optional(),
+  error: z.string().optional(),
+}).passthrough();
+
+
 
 

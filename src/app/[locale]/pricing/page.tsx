@@ -4,6 +4,7 @@ import { constructPageMetadata } from "@/lib/seo/metadata";
 import { PricingProductJsonLd, BreadcrumbJsonLd, FAQJsonLd } from "@/components/seo/json-ld";
 import { APP_URL } from "@/lib/constants";
 import { Link } from "@/i18n/routing";
+import { LemonCheckoutButton } from "@/components/pricing/lemon-checkout-button";
 
 export async function generateMetadata({
   params,
@@ -83,12 +84,13 @@ export default async function PricingPage({
               </li>
               <li className="flex items-center gap-3">✓ {t("startup_feature_3")}</li>
             </ul>
-            <Link
-              href="/contact"
-              className="block w-full text-center border-border-strong rounded-lg border bg-white/10 py-3 font-medium text-white transition-colors hover:bg-white/20"
+            <LemonCheckoutButton
+              tier="developer"
+              locale={locale}
+              className="block w-full text-center rounded-lg bg-emerald-500 py-3 font-semibold text-black transition-colors hover:bg-emerald-400"
             >
               {t("startup_cta")}
-            </Link>
+            </LemonCheckoutButton>
           </div>
 
           {/* Enterprise Tier */}

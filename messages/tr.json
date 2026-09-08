@@ -5341,12 +5341,36 @@
       "alerts_title": "Gerçek Zamanlı Tehdit Uyarıları",
       "alerts_desc": "Uyumsuz veya güvenliği ihlal edilmiş LLM uç noktalarıyla etkileşime girildiğinde anlık bildirimler.",
       "scanner_title": "Prompt Enjeksiyon Kalkanı",
-      "scanner_desc": "Dolaylı prompt enjeksiyon girişimlerinin istemci tarafında sezgisel tespiti."
+      "scanner_desc": "Dolaylı prompt enjeksiyon girişimlerinin istemci tarafında sezgisel tespiti.",
+      "trust_scores_title": "Güvenilirlik ve Şeffaflık Skorları",
+      "trust_scores_desc": "Ziyaret ettiğiniz yapay zeka platformları ve araçları için anlık bağımsız denetim puanları ve risk metrikleri.",
+      "coming_soon_title": "Çok Yakında Chrome Web Mağazası'nda",
+      "coming_soon_desc": "Yapay zeka güvenliğini sıfır gecikmeyle doğrudan tarayıcınızda izleyin. Erken geliştirici erişimi için öncelikli bekleme listesine katılın.",
+      "join_waitlist": "Bekleme Listesine Katıl"
     },
     "datasets": {
       "badge": "AÇIK KIYASLAMA VERİLERİ",
       "title": "Veri Setleri ve Kıyaslama Testleri",
-      "subtitle": "Yapay zeka olay değerlendirmesi ve güvenlik testleri için standartlaştırılmış veri setleri."
+      "subtitle": "Yapay zeka olay değerlendirmesi ve güvenlik testleri için standartlaştırılmış veri setleri.",
+      "features": {
+        "exports": {
+          "title": "Çoklu Format Dışa Aktarma",
+          "desc": "Olay derlemleri ve test setlerini JSON, CSV ve Parquet formatlarında şema doğrulamalı olarak indirin."
+        },
+        "taxonomy": {
+          "title": "Standartlaştırılmış Taksonomi",
+          "desc": "MITRE ATLAS, NIST AI RMF ve AB Yapay Zeka Yasası risk boyutlarına göre sınıflandırılmış olay verileri."
+        },
+        "license": {
+          "title": "Açık Araştırma Lisansı",
+          "desc": "Akademik araştırmalar, kırmızı takım kıyaslamaları ve güvenlik değerlendirme süreçleri için serbestçe kullanılabilir."
+        }
+      },
+      "cta": {
+        "title": "Özel Veri Seti veya Toplu Erişime mi İhtiyacınız Var?",
+        "desc": "Kurumsal güvenlik ekipleri için özelleştirilmiş test bölümleri, gerçek zamanlı veri akışları ve özel etiketleme sağlıyoruz.",
+        "button": "Özel Veri Seti Talep Edin"
+      }
     },
     "eu_ai_act": "AB YZ Yasası Uyum SaaS",
     "eu_ai_act_page": {

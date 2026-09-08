@@ -5341,12 +5341,36 @@
       "alerts_title": "Real-Time Threat Alerts",
       "alerts_desc": "Instant notifications when interacting with non-compliant or compromised LLM endpoints.",
       "scanner_title": "Prompt Injection Shield",
-      "scanner_desc": "Client-side heuristic detection of indirect prompt injection attempts."
+      "scanner_desc": "Client-side heuristic detection of indirect prompt injection attempts.",
+      "trust_scores_title": "Trust & Transparency Scores",
+      "trust_scores_desc": "Real-time independent audit ratings and risk metrics for AI platforms and web tools as you browse.",
+      "coming_soon_title": "Coming Soon to Chrome Web Store",
+      "coming_soon_desc": "Monitor AI safety directly in your browser with zero latency. Join the priority waitlist for early developer access.",
+      "join_waitlist": "Join the Waitlist"
     },
     "datasets": {
       "badge": "OPEN BENCHMARKS",
       "title": "Datasets & Benchmarks",
-      "subtitle": "Standardized datasets and benchmarks for AI incident evaluation and safety testing"
+      "subtitle": "Standardized datasets and benchmarks for AI incident evaluation and safety testing",
+      "features": {
+        "exports": {
+          "title": "Multi-Format Export",
+          "desc": "Download incident corpora and benchmark suites in JSON, CSV, and Parquet with automated schema validation."
+        },
+        "taxonomy": {
+          "title": "Standardized Taxonomy",
+          "desc": "Incidents categorized according to MITRE ATLAS, NIST AI RMF, and EU AI Act risk dimensions."
+        },
+        "license": {
+          "title": "Open Research License",
+          "desc": "Freely available for academic research, red-teaming benchmarks, and safety evaluation pipelines."
+        }
+      },
+      "cta": {
+        "title": "Need Custom Datasets or Bulk Access?",
+        "desc": "We provide specialized benchmark partitions, real-time data streaming feeds, and custom incident labeling for enterprise safety teams.",
+        "button": "Request Custom Dataset"
+      }
     },
     "eu_ai_act": "EU AI Act Compliance SaaS",
     "eu_ai_act_page": {

@@ -1,12 +1,12 @@
 @import "tailwindcss";
-@custom-variant dark (&:is(.dark *));
+@variant dark (&:where(.dark, .dark *));
 /* ===========================================================================
    ALPAR AI — Design Tokens
    Primary: deep navy (trust/authority) | Danger: alert red (urgency/action)
    Success: guardian teal (safety/verified) | Warning: signal amber (highlights)
    =========================================================================== */
 
-@theme inline {
+@theme {
   /* Brand */
   --color-brand-50: #faf5ff;
   --color-brand-100: #f3e8ff;
@@ -112,12 +112,15 @@
    Base styles & Dynamic Color Scheme
    =========================================================================== */
 :root,
-html.dark {
+html.dark,
+[data-theme="dark"] {
   color-scheme: dark;
   --color-bg-primary: #09090b;
   --color-bg-secondary: #18181b;
   --color-bg-tertiary: #131b2f;
   --color-bg-elevated: #1e293b;
+  --color-bg-deep: #050914;
+  --color-bg-navy: #0e1f30;
   --color-border-subtle: rgba(255, 255, 255, 0.08);
   --color-border-strong: rgba(255, 255, 255, 0.15);
   --color-fg-primary: #ffffff;
@@ -126,12 +129,15 @@ html.dark {
   --color-fg-disabled: #475569;
 }
 
-html.light {
+html.light,
+[data-theme="light"] {
   color-scheme: light;
   --color-bg-primary: #f8fafc;
   --color-bg-secondary: #ffffff;
   --color-bg-tertiary: #f1f5f9;
   --color-bg-elevated: #e2e8f0;
+  --color-bg-deep: #f8fafc;
+  --color-bg-navy: #f1f5f9;
   --color-border-subtle: rgba(0, 0, 0, 0.08);
   --color-border-strong: rgba(0, 0, 0, 0.16);
   --color-fg-primary: #0f172a;
@@ -304,7 +310,8 @@ body {
   color: var(--color-fg-primary);
 }
 
-a {
+a,
+a:visited {
   color: inherit;
 }
 

@@ -15,14 +15,14 @@ export function TrustBar() {
     { icon: Ban, label: t("no_funding"), href: "/legal/neutrality" },
   ];
   return (
-    <div className="animate-fade-up border-border-subtle flex flex-wrap justify-center gap-6 border-y bg-white/5 px-8 py-4 opacity-0 backdrop-blur-md">
+    <div className="animate-fade-up border-border-subtle flex flex-wrap justify-center gap-6 border-y bg-black/[0.02] dark:bg-white/5 px-8 py-4 opacity-0 backdrop-blur-md">
       {items.map((item) => (
         <Link
           key={item.label}
           href={item.href}
-          className="flex items-center gap-2 text-sm text-white/60 transition-colors hover:text-white/90"
+          className="flex items-center gap-2 text-sm text-fg-muted transition-colors hover:text-fg-primary visited:text-fg-muted"
         >
-          <item.icon className="h-4 w-4" />
+          <item.icon className="h-4 w-4 text-current" />
           <span>{item.label}</span>
         </Link>
       ))}

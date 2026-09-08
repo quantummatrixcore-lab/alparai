@@ -44,6 +44,13 @@ describe("ThemeToggle Component", () => {
     expect(button.getAttribute("aria-haspopup")).toBe("menu");
   });
 
+  test("renders button with theme-adaptive styling", () => {
+    render(<ThemeToggle />);
+    const button = screen.getByRole("button", { name: "Temayı değiştir" });
+    expect(button.className).toContain("text-fg-muted");
+    expect(button.className).toContain("dark:bg-white/[0.04]");
+  });
+
   test("clicking trigger button opens dropdown with Açık, Koyu, and Sistem", () => {
     render(<ThemeToggle />);
     const trigger = screen.getByRole("button", { name: "Temayı değiştir" });

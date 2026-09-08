@@ -47,7 +47,7 @@ export function ThemeToggle({ className, direction = "down" }: ThemeToggleProps)
     return (
       <div
         className={cn(
-          "h-8.5 w-8.5 shrink-0 items-center justify-center rounded-full border border-border-subtle bg-white/[0.04]",
+          "h-8.5 w-8.5 shrink-0 items-center justify-center rounded-full border border-border-subtle bg-black/[0.04] dark:bg-white/[0.04]",
           className,
         )}
       />
@@ -85,13 +85,13 @@ export function ThemeToggle({ className, direction = "down" }: ThemeToggleProps)
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className="text-fg-muted hover:text-fg-primary focus-visible:ring-brand-500 flex h-8.5 w-8.5 shrink-0 items-center justify-center rounded-full border border-border-subtle bg-white/[0.04] transition-colors hover:border-border-strong hover:bg-white/[0.08] focus-visible:ring-2 focus-visible:outline-none cursor-pointer"
+        className="text-fg-muted hover:text-fg-primary focus-visible:ring-brand-500 flex h-8.5 w-8.5 shrink-0 items-center justify-center rounded-full border border-border-subtle bg-black/[0.04] dark:bg-white/[0.04] transition-colors hover:border-border-strong hover:bg-black/[0.08] dark:hover:bg-white/[0.08] focus-visible:ring-2 focus-visible:outline-none cursor-pointer"
         aria-label={tCommon("toggleTheme", { defaultValue: "Temayı değiştir" })}
         aria-expanded={open}
         aria-haspopup="menu"
         title={tCommon("toggleTheme", { defaultValue: "Tema: Açık / Koyu / Sistem" })}
       >
-        <CurrentIcon className="h-4 w-4 transition-transform active:scale-95" />
+        <CurrentIcon className="h-4 w-4 transition-transform active:scale-95 text-current" />
       </button>
 
       {open && (
@@ -99,7 +99,7 @@ export function ThemeToggle({ className, direction = "down" }: ThemeToggleProps)
           role="menu"
           aria-orientation="vertical"
           className={cn(
-            "border-border-subtle bg-bg-elevated/95 absolute right-0 z-[120] min-w-[130px] overflow-hidden rounded-xl border p-1 shadow-2xl backdrop-blur-xl animate-in fade-in zoom-in-95 duration-150",
+            "border-border-subtle bg-bg-elevated/95 text-fg-primary absolute right-0 z-[120] min-w-[130px] overflow-hidden rounded-xl border p-1 shadow-2xl backdrop-blur-xl animate-in fade-in zoom-in-95 duration-150",
             direction === "up" ? "bottom-full mb-2" : "top-full mt-2",
           )}
         >
@@ -118,15 +118,15 @@ export function ThemeToggle({ className, direction = "down" }: ThemeToggleProps)
                 className={cn(
                   "flex w-full items-center justify-between gap-2.5 rounded-lg px-2.5 py-1.5 text-xs font-medium transition-colors cursor-pointer text-left",
                   isSelected
-                    ? "bg-brand-500/15 text-brand-300 font-semibold"
-                    : "text-fg-secondary hover:bg-white/[0.08] hover:text-fg-primary",
+                    ? "bg-brand-500/15 text-brand-600 dark:text-brand-300 font-semibold"
+                    : "text-fg-secondary hover:bg-black/[0.05] dark:hover:bg-white/[0.08] hover:text-fg-primary",
                 )}
               >
                 <span className="flex items-center gap-2">
                   <Icon className="h-3.5 w-3.5 shrink-0" />
                   <span>{opt.label}</span>
                 </span>
-                {isSelected && <Check className="h-3.5 w-3.5 text-brand-400 shrink-0" />}
+                {isSelected && <Check className="h-3.5 w-3.5 text-brand-500 dark:text-brand-400 shrink-0" />}
               </button>
             );
           })}

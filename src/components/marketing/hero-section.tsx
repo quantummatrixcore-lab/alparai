@@ -109,7 +109,7 @@ export function HeroSection({
           >
             {/* Eyebrow badge (Glassmorphic) */}
             <motion.div variants={itemVariants} className="mb-6 flex">
-              <div className="group hover:border-danger-500/50 border-border-subtle relative inline-flex items-center gap-2 overflow-hidden rounded-full border bg-white/5 px-4 py-2 text-[11px] font-black tracking-[0.25em] text-white uppercase shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] backdrop-blur-xl transition-all duration-300 hover:bg-white/10 hover:shadow-[0_0_30px_rgba(230,57,70,0.2)]">
+              <div className="group hover:border-danger-500/50 border-border-subtle relative inline-flex items-center gap-2 overflow-hidden rounded-full border bg-black/5 dark:bg-white/5 px-4 py-2 text-[11px] font-black tracking-[0.25em] text-fg-primary uppercase shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] backdrop-blur-xl transition-all duration-300 hover:bg-black/10 dark:hover:bg-white/10 hover:shadow-[0_0_30px_rgba(230,57,70,0.2)]">
                 <span className="from-danger-500/0 via-danger-500/20 to-danger-500/0 absolute inset-0 bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <Zap className="text-danger-400 h-3.5 w-3.5" />
                 <span className="relative z-10">{t("eyebrow")}</span>
@@ -121,7 +121,7 @@ export function HeroSection({
               variants={itemVariants}
               className="animate-fade-up pb-3 text-3xl font-black tracking-tight text-balance drop-shadow-2xl sm:text-4xl md:text-5xl lg:text-[40px] xl:text-[48px] xl:leading-[1.15]"
             >
-              <span className="bg-gradient-to-br from-white via-white to-white/40 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-br from-fg-primary via-fg-primary to-fg-primary/60 bg-clip-text text-transparent">
                 {t("title_primary")}
               </span>
             </motion.h1>

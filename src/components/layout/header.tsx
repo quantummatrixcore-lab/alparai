@@ -41,7 +41,7 @@ export function Header({
     <div className="pointer-events-none fixed top-3 sm:top-6 z-[100] flex w-full justify-center px-2.5 sm:px-6">
       <header
         role="banner"
-        className="hover:border-brand-500/40 pointer-events-auto flex h-13 sm:h-14 w-full max-w-[1280px] items-center justify-between gap-1.5 sm:gap-2.5 rounded-full border border-border-subtle bg-bg-primary/95 px-3 sm:px-5 shadow-[0_12px_40px_rgba(0,0,0,0.7),0_0_20px_rgba(168,85,247,0.1)] backdrop-blur-2xl transition-all duration-300"
+        className="hover:border-brand-500/40 pointer-events-auto flex h-13 sm:h-14 w-full max-w-[1280px] items-center justify-between gap-1.5 sm:gap-2.5 rounded-full border border-border-subtle bg-bg-primary/95 px-3 sm:px-5 shadow-[0_12px_40px_rgba(0,0,0,0.12),0_0_20px_rgba(168,85,247,0.08)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.7),0_0_20px_rgba(168,85,247,0.1)] backdrop-blur-2xl transition-all duration-300"
       >
         <a
           href="#main-content"
@@ -68,10 +68,10 @@ export function Header({
             href="https://github.com/quantummatrixcore-lab/alparai"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-fg-muted hover:text-white focus-visible:ring-brand-500 hidden h-8.5 w-8.5 shrink-0 items-center justify-center rounded-full border border-border-subtle bg-white/[0.04] transition-colors hover:border-border-strong hover:bg-white/[0.08] focus-visible:ring-2 focus-visible:outline-none sm:flex"
+            className="group text-fg-muted hover:text-fg-primary visited:text-fg-muted focus-visible:ring-brand-500 hidden h-8.5 w-8.5 shrink-0 items-center justify-center rounded-full border border-border-subtle bg-black/[0.04] dark:bg-white/[0.04] transition-colors hover:border-border-strong hover:bg-black/[0.08] dark:hover:bg-white/[0.08] focus-visible:ring-2 focus-visible:outline-none sm:flex"
             aria-label="GitHub Repository"
           >
-            <Github className="h-4 w-4" />
+            <Github className="h-4 w-4 text-current transition-colors" />
           </a>
 
           <ThemeToggle className="hidden sm:flex shrink-0" />

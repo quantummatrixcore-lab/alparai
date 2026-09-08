@@ -11,7 +11,7 @@ export function FounderStory() {
   const t = useTranslations("marketing.founder_story");
 
   return (
-    <Section className="bg-bg-secondary/30 border-border-subtle border-b">
+    <Section className="bg-bg-secondary/30 border-border-subtle border-b pt-8 pb-16 md:pt-10 md:pb-20">
       <Container>
         <motion.div
           initial={{ opacity: 1, y: 0 }}
@@ -20,11 +20,11 @@ export function FounderStory() {
           transition={{ duration: 0.6 }}
           className="mx-auto max-w-4xl"
         >
-          <div className="mb-8 flex items-center justify-center gap-3">
-            <div className="bg-danger-500/10 border-danger-500/20 rounded-full border p-3">
-              <AlertTriangle className="text-danger-400 h-6 w-6" />
+          <div className="mb-6 flex items-center justify-center gap-3">
+            <div className="bg-danger-500/10 border-danger-500/20 rounded-full border p-2.5">
+              <AlertTriangle className="text-danger-400 h-5 w-5" />
             </div>
-            <h2 className="text-fg-primary text-3xl font-extrabold sm:text-4xl">{t("title")}</h2>
+            <h2 className="text-fg-primary text-2xl font-black tracking-tight sm:text-3xl md:text-4xl">{t("title")}</h2>
           </div>
 
           <Card

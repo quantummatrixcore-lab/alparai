@@ -61,7 +61,7 @@ export function WhyItMatters() {
   const t = useTranslations("hero");
 
   return (
-    <Section className="relative scroll-mt-16 overflow-hidden">
+    <Section className="relative scroll-mt-16 overflow-hidden pt-16 pb-8 md:pt-20 md:pb-10">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_50%,rgba(230,57,70,0.03),transparent)]"
@@ -135,11 +135,14 @@ export function WhyItMatters() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mx-auto mt-12 max-w-3xl text-center"
+          className="mx-auto mt-8 max-w-3xl"
         >
-          <p className="text-fg-secondary border-border-subtle/50 mx-auto max-w-2xl border-t pt-6 text-sm leading-relaxed font-semibold md:text-base">
-            {t("why_bridging_text")}
-          </p>
+          <div className="relative overflow-hidden rounded-2xl border border-border-subtle bg-bg-elevated/40 p-6 text-center shadow-lg backdrop-blur-xl md:p-8">
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-danger-500/5 via-transparent to-brand-500/5" />
+            <p className="text-fg-secondary relative z-10 text-sm leading-relaxed font-semibold md:text-base">
+              {t("why_bridging_text")}
+            </p>
+          </div>
         </motion.div>
       </Container>
     </Section>

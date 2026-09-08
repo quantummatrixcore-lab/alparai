@@ -60,12 +60,12 @@ export function SegmentRouting() {
   ];
 
   return (
-    <section className="relative overflow-hidden py-24">
+    <section className="relative overflow-hidden py-14 md:py-18">
       <div className="from-background via-background/90 to-background absolute inset-0 z-0 bg-linear-to-b" />
       <div className="relative z-10 container mx-auto max-w-7xl px-4">
-        <div className="mb-16 text-center">
-          <h2 className="mb-4 text-3xl font-bold tracking-tight md:text-4xl">{t("title")}</h2>
-          <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
+        <div className="mb-10 text-center">
+          <h2 className="mb-3 text-3xl font-bold tracking-tight md:text-4xl">{t("title")}</h2>
+          <p className="text-muted-foreground mx-auto max-w-2xl text-base md:text-lg">
             {t("subtitle") || "Choose your segment to access tailored insights and tools."}
           </p>
         </div>

@@ -71,10 +71,10 @@ export async function POST(request: Request) {
             email: userEmail || undefined,
             name: userName || undefined,
             custom: {
-              user_id: userId || null,
-              userId: userId || null,
-              tier,
-              locale,
+              user_id: String(userId || "guest"),
+              userId: String(userId || "guest"),
+              tier: String(tier),
+              locale: String(locale),
             },
           },
           product_options: {

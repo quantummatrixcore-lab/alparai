@@ -136,7 +136,7 @@ export function MobileNav({
         createPortal(
           <div
             id="mobile-nav-panel"
-            className="fixed inset-0 z-[999999] flex h-[100dvh] max-h-[100dvh] w-screen flex-col bg-bg-primary text-white shadow-2xl overflow-hidden overscroll-contain animate-in fade-in duration-200"
+            className="fixed inset-0 z-[999999] flex h-[100dvh] max-h-[100dvh] w-screen flex-col bg-bg-primary text-fg-primary shadow-2xl overflow-hidden overscroll-contain animate-in fade-in duration-200"
             role="dialog"
             aria-modal="true"
             aria-label="Mobile navigation menu"
@@ -147,7 +147,7 @@ export function MobileNav({
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="text-fg-secondary hover:bg-white/10 hover:text-white focus-visible:ring-brand-500 inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-border-subtle bg-white/[0.04] focus-visible:ring-2 focus-visible:outline-none transition-all active:scale-95"
+                className="text-fg-secondary hover:bg-black/5 dark:hover:bg-white/10 hover:text-fg-primary focus-visible:ring-brand-500 inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-border-subtle bg-black/[0.04] dark:bg-white/[0.04] focus-visible:ring-2 focus-visible:outline-none transition-all active:scale-95"
                 aria-label={t("close_menu")}
               >
                 <X className="h-5 w-5" aria-hidden="true" />
@@ -185,8 +185,8 @@ export function MobileNav({
                     className={cn(
                       "focus-visible:ring-brand-500 group flex min-h-[46px] w-full items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-semibold transition-all focus-visible:ring-2 focus-visible:outline-none active:scale-[0.99] touch-manipulation",
                       isActive
-                        ? "bg-brand-500/15 text-brand-300 border border-brand-500/30 shadow-[0_0_15px_rgba(168,85,247,0.12)] font-bold"
-                        : "text-fg-secondary hover:bg-white/[0.05] hover:text-white active:bg-white/[0.08]",
+                        ? "bg-brand-500/15 text-brand-600 dark:text-brand-300 border border-brand-500/30 shadow-[0_0_15px_rgba(168,85,247,0.12)] font-bold"
+                        : "text-fg-secondary hover:bg-black/[0.04] dark:hover:bg-white/[0.05] hover:text-fg-primary active:bg-black/[0.06] dark:active:bg-white/[0.08]",
                     )}
                   >
                     <div className="flex items-center gap-3">
@@ -194,7 +194,7 @@ export function MobileNav({
                         className={cn(
                           "h-4.5 w-4.5 shrink-0 transition-colors",
                           isActive
-                            ? "text-brand-300"
+                            ? "text-brand-600 dark:text-brand-300"
                             : "text-fg-muted group-hover:text-fg-secondary",
                         )}
                         aria-hidden="true"
@@ -205,7 +205,7 @@ export function MobileNav({
                       className={cn(
                         "h-4 w-4 shrink-0 transition-transform",
                         isActive
-                          ? "text-brand-300 opacity-100"
+                          ? "text-brand-600 dark:text-brand-300 opacity-100"
                           : "text-fg-disabled group-hover:text-fg-muted opacity-60 group-hover:translate-x-0.5",
                       )}
                       aria-hidden="true"

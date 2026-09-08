@@ -147,7 +147,9 @@ export function Nav({
             href={item.href}
             className={cn(
               "focus-visible:ring-brand-500 relative inline-flex min-h-[36px] flex-shrink-0 items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-semibold whitespace-nowrap transition-all duration-200 outline-none focus-visible:ring-2",
-              isActive ? "text-brand-300" : "text-fg-secondary hover:text-white hover:bg-white/[0.04]",
+              isActive
+                ? "text-brand-600 dark:text-brand-300 font-bold"
+                : "text-fg-secondary hover:text-fg-primary hover:bg-black/[0.04] dark:hover:bg-white/[0.04]",
             )}
             aria-current={isActive ? "page" : undefined}
           >
@@ -178,8 +180,8 @@ export function Nav({
               className={cn(
                 "focus-visible:ring-brand-500 relative inline-flex min-h-[36px] cursor-pointer items-center gap-1 rounded-full px-3.5 py-1.5 text-xs font-semibold whitespace-nowrap transition-all duration-200 outline-none focus-visible:ring-2",
                 isGroupActive || isGroupOpen
-                  ? "text-brand-300 bg-brand-500/10"
-                  : "text-fg-secondary hover:text-white hover:bg-white/[0.04]",
+                  ? "text-brand-600 dark:text-brand-300 bg-brand-500/10 font-bold"
+                  : "text-fg-secondary hover:text-fg-primary hover:bg-black/[0.04] dark:hover:bg-white/[0.04]",
               )}
               aria-expanded={isGroupOpen}
               aria-haspopup="menu"
@@ -190,7 +192,7 @@ export function Nav({
                 <ChevronDown
                   className={cn(
                     "h-3 w-3 opacity-60 transition-transform duration-200",
-                    isGroupOpen && "rotate-180 text-brand-300 opacity-100",
+                    isGroupOpen && "rotate-180 text-brand-600 dark:text-brand-300 opacity-100",
                   )}
                   aria-hidden="true"
                 />
@@ -201,7 +203,7 @@ export function Nav({
               <div
                 role="menu"
                 aria-orientation="vertical"
-                className="border-border-subtle/80 bg-bg-secondary/95 animate-in fade-in slide-in-from-top-1 absolute top-full left-0 z-50 mt-2 w-60 rounded-2xl border p-2 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(168,85,247,0.15)] backdrop-blur-2xl duration-200"
+                className="border-border-subtle bg-bg-secondary/95 text-fg-primary animate-in fade-in slide-in-from-top-1 absolute top-full left-0 z-50 mt-2 w-60 rounded-2xl border p-2 shadow-[0_20px_50px_rgba(0,0,0,0.15)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(168,85,247,0.15)] backdrop-blur-2xl duration-200"
               >
                 {group.items.map((subItem) => {
                   const SubIcon = subItem.icon;
@@ -215,8 +217,8 @@ export function Nav({
                       className={cn(
                         "flex min-h-[40px] items-center gap-2.5 rounded-xl px-3 py-2 text-xs font-medium transition-all duration-150 active:scale-[0.98]",
                         isSubActive
-                          ? "bg-brand-500/20 text-brand-200 font-semibold shadow-sm"
-                          : "text-fg-secondary hover:text-white hover:bg-white/[0.06]",
+                          ? "bg-brand-500/15 text-brand-600 dark:text-brand-200 font-semibold shadow-sm"
+                          : "text-fg-secondary hover:text-fg-primary hover:bg-black/[0.04] dark:hover:bg-white/[0.06]",
                       )}
                     >
                       <SubIcon className="h-4 w-4 shrink-0 text-fg-muted" aria-hidden="true" />
@@ -236,8 +238,8 @@ export function Nav({
           className={cn(
             "focus-visible:ring-brand-500 relative inline-flex min-h-[36px] items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-semibold whitespace-nowrap transition-all duration-200 outline-none focus-visible:ring-2",
             pathname.startsWith("/admin")
-              ? "text-brand-300"
-              : "text-fg-secondary hover:text-white hover:bg-white/[0.04]",
+              ? "text-brand-600 dark:text-brand-300 font-bold"
+              : "text-fg-secondary hover:text-fg-primary hover:bg-black/[0.04] dark:hover:bg-white/[0.04]",
           )}
           aria-current={pathname.startsWith("/admin") ? "page" : undefined}
         >

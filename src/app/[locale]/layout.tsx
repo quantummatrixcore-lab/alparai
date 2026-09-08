@@ -95,7 +95,7 @@ export default async function LocaleLayout({
                   {children}
                 </main>
               ) : (
-                <div className="relative flex min-h-screen w-full max-w-full flex-col overflow-x-clip pb-16 lg:pb-0">
+                <div className="relative flex min-h-screen w-full max-w-full flex-col overflow-x-clip pb-16 lg:pb-0 bg-bg-primary text-fg-primary">
                   <div className="fixed top-0 right-0 left-0 z-[60] w-full max-w-full overflow-hidden">
                     <LiveTicker />
                   </div>

@@ -23,7 +23,7 @@ export function MainContent({ children }: { children: React.ReactNode }) {
   const shouldHavePadding = !isHome && !isAdmin;
 
   return (
-    <main id="main-content" className={cn("flex-1", shouldHavePadding && "pt-28")} tabIndex={-1}>
+    <main id="main-content" className={cn("flex-1 bg-bg-primary text-fg-primary", shouldHavePadding && "pt-28")} tabIndex={-1}>
       {children}
     </main>
   );

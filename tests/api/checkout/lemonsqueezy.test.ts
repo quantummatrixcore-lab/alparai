@@ -126,7 +126,7 @@ describe("Lemon Squeezy Checkout Route", () => {
     const options = callArgs[1];
     const payload = JSON.parse(options.body as string);
     expect(payload.data.attributes.checkout_data.email).toBe("guest@tech.com");
-    expect(payload.data.attributes.checkout_data.custom.user_id).toBeNull();
+    expect(payload.data.attributes.checkout_data.custom.user_id).toBe("guest");
   });
 
   it("handles Lemon Squeezy API rejection with 400/502 status", async () => {

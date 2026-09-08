@@ -178,7 +178,7 @@ export default async function ExpertsPage({ params }: { params: Promise<{ locale
             {/* Decorative Card Stack or graphic */}
             <div className="from-success-500/5 to-brand-500/5 border-border-subtle flex flex-col items-center justify-center rounded-2xl border bg-gradient-to-br p-8 text-center">
               <Award className="text-success-400 h-16 w-16 animate-pulse" />
-              <h3 className="text-balance mt-4 text-xl font-bold text-white">{t("badge_title")}</h3>
+              <h3 className="text-balance mt-4 text-xl font-bold text-fg-primary">{t("badge_title")}</h3>
               <p className="text-fg-muted mt-2 max-w-xs text-sm">{t("badge_description")}</p>
             </div>
           </div>

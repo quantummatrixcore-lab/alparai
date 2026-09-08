@@ -242,7 +242,7 @@ export const VisitorAnalytics = React.memo(function VisitorAnalytics({
             <Users className="h-4 w-4 shrink-0" />
           </div>
           <div className="min-w-0">
-            <h3 className="truncate text-xs font-bold text-white sm:text-sm">
+            <h3 className="truncate text-xs font-bold text-fg-primary sm:text-sm">
               CEO Analitik: Canlı Ziyaretçi
             </h3>
             <div className="flex items-center gap-1 font-mono text-[10px] text-slate-400">

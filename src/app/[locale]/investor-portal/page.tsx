@@ -168,7 +168,7 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div className="space-y-8 lg:col-span-2">
             <section className="border-border-subtle bg-bg-navy rounded-xl border p-6 md:p-8">
-              <h2 className="text-balance md:text-2xl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white">
+              <h2 className="text-balance md:text-2xl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-fg-primary">
                 {t("exec_summary_title")}
               </h2>
               <p className="text-fg-primary mb-6 leading-relaxed">{t("exec_summary_p1")}</p>
@@ -197,7 +197,7 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
             </section>
 
             <section className="border-border-subtle bg-bg-navy rounded-xl border p-6 md:p-8">
-              <h2 className="text-balance md:text-2xl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white">
+              <h2 className="text-balance md:text-2xl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-fg-primary">
                 {t("traction_title")}
               </h2>
               <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
@@ -222,7 +222,7 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
             </section>
 
             <section className="border-border-subtle bg-bg-navy rounded-xl border p-6 md:p-8">
-              <h2 className="text-balance md:text-2xl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white">
+              <h2 className="text-balance md:text-2xl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-fg-primary">
                 {t("founding_title")}
               </h2>
               <div className="text-fg-primary space-y-4 text-sm leading-relaxed">
@@ -233,7 +233,7 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
             </section>
 
             <section className="border-border-subtle bg-bg-navy rounded-xl border p-6 md:p-8">
-              <h2 className="text-balance md:text-2xl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white">
+              <h2 className="text-balance md:text-2xl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-fg-primary">
                 {t("market_title")}
               </h2>
               <div className="grid grid-cols-1 gap-6 text-sm md:grid-cols-3">
@@ -262,7 +262,7 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
             </section>
 
             <section className="border-border-subtle bg-bg-navy rounded-xl border p-6 md:p-8">
-              <h2 className="text-balance md:text-2xl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white">
+              <h2 className="text-balance md:text-2xl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-fg-primary">
                 {t("business_title")}
               </h2>
               <p className="text-fg-primary mb-6 text-sm leading-relaxed">{t("business_desc")}</p>
@@ -310,7 +310,7 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
             </section>
 
             <section className="border-border-subtle bg-bg-navy rounded-xl border p-6 md:p-8">
-              <h2 className="text-balance md:text-2xl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white">
+              <h2 className="text-balance md:text-2xl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-fg-primary">
                 {t("competitive_title")}
               </h2>
               <div className="border-border-subtle overflow-x-auto rounded-lg border">
@@ -379,7 +379,7 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
           <div className="space-y-8">
             <div className="border-warning-500/20 bg-bg-navy relative overflow-hidden rounded-xl border p-6 shadow-md">
               <div className="absolute top-0 left-0 h-1 w-full bg-amber-500"></div>
-              <h3 className="text-balance mb-4 text-lg font-bold text-white">{t("round_title")}</h3>
+              <h3 className="text-balance mb-4 text-lg font-bold text-fg-primary">{t("round_title")}</h3>
               <p className="text-fg-primary mb-6 text-sm leading-relaxed">
                 {t("round_desc", { amount: "$500K - $1.5M" })}
               </p>
@@ -419,7 +419,7 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
             </div>
 
             <div className="border-border-subtle bg-bg-navy rounded-xl border p-6">
-              <h3 className="text-balance mb-4 text-lg font-bold text-white">{t("materials_title")}</h3>
+              <h3 className="text-balance mb-4 text-lg font-bold text-fg-primary">{t("materials_title")}</h3>
               <div className="space-y-4">
                 <div className="border-border-subtle bg-bg-primary hover:border-warning-500/20 flex items-center justify-between rounded border p-3 transition-colors">
                   <div className="flex items-center gap-3">
@@ -469,7 +469,7 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
             </div>
 
             <div className="border-border-subtle bg-bg-navy space-y-3 rounded-xl border p-6">
-              <h3 className="text-balance mb-2 text-lg font-bold text-white">{t("next_steps_title")}</h3>
+              <h3 className="text-balance mb-2 text-lg font-bold text-fg-primary">{t("next_steps_title")}</h3>
 
               <a
                 href={`mailto:contact@alparai.com?subject=${encodeURIComponent(`Investment Discussion — ${investorName} (${investorCompany})`)}`}
@@ -518,7 +518,7 @@ function InvalidTokenView({
           <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-red-500/10">
             <Lock className="h-8 w-8 text-red-400" />
           </div>
-          <h2 className="text-balance mt-6 text-xl font-bold text-white">{accessDenied}</h2>
+          <h2 className="text-balance mt-6 text-xl font-bold text-fg-primary">{accessDenied}</h2>
           <p className="text-fg-muted mt-3 text-sm leading-relaxed">{message}</p>
           <div className="border-border-subtle mt-8 border-t pt-6">
             <p className="text-fg-muted text-xs">{accessHelp}</p>

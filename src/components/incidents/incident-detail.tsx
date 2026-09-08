@@ -479,7 +479,7 @@ export function IncidentDetailView({
         )}
 
         <div className="my-10">
-          <h3 className="mb-6 flex items-center gap-2 text-xl font-black text-white">
+          <h3 className="mb-6 flex items-center gap-2 text-xl font-black text-fg-primary">
             <Clock className="text-brand-400 h-5 w-5" />
             {locale === "tr" ? "Kanıt Zinciri" : "Chain of Evidence"}
           </h3>

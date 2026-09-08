@@ -41,7 +41,7 @@ export default function ReportFlaggingForm() {
             <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </div>
-        <h2 className="text-2xl font-bold text-white">{t("successTitle")}</h2>
+        <h2 className="text-2xl font-bold text-fg-primary">{t("successTitle")}</h2>
         <p className="text-fg-muted max-w-sm">{t("successMessage")}</p>
         <button
           className="border-border-subtle text-fg-primary mt-2 rounded-lg border bg-white/5 px-5 py-2 text-sm font-medium transition-all duration-200 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-[hsl(260_80%_70%)] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:outline-none"

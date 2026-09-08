@@ -200,7 +200,7 @@ export default async function RatingsPage({
                 {cat.id}
               </span>
             </div>
-            <h3 className="text-balance mb-2 text-base font-bold text-white">{cat.name}</h3>
+            <h3 className="text-balance mb-2 text-base font-bold text-fg-primary">{cat.name}</h3>
             <p className="text-fg-muted text-xs leading-relaxed">{cat.description}</p>
           </div>
         ))}

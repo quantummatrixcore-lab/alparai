@@ -190,7 +190,7 @@ export default async function ComplianceChecklistPage({
               </span>
             </div>
 
-            <h1 className="text-balance mb-6 text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="text-balance mb-6 text-4xl font-extrabold tracking-tight text-fg-primary sm:text-5xl lg:text-6xl">
               {t("hero_title")}
             </h1>
 

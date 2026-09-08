@@ -131,7 +131,7 @@ export const FinancialOperations = React.memo(function FinancialOperations() {
           </div>
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
-              <h3 className="truncate font-sans text-base font-bold tracking-tight text-white sm:text-lg">
+              <h3 className="truncate font-sans text-base font-bold tracking-tight text-fg-primary sm:text-lg">
                 {t("title")}
               </h3>
               <span className="inline-flex shrink-0 items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] font-bold text-emerald-400 sm:text-[11px]">

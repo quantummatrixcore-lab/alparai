@@ -240,7 +240,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
         <section aria-label="Zirvedeki Dehalar Podyumu" className="mb-16">
           <div className="mb-6 flex items-center justify-between">
             <div>
-              <h2 className="font-display sm:text-2xl flex items-center gap-2 text-xl font-bold text-white">
+              <h2 className="font-display sm:text-2xl flex items-center gap-2 text-xl font-bold text-fg-primary">
                 <Trophy className="h-6 w-6 text-amber-400" />
                 Bilge Kurul Zirve Podyumu (Top 3)
               </h2>
@@ -280,7 +280,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                     </span>
                   </div>
                   <div>
-                    <h3 className="font-display text-xl font-bold text-white transition-colors group-hover:text-amber-300">
+                    <h3 className="font-display text-xl font-bold text-fg-primary transition-colors group-hover:text-amber-300">
                       {podiumTwins.second.name}
                     </h3>
                     <p className="text-fg-primary text-xs font-medium">
@@ -364,7 +364,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                     </span>
                   </div>
                   <div>
-                    <h3 className="font-display text-2xl font-black text-white transition-colors group-hover:text-amber-300">
+                    <h3 className="font-display text-2xl font-black text-fg-primary transition-colors group-hover:text-amber-300">
                       {podiumTwins.first.name}
                     </h3>
                     <p className="text-sm font-semibold text-amber-300/90">
@@ -458,7 +458,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                     </span>
                   </div>
                   <div>
-                    <h3 className="font-display text-xl font-bold text-white transition-colors group-hover:text-emerald-300">
+                    <h3 className="font-display text-xl font-bold text-fg-primary transition-colors group-hover:text-emerald-300">
                       {podiumTwins.third.name}
                     </h3>
                     <p className="text-xs font-medium text-emerald-300/80">
@@ -642,7 +642,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
         {filteredAndSortedTwins.length === 0 ? (
           <div className="border-border-subtle rounded-3xl border bg-white/[0.02] p-12 text-center backdrop-blur-xl">
             <BrainCircuit className="text-fg-muted mx-auto mb-3 h-12 w-12 opacity-40" />
-            <h3 className="font-display text-lg font-bold text-white">
+            <h3 className="font-display text-lg font-bold text-fg-primary">
               No Matching Visionary Found
             </h3>
             <p className="text-fg-muted mt-1 text-sm">
@@ -710,7 +710,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                         </div>
                       </div>
                       <div>
-                        <h3 className="font-display group-hover:text-brand-300 text-lg font-bold text-white transition-colors">
+                        <h3 className="font-display group-hover:text-brand-300 text-lg font-bold text-fg-primary transition-colors">
                           {twin.name}
                         </h3>
                         <p className="text-fg-muted text-xs">{twin.title}</p>
@@ -991,7 +991,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                   <Compass className="h-4 w-4" />
                   <span>Mimar Sinan Structural Doctrine</span>
                 </div>
-                <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">
+                <h2 className="font-display text-2xl font-bold text-fg-primary sm:text-3xl">
                   Flawless Static Equilibrium & Model Arbitrage
                 </h2>
                 <p className="text-fg-secondary mt-2 max-w-2xl text-sm leading-relaxed">
@@ -1015,7 +1015,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                 <div className="bg-brand-500/10 text-brand-400 mb-3 flex h-10 w-10 items-center justify-center rounded-xl">
                   <ShieldCheck className="h-5 w-5" />
                 </div>
-                <h3 className="font-display text-base font-bold text-white">
+                <h3 className="font-display text-base font-bold text-fg-primary">
                   1. Zero Hallucination Guarantee
                 </h3>
                 <p className="text-fg-muted mt-2 text-xs leading-relaxed">
@@ -1028,7 +1028,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-amber-500/10 text-amber-400">
                   <Coins className="h-5 w-5" />
                 </div>
-                <h3 className="font-display text-base font-bold text-white">
+                <h3 className="font-display text-base font-bold text-fg-primary">
                   2. 98% Token Savings Arbitrage
                 </h3>
                 <p className="text-fg-muted mt-2 text-xs leading-relaxed">
@@ -1042,7 +1042,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-400">
                   <Flame className="h-5 w-5" />
                 </div>
-                <h3 className="font-display text-base font-bold text-white">
+                <h3 className="font-display text-base font-bold text-fg-primary">
                   3. Asymmetric Problem Solving
                 </h3>
                 <p className="text-fg-muted mt-2 text-xs leading-relaxed">
@@ -1081,7 +1081,7 @@ export function TwinsLeaderboardClient({ initialData }: { initialData: DigitalTw
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <h3 className="font-display text-2xl font-bold text-white">
+                  <h3 className="font-display text-2xl font-bold text-fg-primary">
                     {selectedTwinModal.name}
                   </h3>
                   <Badge variant="outline" className="border-brand-500/40 text-brand-300 text-xs">

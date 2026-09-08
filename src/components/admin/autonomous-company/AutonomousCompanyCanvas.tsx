@@ -205,7 +205,7 @@ export function AutonomousCompanyCanvas() {
           <div className="p-3 sm:p-4 rounded-2xl bg-white/60 dark:bg-white/[0.03] border border-black/5 dark:border-white/5 backdrop-blur-md flex flex-col justify-between h-full">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-1.5">
-                <h2 className="text-xs sm:text-sm font-black text-slate-900 dark:text-white tracking-wider uppercase">
+                <h2 className="text-xs sm:text-sm font-black text-slate-900 dark:text-fg-primary tracking-wider uppercase">
                   Autonomous AI Company
                 </h2>
               </div>
@@ -663,7 +663,7 @@ export function AutonomousCompanyCanvas() {
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <h3 className="text-base font-black text-slate-900 dark:text-white">
+                  <h3 className="text-base font-black text-slate-900 dark:text-fg-primary">
                     {selectedAgent.name}
                   </h3>
                   <Badge className="bg-purple-500/15 text-purple-600 dark:text-purple-300 border-purple-500/30 text-[10px] font-bold">

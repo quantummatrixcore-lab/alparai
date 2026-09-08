@@ -75,7 +75,7 @@ export const CoreSystemHealth = React.memo(function CoreSystemHealth() {
           </div>
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
-              <h3 className="font-sans text-base sm:text-lg font-bold tracking-tight text-white truncate">
+              <h3 className="font-sans text-base sm:text-lg font-bold tracking-tight text-fg-primary truncate">
                 ÇEKİRDEK SİSTEM SAĞLIĞI & TELEMETRİ
               </h3>
               <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-[10px] sm:text-xs font-bold font-mono text-emerald-400 shrink-0">

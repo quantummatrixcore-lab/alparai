@@ -242,7 +242,7 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
             </div>
             <div>
               <div className="flex items-center gap-3">
-                <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                <h1 className="text-2xl font-bold tracking-tight text-fg-primary sm:text-3xl">
                   {authenticatedVendor.name}
                 </h1>
                 <span className="border-success-500/20 bg-success-500/10 text-success-400 rounded-full border px-2.5 py-0.5 text-xs font-semibold">
@@ -291,7 +291,7 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
         <div className="space-y-4 lg:col-span-5">
           <div className="border-border-subtle/80 bg-bg-elevated/60 space-y-4 rounded-2xl border p-5 shadow-xl backdrop-blur-xl">
             <div className="flex items-center justify-between">
-              <h2 className="flex items-center gap-2 text-base font-semibold text-white">
+              <h2 className="flex items-center gap-2 text-base font-semibold text-fg-primary">
                 <ShieldAlert className="text-success-400 h-4 w-4" />
                 {t("incidents_title")}
               </h2>
@@ -441,7 +441,7 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
                   </span>
                 </div>
 
-                <h2 className="text-xl leading-tight font-bold text-white">
+                <h2 className="text-xl leading-tight font-bold text-fg-primary">
                   {selectedIncident.title}
                 </h2>
                 <p className="border-border-subtle/60 bg-bg-tertiary/60 text-fg-secondary rounded-xl border p-4 text-xs leading-relaxed">
@@ -454,7 +454,7 @@ export function VendorDefensePortalClient({ initialIncidents }: VendorDefensePor
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <MessageSquare className="text-success-400 h-4 w-4" />
-                    <h3 className="text-sm font-semibold text-white">
+                    <h3 className="text-sm font-semibold text-fg-primary">
                       {t("official_response_title")}
                     </h3>
                   </div>

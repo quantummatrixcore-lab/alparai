@@ -349,7 +349,7 @@ export default async function AcademyPage({ params }: { params: Promise<{ locale
               <h2 className="text-balance mb-6 text-4xl font-bold md:text-5xl">{t("apply_title")}</h2>
               <p className="text-fg-muted mb-12 text-xl">{t("apply_subtitle")}</p>
               <div className="bg-bg-secondary border-border-subtle mb-8 rounded-2xl border p-8">
-                <h3 className="text-balance text-2xl mb-4 font-semibold text-white">
+                <h3 className="text-balance text-2xl mb-4 font-semibold text-fg-primary">
                   {t("apply_card_title")}
                 </h3>
                 <p className="text-fg-secondary mb-6 leading-relaxed">{t("apply_card_desc")}</p>

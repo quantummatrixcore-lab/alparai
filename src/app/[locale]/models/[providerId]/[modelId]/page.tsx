@@ -170,7 +170,7 @@ export default async function ModelDetailPage({ params }: ModelDetailPageProps) 
                 </div>
               </div>
 
-              <h1 className="text-balance text-3xl font-black tracking-tight text-white sm:text-4xl md:text-5xl">
+              <h1 className="text-balance text-3xl font-black tracking-tight text-fg-primary sm:text-4xl md:text-5xl">
                 {model.name}
               </h1>
 
@@ -226,7 +226,7 @@ export default async function ModelDetailPage({ params }: ModelDetailPageProps) 
         {/* Dynamic Score & Dimension Breakdown */}
         {reviews.length > 0 && (
           <div className="space-y-4">
-            <h2 className="text-balance text-xl font-bold text-white flex items-center gap-2">
+            <h2 className="text-balance text-xl font-bold text-fg-primary flex items-center gap-2">
               <ShieldCheck className="h-5 w-5 text-brand-400" />
               Community Evaluation & Dimensions
             </h2>
@@ -245,7 +245,7 @@ export default async function ModelDetailPage({ params }: ModelDetailPageProps) 
         {/* K-BENCHMARK Category Performance */}
         {categoryScores.length > 0 && (
           <div className="border-border-subtle bg-bg-secondary/40 rounded-3xl border p-8 space-y-6">
-            <h2 className="text-balance text-xl font-bold text-white flex items-center gap-2">
+            <h2 className="text-balance text-xl font-bold text-fg-primary flex items-center gap-2">
               <Cpu className="h-5 w-5 text-indigo-400" />
               K-Benchmark 3.0 Standard Performance
             </h2>
@@ -267,7 +267,7 @@ export default async function ModelDetailPage({ params }: ModelDetailPageProps) 
           {/* Left Column: Community Reviews List */}
           <div className="space-y-6 lg:col-span-2">
             <div className="flex items-center justify-between border-b border-border-subtle pb-4">
-              <h2 className="text-balance text-2xl font-bold text-white flex items-center gap-2">
+              <h2 className="text-balance text-2xl font-bold text-fg-primary flex items-center gap-2">
                 <MessageSquare className="h-6 w-6 text-brand-400" />
                 {t("reviews_heading")} ({reviews.length})
               </h2>
@@ -301,7 +301,7 @@ export default async function ModelDetailPage({ params }: ModelDetailPageProps) 
           {/* Left Column: Feature Requests List */}
           <div className="space-y-6 lg:col-span-2">
             <div className="flex items-center justify-between border-b border-border-subtle pb-4">
-              <h2 className="text-balance text-2xl font-bold text-white flex items-center gap-2">
+              <h2 className="text-balance text-2xl font-bold text-fg-primary flex items-center gap-2">
                 <Lightbulb className="h-6 w-6 text-amber-400" />
                 {t("feature_requests_heading")} ({features.length})
               </h2>
@@ -333,7 +333,7 @@ export default async function ModelDetailPage({ params }: ModelDetailPageProps) 
         {/* Incident Failures History */}
         {incidents.length > 0 && (
           <div className="border-border-subtle bg-bg-secondary/30 rounded-3xl border p-8 space-y-6">
-            <h2 className="text-balance text-xl font-bold text-white flex items-center gap-2 text-rose-400">
+            <h2 className="text-balance text-xl font-bold text-fg-primary flex items-center gap-2 text-rose-400">
               <AlertTriangle className="h-5 w-5" />
               Related AI Incident Reports ({incidents.length})
             </h2>

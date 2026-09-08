@@ -388,7 +388,7 @@ export default async function ApiDocsPage({ params }: { params: Promise<{ locale
             <span className="mb-3 inline-block rounded-full border border-blue-500/20 bg-blue-500/10 px-3 py-1 text-xs font-bold tracking-wider text-blue-400 uppercase">
               {t("open_api_badge")}
             </span>
-            <h1 className="text-balance text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+            <h1 className="text-balance text-4xl font-extrabold tracking-tight text-fg-primary sm:text-5xl">
               {t("title")}
             </h1>
             <p className="text-fg-muted mt-4 text-lg leading-relaxed">{t("description")}</p>
@@ -403,7 +403,7 @@ export default async function ApiDocsPage({ params }: { params: Promise<{ locale
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_300px]">
           <div className="min-w-0 space-y-6">
-            <h2 className="text-balance text-lg font-bold text-white">{t("endpoints_title")}</h2>
+            <h2 className="text-balance text-lg font-bold text-fg-primary">{t("endpoints_title")}</h2>
 
             {endpoints.map((ep) => (
               <Card key={ep.path} className="bg-bg-secondary border-border-subtle/50">

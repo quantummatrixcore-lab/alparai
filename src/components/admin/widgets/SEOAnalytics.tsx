@@ -16,7 +16,7 @@ export const SEOAnalytics = React.memo(function SEOAnalytics({
     <div className="rounded-xl border border-[#27272a] bg-[#121216]/80 p-3.5 sm:p-4 backdrop-blur-md w-full min-w-0">
       <div className="flex items-center gap-2 mb-3 sm:mb-4 border-b border-[#27272a] pb-2 min-w-0">
         <Search className="h-4 w-4 text-[#10b981] shrink-0" />
-        <h3 className="text-xs sm:text-sm font-bold text-white truncate">SEO Metrikleri</h3>
+        <h3 className="text-xs sm:text-sm font-bold text-fg-primary truncate">SEO Metrikleri</h3>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         <div className="min-w-0">

@@ -351,7 +351,7 @@ export function WallOfShame() {
                       {entity.logo}
                     </div>
                     <div className="min-w-0">
-                      <h3 className="truncate text-lg font-black text-white group-hover:text-red-400 transition-colors">
+                      <h3 className="truncate text-lg font-black text-fg-primary group-hover:text-red-400 transition-colors">
                         {entity.name}
                       </h3>
                       <p className="text-xs font-medium text-fg-muted">Üretici: {entity.provider}</p>
@@ -415,7 +415,7 @@ export function WallOfShame() {
         {filteredEntities.length === 0 && (
           <div className="my-16 rounded-2xl border border-border-subtle bg-bg-primary/60 p-12 text-center backdrop-blur-md">
             <ShieldAlert className="mx-auto h-12 w-12 text-zinc-600" />
-            <h3 className="mt-4 text-base font-bold text-white">Arama kriterlerine uygun sicil kaydı bulunamadı.</h3>
+            <h3 className="mt-4 text-base font-bold text-fg-primary">Arama kriterlerine uygun sicil kaydı bulunamadı.</h3>
             <p className="mt-1 text-xs text-fg-muted">Filtreleri sıfırlayarak tüm mahkum AI listesine erişebilirsiniz.</p>
             <button
               onClick={() => {
@@ -437,7 +437,7 @@ export function WallOfShame() {
                 <AlertOctagon className="h-4 w-4 text-red-500" />
                 <span>Halk Denetim Mekanizması</span>
               </div>
-              <h2 className="text-2xl font-black text-white sm:text-3xl">Bir Yapay Zeka Suçu mu Tespit Ettiniz?</h2>
+              <h2 className="text-2xl font-black text-fg-primary sm:text-3xl">Bir Yapay Zeka Suçu mu Tespit Ettiniz?</h2>
               <p className="max-w-2xl text-xs text-fg-muted sm:text-sm">
                 Gizlilik ihlalleri, telif korsanlığı, izinsiz deepfake veya taraflı model çıktılarını derhal Agora-T
                 Mahkemesi ve Jüri Duruşması dökümüne iletin.
@@ -486,7 +486,7 @@ export function WallOfShame() {
                 <div className="flex items-center gap-3">
                   <span className="text-3xl">{activeModalEntity.logo}</span>
                   <div>
-                    <h3 className="text-xl font-black text-white">{activeModalEntity.name}</h3>
+                    <h3 className="text-xl font-black text-fg-primary">{activeModalEntity.name}</h3>
                     <p className="text-xs text-red-400 font-mono">Dava Referansı: #{activeModalEntity.caseRef}</p>
                   </div>
                 </div>

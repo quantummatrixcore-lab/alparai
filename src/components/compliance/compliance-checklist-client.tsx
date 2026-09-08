@@ -146,7 +146,7 @@ export function ComplianceChecklistClient({ t, items }: ComplianceChecklistClien
                     <Building2 className="h-6 w-6" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-white">{t.bankingTitle}</h3>
+                    <h3 className="text-lg font-bold text-fg-primary">{t.bankingTitle}</h3>
                     <p className="text-accent-200/80 mt-1 text-sm leading-relaxed">
                       {t.bankingDesc}
                     </p>
@@ -164,7 +164,7 @@ export function ComplianceChecklistClient({ t, items }: ComplianceChecklistClien
                     <Radio className="h-6 w-6" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-white">{t.telecomTitle}</h3>
+                    <h3 className="text-lg font-bold text-fg-primary">{t.telecomTitle}</h3>
                     <p className="text-success-200/80 mt-1 text-sm leading-relaxed">
                       {t.telecomDesc}
                     </p>
@@ -185,7 +185,7 @@ export function ComplianceChecklistClient({ t, items }: ComplianceChecklistClien
                 <Sparkles className="h-4 w-4" />
                 Interactive Readiness Audit Tracker
               </div>
-              <h3 className="mt-1 text-xl font-bold text-white">
+              <h3 className="mt-1 text-xl font-bold text-fg-primary">
                 Completed: {completedCount} / {items.length} Article 73 Safeguards
               </h3>
             </div>
@@ -205,7 +205,7 @@ export function ComplianceChecklistClient({ t, items }: ComplianceChecklistClien
       {/* 12-Point Checklist Grid */}
       <div>
         <div className="mb-8 text-center">
-          <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl">
+          <h2 className="text-2xl font-bold tracking-tight text-fg-primary sm:text-3xl lg:text-4xl">
             {t.checklistHeading}
           </h2>
           <p className="text-fg-muted mx-auto mt-2 max-w-2xl text-sm sm:text-base">
@@ -292,7 +292,7 @@ export function ComplianceChecklistClient({ t, items }: ComplianceChecklistClien
               <div className="bg-brand-500/10 text-brand-400 ring-brand-500/30 mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl ring-1">
                 <Download className="h-7 w-7" />
               </div>
-              <h3 className="text-2xl font-extrabold text-white sm:text-3xl">
+              <h3 className="text-2xl font-extrabold text-fg-primary sm:text-3xl">
                 {t.leadFormTitle}
               </h3>
               <p className="text-fg-secondary mt-2 text-sm sm:text-base">{t.leadFormSubtitle}</p>
@@ -418,7 +418,7 @@ export function ComplianceChecklistClient({ t, items }: ComplianceChecklistClien
       {/* Bottom Enterprise CTA Banner */}
       <Card className="border-brand-500/20 bg-bg-elevated/80 backdrop-blur-md">
         <CardContent className="p-8 text-center sm:p-10">
-          <h3 className="text-2xl font-bold text-white sm:text-3xl">
+          <h3 className="text-2xl font-bold text-fg-primary sm:text-3xl">
             {t.bottomCtaTitle}
           </h3>
           <p className="text-fg-secondary mx-auto mt-2 max-w-2xl text-sm sm:text-base">

@@ -31,7 +31,7 @@ export const AIEcosystemRadar = React.memo(function AIEcosystemRadar({
     <div className="w-full min-w-0 rounded-xl border border-[#27272a] bg-[#121216]/80 p-3.5 backdrop-blur-md sm:p-4">
       <div className="mb-3 flex min-w-0 items-center gap-2 border-b border-[#27272a] pb-2 sm:mb-4">
         <Activity className="h-4 w-4 shrink-0 text-[#00f0ff]" />
-        <h3 className="truncate text-xs font-bold text-white sm:text-sm">{t("title")}</h3>
+        <h3 className="truncate text-xs font-bold text-fg-primary sm:text-sm">{t("title")}</h3>
       </div>
 
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">

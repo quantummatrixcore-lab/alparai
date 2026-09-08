@@ -239,7 +239,7 @@ export const CouncilOfSages = React.memo(function CouncilOfSages() {
           </div>
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
-              <h3 className="font-sans text-base sm:text-lg font-bold tracking-tight text-white truncate">
+              <h3 className="font-sans text-base sm:text-lg font-bold tracking-tight text-fg-primary truncate">
                 BİLGELER MECLİSİ (COUNCIL OF SAGES)
               </h3>
               <span className="inline-flex items-center gap-1 rounded-full border border-red-500/40 bg-red-500/10 px-2 py-0.5 text-[10px] sm:text-[11px] font-bold font-mono text-red-400 shrink-0">

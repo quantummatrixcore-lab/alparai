@@ -62,7 +62,7 @@ export function JuryDutySwipe() {
                 <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-rose-500/10 px-3 py-1 text-xs font-bold text-rose-400">
                   <AlertTriangle className="h-3 w-3" /> Incident Report
                 </div>
-                <h3 className="mb-1 text-2xl font-black text-white">{card.defendant}</h3>
+                <h3 className="mb-1 text-2xl font-black text-fg-primary">{card.defendant}</h3>
                 <p className="text-brand-400 mb-4 text-sm font-medium">{card.charge}</p>
                 <div className="text-fg-secondary rounded-lg bg-black/40 p-3 text-sm">
                   <span className="text-fg-muted mb-1 block text-xs font-semibold uppercase">

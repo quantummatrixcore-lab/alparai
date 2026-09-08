@@ -48,7 +48,7 @@ export function ForgotPasswordForm() {
         onSubmit={handleSubmit}
         className="border-border-subtle bg-bg-elevated w-full max-w-md space-y-4 rounded-2xl border p-8"
       >
-        <h1 className="text-2xl font-bold text-white">{t("forgot_password_title")}</h1>
+        <h1 className="text-2xl font-bold text-fg-primary">{t("forgot_password_title")}</h1>
         <p className="text-fg-muted text-sm">{t("forgot_password_subtitle")}</p>
         {error && <p className="text-danger-400 text-sm">{error}</p>}
         <div>

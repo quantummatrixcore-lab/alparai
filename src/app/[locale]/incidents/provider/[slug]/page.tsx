@@ -76,7 +76,7 @@ export default async function ProviderIncidentsPage({
       <header className="border-border-subtle mb-8 rounded-xl border bg-white/5 p-6 shadow-lg">
         <div className="mb-2 flex items-center gap-3">
           <Cpu className="text-brand-400 h-6 w-6" />
-          <h1 className="text-balance text-2xl font-bold text-white">
+          <h1 className="text-balance text-2xl font-bold text-fg-primary">
             {t("header_title", { providerName: provider.name })}
           </h1>
         </div>
@@ -86,7 +86,7 @@ export default async function ProviderIncidentsPage({
       </header>
 
       <section className="mb-10 space-y-4">
-        <h2 className="text-balance flex items-center gap-2 text-lg font-semibold text-white">
+        <h2 className="text-balance flex items-center gap-2 text-lg font-semibold text-fg-primary">
           <Activity className="h-5 w-5 text-emerald-400" />
           {t("recent_incidents")}
         </h2>
@@ -111,7 +111,7 @@ export default async function ProviderIncidentsPage({
                     )}
                   </span>
                 </div>
-                <h3 className="text-balance line-clamp-2 text-sm font-medium text-white">{inc.title_masked}</h3>
+                <h3 className="text-balance line-clamp-2 text-sm font-medium text-fg-primary">{inc.title_masked}</h3>
               </Link>
             ))}
           </div>
@@ -119,7 +119,7 @@ export default async function ProviderIncidentsPage({
       </section>
 
       <div className="border-brand-500/30 bg-brand-500/10 rounded-xl border p-6 text-center">
-        <h3 className="text-balance mb-2 text-base font-bold text-white">
+        <h3 className="text-balance mb-2 text-base font-bold text-fg-primary">
           {t("cta_title", { providerName: provider.name })}
         </h3>
         <Link

@@ -148,7 +148,7 @@ export function ApiPlayground() {
         <div>
           <div className="flex items-center gap-2">
             <Sparkles className="text-success-400 h-5 w-5" />
-            <h2 className="text-lg font-bold text-white">
+            <h2 className="text-lg font-bold text-fg-primary">
               Interactive API Playground (Try-It-Out)
             </h2>
           </div>

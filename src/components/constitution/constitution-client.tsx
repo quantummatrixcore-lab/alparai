@@ -52,7 +52,7 @@ export function ConstitutionClient() {
             <Globe className="h-4 w-4 text-purple-400" /> {t("badge")}
           </div>
 
-          <h1 className="mt-6 text-4xl font-black tracking-tight text-white sm:text-6xl lg:text-7xl">
+          <h1 className="mt-6 text-4xl font-black tracking-tight text-fg-primary sm:text-6xl lg:text-7xl">
             {t("title").split("(")[0]} <br />
             <span className="mt-2 block bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-300 bg-clip-text text-3xl text-transparent sm:text-4xl">
               ({t("title").split("(")[1] || "Taslak v0.1 - Ortak Yazım ve Öneriye Açık)"}
@@ -86,7 +86,7 @@ export function ConstitutionClient() {
         </div>
 
         <div className="mt-16 space-y-6">
-          <h2 className="text-2xl font-black text-white sm:text-3xl">
+          <h2 className="text-2xl font-black text-fg-primary sm:text-3xl">
             {t("articles_title")}
           </h2>
 
@@ -100,7 +100,7 @@ export function ConstitutionClient() {
                   <div className="inline-block rounded-lg border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-black tracking-wider text-purple-400 uppercase">
                     {art.num}
                   </div>
-                  <h3 className="mt-3 text-xl font-bold text-white">{art.title}</h3>
+                  <h3 className="mt-3 text-xl font-bold text-fg-primary">{art.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed font-semibold text-purple-200/90">
                     {art.desc}
                   </p>
@@ -119,7 +119,7 @@ export function ConstitutionClient() {
         >
           <div className="mx-auto max-w-2xl text-center">
             <ShieldCheck className="mx-auto h-12 w-12 text-purple-400" />
-            <h2 className="mt-4 text-3xl font-black text-white sm:text-4xl">{t("sign_title")}</h2>
+            <h2 className="mt-4 text-3xl font-black text-fg-primary sm:text-4xl">{t("sign_title")}</h2>
             <p className="text-fg-muted mt-2 text-sm font-medium">{t("sign_desc")}</p>
 
             {signed ? (

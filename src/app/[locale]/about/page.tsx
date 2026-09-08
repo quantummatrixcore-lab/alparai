@@ -29,7 +29,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       <Section className="relative">
         <Container>
           <div className="mx-auto max-w-4xl text-center">
-            <h1 className="text-balance mb-6 text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="text-balance mb-6 text-4xl font-black tracking-tight text-fg-primary sm:text-5xl lg:text-6xl">
               Securing the <span className="text-brand-400">Agentic Economy</span>
             </h1>
             <p className="text-fg-muted text-lg leading-relaxed sm:text-xl">
@@ -45,7 +45,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         <Container>
           <div className="grid items-center gap-12 md:grid-cols-2 lg:gap-16">
             <div className="space-y-6">
-              <h2 className="text-balance text-3xl font-bold text-white">Our Mission</h2>
+              <h2 className="text-balance text-3xl font-bold text-fg-primary">Our Mission</h2>
               <p className="text-fg-secondary leading-relaxed">
                 We are building the definitive quality and security gate for enterprise AI. By
                 tracking the "Cognitive DNA" of every LLM interaction, we ensure that biases are
@@ -78,7 +78,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               <div className="bg-brand-600/20 absolute -top-20 -right-20 h-64 w-64 rounded-full blur-[80px]"></div>
               <div className="relative z-10 space-y-8">
                 <div>
-                  <h3 className="text-balance mb-2 text-xl font-bold text-white">The Swarm Architecture</h3>
+                  <h3 className="text-balance mb-2 text-xl font-bold text-fg-primary">The Swarm Architecture</h3>
                   <p className="text-fg-muted text-sm">
                     Our platform is powered by an orchestra of 38+ specialized AI agents. From
                     penetration testing to UI generation, the Alpar Swarm continuously audits,
@@ -86,7 +86,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                   </p>
                 </div>
                 <div className="border-t border-border-subtle pt-8">
-                  <h3 className="text-balance mb-2 text-xl font-bold text-white">Built for the Future</h3>
+                  <h3 className="text-balance mb-2 text-xl font-bold text-fg-primary">Built for the Future</h3>
                   <p className="text-fg-muted text-sm">
                     We don't just adapt to regulations; we anticipate them. Our architecture is
                     designed to handle the complexities of B2B Neural-Twin economies and

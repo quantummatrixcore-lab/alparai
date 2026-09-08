@@ -286,7 +286,7 @@ export default async function ModelsPage({ params, searchParams }: ModelPageProp
               <div className="bg-brand-500/10 border-brand-500/20 mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border">
                 <Lightbulb className="text-brand-400 h-8 w-8" />
               </div>
-              <h3 className="text-balance mb-2 text-xl font-bold text-white">
+              <h3 className="text-balance mb-2 text-xl font-bold text-fg-primary">
                 {search ? t("no_results_title") : t("empty_title")}
               </h3>
               <p className="text-fg-muted max-w-sm text-sm">
@@ -313,7 +313,7 @@ export default async function ModelsPage({ params, searchParams }: ModelPageProp
                 >
                   {/* Model Name & Version */}
                   <div className="space-y-1">
-                    <h3 className="text-balance group-hover:text-brand-400 text-base font-bold text-white transition-colors">
+                    <h3 className="text-balance group-hover:text-brand-400 text-base font-bold text-fg-primary transition-colors">
                       {model.name}
                     </h3>
                     <p className="text-fg-muted font-mono text-xs">

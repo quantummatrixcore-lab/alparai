@@ -53,7 +53,7 @@ export const SecurityMatrix = React.memo(function SecurityMatrix() {
           </div>
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
-              <h3 className="font-sans text-base sm:text-lg font-bold tracking-tight text-white truncate">
+              <h3 className="font-sans text-base sm:text-lg font-bold tracking-tight text-fg-primary truncate">
                 SİBER GÜVENLİK & SAVUNMA MATRİSİ
               </h3>
               <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] sm:text-[11px] font-bold font-mono text-emerald-400 shrink-0">

@@ -72,7 +72,7 @@ export default async function PressReleasePage({
               </div>
             </div>
 
-            <h1 className="text-balance text-3xl leading-tight font-extrabold tracking-tight text-white md:text-5xl">
+            <h1 className="text-balance text-3xl leading-tight font-extrabold tracking-tight text-fg-primary md:text-5xl">
               {title}
             </h1>
 

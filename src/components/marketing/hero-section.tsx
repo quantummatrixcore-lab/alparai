@@ -154,9 +154,9 @@ export function HeroSection({
               <Link
                 href="/pricing"
                 onClick={() => trackEvent("hero_cta_click", { action: "pricing" })}
-                className="group border-brand-500/40 bg-brand-500/10 hover:border-brand-400 hover:bg-brand-500/20 relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl border px-8 text-base font-bold text-white shadow-[0_0_25px_rgba(168,85,247,0.2),inset_0_1px_0_rgba(255,255,255,0.2)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_0_40px_rgba(168,85,247,0.4),inset_0_1px_0_rgba(255,255,255,0.3)] active:scale-95"
+                className="group border-brand-500/40 bg-brand-500/10 hover:border-brand-400 hover:bg-brand-500/20 relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl border px-8 text-base font-bold text-brand-600 dark:text-white shadow-[0_0_25px_rgba(168,85,247,0.15)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_0_40px_rgba(168,85,247,0.3)] active:scale-95"
               >
-                <CreditCard className="text-brand-400 relative z-10 h-5 w-5" />
+                <CreditCard className="text-brand-600 dark:text-brand-400 relative z-10 h-5 w-5" />
                 <span className="relative z-10">
                   {t("cta_pricing", { defaultValue: "Enterprise & Pricing" })}
                 </span>
@@ -165,7 +165,7 @@ export function HeroSection({
               <Link
                 href="/incidents"
                 onClick={() => trackEvent("hero_cta_click", { action: "secondary" })}
-                className="group border-border-subtle hover:border-border-strong relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl border bg-white/5 px-8 text-base font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-white/10 hover:shadow-[0_10px_40px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.2)] active:scale-95"
+                className="group border-border-subtle hover:border-border-strong relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl border bg-black/5 dark:bg-white/5 px-8 text-base font-bold text-fg-primary shadow-sm backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-black/10 dark:hover:bg-white/10 active:scale-95"
               >
                 <span className="relative z-10">
                   {t("cta_secondary", { defaultValue: "Kozmik Adalet Panosu" })}
@@ -202,7 +202,7 @@ export function HeroSection({
                     href="https://ercumenterden.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-fg-primary text-sm font-black transition-colors hover:text-white hover:underline"
+                    className="text-fg-primary text-sm font-black transition-colors hover:text-brand-500 dark:hover:text-white hover:underline"
                   >
                     Ercüment ERDEN
                   </a>
@@ -267,7 +267,7 @@ export function HeroSection({
                 </h3>
                 <Link
                   href="/leaderboard"
-                  className="group text-brand-400 flex items-center gap-1 text-xs font-bold transition-colors hover:text-white"
+                  className="group text-brand-500 dark:text-brand-400 flex items-center gap-1 text-xs font-bold transition-colors hover:text-brand-600 dark:hover:text-white"
                 >
                   {t("view_all")}
                   <ArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-1" />

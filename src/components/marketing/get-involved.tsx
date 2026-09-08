@@ -94,7 +94,7 @@ export function GetInvolved() {
                             <Icon className="h-5 w-5" />
                           </div>
                           {cta.tagKey && (
-                            <span className="text-fg-secondary border-border-subtle/50 rounded-full border bg-white/5 px-2 py-0.5 text-[10px] font-bold tracking-wider uppercase">
+                            <span className="text-fg-secondary border-border-subtle rounded-full border bg-black/5 dark:bg-white/5 px-2 py-0.5 text-[10px] font-bold tracking-wider uppercase">
                               {t(cta.tagKey)}
                             </span>
                           )}

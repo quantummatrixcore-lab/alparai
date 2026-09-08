@@ -288,8 +288,8 @@ async function LeaderboardDataContent({
                 className={cn(
                   "rounded-xl border px-3.5 py-1.5 text-xs font-semibold backdrop-blur-md transition-all duration-200",
                   currentFilter === "all"
-                    ? "bg-brand-500/25 border-brand-400/60 text-white shadow-[0_0_12px_rgba(168,85,247,0.3)]"
-                    : "text-fg-secondary border-border-subtle hover:border-border-strong bg-white/5 hover:bg-white/10 hover:text-white",
+                    ? "bg-brand-500/20 border-brand-500/50 text-brand-700 dark:text-white font-bold shadow-[0_0_12px_rgba(168,85,247,0.2)]"
+                    : "text-fg-secondary border-border-subtle hover:border-border-strong bg-black/[0.03] dark:bg-white/5 hover:bg-black/[0.06] dark:hover:bg-white/10 hover:text-fg-primary",
                 )}
               >
                 {_t("filter_all")}
@@ -299,8 +299,8 @@ async function LeaderboardDataContent({
                 className={cn(
                   "rounded-xl border px-3.5 py-1.5 text-xs font-semibold backdrop-blur-md transition-all duration-200",
                   currentFilter === "verified"
-                    ? "bg-brand-500/25 border-brand-400/60 text-white shadow-[0_0_12px_rgba(168,85,247,0.3)]"
-                    : "text-fg-secondary border-border-subtle hover:border-border-strong bg-white/5 hover:bg-white/10 hover:text-white",
+                    ? "bg-brand-500/20 border-brand-500/50 text-brand-700 dark:text-white font-bold shadow-[0_0_12px_rgba(168,85,247,0.2)]"
+                    : "text-fg-secondary border-border-subtle hover:border-border-strong bg-black/[0.03] dark:bg-white/5 hover:bg-black/[0.06] dark:hover:bg-white/10 hover:text-fg-primary",
                 )}
               >
                 {_t("filter_verified")}
@@ -310,8 +310,8 @@ async function LeaderboardDataContent({
                 className={cn(
                   "rounded-xl border px-3.5 py-1.5 text-xs font-semibold backdrop-blur-md transition-all duration-200",
                   currentFilter === "with_incidents"
-                    ? "bg-brand-500/25 border-brand-400/60 text-white shadow-[0_0_12px_rgba(168,85,247,0.3)]"
-                    : "text-fg-secondary border-border-subtle hover:border-border-strong bg-white/5 hover:bg-white/10 hover:text-white",
+                    ? "bg-brand-500/20 border-brand-500/50 text-brand-700 dark:text-white font-bold shadow-[0_0_12px_rgba(168,85,247,0.2)]"
+                    : "text-fg-secondary border-border-subtle hover:border-border-strong bg-black/[0.03] dark:bg-white/5 hover:bg-black/[0.06] dark:hover:bg-white/10 hover:text-fg-primary",
                 )}
               >
                 {_t("filter_with_incidents")}
@@ -330,7 +330,7 @@ async function LeaderboardDataContent({
                   name="q"
                   defaultValue={searchQuery}
                   placeholder={locale === "tr" ? "Sağlayıcı ara..." : "Search providers..."}
-                  className="text-fg-primary placeholder:text-fg-muted focus:ring-brand-500 focus:border-brand-500 border-border-subtle flex h-9 w-full rounded-xl border bg-white/5 px-3.5 py-1.5 text-xs backdrop-blur-md transition-all focus:ring-2 focus:outline-none"
+                  className="text-fg-primary placeholder:text-fg-muted focus:ring-brand-500 focus:border-brand-500 border-border-subtle flex h-9 w-full rounded-xl border bg-bg-secondary/80 px-3.5 py-1.5 text-xs backdrop-blur-md transition-all focus:ring-2 focus:outline-none"
                 />
               </div>
             </form>
@@ -463,7 +463,7 @@ async function LeaderboardDataContent({
                       {sorted.map((p) => (
                         <tr
                           key={p.id}
-                          className="group transition-colors duration-300 hover:bg-white/5"
+                          className="group transition-colors duration-300 hover:bg-black/[0.02] dark:hover:bg-white/5"
                         >
                           <td className="p-4">
                             <span

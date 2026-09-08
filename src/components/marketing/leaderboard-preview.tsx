@@ -54,8 +54,8 @@ export function LeaderboardPreview({ entries }: { entries: LeaderboardEntry[] })
                 <motion.li
                   variants={itemVariants}
                   key={e.provider_id}
-                  whileHover={{ x: 4, backgroundColor: "rgba(255, 255, 255, 0.03)" }}
-                  className="flex items-center gap-3 p-3 transition-all duration-300 first:rounded-t-xl last:rounded-b-xl"
+                  whileHover={{ x: 4 }}
+                  className="flex items-center gap-3 p-3 transition-all duration-300 first:rounded-t-xl last:rounded-b-xl hover:bg-black/[0.03] dark:hover:bg-white/[0.04]"
                 >
                   <span
                     className={cn(

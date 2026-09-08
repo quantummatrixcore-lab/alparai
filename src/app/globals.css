@@ -56,6 +56,9 @@
   --color-fg-secondary: var(--color-fg-secondary);
   --color-fg-muted: var(--color-fg-muted);
   --color-fg-disabled: var(--color-fg-disabled);
+  --color-background: var(--color-bg-primary);
+  --color-foreground: var(--color-fg-primary);
+  --color-muted-foreground: var(--color-fg-muted);
 
   /* Radius */
   --radius-sm: 6px;
@@ -96,8 +99,6 @@
   --color-social-instagram: #e1306c;
   --color-social-whatsapp: #25d366;
   --color-social-facebook: #1877f2;
-  --color-bg-deep: #050914;
-  --color-bg-navy: #0e1f30;
 
   --text-2xs: 0.625rem;
   --text-3xs: 0.5625rem;

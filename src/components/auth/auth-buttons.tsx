@@ -190,8 +190,8 @@ export function GoogleSignInButton({
       )}
 
       {pending && (
-        <div className="bg-background/80 absolute inset-0 z-10 flex items-center justify-center rounded-xl backdrop-blur-sm">
-          <Loader2 className="h-5 w-5 animate-spin text-white" />
+        <div className="bg-bg-primary/80 absolute inset-0 z-10 flex items-center justify-center rounded-xl backdrop-blur-sm">
+          <Loader2 className="h-5 w-5 animate-spin text-brand-500" />
         </div>
       )}
     </div>

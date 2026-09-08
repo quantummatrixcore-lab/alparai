@@ -137,13 +137,13 @@ export function LiveStats({
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.7, delay: idx * 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
                 className={cn(
-                  "group border-border-subtle/50 relative overflow-hidden rounded-3xl border bg-white/5 p-8 backdrop-blur-2xl transition-all duration-500",
-                  "shadow-[0_10px_30px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.05)]",
+                  "group border-border-subtle relative overflow-hidden rounded-3xl border bg-bg-secondary/70 p-8 backdrop-blur-2xl transition-all duration-500",
+                  "shadow-sm dark:shadow-[0_10px_30px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.05)]",
                   item.bgHover,
                   item.borderHover,
                   item.shadowHover,
                   item.tooltip && "cursor-help",
-                  "shadow-inner shadow-white/5 ring-1 ring-white/5"
+                  "dark:shadow-inner dark:shadow-white/5 dark:ring-1 dark:ring-white/5"
                 )}
                 title={item.tooltip}
               >
@@ -153,7 +153,7 @@ export function LiveStats({
                 <div className="relative z-10 flex items-center gap-5">
                   <div
                     className={cn(
-                      "border-border-subtle flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border bg-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] transition-transform duration-500 group-hover:scale-110",
+                      "border-border-subtle flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border bg-black/5 dark:bg-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] transition-transform duration-500 group-hover:scale-110",
                       item.accent,
                     )}
                   >

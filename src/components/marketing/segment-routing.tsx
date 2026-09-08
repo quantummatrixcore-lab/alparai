@@ -61,11 +61,11 @@ export function SegmentRouting() {
 
   return (
     <section className="relative overflow-hidden py-14 md:py-18">
-      <div className="from-background via-background/90 to-background absolute inset-0 z-0 bg-linear-to-b" />
+      <div className="from-bg-primary via-bg-primary/90 to-bg-primary absolute inset-0 z-0 bg-gradient-to-b" />
       <div className="relative z-10 container mx-auto max-w-7xl px-4">
         <div className="mb-10 text-center">
-          <h2 className="mb-3 text-3xl font-bold tracking-tight md:text-4xl">{t("title")}</h2>
-          <p className="text-muted-foreground mx-auto max-w-2xl text-base md:text-lg">
+          <h2 className="text-fg-primary mb-3 text-3xl font-bold tracking-tight md:text-4xl">{t("title")}</h2>
+          <p className="text-fg-muted mx-auto max-w-2xl text-base md:text-lg">
             {t("subtitle") || "Choose your segment to access tailored insights and tools."}
           </p>
         </div>
@@ -76,20 +76,20 @@ export function SegmentRouting() {
               key={segment.id}
               href={segment.href}
               onClick={() => trackEvent("segment_cta_click", { segment: segment.id })}
-              className={`group relative flex flex-col rounded-2xl border p-6 ${segment.borderColor} ${segment.hoverBorder} bg-background/50 overflow-hidden backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg`}
+              className={`group relative flex flex-col rounded-2xl border p-6 ${segment.borderColor} ${segment.hoverBorder} bg-bg-secondary/70 overflow-hidden backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg`}
             >
               <div
-                className={`absolute inset-0 bg-linear-to-br ${segment.color} opacity-0 transition-opacity duration-500 group-hover:opacity-100`}
+                className={`absolute inset-0 bg-gradient-to-br ${segment.color} opacity-0 transition-opacity duration-500 group-hover:opacity-100`}
               />
               <div className="relative z-10 flex h-full flex-col">
                 <div
-                  className={`bg-background/80 mb-6 w-fit rounded-xl border p-3 shadow-sm ${segment.borderColor}`}
+                  className={`bg-bg-primary/80 mb-6 w-fit rounded-xl border p-3 shadow-sm ${segment.borderColor}`}
                 >
                   <segment.icon className={`h-6 w-6 ${segment.iconColor}`} />
                 </div>
 
-                <h3 className="mb-2 text-xl font-semibold">{segment.title}</h3>
-                <p className="text-muted-foreground mb-8 flex-grow text-sm">{segment.desc}</p>
+                <h3 className="text-fg-primary mb-2 text-xl font-semibold">{segment.title}</h3>
+                <p className="text-fg-muted mb-8 flex-grow text-sm">{segment.desc}</p>
 
                 <div
                   className={`flex items-center text-sm font-medium ${segment.iconColor} mt-auto`}

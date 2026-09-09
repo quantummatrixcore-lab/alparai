@@ -82,7 +82,7 @@ export function Header({
             className="from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 focus-visible:ring-brand-500 inline-flex min-h-[38px] sm:min-h-[36px] h-9 sm:h-8.5 shrink-0 items-center gap-1.5 rounded-full bg-gradient-to-r px-3 sm:px-3.5 text-xs font-bold text-white shadow-[0_0_15px_rgba(168,85,247,0.3)] transition-all duration-200 hover:scale-105 hover:shadow-[0_0_25px_rgba(168,85,247,0.6)] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none active:scale-[0.98] whitespace-nowrap"
           >
             <Plus className="h-3.5 w-3.5" aria-hidden="true" />
-            <span>{t("report")}</span>
+            <span className="hidden min-[480px]:inline">{t("report")}</span>
           </Link>
 
           <div className="shrink-0 pl-0.5">

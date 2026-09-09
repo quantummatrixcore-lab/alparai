@@ -64,3 +64,6 @@ sleep.*
 turn_off_monitor.ps1
 *.bak
 .deprecated_archive/
+
+# Local secret backups (never commit)
+*.YEDEK-*

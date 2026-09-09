@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { run360ExpertAudit } from "@/actions/admin-360-evaluation";
+import { run360ExpertAudit } from "@/actions/admin/archive/admin-360-evaluation";
 import { createServerClient } from "@/lib/supabase/server";
 
 vi.mock("@/lib/auth/session", () => ({

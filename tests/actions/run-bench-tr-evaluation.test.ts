@@ -22,7 +22,7 @@ vi.hoisted(() => {
 import { createServerClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { callModel } from "@/lib/ai/openrouter-gateway";
-import { runBenchTrEvaluationAction } from "@/actions/admin/run-bench-tr-evaluation";
+import { runBenchTrEvaluationAction } from "@/actions/admin/archive/run-bench-tr-evaluation";
 
 describe("BENCH-TR Evaluation", () => {
   let mockServerClient: ReturnType<typeof createMockSupabaseClient>;

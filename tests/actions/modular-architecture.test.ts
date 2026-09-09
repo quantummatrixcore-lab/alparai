@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import { getModularArchitectureAction } from "@/actions/admin/modular-architecture";
+import { getModularArchitectureAction } from "@/actions/admin/archive/modular-architecture";
 import { MODULAR_PILLARS, GPT_360_AUDIT_SCORE } from "@/lib/config/modular-architecture";
 
 vi.mock("@/lib/auth/session", () => ({

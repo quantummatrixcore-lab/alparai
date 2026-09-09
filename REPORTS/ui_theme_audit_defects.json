@@ -1,0 +1,3290 @@
+[
+  {
+    "file": "src\\app\\[locale]\\about\\page.tsx",
+    "line": 32,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h1 className=\"text-balance mb-6 text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\about\\page.tsx",
+    "line": 48,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance text-3xl font-bold text-white\">Our Mission</h2>"
+  },
+  {
+    "file": "src\\app\\[locale]\\about\\page.tsx",
+    "line": 81,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance mb-2 text-xl font-bold text-white\">The Swarm Architecture</h3>"
+  },
+  {
+    "file": "src\\app\\[locale]\\about\\page.tsx",
+    "line": 89,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance mb-2 text-xl font-bold text-white\">Built for the Future</h3>"
+  },
+  {
+    "file": "src\\app\\[locale]\\academy\\page.tsx",
+    "line": 80,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "className=\"text-fg-primary inline-flex h-11 items-center justify-center rounded-xl border border-border-subtle bg-white/5 px-7 text-sm font-semibold backdrop-blur-md transition-all hover:scale-105 hover:border-white/25 hover:bg-white/10 focus-visible:ring-1 focus-visible:outline-none\""
+  },
+  {
+    "file": "src\\app\\[locale]\\academy\\page.tsx",
+    "line": 124,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"mb-2 text-4xl font-bold text-white\">100+</div>"
+  },
+  {
+    "file": "src\\app\\[locale]\\academy\\page.tsx",
+    "line": 281,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<CheckCircle2 className=\"h-5 w-5 text-white\" />"
+  },
+  {
+    "file": "src\\app\\[locale]\\academy\\page.tsx",
+    "line": 352,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance text-2xl mb-4 font-semibold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\academy\\page.tsx",
+    "line": 50,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<Plus className=\"h-3.5 w-3.5 text-white\" />"
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\academy\\page.tsx",
+    "line": 51,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"!text-white\">Yeni Akademik Hakem Ata</span>"
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\api-keys\\page.tsx",
+    "line": 136,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"flex items-center gap-1.5 rounded-md bg-[#238636] px-3 py-1.5 font-sans text-xs font-medium text-white shadow-sm transition-all hover:bg-[#2ea043]\""
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\api-keys\\page.tsx",
+    "line": 344,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"flex items-center gap-1.5 rounded-md bg-[#0969da] px-3 py-1.5 font-sans text-xs font-medium text-white transition-colors hover:bg-[#0854ad] disabled:opacity-50\""
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\api-keys\\page.tsx",
+    "line": 436,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"rounded bg-[#238636] px-3 py-1.5 font-sans text-xs font-semibold text-white hover:bg-[#2ea043]\""
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\challenges\\page.tsx",
+    "line": 77,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<button className=\"flex items-center gap-1.5 rounded-md border border-rose-500/40 bg-rose-600 px-3 py-1.5 text-xs font-semibold !text-white shadow-sm transition-colors hover:bg-rose-500\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\challenges\\page.tsx",
+    "line": 78,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<Plus className=\"h-3.5 w-3.5 text-white\" />"
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\challenges\\page.tsx",
+    "line": 79,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"!text-white\">New Bounty Challenge</span>"
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\compliance\\page.tsx",
+    "line": 159,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"flex items-center gap-1.5 rounded-md bg-[#238636] px-3 py-1.5 font-sans text-xs font-medium text-white shadow-sm transition-colors hover:bg-[#2ea043] disabled:opacity-50\""
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\cross-audit\\page.tsx",
+    "line": 113,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"flex items-center gap-1.5 rounded-md bg-[#238636] px-3 py-1.5 font-sans text-xs font-medium text-white shadow-sm transition-colors hover:bg-[#2ea043] disabled:opacity-50\""
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\data-moat\\page.tsx",
+    "line": 147,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"flex items-center gap-1.5 rounded-md bg-[#0969da] px-3 py-1.5 font-sans text-xs font-medium text-white shadow-sm transition-colors hover:bg-[#0854ad] disabled:opacity-50\""
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\dilemmas\\page.tsx",
+    "line": 61,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<button className=\"flex items-center gap-1.5 rounded-md border border-cyan-500/40 bg-cyan-600 px-3 py-1.5 font-mono text-xs font-semibold !text-white shadow-sm transition-colors hover:bg-cyan-500\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\dilemmas\\page.tsx",
+    "line": 62,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<Plus className=\"h-3.5 w-3.5 text-white\" />"
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\dilemmas\\page.tsx",
+    "line": 63,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"!text-white\">Yeni Kamuoyu İkilemi Yayınla</span>"
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\experts\\page.tsx",
+    "line": 61,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<Plus className=\"h-3.5 w-3.5 text-white\" />"
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\experts\\page.tsx",
+    "line": 62,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"!text-white\">Yeni Uzman Davet Et</span>"
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\grants\\page.tsx",
+    "line": 84,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<Plus className=\"h-3.5 w-3.5 text-white\" />"
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\grants\\page.tsx",
+    "line": 85,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"!text-white\">New Grant Proposal</span>"
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\incidents\\page.tsx",
+    "line": 224,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"fixed right-6 bottom-6 z-50 flex animate-bounce items-center gap-2 rounded-lg border border-[#3fb950] bg-[#238636] px-4 py-2.5 font-sans text-xs text-white shadow-xl\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\incidents\\page.tsx",
+    "line": 612,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"flex items-center justify-center gap-1.5 rounded-md bg-[#238636] px-3 py-2 font-sans text-xs font-semibold text-white transition-colors hover:bg-[#2ea043]\""
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\innovations\\page.tsx",
+    "line": 54,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<button className=\"flex items-center gap-1.5 rounded-md border border-cyan-500/40 bg-cyan-600 px-3 py-1.5 font-mono text-xs font-semibold !text-white shadow-sm transition-colors hover:bg-cyan-500\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\innovations\\page.tsx",
+    "line": 55,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<Plus className=\"h-3.5 w-3.5 text-white\" />"
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\innovations\\page.tsx",
+    "line": 56,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"!text-white\">Yeni Ar-Ge İnovasyonu Ekle</span>"
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\investors\\page.tsx",
+    "line": 81,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<Plus className=\"h-3.5 w-3.5 text-white\" />"
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\investors\\page.tsx",
+    "line": 82,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"!text-white\">Add Investor</span>"
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\mail\\page.tsx",
+    "line": 53,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<button className=\"flex items-center gap-1.5 rounded-md border border-cyan-500/40 bg-cyan-600 px-3 py-1.5 font-mono text-xs font-semibold !text-white shadow-sm transition-colors hover:bg-cyan-500\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\mail\\page.tsx",
+    "line": 54,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<Plus className=\"h-3.5 w-3.5 text-white\" />"
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\mail\\page.tsx",
+    "line": 55,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"!text-white\">Yeni Kampanya / Bildirim Başlat</span>"
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\page.tsx",
+    "line": 328,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "className=\"space-y-1.5 rounded-lg border border-white/[0.05] bg-zinc-900/60 p-3\""
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\page.tsx",
+    "line": 383,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "className=\"group transform-gpu rounded-lg border border-white/[0.05] bg-zinc-900/60 p-3.5 text-left transition-all hover:-translate-y-0.5 hover:border-cyan-500/30\""
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\page.tsx",
+    "line": 396,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "className=\"group transform-gpu rounded-lg border border-white/[0.05] bg-zinc-900/60 p-3.5 text-left transition-all hover:-translate-y-0.5 hover:border-cyan-500/30\""
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\page.tsx",
+    "line": 409,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "className=\"group transform-gpu rounded-lg border border-white/[0.05] bg-zinc-900/60 p-3.5 text-left transition-all hover:-translate-y-0.5 hover:border-cyan-500/30\""
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\page.tsx",
+    "line": 422,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "className=\"group transform-gpu rounded-lg border border-white/[0.05] bg-zinc-900/60 p-3.5 text-left transition-all hover:-translate-y-0.5 hover:border-cyan-500/30\""
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\page.tsx",
+    "line": 435,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "className=\"group transform-gpu rounded-lg border border-white/[0.05] bg-zinc-900/60 p-3.5 text-left transition-all hover:-translate-y-0.5 hover:border-cyan-500/30\""
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\page.tsx",
+    "line": 483,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"flex items-center gap-1.5 rounded-md border border-cyan-500/40 bg-cyan-600 px-3 py-1.5 font-sans text-xs font-semibold !text-white shadow-sm transition-colors hover:bg-cyan-500\""
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\page.tsx",
+    "line": 485,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<KeyRound className=\"h-3.5 w-3.5 text-white\" />"
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\page.tsx",
+    "line": 486,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"!text-white\">{td(\"b2bApi\")}</span>"
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\settings\\page.tsx",
+    "line": 30,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<CheckCircle2 className=\"h-3.5 w-3.5 text-white\" />"
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\settings\\page.tsx",
+    "line": 31,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"!text-white\">Ayarları Kaydet</span>"
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\social\\page.tsx",
+    "line": 178,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<Sparkles className=\"h-3.5 w-3.5 text-white\" />"
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\social\\page.tsx",
+    "line": 179,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"!text-white\">Tüm Kanallara Çoklu Yayın Hazırla</span>"
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\users\\page.tsx",
+    "line": 37,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<Plus className=\"h-3.5 w-3.5 text-white\" />"
+  },
+  {
+    "file": "src\\app\\[locale]\\admin\\users\\page.tsx",
+    "line": 38,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"!text-white\">Yeni Kurumsal Kullanıcı Davet Et</span>"
+  },
+  {
+    "file": "src\\app\\[locale]\\api-docs\\page.tsx",
+    "line": 391,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h1 className=\"text-balance text-4xl font-extrabold tracking-tight text-white sm:text-5xl\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\api-docs\\page.tsx",
+    "line": 406,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance text-lg font-bold text-white\">{t(\"endpoints_title\")}</h2>"
+  },
+  {
+    "file": "src\\app\\[locale]\\api-docs\\page.tsx",
+    "line": 415,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<code className=\"font-mono text-sm font-semibold text-white\">{ep.path}</code>"
+  },
+  {
+    "file": "src\\app\\[locale]\\api-docs\\page.tsx",
+    "line": 448,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<CardTitle className=\"flex items-center gap-2 text-sm text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\api-docs\\page.tsx",
+    "line": 459,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"font-bold text-white\">10,000</span>"
+  },
+  {
+    "file": "src\\app\\[locale]\\api-docs\\page.tsx",
+    "line": 463,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"font-bold text-white\">50</span>"
+  },
+  {
+    "file": "src\\app\\[locale]\\api-docs\\page.tsx",
+    "line": 470,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"font-bold text-white\">100,000+</span>"
+  },
+  {
+    "file": "src\\app\\[locale]\\api-docs\\page.tsx",
+    "line": 474,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"font-bold text-white\">99.99%</span>"
+  },
+  {
+    "file": "src\\app\\[locale]\\api-docs\\page.tsx",
+    "line": 484,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<CardTitle className=\"flex items-center gap-2 text-sm text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\api-docs\\page.tsx",
+    "line": 499,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<CardTitle className=\"flex items-center gap-2 text-sm text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\api-docs\\page.tsx",
+    "line": 514,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<p className=\"mb-2 flex items-center gap-2 text-xs font-semibold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\auth\\signin\\page.tsx",
+    "line": 92,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "<div className=\"bg-bg-secondary/60 rounded-3xl border border-white/[0.08] p-8 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)] backdrop-blur-2xl sm:p-10\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\b2b\\dashboard\\page.tsx",
+    "line": 68,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h1 className=\"text-balance text-4xl font-black tracking-tight text-white drop-shadow-2xl\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\blog\\page.tsx",
+    "line": 288,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"rounded bg-black/40 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-white/90 uppercase backdrop-blur-sm\""
+  },
+  {
+    "file": "src\\app\\[locale]\\cases\\page.tsx",
+    "line": 71,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<CardTitle className=\"text-fg-primary text-lg font-bold transition-colors group-hover:text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\compliance\\page.tsx",
+    "line": 180,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h1 className=\"text-balance mb-6 text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\compliance\\page.tsx",
+    "line": 190,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle text-fg-primary mt-8 inline-flex flex-wrap items-center justify-center gap-3 rounded-2xl border bg-white/5 px-6 py-3 text-xs font-medium backdrop-blur-sm\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\compliance\\page.tsx",
+    "line": 210,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"text-3xl font-black text-white\">{t(\"stat_window\")}</div>"
+  },
+  {
+    "file": "src\\app\\[locale]\\compliance\\page.tsx",
+    "line": 220,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"text-3xl font-black text-white\">{t(\"stat_fine\")}</div>"
+  },
+  {
+    "file": "src\\app\\[locale]\\compliance\\page.tsx",
+    "line": 230,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"text-3xl font-black text-white\">{t(\"stat_retention\")}</div>"
+  },
+  {
+    "file": "src\\app\\[locale]\\compliance\\page.tsx",
+    "line": 246,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\compliance\\page.tsx",
+    "line": 267,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<span className=\"border-border-subtle text-fg-muted rounded-full border bg-white/5 px-2.5 py-0.5 text-[10px] font-semibold\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\compliance\\page.tsx",
+    "line": 272,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance mb-2 text-lg font-bold text-white transition-colors group-hover:text-blue-400\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\compliance\\page.tsx",
+    "line": 292,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance text-xl font-bold text-white\">{t(\"banking_section_title\")}</h3>"
+  },
+  {
+    "file": "src\\app\\[locale]\\compliance\\page.tsx",
+    "line": 322,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance text-xl font-bold text-white\">{t(\"telecom_section_title\")}</h3>"
+  },
+  {
+    "file": "src\\app\\[locale]\\compliance\\page.tsx",
+    "line": 349,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance mb-4 text-3xl font-bold text-white sm:text-4xl\">{t(\"cta_title\")}</h2>"
+  },
+  {
+    "file": "src\\app\\[locale]\\compliance-checklist\\page.tsx",
+    "line": 193,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h1 className=\"text-balance mb-6 text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\compliance-checklist\\page.tsx",
+    "line": 201,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle text-fg-primary mt-8 inline-flex flex-wrap items-center justify-center gap-3 rounded-2xl border bg-white/5 px-6 py-3 text-xs font-medium backdrop-blur-sm\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\compliance-checklist\\page.tsx",
+    "line": 221,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"text-3xl font-black text-white\">{t(\"stat_window\")}</div>"
+  },
+  {
+    "file": "src\\app\\[locale]\\compliance-checklist\\page.tsx",
+    "line": 231,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"text-3xl font-black text-white\">{t(\"stat_fine\")}</div>"
+  },
+  {
+    "file": "src\\app\\[locale]\\compliance-checklist\\page.tsx",
+    "line": 241,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"text-3xl font-black text-white\">{t(\"stat_retention\")}</div>"
+  },
+  {
+    "file": "src\\app\\[locale]\\digital-twins\\DigitalTwinsClient.tsx",
+    "line": 115,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<CardHeader className=\"border-border-subtle border-b bg-white/5 pb-4\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\digital-twins\\DigitalTwinsClient.tsx",
+    "line": 147,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": ": \"text-fg-primary bg-white/10 backdrop-blur-md\""
+  },
+  {
+    "file": "src\\app\\[locale]\\digital-twins\\DigitalTwinsClient.tsx",
+    "line": 157,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"text-fg-muted flex items-center gap-2 rounded-2xl bg-white/10 px-5 py-3 backdrop-blur-md\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\digital-twins\\DigitalTwinsClient.tsx",
+    "line": 176,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "className=\"border-border-strong flex-1 bg-white/5\""
+  },
+  {
+    "file": "src\\app\\[locale]\\dmca\\page.tsx",
+    "line": 70,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"text-brand-400 shrink-0 rounded-xl bg-white/5 p-3\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\experts\\page.tsx",
+    "line": 133,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<CardTitle className=\"text-base font-bold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\experts\\page.tsx",
+    "line": 181,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance mt-4 text-xl font-bold text-white\">{t(\"badge_title\")}</h3>"
+  },
+  {
+    "file": "src\\app\\[locale]\\incidents\\provider\\[slug]\\page.tsx",
+    "line": 76,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<header className=\"border-border-subtle mb-8 rounded-xl border bg-white/5 p-6 shadow-lg\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\incidents\\provider\\[slug]\\page.tsx",
+    "line": 79,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h1 className=\"text-balance text-2xl font-bold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\incidents\\provider\\[slug]\\page.tsx",
+    "line": 89,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance flex items-center gap-2 text-lg font-semibold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\incidents\\provider\\[slug]\\page.tsx",
+    "line": 95,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"text-fg-muted border-border-subtle rounded-lg border bg-white/5 p-8 text-center text-sm\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\incidents\\provider\\[slug]\\page.tsx",
+    "line": 114,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance line-clamp-2 text-sm font-medium text-white\">{inc.title_masked}</h3>"
+  },
+  {
+    "file": "src\\app\\[locale]\\incidents\\provider\\[slug]\\page.tsx",
+    "line": 122,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance mb-2 text-base font-bold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\incidents\\[id]\\embed\\page.tsx",
+    "line": 93,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<span className=\"text-fg-muted border-border-subtle/50 rounded border bg-white/5 px-2 py-0.5 text-[9px] font-bold uppercase\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\incidents\\[id]\\embed\\page.tsx",
+    "line": 123,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle/50 mt-4 rounded-xl border bg-white/5 p-3\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\incidents\\[id]\\embed\\page.tsx",
+    "line": 138,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"mt-2 h-2 w-full overflow-hidden rounded-full bg-white/5\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\incidents\\[id]\\page.tsx",
+    "line": 260,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance mb-2 text-lg font-bold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\invest\\page.tsx",
+    "line": 46,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"border-border-subtle hover:bg-bg-secondary inline-flex items-center justify-center rounded-lg border bg-transparent px-8 py-4 text-base font-medium text-white transition-colors\""
+  },
+  {
+    "file": "src\\app\\[locale]\\investor-portal\\page.tsx",
+    "line": 152,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<p className=\"text-sm font-semibold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\investor-portal\\page.tsx",
+    "line": 171,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance md:text-2xl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\investor-portal\\page.tsx",
+    "line": 180,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"mt-1 block font-bold text-white\">{t(\"founded_date\")}</span>"
+  },
+  {
+    "file": "src\\app\\[locale]\\investor-portal\\page.tsx",
+    "line": 187,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"mt-1 block font-bold text-white\">{t(\"stage_value\")}</span>"
+  },
+  {
+    "file": "src\\app\\[locale]\\investor-portal\\page.tsx",
+    "line": 200,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance md:text-2xl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\investor-portal\\page.tsx",
+    "line": 225,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance md:text-2xl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\investor-portal\\page.tsx",
+    "line": 236,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance md:text-2xl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\investor-portal\\page.tsx",
+    "line": 244,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"mt-1 block font-bold text-white\">{t(\"tam_label\")}</span>"
+  },
+  {
+    "file": "src\\app\\[locale]\\investor-portal\\page.tsx",
+    "line": 251,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"mt-1 block font-bold text-white\">{t(\"sam_label\")}</span>"
+  },
+  {
+    "file": "src\\app\\[locale]\\investor-portal\\page.tsx",
+    "line": 258,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"mt-1 block font-bold text-white\">{t(\"som_label\")}</span>"
+  },
+  {
+    "file": "src\\app\\[locale]\\investor-portal\\page.tsx",
+    "line": 265,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance md:text-2xl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\investor-portal\\page.tsx",
+    "line": 273,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<th className=\"px-6 py-3 font-semibold text-white\">{t(\"table_metric\")}</th>"
+  },
+  {
+    "file": "src\\app\\[locale]\\investor-portal\\page.tsx",
+    "line": 274,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<th className=\"px-6 py-3 font-semibold text-white\">{t(\"table_2026\")}</th>"
+  },
+  {
+    "file": "src\\app\\[locale]\\investor-portal\\page.tsx",
+    "line": 275,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<th className=\"px-6 py-3 font-semibold text-white\">{t(\"table_2027\")}</th>"
+  },
+  {
+    "file": "src\\app\\[locale]\\investor-portal\\page.tsx",
+    "line": 276,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<th className=\"px-6 py-3 font-semibold text-white\">{t(\"table_2028\")}</th>"
+  },
+  {
+    "file": "src\\app\\[locale]\\investor-portal\\page.tsx",
+    "line": 289,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<td className=\"px-6 py-4 font-semibold text-white\">$600,000</td>"
+  },
+  {
+    "file": "src\\app\\[locale]\\investor-portal\\page.tsx",
+    "line": 313,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance md:text-2xl mb-6 border-l-4 border-amber-500 pl-3 text-xl font-bold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\investor-portal\\page.tsx",
+    "line": 320,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<th className=\"px-6 py-3 font-semibold text-white\">{t(\"comp_feature\")}</th>"
+  },
+  {
+    "file": "src\\app\\[locale]\\investor-portal\\page.tsx",
+    "line": 382,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance mb-4 text-lg font-bold text-white\">{t(\"round_title\")}</h3>"
+  },
+  {
+    "file": "src\\app\\[locale]\\investor-portal\\page.tsx",
+    "line": 393,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"font-bold text-white\">40%</span>"
+  },
+  {
+    "file": "src\\app\\[locale]\\investor-portal\\page.tsx",
+    "line": 397,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"font-bold text-white\">30%</span>"
+  },
+  {
+    "file": "src\\app\\[locale]\\investor-portal\\page.tsx",
+    "line": 401,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"font-bold text-white\">20%</span>"
+  },
+  {
+    "file": "src\\app\\[locale]\\investor-portal\\page.tsx",
+    "line": 405,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"font-bold text-white\">10%</span>"
+  },
+  {
+    "file": "src\\app\\[locale]\\investor-portal\\page.tsx",
+    "line": 422,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance mb-4 text-lg font-bold text-white\">{t(\"materials_title\")}</h3>"
+  },
+  {
+    "file": "src\\app\\[locale]\\investor-portal\\page.tsx",
+    "line": 428,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<p className=\"text-sm font-semibold text-white\">{t(\"doc_pitch\")}</p>"
+  },
+  {
+    "file": "src\\app\\[locale]\\investor-portal\\page.tsx",
+    "line": 445,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<p className=\"text-sm font-semibold text-white\">{t(\"doc_onepager\")}</p>"
+  },
+  {
+    "file": "src\\app\\[locale]\\investor-portal\\page.tsx",
+    "line": 472,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance mb-2 text-lg font-bold text-white\">{t(\"next_steps_title\")}</h3>"
+  },
+  {
+    "file": "src\\app\\[locale]\\investor-portal\\page.tsx",
+    "line": 521,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance mt-6 text-xl font-bold text-white\">{accessDenied}</h2>"
+  },
+  {
+    "file": "src\\app\\[locale]\\legal\\provider-response\\page.tsx",
+    "line": 31,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h1 className=\"text-balance text-4xl font-black text-white md:text-5xl\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\legal\\provider-response\\page.tsx",
+    "line": 40,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance text-xl font-bold text-white\">{t(\"prWindowTitle\")}</h2>"
+  },
+  {
+    "file": "src\\app\\[locale]\\legal\\provider-response\\page.tsx",
+    "line": 45,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance text-xl font-bold text-white\">{t(\"prBadgeVerifiedTitle\")}</h2>"
+  },
+  {
+    "file": "src\\app\\[locale]\\legal\\provider-response\\page.tsx",
+    "line": 50,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance text-xl font-bold text-white\">{t(\"prBadgeNoResponseTitle\")}</h2>"
+  },
+  {
+    "file": "src\\app\\[locale]\\legal\\provider-response\\page.tsx",
+    "line": 55,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance text-xl font-bold text-white\">{t(\"prNeutralityTitle\")}</h2>"
+  },
+  {
+    "file": "src\\app\\[locale]\\methodology\\ai-iss\\page.tsx",
+    "line": 54,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h1 className=\"text-balance text-4xl font-black text-white md:text-5xl\">{t(\"aiIssHeading\")}</h1>"
+  },
+  {
+    "file": "src\\app\\[locale]\\methodology\\ai-iss\\page.tsx",
+    "line": 59,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance text-2xl flex items-center gap-3 font-bold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\methodology\\ai-iss\\page.tsx",
+    "line": 69,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance text-lg font-bold text-white\">{t(\"aiIssImpactTitle\")}</h3>"
+  },
+  {
+    "file": "src\\app\\[locale]\\methodology\\ai-iss\\page.tsx",
+    "line": 74,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance text-lg font-bold text-white\">{t(\"aiIssScopeTitle\")}</h3>"
+  },
+  {
+    "file": "src\\app\\[locale]\\methodology\\ai-iss\\page.tsx",
+    "line": 79,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance text-lg font-bold text-white\">{t(\"aiIssExploitabilityTitle\")}</h3>"
+  },
+  {
+    "file": "src\\app\\[locale]\\methodology\\ai-iss\\page.tsx",
+    "line": 85,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance text-2xl font-bold text-white\">{t(\"aiIssBandsTitle\")}</h2>"
+  },
+  {
+    "file": "src\\app\\[locale]\\methodology\\benchmarks\\page.tsx",
+    "line": 41,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance border-border-subtle text-2xl flex items-center space-x-2 border-b pb-3 font-bold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\methodology\\benchmarks\\page.tsx",
+    "line": 48,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance mb-2 text-lg font-bold text-white\">{t(\"k5_title\")}</h3>"
+  },
+  {
+    "file": "src\\app\\[locale]\\methodology\\benchmarks\\page.tsx",
+    "line": 53,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance mb-2 text-lg font-bold text-white\">{t(\"k6_title\")}</h3>"
+  },
+  {
+    "file": "src\\app\\[locale]\\methodology\\benchmarks\\page.tsx",
+    "line": 58,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance mb-2 text-lg font-bold text-white\">{t(\"k7_title\")}</h3>"
+  },
+  {
+    "file": "src\\app\\[locale]\\methodology\\benchmarks\\page.tsx",
+    "line": 63,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance mb-2 text-lg font-bold text-white\">{t(\"k8_title\")}</h3>"
+  },
+  {
+    "file": "src\\app\\[locale]\\methodology\\benchmarks\\page.tsx",
+    "line": 68,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance mb-2 text-lg font-bold text-white\">{t(\"k9_title\")}</h3>"
+  },
+  {
+    "file": "src\\app\\[locale]\\methodology\\benchmarks\\page.tsx",
+    "line": 73,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance mb-2 text-lg font-bold text-white\">{t(\"k10_title\")}</h3>"
+  },
+  {
+    "file": "src\\app\\[locale]\\methodology\\benchmarks\\page.tsx",
+    "line": 78,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance mb-2 text-lg font-bold text-white\">{t(\"k11_title\")}</h3>"
+  },
+  {
+    "file": "src\\app\\[locale]\\methodology\\benchmarks\\page.tsx",
+    "line": 83,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance mb-2 text-lg font-bold text-white\">{t(\"k12_title\")}</h3>"
+  },
+  {
+    "file": "src\\app\\[locale]\\methodology\\benchmarks\\page.tsx",
+    "line": 91,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance border-border-subtle text-2xl flex items-center space-x-2 border-b pb-3 font-bold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\methodology\\benchmarks\\page.tsx",
+    "line": 100,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance border-border-subtle text-2xl flex items-center space-x-2 border-b pb-3 font-bold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\methodology\\benchmarks\\page.tsx",
+    "line": 131,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance border-border-subtle text-2xl flex items-center space-x-2 border-b pb-3 font-bold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\models\\page.tsx",
+    "line": 185,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"mt-3 text-3xl font-extrabold text-white\">{totalModelsCount}</div>"
+  },
+  {
+    "file": "src\\app\\[locale]\\models\\page.tsx",
+    "line": 201,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"mt-3 text-3xl font-extrabold text-white\">{ratedModelsCount}</div>"
+  },
+  {
+    "file": "src\\app\\[locale]\\models\\page.tsx",
+    "line": 214,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"mt-3 text-3xl font-extrabold text-white\">{uniqueProvidersCount}</div>"
+  },
+  {
+    "file": "src\\app\\[locale]\\models\\page.tsx",
+    "line": 227,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"mt-3 text-3xl font-extrabold text-white\">{totalAuditsCount}</div>"
+  },
+  {
+    "file": "src\\app\\[locale]\\models\\page.tsx",
+    "line": 244,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"focus:border-brand-500 focus:ring-brand-500/20 border-border-subtle bg-bg-secondary w-full rounded-xl border py-2.5 pr-4 pl-11 text-sm text-white placeholder-slate-400 transition-all focus:ring-2 focus:outline-none\""
+  },
+  {
+    "file": "src\\app\\[locale]\\models\\page.tsx",
+    "line": 253,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"focus:border-brand-500 focus:ring-brand-500/20 border-border-subtle bg-bg-secondary cursor-pointer rounded-xl border py-2.5 pr-8 pl-9 text-sm text-white transition-all focus:ring-2 focus:outline-none\""
+  },
+  {
+    "file": "src\\app\\[locale]\\models\\page.tsx",
+    "line": 263,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"from-brand-500 shadow-brand-500/20 hover:from-brand-600 focus:ring-brand-500/50 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r to-indigo-600 px-6 py-2.5 text-sm font-semibold text-white shadow-lg transition-all hover:to-indigo-700 focus:ring-2 focus:outline-none\""
+  },
+  {
+    "file": "src\\app\\[locale]\\models\\page.tsx",
+    "line": 289,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance mb-2 text-xl font-bold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\models\\page.tsx",
+    "line": 316,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance group-hover:text-brand-400 text-base font-bold text-white transition-colors\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\models\\page.tsx",
+    "line": 391,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"group-hover:bg-brand-500/20 flex h-8 w-8 items-center justify-center rounded-xl bg-white/5 transition-all duration-200\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\models\\[providerId]\\[modelId]\\page.tsx",
+    "line": 173,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h1 className=\"text-balance text-3xl font-black tracking-tight text-white sm:text-4xl md:text-5xl\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\models\\[providerId]\\[modelId]\\page.tsx",
+    "line": 229,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance text-xl font-bold text-white flex items-center gap-2\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\models\\[providerId]\\[modelId]\\page.tsx",
+    "line": 248,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance text-xl font-bold text-white flex items-center gap-2\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\models\\[providerId]\\[modelId]\\page.tsx",
+    "line": 257,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"text-2xl font-black text-white\">{Number(c.score).toFixed(0)}<span className=\"text-xs text-fg-muted font-normal\">/100</span></div>"
+  },
+  {
+    "file": "src\\app\\[locale]\\models\\[providerId]\\[modelId]\\page.tsx",
+    "line": 270,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance text-2xl font-bold text-white flex items-center gap-2\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\models\\[providerId]\\[modelId]\\page.tsx",
+    "line": 304,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance text-2xl font-bold text-white flex items-center gap-2\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\models\\[providerId]\\[modelId]\\page.tsx",
+    "line": 336,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance text-xl font-bold text-white flex items-center gap-2 text-rose-400\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\moderation\\page.tsx",
+    "line": 55,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className={`w-fit rounded-lg bg-white/5 p-3 ${rule.color}`}>"
+  },
+  {
+    "file": "src\\app\\[locale]\\moderation\\page.tsx",
+    "line": 75,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"text-brand-400 shrink-0 rounded-xl bg-white/5 p-3\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\press-kit\\page.tsx",
+    "line": 48,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h1 className=\"text-balance text-4xl font-extrabold tracking-tight text-white sm:text-5xl\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\press-kit\\page.tsx",
+    "line": 64,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<CardTitle className=\"flex items-center gap-2 text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\press-kit\\page.tsx",
+    "line": 77,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<CardTitle className=\"flex items-center gap-2 text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\press-kit\\page.tsx",
+    "line": 122,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<CardTitle className=\"flex items-center gap-2 text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\press-kit\\page.tsx",
+    "line": 147,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<CardTitle className=\"flex items-center gap-2 text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\press-kit\\page.tsx",
+    "line": 154,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"block text-xs font-bold text-white\">Emerald (Brand)</span>"
+  },
+  {
+    "file": "src\\app\\[locale]\\press-kit\\page.tsx",
+    "line": 159,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"block text-xs font-bold text-white\">Dark Slate (Bg)</span>"
+  },
+  {
+    "file": "src\\app\\[locale]\\press-kit\\page.tsx",
+    "line": 164,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"block text-xs font-bold text-white\">Light Gray (Fg)</span>"
+  },
+  {
+    "file": "src\\app\\[locale]\\press-kit\\page.tsx",
+    "line": 172,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance flex items-center gap-2 text-xl font-bold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\press-kit\\page.tsx",
+    "line": 200,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance text-lg leading-tight font-bold text-white transition-colors group-hover:text-emerald-400\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\press-kit\\page.tsx",
+    "line": 223,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance text-sm font-bold text-white\">{t(\"downloadTitle\")}</h3>"
+  },
+  {
+    "file": "src\\app\\[locale]\\press-kit\\page.tsx",
+    "line": 237,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<p className=\"inline-flex items-center gap-2 text-sm font-semibold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\press-kit\\page.tsx",
+    "line": 253,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<p className=\"inline-flex items-center gap-2 text-sm font-semibold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\press-kit\\releases\\[slug]\\page.tsx",
+    "line": 75,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h1 className=\"text-balance text-3xl leading-tight font-extrabold tracking-tight text-white md:text-5xl\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\press-kit\\releases\\[slug]\\page.tsx",
+    "line": 88,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"prose prose-invert prose-emerald prose-p:leading-relaxed prose-headings:text-white prose-a:text-emerald-400 max-w-none\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\press-kit\\releases\\[slug]\\page.tsx",
+    "line": 117,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"flex items-center gap-2 text-sm font-bold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\ratings\\page.tsx",
+    "line": 183,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"text-fg-muted ml-4 flex items-center space-x-2 text-sm hover:text-white hover:underline\""
+  },
+  {
+    "file": "src\\app\\[locale]\\ratings\\page.tsx",
+    "line": 203,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance mb-2 text-base font-bold text-white\">{cat.name}</h3>"
+  },
+  {
+    "file": "src\\app\\[locale]\\ratings\\page.tsx",
+    "line": 251,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<td className=\"text-fg-muted px-6 py-4 text-center font-mono text-sm group-hover:text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\ratings\\page.tsx",
+    "line": 265,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"hover:text-emerald-accent flex items-center space-x-2 font-bold text-white transition-colors\""
+  },
+  {
+    "file": "src\\app\\[locale]\\report-flagging\\page.tsx",
+    "line": 54,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle relative rounded-2xl border bg-white/5 p-6 shadow-2xl backdrop-blur-xl sm:p-8\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\report-flagging\\ReportFlaggingForm.tsx",
+    "line": 44,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-2xl font-bold text-white\">{t(\"successTitle\")}</h2>"
+  },
+  {
+    "file": "src\\app\\[locale]\\report-flagging\\ReportFlaggingForm.tsx",
+    "line": 67,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"border-border-subtle w-full rounded-lg border bg-white/5 px-4 py-2.5 text-sm text-white transition-all duration-200 outline-none focus:border-[hsl(260_80%_60%_/_0.6)] focus:ring-2 focus:ring-[hsl(260_80%_70%_/_0.25)] [&>option]:bg-[hsl(240_15%_12%)] [&>option]:text-white\""
+  },
+  {
+    "file": "src\\app\\[locale]\\report-flagging\\ReportFlaggingForm.tsx",
+    "line": 67,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "className=\"border-border-subtle w-full rounded-lg border bg-white/5 px-4 py-2.5 text-sm text-white transition-all duration-200 outline-none focus:border-[hsl(260_80%_60%_/_0.6)] focus:ring-2 focus:ring-[hsl(260_80%_70%_/_0.25)] [&>option]:bg-[hsl(240_15%_12%)] [&>option]:text-white\""
+  },
+  {
+    "file": "src\\app\\[locale]\\report-flagging\\ReportFlaggingForm.tsx",
+    "line": 89,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"border-border-subtle w-full rounded-lg border bg-white/5 px-4 py-2.5 text-sm text-white transition-all duration-200 outline-none focus:border-[hsl(260_80%_60%_/_0.6)] focus:ring-2 focus:ring-[hsl(260_80%_70%_/_0.25)] [&>option]:bg-[hsl(240_15%_12%)] [&>option]:text-white\""
+  },
+  {
+    "file": "src\\app\\[locale]\\report-flagging\\ReportFlaggingForm.tsx",
+    "line": 89,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "className=\"border-border-subtle w-full rounded-lg border bg-white/5 px-4 py-2.5 text-sm text-white transition-all duration-200 outline-none focus:border-[hsl(260_80%_60%_/_0.6)] focus:ring-2 focus:ring-[hsl(260_80%_70%_/_0.25)] [&>option]:bg-[hsl(240_15%_12%)] [&>option]:text-white\""
+  },
+  {
+    "file": "src\\app\\[locale]\\report-flagging\\ReportFlaggingForm.tsx",
+    "line": 111,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"border-border-subtle placeholder:text-fg-secondary min-h-[140px] w-full resize-y rounded-lg border bg-white/5 px-4 py-3 text-sm text-white transition-all duration-200 outline-none focus:border-[hsl(260_80%_60%_/_0.6)] focus:ring-2 focus:ring-[hsl(260_80%_70%_/_0.25)]\""
+  },
+  {
+    "file": "src\\app\\[locale]\\report-flagging\\ReportFlaggingForm.tsx",
+    "line": 111,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "className=\"border-border-subtle placeholder:text-fg-secondary min-h-[140px] w-full resize-y rounded-lg border bg-white/5 px-4 py-3 text-sm text-white transition-all duration-200 outline-none focus:border-[hsl(260_80%_60%_/_0.6)] focus:ring-2 focus:ring-[hsl(260_80%_70%_/_0.25)]\""
+  },
+  {
+    "file": "src\\app\\[locale]\\report-flagging\\ReportFlaggingForm.tsx",
+    "line": 125,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"border-border-subtle placeholder:text-fg-secondary w-full rounded-lg border bg-white/5 px-4 py-2.5 text-sm text-white transition-all duration-200 outline-none focus:border-[hsl(260_80%_60%_/_0.6)] focus:ring-2 focus:ring-[hsl(260_80%_70%_/_0.25)]\""
+  },
+  {
+    "file": "src\\app\\[locale]\\report-flagging\\ReportFlaggingForm.tsx",
+    "line": 125,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "className=\"border-border-subtle placeholder:text-fg-secondary w-full rounded-lg border bg-white/5 px-4 py-2.5 text-sm text-white transition-all duration-200 outline-none focus:border-[hsl(260_80%_60%_/_0.6)] focus:ring-2 focus:ring-[hsl(260_80%_70%_/_0.25)]\""
+  },
+  {
+    "file": "src\\app\\[locale]\\report-flagging\\ReportFlaggingForm.tsx",
+    "line": 139,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"border-border-subtle placeholder:text-fg-secondary w-full rounded-lg border bg-white/5 px-4 py-2.5 text-sm text-white transition-all duration-200 outline-none focus:border-[hsl(260_80%_60%_/_0.6)] focus:ring-2 focus:ring-[hsl(260_80%_70%_/_0.25)]\""
+  },
+  {
+    "file": "src\\app\\[locale]\\report-flagging\\ReportFlaggingForm.tsx",
+    "line": 139,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "className=\"border-border-subtle placeholder:text-fg-secondary w-full rounded-lg border bg-white/5 px-4 py-2.5 text-sm text-white transition-all duration-200 outline-none focus:border-[hsl(260_80%_60%_/_0.6)] focus:ring-2 focus:ring-[hsl(260_80%_70%_/_0.25)]\""
+  },
+  {
+    "file": "src\\app\\[locale]\\report-flagging\\ReportFlaggingForm.tsx",
+    "line": 159,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"group relative mt-2 flex items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-[hsl(260_80%_55%)] to-[hsl(230_80%_55%)] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[hsl(260_80%_50%_/_0.3)] transition-all duration-200 hover:brightness-110 focus-visible:ring-2 focus-visible:ring-[hsl(260_80%_70%)] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60\""
+  },
+  {
+    "file": "src\\app\\[locale]\\team\\page.tsx",
+    "line": 19,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h1 className=\"text-balance mb-4 text-4xl font-black text-white\">{t(\"title\")}</h1>"
+  },
+  {
+    "file": "src\\app\\[locale]\\team\\page.tsx",
+    "line": 26,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance text-xl font-bold text-white\">{t(\"mission_title\")}</h2>"
+  },
+  {
+    "file": "src\\app\\[locale]\\team\\page.tsx",
+    "line": 33,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance text-xl font-bold text-white\">{t(\"privacy_title\")}</h2>"
+  },
+  {
+    "file": "src\\app\\[locale]\\team\\page.tsx",
+    "line": 40,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance text-xl font-bold text-white\">{t(\"opensource_title\")}</h2>"
+  },
+  {
+    "file": "src\\app\\[locale]\\team\\page.tsx",
+    "line": 47,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-balance text-xl font-bold text-white\">{t(\"advisory_title\")}</h2>"
+  },
+  {
+    "file": "src\\app\\[locale]\\transparency\\page.tsx",
+    "line": 292,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 inline-flex items-center gap-1.5 self-start rounded-full bg-gradient-to-r px-4 py-2 text-xs font-bold text-white shadow-[0_0_15px_rgba(168,85,247,0.25)] transition-all hover:scale-105 sm:self-auto\""
+  },
+  {
+    "file": "src\\app\\[locale]\\transparency\\page.tsx",
+    "line": 652,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h4 className=\"mb-2 text-xs font-bold tracking-wider text-white uppercase\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\transparency\\page.tsx",
+    "line": 663,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h4 className=\"mb-2 text-xs font-bold tracking-wider text-white uppercase\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\trust-center\\page.tsx",
+    "line": 108,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className={`w-fit rounded-lg bg-white/5 p-3 ${badge.color}`}>"
+  },
+  {
+    "file": "src\\app\\[locale]\\trust-center\\page.tsx",
+    "line": 167,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className={`w-fit rounded-lg bg-white/5 p-3 ${item.color}`}>"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 163,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"font-medium text-white\"> Agent-OS Model Arbitraj Motoru</span> ile"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 175,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"font-display text-2xl font-extrabold text-white sm:text-3xl\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 243,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"font-display sm:text-2xl flex items-center gap-2 text-xl font-bold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 267,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"text-xs font-bold tracking-wider text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 283,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"font-display text-xl font-bold text-white transition-colors group-hover:text-amber-300\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 311,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"font-mono text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 333,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "className=\"w-1/2 border-border-subtle bg-white/5 text-xs hover:border-white/30 hover:bg-white/10\""
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 338,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<Button className=\"w-full bg-gradient-to-r from-red-600 to-amber-600 text-xs font-semibold text-white shadow-md hover:brightness-110\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 367,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"font-display text-2xl font-black text-white transition-colors group-hover:text-amber-300\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 399,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"font-mono text-base font-bold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 445,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"text-xs font-bold tracking-wider text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 461,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"font-display text-xl font-bold text-white transition-colors group-hover:text-emerald-300\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 489,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"font-mono text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 511,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "className=\"w-1/2 border-white/15 bg-white/5 text-xs hover:border-white/30 hover:bg-white/10\""
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 516,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<Button className=\"w-full bg-gradient-to-r from-emerald-600 to-teal-600 text-xs font-semibold text-white shadow-md hover:brightness-110\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 530,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle rounded-3xl border bg-white/[0.02] p-4 shadow-xl backdrop-blur-2xl sm:p-6\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 541,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"placeholder:text-fg-muted focus:border-brand-500 focus:ring-brand-500/20 bg-bg-secondary w-full rounded-2xl border-white/15 py-2.5 pr-4 pl-11 text-sm text-white focus:ring-2\""
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 541,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "className=\"placeholder:text-fg-muted focus:border-brand-500 focus:ring-brand-500/20 bg-bg-secondary w-full rounded-2xl border-white/15 py-2.5 pr-4 pl-11 text-sm text-white focus:ring-2\""
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 547,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"text-fg-muted absolute top-1/2 right-3 -translate-y-1/2 hover:text-white\""
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 562,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"cursor-pointer bg-transparent text-xs font-semibold text-white outline-none\""
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 565,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<option value=\"iq\" className=\"bg-bg-secondary text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 568,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<option value=\"problems\" className=\"bg-bg-secondary text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 571,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<option value=\"success\" className=\"bg-bg-secondary text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 574,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<option value=\"savings\" className=\"bg-bg-secondary text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 577,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<option value=\"rating\" className=\"bg-bg-secondary text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 589,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "? \"from-brand-600 bg-gradient-to-r to-purple-600 text-white shadow-md\""
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 590,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": ": \"text-fg-muted hover:text-white\""
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 601,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "? \"from-brand-600 bg-gradient-to-r to-purple-600 text-white shadow-md\""
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 602,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": ": \"text-fg-muted hover:text-white\""
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 624,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "? \"border-brand-400/50 from-brand-600/90 border bg-gradient-to-r to-purple-600/90 text-white shadow-[0_0_20px_rgba(168,85,247,0.35)]\""
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 625,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": ": \"text-fg-secondary border-border-subtle/50 border bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.05] hover:text-white\""
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 625,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": ": \"text-fg-secondary border-border-subtle/50 border bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.05] hover:text-white\""
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 629,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className={`h-3.5 w-3.5 ${isActive ? \"text-white\" : \"text-brand-400\"}`}"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 643,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle rounded-3xl border bg-white/[0.02] p-12 text-center backdrop-blur-xl\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 645,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"font-display text-lg font-bold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 683,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "? \"bg-gradient-to-r from-emerald-500 to-teal-600 text-white\""
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 684,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": ": \"text-fg-muted border border-white/15 bg-white/5\""
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 684,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": ": \"text-fg-muted border border-white/15 bg-white/5\""
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 709,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<BrainCircuit className=\"h-7 w-7 text-white\" />"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 713,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"font-display group-hover:text-brand-300 text-lg font-bold text-white transition-colors\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 721,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle/50 mt-4 rounded-2xl border bg-white/[0.02] p-3\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 737,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"h-1.5 w-full overflow-hidden rounded-full bg-white/10\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 753,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"h-1.5 w-full overflow-hidden rounded-full bg-white/10\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 769,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"h-1.5 w-full overflow-hidden rounded-full bg-white/10\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 781,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"font-mono text-xs font-bold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 807,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "className=\"text-fg-secondary border-border-subtle/50 rounded-lg border bg-white/[0.03] px-2 py-0.5 text-[10px]\""
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 820,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"w-1/2 border-white/15 bg-white/5 text-xs text-white hover:border-white/30 hover:bg-white/10\""
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 820,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "className=\"w-1/2 border-white/15 bg-white/5 text-xs text-white hover:border-white/30 hover:bg-white/10\""
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 825,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<Button className=\"from-brand-600 w-full bg-gradient-to-r to-purple-600 text-xs font-semibold text-white shadow-md hover:brightness-110\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 840,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<thead className=\"text-fg-muted border-border-subtle border-b bg-white/[0.04] text-[11px] tracking-wider uppercase\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 884,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": ": \"text-fg-muted border-border-subtle border bg-white/5\""
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 894,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<BrainCircuit className=\"h-4 w-4 text-white\" />"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 898,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"group-hover:text-brand-300 block text-sm font-bold text-white transition-colors\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 915,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"font-medium text-white\">{twin.title}</div>"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 933,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"font-mono text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 963,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"text-fg-muted h-8 px-2.5 text-xs hover:text-white\""
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 994,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"font-display text-2xl font-bold text-white sm:text-3xl\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 1005,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<Button className=\"from-brand-600 bg-gradient-to-r to-purple-600 px-6 py-3 text-sm font-bold text-white shadow-[0_0_25px_rgba(168,85,247,0.35)] hover:brightness-110\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 1014,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle/50 rounded-2xl border bg-white/[0.02] p-5\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 1018,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"font-display text-base font-bold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 1027,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle/50 rounded-2xl border bg-white/[0.02] p-5\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 1031,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"font-display text-base font-bold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 1041,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle/50 rounded-2xl border bg-white/[0.02] p-5\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 1045,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"font-display text-base font-bold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 1063,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "<div className=\"bg-bg-secondary relative w-full max-w-2xl rounded-3xl border border-white/15 p-6 shadow-2xl backdrop-blur-2xl sm:p-8\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 1068,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"text-fg-muted absolute top-5 right-5 rounded-full p-2 transition-colors hover:bg-white/10 hover:text-white\""
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 1079,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<BrainCircuit className=\"h-8 w-8 text-white\" />"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 1084,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"font-display text-2xl font-bold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 1102,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<p className=\"text-sm leading-relaxed text-white italic\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 1119,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle rounded-xl border bg-white/[0.02] p-3 text-center\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 1125,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle rounded-xl border bg-white/[0.02] p-3 text-center\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 1127,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"font-mono text-sm font-bold text-white\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 1131,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle rounded-xl border bg-white/[0.02] p-3 text-center\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 1137,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle rounded-xl border bg-white/[0.02] p-3 text-center\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 1157,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"border-border-subtle border bg-white/10 text-xs text-white\""
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 1157,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "className=\"border-border-subtle border bg-white/10 text-xs text-white\""
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 1171,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"text-fg-muted text-xs hover:text-white\""
+  },
+  {
+    "file": "src\\app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "line": 1176,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<Button className=\"from-brand-600 bg-gradient-to-r to-purple-600 text-xs font-bold text-white shadow-lg hover:brightness-110\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\vision\\page.tsx",
+    "line": 59,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h1 className=\"text-balance mb-8 text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-7xl\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\vision\\page.tsx",
+    "line": 76,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/5 group-hover:bg-brand-500/10 transition-colors\">"
+  },
+  {
+    "file": "src\\app\\[locale]\\vision\\page.tsx",
+    "line": 79,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-balance mb-4 text-2xl font-bold text-white\">{item.title}</h3>"
+  },
+  {
+    "file": "src\\components\\admin\\autonomous-company\\AutonomousCompanyCanvas.tsx",
+    "line": 147,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"relative w-full rounded-3xl p-3 sm:p-4 bg-white/70 dark:bg-[#0c1424]/80 backdrop-blur-2xl border border-white/60 dark:border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.06)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.4)]\">"
+  },
+  {
+    "file": "src\\components\\admin\\autonomous-company\\AutonomousCompanyCanvas.tsx",
+    "line": 226,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"w-5 h-5 rounded-full border-2 border-white dark:border-[#0c1424] flex items-center justify-center text-[8px] font-bold text-white shadow-sm\""
+  },
+  {
+    "file": "src\\components\\admin\\autonomous-company\\AutonomousCompanyCanvas.tsx",
+    "line": 257,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"flex-1 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white rounded-xl h-8 text-xs font-bold shadow-md shadow-purple-500/20\""
+  },
+  {
+    "file": "src\\components\\admin\\autonomous-company\\AutonomousCompanyCanvas.tsx",
+    "line": 500,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "? \"bg-white/95 dark:bg-slate-900/95 ring-2 ring-purple-500 scale-105 shadow-purple-500/30\""
+  },
+  {
+    "file": "src\\components\\admin\\autonomous-company\\AutonomousCompanyCanvas.tsx",
+    "line": 501,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": ": \"bg-white/80 dark:bg-slate-900/80 hover:bg-white dark:hover:bg-slate-800\""
+  },
+  {
+    "file": "src\\components\\admin\\autonomous-company\\AutonomousCompanyCanvas.tsx",
+    "line": 523,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"absolute bottom-4 left-4 z-20 max-w-[210px] w-full p-3 rounded-2xl bg-white/85 dark:bg-slate-900/85 backdrop-blur-xl border border-white/80 dark:border-white/10 shadow-xl\">"
+  },
+  {
+    "file": "src\\components\\admin\\autonomous-company\\AutonomousCompanyCanvas.tsx",
+    "line": 546,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"absolute bottom-4 left-1/2 -translate-x-1/2 z-20 max-w-[260px] w-full p-3 rounded-2xl bg-white/85 dark:bg-slate-900/85 backdrop-blur-xl border border-white/80 dark:border-white/10 shadow-xl hidden sm:block\">"
+  },
+  {
+    "file": "src\\components\\admin\\autonomous-company\\AutonomousCompanyCanvas.tsx",
+    "line": 570,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"absolute bottom-4 right-4 z-20 max-w-[220px] w-full p-3 rounded-2xl bg-white/85 dark:bg-slate-900/85 backdrop-blur-xl border border-white/80 dark:border-white/10 shadow-xl\">"
+  },
+  {
+    "file": "src\\components\\admin\\autonomous-company\\AutonomousCompanyCanvas.tsx",
+    "line": 593,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"p-2.5 rounded-2xl bg-white/85 dark:bg-slate-900/85 backdrop-blur-xl border border-white/80 dark:border-white/10 shadow-lg\">"
+  },
+  {
+    "file": "src\\components\\admin\\autonomous-company\\AutonomousCompanyCanvas.tsx",
+    "line": 604,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"p-2.5 rounded-2xl bg-white/85 dark:bg-slate-900/85 backdrop-blur-xl border border-white/80 dark:border-white/10 shadow-lg\">"
+  },
+  {
+    "file": "src\\components\\admin\\autonomous-company\\AutonomousCompanyCanvas.tsx",
+    "line": 627,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": ": \"bg-white/70 dark:bg-slate-900/60 border-slate-200/80 dark:border-white/5 hover:bg-white dark:hover:bg-slate-800/80\""
+  },
+  {
+    "file": "src\\components\\admin\\autonomous-company\\AutonomousCompanyCanvas.tsx",
+    "line": 658,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<Card className=\"bg-white/80 dark:bg-slate-900/80 border-slate-200/80 dark:border-white/10 backdrop-blur-2xl p-5 shadow-xl rounded-3xl\">"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\AIEcosystemRadar.tsx",
+    "line": 34,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"truncate text-xs font-bold text-white sm:text-sm\">{t(\"title\")}</h3>"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\BentoCommandCenter.tsx",
+    "line": 20,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"relative min-h-screen w-full bg-[#09090b] p-3 font-sans text-slate-100 selection:bg-[#00f0ff]/30 selection:text-white sm:p-6 md:p-8\">"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\BentoCommandCenter.tsx",
+    "line": 28,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "<header className=\"flex flex-col gap-4 rounded-2xl border border-[#27272a] bg-[#121216]/90 p-4 shadow-2xl backdrop-blur-2xl transition-all duration-300 hover:border-white/20 sm:p-5 lg:flex-row lg:items-center lg:justify-between\">"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\BentoCommandCenter.tsx",
+    "line": 68,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": ": \"text-slate-400 hover:bg-white/5 hover:text-white\""
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\CognitiveDNA.tsx",
+    "line": 38,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "<div className=\"flex h-full w-full flex-col overflow-hidden rounded-2xl border border-[#27272a] bg-[#121216] transition-all duration-300 hover:border-white/10 hover:shadow-2xl hover:shadow-[#00f0ff]/5\">"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\CoreSystemHealth.tsx",
+    "line": 78,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"font-sans text-base sm:text-lg font-bold tracking-tight text-white truncate\">"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\CoreSystemHealth.tsx",
+    "line": 114,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"font-mono text-lg sm:text-xl font-bold text-white\">%100</div>"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\CoreSystemHealth.tsx",
+    "line": 127,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"mt-1.5 font-mono text-lg sm:text-xl font-bold text-white\">18.4%</div>"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\CoreSystemHealth.tsx",
+    "line": 138,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"mt-1.5 font-mono text-lg sm:text-xl font-bold text-white\">1.2 / 8 GB</div>"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\CoreSystemHealth.tsx",
+    "line": 149,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"mt-1.5 font-mono text-lg sm:text-xl font-bold text-white\">32 ms</div>"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\CoreSystemHealth.tsx",
+    "line": 158,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"mt-1.5 font-mono text-lg sm:text-xl font-bold text-white\">%100 Sync</div>"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\CoreSystemHealth.tsx",
+    "line": 170,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h4 className=\"text-xs sm:text-sm font-bold text-white truncate\">Altyapı Düğümleri & Küme Durumu</h4>"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\CoreSystemHealth.tsx",
+    "line": 182,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "className=\"flex items-center justify-between rounded-lg border border-[#27272a] bg-[#18181b]/50 p-2.5 transition-all hover:border-white/20 min-w-0\""
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\CoreSystemHealth.tsx",
+    "line": 212,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h4 className=\"text-xs sm:text-sm font-bold text-white truncate\">Self-Healing Otonom Kalkan</h4>"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\CoreSystemHealth.tsx",
+    "line": 233,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"text-xs font-bold text-white truncate\">{engine.name}</div>"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\CouncilOfSages.tsx",
+    "line": 242,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"font-sans text-base sm:text-lg font-bold tracking-tight text-white truncate\">"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\CouncilOfSages.tsx",
+    "line": 294,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "? \"bg-white/10 text-white border border-white/20\""
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\CouncilOfSages.tsx",
+    "line": 294,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "? \"bg-white/10 text-white border border-white/20\""
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\CouncilOfSages.tsx",
+    "line": 294,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "? \"bg-white/10 text-white border border-white/20\""
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\CouncilOfSages.tsx",
+    "line": 295,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": ": \"text-slate-400 hover:text-white\""
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\CouncilOfSages.tsx",
+    "line": 321,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": ": \"border-[#27272a] bg-[#121216]/80 hover:border-white/20 hover:bg-[#16161e]\""
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\CouncilOfSages.tsx",
+    "line": 366,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h4 className=\"text-xs font-bold tracking-tight text-white group-hover:text-[#00f0ff] transition-colors truncate\">"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\CouncilOfSages.tsx",
+    "line": 399,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h4 className=\"text-xs sm:text-sm font-bold text-white truncate\">{activeSage.name}</h4>"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\CouncilOfSages.tsx",
+    "line": 420,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"mt-0.5 font-bold text-white truncate\">{activeSage.model}</div>"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\CouncilOfSages.tsx",
+    "line": 454,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<button className=\"rounded-lg border border-white/20 bg-white/5 px-3 py-1 text-xs font-bold text-white hover:bg-white/10 transition-colors shrink-0\">"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\CouncilOfSages.tsx",
+    "line": 454,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "<button className=\"rounded-lg border border-white/20 bg-white/5 px-3 py-1 text-xs font-bold text-white hover:bg-white/10 transition-colors shrink-0\">"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\FinancialOperations.tsx",
+    "line": 50,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "<div className=\"relative overflow-hidden rounded-xl border border-[#27272a] bg-[#121216]/80 p-4 backdrop-blur-md transition-all duration-300 hover:border-white/20 hover:shadow-lg\">"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\FinancialOperations.tsx",
+    "line": 63,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"font-mono text-2xl font-bold tracking-tight text-white\">{value}</div>"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\FinancialOperations.tsx",
+    "line": 134,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"truncate font-sans text-base font-bold tracking-tight text-white sm:text-lg\">"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\FinancialOperations.tsx",
+    "line": 156,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": ": \"text-slate-400 hover:text-white\""
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\FinancialOperations.tsx",
+    "line": 222,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h4 className=\"truncate text-xs font-bold text-white sm:text-sm\">"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\FinancialOperations.tsx",
+    "line": 246,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"text-xs font-bold text-white\">{model.cost}</span>"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\FinancialOperations.tsx",
+    "line": 280,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h4 className=\"truncate text-xs font-bold text-white sm:text-sm\">"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\FinancialOperations.tsx",
+    "line": 291,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "className=\"flex min-w-0 items-center justify-between rounded-lg border border-[#27272a] bg-[#18181b]/40 p-2.5 transition-colors hover:border-white/20\""
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\FinancialOperations.tsx",
+    "line": 300,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"font-mono text-xs font-bold text-white\">{sub.mrr}</div>"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\SecurityMatrix.tsx",
+    "line": 56,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"font-sans text-base sm:text-lg font-bold tracking-tight text-white truncate\">"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\SecurityMatrix.tsx",
+    "line": 95,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"text-xs font-bold text-white truncate\">{check.title}</div>"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\SEOAnalytics.tsx",
+    "line": 19,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-xs sm:text-sm font-bold text-white truncate\">SEO Metrikleri</h3>"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\VisitorAnalytics.tsx",
+    "line": 245,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"truncate text-xs font-bold text-white sm:text-sm\">"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\VisitorAnalytics.tsx",
+    "line": 265,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"flex h-6 w-6 items-center justify-center rounded-md border border-[#27272a] bg-[#18181b] text-slate-400 transition-all hover:border-white/20 hover:text-white\""
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\VisitorAnalytics.tsx",
+    "line": 265,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "className=\"flex h-6 w-6 items-center justify-center rounded-md border border-[#27272a] bg-[#18181b] text-slate-400 transition-all hover:border-white/20 hover:text-white\""
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\VisitorAnalytics.tsx",
+    "line": 313,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<p className=\"font-mono text-sm font-extrabold text-white sm:text-base\">"
+  },
+  {
+    "file": "src\\components\\admin\\widgets\\VisitorAnalytics.tsx",
+    "line": 500,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"font-bold text-white\">"
+  },
+  {
+    "file": "src\\components\\analytics\\metric-widget.tsx",
+    "line": 60,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "trend === \"neutral\" && \"text-fg-muted bg-white/5\","
+  },
+  {
+    "file": "src\\components\\api-docs\\api-playground.tsx",
+    "line": 151,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-lg font-bold text-white\">"
+  },
+  {
+    "file": "src\\components\\auth\\auth-buttons.tsx",
+    "line": 159,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "\"inline-flex items-center justify-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:border-white/[0.16] hover:bg-white/[0.07] active:bg-white/[0.1]\","
+  },
+  {
+    "file": "src\\components\\auth\\auth-buttons.tsx",
+    "line": 160,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "\"h-12 min-h-[48px] px-6 w-full text-sm font-semibold tracking-wide text-white shadow-lg transition-all duration-300 cursor-pointer\","
+  },
+  {
+    "file": "src\\components\\auth\\auth-buttons.tsx",
+    "line": 343,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"focus:border-brand-500/80 focus:ring-brand-500/20 w-full rounded-xl border border-white/[0.08] bg-white/[0.02] px-4 py-3 text-sm text-white placeholder-white/30 transition-all hover:bg-white/[0.04] focus:bg-white/[0.05] focus:ring-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-60\""
+  },
+  {
+    "file": "src\\components\\auth\\auth-buttons.tsx",
+    "line": 343,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "className=\"focus:border-brand-500/80 focus:ring-brand-500/20 w-full rounded-xl border border-white/[0.08] bg-white/[0.02] px-4 py-3 text-sm text-white placeholder-white/30 transition-all hover:bg-white/[0.04] focus:bg-white/[0.05] focus:ring-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-60\""
+  },
+  {
+    "file": "src\\components\\auth\\auth-buttons.tsx",
+    "line": 348,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"from-brand-600 hover:from-brand-500 active:from-brand-700 to-brand-600 hover:to-brand-500 active:to-brand-700 h-11 w-full rounded-xl bg-gradient-to-r font-bold tracking-wide text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(168,85,247,0.25)] disabled:opacity-40 disabled:hover:translate-y-0 disabled:hover:shadow-none\""
+  },
+  {
+    "file": "src\\components\\auth\\forgot-password-form.tsx",
+    "line": 37,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"border-border-subtle bg-bg-elevated w-full max-w-md rounded-2xl border p-8 text-center text-white\">"
+  },
+  {
+    "file": "src\\components\\auth\\forgot-password-form.tsx",
+    "line": 51,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h1 className=\"text-2xl font-bold text-white\">{t(\"forgot_password_title\")}</h1>"
+  },
+  {
+    "file": "src\\components\\auth\\forgot-password-form.tsx",
+    "line": 65,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"border-border-strong focus:border-brand-500 bg-bg-secondary w-full rounded-lg border px-4 py-3 text-white placeholder-slate-500 focus:outline-none\""
+  },
+  {
+    "file": "src\\components\\auth\\sign-in-form.tsx",
+    "line": 87,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "<div className=\"w-full border-t border-white/[0.08]\" />"
+  },
+  {
+    "file": "src\\components\\auth\\sign-in-form.tsx",
+    "line": 100,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "<div className=\"grid grid-cols-1 gap-2 rounded-xl border border-white/[0.06] bg-white/[0.015] p-3 text-[11px] sm:grid-cols-3\">"
+  },
+  {
+    "file": "src\\components\\auth\\sign-in-form.tsx",
+    "line": 100,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"grid grid-cols-1 gap-2 rounded-xl border border-white/[0.06] bg-white/[0.015] p-3 text-[11px] sm:grid-cols-3\">"
+  },
+  {
+    "file": "src\\components\\auth\\sign-in-form.tsx",
+    "line": 105,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "<div className=\"flex flex-col items-center justify-center border-x border-white/[0.06] px-1 text-center\">"
+  },
+  {
+    "file": "src\\components\\b2b\\kanban-board.tsx",
+    "line": 186,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<span className=\"text-fg-muted ml-auto rounded-full bg-white/10 px-2 py-0.5 text-xs\">"
+  },
+  {
+    "file": "src\\components\\challenges\\challenge-list.tsx",
+    "line": 62,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"rounded-full bg-white/5 px-2.5 py-0.5 text-xs font-medium text-white/40\">"
+  },
+  {
+    "file": "src\\components\\challenges\\challenge-list.tsx",
+    "line": 62,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<span className=\"rounded-full bg-white/5 px-2.5 py-0.5 text-xs font-medium text-white/40\">"
+  },
+  {
+    "file": "src\\components\\challenges\\challenge-submissions.tsx",
+    "line": 72,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h4 className=\"text-sm font-semibold tracking-wider text-white/60 uppercase\">"
+  },
+  {
+    "file": "src\\components\\challenges\\challenge-submissions.tsx",
+    "line": 82,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "className=\"border-border-subtle/50 rounded-lg border bg-white/[0.01] p-4\""
+  },
+  {
+    "file": "src\\components\\challenges\\challenge-submissions.tsx",
+    "line": 115,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": ": \"bg-white/5 text-white/60 hover:bg-white/10 hover:text-white\""
+  },
+  {
+    "file": "src\\components\\challenges\\submission-form.tsx",
+    "line": 52,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "className=\"border-border-subtle mt-6 space-y-4 rounded-lg border bg-white/[0.02] p-4\""
+  },
+  {
+    "file": "src\\components\\challenges\\submission-form.tsx",
+    "line": 54,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h4 className=\"text-sm font-semibold tracking-wider text-white/60 uppercase\">"
+  },
+  {
+    "file": "src\\components\\challenges\\submission-form.tsx",
+    "line": 69,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"focus:border-brand-500/50 focus:ring-brand-500/20 border-border-subtle w-full rounded-lg border bg-white/[0.03] px-4 py-2.5 text-sm text-white transition outline-none placeholder:text-white/30 focus:ring-1\""
+  },
+  {
+    "file": "src\\components\\challenges\\submission-form.tsx",
+    "line": 69,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "className=\"focus:border-brand-500/50 focus:ring-brand-500/20 border-border-subtle w-full rounded-lg border bg-white/[0.03] px-4 py-2.5 text-sm text-white transition outline-none placeholder:text-white/30 focus:ring-1\""
+  },
+  {
+    "file": "src\\components\\challenges\\submission-form.tsx",
+    "line": 82,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"focus:border-brand-500/50 focus:ring-brand-500/20 border-border-subtle w-full rounded-lg border bg-white/[0.03] px-4 py-2.5 text-sm text-white transition outline-none placeholder:text-white/30 focus:ring-1\""
+  },
+  {
+    "file": "src\\components\\challenges\\submission-form.tsx",
+    "line": 82,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "className=\"focus:border-brand-500/50 focus:ring-brand-500/20 border-border-subtle w-full rounded-lg border bg-white/[0.03] px-4 py-2.5 text-sm text-white transition outline-none placeholder:text-white/30 focus:ring-1\""
+  },
+  {
+    "file": "src\\components\\compliance\\compliance-checklist-client.tsx",
+    "line": 103,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle flex flex-wrap items-center justify-center gap-3 rounded-2xl border bg-white/5 p-2 backdrop-blur-md\">"
+  },
+  {
+    "file": "src\\components\\compliance\\compliance-checklist-client.tsx",
+    "line": 109,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": ": \"text-fg-muted hover:text-white\""
+  },
+  {
+    "file": "src\\components\\compliance\\compliance-checklist-client.tsx",
+    "line": 120,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": ": \"text-fg-muted hover:text-white\""
+  },
+  {
+    "file": "src\\components\\compliance\\compliance-checklist-client.tsx",
+    "line": 131,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": ": \"text-fg-muted hover:text-white\""
+  },
+  {
+    "file": "src\\components\\compliance\\compliance-checklist-client.tsx",
+    "line": 149,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-lg font-bold text-white\">{t.bankingTitle}</h3>"
+  },
+  {
+    "file": "src\\components\\compliance\\compliance-checklist-client.tsx",
+    "line": 167,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-lg font-bold text-white\">{t.telecomTitle}</h3>"
+  },
+  {
+    "file": "src\\components\\compliance\\compliance-checklist-client.tsx",
+    "line": 188,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"mt-1 text-xl font-bold text-white\">"
+  },
+  {
+    "file": "src\\components\\compliance\\compliance-checklist-client.tsx",
+    "line": 208,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl\">"
+  },
+  {
+    "file": "src\\components\\compliance\\compliance-checklist-client.tsx",
+    "line": 237,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"text-fg-muted transition-colors group-hover:text-white\""
+  },
+  {
+    "file": "src\\components\\compliance\\compliance-checklist-client.tsx",
+    "line": 251,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": ": \"group-hover:text-brand-300 text-white\""
+  },
+  {
+    "file": "src\\components\\compliance\\compliance-checklist-client.tsx",
+    "line": 295,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-2xl font-extrabold text-white sm:text-3xl\">"
+  },
+  {
+    "file": "src\\components\\compliance\\compliance-checklist-client.tsx",
+    "line": 304,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h4 className=\"mb-2 text-xl font-bold text-white\">Compliance Toolkit Dispatched</h4>"
+  },
+  {
+    "file": "src\\components\\compliance\\compliance-checklist-client.tsx",
+    "line": 329,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"focus:border-brand-500 focus:ring-brand-500 border-border-subtle w-full rounded-xl border bg-black/60 px-4 py-3.5 text-sm text-white placeholder-gray-500 transition-all focus:ring-1 focus:outline-none\""
+  },
+  {
+    "file": "src\\components\\compliance\\compliance-checklist-client.tsx",
+    "line": 343,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"focus:border-brand-500 focus:ring-brand-500 border-border-subtle w-full rounded-xl border bg-black/60 px-4 py-3.5 text-sm text-white placeholder-gray-500 transition-all focus:ring-1 focus:outline-none\""
+  },
+  {
+    "file": "src\\components\\compliance\\compliance-checklist-client.tsx",
+    "line": 397,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"from-brand-600 via-brand-600 to-brand-600 shadow-brand-600/30 hover:from-brand-500 hover:to-brand-500 hover:shadow-brand-500/40 flex h-13 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r text-base font-bold text-white shadow-xl transition-all\""
+  },
+  {
+    "file": "src\\components\\compliance\\compliance-checklist-client.tsx",
+    "line": 421,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-2xl font-bold text-white sm:text-3xl\">"
+  },
+  {
+    "file": "src\\components\\compliance\\compliance-lead-form.tsx",
+    "line": 61,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h4 className=\"mb-2 text-lg font-bold text-white\">Toolkit Activated</h4>"
+  },
+  {
+    "file": "src\\components\\compliance\\compliance-lead-form.tsx",
+    "line": 86,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"focus:border-brand-500 focus:ring-brand-500 border-border-subtle w-full rounded-xl border bg-black/50 px-4 py-3 text-sm text-white placeholder-gray-500 transition-all focus:ring-1 focus:outline-none\""
+  },
+  {
+    "file": "src\\components\\compliance\\compliance-lead-form.tsx",
+    "line": 100,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"focus:border-brand-500 focus:ring-brand-500 border-border-subtle w-full rounded-xl border bg-black/50 px-4 py-3 text-sm text-white placeholder-gray-500 transition-all focus:ring-1 focus:outline-none\""
+  },
+  {
+    "file": "src\\components\\compliance\\compliance-lead-form.tsx",
+    "line": 154,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"from-brand-600 to-brand-600 shadow-brand-600/30 hover:from-brand-500 hover:to-brand-500 hover:shadow-brand-500/40 mt-4 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r text-sm font-semibold text-white shadow-lg transition-all\""
+  },
+  {
+    "file": "src\\components\\constitution\\constitution-client.tsx",
+    "line": 15,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"mt-6 w-full rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 py-3.5 text-sm font-bold text-white shadow-lg shadow-purple-500/25 transition-all hover:scale-[1.02] hover:shadow-purple-500/40 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50\""
+  },
+  {
+    "file": "src\\components\\constitution\\constitution-client.tsx",
+    "line": 55,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h1 className=\"mt-6 text-4xl font-black tracking-tight text-white sm:text-6xl lg:text-7xl\">"
+  },
+  {
+    "file": "src\\components\\constitution\\constitution-client.tsx",
+    "line": 76,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"text-xl font-bold tracking-tight text-white\">{t(\"sign_desc\")}</div>"
+  },
+  {
+    "file": "src\\components\\constitution\\constitution-client.tsx",
+    "line": 82,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"inline-flex h-12 items-center gap-2 rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 px-6 text-sm font-bold text-white shadow-lg shadow-purple-500/25 transition-all hover:scale-[1.02] hover:shadow-purple-500/40 active:scale-[0.98]\""
+  },
+  {
+    "file": "src\\components\\constitution\\constitution-client.tsx",
+    "line": 89,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-2xl font-black text-white sm:text-3xl\">"
+  },
+  {
+    "file": "src\\components\\constitution\\constitution-client.tsx",
+    "line": 103,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"mt-3 text-xl font-bold text-white\">{art.title}</h3>"
+  },
+  {
+    "file": "src\\components\\constitution\\constitution-client.tsx",
+    "line": 122,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"mt-4 text-3xl font-black text-white sm:text-4xl\">{t(\"sign_title\")}</h2>"
+  },
+  {
+    "file": "src\\components\\dashboard\\ecosystem-dashboard.tsx",
+    "line": 98,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"border-border-subtle rounded-xl border bg-[#0D1117] p-6 text-white shadow-2xl\">"
+  },
+  {
+    "file": "src\\components\\dashboard\\ecosystem-dashboard.tsx",
+    "line": 120,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"font-mono text-white\">{data.google.gemini.modelsAvailable}</span>"
+  },
+  {
+    "file": "src\\components\\dashboard\\ecosystem-dashboard.tsx",
+    "line": 126,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"font-mono text-white\">{data.google.gemini.rateLimitRemaining}</span>"
+  },
+  {
+    "file": "src\\components\\dashboard\\ecosystem-dashboard.tsx",
+    "line": 136,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"font-mono text-white\">"
+  },
+  {
+    "file": "src\\components\\dashboard\\ecosystem-dashboard.tsx",
+    "line": 152,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "Durum: <span className=\"font-mono text-white\">{data.infrastructure.wafMode}</span>"
+  },
+  {
+    "file": "src\\components\\dashboard\\ecosystem-dashboard.tsx",
+    "line": 162,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "Durum: <span className=\"font-mono text-white\">{data.finance.status}</span>"
+  },
+  {
+    "file": "src\\components\\dashboard\\ecosystem-dashboard.tsx",
+    "line": 166,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"font-mono text-white\">{data.finance.dailyCost}</span>"
+  },
+  {
+    "file": "src\\components\\dashboard\\ecosystem-dashboard.tsx",
+    "line": 170,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"font-mono text-white\">{data.finance.bountyPool}</span>"
+  },
+  {
+    "file": "src\\components\\dashboard\\ecosystem-dashboard.tsx",
+    "line": 183,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"font-mono text-white\">{data.infrastructure.vercelDeployments}</span>"
+  },
+  {
+    "file": "src\\components\\dashboard\\ecosystem-dashboard.tsx",
+    "line": 199,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"font-mono text-white\">"
+  },
+  {
+    "file": "src\\components\\dashboard\\ecosystem-dashboard.tsx",
+    "line": 205,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"font-mono text-white\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 268,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<span className=\"hidden h-4 w-px bg-white/20 sm:inline-block\" />"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 292,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"text-white\">{SLIDES_META[currentSlide - 1]?.numberStr}</span> /{\" \"}"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 301,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"text-fg-secondary border-border-subtle flex items-center gap-1.5 rounded-lg border bg-white/5 px-3 py-1.5 text-xs font-medium transition-colors hover:bg-white/10 hover:text-white\""
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 317,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": ": \"text-fg-secondary border-border-subtle bg-white/5 hover:bg-white/10 hover:text-white\""
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 327,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"text-fg-secondary border-border-subtle flex items-center gap-1.5 rounded-lg border bg-white/5 p-1.5 text-xs font-medium transition-colors hover:bg-white/10 hover:text-white\""
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 369,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<span className=\"text-fg-secondary rounded-full border border-border-subtle bg-white/5 px-3 py-1 text-xs font-medium\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 413,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"border-border-subtle flex items-center gap-2 rounded-xl border bg-white/5 px-4 py-2 text-xs font-semibold text-white transition-all hover:bg-white/15 disabled:pointer-events-none disabled:opacity-30\""
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 430,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"h-1.5 w-full overflow-hidden rounded-full bg-white/10\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 462,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-xl font-bold text-white\">Slide Navigator</h2>"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 467,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"text-fg-secondary border-border-subtle rounded-xl border bg-white/5 p-2 transition-colors hover:bg-white/10 hover:text-white\""
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 481,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": ": \"border-border-subtle bg-white/5 hover:border-white/30 hover:bg-white/10\""
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 490,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"group-hover:text-brand-300 line-clamp-2 text-sm font-bold text-white transition-colors\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 515,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h1 className=\"text-3xl leading-tight font-black tracking-tight text-white sm:text-5xl\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 527,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle space-y-2 rounded-2xl border bg-white/5 p-4\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 591,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-2xl font-extrabold text-white sm:text-4xl\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 605,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-base font-bold text-white\">1. Hallucination & Unbounded Actions</h3>"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 616,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-base font-bold text-white\">2. PII & Sensitive Data Leaks</h3>"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 627,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-base font-bold text-white\">3. Zero Legal Accountability</h3>"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 635,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle grid grid-cols-1 gap-4 rounded-2xl border bg-white/5 p-6 sm:grid-cols-2\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 641,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<p className=\"text-xs font-bold tracking-wider text-white uppercase\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 653,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<p className=\"text-xs font-bold tracking-wider text-white uppercase\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 671,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-2xl font-extrabold text-white sm:text-4xl\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 721,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle flex flex-col justify-center rounded-xl border bg-white/5 p-3\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 723,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"mt-1 font-bold text-white\">User / Agent Prompt</span>"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 727,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"mt-1 font-bold text-white\">PII Guardian</span>"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 731,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"mt-1 font-bold text-white\">LLM Execution</span>"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 735,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"mt-1 font-bold text-white\">Crypto Ledger</span>"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 739,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"mt-1 font-bold text-white\">Output Verified</span>"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 751,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-2xl font-extrabold text-white sm:text-4xl\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 789,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<p className=\"text-2xl font-black text-white sm:text-3xl\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 812,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-2xl font-extrabold text-white sm:text-4xl\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 822,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle relative space-y-3 overflow-hidden rounded-2xl border bg-white/5 p-6\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 827,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<p className=\"text-4xl font-black tracking-tight text-white\">$48.5B</p>"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 867,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-2xl font-extrabold text-white sm:text-4xl\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 877,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle space-y-2 rounded-2xl border bg-white/5 p-5\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 887,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle space-y-2 rounded-2xl border bg-white/5 p-5\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 897,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle space-y-2 rounded-2xl border bg-white/5 p-5\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 930,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-2xl font-extrabold text-white sm:text-4xl\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 940,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle flex flex-col justify-between space-y-4 rounded-2xl border bg-white/5 p-6\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 945,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<p className=\"text-2xl font-black text-white\">Free</p>"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 996,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"text-base font-black text-white\">135%</span>"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 1006,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-2xl font-extrabold text-white sm:text-4xl\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 1046,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle w-full rounded-xl border bg-white/5 p-3\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 1080,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-2xl font-extrabold text-white sm:text-4xl\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 1096,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"text-fg-muted border-border-subtle/50 rounded-lg border bg-white/[0.02] p-3 text-xs\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 1113,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"text-fg-disabled border-border-subtle/50 rounded-lg border bg-white/[0.02] p-3 text-xs\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 1118,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"text-fg-muted border-border-subtle/50 rounded-lg border bg-white/[0.02] p-3 text-xs\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 1130,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle rounded-xl border bg-white/5 p-3 text-center\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 1133,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle rounded-xl border bg-white/5 p-3 text-center\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 1136,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle rounded-xl border bg-white/5 p-3 text-center\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 1148,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-2xl font-extrabold text-white sm:text-4xl\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 1164,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-lg font-bold text-white\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 1204,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-2xl font-extrabold text-white sm:text-4xl\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 1214,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle space-y-2 rounded-2xl border bg-white/5 p-6\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 1218,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<p className=\"text-3xl font-black text-white\">$1.2M ARR</p>"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 1243,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<p className=\"text-xs font-bold tracking-wider text-white uppercase\">Gross Margin</p>"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 1251,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<p className=\"text-xs font-bold tracking-wider text-white uppercase\">LTV : CAC Ratio</p>"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 1264,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-2xl font-extrabold text-white sm:text-4xl\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 1276,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<p className=\"text-xs font-bold tracking-wider text-white uppercase\">"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 1287,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<p className=\"text-xs font-bold tracking-wider text-white uppercase\">Go-To-Market</p>"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 1296,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<p className=\"text-xs font-bold tracking-wider text-white uppercase\">Security & Audits</p>"
+  },
+  {
+    "file": "src\\components\\deck\\pitch-deck.tsx",
+    "line": 1308,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<div className=\"flex flex-wrap items-center justify-center gap-6 text-sm font-bold text-white\">"
+  },
+  {
+    "file": "src\\components\\dilemmas\\community-hub.tsx",
+    "line": 47,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "className=\"border-border-subtle/50 absolute inset-0 rounded-full border bg-white/5 shadow-inner\""
+  },
+  {
+    "file": "src\\components\\dilemmas\\community-hub.tsx",
+    "line": 65,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "className=\"border-border-subtle/50 absolute inset-0 rounded-full border bg-white/5 shadow-inner\""
+  },
+  {
+    "file": "src\\components\\dilemmas\\poll-card.tsx",
+    "line": 174,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"text-xs font-bold text-white/90 drop-shadow-md\">"
+  },
+  {
+    "file": "src\\components\\dilemmas\\poll-card.tsx",
+    "line": 178,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"absolute inset-0 bg-white/20 opacity-0 transition-opacity group-hover:opacity-100\"></div>"
+  },
+  {
+    "file": "src\\components\\dilemmas\\poll-card.tsx",
+    "line": 195,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"text-xs font-bold text-white/90 drop-shadow-md\">"
+  },
+  {
+    "file": "src\\components\\dilemmas\\poll-card.tsx",
+    "line": 199,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"absolute inset-0 bg-white/20 opacity-0 transition-opacity group-hover:opacity-100\"></div>"
+  },
+  {
+    "file": "src\\components\\feed\\feed-card.tsx",
+    "line": 128,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"text-brand-400 border-border-subtle flex h-10 w-10 shrink-0 items-center justify-center rounded-full border bg-white/5 font-bold uppercase\">"
+  },
+  {
+    "file": "src\\components\\feed\\feed-card.tsx",
+    "line": 233,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle h-2 w-full overflow-hidden rounded-full border bg-white/5\">"
+  },
+  {
+    "file": "src\\components\\feed\\feed-card.tsx",
+    "line": 269,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "className=\"text-fg-secondary hover:border-accent-500/30 hover:bg-accent-500/10 hover:text-accent-400 border-border-subtle inline-flex h-9 items-center gap-2 rounded-full border bg-white/5 px-3 text-xs font-bold transition-all duration-300\""
+  },
+  {
+    "file": "src\\components\\feed\\feed-card.tsx",
+    "line": 278,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "className=\"text-fg-secondary hover:border-warning-500/30 hover:bg-warning-500/10 hover:text-warning-400 border-border-subtle inline-flex h-9 items-center gap-2 rounded-full border bg-white/5 px-3 text-xs font-bold transition-all duration-300\""
+  },
+  {
+    "file": "src\\components\\feed\\feed-card.tsx",
+    "line": 316,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"text-fg-primary flex h-8 w-8 items-center justify-center rounded-full bg-white/5 transition-colors hover:text-white\""
+  },
+  {
+    "file": "src\\components\\feed\\feed-card.tsx",
+    "line": 316,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "className=\"text-fg-primary flex h-8 w-8 items-center justify-center rounded-full bg-white/5 transition-colors hover:text-white\""
+  },
+  {
+    "file": "src\\components\\feed\\feed-sidebar.tsx",
+    "line": 203,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle relative h-3 flex-1 overflow-hidden rounded-sm border bg-white/5\">"
+  },
+  {
+    "file": "src\\components\\incidents\\evidence-timeline.tsx",
+    "line": 57,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<time className=\"text-fg-muted rounded-full bg-white/5 px-2 py-0.5 text-xs font-medium\">"
+  },
+  {
+    "file": "src\\components\\incidents\\evidence-timeline.tsx",
+    "line": 62,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"border-border-subtle/50 mt-1 rounded-xl border bg-white/[0.02] p-4 backdrop-blur-sm\">"
+  },
+  {
+    "file": "src\\components\\incidents\\incident-card.tsx",
+    "line": 287,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"rounded-xl border border-border-subtle bg-white/[0.03] p-3 backdrop-blur-md\">"
+  },
+  {
+    "file": "src\\components\\incidents\\incident-card.tsx",
+    "line": 303,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<span className=\"text-fg-muted rounded border border-border-subtle bg-white/5 px-2 py-0.5 font-mono text-[10px]\">"
+  },
+  {
+    "file": "src\\components\\incidents\\incident-card.tsx",
+    "line": 360,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"text-fg-muted flex h-7 w-7 items-center justify-center rounded-md border border-border-subtle bg-white/5 shadow-2xs transition-all hover:border-white/30 hover:bg-white/10 hover:text-white\""
+  },
+  {
+    "file": "src\\components\\incidents\\incident-card.tsx",
+    "line": 360,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "className=\"text-fg-muted flex h-7 w-7 items-center justify-center rounded-md border border-border-subtle bg-white/5 shadow-2xs transition-all hover:border-white/30 hover:bg-white/10 hover:text-white\""
+  },
+  {
+    "file": "src\\components\\incidents\\incident-card.tsx",
+    "line": 431,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "className=\"border-border-subtle/40 mt-4 rounded-lg border bg-white/[0.02] px-3 py-2 sm:px-3.5 sm:py-2.5\""
+  },
+  {
+    "file": "src\\components\\incidents\\incident-detail.tsx",
+    "line": 482,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"mb-6 flex items-center gap-2 text-xl font-black text-white\">"
+  },
+  {
+    "file": "src\\components\\incidents\\provenance-trail.tsx",
+    "line": 29,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "className=\"border-border-subtle mt-8 space-y-4 rounded-lg border bg-white/5 p-6\""
+  },
+  {
+    "file": "src\\components\\incidents\\provenance-trail.tsx",
+    "line": 33,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"flex items-center gap-2 text-sm font-bold text-white\">"
+  },
+  {
+    "file": "src\\components\\incidents\\public-statement-modal.tsx",
+    "line": 51,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<label className=\"text-sm font-medium text-white\">Source URL</label>"
+  },
+  {
+    "file": "src\\components\\incidents\\public-statement-modal.tsx",
+    "line": 56,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"focus:ring-brand-500 border-border-strong bg-bg-secondary flex h-10 w-full rounded-md border px-3 py-2 text-sm text-white focus:ring-2 focus:outline-none\""
+  },
+  {
+    "file": "src\\components\\incidents\\public-statement-modal.tsx",
+    "line": 60,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<label className=\"text-sm font-medium text-white\">Statement Date</label>"
+  },
+  {
+    "file": "src\\components\\incidents\\public-statement-modal.tsx",
+    "line": 65,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"focus:ring-brand-500 border-border-strong bg-bg-secondary flex h-10 w-full rounded-md border px-3 py-2 text-sm text-white focus:ring-2 focus:outline-none\""
+  },
+  {
+    "file": "src\\components\\incidents\\public-statement-modal.tsx",
+    "line": 69,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<label className=\"text-sm font-medium text-white\">Quote (min 10 chars)</label>"
+  },
+  {
+    "file": "src\\components\\incidents\\public-statement-modal.tsx",
+    "line": 75,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"focus:ring-brand-500 border-border-strong bg-bg-secondary flex w-full rounded-md border px-3 py-2 text-sm text-white focus:ring-2 focus:outline-none\""
+  },
+  {
+    "file": "src\\components\\incidents\\related-incidents.tsx",
+    "line": 96,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"mt-1 h-1.5 w-full overflow-hidden rounded-full bg-white/5\">"
+  },
+  {
+    "file": "src\\components\\incidents\\share-buttons.tsx",
+    "line": 145,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"border-border-strong hover:bg-bg-secondary inline-flex h-9 w-9 items-center justify-center rounded-lg border bg-black text-white shadow-sm transition-all duration-200 hover:border-white/40 hover:shadow-white/10\""
+  },
+  {
+    "file": "src\\components\\incidents\\share-buttons.tsx",
+    "line": 145,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "className=\"border-border-strong hover:bg-bg-secondary inline-flex h-9 w-9 items-center justify-center rounded-lg border bg-black text-white shadow-sm transition-all duration-200 hover:border-white/40 hover:shadow-white/10\""
+  },
+  {
+    "file": "src\\components\\layout\\header.tsx",
+    "line": 82,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 focus-visible:ring-brand-500 inline-flex min-h-[38px] sm:min-h-[36px] h-9 sm:h-8.5 shrink-0 items-center gap-1.5 rounded-full bg-gradient-to-r px-3 sm:px-3.5 text-xs font-bold text-white shadow-[0_0_15px_rgba(168,85,247,0.3)] transition-all duration-200 hover:scale-105 hover:shadow-[0_0_25px_rgba(168,85,247,0.6)] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none active:scale-[0.98] whitespace-nowrap\""
+  },
+  {
+    "file": "src\\components\\layout\\mobile-nav.tsx",
+    "line": 126,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"text-fg-secondary hover:bg-white/[0.06] hover:text-white focus-visible:ring-brand-500 inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl transition-colors focus-visible:ring-2 focus-visible:outline-none active:scale-95\""
+  },
+  {
+    "file": "src\\components\\layout\\mobile-nav.tsx",
+    "line": 223,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 flex min-h-[48px] h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r px-6 text-sm font-bold text-white shadow-[0_0_20px_rgba(168,85,247,0.4)] active:scale-[0.98] transition-all\""
+  },
+  {
+    "file": "src\\components\\layout\\user-menu.tsx",
+    "line": 87,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"from-brand-500/10 hover:from-brand-500/20 dark:from-brand-500/20 dark:hover:from-brand-500/30 border-brand-500/40 hover:border-brand-500 text-brand-600 dark:text-brand-200 inline-flex h-9 items-center justify-center rounded-full border px-4 text-xs font-bold shadow-[0_0_15px_rgba(168,85,247,0.15)] transition-all hover:scale-105 hover:text-fg-primary dark:hover:text-white hover:shadow-[0_0_20px_rgba(168,85,247,0.3)]\""
+  },
+  {
+    "file": "src\\components\\marketing\\hero-section.tsx",
+    "line": 198,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<span className=\"text-sm font-black text-white\">EE</span>"
+  },
+  {
+    "file": "src\\components\\marketing\\hero-section.tsx",
+    "line": 205,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"text-fg-primary text-sm font-black transition-colors hover:text-brand-500 dark:hover:text-white hover:underline\""
+  },
+  {
+    "file": "src\\components\\marketing\\hero-section.tsx",
+    "line": 270,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"group text-brand-500 dark:text-brand-400 flex items-center gap-1 text-xs font-bold transition-colors hover:text-brand-600 dark:hover:text-white\""
+  },
+  {
+    "file": "src\\components\\marketing\\hero-section.tsx",
+    "line": 298,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"text-fg-muted block text-center text-xs font-bold tracking-wider uppercase transition-colors hover:text-white\""
+  },
+  {
+    "file": "src\\components\\marketing\\hero-section.tsx",
+    "line": 335,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h4 className=\"text-xl font-black tracking-tight text-white\">"
+  },
+  {
+    "file": "src\\components\\marketing\\hero-section.tsx",
+    "line": 368,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h4 className=\"text-xl font-black tracking-tight text-white drop-shadow-[0_2px_12px_rgba(249,115,22,0.3)]\">"
+  },
+  {
+    "file": "src\\components\\marketing\\hero-section.tsx",
+    "line": 505,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"h-1.5 w-full overflow-hidden rounded-full bg-white/5 shadow-[inset_0_1px_3px_rgba(0,0,0,0.5)]\">"
+  },
+  {
+    "file": "src\\components\\models\\model-nutrition-label.tsx",
+    "line": 42,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "<div className=\"rounded-lg bg-white/[0.03] p-2.5 border border-white/[0.05]\">"
+  },
+  {
+    "file": "src\\components\\models\\model-nutrition-label.tsx",
+    "line": 42,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"rounded-lg bg-white/[0.03] p-2.5 border border-white/[0.05]\">"
+  },
+  {
+    "file": "src\\components\\models\\model-nutrition-label.tsx",
+    "line": 52,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "<div className=\"rounded-lg bg-white/[0.03] p-2.5 border border-white/[0.05]\">"
+  },
+  {
+    "file": "src\\components\\models\\model-nutrition-label.tsx",
+    "line": 52,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"rounded-lg bg-white/[0.03] p-2.5 border border-white/[0.05]\">"
+  },
+  {
+    "file": "src\\components\\public\\JuryDutySwipe.tsx",
+    "line": 65,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"mb-1 text-2xl font-black text-white\">{card.defendant}</h3>"
+  },
+  {
+    "file": "src\\components\\public\\velocity\\velocity-dashboard.tsx",
+    "line": 218,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "return \"bg-white/10 text-fg-primary border-border-strong\";"
+  },
+  {
+    "file": "src\\components\\public\\velocity\\velocity-dashboard.tsx",
+    "line": 596,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "<div className=\"h-1.5 w-16 overflow-hidden rounded-full bg-white/10 hidden sm:block\">"
+  },
+  {
+    "file": "src\\components\\public\\velocity\\velocity-dashboard.tsx",
+    "line": 629,
+    "type": "HARDCODED_WHITE_BORDER",
+    "snippet": "<div className=\"mt-4 flex flex-col sm:flex-row items-center justify-between border-t border-white/5 pt-3 text-[11px] text-fg-muted gap-2\">"
+  },
+  {
+    "file": "src\\components\\public\\WallOfShame.tsx",
+    "line": 246,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<p className=\"mt-2 text-2xl font-black text-white sm:text-3xl\">{SHAMED_ENTITIES_DATA.length}</p>"
+  },
+  {
+    "file": "src\\components\\public\\WallOfShame.tsx",
+    "line": 290,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": ": \"border border-border-subtle bg-bg-secondary/60 text-fg-muted hover:border-border-strong hover:text-white\","
+  },
+  {
+    "file": "src\\components\\public\\WallOfShame.tsx",
+    "line": 354,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"truncate text-lg font-black text-white group-hover:text-red-400 transition-colors\">"
+  },
+  {
+    "file": "src\\components\\public\\WallOfShame.tsx",
+    "line": 418,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"mt-4 text-base font-bold text-white\">Arama kriterlerine uygun sicil kaydı bulunamadı.</h3>"
+  },
+  {
+    "file": "src\\components\\public\\WallOfShame.tsx",
+    "line": 440,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-2xl font-black text-white sm:text-3xl\">Bir Yapay Zeka Suçu mu Tespit Ettiniz?</h2>"
+  },
+  {
+    "file": "src\\components\\public\\WallOfShame.tsx",
+    "line": 489,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-xl font-black text-white\">{activeModalEntity.name}</h3>"
+  },
+  {
+    "file": "src\\components\\public\\WallOfShame.tsx",
+    "line": 495,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"cursor-pointer rounded-full border border-zinc-800 p-2 text-fg-muted hover:bg-zinc-800 hover:text-white transition-colors\""
+  },
+  {
+    "file": "src\\components\\public\\WallOfShame.tsx",
+    "line": 504,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<p className=\"mt-1 text-base font-bold text-white\">{activeModalEntity.violationTitle}</p>"
+  },
+  {
+    "file": "src\\components\\ui\\badge.tsx",
+    "line": 30,
+    "type": "HARDCODED_WHITE_BG_ALPHA",
+    "snippet": "glass: \"bg-white/5 text-fg-primary border border-border-subtle backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]\","
+  },
+  {
+    "file": "src\\components\\ui\\button.tsx",
+    "line": 40,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "\"bg-white/5 text-white border border-border-subtle hover:border-border-strong hover:bg-white/10 active:bg-white/15 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] hover:shadow-[0_0_25px_rgba(255,255,255,0.1)] active:scale-[0.97] disabled:opacity-50 disabled:active:scale-100\","
+  },
+  {
+    "file": "src\\components\\ui\\checkbox.tsx",
+    "line": 37,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"pointer-events-none absolute top-1/2 left-1/2 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 scale-0 text-white transition-transform duration-200 peer-checked:scale-100\""
+  },
+  {
+    "file": "src\\components\\vendor-portal\\vendor-defense-portal-client.tsx",
+    "line": 188,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"border-border-subtle bg-bg-tertiary/70 focus:border-success-500/60 focus:ring-success-500/60 w-full rounded-xl border py-3 pr-4 pl-10 text-sm text-white placeholder-slate-500 transition-all focus:ring-1 focus:outline-none\""
+  },
+  {
+    "file": "src\\components\\vendor-portal\\vendor-defense-portal-client.tsx",
+    "line": 216,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"border-border-strong/60 text-fg-secondary hover:border-success-500/40 bg-bg-secondary flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs transition-all hover:text-white\""
+  },
+  {
+    "file": "src\\components\\vendor-portal\\vendor-defense-portal-client.tsx",
+    "line": 245,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h1 className=\"text-2xl font-bold tracking-tight text-white sm:text-3xl\">"
+  },
+  {
+    "file": "src\\components\\vendor-portal\\vendor-defense-portal-client.tsx",
+    "line": 259,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"border-border-strong/60 text-fg-secondary bg-bg-secondary hover:bg-bg-secondary flex items-center gap-2 rounded-xl border px-4 py-2 text-xs font-medium transition-all hover:text-white\""
+  },
+  {
+    "file": "src\\components\\vendor-portal\\vendor-defense-portal-client.tsx",
+    "line": 271,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<p className=\"text-2xl mt-1 font-bold text-white\">{incidents.length}</p>"
+  },
+  {
+    "file": "src\\components\\vendor-portal\\vendor-defense-portal-client.tsx",
+    "line": 294,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"flex items-center gap-2 text-base font-semibold text-white\">"
+  },
+  {
+    "file": "src\\components\\vendor-portal\\vendor-defense-portal-client.tsx",
+    "line": 312,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"border-border-subtle bg-bg-tertiary/60 focus:border-success-500/50 w-full rounded-xl border py-2 pr-3 pl-9 text-xs text-white placeholder-slate-500 focus:outline-none\""
+  },
+  {
+    "file": "src\\components\\vendor-portal\\vendor-defense-portal-client.tsx",
+    "line": 321,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "? \"bg-bg-secondary text-white shadow-sm\""
+  },
+  {
+    "file": "src\\components\\vendor-portal\\vendor-defense-portal-client.tsx",
+    "line": 444,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h2 className=\"text-xl leading-tight font-bold text-white\">"
+  },
+  {
+    "file": "src\\components\\vendor-portal\\vendor-defense-portal-client.tsx",
+    "line": 457,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "<h3 className=\"text-sm font-semibold text-white\">"
+  },
+  {
+    "file": "src\\components\\vendor-portal\\vendor-defense-portal-client.tsx",
+    "line": 472,
+    "type": "HARDCODED_TEXT_WHITE",
+    "snippet": "className=\"border-border-subtle bg-bg-tertiary/80 focus:border-success-500/60 focus:ring-success-500/60 w-full resize-y rounded-xl border p-4 text-xs leading-relaxed text-white placeholder-slate-500 transition-all focus:ring-1 focus:outline-none\""
+  }
+]

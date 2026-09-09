@@ -8,6 +8,7 @@ const webhookSchema = z.object({
   provider_filter: z.string().optional(),
 });
 
+// @auth: requireAuth (verifyWebhook / WEBHOOK_SECRET)
 export async function POST(req: Request) {
   try {
     const body = await req.json();

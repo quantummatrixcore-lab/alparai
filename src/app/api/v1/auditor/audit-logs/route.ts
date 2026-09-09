@@ -4,6 +4,7 @@ import { isAuthorizedAuditor } from "@/lib/auth/auditor-gate";
 
 export const dynamic = "force-dynamic";
 
+// @auth: requireAuth (verified via isAuthorizedAuditor)
 export async function GET(request: Request) {
   if (!(await isAuthorizedAuditor(request))) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });

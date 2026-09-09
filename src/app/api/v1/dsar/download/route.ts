@@ -5,6 +5,7 @@ import { logger } from "@/lib/utils/logger";
 
 export const dynamic = "force-dynamic";
 
+// @auth: requireAuth (verified via supabase.auth.getUser)
 export async function GET(request: Request) {
   try {
     const supabase = await createServerClient();

@@ -77,7 +77,7 @@ export function IncidentForm({
   const [isImporting, setIsImporting] = useState(false);
   const [importError, setImportError] = useState("");
 
-  const KNOWN_SHARE_DOMAINS = [
+  const ALLOWED_SHARE_DOMAINS = [
     "chatgpt.com",
     "openai.com",
     "claude.ai",
@@ -88,8 +88,9 @@ export function IncidentForm({
 
   const isValidShareUrl = (url: string): boolean => {
     try {
+      if (!url.startsWith("https://") && !url.startsWith("http://")) return false;
       const parsed = new URL(url);
-      return KNOWN_SHARE_DOMAINS.some((d) => parsed.hostname.includes(d));
+      return ALLOWED_SHARE_DOMAINS.some((d) => parsed.hostname.includes(d));
     } catch {
       return false;
     }

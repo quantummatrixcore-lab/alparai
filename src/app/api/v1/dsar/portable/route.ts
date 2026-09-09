@@ -6,6 +6,7 @@ import { buildZip } from "@/lib/utils/zip";
 
 export const dynamic = "force-dynamic";
 
+// @auth: requireAuth (verified via supabase.auth.getUser)
 export async function GET() {
   try {
     const supabase = await createServerClient();

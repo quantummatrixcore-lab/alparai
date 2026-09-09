@@ -14,6 +14,7 @@ function safeCompare(a: string, b: string): boolean {
   return timingSafeEqual(aBuf, bBuf);
 }
 
+// @auth: requireAuth (API Key)
 export async function GET(request: NextRequest) {
   const rateLimitResponse = rateLimit(request);
   if (rateLimitResponse) return rateLimitResponse;

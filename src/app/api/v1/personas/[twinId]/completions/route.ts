@@ -13,6 +13,7 @@ interface CompletionRequest {
   max_tokens?: number;
 }
 
+// @auth: requireAuth (Bearer API Key)
 export async function POST(req: Request, props: { params: Promise<{ twinId: string }> }) {
   try {
     const { twinId } = await props.params;

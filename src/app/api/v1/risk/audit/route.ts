@@ -41,6 +41,7 @@ export async function OPTIONS(request: Request) {
   });
 }
 
+// @auth: requireAuth (Bearer API Key)
 export async function POST(request: Request) {
   const origin = request.headers.get("origin");
   const hdrs = await headers();

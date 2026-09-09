@@ -9,6 +9,7 @@ const STRIPE_PRO_PRICE_ID = process.env.STRIPE_PRO_PRICE_ID;
 const STRIPE_ENTERPRISE_PRICE_ID = process.env.STRIPE_ENTERPRISE_PRICE_ID;
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://alparai.com";
 
+// @auth: requireAuth (verified via supabase.auth.getUser)
 export async function POST(request: Request) {
   let tier = "pro";
   try {

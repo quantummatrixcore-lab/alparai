@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { createServerClient } from "@/lib/supabase/server";
 import { logger } from "@/lib/utils/logger";
 
+// @auth: requireAuth (verified via supabase.auth.getUser)
 export async function POST(req: Request) {
   try {
     const supabase = await createServerClient();

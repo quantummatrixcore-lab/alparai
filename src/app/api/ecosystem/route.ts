@@ -6,6 +6,7 @@ import { isAdmin } from "@/lib/auth/session";
 // @ts-expect-error - Local JS modules without types
 import GoogleEcosystemBridge from "../../../../scripts/google_ecosystem_bridge.js";
 
+// @auth: requireAdmin (verified via isAdmin)
 export async function GET() {
   try {
     const adminStatus = await isAdmin();

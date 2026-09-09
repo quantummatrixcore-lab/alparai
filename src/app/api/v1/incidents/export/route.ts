@@ -14,6 +14,7 @@ function safeCompare(a: string, b: string): boolean {
   return timingSafeEqual(aBuf, bBuf);
 }
 
+// @auth: requireAuth (API Key or Bearer Token)
 export async function GET(request: Request) {
   try {
     const hdrs = await headers();

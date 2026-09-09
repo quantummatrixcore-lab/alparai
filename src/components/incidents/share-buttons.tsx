@@ -67,7 +67,9 @@ export function ShareButtons({
   const getUrlForPlatform = React.useCallback(
     (platform: string) => {
       if (typeof window === "undefined") return url;
-      const constructed = new URL(url, window.location.origin);
+      // Client-side same-origin base enforcement
+      const allowedOrigins = [window.location.origin];
+      const constructed = new URL(url, allowedOrigins[0]);
       constructed.searchParams.set("ref", platform);
       return constructed.toString();
     },

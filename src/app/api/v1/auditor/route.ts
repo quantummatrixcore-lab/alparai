@@ -4,6 +4,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 
 export const dynamic = "force-dynamic";
 
+// @auth: requireAuth (verified via isAuthorizedAuditor)
 export async function GET(request: Request) {
   if (!(await isAuthorizedAuditor(request))) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });

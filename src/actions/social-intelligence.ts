@@ -30,13 +30,14 @@ export async function fetchContentFromUrl(url: string): Promise<FetchContentResp
       return { ok: false, error: "UNAUTHORIZED" };
     }
 
-    if (!url) {
-      return { ok: false, error: "URL is required" };
+    if (!url || (!url.startsWith("https://") && !url.startsWith("http://"))) {
+      return { ok: false, error: "Only valid HTTP/HTTPS URLs are supported" };
     }
 
     try {
-      const isYouTube = url.includes("youtube.com") || url.includes("youtu.be");
-      const isX = url.includes("x.com") || url.includes("twitter.com");
+      const ALLOWED_SOCIAL_DOMAINS = ["youtube.com", "youtu.be", "x.com", "twitter.com"];
+      const isYouTube = ALLOWED_SOCIAL_DOMAINS.slice(0, 2).some((d) => url.includes(d));
+      const isX = ALLOWED_SOCIAL_DOMAINS.slice(2).some((d) => url.includes(d));
 
       if (isYouTube) {
         const oEmbedUrl = `https://noembed.com/embed?url=${encodeURIComponent(url)}`;

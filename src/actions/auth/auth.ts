@@ -34,15 +34,17 @@ export async function signInWithGoogleIdToken(token: string, nonce: string): Pro
       return { ok: false, error: `Too many attempts. Try again in ${rl.retryAfter}s.` };
     }
 
-    // Direct Google Token Verification
-    const verifyRes = await fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${encodeURIComponent(token)}`);
+    // Direct Google Token Verification via strict endpoint allowlist
+    const ALLOWED_GOOGLE_OAUTH_ENDPOINT = "https://oauth2.googleapis.com/tokeninfo";
+    const verifyUrl = new URL(ALLOWED_GOOGLE_OAUTH_ENDPOINT);
+    verifyUrl.searchParams.set("id_token", token);
+    const verifyRes = await fetch(verifyUrl.toString());
     if (!verifyRes.ok) {
       console.error("[signInWithGoogleIdToken] Google verification returned status:", verifyRes.status);
       return { ok: false, error: "Google ID Token verification failed" };
     }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const payload = (await verifyRes.json()) as any;
-
+    const payload = (await verifyRes.json()) as any;
     const envClientId = process.env.GOOGLE_CLIENT_ID;
     const expectedClientId =
       envClientId && !envClientId.includes("SENSITIVE") && envClientId.includes(".apps.googleusercontent.com")

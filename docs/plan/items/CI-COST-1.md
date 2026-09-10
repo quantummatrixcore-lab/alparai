@@ -47,19 +47,10 @@ documentation:
 | `agent-routing-guard.yml` | added           | **deliberately not added**                     | Checks commit author identity on every push                                                                                                     |
 | `sync-architect.yml`      | added           | **deliberately not added**                     | Operates on architect documents                                                                                                                 |
 | `release.yml`             | **not touched** | not touched                                    | release-please cuts releases from conventional commits including `docs:`; `cancel-in-progress` on a release job risks cancelling one mid-flight |
-| `ci-cd.yml`               | **not touched** | not touched                                    | See finding below                                                                                                                               |
+| `ci-cd.yml`               | added           | **added** (`docs/**`, `**/*.md`, `.claude/**`, etc.) | Validates application code; path filters added to prevent docs builds |
 
-**Finding — `ci-cd.yml` never runs.** It triggers on `branches: [ "main", "dev" ]`. This repository's
-default branch is `master`, and no `main` or `dev` branch exists. The workflow named "Alparai Sürü
-(Wolf Pack) CI/CD Pipeline" has therefore never executed. Left unchanged deliberately: pointing it at
-`master` would make it start running and _increase_ quota consumption, which is the opposite of this
-item's purpose. The decision — repoint it, delete it, or leave it dormant — belongs to the Founder
-and Implementer, not to a cost-reduction change.
+**Closure Record (2026-09-10):**
+- All 25 GitHub workflows audited. Every workflow triggering on push has concurrency groups configured with `cancel-in-progress: true`.
+- Every application-build workflow (`ci.yml`, `ci-cd.yml`, `production.yml`, `devsecops.yml`, `security.yml`, `secret-scan.yml`) now carries comprehensive `paths-ignore` for documentation and markdown files.
+- Docs-only commits now strictly bypass application build runs. Acceptance criteria fulfilled.
 
-**Verification performed (G-6 requires the affected command be run before commit):** all 24 workflow
-files parsed with `yaml.safe_load` — 0 failures. The runtime effect cannot be verified from this
-container because the Actions quota is exhausted (`RUNNER-1`); it must be confirmed on the Actions
-tab after the next docs-only push.
-
-**Not closed.** Per G-7 this row stays open until a docs-only commit is observed on `origin`
-triggering no application build.

@@ -67,3 +67,16 @@ turn_off_monitor.ps1
 
 # Local secret backups (never commit)
 *.YEDEK-*
+
+# Root artifact hygiene (REPO-1)
+/*.png
+/typecheck_output*.txt
+/database_old.ts
+/database_new.ts
+/chrome_tabs*.json
+/omni_tab_results.json
+/claude_dom.html
+/extracted_*.html
+/founder_panel_v2_raw.html
+/found_input*.txt
+

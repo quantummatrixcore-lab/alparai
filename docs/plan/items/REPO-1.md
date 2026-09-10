@@ -81,3 +81,12 @@ and rewriting shared history costs more than it returns. Deleting them going for
 - `pnpm build`, `pnpm test` and `pnpm lint` still pass — proving nothing moved was load-bearing
 - Every workflow in `.github/workflows/` still resolves the scripts it invokes
 - A fresh `git clone` shows a root directory a reviewer can read at a glance
+
+## Closure Record (2026-09-10)
+
+- `create_radar.js`, `wire.js`, `openchrome_night_shift.js` archived to `scripts/archive/`.
+- `found_input.txt` removed.
+- `.gitignore` updated with root-anchored rules (`/*.png`, `/typecheck_output*.txt`, `/database_old.ts`, `/database_new.ts`, `/chrome_tabs*.json`, `/omni_tab_results.json`, `/claude_dom.html`, `/extracted_*.html`, `/founder_panel_v2_raw.html`, `/found_input*.txt`).
+- `git ls-files | grep -cE "^[^/]+\.(js|html|png|txt)$"` returns **0**.
+- Legitimate configs and assets in `public/` and `src/app/` remain intact and tracked.
+

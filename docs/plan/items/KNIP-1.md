@@ -21,3 +21,9 @@ remove the dependency and the script. Both are acceptable; leaving it installed 
 
 - `knip` either runs in CI on every pull request, or is absent from `package.json`
 - If wired: a deliberately unused export fails the check (negative test)
+
+## Closure Record (2026-09-10)
+
+- Verified that `knip` is completely absent from both `dependencies`, `devDependencies`, and `scripts` in `package.json`.
+- Dead-code analysis tool is neither claiming phantom coverage nor bloating dependencies. Acceptance criteria satisfied.
+

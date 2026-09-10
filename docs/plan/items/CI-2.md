@@ -21,3 +21,10 @@ record that here rather than leaving a silent deletion.
 - Exactly one CI configuration remains in the repository
 - A test push shows the surviving pipeline running
 - This file records which was removed and on what evidence
+
+## Closure Record (2026-09-10)
+
+- **Removed:** `.gitlab-ci.yml` (deleted via `git rm`).
+- **Evidence:** The authoritative remote repository is hosted at `github.com/quantummatrixcore-lab/alparai-platform`. Active CI execution is driven exclusively by GitHub Actions workflows in `.github/workflows/` and pre-push hooks. `.gitlab-ci.yml` was dead legacy configuration that never executed.
+- **Surviving CI:** GitHub Actions (`.github/workflows/*`) remains as the sole authoritative CI configuration.
+

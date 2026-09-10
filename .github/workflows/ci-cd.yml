@@ -4,9 +4,21 @@ on:
   push:
     branches:
       - master
+    paths-ignore:
+      - "docs/**"
+      - "**/*.md"
+      - ".claude/**"
+      - "ops/visual-baseline/**"
+      - ".vscode/**"
   pull_request:
     branches:
       - master
+    paths-ignore:
+      - "docs/**"
+      - "**/*.md"
+      - ".claude/**"
+      - "ops/visual-baseline/**"
+      - ".vscode/**"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}

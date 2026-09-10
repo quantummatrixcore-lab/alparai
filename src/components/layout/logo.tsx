@@ -32,66 +32,69 @@ export function Logo({ className, size = "md", ...props }: LogoProps) {
         height={px}
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="block overflow-visible drop-shadow-[0_0_12px_rgba(56,189,248,0.25)] transition-all duration-300 group-hover/logo:drop-shadow-[0_0_20px_rgba(37,99,235,0.6)]"
+        className="block overflow-visible drop-shadow-[0_0_12px_rgba(56,189,248,0.25)] transition-all duration-300 group-hover/logo:drop-shadow-[0_0_20px_rgba(0,242,254,0.6)]"
       >
         <defs>
-          {/* Titanium Silver Chiseled Left Facet */}
-          <linearGradient id="alpar-facet-titanium-comp" x1="20" y1="10" x2="50" y2="90" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#ffffff" />
-            <stop offset="35%" stopColor="#e2e8f0" />
-            <stop offset="75%" stopColor="#94a3b8" />
-            <stop offset="100%" stopColor="#64748b" />
+          <linearGradient id="alpar-shield-fill-react" x1="20" y1="10" x2="80" y2="90" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#1e3a8a" stopOpacity="0.35" />
+            <stop offset="50%" stopColor="#0b1730" stopOpacity="0.85" />
+            <stop offset="100%" stopColor="#020612" stopOpacity="0.98" />
           </linearGradient>
-
-          {/* Electric Cobalt Prismatic Right Facet */}
-          <linearGradient id="alpar-facet-cobalt-comp" x1="50" y1="10" x2="85" y2="90" gradientUnits="userSpaceOnUse">
+          <linearGradient id="alpar-shield-stroke-react" x1="50" y1="8" x2="50" y2="92" gradientUnits="userSpaceOnUse">
             <stop offset="0%" stopColor="#38bdf8" />
-            <stop offset="30%" stopColor="#0284c7" />
-            <stop offset="70%" stopColor="#2563eb" />
-            <stop offset="100%" stopColor="#1d4ed8" />
-          </linearGradient>
-
-          {/* Inner Refraction Core / Crossbeam */}
-          <linearGradient id="alpar-facet-cyan-beam-comp" x1="30" y1="50" x2="70" y2="85" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#00f0ff" />
-            <stop offset="50%" stopColor="#0284c7" />
-            <stop offset="100%" stopColor="#0f172a" />
+            <stop offset="50%" stopColor="#2563eb" />
+            <stop offset="100%" stopColor="#1e293b" />
           </linearGradient>
         </defs>
 
-        {/* Ambient Shadow Base */}
-        <polygon points="50,12 14,88 86,88" fill="#030712" fillOpacity="0.4" />
-
-        {/* Left Titanium Pillar */}
-        <polygon
-          points="50,12 16,88 34,88 50,48"
-          fill="url(#alpar-facet-titanium-comp)"
-          className="transition-all duration-300 group-hover/logo:brightness-110"
+        {/* SHIELD CONTOUR */}
+        <path
+          d="M 50, 8 L 16, 23 C 16, 60 32, 82 50, 92 C 68, 82 84, 60 84, 23 Z"
+          fill="url(#alpar-shield-fill-react)"
+          stroke="url(#alpar-shield-stroke-react)"
+          strokeWidth="3"
+          strokeLinejoin="round"
+          className="transition-all duration-300 group-hover/logo:stroke-[#38bdf8]"
         />
 
-        {/* Right Cobalt Prismatic Pillar */}
-        <polygon
-          points="50,12 50,48 66,88 84,88"
-          fill="url(#alpar-facet-cobalt-comp)"
-          className="transition-all duration-300 group-hover/logo:brightness-110"
+        {/* Inner Bevel Accents */}
+        <path
+          d="M 50, 14 L 21, 27 C 21, 56 34, 75 50, 84"
+          stroke="#ffffff"
+          strokeOpacity="0.15"
+          strokeWidth="1.2"
+          strokeLinecap="round"
+        />
+        <path
+          d="M 50, 14 L 79, 27 C 79, 56 66, 75 50, 84"
+          stroke="#ffffff"
+          strokeOpacity="0.08"
+          strokeWidth="1.2"
+          strokeLinecap="round"
         />
 
-        {/* Inner Crossbar Optical Prism */}
-        <polygon
-          points="32,70 68,70 50,44"
-          fill="url(#alpar-facet-cyan-beam-comp)"
-          className="origin-center transition-transform duration-300 group-hover/logo:scale-105"
-        />
-        <polygon points="34,70 66,70 50,84" fill="#090d16" />
+        {/* CENTRAL PILLAR OF ACCOUNTABILITY */}
+        <line x1="50" y1="18" x2="50" y2="82" stroke="#e2e8f0" strokeWidth="2.4" strokeLinecap="round" />
+        <circle cx="50" cy="18" r="3" fill="#ffffff" />
+        <path d="M 42,82 L 58,82 L 54,76 L 46,76 Z" fill="#cbd5e1" />
 
-        {/* Precision Center Light Point */}
-        <circle
-          cx="50"
-          cy="46"
-          r="2.5"
-          fill="#ffffff"
-          className="transition-all duration-300 group-hover/logo:drop-shadow-[0_0_8px_#ffffff]"
-        />
+        {/* SYMMETRIC CROSSBEAM & FULCRUM */}
+        <path d="M 27, 35 Q 50, 26 73, 35" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+        <circle cx="50" cy="29.5" r="2.2" fill="#38bdf8" />
+
+        {/* LEFT SCALE (Adalet & Etik) */}
+        <circle cx="27" cy="35" r="1.8" fill="#ffffff" />
+        <line x1="27" y1="35" x2="19" y2="52" stroke="#94a3b8" strokeWidth="1.3" strokeLinecap="round" />
+        <line x1="27" y1="35" x2="35" y2="52" stroke="#94a3b8" strokeWidth="1.3" strokeLinecap="round" />
+        <path d="M 17, 52 C 17, 63 37, 63 37, 52 Z" fill="#e2e8f0" stroke="#ffffff" strokeWidth="1" />
+        <ellipse cx="27" cy="52" rx="10" ry="2.2" fill="#ffffff" fillOpacity="0.8" />
+
+        {/* RIGHT SCALE (Denetim & Sorumluluk) */}
+        <circle cx="73" cy="35" r="1.8" fill="#ffffff" />
+        <line x1="73" y1="35" x2="65" y2="52" stroke="#94a3b8" strokeWidth="1.3" strokeLinecap="round" />
+        <line x1="73" y1="35" x2="81" y2="52" stroke="#94a3b8" strokeWidth="1.3" strokeLinecap="round" />
+        <path d="M 63, 52 C 63, 63 83, 63 83, 52 Z" fill="#e2e8f0" stroke="#ffffff" strokeWidth="1" />
+        <ellipse cx="73" cy="52" rx="10" ry="2.2" fill="#ffffff" fillOpacity="0.8" />
       </svg>
     </span>
   );

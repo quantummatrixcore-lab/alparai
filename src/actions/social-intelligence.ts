@@ -30,7 +30,11 @@ export async function fetchContentFromUrl(url: string): Promise<FetchContentResp
       return { ok: false, error: "UNAUTHORIZED" };
     }
 
-    if (!url || (!url.startsWith("https://") && !url.startsWith("http://"))) {
+    if (!url) {
+      return { ok: false, error: "URL is required" };
+    }
+
+    if (!url.startsWith("https://") && !url.startsWith("http://")) {
       return { ok: false, error: "Only valid HTTP/HTTPS URLs are supported" };
     }
 

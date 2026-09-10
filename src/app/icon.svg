@@ -1,52 +1,44 @@
 <svg viewBox="0 0 100 100" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Titanium Silver Chiseled Left Facet -->
-    <linearGradient id="alpar-fav-titanium" x1="20" y1="10" x2="50" y2="90" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#ffffff" />
-      <stop offset="35%" stop-color="#e2e8f0" />
-      <stop offset="75%" stop-color="#94a3b8" />
-      <stop offset="100%" stop-color="#64748b" />
+    <linearGradient id="fav-bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1730"/>
+      <stop offset="100%" stop-color="#020612"/>
     </linearGradient>
-
-    <!-- Electric Cobalt Prismatic Right Facet -->
-    <linearGradient id="alpar-fav-cobalt" x1="50" y1="10" x2="85" y2="90" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#38bdf8" />
-      <stop offset="30%" stop-color="#0284c7" />
-      <stop offset="70%" stop-color="#2563eb" />
-      <stop offset="100%" stop-color="#1d4ed8" />
+    <linearGradient id="fav-shield-fill" x1="20" y1="10" x2="80" y2="90" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1e3a8a" stop-opacity="0.45"/>
+      <stop offset="50%" stop-color="#0b1730" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#020612" stop-opacity="0.98"/>
     </linearGradient>
-
-    <!-- Inner Refraction Core / Crossbeam -->
-    <linearGradient id="alpar-fav-cyan-beam" x1="30" y1="50" x2="70" y2="85" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#00f0ff" />
-      <stop offset="50%" stop-color="#0284c7" />
-      <stop offset="100%" stop-color="#0f172a" />
+    <linearGradient id="fav-shield-stroke" x1="50" y1="8" x2="50" y2="92" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#1e293b"/>
     </linearGradient>
-
-    <!-- Background Plate for High Visibility -->
-    <rect id="alpar-fav-bg" width="100" height="100" rx="22" fill="#090d16" />
   </defs>
 
-  <!-- High-Contrast Icon Backing -->
-  <use href="#alpar-fav-bg" />
-  <rect width="100" height="100" rx="22" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" />
+  <!-- High-Contrast Icon Backing Plate -->
+  <rect width="100" height="100" rx="22" fill="url(#fav-bg-grad)"/>
+  <rect width="100" height="100" rx="22" stroke="rgba(56,189,248,0.25)" stroke-width="1.5"/>
 
-  <!-- Iconic Monolithic Prismatic 'A' Emblem -->
-  <g transform="translate(0, 0)">
-    <!-- Ambient Shadow Base -->
-    <polygon points="50,14 16,86 84,86" fill="#030712" fill-opacity="0.5" />
-    
-    <!-- Left Titanium Pillar -->
-    <polygon points="50,14 18,86 35,86 50,48" fill="url(#alpar-fav-titanium)" />
-    
-    <!-- Right Cobalt Prismatic Pillar -->
-    <polygon points="50,14 50,48 65,86 82,86" fill="url(#alpar-fav-cobalt)" />
-    
-    <!-- Inner Crossbar Optical Prism -->
-    <polygon points="33,69 67,69 50,44" fill="url(#alpar-fav-cyan-beam)" />
-    <polygon points="35,69 65,69 50,82" fill="#090d16" />
-    
-    <!-- Precision Center Light Point -->
-    <circle cx="50" cy="46" r="2.5" fill="#ffffff" />
+  <!-- Centered Cyber Defense Shield with Scales of Justice -->
+  <g transform="translate(10, 10) scale(0.8)">
+    <path d="M 50, 8 L 16, 23 C 16, 60 32, 82 50, 92 C 68, 82 84, 60 84, 23 Z" fill="url(#fav-shield-fill)" stroke="url(#fav-shield-stroke)" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M 50, 14 L 21, 27 C 21, 56 34, 75 50, 84" stroke="#ffffff" stroke-opacity="0.15" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+    <path d="M 50, 14 L 79, 27 C 79, 56 66, 75 50, 84" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+    <line x1="50" y1="18" x2="50" y2="82" stroke="#e2e8f0" stroke-width="2.6" stroke-linecap="round"/>
+    <circle cx="50" cy="18" r="3.2" fill="#ffffff"/>
+    <path d="M 42,82 L 58,82 L 54,76 L 46,76 Z" fill="#cbd5e1"/>
+    <path d="M 27, 35 Q 50, 26 73, 35" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+    <circle cx="50" cy="29.5" r="2.4" fill="#38bdf8"/>
+    <circle cx="27" cy="35" r="2" fill="#ffffff"/>
+    <circle cx="73" cy="35" r="2" fill="#ffffff"/>
+    <line x1="27" y1="35" x2="19" y2="52" stroke="#94a3b8" stroke-width="1.4" stroke-linecap="round"/>
+    <line x1="27" y1="35" x2="35" y2="52" stroke="#94a3b8" stroke-width="1.4" stroke-linecap="round"/>
+    <path d="M 17, 52 C 17, 63 37, 63 37, 52 Z" fill="#e2e8f0" stroke="#ffffff" stroke-width="1"/>
+    <ellipse cx="27" cy="52" rx="10" ry="2.2" fill="#ffffff" fill-opacity="0.8"/>
+    <line x1="73" y1="35" x2="65" y2="52" stroke="#94a3b8" stroke-width="1.4" stroke-linecap="round"/>
+    <line x1="73" y1="35" x2="81" y2="52" stroke="#94a3b8" stroke-width="1.4" stroke-linecap="round"/>
+    <path d="M 63, 52 C 63, 63 83, 63 83, 52 Z" fill="#e2e8f0" stroke="#ffffff" stroke-width="1"/>
+    <ellipse cx="73" cy="52" rx="10" ry="2.2" fill="#ffffff" fill-opacity="0.8"/>
   </g>
 </svg>

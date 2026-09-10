@@ -1,42 +1,53 @@
-<svg viewBox="0 0 320 80" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 540 100" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="alpar-text-grad-light-alpar" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#0f172a" />
-      <stop offset="100%" stop-color="#1e293b" />
+    <linearGradient id="h-shield-fill-light" x1="20" y1="10" x2="80" y2="90" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#e0f2fe" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#f8fafc" stop-opacity="0.95"/>
     </linearGradient>
-    <linearGradient id="alpar-text-grad-light-ai" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#0284c7" />
-      <stop offset="100%" stop-color="#7c3aed" />
+    <linearGradient id="h-shield-stroke-light" x1="50" y1="8" x2="50" y2="92" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0f172a"/>
     </linearGradient>
-    <linearGradient id="alpar-wm-shield-left-light" x1="20" y1="12" x2="50" y2="88" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#d946ef" />
-      <stop offset="50%" stop-color="#8b5cf6" />
-      <stop offset="100%" stop-color="#3b82f6" />
-    </linearGradient>
-    <linearGradient id="alpar-wm-shield-right-light" x1="80" y1="12" x2="50" y2="88" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#22d3ee" />
-      <stop offset="60%" stop-color="#0284c7" />
-      <stop offset="100%" stop-color="#0f172a" />
-    </linearGradient>
-    <linearGradient id="alpar-wm-core-light" x1="50" y1="36" x2="50" y2="64" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#ffffff" />
-      <stop offset="100%" stop-color="#a855f7" />
+    <linearGradient id="h-text-alpar-light" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
     </linearGradient>
   </defs>
 
-  <g transform="translate(10, 8) scale(0.64)">
-    <path d="M 50,12 L 20,25 V 50 C 20,70 38,83 50,88 Z" fill="url(#alpar-wm-shield-left-light)" fill-opacity="0.95" />
-    <path d="M 50,12 L 80,25 V 50 C 80,70 62,83 50,88 Z" fill="url(#alpar-wm-shield-right-light)" fill-opacity="0.85" />
-    <path d="M 50,18 L 26,29 V 49 C 26,65 40,76 50,81 V 18" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.25" stroke-linecap="round" />
-    <path d="M 50,36 L 62,50 L 50,64 L 38,50 Z" fill="url(#alpar-wm-core-light)" />
-    <path d="M 50,42 L 52.5,47.5 L 58,50 L 52.5,52.5 L 50,58 L 47.5,52.5 L 42,50 L 47.5,47.5 Z" fill="#ffffff" />
+  <!-- EMBLEM ICON -->
+  <g transform="translate(10, 0)">
+    <path d="M 50, 8 L 16, 23 C 16, 60 32, 82 50, 92 C 68, 82 84, 60 84, 23 Z" 
+          fill="url(#h-shield-fill-light)" 
+          stroke="url(#h-shield-stroke-light)" 
+          stroke-width="3" 
+          stroke-linejoin="round"/>
+    <path d="M 50, 14 L 21, 27 C 21, 56 34, 75 50, 84" stroke="#0f172a" stroke-opacity="0.08" stroke-width="1.2" stroke-linecap="round"/>
+    <path d="M 50, 14 L 79, 27 C 79, 56 66, 75 50, 84" stroke="#0f172a" stroke-opacity="0.04" stroke-width="1.2" stroke-linecap="round"/>
+    <line x1="50" y1="18" x2="50" y2="82" stroke="#0f172a" stroke-width="2.4" stroke-linecap="round"/>
+    <circle cx="50" cy="18" r="3" fill="#0f172a"/>
+    <path d="M 42,82 L 58,82 L 54,76 L 46,76 Z" fill="#0f172a"/>
+    <path d="M 27, 35 Q 50, 26 73, 35" stroke="#0f172a" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+    <circle cx="50" cy="29.5" r="2.2" fill="#0284c7"/>
+    <circle cx="27" cy="35" r="1.8" fill="#0f172a"/>
+    <circle cx="73" cy="35" r="1.8" fill="#0f172a"/>
+    <line x1="27" y1="35" x2="19" y2="52" stroke="#475569" stroke-width="1.3" stroke-linecap="round"/>
+    <line x1="27" y1="35" x2="35" y2="52" stroke="#475569" stroke-width="1.3" stroke-linecap="round"/>
+    <path d="M 17, 52 C 17, 63 37, 63 37, 52 Z" fill="#0f172a" stroke="#0f172a" stroke-width="1"/>
+    <ellipse cx="27" cy="52" rx="10" ry="2.2" fill="#0284c7" fill-opacity="0.2"/>
+    <line x1="73" y1="35" x2="65" y2="52" stroke="#475569" stroke-width="1.3" stroke-linecap="round"/>
+    <line x1="73" y1="35" x2="81" y2="52" stroke="#475569" stroke-width="1.3" stroke-linecap="round"/>
+    <path d="M 63, 52 C 63, 63 83, 63 83, 52 Z" fill="#0f172a" stroke="#0f172a" stroke-width="1"/>
+    <ellipse cx="73" cy="52" rx="10" ry="2.2" fill="#0284c7" fill-opacity="0.2"/>
   </g>
 
-  <text x="82" y="47" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="900" letter-spacing="-0.5px">
-    <tspan fill="url(#alpar-text-grad-light-alpar)">ALPAR </tspan>
-    <tspan fill="url(#alpar-text-grad-light-ai)">AI</tspan>
-  </text>
-  <text x="84" y="62" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="700" fill="#64748b" letter-spacing="2.5px">
-    GLOBAL AI INCIDENT RADAR
-  </text>
+  <!-- WORDMARK: ALPAR AI -->
+  <g transform="translate(108, 0)">
+    <text x="0" y="53" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="900" letter-spacing="2px">
+      <tspan fill="url(#h-text-alpar-light)">ALPAR </tspan>
+      <tspan fill="#0284c7">AI</tspan>
+    </text>
+    <text x="2" y="72" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="700" fill="#475569" letter-spacing="2.8px">
+      THE TRUST INFRASTRUCTURE FOR AI ACCOUNTABILITY
+    </text>
+  </g>
 </svg>

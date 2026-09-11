@@ -1,32 +1,17 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { supabase } from "@/lib/supabase/client";
 import { useAdminRealtime } from "./use-admin-realtime";
+import {
+  getAdminUsers,
+  setUserRole,
+  toggleUserBanAction,
+  reviewExpertAppAction,
+  type AdminUserItem,
+  type ExpertApplicationItem,
+} from "@/actions/admin/users";
 
-export interface AdminUserItem {
-  id: string;
-  email: string;
-  role: "user" | "advisor" | "moderator" | "admin" | "ceo" | "expert";
-  full_name?: string | null;
-  is_banned?: boolean;
-  created_at: string;
-  last_sign_in_at?: string | null;
-}
-
-export interface ExpertApplicationItem {
-  id: string;
-  name: string;
-  email: string | null;
-  expertise: string;
-  expertise_area: string | null;
-  title_institution: string;
-  linkedin_url: string | null;
-  status: string;
-  created_at: string;
-  reviewed_at: string | null;
-  reviewed_by: string | null;
-}
+export type { AdminUserItem, ExpertApplicationItem };
 
 export interface UseAdminUsersOptions {
   role?: string;
@@ -69,39 +54,15 @@ export function useAdminUsers({
       setLoading(true);
       setError(null);
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      let query: any = supabase
-        .from("users")
-        .select("id, email, role, full_name, created_at, is_verified", { count: "exact" });
+      const res = await getAdminUsers({ role, search, page, pageSize });
 
-      if (role !== "all") {
-        query = query.eq("role", role);
+      if (!res.ok) {
+        throw new Error(res.error || "Failed to fetch users");
       }
 
-      if (search.trim()) {
-        const term = "%" + search.trim() + "%";
-        query = query.or("email.ilike." + term + ",full_name.ilike." + term);
-      }
-
-      const from = (page - 1) * pageSize;
-      const to = from + pageSize - 1;
-
-      const [usersRes, expertRes] = await Promise.all([
-        query.order("created_at", { ascending: false }).range(from, to),
-        supabase
-          .from("expert_applications")
-          .select("*")
-          .order("created_at", { ascending: false })
-          .limit(10),
-      ]);
-
-      if (usersRes.error) {
-        throw new Error(usersRes.error.message);
-      }
-
-      setUsers((usersRes.data as AdminUserItem[]) || []);
-      setTotalCount(usersRes.count || 0);
-      setExpertApplications((expertRes.data as ExpertApplicationItem[]) || []);
+      setUsers(res.users || []);
+      setTotalCount(res.totalCount || 0);
+      setExpertApplications(res.expertApplications || []);
     } catch (err) {
       setError(err instanceof Error ? err : new Error("Failed to fetch users"));
     } finally {
@@ -127,13 +88,12 @@ export function useAdminUsers({
 
   const updateUserRole = async (userId: string, newRole: AdminUserItem["role"]) => {
     try {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const { error: updateError } = await (supabase as any)
-        .from("users")
-        .update({ role: newRole })
-        .eq("id", userId);
-
-      if (updateError) throw new Error(updateError.message);
+      // Validate role before casting to match setUserRole accepted union
+      if (newRole === "advisor" || newRole === "expert") {
+        return { ok: false, error: "Role cannot be assigned directly" };
+      }
+      const res = await setUserRole({ userId, role: newRole });
+      if (!res.ok) return res;
 
       setUsers((prev) =>
         prev.map((u) => (u.id === userId ? { ...u, role: newRole } : u))
@@ -147,13 +107,8 @@ export function useAdminUsers({
 
   const toggleUserBan = async (userId: string, isBanned: boolean) => {
     try {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const { error: updateError } = await (supabase as any)
-        .from("users")
-        .update({ is_banned: isBanned })
-        .eq("id", userId);
-
-      if (updateError) throw new Error(updateError.message);
+      const res = await toggleUserBanAction(userId, isBanned);
+      if (!res.ok) return res;
 
       setUsers((prev) =>
         prev.map((u) => (u.id === userId ? { ...u, is_banned: isBanned } : u))
@@ -167,17 +122,10 @@ export function useAdminUsers({
 
   const reviewExpertApp = async (appId: string, status: "approved" | "rejected") => {
     try {
+      const res = await reviewExpertAppAction(appId, status);
+      if (!res.ok) return res;
+
       const now = new Date().toISOString();
-      const { error: updateError } = await supabase
-        .from("expert_applications")
-        .update({
-          status,
-          reviewed_at: now,
-        })
-        .eq("id", appId);
-
-      if (updateError) throw new Error(updateError.message);
-
       setExpertApplications((prev) =>
         prev.map((a) => (a.id === appId ? { ...a, status, reviewed_at: now } : a))
       );
@@ -203,3 +151,4 @@ export function useAdminUsers({
     reviewExpertApp,
   };
 }
+

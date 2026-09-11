@@ -22,11 +22,20 @@ vi.mock("@/lib/auth/session", () => ({
 }));
 
 import { requireAdmin } from "@/lib/auth/session";
-import { setUserRole, promoteUser } from "./users";
+import { setUserRole, promoteUser, getAdminUsers } from "./users";
 
 describe("Admin - Users Server Actions", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+  });
+
+  describe("getAdminUsers", () => {
+    it("returns forbidden if caller is not admin", async () => {
+      vi.mocked(requireAdmin).mockResolvedValueOnce(null as unknown as NonNullable<Awaited<ReturnType<typeof requireAdmin>>>);
+      const res = await getAdminUsers();
+      expect(res.ok).toBe(false);
+      expect(res.error).toBe("Forbidden");
+    });
   });
 
   describe("setUserRole", () => {

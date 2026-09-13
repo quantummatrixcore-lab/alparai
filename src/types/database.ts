@@ -2213,6 +2213,10 @@ export type Database = {
           ai_provider_id: string | null
           anonymous_email_hash: string | null
           audit_tier: string | null
+          attribution_confidence: number | null
+          attribution_keyword: string | null
+          attribution_method: string | null
+          needs_provider_review: boolean
           category: Database["public"]["Enums"]["incident_category"]
           comments_count: number
           contains_pii: boolean
@@ -2286,6 +2290,10 @@ export type Database = {
           ai_provider_id?: string | null
           anonymous_email_hash?: string | null
           audit_tier?: string | null
+          attribution_confidence?: number | null
+          attribution_keyword?: string | null
+          attribution_method?: string | null
+          needs_provider_review?: boolean
           category?: Database["public"]["Enums"]["incident_category"]
           comments_count?: number
           contains_pii?: boolean
@@ -2359,6 +2367,10 @@ export type Database = {
           ai_provider_id?: string | null
           anonymous_email_hash?: string | null
           audit_tier?: string | null
+          attribution_confidence?: number | null
+          attribution_keyword?: string | null
+          attribution_method?: string | null
+          needs_provider_review?: boolean
           category?: Database["public"]["Enums"]["incident_category"]
           comments_count?: number
           contains_pii?: boolean

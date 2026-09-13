@@ -104,6 +104,13 @@ export const AdminSidebar = memo(function AdminSidebar() {
             badgeType: "count",
           },
           {
+            label: "Provider Review",
+            href: `/${locale}/admin/provider-review`,
+            icon: Building2,
+            badge: "Queue",
+            badgeType: "alert",
+          },
+          {
             label: t("crossAudit"),
             href: `/${locale}/admin/cross-audit`,
             icon: Scale,

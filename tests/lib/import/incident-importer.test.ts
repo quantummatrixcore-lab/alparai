@@ -6,12 +6,17 @@ import type { ImportIncidentRow } from "@/lib/import/csv-parser";
 // ---------------------------------------------------------------------------
 vi.mock("server-only", () => ({}));
 
+const mockProvidersData = [
+  { id: "uuid-openai", slug: "openai", name: "OpenAI" },
+  { id: "uuid-anthropic", slug: "anthropic", name: "Anthropic" },
+];
+
 const mockUpsert = vi.fn();
 const mockSelect = vi.fn();
 const mockFrom = vi.fn((table) => {
   if (table === "ai_providers") {
     return {
-      select: vi.fn().mockResolvedValue({ data: [], error: null }),
+      select: vi.fn().mockResolvedValue({ data: mockProvidersData, error: null }),
     };
   }
   return {
@@ -124,5 +129,31 @@ describe("importIncidents", () => {
   it("does not call rate limit check (admin bypass)", async () => {
     await importIncidents([makeRow()], "aiaaic_import");
     expect(mockFrom).toHaveBeenCalledWith("incidents");
+  });
+
+  it("records attribution_method = 'alias' and matches provider when keywords present", async () => {
+    const row = makeRow({
+      title: "ChatGPT generated incorrect tax guidance",
+      description: "A taxpayer relied on the AI output and received penalties.",
+    });
+    await importIncidents([row], "aiaaic_import");
+    const upsertCall = mockUpsert.mock.calls[0]?.[0] as Record<string, unknown>[];
+    expect(upsertCall?.[0]?.ai_provider_id).toBe("uuid-openai");
+    expect(upsertCall?.[0]?.attribution_method).toBe("alias");
+    expect(upsertCall?.[0]?.attribution_keyword).toBe("chatgpt");
+    expect(upsertCall?.[0]?.needs_provider_review).toBe(false);
+  });
+
+  it("sets needs_provider_review = true and provider null when no keywords match", async () => {
+    const row = makeRow({
+      title: "Mystery automated screening system rejected candidates",
+      description: "An undisclosed custom algorithm caused unexpected rejection rates.",
+      sourceUrl: "https://unknown-domain.com/blog",
+    });
+    await importIncidents([row], "aiaaic_import");
+    const upsertCall = mockUpsert.mock.calls[0]?.[0] as Record<string, unknown>[];
+    expect(upsertCall?.[0]?.ai_provider_id).toBeNull();
+    expect(upsertCall?.[0]?.attribution_method).toBeNull();
+    expect(upsertCall?.[0]?.needs_provider_review).toBe(true);
   });
 });

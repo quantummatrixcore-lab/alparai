@@ -791,3 +791,57 @@ STATUS: 100% GREEN VERIFIED (0 ERRORS)
 - Audited all function references in 0002_rls_policies.sql against 0001_full_schema.sql and PostgreSQL/Supabase built-in functions.
 - Verified 0 missing helper functions remain in 0002 policies (public.is_admin, public.is_moderator, public.is_ceo, public.is_advisor, storage.foldername, auth.uid, auth.jwt, auth.role all present in 0001).
 - WO-011 task completed 100% idempotently.
+
+
+## 2026-09-13 — WO-012: PROD DATA SPLIT & STAGING ACCEPTANCE (Phase A)
+
+### Staging Acceptance & Seed Extraction Proof (from AUDIT_WO012_WO014.md)
+- **Full Acceptance on Fresh Staging (Auditor-executed)**: `0001_full_schema.sql` → `0002_rls_policies.sql` → `0003_seeds.sql` → `0004_provider_attribution.sql` (Exit 0, clean execution).
+- **Staging Server Counts (Measured on fresh scratch DB `alparai_staging_wo012`)**:
+  - `pg_tables_public`: 141
+  - `pg_policies_public`: 360
+  - `pg_tables_rls`: 58
+  - `ai_providers_count`: 49 seeded providers
+  - `ai_models_count`: 111
+  - `incidents_count`: 16
+  - Server cleaned: scratch DB dropped.
+- **Seed Extraction to Gated 0003**:
+  - Extracted 88 guarded `DO $$ BEGIN ... END $$;` blocks (169,998 bytes, 58 NOT EXISTS table guards).
+  - All 88 blocks verified individually and in sequence with Exit 0.
+  - Second execution verified 100% idempotent (0 duplicate rows).
+- **Deduplication Audit Report (`docs/PROPOSALS/DEDUPE_REPORT.md`, 255,966 bytes)**:
+  - `strategic_answers`: 107 duplicate sets, 708 rows total (601 excess rows). Canonical pick: oldest created_at + fullest text.
+  - `incidents`: 220 duplicate sets, 2,324 rows total (2,104 excess rows; 23 sets with NOT NULL provider, 197 sets with NULL provider).
+  - ZERO PROD WRITES / ZERO PROD DELETES. Phase B remains locked until "prod-yaz".
+- **File Inventory**:
+  - `dehost/migrations/0001_full_schema.sql` (schema defaults & constraints)
+  - `dehost/migrations/0003_seeds.sql` (88 guarded DO $$ blocks, 169,998 bytes)
+  - `docs/PROPOSALS/DEDUPE_REPORT.md` (read-only row details & canonical picks)
+
+---
+
+## 2026-09-13 — WO-014: PROVIDER ATTRIBUTION ENGINE (Phase A)
+
+### Attribution Engine & Verification Proof (from AUDIT_WO012_WO014.md)
+- **Attribution Engine Real**:
+  - 47-alias map in `src/lib/import/provider-aliases.json` & `src/lib/import/provider-alias-map.ts`.
+  - 4-step deterministic precedence hierarchy: `affectedProvider` field → `title` → `description` → `sourceUrl` domain.
+  - First confident hit wins, recording `attribution_method = 'alias'`, matched keyword, and confidence score.
+- **Model-Judge Fallback (`src/lib/import/provider-attribution-judge.ts`)**:
+  - Threshold: `confidence >= 0.8` auto-assigns (`attribution_method = 'model'`, stores confidence); `< 0.8` flags `needs_provider_review = true`, provider remains null.
+  - Model chain: Sovereign (`qwen2.5:1.5b`) first → free open-weight models (`qwen2.5-1.5b-instruct`, `gemma-2-2b-it`).
+- **Review Queue & Learning Loop Actions (`src/actions/admin/provider-attribution.ts`)**:
+  - `getPendingAttributionIncidents()`: lists `needs_provider_review` flagged incidents.
+  - `resolveProviderAttributionAction()`: admin human attribution + dynamic `appendAliasMapping` learning loop into `provider-aliases.json`.
+  - `getAttributionRateMetrics()`: computes auto-resolution rate percentage and queue metrics.
+- **Schema & TypeScript Verification**:
+  - `dehost/migrations/0004_provider_attribution.sql`: added `attribution_method`, `attribution_keyword`, `attribution_confidence`, `needs_provider_review` + rollback.
+  - `pnpm typecheck`: Exit 0 (`tsc --noEmit`, clean).
+  - `pnpm test tests/lib/import/`: 54/54 tests green (51/51 targeted in Auditor run).
+- **File Inventory**:
+  - `src/lib/import/provider-aliases.json`
+  - `src/lib/import/provider-alias-map.ts`
+  - `src/lib/import/provider-attribution-judge.ts`
+  - `src/actions/admin/provider-attribution.ts`
+  - `dehost/migrations/0004_provider_attribution.sql`
+  - `tests/lib/import/provider-attribution.test.ts`

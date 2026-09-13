@@ -1,0 +1,212 @@
+{
+  "openai": [
+    "openai",
+    "chatgpt",
+    "gpt",
+    "gpt-3",
+    "gpt-4",
+    "gpt-4o",
+    "gpt-5",
+    "dall-e",
+    "dalle",
+    "sora"
+  ],
+  "anthropic": [
+    "anthropic",
+    "claude",
+    "mythos",
+    "fable",
+    "test_custom_alias_token_1789268662488",
+    "test_custom_alias_token_1789268691971",
+    "test_custom_alias_token_1789268733687",
+    "test_custom_alias_token_1789268925872",
+    "test_custom_alias_token_1789269175558",
+    "test_custom_alias_token_1789269619403"
+  ],
+  "google": [
+    "google",
+    "gemini",
+    "bard",
+    "gemma",
+    "veo",
+    "deepmind",
+    "lamda"
+  ],
+  "meta": [
+    "meta",
+    "llama",
+    "instagram",
+    "facebook",
+    "whatsapp",
+    "threads"
+  ],
+  "microsoft": [
+    "microsoft",
+    "copilot",
+    "bing",
+    "semantic kernel"
+  ],
+  "xai": [
+    "xai",
+    "grok"
+  ],
+  "mistral": [
+    "mistral",
+    "le chat"
+  ],
+  "stability": [
+    "stability",
+    "stable diffusion",
+    "midjourney"
+  ],
+  "deepseek": [
+    "deepseek",
+    "deepseek-v3",
+    "deepseek-r1"
+  ],
+  "alibaba": [
+    "alibaba",
+    "tongyi",
+    "qianwen",
+    "qwen"
+  ],
+  "baidu": [
+    "baidu",
+    "ernie",
+    "ernie bot"
+  ],
+  "amazon": [
+    "amazon",
+    "bedrock",
+    "titan",
+    "nova"
+  ],
+  "jina": [
+    "jina",
+    "jina ai"
+  ],
+  "cohere": [
+    "cohere",
+    "command",
+    "command-r",
+    "command-r-plus"
+  ],
+  "perplexity": [
+    "perplexity"
+  ],
+  "character-ai": [
+    "character.ai",
+    "character ai",
+    "character-ai"
+  ],
+  "runway": [
+    "runway",
+    "gen-2",
+    "gen-3"
+  ],
+  "pika": [
+    "pika",
+    "pika labs"
+  ],
+  "apple": [
+    "apple",
+    "apple intelligence"
+  ],
+  "synthesia": [
+    "synthesia"
+  ],
+  "heygen": [
+    "heygen"
+  ],
+  "luma": [
+    "luma",
+    "dream machine"
+  ],
+  "suno": [
+    "suno"
+  ],
+  "udio": [
+    "udio"
+  ],
+  "elevenlabs": [
+    "elevenlabs"
+  ],
+  "adobe": [
+    "adobe",
+    "firefly"
+  ],
+  "notion": [
+    "notion",
+    "notion ai"
+  ],
+  "brave": [
+    "brave",
+    "leo"
+  ],
+  "poe": [
+    "quora",
+    "poe"
+  ],
+  "assemblyai": [
+    "assemblyai"
+  ],
+  "lepton": [
+    "lepton"
+  ],
+  "lightricks": [
+    "lightricks"
+  ],
+  "leonardo": [
+    "leonardo.ai",
+    "leonardo ai"
+  ],
+  "nvidia": [
+    "nvidia",
+    "nemotron"
+  ],
+  "groq": [
+    "groq"
+  ],
+  "ai21": [
+    "ai21",
+    "jamba"
+  ],
+  "reka": [
+    "reka"
+  ],
+  "adept": [
+    "adept"
+  ],
+  "cognition": [
+    "cognition",
+    "devin"
+  ],
+  "harvey": [
+    "harvey",
+    "harvey ai"
+  ],
+  "phind": [
+    "phind"
+  ],
+  "poolside": [
+    "poolside"
+  ],
+  "magic": [
+    "magic",
+    "magic ai"
+  ],
+  "inflection": [
+    "inflection",
+    "pi"
+  ],
+  "tencent": [
+    "tencent",
+    "hunyuan"
+  ],
+  "sambanova": [
+    "sambanova"
+  ],
+  "cerebras": [
+    "cerebras"
+  ]
+}

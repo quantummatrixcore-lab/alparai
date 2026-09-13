@@ -274,7 +274,7 @@ DECLARE
   v_new_score INT;
   v_trust_level TEXT;
 BEGIN
-  INSERT INTO public.user_reputation (user_id, reputation_score)
+  INSERT INTO public.user_reputation (user_id, reputation_score) -- KEEP: runtime insert inside stored function adjust_user_reputation_rpc
   VALUES (p_user_id, 50)
   ON CONFLICT (user_id) DO NOTHING;
 
@@ -290,7 +290,7 @@ BEGIN
   WHERE user_id = p_user_id
   RETURNING trust_level INTO v_trust_level;
 
-  INSERT INTO public.reputation_logs (user_id, change_amount, new_score, reason, action_type, triggered_by)
+  INSERT INTO public.reputation_logs (user_id, change_amount, new_score, reason, action_type, triggered_by) -- KEEP: audit log insert inside stored function adjust_user_reputation_rpc
   VALUES (p_user_id, p_change_amount, v_new_score, p_reason, p_action_type, p_triggered_by);
 
   RETURN jsonb_build_object(
@@ -412,7 +412,7 @@ BEGIN
   v_risk_score := LEAST(100.00, v_risk_score);
   v_is_flagged := v_risk_score >= 50.00;
 
-  INSERT INTO public.sybil_detection_logs (user_id, fingerprint, ip_hash, risk_score, is_flagged, anomaly_flags)
+  INSERT INTO public.sybil_detection_logs (user_id, fingerprint, ip_hash, risk_score, is_flagged, anomaly_flags) -- KEEP: security detection log insert inside stored function evaluate_sybil_risk_rpc
   VALUES (p_user_id, p_fingerprint, p_ip_hash, v_risk_score, v_is_flagged, v_flags);
 
   IF p_user_id IS NOT NULL THEN
@@ -484,7 +484,7 @@ CREATE FUNCTION public.handle_new_user() RETURNS trigger
     SET search_path TO 'public'
     AS $$
 begin
-  insert into public.users (id, email, full_name, avatar_url, locale)
+  insert into public.users (id, email, full_name, avatar_url, locale) -- KEEP: user profile bootstrap insert inside handle_new_user auth trigger
   values (
     new.id,
     new.email,
@@ -604,7 +604,7 @@ CREATE FUNCTION public.log_admin_login() RETURNS trigger
 BEGIN
   IF NEW.last_sign_in_at IS NOT NULL AND (OLD.last_sign_in_at IS NULL OR NEW.last_sign_in_at > OLD.last_sign_in_at) THEN
     IF EXISTS (SELECT 1 FROM public.users WHERE id = NEW.id AND role = 'admin') THEN
-      INSERT INTO public.admin_login_events (user_id, login_time, ip_address, user_agent)
+      INSERT INTO public.admin_login_events (user_id, login_time, ip_address, user_agent) -- KEEP: security audit insert inside admin login trigger function
       VALUES (
         NEW.id,
         NEW.last_sign_in_at,
@@ -646,7 +646,7 @@ CREATE FUNCTION public.refresh_incidents_stat() RETURNS trigger
     AS $$
 BEGIN
   IF (TG_OP = 'INSERT') THEN
-    INSERT INTO platform_stats_cache (stat_key, stat_value, updated_at) VALUES ('incidents_total', 1, now())
+    INSERT INTO platform_stats_cache (stat_key, stat_value, updated_at) VALUES ('incidents_total', 1, now()) -- KEEP: cache population inside platform statistics refresh trigger/function
     ON CONFLICT (stat_key) DO UPDATE SET stat_value = platform_stats_cache.stat_value + 1, updated_at = now();
   ELSIF (TG_OP = 'DELETE') THEN
     UPDATE platform_stats_cache SET stat_value = stat_value - 1, updated_at = now() WHERE stat_key = 'incidents_total';
@@ -705,7 +705,7 @@ BEGIN
   WHERE id = p_case_id;
 
   IF v_verdict = 'guilty' THEN
-    INSERT INTO public.ai_rap_sheet_entries (
+    INSERT INTO public.ai_rap_sheet_entries ( -- KEEP: tribunal verdict record insert inside resolve_tribunal_case_rpc
       case_id,
       incident_id,
       entity_type,
@@ -912,7 +912,7 @@ BEGIN
     v_coppa_consent := COALESCE((payload->>'coppa_consent')::BOOLEAN, true);
     v_uk_osa_consent := COALESCE((payload->>'uk_osa_consent')::BOOLEAN, true);
 
-    INSERT INTO public.incidents (
+    INSERT INTO public.incidents ( -- KEEP: incident creation record inside submit_anonymous_incident RPC
         user_id, title, title_masked, description, description_masked,
         category, severity, ai_provider_id, ai_model_id,
         provider_custom_name, model_custom_name, incident_date,
@@ -930,10 +930,10 @@ BEGIN
     RETURNING id INTO new_incident_id;
 
     IF v_ip_hash IS NOT NULL AND v_ip_hash <> '' THEN
-        INSERT INTO public.submission_attempts (ip_hash) VALUES (v_ip_hash);
+        INSERT INTO public.submission_attempts (ip_hash) VALUES (v_ip_hash); -- KEEP: rate-limit tracking record inside submit_anonymous_incident RPC
     END IF;
 
-    INSERT INTO public.age_declarations (
+    INSERT INTO public.age_declarations ( -- KEEP: legal age compliance record inside submit_anonymous_incident RPC
         user_id, incident_id, declared_over_18, coppa_thirteen_plus, uk_osa_eighteen_plus, ip_hash
     ) VALUES (
         v_user_id, new_incident_id, v_age_consent, v_coppa_consent, v_uk_osa_consent, v_ip_hash
@@ -941,7 +941,7 @@ BEGIN
 
     v_now := to_char(clock_timestamp(), 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"');
     FOREACH v_ctype IN ARRAY v_consent_types LOOP
-        INSERT INTO public.consent_log (
+        INSERT INTO public.consent_log ( -- KEEP: compliance consent tracking record inside submit_anonymous_incident RPC
             user_id, consent_type, consent_text_snapshot, related_entity_type,
             related_entity_id, granted, ip_hash, user_agent
         ) VALUES (
@@ -1152,7 +1152,7 @@ CREATE TABLE auth.users (
 --
 
 CREATE TABLE public.advisory_board_members (
-    id text NOT NULL,
+    id text DEFAULT gen_random_uuid()::text NOT NULL,
     name text,
     title_en text,
     title_tr text,
@@ -1177,7 +1177,7 @@ CREATE TABLE public.advisory_board_members (
 --
 
 CREATE TABLE public.ai_free_models (
-    id text NOT NULL,
+    id text DEFAULT gen_random_uuid()::text NOT NULL,
     name text NOT NULL,
     provider text NOT NULL,
     context_length integer DEFAULT 0,
@@ -1551,7 +1551,7 @@ CREATE TABLE public.consent_log (
 --
 
 CREATE TABLE public.cookie_consent_log (
-    id text NOT NULL,
+    id text DEFAULT gen_random_uuid()::text NOT NULL,
     user_id text,
     session_id text,
     consent_level text,
@@ -1581,7 +1581,7 @@ CREATE TABLE public.cost_log (
 --
 
 CREATE TABLE public.cron_job_logs (
-    id text NOT NULL,
+    id text DEFAULT gen_random_uuid()::text NOT NULL,
     cron_name text,
     started_at text,
     completed_at text,
@@ -1624,7 +1624,7 @@ CREATE TABLE public.email_preferences (
     watches boolean,
     reporter_notifications boolean,
     updated_at text,
-    id text NOT NULL,
+    id text DEFAULT gen_random_uuid()::text NOT NULL,
     email text,
     marketing_opt_in boolean,
     source text
@@ -1657,7 +1657,7 @@ CREATE TABLE public.evidence (
 --
 
 CREATE TABLE public.expert_applications (
-    id text NOT NULL,
+    id text DEFAULT gen_random_uuid()::text NOT NULL,
     name text,
     title_institution text,
     expertise text,
@@ -1676,7 +1676,7 @@ CREATE TABLE public.expert_applications (
 --
 
 CREATE TABLE public.external_incidents_queue (
-    id text NOT NULL,
+    id text DEFAULT gen_random_uuid()::text NOT NULL,
     source text,
     external_url text,
     title text,
@@ -1694,7 +1694,7 @@ CREATE TABLE public.external_incidents_queue (
 --
 
 CREATE TABLE public.feed_incidents (
-    id text NOT NULL,
+    id text DEFAULT gen_random_uuid()::text NOT NULL,
     user_id text,
     is_anonymous boolean,
     title text,
@@ -1749,7 +1749,7 @@ CREATE TABLE public.feed_incidents (
 --
 
 CREATE TABLE public.finance_monthly_costs (
-    id text NOT NULL,
+    id text DEFAULT gen_random_uuid()::text NOT NULL,
     service text,
     month text,
     amount_usd numeric,
@@ -1808,7 +1808,7 @@ CREATE TABLE public.funnel_events (
 --
 
 CREATE TABLE public.grant_applications (
-    id text NOT NULL,
+    id text DEFAULT gen_random_uuid()::text NOT NULL,
     program_name text,
     funding_amount text,
     apply_url text,
@@ -1953,6 +1953,10 @@ CREATE TABLE public.incidents (
     is_possible_duplicate boolean,
     encrypted_evidence boolean,
     evidence_ciphertext text,
+    attribution_method text,
+    attribution_keyword text,
+    attribution_confidence real,
+    needs_provider_review boolean DEFAULT false NOT NULL,
     CONSTRAINT incidents_description_check CHECK ((char_length(description) <= 10000)),
     CONSTRAINT incidents_title_check CHECK (((char_length(title) >= 8) AND (char_length(title) <= 200)))
 );
@@ -2166,7 +2170,7 @@ CREATE TABLE public.k_benchmark_question_bank (
 --
 
 CREATE TABLE public.k_categories (
-    id text NOT NULL,
+    id text DEFAULT gen_random_uuid()::text NOT NULL,
     name text,
     description text,
     created_at text
@@ -2178,7 +2182,7 @@ CREATE TABLE public.k_categories (
 --
 
 CREATE TABLE public.k_model_scores (
-    id text NOT NULL,
+    id text DEFAULT gen_random_uuid()::text NOT NULL,
     category_id text,
     model_id text,
     score numeric,
@@ -2211,7 +2215,7 @@ CREATE TABLE public.k_model_scores_history (
 --
 
 CREATE TABLE public.linkedin_contacts (
-    id text NOT NULL,
+    id text DEFAULT gen_random_uuid()::text NOT NULL,
     full_name text,
     title text,
     company text,
@@ -2324,7 +2328,7 @@ CREATE TABLE public.model_reviews (
 --
 
 CREATE TABLE public.moderation_sla (
-    id text NOT NULL,
+    id text DEFAULT gen_random_uuid()::text NOT NULL,
     title_masked text,
     created_at text,
     reviewed_at text,
@@ -2405,7 +2409,7 @@ CREATE TABLE public.social_accounts (
 --
 
 CREATE TABLE public.social_posts (
-    id text NOT NULL,
+    id text DEFAULT gen_random_uuid()::text NOT NULL,
     platform text,
     status text,
     content_type text,
@@ -2435,7 +2439,7 @@ CREATE TABLE public.social_posts (
 --
 
 CREATE TABLE public.social_templates (
-    id text NOT NULL,
+    id text DEFAULT gen_random_uuid()::text NOT NULL,
     name text,
     platform text,
     content_type text,
@@ -2451,7 +2455,7 @@ CREATE TABLE public.social_templates (
 --
 
 CREATE TABLE public.strategic_answers (
-    id text NOT NULL,
+    id text DEFAULT gen_random_uuid()::text NOT NULL,
     run_id text,
     model_id text,
     model_name text,
@@ -2471,7 +2475,7 @@ CREATE TABLE public.strategic_answers (
 --
 
 CREATE TABLE public.strategic_questions (
-    id text NOT NULL,
+    id text DEFAULT gen_random_uuid()::text NOT NULL,
     section text,
     question text,
     created_at text
@@ -2483,7 +2487,7 @@ CREATE TABLE public.strategic_questions (
 --
 
 CREATE TABLE public.strategy_innovations (
-    id text NOT NULL,
+    id text DEFAULT gen_random_uuid()::text NOT NULL,
     title text,
     description text,
     priority text,
@@ -2498,7 +2502,7 @@ CREATE TABLE public.strategy_innovations (
 --
 
 CREATE TABLE public.strategy_milestones (
-    id text NOT NULL,
+    id text DEFAULT gen_random_uuid()::text NOT NULL,
     quarter text,
     title text,
     okr_text text,
@@ -2516,7 +2520,7 @@ CREATE TABLE public.strategy_milestones (
 --
 
 CREATE TABLE public.strategy_risks (
-    id text NOT NULL,
+    id text DEFAULT gen_random_uuid()::text NOT NULL,
     code text,
     title text,
     description text,
@@ -2536,7 +2540,7 @@ CREATE TABLE public.strategy_risks (
 --
 
 CREATE TABLE public.strategy_swot_items (
-    id text NOT NULL,
+    id text DEFAULT gen_random_uuid()::text NOT NULL,
     category text,
     title text,
     description text,
@@ -2555,7 +2559,7 @@ CREATE TABLE public.strategy_swot_items (
 --
 
 CREATE TABLE public.strategy_todos (
-    id text NOT NULL,
+    id text DEFAULT gen_random_uuid()::text NOT NULL,
     priority numeric,
     title text,
     is_completed boolean,
@@ -2569,7 +2573,7 @@ CREATE TABLE public.strategy_todos (
 --
 
 CREATE TABLE public.strategy_valuations (
-    id text NOT NULL,
+    id text DEFAULT gen_random_uuid()::text NOT NULL,
     method text,
     inputs jsonb,
     result_pre_money numeric,
@@ -2908,7 +2912,7 @@ CREATE TABLE public.whistleblower_submissions (
 --
 
 CREATE TABLE storage.buckets (
-    id text NOT NULL,
+    id text DEFAULT gen_random_uuid()::text NOT NULL,
     name text NOT NULL,
     owner uuid,
     created_at timestamp with time zone DEFAULT now(),
@@ -6238,7 +6242,7 @@ $$;
 create or replace function public.handle_new_user()
 returns trigger language plpgsql security definer set search_path = public as $$
 begin
-  insert into public.users (id, email, full_name, avatar_url, locale)
+  insert into public.users (id, email, full_name, avatar_url, locale) -- KEEP: user profile bootstrap insert inside handle_new_user auth trigger
   values (
     new.id,
     new.email,
@@ -7412,7 +7416,7 @@ GRANT SELECT (processing_stage) ON public.incidents TO anon, authenticated;
 CREATE OR REPLACE FUNCTION public.handle_new_user()
 RETURNS trigger LANGUAGE plpgsql SECURITY DEFINER SET search_path = public AS $$
 BEGIN
-  INSERT INTO public.users (id, email, full_name, avatar_url, locale)
+  INSERT INTO public.users (id, email, full_name, avatar_url, locale) -- KEEP: user profile bootstrap insert inside handle_new_user auth trigger
   VALUES (
     new.id,
     new.email,
@@ -7422,7 +7426,7 @@ BEGIN
   )
   ON CONFLICT (id) DO NOTHING;
 
-  INSERT INTO public.email_preferences (user_id, weekly_digest, watches, reporter_notifications)
+  INSERT INTO public.email_preferences (user_id, weekly_digest, watches, reporter_notifications) -- KEEP: default email preferences insert inside handle_new_user auth trigger
   VALUES (new.id, true, true, true)
   ON CONFLICT (user_id) DO NOTHING;
 
@@ -7436,7 +7440,7 @@ $$;
 -- CREATE OR REPLACE FUNCTION public.handle_new_user()
 -- RETURNS trigger LANGUAGE plpgsql SECURITY DEFINER SET search_path = public AS $$
 -- BEGIN
---   INSERT INTO public.users (id, email, full_name, avatar_url, locale)
+--   INSERT INTO public.users (id, email, full_name, avatar_url, locale) -- KEEP: user profile bootstrap insert inside handle_new_user auth trigger
 --   VALUES (
 --     new.id,
 --     new.email,
@@ -8916,7 +8920,7 @@ BEGIN
       WHERE id = NEW.id AND role::text IN ('admin', 'ceo', 'moderator', 'advisor')
     )
   ) THEN
-    INSERT INTO public.admin_login_events (user_id, ip_hash)
+    INSERT INTO public.admin_login_events (user_id, ip_hash) -- KEEP: security audit insert inside admin login trigger function
     VALUES (
       NEW.id,
       encode(extensions.digest(public.get_request_ip(), 'sha256'), 'hex')
@@ -9421,7 +9425,7 @@ CREATE TABLE IF NOT EXISTS public.platform_statistics (
 CREATE OR REPLACE FUNCTION set_platform_stat(p_key text, p_val bigint)
 RETURNS void AS $$
 BEGIN
-  INSERT INTO platform_statistics (stat_key, stat_value, updated_at)
+  INSERT INTO platform_statistics (stat_key, stat_value, updated_at) -- KEEP: aggregate statistics record inside platform metric trigger/function
   VALUES (p_key, p_val, now())
   ON CONFLICT (stat_key)
   DO UPDATE SET stat_value = EXCLUDED.stat_value, updated_at = now();
@@ -9733,7 +9737,7 @@ BEGIN
     v_uk_osa_consent := COALESCE((payload->>'uk_osa_consent')::BOOLEAN, true);
 
     -- 1. Insert incident record
-    INSERT INTO public.incidents (
+    INSERT INTO public.incidents ( -- KEEP: incident creation record inside submit_anonymous_incident RPC
         user_id, title, title_masked, description, description_masked,
         category, severity, ai_provider_id, ai_model_id,
         provider_custom_name, model_custom_name, incident_date,
@@ -9752,11 +9756,11 @@ BEGIN
 
     -- 2. Insert submission attempt
     IF v_ip_hash IS NOT NULL AND v_ip_hash <> '' THEN
-        INSERT INTO public.submission_attempts (ip_hash) VALUES (v_ip_hash);
+        INSERT INTO public.submission_attempts (ip_hash) VALUES (v_ip_hash); -- KEEP: rate-limit tracking record inside submit_anonymous_incident RPC
     END IF;
 
     -- 3. Insert age declaration
-    INSERT INTO public.age_declarations (
+    INSERT INTO public.age_declarations ( -- KEEP: legal age compliance record inside submit_anonymous_incident RPC
         user_id, incident_id, declared_over_18, coppa_thirteen_plus, uk_osa_eighteen_plus, ip_hash
     ) VALUES (
         v_user_id, new_incident_id, v_age_consent, v_coppa_consent, v_uk_osa_consent, v_ip_hash
@@ -9765,7 +9769,7 @@ BEGIN
     -- 4. Insert consent log entries
     v_now := to_char(clock_timestamp(), 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"');
     FOREACH v_ctype IN ARRAY v_consent_types LOOP
-        INSERT INTO public.consent_log (
+        INSERT INTO public.consent_log ( -- KEEP: compliance consent tracking record inside submit_anonymous_incident RPC
             user_id, consent_type, consent_text_snapshot, related_entity_type,
             related_entity_id, granted, ip_hash, user_agent
         ) VALUES (
@@ -10051,7 +10055,7 @@ DECLARE
   v_new_score INT;
   v_trust_level TEXT;
 BEGIN
-  INSERT INTO public.user_reputation (user_id, reputation_score)
+  INSERT INTO public.user_reputation (user_id, reputation_score) -- KEEP: runtime insert inside stored function adjust_user_reputation_rpc
   VALUES (p_user_id, 50)
   ON CONFLICT (user_id) DO NOTHING;
 
@@ -10067,7 +10071,7 @@ BEGIN
   WHERE user_id = p_user_id
   RETURNING trust_level INTO v_trust_level;
 
-  INSERT INTO public.reputation_logs (user_id, change_amount, new_score, reason, action_type, triggered_by)
+  INSERT INTO public.reputation_logs (user_id, change_amount, new_score, reason, action_type, triggered_by) -- KEEP: audit log insert inside stored function adjust_user_reputation_rpc
   VALUES (p_user_id, p_change_amount, v_new_score, p_reason, p_action_type, p_triggered_by);
 
   RETURN jsonb_build_object(
@@ -10124,7 +10128,7 @@ BEGIN
   v_risk_score := LEAST(100.00, v_risk_score);
   v_is_flagged := v_risk_score >= 50.00;
 
-  INSERT INTO public.sybil_detection_logs (user_id, fingerprint, ip_hash, risk_score, is_flagged, anomaly_flags)
+  INSERT INTO public.sybil_detection_logs (user_id, fingerprint, ip_hash, risk_score, is_flagged, anomaly_flags) -- KEEP: security detection log insert inside stored function evaluate_sybil_risk_rpc
   VALUES (p_user_id, p_fingerprint, p_ip_hash, v_risk_score, v_is_flagged, v_flags);
 
   IF p_user_id IS NOT NULL THEN
@@ -10192,7 +10196,7 @@ BEGIN
   WHERE id = p_case_id;
 
   IF v_verdict = 'guilty' THEN
-    INSERT INTO public.ai_rap_sheet_entries (
+    INSERT INTO public.ai_rap_sheet_entries ( -- KEEP: tribunal verdict record insert inside resolve_tribunal_case_rpc
       case_id,
       incident_id,
       entity_type,
@@ -10814,7 +10818,7 @@ RETURNS trigger AS $$
 BEGIN
   IF NEW.last_sign_in_at IS NOT NULL AND (OLD.last_sign_in_at IS NULL OR NEW.last_sign_in_at > OLD.last_sign_in_at) THEN
     IF EXISTS (SELECT 1 FROM public.users WHERE id = NEW.id AND role = 'admin') THEN
-      INSERT INTO public.admin_login_events (user_id, login_time, ip_address, user_agent)
+      INSERT INTO public.admin_login_events (user_id, login_time, ip_address, user_agent) -- KEEP: security audit insert inside admin login trigger function
       VALUES (
         NEW.id,
         NEW.last_sign_in_at,
@@ -10862,7 +10866,7 @@ CREATE OR REPLACE FUNCTION refresh_incidents_stat()
 RETURNS trigger AS $$
 BEGIN
   IF (TG_OP = 'INSERT') THEN
-    INSERT INTO platform_stats_cache (stat_key, stat_value, updated_at) VALUES ('incidents_total', 1, now())
+    INSERT INTO platform_stats_cache (stat_key, stat_value, updated_at) VALUES ('incidents_total', 1, now()) -- KEEP: cache population inside platform statistics refresh trigger/function
     ON CONFLICT (stat_key) DO UPDATE SET stat_value = platform_stats_cache.stat_value + 1, updated_at = now();
   ELSIF (TG_OP = 'DELETE') THEN
     UPDATE platform_stats_cache SET stat_value = stat_value - 1, updated_at = now() WHERE stat_key = 'incidents_total';
@@ -10944,7 +10948,7 @@ BEGIN
     v_coppa_consent := COALESCE((payload->>'coppa_consent')::BOOLEAN, true);
     v_uk_osa_consent := COALESCE((payload->>'uk_osa_consent')::BOOLEAN, true);
 
-    INSERT INTO public.incidents (
+    INSERT INTO public.incidents ( -- KEEP: incident creation record inside submit_anonymous_incident RPC
         user_id, title, title_masked, description, description_masked,
         category, severity, ai_provider_id, ai_model_id,
         provider_custom_name, model_custom_name, incident_date,
@@ -10962,10 +10966,10 @@ BEGIN
     RETURNING id INTO new_incident_id;
 
     IF v_ip_hash IS NOT NULL AND v_ip_hash <> '' THEN
-        INSERT INTO public.submission_attempts (ip_hash) VALUES (v_ip_hash);
+        INSERT INTO public.submission_attempts (ip_hash) VALUES (v_ip_hash); -- KEEP: rate-limit tracking record inside submit_anonymous_incident RPC
     END IF;
 
-    INSERT INTO public.age_declarations (
+    INSERT INTO public.age_declarations ( -- KEEP: legal age compliance record inside submit_anonymous_incident RPC
         user_id, incident_id, declared_over_18, coppa_thirteen_plus, uk_osa_eighteen_plus, ip_hash
     ) VALUES (
         v_user_id, new_incident_id, v_age_consent, v_coppa_consent, v_uk_osa_consent, v_ip_hash
@@ -10973,7 +10977,7 @@ BEGIN
 
     v_now := to_char(clock_timestamp(), 'YYYY-MM-DD"T"HH24:MI:SS.MS"Z"');
     FOREACH v_ctype IN ARRAY v_consent_types LOOP
-        INSERT INTO public.consent_log (
+        INSERT INTO public.consent_log ( -- KEEP: compliance consent tracking record inside submit_anonymous_incident RPC
             user_id, consent_type, consent_text_snapshot, related_entity_type,
             related_entity_id, granted, ip_hash, user_agent
         ) VALUES (

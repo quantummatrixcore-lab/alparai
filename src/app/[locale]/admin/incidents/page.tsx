@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useMemo, useEffect } from "react";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 import {
   ShieldAlert,
   Search,
@@ -68,6 +70,8 @@ function calculateSlaRemainingHours(createdAt?: string | null, totalSlaHours = 7
 
 export default function IncidentsPage() {
   const t = useTranslations("admin.sidebar");
+  const params = useParams();
+  const locale = (params?.locale as string) || "en";
   const [incidents, setIncidents] = useState<IncidentRecord[]>([]);
   const [loadingDb, setLoadingDb] = useState(false);
   const [search, setSearch] = useState("");
@@ -248,6 +252,13 @@ export default function IncidentsPage() {
         </div>
 
         <div className="flex items-center gap-2">
+          <Link
+            href={`/${locale}/admin/provider-review`}
+            className="flex items-center gap-1.5 rounded-md border border-amber-500/40 bg-amber-500/10 px-3 py-1.5 text-xs font-semibold text-amber-400 shadow-sm transition-all hover:bg-amber-500/20"
+          >
+            <Building className="h-3.5 w-3.5" />
+            <span>Sağlayıcı Triage Masası</span>
+          </Link>
           <button
             onClick={() => setShowExportModal(true)}
             className="flex items-center gap-1.5 rounded-md border border-[#d0d7de] bg-[#ffffff] px-3 py-1.5 text-xs font-medium text-[#1f2328] shadow-sm transition-all hover:bg-[#f6f8fa] dark:border-[#30363d] dark:bg-[#21262d] dark:text-[#f0f6fc] dark:hover:bg-[#30363d]"

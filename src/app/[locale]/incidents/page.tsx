@@ -211,7 +211,7 @@ export default async function IncidentsPage({
               <span className="bg-danger-400 absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"></span>
               <span className="bg-danger-500 relative inline-flex h-2 w-2 rounded-full shadow-[0_0_8px_rgba(230,57,70,1)]"></span>
             </span>
-            Bağımsız Denetim Mercii
+            {t("independent_audit_authority", { defaultValue: "Bağımsız Denetim Mercii" })}
           </div>
           <h1 className="text-balance text-4xl font-black tracking-tight text-fg-primary drop-shadow-sm dark:drop-shadow-2xl sm:text-5xl">
             {t("page_title")}

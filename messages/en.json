@@ -4165,6 +4165,7 @@
     "imported_incident_attribution_title": "External Source Attribution",
     "incident_classification": "Incident Classification",
     "incident_date": "When did it happen?",
+    "independent_audit_authority": "Independent Audit Authority",
     "is_expert": "I am a domain expert/researcher in this field",
     "is_expert_hint": "Check this if you have technical background or professional experience related to this system/failure.",
     "language": "Language",

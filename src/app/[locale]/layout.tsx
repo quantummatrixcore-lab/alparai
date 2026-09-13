@@ -99,7 +99,7 @@ export default async function LocaleLayout({
                   <div className="fixed top-0 right-0 left-0 z-[60] w-full max-w-full overflow-hidden">
                     <LiveTicker />
                   </div>
-                  <div className="mt-8">
+                  <div className="mt-9">
                     <Header user={headerUser} />
                   </div>
                   <MainContent>{children}</MainContent>

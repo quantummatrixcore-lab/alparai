@@ -10,7 +10,7 @@ vi.mock("@/lib/auth/session", () => ({
   }),
 }));
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({
     from: (_table: string) => ({
       select: () => ({

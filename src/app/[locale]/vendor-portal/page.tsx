@@ -1,6 +1,6 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import {
   VendorDefensePortalClient,
   type VendorPortalIncidentItem,
@@ -29,10 +29,10 @@ export default async function VendorPortalPage({
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
 
-  // Query published incidents from Supabase
-  const { data: dbIncidents } = await supabase
+  // Query published incidents from DeHost
+  const { data: dbIncidents } = await dehost
     .from("incidents")
     .select(
       "id, title, category, severity, status, provider_custom_name, model_custom_name, description, created_at, vendor_response_text, vendor_response_at",

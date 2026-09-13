@@ -49,7 +49,7 @@ When a P1/P2 alert is received:
 
 1. Open the Sentry issue detail page link provided in the notification.
 2. Verify if the error is originating from client-side runtime or serverless Edge function.
-3. If it is an Edge function issue causing >2% error rate, verify that the Vercel auto-rollback webhook was triggered and target deployment was rolled back successfully.
+3. If it is an Edge function issue causing >2% error rate, verify that the DeHost auto-rollback webhook was triggered and target deployment was rolled back successfully.
 4. Check database connection health using:
    ```bash
    pnpm db:reset --dry-run

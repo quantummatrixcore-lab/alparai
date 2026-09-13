@@ -1,11 +1,11 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { waitUntil } from "@vercel/functions";
+import { waitUntil } from "@/lib/dehost/functions-stub";
 import { getLocale, getTranslations } from "next-intl/server";
 import { logger } from "@/lib/utils/logger";
-import { createServerClient } from "@/lib/supabase/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createServerClient } from "@/lib/dehost/server";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { getCurrentUser } from "@/lib/auth/session";
 import { maskPII } from "@/lib/pii/guardian";
 import { incidentSubmissionSchema, type IncidentSubmissionInput } from "@/lib/validation/schemas";
@@ -137,13 +137,13 @@ const runSubmitWork = async (
 
   const locale = await resolveLocale();
 
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
   const hdrs = await headers();
   const userAgent = hdrs.get("user-agent") ?? null;
 
   let isPossibleDuplicate = false;
   try {
-    const { data: dupData } = await supabase
+    const { data: dupData } = await dehost
       .rpc("check_incident_duplicate", { title_to_check: raw.title })
       .maybeSingle();
 
@@ -192,7 +192,7 @@ const runSubmitWork = async (
     uk_osa_consent: raw.consents.ukOsa,
   };
 
-  const { data: rpcRes, error: rpcErr } = await supabase.rpc("submit_incident_atomic", { payload });
+  const { data: rpcRes, error: rpcErr } = await dehost.rpc("submit_incident_atomic", { payload });
 
   if (rpcErr || !rpcRes) {
     return { kind: "retryable", error: rpcErr?.message ?? "incident_insert_failed" };
@@ -768,7 +768,7 @@ export async function submitIncident(
           try {
             const res = await autoModerateIncidentAction(
               incidentId,
-              process.env.SUPABASE_SERVICE_ROLE_KEY,
+              process.env.DEHOST_SERVICE_ROLE_KEY,
             );
             if (res.ok) {
               waitUntil(

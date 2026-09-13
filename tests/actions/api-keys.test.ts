@@ -36,7 +36,7 @@ const mockUpsert = vi.fn().mockResolvedValue({ error: null });
 const mockDelete = vi.fn().mockReturnThis();
 const mockEq = vi.fn().mockResolvedValue({ error: null });
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({
     from: () => ({
       select: mockSelect,

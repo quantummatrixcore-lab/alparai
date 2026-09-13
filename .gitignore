@@ -22,11 +22,11 @@ next-env.d.ts
 # Env & Secrets
 .env
 .env*.local
-.env.vercel*
+.env.dehost*
 .env.*
 
-# Vercel & Tooling
-.vercel/
+# DeHost & Tooling
+.dehost/
 artifacts/
 scratch/
 test-results/

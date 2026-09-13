@@ -42,7 +42,7 @@ every "CI green" claim as unverified regardless of source — including this fil
 ## Root cause found — closed (v13.47, 2026-08-17)
 
 The Founder reported that continuous pushing had **exhausted the GitHub Actions quota** and had
-also produced unexpected Vercel spend.
+also produced unexpected DeHost spend.
 
 That is the answer. `runner_id: 0` with a two-second failure and an empty `runner_name` is what
 quota exhaustion looks like from the API — the run is created, no runner is ever allocated, and it

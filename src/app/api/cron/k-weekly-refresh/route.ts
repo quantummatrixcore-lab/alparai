@@ -1,6 +1,6 @@
 import { withCronLogger } from "@/lib/utils/cron-logger";
 import { type NextRequest, NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 import { calculateWilsonInterval } from "@/lib/utils/wilson-score";
 
@@ -30,18 +30,18 @@ async function getHandler(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const supabase = createAdminClient();
+  const dehost = createAdminClient();
 
   try {
     // 1. Fetch active models and categories
-    const { data: models, error: modelsErr } = await supabase
+    const { data: models, error: modelsErr } = await dehost
       .from("ai_models")
       .select("id, name")
       .eq("status", "active");
 
     if (modelsErr) throw modelsErr;
 
-    const { data: categories, error: categoriesErr } = await supabase
+    const { data: categories, error: categoriesErr } = await dehost
       .from("k_categories")
       .select("id");
 
@@ -52,7 +52,7 @@ async function getHandler(request: NextRequest) {
     }
 
     // 2. Fetch current scores to establish base scores
-    const { data: currentScores, error: scoresErr } = await supabase
+    const { data: currentScores, error: scoresErr } = await dehost
       .from("k_model_scores")
       .select("category_id, model_id, score");
 
@@ -67,7 +67,7 @@ async function getHandler(request: NextRequest) {
 
     // 3. Fetch incidents from the last 90 days to calculate penalties
     const ninetyDaysAgo = new Date(Date.now() - 90 * 24 * 60 * 60 * 1000).toISOString();
-    const { data: incidents, error: incidentsErr } = await supabase
+    const { data: incidents, error: incidentsErr } = await dehost
       .from("incidents")
       .select("ai_model_id, severity, upvotes_count")
       .eq("status", "published")
@@ -137,7 +137,7 @@ async function getHandler(request: NextRequest) {
     }
 
     // 5. Bulk upsert new scores in public.k_model_scores
-    const { error: upsertErr } = await supabase
+    const { error: upsertErr } = await dehost
       .from("k_model_scores")
       .upsert(upsertRows, { onConflict: "category_id,model_id" });
 

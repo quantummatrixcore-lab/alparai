@@ -1,7 +1,7 @@
 "use server";
 
 import { requireAdmin } from "@/lib/auth/session";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 
 export type SignalCategory = "performance" | "security" | "reliability" | "ux";
 
@@ -77,7 +77,7 @@ export async function getSystemSignalsAction(): Promise<Signal[]> {
         threshold: 50,
         trend: isDbHealthy && measuredDbLatencyMs <= 50 ? "stable" : "up",
         status: !isDbHealthy ? "danger" : measuredDbLatencyMs <= 50 ? "healthy" : "warning",
-        description: `Supabase PostgreSQL live query latency (${totalIncidents} incidents, ${totalVotes} votes tracked)`,
+        description: `DeHost PostgreSQL live query latency (${totalIncidents} incidents, ${totalVotes} votes tracked)`,
       },
       {
         name: "AI Model Router Throughput",
@@ -113,10 +113,10 @@ export async function getSystemSignalsAction(): Promise<Signal[]> {
         threshold: 95,
         trend: "up",
         status: "healthy",
-        description: "Supabase table isolation policies active across 100% of tables",
+        description: "DeHost table isolation policies active across 100% of tables",
       },
       {
-        name: "Vercel Edge Uptime",
+        name: "DeHost Edge Uptime",
         category: "reliability",
         value: 99.98,
         threshold: 99.9,
@@ -137,7 +137,7 @@ export async function getSystemSignalsAction(): Promise<Signal[]> {
         threshold: 80,
         trend: "stable",
         status: "healthy",
-        description: "Supabase pooled database connections load index",
+        description: "DeHost pooled database connections load index",
       },
       {
         name: "Core Web Vitals (LCP)",
@@ -189,7 +189,7 @@ export async function getSystemSignalsAction(): Promise<Signal[]> {
         description: "Sanitization active",
       },
       {
-        name: "Vercel Edge Uptime",
+        name: "DeHost Edge Uptime",
         category: "reliability",
         value: 99.9,
         threshold: 99.9,

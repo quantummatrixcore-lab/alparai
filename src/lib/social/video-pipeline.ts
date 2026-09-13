@@ -1,6 +1,6 @@
 import "server-only";
 import { VertexVeoAdapter } from "@/lib/ai/adapters/vertex-veo";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 
 export interface VideoPipelineResult {
@@ -11,7 +11,7 @@ export interface VideoPipelineResult {
 }
 
 export async function generateWeeklyVideoSummary(): Promise<VideoPipelineResult> {
-  const supabase = createAdminClient();
+  const dehost = createAdminClient();
   const veo = new VertexVeoAdapter();
 
   try {
@@ -21,7 +21,7 @@ export async function generateWeeklyVideoSummary(): Promise<VideoPipelineResult>
     const sevenDaysAgo = new Date();
     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
 
-    const { data: incidents, error: dbError } = await supabase
+    const { data: incidents, error: dbError } = await dehost
       .from("incidents")
       .select("id, title, description, severity")
       .eq("status", "published")
@@ -38,7 +38,7 @@ export async function generateWeeklyVideoSummary(): Promise<VideoPipelineResult>
         "[VideoPipeline] No new incidents in the last 7 days, fallback to top incidents.",
       );
       // Fallback: get top incidents overall
-      const { data: fallbackIncidents } = await supabase
+      const { data: fallbackIncidents } = await dehost
         .from("incidents")
         .select("id, title, description, severity")
         .eq("status", "published")
@@ -62,11 +62,11 @@ export async function generateWeeklyVideoSummary(): Promise<VideoPipelineResult>
     if (isConfigured) {
       const response = await veo.generateVideo(prompt, "16:9", 5);
       if (response.ok) {
-        // Upload base64 video to Supabase Storage bucket 'social-assets'
+        // Upload base64 video to DeHost Storage bucket 'social-assets'
         const buffer = Buffer.from(response.base64, "base64");
         const filename = `weekly-summary-${Date.now()}.mp4`;
 
-        const { error: uploadError } = await supabase.storage
+        const { error: uploadError } = await dehost.storage
           .from("social-assets")
           .upload(filename, buffer, {
             contentType: "video/mp4",
@@ -78,7 +78,7 @@ export async function generateWeeklyVideoSummary(): Promise<VideoPipelineResult>
         }
 
         // Get public URL
-        const { data: publicUrlData } = supabase.storage
+        const { data: publicUrlData } = dehost.storage
           .from("social-assets")
           .getPublicUrl(filename);
 
@@ -96,7 +96,7 @@ export async function generateWeeklyVideoSummary(): Promise<VideoPipelineResult>
     }
 
     // 4. Save video meta to social_assets DB table
-    const { error: insertError } = await supabase.from("social_posts").insert({
+    const { error: insertError } = await dehost.from("social_posts").insert({
       title: "Weekly AI Incident Video Summary",
       body_text: `Weekly AI incident digest video: ${titles}. Watch to learn about recent AI security vulnerabilities. #AIAccountability #AISafety`,
       content_type: "weekly_report",

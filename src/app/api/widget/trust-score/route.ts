@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -88,8 +88,8 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
   let providerName = "";
 
   try {
-    const supabase = await createServerClient();
-    const { data } = await supabase
+    const dehost = await createServerClient();
+    const { data } = await dehost
       .from("ai_providers")
       .select("id, name, trust_score")
       .eq("slug", slug)
@@ -100,7 +100,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
       if (typeof data.trust_score === "number" && !isNaN(data.trust_score)) {
         score = Math.round(data.trust_score);
       } else {
-        const { count } = await supabase
+        const { count } = await dehost
           .from("incidents")
           .select("id", { count: "exact", head: true })
           .eq("ai_provider_id", data.id)

@@ -1,17 +1,17 @@
 /* eslint-disable */
 import dotenv from "dotenv";
 dotenv.config({ path: ".env.local" });
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from "@/lib/dehost/client";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const dehostUrl = process.env.NEXT_PUBLIC_DEHOST_URL || process.env.DEHOST_URL;
+const dehostKey = process.env.DEHOST_SERVICE_ROLE_KEY;
 
-if (!supabaseUrl || !supabaseKey) {
-  console.error("Missing Supabase credentials");
+if (!dehostUrl || !dehostKey) {
+  console.error("Missing DeHost credentials");
   process.exit(1);
 }
 
-const supabase = createClient(supabaseUrl, supabaseKey);
+const dehost = createClient(dehostUrl, dehostKey);
 
 const TRUSTED_ALLOWLIST = [
   "technologyreview.mit.edu",
@@ -23,7 +23,7 @@ const TRUSTED_ALLOWLIST = [
 async function run() {
   console.log("Starting A2 migration update...");
   for (const domain of TRUSTED_ALLOWLIST) {
-    const { data, error } = await supabase
+    const { data, error } = await dehost
       .from("external_incidents_queue")
       .update({ status: "published" })
       .eq("status", "pending")
@@ -36,7 +36,7 @@ async function run() {
     }
   }
   
-  const { data: check, error: checkError } = await supabase
+  const { data: check, error: checkError } = await dehost
     .from("external_incidents_queue")
     .select("id", { count: 'exact' })
     .eq("status", "published");

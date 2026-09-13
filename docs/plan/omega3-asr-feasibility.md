@@ -40,8 +40,8 @@ Kullanıcı (Browser MediaRecorder)
     → Server Action submitAudioIncident()
       → Qwen DashScope ASR API (transcript)
         → PII Guardian maskPII()
-          → Supabase Storage (incident-audios bucket)
-          → Supabase DB (incidents table)
+          → DeHost Storage (incident-audios bucket)
+          → DeHost DB (incidents table)
             → revalidatePath("/incidents")
               → { ok: true, incidentId }
 ```
@@ -53,7 +53,7 @@ Kullanıcı (Browser MediaRecorder)
 ```typescript
 "use server";
 
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { getCurrentUser } from "@/lib/auth/session";
 import { maskPII } from "@/lib/pii/guardian";
 import { incidentSubmissionSchema } from "@/lib/validation/schemas";
@@ -88,7 +88,7 @@ export async function submitAudioIncident(_prevState: unknown, formData: FormDat
     const cleanTranscript = maskPII(rawTranscript);
     const validated = incidentSubmissionSchema.parse({ title, description: cleanTranscript });
 
-    // 3. Supabase Private Storage Kaydı
+    // 3. DeHost Private Storage Kaydı
     const admin = createAdminClient();
     const filePath = `audios/${user?.id || "anon"}/${Date.now()}_${crypto.randomUUID()}.webm`;
     const buffer = Buffer.from(await audioFile.arrayBuffer());
@@ -126,9 +126,9 @@ export async function submitAudioIncident(_prevState: unknown, formData: FormDat
 
 ---
 
-## 4. Supabase Storage & RLS Politikası Tasarımı
+## 4. DeHost Storage & RLS Politikası Tasarımı
 
-Migration dosyası: `supabase/migrations/20260806120000_create_incident_audios_bucket.sql`
+Migration dosyası: `dehost/migrations/20260806120000_create_incident_audios_bucket.sql`
 
 ```sql
 -- 1. Private Bucket Oluşturma

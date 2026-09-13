@@ -32,7 +32,7 @@ those rules is that changes to this file go through git, with an identity check 
 record. If backlog status needs to be admin-editable, it belongs in a database table with its own
 audit log, not a raw rewrite of the file the Architect's role is defined around.
 
-**Practical note:** on Vercel's deployed runtime the application filesystem is read-only outside
+**Practical note:** on DeHost's deployed runtime the application filesystem is read-only outside
 `/tmp`, so this action likely throws at runtime rather than silently corrupting the file in
 production. That is incidental, not a mitigation — the code as written expresses an intent this
 project's governance model cannot accept, and would work exactly as designed in a local dev

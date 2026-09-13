@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import "@/../tests/helpers/setup"; // import mock setup
 
 const mockGetUser = vi.fn();
-vi.mock("@/lib/supabase/server", () => ({
+vi.mock("@/lib/dehost/server", () => ({
   createServerClient: () => ({
     auth: {
       getUser: mockGetUser,
@@ -11,7 +11,7 @@ vi.mock("@/lib/supabase/server", () => ({
 }));
 
 const mockFrom = vi.fn();
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({
     from: mockFrom,
   }),

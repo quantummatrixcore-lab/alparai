@@ -227,7 +227,7 @@ class UnifiedResearchNexus {
       const body = (page && page.markdown) ? page.markdown : meta.snippet;
 
       const hasCve = /CVE-\d{4}-\d{4,7}/i.test(body);
-      const hasSecretLeak = /(api[_-]?key|secret|token|service_role|supabase)/i.test(body);
+      const hasSecretLeak = /(api[_-]?key|secret|token|service_role|dehost)/i.test(body);
       const hasRls = /(rls|row level security|unauthorized|bypass)/i.test(body);
       const hasInjection = /(prompt injection|jailbreak|xss|innerhtml)/i.test(body);
 

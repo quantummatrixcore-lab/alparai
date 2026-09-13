@@ -1,12 +1,12 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
-import { createMockSupabaseClient, createTestUser } from "../helpers/supabase-mock";
+import { createMockDeHostClient, createTestUser } from "../helpers/dehost-mock";
 
 vi.hoisted(() => {
-  vi.doMock("@/lib/supabase/admin", () => ({
+  vi.doMock("@/lib/dehost/admin", () => ({
     createAdminClient: vi.fn(),
   }));
-  vi.doMock("@/lib/supabase/server", () => ({
+  vi.doMock("@/lib/dehost/server", () => ({
     createServerClient: vi.fn(),
     createClient: vi.fn(),
   }));
@@ -16,8 +16,8 @@ vi.hoisted(() => {
   }));
 });
 
-import { createServerClient } from "@/lib/supabase/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createServerClient } from "@/lib/dehost/server";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { requireCEO } from "@/lib/auth/session";
 import {
   upsertSwotItemAction,
@@ -30,14 +30,14 @@ import {
   createMetricsSnapshotAction,
 } from "@/actions/strategy";
 
-let mockSupabaseClient: ReturnType<typeof createMockSupabaseClient>;
+let mockDeHostClient: ReturnType<typeof createMockDeHostClient>;
 const mockCeo = createTestUser({ role: "ceo", id: "ceo-123" });
 
 beforeEach(() => {
   vi.clearAllMocks();
-  mockSupabaseClient = createMockSupabaseClient();
-  vi.mocked(createServerClient).mockResolvedValue(mockSupabaseClient as never);
-  vi.mocked(createAdminClient).mockReturnValue(mockSupabaseClient as never);
+  mockDeHostClient = createMockDeHostClient();
+  vi.mocked(createServerClient).mockResolvedValue(mockDeHostClient as never);
+  vi.mocked(createAdminClient).mockReturnValue(mockDeHostClient as never);
   vi.mocked(requireCEO).mockResolvedValue(mockCeo as never);
 });
 
@@ -48,7 +48,7 @@ describe("SWOT Actions", () => {
       const mockSelect = vi.fn().mockReturnValue({ single: mockSingle });
       const mockInsert = vi.fn().mockReturnValue({ select: mockSelect });
 
-      mockSupabaseClient.from.mockReturnValue({
+      mockDeHostClient.from.mockReturnValue({
         insert: mockInsert,
       } as never);
 
@@ -64,7 +64,7 @@ describe("SWOT Actions", () => {
 
       expect(result.success).toBe(true);
       expect(result.id).toBe("swot-new");
-      expect(mockSupabaseClient.from).toHaveBeenCalledWith("strategy_swot_items");
+      expect(mockDeHostClient.from).toHaveBeenCalledWith("strategy_swot_items");
       expect(mockInsert).toHaveBeenCalled();
     });
 
@@ -74,7 +74,7 @@ describe("SWOT Actions", () => {
       const mockEq = vi.fn().mockReturnValue({ select: mockSelect });
       const mockUpdate = vi.fn().mockReturnValue({ eq: mockEq });
 
-      mockSupabaseClient.from.mockReturnValue({
+      mockDeHostClient.from.mockReturnValue({
         update: mockUpdate,
       } as never);
 
@@ -100,7 +100,7 @@ describe("SWOT Actions", () => {
       const mockSelect = vi.fn().mockReturnValue({ single: mockSingle });
       const mockInsert = vi.fn().mockReturnValue({ select: mockSelect });
 
-      mockSupabaseClient.from.mockReturnValue({
+      mockDeHostClient.from.mockReturnValue({
         insert: mockInsert,
       } as never);
 
@@ -123,7 +123,7 @@ describe("SWOT Actions", () => {
       const mockEq = vi.fn().mockResolvedValue({ error: null });
       const mockDelete = vi.fn().mockReturnValue({ eq: mockEq });
 
-      mockSupabaseClient.from.mockReturnValue({
+      mockDeHostClient.from.mockReturnValue({
         delete: mockDelete,
       } as never);
 
@@ -137,7 +137,7 @@ describe("SWOT Actions", () => {
       const mockEq = vi.fn().mockResolvedValue({ error: { message: "Delete Failed" } });
       const mockDelete = vi.fn().mockReturnValue({ eq: mockEq });
 
-      mockSupabaseClient.from.mockReturnValue({
+      mockDeHostClient.from.mockReturnValue({
         delete: mockDelete,
       } as never);
 
@@ -153,7 +153,7 @@ describe("Risk Actions", () => {
       const mockSelect = vi.fn().mockReturnValue({ single: mockSingle });
       const mockInsert = vi.fn().mockReturnValue({ select: mockSelect });
 
-      mockSupabaseClient.from.mockReturnValue({
+      mockDeHostClient.from.mockReturnValue({
         insert: mockInsert,
       } as never);
 
@@ -170,7 +170,7 @@ describe("Risk Actions", () => {
 
       expect(result.success).toBe(true);
       expect(result.id).toBe("risk-new");
-      expect(mockSupabaseClient.from).toHaveBeenCalledWith("strategy_risks");
+      expect(mockDeHostClient.from).toHaveBeenCalledWith("strategy_risks");
     });
 
     it("updates an existing risk successfully", async () => {
@@ -179,7 +179,7 @@ describe("Risk Actions", () => {
       const mockEq = vi.fn().mockReturnValue({ select: mockSelect });
       const mockUpdate = vi.fn().mockReturnValue({ eq: mockEq });
 
-      mockSupabaseClient.from.mockReturnValue({
+      mockDeHostClient.from.mockReturnValue({
         update: mockUpdate,
       } as never);
 
@@ -206,7 +206,7 @@ describe("Risk Actions", () => {
       const mockEq = vi.fn().mockResolvedValue({ error: null });
       const mockDelete = vi.fn().mockReturnValue({ eq: mockEq });
 
-      mockSupabaseClient.from.mockReturnValue({
+      mockDeHostClient.from.mockReturnValue({
         delete: mockDelete,
       } as never);
 
@@ -223,7 +223,7 @@ describe("Valuation Actions", () => {
       const mockSelect = vi.fn().mockReturnValue({ single: mockSingle });
       const mockInsert = vi.fn().mockReturnValue({ select: mockSelect });
 
-      mockSupabaseClient.from.mockReturnValue({
+      mockDeHostClient.from.mockReturnValue({
         insert: mockInsert,
       } as never);
 
@@ -236,7 +236,7 @@ describe("Valuation Actions", () => {
 
       expect(result.success).toBe(true);
       expect(result.id).toBe("val-123");
-      expect(mockSupabaseClient.from).toHaveBeenCalledWith("strategy_valuations");
+      expect(mockDeHostClient.from).toHaveBeenCalledWith("strategy_valuations");
     });
   });
 });
@@ -248,7 +248,7 @@ describe("Milestone / Roadmap Actions", () => {
       const mockSelect = vi.fn().mockReturnValue({ single: mockSingle });
       const mockInsert = vi.fn().mockReturnValue({ select: mockSelect });
 
-      mockSupabaseClient.from.mockReturnValue({
+      mockDeHostClient.from.mockReturnValue({
         insert: mockInsert,
       } as never);
 
@@ -263,7 +263,7 @@ describe("Milestone / Roadmap Actions", () => {
 
       expect(result.success).toBe(true);
       expect(result.id).toBe("ms-new");
-      expect(mockSupabaseClient.from).toHaveBeenCalledWith("strategy_milestones");
+      expect(mockDeHostClient.from).toHaveBeenCalledWith("strategy_milestones");
     });
 
     it("updates an existing milestone successfully", async () => {
@@ -272,7 +272,7 @@ describe("Milestone / Roadmap Actions", () => {
       const mockEq = vi.fn().mockReturnValue({ select: mockSelect });
       const mockUpdate = vi.fn().mockReturnValue({ eq: mockEq });
 
-      mockSupabaseClient.from.mockReturnValue({
+      mockDeHostClient.from.mockReturnValue({
         update: mockUpdate,
       } as never);
 
@@ -297,7 +297,7 @@ describe("Milestone / Roadmap Actions", () => {
       const mockEq = vi.fn().mockResolvedValue({ error: null });
       const mockDelete = vi.fn().mockReturnValue({ eq: mockEq });
 
-      mockSupabaseClient.from.mockReturnValue({
+      mockDeHostClient.from.mockReturnValue({
         delete: mockDelete,
       } as never);
 
@@ -314,7 +314,7 @@ describe("Metrics Snapshot Actions", () => {
       const mockSelect = vi.fn().mockReturnValue({ single: mockSingle });
       const mockInsert = vi.fn().mockReturnValue({ select: mockSelect });
 
-      mockSupabaseClient.from.mockReturnValue({
+      mockDeHostClient.from.mockReturnValue({
         insert: mockInsert,
       } as never);
 
@@ -330,7 +330,7 @@ describe("Metrics Snapshot Actions", () => {
 
       expect(result.success).toBe(true);
       expect(result.id).toBe("snap-1");
-      expect(mockSupabaseClient.from).toHaveBeenCalledWith("strategy_metrics_snapshots");
+      expect(mockDeHostClient.from).toHaveBeenCalledWith("strategy_metrics_snapshots");
     });
   });
 });

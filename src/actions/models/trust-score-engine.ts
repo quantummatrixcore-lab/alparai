@@ -1,6 +1,6 @@
 "use server";
 
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 import { calculateRankingTier, type RankingTier } from "@/lib/ranking/calculate-tier";
 import { requireAdmin } from "@/lib/auth/session";
@@ -17,10 +17,10 @@ export interface TrustEngineResult {
 export async function recalculateTrustScoresAction(): Promise<TrustEngineResult> {
   try {
     await requireAdmin();
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
     // 1. Fetch all providers
-    const { data: providers, error: providersErr } = await supabase
+    const { data: providers, error: providersErr } = await dehost
       .from("ai_providers")
       .select("id, slug, name, is_verified");
 
@@ -44,7 +44,7 @@ export async function recalculateTrustScoresAction(): Promise<TrustEngineResult>
     }
 
     const metricsPromises = providers.map(async (provider) => {
-      const { data: incidentRows, error: incErr } = await supabase
+      const { data: incidentRows, error: incErr } = await dehost
         .from("incidents")
         .select("id, severity, created_at, resolved_at")
         .eq("ai_provider_id", provider.id)
@@ -121,7 +121,7 @@ export async function recalculateTrustScoresAction(): Promise<TrustEngineResult>
     const upsertData = await Promise.all(metricsPromises);
 
     const { error: upsertErr } = await (
-      supabase.from("vendor_trust_rankings" as never) as unknown as {
+      dehost.from("vendor_trust_rankings" as never) as unknown as {
         upsert: (
           data: Record<string, unknown>[],
           options: { onConflict: string },
@@ -138,7 +138,7 @@ export async function recalculateTrustScoresAction(): Promise<TrustEngineResult>
     }
 
     // 4. Update strategy innovation status for I19
-    await supabase
+    await dehost
       .from("strategy_innovations")
       .update({ status: "done", updated_at: new Date().toISOString() })
       .ilike("title", "%I19%");

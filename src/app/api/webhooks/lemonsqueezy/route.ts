@@ -1,7 +1,7 @@
-import { waitUntil } from "@vercel/functions";
+import { waitUntil } from "@/lib/dehost/functions-stub";
 import { NextResponse } from "next/server";
 import crypto from "crypto";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 import { processAutonomousPdfInvoice } from "@/lib/billing/invoices";
 

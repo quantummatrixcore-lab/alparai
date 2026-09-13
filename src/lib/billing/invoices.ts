@@ -1,4 +1,4 @@
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 
 export interface InvoiceData {
@@ -98,7 +98,7 @@ export function generatePdfBufferFromInvoice(data: InvoiceData): Buffer {
 }
 
 /**
- * Uploads an invoice PDF buffer to Supabase Storage in the 'invoices' bucket.
+ * Uploads an invoice PDF buffer to DeHost Storage in the 'invoices' bucket.
  */
 export async function uploadInvoiceToStorage(
   invoiceId: string,
@@ -117,7 +117,7 @@ export async function uploadInvoiceToStorage(
       });
 
     if (uploadError) {
-      logger.warn("Supabase storage upload returned warning/error for invoice", {
+      logger.warn("DeHost storage upload returned warning/error for invoice", {
         invoiceId,
         userId,
         error: uploadError.message,
@@ -140,7 +140,7 @@ export async function uploadInvoiceToStorage(
     };
   } catch (err) {
     logger.error(
-      "Failed to upload invoice to Supabase Storage",
+      "Failed to upload invoice to DeHost Storage",
       {
         invoiceId,
         userId,

@@ -15,11 +15,11 @@ import {
 
 function baseEnv(overrides: Partial<EnvMap> = {}): EnvMap {
   return {
-    VERCEL_GIT_COMMIT_REF: "refs/heads/master",
-    VERCEL_GIT_COMMIT_SHA: "abc123def456",
-    VERCEL_GIT_COMMIT_MESSAGE: "fix: repair the widget",
-    VERCEL_GIT_REPO_OWNER: "quantummatrixcore-lab",
-    VERCEL_GIT_REPO_SLUG: "Alparai.com",
+    DEHOST_GIT_COMMIT_REF: "refs/heads/master",
+    DEHOST_GIT_COMMIT_SHA: "abc123def456",
+    DEHOST_GIT_COMMIT_MESSAGE: "fix: repair the widget",
+    DEHOST_GIT_REPO_OWNER: "quantummatrixcore-lab",
+    DEHOST_GIT_REPO_SLUG: "Alparai.com",
     GITHUB_TOKEN: "test-token",
     DEPLOY_GATE_REQUIRED_CHECKS: "build, Visual Regression Lock",
     ...overrides,
@@ -247,7 +247,7 @@ describe("runDeployGate decision flow", () => {
   it("skips on a non-master ref without calling the GitHub API", async () => {
     const fetchImpl = vi.fn();
     const result = await runDeployGate({
-      env: baseEnv({ VERCEL_GIT_COMMIT_REF: "refs/heads/feature-x" }),
+      env: baseEnv({ DEHOST_GIT_COMMIT_REF: "refs/heads/feature-x" }),
       execImpl: codeChangeExecImpl,
       fetchImpl: fetchImpl as unknown as FetchImpl,
       logImpl: () => {},
@@ -261,7 +261,7 @@ describe("runDeployGate decision flow", () => {
     const fetchImpl = vi.fn();
     const { lines, logImpl } = createLogCollector();
     const result = await runDeployGate({
-      env: baseEnv({ VERCEL_GIT_COMMIT_MESSAGE: "hotfix: prod is down [force-deploy]" }),
+      env: baseEnv({ DEHOST_GIT_COMMIT_MESSAGE: "hotfix: prod is down [force-deploy]" }),
       execImpl: codeChangeExecImpl,
       fetchImpl: fetchImpl as unknown as FetchImpl,
       logImpl,

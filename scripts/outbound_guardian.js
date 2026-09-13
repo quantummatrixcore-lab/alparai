@@ -7,7 +7,7 @@ const path = require("path");
 
 const RESTRICTED_TERMS = [
   { term: "alparai-platform", reason: 'Private repository name. Use "alparai" instead.' },
-  { term: "SUPABASE_SERVICE_ROLE_KEY", reason: "Service role key environment variable name." },
+  { term: "DEHOST_SERVICE_ROLE_KEY", reason: "Service role key environment variable name." },
   { term: "127.0.0.1:9222", reason: "Local debugging port." },
   { term: "localhost:9222", reason: "Local debugging port." },
 ];

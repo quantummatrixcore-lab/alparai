@@ -1,4 +1,4 @@
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { fetchRedditPosts } from "@/lib/connectors/reddit";
 import { fetchHNStories } from "@/lib/connectors/hackernews";
 import { fetchGitHubIncidents } from "@/lib/connectors/github";
@@ -28,7 +28,7 @@ function getDomain(url: string) {
 }
 
 export async function runExternalFetchTask() {
-  const supabase = createAdminClient();
+  const dehost = createAdminClient();
 
   const redditSubs = ["ChatGPT", "artificial", "MachineLearning", "ArtificialIntelligence"];
   const redditKeywords = ["hallucination", "bias", "error", "wrong", "harm"];
@@ -173,7 +173,7 @@ export async function runExternalFetchTask() {
   // --- Process positive developments directly into ecosystem_news ---
   let positiveInserted = 0;
   for (const item of allPositive) {
-    const { error } = await supabase.from("ecosystem_news").insert({
+    const { error } = await dehost.from("ecosystem_news").insert({
       title_en: item.title,
       summary_en: item.body,
       category: "positive_development",
@@ -222,7 +222,7 @@ export async function runExternalFetchTask() {
       }
     }
 
-    const { error } = await supabase.from("external_incidents_queue").upsert(
+    const { error } = await dehost.from("external_incidents_queue").upsert(
       {
         source: item.source,
         external_url: item.external_url,

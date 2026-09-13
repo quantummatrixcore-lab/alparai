@@ -62,10 +62,10 @@
 - **Model / Role:** Senior Staff Systems Engineer & Backend Architect.
 - **Core Domain:** Database Schemas, RLS Policies, Server Actions, GEO Intelligence, Performance, DevOps.
 - **Specific Capabilities:**
-  1. **Database & Migrations:** Writing PostgreSQL migrations (`supabase/migrations/`), defining strict RLS policies, indexing, and `-- ROLLBACK:` blocks.
+  1. **Database & Migrations:** Writing PostgreSQL migrations (`dehost/migrations/`), defining strict RLS policies, indexing, and `-- ROLLBACK:` blocks.
   2. **GEO Engine & Telemetry:** Dynamic `/llms.txt`, JSON-LD Schema.org generators (`ClaimReview`, `Dataset`), Upstash Redis bot tracking counters, citation metrics.
-  3. **Backend & Server Actions:** `src/actions/` mutation logic, Supabase Service Role management, PII Guardian sanitization, rate-limiting, and error handling.
-  4. **DevOps & Verification:** `pnpm lint`, `pnpm typecheck`, `pnpm test`, Vercel CLI deployments (`[deploy]`), DORA Elite telemetry via Vercel REST API.
+  3. **Backend & Server Actions:** `src/actions/` mutation logic, DeHost Service Role management, PII Guardian sanitization, rate-limiting, and error handling.
+  4. **DevOps & Verification:** `pnpm lint`, `pnpm typecheck`, `pnpm test`, DeHost CLI deployments (`[deploy]`), DORA Elite telemetry via DeHost REST API.
   5. **Auto-Prune & Performance:** DB retention policies (`prune_old_telemetry()`), Redis TTL governance, Next.js `unstable_cache` / React `cache()` data fetching.
   6. **Security Hardening:** SSRF-safe fetch (host allowlist, no private-IP redirect, response size/time caps), `crypto.timingSafeEqual` for all secret comparisons, env-only secrets (no file-based vault), security scanning CI (semgrep, trivy, gitleaks).
   7. **Stitch MCP Architecture & Design Specs:** Utilizing Stitch MCP tools (`create_project`, `create_design_system`, `generate_screen_from_text`, `edit_screens`) to produce machine-readable UI specs (`ia-spec.md`), bento-grid layout frames, and design token definitions for OpenCode to implement.
@@ -97,8 +97,8 @@ Ajanlar (özellikle Antigravity ve Claude Architect) aşağıdaki MCP sunucu ve 
 | Kategori                      | MCP Sunucuları                                                                                  | Sağlanan Yetenekler                                                                                                             |
 | ----------------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | **Tasarım & UI**              | `StitchMCP`                                                                                     | Arayüz tasarımı, ekran üretimi (`generate_screen_from_text`), tasarım sistemi (`create_design_system`), bento-grid varyantları. |
-| **Veritabanı & Cloud SQL**    | `supabase`, `mcp-server-neon`, `cloud-sql`, `alloydb-postgresql`, `bigquery`, `clickhouse`      | Canlı SQL sorguları, RLS yönetimi, şema karşılaştırma, Neon branch yönetimi, BigQuery & ClickHouse analitiği.                   |
-| **Dağıtım & Cloud Infra**     | `vercel`, `cloudrun`, `google-compute-engine`, `gcloud`                                         | Otomatik Vercel & Cloud Run deploy, VM ve container yönetimi, SSL ve alan adı yapılandırması.                                   |
+| **Veritabanı & Cloud SQL**    | `dehost`, `mcp-server-neon`, `cloud-sql`, `alloydb-postgresql`, `bigquery`, `clickhouse`      | Canlı SQL sorguları, RLS yönetimi, şema karşılaştırma, Neon branch yönetimi, BigQuery & ClickHouse analitiği.                   |
+| **Dağıtım & Cloud Infra**     | `dehost`, `cloudrun`, `google-compute-engine`, `gcloud`                                         | Otomatik DeHost & Cloud Run deploy, VM ve container yönetimi, SSL ve alan adı yapılandırması.                                   |
 | **Kod & İş Takibi**           | `github`, `atlassian-mcp-server`                                                                | GitHub PR/Issue yönetimi, kod arama, Jira bilet yönetimi, Confluence dokümantasyonu.                                            |
 | **Tarayıcı & Web Otomasyonu** | `openchrome`, `chrome-devtools-mcp`                                                             | Yerel Chrome/Edge CDP kontrolü, form doldurma, Captcha/Auth duvarı geçme, DOM snapshot & screenshot.                            |
 | **Ajan Köprüleri & Engine**   | `mcp-agent-bridge`, `mcp-engine-bridge`                                                         | Alt ajan orkestrasyonu (Agent B, F, Tartarus, Omega, Kairos, Atlas, Prometheus).                                                |

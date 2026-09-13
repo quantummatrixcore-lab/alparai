@@ -1,5 +1,5 @@
 import "server-only";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { getRedisInstance } from "@/lib/utils/rate-limit";
 import { logger } from "@/lib/utils/logger";
 

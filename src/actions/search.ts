@@ -1,6 +1,6 @@
 "use server";
 
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/dehost/server";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { headers } from "next/headers";
 import { logger } from "@/lib/utils/logger";
@@ -35,12 +35,12 @@ export async function searchIncidents(
         error: `Too many searches. Try again in ${rl.retryAfter}s.`,
       };
     }
-    const supabase = await createClient();
+    const dehost = await createClient();
     const sanitized = query
       .trim()
       .replace(/[^\w\s-]/g, "")
       .slice(0, 100);
-    const { data: rawData, error } = await supabase
+    const { data: rawData, error } = await dehost
       .from("incidents")
       .select("id, title_masked, category, severity, created_at")
       .eq("status", "published")

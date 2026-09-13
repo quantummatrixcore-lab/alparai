@@ -1,6 +1,6 @@
 "use server";
 
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { requireModerator } from "@/lib/auth/session";
 
 export interface KpiMetric {
@@ -145,7 +145,7 @@ export async function getStartupHealth(): Promise<StartupHealthResult | null> {
       scorePct,
       showPercentages: true,
       uptimePct: 99.98,
-      zeroCostBurnStr: "$20.00 / mo (Vercel Pro)",
+      zeroCostBurnStr: "$20.00 / mo (DeHost Pro)",
       measuredAt: new Date().toISOString(),
       mrr: 0,
     };

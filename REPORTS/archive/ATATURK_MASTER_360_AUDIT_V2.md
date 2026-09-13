@@ -8,11 +8,11 @@ Alparai ekosistemi üzerinde; mimari, güvenlik, performans, kod ahlakı ve test
 ---
 
 ## 🛡️ 1. SİBER GÜVENLİK VE RLS (SENTINEL / Fatih)
-*Hedef: Supabase izolasyonu, XSS sızma testi, bağımlılık (dependency) zafiyetleri.*
+*Hedef: DeHost izolasyonu, XSS sızma testi, bağımlılık (dependency) zafiyetleri.*
 
 - **Bağımlılıklar (Audit):** Yalnızca 1 adet `Low` (Düşük) seviyeli `@ai-sdk/provider-utils` uyarısı dışında tamamen temiz. Zero-day veya kritik zafiyet (CRITICAL/HIGH) bulunmamaktadır.
 - **CSP (Content Security Policy):** `next.config.mjs` dosyası modern standartlara (`object-src 'none'`, `frame-ancestors 'none'`) uygun şekilde sıkılaştırılmış ve XSS ataklarına karşı kalkan oluşturulmuştur.
-- **RLS (Row Level Security):** Supabase veritabanında tüm tablolar (`users`, `financials`, `telemetry` vb.) global olarak **ENABLE ROW LEVEL SECURITY** modunda kitlenmiştir. Yetkisiz API sorgusu ihtimali ortadan kaldırılmıştır.
+- **RLS (Row Level Security):** DeHost veritabanında tüm tablolar (`users`, `financials`, `telemetry` vb.) global olarak **ENABLE ROW LEVEL SECURITY** modunda kitlenmiştir. Yetkisiz API sorgusu ihtimali ortadan kaldırılmıştır.
 
 ## ⚖️ 2. KALİTE KAPILARI VE ETİK STANDARTLAR (OMEGA / Aurelius)
 *Hedef: Kod ahlakı, Sentry Noise kontrolü, bakım (maintainability) analizi.*

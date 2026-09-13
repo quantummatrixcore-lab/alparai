@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Award, ShieldAlert, DollarSign, Plus, Loader2 } from "lucide-react";
 import { MetricCard } from "@/components/admin-core/metric-card";
-import { supabase } from "@/lib/supabase/client";
+import { dehost } from "@/lib/dehost/client";
 import { useTranslations } from "next-intl";
 
 interface BountyRow {
@@ -25,7 +25,7 @@ export default function ChallengesPage() {
     async function loadBounties() {
       try {
         setLoading(true);
-        const { data, error } = await supabase
+        const { data, error } = await dehost
           .from("bug_bounties")
           .select(
             "id, incident_id, status, severity_score, actual_reward_cents, estimated_reward_cents, created_at",
@@ -70,7 +70,7 @@ export default function ChallengesPage() {
             {t("challenges")}
           </h1>
           <p className="mt-0.5 text-xs text-[#656d76] dark:text-[#8b949e]">
-            Live Supabase bug bounty registry and red-team vulnerability disclosures.
+            Live DeHost bug bounty registry and red-team vulnerability disclosures.
           </p>
         </div>
 
@@ -113,7 +113,7 @@ export default function ChallengesPage() {
         {loading ? (
           <div className="flex h-32 items-center justify-center gap-2 text-[#656d76] dark:text-[#8b949e]">
             <Loader2 className="h-5 w-5 animate-spin text-purple-500" />
-            <span>Connecting to Supabase bug_bounties table...</span>
+            <span>Connecting to DeHost bug_bounties table...</span>
           </div>
         ) : bounties.length === 0 ? (
           <div className="flex h-32 flex-col items-center justify-center text-center text-[#656d76] dark:text-[#8b949e]">

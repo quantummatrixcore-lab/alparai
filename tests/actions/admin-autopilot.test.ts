@@ -1,12 +1,12 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
-import { createTestAdmin } from "../helpers/supabase-mock";
+import { createTestAdmin } from "../helpers/dehost-mock";
 
 vi.hoisted(() => {
   vi.doMock("@/lib/auth/session", () => ({
     requireAdmin: vi.fn(),
   }));
-  vi.doMock("@/lib/supabase/admin", () => {
+  vi.doMock("@/lib/dehost/admin", () => {
     const chainable = {
       select: () => chainable,
       order: () => chainable,

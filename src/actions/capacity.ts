@@ -1,15 +1,15 @@
 "use server";
 
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { requireAdmin } from "@/lib/auth/session";
 
 export interface CapacityMetrics {
-  supabaseDb: {
+  dehostDb: {
     usedBytes: number;
     limitBytes: number;
     percentage: number;
   };
-  supabaseStorage: {
+  dehostStorage: {
     usedBytes: number;
     limitBytes: number;
     percentage: number;
@@ -19,13 +19,13 @@ export interface CapacityMetrics {
     kModelScores: number;
     externalIncidentsQueue: number;
   };
-  vercelDeploys: {
+  dehostDeploys: {
     used: number;
     limit: number;
     percentage: number;
     lastVerified: string;
   };
-  vercelCrons: {
+  dehostCrons: {
     used: number;
     limit: number;
     percentage: number;
@@ -55,14 +55,14 @@ export async function getLiveCapacityMetrics(): Promise<CapacityMetrics> {
     await requireAdmin();
     const db = createAdminClient();
 
-    // 1. Supabase Database Size via RPC
+    // 1. DeHost Database Size via RPC
     let dbUsedBytes = 24117248; // Default fallback: 23 MB
     const { data: dbSizeData, error: dbSizeErr } = await db.rpc("get_database_size");
     if (!dbSizeErr && dbSizeData) {
       dbUsedBytes = Number(dbSizeData);
     }
 
-    // 2. Supabase Storage Size via RPC
+    // 2. DeHost Storage Size via RPC
     let storageUsedBytes = 5242908; // 5 MB fallback
     const { data: storageSizeData, error: storageSizeErr } = await db.rpc("get_storage_size");
     if (!storageSizeErr && storageSizeData) {
@@ -97,16 +97,16 @@ export async function getLiveCapacityMetrics(): Promise<CapacityMetrics> {
     const dailyUsedCost = !dailyCostErr && dailyCost ? Number(dailyCost) : 0;
     const monthlyUsedCost = !monthlyCostErr && monthlyCost ? Number(monthlyCost) : 0;
 
-    const dbLimit = 8589934592; // 8 GB (Supabase Pro Plan)
-    const storageLimit = 107374182400; // 100 GB (Supabase Pro Plan)
+    const dbLimit = 8589934592; // 8 GB (DeHost Pro Plan)
+    const storageLimit = 107374182400; // 100 GB (DeHost Pro Plan)
 
     return {
-      supabaseDb: {
+      dehostDb: {
         usedBytes: dbUsedBytes,
         limitBytes: dbLimit,
         percentage: Math.min((dbUsedBytes / dbLimit) * 100, 100),
       },
-      supabaseStorage: {
+      dehostStorage: {
         usedBytes: storageUsedBytes,
         limitBytes: storageLimit,
         percentage: Math.min((storageUsedBytes / storageLimit) * 100, 100),
@@ -116,13 +116,13 @@ export async function getLiveCapacityMetrics(): Promise<CapacityMetrics> {
         kModelScores: kScoresCount || 0,
         externalIncidentsQueue: queueCount || 0,
       },
-      vercelDeploys: {
+      dehostDeploys: {
         used: 12,
         limit: 1000,
         percentage: 1.2,
         lastVerified: "2026-08-05",
       },
-      vercelCrons: {
+      dehostCrons: {
         used: 3,
         limit: 100,
         percentage: 3.0,

@@ -17,7 +17,7 @@ ROLE: You are a Chief Product Officer (CPO) + Chief Technology Officer (CTO) Aud
 
 PROJECT: ALPAR AI (https://www.alparai.com)
 - Trust infrastructure for AI accountability
-- Next.js 16 + Supabase + Tailwind v4 + next-intl
+- Next.js 16 + DeHost + Tailwind v4 + next-intl
 - AGPL-3.0 license, EU-hosted, GDPR + KVKK compliant
 - Live site with 64+ published incidents, 23 tracked providers
 

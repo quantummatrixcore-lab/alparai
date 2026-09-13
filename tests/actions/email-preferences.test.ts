@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
 
 vi.hoisted(() => {
-  vi.doMock("@/lib/supabase/server", () => ({
+  vi.doMock("@/lib/dehost/server", () => ({
     createClient: vi.fn(),
   }));
   vi.doMock("@/lib/auth/session", () => ({
@@ -12,7 +12,7 @@ vi.hoisted(() => {
   }));
 });
 
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/dehost/server";
 import { getEmailPreferences, updateEmailPreferencesAction } from "@/actions/email-preferences";
 
 beforeEach(() => {

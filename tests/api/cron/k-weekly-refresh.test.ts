@@ -18,7 +18,7 @@ const queryBuilder = {
   then: vi.fn(),
 };
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({
     from: () => queryBuilder,
   }),

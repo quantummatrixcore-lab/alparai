@@ -11,8 +11,8 @@ vi.mock("@/lib/utils/rate-limit", () => ({
   },
 }));
 
-// Mock Supabase server client
-vi.mock("@/lib/supabase/server", () => ({
+// Mock DeHost server client
+vi.mock("@/lib/dehost/server", () => ({
   createServerClient: vi.fn().mockResolvedValue({
     from: vi.fn().mockReturnValue({
       select: vi.fn().mockReturnThis(),

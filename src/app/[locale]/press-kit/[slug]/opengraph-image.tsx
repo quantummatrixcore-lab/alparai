@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 
 export const runtime = "nodejs";
 export const alt = "ALPAR AI — Brand Profile Audit";

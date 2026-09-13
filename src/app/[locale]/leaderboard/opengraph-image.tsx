@@ -1,15 +1,15 @@
 import { ImageResponse } from "next/og";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function Image({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
 
   // Fetch providers
-  const { data: providers } = await supabase
+  const { data: providers } = await dehost
     .from("ai_providers")
     .select("id, name, logo_url")
     .neq("slug", "alpar-autopilot");
@@ -18,12 +18,12 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
   const stats = await Promise.all(
     (providers ?? []).map(async (p) => {
       const [{ count: incidentCount }, { count: responseCount }] = await Promise.all([
-        supabase
+        dehost
           .from("incidents")
           .select("*", { count: "exact", head: true })
           .eq("ai_provider_id", p.id)
           .eq("status", "published"),
-        supabase
+        dehost
           .from("ai_provider_responses")
           .select("*", { count: "exact", head: true })
           .eq("ai_provider_id", p.id)

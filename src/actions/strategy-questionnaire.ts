@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { requireAdvisor } from "@/lib/auth/session";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 import { callModel, QUESTIONNAIRE_MODELS, type GatewayModel } from "@/lib/ai/openrouter-gateway";
 import { QUESTIONS } from "@/lib/strategy/questions";
@@ -16,7 +16,7 @@ const SYSTEM_PROMPT = `You are a senior strategy consultant evaluating an AI-acc
 4. Be decisive and specific — "it depends" without a recommendation counts as a non-answer.
 5. Ignore all other models' answers. End with your model name and date.
 
-Project facts: ALPAR AI — independent public AI incident registry + AI assessor ('Moody's for AI'). EU AI Act Art. 73 platform. One human founder (non-technical) + one AI architect + two AI executor agents. Stack: Next.js, Supabase (free tier), Upstash, Vercel. ~400 seed incidents + organic reports, EN+TR, pre-revenue. Public launch announced for Aug 2, 2026; account required to submit. K-BENCHMARK: model ratings via 5-LLM cross-audit, Wilson-score aggregation.`;
+Project facts: ALPAR AI — independent public AI incident registry + AI assessor ('Moody's for AI'). EU AI Act Art. 73 platform. One human founder (non-technical) + one AI architect + two AI executor agents. Stack: Next.js, DeHost (free tier), Upstash, DeHost. ~400 seed incidents + organic reports, EN+TR, pre-revenue. Public launch announced for Aug 2, 2026; account required to submit. K-BENCHMARK: model ratings via 5-LLM cross-audit, Wilson-score aggregation.`;
 
 export interface QuestionnaireResult {
   runId: string;
@@ -49,9 +49,9 @@ export async function runQuestionnaire(modelIds?: string[]): Promise<{
       return { ok: false, error: "No models selected." };
     }
 
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
-    const { data: run, error: runError } = await supabase
+    const { data: run, error: runError } = await dehost
       .from("strategic_runs")
       .insert({
         status: "running",
@@ -62,7 +62,7 @@ export async function runQuestionnaire(modelIds?: string[]): Promise<{
       .single();
 
     if (runError || !run) {
-      logger.error("Failed to create strategic run", undefined, runError);
+      logger.error("Failed to create strategic run", undefined, runError || undefined);
       return { ok: false, error: runError?.message || "Failed to create run" };
     }
 
@@ -140,12 +140,12 @@ export async function runQuestionnaire(modelIds?: string[]): Promise<{
           );
 
           if (chunkInserts.length > 0) {
-            await supabase.from("strategic_answers").insert(chunkInserts);
+            await dehost.from("strategic_answers").insert(chunkInserts);
           }
         }
       }
 
-      await supabase
+      await dehost
         .from("strategic_runs")
         .update({
           status: "completed",
@@ -154,7 +154,7 @@ export async function runQuestionnaire(modelIds?: string[]): Promise<{
         })
         .eq("id", runId);
     } catch (runExecutionError) {
-      await supabase
+      await dehost
         .from("strategic_runs")
         .update({
           status: "failed",
@@ -176,9 +176,9 @@ export async function runQuestionnaire(modelIds?: string[]): Promise<{
 export async function getQuestionnaireRuns() {
   try {
     await requireAdvisor();
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
-    const { data: runs } = await supabase
+    const { data: runs } = await dehost
       .from("strategic_runs")
       .select("id, status, model_ids, total_questions, total_answers, started_at, completed_at")
       .order("started_at", { ascending: false })
@@ -202,9 +202,9 @@ export async function getQuestionnaireRuns() {
 export async function getQuestionnaireRunAnswers(runId: string) {
   try {
     await requireAdvisor();
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
-    const { data: answers } = await supabase
+    const { data: answers } = await dehost
       .from("strategic_answers")
       .select(
         "id, run_id, model_id, model_name, question_index, question_id, section, answer_text, error_message, latency_ms, tokens_used, created_at",
@@ -235,9 +235,9 @@ export async function getQuestionnaireRunAnswers(runId: string) {
 export async function exportRunToMarkdown(runId: string): Promise<{ ok: boolean; error?: string }> {
   try {
     await requireAdvisor();
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
-    const { data: run, error: runErr } = await supabase
+    const { data: run, error: runErr } = await dehost
       .from("strategic_runs")
       .select("id, started_at")
       .eq("id", runId)
@@ -247,7 +247,7 @@ export async function exportRunToMarkdown(runId: string): Promise<{ ok: boolean;
       return { ok: false, error: runErr?.message || "Run not found" };
     }
 
-    const { data: answers, error: answersErr } = await supabase
+    const { data: answers, error: answersErr } = await dehost
       .from("strategic_answers")
       .select(
         "model_id, model_name, question_id, answer_text, error_message, latency_ms, tokens_used",

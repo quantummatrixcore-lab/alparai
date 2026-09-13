@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { requireModerator } from "@/lib/auth/session";
 
 const publicStatementSchema = z.object({
@@ -38,9 +38,9 @@ export async function recordPublicStatement(formData: FormData) {
       quote,
     } = parsed.data;
 
-    const supabase = await createServerClient();
+    const dehost = await createServerClient();
 
-    const { error } = await supabase.from("ai_provider_responses").insert({
+    const { error } = await dehost.from("ai_provider_responses").insert({
       incident_id: incidentId,
       ai_provider_id: providerId,
       response_text: quote,

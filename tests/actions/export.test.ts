@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
-import { createTestAdmin } from "../helpers/supabase-mock";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createTestAdmin } from "../helpers/dehost-mock";
+import { createAdminClient } from "@/lib/dehost/admin";
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: vi.fn(),
 }));
 

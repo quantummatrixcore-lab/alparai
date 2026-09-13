@@ -1,8 +1,8 @@
 export const revalidate = 300;
 
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { createServerClient } from "@/lib/supabase/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createServerClient } from "@/lib/dehost/server";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { Container } from "@/components/ui/layout";
 import { IncidentList } from "@/components/incidents/incident-list";
 import { IncidentFilters } from "@/components/marketing/incident-filters";
@@ -42,7 +42,7 @@ export default async function IncidentsPage({
   const t = await getTranslations({ locale, namespace: "incident" });
   const tCommon = await getTranslations({ locale, namespace: "common" });
   const { q, category, severity, sort, page } = await searchParams;
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
   const admin = createAdminClient();
 
   const pageNum = Math.max(1, parseInt(page || "1", 10));
@@ -95,14 +95,14 @@ export default async function IncidentsPage({
 
   const [incidentsResult, providersResult, pollResult, newsResult] = await Promise.all([
     query,
-    supabase.from("ai_providers").select("id, slug, name"),
-    supabase
+    dehost.from("ai_providers").select("id, slug, name"),
+    dehost
       .from("ai_polls")
       .select("id, title, yes_count, no_count, unsure_count")
       .eq("is_active", true)
       .order("created_at", { ascending: false })
       .limit(1),
-    supabase
+    dehost
       .from("ecosystem_news")
       .select("id, title_en, title_tr, source, severity, published_at")
       .eq("is_active", true)
@@ -123,7 +123,7 @@ export default async function IncidentsPage({
   let translationMap: TranslationMap | undefined;
   if (localeIsDEorFR && rawData && rawData.length > 0) {
     const incidentIds = rawData.map((r) => r["id"] as string);
-    const admin = supabase as unknown as {
+    const admin = dehost as unknown as {
       from: (table: string) => {
         select: (cols: string) => {
           in: (

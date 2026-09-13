@@ -31,7 +31,7 @@ We built ALPAR AI (https://alparai.com) — an open-source trust infrastructure 
 2. **K-BENCHMARK Evaluation:** Evaluates frontier and open-weights models across 47 active AI model providers (OpenAI, Anthropic, Google, Meta, xAI, DeepSeek, Mistral, Cohere, NVIDIA, etc.) on Wilson-score reliability metrics.
 3. **EU AI Act Art. 73 Tracker:** Live tracking for serious incident reporting readiness (`/transparency/art-73-tracker`).
 
-The codebase is Next.js 15 App Router + Supabase PostgreSQL + AGPL-3.0 on GitHub:
+The codebase is Next.js 15 App Router + DeHost PostgreSQL + AGPL-3.0 on GitHub:
 https://github.com/quantummatrixcore-lab/Alparai.com
 
 We'd love to hear your feedback on our evaluation metrics, PII masking approach, and incident taxonomy!
@@ -87,7 +87,7 @@ We invite feedback on our incident taxonomy, scoring formulas, and datasets!
 
 - **Option A (Recommended):** `Technical Architecture of ALPAR AI: Open-Source PII Masking & AI Vulnerability Ingestion`
 - **Option B:** `Open-Source AI Safety Ledger: 14-Category PII Masking & RLS Security Architecture`
-- **Option C:** `Building a Zero-Trust AI Vulnerability & Incident Ingestion Pipeline with Next.js 15 & Supabase`
+- **Option C:** `Building a Zero-Trust AI Vulnerability & Incident Ingestion Pipeline with Next.js 15 & DeHost`
 
 #### Submission Body
 
@@ -99,7 +99,7 @@ We've open-sourced ALPAR AI (AGPL-3.0), a trust infrastructure designed to colle
 **Technical Highlights & Threat Model:**
 
 - **Privacy-First Ingestion Pipeline:** User-submitted incident reports undergo 14-category client/server sanitization (`src/lib/pii/guardian.ts`) using regex and NLP masking (TCKN, credit cards, emails, IP addresses, names) before hitting PostgreSQL.
-- **Row-Level Security (RLS):** Every Supabase database table enforces strict RLS policies; mutations strictly run via serverless Server Actions with zero direct client writes.
+- **Row-Level Security (RLS):** Every DeHost database table enforces strict RLS policies; mutations strictly run via serverless Server Actions with zero direct client writes.
 - **Wilson-Score Vulnerability Scoring:** Uses lower-bound Wilson confidence intervals to rank jailbreak resilience and hallucination severity across LLM providers.
 - **Open Data & Datasets:** Public CSV/JSON dumps of anonymized incident reports for security researchers.
 
@@ -129,7 +129,7 @@ We are launching ALPAR AI (https://alparai.com), an open-source platform trackin
 
 - **K-BENCHMARK:** Evaluates real-world jailbreak resilience, context decay, and hallucination rates across 47 model providers.
 - **Open API & Public Datasets:** Raw anonymized incident datasets available in CSV and JSON formats.
-- **Fully Open-Source (AGPL-3.0):** Built with Next.js 15 App Router, Supabase PostgreSQL, and Tailwind v4.
+- **Fully Open-Source (AGPL-3.0):** Built with Next.js 15 App Router, DeHost PostgreSQL, and Tailwind v4.
 
 Repo: https://github.com/quantummatrixcore-lab/Alparai.com
 

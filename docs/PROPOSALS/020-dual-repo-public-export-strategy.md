@@ -24,9 +24,9 @@
 | Kategori             | Kamusal Depo (`quantummatrixcore-lab/alparai`)                                | Özel Çekirdek Depo (`Alparai.com`)                                                     |
 | :------------------- | :---------------------------------------------------------------------------- | :------------------------------------------------------------------------------------- |
 | **Uygulama Kodları** | Tüm UI primitives, Next.js 15 bileşenleri, Server Actions, PII Guardian       | Özel admin analitikleri ve dahili gateway yönlendirmeleri                              |
-| **Veritabanı**       | `supabase/migrations/` (RLS politikaları ile birlikte)                        | Üretim yedekleme konfigürasyonları ve iç denetim kayıtları                             |
+| **Veritabanı**       | `dehost/migrations/` (RLS politikaları ile birlikte)                        | Üretim yedekleme konfigürasyonları ve iç denetim kayıtları                             |
 | **Dokümantasyon**    | `README.md`, `LICENSE` (AGPL-3.0), `ARCHITECTURE.md`, `SECURITY.md`, `API.md` | `MASTER_PLAN.md`, `ANTIGRAVITY_EXECUTION_PLAN.md`, `docs/PROPOSALS/`, `docs/outreach/` |
-| **Konfigürasyon**    | `.env.example`, `tsconfig.json`, `package.json`, `tailwind.config.ts`         | `.env.local`, Vercel production deployment secret'ları                                 |
+| **Konfigürasyon**    | `.env.example`, `tsconfig.json`, `package.json`, `tailwind.config.ts`         | `.env.local`, DeHost production deployment secret'ları                                 |
 
 ### B. Kod Transfer İcra Adımları
 

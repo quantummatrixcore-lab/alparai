@@ -25,7 +25,7 @@ export async function isCostKillSwitchActive(): Promise<boolean> {
 
 export async function getDailyCost(): Promise<number> {
   try {
-    const { createAdminClient } = await import("@/lib/supabase/admin");
+    const { createAdminClient } = await import("@/lib/dehost/admin");
     const admin = createAdminClient();
     const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
     const { data: llmDaily, error } = await (

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
-import { createMockSupabaseClient } from "../helpers/supabase-mock";
+import { createMockDeHostClient } from "../helpers/dehost-mock";
 
 const { mockSend } = vi.hoisted(() => ({
   mockSend: vi.fn().mockResolvedValue({ id: "mock-email-id" }),
@@ -14,7 +14,7 @@ vi.mock("@/lib/email/resend", () => ({
   }),
 }));
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: vi.fn(),
 }));
 
@@ -32,14 +32,14 @@ vi.mock("@/lib/utils/provider-token", () => ({
   }),
 }));
 
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { submitProviderResponse } from "@/actions/provider-response";
 
-let mockAdminClient: ReturnType<typeof createMockSupabaseClient>;
+let mockAdminClient: ReturnType<typeof createMockDeHostClient>;
 
 beforeEach(() => {
   vi.clearAllMocks();
-  mockAdminClient = createMockSupabaseClient();
+  mockAdminClient = createMockDeHostClient();
   vi.mocked(createAdminClient).mockReturnValue(mockAdminClient as never);
 });
 

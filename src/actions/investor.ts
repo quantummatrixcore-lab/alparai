@@ -8,7 +8,7 @@ import type { AttemptContext, AttemptOutcome } from "@/lib/autopilot";
 import { submitInvestorPolicy } from "@/lib/autopilot/policies";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { hashIp } from "@/lib/utils/hash";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { requireAdmin } from "@/lib/auth/session";
 import { revalidatePath } from "next/cache";
 import crypto from "crypto";

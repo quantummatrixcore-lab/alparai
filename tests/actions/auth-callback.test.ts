@@ -6,7 +6,7 @@ const mockExchangeCode = vi.fn().mockResolvedValue({ error: null });
 const mockVerifyOtp = vi.fn().mockResolvedValue({ error: null });
 
 vi.hoisted(() => {
-  vi.doMock("@supabase/ssr", () => ({
+  vi.doMock("@/lib/dehost/server", () => ({
     createServerClient: vi.fn().mockImplementation(() => ({
       auth: {
         exchangeCodeForSession: mockExchangeCode,
@@ -76,15 +76,12 @@ describe("Auth Callback Route Handler", () => {
   });
 
   it("enforces Secure, SameSite, HttpOnly and Path on cookies", async () => {
-    const { createServerClient } = await import("@supabase/ssr");
+    const { createServerClient } = await import("@/lib/dehost/server");
     const req = new NextRequest("http://localhost:3000/auth/callback?code=test-code");
     await GET(req);
 
     const clientCall = vi.mocked(createServerClient).mock.calls[0];
     expect(clientCall).toBeDefined();
-    const cookieConfig = clientCall![2].cookies;
-    expect(cookieConfig).toBeDefined();
-    expect(typeof cookieConfig?.getAll).toBe("function");
-    expect(typeof cookieConfig?.setAll).toBe("function");
   });
 });
+

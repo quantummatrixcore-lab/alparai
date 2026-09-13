@@ -12,7 +12,7 @@ const CODE_CHANGE_PATTERNS = [
   "package.json",
   "pnpm-lock.yaml",
   "next.config.mjs",
-  "vercel.json",
+  "dehost.json",
   "tsconfig.json",
   "tailwind.config",
 ];
@@ -39,12 +39,12 @@ function runGit(execImpl, command, fallback) {
 }
 
 export function resolveCommitSha(env, execImpl) {
-  if (env.VERCEL_GIT_COMMIT_SHA) return env.VERCEL_GIT_COMMIT_SHA;
+  if (env.DEHOST_GIT_COMMIT_SHA) return env.DEHOST_GIT_COMMIT_SHA;
   return runGit(execImpl, "git rev-parse HEAD", "");
 }
 
 export function readCommitMessage(env, execImpl) {
-  if (env.VERCEL_GIT_COMMIT_MESSAGE) return env.VERCEL_GIT_COMMIT_MESSAGE;
+  if (env.DEHOST_GIT_COMMIT_MESSAGE) return env.DEHOST_GIT_COMMIT_MESSAGE;
   return runGit(execImpl, "git log -1 --pretty=%B", "");
 }
 
@@ -64,8 +64,8 @@ export function parseOwnerRepoFromRemoteUrl(url) {
 }
 
 export function resolveRepoInfo(env, execImpl) {
-  const owner = env.VERCEL_GIT_REPO_OWNER;
-  const repo = env.VERCEL_GIT_REPO_SLUG;
+  const owner = env.DEHOST_GIT_REPO_OWNER;
+  const repo = env.DEHOST_GIT_REPO_SLUG;
   if (owner && repo) return { owner, repo };
   const remoteUrl = runGit(execImpl, "git remote get-url origin", "");
   if (remoteUrl) {
@@ -262,7 +262,7 @@ function logUnenforcedTokenWarning(logImpl) {
   logImpl("# Neither GITHUB_TOKEN nor GH_TOKEN is set in this environment,");
   logImpl("# so the gate cannot query GitHub Checks for this commit.");
   logImpl("#");
-  logImpl("# TO ENFORCE THE GATE: set GITHUB_TOKEN in the Vercel project");
+  logImpl("# TO ENFORCE THE GATE: set GITHUB_TOKEN in the DeHost project");
   logImpl("# (Settings -> Environment Variables) to a token with read");
   logImpl("# access to Checks and commit statuses for this repository.");
   logImpl("# Until GITHUB_TOKEN is set, every commit deploys regardless");
@@ -280,7 +280,7 @@ export async function runDeployGate(options = {}) {
   const logImpl = options.logImpl || console.log;
 
   const commitMsg = readCommitMessage(env, execImpl);
-  const ref = env.VERCEL_GIT_COMMIT_REF || "";
+  const ref = env.DEHOST_GIT_COMMIT_REF || "";
   const sha = resolveCommitSha(env, execImpl);
   const { owner, repo } = resolveRepoInfo(env, execImpl);
 

@@ -4,10 +4,10 @@ import "../helpers/setup";
 vi.mock("@/lib/auth/session", () => ({
   requireAdmin: vi.fn().mockResolvedValue({ id: "admin" })
 }));
-import { createMockSupabaseClient } from "../helpers/supabase-mock";
+import { createMockDeHostClient } from "../helpers/dehost-mock";
 
 vi.hoisted(() => {
-  vi.doMock("@/lib/supabase/admin", () => ({
+  vi.doMock("@/lib/dehost/admin", () => ({
     createAdminClient: vi.fn(),
   }));
   vi.doMock("@/lib/autopilot", () => ({
@@ -24,17 +24,17 @@ vi.hoisted(() => {
   }));
 });
 
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { withAutopilot, createIdempotencyKey } from "@/lib/autopilot";
 import { autoModerateIncidentAction } from "@/actions/autopilot-moderate";
 
 const mockKey = createIdempotencyKey("test-key");
 
-let mockSupabaseClient: ReturnType<typeof createMockSupabaseClient>;
+let mockDeHostClient: ReturnType<typeof createMockDeHostClient>;
 
 beforeEach(() => {
   vi.clearAllMocks();
-  mockSupabaseClient = createMockSupabaseClient();
+  mockDeHostClient = createMockDeHostClient();
 });
 
 describe("autoModerateIncidentAction", () => {
@@ -61,7 +61,7 @@ describe("autoModerateIncidentAction", () => {
       durationMs: 500,
       idempotencyKey: mockKey,
     } as never);
-    vi.mocked(createAdminClient).mockReturnValue(mockSupabaseClient as never);
+    vi.mocked(createAdminClient).mockReturnValue(mockDeHostClient as never);
 
     const result = await autoModerateIncidentAction("inc-1");
     expect(result.ok).toBe(false);
@@ -75,7 +75,7 @@ describe("autoModerateIncidentAction", () => {
       durationMs: 500,
       idempotencyKey: mockKey,
     } as never);
-    vi.mocked(createAdminClient).mockReturnValue(mockSupabaseClient as never);
+    vi.mocked(createAdminClient).mockReturnValue(mockDeHostClient as never);
 
     const result = await autoModerateIncidentAction("inc-1");
     expect(result.ok).toBe(false);

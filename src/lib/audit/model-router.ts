@@ -1,4 +1,4 @@
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 import {
   MATH_LOGIC_CHAIN as FALLBACK_MATH_LOGIC,
@@ -76,10 +76,10 @@ function getKnownModelIds(): Set<string> {
 
 async function fetchDegradedModelIds(): Promise<Set<string>> {
   try {
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: degradedData } = await (supabase as any)
+    const { data: degradedData } = await (dehost as any)
       .from("ai_free_models")
       .select("id")
       .eq("is_active", false);
@@ -97,11 +97,11 @@ async function fetchDegradedModelIds(): Promise<Set<string>> {
  */
 export async function selectModelByCapability(domain: TaskDomain): Promise<ModelChainItem[]> {
   try {
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
     const degradedIds = await fetchDegradedModelIds();
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data, error } = await (supabase as any)
+    const { data, error } = await (dehost as any)
       .from("ai_routing_chains")
       .select("models")
       .eq("domain_name", domain)

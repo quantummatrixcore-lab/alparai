@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -10,10 +10,10 @@ export default async function Image({
   params: Promise<{ id: string; locale: string }>;
 }) {
   const { id, locale } = await params;
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
 
   // Fetch incident title and details
-  const { data: incident } = await supabase
+  const { data: incident } = await dehost
     .from("incidents")
     .select("title_masked, title_tr, severity, category, ai_providers(name)")
     .eq("id", id)

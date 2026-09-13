@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
-import { createMockSupabaseClient } from "../helpers/supabase-mock";
+import { createMockDeHostClient } from "../helpers/dehost-mock";
 
 vi.hoisted(() => {
-  vi.doMock("@/lib/supabase/server", () => ({
+  vi.doMock("@/lib/dehost/server", () => ({
     createClient: vi.fn(),
   }));
   vi.doMock("@/lib/utils/rate-limit", () => ({
@@ -19,16 +19,16 @@ vi.hoisted(() => {
   }));
 });
 
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/dehost/server";
 import { checkRateLimit } from "@/lib/utils/rate-limit";
 import { searchIncidents } from "@/actions/search";
 
-let mockSupabase: ReturnType<typeof createMockSupabaseClient>;
+let mockDeHost: ReturnType<typeof createMockDeHostClient>;
 
 beforeEach(() => {
   vi.clearAllMocks();
-  mockSupabase = createMockSupabaseClient();
-  vi.mocked(createClient).mockResolvedValue(mockSupabase as never);
+  mockDeHost = createMockDeHostClient();
+  vi.mocked(createClient).mockResolvedValue(mockDeHost as never);
   vi.mocked(checkRateLimit).mockResolvedValue({ ok: true, remaining: 29 });
 });
 
@@ -60,7 +60,7 @@ describe("searchIncidents", () => {
       order: vi.fn().mockReturnThis(),
       limit: vi.fn().mockResolvedValue({ data: [], error: null }),
     };
-    mockSupabase.from = vi.fn().mockReturnValue({ select: vi.fn().mockReturnValue(chainMock) });
+    mockDeHost.from = vi.fn().mockReturnValue({ select: vi.fn().mockReturnValue(chainMock) });
     const result = await searchIncidents("<script>alert(1)</script>");
     expect(result.ok).toBe(true);
     expect(result.results).toHaveLength(0);
@@ -82,7 +82,7 @@ describe("searchIncidents", () => {
       order: vi.fn().mockReturnThis(),
       limit: vi.fn().mockResolvedValue({ data: rows, error: null }),
     };
-    mockSupabase.from = vi.fn().mockReturnValue({ select: vi.fn().mockReturnValue(chainMock) });
+    mockDeHost.from = vi.fn().mockReturnValue({ select: vi.fn().mockReturnValue(chainMock) });
     const result = await searchIncidents("Test incident");
     expect(result.ok).toBe(true);
     expect(result.results).toHaveLength(1);
@@ -97,7 +97,7 @@ describe("searchIncidents", () => {
       order: vi.fn().mockReturnThis(),
       limit: vi.fn().mockResolvedValue({ data: null, error: { message: "db error" } }),
     };
-    mockSupabase.from = vi.fn().mockReturnValue({ select: vi.fn().mockReturnValue(chainMock) });
+    mockDeHost.from = vi.fn().mockReturnValue({ select: vi.fn().mockReturnValue(chainMock) });
     const result = await searchIncidents("openai");
     expect(result.ok).toBe(false);
     expect(result.error).toBe("Search failed");

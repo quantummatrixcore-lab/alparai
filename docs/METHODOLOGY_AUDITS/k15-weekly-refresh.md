@@ -3,7 +3,7 @@
 ## Implementation Overview
 
 - Created a weekly cron job route at `src/app/api/cron/k-weekly-refresh/route.ts` running every Sunday at 08:00 UTC.
-- Registered the cron job in `vercel.json`.
+- Registered the cron job in `dehost.json`.
 - Implemented the scoring recalculation algorithm:
   - Fetches all active AI models and K-BENCHMARK categories.
   - Resolves base scores from `k_model_scores`. Defaults to `80` if not present.

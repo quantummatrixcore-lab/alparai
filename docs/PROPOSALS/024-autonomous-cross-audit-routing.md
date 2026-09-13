@@ -46,7 +46,7 @@ Therefore:
 2. **Admin UI:**
    - A new dashboard under `/admin/ai-orchestrator` to visualize the live model inventory and the current autonomous routing paths.
 3. **Gateway Modification:**
-   - `openrouter-gateway.ts` must switch from hardcoded `const` arrays to fetching the active chain from Supabase Redis/Cache.
+   - `openrouter-gateway.ts` must switch from hardcoded `const` arrays to fetching the active chain from DeHost Redis/Cache.
 
 ## 5. Security & IP Protection
 

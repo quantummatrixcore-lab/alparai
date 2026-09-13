@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
 
 const mockMaybeSingle = vi.fn().mockResolvedValue({ data: { enabled: true }, error: null });
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({
     from: () => ({
       select: () => ({

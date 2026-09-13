@@ -2,4 +2,4 @@
 
 Run at 2026-07-11
 
-Result: 1 hit found in docs/VERCEL-RECOVERY.md. Redacted the token.
+Result: 1 hit found in docs/DEHOST-RECOVERY.md. Redacted the token.

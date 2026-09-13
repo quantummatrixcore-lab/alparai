@@ -4,7 +4,7 @@ import { Container } from "@/components/ui/layout";
 import { Link } from "@/i18n/routing";
 import { getAllPosts, getPostBySlug } from "@/content/blog-posts";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { BlogArticleJsonLd } from "@/components/seo/json-ld";
 import { APP_URL } from "@/lib/constants";
 
@@ -38,8 +38,8 @@ export async function generateMetadata({
     };
   }
 
-  const supabase = await createServerClient();
-  const { data: dbPost } = await supabase
+  const dehost = await createServerClient();
+  const { data: dbPost } = await dehost
     .from("blog_posts")
     .select("title_en, title_tr, content_en, content_tr, published_at, created_at")
     .eq("slug", slug)
@@ -151,8 +151,8 @@ export default async function BlogPostPage({
     readingTime = staticPost.readingTime;
     tags = staticPost.tags;
   } else {
-    const supabase = await createServerClient();
-    const { data: dbPost } = await supabase
+    const dehost = await createServerClient();
+    const { data: dbPost } = await dehost
       .from("blog_posts")
       .select("title_en, title_tr, content_en, content_tr, published_at, created_at")
       .eq("slug", slug)

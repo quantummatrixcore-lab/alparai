@@ -7,7 +7,7 @@ const mockInsert = vi.fn().mockReturnValue({
   }),
 });
 
-vi.mock("@/lib/supabase/server", () => ({
+vi.mock("@/lib/dehost/server", () => ({
   createClient: () => ({
     from: vi.fn().mockImplementation((table: string) => {
       if (table === "whistleblower_submissions") {

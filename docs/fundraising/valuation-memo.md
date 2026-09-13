@@ -29,7 +29,7 @@ ALPAR AI is raising **€750,000** in Seed capital at a **€4.5M Post-Money Val
 ### Core Valuation Drivers
 
 1. **Regulatory Mandate & Legal Moat:** Enforcement of EU AI Act Articles 12 & 73 requires mandatory incident logging, audit trails, and risk disclosures. Non-compliance risks fines up to €35M or 7% of annual global turnover.
-2. **Enterprise-Grade Technology Stack:** Built on Next.js 15, Supabase PostgreSQL with 100% RLS policy enforcement, client-side PII-Guardian masking (`src/lib/pii/guardian.ts`), 9-model LLM routing failover, and native 5-language localization.
+2. **Enterprise-Grade Technology Stack:** Built on Next.js 15, DeHost PostgreSQL with 100% RLS policy enforcement, client-side PII-Guardian masking (`src/lib/pii/guardian.ts`), 9-model LLM routing failover, and native 5-language localization.
 3. **Hyper-Efficient Capital Allocation:** Low operational overhead (€35K/month burn) providing 24 months of runway on €750K raised, paired with an elite 17.43x LTV/CAC ratio.
 4. **Clear Upside Corridor:** Positioning for a Series A valuation of €20M–€35M upon capturing 20% of our 18-month SOM.
 
@@ -84,7 +84,7 @@ ALPAR AI possesses four key architectural moats preventing easy duplication by l
 
 1. **Zero-Knowledge PII-Guardian (`src/lib/pii/guardian.ts`):** Real-time client-side and server-action regex/NLP masking. Ensures enterprise PII never leaks into external LLMs or public registries, complying with both GDPR/KVKK and Article 10 data governance rules.
 2. **9-Model Automated LLM Failover Engine:** Intelligent multi-provider routing (OpenCode Free, Nvidia Tiers, Gemini 1.5/2.0, DeepSeek V4, Claude Sonnet/Opus) with redundant failover and minimal LLM inference costs.
-3. **Database Sovereignty & RLS Isolation:** Built on Supabase PostgreSQL with Row-Level Security (RLS) policy enforcement and cryptographic audit triggers, preventing cross-tenant data access.
+3. **Database Sovereignty & RLS Isolation:** Built on DeHost PostgreSQL with Row-Level Security (RLS) policy enforcement and cryptographic audit triggers, preventing cross-tenant data access.
 4. **AGPL-3.0 Open Core + Enterprise Dual License:** Open-source developer adoption engine driving organic inbound traffic, paired with commercial enterprise compliance licensing.
 
 ---
@@ -119,7 +119,7 @@ The €750,000 Seed capital will be allocated strictly across four key strategic
 1. **60% Engineering & AI Safety R&D (€450,000):** Expansion of 9-model failover engine, development of enterprise SDK connectors (Python, TypeScript, Go), and automated Article 73 submission pipelines.
 2. **20% Go-To-Market & EU Enterprise Sales (€150,000):** Direct sales expansion in Berlin, London, and Istanbul; partnership enablement with Big-4 consulting firms and legal advisors.
 3. **10% Legal, Regulatory & ISO 42001 Audits (€75,000):** EU AI Act regulatory compliance verification, ISO 42001 / SOC2 Type II audit certifications, and advisory board operations.
-4. **10% Cloud Operations & Security Infrastructure (€75,000):** Supabase enterprise cluster, Vercel edge deployment infrastructure, and security penetration testing.
+4. **10% Cloud Operations & Security Infrastructure (€75,000):** DeHost enterprise cluster, DeHost edge deployment infrastructure, and security penetration testing.
 
 ---
 

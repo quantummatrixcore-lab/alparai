@@ -1,6 +1,6 @@
 import "server-only";
 import { NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { requireModerator } from "@/lib/auth/session";
 import { logger } from "@/lib/utils/logger";
 
@@ -9,10 +9,10 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const caseId = searchParams.get("case_id");
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const supabase = createAdminClient() as any;
+    const dehost = createAdminClient() as any;
 
     if (caseId) {
-      const { data, error } = await supabase
+      const { data, error } = await dehost
         .from("jurors")
         .select(`
           juror_id,
@@ -30,7 +30,7 @@ export async function GET(request: Request) {
     }
 
     // List top trusted citizen candidates
-    const { data: candidates, error: candErr } = await supabase
+    const { data: candidates, error: candErr } = await dehost
       .from("user_reputation")
       .select("user_id, reputation_score, trust_level, is_verified_citizen")
       .eq("is_sybil_suspect", false)
@@ -60,14 +60,14 @@ export async function POST(request: Request) {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const supabase = createAdminClient() as any;
+    const dehost = createAdminClient() as any;
     const assignments = juror_ids.map((id: string) => ({
       case_id,
       juror_id: id,
       selection_method: selection_method || "reputation_weighted"
     }));
 
-    const { data, error } = await supabase
+    const { data, error } = await dehost
       .from("jurors")
       .upsert(assignments, { onConflict: "case_id,juror_id" })
       .select();
@@ -78,7 +78,7 @@ export async function POST(request: Request) {
     }
 
     // Update case status to 'voting'
-    await supabase.from("jury_cases").update({ status: "voting" }).eq("id", case_id);
+    await dehost.from("jury_cases").update({ status: "voting" }).eq("id", case_id);
 
     return NextResponse.json({ success: true, assigned_jurors: data });
   } catch (err) {

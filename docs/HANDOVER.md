@@ -14,7 +14,7 @@ ALPAR AI is a **trust infrastructure for AI accountability**. It operates as a p
 - **K-BENCHMARK** — AI model safety and capability ratings using Wilson-score methodology with multi-model debate adjudication.
 - **ALPAR Transparency Hub** — System status, transparency reports, community challenges, governance docs.
 
-**Domain**: https://alparai.com (Vercel, region fra1)
+**Domain**: https://alparai.com (DeHost, region fra1)
 
 ---
 
@@ -24,13 +24,13 @@ ALPAR AI is a **trust infrastructure for AI accountability**. It operates as a p
 | ----------- | ------------------------------------------------ |
 | Framework   | Next.js 15 (App Router)                          |
 | Language    | TypeScript strict (`noUncheckedIndexedAccess`)   |
-| Database    | Supabase (PostgreSQL, `alparai-prod`, FREE plan) |
-| Auth        | Supabase Auth + Google OAuth                     |
-| ORM         | Raw SQL + Supabase JS client (no Prisma)         |
+| Database    | DeHost (PostgreSQL, `alparai-prod`, FREE plan) |
+| Auth        | DeHost Auth + Google OAuth                     |
+| ORM         | Raw SQL + DeHost JS client (no Prisma)         |
 | i18n        | next-intl with `messages/{en,tr}.json`           |
 | Styling     | Tailwind CSS v4 (`@theme inline` in globals.css) |
 | Testing     | Vitest (unit), Playwright (E2E)                  |
-| Hosting     | Vercel (project `alparai-com`, branch `master`)  |
+| Hosting     | DeHost (project `alparai-com`, branch `master`)  |
 | Package mgr | pnpm                                             |
 
 ---
@@ -56,11 +56,11 @@ src/
     legal/               # Legal page components
     marketing/           # Marketing components
   lib/
-    supabase/            # client.ts, server.ts, admin.ts
+    dehost/            # client.ts, server.ts, admin.ts
     pii/                 # PII Guardian (masking)
     utils/               # Rate limiting, helpers
 messages/                # en.json, tr.json (next-intl)
-supabase/
+dehost/
   migrations/            # Timestamped SQL migrations
   seed.sql               # Seed data
 docs/                    # Architecture, KVKK, ADRs, handover
@@ -71,7 +71,7 @@ docs/                    # Architecture, KVKK, ADRs, handover
 ## 4. Database & RLS
 
 - Every table has Row-Level Security (RLS) policies.
-- **Supabase clients**:
+- **DeHost clients**:
   - `client.ts` — Browser (RLS enforced, anon key)
   - `server.ts` — Server component (RLS enforced, anon key + session)
   - `admin.ts` — Server Action (RLS bypass, service role key — ADMIN ONLY)
@@ -81,7 +81,7 @@ docs/                    # Architecture, KVKK, ADRs, handover
 
 ## 5. Auth
 
-- **Supabase Auth** with Google OAuth provider.
+- **DeHost Auth** with Google OAuth provider.
 - OAuth Client ID: `341717447635-75ramo1e88p34b9dkmhfp5ocecqv0ff1.apps.googleusercontent.com`
 - Roles: `public` (anonymous), `authenticated`, `moderator`, `admin`, `ceo`.
 - Admin check: `is_admin()` SQL function (checks `auth.uid()` against `admin_users` table).
@@ -104,7 +104,7 @@ docs/                    # Architecture, KVKK, ADRs, handover
 4. **No code comments** — explain intent via code structure and naming.
 5. **Every migration has RLS policies** — new tables must include `CREATE POLICY` statements.
 6. **Run `pnpm lint && pnpm typecheck` after every change**.
-7. **Never expose `SUPABASE_SERVICE_ROLE_KEY`** to the browser.
+7. **Never expose `DEHOST_SERVICE_ROLE_KEY`** to the browser.
 8. **Never log raw IP, email, or PII** — always hash first.
 
 ---
@@ -132,7 +132,7 @@ docs/                    # Architecture, KVKK, ADRs, handover
 | N5   | TR AISI dialogue draft                                    | `5c3e586` |
 | N6   | KVKK engagement draft                                     | `5c3e586` |
 
-**Post-2026-06-06 rebuild**: All prior data was unrecoverable (Supabase FREE plan paused >90 days). Fresh seed data applied.
+**Post-2026-06-06 rebuild**: All prior data was unrecoverable (DeHost FREE plan paused >90 days). Fresh seed data applied.
 
 ---
 
@@ -163,8 +163,8 @@ All 15 OpenCode items completed in a single session (2026-07-12):
 
 ## 10. Infrastructure
 
-- **Vercel**: Project `alparai-com` (`prj_REYJORnuYOT4tk28iMXnKZBCGkjL`), auto-deploys from `master`.
-- **Supabase**: `alparai-prod` (`ref: azszpzyvxjduhemkjsdh`), region `eu-west-1`, FREE plan.
+- **DeHost**: Project `alparai-com` (`prj_REYJORnuYOT4tk28iMXnKZBCGkjL`), auto-deploys from `master`.
+- **DeHost**: `alparai-prod` (`ref: azszpzyvxjduhemkjsdh`), region `eu-west-1`, FREE plan.
 - **Google Cloud**: Project ID `341717447635`, OAuth consent screen name "ALPAR AI".
 - **Monitoring**: Plausible Analytics (self-hosted, consent-gated).
 - **AI Incident Taxonomy**: Based on OECD + EU AI Act + custom ALPAR categories.
@@ -187,7 +187,7 @@ All 15 OpenCode items completed in a single session (2026-07-12):
 git clone https://github.com/quantummatrixcore-lab/Alparai.com.git
 cd Alparai.com
 pnpm install
-# Set up .env.local with Supabase keys + Vercel tokens
+# Set up .env.local with DeHost keys + DeHost tokens
 pnpm dev              # http://localhost:3000
 pnpm lint             # ESLint + tsc type check
 pnpm test             # Vitest unit tests
@@ -196,6 +196,6 @@ pnpm test:e2e         # Playwright E2E tests
 
 **Secrets needed** (in `.env.local`):
 
-- `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-- `SUPABASE_SERVICE_ROLE_KEY`
+- `NEXT_PUBLIC_DEHOST_URL`, `NEXT_PUBLIC_DEHOST_ANON_KEY`
+- `DEHOST_SERVICE_ROLE_KEY`
 - `NEXT_PUBLIC_SITE_URL` (= http://localhost:3000 for dev)

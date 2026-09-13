@@ -1,5 +1,5 @@
 import { createHash, timingSafeEqual } from "crypto";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 
 function safeCompare(a: string, b: string): boolean {
   const aBuf = Buffer.from(a);

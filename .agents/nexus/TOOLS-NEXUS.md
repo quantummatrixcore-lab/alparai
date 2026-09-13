@@ -136,22 +136,22 @@ Examples:
 
 ---
 
-## 4. ▲ VERCEL CLI
+## 4. ▲ DEHOST CLI
 
-**Status:** ✅ ACTIVE (via `npx vercel`)
-**Doctrine:** NEVER use browser to check Vercel. Use CLI only.
+**Status:** ✅ ACTIVE (via `npx dehost`)
+**Doctrine:** NEVER use browser to check DeHost. Use CLI only.
 
 ### Full Capability Map:
 
 | Command                     | Use Case                           |
 | :-------------------------- | :--------------------------------- |
-| `npx vercel ls`             | List deployments and their status  |
-| `npx vercel inspect <url>`  | Check if deployment is READY       |
-| `npx vercel logs <url>`     | Read deployment build/runtime logs |
-| `npx vercel env ls`         | List environment variables         |
-| `npx vercel env add <name>` | Add environment variable           |
-| `npx vercel --prod`         | Force production deployment        |
-| `npx vercel rollback`       | Rollback to previous deployment    |
+| `npx dehost ls`             | List deployments and their status  |
+| `npx dehost inspect <url>`  | Check if deployment is READY       |
+| `npx dehost logs <url>`     | Read deployment build/runtime logs |
+| `npx dehost env ls`         | List environment variables         |
+| `npx dehost env add <name>` | Add environment variable           |
+| `npx dehost --prod`         | Force production deployment        |
+| `npx dehost rollback`       | Rollback to previous deployment    |
 
 ---
 

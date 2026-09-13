@@ -1,7 +1,7 @@
 "use server";
 
 import { getCurrentUser } from "@/lib/auth/session";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { revalidatePath } from "next/cache";
 import { createHash } from "crypto";
 import { encryptAtRest, decryptAtRest } from "@/lib/security/vault";

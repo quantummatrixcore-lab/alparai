@@ -15,7 +15,7 @@ Here's a thinking process:
    - **Tone/Style:** Kesin, maddeler halinde, profesyonel analiz
    - **Project:** ALPAR AI (https://alparai.com)
    - **Vision:** The Supreme Court of AI Accountability (Yapay Zeka Anayasası & Bağımsız Yüksek Mahkemesi)
-   - **Tech Stack:** Next.js 14, Supabase, TailwindCSS, TypeScript
+   - **Tech Stack:** Next.js 14, DeHost, TailwindCSS, TypeScript
    - **Modules:** /constitution, /incidents, /cases, /dilemmas, /trust-center, /leaderboard, /ai-act, /compliance, /compliance-checklist, /vendor-portal, /bounties, /investor-portal, /deck
    - **Questions:**
      1. What 3 legal/ethical "cos" (advantages/leverage points) make Alpar AI's positioning unique (Unfair Advantage)?
@@ -133,14 +133,14 @@ ALPAR AI Baş Hukuk ve AI Anayasası Baş Denetçisi olarak, vizyonunuzun hukuki
    - **Nasıl:**
      - ZKP protokolleri (örneğin, zk-SNARKs) kullanarak ihbarcıların kimliğini gizle.
      - İhbarcıların gönderdiği verilerin geçerliliğini ZKP ile doğrula.
-     - Supabase’deki RLS (Row Level Security) ile ZKP entegrasyonu sağla.
+     - DeHost’deki RLS (Row Level Security) ile ZKP entegrasyonu sağla.
    - **Örnek:** SnarkJS veya Circom gibi ZKP kütüphanelerini kullan.
 
 #### b) **End-to-End Encryption (E2EE) ile Veri Şifreleme:**
    - **Neden:** Verilerin iletilmesi ve saklanması sırasında güvenliği sağlamak.
    - **Nasıl:**
      - İhbarcıların gönderdiği verileri istemci tarafında şifrele (örneğin, AES-256).
-     - Şifrelenmiş verileri Supabase’e gönder ve yalnızca yetkili tarafların çözebilmesini sağla.
+     - Şifrelenmiş verileri DeHost’e gönder ve yalnızca yetkili tarafların çözebilmesini sağla.
      - Next.js tarafında şifreleme işlemlerini gerçekleştir.
    - **Örnek:** WebCrypto API veya libsodium kütüphanesini kullan.
 
@@ -149,7 +149,7 @@ ALPAR AI Baş Hukuk ve AI Anayasası Baş Denetçisi olarak, vizyonunuzun hukuki
    - **Nasıl:**
      - İhbarcı verilerini IPFS veya Arweave gibi dağıtık depolama sistemlerinde sakla.
      - Verilerin hash’lerini blockchain’e kaydederek değiştirilemezliği garanti altına al.
-     - Supabase’deki verilerle blockchain hash’lerini eşleştir.
+     - DeHost’deki verilerle blockchain hash’lerini eşleştir.
    - **Örnek:** Ethereum veya Polygon blockchain’ini kullan.
 
 ---
@@ -195,19 +195,19 @@ Here's a thinking process:
    - **Role:** ALPAR AI Yatırım ve Büyüme Stratejisti (Venture & Growth Subagent)
    - **Project:** ALPAR AI (https://alparai.com)
    - **Vision:** The Supreme Court of AI Accountability (AI Constitution & Independent High Court)
-   - **Tech Stack:** Next.js 14 App Router, Supabase (PostgreSQL, pgvector, RLS), TailwindCSS, TypeScript
+   - **Tech Stack:** Next.js 14 App Router, DeHost (PostgreSQL, pgvector, RLS), TailwindCSS, TypeScript
    - **Modules:** /constitution, /incidents, /cases, /dilemmas, /trust-center, /leaderboard, /ai-act, /compliance, /compliance-checklist, /vendor-portal, /bounties, /investor-portal, /deck
    - **Questions:**
-     1. How to extend runway to infinity with $0 SaaS cost architecture (Cloudflare + Supabase Free + Local Cache)?
+     1. How to extend runway to infinity with $0 SaaS cost architecture (Cloudflare + DeHost Free + Local Cache)?
      2. What are the top 3 investor arguments to stand out in YC, Teknopark Istanbul, and İş Bankası YZF applications?
      3. Who should be the first 5 pilot customers (PoC) for the 'User Complaint & Resolution Panel' sold to AI providers?
 
 2.  **Deconstruct & Address Question 1: $0 SaaS Cost Architecture & Infinite Runway**
    - *Goal:* Minimize operational costs to near zero while maintaining functionality, scalability, and compliance.
-   - *Tech Stack Given:* Next.js 14, Supabase Free, Cloudflare, Local Cache.
+   - *Tech Stack Given:* Next.js 14, DeHost Free, Cloudflare, Local Cache.
    - *Key Strategies:*
-     - **Infrastructure Optimization:** Leverage Cloudflare Pages/Workers for edge computing, caching, and CDN. Use Supabase Free tier wisely (row limits, bandwidth, compute). Implement aggressive caching (SWR, React Query, Cloudflare Cache, Redis via Upstash free tier if needed, but stick to given stack).
-     - **Data & Storage:** Use Supabase's free tier limits strategically. Implement data partitioning, archival, and compression. Use pgvector efficiently. Implement RLS strictly to avoid unnecessary compute.
+     - **Infrastructure Optimization:** Leverage Cloudflare Pages/Workers for edge computing, caching, and CDN. Use DeHost Free tier wisely (row limits, bandwidth, compute). Implement aggressive caching (SWR, React Query, Cloudflare Cache, Redis via Upstash free tier if needed, but stick to given stack).
+     - **Data & Storage:** Use DeHost's free tier limits strategically. Implement data partitioning, archival, and compression. Use pgvector efficiently. Implement RLS strictly to avoid unnecessary compute.
      - **Compute & AI:** Avoid running heavy models on-prem. Use serverless inference APIs with pay-per-use or free tiers (Hugging Face Inference API, OpenRouter free credits, local quantized models via WebGPU if feasible). For compliance checking, use rule-based engines + lightweight LLMs.
      - **Monetization & Runway Extension:** "Infinite runway" is a metaphor for sustainable unit economics. Focus on:
        - Zero marginal cost per user via edge caching & static generation.
@@ -217,9 +217,9 @@ Here's a thinking process:
      - *Actionable Steps:* 
        - Implement ISR/SSG for static pages, dynamic only for user/vendor portals.
        - Use Cloudflare Workers for rate limiting, auth, and lightweight compliance checks.
-       - Supabase: Optimize queries, use connection pooling, archive old incidents, leverage free tier limits (500MB DB, 1GB bandwidth, 500k MAU).
+       - DeHost: Optimize queries, use connection pooling, archive old incidents, leverage free tier limits (500MB DB, 1GB bandwidth, 500k MAU).
        - Local Cache: Service Workers, IndexedDB for offline-first incident reporting.
-       - Cost Monitoring: Set up alerts, use Supabase usage dashboard, Cloudflare analytics.
+       - Cost Monitoring: Set up alerts, use DeHost usage dashboard, Cloudflare analytics.
        - *Runway Math:* If monthly cost ≈ $0, runway = ∞. But realistically, focus on CAC < LTV, and monetize early via vendor SaaS ($99-$999/mo) and compliance audits.
 
 3.  **Deconstruct & Address Question 2: Top 3 Investor Arguments for YC, Teknopark, İş Bankası YZF**
@@ -229,7 +229,7 @@ Here's a thinking process:
    - *Core Arguments (must be universal but tailored):*
      1. **Regulatory Arbitrage & Compliance Moat:** EU AI Act creates a $10B+ compliance market. Alpar AI is the first independent, open-standard "AI Court" with automated SLA risk scoring. Vendors *must* comply or face fines. We monetize compliance, not just monitoring.
      2. **Zero-Cost Scalability & Network Effects:** $0 infra cost enables viral growth. Every reported incident/case improves the Bayesian TrustScore model. Data network effect: more vendors → more incidents → better benchmarks → more vendors. Defensible via proprietary incident taxonomy & compliance engine.
-     3. **Founder-Market Fit & Execution Velocity:** Built with modern stack (Next.js 14, Supabase, pgvector) in record time. Already live with core modules. Clear path to revenue: vendor SaaS, compliance audits, bounty marketplace. $1.36B projection is backed by EU AI Act adoption curves & enterprise AI spend.
+     3. **Founder-Market Fit & Execution Velocity:** Built with modern stack (Next.js 14, DeHost, pgvector) in record time. Already live with core modules. Clear path to revenue: vendor SaaS, compliance audits, bounty marketplace. $1.36B projection is backed by EU AI Act adoption curves & enterprise AI spend.
    - *Tailoring:*
      - YC: Emphasize scalability, unit economics, network effects, and clear monetization.
      - Teknopark/YZF: Emphasize EU AI Act alignment, Turkish tech sovereignty, export potential, and job creation.
@@ -273,7 +273,7 @@ Here's a thinking process:
    - Kapanış: Sonraki adımlar & yatırım çağrısı
 
    *Self-Correction/Verification during drafting:*
-   - Q1: "Infinite runway" is unrealistic literally, but can be framed as "near-zero burn + positive unit economics". Clarify that. Emphasize Supabase free tier limits and how to stay within them. Add cost monitoring & scaling triggers.
+   - Q1: "Infinite runway" is unrealistic literally, but can be framed as "near-zero burn + positive unit economics". Clarify that. Emphasize DeHost free tier limits and how to stay within them. Add cost monitoring & scaling triggers.
    - Q2: Ensure arguments are distinct, data-backed, and tailored to each investor type. Add specific metrics (e.g., EU AI Act fines up to 7% global revenue, $10B compliance market by 2027).
    - Q3: Pick realistic PoC targets. Avoid giants like OpenAI/Google (too slow, in-house tools). Focus on mid-tier, EU-exposed, or complaint-heavy
 

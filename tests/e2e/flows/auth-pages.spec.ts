@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { setupAuthenticatedPage, mockSupabaseResponse } from "../helpers/auth";
+import { setupAuthenticatedPage, mockDeHostResponse } from "../helpers/auth";
 
 const MOCK_USER = [
   {
@@ -93,22 +93,22 @@ const MOCK_NEWS = [
 
 test.beforeEach(async ({ page }) => {
   await setupAuthenticatedPage(page);
-  await mockSupabaseResponse(page, "users*", MOCK_USER);
-  await mockSupabaseResponse(page, "ai_polls*", MOCK_POLLS);
+  await mockDeHostResponse(page, "users*", MOCK_USER);
+  await mockDeHostResponse(page, "ai_polls*", MOCK_POLLS);
 });
 
 test.describe("Authenticated Pages — Rendering", () => {
   test("dilemmas page renders", async ({ page }) => {
-    await mockSupabaseResponse(page, "suggestions*", MOCK_SUGGESTIONS);
+    await mockDeHostResponse(page, "suggestions*", MOCK_SUGGESTIONS);
     await page.goto("/en/dilemmas");
     await page.waitForLoadState("domcontentloaded");
     await expect(page.locator("body")).toBeVisible();
   });
 
   test("feed page renders", async ({ page }) => {
-    await mockSupabaseResponse(page, "incidents*", MOCK_INCIDENTS);
-    await mockSupabaseResponse(page, "ai_providers*", MOCK_PROVIDERS);
-    await mockSupabaseResponse(page, "ecosystem_news*", MOCK_NEWS);
+    await mockDeHostResponse(page, "incidents*", MOCK_INCIDENTS);
+    await mockDeHostResponse(page, "ai_providers*", MOCK_PROVIDERS);
+    await mockDeHostResponse(page, "ecosystem_news*", MOCK_NEWS);
     await page.goto("/en/feed");
     await page.waitForLoadState("domcontentloaded");
     await expect(page.locator("body")).toBeVisible();

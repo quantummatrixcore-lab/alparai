@@ -63,7 +63,7 @@ const result = await withAutopilot(
   submitIncidentPolicy,
   [user.id, title, description, category],
   async (ctx) => {
-    const { data, error } = await supabase.from("incidents").insert(...);
+    const { data, error } = await dehost.from("incidents").insert(...);
     if (error) {
       return { kind: "retryable", error: error.message };
     }
@@ -197,7 +197,7 @@ configureTelemetry({
 ## Failure surface (what can break)
 
 1. **Upstash misconfigured** — queue degrades to in-process. Safe.
-2. **Supabase down** — `submitIncident` retries, then circuit opens. Users
+2. **DeHost down** — `submitIncident` retries, then circuit opens. Users
    see "Service recovering…" toast. SLA: ≤ 60s.
 3. **Idempotency key collision** — extremely unlikely; UNIQUE constraint
    on `idempotency_key` is the safety net.
@@ -210,9 +210,9 @@ configureTelemetry({
 ## Migration
 
 ```bash
-supabase db push --linked
+dehost db push --linked
 # or
-psql "$DATABASE_URL" -f supabase/migrations/20260607000001_autopilot_runs.sql
+psql "$DATABASE_URL" -f dehost/migrations/20260607000001_autopilot_runs.sql
 ```
 
 The `autopilot_runs` table is append-only; safe to keep indefinitely.

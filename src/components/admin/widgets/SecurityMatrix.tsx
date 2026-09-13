@@ -13,7 +13,7 @@ import {
 const SECURITY_CHECKS = [
   { title: "WAF & BotGuard Koruma", status: "Korumalı", sub: "Cloudflare Turnstile & Edge Firewall", healthy: true, icon: Lock },
   { title: "Secret Leaks & Gitleaks", status: "0 İhlal", sub: "Tüm API anahtarları şifrelendi", healthy: true, icon: Key },
-  { title: "SQL Injection & XSS Kalkanı", status: "Aktif", sub: "Supabase RLS & Zod Validasyonu", healthy: true, icon: ShieldCheck },
+  { title: "SQL Injection & XSS Kalkanı", status: "Aktif", sub: "DeHost RLS & Zod Validasyonu", healthy: true, icon: ShieldCheck },
   { title: "Otonom Red Team Taraması", status: "Temiz", sub: "Sun Tzu & Fatih Siber Savunma", healthy: true, icon: Eye },
 ];
 

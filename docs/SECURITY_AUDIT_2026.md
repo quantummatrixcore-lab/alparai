@@ -7,7 +7,7 @@
 
 ---
 
-## 1. SUPABASE_SERVICE_ROLE_KEY Exposure Analysis
+## 1. DEHOST_SERVICE_ROLE_KEY Exposure Analysis
 
 ### ✅ CLEAR — No client bundle leak confirmed
 
@@ -22,17 +22,17 @@ All 13 references reside exclusively in server-side files (Server Actions, API R
 | `src/app/api/admin/env-audit/route.ts` | API Route | ✅ |
 | `src/app/api/admin/integrations/route.ts` | API Route | ✅ |
 | `src/app/api/cron/backup/route.ts` | API Route | ✅ |
-| `src/lib/supabase/admin.ts` | Server Lib | ✅ |
+| `src/lib/dehost/admin.ts` | Server Lib | ✅ |
 | `src/lib/integrations/registry.ts` | Server Lib | ✅ |
 | `src/components/admin/api-management/static-keys-list.tsx` | Component (no use client) | ✅ label only |
 
-> **static-keys-list.tsx verdict:** No `"use client"` directive. Stores only the string name `"SUPABASE_SERVICE_ROLE_KEY"` as a UI label. No actual secret value. SAFE.
+> **static-keys-list.tsx verdict:** No `"use client"` directive. Stores only the string name `"DEHOST_SERVICE_ROLE_KEY"` as a UI label. No actual secret value. SAFE.
 
 ### ⚠️ Medium Risk — Non-Constant Time Comparison
 
 ```typescript
 // src/actions/autopilot-moderate.ts:248
-if (internalToken !== process.env.SUPABASE_SERVICE_ROLE_KEY) {
+if (internalToken !== process.env.DEHOST_SERVICE_ROLE_KEY) {
 ```
 
 **Risk:** `!==` string comparison is vulnerable to timing attacks.
@@ -81,7 +81,7 @@ Core audit pipeline. Malformed inserts undetected at compile time.
 
 ```typescript
 // Line 64
-const { error: dbError } = await (supabase as any)
+const { error: dbError } = await (dehost as any)
 ```
 Storage mutations — could mask RLS violations or column mismatches.
 
@@ -119,7 +119,7 @@ Only `.env.example` tracked. `.env.local` and `.env.production` are NOT in git.
 | `src/actions/autopilot-sync.ts` | 175 | `fetch(feed.url)` — RSS URL from constant array, no `isSafeUrl()` guard |
 | `src/app/api/cron/import-incidents/route.ts` | 35, 66 | `fetch(aiaaicUrl)` / `fetch(aiidUrl)` — verify these are hardcoded constants |
 
-All other external fetch calls (openrouter.ai, anthropic.com, api.vercel.com, resend.com, github.com, tavily.com, linkedin.com, api.x.com, tiktokapis.com) are hardcoded literals — NOT user-controlled. ✅
+All other external fetch calls (openrouter.ai, anthropic.com, api.dehost.com, resend.com, github.com, tavily.com, linkedin.com, api.x.com, tiktokapis.com) are hardcoded literals — NOT user-controlled. ✅
 
 ---
 
@@ -143,9 +143,9 @@ All other external fetch calls (openrouter.ai, anthropic.com, api.vercel.com, re
 ## Recommended Actions (Priority Order)
 
 1. **[HIGH]** `autopilot-moderate.ts:248` — Replace `!==` with `crypto.timingSafeEqual()`
-2. **[HIGH]** `personas/[twinId]/completions/route.ts` — Eliminate `as any`, generate Supabase types
+2. **[HIGH]** `personas/[twinId]/completions/route.ts` — Eliminate `as any`, generate DeHost types
 3. **[HIGH]** `autopilot-sync.ts:175` — Add `isSafeUrl()` guard before `fetch(feed.url)`
-4. **[MEDIUM]** `cross-audit/pipeline-orchestrator.ts` — Replace `as any` with typed Supabase queries
+4. **[MEDIUM]** `cross-audit/pipeline-orchestrator.ts` — Replace `as any` with typed DeHost queries
 5. **[LOW]** `kahin-oracle.ts:15` — Remove `console.log` or move to `logger.debug()`
 6. **[LOW]** Systematic `as any` elimination across remaining 20 instances
 

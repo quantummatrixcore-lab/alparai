@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
 
 vi.hoisted(() => {
-  vi.doMock("@/lib/supabase/admin", () => ({
+  vi.doMock("@/lib/dehost/admin", () => ({
     createAdminClient: vi.fn(),
   }));
   vi.doMock("@/lib/auth/session", () => ({
@@ -13,7 +13,7 @@ vi.hoisted(() => {
   }));
 });
 
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { getCurrentUser } from "@/lib/auth/session";
 import { headers } from "next/headers";
 import { logCookieConsent } from "@/actions/cookie-consent";
@@ -31,10 +31,10 @@ beforeEach(() => {
 describe("Cookie Consent", () => {
   it("logs consent when user is signed in", async () => {
     vi.mocked(getCurrentUser).mockResolvedValue({ id: "user-1" } as never);
-    const mockSupabase = {
+    const mockDeHost = {
       from: vi.fn().mockReturnValue({ insert: vi.fn().mockResolvedValue({ error: null }) }),
     };
-    vi.mocked(createAdminClient).mockReturnValue(mockSupabase as never);
+    vi.mocked(createAdminClient).mockReturnValue(mockDeHost as never);
 
     const result = await logCookieConsent("analytics");
     expect(result.ok).toBe(true);
@@ -42,10 +42,10 @@ describe("Cookie Consent", () => {
 
   it("logs consent when user is anonymous", async () => {
     vi.mocked(getCurrentUser).mockResolvedValue(null);
-    const mockSupabase = {
+    const mockDeHost = {
       from: vi.fn().mockReturnValue({ insert: vi.fn().mockResolvedValue({ error: null }) }),
     };
-    vi.mocked(createAdminClient).mockReturnValue(mockSupabase as never);
+    vi.mocked(createAdminClient).mockReturnValue(mockDeHost as never);
 
     const result = await logCookieConsent("necessary");
     expect(result.ok).toBe(true);
@@ -53,12 +53,12 @@ describe("Cookie Consent", () => {
 
   it("returns ok false on database error", async () => {
     vi.mocked(getCurrentUser).mockResolvedValue(null);
-    const mockSupabase = {
+    const mockDeHost = {
       from: vi
         .fn()
         .mockReturnValue({ insert: vi.fn().mockResolvedValue({ error: new Error("DB down") }) }),
     };
-    vi.mocked(createAdminClient).mockReturnValue(mockSupabase as never);
+    vi.mocked(createAdminClient).mockReturnValue(mockDeHost as never);
 
     const result = await logCookieConsent("marketing");
     expect(result.ok).toBe(false);

@@ -74,7 +74,7 @@ class VibeSecurityGuardian {
     const secretPatterns = [
       { name: 'Leaked Service Role Key in NEXT_PUBLIC', regex: /NEXT_PUBLIC_[A-Z_]*SERVICE_ROLE[A-Z_]*\s*=/i, cwe: 'CWE-200' },
       { name: 'Hardcoded Private Key / Secret Token', regex: /(?:Bearer\s+[a-zA-Z0-9_\-\.]{30,}|sk-[a-zA-Z0-9]{32,}|ghp_[a-zA-Z0-9]{36})/i, cwe: 'CWE-798' },
-      { name: 'Hardcoded Supabase Service Role Secret', regex: /eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\.[a-zA-Z0-9_\-]+\.[a-zA-Z0-9_\-]+/g, cwe: 'CWE-798' }
+      { name: 'Hardcoded DeHost Service Role Secret', regex: /eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\.[a-zA-Z0-9_\-]+\.[a-zA-Z0-9_\-]+/g, cwe: 'CWE-798' }
     ];
 
     for (const file of files) {

@@ -20,7 +20,7 @@ require opposite fixes. Whether this predates today's 11-commit range is `ölç�
 ## Reopened — the fix was a suppression (v13.44)
 
 `2a578ced` ("Suppress typescript errors for missing tables") cleared all three errors with
-`const db = admin as any` and `(supabase as any)`, each preceded by
+`const db = admin as any` and `(dehost as any)`, each preceded by
 `// eslint-disable-next-line @typescript-eslint/no-explicit-any`, in `src/actions/geo.ts`,
 `src/app/[locale]/transparency/cease-desist/page.tsx` and `src/app/api/v1/webhooks/route.ts`.
 

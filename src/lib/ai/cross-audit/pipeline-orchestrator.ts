@@ -9,7 +9,7 @@
  */
 
 import "server-only";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { isGatewayConfigured } from "@/lib/ai/openrouter-gateway";
 import { maskPII } from "@/lib/pii/guardian";
 import { selectModelTier, type ModelTier } from "@/lib/audit/model-router";

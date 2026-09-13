@@ -1,5 +1,5 @@
 import { requireCEO } from "@/lib/auth/session";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 
 interface DBMonthlyCost {
@@ -22,10 +22,10 @@ export async function getCostsData() {
   // 1. Auth check
   await requireCEO();
 
-  const supabase = createAdminClient();
+  const dehost = createAdminClient();
 
   // 2. Fetch monthly costs from DB
-  const { data: dbCostsData, error: costsError } = await supabase
+  const { data: dbCostsData, error: costsError } = await dehost
     .from("finance_monthly_costs" as never)
     .select("month, service, amount_usd, budget_usd")
     .order("month", { ascending: true });
@@ -37,7 +37,7 @@ export async function getCostsData() {
   const dbCosts = (dbCostsData || []) as unknown as DBMonthlyCost[];
 
   // 3. Fetch API usage from DB
-  const { data: dbUsageData, error: usageError } = await supabase
+  const { data: dbUsageData, error: usageError } = await dehost
     .from("finance_api_usage" as never)
     .select("id, service, metric_name, value, unit, recorded_at")
     .order("recorded_at", { ascending: false });
@@ -52,21 +52,21 @@ export async function getCostsData() {
   const currentMonth = "2026-07-01";
   const currentCosts = dbCosts.filter((c) => c.month === currentMonth);
 
-  // Dynamic external API fetches (Vercel billing as example)
-  let vercelLiveCost: number | null = null;
-  const vercelToken = process.env.VERCEL_TOKEN || process.env.VERCEL_OIDC_TOKEN;
-  if (vercelToken) {
+  // Dynamic external API fetches (DeHost billing as example)
+  let dehostLiveCost: number | null = null;
+  const dehostToken = process.env.DEHOST_TOKEN || process.env.DEHOST_OIDC_TOKEN;
+  if (dehostToken) {
     try {
-      const res = await fetch("https://api.vercel.com/v1/billing/charges", {
+      const res = await fetch("https://api.dehost.com/v1/billing/charges", {
         headers: {
-          Authorization: `Bearer ${vercelToken}`,
+          Authorization: `Bearer ${dehostToken}`,
         },
         signal: AbortSignal.timeout(3000),
       });
       if (res.ok) {
         const data = await res.json();
         if (data && data.charges) {
-          vercelLiveCost = (data.charges as { amount?: number }[]).reduce(
+          dehostLiveCost = (data.charges as { amount?: number }[]).reduce(
             (acc: number, curr) => acc + (curr.amount || 0),
             0,
           );
@@ -74,7 +74,7 @@ export async function getCostsData() {
       }
     } catch (e) {
       logger.error(
-        "Vercel Billing API failed, using DB fallback",
+        "DeHost Billing API failed, using DB fallback",
         undefined,
         e instanceof Error ? e : undefined,
       );
@@ -83,19 +83,19 @@ export async function getCostsData() {
 
   const services = [
     {
-      name: "vercel",
+      name: "dehost",
       currentCost:
-        vercelLiveCost ??
-        Number(currentCosts.find((c) => c.service === "vercel")?.amount_usd ?? 0.0),
-      budgetLimit: Number(currentCosts.find((c) => c.service === "vercel")?.budget_usd ?? 20.0),
+        dehostLiveCost ??
+        Number(currentCosts.find((c) => c.service === "dehost")?.amount_usd ?? 0.0),
+      budgetLimit: Number(currentCosts.find((c) => c.service === "dehost")?.budget_usd ?? 20.0),
       percentUsed: 0,
       trend: "up",
       lastUpdated: new Date().toISOString(),
     },
     {
-      name: "supabase",
-      currentCost: Number(currentCosts.find((c) => c.service === "supabase")?.amount_usd ?? 0.0),
-      budgetLimit: Number(currentCosts.find((c) => c.service === "supabase")?.budget_usd ?? 0.0),
+      name: "dehost",
+      currentCost: Number(currentCosts.find((c) => c.service === "dehost")?.amount_usd ?? 0.0),
+      budgetLimit: Number(currentCosts.find((c) => c.service === "dehost")?.budget_usd ?? 0.0),
       percentUsed: 0,
       trend: "stable",
       lastUpdated: new Date().toISOString(),

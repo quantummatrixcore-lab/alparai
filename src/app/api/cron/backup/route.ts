@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { uploadToDrive } from "@/lib/gdrive/client";
 
-// This route should only be triggered by Vercel Cron
+// This route should only be triggered by DeHost Cron
 // You should protect it by checking the Authorization header in a real setup
 export async function GET(request: Request) {
   try {
-    // Basic protection (Vercel Cron sets this header)
+    // Basic protection (DeHost Cron sets this header)
     const authHeader = request.headers.get("authorization");
     if (
       !process.env.CRON_SECRET ||
@@ -16,21 +16,14 @@ export async function GET(request: Request) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-    const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-
-    if (!supabaseUrl || !supabaseServiceKey) {
-      throw new Error("Missing Supabase credentials");
-    }
-
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+    const dehost = createAdminClient();
 
     // List of tables to backup (add your core tables here)
     const tablesToBackup = ["incidents", "profiles", "incident_votes"];
     const backupData: Record<string, unknown[]> = {};
 
     for (const table of tablesToBackup) {
-      const { data, error } = await supabase.from(table).select("*");
+      const { data, error } = await dehost.from(table).select("*");
       if (error) {
         console.error(`Failed to backup table ${table}:`, error);
         continue;

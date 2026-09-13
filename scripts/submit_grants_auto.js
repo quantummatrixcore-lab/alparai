@@ -1,19 +1,19 @@
-const { createClient } = require("@supabase/supabase-js");
+const { createClient } = require("@/lib/dehost/client");
 const fs = require("fs");
 const dotenv = require("dotenv");
 
 // Load environment variables
 const envConfig = dotenv.parse(fs.readFileSync(".env.local"));
-const supabase = createClient(
-  envConfig.NEXT_PUBLIC_SUPABASE_URL,
-  envConfig.SUPABASE_SERVICE_ROLE_KEY,
+const dehost = createClient(
+  envConfig.NEXT_PUBLIC_DEHOST_URL,
+  envConfig.DEHOST_SERVICE_ROLE_KEY,
 );
 
 async function run() {
   console.log("Starting automated grant submissions (simulating OpenChrome form filling)...");
 
   // 1. Fetch pending grants
-  const { data: grants, error: fetchError } = await supabase
+  const { data: grants, error: fetchError } = await dehost
     .from("grant_applications")
     .select("*")
     .in("status", ["not_started", "drafting"]);
@@ -34,7 +34,7 @@ async function run() {
       grant.prepared_content_ref || "Default ALPAR AI Pitch Deck & Architecture Overview";
 
     // Update DB
-    const { error: updateError } = await supabase
+    const { error: updateError } = await dehost
       .from("grant_applications")
       .update({
         status: "submitted_pending_review",

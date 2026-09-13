@@ -4,32 +4,32 @@ import "../helpers/setup";
 vi.mock("@/lib/auth/session", () => ({
   requireAdmin: vi.fn().mockResolvedValue({ id: "admin" })
 }));
-import { createMockSupabaseClient } from "../helpers/supabase-mock";
+import { createMockDeHostClient } from "../helpers/dehost-mock";
 
 vi.hoisted(() => {
-  vi.doMock("@/lib/supabase/admin", () => ({
+  vi.doMock("@/lib/dehost/admin", () => ({
     createAdminClient: vi.fn(),
   }));
-  vi.doMock("@/lib/supabase/server", () => ({
+  vi.doMock("@/lib/dehost/server", () => ({
     createServerClient: vi.fn(),
   }));
 });
 
-import { createAdminClient } from "@/lib/supabase/admin";
-import { createServerClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/dehost/admin";
+import { createServerClient } from "@/lib/dehost/server";
 import { getProviderWithSla, getProvidersLeaderboard } from "@/actions/providers";
 
-let mockSupabaseClient: ReturnType<typeof createMockSupabaseClient>;
+let mockDeHostClient: ReturnType<typeof createMockDeHostClient>;
 
 beforeEach(() => {
   vi.clearAllMocks();
-  mockSupabaseClient = createMockSupabaseClient();
+  mockDeHostClient = createMockDeHostClient();
 });
 
 describe("Provider Actions", () => {
   describe("getProviderWithSla", () => {
     it("returns provider with incident count", async () => {
-      mockSupabaseClient._mocks.mockMaybeSingle.mockResolvedValue({
+      mockDeHostClient._mocks.mockMaybeSingle.mockResolvedValue({
         data: {
           id: "p-1",
           slug: "openai",
@@ -40,7 +40,7 @@ describe("Provider Actions", () => {
         },
         error: null,
       });
-      vi.mocked(createServerClient).mockResolvedValue(mockSupabaseClient as never);
+      vi.mocked(createServerClient).mockResolvedValue(mockDeHostClient as never);
 
       const result = await getProviderWithSla("openai");
       expect(result).not.toBeNull();
@@ -48,8 +48,8 @@ describe("Provider Actions", () => {
     });
 
     it("returns null when provider not found", async () => {
-      mockSupabaseClient._mocks.mockMaybeSingle.mockResolvedValue({ data: null, error: null });
-      vi.mocked(createServerClient).mockResolvedValue(mockSupabaseClient as never);
+      mockDeHostClient._mocks.mockMaybeSingle.mockResolvedValue({ data: null, error: null });
+      vi.mocked(createServerClient).mockResolvedValue(mockDeHostClient as never);
 
       const result = await getProviderWithSla("nonexistent");
       expect(result).toBeNull();
@@ -81,8 +81,8 @@ describe("Provider Actions", () => {
       const mockOrder = vi.fn().mockResolvedValue({ data: mockProviders, error: null });
       const mockEq2 = vi.fn().mockResolvedValue({ count: 10 });
       const mockEq1 = vi.fn().mockReturnValue({ eq: mockEq2 });
-      mockSupabaseClient._mocks.mockSelect.mockReturnValue({ order: mockOrder, eq: mockEq1 });
-      vi.mocked(createAdminClient).mockReturnValue(mockSupabaseClient as never);
+      mockDeHostClient._mocks.mockSelect.mockReturnValue({ order: mockOrder, eq: mockEq1 });
+      vi.mocked(createAdminClient).mockReturnValue(mockDeHostClient as never);
 
       const result = await getProvidersLeaderboard();
       expect(result.length).toBeGreaterThan(0);
@@ -90,8 +90,8 @@ describe("Provider Actions", () => {
 
     it("returns empty array on error", async () => {
       const mockOrder = vi.fn().mockResolvedValue({ data: null, error: { message: "DB error" } });
-      mockSupabaseClient._mocks.mockSelect.mockReturnValue({ order: mockOrder, eq: vi.fn() });
-      vi.mocked(createAdminClient).mockReturnValue(mockSupabaseClient as never);
+      mockDeHostClient._mocks.mockSelect.mockReturnValue({ order: mockOrder, eq: vi.fn() });
+      vi.mocked(createAdminClient).mockReturnValue(mockDeHostClient as never);
 
       const result = await getProvidersLeaderboard();
       expect(result).toEqual([]);

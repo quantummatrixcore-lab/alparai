@@ -1,8 +1,8 @@
 export const dynamic = "force-dynamic";
 
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { createServerClient } from "@/lib/supabase/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createServerClient } from "@/lib/dehost/server";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
@@ -66,12 +66,12 @@ function buildCitationText(
 }
 
 async function fetchTranslationMap(
-  supabase: Awaited<ReturnType<typeof createServerClient>>,
+  dehost: Awaited<ReturnType<typeof createServerClient>>,
   incidentIds: string[],
   locale: string,
 ): Promise<TranslationMap | undefined> {
   if (incidentIds.length === 0) return undefined;
-  const client = supabase as unknown as {
+  const client = dehost as unknown as {
     from: (table: string) => {
       select: (cols: string) => {
         in: (
@@ -137,10 +137,10 @@ export default async function JournalistDashboard({
   const tCommon = await getTranslations({ locale, namespace: "common" });
   const tCases = await getTranslations({ locale, namespace: "cases" });
 
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
   const admin = createAdminClient();
 
-  const providersResult = await supabase
+  const providersResult = await dehost
     .from("ai_providers")
     .select("id, slug, name")
     .order("name");
@@ -170,7 +170,7 @@ export default async function JournalistDashboard({
 
   const [incidentsResult, leaderboardResult] = await Promise.all([
     incidentsQuery,
-    supabase
+    dehost
       .from("provider_leaderboard")
       .select(
         "id, slug, name, logo_url, is_verified, website_url, trust_score, incident_count, response_count, is_verified_respondent, response_rate",
@@ -182,7 +182,7 @@ export default async function JournalistDashboard({
   const localeNeedsTranslationTable = locale === "de" || locale === "fr" || locale === "ru";
   const translationMap = localeNeedsTranslationTable
     ? await fetchTranslationMap(
-        supabase,
+        dehost,
         rawIncidents.map((r) => r["id"] as string),
         locale,
       )

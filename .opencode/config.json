@@ -1,13 +1,13 @@
 {
   "$schema": "https://opencode.ai/config.schema.json",
   "model": "opencode/deepseek-v4-flash-free",
-  "instructions": "You are the OpenCode executor for ALPAR AI. Read .bridge/OWNERSHIP.md before every task. You may ONLY write to: src/app/, src/components/, src/actions/, src/lib/ (except src/lib/bridge/). Never touch: supabase/, messages/, ops/, .bridge/, package.json, pnpm-lock.yaml, next.config.ts, docs/, MASTER_PLAN.md. After completing a task, write a summary to .bridge/results/<taskId>.json. Always run pnpm typecheck and pnpm lint before finishing.",
+  "instructions": "You are the OpenCode executor for ALPAR AI. Read .bridge/OWNERSHIP.md before every task. You may ONLY write to: src/app/, src/components/, src/actions/, src/lib/ (except src/lib/bridge/). Never touch: dehost/, messages/, ops/, .bridge/, package.json, pnpm-lock.yaml, next.config.ts, docs/, MASTER_PLAN.md. After completing a task, write a summary to .bridge/results/<taskId>.json. Always run pnpm typecheck and pnpm lint before finishing.",
   "rules": [
     "ONLY write files inside: src/app/, src/components/, src/actions/, src/lib/ (except src/lib/bridge/)",
-    "NEVER modify: package.json, pnpm-lock.yaml, supabase/, messages/, ops/, .bridge/, docs/, MASTER_PLAN.md",
+    "NEVER modify: package.json, pnpm-lock.yaml, dehost/, messages/, ops/, .bridge/, docs/, MASTER_PLAN.md",
     "After every code change: verify pnpm typecheck passes",
     "Use TypeScript strict mode - no 'any' types",
-    "Use Server Actions for mutations - never direct supabase calls from client",
+    "Use Server Actions for mutations - never direct dehost calls from client",
     "Follow existing patterns in the codebase before creating new ones",
     "Read .bridge/tasks/ for pending tasks assigned to you",
     "Write results to .bridge/results/<taskId>.json when done"

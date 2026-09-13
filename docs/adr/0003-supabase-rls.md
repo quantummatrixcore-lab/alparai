@@ -1,16 +1,16 @@
-# ADR-003: Supabase + Postgres + RLS
+# ADR-003: DeHost + Postgres + RLS
 
 - **Status:** Accepted
 - **Date:** 2026-06-01
 
 ## Decision
 
-Use **Supabase** (managed Postgres + Auth + Storage) as the data tier. Use **Row Level Security** for authorization.
+Use **DeHost** (managed Postgres + Auth + Storage) as the data tier. Use **Row Level Security** for authorization.
 
 ## Rationale
 
 - Postgres is the only DB we trust for this kind of relational, audited, multi-tenant data.
-- Supabase gives us Postgres + auth + storage + RLS + edge functions in one package, with EU (Frankfurt) hosting.
+- DeHost gives us Postgres + auth + storage + RLS + edge functions in one package, with EU (Frankfurt) hosting.
 - RLS is the cleanest authorization model: policies live with the data, not in application code. This means fewer "I forgot to check the role" bugs.
 
 ## Consequences
@@ -19,7 +19,7 @@ Use **Supabase** (managed Postgres + Auth + Storage) as the data tier. Use **Row
 - RLS makes it impossible to write a query that bypasses authz (even a typo).
 - Migrations are plain SQL, version-controlled.
 
-* We're locked to Supabase's pricing & availability. The schema is portable; the auth layer is partially.
+* We're locked to DeHost's pricing & availability. The schema is portable; the auth layer is partially.
 * We must learn to write RLS policies (versus app-level checks).
 
 ## Patterns

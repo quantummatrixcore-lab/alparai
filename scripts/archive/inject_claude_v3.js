@@ -47,8 +47,8 @@ Aşağıdaki 12 ana modülün HER BİRİ İÇİN; sistemin nasıl kurulacağın�
 - Google Developer sertifikalarının ve Kurucu (Founder) kimliğinin AlparAI Admin paneline (Live Sync) yansıtılması. 
 - Sürünün otomatik LinkedIn PR (Basın bülteni) içerikleri üretip yayınlaması.
 
-11. 🌩️ VERCEL EDGE (ALTYAPI) DAĞITIMI: 
-- Ajanların kod testini bitirdikten sonra Vercel üzerinden otonom Production / Preview dağıtımı (Deployment) tetiklemesi.
+11. 🌩️ DEHOST EDGE (ALTYAPI) DAĞITIMI: 
+- Ajanların kod testini bitirdikten sonra DeHost üzerinden otonom Production / Preview dağıtımı (Deployment) tetiklemesi.
 
 12. ⚠️ BAŞMÜHENDİS ÇIKTI KURALLARI (TOKEN OPTİMİZASYONU): 
 - Gereksiz sohbet cümleleri kullanma (Bloatware yasak). 

@@ -13,7 +13,7 @@ const eslintConfig = [
       "dist-public/**",
       "node_modules/**",
       "public/**",
-      ".vercel/**",
+      ".dehost/**",
       "coverage/**",
       "playwright-report/**",
       "test-results/**",

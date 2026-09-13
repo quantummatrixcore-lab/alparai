@@ -1,6 +1,6 @@
 import "server-only";
 import { NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { headers } from "next/headers";
 import { logger } from "@/lib/utils/logger";
@@ -75,7 +75,7 @@ export async function POST(request: Request) {
     .maybeSingle();
 
   if (dbKeyErr) {
-    logger.error("Failed to retrieve api_key from database in risk audit", undefined, dbKeyErr);
+    logger.error("Failed to retrieve api_key from database in risk audit", undefined, new Error(dbKeyErr.message));
     return NextResponse.json(
       { error: "internal_error" },
       { status: 500, headers: corsHeaders(origin) },

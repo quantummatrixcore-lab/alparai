@@ -16,7 +16,7 @@ const mockEq = vi.fn().mockReturnThis();
 const mockSelect = vi.fn().mockReturnThis();
 const mockResolveEq = vi.fn().mockResolvedValue({ data: [{ provider_id: "google" }], error: null });
 
-vi.mock("@/lib/supabase/server", () => ({
+vi.mock("@/lib/dehost/server", () => ({
   createServerClient: () => ({
     from: () => ({
       insert: mockInsert,

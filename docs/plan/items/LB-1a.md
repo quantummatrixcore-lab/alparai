@@ -9,7 +9,7 @@ explicitly in the specification, and each has a reason that is not stylistic.
 
 ## 1. Deletes use `ILIKE` pattern matching, not an explicit id list
 
-`supabase/migrations/20260820120000_remove_fake_models.sql` removes incidents by pattern. `LB-1` ruled
+`dehost/migrations/20260820120000_remove_fake_models.sql` removes incidents by pattern. `LB-1` ruled
 this out in writing: pattern matching on model names **both over-matches and under-matches**. A
 pattern tuned to today's fabricated names will, on the day a real model ships under a similar name,
 delete a real incident — and nothing will report that it did, because a `DELETE` succeeds whether it
@@ -74,6 +74,6 @@ leaves no trace that it existed.
 ## Closed 2026-08-20 (v13.72) — all five requirements met
 
 The fifth and last requirement, the moderator-only insert policy, is on `origin` as
-`supabase/migrations/20260917000001_public_statement_rls.sql`: a `RESTRICTIVE` `FOR INSERT` policy
+`dehost/migrations/20260917000001_public_statement_rls.sql`: a `RESTRICTIVE` `FOR INSERT` policy
 with `WITH CHECK (response_type = 'official_reply' || public.is_moderator(auth.uid()))`. Read directly from
 `origin/master` rather than accepted from a report. The other four were verified at v13.71.

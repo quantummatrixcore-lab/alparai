@@ -1,7 +1,7 @@
 "use server";
 
-import { createServerClient } from "@/lib/supabase/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createServerClient } from "@/lib/dehost/server";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { requireAdmin } from "@/lib/auth/session";
 
 export type AiAuditMetrics = {
@@ -25,12 +25,12 @@ export async function run360ExpertAudit(): Promise<{
   error?: string;
 }> {
   try {
-    const supabase = await createServerClient();
+    const dehost = await createServerClient();
     const admin = createAdminClient();
 
     const adminUser = await requireAdmin();
 
-    // Query real system stats from Supabase
+    // Query real system stats from DeHost
     const [{ count: providersCount }, { count: modelsCount }, { count: incidentsCount }] =
       await Promise.all([
         admin.from("ai_providers").select("id", { count: "exact", head: true }),

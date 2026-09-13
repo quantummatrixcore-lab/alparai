@@ -1,13 +1,13 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
 import {
-  createMockSupabaseClient,
+  createMockDeHostClient,
   createTestModerator,
   createTestAdmin,
-} from "../helpers/supabase-mock";
+} from "../helpers/dehost-mock";
 
 vi.hoisted(() => {
-  vi.doMock("@/lib/supabase/admin", () => ({
+  vi.doMock("@/lib/dehost/admin", () => ({
     createAdminClient: vi.fn(),
   }));
   vi.doMock("@/lib/auth/session", () => ({
@@ -16,7 +16,7 @@ vi.hoisted(() => {
   }));
 });
 
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { requireModerator, requireAdmin } from "@/lib/auth/session";
 import {
   moderateIncident,
@@ -26,13 +26,13 @@ import {
   bulkRejectIncidents,
 } from "@/actions/admin";
 
-let mockAdminClient: ReturnType<typeof createMockSupabaseClient>;
+let mockAdminClient: ReturnType<typeof createMockDeHostClient>;
 let mockModerator: ReturnType<typeof createTestModerator>;
 let mockAdmin: ReturnType<typeof createTestAdmin>;
 
 beforeEach(() => {
   vi.clearAllMocks();
-  mockAdminClient = createMockSupabaseClient();
+  mockAdminClient = createMockDeHostClient();
   mockModerator = createTestModerator();
   mockAdmin = createTestAdmin();
   vi.mocked(createAdminClient).mockReturnValue(mockAdminClient as never);

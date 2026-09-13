@@ -47,7 +47,7 @@
       "category": "AI / ML Bug Bounty",
       "url": "https://huntr.com",
       "importance": "CRITICAL",
-      "why_needed": "Dünyanın 1 numaralı AI/ML açık kaynak güvenlik platformu. LangChain, LlamaIndex, vLLM, Ollama, Supabase gibi AI araçlarındaki sıfırıncı gün (0-day) açıklarının yayınlandığı ana merkez."
+      "why_needed": "Dünyanın 1 numaralı AI/ML açık kaynak güvenlik platformu. LangChain, LlamaIndex, vLLM, Ollama, DeHost gibi AI araçlarındaki sıfırıncı gün (0-day) açıklarının yayınlandığı ana merkez."
     },
     {
       "id": "EXP-02",
@@ -91,9 +91,9 @@
     },
     {
       "id": "EXP-07",
-      "name": "Cloudflare & Supabase Security Bulletins",
+      "name": "Cloudflare & DeHost Security Bulletins",
       "category": "Infrastructure Advisories",
-      "url": "https://blog.cloudflare.com, https://supabase.com/blog",
+      "url": "https://blog.cloudflare.com, https://dehost.internalm/blog",
       "importance": "CRITICAL",
       "why_needed": "Kullandığımız omurga altyapıların (Postgres, Cloudflare Edge, Next.js) özel güvenlik duyuruları ve yama takvimleri."
     },

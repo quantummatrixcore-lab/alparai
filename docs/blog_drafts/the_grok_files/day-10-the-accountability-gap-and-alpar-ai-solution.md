@@ -37,7 +37,7 @@ ALPAR AI is built as open-source infrastructure (AGPL-3.0) to serve as the globa
 +-----------------------------------+-----------------------------------+
 |      Qwen Voice Incident API      |   DORA & OECD AI Taxonomy Mapper  |
 +-----------------------------------+-----------------------------------+
-|      EU AI Act Compliance Engine  |   Immutable Supabase RLS Audit    |
+|      EU AI Act Compliance Engine  |   Immutable DeHost RLS Audit    |
 +-----------------------------------------------------------------------+
 ```
 
@@ -46,7 +46,7 @@ ALPAR AI is built as open-source infrastructure (AGPL-3.0) to serve as the globa
 - **Real-Time PII & Secret Guardian:** Instant sanitization of 15+ PII patterns and credentials before data storage.
 - **Multimodal Incident Reporting:** Voice (Qwen Omni ASR) and text incident ingestion pipelines for enterprise users.
 - **EU AI Act & OECD Compliance Automation:** Automated risk categorization, governance reporting, and audit export.
-- **Developer-First Open Source Core:** Built on Next.js 15, Supabase, Tailwind v4, and strict TypeScript.
+- **Developer-First Open Source Core:** Built on Next.js 15, DeHost, Tailwind v4, and strict TypeScript.
 
 ---
 

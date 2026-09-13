@@ -9,7 +9,7 @@
 
 ## 1. PROJE ÖZETİ
 
-**ALPAR AI** — Next.js 16.2.9 / React 19.2.3 / TypeScript 6.0.3 / Supabase / Vercel
+**ALPAR AI** — Next.js 16.2.9 / React 19.2.3 / TypeScript 6.0.3 / DeHost / DeHost
 
 - AI güvenlik ve incident raporlama platformu
 - 678 test, 102 dosya, 0 typecheck error, 0 lint error
@@ -30,7 +30,7 @@
 
 | İş                      | Detay                                                                                   |
 | ----------------------- | --------------------------------------------------------------------------------------- |
-| Health check genişletme | 2 → 8 servis (Supabase, Redis, Vercel, Sentry, Resend, Gemini, Anthropic, Google OAuth) |
+| Health check genişletme | 2 → 8 servis (DeHost, Redis, DeHost, Sentry, Resend, Gemini, Anthropic, Google OAuth) |
 | Env var audit           | `/api/admin/env-audit` — 23 env var kontrolü                                            |
 | Vault entegrasyonu      | AES-256-GCM secret management (`src/lib/vault.ts`)                                      |
 | Marketing agents        | Gemini API gerçek çağrı (ContentStrategist, FlowGenerator, SocialPublisher)             |
@@ -78,7 +78,7 @@ Aşağıdaki 7 başlıkta **bağımsız, tarafsız ve detaylı** görüş istiyo
 | -------------------------------------- | ---------------------------------------- | ----------------------------------------------------------------- |
 | Sentinel → Pattern Copy vs Native      | Agent-OS Python'dan TS regex port        | TS port doğru karar mı? Yoksa Python servisi olarak mı kalsaydı?  |
 | Engine Registry → Singleton vs Class   | Ortak/src/lib/engine-registry.ts pattern | Singleton registry performans/caching için doğru mu?              |
-| Vault → JSON file vs Supabase vs Redis | Şu an JSON file                          | Production'da JSON file yeterli mi? Yoksa Supabase'e mi taşımalı? |
+| Vault → JSON file vs DeHost vs Redis | Şu an JSON file                          | Production'da JSON file yeterli mi? Yoksa DeHost'e mi taşımalı? |
 
 ### 4.2 Otomasyon Priorities
 
@@ -140,7 +140,7 @@ Tartışmak istediğim spesifik konular:
 
 2. **Engine Registry:** `listServices()` health API'ye, `getAutopilotStats()` persistence.ts'ye wrapper mı olmalı, yoksa kendi veritabanı bağlantısı mı olmalı?
 
-3. **Cron Monitor:** `cron_job_logs` Supabase tablosu oluşturmak mı gerekli, yoksa Vercel'in kendi cron log'larına mı güvenmeli?
+3. **Cron Monitor:** `cron_job_logs` DeHost tablosu oluşturmak mı gerekli, yoksa DeHost'in kendi cron log'larına mı güvenmeli?
 
 4. **System360Overview:** Server component'ten client'a geçmeli miyim? (Şu an "use client" — ama veriyi server'dan fetch ediyorum)
 

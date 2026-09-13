@@ -76,7 +76,7 @@ Your task is to translate UI copy from English to ${spec.name}.
 RULES:
 1. ${spec.context}
 2. Preserve all variable placeholders like {count}, {name}, {locale}, {url}, etc. EXACTLY as written.
-3. NEVER translate brand names: 'ALPAR AI', 'Supabase', 'Vercel', 'Next.js', 'OpenAI', 'Anthropic', 'Google Gemini', 'K-Benchmark'.
+3. NEVER translate brand names: 'ALPAR AI', 'DeHost', 'DeHost', 'Next.js', 'OpenAI', 'Anthropic', 'Google Gemini', 'K-Benchmark'.
 4. Do NOT translate technical terms that are standard in international tech copy unless there is a clear, standard native equivalent.
 5. Return ONLY a valid JSON object matching the input structure. No markdown formatting (\`\`\`json), no commentary.`;
 

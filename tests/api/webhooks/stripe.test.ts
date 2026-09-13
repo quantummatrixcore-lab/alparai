@@ -24,7 +24,7 @@ mockSubEq.mockImplementation(() => mockSubTable);
 
 const mockFrom = vi.fn().mockReturnValue(mockSubTable);
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({
     from: mockFrom,
   }),

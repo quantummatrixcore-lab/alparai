@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { getCurrentUser } from "@/lib/auth/session";
 import { logger } from "@/lib/utils/logger";
 import { maskPII } from "@/lib/pii/guardian";
@@ -24,9 +24,9 @@ export async function submitChallengeVote(submissionId: string): Promise<Challen
       return { ok: false, error: `Rate limit exceeded. Try again in ${rl.retryAfter ?? 60}s.` };
     }
 
-    const supabase = await createServerClient();
+    const dehost = await createServerClient();
 
-    const { error: insertError } = await supabase
+    const { error: insertError } = await dehost
       .from("challenge_votes")
       .insert({ submission_id: submissionId, user_id: user.id });
 
@@ -62,9 +62,9 @@ export async function removeChallengeVote(submissionId: string): Promise<Challen
       return { ok: false, error: `Rate limit exceeded. Try again in ${rl.retryAfter ?? 60}s.` };
     }
 
-    const supabase = await createServerClient();
+    const dehost = await createServerClient();
 
-    const { error: deleteError } = await supabase
+    const { error: deleteError } = await dehost
       .from("challenge_votes")
       .delete()
       .eq("submission_id", submissionId)
@@ -125,9 +125,9 @@ export async function submitChallengeSubmission(
       return { ok: false, error: "Validation failed.", fieldErrors };
     }
 
-    const supabase = await createServerClient();
+    const dehost = await createServerClient();
 
-    const { error: insertError } = await supabase.from("challenge_submissions").insert({
+    const { error: insertError } = await dehost.from("challenge_submissions").insert({
       challenge_id: challengeId,
       user_id: user.id,
       title: maskPII(title.trim()).masked,

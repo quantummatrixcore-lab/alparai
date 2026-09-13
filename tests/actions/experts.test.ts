@@ -9,7 +9,7 @@ vi.mock("resend", () => ({
   }; }),
 }));
 
-vi.mock("@/lib/supabase/server", () => ({
+vi.mock("@/lib/dehost/server", () => ({
   createClient: () => ({
     from: () => ({
       insert: () => Promise.resolve({ data: { id: "mock" }, error: null }),

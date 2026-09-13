@@ -80,7 +80,7 @@ async function decryptEvidence(combinedBase64, keyHex) {
 sequenceDiagram
     participant User as Web Browser
     participant App as Next.js Server
-    participant DB as Supabase DB
+    participant DB as DeHost DB
 
     User->>User: Click "Enable Client-Side Encryption"
     User->>User: AES Key generated locally

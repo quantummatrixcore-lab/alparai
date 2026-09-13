@@ -4,7 +4,7 @@
 # and must never be added. A new file with Turkish text fails CI.
 # Permanently exempt (not listed): messages/**, Basın/**, docs/ARCHIVE/**,
 # docs/MASTER_PLAN_ARCHIVE.md, docs/plan/v12*.
-supabase/snapshot.json
+dehost/snapshot.json
 docs/ANTIGRAVITY_EXECUTION_PLAN.md
 scripts/update-all-i18n.mjs
 docs/plan/v13.x.md

@@ -16,7 +16,7 @@ const mockFrom = vi.fn((table: string) => {
 });
 
 vi.mock("server-only", () => ({}));
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({
     from: mockFrom,
   }),

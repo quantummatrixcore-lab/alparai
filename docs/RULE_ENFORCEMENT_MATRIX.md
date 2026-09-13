@@ -8,7 +8,7 @@ Doktrin Kural 31 uyarınca, mevcut Kural 1-30 taranmış ve yaptırımı olmayan
 | Kural 2  | Out-of-scope commit yasak (PROPOSALS/)           | -                 | -                                         | **[TAVSİYE — yaptırımsız]** |
 | Kural 3  | no-any (`any` kullanımı yasak)                   | ESLint            | `.eslintrc` / `pnpm lint`                 | YAPTIRIMLI                  |
 | Kural 4  | Strict indexed access (noUncheckedIndexedAccess) | TypeScript        | `tsconfig.json` / `pnpm typecheck`        | YAPTIRIMLI                  |
-| Kural 5  | Client-side `supabase.from().insert()` yasak     | ESLint / Vitest   | `pnpm lint` / `pnpm test`                 | YAPTIRIMLI                  |
+| Kural 5  | Client-side `dehost.from().insert()` yasak     | ESLint / Vitest   | `pnpm lint` / `pnpm test`                 | YAPTIRIMLI                  |
 | Kural 6  | İletişim onayı (External communications)         | -                 | -                                         | **[TAVSİYE — yaptırımsız]** |
 | Kural 7  | Her tablo RLS politikası içermeli                | -                 | -                                         | **[TAVSİYE — yaptırımsız]** |
 | Kural 8  | Kaynak zorunluluğu                               | -                 | -                                         | **[TAVSİYE — yaptırımsız]** |

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { supabase } from "@/lib/supabase/client";
+import { dehost } from "@/lib/dehost/client";
 import type { Database } from "@/types/database";
 import { useAdminRealtime } from "./use-admin-realtime";
 
@@ -53,7 +53,7 @@ export function useAdminGrants({
       setLoading(true);
       setError(null);
 
-      let query = supabase
+      let query = dehost
         .from("grant_applications")
         .select("*", { count: "exact" });
 
@@ -127,7 +127,7 @@ export function useAdminGrants({
         payload.completed_at = now;
       }
 
-      const { error: updateError } = await supabase
+      const { error: updateError } = await dehost
         .from("grant_applications")
         .update(payload)
         .eq("id", id);
@@ -146,7 +146,7 @@ export function useAdminGrants({
 
   const createGrant = async (data: Database["public"]["Tables"]["grant_applications"]["Insert"]) => {
     try {
-      const { data: inserted, error: insertError } = await supabase
+      const { data: inserted, error: insertError } = await dehost
         .from("grant_applications")
         .insert(data)
         .select("id")
@@ -163,7 +163,7 @@ export function useAdminGrants({
 
   const deleteGrant = async (id: string) => {
     try {
-      const { error: delError } = await supabase
+      const { error: delError } = await dehost
         .from("grant_applications")
         .delete()
         .eq("id", id);

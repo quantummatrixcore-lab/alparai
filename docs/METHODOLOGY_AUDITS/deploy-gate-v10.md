@@ -1,16 +1,16 @@
 # Deploy Gate Audit Report (v10)
 
-This document provides evidence and validation for **Item 116: Deploy Gate**. The deploy gate restricts Vercel production and preview builds to trigger _only_ when the triggering commit message contains the `[deploy]` marker. This conserves Vercel build time and guarantees that intermediate development commits do not deploy automatically.
+This document provides evidence and validation for **Item 116: Deploy Gate**. The deploy gate restricts DeHost production and preview builds to trigger _only_ when the triggering commit message contains the `[deploy]` marker. This conserves DeHost build time and guarantees that intermediate development commits do not deploy automatically.
 
 ## Implementation Details
 
-The deploy gate is implemented via the `ignoreCommand` hook in `vercel.json` pointing to a unified Node.js script `scripts/deploy-gate.mjs` for cross-platform compatibility:
+The deploy gate is implemented via the `ignoreCommand` hook in `dehost.json` pointing to a unified Node.js script `scripts/deploy-gate.mjs` for cross-platform compatibility:
 
-### vercel.json
+### dehost.json
 
 ```json
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "$schema": "https://openapi.dehost.sh/dehost.json",
   "ignoreCommand": "node scripts/deploy-gate.mjs",
   "framework": "nextjs",
   ...
@@ -22,10 +22,10 @@ The deploy gate is implemented via the `ignoreCommand` hook in `vercel.json` poi
 ```javascript
 import { execSync } from "child_process";
 
-// Vercel Ignore Build Step Script
+// DeHost Ignore Build Step Script
 // Proceeds with the build ONLY if the commit message contains "[deploy]"
 
-let commitMsg = process.env.VERCEL_GIT_COMMIT_MESSAGE || "";
+let commitMsg = process.env.DEHOST_GIT_COMMIT_MESSAGE || "";
 
 if (!commitMsg) {
   try {
@@ -52,7 +52,7 @@ if (commitMsg.includes("[deploy]")) {
 ### 1. Skipped Build Simulation (No `[deploy]` in message)
 
 ```powershell
-$env:VERCEL_GIT_COMMIT_MESSAGE="docs: add Claude Opus 4.6 responses to strategic questionnaire"
+$env:DEHOST_GIT_COMMIT_MESSAGE="docs: add Claude Opus 4.6 responses to strategic questionnaire"
 node scripts/deploy-gate.mjs
 echo "Exit code: $LASTEXITCODE"
 ```
@@ -66,12 +66,12 @@ Commit message: "docs: add Claude Opus 4.6 responses to strategic questionnaire"
 Exit code: 0
 ```
 
-_(Exit code `0` tells Vercel to cancel/ignore the build step)._
+_(Exit code `0` tells DeHost to cancel/ignore the build step)._
 
 ### 2. Allowed Build Simulation (`[deploy]` present in message)
 
 ```powershell
-$env:VERCEL_GIT_COMMIT_MESSAGE="docs: add [deploy] flag"
+$env:DEHOST_GIT_COMMIT_MESSAGE="docs: add [deploy] flag"
 node scripts/deploy-gate.mjs
 echo "Exit code: $LASTEXITCODE"
 ```
@@ -85,18 +85,18 @@ Commit message: "docs: add [deploy] flag"
 Exit code: 1
 ```
 
-_(Exit code `1` tells Vercel to proceed with the build step)._
+_(Exit code `1` tells DeHost to proceed with the build step)._
 
 ---
 
-## Live Vercel Verification Output
+## Live DeHost Verification Output
 
-A commit (`890550db15c3ceb893c5c93c4df021b017b2b62d`) without the `[deploy]` marker was pushed to the `master` branch. The Vercel CLI inspection results verify that the build was ignored/canceled automatically:
+A commit (`890550db15c3ceb893c5c93c4df021b017b2b62d`) without the `[deploy]` marker was pushed to the `master` branch. The DeHost CLI inspection results verify that the build was ignored/canceled automatically:
 
 ```
-> npx vercel inspect alparai-com-8kngp0f82-quantumatrixcore-lab.vercel.app
+> npx dehost inspect alparai-com-8kngp0f82-quantumatrixcore-lab.alparai.com
 
-  🚀  https://alparai-com-8kngp0f82-quantumatrixcore-lab.vercel.app (Preview)
+  🚀  https://alparai-com-8kngp0f82-quantumatrixcore-lab.alparai.com (Preview)
 
   Project:      quantumatrixcore-lab/alparai-com
   Git:          github:quantummatrixcore-lab/Alparai.com/commit/890550db15c3ceb893c5c93c4df021b017b2b62d
@@ -107,7 +107,7 @@ A commit (`890550db15c3ceb893c5c93c4df021b017b2b62d`) without the `[deploy]` mar
   Creator:      quantumatrixcore-lab
   Created:      2026-07-17 22:27:18 GMT+3 (6m ago)
 
-  Log:          https://vercel.com/quantumatrixcore-lab/alparai-com/8kngp0f82/logs
+  Log:          https://dehost.com/quantumatrixcore-lab/alparai-com/8kngp0f82/logs
 ```
 
 **Status:** ✅ VERIFIED PASSED

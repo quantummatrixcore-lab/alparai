@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { supabase } from "@/lib/supabase/client";
+import { dehost } from "@/lib/dehost/client";
 import type { Database } from "@/types/database";
 import { useAdminRealtime } from "./use-admin-realtime";
 
@@ -52,7 +52,7 @@ export function useAdminModeration({
       setError(null);
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      let query: any = supabase
+      let query: any = dehost
         .from("incidents")
         .select("*", { count: "exact" });
 
@@ -104,7 +104,7 @@ export function useAdminModeration({
   const approveIncident = async (id: string, note?: string) => {
     try {
       const now = new Date().toISOString();
-      const { error: updateError } = await supabase
+      const { error: updateError } = await dehost
         .from("incidents")
         .update({
           status: "published",
@@ -134,7 +134,7 @@ export function useAdminModeration({
   const rejectIncident = async (id: string, note?: string) => {
     try {
       const now = new Date().toISOString();
-      const { error: updateError } = await supabase
+      const { error: updateError } = await dehost
         .from("incidents")
         .update({
           status: "rejected",
@@ -163,7 +163,7 @@ export function useAdminModeration({
   const bulkApprove = async (ids: string[]) => {
     try {
       const now = new Date().toISOString();
-      const { error: updateError } = await supabase
+      const { error: updateError } = await dehost
         .from("incidents")
         .update({
           status: "published",
@@ -192,7 +192,7 @@ export function useAdminModeration({
   const bulkReject = async (ids: string[], note?: string) => {
     try {
       const now = new Date().toISOString();
-      const { error: updateError } = await supabase
+      const { error: updateError } = await dehost
         .from("incidents")
         .update({
           status: "rejected",

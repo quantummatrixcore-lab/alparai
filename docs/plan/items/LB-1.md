@@ -9,11 +9,11 @@ nonsense models".
 
 The leaderboard page is not the defect. `src/app/[locale]/leaderboard/page.tsx:53-58` runs a real
 server-side query against the `provider_leaderboard` view
-(`supabase/migrations/20260904000000_update_trust_score.sql:10-24`), which computes trust score live
+(`dehost/migrations/20260904000000_update_trust_score.sql:10-24`), which computes trust score live
 as `100 - (incident_count * 2) + (response_count * 5)`, clamped 0-100. The page renders exactly what
 the database contains. **The fabrication is in the database, placed there by seed migrations.**
 
-`supabase/migrations/20260620000003_seed_2026_modern_models.sql` and sibling seed migrations insert
+`dehost/migrations/20260620000003_seed_2026_modern_models.sql` and sibling seed migrations insert
 model names including `Claude 3.5 Opus`, `Claude 4.5 Opus`, `Claude 4.6 Sonnet`, `Claude 4.7 Opus`,
 `Claude 4.8 Opus` and `Claude 4.8 Sonnet`. **None of these models exist.** They were never released
 by the vendor named.
@@ -45,7 +45,7 @@ appears in that vendor's own published model list. Anything that cannot be verif
 source is removed. Do not regex on version numbers — it both over-matches (removing real models) and
 under-matches (missing fabrications that use plausible numbering).
 
-**3. Ship a new migration** under `supabase/migrations/` that deletes the identified `ai_models`
+**3. Ship a new migration** under `dehost/migrations/` that deletes the identified `ai_models`
 rows, every `incidents` row referencing them, and any `ai_provider_responses` cascading from those.
 Use targeted `DELETE … WHERE id IN (…)` with the explicit id list. **Never `TRUNCATE`** — the same
 tables hold rows that must survive.

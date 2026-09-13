@@ -7,7 +7,7 @@ import { defaultPolicy, definePolicy } from "@/lib/autopilot";
 import type { AttemptOutcome } from "@/lib/autopilot";
 import type { AutopilotConfig, AutopilotResult } from "@/lib/autopilot";
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({
     from: (table: string) => ({
       upsert: () => ({

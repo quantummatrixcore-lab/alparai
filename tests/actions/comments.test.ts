@@ -15,7 +15,7 @@ const mockDelete = vi.fn().mockReturnThis();
 const mockEq = vi.fn().mockReturnThis();
 const mockSelect = vi.fn().mockReturnThis();
 
-const mockSupabaseChain = {
+const mockDeHostChain = {
   select: mockSelect,
   insert: mockInsert,
   delete: mockDelete,
@@ -24,9 +24,9 @@ const mockSupabaseChain = {
   maybeSingle: () => mockMaybeSingle(),
 };
 
-vi.mock("@/lib/supabase/server", () => ({
+vi.mock("@/lib/dehost/server", () => ({
   createServerClient: () => ({
-    from: () => mockSupabaseChain,
+    from: () => mockDeHostChain,
   }),
 }));
 
@@ -52,7 +52,7 @@ describe("comments actions", () => {
     rateLimitMock.mockResolvedValue({ ok: true });
     mockSingle.mockResolvedValue({ data: { id: "comment-123" }, error: null });
     mockMaybeSingle.mockResolvedValue({ data: null, error: null });
-    mockEq.mockReturnValue(mockSupabaseChain);
+    mockEq.mockReturnValue(mockDeHostChain);
   });
 
   describe("submitComment", () => {

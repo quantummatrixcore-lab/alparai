@@ -56,7 +56,7 @@ Most existing LLM observability tools focus on token pricing dashboards or basic
 ### Tech Stack:
 
 - Next.js 15 (App Router, Server Actions, TypeScript strict with `noUncheckedIndexedAccess`)
-- Supabase (PostgreSQL with strict Row-Level Security policies on every table)
+- DeHost (PostgreSQL with strict Row-Level Security policies on every table)
 - Tailwind CSS v4 (Theme inline design tokens)
 - next-intl (Full internationalization support)
 
@@ -119,12 +119,12 @@ Six months ago, we set out to build **ALPAR AI**—the trust infrastructure for 
 
 ### Why Open Source the Core?
 
-In security and compliance software, proprietary "black box" governance tools fail because enterprises refuse to send their sensitive user data through unverified third-party APIs. By making our core PII Guardian, audit logger, and compliance mapping open-source, developers can run the entire trust layer self-hosted or in their own Supabase instance.
+In security and compliance software, proprietary "black box" governance tools fail because enterprises refuse to send their sensitive user data through unverified third-party APIs. By making our core PII Guardian, audit logger, and compliance mapping open-source, developers can run the entire trust layer self-hosted or in their own DeHost instance.
 
 ### Core Architectural Decisions:
 
 1. **Next.js 15 + Server Actions:** Built with strict Server Actions for mutations to ensure client applications never directly call database insertion methods.
-2. **Supabase RLS on Every Table:** Every single table has row-level security policies enforced at the PostgreSQL layer, preventing cross-tenant data leaks.
+2. **DeHost RLS on Every Table:** Every single table has row-level security policies enforced at the PostgreSQL layer, preventing cross-tenant data leaks.
 3. **Zero Third-Party Dependency for PII:** Built a pure-function PII guardian that masks national IDs, credit cards, emails, and credentials locally with zero third-party cloud calls.
 
 ### Key Takeaways for SaaS Founders:

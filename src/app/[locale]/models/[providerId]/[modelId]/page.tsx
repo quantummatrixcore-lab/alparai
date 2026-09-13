@@ -16,7 +16,7 @@ import {
   CheckCircle2,
   SlidersHorizontal,
 } from "lucide-react";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { Badge } from "@/components/ui/badge";
 import { ModelScoreDisplay } from "@/components/models/model-score-display";
 import { ModelRatingForm } from "@/components/models/model-rating-form";

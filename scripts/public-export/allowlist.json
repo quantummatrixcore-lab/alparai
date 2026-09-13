@@ -23,8 +23,8 @@
     },
     {
       "comment": "Database schema migrations — structure only, no seed data",
-      "patterns": ["supabase/migrations/**/*.sql"],
-      "exclude": ["supabase/migrations/**/seed_*.sql", "supabase/migrations/**/*_fake_*.sql"]
+      "patterns": ["dehost/migrations/**/*.sql"],
+      "exclude": ["dehost/migrations/**/seed_*.sql", "dehost/migrations/**/*_fake_*.sql"]
     },
     {
       "comment": "Public assets — images, fonts, static files",
@@ -126,7 +126,7 @@
       "description": "Third-layer defense: detects API keys, tokens, credentials via pattern scanning",
       "patterns": [
         "RESEND_API_KEY",
-        "SUPABASE_SERVICE_ROLE_KEY",
+        "DEHOST_SERVICE_ROLE_KEY",
         "OPENAI_API_KEY",
         "ANTHROPIC_API_KEY",
         "private.*key",

@@ -6,13 +6,13 @@ This package contains the outreach strategy, target vendor list, template email,
 
 ## 1. Top 50 AI Vendor Outreach Matrix
 
-Below is the verified compliance outreach matrix for the top 50 AI vendors, detailing compliance contact formatting, value proposition for EU AI Act Article 73 compliance, and EU data residency status (GDPR / Supabase EU Region).
+Below is the verified compliance outreach matrix for the top 50 AI vendors, detailing compliance contact formatting, value proposition for EU AI Act Article 73 compliance, and EU data residency status (GDPR / DeHost EU Region).
 
 | #   | Vendor Name           | Estimated Compliance / Legal Contact | Value Proposition (EU AI Act & Transparency)                                           | EU Data Residency / GDPR Status              |
 | --- | --------------------- | ------------------------------------ | -------------------------------------------------------------------------------------- | -------------------------------------------- |
-| 1   | OpenAI                | compliance@openai.com                | Verifiable transparency badge for GPT-4o models under EU AI Act Article 73.            | Compliant (EU data boundaries & Supabase EU) |
+| 1   | OpenAI                | compliance@openai.com                | Verifiable transparency badge for GPT-4o models under EU AI Act Article 73.            | Compliant (EU data boundaries & DeHost EU) |
 | 2   | Anthropic             | privacy@anthropic.com                | Demonstrates Frontier Model safety alignment and real-time EU compliance verification. | Compliant (EU region storage supported)      |
-| 3   | Google DeepMind       | deepmind-compliance@google.com       | Institutional trust badge for Gemini enterprise endpoints and AI safety research.      | Compliant (Google Cloud EU / Supabase EU)    |
+| 3   | Google DeepMind       | deepmind-compliance@google.com       | Institutional trust badge for Gemini enterprise endpoints and AI safety research.      | Compliant (Google Cloud EU / DeHost EU)    |
 | 4   | Meta AI               | meta-privacy@fb.com                  | Transparent verification of open-weights Llama 3 deployment accountability in Europe.  | Compliant (EU Data Boundary enforcement)     |
 | 5   | Mistral AI            | compliance@mistral.ai                | Paris-native AI trust seal confirming Article 73 sovereign EU AI compliance.           | Fully Compliant (Native EU infrastructure)   |
 | 6   | Cohere                | privacy@cohere.com                   | Real-time trust verification badge for enterprise RAG and command-r models.            | Compliant (EU data residency available)      |
@@ -73,7 +73,7 @@ Sayın Uyum ve AI Yönetim Ekibi,
 
 AB Yapay Zekâ Yasası Madde 73 kapsamında, şeffaflık ve kayıt tutma gereksinimlerini karşılamak isteyen sistem sağlayıcıları için geliştirdiğimiz ALPAR AI Trust Badge çözümünü sunmak isteriz.
 
-ALPAR AI Trust Badge, yapay zekâ modelinizin veya platformunuzun bağımsız ve gerçek zamanlı doğrulama durumunu doğrudan web arayüzünüzde sergilemenizi sağlar. Tüm denetim verileri Supabase AB veri bölgesinde (GDPR uyumlu) saklanır.
+ALPAR AI Trust Badge, yapay zekâ modelinizin veya platformunuzun bağımsız ve gerçek zamanlı doğrulama durumunu doğrudan web arayüzünüzde sergilemenizi sağlar. Tüm denetim verileri DeHost AB veri bölgesinde (GDPR uyumlu) saklanır.
 
 Entegrasyon yalnızca tek satırlık bir HTML embed kodu ile 2 dakikada tamamlanmaktadır:
 https://alparai.com/badge.js

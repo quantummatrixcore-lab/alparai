@@ -1,8 +1,8 @@
-const { createClient } = require("@supabase/supabase-js");
+const { createClient } = require("@/lib/dehost/client");
 const { Resend } = require("resend");
 
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://auth.alparai.com";
-const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const DEHOST_URL = process.env.NEXT_PUBLIC_DEHOST_URL || "https://auth.alparai.com";
+const DEHOST_KEY = process.env.DEHOST_SERVICE_ROLE_KEY;
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 
 // Load .env.local if present
@@ -10,9 +10,9 @@ const fs = require("fs");
 const dotenv = require("dotenv");
 const envConfig = fs.existsSync(".env.local") ? dotenv.parse(fs.readFileSync(".env.local")) : {};
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL || envConfig.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY || envConfig.SUPABASE_SERVICE_ROLE_KEY,
+const dehost = createClient(
+  process.env.NEXT_PUBLIC_DEHOST_URL || envConfig.NEXT_PUBLIC_DEHOST_URL,
+  process.env.DEHOST_SERVICE_ROLE_KEY || envConfig.DEHOST_SERVICE_ROLE_KEY,
 );
 const resend = new Resend(process.env.RESEND_API_KEY || envConfig.RESEND_API_KEY);
 
@@ -48,7 +48,7 @@ async function run() {
 
   for (const contact of contacts) {
     // Insert into DB
-    const { data: dbData, error: dbError } = await supabase
+    const { data: dbData, error: dbError } = await dehost
       .from("outreach_queue")
       .insert({
         recipient_email: contact.email,
@@ -79,7 +79,7 @@ async function run() {
 
     if (resendError) {
       console.error("Resend Error for", contact.email, resendError);
-      await supabase.from("outreach_queue").update({ status: "failed" }).eq("id", dbId);
+      await dehost.from("outreach_queue").update({ status: "failed" }).eq("id", dbId);
       continue;
     }
 
@@ -87,7 +87,7 @@ async function run() {
     console.log(`Sent email to ${contact.email}. Resend ID: ${resendId}`);
 
     // Update DB
-    await supabase
+    await dehost
       .from("outreach_queue")
       .update({ status: "sent", sent_at: new Date().toISOString() })
       .eq("id", dbId);

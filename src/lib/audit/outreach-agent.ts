@@ -1,6 +1,6 @@
 import { generateEmailUnsubscribeToken } from "@/lib/utils/unsubscribe";
 import { logger } from "@/lib/utils/logger";
-import type { SupabaseClient } from "@supabase/supabase-js";
+
 import type { Resend } from "resend";
 
 export const DAILY_OUTREACH_LIMIT = 50;
@@ -18,14 +18,14 @@ export interface OutreachItem {
 }
 
 export async function processOutreachQueue(
-  supabase: SupabaseClient,
+  dehost: any,
   resend: Resend,
 ): Promise<{ sent: number; failed: number; skipped: boolean }> {
   try {
     const oneDayAgo = new Date();
     oneDayAgo.setDate(oneDayAgo.getDate() - 1);
 
-    const { data: sentCount, error: countError } = await supabase
+    const { data: sentCount, error: countError } = await dehost
       .from("outreach_queue")
       .select("id")
       .eq("status", "sent")
@@ -44,7 +44,7 @@ export async function processOutreachQueue(
 
     const remainingQuota = DAILY_OUTREACH_LIMIT - currentSent;
 
-    const { data: pending, error: fetchError } = await supabase
+    const { data: pending, error: fetchError } = await dehost
       .from("outreach_queue")
       .select("id, recipient_email, subject, body_template")
       .eq("status", "approved")
@@ -81,10 +81,10 @@ export async function processOutreachQueue(
             undefined,
             sendError,
           );
-          await supabase.from("outreach_queue").update({ status: "failed" }).eq("id", item.id);
+          await dehost.from("outreach_queue").update({ status: "failed" }).eq("id", item.id);
           failed++;
         } else {
-          await supabase
+          await dehost
             .from("outreach_queue")
             .update({ status: "sent", sent_at: new Date().toISOString() })
             .eq("id", item.id);
@@ -96,7 +96,7 @@ export async function processOutreachQueue(
           undefined,
           err instanceof Error ? err : undefined,
         );
-        await supabase.from("outreach_queue").update({ status: "failed" }).eq("id", item.id);
+        await dehost.from("outreach_queue").update({ status: "failed" }).eq("id", item.id);
         failed++;
       }
     }

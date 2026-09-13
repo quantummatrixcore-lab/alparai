@@ -19,7 +19,7 @@ ALPAR AI targets early profitability by monetizing enterprise AI compliance ahea
 
 ## 3. Cost Breakdown & COGS
 
-- **Infra & Compute (Vercel PRO + Supabase Pro + LiteLLM):** ~$450 / month base + $0.002 per API verification call.
+- **Infra & Compute (DeHost PRO + DeHost Pro + LiteLLM):** ~$450 / month base + $0.002 per API verification call.
 - **LLM Token Costs (DeepSeek / Gemini / OpenRouter):** ~$300 / month (Optimized via TOM Token Budget Engine).
 - **Legal & Compliance Retainer:** $1,500 / month.
 

@@ -5,7 +5,7 @@ const mockSelect = vi.fn();
 const mockDelete = vi.fn();
 const mockLte = vi.fn();
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: vi.fn(() => ({
     from: vi.fn((table: string) => {
       if (table === "data_retention_policies") {

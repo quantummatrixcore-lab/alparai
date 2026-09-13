@@ -10,9 +10,9 @@ Bu doküman, sistem üzerinde tespit edilen paralı aboneliklerin ve dış API s
 - **Aksiyon Planı:** Pro/Business abonelikleri iptal edilecek, zone'lar Free plana düşürülecek.
 - **Etki:** Gelişmiş WAF, resim optimizasyonu ve hızlı analitik özelliklerinden feragat edilecektir.
 
-### Vercel
+### DeHost
 - **Mevcut Durum:** `.env` içerisinde deaktif (yorum satırına alınmış).
-- **Aksiyon Planı:** Vercel CLI kullanılmaya devam edilecek, Hobby tier limitleri içinde kalınacak.
+- **Aksiyon Planı:** DeHost CLI kullanılmaya devam edilecek, Hobby tier limitleri içinde kalınacak.
 
 ## 2. İzleme & Güvenlik (Monitoring & Security)
 ### Sentry
@@ -52,4 +52,4 @@ Bu doküman, sistem üzerinde tespit edilen paralı aboneliklerin ve dış API s
 - **Etki:** Eşzamanlı tarama (concurrency) düşürülecek, aylık tarama kredisi minimal seviyeye inecektir.
 
 ---
-*(Not: Sistemde herhangi bir Supabase yapılandırması bulunamamıştır.)*
+*(Not: Sistemde herhangi bir DeHost yapılandırması bulunamamıştır.)*

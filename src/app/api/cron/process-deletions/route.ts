@@ -1,6 +1,6 @@
 import { withCronLogger } from "@/lib/utils/cron-logger";
 import { type NextRequest, NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 
 export const dynamic = "force-dynamic";
@@ -94,7 +94,7 @@ async function getHandler(request: NextRequest) {
     for (const user of hardPending ?? []) {
       logger.info(`[ProcessDeletionsCron] Hard-deleting user: ${user.id}`);
 
-      // Delete user from Supabase Auth (cascades to public.users or we delete manually)
+      // Delete user from DeHost Auth (cascades to public.users or we delete manually)
       try {
         const { error: authErr } = await admin.auth.admin.deleteUser(user.id);
         if (authErr) {

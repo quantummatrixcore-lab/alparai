@@ -3,7 +3,7 @@
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { getCurrentUser } from "@/lib/auth/session";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { logger } from "@/lib/utils/logger";
@@ -79,9 +79,9 @@ export async function signInWithGoogle(next = "/profile"): Promise<AuthResult> {
     if (!rl.ok) {
       return { ok: false, error: `Too many attempts. Try again in ${rl.retryAfter}s.` };
     }
-    const supabase = await createServerClient();
+    const dehost = await createServerClient();
     const originUrl = getOrigin(hdrs);
-    const { data, error } = await supabase.auth.signInWithOAuth({
+    const { data, error } = await dehost.auth.signInWithOAuth({
       provider: "google",
       options: {
         redirectTo: `${originUrl}/auth/callback?next=${encodeURIComponent(next)}`,
@@ -110,9 +110,9 @@ export async function signInWithMagicLink(email: string): Promise<AuthResult> {
     if (!rl.ok) {
       return { ok: false, error: `Too many attempts. Try again in ${rl.retryAfter}s.` };
     }
-    const supabase = await createServerClient();
+    const dehost = await createServerClient();
     const originUrl = getOrigin(hdrs);
-    const { error } = await supabase.auth.signInWithOtp({
+    const { error } = await dehost.auth.signInWithOtp({
       email,
       options: { emailRedirectTo: `${originUrl}/auth/callback` },
     });
@@ -128,8 +128,8 @@ export async function performSignOut(): Promise<void> {
   try {
     const { clearSessionUser } = await import("@/lib/auth/session");
     await clearSessionUser();
-    const supabase = await createServerClient();
-    await supabase.auth.signOut();
+    const dehost = await createServerClient();
+    await dehost.auth.signOut();
   } catch (err) {
     console.error("[performSignOut] Error:", err);
   }
@@ -172,15 +172,13 @@ export async function getMe(): Promise<MeResult> {
   }
 }
 
-export async function signInWithSupabaseToken(accessToken: string): Promise<AuthResult> {
+export async function signInWithDeHostToken(accessToken: string): Promise<AuthResult> {
   try {
-    const { createClient } = await import("@supabase/supabase-js");
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://azszpzyvxjduhemkjsdh.supabase.co";
-    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-    const supabase = createClient(supabaseUrl, supabaseAnonKey);
-    const { data: { user }, error } = await supabase.auth.getUser(accessToken);
+    const { createDeHostAdapterClient } = await import("@/lib/dehost/dehost-adapter");
+    const dehost = createDeHostAdapterClient();
+    const { data: { user }, error } = await dehost.auth.getUser(accessToken);
     if (error || !user) {
-      console.error("[signInWithSupabaseToken] getUser failed:", error);
+      console.error("[signInWithDeHostToken] getUser failed:", error);
       return { ok: false, error: error?.message || "Invalid session token" };
     }
     const { setSessionUser } = await import("@/lib/auth/session");
@@ -195,7 +193,7 @@ export async function signInWithSupabaseToken(accessToken: string): Promise<Auth
           });
     return { ok: true };
   } catch (err) {
-    console.error("[signInWithSupabaseToken] Error:", err);
+    console.error("[signInWithDeHostToken] Error:", err);
     return { ok: false, error: "Token login failed" };
   }
 }

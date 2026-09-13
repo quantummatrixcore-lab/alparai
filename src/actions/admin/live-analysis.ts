@@ -16,14 +16,14 @@ export async function runLiveSystemAnalysis(): Promise<{
   await requireAdmin();
   try {
     // Fetch real context for the LLM
-    const { createAdminClient } = await import("@/lib/supabase/admin");
-    const supabase = createAdminClient();
-    const { data: runs } = await supabase
+    const { createAdminClient } = await import("@/lib/dehost/admin");
+    const dehost = createAdminClient();
+    const { data: runs } = await dehost
       .from("cross_audit_runs")
       .select("model, latency_ms, score, verdict")
       .limit(5)
       .order("created_at", { ascending: false });
-    const { data: costs } = await supabase
+    const { data: costs } = await dehost
       .from("finance_monthly_costs")
       .select("service, budget_usd, amount_usd")
       .limit(5)

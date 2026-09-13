@@ -1,4 +1,4 @@
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { notFound } from "next/navigation";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { SeverityBadge } from "@/components/ui/badge";
@@ -13,8 +13,8 @@ interface EmbedPageProps {
 
 export async function generateMetadata({ params }: EmbedPageProps) {
   const { id, locale } = await params;
-  const supabase = await createServerClient();
-  const { data } = await supabase
+  const dehost = await createServerClient();
+  const { data } = await dehost
     .from("incidents")
     .select("title_masked, title_tr")
     .eq("id", id)
@@ -35,10 +35,10 @@ export default async function IncidentEmbedPage({ params }: EmbedPageProps) {
   const tCommon = await getTranslations({ locale, namespace: "common" });
   const tCat = await getTranslations({ locale, namespace: "categories" });
   const tFeed = await getTranslations({ locale, namespace: "feed" });
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
 
   // Fetch incident row
-  const { data: incident } = await supabase
+  const { data: incident } = await dehost
     .from("incidents")
     .select("*")
     .eq("id", id)
@@ -53,14 +53,14 @@ export default async function IncidentEmbedPage({ params }: EmbedPageProps) {
   // Fetch provider & model details
   const [providerRes, modelRes] = await Promise.all([
     incident.ai_provider_id
-      ? supabase
+      ? dehost
           .from("ai_providers")
           .select("name, slug")
           .eq("id", incident.ai_provider_id)
           .maybeSingle()
       : Promise.resolve({ data: null }),
     incident.ai_model_id
-      ? supabase
+      ? dehost
           .from("ai_models")
           .select("name, version")
           .eq("id", incident.ai_model_id)

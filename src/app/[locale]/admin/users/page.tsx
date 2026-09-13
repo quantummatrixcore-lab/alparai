@@ -44,7 +44,7 @@ export default function UsersPage() {
         <MetricCard
           label="Toplam Kayıtlı Kullanıcı"
           value={totalCount.toString()}
-          subtext="Canlı Supabase Veritabanı"
+          subtext="Canlı DeHost Veritabanı"
           changeType="positive"
           icon={Users}
         />
@@ -90,7 +90,7 @@ export default function UsersPage() {
         {loading ? (
           <div className="flex h-32 items-center justify-center gap-2 text-[#656d76] dark:text-[#8b949e]">
             <Loader2 className="h-5 w-5 animate-spin text-cyan-500" />
-            <span>Supabase veritabanına bağlanılıyor...</span>
+            <span>DeHost veritabanına bağlanılıyor...</span>
           </div>
         ) : error ? (
           <div className="rounded border border-red-500/30 bg-red-500/10 p-4 text-red-600 dark:text-red-400">

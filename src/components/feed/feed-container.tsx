@@ -8,7 +8,7 @@ import { FeedSidebar, type SidebarNewsItem, type SidebarPollData } from "./feed-
 import type { IncidentListItem, LeaderboardEntry } from "@/types";
 import { AlertCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { supabase } from "@/lib/supabase/client";
+import { dehost } from "@/lib/dehost/client";
 import { watchProvider, unwatchProvider } from "@/actions/watches";
 import { toast } from "sonner";
 import { logger } from "@/lib/utils/logger";
@@ -46,9 +46,9 @@ export function FeedContainer({
     return new Map(leaderboard.map((p) => [p.provider_id, p]));
   }, [leaderboard]);
 
-  // Supabase Realtime updates
+  // DeHost Realtime updates
   React.useEffect(() => {
-    const channel = supabase
+    const channel = dehost
       .channel("feed-updates")
       .on(
         "postgres_changes",
@@ -58,7 +58,7 @@ export function FeedContainer({
           table: "incidents",
           filter: "status=eq.published",
         },
-        (payload) => {
+        (payload: any) => {
           const providerId = payload.new.ai_provider_id;
           const provider = providerId ? providerMap.get(providerId) : null;
           const newIncident: IncidentListItem = {
@@ -97,7 +97,7 @@ export function FeedContainer({
           schema: "public",
           table: "incidents",
         },
-        (payload) => {
+        (payload: any) => {
           setIncidents((prev) =>
             prev.map((item) => {
               if (item.id === payload.new.id) {
@@ -121,7 +121,7 @@ export function FeedContainer({
       .subscribe();
 
     return () => {
-      supabase.removeChannel(channel);
+      dehost.removeChannel(channel);
     };
   }, [providerMap]);
 

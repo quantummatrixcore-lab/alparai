@@ -11,7 +11,7 @@ const mockFrom = vi.fn().mockImplementation(() => ({
   select: mockSelect,
 }));
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({
     from: mockFrom,
   }),
@@ -25,7 +25,7 @@ describe("Keep-Alive Cron Job", () => {
     process.env.CRON_SECRET = "test-secret";
   });
 
-  it("should ping Supabase database and return status ok", async () => {
+  it("should ping DeHost database and return status ok", async () => {
     mockLimit.mockResolvedValueOnce({ data: [{ id: "inc-1" }], error: null });
 
     const req = new Request("http://localhost/api/cron/keep-alive", {

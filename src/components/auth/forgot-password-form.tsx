@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { supabase } from "@/lib/supabase/client";
+import { dehost } from "@/lib/dehost/client";
 import { useTranslations } from "next-intl";
 
 export function ForgotPasswordForm() {
@@ -16,7 +16,7 @@ export function ForgotPasswordForm() {
     setError("");
     setLoading(true);
     try {
-      const { error: resetErr } = await supabase.auth.resetPasswordForEmail(email, {
+      const { error: resetErr } = await dehost.auth.resetPasswordForEmail(email, {
         redirectTo: `${window.location.origin}/auth/callback?type=recovery`,
       });
       if (resetErr) {

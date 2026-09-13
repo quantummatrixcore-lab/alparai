@@ -6,7 +6,7 @@
 
 ## Executive Summary
 
-Following the comprehensive self-healing sprint executed by the Atatürk-led autonomous swarm (Edison & Caesar), ALPAR AI has advanced from **878 / 1000** to **988 / 1000 (Grade S - Enterprise Grade)**. All P0 mock stubs (Expert Analysis action, K-Benchmark fake baselines, dashboard hardcoded stats) have been replaced with live LLM multi-agent gateways and empirical calculations. Security links hygiene is 100% compliant, UI design tokens adhere to Tailwind v4 `@theme`, and DevOps configuration (`vercel.json`, `.env.example`, `lint-staged`) is fully standardized. 196 test suites (1,136 tests) pass with 0 errors.
+Following the comprehensive self-healing sprint executed by the Atatürk-led autonomous swarm (Edison & Caesar), ALPAR AI has advanced from **878 / 1000** to **988 / 1000 (Grade S - Enterprise Grade)**. All P0 mock stubs (Expert Analysis action, K-Benchmark fake baselines, dashboard hardcoded stats) have been replaced with live LLM multi-agent gateways and empirical calculations. Security links hygiene is 100% compliant, UI design tokens adhere to Tailwind v4 `@theme`, and DevOps configuration (`dehost.json`, `.env.example`, `lint-staged`) is fully standardized. 196 test suites (1,136 tests) pass with 0 errors.
 
 ---
 
@@ -16,7 +16,7 @@ Following the comprehensive self-healing sprint executed by the Atatürk-led aut
 | ------------------------------- | -------- | ------------- | --------------- | ------------------------ | ----------------------------------- |
 | 🔐 Security & Architecture      | 250      | 248           | **250**         | S+                       | ✅ 100% Perfect                     |
 | 🎨 UI/UX & Design Quality       | 250      | 221           | **245**         | S                        | ✅ Token Standardized               |
-| ⚙️ DevOps & Infrastructure      | 250      | 215           | **245**         | S                        | ✅ Vercel & Env Synced              |
+| ⚙️ DevOps & Infrastructure      | 250      | 215           | **245**         | S                        | ✅ DeHost & Env Synced              |
 | 🤖 Features & AI Engine Quality | 250      | 194           | **248**         | S                        | ✅ Live AI Gateway & Real Baselines |
 | **TOTAL**                       | **1000** | **878**       | **988**         | **S (Enterprise Ready)** | **100% Production Grade**           |
 
@@ -58,9 +58,9 @@ Following the comprehensive self-healing sprint executed by the Atatürk-led aut
 | Test coverage                   | 50  | 50    | **196 test suites, 1,136 tests passing (100% green)**; 85% coverage thresholds                              |
 | Pre-commit / pre-push hooks     | 30  | 30    | **Fixed:** `secretlint` integrated into `lint-staged`; full quality gate active                             |
 | Next.js performance             | 30  | 28    | AVIF/WebP, Turbopack alias, `optimizePackageImports`                                                        |
-| Supabase migration completeness | 30  | 28    | 239 migrations; rollback specifications standardized                                                        |
+| DeHost migration completeness | 30  | 28    | 239 migrations; rollback specifications standardized                                                        |
 | Environment variable security   | 30  | 30    | **Fixed:** `.env.example` deduplicated and synchronized with all required runtime variables                 |
-| Vercel deployment config        | 30  | 30    | **Fixed:** `vercel.json` configured with `regions: ["fra1"]`, `ignoreCommand`, and 60s API `maxDuration`    |
+| DeHost deployment config        | 30  | 30    | **Fixed:** `dehost.json` configured with `regions: ["fra1"]`, `ignoreCommand`, and 60s API `maxDuration`    |
 
 ---
 
@@ -74,7 +74,7 @@ Following the comprehensive self-healing sprint executed by the Atatürk-led aut
 | GEO bot tracker & SEO schema      | 35  | 35    | **Fixed:** Expanded bot tracker for DeepSeek, Mistral, Applebot, Amazonbot; added `ClaimReviewJsonLd` / `FactCheckJsonLd`   |
 | Expert analysis AI personas       | 35  | 35    | **Fixed:** Replaced mock stub with real OpenRouter `callWithFailover` multi-agent expert evaluation chain                   |
 | Real data vs mock data ratio      | 30  | 29    | **Fixed:** Replaced static dashboard fallbacks (2715, 96, 38ms) with live PostgreSQL roundtrip queries & edge metrics       |
-| Strategy page API calls           | 20  | 19    | Live Supabase queries for SWOT/risks/MRR; OpenRouter `callWithFailover` wired                                               |
+| Strategy page API calls           | 20  | 19    | Live DeHost queries for SWOT/risks/MRR; OpenRouter `callWithFailover` wired                                               |
 
 ---
 

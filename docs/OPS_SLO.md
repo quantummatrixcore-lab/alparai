@@ -6,11 +6,11 @@
 
 | SLI                      | Measurement                                   | Source              |
 | ------------------------ | --------------------------------------------- | ------------------- |
-| Availability             | % of successful HTTP responses (status < 500) | Vercel Analytics    |
-| Latency p50              | Median response time (ms)                     | Vercel Analytics    |
-| Latency p95              | 95th percentile response time (ms)            | Vercel Analytics    |
-| Latency p99              | 99th percentile response time (ms)            | Vercel Analytics    |
-| Error rate               | % of 5xx responses                            | Vercel Analytics    |
+| Availability             | % of successful HTTP responses (status < 500) | DeHost Analytics    |
+| Latency p50              | Median response time (ms)                     | DeHost Analytics    |
+| Latency p95              | 95th percentile response time (ms)            | DeHost Analytics    |
+| Latency p99              | 99th percentile response time (ms)            | DeHost Analytics    |
+| Error rate               | % of 5xx responses                            | DeHost Analytics    |
 | Cross-audit success rate | % of completed audit runs without failure     | Sentry / audit logs |
 
 ## Service Level Objectives (SLOs)

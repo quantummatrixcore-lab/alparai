@@ -14,7 +14,7 @@ const mockInsert = vi.fn().mockResolvedValue({ error: null });
 const mockUpdate = vi.fn().mockReturnThis();
 const mockEq = vi.fn().mockResolvedValue({ error: null });
 
-vi.mock("@/lib/supabase/server", () => ({
+vi.mock("@/lib/dehost/server", () => ({
   createServerClient: () => ({
     from: () => ({
       select: mockSelect,

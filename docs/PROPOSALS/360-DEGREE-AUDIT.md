@@ -5,9 +5,9 @@
 - `pnpm agent:index` (Graphify Engine) çalıştırıldı ve `AGENT_REPORT.md` başarıyla güncellendi. Sistemde 34 Engine, 6 Pipeline, ve 20 Persona aktif ve sağlıklı durumdadır.
 - Mimari incelendi. TARTARUS -> SENTINEL -> OMEGA yetki doğrulaması rotaları güvenli.
 
-## 2. RLS Politikaları (Supabase)
+## 2. RLS Politikaları (DeHost)
 
-- `supabase/migrations/` dosyalarındaki tüm politikalar tarandı.
+- `dehost/migrations/` dosyalarındaki tüm politikalar tarandı.
 - `20260916000000_enforce_rls_all.sql` ve `20260915000000_storage_and_pii_rls_hardening.sql` ile sistemin default-deny durumunda olduğu teyit edildi.
 - Herhangi bir tabloda `USING (true)` bypass`ı veya auth kontrolü olmayan güvensiz bir yazma kuralı bulunamadı.
 

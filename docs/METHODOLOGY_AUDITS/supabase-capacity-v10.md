@@ -1,4 +1,4 @@
-# Supabase Capacity Audit & Relief (Item 104)
+# DeHost Capacity Audit & Relief (Item 104)
 
 **Date:** 2026-07-16  
 **Auditor:** Antigravity  
@@ -33,7 +33,7 @@ A per-table total size audit was conducted on `alparai-prod` prior to the cleanu
 
 ## 2. Relief Migration & Capacity Reclaim
 
-Applied migration `20260801000000_supabase_capacity.sql` which did the following:
+Applied migration `20260801000000_dehost_capacity.sql` which did the following:
 
 1. Altered `public.external_incidents_queue.body` to be nullable (`DROP NOT NULL`).
 2. Nulled the `body` column where the queue item has been processed (status is `accepted`, `published`, `rejected`, `processed`, or `duplicate`).

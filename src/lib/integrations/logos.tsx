@@ -18,7 +18,7 @@ export function LogoGitLab({ className }: LogoProps) {
   );
 }
 
-export function LogoVercel({ className }: LogoProps) {
+export function LogoDeHost({ className }: LogoProps) {
   return (
     <svg viewBox="0 0 24 24" className={className} fill="currentColor">
       <path d="M24 22.525H0l12-21.05 12 21.05z" />
@@ -26,7 +26,7 @@ export function LogoVercel({ className }: LogoProps) {
   );
 }
 
-export function LogoSupabase({ className }: LogoProps) {
+export function LogoDeHostAlt({ className }: LogoProps) {
   return (
     <svg viewBox="0 0 24 24" className={className} fill="currentColor">
       <path d="M11.9 22.1c-.5 0-.9-.2-1.2-.6l-6.9-9c-.4-.5-.4-1.1-.1-1.6.3-.5.8-.8 1.4-.8h2.4L5.2 2.5c-.5-.9-.1-1.9.7-2.4.4-.2.8-.3 1.2-.3.5 0 .9.2 1.2.6l10.5 13.7c.4.5.4 1.1.1 1.6-.3.5-.8.8-1.4.8h-3.4l3.1 6.1c.2.4.2.8.1 1.2-.1.4-.3.7-.6.9-.4.2-.8.3-1.2.3z" />
@@ -189,17 +189,16 @@ export const LOGO_MAP: Record<string, React.ComponentType<LogoProps>> = {
   github: LogoGitHub,
   "github-actions": LogoGitHub,
   gitlab: LogoGitLab,
-  bitbucket: LogoVercel,
+  bitbucket: LogoDeHost,
   gitea: LogoGitHub,
-  vercel: LogoVercel,
-  "vercel-analytics": LogoVercel,
-  netlify: LogoVercel,
+  dehost: LogoDeHost,
+  "dehost-analytics": LogoDeHost,
+  netlify: LogoDeHost,
   "cloudflare-pages": LogoCloudflare,
-  railway: LogoVercel,
-  supabase: LogoSupabase,
+  railway: LogoDeHostAlt,
   neon: LogoNeon,
-  turso: LogoSupabase,
-  planetscale: LogoVercel,
+  turso: LogoDeHost,
+  planetscale: LogoDeHost,
   upstash: LogoUpstash,
   "redis-cloud": LogoRedis,
   dragonfly: LogoRedis,
@@ -209,9 +208,9 @@ export const LOGO_MAP: Record<string, React.ComponentType<LogoProps>> = {
   hcaptcha: LogoCloudflare,
   "friendly-captcha": LogoCloudflare,
   sentry: LogoSentry,
-  datadog: LogoVercel,
-  "grafana-faro": LogoVercel,
-  highlight: LogoVercel,
+  datadog: LogoDeHost,
+  "grafana-faro": LogoDeHost,
+  highlight: LogoDeHost,
   resend: LogoResend,
   sendgrid: LogoResend,
   mailgun: LogoResend,
@@ -221,7 +220,7 @@ export const LOGO_MAP: Record<string, React.ComponentType<LogoProps>> = {
   "lemon-squeezy": LogoStripe,
   chargebee: LogoStripe,
   "gitlab-ci": LogoGitLab,
-  circleci: LogoVercel,
+  circleci: LogoDeHost,
   jenkins: LogoHusky,
   playwright: LogoPlaywright,
   cypress: LogoPlaywright,
@@ -232,11 +231,11 @@ export const LOGO_MAP: Record<string, React.ComponentType<LogoProps>> = {
   "pre-commit": LogoHusky,
   "google-oauth": LogoGoogle,
   "github-oauth": LogoGitHub,
-  auth0: LogoVercel,
-  clerk: LogoVercel,
-  plausible: LogoVercel,
-  umami: LogoVercel,
-  fathom: LogoVercel,
+  auth0: LogoDeHost,
+  clerk: LogoDeHost,
+  plausible: LogoDeHost,
+  umami: LogoDeHost,
+  fathom: LogoDeHost,
   fingerprintjs: LogoFingerprintJS,
   "fingerprint-pro": LogoFingerprintJS,
   incognia: LogoFingerprintJS,

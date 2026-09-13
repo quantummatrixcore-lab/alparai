@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { GET } from "@/app/api/v1/incidents/export/route";
 import { headers } from "next/headers";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { checkRateLimit } from "@/lib/utils/rate-limit";
 
 // Mock dependencies
@@ -9,7 +9,7 @@ vi.mock("next/headers", () => ({
   headers: vi.fn(),
 }));
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: vi.fn(),
 }));
 
@@ -22,7 +22,7 @@ vi.mock("@/lib/utils/rate-limit", () => ({
 
 vi.mock("server-only", () => ({}));
 
-interface MockSupabaseClient {
+interface MockDeHostClient {
   auth: {
     getUser: ReturnType<typeof vi.fn>;
   };
@@ -35,7 +35,7 @@ interface MockSupabaseClient {
 
 describe("GET /api/v1/incidents/export", () => {
   const mockHeaders = new Map<string, string>();
-  let mockSupabase: MockSupabaseClient;
+  let mockDeHost: MockDeHostClient;
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -46,7 +46,7 @@ describe("GET /api/v1/incidents/export", () => {
       mockHeaders as unknown as Awaited<ReturnType<typeof headers>>,
     );
 
-    mockSupabase = {
+    mockDeHost = {
       auth: {
         getUser: vi.fn(),
       },
@@ -57,7 +57,7 @@ describe("GET /api/v1/incidents/export", () => {
       limit: vi.fn().mockResolvedValue({ data: [], error: null }),
     };
     vi.mocked(createAdminClient).mockReturnValue(
-      mockSupabase as unknown as ReturnType<typeof createAdminClient>,
+      mockDeHost as unknown as ReturnType<typeof createAdminClient>,
     );
 
     vi.mocked(checkRateLimit).mockResolvedValue({ ok: true, retryAfter: 0 } as unknown as Awaited<
@@ -105,7 +105,7 @@ describe("GET /api/v1/incidents/export", () => {
 
   it("should allow access with valid bearer token", async () => {
     mockHeaders.set("authorization", "Bearer valid_token");
-    mockSupabase.auth.getUser.mockResolvedValue({ data: { user: { id: "1" } }, error: null });
+    mockDeHost.auth.getUser.mockResolvedValue({ data: { user: { id: "1" } }, error: null });
 
     const response = await GET(createRequest());
     expect(response.status).toBe(200);
@@ -113,7 +113,7 @@ describe("GET /api/v1/incidents/export", () => {
 
   it("should return 401 with invalid bearer token", async () => {
     mockHeaders.set("authorization", "Bearer invalid_token");
-    mockSupabase.auth.getUser.mockResolvedValue({
+    mockDeHost.auth.getUser.mockResolvedValue({
       data: { user: null },
       error: new Error("Invalid token"),
     });

@@ -39,8 +39,8 @@ export const GRANT_PORTALS: GrantPortalConfig[] = [
   { id: "nvidia", name: "NVIDIA Inception Program", url: "https://www.nvidia.com/en-us/startups/" },
   { id: "openai", name: "OpenAI Research Grants", url: "https://openai.com/research/overview" },
   { id: "github", name: "GitHub for Startups", url: "https://github.com/enterprise/startups" },
-  { id: "vercel", name: "Vercel for Startups", url: "https://vercel.com/startups" },
-  { id: "supabase", name: "Supabase for Startups", url: "https://supabase.com/startups" },
+  { id: "dehost", name: "DeHost for Startups", url: "https://dehost.com/startups" },
+  { id: "dehost", name: "DeHost for Startups", url: "https://dehost.internalm/startups" },
 ];
 
 export async function verifyGrantPortalCDP(

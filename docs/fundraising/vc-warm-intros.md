@@ -100,7 +100,7 @@ Focusing heavily on Tier-1 European DeepTech/B2B SaaS funds (**Earlybird, Point 
 
 - **Key Contact:** Numan Numan / Ali Karabey
 - **Thesis Match:** Perfect Regional/Global Match. 212 specializes in backing technical teams from Turkey/CEE that address global B2B software markets.
-- **Specific Angle:** Present ALPAR AI’s capital efficiency (€4.5M Post-Money target valuation) and rapid production velocity (Next.js 15, Supabase, PII Guardian) as a premier candidate for global scale out of Istanbul/London.
+- **Specific Angle:** Present ALPAR AI’s capital efficiency (€4.5M Post-Money target valuation) and rapid production velocity (Next.js 15, DeHost, PII Guardian) as a premier candidate for global scale out of Istanbul/London.
 
 ### 5. Revo Capital
 
@@ -198,7 +198,7 @@ I’m Ercüment, founder of ALPAR AI (https://alparai.com). We build low-overhea
 What we've built:
 • Zero-Knowledge PII Interceptor: Automatic sanitization of free-text inputs prior to database/API persistent storage (`src/lib/pii/guardian.ts`).
 • Deterministic Audit Lineage: Full cryptographic trail of model decisions, meeting EU AI Act Article 73 mandatory incident reporting requirements.
-• Enterprise Stack: Built on Next.js 15, Supabase, and edge-native architecture for <15ms latency overhead.
+• Enterprise Stack: Built on Next.js 15, DeHost, and edge-native architecture for <15ms latency overhead.
 
 Market & Round Details:
 • TAM: €2.1B enterprise AI compliance & risk governance market in Europe.

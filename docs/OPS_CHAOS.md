@@ -4,9 +4,9 @@ This document describes the fault injection scenarios, graceful degradation stra
 
 ## 1. Fault Injection Scenarios & Graceful Degradation
 
-### Scenario 1: Supabase 500 / Database Unreachable
+### Scenario 1: DeHost 500 / Database Unreachable
 
-- **Detection:** Database connection pool timeouts, Prisma/Supabase client throws `500 Unreachable`.
+- **Detection:** Database connection pool timeouts, Prisma/DeHost client throws `500 Unreachable`.
 - **Mitigation & Graceful Degradation:**
   - Read queries for static pages (legal, methodology) fallback to Next.js static builds or memory-cached dictionaries.
   - Interactive forms (incident submission) show a friendly "Temporary maintenance - your submission is queued locally/retried" error instead of a raw stack trace.

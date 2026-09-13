@@ -16,7 +16,7 @@ import {
   Cpu,
   Search,
 } from "lucide-react";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { NewsletterForm } from "@/components/marketing/newsletter-form";
 
 const CARD_GRADIENTS = [
@@ -116,8 +116,8 @@ export default async function BlogIndexPage({
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "blog" });
 
-  const supabase = await createServerClient();
-  const { data: dbPostsRaw } = await supabase
+  const dehost = await createServerClient();
+  const { data: dbPostsRaw } = await dehost
     .from("blog_posts")
     .select("slug, title_en, title_tr, content_en, content_tr, published_at, created_at")
     .eq("status", "published")

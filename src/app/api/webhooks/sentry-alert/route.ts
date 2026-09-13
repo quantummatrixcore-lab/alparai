@@ -11,8 +11,8 @@ function safeCompare(a: string, b: string): boolean {
   return timingSafeEqual(aBuf, bBuf);
 }
 
-const VERCEL_PROJECT_ID = "prj_REYJORnuYOT4tk28iMXnKZBCGkjL";
-const VERCEL_TEAM_ID = "team_g1woIK466hduGfKkuZN6LpkV";
+const DEHOST_PROJECT_ID = "prj_REYJORnuYOT4tk28iMXnKZBCGkjL";
+const DEHOST_TEAM_ID = "team_g1woIK466hduGfKkuZN6LpkV";
 
 export async function POST(request: Request) {
   try {
@@ -41,24 +41,24 @@ export async function POST(request: Request) {
       return NextResponse.json({ status: "ignored", reason: "not_5xx_spike" });
     }
 
-    const vercelToken = process.env.VERCEL_TOKEN;
-    if (!vercelToken) {
-      logger.error("VERCEL_TOKEN is not defined in environment variables");
+    const dehostToken = process.env.DEHOST_TOKEN;
+    if (!dehostToken) {
+      logger.error("DEHOST_TOKEN is not defined in environment variables");
       return NextResponse.json({ error: "configuration_error" }, { status: 500 });
     }
 
-    // 3. Fetch recent deployments from Vercel
-    const deploymentsUrl = `https://api.vercel.com/v6/deployments?projectId=${VERCEL_PROJECT_ID}&teamId=${VERCEL_TEAM_ID}&limit=10`;
+    // 3. Fetch recent deployments from DeHost
+    const deploymentsUrl = `https://api.dehost.com/v6/deployments?projectId=${DEHOST_PROJECT_ID}&teamId=${DEHOST_TEAM_ID}&limit=10`;
     const listRes = await fetch(deploymentsUrl, {
       headers: {
-        Authorization: `Bearer ${vercelToken}`,
+        Authorization: `Bearer ${dehostToken}`,
       },
     });
 
     if (!listRes.ok) {
       const errorText = await listRes.text();
-      logger.error("Failed to fetch deployments from Vercel", { error: errorText });
-      return NextResponse.json({ error: "vercel_fetch_failed" }, { status: 502 });
+      logger.error("Failed to fetch deployments from DeHost", { error: errorText });
+      return NextResponse.json({ error: "dehost_fetch_failed" }, { status: 502 });
     }
 
     const listData = await listRes.json();
@@ -78,29 +78,29 @@ export async function POST(request: Request) {
     const targetId = targetDeployment.id;
     const targetUrl = targetDeployment.url;
 
-    logger.info("Triggering Vercel rollback", { targetId, targetUrl });
+    logger.info("Triggering DeHost rollback", { targetId, targetUrl });
 
     // 4. Trigger the rollback
-    const rollbackUrl = `https://api.vercel.com/v1/projects/${VERCEL_PROJECT_ID}/rollback/${targetId}?teamId=${VERCEL_TEAM_ID}`;
+    const rollbackUrl = `https://api.dehost.com/v1/projects/${DEHOST_PROJECT_ID}/rollback/${targetId}?teamId=${DEHOST_TEAM_ID}`;
     const rollbackRes = await fetch(rollbackUrl, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${vercelToken}`,
+        Authorization: `Bearer ${dehostToken}`,
         "Content-Type": "application/json",
       },
     });
 
     if (!rollbackRes.ok) {
       const errorText = await rollbackRes.text();
-      logger.error("Vercel rollback API call failed", { error: errorText });
+      logger.error("DeHost rollback API call failed", { error: errorText });
       return NextResponse.json(
-        { error: "vercel_rollback_failed", details: errorText },
+        { error: "dehost_rollback_failed", details: errorText },
         { status: 502 },
       );
     }
 
     const rollbackData = await rollbackRes.json();
-    logger.info("Vercel rollback triggered successfully", { rollbackData });
+    logger.info("DeHost rollback triggered successfully", { rollbackData });
 
     return NextResponse.json({
       status: "success",

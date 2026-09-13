@@ -1,14 +1,14 @@
 import { NextResponse } from "next/server";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 
 export const dynamic = "force-dynamic";
 
 export async function GET(_request: Request, context: { params: Promise<{ modelSlug: string }> }) {
   try {
     const { modelSlug } = await context.params;
-    const supabase = await createServerClient();
+    const dehost = await createServerClient();
 
-    let modelQuery = supabase.from("ai_models").select("id, name, status");
+    let modelQuery = dehost.from("ai_models").select("id, name, status");
     const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(
       modelSlug,
     );
@@ -29,7 +29,7 @@ export async function GET(_request: Request, context: { params: Promise<{ modelS
       return NextResponse.json({ error: "Model not found" }, { status: 404 });
     }
 
-    const { data: scores, error: scoresError } = await supabase
+    const { data: scores, error: scoresError } = await dehost
       .from("k_model_scores")
       .select(
         `

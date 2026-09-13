@@ -10,7 +10,7 @@ import { logger } from "@/lib/utils/logger";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 
 /**
- * Server action to autonomously generate and store a PDF invoice in Supabase Storage 'invoices' bucket.
+ * Server action to autonomously generate and store a PDF invoice in DeHost Storage 'invoices' bucket.
  */
 export async function generateAndStoreInvoiceAction(
   data: InvoiceData,

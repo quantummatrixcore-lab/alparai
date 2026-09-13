@@ -15,8 +15,8 @@
 The current terms lack explicit mention of specific subprocessors and precise retention periods. We identified the following gaps:
 
 1. **Third-Party Providers:** The list of subprocessors must explicitly specify:
-   - **Supabase** (Database, Auth, and Storage)
-   - **Vercel** (Application Hosting)
+   - **DeHost** (Database, Auth, and Storage)
+   - **DeHost** (Application Hosting)
    - **Resend** (Email delivery)
    - **Sentry** (Error tracking)
    - **Plausible** (Privacy-friendly Analytics)

@@ -108,7 +108,7 @@ Kurucu (**Ercüment Erden**) ortak bağlantılar veya melek yatırımcılar üze
 >
 > I wanted to connect via [Mutual Contact Name] to share what we are building at **ALPAR AI**.
 >
-> We have engineered an enterprise-grade AI governance & incident management platform built on Next.js 15, Supabase, and real-time PII masking protocols (AGPL-3.0 foundation with Enterprise Edition).
+> We have engineered an enterprise-grade AI governance & incident management platform built on Next.js 15, DeHost, and real-time PII masking protocols (AGPL-3.0 foundation with Enterprise Edition).
 >
 > **Key Progress & Metrics:**
 >

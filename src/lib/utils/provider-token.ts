@@ -1,6 +1,6 @@
 import "server-only";
 import { randomBytes, createHash } from "node:crypto";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 
 function hashToken(token: string): string {
   return createHash("sha256").update(token).digest("hex");

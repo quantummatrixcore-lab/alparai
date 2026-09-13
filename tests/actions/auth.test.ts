@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
-import { createMockSupabaseClient, createTestUser } from "../helpers/supabase-mock";
+import { createMockDeHostClient, createTestUser } from "../helpers/dehost-mock";
 
 vi.hoisted(() => {
-  vi.doMock("@/lib/supabase/server", () => ({
+  vi.doMock("@/lib/dehost/server", () => ({
     createClient: vi.fn(),
     createServerClient: vi.fn(),
   }));
@@ -30,20 +30,20 @@ vi.hoisted(() => {
   }));
 });
 
-import { createClient, createServerClient } from "@/lib/supabase/server";
+import { createClient, createServerClient } from "@/lib/dehost/server";
 import { getCurrentUser } from "@/lib/auth/session";
 import { checkRateLimit } from "@/lib/utils/rate-limit";
 import { signInWithGoogle, signInWithMagicLink, getMe } from "@/actions/auth/auth";
 
-let mockSupabase: ReturnType<typeof createMockSupabaseClient>;
+let mockDeHost: ReturnType<typeof createMockDeHostClient>;
 let mockUser: ReturnType<typeof createTestUser>;
 
 beforeEach(() => {
   vi.clearAllMocks();
-  mockSupabase = createMockSupabaseClient();
+  mockDeHost = createMockDeHostClient();
   mockUser = createTestUser();
-  vi.mocked(createClient).mockResolvedValue(mockSupabase as never);
-  vi.mocked(createServerClient).mockResolvedValue(mockSupabase as never);
+  vi.mocked(createClient).mockResolvedValue(mockDeHost as never);
+  vi.mocked(createServerClient).mockResolvedValue(mockDeHost as never);
   vi.mocked(getCurrentUser).mockResolvedValue(null);
   vi.mocked(checkRateLimit).mockResolvedValue({ ok: true });
 });
@@ -51,7 +51,7 @@ beforeEach(() => {
 describe("signInWithGoogle", () => {
   beforeEach(() => {
     vi.mocked(checkRateLimit).mockResolvedValue({ ok: true });
-    mockSupabase.auth.signInWithOAuth.mockResolvedValue({
+    mockDeHost.auth.signInWithOAuth.mockResolvedValue({
       data: { url: "https://accounts.google.com/o/oauth2/auth" },
       error: null,
     });
@@ -66,7 +66,7 @@ describe("signInWithGoogle", () => {
   it("uses custom next parameter", async () => {
     const result = await signInWithGoogle("/dashboard");
     expect(result.ok).toBe(true);
-    expect(mockSupabase.auth.signInWithOAuth).toHaveBeenCalledWith(
+    expect(mockDeHost.auth.signInWithOAuth).toHaveBeenCalledWith(
       expect.objectContaining({
         provider: "google",
         options: expect.objectContaining({
@@ -87,7 +87,7 @@ describe("signInWithGoogle", () => {
   });
 
   it("returns error when OAuth fails", async () => {
-    mockSupabase.auth.signInWithOAuth.mockResolvedValueOnce({
+    mockDeHost.auth.signInWithOAuth.mockResolvedValueOnce({
       data: { url: null },
       error: { message: "OAuth provider error", status: 500 },
     });
@@ -100,19 +100,19 @@ describe("signInWithGoogle", () => {
 describe("signInWithMagicLink", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    mockSupabase.auth.signInWithOtp.mockResolvedValue({ error: null });
+    mockDeHost.auth.signInWithOtp.mockResolvedValue({ error: null });
   });
 
   it("returns success on valid email", async () => {
     const result = await signInWithMagicLink("user@example.com");
     expect(result.ok).toBe(true);
-    expect(mockSupabase.auth.signInWithOtp).toHaveBeenCalledWith(
+    expect(mockDeHost.auth.signInWithOtp).toHaveBeenCalledWith(
       expect.objectContaining({ email: "user@example.com" }),
     );
   });
 
   it("returns error when OTP fails", async () => {
-    mockSupabase.auth.signInWithOtp.mockResolvedValueOnce({
+    mockDeHost.auth.signInWithOtp.mockResolvedValueOnce({
       error: { message: "Rate limit exceeded" },
     });
     const result = await signInWithMagicLink("user@example.com");

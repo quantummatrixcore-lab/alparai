@@ -1,16 +1,16 @@
 "use server";
 
 import { requireAdmin } from "@/lib/auth/session";
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/dehost/server";
 import { logger } from "@/lib/utils/logger";
 import { revalidatePath } from "next/cache";
 import { EcosystemScout } from "@/lib/agent-os/scouts/ecosystem-scout";
 
 export async function fetchLatestIntel() {
   await requireAdmin();
-  const supabase = await createClient();
+  const dehost = await createClient();
 
-  const { data, error } = await supabase
+  const { data, error } = await dehost
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     .from("agent_ecosystem_intel" as any)
@@ -41,9 +41,9 @@ export async function triggerManualScout() {
 
 export async function markIntelActioned(id: string) {
   await requireAdmin();
-  const supabase = await createClient();
+  const dehost = await createClient();
 
-  const { error } = await supabase
+  const { error } = await dehost
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     .from("agent_ecosystem_intel" as any)

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 
 export const revalidate = 300; // 5 min cache
 
@@ -20,10 +20,10 @@ export async function GET(request: Request) {
   const limit = Math.min(100, Math.max(1, parseInt(searchParams.get("limit") || "20", 10)));
   const offset = (page - 1) * limit;
 
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
 
   try {
-    const { data, count, error } = await supabase
+    const { data, count, error } = await dehost
       .from("incidents")
       .select(
         "id, title_masked, description_masked, provider_custom_name, severity, created_at, published_at, source_url, ai_providers(name)",

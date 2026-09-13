@@ -26,8 +26,8 @@ interface NodeStatus {
 }
 
 const CLUSTER_NODES: NodeStatus[] = [
-  { name: "Edge API Gateway", type: "Vercel / Cloudflare", region: "Global Anycast", latency: "24ms", status: "optimal", load: 28 },
-  { name: "Primary Postgres + pgvector", type: "Supabase DB Pool", region: "eu-central-1", latency: "38ms", status: "healthy", load: 42 },
+  { name: "Edge API Gateway", type: "DeHost / Cloudflare", region: "Global Anycast", latency: "24ms", status: "optimal", load: 28 },
+  { name: "Primary Postgres + pgvector", type: "DeHost DB Pool", region: "eu-central-1", latency: "38ms", status: "healthy", load: 42 },
   { name: "Session & Telemetry Mesh", type: "Upstash Redis", region: "fra1", latency: "12ms", status: "optimal", load: 19 },
   { name: "Autonomous Swarm Worker", type: "Node.js ES6+ Daemon", region: "Local Host", latency: "4ms", status: "optimal", load: 15 },
 ];

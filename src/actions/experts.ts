@@ -6,7 +6,7 @@ import { getResendClient } from "@/lib/email/resend";
 import { headers } from "next/headers";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { hashIp } from "@/lib/utils/hash";
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/dehost/server";
 import { logger } from "@/lib/utils/logger";
 
 import { maskPII } from "@/lib/pii/guardian";
@@ -57,8 +57,8 @@ type ExpertWorkResult =
 
 const runExpertWork = async (data: ExpertWorkInput): Promise<ExpertWorkResult> => {
   try {
-    const supabase = await createClient();
-    const { error: dbError } = await supabase.from("expert_applications").insert({
+    const dehost = await createClient();
+    const { error: dbError } = await dehost.from("expert_applications").insert({
       name: maskPII(data.name).masked,
       title_institution: `${maskPII(data.title).masked} - ${maskPII(data.institution).masked}`,
       expertise: data.expertiseArea,

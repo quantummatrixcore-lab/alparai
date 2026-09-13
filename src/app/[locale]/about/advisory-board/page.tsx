@@ -13,7 +13,8 @@ import {
   Mail,
   Sparkles,
 } from "lucide-react";
-import { createClient as createSupabaseClient } from "@supabase/supabase-js";
+import { createDeHostAdapterClient } from "@/lib/dehost/dehost-adapter";
+
 import type { Database } from "@/types/database";
 import { CalendlyEmbed } from "@/components/marketing/calendly-embed";
 
@@ -41,15 +42,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   });
 }
 
-function getPublicSupabase() {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://placeholder.supabase.co";
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "placeholder-anon-key";
-  return createSupabaseClient<Database>(supabaseUrl, supabaseAnonKey, {
-    auth: {
-      persistSession: false,
-      autoRefreshToken: false,
-    },
-  });
+function getPublicDeHost() {
+  return createDeHostAdapterClient();
 }
 
 export default async function AdvisoryBoardPage({
@@ -77,8 +71,8 @@ export default async function AdvisoryBoardPage({
   }> = [];
 
   try {
-    const supabase = getPublicSupabase();
-    const { data: members } = await supabase
+    const dehost = getPublicDeHost();
+    const { data: members } = await dehost
       .from("advisory_board_members")
       .select("*")
       .eq("is_active", true)

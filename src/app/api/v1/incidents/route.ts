@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { headers } from "next/headers";
 import { timingSafeEqual } from "crypto";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { rateLimit } from "@/lib/rate-limit";
 
@@ -37,10 +37,10 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
     // Getting approved incidents with strict public projection (Zero PII leakage)
-    const { data: rawIncidents, error } = await supabase
+    const { data: rawIncidents, error } = await dehost
       .from("incidents")
       .select(
         "id, title_masked, description_masked, category, severity, status, incident_date, views_count, upvotes_count, cross_audit_truth_score, cross_audit_confidence, ai_provider_id, ai_model_id, is_expert, expert_fix, created_at, published_at, source_url",

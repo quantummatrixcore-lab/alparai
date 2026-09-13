@@ -1,13 +1,13 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
-import { createMockSupabaseClient, createTestUser } from "../helpers/supabase-mock";
+import { createMockDeHostClient, createTestUser } from "../helpers/dehost-mock";
 
 vi.hoisted(() => {
-  vi.doMock("@/lib/supabase/server", () => ({
+  vi.doMock("@/lib/dehost/server", () => ({
     createClient: vi.fn(),
     createServerClient: vi.fn(),
   }));
-  vi.doMock("@/lib/supabase/admin", () => ({
+  vi.doMock("@/lib/dehost/admin", () => ({
     createAdminClient: vi.fn(),
   }));
   vi.doMock("@/lib/auth/session", () => ({
@@ -27,24 +27,24 @@ vi.hoisted(() => {
   }));
 });
 
-import { createClient, createServerClient } from "@/lib/supabase/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createClient, createServerClient } from "@/lib/dehost/server";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { getCurrentUser } from "@/lib/auth/session";
 import { checkRateLimit } from "@/lib/utils/rate-limit";
 import { maskPII } from "@/lib/pii/guardian";
 import { submitIncident } from "@/actions/incidents";
 
-let mockSupabase: ReturnType<typeof createMockSupabaseClient>;
-let mockAdminClient: ReturnType<typeof createMockSupabaseClient>;
+let mockDeHost: ReturnType<typeof createMockDeHostClient>;
+let mockAdminClient: ReturnType<typeof createMockDeHostClient>;
 let mockUser: ReturnType<typeof createTestUser>;
 
 beforeEach(() => {
   vi.clearAllMocks();
-  mockSupabase = createMockSupabaseClient();
-  mockAdminClient = createMockSupabaseClient();
+  mockDeHost = createMockDeHostClient();
+  mockAdminClient = createMockDeHostClient();
   mockUser = createTestUser();
-  vi.mocked(createClient).mockResolvedValue(mockSupabase as never);
-  vi.mocked(createServerClient).mockResolvedValue(mockSupabase as never);
+  vi.mocked(createClient).mockResolvedValue(mockDeHost as never);
+  vi.mocked(createServerClient).mockResolvedValue(mockDeHost as never);
   vi.mocked(createAdminClient).mockReturnValue(mockAdminClient as never);
   vi.mocked(getCurrentUser).mockResolvedValue(mockUser as never);
   vi.mocked(checkRateLimit).mockResolvedValue({ ok: true, remaining: 4 });
@@ -87,7 +87,7 @@ describe("submitIncident Age Gate Integration", () => {
     const res = await submitIncident({ ok: false }, fd);
 
     expect(res.ok).toBe(true);
-    expect(mockSupabase.rpc).toHaveBeenCalledWith(
+    expect(mockDeHost.rpc).toHaveBeenCalledWith(
       "submit_incident_atomic",
       expect.objectContaining({
         payload: expect.objectContaining({

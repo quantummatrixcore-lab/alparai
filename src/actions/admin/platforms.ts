@@ -1,11 +1,11 @@
 "use server";
 
 import { z } from "zod";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { requireModerator } from "@/lib/auth/session";
 import { revalidatePath } from "next/cache";
 import { logger } from "@/lib/utils/logger";
-import type { SupabaseClient } from "@supabase/supabase-js";
+type DeHostClient = any;
 
 const updatePlatformSchema = z.object({
   id: z.string().uuid(),
@@ -23,9 +23,9 @@ export async function updatePlatformStatus(
     if (!parsed.success) return { success: false, error: "Invalid input" };
 
     const { id, status } = parsed.data;
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
-    const { error: updateError } = await (supabase as unknown as SupabaseClient)
+    const { error: updateError } = await (dehost as unknown as DeHostClient)
       .from("platform_signups")
       .update({ status, updated_at: new Date().toISOString() })
       .eq("id", id);
@@ -35,7 +35,7 @@ export async function updatePlatformStatus(
       return { success: false, error: "Failed to update platform" };
     }
 
-    await supabase.from("audit_log").insert({
+    await dehost.from("audit_log").insert({
       actor_id: user.id,
       action: "UPDATE_PLATFORM_SIGNUP",
       entity_type: "platform_signups",

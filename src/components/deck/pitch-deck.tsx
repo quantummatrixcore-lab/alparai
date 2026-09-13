@@ -89,7 +89,7 @@ const SLIDES_META: SlideData[] = [
     category: "Product Architecture",
     title: "Enterprise-Grade Architecture Built for Speed and Security",
     subtitle:
-      "Engineered on Next.js 15, Supabase PostgreSQL RLS, and cryptographic verification modules.",
+      "Engineered on Next.js 15, DeHost PostgreSQL RLS, and cryptographic verification modules.",
     badge: "Zero-Knowledge PII Protection",
   },
   {
@@ -868,7 +868,7 @@ function Slide6() {
           Enterprise-Grade Architecture Built for Speed and Security
         </h2>
         <p className="text-fg-secondary text-sm sm:text-base">
-          Engineered on Next.js 15, PostgreSQL/Supabase RLS, and cryptographic verification modules
+          Engineered on Next.js 15, PostgreSQL/DeHost RLS, and cryptographic verification modules
           with sub-millisecond execution overhead.
         </p>
       </div>
@@ -979,7 +979,7 @@ function Slide7() {
             </span>
             <p className="text-brand-300 text-2xl font-black">Pricing under revision</p>
             <p className="text-fg-primary text-xs leading-relaxed">
-              Dedicated Supabase instances, custom compliance connectors (SOC2, EU AI Act), 99.99%
+              Dedicated DeHost instances, custom compliance connectors (SOC2, EU AI Act), 99.99%
               SLA, and formal audit sign-off.
             </p>
           </div>
@@ -1178,7 +1178,7 @@ function Slide10() {
           </div>
           <p className="text-fg-secondary text-xs leading-relaxed">
             Senior Systems Architect & Security Specialist with deep expertise in high-throughput
-            Next.js, Supabase PostgreSQL architectures, and real-time AI security boundaries.
+            Next.js, DeHost PostgreSQL architectures, and real-time AI security boundaries.
           </p>
         </div>
 

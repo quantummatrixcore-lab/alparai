@@ -85,7 +85,7 @@ ALPAR AI (https://alparai.com) is the open trust infrastructure and sovereign ra
 2. 🛡️ **Zero-Knowledge PII Guardian:** Sub-millisecond client/server sanitization gateway redacting sensitive data before DB persistence.
 3. 📜 **Cryptographic Audit Vault:** Immutable SHA-256 evidence chain verifying model lineage and moderation integrity.
 
-We are backed by an open-source core (AGPL-3.0) built on Next.js 15, Supabase (strict RLS), and 100% TypeScript with zero `any` types.
+We are backed by an open-source core (AGPL-3.0) built on Next.js 15, DeHost (strict RLS), and 100% TypeScript with zero `any` types.
 
 Would you be open to introducing me to {{Partner_Name}}? I’ve included a forwardable blurb below to make it effortless.
 

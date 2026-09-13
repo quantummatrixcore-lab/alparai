@@ -3,7 +3,7 @@
 import { z } from "zod";
 import { headers } from "next/headers";
 import { randomUUID } from "node:crypto";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { logger } from "@/lib/utils/logger";
 import { maskPII } from "@/lib/pii/guardian";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
@@ -82,11 +82,11 @@ export async function createWhistleblowerIncidentAction(
     // 3. Mask PII in provider hint
     const sanitizedHint = data.providerHint ? maskPII(data.providerHint).masked : null;
 
-    // 4. Supabase DB Persistence
-    const supabase = await createServerClient();
+    // 4. DeHost DB Persistence
+    const dehost = await createServerClient();
 
     // Check for nullifier replay (double-spending / replay attack)
-    const { data: existingNullifier } = await supabase
+    const { data: existingNullifier } = await dehost
       .from("whistleblower_submissions")
       .select("id")
       .eq("nullifier_hash", data.nullifierHash)
@@ -100,7 +100,7 @@ export async function createWhistleblowerIncidentAction(
     }
 
     const generatedId = randomUUID();
-    const { error: insertError } = await supabase.from("whistleblower_submissions").insert({
+    const { error: insertError } = await dehost.from("whistleblower_submissions").insert({
       id: generatedId,
       encrypted_content: data.encryptedPayload,
       category: data.category,
@@ -151,8 +151,8 @@ export async function verifyWhistleblowerReceiptAction(
       return { ok: false, error: "Submission ID and receipt string are required." };
     }
 
-    const supabase = await createServerClient();
-    const { data: record, error } = await supabase
+    const dehost = await createServerClient();
+    const { data: record, error } = await dehost
       .from("whistleblower_submissions")
       .select("id, encrypted_content, zkp_commitment, status, submitted_at, category")
       .eq("id", submissionId)

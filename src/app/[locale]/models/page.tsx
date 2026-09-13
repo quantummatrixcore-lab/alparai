@@ -13,7 +13,7 @@ import {
   Award,
   ShieldCheck,
 } from "lucide-react";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { Badge } from "@/components/ui/badge";
 import { ProviderLogo } from "@/components/leaderboard/provider-logo";
 import { MODELS_CATALOG } from "@/lib/constants/models-catalog";

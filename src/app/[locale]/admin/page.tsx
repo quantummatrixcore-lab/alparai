@@ -110,10 +110,10 @@ export default function AdminV2OverviewPage() {
   React.useEffect(() => {
     async function loadRealData() {
       try {
-        const { supabase } = await import("@/lib/supabase/client");
+        const { dehost } = await import("@/lib/dehost/client");
 
         // 1. Fetch real recent incidents
-        const { data: incidentsData } = await supabase
+        const { data: incidentsData } = await dehost
           .from("incidents")
           .select(
             "id, title_masked, title_tr, severity, status, category, incident_date, incident_source, ai_providers(name, slug)",
@@ -147,7 +147,7 @@ export default function AdminV2OverviewPage() {
         }
 
         // 2. Fetch real B2B keys
-        const { data: keysData } = await supabase
+        const { data: keysData } = await dehost
           .from("api_keys")
           .select("id, provider, client_type, tier, created_at");
 

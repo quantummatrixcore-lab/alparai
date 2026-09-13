@@ -10,7 +10,7 @@ vi.mock("@/lib/utils/rate-limit", () => ({
   RATE_LIMIT_KEYS: { auth_signin: "auth_signin" },
 }));
 
-vi.mock("@/lib/supabase/server", () => ({
+vi.mock("@/lib/dehost/server", () => ({
   createServerClient: vi.fn().mockResolvedValue({
     auth: {
       signInWithIdToken: vi.fn().mockResolvedValue({

@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { headers } from "next/headers";
 import { createHash, randomBytes } from "node:crypto";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { maskPII } from "@/lib/pii/guardian";
 import { logger } from "@/lib/utils/logger";
@@ -329,12 +329,12 @@ export async function POST(request: Request) {
 
     const auditSeal = `ALPAR_SEAL_v2.5_${certificateId.substring(0, 16).toUpperCase()}`;
 
-    // Record audit in Supabase if provider_id is provided
+    // Record audit in DeHost if provider_id is provided
     let providerData = null;
     if (payload.provider_id) {
       try {
-        const supabase = await createServerClient();
-        const { data: prov } = await supabase
+        const dehost = await createServerClient();
+        const { data: prov } = await dehost
           .from("ai_providers")
           .select("id, name, slug, trust_score")
           .eq("id", payload.provider_id)

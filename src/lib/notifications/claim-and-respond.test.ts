@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import { triggerClaimAndRespondAlert } from "./claim-and-respond";
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({
     from: () => ({
       select: () => ({

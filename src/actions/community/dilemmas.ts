@@ -2,8 +2,8 @@
 
 import { headers } from "next/headers";
 import { getTranslations } from "next-intl/server";
-import { createServerClient } from "@/lib/supabase/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createServerClient } from "@/lib/dehost/server";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { hashIp } from "@/lib/utils/hash";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { revalidatePath } from "next/cache";
@@ -56,13 +56,13 @@ export async function submitVote(
       return { error: t("rateLimited") };
     }
 
-    const supabase = await createServerClient();
-    const { data: userData } = await supabase.auth.getUser();
+    const dehost = await createServerClient();
+    const { data: userData } = await dehost.auth.getUser();
     const userId = userData?.user?.id;
-    const supabaseAdmin = createAdminClient();
+    const dehostAdmin = createAdminClient();
 
     // 3. Insert vote (unique constraint on poll_id + ip_hash prevents duplicates)
-    const { error: voteError } = await supabaseAdmin.from("ai_poll_votes").insert({
+    const { error: voteError } = await dehostAdmin.from("ai_poll_votes").insert({
       poll_id: pollId,
       user_id: userId ?? null,
       ip_hash: ipHash ?? "unknown",
@@ -78,7 +78,7 @@ export async function submitVote(
     }
 
     // 4. Atomic increment via RPC — no read-modify-write race condition
-    const { error: rpcError } = await supabaseAdmin.rpc("increment_poll_count", {
+    const { error: rpcError } = await dehostAdmin.rpc("increment_poll_count", {
       p_poll_id: pollId,
       p_choice: choice,
     });
@@ -102,7 +102,7 @@ export async function submitVote(
       const badgeName = t(`badge_${badgeKey}`);
       const description = t("badge_earned", { choice: choice.toUpperCase() });
 
-      const { error: badgeError } = await supabaseAdmin.from("user_badges").insert({
+      const { error: badgeError } = await dehostAdmin.from("user_badges").insert({
         user_id: userId,
         badge_name: badgeName,
         badge_icon: badgeIcon,
@@ -112,7 +112,7 @@ export async function submitVote(
       if (!badgeError) {
         awardedBadge = badgeName;
 
-        const { data: userRecord } = await supabaseAdmin
+        const { data: userRecord } = await dehostAdmin
           .from("users")
           .select("reputation_score, badges")
           .eq("id", userId)
@@ -126,7 +126,7 @@ export async function submitVote(
             currentBadges.push(badgeName);
           }
 
-          await supabaseAdmin
+          await dehostAdmin
             .from("users")
             .update({
               reputation_score: newReputation,

@@ -2,7 +2,7 @@ import "server-only";
 import { maskPII } from "@/lib/pii/guardian";
 import { selectModelTier } from "@/lib/audit/model-router";
 import { callWithFailover } from "@/lib/ai/openrouter-gateway";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 import type { Database } from "@/types/database";
 

@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { setupAuthenticatedPage, mockSupabaseResponse } from "../helpers/auth";
+import { setupAuthenticatedPage, mockDeHostResponse } from "../helpers/auth";
 
 const MOCK_USERS = [
   {
@@ -22,7 +22,7 @@ const MOCK_USERS = [
 
 test.beforeEach(async ({ page }) => {
   await setupAuthenticatedPage(page);
-  await mockSupabaseResponse(page, "users*", MOCK_USERS);
+  await mockDeHostResponse(page, "users*", MOCK_USERS);
 });
 
 test.describe("Admin Panel — Authenticated Rendering", () => {

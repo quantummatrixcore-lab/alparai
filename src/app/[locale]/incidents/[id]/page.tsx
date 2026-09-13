@@ -2,7 +2,7 @@ export const revalidate = 3600;
 
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { getCurrentUser } from "@/lib/auth/session";
 import { Container } from "@/components/ui/layout";
 import { IncidentDetailView } from "@/components/incidents/incident-detail";
@@ -21,8 +21,8 @@ export async function generateMetadata({
 }) {
   const { id, locale } = await params;
 
-  const supabase = await createServerClient();
-  const { data } = await supabase
+  const dehost = await createServerClient();
+  const { data } = await dehost
     .from("incidents")
     .select("title_masked, title_tr, description_masked, description_tr, severity, category")
     .eq("id", id)
@@ -78,12 +78,12 @@ export default async function IncidentDetailPage({
   setRequestLocale(locale);
 
   const tCommon = await getTranslations({ locale, namespace: "common" });
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
   const user = await getCurrentUser();
   const isAdminOrModerator =
     user?.role === "admin" || user?.role === "ceo" || user?.role === "moderator";
 
-  let query = supabase.from("incidents").select("*").eq("id", id);
+  let query = dehost.from("incidents").select("*").eq("id", id);
   if (!isAdminOrModerator) {
     query = query.eq("status", "published");
   }
@@ -95,19 +95,19 @@ export default async function IncidentDetailPage({
 
   const [providerRes, modelRes, evidenceRes, responseRes, commentsRes] = await Promise.all([
     providerId
-      ? supabase.from("ai_providers").select("name, slug").eq("id", providerId).maybeSingle()
+      ? dehost.from("ai_providers").select("name, slug").eq("id", providerId).maybeSingle()
       : Promise.resolve({ data: null, error: null }),
     modelId
-      ? supabase.from("ai_models").select("name, version").eq("id", modelId).maybeSingle()
+      ? dehost.from("ai_models").select("name, version").eq("id", modelId).maybeSingle()
       : Promise.resolve({ data: null, error: null }),
-    supabase.from("evidence").select("id, file_name, file_path, mime_type").eq("incident_id", id),
-    supabase
+    dehost.from("evidence").select("id, file_name, file_path, mime_type").eq("incident_id", id),
+    dehost
       .from("ai_provider_responses")
       .select("id, response_text, is_official, is_published, created_at, ai_provider_id")
       .eq("incident_id", id)
       .eq("is_published", true)
       .maybeSingle(),
-    supabase
+    dehost
       .from("incident_comments")
       .select(
         "id, comment_text, created_at, user_id, users(id, full_name, username, avatar_url, role)",
@@ -136,13 +136,13 @@ export default async function IncidentDetailPage({
     };
   }
 
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://auth.alparai.com";
+  const dehostUrl = process.env.NEXT_PUBLIC_DEHOST_URL || "https://auth.alparai.com";
   const evidence: EvidenceItem[] = ((evidenceRes.data as Array<Record<string, unknown>>) ?? []).map(
     (e) => {
       const pathStr = e["file_path"] as string;
       const fileUrl = pathStr.startsWith("http")
         ? pathStr
-        : `${supabaseUrl}/storage/v1/object/public/evidence/${pathStr}`;
+        : `${dehostUrl}/storage/v1/object/public/evidence/${pathStr}`;
       return {
         id: e["id"] as string,
         file_name: e["file_name"] as string,
@@ -192,7 +192,7 @@ export default async function IncidentDetailPage({
 
   let userVote: -1 | 0 | 1 = 0;
   if (user) {
-    const { data: vote } = await supabase
+    const { data: vote } = await dehost
       .from("incident_votes")
       .select("value")
       .eq("incident_id", id)
@@ -203,7 +203,7 @@ export default async function IncidentDetailPage({
 
   let userAffected = false;
   if (user) {
-    const { data: affected } = await supabase
+    const { data: affected } = await dehost
       .from("incident_affected_users")
       .select("incident_id")
       .eq("incident_id", id)

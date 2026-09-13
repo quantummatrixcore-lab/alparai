@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
-import { createMockSupabaseClient } from "../helpers/supabase-mock";
+import { createMockDeHostClient } from "../helpers/dehost-mock";
 
 vi.mock("@/lib/auth/session", () => ({
   requireAdmin: vi.fn().mockResolvedValue({ id: "admin", role: "admin" }),
@@ -8,10 +8,10 @@ vi.mock("@/lib/auth/session", () => ({
 }));
 
 vi.hoisted(() => {
-  vi.doMock("@/lib/supabase/server", () => ({
+  vi.doMock("@/lib/dehost/server", () => ({
     createServerClient: vi.fn(),
   }));
-  vi.doMock("@/lib/supabase/admin", () => ({
+  vi.doMock("@/lib/dehost/admin", () => ({
     createAdminClient: vi.fn(),
   }));
   vi.doMock("@/lib/ai/openrouter-gateway", () => ({
@@ -19,19 +19,19 @@ vi.hoisted(() => {
   }));
 });
 
-import { createServerClient } from "@/lib/supabase/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createServerClient } from "@/lib/dehost/server";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { callModel } from "@/lib/ai/openrouter-gateway";
 import { runBenchTrEvaluationAction } from "@/actions/admin/archive/run-bench-tr-evaluation";
 
 describe("BENCH-TR Evaluation", () => {
-  let mockServerClient: ReturnType<typeof createMockSupabaseClient>;
-  let mockAdminClient: ReturnType<typeof createMockSupabaseClient>;
+  let mockServerClient: ReturnType<typeof createMockDeHostClient>;
+  let mockAdminClient: ReturnType<typeof createMockDeHostClient>;
 
   beforeEach(() => {
     vi.clearAllMocks();
-    mockServerClient = createMockSupabaseClient();
-    mockAdminClient = createMockSupabaseClient();
+    mockServerClient = createMockDeHostClient();
+    mockAdminClient = createMockDeHostClient();
     vi.mocked(createServerClient).mockResolvedValue(mockServerClient as never);
     vi.mocked(createAdminClient).mockReturnValue(mockAdminClient as never);
   });

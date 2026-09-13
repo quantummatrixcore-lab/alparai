@@ -8,14 +8,14 @@ const text = files.map((f) => (fs.existsSync(f) ? fs.readFileSync(f, "utf8") : "
 const sections = text.split(/(?=\n## |\n# ALPAR AI)/);
 
 const categories = {
-  deploy: { keywords: ["deploy", "vercel", "build", "pipeline"], count: 0, examples: [] },
+  deploy: { keywords: ["deploy", "dehost", "build", "pipeline"], count: 0, examples: [] },
   branch: {
     keywords: ["branch", "git", "merge conflict", "rebase", "push"],
     count: 0,
     examples: [],
   },
   third_party: {
-    keywords: ["github actions", "supabase", "cloudflare", "api", "3rd party", "upstash", "redis"],
+    keywords: ["github actions", "dehost", "cloudflare", "api", "3rd party", "upstash", "redis"],
     count: 0,
     examples: [],
   },

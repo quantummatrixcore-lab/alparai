@@ -1,7 +1,7 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
-import { createAdminClient } from "@/lib/supabase/admin";
-import { createServerClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/dehost/admin";
+import { createServerClient } from "@/lib/dehost/server";
 import { Container, Divider } from "@/components/ui/layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { FileText, Download, Lock, ChevronRight } from "lucide-react";
@@ -80,18 +80,18 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
   const investorName = application.full_name;
   const investorCompany = application.company;
 
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
 
-  const { count: totalIncidents } = await supabase
+  const { count: totalIncidents } = await dehost
     .from("incidents")
     .select("*", { count: "exact", head: true })
     .eq("status", "published");
 
-  const { count: totalProviders } = await supabase
+  const { count: totalProviders } = await dehost
     .from("ai_providers")
     .select("*", { count: "exact", head: true });
 
-  const { data: countriesData } = await supabase
+  const { data: countriesData } = await dehost
     .from("incidents")
     .select("location_country")
     .eq("status", "published");
@@ -106,13 +106,13 @@ export default async function InvestorPortalPage({ params, searchParams }: Inves
   const firstDayLastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1);
   const lastDayLastMonth = new Date(now.getFullYear(), now.getMonth(), 0, 23, 59, 59, 999);
 
-  const { count: thisMonthIncidents } = await supabase
+  const { count: thisMonthIncidents } = await dehost
     .from("incidents")
     .select("*", { count: "exact", head: true })
     .eq("status", "published")
     .gte("published_at", firstDayThisMonth.toISOString());
 
-  const { count: lastMonthIncidents } = await supabase
+  const { count: lastMonthIncidents } = await dehost
     .from("incidents")
     .select("*", { count: "exact", head: true })
     .eq("status", "published")

@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../../helpers/setup";
 
 const mockGetUser = vi.fn();
-vi.mock("@/lib/supabase/server", () => ({
+vi.mock("@/lib/dehost/server", () => ({
   createServerClient: () =>
     Promise.resolve({
       auth: {

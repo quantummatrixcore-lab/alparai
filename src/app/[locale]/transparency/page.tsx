@@ -2,8 +2,8 @@ export const revalidate = 300; // 5 min ISR cache
 
 import Link from "next/link";
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { createServerClient } from "@/lib/supabase/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createServerClient } from "@/lib/dehost/server";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { Container } from "@/components/ui/layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -62,9 +62,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 async function loadTransparencyData() {
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
   const adminClientInstance = createAdminClient();
-  const db = adminClientInstance || supabase;
+  const db = adminClientInstance || dehost;
 
   const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
 
@@ -97,7 +97,7 @@ async function loadTransparencyData() {
     db.from("ai_provider_responses").select("id", { count: "exact", head: true }),
     db.from("users").select("id", { count: "exact", head: true }),
     db.from("takedown_requests").select("id", { count: "exact", head: true }),
-    Promise.resolve(supabase.from("transparency_stats_view").select("*").maybeSingle()).catch(() => ({ data: null })),
+    Promise.resolve(dehost.from("transparency_stats_view").select("*").maybeSingle()).catch(() => ({ data: null })),
     db
       .from("incidents")
       .select(

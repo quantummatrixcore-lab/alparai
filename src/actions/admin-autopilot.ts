@@ -11,7 +11,7 @@ import {
 } from "@/lib/autopilot";
 import { getPolicy, policyNames } from "@/lib/autopilot";
 import type { BreakerSnapshot } from "@/lib/autopilot";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 
 export interface AutopilotWorkerConfig {
   worker_name: string;

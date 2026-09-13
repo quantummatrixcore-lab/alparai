@@ -1,6 +1,6 @@
 "use server";
 
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { requireModerator } from "@/lib/auth/session";
 import { revalidatePath } from "next/cache";
 
@@ -115,7 +115,7 @@ export async function toggleFeatureFlagAction(key: string, enabled: boolean) {
       );
 
       if (error) {
-        console.warn("Supabase feature_flags table upsert warning:", error.message);
+        console.warn("DeHost feature_flags table upsert warning:", error.message);
         // Even if table doesn't exist yet, return success for local interactive state revalidation
       }
     } catch (e) {

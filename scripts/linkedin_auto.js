@@ -1,11 +1,11 @@
-const { createClient } = require("@supabase/supabase-js");
+const { createClient } = require("@/lib/dehost/client");
 const fs = require("fs");
 const dotenv = require("dotenv");
 
 const envConfig = dotenv.parse(fs.readFileSync(".env.local"));
-const supabase = createClient(
-  envConfig.NEXT_PUBLIC_SUPABASE_URL,
-  envConfig.SUPABASE_SERVICE_ROLE_KEY,
+const dehost = createClient(
+  envConfig.NEXT_PUBLIC_DEHOST_URL,
+  envConfig.DEHOST_SERVICE_ROLE_KEY,
 );
 
 const standardMessage = `Hi [Name], I'm Ercüment, founder of ALPAR AI. We're building an independent AI incident registry and evaluation platform for the EU AI Act era. I'd love to connect with you!`;
@@ -13,7 +13,7 @@ const standardMessage = `Hi [Name], I'm Ercüment, founder of ALPAR AI. We're bu
 async function run() {
   console.log("Starting automated LinkedIn connection & messaging (simulating OpenChrome)...");
 
-  const { data: contacts, error: fetchError } = await supabase
+  const { data: contacts, error: fetchError } = await dehost
     .from("linkedin_contacts")
     .select("*")
     .in("status", ["to_add", "added"]);
@@ -34,7 +34,7 @@ async function run() {
     // Simulating OpenChrome messaging
     console.log(`Sending connection request & message to: ${contact.full_name}`);
 
-    const { error: updateError } = await supabase
+    const { error: updateError } = await dehost
       .from("linkedin_contacts")
       .update({ status: "messaged", updated_at: new Date().toISOString() })
       .eq("id", contact.id);

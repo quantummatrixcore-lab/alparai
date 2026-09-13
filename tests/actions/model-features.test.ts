@@ -1,13 +1,13 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
-import { createMockSupabaseClient, createTestUser } from "../helpers/supabase-mock";
+import { createMockDeHostClient, createTestUser } from "../helpers/dehost-mock";
 
 vi.hoisted(() => {
-  vi.doMock("@/lib/supabase/server", () => ({
+  vi.doMock("@/lib/dehost/server", () => ({
     createClient: vi.fn(),
     createServerClient: vi.fn(),
   }));
-  vi.doMock("@/lib/supabase/admin", () => ({
+  vi.doMock("@/lib/dehost/admin", () => ({
     createAdminClient: vi.fn(),
   }));
   vi.doMock("@/lib/auth/session", () => ({
@@ -33,24 +33,24 @@ vi.hoisted(() => {
   }));
 });
 
-import { createServerClient } from "@/lib/supabase/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createServerClient } from "@/lib/dehost/server";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { getCurrentUser } from "@/lib/auth/session";
 import {
   submitModelFeatureRequest,
   voteModelFeatureRequest,
 } from "@/actions/models/model-features";
 
-let mockSupabase: ReturnType<typeof createMockSupabaseClient>;
-let mockAdminClient: ReturnType<typeof createMockSupabaseClient>;
+let mockDeHost: ReturnType<typeof createMockDeHostClient>;
+let mockAdminClient: ReturnType<typeof createMockDeHostClient>;
 let mockUser: ReturnType<typeof createTestUser>;
 
 beforeEach(() => {
   vi.clearAllMocks();
-  mockSupabase = createMockSupabaseClient();
-  mockAdminClient = createMockSupabaseClient();
+  mockDeHost = createMockDeHostClient();
+  mockAdminClient = createMockDeHostClient();
   mockUser = createTestUser();
-  vi.mocked(createServerClient).mockResolvedValue(mockSupabase as never);
+  vi.mocked(createServerClient).mockResolvedValue(mockDeHost as never);
   vi.mocked(createAdminClient).mockReturnValue(mockAdminClient as never);
   vi.mocked(getCurrentUser).mockResolvedValue(mockUser as never);
 });
@@ -73,7 +73,7 @@ function buildFeatureForm(overrides: Record<string, string> = {}): FormData {
 
 describe("submitModelFeatureRequest", () => {
   beforeEach(() => {
-    mockSupabase.from.mockReturnValue({
+    mockDeHost.from.mockReturnValue({
       insert: vi.fn().mockReturnValue({
         select: vi.fn().mockReturnValue({
           single: vi.fn().mockResolvedValue({ data: { id: "feat-123" }, error: null }),
@@ -85,7 +85,7 @@ describe("submitModelFeatureRequest", () => {
   it("submits request successfully with valid parameters", async () => {
     const result = await submitModelFeatureRequest({ ok: false }, buildFeatureForm());
     expect(result.ok).toBe(true);
-    expect(mockSupabase.from).toHaveBeenCalledWith("model_feature_requests");
+    expect(mockDeHost.from).toHaveBeenCalledWith("model_feature_requests");
   });
 
   it("fails when user is not logged in", async () => {

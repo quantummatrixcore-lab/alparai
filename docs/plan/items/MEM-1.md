@@ -8,11 +8,11 @@
 ADR-011 recorded semantic memory as absent. **At the database layer that is now wrong and is
 corrected here.** Two migrations exist on `origin/master`:
 
-- `supabase/migrations/20260816000000_agent_vector_memory.sql` — enables `pgvector`, creates
+- `dehost/migrations/20260816000000_agent_vector_memory.sql` — enables `pgvector`, creates
   `agent_episodic_memory` (`agent_id`, `session_id`, `content`, `metadata`,
   `embedding vector(1536)`), an HNSW cosine index, and a `match_agent_memory(query_embedding,
 match_threshold, match_count, p_agent_id)` RPC.
-- `supabase/migrations/20260904000000_bilge_rag_memory.sql`.
+- `dehost/migrations/20260904000000_bilge_rag_memory.sql`.
 
 **What is still absent is the application code.** `grep embedding` across `src/` returns only
 `models-catalog.ts` and `resources-catalog.ts`, which are model metadata and unrelated. Nothing

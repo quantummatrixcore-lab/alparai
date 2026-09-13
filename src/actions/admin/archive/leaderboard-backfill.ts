@@ -1,4 +1,4 @@
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 import { requireAdmin } from "@/lib/auth/session";
 
@@ -19,7 +19,7 @@ export async function backfillProviderLeaderboard() {
       .select("id, name, slug");
 
     if (providersError || !providers) {
-      logger.error("Failed to fetch providers", undefined, providersError);
+      logger.error("Failed to fetch providers", undefined, providersError ?? undefined);
       return { success: false, error: providersError };
     }
 
@@ -31,7 +31,7 @@ export async function backfillProviderLeaderboard() {
       .is("ai_provider_id", null);
 
     if (incidentsError || !incidents) {
-      logger.error("Failed to fetch incidents", undefined, incidentsError);
+      logger.error("Failed to fetch incidents", undefined, incidentsError ?? undefined);
       return { success: false, error: incidentsError };
     }
 

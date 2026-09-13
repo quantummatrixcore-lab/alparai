@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
-import { createMockSupabaseClient, createTestAdmin } from "../helpers/supabase-mock";
+import { createMockDeHostClient, createTestAdmin } from "../helpers/dehost-mock";
 
 vi.hoisted(() => {
-  vi.doMock("@/lib/supabase/admin", () => ({
+  vi.doMock("@/lib/dehost/admin", () => ({
     createAdminClient: vi.fn(),
   }));
   vi.doMock("@/lib/auth/session", () => ({
@@ -12,16 +12,16 @@ vi.hoisted(() => {
   }));
 });
 
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { requireAdmin, requireModerator } from "@/lib/auth/session";
 import { claimBounty, updateBountyStatus } from "@/actions/community/bounties";
 
-let mockAdmin: ReturnType<typeof createMockSupabaseClient>;
+let mockAdmin: ReturnType<typeof createMockDeHostClient>;
 let testAdmin: ReturnType<typeof createTestAdmin>;
 
 beforeEach(() => {
   vi.clearAllMocks();
-  mockAdmin = createMockSupabaseClient();
+  mockAdmin = createMockDeHostClient();
   testAdmin = createTestAdmin();
   vi.mocked(createAdminClient).mockReturnValue(mockAdmin as never);
   vi.mocked(requireAdmin).mockResolvedValue(testAdmin as never);

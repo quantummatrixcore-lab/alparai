@@ -19,9 +19,9 @@ Three parallel audits measured what that system actually produced.
 
 | Strategic table           | Rows | Source                                                           |
 | ------------------------- | ---- | ---------------------------------------------------------------- |
-| `strategy_swot_items`     | 27   | `supabase/migrations/20260628000001_seed_strategy_data.sql`      |
-| `strategy_todos`          | 69   | `supabase/migrations/20260702000300_seed_strategy_todos.sql`     |
-| `strategic_questions`     | 34   | `supabase/migrations/20260803000000_strategic_questionnaire.sql` |
+| `strategy_swot_items`     | 27   | `dehost/migrations/20260628000001_seed_strategy_data.sql`      |
+| `strategy_todos`          | 69   | `dehost/migrations/20260702000300_seed_strategy_todos.sql`     |
+| `strategic_questions`     | 34   | `dehost/migrations/20260803000000_strategic_questionnaire.sql` |
 | `strategy_valuations`     | 0    | scaffolding only                                                 |
 | `strategy_milestones`     | 0    | scaffolding only                                                 |
 | `finance_revenue_metrics` | 0    | empty by design, pending Stripe                                  |
@@ -40,8 +40,8 @@ harmless. The fabrications that reached the public and investors were all elsewh
 | Nine quotes attributed to named AI products                          | `src/app/[locale]/constitution-pr/page.tsx`                   | no               |
 | Self-graded moat scores (85/90/92/88/94 → 89.8, "A-Tier")            | `src/lib/analytics/ecosystem-analyzer.ts`                     | no               |
 | Public comparative scores for Claude, GPT-4o, Gemini, Llama          | `/api/v1/k-benchmark`                                         | no               |
-| `trust_score NUMERIC DEFAULT 85.0`                                   | `supabase/migrations/20260824000000_ai_cross_audit_arena.sql` | no               |
-| `health_score ... DEFAULT 100`, seeded at 92                         | `supabase/migrations/20260624100001_strategy_and_rbac.sql`    | no               |
+| `trust_score NUMERIC DEFAULT 85.0`                                   | `dehost/migrations/20260824000000_ai_cross_audit_arena.sql` | no               |
+| `health_score ... DEFAULT 100`, seeded at 92                         | `dehost/migrations/20260624100001_strategy_and_rbac.sql`    | no               |
 | SOM EUR 21M irreconcilable with its own composition                  | `docs/fundraising/valuation-memo.md`                          | no               |
 | Year-2 ARR stated as EUR 2.1M and as EUR 450K in the same data room  | `valuation-memo.md` / `DATA_ROOM/financial-projections.md`    | no               |
 | "6 months before EU AI Act enforcement" — high-risk bound 2026-08-02 | `docs/DATA_ROOM/index.md`                                     | no               |
@@ -59,7 +59,7 @@ dimension that was never failing, while the dimension that kept failing had no e
 **Replace process governance with claim governance.** Binding rules ship an executable enforcer per
 Doctrine #047; everything without one is demoted to labelled guidance.
 
-**Rule A — No unsourced claim, repository-wide.** Every figure asserted in `src/**`, `supabase/**`,
+**Rule A — No unsourced claim, repository-wide.** Every figure asserted in `src/**`, `dehost/**`,
 `docs/**` or `messages/**` must resolve to an entry in `docs/facts.yaml`, recording `value`,
 `source`, `measured_at` and `confidence` in {`measured`, `cited`, `estimate`}. An `estimate` is
 published only with its assumption stated inline. Supersedes Rule 10 and widens its scope from one

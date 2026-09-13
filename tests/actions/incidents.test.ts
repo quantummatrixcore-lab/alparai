@@ -2,7 +2,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import type * as retryModule from "@/lib/autopilot/retry";
 import "../helpers/setup";
-import { createMockSupabaseClient, createTestUser } from "../helpers/supabase-mock";
+import { createMockDeHostClient, createTestUser } from "../helpers/dehost-mock";
 
 const mockRedisInstance = {
   get: vi.fn().mockResolvedValue(null),
@@ -10,11 +10,11 @@ const mockRedisInstance = {
 };
 
 vi.hoisted(() => {
-  vi.doMock("@/lib/supabase/server", () => ({
+  vi.doMock("@/lib/dehost/server", () => ({
     createClient: vi.fn(),
     createServerClient: vi.fn(),
   }));
-  vi.doMock("@/lib/supabase/admin", () => ({
+  vi.doMock("@/lib/dehost/admin", () => ({
     createAdminClient: vi.fn(),
   }));
   vi.doMock("@/lib/auth/session", () => ({
@@ -46,27 +46,27 @@ vi.hoisted(() => {
   });
 });
 
-import { createClient, createServerClient } from "@/lib/supabase/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createClient, createServerClient } from "@/lib/dehost/server";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { getCurrentUser } from "@/lib/auth/session";
 import { checkRateLimit } from "@/lib/utils/rate-limit";
 import { maskPII } from "@/lib/pii/guardian";
 import { headers } from "next/headers";
 import { submitIncident, voteOnIncident } from "@/actions/incidents";
 
-let mockSupabase: ReturnType<typeof createMockSupabaseClient>;
-let mockAdminClient: ReturnType<typeof createMockSupabaseClient>;
+let mockDeHost: ReturnType<typeof createMockDeHostClient>;
+let mockAdminClient: ReturnType<typeof createMockDeHostClient>;
 let mockUser: ReturnType<typeof createTestUser>;
 
 beforeEach(() => {
   vi.clearAllMocks();
   mockRedisInstance.get.mockReset().mockResolvedValue(null);
   mockRedisInstance.set.mockReset().mockResolvedValue("OK");
-  mockSupabase = createMockSupabaseClient();
-  mockAdminClient = createMockSupabaseClient();
+  mockDeHost = createMockDeHostClient();
+  mockAdminClient = createMockDeHostClient();
   mockUser = createTestUser();
-  vi.mocked(createClient).mockResolvedValue(mockSupabase as never);
-  vi.mocked(createServerClient).mockResolvedValue(mockSupabase as never);
+  vi.mocked(createClient).mockResolvedValue(mockDeHost as never);
+  vi.mocked(createServerClient).mockResolvedValue(mockDeHost as never);
   vi.mocked(createAdminClient).mockReturnValue(mockAdminClient as never);
   vi.mocked(getCurrentUser).mockResolvedValue(mockUser as never);
   vi.mocked(checkRateLimit).mockResolvedValue({ ok: true, remaining: 4 });
@@ -114,7 +114,7 @@ describe("submitIncident", () => {
       redactedCount: 0,
       detectedTypes: [],
     }));
-    mockSupabase.from.mockReturnValue({
+    mockDeHost.from.mockReturnValue({
       insert: vi.fn().mockReturnValue({
         select: vi.fn().mockReturnValue({
           single: vi.fn().mockResolvedValue({ data: { id: "inc-123" }, error: null }),
@@ -123,7 +123,7 @@ describe("submitIncident", () => {
       select: vi.fn().mockReturnValue({
         single: vi.fn().mockResolvedValue({ data: null, error: null }),
       }),
-    } as ReturnType<typeof mockSupabase.from>);
+    } as ReturnType<typeof mockDeHost.from>);
   });
 
   it("rejects submission when user is not authenticated", async () => {
@@ -195,7 +195,7 @@ describe("submitIncident", () => {
   });
 
   it("flags incident as possible duplicate if similarity score > 0.7", async () => {
-    mockSupabase.rpc = vi.fn().mockImplementation((fnName: string) => {
+    mockDeHost.rpc = vi.fn().mockImplementation((fnName: string) => {
       if (fnName === "submit_incident_atomic") {
         return Promise.resolve({ data: { id: "inc-123" }, error: null });
       }
@@ -209,7 +209,7 @@ describe("submitIncident", () => {
 
     const result = await submitIncident({ ok: false }, buildFormData());
     expect(result.ok).toBe(true);
-    expect(mockSupabase.rpc).toHaveBeenCalledWith("check_incident_duplicate", {
+    expect(mockDeHost.rpc).toHaveBeenCalledWith("check_incident_duplicate", {
       title_to_check: "A valid incident title here",
     });
   });
@@ -255,7 +255,7 @@ describe("submitIncident", () => {
   });
 
   it("returns error when database insert fails", async () => {
-    mockSupabase.rpc.mockImplementation((fnName: string) => {
+    mockDeHost.rpc.mockImplementation((fnName: string) => {
       if (fnName === "submit_incident_atomic") {
         return Promise.resolve({ data: null, error: { message: "DB error" } });
       }

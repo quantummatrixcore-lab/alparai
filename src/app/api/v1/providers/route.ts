@@ -1,6 +1,6 @@
 import "server-only";
 import { type NextRequest, NextResponse } from "next/server";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { rateLimit } from "@/lib/rate-limit";
 import { headers } from "next/headers";
@@ -56,8 +56,8 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const supabase = await createServerClient();
-    const { data, error } = await supabase
+    const dehost = await createServerClient();
+    const { data, error } = await dehost
       .from("ai_providers")
       .select("id, name, slug, description, website_url, logo_url, is_verified, trust_score")
       .order("trust_score", { ascending: false });

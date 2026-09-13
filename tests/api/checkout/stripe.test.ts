@@ -20,13 +20,13 @@ const mockSubSelect = {
 
 const mockFrom = vi.fn().mockReturnValue(mockSubSelect);
 
-vi.mock("@/lib/supabase/server", () => ({
+vi.mock("@/lib/dehost/server", () => ({
   createServerClient: () => ({
     auth: { getUser: mockGetUser },
   }),
 }));
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({
     from: mockFrom,
   }),

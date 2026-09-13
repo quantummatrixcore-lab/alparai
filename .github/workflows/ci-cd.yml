@@ -58,7 +58,7 @@ jobs:
         run: pnpm build
         env:
           NEXT_TELEMETRY_DISABLED: 1
-          # Supabase Keys will be injected by GitHub Secrets
+          # DeHost Keys will be injected by GitHub Secrets
 
   # Cloudflare deployment is handled natively by the Cloudflare Pages App.
   # This action ensures code is clean before Cloudflare triggers deployment.

@@ -9,7 +9,7 @@ vi.mock("resend", () => ({
   }; }),
 }));
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({
     from: () => ({
       upsert: () => ({

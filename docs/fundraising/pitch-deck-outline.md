@@ -70,7 +70,7 @@
 ## Slide 6: Product Architecture & Core Engine
 
 - **Headline:** Enterprise-Grade Architecture Built for Speed and Security
-- **Core Narrative:** Engineered on Next.js 15, PostgreSQL/Supabase RLS, and cryptographic verification modules.
+- **Core Narrative:** Engineered on Next.js 15, PostgreSQL/DeHost RLS, and cryptographic verification modules.
   - **PII Guardian:** Zero-leak regex and neural sanitization pipeline.
   - **Audit Ledger:** Append-only cryptographic trace of model decisions.
   - **Server Action Isolation:** Type-safe, RLS-enforced state mutations.
@@ -86,7 +86,7 @@
 - **Core Narrative:** Scalable revenue model aligning platform usage with enterprise risk exposure.
   1. **Developer Tier (PLG):** Free tier with monthly verification tokens for API key usage.
   2. **Pro & Growth Tier ($499–$2,499/mo):** Advanced rate limits, automated incident reports, and custom PII rules.
-  3. **Enterprise Tier ($50k–$250k/yr):** Dedicated Supabase instances, custom compliance connectors (SOC2, EU AI Act), SLA guarantees, and audit sign-off.
+  3. **Enterprise Tier ($50k–$250k/yr):** Dedicated DeHost instances, custom compliance connectors (SOC2, EU AI Act), SLA guarantees, and audit sign-off.
 - **Visuals & Metrics:**
   - Tier comparison pricing card with projected Net Revenue Retention (NRR) of **135%**.
 
@@ -120,7 +120,7 @@
 - **Headline:** Founded by Systems Architects & Security Engineers
 - **Core Narrative:** World-class engineering execution combined with deep expertise in compliance infrastructure and autonomous systems.
 - **Visuals & Metrics:**
-  - Team profile cards with previous achievements in scalable distributed systems, security audits, and enterprise Next.js/Supabase architectures.
+  - Team profile cards with previous achievements in scalable distributed systems, security audits, and enterprise Next.js/DeHost architectures.
   - Strategic advisory seats spanning EU AI Regulatory Affairs and AI Safety Research.
 
 ---

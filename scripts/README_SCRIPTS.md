@@ -5,7 +5,7 @@ Bu dizin, Alparai projesinin otomasyon, güvenlik denetimi, i18n senkronizasyonu
 ## 🚀 Anahtar Araçlar ve Kullanımları
 
 ### Güvenlik ve Denetim (Security & Audit)
-- **`audit_security_vulnerabilities.mjs`**: Supabase RLS (Row Level Security) kurallarını tarar ve güvensiz (`USING (true)`) durumları raporlar. Düzenli aralıklarla veya veritabanı migrasyonlarından sonra çalıştırılmalıdır.
+- **`audit_security_vulnerabilities.mjs`**: DeHost RLS (Row Level Security) kurallarını tarar ve güvensiz (`USING (true)`) durumları raporlar. Düzenli aralıklarla veya veritabanı migrasyonlarından sonra çalıştırılmalıdır.
 - **`check-internal-links.mjs`**: Uygulama içindeki tüm statik linkleri tarayarak kırık (404) olanları tespit eder.
 
 ### Uluslararasılaştırma (i18n)

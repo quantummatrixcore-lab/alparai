@@ -1,6 +1,6 @@
 # Evidence: Cron Re-homing Audit (Item 121)
 
-This audit documents the successful migration of scheduled cron jobs from the blocked GitHub Actions environment to native Supabase database scheduling using `pg_cron` and `pg_net`.
+This audit documents the successful migration of scheduled cron jobs from the blocked GitHub Actions environment to native DeHost database scheduling using `pg_cron` and `pg_net`.
 
 ## 1. Migration Rationale
 
@@ -8,7 +8,7 @@ GitHub Actions schedule execution is blocked on the repository due to unresolved
 
 > _The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings_
 
-To prevent critical jobs (such as ingestion, auto-translation, marketing draft generation, and newsletters) from staying silently dead, scheduling has been re-homed to a native, self-contained database scheduler using the `pg_cron` and `pg_net` extensions on the Supabase production project (`azszpzyvxjduhemkjsdh`).
+To prevent critical jobs (such as ingestion, auto-translation, marketing draft generation, and newsletters) from staying silently dead, scheduling has been re-homed to a native, self-contained database scheduler using the `pg_cron` and `pg_net` extensions on the DeHost production project (`azszpzyvxjduhemkjsdh`).
 
 ---
 
@@ -17,8 +17,8 @@ To prevent critical jobs (such as ingestion, auto-translation, marketing draft g
 To maintain the existing security layer:
 
 1. A cryptographically strong `CRON_SECRET` was generated (`fc7ba6b61c...`).
-2. Added to Vercel environment variables for `production` and `preview` environments.
-3. Added to Supabase Vault via `vault.create_secret()` with name `cron_secret` to keep credentials out of version-controlled files.
+2. Added to DeHost environment variables for `production` and `preview` environments.
+3. Added to DeHost Vault via `vault.create_secret()` with name `cron_secret` to keep credentials out of version-controlled files.
 4. Created a database function `public.trigger_cron_job(cron_path text)` with `SECURITY DEFINER` privileges. It fetches the secret from Vault at runtime and performs an asynchronous HTTP GET request to `https://www.alparai.com` + path using `pg_net`'s `net.http_get()` with a 30-second timeout.
 
 ---

@@ -165,7 +165,7 @@ Integration details:
 2. Value Proposition for OpenAI Enterprise:
    - Instant cryptographic verification of GPT-4o transparency records for EU enterprise auditors.
    - Reduction of regulatory friction for banking clients conducting EU AI Act compliance checks.
-   - All data hosted in Supabase EU West-1 region, fully compliant with GDPR and EU data sovereignty rules.
+   - All data hosted in DeHost EU West-1 region, fully compliant with GDPR and EU data sovereignty rules.
 
 You can view your current transparency index and activate your badge at: https://alparai.com/en/models/openai
 
@@ -222,7 +222,7 @@ Intégration technique (2 minutes) :
 <div id="alpar-trust-badge" data-vendor-id="mistral" data-theme="dark" data-lang="fr"></div>
 
 Bénéfices :
-- Stockage 100% conforme UE (Supabase Région EU West-1).
+- Stockage 100% conforme UE (DeHost Région EU West-1).
 - Preuve d'auditabilité immédiate pour les acheteurs grands comptes.
 - Traçabilité indépendante et transparente pour l'AI Office de l'UE.
 

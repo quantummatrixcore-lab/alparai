@@ -1,6 +1,6 @@
 "use server";
 
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { maskPII } from "@/lib/pii/guardian";
 import { logger } from "@/lib/utils/logger";
 import { headers } from "next/headers";
@@ -50,9 +50,9 @@ export async function submitFlaggingReport(
 
     const maskedContext = maskPII(context);
 
-    const supabase = await createServerClient();
+    const dehost = await createServerClient();
 
-    const { error } = await supabase.from("incidents").insert({
+    const { error } = await dehost.from("incidents").insert({
       title: `[Wrongful Flagging] ${detector_name} — ${platform}`,
       title_masked: `[Wrongful Flagging] ${detector_name} — ${platform}`,
       description: maskedContext.masked,

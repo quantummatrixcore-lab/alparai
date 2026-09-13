@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { verifyEmailUnsubscribeToken } from "@/lib/utils/unsubscribe";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { logger } from "@/lib/utils/logger";

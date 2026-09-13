@@ -1,6 +1,6 @@
 import { setRequestLocale } from "next-intl/server";
 import { getCurrentUser } from "@/lib/auth/session";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { Container } from "@/components/ui/layout";
 import { KanbanBoard, type KanbanIncident } from "@/components/b2b/kanban-board";
 import { redirect } from "@/i18n/routing";
@@ -35,11 +35,11 @@ export default async function B2BDashboardPage({
     redirect({ href: "/auth/signin?returnTo=/b2b/dashboard", locale });
   }
 
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
 
   // For MVP: Fetching recent incidents to show in Kanban board.
   // In production, this would be scoped to the AI Provider's claimed profile.
-  const { data } = await supabase
+  const { data } = await dehost
     .from("incidents")
     .select("id, title_masked, title_tr, severity, status, created_at")
 

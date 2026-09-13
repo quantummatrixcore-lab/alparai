@@ -9,7 +9,7 @@
 
 To eliminate CORS issues and routing chaos, all agents must adhere to these strict ports:
 
-- **Frontend (Next.js):** `http://localhost:3000` (Production URL dynamically set via Vercel).
+- **Frontend (Next.js):** `http://localhost:3000` (Production URL dynamically set via DeHost).
 - **Backend (Rust/Axum):** `http://localhost:8000` (The Main Gateway. Handles all Auth and DB queries. Exposes `/api/v1/*`).
 - **LLM Gateway (Python):** `http://localhost:8080` (Strictly internal. Only the Backend can talk to the LLM Gateway. Frontend NEVER talks to LLM directly).
 

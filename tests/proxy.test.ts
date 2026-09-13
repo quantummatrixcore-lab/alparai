@@ -14,7 +14,7 @@ vi.mock("next-intl/middleware", () => ({
 const mockUpdateSession = vi
   .fn()
   .mockImplementation((_req, res) => ({ response: res, user: null }));
-vi.mock("@/lib/supabase/middleware", () => ({
+vi.mock("@/lib/dehost/middleware", () => ({
   updateSession: (req: any, res: any) => mockUpdateSession(req, res),
 }));
 

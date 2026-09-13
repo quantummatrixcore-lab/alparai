@@ -1,5 +1,5 @@
 /**
- * Cloudflare WAF & Vercel Serverless Infrastructure Engine (IQ 180 Standard)
+ * Cloudflare WAF & DeHost Serverless Infrastructure Engine (IQ 180 Standard)
  * Author: Fatih Sultan Mehmet (Alparai Agent-OS)
  */
 
@@ -9,8 +9,8 @@ class InfrastructureEngine {
   constructor() {
     this.cloudflareToken = process.env.CLOUDFLARE_API_TOKEN;
     this.zoneId = process.env.CLOUDFLARE_ZONE_ID;
-    this.vercelToken = process.env.VERCEL_TOKEN;
-    this.projectId = process.env.VERCEL_PROJECT_ID;
+    this.dehostToken = process.env.DEHOST_TOKEN;
+    this.projectId = process.env.DEHOST_PROJECT_ID;
   }
 
   async setUnderAttackMode(enable = true) {
@@ -40,25 +40,25 @@ class InfrastructureEngine {
     }
   }
 
-  async triggerVercelDeploy() {
-    if (!this.vercelToken || !this.projectId) {
+  async triggerDeHostDeploy() {
+    if (!this.dehostToken || !this.projectId) {
       return {
         status: "simulated",
-        action: "Vercel Deployment Triggered (Missing Vercel Credentials)",
+        action: "DeHost Deployment Triggered (Missing DeHost Credentials)",
       };
     }
 
     try {
-      const response = await fetch(`https://api.vercel.com/v13/deployments`, {
+      const response = await fetch(`https://api.dehost.com/v13/deployments`, {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${this.vercelToken}`,
+          Authorization: `Bearer ${this.dehostToken}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ name: this.projectId }),
       });
       const data = await response.json();
-      return { status: "success", vercelResponse: data };
+      return { status: "success", dehostResponse: data };
     } catch (e) {
       return { status: "error", message: e.message };
     }
@@ -71,5 +71,5 @@ if (require.main === module) {
   const engine = new InfrastructureEngine();
   console.log("[InfraEngine CLI Test Output]:");
   engine.setUnderAttackMode(false).then((r) => console.log("CF:", r));
-  engine.triggerVercelDeploy().then((r) => console.log("Vercel:", r));
+  engine.triggerDeHostDeploy().then((r) => console.log("DeHost:", r));
 }

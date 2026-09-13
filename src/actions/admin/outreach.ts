@@ -1,7 +1,7 @@
 "use server";
 
 import { z } from "zod";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { requireModerator, requireAdmin } from "@/lib/auth/session";
 import { revalidatePath } from "next/cache";
 import { logger } from "@/lib/utils/logger";
@@ -41,8 +41,8 @@ export async function getOutreachQueue() {
     const user = await requireModerator();
     if (!user) throw new Error("Unauthorized");
 
-    const supabase = createAdminClient();
-    const { data, error } = await supabase
+    const dehost = createAdminClient();
+    const { data, error } = await dehost
       .from("outreach_queue")
       .select("*")
       .order("created_at", { ascending: false });
@@ -69,9 +69,9 @@ export async function updateOutreachStatus(input: z.infer<typeof updateStatusSch
     if (!parsed.success) return { success: false, error: "Invalid input" };
 
     const { id, status } = parsed.data;
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
-    const { error: updateError } = await supabase
+    const { error: updateError } = await dehost
       .from("outreach_queue")
       .update({ status })
       .eq("id", id);
@@ -81,7 +81,7 @@ export async function updateOutreachStatus(input: z.infer<typeof updateStatusSch
       return { success: false, error: "Failed to update status" };
     }
 
-    await supabase.from("audit_log").insert({
+    await dehost.from("audit_log").insert({
       actor_id: user.id,
       action: "UPDATE_OUTREACH_STATUS",
       entity_type: "outreach_queue",
@@ -114,9 +114,9 @@ export async function createOutreachItem(input: z.infer<typeof createItemSchema>
     const parsed = createItemSchema.safeParse(input);
     if (!parsed.success) return { success: false, error: "Invalid input" };
 
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
-    const { data, error: insertError } = await (supabase as unknown as UnsafeClient)
+    const { data, error: insertError } = await (dehost as unknown as UnsafeClient)
       .from("outreach_queue")
       .insert({
         recipient_email: parsed.data.recipient_email,
@@ -135,7 +135,7 @@ export async function createOutreachItem(input: z.infer<typeof createItemSchema>
       return { success: false, error: "Failed to create outreach item" };
     }
 
-    await supabase.from("audit_log").insert({
+    await dehost.from("audit_log").insert({
       actor_id: user.id,
       action: "CREATE_OUTREACH_ITEM",
       entity_type: "outreach_queue",
@@ -166,10 +166,10 @@ export async function triggerOutreachQueueAction() {
       return { success: false, error: "RESEND_API_KEY environment variable is not defined" };
     }
 
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
     const resend = new Resend(resendApiKey);
 
-    const result = await processOutreachQueue(supabase, resend);
+    const result = await processOutreachQueue(dehost, resend);
 
     revalidatePath("/[locale]/admin/outreach", "page");
 
@@ -198,8 +198,8 @@ export async function processOutreachQueueAction() {
 
 export async function getOutreachStats() {
   try {
-    const supabase = createAdminClient();
-    const { data, error } = await supabase.from("outreach_queue").select("status");
+    const dehost = createAdminClient();
+    const { data, error } = await dehost.from("outreach_queue").select("status");
 
     if (error || !data) {
       return { pending: 0, approved: 0, sent: 0, failed: 0, limit: 50 };

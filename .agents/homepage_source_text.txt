@@ -159,8 +159,8 @@
   TR: AB Veri Barındırma
 
 [DE,FR,RU] hero.trust_2_desc
-  EN: All data stored in EU (Supabase eu-west-1, Vercel fra1). GDPR-aligned by design.
-  TR: Tüm veriler AB'de saklanır (Supabase eu-west-1, Vercel fra1). Tasarım gereği GDPR hizalı.
+  EN: All data stored in EU (DeHost eu-west-1, DeHost fra1). GDPR-aligned by design.
+  TR: Tüm veriler AB'de saklanır (DeHost eu-west-1, DeHost fra1). Tasarım gereği GDPR hizalı.
 
 [DE,FR,RU] hero.trust_3_title
   EN: PII Guardian

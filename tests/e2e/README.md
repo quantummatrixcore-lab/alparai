@@ -69,7 +69,7 @@
 | Type                    | Missing                                             |
 | ----------------------- | --------------------------------------------------- |
 | Full login flow         | No real OAuth login E2E (requires test credentials) |
-| Real data admin content | Pages render but use mock Supabase — no real data   |
+| Real data admin content | Pages render but use mock DeHost — no real data   |
 | Form submission         | No real end-to-end incident submission              |
 | Search functionality    | Not tested                                          |
 
@@ -85,5 +85,5 @@
 1. Search functionality
 2. `/en/incidents/[id]/embed` rendering
 3. `/en/bounties` full rendering test
-4. Real data validation (requires live Supabase or mock server)
+4. Real data validation (requires live DeHost or mock server)
 5. Full OAuth login E2E (requires test Google credentials)

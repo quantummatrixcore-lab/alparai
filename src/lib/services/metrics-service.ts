@@ -1,5 +1,5 @@
 import "server-only";
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/dehost/server";
 import {
   resolveIncidentCount,
   CANONICAL_TOTAL_PROVIDERS,
@@ -19,16 +19,16 @@ export interface GlobalMetrics {
  * or fetched dynamically on demand.
  */
 export async function getGlobalMetrics(): Promise<GlobalMetrics> {
-  const supabase = await createClient();
+  const dehost = await createClient();
 
   // Run counts in parallel
   const [incidentsRes, providersRes, responsesRes] = await Promise.all([
-    supabase
+    dehost
       .from("incidents")
       .select("*", { count: "exact", head: true })
       .eq("status", "published"),
-    supabase.from("ai_providers").select("*", { count: "exact", head: true }),
-    supabase.from("ai_provider_responses").select("*", { count: "exact", head: true }),
+    dehost.from("ai_providers").select("*", { count: "exact", head: true }),
+    dehost.from("ai_provider_responses").select("*", { count: "exact", head: true }),
   ]);
 
   // Fallback defaults if counts fail
@@ -37,7 +37,7 @@ export async function getGlobalMetrics(): Promise<GlobalMetrics> {
   const totalOfficialResponses = responsesRes.count ?? 0;
 
   // Calculate average trust score
-  const { data: providersData } = await supabase.from("ai_providers").select("trust_score");
+  const { data: providersData } = await dehost.from("ai_providers").select("trust_score");
   let avgScore = 78;
   if (providersData && providersData.length > 0) {
     const sum = providersData.reduce((acc, p) => acc + (p.trust_score || 0), 0);

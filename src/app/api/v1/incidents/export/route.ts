@@ -1,7 +1,7 @@
 import "server-only";
 import { NextResponse } from "next/server";
 import { headers } from "next/headers";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { timingSafeEqual } from "crypto";
 
@@ -39,14 +39,14 @@ export async function GET(request: Request) {
       isAuthenticated = true;
     }
 
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
     if (!isAuthenticated && authHeader?.startsWith("Bearer ")) {
       const token = authHeader.replace("Bearer ", "");
       const {
         data: { user },
         error: authError,
-      } = await supabase.auth.getUser(token);
+      } = await dehost.auth.getUser(token);
       if (user && !authError) {
         isAuthenticated = true;
       }
@@ -61,7 +61,7 @@ export async function GET(request: Request) {
     // Defaults to 2700 incidents for database export as requested
     const limit = Math.min(parseInt(url.searchParams.get("limit") ?? "2700", 10), 3000);
 
-    const { data: incidents, error } = await supabase
+    const { data: incidents, error } = await dehost
       .from("incidents")
       .select(
         `

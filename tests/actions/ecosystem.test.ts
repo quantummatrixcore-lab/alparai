@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
-import { createMockSupabaseClient } from "../helpers/supabase-mock";
+import { createMockDeHostClient } from "../helpers/dehost-mock";
 
 vi.hoisted(() => {
-  vi.doMock("@/lib/supabase/admin", () => ({
+  vi.doMock("@/lib/dehost/admin", () => ({
     createAdminClient: vi.fn(),
   }));
   vi.doMock("@/lib/auth/session", () => ({
@@ -11,7 +11,7 @@ vi.hoisted(() => {
   }));
 });
 
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import {
   approveQueueItem,
   rejectQueueItem,
@@ -20,18 +20,18 @@ import {
   triggerExternalFetch,
 } from "@/actions/ecosystem";
 
-let mockSupabaseClient: ReturnType<typeof createMockSupabaseClient>;
+let mockDeHostClient: ReturnType<typeof createMockDeHostClient>;
 
 beforeEach(() => {
   vi.clearAllMocks();
-  mockSupabaseClient = createMockSupabaseClient();
-  vi.mocked(createAdminClient).mockReturnValue(mockSupabaseClient as never);
+  mockDeHostClient = createMockDeHostClient();
+  vi.mocked(createAdminClient).mockReturnValue(mockDeHostClient as never);
 });
 
 describe("Ecosystem Actions", () => {
   describe("approveQueueItem", () => {
     it("approves and moves item to ecosystem_news", async () => {
-      mockSupabaseClient._mocks.mockSingle.mockResolvedValue({
+      mockDeHostClient._mocks.mockSingle.mockResolvedValue({
         data: {
           id: "q-1",
           title: "Test",
@@ -41,7 +41,7 @@ describe("Ecosystem Actions", () => {
         },
         error: null,
       });
-      mockSupabaseClient._mocks.mockInsertSelectSingle.mockResolvedValue({
+      mockDeHostClient._mocks.mockInsertSelectSingle.mockResolvedValue({
         data: null,
         error: null,
       });
@@ -52,7 +52,7 @@ describe("Ecosystem Actions", () => {
 
   describe("rejectQueueItem", () => {
     it("rejects a queue item", async () => {
-      mockSupabaseClient._mocks.mockUpdateEq.mockResolvedValue({ error: null });
+      mockDeHostClient._mocks.mockUpdateEq.mockResolvedValue({ error: null });
 
       await expect(rejectQueueItem("q-1")).resolves.not.toThrow();
     });
@@ -60,7 +60,7 @@ describe("Ecosystem Actions", () => {
 
   describe("archiveEcosystemNews", () => {
     it("archives ecosystem news", async () => {
-      mockSupabaseClient._mocks.mockUpdateEq.mockResolvedValue({ error: null });
+      mockDeHostClient._mocks.mockUpdateEq.mockResolvedValue({ error: null });
 
       await expect(archiveEcosystemNews("news-1")).resolves.not.toThrow();
     });
@@ -68,7 +68,7 @@ describe("Ecosystem Actions", () => {
 
   describe("updateEcosystemCategory", () => {
     it("updates category", async () => {
-      mockSupabaseClient._mocks.mockUpdateEq.mockResolvedValue({ error: null });
+      mockDeHostClient._mocks.mockUpdateEq.mockResolvedValue({ error: null });
 
       await expect(updateEcosystemCategory("news-1", "incident")).resolves.not.toThrow();
     });

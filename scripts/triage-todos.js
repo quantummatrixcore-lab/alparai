@@ -19,7 +19,7 @@ function getAllFiles(dirPath, arrayOfFiles) {
   return arrayOfFiles;
 }
 
-const dirsToScan = ["src", "scripts", "supabase", "tests"];
+const dirsToScan = ["src", "scripts", "dehost", "tests"];
 let files = [];
 for (const dir of dirsToScan) {
   if (fs.existsSync(dir)) {

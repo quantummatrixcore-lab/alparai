@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 
 export const revalidate = 600; // 10 min cache
 
 export async function GET() {
   try {
-    const supabase = await createServerClient();
+    const dehost = await createServerClient();
 
-    const { data, error } = await supabase
+    const { data, error } = await dehost
       .from("incidents")
       .select(
         "id, title_masked, description_masked, provider_custom_name, severity, created_at, source_url, ai_providers(name)",

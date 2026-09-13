@@ -1,7 +1,7 @@
 "use server";
 
 import { requireModerator } from "@/lib/auth/session";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 
 export interface CrossAuditDashboardData {
   overview: {

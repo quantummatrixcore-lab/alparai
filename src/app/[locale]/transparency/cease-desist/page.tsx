@@ -1,7 +1,7 @@
 export const revalidate = 60; // 1 min ISR
 
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { Container } from "@/components/ui/layout";
 import { Badge } from "@/components/ui/badge";
 import { formatDate } from "@/lib/utils";
@@ -77,9 +77,9 @@ export default async function CeaseDesistArchivePage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "transparency" });
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
 
-  const { data } = await supabase
+  const { data } = await dehost
     .from("cease_and_desist_logs")
     .select("*, ai_providers (id, name, slug, logo_url)")
     .order("published_at", { ascending: false })

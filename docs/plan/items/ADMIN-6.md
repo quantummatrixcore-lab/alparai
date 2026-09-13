@@ -54,7 +54,7 @@ item adds no DE/FR/RU strings.
 
 A read-only sweep already produced most of the inventory. **The menu itself is healthy** — all 30
 sidebar entries resolve to a real route or redirect; there are no dead links. Roughly 40 routes run a
-real Supabase query. Four pages are orphans, reachable by URL but absent from the menu:
+real DeHost query. Four pages are orphans, reachable by URL but absent from the menu:
 `cockpit` (a redirect to `/admin`), `cron-health` (separate from `crons`), `quotas` and `velocity`.
 
 **Six pages are not live, and three of them are the ones the pitch deck leans on.**

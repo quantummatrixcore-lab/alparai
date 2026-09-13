@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { runExternalFetchTask } from "@/lib/services/external-fetcher";
 import { verifyExternalItem, publishVerifiedItem } from "@/lib/ai/external-verifier";
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: vi.fn(() => ({
     from: vi.fn((_table: string) => ({
       insert: vi.fn().mockImplementation((_data: Record<string, unknown>) => {

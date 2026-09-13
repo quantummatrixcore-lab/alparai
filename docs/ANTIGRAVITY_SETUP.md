@@ -37,5 +37,5 @@ The auto-fix workflow that runs every Monday at 09:00 or when triggered manually
 Antigravity is limited by the following rules when writing code autonomously:
 
 - **PII Guardian:** No patch or logging operation may leak unmasked user PII (National ID, Email, Phone, etc.) to the database or third-party services.
-- **RLS Security:** No SQL operations that bypass Row Level Security (RLS) policies or the database schema in the Supabase data layer can be executed.
+- **RLS Security:** No SQL operations that bypass Row Level Security (RLS) policies or the database schema in the DeHost data layer can be executed.
 - **Rollback Guarantee:** If any of the tests in `npm run typecheck`, `npm run lint`, or `npx vitest run` fail after code is written, Antigravity instantly rolls back all changes.

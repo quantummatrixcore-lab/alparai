@@ -1,4 +1,4 @@
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 import { recordHeartbeat } from "@/lib/engine-registry";
 
@@ -30,12 +30,12 @@ export function withCronLogger<REQ extends Request, RES extends Response>(
       }
     }
 
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
     let logId: string | null = null;
     const startedAt = new Date().toISOString();
 
     try {
-      const { data, error } = await supabase
+      const { data, error } = await dehost
         .from("cron_job_logs" as never)
         .insert({
           cron_name: cronName,
@@ -75,7 +75,7 @@ export function withCronLogger<REQ extends Request, RES extends Response>(
       );
 
       if (logId) {
-        await supabase
+        await dehost
           .from("cron_job_logs" as never)
           .update({
             completed_at: completedAt,
@@ -102,7 +102,7 @@ export function withCronLogger<REQ extends Request, RES extends Response>(
       );
 
       if (logId) {
-        await supabase
+        await dehost
           .from("cron_job_logs" as never)
           .update({
             completed_at: completedAt,

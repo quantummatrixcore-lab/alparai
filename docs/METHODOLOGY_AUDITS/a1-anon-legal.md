@@ -25,7 +25,7 @@ Under **Law No. 5651 Art. 9** (Turkey), content providers must facilitate notice
 | `messages/en.json`                                            | Added `anonymous_email_label`, `anonymous_email_hint`                                                          |
 | `messages/tr.json`                                            | Added `anonymous_email_label`, `anonymous_email_hint`                                                          |
 | `src/types/database.ts`                                       | Added `anonymous_email_hash: string \| null` to `incidents` Row/Insert/Update                                  |
-| `supabase/migrations/20260712000001_anonymous_email_hash.sql` | New migration adding the column                                                                                |
+| `dehost/migrations/20260712000001_anonymous_email_hash.sql` | New migration adding the column                                                                                |
 | `src/actions/incidents.ts`                                    | `SubmitWorkInput.raw` gains `anonymous_email` field; `runSubmitWork` sha256-hashes it → `anonymous_email_hash` |
 | `src/components/incidents/incident-form.tsx`                  | Optional email `Input` shown when `isAnonymous` is checked, stored in draft state                              |
 

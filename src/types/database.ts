@@ -7,7 +7,7 @@ export type Json =
   | Json[]
 
 export type Database = {
-  __InternalSupabase: {
+  __InternalDeHost: {
     PostgrestVersion: "14.5"
   }
   public: {
@@ -5022,7 +5022,7 @@ export type Database = {
   }
 }
 
-type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">
+type DatabaseWithoutInternals = Omit<Database, "__InternalDeHost">
 
 type DefaultSchema = DatabaseWithoutInternals[Extract<keyof Database, "public">]
 

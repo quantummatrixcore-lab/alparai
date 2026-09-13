@@ -1,7 +1,7 @@
 "use server";
 
-import { createServerClient } from "@/lib/supabase/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createServerClient } from "@/lib/dehost/server";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { requireCEO } from "@/lib/auth/session";
 import { revalidatePath } from "next/cache";
 import type { Json } from "@/types/database";
@@ -21,7 +21,7 @@ export async function upsertSwotItemAction(data: {
 }): Promise<{ success: boolean; id: string }> {
   try {
     const user = await requireCEO();
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
     const payload = {
       category: data.category,
@@ -37,7 +37,7 @@ export async function upsertSwotItemAction(data: {
 
     let result;
     if (data.id) {
-      const { data: updated, error } = await supabase
+      const { data: updated, error } = await dehost
         .from("strategy_swot_items")
         .update(payload)
         .eq("id", data.id)
@@ -46,7 +46,7 @@ export async function upsertSwotItemAction(data: {
       if (error) throw new Error(error.message);
       result = updated;
     } else {
-      const { data: inserted, error } = await supabase
+      const { data: inserted, error } = await dehost
         .from("strategy_swot_items")
         .insert({
           ...payload,
@@ -69,9 +69,9 @@ export async function upsertSwotItemAction(data: {
 export async function deleteSwotItemAction(id: string): Promise<{ success: boolean }> {
   try {
     await requireCEO();
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
-    const { error } = await supabase.from("strategy_swot_items").delete().eq("id", id);
+    const { error } = await dehost.from("strategy_swot_items").delete().eq("id", id);
     if (error) throw new Error(error.message);
 
     revalidatePath("/[locale]/admin/strategy", "layout");
@@ -98,7 +98,7 @@ export async function upsertRiskAction(data: {
 }): Promise<{ success: boolean; id: string }> {
   try {
     const user = await requireCEO();
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
     const payload = {
       code: data.code,
@@ -115,7 +115,7 @@ export async function upsertRiskAction(data: {
 
     let result;
     if (data.id) {
-      const { data: updated, error } = await supabase
+      const { data: updated, error } = await dehost
         .from("strategy_risks")
         .update(payload)
         .eq("id", data.id)
@@ -124,7 +124,7 @@ export async function upsertRiskAction(data: {
       if (error) throw new Error(error.message);
       result = updated;
     } else {
-      const { data: inserted, error } = await supabase
+      const { data: inserted, error } = await dehost
         .from("strategy_risks")
         .insert({
           ...payload,
@@ -147,9 +147,9 @@ export async function upsertRiskAction(data: {
 export async function deleteRiskAction(id: string): Promise<{ success: boolean }> {
   try {
     await requireCEO();
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
-    const { error } = await supabase.from("strategy_risks").delete().eq("id", id);
+    const { error } = await dehost.from("strategy_risks").delete().eq("id", id);
     if (error) throw new Error(error.message);
 
     revalidatePath("/[locale]/admin/strategy", "layout");
@@ -171,9 +171,9 @@ export async function saveValuationAction(data: {
 }) {
   try {
     const user = await requireCEO();
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
-    const { data: inserted, error } = await supabase
+    const { data: inserted, error } = await dehost
       .from("strategy_valuations")
       .insert({
         method: data.method,
@@ -211,7 +211,7 @@ export async function upsertMilestoneAction(data: {
 }): Promise<{ success: boolean; id: string }> {
   try {
     const user = await requireCEO();
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
     const payload = {
       quarter: data.quarter,
@@ -226,7 +226,7 @@ export async function upsertMilestoneAction(data: {
 
     let result;
     if (data.id) {
-      const { data: updated, error } = await supabase
+      const { data: updated, error } = await dehost
         .from("strategy_milestones")
         .update(payload)
         .eq("id", data.id)
@@ -235,7 +235,7 @@ export async function upsertMilestoneAction(data: {
       if (error) throw new Error(error.message);
       result = updated;
     } else {
-      const { data: inserted, error } = await supabase
+      const { data: inserted, error } = await dehost
         .from("strategy_milestones")
         .insert({
           ...payload,
@@ -258,9 +258,9 @@ export async function upsertMilestoneAction(data: {
 export async function deleteMilestoneAction(id: string): Promise<{ success: boolean }> {
   try {
     await requireCEO();
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
-    const { error } = await supabase.from("strategy_milestones").delete().eq("id", id);
+    const { error } = await dehost.from("strategy_milestones").delete().eq("id", id);
     if (error) throw new Error(error.message);
 
     revalidatePath("/[locale]/admin/strategy", "layout");
@@ -285,9 +285,9 @@ export async function createMetricsSnapshotAction(data: {
 }): Promise<{ success: boolean; id: string }> {
   try {
     await requireCEO();
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
-    const { data: inserted, error } = await supabase
+    const { data: inserted, error } = await dehost
       .from("strategy_metrics_snapshots")
       .insert({
         snapshot_date: new Date().toISOString().split("T")[0],

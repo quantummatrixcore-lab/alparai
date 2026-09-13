@@ -17,18 +17,18 @@ const ACTIVE_SERVICES = INTEGRATION_SERVICES.filter((s) => s.envVars.length > 0)
 const ENV_ALIAS_GROUPS: Record<string, string[][]> = {
   github: [["GITHUB_PERSONAL_ACCESS_TOKEN", "GITHUB_TOKEN", "GH_TOKEN"]],
   "github-actions": [["GITHUB_PERSONAL_ACCESS_TOKEN", "GITHUB_TOKEN", "GH_TOKEN"]],
-  vercel: [["VERCEL_TOKEN", "VERCEL_OIDC_TOKEN"]],
+  dehost_hosting: [["DEHOST_TOKEN", "DEHOST_OIDC_TOKEN"]],
   gemini: [["GEMINI_API_KEY", "GOOGLE_API_KEY"]],
   tavily: [["TAVILY_API_KEY", "tavily"]],
-  supabase: [
-    ["NEXT_PUBLIC_SUPABASE_URL"],
-    ["SUPABASE_SERVICE_ROLE_KEY", "NEXT_PUBLIC_SUPABASE_ANON_KEY"],
+  dehost: [
+    ["NEXT_PUBLIC_DEHOST_URL"],
+    ["DEHOST_SERVICE_ROLE_KEY", "NEXT_PUBLIC_DEHOST_ANON_KEY"],
   ],
   stripe: [["STRIPE_SECRET_KEY", "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY"]],
   cloudflare: [["NEXT_PUBLIC_TURNSTILE_SITE_KEY", "TURNSTILE_SECRET_KEY"]],
 };
 
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 
 function getEnv(key: string): string | undefined {
   return process.env[key];
@@ -75,8 +75,8 @@ const ALTERNATIVE_PROMPTS: Record<string, string> = {
   gitlab: "GitLab vs GitHub pros cons pricing community size 2026",
   bitbucket: "Bitbucket vs GitHub pros cons pricing features 2026",
   gitea: "Gitea self hosted git pros cons vs GitHub 2026",
-  netlify: "Netlify vs Vercel pros cons pricing comparison 2026",
-  "cloudflare-pages": "Cloudflare Pages vs Vercel pros cons pricing 2026",
+  netlify: "Netlify vs DeHost pros cons pricing comparison 2026",
+  "cloudflare-pages": "Cloudflare Pages vs DeHost pros cons pricing 2026",
   railway: "Railway app hosting pros cons pricing alternatives 2026",
   neon: "Neon serverless PostgreSQL pros cons pricing 2026",
   turso: "Turso edge SQLite database pros cons pricing 2026",
@@ -296,10 +296,10 @@ export async function GET() {
     const allCostsData = (await fetchAllCosts()) || [];
     const altCache = new Map<string, Awaited<ReturnType<typeof searchAlternatives>>>();
 
-    const supabase = createAdminClient();
-    const { data: dbKeys } = await supabase.from("api_keys").select("provider");
-    const dbProviders = new Set(
-      (dbKeys || []).map((k: { provider: string }) => k.provider.toLowerCase()),
+    const dehost = createAdminClient();
+    const { data: dbKeys } = await dehost.from("api_keys").select("provider");
+    const dbProviders = new Set<string>(
+      (dbKeys || []).map((k: any) => String(k.provider || '').toLowerCase()),
     );
 
     const statuses: IntegrationStatus[] = ACTIVE_SERVICES.map((svc) => {

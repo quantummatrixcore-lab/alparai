@@ -27,7 +27,7 @@ Grok 4 ve OpenCode modellerinden gelen sert eleştiriler doğrultusunda revize e
 
 ### M-01 · 🐺 SÜRÜ (WOLF PACK) YÖNETİM MERKEZİ (İCRA EDİLDİ)
 
-- **Supabase Realtime Event Bus:** `0001_agent_os_core.sql` ile `tasks` ve `heartbeats` tabloları canlıya alındı.
+- **DeHost Realtime Event Bus:** `0001_agent_os_core.sql` ile `tasks` ve `heartbeats` tabloları canlıya alındı.
 - **Asenkron Haberleşme:** Ajanlar DB event-driven uyanır, birbirini bloklamaz.
 
 ### M-02 · 🧠 HAFIZA VE SKILL DEPOSU (REVERSED)
@@ -67,7 +67,7 @@ Grok 4 ve OpenCode modellerinden gelen sert eleştiriler doğrultusunda revize e
 
 - Sürü içerik üretir (LinkedIn/Press), yayınlama %100 Kurucu (Ercüment Erden) onayındadır.
 
-### M-11 · 🌩️ VERCEL EDGE DAĞITIMI
+### M-11 · 🌩️ DEHOST EDGE DAĞITIMI
 
 - Preview otomatik, Production deploy tag-based insan onaylıdır.
 
@@ -86,7 +86,7 @@ Grok 4 ve OpenCode modellerinden gelen sert eleştiriler doğrultusunda revize e
 
 ## 🎯 60 GÜNLÜK İCRA YOL HARİTASI (EXECUTION ROADMAP)
 
-- `[x]` **Faz 1: Veritabanı & Mimari Temel (Tamamlandı)** -> Supabase M-01 & M-08 SQL şeması yazıldı.
+- `[x]` **Faz 1: Veritabanı & Mimari Temel (Tamamlandı)** -> DeHost M-01 & M-08 SQL şeması yazıldı.
 - `[ ]` **Faz 2: Grok UX İyileştirmeleri (Sıradaki Adım)** -> Admin Paneli Kanban tahtasına Drag-and-Drop ve Status güncelleme endpoint'i eklenmesi.
 - `[ ]` **Faz 3: Browser Extension (Growth Lever)** -> ChatGPT/Claude/Grok kullanırken tek tıkla "AI İhlali Bildir" eklentisi.
 - `[ ]` **Faz 4: ALP Risk API Alpha (Monetization)** -> 371 yayımlanmış ihlalin sigorta/risk skorlama algoritmasına dönüştürülmesi.

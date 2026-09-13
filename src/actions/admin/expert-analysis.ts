@@ -4,7 +4,7 @@ import { requireAdmin } from "@/lib/auth/session";
 import { callWithFailover } from "@/lib/ai/openrouter-gateway";
 import { selectModelByCapability } from "@/lib/audit/model-router";
 import { EXPERT_PERSONAS } from "@/lib/config/expert-personas";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 
 export interface ExpertAnalysisReport {
@@ -33,9 +33,9 @@ export async function runExpertAnalysisAction(
     const chain = await selectModelByCapability(persona.capabilityDomain);
 
     // Fetch real published incident data and model telemetry for grounded multi-agent evaluation
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
     const [incidentsRes, modelsRes] = await Promise.all([
-      supabase
+      dehost
         .from("incidents")
         .select(
           "id, title_masked, category, severity, status, cross_audit_truth_score, eu_act_risk_category",
@@ -43,7 +43,7 @@ export async function runExpertAnalysisAction(
         .eq("status", "published")
         .order("created_at", { ascending: false })
         .limit(6),
-      supabase.from("ai_models").select("id, name, status").eq("status", "active").limit(6),
+      dehost.from("ai_models").select("id, name, status").eq("status", "active").limit(6),
     ]);
 
     const recentIncidents = incidentsRes.data ?? [];

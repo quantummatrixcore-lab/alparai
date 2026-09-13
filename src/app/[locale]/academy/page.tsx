@@ -20,7 +20,7 @@ import {
   Presentation,
 } from "lucide-react";
 import { ExpertForm } from "./expert-form";
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/dehost/server";
 import { Link } from "@/i18n/routing";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -36,13 +36,13 @@ export default async function AcademyPage({ params }: { params: Promise<{ locale
   const resolvedParams = await params;
   const t = await getTranslations({ locale: resolvedParams.locale, namespace: "academy" });
 
-  const supabase = await createClient();
+  const dehost = await createClient();
   const [{ count: incidentsCount }, { count: providersCount }] = await Promise.all([
-    supabase
+    dehost
       .from("incidents")
       .select("*", { count: "exact", head: true })
       .eq("status", "published"),
-    supabase.from("ai_providers").select("*", { count: "exact", head: true }),
+    dehost.from("ai_providers").select("*", { count: "exact", head: true }),
   ]);
 
   const totalIncidents = incidentsCount ? `${incidentsCount}+` : "350+";

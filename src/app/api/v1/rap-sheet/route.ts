@@ -1,6 +1,6 @@
 import "server-only";
 import { NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { requireModerator } from "@/lib/auth/session";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { headers } from "next/headers";
@@ -27,9 +27,9 @@ export async function GET(request: Request) {
     const offset = Math.max(Number(searchParams.get("offset") ?? "0"), 0);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const supabase = createAdminClient() as any;
+    const dehost = createAdminClient() as any;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let query: any = supabase
+    let query: any = dehost
       .from("ai_rap_sheet_entries")
       .select(`
         id,
@@ -110,8 +110,8 @@ export async function POST(request: Request) {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const supabase = createAdminClient() as any;
-    const { data, error } = await supabase
+    const dehost = createAdminClient() as any;
+    const { data, error } = await dehost
       .from("ai_rap_sheet_entries")
       .insert([{
         entity_type: entity_type || "model",

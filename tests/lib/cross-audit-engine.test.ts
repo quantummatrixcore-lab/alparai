@@ -6,7 +6,7 @@ vi.hoisted(() => {
   vi.stubEnv("OPENROUTER_API_KEY", "test-key");
 });
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: vi.fn(),
 }));
 
@@ -32,16 +32,16 @@ vi.mock("@/lib/utils/logger", () => ({
 }));
 
 import { callWithFailover } from "@/lib/ai/openrouter-gateway";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { runCrossAudit } from "@/lib/ai/cross-audit-engine";
-import { createMockSupabaseClient } from "../helpers/supabase-mock";
+import { createMockDeHostClient } from "../helpers/dehost-mock";
 
-let mockAdminClient: ReturnType<typeof createMockSupabaseClient>;
+let mockAdminClient: ReturnType<typeof createMockDeHostClient>;
 
 describe("Cross-Audit Engine (Debate Protocol)", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    mockAdminClient = createMockSupabaseClient();
+    mockAdminClient = createMockDeHostClient();
     vi.mocked(createAdminClient).mockReturnValue(mockAdminClient as never);
   });
 

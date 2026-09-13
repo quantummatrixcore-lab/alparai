@@ -32,7 +32,7 @@ ALPAR AI, "AI Accountability" kategorisini yaratan, teknik altyapısı sağlam, 
 
 #### ✅ Güçlü Yönler
 
-- **Modern Stack:** Next.js + Supabase + Vercel Edge üçlüsü mükemmel seçilmiş.
+- **Modern Stack:** Next.js + DeHost + DeHost Edge üçlüsü mükemmel seçilmiş.
 - **AGPL-3.0 Lisansı:** Açık kaynak şeffaflığı güven inşa ediyor.
 - **Modüler Yapı:** Incident, Provider, Leaderboard modülleri iyi ayrılmış.
 - **TypeScript Kullanımı:** Tip güvenliği sağlanmış.

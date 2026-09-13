@@ -1,6 +1,6 @@
 import { withCronLogger } from "@/lib/utils/cron-logger";
 import { type NextRequest, NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { getResendClient } from "@/lib/email/resend";
 import { logger } from "@/lib/utils/logger";
 
@@ -20,11 +20,11 @@ async function getHandler(request: NextRequest) {
 
   const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://alparai.com";
   const resend = getResendClient();
-  const supabase = createAdminClient();
+  const dehost = createAdminClient();
 
   try {
     // 1. Process PENDING previews -> Send preview email, transition to 'sent'
-    const { data: pending, error: pendingErr } = await supabase
+    const { data: pending, error: pendingErr } = await dehost
       .from("k_provider_previews")
       .select("id, preview_token, expires_at, ai_providers(name, contact_email)")
       .eq("status", "pending");
@@ -62,7 +62,7 @@ async function getHandler(request: NextRequest) {
           });
         }
 
-        await supabase
+        await dehost
           .from("k_provider_previews")
           .update({
             status: "sent",
@@ -75,7 +75,7 @@ async function getHandler(request: NextRequest) {
     }
 
     // 2. Process EXPIRED previews -> Send public announcement email, transition to 'expired'
-    const { data: expired, error: expiredErr } = await supabase
+    const { data: expired, error: expiredErr } = await dehost
       .from("k_provider_previews")
       .select("id, ai_providers(name, contact_email)")
       .eq("status", "sent")
@@ -112,7 +112,7 @@ async function getHandler(request: NextRequest) {
           });
         }
 
-        await supabase
+        await dehost
           .from("k_provider_previews")
           .update({
             status: "expired",

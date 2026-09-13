@@ -6,7 +6,7 @@ vi.mock("@/lib/auth/session", () => ({
 
 import { runCrossAuditArenaAction, getTrustScoresAction } from "@/actions/admin/ai-orchestrator";
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: vi.fn(() => ({
     from: vi.fn(() => ({
       select: vi.fn(() => ({
@@ -44,7 +44,7 @@ describe("AI Orchestrator Actions", () => {
     expect(verdict.synthesized_verdict).toContain("Stealth Cross-Audit Verdict");
   });
 
-  it("fetches trust scores ledger from supabase", async () => {
+  it("fetches trust scores ledger from dehost", async () => {
     const scores = await getTrustScoresAction();
     expect(scores).toHaveLength(1);
     expect(scores[0]?.model_id).toBe("meta-llama/llama-3.3-70b-instruct:free");

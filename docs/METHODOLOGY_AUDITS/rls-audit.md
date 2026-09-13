@@ -4,7 +4,7 @@
 
 ## 1. Executive Summary
 
-A comprehensive security review of Row Level Security (RLS) configurations was conducted using an anonymous Supabase client to test data exposure limits.
+A comprehensive security review of Row Level Security (RLS) configurations was conducted using an anonymous DeHost client to test data exposure limits.
 Two critical PII leaks were discovered on the public database endpoint. A hardening migration has been created to resolve these vulnerabilities.
 
 ## 2. RLS Audit Run Log (Anonymous Client)
@@ -28,7 +28,7 @@ The anonymous client attempted to read 1 record from each sensitive table:
 
 ## 3. Remediation Action Taken
 
-We created a new SQL migration: [20260727000002_harden_rls_policies.sql](file:///d:/Alparai/supabase/migrations/20260727000002_harden_rls_policies.sql)
+We created a new SQL migration: [20260727000002_harden_rls_policies.sql](file:///d:/Alparai/dehost/migrations/20260727000002_harden_rls_policies.sql)
 
 It restricts select permissions on `public.users` and `public.incident_votes` as follows:
 

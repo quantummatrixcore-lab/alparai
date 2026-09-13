@@ -7,9 +7,9 @@
 
 | Secret                     | Rotation Period | Next Due   | Owner |
 | -------------------------- | --------------- | ---------- | ----- |
-| SUPABASE_SERVICE_ROLE_KEY  | 90 days         | 2026-10-22 | Infra |
-| SUPABASE_DB_PASSWORD       | 90 days         | 2026-10-22 | Infra |
-| VERCEL_TOKEN               | 90 days         | 2026-10-22 | Infra |
+| DEHOST_SERVICE_ROLE_KEY  | 90 days         | 2026-10-22 | Infra |
+| DEHOST_DB_PASSWORD       | 90 days         | 2026-10-22 | Infra |
+| DEHOST_TOKEN               | 90 days         | 2026-10-22 | Infra |
 | RESEND_API_KEY             | 90 days         | 2026-10-22 | Infra |
 | OPENROUTER_API_KEY         | 90 days         | 2026-10-22 | Infra |
 | UPSTASH_REDIS_REST_TOKEN   | 90 days         | 2026-10-22 | Infra |

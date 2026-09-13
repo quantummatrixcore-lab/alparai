@@ -1,7 +1,7 @@
 "use server";
 
 import { z } from "zod";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { requireModerator } from "@/lib/auth/session";
 import { revalidatePath } from "next/cache";
 import { logger } from "@/lib/utils/logger";
@@ -56,8 +56,8 @@ export async function createOutreachTarget(input: z.infer<typeof outreachTargetS
       };
     }
 
-    const supabase = createAdminClient();
-    const { data, error } = await (supabase as unknown as UnsafeClient)
+    const dehost = createAdminClient();
+    const { data, error } = await (dehost as unknown as UnsafeClient)
       .from("outreach_queue")
       .insert({
         recipient_name: name,
@@ -77,7 +77,7 @@ export async function createOutreachTarget(input: z.infer<typeof outreachTargetS
       return { success: false, error: "Database insert failed" };
     }
 
-    await supabase.from("audit_log").insert({
+    await dehost.from("audit_log").insert({
       actor_id: user.id,
       action: "CREATE_OUTREACH_TARGET",
       entity_type: "outreach_queue",

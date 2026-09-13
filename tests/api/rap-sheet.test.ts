@@ -24,7 +24,7 @@ vi.mock("@/lib/utils/rate-limit", () => ({
   RATE_LIMIT_KEYS: { api_general: "api_general" },
 }));
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({
     from: (table: string) => {
       if (table === "ai_rap_sheet_entries") {

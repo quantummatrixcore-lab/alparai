@@ -1,7 +1,7 @@
 import "server-only";
 import { NextResponse } from "next/server";
-import { createServerClient } from "@/lib/supabase/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createServerClient } from "@/lib/dehost/server";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 
 const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
@@ -9,7 +9,7 @@ const STRIPE_PRO_PRICE_ID = process.env.STRIPE_PRO_PRICE_ID;
 const STRIPE_ENTERPRISE_PRICE_ID = process.env.STRIPE_ENTERPRISE_PRICE_ID;
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://alparai.com";
 
-// @auth: requireAuth (verified via supabase.auth.getUser)
+// @auth: requireAuth (verified via dehost.auth.getUser)
 export async function POST(request: Request) {
   let tier = "pro";
   try {
@@ -30,11 +30,11 @@ export async function POST(request: Request) {
     );
   }
 
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
   const {
     data: { user },
     error: authError,
-  } = await supabase.auth.getUser();
+  } = await dehost.auth.getUser();
 
   if (authError || !user) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });

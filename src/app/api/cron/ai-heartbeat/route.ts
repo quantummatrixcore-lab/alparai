@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { discoverFreeModels, type FreeModelRecord } from "@/lib/ai/discovery/fetch-models";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 
 export interface HeartbeatItemResult {
   modelId: string;
@@ -35,9 +35,9 @@ export async function GET(request: Request) {
   }
 
   try {
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
     for (const res of heartbeatResults) {
-      await supabase
+      await dehost
         .from("ai_free_models")
         .update({
           status: res.status,

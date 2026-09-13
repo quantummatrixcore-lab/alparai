@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 
 export const runtime = "nodejs";
 
@@ -12,10 +12,10 @@ export async function GET(_request: Request, props: { params: Promise<{ id: stri
       return new Response("Missing id", { status: 400 });
     }
 
-    const supabase = await createServerClient();
+    const dehost = await createServerClient();
 
     // Fetch incident data
-    const { data: incident } = await supabase
+    const { data: incident } = await dehost
       .from("incidents")
       .select(
         `

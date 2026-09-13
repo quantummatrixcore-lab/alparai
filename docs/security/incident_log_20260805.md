@@ -19,14 +19,14 @@ Continuous integration and secret scanning audits performed on 2026-08-05 identi
 - **Key Name**: `Alpar AI Agent` (`re_azPYeA4u...`)
 - **Exposed Location**: `scripts/outreach_auto.js` (Commit `b367d8b85a3b88abd419c8129aa46a7d6b9ad537`)
 - **Action Taken**: Automatically detected by GitHub Secret Scanning and permanently revoked by Resend Security on 2026-08-04.
-- **Remediation**: Key removed from version control; replacement key managed via `.env` / Vercel environment variables.
+- **Remediation**: Key removed from version control; replacement key managed via `.env` / DeHost environment variables.
 
-### C. Supabase API Key Revocation
+### C. DeHost API Key Revocation
 
 - **Project**: `alparai-prod` (`azszpzyvxjduhemkjsdh`)
 - **Key Pattern**: `sb_secret_1sBUc...`
-- **Action Taken**: Permanently revoked across all infrastructure endpoints by Supabase Security on August 5, 2026 at 10:00 CEST.
-- **Remediation**: Rotated to new production service role key and synced to Vercel production environment variables.
+- **Action Taken**: Permanently revoked across all infrastructure endpoints by DeHost Security on August 5, 2026 at 10:00 CEST.
+- **Remediation**: Rotated to new production service role key and synced to DeHost production environment variables.
 
 ### D. GitHub Security Audit Workflow Failure
 

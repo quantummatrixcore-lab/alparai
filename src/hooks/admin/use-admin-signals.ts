@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { supabase } from "@/lib/supabase/client";
+import { dehost } from "@/lib/dehost/client";
 import type { Database } from "@/types/database";
 import { useAdminRealtime } from "./use-admin-realtime";
 
@@ -42,10 +42,10 @@ export function useAdminSignals(autoSubscribe = true): UseAdminSignalsResult {
       setError(null);
 
       const [alarmsRes, ratingRes, doraRes, redactionRes] = await Promise.all([
-        supabase.from("sla_alarms").select("*"),
-        supabase.from("rating_alerts").select("*").order("created_at", { ascending: false }).limit(20),
-        supabase.from("dora_metrics").select("*").order("metric_date", { ascending: false }).limit(10),
-        supabase.from("redaction_requests").select("*").order("created_at", { ascending: false }).limit(20),
+        dehost.from("sla_alarms").select("*"),
+        dehost.from("rating_alerts").select("*").order("created_at", { ascending: false }).limit(20),
+        dehost.from("dora_metrics").select("*").order("metric_date", { ascending: false }).limit(10),
+        dehost.from("redaction_requests").select("*").order("created_at", { ascending: false }).limit(20),
       ]);
 
       setAlarms(alarmsRes.data || []);
@@ -78,7 +78,7 @@ export function useAdminSignals(autoSubscribe = true): UseAdminSignalsResult {
   const resolveAlarm = async (id: string) => {
     try {
       const now = new Date().toISOString();
-      const { error: updateError } = await supabase
+      const { error: updateError } = await dehost
         .from("sla_alarms")
         .update({
           resolved: true,
@@ -105,7 +105,7 @@ export function useAdminSignals(autoSubscribe = true): UseAdminSignalsResult {
   ) => {
     try {
       const now = new Date().toISOString();
-      const { error: updateError } = await supabase
+      const { error: updateError } = await dehost
         .from("redaction_requests")
         .update({
           status,

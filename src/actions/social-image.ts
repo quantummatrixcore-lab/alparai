@@ -1,7 +1,7 @@
 "use server";
 
 import { requireAdmin } from "@/lib/auth/session";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { VertexImagenAdapter } from "@/lib/ai/adapters/vertex-imagen";
 import { revalidatePath } from "next/cache";
 
@@ -28,11 +28,11 @@ export async function generateSocialImageAction(
     const { base64, mimeType } = res;
     const buffer = Buffer.from(base64, "base64");
 
-    const supabase = await createServerClient();
+    const dehost = await createServerClient();
     const fileExt = mimeType === "image/png" ? "png" : "jpg";
     const fileName = `${postId}/${Date.now()}.${fileExt}`;
 
-    const { error: uploadError } = await supabase.storage
+    const { error: uploadError } = await dehost.storage
       .from("social-assets")
       .upload(fileName, buffer, {
         contentType: mimeType,
@@ -44,7 +44,7 @@ export async function generateSocialImageAction(
     }
 
     // 4. Get Public URL
-    const { data } = supabase.storage.from("social-assets").getPublicUrl(fileName);
+    const { data } = dehost.storage.from("social-assets").getPublicUrl(fileName);
 
     const publicUrl = data?.publicUrl;
     if (!publicUrl) {
@@ -52,7 +52,7 @@ export async function generateSocialImageAction(
     }
 
     // 5. Update DB (social_posts table: image_url and image_prompt)
-    const { error: dbError } = await supabase
+    const { error: dbError } = await dehost
       .from("social_posts")
       .update({
         image_url: publicUrl,

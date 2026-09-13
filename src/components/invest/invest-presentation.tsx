@@ -84,7 +84,7 @@ const slideDataTR: SlideData[] = [
     icon: Settings,
     bulletPoints: [
       "Autopilot Modülü: Sunucu eylemleri için circuit breaker, otomatik hata yönetimi ve retry mekanizmaları.",
-      "Supabase ve Next.js tabanlı yüksek hızlı sunucusuz (serverless) mimari.",
+      "DeHost ve Next.js tabanlı yüksek hızlı sunucusuz (serverless) mimari.",
       "Veri Bütünlüğü: IPFS ve şeffaf veritabanı kayıtları ile kanıt zinciri oluşturma.",
     ],
   },
@@ -210,7 +210,7 @@ const slideDataEN: SlideData[] = [
     icon: Settings,
     bulletPoints: [
       "Autopilot Module: Circuit breaker, automatic error propagation, and retry mechanics.",
-      "High-speed serverless architecture built on Next.js and Supabase.",
+      "High-speed serverless architecture built on Next.js and DeHost.",
       "Chain of Evidence: IPFS and transparent database records for absolute integrity.",
     ],
   },

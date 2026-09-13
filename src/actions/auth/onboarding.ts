@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { getCurrentUser } from "@/lib/auth/session";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { logger } from "@/lib/utils/logger";
@@ -45,10 +45,10 @@ export async function saveOnboardingData(
       return { ok: false, error: `Too many attempts. Try again in ${rl.retryAfter}s.` };
     }
 
-    const supabase = await createServerClient();
+    const dehost = await createServerClient();
 
     // Get current badges
-    const { data: dbUser, error: selectError } = await supabase
+    const { data: dbUser, error: selectError } = await dehost
       .from("users")
       .select("badges")
       .eq("id", user.id)
@@ -65,7 +65,7 @@ export async function saveOnboardingData(
     let updatedBadges: string[] = dbUser?.badges ?? [];
     if (!updatedBadges.includes("Founding Reporter")) {
       // Check registered users count (only first 100 get it)
-      const { count, error: countError } = await supabase
+      const { count, error: countError } = await dehost
         .from("users")
         .select("id", { count: "exact", head: true });
 
@@ -79,7 +79,7 @@ export async function saveOnboardingData(
     }
 
     // Update user profile
-    const { error: updateError } = await supabase
+    const { error: updateError } = await dehost
       .from("users")
       .update({
         community_role: role,

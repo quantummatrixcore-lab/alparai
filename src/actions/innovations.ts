@@ -1,7 +1,7 @@
 "use server";
 
-import { createServerClient } from "@/lib/supabase/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createServerClient } from "@/lib/dehost/server";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { requireAdmin } from "@/lib/auth/session";
 import { revalidatePath } from "next/cache";
 import type { ExternalIncidentQueueItem, StrategyInnovation } from "@/types";
@@ -14,8 +14,8 @@ import { runExternalFetchTask } from "@/lib/services/external-fetcher";
 export async function getExternalQueue(): Promise<ExternalIncidentQueueItem[]> {
   try {
     await requireAdmin();
-    const supabase = createAdminClient();
-    const { data, error } = await supabase
+    const dehost = createAdminClient();
+    const { data, error } = await dehost
       .from("external_incidents_queue")
       .select(
         "id, title, body, source, external_url, status, fetched_at, source_score, created_at, updated_at",
@@ -36,8 +36,8 @@ export async function updateExternalQueueStatus(
 ): Promise<{ success: boolean }> {
   try {
     await requireAdmin();
-    const supabase = createAdminClient();
-    const { error } = await supabase
+    const dehost = createAdminClient();
+    const { error } = await dehost
       .from("external_incidents_queue")
       .update({ status, updated_at: new Date().toISOString() })
       .eq("id", id);
@@ -58,10 +58,10 @@ export async function acceptExternalIncident(
 ): Promise<{ success: boolean; incidentId: string }> {
   try {
     const user = await requireAdmin();
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
     // 1. Fetch from queue
-    const { data: queueItem, error: fetchError } = await supabase
+    const { data: queueItem, error: fetchError } = await dehost
       .from("external_incidents_queue")
       .select("*")
       .eq("id", queueItemId)
@@ -72,7 +72,7 @@ export async function acceptExternalIncident(
     }
 
     // 2. Insert into incidents
-    const { data: incident, error: insertError } = await supabase
+    const { data: incident, error: insertError } = await dehost
       .from("incidents")
       .insert({
         user_id: user.id,
@@ -99,7 +99,7 @@ export async function acceptExternalIncident(
     }
 
     // 3. Mark queue item as accepted
-    const { error: updateError } = await supabase
+    const { error: updateError } = await dehost
       .from("external_incidents_queue")
       .update({ status: "accepted", updated_at: new Date().toISOString() })
       .eq("id", queueItemId);
@@ -153,10 +153,10 @@ export async function getConnectorStatuses(): Promise<
 > {
   try {
     await requireAdmin();
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
     // Count pending items by source
-    const { data: counts } = await supabase
+    const { data: counts } = await dehost
       .from("external_incidents_queue")
       .select("source, status");
 
@@ -188,8 +188,8 @@ export async function getConnectorStatuses(): Promise<
 export async function getInnovations(): Promise<StrategyInnovation[]> {
   try {
     await requireAdmin();
-    const supabase = createAdminClient();
-    const { data, error } = await supabase
+    const dehost = createAdminClient();
+    const { data, error } = await dehost
       .from("strategy_innovations")
       .select("id, title, description, priority, status, created_at, updated_at")
       .order("created_at", { ascending: true });
@@ -209,9 +209,9 @@ export async function createInnovation(
 ): Promise<{ success: boolean; id: string }> {
   try {
     await requireAdmin();
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
-    const { data, error } = await supabase
+    const { data, error } = await dehost
       .from("strategy_innovations")
       .insert({
         title,
@@ -239,9 +239,9 @@ export async function updateInnovationStatus(
 ): Promise<{ success: boolean }> {
   try {
     await requireAdmin();
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
-    const { error } = await supabase
+    const { error } = await dehost
       .from("strategy_innovations")
       .update({ status, updated_at: new Date().toISOString() })
       .eq("id", id);
@@ -262,9 +262,9 @@ export async function autoReviewAllPending(): Promise<{
 }> {
   try {
     await requireAdmin();
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
-    const { data: pendingItems, error } = await supabase
+    const { data: pendingItems, error } = await dehost
       .from("external_incidents_queue")
       .select("id, title, body")
       .eq("status", "pending")

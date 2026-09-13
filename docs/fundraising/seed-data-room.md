@@ -121,14 +121,14 @@ ALPAR AI maintains extreme capital discipline by combining automated engineering
 1. **Engineering & Technical R&D (€17,500 / mo — 50%):** Core protocol maintenance, multi-model failover optimization, SDK development.
 2. **Sales & Go-To-Market (€8,750 / mo — 25%):** Developer relations, Big-4 channel partner enablement, enterprise compliance events.
 3. **Legal, Compliance & Audit (€5,250 / mo — 15%):** EU AI Act legal opinions, regulatory policy alignment, external security audits.
-4. **Cloud Infrastructure & Tools (€3,500 / mo — 10%):** Supabase Enterprise tier, Vercel Pro hosting, multi-provider LLM API infrastructure.
+4. **Cloud Infrastructure & Tools (€3,500 / mo — 10%):** DeHost Enterprise tier, DeHost Pro hosting, multi-provider LLM API infrastructure.
 
 ---
 
 ## 5. Technology Stack & Proprietary Moat
 
 - **Next.js 15 (App Router):** Strict TypeScript with `noUncheckedIndexedAccess`, zero `any` allowance, and server action mutations.
-- **Supabase PostgreSQL & RLS:** 100% Row-Level Security policy enforcement on all tables with immutable trigger-based audit logs.
+- **DeHost PostgreSQL & RLS:** 100% Row-Level Security policy enforcement on all tables with immutable trigger-based audit logs.
 - **PII-Guardian Protocol (`src/lib/pii/guardian.ts`):** High-speed regex and NLP sanitization engine scrubbing user data prior to storage.
 - **9-Model LLM Routing Architecture:** Resilient automatic failover across free and premium providers ensuring 99.99% availability for incident processing.
 - **Native 5-Language i18n:** Full localization across English, Turkish, German, French, and Russian via `next-intl`.

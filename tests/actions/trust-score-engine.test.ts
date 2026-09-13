@@ -6,12 +6,12 @@ vi.hoisted(() => {
     requireAdmin: vi.fn().mockResolvedValue({ id: "admin", role: "admin" }),
     requireUser: vi.fn().mockResolvedValue({ id: "user", role: "user" }),
   }));
-  vi.doMock("@/lib/supabase/admin", () => ({
+  vi.doMock("@/lib/dehost/admin", () => ({
     createAdminClient: vi.fn(),
   }));
 });
 
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { recalculateTrustScoresAction } from "@/actions/models/trust-score-engine";
 import { calculateRankingTier } from "@/lib/ranking/calculate-tier";
 
@@ -34,7 +34,7 @@ describe("Trust Score Engine (I19)", () => {
 
   describe("recalculateTrustScoresAction", () => {
     it("calculates trust scores and upserts vendor_trust_rankings", async () => {
-      const mockSupabase = {
+      const mockDeHost = {
         from: vi.fn((table: string) => {
           if (table === "ai_providers") {
             return {
@@ -73,22 +73,22 @@ describe("Trust Score Engine (I19)", () => {
         }),
       };
 
-      vi.mocked(createAdminClient).mockReturnValue(mockSupabase as never);
+      vi.mocked(createAdminClient).mockReturnValue(mockDeHost as never);
 
       const result = await recalculateTrustScoresAction();
       expect(result.ok).toBe(true);
       expect(result.updatedVendorsCount).toBe(2);
-      expect(mockSupabase.from).toHaveBeenCalledWith("vendor_trust_rankings");
+      expect(mockDeHost.from).toHaveBeenCalledWith("vendor_trust_rankings");
     });
 
     it("handles database error when fetching providers", async () => {
-      const mockSupabase = {
+      const mockDeHost = {
         from: vi.fn().mockReturnValue({
           select: vi.fn().mockResolvedValue({ data: null, error: { message: "Connection error" } }),
         }),
       };
 
-      vi.mocked(createAdminClient).mockReturnValue(mockSupabase as never);
+      vi.mocked(createAdminClient).mockReturnValue(mockDeHost as never);
 
       const result = await recalculateTrustScoresAction();
       expect(result.ok).toBe(false);

@@ -2,7 +2,7 @@
 
 > **Status:** ACTIVE & MANDATORY  
 > **Authority:** Atatürk Supreme Commander & Multi-Agent Swarm Orchestrator  
-> **Enforcement Gate:** `scripts/guardian.js` + Git Pre-Commit Hooks + Vercel Build Pipeline
+> **Enforcement Gate:** `scripts/guardian.js` + Git Pre-Commit Hooks + DeHost Build Pipeline
 
 ---
 
@@ -32,7 +32,7 @@
 |---|---|---|
 | **Guardian Gate** | `node scripts/guardian.js` | Kod tabanında sahte veri, kırık i18n veya etiketsiz SQL arar. |
 | **Translation Contract** | `npm test -- tests/contracts/translation-integrity.test.ts` | Sözlüklerin bütünlüğünü ve kritik anahtarların varlığını denetler. |
-| **CI/CD Build Guard** | `npm run build` (`npm run guard && next build`) | Vercel üzerinde build başlamadan önce Guardian otomatik çalışır. |
+| **CI/CD Build Guard** | `npm run build` (`npm run guard && next build`) | DeHost üzerinde build başlamadan önce Guardian otomatik çalışır. |
 
 ---
 

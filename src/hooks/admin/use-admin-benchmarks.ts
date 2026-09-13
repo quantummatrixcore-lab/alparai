@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { supabase } from "@/lib/supabase/client";
+import { dehost } from "@/lib/dehost/client";
 import type { Database } from "@/types/database";
 import { useAdminRealtime } from "./use-admin-realtime";
 
@@ -40,15 +40,15 @@ export function useAdminBenchmarks({
       setLoading(true);
       setError(null);
 
-      let modelsQuery = supabase.from("ai_models").select("*");
+      let modelsQuery = dehost.from("ai_models").select("*");
       if (providerId) {
         modelsQuery = modelsQuery.eq("provider_id", providerId);
       }
 
       const [provRes, modelsRes, scoresRes] = await Promise.all([
-        supabase.from("ai_providers").select("*").order("name"),
+        dehost.from("ai_providers").select("*").order("name"),
         modelsQuery.order("name"),
-        supabase.from("k_model_scores").select("*").order("score", { ascending: false }),
+        dehost.from("k_model_scores").select("*").order("score", { ascending: false }),
       ]);
 
       setProviders(provRes.data || []);
@@ -80,7 +80,7 @@ export function useAdminBenchmarks({
   const toggleVerifiedRespondent = async (targetProviderId: string, isVerified: boolean) => {
     try {
       const now = new Date().toISOString();
-      const { error: updateError } = await supabase
+      const { error: updateError } = await dehost
         .from("ai_providers")
         .update({
           is_verified_respondent: isVerified,
@@ -106,7 +106,7 @@ export function useAdminBenchmarks({
 
   const updateProviderTrust = async (targetProviderId: string, trustScore: number) => {
     try {
-      const { error: updateError } = await supabase
+      const { error: updateError } = await dehost
         .from("ai_providers")
         .update({
           trust_score: trustScore,

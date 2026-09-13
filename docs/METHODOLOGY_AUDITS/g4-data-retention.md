@@ -3,7 +3,7 @@
 ## Implementation Overview
 
 - Created `docs/DATA_RETENTION.md` defining table-level retention rules (raw evidence 24 months, audit logs 5 years, PII 12 months, deleted users 30 days).
-- Created a database migration at `supabase/migrations/20260727000012_data_retention_policies.sql` establishing the reference schema:
+- Created a database migration at `dehost/migrations/20260727000012_data_retention_policies.sql` establishing the reference schema:
   - Created `public.data_retention_policies` table with row-level security enabled.
   - Initialized a default policy for every single table in the `public` schema dynamically using a PostgreSQL `DO` block.
 - Implemented RLS policies allowing public read access and moderator write access.

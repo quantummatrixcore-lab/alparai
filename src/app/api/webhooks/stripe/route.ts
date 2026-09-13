@@ -1,6 +1,6 @@
-import { waitUntil } from "@vercel/functions";
+import { waitUntil } from "@/lib/dehost/functions-stub";
 import { NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 import { processAutonomousPdfInvoice } from "@/lib/billing/invoices";
 
@@ -142,7 +142,7 @@ export async function POST(request: Request) {
               },
             );
 
-            // SIGMA-6: Autonomous PDF Invoice generation & Supabase Storage upload
+            // SIGMA-6: Autonomous PDF Invoice generation & DeHost Storage upload
             const invoiceId = `inv_${session.id.slice(-12)}_${Date.now()}`;
             const amountTotal = session.amount_total || 2900;
             const currency = session.currency || "usd";

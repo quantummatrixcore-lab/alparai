@@ -4,7 +4,7 @@ import { GET } from "@/app/api/cron/moderation-sla-alarm/route";
 import { NextRequest } from "next/server";
 
 const mockFrom = vi.fn();
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({
     from: mockFrom,
   }),

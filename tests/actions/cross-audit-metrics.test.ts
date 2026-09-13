@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
-import { createMockSupabaseClient } from "../helpers/supabase-mock";
+import { createMockDeHostClient } from "../helpers/dehost-mock";
 
 vi.hoisted(() => {
-  vi.doMock("@/lib/supabase/admin", () => ({
+  vi.doMock("@/lib/dehost/admin", () => ({
     createAdminClient: vi.fn(),
   }));
   vi.doMock("@/lib/auth/session", () => ({
@@ -11,7 +11,7 @@ vi.hoisted(() => {
   }));
 });
 
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { requireModerator } from "@/lib/auth/session";
 import { getCrossAuditDashboardData } from "@/actions/admin/cross-audit-metrics";
 
@@ -45,11 +45,11 @@ const MOCK_INCIDENTS = [
 ];
 
 describe("Cross-Audit Metrics", () => {
-  let mockClient: ReturnType<typeof createMockSupabaseClient>;
+  let mockClient: ReturnType<typeof createMockDeHostClient>;
 
   beforeEach(() => {
     vi.clearAllMocks();
-    mockClient = createMockSupabaseClient();
+    mockClient = createMockDeHostClient();
     vi.mocked(createAdminClient).mockReturnValue(mockClient as never);
     vi.mocked(requireModerator).mockResolvedValue(undefined as never);
   });

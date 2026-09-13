@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
-import { createMockSupabaseClient, createTestUser } from "../helpers/supabase-mock";
+import { createMockDeHostClient, createTestUser } from "../helpers/dehost-mock";
 
 vi.hoisted(() => {
-  vi.doMock("@/lib/supabase/server", () => ({
+  vi.doMock("@/lib/dehost/server", () => ({
     createClient: vi.fn(),
     createServerClient: vi.fn(),
   }));
-  vi.doMock("@/lib/supabase/admin", () => ({
+  vi.doMock("@/lib/dehost/admin", () => ({
     createAdminClient: vi.fn(),
   }));
   vi.doMock("@/lib/auth/session", () => ({
@@ -28,24 +28,24 @@ vi.hoisted(() => {
   }));
 });
 
-import { createClient, createServerClient } from "@/lib/supabase/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createClient, createServerClient } from "@/lib/dehost/server";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { getCurrentUser } from "@/lib/auth/session";
 import { checkRateLimit } from "@/lib/utils/rate-limit";
 import { maskPII } from "@/lib/pii/guardian";
 import { submitIncident } from "@/actions/incidents";
 
-let mockSupabase: ReturnType<typeof createMockSupabaseClient>;
-let mockAdminClient: ReturnType<typeof createMockSupabaseClient>;
+let mockDeHost: ReturnType<typeof createMockDeHostClient>;
+let mockAdminClient: ReturnType<typeof createMockDeHostClient>;
 let mockUser: ReturnType<typeof createTestUser>;
 
 beforeEach(() => {
   vi.clearAllMocks();
-  mockSupabase = createMockSupabaseClient();
-  mockAdminClient = createMockSupabaseClient();
+  mockDeHost = createMockDeHostClient();
+  mockAdminClient = createMockDeHostClient();
   mockUser = createTestUser();
-  vi.mocked(createClient).mockResolvedValue(mockSupabase as never);
-  vi.mocked(createServerClient).mockResolvedValue(mockSupabase as never);
+  vi.mocked(createClient).mockResolvedValue(mockDeHost as never);
+  vi.mocked(createServerClient).mockResolvedValue(mockDeHost as never);
   vi.mocked(createAdminClient).mockReturnValue(mockAdminClient as never);
   vi.mocked(getCurrentUser).mockResolvedValue(mockUser as never);
   vi.mocked(checkRateLimit).mockResolvedValue({ ok: true, remaining: 4 });
@@ -84,8 +84,8 @@ function buildFormData(overrides: Record<string, string> = {}): FormData {
 
 describe("submitIncident Sybil Detection", () => {
   it("should flag submission as Sybil suspicious when fingerprint count > 3", async () => {
-    // 1. Mock supabase.from("incidents").insert(...) to return a valid incident ID
-    mockSupabase.from.mockImplementation((table: string): any => {
+    // 1. Mock dehost.from("incidents").insert(...) to return a valid incident ID
+    mockDeHost.from.mockImplementation((table: string): any => {
       if (table === "incidents") {
         return {
           insert: vi.fn().mockReturnValue({
@@ -96,13 +96,13 @@ describe("submitIncident Sybil Detection", () => {
         };
       }
       return {
-        select: mockSupabase._mocks.mockSelect,
-        insert: mockSupabase._mocks.mockInsert,
+        select: mockDeHost._mocks.mockSelect,
+        insert: mockDeHost._mocks.mockInsert,
       };
     });
 
     // 2. Mock rpc check for duplicate incident and atomic submission
-    mockSupabase.rpc.mockImplementation((fnName: string) => {
+    mockDeHost.rpc.mockImplementation((fnName: string) => {
       if (fnName === "submit_incident_atomic") {
         return Promise.resolve({ data: { id: "inc-1" }, error: null });
       }

@@ -44,7 +44,7 @@ interface EcosystemData {
   };
   infrastructure: {
     wafMode: string;
-    vercelDeployments: string;
+    dehostDeployments: string;
   };
   finance?: {
     dailyCost: string;
@@ -175,12 +175,12 @@ export default function EcosystemDashboard() {
           )}
         </div>
 
-        {/* Vercel Deployments */}
+        {/* DeHost Deployments */}
         <div className="bg-bg-secondary border-border-subtle rounded-lg border p-4 transition-colors hover:border-purple-500">
-          <h3 className="mb-2 text-lg font-semibold text-purple-400">Vercel Serverless</h3>
+          <h3 className="mb-2 text-lg font-semibold text-purple-400">DeHost Serverless</h3>
           <p className="text-fg-muted text-sm">
             Dağıtım Motoru:{" "}
-            <span className="font-mono text-white">{data.infrastructure.vercelDeployments}</span>
+            <span className="font-mono text-white">{data.infrastructure.dehostDeployments}</span>
           </p>
         </div>
 

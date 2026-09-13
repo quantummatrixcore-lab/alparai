@@ -1,6 +1,6 @@
 "use server";
 
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { requireUser } from "@/lib/auth/session";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { headers } from "next/headers";
@@ -76,8 +76,8 @@ export async function getIncidentPassport(
       return { ok: false, error: `Rate limited. Try again in ${rl.retryAfter}s.` };
     }
 
-    const supabase = await createServerClient();
-    const { data: incident, error } = await supabase
+    const dehost = await createServerClient();
+    const { data: incident, error } = await dehost
       .from("incidents")
       .select(
         `
@@ -111,7 +111,7 @@ export async function getIncidentPassport(
     const providers = data.ai_providers as { name: string; slug: string } | null;
     const models = data.ai_models as { name: string } | null;
 
-    const { data: evidence } = await supabase
+    const { data: evidence } = await dehost
       .from("evidence")
       .select("file_name, file_path, mime_type")
       .eq("incident_id", incidentId);

@@ -14,7 +14,7 @@ const mockFrom = vi.fn().mockImplementation(() => ({
   not: mockNot,
 }));
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({
     from: mockFrom,
   }),
@@ -41,8 +41,8 @@ describe("Cost-Alarm Cron Job", () => {
     // Mock monthly costs: total = 550 USD (exceeds 500 limit)
     mockEq.mockResolvedValueOnce({
       data: [
-        { service: "vercel", amount_usd: 300 },
-        { service: "supabase", amount_usd: 250 },
+        { service: "dehost", amount_usd: 300 },
+        { service: "dehost", amount_usd: 250 },
       ],
       error: null,
     });
@@ -98,7 +98,7 @@ describe("Cost-Alarm Cron Job", () => {
     // Mock monthly costs: total = 30 USD
     mockEq.mockResolvedValueOnce({
       data: [
-        { service: "vercel", amount_usd: 15 },
+        { service: "dehost", amount_usd: 15 },
         { service: "gemini", amount_usd: 15 },
       ],
       error: null,
@@ -141,7 +141,7 @@ describe("Cost-Alarm Cron Job", () => {
     // Mock monthly costs: total = 30 USD (under default limit 500, but over custom env limit 20)
     mockEq.mockResolvedValueOnce({
       data: [
-        { service: "vercel", amount_usd: 15 },
+        { service: "dehost", amount_usd: 15 },
         { service: "gemini", amount_usd: 15 },
       ],
       error: null,
@@ -194,7 +194,7 @@ describe("Cost-Alarm Cron Job", () => {
     });
 
     mockEq.mockResolvedValueOnce({
-      data: [{ service: "vercel", amount_usd: 10 }],
+      data: [{ service: "dehost", amount_usd: 10 }],
       error: null,
     });
 
@@ -208,14 +208,14 @@ describe("Cost-Alarm Cron Job", () => {
           unit: "minutes",
         },
         {
-          vendor: "supabase",
+          vendor: "dehost",
           metric: "db_size_gb",
           limit_value: 0.5,
           used_value: 0.4,
           unit: "GB",
         },
         {
-          vendor: "vercel",
+          vendor: "dehost",
           metric: "bandwidth_gb",
           limit_value: 100,
           used_value: 110,
@@ -240,9 +240,9 @@ describe("Cost-Alarm Cron Job", () => {
     expect(mockEq).toHaveBeenCalledWith("month", expect.any(String));
 
     expect(body.quotaAlerts).toEqual({
-      warningVendors: ["supabase"],
+      warningVendors: ["dehost"],
       criticalVendors: ["github_actions"],
-      exhaustedVendors: ["vercel"],
+      exhaustedVendors: ["dehost"],
     });
 
     expect(criticalSpy).toHaveBeenCalledWith(
@@ -250,8 +250,8 @@ describe("Cost-Alarm Cron Job", () => {
       expect.objectContaining({ vendor: "github_actions" }),
     );
     expect(errorSpy).toHaveBeenCalledWith(
-      "AUTONOMOUS BRAKE: quota exhausted for vercel",
-      expect.objectContaining({ vendor: "vercel" }),
+      "AUTONOMOUS BRAKE: quota exhausted for dehost",
+      expect.objectContaining({ vendor: "dehost" }),
     );
     expect(sendMock).toHaveBeenCalledTimes(1);
     const sent = sendMock.mock.calls[0]?.[0] as { to: string; from: string };
@@ -265,7 +265,7 @@ describe("Cost-Alarm Cron Job", () => {
     });
 
     mockEq.mockResolvedValueOnce({
-      data: [{ service: "vercel", amount_usd: 10 }],
+      data: [{ service: "dehost", amount_usd: 10 }],
       error: null,
     });
 

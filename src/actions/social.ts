@@ -1,6 +1,6 @@
 "use server";
 
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { requireAdmin } from "@/lib/auth/session";
 import { revalidatePath } from "next/cache";
 import type { SocialPost, SocialTemplate, SocialAsset, SocialAccount } from "@/types/social";
@@ -8,8 +8,8 @@ import type { SocialPost, SocialTemplate, SocialAsset, SocialAccount } from "@/t
 export async function getSocialPosts(): Promise<SocialPost[]> {
   try {
     await requireAdmin();
-    const supabase = await createServerClient();
-    const { data, error } = await supabase
+    const dehost = await createServerClient();
+    const { data, error } = await dehost
       .from("social_posts")
       .select("*")
       .order("created_at", { ascending: false });
@@ -24,8 +24,8 @@ export async function getSocialPosts(): Promise<SocialPost[]> {
 export async function getSocialTemplates(): Promise<SocialTemplate[]> {
   try {
     await requireAdmin();
-    const supabase = await createServerClient();
-    const { data, error } = await supabase.from("social_templates").select("*").order("name");
+    const dehost = await createServerClient();
+    const { data, error } = await dehost.from("social_templates").select("*").order("name");
     if (error) throw new Error(error.message);
     return (data || []) as SocialTemplate[];
   } catch (err) {
@@ -37,8 +37,8 @@ export async function getSocialTemplates(): Promise<SocialTemplate[]> {
 export async function getSocialAssets(): Promise<SocialAsset[]> {
   try {
     await requireAdmin();
-    const supabase = await createServerClient();
-    const { data, error } = await supabase
+    const dehost = await createServerClient();
+    const { data, error } = await dehost
       .from("social_assets")
       .select("*")
       .order("created_at", { ascending: false });
@@ -72,8 +72,8 @@ export async function createSocialPost(post: {
 }) {
   try {
     const user = await requireAdmin();
-    const supabase = await createServerClient();
-    const { error } = await supabase.from("social_posts").insert({
+    const dehost = await createServerClient();
+    const { error } = await dehost.from("social_posts").insert({
       ...post,
       created_by: user.id,
     });
@@ -111,8 +111,8 @@ export async function updateSocialPost(
 ) {
   try {
     await requireAdmin();
-    const supabase = await createServerClient();
-    const { error } = await supabase
+    const dehost = await createServerClient();
+    const { error } = await dehost
       .from("social_posts")
       .update({
         ...updates,
@@ -123,7 +123,7 @@ export async function updateSocialPost(
 
     // If status is updated to published, check auto-post connectors
     if (updates.status === "published") {
-      const { data: post, error: fetchErr } = await supabase
+      const { data: post, error: fetchErr } = await dehost
         .from("social_posts")
         .select("platform, body_text, title")
         .eq("id", id)
@@ -134,7 +134,7 @@ export async function updateSocialPost(
           const { publishToX } = await import("@/lib/marketing/publishers/x");
           const res = await publishToX(post.body_text);
           if (res.success && res.postId) {
-            await supabase
+            await dehost
               .from("social_posts")
               .update({ external_url: `https://x.com/status/${res.postId}` })
               .eq("id", id);
@@ -146,7 +146,7 @@ export async function updateSocialPost(
           const { publishToLinkedIn } = await import("@/lib/marketing/publishers/linkedin");
           const res = await publishToLinkedIn(post.body_text, post.title);
           if (res.success && res.shareId) {
-            await supabase
+            await dehost
               .from("social_posts")
               .update({ external_url: `https://linkedin.com/feed/update/${res.shareId}` })
               .eq("id", id);
@@ -166,8 +166,8 @@ export async function updateSocialPost(
 export async function getSocialAccounts(): Promise<SocialAccount[]> {
   try {
     await requireAdmin();
-    const supabase = await createServerClient();
-    const { data, error } = await supabase
+    const dehost = await createServerClient();
+    const { data, error } = await dehost
       .from("social_accounts" as never)
       .select("*")
       .order("created_at", { ascending: false });
@@ -182,8 +182,8 @@ export async function getSocialAccounts(): Promise<SocialAccount[]> {
 export async function getMarketingDrafts(): Promise<unknown[]> {
   try {
     await requireAdmin();
-    const supabase = await createServerClient();
-    const { data, error } = await supabase
+    const dehost = await createServerClient();
+    const { data, error } = await dehost
       .from("marketing_drafts" as never)
       .select("*")
       .order("created_at", { ascending: false });
@@ -206,9 +206,9 @@ export async function publishDraftToLinkedInAction(
       throw new Error("LinkedIn publishing is disabled.");
     }
 
-    const supabase = await createServerClient();
+    const dehost = await createServerClient();
 
-    const { data: draft, error: fetchError } = await supabase
+    const { data: draft, error: fetchError } = await dehost
       .from("marketing_drafts" as never)
       .select("*")
       .eq("id", draftId)
@@ -231,13 +231,13 @@ export async function publishDraftToLinkedInAction(
     }
 
     // Update draft status
-    await supabase
+    await dehost
       .from("marketing_drafts" as never)
       .update({ status: "published", updated_at: new Date().toISOString() } as never)
       .eq("id", draftId);
 
     // Write audit log
-    await supabase.from("audit_log").insert({
+    await dehost.from("audit_log").insert({
       actor_id: user.id,
       action: "social.publish_linkedin",
       entity_type: "marketing_draft",

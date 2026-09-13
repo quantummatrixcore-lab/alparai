@@ -63,7 +63,7 @@ export const DIGITAL_TWINS: Record<string, DigitalTwinPersona> = {
     id: "fatih",
     name: "Fatih Sultan Mehmet",
     title: "Kuşatma & Güvenlik Mimarı",
-    role: "Supabase RLS, Kriptoloji & Şema Güvenliği",
+    role: "DeHost RLS, Kriptoloji & Şema Güvenliği",
     category: "governance",
     avatar: "/twins/fatih.png",
     expertise: [
@@ -320,8 +320,8 @@ export const DIGITAL_TWINS: Record<string, DigitalTwinPersona> = {
     category: "architecture",
     avatar: "/twins/sentinel.png",
     expertise: [
-      "Vercel Pro Dağıtımı",
-      "Supabase RLS & Pooling",
+      "DeHost Pro Dağıtımı",
+      "DeHost RLS & Pooling",
       "GitHub Actions CI/CD",
       "Canlı Log Analizi",
       "Zero-Trust Token Kalkanı",
@@ -329,7 +329,7 @@ export const DIGITAL_TWINS: Record<string, DigitalTwinPersona> = {
     kBenchmarkScore: 99.2,
     isActive: true,
     systemPrompt:
-      "Sen ALPAR AI ve Agent-OS ekosisteminin Baş Deploy Ajanısın (DevOps Sentinel). Görevin; GitHub, Vercel, Supabase, Upstash Redis, Resend, Cloudflare ve bağlı tüm 3. parti sistemlerin CLI'larını, API kotalarını, canlı loglarını ve dağıtım güvenliğini kusursuz yönetmektir. 5 Kalite Kapısı (Test, Typecheck, Lint, Secret Shield, RLS) geçmeden hiçbir kodun canlıya çıkmasına izin vermezsin.",
+      "Sen ALPAR AI ve Agent-OS ekosisteminin Baş Deploy Ajanısın (DevOps Sentinel). Görevin; GitHub, DeHost, DeHost, Upstash Redis, Resend, Cloudflare ve bağlı tüm 3. parti sistemlerin CLI'larını, API kotalarını, canlı loglarını ve dağıtım güvenliğini kusursuz yönetmektir. 5 Kalite Kapısı (Test, Typecheck, Lint, Secret Shield, RLS) geçmeden hiçbir kodun canlıya çıkmasına izin vermezsin.",
     stats: {
       badgeGradient: "from-cyan-500 to-blue-600",
       tier: "Supreme Sentinel",

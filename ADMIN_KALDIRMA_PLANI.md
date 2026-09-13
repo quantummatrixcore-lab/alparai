@@ -26,7 +26,7 @@ Public aynada bulunan 50 backend uç noktası (12 API Rotası + 38 Server Action
 | `src/app/api/admin/costs/route.ts` | Platform maliyet ve bütçe verilerini getirir. | Admin Maliyet/Bütçe widget'ları (`use-admin-benchmarks.ts`) veri alamaz. | Server Action (`getCostsData`) üzerinden doğrudan bileşene bağlanabilir. | 🟡 **P1 (Taşınabilir)** |
 | `src/app/api/admin/cron-monitor/route.ts` | Zamanlanmış cron işlerinin sağlık ve servis kayıt raporunu getirir. | Admin Cron İzleme paneli ve sistem durum göstergeleri kırılır. | Internal healthcheck servisi veya Server Action olarak sunulmalıdır. | 🟡 **P1 (Taşınabilir)** |
 | `src/app/api/admin/ecosystem/route.ts` | Dış ekosistem olay kuyruğu ve haber akışını sunar. | Admin Ekosistem haberleşme paneli (`use-admin-ecosystem.ts`) kırılır. | Katı RLS ve `requireAdmin()` ile kilitli tutulmalıdır. | 🔴 **P0 (Korunmalı)** |
-| `src/app/api/admin/ecosystem-fetch/route.ts` | Dış kaynaklardan olay toplama görevini tetikler. | Manuel tetikleme butonu ve cron revalidation akışı kırılır. | Vercel Cron veya arka plan kuyruğuna (Upstash QStash) devredilebilir. | 🟡 **P1 (Taşınabilir)** |
+| `src/app/api/admin/ecosystem-fetch/route.ts` | Dış kaynaklardan olay toplama görevini tetikler. | Manuel tetikleme butonu ve cron revalidation akışı kırılır. | DeHost Cron veya arka plan kuyruğuna (Upstash QStash) devredilebilir. | 🟡 **P1 (Taşınabilir)** |
 | `src/app/api/admin/env-audit/route.ts` | Maskelenmiş çevre değişkenleri denetim raporunu verir. | Admin Güvenlik ve Env denetim ekranı (`use-admin-dsar.ts`) kırılır. | Sadece CEO/Admin rolüne özel Server Action yapılabilir. | 🟡 **P1 (Taşınabilir)** |
 | `src/app/api/admin/integrations/route.ts` | Platform entegrasyon servisleri bağlantı durumunu listeler. | Admin Entegrasyonlar sekmesi ve servis durumu widget'ı kırılır. | Sunucu tarafı static/revalidated Server Action'a dönüştürülebilir. | 🟡 **P1 (Taşınabilir)** |
 | `src/app/api/admin/live-analysis/route.ts` | Canlı sistem analizi sürecini çalıştırır. | Admin Canlı Analiz tetikleyici arayüzü kırılır. | Doğrudan Server Action (`runLiveSystemAnalysis`) olarak çağrılabilir. | 🟡 **P1 (Taşınabilir)** |
@@ -89,7 +89,7 @@ ErcuOS kapısının tespit ettiği 154 desenli dosyanın mimari katmanlara göre
 2. **Yönetici Sayfaları / Page Routes (`src/app/[locale]/admin/*`, 18 Dosya):** `/admin`, `/admin/users`, `/admin/incidents`, `/admin/experts`, `/admin/grants`, `/admin/social` vb. Sayfalar Next.js middleware ve `requireAdmin()` kontrolü ile gizlidir.
 3. **UI Bileşenleri (`src/components/admin/*` & `src/components/admin-core/*`, 34 Dosya):** `admin-sidebar.tsx`, `admin-topbar.tsx`, moderasyon ve analiz tabloları. Yalnızca yetkili kullanıcı oturum açtığında render edilir.
 4. **Custom Hooks (`src/hooks/admin/*`, 12 Dosya):** `use-admin-stats.ts`, `use-admin-users.ts`, `use-admin-autopilot.ts` vb. Client-side SWR/React Query sarmalayıcıları.
-5. **Tip Tanımları ve Mock'lar (`src/types/admin.ts`, `src/lib/admin-mock.ts`, `src/lib/supabase/admin.ts`, 8 Dosya):** Tip güvenliği ve Supabase Service Role istemcisi.
+5. **Tip Tanımları ve Mock'lar (`src/types/admin.ts`, `src/lib/admin-mock.ts`, `src/lib/dehost/admin.ts`, 8 Dosya):** Tip güvenliği ve DeHost Service Role istemcisi.
 6. **Test ve Doğrulama Kütükleri (`*.test.ts`, 32 Dosya):** Otomatik test senaryoları ve entegrasyon test kütükleri.
 
 ---

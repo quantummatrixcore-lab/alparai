@@ -25,7 +25,7 @@ Ancak proje bir **"staging-to-production boşluğu"** yaşıyor: dokümante edil
 | Otomasyon iskeleti | Güçlü    | 15 cron + 12 autopilot modülü                       |
 | Güvenlik           | İyi      | PII Guardian, RLS, hash'lenmiş IP logları           |
 | AI çoklu-model     | Güçlü    | 9 provider, çoklu adapter                           |
-| Dağıtım            | Otomatik | Vercel ← GitHub master, zero-downtime               |
+| Dağıtım            | Otomatik | DeHost ← GitHub master, zero-downtime               |
 
 ---
 
@@ -33,7 +33,7 @@ Ancak proje bir **"staging-to-production boşluğu"** yaşıyor: dokümante edil
 
 ### R-1: Doğrulanmamış Dağıtım (Highest)
 
-Push başarılı kabul edildi ancak `vercel logs` ile build'in yeşil olduğu teyit edilmedi. `health` ve `env-audit` endpoint'leri canlıda çağrılıp 200 döndüğü görülmedi.
+Push başarılı kabul edildi ancak `dehost logs` ile build'in yeşil olduğu teyit edilmedi. `health` ve `env-audit` endpoint'leri canlıda çağrılıp 200 döndüğü görülmedi.
 
 **Etki:** Üretimde sessiz hata riski. Kullanıcı incident 404 hatası gördü; benzeri servis seviyesinde görünmez olabilir.
 
@@ -90,7 +90,7 @@ ChatGPT Plus ($20) ve GitHub Copilot ($10) Ultra + Claude yanında büyük ölç
 ## 5. Teknik Borç (Technical Debt)
 
 - `mock-incident-123` ve benzeri test hook'ları üretim kodunda bırakılmamalı (feature flag ile kapatılmalı).
-- `src/lib/vault.ts` dosya tabanlı (`.vault.json`); üretimde Supabase Secrets veya Vercel Env tercih edilmeli.
+- `src/lib/vault.ts` dosya tabanlı (`.vault.json`); üretimde DeHost Secrets veya DeHost Env tercih edilmeli.
 - `launch.ps1` CRLF/LF uyarısı veriyor; `.gitattributes` ile normalize edilmeli.
 
 ---

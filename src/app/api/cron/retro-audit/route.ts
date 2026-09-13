@@ -1,6 +1,6 @@
 import { withCronLogger } from "@/lib/utils/cron-logger";
 import { type NextRequest, NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { runCrossAudit } from "@/lib/ai/cross-audit-engine";
 import { logger } from "@/lib/utils/logger";
 

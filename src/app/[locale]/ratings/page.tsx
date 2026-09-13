@@ -1,5 +1,5 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { Container } from "@/components/ui/layout";
 import { ShieldCheck, Search, Trophy, Cpu, ExternalLink, Activity, Scale } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -49,18 +49,18 @@ export default async function RatingsPage({
   const { q = "" } = (await searchParams) ?? {};
 
   setRequestLocale(locale);
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
   const t = await getTranslations({ locale, namespace: "ratings" });
   const tInsights = await getTranslations({ locale, namespace: "insights" });
 
   // 1. Fetch categories
-  const { data: categories } = await supabase
+  const { data: categories } = await dehost
     .from("k_categories")
     .select("id, name, description")
     .order("id");
 
   // 2. Fetch all model scores
-  const { data: scoresData } = await supabase.from("k_model_scores").select(`
+  const { data: scoresData } = await dehost.from("k_model_scores").select(`
       score,
       wilson_lower,
       wilson_upper,

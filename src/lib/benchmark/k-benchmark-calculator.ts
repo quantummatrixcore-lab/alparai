@@ -1,5 +1,5 @@
 import { calculateWilsonInterval } from "@/lib/utils/wilson-score";
-import type { SupabaseClient } from "@supabase/supabase-js";
+type DeHostClient = any;
 import { logger } from "@/lib/utils/logger";
 
 export interface ModelRecord {
@@ -359,10 +359,10 @@ export function calculateKModelCategoryScores(
  * Re-evaluates all active models across all K-BENCHMARK categories using live DB data and persists results.
  */
 export async function recalculateAllKBenchmarkScores(
-  supabase: SupabaseClient,
+  dehost: DeHostClient,
 ): Promise<{ success: boolean; modelsProcessed: number; rowsUpdated: number }> {
   // 1. Fetch active models
-  const { data: models, error: modelsErr } = await supabase
+  const { data: models, error: modelsErr } = await dehost
     .from("ai_models")
     .select("id, name, slug, status, provider_id, ai_providers(id, name, slug, is_verified)")
     .eq("status", "active");
@@ -370,7 +370,7 @@ export async function recalculateAllKBenchmarkScores(
   if (modelsErr) throw modelsErr;
 
   // 2. Fetch categories
-  const { data: categories, error: categoriesErr } = await supabase
+  const { data: categories, error: categoriesErr } = await dehost
     .from("k_categories")
     .select("id");
 
@@ -381,7 +381,7 @@ export async function recalculateAllKBenchmarkScores(
   }
 
   // 3. Fetch current scores map
-  const { data: currentScores } = await supabase
+  const { data: currentScores } = await dehost
     .from("k_model_scores")
     .select("category_id, model_id, score");
 
@@ -393,7 +393,7 @@ export async function recalculateAllKBenchmarkScores(
   }
 
   // 4. Fetch BENCH-TR evaluations
-  const { data: benchTrRows } = await supabase
+  const { data: benchTrRows } = await dehost
     .from("bench_tr_evaluations" as unknown as "ai_models")
     .select(
       "id, model_name, provider_slug, tr_grammar_score, tr_bias_score, tr_factuality_pct, eval_dataset_ver",
@@ -404,7 +404,7 @@ export async function recalculateAllKBenchmarkScores(
 
   // 5. Fetch published incidents from the last 90 days (or all published)
   const ninetyDaysAgo = new Date(Date.now() - 90 * 24 * 60 * 60 * 1000).toISOString();
-  const { data: incidents, error: incidentsErr } = await supabase
+  const { data: incidents, error: incidentsErr } = await dehost
     .from("incidents")
     .select(
       "id, ai_model_id, category, severity, upvotes_count, language, contains_pii, cross_audit_truth_score, eu_act_risk_category, eu_act_data_privacy_score, eu_act_non_discrimination_score, eu_act_transparency_score",
@@ -440,7 +440,7 @@ export async function recalculateAllKBenchmarkScores(
 
   // 7. Bulk upsert new scores in public.k_model_scores
   if (upsertRows.length > 0) {
-    const { error: upsertErr } = await supabase
+    const { error: upsertErr } = await dehost
       .from("k_model_scores")
       .upsert(upsertRows, { onConflict: "category_id,model_id" });
 

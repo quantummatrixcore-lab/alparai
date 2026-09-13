@@ -4,7 +4,7 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { Trophy, Award, Sparkles, Clock, DollarSign, Plus } from "lucide-react";
 import { Link } from "@/i18n/routing";
 import { formatDate } from "@/lib/utils";
@@ -51,9 +51,9 @@ export default async function BountiesPage({ params }: { params: Promise<{ local
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "bounties" });
   const tCommon = await getTranslations({ locale, namespace: "common" });
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
 
-  const { data } = await supabase
+  const { data } = await dehost
     .from("bug_bounties")
     .select(
       "id, severity_score, estimated_reward_cents, status, created_at, notes, incident_id, reporter_id, provider_id, incidents(title_masked, title_tr, category, severity), ai_providers(name, slug, logo_url), reporter:user_profiles!bug_bounties_reporter_id_fkey(full_name, username)",
@@ -76,7 +76,7 @@ export default async function BountiesPage({ params }: { params: Promise<{ local
 
   let userBadgeCodes: string[] = [];
   if (user) {
-    const { data: userBadges } = await supabase
+    const { data: userBadges } = await dehost
       .from("user_bounty_badges")
       .select("badge_code")
       .eq("user_id", user.id);

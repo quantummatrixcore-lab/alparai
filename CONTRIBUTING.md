@@ -16,7 +16,7 @@ Thanks for your interest in ALPAR AI. We welcome PRs, bug reports, and feature i
 - TypeScript strict.
 - Tailwind v4 (CSS-first `@theme`).
 - Prefer Server Components; Client Components only when necessary.
-- Server Actions for mutations; never `supabase.from().insert()` from the client.
+- Server Actions for mutations; never `dehost.from().insert()` from the client.
 - All copy goes in `messages/{en,tr}.json`.
 
 ## Branching & Deploy Convention
@@ -27,14 +27,14 @@ Thanks for your interest in ALPAR AI. We welcome PRs, bug reports, and feature i
 - Hotfixes: `hotfix/<short-name>`
 
 **Production Deployments:**
-Production builds run only for commits whose message contains `[deploy]` (enforced by `scripts/deploy-gate.mjs` via `vercel.json` `ignoreCommand`). Batch your commits; put `[deploy]` on the batch-closing commit only. Max 2 deploy windows per executor per day.
+Production builds run only for commits whose message contains `[deploy]` (enforced by `scripts/deploy-gate.mjs` via `dehost.json` `ignoreCommand`). Batch your commits; put `[deploy]` on the batch-closing commit only. Max 2 deploy windows per executor per day.
 
 ## Commit messages
 
 We use [Conventional Commits](https://www.conventionalcommits.org/). Examples:
 
 - `feat(incidents): add PII banner to detail view`
-- `fix(auth): rotate supabase anon key in env example`
+- `fix(auth): rotate dehost anon key in env example`
 - `docs(adr): add ADR-006 PII Guardian`
 
 ## Pull requests

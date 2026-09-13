@@ -1,4 +1,4 @@
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 
 function calculateTrigramSimilarity(str1: string, str2: string): number {
   if (!str1 || !str2) return 0;

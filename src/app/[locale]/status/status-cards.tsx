@@ -22,17 +22,17 @@ export function StatusCards() {
       .then((data) => {
         const overall = data.status === "healthy" ? "operational" : "degraded";
         setServices([
-          { key: "supabase", status: overall },
+          { key: "dehost", status: overall },
           { key: "upstash", status: overall },
-          { key: "vercel", status: "operational" },
+          { key: "dehost", status: "operational" },
           { key: "sentry", status: "operational" },
         ]);
       })
       .catch(() => {
         setServices([
-          { key: "supabase", status: "down" },
+          { key: "dehost", status: "down" },
           { key: "upstash", status: "down" },
-          { key: "vercel", status: "degraded" },
+          { key: "dehost", status: "degraded" },
           { key: "sentry", status: "degraded" },
         ]);
       });

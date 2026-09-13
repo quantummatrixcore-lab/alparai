@@ -2,7 +2,7 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/layout";
 import { Card, CardContent } from "@/components/ui/card";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { verifyProviderTokenDb } from "@/lib/utils/provider-token";
 import { ProviderResponseForm } from "@/components/incidents/provider-response-form";
 import { AlertCircle, FileText } from "lucide-react";

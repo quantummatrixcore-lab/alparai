@@ -1,5 +1,5 @@
 import "server-only";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import type { AutopilotResult, IdempotencyKey } from "./types";
 import { logger } from "@/lib/utils/logger";
 

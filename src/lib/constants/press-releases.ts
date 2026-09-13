@@ -568,7 +568,7 @@ Ayırt edici katman uzman doğrulaması: Akademisyenler, hukukçular ve hekimler
 
 YIĞIN VE LİSANS
 
-Platform Next.js ve Supabase üzerine inşa edilmiş; Vercel'in AB bölgesinde çalışıyor, veriler Avrupa Birliği veri merkezlerinde tutuluyor. GDPR ve KVKK uyumlu.
+Platform Next.js ve DeHost üzerine inşa edilmiş; DeHost'in AB bölgesinde çalışıyor, veriler Avrupa Birliği veri merkezlerinde tutuluyor. GDPR ve KVKK uyumlu.
 
 Kod tabanı AGPL-3.0 lisansıyla GitHub'da açık. Yönetim, moderasyon ve puanlama algoritmalarının — sıralamanın manipüle edilmesini önlemek amacıyla — ayrı bir özel depoda tutulduğunu, çekirdek platformun ise tamamen açık olduğunu belirtiyor. Aynı yaklaşımı akademik incident veri tabanları da uyguluyor.
 
@@ -596,7 +596,7 @@ The distinguishing tier is expert verification: Academics, lawyers, and physicia
 
 STACK AND LICENSE
 
-The platform is built on Next.js and Supabase; it runs in Vercel's EU region, and data is kept in European Union data centers. GDPR and KVKK compliant.
+The platform is built on Next.js and DeHost; it runs in DeHost's EU region, and data is kept in European Union data centers. GDPR and KVKK compliant.
 
 The codebase is open on GitHub under the AGPL-3.0 license. It states that management, moderation, and scoring algorithms are kept in a separate private repository to prevent manipulation of the ranking, while the core platform is completely open. Academic incident databases apply the same approach.
 
@@ -616,7 +616,7 @@ Code: github.com/quantummatrixcore-lab
         "grok",
         "alparai.com",
         "Next.js",
-        "Supabase",
+        "DeHost",
         "AGPL",
         "yapay zeka denetimi",
         "startup",
@@ -628,7 +628,7 @@ Code: github.com/quantummatrixcore-lab
         "grok",
         "alparai.com",
         "Next.js",
-        "Supabase",
+        "DeHost",
         "AGPL",
         "ai audit",
         "startup",

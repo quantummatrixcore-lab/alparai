@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from "@/lib/dehost/client";
 import { maskPII } from "../src/lib/pii/guardian";
 
 export interface RealIncidentSeedItem {
@@ -146,24 +146,24 @@ export async function seedRealIncidents(execute = false) {
   console.log(`✓ Sanitized ${processedData.length} incidents through PII Guardian.`);
 
   if (!execute) {
-    console.log("ℹ️ Dry-run mode completed. Pass --execute to write to Supabase.");
+    console.log("ℹ️ Dry-run mode completed. Pass --execute to write to DeHost.");
     return processedData;
   }
 
-  const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const dehostUrl = process.env.DEHOST_URL || process.env.NEXT_PUBLIC_DEHOST_URL;
+  const dehostKey = process.env.DEHOST_SERVICE_ROLE_KEY;
 
-  if (!supabaseUrl || !supabaseKey) {
+  if (!dehostUrl || !dehostKey) {
     console.error(
-      "❌ Error: Missing SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY environment variables.",
+      "❌ Error: Missing DEHOST_URL / DEHOST_SERVICE_ROLE_KEY environment variables.",
     );
     process.exit(1);
   }
 
-  const supabase = createClient(supabaseUrl, supabaseKey);
+  const dehost = createClient(dehostUrl, dehostKey);
 
   for (const incident of processedData) {
-    const { data: provider } = await supabase
+    const { data: provider } = await dehost
       .from("ai_providers")
       .select("id")
       .eq("slug", incident.provider_slug)
@@ -193,7 +193,7 @@ export async function seedRealIncidents(execute = false) {
       pii_categories: incident.pii_categories,
     };
 
-    const { error } = await supabase.from("incidents").upsert(payload, { onConflict: "id" });
+    const { error } = await dehost.from("incidents").upsert(payload, { onConflict: "id" });
     if (error) {
       console.error(`❌ Failed to upsert incident ${incident.id}:`, error.message);
     } else {

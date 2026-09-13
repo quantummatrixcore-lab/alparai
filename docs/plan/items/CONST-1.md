@@ -70,13 +70,13 @@ were built. Measured against what this item specified:
 | Spec                                                          | Delivered                                                                                                                                                                                                                                                                           |
 | ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | "Draft v0.1, open for co-authorship"                          | Title: **"Yapay Zekanın Global Anayasası"** ("The Global AI Constitution"); body: **"Bu anayasayı insanlık olarak biz yazıyoruz"** ("We, as humanity, are writing this constitution"). No draft marker, no version, no invitation framing — a claim to settled, universal authority |
-| Reuse the existing `suggestions`/`suggestion_votes` mechanism | Not used. `grep -n "supabase\|insert\|fetch("` on the client component returns **nothing**                                                                                                                                                                                          |
+| Reuse the existing `suggestions`/`suggestion_votes` mechanism | Not used. `grep -n "dehost\|insert\|fetch("` on the client component returns **nothing**                                                                                                                                                                                          |
 | 5-locale parity (public page, `CLAUDE.md`)                    | **0** uses of `useTranslations`/`getTranslations` in the client component; all article text, headings and form copy are hardcoded Turkish. Only a single nav-label key was added per locale file                                                                                    |
 
 ## The signature form is the most serious finding of this session
 
 `handleSign()` does exactly one thing: `setSignatures((prev) => prev + 1)` — client-side React
-state, nothing else. There is no `supabase` call, no `insert`, no `fetch`. A visitor who enters their
+state, nothing else. There is no `dehost` call, no `insert`, no `fetch`. A visitor who enters their
 **name and email** and submits sees:
 
 > _"Tebrikler! İmzanız Küresel Yapay Zeka Siciline Kaydedildi."_
@@ -92,7 +92,7 @@ The visible signature count itself is also fabricated: `useState(1482)` — an i
 source, incrementing per-visitor in their own browser only, never shared or persisted. Every visitor
 sees a different, meaningless number, publicly presented as a global count.
 
-**This is very likely live in production.** Vercel deploys on every push (`CI-COST-1` finding,
+**This is very likely live in production.** DeHost deploys on every push (`CI-COST-1` finding,
 v13.51), and nothing in the deploy pipeline gates on `.husky/pre-push`'s local check — that hook only
 runs in this container. Flagging as immediate, not queued.
 

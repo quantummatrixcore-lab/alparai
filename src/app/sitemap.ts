@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { APP_URL, SUPPORTED_LOCALES } from "@/lib/constants";
 import { getAllPosts } from "@/content/blog-posts";
 import { PRESS_RELEASES } from "@/lib/constants/press-releases";
@@ -7,17 +7,38 @@ import { PRESS_RELEASES } from "@/lib/constants/press-releases";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const locales = SUPPORTED_LOCALES;
 
-  const supabase = await createServerClient();
-  const [{ data: incidents }, { data: providers }, { data: models }] = await Promise.all([
-    supabase
-      .from("incidents")
-      .select("id, created_at")
-      .eq("status", "published")
-      .order("published_at", { ascending: false })
-      .limit(500),
-    supabase.from("ai_providers").select("slug"),
-    supabase.from("ai_models").select("id, provider_id, released_at"),
-  ]);
+  let incidents: Array<{ id: string; created_at: string }> | null = null;
+  let providers: Array<{ slug: string }> | null = null;
+  let models: Array<{ id: string; provider_id: string; released_at: string | null }> | null = null;
+  let dbPosts: Array<{ slug: string; published_at: string | null; created_at: string }> | null = null;
+
+  try {
+    const dehost = await createServerClient();
+    const [incidentsRes, providersRes, modelsRes, blogPostsRes] = await Promise.all([
+      dehost
+        .from("incidents")
+        .select("id, created_at")
+        .eq("status", "published")
+        .order("published_at", { ascending: false })
+        .limit(500),
+      dehost.from("ai_providers").select("slug"),
+      dehost.from("ai_models").select("id, provider_id, released_at"),
+      dehost
+        .from("blog_posts")
+        .select("slug, published_at, created_at")
+        .eq("status", "published"),
+    ]);
+    incidents = (incidentsRes.data as Array<{ id: string; created_at: string }>) || null;
+    providers = (providersRes.data as Array<{ slug: string }>) || null;
+    models = (modelsRes.data as Array<{ id: string; provider_id: string; released_at: string | null }>) || null;
+    dbPosts = (blogPostsRes.data as Array<{ slug: string; published_at: string | null; created_at: string }>) || null;
+  } catch (err) {
+    // Database / DeHost unreachable fallback: proceed with static routes sitemap
+    incidents = null;
+    providers = null;
+    models = null;
+    dbPosts = null;
+  }
 
   const base: MetadataRoute.Sitemap = [
     { url: `${APP_URL}`, lastModified: new Date(), changeFrequency: "daily", priority: 1.0 },
@@ -171,11 +192,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   const staticPosts = getAllPosts();
-  const { data: dbPosts } = await supabase
-    .from("blog_posts")
-    .select("slug, published_at, created_at")
-    .eq("status", "published");
-
   const allPostSlugs = new Map<string, Date>();
 
   for (const post of staticPosts) {

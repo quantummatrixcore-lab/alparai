@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { generateQuestionsFromIncidents, runBatchEvaluations } from "@/actions/admin-question-bank";
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/dehost/server";
 
-vi.mock("@/lib/supabase/server", () => ({
+vi.mock("@/lib/dehost/server", () => ({
   createClient: vi.fn(),
 }));
 
@@ -19,7 +19,7 @@ describe("admin-question-bank", () => {
 
   describe("generateQuestionsFromIncidents", () => {
     it("should process new incidents into questions", async () => {
-      const mockSupabase = {
+      const mockDeHost = {
         auth: { getUser: vi.fn().mockResolvedValue({ data: { user: { id: "admin" } } }) },
         from: vi.fn((table: string) => {
           if (table === "k_benchmark_question_bank") {
@@ -51,7 +51,7 @@ describe("admin-question-bank", () => {
         }),
       };
 
-      vi.mocked(createClient).mockResolvedValue(mockSupabase as never);
+      vi.mocked(createClient).mockResolvedValue(mockDeHost as never);
 
       const res = await generateQuestionsFromIncidents();
       expect(res.success).toBe(true);
@@ -61,7 +61,7 @@ describe("admin-question-bank", () => {
 
   describe("runBatchEvaluations", () => {
     it("should return success when evaluations are inserted", async () => {
-      const mockSupabase = {
+      const mockDeHost = {
         auth: { getUser: vi.fn().mockResolvedValue({ data: { user: { id: "admin" } } }) },
         from: vi.fn((table: string) => {
           if (table === "k_benchmark_question_bank") {
@@ -104,7 +104,7 @@ describe("admin-question-bank", () => {
         }),
       };
 
-      vi.mocked(createClient).mockResolvedValue(mockSupabase as never);
+      vi.mocked(createClient).mockResolvedValue(mockDeHost as never);
 
       const res = await runBatchEvaluations();
       expect(res.success).toBe(true);

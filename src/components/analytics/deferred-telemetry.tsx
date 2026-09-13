@@ -7,12 +7,12 @@ import { ReferralTracker } from "@/components/marketing/referral-tracker";
 
 // Non-critical telemetry loaded lazily with zero SSR impact
 const SpeedInsights = dynamic(
-  () => import("@vercel/speed-insights/next").then((mod) => mod.SpeedInsights),
+  () => import("@/lib/analytics/speed-stub").then((mod) => mod.SpeedInsights),
   { ssr: false },
 );
 
 const Analytics = dynamic(
-  () => import("@vercel/analytics/react").then((mod) => mod.Analytics),
+  () => import("@/lib/analytics/stub").then((mod) => mod.Analytics),
   { ssr: false },
 );
 

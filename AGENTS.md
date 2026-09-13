@@ -247,8 +247,8 @@ Every complex development task automatically triggers a 4-role deterministic sel
 6. **Test Doğrulaması**:
    - Her değişiklikte `node D:\Antigravity\tests\test_v59_autonomous_night_watch_orchestrator.js` çalıştırılmalı ve 14/14 PASS (%100 Yeşil) teyit edilmelidir.
 ## 24. Kronik Sorun İmha ve Kalıcı Bağışıklık Motoru Standartları (v60_chronic_problem_immune_sentinel.js)
-1. **Vercel Tuzağı ve Sahte Yapılandırma İmhası (Sıfır Fatura Yanılgısı)**:
-   - Proje dizinlerindeki `vercel.json`, `.env.vercel*` ve eski Vercel belirteçleri otomatik tespit edilerek `.deprecated_archive/` dizinine karantinaya alınır. Ajanların Vercel faturası uydurması kökten engellenir.
+1. **DeHost Tuzağı ve Sahte Yapılandırma İmhası (Sıfır Fatura Yanılgısı)**:
+   - Proje dizinlerindeki `dehost.json`, `.env.dehost*` ve eski DeHost belirteçleri otomatik tespit edilerek `.deprecated_archive/` dizinine karantinaya alınır. Ajanların DeHost faturası uydurması kökten engellenir.
 2. **Sıfır Laptop Hosting ve Cloudflare 1033 Hata İmhası**:
    - Kullanıcının laptopunda `cloudflared tunnel` veya `next dev` canlı yayın daemon'ı açılması anayasal suçtur. Tüm yayınlar `deploy-agent` (v50) ile doğrudan Cloudflare Pages / Workers Edge ortamına yapılır. Yerel tünel öldüğü için Error 1033 fiziksel olarak imkansız hale getirilmiştir.
 3. **Sıfır İzinsiz Sekme ve Başlatma Kalkanı**:
@@ -258,3 +258,13 @@ Every complex development task automatically triggers a 4-role deterministic sel
 5. **Dosya Konumu & Test Doğrulaması**:
    - **Dosya Konumu**: `D:\02_Yapay_Zeka_Motorlari\Antigravity\engines\v60_chronic_problem_immune_sentinel.js` (Ayna: `D:\Antigravity\engines\v60_chronic_problem_immune_sentinel.js`).
    - Her değişiklikte `node D:\Antigravity\tests\test_v60_chronic_problem_immune_sentinel.js` çalıştırılmalı ve 14/14 PASS (%100 Yeşil) teyit edilmelidir.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

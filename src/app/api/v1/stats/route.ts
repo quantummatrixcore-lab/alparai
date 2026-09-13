@@ -1,6 +1,6 @@
 import "server-only";
 import { type NextRequest, NextResponse } from "next/server";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { rateLimit } from "@/lib/rate-limit";
 import { headers } from "next/headers";
@@ -56,15 +56,15 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const supabase = await createServerClient();
+    const dehost = await createServerClient();
 
     const [incidentsCountResult, providersResult, categoriesResult] = await Promise.all([
-      supabase
+      dehost
         .from("incidents")
         .select("id", { count: "exact", head: true })
         .eq("status", "published"),
-      supabase.from("ai_providers").select("trust_score"),
-      supabase.from("incidents").select("category").eq("status", "published"),
+      dehost.from("ai_providers").select("trust_score"),
+      dehost.from("incidents").select("category").eq("status", "published"),
     ]);
 
     if (incidentsCountResult.error || providersResult.error || categoriesResult.error) {

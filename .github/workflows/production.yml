@@ -26,9 +26,9 @@ env:
   PNPM_VERSION: "9.12.0"
   NEXT_TELEMETRY_DISABLED: "1"
   NODE_OPTIONS: "--max-old-space-size=8192"
-  NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL || 'https://mock-supabase.supabase.co' }}
-  NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'mock-anon-key' }}
-  SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY || 'mock-service-role-key' }}
+  NEXT_PUBLIC_DEHOST_URL: ${{ secrets.NEXT_PUBLIC_DEHOST_URL || 'https://mock-dehost.dehost.internal' }}
+  NEXT_PUBLIC_DEHOST_ANON_KEY: ${{ secrets.NEXT_PUBLIC_DEHOST_ANON_KEY || 'mock-anon-key' }}
+  DEHOST_SERVICE_ROLE_KEY: ${{ secrets.DEHOST_SERVICE_ROLE_KEY || 'mock-service-role-key' }}
 
 jobs:
   # =========================================================================
@@ -156,10 +156,10 @@ jobs:
   # This pipeline ensures the code passes all tests and quality gates before Cloudflare builds it.
 
   # =========================================================================
-  # 5. SUPABASE MIGRATION (CLI)
+  # 5. DEHOST MIGRATION (CLI)
   # =========================================================================
-  supabase_migration:
-    name: "5. Supabase Migration (CLI)"
+  dehost_migration:
+    name: "5. DeHost Migration (CLI)"
     needs: [lint]
     runs-on: ubuntu-latest
     steps:
@@ -168,24 +168,24 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Setup Supabase CLI
-        uses: supabase/setup-cli@v1
+      - name: Setup DeHost CLI
+        uses: dehost/setup-cli@v1
         with:
           version: latest
 
-      - name: Run Supabase Migrations via CLI
+      - name: Run DeHost Migrations via CLI
         env:
-          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
-          SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
-          SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF || secrets.SUPABASE_PROJECT_ID }}
+          DEHOST_ACCESS_TOKEN: ${{ secrets.DEHOST_ACCESS_TOKEN }}
+          DEHOST_DB_PASSWORD: ${{ secrets.DEHOST_DB_PASSWORD }}
+          DEHOST_PROJECT_REF: ${{ secrets.DEHOST_PROJECT_REF || secrets.DEHOST_PROJECT_ID }}
         run: |
-          if [ -n "$SUPABASE_PROJECT_REF" ] && [ -n "$SUPABASE_ACCESS_TOKEN" ]; then
-            echo "Linking Supabase project: $SUPABASE_PROJECT_REF"
-            supabase link --project-ref "$SUPABASE_PROJECT_REF" --password "$SUPABASE_DB_PASSWORD"
+          if [ -n "$DEHOST_PROJECT_REF" ] && [ -n "$DEHOST_ACCESS_TOKEN" ]; then
+            echo "Linking DeHost project: $DEHOST_PROJECT_REF"
+            dehost link --project-ref "$DEHOST_PROJECT_REF" --password "$DEHOST_DB_PASSWORD"
             echo "Applying database migrations..."
-            supabase db push --password "$SUPABASE_DB_PASSWORD"
-            echo "✅ Supabase migration completed successfully."
+            dehost db push --password "$DEHOST_DB_PASSWORD"
+            echo "✅ DeHost migration completed successfully."
           else
-            echo "⚠️ Supabase credentials not found in secrets. Falling back to migration script..."
+            echo "⚠️ DeHost credentials not found in secrets. Falling back to migration script..."
             node scripts/apply-migrations.mjs || echo "Skipping migration script fallback."
           fi

@@ -10,7 +10,7 @@
 - Hooked fuzzy matching check into the `submitIncident` workflow action (`src/actions/incidents.ts`):
   - Prior to inserting, runs `check_incident_duplicate` with the incident's title.
   - If the similarity score is `> 0.7`, flags the incident as `is_possible_duplicate = true`.
-- Created a database migration at `supabase/migrations/20260727000014_duplicate_incident_detection.sql`.
+- Created a database migration at `dehost/migrations/20260727000014_duplicate_incident_detection.sql`.
 
 ## Verification
 

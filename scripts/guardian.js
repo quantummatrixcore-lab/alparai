@@ -125,9 +125,9 @@ function checkSrcCode() {
 }
 
 function checkSeedFiles() {
-  const supabaseDir = path.join(basePath, 'supabase');
-  if (!fs.existsSync(supabaseDir)) return;
-  walk(supabaseDir, (filePath) => {
+  const dehostDir = path.join(basePath, 'dehost');
+  if (!fs.existsSync(dehostDir)) return;
+  walk(dehostDir, (filePath) => {
     if (filePath.endsWith('.sql') && path.basename(filePath).includes('seed')) {
       try {
         const content = fs.readFileSync(filePath, 'utf8');

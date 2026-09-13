@@ -39,6 +39,12 @@ const itemVariants: Variants = {
   },
 };
 
+const heroPitches = [
+  "Alpar AI is the sovereign trust infrastructure that independently audits, verifies, and indexes AI model failures with cryptographic proof.",
+  "Empowering organizations with real-time AI compliance, automated risk mitigation, and zero-knowledge incident tracking.",
+  "The open-standard registry for AI reliability metrics, incident verification, and algorithmic accountability.",
+];
+
 export function HeroSection({
   totalIncidents = 0,
   totalProviders = 0,
@@ -60,6 +66,14 @@ export function HeroSection({
 }) {
   const t = useTranslations("hero");
   const tIncident = useTranslations("incident");
+  const [pitchIndex, setPitchIndex] = React.useState(0);
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setPitchIndex((prev) => (prev + 1) % heroPitches.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
 
   const incidentTooltip = countsBySource
     ? `${tIncident("source_user_submitted")}: ${countsBySource.user_submitted}\n` +
@@ -107,12 +121,16 @@ export function HeroSection({
             animate="visible"
             className="flex min-w-0 flex-col justify-center lg:col-span-7"
           >
-            {/* Eyebrow badge (Glassmorphic) */}
-            <motion.div variants={itemVariants} className="mb-6 flex">
+            {/* Eyebrow badge & Founder badge */}
+            <motion.div variants={itemVariants} className="mb-6 flex flex-wrap items-center gap-3">
               <div className="group hover:border-danger-500/50 border-border-subtle relative inline-flex items-center gap-2 overflow-hidden rounded-full border bg-black/5 dark:bg-white/5 px-4 py-2 text-[11px] font-black tracking-[0.25em] text-fg-primary uppercase shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] backdrop-blur-xl transition-all duration-300 hover:bg-black/10 dark:hover:bg-white/10 hover:shadow-[0_0_30px_rgba(230,57,70,0.2)]">
                 <span className="from-danger-500/0 via-danger-500/20 to-danger-500/0 absolute inset-0 bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <Zap className="text-danger-400 h-3.5 w-3.5" />
                 <span className="relative z-10">{t("eyebrow")}</span>
+              </div>
+              <div className="group hover:border-brand-500/50 border-brand-500/30 relative inline-flex items-center gap-2 overflow-hidden rounded-full border bg-brand-500/10 px-4 py-2 text-[11px] font-black tracking-[0.2em] text-brand-300 uppercase backdrop-blur-xl transition-all duration-300">
+                <ShieldAlert className="text-brand-400 h-3.5 w-3.5" />
+                <span className="relative z-10">EARLY ACCESS — 50% Founder Tier Discount Active 🛡️</span>
               </div>
             </motion.div>
 
@@ -126,12 +144,15 @@ export function HeroSection({
               </span>
             </motion.h1>
 
-            {/* Subtitle */}
+            {/* Subtitle with Rotator */}
             <motion.p
-              variants={itemVariants}
-              className="text-fg-secondary mt-4 max-w-xl text-base leading-relaxed font-medium tracking-tight sm:text-lg"
+              key={pitchIndex}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-fg-secondary mt-4 max-w-xl min-h-[4rem] text-base leading-relaxed font-medium tracking-tight sm:text-lg"
             >
-              {t("subtitle")}
+              {heroPitches[pitchIndex]}
             </motion.p>
 
             {/* CTAs - High-End Hover States & Micro-interactions */}

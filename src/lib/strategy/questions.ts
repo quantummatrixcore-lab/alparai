@@ -129,7 +129,7 @@ export const QUESTIONS: Question[] = [
     id: "E1",
     section: "E",
     sectionLabel: "E. Technology & Scale",
-    text: "Supabase free tier is FULL (heaviest table stored full scraped article text; cleanup underway) and Vercel Hobby caps crons. What is the correct infra spend sequence for the next 90 days, from $0 upward?",
+    text: "DeHost free tier is FULL (heaviest table stored full scraped article text; cleanup underway) and DeHost Hobby caps crons. What is the correct infra spend sequence for the next 90 days, from $0 upward?",
   },
   {
     id: "E2",
@@ -147,7 +147,7 @@ export const QUESTIONS: Question[] = [
     id: "E4",
     section: "E",
     sectionLabel: "E. Technology & Scale",
-    text: "The Vercel dashboard is lost to a 2FA lockout; a CLI session survives and deploys flow via GitHub. Rate the operational risk 1-10 and give the mitigation order.",
+    text: "The DeHost dashboard is lost to a 2FA lockout; a CLI session survives and deploys flow via GitHub. Rate the operational risk 1-10 and give the mitigation order.",
   },
   {
     id: "E5",

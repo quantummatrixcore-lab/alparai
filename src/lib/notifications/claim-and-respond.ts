@@ -1,5 +1,5 @@
 import { logger } from "@/lib/utils/logger";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 
 export interface ClaimAndRespondTriggerInput {
   incidentId: string;
@@ -27,7 +27,7 @@ export async function triggerClaimAndRespondAlert(
     };
   }
 
-  const supabase = createAdminClient();
+  const dehost = createAdminClient();
 
   try {
     // 1. Fetch provider details if providerId is supplied
@@ -35,7 +35,7 @@ export async function triggerClaimAndRespondAlert(
     let providerName = "AI Provider";
 
     if (input.providerId) {
-      const { data: provider } = await supabase
+      const { data: provider } = await dehost
         .from("ai_providers")
         .select("name, contact_email")
         .eq("id", input.providerId)
@@ -63,7 +63,7 @@ export async function triggerClaimAndRespondAlert(
     // 2. Queue into outreach queue table for record keeping
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: queued, error: queueErr } = await (supabase as any)
+    const { data: queued, error: queueErr } = await (dehost as any)
       .from("outreach_queue")
       .insert({
         recipient_email:

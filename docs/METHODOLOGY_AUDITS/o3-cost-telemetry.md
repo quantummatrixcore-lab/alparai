@@ -12,7 +12,7 @@
   - Queries `cross_audit_runs` directly to calculate rolling daily LLM costs and monthly LLM costs.
   - Aggregates non-LLM infrastructure monthly costs from `finance_monthly_costs`.
   - Triggers the monthly budget alarm or daily rate-limit switch if aggregate costs exceed defined limits ($500 monthly limit, $100 daily limit).
-- Created a database migration at `supabase/migrations/20260727000016_cross_audit_runs.sql`.
+- Created a database migration at `dehost/migrations/20260727000016_cross_audit_runs.sql`.
 
 ## Verification
 

@@ -1,4 +1,4 @@
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 
 export interface OpenRouterModel {
   id: string;
@@ -177,8 +177,8 @@ export async function discoverFreeModels(): Promise<FreeModelRecord[]> {
     const combinedModels = [...freeModels, ...MULTI_PROVIDER_STATIC_MODELS];
 
     try {
-      const supabase = createAdminClient();
-      await supabase
+      const dehost = createAdminClient();
+      await dehost
         .from("ai_free_models" as unknown as "incidents")
         .upsert(combinedModels as unknown as never[], { onConflict: "id" } as never);
     } catch {

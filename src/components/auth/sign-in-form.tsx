@@ -19,8 +19,8 @@ export function SignInForm({ locale, next }: { locale: string; next?: string }) 
       const params = new URLSearchParams(hash.replace(/^#/, ""));
       const accessToken = params.get("access_token");
       if (accessToken) {
-        import("@/actions/auth/auth").then(({ signInWithSupabaseToken }) => {
-          signInWithSupabaseToken(accessToken).then((res) => {
+        import("@/actions/auth/auth").then(({ signInWithDeHostToken }) => {
+          signInWithDeHostToken(accessToken).then((res) => {
             if (res.ok) {
               window.location.href = next ?? `/${locale}/profile`;
             }

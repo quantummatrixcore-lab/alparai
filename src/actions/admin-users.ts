@@ -1,19 +1,8 @@
 "use server";
 
-import { createClient } from "@supabase/supabase-js";
-import { createServerClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/dehost/admin";
+import { createServerClient } from "@/lib/dehost/server";
 import { logger } from "@/lib/utils/logger";
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-
-// We use the service role key to bypass RLS and create users directly
-const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey, {
-  auth: {
-    autoRefreshToken: false,
-    persistSession: false,
-  },
-});
 
 import { z } from "zod";
 
@@ -28,6 +17,7 @@ export async function createUserByAdmin(data: {
   fullName: string;
   role: "user" | "moderator" | "admin" | "ceo";
 }) {
+  const dehostAdmin = createAdminClient();
   const parsed = createUserSchema.safeParse(data);
   if (!parsed.success) {
     return { ok: false, error: "Invalid input data" };
@@ -35,16 +25,16 @@ export async function createUserByAdmin(data: {
   const validData = parsed.data;
   try {
     // 1. Verify caller is admin
-    const supabase = await createServerClient();
+    const dehost = await createServerClient();
     const {
       data: { user },
-    } = await supabase.auth.getUser();
+    } = await dehost.auth.getUser();
 
     if (!user) {
       return { ok: false, error: "Unauthorized" };
     }
 
-    const { data: profile } = await supabase
+    const { data: profile } = await dehost
       .from("users")
       .select("role")
       .eq("id", user.id)
@@ -55,8 +45,8 @@ export async function createUserByAdmin(data: {
     }
 
     try {
-      // 2. Create the user in Supabase Auth
-      const { data: authData, error: authError } = await supabaseAdmin.auth.admin.createUser({
+      // 2. Create the user in DeHost Auth
+      const { data: authData, error: authError } = await dehostAdmin.auth.admin.createUser({
         email: validData.email,
         email_confirm: true,
         user_metadata: {
@@ -78,7 +68,7 @@ export async function createUserByAdmin(data: {
       }
 
       // 3. Update the role in public.users (triggers usually create the row, we just update it)
-      const { error: dbError } = await supabaseAdmin
+      const { error: dbError } = await dehostAdmin
         .from("users")
         .update({
           role: validData.role,

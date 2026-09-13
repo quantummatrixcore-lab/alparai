@@ -18,9 +18,9 @@ Use **React Server Components** for all reads and **Server Actions** for all mut
 
 - Performance, security, and DX are aligned.
 
-* We cannot use `useEffect` + Supabase client for mutations. All writes go through `src/actions/`.
+* We cannot use `useEffect` + DeHost client for mutations. All writes go through `src/actions/`.
 * We need `useFormState` / `useFormStatus` for UX.
-* We must keep the `admin` Supabase client out of any client bundle (use `import "server-only"`).
+* We must keep the `admin` DeHost client out of any client bundle (use `import "server-only"`).
 
 ## Patterns
 

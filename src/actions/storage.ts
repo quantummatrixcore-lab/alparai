@@ -4,7 +4,7 @@ import { uploadToDrive } from "@/lib/gdrive/client";
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/dehost/server";
 
 export const MAX_STORAGE_FILE_SIZE_BYTES = 10 * 1024 * 1024; // 10MB
 export const ALLOWED_STORAGE_MIME_TYPES = ["image/png", "image/jpeg", "application/pdf"] as const;
@@ -57,11 +57,11 @@ export async function uploadIncidentEvidence(formData: FormData) {
     // Upload to Google Drive (Zero-Cost Storage)
     const fileId = await uploadToDrive(file.name, file.type, buffer);
 
-    // Save the fileId to Supabase Database under the specific incidentId
-    const supabase = await createClient();
+    // Save the fileId to DeHost Database under the specific incidentId
+    const dehost = await createClient();
 
     type IncidentEvidenceTable = { from(t: string): { insert(d: unknown): Promise<{ error: unknown }> } };
-    const { error: dbError } = await (supabase as unknown as IncidentEvidenceTable)
+    const { error: dbError } = await (dehost as unknown as IncidentEvidenceTable)
       .from("incident_evidence")
       .insert({ incident_id: incidentId, gdrive_file_id: fileId });
 

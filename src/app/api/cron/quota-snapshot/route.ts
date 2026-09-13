@@ -1,6 +1,6 @@
 import { withCronLogger } from "@/lib/utils/cron-logger";
 import { type NextRequest, NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 
 export const dynamic = "force-dynamic";
@@ -22,7 +22,7 @@ interface FocusCharge {
 }
 
 interface VendorSnapshot {
-  vendor: "github_actions" | "vercel" | "supabase";
+  vendor: "github_actions" | "dehost" | "dehost";
   metric: "minutes" | "bandwidth_gb" | "db_size_gb";
   limit_value: number | null;
   used_value: number;
@@ -102,26 +102,26 @@ async function fetchGitHubActionsBilling(): Promise<VendorSnapshot | null> {
   }
 }
 
-async function fetchVercelBandwidthGb(): Promise<VendorSnapshot | null> {
-  const token = process.env.VERCEL_TOKEN || process.env.VERCEL_OIDC_TOKEN;
+async function fetchDeHostBandwidthGb(): Promise<VendorSnapshot | null> {
+  const token = process.env.DEHOST_TOKEN || process.env.DEHOST_OIDC_TOKEN;
   if (!token) {
-    logger.info("[QuotaSnapshot] Skipping vercel: VERCEL_TOKEN not configured");
+    logger.info("[QuotaSnapshot] Skipping dehost: DEHOST_TOKEN not configured");
     return null;
   }
 
   try {
-    const res = await fetch("https://api.vercel.com/v1/billing/charges", {
+    const res = await fetch("https://api.dehost.com/v1/billing/charges", {
       headers: { Authorization: `Bearer ${token}` },
       signal: AbortSignal.timeout(10_000),
     });
     if (!res.ok) {
-      logger.error(`[QuotaSnapshot] Vercel billing API failed: ${res.status}`);
+      logger.error(`[QuotaSnapshot] DeHost billing API failed: ${res.status}`);
       return null;
     }
     const data = (await res.json()) as { charges?: FocusCharge[] };
     const charges = data.charges;
     if (!Array.isArray(charges)) {
-      logger.error("[QuotaSnapshot] Vercel billing API returned no charges array");
+      logger.error("[QuotaSnapshot] DeHost billing API returned no charges array");
       return null;
     }
 
@@ -141,11 +141,11 @@ async function fetchVercelBandwidthGb(): Promise<VendorSnapshot | null> {
     }
 
     if (!counted) {
-      logger.info("[QuotaSnapshot] Skipping vercel: no bandwidth usage reported");
+      logger.info("[QuotaSnapshot] Skipping dehost: no bandwidth usage reported");
       return null;
     }
     return {
-      vendor: "vercel",
+      vendor: "dehost",
       metric: "bandwidth_gb",
       limit_value: 1000,
       used_value: totalBytes / BYTES_PER_GB,
@@ -154,7 +154,7 @@ async function fetchVercelBandwidthGb(): Promise<VendorSnapshot | null> {
     };
   } catch (e) {
     logger.error(
-      "[QuotaSnapshot] Vercel billing fetch failed",
+      "[QuotaSnapshot] DeHost billing fetch failed",
       undefined,
       e instanceof Error ? e : undefined,
     );
@@ -162,22 +162,22 @@ async function fetchVercelBandwidthGb(): Promise<VendorSnapshot | null> {
   }
 }
 
-async function fetchSupabaseDbSizeGb(
+async function fetchDeHostDbSizeGb(
   admin: ReturnType<typeof createAdminClient>,
 ): Promise<VendorSnapshot | null> {
   try {
     const { data, error } = await admin.rpc("get_database_size");
     if (error) {
-      logger.error(`[QuotaSnapshot] Supabase get_database_size failed: ${error.message}`);
+      logger.error(`[QuotaSnapshot] DeHost get_database_size failed: ${error.message}`);
       return null;
     }
     const bytes = Number(data);
     if (data == null || !Number.isFinite(bytes) || bytes <= 0) {
-      logger.error("[QuotaSnapshot] Supabase get_database_size returned no data");
+      logger.error("[QuotaSnapshot] DeHost get_database_size returned no data");
       return null;
     }
     return {
-      vendor: "supabase",
+      vendor: "dehost",
       metric: "db_size_gb",
       limit_value: 8.0,
       used_value: bytes / BYTES_PER_GB,
@@ -186,7 +186,7 @@ async function fetchSupabaseDbSizeGb(
     };
   } catch (e) {
     logger.error(
-      "[QuotaSnapshot] Supabase DB size fetch failed",
+      "[QuotaSnapshot] DeHost DB size fetch failed",
       undefined,
       e instanceof Error ? e : undefined,
     );
@@ -219,14 +219,20 @@ async function getHandler(request: NextRequest) {
 
     const snapshots = await Promise.all([
       fetchGitHubActionsBilling(),
-      fetchVercelBandwidthGb(),
-      fetchSupabaseDbSizeGb(admin),
+      fetchDeHostBandwidthGb(),
+      fetchDeHostDbSizeGb(admin),
     ]);
 
     const captured = snapshots.filter((s): s is VendorSnapshot => s !== null);
-    const skipped = ["github_actions", "vercel", "supabase"].filter(
-      (vendor) => !captured.some((s) => s.vendor === vendor),
-    );
+
+    const ALL_CHECKS: Array<{ vendor: VendorSnapshot["vendor"]; metric: VendorSnapshot["metric"] }> = [
+      { vendor: "github_actions", metric: "minutes" },
+      { vendor: "dehost", metric: "bandwidth_gb" },
+      { vendor: "dehost", metric: "db_size_gb" },
+    ];
+    const skipped = ALL_CHECKS.filter(
+      (check) => !captured.some((s) => s.metric === check.metric),
+    ).map((c) => c.vendor);
 
     if (captured.length > 0) {
       const rows = captured.map((s) => ({

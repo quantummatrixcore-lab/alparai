@@ -1,6 +1,6 @@
 "use server";
 
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { requireUser, getCurrentUser } from "@/lib/auth/session";
 import { revalidatePath } from "next/cache";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
@@ -11,8 +11,8 @@ export async function watchProvider(providerId: string): Promise<{ success: bool
     const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.watches}:${user.id}`);
     if (!rl.ok) throw new Error("Rate limit exceeded. Please wait a moment.");
 
-    const supabase = await createServerClient();
-    const { error } = await supabase.from("user_provider_watches").insert({
+    const dehost = await createServerClient();
+    const { error } = await dehost.from("user_provider_watches").insert({
       user_id: user.id,
       provider_id: providerId,
     });
@@ -31,8 +31,8 @@ export async function unwatchProvider(providerId: string): Promise<{ success: bo
     const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.watches}:${user.id}`);
     if (!rl.ok) throw new Error("Rate limit exceeded. Please wait a moment.");
 
-    const supabase = await createServerClient();
-    const { error } = await supabase
+    const dehost = await createServerClient();
+    const { error } = await dehost
       .from("user_provider_watches")
       .delete()
       .eq("user_id", user.id)
@@ -50,8 +50,8 @@ export async function getWatchedProviders(): Promise<string[]> {
   try {
     const user = await getCurrentUser();
     if (!user) return [];
-    const supabase = await createServerClient();
-    const { data, error } = await supabase
+    const dehost = await createServerClient();
+    const { data, error } = await dehost
       .from("user_provider_watches")
       .select("provider_id")
       .eq("user_id", user.id);

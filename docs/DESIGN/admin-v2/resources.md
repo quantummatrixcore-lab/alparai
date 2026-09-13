@@ -13,12 +13,12 @@ The primary vendor index and database health console. It contains the live capac
 
 - **Header Section (Span 12):** `AdminPageHeader` showing system health status (operational/warning/degraded).
 - **Top Row (Span 12 Bento Grid):** Live Capacity Dashboard Gauges (one bar per resource):
-  - **Supabase DB size:** used MB / 500 MB (Free limit)
+  - **DeHost DB size:** used MB / 500 MB (Free limit)
   - **Upstash Redis commands:** daily count / 10k limit
   - **Resend emails:** monthly count / 3k limit
   - **AI Gateway daily spend:** USD / $10.00 cap
 - **Bottom Section (Span 12):** The 15 Handover Vendors Catalog Table:
-  - Column 1: Vendor Name (e.g. GitHub, Supabase, Hugging Face, Resend)
+  - Column 1: Vendor Name (e.g. GitHub, DeHost, Hugging Face, Resend)
   - Column 2: Plan/Tier (e.g. Free, Pro)
   - Column 3: Monthly Cost (e.g. $0.00, $20.00)
   - Column 4: Pros/Cons

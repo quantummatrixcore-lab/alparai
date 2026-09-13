@@ -1,19 +1,19 @@
 import { NextResponse } from "next/server";
-import { createServerClient } from "@/lib/supabase/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createServerClient } from "@/lib/dehost/server";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 import { buildZip } from "@/lib/utils/zip";
 
 export const dynamic = "force-dynamic";
 
-// @auth: requireAuth (verified via supabase.auth.getUser)
+// @auth: requireAuth (verified via dehost.auth.getUser)
 export async function GET() {
   try {
-    const supabase = await createServerClient();
+    const dehost = await createServerClient();
     const {
       data: { user },
       error: authErr,
-    } = await supabase.auth.getUser();
+    } = await dehost.auth.getUser();
 
     if (authErr || !user) {
       return NextResponse.json(

@@ -1,13 +1,13 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
-import { createMockSupabaseClient, createTestUser } from "../helpers/supabase-mock";
+import { createMockDeHostClient, createTestUser } from "../helpers/dehost-mock";
 
 vi.hoisted(() => {
-  vi.doMock("@/lib/supabase/server", () => ({
+  vi.doMock("@/lib/dehost/server", () => ({
     createClient: vi.fn(),
     createServerClient: vi.fn(),
   }));
-  vi.doMock("@/lib/supabase/admin", () => ({
+  vi.doMock("@/lib/dehost/admin", () => ({
     createAdminClient: vi.fn(),
   }));
   vi.doMock("@/lib/auth/session", () => ({
@@ -21,22 +21,22 @@ vi.hoisted(() => {
   }));
 });
 
-import { createClient, createServerClient } from "@/lib/supabase/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createClient, createServerClient } from "@/lib/dehost/server";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { getCurrentUser } from "@/lib/auth/session";
 import { submitSuggestion, upvoteSuggestion } from "@/actions/community/suggestions";
 
-let mockSupabase: ReturnType<typeof createMockSupabaseClient>;
-let mockAdminClient: ReturnType<typeof createMockSupabaseClient>;
+let mockDeHost: ReturnType<typeof createMockDeHostClient>;
+let mockAdminClient: ReturnType<typeof createMockDeHostClient>;
 let mockUser: ReturnType<typeof createTestUser>;
 
 beforeEach(() => {
   vi.clearAllMocks();
-  mockSupabase = createMockSupabaseClient();
-  mockAdminClient = createMockSupabaseClient();
+  mockDeHost = createMockDeHostClient();
+  mockAdminClient = createMockDeHostClient();
   mockUser = createTestUser();
-  vi.mocked(createClient).mockResolvedValue(mockSupabase as never);
-  vi.mocked(createServerClient).mockResolvedValue(mockSupabase as never);
+  vi.mocked(createClient).mockResolvedValue(mockDeHost as never);
+  vi.mocked(createServerClient).mockResolvedValue(mockDeHost as never);
   vi.mocked(createAdminClient).mockReturnValue(mockAdminClient as never);
   vi.mocked(getCurrentUser).mockResolvedValue(mockUser as never);
 });
@@ -59,7 +59,7 @@ describe("submitSuggestion", () => {
   beforeEach(() => {
     vi.mocked(getCurrentUser).mockResolvedValue(mockUser);
 
-    mockSupabase.from.mockReturnValue({
+    mockDeHost.from.mockReturnValue({
       insert: vi.fn().mockReturnValue({
         select: vi.fn().mockReturnValue({
           single: vi.fn().mockResolvedValue({ data: { id: "sug-1" }, error: null }),
@@ -81,13 +81,13 @@ describe("submitSuggestion", () => {
           single: vi.fn().mockResolvedValue({ data: { id: "test" }, error: null }),
         }),
       }),
-    } as ReturnType<typeof mockSupabase.from>);
+    } as ReturnType<typeof mockDeHost.from>);
   });
 
   it("submits successfully with valid data", async () => {
     const result = await submitSuggestion({ ok: false }, buildSuggestionForm());
     expect(result.ok).toBe(true);
-    expect(mockSupabase.from).toHaveBeenCalledWith("suggestions");
+    expect(mockDeHost.from).toHaveBeenCalledWith("suggestions");
   });
 
   it("returns error when not authenticated", async () => {
@@ -105,7 +105,7 @@ describe("submitSuggestion", () => {
   });
 
   it("returns error when database insert fails", async () => {
-    mockSupabase.from.mockReturnValue({
+    mockDeHost.from.mockReturnValue({
       insert: vi.fn().mockResolvedValue({
         data: null,
         error: { message: "DB error" },
@@ -126,7 +126,7 @@ describe("submitSuggestion", () => {
           single: vi.fn().mockResolvedValue({ data: { id: "test" }, error: null }),
         }),
       }),
-    } as ReturnType<typeof mockSupabase.from>);
+    } as ReturnType<typeof mockDeHost.from>);
     const result = await submitSuggestion({ ok: false }, buildSuggestionForm());
     expect(result.ok).toBe(false);
     expect(result.error).toContain("Failed");
@@ -145,7 +145,7 @@ describe("upvoteSuggestion", () => {
       eq: mockEqInner,
     });
 
-    mockSupabase.from.mockReturnValue({
+    mockDeHost.from.mockReturnValue({
       select: vi.fn().mockReturnValue({ eq: mockEqOuter }),
       insert: vi.fn().mockResolvedValue({ data: null, error: null }),
       delete: vi.fn().mockReturnValue({
@@ -157,13 +157,13 @@ describe("upvoteSuggestion", () => {
           single: vi.fn().mockResolvedValue({ data: { id: "test" }, error: null }),
         }),
       }),
-    } as ReturnType<typeof mockSupabase.from>);
+    } as ReturnType<typeof mockDeHost.from>);
   });
 
   it("creates a new upvote when none exists", async () => {
     const result = await upvoteSuggestion("sug-1");
     expect(result).toEqual({ ok: true });
-    expect(mockSupabase.from).toHaveBeenCalledWith("suggestion_votes");
+    expect(mockDeHost.from).toHaveBeenCalledWith("suggestion_votes");
   });
 
   it("returns error when not authenticated", async () => {

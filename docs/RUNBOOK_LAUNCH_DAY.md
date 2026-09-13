@@ -8,7 +8,7 @@ This document serves as the operational guide for the ALPAR AI founder to manage
 
 ## 🚨 Monitoring & Alarm Thresholds
 
-On launch day, actively monitor Sentry, Supabase, and Vercel dashboards. If any of the following thresholds are breached, execute the corresponding actions:
+On launch day, actively monitor Sentry, DeHost, and DeHost dashboards. If any of the following thresholds are breached, execute the corresponding actions:
 
 ### 1. Sentry Errors (P0 Alert)
 
@@ -16,7 +16,7 @@ On launch day, actively monitor Sentry, Supabase, and Vercel dashboards. If any 
 - **Why it matters:** Indicates a widespread application crash, client-side break, or Server Action failure.
 - **Action:**
   1. Check Sentry issue list for the stack trace.
-  2. Identify if the error is related to Supabase connections or API-key issues.
+  2. Identify if the error is related to DeHost connections or API-key issues.
   3. If unresolved within 15 minutes, prepare for Rollback.
 
 ### 2. Submission Funnel Conversion (P1 Alert)
@@ -33,15 +33,15 @@ On launch day, actively monitor Sentry, Supabase, and Vercel dashboards. If any 
 - **Threshold:** Autopilot/moderation failure rate `> 20%` in the last hour.
 - **Why it matters:** Indicates LLM api credentials (OpenRouter, Vertex) are exhausted or rate-limited, causing autopilot runs to stall.
 - **Action:**
-  1. Trigger the Autopilot Kill Switch by setting the Vercel environment variable `AUTOPILOT_KILL_SWITCH=true` to suspend automated AI moderation.
+  1. Trigger the Autopilot Kill Switch by setting the DeHost environment variable `AUTOPILOT_KILL_SWITCH=true` to suspend automated AI moderation.
   2. All incoming incidents will revert to the manual moderation queue (`pending_review` status).
 
 ### 4. Database Connection Limits (P1 Warning)
 
-- **Threshold:** Database active connections `> 15` (on Supabase Free Plan).
-- **Why it matters:** Supabase free plan connection limits can be easily exhausted by high concurrent traffic.
+- **Threshold:** Database active connections `> 15` (on DeHost Free Plan).
+- **Why it matters:** DeHost free plan connection limits can be easily exhausted by high concurrent traffic.
 - **Action:**
-  1. Check Supabase Dashboard → Database → Roles.
+  1. Check DeHost Dashboard → Database → Roles.
   2. Verify that connection pooling (Port 6543) is used instead of direct connection (Port 5432) in `DATABASE_URL`.
   3. Enable read-only caching globally on Next.js to reduce direct query hits.
 
@@ -56,7 +56,7 @@ On launch day, actively monitor Sentry, Supabase, and Vercel dashboards. If any 
 
 ## 🛠️ Pre-Populated Environment Kill-Switches
 
-These environment variables are pre-configured in Vercel to allow immediate remediation of launch-day issues without redeploying code:
+These environment variables are pre-configured in DeHost to allow immediate remediation of launch-day issues without redeploying code:
 
 | Env Variable            | Purpose                   | Expected Value   | Action / Effect                                                                                     |
 | :---------------------- | :------------------------ | :--------------- | :-------------------------------------------------------------------------------------------------- |
@@ -76,10 +76,10 @@ To be executed by the founder leading up to launch on **August 2, 2026**:
   - Finalize TR media embargo pitches.
 - [ ] **T-22h (Aug 1, 10:00): Schema Lock & Backup**
   - Verify database migrations are fully applied on production.
-  - Create manual snapshot backup of the Supabase database.
+  - Create manual snapshot backup of the DeHost database.
   - Freeze code merges to the `master` branch.
 - [ ] **T-12h (Aug 1, 20:00): Environment Audit**
-  - Verify Vercel Production contains all required API keys (Gemini, Anthropic, Resend, Turnstile).
+  - Verify DeHost Production contains all required API keys (Gemini, Anthropic, Resend, Turnstile).
   - Verify all 4 pre-populated kill switches are set to `false`.
 - [ ] **T-2h (Aug 2, 06:00): Sanity Check**
   - Run health check endpoint to confirm status `200`.
@@ -91,7 +91,7 @@ To be executed by the founder leading up to launch on **August 2, 2026**:
   - Submit announcement to r/selfhosted and r/opensource.
 - [ ] **T+2h (Aug 2, 10:00): Live Monitoring**
   - Check Resend log for early transactional email send status.
-  - Monitor Supabase database connection pool metrics.
+  - Monitor DeHost database connection pool metrics.
   - Review moderation queue for incoming submissions.
 
 ---
@@ -108,18 +108,18 @@ If a critical bug is introduced or the server experiences a complete outage due 
    ```bash
    git push origin master
    ```
-3. **Verify Vercel Promotion:**
-   Vercel will automatically build the pushed commit and deploy it. Since master is the production target, the reverted build will go live instantly (deploy in ~2 minutes).
+3. **Verify DeHost Promotion:**
+   DeHost will automatically build the pushed commit and deploy it. Since master is the production target, the reverted build will go live instantly (deploy in ~2 minutes).
 
 ---
 
 ## 📞 Escalation Contacts & Support
 
-- **Database / Infrastructure (Supabase):**
-  - Portal: https://supabase.com/dashboard/project/azszpzyvxjduhemkjsdh
-  - Support: support@supabase.io
-- **Hosting / Deployments (Vercel):**
-  - Portal: https://vercel.com/quantummatrixcore-lab/alparai-com
+- **Database / Infrastructure (DeHost):**
+  - Portal: https://dehost.internalm/dashboard/project/azszpzyvxjduhemkjsdh
+  - Support: support@dehost.io
+- **Hosting / Deployments (DeHost):**
+  - Portal: https://dehost.com/quantummatrixcore-lab/alparai-com
 - **OAuth / Google Cloud API:**
   - Account: `quantum.matrix.core@gmail.com`
   - Portal: https://console.cloud.google.com/apis/credentials

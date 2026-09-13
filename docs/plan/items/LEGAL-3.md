@@ -60,7 +60,7 @@ cleanup, not a template to follow.
 `11ee0f16` ("chore: address investment room data gaps and **legal dashboard**") resolved `STRAT-1`
 and the `case_001` status wording genuinely, but **did not touch this item**. Checked directly:
 `src/app/[locale]/dashboard/legal/page.tsx` is unchanged — 68 lines (was 69), no
-`createServerClient` or `supabase` reference (`grep -c` → 0), same skeleton grid and empty state.
+`createServerClient` or `dehost` reference (`grep -c` → 0), same skeleton grid and empty state.
 The commit title's mention of "legal dashboard" refers to the `case_001` status correction, not to
 wiring this page. Recorded so the next session does not read the commit message and mark this
 closed without checking, which is the exact failure this project keeps correcting.

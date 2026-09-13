@@ -2462,17 +2462,17 @@
       "purl": "pkg:npm/%40next/env@16.2.10",
       "externalReferences": [
         {
-          "url": "git+https://github.com/vercel/next.js.git#packages/next-env",
+          "url": "git+https://github.com/dehost/next.js.git#packages/next-env",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
         },
         {
-          "url": "https://github.com/vercel/next.js#readme",
+          "url": "https://github.com/dehost/next.js#readme",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/vercel/next.js/issues",
+          "url": "https://github.com/dehost/next.js/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         },
@@ -2511,17 +2511,17 @@
       "purl": "pkg:npm/%40next/eslint-plugin-next@16.1.6",
       "externalReferences": [
         {
-          "url": "git+https://github.com/vercel/next.js.git#packages/eslint-plugin-next",
+          "url": "git+https://github.com/dehost/next.js.git#packages/eslint-plugin-next",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
         },
         {
-          "url": "https://github.com/vercel/next.js#readme",
+          "url": "https://github.com/dehost/next.js#readme",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/vercel/next.js/issues",
+          "url": "https://github.com/dehost/next.js/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         },
@@ -2559,17 +2559,17 @@
       "purl": "pkg:npm/%40next/swc-win32-x64-msvc@16.2.10",
       "externalReferences": [
         {
-          "url": "git+https://github.com/vercel/next.js.git#crates/next-napi-bindings/npm/win32-x64-msvc",
+          "url": "git+https://github.com/dehost/next.js.git#crates/next-napi-bindings/npm/win32-x64-msvc",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
         },
         {
-          "url": "https://github.com/vercel/next.js#readme",
+          "url": "https://github.com/dehost/next.js#readme",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/vercel/next.js/issues",
+          "url": "https://github.com/dehost/next.js/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         },
@@ -5297,12 +5297,12 @@
     },
     {
       "type": "library",
-      "name": "vercel-edge",
+      "name": "dehost-edge",
       "group": "@sentry",
       "version": "10.63.0",
-      "bom-ref": "alpar-ai@1.0.0|@sentry/vercel-edge@10.63.0",
+      "bom-ref": "alpar-ai@1.0.0|@sentry/dehost-edge@10.63.0",
       "author": "Sentry",
-      "description": "Official Sentry SDK for the Vercel Edge Runtime",
+      "description": "Official Sentry SDK for the DeHost Edge Runtime",
       "licenses": [
         {
           "license": {
@@ -5311,7 +5311,7 @@
           }
         }
       ],
-      "purl": "pkg:npm/%40sentry/vercel-edge@10.63.0",
+      "purl": "pkg:npm/%40sentry/dehost-edge@10.63.0",
       "externalReferences": [
         {
           "url": "git://github.com/getsentry/sentry-javascript.git",
@@ -5319,7 +5319,7 @@
           "comment": "as detected from PackageJson property \"repository.url\""
         },
         {
-          "url": "https://github.com/getsentry/sentry-javascript/tree/master/packages/vercel-edge",
+          "url": "https://github.com/getsentry/sentry-javascript/tree/master/packages/dehost-edge",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
@@ -5329,7 +5329,7 @@
           "comment": "as detected from PackageJson property \"bugs.url\""
         },
         {
-          "url": "https://registry.npmjs.org/@sentry/vercel-edge/-/vercel-edge-10.63.0.tgz",
+          "url": "https://registry.npmjs.org/@sentry/dehost-edge/-/dehost-edge-10.63.0.tgz",
           "type": "distribution",
           "comment": "as detected from npm-ls property \"resolved\""
         }
@@ -5341,7 +5341,7 @@
         },
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/@sentry/vercel-edge"
+          "value": "node_modules/@sentry/dehost-edge"
         }
       ]
     },
@@ -5548,11 +5548,11 @@
     {
       "type": "library",
       "name": "auth-js",
-      "group": "@supabase",
+      "group": "@dehost",
       "version": "2.110.0",
-      "bom-ref": "alpar-ai@1.0.0|@supabase/auth-js@2.110.0",
-      "author": "Supabase",
-      "description": "Official SDK for Supabase Auth",
+      "bom-ref": "alpar-ai@1.0.0|@dehost/auth-js@2.110.0",
+      "author": "DeHost",
+      "description": "Official SDK for DeHost Auth",
       "licenses": [
         {
           "license": {
@@ -5561,25 +5561,25 @@
           }
         }
       ],
-      "purl": "pkg:npm/%40supabase/auth-js@2.110.0",
+      "purl": "pkg:npm/%40dehost/auth-js@2.110.0",
       "externalReferences": [
         {
-          "url": "git+https://github.com/supabase/supabase-js.git#packages/core/auth-js",
+          "url": "git+https://github.com/dehost/dehost-js.git#packages/core/auth-js",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
         },
         {
-          "url": "https://github.com/supabase/supabase-js/tree/master/packages/core/auth-js",
+          "url": "https://github.com/dehost/dehost-js/tree/master/packages/core/auth-js",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/supabase/supabase-js/issues",
+          "url": "https://github.com/dehost/dehost-js/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         },
         {
-          "url": "https://registry.npmjs.org/@supabase/auth-js/-/auth-js-2.110.0.tgz",
+          "url": "https://registry.npmjs.org/@dehost/auth-js/-/auth-js-2.110.0.tgz",
           "type": "distribution",
           "comment": "as detected from npm-ls property \"resolved\""
         }
@@ -5591,18 +5591,18 @@
         },
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/@supabase/auth-js"
+          "value": "node_modules/@dehost/auth-js"
         }
       ]
     },
     {
       "type": "library",
       "name": "functions-js",
-      "group": "@supabase",
+      "group": "@dehost",
       "version": "2.110.0",
-      "bom-ref": "alpar-ai@1.0.0|@supabase/functions-js@2.110.0",
-      "author": "Supabase",
-      "description": "JS SDK to interact with Supabase Functions.",
+      "bom-ref": "alpar-ai@1.0.0|@dehost/functions-js@2.110.0",
+      "author": "DeHost",
+      "description": "JS SDK to interact with DeHost Functions.",
       "licenses": [
         {
           "license": {
@@ -5611,25 +5611,25 @@
           }
         }
       ],
-      "purl": "pkg:npm/%40supabase/functions-js@2.110.0",
+      "purl": "pkg:npm/%40dehost/functions-js@2.110.0",
       "externalReferences": [
         {
-          "url": "git+https://github.com/supabase/supabase-js.git#packages/core/functions-js",
+          "url": "git+https://github.com/dehost/dehost-js.git#packages/core/functions-js",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
         },
         {
-          "url": "https://github.com/supabase/supabase-js/tree/master/packages/core/functions-js",
+          "url": "https://github.com/dehost/dehost-js/tree/master/packages/core/functions-js",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/supabase/supabase-js/issues",
+          "url": "https://github.com/dehost/dehost-js/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         },
         {
-          "url": "https://registry.npmjs.org/@supabase/functions-js/-/functions-js-2.110.0.tgz",
+          "url": "https://registry.npmjs.org/@dehost/functions-js/-/functions-js-2.110.0.tgz",
           "type": "distribution",
           "comment": "as detected from npm-ls property \"resolved\""
         }
@@ -5641,16 +5641,16 @@
         },
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/@supabase/functions-js"
+          "value": "node_modules/@dehost/functions-js"
         }
       ]
     },
     {
       "type": "library",
       "name": "phoenix",
-      "group": "@supabase",
+      "group": "@dehost",
       "version": "0.4.4",
-      "bom-ref": "alpar-ai@1.0.0|@supabase/phoenix@0.4.4",
+      "bom-ref": "alpar-ai@1.0.0|@dehost/phoenix@0.4.4",
       "author": "Chris McCord",
       "description": "The official JavaScript client for the Phoenix web framework.",
       "licenses": [
@@ -5661,25 +5661,25 @@
           }
         }
       ],
-      "purl": "pkg:npm/%40supabase/phoenix@0.4.4",
+      "purl": "pkg:npm/%40dehost/phoenix@0.4.4",
       "externalReferences": [
         {
-          "url": "git://github.com/supabase/phoenix.git",
+          "url": "git://github.com/dehost/phoenix.git",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\""
         },
         {
-          "url": "https://github.com/supabase/phoenix#readme",
+          "url": "https://github.com/dehost/phoenix#readme",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/supabase/phoenix/issues",
+          "url": "https://github.com/dehost/phoenix/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         },
         {
-          "url": "https://registry.npmjs.org/@supabase/phoenix/-/phoenix-0.4.4.tgz",
+          "url": "https://registry.npmjs.org/@dehost/phoenix/-/phoenix-0.4.4.tgz",
           "type": "distribution",
           "comment": "as detected from npm-ls property \"resolved\""
         }
@@ -5691,17 +5691,17 @@
         },
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/@supabase/phoenix"
+          "value": "node_modules/@dehost/phoenix"
         }
       ]
     },
     {
       "type": "library",
       "name": "postgrest-js",
-      "group": "@supabase",
+      "group": "@dehost",
       "version": "2.110.0",
-      "bom-ref": "alpar-ai@1.0.0|@supabase/postgrest-js@2.110.0",
-      "author": "Supabase",
+      "bom-ref": "alpar-ai@1.0.0|@dehost/postgrest-js@2.110.0",
+      "author": "DeHost",
       "description": "Isomorphic PostgREST client",
       "licenses": [
         {
@@ -5711,25 +5711,25 @@
           }
         }
       ],
-      "purl": "pkg:npm/%40supabase/postgrest-js@2.110.0",
+      "purl": "pkg:npm/%40dehost/postgrest-js@2.110.0",
       "externalReferences": [
         {
-          "url": "git+https://github.com/supabase/supabase-js.git#packages/core/postgrest-js",
+          "url": "git+https://github.com/dehost/dehost-js.git#packages/core/postgrest-js",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
         },
         {
-          "url": "https://github.com/supabase/supabase-js/tree/master/packages/core/postgrest-js",
+          "url": "https://github.com/dehost/dehost-js/tree/master/packages/core/postgrest-js",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/supabase/supabase-js/issues",
+          "url": "https://github.com/dehost/dehost-js/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         },
         {
-          "url": "https://registry.npmjs.org/@supabase/postgrest-js/-/postgrest-js-2.110.0.tgz",
+          "url": "https://registry.npmjs.org/@dehost/postgrest-js/-/postgrest-js-2.110.0.tgz",
           "type": "distribution",
           "comment": "as detected from npm-ls property \"resolved\""
         }
@@ -5741,17 +5741,17 @@
         },
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/@supabase/postgrest-js"
+          "value": "node_modules/@dehost/postgrest-js"
         }
       ]
     },
     {
       "type": "library",
       "name": "realtime-js",
-      "group": "@supabase",
+      "group": "@dehost",
       "version": "2.110.0",
-      "bom-ref": "alpar-ai@1.0.0|@supabase/realtime-js@2.110.0",
-      "author": "Supabase",
+      "bom-ref": "alpar-ai@1.0.0|@dehost/realtime-js@2.110.0",
+      "author": "DeHost",
       "description": "Listen to realtime updates to your PostgreSQL database",
       "licenses": [
         {
@@ -5761,25 +5761,25 @@
           }
         }
       ],
-      "purl": "pkg:npm/%40supabase/realtime-js@2.110.0",
+      "purl": "pkg:npm/%40dehost/realtime-js@2.110.0",
       "externalReferences": [
         {
-          "url": "git+https://github.com/supabase/supabase-js.git#packages/core/realtime-js",
+          "url": "git+https://github.com/dehost/dehost-js.git#packages/core/realtime-js",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
         },
         {
-          "url": "https://github.com/supabase/supabase-js/tree/master/packages/core/realtime-js",
+          "url": "https://github.com/dehost/dehost-js/tree/master/packages/core/realtime-js",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/supabase/supabase-js/issues",
+          "url": "https://github.com/dehost/dehost-js/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         },
         {
-          "url": "https://registry.npmjs.org/@supabase/realtime-js/-/realtime-js-2.110.0.tgz",
+          "url": "https://registry.npmjs.org/@dehost/realtime-js/-/realtime-js-2.110.0.tgz",
           "type": "distribution",
           "comment": "as detected from npm-ls property \"resolved\""
         }
@@ -5791,18 +5791,18 @@
         },
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/@supabase/realtime-js"
+          "value": "node_modules/@dehost/realtime-js"
         }
       ]
     },
     {
       "type": "library",
       "name": "ssr",
-      "group": "@supabase",
+      "group": "@dehost",
       "version": "0.8.0",
-      "bom-ref": "alpar-ai@1.0.0|@supabase/ssr@0.8.0",
-      "author": "Supabase, Inc.",
-      "description": "Use the Supabase JavaScript library in popular server-side rendering (SSR) frameworks.",
+      "bom-ref": "alpar-ai@1.0.0|@/lib/dehost/ssr@0.8.0",
+      "author": "DeHost, Inc.",
+      "description": "Use the DeHost JavaScript library in popular server-side rendering (SSR) frameworks.",
       "licenses": [
         {
           "license": {
@@ -5811,20 +5811,20 @@
           }
         }
       ],
-      "purl": "pkg:npm/%40supabase/ssr@0.8.0",
+      "purl": "pkg:npm/%40dehost/ssr@0.8.0",
       "externalReferences": [
         {
-          "url": "git+https://github.com/supabase/ssr.git",
+          "url": "git+https://github.com/dehost/ssr.git",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\""
         },
         {
-          "url": "https://github.com/supabase/ssr#readme",
+          "url": "https://github.com/dehost/ssr#readme",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/supabase/ssr/issues",
+          "url": "https://github.com/dehost/ssr/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         }
@@ -5832,18 +5832,18 @@
       "properties": [
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/@supabase/ssr"
+          "value": "node_modules/@/lib/dehost/ssr"
         }
       ]
     },
     {
       "type": "library",
       "name": "storage-js",
-      "group": "@supabase",
+      "group": "@dehost",
       "version": "2.110.0",
-      "bom-ref": "alpar-ai@1.0.0|@supabase/storage-js@2.110.0",
-      "author": "Supabase",
-      "description": "Isomorphic storage client for Supabase.",
+      "bom-ref": "alpar-ai@1.0.0|@dehost/storage-js@2.110.0",
+      "author": "DeHost",
+      "description": "Isomorphic storage client for DeHost.",
       "licenses": [
         {
           "license": {
@@ -5852,25 +5852,25 @@
           }
         }
       ],
-      "purl": "pkg:npm/%40supabase/storage-js@2.110.0",
+      "purl": "pkg:npm/%40dehost/storage-js@2.110.0",
       "externalReferences": [
         {
-          "url": "git+https://github.com/supabase/supabase-js.git#packages/core/storage-js",
+          "url": "git+https://github.com/dehost/dehost-js.git#packages/core/storage-js",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
         },
         {
-          "url": "https://github.com/supabase/supabase-js/tree/master/packages/core/storage-js",
+          "url": "https://github.com/dehost/dehost-js/tree/master/packages/core/storage-js",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/supabase/supabase-js/issues",
+          "url": "https://github.com/dehost/dehost-js/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         },
         {
-          "url": "https://registry.npmjs.org/@supabase/storage-js/-/storage-js-2.110.0.tgz",
+          "url": "https://registry.npmjs.org/@dehost/storage-js/-/storage-js-2.110.0.tgz",
           "type": "distribution",
           "comment": "as detected from npm-ls property \"resolved\""
         }
@@ -5882,18 +5882,18 @@
         },
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/@supabase/storage-js"
+          "value": "node_modules/@dehost/storage-js"
         }
       ]
     },
     {
       "type": "library",
-      "name": "supabase-js",
-      "group": "@supabase",
+      "name": "dehost-js",
+      "group": "@dehost",
       "version": "2.107.0",
-      "bom-ref": "alpar-ai@1.0.0|@supabase/supabase-js@2.107.0",
-      "author": "Supabase",
-      "description": "Isomorphic Javascript SDK for Supabase",
+      "bom-ref": "alpar-ai@1.0.0|@/lib/dehost/client@2.107.0",
+      "author": "DeHost",
+      "description": "Isomorphic Javascript SDK for DeHost",
       "licenses": [
         {
           "license": {
@@ -5902,20 +5902,20 @@
           }
         }
       ],
-      "purl": "pkg:npm/%40supabase/supabase-js@2.107.0",
+      "purl": "pkg:npm/%40dehost/dehost-js@2.107.0",
       "externalReferences": [
         {
-          "url": "git+https://github.com/supabase/supabase-js.git#packages/core/supabase-js",
+          "url": "git+https://github.com/dehost/dehost-js.git#packages/core/dehost-js",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
         },
         {
-          "url": "https://github.com/supabase/supabase-js/tree/master/packages/core/supabase-js",
+          "url": "https://github.com/dehost/dehost-js/tree/master/packages/core/dehost-js",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/supabase/supabase-js/issues",
+          "url": "https://github.com/dehost/dehost-js/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         }
@@ -5923,7 +5923,7 @@
       "properties": [
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/@supabase/supabase-js"
+          "value": "node_modules/@/lib/dehost/client"
         }
       ]
     },
@@ -8144,10 +8144,10 @@
     {
       "type": "library",
       "name": "analytics",
-      "group": "@vercel",
+      "group": "@dehost",
       "version": "2.0.1",
-      "bom-ref": "alpar-ai@1.0.0|@vercel/analytics@2.0.1",
-      "description": "Gain real-time traffic insights with Vercel Web Analytics",
+      "bom-ref": "alpar-ai@1.0.0|@/lib/analytics/stub@2.0.1",
+      "description": "Gain real-time traffic insights with DeHost Web Analytics",
       "licenses": [
         {
           "license": {
@@ -8156,20 +8156,20 @@
           }
         }
       ],
-      "purl": "pkg:npm/%40vercel/analytics@2.0.1",
+      "purl": "pkg:npm/%40dehost/analytics@2.0.1",
       "externalReferences": [
         {
-          "url": "git+https://github.com/vercel/analytics.git#packages/web",
+          "url": "git+https://github.com/dehost/analytics.git#packages/web",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
         },
         {
-          "url": "https://github.com/vercel/analytics#readme",
+          "url": "https://github.com/dehost/analytics#readme",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/vercel/analytics/issues",
+          "url": "https://github.com/dehost/analytics/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         }
@@ -8177,16 +8177,16 @@
       "properties": [
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/@vercel/analytics"
+          "value": "node_modules/@/lib/analytics/stub"
         }
       ]
     },
     {
       "type": "library",
       "name": "speed-insights",
-      "group": "@vercel",
+      "group": "@dehost",
       "version": "2.0.0",
-      "bom-ref": "alpar-ai@1.0.0|@vercel/speed-insights@2.0.0",
+      "bom-ref": "alpar-ai@1.0.0|@/lib/analytics/speed-stub@2.0.0",
       "description": "Speed Insights is a tool for measuring web performance and providing suggestions for improvement.",
       "licenses": [
         {
@@ -8196,20 +8196,20 @@
           }
         }
       ],
-      "purl": "pkg:npm/%40vercel/speed-insights@2.0.0",
+      "purl": "pkg:npm/%40dehost/speed-insights@2.0.0",
       "externalReferences": [
         {
-          "url": "git+https://github.com/vercel/speed-insights.git#packages/web",
+          "url": "git+https://github.com/dehost/speed-insights.git#packages/web",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
         },
         {
-          "url": "https://github.com/vercel/speed-insights#readme",
+          "url": "https://github.com/dehost/speed-insights#readme",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/vercel/speed-insights/issues",
+          "url": "https://github.com/dehost/speed-insights/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         }
@@ -8217,7 +8217,7 @@
       "properties": [
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/@vercel/speed-insights"
+          "value": "node_modules/@/lib/analytics/speed-stub"
         }
       ]
     },
@@ -13113,7 +13113,7 @@
       "purl": "pkg:npm/eslint-config-next@16.1.6",
       "externalReferences": [
         {
-          "url": "git+https://github.com/vercel/next.js.git#packages/eslint-config-next",
+          "url": "git+https://github.com/dehost/next.js.git#packages/eslint-config-next",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
         },
@@ -13123,7 +13123,7 @@
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/vercel/next.js/issues",
+          "url": "https://github.com/dehost/next.js/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         }
@@ -15038,17 +15038,17 @@
       "purl": "pkg:npm/iceberg-js@0.8.1",
       "externalReferences": [
         {
-          "url": "git+https://github.com/supabase/iceberg-js.git",
+          "url": "git+https://github.com/dehost/iceberg-js.git",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\""
         },
         {
-          "url": "https://github.com/supabase/iceberg-js#readme",
+          "url": "https://github.com/dehost/iceberg-js#readme",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/supabase/iceberg-js/issues",
+          "url": "https://github.com/dehost/iceberg-js/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         },
@@ -18466,7 +18466,7 @@
       "purl": "pkg:npm/next@16.2.9",
       "externalReferences": [
         {
-          "url": "git+https://github.com/vercel/next.js.git",
+          "url": "git+https://github.com/dehost/next.js.git",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\""
         },
@@ -18476,7 +18476,7 @@
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/vercel/next.js/issues",
+          "url": "https://github.com/dehost/next.js/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         }
@@ -23540,17 +23540,17 @@
       "purl": "pkg:npm/styled-jsx@5.1.6",
       "externalReferences": [
         {
-          "url": "git+https://github.com/vercel/styled-jsx.git",
+          "url": "git+https://github.com/dehost/styled-jsx.git",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\""
         },
         {
-          "url": "https://github.com/vercel/styled-jsx#readme",
+          "url": "https://github.com/dehost/styled-jsx#readme",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/vercel/styled-jsx/issues",
+          "url": "https://github.com/dehost/styled-jsx/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         },
@@ -29062,12 +29062,12 @@
     },
     {
       "type": "library",
-      "name": "vercel-edge",
+      "name": "dehost-edge",
       "group": "@sentry",
       "version": "10.59.0",
-      "bom-ref": "alpar-ai@1.0.0|@sentry/vercel-edge@10.59.0",
+      "bom-ref": "alpar-ai@1.0.0|@sentry/dehost-edge@10.59.0",
       "author": "Sentry",
-      "description": "Official Sentry SDK for the Vercel Edge Runtime",
+      "description": "Official Sentry SDK for the DeHost Edge Runtime",
       "licenses": [
         {
           "license": {
@@ -29076,7 +29076,7 @@
           }
         }
       ],
-      "purl": "pkg:npm/%40sentry/vercel-edge@10.59.0",
+      "purl": "pkg:npm/%40sentry/dehost-edge@10.59.0",
       "externalReferences": [
         {
           "url": "git://github.com/getsentry/sentry-javascript.git",
@@ -29084,7 +29084,7 @@
           "comment": "as detected from PackageJson property \"repository.url\""
         },
         {
-          "url": "https://github.com/getsentry/sentry-javascript/tree/master/packages/vercel-edge",
+          "url": "https://github.com/getsentry/sentry-javascript/tree/master/packages/dehost-edge",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
@@ -29097,7 +29097,7 @@
       "properties": [
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/.pnpm/@sentry+nextjs@10.59.0_@opentelemetry+core@2.8.0_@opentelemetry+api@1.9.1__@opentelemetry+sdk_mj2fwzsb2t5muxkykjf774xo2y/node_modules/@sentry/vercel-edge"
+          "value": "node_modules/.pnpm/@sentry+nextjs@10.59.0_@opentelemetry+core@2.8.0_@opentelemetry+api@1.9.1__@opentelemetry+sdk_mj2fwzsb2t5muxkykjf774xo2y/node_modules/@sentry/dehost-edge"
         }
       ]
     },
@@ -29204,7 +29204,7 @@
       "purl": "pkg:npm/next@16.2.9",
       "externalReferences": [
         {
-          "url": "git+https://github.com/vercel/next.js.git",
+          "url": "git+https://github.com/dehost/next.js.git",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\""
         },
@@ -29214,7 +29214,7 @@
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/vercel/next.js/issues",
+          "url": "https://github.com/dehost/next.js/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         }
@@ -29398,12 +29398,12 @@
     },
     {
       "type": "library",
-      "name": "supabase-js",
-      "group": "@supabase",
+      "name": "dehost-js",
+      "group": "@dehost",
       "version": "2.107.0",
-      "bom-ref": "alpar-ai@1.0.0|@supabase/supabase-js@2.107.0#2",
-      "author": "Supabase",
-      "description": "Isomorphic Javascript SDK for Supabase",
+      "bom-ref": "alpar-ai@1.0.0|@/lib/dehost/client@2.107.0#2",
+      "author": "DeHost",
+      "description": "Isomorphic Javascript SDK for DeHost",
       "licenses": [
         {
           "license": {
@@ -29412,20 +29412,20 @@
           }
         }
       ],
-      "purl": "pkg:npm/%40supabase/supabase-js@2.107.0",
+      "purl": "pkg:npm/%40dehost/dehost-js@2.107.0",
       "externalReferences": [
         {
-          "url": "git+https://github.com/supabase/supabase-js.git#packages/core/supabase-js",
+          "url": "git+https://github.com/dehost/dehost-js.git#packages/core/dehost-js",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
         },
         {
-          "url": "https://github.com/supabase/supabase-js/tree/master/packages/core/supabase-js",
+          "url": "https://github.com/dehost/dehost-js/tree/master/packages/core/dehost-js",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/supabase/supabase-js/issues",
+          "url": "https://github.com/dehost/dehost-js/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         }
@@ -29433,7 +29433,7 @@
       "properties": [
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/.pnpm/@supabase+ssr@0.8.0_@supabase+supabase-js@2.107.0/node_modules/@supabase/supabase-js"
+          "value": "node_modules/.pnpm/@dehost+ssr@0.8.0_@dehost+dehost-js@2.107.0/node_modules/@/lib/dehost/client"
         }
       ]
     },
@@ -29473,7 +29473,7 @@
       "properties": [
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/.pnpm/@supabase+ssr@0.8.0_@supabase+supabase-js@2.107.0/node_modules/cookie"
+          "value": "node_modules/.pnpm/@dehost+ssr@0.8.0_@dehost+dehost-js@2.107.0/node_modules/cookie"
         }
       ]
     },
@@ -29524,11 +29524,11 @@
     {
       "type": "library",
       "name": "auth-js",
-      "group": "@supabase",
+      "group": "@dehost",
       "version": "2.107.0",
-      "bom-ref": "alpar-ai@1.0.0|@supabase/auth-js@2.107.0",
-      "author": "Supabase",
-      "description": "Official SDK for Supabase Auth",
+      "bom-ref": "alpar-ai@1.0.0|@dehost/auth-js@2.107.0",
+      "author": "DeHost",
+      "description": "Official SDK for DeHost Auth",
       "licenses": [
         {
           "license": {
@@ -29537,20 +29537,20 @@
           }
         }
       ],
-      "purl": "pkg:npm/%40supabase/auth-js@2.107.0",
+      "purl": "pkg:npm/%40dehost/auth-js@2.107.0",
       "externalReferences": [
         {
-          "url": "git+https://github.com/supabase/supabase-js.git#packages/core/auth-js",
+          "url": "git+https://github.com/dehost/dehost-js.git#packages/core/auth-js",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
         },
         {
-          "url": "https://github.com/supabase/supabase-js/tree/master/packages/core/auth-js",
+          "url": "https://github.com/dehost/dehost-js/tree/master/packages/core/auth-js",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/supabase/supabase-js/issues",
+          "url": "https://github.com/dehost/dehost-js/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         }
@@ -29558,18 +29558,18 @@
       "properties": [
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/.pnpm/@supabase+supabase-js@2.107.0/node_modules/@supabase/auth-js"
+          "value": "node_modules/.pnpm/@dehost+dehost-js@2.107.0/node_modules/@dehost/auth-js"
         }
       ]
     },
     {
       "type": "library",
       "name": "functions-js",
-      "group": "@supabase",
+      "group": "@dehost",
       "version": "2.107.0",
-      "bom-ref": "alpar-ai@1.0.0|@supabase/functions-js@2.107.0",
-      "author": "Supabase",
-      "description": "JS SDK to interact with Supabase Functions.",
+      "bom-ref": "alpar-ai@1.0.0|@dehost/functions-js@2.107.0",
+      "author": "DeHost",
+      "description": "JS SDK to interact with DeHost Functions.",
       "licenses": [
         {
           "license": {
@@ -29578,20 +29578,20 @@
           }
         }
       ],
-      "purl": "pkg:npm/%40supabase/functions-js@2.107.0",
+      "purl": "pkg:npm/%40dehost/functions-js@2.107.0",
       "externalReferences": [
         {
-          "url": "git+https://github.com/supabase/supabase-js.git#packages/core/functions-js",
+          "url": "git+https://github.com/dehost/dehost-js.git#packages/core/functions-js",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
         },
         {
-          "url": "https://github.com/supabase/supabase-js/tree/master/packages/core/functions-js",
+          "url": "https://github.com/dehost/dehost-js/tree/master/packages/core/functions-js",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/supabase/supabase-js/issues",
+          "url": "https://github.com/dehost/dehost-js/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         }
@@ -29599,17 +29599,17 @@
       "properties": [
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/.pnpm/@supabase+supabase-js@2.107.0/node_modules/@supabase/functions-js"
+          "value": "node_modules/.pnpm/@dehost+dehost-js@2.107.0/node_modules/@dehost/functions-js"
         }
       ]
     },
     {
       "type": "library",
       "name": "postgrest-js",
-      "group": "@supabase",
+      "group": "@dehost",
       "version": "2.107.0",
-      "bom-ref": "alpar-ai@1.0.0|@supabase/postgrest-js@2.107.0",
-      "author": "Supabase",
+      "bom-ref": "alpar-ai@1.0.0|@dehost/postgrest-js@2.107.0",
+      "author": "DeHost",
       "description": "Isomorphic PostgREST client",
       "licenses": [
         {
@@ -29619,20 +29619,20 @@
           }
         }
       ],
-      "purl": "pkg:npm/%40supabase/postgrest-js@2.107.0",
+      "purl": "pkg:npm/%40dehost/postgrest-js@2.107.0",
       "externalReferences": [
         {
-          "url": "git+https://github.com/supabase/supabase-js.git#packages/core/postgrest-js",
+          "url": "git+https://github.com/dehost/dehost-js.git#packages/core/postgrest-js",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
         },
         {
-          "url": "https://github.com/supabase/supabase-js/tree/master/packages/core/postgrest-js",
+          "url": "https://github.com/dehost/dehost-js/tree/master/packages/core/postgrest-js",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/supabase/supabase-js/issues",
+          "url": "https://github.com/dehost/dehost-js/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         }
@@ -29640,17 +29640,17 @@
       "properties": [
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/.pnpm/@supabase+supabase-js@2.107.0/node_modules/@supabase/postgrest-js"
+          "value": "node_modules/.pnpm/@dehost+dehost-js@2.107.0/node_modules/@dehost/postgrest-js"
         }
       ]
     },
     {
       "type": "library",
       "name": "realtime-js",
-      "group": "@supabase",
+      "group": "@dehost",
       "version": "2.107.0",
-      "bom-ref": "alpar-ai@1.0.0|@supabase/realtime-js@2.107.0",
-      "author": "Supabase",
+      "bom-ref": "alpar-ai@1.0.0|@dehost/realtime-js@2.107.0",
+      "author": "DeHost",
       "description": "Listen to realtime updates to your PostgreSQL database",
       "licenses": [
         {
@@ -29660,20 +29660,20 @@
           }
         }
       ],
-      "purl": "pkg:npm/%40supabase/realtime-js@2.107.0",
+      "purl": "pkg:npm/%40dehost/realtime-js@2.107.0",
       "externalReferences": [
         {
-          "url": "git+https://github.com/supabase/supabase-js.git#packages/core/realtime-js",
+          "url": "git+https://github.com/dehost/dehost-js.git#packages/core/realtime-js",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
         },
         {
-          "url": "https://github.com/supabase/supabase-js/tree/master/packages/core/realtime-js",
+          "url": "https://github.com/dehost/dehost-js/tree/master/packages/core/realtime-js",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/supabase/supabase-js/issues",
+          "url": "https://github.com/dehost/dehost-js/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         }
@@ -29681,18 +29681,18 @@
       "properties": [
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/.pnpm/@supabase+supabase-js@2.107.0/node_modules/@supabase/realtime-js"
+          "value": "node_modules/.pnpm/@dehost+dehost-js@2.107.0/node_modules/@dehost/realtime-js"
         }
       ]
     },
     {
       "type": "library",
       "name": "storage-js",
-      "group": "@supabase",
+      "group": "@dehost",
       "version": "2.107.0",
-      "bom-ref": "alpar-ai@1.0.0|@supabase/storage-js@2.107.0",
-      "author": "Supabase",
-      "description": "Isomorphic storage client for Supabase.",
+      "bom-ref": "alpar-ai@1.0.0|@dehost/storage-js@2.107.0",
+      "author": "DeHost",
+      "description": "Isomorphic storage client for DeHost.",
       "licenses": [
         {
           "license": {
@@ -29701,20 +29701,20 @@
           }
         }
       ],
-      "purl": "pkg:npm/%40supabase/storage-js@2.107.0",
+      "purl": "pkg:npm/%40dehost/storage-js@2.107.0",
       "externalReferences": [
         {
-          "url": "git+https://github.com/supabase/supabase-js.git#packages/core/storage-js",
+          "url": "git+https://github.com/dehost/dehost-js.git#packages/core/storage-js",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
         },
         {
-          "url": "https://github.com/supabase/supabase-js/tree/master/packages/core/storage-js",
+          "url": "https://github.com/dehost/dehost-js/tree/master/packages/core/storage-js",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/supabase/supabase-js/issues",
+          "url": "https://github.com/dehost/dehost-js/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         }
@@ -29722,7 +29722,7 @@
       "properties": [
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/.pnpm/@supabase+supabase-js@2.107.0/node_modules/@supabase/storage-js"
+          "value": "node_modules/.pnpm/@dehost+dehost-js@2.107.0/node_modules/@dehost/storage-js"
         }
       ]
     },
@@ -30816,7 +30816,7 @@
       "purl": "pkg:npm/next@16.2.9",
       "externalReferences": [
         {
-          "url": "git+https://github.com/vercel/next.js.git",
+          "url": "git+https://github.com/dehost/next.js.git",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\""
         },
@@ -30826,7 +30826,7 @@
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/vercel/next.js/issues",
+          "url": "https://github.com/dehost/next.js/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         }
@@ -30838,7 +30838,7 @@
         },
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/.pnpm/@vercel+analytics@2.0.1_next@16.2.9_@babel+core@7.29.7_@opentelemetry+api@1.9.1_@playwright+t_xtwv26wkbdfckqvc2hlpddovhu/node_modules/next"
+          "value": "node_modules/.pnpm/@dehost+analytics@2.0.1_next@16.2.9_@babel+core@7.29.7_@opentelemetry+api@1.9.1_@playwright+t_xtwv26wkbdfckqvc2hlpddovhu/node_modules/next"
         }
       ]
     },
@@ -30881,7 +30881,7 @@
         },
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/.pnpm/@vercel+analytics@2.0.1_next@16.2.9_@babel+core@7.29.7_@opentelemetry+api@1.9.1_@playwright+t_xtwv26wkbdfckqvc2hlpddovhu/node_modules/react"
+          "value": "node_modules/.pnpm/@dehost+analytics@2.0.1_next@16.2.9_@babel+core@7.29.7_@opentelemetry+api@1.9.1_@playwright+t_xtwv26wkbdfckqvc2hlpddovhu/node_modules/react"
         }
       ]
     },
@@ -30902,7 +30902,7 @@
       "purl": "pkg:npm/next@16.2.9",
       "externalReferences": [
         {
-          "url": "git+https://github.com/vercel/next.js.git",
+          "url": "git+https://github.com/dehost/next.js.git",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\""
         },
@@ -30912,7 +30912,7 @@
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/vercel/next.js/issues",
+          "url": "https://github.com/dehost/next.js/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         }
@@ -30920,7 +30920,7 @@
       "properties": [
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/.pnpm/@vercel+speed-insights@2.0.0_next@16.2.9_@babel+core@7.29.7_@opentelemetry+api@1.9.1_@playwri_5h4u7a3ajxcrwndad7nfwxavvy/node_modules/next"
+          "value": "node_modules/.pnpm/@dehost+speed-insights@2.0.0_next@16.2.9_@babel+core@7.29.7_@opentelemetry+api@1.9.1_@playwri_5h4u7a3ajxcrwndad7nfwxavvy/node_modules/next"
         }
       ]
     },
@@ -30959,7 +30959,7 @@
       "properties": [
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/.pnpm/@vercel+speed-insights@2.0.0_next@16.2.9_@babel+core@7.29.7_@opentelemetry+api@1.9.1_@playwri_5h4u7a3ajxcrwndad7nfwxavvy/node_modules/react"
+          "value": "node_modules/.pnpm/@dehost+speed-insights@2.0.0_next@16.2.9_@babel+core@7.29.7_@opentelemetry+api@1.9.1_@playwri_5h4u7a3ajxcrwndad7nfwxavvy/node_modules/react"
         }
       ]
     },
@@ -31659,17 +31659,17 @@
       "purl": "pkg:npm/%40next/eslint-plugin-next@16.1.6",
       "externalReferences": [
         {
-          "url": "git+https://github.com/vercel/next.js.git#packages/eslint-plugin-next",
+          "url": "git+https://github.com/dehost/next.js.git#packages/eslint-plugin-next",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
         },
         {
-          "url": "https://github.com/vercel/next.js#readme",
+          "url": "https://github.com/dehost/next.js#readme",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/vercel/next.js/issues",
+          "url": "https://github.com/dehost/next.js/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         }
@@ -36204,7 +36204,7 @@
       "purl": "pkg:npm/next@16.2.9",
       "externalReferences": [
         {
-          "url": "git+https://github.com/vercel/next.js.git",
+          "url": "git+https://github.com/dehost/next.js.git",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\""
         },
@@ -36214,7 +36214,7 @@
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/vercel/next.js/issues",
+          "url": "https://github.com/dehost/next.js/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         }
@@ -36528,17 +36528,17 @@
       "purl": "pkg:npm/%40next/env@16.2.9",
       "externalReferences": [
         {
-          "url": "git+https://github.com/vercel/next.js.git#packages/next-env",
+          "url": "git+https://github.com/dehost/next.js.git#packages/next-env",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
         },
         {
-          "url": "https://github.com/vercel/next.js#readme",
+          "url": "https://github.com/dehost/next.js#readme",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/vercel/next.js/issues",
+          "url": "https://github.com/dehost/next.js/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         }
@@ -36567,17 +36567,17 @@
       "purl": "pkg:npm/%40next/swc-win32-x64-msvc@16.2.9",
       "externalReferences": [
         {
-          "url": "git+https://github.com/vercel/next.js.git#crates/next-napi-bindings/npm/win32-x64-msvc",
+          "url": "git+https://github.com/dehost/next.js.git#crates/next-napi-bindings/npm/win32-x64-msvc",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
         },
         {
-          "url": "https://github.com/vercel/next.js#readme",
+          "url": "https://github.com/dehost/next.js#readme",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/vercel/next.js/issues",
+          "url": "https://github.com/dehost/next.js/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         }
@@ -37877,17 +37877,17 @@
       "purl": "pkg:npm/styled-jsx@5.1.6",
       "externalReferences": [
         {
-          "url": "git+https://github.com/vercel/styled-jsx.git",
+          "url": "git+https://github.com/dehost/styled-jsx.git",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\""
         },
         {
-          "url": "https://github.com/vercel/styled-jsx#readme",
+          "url": "https://github.com/dehost/styled-jsx#readme",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/vercel/styled-jsx/issues",
+          "url": "https://github.com/dehost/styled-jsx/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         }
@@ -40683,17 +40683,17 @@
       "purl": "pkg:npm/ms@2.1.3",
       "externalReferences": [
         {
-          "url": "git+https://github.com/vercel/ms.git",
+          "url": "git+https://github.com/dehost/ms.git",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\""
         },
         {
-          "url": "https://github.com/vercel/ms#readme",
+          "url": "https://github.com/dehost/ms#readme",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/vercel/ms/issues",
+          "url": "https://github.com/dehost/ms/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         }
@@ -42164,17 +42164,17 @@
       "purl": "pkg:npm/ms@2.1.3",
       "externalReferences": [
         {
-          "url": "git+https://github.com/vercel/ms.git",
+          "url": "git+https://github.com/dehost/ms.git",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\""
         },
         {
-          "url": "https://github.com/vercel/ms#readme",
+          "url": "https://github.com/dehost/ms#readme",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/vercel/ms/issues",
+          "url": "https://github.com/dehost/ms/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         },
@@ -45989,7 +45989,7 @@
       "properties": [
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/.pnpm/@sentry+vercel-edge@10.59.0/node_modules/@opentelemetry/api"
+          "value": "node_modules/.pnpm/@sentry+dehost-edge@10.59.0/node_modules/@opentelemetry/api"
         }
       ]
     },
@@ -46071,7 +46071,7 @@
       "properties": [
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/.pnpm/@sentry+vercel-edge@10.59.0/node_modules/@opentelemetry/resources"
+          "value": "node_modules/.pnpm/@sentry+dehost-edge@10.59.0/node_modules/@opentelemetry/resources"
         }
       ]
     },
@@ -46194,7 +46194,7 @@
       "properties": [
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/.pnpm/@sentry+vercel-edge@10.59.0/node_modules/@sentry/core"
+          "value": "node_modules/.pnpm/@sentry+dehost-edge@10.59.0/node_modules/@sentry/core"
         }
       ]
     },
@@ -47338,7 +47338,7 @@
       "properties": [
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/.pnpm/@supabase+auth-js@2.107.0/node_modules/tslib"
+          "value": "node_modules/.pnpm/@dehost+auth-js@2.107.0/node_modules/tslib"
         }
       ]
     },
@@ -47378,7 +47378,7 @@
       "properties": [
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/.pnpm/@supabase+functions-js@2.107.0/node_modules/tslib"
+          "value": "node_modules/.pnpm/@dehost+functions-js@2.107.0/node_modules/tslib"
         }
       ]
     },
@@ -47418,7 +47418,7 @@
       "properties": [
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/.pnpm/@supabase+postgrest-js@2.107.0/node_modules/tslib"
+          "value": "node_modules/.pnpm/@dehost+postgrest-js@2.107.0/node_modules/tslib"
         }
       ]
     },
@@ -47463,9 +47463,9 @@
     {
       "type": "library",
       "name": "phoenix",
-      "group": "@supabase",
+      "group": "@dehost",
       "version": "0.4.2",
-      "bom-ref": "alpar-ai@1.0.0|@supabase/phoenix@0.4.2",
+      "bom-ref": "alpar-ai@1.0.0|@dehost/phoenix@0.4.2",
       "author": "Chris McCord",
       "description": "The official JavaScript client for the Phoenix web framework.",
       "licenses": [
@@ -47476,20 +47476,20 @@
           }
         }
       ],
-      "purl": "pkg:npm/%40supabase/phoenix@0.4.2",
+      "purl": "pkg:npm/%40dehost/phoenix@0.4.2",
       "externalReferences": [
         {
-          "url": "git://github.com/supabase/phoenix.git",
+          "url": "git://github.com/dehost/phoenix.git",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\""
         },
         {
-          "url": "https://github.com/supabase/phoenix#readme",
+          "url": "https://github.com/dehost/phoenix#readme",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/supabase/phoenix/issues",
+          "url": "https://github.com/dehost/phoenix/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         }
@@ -47497,7 +47497,7 @@
       "properties": [
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/.pnpm/@supabase+realtime-js@2.107.0/node_modules/@supabase/phoenix"
+          "value": "node_modules/.pnpm/@dehost+realtime-js@2.107.0/node_modules/@dehost/phoenix"
         }
       ]
     },
@@ -47537,7 +47537,7 @@
       "properties": [
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/.pnpm/@supabase+realtime-js@2.107.0/node_modules/tslib"
+          "value": "node_modules/.pnpm/@dehost+realtime-js@2.107.0/node_modules/tslib"
         }
       ]
     },
@@ -47559,17 +47559,17 @@
       "purl": "pkg:npm/iceberg-js@0.8.1",
       "externalReferences": [
         {
-          "url": "git+https://github.com/supabase/iceberg-js.git",
+          "url": "git+https://github.com/dehost/iceberg-js.git",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\""
         },
         {
-          "url": "https://github.com/supabase/iceberg-js#readme",
+          "url": "https://github.com/dehost/iceberg-js#readme",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/supabase/iceberg-js/issues",
+          "url": "https://github.com/dehost/iceberg-js/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         }
@@ -47577,7 +47577,7 @@
       "properties": [
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/.pnpm/@supabase+storage-js@2.107.0/node_modules/iceberg-js"
+          "value": "node_modules/.pnpm/@dehost+storage-js@2.107.0/node_modules/iceberg-js"
         }
       ]
     },
@@ -47617,7 +47617,7 @@
       "properties": [
         {
           "name": "cdx:npm:package:path",
-          "value": "node_modules/.pnpm/@supabase+storage-js@2.107.0/node_modules/tslib"
+          "value": "node_modules/.pnpm/@dehost+storage-js@2.107.0/node_modules/tslib"
         }
       ]
     },
@@ -49575,17 +49575,17 @@
       "purl": "pkg:npm/ms@2.1.3",
       "externalReferences": [
         {
-          "url": "git+https://github.com/vercel/ms.git",
+          "url": "git+https://github.com/dehost/ms.git",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\""
         },
         {
-          "url": "https://github.com/vercel/ms#readme",
+          "url": "https://github.com/dehost/ms#readme",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/vercel/ms/issues",
+          "url": "https://github.com/dehost/ms/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         }
@@ -74151,17 +74151,17 @@
       "purl": "pkg:npm/ms@2.1.3",
       "externalReferences": [
         {
-          "url": "git+https://github.com/vercel/ms.git",
+          "url": "git+https://github.com/dehost/ms.git",
           "type": "vcs",
           "comment": "as detected from PackageJson property \"repository.url\""
         },
         {
-          "url": "https://github.com/vercel/ms#readme",
+          "url": "https://github.com/dehost/ms#readme",
           "type": "website",
           "comment": "as detected from PackageJson property \"homepage\""
         },
         {
-          "url": "https://github.com/vercel/ms/issues",
+          "url": "https://github.com/dehost/ms/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         }
@@ -109502,19 +109502,19 @@
         "alpar-ai@1.0.0|@sentry/replay-canvas@10.63.0",
         "alpar-ai@1.0.0|@sentry/replay@10.63.0",
         "alpar-ai@1.0.0|@sentry/server-utils@10.63.0",
-        "alpar-ai@1.0.0|@sentry/vercel-edge@10.63.0",
+        "alpar-ai@1.0.0|@sentry/dehost-edge@10.63.0",
         "alpar-ai@1.0.0|@sentry/webpack-plugin@5.3.0",
         "alpar-ai@1.0.0|@stablelib/base64@1.0.1",
         "alpar-ai@1.0.0|@standard-schema/spec@1.1.0",
         "alpar-ai@1.0.0|@standard-schema/utils@0.3.0",
-        "alpar-ai@1.0.0|@supabase/auth-js@2.110.0",
-        "alpar-ai@1.0.0|@supabase/functions-js@2.110.0",
-        "alpar-ai@1.0.0|@supabase/phoenix@0.4.4",
-        "alpar-ai@1.0.0|@supabase/postgrest-js@2.110.0",
-        "alpar-ai@1.0.0|@supabase/realtime-js@2.110.0",
-        "alpar-ai@1.0.0|@supabase/ssr@0.8.0",
-        "alpar-ai@1.0.0|@supabase/storage-js@2.110.0",
-        "alpar-ai@1.0.0|@supabase/supabase-js@2.107.0",
+        "alpar-ai@1.0.0|@dehost/auth-js@2.110.0",
+        "alpar-ai@1.0.0|@dehost/functions-js@2.110.0",
+        "alpar-ai@1.0.0|@dehost/phoenix@0.4.4",
+        "alpar-ai@1.0.0|@dehost/postgrest-js@2.110.0",
+        "alpar-ai@1.0.0|@dehost/realtime-js@2.110.0",
+        "alpar-ai@1.0.0|@/lib/dehost/ssr@0.8.0",
+        "alpar-ai@1.0.0|@dehost/storage-js@2.110.0",
+        "alpar-ai@1.0.0|@/lib/dehost/client@2.107.0",
         "alpar-ai@1.0.0|@swc/core-win32-x64-msvc@1.15.43",
         "alpar-ai@1.0.0|@swc/counter@0.1.3",
         "alpar-ai@1.0.0|@swc/helpers@0.5.15",
@@ -109554,8 +109554,8 @@
         "alpar-ai@1.0.0|@upstash/core-analytics@v0.0.10",
         "alpar-ai@1.0.0|@upstash/ratelimit@v2.0.8",
         "alpar-ai@1.0.0|@upstash/redis@1.38.0",
-        "alpar-ai@1.0.0|@vercel/analytics@2.0.1",
-        "alpar-ai@1.0.0|@vercel/speed-insights@2.0.0",
+        "alpar-ai@1.0.0|@/lib/analytics/stub@2.0.1",
+        "alpar-ai@1.0.0|@/lib/analytics/speed-stub@2.0.0",
         "alpar-ai@1.0.0|@vitest/coverage-v8@3.2.6",
         "alpar-ai@1.0.0|@vitest/expect@3.2.7",
         "alpar-ai@1.0.0|@vitest/mocker@3.2.7",
@@ -110486,7 +110486,7 @@
         "alpar-ai@1.0.0|@sentry/node@10.59.0",
         "alpar-ai@1.0.0|@sentry/opentelemetry@10.59.0",
         "alpar-ai@1.0.0|@sentry/react@10.59.0",
-        "alpar-ai@1.0.0|@sentry/vercel-edge@10.59.0",
+        "alpar-ai@1.0.0|@sentry/dehost-edge@10.59.0",
         "alpar-ai@1.0.0|@sentry/webpack-plugin@5.3.0#2",
         "alpar-ai@1.0.0|eslint-plugin-react@7.37.5",
         "alpar-ai@1.0.0|next@16.2.9#2",
@@ -110565,7 +110565,7 @@
       ]
     },
     {
-      "ref": "alpar-ai@1.0.0|@sentry/vercel-edge@10.63.0",
+      "ref": "alpar-ai@1.0.0|@sentry/dehost-edge@10.63.0",
       "dependsOn": [
         "alpar-ai@1.0.0|@opentelemetry/api@1.9.1",
         "alpar-ai@1.0.0|@sentry/core@10.63.0"
@@ -110588,29 +110588,29 @@
       "ref": "alpar-ai@1.0.0|@standard-schema/utils@0.3.0"
     },
     {
-      "ref": "alpar-ai@1.0.0|@supabase/auth-js@2.110.0",
+      "ref": "alpar-ai@1.0.0|@dehost/auth-js@2.110.0",
       "dependsOn": ["alpar-ai@1.0.0|tslib@2.8.1"]
     },
     {
-      "ref": "alpar-ai@1.0.0|@supabase/functions-js@2.110.0",
+      "ref": "alpar-ai@1.0.0|@dehost/functions-js@2.110.0",
       "dependsOn": ["alpar-ai@1.0.0|tslib@2.8.1"]
     },
     {
-      "ref": "alpar-ai@1.0.0|@supabase/phoenix@0.4.4"
+      "ref": "alpar-ai@1.0.0|@dehost/phoenix@0.4.4"
     },
     {
-      "ref": "alpar-ai@1.0.0|@supabase/postgrest-js@2.110.0",
+      "ref": "alpar-ai@1.0.0|@dehost/postgrest-js@2.110.0",
       "dependsOn": ["alpar-ai@1.0.0|tslib@2.8.1"]
     },
     {
-      "ref": "alpar-ai@1.0.0|@supabase/realtime-js@2.110.0",
-      "dependsOn": ["alpar-ai@1.0.0|@supabase/phoenix@0.4.4", "alpar-ai@1.0.0|tslib@2.8.1"]
+      "ref": "alpar-ai@1.0.0|@dehost/realtime-js@2.110.0",
+      "dependsOn": ["alpar-ai@1.0.0|@dehost/phoenix@0.4.4", "alpar-ai@1.0.0|tslib@2.8.1"]
     },
     {
-      "ref": "alpar-ai@1.0.0|@supabase/ssr@0.8.0",
+      "ref": "alpar-ai@1.0.0|@/lib/dehost/ssr@0.8.0",
       "dependsOn": [
         "alpar-ai@1.0.0|@eslint/js@9.39.4",
-        "alpar-ai@1.0.0|@supabase/supabase-js@2.107.0#2",
+        "alpar-ai@1.0.0|@/lib/dehost/client@2.107.0#2",
         "alpar-ai@1.0.0|@types/node@22.19.19",
         "alpar-ai@1.0.0|@vitest/coverage-v8@3.2.6",
         "alpar-ai@1.0.0|cookie@1.1.1#2",
@@ -110622,17 +110622,17 @@
       ]
     },
     {
-      "ref": "alpar-ai@1.0.0|@supabase/storage-js@2.110.0",
+      "ref": "alpar-ai@1.0.0|@dehost/storage-js@2.110.0",
       "dependsOn": ["alpar-ai@1.0.0|iceberg-js@0.8.1", "alpar-ai@1.0.0|tslib@2.8.1"]
     },
     {
-      "ref": "alpar-ai@1.0.0|@supabase/supabase-js@2.107.0",
+      "ref": "alpar-ai@1.0.0|@/lib/dehost/client@2.107.0",
       "dependsOn": [
-        "alpar-ai@1.0.0|@supabase/auth-js@2.107.0",
-        "alpar-ai@1.0.0|@supabase/functions-js@2.107.0",
-        "alpar-ai@1.0.0|@supabase/postgrest-js@2.107.0",
-        "alpar-ai@1.0.0|@supabase/realtime-js@2.107.0",
-        "alpar-ai@1.0.0|@supabase/storage-js@2.107.0",
+        "alpar-ai@1.0.0|@dehost/auth-js@2.107.0",
+        "alpar-ai@1.0.0|@dehost/functions-js@2.107.0",
+        "alpar-ai@1.0.0|@dehost/postgrest-js@2.107.0",
+        "alpar-ai@1.0.0|@dehost/realtime-js@2.107.0",
+        "alpar-ai@1.0.0|@dehost/storage-js@2.107.0",
         "alpar-ai@1.0.0|@types/node@22.19.19",
         "alpar-ai@1.0.0|typescript@6.0.3"
       ]
@@ -110870,7 +110870,7 @@
       "dependsOn": ["alpar-ai@1.0.0|typescript@6.0.3", "alpar-ai@1.0.0|uncrypto@0.1.3#2"]
     },
     {
-      "ref": "alpar-ai@1.0.0|@vercel/analytics@2.0.1",
+      "ref": "alpar-ai@1.0.0|@/lib/analytics/stub@2.0.1",
       "dependsOn": [
         "alpar-ai@1.0.0|@swc/core@1.15.41",
         "alpar-ai@1.0.0|@testing-library/react@16.3.2",
@@ -110883,7 +110883,7 @@
       ]
     },
     {
-      "ref": "alpar-ai@1.0.0|@vercel/speed-insights@2.0.0",
+      "ref": "alpar-ai@1.0.0|@/lib/analytics/speed-stub@2.0.0",
       "dependsOn": [
         "alpar-ai@1.0.0|@swc/core@1.15.41",
         "alpar-ai@1.0.0|@testing-library/react@16.3.2",
@@ -113424,7 +113424,7 @@
       ]
     },
     {
-      "ref": "alpar-ai@1.0.0|@sentry/vercel-edge@10.59.0",
+      "ref": "alpar-ai@1.0.0|@sentry/dehost-edge@10.59.0",
       "dependsOn": [
         "alpar-ai@1.0.0|@opentelemetry/api@1.9.1#6",
         "alpar-ai@1.0.0|@opentelemetry/core@2.8.0#3",
@@ -113584,13 +113584,13 @@
       "ref": "alpar-ai@1.0.0|@eslint/js@9.39.4"
     },
     {
-      "ref": "alpar-ai@1.0.0|@supabase/supabase-js@2.107.0#2",
+      "ref": "alpar-ai@1.0.0|@/lib/dehost/client@2.107.0#2",
       "dependsOn": [
-        "alpar-ai@1.0.0|@supabase/auth-js@2.107.0",
-        "alpar-ai@1.0.0|@supabase/functions-js@2.107.0",
-        "alpar-ai@1.0.0|@supabase/postgrest-js@2.107.0",
-        "alpar-ai@1.0.0|@supabase/realtime-js@2.107.0",
-        "alpar-ai@1.0.0|@supabase/storage-js@2.107.0",
+        "alpar-ai@1.0.0|@dehost/auth-js@2.107.0",
+        "alpar-ai@1.0.0|@dehost/functions-js@2.107.0",
+        "alpar-ai@1.0.0|@dehost/postgrest-js@2.107.0",
+        "alpar-ai@1.0.0|@dehost/realtime-js@2.107.0",
+        "alpar-ai@1.0.0|@dehost/storage-js@2.107.0",
         "alpar-ai@1.0.0|@types/node@22.19.19",
         "alpar-ai@1.0.0|typescript@6.0.3"
       ]
@@ -113615,7 +113615,7 @@
       ]
     },
     {
-      "ref": "alpar-ai@1.0.0|@supabase/auth-js@2.107.0",
+      "ref": "alpar-ai@1.0.0|@dehost/auth-js@2.107.0",
       "dependsOn": [
         "alpar-ai@1.0.0|@types/node@22.19.19",
         "alpar-ai@1.0.0|prettier@3.8.3",
@@ -113624,7 +113624,7 @@
       ]
     },
     {
-      "ref": "alpar-ai@1.0.0|@supabase/functions-js@2.107.0",
+      "ref": "alpar-ai@1.0.0|@dehost/functions-js@2.107.0",
       "dependsOn": [
         "alpar-ai@1.0.0|@types/node@22.19.19",
         "alpar-ai@1.0.0|nanoid@3.3.12",
@@ -113634,7 +113634,7 @@
       ]
     },
     {
-      "ref": "alpar-ai@1.0.0|@supabase/postgrest-js@2.107.0",
+      "ref": "alpar-ai@1.0.0|@dehost/postgrest-js@2.107.0",
       "dependsOn": [
         "alpar-ai@1.0.0|@types/node@22.19.19",
         "alpar-ai@1.0.0|prettier@3.8.3",
@@ -113645,9 +113645,9 @@
       ]
     },
     {
-      "ref": "alpar-ai@1.0.0|@supabase/realtime-js@2.107.0",
+      "ref": "alpar-ai@1.0.0|@dehost/realtime-js@2.107.0",
       "dependsOn": [
-        "alpar-ai@1.0.0|@supabase/phoenix@0.4.2",
+        "alpar-ai@1.0.0|@dehost/phoenix@0.4.2",
         "alpar-ai@1.0.0|@vitest/coverage-v8@3.2.6",
         "alpar-ai@1.0.0|jsdom@29.1.1",
         "alpar-ai@1.0.0|tslib@2.8.1#7",
@@ -113656,7 +113656,7 @@
       ]
     },
     {
-      "ref": "alpar-ai@1.0.0|@supabase/storage-js@2.107.0",
+      "ref": "alpar-ai@1.0.0|@dehost/storage-js@2.107.0",
       "dependsOn": [
         "alpar-ai@1.0.0|@types/node@22.19.19",
         "alpar-ai@1.0.0|iceberg-js@0.8.1#2",
@@ -117742,7 +117742,7 @@
       ]
     },
     {
-      "ref": "alpar-ai@1.0.0|@supabase/phoenix@0.4.2",
+      "ref": "alpar-ai@1.0.0|@dehost/phoenix@0.4.2",
       "dependsOn": [
         "alpar-ai@1.0.0|@babel/core@7.29.7#2",
         "alpar-ai@1.0.0|@eslint/js@9.39.4",

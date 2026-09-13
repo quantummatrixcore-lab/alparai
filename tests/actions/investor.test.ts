@@ -1,12 +1,12 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
-import { createMockSupabaseClient, createTestUser } from "../helpers/supabase-mock";
+import { createMockDeHostClient, createTestUser } from "../helpers/dehost-mock";
 
 vi.hoisted(() => {
-  vi.doMock("@/lib/supabase/server", () => ({
+  vi.doMock("@/lib/dehost/server", () => ({
     createServerClient: vi.fn(),
   }));
-  vi.doMock("@/lib/supabase/admin", () => ({
+  vi.doMock("@/lib/dehost/admin", () => ({
     createAdminClient: vi.fn(),
   }));
   vi.doMock("@/lib/auth/session", () => ({
@@ -21,14 +21,14 @@ vi.hoisted(() => {
   }));
 });
 
-import { createServerClient } from "@/lib/supabase/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createServerClient } from "@/lib/dehost/server";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { requireAdmin } from "@/lib/auth/session";
 import { getResendClient } from "@/lib/email/resend";
 import { submitInvestor, approveInvestor, rejectInvestor } from "@/actions/investor";
 
-let mockSupabaseClient: ReturnType<typeof createMockSupabaseClient>;
-let mockAdminClient: ReturnType<typeof createMockSupabaseClient>;
+let mockDeHostClient: ReturnType<typeof createMockDeHostClient>;
+let mockAdminClient: ReturnType<typeof createMockDeHostClient>;
 const mockAdminUser = createTestUser({ role: "admin", id: "admin-123" });
 
 function makeFormData(data: Record<string, string>): FormData {
@@ -41,9 +41,9 @@ function makeFormData(data: Record<string, string>): FormData {
 
 beforeEach(() => {
   vi.clearAllMocks();
-  mockSupabaseClient = createMockSupabaseClient();
-  mockAdminClient = createMockSupabaseClient();
-  vi.mocked(createServerClient).mockResolvedValue(mockSupabaseClient as never);
+  mockDeHostClient = createMockDeHostClient();
+  mockAdminClient = createMockDeHostClient();
+  vi.mocked(createServerClient).mockResolvedValue(mockDeHostClient as never);
   vi.mocked(createAdminClient).mockReturnValue(mockAdminClient as never);
   vi.mocked(requireAdmin).mockResolvedValue(mockAdminUser as never);
 });

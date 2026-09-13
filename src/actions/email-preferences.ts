@@ -1,6 +1,6 @@
 "use server";
 
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/dehost/server";
 import { revalidatePath } from "next/cache";
 import { logger } from "@/lib/utils/logger";
 import { getCurrentUser } from "@/lib/auth/session";
@@ -13,8 +13,8 @@ export interface EmailPreferencesState {
 
 export async function getEmailPreferences(userId: string) {
   try {
-    const supabase = await createClient();
-    const { data: fetchedData, error } = await supabase
+    const dehost = await createClient();
+    const { data: fetchedData, error } = await dehost
       .from("email_preferences")
       .select("weekly_digest, watches, reporter_notifications")
       .eq("user_id", userId)
@@ -32,7 +32,7 @@ export async function getEmailPreferences(userId: string) {
 
     if (!data) {
       // Insert defaults if missing
-      const { data: inserted } = await supabase
+      const { data: inserted } = await dehost
         .from("email_preferences")
         .insert({
           user_id: userId,
@@ -78,8 +78,8 @@ export async function updateEmailPreferencesAction(
     const watches = formData.get("watches") === "on";
     const reporterNotifications = formData.get("reporterNotifications") === "on";
 
-    const supabase = await createClient();
-    const { error } = await supabase
+    const dehost = await createClient();
+    const { error } = await dehost
       .from("email_preferences")
       .update({
         weekly_digest: weeklyDigest,

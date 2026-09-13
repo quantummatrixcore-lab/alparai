@@ -9,7 +9,7 @@ const mockFrom = vi.fn().mockImplementation(() => ({
   maybeSingle: mockMaybeSingle,
 }));
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({
     from: mockFrom,
   }),

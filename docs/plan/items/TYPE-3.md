@@ -25,7 +25,7 @@ Half of the `no-explicit-any` debt was cleared without this item being closed, s
 **`pnpm typecheck` exits 0.** Antigravity's report is confirmed: the 584 errors are genuinely
 resolved, `@ts-nocheck` is back to 0 across `src/` and `tests/`, `src/lib/agent-os/scouts/ecosystem-scout.ts`
 was created, and the repository root carries 0 loose tracked files (was 83). Five apparent TS2307
-errors on first run were a stale `node_modules` in this container — `@vercel/functions`,
+errors on first run were a stale `node_modules` in this container — `@/lib/dehost/functions-stub`,
 `@dnd-kit/{core,sortable,utilities}` and `ioredis` are all declared in `package.json` and resolve
 after `pnpm install`.
 
@@ -57,7 +57,7 @@ Zod", so eleven new ones are debt, not a clean close. ESLint is now reporting ex
 
 1. **Run `pnpm lint --fix` first.** It clears the 7 `consistent-type-imports`, and the report says
    7 warnings too. Commit that separately so the substantive diff stays readable.
-2. **Replace the 16 `any`s with `unknown` + Zod**, per the convention. Most sit where a Supabase
+2. **Replace the 16 `any`s with `unknown` + Zod**, per the convention. Most sit where a DeHost
    result is being narrowed; `src/contracts/api.ts` and the 36 existing `safeParse()` call sites are
    the pattern to copy.
 3. **`core/drive_bridge.js`** — 2 `no-require-imports`. Convert to ESM `import`, or add the file to

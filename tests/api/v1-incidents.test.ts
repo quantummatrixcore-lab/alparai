@@ -7,7 +7,7 @@ vi.mock("next/headers", () => ({
   headers: async () => new Map([["x-forwarded-for", "127.0.0.1"]]),
 }));
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({
     from: () => ({
       select: () => ({

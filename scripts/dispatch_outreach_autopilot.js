@@ -1,11 +1,11 @@
 const fs = require("fs");
 const dotenv = require("dotenv");
-const { createClient } = require("@supabase/supabase-js");
+const { createClient } = require("@/lib/dehost/client");
 const { Resend } = require("resend");
 
 const envConfig = fs.existsSync(".env.local") ? dotenv.parse(fs.readFileSync(".env.local")) : {};
-const url = process.env.NEXT_PUBLIC_SUPABASE_URL || envConfig.NEXT_PUBLIC_SUPABASE_URL;
-const key = process.env.SUPABASE_SERVICE_ROLE_KEY || envConfig.SUPABASE_SERVICE_ROLE_KEY;
+const url = process.env.NEXT_PUBLIC_DEHOST_URL || envConfig.NEXT_PUBLIC_DEHOST_URL;
+const key = process.env.DEHOST_SERVICE_ROLE_KEY || envConfig.DEHOST_SERVICE_ROLE_KEY;
 const resendKey = process.env.RESEND_API_KEY || envConfig.RESEND_API_KEY;
 
 if (!url || !key || !resendKey) {
@@ -13,7 +13,7 @@ if (!url || !key || !resendKey) {
   process.exit(1);
 }
 
-const supabase = createClient(url, key);
+const dehost = createClient(url, key);
 const resend = new Resend(resendKey);
 
 const newOutreachTargets = [
@@ -130,7 +130,7 @@ async function runAutopilot() {
 
   for (const target of newOutreachTargets) {
     // 1. Check if recipient already received this subject
-    const { data: existing } = await supabase
+    const { data: existing } = await dehost
       .from("outreach_queue")
       .select("id, status")
       .eq("recipient_email", target.recipient_email)
@@ -142,7 +142,7 @@ async function runAutopilot() {
     }
 
     // 2. Insert as approved into DB
-    const { data: dbData, error: dbError } = await supabase
+    const { data: dbData, error: dbError } = await dehost
       .from("outreach_queue")
       .insert({
         recipient_email: target.recipient_email,
@@ -177,7 +177,7 @@ async function runAutopilot() {
 
     if (resendError) {
       console.error("Resend Error for", target.recipient_email, resendError);
-      await supabase.from("outreach_queue").update({ status: "failed" }).eq("id", dbId);
+      await dehost.from("outreach_queue").update({ status: "failed" }).eq("id", dbId);
       executionResults.push({
         db_id: dbId,
         recipient: target.recipient_email,
@@ -187,7 +187,7 @@ async function runAutopilot() {
     } else {
       const resendId = resendData.id;
       const sentAt = new Date().toISOString();
-      await supabase
+      await dehost
         .from("outreach_queue")
         .update({ status: "sent", sent_at: sentAt })
         .eq("id", dbId);

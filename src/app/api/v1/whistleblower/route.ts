@@ -1,6 +1,6 @@
 import "server-only";
 import { NextResponse } from "next/server";
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/dehost/server";
 import { maskPII } from "@/lib/pii/guardian";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { headers } from "next/headers";
@@ -38,8 +38,8 @@ export async function POST(request: Request) {
     .update(`${ipHash}:${lab_name ?? "unknown"}:${Date.now()}`)
     .digest("hex");
 
-  const supabase = await createClient();
-  const { data, error } = await supabase
+  const dehost = await createClient();
+  const { data, error } = await dehost
     .from("whistleblower_submissions")
     .insert({
       encrypted_content: maskedDescription,

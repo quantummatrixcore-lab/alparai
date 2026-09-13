@@ -1,6 +1,6 @@
 "use server";
 
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { getCurrentUser } from "@/lib/auth/session";
 import { logger } from "@/lib/utils/logger";
 import { headers } from "next/headers";
@@ -19,9 +19,9 @@ export async function trackFunnelEvent(eventName: string, metadata?: Record<stri
     if (!rl.ok) {
       return;
     }
-    const supabase = await createServerClient();
+    const dehost = await createServerClient();
 
-    const { error } = await supabase.from("funnel_events").insert({
+    const { error } = await dehost.from("funnel_events").insert({
       event_name: eventName,
       user_id: user?.id ?? null,
       metadata: (metadata ?? {}) as Json,

@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from "vitest";
 import "../helpers/setup";
 import { selectModelTier, selectModelByCapability } from "@/lib/audit/model-router";
 
-vi.mock("@/lib/supabase/admin", () => {
+vi.mock("@/lib/dehost/admin", () => {
   return {
     createAdminClient: () => ({
       from: (table: string) => ({

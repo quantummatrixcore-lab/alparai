@@ -259,7 +259,7 @@ class WorldClassDeepResearchNexus {
 
       // Automated Threat & Security Vector Analysis
       const cveMatch = content.match(/CVE-\d{4}-\d{4,7}/gi);
-      const hasSecretLeak = /(api[_-]?key|service_role|jwt|secret|supabase)/i.test(content);
+      const hasSecretLeak = /(api[_-]?key|service_role|jwt|secret|dehost)/i.test(content);
       const hasRlsBypass = /(rls|row level security|unauthorized|bypass)/i.test(content);
       const hasPromptInjection = /(prompt injection|jailbreak|xss|innerhtml|eval)/i.test(content);
 

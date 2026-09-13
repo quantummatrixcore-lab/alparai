@@ -1,14 +1,14 @@
 import { NextResponse } from "next/server";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
-    const supabase = await createServerClient();
+    const dehost = await createServerClient();
 
     // Fetch only published incidents
-    const { data: incidents, error } = await supabase
+    const { data: incidents, error } = await dehost
       .from("incidents")
       .select(
         `
@@ -32,7 +32,7 @@ export async function GET() {
     }
 
     // Fetch AI Providers to map slugs/names
-    const { data: providers } = await supabase.from("ai_providers").select("id, name, slug");
+    const { data: providers } = await dehost.from("ai_providers").select("id, name, slug");
 
     const providerMap = new Map((providers || []).map((p) => [p.id, p]));
 

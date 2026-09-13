@@ -1,7 +1,7 @@
 public/openapi.yaml
 node_modules
 .next
-.vercel
+.dehost
 .turbo
 coverage
 pnpm-lock.yaml

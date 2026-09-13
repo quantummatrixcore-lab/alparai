@@ -28,7 +28,7 @@ const mockLimit = vi.fn().mockReturnThis();
 const mockMaybeSingle = vi.fn().mockResolvedValue({ data: null, error: null });
 const mockInsert = vi.fn().mockResolvedValue({ error: null });
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({
     from: () => ({
       select: mockSelect,

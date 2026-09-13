@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
-import { createMockSupabaseClient } from "../helpers/supabase-mock";
+import { createMockDeHostClient } from "../helpers/dehost-mock";
 
 vi.hoisted(() => {
-  vi.doMock("@/lib/supabase/admin", () => ({
+  vi.doMock("@/lib/dehost/admin", () => ({
     createAdminClient: vi.fn(),
   }));
   vi.doMock("@/lib/auth/session", () => ({
@@ -22,7 +22,7 @@ vi.hoisted(() => {
   }));
 });
 
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { requireAdmin, requireAdvisor } from "@/lib/auth/session";
 import { callModel } from "@/lib/ai/openrouter-gateway";
 import { isCostKillSwitchActive } from "@/lib/ai/cost-guard";
@@ -32,12 +32,12 @@ import {
   getQuestionnaireRunAnswers,
 } from "@/actions/strategy-questionnaire";
 
-let mockSupabaseClient: ReturnType<typeof createMockSupabaseClient>;
+let mockDeHostClient: ReturnType<typeof createMockDeHostClient>;
 
 beforeEach(() => {
   vi.clearAllMocks();
-  mockSupabaseClient = createMockSupabaseClient();
-  vi.mocked(createAdminClient).mockReturnValue(mockSupabaseClient as never);
+  mockDeHostClient = createMockDeHostClient();
+  vi.mocked(createAdminClient).mockReturnValue(mockDeHostClient as never);
   vi.mocked(requireAdmin).mockResolvedValue(undefined as never);
   vi.mocked(requireAdvisor).mockResolvedValue(undefined as never);
   vi.mocked(isCostKillSwitchActive).mockResolvedValue(false);
@@ -51,7 +51,7 @@ describe("Strategy Questionnaire Actions", () => {
       const mockSelect = vi.fn().mockReturnValue({ single: mockSingle });
       const mockInsert = vi.fn().mockReturnValue({ select: mockSelect });
 
-      mockSupabaseClient.from.mockImplementation((table) => {
+      mockDeHostClient.from.mockImplementation((table: string) => {
         if (table === "strategic_runs") {
           return {
             insert: mockInsert,
@@ -109,7 +109,7 @@ describe("Strategy Questionnaire Actions", () => {
       const mockOrder = vi.fn().mockReturnValue({ limit: mockLimit });
       const mockSelect = vi.fn().mockReturnValue({ order: mockOrder });
 
-      mockSupabaseClient.from.mockReturnValue({
+      mockDeHostClient.from.mockReturnValue({
         select: mockSelect,
       } as never);
 
@@ -128,7 +128,7 @@ describe("Strategy Questionnaire Actions", () => {
       const mockEq = vi.fn().mockReturnValue({ order: mockOrder });
       const mockSelect = vi.fn().mockReturnValue({ eq: mockEq });
 
-      mockSupabaseClient.from.mockReturnValue({
+      mockDeHostClient.from.mockReturnValue({
         select: mockSelect,
       } as never);
 

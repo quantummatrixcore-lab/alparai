@@ -6,6 +6,6 @@ test.describe("P0 - Submit Flow: PII Masking", () => {
       data: { text: "My email is test@test.com" }
     });
     // Assuming API is locked down or returns some shape
-    expect(res.status()).toBeLessThan(500);
+    expect([200, 400, 404, 405]).toContain(res.status());
   });
 });

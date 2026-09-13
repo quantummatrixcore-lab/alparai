@@ -4,8 +4,8 @@
 
 - Node.js 20+
 - pnpm 9.12+
-- Supabase project (production)
-- Vercel account (or equivalent hosting)
+- DeHost project (production)
+- DeHost account (or equivalent hosting)
 - Upstash Redis instance
 - Resend API key
 - Domain: alparai.online
@@ -16,12 +16,12 @@
 
 | Variable                        | Description                             | Where               |
 | ------------------------------- | --------------------------------------- | ------------------- |
-| `NEXT_PUBLIC_SUPABASE_URL`      | Supabase project URL                    | Vercel env          |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon/public key                | Vercel env          |
-| `SUPABASE_SERVICE_ROLE_KEY`     | Supabase service role key (server-only) | Vercel env (secret) |
-| `UPSTASH_REDIS_REST_URL`        | Upstash Redis REST URL                  | Vercel env          |
-| `UPSTASH_REDIS_REST_TOKEN`      | Upstash Redis REST token                | Vercel env (secret) |
-| `NEXT_PUBLIC_APP_URL`           | Production URL (https://alparai.online) | Vercel env          |
+| `NEXT_PUBLIC_DEHOST_URL`      | DeHost project URL                    | DeHost env          |
+| `NEXT_PUBLIC_DEHOST_ANON_KEY` | DeHost anon/public key                | DeHost env          |
+| `DEHOST_SERVICE_ROLE_KEY`     | DeHost service role key (server-only) | DeHost env (secret) |
+| `UPSTASH_REDIS_REST_URL`        | Upstash Redis REST URL                  | DeHost env          |
+| `UPSTASH_REDIS_REST_TOKEN`      | Upstash Redis REST token                | DeHost env (secret) |
+| `NEXT_PUBLIC_APP_URL`           | Production URL (https://alparai.online) | DeHost env          |
 
 ### Optional
 
@@ -39,17 +39,17 @@
 - [ ] All CI checks pass (lint, typecheck, tests)
 - [ ] E2E tests pass locally
 - [ ] Database migrations reviewed and tested
-- [ ] Environment variables configured in Vercel
+- [ ] Environment variables configured in DeHost
 - [ ] No `console.log` in production code (only `console.warn`/`error`/`info`)
 
 ### Database Migration
 
 ```bash
 # Apply new migrations to production
-supabase db push --linked
+dehost db push --linked
 
 # Or via migration file
-supabase migration up --linked
+dehost migration up --linked
 ```
 
 ### Deploy
@@ -59,7 +59,7 @@ supabase migration up --linked
 git push origin main
 
 # Manual deploy
-vercel --prod
+dehost --prod
 ```
 
 ### Post-deployment
@@ -76,17 +76,17 @@ vercel --prod
 
 ## Rollback Procedure
 
-1. **Vercel rollback:**
+1. **DeHost rollback:**
 
    ```bash
-   vercel rollback
+   dehost rollback
    ```
 
 2. **Database rollback:**
 
    ```bash
    # Revert last migration
-   supabase migration repair --status reverted <migration_id>
+   dehost migration repair --status reverted <migration_id>
    # Then manually apply down migration SQL
    ```
 
@@ -99,15 +99,15 @@ vercel --prod
 
 | System             | URL                 | Purpose                      |
 | ------------------ | ------------------- | ---------------------------- |
-| Vercel Dashboard   | vercel.com          | Deployment status, logs      |
-| Supabase Dashboard | supabase.com        | Database, auth, storage      |
+| DeHost Dashboard   | dehost.com          | Deployment status, logs      |
+| DeHost Dashboard | dehost.internalm        | Database, auth, storage      |
 | Upstash Console    | console.upstash.com | Redis metrics, rate limiting |
 | Sentry             | sentry.io           | Error tracking               |
 | Plausible          | plausible.io        | Privacy-friendly analytics   |
 
 ## Incident Response
 
-1. **Identify:** Check Sentry alerts, Vercel logs, health endpoint
+1. **Identify:** Check Sentry alerts, DeHost logs, health endpoint
 2. **Assess:** Determine severity (P0 = site down, P1 = feature broken, P2 = degraded)
 3. **Respond:**
    - P0: Immediate rollback, notify team
@@ -121,14 +121,14 @@ Rotate all secrets every 90 days:
 
 | Secret                      | Rotation Method                          |
 | --------------------------- | ---------------------------------------- |
-| `SUPABASE_SERVICE_ROLE_KEY` | Supabase Dashboard → Settings → API      |
+| `DEHOST_SERVICE_ROLE_KEY` | DeHost Dashboard → Settings → API      |
 | `UPSTASH_REDIS_REST_TOKEN`  | Upstash Console → Database → Reset Token |
 | `RESEND_API_KEY`            | Resend Dashboard → API Keys → Regenerate |
 | `SENTRY_AUTH_TOKEN`         | Sentry → Settings → Auth Tokens          |
 
 After rotation:
 
-1. Update Vercel environment variables
+1. Update DeHost environment variables
 2. Trigger redeployment
 3. Verify health endpoint
 4. Update password manager

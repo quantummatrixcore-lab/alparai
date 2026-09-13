@@ -1,12 +1,12 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
-import { createMockSupabaseClient, createTestUser } from "../helpers/supabase-mock";
+import { createMockDeHostClient, createTestUser } from "../helpers/dehost-mock";
 
 vi.hoisted(() => {
-  vi.doMock("@/lib/supabase/server", () => ({
+  vi.doMock("@/lib/dehost/server", () => ({
     createServerClient: vi.fn(),
   }));
-  vi.doMock("@/lib/supabase/admin", () => ({
+  vi.doMock("@/lib/dehost/admin", () => ({
     createAdminClient: vi.fn(),
   }));
   vi.doMock("@/lib/utils/rate-limit", () => ({
@@ -28,26 +28,26 @@ vi.hoisted(() => {
   }));
 });
 
-import { createServerClient } from "@/lib/supabase/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createServerClient } from "@/lib/dehost/server";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { checkRateLimit } from "@/lib/utils/rate-limit";
 import { submitVote } from "@/actions/community/dilemmas";
 
-let mockSupabase: ReturnType<typeof createMockSupabaseClient>;
-let mockAdmin: ReturnType<typeof createMockSupabaseClient>;
+let mockDeHost: ReturnType<typeof createMockDeHostClient>;
+let mockAdmin: ReturnType<typeof createMockDeHostClient>;
 let testUser: ReturnType<typeof createTestUser>;
 
 const POLL_ID = "00000000-0000-0000-0000-000000000001";
 
 beforeEach(() => {
   vi.clearAllMocks();
-  mockSupabase = createMockSupabaseClient();
-  mockAdmin = createMockSupabaseClient();
+  mockDeHost = createMockDeHostClient();
+  mockAdmin = createMockDeHostClient();
   testUser = createTestUser();
-  vi.mocked(createServerClient).mockResolvedValue(mockSupabase as never);
+  vi.mocked(createServerClient).mockResolvedValue(mockDeHost as never);
   vi.mocked(createAdminClient).mockReturnValue(mockAdmin as never);
   vi.mocked(checkRateLimit).mockResolvedValue({ ok: true, remaining: 2 });
-  mockSupabase.auth.getUser = vi.fn().mockResolvedValue({ data: { user: testUser }, error: null });
+  mockDeHost.auth.getUser = vi.fn().mockResolvedValue({ data: { user: testUser }, error: null });
   mockAdmin._mocks.mockInsert.mockReturnValue({
     then: vi.fn((onfulfilled) => {
       if (typeof onfulfilled === "function") {

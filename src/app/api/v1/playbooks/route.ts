@@ -1,6 +1,6 @@
 import "server-only";
 import { NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { requireAdmin } from "@/lib/auth/session";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { headers } from "next/headers";
@@ -48,8 +48,8 @@ export async function GET(request: Request) {
       );
     }
 
-    const supabase = createAdminClient();
-    let query = supabase
+    const dehost = createAdminClient();
+    let query = dehost
       .from("vertical_playbooks")
       .select("id, sector, title, framework, summary, checklist, created_at, updated_at")
       .order("created_at", { ascending: false })

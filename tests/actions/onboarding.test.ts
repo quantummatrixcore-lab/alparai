@@ -14,12 +14,12 @@ const mockCount = vi.fn().mockResolvedValue({ count: 50, error: null });
 const mockUpdate = vi.fn();
 const updateErrorMock = vi.fn().mockReturnValue(null);
 
-const mockSupabaseChain: any = {
+const mockDeHostChain: any = {
   select: vi.fn().mockImplementation((_cols: string, opts?: any) => {
     if (opts?.count) {
       return mockCount();
     }
-    return mockSupabaseChain;
+    return mockDeHostChain;
   }),
   eq: vi.fn().mockReturnThis(),
   single: () => mockSingle(),
@@ -32,9 +32,9 @@ const mockSupabaseChain: any = {
   }),
 };
 
-vi.mock("@/lib/supabase/server", () => ({
+vi.mock("@/lib/dehost/server", () => ({
   createServerClient: () => ({
-    from: () => mockSupabaseChain,
+    from: () => mockDeHostChain,
   }),
 }));
 

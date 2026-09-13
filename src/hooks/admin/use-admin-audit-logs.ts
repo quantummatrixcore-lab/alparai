@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { supabase } from "@/lib/supabase/client";
+import { dehost } from "@/lib/dehost/client";
 import type { Database } from "@/types/database";
 import { useAdminRealtime } from "./use-admin-realtime";
 
@@ -47,7 +47,7 @@ export function useAdminAuditLogs({
       setLoading(true);
       setError(null);
 
-      let query = supabase
+      let query = dehost
         .from("audit_log")
         .select("*", { count: "exact" });
 

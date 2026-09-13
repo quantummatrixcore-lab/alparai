@@ -2,7 +2,7 @@
 
 ## Project
 
-ALPAR AI — Trust infrastructure for AI accountability. Next.js 15 + Supabase + Tailwind v4 + next-intl. AGPL-3.0.
+ALPAR AI — Trust infrastructure for AI accountability. Next.js 15 + DeHost + Tailwind v4 + next-intl. AGPL-3.0.
 
 ## Commands
 
@@ -12,14 +12,14 @@ pnpm build            # next build
 pnpm lint             # eslint + tsc --noEmit
 pnpm test             # vitest
 pnpm test:e2e         # playwright
-pnpm db:migrate       # supabase migration up
+pnpm db:migrate       # dehost migration up
 ```
 
 ## Conventions
 
 - **TypeScript strict** — `noUncheckedIndexedAccess` enabled. No `any` — use `unknown` + Zod.
 - **No comments** in code.
-- **Server Actions** for mutations — never `supabase.from().insert()` from the client.
+- **Server Actions** for mutations — never `dehost.from().insert()` from the client.
 - **RLS** — every table has policies. Admin client only for moderation/audit.
 - **PII Guardian** — every user free-text is masked before insert (`src/lib/pii/guardian.ts`).
 - **i18n** — `messages/{en,tr}.json`. Use `useTranslations("namespace")` / `getTranslations({locale, namespace})`. **Admin panels (authorization-gated): EN/TR only** — no DE/FR/RU needed for `/admin/*` routes. Public-facing pages (`/insights`, `/community`, `/documentation`) require all 5 languages.
@@ -105,7 +105,7 @@ judge whether a search looked in the right place]`
 ### F — Safety
 
 - **F1** Never log raw IP, email or PII; hash first. `[review only]`
-- **F2** Never expose `SUPABASE_SERVICE_ROLE_KEY` to the browser, and never run destructive production
+- **F2** Never expose `DEHOST_SERVICE_ROLE_KEY` to the browser, and never run destructive production
   DML from an agent session holding it. `[review only]`
 - **F3** `pnpm lint && pnpm typecheck` after every change; a failing hook is a finding to report, not
   an obstacle to bypass. `--no-verify` is not available to any role. `[enforced: .husky/pre-push, CI]`
@@ -155,14 +155,14 @@ archive; this file carries the rule, not its history.
 | Add server action   | `src/actions/<domain>.ts`                                  |
 | Add form            | `src/components/<domain>/<form>.tsx`                       |
 | Add translation key | `messages/en.json` + `messages/tr.json`                    |
-| Add DB table        | `supabase/migrations/<timestamp>_<name>.sql`               |
+| Add DB table        | `dehost/migrations/<timestamp>_<name>.sql`               |
 | Add PII regex       | `src/lib/pii/guardian.ts`                                  |
 | Add rate limit      | `src/lib/utils/rate-limit.ts` + `RATE_LIMITS` in constants |
 
 ## Key Architecture
 
-- **Supabase client**: `src/lib/supabase/client.ts` (browser), `.server.ts` (server), `.admin.ts` (RLS bypass).
-- **Auth**: Supabase Auth + Google OAuth. Session in middleware.
+- **DeHost client**: `src/lib/dehost/client.ts` (browser), `.server.ts` (server), `.admin.ts` (RLS bypass).
+- **Auth**: DeHost Auth + Google OAuth. Session in middleware.
 - **i18n routing**: `src/middleware.ts` rewrites `/{locale}/...`.
-- **Incidents**: `submitIncident` server action → PII Guardian → Supabase insert.
+- **Incidents**: `submitIncident` server action → PII Guardian → DeHost insert.
 - **Ratings**: K-BENCHMARK model scoring via `k_model_scores` MAT view.

@@ -1,7 +1,7 @@
 import "server-only";
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { headers } from "next/headers";
 import { maskPII } from "@/lib/pii/guardian";
@@ -34,10 +34,10 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const providerId = searchParams.get("provider_id");
 
-    const supabase = await createServerClient();
+    const dehost = await createServerClient();
 
     if (providerId) {
-      const { data: statusData, error: statusError } = await supabase
+      const { data: statusData, error: statusError } = await dehost
         .from("art50_transparency_status")
         .select("*")
         .eq("provider_id", providerId)
@@ -52,7 +52,7 @@ export async function GET(request: Request) {
         return NextResponse.json({ error: "internal_error" }, { status: 500 });
       }
 
-      const { data: providerData } = await supabase
+      const { data: providerData } = await dehost
         .from("ai_providers")
         .select("id, name, slug, trust_score")
         .eq("id", providerId)
@@ -75,7 +75,7 @@ export async function GET(request: Request) {
       });
     }
 
-    const { data: allStatuses, error: listError } = await supabase
+    const { data: allStatuses, error: listError } = await dehost
       .from("art50_transparency_status")
       .select("*, ai_providers(name, slug)")
       .order("created_at", { ascending: false });
@@ -156,11 +156,11 @@ export async function POST(request: Request) {
     overallStatus = "partially_compliant";
   }
 
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
   let dbRecord = null;
 
   if (payload.provider_id) {
-    const { data: existingRecord } = await supabase
+    const { data: existingRecord } = await dehost
       .from("art50_transparency_status")
       .select("*")
       .eq("provider_id", payload.provider_id)

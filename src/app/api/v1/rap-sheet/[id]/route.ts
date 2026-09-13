@@ -1,6 +1,6 @@
 import "server-only";
 import { NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { requireModerator } from "@/lib/auth/session";
 import { logger } from "@/lib/utils/logger";
 
@@ -11,9 +11,9 @@ export async function GET(
   try {
     const { id } = await params;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const supabase = createAdminClient() as any;
+    const dehost = createAdminClient() as any;
 
-    const { data, error } = await supabase
+    const { data, error } = await dehost
       .from("ai_rap_sheet_entries")
       .select("*")
       .eq("id", id)
@@ -47,8 +47,8 @@ export async function PATCH(
     if (penalty_details !== undefined) updates.penalty_details = penalty_details;
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const supabase = createAdminClient() as any;
-    const { data, error } = await supabase
+    const dehost = createAdminClient() as any;
+    const { data, error } = await dehost
       .from("ai_rap_sheet_entries")
       .update(updates)
       .eq("id", id)

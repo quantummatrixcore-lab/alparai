@@ -1,8 +1,8 @@
 const fs = require('fs');
 let code = fs.readFileSync('src/app/api/webhooks/stripe/route.ts', 'utf8');
 
-if (!code.includes('@vercel/functions')) {
-  code = 'import { waitUntil } from "@vercel/functions";\n' + code;
+if (!code.includes('@/lib/dehost/functions-stub')) {
+  code = 'import { waitUntil } from "@/lib/dehost/functions-stub";\n' + code;
 }
 
 const switchIndex = code.indexOf('switch (event.type) {');

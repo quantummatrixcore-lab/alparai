@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { supabase } from "@/lib/supabase/client";
+import { dehost } from "@/lib/dehost/client";
 import { useAdminRealtime } from "./use-admin-realtime";
 import { CANONICAL_INCIDENT_COUNT } from "@/lib/constants";
 
@@ -116,13 +116,13 @@ export function useAdminStats(): UseAdminStatsResult {
         flagsRes,
         dsarRes,
       ] = await Promise.all([
-        supabase.from("incidents").select("status, severity"),
-        supabase.from("users").select("role, is_banned"),
-        supabase.from("sla_alarms").select("resolved"),
-        supabase.from("autopilot_runs").select("status, created_at"),
-        supabase.from("grant_applications").select("status"),
-        supabase.from("feature_flags").select("enabled"),
-        supabase.from("dsar_requests").select("status"),
+        dehost.from("incidents").select("status, severity"),
+        dehost.from("users").select("role, is_banned"),
+        dehost.from("sla_alarms").select("resolved"),
+        dehost.from("autopilot_runs").select("status, created_at"),
+        dehost.from("grant_applications").select("status"),
+        dehost.from("feature_flags").select("enabled"),
+        dehost.from("dsar_requests").select("status"),
       ]);
 
       const incidentsData = (incidentsRes.data || []) as unknown as IncidentStatRow[];

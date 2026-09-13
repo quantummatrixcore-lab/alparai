@@ -1,7 +1,7 @@
 export const revalidate = 1800; // 30 minutes ISR cache
 
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { Container } from "@/components/ui/layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "@/i18n/routing";
@@ -48,7 +48,7 @@ export default async function AIActTrackerPage({
 
   const pageNum = Math.max(1, parseInt(page || "1", 10));
   const pageSize = 10;
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
 
   // Query counts for different categories across all published incidents
   const [
@@ -57,28 +57,28 @@ export default async function AIActTrackerPage({
     { count: transparencyCount },
     { count: minimalCount },
   ] = await Promise.all([
-    supabase
+    dehost
       .from("incidents")
       .select("id", { count: "exact", head: true })
       .eq("status", "published")
       .or(
         "eu_act_risk_category.ilike.%unacceptable%,severity.eq.critical,category.in.(safety,security,autonomous)",
       ),
-    supabase
+    dehost
       .from("incidents")
       .select("id", { count: "exact", head: true })
       .eq("status", "published")
       .or(
         "eu_act_risk_category.ilike.%high%,severity.eq.high,category.in.(bias,discrimination,privacy,legal,medical,financial,employment)",
       ),
-    supabase
+    dehost
       .from("incidents")
       .select("id", { count: "exact", head: true })
       .eq("status", "published")
       .or(
         "eu_act_risk_category.ilike.%transparency%,severity.eq.medium,category.in.(hallucination,misinformation,deepfake,copyright)",
       ),
-    supabase
+    dehost
       .from("incidents")
       .select("id", { count: "exact", head: true })
       .eq("status", "published")
@@ -86,7 +86,7 @@ export default async function AIActTrackerPage({
   ]);
 
   // Main incident list query across all published real-world incidents
-  let query = supabase
+  let query = dehost
     .from("incidents")
     .select(
       "id, title_masked, description_masked, title_tr, description_tr, severity, status, category, is_anonymous, incident_date, views_count, upvotes_count, created_at, ai_provider_id, user_id, cross_audit_truth_score, cross_audit_confidence, eu_act_risk_category, eu_act_serious_incident_class, eu_act_high_risk_system_category, eu_act_reporting_deadline_days",
@@ -117,7 +117,7 @@ export default async function AIActTrackerPage({
 
   const [incidentsResult, providersResult] = await Promise.all([
     query,
-    supabase.from("ai_providers").select("id, name, slug"),
+    dehost.from("ai_providers").select("id, name, slug"),
   ]);
 
   const rawIncidents = incidentsResult.data ?? [];

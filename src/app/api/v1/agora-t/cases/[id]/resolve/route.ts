@@ -1,6 +1,6 @@
 import "server-only";
 import { NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { requireModerator } from "@/lib/auth/session";
 import { logger } from "@/lib/utils/logger";
 
@@ -12,10 +12,10 @@ export async function POST(
     await requireModerator();
     const { id: caseId } = await params;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const supabase = createAdminClient() as any;
+    const dehost = createAdminClient() as any;
 
     // Call atomic resolution RPC
-    const { data, error } = await supabase.rpc("resolve_agora_case_rpc", {
+    const { data, error } = await dehost.rpc("resolve_agora_case_rpc", {
       p_case_id: caseId
     });
 

@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { Container } from "@/components/ui/layout";
 import { IncidentList } from "@/components/incidents/incident-list";
 import { getCurrentUser } from "@/lib/auth/session";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import type { IncidentListItem } from "@/types";
 import { toIncidentListItems } from "@/lib/mappers";
 
@@ -23,8 +23,8 @@ export default async function MyIncidentsPage({ params }: { params: Promise<{ lo
     return null;
   }
 
-  const supabase = await createServerClient();
-  const { data } = await supabase
+  const dehost = await createServerClient();
+  const { data } = await dehost
     .from("incidents")
     .select(
       "id, title_masked, description_masked, severity, status, category, is_anonymous, incident_date, views_count, created_at, ai_provider_id, user_id, cross_audit_truth_score, cross_audit_confidence",

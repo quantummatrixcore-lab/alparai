@@ -1,6 +1,6 @@
 import { withCronLogger } from "@/lib/utils/cron-logger";
 import { type NextRequest, NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 
 export const dynamic = "force-dynamic";
@@ -32,7 +32,7 @@ async function getHandler(request: NextRequest) {
     }
 
     const latencyMs = Date.now() - start;
-    logger.info("[KeepAlive] Supabase ping succeeded", {
+    logger.info("[KeepAlive] DeHost ping succeeded", {
       latencyMs,
       recordsFound: data?.length ?? 0,
     });

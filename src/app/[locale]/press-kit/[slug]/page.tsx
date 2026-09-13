@@ -1,7 +1,7 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Link } from "@/i18n/routing";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { ProviderLogo } from "@/components/leaderboard/provider-logo";
 import { Container } from "@/components/ui/layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -41,8 +41,8 @@ export async function generateMetadata({
 }) {
   const { locale, slug } = await params;
   const t = await getTranslations({ locale, namespace: "brand" });
-  const supabase = await createServerClient();
-  const { data: provider } = await supabase
+  const dehost = await createServerClient();
+  const { data: provider } = await dehost
     .from("ai_providers")
     .select("name")
     .eq("slug", slug.toLowerCase())
@@ -65,9 +65,9 @@ export default async function BrandPage({
   const { locale, slug } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "brand" });
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
 
-  const { data: provider } = await supabase
+  const { data: provider } = await dehost
     .from("ai_providers")
     .select(
       "id, name, slug, description, website_url, contact_email, logo_url, is_verified, is_verified_respondent",
@@ -80,7 +80,7 @@ export default async function BrandPage({
 
   const [incidentsRes, modelsRes, allIncidentsRes, responsesRes, leaderboardRes] =
     await Promise.all([
-      supabase
+      dehost
         .from("incidents")
         .select(
           "id, title_masked, description_masked, title_tr, description_tr, severity, status, category, is_anonymous, incident_date, views_count, upvotes_count, created_at, ai_provider_id, user_id, cross_audit_truth_score, cross_audit_confidence",
@@ -89,21 +89,21 @@ export default async function BrandPage({
         .eq("ai_provider_id", providerId)
         .order("created_at", { ascending: false })
         .limit(50),
-      supabase
+      dehost
         .from("ai_models")
         .select("id, name, version, status, released_at, provider_id, model_reviews(score_overall)")
         .eq("provider_id", providerId)
         .order("name"),
-      supabase
+      dehost
         .from("incidents")
         .select("id, severity, status, views_count")
         .eq("ai_provider_id", providerId),
-      supabase
+      dehost
         .from("ai_provider_responses")
         .select("id, incident_id, is_official, is_published, created_at")
         .eq("ai_provider_id", providerId)
         .eq("is_published", true),
-      supabase
+      dehost
         .from("provider_leaderboard")
         .select("trust_score, incident_count, response_rate, response_count")
         .eq("id", providerId)
@@ -220,7 +220,7 @@ export default async function BrandPage({
             </p>
             <div className="flex flex-wrap gap-2">
               {(
-                modelsRes.data as Array<{
+                modelsRes.data as unknown as Array<{
                   id: string;
                   name: string;
                   version: string | null;

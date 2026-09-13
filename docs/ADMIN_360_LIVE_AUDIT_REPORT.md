@@ -3,7 +3,7 @@
 **Date:** 2026-08-28  
 **Environment:** Local (`localhost:3000`) & Production (`https://alparai.com/en/admin`)  
 **Commit SHA:** `6e0d991a`  
-**Deploy Status:** Pushed to `origin/master` (Vercel Production Activated)  
+**Deploy Status:** Pushed to `origin/master` (DeHost Production Activated)  
 **Quality Gate Status:**
 
 - **TypeScript:** 0 Errors (`pnpm typecheck` passed)
@@ -21,7 +21,7 @@ The **ALPAR AI 360° Enterprise Admin Control Center** has been designed, engine
 ## 🛡️ Sovereign Isolation & Zero-Leakage Policy Compliance
 
 1. **Original Alpar AI Domain Only:** Zero internal Antigravity engine names (TOM, TCSFL, SENTINEL, DORA) exposed in any UI component or client bundles.
-2. **Supabase RLS & Admin Boundary:** All mutating actions routed through Server Actions and `createAdminClient()`.
+2. **DeHost RLS & Admin Boundary:** All mutating actions routed through Server Actions and `createAdminClient()`.
 3. **Whistleblower PII Guardian:** Sensitive disclosure payloads neutralized via `src/lib/pii/guardian.ts` prior to persistence.
 4. **WCAG 2.1 AA Compliant:** High-contrast tokens, accessible focus rings, and screen-reader safe typography.
 

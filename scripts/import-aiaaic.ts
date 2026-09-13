@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from "@/lib/dehost/client";
 import { mapCategory, inferSeverity, cleanTextAndMaskPII } from "./import-utils";
 
 function loadEnv() {
@@ -28,15 +28,15 @@ function loadEnv() {
 
 loadEnv();
 
-const SUPABASE_URL = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
-const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const DEHOST_URL = process.env.DEHOST_URL || process.env.NEXT_PUBLIC_DEHOST_URL;
+const DEHOST_SERVICE_ROLE_KEY = process.env.DEHOST_SERVICE_ROLE_KEY;
 
-if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
-  console.error("Error: SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set in .env.local");
+if (!DEHOST_URL || !DEHOST_SERVICE_ROLE_KEY) {
+  console.error("Error: DEHOST_URL and DEHOST_SERVICE_ROLE_KEY must be set in .env.local");
   process.exit(1);
 }
 
-const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+const dehost = createClient(DEHOST_URL, DEHOST_SERVICE_ROLE_KEY);
 
 // Fallback Google Sheets CSV URL for AIAAIC Repository
 const AIAAIC_CSV_URL = "https://raw.githubusercontent.com/dbbz/AIIE/main/downloaded_sheet.csv";
@@ -249,7 +249,7 @@ AIAAIC-2025-002,Medical Chatbot Hallucination leads to pediatric injury,Incident
       importedCount++;
     } else {
       // Execute DB Write
-      const { error } = await supabase
+      const { error } = await dehost
         .from("incidents")
         .upsert(payload, { onConflict: "incident_source,import_external_id" });
 

@@ -1,6 +1,6 @@
 import "server-only";
 import { NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { getCurrentUser } from "@/lib/auth/session";
 import { logger } from "@/lib/utils/logger";
 
@@ -23,10 +23,10 @@ export async function POST(
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const supabase = createAdminClient() as any;
+    const dehost = createAdminClient() as any;
 
     // Verify case exists and is open for voting
-    const { data: juryCase, error: caseErr } = await supabase
+    const { data: juryCase, error: caseErr } = await dehost
       .from("jury_cases")
       .select("id, status")
       .eq("id", caseId)
@@ -41,7 +41,7 @@ export async function POST(
     }
 
     // Check user reputation & trust level
-    const { data: userRep } = await supabase
+    const { data: userRep } = await dehost
       .from("user_reputation")
       .select("reputation_score, trust_level, is_sybil_suspect")
       .eq("user_id", user.id)
@@ -59,7 +59,7 @@ export async function POST(
     else if (score < 30) weight = 0.5;
 
     // Insert or update vote
-    const { data: voteData, error: voteErr } = await supabase
+    const { data: voteData, error: voteErr } = await dehost
       .from("jury_votes")
       .upsert({
         case_id: caseId,
@@ -78,14 +78,14 @@ export async function POST(
     }
 
     // Mark juror has_voted = true
-    await supabase
+    await dehost
       .from("jurors")
       .update({ has_voted: true })
       .eq("case_id", caseId)
       .eq("juror_id", user.id);
 
     // Reward active participation (+1 reputation)
-    await supabase.rpc("adjust_user_reputation_rpc", {
+    await dehost.rpc("adjust_user_reputation_rpc", {
       p_user_id: user.id,
       p_change_amount: 1,
       p_reason: `Participated in Agora-T Jury Case ${caseId}`,

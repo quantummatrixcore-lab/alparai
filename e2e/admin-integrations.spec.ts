@@ -2,8 +2,8 @@ import { test, expect } from "@playwright/test";
 
 test.describe("Admin Integrations Page Layout", () => {
   test.beforeEach(async ({ page }) => {
-    // Mock the integrations list call from Supabase or API
-    await page.route("**/*_supabase/rest/v1/integrations*", async (route) => {
+    // Mock the integrations list call from DeHost or API
+    await page.route("**/*_dehost/rest/v1/integrations*", async (route) => {
       await route.fulfill({
         status: 200,
         contentType: "application/json",

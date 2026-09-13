@@ -22,7 +22,7 @@ ALPAR AI is an open-source trust and governance framework designed to give engin
 
 - **PII & Data Leak Guardian:** Automated zero-dependency regex and heuristic sanitization (`src/lib/pii/guardian.ts`) that masks PII, corporate secrets, and credential strings before database persistence or third-party provider ingestion.
 - **Granular Audit Trails:** Cryptographic hashing and immutability primitives for AI system incidents and algorithmic feedback.
-- **Multi-locale Compliance Engine:** Built on Next.js 15 (App Router), Supabase (PostgreSQL with RLS), and Tailwind v4, ensuring sub-100ms audit log processing with full i18n support.
+- **Multi-locale Compliance Engine:** Built on Next.js 15 (App Router), DeHost (PostgreSQL with RLS), and Tailwind v4, ensuring sub-100ms audit log processing with full i18n support.
 - **Developer-First Mutation Pipeline:** Clean Server Actions mutation model (`src/actions/*`) guaranteeing no unauthenticated client-side database writes.
 
 ### Source & Architecture:
@@ -33,7 +33,7 @@ ALPAR AI is an open-source trust and governance framework designed to give engin
 We’d love feedback on:
 
 1. Our PII masking heuristics performance vs ML-based PII detection overhead.
-2. RLS policy patterns for high-throughput AI incident logging in Supabase.
+2. RLS policy patterns for high-throughput AI incident logging in DeHost.
 3. What edge cases you encounter in EU AI Act alignment for non-deterministic model outputs.
 
 Looking forward to your questions and criticism!
@@ -56,7 +56,7 @@ To address this, we open-sourced **ALPAR AI** (AGPL-3.0), a trust and accountabi
 
 1. **Runtime PII Scrubbing:** Intercepts and masks sensitive personal identifiers, API keys, and corporate confidential data prior to model invocation or database persistence.
 2. **Audit Logging & Incident Verification:** Provides deterministic audit trails for AI system output anomalies, enabling post-hoc inspection of model behavior without storing raw PII.
-3. **Open Architecture:** Built using Next.js 15, TypeScript (strict `noUncheckedIndexedAccess`), and Supabase with strict Row Level Security (RLS).
+3. **Open Architecture:** Built using Next.js 15, TypeScript (strict `noUncheckedIndexedAccess`), and DeHost with strict Row Level Security (RLS).
 
 ### Benchmark & Performance Focus:
 
@@ -87,12 +87,12 @@ We spent the past few months building and open-sourcing **ALPAR AI** (https://al
 
 - **Enterprise Procurement Friction:** Buyers want proof that user data isn't leaked to AI providers. ALPAR AI automatically masks PII in free-text inputs before storage or API execution.
 - **Audit Readiness:** Every incident, user feedback report, and automated action generates a verifiable audit record.
-- **Zero Lock-in:** AGPL-3.0 open-source code base you can self-host or integrate directly into your Next.js/Supabase stack.
+- **Zero Lock-in:** AGPL-3.0 open-source code base you can self-host or integrate directly into your Next.js/DeHost stack.
 
 ### Stack Choice:
 
 - Next.js 15 App Router
-- Supabase PostgreSQL + RLS
+- DeHost PostgreSQL + RLS
 - Tailwind v4 & next-intl (EN/TR)
 
 We’d love to hear how other SaaS founders are currently handling AI compliance requests from enterprise clients, and what tooling features would save you the most developer hours.

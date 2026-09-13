@@ -4,7 +4,7 @@ import { POST } from "@/app/api/webhooks/sentry-alert/route";
 describe("Sentry Alert Webhook", () => {
   beforeEach(() => {
     vi.stubEnv("SENTRY_WEBHOOK_SECRET", "super-secret-key");
-    vi.stubEnv("VERCEL_TOKEN", "mock-vercel-token");
+    vi.stubEnv("DEHOST_TOKEN", "mock-dehost-token");
     vi.restoreAllMocks();
   });
 
@@ -38,18 +38,18 @@ describe("Sentry Alert Webhook", () => {
   it("should perform rollback when criteria met and ready deployments exist", async () => {
     const globalFetchSpy = vi.spyOn(global, "fetch");
 
-    // Mock Vercel GET deployments response
+    // Mock DeHost GET deployments response
     globalFetchSpy.mockResolvedValueOnce({
       ok: true,
       json: async () => ({
         deployments: [
-          { id: "dpl_new_failed", state: "READY", url: "failed.vercel.app" },
-          { id: "dpl_old_stable", state: "READY", url: "stable.vercel.app" },
+          { id: "dpl_new_failed", state: "READY", url: "failed.alparai.com" },
+          { id: "dpl_old_stable", state: "READY", url: "stable.alparai.com" },
         ],
       }),
     } as Response);
 
-    // Mock Vercel POST rollback response
+    // Mock DeHost POST rollback response
     globalFetchSpy.mockResolvedValueOnce({
       ok: true,
       json: async () => ({

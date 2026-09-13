@@ -3,8 +3,8 @@ export const revalidate = 60;
 import { Suspense, cache } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { createServerClient } from "@/lib/supabase/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createServerClient } from "@/lib/dehost/server";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { HeroSection } from "@/components/marketing/hero-section";
 import { TrustBar } from "@/components/marketing/trust-bar";
 import { SegmentRouting } from "@/components/marketing/segment-routing";
@@ -64,14 +64,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 const getHomeData = cache(async (locale: string) => {
   try {
-    const supabase = await createServerClient();
+    const dehost = await createServerClient();
     const adminClientInstance = createAdminClient();
-    const admin = adminClientInstance || supabase;
+    const admin = adminClientInstance || dehost;
     const tCommon = await getTranslations({ locale, namespace: "common" });
 
     const [incidentsResult, incidentsCountResult, providersResult, countriesResult, sourcesResult] =
       await Promise.all([
-        supabase
+        dehost
           .from("incidents")
           .select(
             "id, title_masked, description_masked, title_tr, description_tr, severity, status, category, is_anonymous, incident_date, views_count, upvotes_count, created_at, ai_provider_id, user_id, cross_audit_truth_score, cross_audit_confidence, incident_source",
@@ -86,7 +86,7 @@ const getHomeData = cache(async (locale: string) => {
           .from("incidents")
           .select("id", { count: "exact", head: true })
           .eq("status", "published"),
-        supabase
+        dehost
           .from("provider_leaderboard")
           .select(
             "id, slug, name, logo_url, website_url, is_verified, trust_score, incident_count, response_count, is_verified_respondent, response_rate",
@@ -102,35 +102,35 @@ const getHomeData = cache(async (locale: string) => {
 
     if (incidentsCountResult.error) {
       logger.error(
-        "Supabase error for incidents count",
+        "DeHost error for incidents count",
         undefined,
         incidentsCountResult.error instanceof Error ? incidentsCountResult.error : undefined,
       );
     }
     if (countriesResult.error) {
       logger.error(
-        "Supabase error for countries count",
+        "DeHost error for countries count",
         undefined,
         countriesResult.error instanceof Error ? countriesResult.error : undefined,
       );
     }
     if (incidentsResult.error) {
       logger.error(
-        "Supabase error for incidents list",
+        "DeHost error for incidents list",
         undefined,
         incidentsResult.error instanceof Error ? incidentsResult.error : undefined,
       );
     }
     if (providersResult.error) {
       logger.error(
-        "Supabase error for provider leaderboard",
+        "DeHost error for provider leaderboard",
         undefined,
         providersResult.error instanceof Error ? providersResult.error : undefined,
       );
     }
     if (sourcesResult.error) {
       logger.error(
-        "Supabase error for incident sources",
+        "DeHost error for incident sources",
         undefined,
         sourcesResult.error instanceof Error ? sourcesResult.error : undefined,
       );
@@ -154,7 +154,7 @@ const getHomeData = cache(async (locale: string) => {
     const rawHomeData = incidentsResult.data as Array<Record<string, unknown>> | null;
     if (localeIsTranslated && rawHomeData && rawHomeData.length > 0) {
       const incidentIds = rawHomeData.map((r) => r["id"] as string);
-      const sb = supabase as unknown as {
+      const sb = dehost as unknown as {
         from: (t: string) => {
           select: (cols: string) => {
             in: (

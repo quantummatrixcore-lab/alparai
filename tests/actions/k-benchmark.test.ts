@@ -1,13 +1,13 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
-import { createMockSupabaseClient } from "../helpers/supabase-mock";
+import { createMockDeHostClient } from "../helpers/dehost-mock";
 
 vi.mock("@/lib/auth/session", () => ({
   requireAdmin: vi.fn().mockResolvedValue({ id: "admin-1", role: "admin" }),
 }));
 
 vi.hoisted(() => {
-  vi.doMock("@/lib/supabase/admin", () => ({
+  vi.doMock("@/lib/dehost/admin", () => ({
     createAdminClient: vi.fn(),
   }));
   vi.doMock("@/lib/benchmark/k-benchmark-calculator", () => ({
@@ -19,16 +19,16 @@ vi.hoisted(() => {
   }));
 });
 
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { recalculateAllKBenchmarkScores } from "@/lib/benchmark/k-benchmark-calculator";
 import { recalculateKBenchmarkScoresAction } from "@/actions/models/k-benchmark";
 
 describe("recalculateKBenchmarkScoresAction Server Action", () => {
-  let mockAdminClient: ReturnType<typeof createMockSupabaseClient>;
+  let mockAdminClient: ReturnType<typeof createMockDeHostClient>;
 
   beforeEach(() => {
     vi.clearAllMocks();
-    mockAdminClient = createMockSupabaseClient();
+    mockAdminClient = createMockDeHostClient();
     vi.mocked(createAdminClient).mockReturnValue(mockAdminClient as never);
   });
 

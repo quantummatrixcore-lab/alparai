@@ -3,7 +3,7 @@ import { getKBenchmarkScores } from "@/lib/k-benchmark-service";
 
 const mockSelect = vi.fn();
 
-vi.mock("@/lib/supabase/server", () => ({
+vi.mock("@/lib/dehost/server", () => ({
   createServerClient: vi.fn(() =>
     Promise.resolve({
       from: vi.fn(() => ({
@@ -13,7 +13,7 @@ vi.mock("@/lib/supabase/server", () => ({
   ),
 }));
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: vi.fn(() => ({
     from: vi.fn(() => ({
       select: mockSelect,
@@ -26,7 +26,7 @@ describe("k-benchmark-service Subsystem", () => {
     vi.clearAllMocks();
   });
 
-  it("returns fallback benchmark models when Supabase query returns empty", async () => {
+  it("returns fallback benchmark models when DeHost query returns empty", async () => {
     mockSelect.mockResolvedValueOnce({ data: [], error: null });
 
     const models = await getKBenchmarkScores();

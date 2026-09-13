@@ -1,26 +1,26 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { createMockSupabaseClient } from "../helpers/supabase-mock";
+import { createMockDeHostClient } from "../helpers/dehost-mock";
 
 vi.mock("server-only", () => ({}));
 
 vi.hoisted(() => {
-  vi.doMock("@/lib/supabase/admin", () => ({
+  vi.doMock("@/lib/dehost/admin", () => ({
     createAdminClient: vi.fn(),
   }));
 });
 
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import {
   generateAndSaveProviderToken,
   verifyProviderTokenDb,
   consumeProviderTokenDb,
 } from "@/lib/utils/provider-token";
 
-let mockAdminClient: ReturnType<typeof createMockSupabaseClient>;
+let mockAdminClient: ReturnType<typeof createMockDeHostClient>;
 
 beforeEach(() => {
   vi.clearAllMocks();
-  mockAdminClient = createMockSupabaseClient();
+  mockAdminClient = createMockDeHostClient();
   vi.mocked(createAdminClient).mockReturnValue(mockAdminClient as never);
 });
 

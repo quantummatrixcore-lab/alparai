@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const migrationsDir = path.join(__dirname, '../supabase/migrations');
+const migrationsDir = path.join(__dirname, '../dehost/migrations');
 
 if (!fs.existsSync(migrationsDir)) {
   console.log('Migrations directory not found');

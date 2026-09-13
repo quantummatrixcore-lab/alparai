@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { supabase } from "@/lib/supabase/client";
+import { dehost } from "@/lib/dehost/client";
 import type { Database } from "@/types/database";
 import { useAdminRealtime } from "./use-admin-realtime";
 
@@ -36,10 +36,10 @@ export function useAdminEcosystem(autoSubscribe = true): UseAdminEcosystemResult
       setError(null);
 
       const [newsRes, boardRes, fellowshipRes, revenueRes] = await Promise.all([
-        supabase.from("ecosystem_news").select("*").order("published_at", { ascending: false }).limit(20),
-        supabase.from("advisory_board_members").select("*").order("display_order", { ascending: true }),
-        supabase.from("fellowship_applications").select("*").order("created_at", { ascending: false }).limit(20),
-        supabase.from("finance_revenue_metrics").select("*").order("month", { ascending: false }).limit(12),
+        dehost.from("ecosystem_news").select("*").order("published_at", { ascending: false }).limit(20),
+        dehost.from("advisory_board_members").select("*").order("display_order", { ascending: true }),
+        dehost.from("fellowship_applications").select("*").order("created_at", { ascending: false }).limit(20),
+        dehost.from("finance_revenue_metrics").select("*").order("month", { ascending: false }).limit(12),
       ]);
 
       setNews(newsRes.data || []);
@@ -71,7 +71,7 @@ export function useAdminEcosystem(autoSubscribe = true): UseAdminEcosystemResult
 
   const toggleNewsActive = async (id: string, isActive: boolean) => {
     try {
-      const { error: updateError } = await supabase
+      const { error: updateError } = await dehost
         .from("ecosystem_news")
         .update({ is_active: isActive })
         .eq("id", id);
@@ -90,7 +90,7 @@ export function useAdminEcosystem(autoSubscribe = true): UseAdminEcosystemResult
 
   const updateFellowshipStatus = async (id: string, status: string) => {
     try {
-      const { error: updateError } = await supabase
+      const { error: updateError } = await dehost
         .from("fellowship_applications")
         .update({ status })
         .eq("id", id);

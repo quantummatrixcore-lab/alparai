@@ -13,7 +13,7 @@ const mockFrom = vi.fn().mockImplementation(() => ({
   limit: mockLimit,
 }));
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({
     from: mockFrom,
   }),
@@ -31,7 +31,7 @@ describe("Retro-Audit Cron Job", () => {
     process.env.CRON_SECRET = "test-secret";
   });
 
-  it("should query Supabase and exclude community incidents using neq('source_badge', 'community')", async () => {
+  it("should query DeHost and exclude community incidents using neq('source_badge', 'community')", async () => {
     const req = new Request("http://localhost/api/cron/retro-audit", {
       headers: { authorization: "Bearer test-secret" },
     });

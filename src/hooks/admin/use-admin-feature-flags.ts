@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { supabase } from "@/lib/supabase/client";
+import { dehost } from "@/lib/dehost/client";
 import type { Database } from "@/types/database";
 import { useAdminRealtime } from "./use-admin-realtime";
 
@@ -29,7 +29,7 @@ export function useAdminFeatureFlags(autoSubscribe = true): UseAdminFeatureFlags
       setLoading(true);
       setError(null);
 
-      const { data, error: fetchError } = await supabase
+      const { data, error: fetchError } = await dehost
         .from("feature_flags")
         .select("*")
         .order("key", { ascending: true });
@@ -85,7 +85,7 @@ export function useAdminFeatureFlags(autoSubscribe = true): UseAdminFeatureFlags
     );
 
     try {
-      const { error: upsertError } = await supabase
+      const { error: upsertError } = await dehost
         .from("feature_flags")
         .upsert({
           key,
@@ -107,7 +107,7 @@ export function useAdminFeatureFlags(autoSubscribe = true): UseAdminFeatureFlags
     const now = new Date().toISOString();
 
     try {
-      const { error: upsertError } = await supabase
+      const { error: upsertError } = await dehost
         .from("feature_flags")
         .upsert({
           key,
@@ -136,7 +136,7 @@ export function useAdminFeatureFlags(autoSubscribe = true): UseAdminFeatureFlags
 
   const deleteFlag = async (key: string) => {
     try {
-      const { error: delError } = await supabase
+      const { error: delError } = await dehost
         .from("feature_flags")
         .delete()
         .eq("key", key);

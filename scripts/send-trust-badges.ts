@@ -38,7 +38,7 @@ async function sendTrustBadgeEmails() {
 
 AB Yapay Zekâ Yasası Madde 73 kapsamında, şeffaflık ve kayıt tutma gereksinimlerini karşılamak isteyen sistem sağlayıcıları için geliştirdiğimiz ALPAR AI Trust Badge çözümünü sunmak isteriz.
 
-ALPAR AI Trust Badge, yapay zekâ modelinizin veya platformunuzun bağımsız ve gerçek zamanlı doğrulama durumunu doğrudan web arayüzünüzde sergilemenizi sağlar. Tüm denetim verileri Supabase AB veri bölgesinde (GDPR uyumlu) saklanır.
+ALPAR AI Trust Badge, yapay zekâ modelinizin veya platformunuzun bağımsız ve gerçek zamanlı doğrulama durumunu doğrudan web arayüzünüzde sergilemenizi sağlar. Tüm denetim verileri DeHost AB veri bölgesinde (GDPR uyumlu) saklanır.
 
 Entegrasyon yalnızca tek satırlık bir HTML embed kodu ile 2 dakikada tamamlanmaktadır:
 https://alparai.com/badge.js

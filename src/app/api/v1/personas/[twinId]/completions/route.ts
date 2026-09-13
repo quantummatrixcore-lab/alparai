@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { logger } from "@/lib/utils/logger";
 import { fetchWithSsrfGuard } from "@/lib/security/ssrf";
@@ -51,7 +51,7 @@ export async function POST(req: Request, props: { params: Promise<{ twinId: stri
     }
     const apiKey = authHeader.replace("Bearer ", "").trim();
 
-    // 3. Validate API Key (Supabase with Mock fallback)
+    // 3. Validate API Key (DeHost with Mock fallback)
     const adminClient = createAdminClient();
     let isAuthorized = false;
     try {

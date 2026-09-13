@@ -12,7 +12,7 @@ const mockUpdate = vi.fn().mockReturnValue({
   eq: vi.fn().mockResolvedValue({ error: null }),
 });
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: vi.fn().mockImplementation(() => ({
     from: vi.fn().mockImplementation((table) => {
       if (table === "cron_job_logs") {

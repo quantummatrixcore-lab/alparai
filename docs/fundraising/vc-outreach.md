@@ -207,7 +207,7 @@ With the EU AI Act §73 mandatory enforcement taking effect in August 2026, Euro
 ALPAR AI (https://alparai.com) is building the open-core trust infrastructure for AI accountability. We provide real-time incident logging, automated risk verification (K-BENCHMARK), and client-side PII-Guardian sanitization across 5 European languages.
 
 Traction & Technical Moat:
-• Production platform live with Next.js 15, Supabase (100% RLS policy coverage), and 9-model LLM failover architecture.
+• Production platform live with Next.js 15, DeHost (100% RLS policy coverage), and 9-model LLM failover architecture.
 • Verified code quality: 1,006 Vitest unit & integration tests passing (100% green).
 • AGPL-3.0 open-core model driving organic developer adoption + enterprise Uyum Toolkit licensing.
 
@@ -234,7 +234,7 @@ _(Word Count: 148 words — Strictly compliant with <150 words threshold)._
 
 ### Point Nine Capital (Personalized Hook)
 
-> **Hook:** "Hi Pawel, as leading backers of API-first developer infrastructure and B2B SaaS champions, you know early open-core traction creates massive moats. ALPAR AI applies the developer-first paradigm to EU AI Act compliance, featuring 1,006 green unit tests, AGPL-3.0 open core, and seamless Next.js/Supabase integration."
+> **Hook:** "Hi Pawel, as leading backers of API-first developer infrastructure and B2B SaaS champions, you know early open-core traction creates massive moats. ALPAR AI applies the developer-first paradigm to EU AI Act compliance, featuring 1,006 green unit tests, AGPL-3.0 open core, and seamless Next.js/DeHost integration."
 
 ### Balderton Capital (Personalized Hook)
 

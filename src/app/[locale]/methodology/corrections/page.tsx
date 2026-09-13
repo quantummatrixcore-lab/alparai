@@ -1,7 +1,7 @@
 export const revalidate = 60;
 
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { Container } from "@/components/ui/layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -33,9 +33,9 @@ export default async function MethodologyCorrectionsPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "methodology" });
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
 
-  const { data } = await supabase
+  const { data } = await dehost
     .from("methodology_versions")
     .select("*")
     .order("published_at", { ascending: false })

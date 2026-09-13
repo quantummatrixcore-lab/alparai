@@ -38,7 +38,7 @@ async function callGeminiVision(base64Image) {
       {
         parts: [
           {
-            text: "Analyze this software/AI ecosystem architecture infographic. Provide ONLY a professional, descriptive filename in snake_case format (e.g. vercel_deployment_pipeline, blackbox_ai_integration_hub). Max 5 words. Do NOT include file extension.",
+            text: "Analyze this software/AI ecosystem architecture infographic. Provide ONLY a professional, descriptive filename in snake_case format (e.g. dehost_deployment_pipeline, blackbox_ai_integration_hub). Max 5 words. Do NOT include file extension.",
           },
           { inline_data: { mime_type: "image/jpeg", data: base64Image } },
         ],

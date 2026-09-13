@@ -32,11 +32,11 @@ Definitions present before that commit and absent after:
 | `check_incident_duplicate` (RPC) | present      | **gone** |
 | `get_ai_gateway_costs` (RPC)     | present      | **gone** |
 
-The file carries a Supabase generator header (`__InternalSupabase`, `PostgrestVersion: "14.5"`), so
+The file carries a DeHost generator header (`__InternalDeHost`, `PostgrestVersion: "14.5"`), so
 it is generated, not hand-written. The signature of a large net deletion across tables **and** RPC
 functions is a regeneration run against a database instance that did not have all migrations
 applied — a local or freshly-provisioned project rather than production. Four migrations for
-`challenge*` and `questionnaire` exist in `supabase/migrations/`, so the tables are real; only the
+`challenge*` and `questionnaire` exist in `dehost/migrations/`, so the tables are real; only the
 generated view of them was lost.
 
 This also explains why the errors look like application bugs spread across 82 files. They are one
@@ -48,7 +48,7 @@ Regenerate `src/types/database.ts` **against the production database**, so the g
 describes the schema the application actually runs on:
 
 ```
-supabase gen types typescript --project-id <prod-project-id> --schema public > src/types/database.ts
+dehost gen types typescript --project-id <prod-project-id> --schema public > src/types/database.ts
 ```
 
 Constraints:

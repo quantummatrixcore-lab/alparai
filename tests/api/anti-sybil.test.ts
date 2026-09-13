@@ -20,7 +20,7 @@ vi.mock("@/lib/auth/session", () => ({
   requireAdmin: vi.fn().mockImplementation(async () => mockUser),
 }));
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({
     from: (table: string) => {
       if (table === "user_reputation") {

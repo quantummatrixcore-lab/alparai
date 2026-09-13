@@ -20,7 +20,7 @@ All code modifications and releases must be cryptographically signed to guarante
 ### Sigstore & Cosign Policy
 
 1. **Developer Commits:** All Git commits must be signed using GPG keys or SSH signing keys verified by GitHub. Unsigned commits are rejected by branch protection rules on `master`.
-2. **Production Releases:** Vercel builds and GitHub releases are signed using Sigstore's `cosign` tool.
+2. **Production Releases:** DeHost builds and GitHub releases are signed using Sigstore's `cosign` tool.
 3. **Keyless Signing:** During the GitHub Actions release workflow, we utilize Sigstore keyless signing via OIDC tokens to sign release artifacts and container images (if any).
 4. **Verification:** Consumers can verify the authenticity of ALPAR AI releases using:
 

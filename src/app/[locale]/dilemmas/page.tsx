@@ -1,5 +1,5 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { Container } from "@/components/ui/layout";
 import { CommunityHub } from "@/components/dilemmas/community-hub";
 import { getCurrentUser } from "@/lib/auth/session";
@@ -30,18 +30,18 @@ export default async function DilemmasPage({ params }: { params: Promise<{ local
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "dilemmas" });
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
   const user = await getCurrentUser();
 
   // Fetch active polls and suggestions in parallel
   const [pollsResult, suggestionsResult] = await Promise.all([
-    supabase
+    dehost
       .from("ai_polls")
       .select("*")
       .eq("is_active", true)
       .order("created_at", { ascending: false })
       .returns<Poll[]>(),
-    supabase
+    dehost
       .from("suggestions")
       .select(
         "id, title, description, title_tr, description_tr, category, status, upvotes_count, comments_count, created_at, user_id",

@@ -1,6 +1,6 @@
 "use server";
 
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 
 export type ModelWeightClass = "open" | "closed" | "unknown";
 
@@ -21,9 +21,9 @@ const MIN_INCIDENTS = 10;
 
 export async function getWeightClassAnalysis(): Promise<WeightClassAnalysisResult> {
   try {
-    const supabase = await createServerClient();
+    const dehost = await createServerClient();
 
-    const { data, error } = await supabase.rpc("get_incident_weight_class_stats");
+    const { data, error } = await dehost.rpc("get_incident_weight_class_stats");
 
     if (error) {
       console.warn("[getWeightClassAnalysis] RPC warning:", error.message);

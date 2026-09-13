@@ -125,7 +125,7 @@ describe("K-BENCHMARK Calculator Engine", () => {
 
   it("recalculateAllKBenchmarkScores fetches data, computes scores, and updates DB", async () => {
     const mockUpsert = vi.fn().mockResolvedValue({ error: null });
-    const mockSupabase = {
+    const mockDeHost = {
       from: vi.fn((table: string) => {
         if (table === "ai_models") {
           return {
@@ -163,7 +163,7 @@ describe("K-BENCHMARK Calculator Engine", () => {
       }),
     };
 
-    const result = await recalculateAllKBenchmarkScores(mockSupabase as never);
+    const result = await recalculateAllKBenchmarkScores(mockDeHost as never);
 
     expect(result.success).toBe(true);
     expect(result.modelsProcessed).toBe(1);

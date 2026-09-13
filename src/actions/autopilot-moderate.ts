@@ -1,6 +1,6 @@
 "use server";
 
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 import type { Database } from "@/types/database";
 import {
@@ -245,7 +245,7 @@ export async function autoModerateIncidentAction(
   internalToken?: string
 ): Promise<{ ok: boolean; score?: number; status?: string; error?: string }> {
   try {
-    const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || "";
+    const serviceKey = process.env.DEHOST_SERVICE_ROLE_KEY || "";
     const tokenBuffer = Buffer.from(internalToken || "invalid");
     const keyBuffer = Buffer.from(serviceKey);
     let isAuthorized = false;

@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import "../helpers/setup";
 
-// Mock Supabase admin client
+// Mock DeHost admin client
 const mockSingle = vi.fn().mockResolvedValue({
   data: { id: "key-123", status: "active" },
   error: null,
@@ -16,7 +16,7 @@ const mockSelect = vi.fn().mockReturnValue({
 const mockRpc = vi.fn().mockResolvedValue({ data: null, error: null });
 const mockInsert = vi.fn().mockResolvedValue({ data: null, error: null });
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({
     from: () => ({
       select: mockSelect,

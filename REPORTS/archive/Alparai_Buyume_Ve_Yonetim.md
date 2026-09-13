@@ -20,7 +20,7 @@ Türkiye ekosisteminde "B2B SaaS ve Yapay Zeka" odaklı girişimler için 2026 y
 
 ### 1.3 Ticaret Bakanlığı - Bilişim/Yazılım İhracatı Destekleri (E-Turquality / Bilişimin Yıldızları)
 *   Alparai'nin global bir ürün olması nedeniyle en önemli teşvik kalemidir.
-*   **Destek Kalemleri:** Yurt dışı dijital reklam/pazarlama harcamaları (örn: Google Ads, LinkedIn B2B Ads), yurt dışı pazar araştırması, AWS/Vercel gibi bulut sunucu (cloud) giderlerinin %50 - %60 oranında iadesi.
+*   **Destek Kalemleri:** Yurt dışı dijital reklam/pazarlama harcamaları (örn: Google Ads, LinkedIn B2B Ads), yurt dışı pazar araştırması, AWS/DeHost gibi bulut sunucu (cloud) giderlerinin %50 - %60 oranında iadesi.
 *   **Şartlar:** Faturanın yurt dışına kesiliyor olması ve ürünün yurt dışında kullanılıyor olması.
 
 ### 1.4 Teknokent (TGB) İstisnaları
@@ -54,7 +54,7 @@ Yatırımcı ve Hibe kurumlarının 2026 beklentilerine göre Alparai'nin hazır
 1.  **Pitch Deck (Sunum):** Problem (AI halüsinasyonları ve veri güvenliği), Çözüm (Alparai platformu), Pazar Büyüklüğü (TAM/SAM/SOM), İş Modeli (Enterprise SaaS / $99/mo) ve Rekabet Avantajı (Zero Cost Shield, PII Guardian).
 2.  **Veri Odası (Data Room):** Temiz bir Cap Table (Hissedarlık yapısı), kod mimarisi dokümantasyonu (`graphify-out` ve Master Plan'ler), hukuki metinler (AGPL-3.0 uyumluluğu, KVKK/GDPR süreçleri).
 3.  **Traction & Metrikler:** İlk kurumsal pilot müşteriler (PoC), ARR (Yıllık Tekrarlayan Gelir), CAC (Müşteri Edinme Maliyeti) ve Churn oranları. Kurumsal (Enterprise) "signed pilots" bu aşamada kritiktir.
-4.  **Teknik Doğrulama:** Vercel Pro limitlerine uygun ölçeklenebilir altyapı kanıtı ve Supabase RLS politikalarının tam uygulanmış olması. AI modellerinin "defensible" (savunulabilir) entegrasyonu.
+4.  **Teknik Doğrulama:** DeHost Pro limitlerine uygun ölçeklenebilir altyapı kanıtı ve DeHost RLS politikalarının tam uygulanmış olması. AI modellerinin "defensible" (savunulabilir) entegrasyonu.
 
 ### 3.2 Eylem Planı (Action Plan - Q3/Q4 2026)
 *   **Adım 1 (Ağustos/Eylül):** Ticaret Bakanlığı "Bilişim İhracatı" portalına (Belgenet/E-Devlet üzerinden) şirket kaydının yapılması. Teknokent başvuru dosyalarının (PII Guardian ve AI Incident altyapısı projeleriyle) hazırlanması.

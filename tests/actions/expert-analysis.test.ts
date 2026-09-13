@@ -15,7 +15,7 @@ vi.mock("@/lib/audit/model-router", () => ({
   selectModelByCapability: vi.fn().mockResolvedValue([{ modelId: "mock-model" }])
 }));
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: vi.fn().mockReturnValue({
     from: vi.fn().mockReturnValue({
       select: vi.fn().mockReturnValue({

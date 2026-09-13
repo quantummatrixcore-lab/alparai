@@ -1,4 +1,4 @@
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import type { FreeModelRecord } from "./fetch-models";
 import { FALLBACK_FREE_MODELS } from "./fetch-models";
 import type { GatewayModel } from "../types";
@@ -6,10 +6,10 @@ import { logger } from "@/lib/utils/logger";
 
 export async function runOrchestrator() {
   try {
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: models, error } = await (supabase as any)
+    const { data: models, error } = await (dehost as any)
       .from("ai_free_models")
       .select(
         "id, name, provider, context_length, pricing_prompt, pricing_completion, is_active, last_checked_at",
@@ -80,7 +80,7 @@ export async function runOrchestrator() {
 
     for (const chain of chains) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      await (supabase as any)
+      await (dehost as any)
         .from("ai_routing_chains")
         .upsert(chain, { onConflict: "domain_name" });
     }

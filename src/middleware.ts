@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import createIntlMiddleware from "next-intl/middleware";
-import { updateSession } from "@/lib/supabase/middleware";
+import { updateSession } from "@/lib/dehost/middleware";
 import { routing } from "@/i18n/routing";
 import { logger } from "@/lib/utils/logger";
 
@@ -30,15 +30,15 @@ function applySecurityHeaders(
 
   const cspDirectives = [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.supabase.co https://*.sentry.io https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.google.com https://*.gstatic.com https://va.vercel-scripts.com https://*.posthog.com https://us-assets.i.posthog.com",
+    "script-src 'self' 'unsafe-inline' https://*.dehost.internal https://*.sentry.io https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.google.com https://*.gstatic.com https://va.dehost-scripts.internal https://*.posthog.com https://us-assets.i.posthog.com",
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com",
     "font-src 'self' https://fonts.gstatic.com data:",
-    "img-src 'self' data: blob: https: https://*.googleusercontent.com https://avatars.githubusercontent.com https://*.supabase.co https://logo.clearbit.com",
-    "connect-src 'self' https://*.supabase.co https://*.sentry.io wss://*.supabase.co https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.googleapis.com https://*.posthog.com https://*.upstash.io https://va.vercel-scripts.com",
+    "img-src 'self' data: blob: https: https://*.googleusercontent.com https://avatars.githubusercontent.com https://*.dehost.internal https://logo.clearbit.com",
+    "connect-src 'self' https://*.dehost.internal https://*.sentry.io wss://*.dehost.internal https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.googleapis.com https://*.posthog.com https://*.upstash.io https://va.dehost-scripts.internal",
     "frame-src 'self' https://challenges.cloudflare.com https://accounts.google.com https://*.google.com",
     "worker-src 'self' blob:",
     isEmbed
-      ? "frame-ancestors 'self' https://*.alparai.com https://*.vercel.app"
+      ? "frame-ancestors 'self' https://*.alparai.com https://*.alparai.com"
       : "frame-ancestors 'none'",
     "base-uri 'self'",
     "form-action 'self' https://accounts.google.com",
@@ -90,12 +90,12 @@ function parseAlparSessionCookie(cookieValue?: string): { id: string; email: str
     if (!data || !data.email) return null;
     const email = String(data.email).toLowerCase();
     let role = data.role || "user";
-    if (
-      email === "quantum.matrix.core@gmail.com" ||
-      email === "ercumenterden@gmail.com" ||
-      email === "ercument.erden@alparai.com" ||
-      email.endsWith("@alparai.com")
-    ) {
+    const ceoEmails = (process.env.CEO_EMAILS || "")
+      .toLowerCase()
+      .split(",")
+      .map((e) => e.trim())
+      .filter(Boolean);
+    if (ceoEmails.length > 0 && ceoEmails.includes(email)) {
       role = "ceo";
     }
     return { id: data.id, email: data.email, role };
@@ -181,7 +181,7 @@ export async function middleware(request: NextRequest) {
     const sessionResult = await updateSession(reqWithHeaders, intlResponse);
     response = sessionResult.response;
     const user = sessionResult.user;
-    const supabase = sessionResult.supabase;
+    const dehost = sessionResult.dehost;
 
     // Fast-path unauthenticated redirect for admin routes (zero-trust security enforcement)
     if (
@@ -205,15 +205,15 @@ export async function middleware(request: NextRequest) {
         let role = alparSession?.role || "user";
         if (!alparSession && user) {
           const email = user.email?.toLowerCase();
-          if (
-            email === "quantum.matrix.core@gmail.com" ||
-            email === "ercumenterden@gmail.com" ||
-            email === "ercument.erden@alparai.com" ||
-            email?.endsWith("@alparai.com")
-          ) {
+          const ceoEmails = (process.env.CEO_EMAILS || "")
+            .toLowerCase()
+            .split(",")
+            .map((e) => e.trim())
+            .filter(Boolean);
+          if (ceoEmails.length > 0 && email && ceoEmails.includes(email)) {
             role = "ceo";
           } else {
-            const { data } = await supabase.from("users").select("role").eq("id", user.id).single();
+            const { data } = await dehost.from("users").select("role").eq("id", user.id).single();
             role = data?.role || user.user_metadata?.role || "user";
           }
         }
@@ -246,7 +246,7 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     // Zero-Cost Arbitrage: Statik dosyalar, webhook'lar ve health endpoint'i Edge middleware'e girmeden doğrudan işlenir
-    "/((?!api/health|api/cron|api/webhook|_next/static|_next/image|_vercel|auth/callback|auth/v1/|images/|icons/|fonts/|favicon\\.ico|robots\\.txt|sitemap\\.xml|manifest\\.webmanifest|.*\\.(?:svg|png|jpg|jpeg|gif|webp|css|js|ico|woff|woff2|ttf|eot|json|xml|txt|webmanifest|pdf|mp4|webm|mp3|ogg|wav)).*)",
+    "/((?!api/health|api/cron|api/webhook|_next/static|_next/image|_dehost|auth/callback|auth/v1/|images/|icons/|fonts/|favicon\\.ico|robots\\.txt|sitemap\\.xml|manifest\\.webmanifest|.*\\.(?:svg|png|jpg|jpeg|gif|webp|css|js|ico|woff|woff2|ttf|eot|json|xml|txt|webmanifest|pdf|mp4|webm|mp3|ogg|wav)).*)",
     "/api/((?!health|cron|webhook).*)",
   ],
 };

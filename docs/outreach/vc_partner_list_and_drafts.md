@@ -125,7 +125,7 @@ Hi [Partner Name],
 
 I wanted to connect via [Mutual Contact Name] to share our progress at ALPAR AI (https://alparai.com).
 
-We have engineered an enterprise-grade AI governance & incident management platform built on Next.js 15, Supabase PostgreSQL with 100% RLS security, and real-time zero-knowledge PII masking (AGPL-3.0 open core + Enterprise SLA).
+We have engineered an enterprise-grade AI governance & incident management platform built on Next.js 15, DeHost PostgreSQL with 100% RLS security, and real-time zero-knowledge PII masking (AGPL-3.0 open core + Enterprise SLA).
 
 Key Financial & Technical Highlights:
 • Unit Economics: 17.43x LTV/CAC ratio with a 6.88-month payback period.

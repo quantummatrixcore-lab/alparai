@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { requireAdmin } from "@/lib/auth/session";
 import { logger } from "@/lib/utils/logger";
 
@@ -8,29 +8,29 @@ export const dynamic = "force-dynamic";
 export async function GET() {
   await requireAdmin();
   try {
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
     const [queueRes, feedRes, positiveRes, statsRes] = await Promise.all([
-      supabase
+      dehost
         .from("external_incidents_queue")
         .select("*")
         .eq("status", "pending")
         .order("created_at", { ascending: false })
         .limit(100),
-      supabase
+      dehost
         .from("ecosystem_news")
         .select("*")
         .eq("is_active", true)
         .order("published_at", { ascending: false })
         .limit(50),
-      supabase
+      dehost
         .from("ecosystem_news")
         .select("*")
         .eq("is_active", true)
         .eq("category", "positive_development")
         .order("published_at", { ascending: false })
         .limit(50),
-      supabase
+      dehost
         .from("ecosystem_news")
         .select("id, category, severity", { count: "exact", head: false })
         .eq("is_active", true),

@@ -1,7 +1,7 @@
 "use server";
 
 import { z } from "zod";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { requireModerator } from "@/lib/auth/session";
 import { revalidatePath } from "next/cache";
 import { logger } from "@/lib/utils/logger";
@@ -38,9 +38,9 @@ export async function updateGrantStatus(
       }
     }
 
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
-    const { error: updateError } = await supabase
+    const { error: updateError } = await dehost
       .from("grant_applications")
       .update({
         status,
@@ -59,7 +59,7 @@ export async function updateGrantStatus(
       return { success: false, error: "Failed to update grant application" };
     }
 
-    await supabase.from("audit_log").insert({
+    await dehost.from("audit_log").insert({
       actor_id: user.id,
       action: "UPDATE_GRANT_APPLICATION",
       entity_type: "grant_applications",
@@ -87,9 +87,9 @@ export async function markGrantSubmitted(
     const user = await requireModerator();
     if (!user) return { success: false, error: "Unauthorized" };
 
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
-    const { error: updateError } = await supabase
+    const { error: updateError } = await dehost
       .from("grant_applications")
       .update({
         status: "submitted_pending_review",
@@ -103,7 +103,7 @@ export async function markGrantSubmitted(
       return { success: false, error: "Failed to mark grant as submitted" };
     }
 
-    await supabase.from("audit_log").insert({
+    await dehost.from("audit_log").insert({
       actor_id: user.id,
       action: "SUBMIT_GRANT_APPLICATION",
       entity_type: "grant_applications",

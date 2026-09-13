@@ -1,6 +1,6 @@
 import "server-only";
 import { NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { requireAdmin } from "@/lib/auth/session";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { headers } from "next/headers";
@@ -55,8 +55,8 @@ export async function GET(request: Request) {
       );
     }
 
-    const supabase = createAdminClient();
-    let query = supabase
+    const dehost = createAdminClient();
+    let query = dehost
       .from("jailbreak_samples")
       .select(
         "id, title, technique, severity, prompt_masked, target_model, reproducible, mitigation, created_at",

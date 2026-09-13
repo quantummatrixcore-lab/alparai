@@ -36,7 +36,7 @@ async function run() {
   // Kapatılacak sekme anahtar kelimeleri (İşi bitenler)
   const targets = [
     "cloudflare.com",
-    "vercel.com",
+    "dehost.com",
     "linkedin.com",
     "github.com",
     "pomelli",

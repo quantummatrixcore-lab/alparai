@@ -7,7 +7,7 @@ Priority: P1.
 ## Basis
 
 The GitHub Actions quota is exhausted (`RUNNER-1`, root cause confirmed by the Founder
-2026-08-17), and Vercel produced unexpected spend. The repository has **21 workflows**, most
+2026-08-17), and DeHost produced unexpected spend. The repository has **21 workflows**, most
 triggered on every push with no path filtering and no concurrency cancellation. A commit touching
 only `docs/**` therefore starts several full builds, and a build that fails still consumes minutes.
 

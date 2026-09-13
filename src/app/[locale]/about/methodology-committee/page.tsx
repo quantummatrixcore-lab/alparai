@@ -2,11 +2,12 @@ export const revalidate = 3600; // 1-hour ISR Edge CDN cache
 
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
-import { createClient as createSupabaseClient } from "@supabase/supabase-js";
+
 import type { Database } from "@/types/database";
 import { constructPageMetadata } from "@/lib/seo/metadata";
 import { AboutPageJsonLd, BreadcrumbJsonLd } from "@/components/seo/json-ld";
 import { APP_URL } from "@/lib/constants";
+import { createDeHostAdapterClient } from "@/lib/dehost/dehost-adapter";
 
 export function generateStaticParams() {
   return [{ locale: "tr" }, { locale: "en" }];
@@ -32,15 +33,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   });
 }
 
-function getPublicSupabase() {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://placeholder.supabase.co";
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "placeholder-anon-key";
-  return createSupabaseClient<Database>(supabaseUrl, supabaseAnonKey, {
-    auth: {
-      persistSession: false,
-      autoRefreshToken: false,
-    },
-  });
+function getPublicDeHost() {
+  return createDeHostAdapterClient();
 }
 
 export default async function MethodologyCommitteePage({
@@ -54,8 +48,8 @@ export default async function MethodologyCommitteePage({
   let typedMembers: CommitteeMember[] = [];
 
   try {
-    const supabase = getPublicSupabase();
-    const { data: members } = await supabase
+    const dehost = getPublicDeHost();
+    const { data: members } = await dehost
       .from("methodology_committee_members" as unknown as "incidents")
       .select("id, name, institution, role, avatar_url, joined_at")
       .order("name", { ascending: true });

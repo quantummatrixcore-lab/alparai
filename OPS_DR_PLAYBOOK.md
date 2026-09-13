@@ -1,13 +1,13 @@
 # ALPAR AI - Disaster Recovery (DR) & Backup Restore Playbook
 
 ## 1. RPO ve RTO Metrikleri (Tatbikat Çıktısı)
-- **RPO (Recovery Point Objective):** 1 Saat. Supabase PITR (Point-in-Time Recovery) devrededir, veri kaybı toleransı maksimum 60 dakikadır.
+- **RPO (Recovery Point Objective):** 1 Saat. DeHost PITR (Point-in-Time Recovery) devrededir, veri kaybı toleransı maksimum 60 dakikadır.
 - **RTO (Recovery Time Objective):** < 15 Dakika. (Tatbikat süresi: 8m 42s ölçülmüştür).
 
 ## 2. Restore Tatbikat Raporu (2026-09-06)
 Bu belge P1 gereksinimleri uyarınca otonom sistem tarafından simüle edilmiş tatbikatın kayıtlarını içerir.
 
-**Senaryo:** DeHost Sunucusundaki Supabase instance'ında kritik veri tabanı bozulması (corruption).
+**Senaryo:** DeHost Sunucusundaki DeHost instance'ında kritik veri tabanı bozulması (corruption).
 **Hedef:** Son alınan sağlam yedeğe 15 dakikanın altında dönmek.
 
 **Adımlar & Süreler:**
@@ -20,8 +20,8 @@ Bu belge P1 gereksinimleri uyarınca otonom sistem tarafından simüle edilmiş 
 ## 3. Acil Durum Çalıştırma Prosedürü
 Gerçek bir DR anında uygulanacak komut zinciri:
 \`\`\`bash
-# 1. Coolify / Supabase container'ına eriş
-docker exec -it supabase-db /bin/bash
+# 1. Coolify / DeHost container'ına eriş
+docker exec -it dehost-db /bin/bash
 
 # 2. Son yedeği AWS S3'ten veya yerelden çek ve bas
 psql -U postgres -h localhost -d postgres < /path/to/latest/backup.sql

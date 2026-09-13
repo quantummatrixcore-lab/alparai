@@ -4,7 +4,7 @@ import type { QueueJob } from "./queue";
 import { withAutopilot, getPolicy } from "./index";
 import { policies } from "./policies";
 import type { AttemptContext, AttemptOutcome } from "./types";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 
 export type WorkerHandler = (

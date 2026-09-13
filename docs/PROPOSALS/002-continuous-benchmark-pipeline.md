@@ -10,9 +10,9 @@ Implement an automated pipeline that continuously processes newly ingested incid
 
 ## Proposed Architecture
 
-1. **Vercel Cron Trigger:**
+1. **DeHost Cron Trigger:**
    - Create `src/app/api/cron/benchmark/route.ts`.
-   - Update `vercel.json` to trigger this endpoint periodically (e.g., daily at 00:00 UTC).
+   - Update `dehost.json` to trigger this endpoint periodically (e.g., daily at 00:00 UTC).
    - This endpoint must be secured using `Authorization: Bearer process.env.CRON_SECRET`.
 
 2. **Pipeline Logic (`src/actions/admin-question-bank.ts` modifications):**
@@ -21,12 +21,12 @@ Implement an automated pipeline that continuously processes newly ingested incid
    - **Phase 3 (Scoring):** Insert results into `k_benchmark_evaluations`.
 
 3. **Cost & Token Constraints:**
-   - The cron job will process a maximum of 10-50 incidents per run to stay within Free-tier token limits and Vercel Pro Max Duration limits (300s).
+   - The cron job will process a maximum of 10-50 incidents per run to stay within Free-tier token limits and DeHost Pro Max Duration limits (300s).
    - OpenCode Free Tier models will be used for both generation and evaluation phases.
 
 ## Rationale
 
-- **Decoupled & Serverless:** Vercel Cron natively integrates with Next.js App Router, requiring zero DB-level triggers (avoiding Supabase pg_cron limitations on Free tier).
+- **Decoupled & Serverless:** DeHost Cron natively integrates with Next.js App Router, requiring zero DB-level triggers (avoiding DeHost pg_cron limitations on Free tier).
 - **Scalable:** By chunking processing (batch size 50), we avoid timeouts and token exhaustion.
 
 ## Action Requested from Architect (Opus)

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { supabase } from "@/lib/supabase/client";
+import { dehost } from "@/lib/dehost/client";
 
 interface FellowshipFormProps {
   locale: string;
@@ -26,7 +26,7 @@ export default function FellowshipForm({}: FellowshipFormProps) {
     try {
       const {
         data: { user },
-      } = await supabase.auth.getUser();
+      } = await dehost.auth.getUser();
 
       if (!user) {
         setError(t("fellowship_login_required"));
@@ -34,7 +34,7 @@ export default function FellowshipForm({}: FellowshipFormProps) {
         return;
       }
 
-      const query = supabase.from("fellowship_applications" as unknown as "incidents");
+      const query = dehost.from("fellowship_applications" as unknown as "incidents");
       const { error: insertError } = await (
         query as unknown as {
           insert: (p: unknown) => Promise<{ error: { message: string } | null }>;

@@ -1,6 +1,6 @@
 import { withCronLogger } from "@/lib/utils/cron-logger";
 import { NextResponse } from "next/server";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { logger } from "@/lib/utils/logger";
 
 async function getHandler(request: Request) {
@@ -10,22 +10,22 @@ async function getHandler(request: Request) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    const supabase = await createServerClient();
+    const dehost = await createServerClient();
 
     // Pivot-check: evaluate usage 30 days post-launch (Sept 1)
     const launchDate = new Date("2026-08-02T00:00:00Z");
 
     const [{ count: userCount }, { count: incidentCount }, { count: verifiedIncidents }] =
       await Promise.all([
-        supabase
+        dehost
           .from("users")
           .select("id", { count: "exact", head: true })
           .gte("created_at", launchDate.toISOString()),
-        supabase
+        dehost
           .from("incidents")
           .select("id", { count: "exact", head: true })
           .gte("created_at", launchDate.toISOString()),
-        supabase
+        dehost
           .from("incidents")
           .select("id", { count: "exact", head: true })
           .gte("created_at", launchDate.toISOString())

@@ -2,7 +2,7 @@ export const revalidate = 60;
 
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { Container } from "@/components/ui/layout";
 import { Shield, Activity, Cpu } from "lucide-react";
 import { Link } from "@/i18n/routing";
@@ -16,8 +16,8 @@ export async function generateMetadata({
 }) {
   const { slug, locale } = await params;
   const t = await getTranslations({ locale, namespace: "providerCluster" });
-  const supabase = await createServerClient();
-  const { data: provider } = await supabase
+  const dehost = await createServerClient();
+  const { data: provider } = await dehost
     .from("ai_providers")
     .select("name, description")
     .eq("slug", slug)
@@ -39,8 +39,8 @@ export default async function ProviderIncidentsPage({
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "providerCluster" });
 
-  const supabase = await createServerClient();
-  const { data: provider } = await supabase
+  const dehost = await createServerClient();
+  const { data: provider } = await dehost
     .from("ai_providers")
     .select("id, name, slug, description, website_url, is_verified")
     .eq("slug", slug)
@@ -51,7 +51,7 @@ export default async function ProviderIncidentsPage({
     return null;
   }
 
-  const { data: incidents } = await supabase
+  const { data: incidents } = await dehost
     .from("incidents")
     .select("id, title_masked, category, severity, incident_date")
     .eq("ai_provider_id", provider.id)

@@ -86,7 +86,7 @@ const MODEL_TOKEN_COSTS = [
   { name: "Gemini 3.1 Pro (Atatürk 2M)", cost: "$142.50", usage: "38%", color: "#00f0ff" },
   { name: "OpenCode Free Swarm (Nemotron/HY3)", cost: "$0.00", usage: "45%", color: "#10b981" },
   { name: "Claude Sonnet/Opus (Architect Gate)", cost: "$68.20", usage: "12%", color: "#a855f7" },
-  { name: "Cloudflare Workers & Vercel Edge", cost: "$19.40", usage: "5%", color: "#f59e0b" },
+  { name: "Cloudflare Workers & DeHost Edge", cost: "$19.40", usage: "5%", color: "#f59e0b" },
 ];
 
 const SUBSCRIPTION_TIERS = [

@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from "@/lib/dehost/client";
 
 function loadEnv() {
   const envPath = path.resolve(process.cwd(), ".env.local");
@@ -27,15 +27,15 @@ function loadEnv() {
 
 loadEnv();
 
-const SUPABASE_URL = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
-const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const DEHOST_URL = process.env.DEHOST_URL || process.env.NEXT_PUBLIC_DEHOST_URL;
+const DEHOST_SERVICE_ROLE_KEY = process.env.DEHOST_SERVICE_ROLE_KEY;
 
-if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
-  console.error("Error: SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set in .env.local");
+if (!DEHOST_URL || !DEHOST_SERVICE_ROLE_KEY) {
+  console.error("Error: DEHOST_URL and DEHOST_SERVICE_ROLE_KEY must be set in .env.local");
   process.exit(1);
 }
 
-const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+const dehost = createClient(DEHOST_URL, DEHOST_SERVICE_ROLE_KEY);
 
 function levenshtein(s: string, t: string): number {
   if (s === t) return 0;
@@ -66,7 +66,7 @@ function normalizedDistance(a: string, b: string): number {
 
 async function runAudit() {
   console.log("Fetching incidents from database...");
-  const { data: incidents, error } = await supabase
+  const { data: incidents, error } = await dehost
     .from("incidents")
     .select(
       "id, title, description, category, severity, incident_date, source_url, provider_custom_name, ai_provider_id",

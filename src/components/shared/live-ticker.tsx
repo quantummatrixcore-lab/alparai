@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase/client";
+import { dehost } from "@/lib/dehost/client";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { usePathname } from "next/navigation";
@@ -65,7 +65,7 @@ export function LiveTicker() {
   useEffect(() => {
     if (isExcludedPage) return;
     async function fetchTickerData() {
-      const { data: latest } = await supabase
+      const { data: latest } = await dehost
         .from("incidents")
         .select(
           "id, title_masked, category, ai_provider:ai_providers(name), ai_model:ai_models(name)",

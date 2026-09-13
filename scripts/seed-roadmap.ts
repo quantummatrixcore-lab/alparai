@@ -1,6 +1,6 @@
 import { readFileSync, existsSync } from "fs";
 import { join } from "path";
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from "@/lib/dehost/client";
 
 // Load environment variables from .env.local if present
 function loadEnv() {
@@ -26,17 +26,17 @@ function loadEnv() {
 
 loadEnv();
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const dehostUrl = process.env.NEXT_PUBLIC_DEHOST_URL;
+const dehostKey = process.env.DEHOST_SERVICE_ROLE_KEY;
 
-if (!supabaseUrl || !supabaseKey) {
+if (!dehostUrl || !dehostKey) {
   console.error(
-    "Error: NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set in .env.local or environment.",
+    "Error: NEXT_PUBLIC_DEHOST_URL and DEHOST_SERVICE_ROLE_KEY must be set in .env.local or environment.",
   );
   process.exit(1);
 }
 
-const supabase = createClient(supabaseUrl, supabaseKey);
+const dehost = createClient(dehostUrl, dehostKey);
 
 const milestones = [
   {
@@ -334,7 +334,7 @@ const todos = [
 
 async function main() {
   // Fetch existing milestones
-  const { data: existingMilestones, error: fetchMErr } = await supabase
+  const { data: existingMilestones, error: fetchMErr } = await dehost
     .from("strategy_milestones")
     .select("title");
 
@@ -342,12 +342,12 @@ async function main() {
     console.error("Error fetching strategy milestones:", fetchMErr.message);
     process.exit(1);
   }
-  const existingMilestoneTitles = new Set(existingMilestones.map((m) => m.title));
+  const existingMilestoneTitles = new Set((existingMilestones || []).map((m: { title: string }) => m.title));
 
   console.log("Seeding roadmap strategy milestones...");
   const milestonesToInsert = milestones.filter((m) => !existingMilestoneTitles.has(m.title));
   if (milestonesToInsert.length > 0) {
-    const { error: insertErr } = await supabase
+    const { error: insertErr } = await dehost
       .from("strategy_milestones")
       .insert(milestonesToInsert);
     if (insertErr) {
@@ -360,7 +360,7 @@ async function main() {
   }
 
   // Fetch existing todos
-  const { data: existingTodos, error: fetchTErr } = await supabase
+  const { data: existingTodos, error: fetchTErr } = await dehost
     .from("strategy_todos")
     .select("title");
 
@@ -368,12 +368,12 @@ async function main() {
     console.error("Error fetching strategy todos:", fetchTErr.message);
     process.exit(1);
   }
-  const existingTodoTitles = new Set(existingTodos.map((t) => t.title));
+  const existingTodoTitles = new Set((existingTodos || []).map((t: { title: string }) => t.title));
 
   console.log("Seeding roadmap strategy todos...");
   const todosToInsert = todos.filter((t) => !existingTodoTitles.has(t.title));
   if (todosToInsert.length > 0) {
-    const { error: insertErr } = await supabase.from("strategy_todos").insert(todosToInsert);
+    const { error: insertErr } = await dehost.from("strategy_todos").insert(todosToInsert);
     if (insertErr) {
       console.error("Error inserting todos:", insertErr.message);
     } else {

@@ -2,7 +2,7 @@
 
 ## Implementation Overview
 
-- Created a database migration at `supabase/migrations/20260727000013_redaction_requests.sql` to track redaction requests:
+- Created a database migration at `dehost/migrations/20260727000013_redaction_requests.sql` to track redaction requests:
   - Created `public.redaction_requests` table with checks for `status in ('pending', 'approved', 'rejected')`.
   - Enabled Row-Level Security allowing public read and moderator write permissions.
 - Hooked redaction processing into the `process-deletions` daily cron job at `src/app/api/cron/process-deletions/route.ts`:

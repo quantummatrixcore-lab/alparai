@@ -11,9 +11,9 @@ interface EnvVarEntry {
 }
 
 const REQUIRED_VARS: { key: string; provider: string; required: boolean }[] = [
-  { key: "NEXT_PUBLIC_SUPABASE_URL", provider: "supabase", required: true },
-  { key: "NEXT_PUBLIC_SUPABASE_ANON_KEY", provider: "supabase", required: true },
-  { key: "SUPABASE_SERVICE_ROLE_KEY", provider: "supabase", required: true },
+  { key: "NEXT_PUBLIC_DEHOST_URL", provider: "dehost", required: true },
+  { key: "NEXT_PUBLIC_DEHOST_ANON_KEY", provider: "dehost", required: true },
+  { key: "DEHOST_SERVICE_ROLE_KEY", provider: "dehost", required: true },
   { key: "UPSTASH_REDIS_REST_URL", provider: "redis", required: false },
   { key: "UPSTASH_REDIS_REST_TOKEN", provider: "redis", required: false },
   { key: "GEMINI_API_KEY", provider: "gemini", required: true },
@@ -30,8 +30,8 @@ const REQUIRED_VARS: { key: string; provider: string; required: boolean }[] = [
   { key: "NEXTAUTH_SECRET", provider: "nextauth", required: true },
   { key: "NEXTAUTH_URL", provider: "nextauth", required: true },
   { key: "CRON_SECRET", provider: "cron", required: false },
-  { key: "VERCEL_TOKEN", provider: "vercel", required: false },
-  { key: "VERCEL_OIDC_TOKEN", provider: "vercel", required: false },
+  { key: "DEHOST_TOKEN", provider: "dehost", required: false },
+  { key: "DEHOST_OIDC_TOKEN", provider: "dehost", required: false },
   { key: "UNSUBSCRIBE_SALT", provider: "newsletter", required: true },
   { key: "NEXT_PUBLIC_APP_URL", provider: "app", required: true },
 ];

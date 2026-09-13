@@ -22,7 +22,7 @@ sources**, and the corpus pipeline was designed to ingest from them.
 ## What is missing
 
 **Almost certainly, that they have never run.** `LB-2` established that no cron in this project had
-ever executed and that `vercel.json` now schedules three jobs. These connectors are the same class of
+ever executed and that `dehost.json` now schedules three jobs. These connectors are the same class of
 capability as the 25 unscheduled handlers: written, wired, unreachable. Confirm whether any connector
 is scheduled, and schedule what should be, within the plan's cron budget.
 

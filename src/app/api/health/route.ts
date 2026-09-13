@@ -17,13 +17,13 @@ interface HealthCheckDetail {
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
-async function checkSupabase(): Promise<ServiceHealth> {
+async function checkDeHost(): Promise<ServiceHealth> {
   const start = Date.now();
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const url = process.env.NEXT_PUBLIC_DEHOST_URL;
+  const key = process.env.NEXT_PUBLIC_DEHOST_ANON_KEY;
   if (!url || !key) {
     return {
-      name: "supabase",
+      name: "dehost",
       status: "not_configured",
       latencyMs: null,
       error: "Missing env vars",
@@ -35,13 +35,13 @@ async function checkSupabase(): Promise<ServiceHealth> {
       signal: AbortSignal.timeout(3000),
     });
     return {
-      name: "supabase",
+      name: "dehost",
       status: res.ok ? "healthy" : "unhealthy",
       latencyMs: Date.now() - start,
     };
   } catch (err) {
     return {
-      name: "supabase",
+      name: "dehost",
       status: "unhealthy",
       latencyMs: Date.now() - start,
       error: String(err),
@@ -81,12 +81,16 @@ async function checkCloudflare(): Promise<ServiceHealth> {
 }
 
 async function checkSentry(): Promise<ServiceHealth> {
-  const dsn = process.env.SENTRY_DSN || process.env.NEXT_PUBLIC_SENTRY_DSN;
-  if (!dsn) {
-    return { name: "sentry", status: "not_configured", latencyMs: null };
+  try {
+    const dsn = process.env.SENTRY_DSN || process.env.NEXT_PUBLIC_SENTRY_DSN;
+    if (!dsn) {
+      return { name: "sentry", status: "not_configured", latencyMs: null };
+    }
+    const valid = dsn.startsWith("https://") && dsn.includes("@");
+    return { name: "sentry", status: valid ? "healthy" : "unhealthy", latencyMs: null };
+  } catch (err) {
+    return { name: "sentry", status: "unhealthy", latencyMs: null, error: String(err) };
   }
-  const valid = dsn.startsWith("https://") && dsn.includes("@");
-  return { name: "sentry", status: valid ? "healthy" : "unhealthy", latencyMs: null };
 }
 
 async function checkResend(): Promise<ServiceHealth> {
@@ -177,18 +181,22 @@ async function checkAnthropic(): Promise<ServiceHealth> {
 }
 
 async function checkGoogleOAuth(): Promise<ServiceHealth> {
-  const clientId = process.env.GOOGLE_CLIENT_ID;
-  const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
-  if (!clientId || !clientSecret) {
-    return { name: "google_oauth", status: "not_configured", latencyMs: null };
+  try {
+    const clientId = process.env.GOOGLE_CLIENT_ID;
+    const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
+    if (!clientId || !clientSecret) {
+      return { name: "google_oauth", status: "not_configured", latencyMs: null };
+    }
+    return { name: "google_oauth", status: "healthy", latencyMs: null };
+  } catch (err) {
+    return { name: "google_oauth", status: "unhealthy", latencyMs: null, error: String(err) };
   }
-  return { name: "google_oauth", status: "healthy", latencyMs: null };
 }
 
 export async function GET(): Promise<NextResponse<HealthCheckDetail | { error: string }>> {
   try {
     const services = await Promise.all([
-      checkSupabase(),
+      checkDeHost(),
       checkRedis(),
       checkCloudflare(),
       checkSentry(),
@@ -199,9 +207,9 @@ export async function GET(): Promise<NextResponse<HealthCheckDetail | { error: s
     ]);
 
     const unhealthy = services.filter((s) => s.status === "unhealthy");
-    const supabaseService = services.find((s) => s.name === "supabase");
-    const isSupabaseOk = supabaseService?.status !== "unhealthy";
-    const overallStatus = isSupabaseOk && unhealthy.length === 0 ? "healthy" : "degraded";
+    const dehostService = services.find((s) => s.name === "dehost");
+    const isDeHostOk = dehostService?.status !== "unhealthy";
+    const overallStatus = isDeHostOk && unhealthy.length === 0 ? "healthy" : "degraded";
 
     return NextResponse.json(
       {

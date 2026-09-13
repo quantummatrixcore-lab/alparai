@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { createServerClient } from "@supabase/ssr";
-import { type EmailOtpType, type SupabaseClient } from "@supabase/supabase-js";
+import { createServerClient } from "@/lib/dehost/server";
+type EmailOtpType = any;
+type DeHostClient = any;
 import { createHash } from "crypto";
 import { logger } from "@/lib/utils/logger";
 import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from "@/lib/constants";
@@ -42,7 +43,7 @@ function detectLocale(request: NextRequest): string {
 import { logAdminLoginAction } from "@/actions/auth-audit";
 
 async function logAdminLogin(
-  supabase: SupabaseClient<Database>,
+  dehost: any,
   userId: string,
   request: NextRequest,
 ) {
@@ -92,34 +93,12 @@ export async function GET(request: NextRequest) {
     process.env.NODE_ENV === "production" ||
     (!request.url.startsWith("http://localhost") && !request.url.startsWith("http://127.0.0.1"));
 
-  const supabase = createServerClient<Database>(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll();
-        },
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
-          cookiesToSet.forEach(({ name, value, options }) =>
-            response.cookies.set(name, value, {
-              ...options,
-              sameSite: options?.sameSite ?? "lax",
-              secure: options?.secure ?? isProduction,
-              httpOnly: options?.httpOnly ?? true,
-              path: options?.path ?? "/",
-            }),
-          );
-        },
-      },
-    },
-  );
+  const dehost = await createServerClient();
 
   try {
     if (code) {
-      // 1. Primary: Exchange Supabase Auth code for session
-      const { data: sessionData, error: sessionError } = await supabase.auth.exchangeCodeForSession(code);
+      // 1. Primary: Exchange DeHost Auth code for session
+      const { data: sessionData, error: sessionError } = await dehost.auth.exchangeCodeForSession(code);
       if (!sessionError && sessionData?.user) {
         const user = sessionData.user;
         const { createSessionCookieHeader } = await import("@/lib/auth/session");
@@ -182,7 +161,7 @@ export async function GET(request: NextRequest) {
     }
 
     if (tokenHash && type) {
-      const { error } = await supabase.auth.verifyOtp({
+      const { error } = await dehost.auth.verifyOtp({
         token_hash: tokenHash,
         type: type as EmailOtpType,
       });

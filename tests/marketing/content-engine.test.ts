@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
-import { createMockSupabaseClient } from "../helpers/supabase-mock";
+import { createMockDeHostClient } from "../helpers/dehost-mock";
 
-const mockAdminClient = createMockSupabaseClient();
-vi.mock("@/lib/supabase/admin", () => ({
+const mockAdminClient = createMockDeHostClient();
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => mockAdminClient,
 }));
 
@@ -111,7 +111,7 @@ describe("Marketing Content Engine & Publishers", () => {
         base64: "dGVzdC1iYXNlNjQ=",
         mimeType: "image/png",
       });
-      // Mock Supabase Database calls
+      // Mock DeHost Database calls
       const builder: any = {
         select: () => builder,
         eq: () => builder,
@@ -152,7 +152,7 @@ describe("Marketing Content Engine & Publishers", () => {
         base64: "dGVzdC1iYXNlNjQ=",
         mimeType: "image/jpeg",
       });
-      // Mock Supabase Database calls
+      // Mock DeHost Database calls
       const builder: any = {
         select: () => builder,
         eq: () => builder,

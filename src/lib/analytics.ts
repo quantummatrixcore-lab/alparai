@@ -68,7 +68,7 @@ export function getUtmParams(): Record<string, string> {
 }
 
 /**
- * Tracks a showcase page view across Plausible & Supabase funnel_events with UTM data.
+ * Tracks a showcase page view across Plausible & DeHost funnel_events with UTM data.
  */
 export function trackShowcasePageView(pagePath: string) {
   const utm = getUtmParams();
@@ -80,7 +80,7 @@ export function trackShowcasePageView(pagePath: string) {
 }
 
 /**
- * Tracks a CTA click on a showcase page across Plausible & Supabase funnel_events with UTM data.
+ * Tracks a CTA click on a showcase page across Plausible & DeHost funnel_events with UTM data.
  */
 export function trackShowcaseCtaClick(
   pagePath: string,

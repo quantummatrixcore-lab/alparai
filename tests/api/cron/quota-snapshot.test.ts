@@ -9,7 +9,7 @@ const mockFrom = vi.fn().mockImplementation(() => ({
   upsert: mockUpsert,
 }));
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({
     rpc: mockRpc,
     from: mockFrom,
@@ -45,7 +45,7 @@ function successHandler(url: string): unknown {
   if (url.includes("settings/billing/actions")) {
     return okJson({ total_minutes_used: 690, included_minutes: 3000 });
   }
-  if (url.includes("api.vercel.com")) {
+  if (url.includes("api.dehost.com")) {
     return okJson({ charges: [{ ConsumedQuantity: 1073741824, ConsumedUnit: "BYTES" }] });
   }
   return failJson(404);
@@ -56,7 +56,7 @@ describe("Quota Snapshot Cron Route (/api/cron/quota-snapshot)", () => {
     vi.clearAllMocks();
     process.env.CRON_SECRET = "test-secret";
     process.env.GITHUB_TOKEN = "test-gh-token";
-    process.env.VERCEL_TOKEN = "test-vercel-token";
+    process.env.DEHOST_TOKEN = "test-dehost-token";
     mockRpc.mockResolvedValue({ data: 52428800, error: null });
     mockUpsert.mockResolvedValue({ data: null, error: null });
   });
@@ -65,7 +65,7 @@ describe("Quota Snapshot Cron Route (/api/cron/quota-snapshot)", () => {
     vi.unstubAllEnvs();
     delete process.env.CRON_SECRET;
     delete process.env.GITHUB_TOKEN;
-    delete process.env.VERCEL_TOKEN;
+    delete process.env.DEHOST_TOKEN;
     delete process.env.GITHUB_ORG;
     global.fetch = originalFetch;
   });
@@ -79,17 +79,17 @@ describe("Quota Snapshot Cron Route (/api/cron/quota-snapshot)", () => {
     expect(mockUpsert).not.toHaveBeenCalled();
   });
 
-  it("rejects x-vercel-cron header without valid CRON_SECRET in production", async () => {
+  it("rejects x-dehost-cron header without valid CRON_SECRET in production", async () => {
     vi.stubEnv("NODE_ENV", "production");
     buildFetchMock(successHandler);
     const req = new Request("http://localhost/api/cron/quota-snapshot", {
-      headers: { "x-vercel-cron": "1" },
+      headers: { "x-dehost-cron": "1" },
     });
     const res = await GET(req as NextRequest);
     expect(res.status).toBe(401);
   });
 
-  it("captures GitHub, Vercel, and Supabase and writes source='api' rows", async () => {
+  it("captures GitHub, DeHost, and DeHost and writes source='api' rows", async () => {
     buildFetchMock(successHandler);
 
     const res = await GET(makeAuthRequest() as NextRequest);
@@ -117,9 +117,9 @@ describe("Quota Snapshot Cron Route (/api/cron/quota-snapshot)", () => {
       source: "api",
     });
 
-    const vercel = rows.find((r) => r.vendor === "vercel");
-    expect(vercel).toMatchObject({
-      vendor: "vercel",
+    const dehostEdge = rows.find((r) => r.metric === "bandwidth_gb");
+    expect(dehostEdge).toMatchObject({
+      vendor: "dehost",
       metric: "bandwidth_gb",
       used_value: 1,
       limit_value: 1000,
@@ -127,9 +127,9 @@ describe("Quota Snapshot Cron Route (/api/cron/quota-snapshot)", () => {
       source: "api",
     });
 
-    const supabase = rows.find((r) => r.vendor === "supabase");
-    expect(supabase).toMatchObject({
-      vendor: "supabase",
+    const dehostDb = rows.find((r) => r.metric === "db_size_gb");
+    expect(dehostDb).toMatchObject({
+      vendor: "dehost",
       metric: "db_size_gb",
       used_value: 52428800 / 1024 ** 3,
       limit_value: 8,
@@ -156,16 +156,16 @@ describe("Quota Snapshot Cron Route (/api/cron/quota-snapshot)", () => {
     expect(res.status).toBe(200);
 
     const body = await res.json();
-    expect(body.captured.map((c: { vendor: string }) => c.vendor)).toEqual(["vercel", "supabase"]);
+    expect(body.captured.map((c: { vendor: string }) => c.vendor)).toEqual(["dehost", "dehost"]);
     expect(body.skipped).toContain("github_actions");
 
     const rows = mockUpsert.mock.calls[0]?.[0] as Array<Record<string, unknown>>;
     expect(rows.find((r) => r.vendor === "github_actions")).toBeUndefined();
   });
 
-  it("skips Vercel when no bandwidth usage is reported", async () => {
+  it("skips DeHost when no bandwidth usage is reported", async () => {
     buildFetchMock((url) => {
-      if (url.includes("api.vercel.com")) {
+      if (url.includes("api.dehost.com")) {
         return okJson({ charges: [{ BilledCost: 5, ChargeCategory: "Usage" }] });
       }
       return successHandler(url);
@@ -177,12 +177,12 @@ describe("Quota Snapshot Cron Route (/api/cron/quota-snapshot)", () => {
     const body = await res.json();
     expect(body.captured.map((c: { vendor: string }) => c.vendor)).toEqual([
       "github_actions",
-      "supabase",
+      "dehost",
     ]);
-    expect(body.skipped).toContain("vercel");
+    expect(body.skipped).toContain("dehost");
   });
 
-  it("skips Supabase when RPC fails", async () => {
+  it("skips DeHost when RPC fails", async () => {
     mockRpc.mockResolvedValueOnce({ data: null, error: { message: "rpc unavailable" } });
     buildFetchMock(successHandler);
 
@@ -192,9 +192,9 @@ describe("Quota Snapshot Cron Route (/api/cron/quota-snapshot)", () => {
     const body = await res.json();
     expect(body.captured.map((c: { vendor: string }) => c.vendor)).toEqual([
       "github_actions",
-      "vercel",
+      "dehost",
     ]);
-    expect(body.skipped).toContain("supabase");
+    expect(body.skipped).toContain("dehost");
   });
 
   it("skips GitHub when GITHUB_TOKEN is not configured", async () => {

@@ -2,8 +2,6 @@
 
 import * as React from "react";
 import {
-  siSupabase,
-  siVercel,
   siUpstash,
   siOpenrouter,
   siHuggingface,
@@ -47,8 +45,7 @@ function createIconComponent(icon: { path: string; hex: string; title: string })
   };
 }
 
-export const SupabaseIcon = createIconComponent(siSupabase);
-export const VercelIcon = createIconComponent(siVercel);
+export const DeHostIcon = createIconComponent(siPostgresql);
 export const UpstashIcon = createIconComponent(siUpstash);
 export const OpenRouterIcon = createIconComponent(siOpenrouter);
 export const HuggingFaceIcon = createIconComponent(siHuggingface);

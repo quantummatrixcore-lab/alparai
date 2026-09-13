@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { supabase } from "@/lib/supabase/client";
+import { dehost } from "@/lib/dehost/client";
 import type { Database } from "@/types/database";
 import { useAdminRealtime } from "./use-admin-realtime";
 
@@ -56,7 +56,7 @@ export function useAdminAutopilot({
       setLoading(true);
       setError(null);
 
-      let runsQuery = supabase
+      let runsQuery = dehost
         .from("autopilot_runs")
         .select("*", { count: "exact" });
 
@@ -73,8 +73,8 @@ export function useAdminAutopilot({
 
       const [runsRes, workersRes, crossRes] = await Promise.all([
         runsQuery.order("created_at", { ascending: false }).range(from, to),
-        supabase.from("autopilot_worker_config").select("*").order("worker_name"),
-        supabase.from("cross_audit_runs").select("*").order("created_at", { ascending: false }).limit(20),
+        dehost.from("autopilot_worker_config").select("*").order("worker_name"),
+        dehost.from("cross_audit_runs").select("*").order("created_at", { ascending: false }).limit(20),
       ]);
 
       if (runsRes.error) throw new Error(runsRes.error.message);
@@ -138,7 +138,7 @@ export function useAdminAutopilot({
   const toggleWorker = async (workerName: string, enabled: boolean) => {
     try {
       const now = new Date().toISOString();
-      const { error: upsertError } = await supabase
+      const { error: upsertError } = await dehost
         .from("autopilot_worker_config")
         .upsert({
           worker_name: workerName,

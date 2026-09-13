@@ -1,7 +1,7 @@
 "use server";
 
 import { requireAdmin } from "@/lib/auth/session";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 
 export interface VendorSlaMetric {
   id: string;
@@ -48,9 +48,9 @@ export interface VendorPortalData {
 export async function getVendorPortalDataAction(): Promise<VendorPortalData> {
   await requireAdmin();
   try {
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
-    const { data: dbRankings } = await supabase
+    const { data: dbRankings } = await dehost
       .from("vendor_trust_rankings")
       .select("*")
       .order("composite_score", { ascending: false });
@@ -155,7 +155,7 @@ export async function getVendorPortalDataAction(): Promise<VendorPortalData> {
       });
     }
 
-    const { data: dbIncidents } = await supabase
+    const { data: dbIncidents } = await dehost
       .from("incidents")
       .select("id, title, severity, status, created_at")
       .order("created_at", { ascending: false })

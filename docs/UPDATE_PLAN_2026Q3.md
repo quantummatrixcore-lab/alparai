@@ -8,7 +8,7 @@
 
 ## 0. Context (read first)
 
-ALPAR AI is a community-governed AI incident registry ("Trustpilot for AI"): users report AI failures, providers respond, the public sees Trust Scores. Stack: Next.js 16 (App Router, RSC, Server Actions) + Supabase (Postgres/RLS/Storage) + Tailwind v4 + TypeScript strict, hosted on Vercel (fra1) / Supabase (eu-west-1).
+ALPAR AI is a community-governed AI incident registry ("Trustpilot for AI"): users report AI failures, providers respond, the public sees Trust Scores. Stack: Next.js 16 (App Router, RSC, Server Actions) + DeHost (Postgres/RLS/Storage) + Tailwind v4 + TypeScript strict, hosted on DeHost (fra1) / DeHost (eu-west-1).
 
 **Strategic rationale for this plan** (from live market analysis, July 2026):
 
@@ -25,8 +25,8 @@ ALPAR AI is a community-governed AI incident registry ("Trustpilot for AI"): use
 ### PF.1 — Remove predictable IP_SALT fallback (security, highest priority)
 
 - **Files:** `src/lib/utils/hash.ts`, `.env.example`, `docs/DEPLOYMENT.md`.
-- **Why:** `requireIpSalt()` currently falls back to `SUPABASE_ANON_KEY.slice(0, 32)` or a hardcoded literal. The anon key is public, so IP hashes AND `generateProviderToken` (provider verification!) become predictable/forgeable. The `_validated` flag logic is also inverted (first call never warns).
-- **Work:** If `IP_SALT` is missing or shorter than 16 chars, throw at first use in production (`NODE_ENV === "production"`); allow a dev-only fallback with a loud warning. Remove the `_validated` flag. Confirm `IP_SALT` is set in Vercel prod env before merging.
+- **Why:** `requireIpSalt()` currently falls back to `DEHOST_ANON_KEY.slice(0, 32)` or a hardcoded literal. The anon key is public, so IP hashes AND `generateProviderToken` (provider verification!) become predictable/forgeable. The `_validated` flag logic is also inverted (first call never warns).
+- **Work:** If `IP_SALT` is missing or shorter than 16 chars, throw at first use in production (`NODE_ENV === "production"`); allow a dev-only fallback with a loud warning. Remove the `_validated` flag. Confirm `IP_SALT` is set in DeHost prod env before merging.
 - **Accept:** no code path in production can hash or sign with a predictable salt; existing hashed values unaffected (same salt continues in prod).
 - **Verify:** unit test: missing env in production mode → throws; `pnpm typecheck && pnpm test`.
 
@@ -51,7 +51,7 @@ ALPAR AI is a community-governed AI incident registry ("Trustpilot for AI"): use
 
 ### ⚠️ Explicit non-task — do NOT create `src/middleware.ts`
 
-An external review suggested adding a root `middleware.ts`. This is a false positive: the project runs **Next.js 16**, where `src/proxy.ts` is the successor to `middleware.ts`. `src/proxy.ts` already wires i18n routing, Supabase session refresh, request-id injection, and a server-action bypass. Creating `src/middleware.ts` would regress or double-run this logic. Leave `src/proxy.ts` as-is.
+An external review suggested adding a root `middleware.ts`. This is a false positive: the project runs **Next.js 16**, where `src/proxy.ts` is the successor to `middleware.ts`. `src/proxy.ts` already wires i18n routing, DeHost session refresh, request-id injection, and a server-action bypass. Creating `src/middleware.ts` would regress or double-run this logic. Leave `src/proxy.ts` as-is.
 
 ---
 
@@ -61,7 +61,7 @@ An external review suggested adding a root `middleware.ts`. This is a false posi
 
 ### T13.1 — Article 73 taxonomy mapping (foundation, do first)
 
-- **Files:** new `docs/EU_AI_ACT_TAXONOMY.md`; extend `supabase/migrations/` (new migration building on `20260629000000_eu_ai_act_columns.sql`); shared enum/types in `src/lib/` (follow existing type patterns).
+- **Files:** new `docs/EU_AI_ACT_TAXONOMY.md`; extend `dehost/migrations/` (new migration building on `20260629000000_eu_ai_act_columns.sql`); shared enum/types in `src/lib/` (follow existing type patterns).
 - **Work:** Map ALPAR incident schema to the EC draft Art. 73 reporting template: serious-incident class (death/health, critical-infrastructure disruption, fundamental-rights infringement, property/environment), high-risk system category (Annex III), reporting-deadline class (2/10/15 days). Publish the mapping as a public spec in `docs/EU_AI_ACT_TAXONOMY.md`.
 - **Accept:** every incident row can carry an Art. 73 classification; classification is nullable (legacy rows); spec doc explains every field and cites the EC draft template.
 - **Verify:** `pnpm typecheck && pnpm test` + new migration applies cleanly via `pnpm db:reset` on a local/staging DB (never prod).
@@ -99,7 +99,7 @@ An external review suggested adding a root `middleware.ts`. This is a false posi
 
 ### T13.6 — Critical-path test hardening (parallel, non-blocking for launch)
 
-- **Files:** `tests/`, `src/lib/pii/guardian.ts` tests, RLS policy tests under `supabase/`.
+- **Files:** `tests/`, `src/lib/pii/guardian.ts` tests, RLS policy tests under `dehost/`.
 - **Work:** Ensure PII Guardian has exhaustive unit coverage (emails, phones, IBAN, passport, credit card, access tokens — TR + EN formats); add Playwright coverage for submit → moderation → publish; add smoke-level RLS assertions (anon cannot read unpublished incidents, etc.); add a basic accessibility smoke check (axe or Playwright a11y assertions) on home, submit, and the new `/ai-act` page.
 - **Accept:** `pnpm test:coverage` shows PII guardian ≥95% line coverage; e2e suite green in CI; no serious/critical axe violations on the three checked pages.
 - **Verify:** CI run on the PR.
@@ -112,7 +112,7 @@ An external review suggested adding a root `middleware.ts`. This is a false posi
 
 ### T14.1 — Pre-built provider profiles at scale
 
-- **Files:** `src/app/[locale]/brand/[slug]/`, seed migration in `supabase/migrations/`, `src/components/leaderboard/`.
+- **Files:** `src/app/[locale]/brand/[slug]/`, seed migration in `dehost/migrations/`, `src/components/leaderboard/`.
 - **Work:** Ensure 10–15 mid-tier providers (Mistral/Cohere segment + enterprise AI SaaS — **not** only the big labs) have populated profiles from imported incidents, with the Response Rate widget visibly showing 0% / N open incidents and a prominent "Is this your company? Claim this profile — free" CTA.
 - **Accept:** each profile has ≥3 incidents, working claim CTA, correct logo/name; claim flow reaches the verified-respondent onboarding (built on `20260703000001_verified_respondent.sql`).
 
@@ -138,7 +138,7 @@ An external review suggested adding a root `middleware.ts`. This is a false posi
 ### T14.5 — Evidence auto-capture (paste-a-link phase 2; moved from Sprint 13)
 
 - **Files:** new `src/lib/evidence/` module; extend `src/actions/incidents.ts`.
-- **Work:** Server-side fetch of share-conversation URLs submitted via T13.4a: snapshot content to Supabase Storage, record SHA-256 hash + timestamp, pre-fill the report form. All fetched content passes through `src/lib/pii/guardian.ts` **before** any DB/storage write. Graceful fallback to manual entry when the link is invalid/unreachable. Backfill snapshots for URL-only incidents collected during Sprint 13.
+- **Work:** Server-side fetch of share-conversation URLs submitted via T13.4a: snapshot content to DeHost Storage, record SHA-256 hash + timestamp, pre-fill the report form. All fetched content passes through `src/lib/pii/guardian.ts` **before** any DB/storage write. Graceful fallback to manual entry when the link is invalid/unreachable. Backfill snapshots for URL-only incidents collected during Sprint 13.
 - **Accept:** valid share link → snapshot + hash stored + form pre-filled; invalid link → manual fallback; PII Guardian invoked on snapshot text (unit-tested); rate-limited; SSRF-safe (allowlist of share-link hosts only, no redirects to private ranges).
 - **Verify:** unit tests with fixtures; Playwright spec for the happy path; manual check that a snapshot containing a fake email/phone is masked.
 

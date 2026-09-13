@@ -1,6 +1,6 @@
 import "server-only";
 import { NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { headers } from "next/headers";
 import { hashIp } from "@/lib/utils/hash";
@@ -21,8 +21,8 @@ export async function GET(request: Request) {
     const format = searchParams.get("format") ?? "json";
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const supabase = createAdminClient() as any;
-    const { data, error } = await supabase
+    const dehost = createAdminClient() as any;
+    const { data, error } = await dehost
       .from("ai_rap_sheet_entries")
       .select("*")
       .eq("is_active", true)

@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { getTranslations } from "next-intl/server";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 
 import { getCurrentUser } from "@/lib/auth/session";
 import { suggestionSubmissionSchema } from "@/lib/validation/schemas";
@@ -32,7 +32,7 @@ const runSuggestionWork = async (
   _ctx: AttemptContext,
   data: SuggestionWorkInput,
 ): Promise<AttemptOutcome<{ id: string }>> => {
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
   const insertRow: Database["public"]["Tables"]["suggestions"]["Insert"] = {
     user_id: data.userId,
     title: maskPII(data.title).masked,
@@ -41,7 +41,7 @@ const runSuggestionWork = async (
     status: "open",
     is_anonymous: false,
   };
-  const { data: row, error } = await supabase
+  const { data: row, error } = await dehost
     .from("suggestions")
     .insert(insertRow)
     .select("id")
@@ -135,9 +135,9 @@ const runSuggestionVoteWork = async (
   _ctx: AttemptContext,
   data: VoteWorkInput,
 ): Promise<AttemptOutcome<{ toggled: "added" | "removed" }>> => {
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
   if (data.alreadyVoted) {
-    const { error } = await supabase
+    const { error } = await dehost
       .from("suggestion_votes")
       .delete()
       .eq("suggestion_id", data.suggestionId)
@@ -151,7 +151,7 @@ const runSuggestionVoteWork = async (
     suggestion_id: data.suggestionId,
     user_id: data.userId,
   };
-  const { error } = await supabase.from("suggestion_votes").insert(insertRow);
+  const { error } = await dehost.from("suggestion_votes").insert(insertRow);
   if (error) {
     return { kind: "retryable", error: error.message };
   }
@@ -165,8 +165,8 @@ export async function upvoteSuggestion(suggestionId: string) {
       const t = await getTranslations("errors");
       return { ok: false, error: t("sign_in_to_upvote") };
     }
-    const supabase = await createServerClient();
-    const { data: existing } = await supabase
+    const dehost = await createServerClient();
+    const { data: existing } = await dehost
       .from("suggestion_votes")
       .select("user_id")
       .eq("suggestion_id", suggestionId)
@@ -212,14 +212,14 @@ const runSuggestionCommentWork = async (
   _ctx: AttemptContext,
   data: CommentWorkInput,
 ): Promise<AttemptOutcome<{ id: string }>> => {
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
   const insertRow: Database["public"]["Tables"]["suggestion_comments"]["Insert"] = {
     suggestion_id: data.suggestionId,
     user_id: data.userId,
     comment_text: maskPII(data.commentText).masked,
   };
 
-  const { data: row, error } = await supabase
+  const { data: row, error } = await dehost
     .from("suggestion_comments")
     .insert(insertRow)
     .select("id")
@@ -230,7 +230,7 @@ const runSuggestionCommentWork = async (
   }
 
   // Increment comment count
-  await supabase.rpc("increment_suggestion_comment_count", {
+  await dehost.rpc("increment_suggestion_comment_count", {
     p_suggestion_id: data.suggestionId,
   });
 

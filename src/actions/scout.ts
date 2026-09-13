@@ -1,7 +1,7 @@
 "use server";
 
 import { VertexGeminiAdapter } from "@/lib/ai/adapters/vertex-gemini";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { revalidatePath } from "next/cache";
 import { logger } from "@/lib/utils/logger";
 import { getCurrentUser, requireAdmin } from "@/lib/auth/session";

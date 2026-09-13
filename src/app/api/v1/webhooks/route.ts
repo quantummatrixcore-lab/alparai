@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { z } from "zod";
 
 const webhookSchema = z.object({
@@ -30,9 +30,9 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
-    const { data, error } = await supabase
+    const { data, error } = await dehost
       .from("webhooks")
       .insert({ url, secret, provider_filter })
       .select("id, url, provider_filter, created_at")

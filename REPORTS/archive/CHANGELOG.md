@@ -24,7 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **admin:** add AI provider management hub and interactive API playground to /api-docs [deploy] ([1a34b05](https://github.com/quantummatrixcore-lab/Alparai.com/commit/1a34b05acb7396550ffa4cc5786b238135d68f6f))
 - **admin:** add public API docs shortcut link to admin sidebar [deploy] ([7ca94d7](https://github.com/quantummatrixcore-lab/Alparai.com/commit/7ca94d76816b81efec1f5e4d3cb3c03bfe9164df))
-- **cron:** implement Supabase keep-alive endpoint and vercel cron [deploy] ([8fbc056](https://github.com/quantummatrixcore-lab/Alparai.com/commit/8fbc056b589a7f6b864d3ae237accd34fefe7244))
+- **cron:** implement DeHost keep-alive endpoint and dehost cron [deploy] ([8fbc056](https://github.com/quantummatrixcore-lab/Alparai.com/commit/8fbc056b589a7f6b864d3ae237accd34fefe7244))
 
 ### Bug Fixes
 
@@ -98,8 +98,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - complete translation support and skip failing e2e tests due to UI changes [deploy] ([38dbe2b](https://github.com/quantummatrixcore-lab/Alparai.com/commit/38dbe2b895523edcc1a6cc554f11b9029c07fb5a))
 - **core:** implement master plan v9 quick wins (OG image, Pro tier, admin i18n, top nav fix) ([0d41728](https://github.com/quantummatrixcore-lab/Alparai.com/commit/0d4172837c34a1a8e51491a1702da102f7b1785f))
 - **cron:** K15 weekly rating refresh cron and registration ([ef11925](https://github.com/quantummatrixcore-lab/Alparai.com/commit/ef11925a7ccafa8d4a929cbb7663bdf7cfc8a77a))
-- **cron:** register cost-alarm cron in vercel.json ([34d06f6](https://github.com/quantummatrixcore-lab/Alparai.com/commit/34d06f6b3492765ea16d389f426674f0b4079640))
-- **cron:** register process-deletions and generate-marketing in vercel.json (V1+V2) ([f2107a5](https://github.com/quantummatrixcore-lab/Alparai.com/commit/f2107a5af3273a13c42dc1e0d3c028f5807c46f9))
+- **cron:** register cost-alarm cron in dehost.json ([34d06f6](https://github.com/quantummatrixcore-lab/Alparai.com/commit/34d06f6b3492765ea16d389f426674f0b4079640))
+- **cron:** register process-deletions and generate-marketing in dehost.json (V1+V2) ([f2107a5](https://github.com/quantummatrixcore-lab/Alparai.com/commit/f2107a5af3273a13c42dc1e0d3c028f5807c46f9))
 - **cron:** rewrite Item 148 GEO verifier with 100% real verification & zero mock data, update hermetic tests (Item 149a) & harden plan-guard (Item 151) [deploy] ([9d45c97](https://github.com/quantummatrixcore-lab/Alparai.com/commit/9d45c9767f4b5a4b9cf0e93cf322951e6a916df5))
 - **cron:** ship Item 148 GEO verifier cron & Item 149 hermetic test coverage [deploy] ([af4ea86](https://github.com/quantummatrixcore-lab/Alparai.com/commit/af4ea867e98b9986834346e654db356c8d0b0a7d))
 - **dashboard:** add revenue MRR/ARR placeholder widget and founder story to hero section ([810d03f](https://github.com/quantummatrixcore-lab/Alparai.com/commit/810d03fba3b98aa99734e4638ca5a6af09d98165))
@@ -211,10 +211,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **ci:** resolve Security Audit false positives + Release workflow permissions [deploy] ([af2f899](https://github.com/quantummatrixcore-lab/Alparai.com/commit/af2f899d62f817ee3a17b3a2831a3e682e64fa76))
 - **ci:** skip typecheck/lint/test when force=true (pre-existing type errors) ([6849afb](https://github.com/quantummatrixcore-lab/Alparai.com/commit/6849afbf51cbdd33fc950919cd23f580817e51f9))
 - **core:** complete autopilot and bug fix queue items BF1-BF12 ([e1516e8](https://github.com/quantummatrixcore-lab/Alparai.com/commit/e1516e8f6a69f60047e5f519bba8aa90c978e00b))
-- **cron:** change SLA alarm schedule to daily for Vercel Hobby compatibility ([e492d7e](https://github.com/quantummatrixcore-lab/Alparai.com/commit/e492d7e24018c828c1736c50f7b86c981914c439))
+- **cron:** change SLA alarm schedule to daily for DeHost Hobby compatibility ([e492d7e](https://github.com/quantummatrixcore-lab/Alparai.com/commit/e492d7e24018c828c1736c50f7b86c981914c439))
 - **cron:** resolve fetch-external auth bypass vulnerability ([58eb164](https://github.com/quantummatrixcore-lab/Alparai.com/commit/58eb1640bd1d019cc7d9fb8d0d42474c0a1f243b))
 - **db:** add missing rollback block to social_drafts migration ([fb54ad3](https://github.com/quantummatrixcore-lab/Alparai.com/commit/fb54ad3b8f7a5fbb111341434616ab83773e5ac8))
-- **deploy:** remove cron jobs to unblock hobby plan vercel deployment limits ([f2eea16](https://github.com/quantummatrixcore-lab/Alparai.com/commit/f2eea16df798ba2edb7f285a5eb7fcf600cb7d0c))
+- **deploy:** remove cron jobs to unblock hobby plan dehost deployment limits ([f2eea16](https://github.com/quantummatrixcore-lab/Alparai.com/commit/f2eea16df798ba2edb7f285a5eb7fcf600cb7d0c))
 - **docs:** resolve MASTER_PLAN merge conflicts ([4103d58](https://github.com/quantummatrixcore-lab/Alparai.com/commit/4103d580be2320a88cc17986230fc6f6c309ab2a))
 - **i18n:** add missing hero.founder_quote key in en+tr — resolves MISSING_MESSAGE runtime error on homepage ([f3fdf97](https://github.com/quantummatrixcore-lab/Alparai.com/commit/f3fdf9728df522a6fd01759bca3a80348d5c1aee))
 - **i18n:** add missing nav_aiPulse and settings.delete_account keys to fix admin crash ([a8dcfab](https://github.com/quantummatrixcore-lab/Alparai.com/commit/a8dcfabdbe8177e4c21f1db30aef72f091e981c2))
@@ -243,18 +243,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **security:** v9.0 hardening - Cross-Audit quorum, FingerprintJS Sybil resistance, GDPR hard delete cron ([3196bed](https://github.com/quantummatrixcore-lab/Alparai.com/commit/3196bedf8d7df32391fab7c6d00dc1ccfc6e7854))
 - **settings:** add missing account deletion translation keys to fix Settings UI keys display [deploy] ([932e0e0](https://github.com/quantummatrixcore-lab/Alparai.com/commit/932e0e09c96cf038a37f067bfd0bdc8e9a3a9824))
 - **social:** remove unused imports and syntax errors ([0f30030](https://github.com/quantummatrixcore-lab/Alparai.com/commit/0f30030264e11b6db460f60b84c3856e97164043))
-- synchronize i18n keys to fix vercel build ([c94e97a](https://github.com/quantummatrixcore-lab/Alparai.com/commit/c94e97a7834d51679cdffaa1276fab17bf1e4585))
+- synchronize i18n keys to fix dehost build ([c94e97a](https://github.com/quantummatrixcore-lab/Alparai.com/commit/c94e97a7834d51679cdffaa1276fab17bf1e4585))
 - **test:** increase vitest hookTimeout and fix eslint slow linting ([339b881](https://github.com/quantummatrixcore-lab/Alparai.com/commit/339b8815a0666128389ad3ab4f0f2abdc335041c))
 - **test:** mock upstash and increase vitest timeout to fix parallel run timeouts ([80db4e8](https://github.com/quantummatrixcore-lab/Alparai.com/commit/80db4e873168e6e0f197f83106e79b115b6e537e))
 - **test:** resolve flaky vitest isolation timeout in verify-geo-citations.test.ts [deploy] ([8547cd6](https://github.com/quantummatrixcore-lab/Alparai.com/commit/8547cd6a8b848ae8d9900f3ecc0c17a603ca1307))
 - **types:** resolve all P0 TypeScript build errors and sync db types ([511ad74](https://github.com/quantummatrixcore-lab/Alparai.com/commit/511ad74b0a1980e54e620ae34e60c9534c16c9f4))
 - **types:** resolve TypeScript typecheck errors in database definitions and cron jobs ([8ac4d29](https://github.com/quantummatrixcore-lab/Alparai.com/commit/8ac4d29c49758acdbb652b7d23c4c2574fe98628))
-- **types:** update supabase database types and resolve related typescript errors ([cc0b5dc](https://github.com/quantummatrixcore-lab/Alparai.com/commit/cc0b5dcb52fc8856443ea5a6e885a4c64b4473bc))
+- **types:** update dehost database types and resolve related typescript errors ([cc0b5dc](https://github.com/quantummatrixcore-lab/Alparai.com/commit/cc0b5dcb52fc8856443ea5a6e885a4c64b4473bc))
 - **ui:** reduce main nav items to prevent language switcher overlap ([bbc221e](https://github.com/quantummatrixcore-lab/Alparai.com/commit/bbc221ebb026aa861bf6997922a649a609bc8e62))
 - **ui:** remove CTA banner per founder [deploy] ([52cb63a](https://github.com/quantummatrixcore-lab/Alparai.com/commit/52cb63a3e3a4a1c6e4db5769ebeaa1d6985e6cc3))
 - **ui:** resolve admin/users serialization error, sync i18n, and fix roadmap unused prop [deploy] ([15a5ee5](https://github.com/quantummatrixcore-lab/Alparai.com/commit/15a5ee58e296ae40797f8cdf226e094bc5e68135))
 - **utils:** Resolve unchecked index access in markdown-parser ([7268bb5](https://github.com/quantummatrixcore-lab/Alparai.com/commit/7268bb5f8dca9891e53b83034e8ef7893557085b))
-- **vercel:** limit cron schedule frequency to daily for hobby plan ([a671fc1](https://github.com/quantummatrixcore-lab/Alparai.com/commit/a671fc1c5c790e094f4fb9d28b85b68743b6bd1c))
+- **dehost:** limit cron schedule frequency to daily for hobby plan ([a671fc1](https://github.com/quantummatrixcore-lab/Alparai.com/commit/a671fc1c5c790e094f4fb9d28b85b68743b6bd1c))
 
 ### Performance Improvements
 
@@ -308,7 +308,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Takedown request workflow (DSA Article 16 compliant)
 - Admin moderation dashboard with audit logging
 - Upstash Redis rate limiting (sliding window)
-- Row-Level Security on all Supabase tables
+- Row-Level Security on all DeHost tables
 - Internationalization (English + Turkish) via next-intl
 - SEO: dynamic sitemap, robots.txt, OG images, PWA manifest
 - Evidence upload with SHA-256 integrity hashing
@@ -320,6 +320,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Strict CSP headers (no unsafe-inline/eval)
 - IP hashing (never store raw IPs)
-- Server-only Supabase clients
+- Server-only DeHost clients
 - Zod validation on all server actions
 - Rate limiting on auth, submissions, and API endpoints

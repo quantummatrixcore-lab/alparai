@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import "../../helpers/setup";
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({
     from: vi.fn().mockImplementation(() => ({
       upsert: vi.fn().mockResolvedValue({ error: null }),

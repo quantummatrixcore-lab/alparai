@@ -11,21 +11,21 @@
 | MIME          | `X-Content-Type-Options: nosniff`                                                                   |
 | Referrer      | `Referrer-Policy: strict-origin-when-cross-origin`                                                  |
 | Permissions   | `camera=(), microphone=(), geolocation=(), interest-cohort=()`                                      |
-| Script source | CSP `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.supabase.co https://*.sentry.io`     |
+| Script source | CSP `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.dehost.internal https://*.sentry.io`     |
 | Style source  | CSP `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com`                                 |
-| Image source  | CSP `img-src 'self' data: blob: https://*.supabase.co https://*.googleusercontent.com`              |
-| Connection    | CSP `connect-src 'self' https://*.supabase.co https://*.sentry.io wss://*.supabase.co`              |
+| Image source  | CSP `img-src 'self' data: blob: https://*.dehost.internal https://*.googleusercontent.com`              |
+| Connection    | CSP `connect-src 'self' https://*.dehost.internal https://*.sentry.io wss://*.dehost.internal`              |
 | Object        | CSP `object-src 'none'`                                                                             |
 | Base          | CSP `base-uri 'self'`                                                                               |
 | Form          | CSP `form-action 'self'`                                                                            |
 
 ## Authentication
 
-- Supabase Auth, **Google OAuth** primary, **magic link** secondary.
+- DeHost Auth, **Google OAuth** primary, **magic link** secondary.
 - Passwords are not stored on our side (Google handles).
 - JWT validated on every server action and RSC fetch.
 - Session refresh happens in `src/middleware.ts` on every navigation.
-- Sign-out clears all Supabase cookies.
+- Sign-out clears all DeHost cookies.
 
 ## Authorization
 
@@ -66,7 +66,7 @@ If Upstash is not configured, the rate limiter fails open (allows) and logs a wa
 
 ## Storage
 
-- Supabase Storage with two buckets: `evidence` (public read, 10MB cap) and `avatars` (authenticated, 2MB cap).
+- DeHost Storage with two buckets: `evidence` (public read, 10MB cap) and `avatars` (authenticated, 2MB cap).
 - Signed URLs only.
 - MIME allowlist: image/_, video/_, application/pdf.
 - SHA-256 hash stored in `evidence.sha256_hash` for integrity.
@@ -74,7 +74,7 @@ If Upstash is not configured, the rate limiter fails open (allows) and logs a wa
 ## Secrets
 
 - `.env.local` is gitignored.
-- The service role key is `SUPABASE_SERVICE_ROLE_KEY` (no `NEXT_PUBLIC_` prefix). It is **server-only** and never reaches the client.
+- The service role key is `DEHOST_SERVICE_ROLE_KEY` (no `NEXT_PUBLIC_` prefix). It is **server-only** and never reaches the client.
 - Rotate keys every 90 days.
 
 ## Audit log

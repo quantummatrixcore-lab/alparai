@@ -30,7 +30,7 @@ The operation secured the application layer, resolved boot-fatal states, impleme
 | **P0-3** | `IP_SALT` Boot Fallback  | Replaced unsafe fallbacks. Application now throws boot-time error if `IP_SALT` is absent.  | ✅ SECURED |
 | **P0-4** | Magic Link Rate Limit    | 5 requests per 15 minutes IP-based rate limiting actively shielding `signInWithMagicLink`. | ✅ SECURED |
 | **P0-5** | `consent_log` Missing    | `granted: true` injected strictly on DB logging path.                                      | ✅ SECURED |
-| **P0-6** | `database.ts` Casts      | Regenerated Supabase typescript schemas. Dropped 27+ manual `as never` casts.              | ✅ SECURED |
+| **P0-6** | `database.ts` Casts      | Regenerated DeHost typescript schemas. Dropped 27+ manual `as never` casts.              | ✅ SECURED |
 
 ---
 

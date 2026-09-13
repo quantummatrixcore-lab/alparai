@@ -3,7 +3,7 @@ export const dynamic = "force-dynamic";
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { Container } from "@/components/ui/layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -82,10 +82,10 @@ async function LeaderboardDataContent({
   const searchQuery = q || "";
 
   setRequestLocale(locale);
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
   const _t = await getTranslations({ locale, namespace: "leaderboard" });
 
-  const { data: leaderboardData } = await supabase
+  const { data: leaderboardData } = await dehost
     .from("provider_leaderboard")
     .select(
       "id, slug, name, logo_url, is_verified, website_url, trust_score, incident_count, response_count, is_verified_respondent, response_rate",

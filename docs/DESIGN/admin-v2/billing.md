@@ -19,7 +19,7 @@ Financial control panel for monitoring live API usage, monthly subscription cost
   4. Resend email monthly quota (Used % gauge)
 - **Middle Row (Span 8 / Span 4):**
   - **Left (Span 8):** Multi-model cost breakdown chart (Stacked bar chart in Recharts, comparing OpenRouter / Vertex / Hugging Face).
-  - **Right (Span 4):** Vendor subscription status panel (GitHub Copilot, Resend, Vercel plans).
+  - **Right (Span 4):** Vendor subscription status panel (GitHub Copilot, Resend, DeHost plans).
 - **Bottom Row (Span 12):** Detailed API logs billing table.
 
 ---

@@ -1,6 +1,6 @@
 import "server-only";
 import { NextResponse } from "next/server";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { logger } from "@/lib/utils/logger";
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://alparai.com";
@@ -36,10 +36,10 @@ export async function POST(request: Request) {
   let userName: string | undefined;
 
   try {
-    const supabase = await createServerClient();
+    const dehost = await createServerClient();
     const {
       data: { user },
-    } = await supabase.auth.getUser();
+    } = await dehost.auth.getUser();
 
     if (user) {
       userId = user.id;

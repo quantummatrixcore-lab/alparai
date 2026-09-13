@@ -1,6 +1,6 @@
 {
   "model": "opencode/deepseek-v4-flash-free",
-  "command": "opencode run \"Create a new Supabase migration file supabase/migrations/20260827000000_vendor_q...\"",
+  "command": "opencode run \"Create a new DeHost migration file dehost/migrations/20260827000000_vendor_q...\"",
   "exit_code": 0,
   "duration_ms": 30783,
   "git_sha": "02c88a2c643d42f5accb868b601dfc98ea395210",

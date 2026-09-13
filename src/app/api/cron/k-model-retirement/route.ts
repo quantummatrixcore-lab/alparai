@@ -1,6 +1,6 @@
 import { withCronLogger } from "@/lib/utils/cron-logger";
 import { type NextRequest, NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 
 export const dynamic = "force-dynamic";
@@ -22,11 +22,11 @@ async function getHandler(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const supabase = createAdminClient();
+  const dehost = createAdminClient();
 
   try {
     // 1. Fetch active/beta models in our DB
-    const { data: dbModels, error: dbModelsErr } = await supabase
+    const { data: dbModels, error: dbModelsErr } = await dehost
       .from("ai_models")
       .select("id, name, status, deprecated_at")
       .neq("status", "deprecated"); // status can be active or beta
@@ -62,7 +62,7 @@ async function getHandler(request: NextRequest) {
         const isOpenRouterModel = model.id.includes("/");
         if (isOpenRouterModel && !openRouterModels.includes(model.id)) {
           // Model is missing, mark as deprecated in our DB
-          const { error } = await supabase
+          const { error } = await dehost
             .from("ai_models")
             .update({
               status: "deprecated",
@@ -80,7 +80,7 @@ async function getHandler(request: NextRequest) {
 
     // 4. Find models that have been deprecated for >= 60 days
     const sixtyDaysAgo = new Date(Date.now() - 60 * 24 * 60 * 60 * 1000).toISOString();
-    const { data: deprecatedModels, error: depErr } = await supabase
+    const { data: deprecatedModels, error: depErr } = await dehost
       .from("ai_models")
       .select("id, name")
       .lte("deprecated_at", sixtyDaysAgo);
@@ -90,7 +90,7 @@ async function getHandler(request: NextRequest) {
     const retiredModelIds: string[] = [];
     if (deprecatedModels && deprecatedModels.length > 0) {
       for (const model of deprecatedModels) {
-        const { error } = await supabase
+        const { error } = await dehost
           .from("k_model_scores")
           .update({ status: "retired" })
           .eq("model_id", model.id);

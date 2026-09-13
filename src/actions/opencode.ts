@@ -19,7 +19,7 @@ export type OpenCodeRunPayload = {
 export async function recordOpenCodeRun(payload: OpenCodeRunPayload) {
   try {
     if (process.env.NODE_ENV === "production") {
-      // Cannot write to local FS on Vercel production
+      // Cannot write to local FS on DeHost production
       return { success: false, error: "Read-only file system on production" };
     }
 

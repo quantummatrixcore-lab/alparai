@@ -16,8 +16,8 @@
     {
       "severity": "CRITICAL",
       "cwe": "CWE-798",
-      "file": "src\\lib\\supabase\\admin.ts",
-      "message": "Hardcoded Supabase Service Role Secret hardcoded in source file!"
+      "file": "src\\lib\\dehost\\admin.ts",
+      "message": "Hardcoded DeHost Service Role Secret hardcoded in source file!"
     },
     {
       "severity": "CRITICAL",

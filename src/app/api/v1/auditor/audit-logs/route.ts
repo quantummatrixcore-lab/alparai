@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { isAuthorizedAuditor } from "@/lib/auth/auditor-gate";
 
 export const dynamic = "force-dynamic";

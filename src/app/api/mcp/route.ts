@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { requireAdmin } from "@/lib/auth/session";
 import { maskPII } from "@/lib/pii/guardian";
 import type { Database } from "@/types/database";
@@ -165,11 +165,11 @@ export async function POST(req: NextRequest) {
 }
 
 async function handleToolCall(name: string, args: Record<string, unknown>) {
-  const supabase = createAdminClient();
+  const dehost = createAdminClient();
 
   if (name === "alpar_search_incidents") {
     const { query, category, severity, limit = 10 } = args;
-    let req = supabase
+    let req = dehost
       .from("incidents")
       .select(
         "id, title_masked, description_masked, category, severity, status, incident_date, created_at, source_url",
@@ -199,7 +199,7 @@ async function handleToolCall(name: string, args: Record<string, unknown>) {
       throw new Error("incident_id parameter is required");
     }
 
-    const { data: incident, error } = await supabase
+    const { data: incident, error } = await dehost
       .from("incidents")
       .select(
         `
@@ -259,7 +259,7 @@ async function handleToolCall(name: string, args: Record<string, unknown>) {
 
   if (name === "alpar_get_trust_score") {
     const { provider_slug } = args;
-    let query = supabase.from("ai_providers").select("id, name, slug, created_at");
+    let query = dehost.from("ai_providers").select("id, name, slug, created_at");
     if (provider_slug && typeof provider_slug === "string") {
       query = query.eq("slug", provider_slug);
     }
@@ -268,7 +268,7 @@ async function handleToolCall(name: string, args: Record<string, unknown>) {
 
     const results = [];
     for (const p of providers ?? []) {
-      const { count } = await supabase
+      const { count } = await dehost
         .from("incidents")
         .select("id", { count: "exact", head: true })
         .eq("ai_provider_id", p.id);
@@ -293,7 +293,7 @@ async function handleToolCall(name: string, args: Record<string, unknown>) {
     const titleMasked = maskPII(String(title)).masked;
     const descMasked = maskPII(String(description)).masked;
 
-    const { data, error } = await supabase
+    const { data, error } = await dehost
       .from("incidents")
       .insert({
         title: titleMasked,

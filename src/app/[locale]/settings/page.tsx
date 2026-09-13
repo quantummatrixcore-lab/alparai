@@ -8,7 +8,7 @@ import { formatDate } from "@/lib/utils";
 import { EmailPreferencesForm } from "@/components/settings/email-preferences-form";
 import { getEmailPreferences } from "@/actions/email-preferences";
 import { AccountDeletionForm } from "@/components/settings/account-deletion-form";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

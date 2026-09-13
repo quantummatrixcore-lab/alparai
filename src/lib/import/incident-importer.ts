@@ -3,14 +3,14 @@
  *
  * Takes parsed ImportIncidentRow[] from csv-parser.ts,
  * applies PII masking, and upserts into the `incidents` table
- * via the Supabase admin client (RLS bypass).
+ * via the DeHost admin client (RLS bypass).
  *
- * Runs in batches of 50 to respect Supabase's insert limits.
+ * Runs in batches of 50 to respect DeHost's insert limits.
  * Rate limits are irrelevant here — we use the service role client directly.
  */
 
 import "server-only";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { maskPII } from "@/lib/pii/guardian";
 import { logger } from "@/lib/utils/logger";
 import type { ImportIncidentRow, ImportStatementRow, IncidentSource } from "./csv-parser";

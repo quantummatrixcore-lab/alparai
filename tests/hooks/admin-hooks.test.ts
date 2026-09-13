@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import * as AdminHooks from "@/hooks/admin";
 
-describe("Admin Supabase Hooks Suite", () => {
+describe("Admin DeHost Hooks Suite", () => {
   it("exports all required admin hooks", () => {
     expect(AdminHooks.useAdminRealtime).toBeDefined();
     expect(AdminHooks.useAdminStats).toBeDefined();

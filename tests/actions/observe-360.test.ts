@@ -60,7 +60,7 @@ function makeAdminClient() {
 
 vi.mock("@/lib/auth/session", () => ({ requireAdmin: vi.fn() }));
 vi.mock("@/lib/utils/rate-limit", () => ({ getRedisInstance: vi.fn().mockReturnValue(null) }));
-vi.mock("@/lib/supabase/admin", () => ({ createAdminClient: makeAdminClient }));
+vi.mock("@/lib/dehost/admin", () => ({ createAdminClient: makeAdminClient }));
 
 describe("getObserve360Telemetry — Phase E integration verification", () => {
   beforeEach(() => {

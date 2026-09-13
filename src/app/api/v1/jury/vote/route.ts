@@ -1,17 +1,17 @@
 import { NextResponse } from "next/server";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { logger } from "@/lib/utils/logger";
 
-// @auth: requireAuth (verified via supabase.auth.getUser)
+// @auth: requireAuth (verified via dehost.auth.getUser)
 export async function POST(req: Request) {
   try {
-    const supabase = await createServerClient();
+    const dehost = await createServerClient();
 
     // Auth Check
     const {
       data: { user },
       error: authError,
-    } = await supabase.auth.getUser();
+    } = await dehost.auth.getUser();
     if (authError || !user) {
       return NextResponse.json(
         { error: "Unauthorized. Proof of Human required." },
@@ -28,7 +28,7 @@ export async function POST(req: Request) {
 
     // Anti-Sybil / Reputation Check - Bypass strict types for prototype
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: profile } = await (supabase as any)
+    const { data: profile } = await (dehost as any)
       .from("user_profiles")
       .select("reputation_score, is_verified_citizen")
       .eq("id", user.id)
@@ -45,7 +45,7 @@ export async function POST(req: Request) {
 
     // Register Vote in Agora-T System
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { error: voteError } = await (supabase as any).from("incident_jury_votes").insert({
+    const { error: voteError } = await (dehost as any).from("incident_jury_votes").insert({
       incident_id: incidentId,
       voter_id: user.id,
       vote_type: vote,

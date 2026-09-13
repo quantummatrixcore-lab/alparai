@@ -1,11 +1,11 @@
 const fs = require("fs");
 const dotenv = require("dotenv");
-const { createClient } = require("@supabase/supabase-js");
+const { createClient } = require("@/lib/dehost/client");
 const { Resend } = require("resend");
 
 const envConfig = fs.existsSync(".env.local") ? dotenv.parse(fs.readFileSync(".env.local")) : {};
-const url = process.env.NEXT_PUBLIC_SUPABASE_URL || envConfig.NEXT_PUBLIC_SUPABASE_URL;
-const key = process.env.SUPABASE_SERVICE_ROLE_KEY || envConfig.SUPABASE_SERVICE_ROLE_KEY;
+const url = process.env.NEXT_PUBLIC_DEHOST_URL || envConfig.NEXT_PUBLIC_DEHOST_URL;
+const key = process.env.DEHOST_SERVICE_ROLE_KEY || envConfig.DEHOST_SERVICE_ROLE_KEY;
 const resendKey = process.env.RESEND_API_KEY || envConfig.RESEND_API_KEY;
 
 if (!url || !key || !resendKey) {
@@ -13,7 +13,7 @@ if (!url || !key || !resendKey) {
   process.exit(1);
 }
 
-const supabase = createClient(url, key);
+const dehost = createClient(url, key);
 const resend = new Resend(resendKey);
 
 const DAILY_LIMIT = 50;
@@ -23,7 +23,7 @@ async function executeCampaign() {
 
   // Step 1: Check 24-hour limit
   const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
-  const { data: sentLast24h, error: countErr } = await supabase
+  const { data: sentLast24h, error: countErr } = await dehost
     .from("outreach_queue")
     .select("id")
     .eq("status", "sent")
@@ -46,7 +46,7 @@ async function executeCampaign() {
   console.log(`[QUOTA CHECK] Remaining quota available: ${remainingQuota}\n`);
 
   // Step 2: Query pending items from outreach_queue
-  const { data: pendingItems, error: pendingErr } = await supabase
+  const { data: pendingItems, error: pendingErr } = await dehost
     .from("outreach_queue")
     .select("*")
     .or("status.eq.pending,status.eq.approved")
@@ -80,10 +80,10 @@ async function executeCampaign() {
 
     if (sendErr) {
       console.error(`[FAIL] Resend error for ${item.recipient_email}:`, sendErr);
-      await supabase.from("outreach_queue").update({ status: "failed" }).eq("id", item.id);
+      await dehost.from("outreach_queue").update({ status: "failed" }).eq("id", item.id);
     } else {
       const sentAt = new Date().toISOString();
-      await supabase
+      await dehost
         .from("outreach_queue")
         .update({ status: "sent", sent_at: sentAt })
         .eq("id", item.id);
@@ -163,7 +163,7 @@ ercument.erden@alparai.com | https://alparai.com`,
     }
 
     // Check if already sent in outreach_queue
-    const { data: existing } = await supabase
+    const { data: existing } = await dehost
       .from("outreach_queue")
       .select("id, status")
       .eq("recipient_email", target.recipient_email)
@@ -177,7 +177,7 @@ ercument.erden@alparai.com | https://alparai.com`,
     }
 
     // Insert into outreach_queue as pending/approved
-    const { data: dbData, error: dbError } = await supabase
+    const { data: dbData, error: dbError } = await dehost
       .from("outreach_queue")
       .insert({
         recipient_email: target.recipient_email,
@@ -210,10 +210,10 @@ ercument.erden@alparai.com | https://alparai.com`,
 
     if (sendErr) {
       console.error(`[FAIL] Resend API error for ${target.recipient_email}:`, sendErr);
-      await supabase.from("outreach_queue").update({ status: "failed" }).eq("id", dbData.id);
+      await dehost.from("outreach_queue").update({ status: "failed" }).eq("id", dbData.id);
     } else {
       const sentAt = new Date().toISOString();
-      await supabase
+      await dehost
         .from("outreach_queue")
         .update({ status: "sent", sent_at: sentAt })
         .eq("id", dbData.id);

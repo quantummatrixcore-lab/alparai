@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
-import { createMockSupabaseClient } from "../helpers/supabase-mock";
+import { createMockDeHostClient } from "../helpers/dehost-mock";
 
 vi.hoisted(() => {
-  vi.doMock("@/lib/supabase/server", () => ({
+  vi.doMock("@/lib/dehost/server", () => ({
     createServerClient: vi.fn(),
   }));
   vi.doMock("@/lib/auth/session", () => ({
@@ -18,13 +18,13 @@ vi.hoisted(() => {
   }));
 });
 
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { requireUser } from "@/lib/auth/session";
 import { checkRateLimit } from "@/lib/utils/rate-limit";
 import { headers } from "next/headers";
 import { getIncidentPassport } from "@/actions/incident-passport";
 
-let mockSupabaseClient: ReturnType<typeof createMockSupabaseClient>;
+let mockDeHostClient: ReturnType<typeof createMockDeHostClient>;
 const mockSessionUser = {
   id: "user-1",
   email: "user@test.com",
@@ -37,7 +37,7 @@ const mockSessionUser = {
 
 beforeEach(() => {
   vi.clearAllMocks();
-  mockSupabaseClient = createMockSupabaseClient();
+  mockDeHostClient = createMockDeHostClient();
 });
 
 describe("getIncidentPassport", () => {
@@ -45,7 +45,7 @@ describe("getIncidentPassport", () => {
     vi.mocked(requireUser).mockResolvedValue(mockSessionUser);
     vi.mocked(headers).mockResolvedValue(new Map([["x-forwarded-for", "127.0.0.1"]]) as never);
     vi.mocked(checkRateLimit).mockResolvedValue({ ok: true } as never);
-    vi.mocked(createServerClient).mockResolvedValue(mockSupabaseClient as never);
+    vi.mocked(createServerClient).mockResolvedValue(mockDeHostClient as never);
 
     const mockIncident = {
       id: "inc-1",
@@ -78,7 +78,7 @@ describe("getIncidentPassport", () => {
       ai_models: null,
     };
 
-    mockSupabaseClient._mocks.mockMaybeSingle.mockResolvedValue({
+    mockDeHostClient._mocks.mockMaybeSingle.mockResolvedValue({
       data: mockIncident,
       error: null,
     });
@@ -118,8 +118,8 @@ describe("getIncidentPassport", () => {
     vi.mocked(requireUser).mockResolvedValue(mockSessionUser);
     vi.mocked(headers).mockResolvedValue(new Map([["x-forwarded-for", "127.0.0.1"]]) as never);
     vi.mocked(checkRateLimit).mockResolvedValue({ ok: true } as never);
-    vi.mocked(createServerClient).mockResolvedValue(mockSupabaseClient as never);
-    mockSupabaseClient._mocks.mockMaybeSingle.mockResolvedValue({ data: null, error: null });
+    vi.mocked(createServerClient).mockResolvedValue(mockDeHostClient as never);
+    mockDeHostClient._mocks.mockMaybeSingle.mockResolvedValue({ data: null, error: null });
 
     const result = await getIncidentPassport("inc-1");
     expect(result.ok).toBe(false);
@@ -132,8 +132,8 @@ describe("getIncidentPassport", () => {
     vi.mocked(requireUser).mockResolvedValue(mockSessionUser);
     vi.mocked(headers).mockResolvedValue(new Map([["x-forwarded-for", "127.0.0.1"]]) as never);
     vi.mocked(checkRateLimit).mockResolvedValue({ ok: true } as never);
-    vi.mocked(createServerClient).mockResolvedValue(mockSupabaseClient as never);
-    mockSupabaseClient._mocks.mockMaybeSingle.mockResolvedValue({
+    vi.mocked(createServerClient).mockResolvedValue(mockDeHostClient as never);
+    mockDeHostClient._mocks.mockMaybeSingle.mockResolvedValue({
       data: null,
       error: new Error("DB down"),
     });

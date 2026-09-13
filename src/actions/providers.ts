@@ -1,7 +1,7 @@
 "use server";
 
-import { createAdminClient } from "@/lib/supabase/admin";
-import { createServerClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/dehost/admin";
+import { createServerClient } from "@/lib/dehost/server";
 
 export interface ProviderWithSla {
   id: string;
@@ -23,8 +23,8 @@ export interface ProviderLeaderboardItem extends ProviderWithSla {
 
 export async function getProviderWithSla(slug: string): Promise<ProviderWithSla | null> {
   try {
-    const supabase = await createServerClient();
-    const { data, error } = await supabase
+    const dehost = await createServerClient();
+    const { data, error } = await dehost
       .from("ai_providers")
       .select("id, slug, name, logo_url, website_url, is_verified")
       .eq("slug", slug)
@@ -34,7 +34,7 @@ export async function getProviderWithSla(slug: string): Promise<ProviderWithSla 
 
     const row = data as Record<string, unknown>;
 
-    const { count } = await supabase
+    const { count } = await dehost
       .from("incidents")
       .select("id", { count: "exact", head: true })
       .eq("ai_provider_id", row.id as string)
@@ -61,8 +61,8 @@ export async function getProviderWithSla(slug: string): Promise<ProviderWithSla 
 
 export async function getProvidersLeaderboard(): Promise<ProviderLeaderboardItem[]> {
   try {
-    const supabase = createAdminClient();
-    const { data, error } = await supabase
+    const dehost = createAdminClient();
+    const { data, error } = await dehost
       .from("ai_providers")
       .select("id, slug, name, logo_url, website_url, is_verified")
       .order("name", { ascending: true });
@@ -72,7 +72,7 @@ export async function getProvidersLeaderboard(): Promise<ProviderLeaderboardItem
     const results: ProviderLeaderboardItem[] = [];
 
     for (const p of data) {
-      const { count } = await supabase
+      const { count } = await dehost
         .from("incidents")
         .select("id", { count: "exact", head: true })
         .eq("ai_provider_id", p.id)

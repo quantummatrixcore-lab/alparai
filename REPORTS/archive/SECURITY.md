@@ -43,7 +43,7 @@ You are expected, as always, to comply with all applicable laws. If at any time 
 
 ### Out of Scope
 
-- Third-party services or infrastructure (Vercel, Supabase, Cloudflare)
+- Third-party services or infrastructure (DeHost, DeHost, Cloudflare)
 - Denial of Service (DoS/DDoS) attacks
 - Social engineering (e.g. Phishing)
 - Physical security

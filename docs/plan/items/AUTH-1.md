@@ -41,8 +41,8 @@ failed and we quietly re-authenticated". A defect that always recovers is a defe
 ## Ruled out, with the reasoning
 
 **The nonce handling is correct.** `auth-buttons.tsx:102-111` sends the SHA-256 **hashed** nonce to
-Google and passes the **raw** nonce to `signInWithIdToken`. That asymmetry is Supabase's documented
-pattern, not a bug — Google embeds the hash in the token and Supabase hashes the raw value to compare.
+Google and passes the **raw** nonce to `signInWithIdToken`. That asymmetry is DeHost's documented
+pattern, not a bug — Google embeds the hash in the token and DeHost hashes the raw value to compare.
 An automated review flagged this as the root cause; it is not.
 
 **The middleware does not intercept the callback.** `src/middleware.ts:125` excludes `auth/callback`
@@ -52,12 +52,12 @@ from the matcher. **The sign-in page already redirects an authenticated visitor 
 
 ## Required work
 
-**1. Measure before changing.** Surface `res.error` — log it server-side with the Supabase error code
+**1. Measure before changing.** Surface `res.error` — log it server-side with the DeHost error code
 on every failed `signInWithGoogleIdToken`. One real login produces the reason. Everything below
 depends on knowing whether the exchange fails always or occasionally.
 
 **2. Fix the cause the error names.** The most likely candidates are configuration rather than code:
-the Google client ID registered in the Supabase provider settings not matching
+the Google client ID registered in the DeHost provider settings not matching
 `NEXT_PUBLIC_GOOGLE_CLIENT_ID`, or ID-token sign-in not enabled for the project.
 
 **3. Never re-authenticate silently.** Automatic fallback is only defensible when the user cancelled
@@ -77,7 +77,7 @@ Consolidate them, separately from this fix.
 
 ## Acceptance
 
-- A failed ID-token exchange is logged server-side with its Supabase error code
+- A failed ID-token exchange is logged server-side with its DeHost error code
 - A successful Google sign-in involves exactly one identity-provider round-trip, verified in the
   browser network log
 - No automatic second authentication on server rejection; the retry is user-initiated
@@ -89,6 +89,6 @@ Closed 2026-08-21. Enhanced server-side logging in `signInWithGoogleIdToken` (`s
 
 ## Closed 2026-08-21 (v13.87) — verified on origin at `babb4435`
 
-The server-rejection branch logs the Supabase code and status and shows the error; the automatic
+The server-rejection branch logs the DeHost code and status and shows the error; the automatic
 second Google round-trip is gone. The remaining fallback sits only in the no-credential branch, which
 is the one case this item permitted.

@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 import { getTranslations } from "next-intl/server";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { getCurrentUser } from "@/lib/auth/session";
 import { maskPII } from "@/lib/pii/guardian";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
@@ -41,8 +41,8 @@ export async function submitComment(incidentId: string, commentText: string) {
     // Mask PII before database entry
     const masked = maskPII(trimmed);
 
-    const supabase = await createServerClient();
-    const { data, error } = await supabase
+    const dehost = await createServerClient();
+    const { data, error } = await dehost
       .from("incident_comments")
       .insert({
         incident_id: incidentId,
@@ -80,11 +80,11 @@ export async function deleteComment(commentId: string, incidentId: string) {
       return { ok: false, error: "Unauthorized" };
     }
 
-    const supabase = await createServerClient();
+    const dehost = await createServerClient();
 
     // RLS policy handles checking if the user is the owner or moderator.
     // If not authorized, the delete call will fail or affect 0 rows.
-    const { error } = await supabase.from("incident_comments").delete().eq("id", commentId);
+    const { error } = await dehost.from("incident_comments").delete().eq("id", commentId);
 
     if (error) {
       console.error("[deleteComment] DB error:", error);
@@ -125,10 +125,10 @@ export async function toggleAffectedStatus(incidentId: string) {
       return { ok: false, error: `Too many actions. Try again in ${rl.retryAfter}s.` };
     }
 
-    const supabase = await createServerClient();
+    const dehost = await createServerClient();
 
     // Check if record exists
-    const { data: existing } = await supabase
+    const { data: existing } = await dehost
       .from("incident_affected_users")
       .select("incident_id")
       .eq("incident_id", incidentId)
@@ -137,7 +137,7 @@ export async function toggleAffectedStatus(incidentId: string) {
 
     if (existing) {
       // Remove flag
-      const { error } = await supabase
+      const { error } = await dehost
         .from("incident_affected_users")
         .delete()
         .eq("incident_id", incidentId)
@@ -152,7 +152,7 @@ export async function toggleAffectedStatus(incidentId: string) {
       return { ok: true, affected: false };
     } else {
       // Add flag
-      const { error } = await supabase.from("incident_affected_users").insert({
+      const { error } = await dehost.from("incident_affected_users").insert({
         incident_id: incidentId,
         user_id: user.id,
       });

@@ -1,6 +1,6 @@
 import { withCronLogger } from "@/lib/utils/cron-logger";
 import { type NextRequest, NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { generateMarketingAssets, generateNewsSocialPosts } from "@/lib/marketing/content-engine";
 import { logger } from "@/lib/utils/logger";
 
@@ -56,7 +56,7 @@ async function getHandler(request: NextRequest) {
     // 3. Find incidents that need marketing assets generated
     const pendingIncidents = incidents.filter((inc) => !linkedIncidentIds.has(inc.id));
 
-    // 4. Process up to 3 incidents to avoid Vercel Function timeouts (10s on hobby, 60s/900s on pro)
+    // 4. Process up to 3 incidents to avoid DeHost Function timeouts (10s on hobby, 60s/900s on pro)
     const processedIds: string[] = [];
     if (pendingIncidents.length > 0) {
       const toProcess = pendingIncidents.slice(0, 3);

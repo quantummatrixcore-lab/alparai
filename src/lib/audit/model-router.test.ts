@@ -3,7 +3,7 @@ import type { ModelChainItem } from "./model-router";
 
 const { mockFrom } = vi.hoisted(() => ({ mockFrom: vi.fn() }));
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({ from: mockFrom }),
 }));
 

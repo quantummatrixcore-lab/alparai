@@ -125,7 +125,7 @@ export function AutonomousCompanyCanvas() {
       { title: "DeepSeek AST Sandbox Verification", category: "DEVELOP", color: "#f97316", stage: 2, assignedTo: "Fatih" },
       { title: "Automated Enterprise Lead Intake", category: "INCOMING", color: "#a855f7", stage: 0, assignedTo: "Gutenberg" },
       { title: "Stripe Token Arbitrage Review", category: "PROSPECT", color: "#10b981", stage: 1, assignedTo: "Von Neumann" },
-      { title: "Vercel Master Deploy Sign-off", category: "REVIEW", color: "#eab308", stage: 3, assignedTo: "Atatürk" }
+      { title: "DeHost Master Deploy Sign-off", category: "REVIEW", color: "#eab308", stage: 3, assignedTo: "Atatürk" }
     ];
     const chosen = taskTypes[Math.floor(Math.random() * taskTypes.length)]!;
     setActiveTasks((prev) => [

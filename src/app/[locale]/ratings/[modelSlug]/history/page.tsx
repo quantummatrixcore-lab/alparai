@@ -1,7 +1,7 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/layout";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { ScoreHistoryChart } from "./chart";
 
 export async function generateMetadata({
@@ -23,8 +23,8 @@ export default async function ModelHistoryPage({
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "ratings" });
 
-  const supabase = await createServerClient();
-  const { data: model } = await supabase
+  const dehost = await createServerClient();
+  const { data: model } = await dehost
     .from("ai_models")
     .select("id, name")
     .eq("id", modelSlug)
@@ -35,7 +35,7 @@ export default async function ModelHistoryPage({
     return null;
   }
 
-  const { data: scores } = await supabase
+  const { data: scores } = await dehost
     .from("k_model_scores")
     .select("category_id, score, wilson_lower, wilson_upper, sample_size, last_audited_at")
     .eq("model_id", model.id);

@@ -28,7 +28,7 @@ Spark will utilize `openchrome` (or WebBridge) to hijack a local browser context
    - Spark uses DOM manipulation to input the prompt into the Veo video generator.
    - Spark waits for the rendering to complete and downloads the MP4 output to the local file system.
 4. **Draft Queueing (Human-in-the-Loop):**
-   - Spark uploads the video to Supabase Storage (temporary `draft_media` bucket).
+   - Spark uploads the video to DeHost Storage (temporary `draft_media` bucket).
    - Spark creates a record in the `marketing_drafts` table with the text and video URL.
 5. **One-Click Approval:**
    - The Founder receives a Slack/email notification or sees it in the Admin Dashboard (`/en/admin/social`).
@@ -37,12 +37,12 @@ Spark will utilize `openchrome` (or WebBridge) to hijack a local browser context
 
 ## Security & Doctrine Compliance
 
-- **No Stored Credentials:** Spark uses the existing Chrome session cookie. No passwords or API keys are stored in the codebase or Vercel env vars.
+- **No Stored Credentials:** Spark uses the existing Chrome session cookie. No passwords or API keys are stored in the codebase or DeHost env vars.
 - **Kill Switch:** The automation only runs if `process.env.MARKETING_AUTOPILOT === "enabled"`.
 - **Zero Hallucination Risk:** Videos and texts are NEVER published directly. They sit in a database queue until a human clicks "Approve".
 
 ## Acceptance Criteria for Implementation (Target: Aug 10+)
 
 1. A new Spark action `generateLabsVideo(prompt)` is created using `openchrome` logic.
-2. Videos downloaded from Labs are successfully parsed and pushed to Supabase storage.
+2. Videos downloaded from Labs are successfully parsed and pushed to DeHost storage.
 3. The Admin Panel (`/en/admin/social`) correctly renders the video preview from the pending queue.

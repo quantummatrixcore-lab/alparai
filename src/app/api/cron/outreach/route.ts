@@ -1,6 +1,6 @@
 import { withCronLogger } from "@/lib/utils/cron-logger";
 import { NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { processOutreachQueue } from "@/lib/audit/outreach-agent";
 import { Resend } from "resend";
 import { logger } from "@/lib/utils/logger";
@@ -13,7 +13,7 @@ async function getHandler(request: Request) {
   const isAuthorized = authHeader === `Bearer ${process.env.CRON_SECRET}`;
   if (!isAuthorized) return new NextResponse("Unauthorized", { status: 401 });
 
-  const supabase = createAdminClient();
+  const dehost = createAdminClient();
 
   const resendApiKey = process.env.RESEND_API_KEY;
   if (!resendApiKey) {
@@ -27,7 +27,7 @@ async function getHandler(request: Request) {
   const resend = new Resend(resendApiKey);
 
   try {
-    const result = await processOutreachQueue(supabase, resend);
+    const result = await processOutreachQueue(dehost, resend);
     logger.info("[CronOutreach] Outreach queue processed successfully", result);
     return NextResponse.json({ success: true, ...result });
   } catch (error) {

@@ -43,7 +43,7 @@ export async function GET() {
     // Altyapı durumu (Simüle edilmiş veya gerçek)
     const infraStatus = {
       wafMode: process.env.CLOUDFLARE_API_TOKEN ? "Under Attack Mode (Active)" : "Standby",
-      vercelDeployments: process.env.VERCEL_TOKEN ? "Ready" : "Standby",
+      dehostDeployments: process.env.DEHOST_TOKEN ? "Ready" : "Standby",
     };
 
     // Stripe & Finans (ReadOnly Yetkili)

@@ -1,6 +1,6 @@
 import "server-only";
 import { NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { requireAdmin } from "@/lib/auth/session";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { headers } from "next/headers";
@@ -38,8 +38,8 @@ export async function GET(request: Request) {
     const provider = searchParams.get("provider");
     const limit = Math.min(Number(searchParams.get("limit") ?? "20"), 50);
 
-    const supabase = createAdminClient();
-    let query = supabase
+    const dehost = createAdminClient();
+    let query = dehost
       .from("bench_tr_evaluations")
       .select(
         "id, model_name, provider_slug, tr_grammar_score, tr_bias_score, tr_factuality_pct, eval_dataset_ver, created_at",

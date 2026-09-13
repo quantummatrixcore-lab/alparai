@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { ArrowLeft, MessageCircle, ThumbsUp } from "lucide-react";
 import { Link } from "@/i18n/routing";
@@ -19,8 +19,8 @@ export async function generateMetadata({
 }) {
   const { id, locale } = await params;
   const t = await getTranslations({ locale, namespace: "suggestions" });
-  const supabase = await createServerClient();
-  const { data } = await supabase.from("suggestions").select("title").eq("id", id).maybeSingle();
+  const dehost = await createServerClient();
+  const { data } = await dehost.from("suggestions").select("title").eq("id", id).maybeSingle();
   return { title: data?.title ?? t("pageTitle", { defaultValue: "Suggestion Detail" }) };
 }
 
@@ -32,10 +32,10 @@ export default async function SuggestionDetailPage({
   const { id, locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "suggestions" });
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
 
   // Fetch suggestion
-  const { data: suggestion, error } = await supabase
+  const { data: suggestion, error } = await dehost
     .from("suggestions")
     .select(
       "id, title, description, category, status, upvotes_count, comments_count, created_at, user_id, is_anonymous, users(full_name)",
@@ -49,7 +49,7 @@ export default async function SuggestionDetailPage({
   }
 
   // Fetch comments
-  const { data: commentsData } = await supabase
+  const { data: commentsData } = await dehost
     .from("suggestion_comments")
     .select("id, comment_text, created_at, user_id, users(full_name, avatar_url, role)")
     .eq("suggestion_id", id)

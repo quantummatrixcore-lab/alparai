@@ -1,5 +1,5 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { Container } from "@/components/ui/layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { IncidentForm } from "@/components/incidents/incident-form";
@@ -28,21 +28,21 @@ export default async function SubmitPage({ params }: { params: Promise<{ locale:
   const isLoggedIn = !!user;
 
   const t = await getTranslations({ locale, namespace: "incident" });
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
   const [{ data: providersData }, { data: modelsData }, { count: incidentsCount }] =
     await Promise.all([
-      supabase
+      dehost
         .from("ai_providers")
         .select("id, slug, name, description, logo_url, website_url, is_verified")
         .neq("slug", "alpar-autopilot")
         .order("is_verified", { ascending: false })
         .order("name"),
-      supabase
+      dehost
         .from("ai_models")
         .select("id, provider_id, name, version, status, released_at, created_at")
         .eq("status", "active")
         .order("name"),
-      supabase
+      dehost
         .from("incidents")
         .select("id", { count: "exact", head: true })
         .eq("status", "published"),

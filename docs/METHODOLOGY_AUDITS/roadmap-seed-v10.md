@@ -8,7 +8,7 @@
 
 ## 1. Migration File Creation
 
-A single SQL migration file has been created at `supabase/migrations/20260716000000_strategic_roadmap_2026_2028.sql` containing the exact 12 roadmap milestones.
+A single SQL migration file has been created at `dehost/migrations/20260716000000_strategic_roadmap_2026_2028.sql` containing the exact 12 roadmap milestones.
 
 - **Status:** PASS
 - **Rollback Block:** Included at the bottom of the SQL migration file.
@@ -17,7 +17,7 @@ A single SQL migration file has been created at `supabase/migrations/20260716000
 
 ## 2. Remote Database Execution & Row Verification
 
-We executed the SQL inserts against the remote database (`alparai-prod`, ref: `azszpzyvxjduhemkjsdh`) via the Supabase Management API.
+We executed the SQL inserts against the remote database (`alparai-prod`, ref: `azszpzyvxjduhemkjsdh`) via the DeHost Management API.
 
 - **Check 1: Total Row Count**
   - **Command:**

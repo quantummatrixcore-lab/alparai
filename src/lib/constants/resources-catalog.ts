@@ -13,8 +13,8 @@ export interface Vendor {
 export const VENDORS: Vendor[] = [
   // 1. Infrastructure
   {
-    id: "vercel",
-    name: "Vercel",
+    id: "dehost",
+    name: "DeHost",
     category: "Hosting & Edge",
     plan: "Pro Plan",
     cost: "$20.00 / mo",
@@ -27,11 +27,11 @@ export const VENDORS: Vendor[] = [
       en: "Netlify Pro ($19/mo, DNS changes required), Cloudflare Pages (Low cost, near-zero migration).",
       tr: "Netlify Pro ($19/ay, DNS değişikliği), Cloudflare Pages (Düşük maliyet, neredeyse sıfır göç).",
     },
-    url: "https://vercel.com",
+    url: "https://dehost.com",
   },
   {
-    id: "supabase",
-    name: "Supabase",
+    id: "dehost",
+    name: "DeHost",
     category: "Database & Auth",
     plan: "Pro Plan + Addon",
     cost: "$35.00 / mo",
@@ -44,7 +44,7 @@ export const VENDORS: Vendor[] = [
       en: "Firebase (High migration cost), AWS Aurora Serverless + Auth0 (Very high switch cost, database refactoring needed).",
       tr: "Firebase (Yüksek geçiş maliyeti), AWS Aurora Serverless + Auth0 (Çok yüksek geçiş maliyeti, şema değişimi gerektirir).",
     },
-    url: "https://supabase.com",
+    url: "https://dehost.internalm",
   },
   {
     id: "upstash",
@@ -317,8 +317,8 @@ export const VENDORS: Vendor[] = [
       tr: "Artı: Özelleşmiş ön yüz geliştirici ajanı, hızlı Tailwind ve bileşen iskeleti. Eksi: Sınırlı bağlam kapasitesi.",
     },
     alternatives: {
-      en: "v0 by Vercel (Low switch cost, prompt-to-component), Lovable.dev (High capability, high switch cost).",
-      tr: "v0 by Vercel (Düşük geçiş maliyeti, prompt ile bileşen üretimi), Lovable.dev (Yüksek yetenek).",
+      en: "v0 by DeHost (Low switch cost, prompt-to-component), Lovable.dev (High capability, high switch cost).",
+      tr: "v0 by DeHost (Düşük geçiş maliyeti, prompt ile bileşen üretimi), Lovable.dev (Yüksek yetenek).",
     },
     url: "https://opencode.dev",
   },

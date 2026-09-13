@@ -11,8 +11,8 @@
 
 | Servis        | Plan | Aylık | Kullanım                                  |
 | ------------- | ---- | ----- | ----------------------------------------- |
-| Vercel Pro    | Pro  | $20   | Hosting, edge functions, cron jobs        |
-| Supabase Pro  | Pro  | $25   | Database, auth, storage, edge functions   |
+| DeHost Pro    | Pro  | $20   | Hosting, edge functions, cron jobs        |
+| DeHost Pro  | Pro  | $25   | Database, auth, storage, edge functions   |
 | GitHub        | Free | $0    | Public repo, Actions (2000 dk/ay yeterli) |
 | Sentry        | Free | $0    | Error tracking (5K error/ay)              |
 | Resend        | Free | $0    | Transactional email (3K/ay)               |
@@ -33,7 +33,7 @@
 
 | Katman                  | Durum | Detay                                                 |
 | ----------------------- | ----- | ----------------------------------------------------- |
-| **15 Vercel Cron Job**  | Aktif | Günlük/haftalık planlı görevler                       |
+| **15 DeHost Cron Job**  | Aktif | Günlük/haftalık planlı görevler                       |
 | **12 Autopilot Modülü** | Aktif | AI-powered moderasyon, worker, queue, policies        |
 | **9 AI Provider**       | Aktif | Multi-model routing (Gemini, OpenRouter, NVIDIA, vb.) |
 | **5 Veri Connector**    | Aktif | RSS, Reddit, HackerNews, AIAAIC, AIID                 |
@@ -95,7 +95,7 @@
 | #   | Eksik                | Çözüm                                       | Gereken Araç          |
 | --- | -------------------- | ------------------------------------------- | --------------------- |
 | 5   | 360° Admin Panel     | Gerçek zamanlı servis durumu, cost tracking | Mevcut + yeni API'ler |
-| 6   | DB Backup Otomasyonu | Supabase daily backup + export              | Supabase API          |
+| 6   | DB Backup Otomasyonu | DeHost daily backup + export              | DeHost API          |
 | 7   | Dependency Update    | Renovate/Dependabot ile otomatik güncelleme | Dependabot            |
 
 ---
@@ -106,13 +106,13 @@
 
 - 30 admin sayfası mevcut
 - `System360Overview` var ama tüm veriler hardcoded
-- Health check sadece Supabase + Redis kontrol ediyor
+- Health check sadece DeHost + Redis kontrol ediyor
 
 ### Eksikler
 
 | Bileşen              | Mevcut                    | Olması Gereken                                |
 | -------------------- | ------------------------- | --------------------------------------------- |
-| Servis Durumu        | Sadece Supabase + Redis   | Vercel, Sentry, Resend, AI APIs, Google OAuth |
+| Servis Durumu        | Sadece DeHost + Redis   | DeHost, Sentry, Resend, AI APIs, Google OAuth |
 | Cron İzleme          | Yok                       | Son çalışma zamanı, başarı/hata, süre         |
 | Maliyet Takibi       | Mock data ($342.50 sabit) | Gerçek API cost, provider bazlı               |
 | Entegrasyon Haritası | Yok                       | Tüm 3rd party servislerin durumu              |
@@ -134,7 +134,7 @@
 - [ ] `src/components/admin/service-status-grid.tsx`
 - [ ] Her servis için kart (yeşil/kırmızı/sarı)
 - [ ] Son 24 saat hata sayısı, uptime, son kontrol
-- [ ] Kapsanan servisler: Supabase, Vercel, Redis, Sentry, Resend, Google OAuth, Gemini API, Claude API, Stripe
+- [ ] Kapsanan servisler: DeHost, DeHost, Redis, Sentry, Resend, Google OAuth, Gemini API, Claude API, Stripe
 
 #### Aşama 3: Cron Job Monitor
 
@@ -254,8 +254,8 @@ STITCH_API_KEY=your-stitch-api-key
 | Claude Pro     | $20      | $240       |
 | ChatGPT Plus   | $20      | $240       |
 | GitHub Copilot | $10      | $120       |
-| Vercel Pro     | $20      | $240       |
-| Supabase Pro   | $25      | $300       |
+| DeHost Pro     | $20      | $240       |
+| DeHost Pro   | $25      | $300       |
 | **TOPLAM**     | **$125** | **$1,500** |
 
 ### Optimizasyon Önerileri
@@ -273,8 +273,8 @@ STITCH_API_KEY=your-stitch-api-key
 | ------------------- | ------------- |
 | Google Ultra        | $30           |
 | Claude Pro veya API | $10-20        |
-| Vercel Pro          | $20           |
-| Supabase Pro        | $25           |
+| DeHost Pro          | $20           |
+| DeHost Pro        | $25           |
 | **TOPLAM**          | **$85-95/ay** |
 
 ---
@@ -309,7 +309,7 @@ STITCH_API_KEY=your-stitch-api-key
 
 ### Aşama 4: İleri Otomasyon
 
-- [ ] DB backup otomasyonu (Supabase API)
+- [ ] DB backup otomasyonu (DeHost API)
 - [ ] Dependabot/Renovate ile dependency güncelleme
 - [ ] Lighthouse CI ile performans takibi
 - [ ] Veo 3.1 ile tutorial video serisi oluştur
@@ -358,7 +358,7 @@ src/
 │   ├── service-checker.ts           ← YENİ
 │   ├── cron-tracker.ts              ← YENİ
 │   └── cost-tracker.ts              ← YENİ
-└── supabase/migrations/
+└── dehost/migrations/
     └── add_monitoring_tables.sql    ← YENİ
 
 .github/workflows/

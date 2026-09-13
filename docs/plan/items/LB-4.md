@@ -13,7 +13,7 @@ having responded. Today it cannot be recorded at all.
 ## Why it does not fit the existing table
 
 The provider-response feature is already built end to end: table `ai_provider_responses`
-(`supabase/migrations/20260605000001_initial_schema.sql:187-199`), token-gated form
+(`dehost/migrations/20260605000001_initial_schema.sql:187-199`), token-gated form
 `src/components/incidents/provider-response-form.tsx`, server action `src/actions/provider-response.ts`
 (auto-publishes on token validation, no moderation step), and it is already surfaced on the incident
 detail page, the leaderboard (`response_rate`), the transparency page and the press kit.

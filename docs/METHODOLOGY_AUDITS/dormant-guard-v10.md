@@ -22,7 +22,7 @@ grep -n "MARKETING_AUTOPILOT" src/agents/marketing/marketing_orchestrator.ts
 ## 3. Spark Agent Cleanliness Verification
 
 ```bash
-grep -rln "spark" vercel.json
+grep -rln "spark" dehost.json
 (Empty / Exit code 1)
 ```
 

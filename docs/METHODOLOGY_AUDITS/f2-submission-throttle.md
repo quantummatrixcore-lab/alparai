@@ -10,7 +10,7 @@
   - Inserts a record into `submission_attempts` on every submission attempt.
   - Before invoking AI auto-moderation, checks the count of submission attempts for the current IP in the last 24 hours.
   - If the count is `> 10`, it flags the submission as suspicious, bypasses the LLM auto-moderation pipeline, sets the status to `pending_review`, and adds moderator notes: `"Bypassed AI moderation. Exceeded submission attempts limit (>10 attempts in 24h)."`
-- Created a database migration at `supabase/migrations/20260727000015_submission_attempts.sql`.
+- Created a database migration at `dehost/migrations/20260727000015_submission_attempts.sql`.
 
 ## Verification
 

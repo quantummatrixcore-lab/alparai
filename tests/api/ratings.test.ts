@@ -7,7 +7,7 @@ const mockFrom = vi.fn().mockImplementation(() => ({
   ilike: vi.fn().mockReturnThis(),
 }));
 
-vi.mock("@/lib/supabase/server", () => ({
+vi.mock("@/lib/dehost/server", () => ({
   createServerClient: () => ({
     from: mockFrom,
   }),

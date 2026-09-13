@@ -1,8 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { createUserByAdmin } from "@/actions/admin-users";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
+import { createAdminClient } from "@/lib/dehost/admin";
 
-vi.mock("@/lib/supabase/server", () => ({
+vi.mock("@/lib/dehost/server", () => ({
   createServerClient: vi.fn(),
 }));
 
@@ -12,17 +13,9 @@ const { adminAuthMock } = vi.hoisted(() => ({
   },
 }));
 
-vi.mock("@supabase/supabase-js", () => {
-  const updateMock = vi.fn().mockReturnValue({
-    eq: vi.fn().mockResolvedValue({ error: null }),
-  });
-  return {
-    createClient: vi.fn(() => ({
-      auth: { admin: adminAuthMock },
-      from: vi.fn(() => ({ update: updateMock })),
-    })),
-  };
-});
+vi.mock("@/lib/dehost/admin", () => ({
+  createAdminClient: vi.fn(),
+}));
 
 describe("createUserByAdmin", () => {
   beforeEach(() => {
@@ -76,6 +69,17 @@ describe("createUserByAdmin", () => {
       }),
     } as never);
 
+    vi.mocked(createAdminClient).mockReturnValue({
+      auth: {
+        admin: adminAuthMock,
+      },
+      from: vi.fn().mockReturnValue({
+        update: vi.fn().mockReturnValue({
+          eq: vi.fn().mockResolvedValue({ error: null }),
+        }),
+      }),
+    } as never);
+
     adminAuthMock.createUser.mockResolvedValue({
       data: { user: { id: "new-user-id" } },
       error: null,
@@ -90,3 +94,4 @@ describe("createUserByAdmin", () => {
     expect(result.userId).toBe("new-user-id");
   });
 });
+

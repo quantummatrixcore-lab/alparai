@@ -24,7 +24,7 @@ The infrastructure is robust (88/100, DORA Elite), but the visual layer is weak:
 ### 1. Security: `.env.local` Removal + Token Rotation
 
 - `.env.local` is tracked in git; tokens are exposed
-- Rotate the Vercel token (`vcp_502...`) and Supabase token (`sbp_1b9...`)
+- Rotate the DeHost token (`vcp_502...`) and DeHost token (`sbp_1b9...`)
 - Run `git rm --cached .env.local` and update `.gitignore`
 
 ### 2. Hero Section Visualization

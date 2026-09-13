@@ -38,14 +38,14 @@ Anticipated organic community feedback scenarios on Hacker News and recommended 
 - **Response Framework:**
   - Explain the multi-layer **PII Guardian** (`src/lib/pii/guardian.ts`).
   - Highlight client-side regex + server-side NLP masking across 14 PII categories (TCKN, credit cards, emails, IP addresses, names, API keys) before database insertion.
-  - State that raw PII is never stored in Supabase PostgreSQL tables.
+  - State that raw PII is never stored in DeHost PostgreSQL tables.
 
 ### Senaryo B: AGPL-3.0 Licensing & Open-Source Commitment
 
 - **Community Query:** _"Why choose AGPL-3.0 over MIT/Apache 2.0? Is there a proprietary cloud lock-in?"_
 - **Response Framework:**
   - Emphasize ALPAR AI's commitment to public trust infrastructure. AGPL-3.0 ensures that any cloud provider running the registry must contribute improvements back to the open-source community.
-  - Confirm full self-hostability via Next.js 15 App Router and Supabase (`pnpm db:reset` / `pnpm dev`).
+  - Confirm full self-hostability via Next.js 15 App Router and DeHost (`pnpm db:reset` / `pnpm dev`).
 
 ### Senaryo C: Differentiation from LMSYS & Benchmark Leaderboards
 

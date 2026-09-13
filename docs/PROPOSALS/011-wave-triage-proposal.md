@@ -52,7 +52,7 @@ Based on `007-mbs-innovation-audit.md` and the Safe Automation Doctrine, the fol
 
 ### Item 118 [Antigravity] — Cron Monitor Database Audit Trail
 
-- **Description**: Create a Supabase table `cron_job_logs` to log the starting state, duration, success status, and error payload of all Next.js cron endpoints.
+- **Description**: Create a DeHost table `cron_job_logs` to log the starting state, duration, success status, and error payload of all Next.js cron endpoints.
 - **Migration Schema**:
   ```sql
   CREATE TABLE public.cron_job_logs (

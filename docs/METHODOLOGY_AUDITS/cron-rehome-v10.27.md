@@ -6,15 +6,15 @@
 
 ## Overview
 
-All 16 scheduled jobs previously configured on Vercel Crons (or scheduled via GitHub Actions / external pingers) have been fully migrated to Supabase native `pg_cron` + `pg_net` via migration `20260720144730_scheduled_crons_pg_cron.sql`.
+All 16 scheduled jobs previously configured on DeHost Crons (or scheduled via GitHub Actions / external pingers) have been fully migrated to DeHost native `pg_cron` + `pg_net` via migration `20260720144730_scheduled_crons_pg_cron.sql`.
 
-Vercel `vercel.json` has been updated to `"crons": []` to prevent duplicate execution and stay within Vercel free-tier execution limits.
+DeHost `dehost.json` has been updated to `"crons": []` to prevent duplicate execution and stay within DeHost free-tier execution limits.
 
 ## Infrastructure Architecture
 
 - **Extension `pg_cron`**: Manages cron expression schedules directly in PostgreSQL.
 - **Extension `pg_net`**: Executes asynchronous HTTP `GET` requests to `https://www.alparai.com/api/cron/...`.
-- **Vault Integration**: The helper function `public.trigger_cron_job(cron_path text)` retrieves `cron_secret` from `vault.decrypted_secrets` and attaches it via HTTP `Authorization: Bearer <secret>` and `x-vercel-cron: 1` headers.
+- **Vault Integration**: The helper function `public.trigger_cron_job(cron_path text)` retrieves `cron_secret` from `vault.decrypted_secrets` and attaches it via HTTP `Authorization: Bearer <secret>` and `x-dehost-cron: 1` headers.
 
 ## Job Mapping Matrix & Status
 
@@ -39,7 +39,7 @@ Vercel `vercel.json` has been updated to `"crons": []` to prevent duplicate exec
 
 ## Verification Queries
 
-To inspect execution history in production, run the following SQL query in Supabase SQL Editor:
+To inspect execution history in production, run the following SQL query in DeHost SQL Editor:
 
 ```sql
 SELECT
@@ -57,4 +57,4 @@ ORDER BY r.start_time DESC LIMIT 20;
 
 ## Conclusion
 
-Item 121 verification is COMPLETE. All scheduled cron jobs are re-homed to `pg_cron` with secure vault authentication and zero reliance on Vercel free-tier cron limits.
+Item 121 verification is COMPLETE. All scheduled cron jobs are re-homed to `pg_cron` with secure vault authentication and zero reliance on DeHost free-tier cron limits.

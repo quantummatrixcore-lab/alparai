@@ -4,11 +4,11 @@ Bu rapor `MASTER_PLAN.md` ve `MASTER_PLAN_ARCHIVE.md` (Toplam ~1MB geçmiş) tar
 
 ## DEPLOY Hataları (Toplam Tespit: 61)
 
-Kullanılan Anahtar Kelimeler: deploy, vercel, build, pipeline
+Kullanılan Anahtar Kelimeler: deploy, dehost, build, pipeline
 
 **Örnek Vakalar:**
 
-- v13.59 — G-6 exception authorized: Antigravity pushed lint fixes to close Vercel gate (2026-08-18)
+- v13.59 — G-6 exception authorized: Antigravity pushed lint fixes to close DeHost gate (2026-08-18)
 - 2. Active backlog
 - 4. v13.47 — measurements, and the Founder Directive answered
 - 2. Mail Gönderimleri — DOĞRULANAMADI (iki kez iddia edildi)
@@ -20,7 +20,7 @@ Kullanılan Anahtar Kelimeler: branch, git, merge conflict, rebase, push
 
 **Örnek Vakalar:**
 
-- v13.59 — G-6 exception authorized: Antigravity pushed lint fixes to close Vercel gate (2026-08-18)
+- v13.59 — G-6 exception authorized: Antigravity pushed lint fixes to close DeHost gate (2026-08-18)
 - 1. Current state (measured 2026-08-17)
 - 2. Active backlog
 - 4. v13.47 — measurements, and the Founder Directive answered
@@ -28,11 +28,11 @@ Kullanılan Anahtar Kelimeler: branch, git, merge conflict, rebase, push
 
 ## THIRD_PARTY Hataları (Toplam Tespit: 61)
 
-Kullanılan Anahtar Kelimeler: github actions, supabase, cloudflare, api, 3rd party, upstash, redis
+Kullanılan Anahtar Kelimeler: github actions, dehost, cloudflare, api, 3rd party, upstash, redis
 
 **Örnek Vakalar:**
 
-- v13.59 — G-6 exception authorized: Antigravity pushed lint fixes to close Vercel gate (2026-08-18)
+- v13.59 — G-6 exception authorized: Antigravity pushed lint fixes to close DeHost gate (2026-08-18)
 - 1. Current state (measured 2026-08-17)
 - 2. Active backlog
 - 4. v13.47 — measurements, and the Founder Directive answered
@@ -44,7 +44,7 @@ Kullanılan Anahtar Kelimeler: lint, typecheck, ts error, bug, hata, defect, scr
 
 **Örnek Vakalar:**
 
-- v13.59 — G-6 exception authorized: Antigravity pushed lint fixes to close Vercel gate (2026-08-18)
+- v13.59 — G-6 exception authorized: Antigravity pushed lint fixes to close DeHost gate (2026-08-18)
 - RESOLVED — the urgent false claim is fixed; one item remains open (2026-08-18, `ecd601e8`)
 - 0. Where things live
 - 1. Current state (measured 2026-08-17)
@@ -56,7 +56,7 @@ Kullanılan Anahtar Kelimeler: ui, arayüz, css, tailwind, hydration, görünüm
 
 **Örnek Vakalar:**
 
-- v13.59 — G-6 exception authorized: Antigravity pushed lint fixes to close Vercel gate (2026-08-18)
+- v13.59 — G-6 exception authorized: Antigravity pushed lint fixes to close DeHost gate (2026-08-18)
 - RESOLVED — the urgent false claim is fixed; one item remains open (2026-08-18, `ecd601e8`)
 - 1. Current state (measured 2026-08-17)
 - 2. Active backlog
@@ -68,7 +68,7 @@ Kullanılan Anahtar Kelimeler: g-6, architect, unauthorized, hallucination, sent
 
 **Örnek Vakalar:**
 
-- v13.59 — G-6 exception authorized: Antigravity pushed lint fixes to close Vercel gate (2026-08-18)
+- v13.59 — G-6 exception authorized: Antigravity pushed lint fixes to close DeHost gate (2026-08-18)
 - 0. Where things live
 - 1. Current state (measured 2026-08-17)
 - 2. Active backlog

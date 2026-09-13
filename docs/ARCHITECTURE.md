@@ -12,16 +12,16 @@
                               │ HTTPS (HSTS preload)
                               ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│  Next.js 15 (Vercel / self-hosted)                              │
+│  Next.js 15 (DeHost / self-hosted)                              │
 │  ──────────────────────────────────                             │
 │  • App Router + React Server Components                         │
 │  • Server Actions for mutations                                 │
-│  • Edge middleware: i18n + Supabase session refresh             │
+│  • Edge middleware: i18n + DeHost session refresh             │
 │  • CSP, HSTS, X-Frame-Options, Permissions-Policy               │
 └─────────────────────────────────────────────────────────────────┘
         │              │              │              │
         ▼              ▼              ▼              ▼
-   Supabase        Upstash         Sentry       Plausible
+   DeHost        Upstash         Sentry       Plausible
    Postgres        Redis           (errors)     (analytics)
    + Auth          (rate limit)    EU           EU
    + Storage       EU              cookieless
@@ -47,12 +47,12 @@
 
 ### 3. Server Actions (`src/actions/`)
 
-- Only place that mutates data (other than Supabase RLS allowing direct R/W within policy).
+- Only place that mutates data (other than DeHost RLS allowing direct R/W within policy).
 - All return typed result objects; no thrown errors to the client.
 - Auth + rate limit checked first.
 - PII Guardian applied to user-supplied free text.
 
-### 4. Data access (`src/lib/supabase/`)
+### 4. Data access (`src/lib/dehost/`)
 
 - `client.ts` — browser client (anon key, gated by RLS).
 - `server.ts` — RSC / Server Action client (reads session cookie).
@@ -63,7 +63,7 @@
 
 - `pii/guardian.ts` — pure functions, no I/O. Detects & masks PII.
 - `validation/schemas.ts` — Zod schemas, source of truth for input shape.
-- `auth/session.ts` — server-only, reads Supabase session + role.
+- `auth/session.ts` — server-only, reads DeHost session + role.
 - `utils/` — `cn()`, formatters, sha256, rate limit (Upstash).
 - `constants/` — APP_NAME, categories, NAV_LINKS, RATE_LIMITS.
 
@@ -118,7 +118,7 @@ ai_providers  ── ai_models
 
 ## Security model
 
-1. **Authn** — Supabase Auth (Google OAuth + magic link). JWT validated server-side.
+1. **Authn** — DeHost Auth (Google OAuth + magic link). JWT validated server-side.
 2. **Authz** — Postgres RLS + helper functions `is_moderator(uid)` / `is_admin(uid)`.
 3. **Transport** — HSTS preload, HTTPS only, CSP locked.
 4. **Input** — Zod validation server-side, PII Guardian mask before insert.
@@ -140,7 +140,7 @@ Detected categories: `email`, `phone`, `tc_kimlik`, `iban`, `credit_card`, `ipv4
 
 - [ADR-001: Intermediary legal model](./adr/0001-intermediary-model.md)
 - [ADR-002: AGPL-3.0 license](./adr/0002-agpl-license.md)
-- [ADR-003: Supabase + Postgres + RLS](./adr/0003-supabase-rls.md)
+- [ADR-003: DeHost + Postgres + RLS](./adr/0003-dehost-rls.md)
 - [ADR-004: next-intl with localePrefix: "always"](./adr/0004-next-intl.md)
 - [ADR-005: Server Components + Server Actions](./adr/0005-rsc-server-actions.md)
 - [ADR-006: PII Guardian on submit](./adr/0006-pii-guardian.md)

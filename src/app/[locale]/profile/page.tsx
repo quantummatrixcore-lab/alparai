@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "@/i18n/routing";
 import { getCurrentUser } from "@/lib/auth/session";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { formatDate } from "@/lib/utils";
 import { Mail, Calendar, Shield, User as UserIcon, Zap, Award } from "lucide-react";
 
@@ -25,11 +25,11 @@ export default async function ProfilePage({ params }: { params: Promise<{ locale
     return null;
   }
 
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
   const [{ count: myIncidents }, { count: mySuggestions }, { data: dbUser }] = await Promise.all([
-    supabase.from("incidents").select("*", { count: "exact", head: true }).eq("user_id", user.id),
-    supabase.from("suggestions").select("*", { count: "exact", head: true }).eq("user_id", user.id),
-    supabase
+    dehost.from("incidents").select("*", { count: "exact", head: true }).eq("user_id", user.id),
+    dehost.from("suggestions").select("*", { count: "exact", head: true }).eq("user_id", user.id),
+    dehost
       .from("users")
       .select("reputation_score, badges, community_role, interests")
       .eq("id", user.id)

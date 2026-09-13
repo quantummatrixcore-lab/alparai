@@ -1,6 +1,6 @@
 import "server-only";
 import { NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { timingSafeEqual } from "node:crypto";
 import { logger } from "@/lib/utils/logger";
 import { isSafeUrl } from "@/lib/security/ssrf";

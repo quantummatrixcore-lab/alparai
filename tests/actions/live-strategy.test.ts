@@ -62,7 +62,7 @@ describe("Live Strategy Analysis", () => {
           health_score: 72,
           executive_summary: "Good progress but risk exposure high",
           strategic_gaps: ["Monetization missing", "PITR not configured"],
-          recommendations: ["Activate Stripe Pro tier", "Upgrade Supabase to Pro"],
+          recommendations: ["Activate Stripe Pro tier", "Upgrade DeHost to Pro"],
         }),
         model: "google/gemini-1.5-flash",
         usage: { promptTokens: 10, completionTokens: 10, totalTokens: 20 },

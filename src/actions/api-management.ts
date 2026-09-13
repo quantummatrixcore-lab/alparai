@@ -1,7 +1,7 @@
 "use server";
 
 import { requireAdmin } from "@/lib/auth/session";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 
 export interface RealProvider {
@@ -63,8 +63,8 @@ export async function getApiTelemetryData(): Promise<ApiTelemetryData> {
     const hasOpenAI = Boolean(process.env.OPENAI_API_KEY);
     const hasAnthropic = Boolean(process.env.ANTHROPIC_API_KEY);
     const hasGoogle = Boolean(process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY);
-    const hasSupabase = Boolean(
-      process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY,
+    const hasDeHost = Boolean(
+      process.env.NEXT_PUBLIC_DEHOST_URL && process.env.DEHOST_SERVICE_ROLE_KEY,
     );
     const hasUpstash = Boolean(
       process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN,
@@ -122,11 +122,11 @@ export async function getApiTelemetryData(): Promise<ApiTelemetryData> {
         isRealEnvKey: hasOpenAI,
       },
       {
-        id: "supabase",
-        name: "Supabase (PostgreSQL)",
-        status: hasSupabase ? "connected" : "degraded",
+        id: "dehost",
+        name: "DeHost (PostgreSQL)",
+        status: hasDeHost ? "connected" : "degraded",
         models: ["PostgreSQL 15", "Row Level Security", "Storage"],
-        health: hasSupabase ? 100 : 50,
+        health: hasDeHost ? 100 : 50,
         latencyMs: 42,
         dailyRequests: 58000,
         quotaUsed: 450000,
@@ -134,7 +134,7 @@ export async function getApiTelemetryData(): Promise<ApiTelemetryData> {
         dailyCostUsd: 0.0,
         monthlyLimitUsd: 0,
         respondentActive: false,
-        isRealEnvKey: hasSupabase,
+        isRealEnvKey: hasDeHost,
       },
       {
         id: "upstash",
@@ -206,13 +206,13 @@ export async function getApiTelemetryData(): Promise<ApiTelemetryData> {
       },
       {
         id: "key-4",
-        name: "Supabase Service Role Key",
-        provider: "Supabase",
-        envKey: "SUPABASE_SERVICE_ROLE_KEY",
-        maskedKey: mask(process.env.SUPABASE_SERVICE_ROLE_KEY),
-        status: hasSupabase ? "active" : "missing",
+        name: "DeHost Service Role Key",
+        provider: "DeHost",
+        envKey: "DEHOST_SERVICE_ROLE_KEY",
+        maskedKey: mask(process.env.DEHOST_SERVICE_ROLE_KEY),
+        status: hasDeHost ? "active" : "missing",
         created: "Configured in Environment",
-        lastUsed: hasSupabase ? "Present in environment" : "Not configured",
+        lastUsed: hasDeHost ? "Present in environment" : "Not configured",
       },
       {
         id: "key-5",

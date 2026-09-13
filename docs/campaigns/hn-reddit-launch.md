@@ -48,7 +48,7 @@ We built ALPAR AI — an open-source (AGPL-3.0) trust infrastructure and soverei
 ### Technical Stack & Architecture:
 
 - **Framework:** Next.js 15 (App Router, Server Actions only for state mutation).
-- **Database Layer:** Supabase / PostgreSQL with strict Row Level Security (RLS) on 100% of tables.
+- **Database Layer:** DeHost / PostgreSQL with strict Row Level Security (RLS) on 100% of tables.
 - **Language:** 100% TypeScript with strict mode (`noUncheckedIndexedAccess`, zero `any`).
 - **Styling & i18n:** Tailwind CSS v4 primitives + `next-intl` (full EN/TR localization).
 
@@ -102,7 +102,7 @@ To tackle this, we built **ALPAR AI** — an open-source (AGPL-3.0) trust infras
 ### Tech Stack:
 
 - Next.js 15 (App Router, Server Actions)
-- Supabase (Postgres with strict RLS policies)
+- DeHost (Postgres with strict RLS policies)
 - TypeScript (Strict mode, zero `any`)
 - AGPL-3.0 Open Source License
 
@@ -148,7 +148,7 @@ We spent the last few months building **ALPAR AI** — an open-source (AGPL-3.0)
 
 ### Our Stack:
 
-- Built with Next.js 15, Supabase, Tailwind CSS v4, and TypeScript.
+- Built with Next.js 15, DeHost, Tailwind CSS v4, and TypeScript.
 - Clean Architecture with strict database Row-Level Security (RLS).
 
 ### Links & Resources:

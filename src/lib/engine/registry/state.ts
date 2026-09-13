@@ -5,8 +5,8 @@ export const BREAKERS = new Map<string, BreakerSnapshot>();
 
 export const SERVICE_DEFINITIONS: ServiceRecord[] = [
   {
-    id: "supabase",
-    name: "Supabase DB",
+    id: "dehost",
+    name: "DeHost DB",
     status: "unknown",
     type: "db",
     lastHeartbeat: null,
@@ -75,8 +75,8 @@ export const SERVICE_DEFINITIONS: ServiceRecord[] = [
     healthEndpoint: null,
   },
   {
-    id: "vercel",
-    name: "Vercel Deploy",
+    id: "dehost",
+    name: "DeHost Deploy",
     status: "unknown",
     type: "api",
     lastHeartbeat: null,
@@ -205,8 +205,8 @@ export const SERVICE_DEFINITIONS: ServiceRecord[] = [
     healthEndpoint: null,
   },
   {
-    id: "mcp-vercel",
-    name: "MCP: Vercel",
+    id: "mcp-dehost",
+    name: "MCP: DeHost",
     status: "unknown",
     type: "mcp",
     lastHeartbeat: null,

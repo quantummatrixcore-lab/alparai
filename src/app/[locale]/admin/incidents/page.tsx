@@ -25,7 +25,7 @@ import {
   X,
 } from "lucide-react";
 import { StatusBadge } from "@/components/admin-core/status-badge";
-import { supabase } from "@/lib/supabase/client";
+import { dehost } from "@/lib/dehost/client";
 import { useTranslations } from "next-intl";
 import {
   type IncidentRecord,
@@ -84,7 +84,7 @@ export default function IncidentsPage() {
     async function fetchRealIncidents() {
       try {
         setLoadingDb(true);
-        const { data, error } = await supabase
+        const { data, error } = await dehost
           .from("incidents")
           .select("id, title, description, status, severity, created_at, ai_providers(name)")
           .order("created_at", { ascending: false })
@@ -121,7 +121,7 @@ export default function IncidentsPage() {
           setSelectedIncident(mapped[0] || null);
         }
       } catch (err) {
-        console.error("Failed to load real incidents from Supabase:", err);
+        console.error("Failed to load real incidents from DeHost:", err);
       } finally {
         setLoadingDb(false);
       }

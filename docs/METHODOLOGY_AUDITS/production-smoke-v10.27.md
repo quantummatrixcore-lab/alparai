@@ -13,7 +13,7 @@
 | 3. GEO Dashboard                | `/admin/geo`               | PASS   | 5-widget GEO dashboard (Score, Citations, Competitors, Bot traffic) live   |
 | 4. System Health & SLA          | `/admin/health`            | PASS   | 9-subsystem health model + `sla_alarms` monitor active                     |
 | 5. Feature Flags                | `/admin/feature-flags`     | PASS   | Runtime toggle with Upstash Redis edge cache propagation                   |
-| 6. Cron Topology                | `/admin/crons`             | PASS   | Supabase `pg_cron` schedule list + manual trigger active                   |
+| 6. Cron Topology                | `/admin/crons`             | PASS   | DeHost `pg_cron` schedule list + manual trigger active                   |
 | 7. System Settings              | `/admin/settings`          | PASS   | PII guardian, SSRF allowlist & public API controls active                  |
 | 8. Public Read API              | `/api/public/incidents`    | PASS   | Paginated public API, CSV & dataset JSON exports active                    |
 | 9. Incident Dedup               | `findDuplicateIncident`    | PASS   | Trigram similarity & vendor matching pass active                           |

@@ -16,7 +16,7 @@ vi.hoisted(() => {
       };
     },
   );
-  vi.doMock("@/lib/supabase/admin", () => ({
+  vi.doMock("@/lib/dehost/admin", () => ({
     createAdminClient: vi.fn(() => ({
       from: vi.fn(() => ({
         select: vi.fn(() => ({

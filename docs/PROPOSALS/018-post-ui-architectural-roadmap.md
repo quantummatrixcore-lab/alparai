@@ -14,7 +14,7 @@ This proposal outlines three high-priority architectural upgrades to transition 
 
 ### 2.1 Database Query Optimization (Materialized Views / Stats Cache)
 
-**The Problem:** The Admin dashboard now queries real-time metrics (e.g., Total Users, Recent Incidents, Active AI Models) directly from the Supabase tables. As the dataset scales to tens of thousands of incidents and users, executing `SELECT count(*)` or `ORDER BY ... LIMIT` queries on page load will cause dashboard latency and unnecessary compute costs.
+**The Problem:** The Admin dashboard now queries real-time metrics (e.g., Total Users, Recent Incidents, Active AI Models) directly from the DeHost tables. As the dataset scales to tens of thousands of incidents and users, executing `SELECT count(*)` or `ORDER BY ... LIMIT` queries on page load will cause dashboard latency and unnecessary compute costs.
 **The Solution:**
 
 - Implement a PostgreSQL `Materialized View` or a `platform_statistics` cache table.
@@ -28,7 +28,7 @@ This proposal outlines three high-priority architectural upgrades to transition 
 
 - Build production-ready Next.js Route Handlers (e.g., `/api/v1/incidents`).
 - Integrate **Upstash Redis** (already in the ALPAR stack) to enforce strict rate limits (e.g., 60 requests/minute for Free tier, 1000 requests/minute for Pro tier).
-- Validate API keys cryptographically against the Supabase database.
+- Validate API keys cryptographically against the DeHost database.
 - This will officially open ALPAR AI to researchers, journalists, and universities, allowing them to pull verifiable AI incident data programmatically.
 
 ### 2.3 End-to-End (E2E) Automation Testing via Playwright
@@ -37,12 +37,12 @@ This proposal outlines three high-priority architectural upgrades to transition 
 **The Solution:**
 
 - Implement **Playwright** E2E testing to simulate user journeys (e.g., "Sign In -> Report Incident -> Admin Panel -> Generate API Key").
-- Run these simulated browser tests autonomously on Vercel preview deployments.
+- Run these simulated browser tests autonomously on DeHost preview deployments.
 - This ensures absolute confidence that no future update breaks the platform's core accountability flows.
 
 ## 3. Implementation Plan
 
-- **Phase 1 (Data):** Create the `platform_statistics` table and PostgreSQL triggers via a Supabase migration file.
+- **Phase 1 (Data):** Create the `platform_statistics` table and PostgreSQL triggers via a DeHost migration file.
 - **Phase 2 (API):** Develop the `/api/v1` routes and Upstash Redis rate-limiter middleware.
 - **Phase 3 (Testing):** Write and integrate Playwright test scripts for the three most critical user journeys.
 

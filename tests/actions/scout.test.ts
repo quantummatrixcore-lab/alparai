@@ -1,12 +1,12 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
-import { createMockSupabaseClient } from "../helpers/supabase-mock";
+import { createMockDeHostClient } from "../helpers/dehost-mock";
 
 vi.hoisted(() => {
   vi.doMock("next/cache", () => ({
     revalidatePath: vi.fn(),
   }));
-  vi.doMock("@/lib/supabase/admin", () => ({
+  vi.doMock("@/lib/dehost/admin", () => ({
     createAdminClient: vi.fn(),
   }));
   vi.doMock("@/lib/auth/session", () => ({
@@ -22,17 +22,17 @@ vi.hoisted(() => {
   }));
 });
 
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { getCurrentUser } from "@/lib/auth/session";
 import { checkRateLimit } from "@/lib/utils/rate-limit";
 import { VertexGeminiAdapter } from "@/lib/ai/adapters/vertex-gemini";
 import { scoutNewAIIncidents } from "@/actions/scout";
 
-let mockSupabaseClient: ReturnType<typeof createMockSupabaseClient>;
+let mockDeHostClient: ReturnType<typeof createMockDeHostClient>;
 
 beforeEach(() => {
   vi.clearAllMocks();
-  mockSupabaseClient = createMockSupabaseClient();
+  mockDeHostClient = createMockDeHostClient();
 });
 
 function mockAdapter(response: { ok: boolean; data?: unknown; error?: string }) {
@@ -62,7 +62,7 @@ describe("scoutNewAIIncidents", () => {
   it("creates incidents from scout data", async () => {
     vi.mocked(getCurrentUser).mockResolvedValue({ id: "user-1" } as never);
     vi.mocked(checkRateLimit).mockResolvedValue({ ok: true } as never);
-    vi.mocked(createAdminClient).mockReturnValue(mockSupabaseClient as never);
+    vi.mocked(createAdminClient).mockReturnValue(mockDeHostClient as never);
 
     mockAdapter({
       ok: true,
@@ -86,7 +86,7 @@ describe("scoutNewAIIncidents", () => {
     const mockUsersEq = vi.fn().mockReturnValue({ limit: mockUsersLimit });
     const mockUsersSelect = vi.fn().mockReturnValue({ eq: mockUsersEq, ilike: mockIlike });
 
-    mockSupabaseClient.from.mockImplementation((table: string) => {
+    mockDeHostClient.from.mockImplementation((table: string) => {
       if (table === "incidents") return { insert: vi.fn().mockReturnValue({}) };
       return { select: mockUsersSelect, insert: vi.fn() };
     });
@@ -99,7 +99,7 @@ describe("scoutNewAIIncidents", () => {
   it("handles provider not found by creating one", async () => {
     vi.mocked(getCurrentUser).mockResolvedValue({ id: "user-1" } as never);
     vi.mocked(checkRateLimit).mockResolvedValue({ ok: true } as never);
-    vi.mocked(createAdminClient).mockReturnValue(mockSupabaseClient as never);
+    vi.mocked(createAdminClient).mockReturnValue(mockDeHostClient as never);
 
     mockAdapter({
       ok: true,
@@ -124,7 +124,7 @@ describe("scoutNewAIIncidents", () => {
       .fn()
       .mockResolvedValue({ data: { id: "new-provider-1" }, error: null });
 
-    mockSupabaseClient.from.mockImplementation((table: string) => {
+    mockDeHostClient.from.mockImplementation((table: string) => {
       if (table === "incidents") return { insert: vi.fn().mockReturnValue({}) };
       return {
         select: mockUsersSelect,
@@ -142,10 +142,10 @@ describe("scoutNewAIIncidents", () => {
   it("handles parse failure of AI response", async () => {
     vi.mocked(getCurrentUser).mockResolvedValue({ id: "user-1" } as never);
     vi.mocked(checkRateLimit).mockResolvedValue({ ok: true } as never);
-    vi.mocked(createAdminClient).mockReturnValue(mockSupabaseClient as never);
+    vi.mocked(createAdminClient).mockReturnValue(mockDeHostClient as never);
     mockAdapter({ ok: true, data: { not_an_array: true } });
 
-    mockSupabaseClient.from.mockImplementation(() => ({
+    mockDeHostClient.from.mockImplementation(() => ({
       select: vi.fn().mockReturnValue({
         eq: vi.fn().mockReturnValue({
           limit: vi.fn().mockResolvedValue({ data: [{ id: "admin-1" }], error: null }),

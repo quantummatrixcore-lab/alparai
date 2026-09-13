@@ -1,7 +1,7 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { verifyUnsubscribeToken } from "@/lib/utils/unsubscribe";
 import Link from "next/link";
 import { CheckCircle2, AlertTriangle } from "lucide-react";

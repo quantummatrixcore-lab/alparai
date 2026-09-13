@@ -17,7 +17,7 @@ The launch control center tracking the pre-launch checklist, DORA metrics, test-
   2. Average API Latency (Milliseconds, tech blue)
   3. DORA Deploy Frequency (Deploys/day, Mono Data)
 - **Main Section (Span 12 Bento Grid):**
-  - **Bento Tile 1 (Span 6):** Technical checklist (Supabase RLS status, PII guardian regex test status, OAuth redirect config).
+  - **Bento Tile 1 (Span 6):** Technical checklist (DeHost RLS status, PII guardian regex test status, OAuth redirect config).
   - **Bento Tile 2 (Span 6):** Business & Legal checklist (KVKK text localization TR/EN, Terms of Service, PR campaign readiness).
 
 ---

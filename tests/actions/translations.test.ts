@@ -28,7 +28,7 @@ vi.mock("@/lib/auth/session", () => ({
   requireUser: vi.fn().mockResolvedValue({ id: "user", role: "user" }),
 }));
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({
     from: vi.fn().mockImplementation(() => ({
       select: mockSelect,

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
-import { createMockSupabaseClient } from "../helpers/supabase-mock";
+import { createMockDeHostClient } from "../helpers/dehost-mock";
 
 vi.hoisted(() => {
   vi.doMock("next/headers", () => ({
@@ -14,7 +14,7 @@ vi.hoisted(() => {
   vi.doMock("@/lib/gdrive/client", () => ({
     uploadToDrive: vi.fn().mockResolvedValue("mock-gdrive-file-id-123"),
   }));
-  vi.doMock("@/lib/supabase/server", () => ({
+  vi.doMock("@/lib/dehost/server", () => ({
     createClient: vi.fn(),
   }));
   vi.doMock("@/lib/utils/rate-limit", () => ({
@@ -25,16 +25,16 @@ vi.hoisted(() => {
   }));
 });
 
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/dehost/server";
 import { uploadToDrive } from "@/lib/gdrive/client";
 import { uploadIncidentEvidence } from "@/actions/storage";
 
-let mockSupabase: ReturnType<typeof createMockSupabaseClient>;
+let mockDeHost: ReturnType<typeof createMockDeHostClient>;
 
 beforeEach(() => {
   vi.clearAllMocks();
-  mockSupabase = createMockSupabaseClient();
-  vi.mocked(createClient).mockResolvedValue(mockSupabase as never);
+  mockDeHost = createMockDeHostClient();
+  vi.mocked(createClient).mockResolvedValue(mockDeHost as never);
 });
 
 describe("uploadIncidentEvidence Security Gates", () => {

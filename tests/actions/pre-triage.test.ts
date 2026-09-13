@@ -3,7 +3,7 @@ import "../helpers/setup";
 
 const mockMaybeSingle = vi.fn();
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({
     from: () => ({
       select: () => ({

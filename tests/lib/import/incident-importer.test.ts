@@ -2,7 +2,7 @@ import { describe, expect, it, vi, beforeEach } from "vitest";
 import type { ImportIncidentRow } from "@/lib/import/csv-parser";
 
 // ---------------------------------------------------------------------------
-// Mock server-only and supabase/admin so tests run in Node without credentials
+// Mock server-only and dehost/admin so tests run in Node without credentials
 // ---------------------------------------------------------------------------
 vi.mock("server-only", () => ({}));
 
@@ -19,7 +19,7 @@ const mockFrom = vi.fn((table) => {
   };
 });
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({ from: mockFrom }),
 }));
 

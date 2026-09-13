@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { supabase } from "@/lib/supabase/client";
+import { dehost } from "@/lib/dehost/client";
 import type { Database } from "@/types/database";
 import { useAdminRealtime } from "./use-admin-realtime";
 
@@ -37,14 +37,14 @@ export function useAdminDsar({
       setLoading(true);
       setError(null);
 
-      let query = supabase.from("dsar_requests").select("*");
+      let query = dehost.from("dsar_requests").select("*");
       if (status !== "all") {
         query = query.eq("status", status);
       }
 
       const [requestsRes, consentRes] = await Promise.all([
         query.order("created_at", { ascending: false }),
-        supabase.from("consent_log").select("*").order("created_at", { ascending: false }).limit(25),
+        dehost.from("consent_log").select("*").order("created_at", { ascending: false }).limit(25),
       ]);
 
       if (requestsRes.error) throw new Error(requestsRes.error.message);
@@ -73,7 +73,7 @@ export function useAdminDsar({
       const payload: Partial<DsarRequestRow> = { status: newStatus };
       if (dueDate) payload.due_date = dueDate;
 
-      const { error: updateError } = await supabase
+      const { error: updateError } = await dehost
         .from("dsar_requests")
         .update(payload)
         .eq("id", id);

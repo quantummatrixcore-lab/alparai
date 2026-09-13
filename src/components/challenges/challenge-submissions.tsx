@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { supabase } from "@/lib/supabase/client";
+import { dehost } from "@/lib/dehost/client";
 import { submitChallengeVote, removeChallengeVote } from "@/actions/challenges";
 
 interface SubmissionRow {
@@ -30,14 +30,14 @@ export function ChallengeSubmissions({
   useEffect(() => {
     async function load() {
       const [subsRes, votesRes, userVotesRes] = await Promise.all([
-        supabase
+        dehost
           .from("challenge_submissions")
           .select()
           .eq("challenge_id", challengeId)
           .eq("status", "approved"),
-        supabase.from("challenge_votes").select("submission_id"),
+        dehost.from("challenge_votes").select("submission_id"),
         userId
-          ? supabase.from("challenge_votes").select("submission_id").eq("user_id", userId)
+          ? dehost.from("challenge_votes").select("submission_id").eq("user_id", userId)
           : Promise.resolve({ data: null }),
       ]);
 

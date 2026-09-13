@@ -1,6 +1,6 @@
 "use server";
 
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 import { requireAdmin } from "@/lib/auth/session";
 import { recalculateAllKBenchmarkScores } from "@/lib/benchmark/k-benchmark-calculator";
@@ -20,9 +20,9 @@ export interface KBenchmarkRecalculateResult {
 export async function recalculateKBenchmarkScoresAction(): Promise<KBenchmarkRecalculateResult> {
   try {
     await requireAdmin();
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
 
-    const result = await recalculateAllKBenchmarkScores(supabase);
+    const result = await recalculateAllKBenchmarkScores(dehost);
 
     logger.info("Dynamic K-BENCHMARK recalculation triggered by admin action", {
       modelsProcessed: result.modelsProcessed,

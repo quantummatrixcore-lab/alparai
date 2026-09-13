@@ -23,7 +23,7 @@ const mockFrom = vi.fn().mockImplementation((table: string) => {
   return mockIncidents;
 });
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({ from: mockFrom }),
 }));
 

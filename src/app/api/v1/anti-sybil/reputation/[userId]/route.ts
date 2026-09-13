@@ -1,6 +1,6 @@
 import "server-only";
 import { NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { getCurrentUser } from "@/lib/auth/session";
 import { logger } from "@/lib/utils/logger";
 
@@ -12,10 +12,10 @@ export async function GET(
     const { userId } = await params;
     const currentUser = await getCurrentUser();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const supabase = createAdminClient() as any;
+    const dehost = createAdminClient() as any;
 
     // Get user reputation
-    const { data: rep, error: repErr } = await supabase
+    const { data: rep, error: repErr } = await dehost
       .from("user_reputation")
       .select("*")
       .eq("user_id", userId)
@@ -40,7 +40,7 @@ export async function GET(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let logs: any[] = [];
     if (currentUser?.id === userId || currentUser?.role === "admin" || currentUser?.role === "moderator") {
-      const { data: logsData } = await supabase
+      const { data: logsData } = await dehost
         .from("reputation_logs")
         .select("*")
         .eq("user_id", userId)

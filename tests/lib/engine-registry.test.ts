@@ -33,23 +33,23 @@ describe("engine-registry Subsystem", () => {
 
   it("exports a non-empty list of service definitions", () => {
     expect(SERVICE_DEFINITIONS.length).toBeGreaterThan(10);
-    const supabaseDef = SERVICE_DEFINITIONS.find((s) => s.id === "supabase");
-    expect(supabaseDef).toBeDefined();
-    expect(supabaseDef?.type).toBe("db");
+    const dehostDef = SERVICE_DEFINITIONS.find((s) => s.id === "dehost");
+    expect(dehostDef).toBeDefined();
+    expect(dehostDef?.type).toBe("db");
   });
 
   it("records heartbeats and reports accurate status", () => {
-    recordHeartbeat("supabase");
+    recordHeartbeat("dehost");
 
     const report = getRegistryReport();
-    const supabaseRecord = report.services.find((s) => s.id === "supabase");
+    const dehostRecord = report.services.find((s) => s.id === "dehost");
 
-    expect(supabaseRecord).toBeDefined();
-    expect(supabaseRecord?.status).toBe("healthy");
-    expect(supabaseRecord?.lastHeartbeat).toBeDefined();
+    expect(dehostRecord).toBeDefined();
+    expect(dehostRecord?.status).toBe("healthy");
+    expect(dehostRecord?.lastHeartbeat).toBeDefined();
     expect(report.healthyCount).toBeGreaterThanOrEqual(1);
 
-    expect(isServiceHealthy("supabase")).toBe(true);
+    expect(isServiceHealthy("dehost")).toBe(true);
   });
 
   it("records circuit breaker state changes", () => {

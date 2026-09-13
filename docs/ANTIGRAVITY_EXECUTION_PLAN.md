@@ -21,7 +21,7 @@
 >
 > **v7.8 additions (still valid):** T-22 Execution Calendar, Pending Verification Queue, Decision-Blocker Map, R1/R2 OVERDUE flags.
 >
-> **v7.7 additions (still valid):** reconciliation pass — 4 MUST items shipped by Executor between v7.6 draft and push (U1+U2+U3 `7f30125`, M0 `89a75ba`, M2-home `de59706`, M3 `aace3ba`); state_support commit `76ddec4` surfaced as Rule #2 out-of-scope commit and retro-approved one-time; Vercel Hobby daily-cron ceiling formalized (`a671fc1`). **Active MUST count: ~24 → ~15 remaining before Aug 2.** No new design — reality alignment only.
+> **v7.7 additions (still valid):** reconciliation pass — 4 MUST items shipped by Executor between v7.6 draft and push (U1+U2+U3 `7f30125`, M0 `89a75ba`, M2-home `de59706`, M3 `aace3ba`); state_support commit `76ddec4` surfaced as Rule #2 out-of-scope commit and retro-approved one-time; DeHost Hobby daily-cron ceiling formalized (`a671fc1`). **Active MUST count: ~24 → ~15 remaining before Aug 2.** No new design — reality alignment only.
 >
 > **v7.6 additions (still valid):** J-series answered founder's 4 strategic questions with root-cause diagnosis + 6 post-freeze work-queue items (J1a Retrospective Batch Auditor, J2a Outreach Queue Agent, J2b Gmail Read, J3a Grant Radar, J4a Dynamic Model Router, J4b Batch Re-audit). Total work queue: 36 items.
 >
@@ -34,7 +34,7 @@
 > **v7.3 core discoveries:**
 >
 > - **B1 (SSE real-time submit), B5 (KVKK delete), C5 (embed widget) are already shipped** — the plan misidentified them as TODO. DB column name is `processing_stage` (not `incident_processing_status`); delete flow lives at `settings/page.tsx` (not `settings/delete-account/`).
-> - **`vercel.json` cron config missing `process-deletions` (KVKK LEGAL obligation) and `generate-marketing`** — production silently non-functional; 15 min fix but if unnoticed = launch-day KVKK violation.
+> - **`dehost.json` cron config missing `process-deletions` (KVKK LEGAL obligation) and `generate-marketing`** — production silently non-functional; 15 min fix but if unnoticed = launch-day KVKK violation.
 > - **`api_keys` table stores keys plain-text** — no sha256, no tier column, no client_type column. Security migration required before launch.
 > - **`/api/unsubscribe/` API route missing** — front page exists but no endpoint for one-click email footer links (CAN-SPAM/KVKK legal requirement).
 > - **"408 incidents" launch copy vs. seed-vs-organic reality** — HN/PH/press pitches claim "408 verified" but the vast majority are seed migrations. First technical audit blows this up. Honesty pass required.
@@ -51,7 +51,7 @@
 > - Stage C: OPEN — REWRITTEN in v7.3 (C1 split into C1a security migration + C1b onboarding; C3/C4 pushed to post-freeze; C5 verification-only)
 > - M-series: OPEN, top eng priority — **M0 pre-audit added (Playwright config + skip() cleanup)**
 > - **Traction baseline (corrected 2026-07-09):** 4 organic incident reports pre-launch (incl. the Grok passport case) — cold-start baseline is 4, not 0.
-> - **New launch-blockers surfaced in v7.3:** vercel.json cron fix (Jul 9), /api/unsubscribe/ endpoint (Jul 12), api_keys hardening migration (Jul 15), "408 incidents" honesty pass (Jul 20), pre-launch T-25→T-0 campaign kickoff (Jul 12)
+> - **New launch-blockers surfaced in v7.3:** dehost.json cron fix (Jul 9), /api/unsubscribe/ endpoint (Jul 12), api_keys hardening migration (Jul 15), "408 incidents" honesty pass (Jul 20), pre-launch T-25→T-0 campaign kickoff (Jul 12)
 > - 25 days to launch (Aug 2), "Accountability Gap" narrative
 >
 > **PACING (rewritten in v6):** Deadlines are **latest-acceptable dates, never waiting periods**. The moment a stage is approved, start the next one — even if its deadline is weeks away. The ONLY calendar lock is the **Aug 1–9 launch freeze**: during that window only Stage D work runs; any in-progress stage pauses and resumes Aug 10. An idle Executor is a review finding.
@@ -100,11 +100,11 @@
 
 ## 🚨 STAGE R — REPO CONFIDENTIALITY (URGENT — supersedes everything else)
 
-**Discovery (2026-07-08 audit):** the GitHub repo is **public**, exposing: `docs/P1-SPRINT-PLAN.md` (enumerates past security vulnerabilities — an attacker's handbook), `docs/VERCEL-RECOVERY.md` (Vercel account username + recovery path), valuation/MRR/runway seed migrations, SWOT data admitting a past `.env.local` leak, named outreach/grant contact lists, and every strategy/execution plan. Zero stars/forks — likely undiscovered. Git history is clean of actual secrets.
+**Discovery (2026-07-08 audit):** the GitHub repo is **public**, exposing: `docs/P1-SPRINT-PLAN.md` (enumerates past security vulnerabilities — an attacker's handbook), `docs/DEHOST-RECOVERY.md` (DeHost account username + recovery path), valuation/MRR/runway seed migrations, SWOT data admitting a past `.env.local` leak, named outreach/grant contact lists, and every strategy/execution plan. Zero stars/forks — likely undiscovered. Git history is clean of actual secrets.
 
-**R1 — FOUNDER, TODAY (1 click):** GitHub → repo **Settings → General → Danger Zone → Change visibility → Private**. Vercel's Git integration keeps deploying from private repos — no downtime. This repo stays private permanently (strategy, plans, runbooks, seeds, audits live here).
+**R1 — FOUNDER, TODAY (1 click):** GitHub → repo **Settings → General → Danger Zone → Change visibility → Private**. DeHost's Git integration keeps deploying from private repos — no downtime. This repo stays private permanently (strategy, plans, runbooks, seeds, audits live here).
 
-**R2 — FOUNDER + Executor, this week: token rotation.** Because SWOT documents a past `.env.local` leak, rotate once: Supabase service-role key, Vercel token, Resend, OpenRouter, Vertex, Upstash. Executor prepares the checklist and verifies the app works after each rotation; founder performs the rotations in each dashboard. _Accept:_ all six rotated; prod smoke test green after each.
+**R2 — FOUNDER + Executor, this week: token rotation.** Because SWOT documents a past `.env.local` leak, rotate once: DeHost service-role key, DeHost token, Resend, OpenRouter, Vertex, Upstash. Executor prepares the checklist and verifies the app works after each rotation; founder performs the rotations in each dashboard. _Accept:_ all six rotated; prod smoke test green after each.
 
 **R3 — Executor, POST-LAUNCH (not before Aug 10): curated public repo.** Create `alparai-platform` public repo: app source + PUBLIC-OK docs only (API.md, ARCHITECTURE.md, SECURITY.md, EU_AI_ACT_TAXONOMY.md, ADRs, audit methodology), **fresh git history** (init from filtered tree — never push this repo's history). Strategy docs, strategy seed migrations, runbooks, launch assets never enter it. This preserves the AGPL open-source trust card without the exposure. _Accept:_ `git ls-files` of the public repo contains zero PRIVATE-flagged files; Architect reviews the file list before the repo goes public.
 
@@ -119,7 +119,7 @@ Launch is **Aug 2**. Everything below is ranked. If deadlines slip, cut from the
 | #   | Item                                                                                                                                                                   | Deadline                        | Why blocking                                                        |
 | --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- | ------------------------------------------------------------------- |
 | 1   | **R1 repo → private** (founder, 1 click; MCP tool unavailable)                                                                                                         | **Jul 9**                       | Active public exposure of strategy/security docs                    |
-| 2   | **⚠️ vercel.json cron fix** — register `process-deletions` + `generate-marketing` — **PARTIAL: `a671fc1` capped daily (Hobby plan ceiling — see V-Series note below)** | **Jul 9**                       | KVKK LEGAL obligation (delete cron); social queue frozen without it |
+| 2   | **⚠️ dehost.json cron fix** — register `process-deletions` + `generate-marketing` — **PARTIAL: `a671fc1` capped daily (Hobby plan ceiling — see V-Series note below)** | **Jul 9**                       | KVKK LEGAL obligation (delete cron); social queue frozen without it |
 | 3   | ~~/api/unsubscribe/ endpoint~~ **✅ SHIPPED `7f30125`** (U1+U2+U3 templates wired)                                                                                     | ~~Jul 12~~                      | CAN-SPAM/KVKK legal; email sending is effectively unsafe without it |
 | 4   | R2 token rotation (founder + executor support)                                                                                                                         | **Jul 11**                      | `.env.local` leak history                                           |
 | 5   | **🆕 C1a — api_keys sha256+tier+client_type migration**                                                                                                                | **Jul 15**                      | Plain-text credential store — post-launch leak is unrecoverable     |
@@ -187,15 +187,15 @@ Shipped items awaiting Accept evidence. **Evidence deadline: end of Jul 13.** An
 | Day-2 amplification budget                            | W-series timeline         | **Jul 28**      | $0 (organic only)                                                |
 | C4 rate-limit model (hybrid vs daily-only)            | C4 (post-freeze)          | Aug 10          | Hybrid daily+burst                                               |
 | B2b scheduling                                        | Stage E                   | Aug 10          | Aug 10 start                                                     |
-| Vercel Pro upgrade                                    | nothing pre-launch        | Aug 10+         | Stay Hobby                                                       |
+| DeHost Pro upgrade                                    | nothing pre-launch        | Aug 10+         | Stay Hobby                                                       |
 | **R1 repo → private**                                 | **nothing — but OVERDUE** | **immediately** | _(no default possible — founder click required)_                 |
 | **R2 token rotation**                                 | **nothing — but OVERDUE** | **immediately** | _(no default possible — founder dashboards required)_            |
 
 ---
 
-## ⚙️ V-SERIES — Vercel Plan Ceiling (v7.7 — reality note)
+## ⚙️ V-SERIES — DeHost Plan Ceiling (v7.7 — reality note)
 
-**Discovery (2026-07-11, commit `a671fc1`):** Executor registered `process-deletions` + `generate-marketing` crons, but Vercel Hobby plan enforces **daily maximum schedule**. Cron entries were downgraded to daily.
+**Discovery (2026-07-11, commit `a671fc1`):** Executor registered `process-deletions` + `generate-marketing` crons, but DeHost Hobby plan enforces **daily maximum schedule**. Cron entries were downgraded to daily.
 
 **Impact assessment (acceptable for launch):**
 
@@ -300,11 +300,11 @@ Shipped items awaiting Accept evidence. **Evidence deadline: end of Jul 13.** An
 
 ---
 
-## 🚨 V-SERIES — vercel.json Cron Fix (v7.3, MUST — Jul 9)
+## 🚨 V-SERIES — dehost.json Cron Fix (v7.3, MUST — Jul 9)
 
-> `vercel.json` cron list currently registers only 3 jobs (aiaaic-import, aiid-import, fetch-external). Two production-critical crons exist in code but are unregistered — Vercel will never trigger them.
+> `dehost.json` cron list currently registers only 3 jobs (aiaaic-import, aiid-import, fetch-external). Two production-critical crons exist in code but are unregistered — DeHost will never trigger them.
 
-**V1. Register `process-deletions` cron.** File: `src/app/api/cron/process-deletions/route.ts` implements the 72h grace → soft-delete → 30-day hard-delete pipeline. **KVKK LEGAL obligation** — unregistered = production violation. Add to `vercel.json`:
+**V1. Register `process-deletions` cron.** File: `src/app/api/cron/process-deletions/route.ts` implements the 72h grace → soft-delete → 30-day hard-delete pipeline. **KVKK LEGAL obligation** — unregistered = production violation. Add to `dehost.json`:
 
 ```json
 { "path": "/api/cron/process-deletions", "schedule": "0 3 * * *" }
@@ -316,9 +316,9 @@ Shipped items awaiting Accept evidence. **Evidence deadline: end of Jul 13.** An
 { "path": "/api/cron/generate-marketing", "schedule": "0 9,15 * * *" }
 ```
 
-**V3. Vercel tier check.** Hobby tier allows 2 cron jobs; after V1+V2 the project has 5. **Founder decision:** upgrade to Pro (~$20/mo) or leave a 3-cron subset on Hobby. Executor writes a proposal note in `docs/PROPOSALS/` with the trade-off; founder decides.
+**V3. DeHost tier check.** Hobby tier allows 2 cron jobs; after V1+V2 the project has 5. **Founder decision:** upgrade to Pro (~$20/mo) or leave a 3-cron subset on Hobby. Executor writes a proposal note in `docs/PROPOSALS/` with the trade-off; founder decides.
 
-_Accept:_ Vercel dashboard lists 5 cron jobs; each shows at least 1 successful execution in the last 24 hours; `process-deletions` writes an audit-log row per run.
+_Accept:_ DeHost dashboard lists 5 cron jobs; each shows at least 1 successful execution in the last 24 hours; `process-deletions` writes an audit-log row per run.
 
 **N1. Academy → top-level nav.** Move the Academy link out of the "Resources" dropdown to the main nav bar (`src/components/layout/nav.tsx:38`), alongside incidents/leaderboard/ai_act/transparency. Update `mobile-nav.tsx` ordering to match (Academy visible without expanding anything). Uses existing `nav.academy` key (EN "Academy" / TR "Akademi"). _Accept:_ Academy visible in the top bar on desktop + mobile without any dropdown; nav e2e spec updated; bilingual.
 
@@ -423,7 +423,7 @@ _Accept:_ all drafts in `docs/launch-assets/countdown/`, `docs/launch-assets/tr-
 | **Aug 2, 07:00** | Sanity: Sentry rules armed, cron jobs green (5 registered), health endpoint 200                                              | Founder                        | Screenshots into launch log                                      | If red: postpone 24h                                               |
 | **Aug 2, 07:30** | Waitlist early-access email sent (single send from queue)                                                                    | Founder approves; system sends | Resend log 200; open rate check at T+2h                          | —                                                                  |
 | **Aug 2, 08:00** | Turnstile spot-check on submit form                                                                                          | Founder                        | Test submit completes                                            | Env flag `TURNSTILE_KILL_SWITCH=true` if broken                    |
-| **Aug 2, 08:30** | Dashboard suite open (Vercel Analytics, Plausible live, Sentry, Supabase, Upstash)                                           | Founder                        | Baseline snapshot at T-30m                                       | —                                                                  |
+| **Aug 2, 08:30** | Dashboard suite open (DeHost Analytics, Plausible live, Sentry, DeHost, Upstash)                                           | Founder                        | Baseline snapshot at T-30m                                       | —                                                                  |
 | **Aug 2, 09:00** | **HN "Show HN: ALPAR AI" post** (from `docs/launch-assets/hacker_news.md`)                                                   | Founder                        | HN URL logged; visitor spike expected T+15m                      | —                                                                  |
 | **Aug 2, 09:15** | **Product Hunt page goes live**                                                                                              | Founder                        | PH ranking screenshot every hour                                 | —                                                                  |
 | **Aug 2, 09:30** | **TR press embargo lift** — send email to Webrazzi/Shiftdelete/Technopat/Donanım Haber                                       | Founder                        | Sends logged with subject-line audit                             | —                                                                  |
@@ -437,7 +437,7 @@ _Accept:_ all drafts in `docs/launch-assets/countdown/`, `docs/launch-assets/tr-
 | **Aug 2, 21:00** | **EOD summary** — decide Day 2 amplification (second thread? community response? paid boost?)                                | Founder                        | Day 2 plan committed                                             | —                                                                  |
 | **Aug 3, 09:00** | **T+24h retro** — one-page: what worked, what broke, what to change for the week                                             | Founder                        | Retro in launch log                                              | —                                                                  |
 
-**Pre-populated kill-switch env flags (must exist in Vercel env by Aug 1):**
+**Pre-populated kill-switch env flags (must exist in DeHost env by Aug 1):**
 
 - `AUTOPILOT_KILL_SWITCH=false` (flip true to halt cross-audit)
 - `TURNSTILE_KILL_SWITCH=false` (flip true to bypass challenge on submit — emergency only, use with rate limit up)
@@ -446,7 +446,7 @@ _Accept:_ all drafts in `docs/launch-assets/countdown/`, `docs/launch-assets/tr-
 
 **Communication channel during launch:** single group chat (founder + Executor async via commit messages, since Executor cannot post external comms). If Executor is unavailable, founder follows RUNBOOK_LAUNCH_DAY.md line-by-line.
 
-_Accept (Aug 1):_ `docs/RUNBOOK_LAUNCH_DAY.md` exists with this table + copy-ready CTA links + kill-switch commands; all 4 env flags exist in Vercel with baseline `false`.
+_Accept (Aug 1):_ `docs/RUNBOOK_LAUNCH_DAY.md` exists with this table + copy-ready CTA links + kill-switch commands; all 4 env flags exist in DeHost with baseline `false`.
 
 ---
 
@@ -553,7 +553,7 @@ _Accept:_ Sept 1 automated email; format matches Y2; historical Y2 numbers inclu
 
 **S3. Security headers pass (MUST — Jul 21).** Verify on prod: `Strict-Transport-Security`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, and a CSP at least in `Report-Only` mode. **Exception:** `/incidents/[id]/embed` must remain frameable (`frame-ancestors *` on that route only — C5 depends on it); everything else denies framing. _Accept:_ securityheaders.com grade A on `/`, embed route still renders in an external iframe.
 
-**S4. Backup restore drill (MUST — Jul 22, repeat Jul 29).** Standing Rule #11 takes snapshots; nobody has proven they restore. Drill: latest Monday `supabase db dump` → restore into a scratch Supabase project → run 5 smoke queries (incident count by source, RLS policy count, latest migration version, a PII-masked sample row, `strategy_innovations` row count) → destroy scratch project. Record **time-to-restore** in `docs/RUNBOOK_LAUNCH.md` (it becomes the RTO number in the escalation ladder). _Accept:_ drill log with timestamps + smoke-query outputs committed; RTO < 60 min; drill repeated once more Jul 29 to confirm repeatability.
+**S4. Backup restore drill (MUST — Jul 22, repeat Jul 29).** Standing Rule #11 takes snapshots; nobody has proven they restore. Drill: latest Monday `dehost db dump` → restore into a scratch DeHost project → run 5 smoke queries (incident count by source, RLS policy count, latest migration version, a PII-masked sample row, `strategy_innovations` row count) → destroy scratch project. Record **time-to-restore** in `docs/RUNBOOK_LAUNCH.md` (it becomes the RTO number in the escalation ladder). _Accept:_ drill log with timestamps + smoke-query outputs committed; RTO < 60 min; drill repeated once more Jul 29 to confirm repeatability.
 
 **S5. Performance budget (SHOULD — Jul 25).** Lighthouse mobile on home, incidents, submit: **Performance ≥ 85, no CLS regression** at the three M-series viewports. Not launch-blocking (per de-scope ladder philosophy: a slow page degrades, a broken cron violates law) — but the launch traffic wave is the one day performance is marketing. _Accept:_ three Lighthouse JSON reports committed; regressions filed as M2 follow-ups.
 
@@ -571,16 +571,16 @@ _Accept:_ Sept 1 automated email; format matches Y2; historical Y2 numbers inclu
 8. **Every new table ships RLS in the same migration.** Public pages use the anon server client, never `createAdminClient()`.
 9. **All external fetching:** SSRF-safe (host allowlist, no private-IP redirects, size/time limits).
 10. **Quality gate per stage:** `pnpm typecheck` + full vitest + eslint 0 warnings; Playwright for touched flows; report which Accept criteria you verified and how.
-11. **Haftalık DB snapshot.** Her Pazartesi `supabase db dump` (PII-masked) çıktısını güvenli depolamaya kaydet. FREE tier inaktivite kontrolü: Supabase dashboard'a en az ayda 1 login. Önceki `alparai-db` kaybı tekrarlanmamalı. **v7.3 ek:** Weekly snapshot report'una `process-deletions` cron'un son 7 gün çalıştırma kanıtı (log satırları) eklenir; KVKK yükümlülüğünün fiilen işlediği doğrulanır.
+11. **Haftalık DB snapshot.** Her Pazartesi `dehost db dump` (PII-masked) çıktısını güvenli depolamaya kaydet. FREE tier inaktivite kontrolü: DeHost dashboard'a en az ayda 1 login. Önceki `alparai-db` kaybı tekrarlanmamalı. **v7.3 ek:** Weekly snapshot report'una `process-deletions` cron'un son 7 gün çalıştırma kanıtı (log satırları) eklenir; KVKK yükümlülüğünün fiilen işlediği doğrulanır.
 12. **Her migration dosyası rollback yorumu içerir.** Dosyanın sonunda `-- ROLLBACK:` yorum bloğu olarak geri alma SQL'i yer alır.
 13. **"User-zero" test.** Every user-facing feature must be manually tested as a first-time anonymous visitor on production before marking Accept. If you can't explain the value to a non-technical person in one sentence, simplify.
 14. 🆕 **Plan documents are read-only for the Executor.** Only the Architect edits `docs/ANTIGRAVITY_EXECUTION_PLAN.md`, `docs/MASTER_PLAN_2026H2.md`, `docs/UPDATE_PLAN_2026Q3.md`. Executor may append proposals to `docs/PROPOSALS/`.
 15. 🆕 **Single-branch workflow.** Work directly on `master` with small, reviewable commits. No feature branches, no PRs on plan docs. Emergency hotfix branches must be deleted within 24h of merge.
 16. 🆕 **Stage completion requires an Architect approval line** in the report block: `Architect-Approval: <commit-hash> <YYYY-MM-DD>`. Executor may not self-mark a stage complete.
 17. 🆕 **v7.3 — SHA-256 credential authentication.** Every externally-reachable API endpoint authenticates credentials by hashed comparison (`digest(input, 'sha256') === stored_sha256`), never plain-text equality. Plain-text credential comparison (`api_key === stored`) fails code review automatically. Constant-time comparison via `crypto.timingSafeEqual` remains required on top of the hash check.
-18. 🆕 **v7.3 — Code-reality reconciliation before implementation.** Before starting any stage the Executor greps the codebase against the plan (`docs/API.md`, migration schemas, existing routes, `vercel.json` cron list). Any mismatch → write a proposal note (`docs/PROPOSALS/`), do not write code. This rule was created because v7.3 audit found B1/B5/C5 already shipped, C1 schema unsafe, and 2 crons unregistered — all missed by prior plans.
+18. 🆕 **v7.3 — Code-reality reconciliation before implementation.** Before starting any stage the Executor greps the codebase against the plan (`docs/API.md`, migration schemas, existing routes, `dehost.json` cron list). Any mismatch → write a proposal note (`docs/PROPOSALS/`), do not write code. This rule was created because v7.3 audit found B1/B5/C5 already shipped, C1 schema unsafe, and 2 crons unregistered — all missed by prior plans.
 19. 🆕 **v7.3 — Numeric-claim honesty.** Any user-facing numeric claim in the app or launch copy (`N incidents`, `N users`, `N providers`) must query the database live and split by source (`incident_source`, `verified_by`, etc.). The word "verified" is reserved for `expert_verified = true` rows only until F1 (expert-review queue) is live. Hardcoded landing-page numbers are a review-fail.
-20. 🆕 **v7.4 — Daily cost-budget alarm & monthly ceiling.** Executor ships a `weekly_cost_summary` cron (or extends the existing weekly summary) that sums `cross-audit spend + Vercel + Supabase + Upstash + Resend + OpenRouter + Vertex` per day and per month. Thresholds:
+20. 🆕 **v7.4 — Daily cost-budget alarm & monthly ceiling.** Executor ships a `weekly_cost_summary` cron (or extends the existing weekly summary) that sums `cross-audit spend + DeHost + DeHost + Upstash + Resend + OpenRouter + Vertex` per day and per month. Thresholds:
     - **Daily > $50 USD** → Sentry warning + admin banner "cost trending high, review last 24h submissions"
     - **Daily > $100 USD** → automatic pre-triage tightening (raise min description-word threshold from 15 → 25 for 24h) + founder email
     - **Monthly ceiling $500 USD** — when reached, cross-audit throttles to expert-review queue only until month roll-over; founder email + admin banner
@@ -758,7 +758,7 @@ These items were shipped without prior Architect approval. Retro-approved to avo
 > - **C4** — `src/lib/utils/rate-limit.ts` uses per-minute IP-based limits (5/30/100); the plan says per-day key-based (100/1000/10000). Must reconcile. Push to post-freeze.
 > - **C5** — embed + OG image + share buttons **already shipped** (`src/app/[locale]/incidents/[id]/embed/page.tsx`, `opengraph-image.tsx`, `src/components/incidents/share-buttons.tsx`). Verification-only.
 
-**C1a. API key hardening migration (MUST — Jul 15).** New migration `supabase/migrations/20260715000000_api_keys_hardening.sql`:
+**C1a. API key hardening migration (MUST — Jul 15).** New migration `dehost/migrations/20260715000000_api_keys_hardening.sql`:
 
 - Add columns to `api_keys`:
   - `key_sha256 TEXT UNIQUE` — sha256 hex of the raw key
@@ -830,7 +830,7 @@ Prepare `docs/RUNBOOK_LAUNCH.md` before Aug 1:
 - Submit funnel `submit_start → submit_complete` conversion <50% → alarm
 - Cross-audit failure rate >20% in last hour → kill switch
 - DB active connections >15 on FREE tier → investigate
-- Rollback: `git revert HEAD && git push` (Vercel auto-deploys)
+- Rollback: `git revert HEAD && git push` (DeHost auto-deploys)
 - Contacts/escalation ladder
 
 **D-extra2. 🆕 Academic outreach pack** (Executor drafts; FOUNDER sends — Executor never contacts anyone): EN outreach email + 1-page PDF/markdown one-pager for university AI-governance groups. Target list: Harvard Berkman Klein Center, MIT Media Lab / AI governance, Stanford HAI, Oxford Internet Institute + the Academy page's existing "Target/Invited" tiers. Pitch: research access to the incident corpus (F2 portal), co-authorship on the Q4 "State of AI Incidents" report. Do NOT cite any specific survey/statistic unless the founder supplies a verified source. Files under `docs/launch-assets/academic/`. _Accept:_ drafts exist, bilingual cover note for founder, zero external sends.
@@ -917,7 +917,7 @@ Dependabot PRs: merge only after CI green (security patches same week; feature b
 
 `strategy_innovations` tablosu ve `/admin/innovations` sayfası MEVCUT (`20260702000200_innovations.sql`; RLS: ceo/admin only). Yalnızca seed gerekiyor.
 
-**Dosya:** `supabase/migrations/20260709000001_seed_i_series_innovations.sql`
+**Dosya:** `dehost/migrations/20260709000001_seed_i_series_innovations.sql`
 
 Her satır ayrı `INSERT … WHERE NOT EXISTS` ile idempotent eklenir (title başına göre `LIKE 'IX —%'`).
 
@@ -957,7 +957,7 @@ Her satır ayrı `INSERT … WHERE NOT EXISTS` ile idempotent eklenir (title ba�
 
 **Root cause (3 blockers, in order):**
 
-1. **`generate-marketing` cron unregistered in `vercel.json`** → the content-generation pipeline that would turn incident data into newsletter/digest/social copy runs zero times in production. V2 fix (Jul 9) unblocks this. **This is the #1 blocker.**
+1. **`generate-marketing` cron unregistered in `dehost.json`** → the content-generation pipeline that would turn incident data into newsletter/digest/social copy runs zero times in production. V2 fix (Jul 9) unblocks this. **This is the #1 blocker.**
 2. **409 incidents ≈ 405 seed + 4 organic** (H-series honesty pass reveals this). Most seeds lack `cross_audit_score`, `source`, or provider linkage — they were batch-inserted without running the cross-audit engine. Displaying them as "processed" is misleading.
 3. **No retrospective re-audit pipeline** — the cross-audit engine is wired for new submissions only. Seeded incidents never ran through AI scoring, TruthScore calculation, or source validation.
 
@@ -1405,7 +1405,7 @@ The Executor works this list top-to-bottom. Every item = its own commit, pushed 
 
 | #             | Item                                                                                                                                                                                                                                                                     | Priority                  | Est.  | Blocks                             |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------- | ----- | ---------------------------------- |
-| ~~1~~         | ~~V1+V2 — vercel.json cron register~~ **✅ SHIPPED `f2107a5` (daily-capped, Hobby plan)**                                                                                                                                                                                | ✅                        | —     | —                                  |
+| ~~1~~         | ~~V1+V2 — dehost.json cron register~~ **✅ SHIPPED `f2107a5` (daily-capped, Hobby plan)**                                                                                                                                                                                | ✅                        | —     | —                                  |
 | ~~2~~         | ~~U1+U2+U3 — unsubscribe API + HMAC token + email templates~~ **✅ SHIPPED `7f30125`**                                                                                                                                                                                   | ✅                        | —     | —                                  |
 | ~~3~~         | ~~M0 — Playwright config (iPhone SE, Pixel 7) + skip() cleanup~~ **✅ SHIPPED `89a75ba`**                                                                                                                                                                                | ✅                        | —     | —                                  |
 | ~~4~~         | ~~M1 — Mobile audit → `docs/MOBILE_AUDIT.md`~~ **✅ SHIPPED `bb1fcca`**                                                                                                                                                                                                  | ✅                        | —     | —                                  |
@@ -1430,7 +1430,7 @@ The Executor works this list top-to-bottom. Every item = its own commit, pushed 
 | ~~23~~        | ~~Y2 + Y3 — day-7 and day-30 automated readouts (cron + email template)~~ **✅ SHIPPED `98936ab`** (`src/app/api/cron/pivot-check/route.ts` + `kill-metric/route.ts`)                                                                                                    | ✅                        | —     | —                                  |
 | ~~24~~        | ~~Standing Rule #20 — daily cost-budget alarm cron + monthly ceiling + `COST_KILL_SWITCH` env~~ **✅ SHIPPED `601c147`** (Finance dashboard + kill-metric cron + budget-gauge component; Neutrality Charter `133af72` also retro-approved as related governance surface) | ✅                        | —     | —                                  |
 | 25            | M2-touch (post-launch, SHOULD) — sweep 44px touch-target findings on 9 non-home pages                                                                                                                                                                                    | SHOULD                    | 1–2 d | Mobile ergonomics polish           |
-| ~~26~~        | ~~S1 — full-history secrets scan~~ **✅ SHIPPED `14bb897`** (`docs/security/S1-secrets-scan.md`, redacted Vercel token)                                                                                                                                                  | ✅                        | —     | —                                  |
+| ~~26~~        | ~~S1 — full-history secrets scan~~ **✅ SHIPPED `14bb897`** (`docs/security/S1-secrets-scan.md`, redacted DeHost token)                                                                                                                                                  | ✅                        | —     | —                                  |
 | ~~27~~        | ~~S2 — dependency audit + CI warning gate~~ **✅ SHIPPED `14bb897`+`2a47ff5`** (`docs/security/S2-dep-audit.md`)                                                                                                                                                         | ✅                        | —     | —                                  |
 | ~~28~~        | ~~S3 — security headers pass (HSTS, CSP report-only, frame-deny)~~ **✅ SHIPPED `1774ac9`+`2a47ff5`** (`next.config.mjs` HSTS + doc `docs/security/S3-security-headers.md`) — CSP report-only + frame-deny verify                                                        | ⚠️ verify CSP             | —     | —                                  |
 | 29            | S4 — backup restore drill (dump → scratch project → 5 smoke queries → RTO into RUNBOOK) — **PARTIAL: doc `2a47ff5` shipped, gerçek drill loglarını `docs/METHODOLOGY_AUDITS/S4-restore-drill-YYYY-MM-DD.log` altına raporla**                                            | ⚠️ drill pending          | 3 h   | Untested backup = no backup        |
@@ -1457,7 +1457,7 @@ The following require founder input before or during the sequence above. Executo
 1. **R1 repo → private timing.** The GitHub MCP does not expose a `update_repository` visibility tool. Founder must click through repo Settings → Danger Zone → Change visibility → Private. When? _Recommended: within 24h._
 2. **C4 rate-limit model.** Hybrid (daily tavan + per-minute burst) vs. daily-only. _Recommended: hybrid._
 3. **"408 incidents" copy dili.** "408 curated + user-reported" vs. "400+ documented" vs. something sharper. Founder picks the phrasing for HN/PH/TR/academic before H2 drafts finalize.
-4. **Vercel tier.** Hobby (2-cron cap = insufficient after V1+V2) or Pro (~$20/mo). _Recommended: Pro; Executor writes a cost-benefit proposal._
+4. **DeHost tier.** Hobby (2-cron cap = insufficient after V1+V2) or Pro (~$20/mo). _Recommended: Pro; Executor writes a cost-benefit proposal._
 5. **P2 waitlist location.** Home-page banner (recommended) vs. dedicated `/countdown` page.
 6. **B2b scheduling.** Push weekly-digest / expert-verification emails to Aug 10+ freeze exit? _Recommended: yes — M-series + C-series already saturate pre-launch._
 7. **N4 imported-incident language.** (a) Gemini batch-translation of summaries, (b) small "EN" badge on Turkish pages. Executor drafts feasibility notes for both; founder picks.
@@ -1496,7 +1496,7 @@ After each stage: push → report with:
 | **API route**           | Auth path: grep for hash compare + `timingSafeEqual`, no `\|\| "..."` fallback (Rules #3, #17); curl without credentials → 401/400 not 500; rate limit present; PII Guardian on any external write                                   |
 | **UI / component**      | Both locales render (no raw key leakage); `scripts/check-i18n.mjs` green (Rule #7); no `createAdminClient()` on a public path (Rule #8); brand colors intact (Rule #4); no "compliant"/"verified" wording violations (Rules #5, #19) |
 | **e2e / CI change**     | `--list` shows the new specs on all three mobile projects; deliberate-break demo referenced in report with the revert commit                                                                                                         |
-| **Cron / env-flag**     | Registered in `vercel.json`; auth header check present (`CRON_SECRET`); kill-switch flag read at entry, not mid-run                                                                                                                  |
+| **Cron / env-flag**     | Registered in `dehost.json`; auth header check present (`CRON_SECRET`); kill-switch flag read at entry, not mid-run                                                                                                                  |
 | **Docs / launch asset** | File exists at stated path; zero external sends (Rule #6); numeric claims live-queried or absent (Rule #19); "DRAFT — founder sends" header on anything outbound                                                                     |
 | **Any item**            | Reported commit hash exists on `origin/master` (Rule #1); diff touches only files the item scoped (Rule #2)                                                                                                                          |
 
@@ -1605,7 +1605,7 @@ All stages A–H accepted; launch executed Aug 2 with zero P0; ≥1 paying custo
 ## CHANGELOG (v7.6 → v7.7) — Reconciliation Pass
 
 - **U1+U2+U3 shipped** (`7f30125`), **M0** (`89a75ba`), **M2-home** (`de59706`), **M3** (`aace3ba`) — 4 MUST items dropped from launch-critical path
-- **Vercel Hobby daily-cron ceiling** documented (V-Series note); Pro upgrade decision deferred to post-Aug 2 cost review
+- **DeHost Hobby daily-cron ceiling** documented (V-Series note); Pro upgrade decision deferred to post-Aug 2 cost review
 - **state_support (`76ddec4`) retro-approved one-time**; Rule #2 zero-tolerance re-affirmed for all future commits
 - Active MUST count: ~24 → **~15 remaining** before Aug 2 launch
 - Remaining launch-critical: C1a (Jul 15), H1–H3 (Jul 20), pre-launch campaign, RUNBOOK v1.1, D-extra assets, S-series (Jul 28)
@@ -1647,7 +1647,7 @@ All stages A–H accepted; launch executed Aug 2 with zero P0; ≥1 paying custo
 | ----------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | **Stage C fully rewritten** (C1 → C1a hardening + C1b onboarding; C5 marked shipped; C3/C4 pushed to post-freeze)                               | 360° audit exposed plan-vs-code drift: C5 already live, C1 plain-text (security), C4 config disagrees with plan values |
 | **C1a MUST-listed for Jul 15**                                                                                                                  | Plain-text credential storage in `api_keys` — launch-blocking security gap                                             |
-| **🆕 V-series MUST added for Jul 9** — `vercel.json` cron register                                                                              | `process-deletions` KVKK LEGAL, `generate-marketing` narrative — both silently non-functional in prod                  |
+| **🆕 V-series MUST added for Jul 9** — `dehost.json` cron register                                                                              | `process-deletions` KVKK LEGAL, `generate-marketing` narrative — both silently non-functional in prod                  |
 | **🆕 U-series MUST added for Jul 12** — `/api/unsubscribe/` endpoint                                                                            | Front page exists but no API route; email link clicks legally required (CAN-SPAM/KVKK)                                 |
 | **🆕 H-series MUST added for Jul 20** — "408 incidents" honesty pass (source badges + copy softening + hardcoded-count removal)                 | Launch copy claims "408 verified" while DB is dominated by seeds; will not survive first audit                         |
 | **🆕 P-series MUST added for Jul 12** — Pre-launch T-25→T-0 campaign (countdown threads + waitlist + TR press embargo + LinkedIn/Reddit drafts) | 25-day attention window was empty; every existing thread targets launch day                                            |

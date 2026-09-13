@@ -1,6 +1,6 @@
 {
   "project_name": "Alparai",
-  "include": ["src", ".agents", "docs", "scripts", "supabase"],
+  "include": ["src", ".agents", "docs", "scripts", "dehost"],
   "exclude": ["node_modules", ".git", "graphify-out", "target_fresh", ".pnpm-store"],
   "node_types": {
     "engine": { "pattern": ".agents/engines/*.json", "color": "#FF6B35" },

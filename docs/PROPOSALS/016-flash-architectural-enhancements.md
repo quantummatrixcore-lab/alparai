@@ -19,7 +19,7 @@ Sistemin mevcut kapasitesini ve otonom yeteneklerini üst seviyeye çıkarmak i�
 
 ### 2.1 Edge-Native Pre-Triage & Zero-Cost Token Filtering Layer
 
-- **Öneri**: Olay bildirimleri ve kamuya açık taramalarda LLM çağrısı yapılmadan önce Vercel Edge Runtime üzerinde çalışan hafif bir kural motoru ve Redis önbellekleme katmanı kurulması.
+- **Öneri**: Olay bildirimleri ve kamuya açık taramalarda LLM çağrısı yapılmadan önce DeHost Edge Runtime üzerinde çalışan hafif bir kural motoru ve Redis önbellekleme katmanı kurulması.
 - **Fayda**: Önemsiz, tekrarlayan veya geçersiz girdiler LLM'e gitmeden Edge katmanında %100 filtrelenir. LLM API jeton harcamalarında **%60+ bütçe tasarrufu** sağlanır ve yanıt süresi **<100ms** seviyesine iner.
 
 ### 2.2 Self-Healing Vector Incident Merger (Otonom Olay Birleştirici)

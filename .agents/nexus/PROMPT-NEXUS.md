@@ -55,7 +55,7 @@ Deployment is never "finished" when the commit is pushed. It is only finished wh
 
 - **Laws of Verification:**
   1. **Poll & Verify:** After every push/deploy trigger, agents MUST use `get_commit_status` to poll for success.
-  2. **Log Extraction:** Upon failure, agents MUST fetch build logs (Vercel/GitHub Actions) to identify the specific breaking change.
+  2. **Log Extraction:** Upon failure, agents MUST fetch build logs (DeHost/GitHub Actions) to identify the specific breaking change.
   3. **Auto-Remediation:** If a build fails, the agent's task is automatically extended. They must fix the error and re-deploy until `status === 'success'`.
   4. **No Premature Exit:** Closing a task with "I have pushed the changes" while the build is failing is a **PROTOCOL_VIOLATION**.
 

@@ -205,4 +205,4 @@ For web contact forms (e.g. OpenAI, Anthropic, Midjourney), the autonomous sales
 1. **Profile Check:** Attach to existing Chrome session at `http://localhost:9222/json` (`C:/Users/ercum/.openchrome_profile`).
 2. **Identity:** Authenticate via `quantum.matrix.core@gmail.com` / `hello@alparai.com`.
 3. **Submission:** Fill target contact form fields using `form_input` / `act` tools without spawning new browser instances.
-4. **Logging:** Record all contact form submissions and email dispatches in Supabase audit logs.
+4. **Logging:** Record all contact form submissions and email dispatches in DeHost audit logs.

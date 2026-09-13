@@ -26,7 +26,7 @@ export function CognitiveDNA() {
           </div>
           <div className="flex items-center justify-center py-6 text-sm text-slate-300">
             <span className="animate-pulse">
-              Dynamic visual data for "{query}" rendered via Vercel AI SDK (Simulation)
+              Dynamic visual data for "{query}" rendered via DeHost AI SDK (Simulation)
             </span>
           </div>
         </div>,

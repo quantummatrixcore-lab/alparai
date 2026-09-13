@@ -84,7 +84,7 @@
   ["hero.trust_2_title", "EU Data Hosted", "FR"],
   [
     "hero.trust_2_desc",
-    "All data stored in EU (Supabase eu-west-1, Vercel fra1). GDPR-aligned by design.",
+    "All data stored in EU (DeHost eu-west-1, DeHost fra1). GDPR-aligned by design.",
     "FR"
   ],
   ["hero.trust_3_title", "PII Guardian", "FR"],

@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { createServerClient } from "@supabase/ssr";
-import { type EmailOtpType } from "@supabase/supabase-js";
+import { createServerClient } from "@/lib/dehost/server";
+type EmailOtpType = any;
 import { logger } from "@/lib/utils/logger";
 import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from "@/lib/constants";
 import type { Database } from "@/types/database";
@@ -39,62 +39,35 @@ function detectLocale(request: NextRequest): string {
 }
 
 export async function GET(request: NextRequest) {
-  const { searchParams, origin } = new URL(request.url);
-  const code = searchParams.get("code");
-  const tokenHash = searchParams.get("token_hash");
-  const type = searchParams.get("type");
-  const errorParam = searchParams.get("error");
-  const errorDescription = searchParams.get("error_description");
-  const next = safeNextPath(searchParams.get("next"));
-  const locale = detectLocale(request);
-  const hasLocalePrefix = SUPPORTED_LOCALES.some(
-    (l) => next === `/${l}` || next.startsWith(`/${l}/`),
-  );
-  const redirectTo = hasLocalePrefix ? `${origin}${next}` : `${origin}/${locale}${next}`;
-
-  const response = NextResponse.redirect(redirectTo);
-
-  if (errorParam) {
-    logger.warn("OAuth provider returned an error", {
-      error: errorParam,
-      description: errorDescription,
-    });
-    return NextResponse.redirect(
-      `${origin}/${locale}/auth/signin?error=oauth&reason=${encodeURIComponent(errorDescription || errorParam)}`,
-    );
-  }
-
-  const isProduction =
-    process.env.NODE_ENV === "production" ||
-    (!request.url.startsWith("http://localhost") && !request.url.startsWith("http://127.0.0.1"));
-
-  const supabase = createServerClient<Database>(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll();
-        },
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
-          cookiesToSet.forEach(({ name, value, options }) =>
-            response.cookies.set(name, value, {
-              ...options,
-              sameSite: options?.sameSite ?? "lax",
-              secure: options?.secure ?? isProduction,
-              httpOnly: options?.httpOnly ?? true,
-              path: options?.path ?? "/",
-            }),
-          );
-        },
-      },
-    },
-  );
-
   try {
+    const { searchParams, origin } = new URL(request.url);
+    const code = searchParams.get("code");
+    const tokenHash = searchParams.get("token_hash");
+    const type = searchParams.get("type");
+    const errorParam = searchParams.get("error");
+    const errorDescription = searchParams.get("error_description");
+    const next = safeNextPath(searchParams.get("next"));
+    const locale = detectLocale(request);
+    const hasLocalePrefix = SUPPORTED_LOCALES.some(
+      (l) => next === `/${l}` || next.startsWith(`/${l}/`),
+    );
+    const redirectTo = hasLocalePrefix ? `${origin}${next}` : `${origin}/${locale}${next}`;
+
+    const response = NextResponse.redirect(redirectTo);
+
+    if (errorParam) {
+      logger.warn("OAuth provider returned an error", {
+        error: errorParam,
+        description: errorDescription,
+      });
+      return NextResponse.redirect(
+        `${origin}/${locale}/auth/signin?error=oauth&reason=${encodeURIComponent(errorDescription || errorParam)}`,
+      );
+    }
+
+    const dehost = await createServerClient();
     if (code) {
-      const { error } = await supabase.auth.exchangeCodeForSession(code);
+      const { error } = await dehost.auth.exchangeCodeForSession(code);
       if (!error) {
         return response;
       }
@@ -108,7 +81,7 @@ export async function GET(request: NextRequest) {
     }
 
     if (tokenHash && type) {
-      const { error } = await supabase.auth.verifyOtp({
+      const { error } = await dehost.auth.verifyOtp({
         token_hash: tokenHash,
         type: type as EmailOtpType, // use EmailOtpType to avoid as never
       });
@@ -127,7 +100,12 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.redirect(`${origin}/${locale}/auth/signin?error=missing_params`);
   } catch (err) {
+    console.error("DEBUG CALLBACK ERR:", err);
+    if (err instanceof Error && (err.message.includes("NEXT_REDIRECT") || (err as any).digest?.includes("NEXT_REDIRECT"))) {
+      throw err;
+    }
     logger.error("Callback handler exception", undefined, err instanceof Error ? err : undefined);
-    return NextResponse.redirect(`${origin}/${locale}/auth/signin?error=server_error`);
+    const origin = request.nextUrl?.origin || "http://localhost:3000";
+    return NextResponse.redirect(`${origin}/en/auth/signin?error=server_error`);
   }
 }

@@ -1,16 +1,16 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { run360ExpertAudit } from "@/actions/admin/archive/admin-360-evaluation";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 
 vi.mock("@/lib/auth/session", () => ({
   requireAdmin: vi.fn().mockResolvedValue({ id: "admin" })
 }));
 
-vi.mock("@/lib/supabase/server", () => ({
+vi.mock("@/lib/dehost/server", () => ({
   createServerClient: vi.fn(),
 }));
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: vi.fn(),
 }));
 
@@ -45,7 +45,7 @@ describe("run360ExpertAudit", () => {
       }),
     } as never);
     
-    const { createAdminClient } = await import("@/lib/supabase/admin");
+    const { createAdminClient } = await import("@/lib/dehost/admin");
     vi.mocked(createAdminClient).mockReturnValue({
       from: vi.fn().mockImplementation((table: string) => {
         if (table === "ai_providers") {
@@ -70,7 +70,7 @@ describe("run360ExpertAudit", () => {
   });
 
   it("should handle unexpected errors gracefully", async () => {
-    vi.mocked(createServerClient).mockRejectedValue(new Error("Supabase error"));
+    vi.mocked(createServerClient).mockRejectedValue(new Error("DeHost error"));
     const result = await run360ExpertAudit();
     expect(result.ok).toBe(false);
     expect(result.error).toBe("Failed to run 360 AI Audit");

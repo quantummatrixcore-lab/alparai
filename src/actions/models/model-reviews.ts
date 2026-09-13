@@ -2,8 +2,8 @@
 
 import { revalidatePath } from "next/cache";
 import { getTranslations } from "next-intl/server";
-import { createServerClient } from "@/lib/supabase/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createServerClient } from "@/lib/dehost/server";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { getCurrentUser } from "@/lib/auth/session";
 import { modelReviewSchema } from "@/lib/validation/schemas";
 import { withAutopilot, submitModelReviewPolicy, attemptsOf, durationOf } from "@/lib/autopilot";
@@ -39,7 +39,7 @@ const runModelReviewWork = async (
   _ctx: AttemptContext,
   data: ModelReviewWorkInput,
 ): Promise<AttemptOutcome<{ id: string }>> => {
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
   const insertRow: Database["public"]["Tables"]["model_reviews"]["Insert"] = {
     user_id: data.userId,
     model_id: data.modelId,
@@ -54,7 +54,7 @@ const runModelReviewWork = async (
     body: data.body ? maskPII(data.body).masked : null,
     status: "published",
   };
-  const { data: row, error } = await supabase
+  const { data: row, error } = await dehost
     .from("model_reviews")
     .insert(insertRow)
     .select("id")

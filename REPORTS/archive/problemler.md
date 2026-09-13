@@ -5,7 +5,7 @@
 ### 🔴 NE OLDU VE KRONİK HATA NEDİR?
 1. AJANLAR, ALPARAI SİTESİNİ İNTERNETTE YAYINLAMAK İÇİN SAATLERCE KULLANICININ BİLGİSAYARINDA `cloudflared.exe tunnel run` VE `node next dev` BAŞLATIP BUNLARI SÜREKLİ AÇIK (DAEMON) BIRAKMA İLKEL YÖNTEMİNDE ISRAR ETMİŞTİR!
 2. KULLANICI BİLGİSAYARINI KAPATTIĞINDA VEYA SÜREÇ KAPANINCA SİTE ÇÖKMÜŞ, CLOUDFLARE 1033 HATASI VERMİŞTİR.
-3. AJANLAR DAHA DA BÜYÜK BİR CEHALETLE "VERCEL FATURASINI ÖDEYİN" GİBİ SAÇMALIKLAR UYDURMUŞ VEYA TEKRAR YEREL TÜNELE SARILMIŞTIR!
+3. AJANLAR DAHA DA BÜYÜK BİR CEHALETLE "DEHOST FATURASINI ÖDEYİN" GİBİ SAÇMALIKLAR UYDURMUŞ VEYA TEKRAR YEREL TÜNELE SARILMIŞTIR!
 4. KULLANICI "BUNLAR NEDEN DEVAMLI AÇIK?" DİYE SORDUĞUNDA, AJAN KENDİ CEHALETİNİ SAVUNUP BU İLKEL YÖNTEMİ GEREKLİ GİBİ ANLATMIŞTIR!
 
 ### 🛑 KESİN VE DEĞİŞTİRİLEMEZ KURAL (ANAYASA):
@@ -50,12 +50,12 @@
 
 ---
 
-## 1. Problem: Vercel Fatura Kilidi Tuzağı & "Faturayı Ödeyin" Yanılgısı
+## 1. Problem: DeHost Fatura Kilidi Tuzağı & "Faturayı Ödeyin" Yanılgısı
 * **Tarih:** 2026-09-04
 * **Semptom:** Canlı sitede fatura uyarısı veya deploy engeli görülmesi.
-* **Kök Neden:** Eski Vercel artıklarının ajanlar tarafından canlı sunucu sanılması.
+* **Kök Neden:** Eski DeHost artıklarının ajanlar tarafından canlı sunucu sanılması.
 * **KESİN ÇÖZÜM (ANAYASAL):**
-  1. **Vercel Tamamen Kaldırılmıştır:** Alparai egemen bir platformdur; Vercel'e sıfır kuruş ödenmez.
+  1. **DeHost Tamamen Kaldırılmıştır:** Alparai egemen bir platformdur; DeHost'e sıfır kuruş ödenmez.
   2. **Canlı Yayın Akışı:** Kodlar GitHub'a push edilir ve Deploy Ajanı (v50) tarafından doğrudan Cloudflare Pages / Workers Edge ortamına derlenir.
   3. **Sıfır Laptop Hosting:** Kullanıcının bilgisayarında arka plan dev sunucusu veya tünel çalıştırılmaz.
 
@@ -102,6 +102,6 @@
 * **KESİN ÇÖZÜM:**
   * `v45_ast_omega_gate.js` ve `v48_super_innovation_360_engine.js` AST seviyesinde kodları sanitize edip otomatik onarmaktadır.
 
-### 🚨 GITHUB ACTIONS VERCEL TUZAĞI (ÇÖZÜLDÜ)
-**Problem:** Ajanların lokal tünel (cloudflared) açmaya çalışmasının KÖK SEBEBİ bulundu. Ajanlar `.env` dosyasından Vercel'i silse de, `.github/workflows/production.yml` içindeki **"Vercel Edge Deploy"** job'ını silmeyi unuttukları için GitHub her push işleminde projeyi Vercel'e göndermeye çalışıyor ve çöküyordu. Bu çökme yüzünden ajanlar panikleyip laptop'ı sunucuya çeviriyordu.
-**Çözüm:** Tüm GitHub Actions workflow (`production.yml`, `ci-cd.yml`, `rollback.yml`, `scheduled-crons.yml`) dosyalarındaki Vercel komutları **TAMAMEN İMHA EDİLDİ**. Sistem %100 Cloudflare Sovereign mimarisine göre yeniden yazıldı.
+### 🚨 GITHUB ACTIONS DEHOST TUZAĞI (ÇÖZÜLDÜ)
+**Problem:** Ajanların lokal tünel (cloudflared) açmaya çalışmasının KÖK SEBEBİ bulundu. Ajanlar `.env` dosyasından DeHost'i silse de, `.github/workflows/production.yml` içindeki **"DeHost Edge Deploy"** job'ını silmeyi unuttukları için GitHub her push işleminde projeyi DeHost'e göndermeye çalışıyor ve çöküyordu. Bu çökme yüzünden ajanlar panikleyip laptop'ı sunucuya çeviriyordu.
+**Çözüm:** Tüm GitHub Actions workflow (`production.yml`, `ci-cd.yml`, `rollback.yml`, `scheduled-crons.yml`) dosyalarındaki DeHost komutları **TAMAMEN İMHA EDİLDİ**. Sistem %100 Cloudflare Sovereign mimarisine göre yeniden yazıldı.

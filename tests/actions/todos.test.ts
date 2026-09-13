@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
-import { createMockSupabaseClient, createTestUser } from "../helpers/supabase-mock";
+import { createMockDeHostClient, createTestUser } from "../helpers/dehost-mock";
 
 vi.hoisted(() => {
-  vi.doMock("@/lib/supabase/server", () => ({
+  vi.doMock("@/lib/dehost/server", () => ({
     createServerClient: vi.fn(),
   }));
   vi.doMock("@/lib/auth/session", () => ({
@@ -11,17 +11,17 @@ vi.hoisted(() => {
   }));
 });
 
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { requireCEO } from "@/lib/auth/session";
 import { toggleTodoAction, deleteTodoAction, createTodoAction } from "@/actions/todos";
 
-let mockSupabaseClient: ReturnType<typeof createMockSupabaseClient>;
+let mockDeHostClient: ReturnType<typeof createMockDeHostClient>;
 const mockCeo = createTestUser({ role: "ceo", id: "ceo-123" });
 
 beforeEach(() => {
   vi.clearAllMocks();
-  mockSupabaseClient = createMockSupabaseClient();
-  vi.mocked(createServerClient).mockResolvedValue(mockSupabaseClient as never);
+  mockDeHostClient = createMockDeHostClient();
+  vi.mocked(createServerClient).mockResolvedValue(mockDeHostClient as never);
   vi.mocked(requireCEO).mockResolvedValue(mockCeo as never);
 });
 
@@ -29,8 +29,8 @@ describe("toggleTodoAction", () => {
   it("toggles a todo to completed", async () => {
     const result = await toggleTodoAction("todo-1", true);
     expect(result.success).toBe(true);
-    expect(mockSupabaseClient.from).toHaveBeenCalledWith("strategy_todos");
-    expect(mockSupabaseClient._mocks.mockUpdate).toHaveBeenCalled();
+    expect(mockDeHostClient.from).toHaveBeenCalledWith("strategy_todos");
+    expect(mockDeHostClient._mocks.mockUpdate).toHaveBeenCalled();
   });
 
   it("toggles a todo to incomplete", async () => {
@@ -39,7 +39,7 @@ describe("toggleTodoAction", () => {
   });
 
   it("throws on db error", async () => {
-    mockSupabaseClient._mocks.mockUpdateEq.mockResolvedValue({ error: { message: "DB Error" } });
+    mockDeHostClient._mocks.mockUpdateEq.mockResolvedValue({ error: { message: "DB Error" } });
     await expect(toggleTodoAction("todo-1", true)).rejects.toThrow("DB Error");
   });
 
@@ -53,12 +53,12 @@ describe("deleteTodoAction", () => {
   it("deletes a todo by id", async () => {
     const result = await deleteTodoAction("todo-1");
     expect(result.success).toBe(true);
-    expect(mockSupabaseClient.from).toHaveBeenCalledWith("strategy_todos");
-    expect(mockSupabaseClient._mocks.mockDelete).toHaveBeenCalled();
+    expect(mockDeHostClient.from).toHaveBeenCalledWith("strategy_todos");
+    expect(mockDeHostClient._mocks.mockDelete).toHaveBeenCalled();
   });
 
   it("throws on db error", async () => {
-    mockSupabaseClient._mocks.mockDeleteEq.mockResolvedValue({
+    mockDeHostClient._mocks.mockDeleteEq.mockResolvedValue({
       error: { message: "Delete Failed" },
     });
     await expect(deleteTodoAction("todo-1")).rejects.toThrow("Delete Failed");
@@ -67,18 +67,18 @@ describe("deleteTodoAction", () => {
 
 describe("createTodoAction", () => {
   it("creates a new todo successfully", async () => {
-    mockSupabaseClient._mocks.mockInsertSelectSingle.mockResolvedValue({
+    mockDeHostClient._mocks.mockInsertSelectSingle.mockResolvedValue({
       data: { id: "todo-new" },
       error: null,
     });
     const result = await createTodoAction("New task", 1);
     expect(result.success).toBe(true);
     expect(result.id).toBe("todo-new");
-    expect(mockSupabaseClient.from).toHaveBeenCalledWith("strategy_todos");
+    expect(mockDeHostClient.from).toHaveBeenCalledWith("strategy_todos");
   });
 
   it("throws on db error", async () => {
-    mockSupabaseClient._mocks.mockInsertSelectSingle.mockResolvedValue({
+    mockDeHostClient._mocks.mockInsertSelectSingle.mockResolvedValue({
       data: null,
       error: { message: "Insert Failed" },
     });

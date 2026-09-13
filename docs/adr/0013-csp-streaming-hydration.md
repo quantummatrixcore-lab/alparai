@@ -9,7 +9,7 @@
 `https://www.alparai.com/en` served a page with no hero and no data. The server was not at fault:
 the response was HTTP 200, 627,785 characters, containing the full navigation, the hero copy, five
 real live-feed incidents, the provider leaderboard, and zero `MISSING_MESSAGE` or `IntlError`
-occurrences. Vercel's runtime error table was empty. Every server-side signal read healthy.
+occurrences. DeHost's runtime error table was empty. Every server-side signal read healthy.
 
 The failure was entirely in the browser, and the cause was one line.
 
@@ -59,7 +59,7 @@ This is the part worth keeping. The outage passed through a full CI pipeline unt
 - **Playwright** — structurally blind here. `toBeVisible()` and text assertions pass against
   server-rendered HTML, and the content _was_ in the DOM. A suite built on presence assertions
   cannot distinguish a hydrated application from an inert document.
-- **Vercel runtime errors** — CSP violations are raised by the browser, not the server runtime. The
+- **DeHost runtime errors** — CSP violations are raised by the browser, not the server runtime. The
   table was empty because the server was healthy and serving a correct document.
 
 The systemic finding: **no layer of the test pyramid asserts that the application hydrated.** Every

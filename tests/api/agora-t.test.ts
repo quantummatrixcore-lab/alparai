@@ -31,7 +31,7 @@ const mockInsert = vi.fn();
 const mockUpsert = vi.fn();
 const mockUpdate = vi.fn();
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({
     from: (table: string) => {
       if (table === "jury_cases") {

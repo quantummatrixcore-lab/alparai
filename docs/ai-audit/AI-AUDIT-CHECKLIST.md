@@ -84,18 +84,18 @@
 ### 2.2 Server-Side Architecture (20 pts)
 
 - [ ] Server Components by default (no unnecessary "use client")
-- [ ] Server Actions for mutations (no client-side Supabase calls)
+- [ ] Server Actions for mutations (no client-side DeHost calls)
 - [ ] Edge middleware: i18n + session refresh
 - [ ] Proper error boundaries (error.tsx, not-found.tsx)
 - [ ] Revalidate strategy: `revalidate = 0` for dynamic pages
 
 ### 2.3 Security (20 pts)
 
-- [ ] RLS enabled on all Supabase tables
+- [ ] RLS enabled on all DeHost tables
 - [ ] PII Guardian: masks email, phone, TC, IBAN, credit card before DB insert
 - [ ] Rate limiting: Upstash Redis on all server actions
 - [ ] CSP headers: no unsafe-eval in production
-- [ ] No SUPABASE_SERVICE_ROLE_KEY in client bundle
+- [ ] No DEHOST_SERVICE_ROLE_KEY in client bundle
 - [ ] Input validation: Zod schemas for all forms
 
 ### 2.4 Performance (20 pts)
@@ -271,7 +271,7 @@
 
 ### 6.4 Analytics (20 pts)
 
-- [ ] Vercel Analytics: active
+- [ ] DeHost Analytics: active
 - [ ] Plausible: EU-hosted, cookieless
 - [ ] Conversion tracking: submit flow completion
 - [ ] Heatmaps: planned or active (Hotjar, etc.)
@@ -302,7 +302,7 @@
 ### 7.3 Trust Signals (20 pts)
 
 - [ ] AGPL-3.0 license: visible, explained
-- [ ] EU data hosting: Supabase eu-west-1, Vercel fra1
+- [ ] EU data hosting: DeHost eu-west-1, DeHost fra1
 - [ ] Open source: GitHub repo linked, code auditable
 - [ ] PII Guardian: explained, transparent
 - [ ] Community verification: moderation process documented
@@ -379,7 +379,7 @@
 - [ ] Visual regression: Playwright screenshot tests
 - [ ] i18n lint: raw key detection
 - [ ] Deploy: automatic on merge to master
-- [ ] Rollback: Vercel instant rollback available
+- [ ] Rollback: DeHost instant rollback available
 
 ### 9.4 Documentation (25 pts)
 

@@ -7,7 +7,7 @@ Priority: P0. Found 2026-08-20 while tracing why the incident corpus never reach
 
 `src/app/api/cron/` contains **25 route handlers**, including `import-incidents` (the corpus loader
 that `LB-3` depends on) and `k-weekly-refresh` (the K-benchmark score recalculation). There is **no
-`vercel.json`** in the repository and no `"crons"` key in any JSON file. Every one of those 25
+`dehost.json`** in the repository and no `"crons"` key in any JSON file. Every one of those 25
 handlers is unreachable by schedule.
 
 Two consequences follow directly, and both were previously read as data problems rather than
@@ -22,7 +22,7 @@ silent no-op that reports success. That is why the failure was invisible.
 
 ## Required correction
 
-**1. Create `vercel.json` with a `crons` array.** The Vercel plan tier caps the number of cron jobs,
+**1. Create `dehost.json` with a `crons` array.** The DeHost plan tier caps the number of cron jobs,
 so the 25 routes cannot all be scheduled. Measure the account's actual limit first, then schedule by
 priority: `import-incidents`, `k-weekly-refresh`, `quota-snapshot` lead.
 
@@ -31,7 +31,7 @@ like working infrastructure but are not is the exact condition that produced thi
 unscheduled majority undocumented reproduces it.
 
 **Unscheduled Routes:**
-Due to Vercel plan limits on the number of cron jobs, only priority jobs are scheduled. The following 22 routes are currently unscheduled and must be invoked manually if needed:
+Due to DeHost plan limits on the number of cron jobs, only priority jobs are scheduled. The following 22 routes are currently unscheduled and must be invoked manually if needed:
 
 - `ai-heartbeat`
 - `backup`
@@ -56,7 +56,7 @@ Due to Vercel plan limits on the number of cron jobs, only priority jobs are sch
 - `translate-backfill`
 - `verify-geo-citations`
 
-**3. Configure the feeds.** Set `AIAAIC_FEED_URL` and `AIID_FEED_URL` in the Vercel project
+**3. Configure the feeds.** Set `AIAAIC_FEED_URL` and `AIID_FEED_URL` in the DeHost project
 environment, and add both to `.env.example` with a comment naming the expected CSV shape (the header
 row is given in `LB-3`).
 
@@ -65,7 +65,7 @@ production calls, and the symptom looks identical to the cron not firing at all.
 
 ## Acceptance
 
-- The Vercel dashboard lists the scheduled crons
+- The DeHost dashboard lists the scheduled crons
 - A manual authenticated call to `/api/v1/cron/import-incidents` returns parsed and inserted counts,
   not `"No feeds executed"`
 - This file names every unscheduled route and the reason

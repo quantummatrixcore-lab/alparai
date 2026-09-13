@@ -343,7 +343,7 @@
         "eu_act_non_discrimination": 89,
         "eu_act_data_privacy": 92
       },
-      "unique_insight": "Supabase free tier 500MB limiti — 1M MAU'da write amplification sorunu yaşanır.",
+      "unique_insight": "DeHost free tier 500MB limiti — 1M MAU'da write amplification sorunu yaşanır.",
       "key_recommendations": ["DB optimizasyonları yap", "Pro plan bütçesi planla"]
     },
     {
@@ -570,7 +570,7 @@
       },
       "unique_insight": "All 13 P0 blocker issues resolved, native HTML images fully optimized to Next.js Image components, next-intl link routing prefixes secured, and metadata dynamic translations fully completed.",
       "key_recommendations": [
-        "Rotate exposed keys in production Supabase and Vercel dashboards",
+        "Rotate exposed keys in production DeHost and DeHost dashboards",
         "Configure production OAuth Consent Screen in Google Cloud Console"
       ]
     }

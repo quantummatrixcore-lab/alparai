@@ -19,9 +19,9 @@ jobs:
     name: Regenerate visual baselines
     runs-on: ubuntu-latest
     env:
-      NEXT_PUBLIC_SUPABASE_URL: https://mock-supabase.supabase.co
-      NEXT_PUBLIC_SUPABASE_ANON_KEY: mock-anon-key
-      SUPABASE_SERVICE_ROLE_KEY: mock-service-role-key-for-playwright
+      NEXT_PUBLIC_DEHOST_URL: https://mock-dehost.dehost.internal
+      NEXT_PUBLIC_DEHOST_ANON_KEY: mock-anon-key
+      DEHOST_SERVICE_ROLE_KEY: mock-service-role-key-for-playwright
       IS_PLAYWRIGHT_TEST: "true"
     steps:
       - uses: actions/checkout@v4

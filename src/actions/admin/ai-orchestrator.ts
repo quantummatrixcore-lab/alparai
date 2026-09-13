@@ -1,7 +1,7 @@
 "use server";
 
 import { requireAdmin } from "@/lib/auth/session";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { discoverFreeModels, type FreeModelRecord } from "@/lib/ai/discovery/fetch-models";
 import { revalidatePath } from "next/cache";
 
@@ -35,8 +35,8 @@ export interface TrustScoreRecord {
 export async function getTrustScoresAction(): Promise<TrustScoreRecord[]> {
   await requireAdmin();
   try {
-    const supabase = createAdminClient();
-    const { data, error } = await supabase
+    const dehost = createAdminClient();
+    const { data, error } = await dehost
       .from("ai_trust_scores" as unknown as "incidents")
       .select("*")
       .order("trust_score", { ascending: false });
@@ -55,7 +55,7 @@ export async function getTrustScoresAction(): Promise<TrustScoreRecord[]> {
 export async function runCrossAuditArenaAction(_promptText: string): Promise<ArenaVerdict> {
   await requireAdmin();
   try {
-    const supabase = createAdminClient();
+    const dehost = createAdminClient();
     const freeModels = await discoverFreeModels();
     const candidates = freeModels.slice(0, 3);
     const judge = freeModels[3] ?? freeModels[0];
@@ -63,7 +63,7 @@ export async function runCrossAuditArenaAction(_promptText: string): Promise<Are
     const auditedModelIds = candidates.map((m: FreeModelRecord) => m.id);
 
     // 1. Fetch real benchmark scores from k_model_scores
-    const { data: kScores } = await supabase
+    const { data: kScores } = await dehost
       .from("k_model_scores")
       .select("model_id, score")
       .in("model_id", auditedModelIds);
@@ -100,7 +100,7 @@ export async function runCrossAuditArenaAction(_promptText: string): Promise<Are
 
     if (upsertData.length > 0) {
       try {
-        await supabase
+        await dehost
           .from("ai_trust_scores" as unknown as "incidents")
           .upsert(upsertData as never[], { onConflict: "model_id" } as never);
       } catch {

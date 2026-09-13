@@ -1,5 +1,5 @@
 import { getRedisInstance } from "@/lib/utils/rate-limit";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 
 export async function isFeatureEnabled(

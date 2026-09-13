@@ -1,6 +1,6 @@
 # ALPAR AI — Scheduled Cron Jobs Re-homing Audit (Item 121)
 
-Following the removal of crons from `vercel.json` due to Hobby plan limitations, all 16 scheduled tasks have been migrated to a centralized GitHub Actions dispatcher workflow.
+Following the removal of crons from `dehost.json` due to Hobby plan limitations, all 16 scheduled tasks have been migrated to a centralized GitHub Actions dispatcher workflow.
 
 ## Cron Mapping & Triggers
 

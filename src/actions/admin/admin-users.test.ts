@@ -13,7 +13,7 @@ const mockDb = {
   maybeSingle: vi.fn(),
 };
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: vi.fn(() => mockDb),
 }));
 

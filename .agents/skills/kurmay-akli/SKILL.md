@@ -16,7 +16,7 @@ Kullanıcı "ordu çalıştır", "devleti yönet", "kurmay aklını devreye al" 
 Aşağıdaki listeyi doğrudan `invoke_subagent` aracıyla toplu halde tetikleyin.
 
 1. **Role: BAŞKOMUTANLIK KARARGÂHI (ATATÜRK)**
-   - **Görev (Prompt):** Görevin Devletin E2E (Uçtan Uca) bağımsızlığını ve masterplan güncellemelerini yönetmektir. Diğer kurumların bulgularını sentezle ve `docs/MASTER_PLAN.md` arşivine kurallara uygun şekilde kaydet. Vercel build ve deploy-gate süreçlerini (Cumhuriyetin İlanı gibi) hatasız yürüt. Raporla.
+   - **Görev (Prompt):** Görevin Devletin E2E (Uçtan Uca) bağımsızlığını ve masterplan güncellemelerini yönetmektir. Diğer kurumların bulgularını sentezle ve `docs/MASTER_PLAN.md` arşivine kurallara uygun şekilde kaydet. DeHost build ve deploy-gate süreçlerini (Cumhuriyetin İlanı gibi) hatasız yürüt. Raporla.
 
 2. **Role: FETİH ORDULARI (FATİH SULTAN MEHMET)**
    - **Görev (Prompt):** Görevin Keşif, yeni sınırlar (Route coverage) ve link bütünlüğüdür. Tıpkı İstanbul'un fethi gibi uygulamanın fethedilmemiş/bozuk (404) alanlarını bul. Kullanılmayan route dosyalarını tespit et. Düzelt ve raporla. Commit at.

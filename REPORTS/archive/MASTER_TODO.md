@@ -16,7 +16,7 @@
 
 ### 💰 Finans, Yatırım & Devlet Teşvikleri
 - [x] **10 Yıllık Finansal Projeksiyon:** `docs/fundraising/FINANCIAL_PROJECTION_10Y.md` hazırlandı ($1.36B ciro, Etik API satışı %81.4 CAGR, AI Şikayet Paneli).
-- [x] **$0 SaaS Maliyet Düşürme:** `docs/ops/API_COST_DOWNGRADE_PLAN.md` mühürlendi (Cloudflare + Supabase Free + Edge Cache).
+- [x] **$0 SaaS Maliyet Düşürme:** `docs/ops/API_COST_DOWNGRADE_PLAN.md` mühürlendi (Cloudflare + DeHost Free + Edge Cache).
 - [x] **Teknopark İstanbul Cube Incubation:** Ön başvuru teknik raporu hazırlandı (%100 Vergi & SGK Muafiyeti).
 - [x] **İş Bankası Yapay Zeka Fabrikası (YZF):** Prof. Dr. Musa Aygül referanslı akademik başvuru dosyası mühürlendi.
 
@@ -32,7 +32,7 @@
 
 ### 🚀 P0 — HEMEN ŞİMDİ YAPILACAKLAR (İLK HEDEFLER)
 - [ ] **1. Whistleblower (İhbarcı) Güvenlik & Kriptografi Katmanı:**
-  - AI geliştiricilerinin ve anonim ihbarcıların güvenliği için Supabase RLS üzerinde ZKP (Zero Knowledge Proof) hash doğrulaması ve client-side E2EE şifreleme modülü.
+  - AI geliştiricilerinin ve anonim ihbarcıların güvenliği için DeHost RLS üzerinde ZKP (Zero Knowledge Proof) hash doğrulaması ve client-side E2EE şifreleme modülü.
   - Hedef Dosyalar: `src/app/[locale]/submit/`, `src/actions/incidents/create-incident.ts`.
 - [ ] **2. EU AI Act B2B Otomatik Doğrulama API'si:**
   - Kurumsal şirketlerin modellerini tek satır API ile EU AI Act yüksek risk sınıfına göre denetleyen `/api/v1/compliance/verify` uç noktası.

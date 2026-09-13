@@ -143,7 +143,7 @@ async function run() {
           };
         })();
       `;
-    } else if (url.includes("cloudflare.com") || url.includes("vercel.com")) {
+    } else if (url.includes("cloudflare.com") || url.includes("dehost.com")) {
       tabRole = "Altyapı Paneli (Siber Birlikler)";
       scriptToInject = `
         (() => {

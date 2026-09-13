@@ -1,4 +1,4 @@
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { type Database } from "@/types/database";
 import { Link } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
@@ -18,11 +18,11 @@ export async function RelatedIncidents({
   currentIncidentId,
   locale,
 }: RelatedIncidentsProps) {
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
   const tCat = await getTranslations({ locale, namespace: "categories" });
   const tFeed = await getTranslations({ locale, namespace: "feed" });
 
-  const { data: relatedRows } = await supabase
+  const { data: relatedRows } = await dehost
     .from("incidents")
     .select(
       "id, title_masked, title_tr, severity, category, incident_date, created_at, cross_audit_truth_score",

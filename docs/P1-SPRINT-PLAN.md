@@ -66,10 +66,10 @@
 - **Fix:** Add `granted: true`
 - **Test:** `tests/incidents.test.ts` — submit creates consent_log row with granted=true
 
-### P0-6: database.ts — Supabase Gen Types [5 mins]
+### P0-6: database.ts — DeHost Gen Types [5 mins]
 
 - **Current:** `src/types/database.ts` is manual, 283 lines
-- **Fix:** Run `npx supabase gen types typescript --local > src/types/database.ts`
+- **Fix:** Run `npx dehost gen types typescript --local > src/types/database.ts`
 - **Impact:** Most of the 27 `as never` casts drop automatically
 
 ---
@@ -200,7 +200,7 @@ In each batch, in order:
 
 ## Risk Notes
 
-- `supabase gen types` may require a remote DB connection → may need a `db dump` for local use
+- `dehost gen types` may require a remote DB connection → may need a `db dump` for local use
 - Removing `unsafe-eval` from CSP might break Next.js dev mode → tighten only in production
 - `signInWithMagicLink` rate limit must be IP-based (not email-based, otherwise DDoS risk)
 - If "admin" is removed from `setUserRole`, a separate `promoteToCEO` action can be considered for the CEO role

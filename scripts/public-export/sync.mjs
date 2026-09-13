@@ -62,7 +62,7 @@ function checkFilenameBlacklist(filePath, allowlist) {
 // ============================================================================
 
 function scanForSecrets(content, filePath, allowlist) {
-  // Ignore comments or env variable reference strings like process.env.SUPABASE_SERVICE_ROLE_KEY
+  // Ignore comments or env variable reference strings like process.env.DEHOST_SERVICE_ROLE_KEY
   const valuePatterns = [
     /sb_secret_[a-zA-Z0-9_-]{20,}/g,
     /vcp_[a-zA-Z0-9_-]{20,}/g,

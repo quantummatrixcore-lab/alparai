@@ -6,7 +6,7 @@ import { withAutopilot, subscribeNewsletterPolicy, attemptsOf, durationOf } from
 import type { AttemptContext, AttemptOutcome } from "@/lib/autopilot";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { hashIp } from "@/lib/utils/hash";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 
 export interface NewsletterState {
@@ -26,10 +26,10 @@ const runNewsletterWork = async (
   _ctx: AttemptContext,
   data: NewsletterWorkInput,
 ): Promise<AttemptOutcome<{ subscribed: boolean }>> => {
-  const supabase = createAdminClient();
+  const dehost = createAdminClient();
   try {
     // Check if already subscribed
-    const { data: existing } = await supabase
+    const { data: existing } = await dehost
       .from("newsletter_subscribers")
       .select("id")
       .eq("email", data.email)
@@ -40,7 +40,7 @@ const runNewsletterWork = async (
     }
 
     // Insert new subscription
-    const { error } = await supabase.from("newsletter_subscribers").insert({
+    const { error } = await dehost.from("newsletter_subscribers").insert({
       email: data.email,
       locale: data.locale,
       confirmed: true,

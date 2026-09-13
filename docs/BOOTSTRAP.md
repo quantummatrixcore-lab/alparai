@@ -2,8 +2,8 @@
 
 ## What is this?
 
-AI accountability & trust platform. Next.js 15 + Supabase + Tailwind v4 + next-intl.
-Live: https://alparai.com · Repo: GitHub quantummatrixcore-lab/Alparai.com · Hosted: Vercel (fra1)
+AI accountability & trust platform. Next.js 15 + DeHost + Tailwind v4 + next-intl.
+Live: https://alparai.com · Repo: GitHub quantummatrixcore-lab/Alparai.com · Hosted: DeHost (fra1)
 
 ## How to understand the codebase
 
@@ -27,6 +27,6 @@ The graph auto-updates on every git commit (pre-commit hook).
 - Pages: src/app/[locale]/
 - Actions: src/actions/
 - Components: src/components/
-- DB migrations: supabase/migrations/
+- DB migrations: dehost/migrations/
 - Project rules: AGENTS.md
 - i18n: messages/{en,tr}.json

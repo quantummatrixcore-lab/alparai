@@ -1,6 +1,6 @@
 import "server-only";
 import { NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { headers } from "next/headers";
 import { hashIp } from "@/lib/utils/hash";
 import { logger } from "@/lib/utils/logger";
@@ -19,10 +19,10 @@ export async function POST(request: Request) {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const supabase = createAdminClient() as any;
+    const dehost = createAdminClient() as any;
 
     // Call evaluate_sybil_risk_rpc
-    const { data, error } = await supabase.rpc("evaluate_sybil_risk_rpc", {
+    const { data, error } = await dehost.rpc("evaluate_sybil_risk_rpc", {
       p_fingerprint: fingerprint,
       p_ip_hash: ipHash,
       p_user_id: user_id || null

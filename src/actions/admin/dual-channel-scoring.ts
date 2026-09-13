@@ -1,6 +1,6 @@
 "use server";
 
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { revalidatePath } from "next/cache";
 import crypto from "crypto";
 import { requireAdmin } from "@/lib/auth/session";
@@ -33,8 +33,8 @@ let memoryConfig: ScoringConfig = {
 
 export async function getScoringConfigAction(): Promise<ScoringConfig> {
   try {
-    const supabase = createAdminClient();
-    const { data, error } = await supabase
+    const dehost = createAdminClient();
+    const { data, error } = await dehost
       .from("ai_scoring_config" as unknown as "incidents")
       .select("*")
       .limit(1)
@@ -79,15 +79,15 @@ export async function updateScoringConfigAction(params: {
     };
 
     try {
-      const supabase = createAdminClient();
-      const { data: existing } = await supabase
+      const dehost = createAdminClient();
+      const { data: existing } = await dehost
         .from("ai_scoring_config" as unknown as "incidents")
         .select("id")
         .limit(1)
         .maybeSingle();
 
       if (existing) {
-        await supabase
+        await dehost
           .from("ai_scoring_config" as unknown as "incidents")
           .update({
             w_audit: params.wAudit,
@@ -97,7 +97,7 @@ export async function updateScoringConfigAction(params: {
           } as never)
           .eq("id", (existing as { id: string }).id);
       } else {
-        await supabase.from("ai_scoring_config" as unknown as "incidents").insert({
+        await dehost.from("ai_scoring_config" as unknown as "incidents").insert({
           w_audit: params.wAudit,
           w_incident: params.wIncident,
           is_combined_active: params.isCombinedActive,
@@ -143,8 +143,8 @@ export async function computeDualChannelTrustScoreAction(
     const hashSignature = crypto.createHash("sha256").update(hashPayload).digest("hex");
 
     try {
-      const supabase = createAdminClient();
-      await supabase.from("ai_trust_ledger" as unknown as "incidents").insert({
+      const dehost = createAdminClient();
+      await dehost.from("ai_trust_ledger" as unknown as "incidents").insert({
         model_id: modelId,
         audit_score: auditScore,
         incident_score: incidentScore,

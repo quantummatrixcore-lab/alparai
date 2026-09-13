@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-function-type */
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
-import { createMockSupabaseClient } from "../helpers/supabase-mock";
+import { createMockDeHostClient } from "../helpers/dehost-mock";
 
-let mockSupabase: ReturnType<typeof createMockSupabaseClient>;
+let mockDeHost: ReturnType<typeof createMockDeHostClient>;
 
 vi.hoisted(() => {
-  vi.doMock("@/lib/supabase/server", () => ({
+  vi.doMock("@/lib/dehost/server", () => ({
     createClient: vi.fn(),
     createServerClient: vi.fn(),
   }));
@@ -15,14 +15,14 @@ vi.hoisted(() => {
   }));
 });
 
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { GET } from "@/app/api/cron/kill-metric/route";
 
 describe("GET /api/cron/kill-metric", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    mockSupabase = createMockSupabaseClient();
-    vi.mocked(createServerClient).mockResolvedValue(mockSupabase as never);
+    mockDeHost = createMockDeHostClient();
+    vi.mocked(createServerClient).mockResolvedValue(mockDeHost as never);
     process.env.CRON_SECRET = "test-cron-secret";
   });
 
@@ -54,7 +54,7 @@ describe("GET /api/cron/kill-metric", () => {
   it("returns metric counts when app is launched", async () => {
     process.env.NEXT_PUBLIC_APP_LAUNCHED = "true";
 
-    mockSupabase.from.mockReturnValue({
+    mockDeHost.from.mockReturnValue({
       select: vi.fn().mockReturnValue({
         gte: vi.fn().mockReturnValue({
           eq: vi.fn().mockResolvedValue({ count: 2, error: null }),

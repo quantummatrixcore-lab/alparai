@@ -1,5 +1,5 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { Container } from "@/components/ui/layout";
 import { getCurrentUser } from "@/lib/auth/session";
 import { ChallengeList } from "@/components/challenges/challenge-list";
@@ -16,10 +16,10 @@ export default async function ChallengesPage({ params }: { params: Promise<{ loc
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "challenges" });
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
   const user = await getCurrentUser();
 
-  const { data: challenges } = await supabase
+  const { data: challenges } = await dehost
     .from("challenges")
     .select()
     .eq("is_published", true)

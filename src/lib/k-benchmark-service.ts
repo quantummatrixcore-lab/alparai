@@ -1,5 +1,5 @@
-import { createAdminClient } from "@/lib/supabase/admin";
-import { createServerClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/dehost/admin";
+import { createServerClient } from "@/lib/dehost/server";
 
 export interface BenchmarkModel {
   id: string;
@@ -72,15 +72,15 @@ const FALLBACK_BENCHMARK_MODELS: BenchmarkModel[] = [
 
 export async function getKBenchmarkScores(modelId?: string): Promise<BenchmarkModel[]> {
   try {
-    let supabase;
+    let dehost;
     try {
-      supabase = await createServerClient();
+      dehost = await createServerClient();
     } catch {
-      supabase = createAdminClient();
+      dehost = createAdminClient();
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: rawScores, error } = await (supabase as any).from("k_model_scores").select(`
+    const { data: rawScores, error } = await (dehost as any).from("k_model_scores").select(`
         score,
         category_id,
         model_id,

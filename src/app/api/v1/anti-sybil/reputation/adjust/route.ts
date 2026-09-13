@@ -1,6 +1,6 @@
 import "server-only";
 import { NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { requireModerator } from "@/lib/auth/session";
 import { logger } from "@/lib/utils/logger";
 
@@ -15,8 +15,8 @@ export async function POST(request: Request) {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const supabase = createAdminClient() as any;
-    const { data, error } = await supabase.rpc("adjust_user_reputation_rpc", {
+    const dehost = createAdminClient() as any;
+    const { data, error } = await dehost.rpc("adjust_user_reputation_rpc", {
       p_user_id: user_id,
       p_change_amount: change_amount,
       p_reason: reason,

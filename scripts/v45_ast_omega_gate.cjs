@@ -7,7 +7,7 @@
  * 1. Detects & auto-wraps unescaped dangerouslySetInnerHTML with DOMPurify
  * 2. Replaces predictable Math.random() with CSPRNG / crypto.randomUUID()
  * 3. Identifies hardcoded secrets and extracts them to process.env
- * 4. Checks Supabase SQL migrations for missing Row Level Security (RLS)
+ * 4. Checks DeHost SQL migrations for missing Row Level Security (RLS)
  * 5. Neutralizes dangerous dynamic code execution (eval, new Function)
  *
  * Deterministic, zero-mock, fail-safe.
@@ -102,23 +102,23 @@ class AstOmegaGate {
       }
     }
 
-    // RULE 3: Hardcoded Supabase Service Role Keys (JWT eyJ...service_role)
+    // RULE 3: Hardcoded DeHost Service Role Keys (JWT eyJ...service_role)
     const serviceKeyRegex = /"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\.[^"]*service_role[^"]*"/g;
     if (serviceKeyRegex.test(newContent)) {
       this.stats.vulnerabilitiesFound++;
-      this.log(`Hardcoded Supabase Service Role Key detected: ${path.relative(this.workspaceDir, filePath)}`, 'CRITICAL');
+      this.log(`Hardcoded DeHost Service Role Key detected: ${path.relative(this.workspaceDir, filePath)}`, 'CRITICAL');
 
       if (this.fixMode) {
         newContent = newContent.replace(
           serviceKeyRegex,
-          'process.env.SUPABASE_SERVICE_ROLE_KEY || ""'
+          'process.env.DEHOST_SERVICE_ROLE_KEY || ""'
         );
         modified = true;
         this.stats.vulnerabilitiesHealed++;
         this.stats.healLog.push({
           file: filePath,
           rule: 'HARDCODED_SERVICE_ROLE_KEY',
-          action: 'Extracted secret to process.env.SUPABASE_SERVICE_ROLE_KEY'
+          action: 'Extracted secret to process.env.DEHOST_SERVICE_ROLE_KEY'
         });
       }
     }

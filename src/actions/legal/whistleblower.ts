@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/dehost/server";
 import { logger } from "@/lib/utils/logger";
 import { randomUUID } from "node:crypto";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
@@ -32,10 +32,10 @@ async function runSubmitWhistleblowerWork(
   data: SubmitWhistleblowerInput,
 ): Promise<AttemptOutcome<{ id: string }>> {
   void ctx;
-  const supabase = await createClient();
+  const dehost = await createClient();
   const generatedId = randomUUID();
 
-  const { error } = await supabase.from("whistleblower_submissions").insert({
+  const { error } = await dehost.from("whistleblower_submissions").insert({
     id: generatedId,
     encrypted_content: data.encryptedContent,
     category: data.category,

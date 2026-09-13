@@ -1,11 +1,9 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { supabase } from "@/lib/supabase/client";
-import type {
-  RealtimeChannel,
-  RealtimePostgresChangesPayload,
-} from "@supabase/supabase-js";
+import { dehost } from "@/lib/dehost/client";
+export type RealtimeChannel = any;
+export type RealtimePostgresChangesPayload<T> = any;
 import type { Database } from "@/types/database";
 
 export type TableName = keyof Database["public"]["Tables"];
@@ -52,7 +50,7 @@ export function useAdminRealtime<T extends { [key: string]: unknown } = Record<s
     const channelId = "admin-rt-" + String(table) + "-" + event + "-" + (filter || "all") + "-" + Math.random().toString(36).substring(2, 8);
     
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const channel: RealtimeChannel = (supabase as any).channel(channelId);
+    const channel: RealtimeChannel = (dehost as any).channel(channelId);
 
     const subscriptionConfig: {
       event: PostgresChangeEvent;
@@ -89,7 +87,7 @@ export function useAdminRealtime<T extends { [key: string]: unknown } = Record<s
             .subscribe();
 
     return () => {
-      supabase.removeChannel(channel);
+      dehost.removeChannel(channel);
     };
   }, [table, schema, event, filter, enabled]);
 }

@@ -6,7 +6,7 @@
   </p>
 
   <p align="center">
-    <a href="https://www.alparai.com"><img src="https://img.shields.io/badge/Production-alparai.com-8b5cf6?style=for-the-badge&logo=vercel" alt="Production" /></a>
+    <a href="https://www.alparai.com"><img src="https://img.shields.io/badge/Production-alparai.com-8b5cf6?style=for-the-badge&logo=dehost" alt="Production" /></a>
     <a href="https://github.com/quantummatrixcore-lab/alparai-platform/actions"><img src="https://img.shields.io/badge/CI%2FCD-Passing%20(208%2F208)-emerald?style=for-the-badge&logo=githubactions" alt="CI Status" /></a>
     <a href="LICENSE"><img src="https://img.shields.io/badge/License-AGPLv3-blue?style=for-the-badge" alt="License" /></a>
     <a href="https://www.alparai.com/tr/ai-act"><img src="https://img.shields.io/badge/EU_AI_Act-Article_72_Ready-amber?style=for-the-badge" alt="EU AI Act" /></a>
@@ -36,7 +36,7 @@
 
 ```
                                ┌───────────────────────────┐
-                               │   Next.js 15.2 (App Dir)  │
+                               │   Next.js 16 (App Dir)    │
                                │   Turbopack & Edge ISR    │
                                └─────────────┬─────────────┘
                                              │
@@ -45,15 +45,15 @@
     ┌─────────────────┐             ┌─────────────────┐             ┌─────────────────┐
     │  Tailwind CSS v4│             │   PostgreSQL    │             │  Multi-Model    │
     │  Framer Motion  │             │   pgvector RLS  │             │  Cross-Audit    │
-    │  Next-Intl (i18n│             │   Supabase Auth │             │  Edge Gateways  │
+    │  Next-Intl (i18n│             │   DeHost Auth │             │  Edge Gateways  │
     └─────────────────┘             └─────────────────┘             └─────────────────┘
 ```
 
-- **Frontend**: Next.js 15 (React 19), Tailwind CSS v4, Framer Motion, Lucide Icons
-- **Backend & Database**: PostgreSQL 16 with `pgvector`, Row-Level Security (RLS), Supabase Auth & Storage
+- **Frontend**: Next.js 16 (React 19), Tailwind CSS v4, Framer Motion, Lucide Icons
+- **Backend & Database**: PostgreSQL 16 with `pgvector`, Row-Level Security (RLS), DeHost Auth & Storage
 - **Internationalization**: Full bilingual English (`/en`) & Turkish (`/tr`) localization via `next-intl`
 - **Security**: Strict CSP, Subresource Integrity, Zero-Trust Storage, Rate Limiting, Turnstile Bot Protection
-- **Observability**: PostHog Telemetry, Sentry Performance, Vercel Speed Insights
+- **Observability**: PostHog Telemetry, Sentry Performance, DeHost Speed Insights
 
 ---
 
@@ -62,7 +62,7 @@
 ### Prerequisites
 - Node.js `20.x` or later (LTS recommended)
 - `pnpm` or `npm`
-- PostgreSQL / Supabase project
+- PostgreSQL / DeHost project
 
 ### Installation
 

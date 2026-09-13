@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import type { Database } from "@/types/database";
 import { requireModerator, requireAdmin } from "@/lib/auth/session";
 import { withAutopilot, moderateIncidentPolicy, attemptsOf, durationOf } from "@/lib/autopilot";

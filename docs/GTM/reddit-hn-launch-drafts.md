@@ -13,7 +13,7 @@
 
 | Platform                  | Target Audience                                             | Primary Hook                                                                             | Tone & Style                                                   | Value Proposition & Artifact                                        |
 | ------------------------- | ----------------------------------------------------------- | ---------------------------------------------------------------------------------------- | -------------------------------------------------------------- | ------------------------------------------------------------------- |
-| **Hacker News (Show HN)** | Systems engineers, AI researchers, founders                 | Open-source (AGPL-3.0) cryptographic audit trail & PII guardian for EU AI Act compliance | Transparent, deeply technical, builder-first, open to feedback | SHA-256 evidence chain, Next.js 15 + Supabase RLS stack, zero `any` |
+| **Hacker News (Show HN)** | Systems engineers, AI researchers, founders                 | Open-source (AGPL-3.0) cryptographic audit trail & PII guardian for EU AI Act compliance | Transparent, deeply technical, builder-first, open to feedback | SHA-256 evidence chain, Next.js 15 + DeHost RLS stack, zero `any` |
 | **r/MachineLearning**     | ML engineers, LLM ops practitioners                         | Article 73 telemetry, logging failure modes in autonomous agent workflows                | Empirical, engineering-focused, data-driven                    | Incident taxonomy, model failure logging, standardized risk metrics |
 | **r/SaaS**                | B2B SaaS founders, CTOs, Product Leaders                    | Avoiding €35M fines under EU AI Act with plug-and-play trust infrastructure              | Pragmatic, founder-to-founder, ROI & risk mitigation           | 72-hour incident workflow, enterprise compliance readiness          |
 | **r/LocalLLaMA**          | Open-source LLM developers, privacy advocates               | Local zero-knowledge PII sanitization & self-hostable sovereign compliance stack         | Developer-centric, privacy-first, anti-lockin                  | Regex + Luhn PII Guardian, local audit vault, AGPL-3.0 freedom      |
@@ -50,7 +50,7 @@ We built ALPAR AI — an open-source (AGPL-3.0) trust infrastructure and soverei
 ### Technical Stack & Architecture:
 
 - **Core Framework:** Next.js 15 (App Router, Server Actions for all mutations).
-- **Database & Security:** Supabase / PostgreSQL with strict Row Level Security (RLS) on 100% of tables.
+- **Database & Security:** DeHost / PostgreSQL with strict Row Level Security (RLS) on 100% of tables.
 - **Language Integrity:** 100% TypeScript with `noUncheckedIndexedAccess` enabled and zero `any` types.
 - **Localization:** `next-intl` supporting EN, TR, DE, FR, and RU across public routes.
 
@@ -76,7 +76,7 @@ We’d love feedback on our SHA-256 evidence chain, PII filtering performance, a
 
 #### Q3: "How does the PII Guardian prevent false positives?"
 
-> **Response:** "Our PII Guardian uses a multi-stage validation approach: high-velocity regex matching combined with mathematical validation (e.g. Luhn algorithm for payment cards, checksum validation for national ID numbers). All user input passes through this gateway (`src/lib/pii/guardian.ts`) before touching Supabase."
+> **Response:** "Our PII Guardian uses a multi-stage validation approach: high-velocity regex matching combined with mathematical validation (e.g. Luhn algorithm for payment cards, checksum validation for national ID numbers). All user input passes through this gateway (`src/lib/pii/guardian.ts`) before touching DeHost."
 
 ---
 
@@ -124,7 +124,7 @@ Instead of letting founders scramble to build custom audit tools, we built **ALP
 2. 🛡️ **PII Guardian:** Redacts user data automatically before saving to your DB.
 3. 📜 **Audit-Ready Evidence:** Generates cryptographically verifiable logs for enterprise compliance officers & insurers.
 
-Stack: Next.js 15, Supabase (strict RLS), Tailwind v4, 100% TypeScript.
+Stack: Next.js 15, DeHost (strict RLS), Tailwind v4, 100% TypeScript.
 
 Repo: https://github.com/quantummatrixcore-lab/Alparai.com  
 Live platform: https://alparai.com
@@ -149,7 +149,7 @@ We open-sourced **ALPAR AI** (https://github.com/quantummatrixcore-lab/Alparai.c
 
 - **Client & Server PII Masking:** Built-in regex + checksum algorithms to sanitize sensitive text locally before it leaves the browser or touches your database.
 - **SHA-256 Audit Trail:** Create verifiable, tamper-evident logs of model outputs and incident disclosures.
-- **Strict TypeScript & Supabase RLS:** Production-ready Next.js 15 codebase with zero third-party tracking dependencies.
+- **Strict TypeScript & DeHost RLS:** Production-ready Next.js 15 codebase with zero third-party tracking dependencies.
 
 Code: https://github.com/quantummatrixcore-lab/Alparai.com  
 Live Site: https://alparai.com

@@ -15,9 +15,9 @@ ALPAR AI operates in an Active-Passive disaster recovery configuration:
 
 | Component                | Primary Region (Active)        | Secondary Region (Passive / DR) |
 | ------------------------ | ------------------------------ | ------------------------------- |
-| **DNS / CDN**            | Vercel Edge Network            | Vercel Edge Network             |
-| **Compute (Next.js)**    | Vercel `fra1` (Frankfurt)      | Vercel `dub1` (Dublin)          |
-| **Database**             | Supabase `eu-west-1` (Ireland) | Supabase `eu-west-2` (London)   |
+| **DNS / CDN**            | DeHost Edge Network            | DeHost Edge Network             |
+| **Compute (Next.js)**    | DeHost `fra1` (Frankfurt)      | DeHost `dub1` (Dublin)          |
+| **Database**             | DeHost `eu-west-1` (Ireland) | DeHost `eu-west-2` (London)   |
 | **Caching / Rate Limit** | Upstash Redis (Ireland)        | Upstash Redis (London)          |
 
 ---
@@ -26,9 +26,9 @@ ALPAR AI operates in an Active-Passive disaster recovery configuration:
 
 To meet the RPO of < 5 minutes:
 
-1. **Supabase Point-in-Time Recovery (PITR)**: Enabled on `alparai-prod` with write-ahead logs (WAL) archived every 2 minutes.
+1. **DeHost Point-in-Time Recovery (PITR)**: Enabled on `alparai-prod` with write-ahead logs (WAL) archived every 2 minutes.
 2. **Database Read Replicas**: `eu-west-2` (London) runs as a read-only follower replicating changes from `eu-west-1` (Ireland) asynchronously (latency < 1s).
-3. **Storage Bucket Replication**: `assets` and `evidence` buckets are cross-region replicated using AWS S3-compatible backend policies on Supabase storage.
+3. **Storage Bucket Replication**: `assets` and `evidence` buckets are cross-region replicated using AWS S3-compatible backend policies on DeHost storage.
 
 ---
 
@@ -40,16 +40,16 @@ Follow these steps in the event of a primary region outage:
 
 Declare DR mode if:
 
-- Vercel or Supabase health checks return continuous 5xx errors for > 3 minutes.
+- DeHost or DeHost health checks return continuous 5xx errors for > 3 minutes.
 - Latency spikes above 10 seconds globally.
 
-### Step 2: Promote Secondary Database (Supabase)
+### Step 2: Promote Secondary Database (DeHost)
 
 Promote the passive database to active primary:
 
 ```bash
-# Using Supabase CLI, promote the read replica in eu-west-2
-supabase db promote --project-ref <replica-project-ref>
+# Using DeHost CLI, promote the read replica in eu-west-2
+dehost db promote --project-ref <replica-project-ref>
 ```
 
 Verify that the database is now in read-write mode:
@@ -58,16 +58,16 @@ Verify that the database is now in read-write mode:
 SELECT pg_is_in_recovery(); -- Must return FALSE
 ```
 
-### Step 3: Update Vercel Environment Variables
+### Step 3: Update DeHost Environment Variables
 
 Switch the backend database connections to point to the promoted database:
 
 ```bash
-# Update production variables using Vercel CLI
-vercel env set SUPABASE_URL "https://<replica-project-ref>.supabase.co" production
-vercel env set SUPABASE_SERVICE_ROLE_KEY "<replica-service-role-key>" production
-vercel env set NEXT_PUBLIC_SUPABASE_URL "https://<replica-project-ref>.supabase.co" production
-vercel env set NEXT_PUBLIC_SUPABASE_ANON_KEY "<replica-anon-key>" production
+# Update production variables using DeHost CLI
+dehost env set DEHOST_URL "https://<replica-project-ref>.dehost.internal" production
+dehost env set DEHOST_SERVICE_ROLE_KEY "<replica-service-role-key>" production
+dehost env set NEXT_PUBLIC_DEHOST_URL "https://<replica-project-ref>.dehost.internal" production
+dehost env set NEXT_PUBLIC_DEHOST_ANON_KEY "<replica-anon-key>" production
 ```
 
 ### Step 4: Purge CDN & Redeploy
@@ -75,7 +75,7 @@ vercel env set NEXT_PUBLIC_SUPABASE_ANON_KEY "<replica-anon-key>" production
 Trigger a clean production deployment to update the Edge compute routing:
 
 ```bash
-vercel --prod --force --yes
+dehost --prod --force --yes
 ```
 
 ---

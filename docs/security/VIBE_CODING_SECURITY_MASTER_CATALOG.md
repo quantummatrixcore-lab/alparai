@@ -61,7 +61,7 @@ Edge Altyapısı       & Paket Halüsinasyon Çoklu Kiracı       Yarış & Fina
 - **Kusursuz Savunma:**
   ```typescript
   // DOĞRU PATTERN:
-  const { data } = await supabase
+  const { data } = await dehost
     .from('incidents')
     .select('*')
     .eq('id', incidentId)
@@ -83,12 +83,12 @@ Edge Altyapısı       & Paket Halüsinasyon Çoklu Kiracı       Yarış & Fina
   ```
 
 ### 2.3 Mass Assignment / Over-Posting (CWE-915)
-- **Saldırı Vektörü:** Kullanıcı formundan gelen `req.json()` nesnesini doğrudan `supabase.update(body)` olarak göndermek. Saldırgan `{ "role": "ceo", "is_verified": true }` iliştirerek yetki yükseltir.
+- **Saldırı Vektörü:** Kullanıcı formundan gelen `req.json()` nesnesini doğrudan `dehost.update(body)` olarak göndermek. Saldırgan `{ "role": "ceo", "is_verified": true }` iliştirerek yetki yükseltir.
 - **Kusursuz Savunma:** Zod şeması ile yalnızca güncellenebilir alanları `pick` et:
   ```typescript
   const AllowedSchema = z.object({ fullName: z.string().max(100), bio: z.string().max(500) });
   const cleanData = AllowedSchema.parse(await req.json());
-  await supabase.from('users').update(cleanData).eq('id', session.user.id);
+  await dehost.from('users').update(cleanData).eq('id', session.user.id);
   ```
 
 ---
@@ -112,7 +112,7 @@ Edge Altyapısı       & Paket Halüsinasyon Çoklu Kiracı       Yarış & Fina
 ## 💉 DOM-04: GİRDİ DOĞRULAMA, ENJEKSİYON VE KOD ÇALIŞTIRMA
 
 ### 4.1 SQL Injection (CWE-89)
-- **Saldırı Vektörü:** `supabase.rpc('query', { sql: "SELECT * FROM users WHERE name = '" + name + "'" })` gibi dinamik dize birleştirme.
+- **Saldırı Vektörü:** `dehost.rpc('query', { sql: "SELECT * FROM users WHERE name = '" + name + "'" })` gibi dinamik dize birleştirme.
 - **Kusursuz Savunma:** Asla dize birleştirme yapma; PostgREST ORM veya parametreli sorgular (`$1, $2`) kullan.
 
 ### 4.2 eval() / new Function() Uzaktan Kod Çalıştırma (CWE-95)
@@ -168,14 +168,14 @@ Edge Altyapısı       & Paket Halüsinasyon Çoklu Kiracı       Yarış & Fina
 ## 🗄️ DOM-08: VERİTABANI & ROW LEVEL SECURITY (RLS)
 
 ### 8.1 Açıkta Kalan Tablolar (Disabled RLS) (CWE-284)
-- **Saldırı Vektörü:** Supabase üzerinde yeni bir tablo açıp RLS'i aktif etmeyi unutmak. Anon anahtarı olan herkes tüm tabloyu okuyabilir ve silebilir.
+- **Saldırı Vektörü:** DeHost üzerinde yeni bir tablo açıp RLS'i aktif etmeyi unutmak. Anon anahtarı olan herkes tüm tabloyu okuyabilir ve silebilir.
 - **Kusursuz Savunma:** Her migration dosyasında zorunlu kural:
   ```sql
   ALTER TABLE public.table_name ENABLE ROW LEVEL SECURITY;
   ```
 
 ### 8.2 Frontend'e Sızan Service Role Key (CWE-200)
-- **Saldırı Vektörü:** `NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY` tanımlamak.
+- **Saldırı Vektörü:** `NEXT_PUBLIC_DEHOST_SERVICE_ROLE_KEY` tanımlamak.
 - **Kusursuz Savunma:** Linter & Guardian taraması ile `NEXT_PUBLIC_` ve `SERVICE_ROLE` kelimelerinin yan yana gelmesini derleme aşamasında yasakla.
 
 ---

@@ -2463,7 +2463,7 @@
     "file": "src\\components\\dashboard\\ecosystem-dashboard.tsx",
     "line": 183,
     "type": "HARDCODED_TEXT_WHITE",
-    "snippet": "<span className=\"font-mono text-white\">{data.infrastructure.vercelDeployments}</span>"
+    "snippet": "<span className=\"font-mono text-white\">{data.infrastructure.dehostDeployments}</span>"
   },
   {
     "file": "src\\components\\dashboard\\ecosystem-dashboard.tsx",

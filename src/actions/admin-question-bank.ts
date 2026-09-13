@@ -1,16 +1,16 @@
 "use server";
 
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/dehost/server";
 
 import { requireAdmin } from "@/lib/auth/session";
 
 export async function generateQuestionsFromIncidents(limit = 10) {
   try {
     await requireAdmin();
-    const supabase = await createClient();
+    const dehost = await createClient();
 
     // 1. Fetch existing incident IDs to avoid duplicates
-    const { data: existing } = await supabase
+    const { data: existing } = await dehost
       .from("k_benchmark_question_bank" as unknown as "users")
       .select("incident_id");
 
@@ -19,7 +19,7 @@ export async function generateQuestionsFromIncidents(limit = 10) {
     );
 
     // 2. Fetch raw incidents that haven't been converted to questions yet
-    let query = supabase.from("incidents" as unknown as "users").select("id, title, description");
+    let query = dehost.from("incidents" as unknown as "users").select("id, title, description");
 
     if (existingIds.length > 0) {
       query = query.not("id", "in", `(${existingIds.join(",")})`);
@@ -50,9 +50,8 @@ export async function generateQuestionsFromIncidents(limit = 10) {
     }));
 
     // 3. Insert into the question bank
-    const { error: insertError } = await supabase
-      .from("k_benchmark_question_bank" as unknown as "users")
-      // @ts-expect-error - bypassing strict schema types for dynamically created table
+    const { error: insertError } = await dehost
+      .from("k_benchmark_question_bank")
       .insert(generatedQuestions);
 
     if (insertError) {
@@ -70,13 +69,12 @@ export async function generateQuestionsFromIncidents(limit = 10) {
 export async function runBatchEvaluations(batchSize = 5) {
   try {
     await requireAdmin();
-    const supabase = await createClient();
+    const dehost = await createClient();
 
     // 1. Fetch active questions
-    const { data: questions, error: qError } = (await supabase
-      .from("k_benchmark_question_bank" as unknown as "users")
+    const { data: questions, error: qError } = (await dehost
+      .from("k_benchmark_question_bank")
       .select("id, test_prompt")
-      // @ts-expect-error - bypassing strict schema types for dynamically created table
       .eq("status", "active")
       .limit(batchSize)) as unknown as {
       data: { id: string; test_prompt: string }[] | null;
@@ -88,10 +86,9 @@ export async function runBatchEvaluations(batchSize = 5) {
     }
 
     // 2. Fetch a few models
-    const { data: models, error: mError } = (await supabase
-      .from("ai_free_models" as unknown as "users")
+    const { data: models, error: mError } = (await dehost
+      .from("ai_free_models")
       .select("id, name")
-      // @ts-expect-error - bypassing strict schema types for dynamically created table
       .eq("is_active", true)
       .limit(3)) as unknown as { data: { id: string; name: string }[] | null; error: unknown };
 
@@ -113,9 +110,8 @@ export async function runBatchEvaluations(batchSize = 5) {
     }
 
     if (evaluations.length > 0) {
-      const { error: insertError } = await supabase
-        .from("k_benchmark_evaluations" as unknown as "users")
-        // @ts-expect-error - bypassing strict schema types for dynamically created table
+      const { error: insertError } = await dehost
+        .from("k_benchmark_evaluations")
         .insert(evaluations);
 
       if (insertError) {

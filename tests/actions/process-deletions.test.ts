@@ -2,22 +2,22 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
 import { NextRequest } from "next/server";
-import { createMockSupabaseClient } from "../helpers/supabase-mock";
+import { createMockDeHostClient } from "../helpers/dehost-mock";
 
 vi.hoisted(() => {
-  vi.doMock("@/lib/supabase/admin", () => ({
+  vi.doMock("@/lib/dehost/admin", () => ({
     createAdminClient: vi.fn(),
   }));
 });
 
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { GET } from "@/app/api/cron/process-deletions/route";
 
-let mockAdminClient: ReturnType<typeof createMockSupabaseClient>;
+let mockAdminClient: ReturnType<typeof createMockDeHostClient>;
 
 beforeEach(() => {
   vi.clearAllMocks();
-  mockAdminClient = createMockSupabaseClient();
+  mockAdminClient = createMockDeHostClient();
 
   vi.mocked(createAdminClient).mockReturnValue(mockAdminClient as any);
 });
@@ -49,7 +49,7 @@ describe("Process Deletions Cron", () => {
     const mockHardEq = vi.fn().mockReturnValue({ lte: mockHardLte });
 
     let selectCallCount = 0;
-    mockAdminClient.from.mockImplementation((table) => {
+    mockAdminClient.from.mockImplementation((table: string) => {
       if (table === "users") {
         return {
           select: () => {
@@ -82,7 +82,7 @@ describe("Process Deletions Cron", () => {
     });
 
     const req = new NextRequest("http://localhost:3000/api/cron/process-deletions", {
-      headers: { "x-vercel-cron": "1" },
+      headers: { "x-dehost-cron": "1" },
     });
 
     const res = await GET(req);

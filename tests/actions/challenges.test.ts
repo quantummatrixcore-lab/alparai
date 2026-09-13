@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
-import { createMockSupabaseClient } from "../helpers/supabase-mock";
+import { createMockDeHostClient } from "../helpers/dehost-mock";
 
 vi.hoisted(() => {
-  vi.doMock("@/lib/supabase/server", () => ({
+  vi.doMock("@/lib/dehost/server", () => ({
     createServerClient: vi.fn(),
   }));
   vi.doMock("@/lib/auth/session", () => ({
@@ -11,7 +11,7 @@ vi.hoisted(() => {
   }));
 });
 
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { getCurrentUser } from "@/lib/auth/session";
 import {
   submitChallengeVote,
@@ -19,19 +19,19 @@ import {
   submitChallengeSubmission,
 } from "@/actions/challenges";
 
-let mockSupabaseClient: ReturnType<typeof createMockSupabaseClient>;
+let mockDeHostClient: ReturnType<typeof createMockDeHostClient>;
 
 beforeEach(() => {
   vi.clearAllMocks();
-  mockSupabaseClient = createMockSupabaseClient();
-  vi.mocked(createServerClient).mockResolvedValue(mockSupabaseClient as never);
+  mockDeHostClient = createMockDeHostClient();
+  vi.mocked(createServerClient).mockResolvedValue(mockDeHostClient as never);
 });
 
 describe("Challenges", () => {
   describe("submitChallengeVote", () => {
     it("submits a vote when signed in", async () => {
       vi.mocked(getCurrentUser).mockResolvedValue({ id: "user-1" } as never);
-      mockSupabaseClient._mocks.mockInsertSelectSingle.mockResolvedValue({
+      mockDeHostClient._mocks.mockInsertSelectSingle.mockResolvedValue({
         data: null,
         error: null,
       });
@@ -56,7 +56,7 @@ describe("Challenges", () => {
           return Promise.resolve({ data: null, error: { code: "23505" } });
         }),
       });
-      mockSupabaseClient.from.mockReturnValue({ insert: mockInsert } as never);
+      mockDeHostClient.from.mockReturnValue({ insert: mockInsert } as never);
 
       const result = await submitChallengeVote("sub-1");
       expect(result.ok).toBe(false);
@@ -67,7 +67,7 @@ describe("Challenges", () => {
   describe("removeChallengeVote", () => {
     it("removes vote when signed in", async () => {
       vi.mocked(getCurrentUser).mockResolvedValue({ id: "user-1" } as never);
-      mockSupabaseClient._mocks.mockDeleteInnerEq.mockResolvedValue({ error: null });
+      mockDeHostClient._mocks.mockDeleteInnerEq.mockResolvedValue({ error: null });
 
       const result = await removeChallengeVote("sub-1");
       expect(result.ok).toBe(true);
@@ -94,7 +94,7 @@ describe("Challenges", () => {
 
     it("submits with valid data", async () => {
       vi.mocked(getCurrentUser).mockResolvedValue({ id: "user-1" } as never);
-      mockSupabaseClient._mocks.mockInsertSelectSingle.mockResolvedValue({
+      mockDeHostClient._mocks.mockInsertSelectSingle.mockResolvedValue({
         data: null,
         error: null,
       });

@@ -34,8 +34,8 @@ export interface FreeAiApiProvider {
 
 export const SUBSCRIPTION_ADVANTAGES: SubscriptionAdvantage[] = [
   {
-    id: "vercel_pro",
-    name: "Vercel Pro",
+    id: "dehost_pro",
+    name: "DeHost Pro",
     monthlyCostUsd: 20.0,
     planName: "Pro Plan",
     category: "infrastructure",
@@ -45,14 +45,14 @@ export const SUBSCRIPTION_ADVANTAGES: SubscriptionAdvantage[] = [
         "1,000 Build Minutes / month (Deploy gate optimized to save 90% build CPU)",
         "1 TB Edge Bandwidth & 12 Concurrent Builds",
         "100 Unlimited Cron Jobs (Edge scheduled tasks without server fees)",
-        "Vercel Web Analytics & Speed Insights built-in",
+        "DeHost Web Analytics & Speed Insights built-in",
         "300s Edge / Serverless Function Execution Timeout",
       ],
       tr: [
         "Aylık 1.000 Derleme Dakikası (Deploy gate sayesinde %90 CPU tasarrufu)",
         "1 TB Edge Bant Genişliği & 12 Eşzamanlı Derleme",
         "100 Sınırsız Cron Görevi (Ekstra sunucu maliyetsiz zamanlanmış görevler)",
-        "Dahili Vercel Web Analitik & Performans İzleme",
+        "Dahili DeHost Web Analitik & Performans İzleme",
         "300 saniye Sunucusuz İşlem Zaman Aşımı",
       ],
     },
@@ -62,8 +62,8 @@ export const SUBSCRIPTION_ADVANTAGES: SubscriptionAdvantage[] = [
     },
   },
   {
-    id: "supabase_pro",
-    name: "Supabase Pro",
+    id: "dehost_pro",
+    name: "DeHost Pro",
     monthlyCostUsd: 35.0,
     planName: "Pro Plan + Custom Domain Addon",
     category: "infrastructure",
@@ -155,13 +155,13 @@ export const SUBSCRIPTION_ADVANTAGES: SubscriptionAdvantage[] = [
     efficiencyScorePct: 96,
     keyPerks: {
       en: [
-        "3,000 GitHub Actions Minutes / mo (Cron schedules moved to Vercel = 90% minutes saved)",
+        "3,000 GitHub Actions Minutes / mo (Cron schedules moved to DeHost = 90% minutes saved)",
         "10 GB GitHub Container & Package Registry",
         "Dependabot, Gitleaks secret scanning & CodeQL vulnerability scanning",
         "180 Core Hours / mo GitHub Codespaces Cloud Development Environment",
       ],
       tr: [
-        "Aylık 3.000 GitHub Actions Dakikası (Cron'lar Vercel'e taşınarak %90 tasarruf edildi)",
+        "Aylık 3.000 GitHub Actions Dakikası (Cron'lar DeHost'e taşınarak %90 tasarruf edildi)",
         "10 GB GitHub Konteyner & Paket Deposu",
         "Dependabot, Gitleaks gizli bilgi tarama & CodeQL güvenlik analizi",
         "Aylık 180 Çekirdek/Saat GitHub Codespaces Bulut Geliştirme Ortamı",

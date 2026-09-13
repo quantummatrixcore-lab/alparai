@@ -9,8 +9,8 @@ export async function setupAuthenticatedPage(page: Page) {
   });
 }
 
-export async function mockSupabaseResponse(page: Page, path: string, responseBody: unknown) {
-  await page.route(`**/mock-supabase.supabase.co/rest/v1/${path}`, async (route) => {
+export async function mockDeHostResponse(page: Page, path: string, responseBody: unknown) {
+  await page.route(`**/mock-dehost.dehost.internal/rest/v1/${path}`, async (route) => {
     await route.fulfill({
       status: 200,
       contentType: "application/json",

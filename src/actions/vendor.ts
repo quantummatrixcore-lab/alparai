@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/dehost/server";
 import { maskPII } from "@/lib/pii/guardian";
 import { logger } from "@/lib/utils/logger";
 import { getCurrentUser } from "@/lib/auth/session";
@@ -58,9 +58,9 @@ export async function submitVendorResponseAction(
     const maskedText = piiResult.masked;
     const vendorResponseAt = new Date().toISOString();
 
-    const supabase = await createClient();
+    const dehost = await createClient();
 
-    const { error: updateError } = await supabase
+    const { error: updateError } = await dehost
       .from("incidents")
       .update({
         vendor_response_text: maskedText,

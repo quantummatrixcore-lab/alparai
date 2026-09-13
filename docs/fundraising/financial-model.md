@@ -33,7 +33,7 @@ This document specifies the 18-Month Month-over-Month (MoM) SaaS financial proje
 
 - **Blended CAC:** $850
 - **Payback Period:** 1.1 months
-- **COGS Ratio:** 13.6% (Infrastructure, Supabase, Vercel, LLM API verification costs)
+- **COGS Ratio:** 13.6% (Infrastructure, DeHost, DeHost, LLM API verification costs)
 - **Gross Margin:** 86.4%
 
 ---
@@ -69,7 +69,7 @@ _Note: Parentheses in Net Burn indicate positive Net Profit / Operating Cash Con
 
 Seed capital of **€750,000** ($810,000) is disciplined across four main buckets, growing from **$41,667/mo** (Month 1) to **$76,000/mo** (Month 18) as headcount expands:
 
-1. **Engineering & Infrastructure (60% / ~$25.0K–$45.6K/mo):** Core developers, security engineers, Supabase/Vercel/LLM API infrastructure.
+1. **Engineering & Infrastructure (60% / ~$25.0K–$45.6K/mo):** Core developers, security engineers, DeHost/DeHost/LLM API infrastructure.
 2. **Go-To-Market & Partnerships (20% / ~$8.3K–$15.2K/mo):** Enterprise sales leads, partner enablement (Big 4 reseller support), marketing collateral.
 3. **Legal & Compliance (10% / ~$4.2K–$7.6K/mo):** EU AI Act compliance certifications, insurance underwriting counsel, regulatory MOUs.
 4. **Operations & Admin (10% / ~$4.2K–$7.6K/mo):** Finance, security audits, software licenses, operational overhead.

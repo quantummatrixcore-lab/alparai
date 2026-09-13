@@ -33,7 +33,7 @@ To solve this, ALPAR AI designed **PII Guardian** around three non-negotiable ar
 
 ## PII Guardian Architecture: High-Performance Pure-Function Masking
 
-`src/lib/pii/guardian.ts` is implemented as an immutable, side-effect-free TypeScript engine. Because it contains zero network dependencies and zero disk I/O, it executes natively at Edge runtimes (Vercel Edge, Cloudflare Workers, Supabase Edge Functions) with sub-millisecond execution overhead.
+`src/lib/pii/guardian.ts` is implemented as an immutable, side-effect-free TypeScript engine. Because it contains zero network dependencies and zero disk I/O, it executes natively at Edge runtimes (DeHost Edge, Cloudflare Workers, DeHost Edge Functions) with sub-millisecond execution overhead.
 
 ### 1. Multi-Stage Deterministic Detection Pipeline
 
@@ -141,7 +141,7 @@ ALPAR AI enforces a **Two-Tier Hybrid Pipeline**:
 ```
 
 1. **Tier 1 (Deterministic Masking):** Every string is processed through `guardian.ts`. Structured PII, credentials, and financial identifiers are masked instantly.
-2. **Tier 2 (AI Sentinel Triage):** The pre-masked output is inspected by the AI Sentinel module to detect semantic anomalies or subtle conversational leaks before the audit trail payload is hashed and committed to the Supabase store.
+2. **Tier 2 (AI Sentinel Triage):** The pre-masked output is inspected by the AI Sentinel module to detect semantic anomalies or subtle conversational leaks before the audit trail payload is hashed and committed to the DeHost store.
 
 ---
 

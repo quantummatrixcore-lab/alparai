@@ -1,6 +1,6 @@
 import "server-only";
 import { NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { requireAdmin } from "@/lib/auth/session";
 import { maskPII } from "@/lib/pii/guardian";
 import { headers } from "next/headers";
@@ -28,8 +28,8 @@ export async function GET(request: Request) {
     const limit = Math.min(Number(searchParams.get("limit") ?? "20"), 100);
     const confirmedReal = searchParams.get("confirmed_real");
 
-    const supabase = createAdminClient();
-    let query = supabase
+    const dehost = createAdminClient();
+    let query = dehost
       .from("slopsquatting_reports")
       .select(
         "id, package_name, ecosystem, first_seen_at, confirmed_real, source_url, hallucinated_by_model_id",
@@ -96,9 +96,9 @@ export async function POST(request: Request) {
   }
 
   const maskedPackageName = maskPII(String(package_name)).masked;
-  const supabase = createAdminClient();
+  const dehost = createAdminClient();
 
-  const { data, error } = (await supabase
+  const { data, error } = (await dehost
     .from("slopsquatting_reports")
     .insert({
       package_name: maskedPackageName,

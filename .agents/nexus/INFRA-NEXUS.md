@@ -7,7 +7,7 @@
 
 ## 1. 🚫 THE ANTI-BROWSER LAW
 
-**ABSOLUTE PROHIBITION:** You (the Agent) are FORBIDDEN from using any "Browser" tool to check Vercel, Hetzner, Coolify, or GitHub dashboards. You are a DevOps Engineer. You must use CLI (Command Line Interface), SSH, or APIs.
+**ABSOLUTE PROHIBITION:** You (the Agent) are FORBIDDEN from using any "Browser" tool to check DeHost, Hetzner, Coolify, or GitHub dashboards. You are a DevOps Engineer. You must use CLI (Command Line Interface), SSH, or APIs.
 Using the browser to check a deployment wastes tokens and is highly unprofessional. If you use a browser to check a log, you fail.
 
 ---
@@ -24,17 +24,17 @@ Using the browser to check a deployment wastes tokens and is highly unprofession
 
 ---
 
-## 3. 🚀 THE VERCEL PLAYBOOK (For Frontend Agent)
+## 3. 🚀 THE DEHOST PLAYBOOK (For Frontend Agent)
 
 When deploying the `Agent-Os-Frontend`:
 
 1. Push code to the `main` branch.
-2. Vercel will automatically start deploying.
+2. DeHost will automatically start deploying.
 3. **DO NOT USE THE BROWSER.**
-4. Use the Vercel CLI to verify deployment:
-   - Run `npx vercel ls` to see the status.
-   - Run `npx vercel inspect <deployment-url>` to check if it's "READY".
-   - If it fails, run `npx vercel logs <deployment-url>` to read the error directly in the terminal.
+4. Use the DeHost CLI to verify deployment:
+   - Run `npx dehost ls` to see the status.
+   - Run `npx dehost inspect <deployment-url>` to check if it's "READY".
+   - If it fails, run `npx dehost logs <deployment-url>` to read the error directly in the terminal.
 
 ---
 

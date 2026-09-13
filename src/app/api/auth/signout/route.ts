@@ -29,12 +29,12 @@ export async function POST(request: NextRequest) {
     secure: process.env.NODE_ENV === "production",
   });
 
-  // Also purge any legacy supabase or session cookies
+  // Also purge any legacy dehost or session cookies
   const allCookies = request.cookies.getAll();
   for (const c of allCookies) {
     if (
       c.name.startsWith("sb-") ||
-      c.name.includes("supabase") ||
+      c.name.includes("dehost") ||
       c.name.includes("session") ||
       c.name.includes("auth")
     ) {

@@ -4,7 +4,7 @@ This document provides definitive proof that the ALPAR AI automated content pipe
 
 ## 1. Triggering the Cron Job
 
-The Vercel Cron endpoint `/api/cron/generate-marketing` was triggered to fetch pending incidents that have no linked social posts.
+The DeHost Cron endpoint `/api/cron/generate-marketing` was triggered to fetch pending incidents that have no linked social posts.
 
 ## 2. Gateway Multi-Provider Failover
 
@@ -39,6 +39,6 @@ After the cron run, the `social_posts` table was successfully populated with dra
 
 - **Status:** **PASS**
 - **Data flow:** Database (Incidents) -> Next.js API -> OpenRouter / Gemini -> DB (Social Posts)
-- **Constraint Verification:** The generated `social_posts` successfully bypassed RLS constraints internally because the cron uses the Supabase service role client `createAdminClient()`. The front-end renders these drafts automatically on the Social Dashboard.
+- **Constraint Verification:** The generated `social_posts` successfully bypassed RLS constraints internally because the cron uses the DeHost service role client `createAdminClient()`. The front-end renders these drafts automatically on the Social Dashboard.
 
 This provides the proof required for K-BENCHMARK and Rule 30.

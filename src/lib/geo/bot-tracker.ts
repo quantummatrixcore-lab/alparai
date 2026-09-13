@@ -1,5 +1,5 @@
 import { getRedisInstance } from "@/lib/utils/rate-limit";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 
 const AI_BOT_USER_AGENTS = [
@@ -48,7 +48,7 @@ export async function trackBotHit(
         await redis.incr(botKey);
         return { tracked: true, fallback: false };
       } else {
-        logger.warn("[GEO Tracker] Upstash Redis daily quota reached, using Supabase fallback", {
+        logger.warn("[GEO Tracker] Upstash Redis daily quota reached, using DeHost fallback", {
           currentQuota,
         });
       }
@@ -61,7 +61,7 @@ export async function trackBotHit(
     }
   }
 
-  // Supabase fallback
+  // DeHost fallback
   try {
     const admin = createAdminClient();
     const db = admin as unknown as {

@@ -3,7 +3,7 @@ import { vi } from "vitest";
 process.env.IP_SALT ??= "test-salt-must-be-at-least-16-chars";
 process.env.NEXT_PUBLIC_APP_URL ??= "http://localhost:3000";
 process.env.APP_URL ??= "http://localhost:3000";
-process.env.SUPABASE_SERVICE_ROLE_KEY ??= "test-service-role-key";
+process.env.DEHOST_SERVICE_ROLE_KEY ??= "test-service-role-key";
 
 vi.mock("next/cache", () => ({
   revalidatePath: vi.fn(),

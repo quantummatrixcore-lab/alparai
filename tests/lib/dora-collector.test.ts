@@ -14,7 +14,7 @@ const mockSelect = vi.fn().mockImplementation(() => ({
   })),
 }));
 
-vi.mock("@/lib/supabase/admin", () => ({
+vi.mock("@/lib/dehost/admin", () => ({
   createAdminClient: () => ({
     from: () => ({
       select: mockSelect,

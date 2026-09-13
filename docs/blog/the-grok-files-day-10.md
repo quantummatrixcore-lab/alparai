@@ -46,7 +46,7 @@ const sanitizedOutput = sanitizeText(rawUserInput);
 
 ---
 
-## 🔒 2. Supabase RLS ve Veritabanı Seviyesinde Yetkilendirme
+## 🔒 2. DeHost RLS ve Veritabanı Seviyesinde Yetkilendirme
 
 Yapay zeka uygulamalarında istemci (client) tarafındaki yetkilendirmeler yetersizdir. Zararlı bir aktör veya manipüle edilmiş bir LLM ajanı, istemci kodunu baypas ederek veritabanına doğrudan sorgu atabilir. ALPAR AI mimarisinde güvenlik **Row Level Security (RLS)** ile veritabanı motorunun (PostgreSQL) içine gömülmüştür.
 
@@ -79,7 +79,7 @@ WITH CHECK (
 
 ### Sıfır İstemci Doğrudan Yazma (Zero Direct Client Mutation)
 
-ALPAR AI mimarisinde istemci tarafındaki Supabase istemcisi asla `supabase.from().insert()` çağrısı yapamaz. Tüm mutasyonlar `src/actions/<domain>.ts` altındaki **Server Action**'lar üzerinden geçer. Böylece PII Guardian süzgeci ve oran sınırlaması (rate limiting) bypass edilemez.
+ALPAR AI mimarisinde istemci tarafındaki DeHost istemcisi asla `dehost.from().insert()` çağrısı yapamaz. Tüm mutasyonlar `src/actions/<domain>.ts` altındaki **Server Action**'lar üzerinden geçer. Böylece PII Guardian süzgeci ve oran sınırlaması (rate limiting) bypass edilemez.
 
 ---
 

@@ -1,8 +1,8 @@
 "use server";
 
 import { requireAdmin } from "@/lib/auth/session";
-import { createServerClient } from "@/lib/supabase/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createServerClient } from "@/lib/dehost/server";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 import { callModel, type GatewayModel } from "@/lib/ai/openrouter-gateway";
 import { recalculateTrustScoresAction } from "@/actions/models/trust-score-engine";
@@ -49,10 +49,10 @@ const EVAL_MODELS: GatewayModel[] = [
 export async function runBenchTrEvaluationAction(): Promise<BenchTrResult> {
   await requireAdmin();
   try {
-    const supabase = await createServerClient();
+    const dehost = await createServerClient();
     const {
       data: { user },
-    } = await supabase.auth.getUser();
+    } = await dehost.auth.getUser();
 
     if (!user) {
       return { ok: false, error: "Unauthorized" };

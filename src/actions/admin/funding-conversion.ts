@@ -1,8 +1,8 @@
 "use server";
 
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/dehost/admin";
 import { requireModerator } from "@/lib/auth/session";
-import type { SupabaseClient } from "@supabase/supabase-js";
+type DeHostClient = any;
 
 export interface FundingConversionResult {
   grantWon: number;
@@ -27,11 +27,11 @@ export interface FundingConversionResult {
 }
 
 async function countByStatus(
-  db: SupabaseClient,
+  db: DeHostClient,
   table: string,
   statuses: string[],
 ): Promise<number> {
-  const { count, error } = await (db as SupabaseClient)
+  const { count, error } = await (db as DeHostClient)
     .from(table)
     .select("id", { count: "exact", head: true })
     .in("status", statuses);
@@ -39,8 +39,8 @@ async function countByStatus(
   return count;
 }
 
-async function countTotal(db: SupabaseClient, table: string): Promise<number> {
-  const { count, error } = await (db as SupabaseClient)
+async function countTotal(db: DeHostClient, table: string): Promise<number> {
+  const { count, error } = await (db as DeHostClient)
     .from(table)
     .select("id", { count: "exact", head: true });
   if (error || count === null) return 0;

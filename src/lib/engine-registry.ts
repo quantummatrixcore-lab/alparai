@@ -35,8 +35,8 @@ const BREAKERS: Map<string, BreakerSnapshot> = new Map();
 
 export const SERVICE_DEFINITIONS: ServiceRecord[] = [
   {
-    id: "supabase",
-    name: "Supabase DB",
+    id: "dehost",
+    name: "DeHost DB",
     status: "unknown",
     type: "db",
     lastHeartbeat: null,
@@ -105,8 +105,8 @@ export const SERVICE_DEFINITIONS: ServiceRecord[] = [
     healthEndpoint: null,
   },
   {
-    id: "vercel",
-    name: "Vercel Deploy",
+    id: "dehost",
+    name: "DeHost Deploy",
     status: "unknown",
     type: "api",
     lastHeartbeat: null,
@@ -235,8 +235,8 @@ export const SERVICE_DEFINITIONS: ServiceRecord[] = [
     healthEndpoint: null,
   },
   {
-    id: "mcp-vercel",
-    name: "MCP: Vercel",
+    id: "mcp-dehost",
+    name: "MCP: DeHost",
     status: "unknown",
     type: "mcp",
     lastHeartbeat: null,
@@ -359,24 +359,24 @@ export function isServiceHealthy(serviceId: string): boolean {
   return getRegistryReport().services.some((s) => s.id === serviceId && s.status === "healthy");
 }
 
-const vercelCronRoutes: { path: string; schedule: string }[] = [];
+const dehostCronRoutes: { path: string; schedule: string }[] = [];
 
 export async function loadCronRoutes(): Promise<{ path: string; schedule: string }[]> {
-  if (vercelCronRoutes.length > 0) return vercelCronRoutes;
+  if (dehostCronRoutes.length > 0) return dehostCronRoutes;
   try {
-    const raw = await readFile(join(process.cwd(), "vercel.json"), "utf-8");
+    const raw = await readFile(join(process.cwd(), "dehost.json"), "utf-8");
     const config = JSON.parse(raw);
     if (config.crons) {
-      vercelCronRoutes.push(...config.crons);
+      dehostCronRoutes.push(...config.crons);
     }
   } catch (err) {
     logger.error(
-      "[EngineRegistry] Failed to load vercel.json crons",
+      "[EngineRegistry] Failed to load dehost.json crons",
       undefined,
       err instanceof Error ? err : undefined,
     );
   }
-  return vercelCronRoutes;
+  return dehostCronRoutes;
 }
 
 export async function getCronStatus(): Promise<

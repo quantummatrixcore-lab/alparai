@@ -51,7 +51,7 @@ export async function GET(req: Request) {
       }
     }
 
-    // In a real scenario, this would write to a cron_job_logs table in Supabase.
+    // In a real scenario, this would write to a cron_job_logs table in DeHost.
     // For now, we will just log it to stdout as requested by the simplified logic.
     console.info("[Security Audit Cron] Audit complete", {
       success,

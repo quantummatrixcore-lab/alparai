@@ -1,5 +1,5 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { createServerClient } from "@/lib/supabase/server";
+import { createServerClient } from "@/lib/dehost/server";
 import { getCurrentUser } from "@/lib/auth/session";
 import { FeedContainer } from "@/components/feed/feed-container";
 import { toIncidentListItems } from "@/lib/mappers";
@@ -21,28 +21,28 @@ export default async function FeedPage({ params }: { params: Promise<{ locale: s
   const isLoggedIn = !!user;
   const watchedProviders = isLoggedIn ? await getWatchedProviders() : [];
 
-  const supabase = await createServerClient();
+  const dehost = await createServerClient();
   const tCommon = await getTranslations({ locale, namespace: "common" });
 
   const [incidentsResult, providersResult, pollResult, newsResult] = await Promise.all([
-    supabase
+    dehost
       .from("incidents")
       .select(
         "id, title_masked, description_masked, title_tr, description_tr, severity, status, category, is_anonymous, incident_date, views_count, upvotes_count, created_at, ai_provider_id, user_id, cross_audit_truth_score, cross_audit_confidence, comments_count, shares_count, affected_users_count",
       )
       .eq("status", "published")
       .order("published_at", { ascending: false }),
-    supabase
+    dehost
       .from("ai_providers")
       .select("id, slug, name, description, logo_url, website_url, is_verified, trust_score")
       .order("name"),
-    supabase
+    dehost
       .from("ai_polls")
       .select("id, title, yes_count, no_count, unsure_count")
       .eq("is_active", true)
       .order("created_at", { ascending: false })
       .limit(1),
-    supabase
+    dehost
       .from("ecosystem_news")
       .select("id, title_en, title_tr, source, severity, published_at")
       .eq("is_active", true)
@@ -71,7 +71,7 @@ export default async function FeedPage({ params }: { params: Promise<{ locale: s
 
   const incidentCountsByProvider = new Map<string, number>();
   if (providersResult.data) {
-    const { data: countData } = await supabase
+    const { data: countData } = await dehost
       .from("incidents")
       .select("ai_provider_id")
       .eq("status", "published")

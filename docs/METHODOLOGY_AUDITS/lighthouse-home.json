@@ -251,7 +251,7 @@
           },
           {
             "source": "security",
-            "description": "Loading the script 'https://va.vercel-scripts.com/v1/script.debug.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' https://*.supabase.co https://*.sentry.io https://challenges.cloudflare.com https://plausible.io\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+            "description": "Loading the script 'https://va.dehost-scripts.internal/v1/script.debug.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' https://*.dehost.internal https://*.sentry.io https://challenges.cloudflare.com https://plausible.io\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
             "sourceLocation": {
               "type": "source-location",
               "url": "http://localhost:3000/_next/static/chunks/node_modules__pnpm_18gl1it._.js",
@@ -262,7 +262,7 @@
           },
           {
             "source": "security",
-            "description": "Loading the script 'https://va.vercel-scripts.com/v1/speed-insights/script.debug.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' https://*.supabase.co https://*.sentry.io https://challenges.cloudflare.com https://plausible.io\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
+            "description": "Loading the script 'https://va.dehost-scripts.internal/v1/speed-insights/script.debug.js' violates the following Content Security Policy directive: \"script-src 'self' 'unsafe-inline' https://*.dehost.internal https://*.sentry.io https://challenges.cloudflare.com https://plausible.io\". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked.",
             "sourceLocation": {
               "type": "source-location",
               "url": "http://localhost:3000/_next/static/chunks/node_modules__pnpm_18gl1it._.js",
@@ -1897,7 +1897,7 @@
             "entity": "localhost"
           },
           {
-            "url": "https://va.vercel-scripts.com/v1/script.debug.js",
+            "url": "https://va.dehost-scripts.internal/v1/script.debug.js",
             "sessionTargetType": "page",
             "protocol": "",
             "cache": "none",
@@ -1912,7 +1912,7 @@
             "resourceType": "Script",
             "priority": "Low",
             "experimentalFromMainFrame": true,
-            "entity": "vercel-scripts.com"
+            "entity": "dehost-scripts.internal"
           },
           {
             "url": "http://localhost:3000/_next/static/chunks/_05-o53r._.js",
@@ -2023,7 +2023,7 @@
             "entity": "localhost"
           },
           {
-            "url": "https://va.vercel-scripts.com/v1/speed-insights/script.debug.js",
+            "url": "https://va.dehost-scripts.internal/v1/speed-insights/script.debug.js",
             "sessionTargetType": "page",
             "protocol": "",
             "cache": "none",
@@ -2038,7 +2038,7 @@
             "resourceType": "Script",
             "priority": "Low",
             "experimentalFromMainFrame": true,
-            "entity": "vercel-scripts.com"
+            "entity": "dehost-scripts.internal"
           },
           {
             "url": "https://plausible.io/js/script.js",
@@ -6362,10 +6362,10 @@
               "type": "subitems",
               "items": [
                 {
-                  "url": "https://va.vercel-scripts.com/v1/script.debug.js"
+                  "url": "https://va.dehost-scripts.internal/v1/script.debug.js"
                 },
                 {
-                  "url": "https://va.vercel-scripts.com/v1/speed-insights/script.debug.js"
+                  "url": "https://va.dehost-scripts.internal/v1/speed-insights/script.debug.js"
                 }
               ]
             }
@@ -9425,8 +9425,8 @@
       "isUnrecognized": true
     },
     {
-      "name": "vercel-scripts.com",
-      "origins": ["https://va.vercel-scripts.com"],
+      "name": "dehost-scripts.internal",
+      "origins": ["https://va.dehost-scripts.internal"],
       "isUnrecognized": true
     },
     {

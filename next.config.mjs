@@ -8,11 +8,11 @@ const isTest =
 
 const cspRules = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.supabase.co https://*.sentry.io https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.google.com https://*.gstatic.com https://va.vercel-scripts.com",
+  "script-src 'self' 'unsafe-inline' https://*.dehost.internal https://*.sentry.io https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.google.com https://*.gstatic.com https://va.dehost-scripts.internal",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com",
   "font-src 'self' https://fonts.gstatic.com data:",
-  "img-src 'self' data: blob: https: https://*.googleusercontent.com https://avatars.githubusercontent.com https://*.supabase.co https://logo.clearbit.com",
-  "connect-src 'self' wss://alparai.com wss://*.alparai.com https://*.supabase.co https://*.sentry.io wss://*.supabase.co https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.googleapis.com https://*.posthog.com https://*.upstash.io https://va.vercel-scripts.com",
+  "img-src 'self' data: blob: https: https://*.googleusercontent.com https://avatars.githubusercontent.com https://*.dehost.internal https://logo.clearbit.com",
+  "connect-src 'self' wss://alparai.com wss://*.alparai.com https://*.dehost.internal https://*.sentry.io wss://*.dehost.internal https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.googleapis.com https://*.posthog.com https://*.upstash.io https://va.dehost-scripts.internal",
   "frame-src 'self' https://challenges.cloudflare.com https://accounts.google.com https://*.google.com",
   "worker-src 'self' blob:",
   "frame-ancestors 'none'",
@@ -54,7 +54,7 @@ const securityHeaders = [
 
 const embedCsp = csp.replace(
   "frame-ancestors 'none'",
-  "frame-ancestors 'self' https://*.alparai.com https://*.vercel.app",
+  "frame-ancestors 'self' https://*.alparai.com https://*.alparai.com",
 );
 const embedHeaders = [
   { key: "Content-Security-Policy", value: embedCsp },
@@ -105,7 +105,7 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV === "production",
   },
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
   outputFileTracingExcludes: {
     "*": [
@@ -126,7 +126,7 @@ const nextConfig = {
     minimumCacheTTL: 2592000,
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
-      { protocol: "https", hostname: "*.supabase.co" },
+      { protocol: "https", hostname: "*.dehost.internal" },
       { protocol: "https", hostname: "avatars.githubusercontent.com" },
       { protocol: "https", hostname: "lh3.googleusercontent.com" },
       { protocol: "https", hostname: "logo.clearbit.com" },
@@ -135,7 +135,7 @@ const nextConfig = {
     ],
   },
   experimental: {
-    // Zero-Cost: Vercel serverless memory & build footprint optimization (Momentum & Venture)
+    // Zero-Cost: DeHost serverless memory & build footprint optimization (Momentum & Venture)
     webpackBuildWorker: false,
     parallelServerCompiles: false,
     parallelServerBuildTraces: false,
@@ -187,6 +187,16 @@ const nextConfig = {
 
   async redirects() {
     return [
+      {
+        source: "/:locale/advisory_board",
+        destination: "/:locale/about/advisory-board",
+        permanent: true,
+      },
+      {
+        source: "/advisory_board",
+        destination: "/about/advisory-board",
+        permanent: true,
+      },
       {
         source: "/:locale/suggestions",
         destination: "/:locale/dilemmas",
@@ -245,62 +255,62 @@ const nextConfig = {
       },
       {
         source: "/:locale/auth/login",
-        destination: "/:locale/auth/signin",
+        destination: "/:locale/auth/signin?mode=login",
         permanent: true,
       },
       {
         source: "/auth/login",
-        destination: "/auth/signin",
+        destination: "/auth/signin?mode=login",
         permanent: true,
       },
       {
         source: "/:locale/login",
-        destination: "/:locale/auth/signin",
+        destination: "/:locale/auth/signin?mode=login",
         permanent: true,
       },
       {
         source: "/login",
-        destination: "/auth/signin",
+        destination: "/auth/signin?mode=login",
         permanent: true,
       },
       {
         source: "/:locale/register",
-        destination: "/:locale/auth/signin",
+        destination: "/:locale/auth/signin?mode=register",
         permanent: true,
       },
       {
         source: "/register",
-        destination: "/auth/signin",
+        destination: "/auth/signin?mode=register",
         permanent: true,
       },
       {
         source: "/:locale/signup",
-        destination: "/:locale/auth/signin",
+        destination: "/:locale/auth/signin?mode=register",
         permanent: true,
       },
       {
         source: "/signup",
-        destination: "/auth/signin",
+        destination: "/auth/signin?mode=register",
         permanent: true,
       },
       {
         source: "/:locale/auth/register",
-        destination: "/:locale/auth/signin",
+        destination: "/:locale/auth/signin?mode=register",
         permanent: true,
       },
       {
         source: "/auth/register",
-        destination: "/auth/signin",
+        destination: "/auth/signin?mode=register",
         permanent: true,
       },
       {
         source: "/:locale/auth/signup",
-        destination: "/:locale/auth/signin",
+        destination: "/:locale/auth/signin?mode=register",
         permanent: true,
       },
       {
         source: "/auth/signup",
-        destination: "/auth/signin",
+        destination: "/auth/signin?mode=register",
         permanent: true,
       },
       {
@@ -366,7 +376,6 @@ export default withSentryConfig(withNextIntl(nextConfig), {
     treeshake: {
       removeDebugLogging: true,
     },
-    automaticVercelMonitors: true,
+    automaticDeHostMonitors: true,
   },
 });
-

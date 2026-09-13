@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { supabase } from "@/lib/supabase/client";
+import { dehost } from "@/lib/dehost/client";
 
 interface AmbassadorFormProps {
   locale: string;
@@ -25,7 +25,7 @@ export default function AmbassadorForm({}: AmbassadorFormProps) {
     try {
       const {
         data: { user },
-      } = await supabase.auth.getUser();
+      } = await dehost.auth.getUser();
 
       if (!user) {
         setError(t("ambassador_login_required"));
@@ -33,7 +33,7 @@ export default function AmbassadorForm({}: AmbassadorFormProps) {
         return;
       }
 
-      const query = supabase.from("student_ambassadors" as unknown as "incidents");
+      const query = dehost.from("student_ambassadors" as unknown as "incidents");
       const { error: insertError } = await (
         query as unknown as {
           insert: (p: unknown) => Promise<{ error: { message: string } | null }>;

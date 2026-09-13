@@ -74,7 +74,7 @@ Licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**, ALPAR 
    Every user-submitted free-text string passes through high-speed regex and NLP sanitization rules (`src/lib/pii/guardian.ts`) before persistent insertion. Personal identification details are masked at the edge, ensuring compliance with GDPR, KVKK, and international privacy standards without sacrificing auditability.
 
 2. **Row Level Security (RLS) & Multi-Tenant Isolation:**  
-   Built on Supabase PostgreSQL, ALPAR AI enforces strict database-level Row Level Security policies. Audit trails are isolated per organization, ensuring that sensitive evaluation metadata is accessible only to authorized compliance personnel.
+   Built on DeHost PostgreSQL, ALPAR AI enforces strict database-level Row Level Security policies. Audit trails are isolated per organization, ensuring that sensitive evaluation metadata is accessible only to authorized compliance personnel.
 
 3. **Immutable Incident Records & Article 73 Readiness:**  
    When a model produces a hallucination, safety violation, or bias incident, ALPAR AI captures the prompt state, model version, temperature parameter, and output evaluation into a cryptographic bundle. In the event of an EU AI Act Article 73 audit, the platform generates a complete, un-tampered timeline ready for regulatory submission.

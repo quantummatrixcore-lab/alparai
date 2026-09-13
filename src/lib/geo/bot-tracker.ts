@@ -1,5 +1,4 @@
 import { getRedisInstance } from "@/lib/utils/rate-limit";
-import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 
 const AI_BOT_USER_AGENTS = [
@@ -61,26 +60,6 @@ export async function trackBotHit(
     }
   }
 
-  // DeHost fallback
-  try {
-    const admin = createAdminClient();
-    const db = admin as unknown as {
-      from: (table: string) => {
-        insert: (values: unknown) => Promise<{ error: { message: string } | null }>;
-      };
-    };
-    await db.from("geo_citations").insert({
-      ai_engine: matchedBot,
-      cited_url: path,
-      bot_hit_count: 1,
-    });
-    return { tracked: true, fallback: true };
-  } catch (dbErr) {
-    logger.error(
-      "[GEO Tracker] DB fallback failed",
-      undefined,
-      dbErr instanceof Error ? dbErr : undefined,
-    );
-    return { tracked: false, fallback: true };
-  }
+  // If Redis is not configured or fails, safe graceful fallback without edge violation
+  return { tracked: false, fallback: true };
 }

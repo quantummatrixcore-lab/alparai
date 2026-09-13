@@ -1,0 +1,138 @@
+{
+  "timestamp": "2026-09-13T14:12:26.181Z",
+  "url": "https://www.alparai.com/en",
+  "totalScore": 1000,
+  "maxScore": 1000,
+  "grade": "A+",
+  "pillars": {
+    "Visual & Responsive Integrity": {
+      "score": 100,
+      "data": {
+        "innerW": 1536,
+        "scrollW": 1526,
+        "isHorizontalOverflow": false,
+        "overflowingCount": 40,
+        "overflowingElements": [
+          {
+            "sel": ".animate-marquee-track.flex",
+            "right": 4213,
+            "innerW": 1536
+          },
+          {
+            "sel": ".flex.shrink-0",
+            "right": 2060,
+            "innerW": 1536
+          },
+          {
+            "sel": ".group.flex",
+            "right": 1543,
+            "innerW": 1536
+          },
+          {
+            "sel": ".group.flex",
+            "right": 2048,
+            "innerW": 1536
+          },
+          {
+            "sel": ".rounded.border",
+            "right": 1633,
+            "innerW": 1536
+          }
+        ]
+      },
+      "images": {
+        "total": 1,
+        "brokenCount": 0,
+        "broken": []
+      }
+    },
+    "Deep i18n & Language Purity": {
+      "score": 100,
+      "data": {
+        "missingKeysCount": 0,
+        "missingKeys": [],
+        "entityLeaksCount": 0,
+        "entityLeaks": []
+      }
+    },
+    "Auth & Session Security": {
+      "score": 100,
+      "data": {
+        "localCount": 2,
+        "sessionCount": 2,
+        "suspiciousCount": 0,
+        "suspicious": []
+      }
+    },
+    "Forms & Idempotency": {
+      "score": 100
+    },
+    "Google Core Web Vitals (CWV)": {
+      "score": 100,
+      "data": {
+        "fcpMs": 800,
+        "domContentLoadedMs": 731,
+        "loadEventMs": 1025,
+        "transferSize": 146131
+      }
+    },
+    "Technical SEO & Structured Data": {
+      "score": 100,
+      "data": {
+        "hasTitle": true,
+        "title": "ALPAR AI — The world’s first community-governed AI accountability platform | AlparAI",
+        "hasDescription": true,
+        "description": "ALPAR AI documents, verifies, and permanently records every AI incident — governed by its community, not by AI companies. Report a failure. See the evidence. The record is permanent.",
+        "hasCanonical": true,
+        "hasOgTitle": true,
+        "hasOgImage": true,
+        "jsonLdCount": 3
+      },
+      "endpoints": {
+        "robots": {
+          "status": 200,
+          "hasContent": true
+        },
+        "sitemap": {
+          "status": 200,
+          "isXml": true
+        },
+        "llms": {
+          "status": 200,
+          "hasContent": true
+        },
+        "health": {
+          "status": 200,
+          "isHealthy": true
+        }
+      }
+    },
+    "Enterprise Maturity & Regulatory": {
+      "score": 100
+    },
+    "OWASP Client-Side Security": {
+      "score": 100,
+      "data": {
+        "dangerousInlineJs": false,
+        "formsWithoutHttps": 0
+      }
+    },
+    "WCAG 2.2 AA Accessibility": {
+      "score": 100,
+      "data": {
+        "smallTouchTargets": 0,
+        "missingAltCount": 0,
+        "emptyInteractive": 0
+      }
+    },
+    "Runtime Zero-Error Gate": {
+      "score": 100,
+      "consoleErrorsCount": 0,
+      "consoleErrors": [],
+      "networkFailuresCount": 0,
+      "networkFailures": []
+    }
+  },
+  "defectsCount": 0,
+  "defects": []
+}

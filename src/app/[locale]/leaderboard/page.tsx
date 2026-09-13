@@ -85,12 +85,29 @@ async function LeaderboardDataContent({
   const dehost = await createServerClient();
   const _t = await getTranslations({ locale, namespace: "leaderboard" });
 
-  const { data: leaderboardData } = await dehost
+  let { data: leaderboardData } = await dehost
     .from("provider_leaderboard")
     .select(
       "id, slug, name, logo_url, is_verified, website_url, trust_score, incident_count, response_count, is_verified_respondent, response_rate",
     )
     .order("name");
+
+  if (!leaderboardData || leaderboardData.length === 0) {
+    const { data: fallbackProviders } = await dehost
+      .from("ai_providers")
+      .select("id, slug, name, logo_url, is_verified, website_url, trust_score")
+      .order("name");
+
+    if (fallbackProviders && fallbackProviders.length > 0) {
+      leaderboardData = fallbackProviders.map((p: any) => ({
+        ...p,
+        incident_count: (p as any).incident_count ?? 0,
+        response_count: (p as any).response_count ?? 0,
+        is_verified_respondent: Boolean((p as any).is_verified_respondent),
+        response_rate: (p as any).response_rate ?? 0,
+      }));
+    }
+  }
 
   const stats = (
     (leaderboardData ?? []) as unknown as Array<{

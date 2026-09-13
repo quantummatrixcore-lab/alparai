@@ -236,6 +236,31 @@ export function IncidentDetailView({
             {(() => {
               const source = incident.incident_source || "user_submitted";
               const isUserSubmitted = source === "user_submitted";
+              let sourceTooltip = "";
+              try {
+                sourceTooltip = t(`source_tooltip_${source}`);
+              } catch {
+                sourceTooltip = "";
+              }
+              if (!sourceTooltip || sourceTooltip.includes("MISSING_MESSAGE") || sourceTooltip === `source_tooltip_${source}`) {
+                sourceTooltip =
+                  source === "user_submitted"
+                    ? locale === "tr"
+                      ? "Topluluk Bildirimi"
+                      : "Community Report"
+                    : source;
+              }
+
+              let sourceLabel = "";
+              try {
+                sourceLabel = t(`source_${source}`);
+              } catch {
+                sourceLabel = source;
+              }
+              if (!sourceLabel || sourceLabel.includes("MISSING_MESSAGE") || sourceLabel === `source_${source}`) {
+                sourceLabel = source;
+              }
+
               return (
                 <UIBadge
                   variant={isUserSubmitted ? "default" : "muted"}
@@ -245,9 +270,9 @@ export function IncidentDetailView({
                       ? "border-emerald-accent/20 bg-emerald-accent/10 text-emerald-accent font-bold"
                       : "border-border-subtle bg-bg-tertiary text-fg-muted",
                   )}
-                  title={t(`source_tooltip_${source}`)}
+                  title={sourceTooltip}
                 >
-                  {t(`source_${source}`)}
+                  {sourceLabel}
                 </UIBadge>
               );
             })()}

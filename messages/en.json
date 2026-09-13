@@ -2974,8 +2974,8 @@
   "app": {
     "description": "ALPAR AI documents, verifies, and permanently records every AI incident — governed by its community, not by AI companies. Report a failure. See the evidence. The record is permanent.",
     "name": "ALPAR AI",
-    "tagline": "The world's first community-governed AI accountability platform",
-    "title": "ALPAR AI — The world's first community-governed AI accountability platform"
+    "tagline": "The world’s first community-governed AI accountability platform",
+    "title": "ALPAR AI — The world’s first community-governed AI accountability platform"
   },
   "article73_checklist": {
     "badge": "EU AI Act Regulatory Compliance",
@@ -4245,9 +4245,11 @@
     "source_news_curated": "News Curation",
     "source_rss": "RSS Feed",
     "source_tooltip_aiaaic_import": "Imported from AIAAIC database.",
+    "source_github": "GitHub",
     "source_tooltip_aiid_import": "Imported from AI Incident Database.",
     "source_tooltip_court_record": "Sourced from public court records.",
     "source_tooltip_crawler": "Captured automatically by autonomous ecosystem crawlers.",
+    "source_tooltip_github": "Sourced from public GitHub repositories and commit trackers.",
     "source_tooltip_hn": "Sourced from HackerNews.",
     "source_tooltip_imported": "Imported from external verified public archives.",
     "source_tooltip_news": "Sourced from news reports.",

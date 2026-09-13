@@ -68,6 +68,10 @@ turn_off_monitor.ps1
 # Local secret backups (never commit)
 *.YEDEK-*
 
+# Private documents (personal/incubator paperwork — never commit, never push)
+docs/TEKNOPARK_ISTANBUL_KULUCKA_2026/
+docs/private/
+
 # Root artifact hygiene (REPO-1)
 /*.png
 /typecheck_output*.txt

@@ -4,11 +4,11 @@
  */
 
 import { cookies } from "next/headers";
-import { createDeHostAdapterClient, DeHostAdapterClient } from "@/lib/dehost/dehost-adapter";
+import { createDeHostServerClient, DeHostServerClient } from "@/lib/dehost/server-adapter";
 
-export async function createClient(): Promise<DeHostAdapterClient> {
+export async function createClient(): Promise<DeHostServerClient> {
   const cookieStore = await cookies();
-  const client = createDeHostAdapterClient();
+  const client = createDeHostServerClient();
 
   const sessionCookie = typeof cookieStore?.get === "function" ? cookieStore.get("alparai_session") : undefined;
   if (sessionCookie?.value) {

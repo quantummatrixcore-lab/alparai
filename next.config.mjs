@@ -117,9 +117,20 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   compress: true,
-  productionBrowserSourceMaps: false,
-  webpack(config) {
+  serverExternalPackages: ["pg", "pg-connection-string"],
+  webpack(config, { isServer }) {
     config.resolve.alias["next-intl/config"] = path.resolve(__dirname, "./src/i18n/request.ts");
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...(config.resolve.fallback || {}),
+        fs: false,
+        net: false,
+        tls: false,
+        dns: false,
+        pg: false,
+        "pg-native": false,
+      };
+    }
     return config;
   },
   images: {

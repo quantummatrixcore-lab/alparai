@@ -36,6 +36,16 @@ export function constructPageMetadata(options: PageMetadataOptions): Metadata {
   const normalizedPath = pathname.startsWith("/") ? pathname : `/${pathname}`;
   const cleanPath = normalizedPath === "/" ? "" : normalizedPath;
 
+  function cleanMetadataString(str: string): string {
+    if (!str) return str;
+    return str
+      .replace(/&#39;/g, "’")
+      .replace(/&#x27;/g, "’")
+      .replace(/&quot;/g, '"')
+      .replace(/&amp;/g, "&")
+      .replace(/'/g, "’");
+  }
+
   const isTr = locale === "tr";
   const defaultTitle = isTr
     ? "ALPAR AI — Yapay Zeka Hesap Verilebilirlik & Güven Altyapısı"
@@ -45,8 +55,8 @@ export function constructPageMetadata(options: PageMetadataOptions): Metadata {
     ? "Yapay zeka sistemleri için bağımsız denetim ve hesap verebilirlik mahkemesi. 660+ model için tarafsız güvenlik ve EU AI Act uyum sicili."
     : "The Supreme Court of AI Accountability. Independent cross-model auditing, threat defense and EU AI Act compliance platform.";
 
-  const pageTitle = title || defaultTitle;
-  const pageDescription = description || defaultDesc;
+  const pageTitle = cleanMetadataString(title || defaultTitle);
+  const pageDescription = cleanMetadataString(description || defaultDesc);
 
   const canonicalUrl = `${APP_URL}/${locale}${cleanPath}`;
 

@@ -223,7 +223,7 @@ export function HeroSection({
                     href="https://ercumenterden.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-fg-primary text-sm font-black transition-colors hover:text-brand-500 dark:hover:text-white hover:underline"
+                    className="text-fg-primary inline-flex min-h-[24px] items-center text-sm font-black transition-colors hover:text-brand-500 dark:hover:text-white hover:underline"
                   >
                     Ercüment ERDEN
                   </a>

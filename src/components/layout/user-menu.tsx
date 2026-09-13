@@ -23,6 +23,7 @@ export function UserMenu({ initialUser }: { initialUser: SessionUserShape | null
   const locale = useLocale();
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState<SessionUserShape | null>(initialUser);
+  const [imageError, setImageError] = useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
 
   const handleSignOut = async (e?: React.SyntheticEvent) => {
@@ -66,6 +67,10 @@ export function UserMenu({ initialUser }: { initialUser: SessionUserShape | null
   };
 
   React.useEffect(() => {
+    setImageError(false);
+  }, [user?.avatarUrl]);
+
+  React.useEffect(() => {
     if (initialUser) return;
     getMe()
       .then((r) => setUser(r.user))
@@ -103,7 +108,7 @@ export function UserMenu({ initialUser }: { initialUser: SessionUserShape | null
         aria-expanded={open}
         aria-haspopup="menu"
       >
-        {user.avatarUrl ? (
+        {user.avatarUrl && !imageError ? (
           <Image
             src={user.avatarUrl}
             alt=""
@@ -113,6 +118,7 @@ export function UserMenu({ initialUser }: { initialUser: SessionUserShape | null
             unoptimized
             priority
             referrerPolicy="no-referrer"
+            onError={() => setImageError(true)}
           />
         ) : (
           <span className="text-sm font-semibold">

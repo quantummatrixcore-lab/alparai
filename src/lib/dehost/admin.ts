@@ -4,13 +4,13 @@
  * Preserves 100% identical exported interface.
  */
 
-import { createDeHostAdapterClient, DeHostAdapterClient } from "@/lib/dehost/dehost-adapter";
+import { createDeHostServerClient, DeHostServerClient } from "@/lib/dehost/server-adapter";
 
-let adminClient: DeHostAdapterClient | null = null;
+let adminClient: DeHostServerClient | null = null;
 
-export function createAdminClient(): DeHostAdapterClient {
+export function createAdminClient(): DeHostServerClient {
   if (!adminClient) {
-    adminClient = createDeHostAdapterClient();
+    adminClient = createDeHostServerClient();
   }
   return adminClient;
 }

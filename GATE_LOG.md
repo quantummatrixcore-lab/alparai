@@ -845,3 +845,52 @@ STATUS: 100% GREEN VERIFIED (0 ERRORS)
   - `src/actions/admin/provider-attribution.ts`
   - `dehost/migrations/0004_provider_attribution.sql`
   - `tests/lib/import/provider-attribution.test.ts`
+
+## 2026-09-13 — CUTOVER: PRODUCTION SERVICE & MIGRATION ACTIVATION
+
+### Operation Parameters & Context
+- **Target Host**: `root@45.143.4.92` via SSH (`C:\Users\ercum\.ssh\id_ed25519_vds`)
+- **Checkout Commit**: `edc9e955` at `/data/apps/alparai`
+- **Database**: `alparai_prod` on container `postgres-master`
+- **Rollback Safeguard**: Pre-existing DB snapshot at `/root/alparai-backup/`, rollback executable at `/root/alparai-backup/rollback.sh`
+- **Planned Steps**:
+  1. Confirm `/tmp/cut_build.log` completion and verify no lingering `next build` process.
+  2. Transfer migrations `0001` through `0005` to `/tmp` on target server.
+  3. Apply migrations `0001_full_schema.sql` → `0005_prod_data_alignment.sql` to `alparai_prod` with `ON_ERROR_STOP=0`, logging exact per-file error counts.
+  4. Restart `alparai.service` via `systemctl restart alparai`, pause 20s, verify active status.
+  5. Comprehensive Smoke Gate:
+     - Local homepage HTTP 200 (`http://localhost:3003/tr`)
+     - Public homepage HTTP 200 / 307 (`https://alparai.com/`)
+     - `/api/health` HTTP 200 with DeHost connectivity indicator
+     - DB Counts: `tables >= 140`, `incidents >= 3115`, `unattributed = 0`
+     - Fresh service uptime verified
+     - Rollback protocol: immediate trigger of `/root/alparai-backup/rollback.sh` if any check fails.
+### Measured Execution Results (Live Server 45.143.4.92)
+1. **Build Completion Verification**:
+   - Next.js build completed: routes rendered, 0 active `next build` processes.
+   - Checked out commit: `edc9e955 Migration final: no-delete 0005, guarded 0003 seeds, prod-verified (141t/360p)`.
+2. **Migration Transfer (SCP to /tmp)**:
+   - `0001_full_schema.sql` (375,017 bytes, md5: `5b9b3c425592f8a1e1bc3aa0555ae7f7`)
+   - `0002_rls_policies.sql` (90,383 bytes, md5: `62dfab4298f5eb0d6678d30200683a00`)
+   - `0003_seeds.sql` (172,637 bytes, md5: `b0b8d35feb0ef35519d2c3b22e02e392`)
+   - `0004_provider_attribution.sql` (1,075 bytes, md5: `45f09397dd1892be269fce6da85e6043`)
+   - `0005_prod_data_alignment.sql` (2,224 bytes, md5: `52702e55b953c6bf70a5ea6b6e41b9c9`)
+3. **Migration Application (`alparai_prod` via ON_ERROR_STOP=0)**:
+   - `0001_full_schema.sql`: 3428ms | Errors: 517 (all `already exists` schema-definition class) | Notices: 0
+   - `0002_rls_policies.sql`: 1687ms | Errors: 0 | Notices: 268
+   - `0003_seeds.sql`: 1191ms | Errors: 1 (null id in email_preferences notice) | Notices: 0
+   - `0004_provider_attribution.sql`: 556ms | Errors: 0 | Notices: 0
+   - `0005_prod_data_alignment.sql`: 797ms | Errors: 0 | Notices: 0
+4. **Service Restart & Active Verification**:
+   - Executed: `systemctl restart alparai`, waited 20s.
+   - Status: `active (running) since Sun 2026-09-13 15:07:11 +03`.
+   - Process: PID 259341 `next-server (v16.3.3)`, ready in 312ms on port 3003.
+5. **Smoke Gate Results (ALL 5 CHECKS PASSED — 100% GREEN)**:
+   - `LOCAL_HTTP_CODE`: 200 (`http://127.0.0.1:3003/tr`)
+   - `PUBLIC_RAW_CODE`: 307 | `PUBLIC_FOLLOW_CODE`: 200 (`https://alparai.com/`)
+   - `HEALTH_HTTP_CODE`: 200 (`/api/health` returned healthy with DeHost service listed)
+   - `DB_TABLES`: 141 (requirement: >= 140) — PASS
+   - `DB_INCIDENTS`: 3115 (requirement: >= 3115) — PASS
+   - `DB_UNATTRIBUTED`: 0 (requirement: == 0) — PASS
+   - `SERVICE_UPTIME`: fresh (active running, 0 restarts since cutover)
+   - Rollback status: NOT TRIGGERED (all smoke gates passed).

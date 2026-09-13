@@ -25,11 +25,14 @@ function PostHogPageview() {
 }
 
 export function PostHogProvider({ children }: { children: React.ReactNode }) {
+  const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
+  const isEnabled = Boolean(key && key !== "phc_dummy" && !key.startsWith("phc_dummy") && key !== "placeholder");
+
   useEffect(() => {
-    if (typeof window !== "undefined" && !posthog.__loaded) {
+    if (typeof window !== "undefined" && isEnabled && !posthog.__loaded) {
       const initPostHog = () => {
-        if (!posthog.__loaded) {
-          posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY || "phc_dummy", {
+        if (!posthog.__loaded && key) {
+          posthog.init(key, {
             api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com",
             person_profiles: "identified_only",
             capture_pageview: false,
@@ -48,7 +51,11 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
         return () => clearTimeout(timer);
       }
     }
-  }, []);
+  }, [isEnabled, key]);
+
+  if (!isEnabled) {
+    return <>{children}</>;
+  }
 
   return (
     <Provider client={posthog}>

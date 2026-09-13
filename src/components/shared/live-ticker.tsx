@@ -179,7 +179,7 @@ export function LiveTicker() {
   );
 
   return (
-    <div className="relative flex h-8 w-full max-w-full items-center overflow-hidden border-y border-border-subtle bg-bg-primary/95 backdrop-blur-md select-none">
+    <div className="relative flex h-8 w-full max-w-full items-center overflow-hidden overflow-x-clip border-y border-border-subtle bg-bg-primary/95 backdrop-blur-md select-none">
       {/* Fixed Left Corporate Brand Anchor */}
       <div className="z-20 flex h-full shrink-0 items-center gap-2 border-r border-border-subtle bg-bg-primary px-3.5 shadow-lg">
         <span className="relative flex h-2 w-2">
@@ -195,10 +195,12 @@ export function LiveTicker() {
       <div className="pointer-events-none absolute top-0 bottom-0 left-[125px] z-10 w-12 bg-gradient-to-r from-bg-primary to-transparent" />
       <div className="pointer-events-none absolute top-0 right-0 bottom-0 z-10 w-16 bg-gradient-to-l from-bg-primary to-transparent" />
 
-      {/* Marquee Track */}
-      <div className="animate-marquee-track flex w-max shrink-0 items-center hover:[animation-play-state:paused]">
-        {renderItems("track1")}
-        {renderItems("track2")}
+      {/* Marquee Track Container */}
+      <div className="relative flex-1 h-full min-w-0 overflow-hidden overflow-x-clip [contain:paint]">
+        <div className="animate-marquee-track flex w-max shrink-0 items-center hover:[animation-play-state:paused]">
+          {renderItems("track1")}
+          {renderItems("track2")}
+        </div>
       </div>
 
       <style>{`

@@ -119,11 +119,11 @@ export function MobileNav({
   }, [pathname]);
 
   return (
-    <div className="lg:hidden">
+    <div className="lg:hidden flex items-center justify-center">
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="text-fg-secondary hover:bg-white/[0.06] hover:text-white focus-visible:ring-brand-500 inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl transition-colors focus-visible:ring-2 focus-visible:outline-none active:scale-95"
+        className="text-fg-secondary hover:bg-white/[0.06] hover:text-white focus-visible:ring-brand-500 inline-flex h-11 w-11 min-h-[44px] min-w-[44px] items-center justify-center rounded-xl transition-colors focus-visible:ring-2 focus-visible:outline-none active:scale-95 cursor-pointer"
         aria-label={t("open_menu")}
         aria-expanded={open}
         aria-controls="mobile-nav-panel"
@@ -147,7 +147,7 @@ export function MobileNav({
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="text-fg-secondary hover:bg-black/5 dark:hover:bg-white/10 hover:text-fg-primary focus-visible:ring-brand-500 inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-border-subtle bg-black/[0.04] dark:bg-white/[0.04] focus-visible:ring-2 focus-visible:outline-none transition-all active:scale-95"
+                className="text-fg-secondary hover:bg-black/5 dark:hover:bg-white/10 hover:text-fg-primary focus-visible:ring-brand-500 inline-flex h-11 w-11 min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-border-subtle bg-black/[0.04] dark:bg-white/[0.04] focus-visible:ring-2 focus-visible:outline-none transition-all active:scale-95 cursor-pointer"
                 aria-label={t("close_menu")}
               >
                 <X className="h-5 w-5" aria-hidden="true" />
@@ -228,8 +228,8 @@ export function MobileNav({
               <div className="flex min-h-[44px] items-center justify-between pt-1">
                 <span className="text-fg-muted text-xs font-medium">{t("language_switcher")}</span>
                 <div className="flex items-center gap-2">
-                  <ThemeToggle className="flex h-8.5 w-8.5 shrink-0" direction="up" />
-                  <LanguageSwitcher direction="up" />
+                  <ThemeToggle className="flex h-8.5 w-8.5 min-h-[24px] min-w-[24px] shrink-0" direction="up" />
+                  <LanguageSwitcher className="min-h-[24px] min-w-[24px]" direction="up" />
                 </div>
               </div>
             </div>

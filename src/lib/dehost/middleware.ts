@@ -5,10 +5,8 @@
  */
 
 import type { NextRequest, NextResponse } from "next/server";
-import { createDeHostAdapterClient } from "@/lib/dehost/dehost-adapter";
 
 export async function updateSession(request: NextRequest, response: NextResponse) {
-  const dehost = createDeHostAdapterClient();
   const sessionCookie = request.cookies.get("alparai_session");
 
   let user: any = null;
@@ -35,6 +33,24 @@ export async function updateSession(request: NextRequest, response: NextResponse
       // Safe fallback
     }
   }
+
+  const dehost = {
+    auth: {
+      getUser: async () => ({ data: { user }, error: null }),
+      getSession: async () => ({ data: { session: null }, error: null }),
+    },
+    from: (_table: string) => {
+      const chain: any = {
+        select: () => chain,
+        eq: () => chain,
+        neq: () => chain,
+        single: async () => ({ data: null, error: null }),
+        maybeSingle: async () => ({ data: null, error: null }),
+        then: (resolve: any) => resolve({ data: null, error: null }),
+      };
+      return chain;
+    },
+  };
 
   return { response, user, dehost };
 }

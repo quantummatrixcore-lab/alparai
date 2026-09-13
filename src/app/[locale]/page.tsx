@@ -16,10 +16,13 @@ import dynamicImport from "next/dynamic";
 import { logger } from "@/lib/utils/logger";
 import {
   resolveIncidentCount,
+  resolveProviderCount,
   resolveCountsBySource,
   CANONICAL_INCIDENT_COUNT,
   CANONICAL_COUNTS_BY_SOURCE,
   CANONICAL_TOTAL_COUNTRIES,
+  CANONICAL_FALLBACK_PROVIDERS,
+  CANONICAL_FALLBACK_INCIDENTS,
   APP_URL,
 } from "@/lib/constants";
 import { constructPageMetadata } from "@/lib/seo/metadata";
@@ -274,9 +277,45 @@ const getHomeData = cache(async (locale: string) => {
         .filter(Boolean),
     ).size;
 
-    const defaultIncidents: IncidentListItem[] = [];
+    const defaultIncidents: IncidentListItem[] = CANONICAL_FALLBACK_INCIDENTS.map((inc) => ({
+      id: inc.id,
+      title_masked: inc.title_masked,
+      description_masked: inc.description_masked,
+      title_tr: inc.title_tr,
+      description_tr: inc.description_tr,
+      translated_title: null,
+      translated_description: null,
+      machine_translated: false,
+      severity: inc.severity,
+      status: inc.status,
+      category: inc.category as IncidentListItem["category"],
+      is_anonymous: inc.is_anonymous,
+      incident_date: inc.incident_date,
+      created_at: inc.created_at,
+      view_count: inc.views_count,
+      vote_count: inc.upvotes_count,
+      evidence_count: 1,
+      shares_count: 0,
+      author_name: null,
+      provider_name: inc.provider_name,
+      provider_slug: inc.provider_slug,
+      cross_audit_truth_score: inc.cross_audit_truth_score,
+      cross_audit_confidence: inc.cross_audit_confidence,
+      incident_source: inc.incident_source,
+    }));
 
-    const defaultLeaderboard: LeaderboardEntry[] = [];
+    const defaultLeaderboard: LeaderboardEntry[] = CANONICAL_FALLBACK_PROVIDERS.map((p) => ({
+      provider_id: p.id,
+      provider_name: p.name,
+      provider_slug: p.slug,
+      incident_count: p.incident_count,
+      resolved_count: p.response_count,
+      avg_severity: 0,
+      trend: 0,
+      trust_score: p.trust_score,
+      response_rate: p.response_rate,
+      is_verified_respondent: p.is_verified_respondent,
+    }));
 
     const finalIncidents = incidents.length > 0 ? incidents : defaultIncidents;
     const finalLeaderboard = leaderboard.length > 0 ? leaderboard : defaultLeaderboard;
@@ -288,30 +327,68 @@ const getHomeData = cache(async (locale: string) => {
       topProvidersForHero:
         topProvidersForHero.length > 0
           ? topProvidersForHero
-          : [
-              { name: "OpenAI", count: 42, slug: "openai" },
-              { name: "Anthropic", count: 28, slug: "anthropic" },
-              { name: "Google", count: 35, slug: "google" },
-            ],
+          : defaultLeaderboard.slice(0, 5).map((p) => ({
+              name: p.provider_name,
+              count: p.incident_count,
+              slug: p.provider_slug,
+            })),
       countsBySource,
       incidents: finalIncidents,
       leaderboard: finalLeaderboard,
     };
   } catch (err) {
     logger.error("Failed to load home data", undefined, err instanceof Error ? err : undefined);
+    const fallbackLeaderboard: LeaderboardEntry[] = CANONICAL_FALLBACK_PROVIDERS.map((p) => ({
+      provider_id: p.id,
+      provider_name: p.name,
+      provider_slug: p.slug,
+      incident_count: p.incident_count,
+      resolved_count: p.response_count,
+      avg_severity: 0,
+      trend: 0,
+      trust_score: p.trust_score,
+      response_rate: p.response_rate,
+      is_verified_respondent: p.is_verified_respondent,
+    }));
+    const fallbackIncidents: IncidentListItem[] = CANONICAL_FALLBACK_INCIDENTS.map((inc) => ({
+      id: inc.id,
+      title_masked: inc.title_masked,
+      description_masked: inc.description_masked,
+      title_tr: inc.title_tr,
+      description_tr: inc.description_tr,
+      translated_title: null,
+      translated_description: null,
+      machine_translated: false,
+      severity: inc.severity,
+      status: inc.status,
+      category: inc.category as IncidentListItem["category"],
+      is_anonymous: inc.is_anonymous,
+      incident_date: inc.incident_date,
+      created_at: inc.created_at,
+      view_count: inc.views_count,
+      vote_count: inc.upvotes_count,
+      evidence_count: 1,
+      shares_count: 0,
+      author_name: null,
+      provider_name: inc.provider_name,
+      provider_slug: inc.provider_slug,
+      cross_audit_truth_score: inc.cross_audit_truth_score,
+      cross_audit_confidence: inc.cross_audit_confidence,
+      incident_source: inc.incident_source,
+    }));
     return {
       incidentsCountResult: { count: CANONICAL_INCIDENT_COUNT },
       providersResult: { data: [] },
       uniqueCountriesCount: CANONICAL_TOTAL_COUNTRIES,
-      topProvidersForHero: [
-        { name: "OpenAI", count: 42, slug: "openai" },
-        { name: "Anthropic", count: 28, slug: "anthropic" },
-        { name: "Google", count: 35, slug: "google" },
-      ],
+      topProvidersForHero: fallbackLeaderboard.slice(0, 5).map((p) => ({
+        name: p.provider_name,
+        count: p.incident_count,
+        slug: p.provider_slug,
+      })),
       countsBySource: { ...CANONICAL_COUNTS_BY_SOURCE },
-      incidents: [],
-      leaderboard: []
-      };
+      incidents: fallbackIncidents,
+      leaderboard: fallbackLeaderboard,
+    };
   }
 });
 
@@ -320,7 +397,7 @@ async function HeroSectionAsync({ locale }: { locale: string }) {
   return (
     <HeroSection
       totalIncidents={data.incidentsCountResult.count ?? 0}
-      totalProviders={data.providersResult.data?.length ?? 0}
+      totalProviders={resolveProviderCount(data.providersResult.data?.length)}
       totalCountries={data.uniqueCountriesCount}
       topProviders={data.topProvidersForHero}
       countsBySource={data.countsBySource}
@@ -333,7 +410,7 @@ async function LiveStatsAsync({ locale }: { locale: string }) {
   return (
     <LiveStats
       totalIncidents={data.incidentsCountResult.count ?? 0}
-      totalProviders={data.providersResult.data?.length ?? 0}
+      totalProviders={resolveProviderCount(data.providersResult.data?.length)}
       totalCountries={data.uniqueCountriesCount}
       countsBySource={data.countsBySource}
     />

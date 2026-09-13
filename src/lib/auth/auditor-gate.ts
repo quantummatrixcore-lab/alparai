@@ -21,9 +21,9 @@ export async function isAuthorizedAuditor(request: Request): Promise<boolean> {
     return false;
   }
 
-  // Check env key first
+  // Check env key in non-production environments only
   const auditorEnvKey = process.env.AUDITOR_API_KEY;
-  if (auditorEnvKey && safeCompare(apiKey, auditorEnvKey)) {
+  if (process.env.NODE_ENV !== "production" && auditorEnvKey && safeCompare(apiKey, auditorEnvKey)) {
     return true;
   }
 

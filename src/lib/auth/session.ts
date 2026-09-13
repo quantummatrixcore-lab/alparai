@@ -12,11 +12,22 @@ export interface AlparUser {
   created_at: string;
 }
 
-const SECRET = process.env.CRON_SECRET || "alparai-sovereign-session-secret-key-2026";
+function getSessionSecret(): string {
+  const secret = process.env.SESSION_SECRET || process.env.CRON_SECRET;
+  if (!secret) {
+    if (process.env.NODE_ENV === "production") {
+      throw new Error("CRITICAL SECURITY ERROR: SESSION_SECRET or CRON_SECRET is mandatory in production!");
+    }
+    return "alparai-sovereign-session-secret-key-2026";
+  }
+  return secret;
+}
+
 const COOKIE_NAME = "alparai_session";
 
 function sign(payload: string): string {
-  const hmac = createHmac("sha256", SECRET).update(payload).digest("base64url");
+  const secret = getSessionSecret();
+  const hmac = createHmac("sha256", secret).update(payload).digest("base64url");
   return `${payload}.${hmac}`;
 }
 
@@ -27,7 +38,8 @@ function verify(token: string): AlparUser | null {
     const payload = parts[0];
     const sig = parts[1];
     if (!payload || !sig) return null;
-    const expectedSig = createHmac("sha256", SECRET).update(payload).digest("base64url");
+    const secret = getSessionSecret();
+    const expectedSig = createHmac("sha256", secret).update(payload).digest("base64url");
     if (sig !== expectedSig) return null;
     const jsonStr = Buffer.from(payload, "base64url").toString("utf8");
     return JSON.parse(jsonStr) as AlparUser;

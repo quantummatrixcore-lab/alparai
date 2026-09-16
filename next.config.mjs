@@ -6,29 +6,11 @@ const isTest =
   process.env.IS_PLAYWRIGHT_TEST === "true" &&
   process.env.NEXT_TEST_AUTH_BYPASS === "true";
 
-const cspRules = [
-  "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://*.dehost.internal https://*.sentry.io https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.google.com https://*.gstatic.com https://va.dehost-scripts.internal",
-  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com",
-  "font-src 'self' https://fonts.gstatic.com data:",
-  "img-src 'self' data: blob: https: https://*.googleusercontent.com https://avatars.githubusercontent.com https://*.dehost.internal https://logo.clearbit.com",
-  "connect-src 'self' wss://alparai.com wss://*.alparai.com https://*.dehost.internal https://*.sentry.io wss://*.dehost.internal https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.googleapis.com https://*.posthog.com https://*.upstash.io https://va.dehost-scripts.internal",
-  "frame-src 'self' https://challenges.cloudflare.com https://accounts.google.com https://*.google.com",
-  "worker-src 'self' blob:",
-  "frame-ancestors 'none'",
-  "base-uri 'self'",
-  "form-action 'self' https://accounts.google.com",
-  "object-src 'none'",
-];
 
-if (!isTest) {
-  cspRules.push("upgrade-insecure-requests");
-}
 
-const csp = cspRules.join("; ");
-
+// NOTE: Content-Security-Policy (CSP) is managed dynamically in src/middleware.ts
+// as the SINGLE SOURCE OF TRUTH (with scoped frame-ancestors for /embed routes).
 const securityHeaders = [
-  { key: "Content-Security-Policy", value: csp },
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "X-Frame-Options", value: "DENY" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
@@ -52,12 +34,7 @@ const securityHeaders = [
   { key: "X-XSS-Protection", value: "1; mode=block" },
 ];
 
-const embedCsp = csp.replace(
-  "frame-ancestors 'none'",
-  "frame-ancestors 'self' https://*.alparai.com https://*.alparai.com",
-);
 const embedHeaders = [
-  { key: "Content-Security-Policy", value: embedCsp },
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "X-Frame-Options", value: "SAMEORIGIN" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
@@ -198,6 +175,37 @@ const nextConfig = {
 
   async redirects() {
     return [
+      // DEF-008: Canonical Edge Redirects for route aliases & legacy forks
+      {
+        source: "/:locale/case/001",
+        destination: "/:locale/cases/001-grok-passport",
+        permanent: true,
+      },
+      {
+        source: "/case/001",
+        destination: "/cases/001-grok-passport",
+        permanent: true,
+      },
+      {
+        source: "/:locale/incidents/case-001",
+        destination: "/:locale/cases/001-grok-passport",
+        permanent: true,
+      },
+      {
+        source: "/incidents/case-001",
+        destination: "/cases/001-grok-passport",
+        permanent: true,
+      },
+      {
+        source: "/:locale/about/advisory_board",
+        destination: "/:locale/about/advisory-board",
+        permanent: true,
+      },
+      {
+        source: "/about/advisory_board",
+        destination: "/about/advisory-board",
+        permanent: true,
+      },
       {
         source: "/:locale/advisory_board",
         destination: "/:locale/about/advisory-board",

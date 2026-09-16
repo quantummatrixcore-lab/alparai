@@ -34,11 +34,11 @@ function applySecurityHeaders(
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com",
     "font-src 'self' https://fonts.gstatic.com data:",
     "img-src 'self' data: blob: https: https://*.googleusercontent.com https://avatars.githubusercontent.com https://*.dehost.internal https://logo.clearbit.com",
-    "connect-src 'self' https://*.dehost.internal https://*.sentry.io wss://*.dehost.internal https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.googleapis.com https://*.posthog.com https://*.upstash.io https://va.dehost-scripts.internal",
+    "connect-src 'self' wss://alparai.com wss://*.alparai.com https://*.dehost.internal https://*.sentry.io wss://*.dehost.internal https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.googleapis.com https://*.posthog.com https://*.upstash.io https://va.dehost-scripts.internal",
     "frame-src 'self' https://challenges.cloudflare.com https://accounts.google.com https://*.google.com",
     "worker-src 'self' blob:",
     isEmbed
-      ? "frame-ancestors 'self' https://*.alparai.com https://*.alparai.com"
+      ? "frame-ancestors 'self' https://*.alparai.com"
       : "frame-ancestors 'none'",
     "base-uri 'self'",
     "form-action 'self' https://accounts.google.com",

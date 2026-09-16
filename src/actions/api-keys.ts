@@ -94,12 +94,58 @@ export async function saveApiKey(
     try {
       const admin = createAdminClient();
 
+      // Query existing key to capture revocation/rotation history (safe check for mock/staging adapters)
+      let existingKey: Record<string, unknown> | null = null;
+      try {
+        const query = (admin as unknown as { from: (t: string) => { select: (c: string) => { eq: (k: string, v: string) => { maybeSingle?: () => Promise<{ data: Record<string, unknown> | null }> } } } })
+          .from("api_keys")
+          ?.select?.("id, provider, tier, client_type, updated_at, created_at")
+          ?.eq?.("provider", provider.toLowerCase());
+        if (query && typeof query.maybeSingle === "function") {
+          const res = await query.maybeSingle();
+          existingKey = res?.data ?? null;
+        }
+      } catch {
+        // Safe query fallback for minimal test harnesses
+      }
+
       // If external, SHA-256 hash. If internal, AES-256-GCM encrypt at rest.
       let keyToSave = apiKey;
       if (clientType === "external") {
         keyToSave = createHash("sha256").update(apiKey).digest("hex");
       } else {
         keyToSave = encryptAtRest(apiKey);
+      }
+
+      if (existingKey) {
+        // Record prior key revocation in audit_log to prevent silent rotation
+        try {
+          const auditTable = (admin as unknown as { from: (t: string) => { insert?: (v: Record<string, unknown>) => Promise<{ error: unknown }> } })
+            .from("audit_log");
+          if (auditTable && typeof auditTable.insert === "function") {
+            await auditTable.insert({
+              action: "API_KEY_ROTATED_REVOCATION",
+              actor_id: user.id || null,
+              entity_type: "api_keys",
+              entity_id: String(existingKey.id || provider.toLowerCase()),
+              before_data: {
+                provider: existingKey.provider,
+                tier: existingKey.tier,
+                client_type: existingKey.client_type,
+                revoked_at: new Date().toISOString(),
+                reason: "ROTATION_SUPERSEDED",
+              },
+              after_data: {
+                provider: provider.toLowerCase(),
+                tier,
+                client_type: clientType,
+                rotated_at: new Date().toISOString(),
+              },
+            });
+          }
+        } catch {
+          // Non-blocking audit fallback
+        }
       }
 
       const { error } = await (
@@ -142,6 +188,29 @@ export async function deleteApiKey(provider: string) {
 
     try {
       const admin = createAdminClient();
+
+      // Record explicit revocation before deletion in audit_log
+      try {
+        const auditTable = (admin as unknown as { from: (t: string) => { insert?: (v: Record<string, unknown>) => Promise<{ error: unknown }> } })
+          .from("audit_log");
+        if (auditTable && typeof auditTable.insert === "function") {
+          await auditTable.insert({
+            action: "API_KEY_REVOKED",
+            actor_id: user.id || null,
+            entity_type: "api_keys",
+            entity_id: provider.toLowerCase(),
+            before_data: {
+              provider: provider.toLowerCase(),
+              revoked_at: new Date().toISOString(),
+              reason: "ADMIN_EXPLICIT_REVOCATION",
+            },
+            after_data: null,
+          });
+        }
+      } catch {
+        // Non-blocking audit fallback for minimal test harnesses
+      }
+
       const { error } = await (
         admin as unknown as {
           from: (name: string) => {

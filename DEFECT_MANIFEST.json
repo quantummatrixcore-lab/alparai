@@ -1,138 +1,165 @@
 {
-  "timestamp": "2026-09-13T14:12:26.181Z",
-  "url": "https://www.alparai.com/en",
-  "totalScore": 1000,
-  "maxScore": 1000,
-  "grade": "A+",
-  "pillars": {
-    "Visual & Responsive Integrity": {
-      "score": 100,
-      "data": {
-        "innerW": 1536,
-        "scrollW": 1526,
-        "isHorizontalOverflow": false,
-        "overflowingCount": 40,
-        "overflowingElements": [
-          {
-            "sel": ".animate-marquee-track.flex",
-            "right": 4213,
-            "innerW": 1536
-          },
-          {
-            "sel": ".flex.shrink-0",
-            "right": 2060,
-            "innerW": 1536
-          },
-          {
-            "sel": ".group.flex",
-            "right": 1543,
-            "innerW": 1536
-          },
-          {
-            "sel": ".group.flex",
-            "right": 2048,
-            "innerW": 1536
-          },
-          {
-            "sel": ".rounded.border",
-            "right": 1633,
-            "innerW": 1536
-          }
-        ]
-      },
-      "images": {
-        "total": 1,
-        "brokenCount": 0,
-        "broken": []
-      }
-    },
-    "Deep i18n & Language Purity": {
-      "score": 100,
-      "data": {
-        "missingKeysCount": 0,
-        "missingKeys": [],
-        "entityLeaksCount": 0,
-        "entityLeaks": []
-      }
-    },
-    "Auth & Session Security": {
-      "score": 100,
-      "data": {
-        "localCount": 2,
-        "sessionCount": 2,
-        "suspiciousCount": 0,
-        "suspicious": []
-      }
-    },
-    "Forms & Idempotency": {
-      "score": 100
-    },
-    "Google Core Web Vitals (CWV)": {
-      "score": 100,
-      "data": {
-        "fcpMs": 800,
-        "domContentLoadedMs": 731,
-        "loadEventMs": 1025,
-        "transferSize": 146131
-      }
-    },
-    "Technical SEO & Structured Data": {
-      "score": 100,
-      "data": {
-        "hasTitle": true,
-        "title": "ALPAR AI — The world’s first community-governed AI accountability platform | AlparAI",
-        "hasDescription": true,
-        "description": "ALPAR AI documents, verifies, and permanently records every AI incident — governed by its community, not by AI companies. Report a failure. See the evidence. The record is permanent.",
-        "hasCanonical": true,
-        "hasOgTitle": true,
-        "hasOgImage": true,
-        "jsonLdCount": 3
-      },
-      "endpoints": {
-        "robots": {
-          "status": 200,
-          "hasContent": true
-        },
-        "sitemap": {
-          "status": 200,
-          "isXml": true
-        },
-        "llms": {
-          "status": 200,
-          "hasContent": true
-        },
-        "health": {
-          "status": 200,
-          "isHealthy": true
-        }
-      }
-    },
-    "Enterprise Maturity & Regulatory": {
-      "score": 100
-    },
-    "OWASP Client-Side Security": {
-      "score": 100,
-      "data": {
-        "dangerousInlineJs": false,
-        "formsWithoutHttps": 0
-      }
-    },
-    "WCAG 2.2 AA Accessibility": {
-      "score": 100,
-      "data": {
-        "smallTouchTargets": 0,
-        "missingAltCount": 0,
-        "emptyInteractive": 0
-      }
-    },
-    "Runtime Zero-Error Gate": {
-      "score": 100,
-      "consoleErrorsCount": 0,
-      "consoleErrors": [],
-      "networkFailuresCount": 0,
-      "networkFailures": []
-    }
+  "manifest_version": "2.0.0",
+  "system": "ALPAR AI — Trust Infrastructure for AI Accountability",
+  "generated_at": "2026-09-17T00:18:50.000Z",
+  "canonical_target": "D:\\AlparAi",
+  "auditor_baseline_score": 817,
+  "max_score": 1000,
+  "producer_policy": "PRODUCER NEVER SCORES — Auditor holds seal authority",
+  "scope": "LIVE + FULL FORENSIC + BILINGUAL TR/EN",
+  "live_probe": {
+    "target_domain": "https://www.alparai.com",
+    "status_code": 502,
+    "status_text": "Bad Gateway",
+    "cf_ray": "a3c2e14f6d37b644-IST",
+    "server": "cloudflare",
+    "body_length_bytes": 16,
+    "body_snippet": "error code: 502",
+    "diagnosis": "Origin web server unreachable from Cloudflare Edge. Cloudflare reverse proxy is active, but origin listener (Coolify / DeHost container or host port) returned 502 / refused connection.",
+    "severity": "P0"
   },
-  "defectsCount": 0,
-  "defects": []
+  "methodology_updates": {
+    "marquee_overflow_rule": "Intentional infinite marquee animation tracks (.animate-marquee-track.flex) have bounding client rects extending beyond window.innerWidth by design. The outer container applies overflow: hidden / clip, ensuring document.documentElement.scrollWidth === window.innerWidth and scrollLeft === 0. This intentional UI animation track is classified as INTENTIONAL_VISUAL_TRACK and isolated from genuine horizontal page layout overflow.",
+    "route_inventory_count": "Exact page count: 132 total page.tsx files across repository (1 root page at src/app/page.tsx + 131 localized pages in src/app/[locale]/**/page.tsx)."
+  },
+  "defects_summary": {
+    "total_recorded": 12,
+    "p0_blockers": 3,
+    "p1_critical": 5,
+    "p2_hardening": 4
+  },
+  "defects": [
+    {
+      "id": "DEF-001",
+      "pillar": "Operations & Resilience",
+      "severity": "P0",
+      "title": "Live 502 Bad Gateway on www.alparai.com /en and /tr",
+      "location": "Cloudflare Edge -> Origin Infrastructure",
+      "evidence": "Probe to https://www.alparai.com/en returned HTTP 502 with CF-Ray a3c2e14f6d37b644-IST and plain text body 'error code: 502'.",
+      "impact": "Production site is completely unavailable to public users, crawlers, and external API clients.",
+      "remediation": "Investigate origin web server container status on Coolify / host runner; verify Next.js port binding and upstream health.",
+      "status": "OPEN_INFRA_BLOCKED"
+    },
+    {
+      "id": "DEF-002",
+      "pillar": "Security & Zero-Trust",
+      "severity": "P0",
+      "title": "Dual Content-Security-Policy definition with unsafe-inline",
+      "location": "next.config.mjs:9-31 and src/middleware.ts:31-52",
+      "evidence": "CSP defined in next.config.mjs as static headers and concurrently in src/middleware.ts dynamically, causing duplicate headers and conflicting policy enforcement.",
+      "impact": "Unpredictable script blocking in modern browsers and vulnerability to XSS due to loose CSP fallback.",
+      "remediation": "Removed static CSP from next.config.mjs; unified CSP into src/middleware.ts as single source of truth with strict /embed scoping.",
+      "status": "RESOLVED"
+    },
+    {
+      "id": "DEF-003",
+      "pillar": "Revenue & Growth",
+      "severity": "P0",
+      "title": "Silent API key rotation without revocation timestamp or history trail",
+      "location": "src/actions/api-keys.ts:113-119",
+      "evidence": "saveApiKey performed direct upsert on provider column without checking prior active key or recording revoked_at in audit logs.",
+      "impact": "Failure in SOC2/ISO audit trails; previous holders have keys revoked with zero audit trail or timestamps.",
+      "remediation": "Added pre-rotation query and audit_log insertion with action API_KEY_ROTATED_REVOCATION, revoked_at timestamp, and prior metadata.",
+      "status": "RESOLVED"
+    },
+    {
+      "id": "DEF-004",
+      "pillar": "Architecture & Code Health",
+      "severity": "P1",
+      "title": "Documentation version drift (Next.js 15 vs 16.3.3)",
+      "location": "docs/ARCHITECTURE.md:15 vs package.json:91",
+      "evidence": "docs/ARCHITECTURE.md referenced Next.js 15 (DeHost / self-hosted) while package.json pins Next.js 16.3.3 and React 19.2.8.",
+      "impact": "Architectural ambiguity, developer misalignment, and incorrect assumption of runtime behavior.",
+      "remediation": "Updated docs/ARCHITECTURE.md to reflect Next.js 16.3.3 and React 19.2.8.",
+      "status": "RESOLVED"
+    },
+    {
+      "id": "DEF-005",
+      "pillar": "Architecture & Code Health",
+      "severity": "P1",
+      "title": "Forbidden vendor SDK import in quantum hook",
+      "location": "src/hooks/quantum/use-quantum-link.ts:6",
+      "evidence": "src/hooks/quantum/use-quantum-link.ts imported type RealtimeChannel from @supabase/supabase-js which is not installed, causing TS2307 failure.",
+      "impact": "Breaks sovereign DeHost backend law and causes pnpm typecheck build failure.",
+      "remediation": "Removed vendor SDK import, defined local SovereignRealtimeChannel interface, and updated DeHostAdapterClient.",
+      "status": "RESOLVED"
+    },
+    {
+      "id": "DEF-006",
+      "pillar": "Architecture & Code Health",
+      "severity": "P1",
+      "title": "ArrayBuffer type mismatch and unchecked indexing in binary codec",
+      "location": "src/hooks/quantum/use-quantum-link.ts:43 and src/lib/quantum/binary-codec.ts:68",
+      "evidence": "ArrayBufferLike passed to ArrayBuffer parameter; bytes[i] had potential undefined under noUncheckedIndexedAccess.",
+      "impact": "TypeScript strict compiler error TS2345.",
+      "remediation": "Applied typed ArrayBuffer slicing and index nullish coalescing (bytes[i] ?? 0).",
+      "status": "RESOLVED"
+    },
+    {
+      "id": "DEF-007",
+      "pillar": "Architecture & Code Health",
+      "severity": "P1",
+      "title": "Duplicate domain in middleware frame-ancestors directive",
+      "location": "src/middleware.ts:41",
+      "evidence": "frame-ancestors included 'https://*.alparai.com https://*.alparai.com' duplicated.",
+      "impact": "Redundant CSP header bytes and formatting inconsistency.",
+      "remediation": "Removed duplicate domain entry from src/middleware.ts.",
+      "status": "RESOLVED"
+    },
+    {
+      "id": "DEF-008",
+      "pillar": "SEO & Regulatory Trust",
+      "severity": "P1",
+      "title": "Legacy route aliases lacking centralized next.config edge redirects",
+      "location": "src/app/[locale]/case/001/page.tsx and src/app/[locale]/about/advisory_board/page.tsx",
+      "evidence": "Component-level redirects used instead of edge-level config redirects, adding runtime hop latency.",
+      "impact": "Unnecessary server component rendering for legacy routes before permanent redirect.",
+      "remediation": "Centralized all legacy route aliases (case/001, incidents/case-001, about/advisory_board, advisory_board) in next.config.mjs redirects() with 308 permanent redirects.",
+      "status": "RESOLVED"
+    },
+    {
+      "id": "DEF-009",
+      "pillar": "Performance & Scale",
+      "severity": "P2",
+      "title": "Single CPU build constraint and disabled parallel compiles",
+      "location": "next.config.mjs:150-154",
+      "evidence": "next.config.mjs configures experimental cpus: 1, parallelServerCompiles: false, webpackBuildWorker: false.",
+      "impact": "Significantly increases build duration on multi-core runner environments.",
+      "remediation": "Conditionally configure multi-core compilation based on process.env.CI and available os.cpus().",
+      "status": "OPEN_PLANNED"
+    },
+    {
+      "id": "DEF-010",
+      "pillar": "UX & WCAG 2.2 AA",
+      "severity": "P2",
+      "title": "Marquee track false-positive overflow categorization in automated scanner",
+      "location": "DEFECT_MANIFEST.json:15-40 (prior version)",
+      "evidence": "40 elements under .animate-marquee-track tagged as visual overflow despite parent overflow-hidden.",
+      "impact": "Methodology skew and false audit alarm.",
+      "remediation": "Formalized DOM auditor filter to verify computed overflow style and document-level scrollWidth.",
+      "status": "RESOLVED"
+    },
+    {
+      "id": "DEF-011",
+      "pillar": "Data & Authorization",
+      "severity": "P2",
+      "title": "Staging DB verification required on fresh migration roundtrip",
+      "location": "dehost/migrations/0001_full_schema.sql and 0002_rls_policies.sql",
+      "evidence": "WO-010 resolved 10 defect classes; continuous regression test needed on fresh PG 16 container.",
+      "impact": "Schema drift risk on new table definitions.",
+      "remediation": "Verified via WO-010 and AUDIT_SEAL_1000: 0001_full_schema.sql and 0002_rls_policies.sql applied to fresh PG 16.15 scratch container with ON_ERROR_STOP=1; exit code 0, 141 tables, 360 policies, 0 residual rows.",
+      "status": "RESOLVED"
+    },
+    {
+      "id": "DEF-012",
+      "pillar": "Operations & Resilience",
+      "severity": "P2",
+      "title": "Disaster Recovery drill evidence freshness",
+      "location": "OPS_DR_PLAYBOOK.md:7-19",
+      "evidence": "Last documented DR drill dated 2026-09-06 (RTO 8m 42s); requires scheduled periodic execution proof.",
+      "impact": "Audit compliance finding if drill interval exceeds 30 days.",
+      "remediation": "Schedule automated monthly backup restore drill in GitHub Actions scheduled-crons.",
+      "status": "OPEN_PLANNED"
+    }
+  ]
 }

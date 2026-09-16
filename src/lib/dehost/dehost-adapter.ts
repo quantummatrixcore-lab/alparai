@@ -356,9 +356,10 @@ export class DeHostAdapterClient<T = any> {
     return builder;
   }
 
-  public channel(_name: string) {
+  public channel(_name: string, _opts?: any) {
     const channelObj: any = {
       on: (_event: string, _filter: any, _callback?: (payload: { new: Record<string, any>; old: Record<string, any>; [key: string]: any }) => void) => channelObj,
+      send: async (_msg: any) => ({ error: null }),
       subscribe: (statusCallback?: any) => {
         if (statusCallback) statusCallback('SUBSCRIBED');
         return { unsubscribe: () => {} };

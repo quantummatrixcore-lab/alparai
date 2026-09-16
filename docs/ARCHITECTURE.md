@@ -12,8 +12,8 @@
                               │ HTTPS (HSTS preload)
                               ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│  Next.js 15 (DeHost / self-hosted)                              │
-│  ──────────────────────────────────                             │
+│  Next.js 16.3.3 / React 19.2.8 (DeHost / self-hosted)          │
+│  ─────────────────────────────────────────────────────          │
 │  • App Router + React Server Components                         │
 │  • Server Actions for mutations                                 │
 │  • Edge middleware: i18n + DeHost session refresh             │

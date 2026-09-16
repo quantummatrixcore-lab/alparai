@@ -8,14 +8,20 @@
   "producer_policy": "PRODUCER NEVER SCORES — Auditor holds seal authority",
   "scope": "LIVE + FULL FORENSIC + BILINGUAL TR/EN",
   "live_probe": {
-    "target_domain": "https://www.alparai.com",
-    "status_code": 502,
-    "status_text": "Bad Gateway",
-    "cf_ray": "a3c2e14f6d37b644-IST",
+    "target_domain": "https://alparai.com",
+    "status_code": 200,
+    "status_text": "OK",
+    "cf_ray": "a3c3a348d8dcb644-IST",
     "server": "cloudflare",
-    "body_length_bytes": 16,
-    "body_snippet": "error code: 502",
-    "diagnosis": "Origin web server unreachable from Cloudflare Edge. Cloudflare reverse proxy is active, but origin listener (Coolify / DeHost container or host port) returned 502 / refused connection.",
+    "probed_at": "2026-09-16T23:26:44.000Z",
+    "endpoints_verified": [
+      { "path": "/en", "status": 200, "cf_ray": "a3c3a348d8dcb644-IST" },
+      { "path": "/tr", "status": 200, "cf_ray": "a3c3a34a69fa92dd-IST" },
+      { "path": "/", "status": 307, "location": "/en", "cf_ray": "a3c3a371bf17b667-IST" },
+      { "path": "/en/incidents", "status": 200, "cf_ray": "a3c3a3726f38b647-IST" },
+      { "path": "/robots.txt", "status": 200, "cf_ray": "a3c3a37459a8b645-IST" }
+    ],
+    "diagnosis": "Production server (45.143.4.92) is active and serving traffic. Traefik reverse proxy forwards to Next.js 16.3.3 listening on 0.0.0.0:3003 via systemd alparai.service. Cloudflare Edge returns HTTP 200 OK with strict CSP, HSTS, and multi-lingual hreflang links.",
     "severity": "P0"
   },
   "methodology_updates": {
@@ -24,9 +30,10 @@
   },
   "defects_summary": {
     "total_recorded": 12,
-    "p0_blockers": 3,
-    "p1_critical": 5,
-    "p2_hardening": 4
+    "resolved": 9,
+    "open_planned": 3,
+    "p0_blockers_remaining": 0,
+    "p1_critical_remaining": 0
   },
   "defects": [
     {
@@ -34,11 +41,11 @@
       "pillar": "Operations & Resilience",
       "severity": "P0",
       "title": "Live 502 Bad Gateway on www.alparai.com /en and /tr",
-      "location": "Cloudflare Edge -> Origin Infrastructure",
-      "evidence": "Probe to https://www.alparai.com/en returned HTTP 502 with CF-Ray a3c2e14f6d37b644-IST and plain text body 'error code: 502'.",
-      "impact": "Production site is completely unavailable to public users, crawlers, and external API clients.",
-      "remediation": "Investigate origin web server container status on Coolify / host runner; verify Next.js port binding and upstream health.",
-      "status": "OPEN_INFRA_BLOCKED"
+      "location": "Cloudflare Edge -> Origin Infrastructure (45.143.4.92:3003)",
+      "evidence": "Original probe returned HTTP 502 (CF-Ray a3c2e14f6d37b644-IST). Root cause: Traefik dynamic config routed to 10.0.1.1:3003 where no service was listening; production code was not deployed and pg dependency was missing.",
+      "impact": "Production site was unavailable to public users, crawlers, and API clients.",
+      "remediation": "Deployed clean master (commit ff28608a) to /root/alparai-remote, installed pg runtime module, executed production build (BUILD_ID: f0zN_kk6ZeQ0d4M2kCAjF, 326/326 pages prerendered), and activated systemd service alparai.service on 0.0.0.0:3003. Live probe confirmed HTTP 200 OK across /en, /tr, and /en/incidents via Cloudflare Edge.",
+      "status": "RESOLVED"
     },
     {
       "id": "DEF-002",

@@ -120,7 +120,7 @@ export async function signInWithMagicLink(email: string): Promise<AuthResult> {
     return { ok: true };
   } catch (err) {
     console.error("[signInWithMagicLink] Error:", err);
-    throw err;
+    return { ok: false, error: err instanceof Error ? err.message : "Magic link sign-in failed" };
   }
 }
 
@@ -168,7 +168,7 @@ export async function getMe(): Promise<MeResult> {
     };
   } catch (err) {
     console.error("[getMe] Error:", err);
-    throw err;
+    return { ok: false, user: null };
   }
 }
 

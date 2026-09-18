@@ -54,8 +54,9 @@ async function logAdminLogin(
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-  const host = request.headers.get("x-forwarded-host") ?? request.headers.get("host") ?? "www.alparai.com";
-  const origin = host.includes("localhost") ? "https://www.alparai.com" : `https://${host}`;
+  const host = request.headers.get("x-forwarded-host") ?? request.headers.get("host") ?? "alparai.com";
+  const proto = request.headers.get("x-forwarded-proto") ?? (host.includes("localhost") || host.includes("127.0.0.1") ? "http" : "https");
+  const origin = `${proto}://${host}`;
   const code = searchParams.get("code");
   const tokenHash = searchParams.get("token_hash");
   const type = searchParams.get("type");
@@ -119,7 +120,7 @@ export async function GET(request: NextRequest) {
         envClientId && !envClientId.includes("SENSITIVE") && envClientId.includes(".apps.googleusercontent.com")
           ? envClientId
           : "341717447635-hsdu69hk692lkveikkpc8398v8rhu40b.apps.googleusercontent.com";
-      const redirectUri = "https://www.alparai.com/auth/callback";
+      const redirectUri = `${origin}/auth/callback`;
       const clientSecret = process.env.GOOGLE_CLIENT_SECRET || "";
 
       const tokenRes = await fetch("https://oauth2.googleapis.com/token", {

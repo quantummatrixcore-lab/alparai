@@ -67,7 +67,7 @@ export async function signInWithGoogleIdToken(token: string, nonce: string): Pro
     return { ok: true };
   } catch (err) {
     console.error("[signInWithGoogleIdToken] Error:", err);
-    throw err;
+    return { ok: false, error: err instanceof Error ? err.message : "Google sign-in failed" };
   }
 }
 
@@ -98,7 +98,7 @@ export async function signInWithGoogle(next = "/profile"): Promise<AuthResult> {
     return { ok: true, url: data.url };
   } catch (err) {
     console.error("[signInWithGoogle] Error:", err);
-    throw err;
+    return { ok: false, error: err instanceof Error ? err.message : "Google sign-in failed" };
   }
 }
 

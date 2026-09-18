@@ -10,7 +10,9 @@ export async function GET(request: NextRequest) {
       ? rawClientId
       : "341717447635-hsdu69hk692lkveikkpc8398v8rhu40b.apps.googleusercontent.com";
 
-  const origin = "https://www.alparai.com";
+  const host = request.headers.get("x-forwarded-host") ?? request.headers.get("host") ?? "alparai.com";
+  const proto = request.headers.get("x-forwarded-proto") ?? (host.includes("localhost") ? "http" : "https");
+  const origin = `${proto}://${host}`;
   const redirectUri = `${origin}/auth/callback`;
   const state = Buffer.from(JSON.stringify({ next })).toString("base64url");
 

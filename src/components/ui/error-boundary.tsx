@@ -11,6 +11,10 @@ export function ErrorFallback({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  if (error?.digest?.startsWith("NEXT_REDIRECT") || error?.message === "NEXT_REDIRECT") {
+    throw error;
+  }
+
   const t = useTranslations("errors");
   return (
     <div className="flex min-h-[400px] flex-col items-center justify-center gap-6 px-4 text-center">

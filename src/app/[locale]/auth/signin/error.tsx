@@ -9,5 +9,8 @@ export default function AuthSigninError({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  if (error?.digest?.startsWith("NEXT_REDIRECT") || error?.message === "NEXT_REDIRECT") {
+    throw error;
+  }
   return <ErrorFallback error={error} reset={reset} />;
 }

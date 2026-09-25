@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-09-04T14:38:01.073Z",
-  "target": "D:\\01_SaaS_Products\\Alparai",
-  "totalScanned": 3246,
-  "findingsCount": 30,
-  "criticalCount": 4,
-  "highCount": 26,
+  "timestamp": "2026-09-18T19:38:39.713Z",
+  "target": "D:\\AlparAi",
+  "totalScanned": 1750,
+  "findingsCount": 27,
+  "criticalCount": 3,
+  "highCount": 24,
   "mediumCount": 0,
   "findings": [
     {
@@ -12,12 +12,6 @@
       "cwe": "CWE-798",
       "file": "src\\lib\\ai\\sentinel.test.ts",
       "message": "Hardcoded Private Key / Secret Token hardcoded in source file!"
-    },
-    {
-      "severity": "CRITICAL",
-      "cwe": "CWE-798",
-      "file": "src\\lib\\dehost\\admin.ts",
-      "message": "Hardcoded DeHost Service Role Secret hardcoded in source file!"
     },
     {
       "severity": "CRITICAL",
@@ -34,12 +28,6 @@
     {
       "severity": "HIGH",
       "cwe": "CWE-95",
-      "file": "dist-public\\tests\\e2e\\admin-pwa.spec.ts",
-      "message": "Direct eval() Execution detected; potential RCE or command injection vector."
-    },
-    {
-      "severity": "HIGH",
-      "cwe": "CWE-95",
       "file": "docs\\METHODOLOGY_AUDITS\\lighthouse-home.json",
       "message": "Direct eval() Execution detected; potential RCE or command injection vector."
     },
@@ -52,7 +40,7 @@
     {
       "severity": "HIGH",
       "cwe": "CWE-95",
-      "file": "graphify-out\\graph.json",
+      "file": "docs\\security\\threat_intelligence_sources.json",
       "message": "Direct eval() Execution detected; potential RCE or command injection vector."
     },
     {
@@ -123,6 +111,12 @@
     },
     {
       "severity": "HIGH",
+      "cwe": "CWE-95",
+      "file": "vibe_security_audit_manifest.json",
+      "message": "Direct eval() Execution detected; potential RCE or command injection vector."
+    },
+    {
+      "severity": "HIGH",
       "cwe": "CWE-338",
       "file": "docs\\METHODOLOGY_AUDITS\\lighthouse-home.json",
       "message": "Insecure PRNG (Math.random()) used in authentication/token context. Use crypto.randomBytes() or crypto.randomUUID()."
@@ -166,20 +160,8 @@
     {
       "severity": "HIGH",
       "cwe": "CWE-338",
-      "file": "src\\lib\\autopilot\\queue.ts",
+      "file": "vibe_security_audit_manifest.json",
       "message": "Insecure PRNG (Math.random()) used in authentication/token context. Use crypto.randomBytes() or crypto.randomUUID()."
-    },
-    {
-      "severity": "HIGH",
-      "cwe": "CWE-284",
-      "file": "database/migrations",
-      "message": "Found 6 SQL migration table declarations without explicit ENABLE ROW LEVEL SECURITY."
-    },
-    {
-      "severity": "HIGH",
-      "cwe": "CWE-79",
-      "file": "src\\app\\[locale]\\blog\\[slug]\\page.tsx",
-      "message": "dangerouslySetInnerHTML used without DOMPurify or HTML sanitization."
     },
     {
       "severity": "HIGH",

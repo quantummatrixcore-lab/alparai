@@ -1,4 +1,4 @@
-﻿# ALPAR AI Command Center - Design System
+# ALPAR AI Command Center - Design System
 - **Style:** Futuristic, professional SaaS Dashboard, Bento-grid layout
 - **Color Palette:**
   - Background: Deep space black (`#09090b`)

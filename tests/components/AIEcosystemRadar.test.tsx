@@ -39,11 +39,10 @@ describe("AIEcosystemRadar Component", () => {
     expect(BarrelAIEcosystemRadar).toBe(AIEcosystemRadar);
   });
 
-  it("renders correctly with default data via named export", () => {
+  it("renders correctly with default placeholder state via named export", () => {
     render(<AIEcosystemRadar />);
     expect(screen.getByText(/Ekosistem/i)).toBeDefined();
-    expect(screen.getByText(/Claude 3.5 Sonnet/i)).toBeDefined();
-    expect(screen.getByText(/1287/i)).toBeDefined();
+    expect(screen.getAllByText("—").length).toBeGreaterThan(0);
   });
 
   it("renders correctly with custom data via default export", () => {

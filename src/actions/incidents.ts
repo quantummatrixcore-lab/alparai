@@ -5,7 +5,6 @@ import { waitUntil } from "@/lib/dehost/functions-stub";
 import { getLocale, getTranslations } from "next-intl/server";
 import { logger } from "@/lib/utils/logger";
 import { createServerClient } from "@/lib/dehost/server";
-import { createAdminClient } from "@/lib/dehost/admin";
 import { getCurrentUser } from "@/lib/auth/session";
 import { maskPII } from "@/lib/pii/guardian";
 import { incidentSubmissionSchema, type IncidentSubmissionInput } from "@/lib/validation/schemas";
@@ -201,16 +200,14 @@ const runSubmitWork = async (
   const incidentId = (rpcRes as unknown as { id: string }).id;
 
   if (providerIsCustom && providerCustom) {
-    // EXCEPTION: createAdminClient() is required here because regular users do not have RLS permissions to insert into the global 'ai_providers' and 'ai_models' tables. We are doing it on their behalf.
-    const admin = createAdminClient();
     const slug = providerCustomSlug || slugify(providerCustom);
-    const { data: existing } = await admin
+    const { data: existing } = await dehost
       .from("ai_providers")
       .select("id")
       .eq("slug", slug)
       .maybeSingle();
     if (!existing) {
-      const { data: newProvider } = await admin
+      const { data: newProvider } = await dehost
         .from("ai_providers")
         .insert({
           slug,
@@ -222,12 +219,12 @@ const runSubmitWork = async (
         .select("id")
         .single();
       if (newProvider) {
-        await admin
+        await dehost
           .from("incidents")
           .update({ ai_provider_id: newProvider.id })
           .eq("id", incidentId);
         if (modelCustom) {
-          const { data: newModel } = await admin
+          const { data: newModel } = await dehost
             .from("ai_models")
             .insert({
               provider_id: newProvider.id,
@@ -238,7 +235,7 @@ const runSubmitWork = async (
             .select("id")
             .single();
           if (newModel) {
-            await admin.from("incidents").update({ ai_model_id: newModel.id }).eq("id", incidentId);
+            await dehost.from("incidents").update({ ai_model_id: newModel.id }).eq("id", incidentId);
           }
         }
       }
@@ -302,8 +299,7 @@ const runSubmitWork = async (
       // 3. Send alert to AI Provider if they are claimed/verified and have contact email
       const providerId = providerIsCustom ? null : raw.provider_id || null;
       if (providerId) {
-        const adminClient = createAdminClient();
-        const { data: provider } = await adminClient
+        const { data: provider } = await dehost
           .from("ai_providers")
           .select("name, contact_email, is_verified")
           .eq("id", providerId)
@@ -442,9 +438,9 @@ export async function preTriageCheck(
       }
     }
 
-    const admin = createAdminClient();
+    const dehost = await createServerClient();
     const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
-    let query = admin
+    let query = dehost
       .from("incidents")
       .select("id")
       .eq("title", title.trim())
@@ -686,14 +682,14 @@ export async function submitIncident(
       }
 
       // Check submission attempts for this IP in the last 24 hours (F2)
-      const admin = createAdminClient();
+      const dehost = await createServerClient();
       let isRateLimitedSuspicious = false;
       let isSybilSuspicious = false;
 
       try {
         const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
         const ipHash = hashIp(ip || "127.0.0.1") || "";
-        const { count } = await admin
+        const { count } = await dehost
           .from("submission_attempts")
           .select("*", { count: "exact", head: true })
           .eq("ip_hash", ipHash)
@@ -713,13 +709,13 @@ export async function submitIncident(
       if (fingerprint) {
         try {
           const ipHash = hashIp(ip || "127.0.0.1") || "";
-          await admin.from("submission_fingerprints").insert({
+          await dehost.from("submission_fingerprints").insert({
             incident_id: incidentId,
             fingerprint,
             ip_hash: ipHash,
           });
 
-          const { count: fingerprintCount } = await admin
+          const { count: fingerprintCount } = await dehost
             .from("submission_fingerprints")
             .select("*", { count: "exact", head: true })
             .eq("fingerprint", fingerprint)
@@ -736,7 +732,7 @@ export async function submitIncident(
       }
 
       if (isRateLimitedSuspicious || isSybilSuspicious) {
-        await admin
+        await dehost
           .from("incidents")
           .update({
             status: "pending_review",
@@ -756,7 +752,7 @@ export async function submitIncident(
         );
         if (!triage.ok) {
           // Failed pre-triage: status set/kept as pending_review, bypassed AI, never auto-published
-          await admin
+          await dehost
             .from("incidents")
             .update({
               status: "pending_review",
@@ -778,9 +774,9 @@ export async function submitIncident(
                     { incidentId },
                     err instanceof Error ? err : undefined,
                   );
-                  const adminClient = createAdminClient();
-                  if (adminClient) {
-                    await adminClient
+                  const dehostClient = await createServerClient();
+                  if (dehostClient) {
+                    await dehostClient
                       .from("incidents")
                       .update({
                         processing_stage: "failed",
@@ -792,9 +788,9 @@ export async function submitIncident(
               );
             } else {
               logger.error("Auto-moderation completed with non-ok result", { incidentId });
-              const adminClient = createAdminClient();
-              if (adminClient) {
-                await adminClient
+              const dehostClient = await createServerClient();
+              if (dehostClient) {
+                await dehostClient
                   .from("incidents")
                   .update({
                     processing_stage: "failed",
@@ -807,9 +803,9 @@ export async function submitIncident(
             logger.error("Async auto-moderation failed", {
               error: err instanceof Error ? err.message : String(err),
             });
-            const adminClient = createAdminClient();
-            if (adminClient) {
-              await adminClient
+            const dehostClient = await createServerClient();
+            if (dehostClient) {
+              await dehostClient
                 .from("incidents")
                 .update({
                   processing_stage: "failed",
@@ -840,9 +836,9 @@ export async function submitIncident(
         try {
           const res = await autoModerateIncidentAction(replayId);
           if (!res.ok) {
-            const adminClient = createAdminClient();
-            if (adminClient) {
-              await adminClient
+            const dehostClient = await createServerClient();
+            if (dehostClient) {
+              await dehostClient
                 .from("incidents")
                 .update({
                   processing_stage: "failed",
@@ -857,9 +853,9 @@ export async function submitIncident(
             undefined,
             err instanceof Error ? err : undefined,
           );
-          const adminClient = createAdminClient();
-          if (adminClient) {
-            await adminClient
+          const dehostClient = await createServerClient();
+          if (dehostClient) {
+            await dehostClient
               .from("incidents")
               .update({
                 processing_stage: "failed",
@@ -938,9 +934,9 @@ const runVoteWork = async (
   _ctx: AttemptContext,
   data: VoteWorkInput,
 ): Promise<AttemptOutcome<{ toggle: "removed" | "set"; newValue: -1 | 0 | 1 }>> => {
-  const admin = createAdminClient();
+  const dehost = await createServerClient();
   if (data.value === 0 || data.previous === data.value) {
-    const { error } = await admin
+    const { error } = await dehost
       .from("incident_votes")
       .delete()
       .eq("incident_id", data.incidentId)
@@ -955,7 +951,7 @@ const runVoteWork = async (
     user_id: data.userId,
     value: data.value,
   };
-  const { error } = await admin.from("incident_votes").upsert(voteInsert, {
+  const { error } = await dehost.from("incident_votes").upsert(voteInsert, {
     onConflict: "incident_id,user_id",
   });
   if (error) {
@@ -986,8 +982,8 @@ export async function voteOnIncident({
       return { ok: false, error: `Too many actions. Try again in ${rl.retryAfter}s.` };
     }
 
-    const admin = createAdminClient();
-    const { data: existing } = await admin
+    const dehost = await createServerClient();
+    const { data: existing } = await dehost
       .from("incident_votes")
       .select("value")
       .eq("incident_id", incidentId)
@@ -1015,8 +1011,8 @@ export async function voteOnIncident({
 
 export async function incrementIncidentViews(incidentId: string) {
   try {
-    const admin = createAdminClient();
-    const { error } = await admin.rpc("increment_incident_views", {
+    const dehost = await createServerClient();
+    const { error } = await dehost.rpc("increment_incident_views", {
       p_incident_id: incidentId,
     });
     if (error) {

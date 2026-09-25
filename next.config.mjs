@@ -123,11 +123,11 @@ const nextConfig = {
     ],
   },
   experimental: {
-    // Zero-Cost: DeHost serverless memory & build footprint optimization (Momentum & Venture)
-    webpackBuildWorker: false,
-    parallelServerCompiles: false,
-    parallelServerBuildTraces: false,
-    cpus: 1,
+    // Dinamik Çoklu Çekirdek (Multi-Core) Optimizasyonu
+    webpackBuildWorker: process.env.CI ? false : true,
+    parallelServerCompiles: process.env.CI ? false : true,
+    parallelServerBuildTraces: process.env.CI ? false : true,
+    cpus: process.env.CI ? 1 : Math.max(1, (await import("os")).cpus().length - 1),
   },
   async headers() {
     return [

@@ -1,12 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
-import type { Database } from "@/types/database";
-
-type IncidentSeverity = Database["public"]["Enums"]["incident_severity"];
-type IncidentStatus = Database["public"]["Enums"]["incident_status"];
 
 type BadgeVariant =
   | "default"
@@ -76,40 +71,6 @@ export function Badge({
   );
 }
 
-export function SeverityBadge({ severity }: { severity: IncidentSeverity }) {
-  const t = useTranslations("badge.severity");
-  const map: Record<
-    IncidentSeverity,
-    { variant: BadgeVariant; key: "low" | "medium" | "high" | "critical" }
-  > = {
-    low: { variant: "success", key: "low" },
-    medium: { variant: "warning", key: "medium" },
-    high: { variant: "danger", key: "high" },
-    critical: { variant: "danger", key: "critical" },
-  };
-  const { variant, key } = map[severity];
-  return (
-    <Badge variant={variant} dot>
-      {t(key)}
-    </Badge>
-  );
-}
-
-export function StatusBadge({ status }: { status: IncidentStatus | string }) {
-  const t = useTranslations("badge.status");
-  const map: Record<
-    string,
-    {
-      variant: BadgeVariant;
-      key: "pending_review" | "published" | "rejected" | "archived" | "takedown";
-    }
-  > = {
-    pending_review: { variant: "warning", key: "pending_review" },
-    published: { variant: "success", key: "published" },
-    rejected: { variant: "muted", key: "rejected" },
-    archived: { variant: "muted", key: "archived" },
-    takedown: { variant: "danger", key: "takedown" },
-  };
-  const entry = map[status] ?? { variant: "muted" as const, key: null };
-  return <Badge variant={entry.variant}>{entry.key ? t(entry.key) : status}</Badge>;
-}
+// Domain badges relocated to @/components/incidents/incident-badges per Opus Component Taxonomy
+export { SeverityBadge, StatusBadge } from "@/components/incidents/incident-badges";
+export type { IncidentSeverity, IncidentStatus } from "@/components/incidents/incident-badges";

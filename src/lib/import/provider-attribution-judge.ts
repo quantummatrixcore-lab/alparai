@@ -1,4 +1,4 @@
-﻿import { callWithFailover } from "@/lib/ai/openrouter-gateway";
+import { callWithFailover } from "@/lib/ai/openrouter-gateway";
 import type { GatewayModel, GatewayRequest, GatewayResult } from "@/lib/ai/types";
 import { logger } from "@/lib/utils/logger";
 import type { AttributionInput, AttributionResult } from "./provider-alias-map";

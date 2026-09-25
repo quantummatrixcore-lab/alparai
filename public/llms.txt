@@ -1,4 +1,4 @@
-﻿# ALPAR AI
+# ALPAR AI
 
 > Trust infrastructure for AI accountability. The global registry, benchmark, and compliance clearinghouse for enterprise and foundation AI models.
 

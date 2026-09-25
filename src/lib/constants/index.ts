@@ -14,7 +14,7 @@ export const SUPPORTED_LOCALES = ["en", "tr"] as const;
 export type Locale = (typeof SUPPORTED_LOCALES)[number];
 
 export const GITHUB_URL =
-  "https://github.com/quantummatrixcore-lab/Alparai.com?ref=alparai_platform" as const;
+  "https://github.com/quantummatrixcore-lab/alparai?ref=alparai_platform" as const;
 export const LINKEDIN_URL =
   process.env.NEXT_PUBLIC_LINKEDIN_URL ??
   ("https://www.linkedin.com/company/alpar-ai?ref=alparai_platform" as const);

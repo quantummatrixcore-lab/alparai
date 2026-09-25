@@ -4,20 +4,20 @@ import { simpleParser } from 'mailparser';
 
 const config = {
   imap: {
-    user: 'ercument.erden@alparai.com',
-    password: process.env.ZOHO_APP_PASSWORD || 'ENTER_APP_PASSWORD_HERE',
-    host: 'imappro.zoho.eu',
-    port: 993,
+    user: process.env.MAIL_USER || 'ercument.erden@alparai.com',
+    password: process.env.MAIL_PASSWORD || process.env.PURELYMAIL_APP_PASSWORD || process.env.ZOHO_APP_PASSWORD || 'ENTER_APP_PASSWORD_HERE',
+    host: process.env.MAIL_IMAP_HOST || 'mail.purelymail.com',
+    port: Number(process.env.MAIL_IMAP_PORT || 993),
     tls: true,
     authTimeout: 30000
   },
   smtp: {
-    host: 'smtppro.zoho.eu',
-    port: 465,
+    host: process.env.MAIL_SMTP_HOST || 'mail.purelymail.com',
+    port: Number(process.env.MAIL_SMTP_PORT || 465),
     secure: true,
     auth: {
-      user: 'ercument.erden@alparai.com',
-      pass: process.env.ZOHO_APP_PASSWORD || 'ENTER_APP_PASSWORD_HERE',
+      user: process.env.MAIL_USER || 'ercument.erden@alparai.com',
+      pass: process.env.MAIL_PASSWORD || process.env.PURELYMAIL_APP_PASSWORD || process.env.ZOHO_APP_PASSWORD || 'ENTER_APP_PASSWORD_HERE',
     }
   }
 };

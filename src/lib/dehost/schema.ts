@@ -262,7 +262,7 @@ export function getDeHostConnectionString(): string {
   if (process.env.DEHOST_HOST && process.env.DEHOST_PASSWORD) {
     const user = process.env.DEHOST_USER || 'dehost';
     const host = process.env.DEHOST_HOST;
-    const port = process.env.DEHOST_PORT || '5432';
+    const port = process.env.DEHOST_PORT || (process.env.NODE_ENV === 'production' ? '6543' : '5432');
     const db = process.env.DEHOST_DB || 'alparai';
     return `postgresql://${user}:${process.env.DEHOST_PASSWORD}@${host}:${port}/${db}`;
   }

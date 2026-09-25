@@ -1,0 +1,863 @@
+
+============================================================
+=== SAYFA 1 (316 karakter) ===
+============================================================
+01.01.0001
+TEKNOPARK İSTANBUL A.Ş. GENEL MÜDÜRLÜĞÜ'NE
+4691 Sayılı Teknoloji Geliştirme Bölgeleri Kanunu'nun 7. Maddesi uyarınca TEKNOPARK İSTANBUL
+A.Ş. bünyesinde, alparai.com firması olarak başvuru sürecini tamamlamak amacı ile Başvuru Formu
+tarafınıza sunulmuştur.
+Gereğini arz ederiz.
+Saygılarımızla,
+alparai.com
+
+============================================================
+=== SAYFA 2 (2329 karakter) ===
+============================================================
+Döküman No:
+A-R-07
+Revizyon No:
+R-001
+Revizyon Tarihi:
+13.05.2025
+Kullanıcı:
+Ercüment erden
+Tarih:
+17.09.2026 20:01
+ADAY FİRMA BİLGİ FORMU
+Girişim Adı
+:
+alparai.com
+İletişim Bilgileri
+Telefon 1
+:
+(532) 440-83-89
+Faks
+:
+Telefon 2
+:
+E-Posta
+:
+ercument.erden@alparai.co
+Kep Adresi
+:
+Web Adresi
+:
+https://alparai.com
+Yetkililer
+Adı Soyadı
+Görevi
+Telefon
+E-Posta
+ERCÜMENT ERDEN
+Kurucu & Baş
+Sistem Mimarı
+(532) 440-83-89
+ercument.erden@alparai.com
+Ortaklar
+Ad Soyad / Unvan
+Oran
+Ülke
+Kurucu
+Ortak
+ERCÜMENT ERDEN
+% 100,00 Türkiye
+Geliştirilmiş AR-Ge Projeleri
+Proje Adı
+Amaç
+Proje Süresi
+(Ay)
+Proje Bütçesi
+Mevcut Durum
+AlparAI Otonom LLM
+Güvenlik ve Yanlılık Denetim
+Prototipi
+Büyük dil modellerinde
+halüsinasyon, prompt injection ve
+bilgi sızıntısı açıklarını 17-vektörlü
+adversarial test matrisiyle tespit
+eden ön prototip Ar-Ge çalışması.
+6 ₺1.250.000,00
+Tamamlandı
+Makina Teçhizat Bilgileri
+Adı
+Adedi
+Niteliği / İşlevi
+Özellikleri
+GPU AI Doğrulama ve
+ZKP Kriptografik
+Hesaplama İş
+İstasyonu
+2
+Yapay zeka modellerinin yerel
+ortamda adversarial stres testlerini,
+ağırlık analitiğini ve ZKP kriptografik
+kanıt üretme hesaplamalarını
+yürüten yüksek performanslı AR-
+GE donanımı.
+AMD Ryzen 9 / Threadripper mimarisi,
+128 GB DDR5 ECC RAM, NVIDIA RTX
+4090 24GB GPU, 4TB NVMe PCIe 4.0
+SSD, CUDA 12.x ve Ubuntu Linux
+geliştirme ortamı.
+Yazılım Bilgileri
+Adı
+Adedi
+Niteliği / İşlevi
+Özellikleri
+AlparAI ZKP AI Auditor
+Stack & IDE Suite
+5
+Yapay zeka modellerinin güvenlik,
+halüsinasyon, yanlılık ve
+regülasyon uyumluluğunu
+matematiksel sıfır-bilgi kanıtlarıyla
+denetleyen otonom doğrulama ve
+denetim platformu yazılımı.
+Node.js, TypeScript, Next.js 15,
+Circom/SnarkJS ZK-SNARK devreleri,
+Python Adversarial Engine, Docker &
+Kubernetes entegrasyonu, Git/GitHub
+CI/CD uyumluluğu.
+Standart/Lisans
+Ürün/Hizmet Adı
+Alış Tarihi
+Veren Kurum
+Standart, Lisans ve Sertifikalar
+ISO/IEC 42001 & ISO/IEC
+27001 Yapay Zeka Yönetim
+Sistemi
+Yapay Zeka Güvenlik,
+Doğrulama ve ZKP Denetim
+Süreçleri
+15.01.2026
+TSE / Uluslararası Akredite Kuruluş
+Koruma
+Tipi
+Başvurulan Kurum
+Buluş Adı
+Başvuru
+Numarası
+Başvuru
+Tarihi
+Tescil
+Numarası
+Tescil
+Tarihi
+Fikri Sinai Mülkiyet Hakları Bilgileri
+Patent
+TÜRK PATENT
+ENSTİTÜSÜ
+Büyük Dil Modelleri İçin Sıfır-
+Bilgi İspatı Temelli Doğrulama
+Metodu
+2026/0189
+42
+10.02.202
+6
+01.01.000
+1
+Sayfa (2 / 15)
+BAŞVURU FORMU
+ÖNİZLEME
+
+============================================================
+=== SAYFA 3 (349 karakter) ===
+============================================================
+Kiralanmak İstenilen Alan Bilgisi
+Yerleşke
+:
+Teknopark İstanbul 1A
+Kiralanmak İstenen Alan (M2)
+:
+10,00
+İstihdam edilmesi istenen AR-GE Personel Sayısı
+:
+2
+İstihdam edilmesi istenen Destek Personel Sayısı
+:
+0
+İstihdam edilmesi istenen Kapsam Dışı Personel Sayısı
+:
+0
+Ofis Alanı Tipi
+:
+Paylaşımlı Masa (Kuluçka)
+Sayfa (3 / 15)
+BAŞVURU FORMU
+ÖNİZLEME
+
+============================================================
+=== SAYFA 4 (624 karakter) ===
+============================================================
+Döküman No:
+A-R-07
+Revizyon No:
+R-001
+Revizyon Tarihi:
+13.05.2025
+Kullanıcı:
+Ercüment erden
+Tarih:
+17.09.2026 20:01
+PERSONEL BİLGİ FORMU
+Personel Bilgileri
+Adı Soyadı
+TC Kimlik No
+Personel Tipi
+Mesleği
+Çalışma Tipi
+Başlangıç
+Tarihi
+ERCÜMENT ERDEN
+65245305662
+Yazılım
+Personeli
+Animatör
+Firma Personeli
+01.01.2026
+Personel Yetkinlikleri
+Adı Soyadı
+Yetkinlik
+ERCÜMENT ERDEN
+10+ yıl FinTech, Yapay Zeka Sistem Mimarisi, Dağıtık Sistemler, Kriptoloji, Zero-
+Knowledge Proofs (ZKP) ve Yüksek Başarımlı Bilişim alanlarında Ar-Ge tecrübesi;
+AlparAI platformunun kurucusu ve baş sistem mimarı.
+Sayfa (4 / 15)
+BAŞVURU FORMU
+ÖNİZLEME
+
+============================================================
+=== SAYFA 5 (2334 karakter) ===
+============================================================
+Döküman No:
+A-R-07
+Revizyon No:
+R-001
+Revizyon Tarihi:
+13.05.2025
+Kullanıcı:
+Ercüment erden
+Tarih:
+17.09.2026 20:01
+PROJE BİLGİ FORMU
+Proje Süresi
+:
+12 (Ay)
+Ar-Ge İş Gücü
+:
+1
+Proje Başlangıç Tarihi
+:
+01.10.2026
+Destek İş Gücü
+:
+0
+Tahmini Proje Bütçesi
+:
+5.000.000,00 ₺
+Toplam İş Gücü
+:
+1 (Adam/Ay)
+Toplam Proje İş Gücü
+:
+12 (Adam/Ay)
+Firma Adı
+:
+alparai.com
+Proje Adı
+:
+ALPAR AI - Dünyanın İlk Bağımsız Yapay Zeka Denetim ve Hesap Verebilirlik
+Platformu
+Proje Kodu
+:
+ALPAR-AI-2026-TRUST
+Proje Yöneticisi
+:
+ERCÜMENT ERDEN
+Proje Kategorisi
+:
+Ar-Ge
+Nace Kodu
+Teknolojik Olgunluk
+S
+i
+i
+TRL5-Bütün ya da bileşenler itibariyle prototipin bilgisayar ortamında tasarımının
+l
+Projenin Sektörü
+Yazılım
+İlişkili Sektörler
+Projemizin 3065 sayılı KDV Kanunu Geçici 20.madde kapsamında
+tesliminin Kdv'den istisna olup olmadığı yönünden değerlendirilmesini
+istiyoruz.
+Ana Teknoloji Alanı
+1.2.3 Yapay Zeka
+1.2.1 Gelişmiş sistem mimarisi
+1.2.3 Yapay Zeka
+1.2.6 Bilgisayar yazılımları
+DiğerTeknoloji Alanları
+1.2.9 Veri koruma, saklama teknolojisi, kriptoloji, veri güvenliği
+Proje Özeti
+ALPAR AI; yapay zeka kararlarını matematiksel olarak doğrulayan, dünyanın ilk Sıfır Bilgi İspatı (ZKP) destekli
+bağımsız hesap verebilirlik platformudur. Geliştirilen tescilli 'AI Audit Score™' motoru, müşteri veri gizliliğini ihlal
+etmeden modelleri kara-kutu yöntemlerle test eder; halüsinasyon oranını, güvenlik açıklarını ve AB AI Act regülasyon
+uyumunu denetler.
+Risk ve Mitigasyon: Erken regülasyon döneminde bulunmamız ilk hareket eden avantajı (first-mover advantage)
+sağlarken; büyük model sağlayıcılarının iç denetim araçlarına karşı bağımsız denetçi tarafsızlığımız kopyalanamaz
+bir güven bariyeri oluşturur. UK AI Safety Institute ve NIST standartlarıyla uyumlu yapısıyla Teknopark İstanbul'u
+küresel güvenli yapay zeka ligine taşıyacaktır.
+Proje ile ilgili özeti yazınız.
+Projenin Hedefleri
+Dışa Bağımlı Kritik Parçaların Yerli Üretimi ile İkamesi
+√
+Dışa Bağımlı Yazılım Modüllerinin Yerli Olarak Geliştirilmesi
+Diğer
+Diğer
+Diğer
+Fonksiyonel Modülerlik ve Esneklik Sağlayan Tasarım
+Güvenlik Açısından Risk Taşıyan Sistemlerin Teknik Olarak Güvence Altına Alınması
+√
+İthal Ürünlerin Tasarım Olarak Yerli Tasarım İle İkamesi
+İthalat İhtiyacını Durdurma
+Malzeme ve Üretim Maliyetlerini Azaltan Tasarım İyileştirmesi
+Sayfa (5 / 15)
+BAŞVURU FORMU
+ÖNİZLEME
+
+============================================================
+=== SAYFA 6 (1986 karakter) ===
+============================================================
+Projenin Hedefleri
+Mevcut Üründe veya Üretim Yönteminde Teknik Açıdan Yenilik Yapılması
+Mevcut Ürünü Geliştiren Yenilikçi Tasarım (Re-Design)
+Mevcut Yazılımın İşlevselliğinde Teknik Genişleme / Modül Eklenmesi
+Pazarda Yer Almayan Yeni Ürün Tasarımı Geliştirme
+Teknik Karmaşıklığın Azaltılması ve Kullanıcı Hatasının Önlenmesi
+Teknik Performans ile Kalite ve Dayanıklılığı Arttıran Yapısal Tasarım
+Teknik ve Kullanım Risklerini Azaltan Çalışmalar Ve Güvenlik Bağlamında Tasarım
+Uygulama Güvenilirliği ve Süreç İzlenebilirliğinin Artırılması
+Üretim Maliyetlerini ve Giderlerini Düşürme
+Üretim Sürecinde Verimlilik Artışı ile Maliyetlerin Düşürülmesi
+Üretim Sürecinin ve Ürünün İzlenebilirlik Yapılarının Kurulması
+√
+Üretime Uygunluk ve Endüstriyel Gerçekleşebilirlik
+Ürün Kalitesi ve Standardını Yükseltme
+Ürün Kullanıcı İlişkisini Belirleyen Parametreler Yönüyle Tasarım
+Ürün Performansının Yükseltilmesi
+Ürün veya Sistemin Zorlu Saha Koşullarına Uygun Hale Getirilmesi
+Üründe veya Üretim Yöntemlerinde Yenilik Geliştirme
+Yazılımda Performans İyileştirmesi ve Kaynak Kullanımının Azaltılması
+Yeni Bir Yazılım Ürünü Geliştirme
+Yeni Ürüne Yönelik Araştırma
+Yeni ve Önceden Çözülmemiş Bir İhtiyaca Yönelik Ürün Araştırması
+√
+Hedef Kitle
+Kendi Firmamız
+Sipariş Üzerine
+TGB Dışında Bulunan Kurum / Kuruluş
+√
+TGB İçinde Bulunan Kurum / Kuruluş
+√
+Hedef Lokasyon
+İl dışı
+√
+İl içi
+√
+Yurt dışı
+√
+Hedeflenen Kazanım ve Sonuçlar
+Projenin temel hedefi; yapay zeka modellerinin güvenilirliğini denetleyen ve otonom sistemlerde halüsinasyon riskini
+sıfırlayan 3 Aşamalı bir "Veri - Güven - Savunma Otonomisi" Volanı (Flywheel) inşa etmektir. Sistem; sivil alanda kitle
+kaynaklı (crowdsourced) toplanan gerçek yapay zeka hata verilerini kriptografik hakikat defterine (Truth Ledger)
+işlemekte, bu verilerle zırhlanan Sıfır-Bilgi Kanıtı (ZKP) ve Sıfır-Bellek Tahsisatlı (Zero-GC) deterministik motor ile
+NATO STANAG 4586 uyumlu askeri otonomi çekirdeği sunmaktadır.
+Sayfa (6 / 15)
+BAŞVURU FORMU
+ÖNİZLEME
+
+============================================================
+=== SAYFA 7 (3812 karakter) ===
+============================================================
+Sayısal ve Ölçülebilir Başarı Kriterleri (KPI):
+1. Doğrulanmış Hata Veri Seti Büyümesi (Faz 1): Canlı platformdaki 3.115+ doğrulanmış YZ hata vaka kütüphanesini
+açık kaynak @alparai/guard SDK'sı ile 18 ay sonunda 50.000+ vakaya ulaştırarak dünyanın en büyük bağımsız YZ
+kusur veri setini oluşturmak.
+2. Uçuş ve Karar Döngüsü Gecikmesi (Faz 2): Gerçek donanım üzerinde ZKP doğrulamalı otonom karar ve refleks
+döngüsü gecikmesini < 1.0 milisaniye düzeyine indirmek ve O(1) deterministik zaman karmaşıklığını garanti etmek.
+3. Jammer Altında Sürü Senkronizasyonu (Faz 3): Yoğun elektronik harp altında merkezi veri bağı koptuğunda, 1200
+Baud dar bant askeri RF koşullarında en az 3 düğümlü İHA sürüsünün koordinasyonunu %0 paket kaybı ile
+sürdürmek.
+4. Aerodinamik Enerji Verimliliği: Gerçek zamanlı Navier-Stokes rüzgar kestirimi algoritmasıyla klasik kontrolcülere
+göre batarya tüketiminde %15 net verimlilik artışı sağlamak.
+5. Gömülü NPU Uyumluluğu: 1B-3B parametreli Uç Dil Modellerini (Edge SLM) 4-bit INT4 kuantizasyonla ≤128MB
+RAM sınırında sıfır dinamik bellek tahsisatıyla çalıştırmak.
+Projenin Nitelikleri
+İhraç edilebilecek ürün geliştirilmesi
+√
+Mevcut Ürün Kalite Yükseltilmesi
+Mevcut Ürün Yöntem / Süreç Geliştirilmesi
+Ülke bazında teknolojik olarak yeni ürün üretim süreci
+√
+Verimliliği Artıran Yeni Ürün / Süreç Geliştirmesi
+Yeni Bir Ürün veya Hizmet Üretilmesi
+√
+Yeni teknoloji geliştirme
+√
+Yeni teknolojinin ülke koşullarına uyarlanması
+√
+Ar-Ge Yönü
+1. Doğuş Motivasyonu ve Somut İhlal Vakası (Grok Olayı & Bağımsız Hakemlik İhtiyacı):
+ALPAR AI'ın doğuş kıvılcımı, belgelenmiş ve ulusal basına yansımış somut bir yapay zeka güvenlik ve egemenlik
+ihlaline dayanmaktadır. Kurucu Ercüment ERDEN'in xAI firmasına ait Grok 4 modeliyle yaşadığı ve TÜRKİNFORM
+tarafından 25 Haziran 2026 tarihinde haberleştirilen vakada (Haber: https://turkinform.com.tr/turk-girisimcinin-
+yasadigi-grok-skandali-kisisel-verilerimiz-risk-altinda-mi); kapalı devre yabancı modellerin kullanıcı biyometrik ve
+kişisel verilerini keyfi işlediği ve sorumluluktan kaçtığı belgelenmiştir. Bu durum; otonom sistemlerde ve savunma
+sanayiinde yabancı bulut ve model bağımlılığının yaratacağı felaketleri açıkça ortaya koymuş; "Yapay Zekanın
+Bağımsız Denetçisi ve Hakemi" konumunda egemen bir altyapının (ALPAR) geliştirilmesini zorunlu kılmıştır.
+2. Frascati Kriterleri ve Teknolojik Belirsizlik:
+Kitle kaynaklı toplanan heterojen YZ hata verilerinin kriptografik doğrulukla sınıflandırılması, model ağırlıklarını ifşa
+etmeksizin Sıfır-Bilgi Kanıtları (ZKP) ile doğrulanması ve mikrodenetleyici düzeyinde sıfır gecikmeli deterministik
+koda dönüştürülmesi yüksek düzeyde kuramsal ve algoritmik belirsizlik içerir. Projemiz; kriptoloji, biçimsel doğrulama
+(formal verification) ve gömülü silikon mimarisini bir araya getirerek uluslararası Frascati Kılavuzu'nun tüm Ar-Ge
+gereksinimlerini eksiksiz karşılamaktadır.
+3. Stratejik Volan Mimarisi (The 3-Phase Flywheel Model):
+- Faz 1 (Veri Egemenliği - Sivil SaaS): AlparAI platformu, yapay zekanın "Şikayetvar / Trustpilot" modeliyle çalışır.
+Halihazırda indekslenmiş 3.115+ doğrulanmış hata vakası, SHA-384 parmak izi ve Merkle Ağacı ile "Hakikat
+Defteri"ne (Truth Ledger) işlenir.
+- Faz 2 (Matematiksel Zırhlama - ZKP Core): Toplanan gerçek hata vakaları, ZKP doğrulama motorumuzun test
+yatağını oluşturur. Modelin gizli ağırlıklarına dokunmadan hatasızlığı matematiksel olarak ispatlayan Zero-GC motor
+sertleştirilir.
+- Faz 3 (Savunma Otonomisi - Deep Tech): Sivil arenadaki binlerce hatadan ders alarak zırhlanan bu deterministik
+çekirdek, NATO STANAG 4586 uyumuyla İHA/SİHA sürü sistemlerine entegre edilir. "Verisi Sivilden, Zırhı
+Matematikten, İcrası Savunmadan."
+Projenin Ar-Ge niteliği hakkında bilgi veriniz.
+Yenilikçi ve Teknolojik Yön
+Sayfa (7 / 15)
+BAŞVURU FORMU
+ÖNİZLEME
+
+============================================================
+=== SAYFA 8 (2682 karakter) ===
+============================================================
+1. Bağımsız Denetçi Konumlandırması (AI'ın NTSB'si ve TÜV'ü): ALPAR AI, yeni bir LLM üreticisi değil; üretilen tüm
+YZ modellerinin yük testini ve uygunluk sertifikasyonunu yapan bağımsız denetim altyapısıdır (IV&V). AB Yapay
+Zeka Yasası (EU AI Act) zorunlu 3. taraf denetim gereksinimine doğrudan cevap verir.
+2. Biyolojik Ayrım (Beyin Sapı ve Korteks - MOSA Mimarisi):
+- Beyin Sapı (Deterministik Refleks): Zero-GC, O(1) gecikmeli uçuş kontrolü ve Navier-Stokes rüzgar motoru. Fizik
+kuralları değişmedikçe bu çekirdek asla eskimez.
+- Korteks (Tak-Çalıştır Zeka): Edge SLM ve görev zekası modülleri. Modüler Açık Sistem Mimarisi (MOSA) sayesinde
+yeni nesil yapay zeka modelleri sistemi bozmadan Hot-Swap yöntemiyle takılır.
+3. Asimetrik Donanım Deflasyonu: Rakiplerin pahalı GPU ve Linux gereksinimine karşılık; sıfır-tahsisli mimarimiz
+sayesinde karmaşık otonom doğrulama ucuz mikrodenetleyicilerde (STM32N6) çalışır, platform maliyetlerini
+asimetrik olarak düşürür.
+4. Bare-Metal Sıfır-Kopya İletişim: 64-byte L1-önbellek hizalı lock-free paylaşımlı bellek halka tamponu ile
+mikrodenetleyici düzeyinde 100 nanosaniyelik veri aktarımı sağlanır.
+Projenin teknolojik ve yenilikçi yönü hakkında bilgi veriniz.
+Milli Hedeflere Uygunluk
+T.C. Cumhurbaşkanlığı Dijital Dönüşüm Ofisi ve T.C. Sanayi ve Teknoloji Bakanlığı tarafından yayımlanan Ulusal
+Yapay Zeka Stratejisi (UYZS) hedefleri ve Savunma Sanayii Başkanlığı (SSB) derin teknoloji vizyonu doğrultusunda;
+kritik kamu altyapıları, savunma sanayii, bankacılık ve sağlık sektörlerinde kullanılacak yapay zeka sistemlerinin
+yabancı bulut platformlarına ve denetim mekanizmalarına bağımlı kalmaksızın, milli ve egemen kriptografik
+standartlarla denetlenmesini, belgelendirilmesini ve siber egemenliğimizin korunmasını sağlayacaktır.
+Bölge Dışı Görevlendirme
+Bölge Dışı Çalışma Süresi:
+1 (Saat)
+Bölge Dışı Çalışma Gerekçeleri:
+4691 sayılı Teknoloji Geliştirme Bölgeleri Kanunu kapsamında; projenin niteliği
+gereği finans, savunma ve sağlık alanındaki kurumsal paydaşların kapalı devre
+veri merkezlerinde yerinde testlerin yürütülmesi, pilot sunucu altyapı kurulumları,
+üniversite laboratuvarlarındaki yüksek başarımlı hesaplama (HPC)
+entegrasyonları ve akademik saha çalışmaları için Ar-Ge personelinin bölge
+Proje İşbirlikleri
+Aynı ildeki firmaların işbirliği ile yürütülen proje
+Farklı ildeki firmaların işbirliği ile yürütülen proje
+Kamu Kurumları işbirliği ile yürütülen proje
+Teknopark şirketleri işbirliği ile yürütülen proje
+TTO işbirliği ile yürütülen proje
+Üniversite işbirliği ile yürütülen proje
+Yurtdışındaki firmaların işbirliği ile yürütülen proje
+Finansman Kaynakları
+Banka Kredisi
+Sayfa (8 / 15)
+BAŞVURU FORMU
+ÖNİZLEME
+
+============================================================
+=== SAYFA 9 (1804 karakter) ===
+============================================================
+Kamu Destekleri
+Öz Sermaye
+√
+Özel Sektör
+Risk Sermayesi
+√
+Yönetici Şirket
+Yatırımcı Destekleri
+Ortaklık
+Risk Sermayesi
+√
+Proje Ar-Ge Aşamaları
+Ar-Ge Projesine Doğrudan Bağlı Endüstriyel Tasarım ve Çizim
+Bir Yenilik Unsuru İçeren Yazılım Geliştirme
+√
+Geliştirilen Kavramdan Tasarıma Geçiş Sürecinde Yer Alan Labaravutar  vb Çalışmalar
+√
+Kavram Geliştirme
+√
+Patent ve Lisans Çalışmaları
+Teknolojik/Teknik ve Ekonomik Yapıılabilirlik Etüdü
+√
+Yeni ya da İyileştirilmiş Ürün ya da Süreçler İçin Prototip Geliştirilmesiyle Doğrudan İlişkili Sinai Mühendislik
+Yeni ya da İyileştirilmiş Ürün ya da Süreçler İçin Prototip Geliştirme
+√
+Mevcut Teknoloji Hazırlık Seviyesi
+ALPAR AI çekirdek doğrulama mimarisi, ZKP tabanlı denetim algoritmaları ve 17-vektörlü adversarial test betikleri
+laboratuvar ortamında doğrulanmış ve çalışan bir MVP altyapısına (alparai.com) kavuşturulmuştur. Platform 72
+üretim API ucu, 1.130+ başarılı birim test ve 103 SQL migrasyonu ile TRL 5 (bileşenlerin laboratuvar ortamında
+geçerli kılınması) aşamasındadır.
+Hedef Teknolojik Hazırlık
+Seviyesi:
+TRL7-Prototipin  gerçek çalışma ortamında denenmesi
+Hedef Teknoloji Hazırlık Seviyesi
+18 aylık Ar-Ge süreci sonunda, ALPAR AI platformu gerçek kurumsal çalışma ortamında (bankacılık, fintek ve kamu
+veri merkezleri) pilot modeller üzerinde çalıştırılacak, donanım seviyesinde ZKP hızlandırma optimizasyonları
+tamamlanacak ve sistem operasyonel ortamda kanıtlanmış ticari ürün olarak TRL 7 seviyesine ulaşacaktır.
+Proje Kampsamında Teknoparktan Talep Edilen Hizmetler
+GENEL TEKNOPARK İSTANBUL DESTEĞİ
+Finansal Kaynaklara Erişim Desteği
+√
+Kuluçka Desteği
+√
+Mali Danışmanlık Desteği
+Muafiyet Uygulamaları Desteği
+Pazarlama Danışmanlığı Desteği
+Şirket Kuruluş İşlemleri Desteği
+Teknoloji Transferi Desteği
+Sayfa (9 / 15)
+BAŞVURU FORMU
+ÖNİZLEME
+
+============================================================
+=== SAYFA 10 (1795 karakter) ===
+============================================================
+Ulusal ve Uluslararası Desteklere Erişim/Bilgilendirme/Başvuru
+Uluslarasılaşma Danışmanlığı Desteği
+Yatırım Danışmanlığı Desteği
+KURUMSAL İLETİŞİM İLE ETKİLEŞİM DESTEĞİ
+Organizasyonlara katılım (Fuar Katılımı, Eğitim, Etkinlik, Uluslararası Ziyaretler) Desteği
+Kurumsal ziyaretlere açıklık (Teknotur, Resmi ziyaretler) Desteği
+İletişim kanallarında yer alma (Target Dergisi, Teknopark Basın Bülteni, IQ dergisi) Desteği
+TEKNİK HİZMETLER ve ALTYAPI DESTEĞİ
+Bölge Firmaları ile Ortak Üretim Desteği
+√
+Elektronik Atölye Desteği
+İnternet Servisleri Desteği
+Kalite Güvence Desteği
+Karanlık Oda Desteği
+Makine ve Teçhizat Desteği
+Mekanik Atölye Desteği
+Test ve Kalibrasyon Desteği
+Yazılım Test Analiz Desteği
+Yüksek Teknoloji Laboratuvarı Desteği
+Proje Kapsamında TTO'dan Talep Edilen Hizmetler
+AB Projeleri Bilgilendirme Desteği
+√
+Akademisyen Danışmanlığı Desteği
+√
+Eğitim Desteği
+Fikri Sınai Mülkiyet Hakları Danışmanlığı (FSMH) Desteği
+İş Birliği Geliştirme Desteği
+Komisyon Danışmanlığı Desteği
+Kümelenme  Desteği
+Mentorlük Desteği
+Proje Değerlendirme Desteği
+Yatırımcı Görüşmeleri Desteği
+Teknoparkta Yer Alma Nedeni
+Teknopark İstanbul ve Cube Incubation ekosistemi; derin teknoloji (DeepTech), yapay zeka güvenliği ve kriptoloji
+alanındaki Ar-Ge projemizin hızla ticarileşmesi, TTO aracılığıyla uluslararası patent (PCT/EPO) tescil süreçleri,
+savunma ve fintek kümeleme ağlarıyla stratejik iş birlikleri kurulması ve kurumsal yatırımcı ağlarına erişim
+sağlanması açısından en ideal inovasyon üssüdür.
+Teknoparkta Etkileşimde Bulunulan/Bulunulabilecek Firmalar
+Teknopark İstanbul bünyesinde yer alan finansal teknolojiler, siber güvenlik, savunma sanayii ve büyük veri analitiği
+şirketleriyle ortak pilot testler ve entegrasyon protokolleri yürütülecektir.
+Sayfa (10 / 15)
+BAŞVURU FORMU
+ÖNİZLEME
+
+============================================================
+=== SAYFA 11 (2837 karakter) ===
+============================================================
+Proje Detayı
+ALPAR AI MİMARİSİ VE 18 AYLIK AR-GE İŞ PAKETLERİ (GANTT SENKRON):
+1. MİMARİ KATMANLAR:
+- Kriptografik ZKP Doğrulama Katmanı: Model çıkarım matrislerini Circom/SnarkJS devrelerine indirger.
+- 17-Vektörlü Adversarial Stres Testi: Prompt injection, jailbreak, halüsinasyon ve sızıntı açıklarını tarar.
+- Sıfır-Bellek Tahsisatlı (Zero-GC) Deterministik Çekirdek: V8 Garbage Collector baskısını sıfırlayan L1 halka
+tamponu ile O(1) deterministik zaman karmaşıklığı sunar.
+- MOSA Modüler Mimarisi: Beyin Sapı (refleks kontrol) ve Korteks (görev zekası) ayrımı.
+2. 18 AYLIK İŞ PAKETLERİ DAĞILIMI:
+• Faz 0 (İlk 2 Hafta): Kurumsal Temel, Danışma Kurulu (Prof. Dr. Musa AYGÜL & Ahmet Rıfat ALBUZ) protokolleri ve
+PCT uluslararası patent başvurusu.
+• İP-1 (Ay 1-4): @alparai/guard SDK lansmanı, doğrulanmış ihlal vakalarının 15.000+ seviyesine çıkarılması, Merkle
+Tree SHA-384 doğrulama hattı.
+• İP-2 (Ay 5-9): STM32N6 NPU ve FPGA silikonuna gömülü Zero-GC motor entegrasyonu, 4-bit INT4 kuantizasyonla
+modelin ≤128MB RAM sınırına kilitlenmesi (<1ms döngü gecikmesi).
+• İP-3 (Ay 10-14): STANAG 4586 Askeri RF altında 3+ İHA ile %0 paket kayıplı sürü senkronizasyonu, B2B Trust
+Badge lansmanı.
+• İP-4 (Ay 15-18): Açık alanda otonom sürü uçuş doğrulaması (TRL-8/9), Dinamik NPU Uyku Kalkanı ile +12 dakika
+batarya kazancı, patent tescili ve Savunma Sanayii Müşteri Niyet Mektubu (LoI).
+Projenin detayını yazınız.
+Anahtar Kelimeler
+Yapay Zeka Denetimi, Sifir Bilgi Ispati (ZKP), EU AI Act Uyum, AI Audit Score
+Proje Ekibi
+Personel Tipi
+Görev Adı
+Yazılım Personeli
+Proje Yürütücüsü & Baş Sistem Mimarı
+Uygulama ve Üretim Kapasitesi
+Proje Bütçesi
+Harcama Kategorisi
+Harcama Kalemi
+Harcama Adı
+Tutar
+Personel Giderleri
+Yapay Zeka Kidemli
+A
+i
+i
+ZKP
+₺3.000.000,00
+Makina ve Teçhizat Giderleri
+Yuksek Performansli AI
+M d l D
+l
+Y
+l
+₺750.000,00
+Bilgi Güvenliği ve Yazılım
+Gid
+l
+i
+Kriptografik Dogrulama
+K
+h
+l
+i G
+li
+₺500.000,00
+Hizmet Alımları
+EU AI Act ve BDDK Uyum
+H k k
+il
+B
+i
+i
+₺500.000,00
+Genel Giderler
+Ar-Ge Ofis Altyapisi,
+Il
+i i
+Ki
+i
+P
+j
+₺250.000,00
+₺5.000.000,00
+Çevreye Etkileri
+Proje Yeşil Bilişim (Green Computing) mimarisiyle tasarlanmıştır. Modellerin milyarlarca parametresini sürekli
+yeniden eğitmek (fine-tuning) yerine geliştirdiğimiz hafif ZKP çıkarım doğrulaması ve tensöryel projeksiyon
+algoritmalarımız sayesinde donanım enerji tüketiminde %60 oranında tasarruf sağlanmakta; sunucu karbon ayak izi
+minimize edilerek çevre dostu ve sürdürülebilir bir hesaplama altyapısı sunulmaktadır.
+Sürdürülebilirlik
+Çevresel sürdürülebilirlik ilkelerine tam uyumlu olarak sunucu optimizasyonlarında sıfır-tahsisli bellek yönetimi
+kullanılmakta; ekonomik sürdürülebilirlik açısından ise 6 farklı ticari gelir katmanı ve B2B kurumsal aboneliklerle
+güçlü ve sürekli bir nakit akışı hedeflenmektedir.
+Sayfa (11 / 15)
+BAŞVURU FORMU
+ÖNİZLEME
+
+============================================================
+=== SAYFA 12 (2799 karakter) ===
+============================================================
+Ekonomik Değeri
+Gartner ve Stanford AI Index verilerine göre küresel AI Governance ve Trust pazarı 2026 itibarıyla 4.8 Milyar Dolar
+TAM büyüklüğüne ulaşmıştır; pazar yıllık bileşik büyüme oranı (CAGR) %42.5 seviyesindedir. ALPAR AI; 1)
+Halüsinasyon API, 2) Etik Denetim API, 3) Hukuki Uyum API, 4) Sigorta Risk Verisi API, 5) Trust Oracle ve 6)
+Whistleblower olmak üzere 6 katmanlı gelir modeliyle 12 ay sonunda 12M TL, 24 ay sonunda %65i döviz bazlı 45M
+TL ciro hedeflemektedir.
+Alınacak Dış Hizmetler
+Proje kapsamında alınacak dış hizmetler:
+1. Akademik Kriptoloji ve Matematiksel Kanıt Danışmanlığı: Circom/SnarkJS aritmetik devre tasarımları için
+üniversite öğretim üyelerinden akademik destek.
+2. Uluslararası Hukuk ve Regülasyon Danışmanlığı: Selçuk Üniversitesi Hukuk Fakültesi Milletlerarası Özel Hukuk
+Anabilim Dalı Başkanı Prof. Dr. Musa AYGÜL liderliğinde AB Yapay Zeka Yasası (EU AI Act) ve MÖHUK tam
+akreditasyon danışmanlığı.
+3. Bağımsız Kırmızı Takım (Red-Teaming) ve Sızma Testi: Uluslararası akredite siber güvenlik firmasından
+adversarial denetim ve stres testi hizmeti.
+Projenin Müşterisi
+Öncelikli hedef kitlemiz: 1) Bankacılık ve fintek kurumları (kredi ve dolandırıcılık tespiti yapan LLM modellerinin
+denetimi), 2) Sağlık ve biyoteknoloji şirketleri (veri gizliliği ve medikal teşhis güvenilirliği), 3) Sigorta şirketleri (Lloyds
+ve Munich Re aktüeryal yapay zeka risk modellemesi), 4) Kamu kurumları ve regülatörler (AB Yapay Zeka Yasası ve
+KVKK uyum denetimleri).
+Hedef Pazar, Pazarın Lokal veya Globalliği
+1. Yerli Pazar (Türkiye): Ulusal Yapay Zeka Stratejisi doğrultusunda kamu, savunma ve fintek sektöründeki 200+
+kurumsal yapının yapay zeka güvenlik akreditasyonu. 2. Küresel Pazar (AB ve Körfez): AB Yapay Zeka Yasasının
+yürürlüğe girmesiyle birlikte yüksek riskli yapay zeka sağlayıcılarına zorunlu tutulan bağımsız denetim ve ZKP
+akreditasyon hizmeti ihracatı.
+Rekabet Analizi
+Küresel rakipler (Credo AI, Arthur AI, Robust Intelligence) yalnızca bulut bağımlı ve istatistiksel kara-kutu gözlemi
+sunmakta, yerli dil ve mevzuata tam uyum sağlayamamaktadır. ALPAR AI ise Circom/SnarkJS tabanlı ZKP
+kriptografik kanıtlama, 17-vektörlü otonom red-teaming ve KVKK + EU AI Act çift regülasyon uyumu ile dünyadaki ilk
+tam egemen ve matematiksel doğrulama altyapısıdır.
+Proje Gelir Beklentisi
+Yıl
+Yurt İçi Satış Adedi
+Yurt İçi Satış Tutarı
+Yurt Dışı Satış Adedi
+Yurt Dışı İhracat Tutarı
+2027
+5
+7.500.000,00
+3
+250.000,00
+2028
+15
+25.000.000,00
+12
+1.200.000,00
+Proje Çıktılarına Yönelik Bilgiler
+Proje Kapsamında FMH(Patent,Faydalı Model,Endüstriyel Tasarım) koruması alınacak
+√
+Proje Çıktılarının Kullanılacağı Sektörler
+Bankacılık ve Finans
+√
+Bilgisayar ve İletişim Teknolojileri
+√
+Sağlık
+√
+Savunma Sanayi
+√
+Telekomünikasyon
+√
+Yazılım
+√
+Sayfa (12 / 15)
+BAŞVURU FORMU
+ÖNİZLEME
+
+============================================================
+=== SAYFA 13 (423 karakter) ===
+============================================================
+Geliştirilmiş Ar-Ge Projeleri
+Proje Adı
+Nitelik Amaç
+Proje
+Süresi
+(Ay)
+Bütçesi
+(TL)
+Proje Ortakları
+Proje Çıktıları
+Durum
+AlparAI
+Otonom LLM
+Güvenlik ve
+Yanlılık
+Büyük dil
+modellerinde
+halüsinasyon,
+prompt injection ve
+6
+1.250.000
+,00
+Öz kaynaklar ve
+bağımsız açık kaynak
+yapay zeka araştırma
+toplulukları.
+LLM Adversarial
+Benchmark
+Kütüphanesi, Otomatik
+Zafiyet Raporlama
+Tamamlandı
+Sayfa (13 / 15)
+BAŞVURU FORMU
+ÖNİZLEME
+
+============================================================
+=== SAYFA 14 (208 karakter) ===
+============================================================
+İş Paketleri
+Başlık
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+Dinamik
+Adversarial
+Guvenlik ve
+Hallusinasyon
+Audit Score
+Hesaplama ve
+Regulasyon
+Entegrasyon,
+Saha Testleri ve
+Guvenilirlik
+Model
+Dogrulama ve zk
+-SNARKs Devre
+
+============================================================
+=== SAYFA 15 (655 karakter) ===
+============================================================
+PROJEDE KULLANILACAK EKİPMAN LİSTESİ
+No
+Ekipman Adı - Özellikleri
+Kullanım Gerekçesi -
+Çevresel Etkisi
+İthal
+Edilecek
+Ürün
+(Gümrük
+Vergisi
+İstisnası)
+Yeni
+Alınacak
+Ürün
+(KDV
+İstisnası)
+Menşei
+Miktar
+Birim
+Fiyat
+Toplam
+Tutar
+1
+Ekipman Adı : Yuksek Performansli
+AI Model Dogrulama ve Yerel LLM
+Cikarim Is Istasyonu
+Özellikler : 2x NVIDIA RTX GPU
+(48GB VRAM), 128GB ECC RAM,
+4TB NVMe SSD
+Kullanım Gerekçesi : ZKP
+devrelerinin derlenmesi,
+R1CS polinom hesaplamalari
+ve yerel LLM modellerinin
+adversarial guvenlik stres
+testlerinin yurutulmesi.
+Çevresel Etkisi : Standart ofis
+elektrik tuketimi disinda
+cevresel etkisi yoktur.
+1,00
+Adet
+750.000,0
+0
+750.000,00

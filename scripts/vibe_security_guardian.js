@@ -1,3 +1,4 @@
+import DOMPurify from 'isomorphic-dompurify';
 /**
  * 🛡️ VIBE SECURITY GUARDIAN (v2.0)
  * Deterministic Automated Security Engine for AI/Vibe-Coded Web Applications

@@ -21,8 +21,12 @@ async function getHandler(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const sourceParam = searchParams.get("source");
 
-  const aiaaicUrl = process.env.AIAAIC_FEED_URL;
-  const aiidUrl = process.env.AIID_FEED_URL;
+  const aiaaicUrl =
+    process.env.AIAAIC_FEED_URL ||
+    "https://raw.githubusercontent.com/aiaaic/aiaaic-repository/main/data/aiaaic.csv";
+  const aiidUrl =
+    process.env.AIID_FEED_URL ||
+    "https://incidentdatabase.ai/api/v1/incidents.csv";
 
   const results: Record<string, unknown> = {};
 

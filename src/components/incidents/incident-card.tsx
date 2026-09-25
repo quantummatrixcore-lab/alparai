@@ -4,8 +4,9 @@ import * as React from "react";
 import { cn, formatDate } from "@/lib/utils";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
+import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { SeverityBadge, StatusBadge, Badge } from "@/components/ui/badge";
+import { SeverityBadge, StatusBadge } from "@/components/incidents/incident-badges";
 import { SlaBadge } from "@/components/incidents/sla-badge";
 import type { IncidentListItem, IncidentSeverity, IncidentStatus } from "@/types";
 import {
@@ -120,8 +121,8 @@ export function IncidentCard({
   };
 
   const borderClass = severityBorders[severity] || "border-l-4 border-l-brand-500";
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const count = (incident as any).views_count ?? incident.view_count ?? 1200;
+  const count =
+    (incident as unknown as { views_count?: number }).views_count ?? incident.view_count ?? 1200;
   const viewsDisplay = count > 999 ? `${(count / 1000).toFixed(1)}K` : count || "1.2K";
 
   return (

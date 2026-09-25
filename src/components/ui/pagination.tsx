@@ -1,41 +1,26 @@
 "use client";
 
+import * as React from "react";
 import { Link } from "@/i18n/routing";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useTranslations } from "next-intl";
 
-interface PaginationProps {
+export interface PaginationProps {
   currentPage: number;
   totalPages: number;
-  category?: string;
-  severity?: string;
-  q?: string;
-  sort?: string;
+  onPageChange?: (page: number) => void;
+  getPageHref?: (page: number) => string;
+  className?: string;
 }
 
 export function Pagination({
   currentPage,
   totalPages,
-  category,
-  severity,
-  q,
-  sort,
+  onPageChange,
+  getPageHref,
+  className,
 }: PaginationProps) {
-  const t = useTranslations("common");
-
   if (totalPages <= 1) return null;
-
-  const getPageHref = (pageNumber: number) => {
-    const params = new URLSearchParams();
-    if (category) params.set("category", category);
-    if (severity) params.set("severity", severity);
-    if (q) params.set("q", q);
-    if (sort && sort !== "newest") params.set("sort", sort);
-    if (pageNumber > 1) params.set("page", String(pageNumber));
-    const qs = params.toString();
-    return qs ? `/incidents?${qs}` : "/incidents";
-  };
 
   const getPages = () => {
     const pages: (number | string)[] = [];
@@ -75,76 +60,112 @@ export function Pagination({
     return pages;
   };
 
+  const renderPageItem = (page: number | string, index: number) => {
+    if (page === "...") {
+      return (
+        <span
+          key={`ellipsis-${index}`}
+          className="text-fg-disabled inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium"
+        >
+          ...
+        </span>
+      );
+    }
+
+    const pageNum = page as number;
+    const isCurrent = pageNum === currentPage;
+    const itemClass = cn(
+      "inline-flex items-center rounded-md border-t-2 px-4 pt-4 text-sm font-medium transition-colors cursor-pointer",
+      "focus-visible:ring-brand-500 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
+      isCurrent
+        ? "border-brand-500 text-brand-400"
+        : "text-fg-muted hover:border-border-strong hover:text-fg-primary border-transparent",
+    );
+
+    if (getPageHref) {
+      return (
+        <Link
+          key={`page-${pageNum}`}
+          href={getPageHref(pageNum)}
+          aria-label={`Page ${pageNum}`}
+          className={itemClass}
+          aria-current={isCurrent ? "page" : undefined}
+        >
+          {pageNum}
+        </Link>
+      );
+    }
+
+    return (
+      <button
+        key={`page-${pageNum}`}
+        type="button"
+        onClick={() => onPageChange?.(pageNum)}
+        aria-label={`Page ${pageNum}`}
+        className={itemClass}
+        aria-current={isCurrent ? "page" : undefined}
+      >
+        {pageNum}
+      </button>
+    );
+  };
+
   return (
     <nav
-      className="border-border-subtle mt-8 flex items-center justify-between border-t px-4 py-4 sm:px-0"
+      className={cn("border-border-subtle mt-8 flex items-center justify-between border-t px-4 py-4 sm:px-0", className)}
       aria-label="Pagination"
     >
       <div className="-mt-px flex w-0 flex-1">
         {currentPage > 1 ? (
-          <Link
-            href={getPageHref(currentPage - 1)}
-            aria-label={t("previous")}
-            className="text-fg-muted hover:border-border-strong hover:text-fg-primary focus-visible:ring-brand-500 inline-flex items-center rounded-md border-t-2 border-transparent pt-4 pr-1 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
-          >
-            <ChevronLeft className="text-fg-muted mr-2 h-4 w-4" aria-hidden="true" />
-            {t("previous")}
-          </Link>
+          getPageHref ? (
+            <Link
+              href={getPageHref(currentPage - 1)}
+              aria-label="Previous"
+              className="text-fg-muted hover:border-border-strong hover:text-fg-primary focus-visible:ring-brand-500 inline-flex items-center rounded-md border-t-2 border-transparent pt-4 pr-1 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+            >
+              <ChevronLeft className="text-fg-muted mr-2 h-4 w-4" aria-hidden="true" />
+            </Link>
+          ) : (
+            <button
+              type="button"
+              onClick={() => onPageChange?.(currentPage - 1)}
+              aria-label="Previous"
+              className="text-fg-muted hover:border-border-strong hover:text-fg-primary focus-visible:ring-brand-500 inline-flex items-center rounded-md border-t-2 border-transparent pt-4 pr-1 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none cursor-pointer"
+            >
+              <ChevronLeft className="text-fg-muted mr-2 h-4 w-4" aria-hidden="true" />
+            </button>
+          )
         ) : (
           <span className="text-fg-disabled inline-flex cursor-not-allowed items-center border-t-2 border-transparent pt-4 pr-1 text-sm font-medium">
             <ChevronLeft className="text-fg-disabled mr-2 h-4 w-4" aria-hidden="true" />
-            {t("previous")}
           </span>
         )}
       </div>
 
-      <div className="hidden md:-mt-px md:flex">
-        {getPages().map((page, index) => {
-          if (page === "...") {
-            return (
-              <span
-                key={`ellipsis-${index}`}
-                className="text-fg-disabled inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium"
-              >
-                ...
-              </span>
-            );
-          }
-
-          const isCurrent = page === currentPage;
-          return (
-            <Link
-              key={`page-${page}`}
-              href={getPageHref(page as number)}
-              aria-label={`Page ${page}`}
-              className={cn(
-                "inline-flex items-center rounded-md border-t-2 px-4 pt-4 text-sm font-medium transition-colors",
-                "focus-visible:ring-brand-500 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
-                isCurrent
-                  ? "border-brand-500 text-brand-400"
-                  : "text-fg-muted hover:border-border-strong hover:text-fg-primary border-transparent",
-              )}
-              aria-current={isCurrent ? "page" : undefined}
-            >
-              {page}
-            </Link>
-          );
-        })}
-      </div>
+      <div className="hidden md:-mt-px md:flex">{getPages().map(renderPageItem)}</div>
 
       <div className="-mt-px flex w-0 flex-1 justify-end">
         {currentPage < totalPages ? (
-          <Link
-            href={getPageHref(currentPage + 1)}
-            aria-label={t("next")}
-            className="text-fg-muted hover:border-border-strong hover:text-fg-primary focus-visible:ring-brand-500 inline-flex items-center rounded-md border-t-2 border-transparent pt-4 pl-1 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
-          >
-            {t("next")}
-            <ChevronRight className="text-fg-muted ml-2 h-4 w-4" aria-hidden="true" />
-          </Link>
+          getPageHref ? (
+            <Link
+              href={getPageHref(currentPage + 1)}
+              aria-label="Next"
+              className="text-fg-muted hover:border-border-strong hover:text-fg-primary focus-visible:ring-brand-500 inline-flex items-center rounded-md border-t-2 border-transparent pt-4 pl-1 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+            >
+              <ChevronRight className="text-fg-muted ml-2 h-4 w-4" aria-hidden="true" />
+            </Link>
+          ) : (
+            <button
+              type="button"
+              onClick={() => onPageChange?.(currentPage + 1)}
+              aria-label="Next"
+              className="text-fg-muted hover:border-border-strong hover:text-fg-primary focus-visible:ring-brand-500 inline-flex items-center rounded-md border-t-2 border-transparent pt-4 pl-1 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none cursor-pointer"
+            >
+              <ChevronRight className="text-fg-muted ml-2 h-4 w-4" aria-hidden="true" />
+            </button>
+          )
         ) : (
           <span className="text-fg-disabled inline-flex cursor-not-allowed items-center border-t-2 border-transparent pt-4 pl-1 text-sm font-medium">
-            {t("next")}
             <ChevronRight className="text-fg-disabled ml-2 h-4 w-4" aria-hidden="true" />
           </span>
         )}

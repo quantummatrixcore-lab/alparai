@@ -2,17 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { dehost } from "@/lib/dehost/client";
-import { submitChallengeVote, removeChallengeVote } from "@/actions/challenges";
-
-interface SubmissionRow {
-  id: string;
-  title: string;
-  description: string;
-  user_id: string;
-  status: string;
-  created_at: string;
-}
+import {
+  submitChallengeVote,
+  removeChallengeVote,
+  getChallengeSubmissionsData,
+  type SubmissionRow,
+} from "@/actions/challenges";
 
 export function ChallengeSubmissions({
   challengeId,
@@ -28,35 +23,19 @@ export function ChallengeSubmissions({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let active = true;
     async function load() {
-      const [subsRes, votesRes, userVotesRes] = await Promise.all([
-        dehost
-          .from("challenge_submissions")
-          .select()
-          .eq("challenge_id", challengeId)
-          .eq("status", "approved"),
-        dehost.from("challenge_votes").select("submission_id"),
-        userId
-          ? dehost.from("challenge_votes").select("submission_id").eq("user_id", userId)
-          : Promise.resolve({ data: null }),
-      ]);
-
-      setSubmissions((subsRes.data as unknown as SubmissionRow[]) ?? []);
-      const counts: Record<string, number> = {};
-      for (const v of (votesRes.data ?? []) as Array<{ submission_id: string }>) {
-        counts[v.submission_id] = (counts[v.submission_id] ?? 0) + 1;
-      }
-      setVoteCounts(counts);
-      if (userVotesRes?.data) {
-        setUserVotes(
-          new Set(
-            (userVotesRes.data as Array<{ submission_id: string }>).map((v) => v.submission_id),
-          ),
-        );
-      }
+      const data = await getChallengeSubmissionsData(challengeId, userId);
+      if (!active) return;
+      setSubmissions(data.submissions);
+      setVoteCounts(data.voteCounts);
+      setUserVotes(new Set(data.userVotedIds));
       setLoading(false);
     }
     load();
+    return () => {
+      active = false;
+    };
   }, [challengeId, userId]);
 
   if (loading) {

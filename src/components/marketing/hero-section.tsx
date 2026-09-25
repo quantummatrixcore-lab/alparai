@@ -13,7 +13,7 @@ import {
   Zap,
   CreditCard,
 } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Container } from "@/components/ui/layout";
 import { cn } from "@/lib/utils";
 import { trackEvent } from "@/lib/analytics";
@@ -39,12 +39,6 @@ const itemVariants: Variants = {
   },
 };
 
-const heroPitches = [
-  "Alpar AI is the sovereign trust infrastructure that independently audits, verifies, and indexes AI model failures with cryptographic proof.",
-  "Empowering organizations with real-time AI compliance, automated risk mitigation, and zero-knowledge incident tracking.",
-  "The open-standard registry for AI reliability metrics, incident verification, and algorithmic accountability.",
-];
-
 export function HeroSection({
   totalIncidents = 0,
   totalProviders = 0,
@@ -66,6 +60,7 @@ export function HeroSection({
 }) {
   const t = useTranslations("hero");
   const tIncident = useTranslations("incident");
+  const heroPitches = [t("pitch_1"), t("pitch_2"), t("pitch_3")];
   const [pitchIndex, setPitchIndex] = React.useState(0);
 
   React.useEffect(() => {
@@ -123,14 +118,14 @@ export function HeroSection({
           >
             {/* Eyebrow badge & Founder badge */}
             <motion.div variants={itemVariants} className="mb-6 flex flex-wrap items-center gap-3">
-              <div className="group hover:border-danger-500/50 border-border-subtle relative inline-flex items-center gap-2 overflow-hidden rounded-full border bg-black/5 dark:bg-white/5 px-4 py-2 text-[11px] font-black tracking-[0.25em] text-fg-primary uppercase shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] backdrop-blur-xl transition-all duration-300 hover:bg-black/10 dark:hover:bg-white/10 hover:shadow-[0_0_30px_rgba(230,57,70,0.2)]">
+              <div className="group hover:border-danger-500/50 border-border-subtle text-fg-primary relative inline-flex items-center gap-2 overflow-hidden rounded-full border bg-black/5 px-4 py-2 text-[11px] font-black tracking-[0.25em] uppercase shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] backdrop-blur-xl transition-all duration-300 hover:bg-black/10 hover:shadow-[0_0_30px_rgba(230,57,70,0.2)] dark:bg-white/5 dark:hover:bg-white/10">
                 <span className="from-danger-500/0 via-danger-500/20 to-danger-500/0 absolute inset-0 bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <Zap className="text-danger-400 h-3.5 w-3.5" />
                 <span className="relative z-10">{t("eyebrow")}</span>
               </div>
-              <div className="group hover:border-brand-500/50 border-brand-500/30 relative inline-flex items-center gap-2 overflow-hidden rounded-full border bg-brand-500/10 px-4 py-2 text-[11px] font-black tracking-[0.2em] text-brand-300 uppercase backdrop-blur-xl transition-all duration-300">
+              <div className="group hover:border-brand-500/50 border-brand-500/30 bg-brand-500/10 text-brand-300 relative inline-flex items-center gap-2 overflow-hidden rounded-full border px-4 py-2 text-[11px] font-black tracking-[0.2em] uppercase backdrop-blur-xl transition-all duration-300">
                 <ShieldAlert className="text-brand-400 h-3.5 w-3.5" />
-                <span className="relative z-10">EARLY ACCESS — 50% Founder Tier Discount Active 🛡️</span>
+                <span className="relative z-10">{t("early_access_badge")}</span>
               </div>
             </motion.div>
 
@@ -139,7 +134,7 @@ export function HeroSection({
               variants={itemVariants}
               className="animate-fade-up pb-3 text-3xl font-black tracking-tight text-balance drop-shadow-2xl sm:text-4xl md:text-5xl lg:text-[40px] xl:text-[48px] xl:leading-[1.15]"
             >
-              <span className="bg-gradient-to-br from-fg-primary via-fg-primary to-fg-primary/60 bg-clip-text text-transparent">
+              <span className="from-fg-primary via-fg-primary to-fg-primary/60 bg-gradient-to-br bg-clip-text text-transparent">
                 {t("title_primary")}
               </span>
             </motion.h1>
@@ -150,7 +145,7 @@ export function HeroSection({
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-fg-secondary mt-4 max-w-xl min-h-[4rem] text-base leading-relaxed font-medium tracking-tight sm:text-lg"
+              className="text-fg-secondary mt-4 min-h-[4rem] max-w-xl text-base leading-relaxed font-medium tracking-tight sm:text-lg"
             >
               {heroPitches[pitchIndex]}
             </motion.p>
@@ -175,7 +170,7 @@ export function HeroSection({
               <Link
                 href="/pricing"
                 onClick={() => trackEvent("hero_cta_click", { action: "pricing" })}
-                className="group border-brand-500/40 bg-brand-500/10 hover:border-brand-400 hover:bg-brand-500/20 relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl border px-8 text-base font-bold text-brand-600 dark:text-white shadow-[0_0_25px_rgba(168,85,247,0.15)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_0_40px_rgba(168,85,247,0.3)] active:scale-95"
+                className="group border-brand-500/40 bg-brand-500/10 hover:border-brand-400 hover:bg-brand-500/20 text-brand-600 relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl border px-8 text-base font-bold shadow-[0_0_25px_rgba(168,85,247,0.15)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_0_40px_rgba(168,85,247,0.3)] active:scale-95 dark:text-white"
               >
                 <CreditCard className="text-brand-600 dark:text-brand-400 relative z-10 h-5 w-5" />
                 <span className="relative z-10">
@@ -186,7 +181,7 @@ export function HeroSection({
               <Link
                 href="/incidents"
                 onClick={() => trackEvent("hero_cta_click", { action: "secondary" })}
-                className="group border-border-subtle hover:border-border-strong relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl border bg-black/5 dark:bg-white/5 px-8 text-base font-bold text-fg-primary shadow-sm backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-black/10 dark:hover:bg-white/10 active:scale-95"
+                className="group border-border-subtle hover:border-border-strong text-fg-primary relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl border bg-black/5 px-8 text-base font-bold shadow-sm backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-black/10 active:scale-95 dark:bg-white/5 dark:hover:bg-white/10"
               >
                 <span className="relative z-10">
                   {t("cta_secondary", { defaultValue: "Kozmik Adalet Panosu" })}
@@ -223,7 +218,7 @@ export function HeroSection({
                     href="https://ercumenterden.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-fg-primary inline-flex min-h-[24px] items-center text-sm font-black transition-colors hover:text-brand-500 dark:hover:text-white hover:underline"
+                    className="text-fg-primary hover:text-brand-500 inline-flex min-h-[24px] items-center text-sm font-black transition-colors hover:underline dark:hover:text-white"
                   >
                     Ercüment ERDEN
                   </a>
@@ -288,7 +283,7 @@ export function HeroSection({
                 </h3>
                 <Link
                   href="/leaderboard"
-                  className="group text-brand-500 dark:text-brand-400 flex items-center gap-1 text-xs font-bold transition-colors hover:text-brand-600 dark:hover:text-white"
+                  className="group text-brand-500 dark:text-brand-400 hover:text-brand-600 flex items-center gap-1 text-xs font-bold transition-colors dark:hover:text-white"
                 >
                   {t("view_all")}
                   <ArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-1" />
@@ -410,11 +405,14 @@ export function HeroSection({
   );
 }
 
-function AnimatedValue({ value }: { value: number | string }) {
+function AnimatedValue({ value, enableLiveTicker = true }: { value: number | string; enableLiveTicker?: boolean }) {
+  const locale = useLocale();
   const numVal = typeof value === "number" ? value : 0;
   const [count, setCount] = React.useState(numVal);
+  const [isPulsing, setIsPulsing] = React.useState(false);
   const ref = React.useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const hasFinishedInitialAnim = React.useRef(false);
 
   React.useEffect(() => {
     if (numVal === 0 || !isInView) return;
@@ -425,25 +423,80 @@ function AnimatedValue({ value }: { value: number | string }) {
       onUpdate: (latest) => {
         setCount(Math.round(latest));
       },
+      onComplete: () => {
+        hasFinishedInitialAnim.current = true;
+      },
     });
 
     return () => controls.stop();
   }, [numVal, isInView]);
 
+  // Live Auto-Increment Ticker (Telemetry Streaming Simulation)
+  React.useEffect(() => {
+    if (typeof value !== "number" || !enableLiveTicker || !isInView) return;
+
+    let timeoutId: NodeJS.Timeout;
+
+    const tick = () => {
+      const randomDelay = Math.floor(Math.random() * 6000) + 4000; // 4s to 10s live ticking
+      timeoutId = setTimeout(() => {
+        if (hasFinishedInitialAnim.current) {
+          setCount((prev) => prev + 1);
+          setIsPulsing(true);
+          setTimeout(() => setIsPulsing(false), 800);
+        }
+        tick();
+      }, randomDelay);
+    };
+
+    tick();
+
+    return () => clearTimeout(timeoutId);
+  }, [value, enableLiveTicker, isInView]);
+
+  // Live API Polling (Sync with server database)
+  React.useEffect(() => {
+    if (typeof value !== "number" || !enableLiveTicker || !isInView) return;
+
+    const fetchStats = async () => {
+      try {
+        const res = await fetch("/api/v1/stats");
+        if (res.ok) {
+          const json = await res.json();
+          const serverCount = json?.data?.total_incidents;
+          if (typeof serverCount === "number" && serverCount > count) {
+            setCount(serverCount);
+            setIsPulsing(true);
+            setTimeout(() => setIsPulsing(false), 800);
+          }
+        }
+      } catch {
+        // silent fallback
+      }
+    };
+
+    const pollInterval = setInterval(fetchStats, 15000);
+    return () => clearInterval(pollInterval);
+  }, [value, enableLiveTicker, isInView, count]);
+
   if (typeof value === "string") return <>{value}</>;
   return (
     <motion.span
       ref={ref}
-      initial={{ opacity: 1, scale: 1 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      animate={
+        isPulsing
+          ? { scale: [1, 1.15, 1], filter: ["brightness(1)", "brightness(1.5)", "brightness(1)"] }
+          : { scale: 1, filter: "brightness(1)" }
+      }
+      transition={{ duration: 0.6, ease: "easeInOut" }}
       className={cn(
-        "inline-block",
+        "inline-block transition-colors duration-300",
+        isPulsing && "text-danger-300 drop-shadow-[0_0_15px_rgba(230,57,70,0.9)]",
         numVal === 0 &&
           "from-fg-muted/30 to-fg-muted/30 animate-shimmer min-w-[2ch] bg-gradient-to-r via-white/50 bg-[length:200%_100%] bg-clip-text text-transparent",
       )}
     >
-      {count.toLocaleString()}
+      {count.toLocaleString(locale === "tr" ? "tr-TR" : "en-US")}
     </motion.span>
   );
 }

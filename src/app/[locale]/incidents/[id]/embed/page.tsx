@@ -1,7 +1,7 @@
 import { createServerClient } from "@/lib/dehost/server";
 import { notFound } from "next/navigation";
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { SeverityBadge } from "@/components/ui/badge";
+import { SeverityBadge } from "@/components/incidents/incident-badges";
 import { Clock, ExternalLink } from "lucide-react";
 
 import { formatDate } from "@/lib/utils";

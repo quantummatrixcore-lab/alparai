@@ -3,6 +3,12 @@ import {
   hasPII,
   detectPIITypes,
   maskPII,
+  sanitizePII,
+  PIIGuardian,
+  PiiGuardian,
+  calculateShannonEntropy,
+  isHighEntropy,
+  maskHighEntropyTokens,
   detectContentWarning,
   hasContentWarning,
   isSensitiveCategory,
@@ -360,4 +366,118 @@ describe("PII Guardian", () => {
       expect(maskPII("Steuer-ID: 12345678901").masked).toContain("[REDACTED-TAX-ID]");
     });
   });
+
+  describe("sanitizePII function", () => {
+    it("returns empty string on falsy input", () => {
+      expect(sanitizePII("")).toBe("");
+      expect(sanitizePII(null as never)).toBe("");
+      expect(sanitizePII(undefined as never)).toBe("");
+    });
+
+    it("returns clean text unchanged", () => {
+      const clean = "The model produced a hallucinated summary of the news article.";
+      expect(sanitizePII(clean)).toBe(clean);
+    });
+
+    it("sanitizes credit card and TC Kimlik in free text", () => {
+      const input = "Customer TC: 10000000146, Card: 4111 1111 1111 1111";
+      const sanitized = sanitizePII(input);
+      expect(sanitized).not.toContain("10000000146");
+      expect(sanitized).not.toContain("4111 1111 1111 1111");
+      expect(sanitized).toContain("[REDACTED-TC]");
+      expect(sanitized).toContain("[REDACTED-CARD]");
+    });
+
+    it("sanitizes email, phone, and IBAN", () => {
+      const input = "Contact john@example.com or 0532 123 45 67, IBAN: TR29 0006 4000 0011 2345 6789 01";
+      const sanitized = sanitizePII(input);
+      expect(sanitized).toContain("[REDACTED-EMAIL]");
+      expect(sanitized).toContain("[REDACTED-PHONE]");
+      expect(sanitized).toContain("[REDACTED-IBAN]");
+    });
+
+    it("sanitizes high-entropy secret tokens", () => {
+      const input = "Here is my secret token: dGhpcyBpcyBhIHJhbmRvbSBzZWNyZXQga2V5IDEyMzQ1Ng==";
+      const sanitized = sanitizePII(input);
+      expect(sanitized).toContain("[REDACTED-SECRET]");
+      expect(sanitized).not.toContain("dGhpcyBpcyBhIHJhbmRvbSBzZWNyZXQga2V5IDEyMzQ1Ng==");
+    });
+  });
+
+  describe("Shannon Entropy Detection", () => {
+    it("calculates zero entropy for empty string", () => {
+      expect(calculateShannonEntropy("")).toBe(0);
+    });
+
+    it("calculates low entropy for natural language prose", () => {
+      const english = "The quick brown fox jumps over the lazy dog";
+      const turkish = "muvaffakiyetsizlestiricilestiriveremeyebileceklerimizdenmissinizcesine";
+      expect(calculateShannonEntropy(english)).toBeLessThan(4.5);
+      expect(calculateShannonEntropy(turkish)).toBeLessThan(4.0);
+    });
+
+    it("calculates high entropy (>= 4.2) for random cryptographic keys", () => {
+      const randomSecret = "dGhpcyBpcyBhIHJhbmRvbSBzZWNyZXQga2V5IDEyMzQ1Ng==";
+      const highEntropyToken = "xK9$mP2!vL8#qR5^tY1*wZ4@bN7";
+      expect(calculateShannonEntropy(randomSecret)).toBeGreaterThanOrEqual(4.2);
+      expect(calculateShannonEntropy(highEntropyToken)).toBeGreaterThanOrEqual(4.2);
+    });
+
+    it("isHighEntropy correctly classifies tokens", () => {
+      expect(isHighEntropy("dGhpcyBpcyBhIHJhbmRvbSBzZWNyZXQga2V5IDEyMzQ1Ng==", 4.2, 20)).toBe(true);
+      expect(isHighEntropy("short_token", 4.2, 20)).toBe(false);
+      expect(isHighEntropy("supercalifragilisticexpialidocious", 4.2, 20)).toBe(false);
+    });
+
+    it("maskHighEntropyTokens replaces high-entropy secrets and preserves safe words", () => {
+      const text = "Safe word supercalifragilisticexpialidocious with token dGhpcyBpcyBhIHJhbmRvbSBzZWNyZXQga2V5IDEyMzQ1Ng==";
+      const masked = maskHighEntropyTokens(text, 4.2, 20);
+      expect(masked).toContain("supercalifragilisticexpialidocious");
+      expect(masked).toContain("[REDACTED-SECRET]");
+      expect(masked).not.toContain("dGhpcyBpcyBhIHJhbmRvbSBzZWNyZXQga2V5IDEyMzQ1Ng==");
+    });
+
+    it("detectPIITypes identifies entropy_high for high entropy input", () => {
+      const types = detectPIITypes("Token: dGhpcyBpcyBhIHJhbmRvbSBzZWNyZXQga2V5IDEyMzQ1Ng==");
+      expect(types).toContain("entropy_high");
+    });
+  });
+
+  describe("PIIGuardian class", () => {
+    it("provides singleton instance", () => {
+      const instance1 = PIIGuardian.getInstance();
+      const instance2 = PIIGuardian.getInstance();
+      expect(instance1).toBe(instance2);
+      expect(PiiGuardian.getInstance()).toBe(instance1);
+    });
+
+    it("guardian.sanitize masks PII and high entropy secrets", () => {
+      const guardian = new PIIGuardian();
+      const result = guardian.sanitize("Email: test@example.com Card: 4111111111111111 Token: dGhpcyBpcyBhIHJhbmRvbSBzZWNyZXQga2V5IDEyMzQ1Ng==");
+      expect(result).toContain("[REDACTED-EMAIL]");
+      expect(result).toContain("[REDACTED-CARD]");
+      expect(result).toContain("[REDACTED-SECRET]");
+    });
+
+    it("guardian.scan returns structured detection metadata", () => {
+      const guardian = PIIGuardian.getInstance();
+      const scan = guardian.scan("My TC: 10000000146");
+      expect(scan.piiFound).toBe(true);
+      expect(scan.redactedCount).toBe(1);
+      expect(scan.masked).toContain("[REDACTED-TC]");
+    });
+
+    it("guardian.hasPII returns true for sensitive data", () => {
+      const guardian = new PIIGuardian();
+      expect(guardian.hasPII("Card 4111 1111 1111 1111")).toBe(true);
+      expect(guardian.hasPII("Just normal clean text")).toBe(false);
+    });
+
+    it("guardian.calculateEntropy returns accurate Shannon entropy", () => {
+      const guardian = new PIIGuardian();
+      expect(guardian.calculateEntropy("aaaaa")).toBe(0);
+      expect(guardian.calculateEntropy("abcdefgh")).toBe(3);
+    });
+  });
 });
+

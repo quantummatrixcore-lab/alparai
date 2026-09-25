@@ -12,20 +12,18 @@ export interface RadarData {
   token_trend: string;
 }
 
-const DEFAULT_RADAR_DATA: RadarData = {
-  leader: "Claude 3.5 Sonnet",
-  iq_score: "1287", // LMSYS ELO / IQ Benchmark
-  openai_status: "Operational",
-  anthropic_status: "Operational",
-  token_trend: "-12%",
-};
-
 export const AIEcosystemRadar = React.memo(function AIEcosystemRadar({
-  data = DEFAULT_RADAR_DATA,
+  data,
 }: {
-  data?: RadarData;
+  data?: RadarData | null;
 }) {
   const t = useTranslations("admin.ai_ecosystem_radar");
+
+  const leader = data?.leader ?? "—";
+  const iqScore = data?.iq_score ?? "—";
+  const tokenTrend = data?.token_trend ?? "—";
+  const openaiStatus = data?.openai_status ?? "—";
+  const anthropicStatus = data?.anthropic_status ?? "—";
 
   return (
     <div className="w-full min-w-0 rounded-xl border border-[#27272a] bg-[#121216]/80 p-3.5 backdrop-blur-md sm:p-4">
@@ -39,29 +37,31 @@ export const AIEcosystemRadar = React.memo(function AIEcosystemRadar({
           <p className="text-[11px] text-slate-400 sm:text-xs">{t("current_leader")}</p>
           <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
             <p className="truncate font-mono text-xs font-bold text-[#dcb8ff] sm:text-sm">
-              {data.leader}
+              {leader}
             </p>
-            <span className="shrink-0 rounded border border-[#8a2be2]/40 bg-[#8a2be2]/20 px-1.5 py-0.5 text-[10px] font-bold text-[#dcb8ff]">
-              {t("iq_score", { score: data.iq_score })}
-            </span>
+            {data?.iq_score ? (
+              <span className="shrink-0 rounded border border-[#8a2be2]/40 bg-[#8a2be2]/20 px-1.5 py-0.5 text-[10px] font-bold text-[#dcb8ff]">
+                {t("iq_score", { score: iqScore })}
+              </span>
+            ) : null}
           </div>
         </div>
         <div className="min-w-0">
           <p className="text-[11px] text-slate-400 sm:text-xs">{t("token_trend")}</p>
-          <p className="flex items-center gap-1 font-mono text-xs font-bold text-emerald-400 sm:text-sm">
-            <Zap className="h-3 w-3 shrink-0" /> {data.token_trend}
+          <p className="flex items-center gap-1 font-mono text-xs font-bold text-slate-400 sm:text-sm">
+            <Zap className="h-3 w-3 shrink-0" /> {tokenTrend}
           </p>
         </div>
         <div className="min-w-0">
           <p className="text-[11px] text-slate-400 sm:text-xs">{t("openai_api")}</p>
-          <p className="flex items-center gap-1 font-mono text-xs font-bold text-emerald-400 sm:text-sm">
-            <Server className="h-3 w-3 shrink-0" /> {data.openai_status}
+          <p className="flex items-center gap-1 font-mono text-xs font-bold text-slate-400 sm:text-sm">
+            <Server className="h-3 w-3 shrink-0" /> {openaiStatus}
           </p>
         </div>
         <div className="min-w-0">
           <p className="text-[11px] text-slate-400 sm:text-xs">{t("anthropic_api")}</p>
-          <p className="flex items-center gap-1 font-mono text-xs font-bold text-emerald-400 sm:text-sm">
-            <Server className="h-3 w-3 shrink-0" /> {data.anthropic_status}
+          <p className="flex items-center gap-1 font-mono text-xs font-bold text-slate-400 sm:text-sm">
+            <Server className="h-3 w-3 shrink-0" /> {anthropicStatus}
           </p>
         </div>
       </div>

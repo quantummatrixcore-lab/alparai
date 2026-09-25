@@ -1,19 +1,22 @@
 /**
- * PII Guardian — Server-side personal data masking.
+ * PII Guardian — Server-side personal data & secret masking.
  *
  * Detects and redacts Turkish + international PII patterns:
- *  - TC Kimlik No (Turkish national ID)
- *  - Turkish phone numbers
- *  - Email addresses
- *  - IBAN
- *  - Credit card numbers (Luhn-aware)
- *  - IPv4 addresses
+ *  - TC Kimlik No (Turkish national ID with modulo-10 algorithm check)
+ *  - Turkish phone numbers & international phone numbers
+ *  - Email addresses (RFC compliant & internationalized)
+ *  - IBAN (TR & international with Modulo-97 check)
+ *  - Credit card numbers (Luhn-aware algorithm validation)
+ *  - IPv4 and IPv6 addresses
  *  - URLs containing tokens/keys
- *  - Passport numbers (TR + general)
- *  - Date of birth patterns
+ *  - Generic API keys (sk-…, sk_…, AIza…, hf_…, ghp_…, AKIA…, etc.)
+ *  - Passport numbers (TR + general) & Turkish driver's licenses
+ *  - Date of birth patterns (TR DD.MM.YYYY + ISO YYYY-MM-DD)
  *  - Turkish address patterns
+ *  - European Union national IDs (Spanish DNI/NIE, Italian Codice Fiscale, French INSEE, EU VAT, German Steuer-ID)
+ *  - High-Entropy secrets / credentials detected via Shannon Entropy H(X) >= 4.2
  *
- * Pure-function: no I/O, no dependencies. Safe for edge runtime.
+ * Pure-function: no I/O, no external network dependencies. Safe for edge runtime.
  */
 
 import { Sentinel } from "../ai/sentinel";
@@ -155,6 +158,79 @@ export interface PiiScanResult {
 }
 
 /**
+ * Calculates Shannon Entropy of a string:
+ * H(X) = -sum(P(x) * log2(P(x)))
+ *
+ * Normal human text typically ranges between 2.0 and 3.8.
+ * High-entropy credentials (API keys, secret tokens, Base64/Hex keys)
+ * typically score H >= 4.2.
+ */
+export function calculateShannonEntropy(data: string): number {
+  const len = data.length;
+  if (len === 0) return 0;
+  const freq: Record<string, number> = {};
+  for (let i = 0; i < len; i++) {
+    const ch = data[i];
+    if (ch) freq[ch] = (freq[ch] || 0) + 1;
+  }
+  let entropy = 0;
+  for (const ch in freq) {
+    const p = (freq[ch] ?? 0) / len;
+    if (p > 0) {
+      entropy -= p * Math.log2(p);
+    }
+  }
+  return entropy;
+}
+
+/**
+ * Checks if a string token is classified as high entropy.
+ * Default threshold is 4.2 bits per char, minimum length 20.
+ */
+export function isHighEntropy(
+  data: string,
+  threshold = 4.2,
+  minLength = 20,
+): boolean {
+  if (!data || data.length < minLength) return false;
+  // Ignore already redacted tokens
+  if (/^\[REDACTED-[A-Z0-9_-]+\]$/.test(data)) return false;
+  // Ignore plain URLs without query parameters
+  if (/^https?:\/\/[a-zA-Z0-9.-]+\/?$/.test(data)) return false;
+
+  const entropy = calculateShannonEntropy(data);
+  return entropy >= threshold;
+}
+
+/**
+ * Scans string for high-entropy tokens and masks them with [REDACTED-SECRET].
+ */
+export function maskHighEntropyTokens(
+  input: string,
+  threshold = 4.2,
+  minLength = 20,
+): string {
+  if (!input) return "";
+  return input.replace(/[A-Za-z0-9+/_\-.=$#@!%^&*]{16,}/g, (token) => {
+    if (/^\[REDACTED-[A-Z0-9_-]+\]$/.test(token)) return token;
+    if (token.length >= minLength && isHighEntropy(token, threshold, minLength)) {
+      return "[REDACTED-SECRET]";
+    }
+    return token;
+  });
+}
+
+/**
+ * Standalone PII sanitizer function.
+ * Masks sensitive user inputs (Credit card, TC Kimlik, IBAN, Phone, Email,
+ * API Keys, and high-entropy secret tokens) using regex and Shannon Entropy.
+ */
+export function sanitizePII(text: string): string {
+  if (!text) return "";
+  return maskPII(text).masked;
+}
+
+/**
  * Mask all detected PII in a text. Returns masked text + detection metadata.
  */
 export function maskPII(input: string): PiiScanResult {
@@ -166,6 +242,7 @@ export function maskPII(input: string): PiiScanResult {
   const detectionMap = new Map<string, PiiDetection>();
   let totalRedactions = 0;
 
+  // 1. Regex & Algorithm-based checks (Luhn, Mod-97, TC Checksum)
   for (const { name, re, mask, luhn, tcKimlik, ibanMod97 } of PATTERNS) {
     let currentMatchCount = 0;
     const samples: string[] = [];
@@ -194,7 +271,31 @@ export function maskPII(input: string): PiiScanResult {
     }
   }
 
-  // Run Sentinel Scanner to intercept and redact credentials / secrets
+  // 2. Shannon Entropy Masking: Intercept candidate high-entropy tokens
+  const candidateTokenRe = /\b[A-Za-z0-9+/_\-.=$#@!%^&*]{20,}\b/g;
+  let entropyMatchCount = 0;
+  const entropySamples: string[] = [];
+
+  masked = masked.replace(candidateTokenRe, (token) => {
+    if (/^\[REDACTED-[A-Z0-9_-]+\]$/.test(token)) return token;
+    if (isHighEntropy(token, 4.2, 20)) {
+      entropyMatchCount++;
+      totalRedactions++;
+      if (entropySamples.length < 3) entropySamples.push(truncateSample(token));
+      return "[REDACTED-SECRET]";
+    }
+    return token;
+  });
+
+  if (entropyMatchCount > 0) {
+    detectionMap.set("entropy_high", {
+      type: "entropy_high",
+      count: entropyMatchCount,
+      samples: entropySamples,
+    });
+  }
+
+  // 3. Run Sentinel Scanner to intercept and redact credentials / secrets
   try {
     const sentinel = new Sentinel();
     const sentinelResult = sentinel.scan(masked);
@@ -234,11 +335,13 @@ export function maskPII(input: string): PiiScanResult {
 }
 
 /**
- * Quick boolean check: does this text contain any PII?
+ * Quick boolean check: does this text contain any PII or high-entropy secrets?
  */
 export function hasPII(input: string): boolean {
   if (!input) return false;
-  return PATTERNS.some(({ re, luhn, tcKimlik, ibanMod97 }) => {
+
+  // Pattern check
+  const hasPatternMatch = PATTERNS.some(({ re, luhn, tcKimlik, ibanMod97 }) => {
     re.lastIndex = 0;
     if (!re.test(input)) return false;
     if (luhn || tcKimlik || ibanMod97) {
@@ -249,6 +352,16 @@ export function hasPII(input: string): boolean {
     }
     return true;
   });
+
+  if (hasPatternMatch) return true;
+
+  // High entropy token check
+  const tokens = input.match(/\b[A-Za-z0-9+/_\-.=$#@!%^&*]{20,}\b/g);
+  if (tokens && tokens.some((t) => isHighEntropy(t, 4.2, 20))) {
+    return true;
+  }
+
+  return false;
 }
 
 /**
@@ -269,6 +382,15 @@ export function detectPIITypes(input: string): string[] {
       types.push(name);
     }
   }
+
+  // Shannon entropy check
+  const tokens = input.match(/\b[A-Za-z0-9+/_\-.=$#@!%^&*]{20,}\b/g);
+  if (tokens && tokens.some((t) => isHighEntropy(t, 4.2, 20))) {
+    if (!types.includes("entropy_high")) {
+      types.push("entropy_high");
+    }
+  }
+
   return types;
 }
 
@@ -416,3 +538,69 @@ function isIbanMod97Valid(iban: string): boolean {
     return false;
   }
 }
+
+/**
+ * Sovereign PII Guardian Class.
+ * Encapsulates regex patterns, Luhn/Mod97/TC checksums, and Shannon Entropy masking.
+ */
+export class PIIGuardian {
+  private static instance: PIIGuardian | null = null;
+
+  public static getInstance(): PIIGuardian {
+    if (!PIIGuardian.instance) {
+      PIIGuardian.instance = new PIIGuardian();
+    }
+    return PIIGuardian.instance;
+  }
+
+  /**
+   * Sanitizes input text, masking all PII and high-entropy secrets.
+   */
+  public sanitize(text: string): string {
+    return sanitizePII(text);
+  }
+
+  /**
+   * Scans input text and returns detailed scan metadata.
+   */
+  public scan(text: string): PiiScanResult {
+    return maskPII(text);
+  }
+
+  /**
+   * Quick boolean check for PII or high-entropy secrets.
+   */
+  public hasPII(text: string): boolean {
+    return hasPII(text);
+  }
+
+  /**
+   * Returns list of detected PII types.
+   */
+  public detectTypes(text: string): string[] {
+    return detectPIITypes(text);
+  }
+
+  /**
+   * Calculates Shannon Entropy of string.
+   */
+  public calculateEntropy(text: string): number {
+    return calculateShannonEntropy(text);
+  }
+
+  /**
+   * Checks if string token has high Shannon Entropy.
+   */
+  public isHighEntropyToken(text: string, threshold = 4.2, minLength = 20): boolean {
+    return isHighEntropy(text, threshold, minLength);
+  }
+
+  /**
+   * Masks high-entropy tokens in text.
+   */
+  public maskHighEntropy(text: string, threshold = 4.2, minLength = 20): string {
+    return maskHighEntropyTokens(text, threshold, minLength);
+  }
+}
+
+export const PiiGuardian = PIIGuardian;

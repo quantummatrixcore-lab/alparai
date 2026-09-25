@@ -12,7 +12,7 @@ export const INTEGRATION_SERVICES: IntegrationService[] = [
     costKey: "github",
     healthKey: "github",
     alternatives: ["gitlab", "bitbucket", "gitea"],
-    url: "https://github.com/quantummatrixcore-lab/Alparai.com",
+    url: "https://github.com/quantummatrixcore-lab/alparai",
     docsUrl: "https://docs.github.com",
   },
   {
@@ -392,7 +392,7 @@ export const INTEGRATION_SERVICES: IntegrationService[] = [
     costKey: "github",
     healthKey: "github",
     alternatives: ["gitlab-ci", "circleci", "jenkins"],
-    url: "https://github.com/quantummatrixcore-lab/Alparai.com/actions",
+    url: "https://github.com/quantummatrixcore-lab/alparai/actions",
     docsUrl: "https://docs.github.com/actions",
   },
   {

@@ -3,7 +3,7 @@ import { type Database } from "@/types/database";
 import { Link } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
 import { Card, CardContent } from "@/components/ui/card";
-import { SeverityBadge } from "@/components/ui/badge";
+import { SeverityBadge } from "@/components/incidents/incident-badges";
 import { formatDate } from "@/lib/utils";
 import { Clock } from "lucide-react";
 

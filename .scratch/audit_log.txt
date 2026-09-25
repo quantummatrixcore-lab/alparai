@@ -1,0 +1,93 @@
+--- AUTOPILOT AUDIT START ---
+[2026-09-14T04:55:25.274Z] Connected to CDP
+[2026-09-14T04:55:25.287Z] Initial cleanup closed: 1 dialogs
+[2026-09-14T04:55:25.287Z] 
+=== PASS 1 / 3 ===
+[2026-09-14T04:55:25.288Z] Processing [Pass 1] -> Proje Hedefleri (id: 15)
+[2026-09-14T04:55:26.883Z] [Proje Hedefleri] Modified: 0, Matches: 1
+[2026-09-14T04:55:26.890Z] [Proje Hedefleri] Closed dialog: {"closed":true,"method":"fa-times"}
+[2026-09-14T04:55:27.495Z] Processing [Pass 1] -> Proje Nitelikleri (id: 19)
+[2026-09-14T04:55:28.982Z] [Proje Nitelikleri] Modified: 0, Matches: 3
+[2026-09-14T04:55:28.988Z] [Proje Nitelikleri] Closed dialog: {"closed":true,"method":"fa-times"}
+[2026-09-14T04:55:29.593Z] Processing [Pass 1] -> Arge Aşamaları (id: 25)
+[2026-09-14T04:55:31.283Z] [Arge Aşamaları] Modified: 0, Matches: 2
+[2026-09-14T04:55:31.295Z] [Arge Aşamaları] Closed dialog: {"closed":true,"method":"fa-times"}
+[2026-09-14T04:55:31.908Z] Processing [Pass 1] -> Proje Detayı (id: 27)
+[2026-09-14T04:55:33.885Z] [Proje Detayı] Modified: 0, Matches: 1
+[2026-09-14T04:55:33.889Z] [Proje Detayı] Closed dialog: {"closed":true,"method":"fa-times"}
+[2026-09-14T04:55:34.496Z] Processing [Pass 1] -> Ortaklar-Anahtar Kelimeler (id: 30)
+[2026-09-14T04:55:36.541Z] [Ortaklar-Anahtar Kelimeler] Modified: 0, Matches: 1
+[2026-09-14T04:55:36.546Z] [Ortaklar-Anahtar Kelimeler] Closed dialog: {"closed":true,"method":"fa-times"}
+[2026-09-14T04:55:37.155Z] Processing [Pass 1] -> Teknopark Hizmetleri (id: 33)
+[2026-09-14T04:55:38.733Z] [Teknopark Hizmetleri] Modified: 0, Matches: 2
+[2026-09-14T04:55:38.781Z] [Teknopark Hizmetleri] Closed dialog: {"closed":true,"method":"fa-times"}
+[2026-09-14T04:55:39.392Z] Processing [Pass 1] -> Ekonomik Değer (id: 38)
+[2026-09-14T04:55:41.388Z] [Ekonomik Değer] Modified: 0, Matches: 4
+[2026-09-14T04:55:41.394Z] [Ekonomik Değer] Closed dialog: {"closed":true,"method":"fa-times"}
+[2026-09-14T04:55:41.995Z] Processing [Pass 1] -> Çevreye Etkileri (id: 39)
+[2026-09-14T04:55:43.472Z] [Çevreye Etkileri] Modified: 0, Matches: 2
+[2026-09-14T04:55:43.478Z] [Çevreye Etkileri] Closed dialog: {"closed":true,"method":"fa-times"}
+[2026-09-14T04:55:44.087Z] Processing [Pass 1] -> Dış Hizmetler (id: 40)
+[2026-09-14T04:55:45.531Z] [Dış Hizmetler] Modified: 0, Matches: 1
+[2026-09-14T04:55:45.538Z] [Dış Hizmetler] Closed dialog: {"closed":true,"method":"fa-times"}
+[2026-09-14T04:55:46.139Z] 
+=== PASS 2 / 3 ===
+[2026-09-14T04:55:46.140Z] Processing [Pass 2] -> Proje Hedefleri (id: 15)
+[2026-09-14T04:55:47.623Z] [Proje Hedefleri] Modified: 0, Matches: 1
+[2026-09-14T04:55:47.628Z] [Proje Hedefleri] Closed dialog: {"closed":true,"method":"fa-times"}
+[2026-09-14T04:55:48.238Z] Processing [Pass 2] -> Proje Nitelikleri (id: 19)
+[2026-09-14T04:55:49.748Z] [Proje Nitelikleri] Modified: 0, Matches: 3
+[2026-09-14T04:55:49.754Z] [Proje Nitelikleri] Closed dialog: {"closed":true,"method":"fa-times"}
+[2026-09-14T04:55:50.363Z] Processing [Pass 2] -> Arge Aşamaları (id: 25)
+[2026-09-14T04:55:52.127Z] [Arge Aşamaları] Modified: 0, Matches: 2
+[2026-09-14T04:55:52.135Z] [Arge Aşamaları] Closed dialog: {"closed":true,"method":"fa-times"}
+[2026-09-14T04:55:52.739Z] Processing [Pass 2] -> Proje Detayı (id: 27)
+[2026-09-14T04:55:54.782Z] [Proje Detayı] Modified: 0, Matches: 1
+[2026-09-14T04:55:54.788Z] [Proje Detayı] Closed dialog: {"closed":true,"method":"fa-times"}
+[2026-09-14T04:55:55.398Z] Processing [Pass 2] -> Ortaklar-Anahtar Kelimeler (id: 30)
+[2026-09-14T04:55:57.301Z] [Ortaklar-Anahtar Kelimeler] Modified: 0, Matches: 1
+[2026-09-14T04:55:57.307Z] [Ortaklar-Anahtar Kelimeler] Closed dialog: {"closed":true,"method":"fa-times"}
+[2026-09-14T04:55:57.908Z] Processing [Pass 2] -> Teknopark Hizmetleri (id: 33)
+[2026-09-14T04:55:59.445Z] [Teknopark Hizmetleri] Modified: 0, Matches: 2
+[2026-09-14T04:55:59.453Z] [Teknopark Hizmetleri] Closed dialog: {"closed":true,"method":"fa-times"}
+[2026-09-14T04:56:00.054Z] Processing [Pass 2] -> Ekonomik Değer (id: 38)
+[2026-09-14T04:56:02.077Z] [Ekonomik Değer] Modified: 0, Matches: 4
+[2026-09-14T04:56:02.085Z] [Ekonomik Değer] Closed dialog: {"closed":true,"method":"fa-times"}
+[2026-09-14T04:56:02.690Z] Processing [Pass 2] -> Çevreye Etkileri (id: 39)
+[2026-09-14T04:56:04.176Z] [Çevreye Etkileri] Modified: 0, Matches: 2
+[2026-09-14T04:56:04.183Z] [Çevreye Etkileri] Closed dialog: {"closed":true,"method":"fa-times"}
+[2026-09-14T04:56:04.791Z] Processing [Pass 2] -> Dış Hizmetler (id: 40)
+[2026-09-14T04:56:06.222Z] [Dış Hizmetler] Modified: 0, Matches: 1
+[2026-09-14T04:56:06.229Z] [Dış Hizmetler] Closed dialog: {"closed":true,"method":"fa-times"}
+[2026-09-14T04:56:06.838Z] 
+=== PASS 3 / 3 ===
+[2026-09-14T04:56:06.839Z] Processing [Pass 3] -> Proje Hedefleri (id: 15)
+[2026-09-14T04:56:08.373Z] [Proje Hedefleri] Modified: 0, Matches: 1
+[2026-09-14T04:56:08.380Z] [Proje Hedefleri] Closed dialog: {"closed":true,"method":"fa-times"}
+[2026-09-14T04:56:08.995Z] Processing [Pass 3] -> Proje Nitelikleri (id: 19)
+[2026-09-14T04:56:10.506Z] [Proje Nitelikleri] Modified: 0, Matches: 3
+[2026-09-14T04:56:10.513Z] [Proje Nitelikleri] Closed dialog: {"closed":true,"method":"fa-times"}
+[2026-09-14T04:56:11.121Z] Processing [Pass 3] -> Arge Aşamaları (id: 25)
+[2026-09-14T04:56:12.867Z] [Arge Aşamaları] Modified: 0, Matches: 2
+[2026-09-14T04:56:12.873Z] [Arge Aşamaları] Closed dialog: {"closed":true,"method":"fa-times"}
+[2026-09-14T04:56:13.489Z] Processing [Pass 3] -> Proje Detayı (id: 27)
+[2026-09-14T04:56:15.504Z] [Proje Detayı] Modified: 0, Matches: 1
+[2026-09-14T04:56:15.516Z] [Proje Detayı] Closed dialog: {"closed":true,"method":"fa-times"}
+[2026-09-14T04:56:16.121Z] Processing [Pass 3] -> Ortaklar-Anahtar Kelimeler (id: 30)
+[2026-09-14T04:56:18.171Z] [Ortaklar-Anahtar Kelimeler] Modified: 0, Matches: 1
+[2026-09-14T04:56:18.177Z] [Ortaklar-Anahtar Kelimeler] Closed dialog: {"closed":true,"method":"fa-times"}
+[2026-09-14T04:56:18.783Z] Processing [Pass 3] -> Teknopark Hizmetleri (id: 33)
+[2026-09-14T04:56:20.310Z] [Teknopark Hizmetleri] Modified: 0, Matches: 2
+[2026-09-14T04:56:20.334Z] [Teknopark Hizmetleri] Closed dialog: {"closed":true,"method":"fa-times"}
+[2026-09-14T04:56:20.944Z] Processing [Pass 3] -> Ekonomik Değer (id: 38)
+[2026-09-14T04:56:22.959Z] [Ekonomik Değer] Modified: 0, Matches: 4
+[2026-09-14T04:56:22.967Z] [Ekonomik Değer] Closed dialog: {"closed":true,"method":"fa-times"}
+[2026-09-14T04:56:23.569Z] Processing [Pass 3] -> Çevreye Etkileri (id: 39)
+[2026-09-14T04:56:25.018Z] [Çevreye Etkileri] Modified: 0, Matches: 2
+[2026-09-14T04:56:25.026Z] [Çevreye Etkileri] Closed dialog: {"closed":true,"method":"fa-times"}
+[2026-09-14T04:56:25.638Z] Processing [Pass 3] -> Dış Hizmetler (id: 40)
+[2026-09-14T04:56:27.181Z] [Dış Hizmetler] Modified: 0, Matches: 1
+[2026-09-14T04:56:27.190Z] [Dış Hizmetler] Closed dialog: {"closed":true,"method":"fa-times"}
+[2026-09-14T04:56:27.793Z] 
+--- 3 PASSES FINISHED SUCCESSFULLY ---
+[2026-09-14T04:56:28.626Z] Clean desktop screenshot saved to D:/AlparAi/.scratch/final_autopilot_screen.png

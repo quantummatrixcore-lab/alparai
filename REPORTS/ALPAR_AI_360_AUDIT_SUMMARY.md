@@ -1,4 +1,4 @@
-﻿# ALPAR AI — 360° Platform Audit Report (Post-Self-Healing)
+# ALPAR AI — 360° Platform Audit Report (Post-Self-Healing)
 
 **Date:** 2026-08-27 | **Commit base:** `master` | **Audited & Healed by:** Atatürk Supreme Commander & Swarm Agents
 

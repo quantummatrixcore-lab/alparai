@@ -1,23 +1,28 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
 
 const mockMaybeSingle = vi.fn();
 
-vi.mock("@/lib/dehost/admin", () => ({
-  createAdminClient: () => ({
+vi.mock("@/lib/dehost/server", () => ({
+  createServerClient: () => ({
     from: () => ({
       select: () => ({
-        eq: () => ({
-          gt: () => ({
+        eq: () => {
+          const chain: any = {
+            gt: () => chain,
+            neq: () => chain,
             limit: () => ({
               maybeSingle: mockMaybeSingle,
             }),
-          }),
-        }),
+          };
+          return chain;
+        },
       }),
     }),
   }),
 }));
+
 
 import { preTriageCheck } from "@/actions/incidents";
 

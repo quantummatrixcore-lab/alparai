@@ -1,7 +1,7 @@
 {
   "manifest_version": "2.0.0",
   "system": "ALPAR AI — Trust Infrastructure for AI Accountability",
-  "generated_at": "2026-09-17T00:18:50.000Z",
+  "generated_at": "2026-09-17T07:18:23Z",
   "canonical_target": "D:\\AlparAi",
   "auditor_baseline_score": 817,
   "max_score": 1000,
@@ -9,11 +9,11 @@
   "scope": "LIVE + FULL FORENSIC + BILINGUAL TR/EN",
   "live_probe": {
     "target_domain": "https://alparai.com",
-    "status_code": 200,
-    "status_text": "OK",
+    "status_code": 502,
+    "status_text": "Bad Gateway (regression at 2026-09-17T07:18Z, 3 probe rounds; edge-static assets still 200)",
     "cf_ray": "a3c3a348d8dcb644-IST",
     "server": "cloudflare",
-    "probed_at": "2026-09-16T23:26:44.000Z",
+    "probed_at": "2026-09-17T07:18:23Z",
     "endpoints_verified": [
       { "path": "/en", "status": 200, "cf_ray": "a3c3a348d8dcb644-IST" },
       { "path": "/tr", "status": 200, "cf_ray": "a3c3a34a69fa92dd-IST" },
@@ -32,7 +32,7 @@
     "total_recorded": 12,
     "resolved": 9,
     "open_planned": 3,
-    "p0_blockers_remaining": 0,
+    "p0_blockers_remaining": 1,
     "p1_critical_remaining": 0
   },
   "defects": [
@@ -42,10 +42,10 @@
       "severity": "P0",
       "title": "Live 502 Bad Gateway on www.alparai.com /en and /tr",
       "location": "Cloudflare Edge -> Origin Infrastructure (45.143.4.92:3003)",
-      "evidence": "Original probe returned HTTP 502 (CF-Ray a3c2e14f6d37b644-IST). Root cause: Traefik dynamic config routed to 10.0.1.1:3003 where no service was listening; production code was not deployed and pg dependency was missing.",
-      "impact": "Production site was unavailable to public users, crawlers, and API clients.",
-      "remediation": "Deployed clean master (commit ff28608a) to /root/alparai-remote, installed pg runtime module, executed production build (BUILD_ID: f0zN_kk6ZeQ0d4M2kCAjF, 326/326 pages prerendered), and activated systemd service alparai.service on 0.0.0.0:3003. Live probe confirmed HTTP 200 OK across /en, /tr, and /en/incidents via Cloudflare Edge.",
-      "status": "RESOLVED"
+      "evidence": "REGRESSION 2026-09-17T07:18Z: three consecutive probe rounds over ~5 min returned HTTP 502 on /en, /tr and /api/health (Cloudflare edge, 16-byte body); edge-static /robots.txt still 200. Origin 45.143.4.92:3003 down again after the 200 OK window. Prior fix (ff28608a + alparai.service) held temporarily; infra owner must triage service/Traefik.",
+      "impact": "Production site is unavailable again to public users, crawlers, and API clients.",
+      "remediation": "Infra owner: verify alparai.service active on 0.0.0.0:3003, Traefik backend health, and pg connectivity on 45.143.4.92; re-probe /en /tr /api/health to 200 and append fresh CF-Ray evidence before re-sealing.",
+      "status": "OPEN_INFRA_BLOCKED"
     },
     {
       "id": "DEF-002",

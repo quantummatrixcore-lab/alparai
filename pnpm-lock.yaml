@@ -81,7 +81,7 @@ importers:
         specifier: 0.577.0
         version: 0.577.0(react@19.2.8)
       mailparser:
-        specifier: ^3.9.26
+        specifier: 3.9.26
         version: 3.9.26
       next:
         specifier: 16.3.3
@@ -90,10 +90,10 @@ importers:
         specifier: 4.13.4
         version: 4.13.4(@swc/helpers@0.5.23)(next@16.3.3(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@playwright/test@1.62.0)(@types/node@26.5.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(typescript@6.0.3)
       next-themes:
-        specifier: ^0.4.6
+        specifier: 0.4.6
         version: 0.4.6(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       nodemailer:
-        specifier: ^9.1.1
+        specifier: 9.1.1
         version: 9.1.1
       openai:
         specifier: 6.48.0
@@ -102,8 +102,8 @@ importers:
         specifier: 5.5.4
         version: 5.5.4
       pg:
-        specifier: ^8.13.1
-        version: 8.23.0
+        specifier: 8.13.1
+        version: 8.13.1
       posthog-js:
         specifier: 1.413.2
         version: 1.413.2
@@ -154,10 +154,10 @@ importers:
         specifier: 4.3.3
         version: 4.3.3
       '@testing-library/react':
-        specifier: ^16.3.3
+        specifier: 16.3.3
         version: 16.3.3(@testing-library/dom@10.4.1)(@types/react-dom@19.0.0)(@types/react@19.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@types/node':
-        specifier: ^26.5.1
+        specifier: 26.5.1
         version: 26.5.1
       '@types/papaparse':
         specifier: 5.5.2
@@ -199,7 +199,7 @@ importers:
         specifier: 9.1.7
         version: 9.1.7
       imap-simple:
-        specifier: ^5.1.0
+        specifier: 5.1.0
         version: 5.1.0
       jsdom:
         specifier: 29.1.1
@@ -229,7 +229,7 @@ importers:
         specifier: 28.0.0
         version: 28.0.0
       turbo:
-        specifier: ^2.10.12
+        specifier: 2.10.12
         version: 2.10.12
       typescript:
         specifier: 6.0.3
@@ -4363,9 +4363,9 @@ packages:
     resolution: {integrity: sha512-qTAAlrEsl8s4OiEQY69wDvcMIdQN6wdz5ojQiOy6YRMuynxenON0O5oCpJI6lshc6scgAY8qvJ2On/p+CXY0GA==}
     engines: {node: '>=4'}
 
-  pg@8.23.0:
-    resolution: {integrity: sha512-Ip2EQCngowJLGOfCwkFhPXU7/ljlhn6Rxlmy4XYfL2Y+vyRM59+8uR2xqRWKdYmbXmxCFOAmKxBuSUCdF34qLg==}
-    engines: {node: '>= 16.0.0'}
+  pg@8.13.1:
+    resolution: {integrity: sha512-OUir1A0rPNZlX//c7ksiu7crsGZTKSOXJPgtNiHGIlC9H0lO+NC6ZDYksSgBYY/thSWhnSRBv8w1lieNNGATNQ==}
+    engines: {node: '>= 8.0.0'}
     peerDependencies:
       pg-native: '>=3.0.1'
     peerDependenciesMeta:
@@ -9593,9 +9593,9 @@ snapshots:
 
   pg-int8@1.0.1: {}
 
-  pg-pool@3.14.0(pg@8.23.0):
+  pg-pool@3.14.0(pg@8.13.1):
     dependencies:
-      pg: 8.23.0
+      pg: 8.13.1
 
   pg-protocol@1.16.0: {}
 
@@ -9607,10 +9607,10 @@ snapshots:
       postgres-date: 1.0.7
       postgres-interval: 1.2.0
 
-  pg@8.23.0:
+  pg@8.13.1:
     dependencies:
       pg-connection-string: 2.14.0
-      pg-pool: 3.14.0(pg@8.23.0)
+      pg-pool: 3.14.0(pg@8.13.1)
       pg-protocol: 1.16.0
       pg-types: 2.2.0
       pgpass: 1.0.5

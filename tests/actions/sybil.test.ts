@@ -13,6 +13,7 @@ vi.hoisted(() => {
   }));
   vi.doMock("@/lib/auth/session", () => ({
     getCurrentUser: vi.fn(),
+    requireAdmin: vi.fn().mockResolvedValue({ id: "admin-1", email: "admin@alparai.com" }),
   }));
   vi.doMock("@/lib/utils/rate-limit", () => ({
     checkRateLimit: vi.fn(),
@@ -93,11 +94,22 @@ describe("submitIncident Sybil Detection", () => {
               single: vi.fn().mockResolvedValue({ data: { id: "inc-1" }, error: null }),
             }),
           }),
+          select: mockDeHost._mocks.mockSelect,
+          update: mockDeHost._mocks.mockUpdate,
+        };
+      }
+      if (table === "submission_fingerprints") {
+        return {
+          insert: vi.fn().mockResolvedValue({ error: null }),
+          select: vi.fn().mockReturnThis(),
+          eq: vi.fn().mockReturnThis(),
+          gte: vi.fn().mockResolvedValue({ count: 5 }),
         };
       }
       return {
         select: mockDeHost._mocks.mockSelect,
         insert: mockDeHost._mocks.mockInsert,
+        update: mockDeHost._mocks.mockUpdate,
       };
     });
 
@@ -130,8 +142,12 @@ describe("submitIncident Sybil Detection", () => {
       }
       if (table === "incidents") {
         return {
-          update: vi.fn().mockReturnThis(),
-          eq: vi.fn().mockResolvedValue({ error: null }),
+          select: mockAdminClient._mocks.mockSelect,
+          update: vi.fn().mockReturnValue({
+            eq: vi.fn().mockReturnValue({
+              eq: vi.fn().mockResolvedValue({ error: null }),
+            }),
+          }),
         };
       }
       if (table === "autopilot_runs") {
@@ -163,7 +179,7 @@ describe("submitIncident Sybil Detection", () => {
     const res = await submitIncident({ ok: false }, fd);
 
     expect(res.ok).toBe(true);
-    expect(mockAdminClient.from).toHaveBeenCalledWith("submission_fingerprints");
+    expect(mockDeHost.from).toHaveBeenCalledWith("submission_fingerprints");
     expect(mockAdminClient.from).toHaveBeenCalledWith("incidents");
   });
 });

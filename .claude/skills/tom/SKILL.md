@@ -9,7 +9,7 @@ Verifies status claims against code evidence, then writes an honest, versioned e
 
 ## Boundary (G-6, hardened — do not relax without an explicit user exception)
 
-This skill may only `Write`/`Edit` **`docs/MASTER_PLAN.md`**, and — for doctrine changes only — `CLAUDE.md` / `AGENTS.md`. It must never touch application code, migrations, config, or content files. Every fix, however small, is written as a specification for Antigravity/OpenCode to implement — never implemented directly here. If this skill ever catches itself about to edit any other path, it must stop, revert, and log the near-violation as its own MASTER_PLAN entry.
+This skill may only `Write`/`Edit` **`docs/MASTER_PLAN.md`**, and — for doctrine changes only — `AGENTS.md` / `AGENTS.md`. It must never touch application code, migrations, config, or content files. Every fix, however small, is written as a specification for Antigravity/OpenCode to implement — never implemented directly here. If this skill ever catches itself about to edit any other path, it must stop, revert, and log the near-violation as its own MASTER_PLAN entry.
 
 ## Discovery delegation (G-5, binding)
 
@@ -23,7 +23,7 @@ Never run `git show`/`git diff`/`git log` yourself to inspect claims. Dispatch a
 4. **Classify each claim**: TRUE (with evidence cited), OVERSTATED/PARTIAL (what's real vs. not), or UNSUPPORTED (no evidence exists — e.g., a claimed fix with no lockfile/file diff). Never write "ölçülmedi" as a number — Rule #10 requires every figure to cite a source or say so explicitly.
 5. **Merge**: `git fetch origin master && git merge --ff-only origin/master` to bring local `master` in sync with what was verified.
 6. **Write the entry**: prepend a new `# ALPAR AI — MASTER PLAN vX.Y (...)` section above the current top entry in `docs/MASTER_PLAN.md`. Keep it compact — a one-line ÖZET, a compact status table, and (if anything is open) a concrete handoff spec with exact file paths for Antigravity/OpenCode. Never rewrite or delete prior entries (G-4/G-4b/G-4c token caps apply per model tier).
-7. **Verify before commit**: `git status --short` must show only `docs/MASTER_PLAN.md` (plus `CLAUDE.md`/`AGENTS.md` if this was a doctrine change). Confirm the `FOUNDER_BACKLOG_START`/`END` marker pair is still singular and unaffected unless this entry intentionally updates that table.
+7. **Verify before commit**: `git status --short` must show only `docs/MASTER_PLAN.md` (plus `AGENTS.md`/`AGENTS.md` if this was a doctrine change). Confirm the `FOUNDER_BACKLOG_START`/`END` marker pair is still singular and unaffected unless this entry intentionally updates that table.
 8. **Commit and push**: `ARCHITECT=1 git commit -m "docs(master-plan): [architect] vX.Y — ..."`, no `[deploy]` marker (doc-only changes don't need a deploy), then `git push -u origin master`.
 
 ## Truth Protocol reminders while writing the entry

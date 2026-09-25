@@ -1,0 +1,18 @@
+{
+  "timestamp": "2026-09-15T14:09:06.200Z",
+  "issuer": "ALPAR AI Teknoloji A.Ş. - Kurucu Karargâhı",
+  "algorithm": "SHA-384",
+  "files": {
+    "docs/KURUCU_STRATEJIK_4_SORU_SENTEZI.md": "937850cfe7e0e995fffdb319b8bf69dc76e249cd9e3447bd0d9adf0e127453f57df81b42d6441fecdfb2d8eb9621354b",
+    "docs/ALPAR_SAVUNMA_VE_EKOSISTEM_DOKTRINI.md": "fdc6198570fd0477bc71fb355129eb60be654729aca93c8d1228315e195d7c71459b82a92f7cb0ef05d106b4d2c17c68",
+    "docs/TEKNOPARK_ON_DOKUMAN_FORMU.md": "2e87b732b6b8d89852944aafd32334906490a6308c042c883b308f6a92e9961cb298e7a584634aff8d2bcea8c5ac2624",
+    "tests/innovations/test_v58_defense_tactical_suite.js": "6aa4f3de141926e856b0cb15daf1fb7338ece1c6ba469579349509bbad372a5e949c22f5082a9829227363a6997696e4",
+    "Teknopark_Istanbul_Basvuru_Evraklari/00_ARGEPORTAL_TAM_BASVURU_METINLERI.md": "36ca2da0f0dac2eb8e3fe3fb4ba2f1002958ef5e4e94eaf7a0d2fdf6f080096071cb9c7cb238eab42bd4365f270f4af3",
+    "Teknopark_Istanbul_Basvuru_Evraklari/03_TEKNOPARK_JURI_SUNUM_VE_SISTEM_REHBERI.md": "9fc31f8d1df0d9c2a7b2841aeaaf1d3e47189acd04b5b5460715aae6101f87008af009a3348ea47b30dd30f111f5a7a6",
+    "Teknopark_Istanbul_Basvuru_Evraklari/03_TEKNOPARK_JURI_SUNUM_VE_SISTEM_REHBERI.pdf": "274cced32ee4cc0b3fafd8565849a9ada6e1ef75006526bf765d3743fae3612037537512fe0302e888535566a6183534",
+    "Teknopark_Istanbul_Basvuru_Evraklari/05_DANISMA_KURULU_PROFILI.md": "14d12b12e948b1a1ea2a3e78d4f242eae83f636b3e6a347e29b3f3fb0c99603bd248316a3eee348d82d7ed585462579b",
+    "Teknopark_Istanbul_Basvuru_Evraklari/05_DANISMA_KURULU_PROFILI.pdf": "7cbbbd2f5259edd30a91159af35ed9529d07e077a6867001f4e570fe86fbcc430f76a95d14e1df9975f9c836668a723d"
+  },
+  "merkle_root": "7fb45efc4ca4ad66821f78146e83d03558c9c0f37bff30e3d27caa195f652495e45716b521d41d7ab02ea2ac1cbbe608",
+  "last_updated": "2026-09-15T16:34:24.380Z"
+}

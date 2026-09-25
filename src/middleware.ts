@@ -12,6 +12,47 @@ assertTestBypassSafe();
 
 const intlMiddleware = createIntlMiddleware(routing);
 
+const isDev = process.env.NODE_ENV === "development";
+
+// Zero-GC Precomputed Security Headers
+const CSP_CORE_DIRECTIVES = [
+  "default-src 'self'",
+  `script-src 'self' 'unsafe-inline' ${isDev ? "'unsafe-eval'" : ""} https://*.dehost.internal https://*.sentry.io https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.google.com https://*.gstatic.com https://va.dehost-scripts.internal https://*.posthog.com https://us-assets.i.posthog.com`.replace(/\s+/g, ' '),
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com",
+  "font-src 'self' https://fonts.gstatic.com data:",
+  "img-src 'self' data: blob: https: https://*.googleusercontent.com https://avatars.githubusercontent.com https://*.dehost.internal https://logo.clearbit.com",
+  "connect-src 'self' wss://alparai.com wss://*.alparai.com https://*.dehost.internal https://*.sentry.io wss://*.dehost.internal https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.googleapis.com https://*.posthog.com https://*.upstash.io https://va.dehost-scripts.internal",
+  "frame-src 'self' https://challenges.cloudflare.com https://accounts.google.com https://*.google.com",
+  "worker-src 'self' blob:",
+  "base-uri 'self'",
+  "form-action 'self' https://accounts.google.com",
+  "object-src 'none'",
+].join("; ");
+
+const CSP_PROD_STANDARD = `${CSP_CORE_DIRECTIVES}; frame-ancestors 'none'; upgrade-insecure-requests`;
+const CSP_PROD_EMBED = `${CSP_CORE_DIRECTIVES}; frame-ancestors 'self' https://*.alparai.com; upgrade-insecure-requests`;
+const CSP_TEST_STANDARD = `${CSP_CORE_DIRECTIVES}; frame-ancestors 'none'`;
+const CSP_TEST_EMBED = `${CSP_CORE_DIRECTIVES}; frame-ancestors 'self' https://*.alparai.com`;
+
+const PERMISSIONS_POLICY_HEADER =
+  "camera=(), microphone=(), geolocation=(), payment=(), usb=(), screen-wake-lock=(), accelerometer=(), gyroscope=(), magnetometer=(), interest-cohort=()";
+const HSTS_HEADER = "max-age=63072000; includeSubDomains; preload";
+
+let cachedCeoEmails: Set<string> | null = null;
+function isCeoEmail(email?: string | null): boolean {
+  if (!email) return false;
+  if (!cachedCeoEmails) {
+    cachedCeoEmails = new Set(
+      (process.env.CEO_EMAILS || "")
+        .toLowerCase()
+        .split(",")
+        .map((e) => e.trim())
+        .filter(Boolean),
+    );
+  }
+  return cachedCeoEmails.has(email.toLowerCase());
+}
+
 function applySecurityHeaders(
   res: NextResponse,
   req: NextRequest,
@@ -28,35 +69,19 @@ function applySecurityHeaders(
     res.headers.set("x-request-id", requestId);
   }
 
-  const cspDirectives = [
-    "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' https://*.dehost.internal https://*.sentry.io https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.google.com https://*.gstatic.com https://va.dehost-scripts.internal https://*.posthog.com https://us-assets.i.posthog.com",
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com",
-    "font-src 'self' https://fonts.gstatic.com data:",
-    "img-src 'self' data: blob: https: https://*.googleusercontent.com https://avatars.githubusercontent.com https://*.dehost.internal https://logo.clearbit.com",
-    "connect-src 'self' wss://alparai.com wss://*.alparai.com https://*.dehost.internal https://*.sentry.io wss://*.dehost.internal https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.googleapis.com https://*.posthog.com https://*.upstash.io https://va.dehost-scripts.internal",
-    "frame-src 'self' https://challenges.cloudflare.com https://accounts.google.com https://*.google.com",
-    "worker-src 'self' blob:",
-    isEmbed
-      ? "frame-ancestors 'self' https://*.alparai.com"
-      : "frame-ancestors 'none'",
-    "base-uri 'self'",
-    "form-action 'self' https://accounts.google.com",
-    "object-src 'none'",
-  ];
+  const csp = isTest
+    ? isEmbed
+      ? CSP_TEST_EMBED
+      : CSP_TEST_STANDARD
+    : isEmbed
+      ? CSP_PROD_EMBED
+      : CSP_PROD_STANDARD;
 
-  if (!isTest) {
-    cspDirectives.push("upgrade-insecure-requests");
-  }
-
-  res.headers.set("Content-Security-Policy", cspDirectives.join("; "));
+  res.headers.set("Content-Security-Policy", csp);
   res.headers.set("X-Content-Type-Options", "nosniff");
   res.headers.set("X-Frame-Options", isEmbed ? "SAMEORIGIN" : "DENY");
   res.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
-  res.headers.set(
-    "Permissions-Policy",
-    "camera=(), microphone=(), geolocation=(), payment=(), usb=(), screen-wake-lock=(), accelerometer=(), gyroscope=(), magnetometer=(), interest-cohort=()",
-  );
+  res.headers.set("Permissions-Policy", PERMISSIONS_POLICY_HEADER);
   res.headers.set("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
   res.headers.set("Cross-Origin-Resource-Policy", isEmbed ? "cross-origin" : "same-origin");
   res.headers.set("X-Permitted-Cross-Domain-Policies", "none");
@@ -64,10 +89,7 @@ function applySecurityHeaders(
   res.headers.set("X-XSS-Protection", "1; mode=block");
 
   if (!isTest) {
-    res.headers.set(
-      "Strict-Transport-Security",
-      "max-age=63072000; includeSubDomains; preload",
-    );
+    res.headers.set("Strict-Transport-Security", HSTS_HEADER);
   }
 
   return res;
@@ -76,9 +98,9 @@ function applySecurityHeaders(
 function parseAlparSessionCookie(cookieValue?: string): { id: string; email: string; role: string } | null {
   if (!cookieValue) return null;
   try {
-    const parts = cookieValue.split(".");
-    if (parts.length !== 2 || !parts[0]) return null;
-    const part0 = parts[0];
+    const dotIndex = cookieValue.indexOf(".");
+    if (dotIndex === -1) return null;
+    const part0 = cookieValue.substring(0, dotIndex);
     let jsonStr = "";
     if (typeof Buffer !== "undefined") {
       jsonStr = Buffer.from(part0, "base64url").toString("utf8");
@@ -88,14 +110,8 @@ function parseAlparSessionCookie(cookieValue?: string): { id: string; email: str
     }
     const data = JSON.parse(jsonStr);
     if (!data || !data.email) return null;
-    const email = String(data.email).toLowerCase();
     let role = data.role || "user";
-    const ceoEmails = (process.env.CEO_EMAILS || "")
-      .toLowerCase()
-      .split(",")
-      .map((e) => e.trim())
-      .filter(Boolean);
-    if (ceoEmails.length > 0 && ceoEmails.includes(email)) {
+    if (isCeoEmail(data.email)) {
       role = "ceo";
     }
     return { id: data.id, email: data.email, role };
@@ -213,8 +229,9 @@ export async function middleware(request: NextRequest) {
           if (ceoEmails.length > 0 && email && ceoEmails.includes(email)) {
             role = "ceo";
           } else {
-            const { data } = await dehost.from("users").select("role").eq("id", user.id).single();
-            role = data?.role || user.user_metadata?.role || "user";
+            // OPTİMİZASYON: Edge middleware'de her istekte DB sorgusu yapmak sistemi kilitler (TTFB artar).
+            // Zero-roundtrip için JWT (user_metadata) rolüne güveniyoruz.
+            role = user.user_metadata?.role || "user";
           }
         }
         

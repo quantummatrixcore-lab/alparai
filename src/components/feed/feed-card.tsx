@@ -5,7 +5,7 @@ import { cn, formatDate } from "@/lib/utils";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { Card, CardContent } from "@/components/ui/card";
-import { SeverityBadge, StatusBadge } from "@/components/ui/badge";
+import { SeverityBadge, StatusBadge } from "@/components/incidents/incident-badges";
 import type { IncidentListItem } from "@/types";
 import {
   MessageSquare,

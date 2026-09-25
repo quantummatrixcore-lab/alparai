@@ -6,7 +6,7 @@ import { createAdminClient } from "@/lib/dehost/admin";
 import { Container } from "@/components/ui/layout";
 import { IncidentList } from "@/components/incidents/incident-list";
 import { IncidentFilters } from "@/components/marketing/incident-filters";
-import { Pagination } from "@/components/ui/pagination";
+import { IncidentPagination } from "@/components/incidents/incident-pagination";
 import {
   SidebarEngagement,
   type SidebarNewsItem,
@@ -234,7 +234,7 @@ export default async function IncidentsPage({
           <div className="flex-1">
             <IncidentList incidents={items} />
           </div>
-          <Pagination
+          <IncidentPagination
             currentPage={pageNum}
             totalPages={totalPages}
             category={category}

@@ -4,6 +4,8 @@ import { useState } from "react";
 import { ShieldCheck, Download, CheckCircle2, ArrowRight, Building2, Radio } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { submitComplianceLead } from "@/actions/submit-lead";
+import { useAlparShield } from "@/hooks/useAlparShield";
 
 interface ComplianceLeadFormProps {
   t: {
@@ -26,17 +28,43 @@ export function ComplianceLeadForm({ t }: ComplianceLeadFormProps) {
   const [sector, setSector] = useState("banking");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const { recordClick, executeVerification } = useAlparShield();
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !org) return;
 
     setLoading(true);
-    // Simulate lead capture API processing
-    setTimeout(() => {
+    setErrorMsg("");
+
+    try {
+      // Execute Alpar Shield Kinetic Entropy & CDP Bot Audit
+      const shieldResult = await executeVerification({ buttonId: "compliance-lead-submit" });
+      if (shieldResult && !shieldResult.success) {
+        setErrorMsg("Automated bot or CDP script detected by Alpar Shield. Request denied.");
+        setLoading(false);
+        return;
+      }
+
+      const res = await submitComplianceLead({
+        email,
+        organization: org,
+        sector,
+        shieldProof: shieldResult?.proofHash,
+      });
+
+      if (res.success) {
+        setSubmitted(true);
+      } else {
+        setErrorMsg(res.error || "Submission error.");
+      }
+    } catch (err) {
+      setErrorMsg("An unexpected error occurred during submission.");
+    } finally {
       setLoading(false);
-      setSubmitted(true);
-    }, 800);
+    }
   };
 
   return (
@@ -58,7 +86,7 @@ export function ComplianceLeadForm({ t }: ComplianceLeadFormProps) {
         {submitted ? (
           <div className="animate-in fade-in zoom-in-95 border-success-500/30 bg-success-500/10 my-6 rounded-2xl border p-6 text-center">
             <CheckCircle2 className="text-success-400 mx-auto mb-3 h-12 w-12" />
-            <h4 className="mb-2 text-lg font-bold text-white">Toolkit Activated</h4>
+            <h4 className="mb-2 text-lg font-bold text-white">Toolkit Activated & Sealed</h4>
             <p className="text-success-200/90 text-sm">{t.successMsg}</p>
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <Button
@@ -72,6 +100,11 @@ export function ComplianceLeadForm({ t }: ComplianceLeadFormProps) {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-5">
+            {errorMsg && (
+              <div className="border-red-500/30 bg-red-500/10 rounded-xl border p-3 text-xs text-red-300">
+                {errorMsg}
+              </div>
+            )}
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
                 <label className="text-fg-muted mb-2 block text-xs font-semibold tracking-wider uppercase">
@@ -151,12 +184,13 @@ export function ComplianceLeadForm({ t }: ComplianceLeadFormProps) {
             <Button
               type="submit"
               disabled={loading}
+              onClick={recordClick}
               className="from-brand-600 to-brand-600 shadow-brand-600/30 hover:from-brand-500 hover:to-brand-500 hover:shadow-brand-500/40 mt-4 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r text-sm font-semibold text-white shadow-lg transition-all"
             >
               {loading ? (
                 <span className="inline-flex items-center gap-2">
                   <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                  Processing...
+                  Verifying Alpar Shield & Processing...
                 </span>
               ) : (
                 <>

@@ -1,5 +1,6 @@
 import { Container } from "@/components/ui/layout";
-import { Skeleton, FeedCardSkeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "@/components/ui/skeleton";
+import { FeedCardSkeleton } from "@/components/feed/feed-skeleton";
 
 export default function ProviderIncidentsLoading() {
   return (

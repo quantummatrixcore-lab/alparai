@@ -1,4 +1,4 @@
-﻿# ALPAR AI — Comprehensive LLM Knowledge Base
+# ALPAR AI — Comprehensive LLM Knowledge Base
 
 ## Overview
 ALPAR AI is the independent trust infrastructure for artificial intelligence systems, established to enforce accountability, transparency, and safety across generative AI models and autonomous agent swarms.

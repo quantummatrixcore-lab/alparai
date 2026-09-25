@@ -114,14 +114,36 @@ describe("submitIncident", () => {
       redactedCount: 0,
       detectedTypes: [],
     }));
+    const mockQueryChain: any = {
+      eq: vi.fn().mockReturnThis(),
+      neq: vi.fn().mockReturnThis(),
+      gt: vi.fn().mockReturnThis(),
+      gte: vi.fn().mockReturnThis(),
+      limit: vi.fn().mockReturnThis(),
+      maybeSingle: vi.fn().mockResolvedValue({ data: null, error: null }),
+      single: vi.fn().mockResolvedValue({ data: null, error: null }),
+    };
+    mockQueryChain.eq.mockReturnValue(mockQueryChain);
+    mockQueryChain.neq.mockReturnValue(mockQueryChain);
+    mockQueryChain.gt.mockReturnValue(mockQueryChain);
+    mockQueryChain.gte.mockReturnValue(mockQueryChain);
+    mockQueryChain.limit.mockReturnValue(mockQueryChain);
+
     mockDeHost.from.mockReturnValue({
       insert: vi.fn().mockReturnValue({
         select: vi.fn().mockReturnValue({
           single: vi.fn().mockResolvedValue({ data: { id: "inc-123" }, error: null }),
         }),
       }),
-      select: vi.fn().mockReturnValue({
-        single: vi.fn().mockResolvedValue({ data: null, error: null }),
+      select: vi.fn().mockReturnValue(mockQueryChain),
+      upsert: vi.fn().mockResolvedValue({ data: null, error: null }),
+      update: vi.fn().mockReturnValue({
+        eq: vi.fn().mockResolvedValue({ data: null, error: null }),
+      }),
+      delete: vi.fn().mockReturnValue({
+        eq: vi.fn().mockReturnValue({
+          eq: vi.fn().mockResolvedValue({ data: null, error: null }),
+        }),
       }),
     } as ReturnType<typeof mockDeHost.from>);
   });
@@ -373,7 +395,7 @@ describe("voteOnIncident", () => {
       value: 1,
     });
     expect(result).toEqual({ ok: true });
-    expect(mockAdminClient.from).toHaveBeenCalledWith("incident_votes");
+    expect(mockDeHost.from).toHaveBeenCalledWith("incident_votes");
   });
 
   it("successfully downvotes an incident", async () => {

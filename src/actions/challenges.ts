@@ -153,3 +153,65 @@ export async function submitChallengeSubmission(
     throw err;
   }
 }
+
+export interface SubmissionRow {
+  id: string;
+  title: string;
+  description: string;
+  user_id: string;
+  status: string;
+  created_at: string;
+}
+
+export interface ChallengeSubmissionsData {
+  submissions: SubmissionRow[];
+  voteCounts: Record<string, number>;
+  userVotedIds: string[];
+}
+
+export async function getChallengeSubmissionsData(
+  challengeId: string,
+  userId?: string,
+): Promise<ChallengeSubmissionsData> {
+  try {
+    const dehost = await createServerClient();
+
+    const [subsRes, votesRes, userVotesRes] = await Promise.all([
+      dehost
+        .from("challenge_submissions")
+        .select("id, title, description, user_id, status, created_at")
+        .eq("challenge_id", challengeId)
+        .eq("status", "approved"),
+      dehost.from("challenge_votes").select("submission_id"),
+      userId
+        ? dehost.from("challenge_votes").select("submission_id").eq("user_id", userId)
+        : Promise.resolve({ data: null }),
+    ]);
+
+    const submissions = (subsRes.data as unknown as SubmissionRow[]) ?? [];
+    const counts: Record<string, number> = {};
+    for (const v of ((votesRes.data as unknown as Array<{ submission_id: string }>) ?? [])) {
+      counts[v.submission_id] = (counts[v.submission_id] ?? 0) + 1;
+    }
+    const userVotedIds = (
+      (userVotesRes?.data as unknown as Array<{ submission_id: string }>) ?? []
+    ).map((v) => v.submission_id);
+
+    return {
+      submissions,
+      voteCounts: counts,
+      userVotedIds,
+    };
+  } catch (err) {
+    logger.error("Failed to load challenge submissions data", {
+      challengeId,
+      error: err instanceof Error ? err.message : String(err),
+    });
+    return {
+      submissions: [],
+      voteCounts: {},
+      userVotedIds: [],
+    };
+  }
+}
+

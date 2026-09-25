@@ -1,4 +1,4 @@
-﻿# 🛡️ ALPAR AI — Security Audit Report: FAZ 3 (August 2026)
+# 🛡️ ALPAR AI — Security Audit Report: FAZ 3 (August 2026)
 
 **Auditor:** FATİH-SENTINEL (Antigravity Security Engine)
 **Date:** 2026-08-27

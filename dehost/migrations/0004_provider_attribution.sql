@@ -1,4 +1,4 @@
-﻿-- 0004_provider_attribution.sql — Provider Attribution Engine Schema
+-- 0004_provider_attribution.sql — Provider Attribution Engine Schema
 -- Adds confidence-gated attribution metadata and review queue flagging to incidents table.
 
 ALTER TABLE public.incidents

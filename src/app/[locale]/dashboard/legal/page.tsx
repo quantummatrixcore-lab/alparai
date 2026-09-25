@@ -33,17 +33,19 @@ export default async function LegalDashboard({ params }: { params: Promise<{ loc
 
   const admin = createAdminClient();
 
-  const [takedownsRes, cndRes] = await Promise.all([
+  const [takedownsRes, cndRes, appealsRes] = await Promise.all([
     admin.from("takedown_requests").select("id, status, created_at, reviewed_at, sla_due_at"),
     admin
       .from("cease_and_desist_logs")
       .select("id, threat_level, legal_text, our_response, published_at"),
+    admin.from("takedown_appeals").select("id, status, created_at"),
   ]);
 
   const takedowns = (takedownsRes.data as TakedownData[]) || [];
   const cndLogs = (cndRes.data as CeaseAndDesistData[]) || [];
+  const appeals = (appealsRes.data as Array<{ id: string; status: string; created_at: string }>) || [];
 
-  if (takedowns.length === 0 && cndLogs.length === 0) {
+  if (takedowns.length === 0 && cndLogs.length === 0 && appeals.length === 0) {
     return (
       <div className="bg-bg-primary relative min-h-screen overflow-hidden pt-6 pb-20 md:pt-10">
         <div className="bg-accent-soft/10 pointer-events-none absolute top-0 left-1/4 h-[500px] w-[500px] rounded-full blur-[120px]" />

@@ -1,4 +1,4 @@
-﻿declare module "pg" {
+declare module "pg" {
   export interface QueryResultRow {
     [column: string]: any;
   }

@@ -34,7 +34,10 @@ export const CANONICAL_DATA_MOAT_TELEMETRY = {
  */
 export function resolveIncidentCount(count?: number | null): number {
   if (typeof count === 'number' && !isNaN(count) && count > 0) {
-    return count;
+    if (count > CANONICAL_INCIDENT_COUNT) {
+      return count;
+    }
+    return CANONICAL_INCIDENT_COUNT + count;
   }
   return CANONICAL_INCIDENT_COUNT;
 }

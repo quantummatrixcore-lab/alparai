@@ -66,7 +66,7 @@ export function Footer() {
 
             <div className="flex items-center gap-2 pt-1">
               <a
-                href="https://github.com/quantummatrixcore-lab/Alparai.com"
+                href="https://github.com/quantummatrixcore-lab/alparai"
                 target="_blank"
                 rel="noreferrer noopener"
                 className="text-fg-muted hover:bg-bg-tertiary hover:text-fg-primary inline-flex h-8 w-8 items-center justify-center rounded-lg transition-colors"

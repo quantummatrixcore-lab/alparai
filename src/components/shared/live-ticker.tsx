@@ -14,37 +14,6 @@ interface TickerIncident {
   category: string;
 }
 
-const DEFAULT_TICKER_INCIDENTS: TickerIncident[] = [
-  {
-    id: "ALP-2026-2908",
-    title_masked: "Autonomous Risk Evaluation System Hallucination Drift",
-    category: "hallucination",
-    ai_provider: { name: "OpenAI" },
-    ai_model: { name: "GPT-4o Enterprise" },
-  },
-  {
-    id: "ALP-2026-2879",
-    title_masked: "Biased Candidate Scoring Algorithm Suppression",
-    category: "bias",
-    ai_provider: { name: "Anthropic" },
-    ai_model: { name: "Claude 3.5 Sonnet" },
-  },
-  {
-    id: "ALP-2026-2878",
-    title_masked: "RAG Vector Store Corporate Document Leakage",
-    category: "privacy",
-    ai_provider: { name: "Google AI" },
-    ai_model: { name: "Gemini 1.5 Pro" },
-  },
-  {
-    id: "ALP-2026-2877",
-    title_masked: "Credit Underwriting Blackbox Decision Drift",
-    category: "security",
-    ai_provider: { name: "DeepSeek" },
-    ai_model: { name: "DeepSeek R1" },
-  },
-];
-
 export function LiveTicker() {
   const t = useTranslations("common");
   const locale = useLocale();
@@ -60,7 +29,7 @@ export function LiveTicker() {
       pathname.startsWith("/auth") ||
       /^\/(?:en|tr|[a-z]{2})\/auth(?:\/|$)/.test(pathname));
 
-  const [incidents, setIncidents] = useState<TickerIncident[]>(DEFAULT_TICKER_INCIDENTS);
+  const [incidents, setIncidents] = useState<TickerIncident[]>([]);
 
   useEffect(() => {
     if (isExcludedPage) return;

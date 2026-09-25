@@ -127,19 +127,22 @@ const getEndpoints = (metrics: GlobalMetrics) =>
 }`,
     },
     {
-      method: "GET",
-      path: "/api/v1/incidents/:id/passport",
-      summary: "EU AI Act Art. 73 Passport Export",
+      method: "POST",
+      path: "/api/v1/incidents/export",
+      summary: "Corporate Bulk Export (JSON/CSV)",
       description:
-        "Export structured Passport compliant with EU AI Act Article 73 serious incident reporting.",
-      example: `curl https://alparai.com/api/v1/incidents/00000000-0000-0000-0000-000000000000/passport`,
+        "Export incident passports and reports in bulk. Requires valid Enterprise API key (Bearer authorization).",
+      example: `curl -X POST https://alparai.com/api/v1/incidents/export \\
+  -H "Authorization: Bearer sk_live_..." \\
+  -d '{"format": "json"}'`,
       response: `{
-  "passport": {
-    "article_73_compliance": true,
-    "incident_id": "00000000-0000-0000-0000-000000000000",
-    "eu_ai_act_classification": "High-Risk AI System Breach",
-    "reporting_deadline_days": 15
-  }
+  "data": [
+    {
+      "incident_id": "00000000-0000-0000-0000-000000000000",
+      "article_73_compliance": true,
+      "eu_ai_act_classification": "High-Risk AI System Breach"
+    }
+  ]
 }`,
     },
     {

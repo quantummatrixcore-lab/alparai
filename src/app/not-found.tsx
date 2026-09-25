@@ -1,7 +1,7 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 import { DEFAULT_LOCALE } from "@/lib/constants";
-import { NotFoundClient } from "@/components/ui/not-found-client";
+import { NotFoundClient } from "@/components/layout/not-found-client";
 import "./globals.css";
 
 export async function generateMetadata() {

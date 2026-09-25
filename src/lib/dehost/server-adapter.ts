@@ -20,7 +20,7 @@ export function getDeHostPgPool(): InstanceType<typeof Pool> {
     } else {
       pgPoolInstance = new Pool({
         host: process.env.DEHOST_HOST || "127.0.0.1",
-        port: Number(process.env.DEHOST_PORT) || 5432,
+        port: Number(process.env.DEHOST_PORT) || (process.env.NODE_ENV === "production" ? 6543 : 5432),
         user: process.env.DEHOST_USER || "postgres",
         password: process.env.DEHOST_PASSWORD || undefined,
         database: process.env.DEHOST_DB || "alparai_prod",

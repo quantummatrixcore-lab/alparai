@@ -1,4 +1,4 @@
-﻿const fs = require("fs");
+const fs = require("fs");
 const path = require("path");
 
 const schemaPath = path.join(__dirname, "..", "dehost", "migrations", "0001_full_schema.sql");

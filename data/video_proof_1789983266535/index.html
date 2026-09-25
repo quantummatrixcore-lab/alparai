@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>ALPAR AI — Quantum Tarayıcı Ajan Video Kanıtı</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0b0f19; color: #f1f5f9; margin: 0; padding: 24px; display: flex; flex-direction: column; align-items: center; }
+    .container { max-width: 1200px; width: 100%; }
+    .header { margin-bottom: 20px; border-bottom: 1px solid #1e293b; padding-bottom: 16px; }
+    .header h1 { font-size: 20px; margin: 0 0 8px; color: #38bdf8; }
+    .header p { margin: 0; font-size: 13px; color: #94a3b8; }
+    .video-viewport { background: #000; border: 2px solid #334155; border-radius: 8px; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5); position: relative; text-align: center; }
+    #screen-canvas { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+    .controls { background: #1e293b; padding: 12px 16px; border-radius: 8px; margin-top: 12px; display: flex; align-items: center; gap: 12px; }
+    .btn { background: #0284c7; color: white; border: none; border-radius: 4px; padding: 8px 16px; cursor: pointer; font-weight: 600; font-size: 13px; }
+    .btn:hover { background: #0369a1; }
+    .scrubber { flex: 1; accent-color: #38bdf8; cursor: pointer; }
+    .time-badge { font-family: monospace; font-size: 13px; color: #38bdf8; min-width: 90px; }
+    .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 16px; }
+    .metric-card { background: #1e293b; padding: 12px; border-radius: 6px; border: 1px solid #334155; }
+    .metric-label { font-size: 11px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; }
+    .metric-val { font-size: 16px; font-weight: 700; color: #38bdf8; margin-top: 4px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>⚡ QUANTUM TARAYICI AJAN (v52) — RESMİ VİDEO KANIT OYNATICISI</h1>
+      <p>Protokol: CDP-Native Screencast | Çözünürlük: 1920x1080 | Biyomekanik İcra: Kübik Bézier & Fitts Yasası</p>
+    </div>
+    <div class="video-viewport">
+      <img id="screen-canvas" src="frames/frame_00001.jpg" alt="Kayıt Karesi">
+    </div>
+    <div class="controls">
+      <button id="btn-play" class="btn" onclick="togglePlay()">Durdur</button>
+      <input type="range" id="scrubber" class="scrubber" min="0" max="26" value="0" oninput="seekFrame(this.value)">
+      <span class="time-badge" id="frame-info">1 / 27</span>
+      <button class="btn" onclick="setSpeed(0.5)">0.5x</button>
+      <button class="btn" onclick="setSpeed(1)">1.0x</button>
+      <button class="btn" onclick="setSpeed(2)">2.0x</button>
+    </div>
+    <div class="metrics">
+      <div class="metric-card">
+        <div class="metric-label">Toplam Yakalanan Kare</div>
+        <div class="metric-val">27 Frame</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Biyomekanik Algoritma</div>
+        <div class="metric-val">Kübik Bézier + Jitter</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">FPS Hızı</div>
+        <div class="metric-val">~30 FPS Native</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Kayıt Tescili</div>
+        <div class="metric-val">CDP Screencast 1:1</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const frames = ["frame_00001.jpg","frame_00002.jpg","frame_00003.jpg","frame_00004.jpg","frame_00005.jpg","frame_00006.jpg","frame_00007.jpg","frame_00008.jpg","frame_00009.jpg","frame_00010.jpg","frame_00011.jpg","frame_00012.jpg","frame_00013.jpg","frame_00014.jpg","frame_00015.jpg","frame_00016.jpg","frame_00017.jpg","frame_00018.jpg","frame_00019.jpg","frame_00020.jpg","frame_00021.jpg","frame_00022.jpg","frame_00023.jpg","frame_00024.jpg","frame_00025.jpg","frame_00026.jpg","frame_00027.jpg"];
+    let currentIdx = 0;
+    let isPlaying = true;
+    let playbackSpeed = 1;
+    let interval = null;
+    const img = document.getElementById('screen-canvas');
+    const scrubber = document.getElementById('scrubber');
+    const info = document.getElementById('frame-info');
+    const playBtn = document.getElementById('btn-play');
+
+    function renderFrame(idx) {
+      if (idx < 0) idx = 0;
+      if (idx >= frames.length) idx = frames.length - 1;
+      currentIdx = idx;
+      if (frames.length > 0) img.src = 'frames/' + frames[currentIdx];
+      scrubber.value = currentIdx;
+      info.textContent = (currentIdx + 1) + ' / ' + frames.length;
+    }
+    function startPlayback() {
+      if (interval) clearInterval(interval);
+      interval = setInterval(() => {
+        if (currentIdx >= frames.length - 1) {
+          currentIdx = 0;
+        } else {
+          currentIdx++;
+        }
+        renderFrame(currentIdx);
+      }, 1000 / (25 * playbackSpeed));
+      isPlaying = true;
+      playBtn.textContent = 'Durdur';
+    }
+    function stopPlayback() {
+      if (interval) clearInterval(interval);
+      interval = null;
+      isPlaying = false;
+      playBtn.textContent = 'Oynat';
+    }
+    function togglePlay() {
+      if (isPlaying) stopPlayback();
+      else startPlayback();
+    }
+    function seekFrame(val) {
+      stopPlayback();
+      renderFrame(parseInt(val, 10));
+    }
+    function setSpeed(speed) {
+      playbackSpeed = speed;
+      if (isPlaying) startPlayback();
+    }
+    if (frames.length > 0) startPlayback();
+  </script>
+</body>
+</html>

@@ -274,7 +274,8 @@ export async function middleware(request: NextRequest) {
     const sessionResult = await updateSession(reqWithHeaders, intlResponse);
     response = sessionResult.response;
     const user = sessionResult.user;
-    const dehost = sessionResult.dehost;
+    const _dehost = sessionResult.dehost;
+    void _dehost;
 
     // Fast-path unauthenticated redirect for admin routes (zero-trust security enforcement)
     if (isAdminPath && !pathname.startsWith("/api/") && !isTestAuthBypassActive()) {

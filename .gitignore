@@ -96,4 +96,6 @@ data/
 print_iski_pdf.cjs
 generate_iski_doc.cjs
 quantum_argeportal_fix.cjs
+*.isolated-*.json
+.scratch/*.png
 

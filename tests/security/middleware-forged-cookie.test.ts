@@ -1,7 +1,24 @@
-import { describe, it, expect, beforeEach, afterEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { createHmac } from "crypto";
 import { readFileSync } from "fs";
 import { join } from "path";
+import "./../helpers/setup";
+
+vi.mock("@/i18n/routing", () => ({
+  routing: {},
+}));
+
+vi.mock("next-intl/middleware", () => ({
+  default: () => () => undefined,
+}));
+
+vi.mock("@/lib/dehost/middleware", () => ({
+  updateSession: (req: unknown, res: unknown) => ({ response: res, user: null }),
+}));
+
+vi.mock("@/lib/geo/bot-tracker", () => ({
+  trackBotHit: vi.fn().mockResolvedValue(undefined),
+}));
 
 // REV: P0 regression — unsigned admin fallback cookie must not grant access.
 function signPayload(payload: string, secret: string): string {
@@ -49,15 +66,14 @@ describe("middleware forged-cookie guard", () => {
   });
 
   it("vault enforces VAULT_ENCRYPTION_KEY in production", async () => {
-    const prevNodeEnv = process.env.NODE_ENV;
     const prevVault = process.env.VAULT_ENCRYPTION_KEY;
-    process.env.NODE_ENV = "production";
+    vi.stubEnv("NODE_ENV", "production");
     delete process.env.VAULT_ENCRYPTION_KEY;
     process.env.CRON_SECRET = "fallback-only";
     const { encryptAtRest } = await import("@/lib/security/vault");
     expect(() => encryptAtRest("secret")).toThrow();
     if (prevVault !== undefined) process.env.VAULT_ENCRYPTION_KEY = prevVault;
     else delete process.env.VAULT_ENCRYPTION_KEY;
-    process.env.NODE_ENV = prevNodeEnv;
+    vi.unstubAllEnvs();
   });
 });

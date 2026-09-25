@@ -16,3 +16,5 @@
 *.mp3 binary
 *.ogg binary
 *.wav binary
+*.svg text eol=lf
+*.json text eol=lf

@@ -20,6 +20,7 @@ function getKey(): Buffer {
 
 /**
  * Encrypts a sensitive string (e.g. AI Provider API key) using AES-256-GCM.
+ * REV: production requires VAULT_ENCRYPTION_KEY; fallback is dev-only.
  */
 export function encryptAtRest(plainText: string): string {
   if (!plainText) return plainText;

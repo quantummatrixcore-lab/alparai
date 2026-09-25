@@ -102,3 +102,12 @@ quantum_argeportal_fix.cjs
 /public/robots.txt
 /public/sitemap.xml
 
+
+# AI Garbage Isolation
+.system_generated/
+logs/
+brain/
+.agents/bus/locks/
+.agents/bus/INBOX/CEVAP-001.md
+.agents/bus/SONUC/RPT-*
+

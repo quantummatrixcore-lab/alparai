@@ -116,3 +116,13 @@ Curie, Hammurabi, Sun Tzu, Biruni, Edison.
    - **SÃ¼re:** Tek bir job maksimum 360 dakika Ã§alÄ±ÅŸabilir.
 
 Deploy ajanÄ± her iÅŸlemde bu sÄ±nÄ±rlarÄ± Admin Paneldeki DeploymentLimitsWidget modÃ¼lÃ¼ne ve kendi hafÄ±zasÄ±na referans alarak kontrol eder.
+
+## 10. GÖMÜLÜ ONAY VE İLETİŞİM ŞEMASI (İki Kritik Ders)
+
+1. **Atlatılamaz Kapı (KES):** Kritik düğümlere (git push, DB migration, üretim deploy, hotfix) gömülü onay kapıları (kes / guardian) eklenmiştir. Hiçbir ajan veya motor bu kapıları (|| true veya --no-verify) kullanarak bypass edemez. Baypas denemesi anında SIGKILL (FAIL) sebebidir.
+
+2. **Ajan Mesaj Şeması (Zorunlu):** Karargah içi (A2A) ve dış iletişimde şemasız düz metin YASAKTIR. Her ajan (ikiz) iletisi, görevini aşağıdaki şema üzerinden raporlamak zorundadır. Şemasız mesaj reddedilir (FAIL).
+   - [AGI_KİMLİĞİ] / [MOTOR_SÜRÜMÜ]
+   - [DURUM] (Örn: SUCCESS, FAIL, PENDING)
+   - [KARAR_VE_GEREKÇE]
+   - [MÜHÜR] (Karar Özeti SHA-384 Hash)

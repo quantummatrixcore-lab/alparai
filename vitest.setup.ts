@@ -1,6 +1,24 @@
 import { vi, afterEach } from "vitest";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
 
 vi.mock("server-only", () => ({}));
+
+// Redirect provider-alias learning-loop writes to a per-worker temp copy
+// so test runs never pollute the committed dictionary.
+try {
+  const src = path.join(process.cwd(), "src", "lib", "import", "provider-aliases.json");
+  const dir = path.join(os.tmpdir(), `alparai-test-aliases-${process.pid}`);
+  fs.mkdirSync(dir, { recursive: true });
+  const dest = path.join(dir, "provider-aliases.json");
+  if (fs.existsSync(src)) {
+    fs.copyFileSync(src, dest);
+  }
+  process.env.PROVIDER_ALIASES_PATH = dest;
+} catch {
+  // Fall back to default path behavior if temp setup fails
+}
 
 afterEach(async () => {
   vi.unstubAllEnvs();

@@ -61,6 +61,7 @@
     "hooks:install": "bash scripts/install-hooks.sh",
     "briefing": "npx tsx scripts/morning-briefing.ts",
     "guard": "node scripts/guardian.js",
+    "ship": "node scripts/deploy.mjs",
     "precommit": "node scripts/guardian.js && npx vitest run tests/contracts/translation-integrity.test.ts"
   },
   "dependencies": {

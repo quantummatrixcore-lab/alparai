@@ -153,18 +153,11 @@ async function verifyMiddlewareHmac(
       return await subtle.verify("HMAC", key, sigCopy, enc.encode(payload));
     }
   } catch {
-    // fall through to Node path
-  }
-  try {
-    const cryptoMod = await import("crypto");
-    const expected = cryptoMod.createHmac("sha256", secret).update(payload).digest("base64url");
-    const a = Buffer.from(expected, "utf8");
-    const b = Buffer.from(signatureB64Url, "utf8");
-    if (a.length !== b.length) return false;
-    return cryptoMod.timingSafeEqual(a, b);
-  } catch {
     return false;
   }
+  // Edge-safe: no Node.js crypto fallback. WebCrypto (globalThis.crypto.subtle)
+  // exists in Edge, modern browsers and Node.js 20+, so fail closed here.
+  return false;
 }
 
 // REV: fail-closed HMAC verification for admin fallback cookie (P0 integrity-break fix).

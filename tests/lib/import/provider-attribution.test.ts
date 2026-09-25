@@ -1,8 +1,10 @@
-import { describe, expect, it, vi } from "vitest";
+import { afterAll, describe, expect, it, vi } from "vitest";
+import fs from "node:fs";
+import path from "node:path";
 import {
   matchProviderAlias,
   appendAliasMapping,
-  getAliasMap,
+  resetAliasCache,
 } from "@/lib/import/provider-alias-map";
 import {
   judgeProviderAttribution,
@@ -58,7 +60,7 @@ describe("WO-014 Provider Attribution Engine", () => {
       it(`resolves "${title}" to provider slug "${expectedSlug}" with keyword "${expectedKeyword}"`, () => {
         const result = matchProviderAlias(
           { title, description: "Detailed test incident scenario", sourceUrl: null },
-          mockProviders
+          mockProviders,
         );
         expect(result.matched).toBe(true);
         expect(result.providerSlug).toBe(expectedSlug);
@@ -79,7 +81,7 @@ describe("WO-014 Provider Attribution Engine", () => {
           description: "Google Gemini was also mentioned in passing",
           sourceUrl: "https://meta.com/ai-post",
         },
-        mockProviders
+        mockProviders,
       );
       expect(result.matched).toBe(true);
       expect(result.providerSlug).toBe("anthropic");
@@ -94,7 +96,7 @@ describe("WO-014 Provider Attribution Engine", () => {
           description: "OpenAI ChatGPT users noticed cross-chatter",
           sourceUrl: "https://google.com/security",
         },
-        mockProviders
+        mockProviders,
       );
       expect(result.matched).toBe(true);
       expect(result.providerSlug).toBe("deepseek");
@@ -106,10 +108,11 @@ describe("WO-014 Provider Attribution Engine", () => {
         {
           affectedProvider: "",
           title: "Major AI security breach reported in healthcare",
-          description: "Investigators discovered that Mistral model weights were improperly secured",
+          description:
+            "Investigators discovered that Mistral model weights were improperly secured",
           sourceUrl: "https://xai.com/news",
         },
-        mockProviders
+        mockProviders,
       );
       expect(result.matched).toBe(true);
       expect(result.providerSlug).toBe("mistral");
@@ -124,7 +127,7 @@ describe("WO-014 Provider Attribution Engine", () => {
           description: "Full service disruption observed across all regions for two hours",
           sourceUrl: "https://status.perplexity.ai/incidents/10293",
         },
-        mockProviders
+        mockProviders,
       );
       expect(result.matched).toBe(true);
       expect(result.providerSlug).toBe("perplexity");
@@ -139,7 +142,7 @@ describe("WO-014 Provider Attribution Engine", () => {
           description: "No vendor or provider details are disclosed in this filing.",
           sourceUrl: "https://independent-news.org/article-99",
         },
-        mockProviders
+        mockProviders,
       );
       expect(result.matched).toBe(false);
       expect(result.providerSlug).toBeNull();
@@ -156,7 +159,9 @@ describe("WO-014 Provider Attribution Engine", () => {
     });
 
     it("parses model regex fallback when JSON is malformed", () => {
-      const output = parseJudgeResponse('Based on the text, the provider is "anthropic" with confidence: 0.88.');
+      const output = parseJudgeResponse(
+        'Based on the text, the provider is "anthropic" with confidence: 0.88.',
+      );
       expect(output).toEqual({ provider: "anthropic", confidence: 0.88 });
     });
 
@@ -179,7 +184,7 @@ describe("WO-014 Provider Attribution Engine", () => {
         ["openai", "google", "anthropic"],
         mockProviders,
         undefined,
-        mockCall
+        mockCall,
       );
 
       expect(res.matched).toBe(true);
@@ -209,7 +214,7 @@ describe("WO-014 Provider Attribution Engine", () => {
         ["openai", "google"],
         mockProviders,
         undefined,
-        mockCall
+        mockCall,
       );
 
       expect(res.matched).toBe(false);
@@ -220,13 +225,35 @@ describe("WO-014 Provider Attribution Engine", () => {
   });
 
   describe("4. Learning Loop (appendAliasMapping)", () => {
+    // Belt-and-braces: even if the temp-path redirect ever fails, the
+    // committed dictionary is restored after this suite runs.
+    const realPath = path.join(process.cwd(), "src", "lib", "import", "provider-aliases.json");
+    let originalContent: string | null = null;
+    try {
+      if (fs.existsSync(realPath)) {
+        originalContent = fs.readFileSync(realPath, "utf-8");
+      }
+    } catch {
+      originalContent = null;
+    }
+    afterAll(() => {
+      try {
+        if (originalContent !== null) {
+          fs.writeFileSync(realPath, originalContent, "utf-8");
+        }
+      } catch {
+        // restore is best-effort; temp redirect is the primary guard
+      }
+      resetAliasCache();
+    });
+
     it("appends a new keyword and enables future matching", async () => {
       const keyword = "test_custom_alias_token_" + Date.now();
       const slug = "anthropic";
 
       const before = matchProviderAlias(
         { title: `Incident with ${keyword} model`, description: "desc" },
-        mockProviders
+        mockProviders,
       );
       expect(before.matched).toBe(false);
 
@@ -235,7 +262,7 @@ describe("WO-014 Provider Attribution Engine", () => {
 
       const after = matchProviderAlias(
         { title: `Incident with ${keyword} model`, description: "desc" },
-        mockProviders
+        mockProviders,
       );
       expect(after.matched).toBe(true);
       expect(after.providerSlug).toBe("anthropic");

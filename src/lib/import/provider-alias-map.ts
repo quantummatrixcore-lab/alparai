@@ -23,7 +23,19 @@ export type AliasDictionary = Record<string, string[]>;
 
 let inMemoryAliases: AliasDictionary | null = null;
 
+/**
+ * Test-only: clears the in-memory cache so test files sharing a worker
+ * process cannot leak learning-loop tokens into each other.
+ */
+export function resetAliasCache(): void {
+  inMemoryAliases = null;
+}
+
 function getAliasesPath(): string {
+  // Test isolation: vitest redirects writes to a temp copy so the
+  // committed dictionary is never polluted by test runs.
+  const override = process.env.PROVIDER_ALIASES_PATH;
+  if (override && override.trim().length > 0) return override;
   return path.join(process.cwd(), "src", "lib", "import", "provider-aliases.json");
 }
 
@@ -83,7 +95,7 @@ function extractHostname(urlStr?: string | null): string {
  */
 export function matchProviderAlias(
   input: AttributionInput,
-  providerMap?: Map<string, { id: string; slug: string; name?: string }>
+  providerMap?: Map<string, { id: string; slug: string; name?: string }>,
 ): AttributionResult {
   const aliases = getAliasMap();
   const providerEntries = Object.entries(aliases);

@@ -83,4 +83,17 @@ docs/private/
 /extracted_*.html
 /founder_panel_v2_raw.html
 /found_input*.txt
+# REV: block automation/PII fallout from ad-hoc CDP runs (R3 hygiene)
+cdp_*.cjs
+cdp_*.js
+/cdp_*.cjs
+/cdp_*.js
+zoho_*.json
+/zoho_*.json
+.scratch/
+data/
+*.YEDEK-*.json
+print_iski_pdf.cjs
+generate_iski_doc.cjs
+quantum_argeportal_fix.cjs
 

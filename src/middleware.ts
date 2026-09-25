@@ -17,7 +17,10 @@ const isDev = process.env.NODE_ENV === "development";
 // Zero-GC Precomputed Security Headers
 const CSP_CORE_DIRECTIVES = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline' ${isDev ? "'unsafe-eval'" : ""} https://*.dehost.internal https://*.sentry.io https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.google.com https://*.gstatic.com https://va.dehost-scripts.internal https://*.posthog.com https://us-assets.i.posthog.com`.replace(/\s+/g, ' '),
+  `script-src 'self' 'unsafe-inline' ${isDev ? "'unsafe-eval'" : ""} https://*.dehost.internal https://*.sentry.io https://challenges.cloudflare.com https://plausible.io https://accounts.google.com https://*.google.com https://*.gstatic.com https://va.dehost-scripts.internal https://*.posthog.com https://us-assets.i.posthog.com`.replace(
+    /\s+/g,
+    " ",
+  ),
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com",
   "font-src 'self' https://fonts.gstatic.com data:",
   "img-src 'self' data: blob: https: https://*.googleusercontent.com https://avatars.githubusercontent.com https://*.dehost.internal https://logo.clearbit.com",
@@ -95,19 +98,91 @@ function applySecurityHeaders(
   return res;
 }
 
-function parseAlparSessionCookie(cookieValue?: string): { id: string; email: string; role: string } | null {
+function getMiddlewareSessionSecret(): string | null {
+  return process.env.SESSION_SECRET || process.env.CRON_SECRET || null;
+}
+
+function b64UrlToBytes(b64url: string): Uint8Array | null {
+  try {
+    const b64 = b64url.replace(/-/g, "+").replace(/_/g, "/");
+    const pad = b64.length % 4;
+    const padded = pad ? b64 + "=".repeat(4 - pad) : b64;
+    const bin = atob(padded);
+    const out = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+    return out;
+  } catch {
+    return null;
+  }
+}
+
+function decodePayloadToJson(payload: string): string | null {
+  try {
+    if (typeof Buffer !== "undefined") {
+      return Buffer.from(payload, "base64url").toString("utf8");
+    }
+    const bytes = b64UrlToBytes(payload);
+    if (!bytes) return null;
+    return new TextDecoder().decode(bytes);
+  } catch {
+    return null;
+  }
+}
+
+async function verifyMiddlewareHmac(
+  payload: string,
+  signatureB64Url: string,
+  secret: string,
+): Promise<boolean> {
+  try {
+    const subtle = globalThis.crypto?.subtle;
+    if (subtle) {
+      const enc = new TextEncoder();
+      const key = await subtle.importKey(
+        "raw",
+        enc.encode(secret),
+        { name: "HMAC", hash: "SHA-256" },
+        false,
+        ["verify"],
+      );
+      const sigBytes = b64UrlToBytes(signatureB64Url);
+      if (!sigBytes) return false;
+      // subtle.verify expects BufferSource; copy to ArrayBuffer-backed view
+      const sigCopy = new Uint8Array(sigBytes.length);
+      sigCopy.set(sigBytes);
+      return await subtle.verify("HMAC", key, sigCopy, enc.encode(payload));
+    }
+  } catch {
+    // fall through to Node path
+  }
+  try {
+    const cryptoMod = await import("crypto");
+    const expected = cryptoMod.createHmac("sha256", secret).update(payload).digest("base64url");
+    const a = Buffer.from(expected, "utf8");
+    const b = Buffer.from(signatureB64Url, "utf8");
+    if (a.length !== b.length) return false;
+    return cryptoMod.timingSafeEqual(a, b);
+  } catch {
+    return false;
+  }
+}
+
+// REV: fail-closed HMAC verification for admin fallback cookie (P0 integrity-break fix).
+export async function parseAlparSessionCookie(
+  cookieValue?: string,
+): Promise<{ id: string; email: string; role: string } | null> {
   if (!cookieValue) return null;
   try {
-    const dotIndex = cookieValue.indexOf(".");
+    const dotIndex = cookieValue.lastIndexOf(".");
     if (dotIndex === -1) return null;
     const part0 = cookieValue.substring(0, dotIndex);
-    let jsonStr = "";
-    if (typeof Buffer !== "undefined") {
-      jsonStr = Buffer.from(part0, "base64url").toString("utf8");
-    } else {
-      const b64 = part0.replace(/-/g, "+").replace(/_/g, "/");
-      jsonStr = decodeURIComponent(escape(atob(b64)));
-    }
+    const sig = cookieValue.substring(dotIndex + 1);
+    if (!part0 || !sig) return null;
+    const secret = getMiddlewareSessionSecret();
+    if (!secret) return null;
+    if (!(await verifyMiddlewareHmac(part0, sig, secret))) return null;
+    const jsonStr = decodePayloadToJson(part0);
+    if (!jsonStr) return null;
     const data = JSON.parse(jsonStr);
     if (!data || !data.email) return null;
     let role = data.role || "user";
@@ -156,7 +231,9 @@ export async function middleware(request: NextRequest) {
   if (unsupportedAdminLocaleMatch) {
     const pref = request.cookies.get("NEXT_LOCALE")?.value === "tr" ? "tr" : "en";
     const target = pathname.replace(/^\/(de|fr|ru)/, `/${pref}`);
-    const redirectRes = NextResponse.redirect(new URL(target + request.nextUrl.search, request.url));
+    const redirectRes = NextResponse.redirect(
+      new URL(target + request.nextUrl.search, request.url),
+    );
     return applySecurityHeaders(redirectRes, request, requestId);
   }
 
@@ -200,16 +277,15 @@ export async function middleware(request: NextRequest) {
     const dehost = sessionResult.dehost;
 
     // Fast-path unauthenticated redirect for admin routes (zero-trust security enforcement)
-    if (
-      isAdminPath &&
-      !pathname.startsWith("/api/") &&
-      !isTestAuthBypassActive()
-    ) {
+    if (isAdminPath && !pathname.startsWith("/api/") && !isTestAuthBypassActive()) {
       const urlLocale = request.nextUrl.pathname.match(/^\/(en|tr)\b/)?.[1];
       const locale = urlLocale || request.cookies.get("NEXT_LOCALE")?.value || "en";
 
-      const alparSession = parseAlparSessionCookie(request.cookies.get("alparai_session")?.value);
-      const effectiveUser = user || (alparSession ? { id: alparSession.id, email: alparSession.email } : null);
+      const alparSession = await parseAlparSessionCookie(
+        request.cookies.get("alparai_session")?.value,
+      );
+      const effectiveUser =
+        user || (alparSession ? { id: alparSession.id, email: alparSession.email } : null);
 
       if (!effectiveUser) {
         const currentPath = request.nextUrl.pathname + request.nextUrl.search;
@@ -234,7 +310,7 @@ export async function middleware(request: NextRequest) {
             role = user.user_metadata?.role || "user";
           }
         }
-        
+
         // Strict Executive Role-Based Access Control for autonomous company panel
         const isAutonomousCompanyPath = pathname.includes("/admin/autonomous-company");
         if (isAutonomousCompanyPath) {
@@ -242,7 +318,12 @@ export async function middleware(request: NextRequest) {
             const redirectRes = NextResponse.redirect(new URL(`/${locale}/`, request.url));
             return applySecurityHeaders(redirectRes, request, requestId);
           }
-        } else if (role !== "admin" && role !== "ceo" && role !== "moderator" && role !== "advisor") {
+        } else if (
+          role !== "admin" &&
+          role !== "ceo" &&
+          role !== "moderator" &&
+          role !== "advisor"
+        ) {
           const redirectRes = NextResponse.redirect(new URL(`/${locale}/`, request.url));
           return applySecurityHeaders(redirectRes, request, requestId);
         }

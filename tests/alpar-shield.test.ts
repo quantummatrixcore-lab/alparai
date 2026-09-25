@@ -57,7 +57,7 @@ describe("ALPAR AI Transparent Shield Engine (Anti-Bot Verification)", () => {
   test("3. Linear Low-Entropy Algorithmic Bot Trajectory -> DENIED (Blocked)", () => {
     // Perfectly straight line, zero jitter (computer generated)
     const linearTrajectory = [];
-    let t = Date.now();
+    const t = Date.now();
     for (let i = 0; i < 20; i++) {
       linearTrajectory.push({ x: 100 + i * 10, y: 100 + i * 10, timestamp: t + i * 10, isTrusted: true });
     }

@@ -3,7 +3,15 @@ import { createCipheriv, createDecipheriv, randomBytes, scryptSync } from "crypt
 const ALGORITHM = "aes-256-gcm";
 
 function getKey(): Buffer {
-  const secret = process.env.VAULT_ENCRYPTION_KEY || process.env.CRON_SECRET;
+  const vaultKey = process.env.VAULT_ENCRYPTION_KEY;
+  const fallback = process.env.CRON_SECRET;
+  // REV: enforce key separation in production; CRON_SECRET fallback is dev-only.
+  if (process.env.NODE_ENV === "production" && !vaultKey) {
+    throw new Error(
+      "VAULT_ENCRYPTION_KEY env var is required in production (CRON_SECRET fallback disabled)",
+    );
+  }
+  const secret = vaultKey || fallback;
   if (!secret) {
     throw new Error("VAULT_ENCRYPTION_KEY env var is required for vault encryption");
   }

@@ -86,7 +86,7 @@ export class AlparShieldEngine {
   public static verifyInteraction(input: ShieldVerificationInput): ShieldVerificationResult {
     const timestamp = new Date().toISOString();
     let riskScore = 0;
-    let reasons: string[] = [];
+    const reasons: string[] = [];
 
     // 1. CDP veya Sentetik Event Tespiti
     if (input.clickEvent && !input.clickEvent.isTrusted) {

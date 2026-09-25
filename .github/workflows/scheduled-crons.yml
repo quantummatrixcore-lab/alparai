@@ -2,36 +2,21 @@ name: Scheduled Cron Jobs
 
 on:
   schedule:
-    # Run once daily at 04:00 UTC as a fallback (Cloudflare Pages / Workers Cron handle active schedule)
-    - cron: "0 4 * * *"
+    # Run hourly so the internal hour-based dispatcher actually triggers at correct times
+    - cron: "0 * * * *"
   workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-permissions: read-all
+permissions:
+  contents: read
 
 jobs:
   run-crons:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger translate-backfill (Every 10 minutes)
-        if: github.event.schedule == '*/10 * * * *'
-        run: |
-          curl -X GET "https://alparai.com/api/cron/translate-backfill" \
-            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
-            -H "x-cloudflare-cron: 1" \
-            --fail --show-error
-
-      - name: Trigger ai-heartbeat model health check (Every 10 minutes)
-        if: github.event.schedule == '*/10 * * * *'
-        run: |
-          curl -X GET "https://alparai.com/api/cron/ai-heartbeat" \
-            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
-            -H "x-cloudflare-cron: 1" \
-            --fail --show-error
-
       - name: Hourly and Daily Cron Dispatcher
         if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 * * * *'
         run: |

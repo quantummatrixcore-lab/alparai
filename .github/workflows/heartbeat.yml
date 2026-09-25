@@ -1,0 +1,154 @@
+name: "Heartbeat — Autonomous Data Sync & Health Check"
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# PURPOSE: Keep the ALPAR AI ecosystem alive 24/7 without human intervention.
+# SCOPE:   Tara → Test Et → Raporla. Deploy yetkisi YOK.
+# TRIGGER: Every 4 hours (00, 04, 08, 12, 16, 20 UTC) + manual dispatch.
+# ═══════════════════════════════════════════════════════════════════════════════
+
+on:
+  schedule:
+    - cron: "0 */4 * * *"    # Every 4 hours
+  workflow_dispatch:          # Manual trigger for debugging
+
+concurrency:
+  group: heartbeat-${{ github.ref }}
+  cancel-in-progress: true
+
+# SECURITY: Minimum permissions. No write access. No deploy capability.
+permissions:
+  contents: read
+
+env:
+  SITE_URL: "https://alparai.com"
+
+jobs:
+  # ─────────────────────────────────────────────────────────────────────────────
+  # PHASE 1: Data Sync — Pull fresh incidents and news from external sources
+  # ─────────────────────────────────────────────────────────────────────────────
+  data-sync:
+    name: "📡 Data Sync"
+    runs-on: ubuntu-latest
+    outputs:
+      aiaaic_status: ${{ steps.aiaaic.outcome }}
+      aiid_status: ${{ steps.aiid.outcome }}
+      news_status: ${{ steps.news.outcome }}
+    steps:
+      - name: "Import AIAAIC incidents"
+        id: aiaaic
+        continue-on-error: true
+        run: |
+          echo "::group::AIAAIC Import"
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
+            -X GET "${{ env.SITE_URL }}/api/cron/import-incidents?source=aiaaic" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            -H "x-cloudflare-cron: 1" \
+            --max-time 120)
+          echo "HTTP Status: $HTTP_CODE"
+          echo "::endgroup::"
+          if [ "$HTTP_CODE" -lt 200 ] || [ "$HTTP_CODE" -ge 400 ]; then
+            echo "::error::AIAAIC import failed with HTTP $HTTP_CODE"
+            exit 1
+          fi
+
+      - name: "Import AIID incidents"
+        id: aiid
+        continue-on-error: true
+        run: |
+          echo "::group::AIID Import"
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
+            -X GET "${{ env.SITE_URL }}/api/cron/import-incidents?source=aiid" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            -H "x-cloudflare-cron: 1" \
+            --max-time 120)
+          echo "HTTP Status: $HTTP_CODE"
+          echo "::endgroup::"
+          if [ "$HTTP_CODE" -lt 200 ] || [ "$HTTP_CODE" -ge 400 ]; then
+            echo "::error::AIID import failed with HTTP $HTTP_CODE"
+            exit 1
+          fi
+
+      - name: "Fetch external news & ecosystem sync"
+        id: news
+        continue-on-error: true
+        run: |
+          echo "::group::External News Sync"
+          # Trigger the fetch-external endpoint
+          curl -sf -X GET "${{ env.SITE_URL }}/api/cron/fetch-external" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            -H "x-cloudflare-cron: 1" \
+            --max-time 120 || echo "::warning::fetch-external returned non-200"
+
+          # Trigger outreach/newsletter queue processing
+          curl -sf -X GET "${{ env.SITE_URL }}/api/cron/outreach" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            -H "x-cloudflare-cron: 1" \
+            --max-time 60 || echo "::warning::outreach returned non-200"
+          echo "::endgroup::"
+
+      - name: "Sync summary"
+        if: always()
+        run: |
+          echo "## 📡 Data Sync Results" >> $GITHUB_STEP_SUMMARY
+          echo "| Source | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| AIAAIC | ${{ steps.aiaaic.outcome }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| AIID   | ${{ steps.aiid.outcome }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| News   | ${{ steps.news.outcome }} |" >> $GITHUB_STEP_SUMMARY
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # PHASE 2: Health Check — Verify the codebase integrity
+  # ─────────────────────────────────────────────────────────────────────────────
+  health-check:
+    name: "🩺 Health Check"
+    runs-on: ubuntu-latest
+    needs: data-sync
+    if: always()
+    env:
+      NEXT_PUBLIC_DEHOST_URL: https://mock-dehost.dehost.internal
+      NEXT_PUBLIC_DEHOST_ANON_KEY: mock-anon-key
+      DEHOST_SERVICE_ROLE_KEY: mock-service-role-key
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: { version: 9 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+
+      - name: "Typecheck"
+        run: pnpm typecheck
+
+      - name: "Lint"
+        run: pnpm lint
+
+      - name: "Test suite"
+        run: pnpm test
+
+      - name: "i18n integrity"
+        run: pnpm i18n:check
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # PHASE 3: Report — Aggregate results (NO deploy, NO push)
+  # ─────────────────────────────────────────────────────────────────────────────
+  report:
+    name: "📊 Status Report"
+    runs-on: ubuntu-latest
+    needs: [data-sync, health-check]
+    if: always()
+    steps:
+      - name: "Generate heartbeat report"
+        run: |
+          echo "## 💓 Heartbeat Report — $(date -u '+%Y-%m-%d %H:%M UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Data Sync" >> $GITHUB_STEP_SUMMARY
+          echo "- AIAAIC: ${{ needs.data-sync.outputs.aiaaic_status || 'skipped' }}" >> $GITHUB_STEP_SUMMARY
+          echo "- AIID: ${{ needs.data-sync.outputs.aiid_status || 'skipped' }}" >> $GITHUB_STEP_SUMMARY
+          echo "- News: ${{ needs.data-sync.outputs.news_status || 'skipped' }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Health Check" >> $GITHUB_STEP_SUMMARY
+          echo "- Status: ${{ needs.health-check.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Governance" >> $GITHUB_STEP_SUMMARY
+          echo "- Deploy: ❌ NOT AUTHORIZED (scan/test/report only)" >> $GITHUB_STEP_SUMMARY
+          echo "- Human approval required for any deployment." >> $GITHUB_STEP_SUMMARY

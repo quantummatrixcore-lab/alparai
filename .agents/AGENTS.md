@@ -126,3 +126,6 @@ Deploy ajanÄ± her iÅŸlemde bu sÄ±nÄ±rlarÄ± Admin Paneldeki DeploymentL
    - [DURUM] (Örn: SUCCESS, FAIL, PENDING)
    - [KARAR_VE_GEREKÇE]
    - [MÜHÜR] (Karar Özeti SHA-384 Hash)
+
+## 11. MODEL YÜKSELTME KANUNU (PRO 3.1 DOKTRİNİ)
+Kurucu İrade kararıyla (Global Kural 5) "Strictly Flash" kısıtlaması esnetilmiştir. Derin muhakeme gerektiren 10'lu Kurul üyeleri (Sinan, Turing, Da Vinci vb.), görev ağırlıklarına göre doğrudan gemini-3.1-pro modelini kullanma tam yetkisine sahiptir.

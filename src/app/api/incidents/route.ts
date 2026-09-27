@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-let mockIncidents = [
+const mockIncidents = [
   {
     id: '1',
     title: 'Sample Incident',
@@ -11,12 +11,11 @@ let mockIncidents = [
   }
 ];
 
-let store: any = null;
+let store: { getIncidents: (limit: number) => unknown[]; addIncident: (incident: unknown) => unknown } | null = null;
 try {
-  if (typeof process !== 'undefined' && process.release?.name === 'node') {
-    store = require('../../../lib/db/incidents_store.js');
-  }
-} catch (e) {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  store = require('../../../lib/db/incidents_store.js');
+} catch (_err) {
   // Edge runtime or module not found, fallback to mock
 }
 

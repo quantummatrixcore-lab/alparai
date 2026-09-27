@@ -1,56 +1,60 @@
 const fs = require('fs');
 const path = require('path');
 
-const DATA_DIR = path.join(process.cwd(), 'data');
-const DATA_FILE = path.join(DATA_DIR, 'incidents.jsonl');
+const DATA_FILE = path.join(__dirname, '..', '..', '..', 'data', 'incidents.jsonl');
 
-function ensureReady() {
-    if (!fs.existsSync(DATA_DIR)) {
-        fs.mkdirSync(DATA_DIR, { recursive: true });
+function ensureDirectoryExistence(filePath) {
+    const dirname = path.dirname(filePath);
+    if (fs.existsSync(dirname)) {
+        return true;
     }
-    if (!fs.existsSync(DATA_FILE)) {
-        fs.writeFileSync(DATA_FILE, '', 'utf8');
+    fs.mkdirSync(dirname, { recursive: true });
+}
+
+function ensureFileExistence(filePath) {
+    ensureDirectoryExistence(filePath);
+    if (!fs.existsSync(filePath)) {
+        fs.writeFileSync(filePath, '', 'utf8');
     }
 }
 
 function addIncident(incident) {
-    ensureReady();
-    if (!incident.id) {
-        incident.id = Date.now().toString() + Math.random().toString(36).substring(2, 9);
-    }
-    const line = JSON.stringify(incident) + '\n';
-    fs.appendFileSync(DATA_FILE, line, 'utf8');
-    return incident;
+    ensureFileExistence(DATA_FILE);
+    const entry = JSON.stringify({
+        ...incident,
+        _addedAt: new Date().toISOString()
+    });
+    fs.appendFileSync(DATA_FILE, entry + '\n', 'utf8');
 }
 
-function getIncidents(limit = 100) {
-    ensureReady();
-    const content = fs.readFileSync(DATA_FILE, 'utf8');
-    const lines = content.trim().split('\n').filter(l => l.length > 0);
-    const incidents = lines.map(l => {
-        try {
-            return JSON.parse(l);
-        } catch(e) {
-            return null;
-        }
-    }).filter(i => i !== null);
+function getIncidents(limit = 50) {
+    ensureFileExistence(DATA_FILE);
+    const content = fs.readFileSync(DATA_FILE, 'utf8').trim();
+    if (!content) return [];
     
-    return incidents.slice(-limit).reverse();
+    const lines = content.split('\n');
+    const records = lines.filter(line => line).map(line => JSON.parse(line));
+    
+    return records.slice(-limit);
 }
 
 function searchIncidents(keyword) {
-    const all = getIncidents(10000);
-    if (!keyword) return all;
-    const lower = keyword.toLowerCase();
-    return all.filter(inc => {
-        return (inc.title && inc.title.toLowerCase().includes(lower)) ||
-               (inc.description && inc.description.toLowerCase().includes(lower));
-    });
+    const all = getIncidents(1000000); // practically all for a simple file
+    const lowerKeyword = keyword.toLowerCase();
+    return all.filter(inc => JSON.stringify(inc).toLowerCase().includes(lowerKeyword));
+}
+
+function getStats() {
+    const all = getIncidents(1000000);
+    return {
+        totalRecords: all.length,
+        lastAdded: all.length > 0 ? all[all.length - 1]._addedAt : null
+    };
 }
 
 module.exports = {
     addIncident,
     getIncidents,
     searchIncidents,
-    DATA_FILE
+    getStats
 };

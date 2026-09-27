@@ -8,6 +8,8 @@ import { logger } from "@/lib/utils/logger";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+declare const __non_webpack_require__: NodeRequire | undefined;
+
 /**
  * Interface definition for CoinBridge transaction records
  */

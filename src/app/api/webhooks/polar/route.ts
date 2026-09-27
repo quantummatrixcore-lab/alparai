@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Webhooks } from '@polar-sh/sdk';
+import { Webhooks } from '@/lib/polar';
 
 const webhookSecret = process.env.POLAR_WEBHOOK_SECRET;
 

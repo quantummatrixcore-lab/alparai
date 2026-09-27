@@ -11,8 +11,20 @@ let mockIncidents = [
   }
 ];
 
+let store: any = null;
+try {
+  if (typeof process !== 'undefined' && process.release?.name === 'node') {
+    store = require('../../../lib/db/incidents_store.js');
+  }
+} catch (e) {
+  // Edge runtime or module not found, fallback to mock
+}
+
 export async function GET() {
   try {
+    if (store) {
+      return NextResponse.json(store.getIncidents(100));
+    }
     return NextResponse.json(mockIncidents);
   } catch (error) {
     return NextResponse.json({ error: 'Failed to read incidents' }, { status: 500 });
@@ -29,9 +41,13 @@ export async function POST(request: Request) {
       createdAt: new Date().toISOString()
     };
     
-    mockIncidents.push(newIncident);
-    
-    return NextResponse.json(newIncident, { status: 201 });
+    if (store) {
+      const saved = store.addIncident(newIncident);
+      return NextResponse.json(saved, { status: 201 });
+    } else {
+      mockIncidents.push(newIncident);
+      return NextResponse.json(newIncident, { status: 201 });
+    }
   } catch (error) {
     return NextResponse.json({ error: 'Failed to create incident' }, { status: 500 });
   }

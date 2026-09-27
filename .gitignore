@@ -111,3 +111,5 @@ brain/
 .agents/bus/INBOX/CEVAP-001.md
 .agents/bus/SONUC/RPT-*
 
+
+coverage/

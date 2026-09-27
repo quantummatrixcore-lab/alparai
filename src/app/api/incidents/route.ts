@@ -1,49 +1,32 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs/promises';
+import fs from 'fs';
 import path from 'path';
 
-const dataDir = path.join(process.cwd(), 'data');
-const dataFile = path.join(dataDir, 'incidents.json');
-
-async function ensureDataFile() {
-  try {
-    await fs.mkdir(dataDir, { recursive: true });
-    try {
-      await fs.access(dataFile);
-    } catch {
-      await fs.writeFile(dataFile, JSON.stringify([]));
-    }
-  } catch (error) {
-    console.error('Error ensuring data file:', error);
-  }
-}
+const dataFile = path.join(process.cwd(), 'data', 'incidents.json');
 
 export async function GET() {
-  await ensureDataFile();
   try {
-    const data = await fs.readFile(dataFile, 'utf-8');
-    const incidents = JSON.parse(data);
-    return NextResponse.json({ incidents });
+    const data = fs.readFileSync(dataFile, 'utf-8');
+    return NextResponse.json(JSON.parse(data));
   } catch (error) {
     return NextResponse.json({ error: 'Failed to read incidents' }, { status: 500 });
   }
 }
 
 export async function POST(request: Request) {
-  await ensureDataFile();
   try {
     const body = await request.json();
-    const data = await fs.readFile(dataFile, 'utf-8');
+    const data = fs.readFileSync(dataFile, 'utf-8');
     const incidents = JSON.parse(data);
     
     const newIncident = {
       id: Date.now().toString(),
-      createdAt: new Date().toISOString(),
-      ...body
+      ...body,
+      createdAt: new Date().toISOString()
     };
     
     incidents.push(newIncident);
-    await fs.writeFile(dataFile, JSON.stringify(incidents, null, 2));
+    fs.writeFileSync(dataFile, JSON.stringify(incidents, null, 2), 'utf-8');
     
     return NextResponse.json(newIncident, { status: 201 });
   } catch (error) {

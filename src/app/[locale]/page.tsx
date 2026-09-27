@@ -416,6 +416,19 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            name: "AlparAi",
+            applicationCategory: "BusinessApplication",
+            description: "Monitor 2,880+ AI incidents, achieve EU AI Act compliance with automated auditing",
+            operatingSystem: "Web",
+          }),
+        }}
+      />
       <HeroSectionAsync locale={locale} />
 
       <TrustBar />

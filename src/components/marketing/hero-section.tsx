@@ -127,6 +127,10 @@ export function HeroSection({
                 <ShieldAlert className="text-brand-400 h-3.5 w-3.5" />
                 <span className="relative z-10">{t("early_access_badge")}</span>
               </div>
+              <div className="group hover:border-success-500/50 border-success-500/30 bg-success-500/10 text-success-300 relative inline-flex items-center gap-2 overflow-hidden rounded-full border px-4 py-2 text-[11px] font-black tracking-[0.2em] uppercase backdrop-blur-xl transition-all duration-300">
+                <Target className="text-success-400 h-3.5 w-3.5" />
+                <span className="relative z-10">2,880+ AI Incidents Monitored</span>
+              </div>
             </motion.div>
 
             {/* Main headline - Premium Gradient Text */}
@@ -187,6 +191,13 @@ export function HeroSection({
                   {t("cta_secondary", { defaultValue: "Kozmik Adalet Panosu" })}
                 </span>
                 <ArrowRight className="relative z-10 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+              <Link
+                href="/contact"
+                onClick={() => trackEvent("hero_cta_click", { action: "book_demo" })}
+                className="group border-brand-500/40 bg-brand-500/10 hover:border-brand-400 hover:bg-brand-500/20 text-brand-600 relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-xl border px-8 text-base font-bold shadow-[0_0_25px_rgba(168,85,247,0.15)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_0_40px_rgba(168,85,247,0.3)] active:scale-95 dark:text-white"
+              >
+                <span className="relative z-10">Book a Demo</span>
               </Link>
             </motion.div>
 

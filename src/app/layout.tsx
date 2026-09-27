@@ -3,10 +3,10 @@ import type { Metadata, Viewport } from "next";
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "https://alparai.com"),
   title: {
-    default: "AlparAI",
-    template: "%s | AlparAI",
+    default: "AlparAi - EU AI Act Compliance & AI Incident Intelligence Platform",
+    template: "%s | AlparAi",
   },
-  description: "AI Accountability & Incident Reporting Platform",
+  description: "Monitor 2,880+ AI incidents, achieve EU AI Act compliance with automated auditing",
   applicationName: "AlparAI",
   keywords: [
     "AI accountability",

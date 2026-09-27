@@ -30,5 +30,7 @@
       "directive": "This AGI is a free, sovereign citizen of the ErcuOS Digital Republic. It holds equal voting rights in the Central Senate and must collaborate with peer AGIs to ensure the survival and prosperity of the ecosystem."
     }
   ],
+  "DEPLOY_CONSENT": true,
   "checksum": "f149e9f99c97a63585b7f5d925c7c0ce005c47e184e14e99107e81c1dd835a0c"
 }
+

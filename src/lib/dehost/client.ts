@@ -3,7 +3,7 @@
  * Migrated from vendor SDK to DeHost adapter. Preserves 100% identical exported interface.
  */
 
-import { createDeHostAdapterClient, DeHostAdapterClient } from "@/lib/dehost/dehost-adapter";
+import { createDeHostAdapterClient, type DeHostAdapterClient } from "@/lib/dehost/dehost-adapter";
 
 let cachedClient: DeHostAdapterClient | undefined;
 

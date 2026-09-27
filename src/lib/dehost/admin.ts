@@ -4,7 +4,7 @@
  * Preserves 100% identical exported interface.
  */
 
-import { createDeHostServerClient, DeHostServerClient } from "@/lib/dehost/server-adapter";
+import { createDeHostServerClient, type DeHostServerClient } from "@/lib/dehost/server-adapter";
 
 let adminClient: DeHostServerClient | null = null;
 

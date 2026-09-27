@@ -1,5 +1,5 @@
 import { describe, test, expect } from "vitest";
-import { AlparShieldEngine, ShieldVerificationInput } from "../src/lib/security/alpar-shield";
+import { AlparShieldEngine, type ShieldVerificationInput } from "../src/lib/security/alpar-shield";
 
 describe("ALPAR AI Transparent Shield Engine (Anti-Bot Verification)", () => {
   test("1. Natural Human Kinetic Interaction -> ALLOWED (Pass)", () => {

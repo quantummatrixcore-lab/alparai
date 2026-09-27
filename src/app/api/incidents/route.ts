@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-explicit-any */
 import { NextResponse } from 'next/server';
 
 const mockIncidents = [
@@ -11,11 +12,12 @@ const mockIncidents = [
   }
 ];
 
-let store: { getIncidents: (limit: number) => unknown[]; addIncident: (incident: unknown) => unknown } | null = null;
+let store: any = null;
 try {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  store = require('../../../lib/db/incidents_store.js');
-} catch (_err) {
+  if (typeof process !== 'undefined' && process.release?.name === 'node') {
+    store = require('../../../lib/db/incidents_store.js');
+  }
+} catch (_e) {
   // Edge runtime or module not found, fallback to mock
 }
 

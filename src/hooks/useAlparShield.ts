@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useCallback } from "react";
-import { KineticEvent, ShieldVerificationResult } from "@/lib/security/alpar-shield";
+import { type KineticEvent, type ShieldVerificationResult } from "@/lib/security/alpar-shield";
 
 export function useAlparShield() {
   const trajectoryRef = useRef<KineticEvent[]>([]);

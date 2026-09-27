@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { AlparShieldEngine, ShieldVerificationInput } from "@/lib/security/alpar-shield";
+import { AlparShieldEngine, type ShieldVerificationInput } from "@/lib/security/alpar-shield";
 
 export async function POST(req: Request) {
   try {

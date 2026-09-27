@@ -23,6 +23,8 @@ declare module "pg" {
     min?: number;
     idleTimeoutMillis?: number;
     connectionTimeoutMillis?: number;
+    statement_timeout?: number;
+    query_timeout?: number;
   }
 
   export class Pool {

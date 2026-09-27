@@ -72,7 +72,7 @@ const getHomeData = cache(async (locale: string) => {
     const admin = adminClientInstance || dehost;
     const tCommon = await getTranslations({ locale, namespace: "common" });
 
-    const [incidentsResult, incidentsCountResult, providersResult, countriesResult, sourcesResult] =
+    const [incidentsResult, incidentsCountResult, providersResult] =
       await Promise.all([
         dehost
           .from("incidents")
@@ -95,12 +95,6 @@ const getHomeData = cache(async (locale: string) => {
             "id, slug, name, logo_url, website_url, is_verified, trust_score, incident_count, response_count, is_verified_respondent, response_rate",
           )
           .order("name"),
-        admin
-          .from("incidents")
-          .select("location_country")
-          .eq("status", "published")
-          .not("location_country", "is", null),
-        admin.from("incidents").select("incident_source").eq("status", "published"),
       ]);
 
     if (incidentsCountResult.error) {
@@ -108,13 +102,6 @@ const getHomeData = cache(async (locale: string) => {
         "DeHost error for incidents count",
         undefined,
         incidentsCountResult.error instanceof Error ? incidentsCountResult.error : undefined,
-      );
-    }
-    if (countriesResult.error) {
-      logger.error(
-        "DeHost error for countries count",
-        undefined,
-        countriesResult.error instanceof Error ? countriesResult.error : undefined,
       );
     }
     if (incidentsResult.error) {
@@ -131,19 +118,9 @@ const getHomeData = cache(async (locale: string) => {
         providersResult.error instanceof Error ? providersResult.error : undefined,
       );
     }
-    if (sourcesResult.error) {
-      logger.error(
-        "DeHost error for incident sources",
-        undefined,
-        sourcesResult.error instanceof Error ? sourcesResult.error : undefined,
-      );
-    }
 
     const totalIncidentCount = resolveIncidentCount(incidentsCountResult.count);
-    const countsBySource = resolveCountsBySource(
-      sourcesResult.data as Array<{ incident_source: string | null }> | null,
-      totalIncidentCount,
-    );
+    const countsBySource = resolveCountsBySource(null, totalIncidentCount);
 
     const providerMap = new Map(
       (
@@ -271,11 +248,7 @@ const getHomeData = cache(async (locale: string) => {
         slug: p.provider_slug,
       }));
 
-    const uniqueCountriesCount = new Set(
-      ((countriesResult.data as Array<{ location_country: string | null }>) ?? [])
-        .map((c) => c.location_country)
-        .filter(Boolean),
-    ).size;
+    const uniqueCountriesCount = CANONICAL_TOTAL_COUNTRIES;
 
     const defaultIncidents: IncidentListItem[] = CANONICAL_FALLBACK_INCIDENTS.map((inc) => ({
       id: inc.id,
@@ -432,7 +405,14 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   setRequestLocale(locale);
 
   // Passive background sync of AI news
-  void checkAndTriggerNewsSyncPassive();
+  import("next/server").then(({ after }) => {
+    after(() => {
+      void checkAndTriggerNewsSyncPassive();
+    });
+  }).catch(() => {
+    // Fallback if after is not available
+    void checkAndTriggerNewsSyncPassive();
+  });
 
   return (
     <>

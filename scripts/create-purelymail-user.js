@@ -4,7 +4,7 @@ async function run() {
   const agent = new QuantumBrowserAgent({ cdpPort: 9222, speedMode: 'WARP' });
   await agent.connect({ urlMatch: 'purelymail' });
 
-  const userPassword = 'AlparAI_2026_045c419b0749!';
+  const userPassword = process.env.ADMIN_USER_PASSWORD || 'default_fallback_pass';
 
   const fillScript = `
     (async function() {

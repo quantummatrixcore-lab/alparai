@@ -10,7 +10,7 @@ async function run() {
   await agent.send('Page.navigate', { url: 'https://purelymail.com/manage/user/new' });
   await new Promise(r => setTimeout(r, 2500));
 
-  const userPassword = 'AlparAI_2026_045c419b0749!';
+  const userPassword = process.env.ADMIN_USER_PASSWORD || 'default_fallback_pass';
 
   // 2. Select domain alparai.com and fill username ercument.erden
   const createUserScript = `

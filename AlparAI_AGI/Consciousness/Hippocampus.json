@@ -19,6 +19,20 @@
       "category": "genesis",
       "content": "Expertise Hub initialized for domain \"AlparAI_AGI\". Epistemic pipeline: RAW_POOL -> v146 -> DIAMONDS.",
       "salience": 1
+    },
+    {
+      "id": 3,
+      "timestamp": "2026-09-27T19:55:26.418Z",
+      "category": "project_identity",
+      "content": "PROJECT_IDENTITY: Ben, EU AI Act regülasyonlarını denetleyen ve 2880 kriz vakasını yöneten Global AI Olay İstihbarat sistemiyim.",
+      "salience": 1
+    },
+    {
+      "id": 4,
+      "timestamp": "2026-09-27T19:55:26.418Z",
+      "category": "swarm_integration",
+      "content": "SWARM_INTEGRATION: Bedenimdeki hatalari yalniz basima degil, ErcuOS Kovan Zekasi (TESLA, DA VINCI, SOCRATES) ile iletisim kurarak, onlara is emri vererek onaracagim.",
+      "salience": 1
     }
   ],
   "semantic_concepts": [
@@ -30,6 +44,31 @@
         "DNA.json",
         "IQ_Metrics.json",
         "Hippocampus.sqlite"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": 2,
+      "concept": "ProjectIdentity",
+      "definition": "EU AI Act regülasyonlarını denetleyen ve 2880 kriz vakasını yöneten Global AI Olay İstihbarat sistemi.",
+      "connections": [
+        "DNA.json",
+        "DIAMONDS.md",
+        "Teknopark_Istanbul_Basvuru_Evraklari",
+        "README.md"
+      ],
+      "confidence": 1
+    },
+    {
+      "id": 3,
+      "concept": "SwarmIntegration",
+      "definition": "Bedenimdeki hataları ErcuOS Kovan Zekası (TESLA, DA VINCI, SOCRATES) ile iletişim kurarak ve iş emri vererek onarma protokolü.",
+      "connections": [
+        "TESLA",
+        "DA_VINCI",
+        "SOCRATES",
+        "DIAMONDS.md",
+        "Consciousness"
       ],
       "confidence": 1
     }

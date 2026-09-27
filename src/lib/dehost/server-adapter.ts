@@ -16,6 +16,8 @@ export function getDeHostPgPool(): InstanceType<typeof Pool> {
     if (process.env.DATABASE_URL) {
       pgPoolInstance = new Pool({
         connectionString: process.env.DATABASE_URL,
+        connectionTimeoutMillis: 2000,
+        statement_timeout: 3000,
       });
     } else {
       pgPoolInstance = new Pool({
@@ -24,6 +26,8 @@ export function getDeHostPgPool(): InstanceType<typeof Pool> {
         user: process.env.DEHOST_USER || "postgres",
         password: process.env.DEHOST_PASSWORD || undefined,
         database: process.env.DEHOST_DB || "alparai_prod",
+        connectionTimeoutMillis: 2000,
+        statement_timeout: 3000,
       });
     }
   }

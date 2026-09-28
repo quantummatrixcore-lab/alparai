@@ -1,43 +1,11 @@
 "use client";
 
 import { useEffect } from "react";
-import { useTranslations } from "next-intl";
+import "./globals.css";
 
 interface GlobalErrorProps {
   error: Error & { digest?: string };
   reset: () => void;
-}
-
-function GlobalErrorContent({ error, reset }: GlobalErrorProps) {
-  let title = "Something went wrong";
-  let errorIdLabel = "Error ID: ";
-  let tryAgainLabel = "Try again";
-
-  try {
-    const t = useTranslations("errors");
-    title = t("somethingWentWrong");
-    errorIdLabel = error.digest ? t("error_id", { id: error.digest }) : "";
-    tryAgainLabel = t("tryAgain");
-  } catch {
-    if (error.digest) {
-      errorIdLabel = `Error ID: ${error.digest}`;
-    }
-  }
-
-  return (
-    <div className="flex flex-col items-center gap-6 text-center">
-      <div>
-        <h1 className="text-fg-primary text-2xl font-bold">{title}</h1>
-        {error.digest && <p className="text-fg-muted mt-2 text-xs">{errorIdLabel}</p>}
-      </div>
-      <button
-        onClick={reset}
-        className="bg-brand-500 hover:bg-brand-600 cursor-pointer rounded-lg px-6 py-2 text-sm font-medium text-white transition-colors"
-      >
-        {tryAgainLabel}
-      </button>
-    </div>
-  );
 }
 
 export default function GlobalError({ error, reset }: GlobalErrorProps) {
@@ -48,14 +16,48 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
         level: "error",
         msg: "Global unhandled error",
         err: { name: error.name, message: error.message, digest: error.digest },
-      }),
+      })
     );
   }, [error]);
 
   return (
-    <html lang="en">
-      <body className="bg-bg-primary text-fg-primary flex min-h-screen flex-col items-center justify-center p-8 font-sans">
-        <GlobalErrorContent error={error} reset={reset} />
+    <html lang="en" className="dark">
+      <body className="bg-slate-950 text-slate-100 flex min-h-screen flex-col items-center justify-center p-6 font-sans antialiased">
+        <div className="relative max-w-lg w-full rounded-2xl border border-slate-800 bg-slate-900/90 p-8 text-center shadow-2xl backdrop-blur-xl">
+          <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-red-500/10 text-red-400 border border-red-500/20">
+            <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </div>
+
+          <h1 className="text-2xl font-bold tracking-tight text-white mb-2">
+            System Temporarily Unavailable
+          </h1>
+          <p className="text-slate-400 text-sm leading-relaxed mb-6">
+            An unexpected application error occurred. Our automated monitoring infrastructure has recorded this incident.
+          </p>
+
+          {error.digest && (
+            <div className="mb-6 rounded-lg bg-slate-950/60 border border-slate-800 p-3 font-mono text-xs text-slate-400">
+              Error Digest: <span className="text-emerald-400">{error.digest}</span>
+            </div>
+          )}
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <button
+              onClick={() => reset()}
+              className="w-full sm:w-auto inline-flex items-center justify-center rounded-xl bg-emerald-500 px-6 py-2.5 text-sm font-semibold text-slate-950 transition-all hover:bg-emerald-400 hover:shadow-lg hover:shadow-emerald-500/20 cursor-pointer"
+            >
+              Try Again
+            </button>
+            <a
+              href="/en"
+              className="w-full sm:w-auto inline-flex items-center justify-center rounded-xl border border-slate-800 bg-slate-800/50 px-6 py-2.5 text-sm font-medium text-slate-200 transition-colors hover:bg-slate-800 cursor-pointer"
+            >
+              Return Home
+            </a>
+          </div>
+        </div>
       </body>
     </html>
   );

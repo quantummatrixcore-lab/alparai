@@ -139,10 +139,23 @@ function checkSeedFiles() {
   });
 }
 
+function checkPublicDir() {
+  const publicDir = path.join(basePath, 'public');
+  if (!fs.existsSync(publicDir)) return;
+  
+  walk(publicDir, (filePath) => {
+    const fileName = path.basename(filePath);
+    if (fileName === 'index.html' || fileName === '_redirects') {
+      error(`Found forbidden file in public directory: ${filePath}. These hijack the Next.js App Router.`);
+    }
+  });
+}
+
 console.log('--- Running ALPAR AI Guardian & Integrity Gate ---');
 checkMessages();
 checkSrcCode();
 checkSeedFiles();
+checkPublicDir();
 
 if (hasError) {
   console.error('\n[GUARDIAN REJECTED] Commit/Build aborted due to security or integrity violations.');

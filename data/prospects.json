@@ -1,0 +1,35 @@
+[
+  {
+    "id": "PRP-001",
+    "company": "FinTech EU GmbH",
+    "email": "ceo@fintech.eu",
+    "sector": "Financial Services & Banking",
+    "stage": "contacted",
+    "potentialMRR": 199,
+    "contactPerson": "Alexander Schmidt",
+    "notes": "Initiated discovery for automated EU AI Act Article 14 compliance reporting on risk scoring models.",
+    "ts": "2026-09-28T14:05:00.000Z"
+  },
+  {
+    "id": "PRP-002",
+    "company": "Nordic HealthTech AB",
+    "email": "compliance@nordichealth.se",
+    "sector": "Healthcare & Diagnostics",
+    "stage": "demo_scheduled",
+    "potentialMRR": 499,
+    "contactPerson": "Dr. Astrid Lindgren",
+    "notes": "Scheduled architecture review for zero-leak diagnostic hallucination telemetry and audit trail ledger.",
+    "ts": "2026-09-28T14:06:00.000Z"
+  },
+  {
+    "id": "PRP-003",
+    "company": "Bosphorus Cloud Logistics A.Ş.",
+    "email": "cto@bosphoruslogistics.com.tr",
+    "sector": "Enterprise Logistics & Fleet",
+    "stage": "proposal_sent",
+    "potentialMRR": 349,
+    "contactPerson": "Mert Yıldırım",
+    "notes": "Submitted commercial proposal for Lionexia unified e-invoicing and AlparAi automated customs compliance audit.",
+    "ts": "2026-09-28T14:07:00.000Z"
+  }
+]

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "INC-001",
+    "type": "api_latency",
+    "severity": "low",
+    "resolved": true,
+    "source": "AlparAi-Edge-Gateway",
+    "description": "Transient P95 latency spike detected during LLM token streaming (142ms vs 45ms baseline).",
+    "ts": "2026-09-28T14:05:00.000Z"
+  },
+  {
+    "id": "INC-002",
+    "type": "token_exhaustion_warning",
+    "severity": "medium",
+    "resolved": true,
+    "source": "Rate-Limiter-Edge",
+    "description": "Outbound prompt burst reached 84% of tenant rate quota. Token bucket throttled gracefully.",
+    "ts": "2026-09-28T14:06:12.000Z"
+  },
+  {
+    "id": "INC-003",
+    "type": "hallucination_divergence_alert",
+    "severity": "high",
+    "resolved": false,
+    "source": "Epistemic-Filter-v77",
+    "description": "Diagnostic model response diverged from reference grounding corpus; flagged for human-in-the-loop review.",
+    "ts": "2026-09-28T14:07:30.000Z"
+  }
+]

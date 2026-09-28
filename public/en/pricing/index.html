@@ -46,7 +46,7 @@
                 <a href="/en/api-docs/" class="hover:text-white transition-colors">API Docs</a>
             </nav>
             <div class="flex items-center space-x-4">
-                <a href="/en/pricing/" class="hidden sm:inline-flex items-center px-4 py-2 rounded-xl text-sm font-semibold bg-indigo-600 text-white hover:bg-indigo-500 transition shadow-lg shadow-indigo-600/30">Get Started</a>
+                <a href="/en/pricing/" data-analytics="true" data-cta-location="header" data-cta-plan="header_get_started" class="hidden sm:inline-flex items-center px-4 py-2 rounded-xl text-sm font-semibold bg-indigo-600 text-white hover:bg-indigo-500 transition shadow-lg shadow-indigo-600/30">Get Started</a>
             </div>
         </div>
     </header>
@@ -80,7 +80,7 @@
                             <li class="flex items-center"><span class="text-indigo-400 mr-2 font-bold">✓</span> Community Support</li>
                         </ul>
                     </div>
-                    <a href="https://alparai.lemonsqueezy.com/checkout/buy/starter-plan?utm_source=alparai&utm_medium=pricing_page&utm_campaign=eu_ai_act_2026" target="_blank" rel="noopener noreferrer" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-center transition block">
+                    <a href="https://alparai.lemonsqueezy.com/checkout/buy/2103062?checkout[custom][plan]=starter&utm_source=alparai&utm_medium=pricing_page&utm_campaign=eu_ai_act_2026" target="_blank" rel="noopener noreferrer" data-analytics="true" data-cta-location="pricing_card" data-cta-plan="starter" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-center transition block">
                         Get Started Starter
                     </a>
                 </div>
@@ -108,7 +108,7 @@
                             <li class="flex items-center"><span class="text-indigo-400 mr-2 font-bold">✓</span> Priority 24/7 Support & SLA</li>
                         </ul>
                     </div>
-                    <a href="https://alparai.lemonsqueezy.com/checkout/buy/enterprise-plan?utm_source=alparai&utm_medium=pricing_page&utm_campaign=eu_ai_act_2026" target="_blank" rel="noopener noreferrer" class="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-center transition shadow-lg shadow-indigo-600/30 block">
+                    <a href="https://alparai.lemonsqueezy.com/checkout/buy/2103062?checkout[custom][plan]=enterprise&utm_source=alparai&utm_medium=pricing_page&utm_campaign=eu_ai_act_2026" target="_blank" rel="noopener noreferrer" data-analytics="true" data-cta-location="pricing_card" data-cta-plan="enterprise" class="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-center transition shadow-lg shadow-indigo-600/30 block">
                         Get Started Enterprise
                     </a>
                 </div>
@@ -131,7 +131,7 @@
                             <li class="flex items-center"><span class="text-indigo-400 mr-2 font-bold">✓</span> Custom Legal SLA & Indemnification</li>
                         </ul>
                     </div>
-                    <a href="mailto:sales@alparai.com?subject=Sovereign%20Enterprise%20Inquiry" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-center transition block">
+                    <a href="mailto:sales@alparai.com?subject=Sovereign%20Enterprise%20Inquiry" data-analytics="true" data-cta-location="pricing_card" data-cta-plan="sovereign_custom" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-center transition block">
                         Contact Sales
                     </a>
                 </div>
@@ -156,5 +156,32 @@
             </div>
         </div>
     </footer>
+
+    <!-- GTM & Analytics Event Tracking (Simulated) -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('[data-analytics="true"]').forEach((btn) => {
+                btn.addEventListener('click', (event) => {
+                    const plan = btn.getAttribute('data-cta-plan') || 'unknown';
+                    const location = btn.getAttribute('data-cta-location') || 'pricing';
+                    const label = (btn.textContent || '').trim();
+                    const payload = {
+                        event: 'gtm.click',
+                        eventCategory: 'Ecommerce_CTA',
+                        eventAction: 'click_pricing_cta',
+                        eventLabel: label,
+                        plan: plan,
+                        location: location,
+                        timestamp: new Date().toISOString()
+                    };
+                    window.dataLayer.push(payload);
+                    if (window.console && typeof window.console.log === 'function') {
+                        console.log('[GTM Event Tracker]', payload);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

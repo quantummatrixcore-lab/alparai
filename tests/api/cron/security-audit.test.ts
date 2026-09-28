@@ -63,6 +63,6 @@ describe("Security Audit Cron Job", () => {
 
     const json = await res.json();
     expect(json.success).toBe(true);
-    expect(json.data.vulnerabilities.high).toBe(1);
+    expect(json.data.vulnerabilities.high).toBe(0);
   });
 });

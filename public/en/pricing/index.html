@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing — AlparAi Enterprise AI Governance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                            950: '#1e1b4b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white min-h-screen flex flex-col justify-between">
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <a href="/en/" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center shadow-lg shadow-indigo-500/30">
+                        <span class="text-white font-black text-xl">A</span>
+                    </div>
+                    <span class="text-2xl font-black tracking-tight bg-gradient-to-r from-white via-indigo-200 to-indigo-400 bg-clip-text text-transparent">AlparAi</span>
+                </a>
+            </div>
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+                <a href="/en/" class="hover:text-white transition-colors">Home</a>
+                <a href="/en/features/" class="hover:text-white transition-colors">Features</a>
+                <a href="/en/about/" class="hover:text-white transition-colors">About</a>
+                <a href="/en/pricing/" class="text-indigo-400 transition-colors">Pricing</a>
+                <a href="/en/api-docs/" class="hover:text-white transition-colors">API Docs</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <a href="/en/pricing/" class="hidden sm:inline-flex items-center px-4 py-2 rounded-xl text-sm font-semibold bg-indigo-600 text-white hover:bg-indigo-500 transition shadow-lg shadow-indigo-600/30">Get Started</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow py-16 sm:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto">
+                <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight">Simple, Transparent Pricing</h1>
+                <p class="mt-4 text-xl text-slate-400">Choose the ideal plan for your organization's AI governance and compliance needs.</p>
+            </div>
+
+            <!-- Pricing Cards Grid -->
+            <div class="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+                <!-- Plan 1: Starter -->
+                <div class="p-8 rounded-3xl bg-slate-900 border border-slate-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold text-white">Starter</h3>
+                            <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-300 text-xs font-semibold">Growth</span>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-6">For growing teams and early-stage AI applications needing basic guardrails.</p>
+                        <div class="mb-6">
+                            <span class="text-4xl font-extrabold text-white">$49</span>
+                            <span class="text-slate-400 text-sm">/month</span>
+                        </div>
+                        <ul class="space-y-4 text-sm text-slate-300 mb-8">
+                            <li class="flex items-center"><span class="text-indigo-400 mr-2 font-bold">✓</span> Up to 50,000 requests/mo</li>
+                            <li class="flex items-center"><span class="text-indigo-400 mr-2 font-bold">✓</span> Real-time Hallucination Detection</li>
+                            <li class="flex items-center"><span class="text-indigo-400 mr-2 font-bold">✓</span> Standard Audit Logs (30 days)</li>
+                            <li class="flex items-center"><span class="text-indigo-400 mr-2 font-bold">✓</span> Community Support</li>
+                        </ul>
+                    </div>
+                    <a href="https://alparai.lemonsqueezy.com/checkout/buy/starter-plan" target="_blank" rel="noopener noreferrer" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-center transition block">
+                        Get Started Starter
+                    </a>
+                </div>
+
+                <!-- Plan 2: Enterprise (Featured) -->
+                <div class="p-8 rounded-3xl bg-gradient-to-b from-indigo-950/50 to-slate-900 border-2 border-indigo-500 relative flex flex-col justify-between shadow-2xl shadow-indigo-500/10">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 px-4 py-1 rounded-full bg-indigo-600 text-white text-xs font-bold uppercase tracking-wider">
+                        Most Popular
+                    </div>
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold text-white">Enterprise</h3>
+                            <span class="px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-semibold">Regulated</span>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-6">For institutions requiring full EU AI Act compliance and dedicated audit trails.</p>
+                        <div class="mb-6">
+                            <span class="text-4xl font-extrabold text-white">$299</span>
+                            <span class="text-slate-400 text-sm">/month</span>
+                        </div>
+                        <ul class="space-y-4 text-sm text-slate-300 mb-8">
+                            <li class="flex items-center"><span class="text-indigo-400 mr-2 font-bold">✓</span> Unlimited Requests & Guardrails</li>
+                            <li class="flex items-center"><span class="text-indigo-400 mr-2 font-bold">✓</span> Full EU AI Act Compliance Engine</li>
+                            <li class="flex items-center"><span class="text-indigo-400 mr-2 font-bold">✓</span> Immutable Cryptographic Audit Logs</li>
+                            <li class="flex items-center"><span class="text-indigo-400 mr-2 font-bold">✓</span> Human-in-the-Loop Override Workflows</li>
+                            <li class="flex items-center"><span class="text-indigo-400 mr-2 font-bold">✓</span> Priority 24/7 Support & SLA</li>
+                        </ul>
+                    </div>
+                    <a href="https://alparai.lemonsqueezy.com/checkout/buy/enterprise-plan" target="_blank" rel="noopener noreferrer" class="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-center transition shadow-lg shadow-indigo-600/30 block">
+                        Get Started Enterprise
+                    </a>
+                </div>
+
+                <!-- Plan 3: Sovereign Custom -->
+                <div class="p-8 rounded-3xl bg-slate-900 border border-slate-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold text-white">Sovereign</h3>
+                            <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-300 text-xs font-semibold">Custom</span>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-6">Air-gapped on-premise deployments and custom enterprise model adapters.</p>
+                        <div class="mb-6">
+                            <span class="text-4xl font-extrabold text-white">Custom</span>
+                        </div>
+                        <ul class="space-y-4 text-sm text-slate-300 mb-8">
+                            <li class="flex items-center"><span class="text-indigo-400 mr-2 font-bold">✓</span> On-Premise Air-Gapped Deployment</li>
+                            <li class="flex items-center"><span class="text-indigo-400 mr-2 font-bold">✓</span> Custom Model Safety Fine-Tuning</li>
+                            <li class="flex items-center"><span class="text-indigo-400 mr-2 font-bold">✓</span> Dedicated Compliance Officer</li>
+                            <li class="flex items-center"><span class="text-indigo-400 mr-2 font-bold">✓</span> Custom Legal SLA & Indemnification</li>
+                        </ul>
+                    </div>
+                    <a href="mailto:sales@alparai.com?subject=Sovereign%20Enterprise%20Inquiry" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-center transition block">
+                        Contact Sales
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-12 text-slate-400 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white font-bold">A</div>
+                <span class="text-lg font-bold text-white">AlparAi</span>
+                <span class="text-xs text-slate-500 ml-2">© 2026 AlparAi Inc. All rights reserved.</span>
+            </div>
+            <div class="flex space-x-6">
+                <a href="/en/" class="hover:text-white transition">Home</a>
+                <a href="/en/features/" class="hover:text-white transition">Features</a>
+                <a href="/en/about/" class="hover:text-white transition">About</a>
+                <a href="/en/pricing/" class="hover:text-white transition">Pricing</a>
+                <a href="/en/api-docs/" class="hover:text-white transition">API Docs</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

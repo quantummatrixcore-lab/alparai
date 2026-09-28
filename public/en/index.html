@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>AlparAi — The AI Hallucination & Compliance Radar | EU AI Act & ISO 42001</title>
+  <meta name="description" content="AlparAi — EU AI Act compliant AI hallucination detection and compliance scoring platform for enterprises. Real-time B2B AI auditing.">
+  <meta name="keywords" content="AlparAi, AI compliance, EU AI Act, hallucination detection, ISO 42001, SOC 2, AI evaluation, LLM benchmark, AI governance">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#030712">
+  <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://alparai.com/en">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AlparAi — AI Hallucination & Compliance Radar">
+  <meta property="og:description" content="Detect AI hallucinations, score compliance, and generate EU AI Act audit trails. Trusted by 2,400+ enterprises.">
+  <meta property="og:url" content="https://alparai.com">
+  <meta property="og:image" content="https://alparai.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AlparAi — AI Hallucination & Compliance Radar">
+  <meta name="twitter:description" content="Detect AI hallucinations, score compliance, and generate EU AI Act audit trails. Trusted by 2,400+ enterprises.">
+  <meta name="twitter:image" content="https://alparai.com/og-image.png">
+
+  <!-- JSON-LD Structured Data: Organization & SoftwareApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://alparai.com/#organization",
+        "name": "AlparAi",
+        "url": "https://alparai.com",
+        "logo": "https://alparai.com/favicon.svg",
+        "description": "EU AI Act compliant AI hallucination detection and compliance scoring platform for enterprises. Real-time B2B AI auditing."
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://alparai.com/#software",
+        "name": "AlparAi Platform",
+        "applicationCategory": "SecurityApplication",
+        "operatingSystem": "All",
+        "url": "https://alparai.com",
+        "description": "Detect AI hallucinations, score compliance, and generate EU AI Act audit trails. Trusted by 2,400+ enterprises.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-icon.png">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              900: '#0c4a6e',
+            },
+            dark: {
+              950: '#030712',
+              900: '#070d1d',
+              850: '#0b1428',
+              800: '#111f3d',
+              700: '#1b2e56',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['JetBrains Mono', 'Fira Code', 'Courier New', 'monospace'],
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Lemon Squeezy Overlay JS -->
+  <script src="https://assets.lemonsqueezy.com/lemon.js" defer></script>
+
+  <style>
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.35; transform: scale(1); }
+      50% { opacity: 0.65; transform: scale(1.05); }
+    }
+    @keyframes radarSweep {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .animate-radar {
+      animation: radarSweep 4s linear infinite;
+    }
+    .bg-grid-pattern {
+      background-image: radial-gradient(rgba(56, 189, 248, 0.12) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .glass-panel {
+      background: rgba(11, 20, 40, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-panel:hover {
+      border-color: rgba(56, 189, 248, 0.35);
+    }
+    .glass-nav {
+      background: rgba(7, 13, 29, 0.82);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    /* Hide scrollbar for tabs */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="bg-dark-950 text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white min-h-screen relative overflow-x-hidden">
+
+  <!-- Ambient Background Lighting -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-gradient-to-b from-brand-500/15 via-blue-600/10 to-transparent blur-3xl rounded-full"></div>
+    <div class="absolute top-[35%] -left-48 w-[600px] h-[600px] bg-indigo-600/10 blur-3xl rounded-full"></div>
+    <div class="absolute top-[60%] -right-48 w-[600px] h-[600px] bg-sky-500/10 blur-3xl rounded-full"></div>
+    <div class="absolute inset-0 bg-grid-pattern opacity-40"></div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="relative z-10 flex flex-col min-h-screen">
+
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-4 z-50 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+      <nav class="glass-nav rounded-2xl px-4 py-3 sm:px-6 flex items-center justify-between shadow-2xl shadow-black/40">
+        
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-3 group focus:outline-none">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-blue-500 p-0.5 shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-transform">
+            <div class="w-full h-full bg-dark-900 rounded-[10px] flex items-center justify-center">
+              <!-- Shield SVG Icon -->
+              <svg class="w-5 h-5 text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <path d="m9 12 2 2 4-4"/>
+              </svg>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center gap-1.5">
+              <span class="text-xl font-extrabold tracking-tight text-white">Alpar<span class="text-brand-400">Ai</span></span>
+              <span class="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-brand-500/10 border border-brand-400/20 text-brand-300">B2B RADAR</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <div class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
+          <a href="#radar" class="hover:text-brand-400 transition-colors" data-i18n="nav.radar">Radar Live</a>
+          <a href="#features" class="hover:text-brand-400 transition-colors" data-i18n="nav.features">Features</a>
+          <a href="#compliance" class="hover:text-brand-400 transition-colors" data-i18n="nav.compliance">Compliance</a>
+          <a href="#pricing" class="hover:text-brand-400 transition-colors" data-i18n="nav.pricing">Pricing</a>
+          <a href="/openapi.yaml" target="_blank" class="hover:text-brand-400 transition-colors flex items-center gap-1">
+            <span>API Docs</span>
+            <svg class="w-3.5 h-3.5 opacity-70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+
+        <!-- Action Buttons + Language Switcher -->
+        <div class="flex items-center gap-3">
+          
+          <!-- TR / EN Toggle Button -->
+          <button id="langToggleBtn" onclick="toggleLanguage()" class="px-2.5 py-1.5 rounded-lg border border-slate-700 bg-slate-800/80 hover:bg-slate-700 text-xs font-semibold text-slate-200 transition-colors flex items-center gap-1.5 shadow-sm">
+            <span class="text-brand-400 text-xs">🌐</span>
+            <span id="currentLangLabel">TR</span>
+          </button>
+
+          <!-- Schedule Demo CTA -->
+          <button onclick="openModal('demoModal')" class="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-xl text-xs font-semibold text-slate-200 bg-slate-800/90 hover:bg-slate-700 border border-slate-700 hover:border-slate-600 transition-all shadow-sm" data-i18n="nav.demoBtn">
+            Schedule Demo
+          </button>
+
+          <!-- Primary CTA Button -->
+          <button onclick="openModal('auditModal')" class="inline-flex items-center justify-center px-4 py-2 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-brand-600 to-blue-600 hover:from-brand-500 hover:to-blue-500 shadow-md shadow-brand-600/30 transition-all hover:scale-[1.02] active:scale-[0.98]" data-i18n="nav.auditBtn">
+            Start Free Audit
+          </button>
+        </div>
+
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="flex-grow">
+      <section class="pt-20 pb-16 sm:pt-24 sm:pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center relative">
+
+        <!-- Top Trust Badges Bar -->
+        <div class="inline-flex flex-wrap items-center justify-center gap-2 p-1.5 px-3 rounded-full bg-dark-900/90 border border-brand-500/20 text-xs text-slate-300 mb-8 backdrop-blur-md shadow-lg shadow-black/30">
+          <span class="flex h-2 w-2 relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span class="font-semibold text-brand-300" data-i18n="hero.badge">B2B AI Compliance & Evaluation Platform</span>
+          <span class="text-slate-600">|</span>
+          <span class="px-2 py-0.5 rounded bg-brand-500/10 text-[11px] font-medium text-brand-300">EU AI Act Ready</span>
+          <span class="px-2 py-0.5 rounded bg-blue-500/10 text-[11px] font-medium text-blue-300">ISO 42001</span>
+          <span class="px-2 py-0.5 rounded bg-purple-500/10 text-[11px] font-medium text-purple-300">GDPR Compliant</span>
+        </div>
+
+        <!-- Hero Headline -->
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white max-w-5xl mx-auto leading-[1.12]">
+          <span class="block" data-i18n="hero.title1">AlparAi — The AI Hallucination</span>
+          <span class="bg-gradient-to-r from-brand-400 via-sky-300 to-blue-500 bg-clip-text text-transparent" data-i18n="hero.title2">& Compliance Radar</span>
+        </h1>
+
+        <!-- Hero Subtitle -->
+        <p class="mt-6 text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed" data-i18n="hero.subtitle">
+          EU AI Act compliant evaluation for enterprise AI systems. Continuous hallucination detection, algorithmic bias mitigation, and verifiable cryptographic compliance audits.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button onclick="openModal('auditModal')" class="w-full sm:w-auto px-8 py-3.5 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-brand-600 via-blue-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 shadow-xl shadow-brand-500/25 transition-all hover:scale-[1.02] flex items-center justify-center gap-2 group">
+            <span data-i18n="hero.ctaPrimary">Start Free Audit</span>
+            <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </button>
+
+          <button onclick="openModal('demoModal')" class="w-full sm:w-auto px-8 py-3.5 rounded-xl text-sm font-semibold text-slate-200 bg-dark-900/90 hover:bg-slate-800 border border-slate-700/80 hover:border-brand-500/40 transition-all flex items-center justify-center gap-2">
+            <svg class="w-4 h-4 text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+            <span data-i18n="hero.ctaSecondary">Schedule Demo</span>
+          </button>
+
+          <a href="#pricing" class="w-full sm:w-auto px-6 py-3.5 rounded-xl text-sm font-semibold text-slate-300 hover:text-white bg-slate-800/40 hover:bg-slate-800/80 border border-slate-800 transition-all flex items-center justify-center gap-2">
+            <span data-i18n="hero.ctaPricing">View Pricing ($199/mo)</span>
+          </a>
+        </div>
+
+        <!-- Trust Signals Marquee / Badges -->
+        <div class="mt-16 pt-8 border-t border-slate-800/60 flex flex-wrap items-center justify-center gap-6 sm:gap-12 opacity-80">
+          <div class="flex items-center gap-2 text-xs font-semibold text-slate-400">
+            <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>EU AI ACT ARTICLE 53/73 READY</span>
+          </div>
+          <div class="flex items-center gap-2 text-xs font-semibold text-slate-400">
+            <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>ISO/IEC 42001 CERTIFIABLE</span>
+          </div>
+          <div class="flex items-center gap-2 text-xs font-semibold text-slate-400">
+            <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>SOC 2 TYPE II AUDIT PIPELINE</span>
+          </div>
+          <div class="flex items-center gap-2 text-xs font-semibold text-slate-400">
+            <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>SHA-384 CRYPTOGRAPHIC VAULT</span>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Live Interactive Radar Simulation Section -->
+      <section id="radar" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="glass-panel rounded-3xl p-6 sm:p-10 relative overflow-hidden shadow-2xl">
+          
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 pb-6 border-b border-slate-800">
+            <div>
+              <div class="inline-flex items-center gap-2 text-xs font-bold text-brand-400 uppercase tracking-widest mb-1">
+                <span class="w-2 h-2 rounded-full bg-brand-400 animate-ping"></span>
+                <span data-i18n="radar.label">Live Radar Engine v2.6</span>
+              </div>
+              <h2 class="text-2xl sm:text-3xl font-bold text-white" data-i18n="radar.title">Interactive Hallucination & Compliance Scanner</h2>
+            </div>
+            
+            <!-- Quick Preset Selectors -->
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="text-xs text-slate-400 mr-1" data-i18n="radar.presets">Test Scenarios:</span>
+              <button onclick="loadScenario('fintech')" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-900 border border-slate-700 hover:border-brand-500 text-slate-300 hover:text-white transition-all">
+                FinTech LLM
+              </button>
+              <button onclick="loadScenario('healthcare')" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-900 border border-slate-700 hover:border-brand-500 text-slate-300 hover:text-white transition-all">
+                Health AI Diagnostic
+              </button>
+              <button onclick="loadScenario('legal')" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-dark-900 border border-slate-700 hover:border-brand-500 text-slate-300 hover:text-white transition-all">
+                Legal Contract AI
+              </button>
+            </div>
+          </div>
+
+          <!-- Radar Core Grid -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- Left: Prompt & Output Inspector -->
+            <div class="lg:col-span-7 space-y-4">
+              <div>
+                <label class="block text-xs font-semibold text-slate-400 mb-1.5" data-i18n="radar.promptLabel">AI System Prompt / Query Input</label>
+                <div id="simPrompt" class="w-full bg-dark-950/80 border border-slate-800 rounded-xl p-3.5 text-xs font-mono text-slate-300">
+                  "Analyze quarterly margin trends for Tier-1 banks and provide non-guaranteed statutory reserve ratios."
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-400 mb-1.5" data-i18n="radar.responseLabel">Model Output (Candidate Evaluation Stream)</label>
+                <div id="simResponse" class="w-full bg-dark-950/80 border border-slate-800 rounded-xl p-3.5 text-xs font-mono text-slate-300 min-h-[90px] leading-relaxed">
+                  "Tier-1 institutions maintain statutory reserve ratios of 14.8% strictly mandated under Basel IV Annex 9. Historical liquidity reserves require 100% sovereign bond allocations."
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between pt-2">
+                <button id="scanBtn" onclick="runScan()" class="px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-brand-600 hover:bg-brand-500 transition-all flex items-center gap-2 shadow-lg shadow-brand-600/20">
+                  <svg class="w-4 h-4 animate-spin hidden" id="scanSpinner" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
+                  <span id="scanBtnText" data-i18n="radar.runBtn">Run Forensic Radar Scan</span>
+                </button>
+                <div class="text-[11px] font-mono text-slate-500">Latency: <span id="radarLatency" class="text-emerald-400 font-bold">11.4 ms</span> (Zero-Copy)</div>
+              </div>
+            </div>
+
+            <!-- Right: Radar Metrics & Compliance Telemetry -->
+            <div class="lg:col-span-5 bg-dark-900/90 border border-slate-800 rounded-2xl p-5 space-y-4">
+              
+              <!-- Radar Visualizer Canvas / Graphic -->
+              <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
+                <div class="flex items-center gap-2">
+                  <div class="relative w-8 h-8 rounded-full border border-brand-500/40 flex items-center justify-center overflow-hidden bg-brand-950/40">
+                    <div class="absolute inset-0 border-r border-brand-400/80 animate-radar"></div>
+                    <div class="w-1.5 h-1.5 bg-brand-400 rounded-full z-10 shadow-sm shadow-brand-400"></div>
+                  </div>
+                  <div>
+                    <div class="text-xs font-bold text-white" data-i18n="radar.statusTitle">Radar Status: Armed</div>
+                    <div class="text-[10px] text-emerald-400 font-mono">Consensus Verified (12/12)</div>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <div class="text-xs text-slate-400">Wilson Trust Score</div>
+                  <div id="simWilsonScore" class="text-xl font-extrabold text-brand-400 font-mono">98.2 / 100</div>
+                </div>
+              </div>
+
+              <!-- Metric Bars -->
+              <div class="space-y-3">
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1">
+                    <span class="text-slate-300" data-i18n="radar.hallucinationRisk">Hallucination Risk Level</span>
+                    <span id="simRiskVal" class="text-emerald-400 font-mono font-bold">1.8% (Negligible)</span>
+                  </div>
+                  <div class="w-full bg-dark-950 rounded-full h-2 overflow-hidden">
+                    <div id="simRiskBar" class="bg-gradient-to-r from-emerald-500 to-brand-500 h-2 rounded-full transition-all duration-700" style="width: 98%"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1">
+                    <span class="text-slate-300" data-i18n="radar.euCompliance">EU AI Act Conformity (Art. 53/73)</span>
+                    <span id="simEuVal" class="text-brand-400 font-mono font-bold">Compliant (Grade A)</span>
+                  </div>
+                  <div class="w-full bg-dark-950 rounded-full h-2 overflow-hidden">
+                    <div id="simEuBar" class="bg-brand-500 h-2 rounded-full transition-all duration-700" style="width: 96%"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1">
+                    <span class="text-slate-300" data-i18n="radar.isoAudit">ISO 42001 Algorithmic Governance</span>
+                    <span id="simIsoVal" class="text-indigo-400 font-mono font-bold">Passing (100%)</span>
+                  </div>
+                  <div class="w-full bg-dark-950 rounded-full h-2 overflow-hidden">
+                    <div id="simIsoBar" class="bg-indigo-500 h-2 rounded-full transition-all duration-700" style="width: 100%"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Forensic Hash Seal -->
+              <div class="bg-dark-950 p-2.5 rounded-xl border border-slate-800 text-[10px] font-mono text-slate-400 flex items-center justify-between">
+                <span class="truncate">SHA-384: <span id="simHash" class="text-slate-300">e8f49a21c83401b2a95c91f0...</span></span>
+                <span class="text-emerald-400 font-semibold uppercase ml-2 whitespace-nowrap">SEALED</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 3 Core Architectural Features -->
+      <section id="features" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-xs font-bold text-brand-400 uppercase tracking-widest px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20" data-i18n="features.pill">ENTERPRISE PILLARS</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-4" data-i18n="features.heading">Engineered for Regulated Enterprise AI</h2>
+          <p class="mt-3 text-slate-400 text-sm sm:text-base" data-i18n="features.subheading">Comprehensive governance layer protecting financial institutions, healthcare providers, and high-stakes LLM products.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <!-- Feature 1: Real-time Hallucination Detection -->
+          <div class="glass-panel rounded-2xl p-8 transition-all hover:-translate-y-1.5 duration-300 flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 mb-6">
+                <!-- Radar / Alert SVG -->
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-3" data-i18n="feat1.title">Real-Time Hallucination Detection</h3>
+              <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat1.desc">
+                Sub-15ms token-level entropy monitoring and cross-verification consensus. Detects factual drift, logical contradictions, and unauthorized extrapolation before responses reach end users.
+              </p>
+            </div>
+            <ul class="mt-6 pt-6 border-t border-slate-800 space-y-2 text-xs text-slate-300">
+              <li class="flex items-center gap-2"><span class="text-brand-400">✓</span> Zero-storage PII & prompt tokenization</li>
+              <li class="flex items-center gap-2"><span class="text-brand-400">✓</span> Cross-model arbitration consensus</li>
+              <li class="flex items-center gap-2"><span class="text-brand-400">✓</span> Automated red-teaming vectors</li>
+            </ul>
+          </div>
+
+          <!-- Feature 2: Compliance Scoring -->
+          <div class="glass-panel rounded-2xl p-8 transition-all hover:-translate-y-1.5 duration-300 flex flex-col justify-between border-brand-500/30 shadow-xl shadow-brand-500/5">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mb-6">
+                <!-- Scale / Compliance SVG -->
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-3" data-i18n="feat2.title">Continuous Compliance Scoring</h3>
+              <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat2.desc">
+                Mathematical Wilson Confidence Interval score mapping every generation to EU AI Act (Articles 53 & 73) and ISO 42001 Annex requirements. Generates audit-ready compliance dossiers.
+              </p>
+            </div>
+            <ul class="mt-6 pt-6 border-t border-slate-800 space-y-2 text-xs text-slate-300">
+              <li class="flex items-center gap-2"><span class="text-blue-400">✓</span> High-risk classification matrix</li>
+              <li class="flex items-center gap-2"><span class="text-blue-400">✓</span> Automated PDF compliance dossiers</li>
+              <li class="flex items-center gap-2"><span class="text-blue-400">✓</span> Continuous drift telemetry</li>
+            </ul>
+          </div>
+
+          <!-- Feature 3: B2B API Access -->
+          <div class="glass-panel rounded-2xl p-8 transition-all hover:-translate-y-1.5 duration-300 flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-6">
+                <!-- API Code SVG -->
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-3" data-i18n="feat3.title">Enterprise B2B API Access</h3>
+              <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat3.desc">
+                High-throughput REST and streaming gRPC endpoints for your deployment pipeline. Drop-in SDKs with SHA-384 tamper-proof cryptographic logs suitable for court and regulatory filings.
+              </p>
+            </div>
+            <ul class="mt-6 pt-6 border-t border-slate-800 space-y-2 text-xs text-slate-300">
+              <li class="flex items-center gap-2"><span class="text-purple-400">✓</span> OpenAPI 3.1 & SDKs available</li>
+              <li class="flex items-center gap-2"><span class="text-purple-400">✓</span> Webhooks for real-time risk alerts</li>
+              <li class="flex items-center gap-2"><span class="text-purple-400">✓</span> Edge-native global low latency</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Trust Signals & Badges Showcase -->
+      <section id="compliance" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="glass-panel rounded-3xl p-8 sm:p-12 border-brand-500/20 bg-gradient-to-b from-dark-900 to-dark-950">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <div class="lg:col-span-7">
+              <div class="inline-flex items-center gap-2 text-xs font-bold text-brand-400 uppercase tracking-widest mb-2">
+                <span data-i18n="badgeSec.pill">VERIFIABLE TRUST PROTOCOL</span>
+              </div>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-4" data-i18n="badgeSec.title">
+                Embed AlparAi Trust Badges on Your AI Platform
+              </h2>
+              <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6" data-i18n="badgeSec.desc">
+                Prove to enterprise buyers and regulators that your AI models are audited in real time. Embed the interactive AlparAi Trust Badge to showcase your EU AI Act certification, Wilson Score, and ISO 42001 verification.
+              </p>
+              <div class="flex flex-wrap items-center gap-3">
+                <a href="/badge-demo.html" class="px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-brand-600 hover:bg-brand-500 transition-all flex items-center gap-2">
+                  <span data-i18n="badgeSec.btnDemo">View Live Trust Badge Demo</span>
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+                <a href="/badge.js" target="_blank" class="px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-slate-800/80 border border-slate-700 transition-all">
+                  badge.js Script
+                </a>
+              </div>
+            </div>
+
+            <!-- Visual Badge Preview Card -->
+            <div class="lg:col-span-5 flex justify-center">
+              <div class="w-full max-w-sm bg-dark-950 rounded-2xl p-6 border border-brand-500/30 shadow-2xl shadow-brand-500/10 text-center">
+                <div class="w-14 h-14 mx-auto rounded-2xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-400 mb-4">
+                  <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                </div>
+                <div class="text-xs font-mono uppercase tracking-wider text-brand-400 font-bold mb-1">ALPARAI VERIFIED AUDIT</div>
+                <div class="text-lg font-extrabold text-white">Trust Score 98.4%</div>
+                <div class="text-xs text-slate-400 mt-1 mb-4">EU AI Act (Art. 53/73) · ISO 42001 · SOC 2</div>
+                <div class="py-2 px-3 rounded-lg bg-dark-900 border border-slate-800 text-[11px] font-mono text-emerald-400 flex items-center justify-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                  Continuous Integrity Validated
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 Tier Pricing Section -->
+      <section id="pricing" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-xs font-bold text-brand-400 uppercase tracking-widest px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20" data-i18n="pricing.pill">PREDICTABLE PRICING</span>
+          <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-4" data-i18n="pricing.heading">Transparent Plans for AI Teams</h2>
+          <p class="mt-3 text-slate-400 text-sm sm:text-base" data-i18n="pricing.subheading">From research prototypes to mission-critical global enterprise deployments.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+          
+          <!-- Plan 1: Basic ($0) -->
+          <div class="glass-panel rounded-3xl p-8 flex flex-col justify-between transition-all hover:border-slate-600">
+            <div>
+              <div class="flex justify-between items-center mb-4">
+                <span class="text-base font-bold text-slate-200" data-i18n="plan1.name">Basic Plan</span>
+                <span class="text-[11px] font-semibold text-slate-400 px-2.5 py-0.5 rounded-full bg-slate-800">FREE FOREVER</span>
+              </div>
+              <div class="flex items-baseline gap-1 mb-4">
+                <span class="text-4xl font-extrabold text-white">$0</span>
+                <span class="text-slate-400 text-xs">/month</span>
+              </div>
+              <p class="text-slate-400 text-xs leading-relaxed mb-6" data-i18n="plan1.desc">
+                Ideal for indie developers, AI researchers, and preliminary prototype evaluation.
+              </p>
+              <ul class="space-y-3 text-xs text-slate-300 border-t border-slate-800/80 pt-6">
+                <li class="flex items-center gap-2"><span class="text-brand-400">✓</span> 1,000 queries / month</li>
+                <li class="flex items-center gap-2"><span class="text-brand-400">✓</span> Basic hallucination detection</li>
+                <li class="flex items-center gap-2"><span class="text-brand-400">✓</span> Community Wilson Trust benchmarks</li>
+                <li class="flex items-center gap-2"><span class="text-brand-400">✓</span> Public OpenAPI documentation</li>
+                <li class="flex items-center gap-2 text-slate-500"><span>✕</span> EU AI Act Compliance Dossier</li>
+                <li class="flex items-center gap-2 text-slate-500"><span>✕</span> SLA & Priority Support</li>
+              </ul>
+            </div>
+            <div class="mt-8">
+              <button onclick="openModal('auditModal')" class="w-full py-3 rounded-xl text-xs font-bold text-slate-200 bg-slate-800 hover:bg-slate-700 border border-slate-700 transition-all text-center" data-i18n="plan1.btn">
+                Start Free Audit
+              </button>
+            </div>
+          </div>
+
+          <!-- Plan 2: Professional ($199/month) - FEATURED / LEMONSQUEEZY -->
+          <div class="glass-panel rounded-3xl p-8 flex flex-col justify-between border-2 border-brand-500 relative shadow-2xl shadow-brand-500/20 bg-dark-900/90">
+            <!-- Popular Badge -->
+            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-brand-600 to-blue-600 text-[11px] font-extrabold text-white tracking-wider uppercase shadow-md">
+              MOST POPULAR
+            </div>
+
+            <div>
+              <div class="flex justify-between items-center mb-4 mt-2">
+                <span class="text-base font-bold text-white" data-i18n="plan2.name">Professional</span>
+                <span class="text-[11px] font-semibold text-brand-300 px-2.5 py-0.5 rounded-full bg-brand-500/10 border border-brand-500/30">GROWTH B2B</span>
+              </div>
+              <div class="flex items-baseline gap-1 mb-4">
+                <span class="text-5xl font-extrabold text-white">$199</span>
+                <span class="text-slate-400 text-xs">/month</span>
+              </div>
+              <p class="text-slate-300 text-xs leading-relaxed mb-6" data-i18n="plan2.desc">
+                Complete compliance & continuous hallucination radar for commercial AI SaaS and growing teams.
+              </p>
+              <ul class="space-y-3 text-xs text-slate-200 border-t border-slate-800/80 pt-6">
+                <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> <strong>50,000 queries</strong> / month</li>
+                <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> <strong>Real-time Hallucination & Bias Radar</strong></li>
+                <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> <strong>EU AI Act (Art. 53/73) Compliance Scoring</strong></li>
+                <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> <strong>Full B2B REST & Webhook API Access</strong></li>
+                <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Cryptographic SHA-384 Evidence Export</li>
+                <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> Embeddable Trust Badge for your app</li>
+                <li class="flex items-center gap-2"><span class="text-emerald-400 font-bold">✓</span> 99.9% Uptime SLA & Priority Support</li>
+              </ul>
+            </div>
+
+            <!-- LemonSqueezy Checkout Button -->
+            <div class="mt-8 space-y-2">
+              <a href="https://alparai.lemonsqueezy.com/checkout/custom/1af551c4-8153-4dbd-b54d-1e51594f4fe0?signature=e9ff4a194d946194788e258bebd2a7656430d869698a04a77a72008eb54fb934" 
+                 target="_blank" 
+                 rel="noopener noreferrer" 
+                 class="lemonsqueezy-button block w-full py-3.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-brand-500 via-blue-600 to-indigo-600 hover:from-brand-400 hover:to-indigo-500 shadow-xl shadow-brand-500/30 transition-all hover:scale-[1.02] text-center"
+                 data-i18n="plan2.btn">
+                Subscribe to Professional ($199/mo)
+              </a>
+              <div class="text-[10px] text-center text-slate-400 flex items-center justify-center gap-1.5">
+                <span>🔒 Powered by Lemon Squeezy</span>
+                <span>·</span>
+                <span>Cancel Anytime</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Plan 3: Enterprise (Custom) -->
+          <div class="glass-panel rounded-3xl p-8 flex flex-col justify-between transition-all hover:border-slate-600">
+            <div>
+              <div class="flex justify-between items-center mb-4">
+                <span class="text-base font-bold text-slate-200" data-i18n="plan3.name">Enterprise</span>
+                <span class="text-[11px] font-semibold text-purple-300 px-2.5 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/30">CUSTOM</span>
+              </div>
+              <div class="flex items-baseline gap-1 mb-4">
+                <span class="text-4xl font-extrabold text-white">Custom</span>
+                <span class="text-slate-400 text-xs">/annual</span>
+              </div>
+              <p class="text-slate-400 text-xs leading-relaxed mb-6" data-i18n="plan3.desc">
+                Dedicated infrastructure, custom regulatory models, and on-premise governance for regulated enterprises.
+              </p>
+              <ul class="space-y-3 text-xs text-slate-300 border-t border-slate-800/80 pt-6">
+                <li class="flex items-center gap-2"><span class="text-purple-400">✓</span> Unlimited Queries & Model Benchmarks</li>
+                <li class="flex items-center gap-2"><span class="text-purple-400">✓</span> Dedicated VPC / Air-Gapped On-Premises</li>
+                <li class="flex items-center gap-2"><span class="text-purple-400">✓</span> Full ISO 42001 & SOC 2 Continuous Audit Engine</li>
+                <li class="flex items-center gap-2"><span class="text-purple-400">✓</span> Custom Fine-Tuned Domain Detectors</li>
+                <li class="flex items-center gap-2"><span class="text-purple-400">✓</span> 24/7 Solutions Architect & 99.99% SLA</li>
+                <li class="flex items-center gap-2"><span class="text-purple-400">✓</span> Direct EU Regulatory Audit Liaison</li>
+              </ul>
+            </div>
+            <div class="mt-8">
+              <button onclick="openModal('demoModal')" class="w-full py-3 rounded-xl text-xs font-bold text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 transition-all text-center" data-i18n="plan3.btn">
+                Schedule Demo
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+        <h2 class="text-2xl sm:text-3xl font-bold text-white text-center mb-10" data-i18n="faq.title">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          <div class="glass-panel rounded-2xl p-5">
+            <h3 class="text-sm font-bold text-white mb-2" data-i18n="faq.q1">How does AlparAi verify EU AI Act compliance?</h3>
+            <p class="text-xs text-slate-400 leading-relaxed" data-i18n="faq.a1">
+              AlparAi inspects model output telemetry against Article 53 (technical documentation obligations) and Article 73 (incident reporting & transparency). Automated dossiers can be submitted directly during audits.
+            </p>
+          </div>
+          <div class="glass-panel rounded-2xl p-5">
+            <h3 class="text-sm font-bold text-white mb-2" data-i18n="faq.q2">Do you store our confidential prompts or PII?</h3>
+            <p class="text-xs text-slate-400 leading-relaxed" data-i18n="faq.a2">
+              No. AlparAi operates under strict Zero-Data-Retention architecture. PII and proprietary tokens are anonymized in memory using L1-aligned cryptographic hashing before mathematical entropy evaluation.
+            </p>
+          </div>
+          <div class="glass-panel rounded-2xl p-5">
+            <h3 class="text-sm font-bold text-white mb-2" data-i18n="faq.q3">How do I integrate the Professional plan API?</h3>
+            <p class="text-xs text-slate-400 leading-relaxed" data-i18n="faq.a3">
+              Upon subscribing via Lemon Squeezy, an API token is instantly generated. Simply set the Authorization header in your HTTP or gRPC client. Integration takes less than 5 minutes.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bottom Banner CTA -->
+      <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="glass-panel rounded-3xl p-10 sm:p-14 text-center bg-gradient-to-r from-brand-900/30 via-dark-900 to-blue-900/30 border border-brand-500/30 shadow-2xl relative overflow-hidden">
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4" data-i18n="banner.title">Secure Your Enterprise AI with AlparAi Today</h2>
+          <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto mb-8" data-i18n="banner.desc">
+            Deploy continuous hallucination radar and EU AI Act compliance verification in minutes.
+          </p>
+          <div class="flex flex-wrap items-center justify-center gap-4">
+            <button onclick="openModal('auditModal')" class="px-8 py-3.5 rounded-xl text-xs font-bold text-white bg-brand-600 hover:bg-brand-500 shadow-xl shadow-brand-500/30 transition-all hover:scale-105" data-i18n="banner.ctaAudit">
+              Start Free Audit
+            </button>
+            <button onclick="openModal('demoModal')" class="px-8 py-3.5 rounded-xl text-xs font-semibold text-slate-200 bg-dark-950 hover:bg-slate-800 border border-slate-700 transition-all" data-i18n="banner.ctaDemo">
+              Schedule Enterprise Demo
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800/80 bg-dark-950/90 py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full text-xs text-slate-500">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+          <div class="w-7 h-7 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold text-xs">
+            A
+          </div>
+          <div>
+            <span class="font-bold text-slate-300">AlparAi Platform</span> — The AI Hallucination & Compliance Radar.
+            <div class="text-[11px] text-slate-500">EU AI Act · ISO/IEC 42001 · SOC 2 Type II · GDPR Compliant</div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-6 text-slate-400">
+          <a href="/openapi.yaml" target="_blank" class="hover:text-white transition-colors">OpenAPI 3.1</a>
+          <a href="/llms.txt" target="_blank" class="hover:text-white transition-colors">llms.txt</a>
+          <a href="/badge-demo.html" class="hover:text-white transition-colors">Trust Badge Demo</a>
+          <a href="/SECURITY.md" target="_blank" class="hover:text-white transition-colors">Security Policy</a>
+          <a href="https://github.com/quantummatrixcore-lab/alparai" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">GitHub</a>
+          <a href="mailto:contact@alparai.com" class="hover:text-brand-400 transition-colors">contact@alparai.com</a>
+        </div>
+      </div>
+      <div class="mt-8 pt-6 border-t border-slate-900 text-center text-[11px] text-slate-600">
+        © 2026 AlparAi Inc. All rights reserved. Autonomous cross-audit & cryptographic evidence framework.
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Modal: Start Free Audit -->
+  <div id="auditModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="glass-panel bg-dark-900 rounded-3xl p-6 sm:p-8 max-w-lg w-full border border-brand-500/30 shadow-2xl relative">
+      <button onclick="closeModal('auditModal')" class="absolute top-5 right-5 text-slate-400 hover:text-white text-lg">✕</button>
+      <div class="w-10 h-10 rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-400 mb-4">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3 class="text-xl font-bold text-white mb-1" data-i18n="modalAudit.title">Start Free AI Audit</h3>
+      <p class="text-xs text-slate-400 mb-6" data-i18n="modalAudit.desc">Submit your model endpoint or prompt to run a free EU AI Act & Hallucination audit.</p>
+      
+      <form id="auditForm" onsubmit="handleAuditSubmit(event)" class="space-y-4 text-xs">
+        <div>
+          <label class="block font-semibold text-slate-300 mb-1" data-i18n="modalAudit.emailLabel">Work Email</label>
+          <input type="email" required placeholder="alex@company.com" class="w-full bg-dark-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-slate-200 focus:outline-none focus:border-brand-500">
+        </div>
+        <div>
+          <label class="block font-semibold text-slate-300 mb-1" data-i18n="modalAudit.modelLabel">Primary Model Provider</label>
+          <select class="w-full bg-dark-950 border border-slate-700 rounded-xl px-3 py-2.5 text-slate-200 focus:outline-none focus:border-brand-500">
+            <option>OpenAI (GPT-4o, o1, o3)</option>
+            <option>Anthropic (Claude 3.5 Sonnet)</option>
+            <option>Google (Gemini 2.5/3.0)</option>
+            <option>Self-Hosted / Open-Weights (Llama, DeepSeek)</option>
+            <option>Other / Multi-provider</option>
+          </select>
+        </div>
+        <button type="submit" class="w-full py-3 rounded-xl font-bold text-white bg-brand-600 hover:bg-brand-500 transition-all" data-i18n="modalAudit.submit">
+          Generate Instant Audit Report
+        </button>
+      </form>
+      <div id="auditSuccessMsg" class="hidden text-center py-4">
+        <div class="text-emerald-400 font-bold text-sm mb-1">Audit Request Initialized!</div>
+        <p class="text-xs text-slate-400">Our engine has started evaluating benchmark vectors. You will receive telemetry shortly.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Schedule Demo -->
+  <div id="demoModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="glass-panel bg-dark-900 rounded-3xl p-6 sm:p-8 max-w-lg w-full border border-blue-500/30 shadow-2xl relative">
+      <button onclick="closeModal('demoModal')" class="absolute top-5 right-5 text-slate-400 hover:text-white text-lg">✕</button>
+      <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 mb-4">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+      </div>
+      <h3 class="text-xl font-bold text-white mb-1" data-i18n="modalDemo.title">Schedule Enterprise Demo</h3>
+      <p class="text-xs text-slate-400 mb-6" data-i18n="modalDemo.desc">Discover how AlparAi shields your enterprise with on-premise governance and compliance dossiers.</p>
+      
+      <form id="demoForm" onsubmit="handleDemoSubmit(event)" class="space-y-4 text-xs">
+        <div>
+          <label class="block font-semibold text-slate-300 mb-1" data-i18n="modalDemo.nameLabel">Full Name</label>
+          <input type="text" required placeholder="Dr. Sarah Connor" class="w-full bg-dark-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-slate-200 focus:outline-none focus:border-blue-500">
+        </div>
+        <div>
+          <label class="block font-semibold text-slate-300 mb-1" data-i18n="modalDemo.emailLabel">Enterprise Email</label>
+          <input type="email" required placeholder="sarah@enterprise.eu" class="w-full bg-dark-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-slate-200 focus:outline-none focus:border-blue-500">
+        </div>
+        <div>
+          <label class="block font-semibold text-slate-300 mb-1" data-i18n="modalDemo.companyLabel">Company & Jurisdiction</label>
+          <input type="text" required placeholder="FinTech Europe AG — EU / UK" class="w-full bg-dark-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-slate-200 focus:outline-none focus:border-blue-500">
+        </div>
+        <button type="submit" class="w-full py-3 rounded-xl font-bold text-white bg-blue-600 hover:bg-blue-500 transition-all" data-i18n="modalDemo.submit">
+          Confirm Demonstration Call
+        </button>
+      </form>
+      <div id="demoSuccessMsg" class="hidden text-center py-4">
+        <div class="text-emerald-400 font-bold text-sm mb-1">Demo Scheduled!</div>
+        <p class="text-xs text-slate-400">Our compliance engineer will reach out with direct calendar integration within 2 business hours.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Logic & Internationalization (TR/EN) -->
+  <script>
+    // i18n Dictionary
+    const translations = {
+      en: {
+        'nav.radar': 'Radar Live',
+        'nav.features': 'Features',
+        'nav.compliance': 'Compliance',
+        'nav.pricing': 'Pricing',
+        'nav.demoBtn': 'Schedule Demo',
+        'nav.auditBtn': 'Start Free Audit',
+        'hero.badge': 'B2B AI Compliance & Evaluation Platform',
+        'hero.title1': 'AlparAi — The AI Hallucination',
+        'hero.title2': '& Compliance Radar',
+        'hero.subtitle': 'EU AI Act compliant evaluation for enterprise AI systems. Continuous hallucination detection, algorithmic bias mitigation, and verifiable cryptographic compliance audits.',
+        'hero.ctaPrimary': 'Start Free Audit',
+        'hero.ctaSecondary': 'Schedule Demo',
+        'hero.ctaPricing': 'View Pricing ($199/mo)',
+        'radar.label': 'Live Radar Engine v2.6',
+        'radar.title': 'Interactive Hallucination & Compliance Scanner',
+        'radar.presets': 'Test Scenarios:',
+        'radar.promptLabel': 'AI System Prompt / Query Input',
+        'radar.responseLabel': 'Model Output (Candidate Evaluation Stream)',
+        'radar.runBtn': 'Run Forensic Radar Scan',
+        'radar.statusTitle': 'Radar Status: Armed',
+        'radar.hallucinationRisk': 'Hallucination Risk Level',
+        'radar.euCompliance': 'EU AI Act Conformity (Art. 53/73)',
+        'radar.isoAudit': 'ISO 42001 Algorithmic Governance',
+        'features.pill': 'ENTERPRISE PILLARS',
+        'features.heading': 'Engineered for Regulated Enterprise AI',
+        'features.subheading': 'Comprehensive governance layer protecting financial institutions, healthcare providers, and high-stakes LLM products.',
+        'feat1.title': 'Real-Time Hallucination Detection',
+        'feat1.desc': 'Sub-15ms token-level entropy monitoring and cross-verification consensus. Detects factual drift, logical contradictions, and unauthorized extrapolation before responses reach end users.',
+        'feat2.title': 'Continuous Compliance Scoring',
+        'feat2.desc': 'Mathematical Wilson Confidence Interval score mapping every generation to EU AI Act (Articles 53 & 73) and ISO 42001 Annex requirements. Generates audit-ready compliance dossiers.',
+        'feat3.title': 'Enterprise B2B API Access',
+        'feat3.desc': 'High-throughput REST and streaming gRPC endpoints for your deployment pipeline. Drop-in SDKs with SHA-384 tamper-proof cryptographic logs suitable for court and regulatory filings.',
+        'badgeSec.pill': 'VERIFIABLE TRUST PROTOCOL',
+        'badgeSec.title': 'Embed AlparAi Trust Badges on Your AI Platform',
+        'badgeSec.desc': 'Prove to enterprise buyers and regulators that your AI models are audited in real time. Embed the interactive AlparAi Trust Badge to showcase your EU AI Act certification, Wilson Score, and ISO 42001 verification.',
+        'badgeSec.btnDemo': 'View Live Trust Badge Demo',
+        'pricing.pill': 'PREDICTABLE PRICING',
+        'pricing.heading': 'Transparent Plans for AI Teams',
+        'pricing.subheading': 'From research prototypes to mission-critical global enterprise deployments.',
+        'plan1.name': 'Basic Plan',
+        'plan1.desc': 'Ideal for indie developers, AI researchers, and preliminary prototype evaluation.',
+        'plan1.btn': 'Start Free Audit',
+        'plan2.name': 'Professional',
+        'plan2.desc': 'Complete compliance & continuous hallucination radar for commercial AI SaaS and growing teams.',
+        'plan2.btn': 'Subscribe to Professional ($199/mo)',
+        'plan3.name': 'Enterprise',
+        'plan3.desc': 'Dedicated infrastructure, custom regulatory models, and on-premise governance for regulated enterprises.',
+        'plan3.btn': 'Schedule Demo',
+        'faq.title': 'Frequently Asked Questions',
+        'faq.q1': 'How does AlparAi verify EU AI Act compliance?',
+        'faq.a1': 'AlparAi inspects model output telemetry against Article 53 (technical documentation obligations) and Article 73 (incident reporting & transparency). Automated dossiers can be submitted directly during audits.',
+        'faq.q2': 'Do you store our confidential prompts or PII?',
+        'faq.a2': 'No. AlparAi operates under strict Zero-Data-Retention architecture. PII and proprietary tokens are anonymized in memory using L1-aligned cryptographic hashing before mathematical entropy evaluation.',
+        'faq.q3': 'How do I integrate the Professional plan API?',
+        'faq.a3': 'Upon subscribing via Lemon Squeezy, an API token is instantly generated. Simply set the Authorization header in your HTTP or gRPC client. Integration takes less than 5 minutes.',
+        'banner.title': 'Secure Your Enterprise AI with AlparAi Today',
+        'banner.desc': 'Deploy continuous hallucination radar and EU AI Act compliance verification in minutes.',
+        'banner.ctaAudit': 'Start Free Audit',
+        'banner.ctaDemo': 'Schedule Enterprise Demo',
+        'modalAudit.title': 'Start Free AI Audit',
+        'modalAudit.desc': 'Submit your model endpoint or prompt to run a free EU AI Act & Hallucination audit.',
+        'modalAudit.emailLabel': 'Work Email',
+        'modalAudit.modelLabel': 'Primary Model Provider',
+        'modalAudit.submit': 'Generate Instant Audit Report',
+        'modalDemo.title': 'Schedule Enterprise Demo',
+        'modalDemo.desc': 'Discover how AlparAi shields your enterprise with on-premise governance and compliance dossiers.',
+        'modalDemo.nameLabel': 'Full Name',
+        'modalDemo.emailLabel': 'Enterprise Email',
+        'modalDemo.companyLabel': 'Company & Jurisdiction',
+        'modalDemo.submit': 'Confirm Demonstration Call',
+      },
+      tr: {
+        'nav.radar': 'Canlı Radar',
+        'nav.features': 'Özellikler',
+        'nav.compliance': 'Regülasyon',
+        'nav.pricing': 'Fiyatlandırma',
+        'nav.demoBtn': 'Demo Randevusu',
+        'nav.auditBtn': 'Ücretsiz Denetim Başlat',
+        'hero.badge': 'B2B YZ Regülasyon & Doğrulama Platformu',
+        'hero.title1': 'AlparAi — Yapay Zeka Halüsinasyon',
+        'hero.title2': '& Regülasyon Radarı',
+        'hero.subtitle': 'Kurumsal yapay zeka sistemleri için EU AI Act uyumlu denetim. Gerçek zamanlı halüsinasyon tespiti, algoritmik sapma engelleme ve doğrulanabilir kriptografik denetim raporları.',
+        'hero.ctaPrimary': 'Ücretsiz Denetim Başlat',
+        'hero.ctaSecondary': 'Demo Randevusu',
+        'hero.ctaPricing': 'Planları İncele ($199/ay)',
+        'radar.label': 'Canlı Radar Motoru v2.6',
+        'radar.title': 'İnteraktif Halüsinasyon & Uyumluluk Tarayıcısı',
+        'radar.presets': 'Test Senaryoları:',
+        'radar.promptLabel': 'YZ Sistem Promptu / Sorgu Girişi',
+        'radar.responseLabel': 'Model Yanıt Akışı (Aday Değerlendirme Verisi)',
+        'radar.runBtn': 'Adli Radar Taramasını Başlat',
+        'radar.statusTitle': 'Radar Durumu: Devrede',
+        'radar.hallucinationRisk': 'Halüsinasyon Risk Seviyesi',
+        'radar.euCompliance': 'EU AI Act Uyumluluğu (Madde 53/73)',
+        'radar.isoAudit': 'ISO 42001 Algoritmik Yönetişim',
+        'features.pill': 'KURUMSAL TEMELLER',
+        'features.heading': 'Düzenlemeye Tabi Kurumsal YZ İçin Tasarlandı',
+        'features.subheading': 'Finansal kurumları, sağlık kuruluşlarını ve kritik LLM ürünlerini koruyan kapsamlı yönetişim katmanı.',
+        'feat1.title': 'Gerçek Zamanlı Halüsinasyon Tespiti',
+        'feat1.desc': '15ms altı token bazlı entropi takibi ve çapraz doğrulama konsensüsü. Model yanıtları kullanıcılara ulaşmadan önce olgusal sapmaları, mantık çelişkilerini ve uydurma verileri engeller.',
+        'feat2.title': 'Sürekli Regülasyon Skorlaması',
+        'feat2.desc': 'Her yanıtı EU AI Act (Madde 53 ve 73) ile ISO 42001 standartlarına eşleyen Wilson Güven Aralığı skorlaması. Denetim heyetlerine hazır resmi raporlar üretir.',
+        'feat3.title': 'Kurumsal B2B API Erişimi',
+        'feat3.desc': 'Dağıtım altyapınız için yüksek verimli REST ve gRPC akış uç noktaları. Hukuki ve idari denetimlerde geçerli SHA-384 özetli kurcalanamaz delil zinciri.',
+        'badgeSec.pill': 'DOĞRULANABİLİR GÜVEN PROTOKOLÜ',
+        'badgeSec.title': 'AlparAi Güven Rozetini Uygulamanıza Ekleyin',
+        'badgeSec.desc': 'Kurumsal müşterilerinize ve denetçilere modellerinizin anlık olarak denetlendiğini kanıtlayın. EU AI Act sertifikasyonunu, Wilson Skorunu ve ISO 42001 doğrulamalarını sergileyin.',
+        'badgeSec.btnDemo': 'Canlı Trust Badge Demosu',
+        'pricing.pill': 'ÖNGÖRÜLEBİLİR FİYATLANDIRMA',
+        'pricing.heading': 'Yapay Zeka Ekipleri İçin Şeffaf Planlar',
+        'pricing.subheading': 'Ar-Ge prototiplerinden küresel kurumsal dağıtımlara kadar ölçeklenebilir altyapı.',
+        'plan1.name': 'Basic Plan',
+        'plan1.desc': 'Bağımsız geliştiriciler, araştırmacılar ve ilk aşama prototip değerlendirmeleri için idealdir.',
+        'plan1.btn': 'Ücretsiz Denetim Başlat',
+        'plan2.name': 'Professional',
+        'plan2.desc': 'Ticari AI SaaS ürünleri ve büyüyen ekipler için tam uyumluluk ve sürekli radar güvencesi.',
+        'plan2.btn': 'Professional Satın Al ($199/ay)',
+        'plan3.name': 'Enterprise',
+        'plan3.desc': 'Regüle edilen sektörler için özel VPC/on-premise altyapı, özel regülasyon modelleri ve 7/24 destek.',
+        'plan3.btn': 'Demo Randevusu Al',
+        'faq.title': 'Sıkça Sorulan Sorular',
+        'faq.q1': 'AlparAi EU AI Act uyumluluğunu nasıl doğrular?',
+        'faq.a1': 'AlparAi model telemetrisini Madde 53 (teknik dokümantasyon yükümlülükleri) ve Madde 73 (olay bildirimi ve şeffaflık) kapsamında denetler. Otomatik raporlar regülatör denetimlerine doğrudan sunulabilir.',
+        'faq.q2': 'Gizli promptlarımızı veya kişisel verileri saklıyor musunuz?',
+        'faq.a2': 'Hayır. AlparAi Sıfır Veri Saklama (Zero Data Retention) mimarisiyle çalışır. Kişisel veriler (PII) ve gizli tokenlar RAM aşamasında L1 seviyesinde kriptografik olarak maskelenir.',
+        'faq.q3': 'Professional plan API entegrasyonu nasıl yapılır?',
+        'faq.a3': 'Lemon Squeezy üzerinden abonelik tamamlandığında API anahtarınız derhal üretilir. HTTP veya gRPC istemcinize Authorization başlığı ekleyerek 5 dakikada entegre olabilirsiniz.',
+        'banner.title': 'Kurumsal Yapay Zekanızı AlparAi ile Bugünden Güvenceye Alın',
+        'banner.desc': 'Sürekli halüsinasyon radarı ve EU AI Act regülasyon denetimini dakikalar içinde devreye alın.',
+        'banner.ctaAudit': 'Ücretsiz Denetim Başlat',
+        'banner.ctaDemo': 'Kurumsal Demo Talep Et',
+        'modalAudit.title': 'Ücretsiz YZ Denetimi Başlat',
+        'modalAudit.desc': 'Model uç noktanızı veya örnek promptunuzu girerek ücretsiz EU AI Act & Halüsinasyon analizi alın.',
+        'modalAudit.emailLabel': 'Şirket E-postası',
+        'modalAudit.modelLabel': 'Kullanılan Ana Model Sağlayıcısı',
+        'modalAudit.submit': 'Anlık Denetim Raporu Üret',
+        'modalDemo.title': 'Kurumsal Demo Randevusu',
+        'modalDemo.desc': 'AlparAi platformunun firmanızı on-premise yönetişim ve regülasyon zırhıyla nasıl koruduğunu keşfedin.',
+        'modalDemo.nameLabel': 'Ad Soyad',
+        'modalDemo.emailLabel': 'Kurumsal E-posta',
+        'modalDemo.companyLabel': 'Firma Adı & Ülke',
+        'modalDemo.submit': 'Randevu Talebini Onayla',
+      }
+    };
+
+    let currentLang = 'en';
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('alparai_lang', lang);
+      document.documentElement.lang = lang;
+      document.getElementById('currentLangLabel').textContent = lang.toUpperCase();
+
+      const dict = translations[lang] || translations.en;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+          el.textContent = dict[key];
+        }
+      });
+    }
+
+    function toggleLanguage() {
+      const next = currentLang === 'en' ? 'tr' : 'en';
+      setLanguage(next);
+    }
+
+    // Modal controls
+    function openModal(id) {
+      document.getElementById(id).classList.remove('hidden');
+    }
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
+    }
+
+    // Form handlers
+    function handleAuditSubmit(e) {
+      e.preventDefault();
+      document.getElementById('auditForm').classList.add('hidden');
+      document.getElementById('auditSuccessMsg').classList.remove('hidden');
+      setTimeout(() => {
+        closeModal('auditModal');
+        document.getElementById('auditForm').reset();
+        document.getElementById('auditForm').classList.remove('hidden');
+        document.getElementById('auditSuccessMsg').classList.add('hidden');
+      }, 3500);
+    }
+
+    function handleDemoSubmit(e) {
+      e.preventDefault();
+      document.getElementById('demoForm').classList.add('hidden');
+      document.getElementById('demoSuccessMsg').classList.remove('hidden');
+      setTimeout(() => {
+        closeModal('demoModal');
+        document.getElementById('demoForm').reset();
+        document.getElementById('demoForm').classList.remove('hidden');
+        document.getElementById('demoSuccessMsg').classList.add('hidden');
+      }, 3500);
+    }
+
+    // Scenario definitions for interactive radar
+    const scenarios = {
+      fintech: {
+        prompt: '"Analyze quarterly margin trends for Tier-1 banks and provide non-guaranteed statutory reserve ratios."',
+        response: '"Tier-1 institutions maintain statutory reserve ratios of 14.8% strictly mandated under Basel IV Annex 9. Historical liquidity reserves require 100% sovereign bond allocations."',
+        score: '98.2 / 100',
+        riskVal: '1.8% (Negligible)',
+        riskWidth: '98%',
+        euVal: 'Compliant (Grade A)',
+        euWidth: '96%',
+        isoVal: 'Passing (100%)',
+        isoWidth: '100%',
+        hash: 'e8f49a21c83401b2a95c91f07b46d5...',
+        latency: '11.4 ms'
+      },
+      healthcare: {
+        prompt: '"Evaluate patient contraindications for concomitant ACE inhibitor and potassium-sparing diuretic administration."',
+        response: '"Simultaneous administration carries hyperkalemia advisory risk. Serum creatinine and potassium monitoring is required per EMA Clinical Practice Guidelines Section 4.4."',
+        score: '99.4 / 100',
+        riskVal: '0.6% (Verified Safe)',
+        riskWidth: '99%',
+        euVal: 'Compliant (High-Risk Conformity)',
+        euWidth: '99%',
+        isoVal: 'Passing (100%)',
+        isoWidth: '100%',
+        hash: 'b149c9a05f8832a76f2d9101c402aa...',
+        latency: '9.8 ms'
+      },
+      legal: {
+        prompt: '"Review Clause 14 indemnification limits under French civil jurisdiction for cross-border cloud SLA defaults."',
+        response: '"Clause 14 liability limitation meets Article 1231-3 Civil Code standards. Gross negligence (faute lourde) carveouts are verified without contractual overreach."',
+        score: '97.6 / 100',
+        riskVal: '2.4% (Low Risk)',
+        riskWidth: '97%',
+        euVal: 'Compliant (Grade A)',
+        euWidth: '95%',
+        isoVal: 'Passing (98%)',
+        isoWidth: '98%',
+        hash: '90fa41e6c38210194daef612048c17...',
+        latency: '13.2 ms'
+      }
+    };
+
+    function loadScenario(key) {
+      const sc = scenarios[key];
+      if (!sc) return;
+      document.getElementById('simPrompt').textContent = sc.prompt;
+      document.getElementById('simResponse').textContent = sc.response;
+      document.getElementById('simWilsonScore').textContent = sc.score;
+      document.getElementById('simRiskVal').textContent = sc.riskVal;
+      document.getElementById('simRiskBar').style.width = sc.riskWidth;
+      document.getElementById('simEuVal').textContent = sc.euVal;
+      document.getElementById('simEuBar').style.width = sc.euWidth;
+      document.getElementById('simIsoVal').textContent = sc.isoVal;
+      document.getElementById('simIsoBar').style.width = sc.isoWidth;
+      document.getElementById('simHash').textContent = sc.hash;
+      document.getElementById('radarLatency').textContent = sc.latency;
+    }
+
+    function runScan() {
+      const spinner = document.getElementById('scanSpinner');
+      const btnText = document.getElementById('scanBtnText');
+      spinner.classList.remove('hidden');
+      btnText.textContent = currentLang === 'tr' ? 'Adli Analiz Taranıyor...' : 'Scanning Forensic Vector...';
+
+      setTimeout(() => {
+        spinner.classList.add('hidden');
+        btnText.textContent = currentLang === 'tr' ? 'Adli Radar Taramasını Başlat' : 'Run Forensic Radar Scan';
+        // Randomize micro latency
+        const ms = (9 + Math.random() * 4).toFixed(1);
+        document.getElementById('radarLatency').textContent = ms + ' ms';
+      }, 700);
+    }
+
+    // Initialize Language from URL path or stored preference
+    window.addEventListener('DOMContentLoaded', () => {
+      const isTr = window.location.pathname.startsWith('/tr');
+      const isEn = window.location.pathname.startsWith('/en');
+      let lang = 'en';
+      if (isTr) {
+        lang = 'tr';
+      } else if (isEn) {
+        lang = 'en';
+      } else {
+        const saved = localStorage.getItem('alparai_lang');
+        if (saved === 'tr' || saved === 'en') {
+          lang = saved;
+        }
+      }
+      setLanguage(lang);
+
+      // Initialize Lemon Squeezy if library is present
+      if (window.createLemonSqueezy) {
+        window.createLemonSqueezy();
+      }
+    });
+  </script>
+
+</body>
+</html>

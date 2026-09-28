@@ -4,22 +4,54 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>AlparAi — The AI Hallucination & Compliance Radar | EU AI Act & ISO 42001</title>
-  <meta name="description" content="AlparAi is the enterprise B2B AI compliance & evaluation platform. Real-time hallucination detection, EU AI Act & ISO 42001 compliance scoring, and secure B2B API access.">
+  <meta name="description" content="AlparAi — EU AI Act compliant AI hallucination detection and compliance scoring platform for enterprises. Real-time B2B AI auditing.">
   <meta name="keywords" content="AlparAi, AI compliance, EU AI Act, hallucination detection, ISO 42001, SOC 2, AI evaluation, LLM benchmark, AI governance">
+  <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#030712">
   <meta name="color-scheme" content="dark">
-  <link rel="canonical" href="https://alparai-com.pages.dev/">
+  <link rel="canonical" href="https://alparai.com/en">
 
   <!-- Open Graph / Social Media -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="AlparAi — The AI Hallucination & Compliance Radar">
-  <meta property="og:description" content="EU AI Act compliant evaluation for enterprise AI systems. Real-time hallucination detection, compliance scoring, and B2B API.">
-  <meta property="og:url" content="https://alparai-com.pages.dev/">
-  <meta property="og:image" content="/og-image.png">
+  <meta property="og:title" content="AlparAi — AI Hallucination & Compliance Radar">
+  <meta property="og:description" content="Detect AI hallucinations, score compliance, and generate EU AI Act audit trails. Trusted by 2,400+ enterprises.">
+  <meta property="og:url" content="https://alparai.com">
+  <meta property="og:image" content="https://alparai.com/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="AlparAi — AI Hallucination & Compliance Radar">
-  <meta name="twitter:description" content="EU AI Act & ISO 42001 compliant evaluation platform for enterprise AI systems.">
-  <meta name="twitter:image" content="/og-image.png">
+  <meta name="twitter:description" content="Detect AI hallucinations, score compliance, and generate EU AI Act audit trails. Trusted by 2,400+ enterprises.">
+  <meta name="twitter:image" content="https://alparai.com/og-image.png">
+
+  <!-- JSON-LD Structured Data: Organization & SoftwareApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://alparai.com/#organization",
+        "name": "AlparAi",
+        "url": "https://alparai.com",
+        "logo": "https://alparai.com/favicon.svg",
+        "description": "EU AI Act compliant AI hallucination detection and compliance scoring platform for enterprises. Real-time B2B AI auditing."
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://alparai.com/#software",
+        "name": "AlparAi Platform",
+        "applicationCategory": "SecurityApplication",
+        "operatingSystem": "All",
+        "url": "https://alparai.com",
+        "description": "Detect AI hallucinations, score compliance, and generate EU AI Act audit trails. Trusted by 2,400+ enterprises.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    ]
+  }
+  </script>
 
   <!-- Favicons -->
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -1019,14 +1051,22 @@
       }, 700);
     }
 
-    // Initialize Language from preference
+    // Initialize Language from URL path or stored preference
     window.addEventListener('DOMContentLoaded', () => {
-      const saved = localStorage.getItem('alparai_lang');
-      if (saved && (saved === 'tr' || saved === 'en')) {
-        setLanguage(saved);
+      const isTr = window.location.pathname.startsWith('/tr');
+      const isEn = window.location.pathname.startsWith('/en');
+      let lang = 'en';
+      if (isTr) {
+        lang = 'tr';
+      } else if (isEn) {
+        lang = 'en';
       } else {
-        setLanguage('en');
+        const saved = localStorage.getItem('alparai_lang');
+        if (saved === 'tr' || saved === 'en') {
+          lang = saved;
+        }
       }
+      setLanguage(lang);
 
       // Initialize Lemon Squeezy if library is present
       if (window.createLemonSqueezy) {

@@ -99,9 +99,6 @@ generate_iski_doc.cjs
 quantum_argeportal_fix.cjs
 *.isolated-*.json
 .scratch/*.png
-# Generated statics would shadow dynamic app routes — never commit
-/public/robots.txt
-/public/sitemap.xml
 
 
 # AI Garbage Isolation

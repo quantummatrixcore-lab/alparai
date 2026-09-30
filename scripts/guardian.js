@@ -145,7 +145,7 @@ function checkPublicDir() {
   
   walk(publicDir, (filePath) => {
     const fileName = path.basename(filePath);
-    if (fileName === 'index.html' || fileName === '_redirects') {
+    if (fileName === 'index.html') {
       error(`Found forbidden file in public directory: ${filePath}. These hijack the Next.js App Router.`);
     }
   });

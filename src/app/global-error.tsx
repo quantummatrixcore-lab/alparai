@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 "use client";
 
 import { useEffect } from "react";
@@ -63,3 +64,4 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
     </html>
   );
 }
+

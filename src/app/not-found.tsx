@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 import { DEFAULT_LOCALE } from "@/lib/constants";
@@ -38,3 +39,4 @@ export default async function NotFound() {
     </html>
   );
 }
+

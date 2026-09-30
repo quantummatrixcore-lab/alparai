@@ -36,7 +36,7 @@ export async function uploadIncidentEvidence(formData: FormData) {
     if (file.size > MAX_STORAGE_FILE_SIZE_BYTES) {
       return {
         success: false,
-        error: "Dosya boyutu 10MB sınırını aşamaz (Maximum 10MB allowed).",
+        error: "File size cannot exceed 10MB limit (Maximum 10MB allowed).",
       };
     }
 
@@ -46,7 +46,7 @@ export async function uploadIncidentEvidence(formData: FormData) {
     ) {
       return {
         success: false,
-        error: `Geçersiz dosya türü (${file.type}). Yalnızca PNG, JPEG ve PDF formatlarına izin verilmektedir.`,
+        error: `Invalid file type (${file.type}). Only PNG, JPEG, and PDF formats are allowed.`,
       };
     }
 
@@ -75,7 +75,7 @@ export async function uploadIncidentEvidence(formData: FormData) {
     return {
       success: true,
       fileId,
-      message: "Kanıt dosyası başarıyla Drive arşivine yüklendi.",
+      message: "Evidence file uploaded to Drive archive successfully.",
     };
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Failed to upload file";

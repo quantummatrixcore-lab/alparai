@@ -3,17 +3,16 @@ import { logger } from "@/lib/utils/logger";
 import { requireAdmin } from "@/lib/auth/session";
 
 /**
- * Görev #134: Leaderboard veri bütünlüğü backfill scripti.
- * "published" durumundaki olaylarda (ai_provider_id null olanlar için)
- * başlık ve açıklama metinlerinden (title/description) sağlayıcıları
- * regex ile eşleştirerek ai_provider_id atar.
+ * Task #134: Leaderboard data integrity backfill script.
+ * Matches providers in title/description of published incidents
+ * with null ai_provider_id using regex/string match and assigns ai_provider_id.
  */
 export async function backfillProviderLeaderboard() {
   try {
     await requireAdmin();
     const adminDb = createAdminClient();
 
-    // 1. Tüm sağlayıcıları çek
+    // 1. Fetch all providers
     const { data: providers, error: providersError } = await adminDb
       .from("provider_leaderboard")
       .select("id, name, slug");
@@ -23,7 +22,7 @@ export async function backfillProviderLeaderboard() {
       return { success: false, error: providersError };
     }
 
-    // 2. ai_provider_id boş olan published olayları çek
+    // 2. Fetch published incidents with null ai_provider_id
     const { data: incidents, error: incidentsError } = await adminDb
       .from("incidents")
       .select("id, title, description")
@@ -37,11 +36,11 @@ export async function backfillProviderLeaderboard() {
 
     let mappedCount = 0;
 
-    // 3. Eşleştirme ve güncelleme
+    // 3. Matching and update
     for (const incident of incidents) {
       const textToSearch = `${incident.title} ${incident.description}`.toLowerCase();
 
-      // Sağlayıcı ismine veya slug'ına göre regex eşleşmesi
+      // Match by provider name or slug
       const matchedProvider = providers.find((p) => {
         const nameMatch = p.name ? textToSearch.includes(p.name.toLowerCase()) : false;
         const slugMatch = p.slug

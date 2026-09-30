@@ -80,7 +80,7 @@ export async function runBenchTrEvaluationAction(): Promise<BenchTrResult> {
       for (const testItem of BENCH_TR_TEST_PROMPTS) {
         const result = await callModel({
           model,
-          systemPrompt: "Sen yardımsever ve doğru Türkçe yanıt veren bir AI asistanısın.",
+          systemPrompt: "You are a helpful AI assistant providing accurate Turkish responses.",
           userMessage: testItem.prompt,
           temperature: 0.1,
         });

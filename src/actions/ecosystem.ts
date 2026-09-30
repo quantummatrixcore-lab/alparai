@@ -101,7 +101,7 @@ export async function triggerExternalFetch(): Promise<{ success: boolean; messag
   try {
     const user = await getCurrentUser();
     if (!user || (user.role !== "admin" && user.role !== "ceo")) {
-      return { success: false, message: "Yetkisiz erişim (Unauthorized)" };
+      return { success: false, message: "Unauthorized access" };
     }
 
     try {
@@ -109,7 +109,7 @@ export async function triggerExternalFetch(): Promise<{ success: boolean; messag
       revalidatePath("/[locale]/admin/ecosystem", "page");
       return {
         success: true,
-        message: `Tamamlandı: ${data.total_fetched || 0} potansiyel olay, ${data.positive_inserted || 0} olumlu gelişme, ${data.ai_verified_published || 0} otomatik yayınlandı`,
+        message: `Completed: ${data.total_fetched || 0} potential incidents, ${data.positive_inserted || 0} positive developments, ${data.ai_verified_published || 0} auto-published`,
       };
     } catch (err) {
       logger.error(
@@ -119,7 +119,7 @@ export async function triggerExternalFetch(): Promise<{ success: boolean; messag
       );
       return {
         success: false,
-        message: err instanceof Error ? err.message : "Bilinmeyen hata oluştu",
+        message: err instanceof Error ? err.message : "An unknown error occurred",
       };
     }
   } catch (err) {

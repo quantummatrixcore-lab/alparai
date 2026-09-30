@@ -44,7 +44,7 @@ export function toIncidentListItem(
   translations?: TranslationMap,
   locale?: string,
 ): IncidentListItem {
-  const localeIsExtra = locale === "de" || locale === "fr" || locale === "ru";
+  const localeIsExtra = false;
   let machineTranslated = false;
   let translatedTitle: string | null = null;
   let translatedDesc: string | null = null;

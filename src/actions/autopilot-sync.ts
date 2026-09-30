@@ -238,7 +238,7 @@ async function runNewsSyncWork(
           continue;
         }
 
-        // KURAL #4 İHLALİ KAPATILDI: LLM ve DB öncesi PII Zırhı (maskPII)
+        // RULE #4 VIOLATION FIXED: PII Shield (maskPII) before LLM and DB
         const safeTitle = maskPII(item.title).masked;
         const safeDesc = maskPII(item.description).masked;
 
@@ -259,7 +259,7 @@ async function runNewsSyncWork(
           publishedAt = new Date();
         }
 
-        // Çift Katmanlı Koruma: DB'ye yazmadan önce tekrar PII Zırhından geçir
+        // Double Layer Protection: Pass through PII Shield again before writing to DB
         const { error: insertError } = await admin.from("ecosystem_news").insert({
           title_en: maskPII(aiResult.title_en).masked,
           title_tr: maskPII(aiResult.title_tr).masked,

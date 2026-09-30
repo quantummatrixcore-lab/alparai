@@ -330,7 +330,7 @@ Criteria: If the text describes a genuine AI incident (hallucination, data leak,
     }
 
     revalidatePath("/[locale]/admin", "layout");
-    return { success: true, message: `${processed} olay başarıyla incelendi.`, processed };
+    return { success: true, message: `${processed} incidents reviewed successfully.`, processed };
   } catch (err) {
     console.error("[autoReviewAllPending] Error:", err);
     throw err;

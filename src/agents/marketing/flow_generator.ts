@@ -32,7 +32,6 @@ export class FlowGenerator {
             ],
             generationConfig: { temperature: 0.7, maxOutputTokens: 1024 },
           }),
-          signal: AbortSignal.timeout(15000),
         },
       );
 

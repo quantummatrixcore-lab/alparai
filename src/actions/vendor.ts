@@ -43,8 +43,8 @@ export async function submitVendorResponseAction(
       return { ok: false, error: "Unauthorized" };
     }
 
-    // Güvenlik Yaması: IDOR Zafiyetini engellemek için geçici olarak sadece Admin yetkisi zorunlu kılındı.
-    // Orijinal sağlayıcılar src/actions/provider-response.ts üzerinden token ile yanıt vermelidir.
+    // Security Patch: Admin authorization required to mitigate IDOR vulnerability.
+    // Original providers should respond via token using src/actions/provider-response.ts.
     const { requireAdmin } = await import("@/lib/auth/session");
     await requireAdmin();
 

@@ -71,7 +71,7 @@ export function IncidentCard({
   const tFeed = useTranslations("feed");
   const locale = useLocale();
 
-  const localeIsExtra = locale === "de" || locale === "fr" || locale === "ru";
+  const localeIsExtra = false;
 
   const [trTitle, setTrTitle] = React.useState<string | null>(incident.title_tr || null);
   const [trDesc, setTrDesc] = React.useState<string | null>(incident.description_tr || null);

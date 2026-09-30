@@ -30,22 +30,22 @@ export async function runLiveSystemAnalysis(): Promise<{
       .order("month", { ascending: false });
 
     const prompt = `
-    Sen ALPAR AI platformunun 'Acımasız Testçisi' (QA Architect) olarak hareket eden bir yapay zeka modelisin.
-    Senden şu anki sistem metriklerini analiz edip sistem inceleme raporu oluşturmanı istiyorum.
+    You are an AI model acting as the 'Ruthless QA Architect' of the ALPAR AI platform.
+    Analyze the current system metrics and generate a system inspection report.
     
-    Güncel Performans (Son 5 Denetim):
+    Current Performance (Last 5 Audits):
     ${JSON.stringify(runs, null, 2)}
     
-    Güncel Maliyet (Son 5 Bütçe Kaydı):
+    Current Cost (Last 5 Budget Records):
     ${JSON.stringify(costs, null, 2)}
     
-    Lütfen şu 4 ana başlıkta bir JSON çıktısı dön:
-    - overall_score (0-100 arası bir sayı)
-    - executive_summary (Kısa bir özet)
-    - security_flaws (Tespit edilen 2-3 açık veya risk)
-    - recommendations (Tavsiye edilen 2 çözüm)
+    Please return a JSON output containing these 4 main keys:
+    - overall_score (a number between 0-100)
+    - executive_summary (short summary)
+    - security_flaws (2-3 identified vulnerabilities or risks)
+    - recommendations (2 recommended action items)
     
-    Çıktın SADECE geçerli bir JSON olmalıdır. Başka hiçbir açıklama yazma.
+    Your output MUST be valid JSON only. Do not write any other explanation text.
     `;
 
     const result = await callWithFailover(

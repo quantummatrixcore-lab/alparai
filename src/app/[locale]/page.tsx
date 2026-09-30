@@ -128,7 +128,7 @@ const getHomeData = cache(async (locale: string) => {
       ).map((p) => [p.id, p]),
     );
 
-    const localeIsTranslated = locale === "de" || locale === "fr" || locale === "ru";
+    const localeIsTranslated = false;
 
     let translationMap: TranslationMap | undefined;
     const rawHomeData = incidentsResult.data as Array<Record<string, unknown>> | null;

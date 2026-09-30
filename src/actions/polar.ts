@@ -31,6 +31,6 @@ export async function createPolarCheckout(params: CreateCheckoutParams) {
   } catch (error: unknown) {
     console.error('Polar Checkout Error:', error);
     // You can handle error responses here (e.g., throwing a user-friendly message)
-    throw new Error('Ödeme sayfası oluşturulamadı. Lütfen daha sonra tekrar deneyin.');
+    throw new Error('Failed to create checkout page. Please try again later.');
   }
 }

@@ -11,6 +11,7 @@ const mockDb = {
   update: vi.fn().mockReturnThis(),
   insert: vi.fn().mockReturnThis(),
   upsert: vi.fn().mockReturnThis(),
+  single: vi.fn(),
   maybeSingle: vi.fn(),
 };
 

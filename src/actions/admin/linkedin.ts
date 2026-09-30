@@ -69,7 +69,7 @@ export async function updateLinkedinContactStatus(
       after_data: { new_status: status, has_notes: Boolean(notes) },
     });
 
-    const locales = ["en", "tr", "de", "fr", "ru"];
+    const locales = ["en", "tr"];
     locales.forEach((loc) => {
       revalidatePath(`/${loc}/admin/linkedin`);
     });

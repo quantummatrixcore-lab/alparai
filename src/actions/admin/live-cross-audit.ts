@@ -20,7 +20,7 @@ export async function runLiveCrossAuditTest(text: string) {
       logger.error("Live Cross Audit OpenRouter API key missing");
       return {
         success: false,
-        error: "OpenRouter API anahtarı yapılandırılmamış.",
+        error: "OpenRouter API key is not configured.",
       };
     }
 
@@ -184,7 +184,7 @@ export async function runLiveCrossAuditTest(text: string) {
     logger.error("Live Cross Audit Error:", undefined, err instanceof Error ? err : undefined);
     return {
       success: false,
-      error: err instanceof Error ? err.message : "Bilinmeyen bir hata oluştu.",
+      error: err instanceof Error ? err.message : "An unknown error occurred.",
     };
   }
 }

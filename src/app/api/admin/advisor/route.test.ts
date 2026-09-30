@@ -99,7 +99,7 @@ describe("POST /api/admin/advisor", () => {
     const res = await POST(req);
     expect(res.status).toBe(429);
     const data = await res.json();
-    expect(data.reply).toContain("30s sonra tekrar deneyin");
+    expect(data.reply).toContain("Please try again after 30s.");
   });
 
   it("returns 400 when message is missing or invalid", async () => {
@@ -111,11 +111,11 @@ describe("POST /api/admin/advisor", () => {
     const res = await POST(req);
     expect(res.status).toBe(400);
     const data = await res.json();
-    expect(data.reply).toBe("Lütfen geçerli bir mesaj yazınız.");
+    expect(data.reply).toBe("Please enter a valid message.");
   });
 
   it("returns 200 with model response on success", async () => {
-    const mockReply = "Stratejik karar: Akıl ve bilim yolunda ilerlemeliyiz.";
+    const mockReply = "Strategic decision: Follow reason and science.";
     const fetchSpy = vi.spyOn(globalThis, "fetch").mockResolvedValueOnce({
       ok: true,
       json: async () => ({
@@ -125,7 +125,7 @@ describe("POST /api/admin/advisor", () => {
 
     const req = new NextRequest("http://localhost:3000/api/admin/advisor", {
       method: "POST",
-      body: JSON.stringify({ message: "Platform vizyonumuz nedir?" }),
+      body: JSON.stringify({ message: "What is our platform vision?" }),
     });
 
     const res = await POST(req);
@@ -152,13 +152,13 @@ describe("POST /api/admin/advisor", () => {
 
     const req = new NextRequest("http://localhost:3000/api/admin/advisor", {
       method: "POST",
-      body: JSON.stringify({ message: "Durum analizi yap" }),
+      body: JSON.stringify({ message: "Run status analysis" }),
     });
 
     const res = await POST(req);
     expect(res.status).toBe(200);
     const data = await res.json();
-    expect(data.reply).toBe("Cevap alınamadı.");
+    expect(data.reply).toBe("No response received.");
   });
 
   it("handles fetch network failure gracefully", async () => {
@@ -166,12 +166,12 @@ describe("POST /api/admin/advisor", () => {
 
     const req = new NextRequest("http://localhost:3000/api/admin/advisor", {
       method: "POST",
-      body: JSON.stringify({ message: "Durum analizi yap" }),
+      body: JSON.stringify({ message: "Run status analysis" }),
     });
 
     const res = await POST(req);
     expect(res.status).toBe(200);
     const data = await res.json();
-    expect(data.reply).toBe("Cevap alınamadı.");
+    expect(data.reply).toBe("No response received.");
   });
 });

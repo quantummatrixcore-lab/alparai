@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
   const rl = await checkRateLimit(`${RATE_LIMIT_KEYS.admin_advisor_chat}:${user.id}`);
   if (!rl.ok) {
     return NextResponse.json(
-      { reply: `Çok fazla istek. ${rl.retryAfter}s sonra tekrar deneyin.` },
+      { reply: `Too many requests. Please try again after ${rl.retryAfter}s.` },
       { status: 429 },
     );
   }
@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
   try {
     const { message } = (await req.json()) as { message?: string };
     if (!message || typeof message !== "string") {
-      return NextResponse.json({ reply: "Lütfen geçerli bir mesaj yazınız." }, { status: 400 });
+      return NextResponse.json({ reply: "Please enter a valid message." }, { status: 400 });
     }
 
     const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
@@ -58,14 +58,14 @@ export async function POST(req: NextRequest) {
 
     if (!res.ok) {
       console.error("OpenRouter request failed with status", res.status);
-      return NextResponse.json({ reply: "Cevap alınamadı." });
+      return NextResponse.json({ reply: "No response received." });
     }
 
     const data = (await res.json()) as { choices?: Array<{ message?: { content?: string } }> };
-    const reply = data.choices?.[0]?.message?.content ?? "Cevap alınamadı.";
+    const reply = data.choices?.[0]?.message?.content ?? "No response received.";
     return NextResponse.json({ reply });
   } catch (error) {
     console.error("Error in Advisor API route:", error);
-    return NextResponse.json({ reply: "Cevap alınamadı." });
+    return NextResponse.json({ reply: "No response received." });
   }
 }

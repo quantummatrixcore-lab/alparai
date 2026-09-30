@@ -179,14 +179,8 @@ export default async function JournalistDashboard({
   ]);
 
   const rawIncidents = (incidentsResult.data as Array<Record<string, unknown>>) ?? [];
-  const localeNeedsTranslationTable = locale === "de" || locale === "fr" || locale === "ru";
-  const translationMap = localeNeedsTranslationTable
-    ? await fetchTranslationMap(
-        dehost,
-        rawIncidents.map((r) => r["id"] as string),
-        locale,
-      )
-    : undefined;
+  const localeNeedsTranslationTable = false;
+  const translationMap = undefined;
 
   const items: IncidentListItem[] = toIncidentListItems(rawIncidents, translationMap, locale).map(
     (item) => {

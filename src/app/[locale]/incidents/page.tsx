@@ -91,7 +91,7 @@ export default async function IncidentsPage({
   const toOffset = pageNum * pageSize - 1;
   query = query.range(fromOffset, toOffset);
 
-  const localeIsDEorFR = locale === "de" || locale === "fr";
+  const localeIsDEorFR = false;
 
   const [incidentsResult, providersResult, pollResult, newsResult] = await Promise.all([
     query,

@@ -18,27 +18,27 @@ export async function runLiveStrategyAnalysis(context: {
   await requireAdmin();
   try {
     const prompt = `
-    Sen ALPAR AI platformunun 'Strateji Danışmanı' (Strategy AI) olarak hareket eden bir yapay zeka modelisin.
-    Mevcut strateji metrikleri şunlardır:
-    - SWOT: Güçlü Yönler: ${context.strengths}, Zayıf Yönler: ${context.weaknesses}, Fırsatlar: ${context.opportunities}, Tehditler: ${context.threats}
-    - Riskler: Yüksek Risk: ${context.highRisks}, Aktif Risk: ${context.activeRisks}
-    - Kilometre Taşları: Tamamlanan: ${context.doneMilestones} / Toplam: ${context.totalMilestones}
+    You are an AI model acting as the 'Strategy Advisor' (Strategy AI) of the ALPAR AI platform.
+    Current strategy metrics are as follows:
+    - SWOT: Strengths: ${context.strengths}, Weaknesses: ${context.weaknesses}, Opportunities: ${context.opportunities}, Threats: ${context.threats}
+    - Risks: High Risk: ${context.highRisks}, Active Risk: ${context.activeRisks}
+    - Milestones: Completed: ${context.doneMilestones} / Total: ${context.totalMilestones}
 
-    Lütfen bu gerçek verileri ve metrikleri derinlemesine analiz ederek gerçekçi ve eyleme dönüştürülebilir profesyonel bir stratejik durum raporu oluştur.
+    Please analyze these real data metrics in depth and generate a realistic, actionable professional strategic status report.
     
-    Lütfen şu 4 ana başlıkta bir JSON çıktısı dön:
-    - health_score (0-100 arası bir sayı)
-    - executive_summary (Kısa bir özet)
-    - strategic_gaps (Tespit edilen 2-3 stratejik boşluk veya zayıflık)
-    - recommendations (Tavsiye edilen 2 stratejik hamle)
+    Please return a JSON output containing these 4 main keys:
+    - health_score (a number between 0-100)
+    - executive_summary (short summary)
+    - strategic_gaps (2-3 identified strategic gaps or weaknesses)
+    - recommendations (2 recommended strategic moves)
     
-    Çıktın SADECE geçerli bir JSON olmalıdır. Başka hiçbir açıklama yazma.
+    Your output MUST be valid JSON only. Do not write any other explanation text.
     `;
 
     const result = await callWithFailover(
       {
         systemPrompt:
-          "Sen ALPAR AI platformunun 'Strateji Danışmanı' (Strategy AI) olarak hareket eden bir uzman modelisin. Lütfen çıktıyı yalnızca JSON formatında ver.",
+          "You are an expert AI model acting as the Strategy Advisor of the ALPAR AI platform. Output valid JSON only.",
         userMessage: prompt,
         temperature: 0.7,
         responseFormat: "json",

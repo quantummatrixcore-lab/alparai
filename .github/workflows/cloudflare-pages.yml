@@ -9,9 +9,12 @@ jobs:
       deployments: write
     steps:
       - uses: actions/checkout@v4
+      - run: npm i -g pnpm
+      - run: pnpm install
+      - run: npx @cloudflare/next-on-pages
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy public/ --project-name=alparai-com --branch=master
+          command: pages deploy .vercel/output/static --project-name=alparai --branch=master

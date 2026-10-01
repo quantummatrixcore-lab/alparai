@@ -2,11 +2,11 @@
   "agentId": "AlparAi",
   "nobet": "ONLINE",
   "status": "ACTIVE_WATCH",
-  "pid": 9092,
-  "uptimeSeconds": 903,
-  "lastHeartbeat": "2026-09-28T06:29:20.300Z",
-  "rawPoolPath": "D:\\AlparAi\\AlparAI_AGI\\RAW_POOL.md",
-  "diamondsPath": "D:\\AlparAi\\AlparAI_AGI\\DIAMONDS.md",
-  "hippocampusPath": "D:\\AlparAi\\AlparAI_AGI\\Hippocampus.json",
+  "pid": 7152,
+  "uptimeSeconds": 0,
+  "lastHeartbeat": "2026-09-30T15:46:04.034Z",
+  "rawPoolPath": "D:\\03_ALPARAI\\AlparAI_AGI\\RAW_POOL.md",
+  "diamondsPath": "D:\\03_ALPARAI\\AlparAI_AGI\\DIAMONDS.md",
+  "hippocampusPath": "D:\\03_ALPARAI\\AlparAI_AGI\\Hippocampus.json",
   "processedTasksCount": 0
 }

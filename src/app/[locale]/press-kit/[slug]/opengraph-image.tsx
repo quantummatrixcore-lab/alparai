@@ -1,8 +1,10 @@
+export const dynamic = 'force-static';
+export function generateStaticParams() { return []; }
 import { ImageResponse } from "next/og";
 import { createServerClient } from "@/lib/dehost/server";
 
 export const runtime = "nodejs";
-export const alt = "ALPAR AI — Brand Profile Audit";
+export const alt = "ALPAR AI â€” Brand Profile Audit";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

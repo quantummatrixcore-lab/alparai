@@ -16,16 +16,16 @@
     "title": "Metodoloji DanÄ±ÅŸma Kurulu"
   },
   "academy": {
-      "title": "ALPAR AI Akademi",
-      "subtitle": "Gelecek nesil yapay zeka denetçilerini ve güvenlik araştırmacılarını güçlendiriyoruz.",
-      "fellowship_title": "Araştırma Bursu",
-      "fellowship_subtitle": "Doktora öğrencileri ve doktora sonrası araştırmacılar için gelişmiş araştırma hibeleri ve platform erişimi.",
-      "fellowship_form_title": "Bursa Başvur",
-      "export_pdf": "PDF Olarak Dışa Aktar",
-      "curriculum_title": "Müfredat Detayları",
-      "curriculum_desc": "Yapay zeka güvenliği ve uyumu üzerine kapsamlı modüller ve ders notları.",
-      "empty_state_title": "Kurs bulunamadı",
-      "empty_state_desc": "Şu anda bu kategoride kurs bulunmamaktadır.",
+    "title": "ALPAR AI Akademi",
+    "subtitle": "Gelecek nesil yapay zeka denetçilerini ve güvenlik araştırmacılarını güçlendiriyoruz.",
+    "fellowship_title": "Araştırma Bursu",
+    "fellowship_subtitle": "Doktora öğrencileri ve doktora sonrası araştırmacılar için gelişmiş araştırma hibeleri ve platform erişimi.",
+    "fellowship_form_title": "Bursa Başvur",
+    "export_pdf": "PDF Olarak Dışa Aktar",
+    "curriculum_title": "Müfredat Detayları",
+    "curriculum_desc": "Yapay zeka güvenliği ve uyumu üzerine kapsamlı modüller ve ders notları.",
+    "empty_state_title": "Kurs bulunamadı",
+    "empty_state_desc": "Şu anda bu kategoride kurs bulunmamaktadır.",
     "ambassador_card1_desc": "ALPAR mÃ¼fredat kaynaklarÄ±nÄ± kullanarak yapay zeka gÃ¼venliÄŸi, model denetimi ve prompt enjeksiyonu Ã§alÄ±ÅŸtaylarÄ± dÃ¼zenleyin.",
     "ambassador_card1_title": "KampÃ¼s Ã‡alÄ±ÅŸtaylarÄ±",
     "ambassador_card2_desc": "KampÃ¼sÃ¼nÃ¼zde ticari ve aÃ§Ä±k kaynaklÄ± modelleri kÄ±yaslamak iÃ§in Ã¶ÄŸrenci araÅŸtÄ±rma ekiplerine liderlik edin.",
@@ -2981,10 +2981,10 @@
     "title": "GeliÅŸtirici API DokÃ¼mantasyonu"
   },
   "app": {
-    "description": "ALPAR AI, yapay zekanÄ±n gerÃ§ek dÃ¼nyadaki her hatasÄ±nÄ± belgeleyen, doÄŸrulayan ve kalÄ±cÄ± olarak kaydeden, topluluk yÃ¶netimli bir platformdur. Bir yapay zeka hatasÄ±nÄ± bildirin. KanÄ±tlarÄ± gÃ¶rÃ¼n. KayÄ±t kalÄ±cÄ±dÄ±r.",
+    "description": "ALPAR AI, yapay zekanın gerçek dünyadaki her hatasını belgeleyen, doğrulayan ve kalıcı olarak kaydeden, halka açık bir Savunma ve Kanıt Karargahıdır. Bir yapay zeka hatasını bildirin. Kanıtları görün. Kayıt kalıcıdır.",
     "name": "ALPAR AI",
-    "tagline": "DÃ¼nyanÄ±n ilk topluluk yÃ¶netimli yapay zeka hesap verebilirlik platformu",
-    "title": "ALPAR AI â€” DÃ¼nyanÄ±n ilk topluluk yÃ¶netimli yapay zeka hesap verebilirliÄŸi platformu"
+    "tagline": "Halka Açık Savunma ve Kanıt Karargahı",
+    "title": "ALPAR AI — Savunma ve Kanıt Karargahı"
   },
   "article73_checklist": {
     "badge": "AB AI Act Yasal Uyumluluk",
@@ -4022,7 +4022,7 @@
     "cta_tertiary": "Kurucu Muhabir Ol â†’",
     "cta_view_platform": "Platformu GÃ¶r â†’",
     "early_access_badge": "ERKEN ERÄ°ÅÄ°M â€” %50 Kurucu KatmanÄ± Ä°ndirimi Aktif ğŸ›¡ï¸",
-    "eyebrow": "TOPLULUK YÃ–NETÄ°MLÄ° YAPAY ZEKA HESAP VEREBÄ°LÄ°RLÄ°ÄÄ°",
+    "eyebrow": "HALKA AÇIK SAVUNMA VE KANIT KARARGAHI",
     "founder_cta": "Vaka #001 kanÄ±t kaydÄ±nÄ± gÃ¶rÃ¼ntÃ¼le â†’",
     "founder_quote": "ALPAR AI'Ä±, baÅŸka kimse skoru tutmadÄ±ÄŸÄ± iÃ§in inÅŸa ettik. Yapay zeka sistemleri insanlara zarar veriyordu ve hiÃ§bir iz bÄ±rakmadan geÃ§ip gidiyordu. Bu platform bunu deÄŸiÅŸtiriyor.",
     "founder_role": "Kurucu, ALPAR AI",
@@ -4080,20 +4080,20 @@
     "live_feed": "CanlÄ± akÄ±ÅŸ",
     "live_reports_last_hour": "Son bir saatte {count} olay bildirildi",
     "no_providers_data": "HenÃ¼z veri yok.",
-    "pitch_1": "Alpar AI, yapay zeka modeli hatalarÄ±nÄ± kriptografik kanÄ±tla baÄŸÄ±msÄ±z denetleyen, doÄŸrulayan ve dizine ekleyen egemen gÃ¼ven altyapÄ±sÄ±dÄ±r.",
-    "pitch_2": "KuruluÅŸlara gerÃ§ek zamanlÄ± yapay zeka uyumu, otomatik risk azaltma ve sÄ±fÄ±r-bilgi olay takibi sunar.",
-    "pitch_3": "Yapay zeka gÃ¼venilirlik metrikleri, olay doÄŸrulama ve algoritmik hesap verebilirlik iÃ§in aÃ§Ä±k standart sicili.",
+    "pitch_1": "Alpar AI, yapay zeka modeli hatalarını askeri disiplinle denetleyen, doğrulayan ve arşivleyen bir olay mahkemesidir.",
+    "pitch_2": "Kuruluşlara ve halka, yapay zeka sistemlerine karşı güçlü bir Savunma ve Kanıt Karargahı sunar.",
+    "pitch_3": "Her vaka, değiştirilemez bir kanıt olarak kaydedilir ve yapay zeka şirketlerinin inkar etmesini engeller.",
     "start_test": "Testi BaÅŸlat",
     "stats_countries": "Olay yaÅŸayan Ã¼lkeler",
     "stats_incidents": "BelgelenmiÅŸ YZ hatalarÄ±",
     "stats_providers": "YZ saÄŸlayÄ±cÄ±sÄ± takip ediliyor",
-    "subtitle": "ÅeffaflÄ±k kÃ¼reselleÅŸirken hesap verebilirlik ulusal kalmasÄ±n. Tek bir ÅŸikayet gÃ¶rmezden gelinebilir, ancak ALPAR AI Ã¼zerindeki doÄŸrulanan bir vaka kÃ¼lliyatÄ± yok sayÄ±lamaz. Yapay zeka saÄŸlayÄ±cÄ±larÄ±nÄ±n baÄŸÄ±msÄ±z denetim mercii.",
+    "subtitle": "Askeri disiplinle doğrulanmış vakalar, şeffaf kanıt zinciri ve olay mahkemesi arşivi. Hiçbir dijital zorbalık veya model arızası yanıtsız kalmayacak.",
     "subtitle_variant_b": "Bir yapay zeka ÅŸirket uydurdu. Ã–demeler yaptÄ±. Pasaport belgeleri istedi. HiÃ§biri gerÃ§ek deÄŸildi. ALPAR AI bu olayÄ± belgeledi ki asla unutulmasÄ±n â€” ve baÅŸka kimse bu manipÃ¼lasyon karÅŸÄ±sÄ±nda tek baÅŸÄ±na kalmasÄ±n.",
     "suggestionSubtitle": "Ã–zellik Ã¶ner, hata bildir veya fikir paylaÅŸ. Topluluk oy verir, ekip geliÅŸtirir.",
     "suggestionTitle": "AI hesap verebilirliÄŸinin geleceÄŸini ÅŸekillendir",
     "title_accent": "AI Hackle. Ã–dÃ¼lÃ¼ Kap.",
     "title_accent_desc": "GerÃ§ek bir AI hatasÄ± mÄ± buldun? Belgele. DoÄŸrulat. Etik Savunucu rozeti kazan â€” ve bildirdiÄŸin saÄŸlayÄ±cÄ±dan Ã¶dÃ¼l kredisi al.",
-    "title_primary": "Yapay Zeka Hukukunda KÃ¼resel YÃ¼ksek Mahkeme.",
+    "title_primary": "Yapay Zeka Hatalarına Karşı Savunma ve Kanıt Karargahı.",
     "title_variant_b": "ALPAR AI ilk vakasÄ±nÄ± 2026'da belgeledi.",
     "trust_1_desc": "AGPL-3.0 lisanslÄ±. Herkes kodu denetleyebilir, bir Ã¶rnek Ã§alÄ±ÅŸtÄ±rabilir veya katkÄ±da bulunabilir.",
     "trust_1_title": "AÃ§Ä±k Kaynak",
@@ -6114,4 +6114,3 @@
     "copyZkpReceipt": "Kriptografik makbuzu kopyala"
   }
 }
-

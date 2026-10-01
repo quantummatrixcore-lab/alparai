@@ -63,7 +63,7 @@ describe("uploadIncidentEvidence Security Gates", () => {
     const result = await uploadIncidentEvidence(formData);
 
     expect(result.success).toBe(false);
-    expect(result.error).toContain("Geçersiz dosya türü");
+    expect(result.error).toContain("Invalid file type");
   });
 
   it("allows valid PNG files under 10MB", async () => {

@@ -1,0 +1,52 @@
+﻿[ {
+   "description": "",
+   "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@a654841425914cbb703a2931e07b70a83aedbafd/inspector.html?ws=127.0.0.1:9222/devtools/page/A87B34A7D6AAAFA115B49C673A0A81C5",
+   "faviconUrl": "https://my.dehost.com.tr/resources/uploads/logo/favicon.png",
+   "id": "A87B34A7D6AAAFA115B49C673A0A81C5",
+   "title": "Hesap Bilgilerim - DeHost - ─░nternet ve Bili┼şim Teknolojileri",
+   "type": "page",
+   "url": "https://my.dehost.com.tr/hesabim/bilgilerim?tab=general",
+   "webSocketDebuggerUrl": "ws://127.0.0.1:9222/devtools/page/A87B34A7D6AAAFA115B49C673A0A81C5"
+}, {
+   "description": "",
+   "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@a654841425914cbb703a2931e07b70a83aedbafd/inspector.html?ws=127.0.0.1:9222/devtools/page/F6CAD02500CA2A776A3E21A1CF370AB1",
+   "faviconUrl": "https://dash.cloudflare.com/favicon.ico",
+   "id": "F6CAD02500CA2A776A3E21A1CF370AB1",
+   "title": "Account home | Quantum.matrix.core@gmail.com&#39;s Account | Cloudflare",
+   "type": "page",
+   "url": "https://dash.cloudflare.com/635ead830bc3a409e643b59e3768e9f5/home",
+   "webSocketDebuggerUrl": "ws://127.0.0.1:9222/devtools/page/F6CAD02500CA2A776A3E21A1CF370AB1"
+}, {
+   "description": "",
+   "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@a654841425914cbb703a2931e07b70a83aedbafd/inspector.html?ws=127.0.0.1:9222/devtools/page/42B33C845BE38BA3673E43B39F9E2EFB",
+   "faviconUrl": "https://alparai.com/favicon.ico",
+   "id": "42B33C845BE38BA3673E43B39F9E2EFB",
+   "title": "alparai.com | 522: Connection timed out",
+   "type": "page",
+   "url": "https://alparai.com/en/",
+   "webSocketDebuggerUrl": "ws://127.0.0.1:9222/devtools/page/42B33C845BE38BA3673E43B39F9E2EFB"
+}, {
+   "description": "",
+   "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@a654841425914cbb703a2931e07b70a83aedbafd/inspector.html?ws=127.0.0.1:9222/devtools/page/9D8940C53B059BEF5CA5787219E4BFC5",
+   "id": "9D8940C53B059BEF5CA5787219E4BFC5",
+   "title": "Omnibox Popup",
+   "type": "browser_ui",
+   "url": "chrome://omnibox-popup.top-chrome/",
+   "webSocketDebuggerUrl": "ws://127.0.0.1:9222/devtools/page/9D8940C53B059BEF5CA5787219E4BFC5"
+}, {
+   "description": "",
+   "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@a654841425914cbb703a2931e07b70a83aedbafd/inspector.html?ws=127.0.0.1:9222/devtools/page/136D9FEC3F46BC30443C8F7595882111",
+   "id": "136D9FEC3F46BC30443C8F7595882111",
+   "title": "Omnibox Popup",
+   "type": "browser_ui",
+   "url": "chrome://omnibox-popup.top-chrome/omnibox_popup_aim.html",
+   "webSocketDebuggerUrl": "ws://127.0.0.1:9222/devtools/page/136D9FEC3F46BC30443C8F7595882111"
+}, {
+   "description": "",
+   "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@a654841425914cbb703a2931e07b70a83aedbafd/worker_app.html?ws=127.0.0.1:9222/devtools/page/1677917C72DE621337C6DBA4132DCDE6",
+   "id": "1677917C72DE621337C6DBA4132DCDE6",
+   "title": "Service Worker chrome-extension://fldmhceldgbpfpkbgopacenieobmligc/background.js",
+   "type": "service_worker",
+   "url": "chrome-extension://fldmhceldgbpfpkbgopacenieobmligc/background.js",
+   "webSocketDebuggerUrl": "ws://127.0.0.1:9222/devtools/page/1677917C72DE621337C6DBA4132DCDE6"
+} ]

@@ -64,6 +64,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const nextConfig = {
+  output: 'export',
+  images: { unoptimized: true },
   allowedDevOrigins: [
     "alparai.com",
     "www.alparai.com",
@@ -123,7 +125,7 @@ const nextConfig = {
     ],
   },
   experimental: {
-    // Dinamik Çoklu Çekirdek (Multi-Core) Optimizasyonu
+    // Dinamik Ã‡oklu Ã‡ekirdek (Multi-Core) Optimizasyonu
     webpackBuildWorker: process.env.CI ? false : true,
     parallelServerCompiles: process.env.CI ? false : true,
     parallelServerBuildTraces: process.env.CI ? false : true,
@@ -266,7 +268,7 @@ const nextConfig = {
         destination: "/:locale/insights/open-vs-closed",
         permanent: true,
       },
-      // Broken links discovered via 360° QA audit
+      // Broken links discovered via 360Â° QA audit
       {
         source: "/:locale/scoreboard",
         destination: "/:locale/leaderboard",

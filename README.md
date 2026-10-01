@@ -1,13 +1,13 @@
 <div align="center">
   <img src="public/brand/alpar-logo.svg" alt="ALPAR AI Logo" width="360" />
-  
+
   <p align="center">
     <strong>Global Autonomous AI Incident Intelligence, Compliance & Cross-Audit Infrastructure</strong>
   </p>
 
   <p align="center">
     <a href="https://www.alparai.com"><img src="https://img.shields.io/badge/Production-alparai.com-8b5cf6?style=for-the-badge&logo=dehost" alt="Production" /></a>
-    <a href="https://github.com/quantummatrixcore-lab/alparai-platform/actions"><img src="https://img.shields.io/badge/CI%2FCD-Passing%20(208%2F208)-emerald?style=for-the-badge&logo=githubactions" alt="CI Status" /></a>
+    <a href="https://github.com/quantummatrixcore-lab/alparai-platform/actions/workflows/ci.yml"><img src="https://github.com/quantummatrixcore-lab/alparai-platform/actions/workflows/ci.yml/badge.svg" alt="CI Status" /></a>
     <a href="LICENSE"><img src="https://img.shields.io/badge/License-AGPLv3-blue?style=for-the-badge" alt="License" /></a>
     <a href="https://www.alparai.com/tr/ai-act"><img src="https://img.shields.io/badge/EU_AI_Act-Article_72_Ready-amber?style=for-the-badge" alt="EU AI Act" /></a>
   </p>
@@ -21,14 +21,11 @@
 
 ---
 
-## ✨ Key Capabilities
+## 📁 Repository Layout
 
-- 📡 **2,880+ Indexed & Verified Incidents**: Comprehensive database of LLM hallucinations, security bypasses, data exfiltration, bias suppression, and system outages.
-- 🛡️ **Cross-Audit Truth Scoring™**: Multi-model consensus pipeline benchmarking claim veracity, evidence provenance, and reproducibility.
-- 🇪🇺 **EU AI Act & Global Regulatory Engine**: Real-time automated risk classification (Unacceptable, High, Limited, Minimal) complying with EU AI Act Articles 5, 6, and 72.
-- ⚡ **Model Velocity & ELO Radar**: Realtime tracking of frontier and open-weight models (o1, DeepSeek-R1, Gemini 2.0, Claude 3.7, GPT-4o, Llama 3.3).
-- ⚖️ **Ethical Dilemmas & Precedent Bank**: Interactive case repository exploring edge-case societal impact and liability boundaries.
-- 🔒 **Zero-Trust Whistleblower Gateway**: End-to-end PGP-encrypted, metadata-sanitized reporting portal for AI safety whistleblowers.
+- **This repository** (`alparai-platform`) is public and contains the complete product: application, tests, docs, and deployment workflows.
+- **Internal-only extensions** (company-confidential interfaces and tooling) are maintained in a separate private repository. Access requests: `security@alparai.com`.
+- **Working language:** all code, comments, docs, and commit messages are English.
 
 ---
 
@@ -40,18 +37,18 @@
                                │   Turbopack & Edge ISR    │
                                └─────────────┬─────────────┘
                                              │
-             ┌───────────────────────────────┼───────────────────────────────┐
-             ▼                               ▼                               ▼
-    ┌─────────────────┐             ┌─────────────────┐             ┌─────────────────┐
-    │  Tailwind CSS v4│             │   PostgreSQL    │             │  Multi-Model    │
-    │  Framer Motion  │             │   pgvector RLS  │             │  Cross-Audit    │
-    │  Next-Intl (i18n│             │   DeHost Auth │             │  Edge Gateways  │
-    └─────────────────┘             └─────────────────┘             └─────────────────┘
+              ┌──────────────────────────────┼───────────────────────────────┐
+              ▼                              ▼                               ▼
+     ┌─────────────────┐            ┌─────────────────┐             ┌─────────────────┐
+     │  Tailwind CSS v4│            │   PostgreSQL    │             │   Multi-Model   │
+     │  Framer Motion  │            │   pgvector RLS  │             │   Cross-Audit   │
+     │  Next-Intl (i18n│            │   DeHost Auth │             │  Edge Gateways  │
+     └─────────────────┘            └─────────────────┘             └─────────────────┘
 ```
 
 - **Frontend**: Next.js 16 (React 19), Tailwind CSS v4, Framer Motion, Lucide Icons
 - **Backend & Database**: PostgreSQL 16 with `pgvector`, Row-Level Security (RLS), DeHost Auth & Storage
-- **Internationalization**: Full bilingual English (`/en`) & Turkish (`/tr`) localization via `next-intl`
+- **Internationalization**: English (`/en`) and Turkish (`/tr`) dictionaries ship complete; additional nav locales are pending dictionaries (see Status)
 - **Security**: Strict CSP, Subresource Integrity, Zero-Trust Storage, Rate Limiting, Turnstile Bot Protection
 - **Observability**: PostHog Telemetry, Sentry Performance, DeHost Speed Insights
 
@@ -60,8 +57,9 @@
 ## 🚀 Quick Start (Local Development)
 
 ### Prerequisites
+
 - Node.js `20.x` or later (LTS recommended)
-- `pnpm` or `npm`
+- `pnpm >= 9.12.0`
 - PostgreSQL / DeHost project
 
 ### Installation
@@ -85,27 +83,41 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## 🧪 Quality Gate & Test Suite
+## 🧪 Quality Gates
+
+All gates run in CI (`.github/workflows/`) and as pre-commit / pre-push hooks. Secrets are scanned on every commit; `.env*` files are never committed.
 
 ```bash
-# Run unit & contract test suite (208+ files, 1177+ tests)
-pnpm test
-
-# Run TypeScript typecheck
-pnpm typecheck
-
-# Run linter
-pnpm lint
-
-# Run security & AST scan
-npm run security-check
+pnpm typecheck      # TypeScript, zero errors
+pnpm lint           # ESLint
+pnpm test           # Vitest unit suites (210 suites)
+pnpm test:e2e       # Playwright end-to-end (55 specs)
+pnpm i18n:check     # dictionary completeness
+pnpm check:routes   # route inventory check
 ```
+
+---
+
+## 🚢 Deployment Topology
+
+Traffic serving follows one rule: **a single serving lane per hostname.** Static snapshots under `public/` must never shadow application routes. The two lanes:
+
+- **Next.js application** — built and verified by `production.yml`, served from the production host.
+- **Cloudflare Pages (`public/`)** — static assets only. No locale `index.html` snapshots that collide with app routes.
+
+See `.github/workflows/cloudflare-pages.yml` and `.github/workflows/production.yml`.
 
 ---
 
 ## 🎨 Brand Assets & Media Kit
 
 Official vector logos, color specifications, and icon kits are available in the [Brand Assets Package](https://www.alparai.com/brand-assets.zip).
+
+---
+
+## 🤝 Contributing
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. By contributing you agree that your work follows the repository language rule (English) and the quality gates above.
 
 ---
 

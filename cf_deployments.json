@@ -1,0 +1,1349 @@
+﻿{
+  "result": [
+    {
+      "id": "30312800-809b-4759-907e-72b75b913769",
+      "short_id": "30312800",
+      "project_id": "79aac345-12b9-4573-96a6-db52ef4e8d23",
+      "project_name": "alparai-com",
+      "environment": "production",
+      "url": "https://30312800.alparai-com.pages.dev",
+      "created_on": "2026-09-30T08:55:53.017678Z",
+      "modified_on": "2026-09-30T08:55:54.423904Z",
+      "latest_stage": {
+        "name": "deploy",
+        "started_on": null,
+        "ended_on": "2026-09-30T08:55:54.423904Z",
+        "status": "success"
+      },
+      "deployment_trigger": {
+        "type": "ad_hoc",
+        "metadata": {
+          "branch": "master",
+          "commit_hash": "852fcdc3c0fea5732df0e52cdb29bd9f05a274e0",
+          "commit_message": "[deploy] Add _redirects for Cloudflare Pages root routing to /en/",
+          "commit_dirty": true
+        }
+      },
+      "stages": [
+        {
+          "name": "queued",
+          "started_on": "2026-09-30T08:55:53.017678Z",
+          "ended_on": null,
+          "status": "active"
+        },
+        {
+          "name": "initialize",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "clone_repo",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "build",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-30T08:55:54.423904Z",
+          "status": "success"
+        }
+      ],
+      "build_config": {
+        "build_command": null,
+        "destination_dir": null,
+        "build_caching": null,
+        "root_dir": null,
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "env_vars": {},
+      "compatibility_date": "2026-07-02",
+      "compatibility_flags": [],
+      "build_image_major_version": 3,
+      "usage_model": null,
+      "aliases": [
+        "https://alparai.com",
+        "https://www.alparai.com"
+      ],
+      "is_skipped": false,
+      "production_branch": "master",
+      "uses_functions": false
+    },
+    {
+      "id": "f4269f6c-3827-4f54-bf33-51f94477f239",
+      "short_id": "f4269f6c",
+      "project_id": "79aac345-12b9-4573-96a6-db52ef4e8d23",
+      "project_name": "alparai-com",
+      "environment": "production",
+      "url": "https://f4269f6c.alparai-com.pages.dev",
+      "created_on": "2026-09-30T08:08:13.407073Z",
+      "modified_on": "2026-09-30T08:08:14.667494Z",
+      "latest_stage": {
+        "name": "deploy",
+        "started_on": null,
+        "ended_on": "2026-09-30T08:08:14.667494Z",
+        "status": "success"
+      },
+      "deployment_trigger": {
+        "type": "ad_hoc",
+        "metadata": {
+          "branch": "master",
+          "commit_hash": "",
+          "commit_message": "",
+          "commit_dirty": false
+        }
+      },
+      "stages": [
+        {
+          "name": "queued",
+          "started_on": "2026-09-30T08:08:13.407073Z",
+          "ended_on": null,
+          "status": "active"
+        },
+        {
+          "name": "initialize",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "clone_repo",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "build",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-30T08:08:14.667494Z",
+          "status": "success"
+        }
+      ],
+      "build_config": {
+        "build_command": null,
+        "destination_dir": null,
+        "build_caching": null,
+        "root_dir": null,
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "env_vars": {},
+      "compatibility_date": "2026-07-02",
+      "compatibility_flags": [],
+      "build_image_major_version": 3,
+      "usage_model": null,
+      "aliases": null,
+      "is_skipped": false,
+      "production_branch": "master",
+      "uses_functions": false
+    },
+    {
+      "id": "4f553763-90f5-4521-992a-b61256c56dc6",
+      "short_id": "4f553763",
+      "project_id": "79aac345-12b9-4573-96a6-db52ef4e8d23",
+      "project_name": "alparai-com",
+      "environment": "production",
+      "url": "https://4f553763.alparai-com.pages.dev",
+      "created_on": "2026-09-30T07:23:05.923164Z",
+      "modified_on": "2026-09-30T07:23:07.13293Z",
+      "latest_stage": {
+        "name": "deploy",
+        "started_on": null,
+        "ended_on": "2026-09-30T07:23:07.13293Z",
+        "status": "success"
+      },
+      "deployment_trigger": {
+        "type": "ad_hoc",
+        "metadata": {
+          "branch": "master",
+          "commit_hash": "1e581c98324a28d7d2353602b9d872b10c6e19f2",
+          "commit_message": "fix(build): increase max-old-space-size to 8192 to prevent OOM in Cloudflare [deploy]",
+          "commit_dirty": true
+        }
+      },
+      "stages": [
+        {
+          "name": "queued",
+          "started_on": "2026-09-30T07:23:05.923164Z",
+          "ended_on": null,
+          "status": "active"
+        },
+        {
+          "name": "initialize",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "clone_repo",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "build",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-30T07:23:07.13293Z",
+          "status": "success"
+        }
+      ],
+      "build_config": {
+        "build_command": null,
+        "destination_dir": null,
+        "build_caching": null,
+        "root_dir": null,
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "env_vars": {},
+      "compatibility_date": "2026-07-02",
+      "compatibility_flags": [],
+      "build_image_major_version": 3,
+      "usage_model": null,
+      "aliases": null,
+      "is_skipped": false,
+      "production_branch": "master",
+      "uses_functions": false
+    },
+    {
+      "id": "ed3081f7-02d8-40a3-a75d-d5809b34644d",
+      "short_id": "ed3081f7",
+      "project_id": "79aac345-12b9-4573-96a6-db52ef4e8d23",
+      "project_name": "alparai-com",
+      "environment": "production",
+      "url": "https://ed3081f7.alparai-com.pages.dev",
+      "created_on": "2026-09-28T14:21:14.4252Z",
+      "modified_on": "2026-09-28T14:21:16.973268Z",
+      "latest_stage": {
+        "name": "deploy",
+        "started_on": null,
+        "ended_on": "2026-09-28T14:21:16.973268Z",
+        "status": "success"
+      },
+      "deployment_trigger": {
+        "type": "ad_hoc",
+        "metadata": {
+          "branch": "master",
+          "commit_hash": "f32f040c5deb4f160eaf2891d19b3330d01751ad",
+          "commit_message": "feat(sales): add demo request CTA and handler to AlparAi landing page",
+          "commit_dirty": false
+        }
+      },
+      "stages": [
+        {
+          "name": "queued",
+          "started_on": "2026-09-28T14:21:14.4252Z",
+          "ended_on": null,
+          "status": "active"
+        },
+        {
+          "name": "initialize",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "clone_repo",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "build",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-28T14:21:16.973268Z",
+          "status": "success"
+        }
+      ],
+      "build_config": {
+        "build_command": null,
+        "destination_dir": null,
+        "build_caching": null,
+        "root_dir": null,
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "env_vars": {},
+      "compatibility_date": "2026-07-02",
+      "compatibility_flags": [],
+      "build_image_major_version": 3,
+      "usage_model": null,
+      "aliases": null,
+      "is_skipped": false,
+      "production_branch": "master",
+      "uses_functions": false
+    },
+    {
+      "id": "12f72a80-0d72-4aba-984a-fcaa5cbc2491",
+      "short_id": "12f72a80",
+      "project_id": "79aac345-12b9-4573-96a6-db52ef4e8d23",
+      "project_name": "alparai-com",
+      "environment": "production",
+      "url": "https://12f72a80.alparai-com.pages.dev",
+      "created_on": "2026-09-28T14:04:49.060776Z",
+      "modified_on": "2026-09-28T14:04:51.454883Z",
+      "latest_stage": {
+        "name": "deploy",
+        "started_on": null,
+        "ended_on": "2026-09-28T14:04:51.454883Z",
+        "status": "success"
+      },
+      "deployment_trigger": {
+        "type": "ad_hoc",
+        "metadata": {
+          "branch": "master",
+          "commit_hash": "af571b892636ed413248636d5feae953f17555af",
+          "commit_message": "feat(data): seed AlparAi incidents and prospects with real data",
+          "commit_dirty": false
+        }
+      },
+      "stages": [
+        {
+          "name": "queued",
+          "started_on": "2026-09-28T14:04:49.060776Z",
+          "ended_on": null,
+          "status": "active"
+        },
+        {
+          "name": "initialize",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "clone_repo",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "build",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-28T14:04:51.454883Z",
+          "status": "success"
+        }
+      ],
+      "build_config": {
+        "build_command": null,
+        "destination_dir": null,
+        "build_caching": null,
+        "root_dir": null,
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "env_vars": {},
+      "compatibility_date": "2026-07-02",
+      "compatibility_flags": [],
+      "build_image_major_version": 3,
+      "usage_model": null,
+      "aliases": null,
+      "is_skipped": false,
+      "production_branch": "master",
+      "uses_functions": false
+    },
+    {
+      "id": "3552643a-ccc0-4dea-935f-c9f6a27466fe",
+      "short_id": "3552643a",
+      "project_id": "79aac345-12b9-4573-96a6-db52ef4e8d23",
+      "project_name": "alparai-com",
+      "environment": "production",
+      "url": "https://3552643a.alparai-com.pages.dev",
+      "created_on": "2026-09-28T05:57:54.674873Z",
+      "modified_on": "2026-09-28T05:57:55.834116Z",
+      "latest_stage": {
+        "name": "deploy",
+        "started_on": null,
+        "ended_on": "2026-09-28T05:57:55.834116Z",
+        "status": "success"
+      },
+      "deployment_trigger": {
+        "type": "ad_hoc",
+        "metadata": {
+          "branch": "master",
+          "commit_hash": "ac3488ecf61c7d53100097b140afa6c0a5fe6446",
+          "commit_message": "feat(i18n): add German (DE) and French (FR) pages and update navbars for EU AI Act compliance",
+          "commit_dirty": true
+        }
+      },
+      "stages": [
+        {
+          "name": "queued",
+          "started_on": "2026-09-28T05:57:54.674873Z",
+          "ended_on": null,
+          "status": "active"
+        },
+        {
+          "name": "initialize",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "clone_repo",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "build",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-28T05:57:55.834116Z",
+          "status": "success"
+        }
+      ],
+      "build_config": {
+        "build_command": null,
+        "destination_dir": null,
+        "build_caching": null,
+        "root_dir": null,
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "env_vars": {},
+      "compatibility_date": "2026-07-02",
+      "compatibility_flags": [],
+      "build_image_major_version": 3,
+      "usage_model": null,
+      "aliases": null,
+      "is_skipped": false,
+      "production_branch": "master",
+      "uses_functions": false
+    },
+    {
+      "id": "f1a4dfeb-0219-4725-808b-6e517a3c8531",
+      "short_id": "f1a4dfeb",
+      "project_id": "79aac345-12b9-4573-96a6-db52ef4e8d23",
+      "project_name": "alparai-com",
+      "environment": "production",
+      "url": "https://f1a4dfeb.alparai-com.pages.dev",
+      "created_on": "2026-09-28T05:51:20.094546Z",
+      "modified_on": "2026-09-28T05:51:21.149705Z",
+      "latest_stage": {
+        "name": "deploy",
+        "started_on": null,
+        "ended_on": "2026-09-28T05:51:21.149705Z",
+        "status": "success"
+      },
+      "deployment_trigger": {
+        "type": "ad_hoc",
+        "metadata": {
+          "branch": "master",
+          "commit_hash": "ac3488ecf61c7d53100097b140afa6c0a5fe6446",
+          "commit_message": "feat(i18n): add German (DE) and French (FR) pages and update navbars for EU AI Act compliance",
+          "commit_dirty": false
+        }
+      },
+      "stages": [
+        {
+          "name": "queued",
+          "started_on": "2026-09-28T05:51:20.094546Z",
+          "ended_on": null,
+          "status": "active"
+        },
+        {
+          "name": "initialize",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "clone_repo",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "build",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-28T05:51:21.149705Z",
+          "status": "success"
+        }
+      ],
+      "build_config": {
+        "build_command": null,
+        "destination_dir": null,
+        "build_caching": null,
+        "root_dir": null,
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "env_vars": {},
+      "compatibility_date": "2026-07-02",
+      "compatibility_flags": [],
+      "build_image_major_version": 3,
+      "usage_model": null,
+      "aliases": null,
+      "is_skipped": false,
+      "production_branch": "master",
+      "uses_functions": false
+    },
+    {
+      "id": "eb2f325e-ea9b-4825-ab36-14ffe45126b3",
+      "short_id": "eb2f325e",
+      "project_id": "79aac345-12b9-4573-96a6-db52ef4e8d23",
+      "project_name": "alparai-com",
+      "environment": "production",
+      "url": "https://eb2f325e.alparai-com.pages.dev",
+      "created_on": "2026-09-28T05:49:12.559755Z",
+      "modified_on": "2026-09-28T05:49:13.740086Z",
+      "latest_stage": {
+        "name": "deploy",
+        "started_on": null,
+        "ended_on": "2026-09-28T05:49:13.740086Z",
+        "status": "success"
+      },
+      "deployment_trigger": {
+        "type": "ad_hoc",
+        "metadata": {
+          "branch": "master",
+          "commit_hash": "74c7220affcc3f90d707c7c68b17a4552370f36e",
+          "commit_message": "feat(marketing): add customer testimonials to home page and UTM params to pricing checkout",
+          "commit_dirty": true
+        }
+      },
+      "stages": [
+        {
+          "name": "queued",
+          "started_on": "2026-09-28T05:49:12.559755Z",
+          "ended_on": null,
+          "status": "active"
+        },
+        {
+          "name": "initialize",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "clone_repo",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "build",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-28T05:49:13.740086Z",
+          "status": "success"
+        }
+      ],
+      "build_config": {
+        "build_command": null,
+        "destination_dir": null,
+        "build_caching": null,
+        "root_dir": null,
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "env_vars": {},
+      "compatibility_date": "2026-07-02",
+      "compatibility_flags": [],
+      "build_image_major_version": 3,
+      "usage_model": null,
+      "aliases": null,
+      "is_skipped": false,
+      "production_branch": "master",
+      "uses_functions": false
+    },
+    {
+      "id": "e4bbb9a0-d88f-4ed7-bc52-e55a2c73a59f",
+      "short_id": "e4bbb9a0",
+      "project_id": "79aac345-12b9-4573-96a6-db52ef4e8d23",
+      "project_name": "alparai-com",
+      "environment": "production",
+      "url": "https://e4bbb9a0.alparai-com.pages.dev",
+      "created_on": "2026-09-28T05:29:34.883646Z",
+      "modified_on": "2026-09-28T05:29:35.877889Z",
+      "latest_stage": {
+        "name": "deploy",
+        "started_on": null,
+        "ended_on": "2026-09-28T05:29:35.877889Z",
+        "status": "success"
+      },
+      "deployment_trigger": {
+        "type": "ad_hoc",
+        "metadata": {
+          "branch": "master",
+          "commit_hash": "b4deebda6acde4a22938ac8abb575d765db9f6a4",
+          "commit_message": "feat: Commit Gate / Pre-commit Hook setup",
+          "commit_dirty": true
+        }
+      },
+      "stages": [
+        {
+          "name": "queued",
+          "started_on": "2026-09-28T05:29:34.883646Z",
+          "ended_on": null,
+          "status": "active"
+        },
+        {
+          "name": "initialize",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "clone_repo",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "build",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-28T05:29:35.877889Z",
+          "status": "success"
+        }
+      ],
+      "build_config": {
+        "build_command": null,
+        "destination_dir": null,
+        "build_caching": null,
+        "root_dir": null,
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "env_vars": {},
+      "compatibility_date": "2026-07-02",
+      "compatibility_flags": [],
+      "build_image_major_version": 3,
+      "usage_model": null,
+      "aliases": null,
+      "is_skipped": false,
+      "production_branch": "master",
+      "uses_functions": false
+    },
+    {
+      "id": "34947001-c0be-4dc7-80f8-71f6e746dd88",
+      "short_id": "34947001",
+      "project_id": "79aac345-12b9-4573-96a6-db52ef4e8d23",
+      "project_name": "alparai-com",
+      "environment": "production",
+      "url": "https://34947001.alparai-com.pages.dev",
+      "created_on": "2026-09-28T05:28:19.478029Z",
+      "modified_on": "2026-09-28T05:28:20.692255Z",
+      "latest_stage": {
+        "name": "deploy",
+        "started_on": null,
+        "ended_on": "2026-09-28T05:28:20.692255Z",
+        "status": "success"
+      },
+      "deployment_trigger": {
+        "type": "ad_hoc",
+        "metadata": {
+          "branch": "master",
+          "commit_hash": "b4deebda6acde4a22938ac8abb575d765db9f6a4",
+          "commit_message": "feat: Commit Gate / Pre-commit Hook setup",
+          "commit_dirty": true
+        }
+      },
+      "stages": [
+        {
+          "name": "queued",
+          "started_on": "2026-09-28T05:28:19.478029Z",
+          "ended_on": null,
+          "status": "active"
+        },
+        {
+          "name": "initialize",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "clone_repo",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "build",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-28T05:28:20.692255Z",
+          "status": "success"
+        }
+      ],
+      "build_config": {
+        "build_command": null,
+        "destination_dir": null,
+        "build_caching": null,
+        "root_dir": null,
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "env_vars": {},
+      "compatibility_date": "2026-07-02",
+      "compatibility_flags": [],
+      "build_image_major_version": 3,
+      "usage_model": null,
+      "aliases": null,
+      "is_skipped": false,
+      "production_branch": "master",
+      "uses_functions": false
+    },
+    {
+      "id": "d9e3e763-1380-47de-bb7a-4615c53dcc6a",
+      "short_id": "d9e3e763",
+      "project_id": "79aac345-12b9-4573-96a6-db52ef4e8d23",
+      "project_name": "alparai-com",
+      "environment": "production",
+      "url": "https://d9e3e763.alparai-com.pages.dev",
+      "created_on": "2026-09-28T05:20:23.566286Z",
+      "modified_on": "2026-09-28T05:20:25.215692Z",
+      "latest_stage": {
+        "name": "deploy",
+        "started_on": null,
+        "ended_on": "2026-09-28T05:20:25.215692Z",
+        "status": "success"
+      },
+      "deployment_trigger": {
+        "type": "ad_hoc",
+        "metadata": {
+          "branch": "master",
+          "commit_hash": "dbdf9c62cda08b542c96740e7efefa4847ebd7d8",
+          "commit_message": "fix(routing): remove static index.html overrides hijacking next.js app router [deploy]",
+          "commit_dirty": true
+        }
+      },
+      "stages": [
+        {
+          "name": "queued",
+          "started_on": "2026-09-28T05:20:23.566286Z",
+          "ended_on": null,
+          "status": "active"
+        },
+        {
+          "name": "initialize",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "clone_repo",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "build",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-28T05:20:25.215692Z",
+          "status": "success"
+        }
+      ],
+      "build_config": {
+        "build_command": null,
+        "destination_dir": null,
+        "build_caching": null,
+        "root_dir": null,
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "env_vars": {},
+      "compatibility_date": "2026-07-02",
+      "compatibility_flags": [],
+      "build_image_major_version": 3,
+      "usage_model": null,
+      "aliases": null,
+      "is_skipped": false,
+      "production_branch": "master",
+      "uses_functions": false
+    },
+    {
+      "id": "0ccabde0-a539-4a9c-8ca4-53c42a22a298",
+      "short_id": "0ccabde0",
+      "project_id": "79aac345-12b9-4573-96a6-db52ef4e8d23",
+      "project_name": "alparai-com",
+      "environment": "production",
+      "url": "https://0ccabde0.alparai-com.pages.dev",
+      "created_on": "2026-09-28T04:50:02.968619Z",
+      "modified_on": "2026-09-28T04:50:05.282861Z",
+      "latest_stage": {
+        "name": "deploy",
+        "started_on": null,
+        "ended_on": "2026-09-28T04:50:05.282861Z",
+        "status": "success"
+      },
+      "deployment_trigger": {
+        "type": "ad_hoc",
+        "metadata": {
+          "branch": "master",
+          "commit_hash": "b87c4b0a8f9b250a5503d6488879f4a2ea447355",
+          "commit_message": "ci: reinforce Cloudflare Pages workflow and sync state",
+          "commit_dirty": true
+        }
+      },
+      "stages": [
+        {
+          "name": "queued",
+          "started_on": "2026-09-28T04:50:02.968619Z",
+          "ended_on": null,
+          "status": "active"
+        },
+        {
+          "name": "initialize",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "clone_repo",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "build",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-28T04:50:05.282861Z",
+          "status": "success"
+        }
+      ],
+      "build_config": {
+        "build_command": null,
+        "destination_dir": null,
+        "build_caching": null,
+        "root_dir": null,
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "env_vars": {},
+      "compatibility_date": "2026-07-02",
+      "compatibility_flags": [],
+      "build_image_major_version": 3,
+      "usage_model": null,
+      "aliases": null,
+      "is_skipped": false,
+      "production_branch": "master",
+      "uses_functions": false
+    },
+    {
+      "id": "ac27110b-6473-4bd4-917c-627ce524964a",
+      "short_id": "ac27110b",
+      "project_id": "79aac345-12b9-4573-96a6-db52ef4e8d23",
+      "project_name": "alparai-com",
+      "environment": "production",
+      "url": "https://ac27110b.alparai-com.pages.dev",
+      "created_on": "2026-09-28T02:25:47.552011Z",
+      "modified_on": "2026-09-28T02:25:48.865944Z",
+      "latest_stage": {
+        "name": "deploy",
+        "started_on": null,
+        "ended_on": "2026-09-28T02:25:48.865944Z",
+        "status": "success"
+      },
+      "deployment_trigger": {
+        "type": "ad_hoc",
+        "metadata": {
+          "branch": "master",
+          "commit_hash": "b87c4b0a8f9b250a5503d6488879f4a2ea447355",
+          "commit_message": "ci: reinforce Cloudflare Pages workflow and sync state",
+          "commit_dirty": true
+        }
+      },
+      "stages": [
+        {
+          "name": "queued",
+          "started_on": "2026-09-28T02:25:47.552011Z",
+          "ended_on": null,
+          "status": "active"
+        },
+        {
+          "name": "initialize",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "clone_repo",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "build",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-28T02:25:48.865944Z",
+          "status": "success"
+        }
+      ],
+      "build_config": {
+        "build_command": null,
+        "destination_dir": null,
+        "build_caching": null,
+        "root_dir": null,
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "env_vars": {},
+      "compatibility_date": "2026-07-02",
+      "compatibility_flags": [],
+      "build_image_major_version": 3,
+      "usage_model": null,
+      "aliases": null,
+      "is_skipped": false,
+      "production_branch": "master",
+      "uses_functions": false
+    },
+    {
+      "id": "33154b07-5e0f-4b6e-9a0b-6203125ece4b",
+      "short_id": "33154b07",
+      "project_id": "79aac345-12b9-4573-96a6-db52ef4e8d23",
+      "project_name": "alparai-com",
+      "environment": "production",
+      "url": "https://33154b07.alparai-com.pages.dev",
+      "created_on": "2026-09-28T02:19:25.425831Z",
+      "modified_on": "2026-09-28T02:19:26.981451Z",
+      "latest_stage": {
+        "name": "deploy",
+        "started_on": null,
+        "ended_on": "2026-09-28T02:19:26.981451Z",
+        "status": "success"
+      },
+      "deployment_trigger": {
+        "type": "ad_hoc",
+        "metadata": {
+          "branch": "master",
+          "commit_hash": "8d0c2bfbadfa7f411a2e0da1442a5ed00bdea1cc",
+          "commit_message": "ci: add Cloudflare Pages deployment workflow",
+          "commit_dirty": true
+        }
+      },
+      "stages": [
+        {
+          "name": "queued",
+          "started_on": "2026-09-28T02:19:25.425831Z",
+          "ended_on": null,
+          "status": "active"
+        },
+        {
+          "name": "initialize",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "clone_repo",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "build",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-28T02:19:26.981451Z",
+          "status": "success"
+        }
+      ],
+      "build_config": {
+        "build_command": null,
+        "destination_dir": null,
+        "build_caching": null,
+        "root_dir": null,
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "env_vars": {},
+      "compatibility_date": "2026-07-02",
+      "compatibility_flags": [],
+      "build_image_major_version": 3,
+      "usage_model": null,
+      "aliases": null,
+      "is_skipped": false,
+      "production_branch": "master",
+      "uses_functions": false
+    },
+    {
+      "id": "4d4d8c66-94b1-4643-afa7-4b8709648e82",
+      "short_id": "4d4d8c66",
+      "project_id": "79aac345-12b9-4573-96a6-db52ef4e8d23",
+      "project_name": "alparai-com",
+      "environment": "production",
+      "url": "https://4d4d8c66.alparai-com.pages.dev",
+      "created_on": "2026-09-28T02:02:20.570206Z",
+      "modified_on": "2026-09-28T02:02:21.756066Z",
+      "latest_stage": {
+        "name": "deploy",
+        "started_on": null,
+        "ended_on": "2026-09-28T02:02:21.756066Z",
+        "status": "success"
+      },
+      "deployment_trigger": {
+        "type": "ad_hoc",
+        "metadata": {
+          "branch": "master",
+          "commit_hash": "dffe4e2b2fc3441377eef80fde2490972207c4fc",
+          "commit_message": "feat(deploy): add static landing page and Cloudflare Pages headers",
+          "commit_dirty": true
+        }
+      },
+      "stages": [
+        {
+          "name": "queued",
+          "started_on": "2026-09-28T02:02:20.570206Z",
+          "ended_on": null,
+          "status": "active"
+        },
+        {
+          "name": "initialize",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "clone_repo",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "build",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-28T02:02:21.756066Z",
+          "status": "success"
+        }
+      ],
+      "build_config": {
+        "build_command": null,
+        "destination_dir": null,
+        "build_caching": null,
+        "root_dir": null,
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "env_vars": {},
+      "compatibility_date": "2026-07-02",
+      "compatibility_flags": [],
+      "build_image_major_version": 3,
+      "usage_model": null,
+      "aliases": null,
+      "is_skipped": false,
+      "production_branch": "master",
+      "uses_functions": false
+    },
+    {
+      "id": "33515c45-cb20-4262-abb5-44c1a7ece616",
+      "short_id": "33515c45",
+      "project_id": "79aac345-12b9-4573-96a6-db52ef4e8d23",
+      "project_name": "alparai-com",
+      "environment": "production",
+      "url": "https://33515c45.alparai-com.pages.dev",
+      "created_on": "2026-09-28T02:02:00.214727Z",
+      "modified_on": "2026-09-28T02:02:01.606864Z",
+      "latest_stage": {
+        "name": "deploy",
+        "started_on": null,
+        "ended_on": "2026-09-28T02:02:01.606864Z",
+        "status": "success"
+      },
+      "deployment_trigger": {
+        "type": "ad_hoc",
+        "metadata": {
+          "branch": "master",
+          "commit_hash": "dffe4e2b2fc3441377eef80fde2490972207c4fc",
+          "commit_message": "feat(deploy): add static landing page and Cloudflare Pages headers",
+          "commit_dirty": true
+        }
+      },
+      "stages": [
+        {
+          "name": "queued",
+          "started_on": "2026-09-28T02:02:00.214727Z",
+          "ended_on": null,
+          "status": "active"
+        },
+        {
+          "name": "initialize",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "clone_repo",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "build",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-28T02:02:01.606864Z",
+          "status": "success"
+        }
+      ],
+      "build_config": {
+        "build_command": null,
+        "destination_dir": null,
+        "build_caching": null,
+        "root_dir": null,
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "env_vars": {},
+      "compatibility_date": "2026-07-02",
+      "compatibility_flags": [],
+      "build_image_major_version": 3,
+      "usage_model": null,
+      "aliases": null,
+      "is_skipped": false,
+      "production_branch": "master",
+      "uses_functions": false
+    },
+    {
+      "id": "2e835c85-24c1-47e0-88cd-015dbe278aec",
+      "short_id": "2e835c85",
+      "project_id": "79aac345-12b9-4573-96a6-db52ef4e8d23",
+      "project_name": "alparai-com",
+      "environment": "production",
+      "url": "https://2e835c85.alparai-com.pages.dev",
+      "created_on": "2026-09-28T01:51:33.26175Z",
+      "modified_on": "2026-09-28T01:51:34.382757Z",
+      "latest_stage": {
+        "name": "deploy",
+        "started_on": null,
+        "ended_on": "2026-09-28T01:51:34.382757Z",
+        "status": "success"
+      },
+      "deployment_trigger": {
+        "type": "ad_hoc",
+        "metadata": {
+          "branch": "master",
+          "commit_hash": "dffe4e2b2fc3441377eef80fde2490972207c4fc",
+          "commit_message": "feat(deploy): add static landing page and Cloudflare Pages headers",
+          "commit_dirty": false
+        }
+      },
+      "stages": [
+        {
+          "name": "queued",
+          "started_on": "2026-09-28T01:51:33.26175Z",
+          "ended_on": null,
+          "status": "active"
+        },
+        {
+          "name": "initialize",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "clone_repo",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "build",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-28T01:51:34.382757Z",
+          "status": "success"
+        }
+      ],
+      "build_config": {
+        "build_command": null,
+        "destination_dir": null,
+        "build_caching": null,
+        "root_dir": null,
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "env_vars": {},
+      "compatibility_date": "2026-07-02",
+      "compatibility_flags": [],
+      "build_image_major_version": 3,
+      "usage_model": null,
+      "aliases": null,
+      "is_skipped": false,
+      "production_branch": "master",
+      "uses_functions": false
+    },
+    {
+      "id": "940187b2-d742-4a85-b162-d89cf38a12c0",
+      "short_id": "940187b2",
+      "project_id": "79aac345-12b9-4573-96a6-db52ef4e8d23",
+      "project_name": "alparai-com",
+      "environment": "production",
+      "url": "https://940187b2.alparai-com.pages.dev",
+      "created_on": "2026-09-28T01:49:27.054268Z",
+      "modified_on": "2026-09-28T01:49:28.298221Z",
+      "latest_stage": {
+        "name": "deploy",
+        "started_on": null,
+        "ended_on": "2026-09-28T01:49:28.298221Z",
+        "status": "success"
+      },
+      "deployment_trigger": {
+        "type": "ad_hoc",
+        "metadata": {
+          "branch": "master",
+          "commit_hash": "9fb8f20339264e7652041abd0eb6f89ea8ac441e",
+          "commit_message": "feat: Cloudflare Pages configuration and deployment sync",
+          "commit_dirty": true
+        }
+      },
+      "stages": [
+        {
+          "name": "queued",
+          "started_on": "2026-09-28T01:49:27.054268Z",
+          "ended_on": null,
+          "status": "active"
+        },
+        {
+          "name": "initialize",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "clone_repo",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "build",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        },
+        {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-28T01:49:28.298221Z",
+          "status": "success"
+        }
+      ],
+      "build_config": {
+        "build_command": null,
+        "destination_dir": null,
+        "build_caching": null,
+        "root_dir": null,
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "env_vars": {},
+      "compatibility_date": "2026-07-02",
+      "compatibility_flags": [],
+      "build_image_major_version": 3,
+      "usage_model": null,
+      "aliases": null,
+      "is_skipped": false,
+      "production_branch": "master",
+      "uses_functions": false
+    }
+  ],
+  "success": true,
+  "errors": [],
+  "messages": [],
+  "result_info": {
+    "page": 1,
+    "per_page": 25,
+    "count": 18,
+    "total_count": 18,
+    "total_pages": 1
+  }
+}

@@ -1,0 +1,1642 @@
+{
+  "result": [
+    {
+      "id": "79aac345-12b9-4573-96a6-db52ef4e8d23",
+      "name": "alparai-com",
+      "subdomain": "alparai-com.pages.dev",
+      "domains": [
+        "alparai-com.pages.dev"
+      ],
+      "build_config": {
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "deployment_configs": {
+        "preview": {
+          "env_vars": null,
+          "fail_open": true,
+          "always_use_latest_compatibility_date": false,
+          "compatibility_date": "2026-07-02",
+          "compatibility_flags": [],
+          "build_image_major_version": 3,
+          "usage_model": "standard"
+        },
+        "production": {
+          "env_vars": null,
+          "fail_open": true,
+          "always_use_latest_compatibility_date": false,
+          "compatibility_date": "2026-07-02",
+          "compatibility_flags": [],
+          "build_image_major_version": 3,
+          "usage_model": "standard"
+        }
+      },
+      "latest_deployment": {
+        "id": "30312800-809b-4759-907e-72b75b913769",
+        "short_id": "30312800",
+        "project_id": "79aac345-12b9-4573-96a6-db52ef4e8d23",
+        "project_name": "alparai-com",
+        "environment": "production",
+        "url": "https://30312800.alparai-com.pages.dev",
+        "created_on": "2026-09-30T08:55:53.017678Z",
+        "modified_on": "2026-09-30T08:55:54.423904Z",
+        "latest_stage": {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-30T08:55:54.423904Z",
+          "status": "success"
+        },
+        "deployment_trigger": {
+          "type": "ad_hoc",
+          "metadata": {
+            "branch": "master",
+            "commit_hash": "852fcdc3c0fea5732df0e52cdb29bd9f05a274e0",
+            "commit_message": "[deploy] Add _redirects for Cloudflare Pages root routing to /en/",
+            "commit_dirty": true
+          }
+        },
+        "stages": [
+          {
+            "name": "queued",
+            "started_on": "2026-09-30T08:55:53.017678Z",
+            "ended_on": null,
+            "status": "active"
+          },
+          {
+            "name": "initialize",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "clone_repo",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "build",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "deploy",
+            "started_on": null,
+            "ended_on": "2026-09-30T08:55:54.423904Z",
+            "status": "success"
+          }
+        ],
+        "build_config": {
+          "build_command": null,
+          "destination_dir": null,
+          "build_caching": null,
+          "root_dir": null,
+          "web_analytics_tag": null,
+          "web_analytics_token": null
+        },
+        "env_vars": {},
+        "compatibility_date": "2026-07-02",
+        "compatibility_flags": [],
+        "build_image_major_version": 3,
+        "usage_model": null,
+        "aliases": null,
+        "is_skipped": false,
+        "production_branch": "master",
+        "uses_functions": false
+      },
+      "canonical_deployment": {
+        "id": "30312800-809b-4759-907e-72b75b913769",
+        "short_id": "30312800",
+        "project_id": "79aac345-12b9-4573-96a6-db52ef4e8d23",
+        "project_name": "alparai-com",
+        "environment": "production",
+        "url": "https://30312800.alparai-com.pages.dev",
+        "created_on": "2026-09-30T08:55:53.017678Z",
+        "modified_on": "2026-09-30T08:55:54.423904Z",
+        "latest_stage": {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-30T08:55:54.423904Z",
+          "status": "success"
+        },
+        "deployment_trigger": {
+          "type": "ad_hoc",
+          "metadata": {
+            "branch": "master",
+            "commit_hash": "852fcdc3c0fea5732df0e52cdb29bd9f05a274e0",
+            "commit_message": "[deploy] Add _redirects for Cloudflare Pages root routing to /en/",
+            "commit_dirty": true
+          }
+        },
+        "stages": [
+          {
+            "name": "queued",
+            "started_on": "2026-09-30T08:55:53.017678Z",
+            "ended_on": null,
+            "status": "active"
+          },
+          {
+            "name": "initialize",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "clone_repo",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "build",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "deploy",
+            "started_on": null,
+            "ended_on": "2026-09-30T08:55:54.423904Z",
+            "status": "success"
+          }
+        ],
+        "build_config": {
+          "build_command": null,
+          "destination_dir": null,
+          "build_caching": null,
+          "root_dir": null,
+          "web_analytics_tag": null,
+          "web_analytics_token": null
+        },
+        "env_vars": {},
+        "compatibility_date": "2026-07-02",
+        "compatibility_flags": [],
+        "build_image_major_version": 3,
+        "usage_model": null,
+        "aliases": null,
+        "is_skipped": false,
+        "production_branch": "master",
+        "uses_functions": false
+      },
+      "created_on": "2026-07-02T19:02:17.337752Z",
+      "production_branch": "master",
+      "production_script_name": "pages-worker--15787279-production",
+      "preview_script_name": "pages-worker--15787279-preview",
+      "uses_functions": false,
+      "framework": "",
+      "framework_version": ""
+    },
+    {
+      "id": "4d40e6e9-66e5-4937-acca-d3214adee903",
+      "name": "decashub",
+      "subdomain": "decashub.pages.dev",
+      "domains": [
+        "decashub.pages.dev",
+        "decashub.com",
+        "www.decashub.com"
+      ],
+      "build_config": {
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "deployment_configs": {
+        "preview": {
+          "env_vars": null,
+          "fail_open": true,
+          "always_use_latest_compatibility_date": false,
+          "compatibility_date": "2026-09-28",
+          "compatibility_flags": [],
+          "build_image_major_version": 3,
+          "usage_model": "standard"
+        },
+        "production": {
+          "env_vars": null,
+          "fail_open": true,
+          "always_use_latest_compatibility_date": false,
+          "compatibility_date": "2026-09-28",
+          "compatibility_flags": [],
+          "build_image_major_version": 3,
+          "usage_model": "standard"
+        }
+      },
+      "latest_deployment": {
+        "id": "7cd1a3e0-882c-4a28-8373-95d35de61dea",
+        "short_id": "7cd1a3e0",
+        "project_id": "4d40e6e9-66e5-4937-acca-d3214adee903",
+        "project_name": "decashub",
+        "environment": "production",
+        "url": "https://7cd1a3e0.decashub.pages.dev",
+        "created_on": "2026-09-29T09:04:46.293702Z",
+        "modified_on": "2026-09-29T09:04:47.409265Z",
+        "latest_stage": {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-29T09:04:47.409265Z",
+          "status": "success"
+        },
+        "deployment_trigger": {
+          "type": "ad_hoc",
+          "metadata": {
+            "branch": "master",
+            "commit_hash": "88ec15a71dfd49e6dd6c46669af820fd93c20214",
+            "commit_message": "feat(deploy): DecasHub Cloudflare Pages live deployment",
+            "commit_dirty": true
+          }
+        },
+        "stages": [
+          {
+            "name": "queued",
+            "started_on": "2026-09-29T09:04:46.293702Z",
+            "ended_on": null,
+            "status": "active"
+          },
+          {
+            "name": "initialize",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "clone_repo",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "build",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "deploy",
+            "started_on": null,
+            "ended_on": "2026-09-29T09:04:47.409265Z",
+            "status": "success"
+          }
+        ],
+        "build_config": {
+          "build_command": null,
+          "destination_dir": null,
+          "build_caching": null,
+          "root_dir": null,
+          "web_analytics_tag": null,
+          "web_analytics_token": null
+        },
+        "env_vars": {},
+        "compatibility_date": "2026-09-28",
+        "compatibility_flags": [],
+        "build_image_major_version": 3,
+        "usage_model": null,
+        "aliases": [
+          "https://decashub.com",
+          "https://www.decashub.com"
+        ],
+        "is_skipped": false,
+        "production_branch": "master",
+        "uses_functions": false
+      },
+      "canonical_deployment": {
+        "id": "7cd1a3e0-882c-4a28-8373-95d35de61dea",
+        "short_id": "7cd1a3e0",
+        "project_id": "4d40e6e9-66e5-4937-acca-d3214adee903",
+        "project_name": "decashub",
+        "environment": "production",
+        "url": "https://7cd1a3e0.decashub.pages.dev",
+        "created_on": "2026-09-29T09:04:46.293702Z",
+        "modified_on": "2026-09-29T09:04:47.409265Z",
+        "latest_stage": {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-29T09:04:47.409265Z",
+          "status": "success"
+        },
+        "deployment_trigger": {
+          "type": "ad_hoc",
+          "metadata": {
+            "branch": "master",
+            "commit_hash": "88ec15a71dfd49e6dd6c46669af820fd93c20214",
+            "commit_message": "feat(deploy): DecasHub Cloudflare Pages live deployment",
+            "commit_dirty": true
+          }
+        },
+        "stages": [
+          {
+            "name": "queued",
+            "started_on": "2026-09-29T09:04:46.293702Z",
+            "ended_on": null,
+            "status": "active"
+          },
+          {
+            "name": "initialize",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "clone_repo",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "build",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "deploy",
+            "started_on": null,
+            "ended_on": "2026-09-29T09:04:47.409265Z",
+            "status": "success"
+          }
+        ],
+        "build_config": {
+          "build_command": null,
+          "destination_dir": null,
+          "build_caching": null,
+          "root_dir": null,
+          "web_analytics_tag": null,
+          "web_analytics_token": null
+        },
+        "env_vars": {},
+        "compatibility_date": "2026-09-28",
+        "compatibility_flags": [],
+        "build_image_major_version": 3,
+        "usage_model": null,
+        "aliases": [
+          "https://decashub.com",
+          "https://www.decashub.com"
+        ],
+        "is_skipped": false,
+        "production_branch": "master",
+        "uses_functions": false
+      },
+      "created_on": "2026-09-28T04:50:29.620544Z",
+      "production_branch": "master",
+      "production_script_name": "pages-worker--20096812-production",
+      "preview_script_name": "pages-worker--20096812-preview",
+      "uses_functions": false,
+      "framework": "",
+      "framework_version": ""
+    },
+    {
+      "id": "f239fddd-ebbc-4cef-a467-b7b13b76bc04",
+      "name": "lionexiaai",
+      "subdomain": "lionexiaai.pages.dev",
+      "domains": [
+        "lionexiaai.pages.dev"
+      ],
+      "build_config": {
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "deployment_configs": {
+        "preview": {
+          "env_vars": null,
+          "fail_open": true,
+          "always_use_latest_compatibility_date": false,
+          "compatibility_date": "2026-09-28",
+          "compatibility_flags": [],
+          "build_image_major_version": 3,
+          "usage_model": "standard"
+        },
+        "production": {
+          "env_vars": null,
+          "fail_open": true,
+          "always_use_latest_compatibility_date": false,
+          "compatibility_date": "2026-09-28",
+          "compatibility_flags": [],
+          "build_image_major_version": 3,
+          "usage_model": "standard"
+        }
+      },
+      "latest_deployment": {
+        "id": "9c4206ae-ee10-4182-9d02-95edb253c9bc",
+        "short_id": "9c4206ae",
+        "project_id": "f239fddd-ebbc-4cef-a467-b7b13b76bc04",
+        "project_name": "lionexiaai",
+        "environment": "production",
+        "url": "https://9c4206ae.lionexiaai.pages.dev",
+        "created_on": "2026-09-28T14:15:21.886973Z",
+        "modified_on": "2026-09-28T14:15:25.164729Z",
+        "latest_stage": {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-28T14:15:25.164729Z",
+          "status": "success"
+        },
+        "deployment_trigger": {
+          "type": "ad_hoc",
+          "metadata": {
+            "branch": "main",
+            "commit_hash": "b0fa39fef5035076ed2052f1160cb76732131675",
+            "commit_message": "feat(affiliate): add partner program section to Lionexia storefront",
+            "commit_dirty": true
+          }
+        },
+        "stages": [
+          {
+            "name": "queued",
+            "started_on": "2026-09-28T14:15:21.886973Z",
+            "ended_on": null,
+            "status": "active"
+          },
+          {
+            "name": "initialize",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "clone_repo",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "build",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "deploy",
+            "started_on": null,
+            "ended_on": "2026-09-28T14:15:25.164729Z",
+            "status": "success"
+          }
+        ],
+        "build_config": {
+          "build_command": null,
+          "destination_dir": null,
+          "build_caching": null,
+          "root_dir": null,
+          "web_analytics_tag": null,
+          "web_analytics_token": null
+        },
+        "env_vars": {},
+        "compatibility_date": "2026-09-28",
+        "compatibility_flags": [],
+        "build_image_major_version": 3,
+        "usage_model": null,
+        "aliases": null,
+        "is_skipped": false,
+        "production_branch": "main",
+        "uses_functions": false
+      },
+      "canonical_deployment": {
+        "id": "9c4206ae-ee10-4182-9d02-95edb253c9bc",
+        "short_id": "9c4206ae",
+        "project_id": "f239fddd-ebbc-4cef-a467-b7b13b76bc04",
+        "project_name": "lionexiaai",
+        "environment": "production",
+        "url": "https://9c4206ae.lionexiaai.pages.dev",
+        "created_on": "2026-09-28T14:15:21.886973Z",
+        "modified_on": "2026-09-28T14:15:25.164729Z",
+        "latest_stage": {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-28T14:15:25.164729Z",
+          "status": "success"
+        },
+        "deployment_trigger": {
+          "type": "ad_hoc",
+          "metadata": {
+            "branch": "main",
+            "commit_hash": "b0fa39fef5035076ed2052f1160cb76732131675",
+            "commit_message": "feat(affiliate): add partner program section to Lionexia storefront",
+            "commit_dirty": true
+          }
+        },
+        "stages": [
+          {
+            "name": "queued",
+            "started_on": "2026-09-28T14:15:21.886973Z",
+            "ended_on": null,
+            "status": "active"
+          },
+          {
+            "name": "initialize",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "clone_repo",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "build",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "deploy",
+            "started_on": null,
+            "ended_on": "2026-09-28T14:15:25.164729Z",
+            "status": "success"
+          }
+        ],
+        "build_config": {
+          "build_command": null,
+          "destination_dir": null,
+          "build_caching": null,
+          "root_dir": null,
+          "web_analytics_tag": null,
+          "web_analytics_token": null
+        },
+        "env_vars": {},
+        "compatibility_date": "2026-09-28",
+        "compatibility_flags": [],
+        "build_image_major_version": 3,
+        "usage_model": null,
+        "aliases": null,
+        "is_skipped": false,
+        "production_branch": "main",
+        "uses_functions": false
+      },
+      "created_on": "2026-09-28T01:40:03.332546Z",
+      "production_branch": "main",
+      "production_script_name": "pages-worker--20089518-production",
+      "preview_script_name": "pages-worker--20089518-preview",
+      "uses_functions": false,
+      "framework": "",
+      "framework_version": ""
+    },
+    {
+      "id": "02c7759b-120c-4898-b137-072eef984bc9",
+      "name": "ercuos-academy",
+      "subdomain": "ercuos-academy.pages.dev",
+      "domains": [
+        "ercuos-academy.pages.dev"
+      ],
+      "build_config": {
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "deployment_configs": {
+        "preview": {
+          "env_vars": null,
+          "fail_open": true,
+          "always_use_latest_compatibility_date": false,
+          "compatibility_date": "2026-09-28",
+          "compatibility_flags": [],
+          "build_image_major_version": 3,
+          "usage_model": "standard"
+        },
+        "production": {
+          "env_vars": null,
+          "fail_open": true,
+          "always_use_latest_compatibility_date": false,
+          "compatibility_date": "2026-09-28",
+          "compatibility_flags": [],
+          "build_image_major_version": 3,
+          "usage_model": "standard"
+        }
+      },
+      "latest_deployment": {
+        "id": "df304eec-f3db-4824-a946-9e893642c03a",
+        "short_id": "df304eec",
+        "project_id": "02c7759b-120c-4898-b137-072eef984bc9",
+        "project_name": "ercuos-academy",
+        "environment": "preview",
+        "url": "https://df304eec.ercuos-academy.pages.dev",
+        "created_on": "2026-09-28T05:20:57.122017Z",
+        "modified_on": "2026-09-28T05:20:58.275248Z",
+        "latest_stage": {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-28T05:20:58.275248Z",
+          "status": "success"
+        },
+        "deployment_trigger": {
+          "type": "ad_hoc",
+          "metadata": {
+            "branch": "master",
+            "commit_hash": "8e690475f04bfde3434beed36ef30457694b6b08",
+            "commit_message": "Constitution Update: v119, LemonSqueezy Smart Contract, Dalga 15",
+            "commit_dirty": true
+          }
+        },
+        "stages": [
+          {
+            "name": "queued",
+            "started_on": "2026-09-28T05:20:57.122017Z",
+            "ended_on": null,
+            "status": "active"
+          },
+          {
+            "name": "initialize",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "clone_repo",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "build",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "deploy",
+            "started_on": null,
+            "ended_on": "2026-09-28T05:20:58.275248Z",
+            "status": "success"
+          }
+        ],
+        "build_config": {
+          "build_command": null,
+          "destination_dir": null,
+          "build_caching": null,
+          "root_dir": null,
+          "web_analytics_tag": null,
+          "web_analytics_token": null
+        },
+        "env_vars": {},
+        "compatibility_date": "2026-09-28",
+        "compatibility_flags": [],
+        "build_image_major_version": 3,
+        "usage_model": null,
+        "aliases": [
+          "https://master.ercuos-academy.pages.dev"
+        ],
+        "is_skipped": false,
+        "production_branch": "main",
+        "uses_functions": false
+      },
+      "canonical_deployment": null,
+      "created_on": "2026-09-28T05:20:39.923302Z",
+      "production_branch": "main",
+      "production_script_name": "pages-worker--20098094-production",
+      "preview_script_name": "pages-worker--20098094-preview",
+      "uses_functions": false,
+      "framework": "",
+      "framework_version": ""
+    },
+    {
+      "id": "bc140e09-1c38-4d3b-97ca-b032e648b7c3",
+      "name": "ercumenterden-com",
+      "subdomain": "ercumenterden-com.pages.dev",
+      "domains": [
+        "ercumenterden-com.pages.dev",
+        "ercumenterden.com"
+      ],
+      "build_config": {
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "deployment_configs": {
+        "preview": {
+          "env_vars": null,
+          "fail_open": true,
+          "always_use_latest_compatibility_date": false,
+          "compatibility_date": "2026-09-03",
+          "compatibility_flags": [],
+          "build_image_major_version": 3,
+          "usage_model": "standard"
+        },
+        "production": {
+          "env_vars": null,
+          "fail_open": true,
+          "always_use_latest_compatibility_date": false,
+          "compatibility_date": "2026-09-03",
+          "compatibility_flags": [],
+          "build_image_major_version": 3,
+          "usage_model": "standard"
+        }
+      },
+      "latest_deployment": {
+        "id": "1455cdd2-d98e-43b9-972c-111315a166b7",
+        "short_id": "1455cdd2",
+        "project_id": "bc140e09-1c38-4d3b-97ca-b032e648b7c3",
+        "project_name": "ercumenterden-com",
+        "environment": "production",
+        "url": "https://1455cdd2.ercumenterden-com.pages.dev",
+        "created_on": "2026-09-07T20:41:56.723769Z",
+        "modified_on": "2026-09-07T20:41:57.863866Z",
+        "latest_stage": {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-07T20:41:57.863866Z",
+          "status": "success"
+        },
+        "deployment_trigger": {
+          "type": "ad_hoc",
+          "metadata": {
+            "branch": "main",
+            "commit_hash": "6c866f9f2b001edb30a4809b63847bb87cf0d0f3",
+            "commit_message": "fix(nav): replace dead logo link with root, update status pill to 142 Lego blocks, add explicit button types",
+            "commit_dirty": true
+          }
+        },
+        "stages": [
+          {
+            "name": "queued",
+            "started_on": "2026-09-07T20:41:56.723769Z",
+            "ended_on": null,
+            "status": "active"
+          },
+          {
+            "name": "initialize",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "clone_repo",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "build",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "deploy",
+            "started_on": null,
+            "ended_on": "2026-09-07T20:41:57.863866Z",
+            "status": "success"
+          }
+        ],
+        "build_config": {
+          "build_command": null,
+          "destination_dir": null,
+          "build_caching": null,
+          "root_dir": null,
+          "web_analytics_tag": null,
+          "web_analytics_token": null
+        },
+        "env_vars": {},
+        "compatibility_date": "2026-09-03",
+        "compatibility_flags": [],
+        "build_image_major_version": 3,
+        "usage_model": null,
+        "aliases": [
+          "https://ercumenterden.com"
+        ],
+        "is_skipped": false,
+        "production_branch": "main",
+        "uses_functions": false
+      },
+      "canonical_deployment": {
+        "id": "1455cdd2-d98e-43b9-972c-111315a166b7",
+        "short_id": "1455cdd2",
+        "project_id": "bc140e09-1c38-4d3b-97ca-b032e648b7c3",
+        "project_name": "ercumenterden-com",
+        "environment": "production",
+        "url": "https://1455cdd2.ercumenterden-com.pages.dev",
+        "created_on": "2026-09-07T20:41:56.723769Z",
+        "modified_on": "2026-09-07T20:41:57.863866Z",
+        "latest_stage": {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-07T20:41:57.863866Z",
+          "status": "success"
+        },
+        "deployment_trigger": {
+          "type": "ad_hoc",
+          "metadata": {
+            "branch": "main",
+            "commit_hash": "6c866f9f2b001edb30a4809b63847bb87cf0d0f3",
+            "commit_message": "fix(nav): replace dead logo link with root, update status pill to 142 Lego blocks, add explicit button types",
+            "commit_dirty": true
+          }
+        },
+        "stages": [
+          {
+            "name": "queued",
+            "started_on": "2026-09-07T20:41:56.723769Z",
+            "ended_on": null,
+            "status": "active"
+          },
+          {
+            "name": "initialize",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "clone_repo",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "build",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "deploy",
+            "started_on": null,
+            "ended_on": "2026-09-07T20:41:57.863866Z",
+            "status": "success"
+          }
+        ],
+        "build_config": {
+          "build_command": null,
+          "destination_dir": null,
+          "build_caching": null,
+          "root_dir": null,
+          "web_analytics_tag": null,
+          "web_analytics_token": null
+        },
+        "env_vars": {},
+        "compatibility_date": "2026-09-03",
+        "compatibility_flags": [],
+        "build_image_major_version": 3,
+        "usage_model": null,
+        "aliases": [
+          "https://ercumenterden.com"
+        ],
+        "is_skipped": false,
+        "production_branch": "main",
+        "uses_functions": false
+      },
+      "created_on": "2026-09-03T16:03:08.687676Z",
+      "production_branch": "main",
+      "production_script_name": "pages-worker--18857459-production",
+      "preview_script_name": "pages-worker--18857459-preview",
+      "uses_functions": false,
+      "framework": "",
+      "framework_version": ""
+    },
+    {
+      "id": "98a801a4-866a-401b-9239-1c6fc22756f4",
+      "name": "musa-aygul",
+      "subdomain": "musa-aygul.pages.dev",
+      "domains": [
+        "musa-aygul.pages.dev",
+        "musaaygul.com",
+        "musaaygul.com.tr",
+        "www.musaaygul.com",
+        "www.musaaygul.com.tr"
+      ],
+      "build_config": {
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "deployment_configs": {
+        "preview": {
+          "env_vars": null,
+          "fail_open": true,
+          "always_use_latest_compatibility_date": false,
+          "compatibility_date": "2026-09-05",
+          "compatibility_flags": [],
+          "build_image_major_version": 3,
+          "usage_model": "standard"
+        },
+        "production": {
+          "env_vars": null,
+          "fail_open": true,
+          "always_use_latest_compatibility_date": false,
+          "compatibility_date": "2026-09-05",
+          "compatibility_flags": [],
+          "build_image_major_version": 3,
+          "usage_model": "standard"
+        }
+      },
+      "latest_deployment": {
+        "id": "0962eea1-64e0-4927-a6d0-8bdab3bd9ee8",
+        "short_id": "0962eea1",
+        "project_id": "98a801a4-866a-401b-9239-1c6fc22756f4",
+        "project_name": "musa-aygul",
+        "environment": "production",
+        "url": "https://0962eea1.musa-aygul.pages.dev",
+        "created_on": "2026-09-05T12:36:12.686909Z",
+        "modified_on": "2026-09-05T12:36:13.774832Z",
+        "latest_stage": {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-05T12:36:13.774832Z",
+          "status": "success"
+        },
+        "deployment_trigger": {
+          "type": "ad_hoc",
+          "metadata": {
+            "branch": "main",
+            "commit_hash": "c091cce0108ef7f149d4e4deaa49ef5e85ea4787",
+            "commit_message": "feat: comprehensive mobile responsiveness and overflow fixes",
+            "commit_dirty": true
+          }
+        },
+        "stages": [
+          {
+            "name": "queued",
+            "started_on": "2026-09-05T12:36:12.686909Z",
+            "ended_on": null,
+            "status": "active"
+          },
+          {
+            "name": "initialize",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "clone_repo",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "build",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "deploy",
+            "started_on": null,
+            "ended_on": "2026-09-05T12:36:13.774832Z",
+            "status": "success"
+          }
+        ],
+        "build_config": {
+          "build_command": null,
+          "destination_dir": null,
+          "build_caching": null,
+          "root_dir": null,
+          "web_analytics_tag": null,
+          "web_analytics_token": null
+        },
+        "env_vars": {},
+        "compatibility_date": "2026-09-05",
+        "compatibility_flags": [],
+        "build_image_major_version": 3,
+        "usage_model": null,
+        "aliases": [
+          "https://musaaygul.com",
+          "https://musaaygul.com.tr",
+          "https://www.musaaygul.com",
+          "https://www.musaaygul.com.tr"
+        ],
+        "is_skipped": false,
+        "production_branch": "main",
+        "uses_functions": false
+      },
+      "canonical_deployment": {
+        "id": "0962eea1-64e0-4927-a6d0-8bdab3bd9ee8",
+        "short_id": "0962eea1",
+        "project_id": "98a801a4-866a-401b-9239-1c6fc22756f4",
+        "project_name": "musa-aygul",
+        "environment": "production",
+        "url": "https://0962eea1.musa-aygul.pages.dev",
+        "created_on": "2026-09-05T12:36:12.686909Z",
+        "modified_on": "2026-09-05T12:36:13.774832Z",
+        "latest_stage": {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-05T12:36:13.774832Z",
+          "status": "success"
+        },
+        "deployment_trigger": {
+          "type": "ad_hoc",
+          "metadata": {
+            "branch": "main",
+            "commit_hash": "c091cce0108ef7f149d4e4deaa49ef5e85ea4787",
+            "commit_message": "feat: comprehensive mobile responsiveness and overflow fixes",
+            "commit_dirty": true
+          }
+        },
+        "stages": [
+          {
+            "name": "queued",
+            "started_on": "2026-09-05T12:36:12.686909Z",
+            "ended_on": null,
+            "status": "active"
+          },
+          {
+            "name": "initialize",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "clone_repo",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "build",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "deploy",
+            "started_on": null,
+            "ended_on": "2026-09-05T12:36:13.774832Z",
+            "status": "success"
+          }
+        ],
+        "build_config": {
+          "build_command": null,
+          "destination_dir": null,
+          "build_caching": null,
+          "root_dir": null,
+          "web_analytics_tag": null,
+          "web_analytics_token": null
+        },
+        "env_vars": {},
+        "compatibility_date": "2026-09-05",
+        "compatibility_flags": [],
+        "build_image_major_version": 3,
+        "usage_model": null,
+        "aliases": [
+          "https://musaaygul.com",
+          "https://musaaygul.com.tr",
+          "https://www.musaaygul.com",
+          "https://www.musaaygul.com.tr"
+        ],
+        "is_skipped": false,
+        "production_branch": "main",
+        "uses_functions": false
+      },
+      "created_on": "2026-09-05T12:33:36.495299Z",
+      "production_branch": "main",
+      "production_script_name": "pages-worker--18954741-production",
+      "preview_script_name": "pages-worker--18954741-preview",
+      "uses_functions": false,
+      "framework": "",
+      "framework_version": ""
+    },
+    {
+      "id": "2b529c91-1e47-47f9-8771-f0cea9bb4f38",
+      "name": "ahmet-rifat-albuz",
+      "subdomain": "ahmet-rifat-albuz.pages.dev",
+      "domains": [
+        "ahmet-rifat-albuz.pages.dev",
+        "ahmetrifatalbuz.com",
+        "www.ahmetrifatalbuz.com"
+      ],
+      "build_config": {
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "deployment_configs": {
+        "preview": {
+          "env_vars": null,
+          "fail_open": true,
+          "always_use_latest_compatibility_date": false,
+          "compatibility_date": "2026-09-05",
+          "compatibility_flags": [],
+          "build_image_major_version": 3,
+          "usage_model": "standard"
+        },
+        "production": {
+          "env_vars": null,
+          "fail_open": true,
+          "always_use_latest_compatibility_date": false,
+          "compatibility_date": "2026-09-05",
+          "compatibility_flags": [],
+          "build_image_major_version": 3,
+          "usage_model": "standard"
+        }
+      },
+      "latest_deployment": {
+        "id": "1013875b-0a7f-43c7-b54d-1884248de325",
+        "short_id": "1013875b",
+        "project_id": "2b529c91-1e47-47f9-8771-f0cea9bb4f38",
+        "project_name": "ahmet-rifat-albuz",
+        "environment": "production",
+        "url": "https://1013875b.ahmet-rifat-albuz.pages.dev",
+        "created_on": "2026-09-05T12:34:01.070231Z",
+        "modified_on": "2026-09-05T12:34:02.312086Z",
+        "latest_stage": {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-05T12:34:02.312086Z",
+          "status": "success"
+        },
+        "deployment_trigger": {
+          "type": "ad_hoc",
+          "metadata": {
+            "branch": "main",
+            "commit_hash": "6d50b8d6c04fc7be5a4cafe915e9feebc6946048",
+            "commit_message": "feat: add Eksi Sozluk icon and card to platforms",
+            "commit_dirty": true
+          }
+        },
+        "stages": [
+          {
+            "name": "queued",
+            "started_on": "2026-09-05T12:34:01.070231Z",
+            "ended_on": null,
+            "status": "active"
+          },
+          {
+            "name": "initialize",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "clone_repo",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "build",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "deploy",
+            "started_on": null,
+            "ended_on": "2026-09-05T12:34:02.312086Z",
+            "status": "success"
+          }
+        ],
+        "build_config": {
+          "build_command": null,
+          "destination_dir": null,
+          "build_caching": null,
+          "root_dir": null,
+          "web_analytics_tag": null,
+          "web_analytics_token": null
+        },
+        "env_vars": {},
+        "compatibility_date": "2026-09-05",
+        "compatibility_flags": [],
+        "build_image_major_version": 3,
+        "usage_model": null,
+        "aliases": [
+          "https://ahmetrifatalbuz.com",
+          "https://www.ahmetrifatalbuz.com"
+        ],
+        "is_skipped": false,
+        "production_branch": "main",
+        "uses_functions": false
+      },
+      "canonical_deployment": {
+        "id": "1013875b-0a7f-43c7-b54d-1884248de325",
+        "short_id": "1013875b",
+        "project_id": "2b529c91-1e47-47f9-8771-f0cea9bb4f38",
+        "project_name": "ahmet-rifat-albuz",
+        "environment": "production",
+        "url": "https://1013875b.ahmet-rifat-albuz.pages.dev",
+        "created_on": "2026-09-05T12:34:01.070231Z",
+        "modified_on": "2026-09-05T12:34:02.312086Z",
+        "latest_stage": {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-05T12:34:02.312086Z",
+          "status": "success"
+        },
+        "deployment_trigger": {
+          "type": "ad_hoc",
+          "metadata": {
+            "branch": "main",
+            "commit_hash": "6d50b8d6c04fc7be5a4cafe915e9feebc6946048",
+            "commit_message": "feat: add Eksi Sozluk icon and card to platforms",
+            "commit_dirty": true
+          }
+        },
+        "stages": [
+          {
+            "name": "queued",
+            "started_on": "2026-09-05T12:34:01.070231Z",
+            "ended_on": null,
+            "status": "active"
+          },
+          {
+            "name": "initialize",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "clone_repo",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "build",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "deploy",
+            "started_on": null,
+            "ended_on": "2026-09-05T12:34:02.312086Z",
+            "status": "success"
+          }
+        ],
+        "build_config": {
+          "build_command": null,
+          "destination_dir": null,
+          "build_caching": null,
+          "root_dir": null,
+          "web_analytics_tag": null,
+          "web_analytics_token": null
+        },
+        "env_vars": {},
+        "compatibility_date": "2026-09-05",
+        "compatibility_flags": [],
+        "build_image_major_version": 3,
+        "usage_model": null,
+        "aliases": [
+          "https://ahmetrifatalbuz.com",
+          "https://www.ahmetrifatalbuz.com"
+        ],
+        "is_skipped": false,
+        "production_branch": "main",
+        "uses_functions": false
+      },
+      "created_on": "2026-09-05T12:33:23.141596Z",
+      "production_branch": "main",
+      "production_script_name": "pages-worker--18954737-production",
+      "preview_script_name": "pages-worker--18954737-preview",
+      "uses_functions": false,
+      "framework": "",
+      "framework_version": ""
+    },
+    {
+      "id": "30d47d2b-3d10-4a84-adc0-7fec3de3f06e",
+      "name": "decashub-sovereign",
+      "subdomain": "decashub-sovereign.pages.dev",
+      "domains": [
+        "decashub-sovereign.pages.dev"
+      ],
+      "build_config": {
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "deployment_configs": {
+        "preview": {
+          "env_vars": {},
+          "d1_databases": {
+            "DB": {
+              "id": "d50841cc-32e1-4d45-8264-de7c9ca58daa"
+            }
+          },
+          "fail_open": true,
+          "always_use_latest_compatibility_date": false,
+          "compatibility_date": "2026-09-03",
+          "compatibility_flags": [],
+          "build_image_major_version": 3,
+          "usage_model": "standard"
+        },
+        "production": {
+          "env_vars": {},
+          "d1_databases": {
+            "DB": {
+              "id": "d50841cc-32e1-4d45-8264-de7c9ca58daa"
+            }
+          },
+          "fail_open": true,
+          "always_use_latest_compatibility_date": false,
+          "compatibility_date": "2026-09-03",
+          "compatibility_flags": [],
+          "build_image_major_version": 3,
+          "usage_model": "standard"
+        }
+      },
+      "latest_deployment": {
+        "id": "a30fef50-4813-41dc-9786-51015c7bba31",
+        "short_id": "a30fef50",
+        "project_id": "30d47d2b-3d10-4a84-adc0-7fec3de3f06e",
+        "project_name": "decashub-sovereign",
+        "environment": "production",
+        "url": "https://a30fef50.decashub-sovereign.pages.dev",
+        "created_on": "2026-09-03T23:10:59.158531Z",
+        "modified_on": "2026-09-03T23:11:00.418792Z",
+        "latest_stage": {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-03T23:11:00.418792Z",
+          "status": "success"
+        },
+        "deployment_trigger": {
+          "type": "ad_hoc",
+          "metadata": {
+            "branch": "main",
+            "commit_hash": "",
+            "commit_message": "",
+            "commit_dirty": false
+          }
+        },
+        "stages": [
+          {
+            "name": "queued",
+            "started_on": "2026-09-03T23:10:59.158531Z",
+            "ended_on": null,
+            "status": "active"
+          },
+          {
+            "name": "initialize",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "clone_repo",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "build",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "deploy",
+            "started_on": null,
+            "ended_on": "2026-09-03T23:11:00.418792Z",
+            "status": "success"
+          }
+        ],
+        "build_config": {
+          "build_command": null,
+          "destination_dir": null,
+          "build_caching": null,
+          "root_dir": null,
+          "web_analytics_tag": null,
+          "web_analytics_token": null
+        },
+        "env_vars": {},
+        "d1_databases": {
+          "DB": {
+            "id": "d50841cc-32e1-4d45-8264-de7c9ca58daa"
+          }
+        },
+        "compatibility_date": "2026-09-03",
+        "compatibility_flags": [],
+        "build_image_major_version": 3,
+        "usage_model": null,
+        "aliases": null,
+        "is_skipped": false,
+        "production_branch": "main",
+        "uses_functions": false
+      },
+      "canonical_deployment": {
+        "id": "a30fef50-4813-41dc-9786-51015c7bba31",
+        "short_id": "a30fef50",
+        "project_id": "30d47d2b-3d10-4a84-adc0-7fec3de3f06e",
+        "project_name": "decashub-sovereign",
+        "environment": "production",
+        "url": "https://a30fef50.decashub-sovereign.pages.dev",
+        "created_on": "2026-09-03T23:10:59.158531Z",
+        "modified_on": "2026-09-03T23:11:00.418792Z",
+        "latest_stage": {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": "2026-09-03T23:11:00.418792Z",
+          "status": "success"
+        },
+        "deployment_trigger": {
+          "type": "ad_hoc",
+          "metadata": {
+            "branch": "main",
+            "commit_hash": "",
+            "commit_message": "",
+            "commit_dirty": false
+          }
+        },
+        "stages": [
+          {
+            "name": "queued",
+            "started_on": "2026-09-03T23:10:59.158531Z",
+            "ended_on": null,
+            "status": "active"
+          },
+          {
+            "name": "initialize",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "clone_repo",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "build",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          },
+          {
+            "name": "deploy",
+            "started_on": null,
+            "ended_on": "2026-09-03T23:11:00.418792Z",
+            "status": "success"
+          }
+        ],
+        "build_config": {
+          "build_command": null,
+          "destination_dir": null,
+          "build_caching": null,
+          "root_dir": null,
+          "web_analytics_tag": null,
+          "web_analytics_token": null
+        },
+        "env_vars": {},
+        "d1_databases": {
+          "DB": {
+            "id": "d50841cc-32e1-4d45-8264-de7c9ca58daa"
+          }
+        },
+        "compatibility_date": "2026-09-03",
+        "compatibility_flags": [],
+        "build_image_major_version": 3,
+        "usage_model": null,
+        "aliases": null,
+        "is_skipped": false,
+        "production_branch": "main",
+        "uses_functions": false
+      },
+      "created_on": "2026-09-03T15:22:40.516523Z",
+      "production_branch": "main",
+      "production_script_name": "pages-worker--18855833-production",
+      "preview_script_name": "pages-worker--18855833-preview",
+      "uses_functions": false,
+      "framework": "",
+      "framework_version": ""
+    },
+    {
+      "id": "e984a001-82f3-42a5-be03-7ecfede8ac0a",
+      "name": "quantum-matrix-5",
+      "subdomain": "quantum-matrix-5.pages.dev",
+      "domains": [
+        "quantum-matrix-5.pages.dev"
+      ],
+      "source": {
+        "type": "github",
+        "config": {
+          "owner": "quantummatrixcore-lab",
+          "owner_id": "240367464",
+          "repo_name": "Quantum-Matrix-5",
+          "repo_id": "1087849940",
+          "production_branch": "claude/quantum-matrix-v5-deployment-011CUxuLihzPJWc2rvs3n4eK",
+          "pr_comments_enabled": true,
+          "deployments_enabled": true,
+          "production_deployments_enabled": true,
+          "preview_deployment_setting": "all",
+          "preview_branch_includes": [
+            "*"
+          ],
+          "preview_branch_excludes": [],
+          "path_includes": [
+            "*"
+          ],
+          "path_excludes": []
+        }
+      },
+      "build_config": {
+        "build_command": "npm run build:fix",
+        "destination_dir": ".next",
+        "root_dir": "",
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "deployment_configs": {
+        "preview": {
+          "env_vars": null,
+          "fail_open": true,
+          "always_use_latest_compatibility_date": false,
+          "compatibility_date": "2025-11-12",
+          "compatibility_flags": [],
+          "build_image_major_version": 3,
+          "usage_model": "standard"
+        },
+        "production": {
+          "env_vars": null,
+          "fail_open": true,
+          "always_use_latest_compatibility_date": false,
+          "compatibility_date": "2025-11-12",
+          "compatibility_flags": [],
+          "build_image_major_version": 3,
+          "usage_model": "standard"
+        }
+      },
+      "latest_deployment": {
+        "id": "05ca8b98-09c2-4ec4-81c0-6833eb83262e",
+        "short_id": "05ca8b98",
+        "project_id": "e984a001-82f3-42a5-be03-7ecfede8ac0a",
+        "project_name": "quantum-matrix-5",
+        "environment": "preview",
+        "url": "https://05ca8b98.quantum-matrix-5.pages.dev",
+        "created_on": "2025-12-01T22:07:09.582828Z",
+        "modified_on": "2025-12-01T22:08:08.530451Z",
+        "latest_stage": {
+          "name": "build",
+          "started_on": "2025-12-01T22:07:13.987133Z",
+          "ended_on": "2025-12-01T22:08:08.530451Z",
+          "status": "failure"
+        },
+        "deployment_trigger": {
+          "type": "github:push",
+          "metadata": {
+            "branch": "dependabot/npm_and_yarn/apps/api/npm_and_yarn-d004efb325",
+            "commit_hash": "64e59ea03b6bc66f7d66c920fdcd2663d36cd1ad",
+            "commit_message": "build(deps): Bump nodemailer\n\nBumps the npm_and_yarn group with 1 update in the /apps/api directory: [nodemailer](https://github.com/nodemailer/nodemailer).\n\n\nUpdates `nodemailer` from 6.10.1 to 7.0.11\n- [Release notes](https://github.com/nodemailer/nodemailer/releases)\n- [Changelog](https://github.com/nodemailer/nodemailer/blob/master/CHANGELOG.md)\n- [Commits](https://github.com/nodemailer/nodemailer/compare/v6.10.1...v7.0.11)\n\n---\nupdated-dependencies:\n- dependency-name: nodemailer\n  dependency-version: 7.0.11\n  dependency-type: direct:production\n  dependency-group: npm_and_yarn\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
+            "commit_dirty": false
+          }
+        },
+        "stages": [
+          {
+            "name": "queued",
+            "started_on": "2025-12-01T22:07:09.707898Z",
+            "ended_on": "2025-12-01T22:07:09.707898Z",
+            "status": "success"
+          },
+          {
+            "name": "initialize",
+            "started_on": "2025-12-01T22:07:09.707898Z",
+            "ended_on": "2025-12-01T22:07:12.241259Z",
+            "status": "success"
+          },
+          {
+            "name": "clone_repo",
+            "started_on": "2025-12-01T22:07:12.241259Z",
+            "ended_on": "2025-12-01T22:07:13.987133Z",
+            "status": "success"
+          },
+          {
+            "name": "build",
+            "started_on": "2025-12-01T22:07:13.987133Z",
+            "ended_on": "2025-12-01T22:08:08.530451Z",
+            "status": "failure"
+          },
+          {
+            "name": "deploy",
+            "started_on": null,
+            "ended_on": null,
+            "status": "idle"
+          }
+        ],
+        "build_config": {
+          "build_command": "npm run build:fix",
+          "destination_dir": ".next",
+          "build_caching": null,
+          "root_dir": "",
+          "web_analytics_tag": null,
+          "web_analytics_token": null
+        },
+        "source": {
+          "type": "github",
+          "config": {
+            "owner": "quantummatrixcore-lab",
+            "repo_name": "Quantum-Matrix-5",
+            "production_branch": "claude/quantum-matrix-v5-deployment-011CUxuLihzPJWc2rvs3n4eK",
+            "pr_comments_enabled": false
+          }
+        },
+        "env_vars": {},
+        "compatibility_date": "2025-11-12",
+        "compatibility_flags": [],
+        "build_image_major_version": 3,
+        "usage_model": null,
+        "aliases": null,
+        "is_skipped": false,
+        "production_branch": "claude/quantum-matrix-v5-deployment-011CUxuLihzPJWc2rvs3n4eK",
+        "uses_functions": null
+      },
+      "canonical_deployment": null,
+      "created_on": "2025-11-12T11:54:26.678465Z",
+      "production_branch": "claude/quantum-matrix-v5-deployment-011CUxuLihzPJWc2rvs3n4eK",
+      "production_script_name": "pages-worker--9082989-production",
+      "preview_script_name": "pages-worker--9082989-preview",
+      "uses_functions": null,
+      "framework": "",
+      "framework_version": ""
+    }
+  ],
+  "success": true,
+  "errors": [],
+  "messages": [],
+  "result_info": {
+    "page": 1,
+    "per_page": 10,
+    "count": 9,
+    "total_count": 9,
+    "total_pages": 1
+  }
+}

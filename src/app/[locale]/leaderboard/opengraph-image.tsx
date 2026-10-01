@@ -1,3 +1,4 @@
+export const dynamic = 'force-static';
 import { ImageResponse } from "next/og";
 import { createServerClient } from "@/lib/dehost/server";
 
@@ -157,7 +158,7 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
               </div>
               <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
                 <span style={{ fontSize: 12, color: "#64748B", textTransform: "uppercase" }}>
-                  {locale === "tr" ? "Yanıt Oranı" : "Response Rate"}
+                  {locale === "tr" ? "YanÄ±t OranÄ±" : "Response Rate"}
                 </span>
                 <span
                   style={{
@@ -193,7 +194,7 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
       >
         <span style={{ fontSize: 20, color: "#94A3B8" }}>
           {locale === "tr"
-            ? "AI davranışlarını ve şeffaflık puanlarını canlı takip edin."
+            ? "AI davranÄ±ÅŸlarÄ±nÄ± ve ÅŸeffaflÄ±k puanlarÄ±nÄ± canlÄ± takip edin."
             : "Track real-time AI behavior and transparency scores."}
         </span>
         <span style={{ fontSize: 24, fontWeight: 700, color: "#3FBFE3" }}>

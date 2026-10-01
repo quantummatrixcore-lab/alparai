@@ -1,3 +1,5 @@
+export const dynamic = 'force-static';
+export function generateStaticParams() { return []; }
 import { ImageResponse } from "next/og";
 import { createServerClient } from "@/lib/dehost/server";
 
@@ -95,7 +97,7 @@ export default async function Image({
         <span
           style={{ fontSize: 24, color: "#94A3B8", fontWeight: 600, textTransform: "uppercase" }}
         >
-          {provider} — {category}
+          {provider} â€” {category}
         </span>
         <span style={{ fontSize: 56, fontWeight: 700, lineHeight: 1.25, color: "white" }}>
           {title}

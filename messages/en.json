@@ -16,16 +16,16 @@
     "title": "Methodology Advisory Committee"
   },
   "academy": {
-      "title": "ALPAR AI Academy",
-      "subtitle": "Empowering the next generation of AI auditors and safety researchers.",
-      "fellowship_title": "Research Fellowship",
-      "fellowship_subtitle": "Advanced research grants and platform access for PhD students and postdoctoral researchers.",
-      "fellowship_form_title": "Apply for Fellowship",
-      "export_pdf": "Export as PDF",
-      "curriculum_title": "Curriculum Details",
-      "curriculum_desc": "Comprehensive modules and lecture notes on AI safety and alignment.",
-      "empty_state_title": "No courses available",
-      "empty_state_desc": "There are currently no courses available in this category.",
+    "title": "ALPAR AI Academy",
+    "subtitle": "Empowering the next generation of AI auditors and safety researchers.",
+    "fellowship_title": "Research Fellowship",
+    "fellowship_subtitle": "Advanced research grants and platform access for PhD students and postdoctoral researchers.",
+    "fellowship_form_title": "Apply for Fellowship",
+    "export_pdf": "Export as PDF",
+    "curriculum_title": "Curriculum Details",
+    "curriculum_desc": "Comprehensive modules and lecture notes on AI safety and alignment.",
+    "empty_state_title": "No courses available",
+    "empty_state_desc": "There are currently no courses available in this category.",
     "ambassador_card1_desc": "Host AI safety, model auditing, and prompt injection workshops using ALPAR curriculum resources.",
     "ambassador_card1_title": "Campus Workshops",
     "ambassador_card2_desc": "Lead student research teams to benchmark commercial and open-source models at your campus.",
@@ -2981,10 +2981,10 @@
     "title": "Developer API Documentation"
   },
   "app": {
-    "description": "ALPAR AI documents, verifies, and permanently records every AI incident â€” governed by its community, not by AI companies. Report a failure. See the evidence. The record is permanent.",
+    "description": "ALPAR AI is a public Defense and Evidence Headquarters that documents, verifies, and permanently records every real-world failure of AI. Report an AI failure. See the evidence. The record is permanent.",
     "name": "ALPAR AI",
-    "tagline": "The worldâ€™s first community-governed AI accountability platform",
-    "title": "ALPAR AI â€” The worldâ€™s first community-governed AI accountability platform"
+    "tagline": "Public Defense and Evidence Headquarters",
+    "title": "ALPAR AI — Defense and Evidence Headquarters"
   },
   "article73_checklist": {
     "badge": "EU AI Act Regulatory Compliance",
@@ -4022,7 +4022,7 @@
     "cta_tertiary": "Become a Founding Reporter â†’",
     "cta_view_platform": "View Platform â†’",
     "early_access_badge": "EARLY ACCESS â€” 50% Founder Tier Discount Active ğŸ›¡ï¸",
-    "eyebrow": "COMMUNITY-GOVERNED AI ACCOUNTABILITY",
+    "eyebrow": "PUBLIC DEFENSE AND EVIDENCE HEADQUARTERS",
     "founder_cta": "View the Case #001 evidence record â†’",
     "founder_quote": "We built ALPAR AI because no one else was keeping score. AI systems were failing people â€” and walking away without a record. This platform changes that.",
     "founder_role": "Founder, ALPAR AI",
@@ -4080,20 +4080,20 @@
     "live_feed": "Live feed",
     "live_reports_last_hour": "{count} incidents reported in the last hour",
     "no_providers_data": "No tracking data available yet.",
-    "pitch_1": "Alpar AI is the sovereign trust infrastructure that independently audits, verifies, and indexes AI model failures with cryptographic proof.",
-    "pitch_2": "Empowering organizations with real-time AI compliance, automated risk mitigation, and zero-knowledge incident tracking.",
-    "pitch_3": "The open-standard registry for AI reliability metrics, incident verification, and algorithmic accountability.",
+    "pitch_1": "Alpar AI is an incident court that audits, verifies, and archives AI model failures with military discipline.",
+    "pitch_2": "Provides organizations and the public with a powerful Defense and Evidence Headquarters against AI systems.",
+    "pitch_3": "Every case is recorded as immutable evidence, preventing AI companies from denying it.",
     "start_test": "Start Test",
     "stats_countries": "Countries with incidents",
     "stats_incidents": "Documented AI failures",
     "stats_providers": "AI providers tracked",
-    "subtitle": "Transparency is globalizing, but accountability remains national. A single complaint can be ignored, but a verified body of cases on ALPAR AI cannot. The independent auditing authority for AI providers.",
+    "subtitle": "Cases verified with military discipline, transparent chain of evidence, and an incident court archive. No digital bullying or model failure will go unanswered.",
     "subtitle_variant_b": "An AI invented a corporation. Made payments. Requested documents. None of it was real. ALPAR AI documented this so it could never be forgotten â€” and so it would never happen to anyone else alone.",
     "suggestionSubtitle": "Suggest features, report bugs, or share ideas. The community votes, the team builds.",
     "suggestionTitle": "Help shape the future of AI accountability",
     "title_accent": "Hack AI. Win the bounty.",
     "title_accent_desc": "Found a real AI failure? Document it. Get verified. Earn the Ethics Advocate badge â€” and reward credits from the providers you reported.",
-    "title_primary": "The Supreme Court of AI Accountability.",
+    "title_primary": "Defense and Evidence Headquarters Against AI Failures.",
     "title_variant_b": "ALPAR AI documented its first case in 2026.",
     "trust_1_desc": "AGPL-3.0 licensed. Anyone can audit the code, run an instance, or contribute.",
     "trust_1_title": "Open Source",
@@ -6114,4 +6114,3 @@
     "copyZkpReceipt": "Copy cryptographic receipt"
   }
 }
-

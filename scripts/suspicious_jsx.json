@@ -1,0 +1,1762 @@
+[
+  {
+    "file": "app\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "EU AI Act Rehberi"
+  },
+  {
+    "file": "app\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "28 Eylül 2026"
+  },
+  {
+    "file": "app\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "6 dk okuma"
+  },
+  {
+    "file": "app\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "ALPAR AI Regülasyon & Güvenlik Masası"
+  },
+  {
+    "file": "app\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "1. Kabul Edilemez Risk"
+  },
+  {
+    "file": "app\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "2. Yüksek Risk (High-Risk)"
+  },
+  {
+    "file": "app\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "3. Şeffaflık Gerektiren Sistemler"
+  },
+  {
+    "file": "app\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "4. Minimum / Düşük Risk"
+  },
+  {
+    "file": "app\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "Risk Yönetim Sistemi:"
+  },
+  {
+    "file": "app\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "Veri Yönetimi & Kalite:"
+  },
+  {
+    "file": "app\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "Teknik Dokümantasyon:"
+  },
+  {
+    "file": "app\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "Kayıt Tutma (Audit Logging):"
+  },
+  {
+    "file": "app\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "Şeffaflık ve Kullanıcı Bilgilendirmesi:"
+  },
+  {
+    "file": "app\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "İnsan Gözetimi (Human-in-the-Loop):"
+  },
+  {
+    "file": "app\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "Siber Güvenlik & Doğruluk:"
+  },
+  {
+    "file": "app\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "⚠️ Yasaklı Uygulama İhlali:"
+  },
+  {
+    "file": "app\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "35 Milyon Euro veya küresel cironun %7&apos;sine varan para cezaları."
+  },
+  {
+    "file": "app\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "⚠️ Diğer Yükümlülük İhlalleri:"
+  },
+  {
+    "file": "app\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "15 Milyon Euro veya küresel cironun %3&apos;üne varan para cezaları."
+  },
+  {
+    "file": "app\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "⚠️ Yanlış Bilgi Bildirimi:"
+  },
+  {
+    "file": "app\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "7.5 Milyon Euro veya cironun %1.5&apos;i oranında idari cezalar."
+  },
+  {
+    "file": "app\\[locale]\\about\\advisory-board\\error.tsx",
+    "text": "Something went wrong"
+  },
+  {
+    "file": "app\\[locale]\\about\\page.tsx",
+    "text": "Agentic Economy"
+  },
+  {
+    "file": "app\\[locale]\\about\\page.tsx",
+    "text": "Our Mission"
+  },
+  {
+    "file": "app\\[locale]\\about\\page.tsx",
+    "text": "Zero-Latency Compliance Auditing"
+  },
+  {
+    "file": "app\\[locale]\\about\\page.tsx",
+    "text": "Sovereign Identity & Data Protection"
+  },
+  {
+    "file": "app\\[locale]\\about\\page.tsx",
+    "text": "Empowering AI-Native Workforces"
+  },
+  {
+    "file": "app\\[locale]\\about\\page.tsx",
+    "text": "The Swarm Architecture"
+  },
+  {
+    "file": "app\\[locale]\\about\\page.tsx",
+    "text": "Built for the Future"
+  },
+  {
+    "file": "app\\[locale]\\academy\\page.tsx",
+    "text": "Boğaziçi University"
+  },
+  {
+    "file": "app\\[locale]\\academy\\page.tsx",
+    "text": "Middle East Technical University (ODTÜ)"
+  },
+  {
+    "file": "app\\[locale]\\academy\\page.tsx",
+    "text": "Istanbul Technical University (İTÜ)"
+  },
+  {
+    "file": "app\\[locale]\\academy\\page.tsx",
+    "text": "Koç University"
+  },
+  {
+    "file": "app\\[locale]\\academy\\page.tsx",
+    "text": "Bilkent University"
+  },
+  {
+    "file": "app\\[locale]\\academy\\page.tsx",
+    "text": "Sabancı University"
+  },
+  {
+    "file": "app\\[locale]\\academy\\page.tsx",
+    "text": "TU Munich"
+  },
+  {
+    "file": "app\\[locale]\\academy\\page.tsx",
+    "text": "ETH Zurich"
+  },
+  {
+    "file": "app\\[locale]\\academy\\page.tsx",
+    "text": "Oxford HAI"
+  },
+  {
+    "file": "app\\[locale]\\admin\\academy\\page.tsx",
+    "text": "Yeni Akademik Hakem Ata"
+  },
+  {
+    "file": "app\\[locale]\\admin\\academy\\page.tsx",
+    "text": "MAKALE BAŞLIĞI"
+  },
+  {
+    "file": "app\\[locale]\\admin\\academy\\page.tsx",
+    "text": "ÜNİVERSİTE / KURUM"
+  },
+  {
+    "file": "app\\[locale]\\admin\\academy\\page.tsx",
+    "text": "BAŞ HAKEM"
+  },
+  {
+    "file": "app\\[locale]\\admin\\ai-signals\\page.tsx",
+    "text": "SİNYAL NO"
+  },
+  {
+    "file": "app\\[locale]\\admin\\ai-signals\\page.tsx",
+    "text": "HEDEF MODEL"
+  },
+  {
+    "file": "app\\[locale]\\admin\\ai-signals\\page.tsx",
+    "text": "TEHDİT TÜRÜ"
+  },
+  {
+    "file": "app\\[locale]\\admin\\ai-signals\\page.tsx",
+    "text": "Z-SCORE / DEBİ"
+  },
+  {
+    "file": "app\\[locale]\\admin\\ai-signals\\page.tsx",
+    "text": "OTOMATİK SAVUNMA REÇETESİ"
+  },
+  {
+    "file": "app\\[locale]\\admin\\api-keys\\page.tsx",
+    "text": "Yeni B2B Anahtarı Üret"
+  },
+  {
+    "file": "app\\[locale]\\admin\\api-keys\\page.tsx",
+    "text": "Kota Kullanımı"
+  },
+  {
+    "file": "app\\[locale]\\admin\\api-keys\\page.tsx",
+    "text": "Tier 1: Growth Feed ($2,500/ay)"
+  },
+  {
+    "file": "app\\[locale]\\admin\\challenges\\page.tsx",
+    "text": "New Bounty Challenge"
+  },
+  {
+    "file": "app\\[locale]\\admin\\challenges\\page.tsx",
+    "text": "Connecting to DeHost bug_bounties table..."
+  },
+  {
+    "file": "app\\[locale]\\admin\\challenges\\page.tsx",
+    "text": "No active bug bounties recorded in database."
+  },
+  {
+    "file": "app\\[locale]\\admin\\challenges\\page.tsx",
+    "text": "BOUNTY ID"
+  },
+  {
+    "file": "app\\[locale]\\admin\\challenges\\page.tsx",
+    "text": "INCIDENT ID"
+  },
+  {
+    "file": "app\\[locale]\\admin\\challenges\\page.tsx",
+    "text": "SEVERITY SCORE"
+  },
+  {
+    "file": "app\\[locale]\\admin\\challenges\\page.tsx",
+    "text": "REWARD (EUR)"
+  },
+  {
+    "file": "app\\[locale]\\admin\\compliance\\page.tsx",
+    "text": "JSON İndir"
+  },
+  {
+    "file": "app\\[locale]\\admin\\compliance\\page.tsx",
+    "text": "Madde 5 (Yasaklı AI): €35M veya Cironun %7\\'si"
+  },
+  {
+    "file": "app\\[locale]\\admin\\compliance\\page.tsx",
+    "text": "Madde 6 (Yüksek Risk): €15M veya Cironun %3.5\\'i"
+  },
+  {
+    "file": "app\\[locale]\\admin\\compliance\\page.tsx",
+    "text": "Madde 50 (Şeffaflık): €7.5M veya Cironun %1.5\\'i"
+  },
+  {
+    "file": "app\\[locale]\\admin\\data-moat\\page.tsx",
+    "text": "Şimdi Tara"
+  },
+  {
+    "file": "app\\[locale]\\admin\\dilemmas\\page.tsx",
+    "text": "Yeni Kamuoyu İkilemi Yayınla"
+  },
+  {
+    "file": "app\\[locale]\\admin\\dilemmas\\page.tsx",
+    "text": "İKİLEM SORUSU"
+  },
+  {
+    "file": "app\\[locale]\\admin\\dilemmas\\page.tsx",
+    "text": "OY SAYISI"
+  },
+  {
+    "file": "app\\[locale]\\admin\\dilemmas\\page.tsx",
+    "text": "KONSENSÜS EĞİLİMİ"
+  },
+  {
+    "file": "app\\[locale]\\admin\\experts\\page.tsx",
+    "text": "Yeni Uzman Davet Et"
+  },
+  {
+    "file": "app\\[locale]\\admin\\experts\\page.tsx",
+    "text": "UZMAN ADI & KURUMU"
+  },
+  {
+    "file": "app\\[locale]\\admin\\experts\\page.tsx",
+    "text": "UZMANLIK ALANI"
+  },
+  {
+    "file": "app\\[locale]\\admin\\experts\\page.tsx",
+    "text": "ONAYLANAN VAKA"
+  },
+  {
+    "file": "app\\[locale]\\admin\\experts\\page.tsx",
+    "text": "DEĞERLENDİRME"
+  },
+  {
+    "file": "app\\[locale]\\admin\\finance\\page.tsx",
+    "text": "FATURA NO"
+  },
+  {
+    "file": "app\\[locale]\\admin\\finance\\page.tsx",
+    "text": "KURUMSAL MÜŞTERİ"
+  },
+  {
+    "file": "app\\[locale]\\admin\\grants\\page.tsx",
+    "text": "New Grant Proposal"
+  },
+  {
+    "file": "app\\[locale]\\admin\\grants\\page.tsx",
+    "text": "REQUESTED BUDGET"
+  },
+  {
+    "file": "app\\[locale]\\admin\\grants\\page.tsx",
+    "text": "PREPARATION"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "Sağlayıcı Triage Masası"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "Filtrele:"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "Durum: Tümü"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "Triage Aşamasında"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "Doğrulandı (Verified)"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "Çözüldü (Resolved)"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "İtirazlı (Disputed)"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "Şiddet: Tümü"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "Critical (Kritik)"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "High (Yüksek)"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "Medium (Orta)"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "Low (Düşük)"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "EU AI Act: Tümü"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "Madde 5 (Yasaklı)"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "Madde 6 (Yüksek Risk)"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "Madde 51 (GPAI Sistemik)"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "Madde 50 (Şeffaflık)"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "Sağlayıcı: Tümü"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "0 && inc.slaRemainingHours"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "EU AI Act Sınıfı:"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "Potansiyel Ceza Riski:"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "Madde 73 SLA:"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "Hedef Model:"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "Sağlayıcı:"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "Kaynak Türü:"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "İhbarcı Doğrulaması:"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "SHA-256 DELİL MÜHRÜ"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "10-Model Cross-Audit Tetikle"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "JSON İndir"
+  },
+  {
+    "file": "app\\[locale]\\admin\\incidents\\page.tsx",
+    "text": "CSV / Excel"
+  },
+  {
+    "file": "app\\[locale]\\admin\\innovations\\page.tsx",
+    "text": "Yeni Ar-Ge İnovasyonu Ekle"
+  },
+  {
+    "file": "app\\[locale]\\admin\\investors\\page.tsx",
+    "text": "SERIES SEED / A PIPELINE"
+  },
+  {
+    "file": "app\\[locale]\\admin\\investors\\page.tsx",
+    "text": "Add Investor"
+  },
+  {
+    "file": "app\\[locale]\\admin\\investors\\page.tsx",
+    "text": "FIRM / FUND"
+  },
+  {
+    "file": "app\\[locale]\\admin\\investors\\page.tsx",
+    "text": "TARGET CHECK"
+  },
+  {
+    "file": "app\\[locale]\\admin\\investors\\page.tsx",
+    "text": "DATA ROOM"
+  },
+  {
+    "file": "app\\[locale]\\admin\\legal-tracker\\page.tsx",
+    "text": "YARGI ALANI"
+  },
+  {
+    "file": "app\\[locale]\\admin\\legal-tracker\\page.tsx",
+    "text": "YASA / MEVZUAT ADI"
+  },
+  {
+    "file": "app\\[locale]\\admin\\legal-tracker\\page.tsx",
+    "text": "MEVCUT HUKUKİ STATÜ"
+  },
+  {
+    "file": "app\\[locale]\\admin\\legal-tracker\\page.tsx",
+    "text": "SONRAKİ YASAL ZORUNLULUK"
+  },
+  {
+    "file": "app\\[locale]\\admin\\mail\\page.tsx",
+    "text": "Yeni Kampanya / Bildirim Başlat"
+  },
+  {
+    "file": "app\\[locale]\\admin\\mail\\page.tsx",
+    "text": "KONU BAŞLIĞI"
+  },
+  {
+    "file": "app\\[locale]\\admin\\mail\\page.tsx",
+    "text": "HEDEF KİTLE"
+  },
+  {
+    "file": "app\\[locale]\\admin\\mail\\page.tsx",
+    "text": "AÇILMA ORANI"
+  },
+  {
+    "file": "app\\[locale]\\admin\\moderation\\page.tsx",
+    "text": "HEDEF İÇERİK"
+  },
+  {
+    "file": "app\\[locale]\\admin\\moderation\\page.tsx",
+    "text": "BAYRAKLANMA SEBEBİ"
+  },
+  {
+    "file": "app\\[locale]\\admin\\provider-review\\page.tsx",
+    "text": "Provider Attribution Review Queue"
+  },
+  {
+    "file": "app\\[locale]\\admin\\provider-review\\page.tsx",
+    "text": "needs_provider_review"
+  },
+  {
+    "file": "app\\[locale]\\admin\\provider-review\\page.tsx",
+    "text": "Pending Review"
+  },
+  {
+    "file": "app\\[locale]\\admin\\provider-review\\page.tsx",
+    "text": "Awaiting triage"
+  },
+  {
+    "file": "app\\[locale]\\admin\\provider-review\\page.tsx",
+    "text": "Auto-Resolution Rate"
+  },
+  {
+    "file": "app\\[locale]\\admin\\provider-review\\page.tsx",
+    "text": "Alias + Model pipeline"
+  },
+  {
+    "file": "app\\[locale]\\admin\\provider-review\\page.tsx",
+    "text": "Deterministic Hits"
+  },
+  {
+    "file": "app\\[locale]\\admin\\provider-review\\page.tsx",
+    "text": "Via 47-provider dictionary"
+  },
+  {
+    "file": "app\\[locale]\\admin\\provider-review\\page.tsx",
+    "text": "Human Trained"
+  },
+  {
+    "file": "app\\[locale]\\admin\\provider-review\\page.tsx",
+    "text": "Appended via learning loop"
+  },
+  {
+    "file": "app\\[locale]\\admin\\provider-review\\page.tsx",
+    "text": "Loading review queue..."
+  },
+  {
+    "file": "app\\[locale]\\admin\\provider-review\\page.tsx",
+    "text": "Zero Pending Provider Reviews"
+  },
+  {
+    "file": "app\\[locale]\\admin\\provider-review\\page.tsx",
+    "text": "Target Provider"
+  },
+  {
+    "file": "app\\[locale]\\admin\\provider-review\\page.tsx",
+    "text": "(Auto-appends to alias dictionary)"
+  },
+  {
+    "file": "app\\[locale]\\admin\\seo\\page.tsx",
+    "text": "ANAHTAR KELİME"
+  },
+  {
+    "file": "app\\[locale]\\admin\\settings\\page.tsx",
+    "text": "Ayarları Kaydet"
+  },
+  {
+    "file": "app\\[locale]\\admin\\settings\\page.tsx",
+    "text": "Sıfır-Bilgi SHA-256 İmzası"
+  },
+  {
+    "file": "app\\[locale]\\admin\\settings\\page.tsx",
+    "text": "Olay Masası Otomatik Karantina"
+  },
+  {
+    "file": "app\\[locale]\\admin\\social\\page.tsx",
+    "text": "Tüm Kanallara Çoklu Yayın Hazırla"
+  },
+  {
+    "file": "app\\[locale]\\admin\\social\\page.tsx",
+    "text": "VİRAL KANCA & BAŞLIK"
+  },
+  {
+    "file": "app\\[locale]\\admin\\social\\page.tsx",
+    "text": "YAYIN VAKTİ"
+  },
+  {
+    "file": "app\\[locale]\\admin\\social\\page.tsx",
+    "text": "BEKLENEN ERİŞİM"
+  },
+  {
+    "file": "app\\[locale]\\admin\\strategy\\page.tsx",
+    "text": "AI Hata ve Zafiyet Veri Tekelidir (Data Moat)."
+  },
+  {
+    "file": "app\\[locale]\\admin\\strategy\\page.tsx",
+    "text": "25x - 40x ARR çarpanı"
+  },
+  {
+    "file": "app\\[locale]\\admin\\strategy\\page.tsx",
+    "text": "Mevcut Yıllıklandırılmış Gelir (ARR):"
+  },
+  {
+    "file": "app\\[locale]\\admin\\strategy\\page.tsx",
+    "text": "Veri Kalkanı Premium Katsayısı:"
+  },
+  {
+    "file": "app\\[locale]\\admin\\strategy\\page.tsx",
+    "text": "+35x Çarpan"
+  },
+  {
+    "file": "app\\[locale]\\admin\\strategy\\page.tsx",
+    "text": "Mevcut Seed/Seri A Değerlemesi:"
+  },
+  {
+    "file": "app\\[locale]\\admin\\strategy\\page.tsx",
+    "text": "$46.5M - $53.2M"
+  },
+  {
+    "file": "app\\[locale]\\admin\\strategy\\page.tsx",
+    "text": "1. Yıl Sonu (2026):"
+  },
+  {
+    "file": "app\\[locale]\\admin\\strategy\\page.tsx",
+    "text": "$48M-$78M Değerleme"
+  },
+  {
+    "file": "app\\[locale]\\admin\\strategy\\page.tsx",
+    "text": "2. Yıl Sonu (2027):"
+  },
+  {
+    "file": "app\\[locale]\\admin\\strategy\\page.tsx",
+    "text": "$160M-$240M Değerleme"
+  },
+  {
+    "file": "app\\[locale]\\admin\\strategy\\page.tsx",
+    "text": "3. Yıl Sonu (2028):"
+  },
+  {
+    "file": "app\\[locale]\\admin\\strategy\\page.tsx",
+    "text": "$500M+ Unicorn Adayı"
+  },
+  {
+    "file": "app\\[locale]\\admin\\strategy\\page.tsx",
+    "text": "GÜÇLÜ YÖNLER (STRENGTHS)"
+  },
+  {
+    "file": "app\\[locale]\\admin\\strategy\\page.tsx",
+    "text": "2.908 hazır vaka ile pazarın en büyük açık & doğrulanmış veri seti"
+  },
+  {
+    "file": "app\\[locale]\\admin\\strategy\\page.tsx",
+    "text": "EU AI Act Madde 73 (72h SLA) ve Madde 99 ceza hesaplama tekeli"
+  },
+  {
+    "file": "app\\[locale]\\admin\\strategy\\page.tsx",
+    "text": "5-Model Byzantine çapraz denetim mimarisi (Sıfır tek model bağımlılığı)"
+  },
+  {
+    "file": "app\\[locale]\\admin\\strategy\\page.tsx",
+    "text": "Sıfır-Bilgi PII temizliği (MERNİS, IBAN, Luhn)"
+  },
+  {
+    "file": "app\\[locale]\\admin\\strategy\\page.tsx",
+    "text": "FIRSATLAR (OPPORTUNITIES)"
+  },
+  {
+    "file": "app\\[locale]\\admin\\strategy\\page.tsx",
+    "text": "Allianz / Swiss Re gibi sigorta devlerinin aktüeryal veri açlığı"
+  },
+  {
+    "file": "app\\[locale]\\admin\\strategy\\page.tsx",
+    "text": "Ağustos 2026 EU AI Act zorunluluklarının yarattığı devasa panik dalgası"
+  },
+  {
+    "file": "app\\[locale]\\admin\\strategy\\page.tsx",
+    "text": "VirusTotal benzeri topluluk büyüme çarkıyla milyonlarca ihbar çekimi"
+  },
+  {
+    "file": "app\\[locale]\\admin\\strategy\\page.tsx",
+    "text": "ZAYIF YÖNLER (WEAKNESSES)"
+  },
+  {
+    "file": "app\\[locale]\\admin\\strategy\\page.tsx",
+    "text": "Kamuoyu bilinirliğinin erken aşamada olması (Growth ekibi ölçekleniyor)"
+  },
+  {
+    "file": "app\\[locale]\\admin\\strategy\\page.tsx",
+    "text": "Manuel ihbar inceleme ekibinin büyüme hızına yetiştirilmesi gereği"
+  },
+  {
+    "file": "app\\[locale]\\admin\\strategy\\page.tsx",
+    "text": "TEHDİTLER (THREATS)"
+  },
+  {
+    "file": "app\\[locale]\\admin\\strategy\\page.tsx",
+    "text": "Kapalı model üreticilerinin güvenlik verilerini gizleme çabaları"
+  },
+  {
+    "file": "app\\[locale]\\admin\\strategy\\page.tsx",
+    "text": "Hukuki SLAPP Riski:"
+  },
+  {
+    "file": "app\\[locale]\\admin\\strategy\\page.tsx",
+    "text": "Veri Sızıntısı & PII Riski:"
+  },
+  {
+    "file": "app\\[locale]\\admin\\system-health\\page.tsx",
+    "text": "MODÜL MOTORU"
+  },
+  {
+    "file": "app\\[locale]\\admin\\system-health\\page.tsx",
+    "text": "BELLEK KULLANIMI"
+  },
+  {
+    "file": "app\\[locale]\\admin\\system-health\\page.tsx",
+    "text": "BİRİM TESTLER"
+  },
+  {
+    "file": "app\\[locale]\\admin\\transparency\\page.tsx",
+    "text": "İHTAR KODU"
+  },
+  {
+    "file": "app\\[locale]\\admin\\transparency\\page.tsx",
+    "text": "GÖNDEREN TARAF"
+  },
+  {
+    "file": "app\\[locale]\\admin\\transparency\\page.tsx",
+    "text": "HEDEF VAKA"
+  },
+  {
+    "file": "app\\[locale]\\admin\\transparency\\page.tsx",
+    "text": "HUKUKİ SAVUNMA REÇETESİ"
+  },
+  {
+    "file": "app\\[locale]\\admin\\users\\page.tsx",
+    "text": "Yeni Kurumsal Kullanıcı Davet Et"
+  },
+  {
+    "file": "app\\[locale]\\admin\\users\\page.tsx",
+    "text": "DeHost veritabanına bağlanılıyor..."
+  },
+  {
+    "file": "app\\[locale]\\admin\\users\\page.tsx",
+    "text": "Eşleşen kullanıcı kaydı bulunamadı."
+  },
+  {
+    "file": "app\\[locale]\\admin\\users\\page.tsx",
+    "text": "KULLANICI ADI"
+  },
+  {
+    "file": "app\\[locale]\\admin\\users\\page.tsx",
+    "text": "KAYIT TARİHİ"
+  },
+  {
+    "file": "app\\[locale]\\admin\\vault\\page.tsx",
+    "text": "İŞLEM NO"
+  },
+  {
+    "file": "app\\[locale]\\admin\\vault\\page.tsx",
+    "text": "KAYNAK VAKA"
+  },
+  {
+    "file": "app\\[locale]\\admin\\vault\\page.tsx",
+    "text": "TESPİT EDİLEN PII TÜRÜ"
+  },
+  {
+    "file": "app\\[locale]\\admin\\vault\\page.tsx",
+    "text": "MASKELEME ÇIKTISI"
+  },
+  {
+    "file": "app\\[locale]\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "EU AI Act Rehberi"
+  },
+  {
+    "file": "app\\[locale]\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "28 Eylül 2026"
+  },
+  {
+    "file": "app\\[locale]\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "6 dk okuma"
+  },
+  {
+    "file": "app\\[locale]\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "ALPAR AI Regülasyon & Güvenlik Masası"
+  },
+  {
+    "file": "app\\[locale]\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "1. Kabul Edilemez Risk"
+  },
+  {
+    "file": "app\\[locale]\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "2. Yüksek Risk (High-Risk)"
+  },
+  {
+    "file": "app\\[locale]\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "3. Şeffaflık Gerektiren Sistemler"
+  },
+  {
+    "file": "app\\[locale]\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "4. Minimum / Düşük Risk"
+  },
+  {
+    "file": "app\\[locale]\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "Risk Yönetim Sistemi:"
+  },
+  {
+    "file": "app\\[locale]\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "Veri Yönetimi & Kalite:"
+  },
+  {
+    "file": "app\\[locale]\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "Teknik Dokümantasyon:"
+  },
+  {
+    "file": "app\\[locale]\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "Kayıt Tutma (Audit Logging):"
+  },
+  {
+    "file": "app\\[locale]\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "Şeffaflık ve Kullanıcı Bilgilendirmesi:"
+  },
+  {
+    "file": "app\\[locale]\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "İnsan Gözetimi (Human-in-the-Loop):"
+  },
+  {
+    "file": "app\\[locale]\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "Siber Güvenlik & Doğruluk:"
+  },
+  {
+    "file": "app\\[locale]\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "⚠️ Yasaklı Uygulama İhlali:"
+  },
+  {
+    "file": "app\\[locale]\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "35 Milyon Euro veya küresel cironun %7&apos;sine varan para cezaları."
+  },
+  {
+    "file": "app\\[locale]\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "⚠️ Diğer Yükümlülük İhlalleri:"
+  },
+  {
+    "file": "app\\[locale]\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "15 Milyon Euro veya küresel cironun %3&apos;üne varan para cezaları."
+  },
+  {
+    "file": "app\\[locale]\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "⚠️ Yanlış Bilgi Bildirimi:"
+  },
+  {
+    "file": "app\\[locale]\\blog\\ai-act-compliance-guide\\page.tsx",
+    "text": "7.5 Milyon Euro veya cironun %1.5&apos;i oranında idari cezalar."
+  },
+  {
+    "file": "app\\[locale]\\cases\\error.tsx",
+    "text": "Something went wrong"
+  },
+  {
+    "file": "app\\[locale]\\challenges\\error.tsx",
+    "text": "Something went wrong"
+  },
+  {
+    "file": "app\\[locale]\\compliance\\error.tsx",
+    "text": "Something went wrong"
+  },
+  {
+    "file": "app\\[locale]\\constitution\\error.tsx",
+    "text": "Something went wrong"
+  },
+  {
+    "file": "app\\[locale]\\dashboard\\legal\\page.tsx",
+    "text": "new Date(t.reviewed_at!)"
+  },
+  {
+    "file": "app\\[locale]\\digital-twins\\DigitalTwinsClient.tsx",
+    "text": "Sohbeti başlatmak için bir soru sorun."
+  },
+  {
+    "file": "app\\[locale]\\digital-twins\\DigitalTwinsClient.tsx",
+    "text": "Düşünüyor..."
+  },
+  {
+    "file": "app\\[locale]\\digital-twins\\error.tsx",
+    "text": "Something went wrong"
+  },
+  {
+    "file": "app\\[locale]\\enterprise\\error.tsx",
+    "text": "Something went wrong"
+  },
+  {
+    "file": "app\\[locale]\\incidents\\[id]\\opengraph-image.tsx",
+    "text": "alparai.com"
+  },
+  {
+    "file": "app\\[locale]\\investor-portal\\page.tsx",
+    "text": "Credo AI"
+  },
+  {
+    "file": "app\\[locale]\\legal\\cookies\\page.tsx",
+    "text": "sb-*-auth-token"
+  },
+  {
+    "file": "app\\[locale]\\legal\\cookies\\page.tsx",
+    "text": "alpar_cookie_consent"
+  },
+  {
+    "file": "app\\[locale]\\legal\\privacy\\page.tsx",
+    "text": "privacy@alparai.com"
+  },
+  {
+    "file": "app\\[locale]\\legal\\privacy\\page.tsx",
+    "text": "dpo@alparai.com"
+  },
+  {
+    "file": "app\\[locale]\\legal\\takedown\\page.tsx",
+    "text": "takedown@alparai.com"
+  },
+  {
+    "file": "app\\[locale]\\legal\\terms\\page.tsx",
+    "text": "legal@alparai.com"
+  },
+  {
+    "file": "app\\[locale]\\methodology\\error.tsx",
+    "text": "Something went wrong"
+  },
+  {
+    "file": "app\\[locale]\\methodology\\page.tsx",
+    "text": "K-BENCHMARK & AI-ISS STANDARDI"
+  },
+  {
+    "file": "app\\[locale]\\methodology\\page.tsx",
+    "text": "85 - (2.5 × Olay) + (4 × Yanıt)"
+  },
+  {
+    "file": "app\\[locale]\\models\\[providerId]\\[modelId]\\page.tsx",
+    "text": "Incidents"
+  },
+  {
+    "file": "app\\[locale]\\models\\[providerId]\\[modelId]\\page.tsx",
+    "text": "Recorded Failures"
+  },
+  {
+    "file": "app\\[locale]\\press\\page.tsx",
+    "text": "press@alparai.com"
+  },
+  {
+    "file": "app\\[locale]\\press-kit\\page.tsx",
+    "text": "Emerald (Brand)"
+  },
+  {
+    "file": "app\\[locale]\\press-kit\\page.tsx",
+    "text": "Dark Slate (Bg)"
+  },
+  {
+    "file": "app\\[locale]\\press-kit\\page.tsx",
+    "text": "Light Gray (Fg)"
+  },
+  {
+    "file": "app\\[locale]\\press-kit\\[slug]\\opengraph-image.tsx",
+    "text": "BRAND PROFILE"
+  },
+  {
+    "file": "app\\[locale]\\press-kit\\[slug]\\opengraph-image.tsx",
+    "text": "alparai.com"
+  },
+  {
+    "file": "app\\[locale]\\press-kit\\[slug]\\page.tsx",
+    "text": "(r as Record"
+  },
+  {
+    "file": "app\\[locale]\\pricing\\error.tsx",
+    "text": "Something went wrong"
+  },
+  {
+    "file": "app\\[locale]\\ratings\\error.tsx",
+    "text": "Something went wrong"
+  },
+  {
+    "file": "app\\[locale]\\status\\error.tsx",
+    "text": "Something went wrong"
+  },
+  {
+    "file": "app\\[locale]\\status\\page.tsx",
+    "text": "api.alparai.com"
+  },
+  {
+    "file": "app\\[locale]\\status\\page.tsx",
+    "text": "alparai.com"
+  },
+  {
+    "file": "app\\[locale]\\status\\page.tsx",
+    "text": "eu-west-1"
+  },
+  {
+    "file": "app\\[locale]\\team\\error.tsx",
+    "text": "Something went wrong"
+  },
+  {
+    "file": "app\\[locale]\\trust-center\\error.tsx",
+    "text": "Something went wrong"
+  },
+  {
+    "file": "app\\[locale]\\twins-leaderboard\\error.tsx",
+    "text": "Something went wrong"
+  },
+  {
+    "file": "app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "text": "Agent-OS Model Arbitraj Motoru"
+  },
+  {
+    "file": "app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "text": "Problems Solved"
+  },
+  {
+    "file": "app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "text": "Ortalama IQ Skoru"
+  },
+  {
+    "file": "app\\[locale]\\twins-leaderboard\\twins-leaderboard-client.tsx",
+    "text": "Token Tasarrufu"
+  },
+  {
+    "file": "app\\[locale]\\vision\\error.tsx",
+    "text": "Something went wrong"
+  },
+  {
+    "file": "app\\[locale]\\vision\\page.tsx",
+    "text": "The AI Constitution"
+  },
+  {
+    "file": "app\\[locale]\\vision\\page.tsx",
+    "text": "Constitution of AI"
+  },
+  {
+    "file": "components\\admin\\autonomous-company\\AutonomousCompanyCanvas.tsx",
+    "text": "Autonomous 24/7 labor efficiency"
+  },
+  {
+    "file": "components\\admin\\autonomous-company\\AutonomousCompanyCanvas.tsx",
+    "text": "✓ OK"
+  },
+  {
+    "file": "components\\admin\\autonomous-company\\AutonomousCompanyCanvas.tsx",
+    "text": "Total Today"
+  },
+  {
+    "file": "components\\admin\\autonomous-company\\AutonomousCompanyCanvas.tsx",
+    "text": "TASK: Feature Build"
+  },
+  {
+    "file": "components\\admin\\autonomous-company\\AutonomousCompanyCanvas.tsx",
+    "text": "TASK: Human Review"
+  },
+  {
+    "file": "components\\admin\\autonomous-company\\AutonomousCompanyCanvas.tsx",
+    "text": "Deterministic Zero-Feedback Autonomous Execution Active"
+  },
+  {
+    "file": "components\\admin\\autonomous-company\\AutonomousCompanyCanvas.tsx",
+    "text": "AST Isolation, Memory Pool & 24/7 Swarm Coordination"
+  },
+  {
+    "file": "components\\admin\\widgets\\BentoCommandCenter.tsx",
+    "text": "Stitch Project #3906261826915017353"
+  },
+  {
+    "file": "components\\admin\\widgets\\BentoCommandCenter.tsx",
+    "text": "React 19 • Tailwind CSS 4 • Bento Dark"
+  },
+  {
+    "file": "components\\admin\\widgets\\CognitiveDNA.tsx",
+    "text": "Waiting for intent..."
+  },
+  {
+    "file": "components\\admin\\widgets\\CoreSystemHealth.tsx",
+    "text": "Antigravity Verimi"
+  },
+  {
+    "file": "components\\admin\\widgets\\CoreSystemHealth.tsx",
+    "text": "MAX / Otopilot"
+  },
+  {
+    "file": "components\\admin\\widgets\\CoreSystemHealth.tsx",
+    "text": "CPU Yükü"
+  },
+  {
+    "file": "components\\admin\\widgets\\CoreSystemHealth.tsx",
+    "text": "RAM / Bellek"
+  },
+  {
+    "file": "components\\admin\\widgets\\CoreSystemHealth.tsx",
+    "text": "1.2 / 8 GB"
+  },
+  {
+    "file": "components\\admin\\widgets\\CoreSystemHealth.tsx",
+    "text": "32 ms"
+  },
+  {
+    "file": "components\\admin\\widgets\\CoreSystemHealth.tsx",
+    "text": "p99: 58ms (Optimal)"
+  },
+  {
+    "file": "components\\admin\\widgets\\CoreSystemHealth.tsx",
+    "text": "Vektör DB"
+  },
+  {
+    "file": "components\\admin\\widgets\\CoreSystemHealth.tsx",
+    "text": "%100 Sync"
+  },
+  {
+    "file": "components\\admin\\widgets\\CoreSystemHealth.tsx",
+    "text": "0 Deadlock • 4k/s"
+  },
+  {
+    "file": "components\\admin\\widgets\\CoreSystemHealth.tsx",
+    "text": "Altyapı Düğümleri & Küme Durumu"
+  },
+  {
+    "file": "components\\admin\\widgets\\CoreSystemHealth.tsx",
+    "text": "Self-Healing Otonom Kalkan"
+  },
+  {
+    "file": "components\\admin\\widgets\\CouncilOfSages.tsx",
+    "text": "Sürü Uyumu: %99.4"
+  },
+  {
+    "file": "components\\admin\\widgets\\CouncilOfSages.tsx",
+    "text": "YAPAY ZEKA MODELİ"
+  },
+  {
+    "file": "components\\admin\\widgets\\CouncilOfSages.tsx",
+    "text": "BAĞLAM PENCERESİ"
+  },
+  {
+    "file": "components\\admin\\widgets\\CouncilOfSages.tsx",
+    "text": "TAMAMLANDI"
+  },
+  {
+    "file": "components\\admin\\widgets\\CouncilOfSages.tsx",
+    "text": "Otonom Protokol Aktif"
+  },
+  {
+    "file": "components\\admin\\widgets\\SEOAnalytics.tsx",
+    "text": "SEO Metrikleri"
+  },
+  {
+    "file": "components\\admin\\widgets\\SEOAnalytics.tsx",
+    "text": "Lighthouse Skoru"
+  },
+  {
+    "file": "components\\admin\\widgets\\SEOAnalytics.tsx",
+    "text": "Arama Motoru Görünürlüğü"
+  },
+  {
+    "file": "components\\admin\\widgets\\VisitorAnalytics.tsx",
+    "text": "Turing v1.4 AI Tahmin Motoru"
+  },
+  {
+    "file": "components\\admin\\widgets\\VisitorAnalytics.tsx",
+    "text": "Sitedeki Aktif Kişi"
+  },
+  {
+    "file": "components\\admin\\widgets\\VisitorAnalytics.tsx",
+    "text": "Son yenilenme"
+  },
+  {
+    "file": "components\\admin\\widgets\\VisitorAnalytics.tsx",
+    "text": "Gelecek 1 Saat Tahmini"
+  },
+  {
+    "file": "components\\admin\\widgets\\VisitorAnalytics.tsx",
+    "text": "kişi / saat"
+  },
+  {
+    "file": "components\\admin\\widgets\\VisitorAnalytics.tsx",
+    "text": "Tahmini Sayfa Görüntüleme"
+  },
+  {
+    "file": "components\\admin\\widgets\\VisitorAnalytics.tsx",
+    "text": "SEO Organik Trafik"
+  },
+  {
+    "file": "components\\admin\\widgets\\VisitorAnalytics.tsx",
+    "text": "Anomali Z-Skoru"
+  },
+  {
+    "file": "components\\admin\\widgets\\VisitorAnalytics.tsx",
+    "text": "Beklenen Hız"
+  },
+  {
+    "file": "components\\admin\\widgets\\VisitorAnalytics.tsx",
+    "text": "Gelecek 60 Dakika Tahmin Eğrisi (5dk Dilimler)"
+  },
+  {
+    "file": "components\\admin\\widgets\\VisitorAnalytics.tsx",
+    "text": "Markov Zinciri: En Olası Gelecek Ziyaretçi Rotaları"
+  },
+  {
+    "file": "components\\admin\\widgets\\VisitorAnalytics.tsx",
+    "text": "Shannon Entropi:"
+  },
+  {
+    "file": "components\\admin-core\\admin-sidebar.tsx",
+    "text": "Canlı Site"
+  },
+  {
+    "file": "components\\analytics\\live-cognitive-badges.tsx",
+    "text": "Niyet / Triage"
+  },
+  {
+    "file": "components\\analytics\\live-cognitive-badges.tsx",
+    "text": "Kod / İcra"
+  },
+  {
+    "file": "components\\analytics\\live-cognitive-badges.tsx",
+    "text": "Doğrulama / AST"
+  },
+  {
+    "file": "components\\api-docs\\api-playground.tsx",
+    "text": "Select Endpoint"
+  },
+  {
+    "file": "components\\api-docs\\api-playground.tsx",
+    "text": "Query Parameters"
+  },
+  {
+    "file": "components\\api-docs\\api-playground.tsx",
+    "text": "= 200 && responseStatus"
+  },
+  {
+    "file": "components\\api-docs\\api-playground.tsx",
+    "text": "Click &quot;Execute Test Request&quot; above to run live query."
+  },
+  {
+    "file": "components\\compliance\\compliance-checklist-client.tsx",
+    "text": "All Banking & Telecom"
+  },
+  {
+    "file": "components\\compliance\\compliance-checklist-client.tsx",
+    "text": "Compliance Toolkit Dispatched"
+  },
+  {
+    "file": "components\\compliance\\compliance-lead-form.tsx",
+    "text": "Toolkit Activated & Sealed"
+  },
+  {
+    "file": "components\\dashboard\\ecosystem-dashboard.tsx",
+    "text": "ALPAR Ecosystem Mimarisi Yükleniyor..."
+  },
+  {
+    "file": "components\\dashboard\\ecosystem-dashboard.tsx",
+    "text": "Ekosistem verisine ulaşılamadı."
+  },
+  {
+    "file": "components\\dashboard\\ecosystem-dashboard.tsx",
+    "text": "Google AI Studio (Gemini)"
+  },
+  {
+    "file": "components\\dashboard\\ecosystem-dashboard.tsx",
+    "text": "Google Drive Depolama"
+  },
+  {
+    "file": "components\\dashboard\\ecosystem-dashboard.tsx",
+    "text": "Cloudflare WAF Surları"
+  },
+  {
+    "file": "components\\dashboard\\ecosystem-dashboard.tsx",
+    "text": "Stripe Finans & Bounty"
+  },
+  {
+    "file": "components\\dashboard\\ecosystem-dashboard.tsx",
+    "text": "Stripe verisi bekleniyor..."
+  },
+  {
+    "file": "components\\dashboard\\ecosystem-dashboard.tsx",
+    "text": "DeHost Serverless"
+  },
+  {
+    "file": "components\\dashboard\\ecosystem-dashboard.tsx",
+    "text": "Sertifikasyonlar:"
+  },
+  {
+    "file": "components\\dashboard\\ecosystem-dashboard.tsx",
+    "text": "Sertifika bulunamadı."
+  },
+  {
+    "file": "components\\dashboard\\ecosystem-dashboard.tsx",
+    "text": "Anti-Halüsinasyon"
+  },
+  {
+    "file": "components\\dashboard\\ecosystem-dashboard.tsx",
+    "text": "Sürü Operasyonları (Swarm)"
+  },
+  {
+    "file": "components\\dashboard\\ecosystem-dashboard.tsx",
+    "text": "Token Bütçesi"
+  },
+  {
+    "file": "components\\dashboard\\ecosystem-dashboard.tsx",
+    "text": "ALPAR AI Admin verisi bekleniyor..."
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Contact Founder"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "• Confidential Investment Memorandum"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Use ← → Arrow Keys to Navigate"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Press G for Grid View"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Next Slide"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "alparai.com"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Slide Navigator"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Select any slide to jump directly"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "The Immutable Trust Layer for Enterprise AI"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Core Mission"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Tagline: &quot;Trust, Verified in Real-Time.&quot;"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Agent Execution Hash"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "0x7f8a...e9b2"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Latency Overhead:"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "PII Masking:"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "100% Zero Leak"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Ledger Proof:"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Append-Only SHA256"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "EU AI Act Readiness:"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Art. 12 & 14 Compliant"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "1. Hallucination & Unbounded Actions"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "2. PII & Sensitive Data Leaks"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "3. Zero Legal Accountability"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Real-Time PII Sanitization"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Immutable Incident Ledger"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Automated Guardrails"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Step 1"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "User / Agent Prompt"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Step 2 (0.18ms)"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "PII Guardian"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Step 3"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "LLM Execution"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Step 4"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Crypto Ledger"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Step 5"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Output Verified"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "EU AI Act Article 12 (Record-Keeping)"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "EU AI Act Article 14 (Human Oversight)"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "PII Guardian Pipeline"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Audit Ledger Engine"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Server Action Isolation"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "100% Deterministic Verification"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Zero PII Leak Guarantee"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "TypeScript Strict (noUncheckedIndexedAccess)"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Pricing under revision"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Pricing under revision"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Bottom-Up (Developer First)"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Open-source CLI (`opencode` / Antigravity integration)"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "AGPL-3.0 open core repository generating organic GitHub traction"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Self-serve developer portal with instant API provisioning"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Top-Down (Compliance & Legal)"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Direct outreach to CISOs, Chief Risk Officers, and AI Legal Advisors"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "EU AI Act Article 73 readiness audits and executive briefings"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Custom enterprise pilots with guaranteed 45-day conversion target"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Traditional GRC (OneTrust)"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Legacy Logging"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Low Auditability / Low AI Real-Time Context"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "AGPL-3.0 Open Core"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Cryptographic Ledger Integrity"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Zero-Knowledge PII Masking"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Strategic Advisory Board"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "$1.2M ARR"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "50 Enterprise Pilots onboarded"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "$4.8M ARR"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "200 Enterprise Customers"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "$12.5M ARR"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "500+ Active Enterprises"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Gross Margin"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Low infrastructure cost per verification check."
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "LTV : CAC Ratio"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Strong PLG developer funnel efficiency."
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Go-To-Market"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Security & Audits"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "$3M ARR"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "1,000 Active Clusters"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "SOC2 & ISO Certified"
+  },
+  {
+    "file": "components\\deck\\pitch-deck.tsx",
+    "text": "Connect with Founder: ercument.erden@alparai.com"
+  },
+  {
+    "file": "components\\feed\\feed-container.tsx",
+    "text": "i.hoursSince"
+  },
+  {
+    "file": "components\\incidents\\incident-card.tsx",
+    "text": "= 0 && diffDays"
+  },
+  {
+    "file": "components\\incidents\\public-statement-modal.tsx",
+    "text": "Source URL"
+  },
+  {
+    "file": "components\\incidents\\public-statement-modal.tsx",
+    "text": "Statement Date"
+  },
+  {
+    "file": "components\\incidents\\public-statement-modal.tsx",
+    "text": "Quote (min 10 chars)"
+  },
+  {
+    "file": "components\\incidents\\VoiceIncidentReporter.tsx",
+    "text": "Draft Transcription (AI):"
+  },
+  {
+    "file": "components\\layout\\footer.tsx",
+    "text": "Sistemler Çevrimiçi · Canlı Doğrulama"
+  },
+  {
+    "file": "components\\marketing\\hero-section.tsx",
+    "text": "2,880+ AI Incidents Monitored"
+  },
+  {
+    "file": "components\\marketing\\hero-section.tsx",
+    "text": "Book a Demo"
+  },
+  {
+    "file": "components\\marketing\\pricing-section.tsx",
+    "text": "Fiyatlandırma Paketleri"
+  },
+  {
+    "file": "components\\marketing\\pricing-section.tsx",
+    "text": "14-Day Free Trial, No Credit Card Required"
+  },
+  {
+    "file": "components\\marketing\\pricing-section.tsx",
+    "text": "Neler Dahil?"
+  },
+  {
+    "file": "components\\models\\model-nutrition-label.tsx",
+    "text": "Halüsinasyon"
+  },
+  {
+    "file": "components\\models\\model-nutrition-label.tsx",
+    "text": "Ort. Gecikme"
+  },
+  {
+    "file": "components\\models\\model-nutrition-label.tsx",
+    "text": "v1.0-Oracle"
+  },
+  {
+    "file": "components\\pricing\\lemon-checkout-button.tsx",
+    "text": "Yönlendiriliyor..."
+  },
+  {
+    "file": "components\\public\\JuryDutySwipe.tsx",
+    "text": "Jury Duty"
+  },
+  {
+    "file": "components\\public\\JuryDutySwipe.tsx",
+    "text": "You have cleared the docket."
+  },
+  {
+    "file": "components\\public\\JuryDutySwipe.tsx",
+    "text": "Thank you for your service."
+  },
+  {
+    "file": "components\\public\\WallOfShame.tsx",
+    "text": "ALPAR AI Constitutional Watchdog · Resmi Utanç Sicili"
+  },
+  {
+    "file": "components\\public\\WallOfShame.tsx",
+    "text": "Mahkum Şirketler"
+  },
+  {
+    "file": "components\\public\\WallOfShame.tsx",
+    "text": "Kayıtlı ve İnfaz Edilmiş"
+  },
+  {
+    "file": "components\\public\\WallOfShame.tsx",
+    "text": "Tahmini Toplam Zarar"
+  },
+  {
+    "file": "components\\public\\WallOfShame.tsx",
+    "text": "Veri Sızıntısı & Telif"
+  },
+  {
+    "file": "components\\public\\WallOfShame.tsx",
+    "text": "Ortalama Tehdit"
+  },
+  {
+    "file": "components\\public\\WallOfShame.tsx",
+    "text": "Kritik Risk Skoru"
+  },
+  {
+    "file": "components\\public\\WallOfShame.tsx",
+    "text": "Jüri Mutabakatı"
+  },
+  {
+    "file": "components\\public\\WallOfShame.tsx",
+    "text": "Halk Jürisi Onaylı"
+  },
+  {
+    "file": "components\\public\\WallOfShame.tsx",
+    "text": "Dava No:"
+  },
+  {
+    "file": "components\\public\\WallOfShame.tsx",
+    "text": "Mahkumiyet:"
+  },
+  {
+    "file": "components\\public\\WallOfShame.tsx",
+    "text": "Maddi Yaptırım:"
+  },
+  {
+    "file": "components\\public\\WallOfShame.tsx",
+    "text": "Delilleri İncele"
+  },
+  {
+    "file": "components\\public\\WallOfShame.tsx",
+    "text": "Agora-T Sicili"
+  },
+  {
+    "file": "components\\public\\WallOfShame.tsx",
+    "text": "Arama kriterlerine uygun sicil kaydı bulunamadı."
+  },
+  {
+    "file": "components\\public\\WallOfShame.tsx",
+    "text": "Filtreleri sıfırlayarak tüm mahkum AI listesine erişebilirsiniz."
+  },
+  {
+    "file": "components\\public\\WallOfShame.tsx",
+    "text": "Halk Denetim Mekanizması"
+  },
+  {
+    "file": "components\\public\\WallOfShame.tsx",
+    "text": "Bir Yapay Zeka Suçu mu Tespit Ettiniz?"
+  },
+  {
+    "file": "components\\public\\WallOfShame.tsx",
+    "text": "Jüri Görevine Katıl"
+  },
+  {
+    "file": "components\\public\\WallOfShame.tsx",
+    "text": "İhlal Bildir"
+  },
+  {
+    "file": "components\\public\\WallOfShame.tsx",
+    "text": "İhlal Gerekçesi"
+  },
+  {
+    "file": "components\\public\\WallOfShame.tsx",
+    "text": "Agora-T Duruşmasına Git"
+  }
+]

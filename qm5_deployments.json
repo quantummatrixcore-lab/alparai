@@ -1,0 +1,263 @@
+﻿{
+  "result": [
+    {
+      "id": "05ca8b98-09c2-4ec4-81c0-6833eb83262e",
+      "short_id": "05ca8b98",
+      "project_id": "e984a001-82f3-42a5-be03-7ecfede8ac0a",
+      "project_name": "quantum-matrix-5",
+      "environment": "preview",
+      "url": "https://05ca8b98.quantum-matrix-5.pages.dev",
+      "created_on": "2025-12-01T22:07:09.582828Z",
+      "modified_on": "2025-12-01T22:08:08.530451Z",
+      "latest_stage": {
+        "name": "build",
+        "started_on": "2025-12-01T22:07:13.987133Z",
+        "ended_on": "2025-12-01T22:08:08.530451Z",
+        "status": "failure"
+      },
+      "deployment_trigger": {
+        "type": "github:push",
+        "metadata": {
+          "branch": "dependabot/npm_and_yarn/apps/api/npm_and_yarn-d004efb325",
+          "commit_hash": "64e59ea03b6bc66f7d66c920fdcd2663d36cd1ad",
+          "commit_message": "build(deps): Bump nodemailer\n\nBumps the npm_and_yarn group with 1 update in the /apps/api directory: [nodemailer](https://github.com/nodemailer/nodemailer).\n\n\nUpdates `nodemailer` from 6.10.1 to 7.0.11\n- [Release notes](https://github.com/nodemailer/nodemailer/releases)\n- [Changelog](https://github.com/nodemailer/nodemailer/blob/master/CHANGELOG.md)\n- [Commits](https://github.com/nodemailer/nodemailer/compare/v6.10.1...v7.0.11)\n\n---\nupdated-dependencies:\n- dependency-name: nodemailer\n  dependency-version: 7.0.11\n  dependency-type: direct:production\n  dependency-group: npm_and_yarn\n...\n\nSigned-off-by: dependabot[bot] \u003csupport@github.com\u003e",
+          "commit_dirty": false
+        }
+      },
+      "stages": [
+        {
+          "name": "queued",
+          "started_on": "2025-12-01T22:07:09.707898Z",
+          "ended_on": "2025-12-01T22:07:09.707898Z",
+          "status": "success"
+        },
+        {
+          "name": "initialize",
+          "started_on": "2025-12-01T22:07:09.707898Z",
+          "ended_on": "2025-12-01T22:07:12.241259Z",
+          "status": "success"
+        },
+        {
+          "name": "clone_repo",
+          "started_on": "2025-12-01T22:07:12.241259Z",
+          "ended_on": "2025-12-01T22:07:13.987133Z",
+          "status": "success"
+        },
+        {
+          "name": "build",
+          "started_on": "2025-12-01T22:07:13.987133Z",
+          "ended_on": "2025-12-01T22:08:08.530451Z",
+          "status": "failure"
+        },
+        {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        }
+      ],
+      "build_config": {
+        "build_command": "npm run build:fix",
+        "destination_dir": ".next",
+        "build_caching": null,
+        "root_dir": "",
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "source": {
+        "type": "github",
+        "config": {
+          "owner": "quantummatrixcore-lab",
+          "repo_name": "Quantum-Matrix-5",
+          "production_branch": "claude/quantum-matrix-v5-deployment-011CUxuLihzPJWc2rvs3n4eK",
+          "pr_comments_enabled": false
+        }
+      },
+      "env_vars": {},
+      "compatibility_date": "2025-11-12",
+      "compatibility_flags": [],
+      "build_image_major_version": 3,
+      "usage_model": null,
+      "aliases": null,
+      "is_skipped": false,
+      "production_branch": "claude/quantum-matrix-v5-deployment-011CUxuLihzPJWc2rvs3n4eK",
+      "uses_functions": null
+    },
+    {
+      "id": "162218e6-3243-4c90-bdc8-90142e842f87",
+      "short_id": "162218e6",
+      "project_id": "e984a001-82f3-42a5-be03-7ecfede8ac0a",
+      "project_name": "quantum-matrix-5",
+      "environment": "production",
+      "url": "https://162218e6.quantum-matrix-5.pages.dev",
+      "created_on": "2025-11-12T11:59:04.560658Z",
+      "modified_on": "2025-11-12T11:59:41.674637Z",
+      "latest_stage": {
+        "name": "build",
+        "started_on": "2025-11-12T11:59:10.102421Z",
+        "ended_on": "2025-11-12T11:59:41.674637Z",
+        "status": "failure"
+      },
+      "deployment_trigger": {
+        "type": "ad_hoc",
+        "metadata": {
+          "branch": "claude/quantum-matrix-v5-deployment-011CUxuLihzPJWc2rvs3n4eK",
+          "commit_hash": "8b76184cb87bdacd22a54684b1a92c422de61ec6",
+          "commit_message": "feat: Cloudflare auto-deploy ready",
+          "commit_dirty": false
+        }
+      },
+      "stages": [
+        {
+          "name": "queued",
+          "started_on": "2025-11-12T11:59:05.671055Z",
+          "ended_on": "2025-11-12T11:59:05.671055Z",
+          "status": "success"
+        },
+        {
+          "name": "initialize",
+          "started_on": "2025-11-12T11:59:05.671055Z",
+          "ended_on": "2025-11-12T11:59:08.340174Z",
+          "status": "success"
+        },
+        {
+          "name": "clone_repo",
+          "started_on": "2025-11-12T11:59:08.340174Z",
+          "ended_on": "2025-11-12T11:59:10.102421Z",
+          "status": "success"
+        },
+        {
+          "name": "build",
+          "started_on": "2025-11-12T11:59:10.102421Z",
+          "ended_on": "2025-11-12T11:59:41.674637Z",
+          "status": "failure"
+        },
+        {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        }
+      ],
+      "build_config": {
+        "build_command": "npm run build:fix",
+        "destination_dir": ".next",
+        "build_caching": null,
+        "root_dir": "",
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "source": {
+        "type": "github",
+        "config": {
+          "owner": "quantummatrixcore-lab",
+          "repo_name": "Quantum-Matrix-5",
+          "production_branch": "claude/quantum-matrix-v5-deployment-011CUxuLihzPJWc2rvs3n4eK",
+          "pr_comments_enabled": false
+        }
+      },
+      "env_vars": {},
+      "compatibility_date": "2025-11-12",
+      "compatibility_flags": [],
+      "build_image_major_version": 3,
+      "usage_model": null,
+      "aliases": null,
+      "is_skipped": false,
+      "production_branch": "claude/quantum-matrix-v5-deployment-011CUxuLihzPJWc2rvs3n4eK",
+      "uses_functions": null
+    },
+    {
+      "id": "9b5b6b2b-fac8-430f-9fd8-a9a1811248b3",
+      "short_id": "9b5b6b2b",
+      "project_id": "e984a001-82f3-42a5-be03-7ecfede8ac0a",
+      "project_name": "quantum-matrix-5",
+      "environment": "production",
+      "url": "https://9b5b6b2b.quantum-matrix-5.pages.dev",
+      "created_on": "2025-11-12T11:54:30.059857Z",
+      "modified_on": "2025-11-12T11:55:17.768183Z",
+      "latest_stage": {
+        "name": "build",
+        "started_on": "2025-11-12T11:54:34.969601Z",
+        "ended_on": "2025-11-12T11:55:17.768183Z",
+        "status": "failure"
+      },
+      "deployment_trigger": {
+        "type": "ad_hoc",
+        "metadata": {
+          "branch": "claude/quantum-matrix-v5-deployment-011CUxuLihzPJWc2rvs3n4eK",
+          "commit_hash": "8b76184cb87bdacd22a54684b1a92c422de61ec6",
+          "commit_message": "feat: Cloudflare auto-deploy ready",
+          "commit_dirty": false
+        }
+      },
+      "stages": [
+        {
+          "name": "queued",
+          "started_on": "2025-11-12T11:54:30.542263Z",
+          "ended_on": "2025-11-12T11:54:30.542263Z",
+          "status": "success"
+        },
+        {
+          "name": "initialize",
+          "started_on": "2025-11-12T11:54:30.542263Z",
+          "ended_on": "2025-11-12T11:54:32.990577Z",
+          "status": "success"
+        },
+        {
+          "name": "clone_repo",
+          "started_on": "2025-11-12T11:54:32.990577Z",
+          "ended_on": "2025-11-12T11:54:34.969601Z",
+          "status": "success"
+        },
+        {
+          "name": "build",
+          "started_on": "2025-11-12T11:54:34.969601Z",
+          "ended_on": "2025-11-12T11:55:17.768183Z",
+          "status": "failure"
+        },
+        {
+          "name": "deploy",
+          "started_on": null,
+          "ended_on": null,
+          "status": "idle"
+        }
+      ],
+      "build_config": {
+        "build_command": "npm run build",
+        "destination_dir": ".out",
+        "build_caching": null,
+        "root_dir": "",
+        "web_analytics_tag": null,
+        "web_analytics_token": null
+      },
+      "source": {
+        "type": "github",
+        "config": {
+          "owner": "quantummatrixcore-lab",
+          "repo_name": "Quantum-Matrix-5",
+          "production_branch": "claude/quantum-matrix-v5-deployment-011CUxuLihzPJWc2rvs3n4eK",
+          "pr_comments_enabled": false
+        }
+      },
+      "env_vars": {},
+      "compatibility_date": "2025-11-12",
+      "compatibility_flags": [],
+      "build_image_major_version": 3,
+      "usage_model": null,
+      "aliases": null,
+      "is_skipped": false,
+      "production_branch": "claude/quantum-matrix-v5-deployment-011CUxuLihzPJWc2rvs3n4eK",
+      "uses_functions": null
+    }
+  ],
+  "success": true,
+  "errors": [],
+  "messages": [],
+  "result_info": {
+    "page": 1,
+    "per_page": 25,
+    "count": 3,
+    "total_count": 3,
+    "total_pages": 1
+  }
+}

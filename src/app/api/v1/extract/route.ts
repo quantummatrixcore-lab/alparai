@@ -3,7 +3,7 @@ import { logger } from "@/lib/utils/logger";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { headers } from "next/headers";
 
-export const runtime = "edge";
+
 
 export async function POST(req: Request) {
   try {

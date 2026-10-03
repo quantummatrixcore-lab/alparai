@@ -2,7 +2,13 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { PitchDeckViewer } from "@/components/deck/pitch-deck";
 import { constructPageMetadata } from "@/lib/seo/metadata";
 
-export const dynamic = "force-static";
+import { SUPPORTED_LOCALES } from "@/lib/constants";
+
+export const revalidate = 60;
+
+export function generateStaticParams() {
+  return SUPPORTED_LOCALES.map((locale) => ({ locale }));
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

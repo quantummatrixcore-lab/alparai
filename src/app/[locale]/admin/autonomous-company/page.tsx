@@ -35,3 +35,4 @@ export default async function AutonomousCompanyPage({
     </div>
   );
 }
+

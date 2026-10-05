@@ -85,3 +85,4 @@ export default async function ModerationPage({ params }: { params: Promise<{ loc
     </Container>
   );
 }
+

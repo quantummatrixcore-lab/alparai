@@ -16,7 +16,7 @@ export async function POST(req: Request) {
       (role !== "admin" && role !== "ceo" && role !== "moderator" && role !== "advisor")
     ) {
       return NextResponse.json(
-        { ok: false, error: "Yetkisiz erişim (Unauthorized)" },
+        { ok: false, error: "Yetkisiz eriÅŸim (Unauthorized)" },
         { status: 403 },
       );
     }
@@ -31,8 +31,9 @@ export async function POST(req: Request) {
       err instanceof Error ? err : undefined,
     );
     return NextResponse.json(
-      { ok: false, error: err instanceof Error ? err.message : "Sunucu hatası" },
+      { ok: false, error: err instanceof Error ? err.message : "Sunucu hatasÄ±" },
       { status: 500 },
     );
   }
 }
+

@@ -20,7 +20,7 @@ export async function GET() {
     incidents = [];
   }
 
-  let fullContent = `# ALPAR AI — Full Incident Feed (LLM Full Dump)
+  let fullContent = `# ALPAR AI â€” Full Incident Feed (LLM Full Dump)
 
 `;
 
@@ -45,3 +45,4 @@ export async function GET() {
     },
   });
 }
+

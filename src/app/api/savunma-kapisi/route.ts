@@ -4,7 +4,7 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    // 1. Savunma Kapısı (Defense Gate)
+    // 1. Savunma KapÄ±sÄ± (Defense Gate)
     if (!body || !body.auth_token) {
       return NextResponse.json(
         { error: "Savunma Kapisi: Ihlal Tespit Edildi (Yetkisiz Erisim)" },
@@ -37,3 +37,4 @@ export async function POST(request: Request) {
     );
   }
 }
+

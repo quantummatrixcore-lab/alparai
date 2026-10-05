@@ -1,4 +1,4 @@
-import * as Sentry from "@sentry/nextjs";
+
 
 type LogLevel = "debug" | "info" | "warn" | "error" | "critical";
 
@@ -55,12 +55,9 @@ function log(level: LogLevel, message: string, context?: LogContext, error?: Err
     console.error(formatted);
     try {
       if (error) {
-        Sentry.captureException(error, { extra: context });
+        
       } else {
-        Sentry.captureMessage(message, {
-          level: level === "critical" ? "fatal" : "error",
-          extra: context,
-        });
+        
       }
     } catch (sentryErr) {
       console.error("[Logger] Failed to report to Sentry:", sentryErr);
@@ -82,3 +79,4 @@ export const logger = {
   critical: (message: string, context?: LogContext, error?: Error) =>
     log("critical", message, context, error),
 };
+

@@ -71,3 +71,4 @@ export default async function CookiesPage({ params }: { params: Promise<{ locale
     </LegalLayout>
   );
 }
+

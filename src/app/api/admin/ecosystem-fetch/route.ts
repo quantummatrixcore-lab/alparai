@@ -13,19 +13,19 @@ export async function POST(_req: Request) {
     const user = await getCurrentUser();
     if (!user || (user.role !== "admin" && user.role !== "ceo")) {
       return NextResponse.json(
-        { success: false, message: "Yetkisiz erişim (Unauthorized)" },
+        { success: false, message: "Yetkisiz eriÃ…Å¸im (Unauthorized)" },
         { status: 403 },
       );
     }
 
     const data = await runExternalFetchTask();
 
-    // Yolları yeniden doğrula (tüm diller için çalışması adına path string olarak veriliyor)
+    // YollarÃ„Â± yeniden doÃ„Å¸rula (tÃƒÂ¼m diller iÃƒÂ§in ÃƒÂ§alÃ„Â±Ã…Å¸masÃ„Â± adÃ„Â±na path string olarak veriliyor)
     revalidatePath("/[locale]/admin/ecosystem", "page");
 
     return NextResponse.json({
       success: true,
-      message: `Tamamlandı: ${data.total_fetched || 0} potansiyel olay, ${data.positive_inserted || 0} olumlu gelişme, ${data.ai_verified_published || 0} otomatik yayınlandı`,
+      message: `TamamlandÃ„Â±: ${data.total_fetched || 0} potansiyel olay, ${data.positive_inserted || 0} olumlu geliÃ…Å¸me, ${data.ai_verified_published || 0} otomatik yayÃ„Â±nlandÃ„Â±`,
     });
   } catch (err) {
     logger.error(
@@ -36,9 +36,10 @@ export async function POST(_req: Request) {
     return NextResponse.json(
       {
         success: false,
-        message: err instanceof Error ? err.message : "Bilinmeyen hata oluştu",
+        message: err instanceof Error ? err.message : "Bilinmeyen hata oluÃ…Å¸tu",
       },
       { status: 500 },
     );
   }
 }
+

@@ -140,3 +140,4 @@ async function getHandler(request: NextRequest) {
 }
 
 export const GET = withCronLogger("k-provider-preview", getHandler);
+

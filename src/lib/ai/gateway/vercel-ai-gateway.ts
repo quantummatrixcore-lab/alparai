@@ -4,9 +4,9 @@ import { gateway } from "@ai-sdk/gateway";
 import { logger } from "@/lib/utils/logger";
 import type { ProviderAdapter, GatewayRequest, GatewayResult } from "../types";
 
-export class VercelAIGatewayAdapter implements ProviderAdapter {
+export class cloudflareAIGatewayAdapter implements ProviderAdapter {
   async isConfigured(): Promise<boolean> {
-    // Vercel AI Gateway requires either an environment variable setup or just defaults if deployed on Vercel
+    // cloudflare AI Gateway requires either an environment variable setup or just defaults if deployed on cloudflare
     // For this pilot adapter, we assume it's always configured if the SDK is present
     return true;
   }
@@ -15,7 +15,7 @@ export class VercelAIGatewayAdapter implements ProviderAdapter {
     const startTime = performance.now();
 
     try {
-      // Vercel AI Gateway supports routing via model strings like `provider.model` or mapping directly
+      // cloudflare AI Gateway supports routing via model strings like `provider.model` or mapping directly
       // In @ai-sdk/gateway, we just pass the model id, e.g. "openai/gpt-4o"
       const modelIdentifier = request.model.id;
 
@@ -34,7 +34,7 @@ export class VercelAIGatewayAdapter implements ProviderAdapter {
           ok: false,
           error: {
             code: "api_error",
-            message: "Vercel AI Gateway returned empty content.",
+            message: "cloudflare AI Gateway returned empty content.",
             model: request.model.id,
           },
         };
@@ -63,7 +63,7 @@ export class VercelAIGatewayAdapter implements ProviderAdapter {
       const errorMessage = err instanceof Error ? err.message : String(err);
 
       // Generic error handling
-      logger.error("[VercelAIGatewayAdapter] Request failed", {
+      logger.error("[cloudflareAIGatewayAdapter] Request failed", {
         error: errorMessage,
         model: request.model.id,
         latencyMs,
@@ -73,7 +73,7 @@ export class VercelAIGatewayAdapter implements ProviderAdapter {
         ok: false,
         error: {
           code: "api_error",
-          message: errorMessage || "Vercel AI Gateway error",
+          message: errorMessage || "cloudflare AI Gateway error",
           model: request.model.id,
         },
       };

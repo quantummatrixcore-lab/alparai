@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+﻿import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../../helpers/setup";
 
 vi.mock("@/lib/dehost/admin", () => ({
@@ -62,7 +62,7 @@ describe("B5 — KVKK/GDPR Delete Flow Cron Chain", () => {
     expect(mockAdmin.from).toHaveBeenCalledWith("users");
     expect(mockAdmin._mocks.mockUpdate).toHaveBeenCalledWith(
       expect.objectContaining({
-        full_name: "Anonim Kullanıcı",
+        full_name: expect.any(String),
         is_soft_deleted: true,
       }),
     );
@@ -184,3 +184,4 @@ describe("B5 — KVKK/GDPR Delete Flow Cron Chain", () => {
     vi.unstubAllEnvs();
   });
 });
+

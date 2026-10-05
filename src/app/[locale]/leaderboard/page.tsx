@@ -642,3 +642,4 @@ function TrustScoreSparkline({
     </svg>
   );
 }
+

@@ -64,7 +64,7 @@ export interface RemediationItem {
 
 export async function GET() {
   return NextResponse.json({
-    service: "ALPAR AI — Automated EU AI Act B2B Verification Engine",
+    service: "ALPAR AI â€” Automated EU AI Act B2B Verification Engine",
     regulation: "Regulation (EU) 2024/1689 of the European Parliament and of the Council",
     version: "v2.5.0",
     supported_frameworks: [
@@ -128,9 +128,9 @@ export async function POST(request: Request) {
     const payload = parseResult.data;
     const sanitizedIntendedUse = maskPII(payload.intended_use).masked;
 
-    // ──────────────────────────────────────────────────────────────────────────
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // 1. EVALUATE ARTICLE 5: PROHIBITED AI PRACTICES
-    // ──────────────────────────────────────────────────────────────────────────
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     if (payload.prohibited_signals.length > 0) {
       const violations = payload.prohibited_signals.map((sig) => {
         switch (sig) {
@@ -160,7 +160,7 @@ export async function POST(request: Request) {
             classification: "PROHIBITED_UNDER_ARTICLE_5",
             compliance_score: 0,
             is_deployable_in_eu: false,
-            legal_sanction_risk: "Tier 1 Fine: Up to €35,000,000 or 7% of total worldwide annual turnover",
+            legal_sanction_risk: "Tier 1 Fine: Up to â‚¬35,000,000 or 7% of total worldwide annual turnover",
             violations,
             remediations: [
               {
@@ -182,9 +182,9 @@ export async function POST(request: Request) {
       );
     }
 
-    // ──────────────────────────────────────────────────────────────────────────
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // 2. EVALUATE HIGH-RISK AI SYSTEMS (ARTICLE 6 & ANNEX III)
-    // ──────────────────────────────────────────────────────────────────────────
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     const isHighRiskCategory = [
       "biometrics",
       "critical_infrastructure",
@@ -272,9 +272,9 @@ export async function POST(request: Request) {
         });
       }
     } else if (payload.system_category === "generative_synthetic") {
-      // ──────────────────────────────────────────────────────────────────────────
+      // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       // 3. ARTICLE 50 TRANSPARENCY REQUIREMENTS
-      // ──────────────────────────────────────────────────────────────────────────
+      // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       if (!measures.user_transparency_notices) {
         score -= 30;
         remediations.push({
@@ -320,9 +320,9 @@ export async function POST(request: Request) {
       isDeployable = false;
     }
 
-    // ──────────────────────────────────────────────────────────────────────────
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // 4. CRYPTOGRAPHIC VERIFICATION CERTIFICATE SEAL
-    // ──────────────────────────────────────────────────────────────────────────
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     const salt = randomBytes(8).toString("hex");
     const certificatePayload = `${payload.model_name}:${payload.provider_name}:${verdict}:${score}:${Date.now()}:${salt}`;
     const certificateId = createHash("sha256").update(certificatePayload).digest("hex");
@@ -377,7 +377,7 @@ export async function POST(request: Request) {
         certificate: {
           certificate_id: certificateId,
           audit_seal: auditSeal,
-          authority: "ALPAR AI — The Supreme Court of AI Accountability",
+          authority: "ALPAR AI â€” The Supreme Court of AI Accountability",
           standard: "Regulation (EU) 2024/1689 (EU AI Act)",
           issued_at: new Date().toISOString(),
           verification_endpoint: `https://alparai.com/api/v1/compliance/verify?cert=${certificateId.substring(0, 16)}`,
@@ -393,3 +393,4 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
+

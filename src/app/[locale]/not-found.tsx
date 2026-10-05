@@ -1,4 +1,4 @@
-export const runtime = 'edge';
+
 import { useTranslations } from "next-intl";
 import { NotFoundClient } from "@/components/layout/not-found-client";
 

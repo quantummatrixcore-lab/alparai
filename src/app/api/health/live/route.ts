@@ -19,3 +19,4 @@ export async function GET() {
     return NextResponse.json({ status: "error" }, { status: 500 });
   }
 }
+

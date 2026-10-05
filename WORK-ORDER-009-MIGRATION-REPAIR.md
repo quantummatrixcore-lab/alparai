@@ -8,8 +8,8 @@ Auditor ran `dehost/migrations/0001_full_schema.sql` + `0002_rls_policies.sql` a
 
 1. **24 headless policy bodies in 0001**: 24 blocks starting `ON public.… FOR ALL USING…` with no `CREATE POLICY "name"` header (headers were stripped; bodies dangle). First failure: `ON public.social_accounts` (syntax error at ON). Reconstruct each header from the adjacent `DROP POLICY IF EXISTS "name"` lines + body; verify count of headers == count of bodies.
 2. **Missing publication**: file assumes publication `dehost_realtime` exists (`ALTER PUBLICATION … ADD TABLE`, 9 sites). Add `CREATE PUBLICATION IF NOT EXISTS dehost_realtime;` near the top (after extensions).
-3. **Supabase role coupling**: 104 `service_role` references in 0001 + 75 `auth.uid()/is_admin()` references in 0002. Vanilla Postgres has neither `service_role` nor `auth` schema. Map to DeHost-native roles (define roles in-migration: `CREATE ROLE IF NOT EXISTS … NOLOGIN`) or document the required pre-provisioned roles in `dehost/ROLES.md` and create them in 0001.
-4. **Reference truth**: pristine sources live in the FROZEN ARCHIVE `D:\01_SaaS_Products\Alparai\supabase\migrations\` (read-only — copy out, never write there). Production `alparai_prod` (84 tables / 91 policies / 58 RLS, PG 16.15) is read-only.
+3. **upstash role coupling**: 104 `service_role` references in 0001 + 75 `auth.uid()/is_admin()` references in 0002. Vanilla Postgres has neither `service_role` nor `auth` schema. Map to DeHost-native roles (define roles in-migration: `CREATE ROLE IF NOT EXISTS … NOLOGIN`) or document the required pre-provisioned roles in `dehost/ROLES.md` and create them in 0001.
+4. **Reference truth**: pristine sources live in the FROZEN ARCHIVE `D:\01_SaaS_Products\Alparai\upstash\migrations\` (read-only — copy out, never write there). Production `alparai_prod` (84 tables / 91 policies / 58 RLS, PG 16.15) is read-only.
 
 ## Acceptance (Auditor re-runs verbatim on a fresh staging DB)
 

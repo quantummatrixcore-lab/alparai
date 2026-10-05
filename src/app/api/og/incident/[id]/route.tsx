@@ -1,7 +1,6 @@
 import { ImageResponse } from "next/og";
 import { createServerClient } from "@/lib/dehost/server";
 
-export const runtime = "nodejs";
 
 export async function GET(_request: Request, props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
@@ -224,3 +223,4 @@ export async function GET(_request: Request, props: { params: Promise<{ id: stri
     return new Response("Failed to generate image", { status: 500 });
   }
 }
+

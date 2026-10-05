@@ -55,3 +55,4 @@ async function getHandler(request: NextRequest) {
 }
 
 export const GET = withCronLogger("keep-alive", getHandler);
+

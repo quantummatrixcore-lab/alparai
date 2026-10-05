@@ -88,3 +88,4 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
     </LegalLayout>
   );
 }
+

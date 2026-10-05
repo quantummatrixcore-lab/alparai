@@ -188,7 +188,7 @@ export async function parseAlparSessionCookie(
   }
 }
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   // CVE-2025-29927 Mitigation: Reject or strip forged internal Next.js routing headers
   if (
     request.headers.has("x-middleware-subrequest") ||

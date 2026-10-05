@@ -5,7 +5,7 @@ import { logger } from "@/lib/utils/logger";
 export const dynamic = "force-dynamic";
 
 /**
- * Sembolik Omega Sentinel RLS & Güvenlik Denetim Fonksiyonu
+ * Sembolik Omega Sentinel RLS & GÃ¼venlik Denetim Fonksiyonu
  */
 async function runOmegaSentinelAudit() {
   logger.info("[Omega Sentinel] Executing RLS bypass & security audit scan...");
@@ -49,3 +49,4 @@ async function getHandler(request: Request) {
 }
 
 export const GET = withCronLogger("omega-audit", getHandler);
+

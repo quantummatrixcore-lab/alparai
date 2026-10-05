@@ -18,7 +18,7 @@
 ### Pillar 2: Architecture & Code Health (Baseline Score: 84/100)
 - **Framework Alignment:** `package.json:91` specifies `"next": "16.3.3"` and `"react": "19.2.8"`.
 - **Documentation Drift Rectified:** `docs/ARCHITECTURE.md:15` previously claimed Next.js 15; updated to `Next.js 16.3.3 / React 19.2.8`.
-- **Sovereign DeHost Enforcement:** Prohibited `@supabase/supabase-js` import in `src/hooks/quantum/use-quantum-link.ts:6` eradicated; replaced with sovereign `SovereignRealtimeChannel` contract.
+- **Sovereign DeHost Enforcement:** Prohibited `@upstash/upstash-js` import in `src/hooks/quantum/use-quantum-link.ts:6` eradicated; replaced with sovereign `SovereignRealtimeChannel` contract.
 - **Strict TypeScript:** `noUncheckedIndexedAccess` error in `src/lib/quantum/binary-codec.ts:68` resolved via nullish coalescing (`bytes[i] ?? 0`).
 - **CSP Single Source of Truth:** Duplicate CSP removed from `next.config.mjs:30-32` and `embedHeaders`; unified strictly in `src/middleware.ts:31-52`.
 

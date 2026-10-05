@@ -74,7 +74,7 @@
     "@google/generative-ai": "0.24.1",
     "@marsidev/react-turnstile": "1.5.3",
     "@phosphor-icons/react": "2.1.10",
-    "@sentry/nextjs": "10.69.0",
+
     "@stripe/stripe-js": "9.13.0",
     "@upstash/ratelimit": "2.0.5",
     "@upstash/redis": "1.34.3",
@@ -94,7 +94,7 @@
     "openai": "6.48.0",
     "papaparse": "5.5.4",
     "pg": "8.13.1",
-    "posthog-js": "1.413.2",
+
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "recharts": "3.10.1",

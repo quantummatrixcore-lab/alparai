@@ -11,7 +11,7 @@ Tables FK to `auth.users(id)` (first: line ~216, plus trigger `after insert on a
 Add a documented DeHost auth-mapping stub:
 
 ```sql
--- DeHost auth-mapping stub (replaces Supabase auth.users; mapped to real identity provider at deploy)
+-- DeHost auth-mapping stub (replaces upstash auth.users; mapped to real identity provider at deploy)
 CREATE SCHEMA IF NOT EXISTS auth;
 CREATE TABLE IF NOT EXISTS auth.users (
   id uuid PRIMARY KEY,

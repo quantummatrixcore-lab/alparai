@@ -8,7 +8,7 @@
 - **GÃ¼venlik:** API uÃ§ noktalarÄ±nda rate-limiting ve BOLA (Broken Object Level Authorization) taramalarÄ± eksik.
 - **Mimari:** Token bazlÄ± AST izolasyonu tam oturmamÄ±ÅŸ, Event-Driven yapÄ±ya geÃ§iÅŸ (Kafka/Redis) ÅŸart.
 - **Test KapsamasÄ±:** E2E (End-to-End) ve AST gate pass rate %100'Ã¼n altÄ±nda, coverage artÄ±rÄ±lmalÄ±.
-- **Deployment:** CI/CD pipeline Ã¼zerinde Vercel/DeHost baÄŸÄ±mlÄ±lÄ±klarÄ± olabilir, Cloudflare Pages/Workers Edge'e tam taÅŸÄ±ma doÄŸrulanmalÄ±.
+- **Deployment:** CI/CD pipeline Ã¼zerinde cloudflare/DeHost baÄŸÄ±mlÄ±lÄ±klarÄ± olabilir, Cloudflare Pages/Workers Edge'e tam taÅŸÄ±ma doÄŸrulanmalÄ±.
 - **Gelir Modeli:** KullanÄ±cÄ± baÅŸÄ± mikro-Ã¶deme / API abonelik katmanlarÄ± net deÄŸil.
 
 ## 3. ErcuOS Kovan GÃ¶rev DaÄŸÄ±lÄ±mÄ±
@@ -19,15 +19,15 @@
 
 ## 1 Milyon Dolar ARR Yol Haritasi
 
-1. **Hedef Sektörlerin Belirlenmesi:** Fintech, Healthcare, Kamu Sektörü, HR Tech ve Enterprise GenAI alanlarýndaki EU AI Act uyarýnca "Yüksek Riskli" sistem geliþtiren þirketlere odaklanýlacak.
+1. **Hedef Sektï¿½rlerin Belirlenmesi:** Fintech, Healthcare, Kamu Sektï¿½rï¿½, HR Tech ve Enterprise GenAI alanlarï¿½ndaki EU AI Act uyarï¿½nca "Yï¿½ksek Riskli" sistem geliï¿½tiren ï¿½irketlere odaklanï¿½lacak.
 2. **Kanal Stratejisi & Outbound Otomasyonu:**
-   - LinkedIn: B2B otorite profilleri (CCO, Head of AI Governance vb.) taranýp, "src/app/api/outbound/prospect-tracker/route.ts" API'sine JSON formatýnda kaydedilecek.
-   - HackerNews & Reddit: Yüksek "Intent" skoru (örn. > 0.85) olan regülasyon ve AI krizi konulu paylaþýmlar takip edilerek hedef kitlenin pain point'leri üzerinden temas kurulacak.
-3. **Gerçek Dünya Deðer Önermesi:** 2880 kriz vakasý ile desteklenen 'EU Compliance Passport (SHA-384 mühürlü)' ürünü ve 5 dakikalýk teknik audit araçlarýyla soðuk temas yapýlacak.
-4. **Matematiksel Dönüþüm Hunisi:**
-   - 40,000 potansiyel müþteriden %10 (4,000) kalifiye lead çýkartýlmasý.
-   - 2,000 kiþiselleþtirilmiþ pitch ile %40 yanýt oraný (800 demo).
-   - %50 kapanýþ oraný ile yýllýk lisans baþý $2,500 üzerinden 400 B2B Enterprise Müþteri -> **$1,000,000 ARR**.
+   - LinkedIn: B2B otorite profilleri (CCO, Head of AI Governance vb.) taranï¿½p, "src/app/api/outbound/prospect-tracker/route.ts" API'sine JSON formatï¿½nda kaydedilecek.
+   - HackerNews & Reddit: Yï¿½ksek "Intent" skoru (ï¿½rn. > 0.85) olan regï¿½lasyon ve AI krizi konulu paylaï¿½ï¿½mlar takip edilerek hedef kitlenin pain point'leri ï¿½zerinden temas kurulacak.
+3. **Gerï¿½ek Dï¿½nya Deï¿½er ï¿½nermesi:** 2880 kriz vakasï¿½ ile desteklenen 'EU Compliance Passport (SHA-384 mï¿½hï¿½rlï¿½)' ï¿½rï¿½nï¿½ ve 5 dakikalï¿½k teknik audit araï¿½larï¿½yla soï¿½uk temas yapï¿½lacak.
+4. **Matematiksel Dï¿½nï¿½ï¿½ï¿½m Hunisi:**
+   - 40,000 potansiyel mï¿½ï¿½teriden %10 (4,000) kalifiye lead ï¿½ï¿½kartï¿½lmasï¿½.
+   - 2,000 kiï¿½iselleï¿½tirilmiï¿½ pitch ile %40 yanï¿½t oranï¿½ (800 demo).
+   - %50 kapanï¿½ï¿½ oranï¿½ ile yï¿½llï¿½k lisans baï¿½ï¿½ $2,500 ï¿½zerinden 400 B2B Enterprise Mï¿½ï¿½teri -> **$1,000,000 ARR**.
 
 ## Crystalized PROPOSAL-001_V64_BRIDGE_LEMON_INTEGRATION
 - Date: 2026-09-28T01:51:23.279Z

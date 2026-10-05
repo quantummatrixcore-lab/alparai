@@ -152,45 +152,45 @@ function extractProsCons(text: string): { pros: string[]; cons: string[] } {
   const pros: string[] = [];
   const cons: string[] = [];
 
-  const proMatch = text.match(/pro(?:s)?[:\-–—]\s*(.+?)(?=con|$)/i);
+  const proMatch = text.match(/pro(?:s)?[:\-â€“â€”]\s*(.+?)(?=con|$)/i);
   if (proMatch?.[1]) {
     proMatch[1]
       .split(/[,;]/)
       .slice(0, 3)
       .forEach((part) => {
-        const clean = part.replace(/[✅❌👍👎\n\r]/g, "").trim();
+        const clean = part.replace(/[âœ…âŒğŸ‘ğŸ‘\n\r]/g, "").trim();
         if (clean.length > 5 && clean.length < 120)
           pros.push(clean.charAt(0).toUpperCase() + clean.slice(1));
       });
   }
 
-  const conMatch = text.match(/con(?:s)?[:\-–—]\s*(.+?)(?=pro|$)/i);
+  const conMatch = text.match(/con(?:s)?[:\-â€“â€”]\s*(.+?)(?=pro|$)/i);
   if (conMatch?.[1]) {
     conMatch[1]
       .split(/[,;]/)
       .slice(0, 3)
       .forEach((part) => {
-        const clean = part.replace(/[✅❌👍👎\n\r]/g, "").trim();
+        const clean = part.replace(/[âœ…âŒğŸ‘ğŸ‘\n\r]/g, "").trim();
         if (clean.length > 5 && clean.length < 120)
           cons.push(clean.charAt(0).toUpperCase() + clean.slice(1));
       });
   }
 
   if (pros.length < 2) {
-    const bulletPros = text.match(/(?:✅|\+\s)[^.!?\n]+/g);
+    const bulletPros = text.match(/(?:âœ…|\+\s)[^.!?\n]+/g);
     if (bulletPros) {
       bulletPros.slice(0, 3).forEach((b) => {
-        const clean = b.replace(/[✅\+]/g, "").trim();
+        const clean = b.replace(/[âœ…\+]/g, "").trim();
         if (clean.length > 5) pros.push(clean.charAt(0).toUpperCase() + clean.slice(1));
       });
     }
   }
 
   if (cons.length < 1) {
-    const bulletCons = text.match(/(?:❌|\-\s)[^.!?\n]+/g);
+    const bulletCons = text.match(/(?:âŒ|\-\s)[^.!?\n]+/g);
     if (bulletCons) {
       bulletCons.slice(0, 3).forEach((b) => {
-        const clean = b.replace(/[❌\-]/g, "").trim();
+        const clean = b.replace(/[âŒ\-]/g, "").trim();
         if (clean.length > 5) cons.push(clean.charAt(0).toUpperCase() + clean.slice(1));
       });
     }
@@ -348,3 +348,4 @@ export async function GET() {
     return NextResponse.json({ error: "Failed to fetch integration status" }, { status: 500 });
   }
 }
+

@@ -20,13 +20,13 @@ Both files applied statement-by-statement to a scratch DB on real Postgres 16.15
 ## 0002_rls_policies.sql — fix all
 
 1. **36 `policy already exists`**: 0001 already creates these policies — add `DROP POLICY IF EXISTS "name" ON table;` before each CREATE (derive name+table from the CREATE itself).
-2. **`storage.foldername(text)` missing (4x)**: stub Supabase storage helper in 0001 (marked DeHost stub, same pattern as auth shims).
+2. **`storage.foldername(text)` missing (4x)**: stub upstash storage helper in 0001 (marked DeHost stub, same pattern as auth shims).
 3. **`syntax error at or near "%"` (3x)**: inspect context in scan2.log, fix quoting/pattern.
 4. **`role "auditor_role"` missing (3x)**: add to 0001 idempotent role block.
 5. **`public.is_moderator()` 0-arg missing (1x)**: add no-arg shim alongside existing variant (document delegation).
 
 ## Standing rules
 
-- Frozen archive `D:\01_SaaS_Products\Alparai\supabase\migrations\` is the reference for intent (read-only).
+- Frozen archive `D:\01_SaaS_Products\Alparai\upstash\migrations\` is the reference for intent (read-only).
 - TREE_LOCK_LAW.md applies (cwd proofs, freeze during audit, numbers-honesty law).
 - Acceptance: fresh staging DB, both files `ON_ERROR_STOP=1` exit 0, server counts, seed roundtrip, `## WO-010` entry FIRST with raw tail. Auditor re-runs the identical proof.

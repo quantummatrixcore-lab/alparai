@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+﻿import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { createHmac } from "crypto";
 import { readFileSync } from "fs";
 import { join } from "path";
@@ -39,14 +39,14 @@ describe("middleware forged-cookie guard", () => {
   });
 
   it("source fails closed: verifies HMAC before trusting fallback cookie", async () => {
-    const src = readFileSync(join(process.cwd(), "src", "middleware.ts"), "utf8");
+    const src = readFileSync(join(process.cwd(), "src", "proxy.ts"), "utf8");
     expect(src).toContain("verifyMiddlewareHmac");
     expect(src).toContain("if (!secret) return null");
     expect(src).toContain("await parseAlparSessionCookie");
   });
 
   it("accepts a correctly signed cookie payload", async () => {
-    const { parseAlparSessionCookie } = await import("@/middleware");
+    const { parseAlparSessionCookie } = await import("@/proxy");
     const payload = Buffer.from(
       JSON.stringify({ id: "u1", email: "user@example.com", role: "user" }),
     ).toString("base64url");
@@ -56,7 +56,7 @@ describe("middleware forged-cookie guard", () => {
   });
 
   it("rejects forged admin payload without valid signature", async () => {
-    const { parseAlparSessionCookie } = await import("@/middleware");
+    const { parseAlparSessionCookie } = await import("@/proxy");
     const forgedPayload = Buffer.from(
       JSON.stringify({ id: "attacker", email: "attacker@example.com", role: "admin" }),
     ).toString("base64url");
@@ -77,3 +77,4 @@ describe("middleware forged-cookie guard", () => {
     vi.unstubAllEnvs();
   });
 });
+

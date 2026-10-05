@@ -11,7 +11,7 @@
 
 **Sovereign Outage Resolution & Swarm Intelligence Deployed.**
 1. **Outage Root Cause (DEF-001):** The 34-hour outage on `45.143.4.92` was not a DDoS attack. Cloudflare Edge remained 100% active. A dummy HTTP server hijacked port 3003 (coupled with missing `pg` dependency), causing Traefik to return 502 Bad Gateway. Resolved via dedicated `alparai-site.service` systemd restoration.
-2. **Health Check & Env Discrepancy:** `/api/health` falsely reported `not_configured` due to a mismatch between `.env.production` (`NEXT_PUBLIC_SUPABASE_URL`) and codebase (`NEXT_PUBLIC_DEHOST_URL`). Resend and Gemini endpoints require SLA verification.
+2. **Health Check & Env Discrepancy:** `/api/health` falsely reported `not_configured` due to a mismatch between `.env.production` (`NEXT_PUBLIC_upstash_URL`) and codebase (`NEXT_PUBLIC_DEHOST_URL`). Resend and Gemini endpoints require SLA verification.
 3. **Data Independence (db_injector.ts):** Audited the non-existent `db_injector.ts`. Established the strategic blueprint to consolidate 14 existing Turkish sources (`turkish-sources.ts`), 9 national press feeds, and 4 global AI archives into a definitive 27-source injection pipeline with PII Guardian filtering and idempotent DeHost upserts.
 4. **Zero PII Leakage:** Verified via 55/55 passing tests in `pii-guardian.test.ts`. API connection errors return sterile 500 responses with zero stack trace leakage.
 

@@ -148,9 +148,9 @@ async function getHandler(request: NextRequest) {
           await resend.emails.send({
             from: "ALPAR AI Alerts <alerts@alparai.com>",
             to: process.env.ADMIN_ALERT_EMAIL || "quantum.matrix.core@gmail.com",
-            subject: `[ALERT] Vendor quota ≥75% for ${vendorsOver75.length} vendor(s)`,
+            subject: `[ALERT] Vendor quota â‰¥75% for ${vendorsOver75.length} vendor(s)`,
             html: `
-              <p>ALPAR AI autonomous cost guard detected vendor quota utilization of ≥75%.</p>
+              <p>ALPAR AI autonomous cost guard detected vendor quota utilization of â‰¥75%.</p>
               <ul>${rowsHtml}</ul>
               <p>90%+ triggers an AUTONOMOUS BRAKE CRITICAL log; 100%+ triggers an AUTONOMOUS BRAKE ERROR log.</p>
               <p>Best regards,<br/>ALPAR AI Cost Alarm</p>
@@ -158,7 +158,7 @@ async function getHandler(request: NextRequest) {
           });
           logger.info(`[CostAlarm] Quota warning email sent for: ${vendorsOver75.join(", ")}`);
         } else {
-          logger.warn("[CostAlarm] Quota ≥75% detected but RESEND_API_KEY not configured", {
+          logger.warn("[CostAlarm] Quota â‰¥75% detected but RESEND_API_KEY not configured", {
             vendorsOver75,
           });
         }
@@ -248,3 +248,4 @@ async function getHandler(request: NextRequest) {
 }
 
 export const GET = withCronLogger("cost-alarm", getHandler);
+

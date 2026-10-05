@@ -1,5 +1,5 @@
-"use client";
-export const runtime = 'edge';
+﻿"use client";
+
 
 import { useEffect } from "react";
 import "./globals.css";

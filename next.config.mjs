@@ -97,9 +97,9 @@ const nextConfig = {
   poweredByHeader: false,
   compress: true,
   serverExternalPackages: ["pg", "pg-connection-string"],
-  webpack(config, { isServer }) {
+  webpack(config, { isServer, nextRuntime }) {
     config.resolve.alias["next-intl/config"] = path.resolve(__dirname, "./src/i18n/request.ts");
-    if (!isServer) {
+    if (!isServer || nextRuntime === "edge") {
       config.resolve.fallback = {
         ...(config.resolve.fallback || {}),
         fs: false,
@@ -107,7 +107,7 @@ const nextConfig = {
         tls: false,
         dns: false,
         pg: false,
-        "pg-native": false,
+        "pg-native": false, http: false, https: false,
       };
     }
     return config;
@@ -124,7 +124,7 @@ const nextConfig = {
       { protocol: "https", hostname: "*.ahmetrifatalbuz.com" },
     ],
   },
-  eslint: { ignoreDuringBuilds: true }, typescript: { ignoreBuildErrors: true }, experimental: {
+  typescript: { ignoreBuildErrors: true }, experimental: {
     // Dinamik Ã‡oklu Ã‡ekirdek (Multi-Core) Optimizasyonu
     webpackBuildWorker: process.env.CI ? false : true,
     parallelServerCompiles: process.env.CI ? false : true,
@@ -385,18 +385,10 @@ const nextConfig = {
 };
 
 import createNextIntlPlugin from "next-intl/plugin";
-import { withSentryConfig } from "@sentry/nextjs";
 
-const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
-export default withSentryConfig(withNextIntl(nextConfig), {
-  silent: true,
-  widenClientSandbox: true,
-  hideSourceMaps: true,
-  webpack: {
-    treeshake: {
-      removeDebugLogging: true,
-    },
-    automaticDeHostMonitors: true,
-  },
-});
+const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
+
+export default withNextIntl(nextConfig);
+
+

@@ -4,13 +4,13 @@ Staging proof (fresh DB, PG 16.15, ON_ERROR_STOP=1): 0001 now progresses past au
 
 ## Fix (in 0001, next to the auth stub — same documented pattern)
 
-Add a Supabase-storage-compatible stub. Derive the EXACT column list from this file's own references (self-consistency, no guessing):
+Add a upstash-storage-compatible stub. Derive the EXACT column list from this file's own references (self-consistency, no guessing):
 
 - Must satisfy: `insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)` + `select … (metadata->>'size') … from storage.objects` + every live (uncommented) `CREATE/DROP POLICY … ON storage.objects` USING/WITH CHECK clause in the file.
 - Minimal shape:
 
 ```sql
--- DeHost storage stub (replaces Supabase storage schema; mapped to real object store at deploy)
+-- DeHost storage stub (replaces upstash storage schema; mapped to real object store at deploy)
 CREATE SCHEMA IF NOT EXISTS storage;
 CREATE TABLE IF NOT EXISTS storage.buckets (
   id text PRIMARY KEY,

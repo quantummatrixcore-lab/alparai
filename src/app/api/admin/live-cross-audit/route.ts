@@ -10,7 +10,7 @@ export async function POST(req: Request) {
     const user = await getCurrentUser();
     if (!user || (user.role !== "admin" && user.role !== "ceo")) {
       return NextResponse.json(
-        { success: false, message: "Yetkisiz erişim (Unauthorized)" },
+        { success: false, message: "Yetkisiz eriÅŸim (Unauthorized)" },
         { status: 403 },
       );
     }
@@ -25,8 +25,9 @@ export async function POST(req: Request) {
       err instanceof Error ? err : undefined,
     );
     return NextResponse.json(
-      { success: false, message: "Sunucu hatası: Cross-audit başlatılamadı." },
+      { success: false, message: "Sunucu hatasÄ±: Cross-audit baÅŸlatÄ±lamadÄ±." },
       { status: 500 },
     );
   }
 }
+

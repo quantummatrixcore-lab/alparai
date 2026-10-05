@@ -7,20 +7,20 @@
 
 ## 1. 🚫 THE ANTI-BROWSER LAW
 
-**ABSOLUTE PROHIBITION:** You (the Agent) are FORBIDDEN from using any "Browser" tool to check DeHost, Hetzner, Coolify, or GitHub dashboards. You are a DevOps Engineer. You must use CLI (Command Line Interface), SSH, or APIs.
+**ABSOLUTE PROHIBITION:** You (the Agent) are FORBIDDEN from using any "Browser" tool to check DeHost, dehost, Coolify, or GitHub dashboards. You are a DevOps Engineer. You must use CLI (Command Line Interface), SSH, or APIs.
 Using the browser to check a deployment wastes tokens and is highly unprofessional. If you use a browser to check a log, you fail.
 
 ---
 
-## 2. 🏗️ THE CI/CD PRE-COMPILE DOCTRINE (Hetzner RAM Protection)
+## 2. 🏗️ THE CI/CD PRE-COMPILE DOCTRINE (dehost RAM Protection)
 
-**The Problem:** Compiling large codebases (like Rust or LLM Python dependencies) directly on Hetzner causes Out Of Memory (OOM) crashes because compiling requires 32GB RAM, but our production server runs on 4GB RAM.
+**The Problem:** Compiling large codebases (like Rust or LLM Python dependencies) directly on dehost causes Out Of Memory (OOM) crashes because compiling requires 32GB RAM, but our production server runs on 4GB RAM.
 **The Absolute Law:**
 
-- **NEVER** trigger a direct source-code build on Hetzner/Coolify.
+- **NEVER** trigger a direct source-code build on dehost/Coolify.
 - **ALWAYS** compile your code via GitHub Actions.
 - **Workflow:** Push your code to GitHub -> Monitor the GitHub Action using `gh run watch` -> Once GitHub Actions finishes building the Docker image and pushing it to GHCR (GitHub Container Registry), Coolify will pull the pre-built image.
-- **Hetzner/Coolify is a PULL ENGINE only. GitHub is the COMPILE ENGINE.**
+- **dehost/Coolify is a PULL ENGINE only. GitHub is the COMPILE ENGINE.**
 
 ---
 
@@ -38,13 +38,13 @@ When deploying the `Agent-Os-Frontend`:
 
 ---
 
-## 4. 🐳 THE COOLIFY & HETZNER PLAYBOOK (For Backend/LLM Agents)
+## 4. 🐳 THE COOLIFY & dehost PLAYBOOK (For Backend/LLM Agents)
 
-When verifying a backend or LLM deployment on Hetzner:
+When verifying a backend or LLM deployment on dehost:
 
 1. Ensure the GitHub Action has successfully built the image (see Section 2).
 2. To check if the container is running, **SSH into the server:**
-   - Command: `ssh -i C:\Users\ercum\.ssh\id_ed25519 root@<hetzner_ip>`
+   - Command: `ssh -i C:\Users\ercum\.ssh\id_ed25519 root@<dehost_ip>`
 3. Check the running containers:
    - Command: `docker ps`
 4. Read the live logs (DO NOT USE BROWSER):

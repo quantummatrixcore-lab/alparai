@@ -7,13 +7,13 @@ export async function GET(request: Request) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    // Adım 1: Ling-3 (Konu ve taslak belirleme)
+    // AdÄ±m 1: Ling-3 (Konu ve taslak belirleme)
     const topic = await callLing3("Generate an AI safety incident topic");
 
-    // Adım 2: DeepSeek V4 Free (Detaylı analiz ve rapor kurgusu)
+    // AdÄ±m 2: DeepSeek V4 Free (DetaylÄ± analiz ve rapor kurgusu)
     const reportStructure = await callDeepSeek(topic);
 
-    // Adım 3: Nemotron 3 Free (Nihai JSON formatlama ve sentetik veri üretimi)
+    // AdÄ±m 3: Nemotron 3 Free (Nihai JSON formatlama ve sentetik veri Ã¼retimi)
     const finalData = await callNemotron(reportStructure);
 
     return NextResponse.json({
@@ -28,11 +28,11 @@ export async function GET(request: Request) {
 }
 
 async function callLing3(prompt: string): Promise<string> {
-  return `[Ling-3] Konu: Otonom sistemlerde halüsinasyon (${prompt.length} byte)`;
+  return `[Ling-3] Konu: Otonom sistemlerde halÃ¼sinasyon (${prompt.length} byte)`;
 }
 
 async function callDeepSeek(context: string): Promise<string> {
-  return `[DeepSeek V4] Detaylı Rapor: ${context} - Etki: Yüksek`;
+  return `[DeepSeek V4] DetaylÄ± Rapor: ${context} - Etki: YÃ¼ksek`;
 }
 
 async function callNemotron(context: string): Promise<string> {
@@ -43,3 +43,4 @@ async function callNemotron(context: string): Promise<string> {
     synthetic: true,
   });
 }
+

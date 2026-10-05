@@ -10,7 +10,7 @@ Read `TREE_LOCK_LAW.md` FIRST. DeHost creds env-only, NEVER logged. No push/depl
 1. Against live DeHost Postgres (reachable 127.0.0.1:5432): apply `dehost/migrations/0001_full_schema.sql` + `0002_rls_policies.sql` to a STAGING database (never production data), capture SERVER-RETURNED `pg_tables` / `pg_policies` counts, then DOWN, then UP again with counts + timings. Real queries only — regex counting or hardcoded arrays = instant reject.
 2. Seed smoke via the DeHost adapter: insert 1 provider + 1 model + 1 incident, read back through the RLS-restricted role (prove DENY-by-default returns 0 rows + GRANT path returns the row), then delete. Record IDs + outputs (redact secrets).
 3. Failure drill: dead-host adapter call must degrade to fallback without crash. Record.
-4. FORBIDDEN: any contact with legacy Supabase (retired). Zero new vendor strings (the two banned names stay at frozen-history + lockfile-transitive only).
+4. FORBIDDEN: any contact with legacy upstash (retired). Zero new vendor strings (the two banned names stay at frozen-history + lockfile-transitive only).
 
 ## Phase B — e2e + heal evidence
 

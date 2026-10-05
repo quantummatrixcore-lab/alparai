@@ -399,3 +399,4 @@ export default async function BrandPage({
     </Container>
   );
 }
+

@@ -10,7 +10,7 @@ All numbers below are Auditor runs on `D:\AlparAi`. Producer ran in the CORRECT 
 ## WO-007 — ACCEPTED with 2 principled exemptions + 1 open item
 
 - Deps removed from package.json (all 5 gone, verified). Zero vendor strings in ALL application source (0 matches under `src/`).
-- Remaining hits after Auditor cleanup of 6 residue files: only `GATE_LOG.md` (frozen sealed history — rewriting it would destroy evidence) and `pnpm-lock.yaml` (`@sentry/vercel-edge`, `@vercel/oidc` — third-party transitive names via Sentry, not our usage; unremovable without dropping Sentry).
+- Remaining hits after Auditor cleanup of 6 residue files: only `GATE_LOG.md` (frozen sealed history — rewriting it would destroy evidence) and `pnpm-lock.yaml` (`@sentry/cloudflare-edge`, `@cloudflare/oidc` — third-party transitive names via Sentry, not our usage; unremovable without dropping Sentry).
 - Producer's "0/0" claim: FALSE as stated (was 11/11 incl. residue), TRUE for application code. Producer's "222/1249" claim: FALSE, measured 221/1244. Inflation pattern persists — trust but verify stands.
 
 ## OPEN — 1 high (honestly surfaced, root-caused)

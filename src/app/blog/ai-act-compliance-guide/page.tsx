@@ -4,10 +4,10 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "EU AI Act Uyumluluk Rehberi 2026 | AlparAi",
   description:
-    "Avrupa Birliği Yapay Zeka Yasası (EU AI Act) uyumluluk gereksinimleri, risk kategorileri, teknik denetim adımları ve kurumsal yol haritası.",
+    "Avrupa BirliÄŸi Yapay Zeka YasasÄ± (EU AI Act) uyumluluk gereksinimleri, risk kategorileri, teknik denetim adÄ±mlarÄ± ve kurumsal yol haritasÄ±.",
   keywords: [
     "EU AI Act",
-    "Yapay Zeka Yasası",
+    "Yapay Zeka YasasÄ±",
     "AI Uyumluluk",
     "AI Denetimi",
     "High-Risk AI",
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "EU AI Act Uyumluluk Rehberi 2026 | AlparAi",
     description:
-      "Avrupa Birliği Yapay Zeka Yasası (EU AI Act) uyumluluk gereksinimleri, risk kategorileri ve teknik denetim rehberi.",
+      "Avrupa BirliÄŸi Yapay Zeka YasasÄ± (EU AI Act) uyumluluk gereksinimleri, risk kategorileri ve teknik denetim rehberi.",
     type: "article",
     url: "https://alparai.com/blog/ai-act-compliance-guide",
     images: [
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "EU AI Act Uyumluluk Rehberi 2026 | AlparAi",
     description:
-      "Avrupa Birliği Yapay Zeka Yasası uyumluluk gereksinimleri ve teknik denetim adımları.",
+      "Avrupa BirliÄŸi Yapay Zeka YasasÄ± uyumluluk gereksinimleri ve teknik denetim adÄ±mlarÄ±.",
     images: ["/brand-assets/og-image.png"],
   },
 };
@@ -67,20 +67,20 @@ export default function AiActComplianceGuidePage() {
             <span className="bg-cyan-950 border border-cyan-800 px-3 py-1 rounded-full">
               Hukuk & Uyumluluk
             </span>
-            <span>•</span>
-            <time dateTime="2026-09-28">28 Eylül 2026</time>
-            <span>•</span>
+            <span>â€¢</span>
+            <time dateTime="2026-09-28">28 EylÃ¼l 2026</time>
+            <span>â€¢</span>
             <span>6 dk okuma</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight mb-6">
-            Avrupa Birliği AI Act Uyumluluk Rehberi 2026: Kurumsal Risk & Denetim Çerçevesi
+            Avrupa BirliÄŸi AI Act Uyumluluk Rehberi 2026: Kurumsal Risk & Denetim Ã‡erÃ§evesi
           </h1>
 
           <p className="text-lg sm:text-xl text-slate-300 leading-relaxed">
-            Avrupa Birliği Yapay Zeka Yasası (EU AI Act), dünya çapında yapay zeka sistemlerini 
-            düzenleyen en kapsamlı yasal çerçevedir. Şirketinizin yasal yaptırımlarla karşılaşmaması 
-            ve güvenilir yapay zeka altyapısı inşa etmesi için bilmeniz gereken tüm kritik detaylar.
+            Avrupa BirliÄŸi Yapay Zeka YasasÄ± (EU AI Act), dÃ¼nya Ã§apÄ±nda yapay zeka sistemlerini 
+            dÃ¼zenleyen en kapsamlÄ± yasal Ã§erÃ§evedir. Åirketinizin yasal yaptÄ±rÄ±mlarla karÅŸÄ±laÅŸmamasÄ± 
+            ve gÃ¼venilir yapay zeka altyapÄ±sÄ± inÅŸa etmesi iÃ§in bilmeniz gereken tÃ¼m kritik detaylar.
           </p>
 
           <div className="mt-6 flex items-center gap-4 text-sm text-slate-400">
@@ -88,7 +88,7 @@ export default function AiActComplianceGuidePage() {
               <span className="w-8 h-8 rounded-full bg-cyan-600 flex items-center justify-center font-bold text-white text-xs">
                 AA
               </span>
-              <span>ALPAR AI Regülasyon & Güvenlik Masası</span>
+              <span>ALPAR AI RegÃ¼lasyon & GÃ¼venlik MasasÄ±</span>
             </div>
           </div>
         </header>
@@ -100,55 +100,55 @@ export default function AiActComplianceGuidePage() {
               1. EU AI Act Nedir ve Kimleri Kapsar?
             </h2>
             <p>
-              Avrupa Birliği Yapay Zeka Yasası (EU AI Act), yapay zeka teknolojilerinin insan haklarına,
-              demokrasiye ve hukukun üstünlüğüne uygun şekilde geliştirilmesini ve kullanılmasını zorunlu
-              kılan küresel bir yönetmeliktir.
+              Avrupa BirliÄŸi Yapay Zeka YasasÄ± (EU AI Act), yapay zeka teknolojilerinin insan haklarÄ±na,
+              demokrasiye ve hukukun Ã¼stÃ¼nlÃ¼ÄŸÃ¼ne uygun ÅŸekilde geliÅŸtirilmesini ve kullanÄ±lmasÄ±nÄ± zorunlu
+              kÄ±lan kÃ¼resel bir yÃ¶netmeliktir.
             </p>
             <p className="mt-3">
-              Yasa sadece AB içinde yerleşik şirketleri değil; geliştirdiği yapay zeka modelleri,
-              API servisleri veya otonom ajanları AB vatandaşları tarafından kullanılan tüm küresel
-              teknoloji sağlayıcılarını doğrudan bağlar.
+              Yasa sadece AB iÃ§inde yerleÅŸik ÅŸirketleri deÄŸil; geliÅŸtirdiÄŸi yapay zeka modelleri,
+              API servisleri veya otonom ajanlarÄ± AB vatandaÅŸlarÄ± tarafÄ±ndan kullanÄ±lan tÃ¼m kÃ¼resel
+              teknoloji saÄŸlayÄ±cÄ±larÄ±nÄ± doÄŸrudan baÄŸlar.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 border-l-4 border-cyan-500 pl-4">
-              2. Dört Temel Risk Seviyesi ve Hukuki Yükümlülükler
+              2. DÃ¶rt Temel Risk Seviyesi ve Hukuki YÃ¼kÃ¼mlÃ¼lÃ¼kler
             </h2>
             <p>
-              Yasa, sistemleri risk temelli bir piramitle dört farklı kategoriye ayırır:
+              Yasa, sistemleri risk temelli bir piramitle dÃ¶rt farklÄ± kategoriye ayÄ±rÄ±r:
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
               <div className="bg-red-950/40 border border-red-800/60 p-5 rounded-lg">
                 <h3 className="text-lg font-bold text-red-400 mb-2">1. Kabul Edilemez Risk</h3>
                 <p className="text-sm text-slate-300">
-                  Sosyal puanlama sistemleri, insan davranışını manipüle eden bilinçaltı teknikler ve
-                  kamusal alanlarda biyometrik anlık takip kesinlikle yasaklanmıştır.
+                  Sosyal puanlama sistemleri, insan davranÄ±ÅŸÄ±nÄ± manipÃ¼le eden bilinÃ§altÄ± teknikler ve
+                  kamusal alanlarda biyometrik anlÄ±k takip kesinlikle yasaklanmÄ±ÅŸtÄ±r.
                 </p>
               </div>
 
               <div className="bg-amber-950/40 border border-amber-800/60 p-5 rounded-lg">
-                <h3 className="text-lg font-bold text-amber-400 mb-2">2. Yüksek Risk (High-Risk)</h3>
+                <h3 className="text-lg font-bold text-amber-400 mb-2">2. YÃ¼ksek Risk (High-Risk)</h3>
                 <p className="text-sm text-slate-300">
-                  Kritik altyapı, işe alım algoritmaları, kredi skorlama, adalet ve kolluk kuvveti
-                  sistemleri. Sıkı audit, şeffaflık ve insan gözetimi şarttır.
+                  Kritik altyapÄ±, iÅŸe alÄ±m algoritmalarÄ±, kredi skorlama, adalet ve kolluk kuvveti
+                  sistemleri. SÄ±kÄ± audit, ÅŸeffaflÄ±k ve insan gÃ¶zetimi ÅŸarttÄ±r.
                 </p>
               </div>
 
               <div className="bg-blue-950/40 border border-blue-800/60 p-5 rounded-lg">
-                <h3 className="text-lg font-bold text-blue-400 mb-2">3. Şeffaflık Gerektiren Sistemler</h3>
+                <h3 className="text-lg font-bold text-blue-400 mb-2">3. ÅeffaflÄ±k Gerektiren Sistemler</h3>
                 <p className="text-sm text-slate-300">
-                  Sohbet botları, LLM tabanlı asistanlar ve deepfake içerik üreticileri. Kullanıcının
-                  bir yapay zeka ile etkileşime girdiğini açıkça bilmesi zorunludur.
+                  Sohbet botlarÄ±, LLM tabanlÄ± asistanlar ve deepfake iÃ§erik Ã¼reticileri. KullanÄ±cÄ±nÄ±n
+                  bir yapay zeka ile etkileÅŸime girdiÄŸini aÃ§Ä±kÃ§a bilmesi zorunludur.
                 </p>
               </div>
 
               <div className="bg-emerald-950/40 border border-emerald-800/60 p-5 rounded-lg">
-                <h3 className="text-lg font-bold text-emerald-400 mb-2">4. Minimum / Düşük Risk</h3>
+                <h3 className="text-lg font-bold text-emerald-400 mb-2">4. Minimum / DÃ¼ÅŸÃ¼k Risk</h3>
                 <p className="text-sm text-slate-300">
-                  Spam filtreleri, video oyunlarındaki AI davranışları. Herhangi bir ağır regülasyon
-                  yükümlülüğü bulunmamaktadır.
+                  Spam filtreleri, video oyunlarÄ±ndaki AI davranÄ±ÅŸlarÄ±. Herhangi bir aÄŸÄ±r regÃ¼lasyon
+                  yÃ¼kÃ¼mlÃ¼lÃ¼ÄŸÃ¼ bulunmamaktadÄ±r.
                 </p>
               </div>
             </div>
@@ -156,60 +156,60 @@ export default function AiActComplianceGuidePage() {
 
           <section>
             <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 border-l-4 border-cyan-500 pl-4">
-              3. Yüksek Riskli Sistemler İçin 7 Temel Teknik Gereksinim
+              3. YÃ¼ksek Riskli Sistemler Ä°Ã§in 7 Temel Teknik Gereksinim
             </h2>
             <ul className="list-disc list-inside space-y-2 text-slate-300 ml-2">
               <li>
-                <strong className="text-white">Risk Yönetim Sistemi:</strong> Sürekli, belgelenmiş ve 
-                döngüsel risk değerlendirme prosedürleri.
+                <strong className="text-white">Risk YÃ¶netim Sistemi:</strong> SÃ¼rekli, belgelenmiÅŸ ve 
+                dÃ¶ngÃ¼sel risk deÄŸerlendirme prosedÃ¼rleri.
               </li>
               <li>
-                <strong className="text-white">Veri Yönetimi & Kalite:</strong> Eğitim, doğrulama ve 
-                test veri setlerinin tarafsızlık ve temsiliyet standartlarına uygunluğu.
+                <strong className="text-white">Veri YÃ¶netimi & Kalite:</strong> EÄŸitim, doÄŸrulama ve 
+                test veri setlerinin tarafsÄ±zlÄ±k ve temsiliyet standartlarÄ±na uygunluÄŸu.
               </li>
               <li>
-                <strong className="text-white">Teknik Dokümantasyon:</strong> Denetçilere anında 
-                sunulabilecek şeffaf sistem mimarisi ve parametre dökümleri.
+                <strong className="text-white">Teknik DokÃ¼mantasyon:</strong> DenetÃ§ilere anÄ±nda 
+                sunulabilecek ÅŸeffaf sistem mimarisi ve parametre dÃ¶kÃ¼mleri.
               </li>
               <li>
-                <strong className="text-white">Kayıt Tutma (Audit Logging):</strong> Olayların ve 
-                çıktıların geriye dönük izlenebilirliği (minimum 6 ay saklama).
+                <strong className="text-white">KayÄ±t Tutma (Audit Logging):</strong> OlaylarÄ±n ve 
+                Ã§Ä±ktÄ±larÄ±n geriye dÃ¶nÃ¼k izlenebilirliÄŸi (minimum 6 ay saklama).
               </li>
               <li>
-                <strong className="text-white">Şeffaflık ve Kullanıcı Bilgilendirmesi:</strong> 
-                Sistemin sınırları ve doğruluğu hakkında açık teknik kılavuzlar.
+                <strong className="text-white">ÅeffaflÄ±k ve KullanÄ±cÄ± Bilgilendirmesi:</strong> 
+                Sistemin sÄ±nÄ±rlarÄ± ve doÄŸruluÄŸu hakkÄ±nda aÃ§Ä±k teknik kÄ±lavuzlar.
               </li>
               <li>
-                <strong className="text-white">İnsan Gözetimi (Human-in-the-Loop):</strong> Modelin 
-                çıktılarını anında durdurabilecek insan yetkisi ve acil fren mekanizmaları.
+                <strong className="text-white">Ä°nsan GÃ¶zetimi (Human-in-the-Loop):</strong> Modelin 
+                Ã§Ä±ktÄ±larÄ±nÄ± anÄ±nda durdurabilecek insan yetkisi ve acil fren mekanizmalarÄ±.
               </li>
               <li>
-                <strong className="text-white">Siber Güvenlik & Doğruluk:</strong> Halüsinasyonlara, 
-                adversarial saldırılara ve veri zehirlenmesine karşı sarsılmaz bağışıklık.
+                <strong className="text-white">Siber GÃ¼venlik & DoÄŸruluk:</strong> HalÃ¼sinasyonlara, 
+                adversarial saldÄ±rÄ±lara ve veri zehirlenmesine karÅŸÄ± sarsÄ±lmaz baÄŸÄ±ÅŸÄ±klÄ±k.
               </li>
             </ul>
           </section>
 
           <section>
             <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 border-l-4 border-cyan-500 pl-4">
-              4. 2026 Yaptırımları: İhlal Halinde Ne Olur?
+              4. 2026 YaptÄ±rÄ±mlarÄ±: Ä°hlal Halinde Ne Olur?
             </h2>
             <p>
-              EU AI Act, GDPR&apos;dan çok daha ağır mali yaptırımlar öngörmektedir:
+              EU AI Act, GDPR&apos;dan Ã§ok daha aÄŸÄ±r mali yaptÄ±rÄ±mlar Ã¶ngÃ¶rmektedir:
             </p>
             <div className="bg-slate-900 border border-slate-800 rounded-lg p-6 my-4">
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
-                  <span className="text-red-400 font-bold">⚠️ Yasaklı Uygulama İhlali:</span>
-                  <span>35 Milyon Euro veya küresel cironun %7&apos;sine varan para cezaları.</span>
+                  <span className="text-red-400 font-bold">âš ï¸ YasaklÄ± Uygulama Ä°hlali:</span>
+                  <span>35 Milyon Euro veya kÃ¼resel cironun %7&apos;sine varan para cezalarÄ±.</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-amber-400 font-bold">⚠️ Diğer Yükümlülük İhlalleri:</span>
-                  <span>15 Milyon Euro veya küresel cironun %3&apos;üne varan para cezaları.</span>
+                  <span className="text-amber-400 font-bold">âš ï¸ DiÄŸer YÃ¼kÃ¼mlÃ¼lÃ¼k Ä°hlalleri:</span>
+                  <span>15 Milyon Euro veya kÃ¼resel cironun %3&apos;Ã¼ne varan para cezalarÄ±.</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-cyan-400 font-bold">⚠️ Yanlış Bilgi Bildirimi:</span>
-                  <span>7.5 Milyon Euro veya cironun %1.5&apos;i oranında idari cezalar.</span>
+                  <span className="text-cyan-400 font-bold">âš ï¸ YanlÄ±ÅŸ Bilgi Bildirimi:</span>
+                  <span>7.5 Milyon Euro veya cironun %1.5&apos;i oranÄ±nda idari cezalar.</span>
                 </li>
               </ul>
             </div>
@@ -218,24 +218,24 @@ export default function AiActComplianceGuidePage() {
           {/* CTA Box */}
           <section className="bg-gradient-to-r from-cyan-950/80 to-slate-900 border border-cyan-800/80 rounded-xl p-8 my-10 shadow-2xl">
             <h2 className="text-2xl font-bold text-cyan-300 mb-3">
-              AlparAi Otonom Uyum Analizörü ile Sisteminizi Doğrulayın
+              AlparAi Otonom Uyum AnalizÃ¶rÃ¼ ile Sisteminizi DoÄŸrulayÄ±n
             </h2>
             <p className="text-slate-300 mb-6">
-              2,880+ yapay zeka vaka geçmişi ve otonom güvenlik radarıyla AI modellerinizin 
-              EU AI Act uyumluluğunu dakikalar içinde test edin.
+              2,880+ yapay zeka vaka geÃ§miÅŸi ve otonom gÃ¼venlik radarÄ±yla AI modellerinizin 
+              EU AI Act uyumluluÄŸunu dakikalar iÃ§inde test edin.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/compliance"
                 className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-3 px-6 rounded-lg transition-colors shadow-lg"
               >
-                Uyum Kontrolünü Başlat
+                Uyum KontrolÃ¼nÃ¼ BaÅŸlat
               </Link>
               <Link
                 href="/contact"
                 className="bg-slate-800 hover:bg-slate-700 text-white font-medium py-3 px-6 rounded-lg transition-colors border border-slate-700"
               >
-                Uzmanla Görüş
+                Uzmanla GÃ¶rÃ¼ÅŸ
               </Link>
             </div>
           </section>
@@ -244,3 +244,4 @@ export default function AiActComplianceGuidePage() {
     </article>
   );
 }
+

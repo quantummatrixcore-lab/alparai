@@ -502,3 +502,4 @@ export default async function JournalistDashboard({
     </div>
   );
 }
+

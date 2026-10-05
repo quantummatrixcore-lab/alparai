@@ -112,10 +112,10 @@ Examples:
 
 ---
 
-## 3. 🐳 DOCKER CLI (Hetzner/Coolify — Via SSH)
+## 3. 🐳 DOCKER CLI (dehost/Coolify — Via SSH)
 
-**Status:** ✅ ACTIVE (Requires SSH into Hetzner first)
-**SSH Command:** `ssh -i C:\Users\ercum\.ssh\id_ed25519 root@<HETZNER_IP>`
+**Status:** ✅ ACTIVE (Requires SSH into dehost first)
+**SSH Command:** `ssh -i C:\Users\ercum\.ssh\id_ed25519 root@<dehost_IP>`
 
 ### Full Capability Map:
 

@@ -90,3 +90,4 @@ export default async function CasesIndexPage({ params }: { params: Promise<{ loc
     </div>
   );
 }
+

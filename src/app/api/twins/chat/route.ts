@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
     const user = await getCurrentUser();
     if (!user) {
       return NextResponse.json(
-        { error: "Bu özelliği kullanmak için giriş yapmalısınız." },
+        { error: "Bu Ã¶zelliÄŸi kullanmak iÃ§in giriÅŸ yapmalÄ±sÄ±nÄ±z." },
         { status: 401 },
       );
     }
@@ -25,17 +25,17 @@ export async function POST(req: NextRequest) {
 
     if (!twinId || typeof twinId !== "string" || !message || typeof message !== "string") {
       return NextResponse.json(
-        { error: "Geçersiz veya eksik parametreler (twinId, message)." },
+        { error: "GeÃ§ersiz veya eksik parametreler (twinId, message)." },
         { status: 400 },
       );
     }
 
     const persona = DIGITAL_TWINS[twinId];
     if (!persona) {
-      return NextResponse.json({ error: `Dijital İkiz '${twinId}' bulunamadı.` }, { status: 404 });
+      return NextResponse.json({ error: `Dijital Ä°kiz '${twinId}' bulunamadÄ±.` }, { status: 404 });
     }
 
-    // Rate Limit (Demoda IP başına 15 dakikada 5 istek)
+    // Rate Limit (Demoda IP baÅŸÄ±na 15 dakikada 5 istek)
     const hdrs = await headers();
     const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "127.0.0.1";
 
@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
     if (!rl.ok) {
       return NextResponse.json(
         {
-          error: `İstek limiti aşıldı. Lütfen ${rl.retryAfter ?? 60} saniye sonra tekrar deneyin.`,
+          error: `Ä°stek limiti aÅŸÄ±ldÄ±. LÃ¼tfen ${rl.retryAfter ?? 60} saniye sonra tekrar deneyin.`,
         },
         { status: 429, headers: { "Retry-After": String(rl.retryAfter ?? 60) } },
       );
@@ -87,24 +87,24 @@ export async function POST(req: NextRequest) {
             status: response.status,
             errorText,
           });
-          throw new Error(`OpenRouter API hatası: ${response.status}`);
+          throw new Error(`OpenRouter API hatasÄ±: ${response.status}`);
         }
 
         const data = await response.json();
         reply =
-          data.choices?.[0]?.message?.content || `${persona.name} stratejik analizini tamamladı.`;
+          data.choices?.[0]?.message?.content || `${persona.name} stratejik analizini tamamladÄ±.`;
         promptTokens = data.usage?.prompt_tokens || message.length;
         completionTokens = data.usage?.completion_tokens || reply.length / 4;
       } catch (upstreamError: unknown) {
         logger.error("[Twins Chat API] Upstream call failed, switching to local persona engine", {
           error: upstreamError,
         });
-        reply = `${persona.name} (${persona.title}) olarak bildiriminiz incelendi: "${message.substring(0, 100)}..." konusundaki stratejik direktifimiz: Sistem mimarisinde tam bağımsızlık, yüksek güvenlik ve asimetrik inovasyon esastır.`;
+        reply = `${persona.name} (${persona.title}) olarak bildiriminiz incelendi: "${message.substring(0, 100)}..." konusundaki stratejik direktifimiz: Sistem mimarisinde tam baÄŸÄ±msÄ±zlÄ±k, yÃ¼ksek gÃ¼venlik ve asimetrik inovasyon esastÄ±r.`;
         promptTokens = message.length;
         completionTokens = 20;
       }
     } else {
-      reply = `${persona.name} (${persona.title}) olarak sorunuz değerlendirildi: "${message.substring(0, 100)}..." konusundaki stratejik analizimiz ve çözümlerimiz devreye alınmıştır. [Geliştirici Modu]`;
+      reply = `${persona.name} (${persona.title}) olarak sorunuz deÄŸerlendirildi: "${message.substring(0, 100)}..." konusundaki stratejik analizimiz ve Ã§Ã¶zÃ¼mlerimiz devreye alÄ±nmÄ±ÅŸtÄ±r. [GeliÅŸtirici Modu]`;
       promptTokens = message.length;
       completionTokens = 20;
     }
@@ -132,7 +132,7 @@ export async function POST(req: NextRequest) {
     completionTokens = Math.max(completionTokens, reply.length / 4);
     const totalTokens = Math.ceil(promptTokens + completionTokens);
 
-    // Usage Logging (Vekilharçlık Kaydı)
+    // Usage Logging (VekilharÃ§lÄ±k KaydÄ±)
     const adminClient = createAdminClient();
     try {
        
@@ -175,8 +175,9 @@ export async function POST(req: NextRequest) {
       error instanceof Error ? error : undefined,
     );
     return NextResponse.json(
-      { error: "Yanıt üretilirken bir sunucu hatası oluştu." },
+      { error: "YanÄ±t Ã¼retilirken bir sunucu hatasÄ± oluÅŸtu." },
       { status: 500 },
     );
   }
 }
+

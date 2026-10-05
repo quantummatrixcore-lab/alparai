@@ -114,7 +114,7 @@ async function getHandler(request: NextRequest) {
       }
     }
 
-    // === WEEKLY DIGEST DRAFT GENERATOR (Rule #6 Compliant — Drafts Only) ===
+    // === WEEKLY DIGEST DRAFT GENERATOR (Rule #6 Compliant â€” Drafts Only) ===
     const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
     const { data: recentIncidents } = await admin
       .from("incidents")
@@ -162,3 +162,4 @@ async function getHandler(request: NextRequest) {
 }
 
 export const GET = withCronLogger("generate-marketing", getHandler);
+

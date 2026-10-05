@@ -212,3 +212,4 @@ export default async function Case001Page({ params }: { params: Promise<{ locale
     </div>
   );
 }
+

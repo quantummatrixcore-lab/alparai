@@ -86,7 +86,7 @@
       "severity": "P1",
       "title": "Forbidden vendor SDK import in quantum hook",
       "location": "src/hooks/quantum/use-quantum-link.ts:6",
-      "evidence": "src/hooks/quantum/use-quantum-link.ts imported type RealtimeChannel from @supabase/supabase-js which is not installed, causing TS2307 failure.",
+      "evidence": "src/hooks/quantum/use-quantum-link.ts imported type RealtimeChannel from @upstash/upstash-js which is not installed, causing TS2307 failure.",
       "impact": "Breaks sovereign DeHost backend law and causes pnpm typecheck build failure.",
       "remediation": "Removed vendor SDK import, defined local SovereignRealtimeChannel interface, and updated DeHostAdapterClient.",
       "status": "RESOLVED"

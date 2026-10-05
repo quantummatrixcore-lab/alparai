@@ -7,13 +7,12 @@ import type { Database } from "@/types/database";
 type IncidentCategory = Database["public"]["Tables"]["incidents"]["Row"]["category"];
 type IncidentSeverity = Database["public"]["Tables"]["incidents"]["Row"]["severity"];
 
-export const runtime = "nodejs";
 
 const MCP_SERVER_INFO = {
   name: "alpar-ai-mcp",
   version: "1.0.0",
   description:
-    "ALPAR AI MCP Server — Trust infrastructure for AI accountability and safety incidents.",
+    "ALPAR AI MCP Server â€” Trust infrastructure for AI accountability and safety incidents.",
 };
 
 const MCP_TOOLS = [
@@ -318,3 +317,4 @@ async function handleToolCall(name: string, args: Record<string, unknown>) {
 
   throw new Error(`Tool '${name}' not implemented`);
 }
+

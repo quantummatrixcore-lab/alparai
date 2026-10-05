@@ -1,6 +1,4 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
 
 export interface Prospect {
   id: string;
@@ -17,28 +15,9 @@ export async function POST(request: Request) {
     const { companyName, contactPerson, contactChannel, status } = body;
 
     if (!companyName || !contactPerson || !contactChannel || !status) {
-      return NextResponse.json({ error: 'Eksik veri gönderildi.' }, { status: 400 });
+      return NextResponse.json({ error: 'Eksik veri gonderildi.' }, { status: 400 });
     }
 
-    // JSON DB path
-    const dbPath = path.join(process.cwd(), 'data', 'prospects.json');
-    
-    // Ensure directory exists
-    const dir = path.dirname(dbPath);
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
-    }
-
-    // Read existing
-    let prospects: Prospect[] = [];
-    if (fs.existsSync(dbPath)) {
-      const fileData = fs.readFileSync(dbPath, 'utf-8');
-      if (fileData) {
-        prospects = JSON.parse(fileData);
-      }
-    }
-
-    // Create new record
     const newProspect: Prospect = {
       id: crypto.randomUUID(),
       companyName,
@@ -48,14 +27,25 @@ export async function POST(request: Request) {
       createdAt: new Date().toISOString()
     };
 
-    prospects.push(newProspect);
-
-    // Write back
-    fs.writeFileSync(dbPath, JSON.stringify(prospects, null, 2), 'utf-8');
+    // Edge uyumlu Upstash Redis cagrisi (Simulasyon/REST tabanli)
+    const upstashUrl = process.env.UPSTASH_REDIS_REST_URL;
+    const upstashToken = process.env.UPSTASH_REDIS_REST_TOKEN;
+    
+    if (upstashUrl && upstashToken) {
+        await fetch(`${upstashUrl}/set/prospect:${newProspect.id}`, {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${upstashToken}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newProspect)
+        });
+    }
 
     return NextResponse.json({ success: true, data: newProspect }, { status: 201 });
   } catch (error) {
-    console.error('Prospect Tracker API Hatası:', error);
-    return NextResponse.json({ error: 'Sunucu hatası.' }, { status: 500 });
+    console.error('Prospect Tracker API Hatasi:', error);
+    return NextResponse.json({ error: 'Sunucu hatasi.' }, { status: 500 });
   }
 }
+

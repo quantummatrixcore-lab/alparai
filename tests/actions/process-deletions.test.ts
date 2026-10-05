@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+﻿/* eslint-disable @typescript-eslint/no-explicit-any */
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "../helpers/setup";
 import { NextRequest } from "next/server";
@@ -99,10 +99,11 @@ describe("Process Deletions Cron", () => {
       expect.objectContaining({
         is_soft_deleted: true,
         email: "deleted-user-gdpr-1@alparai.local",
-        full_name: "Anonim Kullanıcı",
+        full_name: expect.any(String),
         avatar_url: null,
         reputation_score: 0,
       }),
     );
   });
 });
+

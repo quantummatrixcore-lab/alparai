@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
-export const runtime = "nodejs";
+
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -132,3 +132,4 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     );
   }
 }
+

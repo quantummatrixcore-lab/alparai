@@ -16,3 +16,4 @@ export default async function AdvisoryBoardUnderscoreRedirect({
   const { locale } = await params;
   redirect(`/${locale}/about/advisory-board`);
 }
+

@@ -15,12 +15,12 @@ interface HealthCheckDetail {
 }
 
 export const dynamic = "force-dynamic";
-export const runtime = "nodejs";
+
 
 async function checkDeHost(): Promise<ServiceHealth> {
   const start = Date.now();
-  const url = process.env.NEXT_PUBLIC_DEHOST_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_DEHOST_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const url = process.env.NEXT_PUBLIC_DEHOST_URL || process.env.NEXT_PUBLIC_upstash_URL;
+  const key = process.env.NEXT_PUBLIC_DEHOST_ANON_KEY || process.env.NEXT_PUBLIC_upstash_ANON_KEY;
   if (!url || !key) {
     return {
       name: "dehost",
@@ -228,3 +228,4 @@ export async function GET(): Promise<NextResponse<HealthCheckDetail | { error: s
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
+

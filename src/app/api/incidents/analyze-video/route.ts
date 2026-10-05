@@ -84,10 +84,10 @@ export async function POST(request: Request) {
               events: [
                 {
                   timestamp: 0,
-                  description: "Video akışı yüklendi ve kare ayrıştırma başlatıldı.",
+                  description: "Video akÄ±ÅŸÄ± yÃ¼klendi ve kare ayrÄ±ÅŸtÄ±rma baÅŸlatÄ±ldÄ±.",
                 },
-                { timestamp: 2.5, description: "AI arayüzünde hatalı çıktı tespiti yapıldı." },
-                { timestamp: 5.0, description: "Kullanıcı müdahalesi ve yanıt kaydı." },
+                { timestamp: 2.5, description: "AI arayÃ¼zÃ¼nde hatalÄ± Ã§Ä±ktÄ± tespiti yapÄ±ldÄ±." },
+                { timestamp: 5.0, description: "KullanÄ±cÄ± mÃ¼dahalesi ve yanÄ±t kaydÄ±." },
               ],
             });
           }
@@ -99,14 +99,14 @@ export async function POST(request: Request) {
 
     // Deterministic fallback response for evidence verification UI
     return NextResponse.json({
-      summary: `Video delili başarıyla doğrulandı (${videoFile.name}, ${Math.round(videoFile.size / (1024 * 1024))}MB). Qwen Omni multimodal görsel kare analizi tamamlandı.`,
+      summary: `Video delili baÅŸarÄ±yla doÄŸrulandÄ± (${videoFile.name}, ${Math.round(videoFile.size / (1024 * 1024))}MB). Qwen Omni multimodal gÃ¶rsel kare analizi tamamlandÄ±.`,
       events: [
-        { timestamp: 0.0, description: "Video kaydı başlatıldı, sistem arayüzü görünür durumda." },
+        { timestamp: 0.0, description: "Video kaydÄ± baÅŸlatÄ±ldÄ±, sistem arayÃ¼zÃ¼ gÃ¶rÃ¼nÃ¼r durumda." },
         {
           timestamp: 3.2,
-          description: "Yapay zeka model yanıtında halüsinasyon veya ihlal tespit edildi.",
+          description: "Yapay zeka model yanÄ±tÄ±nda halÃ¼sinasyon veya ihlal tespit edildi.",
         },
-        { timestamp: 7.8, description: "Kullanıcı girdisi ile ihlal kanıtı sabitlendi." },
+        { timestamp: 7.8, description: "KullanÄ±cÄ± girdisi ile ihlal kanÄ±tÄ± sabitlendi." },
       ],
     });
   } catch (error) {
@@ -114,3 +114,4 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Failed to analyze video evidence" }, { status: 500 });
   }
 }
+

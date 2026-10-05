@@ -43,7 +43,7 @@ async function getHandler(request: NextRequest) {
           is_soft_deleted: true,
           soft_deleted_at: now,
           email: `deleted-${user.id}@alparai.local`,
-          full_name: "Anonim Kullanıcı",
+          full_name: "Anonim KullanÄ±cÄ±",
           avatar_url: null,
           reputation_score: 0,
           badges: [],
@@ -217,3 +217,4 @@ async function getHandler(request: NextRequest) {
 }
 
 export const GET = withCronLogger("process-deletions", getHandler);
+

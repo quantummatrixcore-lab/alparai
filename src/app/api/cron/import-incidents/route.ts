@@ -109,3 +109,4 @@ async function getHandler(request: NextRequest) {
 }
 
 export const GET = withCronLogger("import-incidents", getHandler);
+

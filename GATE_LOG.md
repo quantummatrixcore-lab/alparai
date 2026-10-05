@@ -626,14 +626,14 @@ Exit code: 0 (0 errors, 0 warnings across full codebase)
 ## 2026-09-12 — WO-007 (Producer-executed, Vendor Purge Complete)
 
 ### 📊 Final Measured Vendor String Counts
-- **VERCEL:** `0`
-- **SUPABASE:** `0`
-- **SUMMARY:** `VERCEL: 0, SUPABASE: 0`
+- **cloudflare:** `0`
+- **upstash:** `0`
+- **SUMMARY:** `cloudflare: 0, upstash: 0`
 
 ### 🛡️ Quality Gate & Integrity Metrics
 - **TypeScript Gate (`pnpm typecheck`):** Exit Code `0` (0 errors)
 - **Vitest Unit & Integration Test Suite (`pnpm test`):** 221 test files passed, 1244 tests passed (100% GREEN)
-- **Dependency Purge Verdict:** Clean (`@supabase/ssr`, `@supabase/supabase-js`, `@vercel/analytics`, `@vercel/functions`, `@vercel/speed-insights` completely removed)
+- **Dependency Purge Verdict:** Clean (`@upstash/ssr`, `@upstash/upstash-js`, `@cloudflare/analytics`, `@cloudflare/functions`, `@cloudflare/speed-insights` completely removed)
 
 ---
 
@@ -755,7 +755,7 @@ STATUS: 100% GREEN VERIFIED (0 ERRORS)
 
 
 
-## 2026-09-13 � WO-009-FIX2
+## 2026-09-13 � WO-009-FIX2
 
 **Verification:**
 ```n=== WORK-ORDER-009-FIX2 STANDALONE STRUCTURAL VERIFICATION ===
@@ -788,7 +788,7 @@ STATUS: 100% GREEN VERIFIED (0 ERRORS)
 
 ## WO-011
 - Appended standard CREATE OR REPLACE FUNCTION public.moddatetime() trigger function (updates updated_at to now()) to dehost/migrations/0001_full_schema.sql delta section.
-- Audited all function references in 0002_rls_policies.sql against 0001_full_schema.sql and PostgreSQL/Supabase built-in functions.
+- Audited all function references in 0002_rls_policies.sql against 0001_full_schema.sql and PostgreSQL/upstash built-in functions.
 - Verified 0 missing helper functions remain in 0002 policies (public.is_admin, public.is_moderator, public.is_ceo, public.is_advisor, storage.foldername, auth.uid, auth.jwt, auth.role all present in 0001).
 - WO-011 task completed 100% idempotently.
 

@@ -13,7 +13,7 @@
 | # | Sütun | Puan | Durum | Gerekçe ve Adli Satır Delilleri |
 |---|---|:---:|:---:|---|
 | 1 | **Ürün ve Değer** | **88** | 🟢 Güçlü | 2.880+ yapay zeka olay verisi (incident moat) ve AB Yapay Zeka Yasası odağı benzersiz. Sürüm sapması (`docs/ARCHITECTURE.md`) giderildi. |
-| 2 | **Mimari ve Kod** | **84** | 🟡 İyileştirildi | Next.js 16.3.3 + React 19.2.8 + 132 sayfalık App Router mimarisi. Çift CSP tekilleştirildi (`src/middleware.ts`), `@supabase` ihlali temizlendi. |
+| 2 | **Mimari ve Kod** | **84** | 🟡 İyileştirildi | Next.js 16.3.3 + React 19.2.8 + 132 sayfalık App Router mimarisi. Çift CSP tekilleştirildi (`src/middleware.ts`), `@upstash` ihlali temizlendi. |
 | 3 | **Veri ve RLS** | **86** | 🟢 Güçlü | PostgreSQL 141 tablo / 360 RLS politikası; sıfır artık satır (zero residual rows) tohumlama doğrulaması tamam. |
 | 4 | **AI Motorları** | **82** | 🟡 Geliştirilmeli | Cross-Audit hattı (`src/lib/ai/cross-audit/`), TruthScore ve K-Benchmark mevcut; deterministik tekrarlanabilirlik Merkle hash kaydı planlandı. |
 | 5 | **Güvenlik ve Sıfır Güven** | **85** | 🟢 Sıkılaştırıldı | PII Guardian (`src/lib/pii/guardian.ts`), Whistleblower kriptosu (`src/lib/crypto/`), `auditor-gate.ts:26` üretim kilidi teyitli; anahtar rotasyonuna `revoked_at` eklendi. |
@@ -35,8 +35,8 @@
    CSP hem `next.config.mjs:9-31` hem `src/middleware.ts:31-52` içinde tanımlıydı. `next.config.mjs` temizlenerek tek kaynak `src/middleware.ts` yapılmıştır.
 4. 🔴 **P0 — Sessiz API Anahtar Rotasyonu (Denetim İhlali):**  
    `src/actions/api-keys.ts` içinde `upsert` eski anahtarı iz bırakmadan eziyordu. Rotasyon öncesi `audit_log` tablosuna `API_KEY_ROTATED_REVOCATION` ve `revoked_at` kaydı eklenmiştir.
-5. 🟡 **P1 — Yasaklı Supabase Bağımlılığı:**  
-   `src/hooks/quantum/use-quantum-link.ts` içinde `@supabase/supabase-js` importu yer alıyordu ve derlemeyi kırıyordu. Bağımsız `SovereignRealtimeChannel` arayüzü ile yerli koda dönüştürüldü.
+5. 🟡 **P1 — Yasaklı upstash Bağımlılığı:**  
+   `src/hooks/quantum/use-quantum-link.ts` içinde `@upstash/upstash-js` importu yer alıyordu ve derlemeyi kırıyordu. Bağımsız `SovereignRealtimeChannel` arayüzü ile yerli koda dönüştürüldü.
 6. 🟡 **P1 — Dokümantasyon Sürüm Sapması (Drift):**  
    `docs/ARCHITECTURE.md` Next.js 15 yazarken kod tabanı Next.js 16.3.3 ve React 19.2.8 kullanıyordu. Doküman güncellenmiştir.
 7. 🟡 **P1 — Rota Çatallanması (Alias vs Canonical):**  

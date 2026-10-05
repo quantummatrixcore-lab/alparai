@@ -122,3 +122,4 @@ export default async function FeedPage({ params }: { params: Promise<{ locale: s
     />
   );
 }
+

@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+﻿/* eslint-disable @typescript-eslint/no-explicit-any */
 import { describe, it, expect, vi, beforeEach, beforeAll } from "vitest";
 import "./helpers/setup";
 import { NextRequest, NextResponse } from "next/server";
@@ -33,8 +33,8 @@ describe("proxy middleware", () => {
       .fn()
       .mockImplementation(() => (global as any).__mockIntlResponse);
 
-    const mod = await import("@/middleware");
-    proxy = mod.middleware;
+    const mod = await import("@/proxy");
+    proxy = mod.proxy;
   });
 
   beforeEach(() => {
@@ -73,3 +73,5 @@ describe("proxy middleware", () => {
     expect(response.headers.get("x-request-id")).toBe("custom-uuid-123");
   });
 });
+
+

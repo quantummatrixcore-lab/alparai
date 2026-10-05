@@ -52,3 +52,4 @@ async function getHandler(request: Request) {
 }
 
 export const GET = withCronLogger("pivot-check", getHandler);
+

@@ -24,3 +24,4 @@ export default async function TwinsLeaderboardPage({
 
   return <TwinsLeaderboardClient initialData={initialData} />;
 }
+

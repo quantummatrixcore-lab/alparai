@@ -1,7 +1,7 @@
 import { vi } from "vitest";
 import type { SessionUser } from "@/types";
 
-export function createMockSupabaseClient() {
+export function createMockupstashClient() {
   const mockSingle = vi.fn().mockResolvedValue({ data: null, error: null });
   const mockMaybeSingle = vi.fn().mockResolvedValue({ data: null, error: null });
 

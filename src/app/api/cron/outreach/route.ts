@@ -44,3 +44,4 @@ async function getHandler(request: Request) {
 }
 
 export const GET = withCronLogger("outreach", getHandler);
+

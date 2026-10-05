@@ -9,3 +9,5 @@ Kapsam: vaka toplama, muhurleme, yasa suzgeci, rapor satisi. Ev: D:\03_ALPARAI.
 Para taçtan (kira bagli), veto kurucuda, sir kasada.
 
 SUREKLI CALISMA: defterde acik satir varsa durma. Bitir, olc, muhurle, sonrakine gec. Acik satir bitmeden kapanis yok. Takilinca gerekce yaz bekle, durma.
+
+DURUM 16:35Z: kayitlar taze, kir 2, derleme takibi suruyor.

@@ -49,4 +49,4 @@ async function getHandler(request: Request) {
 }
 
 export const GET = withCronLogger("omega-audit", getHandler);
-
+export const runtime = 'edge';

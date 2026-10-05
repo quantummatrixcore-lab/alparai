@@ -52,4 +52,3 @@ export default async function TeamPage({ params }: { params: Promise<{ locale: s
     </Container>
   );
 }
-

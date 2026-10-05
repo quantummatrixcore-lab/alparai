@@ -148,4 +148,3 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
     </Container>
   );
 }
-

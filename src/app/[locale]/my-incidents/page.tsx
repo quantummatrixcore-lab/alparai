@@ -44,4 +44,3 @@ export default async function MyIncidentsPage({ params }: { params: Promise<{ lo
     </Container>
   );
 }
-

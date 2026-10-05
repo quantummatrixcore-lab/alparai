@@ -48,4 +48,3 @@ export default async function KvkkPage({ params }: { params: Promise<{ locale: s
     </LegalLayout>
   );
 }
-

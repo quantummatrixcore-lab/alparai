@@ -534,4 +534,3 @@ function InvalidTokenView({
     </div>
   );
 }
-

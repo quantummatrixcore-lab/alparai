@@ -17,4 +17,3 @@ export default async function ForgotPasswordPage({
   setRequestLocale(locale);
   return <ForgotPasswordForm />;
 }
-

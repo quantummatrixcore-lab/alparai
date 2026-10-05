@@ -292,4 +292,3 @@ export default async function IncidentDetailPage({
     </Container>
   );
 }
-

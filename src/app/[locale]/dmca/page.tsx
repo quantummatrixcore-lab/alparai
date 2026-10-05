@@ -80,4 +80,3 @@ export default async function DmcaPage({ params }: { params: Promise<{ locale: s
     </Container>
   );
 }
-

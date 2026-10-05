@@ -147,4 +147,3 @@ export default async function SignInPage({
     </div>
   );
 }
-

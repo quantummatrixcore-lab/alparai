@@ -90,4 +90,3 @@ export default async function VisionPage({ params }: { params: Promise<{ locale:
     </main>
   );
 }
-

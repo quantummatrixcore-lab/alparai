@@ -248,4 +248,3 @@ export default async function IncidentsPage({
     </Container>
   );
 }
-

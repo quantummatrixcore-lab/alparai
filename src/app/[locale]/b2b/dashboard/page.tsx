@@ -94,4 +94,3 @@ export default async function B2BDashboardPage({
     </Container>
   );
 }
-

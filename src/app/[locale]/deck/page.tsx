@@ -28,4 +28,3 @@ export default async function DeckPage({ params }: { params: Promise<{ locale: s
 
   return <PitchDeckViewer />;
 }
-

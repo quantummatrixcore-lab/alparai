@@ -354,4 +354,3 @@ export default async function BlogIndexPage({
     </div>
   );
 }
-

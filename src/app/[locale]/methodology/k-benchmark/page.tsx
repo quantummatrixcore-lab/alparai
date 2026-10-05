@@ -83,4 +83,3 @@ export default async function KBenchmarkPage({ params }: { params: Promise<{ loc
     </Container>
   );
 }
-

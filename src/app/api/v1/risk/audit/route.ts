@@ -237,4 +237,4 @@ Your response MUST be JSON format matching this schema:
     );
   }
 }
-
+export const runtime = 'edge';

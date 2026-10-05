@@ -116,4 +116,3 @@ export default async function InvestPage({ params }: { params: Promise<{ locale:
     </div>
   );
 }
-

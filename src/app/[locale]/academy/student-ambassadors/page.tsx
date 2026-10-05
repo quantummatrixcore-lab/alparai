@@ -71,4 +71,3 @@ export default async function StudentAmbassadorsPage({
     </Container>
   );
 }
-

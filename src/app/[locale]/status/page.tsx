@@ -65,4 +65,3 @@ export default async function StatusPage({ params }: { params: Promise<{ locale:
     </div>
   );
 }
-

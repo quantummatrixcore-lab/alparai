@@ -66,4 +66,3 @@ export default async function SafetyDashboard({ params }: { params: Promise<{ lo
     </div>
   );
 }
-

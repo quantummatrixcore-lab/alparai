@@ -164,4 +164,3 @@ export default async function ProfilePage({ params }: { params: Promise<{ locale
     </Container>
   );
 }
-

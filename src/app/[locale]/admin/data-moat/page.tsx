@@ -304,4 +304,3 @@ export default function DataMoatPage() {
     </div>
   );
 }
-

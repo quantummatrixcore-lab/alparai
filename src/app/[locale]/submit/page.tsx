@@ -132,4 +132,3 @@ export default async function SubmitPage({ params }: { params: Promise<{ locale:
     </Container>
   );
 }
-

@@ -109,4 +109,4 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(`${origin}/en/auth/signin?error=server_error`);
   }
 }
-
+export const runtime = 'edge';

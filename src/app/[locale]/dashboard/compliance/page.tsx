@@ -70,4 +70,3 @@ export default async function ComplianceDashboard({
     </div>
   );
 }
-

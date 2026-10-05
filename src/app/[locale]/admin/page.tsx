@@ -543,4 +543,3 @@ export default function AdminV2OverviewPage() {
     </div>
   );
 }
-

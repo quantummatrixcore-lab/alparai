@@ -74,4 +74,4 @@ export async function GET() {
     return NextResponse.json({ status: "error", message: errorMessage }, { status: 500 });
   }
 }
-
+export const runtime = 'edge';

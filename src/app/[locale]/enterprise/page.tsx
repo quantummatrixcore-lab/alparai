@@ -135,4 +135,3 @@ export default async function EnterprisePage({ params }: { params: Promise<{ loc
     </div>
   );
 }
-

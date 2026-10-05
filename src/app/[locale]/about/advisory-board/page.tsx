@@ -274,4 +274,3 @@ export default async function AdvisoryBoardPage({
     </div>
   );
 }
-

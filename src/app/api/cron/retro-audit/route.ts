@@ -85,4 +85,4 @@ async function getHandler(request: NextRequest) {
 }
 
 export const GET = withCronLogger("retro-audit", getHandler);
-
+export const runtime = 'edge';

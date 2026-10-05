@@ -120,4 +120,3 @@ export default async function SuggestionDetailPage({
     </main>
   );
 }
-

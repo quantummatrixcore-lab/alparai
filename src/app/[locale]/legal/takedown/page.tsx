@@ -64,4 +64,3 @@ export default async function TakedownPage({ params }: { params: Promise<{ local
     </LegalLayout>
   );
 }
-

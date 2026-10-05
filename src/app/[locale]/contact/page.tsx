@@ -72,4 +72,3 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
     </Container>
   );
 }
-

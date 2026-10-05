@@ -119,4 +119,4 @@ async function getHandler(request: NextRequest) {
 }
 
 export const GET = withCronLogger("k-model-retirement", getHandler);
-
+export const runtime = 'edge';

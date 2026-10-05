@@ -73,4 +73,4 @@ async function getHandler(request: NextRequest) {
 }
 
 export const GET = withCronLogger("hard-delete", getHandler);
-
+export const runtime = 'edge';

@@ -56,4 +56,4 @@ export async function GET(request: Request) {
     return new NextResponse(`Backup failed: ${message}`, { status: 500 });
   }
 }
-
+export const runtime = 'edge';

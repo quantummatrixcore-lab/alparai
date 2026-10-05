@@ -101,4 +101,3 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
     </main>
   );
 }
-

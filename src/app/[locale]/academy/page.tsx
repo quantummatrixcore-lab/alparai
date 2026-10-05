@@ -375,4 +375,3 @@ export default async function AcademyPage({ params }: { params: Promise<{ locale
     </div>
   );
 }
-

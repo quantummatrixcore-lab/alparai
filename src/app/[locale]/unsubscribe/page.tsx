@@ -195,4 +195,3 @@ export default async function UnsubscribePage({ params, searchParams }: Unsubscr
     </Container>
   );
 }
-

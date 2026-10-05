@@ -93,4 +93,3 @@ export default async function Art73TrackerPage({
     </div>
   );
 }
-

@@ -28,4 +28,3 @@ export default async function VelocityPage({ params }: VelocityPageProps) {
     </div>
   );
 }
-

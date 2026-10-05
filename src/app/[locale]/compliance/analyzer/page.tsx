@@ -29,4 +29,3 @@ export default async function AnalyzerPage({
 
   return <AnalyzerClient />;
 }
-

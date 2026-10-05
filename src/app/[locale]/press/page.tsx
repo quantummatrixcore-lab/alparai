@@ -173,4 +173,3 @@ export default async function PressPage({ params }: { params: Promise<{ locale: 
     </Container>
   );
 }
-

@@ -116,4 +116,3 @@ export default async function LegalThreatsPage({
     </Container>
   );
 }
-

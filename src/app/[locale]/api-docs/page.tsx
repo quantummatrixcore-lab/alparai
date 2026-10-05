@@ -533,4 +533,3 @@ export default async function ApiDocsPage({ params }: { params: Promise<{ locale
     </div>
   );
 }
-

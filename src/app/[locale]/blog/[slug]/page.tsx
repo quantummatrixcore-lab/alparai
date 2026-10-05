@@ -238,4 +238,3 @@ export default async function BlogPostPage({
     </Container>
   );
 }
-

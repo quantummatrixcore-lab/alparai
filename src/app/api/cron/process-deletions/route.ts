@@ -217,4 +217,4 @@ async function getHandler(request: NextRequest) {
 }
 
 export const GET = withCronLogger("process-deletions", getHandler);
-
+export const runtime = 'edge';

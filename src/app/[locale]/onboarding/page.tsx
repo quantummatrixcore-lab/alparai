@@ -34,4 +34,3 @@ export default async function OnboardingPage({ params }: { params: Promise<{ loc
     </Container>
   );
 }
-

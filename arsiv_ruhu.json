@@ -1,0 +1,18 @@
+[
+  {
+    "file": "zoho_clean_emails.json",
+    "count": 13
+  },
+  {
+    "file": "zoho_extracted_emails.json",
+    "count": 13
+  },
+  {
+    "file": "zoho_full_emails.json",
+    "count": 13
+  },
+  {
+    "file": "zoho_full_html_emails.json",
+    "count": 13
+  }
+]

@@ -20,6 +20,8 @@ vi.mock("@/lib/dehost/server", () => ({
   }),
 }));
 
+vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: false, status: 400 }));
+
 describe("AUTH-1: Google ID Token Sign-in Action", () => {
   it("returns server rejection error cleanly without throwing or silent fallback", async () => {
     const result = await signInWithGoogleIdToken("mock_id_token", "mock_nonce");

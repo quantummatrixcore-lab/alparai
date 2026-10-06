@@ -111,3 +111,6 @@ brain/
 
 
 coverage/
+
+# Vault Guvenligi
+VAULT.env

@@ -4851,7 +4851,7 @@
     "why_stat_3_display": "24+",
     "why_stat_3_title": "Global Models Scanned",
     "why_stat_3_desc": "The most advanced Large Language Models are continuously stress-tested with K-Benchmark.",
-    "why_stat_4_display": "",
+    "why_stat_4_display": "$0",
     "why_stat_4_title": "Corporate Risk & Fines",
     "why_stat_4_desc": "Protects companies from devastating EU AI Act fines (up to €35M) through early reporting and forensic patching."
   },

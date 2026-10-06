@@ -160,4 +160,4 @@ async function getHandler(request: NextRequest) {
 }
 
 export const GET = withCronLogger("k-weekly-refresh", getHandler);
-export const runtime = 'edge';
+

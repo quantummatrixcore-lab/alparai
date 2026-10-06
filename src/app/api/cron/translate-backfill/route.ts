@@ -23,4 +23,4 @@ async function getHandler(request: Request) {
 }
 
 export const GET = withCronLogger("translate-backfill", getHandler);
-export const runtime = 'edge';
+

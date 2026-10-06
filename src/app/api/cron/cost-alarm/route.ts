@@ -248,4 +248,4 @@ async function getHandler(request: NextRequest) {
 }
 
 export const GET = withCronLogger("cost-alarm", getHandler);
-export const runtime = 'edge';
+

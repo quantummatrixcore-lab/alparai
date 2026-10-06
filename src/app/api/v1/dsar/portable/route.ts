@@ -104,4 +104,4 @@ export async function GET() {
     return NextResponse.json({ error: "internal_error", message }, { status: 500 });
   }
 }
-export const runtime = 'edge';
+

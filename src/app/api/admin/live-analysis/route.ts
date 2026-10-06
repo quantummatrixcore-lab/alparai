@@ -32,4 +32,4 @@ export async function POST(_req: Request) {
     );
   }
 }
-export const runtime = 'edge';
+

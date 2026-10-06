@@ -226,4 +226,4 @@ async function getHandler(request: NextRequest) {
 }
 
 export const GET = withCronLogger("newsletter", getHandler);
-export const runtime = 'edge';
+

@@ -50,4 +50,4 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Invalid payload or signature' }, { status: 400 });
   }
 }
-export const runtime = 'edge';
+

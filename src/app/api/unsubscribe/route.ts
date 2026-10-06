@@ -119,4 +119,4 @@ async function handleUnsubscribe(request: NextRequest) {
     return new NextResponse("An error occurred while updating your preferences.", { status: 500 });
   }
 }
-export const runtime = 'edge';
+

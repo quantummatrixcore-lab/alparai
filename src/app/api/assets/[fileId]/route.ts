@@ -1,6 +1,5 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import { getGDriveClient } from "@/lib/gdrive/client";
 
 export async function GET(_req: NextRequest, { params }: { params: Promise<{ fileId: string }> }) {
   try {
@@ -9,6 +8,13 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ fil
       return new NextResponse("Missing file ID", { status: 400 });
     }
 
+    const clientEmail = process.env.GOOGLE_CLIENT_EMAIL;
+    const privateKey = process.env.GOOGLE_PRIVATE_KEY;
+    if (!clientEmail || !privateKey) {
+      return new NextResponse("Google Drive service unconfigured", { status: 503 });
+    }
+
+    const { getGDriveClient } = await import("@/lib/gdrive/client");
     const drive = await getGDriveClient();
 
     const metadata = await drive.files.get({

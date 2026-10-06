@@ -29,7 +29,7 @@ export class CircuitBreaker {
   snapshot(): BreakerSnapshot {
     return {
       state: this.state,
-      failures: this.failures: failures as number,
+      failures: this.failures,
       openedAt: this.openedAt,
       lastTransitionAt: this.lastTransitionAt as number,
     };

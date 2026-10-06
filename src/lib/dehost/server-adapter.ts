@@ -13,10 +13,10 @@ export function getDeHostPgPool() {
   if (!sqliteInstance) {
     try {
       // Dynamic require to prevent bundling node:sqlite and path on Edge runtime
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const { DatabaseSync } = require("node:sqlite");
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const pathModule = require("path");
+      const req = typeof require !== "undefined" ? require : null;
+      if (!req) return null;
+      const { DatabaseSync } = req("node" + ":sqlite");
+      const pathModule = req("path");
       const dbPath = pathModule.join(process.cwd(), "alparai_data.db");
       sqliteInstance = new DatabaseSync(dbPath);
       sqliteInstance.exec('PRAGMA journal_mode = WAL;');

@@ -2,10 +2,16 @@ import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@/lib/dehost/server";
 type EmailOtpType = any;
 type DeHostClient = any;
-import { createHash } from "crypto";
 import { logger } from "@/lib/utils/logger";
 import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from "@/lib/constants";
 import type { Database } from "@/types/database";
+
+async function sha256Hex(text: string) {
+  const msgBuffer = new TextEncoder().encode(text);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
 
 function safeNextPath(raw: string | null): string {
   if (!raw) return "/profile";
@@ -48,7 +54,7 @@ async function logAdminLogin(
   request: NextRequest,
 ) {
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "127.0.0.1";
-  const ipHash = createHash("sha256").update(ip).digest("hex");
+  const ipHash = await sha256Hex(ip);
   await logAdminLoginAction(userId, ipHash);
 }
 
@@ -103,7 +109,7 @@ export async function GET(request: NextRequest) {
       if (!sessionError && sessionData?.user) {
         const user = sessionData.user;
         const { createSessionCookieHeader } = await import("@/lib/auth/session");
-        const cookie = createSessionCookieHeader({
+        const cookie = await createSessionCookieHeader({
           id: user.id,
           email: user.email || "",
           name: user.user_metadata?.full_name || user.user_metadata?.name || user.email?.split("@")[0] || "User",
@@ -143,7 +149,7 @@ export async function GET(request: NextRequest) {
         const googleUser = await userRes.json();
 
         const { createSessionCookieHeader } = await import("@/lib/auth/session");
-        const cookie = createSessionCookieHeader({
+        const cookie = await createSessionCookieHeader({
           id: googleUser.id,
           email: googleUser.email,
           name: googleUser.name || googleUser.email?.split("@")[0] || "User",

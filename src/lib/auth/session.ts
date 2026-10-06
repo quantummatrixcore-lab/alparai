@@ -1,5 +1,4 @@
 import { cookies } from "next/headers";
-import { createHmac } from "crypto";
 import type { SessionUser, UserRole } from "@/types";
 import { isTestAuthBypassActive, getPlaywrightMockUser } from "./test-bypass";
 
@@ -25,13 +24,17 @@ function getSessionSecret(): string {
 
 const COOKIE_NAME = "alparai_session";
 
-function sign(payload: string): string {
+async function sign(payload: string): Promise<string> {
   const secret = getSessionSecret();
-  const hmac = createHmac("sha256", secret).update(payload).digest("base64url");
-  return `${payload}.${hmac}`;
+  const enc = new TextEncoder();
+  const key = await crypto.subtle.importKey("raw", enc.encode(secret), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+  const signature = await crypto.subtle.sign("HMAC", key, enc.encode(payload));
+  const base64 = Buffer.from(signature).toString('base64');
+  const base64url = base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+  return `${payload}.${base64url}`;
 }
 
-function verify(token: string): AlparUser | null {
+async function verify(token: string): Promise<AlparUser | null> {
   try {
     const parts = token.split(".");
     if (parts.length !== 2) return null;
@@ -39,11 +42,21 @@ function verify(token: string): AlparUser | null {
     const sig = parts[1];
     if (!payload || !sig) return null;
     const secret = getSessionSecret();
-    const expectedSig = createHmac("sha256", secret).update(payload).digest("base64url");
-    if (sig !== expectedSig) return null;
+    const enc = new TextEncoder();
+    const key = await crypto.subtle.importKey("raw", enc.encode(secret), { name: "HMAC", hash: "SHA-256" }, false, ["verify"]);
+    
+    // pad base64url back to base64 for Buffer
+    let base64 = sig.replace(/-/g, '+').replace(/_/g, '/');
+    while (base64.length % 4) {
+      base64 += '=';
+    }
+    const signature = Buffer.from(base64, 'base64');
+    
+    const isValid = await crypto.subtle.verify("HMAC", key, signature, enc.encode(payload));
+    if (!isValid) return null;
     const jsonStr = Buffer.from(payload, "base64url").toString("utf8");
     return JSON.parse(jsonStr) as AlparUser;
-  } catch {
+  } catch (e) {
     return null;
   }
 }
@@ -70,7 +83,7 @@ export async function setSessionUser(user: Omit<AlparUser, "created_at">): Promi
     created_at: new Date().toISOString(),
   };
   const payload = Buffer.from(JSON.stringify(fullUser)).toString("base64url");
-  const token = sign(payload);
+  const token = await sign(payload);
   const cookieStore = await cookies();
   const isProduction = process.env.NODE_ENV === "production";
 
@@ -88,7 +101,7 @@ export async function getSessionUser(): Promise<AlparUser | null> {
     const cookieStore = await cookies();
     const c = cookieStore.get(COOKIE_NAME);
     if (!c || !c.value) return null;
-    const user = verify(c.value);
+    const user = await verify(c.value);
     if (!user) return null;
     user.role = resolveRole(user.email, user.role);
     return user;
@@ -102,7 +115,7 @@ export async function clearSessionUser(): Promise<void> {
   cookieStore.delete(COOKIE_NAME);
 }
 
-export function createSessionCookieHeader(user: Omit<AlparUser, "created_at">): {
+export async function createSessionCookieHeader(user: Omit<AlparUser, "created_at">): Promise<{
   name: string;
   value: string;
   options: {
@@ -112,7 +125,7 @@ export function createSessionCookieHeader(user: Omit<AlparUser, "created_at">): 
     path: string;
     maxAge: number;
   };
-} {
+}> {
   const role = resolveRole(user.email, user.role);
   const fullUser: AlparUser = {
     ...user,
@@ -120,7 +133,7 @@ export function createSessionCookieHeader(user: Omit<AlparUser, "created_at">): 
     created_at: new Date().toISOString(),
   };
   const payload = Buffer.from(JSON.stringify(fullUser)).toString("base64url");
-  const token = sign(payload);
+  const token = await sign(payload);
   const isProduction = process.env.NODE_ENV === "production";
 
   return {
@@ -221,4 +234,3 @@ export async function requireAdvisor(): Promise<SessionUser> {
   }
   return user;
 }
-

@@ -97,9 +97,32 @@ const nextConfig = {
   poweredByHeader: false,
   compress: true,
   serverExternalPackages: ["pg", "pg-connection-string"],
-  webpack(config, { isServer, nextRuntime }) {
+  webpack(config, { isServer, nextRuntime, webpack }) {
     config.resolve.alias["next-intl/config"] = path.resolve(__dirname, "./src/i18n/request.ts");
     if (!isServer || nextRuntime === "edge") {
+      if (webpack && webpack.NormalModuleReplacementPlugin) {
+        config.plugins.push(
+          new webpack.NormalModuleReplacementPlugin(/^node:/, (resource) => {
+            resource.request = resource.request.replace(/^node:/, "");
+          })
+        );
+      }
+      config.resolve.alias["node:http"] = false;
+      config.resolve.alias["node:https"] = false;
+      config.resolve.alias["node:crypto"] = false;
+      config.resolve.alias["node:fs"] = false;
+      config.resolve.alias["node:stream"] = false;
+      config.resolve.alias["node:net"] = false;
+      config.resolve.alias["node:tls"] = false;
+      config.resolve.alias["node:dns"] = false;
+      config.resolve.alias["node:url"] = false;
+      config.resolve.alias["node:util"] = false;
+      config.resolve.alias["node:buffer"] = false;
+      config.resolve.alias["node:os"] = false;
+      config.resolve.alias["node:child_process"] = false;
+      config.resolve.alias["node:path"] = false;
+      config.resolve.alias["node:zlib"] = false;
+
       config.resolve.fallback = {
         ...(config.resolve.fallback || {}),
         fs: false,

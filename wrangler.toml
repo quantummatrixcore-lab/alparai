@@ -1,1 +1,6 @@
-name = "alpar-ai"`ncompatibility_date = "2024-01-01"`npages_build_output_dir = ".next"`n`n[env.production]`ncustom_domains = ["alparai.com", "www.alparai.com"]
+name = "alparai"
+compatibility_date = "2024-01-01"
+pages_build_output_dir = ".next"
+
+[env.production]
+custom_domains = ["alparai.com", "www.alparai.com"]

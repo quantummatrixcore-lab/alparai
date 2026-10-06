@@ -283,8 +283,8 @@ export const MODELS_CATALOG: AIModelCatalogItem[] = [
     description: "Small footprint variant designed for high-volume text tasks.",
   },
   {
-    id: "gemini-1.0-pro",
-    name: "Gemini 1.0 Pro",
+    id: "gemini-1.5-flash",
+    name: "Gemini 1.5 Flash (Legacy Rep)",
     provider: "Google",
     category: "language",
     contextWindow: 32768,

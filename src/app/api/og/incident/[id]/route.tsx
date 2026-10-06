@@ -223,4 +223,4 @@ export async function GET(_request: Request, props: { params: Promise<{ id: stri
     return new Response("Failed to generate image", { status: 500 });
   }
 }
-export const runtime = 'edge';
+

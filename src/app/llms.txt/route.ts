@@ -41,4 +41,4 @@ Public API and RSS feeds available. All incidents include structured JSON-LD (Cl
     },
   });
 }
-export const runtime = 'edge';
+

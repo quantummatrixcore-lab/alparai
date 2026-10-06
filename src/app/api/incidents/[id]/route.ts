@@ -94,4 +94,4 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
     return NextResponse.json({ error: "internal_error" }, { status: 500, headers: corsHeaders(origin) });
   }
 }
-export const runtime = 'edge';
+

@@ -107,7 +107,18 @@ const nextConfig = {
         tls: false,
         dns: false,
         pg: false,
-        "pg-native": false, http: false, https: false,
+        "pg-native": false,
+        http: false,
+        https: false,
+        stream: false,
+        crypto: false,
+        buffer: false,
+        util: false,
+        url: false,
+        os: false,
+        child_process: false,
+        path: false,
+        zlib: false,
       };
     }
     return config;

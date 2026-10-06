@@ -110,4 +110,4 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
     );
   }
 }
-export const runtime = 'edge';
+

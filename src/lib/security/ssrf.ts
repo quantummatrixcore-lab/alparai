@@ -40,6 +40,7 @@ export async function isSafeUrl(
     // while Webpack Edge runtime (where dns is {}) safely skips it.
     try {
       if (dns && typeof dns.lookup === 'function') {
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
         const util = typeof require !== 'undefined' ? require('util') : null;
         if (util && typeof util.promisify === 'function') {
           const dnsLookup = util.promisify(dns.lookup);

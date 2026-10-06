@@ -17,7 +17,7 @@ export function getDeHostPgPool() {
     sqliteInstance.exec('PRAGMA journal_mode = WAL;');
     
     // Polyfill for pg.Pool interface compatibility
-    sqliteInstance.query = async (text, params) => {
+    (sqliteInstance as any).query = async (text, params) => {
       // Convert ,  to ? for sqlite
       const sqliteQuery = text.replace(/\$\d+/g, '?');
       const stmt = sqliteInstance.prepare(sqliteQuery);
@@ -36,4 +36,17 @@ export function getDeHostPgPool() {
     };
   }
   return sqliteInstance;
+}
+
+export type DeHostServerClient = any;
+export function createDeHostServerClient(): DeHostServerClient {
+  return {
+    auth: {
+      getUser: async () => ({ data: { user: null }, error: null })
+    },
+    from: (table: string) => ({
+      select: () => ({ eq: () => ({ single: async () => ({ data: null, error: null }) }) }),
+      insert: () => ({ select: () => ({ single: async () => ({ data: null, error: null }) }) })
+    })
+  };
 }

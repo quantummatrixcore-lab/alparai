@@ -102,7 +102,8 @@
     "stripe": "22.3.2",
     "tailwind-merge": "3.6.0",
     "ws": "8.21.1",
-    "zod": "3.25.76"
+    "zod": "3.25.76",
+    "posthog-js": "^1.144.1"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.12.1",

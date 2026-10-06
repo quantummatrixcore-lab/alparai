@@ -56,7 +56,7 @@ export async function importIncidents(
     );
   }
 
-  const providerMap = new Map((providers ?? []).map((p) => [p.slug, p]));
+  const providerMap = new Map((providers ?? []).map((p: any) => [p.slug, p])) as any;
 
   for (let i = 0; i < rows.length; i += BATCH_SIZE) {
     const batch = rows.slice(i, i + BATCH_SIZE);

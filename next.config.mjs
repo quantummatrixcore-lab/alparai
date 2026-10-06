@@ -115,7 +115,9 @@ const nextConfig = {
       config.resolve.alias["node:dns"] = false;
       config.resolve.alias["node:child_process"] = false;
       config.resolve.alias["node:sqlite"] = false;
+      config.resolve.alias["node:path"] = false;
       config.resolve.alias["sqlite"] = false;
+      config.resolve.alias["path"] = false;
 
       config.resolve.fallback = {
         ...(config.resolve.fallback || {}),
@@ -127,6 +129,7 @@ const nextConfig = {
         "pg-native": false,
         child_process: false,
         sqlite: false,
+        path: false,
       };
     }
     return config;

@@ -5,7 +5,6 @@
  */
 
 import "server-only";
-import path from "path";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let sqliteInstance: any = null;
@@ -13,10 +12,12 @@ let sqliteInstance: any = null;
 export function getDeHostPgPool() {
   if (!sqliteInstance) {
     try {
-      // Dynamic require to prevent bundling node:sqlite on Edge runtime
+      // Dynamic require to prevent bundling node:sqlite and path on Edge runtime
       // eslint-disable-next-line @typescript-eslint/no-require-imports
       const { DatabaseSync } = require("node:sqlite");
-      const dbPath = path.join(process.cwd(), "alparai_data.db");
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const pathModule = require("path");
+      const dbPath = pathModule.join(process.cwd(), "alparai_data.db");
       sqliteInstance = new DatabaseSync(dbPath);
       sqliteInstance.exec('PRAGMA journal_mode = WAL;');
       

@@ -4839,7 +4839,21 @@
       "subtitle": "Independent, community-driven database tracking real-world AI failures, biases, and regulatory compliance.",
       "title": "Ecosystem Trust Infrastructure",
       "trust_signals_title": "Platform Trust Signals"
-    }
+    },
+    "title_primary": "The Supreme Court of AI Accountability.",
+    "hero_subtitle": "The sovereign digital forensics infrastructure freezing cross-border AI rights violations, data theft, and algorithmic harm in ISO/IEC 27037 standards; automating EU AI Act Art. 73 severe incident reporting and establishing an adversarial fair trial ground against tech giants.",
+    "why_stat_1_display": "3,003",
+    "why_stat_1_title": "Documented AI Failures",
+    "why_stat_1_desc": "The world's largest independent and verified AI incident archive.",
+    "why_stat_2_display": "100%",
+    "why_stat_2_title": "Forensic Evidence Standard",
+    "why_stat_2_desc": "All incident logs are frozen in ISO/IEC 27037 format to serve as admissible evidence in courts.",
+    "why_stat_3_display": "24+",
+    "why_stat_3_title": "Global Models Scanned",
+    "why_stat_3_desc": "The most advanced Large Language Models are continuously stress-tested with K-Benchmark.",
+    "why_stat_4_display": "",
+    "why_stat_4_title": "Corporate Risk & Fines",
+    "why_stat_4_desc": "Protects companies from devastating EU AI Act fines (up to €35M) through early reporting and forensic patching."
   },
   "marketing_complianceChecklist": {
     "badge": "EU AI Act Article 73 Toolkit",

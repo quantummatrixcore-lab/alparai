@@ -4839,7 +4839,21 @@
       "subtitle": "Yapay zeka hatalarÄ±nÄ±, Ã¶nyargÄ±larÄ±nÄ± ve yasal uyumluluk durumlarÄ±nÄ± izleyen baÄŸÄ±msÄ±z, topluluk odaklÄ± veritabanÄ±.",
       "title": "Ekosistem GÃ¼ven AltyapÄ±sÄ±",
       "trust_signals_title": "Platform GÃ¼ven Sinyalleri"
-    }
+    },
+    "title_primary": "Yapay Zeka Hukukunda Küresel Yüksek Mahkeme.",
+    "hero_subtitle": "Yapay zekâ modellerinin sınır aşan hak ihlallerini, veri hırsızlığını ve algoritmik zararlarını ISO/IEC 27037 standartlarında donduran; EU AI Act Madde 73 ciddi olay bildirimini otomatikleştiren ve teknoloji devlerine karşı çelişmeli adil yargılama zemini kuran alparai.com egemen adli tıp altyapısı.",
+    "why_stat_1_display": "3.003",
+    "why_stat_1_title": "Belgelenmiş YZ Hatası",
+    "why_stat_1_desc": "Dünyanın en geniş bağımsız ve doğrulanmış yapay zeka ihlal arşivi.",
+    "why_stat_2_display": "%100",
+    "why_stat_2_title": "Adli Delil Standartı",
+    "why_stat_2_desc": "Olayların tüm logları mahkemelerde delil niteliği taşıyacak şekilde ISO/IEC 27037 formatında dondurulur.",
+    "why_stat_3_display": "24+",
+    "why_stat_3_title": "Taranan Global Model",
+    "why_stat_3_desc": "En gelişmiş Büyük Dil Modelleri K-Benchmark ile sürekli stres testine sokulur.",
+    "why_stat_4_display": "0 TL",
+    "why_stat_4_title": "Kurumsal Risk & Ceza",
+    "why_stat_4_desc": "Erken bildirim ve adli yama takibi sayesinde şirketleri yıkıcı EU AI Act cezalarından (35M €) korur."
   },
   "marketing_complianceChecklist": {
     "badge": "AB AI Act Madde 73 AraÃ§ Seti",

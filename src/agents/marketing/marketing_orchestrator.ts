@@ -9,7 +9,7 @@ export class MarketingOrchestrator {
   private publisher: SocialPublisher;
 
   constructor() {
-    this.strategist = new ContentStrategist({ model: "gemini-3.5-flash" });
+    this.strategist = new ContentStrategist({ model: "gemini-2.0-flash" });
     this.flowGen = new FlowGenerator();
     this.publisher = new SocialPublisher();
   }

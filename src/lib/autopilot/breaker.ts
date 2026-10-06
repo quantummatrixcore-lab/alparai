@@ -29,7 +29,7 @@ export class CircuitBreaker {
   snapshot(): BreakerSnapshot {
     return {
       state: this.state,
-      failures: this.failures,
+      failures: this.failures: failures as number,
       openedAt: this.openedAt,
       lastTransitionAt: this.lastTransitionAt as number,
     };
@@ -101,8 +101,8 @@ export const toBreakerSnapshot = (input: unknown): BreakerSnapshot | null => {
   if (typeof lastTransitionAt !== "number") return null;
   return {
     state,
-    failures,
-    openedAt: openedAt ?? null,
+    failures: failures as number,
+    openedAt: (openedAt as number) ?? null,
     lastTransitionAt: lastTransitionAt as number,
   };
 };

@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import { isAdmin } from "@/lib/auth/session";
 
-// @ts-expect-error - Local JS modules without types
+
 import GoogleEcosystemBridge from "../../../../scripts/google_ecosystem_bridge.js";
 
 // @auth: requireAdmin (verified via isAdmin)

@@ -47,7 +47,7 @@ export async function sendUnifiedEmail(options: SendEmailOptions): Promise<SendE
 
   if (zohoPass) {
     try {
-      // @ts-expect-error nodemailer types optional
+      
       const nodemailer = (await import("nodemailer")).default;
       const transporter = nodemailer.createTransport({
         host: process.env.ZOHO_SMTP_HOST || "smtppro.zoho.eu",

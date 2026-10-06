@@ -31,7 +31,7 @@ export class CircuitBreaker {
       state: this.state,
       failures: this.failures,
       openedAt: this.openedAt,
-      lastTransitionAt: this.lastTransitionAt,
+      lastTransitionAt: this.lastTransitionAt as number,
     };
   }
 
@@ -103,6 +103,6 @@ export const toBreakerSnapshot = (input: unknown): BreakerSnapshot | null => {
     state,
     failures,
     openedAt: openedAt ?? null,
-    lastTransitionAt,
+    lastTransitionAt: lastTransitionAt as number,
   };
 };

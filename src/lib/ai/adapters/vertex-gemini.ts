@@ -13,7 +13,7 @@ export class VertexGeminiAdapter {
 
   async generateJson(
     prompt: string,
-  ): Promise<{ ok: true; data: unknown } | { ok: false; error: string }> {
+  ): Promise<{ ok: true; data: unknown; error?: undefined } | { ok: false; error: string; data?: undefined }> {
     const apiKey = await resolveApiKey("google_vertex", "VERTEX_API_KEY");
     if (!apiKey) {
       return {

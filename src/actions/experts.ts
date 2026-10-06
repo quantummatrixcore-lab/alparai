@@ -53,7 +53,7 @@ interface ExpertWorkInput {
 }
 
 type ExpertWorkResult =
-  { ok: true; sent: boolean; channel: "email" | "log" } | { ok: false; error: string };
+  { ok: true; sent: boolean; channel: "email" | "log"; error?: undefined } | { ok: false; error: string; sent?: undefined; channel?: undefined };
 
 const runExpertWork = async (data: ExpertWorkInput): Promise<ExpertWorkResult> => {
   try {

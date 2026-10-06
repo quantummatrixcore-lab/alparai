@@ -60,7 +60,7 @@ export interface IncidentPassport {
 
 export async function getIncidentPassport(
   incidentId: string,
-): Promise<{ ok: true; passport: IncidentPassport } | { ok: false; error: string }> {
+): Promise<{ ok: true; passport: IncidentPassport; error?: undefined } | { ok: false; error: string; passport?: undefined }> {
   try {
     try {
       await requireUser();

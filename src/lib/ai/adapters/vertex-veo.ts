@@ -19,7 +19,7 @@ export class VertexVeoAdapter {
     prompt: string,
     aspectRatio = "16:9",
     durationSeconds = 5,
-  ): Promise<{ ok: true; base64: string; mimeType: string } | { ok: false; error: string }> {
+  ): Promise<{ ok: true; base64: string; mimeType: string; error?: undefined } | { ok: false; error: string; base64?: undefined; mimeType?: undefined }> {
     const apiKey = await resolveApiKey("google_vertex", "VERTEX_API_KEY");
     if (!apiKey) {
       return {

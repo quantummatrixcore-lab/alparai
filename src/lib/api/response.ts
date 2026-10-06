@@ -68,7 +68,7 @@ export function apiError(
     if (optHeaders !== undefined) customHeaders = optHeaders;
     extraData = { ...rest };
   } else {
-    errorMessage = errorOrOptions;
+    errorMessage = errorOrOptions as string;
   }
 
   const finalCode =

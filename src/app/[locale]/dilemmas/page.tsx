@@ -40,7 +40,7 @@ export default async function DilemmasPage({ params }: { params: Promise<{ local
       .select("*")
       .eq("is_active", true)
       .order("created_at", { ascending: false })
-      .returns<Poll[]>(),
+       as any,
     dehost
       .from("suggestions")
       .select(

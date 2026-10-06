@@ -57,7 +57,7 @@ export interface GatewayError {
 }
 
 export type GatewayResult =
-  { ok: true; data: GatewayResponse } | { ok: false; error: GatewayError };
+  { ok: true; data: GatewayResponse; error?: undefined } | { ok: false; error: GatewayError; data?: undefined };
 
 export interface ProviderAdapter {
   call(request: GatewayRequest): Promise<GatewayResult>;

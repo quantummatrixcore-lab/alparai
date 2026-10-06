@@ -10,7 +10,7 @@ export interface WeightClassIncidentStat {
 }
 
 export type WeightClassAnalysisResult =
-  | { insufficient_data: true }
+  | { insufficient_data: true; total_incidents?: undefined; rows?: undefined; }
   | {
       insufficient_data: false;
       total_incidents: number;

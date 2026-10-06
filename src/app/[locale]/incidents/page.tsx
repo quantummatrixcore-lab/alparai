@@ -108,7 +108,7 @@ export default async function IncidentsPage({
       .eq("is_active", true)
       .order("published_at", { ascending: false })
       .limit(4)
-      .returns<SidebarNewsItem[]>(),
+       as any,
   ]);
 
   const providerMap = new Map(

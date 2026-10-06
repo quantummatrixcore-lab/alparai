@@ -1,8 +1,3 @@
-import dns from "dns";
-import { promisify } from "util";
-
-const dnsLookup = promisify(dns.lookup);
-
 /**
  * Validates if a URL is safe from SSRF attacks.
  * Enforces HTTPS scheme, rejects private/local IP ranges, IPv6 loopbacks, CGNAT, and hostnames.
@@ -39,22 +34,29 @@ export async function isSafeUrl(
     }
 
     // 3. DNS resolution check (resolve the host to IP and verify it's public)
+    // Dynamic require to prevent Webpack Edge runtime crashes
     try {
-      const result = await dnsLookup(parsedUrl.hostname, { all: true });
-      for (const entry of result) {
-        const ip = entry.address;
-        const isIpPrivate =
-          ip === "127.0.0.1" ||
-          ip === "0.0.0.0" ||
-          ip === "::1" ||
-          /^(10\.|192\.168\.|172\.(1[6-9]|2[0-9]|3[0-1])\.|169\.254\.|127\.|100\.(6[4-9]|[7-9][0-9]|1[0-1][0-9]|12[0-7])\.)/.test(
-            ip,
-          ) ||
-          ip.startsWith("fd") ||
-          ip.startsWith("fc") ||
-          ip.startsWith("fe80");
-        if (isIpPrivate) {
-          return { safe: false, error: "Access to private or local network IP is forbidden." };
+      const req = typeof require !== 'undefined' ? require : null;
+      if (req) {
+        const dns = req('dns');
+        if (dns && dns.promises && dns.promises.lookup) {
+          const result = await dns.promises.lookup(parsedUrl.hostname, { all: true });
+          for (const entry of result) {
+            const ip = entry.address;
+            const isIpPrivate =
+              ip === "127.0.0.1" ||
+              ip === "0.0.0.0" ||
+              ip === "::1" ||
+              /^(10\.|192\.168\.|172\.(1[6-9]|2[0-9]|3[0-1])\.|169\.254\.|127\.|100\.(6[4-9]|[7-9][0-9]|1[0-1][0-9]|12[0-7])\.)/.test(
+                ip,
+              ) ||
+              ip.startsWith("fd") ||
+              ip.startsWith("fc") ||
+              ip.startsWith("fe80");
+            if (isIpPrivate) {
+              return { safe: false, error: "Access to private or local network IP is forbidden." };
+            }
+          }
         }
       }
     } catch {

@@ -37,8 +37,6 @@
     "next-env.d.ts",
     "src/**/*.ts",
     "src/**/*.tsx",
-    "tests/**/*.ts",
-    "tests/**/*.tsx",
     "scripts/**/*.ts",
     "scripts/**/*.js",
     "*.ts",

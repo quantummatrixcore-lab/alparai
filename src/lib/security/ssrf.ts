@@ -1,3 +1,5 @@
+import dns from "dns";
+
 /**
  * Validates if a URL is safe from SSRF attacks.
  * Enforces HTTPS scheme, rejects private/local IP ranges, IPv6 loopbacks, CGNAT, and hostnames.
@@ -34,13 +36,14 @@ export async function isSafeUrl(
     }
 
     // 3. DNS resolution check (resolve the host to IP and verify it's public)
-    // Dynamic require to prevent Webpack Edge runtime crashes
+    // Static import with safe runtime type check allows Vitest to mock it,
+    // while Webpack Edge runtime (where dns is {}) safely skips it.
     try {
-      const req = typeof require !== 'undefined' ? require : null;
-      if (req) {
-        const dns = req('dns');
-        if (dns && dns.promises && dns.promises.lookup) {
-          const result = await dns.promises.lookup(parsedUrl.hostname, { all: true });
+      if (dns && typeof dns.lookup === 'function') {
+        const util = typeof require !== 'undefined' ? require('util') : null;
+        if (util && typeof util.promisify === 'function') {
+          const dnsLookup = util.promisify(dns.lookup);
+          const result = await dnsLookup(parsedUrl.hostname, { all: true });
           for (const entry of result) {
             const ip = entry.address;
             const isIpPrivate =

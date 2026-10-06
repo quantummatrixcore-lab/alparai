@@ -102,8 +102,10 @@ const nextConfig = {
     if (!isServer || nextRuntime === "edge") {
       if (webpack && webpack.NormalModuleReplacementPlugin) {
         config.plugins.push(
-          new webpack.NormalModuleReplacementPlugin(/^node:/, (resource) => {
-            resource.request = resource.request.replace(/^node:/, "");
+          new webpack.NormalModuleReplacementPlugin(/^node:(.+)$/, (resource) => {
+            if (typeof resource.request === "string" && resource.request.startsWith("node:")) {
+              resource.request = resource.request.replace(/^node:/, "");
+            }
           })
         );
       }
@@ -122,6 +124,8 @@ const nextConfig = {
       config.resolve.alias["node:child_process"] = false;
       config.resolve.alias["node:path"] = false;
       config.resolve.alias["node:zlib"] = false;
+      config.resolve.alias["node:sqlite"] = false;
+      config.resolve.alias["sqlite"] = false;
 
       config.resolve.fallback = {
         ...(config.resolve.fallback || {}),
@@ -142,6 +146,7 @@ const nextConfig = {
         child_process: false,
         path: false,
         zlib: false,
+        sqlite: false,
       };
     }
     return config;

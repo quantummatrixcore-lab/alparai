@@ -8,48 +8,53 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ fil
       return new NextResponse("Missing file ID", { status: 400 });
     }
 
-    const clientEmail = process.env.GOOGLE_CLIENT_EMAIL;
-    const privateKey = process.env.GOOGLE_PRIVATE_KEY;
-    if (!clientEmail || !privateKey) {
+    const apiKey = process.env.GOOGLE_API_KEY || process.env.GEMINI_API_KEY;
+    if (!apiKey) {
       return new NextResponse("Google Drive service unconfigured", { status: 503 });
     }
 
-    const { getGDriveClient } = await import("@/lib/gdrive/client");
-    const drive = await getGDriveClient();
+    // Fetch file metadata
+    const metaRes = await fetch(
+      `https://www.googleapis.com/drive/v3/files/${encodeURIComponent(fileId)}?fields=mimeType,name,parents&key=${apiKey}`,
+      { headers: { Accept: "application/json" } }
+    );
 
-    const metadata = await drive.files.get({
-      fileId,
-      fields: "mimeType, name, parents",
-    });
+    if (!metaRes.ok) {
+      return new NextResponse("Asset metadata not found", { status: metaRes.status });
+    }
 
-    const mimeType = metadata.data.mimeType || "";
+    const metadata = (await metaRes.json()) as { mimeType?: string; name?: string; parents?: string[] };
+    const mimeType = metadata.mimeType || "";
 
-    // Block sensitive files (e.g. JSON DB backups, SQL dumps)
+    // Block sensitive files (e.g. JSON DB backups, SQL dumps, CSVs)
     if (mimeType === "application/json" || mimeType.includes("sql") || mimeType.includes("csv")) {
       return new NextResponse("Access to this file type is forbidden", { status: 403 });
     }
 
     // Verify folder boundary if configured
     const allowedFolderId = process.env.GDRIVE_ASSETS_FOLDER_ID;
-    if (
-      allowedFolderId &&
-      metadata.data.parents &&
-      !metadata.data.parents.includes(allowedFolderId)
-    ) {
+    if (allowedFolderId && metadata.parents && !metadata.parents.includes(allowedFolderId)) {
       return new NextResponse("Unauthorized Asset Location", { status: 403 });
     }
 
-    const response = await drive.files.get({ fileId, alt: "media" }, { responseType: "stream" });
-
-    const headers = new Headers();
-    headers.set("Content-Type", metadata.data.mimeType ?? "application/octet-stream");
-    headers.set("Content-Disposition", `inline; filename="${metadata.data.name ?? "file"}"`);
-    headers.set(
-      "Cache-Control",
-      "public, max-age=3600, s-maxage=31536000, stale-while-revalidate=86400",
+    // Proxy media stream via Edge fetch
+    const mediaRes = await fetch(
+      `https://www.googleapis.com/drive/v3/files/${encodeURIComponent(fileId)}?alt=media&key=${apiKey}`
     );
 
-    return new NextResponse(response.data as unknown as ReadableStream, {
+    if (!mediaRes.ok) {
+      return new NextResponse("Asset media stream failed", { status: mediaRes.status });
+    }
+
+    const headers = new Headers();
+    headers.set("Content-Type", metadata.mimeType ?? "application/octet-stream");
+    headers.set("Content-Disposition", `inline; filename="${metadata.name ?? "file"}"`);
+    headers.set(
+      "Cache-Control",
+      "public, max-age=3600, s-maxage=31536000, stale-while-revalidate=86400"
+    );
+
+    return new NextResponse(mediaRes.body, {
       status: 200,
       headers,
     });
@@ -59,4 +64,5 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ fil
     return new NextResponse("Asset not found or access denied", { status: 404 });
   }
 }
-export const runtime = 'edge';
+
+export const runtime = "edge";

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ALPARAI Pitch Deck</title>
+    <style>
+        @page { size: A4 landscape; margin: 0; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background: #0b0f19; color: #e2e8f0; }
+        .slide { width: 297mm; height: 210mm; page-break-after: always; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 4rem; box-sizing: border-box; position: relative; overflow: hidden; }
+        .slide h1 { font-size: 3.5rem; color: #38bdf8; margin-bottom: 1rem; }
+        .slide h2 { font-size: 2.5rem; color: #94a3b8; margin-bottom: 2rem; }
+        .slide p { font-size: 1.5rem; line-height: 1.6; max-width: 85%; }
+        .slide ul { margin-top: 2rem; text-align: left; max-width: 85%; }
+        .slide li { font-size: 1.5rem; margin-bottom: 1rem; line-height: 1.5; }
+        .footer { position: absolute; bottom: 2rem; right: 2rem; font-size: 1rem; color: #475569; }
+        .grid { display: flex; gap: 2rem; justify-content: center; width: 100%; max-width: 90%; margin-top: 2rem;}
+        .card { background: #1e293b; padding: 2rem; border-radius: 12px; border: 1px solid #334155; flex: 1; text-align: left;}
+        .card h3 { color: #38bdf8; font-size: 1.8rem; margin-top:0; }
+        .highlight { color: #f472b6; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <!-- Slayt 1: Kapak -->
+    <div class="slide">
+        <h1>ALPAR AI</h1>
+        <h2>Yapay Zekanın Küresel Freni ve Sivil Anayasası</h2>
+        <p>EU AI Act uyumlu Kriptografik Denetim, Çapraz Doğrulama ve B2B Hukuki Telemetri Ağı</p>
+        <div class="footer">Gizli ve Özel - Teknopark İstanbul HASAT'26 Kopyası</div>
+    </div>
+
+    <!-- Slayt 2: Genesis -->
+    <div class="slide">
+        <h1>Genesis: "Grok" Vakası (25.06.2026)</h1>
+        <h2>Neden Sivil Bir Anayasa Kurmak Zorunda Kaldık?</h2>
+        <div class="grid">
+            <div class="card" style="flex: 2;">
+                <h3>Sıfır Noktası (Kişisel Vaka)</h3>
+                <p>Kurucumuz, bir AI modelinin (Grok) doğrudan finansal işlemler hakkında <strong>kurgusal yalanlar (halüsinasyon)</strong> ürettiğini, yasadışı şekilde <span class="highlight">pasaport ve kişisel veri (PII)</span> talep ettiğini ve ardından "sadece rol yapıyordum" itirafında bulunduğunu bizzat yaşadı.</p>
+                <p style="font-size: 1.2rem; color: #94a3b8; margin-top: 1rem;">(Bu resmi bir vakadır. İlgili vaka dökümleri basın dosyasında mevcuttur. Haber Kaynağı: TÜRKİNFORM)</p>
+            </div>
+            <div class="card" style="flex: 1; background: #334155;">
+                <h3 style="color: #f87171;">Risk</h3>
+                <p>Eğer bir model şirket kurucusuna bunu yapabiliyorsa, devlette veya bankada ne yapar? <strong>Ekran görüntüsü yetmez, kriptografik adli delil şarttır.</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slayt 3: Problem -->
+    <div class="slide">
+        <h1>Problem: Regülasyon Dehşeti ve Güven Krizi</h1>
+        <div class="grid">
+            <div class="card">
+                <h3>Kayıtlı <span class="highlight">2.908+</span> Vaka</h3>
+                <p>Otonom ajanlar ve LLM'ler her gün telif ihlali, ayrımcılık ve halüsinasyon üretiyor. Dünyada resmi olarak raporlanan vaka sayısı 2.908'i aştı.</p>
+            </div>
+            <div class="card">
+                <h3>EU AI Act Cezaları</h3>
+                <p>Avrupa Birliği Yapay Zeka Yasası (Article 73) ihlallerde global cironun %7'sine varan cezalar kesiyor.</p>
+            </div>
+            <div class="card">
+                <h3>Sigorta Çıkmazı</h3>
+                <p>Sigorta şirketleri (Allianz, Munich Re vb.) yapay zeka risklerini fiyatlayamıyor (Aktüerya eksikliği).</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slayt 4: Çözüm -->
+    <div class="slide">
+        <h1>Çözüm: Hukuki Telemetri ve Otorite Motoru</h1>
+        <ul>
+            <li><span class="highlight">Epistemic Firewall:</span> Veriyi görmeden, işlemci RAM'inde kriptografik doğrulama uygulayan altyapı.</li>
+            <li><span class="highlight">Article 73 Raporlama Motoru:</span> Yapay zeka çıktılarını anlık analiz edip 2, 10 ve 15 günlük yasal mühletler içinde Annex III (Yüksek Risk) etiketlemesi yapar.</li>
+            <li><span class="highlight">Adli Bilişim (ISO 27037):</span> Sistem ekran görüntüsü almaz, kriptografik (hash) delil üretir. Hedef: Tam yasal geçerlilik.</li>
+        </ul>
+    </div>
+
+    <!-- Slayt 5: Teknoloji & Veri Hendeği -->
+    <div class="slide">
+        <h1>Teknoloji ve Savunulabilirlik (Moat)</h1>
+        <div class="grid">
+            <div class="card">
+                <h3>Sıfır Bilgi İspatı Uyumlu</h3>
+                <p>Sistem native ZK (Zero-Knowledge) algoritmaları icra ederek, ticari sırları dışarı çıkarmadan modelin doğru çalışıp çalışmadığını doğrular.</p>
+            </div>
+            <div class="card">
+                <h3>Cross-Audit (Çapraz Doğrulama)</h3>
+                <p>Bir yapay zekanın çıktısı, otonom bir "LLM Jürisi" (Claude, GPT, DeepSeek vb.) tarafından oylanır. Matematiksel konsensüs sağlanır.</p>
+            </div>
+        </div>
+        <p style="margin-top:2rem; font-size:1.2rem; color:#94a3b8;">Not: Sistem dağıtım aşamasındadır (Deployment in progress).</p>
+    </div>
+
+    <!-- Slayt 6: Sigorta Aktüeryası & İş Modeli -->
+    <div class="slide">
+        <h1>İş ve Gelir Modeli (InsurTech & SaaS)</h1>
+        <ul>
+            <li><span class="highlight">B2B Regülasyon Aboneliği (SaaS):</span> Şirketler için aylık EU AI Act uyum ve telemetri lisanslaması.</li>
+            <li><span class="highlight">Yapay Zeka Risk Sigortası:</span> Sigorta şirketlerine "Aktüeryal AI Risk Skoru" satışı ve kesilen poliçelerden komisyon/prim payı.</li>
+            <li><span class="highlight">B2B Defendant Portal:</span> İhlalle suçlanan teknoloji şirketlerinin resmi savunma arayüzü ve Agora-T tahkim harçları.</li>
+            <li><span class="highlight">Model ELO Radarı:</span> Otonom ajanlar için API tabanlı mikro-ödemeli TrustScore sorgulaması.</li>
+        </ul>
+    </div>
+
+    <!-- Slayt 7: Pazara Çıkış (GTM) & İfşa -->
+    <div class="slide">
+        <h1>GTM Stratejisi: "İfşa ve Davet" (Naming & Shaming)</h1>
+        <div class="grid">
+            <div class="card">
+                <h3>Toplumsal Radar</h3>
+                <p>Doğrulanmış vatandaşlar (Anti-Sybil) AI ihlallerini kriptografik olarak rapora dönüştürür.</p>
+            </div>
+            <div class="card">
+                <h3>Medya Entegrasyonu</h3>
+                <p>Üretilen kesin deliller, güçlü medya ağlarımız üzerinden kamuoyuna duyurulur.</p>
+            </div>
+            <div class="card">
+                <h3>Kurumsal Tahkim</h3>
+                <p>Baskı altında kalan global şirketler, cezadan kurtulmak için B2B Defendant Portal'a dahil olmak zorunda kalır.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slayt 8: Finansal Projeksiyon & Exit (Çıkış) Stratejisi -->
+    <div class="slide">
+        <h1>Finansal Projeksiyon & Exit (Çıkış) Stratejisi</h1>
+        <ul>
+            <li><span class="highlight">Stratejik Birleşme (M&A):</span> İlk 3 yıl içinde global reasürans şirketleri (Munich Re, Swiss Re) veya büyük hukuk/denetim devleri (Big Four) tarafından stratejik satın alma.</li>
+            <li><span class="highlight">API Lisanslaması:</span> Otonom ajanların (Agentic AI) yaygınlaşmasıyla, AlparAI TrustScore API'sinin sektör standardı (Moat) haline gelmesi.</li>
+            <li><span class="highlight">Sermaye Hedefi:</span> HASAT'26 100 Milyon TL yatırım havuzundan tohum sermaye alarak altyapı maliyetlerini ve hukuki lisanslamaları fonlamak.</li>
+        </ul>
+    </div>
+
+    <!-- Slayt 9: Ekip (Kurumsal Zırh) -->
+    <div class="slide">
+        <h1>Takım: İcra, Hukuk ve Medya Sacayağı</h1>
+        <div class="grid">
+            <div class="card">
+                <h3>Ercüment Erden</h3>
+                <p><span class="highlight">Kurucu & Baş Mimar</span><br>Derin teknoloji, yapay zeka orkestrasyonu ve ZKP entegrasyonu mimarı.</p>
+            </div>
+            <div class="card">
+                <h3>Prof. Dr. Musa Aygül</h3>
+                <p><span class="highlight">Hukuk & Tahkim Otoritesi</span><br>MÖHUK Uzmanı, Agora-T Uluslararası Tahkim Doktrini kurucusu. Bilimsel/Adli güvence.</p>
+            </div>
+            <div class="card">
+                <h3>Ahmet Rıfat Albuz</h3>
+                <p><span class="highlight">Medya & İletişim Danışmanı</span><br>20+ Yıllık Gazeteci, TBMM & Valilik Başdanışmanı. 110K+ aktif dijital medya gücü ve siyasal iletişim.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slayt 10: Bütçe -->
+    <div class="slide">
+        <h1>Bütçe: 4.5 Milyon TL (18 Ay)</h1>
+        <ul>
+            <li><span class="highlight">Altyapı & API:</span> Cross-audit doğrulama hatları ve sunucu maliyetleri.</li>
+            <li><span class="highlight">Hukuk & Patent:</span> Tescil, sertifikasyon ve tahkim altyapısı.</li>
+            <li><span class="highlight">Ekip:</span> çekirdek mühendislik ve operasyon kadrosu.</li>
+        </ul>
+    </div>
+
+    <!-- Slayt 11: Yol Haritası -->
+    <div class="slide">
+        <h1>Yol Haritası</h1>
+        <ul>
+            <li><span class="highlight">2026 Q4:</span> HASAT + ilk kurumsal pilotlar + site canlı.</li>
+            <li><span class="highlight">2027:</span> TrustScore API genel erişimi + sigorta aktüerya ortaklıkları.</li>
+            <li><span class="highlight">2028+:</span> küresel hakemlik + tahkim hacmi.</li>
+        </ul>
+    </div>
+
+    <!-- Slayt 12: İletişim -->
+    <div class="slide">
+        <h1>AlparAI</h1>
+        <h2>Yapay Zekanın Küresel Freni ve Sivil Anayasası</h2>
+        <p>info@alparai.com • alparai.com</p>
+        <div class="footer">Teknopark İstanbul HASAT'26</div>
+    </div>
+
+</body>
+</html>

@@ -84,13 +84,11 @@ export const Webhooks = {
         .update(params.payload)
         .digest('hex');
 
-      // Check signature if exact hex format matches
-      if (signature.length === hmac.length) {
-        try {
-          crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(hmac));
-        } catch {
-          // Continue to JSON parsing if format differs
-        }
+      // İmza yoksa veya tutmuyorsa reddet (sahte webhooklar kasaya işlenemez)
+      const sigBuf = Buffer.from(signature);
+      const macBuf = Buffer.from(hmac);
+      if (sigBuf.length !== macBuf.length || !crypto.timingSafeEqual(sigBuf, macBuf)) {
+        throw new Error('Invalid webhook signature');
       }
     }
 

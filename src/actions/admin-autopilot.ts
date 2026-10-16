@@ -1,4 +1,6 @@
 "use server";
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 
 import { requireAdmin } from "@/lib/auth/session";
 import {
@@ -12,6 +14,7 @@ import {
 import { getPolicy, policyNames } from "@/lib/autopilot";
 import type { BreakerSnapshot } from "@/lib/autopilot";
 import { createAdminClient } from "@/lib/dehost/admin";
+
 
 export interface AutopilotWorkerConfig {
   worker_name: string;
@@ -92,7 +95,7 @@ export async function getAdminAutopilotSnapshot(limit = 100): Promise<AdminAutop
       updated_at: String(row.updated_at),
     }));
 
-    const globalKillSwitch = process.env.AUTOPILOT_KILL_SWITCH === "true";
+    const globalKillSwitch = (vault.read('AUTOPILOT_KILL_SWITCH') ?? process.env.AUTOPILOT_KILL_SWITCH) === "true";
 
     const { getQueue } = await import("@/lib/autopilot");
     const q = getQueue();

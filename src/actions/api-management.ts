@@ -1,8 +1,11 @@
 "use server";
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 
 import { requireAdmin } from "@/lib/auth/session";
 import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
+
 
 export interface RealProvider {
   id: string;
@@ -60,16 +63,16 @@ export async function getApiTelemetryData(): Promise<ApiTelemetryData> {
     }
 
     // Real provider env key checks (Zero fabrication)
-    const hasOpenAI = Boolean(process.env.OPENAI_API_KEY);
-    const hasAnthropic = Boolean(process.env.ANTHROPIC_API_KEY);
-    const hasGoogle = Boolean(process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY);
+    const hasOpenAI = Boolean((vault.read('OPENAI_API_KEY') ?? process.env.OPENAI_API_KEY));
+    const hasAnthropic = Boolean((vault.read('ANTHROPIC_API_KEY') ?? process.env.ANTHROPIC_API_KEY));
+    const hasGoogle = Boolean((vault.read('GEMINI_API_KEY') ?? process.env.GEMINI_API_KEY) || (vault.read('GOOGLE_API_KEY') ?? process.env.GOOGLE_API_KEY));
     const hasDeHost = Boolean(
-      process.env.NEXT_PUBLIC_DEHOST_URL && process.env.DEHOST_SERVICE_ROLE_KEY,
+      (vault.read('NEXT_PUBLIC_DEHOST_URL') ?? process.env.NEXT_PUBLIC_DEHOST_URL) && (vault.read('DEHOST_SERVICE_ROLE_KEY') ?? process.env.DEHOST_SERVICE_ROLE_KEY),
     );
     const hasUpstash = Boolean(
-      process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN,
+      (vault.read('UPSTASH_REDIS_REST_URL') ?? process.env.UPSTASH_REDIS_REST_URL) && (vault.read('UPSTASH_REDIS_REST_TOKEN') ?? process.env.UPSTASH_REDIS_REST_TOKEN),
     );
-    const hasResend = Boolean(process.env.RESEND_API_KEY);
+    const hasResend = Boolean((vault.read('RESEND_API_KEY') ?? process.env.RESEND_API_KEY));
 
     // Honest Provider Matrix:
     // - status, health, isRealEnvKey: Live environment audit
@@ -179,7 +182,7 @@ export async function getApiTelemetryData(): Promise<ApiTelemetryData> {
         name: "Google Gemini API Key",
         provider: "Google Gemini",
         envKey: "GEMINI_API_KEY",
-        maskedKey: mask(process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY),
+        maskedKey: mask((vault.read('GEMINI_API_KEY') ?? process.env.GEMINI_API_KEY) || (vault.read('GOOGLE_API_KEY') ?? process.env.GOOGLE_API_KEY)),
         status: hasGoogle ? "active" : "missing",
         created: "Configured in Environment",
         lastUsed: hasGoogle ? "Present in environment" : "Not configured",
@@ -189,7 +192,7 @@ export async function getApiTelemetryData(): Promise<ApiTelemetryData> {
         name: "Anthropic Claude API Key",
         provider: "Anthropic",
         envKey: "ANTHROPIC_API_KEY",
-        maskedKey: mask(process.env.ANTHROPIC_API_KEY),
+        maskedKey: mask((vault.read('ANTHROPIC_API_KEY') ?? process.env.ANTHROPIC_API_KEY)),
         status: hasAnthropic ? "active" : "missing",
         created: "Configured in Environment",
         lastUsed: hasAnthropic ? "Present in environment" : "Not configured",
@@ -199,7 +202,7 @@ export async function getApiTelemetryData(): Promise<ApiTelemetryData> {
         name: "OpenAI API Key",
         provider: "OpenAI",
         envKey: "OPENAI_API_KEY",
-        maskedKey: mask(process.env.OPENAI_API_KEY),
+        maskedKey: mask((vault.read('OPENAI_API_KEY') ?? process.env.OPENAI_API_KEY)),
         status: hasOpenAI ? "active" : "missing",
         created: "Configured in Environment",
         lastUsed: hasOpenAI ? "Present in environment" : "Not configured",
@@ -209,7 +212,7 @@ export async function getApiTelemetryData(): Promise<ApiTelemetryData> {
         name: "DeHost Service Role Key",
         provider: "DeHost",
         envKey: "DEHOST_SERVICE_ROLE_KEY",
-        maskedKey: mask(process.env.DEHOST_SERVICE_ROLE_KEY),
+        maskedKey: mask((vault.read('DEHOST_SERVICE_ROLE_KEY') ?? process.env.DEHOST_SERVICE_ROLE_KEY)),
         status: hasDeHost ? "active" : "missing",
         created: "Configured in Environment",
         lastUsed: hasDeHost ? "Present in environment" : "Not configured",
@@ -219,7 +222,7 @@ export async function getApiTelemetryData(): Promise<ApiTelemetryData> {
         name: "Upstash Redis Rest Token",
         provider: "Upstash",
         envKey: "UPSTASH_REDIS_REST_TOKEN",
-        maskedKey: mask(process.env.UPSTASH_REDIS_REST_TOKEN),
+        maskedKey: mask((vault.read('UPSTASH_REDIS_REST_TOKEN') ?? process.env.UPSTASH_REDIS_REST_TOKEN)),
         status: hasUpstash ? "active" : "missing",
         created: "Configured in Environment",
         lastUsed: hasUpstash ? "Present in environment" : "Not configured",
@@ -229,7 +232,7 @@ export async function getApiTelemetryData(): Promise<ApiTelemetryData> {
         name: "Resend Email API Key",
         provider: "Resend",
         envKey: "RESEND_API_KEY",
-        maskedKey: mask(process.env.RESEND_API_KEY),
+        maskedKey: mask((vault.read('RESEND_API_KEY') ?? process.env.RESEND_API_KEY)),
         status: hasResend ? "active" : "missing",
         created: "Configured in Environment",
         lastUsed: hasResend ? "Present in environment" : "Not configured",

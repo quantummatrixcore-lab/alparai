@@ -1,3 +1,5 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 /**
  * @file v64_bridge.ts
  * @module AgiBridge/V64
@@ -9,6 +11,7 @@
 import { createRequire } from "node:module";
 import fs from "node:fs";
 import path from "node:path";
+
 
 /**
  * Target AI model tiers governed by DAG-5 AGI Intelligence Specification.
@@ -117,7 +120,7 @@ export function getV64Engine(): V64EngineModule {
   const req = typeof require !== "undefined" ? require : createRequire(import.meta.url);
 
   const candidatePaths = [
-    process.env.AGI_V64_ENGINE_PATH,
+    (vault.read('AGI_V64_ENGINE_PATH') ?? process.env.AGI_V64_ENGINE_PATH),
     DEFAULT_V64_ENGINE_PATH,
     path.resolve(process.cwd(), "../001-AGI/engines/v64_quota_manager.js"),
     path.resolve(process.cwd(), "engines/v64_quota_manager.js")

@@ -1,13 +1,15 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import "server-only";
 import { NextResponse } from "next/server";
 import { createServerClient } from "@/lib/dehost/server";
 import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 
-const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
-const STRIPE_PRO_PRICE_ID = process.env.STRIPE_PRO_PRICE_ID;
-const STRIPE_ENTERPRISE_PRICE_ID = process.env.STRIPE_ENTERPRISE_PRICE_ID;
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://alparai.com";
+const STRIPE_SECRET_KEY = (vault.read('STRIPE_SECRET_KEY') ?? process.env.STRIPE_SECRET_KEY);
+const STRIPE_PRO_PRICE_ID = (vault.read('STRIPE_PRO_PRICE_ID') ?? process.env.STRIPE_PRO_PRICE_ID);
+const STRIPE_ENTERPRISE_PRICE_ID = (vault.read('STRIPE_ENTERPRISE_PRICE_ID') ?? process.env.STRIPE_ENTERPRISE_PRICE_ID);
+const APP_URL = (vault.read('NEXT_PUBLIC_APP_URL') ?? process.env.NEXT_PUBLIC_APP_URL) || "https://alparai.com";
 
 // @auth: requireAuth (verified via dehost.auth.getUser)
 export async function POST(request: Request) {
@@ -42,6 +44,7 @@ export async function POST(request: Request) {
 
   try {
     // Dynamic import to avoid bundle issues when Stripe key is absent
+
     const Stripe = (await import("stripe")).default;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const stripe = new Stripe(STRIPE_SECRET_KEY, { apiVersion: "2026-06-24.dahlia" as any });

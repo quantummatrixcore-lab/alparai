@@ -1,7 +1,10 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { NextResponse } from "next/server";
 import { getHybridMultimodalModel } from "@/lib/ai/openrouter-gateway";
 import { getCurrentUser } from "@/lib/auth/session";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
+
 
 const MAX_VIDEO_SIZE_BYTES = 50 * 1024 * 1024; // 50MB
 
@@ -30,7 +33,7 @@ export async function POST(request: Request) {
     }
 
     // Video analysis pipeline (Qwen Omni / Gemini Flash 50/50 hybrid analysis)
-    const openRouterApiKey = process.env.OPENROUTER_API_KEY;
+    const openRouterApiKey = (vault.read('OPENROUTER_API_KEY') ?? process.env.OPENROUTER_API_KEY);
 
     if (openRouterApiKey) {
       try {

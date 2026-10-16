@@ -1,0 +1,2 @@
+# GitHub Copilot Instructions
+**CRITICAL INIT:** Before assisting, you MUST read \VIZYON.md\ (for business context/purpose) and \AGENTS.md\ (for technical boundaries) in the root directory. Never assume the product's purpose without reading these two files.

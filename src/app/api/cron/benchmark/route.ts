@@ -1,10 +1,13 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { NextResponse } from "next/server";
 import { generateQuestionsFromIncidents, runBatchEvaluations } from "@/actions/admin-question-bank";
+
 
 export async function GET(request: Request) {
   // 1. Verify DeHost Cron Secret (Authentication)
   const authHeader = request.headers.get("authorization");
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+  if (authHeader !== `Bearer ${(vault.read('CRON_SECRET') ?? process.env.CRON_SECRET)}`) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

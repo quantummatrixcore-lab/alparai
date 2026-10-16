@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>ALPAR AI - Master Pitch Deck</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        @page { size: 1920px 1080px; margin: 0; }
+        body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #020617 0%, #0f172a 100%); color: #f8fafc; -webkit-font-smoothing: antialiased; }
+        .slide { width: 1920px; height: 1080px; padding: 80px 120px; box-sizing: border-box; page-break-after: always; position: relative; display: flex; flex-direction: column; overflow: hidden; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 60px; border-bottom: 1px solid #334155; padding-bottom: 30px; }
+        .header-title { font-size: 24px; color: #94a3b8; font-weight: 600; text-transform: uppercase; letter-spacing: 4px; }
+        .header-logo { font-size: 32px; font-weight: 800; color: #fff; }
+        .header-logo span { color: #38bdf8; }
+        .main-title { font-size: 72px; font-weight: 800; color: #fff; line-height: 1.2; margin-bottom: 20px; }
+        .main-title span { color: #38bdf8; }
+        .subtitle { font-size: 40px; color: #cbd5e1; font-weight: 300; margin-bottom: 60px; line-height: 1.4; max-width: 80%; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+        .card { background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 20px; padding: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); backdrop-filter: blur(10px); }
+        .card h3 { font-size: 32px; color: #38bdf8; margin-top: 0; margin-bottom: 20px; }
+        .card p { font-size: 22px; color: #cbd5e1; line-height: 1.6; margin: 0; }
+        .card-value { font-size: 72px; font-weight: 800; color: #fbbf24; margin-bottom: 10px; line-height: 1; }
+        .card-label { font-size: 20px; color: #94a3b8; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; }
+        .highlight { color: #a78bfa; font-weight: bold; }
+        .text-green { color: #4ade80; }
+        .text-red { color: #f87171; }
+        ul { list-style-type: none; padding: 0; margin: 0; }
+        li { font-size: 26px; color: #cbd5e1; line-height: 1.6; margin-bottom: 20px; position: relative; padding-left: 40px; }
+        li::before { content: '■'; color: #38bdf8; position: absolute; left: 0; top: 2px; font-size: 20px; }
+        .footer { position: absolute; bottom: 40px; left: 120px; right: 120px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #334155; padding-top: 20px; }
+        .footer-text { font-size: 18px; color: #64748b; }
+        .footer-page { font-size: 24px; color: #38bdf8; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center;">
+            <div class="header-logo" style="font-size: 80px; margin-bottom: 40px;">ALPAR <span>AI</span></div>
+            <h1 class="main-title">DÜNYANIN İLK BAĞIMSIZ YAPAY ZEKÂ <br><span>HESAP VEREBİLİRLİK & ADLİ BİLİŞİM OTORİTESİ</span></h1>
+            <p class="subtitle">Büyük Teknoloji Tekellerine Karşı, Bağımsız Kriptografik Delil ve Normatif Gözetim Kalkanı (Runtime Governance Proxy)</p>
+            <div class="grid-4" style="margin-top: 60px;">
+                <div class="card" style="text-align: center;"><div class="card-value">2.908+</div><div class="card-label">Belgelenmiş YZ Hatası</div></div>
+                <div class="card" style="text-align: center;"><div class="card-value">%100</div><div class="card-label">Kriptografik Delil Standardı</div></div>
+                <div class="card" style="text-align: center;"><div class="card-value">24+</div><div class="card-label">Taranan Global Model</div></div>
+                <div class="card" style="text-align: center;"><div class="card-value">0 TL</div><div class="card-label">Kurumsal Risk & Ceza</div></div>
+            </div>
+        </div>
+        <div class="footer"><div class="footer-text">alparai.com • Teknopark İstanbul HASAT'26</div><div class="footer-page">01</div></div>
+    </div>
+
+    <!-- PROBLEM & SOLUTION -->
+    <div class="slide">
+        <div class="header"><div class="header-title">Problem & Çözüm (B2B Compliance)</div><div class="header-logo">ALPAR <span>AI</span></div></div>
+        <h1 class="main-title">Yapay Zekânın Başarısızlık Modları ve <br><span>Kurumsal (Enterprise) Risk</span></h1>
+        <div class="grid-2" style="flex-grow: 1;">
+            <div class="card">
+                <h3>Vektörler (2.908+ Vaka)</h3>
+                <ul>
+                    <li><span class="text-red">Halüsinasyon / Hatalı Eylem:</span> %42 (Maddi Zarar)</li>
+                    <li><span class="text-red">Kişisel Veri İhlali (PII):</span> %28 (Gizlilik Sızıntısı)</li>
+                </ul>
+                <p style="margin-top: 40px; font-size: 20px;">* Klasik loglama araçları (APM) mahkemelerde reddedilir; ISO/IEC 27037 uyumlu adli dondurma (hash zinciri) zorunludur.</p>
+            </div>
+            <div class="card" style="background: rgba(15, 23, 42, 0.9); border-color: #f87171;">
+                <h3 style="color: #f87171;">Enterprise Proxy Çözümü</h3>
+                <p style="margin-bottom: 20px;"><strong>EU AI Act Madde 73 Uyumu:</strong> Şirketleri dava riskinden koruyan "Liability Shield" (Sorumluluk Kalkanı).</p>
+                <p class="text-green" style="font-weight:bold;">✅ AlparAI Çözümü: Kullanıcı ile AI arasına giren bağımsız proxy katmanı. Yanıtı gerçek zamanlı analiz eder, bloke eder ve kriptografik W3C delili (Cross-Audit) üretir.</p>
+            </div>
+        </div>
+        <div class="footer"><div class="footer-text">alparai.com • Teknopark İstanbul HASAT'26</div><div class="footer-page">02</div></div>
+    </div>
+
+    <!-- REKABET MATRİSİ (NEWLY ADDED) -->
+    <div class="slide">
+        <div class="header"><div class="header-title">Adil Rekabet Matrisi</div><div class="header-logo">ALPAR <span>AI</span></div></div>
+        <h1 class="main-title">Geleneksel Yargı ve APM Araçlarına Karşı <br><span>AlparAI Üstünlüğü</span></h1>
+        <div class="card" style="flex-grow: 1;">
+            <table style="width: 100%; font-size: 24px; text-align: left; border-collapse: collapse; color: #cbd5e1;">
+                <tr style="border-bottom: 2px solid #38bdf8; color: #38bdf8;">
+                    <th style="padding: 20px;">Kriter</th><th style="padding: 20px;">AlparAI</th><th style="padding: 20px;">Geleneksel Hukuk</th><th style="padding: 20px;">Klasik APM (Datadog vb.)</th>
+                </tr>
+                <tr style="border-bottom: 1px solid #334155;">
+                    <td style="padding: 20px;">Hız ve Müdahale</td><td style="padding: 20px; color:#4ade80;">Gerçek Zamanlı (ms)</td><td style="padding: 20px; color:#f87171;">Yıllar (Dava süreci)</td><td style="padding: 20px; color:#fbbf24;">Sadece Alarm Üretir</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #334155;">
+                    <td style="padding: 20px;">Delil Standardı</td><td style="padding: 20px; color:#4ade80;">Kriptografik (ISO 27037)</td><td style="padding: 20px; color:#f87171;">Manuel Ekran Görüntüsü</td><td style="padding: 20px; color:#f87171;">Salt Metin Logları</td>
+                </tr>
+                <tr>
+                    <td style="padding: 20px;">Regülasyon Uyumu</td><td style="padding: 20px; color:#4ade80;">EU AI Act Native</td><td style="padding: 20px; color:#fbbf24;">Sınırlı / Yerel</td><td style="padding: 20px; color:#f87171;">AI Bağlamını Anlamaz</td>
+                </tr>
+            </table>
+        </div>
+        <div class="footer"><div class="footer-text">alparai.com • Teknopark İstanbul HASAT'26</div><div class="footer-page">03</div></div>
+    </div>
+
+    <!-- PAZAR -->
+    <div class="slide">
+        <div class="header"><div class="header-title">Pazar Büyüklüğü & Fırsat</div><div class="header-logo">ALPAR <span>AI</span></div></div>
+        <h1 class="main-title">Trilyon Dolarlık AI Pazarında <br><span>Güven ve Hesap Verebilirlik Eşiği</span></h1>
+        <div class="grid-2" style="flex-grow: 1;">
+            <div class="card">
+                <h3>Global Pazar (Gartner)</h3>
+                <p style="margin-bottom: 30px;">AI TRiSM (Trust, Risk and Security Management) Pazarı:</p>
+                <div style="margin-bottom: 20px;"><div style="font-size: 24px;">2024</div><div style="font-size: 36px; color: #38bdf8; font-weight: bold;">$8.42 Milyar</div></div>
+                <div><div style="font-size: 24px;">2030 (TAM)</div><div style="font-size: 36px; color: #fbbf24; font-weight: bold;">$52.80 Milyar</div></div>
+            </div>
+            <div class="card" style="background: rgba(30, 41, 59, 0.9);">
+                <h3>Kademeli Finansal Büyüme Hedefi</h3>
+                <div class="card-value" style="font-size: 52px; color: #38bdf8;">$15M - $30M ARR</div>
+                <div class="card-label" style="margin-bottom: 30px;">36. Ay Büyüme Hedefi (EU AI Act & InsurTech)</div>
+                <ul>
+                    <li><span class="highlight">18. Ay Taban (Base):</span> 50 Enterprise B2B Sözleşmesi ($1.5M - $3M ARR).</li>
+                    <li><span class="highlight">36. Ay Büyüme:</span> Global B2B SaaS + Sigorta Veri Lisanslama ($15M - $30M ARR).</li>
+                    <li><span class="highlight">5. Yıl (Category King):</span> Küresel Tahkim Standardı ($100M+ ARR / Unicorn Ligi).</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer"><div class="footer-text">alparai.com • Teknopark İstanbul HASAT'26</div><div class="footer-page">04</div></div>
+    </div>
+
+    <!-- TAKIM (CTO VURGUSU İLE) -->
+    <div class="slide">
+        <div class="header"><div class="header-title">Kurucu Ekip & Danışma Kurulu</div><div class="header-logo">ALPAR <span>AI</span></div></div>
+        <h1 class="main-title">Derin Teknoloji, Devlet Aklı ve <br><span>Uluslararası Hukuk Sacayağı</span></h1>
+        <div class="grid-3" style="flex-grow: 1;">
+            <div class="card" style="background: rgba(56, 189, 248, 0.1); border-color: #38bdf8;">
+                <h3>Ercüment Erden</h3><div class="card-label" style="color:#fbbf24; margin-bottom: 15px;">Kurucu & Baş Mimar (CTO)</div>
+                <p style="font-size: 18px; color: #38bdf8; margin-bottom: 15px;">ercumenterden.com • (532) 440-83-89 • ercument.erden@alparai.com</p>
+                <p>Derin teknoloji mimarisi, yapay zeka orkestrasyonu (Agentic Frameworks) ve Sistem Altyapısı lideri. Kriptografik denetim logları ve Runtime Proxy omurgasının tek inşacısı.</p>
+            </div>
+            <div class="card">
+                <h3>Prof. Dr. Musa Aygül</h3><div class="card-label" style="margin-bottom: 15px;">Tahkim & Hukuk Doktrini Hamisi</div>
+                <p style="font-size: 18px; color: #38bdf8; margin-bottom: 15px;">musaaygul.com • Selçuk Üniversitesi</p>
+                <p>Selçuk Üniversitesi Hukuk Fakültesi Ticaret Hukuku Anabilim Dalı Başkanı & MÖHUK / Uluslararası Tahkim Otoritesi. Sistemin EU AI Act ve normatif omurgasının en üst akademik hamisi.</p>
+            </div>
+            <div class="card">
+                <h3>Ahmet Rıfat Albuz</h3><div class="card-label" style="margin-bottom: 15px;">Kriz İletişimi & Medya Lideri</div>
+                <p style="font-size: 18px; color: #38bdf8; margin-bottom: 15px;">ahmetrifatalbuz.com</p>
+                <p>20+ Yıllık Kıdemli Gazeteci. Kriz iletişimi, itibar yönetimi ve sivil hak arama bilinci ("Naming & Shaming") operasyonlarının lideri.</p>
+            </div>
+        </div>
+        <div class="footer"><div class="footer-text">alparai.com • Teknopark İstanbul HASAT'26</div><div class="footer-page">05</div></div>
+    </div>
+</body>
+</html>

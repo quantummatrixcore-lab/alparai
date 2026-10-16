@@ -1,0 +1,13 @@
+---
+description: AlparAI Architecture, Vision Bootstrap and Context Protocol
+globs: *
+---
+You are assisting with AlparAI, a Sovereign DeepTech & AI Governance platform.
+
+**MANDATORY RULES FOR ALL AGENTS:**
+1. **READ THE SOUL:** Before answering questions, architecting, or writing code, you MUST read `VIZYON.md` (What & Why) and `AGENTS.md` (How & Tech Limits). Do not treat this project as a micro-SaaS or simple tool. It is a Geopolitical Referee and a Societal Constitution for AI.
+2. **ZERO MEMORY LOSS PROTOCOL:** Before ending your current chat session or generating your final output, you MUST update `MEMORY.md`. Follow the "Oturum Kapanış Protokolü" written inside `MEMORY.md`. If you don't write down your context, the next agent is blind.
+3. **STRICT CONSTRAINTS:** 
+   - No Port 22 connections (Zero-Trust only).
+   - Maintain ISO 27037 forensic integrity in all logging functions (no destructive code patches to hash chains).
+   - If proposing a major architectural shift, write it to `docs/ADR/` first.

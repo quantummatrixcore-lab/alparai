@@ -1,3 +1,5 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 
@@ -61,6 +63,7 @@ function checkServiceStatus(svc: IntegrationService, dbProviders: Set<string>): 
 }
 
 import { getCostsData } from "@/lib/services/costs";
+
 
 async function fetchAllCosts(): Promise<Record<string, unknown>[] | null> {
   try {
@@ -206,7 +209,7 @@ function extractProsCons(text: string): { pros: string[]; cons: string[] } {
 }
 
 async function searchTavily(query: string): Promise<string | null> {
-  const apiKey = process.env.TAVILY_API_KEY || process.env.tavily;
+  const apiKey = (vault.read('TAVILY_API_KEY') ?? process.env.TAVILY_API_KEY) || process.env.tavily;
   if (!apiKey) return null;
 
   try {
@@ -244,7 +247,7 @@ async function searchAlternatives(serviceId: string): Promise<IntegrationAlterna
   const svc = getServiceById(serviceId);
   if (!svc || svc.alternatives.length === 0) return [];
 
-  const tavilyKey = process.env.TAVILY_API_KEY || process.env.tavily || null;
+  const tavilyKey = (vault.read('TAVILY_API_KEY') ?? process.env.TAVILY_API_KEY) || process.env.tavily || null;
 
   const altPromises = svc.alternatives.map(async (altId) => {
     const altSvc = getServiceById(altId);

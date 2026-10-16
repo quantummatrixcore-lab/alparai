@@ -1,4 +1,6 @@
 "use client";
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 
 import { useState, useRef, useEffect } from "react";
 import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
@@ -8,6 +10,7 @@ import { submitVote } from "@/actions/community/dilemmas";
 import { toast } from "sonner";
 import { useTranslations, useLocale } from "next-intl";
 import { Check } from "lucide-react";
+
 
 export type Poll = {
   id: string;
@@ -26,7 +29,7 @@ export function PollCard({ poll }: { poll: Poll }) {
   const t = useTranslations("dilemmas");
   const locale = useLocale();
   const [turnstileToken, setTurnstileToken] = useState<string | null>(
-    process.env.NODE_ENV === "development" ? "dev-bypass-token" : null,
+    (vault.read('NODE_ENV') ?? process.env.NODE_ENV) === "development" ? "dev-bypass-token" : null,
   );
   const [turnstileError, setTurnstileError] = useState(false);
   const [isVoting, setIsVoting] = useState(false);
@@ -208,12 +211,12 @@ export function PollCard({ poll }: { poll: Poll }) {
           </div>
 
           {/* Turnstile Widget (Invisible) */}
-          {process.env.NODE_ENV === "production" && (
+          {(vault.read('NODE_ENV') ?? process.env.NODE_ENV) === "production" && (
             <div className="flex flex-col items-center">
               <Turnstile
                 ref={turnstileRef}
                 key={turnstileKey}
-                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "2x00000000000000000000AB"}
+                siteKey={(vault.read('NEXT_PUBLIC_TURNSTILE_SITE_KEY') ?? process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY) || "2x00000000000000000000AB"}
                 onSuccess={(token) => {
                   setTurnstileToken(token);
                   setTurnstileError(false);

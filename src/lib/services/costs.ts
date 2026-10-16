@@ -1,6 +1,9 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { requireCEO } from "@/lib/auth/session";
 import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
+
 
 interface DBMonthlyCost {
   month: string;
@@ -54,7 +57,7 @@ export async function getCostsData() {
 
   // Dynamic external API fetches (DeHost billing as example)
   let dehostLiveCost: number | null = null;
-  const dehostToken = process.env.DEHOST_TOKEN || process.env.DEHOST_OIDC_TOKEN;
+  const dehostToken = (vault.read('DEHOST_TOKEN') ?? process.env.DEHOST_TOKEN) || (vault.read('DEHOST_OIDC_TOKEN') ?? process.env.DEHOST_OIDC_TOKEN);
   if (dehostToken) {
     try {
       const res = await fetch("https://api.dehost.com/v1/billing/charges", {

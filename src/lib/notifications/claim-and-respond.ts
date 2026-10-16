@@ -1,5 +1,8 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { logger } from "@/lib/utils/logger";
 import { createAdminClient } from "@/lib/dehost/admin";
+
 
 export interface ClaimAndRespondTriggerInput {
   incidentId: string;
@@ -47,7 +50,7 @@ export async function triggerClaimAndRespondAlert(
       }
     }
 
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://alparai.com";
+    const appUrl = (vault.read('NEXT_PUBLIC_APP_URL') ?? process.env.NEXT_PUBLIC_APP_URL) || "https://alparai.com";
     const claimUrl = `${appUrl}/en/incidents/${input.incidentId}?claim=true`;
 
     logger.info(

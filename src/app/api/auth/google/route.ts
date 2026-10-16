@@ -1,10 +1,13 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { NextResponse, type NextRequest } from "next/server";
+
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const next = searchParams.get("next") || "/profile";
   
-  const rawClientId = process.env.GOOGLE_CLIENT_ID;
+  const rawClientId = (vault.read('GOOGLE_CLIENT_ID') ?? process.env.GOOGLE_CLIENT_ID);
   const clientId =
     rawClientId && !rawClientId.includes("SENSITIVE") && rawClientId.includes(".apps.googleusercontent.com")
       ? rawClientId

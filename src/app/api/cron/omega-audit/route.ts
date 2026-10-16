@@ -1,6 +1,9 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { withCronLogger } from "@/lib/utils/cron-logger";
 import { NextResponse } from "next/server";
 import { logger } from "@/lib/utils/logger";
+
 
 export const dynamic = "force-dynamic";
 
@@ -22,7 +25,7 @@ async function runOmegaSentinelAudit() {
 async function getHandler(request: Request) {
   try {
     const authHeader = request.headers.get("authorization");
-    const cronSecret = process.env.CRON_SECRET;
+    const cronSecret = (vault.read('CRON_SECRET') ?? process.env.CRON_SECRET);
 
     if (!cronSecret || authHeader !== `Bearer ${cronSecret}`) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

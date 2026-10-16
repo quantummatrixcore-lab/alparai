@@ -1,4 +1,6 @@
 "use server";
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 
 import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
@@ -12,6 +14,7 @@ import {
 import { revalidatePath } from "next/cache";
 import { getResendClient } from "@/lib/email/resend";
 import { callWithFailover, FAST_TRIAGE_CHAIN } from "@/lib/ai/openrouter-gateway";
+
 
 async function evaluateIncidentWithGemini(
   title: string,
@@ -191,7 +194,7 @@ async function runAutoModerationWork(
         if (provider && provider.contact_email) {
           const { generateProviderToken } = await import("@/lib/utils/hash");
           const token = generateProviderToken(fullIncident.id, provider.contact_email);
-          const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://alparai.com";
+          const appUrl = (vault.read('NEXT_PUBLIC_APP_URL') ?? process.env.NEXT_PUBLIC_APP_URL) || "https://alparai.com";
           const respondLink = `${appUrl}/en/incidents/${fullIncident.id}/respond?token=${token}`;
 
           const resend = getResendClient();
@@ -245,7 +248,7 @@ export async function autoModerateIncidentAction(
   internalToken?: string
 ): Promise<{ ok: boolean; score?: number; status?: string; error?: string }> {
   try {
-    const serviceKey = process.env.DEHOST_SERVICE_ROLE_KEY || "";
+    const serviceKey = (vault.read('DEHOST_SERVICE_ROLE_KEY') ?? process.env.DEHOST_SERVICE_ROLE_KEY) || "";
     const tokenBuffer = Buffer.from(internalToken || "invalid");
     const keyBuffer = Buffer.from(serviceKey);
     let isAuthorized = false;

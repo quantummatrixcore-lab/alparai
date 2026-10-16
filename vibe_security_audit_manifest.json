@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-09-18T19:38:39.713Z",
-  "target": "D:\\AlparAi",
-  "totalScanned": 1750,
-  "findingsCount": 27,
+  "timestamp": "2026-10-16T20:20:51.520Z",
+  "target": "D:\\03_ALPARAI",
+  "totalScanned": 1881,
+  "findingsCount": 30,
   "criticalCount": 3,
-  "highCount": 24,
+  "highCount": 27,
   "mediumCount": 0,
   "findings": [
     {
@@ -154,6 +154,12 @@
     {
       "severity": "HIGH",
       "cwe": "CWE-338",
+      "file": "src\\dyson_firewall.js",
+      "message": "Insecure PRNG (Math.random()) used in authentication/token context. Use crypto.randomBytes() or crypto.randomUUID()."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-338",
       "file": "src\\lib\\ai\\visitor-predictor.ts",
       "message": "Insecure PRNG (Math.random()) used in authentication/token context. Use crypto.randomBytes() or crypto.randomUUID()."
     },
@@ -162,6 +168,18 @@
       "cwe": "CWE-338",
       "file": "vibe_security_audit_manifest.json",
       "message": "Insecure PRNG (Math.random()) used in authentication/token context. Use crypto.randomBytes() or crypto.randomUUID()."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-79",
+      "file": "src\\app\\[locale]\\page.tsx",
+      "message": "dangerouslySetInnerHTML used without DOMPurify or HTML sanitization."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-79",
+      "file": "src\\app\\[locale]\\pricing\\page.tsx",
+      "message": "dangerouslySetInnerHTML used without DOMPurify or HTML sanitization."
     },
     {
       "severity": "HIGH",

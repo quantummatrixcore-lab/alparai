@@ -1,4 +1,6 @@
 "use server";
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 
 import { z } from "zod";
 import { createAdminClient } from "@/lib/dehost/admin";
@@ -8,6 +10,7 @@ import { logger } from "@/lib/utils/logger";
 import type { Json } from "@/types/database";
 import { processOutreachQueue } from "@/lib/audit/outreach-agent";
 import { Resend } from "resend";
+
 
 interface UnsafeClient {
   from: (table: string) => {
@@ -161,7 +164,7 @@ export async function triggerOutreachQueueAction() {
     const user = await requireAdmin();
     if (!user) return { success: false, error: "Unauthorized" };
 
-    const resendApiKey = process.env.RESEND_API_KEY;
+    const resendApiKey = (vault.read('RESEND_API_KEY') ?? process.env.RESEND_API_KEY);
     if (!resendApiKey) {
       return { success: false, error: "RESEND_API_KEY environment variable is not defined" };
     }

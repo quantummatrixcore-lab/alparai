@@ -2,8 +2,6 @@ import nextVitals from "eslint-config-next/core-web-vitals";
 import nextTs from "eslint-config-next/typescript";
 
 const eslintConfig = [
-  ...nextVitals,
-  ...nextTs,
   {
     ignores: [
       ".next/**",
@@ -32,9 +30,17 @@ const eslintConfig = [
       "**/*.mjs",
       "src/types/database.ts",
       "**/.*",
-      "**/.mock*"
+      "**/.mock*",
+      "HASAT_2026_BASVURU/**",
+      "slidev_deck/**",
+      ".cursor/**",
+      "ercumenterden.com/**",
+      "supabase/**",
+      "dehost/**"
     ]
   },
+  ...nextVitals,
+  ...nextTs,
   {
     rules: {
       "react/no-unescaped-entities": "off",
@@ -55,6 +61,7 @@ const eslintConfig = [
       "@typescript-eslint/no-non-null-assertion": "off",
       "react-hooks/set-state-in-effect": "off",
       "@next/next/no-img-element": "off",
+      "@typescript-eslint/no-require-imports": "off",
     },
   }
 ];

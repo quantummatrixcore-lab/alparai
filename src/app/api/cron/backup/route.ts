@@ -1,6 +1,9 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/dehost/admin";
 import { uploadToDrive } from "@/lib/gdrive/client";
+
 
 // This route should only be triggered by DeHost Cron
 // You should protect it by checking the Authorization header in a real setup
@@ -9,9 +12,9 @@ export async function GET(request: Request) {
     // Basic protection (DeHost Cron sets this header)
     const authHeader = request.headers.get("authorization");
     if (
-      !process.env.CRON_SECRET ||
+      !(vault.read('CRON_SECRET') ?? process.env.CRON_SECRET) ||
       !authHeader ||
-      authHeader !== `Bearer ${process.env.CRON_SECRET}`
+      authHeader !== `Bearer ${(vault.read('CRON_SECRET') ?? process.env.CRON_SECRET)}`
     ) {
       return new NextResponse("Unauthorized", { status: 401 });
     }

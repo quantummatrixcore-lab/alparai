@@ -1,18 +1,21 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { withCronLogger } from "@/lib/utils/cron-logger";
 import { NextResponse } from "next/server";
 import { createServerClient } from "@/lib/dehost/server";
 import { logger } from "@/lib/utils/logger";
 
+
 async function getHandler(request: Request) {
   try {
     const authHeader = request.headers.get("authorization");
-    if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+    if (authHeader !== `Bearer ${(vault.read('CRON_SECRET') ?? process.env.CRON_SECRET)}`) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
     // Task #199: HN/Reddit launch is pending.
     // Set to true only when the actual launch is executed.
-    const isLaunched = process.env.NEXT_PUBLIC_APP_LAUNCHED === "true";
+    const isLaunched = (vault.read('NEXT_PUBLIC_APP_LAUNCHED') ?? process.env.NEXT_PUBLIC_APP_LAUNCHED) === "true";
 
     if (!isLaunched) {
       logger.info("[Day-7 Kill-Metric] N/A â€” not launched");

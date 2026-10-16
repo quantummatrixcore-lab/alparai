@@ -1,4 +1,7 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import Redis from "ioredis";
+
 
 export class EventBus {
   private pubClient: Redis;
@@ -6,7 +9,7 @@ export class EventBus {
   private handlers: Map<string, Array<(message: unknown) => void>>;
 
   constructor() {
-    const redisUrl = process.env.UPSTASH_REDIS_URL!;
+    const redisUrl = (vault.read('UPSTASH_REDIS_URL') ?? process.env.UPSTASH_REDIS_URL)!;
     this.pubClient = new Redis(redisUrl);
     this.subClient = new Redis(redisUrl);
     this.handlers = new Map();

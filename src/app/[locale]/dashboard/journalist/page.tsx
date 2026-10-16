@@ -1,3 +1,5 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 export const dynamic = "force-dynamic";
 
 import { setRequestLocale, getTranslations } from "next-intl/server";
@@ -15,6 +17,7 @@ import { SEVERITY_LEVELS } from "@/lib/constants";
 import type { IncidentListItem, LeaderboardEntry } from "@/types";
 import type { Database } from "@/types/database";
 import {
+
   ShieldCheck,
   Trophy,
   Download,
@@ -222,7 +225,7 @@ export default async function JournalistDashboard({
     })
     .sort((a, b) => (b.trust_score ?? 70) - (a.trust_score ?? 70));
 
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://alparai.com";
+  const appUrl = (vault.read('NEXT_PUBLIC_APP_URL') ?? process.env.NEXT_PUBLIC_APP_URL) || "https://alparai.com";
   const citeId = cite ?? items[0]?.id;
   const citeItem = citeId ? items.find((i) => i.id === citeId) : undefined;
 

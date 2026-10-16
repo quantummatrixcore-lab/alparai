@@ -1,4 +1,6 @@
 "use client";
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 
 import * as React from "react";
 
@@ -8,6 +10,7 @@ import { useTransition, useState } from "react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { CheckCircle2, Loader2, Mail } from "lucide-react";
+
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const RESEND_COOLDOWN_SEC = 60;
@@ -74,7 +77,7 @@ export function GoogleSignInButton({
   };
 
   React.useEffect(() => {
-    const rawClientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+    const rawClientId = (vault.read('NEXT_PUBLIC_GOOGLE_CLIENT_ID') ?? process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID);
     const clientId =
       rawClientId && !rawClientId.includes("SENSITIVE") && rawClientId.includes(".apps.googleusercontent.com")
         ? rawClientId

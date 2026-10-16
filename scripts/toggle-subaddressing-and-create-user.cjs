@@ -87,7 +87,7 @@ http.get('http://127.0.0.1:9222/json', (res) => {
             domainSelect.dispatchEvent(new Event('change', { bubbles: true }));
 
             passInputs.forEach(p => {
-              p.value = 'AlparAI_2026_045c419b0749!';
+              p.value = '';
               p.dispatchEvent(new Event('input', { bubbles: true }));
               p.dispatchEvent(new Event('change', { bubbles: true }));
             });

@@ -1,3 +1,5 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 export const revalidate = 3600;
 
 import { setRequestLocale, getTranslations } from "next-intl/server";
@@ -13,6 +15,7 @@ import type { IncidentDetail, ProviderResponse, EvidenceItem } from "@/types";
 import { RelatedIncidents } from "@/components/incidents/related-incidents";
 import { StatusBanner } from "@/components/incidents/status-banner";
 import { ProvenanceTrail } from "@/components/incidents/provenance-trail";
+
 
 export async function generateMetadata({
   params,
@@ -136,7 +139,7 @@ export default async function IncidentDetailPage({
     };
   }
 
-  const dehostUrl = process.env.NEXT_PUBLIC_DEHOST_URL || "https://auth.alparai.com";
+  const dehostUrl = (vault.read('NEXT_PUBLIC_DEHOST_URL') ?? process.env.NEXT_PUBLIC_DEHOST_URL) || "https://auth.alparai.com";
   const evidence: EvidenceItem[] = ((evidenceRes.data as Array<Record<string, unknown>>) ?? []).map(
     (e) => {
       const pathStr = e["file_path"] as string;

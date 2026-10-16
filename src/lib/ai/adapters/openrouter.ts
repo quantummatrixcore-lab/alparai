@@ -1,3 +1,5 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import "server-only";
 import OpenAI from "openai";
 import { logger } from "@/lib/utils/logger";
@@ -8,6 +10,7 @@ const REQUEST_TIMEOUT_MS = 30_000;
 const MAX_RETRIES = 1;
 
 import { resolveApiKey } from "../api-keys";
+
 
 export class OpenRouterAdapter implements ProviderAdapter {
   async isConfigured(): Promise<boolean> {
@@ -33,7 +36,7 @@ export class OpenRouterAdapter implements ProviderAdapter {
       timeout: REQUEST_TIMEOUT_MS,
       maxRetries: MAX_RETRIES,
       defaultHeaders: {
-        "HTTP-Referer": process.env.NEXT_PUBLIC_APP_URL || "https://alparai.com",
+        "HTTP-Referer": (vault.read('NEXT_PUBLIC_APP_URL') ?? process.env.NEXT_PUBLIC_APP_URL) || "https://alparai.com",
         "X-Title": "ALPAR AI Cross-Audit Engine",
       },
     });

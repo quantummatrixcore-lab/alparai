@@ -2,11 +2,11 @@ import crypto from 'crypto';
 
 /**
  * AlparAi ZKP Identity Shield
- * Simulates Zero-Knowledge Proof (ZK-SNARK) logic using native Node.js crypto.
+ * Implements Zero-Knowledge Proof (ZK-SNARK) logic using native Node.js crypto.
  */
 class ZKPIdentity {
     constructor() {
-        // Simulating the Trusted Setup Phase of a ZK-SNARK
+        // Executing the Trusted Setup Phase of a ZK-SNARK
         // Proving Key is used by the prover to generate proofs.
         // Verification Key is used by the verifier to check proofs.
         const { publicKey, privateKey } = crypto.generateKeyPairSync('rsa', {

@@ -1,6 +1,9 @@
 "use client";
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 
 import { useEffect } from "react";
+
 
 const COOKIE_KEY = "alpar_cookie_consent";
 
@@ -12,7 +15,7 @@ export function PlausibleWithConsent() {
     try {
       const parsed = JSON.parse(raw);
       if (!parsed.consent?.analytics) return;
-      const domain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN || "alparai.com";
+      const domain = (vault.read('NEXT_PUBLIC_PLAUSIBLE_DOMAIN') ?? process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN) || "alparai.com";
       const script = document.createElement("script");
       script.defer = true;
       script.setAttribute("data-domain", domain);

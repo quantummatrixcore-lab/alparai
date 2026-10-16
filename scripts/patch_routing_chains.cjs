@@ -2,7 +2,7 @@ const { execSync } = require('child_process');
 const fs = require('fs');
 
 const SSH_KEY = 'C:/Users/ercum/.ssh/id_ed25519_vds';
-const REMOTE_HOST = 'root@45.143.4.92';
+const REMOTE_HOST = '-p 18222 root@45.143.4.92';
 
 const raw = execSync(`ssh -i "${SSH_KEY}" -o StrictHostKeyChecking=no ${REMOTE_HOST} "docker exec postgres-master psql -U postgres -d alparai_prod -t -A -c 'SELECT json_agg(t) FROM (SELECT id, capability_domain, primary_model_id, secondary_model_id, tertiary_model_id, judge_model_id, is_active, domain_name, models FROM public.ai_routing_chains ORDER BY capability_domain) t;'"`, { encoding: 'utf8' });
 

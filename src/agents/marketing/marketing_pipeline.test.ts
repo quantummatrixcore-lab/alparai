@@ -1,7 +1,10 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { describe, it, expect, beforeEach } from "vitest";
 import { ContentStrategist } from "./content_strategist";
 import { FlowGenerator } from "./flow_generator";
 import { SocialPublisher } from "./social_publisher";
+
 
 describe("Autonomous Marketing Pipeline", () => {
   it("Strategist should generate a valid content plan", async () => {
@@ -33,7 +36,7 @@ describe("Autonomous Marketing Pipeline", () => {
 });
 
 describe("SocialPublisher — Dormant Guard (Madde 90)", () => {
-  const ORIGINAL_AUTOPILOT = process.env.MARKETING_AUTOPILOT;
+  const ORIGINAL_AUTOPILOT = (vault.read('MARKETING_AUTOPILOT') ?? process.env.MARKETING_AUTOPILOT);
 
   beforeEach(() => {
     process.env.MARKETING_AUTOPILOT = ORIGINAL_AUTOPILOT;

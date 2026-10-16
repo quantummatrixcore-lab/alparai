@@ -1,16 +1,19 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { withCronLogger } from "@/lib/utils/cron-logger";
 import { NextResponse } from "next/server";
 import { runExternalFetchTask } from "@/lib/services/external-fetcher";
+
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 120;
 
 async function getHandler(request: Request) {
   const authHeader = request.headers.get("authorization");
-  const cronSecret = process.env.CRON_SECRET;
+  const cronSecret = (vault.read('CRON_SECRET') ?? process.env.CRON_SECRET);
   const isAuthorized =
     Boolean(cronSecret && authHeader === `Bearer ${cronSecret}`) ||
-    (process.env.NODE_ENV !== "production" && !cronSecret);
+    ((vault.read('NODE_ENV') ?? process.env.NODE_ENV) !== "production" && !cronSecret);
   if (!isAuthorized) return new NextResponse("Unauthorized", { status: 401 });
 
   try {

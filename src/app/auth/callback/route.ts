@@ -1,3 +1,5 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@/lib/dehost/server";
 type EmailOtpType = any;
@@ -48,6 +50,7 @@ function detectLocale(request: NextRequest): string {
 
 import { logAdminLoginAction } from "@/actions/auth-audit";
 
+
 async function logAdminLogin(
   dehost: any,
   userId: string,
@@ -97,7 +100,7 @@ export async function GET(request: NextRequest) {
   }
 
   const isProduction =
-    process.env.NODE_ENV === "production" ||
+    (vault.read('NODE_ENV') ?? process.env.NODE_ENV) === "production" ||
     (!request.url.startsWith("http://localhost") && !request.url.startsWith("http://127.0.0.1"));
 
   const dehost = await createServerClient();
@@ -121,13 +124,13 @@ export async function GET(request: NextRequest) {
         return response;
       }
 
-      const envClientId = process.env.GOOGLE_CLIENT_ID;
+      const envClientId = (vault.read('GOOGLE_CLIENT_ID') ?? process.env.GOOGLE_CLIENT_ID);
       const clientId =
         envClientId && !envClientId.includes("SENSITIVE") && envClientId.includes(".apps.googleusercontent.com")
           ? envClientId
           : "341717447635-hsdu69hk692lkveikkpc8398v8rhu40b.apps.googleusercontent.com";
       const redirectUri = `${origin}/auth/callback`;
-      const clientSecret = process.env.GOOGLE_CLIENT_SECRET || "";
+      const clientSecret = (vault.read('GOOGLE_CLIENT_SECRET') ?? process.env.GOOGLE_CLIENT_SECRET) || "";
 
       const tokenRes = await fetch("https://oauth2.googleapis.com/token", {
         method: "POST",

@@ -1,3 +1,5 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/dehost/admin";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
@@ -5,6 +7,7 @@ import { logger } from "@/lib/utils/logger";
 import { fetchWithSsrfGuard } from "@/lib/security/ssrf";
 import { DIGITAL_TWINS, type DigitalTwinPersona } from "@/lib/agent-os/personas";
 import { calculateAlignmentScore, selfHealResponse } from "@/lib/agent-os/alignment-engine";
+
 
 interface CompletionRequest {
   messages: Array<{ role: string; content: string }>;
@@ -78,7 +81,7 @@ export async function POST(req: Request, props: { params: Promise<{ twinId: stri
 
       if (keyError) {
         if (
-          process.env.NODE_ENV === "test" &&
+          (vault.read('NODE_ENV') ?? process.env.NODE_ENV) === "test" &&
           (keyError.code === "42P01" || keyError.code === "PGRST116")
         ) {
           if (apiKey.startsWith("sk-") || apiKey === "alpar-test-key") {
@@ -90,7 +93,7 @@ export async function POST(req: Request, props: { params: Promise<{ twinId: stri
       }
     } catch {
       if (
-        process.env.NODE_ENV === "test" &&
+        (vault.read('NODE_ENV') ?? process.env.NODE_ENV) === "test" &&
         (apiKey.startsWith("sk-") || apiKey === "alpar-test-key")
       ) {
         isAuthorized = true;
@@ -157,7 +160,7 @@ export async function POST(req: Request, props: { params: Promise<{ twinId: stri
     const messages = [systemMessage, ...body.messages];
 
     // 7. Make request to OpenRouter or fallback mock
-    const openRouterKey = process.env.OPENROUTER_API_KEY;
+    const openRouterKey = (vault.read('OPENROUTER_API_KEY') ?? process.env.OPENROUTER_API_KEY);
     const fallbackModel = "google/gemini-2.5-flash";
     const targetModel = body.model || fallbackModel;
 

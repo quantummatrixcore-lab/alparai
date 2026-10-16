@@ -1,4 +1,7 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { logger } from "@/lib/utils/logger";
+
 
 interface PublishResult {
   platform: string;
@@ -12,14 +15,14 @@ export class SocialPublisher {
   private killSwitch: boolean;
 
   constructor() {
-    this.killSwitch = process.env.MARKETING_AUTOPILOT !== "enabled";
+    this.killSwitch = (vault.read('MARKETING_AUTOPILOT') ?? process.env.MARKETING_AUTOPILOT) !== "enabled";
     if (this.killSwitch) {
       logger.warn("[SocialPublisher] DORMANT MODE ACTIVE — no external API calls will be made");
     }
   }
 
   async publish(videoUrl: string, caption: string, platforms: string[]): Promise<PublishResult[]> {
-    if (process.env.MARKETING_AUTOPILOT !== "enabled") {
+    if ((vault.read('MARKETING_AUTOPILOT') ?? process.env.MARKETING_AUTOPILOT) !== "enabled") {
       return platforms.map((p) => ({
         platform: p,
         success: true,
@@ -74,7 +77,7 @@ export class SocialPublisher {
   }
 
   private async publishLinkedIn(videoUrl: string, caption: string): Promise<PublishResult> {
-    const token = process.env.LINKEDIN_ACCESS_TOKEN;
+    const token = (vault.read('LINKEDIN_ACCESS_TOKEN') ?? process.env.LINKEDIN_ACCESS_TOKEN);
     if (!token) {
       logger.warn("[SocialPublisher] LINKEDIN_ACCESS_TOKEN not set, simulating");
       await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -94,7 +97,7 @@ export class SocialPublisher {
           "X-Restli-Protocol-Version": "2.0.0",
         },
         body: JSON.stringify({
-          author: `urn:li:person:${process.env.LINKEDIN_PERSON_ID || ""}`,
+          author: `urn:li:person:${(vault.read('LINKEDIN_PERSON_ID') ?? process.env.LINKEDIN_PERSON_ID) || ""}`,
           lifecycleState: "PUBLISHED",
           specificContent: {
             "com.linkedin.ugc.ShareContent": {
@@ -131,7 +134,7 @@ export class SocialPublisher {
   }
 
   private async publishX(videoUrl: string, caption: string): Promise<PublishResult> {
-    const bearerToken = process.env.X_BEARER_TOKEN;
+    const bearerToken = (vault.read('X_BEARER_TOKEN') ?? process.env.X_BEARER_TOKEN);
     if (!bearerToken) {
       logger.warn("[SocialPublisher] X_BEARER_TOKEN not set, simulating");
       await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -167,7 +170,7 @@ export class SocialPublisher {
   }
 
   private async publishTikTok(videoUrl: string, caption: string): Promise<PublishResult> {
-    const token = process.env.TIKTOK_ACCESS_TOKEN;
+    const token = (vault.read('TIKTOK_ACCESS_TOKEN') ?? process.env.TIKTOK_ACCESS_TOKEN);
     if (!token) {
       logger.warn("[SocialPublisher] TIKTOK_ACCESS_TOKEN not set, simulating");
       await new Promise((resolve) => setTimeout(resolve, 1000));

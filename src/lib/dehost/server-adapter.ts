@@ -51,13 +51,26 @@ export function getDeHostPgPool() {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type DeHostServerClient = any;
 export function createDeHostServerClient(): DeHostServerClient {
+  // Null-object query builder: every chainable resolves { data: null } so
+  // pages fall back to canonical constants instead of crashing. No fake data.
+  const terminal = async () => ({ data: null, error: null });
+  const chain: any = new Proxy({}, {
+    get: (_t, prop) => {
+      if (prop === 'then') return (res: any) => res({ data: null, error: null });
+      if (prop === 'single' || prop === 'maybeSingle') return terminal;
+      return (..._a: any[]) => chain;
+    },
+  });
   return {
     auth: {
       getUser: async () => ({ data: { user: null }, error: null })
     },
     from: (_table: string) => ({
-      select: () => ({ eq: () => ({ single: async () => ({ data: null, error: null }) }) }),
-      insert: () => ({ select: () => ({ single: async () => ({ data: null, error: null }) }) })
+      select: (..._a: any[]) => chain,
+      insert: (..._a: any[]) => chain,
+      update: (..._a: any[]) => chain,
+      delete: (..._a: any[]) => chain,
+      upsert: (..._a: any[]) => chain,
     })
   };
 }

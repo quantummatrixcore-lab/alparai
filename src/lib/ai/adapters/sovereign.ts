@@ -1,17 +1,20 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import "server-only";
 import OpenAI from "openai";
 import { logger } from "@/lib/utils/logger";
 import type { ProviderAdapter, GatewayRequest, GatewayResult } from "../types";
 
+
 // Sovereign ErcuOS & DeHost Internal Bridge:
 // Env precedence: ERCUOS_API_URL -> AI_GATEWAY_URL -> default local Ollama/ErcuOS on DeHost container network
 const SOVEREIGN_BASE_URL =
-  process.env.ERCUOS_API_URL ||
-  process.env.AI_GATEWAY_URL ||
+  (vault.read('ERCUOS_API_URL') ?? process.env.ERCUOS_API_URL) ||
+  (vault.read('AI_GATEWAY_URL') ?? process.env.AI_GATEWAY_URL) ||
   "http://127.0.0.1:11434/v1";
 const SOVEREIGN_API_KEY =
-  process.env.ERCUOS_API_KEY ||
-  process.env.AI_GATEWAY_KEY ||
+  (vault.read('ERCUOS_API_KEY') ?? process.env.ERCUOS_API_KEY) ||
+  (vault.read('AI_GATEWAY_KEY') ?? process.env.AI_GATEWAY_KEY) ||
   "sovereign-internal";
 const REQUEST_TIMEOUT_MS = 60_000;
 const MAX_RETRIES = 0;

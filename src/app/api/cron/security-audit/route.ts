@@ -1,4 +1,7 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { NextResponse } from "next/server";
+
 
 export const dynamic = "force-dynamic";
 
@@ -6,9 +9,9 @@ export async function GET(req: Request) {
   try {
     const authHeader = req.headers.get("authorization");
     if (
-      !process.env.CRON_SECRET ||
+      !(vault.read('CRON_SECRET') ?? process.env.CRON_SECRET) ||
       !authHeader ||
-      authHeader !== `Bearer ${process.env.CRON_SECRET}`
+      authHeader !== `Bearer ${(vault.read('CRON_SECRET') ?? process.env.CRON_SECRET)}`
     ) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }

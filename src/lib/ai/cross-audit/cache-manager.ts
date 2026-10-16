@@ -1,3 +1,5 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 /**
  * ALPAR AI — Cross-Audit Cache Manager
  *
@@ -13,6 +15,7 @@ import { createHash } from "crypto";
 import { Redis } from "@upstash/redis";
 import { logger } from "@/lib/utils/logger";
 
+
 const SEVERITY_TTL_MAP: Record<string, number> = {
   "unacceptable-risk": 300,
   "high-risk": 900,
@@ -21,11 +24,11 @@ const SEVERITY_TTL_MAP: Record<string, number> = {
 };
 
 export function getRedis(): Redis | null {
-  if (!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN) return null;
+  if (!(vault.read('UPSTASH_REDIS_REST_URL') ?? process.env.UPSTASH_REDIS_REST_URL) || !(vault.read('UPSTASH_REDIS_REST_TOKEN') ?? process.env.UPSTASH_REDIS_REST_TOKEN)) return null;
   try {
     return new Redis({
-      url: process.env.UPSTASH_REDIS_REST_URL,
-      token: process.env.UPSTASH_REDIS_REST_TOKEN,
+      url: (vault.read('UPSTASH_REDIS_REST_URL') ?? process.env.UPSTASH_REDIS_REST_URL),
+      token: (vault.read('UPSTASH_REDIS_REST_TOKEN') ?? process.env.UPSTASH_REDIS_REST_TOKEN),
     });
   } catch {
     return null;

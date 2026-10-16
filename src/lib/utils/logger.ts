@@ -1,3 +1,6 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
+
 
 
 type LogLevel = "debug" | "info" | "warn" | "error" | "critical";
@@ -14,7 +17,7 @@ interface LogEntry {
 
 function formatEntry(entry: LogEntry): string {
   const { level, message, context, timestamp, error } = entry;
-  if (process.env.NODE_ENV === "production") {
+  if ((vault.read('NODE_ENV') ?? process.env.NODE_ENV) === "production") {
     const jsonEntry: Record<string, unknown> = {
       ts: timestamp,
       level,
@@ -37,7 +40,7 @@ function formatEntry(entry: LogEntry): string {
 }
 
 function shouldLog(level: LogLevel): boolean {
-  if (process.env.NODE_ENV === "production" && level === "debug") return false;
+  if ((vault.read('NODE_ENV') ?? process.env.NODE_ENV) === "production" && level === "debug") return false;
   return true;
 }
 

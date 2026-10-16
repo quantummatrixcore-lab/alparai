@@ -21,7 +21,7 @@ socket.on('data', (d) => {
 
   if (step === 'WELCOME' && text.includes('* OK')) {
     step = 'LOGIN';
-    sendCmd('LOGIN ercument@alparai.com AlparAI_2026_045c419b0749!');
+    sendCmd('LOGIN ercument@alparai.com ');
   } else if (step === 'LOGIN' && text.includes('A1 OK')) {
     step = 'SELECT';
     sendCmd('SELECT INBOX');

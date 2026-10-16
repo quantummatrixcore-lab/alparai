@@ -1,11 +1,14 @@
 "use server";
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 
 import { requireAdmin } from "@/lib/auth/session";
+
 export async function getPlausibleMetrics() {
   await requireAdmin();
   try {
-    const apiKey = process.env.PLAUSIBLE_API_KEY;
-    const siteId = process.env.PLAUSIBLE_SITE_ID || "alparai.com";
+    const apiKey = (vault.read('PLAUSIBLE_API_KEY') ?? process.env.PLAUSIBLE_API_KEY);
+    const siteId = (vault.read('PLAUSIBLE_SITE_ID') ?? process.env.PLAUSIBLE_SITE_ID) || "alparai.com";
 
     if (!apiKey) {
       return {

@@ -1,4 +1,7 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { NextResponse } from "next/server";
+
 
 interface ServiceHealth {
   name: string;
@@ -19,8 +22,8 @@ export const dynamic = "force-dynamic";
 
 async function checkDeHost(): Promise<ServiceHealth> {
   const start = Date.now();
-  const url = process.env.NEXT_PUBLIC_DEHOST_URL || process.env.NEXT_PUBLIC_upstash_URL;
-  const key = process.env.NEXT_PUBLIC_DEHOST_ANON_KEY || process.env.NEXT_PUBLIC_upstash_ANON_KEY;
+  const url = (vault.read('NEXT_PUBLIC_DEHOST_URL') ?? process.env.NEXT_PUBLIC_DEHOST_URL) || (vault.read('NEXT_PUBLIC_SUPABASE_URL') ?? process.env.NEXT_PUBLIC_SUPABASE_URL);
+  const key = (vault.read('NEXT_PUBLIC_DEHOST_ANON_KEY') ?? process.env.NEXT_PUBLIC_DEHOST_ANON_KEY) || (vault.read('NEXT_PUBLIC_SUPABASE_ANON_KEY') ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
   if (!url || !key) {
     return {
       name: "dehost",
@@ -51,8 +54,8 @@ async function checkDeHost(): Promise<ServiceHealth> {
 
 async function checkRedis(): Promise<ServiceHealth> {
   const start = Date.now();
-  const url = process.env.UPSTASH_REDIS_REST_URL;
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  const url = (vault.read('UPSTASH_REDIS_REST_URL') ?? process.env.UPSTASH_REDIS_REST_URL);
+  const token = (vault.read('UPSTASH_REDIS_REST_TOKEN') ?? process.env.UPSTASH_REDIS_REST_TOKEN);
   if (!url || !token) {
     return { name: "redis", status: "not_configured", latencyMs: null };
   }
@@ -82,7 +85,7 @@ async function checkCloudflare(): Promise<ServiceHealth> {
 
 async function checkSentry(): Promise<ServiceHealth> {
   try {
-    const dsn = process.env.SENTRY_DSN || process.env.NEXT_PUBLIC_SENTRY_DSN;
+    const dsn = (vault.read('SENTRY_DSN') ?? process.env.SENTRY_DSN) || (vault.read('NEXT_PUBLIC_SENTRY_DSN') ?? process.env.NEXT_PUBLIC_SENTRY_DSN);
     if (!dsn) {
       return { name: "sentry", status: "not_configured", latencyMs: null };
     }
@@ -94,7 +97,7 @@ async function checkSentry(): Promise<ServiceHealth> {
 }
 
 async function checkResend(): Promise<ServiceHealth> {
-  const apiKey = process.env.RESEND_API_KEY;
+  const apiKey = (vault.read('RESEND_API_KEY') ?? process.env.RESEND_API_KEY);
   if (!apiKey) {
     return { name: "resend", status: "not_configured", latencyMs: null };
   }
@@ -120,7 +123,7 @@ async function checkResend(): Promise<ServiceHealth> {
 }
 
 async function checkGemini(): Promise<ServiceHealth> {
-  const key = process.env.GEMINI_API_KEY;
+  const key = (vault.read('GEMINI_API_KEY') ?? process.env.GEMINI_API_KEY);
   if (!key) {
     return { name: "gemini", status: "not_configured", latencyMs: null };
   }
@@ -145,7 +148,7 @@ async function checkGemini(): Promise<ServiceHealth> {
 }
 
 async function checkAnthropic(): Promise<ServiceHealth> {
-  const key = process.env.ANTHROPIC_API_KEY;
+  const key = (vault.read('ANTHROPIC_API_KEY') ?? process.env.ANTHROPIC_API_KEY);
   if (!key) {
     return { name: "anthropic", status: "not_configured", latencyMs: null };
   }
@@ -182,8 +185,8 @@ async function checkAnthropic(): Promise<ServiceHealth> {
 
 async function checkGoogleOAuth(): Promise<ServiceHealth> {
   try {
-    const clientId = process.env.GOOGLE_CLIENT_ID;
-    const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
+    const clientId = (vault.read('GOOGLE_CLIENT_ID') ?? process.env.GOOGLE_CLIENT_ID);
+    const clientSecret = (vault.read('GOOGLE_CLIENT_SECRET') ?? process.env.GOOGLE_CLIENT_SECRET);
     if (!clientId || !clientSecret) {
       return { name: "google_oauth", status: "not_configured", latencyMs: null };
     }

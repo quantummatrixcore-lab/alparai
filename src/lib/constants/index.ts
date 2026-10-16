@@ -1,3 +1,6 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
+
 /**
  * Application-wide constants.
  */
@@ -5,9 +8,9 @@
 export const APP_NAME = "ALPAR AI" as const;
 export const APP_DESCRIPTION =
   "Trust infrastructure for AI accountability. Community-driven incident reporting platform." as const;
-export const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? ("https://alparai.com" as const);
+export const APP_URL = (vault.read('NEXT_PUBLIC_APP_URL') ?? process.env.NEXT_PUBLIC_APP_URL) ?? ("https://alparai.com" as const);
 export const APP_EMAIL = "contact@alparai.com" as const;
-export const APP_TAKEDOWN_EMAIL = process.env.TAKEDOWN_EMAIL ?? ("takedown@alparai.com" as const);
+export const APP_TAKEDOWN_EMAIL = (vault.read('TAKEDOWN_EMAIL') ?? process.env.TAKEDOWN_EMAIL) ?? ("takedown@alparai.com" as const);
 
 export const DEFAULT_LOCALE = "en" as const;
 export const SUPPORTED_LOCALES = ["en", "tr"] as const;
@@ -16,10 +19,10 @@ export type Locale = (typeof SUPPORTED_LOCALES)[number];
 export const GITHUB_URL =
   "https://github.com/quantummatrixcore-lab/alparai?ref=alparai_platform" as const;
 export const LINKEDIN_URL =
-  process.env.NEXT_PUBLIC_LINKEDIN_URL ??
+  (vault.read('NEXT_PUBLIC_LINKEDIN_URL') ?? process.env.NEXT_PUBLIC_LINKEDIN_URL) ??
   ("https://www.linkedin.com/company/alpar-ai?ref=alparai_platform" as const);
 export const TWITTER_URL =
-  process.env.NEXT_PUBLIC_TWITTER_URL ??
+  (vault.read('NEXT_PUBLIC_TWITTER_URL') ?? process.env.NEXT_PUBLIC_TWITTER_URL) ??
   ("https://twitter.com/alparai?ref=alparai_platform" as const);
 
 export const SEVERITY_LEVELS = [

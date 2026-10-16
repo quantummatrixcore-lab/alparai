@@ -1,10 +1,13 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
+
 /**
  * Sovereign DeHost Database Schema, RLS Policies & Client Abstraction (WO-004 B5 Full Port)
  * Unified schema definition ported from DeHost PostgreSQL migrations.
  * Designed for DeHost dedicated Xeon infrastructure (Zero external coupling).
  * 
  * Rules:
- * - Password MUST be loaded exclusively from environment variables (process.env.DATABASE_URL or process.env.DEHOST_PASSWORD).
+ * - Password MUST be loaded exclusively from environment variables ((vault.read('DATABASE_URL') ?? process.env.DATABASE_URL) or (vault.read('DEHOST_PASSWORD') ?? process.env.DEHOST_PASSWORD)).
  * - Zero hardcoded password fallbacks.
  */
 
@@ -256,23 +259,23 @@ export type DeHostTableName = typeof DEHOST_TABLE_REGISTRY[number];
  * Fails closed if no database URL or password is set in environment.
  */
 export function getDeHostConnectionString(): string {
-  if (process.env.DATABASE_URL) {
-    return process.env.DATABASE_URL;
+  if ((vault.read('DATABASE_URL') ?? process.env.DATABASE_URL)) {
+    return (vault.read('DATABASE_URL') ?? process.env.DATABASE_URL);
   }
-  if (process.env.DEHOST_HOST && process.env.DEHOST_PASSWORD) {
-    const user = process.env.DEHOST_USER || 'dehost';
-    const host = process.env.DEHOST_HOST;
-    const port = process.env.DEHOST_PORT || (process.env.NODE_ENV === 'production' ? '6543' : '5432');
-    const db = process.env.DEHOST_DB || 'alparai';
-    return `postgresql://${user}:${process.env.DEHOST_PASSWORD}@${host}:${port}/${db}`;
+  if ((vault.read('DEHOST_HOST') ?? process.env.DEHOST_HOST) && (vault.read('DEHOST_PASSWORD') ?? process.env.DEHOST_PASSWORD)) {
+    const user = (vault.read('DEHOST_USER') ?? process.env.DEHOST_USER) || 'dehost';
+    const host = (vault.read('DEHOST_HOST') ?? process.env.DEHOST_HOST);
+    const port = (vault.read('DEHOST_PORT') ?? process.env.DEHOST_PORT) || ((vault.read('NODE_ENV') ?? process.env.NODE_ENV) === 'production' ? '6543' : '5432');
+    const db = (vault.read('DEHOST_DB') ?? process.env.DEHOST_DB) || 'alparai';
+    return `postgresql://${user}:${(vault.read('DEHOST_PASSWORD') ?? process.env.DEHOST_PASSWORD)}@${host}:${port}/${db}`;
   }
   return '';
 }
 
 export const DEHOST_DEFAULT_CONFIG: DeHostSchemaConfig = {
   connectionString: getDeHostConnectionString(),
-  poolSize: Number(process.env.DEHOST_POOL_SIZE) || 20,
-  ssl: process.env.NODE_ENV === 'production',
+  poolSize: Number((vault.read('DEHOST_POOL_SIZE') ?? process.env.DEHOST_POOL_SIZE)) || 20,
+  ssl: (vault.read('NODE_ENV') ?? process.env.NODE_ENV) === 'production',
   isolationLevel: 'read_committed',
 };
 
@@ -311,7 +314,7 @@ export class DeHostClient {
   }
 
   public isAlive(): boolean {
-    return Boolean(this.config.connectionString || process.env.ERCUOS_API_URL);
+    return Boolean(this.config.connectionString || (vault.read('ERCUOS_API_URL') ?? process.env.ERCUOS_API_URL));
   }
 
   public getTables(): readonly string[] {

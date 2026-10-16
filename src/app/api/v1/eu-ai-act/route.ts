@@ -1,12 +1,15 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import "server-only";
 import { NextResponse } from "next/server";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { headers } from "next/headers";
 
+
 const ALLOWED_ORIGINS = [
   "https://alparai.com",
   "https://www.alparai.com",
-  ...(process.env.NODE_ENV === "development" ? ["http://localhost:3000"] : []),
+  ...((vault.read('NODE_ENV') ?? process.env.NODE_ENV) === "development" ? ["http://localhost:3000"] : []),
 ];
 
 function corsHeaders(origin: string | null) {

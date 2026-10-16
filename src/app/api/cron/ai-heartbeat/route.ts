@@ -1,6 +1,9 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { NextResponse } from "next/server";
 import { discoverFreeModels, type FreeModelRecord } from "@/lib/ai/discovery/fetch-models";
 import { createAdminClient } from "@/lib/dehost/admin";
+
 
 export interface HeartbeatItemResult {
   modelId: string;
@@ -11,7 +14,7 @@ export interface HeartbeatItemResult {
 
 export async function GET(request: Request) {
   const authHeader = request.headers.get("authorization");
-  const cronSecret = process.env.CRON_SECRET;
+  const cronSecret = (vault.read('CRON_SECRET') ?? process.env.CRON_SECRET);
 
   if (cronSecret && authHeader !== `Bearer ${cronSecret}`) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

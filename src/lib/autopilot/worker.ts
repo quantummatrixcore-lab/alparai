@@ -1,3 +1,5 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import "server-only";
 import { getQueue } from "./queue";
 import type { QueueJob } from "./queue";
@@ -6,6 +8,7 @@ import { policies } from "./policies";
 import type { AttemptContext, AttemptOutcome } from "./types";
 import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
+
 
 export type WorkerHandler = (
   job: QueueJob,
@@ -41,7 +44,7 @@ const isRegisteredAction = (action: string): action is keyof typeof policies =>
   Object.prototype.hasOwnProperty.call(policies, action);
 
 export const isWorkerEnabled = async (workerName: string): Promise<boolean> => {
-  if (process.env.AUTOPILOT_KILL_SWITCH === "true") {
+  if ((vault.read('AUTOPILOT_KILL_SWITCH') ?? process.env.AUTOPILOT_KILL_SWITCH) === "true") {
     return false;
   }
   try {
@@ -110,7 +113,7 @@ export const runAutopilotWorkerOnce = async (
     emptyPolls: 0,
     durationMs: 0,
   };
-  if (process.env.AUTOPILOT_KILL_SWITCH === "true") {
+  if ((vault.read('AUTOPILOT_KILL_SWITCH') ?? process.env.AUTOPILOT_KILL_SWITCH) === "true") {
     logger.warn(
       `[autopilot worker] Global AUTOPILOT_KILL_SWITCH is enabled, skipping runAutopilotWorkerOnce`,
     );
@@ -149,7 +152,7 @@ export const runAutopilotWorker = async (
   };
   const started = Date.now();
   while (!signal.aborted) {
-    if (process.env.AUTOPILOT_KILL_SWITCH === "true") {
+    if ((vault.read('AUTOPILOT_KILL_SWITCH') ?? process.env.AUTOPILOT_KILL_SWITCH) === "true") {
       logger.warn(
         `[autopilot worker] Global AUTOPILOT_KILL_SWITCH is enabled, halting worker loop`,
       );

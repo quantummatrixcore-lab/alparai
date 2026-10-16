@@ -66,7 +66,7 @@ socket.on('data', (d) => {
   if (step === 'WELCOME' && text.includes('* OK')) {
     step = 'LOGIN';
     console.log('C: A1 LOGIN ercument@purelymail.com ...');
-    socket.write('A1 LOGIN ercument@purelymail.com AlparAI_2026_045c419b0749!\r\n');
+    socket.write('A1 LOGIN ercument@purelymail.com \r\n');
   } else if (step === 'LOGIN' && text.includes('A1 OK')) {
     step = 'SELECT';
     console.log('C: A2 SELECT INBOX');

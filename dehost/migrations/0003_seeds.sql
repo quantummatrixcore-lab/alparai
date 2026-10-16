@@ -1904,18 +1904,45 @@ BEGIN
         institution_tr, 
         bio_en, 
         bio_tr, 
+        display_order,
+        is_active,
+        term_start
+      ) VALUES (
+        'Prof. Dr. Musa Aygül',
+        'Honorary Advisory Board Chair - Commercial Law & Arbitration',
+        'Fahri Danışma Kurulu Başkanı - Ticaret Hukuku ve Tahkim',
+        'Selçuk University Faculty of Law',
+        'Selçuk Üniversitesi Hukuk Fakültesi',
+        'Head of Commercial Law Department at Selçuk University. Hamis of digital evidence admissibility under W3C and ISO/IEC 27037.',
+        'Selçuk Üniversitesi Ticaret Hukuku Anabilim Dalı Başkanı. W3C ihlal loglarının Uluslararası Ticari Tahkim ve ISO/IEC 27037 adli delil doktrini hamisi.',
+        1,
+        true,
+        '2026-01-01T00:00:00Z'
+      ) ON CONFLICT DO NOTHING;
+      INSERT INTO public.advisory_board_members (
+        name, 
+        title_en, 
+        title_tr, 
+        institution_en, 
+        institution_tr, 
+        bio_en, 
+        bio_tr, 
         avatar_url, 
-        is_active
+        display_order,
+        is_active,
+        term_start
       ) VALUES (
         'Ahmet Rıfat Albuz',
-        'Journalist, Communication Consultant',
-        'Gazeteci, İletişim Danışmanı',
+        'Journalist, Strategic Communication Consultant',
+        'Gazeteci, Stratejik İletişim Danışmanı',
         'Yeni Nesil TV / TÜRKİNFORM',
         'Yeni Nesil TV / TÜRKİNFORM',
-        'Journalist and Founder of yeninesil.tv, Editor-in-Chief at TÜRKİNFORM. With over 20 years of experience in traditional and digital media.',
+        'Journalist and Founder of yeninesil.tv, Editor-in-Chief at TÜRKİNFORM. 20+ years of media crisis management expertise.',
         '20 yılı aşkın tecrübesiyle geleneksel medyanın mutfağından yetişen, yeninesil.tv kurucusu ve TÜRKİNFORM Genel Yayın Yönetmeni.',
         'https://ahmetrifatalbuz.com/assets/ahmet-rifat-albuz.jpg',
-        false
+        2,
+        true,
+        '2026-01-01T00:00:00Z'
       ) ON CONFLICT DO NOTHING;
     END IF;
   END IF;

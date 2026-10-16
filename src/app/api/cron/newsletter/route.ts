@@ -1,8 +1,11 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { withCronLogger } from "@/lib/utils/cron-logger";
 import { type NextRequest, NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 import { getResendClient } from "@/lib/email/resend";
+
 
 export const dynamic = "force-dynamic";
 
@@ -20,11 +23,11 @@ interface IncidentWithProvider {
 
 async function getHandler(request: NextRequest) {
   const authHeader = request.headers.get("authorization");
-  const cronSecret = process.env.CRON_SECRET;
+  const cronSecret = (vault.read('CRON_SECRET') ?? process.env.CRON_SECRET);
 
   const isAuthorized =
     Boolean(cronSecret && authHeader === `Bearer ${cronSecret}`) ||
-    (process.env.NODE_ENV !== "production" && !cronSecret);
+    ((vault.read('NODE_ENV') ?? process.env.NODE_ENV) !== "production" && !cronSecret);
 
   if (!isAuthorized) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -90,7 +93,7 @@ async function getHandler(request: NextRequest) {
         .map((inc) => {
           const providerName = inc.ai_providers?.name || "Unknown Provider";
           const severityColor = inc.severity === "critical" ? "#ef4444" : "#f97316";
-          const detailLink = `${process.env.NEXT_PUBLIC_APP_URL || "https://alparai.com"}/${locale}/incidents/${inc.id}`;
+          const detailLink = `${(vault.read('NEXT_PUBLIC_APP_URL') ?? process.env.NEXT_PUBLIC_APP_URL) || "https://alparai.com"}/${locale}/incidents/${inc.id}`;
 
           return `
           <div style="background-color: #09090b; border: 1px solid #27272a; border-radius: 12px; padding: 20px; margin-bottom: 20px;">

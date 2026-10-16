@@ -1,3 +1,5 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { NextResponse } from "next/server";
 import { headers } from "next/headers";
 import { timingSafeEqual } from "crypto";
@@ -6,6 +8,7 @@ import { maskPII } from "@/lib/pii/guardian";
 import { transcribeAudioBlob } from "@/actions/voice-incidents";
 import { submitIncident, type SubmitIncidentState } from "@/actions/incidents";
 import { z } from "zod";
+
 
 function safeCompare(a: string, b: string): boolean {
   const aBuf = Buffer.from(a);
@@ -71,7 +74,7 @@ export async function POST(request: Request) {
 
     // 2. Optional API Key Authentication
     const apiKey = request.headers.get("x-api-key");
-    const validKey = process.env.PUBLIC_API_KEY;
+    const validKey = (vault.read('PUBLIC_API_KEY') ?? process.env.PUBLIC_API_KEY);
     if (apiKey && validKey && !safeCompare(apiKey, validKey)) {
       return NextResponse.json(
         { success: false, error: "Unauthorized: Invalid API key" },

@@ -1,3 +1,5 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
@@ -5,6 +7,7 @@ import { isAdmin } from "@/lib/auth/session";
 
 
 import GoogleEcosystemBridge from "../../../../scripts/google_ecosystem_bridge.js";
+
 
 // @auth: requireAdmin (verified via isAdmin)
 export async function GET() {
@@ -42,8 +45,8 @@ export async function GET() {
 
     // AltyapÄ± durumu (SimÃ¼le edilmiÅŸ veya gerÃ§ek)
     const infraStatus = {
-      wafMode: process.env.CLOUDFLARE_API_TOKEN ? "Under Attack Mode (Active)" : "Standby",
-      dehostDeployments: process.env.DEHOST_TOKEN ? "Ready" : "Standby",
+      wafMode: (vault.read('CLOUDFLARE_API_TOKEN') ?? process.env.CLOUDFLARE_API_TOKEN) ? "Under Attack Mode (Active)" : "Standby",
+      dehostDeployments: (vault.read('DEHOST_TOKEN') ?? process.env.DEHOST_TOKEN) ? "Ready" : "Standby",
     };
 
     // Stripe & Finans (ReadOnly Yetkili)

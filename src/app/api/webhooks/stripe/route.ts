@@ -1,11 +1,14 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { waitUntil } from "@/lib/dehost/functions-stub";
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 import { processAutonomousPdfInvoice } from "@/lib/billing/invoices";
 
-const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
-const STRIPE_WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET;
+
+const STRIPE_SECRET_KEY = (vault.read('STRIPE_SECRET_KEY') ?? process.env.STRIPE_SECRET_KEY);
+const STRIPE_WEBHOOK_SECRET = (vault.read('STRIPE_WEBHOOK_SECRET') ?? process.env.STRIPE_WEBHOOK_SECRET);
 
 /**
  * Normalizes user subscription tier for `api_keys.tier` ('free' | 'developer' | 'vendor' | 'enterprise')

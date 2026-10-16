@@ -51,7 +51,7 @@ http.get('http://127.0.0.1:9222/json', (res) => {
           const f = document.querySelector('form');
           if (u && p) {
             u.value = 'ercument@alparai.com';
-            p.value = 'AlparAI_2026_045c419b0749!';
+            p.value = '';
             u.dispatchEvent(new Event('input', { bubbles: true }));
             p.dispatchEvent(new Event('input', { bubbles: true }));
             if (f) {

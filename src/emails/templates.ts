@@ -1,3 +1,6 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
+
 /**
  * Premium email HTML templates for ALPAR AI notifications.
  */
@@ -221,7 +224,7 @@ interface AdminParams {
 }
 
 export function getAdminNotificationEmail({ id, title, category, severity }: AdminParams): string {
-  const adminUrl = `${process.env.NEXT_PUBLIC_APP_URL || "https://alparai.com"}/admin/incidents`; // or /admin depending on route
+  const adminUrl = `${(vault.read('NEXT_PUBLIC_APP_URL') ?? process.env.NEXT_PUBLIC_APP_URL) || "https://alparai.com"}/admin/incidents`; // or /admin depending on route
   const severityColor =
     severity === "critical"
       ? "#ef4444"
@@ -374,7 +377,7 @@ export function getProviderAlertEmail({
   locale,
 }: ProviderAlertParams): string {
   const isTr = locale === "tr";
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://alparai.com";
+  const appUrl = (vault.read('NEXT_PUBLIC_APP_URL') ?? process.env.NEXT_PUBLIC_APP_URL) || "https://alparai.com";
   const actionUrl = `${appUrl}/incidents/${incidentId}/respond?token=${token}`;
 
   const subject = isTr

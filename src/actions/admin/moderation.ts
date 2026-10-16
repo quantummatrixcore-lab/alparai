@@ -1,4 +1,6 @@
 "use server";
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
@@ -13,6 +15,7 @@ import { generateProviderToken } from "@/lib/utils/hash";
 import { getExpertVerificationEmail, getModerationNotificationEmail } from "@/emails/templates";
 import { generateEmailUnsubscribeToken } from "@/lib/utils/unsubscribe";
 import { checkRateLimit } from "@/lib/utils/rate-limit";
+
 
 export interface ModerationResult {
   ok: boolean;
@@ -106,7 +109,7 @@ const runModerationWork = async (
 
         if (provider && provider.contact_email) {
           const token = generateProviderToken(incident.id, provider.contact_email);
-          const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://alparai.com";
+          const appUrl = (vault.read('NEXT_PUBLIC_APP_URL') ?? process.env.NEXT_PUBLIC_APP_URL) || "https://alparai.com";
           const respondLink = `${appUrl}/en/incidents/${incident.id}/respond?token=${token}`;
 
           const resend = getResendClient();
@@ -169,7 +172,7 @@ https://alparai.com`,
                 `ratelimit:email_notification:${incident.user_id}`,
               );
               if (rlCheck.ok) {
-                const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://alparai.com";
+                const appUrl = (vault.read('NEXT_PUBLIC_APP_URL') ?? process.env.NEXT_PUBLIC_APP_URL) || "https://alparai.com";
                 const unsubToken = generateEmailUnsubscribeToken(reporterUser.email);
                 const unsubscribeUrl = `${appUrl}/api/unsubscribe?email=${encodeURIComponent(reporterUser.email)}&token=${unsubToken}`;
                 const emailHtml = getExpertVerificationEmail({
@@ -243,7 +246,7 @@ https://alparai.com`,
             `ratelimit:email_mod_notification:${incident.user_id}`,
           );
           if (rlCheck.ok) {
-            const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://alparai.com";
+            const appUrl = (vault.read('NEXT_PUBLIC_APP_URL') ?? process.env.NEXT_PUBLIC_APP_URL) || "https://alparai.com";
             const unsubToken = generateEmailUnsubscribeToken(reporterUser.email);
             const unsubscribeUrl = `${appUrl}/api/unsubscribe?email=${encodeURIComponent(reporterUser.email)}&token=${unsubToken}`;
             const emailHtml = getModerationNotificationEmail({

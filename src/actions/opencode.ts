@@ -1,8 +1,11 @@
 "use server";
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 
 import fs from "fs";
 import path from "path";
 import { execSync } from "child_process";
+
 
 export type OpenCodeRunPayload = {
   model: string;
@@ -18,7 +21,7 @@ export type OpenCodeRunPayload = {
 
 export async function recordOpenCodeRun(payload: OpenCodeRunPayload) {
   try {
-    if (process.env.NODE_ENV === "production") {
+    if ((vault.read('NODE_ENV') ?? process.env.NODE_ENV) === "production") {
       // Cannot write to local FS on DeHost production
       return { success: false, error: "Read-only file system on production" };
     }

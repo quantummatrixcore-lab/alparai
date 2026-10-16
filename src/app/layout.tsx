@@ -1,10 +1,13 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import type { Metadata, Viewport } from "next";
 
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "https://alparai.com"),
+  metadataBase: new URL((vault.read('NEXT_PUBLIC_APP_URL') ?? process.env.NEXT_PUBLIC_APP_URL) ?? "https://alparai.com"),
   title: {
-    default: "AlparAi - EU AI Act Compliance & AI Incident Intelligence Platform",
-    template: "%s | AlparAi",
+    default: "AlparAI — AI Accountability & Incident Reporting Platform",
+    template: "%s | AlparAI",
   },
   description: "Monitor 2,880+ AI incidents, achieve EU AI Act compliance with automated auditing",
   applicationName: "AlparAI",
@@ -61,7 +64,7 @@ export const metadata: Metadata = {
     apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180" }],
   },
   verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? "",
+    google: (vault.read('NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION') ?? process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION) ?? "",
   },
   appleWebApp: {
     capable: true,

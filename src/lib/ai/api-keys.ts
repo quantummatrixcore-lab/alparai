@@ -1,5 +1,8 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import "server-only";
 import { createAdminClient } from "@/lib/dehost/admin";
+
 
 interface DbApiKeyResult {
   api_key: string;
@@ -32,27 +35,27 @@ export async function resolveApiKey(provider: string, envVar: string): Promise<s
 
   // 2. Special fallbacks
   if (provider === "google") {
-    if (isValidKeyFormat(process.env.GEMINI_API_KEY)) return process.env.GEMINI_API_KEY!;
-    if (isValidKeyFormat(process.env.GOOGLE_API_KEY)) return process.env.GOOGLE_API_KEY!;
+    if (isValidKeyFormat((vault.read('GEMINI_API_KEY') ?? process.env.GEMINI_API_KEY))) return (vault.read('GEMINI_API_KEY') ?? process.env.GEMINI_API_KEY)!;
+    if (isValidKeyFormat((vault.read('GOOGLE_API_KEY') ?? process.env.GOOGLE_API_KEY))) return (vault.read('GOOGLE_API_KEY') ?? process.env.GOOGLE_API_KEY)!;
   }
   if (provider === "nvidia") {
-    if (isValidKeyFormat(process.env.NVIDIA_API_KEY)) return process.env.NVIDIA_API_KEY!;
-    if (isValidKeyFormat(process.env.NGC_API_KEY)) return process.env.NGC_API_KEY!;
+    if (isValidKeyFormat((vault.read('NVIDIA_API_KEY') ?? process.env.NVIDIA_API_KEY))) return (vault.read('NVIDIA_API_KEY') ?? process.env.NVIDIA_API_KEY)!;
+    if (isValidKeyFormat((vault.read('NGC_API_KEY') ?? process.env.NGC_API_KEY))) return (vault.read('NGC_API_KEY') ?? process.env.NGC_API_KEY)!;
   }
-  if (provider === "openrouter" && isValidKeyFormat(process.env.OPENROUTER_API_KEY)) {
-    return process.env.OPENROUTER_API_KEY!;
+  if (provider === "openrouter" && isValidKeyFormat((vault.read('OPENROUTER_API_KEY') ?? process.env.OPENROUTER_API_KEY))) {
+    return (vault.read('OPENROUTER_API_KEY') ?? process.env.OPENROUTER_API_KEY)!;
   }
-  if (provider === "huggingface" && isValidKeyFormat(process.env.HF_API_KEY)) {
-    return process.env.HF_API_KEY!;
+  if (provider === "huggingface" && isValidKeyFormat((vault.read('HF_API_KEY') ?? process.env.HF_API_KEY))) {
+    return (vault.read('HF_API_KEY') ?? process.env.HF_API_KEY)!;
   }
-  if (provider === "groq" && isValidKeyFormat(process.env.GROQ_API_KEY)) {
-    return process.env.GROQ_API_KEY!;
+  if (provider === "groq" && isValidKeyFormat((vault.read('GROQ_API_KEY') ?? process.env.GROQ_API_KEY))) {
+    return (vault.read('GROQ_API_KEY') ?? process.env.GROQ_API_KEY)!;
   }
   if (
     (provider === "vertex" || provider === "google_vertex") &&
-    isValidKeyFormat(process.env.VERTEX_API_KEY)
+    isValidKeyFormat((vault.read('VERTEX_API_KEY') ?? process.env.VERTEX_API_KEY))
   ) {
-    return process.env.VERTEX_API_KEY!;
+    return (vault.read('VERTEX_API_KEY') ?? process.env.VERTEX_API_KEY)!;
   }
 
   // 3. Try to read from the public.api_keys table using admin client (bypasses RLS)

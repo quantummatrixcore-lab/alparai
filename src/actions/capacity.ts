@@ -63,7 +63,7 @@ export async function getLiveCapacityMetrics(): Promise<CapacityMetrics> {
     }
 
     // 2. DeHost Storage Size via RPC
-    let storageUsedBytes = 5242908; // 5 MB fallback
+    let storageUsedBytes = 5242880; // 5 MB fallback (5 * 1024 * 1024)
     const { data: storageSizeData, error: storageSizeErr } = await db.rpc("get_storage_size");
     if (!storageSizeErr && storageSizeData) {
       storageUsedBytes = Number(storageSizeData);

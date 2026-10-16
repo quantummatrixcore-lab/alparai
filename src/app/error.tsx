@@ -1,10 +1,13 @@
 "use client";
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 
 import { useEffect } from "react";
 import { Container } from "@/components/ui/layout";
 import { Button } from "@/components/ui/button";
 import { AlertTriangle, RefreshCw } from "lucide-react";
 import { useTranslations } from "next-intl";
+
 
 export default function GlobalError({
   error,
@@ -16,7 +19,7 @@ export default function GlobalError({
   const t = useTranslations("errors");
 
   useEffect(() => {
-    if (process.env.NODE_ENV === "production") {
+    if ((vault.read('NODE_ENV') ?? process.env.NODE_ENV) === "production") {
       console.error(
         JSON.stringify({
           ts: new Date().toISOString(),

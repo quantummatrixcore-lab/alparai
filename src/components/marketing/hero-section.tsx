@@ -129,7 +129,7 @@ export function HeroSection({
               </div>
               <div className="group hover:border-success-500/50 border-success-500/30 bg-success-500/10 text-success-300 relative inline-flex items-center gap-2 overflow-hidden rounded-full border px-4 py-2 text-[11px] font-black tracking-[0.2em] uppercase backdrop-blur-xl transition-all duration-300">
                 <Target className="text-success-400 h-3.5 w-3.5" />
-                <span className="relative z-10">2,880+ AI Incidents Monitored</span>
+                <span className="relative z-10">{totalIncidents > 0 ? `${totalIncidents.toLocaleString("en-US")}+ AI Incidents Monitored` : "AI Incidents Monitored"}</span>
               </div>
             </motion.div>
 

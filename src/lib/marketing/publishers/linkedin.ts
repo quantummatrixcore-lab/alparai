@@ -1,4 +1,7 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { logger } from "@/lib/utils/logger";
+
 
 /**
  * Publishes content to LinkedIn using UGC Share API.
@@ -7,8 +10,8 @@ export async function publishToLinkedIn(
   content: string,
   title?: string,
 ): Promise<{ success: boolean; shareId?: string; error?: string }> {
-  const accessToken = process.env.LINKEDIN_ACCESS_TOKEN;
-  const organizationId = process.env.LINKEDIN_ORGANIZATION_ID;
+  const accessToken = (vault.read('LINKEDIN_ACCESS_TOKEN') ?? process.env.LINKEDIN_ACCESS_TOKEN);
+  const organizationId = (vault.read('LINKEDIN_ORGANIZATION_ID') ?? process.env.LINKEDIN_ORGANIZATION_ID);
 
   if (!accessToken || !organizationId) {
     logger.warn("[LinkedIn Publisher] Missing API credentials. Skipping auto-publish.");

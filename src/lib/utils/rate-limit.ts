@@ -1,7 +1,10 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import "server-only";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 import { logger } from "./logger";
+
 
 export const RATE_LIMIT_KEYS = {
   incident_submission: "ratelimit:incident_submission",
@@ -54,16 +57,16 @@ let _limiters: Record<string, Ratelimit> | null = null;
 
 function getLimiters(): Record<string, Ratelimit> {
   if (_limiters) return _limiters;
-  if (!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN) {
-    if (process.env.NODE_ENV !== "test") {
+  if (!(vault.read('UPSTASH_REDIS_REST_URL') ?? process.env.UPSTASH_REDIS_REST_URL) || !(vault.read('UPSTASH_REDIS_REST_TOKEN') ?? process.env.UPSTASH_REDIS_REST_TOKEN)) {
+    if ((vault.read('NODE_ENV') ?? process.env.NODE_ENV) !== "test") {
       logger.warn("Upstash Redis environment variables are missing. Rate limiting is disabled.");
     }
     return {};
   }
   if (!_redis) {
     _redis = new Redis({
-      url: process.env.UPSTASH_REDIS_REST_URL,
-      token: process.env.UPSTASH_REDIS_REST_TOKEN,
+      url: (vault.read('UPSTASH_REDIS_REST_URL') ?? process.env.UPSTASH_REDIS_REST_URL),
+      token: (vault.read('UPSTASH_REDIS_REST_TOKEN') ?? process.env.UPSTASH_REDIS_REST_TOKEN),
     });
   }
   _limiters = {
@@ -351,7 +354,7 @@ export async function checkRateLimit(key: string): Promise<{
 
     const limiter = limiters[baseKey];
     if (!limiter) {
-      return { ok: true };
+      return localFallbackLimit(key);
     }
     const { success, limit, remaining, reset } = await limiter.limit(key);
     return {
@@ -363,21 +366,51 @@ export async function checkRateLimit(key: string): Promise<{
     };
   } catch (e) {
     logger.error("rate limit check failed", { key }, e instanceof Error ? e : undefined);
-    if (process.env.NODE_ENV === "production") {
+    if ((vault.read('NODE_ENV') ?? process.env.NODE_ENV) === "production") {
       return { ok: false, retryAfter: 60 };
     }
-    return { ok: true };
+    return localFallbackLimit(key);
   }
 }
 
+// Local in-memory fallback when Redis is unavailable.
+// Same contract as Redis path; prevents fail-open unlimited traffic.
+const _localHits = new Map<string, { count: number; resetAt: number }>();
+const LOCAL_LIMIT = 60;
+const LOCAL_WINDOW_MS = 60_000;
+
+function localFallbackLimit(key: string): {
+  ok: boolean;
+  limit?: number;
+  remaining?: number;
+  reset?: number;
+  retryAfter?: number;
+} {
+  const now = Date.now();
+  const rec = _localHits.get(key);
+  if (!rec || now > rec.resetAt) {
+    _localHits.set(key, { count: 1, resetAt: now + LOCAL_WINDOW_MS });
+    if (_localHits.size > 20000) {
+      const oldest = _localHits.keys().next();
+      if (!oldest.done) _localHits.delete(oldest.value);
+    }
+    return { ok: true, limit: LOCAL_LIMIT, remaining: LOCAL_LIMIT - 1, reset: now + LOCAL_WINDOW_MS };
+  }
+  rec.count++;
+  if (rec.count > LOCAL_LIMIT) {
+    return { ok: false, limit: LOCAL_LIMIT, remaining: 0, reset: rec.resetAt, retryAfter: Math.max(0, Math.ceil((rec.resetAt - now) / 1000)) };
+  }
+  return { ok: true, limit: LOCAL_LIMIT, remaining: LOCAL_LIMIT - rec.count, reset: rec.resetAt };
+}
+
 export function getRedisInstance(): Redis | null {
-  if (!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN) {
+  if (!(vault.read('UPSTASH_REDIS_REST_URL') ?? process.env.UPSTASH_REDIS_REST_URL) || !(vault.read('UPSTASH_REDIS_REST_TOKEN') ?? process.env.UPSTASH_REDIS_REST_TOKEN)) {
     return null;
   }
   if (!_redis) {
     _redis = new Redis({
-      url: process.env.UPSTASH_REDIS_REST_URL,
-      token: process.env.UPSTASH_REDIS_REST_TOKEN,
+      url: (vault.read('UPSTASH_REDIS_REST_URL') ?? process.env.UPSTASH_REDIS_REST_URL),
+      token: (vault.read('UPSTASH_REDIS_REST_TOKEN') ?? process.env.UPSTASH_REDIS_REST_TOKEN),
     });
   }
   return _redis;

@@ -1,5 +1,8 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { google } from "googleapis";
 import type { drive_v3 } from "googleapis";
+
 
 const SCOPES = [
   "https://www.googleapis.com/auth/drive.file",
@@ -16,8 +19,8 @@ export async function getGDriveClient(): Promise<drive_v3.Drive> {
     return authCache;
   }
 
-  const clientEmail = process.env.GOOGLE_CLIENT_EMAIL;
-  const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n");
+  const clientEmail = (vault.read('GOOGLE_CLIENT_EMAIL') ?? process.env.GOOGLE_CLIENT_EMAIL);
+  const privateKey = (vault.read('GOOGLE_PRIVATE_KEY') ?? process.env.GOOGLE_PRIVATE_KEY)?.replace(/\\n/g, "\n");
 
   if (!clientEmail || !privateKey) {
     throw new Error("Missing GOOGLE_CLIENT_EMAIL or GOOGLE_PRIVATE_KEY environment variables");
@@ -45,7 +48,7 @@ export async function uploadToDrive(
   folderId?: string,
 ): Promise<string> {
   const drive = await getGDriveClient();
-  const targetFolderId = folderId || process.env.GDRIVE_VAULT_FOLDER_ID;
+  const targetFolderId = folderId || (vault.read('GDRIVE_VAULT_FOLDER_ID') ?? process.env.GDRIVE_VAULT_FOLDER_ID);
 
   if (!targetFolderId) {
     throw new Error("GDRIVE_VAULT_FOLDER_ID is missing in environment variables");

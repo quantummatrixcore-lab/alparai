@@ -1,3 +1,5 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import "server-only";
 import { createAdminClient } from "@/lib/dehost/admin";
 import { callWithFailover } from "@/lib/ai/openrouter-gateway";
@@ -5,6 +7,7 @@ import { selectModelByCapability } from "@/lib/audit/model-router";
 import { HuggingFaceAdapter } from "@/lib/ai/adapters/huggingface";
 import { VertexImagenAdapter } from "@/lib/ai/adapters/vertex-imagen";
 import { logger } from "@/lib/utils/logger";
+
 
 interface GeneratedContent {
   x_post: string;
@@ -124,7 +127,7 @@ Output your response strictly as a JSON object:
   const startImgTime = performance.now();
 
   try {
-    if (process.env.NODE_ENV === "production" && !process.env.HF_API_KEY) {
+    if ((vault.read('NODE_ENV') ?? process.env.NODE_ENV) === "production" && !(vault.read('HF_API_KEY') ?? process.env.HF_API_KEY)) {
       throw new Error("CRITICAL: HF_API_KEY is absent in production environment!");
     }
 
@@ -222,7 +225,7 @@ Output your response strictly as a JSON object:
     return false;
   }
 
-  if (process.env.LINKEDIN_PUBLISHING_MODE === "true") {
+  if ((vault.read('LINKEDIN_PUBLISHING_MODE') ?? process.env.LINKEDIN_PUBLISHING_MODE) === "true") {
     const { error: draftError } = await admin.from("marketing_drafts" as never).insert({
       platform: "linkedin",
       content: generated.linkedin_post,
@@ -383,7 +386,7 @@ Output your response strictly as a JSON object:
     return false;
   }
 
-  if (process.env.LINKEDIN_PUBLISHING_MODE === "true") {
+  if ((vault.read('LINKEDIN_PUBLISHING_MODE') ?? process.env.LINKEDIN_PUBLISHING_MODE) === "true") {
     const { error: draftError } = await admin.from("marketing_drafts" as never).insert({
       platform: "linkedin",
       content: generated.linkedin_post,

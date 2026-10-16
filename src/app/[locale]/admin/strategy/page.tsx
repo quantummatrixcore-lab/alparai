@@ -56,7 +56,7 @@ export default function StrategyPage() {
         <MetricCard
           label="Hesaplanan Şirket Değerlemesi"
           value="$48.5M - $85.0M"
-          subtext="2.908 Vaka Veri Kalkanı & B2B ARR Çarpanı (25x - 40x)"
+          subtext="3.115 Vaka Veri Kalkanı & B2B ARR Çarpanı (25x - 40x)"
           changeType="positive"
           icon={DollarSign}
         />
@@ -140,7 +140,7 @@ export default function StrategyPage() {
           <div className="space-y-2 rounded-lg border border-emerald-800/60 bg-emerald-950/30 p-4">
             <h3 className="text-balance text-sm font-bold text-emerald-300">GÜÇLÜ YÖNLER (STRENGTHS)</h3>
             <ul className="list-inside list-disc space-y-1 font-sans text-xs text-[#656d76] dark:text-[#c9d1d9]">
-              <li>2.908 hazır vaka ile pazarın en büyük açık & doğrulanmış veri seti</li>
+              <li>3.115 hazır vaka ile pazarın en büyük açık & doğrulanmış veri seti</li>
               <li>EU AI Act Madde 73 (72h SLA) ve Madde 99 ceza hesaplama tekeli</li>
               <li>5-Model Byzantine çapraz denetim mimarisi (Sıfır tek model bağımlılığı)</li>
               <li>Sıfır-Bilgi PII temizliği (MERNİS, IBAN, Luhn)</li>

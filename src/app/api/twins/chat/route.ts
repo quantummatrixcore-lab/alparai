@@ -1,3 +1,5 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { type NextRequest, NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/dehost/admin";
@@ -10,6 +12,7 @@ import { ArbitrageEngine } from "@/lib/agent-os/arbitrage-engine";
 import { calculateAlignmentScore, selfHealResponse } from "@/lib/agent-os/alignment-engine";
 
 import { getCurrentUser } from "@/lib/auth/session";
+
 
 export async function POST(req: NextRequest) {
   try {
@@ -55,7 +58,7 @@ export async function POST(req: NextRequest) {
     // Agent-OS Arbitrage Engine selects the optimal high-capacity model
     const model = await ArbitrageEngine.routeTask("xl");
 
-    const openRouterApiKey = process.env.OPENROUTER_API_KEY;
+    const openRouterApiKey = (vault.read('OPENROUTER_API_KEY') ?? process.env.OPENROUTER_API_KEY);
     let reply = "";
     let promptTokens = 0;
     let completionTokens = 0;

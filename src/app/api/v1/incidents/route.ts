@@ -1,9 +1,12 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { type NextRequest, NextResponse } from "next/server";
 import { headers } from "next/headers";
 import { timingSafeEqual } from "crypto";
 import { createAdminClient } from "@/lib/dehost/admin";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { rateLimit } from "@/lib/rate-limit";
+
 
 function safeCompare(a: string, b: string): boolean {
   const aBuf = Buffer.from(a);
@@ -31,7 +34,7 @@ export async function GET(request: NextRequest) {
     }
 
     const apiKey = request.headers.get("x-api-key");
-    const validKey = process.env.PUBLIC_API_KEY;
+    const validKey = (vault.read('PUBLIC_API_KEY') ?? process.env.PUBLIC_API_KEY);
 
     if (!validKey || !apiKey || !safeCompare(apiKey, validKey)) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -79,6 +82,8 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       data: incidents,
       count: incidents.length,
+    }, {
+      headers: { "Access-Control-Allow-Origin": "*" },
     });
   } catch (_err) {
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });

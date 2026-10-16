@@ -1,4 +1,7 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { logger } from "@/lib/utils/logger";
+
 
 /**
  * Publishes content to X/Twitter using API v2.
@@ -6,10 +9,10 @@ import { logger } from "@/lib/utils/logger";
 export async function publishToX(
   content: string,
 ): Promise<{ success: boolean; postId?: string; error?: string }> {
-  const apiKey = process.env.X_API_KEY;
-  const apiSecret = process.env.X_API_KEY_SECRET;
-  const accessToken = process.env.X_ACCESS_TOKEN;
-  const accessTokenSecret = process.env.X_ACCESS_TOKEN_SECRET;
+  const apiKey = (vault.read('X_API_KEY') ?? process.env.X_API_KEY);
+  const apiSecret = (vault.read('X_API_KEY_SECRET') ?? process.env.X_API_KEY_SECRET);
+  const accessToken = (vault.read('X_ACCESS_TOKEN') ?? process.env.X_ACCESS_TOKEN);
+  const accessTokenSecret = (vault.read('X_ACCESS_TOKEN_SECRET') ?? process.env.X_ACCESS_TOKEN_SECRET);
 
   if (!apiKey || !apiSecret || !accessToken || !accessTokenSecret) {
     logger.warn("[X Publisher] Missing API credentials. Skipping auto-publish.");

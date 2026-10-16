@@ -1,4 +1,7 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import "server-only";
+
 
 export type ContextTier = "xs" | "s" | "m" | "l" | "xl";
 export type IncidentSeverity = "P0" | "P1" | "P2";
@@ -15,7 +18,7 @@ export class ArbitrageEngine {
       case "xl":
       case "deep":
         // For large context or strategic depth (Atatürk, Turing, Da Vinci)
-        return process.env.DEFAULT_LLM_MODEL || "google/gemini-2.0-flash-exp:free";
+        return (vault.read('DEFAULT_LLM_MODEL') ?? process.env.DEFAULT_LLM_MODEL) || "google/gemini-2.0-flash-exp:free";
       case "l":
       case "code":
         return "deepseek/deepseek-chat";
@@ -23,7 +26,7 @@ export class ArbitrageEngine {
       case "fast":
         return "google/gemini-2.0-flash";
       default:
-        return process.env.DEFAULT_LLM_MODEL || "google/gemini-2.0-flash-exp:free";
+        return (vault.read('DEFAULT_LLM_MODEL') ?? process.env.DEFAULT_LLM_MODEL) || "google/gemini-2.0-flash-exp:free";
     }
   }
 

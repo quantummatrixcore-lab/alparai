@@ -1,4 +1,6 @@
 "use server";
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
@@ -14,6 +16,7 @@ import type { Database } from "@/types/database";
 import { logger } from "@/lib/utils/logger";
 import { calculateSlaDueDate } from "@/lib/moderation/sla";
 import { maskPII } from "@/lib/pii/guardian";
+
 
 export interface TakedownResult {
   ok: boolean;
@@ -156,7 +159,7 @@ const runInlineTakedownWork = async (
   const admin = createAdminClient();
   const insertRow: Database["public"]["Tables"]["takedown_requests"]["Insert"] = {
     reason: maskPII(
-      `${data.parsed.reason}\n\nTarget: ${process.env.NEXT_PUBLIC_APP_URL}/incidents/${data.parsed.incidentId}\n\n${data.parsed.details}`,
+      `${data.parsed.reason}\n\nTarget: ${(vault.read('NEXT_PUBLIC_APP_URL') ?? process.env.NEXT_PUBLIC_APP_URL)}/incidents/${data.parsed.incidentId}\n\n${data.parsed.details}`,
     ).masked,
     requester_email: data.parsed.contactEmail,
     requester_name: maskPII(data.requesterName).masked,

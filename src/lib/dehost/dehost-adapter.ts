@@ -1,3 +1,5 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 /**
  * Sovereign DeHost PostgreSQL Adapter & Fluent Query Builder (WO-004 B5 Full Port)
  * Provides 100% fluent API compatibility (from, select, insert, update, delete, upsert, eq, neq, gt, gte, lt, lte, in, is, not, match, or, contains, containedBy, order, limit, range, single, maybeSingle, csv)
@@ -6,6 +8,7 @@
 
 import { getDeHostConnectionString } from "./schema";
 import type { Database } from "../../types/database.types";
+
 
 export type TableName = keyof Database['public']['Tables'];
 
@@ -242,9 +245,9 @@ export class DeHostQueryBuilder<TRow = any, TSingle extends boolean = false> {
   private async execute(): Promise<{ data: any; error: DeHostError | null; count: number | null }> {
     try {
       const dbUrl = getDeHostConnectionString();
-      if (dbUrl || process.env.ERCUOS_API_URL) {
-        const endpoint = process.env.ERCUOS_API_URL || "https://dehost.alparai.com/v1/sql";
-        const token = process.env.DEHOST_PASSWORD || process.env.DEHOST_SERVICE_ROLE_KEY || "dehost-secret";
+      if (dbUrl || (vault.read('ERCUOS_API_URL') ?? process.env.ERCUOS_API_URL)) {
+        const endpoint = (vault.read('ERCUOS_API_URL') ?? process.env.ERCUOS_API_URL) || "https://dehost.alparai.com/v1/sql";
+        const token = (vault.read('DEHOST_PASSWORD') ?? process.env.DEHOST_PASSWORD) || (vault.read('DEHOST_SERVICE_ROLE_KEY') ?? process.env.DEHOST_SERVICE_ROLE_KEY) || "dehost-secret";
         
         try {
           const res = await fetch(endpoint, {

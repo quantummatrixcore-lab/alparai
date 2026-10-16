@@ -1,7 +1,10 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import "server-only";
 import { logger } from "@/lib/utils/logger";
 import { getResendClient } from "@/lib/email/resend";
 import { isEmailAllowed } from "@/lib/email/cap";
+
 
 export interface SendEmailOptions {
   to: string | string[];
@@ -42,16 +45,16 @@ export async function sendUnifiedEmail(options: SendEmailOptions): Promise<SendE
   const defaultFrom = from || "ALPAR AI <ercument.erden@alparai.com>";
 
   // 1. Check for Zoho SMTP credentials
-  const zohoPass = process.env.ZOHO_APP_PASSWORD;
-  const zohoUser = process.env.ZOHO_MAIL_USER || "ercument.erden@alparai.com";
+  const zohoPass = (vault.read('ZOHO_APP_PASSWORD') ?? process.env.ZOHO_APP_PASSWORD);
+  const zohoUser = (vault.read('ZOHO_MAIL_USER') ?? process.env.ZOHO_MAIL_USER) || "ercument.erden@alparai.com";
 
   if (zohoPass) {
     try {
       
       const nodemailer = (await import("nodemailer")).default;
       const transporter = nodemailer.createTransport({
-        host: process.env.ZOHO_SMTP_HOST || "smtppro.zoho.eu",
-        port: Number(process.env.ZOHO_SMTP_PORT || 465),
+        host: (vault.read('ZOHO_SMTP_HOST') ?? process.env.ZOHO_SMTP_HOST) || "smtppro.zoho.eu",
+        port: Number((vault.read('ZOHO_SMTP_PORT') ?? process.env.ZOHO_SMTP_PORT) || 465),
         secure: true,
         auth: {
           user: zohoUser,

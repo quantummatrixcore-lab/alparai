@@ -1,15 +1,18 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { Redis } from "@upstash/redis";
 
+
 export async function isCostKillSwitchActive(): Promise<boolean> {
-  if (process.env.COST_KILL_SWITCH === "true") {
+  if ((vault.read('COST_KILL_SWITCH') ?? process.env.COST_KILL_SWITCH) === "true") {
     return true;
   }
 
-  if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
+  if ((vault.read('UPSTASH_REDIS_REST_URL') ?? process.env.UPSTASH_REDIS_REST_URL) && (vault.read('UPSTASH_REDIS_REST_TOKEN') ?? process.env.UPSTASH_REDIS_REST_TOKEN)) {
     try {
       const redis = new Redis({
-        url: process.env.UPSTASH_REDIS_REST_URL,
-        token: process.env.UPSTASH_REDIS_REST_TOKEN,
+        url: (vault.read('UPSTASH_REDIS_REST_URL') ?? process.env.UPSTASH_REDIS_REST_URL),
+        token: (vault.read('UPSTASH_REDIS_REST_TOKEN') ?? process.env.UPSTASH_REDIS_REST_TOKEN),
       });
       const val = await redis.get("cost_kill_switch");
       if (val === "true" || val === true) {

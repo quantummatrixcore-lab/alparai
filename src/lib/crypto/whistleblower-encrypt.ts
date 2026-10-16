@@ -1,3 +1,6 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
+
 /**
  * Whistleblower Zero-Knowledge Client-Side Encryption
  * Uses WebCrypto API (window.crypto.subtle) for zero-knowledge client-side encryption.
@@ -12,7 +15,7 @@ export interface EncryptedPayloadResult {
 }
 
 export const DEFAULT_WHISTLEBLOWER_PUBKEY =
-  process.env.NEXT_PUBLIC_WHISTLEBLOWER_PUBKEY ||
+  (vault.read('NEXT_PUBLIC_WHISTLEBLOWER_PUBKEY') ?? process.env.NEXT_PUBLIC_WHISTLEBLOWER_PUBKEY) ||
   "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlparAiWhistleblowerZKPUBKEY";
 
 const ENC_PREFIX = "ZK_ENC_v1$";

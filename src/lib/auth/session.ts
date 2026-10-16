@@ -1,6 +1,9 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { cookies } from "next/headers";
 import type { SessionUser, UserRole } from "@/types";
 import { isTestAuthBypassActive, getPlaywrightMockUser } from "./test-bypass";
+
 
 export interface AlparUser {
   id: string;
@@ -12,9 +15,9 @@ export interface AlparUser {
 }
 
 function getSessionSecret(): string {
-  const secret = process.env.SESSION_SECRET || process.env.CRON_SECRET;
+  const secret = (vault.read('SESSION_SECRET') ?? process.env.SESSION_SECRET) || (vault.read('CRON_SECRET') ?? process.env.CRON_SECRET);
   if (!secret) {
-    if (process.env.NODE_ENV === "production") {
+    if ((vault.read('NODE_ENV') ?? process.env.NODE_ENV) === "production") {
       throw new Error("CRITICAL SECURITY ERROR: SESSION_SECRET or CRON_SECRET is mandatory in production!");
     }
     return "alparai-sovereign-session-secret-key-2026";
@@ -85,7 +88,7 @@ export async function setSessionUser(user: Omit<AlparUser, "created_at">): Promi
   const payload = Buffer.from(JSON.stringify(fullUser)).toString("base64url");
   const token = await sign(payload);
   const cookieStore = await cookies();
-  const isProduction = process.env.NODE_ENV === "production";
+  const isProduction = (vault.read('NODE_ENV') ?? process.env.NODE_ENV) === "production";
 
   cookieStore.set(COOKIE_NAME, token, {
     httpOnly: true,
@@ -134,7 +137,7 @@ export async function createSessionCookieHeader(user: Omit<AlparUser, "created_a
   };
   const payload = Buffer.from(JSON.stringify(fullUser)).toString("base64url");
   const token = await sign(payload);
-  const isProduction = process.env.NODE_ENV === "production";
+  const isProduction = (vault.read('NODE_ENV') ?? process.env.NODE_ENV) === "production";
 
   return {
     name: COOKIE_NAME,

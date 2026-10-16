@@ -1,3 +1,5 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { withCronLogger } from "@/lib/utils/cron-logger";
 import { type NextRequest, NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/dehost/admin";
@@ -5,15 +7,16 @@ import { getResendClient } from "@/lib/email/resend";
 import { Redis } from "@upstash/redis";
 import { logger } from "@/lib/utils/logger";
 
+
 export const dynamic = "force-dynamic";
 
 async function getHandler(request: NextRequest) {
   const authHeader = request.headers.get("authorization");
-  const cronSecret = process.env.CRON_SECRET;
+  const cronSecret = (vault.read('CRON_SECRET') ?? process.env.CRON_SECRET);
 
   const isAuthorized =
     Boolean(cronSecret && authHeader === `Bearer ${cronSecret}`) ||
-    (process.env.NODE_ENV !== "production" && !cronSecret);
+    ((vault.read('NODE_ENV') ?? process.env.NODE_ENV) !== "production" && !cronSecret);
 
   if (!isAuthorized) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -147,7 +150,7 @@ async function getHandler(request: NextRequest) {
 
           await resend.emails.send({
             from: "ALPAR AI Alerts <alerts@alparai.com>",
-            to: process.env.ADMIN_ALERT_EMAIL || "quantum.matrix.core@gmail.com",
+            to: (vault.read('ADMIN_ALERT_EMAIL') ?? process.env.ADMIN_ALERT_EMAIL) || "quantum.matrix.core@gmail.com",
             subject: `[ALERT] Vendor quota â‰¥75% for ${vendorsOver75.length} vendor(s)`,
             html: `
               <p>ALPAR AI autonomous cost guard detected vendor quota utilization of â‰¥75%.</p>
@@ -172,9 +175,9 @@ async function getHandler(request: NextRequest) {
     }
 
     // Default defaults for cost thresholds (configurable via env)
-    const dailyWarningThreshold = Number(process.env.COST_WARNING_DAILY ?? 50); // >$50 warning
-    const dailyLimitThreshold = Number(process.env.COST_LIMIT_DAILY ?? 100); // >$100 auto-throttle / kill-switch
-    const monthlyLimitThreshold = Number(process.env.COST_LIMIT_MONTHLY ?? 500); // >$500 monthly limit / kill-switch
+    const dailyWarningThreshold = Number((vault.read('COST_WARNING_DAILY') ?? process.env.COST_WARNING_DAILY) ?? 50); // >$50 warning
+    const dailyLimitThreshold = Number((vault.read('COST_LIMIT_DAILY') ?? process.env.COST_LIMIT_DAILY) ?? 100); // >$100 auto-throttle / kill-switch
+    const monthlyLimitThreshold = Number((vault.read('COST_LIMIT_MONTHLY') ?? process.env.COST_LIMIT_MONTHLY) ?? 500); // >$500 monthly limit / kill-switch
 
     let killSwitchActive = false;
     let alarmReason = "";
@@ -188,11 +191,11 @@ async function getHandler(request: NextRequest) {
     }
 
     // Persist kill switch status to Redis if Redis credentials exist
-    if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
+    if ((vault.read('UPSTASH_REDIS_REST_URL') ?? process.env.UPSTASH_REDIS_REST_URL) && (vault.read('UPSTASH_REDIS_REST_TOKEN') ?? process.env.UPSTASH_REDIS_REST_TOKEN)) {
       try {
         const redis = new Redis({
-          url: process.env.UPSTASH_REDIS_REST_URL,
-          token: process.env.UPSTASH_REDIS_REST_TOKEN,
+          url: (vault.read('UPSTASH_REDIS_REST_URL') ?? process.env.UPSTASH_REDIS_REST_URL),
+          token: (vault.read('UPSTASH_REDIS_REST_TOKEN') ?? process.env.UPSTASH_REDIS_REST_TOKEN),
         });
 
         if (killSwitchActive) {

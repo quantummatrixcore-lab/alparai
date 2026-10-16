@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeAll } from "vitest";
-import { encryptAtRest, decryptAtRest } from "@/lib/security/vault";
+import { encryptAtRest, decryptAtRest } from "@/lib/security/vault-server";
 
 beforeAll(() => {
   process.env.CRON_SECRET = "test-vault-secret-key-for-unit-tests";

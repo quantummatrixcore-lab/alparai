@@ -1,10 +1,13 @@
 "use client";
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 
 import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { RefreshCw, Home, AlertOctagon } from "lucide-react";
 import { Container } from "@/components/ui/layout";
+
 
 interface ErrorProps {
   error: Error & { digest?: string };
@@ -15,7 +18,7 @@ export default function LocaleError({ error, reset }: ErrorProps) {
   const t = useTranslations("errors");
 
   useEffect(() => {
-    if (process.env.NODE_ENV === "production") {
+    if ((vault.read('NODE_ENV') ?? process.env.NODE_ENV) === "production") {
       console.error(
         JSON.stringify({
           ts: new Date().toISOString(),

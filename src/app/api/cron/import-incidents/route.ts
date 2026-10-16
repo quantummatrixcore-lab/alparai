@@ -1,3 +1,5 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { withCronLogger } from "@/lib/utils/cron-logger";
 import { type NextRequest, NextResponse } from "next/server";
 import { parseIncidentCSV } from "@/lib/import/csv-parser";
@@ -8,11 +10,11 @@ export const dynamic = "force-dynamic";
 
 async function getHandler(request: NextRequest) {
   const authHeader = request.headers.get("authorization");
-  const cronSecret = process.env.CRON_SECRET;
+  const cronSecret = (vault.read('CRON_SECRET') ?? process.env.CRON_SECRET);
 
   const isAuthorized =
     Boolean(cronSecret && authHeader === `Bearer ${cronSecret}`) ||
-    (process.env.NODE_ENV !== "production" && !cronSecret);
+    ((vault.read('NODE_ENV') ?? process.env.NODE_ENV) !== "production" && !cronSecret);
 
   if (!isAuthorized) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -22,10 +24,10 @@ async function getHandler(request: NextRequest) {
   const sourceParam = searchParams.get("source");
 
   const aiaaicUrl =
-    process.env.AIAAIC_FEED_URL ||
+    (vault.read('AIAAIC_FEED_URL') ?? process.env.AIAAIC_FEED_URL) ||
     "https://raw.githubusercontent.com/aiaaic/aiaaic-repository/main/data/aiaaic.csv";
   const aiidUrl =
-    process.env.AIID_FEED_URL ||
+    (vault.read('AIID_FEED_URL') ?? process.env.AIID_FEED_URL) ||
     "https://incidentdatabase.ai/api/v1/incidents.csv";
 
   const results: Record<string, unknown> = {};
@@ -104,6 +106,7 @@ async function getHandler(request: NextRequest) {
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unknown error during cron import";
     logger.error("Cron import failed", {}, error instanceof Error ? error : undefined);
+
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }

@@ -1,7 +1,10 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { logger } from "@/lib/utils/logger";
 import { ContentStrategist } from "./content_strategist";
 import { FlowGenerator } from "./flow_generator";
 import { SocialPublisher } from "./social_publisher";
+
 
 export class MarketingOrchestrator {
   private strategist: ContentStrategist;
@@ -20,7 +23,7 @@ export class MarketingOrchestrator {
    */
   async runCampaign() {
     // prettier-ignore
-    if (process.env.MARKETING_AUTOPILOT !== "enabled") { logger.info("[MarketingOrchestrator] simulated."); return; }
+    if ((vault.read('MARKETING_AUTOPILOT') ?? process.env.MARKETING_AUTOPILOT) !== "enabled") { logger.info("[MarketingOrchestrator] simulated."); return; }
     logger.info("=== Starting Autonomous Marketing Campaign ===");
 
     // 1. Get recent updates (to be fetched from database)

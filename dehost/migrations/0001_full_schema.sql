@@ -8880,7 +8880,7 @@ ALTER TABLE public.finance_monthly_costs ALTER COLUMN amount_usd DROP NOT NULL;
 -- Source: 20260802000000_admin_login_events.sql
 -- ========================================================
 -- Migration: admin_login_events table and login logging trigger
--- Create table to log admin/moderator login events with hashed IP.
+-- Table to log admin/moderator login events with hashed IP.
 
 CREATE TABLE IF NOT EXISTS public.admin_login_events (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),

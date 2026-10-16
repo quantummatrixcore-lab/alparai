@@ -1,5 +1,8 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { createHash, timingSafeEqual } from "crypto";
 import { createAdminClient } from "@/lib/dehost/admin";
+
 
 function safeCompare(a: string, b: string): boolean {
   const aBuf = Buffer.from(a);
@@ -22,8 +25,8 @@ export async function isAuthorizedAuditor(request: Request): Promise<boolean> {
   }
 
   // Check env key in non-production environments only
-  const auditorEnvKey = process.env.AUDITOR_API_KEY;
-  if (process.env.NODE_ENV !== "production" && auditorEnvKey && safeCompare(apiKey, auditorEnvKey)) {
+  const auditorEnvKey = (vault.read('AUDITOR_API_KEY') ?? process.env.AUDITOR_API_KEY);
+  if ((vault.read('NODE_ENV') ?? process.env.NODE_ENV) !== "production" && auditorEnvKey && safeCompare(apiKey, auditorEnvKey)) {
     return true;
   }
 

@@ -1,6 +1,9 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { NextResponse } from "next/server";
 import { getHybridMultimodalModel } from "@/lib/ai/openrouter-gateway";
 import { getCurrentUser } from "@/lib/auth/session";
+
 
 export async function POST(request: Request) {
   try {
@@ -21,7 +24,12 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "No audio file provided" }, { status: 400 });
     }
 
-    const openRouterApiKey = process.env.OPENROUTER_API_KEY;
+    const MAX_AUDIO_BYTES = 10 * 1024 * 1024;
+    if (typeof audioFile.size === "number" && audioFile.size > MAX_AUDIO_BYTES) {
+      return NextResponse.json({ error: "Audio file too large (max 10MB)" }, { status: 413 });
+    }
+
+    const openRouterApiKey = (vault.read('OPENROUTER_API_KEY') ?? process.env.OPENROUTER_API_KEY);
 
     if (openRouterApiKey) {
       try {

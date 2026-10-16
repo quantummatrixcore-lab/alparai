@@ -1,3 +1,5 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 /**
  * Provider-Agnostic AI Gateway.
  *
@@ -32,6 +34,7 @@ import { BlackboxAdapter } from "./adapters/blackbox";
 import { NvidiaNgcAdapter } from "./adapters/nvidia-ngc";
 import { SovereignAdapter } from "./adapters/sovereign";
 import { isCostKillSwitchActive, getDailyCost } from "./cost-guard";
+
 
 // Export the type interfaces from the common types file to keep backward compatibility
 export type {
@@ -444,7 +447,7 @@ export async function callModel(request: GatewayRequest): Promise<GatewayResult>
   }
 
   const provider = modelToCall.provider || "openrouter";
-  if (provider === "blackbox" && process.env.ENABLE_BLACKBOX_PROVIDER !== "true") {
+  if (provider === "blackbox" && (vault.read('ENABLE_BLACKBOX_PROVIDER') ?? process.env.ENABLE_BLACKBOX_PROVIDER) !== "true") {
     return {
       ok: false,
       error: {

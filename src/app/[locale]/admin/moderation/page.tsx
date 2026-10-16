@@ -8,7 +8,7 @@ export default function ModerationPage() {
   const flags = [
     {
       id: "MOD-801",
-      target: "ALP-2026-2908 Yorumu",
+      target: "ALP-2026-3115 Yorumu",
       author: "anon_researcher_99",
       reason: "Hakaret / Şirket Karalama İddiası",
       severity: "MEDIUM",

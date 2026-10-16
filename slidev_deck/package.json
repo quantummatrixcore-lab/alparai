@@ -1,0 +1,15 @@
+{
+  "name": "alparai-pitch-deck",
+  "private": true,
+  "scripts": {
+    "dev": "slidev --port 3030",
+    "build": "slidev build",
+    "export": "slidev export --format pdf --dark --output ../AlparAI_Pitch_Deck_Q4_2026_YENI.pdf"
+  },
+  "dependencies": {
+    "@slidev/cli": "^0.48.0",
+    "@slidev/theme-default": "^0.25.0",
+    "@slidev/theme-seriph": "^0.25.0",
+    "playwright-chromium": "^1.42.0"
+  }
+}

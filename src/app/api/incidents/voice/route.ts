@@ -1,8 +1,11 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { maskPII } from "@/lib/pii/guardian";
 import { getCurrentUser } from "@/lib/auth/session";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
+
 
 /**
  * Zod Schema for voice incident request metadata parameters
@@ -56,7 +59,7 @@ export async function transcribeAudio(
     throw new Error("Empty audio file buffer provided");
   }
 
-  const apiKey = process.env.QWEN_API_KEY;
+  const apiKey = (vault.read('QWEN_API_KEY') ?? process.env.QWEN_API_KEY);
   let rawTranscript = "";
   let confidence = 0.98;
 

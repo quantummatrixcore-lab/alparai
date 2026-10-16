@@ -1,4 +1,7 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { NextResponse } from 'next/server';
+
 
 export interface Prospect {
   id: string;
@@ -28,8 +31,8 @@ export async function POST(request: Request) {
     };
 
     // Edge uyumlu Upstash Redis cagrisi (Simulasyon/REST tabanli)
-    const upstashUrl = process.env.UPSTASH_REDIS_REST_URL;
-    const upstashToken = process.env.UPSTASH_REDIS_REST_TOKEN;
+    const upstashUrl = (vault.read('UPSTASH_REDIS_REST_URL') ?? process.env.UPSTASH_REDIS_REST_URL);
+    const upstashToken = (vault.read('UPSTASH_REDIS_REST_TOKEN') ?? process.env.UPSTASH_REDIS_REST_TOKEN);
     
     if (upstashUrl && upstashToken) {
         await fetch(`${upstashUrl}/set/prospect:${newProspect.id}`, {

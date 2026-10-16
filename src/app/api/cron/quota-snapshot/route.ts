@@ -1,7 +1,10 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { withCronLogger } from "@/lib/utils/cron-logger";
 import { type NextRequest, NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
+
 
 export const dynamic = "force-dynamic";
 
@@ -31,7 +34,7 @@ interface VendorSnapshot {
 }
 
 async function fetchGitHubActionsBilling(): Promise<VendorSnapshot | null> {
-  const token = process.env.GITHUB_TOKEN;
+  const token = (vault.read('GITHUB_TOKEN') ?? process.env.GITHUB_TOKEN);
   if (!token) {
     logger.info("[QuotaSnapshot] Skipping github_actions: GITHUB_TOKEN not configured");
     return null;
@@ -44,7 +47,7 @@ async function fetchGitHubActionsBilling(): Promise<VendorSnapshot | null> {
   };
 
   let billingUrl: string;
-  const org = process.env.GITHUB_ORG;
+  const org = (vault.read('GITHUB_ORG') ?? process.env.GITHUB_ORG);
   if (org) {
     billingUrl = `https://api.github.com/orgs/${encodeURIComponent(org)}/settings/billing/actions`;
   } else {
@@ -103,7 +106,7 @@ async function fetchGitHubActionsBilling(): Promise<VendorSnapshot | null> {
 }
 
 async function fetchDeHostBandwidthGb(): Promise<VendorSnapshot | null> {
-  const token = process.env.DEHOST_TOKEN || process.env.DEHOST_OIDC_TOKEN;
+  const token = (vault.read('DEHOST_TOKEN') ?? process.env.DEHOST_TOKEN) || (vault.read('DEHOST_OIDC_TOKEN') ?? process.env.DEHOST_OIDC_TOKEN);
   if (!token) {
     logger.info("[QuotaSnapshot] Skipping dehost: DEHOST_TOKEN not configured");
     return null;
@@ -200,11 +203,11 @@ function formatDate(date: Date): string {
 
 async function getHandler(request: NextRequest) {
   const authHeader = request.headers.get("authorization");
-  const cronSecret = process.env.CRON_SECRET;
+  const cronSecret = (vault.read('CRON_SECRET') ?? process.env.CRON_SECRET);
 
   const isAuthorized =
     Boolean(cronSecret && authHeader === `Bearer ${cronSecret}`) ||
-    (process.env.NODE_ENV !== "production" && !cronSecret);
+    ((vault.read('NODE_ENV') ?? process.env.NODE_ENV) !== "production" && !cronSecret);
 
   if (!isAuthorized) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

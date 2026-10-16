@@ -1,9 +1,12 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import "server-only";
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/dehost/admin";
 import { timingSafeEqual } from "node:crypto";
 import { logger } from "@/lib/utils/logger";
 import { isSafeUrl } from "@/lib/security/ssrf";
+
 
 function safeCompare(a: string, b: string): boolean {
   const aBuf = Buffer.from(a);
@@ -15,7 +18,7 @@ function safeCompare(a: string, b: string): boolean {
 export async function GET(request: Request) {
   try {
     const authHeader = request.headers.get("authorization");
-    const cronSecret = process.env.CRON_SECRET;
+    const cronSecret = (vault.read('CRON_SECRET') ?? process.env.CRON_SECRET);
 
     if (!cronSecret || !authHeader || !authHeader.startsWith("Bearer ")) {
       return NextResponse.json({ error: "unauthorized" }, { status: 401 });

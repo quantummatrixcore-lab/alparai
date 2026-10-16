@@ -1,4 +1,6 @@
 "use server";
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 
 import { revalidatePath } from "next/cache";
 import { waitUntil } from "@/lib/dehost/functions-stub";
@@ -34,6 +36,7 @@ import { runCrossAudit } from "@/lib/ai/cross-audit-engine";
 import { triggerClaimAndRespondAlert } from "@/lib/notifications/claim-and-respond";
 import { isTestAuthBypassActive, assertTestBypassSafe } from "@/lib/auth/test-bypass";
 import type { Database } from "@/types/database";
+
 
 assertTestBypassSafe();
 
@@ -285,11 +288,11 @@ const runSubmitWork = async (
         severity: raw.severity,
       });
 
-      if (process.env.ADMIN_ALERT_EMAIL) {
+      if ((vault.read('ADMIN_ALERT_EMAIL') ?? process.env.ADMIN_ALERT_EMAIL)) {
         emailPromises.push(
           resend.emails.send({
             from: "ALPAR AI Alerts <alerts@alparai.com>",
-            to: process.env.ADMIN_ALERT_EMAIL,
+            to: (vault.read('ADMIN_ALERT_EMAIL') ?? process.env.ADMIN_ALERT_EMAIL),
             subject: `[ALERT] New Incident: ${raw.title.substring(0, 40)}...`,
             html: adminHtml,
           }),
@@ -764,7 +767,7 @@ export async function submitIncident(
           try {
             const res = await autoModerateIncidentAction(
               incidentId,
-              process.env.DEHOST_SERVICE_ROLE_KEY,
+              (vault.read('DEHOST_SERVICE_ROLE_KEY') ?? process.env.DEHOST_SERVICE_ROLE_KEY),
             );
             if (res.ok) {
               waitUntil(

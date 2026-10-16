@@ -1,77 +1,41 @@
-const WebSocket = require('ws');
-const ws = new WebSocket('ws://127.0.0.1:9222/devtools/page/120565F1E4D6DC73EEB2BCB8D5F77678');
+﻿const WebSocket = require('ws');
+const http = require('http');
+const fs = require('fs');
 
-let id = 1;
-function send(method, params = {}) {
-    return new Promise((resolve) => {
-        const messageId = id++;
-        const listener = (data) => {
-            const parsed = JSON.parse(data);
-            if (parsed.id === messageId) {
-                ws.removeListener('message', listener);
-                resolve(parsed.result);
-            }
-        };
-        ws.on('message', listener);
-        ws.send(JSON.stringify({ id: messageId, method, params }));
+http.get('http://127.0.0.1:9222/json/list', (res) => {
+  let data = '';
+  res.on('data', c => data += c);
+  res.on('end', () => {
+    const tabs = JSON.parse(data);
+    const cfTab = tabs.find(t => t.url.includes('my.dehost.com.tr'));
+    
+    if (!cfTab) return console.log('DeHost tab not found');
+
+    const ws = new WebSocket(cfTab.webSocketDebuggerUrl);
+    ws.on('open', () => {
+      const code = "(async () => { const links = Array.from(document.querySelectorAll('a')); const servicesLink = links.find(l => l.innerText.includes('Hizmet') || l.href.includes('hizmetler')); if (servicesLink) { servicesLink.click(); await new Promise(r => setTimeout(r, 4000)); return 'Clicked'; } return 'Not found'; })();";
+      ws.send(JSON.stringify({
+        id: 1,
+        method: 'Runtime.evaluate',
+        params: {
+          expression: code,
+          awaitPromise: true,
+          returnByValue: true
+        }
+      }));
     });
-}
 
-function delay(ms) {
-    return new Promise(r => setTimeout(r, ms));
-}
-
-ws.on('open', async () => {
-    try {
-        await send('Page.enable');
-        await send('Runtime.enable');
-        
-        console.log("Navigating to Sunucularim...");
-        await send('Page.navigate', { url: 'https://my.dehost.com.tr/hesabim/urun-ve-hizmetlerim/server' });
-        
-        await delay(3000); // wait for page load
-        
-        console.log("Evaluating page...");
-        const res = await send('Runtime.evaluate', {
-            expression: `
-                (async () => {
-                    let links = Array.from(document.querySelectorAll('a')).filter(a => a.href.includes('hizmet-detay'));
-                    if (links.length > 0) {
-                        links[0].click(); // Click the first VDS service
-                        return "Clicked VDS details: " + links[0].href;
-                    }
-                    return "No VDS link found";
-                })();
-            `,
-            awaitPromise: true,
-            returnByValue: true
-        });
-        console.log(res.result.value);
-
-        await delay(3000); // wait for details page to load
-
-        console.log("Looking for Restart button...");
-        const res2 = await send('Runtime.evaluate', {
-            expression: `
-                (async () => {
-                    let buttons = Array.from(document.querySelectorAll('a, button'));
-                    let restartBtn = buttons.find(b => b.innerText.toLowerCase().includes('yeniden başlat') || b.innerText.toLowerCase().includes('reboot') || b.href?.includes('reboot'));
-                    if (restartBtn) {
-                        restartBtn.click();
-                        return "Clicked Restart button!";
-                    }
-                    return "No restart button found. Texts: " + buttons.map(b => b.innerText.trim()).filter(x=>x).slice(0, 50).join(', ');
-                })();
-            `,
-            awaitPromise: true,
-            returnByValue: true
-        });
-        console.log(res2.result.value);
-
-        await delay(2000);
+    ws.on('message', (raw) => {
+      const msg = JSON.parse(raw);
+      if (msg.id === 1) {
+        console.log('Eval result:', msg.result.result.value);
+        ws.send(JSON.stringify({ id: 2, method: 'Page.captureScreenshot', params: { format: 'png' } }));
+      }
+      if (msg.id === 2 && msg.result?.data) {
+        fs.writeFileSync('C:/Users/ercum/.gemini/antigravity/brain/31b0ffe6-28fc-49bb-b436-f60dc2f57e95/dehost_services.png', Buffer.from(msg.result.data, 'base64'));
+        console.log('Saved dehost_services.png');
         ws.close();
-    } catch(e) {
-        console.error(e);
-        ws.close();
-    }
+      }
+    });
+  });
 });

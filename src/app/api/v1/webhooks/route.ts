@@ -1,6 +1,9 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/dehost/admin";
 import { z } from "zod";
+
 
 const webhookSchema = z.object({
   url: z.string().url(),
@@ -25,7 +28,7 @@ export async function POST(req: Request) {
 
     const authHeader = req.headers.get("authorization");
     const token = authHeader?.split(" ")[1];
-    const expectedToken = process.env.WEBHOOK_SECRET || process.env.API_SECRET_KEY;
+    const expectedToken = (vault.read('WEBHOOK_SECRET') ?? process.env.WEBHOOK_SECRET) || (vault.read('API_SECRET_KEY') ?? process.env.API_SECRET_KEY);
     if (!token || !expectedToken || token !== expectedToken) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }

@@ -1,4 +1,6 @@
 "use client";
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 
 import { logger } from "@/lib/utils/logger";
 
@@ -24,7 +26,7 @@ export function trackEvent(
         window.plausible(eventName, { props });
       } else {
         // Fallback or development logging
-        if (process.env.NODE_ENV === "development") {
+        if ((vault.read('NODE_ENV') ?? process.env.NODE_ENV) === "development") {
           logger.info(`[Plausible Event] ${eventName}`, props as Record<string, unknown>);
         }
       }
@@ -39,6 +41,7 @@ export function trackEvent(
 }
 
 import { trackFunnelEvent } from "@/actions/funnel";
+
 
 /**
  * Retrieves current UTM parameters from URL search params merged with stored localStorage UTMs.

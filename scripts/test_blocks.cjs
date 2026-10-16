@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 
 const SSH_KEY = "C:/Users/ercum/.ssh/id_ed25519_vds";
-const REMOTE_HOST = "root@45.143.4.92";
+const REMOTE_HOST = "-p 18222 root@45.143.4.92";
 const DB_NAME = "alparai_staging_wo012";
 
 function runRemote(cmd, input) {

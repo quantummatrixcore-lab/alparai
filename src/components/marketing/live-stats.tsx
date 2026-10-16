@@ -9,16 +9,13 @@ import { cn } from "@/lib/utils";
 
 interface CounterProps {
   value: number;
-  enableLiveTicker?: boolean;
 }
 
-function AnimatedNumber({ value, enableLiveTicker = true }: CounterProps) {
+function AnimatedNumber({ value }: CounterProps) {
   const locale = useLocale();
   const [count, setCount] = React.useState(value);
-  const [isPulsing, setIsPulsing] = React.useState(false);
   const ref = React.useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
-  const hasFinishedInitialAnim = React.useRef(false);
 
   React.useEffect(() => {
     if (value === 0 || !isInView) return;
@@ -29,49 +26,18 @@ function AnimatedNumber({ value, enableLiveTicker = true }: CounterProps) {
       onUpdate: (latest) => {
         setCount(Math.round(latest));
       },
-      onComplete: () => {
-        hasFinishedInitialAnim.current = true;
-      },
     });
 
     return () => controls.stop();
   }, [value, isInView]);
 
-  // Live Auto-Increment Ticker (Telemetry Streaming Simulation)
-  React.useEffect(() => {
-    if (value === 0 || !enableLiveTicker || !isInView) return;
-
-    let timeoutId: NodeJS.Timeout;
-
-    const tick = () => {
-      const randomDelay = Math.floor(Math.random() * 6000) + 4000;
-      timeoutId = setTimeout(() => {
-        if (hasFinishedInitialAnim.current) {
-          setCount((prev) => prev + 1);
-          setIsPulsing(true);
-          setTimeout(() => setIsPulsing(false), 800);
-        }
-        tick();
-      }, randomDelay);
-    };
-
-    tick();
-
-    return () => clearTimeout(timeoutId);
-  }, [value, enableLiveTicker, isInView]);
+  // NOTE: numbers are live DB/canonical values only. No client-side simulation.
 
   return (
     <motion.span
       ref={ref}
-      animate={
-        isPulsing
-          ? { scale: [1, 1.15, 1], filter: ["brightness(1)", "brightness(1.5)", "brightness(1)"] }
-          : { scale: 1, filter: "brightness(1)" }
-      }
-      transition={{ duration: 0.6, ease: "easeInOut" }}
       className={cn(
         "inline-block transition-colors duration-300",
-        isPulsing && "text-danger-300 drop-shadow-[0_0_15px_rgba(230,57,70,0.9)]",
         value === 0 &&
           "from-fg-muted/30 to-fg-muted/30 animate-shimmer min-w-[2ch] bg-gradient-to-r via-white/50 bg-[length:200%_100%] bg-clip-text text-transparent",
       )}
@@ -199,7 +165,7 @@ export function LiveStats({
                         item.accent,
                       )}
                     >
-                      <AnimatedNumber value={item.value} enableLiveTicker={idx === 0} />
+                      <AnimatedNumber value={item.value} />
                     </div>
                     <div className="text-fg-secondary mt-1.5 text-xs font-black tracking-[0.2em] uppercase">
                       {item.label}

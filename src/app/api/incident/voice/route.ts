@@ -1,8 +1,11 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { NextResponse } from "next/server";
 import { logger } from "@/lib/utils/logger";
 import { submitIncident, type SubmitIncidentState } from "@/actions/incidents";
 import { getCurrentUser } from "@/lib/auth/session";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
+
 
 export async function POST(req: Request) {
   try {
@@ -24,7 +27,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "No audio file provided" }, { status: 400 });
     }
 
-    if (!process.env.QWEN_API_KEY) {
+    if (!(vault.read('QWEN_API_KEY') ?? process.env.QWEN_API_KEY)) {
       logger.error("QWEN_API_KEY is not set");
       return NextResponse.json({ error: "ASR configuration error" }, { status: 500 });
     }
@@ -37,7 +40,7 @@ export async function POST(req: Request) {
     const qwenRes = await fetch("https://api.qwen.ai/v1/audio/transcriptions", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${process.env.QWEN_API_KEY}`,
+        Authorization: `Bearer ${(vault.read('QWEN_API_KEY') ?? process.env.QWEN_API_KEY)}`,
       },
       body: qwenFormData,
     });

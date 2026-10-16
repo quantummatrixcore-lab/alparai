@@ -37,7 +37,7 @@ interface NavGroup {
   items: NavItem[];
 }
 
-// Clean top-level core pages (only 3 direct links to prevent bar overflow)
+// Clean top-level core pages (Academy pinned visible per product priority)
 const topLevelItems: NavItem[] = [
   {
     href: "/incidents",
@@ -50,6 +50,7 @@ const topLevelItems: NavItem[] = [
     labelKey: "dilemmas",
     icon: Scale,
   },
+  { href: "/academy", labelKey: "academy", icon: GraduationCap },
 ];
 
 // Clean categorized dropdowns for secondary features
@@ -60,7 +61,6 @@ const navGroups: NavGroup[] = [
     icon: ShieldCheck,
     items: [
       { href: "/ai-act", labelKey: "ai_act", icon: ShieldCheck },
-      { href: "/academy", labelKey: "academy", icon: GraduationCap },
       { href: "/about/advisory-board", labelKey: "advisory_board", icon: Users },
       { href: "/transparency", labelKey: "transparency", icon: Eye },
       { href: "/methodology", labelKey: "methodology", icon: Scale },

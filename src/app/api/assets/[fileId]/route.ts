@@ -1,5 +1,8 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
+
 
 export async function GET(_req: NextRequest, { params }: { params: Promise<{ fileId: string }> }) {
   try {
@@ -8,7 +11,7 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ fil
       return new NextResponse("Missing file ID", { status: 400 });
     }
 
-    const apiKey = process.env.GOOGLE_API_KEY || process.env.GEMINI_API_KEY;
+    const apiKey = (vault.read('GOOGLE_API_KEY') ?? process.env.GOOGLE_API_KEY) || (vault.read('GEMINI_API_KEY') ?? process.env.GEMINI_API_KEY);
     if (!apiKey) {
       return new NextResponse("Google Drive service unconfigured", { status: 503 });
     }
@@ -32,7 +35,7 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ fil
     }
 
     // Verify folder boundary if configured
-    const allowedFolderId = process.env.GDRIVE_ASSETS_FOLDER_ID;
+    const allowedFolderId = (vault.read('GDRIVE_ASSETS_FOLDER_ID') ?? process.env.GDRIVE_ASSETS_FOLDER_ID);
     if (allowedFolderId && metadata.parents && !metadata.parents.includes(allowedFolderId)) {
       return new NextResponse("Unauthorized Asset Location", { status: 403 });
     }

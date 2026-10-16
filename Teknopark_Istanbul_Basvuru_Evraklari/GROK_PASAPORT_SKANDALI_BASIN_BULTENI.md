@@ -19,7 +19,7 @@ Yaşanan bu küresel skandal, soyut bir mağduriyet olarak kalmadı; dünyanın 
 Tamamen yerli ve egemen imkanlarla geliştirilen ALPAR AI;
 *   **Zero-Knowledge Proofs (ZKP - Sıfır Bilgi Kanıtları):** Yapay zekaların özel ağırlıklarını ifşa etmeden kararlarını matematiksel olarak doğruluyor (TPE Patent Başvuru No: 2026/018942).
 *   **PII Guardian & Sıfır Veri Sızıntısı:** Pasaport, TCKN ve kurumsal sırları veritabanına girmeden önce SHA-256 ve ZKP ile tam maskeleyen kriptografik güvenlik kalkanı sunuyor.
-*   **17-Vektörlü Adversarial Stres Testi:** Halüsinasyon, bilgi zehirleme, telif ihlali ve kimlik hırsızlığı risklerini daha üretim aşamasındayken tespit ediyor (2.908+ doğrulanmış vaka, 141 veritabanı tablosu, 360 RLS politikası).
+*   **17-Vektörlü Adversarial Stres Testi:** Halüsinasyon, bilgi zehirleme, telif ihlali ve kimlik hırsızlığı risklerini daha üretim aşamasındayken tespit ediyor (3.115+ doğrulanmış vaka, 141 veritabanı tablosu, 360 RLS politikası).
 *   **Toplum Katılımlı AI Anayasası:** Yapay zekanın etik ve güvenlik sınırlarını dev şirketlerin veya bürokratların kapalı kapılar ardında değil, bizzat kullanıcıların ve toplumun oylarıyla belirlediği demokratik bir yönetişim modeli sunuyor.
 
 ### Hukuk ve Akademi Dünyasından Tam Destek

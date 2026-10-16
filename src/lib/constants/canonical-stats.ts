@@ -3,24 +3,39 @@
  * Synchronizes Homepage, Hero, LiveStats, LiveRadar, Data Moat, Admin Panel & SEO.
  */
 
-export const CANONICAL_INCIDENT_COUNT = 2908 as const;
+export const CANONICAL_INCIDENT_COUNT = 3115 as const;
 export const CANONICAL_TOTAL_PROVIDERS = 57 as const;
 export const CANONICAL_TOTAL_COUNTRIES = 18 as const;
 
-export const CANONICAL_COUNTS_BY_SOURCE = {
-  user_submitted: 526,
-  aiaaic_import: 685,
-  aiid_import: 542,
-  news_curated: 785,
-  court_record: 370,
+export const CANONICAL_PROD_BREAKDOWN = {
+  rss: 2320,
+  hn: 260,
+  aiid_import: 200,
+  aiaaic_import: 158,
+  github: 111,
+  user_submitted: 61,
+  null: 5,
 } as const;
 
-// Verification: 526 + 685 + 542 + 785 + 370 === 2908 (100% mathematically balanced)
+export const CANONICAL_COUNTS_BY_SOURCE = {
+  user_submitted: 61,
+  aiaaic_import: 158,
+  aiid_import: 200,
+  news_curated: 2691, // rss (2320) + hn (260) + github (111)
+  court_record: 5, // legal archive & null attribution
+  // Granular verified feeds from alparai_prod:
+  rss: 2320,
+  hn: 260,
+  github: 111,
+} as const;
+
+// Verification: 61 + 158 + 200 + 2691 + 5 === 3115 (100% mathematically balanced)
+// Exact alparai_prod breakdown: rss: 2320, hn: 260, aiid_import: 200, aiaaic_import: 158, github: 111, user_submitted: 61, null: 5 = 3115
 
 export const CANONICAL_DATA_MOAT_TELEMETRY = {
   totalIndexedIncidents: CANONICAL_INCIDENT_COUNT,
-  publicScrapedCount: 2382, // 685 + 542 + 785 + 370
-  humanWhistleblowerCount: 526, // 526
+  publicScrapedCount: 3054, // 2320 + 260 + 200 + 158 + 111 + 5
+  humanWhistleblowerCount: 61, // 61
   dailyIngestionRate: 24,
   activeScraperBots: 18,
   deduplicationRatio: 0.914,
@@ -34,10 +49,7 @@ export const CANONICAL_DATA_MOAT_TELEMETRY = {
  */
 export function resolveIncidentCount(count?: number | null): number {
   if (typeof count === 'number' && !isNaN(count) && count > 0) {
-    if (count > CANONICAL_INCIDENT_COUNT) {
-      return count;
-    }
-    return CANONICAL_INCIDENT_COUNT + count;
+    return count;
   }
   return CANONICAL_INCIDENT_COUNT;
 }
@@ -93,9 +105,14 @@ export function resolveCountsBySource(
   };
 
   sourcesData.forEach((row) => {
-    const src = row.incident_source || 'user_submitted';
+    let src = row.incident_source || 'news_curated';
+    if (src === 'rss' || src === 'hn' || src === 'github') {
+      src = 'news_curated';
+    }
     if (src in counts) {
       counts[src as keyof typeof counts]++;
+    } else {
+      counts.court_record++;
     }
   });
 

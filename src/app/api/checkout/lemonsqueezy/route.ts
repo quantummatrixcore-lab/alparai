@@ -1,14 +1,17 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import "server-only";
 import { NextResponse } from "next/server";
 import { createServerClient } from "@/lib/dehost/server";
 import { logger } from "@/lib/utils/logger";
 
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://alparai.com";
+
+const APP_URL = (vault.read('NEXT_PUBLIC_APP_URL') ?? process.env.NEXT_PUBLIC_APP_URL) || "https://alparai.com";
 
 export async function POST(request: Request) {
-  const apiKey = process.env.LEMONSQUEEZY_API_KEY;
-  const defaultStoreId = process.env.LEMONSQUEEZY_STORE_ID || "469668";
-  const defaultVariantId = process.env.LEMONSQUEEZY_VARIANT_ID || "2103062";
+  const apiKey = (vault.read('LEMONSQUEEZY_API_KEY') ?? process.env.LEMONSQUEEZY_API_KEY);
+  const defaultStoreId = (vault.read('LEMONSQUEEZY_STORE_ID') ?? process.env.LEMONSQUEEZY_STORE_ID) || "469668";
+  const defaultVariantId = (vault.read('LEMONSQUEEZY_VARIANT_ID') ?? process.env.LEMONSQUEEZY_VARIANT_ID) || "2103062";
 
   if (!apiKey) {
     logger.error("Lemon Squeezy API key is not configured in environment");

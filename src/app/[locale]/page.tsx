@@ -296,6 +296,7 @@ const getHomeData = cache(async (locale: string) => {
     return {
       incidentsCountResult: { count: resolveIncidentCount(incidentsCountResult.count) },
       providersResult,
+      providersCount: leaderboard.length > 0 ? leaderboard.length : CANONICAL_FALLBACK_PROVIDERS.length,
       uniqueCountriesCount: uniqueCountriesCount || CANONICAL_TOTAL_COUNTRIES,
       topProvidersForHero:
         topProvidersForHero.length > 0
@@ -370,7 +371,7 @@ async function HeroSectionAsync({ locale }: { locale: string }) {
   return (
     <HeroSection
       totalIncidents={data.incidentsCountResult.count ?? 0}
-      totalProviders={resolveProviderCount(data.providersResult.data?.length)}
+      totalProviders={(data as { providersCount?: number }).providersCount ?? resolveProviderCount(data.providersResult.data?.length)}
       totalCountries={data.uniqueCountriesCount}
       topProviders={data.topProvidersForHero}
       countsBySource={data.countsBySource}
@@ -383,7 +384,7 @@ async function LiveStatsAsync({ locale }: { locale: string }) {
   return (
     <LiveStats
       totalIncidents={data.incidentsCountResult.count ?? 0}
-      totalProviders={resolveProviderCount(data.providersResult.data?.length)}
+      totalProviders={(data as { providersCount?: number }).providersCount ?? resolveProviderCount(data.providersResult.data?.length)}
       totalCountries={data.uniqueCountriesCount}
       countsBySource={data.countsBySource}
     />

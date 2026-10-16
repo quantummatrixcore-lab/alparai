@@ -4,7 +4,7 @@ import { getCurrentUser } from "@/lib/auth/session";
 import { createAdminClient } from "@/lib/dehost/admin";
 import { revalidatePath } from "next/cache";
 import { createHash } from "crypto";
-import { encryptAtRest, decryptAtRest } from "@/lib/security/vault";
+import { encryptAtRest, decryptAtRest } from "@/lib/security/vault-server";
 
 interface DbApiKeyRow {
   provider: string;

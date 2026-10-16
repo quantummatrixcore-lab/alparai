@@ -1,9 +1,12 @@
 "use server";
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 
 import { createServerClient } from "@/lib/dehost/server";
 import { requireAdmin } from "@/lib/auth/session";
 import { revalidatePath } from "next/cache";
 import type { SocialPost, SocialTemplate, SocialAsset, SocialAccount } from "@/types/social";
+
 
 export async function getSocialPosts(): Promise<SocialPost[]> {
   try {
@@ -130,7 +133,7 @@ export async function updateSocialPost(
         .single();
 
       if (!fetchErr && post) {
-        if (post.platform === "x" && process.env.MARKETING_AUTOPOST_X === "true") {
+        if (post.platform === "x" && (vault.read('MARKETING_AUTOPOST_X') ?? process.env.MARKETING_AUTOPOST_X) === "true") {
           const { publishToX } = await import("@/lib/marketing/publishers/x");
           const res = await publishToX(post.body_text);
           if (res.success && res.postId) {
@@ -141,7 +144,7 @@ export async function updateSocialPost(
           }
         } else if (
           post.platform === "linkedin" &&
-          process.env.MARKETING_AUTOPOST_LINKEDIN === "true"
+          (vault.read('MARKETING_AUTOPOST_LINKEDIN') ?? process.env.MARKETING_AUTOPOST_LINKEDIN) === "true"
         ) {
           const { publishToLinkedIn } = await import("@/lib/marketing/publishers/linkedin");
           const res = await publishToLinkedIn(post.body_text, post.title);
@@ -202,7 +205,7 @@ export async function publishDraftToLinkedInAction(
     const user = await requireAdmin();
     if (!user) throw new Error("Unauthorized");
 
-    if (process.env.DISABLE_LINKEDIN_POSTING === "true") {
+    if ((vault.read('DISABLE_LINKEDIN_POSTING') ?? process.env.DISABLE_LINKEDIN_POSTING) === "true") {
       throw new Error("LinkedIn publishing is disabled.");
     }
 

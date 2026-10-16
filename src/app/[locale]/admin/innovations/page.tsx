@@ -11,7 +11,7 @@ export default function InnovationsPage() {
       title: "Alparai Admin & B2B API Gateway",
       status: "COMPLETED",
       progress: 100,
-      desc: "5-Küme kurumsal mimari, 2.908 vaka veri kalkanı ve Tier 1-3 API dağıtımı.",
+      desc: "5-Küme kurumsal mimari, 3.115 vaka veri kalkanı ve Tier 1-3 API dağıtımı.",
     },
     {
       phase: "Q4 2026",

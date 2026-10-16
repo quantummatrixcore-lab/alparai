@@ -98,8 +98,21 @@ export const Webhooks = {
   },
 };
 
-if (!process.env.POLAR_ACCESS_TOKEN) {
-  console.warn('⚠️ POLAR_ACCESS_TOKEN is not defined in environment variables.');
+// Sovereign Vault Integration Pilot
+let vaultToken: string | undefined;
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  vault = require('../../../00_MATRIX/core/kernel/vault.js');
+  vaultToken = vault.read('POLAR_ACCESS_TOKEN');
+} catch {
+  // Vault unavailable or not in local environment
+}
+
+const polarAccessToken = vaultToken || (vault.read('POLAR_ACCESS_TOKEN') ?? process.env.POLAR_ACCESS_TOKEN);
+
+if (!polarAccessToken) {
+  console.warn('⚠️ POLAR_ACCESS_TOKEN is not defined in environment variables or Sovereign Vault.');
 }
 
 /**
@@ -107,6 +120,7 @@ if (!process.env.POLAR_ACCESS_TOKEN) {
  * Used for creating checkouts, managing subscriptions, and interacting with the Polar API.
  */
 export const polar = new Polar({
-  accessToken: process.env.POLAR_ACCESS_TOKEN ?? '',
+  accessToken: polarAccessToken ?? '',
   server: process.env.NODE_ENV === 'production' ? 'production' : 'sandbox',
 });
+

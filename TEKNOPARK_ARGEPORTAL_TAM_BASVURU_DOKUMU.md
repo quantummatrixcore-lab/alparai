@@ -2,7 +2,7 @@
 
 > **Firma Adı:** alparai.com (Firma Id: 3030)  
 > **Proje Kodu:** ALPAR-AI-2026-TRUST (Proje Id: 7244)  
-> **Kurucu & Proje Yürütücüsü:** Ercüment ERDEN (Personel Id: 46192, TCKN: 65245305662)  
+> **Kurucu & Proje Yürütücüsü:** Ercüment ERDEN (Personel Id: 46192, TCKN: [MASKELI-TCKN])  
 > **Başvuru Programı:** Teknopark İstanbul Kuluçka Merkezi (Cube Incubation)  
 > **Son Güncelleme Tarihi:** 14.09.2026 22:35  
 > **Sistem Durumu (Sunucu Canlı Rozetleri):**  
@@ -233,7 +233,7 @@
 
 ### Kart 11: Personel Bilgileri
 * **Personel Id:** 46192
-* **T.C. Kimlik No:** 65245305662
+* **T.C. Kimlik No:** [MASKELI-TCKN]
 * **Adı Soyadı:** ERCÜMENT ERDEN
 * **Doğum Tarihi:** 11.08.1984
 * **Doğum Yeri:** EREĞLİ
@@ -260,7 +260,7 @@
 
 ### Kart 3: Yetkili Bilgileri
 * **Yetkili:** ERCÜMENT ERDEN
-* **TCKN:** 65245305662
+* **TCKN:** [MASKELI-TCKN]
 * **Görevi:** Kurucu & Genel Müdür / Baş Sistem Mimarı
 * **İmza Yetkisi:** Münferiden Yetkili
 
@@ -268,7 +268,7 @@
 
 ### Kart 4: Ortaklara Ait Bilgiler
 * **Ortak:** ERCÜMENT ERDEN
-* **TCKN:** 65245305662
+* **TCKN:** [MASKELI-TCKN]
 * **Hisse Oranı:** %100
 * **Sermaye Tutarı:** 100.000 TL (Tek Kurucu Ortak)
 

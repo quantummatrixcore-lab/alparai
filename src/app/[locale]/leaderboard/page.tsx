@@ -124,9 +124,16 @@ async function LeaderboardDataContent({
       response_rate: number | null;
     }>
   ).map((p) => {
-    const total = p.incident_count ?? 0;
-    const responded = p.response_count ?? 0;
-    const responseRate = p.response_rate ?? (total > 0 ? Math.round((responded / total) * 100) : 0);
+    // PostgREST numeric/bigint columns may arrive as strings — coerce to avoid
+    // string concatenation ("0"+"0") and NaN rates in the stats row.
+    const toNum = (v: unknown): number => {
+      const n = typeof v === "number" ? v : Number(v);
+      return Number.isFinite(n) ? n : 0;
+    };
+    const total = toNum(p.incident_count);
+    const responded = toNum(p.response_count);
+    const rr = toNum(p.response_rate);
+    const responseRate = p.response_rate == null ? (total > 0 ? Math.round((responded / total) * 100) : 0) : rr;
 
     // Canonical Transparency TrustScore: 85 baseline - (2.5 * incidents) + (4 * responses) clamped [0, 100]
     const canonicalScore = Math.max(0, Math.min(100, Math.round(85 - (total * 2.5) + (responded * 4))));
@@ -159,9 +166,20 @@ async function LeaderboardDataContent({
       rank: idx + 1,
     }));
 
+  const NON_AI_PLACEHOLDER_SLUGS = new Set([
+    "adobe",
+    "apple",
+    "figma",
+    "notion",
+    "brave",
+    "other",
+    "canada-immigration-ai",
+  ]);
+
   const filteredStats = rankedStats.filter((p) => {
     if (currentFilter === "verified" && !p.is_verified) return false;
     if (currentFilter === "with_incidents" && p.incident_count <= 0) return false;
+    if (p.incident_count <= 0 && NON_AI_PLACEHOLDER_SLUGS.has((p.slug || "").toLowerCase())) return false;
     if (searchQuery && !p.name.toLowerCase().includes(searchQuery.toLowerCase())) return false;
     return true;
   });
@@ -286,9 +304,12 @@ async function LeaderboardDataContent({
                     {stats.filter((p) => p.incident_count > 0).length > 0
                       ? Math.round(
                           stats
-                            .filter((p) => p.incident_count > 0)
+                            .filter((p) => p.incident_count > 0 && Number.isFinite(p.response_rate))
                             .reduce((s, p) => s + p.response_rate, 0) /
-                            stats.filter((p) => p.incident_count > 0).length,
+                            Math.max(
+                              1,
+                              stats.filter((p) => p.incident_count > 0 && Number.isFinite(p.response_rate)).length,
+                            ),
                         )
                       : 0}
                     %

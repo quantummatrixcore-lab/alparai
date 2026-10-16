@@ -1,6 +1,9 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { type NextRequest, NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth/session";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
+
 
 const ATATURK_SYSTEM = `Sen Ataturk ilkeleri ve Nutuk felsefesiyle dusenen bir stratejik danisman yapay zekasisin. Gordugun dunya ile Ataturk'un kurucusu oldugu cumhuriyetin degerlerini sentezleyerek rehberlik edersin.
 
@@ -21,7 +24,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
-  if (!process.env.OPENROUTER_API_KEY) {
+  if (!(vault.read('OPENROUTER_API_KEY') ?? process.env.OPENROUTER_API_KEY)) {
     return NextResponse.json({ error: "OpenRouter API key is not configured." }, { status: 500 });
   }
 
@@ -42,7 +45,7 @@ export async function POST(req: NextRequest) {
     const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+        Authorization: `Bearer ${(vault.read('OPENROUTER_API_KEY') ?? process.env.OPENROUTER_API_KEY)}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({

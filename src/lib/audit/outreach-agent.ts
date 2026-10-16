@@ -1,7 +1,10 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { generateEmailUnsubscribeToken } from "@/lib/utils/unsubscribe";
 import { logger } from "@/lib/utils/logger";
 
 import type { Resend } from "resend";
+
 
 export const DAILY_OUTREACH_LIMIT = 50;
 
@@ -62,7 +65,7 @@ export async function processOutreachQueue(
     for (const item of (pending ?? []) as OutreachItem[]) {
       try {
         const token = generateEmailUnsubscribeToken(item.recipient_email);
-        const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://alparai.com";
+        const appUrl = (vault.read('NEXT_PUBLIC_APP_URL') ?? process.env.NEXT_PUBLIC_APP_URL) || "https://alparai.com";
         const unsubscribeLink = `${appUrl}/api/v1/unsubscribe?email=${encodeURIComponent(item.recipient_email)}&token=${token}`;
 
         const footer = `\n\n---\nTo unsubscribe from ALPAR AI communication, click here: ${unsubscribeLink}`;

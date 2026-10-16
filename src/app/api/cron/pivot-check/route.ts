@@ -1,12 +1,15 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { withCronLogger } from "@/lib/utils/cron-logger";
 import { NextResponse } from "next/server";
 import { createServerClient } from "@/lib/dehost/server";
 import { logger } from "@/lib/utils/logger";
 
+
 async function getHandler(request: Request) {
   try {
     const authHeader = request.headers.get("authorization");
-    if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+    if (authHeader !== `Bearer ${(vault.read('CRON_SECRET') ?? process.env.CRON_SECRET)}`) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 

@@ -1,6 +1,9 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 import { recordHeartbeat } from "@/lib/engine-registry";
+
 
 export function withCronLogger<REQ extends Request, RES extends Response>(
   cronName: string,
@@ -14,7 +17,7 @@ export function withCronLogger<REQ extends Request, RES extends Response>(
         ? request.headers.get("x-cron-test") === "true"
         : false;
 
-    if (process.env.VITEST === "true" && !isCronTest) {
+    if ((vault.read('VITEST') ?? process.env.VITEST) === "true" && !isCronTest) {
       try {
         const response = await handler(request);
         const serviceId = `cron-${cronName.replace(/_/g, "-")}`;

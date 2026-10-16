@@ -1,7 +1,10 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { NextResponse } from "next/server";
 import { createHmac, timingSafeEqual } from "crypto";
 import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
+
 
 interface WorkflowRunPayload {
   action: string;
@@ -28,7 +31,7 @@ interface DoraMetricRow {
 }
 
 function verifySignature(body: string, signature: string | null): boolean {
-  const secret = process.env.GITHUB_WEBHOOK_SECRET;
+  const secret = (vault.read('GITHUB_WEBHOOK_SECRET') ?? process.env.GITHUB_WEBHOOK_SECRET);
   if (!secret || !signature) return false;
   const expected = "sha256=" + createHmac("sha256", secret).update(body).digest("hex");
   try {

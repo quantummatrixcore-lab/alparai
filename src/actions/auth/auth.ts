@@ -1,4 +1,6 @@
 "use server";
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
@@ -7,6 +9,7 @@ import { createServerClient } from "@/lib/dehost/server";
 import { getCurrentUser } from "@/lib/auth/session";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { logger } from "@/lib/utils/logger";
+
 
 export interface AuthResult {
   ok: boolean;
@@ -22,7 +25,7 @@ function getOrigin(hdrs: Headers) {
     const proto = hdrs.get("x-forwarded-proto") ?? (host.includes("localhost") || host.includes("127.0.0.1") ? "http" : "https");
     return `${proto}://${host}`;
   }
-  return process.env.NEXT_PUBLIC_APP_URL || "https://www.alparai.com";
+  return (vault.read('NEXT_PUBLIC_APP_URL') ?? process.env.NEXT_PUBLIC_APP_URL) || "https://www.alparai.com";
 }
 
 export async function signInWithGoogleIdToken(token: string, nonce: string): Promise<AuthResult> {
@@ -45,7 +48,7 @@ export async function signInWithGoogleIdToken(token: string, nonce: string): Pro
     }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const payload = (await verifyRes.json()) as any;
-    const envClientId = process.env.GOOGLE_CLIENT_ID;
+    const envClientId = (vault.read('GOOGLE_CLIENT_ID') ?? process.env.GOOGLE_CLIENT_ID);
     const expectedClientId =
       envClientId && !envClientId.includes("SENSITIVE") && envClientId.includes(".apps.googleusercontent.com")
         ? envClientId

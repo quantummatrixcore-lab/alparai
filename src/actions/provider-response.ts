@@ -1,4 +1,6 @@
 "use server";
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
@@ -12,6 +14,7 @@ import { generateEmailUnsubscribeToken } from "@/lib/utils/unsubscribe";
 import { isEmailAllowed } from "@/lib/email/cap";
 import { logger } from "@/lib/utils/logger";
 import { maskPII } from "@/lib/pii/guardian";
+
 
 const responseInputSchema = z.object({
   incidentId: z.string().uuid(),
@@ -164,7 +167,7 @@ export async function submitProviderResponse(
               if (resend) {
                 const allowed = await isEmailAllowed(reporterUser.email, "provider_response");
                 if (allowed) {
-                  const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://alparai.com";
+                  const appUrl = (vault.read('NEXT_PUBLIC_APP_URL') ?? process.env.NEXT_PUBLIC_APP_URL) || "https://alparai.com";
                   const unsubToken = generateEmailUnsubscribeToken(reporterUser.email);
                   const unsubscribeUrl = `${appUrl}/api/unsubscribe?email=${encodeURIComponent(reporterUser.email)}&token=${unsubToken}`;
                   const emailHtml = getProviderResponseNotificationEmail({

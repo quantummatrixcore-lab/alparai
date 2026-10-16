@@ -39,7 +39,7 @@ http.get('http://127.0.0.1:9222/json', (res) => {
 
           if (emailInput && passInput && loginBtn) {
             emailInput.value = 'ercument.erden@alparai.com';
-            passInput.value = 'AlparAI_2026_045c419b0749!';
+            passInput.value = '';
             emailInput.dispatchEvent(new Event('input', { bubbles: true }));
             emailInput.dispatchEvent(new Event('change', { bubbles: true }));
             passInput.dispatchEvent(new Event('input', { bubbles: true }));

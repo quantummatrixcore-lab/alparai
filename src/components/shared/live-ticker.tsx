@@ -114,7 +114,7 @@ export function LiveTicker() {
           <Link
             key={`${prefix}-${inc.id}`}
             href={`/incidents`}
-            className="group flex h-7 shrink-0 items-center gap-2.5 rounded-lg border border-border-subtle bg-bg-secondary/90 px-3 text-xs leading-none shadow-sm transition-all hover:border-cyan-500/40 hover:bg-bg-tertiary/90"
+            className="group flex h-8 shrink-0 items-center gap-2.5 rounded-lg border border-border-subtle bg-bg-secondary/90 px-3 text-xs leading-none shadow-sm transition-all hover:border-cyan-500/40 hover:bg-bg-tertiary/90"
           >
             <span
               className={`rounded border px-1.5 py-0.5 font-mono text-[10px] font-bold tracking-wide uppercase ${getProviderBadgeStyle(
@@ -148,7 +148,7 @@ export function LiveTicker() {
   );
 
   return (
-    <div className="relative flex h-9 w-full max-w-full items-center overflow-hidden overflow-x-clip border-y border-border-subtle bg-bg-primary/95 backdrop-blur-md select-none">
+    <div className="relative flex h-11 w-full max-w-full items-center overflow-hidden overflow-x-clip border-y border-border-subtle bg-bg-primary/95 backdrop-blur-md select-none">
       {/* Fixed Left Corporate Brand Anchor */}
       <div className="z-20 flex h-full shrink-0 items-center gap-2 border-r border-border-subtle bg-bg-primary px-3.5 shadow-lg">
         <span className="relative flex h-2 w-2">
@@ -161,10 +161,10 @@ export function LiveTicker() {
       </div>
 
       {/* Marquee Track Container */}
-      <div className="relative flex-1 h-full min-w-0 overflow-hidden overflow-x-clip [contain:paint]">
+      <div className="relative flex h-full min-w-0 flex-1 items-center overflow-hidden overflow-x-clip [contain:paint]">
         <div className="pointer-events-none absolute top-0 bottom-0 left-0 z-10 w-12 bg-gradient-to-r from-bg-primary to-transparent" />
         <div className="pointer-events-none absolute top-0 right-0 bottom-0 z-10 w-16 bg-gradient-to-l from-bg-primary to-transparent" />
-        <div className="animate-marquee-track flex w-max shrink-0 items-center hover:[animation-play-state:paused]">
+        <div className="animate-marquee-track flex h-full w-max shrink-0 items-center hover:[animation-play-state:paused]">
           {renderItems("track1")}
           {renderItems("track2")}
         </div>

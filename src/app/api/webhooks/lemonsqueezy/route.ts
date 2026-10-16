@@ -1,3 +1,5 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { waitUntil } from "@/lib/dehost/functions-stub";
 import { NextResponse } from "next/server";
 import crypto from "crypto";
@@ -5,7 +7,8 @@ import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 import { processAutonomousPdfInvoice } from "@/lib/billing/invoices";
 
-const LEMONSQUEEZY_WEBHOOK_SECRET = process.env.LEMONSQUEEZY_WEBHOOK_SECRET;
+
+const LEMONSQUEEZY_WEBHOOK_SECRET = (vault.read('LEMONSQUEEZY_WEBHOOK_SECRET') ?? process.env.LEMONSQUEEZY_WEBHOOK_SECRET);
 
 /**
  * Normalizes user subscription tier for `api_keys.tier` ('free' | 'developer' | 'vendor' | 'enterprise')

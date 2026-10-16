@@ -313,7 +313,7 @@ describe("API v1 Contract Schema Validators", () => {
         zero_latency: true,
       },
       stats: {
-        total_incidents: 2908,
+        total_incidents: 3115,
         k_benchmark_evaluations: 150,
         monitored_models: 25,
       },

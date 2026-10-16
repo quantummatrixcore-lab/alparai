@@ -1,9 +1,12 @@
 "use client";
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 
 import posthog from "posthog-js";
 import { PostHogProvider as Provider } from "posthog-js/react";
 import { useEffect, Suspense } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
+
 
 function PostHogPageview() {
   const pathname = usePathname();
@@ -25,7 +28,7 @@ function PostHogPageview() {
 }
 
 export function PostHogProvider({ children }: { children: React.ReactNode }) {
-  const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
+  const key = (vault.read('NEXT_PUBLIC_POSTHOG_KEY') ?? process.env.NEXT_PUBLIC_POSTHOG_KEY);
   const isEnabled = Boolean(key && key !== "phc_dummy" && !key.startsWith("phc_dummy") && key !== "placeholder");
 
   useEffect(() => {
@@ -33,7 +36,7 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
       const initPostHog = () => {
         if (!posthog.__loaded && key) {
           posthog.init(key, {
-            api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com",
+            api_host: (vault.read('NEXT_PUBLIC_POSTHOG_HOST') ?? process.env.NEXT_PUBLIC_POSTHOG_HOST) || "https://us.i.posthog.com",
             person_profiles: "identified_only",
             capture_pageview: false,
             capture_pageleave: true,

@@ -59,9 +59,18 @@ const embedHeaders = [
 
 import path from "path";
 import { fileURLToPath } from "url";
+import { createRequire } from "module";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+try {
+  const requireCjs = createRequire(import.meta.url);
+  const loadVaultIntoMemory = requireCjs("D:/00_MATRIX/vault_loader.js");
+  loadVaultIntoMemory(__dirname);
+} catch {
+  // Vault loader optional in non-local/CI environments
+}
 
 const nextConfig = {
   

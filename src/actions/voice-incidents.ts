@@ -1,10 +1,13 @@
 "use server";
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 
 import { maskPII } from "@/lib/pii/guardian";
 import { logger } from "@/lib/utils/logger";
 import { submitIncident, type SubmitIncidentState } from "@/actions/incidents";
 import { headers } from "next/headers";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
+
 
 /**
  * 113 Supported Languages ASR catalog (ISO-639-1 / BCP-47 codes).
@@ -40,7 +43,7 @@ export async function transcribeAudioBlob(
     let confidence = 0.96;
     const detectedLanguage = requestedLocale || "tr";
 
-    if (process.env.QWEN_API_KEY) {
+    if ((vault.read('QWEN_API_KEY') ?? process.env.QWEN_API_KEY)) {
       try {
         const base64Audio = audioBuffer.toString("base64");
         const res = await fetch(
@@ -48,7 +51,7 @@ export async function transcribeAudioBlob(
           {
             method: "POST",
             headers: {
-              Authorization: `Bearer ${process.env.QWEN_API_KEY}`,
+              Authorization: `Bearer ${(vault.read('QWEN_API_KEY') ?? process.env.QWEN_API_KEY)}`,
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
@@ -86,13 +89,13 @@ export async function transcribeAudioBlob(
     }
 
     // Fallback to OpenRouter Multimodal if Qwen fails or key is missing
-    if (!transcriptText && process.env.OPENROUTER_API_KEY) {
+    if (!transcriptText && (vault.read('OPENROUTER_API_KEY') ?? process.env.OPENROUTER_API_KEY)) {
       try {
         const base64Audio = audioBuffer.toString("base64");
         const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+            Authorization: `Bearer ${(vault.read('OPENROUTER_API_KEY') ?? process.env.OPENROUTER_API_KEY)}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({

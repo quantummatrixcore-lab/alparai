@@ -1,4 +1,6 @@
 "use server";
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 
 import { headers } from "next/headers";
 import { getTranslations } from "next-intl/server";
@@ -9,6 +11,7 @@ import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { revalidatePath } from "next/cache";
 import { logger } from "@/lib/utils/logger";
 
+
 export async function submitVote(
   pollId: string,
   choice: "yes" | "no" | "unsure",
@@ -16,9 +19,9 @@ export async function submitVote(
 ) {
   try {
     // 1. Verify Turnstile if secret is configured and real token provided
-    const turnstileSecret = process.env.TURNSTILE_SECRET_KEY;
+    const turnstileSecret = (vault.read('TURNSTILE_SECRET_KEY') ?? process.env.TURNSTILE_SECRET_KEY);
     if (
-      process.env.NODE_ENV !== "production" ||
+      (vault.read('NODE_ENV') ?? process.env.NODE_ENV) !== "production" ||
       turnstileToken.startsWith("fallback-") ||
       turnstileToken === "dev-bypass-token"
     ) {

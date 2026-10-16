@@ -1,7 +1,10 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import "server-only";
 import { Redis } from "@upstash/redis";
 import { logger } from "@/lib/utils/logger";
 import type { IdempotencyKey } from "./types";
+
 
 export interface QueueJob {
   id?: string;
@@ -123,8 +126,8 @@ class RedisQueue implements QueueHandle {
 let cachedQueue: QueueHandle | null = null;
 
 export function getQueue(): QueueHandle {
-  const url = process.env.UPSTASH_REDIS_REST_URL;
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  const url = (vault.read('UPSTASH_REDIS_REST_URL') ?? process.env.UPSTASH_REDIS_REST_URL);
+  const token = (vault.read('UPSTASH_REDIS_REST_TOKEN') ?? process.env.UPSTASH_REDIS_REST_TOKEN);
   if (url && token) {
     if (!cachedQueue || !cachedQueue.available) {
       cachedQueue = new RedisQueue(url, token);

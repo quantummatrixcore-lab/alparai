@@ -1,7 +1,10 @@
 "use server";
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 
 import { requireAdmin } from "@/lib/auth/session";
 import { logger } from "@/lib/utils/logger";
+
 
 const JULES_API_BASE = "https://jules.googleapis.com/v1alpha";
 
@@ -27,7 +30,7 @@ interface CreateSessionParams {
 }
 
 function getApiKey(): string {
-  const key = process.env.JULES_API_KEY;
+  const key = (vault.read('JULES_API_KEY') ?? process.env.JULES_API_KEY);
   if (!key) throw new Error("JULES_API_KEY not configured");
   return key;
 }
@@ -159,7 +162,7 @@ export async function getJulesHealth(): Promise<{
 }> {
   await requireAdmin();
   try {
-    const apiKey = process.env.JULES_API_KEY;
+    const apiKey = (vault.read('JULES_API_KEY') ?? process.env.JULES_API_KEY);
     if (!apiKey) return { connected: false, sessionCount: 0, error: "JULES_API_KEY not set" };
 
     try {

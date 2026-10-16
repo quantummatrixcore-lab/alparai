@@ -114,8 +114,8 @@ Examples:
 
 ## 3. 🐳 DOCKER CLI (dehost/Coolify — Via SSH)
 
-**Status:** ✅ ACTIVE (Requires SSH into dehost first)
-**SSH Command:** `ssh -i C:\Users\ercum\.ssh\id_ed25519 root@<dehost_IP>`
+**Status:** ✅ ACTIVE (Requires SSH via WireGuard Mesh VPN — Port 22 Forbidden)
+**SSH Command:** `ssh -i C:\Users\ercum\.ssh\id_ed25519 root@10.99.0.1 -p <SECURE_PORT>`
 
 ### Full Capability Map:
 

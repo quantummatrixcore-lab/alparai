@@ -1,10 +1,13 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { createHash, createHmac, timingSafeEqual } from "node:crypto";
+
 
 /**
  * Generate a stateless secure unsubscribe token for a given user.
  */
 export function generateUnsubscribeToken(userId: string): string {
-  const salt = process.env.UNSUBSCRIBE_SALT;
+  const salt = (vault.read('UNSUBSCRIBE_SALT') ?? process.env.UNSUBSCRIBE_SALT);
   if (!salt) {
     throw new Error("UNSUBSCRIBE_SALT environment variable is required");
   }
@@ -24,7 +27,7 @@ export function verifyUnsubscribeToken(userId: string, token: string): boolean {
  * Generate a secure HMAC-based unsubscribe token for a given email address.
  */
 export function generateEmailUnsubscribeToken(email: string): string {
-  const salt = process.env.IP_SALT;
+  const salt = (vault.read('IP_SALT') ?? process.env.IP_SALT);
   if (!salt) {
     throw new Error("IP_SALT environment variable is required");
   }

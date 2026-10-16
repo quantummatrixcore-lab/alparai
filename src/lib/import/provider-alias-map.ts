@@ -1,6 +1,9 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import fs from "fs";
 import path from "path";
 import defaultAliases from "./provider-aliases.json";
+
 
 export interface AttributionInput {
   affectedProvider?: string | null;
@@ -34,7 +37,7 @@ export function resetAliasCache(): void {
 function getAliasesPath(): string {
   // Test isolation: vitest redirects writes to a temp copy so the
   // committed dictionary is never polluted by test runs.
-  const override = process.env.PROVIDER_ALIASES_PATH;
+  const override = (vault.read('PROVIDER_ALIASES_PATH') ?? process.env.PROVIDER_ALIASES_PATH);
   if (override && override.trim().length > 0) return override;
   return path.join(process.cwd(), "src", "lib", "import", "provider-aliases.json");
 }

@@ -16,7 +16,7 @@ socket.on('data', (d) => {
   const text = d.toString();
   console.log('S:', text);
   if (text.includes('* OK')) {
-    sendCmd('LOGIN ercument@alparai.com AlparAI_2026_045c419b0749!');
+    sendCmd('LOGIN ercument@alparai.com ');
   } else if (text.includes('A1 OK')) {
     sendCmd('SELECT INBOX');
   } else if (text.includes('A2 OK')) {

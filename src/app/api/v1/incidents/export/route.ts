@@ -1,9 +1,12 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import "server-only";
 import { NextResponse } from "next/server";
 import { headers } from "next/headers";
 import { createAdminClient } from "@/lib/dehost/admin";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { timingSafeEqual } from "crypto";
+
 
 function safeCompare(a: string, b: string): boolean {
   const aBuf = Buffer.from(a);
@@ -31,7 +34,7 @@ export async function GET(request: Request) {
 
     const authHeader = hdrs.get("authorization");
     const apiKey = hdrs.get("x-api-key");
-    const validKey = process.env.PUBLIC_API_KEY;
+    const validKey = (vault.read('PUBLIC_API_KEY') ?? process.env.PUBLIC_API_KEY);
 
     let isAuthenticated = false;
 

@@ -1,3 +1,5 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { withCronLogger } from "@/lib/utils/cron-logger";
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/dehost/admin";
@@ -5,17 +7,18 @@ import { processOutreachQueue } from "@/lib/audit/outreach-agent";
 import { Resend } from "resend";
 import { logger } from "@/lib/utils/logger";
 
+
 export const dynamic = "force-dynamic";
 export const maxDuration = 120;
 
 async function getHandler(request: Request) {
   const authHeader = request.headers.get("authorization");
-  const isAuthorized = authHeader === `Bearer ${process.env.CRON_SECRET}`;
+  const isAuthorized = authHeader === `Bearer ${(vault.read('CRON_SECRET') ?? process.env.CRON_SECRET)}`;
   if (!isAuthorized) return new NextResponse("Unauthorized", { status: 401 });
 
   const dehost = createAdminClient();
 
-  const resendApiKey = process.env.RESEND_API_KEY;
+  const resendApiKey = (vault.read('RESEND_API_KEY') ?? process.env.RESEND_API_KEY);
   if (!resendApiKey) {
     logger.error("[CronOutreach] RESEND_API_KEY environment variable is not defined");
     return NextResponse.json(

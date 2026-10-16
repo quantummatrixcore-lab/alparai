@@ -43,8 +43,8 @@ When deploying the `Agent-Os-Frontend`:
 When verifying a backend or LLM deployment on dehost:
 
 1. Ensure the GitHub Action has successfully built the image (see Section 2).
-2. To check if the container is running, **SSH into the server:**
-   - Command: `ssh -i C:\Users\ercum\.ssh\id_ed25519 root@<dehost_ip>`
+2. To check if the container is running, **SSH into the server via WireGuard Mesh VPN (Port 22 is STRICTLY FORBIDDEN):**
+   - Command: `ssh -i C:\Users\ercum\.ssh\id_ed25519 root@10.99.0.1 -p <CUSTOM_SECURE_PORT>` (Do NOT use default port 22 or public IP)
 3. Check the running containers:
    - Command: `docker ps`
 4. Read the live logs (DO NOT USE BROWSER):

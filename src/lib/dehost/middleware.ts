@@ -1,3 +1,5 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 /**
  * DeHost Sovereign Infrastructure — Middleware Client.
  * Refreshes session cookie and checks auth state against DeHost.
@@ -6,8 +8,9 @@
 
 import type { NextRequest, NextResponse } from "next/server";
 
+
 async function verifySessionTokenHmac(payload: string, signatureB64Url: string): Promise<boolean> {
-  const secret = process.env.SESSION_SECRET || process.env.CRON_SECRET || "alparai-sovereign-session-secret-key-2026";
+  const secret = (vault.read('SESSION_SECRET') ?? process.env.SESSION_SECRET) || (vault.read('CRON_SECRET') ?? process.env.CRON_SECRET) || (((vault.read('NODE_ENV') ?? process.env.NODE_ENV) === 'production') ? '' : 'dev-only-insecure-session-secret');
   if (!secret) return false;
   try {
     const encoder = new TextEncoder();

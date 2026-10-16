@@ -1,10 +1,13 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import "server-only";
 import { createHash, timingSafeEqual } from "node:crypto";
 
-export function requireIpSalt(): string {
-  const salt = process.env.IP_SALT;
 
-  if (process.env.NODE_ENV === "production") {
+export function requireIpSalt(): string {
+  const salt = (vault.read('IP_SALT') ?? process.env.IP_SALT);
+
+  if ((vault.read('NODE_ENV') ?? process.env.NODE_ENV) === "production") {
     if (!salt) {
       throw new Error(
         "CRITICAL SECURITY ERROR: IP_SALT environment variable is missing in production.",

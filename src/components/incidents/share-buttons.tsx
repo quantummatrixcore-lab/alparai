@@ -65,16 +65,26 @@ export function ShareButtons({
   const [instaCopied, setInstaCopied] = useState(false);
 
   const getUrlForPlatform = React.useCallback(
-    (platform: string) => {
-      if (typeof window === "undefined") return url;
-      // Client-side same-origin base enforcement
-      const allowedOrigins = [window.location.origin];
-      const constructed = new URL(url, allowedOrigins[0]);
+    (platform: string, base?: string) => {
+      // Deterministic base: explicit base (client, post-hydration) else
+      // canonical production origin so SSR and first client render match.
+      const origin = base ?? "https://alparai.com";
+      const constructed = new URL(url, origin);
       constructed.searchParams.set("ref", platform);
       return constructed.toString();
     },
     [url],
   );
+
+  const [shareBase, setShareBase] = React.useState<string | undefined>(undefined);
+  React.useEffect(() => {
+    setShareBase(window.location.origin);
+  }, []);
+
+  const xUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(getUrlForPlatform("x", shareBase))}`;
+  const liUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(getUrlForPlatform("linkedin", shareBase))}`;
+  const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(title + " " + getUrlForPlatform("whatsapp", shareBase))}`;
+  const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(getUrlForPlatform("facebook", shareBase))}`;
 
   const onCopy = async () => {
     try {
@@ -102,10 +112,6 @@ export function ShareButtons({
     }
   };
 
-  const xUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(getUrlForPlatform("x"))}`;
-  const liUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(getUrlForPlatform("linkedin"))}`;
-  const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(title + " " + getUrlForPlatform("whatsapp"))}`;
-  const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(getUrlForPlatform("facebook"))}`;
 
   const containerVariants: Variants = {
     hidden: { opacity: 0, y: 10 },

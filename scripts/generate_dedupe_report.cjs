@@ -6,7 +6,7 @@ const path = require("path");
 console.log("[PWD]", process.cwd());
 
 const SSH_KEY = "C:/Users/ercum/.ssh/id_ed25519_vds";
-const REMOTE_HOST = "root@45.143.4.92";
+const REMOTE_HOST = "-p 18222 root@45.143.4.92";
 
 function runQuery(sql) {
   const cmd = `ssh -i "${SSH_KEY}" -o StrictHostKeyChecking=no ${REMOTE_HOST} "docker exec -i postgres-master psql -U postgres -d alparai_prod -t -A -F'|'"`;

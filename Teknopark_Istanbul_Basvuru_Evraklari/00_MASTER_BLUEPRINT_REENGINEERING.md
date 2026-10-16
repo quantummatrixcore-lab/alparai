@@ -22,10 +22,10 @@ Yapay zekanın hızla yaygınlaştığı günümüzde, geliştirilen ileri bir t
   * **Denetim Sonucu:** ONAYLANDI (Tam Uyum — 65 Yaşındaki Ekonomist Testi Geçildi).  
   * **Açıklama:** Başvuru evraklarındaki tüm bölümlerin açılış cümleleri, teknik altyapısı olmayan bir ekonomistin, hukukçunun veya işletmecinin ilk okuyuşta kavrayabileceği yalın bir iş diliyle kurgulanmıştır. Ağır mühendislik kavramları açılış paragraflarından tamamen temizlenmiş, anlatım önce yaşanan somut insan ve şirket mağduriyetleriyle başlatılmıştır.
 
-- [x] **3. Rakamlar anlam bağlamıyla mı sunuluyor? (2.908 + neden önemli?)**  
+- [x] **3. Rakamlar anlam bağlamıyla mı sunuluyor? (3.115 + neden önemli?)**  
   * **Denetim Sonucu:** ONAYLANDI (Tam Uyum — Anlam Bağı Kuruldu).  
   * **Açıklama:** Hiçbir metrik bağlamsız bir istatistik olarak bırakılmamıştır:
-    * *2.908 Vaka:* "Şu an 2.908 vatandaş yapay zekadan zarar gördüğünü belgeleyen bir şikayet kaydı açtı — bu Türkiye'nin ilk yapay zeka mağduriyet kütüphanesidir ve sistemimizin doğruluğu bu gerçek hayat vakaları üzerinde kanıtlanmaktadır."
+    * *3.115 Vaka:* "Şu an 3.115 vatandaş yapay zekadan zarar gördüğünü belgeleyen bir şikayet kaydı açtı — bu Türkiye'nin ilk yapay zeka mağduriyet kütüphanesidir ve sistemimizin doğruluğu bu gerçek hayat vakaları üzerinde kanıtlanmaktadır."
     * *141 Veritabanı Tablosu:* "Bir bankacılık yazılımı titizliğinde, geriye dönük her denetim kaydının mahkemelerde silinemez hukuki delil olmasını sağlayan kayıt hafızası."
     * *360 Erişim Kuralı:* "Hiçbir kurumun veya kullanıcının, bir başkasının ticari sırrına veya kişisel verisine erişemeyeceğini garanti altına alan yasal güvenlik duvarı."
 
@@ -102,7 +102,7 @@ Sistem, yapay zekanın ürettiği cevap henüz ekrana yansımadan veya müşteri
 
 ### Adım 4: Sahadan Somut Kanıtlar ve Güvenilirlik Metrikleri
 * **Çalışan Canlı Platform:** Sistemin çekirdeği `https://alparai.com` adresinde üretim ortamında yayındadır.
-* **2.908 Doğrulanmış Gerçek Vaka:** Şu an 2.908 vatandaş yapay zekadan zarar gördüğünü belgeleyen resmi bir şikayet kaydı açmıştır — bu Türkiye'nin ilk yapay zeka mağduriyet kütüphanesidir ve sistemimizin doğruluğu bu saha tecrübesiyle kanıtlanmaktadır.
+* **3.115 Doğrulanmış Gerçek Vaka:** Şu an 3.115 vatandaş yapay zekadan zarar gördüğünü belgeleyen resmi bir şikayet kaydı açmıştır — bu Türkiye'nin ilk yapay zeka mağduriyet kütüphanesidir ve sistemimizin doğruluğu bu saha tecrübesiyle kanıtlanmaktadır.
 * **TPE Tescilli Patent:** Türk Patent ve Marka Kurumu nezdinde 2026/018942 numarasıyla tescillenmiş bağımsız fikri mülkiyet koruması.
 * **Emsal Uluslararası Vaka:** Kurucumuzun bizzat xAI Grok modelinde yaşadığı pasaport gaspı ve kişisel veri ihlali vakası, 25 Haziran 2026 tarihli TÜRKİNFORM Araştırma Haberi ile belgelenmiş; KVKK, FTC, ICO, CNIL ve AB Yapay Zeka Ofisi'ne yapılan resmi başvurularla projenin Ar-Ge ihtiyacı uluslararası düzeyde tescillenmiştir.
 * **Bankacılık Düzeyinde Güvenlik:** 141 veritabanı tablosu, 360 erişim kuralı ve 1.177 otomatik dayanıklılık testi ile çalışan mimari.

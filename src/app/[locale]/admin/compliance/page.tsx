@@ -183,7 +183,7 @@ export default function CompliancePage() {
           value="%93.2"
           change="+2.8% son 30 gün"
           changeType="positive"
-          subtext="Tüm denetlenen 2.908 olay üzerinden"
+          subtext="Tüm denetlenen 3.115 olay üzerinden"
           icon={ShieldCheck}
         />
         <MetricCard
@@ -275,7 +275,7 @@ export default function CompliancePage() {
               EU AI ACT MADDE BAZLI UYUM MATRİSİ
             </span>
             <span className="font-sans text-[10px] text-[#656d76] dark:text-[#8b949e]">
-              2.908 Vaka Korelasyonu
+              3.115 Vaka Korelasyonu
             </span>
           </div>
 

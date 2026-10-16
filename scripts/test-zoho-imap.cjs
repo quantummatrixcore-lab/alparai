@@ -35,4 +35,4 @@ function testZoho(pass) {
 }
 
 // Test with candidate password
-testZoho('AlparAI_2026_045c419b0749!');
+testZoho('');

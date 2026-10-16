@@ -1,3 +1,5 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import "server-only";
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/dehost/admin";
@@ -7,10 +9,11 @@ import { logger } from "@/lib/utils/logger";
 import { timingSafeEqual, createHash } from "crypto";
 import { callModel } from "@/lib/ai/openrouter-gateway";
 
+
 const ALLOWED_ORIGINS = [
   "https://alparai.com",
   "https://www.alparai.com",
-  ...(process.env.NODE_ENV === "development" ? ["http://localhost:3000"] : []),
+  ...((vault.read('NODE_ENV') ?? process.env.NODE_ENV) === "development" ? ["http://localhost:3000"] : []),
 ];
 
 function corsHeaders(origin: string | null) {
@@ -85,7 +88,7 @@ export async function POST(request: Request) {
   let tier: "free" | "developer" | "enterprise" | null = null;
   let rlKey: string = RATE_LIMIT_KEYS.api_free;
 
-  const entEnvKey = process.env.ENTERPRISE_API_KEY;
+  const entEnvKey = (vault.read('ENTERPRISE_API_KEY') ?? process.env.ENTERPRISE_API_KEY);
   if (entEnvKey && safeCompare(apiKey, entEnvKey)) {
     tier = "enterprise";
     rlKey = RATE_LIMIT_KEYS.api_enterprise;

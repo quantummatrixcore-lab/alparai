@@ -1,5 +1,8 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { NextResponse, type NextRequest } from "next/server";
 import { performSignOut } from "@/actions/auth/auth";
+
 
 export async function POST(request: NextRequest) {
   try {
@@ -26,7 +29,7 @@ export async function POST(request: NextRequest) {
     expires: new Date(0),
     httpOnly: true,
     sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
+    secure: (vault.read('NODE_ENV') ?? process.env.NODE_ENV) === "production",
   });
 
   // Also purge any legacy dehost or session cookies

@@ -1,7 +1,10 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import "server-only";
 import { createAdminClient } from "@/lib/dehost/admin";
 import { getRedisInstance } from "@/lib/utils/rate-limit";
 import { logger } from "@/lib/utils/logger";
+
 
 export interface SubsystemStatus {
   name: "db" | "api" | "auth" | "email" | "cdn" | "redis" | "storage" | "ai_gateway" | "cron";
@@ -88,7 +91,7 @@ export async function checkSystemHealth(): Promise<UnifiedHealthReport> {
   }
 
   // 4. AI Gateway Check
-  const hasOpenRouter = Boolean(process.env.OPENROUTER_API_KEY || process.env.OPENAI_API_KEY);
+  const hasOpenRouter = Boolean((vault.read('OPENROUTER_API_KEY') ?? process.env.OPENROUTER_API_KEY) || (vault.read('OPENAI_API_KEY') ?? process.env.OPENAI_API_KEY));
   subsystems.push({
     name: "ai_gateway",
     status: hasOpenRouter ? "healthy" : "degraded",
@@ -97,7 +100,7 @@ export async function checkSystemHealth(): Promise<UnifiedHealthReport> {
   });
 
   // 5. Email Check
-  const hasEmailKey = Boolean(process.env.RESEND_API_KEY || process.env.SMTP_PASSWORD);
+  const hasEmailKey = Boolean((vault.read('RESEND_API_KEY') ?? process.env.RESEND_API_KEY) || (vault.read('SMTP_PASSWORD') ?? process.env.SMTP_PASSWORD));
   subsystems.push({
     name: "email",
     status: hasEmailKey ? "healthy" : "degraded",

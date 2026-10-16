@@ -1,8 +1,11 @@
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import { type NextRequest, NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/dehost/admin";
 import { verifyEmailUnsubscribeToken } from "@/lib/utils/unsubscribe";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { logger } from "@/lib/utils/logger";
+
 
 export async function GET(request: NextRequest) {
   try {
@@ -34,7 +37,7 @@ async function handleUnsubscribe(request: NextRequest) {
   }
 
   // 2. Validate environment config
-  const ipSalt = process.env.IP_SALT;
+  const ipSalt = (vault.read('IP_SALT') ?? process.env.IP_SALT);
   if (!ipSalt) {
     logger.error("[Unsubscribe API] IP_SALT environment variable is not defined");
     return new NextResponse("Internal Server Error", { status: 500 });

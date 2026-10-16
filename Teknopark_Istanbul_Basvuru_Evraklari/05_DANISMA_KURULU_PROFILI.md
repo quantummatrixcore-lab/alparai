@@ -11,14 +11,14 @@ Bir teknoloji girişiminin başarısı yalnızca yazdığı kodla değil, arkas�
 
 Ercüment Erden, küresel bir teknoloji devinin kendi kişisel pasaport bilgilerini izinsiz işlemesi ve ifşa etmesiyle başlayan haksızlığa karşı tek başına uluslararası hukuk ve teknoloji mücadelesi başlatan bir girişimcidir. Yaşadığı bu kişisel mağduriyeti yalnızca bir şikayet olarak bırakmayıp, tüm vatandaşların ve şirketlerin yapay zekaya karşı haklarını koruyabileceği bağımsız bir denetim platformuna dönüştürmüş; ALPAR AI'ı bu toplumsal adalet ve hesap verebilirlik vizyonuyla kurmuştur.
 
-Disiplinler arası formasyonuyla öne çıkan kurucu; Endüstriyel Elektronik, İşletme ve Halkla İlişkiler alanlarındaki üçlü eğitim birikimini birleştirerek platformun tüm sistem mimarisini tek elden hayata geçirmiştir. Halihazırda canlı yayında olan platformda (alparai.com) **2.908'ten fazla vatandaşın yapay zekadan zarar gördüğünü belgeleyen şikayet kaydını** toplamış ve Türkiye'nin ilk yapay zeka mağduriyet kütüphanesini kurmuştur. Geliştirdiği özgün denetim yöntemini Türk Patent ve Marka Kurumu nezdinde tescillemiş (Patent No: 2026/018942); Elon Musk'ın xAI Grok platformuna karşı KVKK, ABD Federal Ticaret Komisyonu (FTC), İngiltere Bilgi Komisyonu (ICO), Fransa Veri Koruma Otoritesi (CNIL) ve Avrupa Birliği Yapay Zeka Ofisi nezdinde resmi soruşturma süreçlerini başlatarak emsal bir hukuki duruş sergilemiştir.
+Disiplinler arası formasyonuyla öne çıkan kurucu; Endüstriyel Elektronik, İşletme ve Halkla İlişkiler alanlarındaki üçlü eğitim birikimini birleştirerek platformun tüm sistem mimarisini tek elden hayata geçirmiştir. Halihazırda canlı yayında olan platformda (alparai.com) **3.115'ten fazla vatandaşın yapay zekadan zarar gördüğünü belgeleyen şikayet kaydını** toplamış ve Türkiye'nin ilk yapay zeka mağduriyet kütüphanesini kurmuştur. Geliştirdiği özgün denetim yöntemini Türk Patent ve Marka Kurumu nezdinde tescillemiş (Patent No: 2026/018942); Elon Musk'ın xAI Grok platformuna karşı KVKK, ABD Federal Ticaret Komisyonu (FTC), İngiltere Bilgi Komisyonu (ICO), Fransa Veri Koruma Otoritesi (CNIL) ve Avrupa Birliği Yapay Zeka Ofisi nezdinde resmi soruşturma süreçlerini başlatarak emsal bir hukuki duruş sergilemiştir.
 
 | Değerlendirme Alanı | Profil ve Yetkinlik Detayları |
 | :--- | :--- |
 | **Adı Soyadı** | **Ercüment ERDEN** |
 | **Pozisyon & Sahiplik** | CEO, Baş Sistem Mimarı, Kurucu Girişimci (%100 Şirket Payı) |
 | **Eğitim ve Formasyon** | • Endüstriyel Elektronik (Selçuk Üniversitesi)<br>• İşletme (Anadolu Üniversitesi)<br>• Halkla İlişkiler ve Tanıtım (Anadolu Üniversitesi) — Mühendislik, yönetim ve iletişim sentezi |
-| **Girişimin Kanıtlanmış Gücü** | • Canlı üretim platformu: [alparai.com](https://alparai.com)<br>• **2.908+ doğrulanmış vatandaş ihlal kaydı:** Türkiye'nin ilk ve en geniş yapay zeka hasar arşivi<br>• Verilerin birbirine karışmasını önleyen 141 veri tablosu ve 360 satır düzeyinde güvenlik kuralı<br>• 72 aktif çalışan kurumsal servis kapısı (API) ve 1.177+ onaylanmış doğruluk testi<br>• Türk Patent ve Marka Kurumu tescilli patent (No: 2026/018942) |
+| **Girişimin Kanıtlanmış Gücü** | • Canlı üretim platformu: [alparai.com](https://alparai.com)<br>• **3.115+ doğrulanmış vatandaş ihlal kaydı:** Türkiye'nin ilk ve en geniş yapay zeka hasar arşivi<br>• Verilerin birbirine karışmasını önleyen 141 veri tablosu ve 360 satır düzeyinde güvenlik kuralı<br>• 72 aktif çalışan kurumsal servis kapısı (API) ve 1.177+ onaylanmış doğruluk testi<br>• Türk Patent ve Marka Kurumu tescilli patent (No: 2026/018942) |
 | **Hukuki Öncülük & Emsal Duruş** | xAI/Grok pasaport ifşası üzerine 5 küresel otoriteye resmi başvuru; 25 Haziran 2026 tarihli [TÜRKİNFORM Araştırma Haberi](https://turkinform.com.tr/turk-girisimcinin-yasadigi-grok-skandali-kisisel-verilerimiz-risk-altinda-mi) ile kamuoyuna mal olan hak arama liderliği |
 | **İletişim Bilgileri** | ercument.erden@alparai.com • +90 532 440 83 89 • [ercumenterden.com](https://ercumenterden.com) |
 
@@ -60,7 +60,7 @@ Medya ve iletişim sektöründe 20 yılı aşkın köklü bir tecrübeye sahip o
 1. **Grok Skandalını Kamuoyuna Taşıma ve Savunuculuk:** Kurucunun maruz kaldığı kişisel veri gaspını TÜRKİNFORM manşetine taşıyarak ([Haber Linki](https://turkinform.com.tr/turk-girisimcinin-yasadigi-grok-skandali-kisisel-verilerimiz-risk-altinda-mi)) yapay zeka denetimsizliğini ulusal ve uluslararası kamuoyunun gündemine yerleştirmiştir.
 2. **Kamu Kurumları ve Meclis ile B2G İletişim Köprüsü:** TBMM, BTK, KVKK ve Cumhurbaşkanlığı Dijital Dönüşüm Ofisi nezdinde yapay zeka risk denetim ihtiyacını karar vericilere doğrudan aktararak kamu-özel sektör iş birliği kanallarını açmaktadır.
 3. **Kriz İletişimi ve Kurumsal İtibar Kalkanı:** ALPAR AI'ın küresel teknoloji şirketlerine yönelik yayınlayacağı kritik denetim ve ihlal raporlarında basın ilişkilerini ve kamuoyu algısını profesyonelce yönetmektedir.
-4. **Toplumsal Bilinç ve Yaygınlaştırma:** 119.000'i aşkın doğrudan takipçi ağı, yeninesil.tv ve TÜRKİNFORM üzerinden ALPAR AI'ın 2.908'ten fazla doğrulanmış vaka raporunu kitlelere ulaştırarak toplumsal farkındalık oluşturmaktadır.
+4. **Toplumsal Bilinç ve Yaygınlaştırma:** 119.000'i aşkın doğrudan takipçi ağı, yeninesil.tv ve TÜRKİNFORM üzerinden ALPAR AI'ın 3.115'ten fazla doğrulanmış vaka raporunu kitlelere ulaştırarak toplumsal farkındalık oluşturmaktadır.
 
 | Değerlendirme Alanı | Profil Detayları |
 | :--- | :--- |
@@ -77,7 +77,7 @@ Medya ve iletişim sektöründe 20 yılı aşkın köklü bir tecrübeye sahip o
 
 ALPAR AI; bir yazılım girişiminin çok ötesinde, arkasında güçlü bir hukuki güvence ve yaygın kamuoyu desteği bulunan eksiksiz bir takım çalışmasıdır. Teknopark İstanbul jürisinin değerlendirmesine sunulan bu yapı, üç vazgeçilmez sütun üzerine inşa edilmiştir:
 
-1. **Üretim ve Mühendislik Gücü (Ercüment Erden):** Yaşadığı haksızlıktan yola çıkarak sistemi baştan sona inşa eden, 2.908'ten fazla vatandaşın mağduriyetini canlı platformda belgeleyen ve tescilli patentiyle teknolojiyi hayata geçiren girişimci vizyonu.
+1. **Üretim ve Mühendislik Gücü (Ercüment Erden):** Yaşadığı haksızlıktan yola çıkarak sistemi baştan sona inşa eden, 3.115'ten fazla vatandaşın mağduriyetini canlı platformda belgeleyen ve tescilli patentiyle teknolojiyi hayata geçiren girişimci vizyonu.
 2. **Uluslararası Hukuk ve Akademik Kalkan (Prof. Dr. Musa Aygül):** Geliştirilen yazılımın tespit ettiği kusurların Avrupa Yapay Zeka Yasası (EU AI Act) ve uluslararası mahkemelerde tartışmasız delil kabul edilmesini sağlayan 28 yıllık kıdemli hukuk otoritesi.
 3. **Devlet, Yasama ve Medya Köprüsü (Ahmet Rıfat Albuz):** Yapay zeka denetimi ihtiyacını TBMM, kamu kurumları ve milyonlarca vatandaş nezdinde gündeme taşıyarak projeyi ulusal bir güven kalkanına dönüştüren iletişim gücü.
 

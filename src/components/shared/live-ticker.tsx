@@ -1,17 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { dehost } from "@/lib/dehost/client";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { usePathname } from "next/navigation";
+import { CANONICAL_FALLBACK_INCIDENTS } from "@/lib/constants/canonical-stats";
 
 interface TickerIncident {
   id: string;
   title_masked?: string | null;
-  ai_provider: { name: string } | null;
+  ai_provider?: { name: string } | null;
   ai_model?: { name: string } | null;
   category: string;
+  provider_name?: string;
 }
 
 export function LiveTicker() {
@@ -29,22 +30,23 @@ export function LiveTicker() {
       pathname.startsWith("/auth") ||
       /^\/(?:en|tr|[a-z]{2})\/auth(?:\/|$)/.test(pathname));
 
-  const [incidents, setIncidents] = useState<TickerIncident[]>([]);
+  const [incidents, setIncidents] = useState<TickerIncident[]>(
+    () => CANONICAL_FALLBACK_INCIDENTS.slice(0, 8) as unknown as TickerIncident[]
+  );
 
   useEffect(() => {
     if (isExcludedPage) return;
     async function fetchTickerData() {
-      const { data: latest } = await dehost
-        .from("incidents")
-        .select(
-          "id, title_masked, category, ai_provider:ai_providers(name), ai_model:ai_models(name)",
-        )
-        .eq("status", "published")
-        .order("created_at", { ascending: false })
-        .limit(8);
-
-      if (latest && latest.length > 0) {
-        setIncidents(latest as unknown as TickerIncident[]);
+      try {
+        const res = await fetch("/api/incidents?limit=8");
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            setIncidents(data as unknown as TickerIncident[]);
+          }
+        }
+      } catch {
+        // Fallback remains active
       }
     }
 
@@ -56,6 +58,9 @@ export function LiveTicker() {
   }
 
   const resolveProvider = (inc: TickerIncident) => {
+    if (inc.provider_name && inc.provider_name.trim()) {
+      return inc.provider_name;
+    }
     if (
       inc.ai_provider?.name &&
       inc.ai_provider.name.trim() &&

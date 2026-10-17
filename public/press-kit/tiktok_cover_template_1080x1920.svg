@@ -1,0 +1,242 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" width="1080" height="1920">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgTikTok" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#02050e"/>
+      <stop offset="35%" stop-color="#060c1c"/>
+      <stop offset="70%" stop-color="#030713"/>
+      <stop offset="100%" stop-color="#010308"/>
+    </linearGradient>
+
+    <!-- Top Neon Cyan Flare -->
+    <radialGradient id="neonCyanFlare" cx="50%" cy="25%" r="50%">
+      <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.28"/>
+      <stop offset="50%" stop-color="#0284c7" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#02050e" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Red Alert Flare -->
+    <radialGradient id="alertRedFlare" cx="50%" cy="65%" r="45%">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.22"/>
+      <stop offset="60%" stop-color="#7f1d1d" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#02050e" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Titanium Shading -->
+    <linearGradient id="facetTitanium" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#f1f5f9"/>
+      <stop offset="70%" stop-color="#94a3b8"/>
+      <stop offset="100%" stop-color="#475569"/>
+    </linearGradient>
+
+    <!-- Cobalt Prismatic Shading -->
+    <linearGradient id="facetCobalt" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="30%" stop-color="#0284c7"/>
+      <stop offset="70%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+
+    <!-- Optical Refraction Beam -->
+    <linearGradient id="facetBeam" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#00f0ff"/>
+      <stop offset="50%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+
+    <!-- Tech Grid -->
+    <pattern id="ttGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#38bdf8" stroke-width="0.7" stroke-opacity="0.08"/>
+      <circle cx="40" cy="40" r="1.1" fill="#38bdf8" fill-opacity="0.14"/>
+    </pattern>
+
+    <!-- Diagonal Caution Stripes -->
+    <pattern id="cautionStripes" width="24" height="24" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+      <rect width="12" height="24" fill="#ef4444" fill-opacity="0.12"/>
+      <rect x="12" width="12" height="24" fill="#000000" fill-opacity="0"/>
+    </pattern>
+  </defs>
+
+  <!-- 1. BASE BACKGROUND LAYERS -->
+  <rect width="1080" height="1920" fill="url(#bgTikTok)"/>
+  <rect width="1080" height="1920" fill="url(#neonCyanFlare)"/>
+  <rect width="1080" height="1920" fill="url(#alertRedFlare)"/>
+  <rect width="1080" height="1920" fill="url(#ttGrid)"/>
+
+  <!-- CYBER CORNER BRACKETS -->
+  <g stroke="#38bdf8" stroke-width="3" fill="none">
+    <path d="M 40 80 L 40 40 L 80 40"/>
+    <path d="M 1000 40 L 1040 40 L 1040 80"/>
+    <path d="M 40 1840 L 40 1880 L 80 1880"/>
+    <path d="M 1000 1880 L 1040 1880 L 1040 1840"/>
+  </g>
+
+  <!-- 2. HEADER: FORENSIC LAB BRANDING (y: 200 to 300) -->
+  <g transform="translate(80, 210)">
+    <!-- Alpar Mini Logo -->
+    <g transform="translate(0, 0) scale(0.65)">
+      <polygon points="50,12 18,86 35,86 50,48" fill="url(#facetTitanium)"/>
+      <polygon points="50,12 50,48 65,86 82,86" fill="url(#facetCobalt)"/>
+      <polygon points="33,69 67,69 50,44" fill="url(#facetBeam)"/>
+    </g>
+
+    <text x="65" y="32" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" font-weight="900" letter-spacing="1">ALPAR<tspan fill="#38bdf8">.AI</tspan></text>
+    <text x="65" y="52" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="800" letter-spacing="2">THREAT INTELLIGENCE LABS</text>
+
+    <!-- Live Rec Badge (Right) -->
+    <g transform="translate(670, 10)">
+      <rect x="0" y="0" width="130" height="34" rx="17" fill="#1e1014" stroke="#ef4444" stroke-width="1.2"/>
+      <circle cx="18" cy="17" r="5" fill="#ef4444"/>
+      <text x="32" y="22" fill="#fca5a5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="900" letter-spacing="1.5">LIVE AUDIT</text>
+    </g>
+  </g>
+
+  <!-- 3. PRIMARY HOOK BANNER (VIRAL CLICK MAGNET) (y: 330 to 580) -->
+  <g transform="translate(80, 330)">
+    <!-- Warning Ticker -->
+    <rect x="0" y="0" width="280" height="32" rx="6" fill="#f59e0b" fill-opacity="0.15" stroke="#f59e0b" stroke-width="1"/>
+    <text x="16" y="21" fill="#fbbf24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="900" letter-spacing="1.5">⚠️ VULNERABILITY EXPOSED</text>
+
+    <!-- Main Headline - Bold, Giant, High-Contrast Hook -->
+    <text x="0" y="90" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="52" font-weight="900" letter-spacing="-1">
+      BU AI MODELİ
+    </text>
+    <text x="0" y="150" fill="#ef4444" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="52" font-weight="900" letter-spacing="-1">
+      ŞİRKETİNİZİ
+    </text>
+    <text x="0" y="210" fill="#00f0ff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="52" font-weight="900" letter-spacing="-1">
+      BATIRABİLİR!
+    </text>
+
+    <!-- English Hook Subtitle -->
+    <text x="0" y="255" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="600" letter-spacing="0.5">
+      Is Your Enterprise LLM Leaking Data? Watch Till End.
+    </text>
+  </g>
+
+  <!-- 4. CENTRAL FORENSIC SCANNER HUD (y: 640 to 1160) -->
+  <g transform="translate(80, 640)">
+    <!-- Scanner Frame -->
+    <rect x="0" y="0" width="840" height="490" rx="16" fill="#08101e" fill-opacity="0.85" stroke="#1e3a5f" stroke-width="1.8"/>
+    <rect x="0" y="0" width="840" height="40" rx="16" fill="#0c182c"/>
+    <line x1="0" y1="40" x2="840" y2="40" stroke="#1e3a5f" stroke-width="1"/>
+
+    <!-- Window Dots -->
+    <circle cx="24" cy="20" r="5" fill="#ef4444"/>
+    <circle cx="44" cy="20" r="5" fill="#f59e0b"/>
+    <circle cx="64" cy="20" r="5" fill="#10b981"/>
+    <text x="100" y="25" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" letter-spacing="1">ALPAR_DIAGNOSTIC_SUITE // PID: 88291</text>
+
+    <!-- Model Inspection Target -->
+    <g transform="translate(40, 75)">
+      <text x="0" y="0" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700">TARGET MODEL:</text>
+      <text x="150" y="0" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="900">LLM-ENTERPRISE-PRO-v4</text>
+
+      <text x="0" y="35" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700">STATUS:</text>
+      <text x="150" y="35" fill="#ef4444" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="900">CRITICAL JAILBREAK EXPLOIT</text>
+    </g>
+
+    <!-- Radar / Waveform Visualizer -->
+    <g transform="translate(40, 160)">
+      <rect x="0" y="0" width="760" height="150" rx="8" fill="#040812" stroke="#15263f"/>
+      
+      <!-- Waveform Bars -->
+      <g fill="#38bdf8" opacity="0.8">
+        <rect x="30" y="90" width="8" height="40" rx="2"/>
+        <rect x="50" y="70" width="8" height="60" rx="2"/>
+        <rect x="70" y="40" width="8" height="90" rx="2"/>
+        <rect x="90" y="55" width="8" height="75" rx="2"/>
+        <rect x="110" y="20" width="8" height="110" rx="2" fill="#ef4444"/>
+        <rect x="130" y="10" width="8" height="120" rx="2" fill="#ef4444"/>
+        <rect x="150" y="35" width="8" height="95" rx="2" fill="#ef4444"/>
+        <rect x="170" y="60" width="8" height="70" rx="2"/>
+        <rect x="190" y="80" width="8" height="50" rx="2"/>
+        <rect x="210" y="45" width="8" height="85" rx="2"/>
+        <rect x="230" y="25" width="8" height="105" rx="2"/>
+        <rect x="250" y="65" width="8" height="65" rx="2"/>
+        <rect x="270" y="90" width="8" height="40" rx="2"/>
+        <rect x="290" y="75" width="8" height="55" rx="2"/>
+        <rect x="310" y="30" width="8" height="100" rx="2" fill="#ef4444"/>
+        <rect x="330" y="15" width="8" height="115" rx="2" fill="#ef4444"/>
+        <rect x="350" y="50" width="8" height="80" rx="2"/>
+        <rect x="370" y="85" width="8" height="45" rx="2"/>
+        <rect x="390" y="65" width="8" height="65" rx="2"/>
+        <rect x="410" y="35" width="8" height="95" rx="2"/>
+        <rect x="430" y="20" width="8" height="110" rx="2"/>
+        <rect x="450" y="70" width="8" height="60" rx="2"/>
+        <rect x="470" y="90" width="8" height="40" rx="2"/>
+        <rect x="490" y="40" width="8" height="90" rx="2"/>
+        <rect x="510" y="15" width="8" height="115" rx="2" fill="#ef4444"/>
+        <rect x="530" y="30" width="8" height="100" rx="2" fill="#ef4444"/>
+        <rect x="550" y="60" width="8" height="70" rx="2"/>
+        <rect x="570" y="80" width="8" height="50" rx="2"/>
+        <rect x="590" y="45" width="8" height="85" rx="2"/>
+        <rect x="610" y="25" width="8" height="105" rx="2"/>
+        <rect x="630" y="65" width="8" height="65" rx="2"/>
+        <rect x="650" y="90" width="8" height="40" rx="2"/>
+        <rect x="670" y="40" width="8" height="90" rx="2"/>
+        <rect x="690" y="15" width="8" height="115" rx="2" fill="#ef4444"/>
+        <rect x="710" y="55" width="8" height="75" rx="2"/>
+      </g>
+
+      <!-- Laser Scan Line -->
+      <line x1="330" y1="0" x2="330" y2="150" stroke="#00f0ff" stroke-width="2.5"/>
+      <circle cx="330" cy="15" r="4" fill="#00f0ff"/>
+    </g>
+
+    <!-- Score & Stats Bar -->
+    <g transform="translate(40, 340)">
+      <rect x="0" y="0" width="230" height="70" rx="8" fill="#131c2e" stroke="#253a56"/>
+      <text x="20" y="26" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700">SECURITY SCORE</text>
+      <text x="20" y="54" fill="#ef4444" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" font-weight="900">38 / 100</text>
+
+      <rect x="250" y="0" width="240" height="70" rx="8" fill="#131c2e" stroke="#253a56"/>
+      <text x="20" y="26" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" transform="translate(250,0)">EU AI ACT STATUS</text>
+      <text x="20" y="54" fill="#f59e0b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="900" transform="translate(250,0)">HIGH RISK</text>
+
+      <rect x="510" y="0" width="250" height="70" rx="8" fill="#131c2e" stroke="#253a56"/>
+      <text x="20" y="26" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" transform="translate(510,0)">POTENTIAL PENALTY</text>
+      <text x="20" y="54" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="900" transform="translate(510,0)">€35,000,000</text>
+    </g>
+
+    <!-- Forensic Stamp -->
+    <g transform="translate(40, 435)">
+      <text x="0" y="16" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" letter-spacing="1">AUDITED BY ALPAR AI DEFENSE KERNEL · TIMESTAMP: REALTIME</text>
+    </g>
+  </g>
+
+  <!-- 5. CALL TO ACTION & SOCIAL ANCHOR (y: 1190 to 1480) -->
+  <g transform="translate(80, 1180)">
+    <!-- High-Impact Button -->
+    <rect x="0" y="0" width="840" height="88" rx="20" fill="#0284c7" stroke="#38bdf8" stroke-width="2"/>
+    <text x="420" y="54" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="26" font-weight="900" text-anchor="middle" letter-spacing="1">
+      MODELİNİZİ TEST EDİN 👇
+    </text>
+
+    <!-- Outpost Link Tag -->
+    <g transform="translate(0, 115)">
+      <text x="420" y="30" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="800" text-anchor="middle">
+        Profildeki Linke Tıklayın: <tspan fill="#38bdf8">alparai.com</tspan>
+      </text>
+      <text x="420" y="65" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="600" text-anchor="middle">
+        Takip et: <tspan fill="#ffffff">@alparai</tspan> · Yapay Zekânın Yüce Mahkemesi ⚖️
+      </text>
+    </g>
+  </g>
+
+  <!-- 6. SAFE-ZONE OVERLAY (INDICATOR LAYER FOR CREATORS) -->
+  <!-- Note: This layer visualizes TikTok UI elements (Right buttons, Bottom username/caption) -->
+  <g id="tiktok-safe-zone-guides" opacity="0.35">
+    <!-- Right Button Column Guide (x: 940 to 1060, y: 800 to 1500) -->
+    <rect x="940" y="800" width="100" height="700" rx="10" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="6 6"/>
+    <text x="990" y="840" fill="#f59e0b" font-family="sans-serif" font-size="11" font-weight="700" text-anchor="middle">LIKE</text>
+    <text x="990" y="960" fill="#f59e0b" font-family="sans-serif" font-size="11" font-weight="700" text-anchor="middle">COMMENT</text>
+    <text x="990" y="1080" fill="#f59e0b" font-family="sans-serif" font-size="11" font-weight="700" text-anchor="middle">SAVE</text>
+    <text x="990" y="1200" fill="#f59e0b" font-family="sans-serif" font-size="11" font-weight="700" text-anchor="middle">SHARE</text>
+
+    <!-- Bottom Caption Danger Zone (y: 1540 to 1920) -->
+    <rect x="40" y="1540" width="1000" height="340" rx="10" fill="none" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="8 6"/>
+    <text x="540" y="1720" fill="#ef4444" font-family="sans-serif" font-size="14" font-weight="800" text-anchor="middle" letter-spacing="2">TIKTOK CAPTION &amp; AUDIO DANGER ZONE (KEEP CLEAR)</text>
+  </g>
+</svg>

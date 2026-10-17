@@ -135,8 +135,11 @@ async function LeaderboardDataContent({
     const rr = toNum(p.response_rate);
     const responseRate = p.response_rate == null ? (total > 0 ? Math.round((responded / total) * 100) : 0) : rr;
 
-    // Canonical Transparency TrustScore: 85 baseline - (2.5 * incidents) + (4 * responses) clamped [0, 100]
-    const canonicalScore = Math.max(0, Math.min(100, Math.round(85 - (total * 2.5) + (responded * 4))));
+    // TrustScore: Honor audited provider score from database; fallback to logarithmic penalty clamped [50, 100]
+    const auditedScore = toNum(p.trust_score);
+    const resolvedScore = auditedScore > 0
+      ? auditedScore
+      : Math.max(50, Math.min(100, Math.round(85 - Math.min(25, Math.log2(total + 1) * 3) + (responded * 2))));
 
     return {
       id: p.id ?? "",
@@ -145,7 +148,7 @@ async function LeaderboardDataContent({
       logo_url: p.logo_url,
       is_verified: !!p.is_verified,
       website_url: p.website_url,
-      trust_score: canonicalScore,
+      trust_score: resolvedScore,
       incident_count: total,
       response_count: responded,
       response_rate: responseRate,
@@ -663,4 +666,4 @@ function TrustScoreSparkline({
     </svg>
   );
 }
-export const runtime = 'edge';
+export const runtime = 'nodejs';

@@ -11,7 +11,6 @@ import { SegmentRouting } from "@/components/marketing/segment-routing";
 import { Container, Section } from "@/components/ui/layout";
 import type { IncidentListItem, LeaderboardEntry } from "@/types";
 import { toIncidentListItems, type TranslationMap } from "@/lib/mappers";
-import { checkAndTriggerNewsSyncPassive } from "@/actions/autopilot-sync";
 import dynamicImport from "next/dynamic";
 import { logger } from "@/lib/utils/logger";
 import {
@@ -216,7 +215,8 @@ const getHomeData = cache(async (locale: string) => {
         const responded = (p["response_count"] as number) ?? 0;
         const responseRate = total > 0 ? Math.round((responded / total) * 100) : null;
         // Canonical Transparency TrustScore: 85 baseline - (2.5 * incidents) + (4 * responses)
-        const computedScore = Math.max(0, Math.min(100, Math.round(85 - (total * 2.5) + (responded * 4))));
+        const dbScore = typeof p["trust_score"] === "number" && p["trust_score"] > 0 ? p["trust_score"] : null;
+        const computedScore = dbScore ?? Math.max(50, Math.min(100, Math.round(85 - Math.min(25, Math.log2(total + 1) * 3) + (responded * 2))));
         return {
           provider_id: p["id"] as string,
           provider_name: (p["name"] as string) ?? "",
@@ -407,15 +407,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   setRequestLocale(locale);
 
-  // Passive background sync of AI news
-  import("next/server").then(({ after }) => {
-    after(() => {
-      void checkAndTriggerNewsSyncPassive();
-    });
-  }).catch(() => {
-    // Fallback if after is not available
-    void checkAndTriggerNewsSyncPassive();
-  });
+
 
   return (
     <>
@@ -458,4 +450,4 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     </>
   );
 }
-export const runtime = 'edge';
+export const runtime = 'nodejs';

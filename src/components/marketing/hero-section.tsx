@@ -416,14 +416,12 @@ export function HeroSection({
   );
 }
 
-function AnimatedValue({ value, enableLiveTicker = true }: { value: number | string; enableLiveTicker?: boolean }) {
+function AnimatedValue({ value }: { value: number | string; enableLiveTicker?: boolean }) {
   const locale = useLocale();
   const numVal = typeof value === "number" ? value : 0;
   const [count, setCount] = React.useState(numVal);
-  const [isPulsing, setIsPulsing] = React.useState(false);
   const ref = React.useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
-  const hasFinishedInitialAnim = React.useRef(false);
 
   React.useEffect(() => {
     if (numVal === 0 || !isInView) return;
@@ -434,75 +432,21 @@ function AnimatedValue({ value, enableLiveTicker = true }: { value: number | str
       onUpdate: (latest) => {
         setCount(Math.round(latest));
       },
-      onComplete: () => {
-        hasFinishedInitialAnim.current = true;
-      },
     });
 
     return () => controls.stop();
   }, [numVal, isInView]);
 
-  // Live Auto-Increment Ticker (Telemetry Streaming Simulation)
   React.useEffect(() => {
-    if (typeof value !== "number" || !enableLiveTicker || !isInView) return;
-
-    let timeoutId: NodeJS.Timeout;
-
-    const tick = () => {
-      const randomDelay = Math.floor(Math.random() * 6000) + 4000; // 4s to 10s live ticking
-      timeoutId = setTimeout(() => {
-        if (hasFinishedInitialAnim.current) {
-          setCount((prev) => prev + 1);
-          setIsPulsing(true);
-          setTimeout(() => setIsPulsing(false), 800);
-        }
-        tick();
-      }, randomDelay);
-    };
-
-    tick();
-
-    return () => clearTimeout(timeoutId);
-  }, [value, enableLiveTicker, isInView]);
-
-  // Live API Polling (Sync with server database)
-  React.useEffect(() => {
-    if (typeof value !== "number" || !enableLiveTicker || !isInView) return;
-
-    const fetchStats = async () => {
-      try {
-        const res = await fetch("/api/v1/stats");
-        if (res.ok) {
-          const json = await res.json();
-          const serverCount = json?.data?.total_incidents;
-          if (typeof serverCount === "number" && serverCount > count) {
-            setCount(serverCount);
-            setIsPulsing(true);
-            setTimeout(() => setIsPulsing(false), 800);
-          }
-        }
-      } catch {
-        // silent fallback
-      }
-    };
-
-    const pollInterval = setInterval(fetchStats, 15000);
-    return () => clearInterval(pollInterval);
-  }, [value, enableLiveTicker, isInView, count]);
+    setCount(numVal);
+  }, [numVal]);
 
   if (typeof value === "string") return <>{value}</>;
   return (
     <motion.span
       ref={ref}
-      animate={
-        isPulsing
-          ? { scale: [1, 1.15, 1], filter: ["brightness(1)", "brightness(1.5)", "brightness(1)"] }
-          : { scale: 1, filter: "brightness(1)" }
-      }
-      transition={{ duration: 0.6, ease: "easeInOut" }}
       className={cn(
         "inline-block transition-colors duration-300",
-        isPulsing && "text-danger-300 drop-shadow-[0_0_15px_rgba(230,57,70,0.9)]",
         numVal === 0 &&
           "from-fg-muted/30 to-fg-muted/30 animate-shimmer min-w-[2ch] bg-gradient-to-r via-white/50 bg-[length:200%_100%] bg-clip-text text-transparent",
       )}

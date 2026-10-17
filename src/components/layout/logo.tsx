@@ -28,7 +28,7 @@ export function Logo({ className, size = "md", ...props }: LogoProps) {
       {...props}
     >
       <Image
-        src="/brand/alpar-shield-emblem.png"
+        src="/brand-assets/alpar-shield-emblem.png"
         alt="ALPAR AI Shield"
         width={px * 2}
         height={px * 2}

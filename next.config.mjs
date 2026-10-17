@@ -105,7 +105,7 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   compress: true,
-  serverExternalPackages: ["pg", "pg-connection-string"],
+  serverExternalPackages: ["pg", "pg-connection-string", "pgpass"],
   webpack(config, { isServer, nextRuntime, webpack }) {
     config.resolve.alias["next-intl/config"] = path.resolve(__dirname, "./src/i18n/request.ts");
     if (!isServer || nextRuntime === "edge") {
@@ -127,6 +127,10 @@ const nextConfig = {
       config.resolve.alias["node:path"] = false;
       config.resolve.alias["sqlite"] = false;
       config.resolve.alias["path"] = false;
+      config.resolve.alias["node:crypto"] = false;
+      config.resolve.alias["crypto"] = false;
+      config.resolve.alias["pg"] = false;
+      config.resolve.alias["pgpass"] = false;
 
       config.resolve.fallback = {
         ...(config.resolve.fallback || {}),
@@ -139,6 +143,8 @@ const nextConfig = {
         child_process: false,
         sqlite: false,
         path: false,
+        pgpass: false,
+        crypto: false,
       };
     }
     return config;

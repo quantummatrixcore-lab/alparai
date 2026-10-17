@@ -1,0 +1,56 @@
+<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="emblem-shield-fill-light" x1="20" y1="10" x2="80" y2="90" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#e0f2fe" stop-opacity="0.6"/>
+       <stop offset="100%" stop-color="#f8fafc" stop-opacity="0.95"/>
+    </linearGradient>
+    <linearGradient id="emblem-shield-stroke-light" x1="50" y1="8" x2="50" y2="92" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0284c7"/>
+       <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <filter id="emblem-glow-light" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="1.8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- SHIELD CONTOUR -->
+  <path d="M 50, 8 L 16, 23 C 16, 60 32, 82 50, 92 C 68, 82 84, 60 84, 23 Z" 
+        fill="url(#emblem-shield-fill-light)" 
+        stroke="url(#emblem-shield-stroke-light)" 
+        stroke-width="2.5" 
+        stroke-linejoin="round"/>
+
+  <!-- Inner Bevel Accent -->
+  <path d="M 50, 14 L 21, 27 C 21, 56 34, 75 50, 84" 
+        stroke="#0f172a" 
+        stroke-opacity="0.06" 
+        stroke-width="1.2" 
+        stroke-linecap="round"/>
+
+  <!-- CENTRAL PILLAR OF ACCOUNTABILITY -->
+  <line x1="50" y1="18" x2="50" y2="82" stroke="#0f172a" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="50" cy="18" r="2.5" fill="#0f172a"/>
+  <!-- Pedestal Base Anchor -->
+  <polygon points="44,82 56,82 50,77" fill="#0f172a"/>
+
+  <!-- LEFT: SCALES OF JUSTICE (Adalet & Etik Denetim) -->
+  <path d="M 50, 32 L 28, 32" stroke="#0f172a" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="28" cy="32" r="1.5" fill="#0f172a"/>
+  <line x1="28" y1="32" x2="21" y2="45" stroke="#475569" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="28" y1="32" x2="35" y2="45" stroke="#475569" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M 19, 45 C 19, 55 37, 55 37, 45 Z" fill="#0f172a" fill-opacity="1" stroke="#0f172a" stroke-width="0.8"/>
+
+  <!-- RIGHT: NEURAL CIRCUITS (Yapay Zeka Telemetrisi) -->
+  <!-- Trace 1 (Top Frontier Node) -->
+  <path d="M 50, 32 L 62, 32 L 68, 26" stroke="#00f2fe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="68" cy="26" r="2.5" fill="#00f2fe" />
+
+  <!-- Trace 2 (Middle Telemetry Highway) -->
+  <path d="M 50, 48 L 59, 48 L 65, 43 L 73, 43" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="73" cy="43" r="2.5" fill="#38bdf8" />
+
+  <!-- Trace 3 (Bottom Forensic Link) -->
+  <path d="M 50, 64 L 58, 64 L 66, 72" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="66" cy="72" r="2.5" fill="#0284c7"/>
+</svg>

@@ -56,6 +56,28 @@ export function Footer() {
     return null;
   }
 
+  const getLinkText = (key: string) => {
+    try {
+      const val = t(`links.${key}`);
+      if (val && typeof val === "string" && !val.startsWith("links.")) {
+        return val;
+      }
+    } catch {
+      // Fallback in case translation throws or key is missing
+    }
+    const fallbackMap: Record<string, string> = {
+      submit_report: "Submit Report",
+      advisory_board: "Advisory Board",
+      ai_act: "AI Act",
+      apidocs: "API Docs",
+      team: "Team",
+    };
+    return (
+      fallbackMap[key] ||
+      key.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
+    );
+  };
+
   return (
     <footer className="border-border-subtle bg-bg-secondary border-t">
       <Container className="py-14">
@@ -120,7 +142,7 @@ export function Footer() {
                     href={l.href}
                     className="text-fg-muted hover:text-brand-400 inline-flex min-h-[24px] items-center py-0.5 text-xs transition-colors"
                   >
-                    {t(`links.${l.key}`)}
+                    {getLinkText(l.key)}
                   </Link>
                 </li>
               ))}
@@ -139,7 +161,7 @@ export function Footer() {
                     href={l.href}
                     className="text-fg-muted hover:text-brand-400 inline-flex min-h-[24px] items-center py-0.5 text-xs transition-colors"
                   >
-                    {t(`links.${l.key}`)}
+                    {getLinkText(l.key)}
                   </Link>
                 </li>
               ))}
@@ -158,7 +180,7 @@ export function Footer() {
                     href={l.href}
                     className="text-fg-muted hover:text-brand-400 inline-flex min-h-[24px] items-center py-0.5 text-xs transition-colors"
                   >
-                    {t(`links.${l.key}`)}
+                    {getLinkText(l.key)}
                   </Link>
                 </li>
               ))}
@@ -185,7 +207,7 @@ export function Footer() {
                       href={l.href}
                       className="text-fg-muted hover:text-brand-400 inline-flex min-h-[24px] items-center py-0.5 text-xs transition-colors"
                     >
-                      {t(`links.${l.key}`)}
+                      {getLinkText(l.key)}
                     </Link>
                   )}
                 </li>

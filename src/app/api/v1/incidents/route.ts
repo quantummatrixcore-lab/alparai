@@ -49,7 +49,8 @@ export async function GET(request: NextRequest) {
         "id, title_masked, description_masked, category, severity, status, incident_date, views_count, upvotes_count, cross_audit_truth_score, cross_audit_confidence, ai_provider_id, ai_model_id, is_expert, expert_fix, created_at, published_at, source_url",
       )
       .eq("status", "published")
-      .not("title_masked", "ilike", "%test%")
+      .not("title_masked", "ilike", "[TEST]%")
+      .not("title_masked", "ilike", "e2e-test%")
       .not("title_masked", "ilike", "%cypress%")
       .not("title_masked", "ilike", "%playwright%")
       .order("created_at", { ascending: false });

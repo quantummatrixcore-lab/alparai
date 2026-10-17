@@ -1,7 +1,8 @@
 
-'use strict';
-const checkoutUrl = 'https://alparai.lemonsqueezy.com/checkout/custom/1af551c4-8153-4dbd-b54d-1e51594f4fe0?signature=e9ff4a194d946194788e258bebd2a7656430d869698a04a77a72008eb54fb934';
-console.log('[ALPARAI API ENGINE] Live Lemon Squeezy Connected.');
+const crypto = require('crypto');
 setInterval(() => {
-    console.log('[ALPARAI LIVE] API Token Sales & Payment Link Ready: ' + checkoutUrl);
-}, 25000);
+    const email = 'dev_' + crypto.randomBytes(2).toString('hex') + '@tech.com';
+    console.log('[ALPARAI] Kurumsal API Token Teklifi Gidiyor -> ' + email);
+    console.log('   - Urun: Sinirsiz Rate-Limit API Erisimi & Token Paketi');
+    console.log('   - Fiyat: 5.000 TL | Link: https://test-checkout.lemonsqueezy.com/buy/alparai_mock');
+}, 5000);

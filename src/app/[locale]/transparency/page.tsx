@@ -104,7 +104,8 @@ async function loadTransparencyData() {
         "id, title_masked, description_masked, title_tr, description_tr, severity, status, category, incident_date, created_at, published_at, views_count, upvotes_count, ai_provider_id, ai_providers (id, name, slug, logo_url)",
       )
       .eq("status", "published")
-      .not("title_masked", "ilike", "%test%")
+      .not("title_masked", "ilike", "[TEST]%")
+      .not("title_masked", "ilike", "e2e-test%")
       .not("title_masked", "ilike", "%cypress%")
       .not("title_masked", "ilike", "%playwright%")
       .order("published_at", { ascending: false, nullsFirst: false })

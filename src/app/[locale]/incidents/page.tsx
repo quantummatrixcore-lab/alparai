@@ -56,7 +56,8 @@ export default async function IncidentsPage({
       { count: "exact" },
     )
     .eq("status", "published")
-    .not("title_masked", "ilike", "%test%")
+    .not("title_masked", "ilike", "[TEST]%")
+    .not("title_masked", "ilike", "e2e-test%")
     .not("title_masked", "ilike", "%cypress%")
     .not("title_masked", "ilike", "%playwright%");
 

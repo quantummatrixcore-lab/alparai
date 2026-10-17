@@ -65,9 +65,42 @@ export class Polar {
 }
 
 /**
+ * Verifies Polar webhook signature securely using constant-time comparison
+ */
+export function verifyPolarSignature(
+  signature: string | null | undefined,
+  payload: string,
+  secret: string | null | undefined
+): boolean {
+  if (!signature || !secret) {
+    return false;
+  }
+  const hmac = crypto
+    .createHmac('sha256', secret)
+    .update(payload)
+    .digest('hex');
+
+  const sigBuf = Buffer.from(signature);
+  const macBuf = Buffer.from(hmac);
+  if (sigBuf.length !== macBuf.length) {
+    return false;
+  }
+  return crypto.timingSafeEqual(sigBuf, macBuf);
+}
+
+/**
  * Webhook signature verification and parsing for Polar webhooks
  */
 export const Webhooks = {
+  validateSignature: (params: {
+    payload: string;
+    headers: Record<string, string | null | undefined>;
+    webhookSecret: string;
+  }): boolean => {
+    const signature = params.headers['webhook-signature'];
+    return verifyPolarSignature(signature, params.payload, params.webhookSecret);
+  },
+
   verify: (params: {
     payload: string;
     headers: Record<string, string | null | undefined>;
@@ -78,18 +111,13 @@ export const Webhooks = {
       throw new Error('Missing webhook-signature header');
     }
 
-    if (params.webhookSecret) {
-      const hmac = crypto
-        .createHmac('sha256', params.webhookSecret)
-        .update(params.payload)
-        .digest('hex');
+    if (!params.webhookSecret) {
+      throw new Error('Missing webhook secret');
+    }
 
-      // İmza yoksa veya tutmuyorsa reddet (sahte webhooklar kasaya işlenemez)
-      const sigBuf = Buffer.from(signature);
-      const macBuf = Buffer.from(hmac);
-      if (sigBuf.length !== macBuf.length || !crypto.timingSafeEqual(sigBuf, macBuf)) {
-        throw new Error('Invalid webhook signature');
-      }
+    const isValid = verifyPolarSignature(signature, params.payload, params.webhookSecret);
+    if (!isValid) {
+      throw new Error('Invalid webhook signature');
     }
 
     return JSON.parse(params.payload) as PolarWebhookEvent;

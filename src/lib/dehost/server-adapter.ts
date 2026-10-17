@@ -5,6 +5,7 @@
  */
 
 import "server-only";
+import { createDeHostAdapterClient } from "./dehost-adapter";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let sqliteInstance: any = null;
@@ -61,8 +62,10 @@ export function createDeHostServerClient(): DeHostServerClient {
       return (..._a: any[]) => chain;
     },
   });
+  const adapterAuth = createDeHostAdapterClient().auth;
   return {
     auth: {
+      ...adapterAuth,
       getUser: async () => ({ data: { user: null }, error: null })
     },
     from: (_table: string) => ({

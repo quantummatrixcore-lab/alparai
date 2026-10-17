@@ -80,7 +80,8 @@ const getHomeData = cache(async (locale: string) => {
             "id, title_masked, description_masked, title_tr, description_tr, severity, status, category, is_anonymous, incident_date, views_count, upvotes_count, created_at, ai_provider_id, user_id, cross_audit_truth_score, cross_audit_confidence, incident_source",
           )
           .eq("status", "published")
-          .not("title_masked", "ilike", "%test%")
+          .not("title_masked", "ilike", "[TEST]%")
+          .not("title_masked", "ilike", "e2e-test%")
           .not("title_masked", "ilike", "%cypress%")
           .not("title_masked", "ilike", "%playwright%")
           .order("published_at", { ascending: false })

@@ -331,7 +331,65 @@ export class DeHostAdapterClient<T = any> {
     },
     signOut: async () => ({ error: null as DeHostError | null }),
     signInWithPassword: async (_credentials: any) => ({ data: { user: null as any, session: null as any }, error: null as DeHostError | null }),
-    signInWithOAuth: async (_credentials: any) => ({ data: { provider: "google", url: "https://dehost.alparai.com/auth" }, error: null as DeHostError | null }),
+    signInWithOAuth: async (credentials: {
+      provider: string;
+      options?: {
+        redirectTo?: string;
+        scopes?: string;
+        queryParams?: Record<string, string>;
+        skipBrowserRedirect?: boolean;
+      };
+    }) => {
+      try {
+        const provider = credentials?.provider || "google";
+        const redirectTo = credentials?.options?.redirectTo || "https://www.alparai.com/auth/callback";
+        const supabaseUrl = (vault.read('NEXT_PUBLIC_SUPABASE_URL') ?? process.env.NEXT_PUBLIC_SUPABASE_URL) || (vault.read('NEXT_PUBLIC_DEHOST_URL') ?? process.env.NEXT_PUBLIC_DEHOST_URL);
+
+        let url: string;
+        if (supabaseUrl && !supabaseUrl.includes("dehost.alparai.com")) {
+          const authEndpoint = new URL(`${supabaseUrl.replace(/\/$/, '')}/auth/v1/authorize`);
+          authEndpoint.searchParams.set("provider", provider);
+          authEndpoint.searchParams.set("redirect_to", redirectTo);
+          if (credentials?.options?.scopes) {
+            authEndpoint.searchParams.set("scopes", credentials.options.scopes);
+          }
+          if (credentials?.options?.queryParams) {
+            for (const [k, v] of Object.entries(credentials.options.queryParams)) {
+              authEndpoint.searchParams.set(k, v);
+            }
+          }
+          url = authEndpoint.toString();
+        } else {
+          const envClientId = (vault.read('NEXT_PUBLIC_GOOGLE_CLIENT_ID') ?? process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID) || (vault.read('GOOGLE_CLIENT_ID') ?? process.env.GOOGLE_CLIENT_ID);
+          const clientId = envClientId && !envClientId.includes("SENSITIVE") && envClientId.includes(".apps.googleusercontent.com")
+            ? envClientId
+            : "341717447635-hsdu69hk692lkveikkpc8398v8rhu40b.apps.googleusercontent.com";
+          const googleAuthUrl = new URL("https://accounts.google.com/o/oauth2/v2/auth");
+          googleAuthUrl.searchParams.set("client_id", clientId);
+          googleAuthUrl.searchParams.set("redirect_uri", redirectTo.split("?")[0]);
+          googleAuthUrl.searchParams.set("response_type", "code");
+          googleAuthUrl.searchParams.set("scope", credentials?.options?.scopes || "openid email profile");
+          googleAuthUrl.searchParams.set("access_type", credentials?.options?.queryParams?.access_type || "offline");
+          googleAuthUrl.searchParams.set("prompt", credentials?.options?.queryParams?.prompt || "consent");
+          if (redirectTo.includes("?")) {
+            try {
+              const urlObj = new URL(redirectTo);
+              const nextParam = urlObj.searchParams.get("next");
+              if (nextParam) {
+                const stateStr = typeof Buffer !== "undefined"
+                  ? Buffer.from(JSON.stringify({ next: nextParam })).toString("base64url")
+                  : btoa(JSON.stringify({ next: nextParam })).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+                googleAuthUrl.searchParams.set("state", stateStr);
+              }
+            } catch {}
+          }
+          url = googleAuthUrl.toString();
+        }
+        return { data: { provider, url }, error: null as DeHostError | null };
+      } catch (err) {
+        return { data: { provider: credentials?.provider || "google", url: null as any }, error: err instanceof Error ? err : new Error(String(err)) };
+      }
+    },
     signInWithOtp: async (_credentials: any) => ({ data: {}, error: null as DeHostError | null }),
     signUp: async (_credentials: any) => ({ data: { user: null as any, session: null as any }, error: null as DeHostError | null }),
     exchangeCodeForSession: async (_code: string) => ({ data: { user: null as any, session: null as any }, error: null as DeHostError | null }),

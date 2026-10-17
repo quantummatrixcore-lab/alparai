@@ -208,8 +208,7 @@ export async function POST(req: Request, props: { params: Promise<{ twinId: stri
           systemPrompt: persona.systemPrompt,
           userMessage: latestUserPrompt || messages.map((m) => m.content).join("\n"),
           temperature: body.temperature ?? 0.7,
-          model: FREE_TRIAGE_MODELS[0],
-        });
+        }, FREE_TRIAGE_MODELS);
 
         if (failoverRes.ok && failoverRes.data?.content) {
           completionText = failoverRes.data.content;

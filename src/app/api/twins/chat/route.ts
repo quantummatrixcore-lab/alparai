@@ -108,8 +108,7 @@ export async function POST(req: NextRequest) {
           systemPrompt: persona.systemPrompt,
           userMessage: message,
           temperature: 0.7,
-          model: FREE_TRIAGE_MODELS[0],
-        });
+        }, FREE_TRIAGE_MODELS);
 
         if (failoverRes.ok && failoverRes.data?.content) {
           reply = failoverRes.data.content;

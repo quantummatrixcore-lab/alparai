@@ -768,8 +768,8 @@ export function normalizeProviderKey(input?: string | null): string | null {
     .trim();
 
   if (clean.includes("openai") || clean.includes("chatgpt") || clean.includes("gpt-")) return "openai";
-  if (clean.includes("claude")) return "claude";
   if (clean.includes("anthropic")) return "anthropic";
+  if (clean.includes("claude")) return "claude";
   if (clean.includes("deepmind")) return "deepmind";
   if (clean.includes("gemini")) return "gemini";
   if (clean.includes("google")) return "google";

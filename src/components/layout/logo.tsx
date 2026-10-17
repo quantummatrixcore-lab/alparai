@@ -27,13 +27,12 @@ export function Logo({ className, size = "md", ...props }: LogoProps) {
       aria-label="ALPAR AI Official Logo"
       {...props}
     >
-      <Image
-        src="/brand-assets/alpar-shield-emblem.png"
+      <img
+        src="/brand-assets/alpar-shield-emblem.svg"
         alt="ALPAR AI Shield"
-        width={px * 2}
-        height={px * 2}
+        width={px}
+        height={px}
         className="h-full w-full object-contain rounded-full drop-shadow-[0_0_12px_rgba(56,189,248,0.35)] transition-all duration-300 group-hover/logo:scale-105 group-hover/logo:drop-shadow-[0_0_20px_rgba(0,242,254,0.6)]"
-        priority
       />
     </span>
   );

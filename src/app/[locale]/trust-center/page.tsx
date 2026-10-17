@@ -232,3 +232,4 @@ export default async function SecurityPage({ params }: { params: Promise<{ local
     </Container>
   );
 }
+export const runtime = 'edge';

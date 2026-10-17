@@ -14,7 +14,7 @@ export async function POST(req: Request) {
       (role !== "admin" && role !== "ceo" && role !== "moderator" && role !== "advisor")
     ) {
       return NextResponse.json(
-        { success: false, message: "Yetkisiz eriÅŸim (Unauthorized)" },
+        { success: false, message: "Yetkisiz erişim (Unauthorized)" },
         { status: 403 },
       );
     }
@@ -29,9 +29,9 @@ export async function POST(req: Request) {
       err instanceof Error ? err : undefined,
     );
     return NextResponse.json(
-      { success: false, message: "Sunucu hatasÄ±: CanlÄ± strateji baÅŸlatÄ±lamadÄ±." },
+      { success: false, message: "Sunucu hatası: Canlı strateji başlatılamadı." },
       { status: 500 },
     );
   }
 }
-
+export const runtime = 'edge';

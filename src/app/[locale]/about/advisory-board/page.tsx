@@ -274,3 +274,4 @@ export default async function AdvisoryBoardPage({
     </div>
   );
 }
+export const runtime = 'edge';

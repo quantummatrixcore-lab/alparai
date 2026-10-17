@@ -739,3 +739,4 @@ function Row({ icon, label, value }: { icon: React.ReactNode; label: string; val
     </div>
   );
 }
+export const runtime = 'edge';

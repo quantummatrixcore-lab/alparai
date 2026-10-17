@@ -320,3 +320,4 @@ export default async function RatingsPage({
     </Container>
   );
 }
+export const runtime = 'edge';

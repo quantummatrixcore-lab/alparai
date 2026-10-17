@@ -21,7 +21,7 @@ const AUTHORITY_LABELS: Record<Authority, string> = {
   "eu-ai-office": "EU AI Office (EU AI Act Article 73)",
   "uk-aisi": "UK AI Safety Institute",
   "us-aisi": "US AI Safety Institute (NIST)",
-  "tubitak-yze": "TÃœBÄ°TAK Yapay Zeka EnstitÃ¼sÃ¼ (TR Ulusal YZ Stratejisi)",
+  "tubitak-yze": "TÜBİTAK Yapay Zeka Enstitüsü (TR Ulusal YZ Stratejisi)",
   "j-aisi": "Japan AI Safety Institute (J-AISI)",
   "sg-imda": "Singapore AI Verify Foundation (IMDA)",
   "ca-aisi": "Canadian AI Safety Institute (AIDA)",
@@ -104,7 +104,7 @@ export async function GET(request: Request) {
       const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
-    <title>ALPAR AI â€” Regulator Feed (${authorityLabel})</title>
+    <title>ALPAR AI — Regulator Feed (${authorityLabel})</title>
     <link>https://alparai.com</link>
     <description>EU AI Act Article 73 compliant AI safety incident feed for regulatory authorities.</description>
     <language>en</language>
@@ -154,4 +154,4 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
-
+export const runtime = 'edge';

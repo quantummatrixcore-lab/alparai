@@ -39,8 +39,8 @@ export function constructPageMetadata(options: PageMetadataOptions): Metadata {
   function cleanMetadataString(str: string): string {
     if (!str) return str;
     return str
-      .replace(/â€™/g, "’")
-      .replace(/â€”/g, "—")
+      .replace(/’/g, "’")
+      .replace(/—/g, "—")
       .replace(/&#39;/g, "’")
       .replace(/&#x27;/g, "’")
       .replace(/&quot;/g, '"')

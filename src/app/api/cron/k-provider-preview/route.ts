@@ -143,4 +143,4 @@ async function getHandler(request: NextRequest) {
 }
 
 export const GET = withCronLogger("k-provider-preview", getHandler);
-
+export const runtime = 'edge';

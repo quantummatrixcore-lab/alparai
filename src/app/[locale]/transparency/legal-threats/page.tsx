@@ -116,3 +116,4 @@ export default async function LegalThreatsPage({
     </Container>
   );
 }
+export const runtime = 'edge';

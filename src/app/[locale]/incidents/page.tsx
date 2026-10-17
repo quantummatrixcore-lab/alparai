@@ -243,3 +243,4 @@ export default async function IncidentsPage({
     </Container>
   );
 }
+export const runtime = 'edge';

@@ -363,3 +363,4 @@ export default async function CompliancePage({ params }: { params: Promise<{ loc
     </main>
   );
 }
+export const runtime = 'edge';

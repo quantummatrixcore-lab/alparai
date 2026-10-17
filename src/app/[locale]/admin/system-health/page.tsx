@@ -142,3 +142,4 @@ export default function SystemHealthPage() {
     </div>
   );
 }
+export const runtime = 'edge';

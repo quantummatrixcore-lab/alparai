@@ -165,3 +165,4 @@ export default function InvestorsPage() {
     </div>
   );
 }
+export const runtime = 'edge';

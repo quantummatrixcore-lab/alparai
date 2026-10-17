@@ -64,18 +64,24 @@ async function verify(token: string): Promise<AlparUser | null> {
   }
 }
 
+const VERIFIED_FOUNDER_CEOS = new Set([
+  "ercument@alparai.com",
+  "ercumenterden@gmail.com",
+  "ercument.erden@alparai.com",
+  "quantum.matrix.core@gmail.com",
+]);
+
 function resolveRole(email: string | null | undefined, currentRole: UserRole): UserRole {
-  if (!email) return currentRole;
-  const em = email.toLowerCase();
-  if (
-    em === "quantum.matrix.core@gmail.com" ||
-    em === "ercumenterden@gmail.com" ||
-    em === "ercument.erden@alparai.com" ||
-    em.endsWith("@alparai.com")
-  ) {
+  if (!email) return currentRole === "ceo" ? "user" : (currentRole || "user");
+  const em = email.toLowerCase().trim();
+  if (VERIFIED_FOUNDER_CEOS.has(em)) {
     return "ceo";
   }
-  return currentRole;
+  // Strip unverified CEO elevation: fallback to verified DB role or default "user"
+  if (currentRole === "ceo") {
+    return "user";
+  }
+  return currentRole || "user";
 }
 
 export async function setSessionUser(user: Omit<AlparUser, "created_at">): Promise<void> {

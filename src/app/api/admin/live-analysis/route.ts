@@ -10,7 +10,7 @@ export async function POST(_req: Request) {
     const user = await getCurrentUser();
     if (!user || (user.role !== "admin" && user.role !== "ceo")) {
       return NextResponse.json(
-        { success: false, message: "Yetkisiz eriÅŸim (Unauthorized)" },
+        { success: false, message: "Yetkisiz erişim (Unauthorized)" },
         { status: 403 },
       );
     }
@@ -26,10 +26,10 @@ export async function POST(_req: Request) {
     return NextResponse.json(
       {
         success: false,
-        message: err instanceof Error ? err.message : "Bilinmeyen hata oluÅŸtu",
+        message: err instanceof Error ? err.message : "Bilinmeyen hata oluştu",
       },
       { status: 500 },
     );
   }
 }
-
+export const runtime = 'edge';

@@ -78,3 +78,4 @@ export default async function ModelHistoryPage({
     </Container>
   );
 }
+export const runtime = 'edge';

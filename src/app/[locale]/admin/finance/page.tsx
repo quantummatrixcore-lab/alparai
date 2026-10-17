@@ -137,3 +137,4 @@ export default function FinancePage() {
     </div>
   );
 }
+export const runtime = 'edge';

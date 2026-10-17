@@ -30,4 +30,4 @@ export async function GET(request: NextRequest) {
 
   return NextResponse.redirect(googleAuthUrl.toString());
 }
-
+export const runtime = 'edge';

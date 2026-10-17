@@ -10,6 +10,7 @@ import { logger } from "@/lib/utils/logger";
 import { DIGITAL_TWINS } from "@/lib/agent-os/personas";
 import { ArbitrageEngine } from "@/lib/agent-os/arbitrage-engine";
 import { calculateAlignmentScore, selfHealResponse } from "@/lib/agent-os/alignment-engine";
+import { callWithFailover, FREE_TRIAGE_MODELS } from "@/lib/ai/openrouter-gateway";
 
 import { getCurrentUser } from "@/lib/auth/session";
 
@@ -19,7 +20,7 @@ export async function POST(req: NextRequest) {
     const user = await getCurrentUser();
     if (!user) {
       return NextResponse.json(
-        { error: "Bu Ã¶zelliÄŸi kullanmak iÃ§in giriÅŸ yapmalÄ±sÄ±nÄ±z." },
+        { error: "Bu özelliği kullanmak için giriş yapmalısınız." },
         { status: 401 },
       );
     }
@@ -28,17 +29,17 @@ export async function POST(req: NextRequest) {
 
     if (!twinId || typeof twinId !== "string" || !message || typeof message !== "string") {
       return NextResponse.json(
-        { error: "GeÃ§ersiz veya eksik parametreler (twinId, message)." },
+        { error: "Geçersiz veya eksik parametreler (twinId, message)." },
         { status: 400 },
       );
     }
 
     const persona = DIGITAL_TWINS[twinId];
     if (!persona) {
-      return NextResponse.json({ error: `Dijital Ä°kiz '${twinId}' bulunamadÄ±.` }, { status: 404 });
+      return NextResponse.json({ error: `Dijital İkiz '${twinId}' bulunamadı.` }, { status: 404 });
     }
 
-    // Rate Limit (Demoda IP baÅŸÄ±na 15 dakikada 5 istek)
+    // Rate Limit (Demoda IP başına 15 dakikada 5 istek)
     const hdrs = await headers();
     const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "127.0.0.1";
 
@@ -49,7 +50,7 @@ export async function POST(req: NextRequest) {
     if (!rl.ok) {
       return NextResponse.json(
         {
-          error: `Ä°stek limiti aÅŸÄ±ldÄ±. LÃ¼tfen ${rl.retryAfter ?? 60} saniye sonra tekrar deneyin.`,
+          error: `İstek limiti aşıldı. Lütfen ${rl.retryAfter ?? 60} saniye sonra tekrar deneyin.`,
         },
         { status: 429, headers: { "Retry-After": String(rl.retryAfter ?? 60) } },
       );
@@ -84,30 +85,88 @@ export async function POST(req: NextRequest) {
           }),
         });
 
-        if (!response.ok) {
-          const errorText = await response.text();
-          logger.error("[Twins Chat API] OpenRouter error response", {
-            status: response.status,
-            errorText,
-          });
-          throw new Error(`OpenRouter API hatasÄ±: ${response.status}`);
+        if (response.ok) {
+          const data = await response.json();
+          const content = data.choices?.[0]?.message?.content;
+          if (content) {
+            reply = content;
+            promptTokens = data.usage?.prompt_tokens || message.length;
+            completionTokens = data.usage?.completion_tokens || reply.length / 4;
+          }
         }
-
-        const data = await response.json();
-        reply =
-          data.choices?.[0]?.message?.content || `${persona.name} stratejik analizini tamamladÄ±.`;
-        promptTokens = data.usage?.prompt_tokens || message.length;
-        completionTokens = data.usage?.completion_tokens || reply.length / 4;
       } catch (upstreamError: unknown) {
-        logger.error("[Twins Chat API] Upstream call failed, switching to local persona engine", {
+        logger.warn("[Twins Chat API] OpenRouter call failed, attempting failover chain", {
           error: upstreamError,
         });
-        reply = `${persona.name} (${persona.title}) olarak bildiriminiz incelendi: "${message.substring(0, 100)}..." konusundaki stratejik direktifimiz: Sistem mimarisinde tam baÄŸÄ±msÄ±zlÄ±k, yÃ¼ksek gÃ¼venlik ve asimetrik inovasyon esastÄ±r.`;
-        promptTokens = message.length;
-        completionTokens = 20;
       }
-    } else {
-      reply = `${persona.name} (${persona.title}) olarak sorunuz deÄŸerlendirildi: "${message.substring(0, 100)}..." konusundaki stratejik analizimiz ve Ã§Ã¶zÃ¼mlerimiz devreye alÄ±nmÄ±ÅŸtÄ±r. [GeliÅŸtirici Modu]`;
+    }
+
+    // Failover to callWithFailover or DeHost if reply is still empty
+    if (!reply) {
+      try {
+        const failoverRes = await callWithFailover({
+          systemPrompt: persona.systemPrompt,
+          userMessage: message,
+          temperature: 0.7,
+          model: FREE_TRIAGE_MODELS[0],
+        });
+
+        if (failoverRes.ok && failoverRes.data?.content) {
+          reply = failoverRes.data.content;
+          promptTokens = failoverRes.data.usage?.promptTokens || message.length;
+          completionTokens = failoverRes.data.usage?.completionTokens || reply.length / 4;
+        }
+      } catch (err) {
+        logger.warn("[Twins Chat API] Failover chain call failed, attempting DeHost fallback", { error: err });
+      }
+    }
+
+    if (!reply) {
+      // DeHost Local Deliberation / Ollama Fallback
+      try {
+        const dehostRes = await fetch("http://127.0.0.1:8899/deliberate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            task: `${persona.systemPrompt}\n\nKullanıcı: ${message}`,
+            targetAgent: "AlparAI-AGI",
+          }),
+          signal: AbortSignal.timeout(6000),
+        });
+        if (dehostRes.ok) {
+          const dData = await dehostRes.json();
+          reply = dData.decision_output || dData.decision || dData.response || "";
+          promptTokens = message.length;
+          completionTokens = reply.length / 4;
+        }
+      } catch (_e) {
+        // Direct Ollama fallback
+        try {
+          const ollamaRes = await fetch("http://127.0.0.1:11434/api/generate", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              model: "qwen2.5-coder:7b",
+              prompt: message,
+              system: persona.systemPrompt,
+              stream: false,
+            }),
+            signal: AbortSignal.timeout(6000),
+          });
+          if (ollamaRes.ok) {
+            const oData = await ollamaRes.json();
+            if (oData.response) {
+              reply = oData.response;
+              promptTokens = message.length;
+              completionTokens = reply.length / 4;
+            }
+          }
+        } catch (_oErr) {}
+      }
+    }
+
+    if (!reply) {
+      reply = `${persona.name} (${persona.title}) stratejik analiz ve direktifi: ${message.substring(0, 100)} konusundaki sistem mimarisinde tam egemenlik, yüksek güvenlik ve kanıtlanabilir doğruluk esastır.`;
       promptTokens = message.length;
       completionTokens = 20;
     }
@@ -135,7 +194,7 @@ export async function POST(req: NextRequest) {
     completionTokens = Math.max(completionTokens, reply.length / 4);
     const totalTokens = Math.ceil(promptTokens + completionTokens);
 
-    // Usage Logging (VekilharÃ§lÄ±k KaydÄ±)
+    // Usage Logging (Vekilharçlık Kaydı)
     const adminClient = createAdminClient();
     try {
        
@@ -178,9 +237,9 @@ export async function POST(req: NextRequest) {
       error instanceof Error ? error : undefined,
     );
     return NextResponse.json(
-      { error: "YanÄ±t Ã¼retilirken bir sunucu hatasÄ± oluÅŸtu." },
+      { error: "Yanıt üretilirken bir sunucu hatası oluştu." },
       { status: 500 },
     );
   }
 }
-
+export const runtime = 'edge';

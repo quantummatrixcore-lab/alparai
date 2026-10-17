@@ -155,7 +155,7 @@ function extractProsCons(text: string): { pros: string[]; cons: string[] } {
   const pros: string[] = [];
   const cons: string[] = [];
 
-  const proMatch = text.match(/pro(?:s)?[:\-â€“â€”]\s*(.+?)(?=con|$)/i);
+  const proMatch = text.match(/pro(?:s)?[:\-–—]\s*(.+?)(?=con|$)/i);
   if (proMatch?.[1]) {
     proMatch[1]
       .split(/[,;]/)
@@ -167,7 +167,7 @@ function extractProsCons(text: string): { pros: string[]; cons: string[] } {
       });
   }
 
-  const conMatch = text.match(/con(?:s)?[:\-â€“â€”]\s*(.+?)(?=pro|$)/i);
+  const conMatch = text.match(/con(?:s)?[:\-–—]\s*(.+?)(?=pro|$)/i);
   if (conMatch?.[1]) {
     conMatch[1]
       .split(/[,;]/)
@@ -351,4 +351,4 @@ export async function GET() {
     return NextResponse.json({ error: "Failed to fetch integration status" }, { status: 500 });
   }
 }
-
+export const runtime = 'edge';

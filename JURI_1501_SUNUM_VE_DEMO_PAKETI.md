@@ -57,7 +57,7 @@ AlparAI; kurumsal karar alma mekanizmasında tekil kurucu hızını (Sole Founde
 Sistemde danışma kurulu üyeleri statik bir web sayfası yazısından ibaret değildir; doğrudan `advisory_board_members` tablosunda kriptografik ID'ler ile saklanmakta ve dinamik olarak sunulmaktadır:
 
 ```sql
--- D:\03_ALPARAI\supabase\migrations\0008_seed_completion_1501.sql
+-- D:\03_ALPARAI\upstash\migrations\0008_seed_completion_1501.sql
 -- TABLO: public.advisory_board_members (2/2 Deterministik Kayıt)
 
 -- Kayıt 1: Prof. Dr. Musa Aygül

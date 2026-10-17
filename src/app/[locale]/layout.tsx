@@ -18,6 +18,7 @@ import { Footer } from "@/components/layout/footer";
 import { MobileBottomNav } from "@/components/layout/mobile-bottom-nav";
 import { ClientProviders } from "@/components/client-providers";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
+import { CookieConsent } from "@/components/layout/cookie-consent";
 import { PwaRegister } from "@/components/pwa-register";
 import { DeferredTelemetry } from "@/components/analytics/deferred-telemetry";
 import { ThemeProvider } from "next-themes";
@@ -113,6 +114,7 @@ export default async function LocaleLayout({
               {!isEmbed && !isAdmin && !isAuth && <MobileBottomNav />}
               <ClientProviders />
               {!isEmbed && !isAdmin && !isAuth && <ScrollToTop />}
+              {!isEmbed && !isAdmin && <CookieConsent />}
               <PwaRegister />
               <OrganizationJsonLd />
               <SoftwareApplicationJsonLd />

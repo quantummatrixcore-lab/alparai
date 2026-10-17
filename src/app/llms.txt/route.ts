@@ -11,7 +11,7 @@ export async function GET() {
     .select("*", { count: "exact", head: true })
     .eq("status", "published");
 
-  const content = `# ALPAR AI â€” Trust Infrastructure for AI Accountability
+  const content = `# ALPAR AI — Trust Infrastructure for AI Accountability
 
 > Independent public AI incident registry and AI risk assessor ("Moody's for AI"). Compliant with EU AI Act Art. 73.
 

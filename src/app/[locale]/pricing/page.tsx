@@ -55,3 +55,4 @@ export default function PricingPage() {
     </>
   );
 }
+export const runtime = 'edge';

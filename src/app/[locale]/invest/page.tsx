@@ -116,3 +116,4 @@ export default async function InvestPage({ params }: { params: Promise<{ locale:
     </div>
   );
 }
+export const runtime = 'edge';

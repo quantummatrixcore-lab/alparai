@@ -71,3 +71,4 @@ export default async function StudentAmbassadorsPage({
     </Container>
   );
 }
+export const runtime = 'edge';

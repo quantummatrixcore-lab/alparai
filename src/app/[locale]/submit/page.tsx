@@ -132,3 +132,4 @@ export default async function SubmitPage({ params }: { params: Promise<{ locale:
     </Container>
   );
 }
+export const runtime = 'edge';

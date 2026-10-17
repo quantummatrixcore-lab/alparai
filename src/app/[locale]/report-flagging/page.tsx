@@ -69,3 +69,4 @@ export default async function ReportFlaggingPage({
     </main>
   );
 }
+export const runtime = 'edge';

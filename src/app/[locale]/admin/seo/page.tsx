@@ -180,3 +180,4 @@ export default function SEOPage() {
     </div>
   );
 }
+export const runtime = 'edge';

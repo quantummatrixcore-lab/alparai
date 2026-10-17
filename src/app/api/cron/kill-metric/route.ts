@@ -18,13 +18,13 @@ async function getHandler(request: Request) {
     const isLaunched = (vault.read('NEXT_PUBLIC_APP_LAUNCHED') ?? process.env.NEXT_PUBLIC_APP_LAUNCHED) === "true";
 
     if (!isLaunched) {
-      logger.info("[Day-7 Kill-Metric] N/A â€” not launched");
+      logger.info("[Day-7 Kill-Metric] N/A — not launched");
       return NextResponse.json({
         ok: true,
         launched: false,
-        users: "N/A â€” not launched",
-        incidents: "N/A â€” not launched",
-        article73_pending_72h: "N/A â€” not launched",
+        users: "N/A — not launched",
+        incidents: "N/A — not launched",
+        article73_pending_72h: "N/A — not launched",
       });
     }
 
@@ -72,4 +72,4 @@ async function getHandler(request: Request) {
 }
 
 export const GET = withCronLogger("kill-metric", getHandler);
-
+export const runtime = 'edge';

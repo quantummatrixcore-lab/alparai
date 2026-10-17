@@ -123,3 +123,4 @@ export default function AISignalsPage() {
     </div>
   );
 }
+export const runtime = 'edge';

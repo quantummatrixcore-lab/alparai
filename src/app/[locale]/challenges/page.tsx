@@ -34,3 +34,4 @@ export default async function ChallengesPage({ params }: { params: Promise<{ loc
     </Container>
   );
 }
+export const runtime = 'edge';

@@ -171,3 +171,4 @@ export default function GrantsPage() {
     </div>
   );
 }
+export const runtime = 'edge';

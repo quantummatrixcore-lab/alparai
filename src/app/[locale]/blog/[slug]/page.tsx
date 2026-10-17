@@ -238,3 +238,4 @@ export default async function BlogPostPage({
     </Container>
   );
 }
+export const runtime = 'edge';

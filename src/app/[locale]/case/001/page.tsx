@@ -16,3 +16,4 @@ export default async function Case001LegacyRetiredPage({
   const { locale } = await params;
   permanentRedirect({ href: "/cases/001-grok-passport", locale });
 }
+export const runtime = 'edge';

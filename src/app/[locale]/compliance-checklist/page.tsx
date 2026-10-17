@@ -253,3 +253,4 @@ export default async function ComplianceChecklistPage({
     </main>
   );
 }
+export const runtime = 'edge';

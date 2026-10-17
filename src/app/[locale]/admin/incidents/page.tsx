@@ -698,3 +698,4 @@ export default function IncidentsPage() {
     </div>
   );
 }
+export const runtime = 'edge';

@@ -90,3 +90,4 @@ export default async function DatasetsPage({ params }: { params: Promise<{ local
     </div>
   );
 }
+export const runtime = 'edge';

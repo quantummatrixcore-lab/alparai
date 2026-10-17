@@ -84,9 +84,9 @@ async function getHandler(request: NextRequest) {
     // 3. Compose email templates for each locale
     const buildNewsletterHtml = (locale: string, incidentsList: IncidentWithProvider[]) => {
       const isTr = locale === "tr";
-      const title = isTr ? "HaftalÄ±k Yapay Zeka OlaylarÄ± BÃ¼lteni" : "Weekly AI Incidents Digest";
+      const title = isTr ? "Haftalık Yapay Zeka Olayları Bülteni" : "Weekly AI Incidents Digest";
       const subtitle = isTr
-        ? "Yapay zeka hesap verebilirliÄŸi ve ÅŸeffaflÄ±ÄŸÄ± iÃ§in haftalÄ±k Ã¶zet."
+        ? "Yapay zeka hesap verebilirliği ve şeffaflığı için haftalık özet."
         : "Weekly digest for AI accountability and transparency.";
 
       const incidentCardsHtml = incidentsList
@@ -112,7 +112,7 @@ async function getHandler(request: NextRequest) {
               ${inc.description_masked.substring(0, 150)}...
             </p>
             <a href="${detailLink}" style="color: #00ff88; text-decoration: none; font-size: 13px; font-weight: bold;">
-              ${isTr ? "Raporu Ä°ncele &rarr;" : "View Report &rarr;"}
+              ${isTr ? "Raporu İncele &rarr;" : "View Report &rarr;"}
             </a>
           </div>
         `;
@@ -180,7 +180,7 @@ async function getHandler(request: NextRequest) {
                 ${incidentCardsHtml}
               </div>
               <div class="footer">
-                <p>ALPAR AI â€” Trust Infrastructure for AI Accountability</p>
+                <p>ALPAR AI — Trust Infrastructure for AI Accountability</p>
               </div>
             </div>
           </body>
@@ -196,7 +196,7 @@ async function getHandler(request: NextRequest) {
       const html = buildNewsletterHtml(sub.locale || "en", recentIncidents);
       const subject =
         sub.locale === "tr"
-          ? "ALPAR AI HaftalÄ±k BÃ¼lteni: Yapay Zeka HatalarÄ± & Risk Raporu"
+          ? "ALPAR AI Haftalık Bülteni: Yapay Zeka Hataları & Risk Raporu"
           : "ALPAR AI Weekly: Recent AI Failures & Ethics Report";
 
       if (resend) {
@@ -229,4 +229,4 @@ async function getHandler(request: NextRequest) {
 }
 
 export const GET = withCronLogger("newsletter", getHandler);
-
+export const runtime = 'edge';

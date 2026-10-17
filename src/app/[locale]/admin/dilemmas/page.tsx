@@ -141,3 +141,4 @@ export default function DilemmasPage() {
     </div>
   );
 }
+export const runtime = 'edge';

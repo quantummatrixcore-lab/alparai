@@ -343,11 +343,11 @@ export class DeHostAdapterClient<T = any> {
       try {
         const provider = credentials?.provider || "google";
         const redirectTo = credentials?.options?.redirectTo || "https://www.alparai.com/auth/callback";
-        const supabaseUrl = (vault.read('NEXT_PUBLIC_SUPABASE_URL') ?? process.env.NEXT_PUBLIC_SUPABASE_URL) || (vault.read('NEXT_PUBLIC_DEHOST_URL') ?? process.env.NEXT_PUBLIC_DEHOST_URL);
+        const upstashUrl = (vault.read('NEXT_PUBLIC_upstash_URL') ?? process.env.NEXT_PUBLIC_upstash_URL) || (vault.read('NEXT_PUBLIC_DEHOST_URL') ?? process.env.NEXT_PUBLIC_DEHOST_URL);
 
         let url: string;
-        if (supabaseUrl && !supabaseUrl.includes("dehost.alparai.com")) {
-          const authEndpoint = new URL(`${supabaseUrl.replace(/\/$/, '')}/auth/v1/authorize`);
+        if (upstashUrl && !upstashUrl.includes("dehost.alparai.com")) {
+          const authEndpoint = new URL(`${upstashUrl.replace(/\/$/, '')}/auth/v1/authorize`);
           authEndpoint.searchParams.set("provider", provider);
           authEndpoint.searchParams.set("redirect_to", redirectTo);
           if (credentials?.options?.scopes) {

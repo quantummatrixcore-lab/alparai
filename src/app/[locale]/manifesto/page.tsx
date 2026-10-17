@@ -33,3 +33,4 @@ export default async function ManifestoPage({
     </div>
   );
 }
+export const runtime = 'edge';

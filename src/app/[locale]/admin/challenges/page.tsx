@@ -177,3 +177,4 @@ export default function ChallengesPage() {
     </div>
   );
 }
+export const runtime = 'edge';

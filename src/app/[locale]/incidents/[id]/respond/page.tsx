@@ -125,3 +125,4 @@ function renderInvalidToken(t: (key: string) => string) {
     </Container>
   );
 }
+export const runtime = 'edge';

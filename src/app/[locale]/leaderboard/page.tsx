@@ -271,7 +271,7 @@ async function LeaderboardDataContent({
                 <div>
                   <p className="text-fg-muted text-xs font-medium">{_t("providersTracked")}</p>
                   <p className="text-fg-primary text-2xl font-bold tracking-tight">
-                    {stats.length}
+                    {filteredStats.length}
                   </p>
                 </div>
               </div>
@@ -663,3 +663,4 @@ function TrustScoreSparkline({
     </svg>
   );
 }
+export const runtime = 'edge';

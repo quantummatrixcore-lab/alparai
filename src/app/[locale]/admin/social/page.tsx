@@ -308,3 +308,4 @@ export default function SocialStudioPage() {
     </div>
   );
 }
+export const runtime = 'edge';

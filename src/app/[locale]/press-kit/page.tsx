@@ -273,3 +273,4 @@ export default async function PressKitPage({ params }: { params: Promise<{ local
     </div>
   );
 }
+export const runtime = 'edge';

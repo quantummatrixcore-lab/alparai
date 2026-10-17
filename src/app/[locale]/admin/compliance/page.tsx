@@ -329,3 +329,4 @@ export default function CompliancePage() {
     </div>
   );
 }
+export const runtime = 'edge';

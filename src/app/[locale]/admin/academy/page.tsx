@@ -125,3 +125,4 @@ export default function AcademyPage() {
     </div>
   );
 }
+export const runtime = 'edge';

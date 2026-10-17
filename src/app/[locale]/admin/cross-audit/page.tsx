@@ -228,3 +228,4 @@ export default function CrossAuditPage() {
     </div>
   );
 }
+export const runtime = 'edge';

@@ -86,3 +86,4 @@ export default async function ArsApiPage({ params }: { params: Promise<{ locale:
     </div>
   );
 }
+export const runtime = 'edge';

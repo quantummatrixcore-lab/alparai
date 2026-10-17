@@ -135,3 +135,4 @@ export default async function EnterprisePage({ params }: { params: Promise<{ loc
     </div>
   );
 }
+export const runtime = 'edge';

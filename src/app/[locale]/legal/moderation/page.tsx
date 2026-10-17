@@ -33,3 +33,4 @@ export default async function ModerationPage({ params }: { params: Promise<{ loc
     </LegalLayout>
   );
 }
+export const runtime = 'edge';

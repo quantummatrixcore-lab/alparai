@@ -505,3 +505,4 @@ export default async function JournalistDashboard({
     </div>
   );
 }
+export const runtime = 'edge';

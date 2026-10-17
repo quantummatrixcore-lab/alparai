@@ -90,3 +90,4 @@ export default async function VisionPage({ params }: { params: Promise<{ locale:
     </main>
   );
 }
+export const runtime = 'edge';

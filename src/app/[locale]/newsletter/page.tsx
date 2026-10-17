@@ -53,3 +53,4 @@ export default async function NewsletterPage({ params }: { params: Promise<{ loc
     </Container>
   );
 }
+export const runtime = 'edge';

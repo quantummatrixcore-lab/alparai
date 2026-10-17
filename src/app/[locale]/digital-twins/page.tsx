@@ -60,3 +60,4 @@ export default async function DigitalTwinsPage({
     </>
   );
 }
+export const runtime = 'edge';

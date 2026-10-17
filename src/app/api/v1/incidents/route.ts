@@ -101,4 +101,4 @@ export async function OPTIONS(_request: Request) {
     },
   });
 }
-
+export const runtime = 'edge';

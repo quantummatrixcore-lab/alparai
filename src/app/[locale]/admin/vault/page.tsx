@@ -126,3 +126,4 @@ export default function VaultPage() {
     </div>
   );
 }
+export const runtime = 'edge';

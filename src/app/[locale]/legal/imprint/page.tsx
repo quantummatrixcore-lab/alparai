@@ -34,3 +34,4 @@ export default async function ImprintPage({ params }: { params: Promise<{ locale
     </LegalLayout>
   );
 }
+export const runtime = 'edge';

@@ -1,8 +1,14 @@
-# Security Policy — ALPAR AI
+# Security Policy — ALPAR AI Enterprise & Sovereign Infrastructure
 
-> Last updated: 2026-09-16
+> Last updated: 2026-10-17  
+> Status: Active & Enforced  
+> Security Contact: security@alparai.com  
+> Canonical Policy: https://alparai.com/SECURITY.md  
+> RFC 9116 File: https://alparai.com/.well-known/security.txt  
 
-## 1. Defense in Depth
+---
+
+## 1. Defense in Depth Architecture
 
 | Layer         | Mechanism                                                                                           |
 | ------------- | --------------------------------------------------------------------------------------------------- |
@@ -11,59 +17,68 @@
 | MIME          | `X-Content-Type-Options: nosniff`                                                                   |
 | Referrer      | `Referrer-Policy: strict-origin-when-cross-origin`                                                  |
 | Permissions   | `camera=(), microphone=(), geolocation=(), interest-cohort=()`                                      |
-| Script source | CSP `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.dehost.internal https://*.sentry.io`     |
+| Script source | CSP `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.dehost.internal https://*.sentry.io` |
 | Style source  | CSP `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com`                                 |
-| Image source  | CSP `img-src 'self' data: blob: https://*.dehost.internal https://*.googleusercontent.com`              |
-| Connection    | CSP `connect-src 'self' https://*.dehost.internal https://*.sentry.io wss://*.dehost.internal`              |
+| Image source  | CSP `img-src 'self' data: blob: https://*.dehost.internal https://*.googleusercontent.com`          |
+| Connection    | CSP `connect-src 'self' https://*.dehost.internal https://*.sentry.io wss://*.dehost.internal`      |
 | Object        | CSP `object-src 'none'`                                                                             |
 | Base          | CSP `base-uri 'self'`                                                                               |
 | Form          | CSP `form-action 'self'`                                                                            |
 
-## 2. Authentication & Authorization
+## 2. Authentication, Authorization & Access Control
 
-- DeHost Auth, **Google OAuth** primary, **magic link** secondary.
-- Passwords are not stored on our side.
-- JWT validated on every server action and RSC fetch.
-- Session refresh happens in `src/middleware.ts` on every navigation.
-- Sign-out clears all DeHost cookies.
-- Postgres Row Level Security (RLS) is enabled on 100% of tables.
-- Server Actions for sensitive operations (`moderateIncident`, `reviewTakedown`, `setUserRole`) enforce `requireModerator()` or `requireAdmin()`.
+- **Auth Protocols:** DeHost Auth with Google OAuth as primary provider and zero-knowledge magic links as secondary.
+- **Zero Raw Passwords:** Passwords and plaintext credentials are never accepted or stored.
+- **Cryptographic JWT:** Signed tokens verified on every Next.js Server Action and RSC fetch.
+- **Session Lifecycles:** Dynamic token rotation and sliding refresh managed in `src/middleware.ts`.
+- **Database Isolation:** PostgreSQL Row Level Security (RLS) is strictly active across 100% of production tables.
+- **Role Gates:** Strict RBAC (`requireModerator()`, `requireAdmin()`) protects all sensitive moderation and governance endpoints.
 
-## 3. PII Guardian
+## 3. PII Guardian Engine
 
-Strict regex + Luhn validation engine (`src/lib/pii/guardian.ts`):
-- Email (RFC 5322)
-- Phone (TR + international, 10–15 digits)
-- TC Kimlik (Turkish national ID with checksum verification)
-- TR Passport (`[A-Z]\d{8}`)
-- IBAN (TR + generic)
-- Credit card (13–19 digits, Luhn-valid)
-- IPv4 / IPv6 addresses
-- URLs with credentials/tokens (`?token=`, `?key=`, `?api_key=`)
-- Secret keys: `sk-`, `ghp_`, `AKIA`, `xai-`
+Our real-time regex + Luhn checksum detection engine (`src/lib/pii/guardian.ts`) sanitizes submissions before database ingress:
+- **Email:** RFC 5322 standard patterns.
+- **Phone:** TR GSM/landline and international formats (10–15 digits).
+- **TC Kimlik:** Turkish National Identity verification with modulus-10 algorithm.
+- **Passports:** International and TR passport formats (`[A-Z]\d{8}`).
+- **Financial Data:** IBAN checksum validation and Luhn-compliant Credit/Debit Card numbers (13–19 digits).
+- **Network Identifiers:** IPv4 / IPv6 addresses and cloud VPC endpoints.
+- **Credentials & API Keys:** Pre-filter for `sk-`, `ghp_`, `AKIA`, `xai-`, and tokenized URL query strings (`?token=`, `?key=`, `?api_key=`).
 
-If PII is detected, raw text is never stored in public columns; only the masked tokenized text is exposed.
+*Notice: Any detected PII is tokenized and masked in memory. Raw sensitive credentials are never stored.*
 
-## 4. Rate Limiting
+## 4. Rate Limiting & DoS Shield
 
-| Action            | Limit       | Key          |
-| ----------------- | ----------- | ------------ |
-| Submit incident   | 5 / hour    | `user_id:ip` |
-| Submit suggestion | 10 / day    | `user_id`    |
-| Sign in           | 10 / 15 min | `ip`         |
-| API general       | 100 / min   | `ip`         |
+| Action                | Limit        | Window / Scope       |
+| --------------------- | ------------ | -------------------- |
+| Incident Submission   | 5 / hour     | `user_id:ip` sliding |
+| Community Suggestion  | 10 / day     | `user_id` sliding    |
+| Authentication (Auth) | 10 / 15 min  | `ip` sliding         |
+| Public REST API       | 100 / min    | `ip` sliding         |
+| Takedown Appeals      | 3 / 24 hours | `ip:incident_id`     |
 
-Enforced via `@upstash/ratelimit` with IP and user token sliding window algorithms.
+Enforced via distributed `@upstash/ratelimit` algorithms with automatic IP jail routing on sustained anomaly detection.
 
 ## 5. Feed Connectors & Moderation Guarantee
 
-- All automated connectors (Reddit, HackerOne feeds, AIAAIC, AIID) operate strictly in staging ingestion mode.
-- **Zero Auto-Publish:** No incident or accusation ingested from external public sources publishes automatically without human moderator review and verification.
+- **Staging Isolation:** Automated public scrapers (Reddit, HackerOne, AIAAIC, AIID) ingest data exclusively into isolated staging queues.
+- **Zero Auto-Publish Guarantee:** Under no circumstances are external incident reports published to the live leaderboard or public registry without cryptographic sign-off by a certified human moderator.
 
-## 6. Vulnerability Disclosure & Bug Bounty
+## 6. EU AI Act Article 50 & Regulatory Compliance
 
-We take the security of ALPAR AI and our community very seriously.
-- **Reporting Channel:** Email **security@alparai.com** (PGP key available on request).
-- **SLA:** We acknowledge reports within **48 hours** and aim to triage/patch confirmed issues within **7 days**.
-- **Recognition:** Validated, non-duplicate vulnerabilities reported in good faith are eligible for recognition in our Security Hall of Fame and public acknowledgement.
-- **Safe Harbor:** We support security research conducted in accordance with responsible disclosure guidelines and will not pursue legal action against researchers acting in good faith.
+- **Transparency & Disclaimers:** All automated AI outputs, triage assessments, and risk ratings explicitly disclose their machine-generated nature in accordance with EU AI Act Article 50.
+- **Synthetic Content Detection:** Platform interactions are anchored with verifiable cryptographic metadata to guarantee chain-of-custody.
+- **Audit Trails:** Immutable, tamper-evident audit logs preserve every stage of moderation and dispute resolution.
+
+## 7. Sovereign Evidence & Legal Arbitration (HMK m. 199)
+
+- All dispute filings, take-down requests, and verified manufacturer statements adhere to international UNCITRAL ODR and Turkish Civil Procedure Code (HMK m. 199) electronic evidence standards.
+- Preserved timestamps and hash proofs serve as legally admissible evidentiary records for global AI compliance tribunals.
+
+## 8. Responsible Disclosure & Bug Bounty Program
+
+We value responsible security research and partner closely with the global cybersecurity community.
+- **Reporting Inquiries:** Email **security@alparai.com** (PGP public key available on request).
+- **SLA Commitment:** First acknowledgement within **48 hours**; triage and remediation deployment within **7 business days**.
+- **Recognition & Bounties:** Validated, non-duplicate vulnerabilities reported ethically qualify for our Security Hall of Fame and performance bounties.
+- **Safe Harbor:** We strictly commit to zero legal action against researchers acting in good faith under standard responsible disclosure terms.

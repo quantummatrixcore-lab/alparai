@@ -22,8 +22,8 @@ export const dynamic = "force-dynamic";
 
 async function checkDeHost(): Promise<ServiceHealth> {
   const start = Date.now();
-  const url = (vault.read('NEXT_PUBLIC_DEHOST_URL') ?? process.env.NEXT_PUBLIC_DEHOST_URL) || (vault.read('NEXT_PUBLIC_SUPABASE_URL') ?? process.env.NEXT_PUBLIC_SUPABASE_URL);
-  const key = (vault.read('NEXT_PUBLIC_DEHOST_ANON_KEY') ?? process.env.NEXT_PUBLIC_DEHOST_ANON_KEY) || (vault.read('NEXT_PUBLIC_SUPABASE_ANON_KEY') ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+  const url = (vault.read('NEXT_PUBLIC_DEHOST_URL') ?? process.env.NEXT_PUBLIC_DEHOST_URL) || (vault.read('NEXT_PUBLIC_upstash_URL') ?? process.env.NEXT_PUBLIC_upstash_URL);
+  const key = (vault.read('NEXT_PUBLIC_DEHOST_ANON_KEY') ?? process.env.NEXT_PUBLIC_DEHOST_ANON_KEY) || (vault.read('NEXT_PUBLIC_upstash_ANON_KEY') ?? process.env.NEXT_PUBLIC_upstash_ANON_KEY);
   if (!url || !key) {
     return {
       name: "dehost",
@@ -231,4 +231,4 @@ export async function GET(): Promise<NextResponse<HealthCheckDetail | { error: s
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
-
+export const runtime = 'edge';

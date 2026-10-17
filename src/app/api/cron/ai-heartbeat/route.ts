@@ -60,4 +60,4 @@ export async function GET(request: Request) {
     results: heartbeatResults,
   });
 }
-
+export const runtime = 'edge';

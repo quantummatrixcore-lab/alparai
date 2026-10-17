@@ -27,8 +27,8 @@ function isValidKeyFormat(key: string | undefined): boolean {
 }
 
 export async function resolveApiKey(provider: string, envVar: string): Promise<string | null> {
-  // 1. Try primary env var
-  const envVal = process.env[envVar];
+  // 1. Try primary env var (checking vault first)
+  const envVal = (vault.read(envVar) ?? process.env[envVar]);
   if (isValidKeyFormat(envVal)) {
     return envVal!;
   }

@@ -39,6 +39,7 @@ function detectLocale(request: NextRequest): string {
 }
 
 export async function GET(request: NextRequest) {
+  const locale = detectLocale(request);
   try {
     const { searchParams, origin } = new URL(request.url);
     const code = searchParams.get("code");
@@ -47,7 +48,6 @@ export async function GET(request: NextRequest) {
     const errorParam = searchParams.get("error");
     const errorDescription = searchParams.get("error_description");
     const next = safeNextPath(searchParams.get("next"));
-    const locale = detectLocale(request);
     const hasLocalePrefix = SUPPORTED_LOCALES.some(
       (l) => next === `/${l}` || next.startsWith(`/${l}/`),
     );
@@ -100,13 +100,12 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.redirect(`${origin}/${locale}/auth/signin?error=missing_params`);
   } catch (err) {
-    console.error("DEBUG CALLBACK ERR:", err);
     if (err instanceof Error && (err.message.includes("NEXT_REDIRECT") || (err as any).digest?.includes("NEXT_REDIRECT"))) {
       throw err;
     }
     logger.error("Callback handler exception", undefined, err instanceof Error ? err : undefined);
     const origin = request.nextUrl?.origin || "http://localhost:3000";
-    return NextResponse.redirect(`${origin}/en/auth/signin?error=server_error`);
+    return NextResponse.redirect(`${origin}/${locale}/auth/signin?error=server_error`);
   }
 }
 export const runtime = 'edge';

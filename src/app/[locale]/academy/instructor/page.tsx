@@ -146,3 +146,4 @@ export default async function AcademyInstructorPage({
     </div>
   );
 }
+export const runtime = 'edge';

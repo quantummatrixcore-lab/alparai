@@ -41,3 +41,4 @@ export default async function DmcaPage({ params }: { params: Promise<{ locale: s
     </LegalLayout>
   );
 }
+export const runtime = 'edge';

@@ -44,3 +44,4 @@ export default async function MyIncidentsPage({ params }: { params: Promise<{ lo
     </Container>
   );
 }
+export const runtime = 'edge';

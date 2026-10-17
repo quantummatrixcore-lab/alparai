@@ -133,3 +133,4 @@ export default async function ProviderIncidentsPage({
     </Container>
   );
 }
+export const runtime = 'edge';

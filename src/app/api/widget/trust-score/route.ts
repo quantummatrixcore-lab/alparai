@@ -43,7 +43,7 @@ function renderSvgWidget(providerName: string, score: number): string {
   }
 
   const safeProviderName = escapeXml(
-    providerName.length > 12 ? `${providerName.slice(0, 11)}â€¦` : providerName,
+    providerName.length > 12 ? `${providerName.slice(0, 11)}…` : providerName,
   );
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="280" height="36" viewBox="0 0 280 36" fill="none" role="img" aria-label="ALPAR Trust Score: ${boundedScore}">
@@ -136,4 +136,4 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     },
   });
 }
-
+export const runtime = 'edge';

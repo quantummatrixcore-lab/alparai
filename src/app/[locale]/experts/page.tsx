@@ -208,3 +208,4 @@ export default async function ExpertsPage({ params }: { params: Promise<{ locale
     </div>
   );
 }
+export const runtime = 'edge';

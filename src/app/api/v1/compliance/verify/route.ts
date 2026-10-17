@@ -64,7 +64,7 @@ export interface RemediationItem {
 
 export async function GET() {
   return NextResponse.json({
-    service: "ALPAR AI â€” Automated EU AI Act B2B Verification Engine",
+    service: "ALPAR AI — Automated EU AI Act B2B Verification Engine",
     regulation: "Regulation (EU) 2024/1689 of the European Parliament and of the Council",
     version: "v2.5.0",
     supported_frameworks: [
@@ -377,7 +377,7 @@ export async function POST(request: Request) {
         certificate: {
           certificate_id: certificateId,
           audit_seal: auditSeal,
-          authority: "ALPAR AI â€” The Supreme Court of AI Accountability",
+          authority: "ALPAR AI — The Supreme Court of AI Accountability",
           standard: "Regulation (EU) 2024/1689 (EU AI Act)",
           issued_at: new Date().toISOString(),
           verification_endpoint: `https://alparai.com/api/v1/compliance/verify?cert=${certificateId.substring(0, 16)}`,
@@ -393,4 +393,4 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
-
+export const runtime = 'edge';

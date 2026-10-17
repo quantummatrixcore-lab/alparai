@@ -534,3 +534,4 @@ function InvalidTokenView({
     </div>
   );
 }
+export const runtime = 'edge';

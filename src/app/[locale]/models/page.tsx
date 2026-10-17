@@ -401,3 +401,4 @@ export default async function ModelsPage({ params, searchParams }: ModelPageProp
     </div>
   );
 }
+export const runtime = 'edge';

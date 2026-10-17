@@ -81,3 +81,4 @@ export default async function EuAiActPage({ params }: { params: Promise<{ locale
     </div>
   );
 }
+export const runtime = 'edge';

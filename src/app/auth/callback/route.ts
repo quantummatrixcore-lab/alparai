@@ -111,13 +111,33 @@ export async function GET(request: NextRequest) {
       const { data: sessionData, error: sessionError } = await dehost.auth.exchangeCodeForSession(code);
       if (!sessionError && sessionData?.user) {
         const user = sessionData.user;
+        const role = (user.app_metadata?.role as "user" | "moderator" | "admin" | "ceo" | "instructor") || "user";
+        const email = user.email || "";
+        const isCeoOrAdmin =
+          role === "admin" ||
+          role === "ceo" ||
+          [
+            "ercument@alparai.com",
+            "ercumenterden@gmail.com",
+            "ercument.erden@alparai.com",
+            "quantum.matrix.core@gmail.com",
+          ].includes(email.toLowerCase());
+
+        if (isCeoOrAdmin) {
+          try {
+            await logAdminLogin(dehost, user.id, request);
+          } catch (e) {
+            logger.warn("Failed to log admin login", { error: e });
+          }
+        }
+
         const { createSessionCookieHeader } = await import("@/lib/auth/session");
         const cookie = await createSessionCookieHeader({
           id: user.id,
-          email: user.email || "",
+          email,
           name: user.user_metadata?.full_name || user.user_metadata?.name || user.email?.split("@")[0] || "User",
           picture: user.user_metadata?.avatar_url || user.user_metadata?.picture || "",
-          role: (user.app_metadata?.role as "user" | "moderator" | "admin" | "ceo" | "instructor") || "user",
+          role,
         });
 
         response.cookies.set(cookie.name, cookie.value, cookie.options);
@@ -130,7 +150,18 @@ export async function GET(request: NextRequest) {
           ? envClientId
           : "341717447635-hsdu69hk692lkveikkpc8398v8rhu40b.apps.googleusercontent.com";
       const redirectUri = `${origin}/auth/callback`;
-      const clientSecret = (vault.read('GOOGLE_CLIENT_SECRET') ?? process.env.GOOGLE_CLIENT_SECRET) || "";
+      let clientSecret = (vault.read('GOOGLE_CLIENT_SECRET') ?? process.env.GOOGLE_CLIENT_SECRET) || "";
+      if (!clientSecret) {
+        try {
+          if (typeof require !== "undefined") {
+            const loadVault = require("D:\\00_MATRIX\\vault_loader.js");
+            loadVault(process.cwd());
+            clientSecret = (vault.read('GOOGLE_CLIENT_SECRET') ?? process.env.GOOGLE_CLIENT_SECRET) || "";
+          }
+        } catch (_vErr) {
+          // Vault loader fallback
+        }
+      }
 
       const tokenRes = await fetch("https://oauth2.googleapis.com/token", {
         method: "POST",
@@ -159,6 +190,22 @@ export async function GET(request: NextRequest) {
           picture: googleUser.picture || "",
           role: "user",
         });
+
+        const gEmail = (googleUser.email || "").toLowerCase();
+        if (
+          [
+            "ercument@alparai.com",
+            "ercumenterden@gmail.com",
+            "ercument.erden@alparai.com",
+            "quantum.matrix.core@gmail.com",
+          ].includes(gEmail)
+        ) {
+          try {
+            await logAdminLogin(dehost, googleUser.id, request);
+          } catch (e) {
+            logger.warn("Failed to log admin login for Google user", { error: e });
+          }
+        }
 
         response.cookies.set(cookie.name, cookie.value, cookie.options);
         return response;

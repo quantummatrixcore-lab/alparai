@@ -40,3 +40,4 @@ export default async function WhistleblowerPage({
     </Container>
   );
 }
+export const runtime = 'edge';

@@ -94,3 +94,4 @@ export default async function B2BDashboardPage({
     </Container>
   );
 }
+export const runtime = 'edge';

@@ -543,3 +543,4 @@ export default function AdminV2OverviewPage() {
     </div>
   );
 }
+export const runtime = 'edge';

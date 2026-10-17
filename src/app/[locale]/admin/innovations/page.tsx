@@ -124,3 +124,4 @@ export default function InnovationsPage() {
     </div>
   );
 }
+export const runtime = 'edge';

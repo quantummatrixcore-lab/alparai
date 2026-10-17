@@ -17,7 +17,7 @@ export async function GET() {
       return NextResponse.json({ status: "error", message: "Unauthorized" }, { status: 401 });
     }
 
-    // Paralel API Ã§aÄŸrÄ±larÄ±
+    // Paralel API çağrıları
     const geminiQuota = GoogleEcosystemBridge.getAIStudioMetrics();
     const storageQuota = { status: GoogleEcosystemBridge.driveStatus };
 
@@ -43,7 +43,7 @@ export async function GET() {
       console.error("Admin profile read error:", e);
     }
 
-    // AltyapÄ± durumu (SimÃ¼le edilmiÅŸ veya gerÃ§ek)
+    // Altyapı durumu (Simüle edilmiş veya gerçek)
     const infraStatus = {
       wafMode: (vault.read('CLOUDFLARE_API_TOKEN') ?? process.env.CLOUDFLARE_API_TOKEN) ? "Under Attack Mode (Active)" : "Standby",
       dehostDeployments: (vault.read('DEHOST_TOKEN') ?? process.env.DEHOST_TOKEN) ? "Ready" : "Standby",
@@ -77,4 +77,4 @@ export async function GET() {
     return NextResponse.json({ status: "error", message: errorMessage }, { status: 500 });
   }
 }
-
+export const runtime = 'edge';

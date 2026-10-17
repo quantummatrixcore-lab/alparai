@@ -135,3 +135,4 @@ export default function ExpertsPage() {
     </div>
   );
 }
+export const runtime = 'edge';

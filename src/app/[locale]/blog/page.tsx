@@ -354,3 +354,4 @@ export default async function BlogIndexPage({
     </div>
   );
 }
+export const runtime = 'edge';

@@ -56,3 +56,4 @@ export default async function NeutralityCharterPage({
     </LegalLayout>
   );
 }
+export const runtime = 'edge';

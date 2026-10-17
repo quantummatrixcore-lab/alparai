@@ -113,3 +113,4 @@ export default function TransparencyPage() {
     </div>
   );
 }
+export const runtime = 'edge';

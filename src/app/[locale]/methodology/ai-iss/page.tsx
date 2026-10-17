@@ -96,3 +96,4 @@ export default async function AiIssMethodologyPage({
     </Container>
   );
 }
+export const runtime = 'edge';

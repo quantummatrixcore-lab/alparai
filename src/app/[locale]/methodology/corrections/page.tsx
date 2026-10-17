@@ -102,3 +102,4 @@ export default async function MethodologyCorrectionsPage({
     </Container>
   );
 }
+export const runtime = 'edge';

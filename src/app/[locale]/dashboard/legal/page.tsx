@@ -238,3 +238,4 @@ export default async function LegalDashboard({ params }: { params: Promise<{ loc
     </div>
   );
 }
+export const runtime = 'edge';

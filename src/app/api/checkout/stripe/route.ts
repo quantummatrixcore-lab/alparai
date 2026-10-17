@@ -14,13 +14,23 @@ const APP_URL = (vault.read('NEXT_PUBLIC_APP_URL') ?? process.env.NEXT_PUBLIC_AP
 // @auth: requireAuth (verified via dehost.auth.getUser)
 export async function POST(request: Request) {
   let tier = "pro";
+  let locale = "tr";
   try {
     const body = await request.json();
     if (body.tier === "enterprise") {
       tier = "enterprise";
     }
+    if (body.locale && typeof body.locale === "string") {
+      locale = body.locale;
+    }
   } catch (_e) {
     // Ignore invalid JSON
+  }
+
+  const referer = request.headers.get("referer");
+  if (referer && locale === "tr") {
+    const match = referer.match(/\/(en|tr|de|fr|es|ar|ru|zh|ja)\b/);
+    if (match) locale = match[1];
   }
 
   const priceId = tier === "enterprise" ? STRIPE_ENTERPRISE_PRICE_ID : STRIPE_PRO_PRICE_ID;
@@ -78,8 +88,8 @@ export async function POST(request: Request) {
       customer: customerId,
       mode: "subscription",
       line_items: [{ price: priceId, quantity: 1 }],
-      success_url: `${APP_URL}/pricing?session_id={CHECKOUT_SESSION_ID}&success=true`,
-      cancel_url: `${APP_URL}/pricing?canceled=true`,
+      success_url: `${APP_URL}/${locale}/pricing?session_id={CHECKOUT_SESSION_ID}&success=true`,
+      cancel_url: `${APP_URL}/${locale}/pricing?canceled=true`,
       metadata: { user_id: user.id, tier },
       subscription_data: { metadata: { user_id: user.id, tier } },
     });
@@ -94,4 +104,4 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "checkout_failed" }, { status: 500 });
   }
 }
-
+export const runtime = 'edge';

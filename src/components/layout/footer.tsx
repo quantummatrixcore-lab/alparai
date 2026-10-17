@@ -17,6 +17,7 @@ const platformLinks = [
 
 const companyLinks = [
   { href: "/about", key: "about" },
+  { href: "/team", key: "team" },
   { href: "/about/advisory-board", key: "advisory_board" },
   { href: "/pricing", key: "pricing" },
   { href: "/trust-center", key: "security" },

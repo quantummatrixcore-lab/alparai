@@ -3980,7 +3980,8 @@
       "platform": "Platform",
       "resources": "Kaynaklar"
     },
-    "tagline": "Dünyanın AI'ı hesap verilebilir kıldığı yer."
+    "tagline": "Dünyanın AI'ı hesap verilebilir kıldığı yer.",
+    "team": "Liderlik & Ekibimiz"
   },
   "forms": {
     "cancel": "İptal",
@@ -5213,7 +5214,8 @@
     "suggestions": "Öneriler",
     "takedown": "Kaldırma",
     "transparency": "Şeffaflık",
-    "velocity": "Velocity Endeksi"
+    "velocity": "Velocity Endeksi",
+    "team": "Ekibimiz"
   },
   "newsletter": {
     "gdprAligned": "GDPR Hizalı",
@@ -5745,17 +5747,28 @@
     }
   },
   "team": {
-    "advisory_desc": "Sektör danışma kurulu pozisyonları açıktır. İlgilenen uzmanlar contact@alparai.com adresinden iletişime geçebilir.",
-    "advisory_title": "Danışma Kurulu",
-    "meta_title": "Ekip — ALPAR AI",
-    "mission_desc": "Kara-kutu yapay zeka sistemleri için bağımsız denetim, şeffaflık ve güven altyapısı kurmak.",
-    "mission_title": "Misyon",
-    "opensource_desc": "Kod tabanı şeffaf; katkıda bulunmak isteyenler için CONTRIBUTING.md ve topluluk kılavuzları mevcuttur.",
-    "opensource_title": "Açık Kaynak",
-    "privacy_desc": "AGPL-3.0 lisanslı açık kaynak proje. Tüm veri işleme süreçleri KVKK uyumlu ve denetlenebilir şekilde belgelenmiştir.",
-    "privacy_title": "Gizlilik & Güvenlik",
-    "subtitle": "ALPAR AI, yapay zeka hesap verebilirliği alanında çalışan bağımsız bir ekip tarafından inşa edilmektedir.",
-    "title": "Ekip & Şeffaflık"
+    "eyebrow": "LİDERLİK & YÖNETİM",
+    "title": "ALPAR AI Liderlik Ekibi",
+    "subtitle": "Yapay zeka hesap verilebilirliğinin küresel altyapısını inşa eden kurucu kadro ve danışma kurulu.",
+    "ercument_title": "Kurucu & CEO • Yönetim Kurulu Başkanı",
+    "ercument_role": "Sistem Mimarı & Ekosistem Vizyoneri",
+    "ercument_bio": "DecasHub & AlparAI Kurucusu & CEO'su. Tüm ekosistemin vizyoneri, icra lideri ve baş mimarı; otonom yapay zeka fabrikaları, egemen teknoloji altyapısı ve küresel girişim operasyonlarının kurucusu.",
+    "ercument_hl1": "Founder & CEO / Ecosystem Visionary",
+    "ercument_hl2": "Sovereign AI & Autonomous Edge Architecture",
+    "ahmet_title": "Kurucu Ortak & Chief Marketing Officer",
+    "ahmet_role": "Stratejik İletişim & Kamu İlişkileri",
+    "ahmet_bio": "Kıdemli gazeteci, medya stratejisti ve kamu ilişkileri danışmanı. Startup ekosisteminde küresel büyüme, yatırımcı ilişkileri, ulusal ve uluslararası medya, kriz iletişimi lideri.",
+    "ahmet_hl1": "Global Media & Public Relations",
+    "ahmet_hl2": "VC & Institutional Ecosystem",
+    "musa_title": "Fahri Danışma Kurulu Başkanı",
+    "musa_role": "Uluslararası Tahkim & Fikri Mülkiyet Kürsüsü",
+    "musa_bio": "Akademik itibar, uluslararası ticaret hukuku ve tahkim doktrini hamisi. WIPO & UNCITRAL standartlarında akıllı tahkim havuzu ve girişimciler için sıfır sorumluluk hukuki kalkanı.",
+    "musa_hl1": "Smart Arbitration & UNCITRAL ODR",
+    "musa_hl2": "WIPO & HMK m.199 Legal Shield",
+    "linkedin_profile": "LinkedIn Profili",
+    "website_profile": "Web Sitesi",
+    "advisory_chair": "Danışma Kürsüsü",
+    "view_advisory_board": "Genişletilmiş Danışma Kurulu & Katılım Çağrısı →"
   },
   "transparency": {
     "aiProvidersTracked": "Takip edilen yapay zeka sağlayıcıları",

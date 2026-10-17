@@ -3980,7 +3980,8 @@
       "platform": "Platform",
       "resources": "Resources"
     },
-    "tagline": "Where the world holds AI accountable."
+    "tagline": "Where the world holds AI accountable.",
+    "team": "Leadership & Team"
   },
   "forms": {
     "cancel": "Cancel",
@@ -5213,7 +5214,8 @@
     "suggestions": "Suggestions",
     "takedown": "Takedown",
     "transparency": "Transparency",
-    "velocity": "Velocity Index"
+    "velocity": "Velocity Index",
+    "team": "Team"
   },
   "newsletter": {
     "gdprAligned": "GDPR Aligned",
@@ -5745,17 +5747,28 @@
     }
   },
   "team": {
-    "advisory_desc": "Industry advisory board positions are open. Interested experts can reach out via contact@alparai.com.",
-    "advisory_title": "Advisory Board",
-    "meta_title": "Team — ALPAR AI",
-    "mission_desc": "Building independent audit, transparency, and trust infrastructure for black-box AI systems.",
-    "mission_title": "Mission",
-    "opensource_desc": "The codebase is transparent; CONTRIBUTING.md and community guidelines are available for contributors.",
-    "opensource_title": "Open Source",
-    "privacy_desc": "AGPL-3.0 licensed open-source project. All data processing compliance procedures are fully documented and auditable.",
-    "privacy_title": "Privacy & Security",
-    "subtitle": "ALPAR AI is built by an independent team dedicated to AI accountability.",
-    "title": "Team & Transparency"
+    "eyebrow": "LEADERSHIP & GOVERNANCE",
+    "title": "ALPAR AI Leadership & Team",
+    "subtitle": "The founding architects, media leaders, and legal scholars engineering the global trust infrastructure for AI accountability.",
+    "ercument_title": "Founder & CEO • Chairman of the Board",
+    "ercument_role": "System Architect & Ecosystem Visionary",
+    "ercument_bio": "Founder & CEO of DecasHub and ALPAR AI. Visionary and chief systems architect of the sovereign AI ecosystem, autonomous intelligence factories, and global enterprise operations.",
+    "ercument_hl1": "Founder & CEO / Ecosystem Visionary",
+    "ercument_hl2": "Sovereign AI & Autonomous Edge Architecture",
+    "ahmet_title": "Co-Founder & Chief Marketing Officer",
+    "ahmet_role": "Strategic Communications & Media Governance",
+    "ahmet_bio": "Senior journalist, media strategist, and public relations advisor. Leader in global ecosystem growth, investor relations, national and international media coverage, and crisis communication.",
+    "ahmet_hl1": "Global Media & Public Relations",
+    "ahmet_hl2": "VC & Institutional Ecosystem",
+    "musa_title": "Honorary Advisory Board Chair",
+    "musa_role": "Chair of International Arbitration & IP Law",
+    "musa_bio": "Patron of academic rigor, international trade law, and dispute arbitration doctrine. Creator of smart arbitration frameworks and zero-liability legal shields under WIPO & UNCITRAL standards.",
+    "musa_hl1": "Smart Arbitration & UNCITRAL ODR",
+    "musa_hl2": "WIPO & HMK Art. 199 Legal Shield",
+    "linkedin_profile": "LinkedIn Profile",
+    "website_profile": "Official Website",
+    "advisory_chair": "Academic Chair",
+    "view_advisory_board": "Extended Advisory Board & Open Call →"
   },
   "transparency": {
     "aiProvidersTracked": "AI providers tracked",

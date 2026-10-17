@@ -106,7 +106,7 @@ export function LiveTicker() {
   };
 
   const renderItems = (prefix: string) => (
-    <div className="flex shrink-0 items-center gap-3.5 px-3">
+    <div className="flex shrink-0 items-center gap-4 px-3">
       {incidents.map((inc) => {
         const providerName = resolveProvider(inc);
         const label = resolveTitle(inc);
@@ -114,7 +114,7 @@ export function LiveTicker() {
           <Link
             key={`${prefix}-${inc.id}`}
             href={`/incidents`}
-            className="group flex h-8 shrink-0 items-center gap-2.5 rounded-lg border border-border-subtle bg-bg-secondary/90 px-3 text-xs leading-none shadow-sm transition-all hover:border-cyan-500/40 hover:bg-bg-tertiary/90"
+            className="group inline-flex shrink-0 items-center gap-2 text-xs transition-colors hover:text-white"
           >
             <span
               className={`rounded border px-1.5 py-0.5 font-mono text-[10px] font-bold tracking-wide uppercase ${getProviderBadgeStyle(
@@ -123,15 +123,15 @@ export function LiveTicker() {
             >
               {providerName}
             </span>
-            <span className="max-w-md font-medium text-fg-primary transition-colors group-hover:text-cyan-300">
+            <span className="font-medium text-fg-secondary transition-colors group-hover:text-cyan-300">
               {label}
             </span>
             <span className="font-mono text-[10px] font-semibold text-fg-muted">
               #{inc.id.substring(0, 8)}
             </span>
-            <span className="inline-flex items-center gap-1 rounded border border-emerald-500/30 bg-emerald-500/10 px-1.5 py-0.5 text-[9px] font-semibold text-emerald-400">
+            <span className="inline-flex items-center gap-1 rounded border border-emerald-500/30 bg-emerald-500/10 px-1 py-0.5 text-[9px] font-semibold text-emerald-400">
               <svg
-                className="h-2.5 w-2.5"
+                className="h-2 w-2"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -141,6 +141,9 @@ export function LiveTicker() {
               </svg>
               {t("verified_badge", { defaultValue: "Doğrulandı" })}
             </span>
+            <span className="text-white/20 select-none px-1 font-mono text-xs" aria-hidden="true">
+              /
+            </span>
           </Link>
         );
       })}
@@ -148,20 +151,20 @@ export function LiveTicker() {
   );
 
   return (
-    <div className="relative flex h-11 w-full max-w-full items-center overflow-hidden overflow-x-clip border-y border-border-subtle bg-bg-primary/95 backdrop-blur-md select-none">
+    <div className="relative flex h-9 w-full max-w-full items-center overflow-hidden overflow-x-clip border-b border-border-subtle/80 bg-bg-primary/95 backdrop-blur-md select-none">
       {/* Fixed Left Corporate Brand Anchor */}
-      <div className="z-20 flex h-full shrink-0 items-center gap-2 border-r border-border-subtle bg-bg-primary px-3.5 shadow-lg">
+      <div className="z-20 flex h-full shrink-0 items-center gap-2 border-r border-border-subtle/80 bg-bg-primary px-3.5 shadow-md">
         <span className="relative flex h-2 w-2">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
           <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
         </span>
-        <span className="font-mono text-[10px] font-bold tracking-wider text-fg-primary uppercase">
+        <span className="font-mono text-[10px] font-bold tracking-wider text-fg-primary uppercase whitespace-nowrap">
           {locale === "tr" ? "CANLI RADAR" : "LIVE RADAR"}
         </span>
       </div>
 
       {/* Marquee Track Container */}
-      <div className="relative flex h-full min-w-0 flex-1 items-center overflow-hidden overflow-x-clip [contain:paint]">
+      <div className="relative flex h-full min-w-0 flex-1 items-center overflow-hidden overflow-x-clip">
         <div className="pointer-events-none absolute top-0 bottom-0 left-0 z-10 w-12 bg-gradient-to-r from-bg-primary to-transparent" />
         <div className="pointer-events-none absolute top-0 right-0 bottom-0 z-10 w-16 bg-gradient-to-l from-bg-primary to-transparent" />
         <div className="animate-marquee-track flex h-full w-max shrink-0 items-center hover:[animation-play-state:paused]">

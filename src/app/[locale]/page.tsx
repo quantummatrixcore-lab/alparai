@@ -20,6 +20,7 @@ import {
   resolveCountsBySource,
   CANONICAL_INCIDENT_COUNT,
   CANONICAL_COUNTS_BY_SOURCE,
+  CANONICAL_TOTAL_PROVIDERS,
   CANONICAL_TOTAL_COUNTRIES,
   CANONICAL_FALLBACK_PROVIDERS,
   CANONICAL_FALLBACK_INCIDENTS,
@@ -371,9 +372,9 @@ async function HeroSectionAsync({ locale }: { locale: string }) {
   const data = await getHomeData(locale);
   return (
     <HeroSection
-      totalIncidents={data.incidentsCountResult.count ?? 0}
-      totalProviders={(data as { providersCount?: number }).providersCount ?? resolveProviderCount(data.providersResult.data?.length)}
-      totalCountries={data.uniqueCountriesCount}
+      totalIncidents={data.incidentsCountResult.count ?? CANONICAL_INCIDENT_COUNT}
+      totalProviders={CANONICAL_TOTAL_PROVIDERS}
+      totalCountries={CANONICAL_TOTAL_COUNTRIES}
       topProviders={data.topProvidersForHero}
       countsBySource={data.countsBySource}
     />
@@ -384,9 +385,9 @@ async function LiveStatsAsync({ locale }: { locale: string }) {
   const data = await getHomeData(locale);
   return (
     <LiveStats
-      totalIncidents={data.incidentsCountResult.count ?? 0}
-      totalProviders={(data as { providersCount?: number }).providersCount ?? resolveProviderCount(data.providersResult.data?.length)}
-      totalCountries={data.uniqueCountriesCount}
+      totalIncidents={data.incidentsCountResult.count ?? CANONICAL_INCIDENT_COUNT}
+      totalProviders={CANONICAL_TOTAL_PROVIDERS}
+      totalCountries={CANONICAL_TOTAL_COUNTRIES}
       countsBySource={data.countsBySource}
     />
   );

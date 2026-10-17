@@ -37,7 +37,7 @@ interface NavGroup {
   items: NavItem[];
 }
 
-// Clean top-level core pages (Academy pinned visible per product priority)
+// Clean top-level core pages (Academy and Team pinned visible per product priority)
 const topLevelItems: NavItem[] = [
   {
     href: "/incidents",
@@ -45,12 +45,8 @@ const topLevelItems: NavItem[] = [
     icon: BarChart3,
   },
   { href: "/leaderboard", labelKey: "leaderboard", icon: Trophy },
-  {
-    href: "/dilemmas",
-    labelKey: "dilemmas",
-    icon: Scale,
-  },
   { href: "/academy", labelKey: "academy", icon: GraduationCap },
+  { href: "/team", labelKey: "team", icon: Users },
 ];
 
 // Clean categorized dropdowns for secondary features
@@ -60,6 +56,7 @@ const navGroups: NavGroup[] = [
     labelKey: "transparency",
     icon: ShieldCheck,
     items: [
+      { href: "/dilemmas", labelKey: "dilemmas", icon: Scale },
       { href: "/ai-act", labelKey: "ai_act", icon: ShieldCheck },
       { href: "/about/advisory-board", labelKey: "advisory_board", icon: Users },
       { href: "/transparency", labelKey: "transparency", icon: Eye },
@@ -146,7 +143,7 @@ export function Nav({
             key={item.href}
             href={item.href}
             className={cn(
-              "focus-visible:ring-brand-500 relative inline-flex min-h-[36px] flex-shrink-0 items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-semibold whitespace-nowrap transition-all duration-200 outline-none focus-visible:ring-2",
+              "focus-visible:ring-brand-500 relative inline-flex min-h-[36px] flex-shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold whitespace-nowrap transition-all duration-200 outline-none focus-visible:ring-2",
               isActive
                 ? "text-brand-600 dark:text-brand-300 font-bold"
                 : "text-fg-secondary hover:text-fg-primary hover:bg-black/[0.04] dark:hover:bg-white/[0.04]",
@@ -178,7 +175,7 @@ export function Nav({
             <button
               onClick={() => setOpenGroup(isGroupOpen ? null : group.id)}
               className={cn(
-                "focus-visible:ring-brand-500 relative inline-flex min-h-[36px] cursor-pointer items-center gap-1 rounded-full px-3.5 py-1.5 text-xs font-semibold whitespace-nowrap transition-all duration-200 outline-none focus-visible:ring-2",
+                "focus-visible:ring-brand-500 relative inline-flex min-h-[36px] cursor-pointer items-center gap-1 rounded-full px-3 py-1.5 text-xs font-semibold whitespace-nowrap transition-all duration-200 outline-none focus-visible:ring-2",
                 isGroupActive || isGroupOpen
                   ? "text-brand-600 dark:text-brand-300 bg-brand-500/10 font-bold"
                   : "text-fg-secondary hover:text-fg-primary hover:bg-black/[0.04] dark:hover:bg-white/[0.04]",

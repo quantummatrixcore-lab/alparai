@@ -54,6 +54,7 @@ const links: readonly NavItem[] = [
   { href: "/products/browser-extension", key: "browser_extension", icon: Eye },
   { href: "/products/eu-ai-act", key: "eu_ai_act", icon: Scale },
   { href: "/academy", key: "academy", icon: GraduationCap },
+  { href: "/team", key: "team", icon: Users },
   { href: "/enterprise", key: "enterprise", icon: Building },
   { group: "transparency" },
   { href: "/transparency", key: "transparency", icon: Eye },

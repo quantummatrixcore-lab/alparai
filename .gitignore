@@ -114,3 +114,9 @@ coverage/
 
 # Vault Guvenligi
 VAULT.env
+
+# Sýr Kalkaný ve Gizlilik
+core/hafiza/ledger.json
+core/hafiza/memory.json
+data/escrows.jsonl
+saas_gateway_state.json

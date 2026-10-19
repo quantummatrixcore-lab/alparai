@@ -231,4 +231,4 @@ export async function GET(): Promise<NextResponse<HealthCheckDetail | { error: s
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

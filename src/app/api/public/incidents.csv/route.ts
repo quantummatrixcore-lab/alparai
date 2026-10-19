@@ -57,4 +57,4 @@ export async function GET() {
     return new NextResponse("Internal CSV error", { status: 500 });
   }
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

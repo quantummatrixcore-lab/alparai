@@ -177,4 +177,4 @@ export default function ChallengesPage() {
     </div>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

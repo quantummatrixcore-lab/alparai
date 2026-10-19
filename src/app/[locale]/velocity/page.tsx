@@ -28,4 +28,4 @@ export default async function VelocityPage({ params }: VelocityPageProps) {
     </div>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

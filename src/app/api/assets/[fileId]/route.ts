@@ -67,4 +67,4 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ fil
     return new NextResponse("Asset not found or access denied", { status: 404 });
   }
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

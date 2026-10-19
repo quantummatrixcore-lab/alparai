@@ -165,4 +165,4 @@ async function getHandler(request: NextRequest) {
 }
 
 export const GET = withCronLogger("generate-marketing", getHandler);
-export const runtime = 'edge';
+export const runtime = "nodejs";

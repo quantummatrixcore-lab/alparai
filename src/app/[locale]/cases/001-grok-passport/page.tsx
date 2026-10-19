@@ -212,4 +212,4 @@ export default async function Case001Page({ params }: { params: Promise<{ locale
     </div>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

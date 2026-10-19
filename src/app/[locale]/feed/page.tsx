@@ -31,7 +31,8 @@ export default async function FeedPage({ params }: { params: Promise<{ locale: s
         "id, title_masked, description_masked, title_tr, description_tr, severity, status, category, is_anonymous, incident_date, views_count, upvotes_count, created_at, ai_provider_id, user_id, cross_audit_truth_score, cross_audit_confidence, comments_count, shares_count, affected_users_count",
       )
       .eq("status", "published")
-      .order("published_at", { ascending: false }),
+      .order("published_at", { ascending: false })
+      .limit(20),
     dehost
       .from("ai_providers")
       .select("id, slug, name, description, logo_url, website_url, is_verified, trust_score")
@@ -122,4 +123,4 @@ export default async function FeedPage({ params }: { params: Promise<{ locale: s
     />
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

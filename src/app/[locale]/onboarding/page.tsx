@@ -34,4 +34,4 @@ export default async function OnboardingPage({ params }: { params: Promise<{ loc
     </Container>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

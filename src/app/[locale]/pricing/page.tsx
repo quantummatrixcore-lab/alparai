@@ -1,45 +1,66 @@
-import React from 'react';
-import { PricingSection } from '@/components/marketing/pricing-section';
-import Script from 'next/script';
+import { setRequestLocale, getTranslations } from "next-intl/server";
+import type { Metadata } from "next";
+import Script from "next/script";
 
-export const metadata = {
-  title: 'Pricing | AlparAi',
-  description: 'Choose the right plan for your business.',
-};
+import { PricingSection } from "@/components/marketing/pricing-section";
+import { constructPageMetadata } from "@/lib/seo/metadata";
+import { APP_URL } from "@/lib/constants";
 
-export default function PricingPage() {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "pricing" });
+
+  return constructPageMetadata({
+    locale,
+    pathname: "/pricing",
+    title: `${t("headline")} — ALPAR AI`,
+    description: t("subtitle"),
+    keywords: [
+      "AI pricing",
+      "AI compliance plans",
+      "incident registry pricing",
+      "AI safety audit cost",
+      "EU AI Act compliance pricing",
+    ],
+  });
+}
+
+export default async function PricingPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: "pricing" });
+
+  // The JSON-LD advertises ONLY the plan that is actually purchasable.
+  // Previously it published three fake $49/$199/$999 offers pointing at
+  // placeholder LemonSqueezy product ids ("starter-id", "pro-id", "ent-id").
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "AlparAi Pricing",
-    "description": "Pricing plans for AlparAi",
-    "mainEntity": {
-      "@type": "OfferCatalog",
-      "name": "AlparAi Plans",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "name": "Starter",
-          "price": "49.00",
-          "priceCurrency": "USD",
-          "url": "https://alparai.lemonsqueezy.com/checkout/buy/starter-id"
-        },
-        {
-          "@type": "Offer",
-          "name": "Professional",
-          "price": "199.00",
-          "priceCurrency": "USD",
-          "url": "https://alparai.lemonsqueezy.com/checkout/buy/pro-id"
-        },
-        {
-          "@type": "Offer",
-          "name": "Enterprise",
-          "price": "999.00",
-          "priceCurrency": "USD",
-          "url": "https://alparai.lemonsqueezy.com/checkout/buy/ent-id"
-        }
-      ]
-    }
+    "@type": "OfferCatalog",
+    name: "ALPAR AI Plans",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        name: t("free_title"),
+        price: "0",
+        priceCurrency: "USD",
+        description: t("free_desc"),
+        url: `${APP_URL}/${locale}/pricing`,
+        availability: "https://schema.org/InStock",
+      },
+      {
+        "@type": "Offer",
+        name: t("startup_title"),
+        price: "990",
+        priceCurrency: "TRY",
+        description: t("startup_desc"),
+        url: `${APP_URL}/${locale}/pricing`,
+        availability: "https://schema.org/InStock",
+      },
+    ],
   };
 
   return (
@@ -50,9 +71,8 @@ export default function PricingPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <main>
-        <PricingSection />
+        <PricingSection locale={locale} />
       </main>
     </>
   );
 }
-export const runtime = 'edge';

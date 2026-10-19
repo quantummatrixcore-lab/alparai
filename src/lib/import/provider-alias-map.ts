@@ -1,9 +1,13 @@
 let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
-try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
+try {
+  vault = require("@/lib/security/vault").vault;
+} catch {
+  /* stub bicimi korunur */
+}
 import fs from "fs";
 import path from "path";
 import defaultAliases from "./provider-aliases.json";
-
+import ambiguityConfig from "./provider-alias-ambiguity.json";
 
 export interface AttributionInput {
   affectedProvider?: string | null;
@@ -24,7 +28,41 @@ export interface AttributionResult {
 
 export type AliasDictionary = Record<string, string[]>;
 
+interface AmbiguityConfig {
+  ambiguous: string[];
+  context_hints: string[];
+}
+
+const AMBIGUITY: AmbiguityConfig = {
+  ambiguous: (ambiguityConfig.ambiguous ?? []).map((t) => t.toLowerCase()),
+  context_hints: (ambiguityConfig.context_hints ?? []).map((t) => t.toLowerCase()),
+};
+
+const AMBIGUOUS_TOKEN_SET = new Set(AMBIGUITY.ambiguous);
+
 let inMemoryAliases: AliasDictionary | null = null;
+
+/**
+ * An alias is "ambiguous" when the token is a common English word or a name
+ * shared by unrelated entities ("pi", "quora", "command", "nova", "titan").
+ * Such an alias is only accepted when the same text carries an explicit
+ * AI/model context hint. This prevents silent mis-attribution of the
+ * actuarial data moat.
+ */
+export function isAmbiguousAlias(keyword: string): boolean {
+  return AMBIGUOUS_TOKEN_SET.has(keyword.trim().toLowerCase());
+}
+
+/**
+ * Returns true when the text contains at least one AI/model context hint.
+ */
+export function hasContextHint(text: string): boolean {
+  if (!text) return false;
+  const lower = text.toLowerCase();
+  return AMBIGUITY.context_hints.some((hint) =>
+    hint.includes(" ") ? lower.includes(hint) : new RegExp(`\\b${hint}\\b`, "i").test(lower),
+  );
+}
 
 /**
  * Test-only: clears the in-memory cache so test files sharing a worker
@@ -37,7 +75,7 @@ export function resetAliasCache(): void {
 function getAliasesPath(): string {
   // Test isolation: vitest redirects writes to a temp copy so the
   // committed dictionary is never polluted by test runs.
-  const override = (vault.read('PROVIDER_ALIASES_PATH') ?? process.env.PROVIDER_ALIASES_PATH);
+  const override = vault.read("PROVIDER_ALIASES_PATH") ?? process.env.PROVIDER_ALIASES_PATH;
   if (override && override.trim().length > 0) return override;
   return path.join(process.cwd(), "src", "lib", "import", "provider-aliases.json");
 }
@@ -107,9 +145,11 @@ export function matchProviderAlias(
     if (!text) return null;
     for (const [slug, keywords] of providerEntries) {
       for (const kw of keywords) {
-        if (testKeywordMatch(text, kw)) {
-          return { slug, keyword: kw };
-        }
+        if (!testKeywordMatch(text, kw)) continue;
+        // Ambiguity gate: a generic token ("pi", "nova", "command") is only
+        // accepted when the same text carries an explicit AI/model context.
+        if (isAmbiguousAlias(kw) && !hasContextHint(text)) continue;
+        return { slug, keyword: kw };
       }
     }
     return null;

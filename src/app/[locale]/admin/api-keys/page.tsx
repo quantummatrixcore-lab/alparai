@@ -444,4 +444,4 @@ export default function ApiKeysPage() {
     </div>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

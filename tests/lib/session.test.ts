@@ -102,11 +102,19 @@ describe("session auth helpers", () => {
       // CEO role
       await setSessionUser({ id: "u4", email: "ceo@example.com", name: "CEO", picture: null, role: "ceo" });
       expect(await isModerator()).toBe(true);
+      expect(await isCEO()).toBe(true);
 
-      // Automatic CEO resolution via email domain
-      await setSessionUser({ id: "u5", email: "founder@alparai.com", name: "Founder", picture: null, role: "user" });
+      // Verified founder email resolution
+      await setSessionUser({ id: "u5", email: "ercument@alparai.com", name: "Founder", picture: null, role: "user" });
       expect(await isModerator()).toBe(true);
       expect(await isCEO()).toBe(true);
+
+      // Arbitrary domain emails do NOT elevate to CEO
+      await setSessionUser({ id: "u6", email: "unverified@alparai.com", name: "Random User", picture: null, role: "user" });
+      expect(await isCEO()).toBe(false);
+
+      await setSessionUser({ id: "u7", email: "attacker@alpar.ai", name: "Attacker", picture: null, role: "user" });
+      expect(await isCEO()).toBe(false);
     });
 
     it("isAdmin should return true only for admin and ceo roles", async () => {

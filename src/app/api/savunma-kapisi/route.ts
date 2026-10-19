@@ -37,4 +37,4 @@ export async function POST(request: Request) {
     );
   }
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

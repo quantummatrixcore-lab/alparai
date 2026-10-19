@@ -212,4 +212,4 @@ export default function StrategyPage() {
     </div>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

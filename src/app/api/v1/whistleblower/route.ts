@@ -67,4 +67,4 @@ export async function POST(request: Request) {
     { status: 201 },
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

@@ -49,4 +49,4 @@ export default async function NewSuggestionPage({
     </Container>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

@@ -317,4 +317,4 @@ async function handleToolCall(name: string, args: Record<string, unknown>) {
 
   throw new Error(`Tool '${name}' not implemented`);
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

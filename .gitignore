@@ -127,3 +127,6 @@ zoho_*.json
 cf_dns.json
 cf_projects_from_browser.json
 scripts/cf_dump.json
+
+.playwright-mcp/
+

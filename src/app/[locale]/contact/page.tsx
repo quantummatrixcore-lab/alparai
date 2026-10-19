@@ -72,4 +72,4 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
     </Container>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

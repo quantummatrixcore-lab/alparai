@@ -1,6 +1,31 @@
 name = "alparai"
-compatibility_date = "2024-01-01"
-pages_build_output_dir = ".next"
+# Cloudflare Pages (OpenNext adapter).
+#
+# `compatibility_date` must be >= 2024-09-23 for `nodejs_compat`, which the
+# Node.js runtime of this application requires (every route is a server
+# component / route handler that talks to PostgreSQL).
+compatibility_date = "2025-03-01"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = ".open-next/assets"
 
 [env.production]
 custom_domains = ["alparai.com", "www.alparai.com"]
+
+# ---------------------------------------------------------------------------
+# DATABASE REACHABILITY
+# ---------------------------------------------------------------------------
+# The registry uses PostgreSQL. From the Cloudflare edge a raw TCP connection
+# is only possible through Hyperdrive (or a pooler such as Supabase/Neon).
+# Without one of those, deploy the Node.js build to the DeHost service
+# (`alparai-site.service`, port 3003) and keep Cloudflare as the CDN/WAF
+# layer in front of it.
+#
+# The application fails LOUDLY when no transport is reachable
+# (DEHOST_NO_TRANSPORT) — it never serves an empty registry.
+#
+# [[hyperdrive]]
+# binding = "HYPERDRIVE"
+# id = "<hyperdrive-config-id>"
+# dataset = "production"
+# user = "postgres"
+# password = "<managed by the vault>"

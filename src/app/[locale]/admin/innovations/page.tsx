@@ -124,4 +124,4 @@ export default function InnovationsPage() {
     </div>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

@@ -348,4 +348,4 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
     </main>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

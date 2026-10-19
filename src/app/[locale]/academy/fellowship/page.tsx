@@ -77,4 +77,4 @@ export default async function AcademyFellowshipPage({
     </div>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

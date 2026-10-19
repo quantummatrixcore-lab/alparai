@@ -363,4 +363,4 @@ export default async function AIActTrackerPage({
     </Container>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

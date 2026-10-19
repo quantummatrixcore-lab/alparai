@@ -295,4 +295,4 @@ export default async function IncidentDetailPage({
     </Container>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

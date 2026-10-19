@@ -21,4 +21,4 @@ export default async function ConstitutionPage({
 
   return <ConstitutionClient />;
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

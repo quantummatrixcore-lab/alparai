@@ -178,4 +178,4 @@ export default async function IncidentEmbedPage({ params }: EmbedPageProps) {
     </div>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

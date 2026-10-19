@@ -57,6 +57,83 @@ jobs:
             console.log('✅ API health shape is valid:', JSON.stringify(d));
           "
 
+      # ---------------------------------------------------------------------------
+      # DATA LIVENESS GATE
+      # ---------------------------------------------------------------------------
+      # The previous smoke test only asserted HTTP 200. A registry that serves
+      # zero real data still answers 200, and `/api/health/unified` reported
+      # `db: healthy` in ~0ms because it queried through a null-object client.
+      # That combination hid a 13-day production regression. These assertions
+      # verify that the deployed registry actually serves live data.
+      - name: Verify the registry serves live incident data
+        run: |
+          curl -sL -A "GPTBot/1.0" "https://www.alparai.com/api/v1/stats?nonce=$RANDOM$RANDOM" \
+            | node -e "
+              const fs = require('fs');
+              let raw = fs.readFileSync('/dev/stdin', 'utf8');
+              if (!raw || raw.trim().length === 0) {
+                console.error('::error::/api/v1/stats returned an empty body');
+                process.exit(1);
+              }
+              let d;
+              try { d = JSON.parse(raw); } catch (e) {
+                console.error('::error::/api/v1/stats returned a non-JSON body:', raw.slice(0, 300));
+                process.exit(1);
+              }
+              if (d.error) {
+                console.error('::error::/api/v1/stats reported an error:', JSON.stringify(d.error));
+                process.exit(1);
+              }
+              const total = d.data && d.data.total_incidents;
+              if (typeof total !== 'number' || total <= 0) {
+                console.error('::error::Registry served ZERO incidents. total_incidents =', total);
+                console.error('           The database transport is not connected in the deployed build.');
+                process.exit(1);
+              }
+              const categories = (d.data && d.data.by_category) || {};
+              const distinct = Object.keys(categories).filter((k) => (categories[k] || 0) > 0);
+              if (distinct.length < 2) {
+                console.error('::error::Incident category distribution is degenerate:', JSON.stringify(categories));
+                console.error('           The data moat would be unusable by the actuarial engine.');
+                process.exit(1);
+              }
+              console.log('✅ Registry is live:', total, 'incidents across', distinct.length, 'categories');
+            "
+
+      - name: Verify the provider registry is populated
+        run: |
+          curl -sL -A "GPTBot/1.0" "https://www.alparai.com/api/v1/providers?nonce=$RANDOM$RANDOM" \
+            | node -e "
+              const fs = require('fs');
+              const raw = fs.readFileSync('/dev/stdin', 'utf8');
+              let d;
+              try { d = JSON.parse(raw); } catch (e) {
+                console.error('::error::/api/v1/providers returned a non-JSON body:', raw.slice(0, 200));
+                process.exit(1);
+              }
+              const rows = Array.isArray(d.data) ? d.data : (d.data && Array.isArray(d.data.providers) ? d.data.providers : []);
+              if (!Array.isArray(rows) || rows.length === 0) {
+                console.error('::error::Provider registry is empty — the leaderboard and TrustScore have no input.');
+                process.exit(1);
+              }
+              console.log('✅ Provider registry is live:', rows.length, 'providers');
+            "
+
+      - name: Verify the unified health report can actually report a failure
+        run: |
+          BODY=$(curl -sL -A "GPTBot/1.0" "https://www.alparai.com/api/health/unified?nonce=$RANDOM$RANDOM")
+          echo "$BODY" | node -e "
+            const fs = require('fs');
+            const d = JSON.parse(fs.readFileSync('/dev/stdin', 'utf8'));
+            const db = (d.subsystems || []).find((s) => s.name === 'db');
+            if (!db) { console.error('::error::Health report has no db subsystem:', JSON.stringify(d)); process.exit(1); }
+            console.log('✅ Health report exposes the db subsystem:', db.status, '-', db.message || '(no message)');
+            if (db.status === 'down') {
+              console.error('::error::The deployed instance reports the database as DOWN.');
+              process.exit(1);
+            }
+          "
+
       - name: Write smoke test summary
         if: always()
         run: |

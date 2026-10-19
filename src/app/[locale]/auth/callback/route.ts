@@ -108,4 +108,4 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(`${origin}/${locale}/auth/signin?error=server_error`);
   }
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

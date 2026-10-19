@@ -30,4 +30,4 @@ async function getHandler(request: Request) {
 }
 
 export const GET = withCronLogger("fetch-external", getHandler);
-export const runtime = 'edge';
+export const runtime = "nodejs";

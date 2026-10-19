@@ -139,4 +139,4 @@ export default function ModerationPage() {
     </div>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

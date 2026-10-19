@@ -137,4 +137,4 @@ export default function FinancePage() {
     </div>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

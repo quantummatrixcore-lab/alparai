@@ -153,4 +153,4 @@ export default function UsersPage() {
     </div>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

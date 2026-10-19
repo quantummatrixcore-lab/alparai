@@ -195,4 +195,4 @@ export default async function UnsubscribePage({ params, searchParams }: Unsubscr
     </Container>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

@@ -35,4 +35,4 @@ export default async function AutonomousCompanyPage({
     </div>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

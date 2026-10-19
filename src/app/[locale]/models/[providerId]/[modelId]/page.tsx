@@ -362,4 +362,4 @@ export default async function ModelDetailPage({ params }: ModelDetailPageProps) 
     </div>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

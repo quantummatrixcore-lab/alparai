@@ -23,4 +23,4 @@ export default async function SuggestionsPage({ params }: { params: Promise<{ lo
   const { locale } = await params;
   redirect(`/${locale}/dilemmas`);
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

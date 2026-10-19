@@ -77,4 +77,4 @@ export default async function TakedownAppealPage({
     </LegalLayout>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

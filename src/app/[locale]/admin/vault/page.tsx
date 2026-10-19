@@ -126,4 +126,4 @@ export default function VaultPage() {
     </div>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

@@ -11,215 +11,51 @@
     "dalle",
     "sora"
   ],
-  "anthropic": [
-    "anthropic",
-    "claude",
-    "mythos",
-    "fable",
-    "test_custom_alias_token_1789268662488",
-    "test_custom_alias_token_1789268691971",
-    "test_custom_alias_token_1789268733687",
-    "test_custom_alias_token_1789268925872",
-    "test_custom_alias_token_1789269175558",
-    "test_custom_alias_token_1789269619403",
-    "test_custom_alias_token_1789304313191",
-    "test_custom_alias_token_1789304596295",
-    "test_custom_alias_token_1789305108226",
-    "test_custom_alias_token_1789306617374",
-    "test_custom_alias_token_1789597818521",
-    "test_custom_alias_token_1789598412318",
-    "test_custom_alias_token_1789604689209",
-    "test_custom_alias_token_1789675021177",
-    "test_custom_alias_token_1789760730464",
-    "test_custom_alias_token_1789762175537",
-    "test_custom_alias_token_1789817580277",
-    "test_custom_alias_token_1789817594886",
-    "test_custom_alias_token_1790285464258"
-  ],
-  "google": [
-    "google",
-    "gemini",
-    "bard",
-    "gemma",
-    "veo",
-    "deepmind",
-    "lamda"
-  ],
-  "meta": [
-    "meta",
-    "llama",
-    "instagram",
-    "facebook",
-    "whatsapp",
-    "threads"
-  ],
-  "microsoft": [
-    "microsoft",
-    "copilot",
-    "bing",
-    "semantic kernel"
-  ],
-  "xai": [
-    "xai",
-    "grok"
-  ],
-  "mistral": [
-    "mistral",
-    "le chat"
-  ],
-  "stability": [
-    "stability",
-    "stable diffusion",
-    "midjourney"
-  ],
-  "deepseek": [
-    "deepseek",
-    "deepseek-v3",
-    "deepseek-r1"
-  ],
-  "alibaba": [
-    "alibaba",
-    "tongyi",
-    "qianwen",
-    "qwen"
-  ],
-  "baidu": [
-    "baidu",
-    "ernie",
-    "ernie bot"
-  ],
-  "amazon": [
-    "amazon",
-    "bedrock",
-    "titan",
-    "nova"
-  ],
-  "jina": [
-    "jina",
-    "jina ai"
-  ],
-  "cohere": [
-    "cohere",
-    "command",
-    "command-r",
-    "command-r-plus"
-  ],
-  "perplexity": [
-    "perplexity"
-  ],
-  "character-ai": [
-    "character.ai",
-    "character ai",
-    "character-ai"
-  ],
-  "runway": [
-    "runway",
-    "gen-2",
-    "gen-3"
-  ],
-  "pika": [
-    "pika",
-    "pika labs"
-  ],
-  "apple": [
-    "apple",
-    "apple intelligence"
-  ],
-  "synthesia": [
-    "synthesia"
-  ],
-  "heygen": [
-    "heygen"
-  ],
-  "luma": [
-    "luma",
-    "dream machine"
-  ],
-  "suno": [
-    "suno"
-  ],
-  "udio": [
-    "udio"
-  ],
-  "elevenlabs": [
-    "elevenlabs"
-  ],
-  "adobe": [
-    "adobe",
-    "firefly"
-  ],
-  "notion": [
-    "notion",
-    "notion ai"
-  ],
-  "brave": [
-    "brave",
-    "leo"
-  ],
-  "poe": [
-    "quora",
-    "poe"
-  ],
-  "assemblyai": [
-    "assemblyai"
-  ],
-  "lepton": [
-    "lepton"
-  ],
-  "lightricks": [
-    "lightricks"
-  ],
-  "leonardo": [
-    "leonardo.ai",
-    "leonardo ai"
-  ],
-  "nvidia": [
-    "nvidia",
-    "nemotron"
-  ],
-  "groq": [
-    "groq"
-  ],
-  "ai21": [
-    "ai21",
-    "jamba"
-  ],
-  "reka": [
-    "reka"
-  ],
-  "adept": [
-    "adept"
-  ],
-  "cognition": [
-    "cognition",
-    "devin"
-  ],
-  "harvey": [
-    "harvey",
-    "harvey ai"
-  ],
-  "phind": [
-    "phind"
-  ],
-  "poolside": [
-    "poolside"
-  ],
-  "magic": [
-    "magic",
-    "magic ai"
-  ],
-  "inflection": [
-    "inflection",
-    "pi"
-  ],
-  "tencent": [
-    "tencent",
-    "hunyuan"
-  ],
-  "sambanova": [
-    "sambanova"
-  ],
-  "cerebras": [
-    "cerebras"
-  ]
+  "anthropic": ["anthropic", "claude", "mythos", "fable"],
+  "google": ["google", "gemini", "bard", "gemma", "veo", "deepmind", "lamda"],
+  "meta": ["meta", "llama", "instagram", "facebook", "whatsapp", "threads"],
+  "microsoft": ["microsoft", "copilot", "bing", "semantic kernel"],
+  "xai": ["xai", "grok"],
+  "mistral": ["mistral", "le chat"],
+  "stability": ["stability", "stable diffusion"],
+  "midjourney": ["midjourney"],
+  "deepseek": ["deepseek", "deepseek-v3", "deepseek-r1"],
+  "alibaba": ["alibaba", "tongyi", "qianwen", "qwen"],
+  "baidu": ["baidu", "ernie", "ernie bot"],
+  "amazon": ["amazon", "bedrock", "titan", "nova"],
+  "jina": ["jina", "jina ai"],
+  "cohere": ["cohere", "command", "command-r", "command-r-plus"],
+  "perplexity": ["perplexity"],
+  "character-ai": ["character.ai", "character ai", "character-ai"],
+  "runway": ["runway", "gen-2", "gen-3"],
+  "pika": ["pika", "pika labs"],
+  "apple": ["apple", "apple intelligence"],
+  "synthesia": ["synthesia"],
+  "heygen": ["heygen"],
+  "luma": ["luma", "dream machine"],
+  "suno": ["suno"],
+  "udio": ["udio"],
+  "elevenlabs": ["elevenlabs"],
+  "adobe": ["adobe", "firefly"],
+  "notion": ["notion", "notion ai"],
+  "brave": ["brave", "leo"],
+  "poe": ["poe"],
+  "assemblyai": ["assemblyai"],
+  "lepton": ["lepton"],
+  "lightricks": ["lightricks"],
+  "leonardo": ["leonardo.ai", "leonardo ai"],
+  "nvidia": ["nvidia", "nemotron"],
+  "groq": ["groq"],
+  "ai21": ["ai21", "jamba"],
+  "reka": ["reka"],
+  "adept": ["adept"],
+  "cognition": ["cognition", "devin"],
+  "harvey": ["harvey", "harvey ai"],
+  "phind": ["phind"],
+  "poolside": ["poolside"],
+  "magic": ["magic", "magic ai"],
+  "inflection": ["inflection", "pi"],
+  "tencent": ["tencent", "hunyuan"],
+  "sambanova": ["sambanova"],
+  "cerebras": ["cerebras"]
 }

@@ -55,10 +55,13 @@
     var apiUrl = baseUrl + "/api/badge?provider=" + encodeURIComponent(provider);
 
     function renderBadge(data) {
-      var score = typeof data.score === "number" ? data.score.toFixed(1) : data.score || "95.0";
-      var grade = data.grade || "AAA";
+      // NEVER fabricate a trust score. If the registry has no actuarial data
+      // for this provider, the badge says so instead of inventing a rating.
+      var hasScore = typeof data.score === "number" && !isNaN(data.score);
+      var score = hasScore ? data.score.toFixed(1) : "N/A";
+      var grade = data.grade || "UNRATED";
       var name = data.name || provider.charAt(0).toUpperCase() + provider.slice(1);
-      var verified = data.verified !== false;
+      var verified = data.verified !== false && hasScore;
 
       var bgColor = isDark ? "#0f172a" : "#ffffff";
       var textColor = isDark ? "#f8fafc" : "#0f172a";
@@ -111,11 +114,13 @@
         '<span style="font-size: 11px; color: ' +
         subTextColor +
         '; font-weight: 500; margin-top: 2px;">' +
-        'K-BENCHMARK: <strong style="color: ' +
+        (hasScore ? "TRUSTSCORE: " : "REGISTRY: ") +
+        '<strong style="color: ' +
         textColor +
         '; font-weight: 700;">' +
         score +
-        "</strong> / 100" +
+        "</strong>" +
+        (hasScore ? " / 100" : "") +
         "</span>" +
         "</div>" +
         "</a>";
@@ -132,12 +137,13 @@
         renderBadge(data);
       })
       .catch(function () {
+        // Network failure: render an explicitly unrated badge, never a fake one.
         renderBadge({
           provider: provider,
           name: provider.charAt(0).toUpperCase() + provider.slice(1),
-          score: 95.0,
-          grade: "AAA",
-          verified: true,
+          score: null,
+          grade: "UNRATED",
+          verified: false,
         });
       });
   }

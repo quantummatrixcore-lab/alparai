@@ -28,4 +28,4 @@ export default async function DeckPage({ params }: { params: Promise<{ locale: s
 
   return <PitchDeckViewer />;
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

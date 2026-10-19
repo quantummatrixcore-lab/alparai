@@ -29,4 +29,4 @@ export default async function AnalyzerPage({
 
   return <AnalyzerClient />;
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

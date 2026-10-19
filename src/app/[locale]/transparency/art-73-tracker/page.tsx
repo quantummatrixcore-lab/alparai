@@ -93,4 +93,4 @@ export default async function Art73TrackerPage({
     </div>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

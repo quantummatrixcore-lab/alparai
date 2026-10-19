@@ -148,4 +148,4 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
     </Container>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

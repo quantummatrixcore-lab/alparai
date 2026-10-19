@@ -46,4 +46,4 @@ async function callNemotron(context: string): Promise<string> {
     synthetic: true,
   });
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

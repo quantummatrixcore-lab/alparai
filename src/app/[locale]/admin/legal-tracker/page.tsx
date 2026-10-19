@@ -130,4 +130,4 @@ export default function LegalTrackerPage() {
     </div>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

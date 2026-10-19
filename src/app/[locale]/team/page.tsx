@@ -269,4 +269,4 @@ export default async function TeamPage({
     </div>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

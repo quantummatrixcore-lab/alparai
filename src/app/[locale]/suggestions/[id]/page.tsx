@@ -120,4 +120,4 @@ export default async function SuggestionDetailPage({
     </main>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

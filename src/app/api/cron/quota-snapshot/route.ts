@@ -284,4 +284,4 @@ async function getHandler(request: NextRequest) {
 }
 
 export const GET = withCronLogger("quota-snapshot", getHandler);
-export const runtime = 'edge';
+export const runtime = "nodejs";

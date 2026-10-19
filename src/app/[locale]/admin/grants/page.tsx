@@ -171,4 +171,4 @@ export default function GrantsPage() {
     </div>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

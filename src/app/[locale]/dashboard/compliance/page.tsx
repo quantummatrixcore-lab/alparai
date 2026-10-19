@@ -70,4 +70,4 @@ export default async function ComplianceDashboard({
     </div>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

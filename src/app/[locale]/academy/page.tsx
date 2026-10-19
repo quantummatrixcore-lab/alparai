@@ -375,4 +375,4 @@ export default async function AcademyPage({ params }: { params: Promise<{ locale
     </div>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

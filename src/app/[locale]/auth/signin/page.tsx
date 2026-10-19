@@ -147,4 +147,4 @@ export default async function SignInPage({
     </div>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

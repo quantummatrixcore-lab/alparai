@@ -1,10 +1,13 @@
 let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
-try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
+try {
+  vault = require("@/lib/security/vault").vault;
+} catch {
+  /* stub bicimi korunur */
+}
 import "server-only";
 import { createAdminClient } from "@/lib/dehost/admin";
 import { getRedisInstance } from "@/lib/utils/rate-limit";
 import { logger } from "@/lib/utils/logger";
-
 
 export interface SubsystemStatus {
   name: "db" | "api" | "auth" | "email" | "cdn" | "redis" | "storage" | "ai_gateway" | "cron";
@@ -23,16 +26,23 @@ export async function checkSystemHealth(): Promise<UnifiedHealthReport> {
   const admin = createAdminClient();
   const subsystems: SubsystemStatus[] = [];
 
-  // 1. DB Check
+  // 1. DB Check — a real round-trip that CAN fail.
+  // The previous implementation queried through the null-object client, which
+  // resolved instantly with `error: null` and reported "healthy" even when
+  // the registry was unreachable. A health check that cannot fail is worse
+  // than no health check.
   const dbStart = performance.now();
   try {
-    const { error } = await admin.from("incidents").select("id", { head: true, count: "exact" });
-    const dbLatency = Math.round(performance.now() - dbStart);
+    const { probeDatabase } = await import("@/lib/dehost/health-probe");
+    const probe = await probeDatabase();
+    const dbLatency = probe.latencyMs || Math.round(performance.now() - dbStart);
     subsystems.push({
       name: "db",
-      status: error ? "down" : dbLatency > 1000 ? "degraded" : "healthy",
+      status: probe.ok ? (dbLatency > 1000 ? "degraded" : "healthy") : "down",
       latencyMs: dbLatency,
-      message: error ? error.message : undefined,
+      message: probe.ok
+        ? `transport=${probe.transport} rows=${probe.rowCount ?? "?"}`
+        : (probe.error ?? "database probe failed"),
     });
   } catch (err) {
     subsystems.push({
@@ -91,7 +101,10 @@ export async function checkSystemHealth(): Promise<UnifiedHealthReport> {
   }
 
   // 4. AI Gateway Check
-  const hasOpenRouter = Boolean((vault.read('OPENROUTER_API_KEY') ?? process.env.OPENROUTER_API_KEY) || (vault.read('OPENAI_API_KEY') ?? process.env.OPENAI_API_KEY));
+  const hasOpenRouter = Boolean(
+    (vault.read("OPENROUTER_API_KEY") ?? process.env.OPENROUTER_API_KEY) ||
+    (vault.read("OPENAI_API_KEY") ?? process.env.OPENAI_API_KEY),
+  );
   subsystems.push({
     name: "ai_gateway",
     status: hasOpenRouter ? "healthy" : "degraded",
@@ -100,7 +113,10 @@ export async function checkSystemHealth(): Promise<UnifiedHealthReport> {
   });
 
   // 5. Email Check
-  const hasEmailKey = Boolean((vault.read('RESEND_API_KEY') ?? process.env.RESEND_API_KEY) || (vault.read('SMTP_PASSWORD') ?? process.env.SMTP_PASSWORD));
+  const hasEmailKey = Boolean(
+    (vault.read("RESEND_API_KEY") ?? process.env.RESEND_API_KEY) ||
+    (vault.read("SMTP_PASSWORD") ?? process.env.SMTP_PASSWORD),
+  );
   subsystems.push({
     name: "email",
     status: hasEmailKey ? "healthy" : "degraded",

@@ -164,4 +164,4 @@ export default async function ProfilePage({ params }: { params: Promise<{ locale
     </Container>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

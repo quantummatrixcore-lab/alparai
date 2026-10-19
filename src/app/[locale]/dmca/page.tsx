@@ -80,4 +80,4 @@ export default async function DmcaPage({ params }: { params: Promise<{ locale: s
     </Container>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

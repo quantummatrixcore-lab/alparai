@@ -66,4 +66,4 @@ export default async function SafetyDashboard({ params }: { params: Promise<{ lo
     </div>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

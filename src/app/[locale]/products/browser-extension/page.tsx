@@ -85,4 +85,4 @@ export default async function BrowserExtensionPage({
     </div>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

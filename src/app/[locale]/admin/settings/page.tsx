@@ -121,4 +121,4 @@ export default function SettingsPage() {
     </div>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

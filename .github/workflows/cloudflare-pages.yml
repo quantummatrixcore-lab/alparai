@@ -4,20 +4,65 @@ on:
   push:
     branches:
       - master
+concurrency:
+  group: pages-deploy-${{ github.ref }}
+  cancel-in-progress: false
+permissions:
+  contents: read
+  deployments: write
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      deployments: write
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
-      - run: npm i -g pnpm
-      - run: pnpm install
-      - run: npx --yes --legacy-peer-deps @cloudflare/next-on-pages
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # ---------------------------------------------------------------------------
+      # PREFLIGHT — the deployed registry must not be shipped without its
+      # database credentials. The previous production deployment was an
+      # `ad_hoc` upload of a build produced from a DIRTY working tree, and the
+      # Matrix vault does not contain the database credentials. Both facts
+      # allowed a data-less build to reach production.
+      # ---------------------------------------------------------------------------
+      - name: Preflight — required secrets
+        run: node scripts/preflight-secrets.mjs
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Unit tests
+        run: pnpm test
+
+      - name: Build (OpenNext for Cloudflare Pages)
+        run: pnpm exec opennextjs-cloudflare build
+        env:
+          NODE_OPTIONS: "--max-old-space-size=8192"
+
+      # ---------------------------------------------------------------------------
+      # DEPLOY
+      # NOTE: the project name must match the Cloudflare Pages project that owns
+      # the alparai.com custom domain. The previous workflow targeted
+      # `alparai-platform`, which is NOT the production project, and published
+      # `.vercel/output/static` while wrangler.toml expects the OpenNext output
+      # in `.open-next`.
+      # ---------------------------------------------------------------------------
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy .vercel/output/static --project-name=alparai-platform --branch=master
+          command: pages deploy .open-next/assets --project-name=alparai-com --branch=master --commit-dirty=true

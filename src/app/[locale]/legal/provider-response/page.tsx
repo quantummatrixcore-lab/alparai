@@ -60,4 +60,4 @@ export default async function ProviderResponseProtocolPage({
     </Container>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

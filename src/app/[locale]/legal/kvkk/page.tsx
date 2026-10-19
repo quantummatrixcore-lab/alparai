@@ -48,4 +48,4 @@ export default async function KvkkPage({ params }: { params: Promise<{ locale: s
     </LegalLayout>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

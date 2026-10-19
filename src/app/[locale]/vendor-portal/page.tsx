@@ -56,4 +56,4 @@ export default async function VendorPortalPage({
 
   return <VendorDefensePortalClient initialIncidents={incidents} />;
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

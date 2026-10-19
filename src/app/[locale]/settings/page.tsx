@@ -103,4 +103,4 @@ function Row({ label, value }: { label: string; value: React.ReactNode }) {
     </div>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

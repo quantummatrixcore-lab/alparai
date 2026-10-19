@@ -145,4 +145,4 @@ export default async function EnterprisePricingPage({
     </div>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

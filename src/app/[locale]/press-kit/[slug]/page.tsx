@@ -399,4 +399,4 @@ export default async function BrandPage({
     </Container>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

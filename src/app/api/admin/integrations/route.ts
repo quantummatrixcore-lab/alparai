@@ -351,4 +351,4 @@ export async function GET() {
     return NextResponse.json({ error: "Failed to fetch integration status" }, { status: 500 });
   }
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

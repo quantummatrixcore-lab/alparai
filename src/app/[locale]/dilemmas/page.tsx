@@ -77,4 +77,4 @@ export default async function DilemmasPage({ params }: { params: Promise<{ local
     </Container>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

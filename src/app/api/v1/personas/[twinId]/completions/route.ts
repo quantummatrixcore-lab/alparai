@@ -367,4 +367,4 @@ export async function POST(req: Request, props: { params: Promise<{ twinId: stri
     );
   }
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

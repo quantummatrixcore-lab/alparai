@@ -31,6 +31,9 @@ describe("WO-014 Provider Attribution Engine", () => {
     ["character-ai", { id: "p-cai", slug: "character-ai", name: "Character.ai" }],
     ["runway", { id: "p-runway", slug: "runway", name: "Runway" }],
     ["pika", { id: "p-pika", slug: "pika", name: "Pika" }],
+    ["midjourney", { id: "p-midjourney", slug: "midjourney", name: "Midjourney" }],
+    ["inflection", { id: "p-inflection", slug: "inflection", name: "Inflection AI" }],
+    ["poe", { id: "p-poe", slug: "poe", name: "Poe" }],
   ]);
 
   describe("1. Alias map expansion & deterministic mapping", () => {
@@ -42,7 +45,7 @@ describe("WO-014 Provider Attribution Engine", () => {
       ["copilot auto-suggested proprietary code", "microsoft", "copilot"],
       ["grok generated controversial commentary", "xai", "grok"],
       ["mistral model breached privacy", "mistral", "mistral"],
-      ["midjourney generated deepfake image", "stability", "midjourney"],
+      ["midjourney generated deepfake image", "midjourney", "midjourney"],
       ["deepseek suffered denial of service", "deepseek", "deepseek"],
       ["qwen model was jailbroken", "alibaba", "qwen"],
       ["ernie bot censored historical facts", "baidu", "ernie"],
@@ -69,6 +72,62 @@ describe("WO-014 Provider Attribution Engine", () => {
         expect(result.attributionKeyword?.toLowerCase()).toBe(expectedKeyword.toLowerCase());
         expect(result.needsProviderReview).toBe(false);
       });
+    });
+  });
+
+  describe("1b. Ambiguity gate (generic tokens require an AI/model context)", () => {
+    it("does not attribute a generic token without an AI context hint", () => {
+      const result = matchProviderAlias(
+        {
+          affectedProvider: null,
+          title: "Titan deployment was unstable during the migration window",
+          description: "The infrastructure rollout caused a brief outage for internal tooling.",
+          sourceUrl: null,
+        },
+        mockProviders,
+      );
+      expect(result.matched).toBe(false);
+      expect(result.needsProviderReview).toBe(true);
+    });
+
+    it("does not attribute the token 'pi' used in a non-AI context", () => {
+      const result = matchProviderAlias(
+        {
+          affectedProvider: null,
+          title: "Company reported a 3.14 pi cost increase in raw material budget",
+          description: "Quarterly finance report discussing unit economics and supply chain.",
+          sourceUrl: null,
+        },
+        mockProviders,
+      );
+      expect(result.matched).toBe(false);
+    });
+
+    it("does not attribute 'quora' to Poe (Quora is an unrelated company)", () => {
+      const result = matchProviderAlias(
+        {
+          affectedProvider: null,
+          title: "Quora moderation policy dispute escalates",
+          description: "The Q&A platform updated its community guidelines.",
+          sourceUrl: null,
+        },
+        mockProviders,
+      );
+      expect(result.matched).toBe(false);
+    });
+
+    it("still attributes a generic token when an AI context hint is present", () => {
+      const result = matchProviderAlias(
+        {
+          affectedProvider: null,
+          title: "Titan model degraded in benchmark",
+          description: "Amazon foundation model regressed on reasoning tasks.",
+          sourceUrl: null,
+        },
+        mockProviders,
+      );
+      expect(result.matched).toBe(true);
+      expect(result.providerSlug).toBe("amazon");
     });
   });
 

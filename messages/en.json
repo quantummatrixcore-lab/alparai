@@ -5350,7 +5350,9 @@
     "vendor_feature_4": "TruthScore API access & GDPR reports",
     "vendor_period": "/month",
     "vendor_price": "Under revision",
-    "vendor_title": "Vendor Portal"
+    "vendor_title": "Vendor Portal",
+    "checkout_redirecting": "Redirecting to secure checkout...",
+    "checkout_failed": "Checkout session could not be created. Please try again."
   },
   "products": {
     "ars_api": "ALPAR Risk Score API",

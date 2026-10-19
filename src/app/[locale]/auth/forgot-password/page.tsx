@@ -17,4 +17,4 @@ export default async function ForgotPasswordPage({
   setRequestLocale(locale);
   return <ForgotPasswordForm />;
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

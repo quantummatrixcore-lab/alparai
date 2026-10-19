@@ -244,4 +244,4 @@ export default function AiActComplianceGuideLocalePage() {
     </article>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

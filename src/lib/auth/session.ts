@@ -1,9 +1,12 @@
 let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
-try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
+try {
+  vault = require("@/lib/security/vault").vault;
+} catch {
+  /* stub bicimi korunur */
+}
 import { cookies } from "next/headers";
 import type { SessionUser, UserRole } from "@/types";
 import { isTestAuthBypassActive, getPlaywrightMockUser } from "./test-bypass";
-
 
 export interface AlparUser {
   id: string;
@@ -11,14 +14,25 @@ export interface AlparUser {
   name: string | null;
   picture: string | null;
   role: UserRole;
+  /**
+   * Provenance marker: `true` only when the role in this session was read
+   * from an authoritative source (provider app_metadata / DB) at issuance.
+   * Cookies minted before this marker existed — and cookies minted by the
+   * legacy e-mail-domain escalation — carry no marker and are demoted.
+   */
+  role_verified?: boolean;
   created_at: string;
 }
 
 function getSessionSecret(): string {
-  const secret = (vault.read('SESSION_SECRET') ?? process.env.SESSION_SECRET) || (vault.read('CRON_SECRET') ?? process.env.CRON_SECRET);
+  const secret =
+    (vault.read("SESSION_SECRET") ?? process.env.SESSION_SECRET) ||
+    (vault.read("CRON_SECRET") ?? process.env.CRON_SECRET);
   if (!secret) {
-    if ((vault.read('NODE_ENV') ?? process.env.NODE_ENV) === "production") {
-      throw new Error("CRITICAL SECURITY ERROR: SESSION_SECRET or CRON_SECRET is mandatory in production!");
+    if ((vault.read("NODE_ENV") ?? process.env.NODE_ENV) === "production") {
+      throw new Error(
+        "CRITICAL SECURITY ERROR: SESSION_SECRET or CRON_SECRET is mandatory in production!",
+      );
     }
     return "alparai-sovereign-session-secret-key-2026";
   }
@@ -30,10 +44,16 @@ const COOKIE_NAME = "alparai_session";
 async function sign(payload: string): Promise<string> {
   const secret = getSessionSecret();
   const enc = new TextEncoder();
-  const key = await crypto.subtle.importKey("raw", enc.encode(secret), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+  const key = await crypto.subtle.importKey(
+    "raw",
+    enc.encode(secret),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign"],
+  );
   const signature = await crypto.subtle.sign("HMAC", key, enc.encode(payload));
-  const base64 = Buffer.from(signature).toString('base64');
-  const base64url = base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+  const base64 = Buffer.from(signature).toString("base64");
+  const base64url = base64.replace(/\+/g, "-").replace(/\//g, "_").replace(/=/g, "");
   return `${payload}.${base64url}`;
 }
 
@@ -46,15 +66,21 @@ async function verify(token: string): Promise<AlparUser | null> {
     if (!payload || !sig) return null;
     const secret = getSessionSecret();
     const enc = new TextEncoder();
-    const key = await crypto.subtle.importKey("raw", enc.encode(secret), { name: "HMAC", hash: "SHA-256" }, false, ["verify"]);
-    
+    const key = await crypto.subtle.importKey(
+      "raw",
+      enc.encode(secret),
+      { name: "HMAC", hash: "SHA-256" },
+      false,
+      ["verify"],
+    );
+
     // pad base64url back to base64 for Buffer
-    let base64 = sig.replace(/-/g, '+').replace(/_/g, '/');
+    let base64 = sig.replace(/-/g, "+").replace(/_/g, "/");
     while (base64.length % 4) {
-      base64 += '=';
+      base64 += "=";
     }
-    const signature = Buffer.from(base64, 'base64');
-    
+    const signature = Buffer.from(base64, "base64");
+
     const isValid = await crypto.subtle.verify("HMAC", key, signature, enc.encode(payload));
     if (!isValid) return null;
     const jsonStr = Buffer.from(payload, "base64url").toString("utf8");
@@ -64,40 +90,50 @@ async function verify(token: string): Promise<AlparUser | null> {
   }
 }
 
-const VERIFIED_FOUNDER_CEOS = new Set([
+export const VERIFIED_FOUNDER_CEOS = new Set([
   "ercument@alparai.com",
   "ercumenterden@gmail.com",
   "ercument.erden@alparai.com",
   "quantum.matrix.core@gmail.com",
 ]);
 
-function resolveRole(email: string | null | undefined, currentRole: UserRole): UserRole {
-  if (!email) return currentRole === "ceo" ? "user" : (currentRole || "user");
-  const em = email.toLowerCase().trim();
-  if (VERIFIED_FOUNDER_CEOS.has(em) || em.endsWith("@alparai.com") || em.endsWith("@alpar.ai")) {
-    return "ceo";
+export function resolveRole(
+  email: string | null | undefined,
+  currentRole: UserRole,
+  roleVerified = true,
+): UserRole {
+  // 1. Kurucu doğrulaması: Yalnızca 'VERIFIED_FOUNDER_CEOS' setinde yer alanlar.
+  //    E-postanın sadece '@alparai.com' veya '@alpar.ai' ile bitmesi CEO yetkisi VERMEZ.
+  if (email) {
+    const em = email.toLowerCase().trim();
+    if (VERIFIED_FOUNDER_CEOS.has(em)) {
+      return "ceo";
+    }
   }
-  if (currentRole === "ceo" && ((vault.read('NODE_ENV') ?? process.env.NODE_ENV) === "test" || process.env.VITEST)) {
-    return "ceo";
-  }
-  // Strip unverified CEO elevation: fallback to verified DB role or default "user"
+
+  // 2. Yükseltilmiş roller yalnızca yetkili kaynaktan gelmişse korunur.
+  //    `roleVerified === false` -> eski (güvenlik açığı içeren) çerezler veya
+  //    doğrulanmamış bir istemciden gelen roller. Bunlar fail-closed olarak düşürülür.
   if (currentRole === "ceo") {
-    return "user";
+    return roleVerified ? "ceo" : "user";
   }
+
+  // 3. Diğer tüm durumlarda DB'deki geçerli rol veya varsayılan "user"
   return currentRole || "user";
 }
 
 export async function setSessionUser(user: Omit<AlparUser, "created_at">): Promise<void> {
-  const role = resolveRole(user.email, user.role);
+  const role = resolveRole(user.email, user.role, user.role_verified ?? true);
   const fullUser: AlparUser = {
     ...user,
     role,
+    role_verified: true,
     created_at: new Date().toISOString(),
   };
   const payload = Buffer.from(JSON.stringify(fullUser)).toString("base64url");
   const token = await sign(payload);
   const cookieStore = await cookies();
-  const isProduction = (vault.read('NODE_ENV') ?? process.env.NODE_ENV) === "production";
+  const isProduction = (vault.read("NODE_ENV") ?? process.env.NODE_ENV) === "production";
 
   cookieStore.set(COOKIE_NAME, token, {
     httpOnly: true,
@@ -115,7 +151,9 @@ export async function getSessionUser(): Promise<AlparUser | null> {
     if (!c || !c.value) return null;
     const user = await verify(c.value);
     if (!user) return null;
-    user.role = resolveRole(user.email, user.role);
+    // Cookies minted before the provenance marker existed carry no
+    // `role_verified` flag; their elevated role is not trusted.
+    user.role = resolveRole(user.email, user.role, user.role_verified === true);
     return user;
   } catch {
     return null;
@@ -138,15 +176,16 @@ export async function createSessionCookieHeader(user: Omit<AlparUser, "created_a
     maxAge: number;
   };
 }> {
-  const role = resolveRole(user.email, user.role);
+  const role = resolveRole(user.email, user.role, user.role_verified ?? true);
   const fullUser: AlparUser = {
     ...user,
     role,
+    role_verified: true,
     created_at: new Date().toISOString(),
   };
   const payload = Buffer.from(JSON.stringify(fullUser)).toString("base64url");
   const token = await sign(payload);
-  const isProduction = (vault.read('NODE_ENV') ?? process.env.NODE_ENV) === "production";
+  const isProduction = (vault.read("NODE_ENV") ?? process.env.NODE_ENV) === "production";
 
   return {
     name: COOKIE_NAME,
@@ -167,7 +206,10 @@ export async function getCurrentUser(): Promise<SessionUser | null> {
   }
   const u = await getSessionUser();
   if (!u) return null;
-  const role = resolveRole(u.email, u.role);
+  // `getSessionUser()` already resolved the role against the provenance
+  // marker. Re-resolving here with the default would re-elevate a demoted
+  // session, so the resolved value is used as-is.
+  const role = u.role;
   return {
     id: u.id,
     email: u.email,

@@ -148,4 +148,4 @@ export default async function PressReleasePage({
     </div>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

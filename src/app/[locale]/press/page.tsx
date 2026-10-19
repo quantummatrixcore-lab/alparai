@@ -173,4 +173,4 @@ export default async function PressPage({ params }: { params: Promise<{ locale: 
     </Container>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

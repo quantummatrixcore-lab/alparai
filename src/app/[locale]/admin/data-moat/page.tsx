@@ -304,4 +304,4 @@ export default function DataMoatPage() {
     </div>
   );
 }
-export const runtime = 'edge';
+export const runtime = "nodejs";

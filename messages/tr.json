@@ -5350,7 +5350,9 @@
     "vendor_feature_4": "TruthScore API erişimi ve regülasyon denetim raporları",
     "vendor_period": "/ay",
     "vendor_price": "Özel Teklif",
-    "vendor_title": "Sağlayıcı Portalı"
+    "vendor_title": "Sağlayıcı Portalı",
+    "checkout_redirecting": "Güvenli ödemeye yönlendiriliyor...",
+    "checkout_failed": "Ödeme oturumu oluşturulamadı. Lütfen tekrar deneyin."
   },
   "products": {
     "ars_api": "ALPAR Risk Skor API",

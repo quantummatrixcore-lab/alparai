@@ -1,6 +1,27 @@
 import { type NextRequest, type NextResponse } from 'next/server';
 import { rateLimited } from '@/lib/api/response';
+import { checkRateLimit, RATE_LIMIT_KEYS } from '@/lib/utils/rate-limit';
 
+/**
+ * Enterprise Rate Limiter Bridge
+ * Routes rate limiting through Redis (Upstash / DeHost) with automatic in-memory fallback.
+ */
+export async function asyncRateLimit(
+  req: NextRequest,
+  keyPrefix = RATE_LIMIT_KEYS.api_general
+): Promise<NextResponse | null> {
+  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? req.headers.get('x-real-ip') ?? 'unknown';
+  const fullKey = `${keyPrefix}:${ip}`;
+  
+  const result = await checkRateLimit(fullKey);
+  if (!result.ok) {
+    const retryAfter = result.retryAfter ?? 60;
+    return rateLimited('Too many requests', retryAfter);
+  }
+  return null;
+}
+
+// Synchronous backward-compatible fallback using memory cache
 const requests = new Map<string, { count: number; resetAt: number }>();
 let callsSincePrune = 0;
 
@@ -11,7 +32,6 @@ function pruneExpired(now: number) {
   for (const [k, v] of requests) {
     if (now > v.resetAt) requests.delete(k);
   }
-  // Hard cap: drop oldest if still oversized (insertion-ordered Map)
   while (requests.size > 20000) {
     const oldest = requests.keys().next();
     if (oldest.done) break;

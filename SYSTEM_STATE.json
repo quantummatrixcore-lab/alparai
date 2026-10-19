@@ -1,0 +1,110 @@
+{
+  "system_name": "AlparAI Epistemic Firewall & Trust Platform",
+  "domain_agi": "AlparAI-AGI (Matrix Council)",
+  "timestamp": "2026-10-19T00:27:40.154Z",
+  "git": {
+    "commit_count": 2483,
+    "branch": "master",
+    "latest_commit": "91cbf297d04a8af6857bbf59bdfd4bcb5e591d9d",
+    "latest_commit_date": "2026-10-19T03:23:47+03:00",
+    "author": "ErcuOS MEGA INNOVATOR",
+    "last_commit_subject": "chore(repo): monorepo DORA Elite repo hygiene - organize root artifacts into docs, scripts, tests"
+  },
+  "database": {
+    "engine": "DeHost Bare-Metal PostgreSQL 16",
+    "node_ip": "45.143.4.92",
+    "port": 5432,
+    "connection_probe": "SECURED_REMOTE_GATEWAY",
+    "total_tables": 146,
+    "rls_policies_count": 360,
+    "metrics": {
+      "total_incidents_catalog": 3130,
+      "modele_baglanmamis_vaka_count": 1892,
+      "attribution_backlog_status": "BACKFILL_UNKNOWN_APPLIED",
+      "hasat_2026_status": "SUBMITTED_AND_VERIFIED",
+      "tubitak_1501_readiness": "ACTIVE"
+    },
+    "incidents_table_schema": {
+      "verified_real_columns": [
+        "id",
+        "title",
+        "description",
+        "status",
+        "severity",
+        "category",
+        "ai_provider_id",
+        "ai_model_id",
+        "model_custom_name",
+        "provider_custom_name",
+        "eu_act_risk_category",
+        "eu_act_transparency_score",
+        "eu_act_reporting_deadline_days",
+        "encrypted_evidence",
+        "evidence_ciphertext",
+        "search_vector",
+        "created_at",
+        "updated_at"
+      ],
+      "hallucination_safeguard": {
+        "has_ai_model_text_column": false,
+        "has_ai_provider_text_column": false,
+        "rule": "CRITICAL: Query by ai_model_id (UUID FK) or model_custom_name (text). Never use ai_model."
+      }
+    }
+  },
+  "radar": {
+    "oracle_trust_score": {
+      "endpoint": "/api/v1/oracle/trust-score",
+      "type": "Bayesian Dynamic Credit Rating",
+      "signature": "SHA-256 HMAC Cryptographic Seal",
+      "compliance_mapping": [
+        "EU AI Act",
+        "KVKK/GDPR",
+        "OECD Principles"
+      ],
+      "runtime": "Edge"
+    },
+    "article_50_transparency": {
+      "endpoint": "/api/v1/compliance/article50",
+      "type": "EU AI Act Article 50 Compliance Radar",
+      "capabilities": [
+        "C2PA Provenance",
+        "SynthID",
+        "Digimarc",
+        "Invisible Watermark",
+        "PII Masking"
+      ],
+      "runtime": "Edge"
+    },
+    "zkp_whistleblower": {
+      "endpoint": "/api/v1/whistleblower",
+      "type": "Zero-Knowledge Client-Side Encryption",
+      "cryptography": "WebCrypto SubtleCrypto (256-bit AES-GCM + RSA-OAEP)",
+      "protocol_prefix": "ZK_ENC_v1$",
+      "anonymity": "Zero-Knowledge Hashed IP + PII Scrubbed"
+    }
+  },
+  "protocol": {
+    "port_22_status": "BANNED_AND_MUTLAK_YASAK",
+    "dehost_management_port": 18222,
+    "dehost_admin_probe": "ACTIVE",
+    "zero_hallucination_doctrine": "ENFORCED_ZERO_TOLERANCE",
+    "rate_limiting": {
+      "architecture": "Upstash Redis Primary + Local In-Memory Map Fallback",
+      "memory_fallback_limit": "60 req/min (20k keys FIFO ceiling)"
+    },
+    "mail_infrastructure": {
+      "primary_inbound_outbound": "Purelymail + Resend Hybrid",
+      "legacy_zoho_cleanup": "DECOMMISSIONED_IN_PROGRESS"
+    }
+  },
+  "runtime_info": {
+    "node_version": "v24.14.1",
+    "platform": "win32",
+    "arch": "x64",
+    "memory_mb": {
+      "rss": "38.29",
+      "heapUsed": "5.10"
+    }
+  }
+}

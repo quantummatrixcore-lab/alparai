@@ -120,3 +120,10 @@ core/hafiza/ledger.json
 core/hafiza/memory.json
 data/escrows.jsonl
 saas_gateway_state.json
+
+# KVKK ve Hassas Dagitim Dokumleri
+zoho_*.json
+*deployments*.json
+cf_dns.json
+cf_projects_from_browser.json
+scripts/cf_dump.json

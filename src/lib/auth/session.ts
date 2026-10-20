@@ -6,6 +6,7 @@ try {
 }
 import { cookies } from "next/headers";
 import type { SessionUser, UserRole } from "@/types";
+export type { SessionUser, UserRole };
 import { isTestAuthBypassActive, getPlaywrightMockUser } from "./test-bypass";
 
 export interface AlparUser {

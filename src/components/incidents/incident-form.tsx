@@ -373,7 +373,7 @@ export function IncidentForm({
                 const isPast = idx < currentIdx;
                 const isCurrent = idx === currentIdx;
 
-                let icon = null;
+                let icon: React.ReactNode = null;
                 if (isPast) {
                   icon = (
                     <div className="bg-emerald-accent/20 flex h-6 w-6 items-center justify-center rounded-full">

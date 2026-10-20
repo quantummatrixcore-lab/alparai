@@ -22,17 +22,17 @@ export function recordBreakerChange(
   });
 }
 
-export async function listRecentRuns(limit = 20): Promise<
-  {
-    id: string;
-    name: string;
-    lastRun: string | null;
-    durationMs: number | null;
-    ok: boolean;
-    error: string | null;
-  }[]
-> {
-  const runs = [];
+export type RunItem = {
+  id: string;
+  name: string;
+  lastRun: string | null;
+  durationMs: number | null;
+  ok: boolean;
+  error: string | null;
+};
+
+export async function listRecentRuns(limit = 20): Promise<RunItem[]> {
+  const runs: RunItem[] = [];
   for (const [id, hb] of HEARTBEATS) {
     const svc = SERVICE_DEFINITIONS.find((s) => s.id === id);
     runs.push({

@@ -203,14 +203,14 @@ export async function runExternalFetchTask() {
   for (const item of allFetched) {
     const isTrusted = TRUSTED_ALLOWLIST.includes(getDomain(item.external_url));
     let status = "pending";
-    let verdict = null;
+    let verdict: Awaited<ReturnType<typeof verifyExternalItem>> | null = null;
 
     if (isTrusted) {
       status = "published";
     } else {
       try {
         verdict = await verifyExternalItem(item.title, item.body);
-        if (verdict.approved) {
+        if (verdict && verdict.approved) {
           status = "accepted";
         }
       } catch (err) {

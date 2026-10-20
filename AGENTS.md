@@ -10,7 +10,7 @@
 * **4 Ana Sütun Üzerinden Düşün:**
   1. **Halkın Anayasası (Şikayetvar Modeli):** Kuralları tekeller veya devletler değil; doğrudan zararı yaşayan toplumun geri bildirimi koyar. Şirketler B2B paneline ($499-$2.499) abone olarak bu krizleri çözmek zorundadır.
   2. **Runtime Governance Proxy (Cloudflare Modeli):** Model ile insan arasına giren izole RAM-içi "Epistemic Firewall" kalkanı, zararlı çıktıyı milisaniyeler içinde bloklar.
-  3. **Kredi Derecelendirme Otoritesi (Moody's Modeli):** 2.908+ gerçek vaka veritabanı (Data Moat), InsurTech sigorta devlerine aktüeryal risk modeli olarak lisanslanır.
+  3. **Kredi Derecelendirme Otoritesi (Moody's Modeli):** 3.115+ gerçek vaka veritabanı (Data Moat), InsurTech sigorta devlerine aktüeryal risk modeli olarak lisanslanır.
   4. **Jeopolitik Hakemlik & Unicorn Vizyonu:** ABD-Çin yarışında Türkiye merkezli bağımsız 3. hakemlik; 3. yılda $15M-$30M ARR, 5. yılda $100M+ ARR Unicorn ligi.
 
 ---

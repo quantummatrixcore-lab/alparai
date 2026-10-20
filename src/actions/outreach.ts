@@ -145,7 +145,7 @@ export async function seedResearcherAndJournalistQueue() {
       },
     ];
 
-    const results = [];
+    const results: unknown[] = [];
     for (const target of targets) {
       const res = await createOutreachTarget(target);
       results.push(res);

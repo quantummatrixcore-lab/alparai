@@ -30,7 +30,7 @@ export async function POST(request: Request) {
   const referer = request.headers.get("referer");
   if (referer && locale === "tr") {
     const match = referer.match(/\/(en|tr|de|fr|es|ar|ru|zh|ja)\b/);
-    if (match) locale = match[1];
+    if (match?.[1]) locale = match[1];
   }
 
   const priceId = tier === "enterprise" ? STRIPE_ENTERPRISE_PRICE_ID : STRIPE_PRO_PRICE_ID;

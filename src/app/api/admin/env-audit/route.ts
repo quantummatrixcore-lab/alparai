@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getCurrentUser } from "@/lib/auth/session";
+import { getCurrentUser, type SessionUser } from "@/lib/auth/session";
 
 interface EnvVarEntry {
   key: string;
@@ -43,7 +43,7 @@ function maskValue(val: string | undefined): string | null {
 }
 
 export async function GET() {
-  let admin = null;
+  let admin: SessionUser | null = null;
   try {
     admin = await getCurrentUser();
   } catch {

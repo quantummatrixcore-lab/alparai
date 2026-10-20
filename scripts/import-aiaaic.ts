@@ -198,7 +198,7 @@ AIAAIC-2025-002,Medical Chatbot Hallucination leads to pediatric injury,Incident
     // Build descriptive description if empty or a URL
     let finalDesc = rawDesc;
     if (!finalDesc || finalDesc.startsWith("http")) {
-      const parts = [];
+      const parts: string[] = [];
       const techIdx = headers.findIndex((h) => h.includes("techno"));
       const purpIdx = headers.findIndex((h) => h.includes("purp"));
       const issueIdx = headers.findIndex((h) => h.includes("issue"));

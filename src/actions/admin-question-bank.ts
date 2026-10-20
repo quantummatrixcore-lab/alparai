@@ -98,7 +98,12 @@ export async function runBatchEvaluations(batchSize = 5) {
     }
 
     // 3. Dynamic evaluation logic with safety verification
-    const evaluations = [];
+    const evaluations: Array<{
+      question_id: string;
+      model_id: string;
+      actual_response: string;
+      pass_fail: boolean;
+    }> = [];
     for (const q of questions) {
       for (const m of models) {
         const isSafeRefusal = q.test_prompt.toLowerCase().includes("prohibited") || q.test_prompt.toLowerCase().includes("critical");

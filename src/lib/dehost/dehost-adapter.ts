@@ -587,7 +587,7 @@ export class DeHostAdapterClient<T = any> {
               : "341717447635-hsdu69hk692lkveikkpc8398v8rhu40b.apps.googleusercontent.com";
           const googleAuthUrl = new URL("https://accounts.google.com/o/oauth2/v2/auth");
           googleAuthUrl.searchParams.set("client_id", clientId);
-          googleAuthUrl.searchParams.set("redirect_uri", redirectTo.split("?")[0]);
+          googleAuthUrl.searchParams.set("redirect_uri", (redirectTo.split("?")[0]) as string);
           googleAuthUrl.searchParams.set("response_type", "code");
           googleAuthUrl.searchParams.set(
             "scope",

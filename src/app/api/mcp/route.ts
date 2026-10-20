@@ -265,7 +265,12 @@ async function handleToolCall(name: string, args: Record<string, unknown>) {
     const { data: providers, error } = await query;
     if (error) throw new Error(error.message);
 
-    const results = [];
+    const results: Array<{
+      name: unknown;
+      slug: unknown;
+      total_incidents: number;
+      trust_level: string;
+    }> = [];
     for (const p of providers ?? []) {
       const { count } = await dehost
         .from("incidents")

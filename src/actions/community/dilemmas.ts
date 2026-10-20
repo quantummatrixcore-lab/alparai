@@ -95,8 +95,8 @@ export async function submitVote(
     }
 
     // 5. Gamification (Badges)
-    let awardedBadge = null;
-    let badgeIcon = null;
+    let awardedBadge: string | null = null;
+    let badgeIcon: string | null = null;
     if (userId) {
       const badgeKey =
         choice === "yes" ? "doomsday_prepper" : choice === "no" ? "tech_optimist" : "observer";

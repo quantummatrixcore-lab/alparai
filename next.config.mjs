@@ -73,8 +73,6 @@ try {
 }
 
 const nextConfig = {
-  
-  images: { unoptimized: true },
   allowedDevOrigins: [
     "alparai.com",
     "www.alparai.com",
@@ -161,7 +159,7 @@ const nextConfig = {
       { protocol: "https", hostname: "*.ahmetrifatalbuz.com" },
     ],
   },
-  typescript: { ignoreBuildErrors: true }, experimental: {
+  experimental: {
     // Dinamik Ã‡oklu Ã‡ekirdek (Multi-Core) Optimizasyonu
     webpackBuildWorker: process.env.CI ? false : true,
     parallelServerCompiles: process.env.CI ? false : true,

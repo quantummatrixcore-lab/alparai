@@ -172,7 +172,17 @@ export async function importPublicStatements(
   for (let i = 0; i < rows.length; i += BATCH_SIZE) {
     const batch = rows.slice(i, i + BATCH_SIZE);
 
-    const records = [];
+    const records: Array<{
+      incident_id: string;
+      ai_provider_id: string;
+      response_text: string;
+      responder_name: string;
+      responder_email: string;
+      responder_role: string;
+      is_official: boolean;
+      is_published: boolean;
+      published_at: string;
+    }> = [];
     for (const row of batch) {
       // Find incident
       let incidentId = row.incidentId;

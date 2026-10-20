@@ -184,7 +184,8 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     .replace(/[^a-z0-9_-]/g, "");
 
   const known = KNOWN_PROVIDERS[providerKey];
-  let dbProvider: { name: string; trust_score: number | null; is_verified: boolean } | null = null;
+  type DbProviderRecord = { name: string; trust_score: number | null; is_verified: boolean };
+  let dbProvider: DbProviderRecord | null = null;
 
   try {
     const dehost = await createServerClient();
@@ -194,7 +195,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
       .eq("slug", providerKey)
       .maybeSingle();
     if (data) {
-      dbProvider = data as unknown as typeof dbProvider;
+      dbProvider = data as unknown as DbProviderRecord;
     }
   } catch (error) {
     logger.warn("Badge provider lookup failed, falling back to static benchmark", {

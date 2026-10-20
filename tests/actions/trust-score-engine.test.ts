@@ -34,6 +34,8 @@ describe("Trust Score Engine (I19)", () => {
 
   describe("recalculateTrustScoresAction", () => {
     it("calculates trust scores and upserts vendor_trust_rankings", async () => {
+      const providerUpdates: Array<{ slug: string; score: number }> = [];
+
       const mockDeHost = {
         from: vi.fn((table: string) => {
           if (table === "ai_providers") {
@@ -44,6 +46,19 @@ describe("Trust Score Engine (I19)", () => {
                   { id: "p2", slug: "openai", name: "OpenAI", is_verified: false },
                 ],
                 error: null,
+              }),
+              // The engine mirrors the actuarial score into the column every
+              // public consumer reads (`ai_providers.trust_score`).
+              update: vi.fn((values: { trust_score: number }) => {
+                const builder: Record<string, unknown> = {};
+                builder.eq = vi.fn().mockImplementation((_column: string, id: string) => {
+                  providerUpdates.push({
+                    slug: id === "p1" ? "anthropic" : "openai",
+                    score: values.trust_score,
+                  });
+                  return Promise.resolve({ error: null });
+                });
+                return builder;
               }),
             };
           }
@@ -79,6 +94,14 @@ describe("Trust Score Engine (I19)", () => {
       expect(result.ok).toBe(true);
       expect(result.updatedVendorsCount).toBe(2);
       expect(mockDeHost.from).toHaveBeenCalledWith("vendor_trust_rankings");
+
+      // The actuarial score must be mirrored into `ai_providers.trust_score`,
+      // otherwise the public leaderboard keeps serving the static baseline.
+      expect(providerUpdates).toHaveLength(2);
+      for (const update of providerUpdates) {
+        expect(update.score).toBeGreaterThanOrEqual(10);
+        expect(update.score).toBeLessThanOrEqual(100);
+      }
     });
 
     it("handles database error when fetching providers", async () => {

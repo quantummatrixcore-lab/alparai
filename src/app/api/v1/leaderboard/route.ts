@@ -1,5 +1,9 @@
 let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
-try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
+try {
+  vault = require("@/lib/security/vault").vault;
+} catch {
+  /* stub bicimi korunur */
+}
 import "server-only";
 import { type NextRequest, NextResponse } from "next/server";
 import { createServerClient } from "@/lib/dehost/server";
@@ -8,11 +12,12 @@ import { rateLimit } from "@/lib/rate-limit";
 import { headers } from "next/headers";
 import { logger } from "@/lib/utils/logger";
 
-
 const ALLOWED_ORIGINS = [
   "https://alparai.com",
   "https://www.alparai.com",
-  ...((vault.read('NODE_ENV') ?? process.env.NODE_ENV) === "development" ? ["http://localhost:3000"] : []),
+  ...((vault.read("NODE_ENV") ?? process.env.NODE_ENV) === "development"
+    ? ["http://localhost:3000"]
+    : []),
 ];
 
 function corsHeaders(origin: string | null) {
@@ -61,9 +66,20 @@ export async function GET(request: NextRequest) {
 
     const dehost = await createServerClient();
 
+    // The `provider_leaderboard` VIEW is the single source of truth: it joins
+    // `ai_providers` with the published `incidents` (and provider responses)
+    // and exposes `incident_count` / `response_count` / `response_rate`.
+    //
+    // The previous implementation selected `ai_providers` directly and never
+    // requested the count columns, while the response mapper still read them
+    // — so the public API reported `incident_count: 0` for every provider
+    // while the leaderboard page (which uses this view) showed the real
+    // numbers. API and page disagreed about the same data.
     const { data, error } = await dehost
-      .from("ai_providers")
-      .select("id, slug, name, logo_url, is_verified, website_url, trust_score")
+      .from("provider_leaderboard" as never)
+      .select(
+        "id, slug, name, logo_url, is_verified, website_url, trust_score, incident_count, response_count, response_rate",
+      )
       .order("trust_score", { ascending: false });
 
     if (error) {
@@ -89,6 +105,7 @@ export async function GET(request: NextRequest) {
         trust_score: number | null;
         incident_count?: number | null;
         response_count?: number | null;
+        response_rate?: number | null;
       }>
     )
       .sort((a, b) => {
@@ -98,9 +115,16 @@ export async function GET(request: NextRequest) {
         return (a.incident_count ?? 0) - (b.incident_count ?? 0);
       })
       .map((p, idx) => {
-        const total = p.incident_count ?? 0;
-        const responded = p.response_count ?? 0;
-        const responseRate = total > 0 ? Math.round((responded / total) * 100) : null;
+        const total = Number(p.incident_count ?? 0);
+        const responded = Number(p.response_count ?? 0);
+        // A provider with zero incidents has NO response rate — reporting 0%
+        // would falsely imply "they answered none of our complaints".
+        const responseRate =
+          total > 0
+            ? typeof p.response_rate === "number"
+              ? Math.round(p.response_rate)
+              : Math.round((responded / total) * 100)
+            : null;
         return {
           rank: idx + 1,
           id: p.id ?? "",

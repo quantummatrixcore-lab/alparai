@@ -91,7 +91,15 @@ async function getHandler(request: NextRequest) {
     }
 
     // 4. Calculate new scores
-    const upsertRows = [];
+    const upsertRows: Array<{
+      category_id: string;
+      model_id: string;
+      score: number;
+      wilson_lower: number;
+      wilson_upper: number;
+      sample_size: number;
+      last_audited_at: string;
+    }> = [];
     const nowStr = new Date().toISOString();
 
     for (const model of models) {

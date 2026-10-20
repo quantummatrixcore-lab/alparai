@@ -51,7 +51,7 @@ export function validateHephaestusOutput(codePayload: string): ValidationResult 
  * Extremely basic structural check for bracket matching (simulating AST step 1)
  */
 function checkBasicBrackets(code: string): boolean {
-  const stack = [];
+  const stack: string[] = [];
   const map: Record<string, string> = { "}": "{", "]": "[", ")": "(" };
   for (const char of code) {
     if (char === "{" || char === "[" || char === "(") stack.push(char);

@@ -260,7 +260,7 @@ export type DeHostTableName = typeof DEHOST_TABLE_REGISTRY[number];
  */
 export function getDeHostConnectionString(): string {
   if ((vault.read('DATABASE_URL') ?? process.env.DATABASE_URL)) {
-    return (vault.read('DATABASE_URL') ?? process.env.DATABASE_URL);
+    return (vault.read('DATABASE_URL') ?? process.env.DATABASE_URL) as string;
   }
   if ((vault.read('DEHOST_HOST') ?? process.env.DEHOST_HOST) && (vault.read('DEHOST_PASSWORD') ?? process.env.DEHOST_PASSWORD)) {
     const user = (vault.read('DEHOST_USER') ?? process.env.DEHOST_USER) || 'dehost';

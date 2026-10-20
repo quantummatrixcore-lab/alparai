@@ -292,7 +292,7 @@ const runSubmitWork = async (
         emailPromises.push(
           resend.emails.send({
             from: "ALPAR AI Alerts <alerts@alparai.com>",
-            to: (vault.read('ADMIN_ALERT_EMAIL') ?? process.env.ADMIN_ALERT_EMAIL),
+            to: (vault.read('ADMIN_ALERT_EMAIL') ?? process.env.ADMIN_ALERT_EMAIL) as string,
             subject: `[ALERT] New Incident: ${raw.title.substring(0, 40)}...`,
             html: adminHtml,
           }),

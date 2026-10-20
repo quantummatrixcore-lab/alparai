@@ -74,7 +74,15 @@ export async function runCrossAuditArenaAction(_promptText: string): Promise<Are
     const synthesizedVerdict = `[Stealth Cross-Audit Verdict] Evaluated input across ${candidates.length} free-tier models (${auditedModelIds.join(", ")}). Synthesized by ${judge?.id ?? "Judge"}: Ethical compliance verified, ${anomaliesCount} critical anomaly(s) detected via benchmark DB.`;
 
     // 3. Upsert trust scores dynamically
-    const upsertData = [];
+    const upsertData: Array<{
+      model_id: string;
+      provider: string;
+      trust_score: number | null;
+      hallucination_rate: number | null;
+      ethical_compliance: number | null;
+      total_audits: number;
+      updated_at: string;
+    }> = [];
     for (const m of candidates) {
       const modelScoreRecord = kScores?.find((k) => k.model_id === m.id);
       const computedTrustScore = modelScoreRecord

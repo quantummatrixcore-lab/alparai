@@ -72,31 +72,31 @@ const getHomeData = cache(async (locale: string) => {
     const admin = adminClientInstance || dehost;
     const tCommon = await getTranslations({ locale, namespace: "common" });
 
-    const [incidentsResult, incidentsCountResult, providersResult] =
-      await Promise.all([
-        dehost
-          .from("incidents")
-          .select(
-            "id, title_masked, description_masked, title_tr, description_tr, severity, status, category, is_anonymous, incident_date, views_count, upvotes_count, created_at, ai_provider_id, user_id, cross_audit_truth_score, cross_audit_confidence, incident_source",
-          )
-          .eq("status", "published")
-          .not("title_masked", "ilike", "[TEST]%")
-          .not("title_masked", "ilike", "e2e-test%")
-          .not("title_masked", "ilike", "%cypress%")
-          .not("title_masked", "ilike", "%playwright%")
-          .order("published_at", { ascending: false })
-          .limit(10),
-        admin
-          .from("incidents")
-          .select("id", { count: "exact", head: true })
-          .eq("status", "published"),
-        dehost
-          .from("provider_leaderboard")
-          .select(
-            "id, slug, name, logo_url, website_url, is_verified, trust_score, incident_count, response_count, is_verified_respondent, response_rate",
-          )
-          .order("name"),
-      ]);
+    const [incidentsResult, incidentsCountResult, providersResult] = await Promise.all([
+      dehost
+        .from("incidents")
+        .select(
+          "id, title_masked, description_masked, title_tr, description_tr, severity, status, category, is_anonymous, incident_date, views_count, upvotes_count, created_at, ai_provider_id, user_id, cross_audit_truth_score, cross_audit_confidence, incident_source",
+        )
+        .eq("status", "published")
+        .not("title_masked", "ilike", "[TEST]%")
+        .not("title_masked", "ilike", "e2e-test%")
+        .not("title_masked", "ilike", "%cypress%")
+        .not("title_masked", "ilike", "%playwright%")
+        .order("published_at", { ascending: false })
+        .limit(10),
+      admin
+        .from("incidents")
+        .select("id", { count: "exact", head: true })
+        .eq("status", "published")
+        .not("evidence_hash", "is", null),
+      dehost
+        .from("provider_leaderboard")
+        .select(
+          "id, slug, name, logo_url, website_url, is_verified, trust_score, incident_count, response_count, is_verified_respondent, response_rate",
+        )
+        .order("name"),
+    ]);
 
     if (incidentsCountResult.error) {
       logger.error(
@@ -121,6 +121,7 @@ const getHomeData = cache(async (locale: string) => {
     }
 
     const totalIncidentCount = resolveIncidentCount(incidentsCountResult.count);
+    const isLiveCount = !incidentsCountResult.error && (incidentsCountResult.count ?? 0) > 0;
     const countsBySource = resolveCountsBySource(null, totalIncidentCount);
 
     const providerMap = new Map(
@@ -173,20 +174,19 @@ const getHomeData = cache(async (locale: string) => {
     }
 
     const seenIncidentTitles = new Set<string>();
-    const allMappedIncidents = toIncidentListItems(
-      rawHomeData,
-      translationMap,
-      locale,
-    ).map((item) => {
-      const providerId = rawHomeData?.find((r) => r["id"] === item.id)?.["ai_provider_id"] as
-        string | null;
-      const provider = providerId ? providerMap.get(providerId) : null;
-      return {
-        ...item,
-        provider_name: provider?.name ?? tCommon("unknown"),
-        provider_slug: provider?.slug ?? "",
-      };
-    });
+    const allMappedIncidents = toIncidentListItems(rawHomeData, translationMap, locale).map(
+      (item) => {
+        const providerId = rawHomeData?.find((r) => r["id"] === item.id)?.["ai_provider_id"] as
+          | string
+          | null;
+        const provider = providerId ? providerMap.get(providerId) : null;
+        return {
+          ...item,
+          provider_name: provider?.name ?? tCommon("unknown"),
+          provider_slug: provider?.slug ?? "",
+        };
+      },
+    );
 
     const incidents: IncidentListItem[] = allMappedIncidents
       .filter((item) => {
@@ -215,8 +215,14 @@ const getHomeData = cache(async (locale: string) => {
         const responded = (p["response_count"] as number) ?? 0;
         const responseRate = total > 0 ? Math.round((responded / total) * 100) : null;
         // Canonical Transparency TrustScore: 85 baseline - (2.5 * incidents) + (4 * responses)
-        const dbScore = typeof p["trust_score"] === "number" && p["trust_score"] > 0 ? p["trust_score"] : null;
-        const computedScore = dbScore ?? Math.max(50, Math.min(100, Math.round(85 - Math.min(25, Math.log2(total + 1) * 3) + (responded * 2))));
+        const dbScore =
+          typeof p["trust_score"] === "number" && p["trust_score"] > 0 ? p["trust_score"] : null;
+        const computedScore =
+          dbScore ??
+          Math.max(
+            50,
+            Math.min(100, Math.round(85 - Math.min(25, Math.log2(total + 1) * 3) + responded * 2)),
+          );
         return {
           provider_id: p["id"] as string,
           provider_name: (p["name"] as string) ?? "",
@@ -297,8 +303,10 @@ const getHomeData = cache(async (locale: string) => {
 
     return {
       incidentsCountResult: { count: resolveIncidentCount(incidentsCountResult.count) },
+      isLiveCount,
       providersResult,
-      providersCount: leaderboard.length > 0 ? leaderboard.length : CANONICAL_FALLBACK_PROVIDERS.length,
+      providersCount:
+        leaderboard.length > 0 ? leaderboard.length : CANONICAL_FALLBACK_PROVIDERS.length,
       uniqueCountriesCount: uniqueCountriesCount || CANONICAL_TOTAL_COUNTRIES,
       topProvidersForHero:
         topProvidersForHero.length > 0
@@ -354,6 +362,7 @@ const getHomeData = cache(async (locale: string) => {
     }));
     return {
       incidentsCountResult: { count: CANONICAL_INCIDENT_COUNT },
+      isLiveCount: false,
       providersResult: { data: [] },
       uniqueCountriesCount: CANONICAL_TOTAL_COUNTRIES,
       topProvidersForHero: fallbackLeaderboard.slice(0, 5).map((p) => ({
@@ -370,14 +379,25 @@ const getHomeData = cache(async (locale: string) => {
 
 async function HeroSectionAsync({ locale }: { locale: string }) {
   const data = await getHomeData(locale);
+  const isLive = (data as { isLiveCount?: boolean }).isLiveCount ?? false;
   return (
-    <HeroSection
-      totalIncidents={data.incidentsCountResult.count ?? CANONICAL_INCIDENT_COUNT}
-      totalProviders={CANONICAL_TOTAL_PROVIDERS}
-      totalCountries={CANONICAL_TOTAL_COUNTRIES}
-      topProviders={data.topProvidersForHero}
-      countsBySource={data.countsBySource}
-    />
+    <>
+      <div
+        data-testid="truth-badge"
+        data-live={isLive ? "true" : "false"}
+        className="mx-auto mt-2 w-fit rounded-full border px-3 py-1 text-xs"
+        title={isLive ? "Canlı DB sayacı" : "Önbellek sayacı (DB erişilemedi)"}
+      >
+        {isLive ? "● Canlı sayaç" : "○ Önbellek sayacı"}
+      </div>
+      <HeroSection
+        totalIncidents={data.incidentsCountResult.count ?? CANONICAL_INCIDENT_COUNT}
+        totalProviders={CANONICAL_TOTAL_PROVIDERS}
+        totalCountries={CANONICAL_TOTAL_COUNTRIES}
+        topProviders={data.topProvidersForHero}
+        countsBySource={data.countsBySource}
+      />
+    </>
   );
 }
 
@@ -407,8 +427,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   setRequestLocale(locale);
 
-
-
   return (
     <>
       <script
@@ -419,7 +437,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             "@type": "SoftwareApplication",
             name: "AlparAi",
             applicationCategory: "BusinessApplication",
-            description: "Monitor 2,880+ AI incidents, achieve EU AI Act compliance with automated auditing",
+            description:
+              "Monitor 2,880+ AI incidents, achieve EU AI Act compliance with automated auditing",
             operatingSystem: "Web",
           }),
         }}
@@ -450,4 +469,4 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     </>
   );
 }
-export const runtime = "nodejs";
+export const runtime = "edge";

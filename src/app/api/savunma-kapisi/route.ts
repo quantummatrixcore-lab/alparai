@@ -1,14 +1,33 @@
 import { NextResponse } from "next/server";
 
+let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
+try {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  vault = require("@/lib/security/vault").vault;
+} catch {
+  /* vault yoksa env fallback */
+}
+
+function isAuthorizedToken(token: unknown): boolean {
+  if (typeof token !== "string" || token.length < 16) return false;
+  const allowed = [
+    vault.read("INTERNAL_API_KEY") ?? process.env.INTERNAL_API_KEY,
+    vault.read("CRON_SECRET") ?? process.env.CRON_SECRET,
+    vault.read("SESSION_SECRET") ?? process.env.SESSION_SECRET,
+  ].filter((v): v is string => typeof v === "string" && v.length >= 16);
+  if (allowed.length === 0) return false;
+  return allowed.includes(token);
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    // 1. Savunma Kapısı (Defense Gate)
-    if (!body || !body.auth_token) {
+    // 1. Savunma Kapısı (Defense Gate) — fail-closed: bilinmeyen her token reddedilir.
+    if (!body || !isAuthorizedToken((body as { auth_token?: unknown }).auth_token)) {
       return NextResponse.json(
         { error: "Savunma Kapisi: Ihlal Tespit Edildi (Yetkisiz Erisim)" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -21,7 +40,7 @@ export async function POST(request: Request) {
           verdict: "GUILTY",
           message: "Olay Mahkemesi: Yuksek riskli islem engellendi.",
         },
-        { status: 403 }
+        { status: 403 },
       );
     }
 
@@ -31,10 +50,7 @@ export async function POST(request: Request) {
       timestamp: new Date().toISOString(),
     });
   } catch (error) {
-    return NextResponse.json(
-      { error: "Sunucu Hatasi" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Sunucu Hatasi" }, { status: 500 });
   }
 }
-export const runtime = "nodejs";
+export const runtime = "edge";

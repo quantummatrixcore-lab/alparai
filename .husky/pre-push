@@ -39,5 +39,5 @@ if [ $ONLY_DOCS -eq 0 ]; then
   pnpm typecheck && pnpm lint && pnpm test
 else
   echo "[pre-push] Only markdown/docs changes detected. Running document checks..."
-  pnpm run check:masterplan-length && pnpm run check-plan
+  node scripts/check-master-plan-length.mjs && node scripts/check-masterplan-consistency.mjs
 fi

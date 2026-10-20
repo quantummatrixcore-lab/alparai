@@ -67,12 +67,12 @@ export async function GET(request: NextRequest) {
 
     const dehost = await createServerClient();
 
+    // NOTE (2026-10-20): evidence_hash filtresi kaldırıldı — bkz. 0009 migration.
     const [incidentsCountResult, providersResult, categoriesResult] = await Promise.all([
       dehost
         .from("incidents")
         .select("id", { count: "exact", head: true })
-        .eq("status", "published")
-        .not("evidence_hash", "is", null),
+        .eq("status", "published"),
       dehost.from("ai_providers").select("trust_score"),
       dehost.from("incidents").select("category").eq("status", "published"),
     ]);
@@ -150,4 +150,4 @@ export async function GET(request: NextRequest) {
     );
   }
 }
-export const runtime = "nodejs";
+export const runtime = "edge";

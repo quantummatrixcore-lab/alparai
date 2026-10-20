@@ -4,7 +4,6 @@ import { createServerClient } from "@/lib/dehost/server";
 import { rateLimit } from "@/lib/rate-limit";
 import { logger } from "@/lib/utils/logger";
 
-export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const querySchema = z.object({
@@ -25,11 +24,11 @@ export async function GET(request: NextRequest) {
   const needle = parsed.data.domain.toLowerCase().replace(/^www\./, "");
   try {
     const dehost = await createServerClient();
+    // NOTE (2026-10-20): evidence_hash filtresi kaldırıldı — bkz. 0009 migration.
     const { data, error } = await dehost
       .from("incidents")
       .select("id,source_url")
       .eq("status", "published")
-      .not("evidence_hash", "is", null)
       .limit(500);
     if (error) {
       logger.error("domain-count query failed", { msg: error.message });
@@ -61,3 +60,4 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "internal_error" }, { status: 500 });
   }
 }
+export const runtime = "edge";

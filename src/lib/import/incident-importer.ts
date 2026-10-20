@@ -10,10 +10,25 @@
  */
 
 import "server-only";
+import { createHash } from "node:crypto";
 import { createAdminClient } from "@/lib/dehost/admin";
 import { maskPII } from "@/lib/pii/guardian";
 import { logger } from "@/lib/utils/logger";
 import type { ImportIncidentRow, ImportStatementRow, IncidentSource } from "./csv-parser";
+
+/**
+ * Delil mührü: sha256("<source>|<externalId>|<title>").
+ * Deterministiktir — aynı kayıt tekrar import edilse hash değişmez, upsert stabil kalır.
+ * Sayaçlar ve /verify bu sütuna dayanır (0009 migration).
+ */
+export function computeEvidenceHash(input: {
+  source: string;
+  externalId?: string | null;
+  title?: string | null;
+}): string {
+  const canonical = `${input.source}|${input.externalId ?? ""}|${(input.title ?? "").trim().slice(0, 500)}`;
+  return createHash("sha256").update(canonical, "utf8").digest("hex");
+}
 
 const BATCH_SIZE = 50;
 
@@ -80,12 +95,17 @@ export async function importIncidents(
           description: row.description,
           sourceUrl: row.sourceUrl,
         },
-        providerMap
+        providerMap,
       );
 
       return {
         title: row.title,
         description: row.description,
+        evidence_hash: computeEvidenceHash({
+          source,
+          externalId: row.externalId,
+          title: row.title,
+        }),
         title_masked: titleScan.masked,
         description_masked: descScan.masked,
         contains_pii: titleScan.piiFound || descScan.piiFound,

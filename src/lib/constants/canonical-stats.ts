@@ -1041,11 +1041,13 @@ export async function getLiveCanonicalStats(): Promise<{
   try {
     const { createServerClient } = await import("@/lib/dehost/server");
     const dehost = await createServerClient();
+    // NOTE (2026-10-20): evidence_hash filtresi KALDIRILDI — sütun canlıda
+    // doğrulanmadan eklenmişti (şema/tiplerde yok). Önce importer'da hash
+    // üretimi + migration + backfill, ONDAN SONRA filtre. Bkz: 0009 migration.
     const { count, error } = await dehost
       .from("incidents")
       .select("*", { count: "exact", head: true })
-      .eq("status", "published")
-      .not("evidence_hash", "is", null);
+      .eq("status", "published");
 
     if (error || count === null || count === 0) {
       return {

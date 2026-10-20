@@ -8,16 +8,14 @@ vi.mock("@/lib/dehost/server", () => ({
     from: () => ({
       select: () => ({
         eq: () => ({
-          not: () => ({
-            limit: async () => ({
-              data: [
-                { id: "1", source_url: "https://example.com/a" },
-                { id: "2", source_url: "https://sub.example.com/b" },
-                { id: "3", source_url: "https://other.org/c" },
-                { id: "4", source_url: "not-a-url" },
-              ],
-              error: null,
-            }),
+          limit: async () => ({
+            data: [
+              { id: "1", source_url: "https://example.com/a" },
+              { id: "2", source_url: "https://sub.example.com/b" },
+              { id: "3", source_url: "https://other.org/c" },
+              { id: "4", source_url: "not-a-url" },
+            ],
+            error: null,
           }),
         }),
       }),

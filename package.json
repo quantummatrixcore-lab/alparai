@@ -41,6 +41,7 @@
     "check:links": "node scripts/route-checker.js",
     "check:routes": "node scripts/route-checker.js",
     "check:hygiene": "npx tsx scripts/codebase-hygiene.ts",
+    "backfill:evidence": "npx tsx scripts/backfill-evidence-hash.ts",
     "test": "cross-env NODE_OPTIONS=\"--max-old-space-size=6144\" vitest run --pool=forks",
     "test:watch": "cross-env NODE_OPTIONS=\"--max-old-space-size=6144\" vitest",
     "test:coverage": "cross-env NODE_OPTIONS=\"--max-old-space-size=6144\" vitest run --coverage",

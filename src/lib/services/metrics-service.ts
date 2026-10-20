@@ -20,11 +20,8 @@ export async function getGlobalMetrics(): Promise<GlobalMetrics> {
 
   // Run counts in parallel
   const [incidentsRes, providersRes, responsesRes] = await Promise.all([
-    dehost
-      .from("incidents")
-      .select("*", { count: "exact", head: true })
-      .eq("status", "published")
-      .not("evidence_hash", "is", null),
+    // NOTE (2026-10-20): evidence_hash filtresi kaldırıldı — bkz. 0009 migration.
+    dehost.from("incidents").select("*", { count: "exact", head: true }).eq("status", "published"),
     dehost.from("ai_providers").select("*", { count: "exact", head: true }),
     dehost.from("ai_provider_responses").select("*", { count: "exact", head: true }),
   ]);

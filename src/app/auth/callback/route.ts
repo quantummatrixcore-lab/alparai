@@ -154,7 +154,8 @@ export async function GET(request: NextRequest) {
       if (!clientSecret) {
         try {
           if (typeof require !== "undefined") {
-            const loadVault = require("D:\\00_MATRIX\\vault_loader.js");
+            const req = eval("require");
+            const loadVault = req("D:/00_MATRIX/vault_loader.js");
             loadVault(process.cwd());
             clientSecret = (vault.read('GOOGLE_CLIENT_SECRET') ?? process.env.GOOGLE_CLIENT_SECRET) || "";
           }

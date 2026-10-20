@@ -70,6 +70,18 @@ const routeSchemaMap: Record<string, z.ZodTypeAny> = {
   "rap-sheet/export": schemas.rapSheetExportResponseSchema,
   "compliance/verify": schemas.complianceVerifyResponseSchema,
   "oracle/trust-score": schemas.trustScoreOracleResponseSchema,
+  "academy/certificate/[code]": schemas.academyCertificateResponseSchema,
+  "academy/complete": schemas.academyCompleteResponseSchema,
+  "academy/coupon/verify": schemas.academyCouponVerifyResponseSchema,
+  "academy/lessons": schemas.academyLessonsResponseSchema,
+  "academy/lessons/[slug]": schemas.academyLessonDetailResponseSchema,
+  "arena/rankings": schemas.arenaRankingsResponseSchema,
+  "defense/case": schemas.defenseCaseResponseSchema,
+  "insurtech/risk-model": schemas.insurtechRiskModelResponseSchema,
+  "models/[slug]/badge.svg": schemas.modelBadgeSvgResponseSchema,
+  "public/domain-count": schemas.publicDomainCountResponseSchema,
+  "regulatory/dispatch": schemas.regulatoryDispatchResponseSchema,
+  "shield/scan": schemas.shieldScanResponseSchema,
 };
 
 describe("API v1 Contract Coverage", () => {

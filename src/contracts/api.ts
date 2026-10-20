@@ -677,6 +677,131 @@ export const trustScoreOracleResponseSchema = z.object({
   error: z.string().optional(),
 }).passthrough();
 
+// 41. GET /api/v1/academy/certificate/[code]
+export const academyCertificateResponseSchema = z.object({
+  data: z.union([
+    z.object({
+      valid: z.literal(false),
+      reason: z.string(),
+    }),
+    z.object({
+      valid: z.literal(true),
+      cert_code: z.string(),
+      kind: z.string(),
+      kind_note: z.string(),
+      lesson_slug: z.string(),
+      lesson_title_tr: z.string().nullable(),
+      lesson_title_en: z.string().nullable(),
+      score: z.number(),
+      issued_at: z.string(),
+    }),
+  ]),
+  meta: z.object({ generated_at: z.string() }).optional(),
+  error: z.string().optional(),
+}).passthrough();
+
+// 42. POST /api/v1/academy/complete
+export const academyCompleteResponseSchema = z.object({
+  data: z.object({
+    passed: z.boolean(),
+    score: z.number(),
+    required: z.number().optional(),
+    cert_code: z.string().optional(),
+    coupon: z.unknown().optional(),
+    repeated: z.boolean().optional(),
+  }).passthrough().optional(),
+  meta: z.object({ generated_at: z.string() }).optional(),
+  error: z.string().optional(),
+}).passthrough();
+
+// 43. POST /api/v1/academy/coupon/verify
+export const academyCouponVerifyResponseSchema = z.object({
+  data: z.object({
+    valid: z.boolean(),
+    reason: z.string().optional(),
+    code: z.string().optional(),
+    percent: z.number().optional(),
+    expires_at: z.string().optional(),
+  }).passthrough().optional(),
+  meta: z.object({ generated_at: z.string() }).optional(),
+  error: z.string().optional(),
+}).passthrough();
+
+// 44. GET /api/v1/academy/lessons
+export const academyLessonsResponseSchema = z.object({
+  data: z.array(z.record(z.string(), z.unknown())),
+  meta: z.object({ generated_at: z.string(), locale: z.string().optional() }).optional(),
+  error: z.string().optional(),
+}).passthrough();
+
+// 45. GET /api/v1/academy/lessons/[slug]
+export const academyLessonDetailResponseSchema = z.object({
+  data: z.object({
+    slug: z.string(),
+    order: z.number(),
+    title: z.string(),
+    minutes: z.number(),
+    summary: z.string(),
+    sections: z.array(z.unknown()),
+    questions: z.array(z.unknown()),
+  }).passthrough().optional(),
+  meta: z.object({ generated_at: z.string(), locale: z.string().optional() }).optional(),
+  error: z.string().optional(),
+}).passthrough();
+
+// 46. GET /api/v1/arena/rankings
+export const arenaRankingsResponseSchema = z.object({
+  data: z.array(z.unknown()).optional(),
+  meta: z.record(z.string(), z.unknown()).optional(),
+  error: z.string().optional(),
+}).passthrough();
+
+// 47. POST /api/v1/defense/case
+export const defenseCaseResponseSchema = z.object({
+  data: z.record(z.string(), z.unknown()).optional(),
+  meta: z.record(z.string(), z.unknown()).optional(),
+  error: z.string().optional(),
+}).passthrough();
+
+// 48. GET /api/v1/insurtech/risk-model
+export const insurtechRiskModelResponseSchema = z.object({
+  data: z.record(z.string(), z.unknown()).optional(),
+  meta: z.record(z.string(), z.unknown()).optional(),
+  error: z.string().optional(),
+}).passthrough();
+
+// 49. GET /api/v1/models/[slug]/badge.svg
+export const modelBadgeSvgResponseSchema = z.union([
+  z.string(),
+  z.record(z.string(), z.unknown()),
+]);
+
+// 50. GET /api/v1/public/domain-count
+export const publicDomainCountResponseSchema = z.object({
+  data: z.object({
+    domain: z.string(),
+    count: z.number(),
+  }).passthrough().optional(),
+  meta: z.record(z.string(), z.unknown()).optional(),
+  error: z.string().optional(),
+}).passthrough();
+
+// 51. POST /api/v1/regulatory/dispatch
+export const regulatoryDispatchResponseSchema = z.object({
+  data: z.record(z.string(), z.unknown()).optional(),
+  meta: z.record(z.string(), z.unknown()).optional(),
+  error: z.string().optional(),
+}).passthrough();
+
+// 52. POST /api/v1/shield/scan
+export const shieldScanResponseSchema = z.object({
+  data: z.record(z.string(), z.unknown()).optional(),
+  meta: z.record(z.string(), z.unknown()).optional(),
+  error: z.string().optional(),
+}).passthrough();
+
+
+
 
 
 

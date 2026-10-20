@@ -99,4 +99,4 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "internal_error" }, { status: 500 });
   }
 }
-export const runtime = "edge";
+export const runtime = 'nodejs';

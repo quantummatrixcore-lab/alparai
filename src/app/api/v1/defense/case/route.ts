@@ -5,7 +5,6 @@ import { defenseWindow } from "@/lib/sla/defense";
 import { recordUsage } from "@/lib/billing/meter";
 import { logger } from "@/lib/utils/logger";
 
-export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const openSchema = z.object({
@@ -64,3 +63,4 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "invalid_opened_at" }, { status: 400 });
   }
 }
+export const runtime = 'nodejs';

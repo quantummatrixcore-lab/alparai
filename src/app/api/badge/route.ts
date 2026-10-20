@@ -255,5 +255,4 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     },
   });
 }
-
 export const runtime = "nodejs";

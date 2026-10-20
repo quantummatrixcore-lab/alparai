@@ -240,4 +240,4 @@ Your response MUST be JSON format matching this schema:
     );
   }
 }
-export const runtime = "nodejs";
+export const runtime = 'nodejs';

@@ -2,7 +2,6 @@ import { type NextRequest, NextResponse } from "next/server";
 import { rateLimit } from "@/lib/rate-limit";
 import { getLessonList } from "@/lib/academy/lessons";
 
-export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 // Okul ders listesi (ücretsiz yem).
@@ -18,3 +17,4 @@ export async function GET(request: NextRequest) {
     { status: 200, headers: { "Cache-Control": "public, max-age=3600" } },
   );
 }
+export const runtime = 'nodejs';

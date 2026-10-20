@@ -5,7 +5,6 @@ import { createServerClient } from "@/lib/dehost/server";
 import { isValidCouponCode } from "@/lib/academy/progress";
 import { logger } from "@/lib/utils/logger";
 
-export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const bodySchema = z.object({ code: z.string().min(1).max(32) });
@@ -58,3 +57,4 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "internal_error" }, { status: 500 });
   }
 }
+export const runtime = 'nodejs';

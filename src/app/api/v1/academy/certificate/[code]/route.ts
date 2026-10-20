@@ -5,7 +5,6 @@ import { getLesson } from "@/lib/academy/lessons";
 import { isValidCertCode } from "@/lib/academy/progress";
 import { logger } from "@/lib/utils/logger";
 
-export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 // Belge doğrulama: kod gerçek mi, hangi ders, hangi skor?
@@ -60,3 +59,4 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     return NextResponse.json({ error: "internal_error" }, { status: 500 });
   }
 }
+export const runtime = "nodejs";

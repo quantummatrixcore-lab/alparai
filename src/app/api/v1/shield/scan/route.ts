@@ -6,7 +6,6 @@ import { recordUsage } from "@/lib/billing/meter";
 import { checkInternalQuota } from "@/lib/internal/guard";
 import { logger } from "@/lib/utils/logger";
 
-export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const bodySchema = z.object({
@@ -85,3 +84,4 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "internal_error" }, { status: 500 });
   }
 }
+export const runtime = 'nodejs';

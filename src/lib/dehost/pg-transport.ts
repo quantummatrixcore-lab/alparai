@@ -60,19 +60,28 @@ function buildPoolConfig(): Record<string, unknown> {
   const isProduction = env.NODE_ENV === "production";
 
   if (env.DATABASE_URL) {
+    const isLocal =
+      env.DATABASE_URL.includes("127.0.0.1") ||
+      env.DATABASE_URL.includes("localhost") ||
+      env.DATABASE_URL.includes("sslmode=disable");
     return {
       connectionString: env.DATABASE_URL,
       connectionTimeoutMillis: 5000,
       statement_timeout: 15000,
       idleTimeoutMillis: 30000,
       max: 10,
-      ssl: isProduction ? { rejectUnauthorized: false } : undefined,
+      ssl: isProduction && !isLocal ? { rejectUnauthorized: false } : undefined,
     };
   }
 
+  const isLocalHost =
+    !env.DEHOST_HOST ||
+    env.DEHOST_HOST === "127.0.0.1" ||
+    env.DEHOST_HOST.includes("localhost");
+
   return {
     host: env.DEHOST_HOST || "127.0.0.1",
-    port: Number(env.DEHOST_PORT) || (isProduction ? 6543 : 5432),
+    port: Number(env.DEHOST_PORT) || 5432,
     user: env.DEHOST_USER || "postgres",
     password: env.DEHOST_PASSWORD || undefined,
     database: env.DEHOST_DB || "alparai_prod",
@@ -80,7 +89,7 @@ function buildPoolConfig(): Record<string, unknown> {
     statement_timeout: 15000,
     idleTimeoutMillis: 30000,
     max: 10,
-    ssl: isProduction ? { rejectUnauthorized: false } : undefined,
+    ssl: isProduction && !isLocalHost ? { rejectUnauthorized: false } : undefined,
   };
 }
 

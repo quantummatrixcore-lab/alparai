@@ -2,7 +2,6 @@ import { type NextRequest, NextResponse } from "next/server";
 import { rateLimit } from "@/lib/rate-limit";
 import { getLesson } from "@/lib/academy/lessons";
 
-export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
@@ -32,3 +31,4 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     { status: 200, headers: { "Cache-Control": "public, max-age=3600" } },
   );
 }
+export const runtime = "nodejs";

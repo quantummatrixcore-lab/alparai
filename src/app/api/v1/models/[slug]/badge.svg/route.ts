@@ -3,7 +3,6 @@ import { createServerClient } from "@/lib/dehost/server";
 import { calculateBenchmarkGrade } from "@/app/api/badge/route";
 import { logger } from "@/lib/utils/logger";
 
-export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 // IN3 — Gömülebilir güven rozeti: /api/v1/models/<slug>/badge.svg
@@ -60,3 +59,4 @@ export async function GET(
     },
   });
 }
+export const runtime = "nodejs";

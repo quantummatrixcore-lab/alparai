@@ -4,7 +4,6 @@ import { rateLimit } from "@/lib/rate-limit";
 import { logger } from "@/lib/utils/logger";
 import { emptyEntry, rankBoard, type ArenaEntry } from "@/lib/arena/elo";
 
-export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 // IN6 — Kırmızı Takım Ligi canlı tablosu (salt-okunur, gerçek veri).
@@ -47,3 +46,4 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "internal_error" }, { status: 500 });
   }
 }
+export const runtime = 'nodejs';

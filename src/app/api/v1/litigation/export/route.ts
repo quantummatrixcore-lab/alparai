@@ -93,4 +93,4 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
-export const runtime = "nodejs";
+export const runtime = 'nodejs';

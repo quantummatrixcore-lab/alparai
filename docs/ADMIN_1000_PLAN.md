@@ -55,8 +55,12 @@
 
 ### Faz B — sıradaki (görsel QA ile)
 
-- [ ] B1. 4 çekirdek bileşenin token migrasyonu (sidebar/topbar/metric/badge, 198 hex).
-      Renkler birebir — ama GÖRSEL onay ister. Dosya başına atomik commit.
+- [x] B0. incidents telemetri `incidents-telemetry.tsx` bileşenine çıkarıldı (saf,
+      memo). Sayfa ~712 → ~640 satır.
+- [x] B5a. Sovereign `isConfigured` probe 60sn cache (sıcak yol koruması).
+- [ ] B1. 4 çekirdeğin token migrasyonu: BİLEREK YAPILMADI. 198 hex'in çoğu çapraz
+      eşleşme; kör migrate görseli bozar. Token katmanı hazır, migrasyon GÖRSEL
+      QA ile dosya dosya yapılacak.
 - [ ] B2. incidents 701 → `incidents-table.tsx` + `incident-inspector.tsx` +
       `incidents-stats.tsx` + `incidents-filters.tsx` bölünmesi.
 - [ ] B3. dashboard 480 → `b2b-panel.tsx` + `risk-panel.tsx` bölünmesi.
@@ -70,3 +74,11 @@
 - Admin dürüstlük: 3 sahte gösterge (3.115/498/€87.5M statikleri, WebSocket
   yalanı, 66 satır ölü mock) temizlendi.
 - Kalan 1000 yolu: B-fazları + para/hukuk kanıtları (LOI, TSA, pentest).
+
+## BÖLÜM 5 — SÜREÇ BULGUSU (kritik)
+
+- 255 dosyada `runtime nodejs→edge` flip'i HARİCİ concurrent oturumdan geliyor
+  (bu oturumun 8 commit'i tek yazar, saat 12:57–14:03). Aynı repoda paralel ajan
+  çalışıyorsa DOSYA SAHİPLİĞİ kuralı şart (v13.37-rca C-5): çakışan dosyalara iki
+  ajan dokunmayacak. Bu oturum yalnızca kendi dosyalarını pathspec ile commitler;
+  255 flip'e dokunulmadı.

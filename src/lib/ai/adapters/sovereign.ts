@@ -1,5 +1,9 @@
 let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
-try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
+try {
+  vault = require("@/lib/security/vault").vault;
+} catch {
+  /* stub bicimi korunur */
+}
 import "server-only";
 import OpenAI from "openai";
 import { logger } from "@/lib/utils/logger";
@@ -11,12 +15,16 @@ function getSovereignConfig(): { baseUrl: string | null; apiKey: string | null }
   const baseUrl =
     (vault.read("ERCUOS_API_URL") ?? process.env.ERCUOS_API_URL) ||
     (vault.read("AI_GATEWAY_URL") ?? process.env.AI_GATEWAY_URL) ||
-    ((vault.read("NODE_ENV") ?? process.env.NODE_ENV) === "production" ? null : "http://127.0.0.1:11434/v1");
+    ((vault.read("NODE_ENV") ?? process.env.NODE_ENV) === "production"
+      ? null
+      : "http://127.0.0.1:11434/v1");
 
   const apiKey =
     (vault.read("ERCUOS_API_KEY") ?? process.env.ERCUOS_API_KEY) ||
     (vault.read("AI_GATEWAY_KEY") ?? process.env.AI_GATEWAY_KEY) ||
-    ((vault.read("NODE_ENV") ?? process.env.NODE_ENV) === "production" ? null : "sovereign-dev-token");
+    ((vault.read("NODE_ENV") ?? process.env.NODE_ENV) === "production"
+      ? null
+      : "sovereign-dev-token");
 
   return { baseUrl, apiKey };
 }
@@ -31,6 +39,11 @@ let circuitOpenUntil = 0;
 const FAILURE_THRESHOLD = 3;
 const CIRCUIT_RESET_MS = 30_000;
 
+// Probe result cache (60s TTL): isConfigured() sits on hot paths; a live
+// 1s fetch per call would queue requests behind probe latency.
+let probeCache: { value: boolean; expiresAt: number } | null = null;
+const PROBE_CACHE_TTL_MS = 60_000;
+
 export class SovereignAdapter implements ProviderAdapter {
   async isConfigured(): Promise<boolean> {
     const { baseUrl, apiKey } = getSovereignConfig();
@@ -41,6 +54,11 @@ export class SovereignAdapter implements ProviderAdapter {
       return false;
     }
 
+    const now = Date.now();
+    if (probeCache && probeCache.expiresAt > now) {
+      return probeCache.value;
+    }
+
     // Active lightweight probe (1s timeout)
     try {
       const probeUrl = baseUrl.replace(/\/v1\/?$/, "") + "/api/tags";
@@ -48,9 +66,11 @@ export class SovereignAdapter implements ProviderAdapter {
         method: "GET",
         signal: AbortSignal.timeout(1000),
       });
+      probeCache = { value: res.ok, expiresAt: now + PROBE_CACHE_TTL_MS };
       return res.ok;
     } catch {
       // Fallback: If root probe fails or path is custom, return false if unreachable
+      probeCache = { value: false, expiresAt: now + PROBE_CACHE_TTL_MS };
       return false;
     }
   }
@@ -109,7 +129,11 @@ export class SovereignAdapter implements ProviderAdapter {
         }
         return {
           ok: false,
-          error: { code: "api_error", message: "Sovereign (Ollama) returned empty content.", model: request.model.id },
+          error: {
+            code: "api_error",
+            message: "Sovereign (Ollama) returned empty content.",
+            model: request.model.id,
+          },
         };
       }
 
@@ -134,10 +158,14 @@ export class SovereignAdapter implements ProviderAdapter {
       consecutiveFailures++;
       if (consecutiveFailures >= FAILURE_THRESHOLD) {
         circuitOpenUntil = Date.now() + CIRCUIT_RESET_MS;
-        logger.error(`[Sovereign] Circuit breaker opened due to consecutive failures (${consecutiveFailures}).`);
+        logger.error(
+          `[Sovereign] Circuit breaker opened due to consecutive failures (${consecutiveFailures}).`,
+        );
       }
 
-      logger.warn(`[Sovereign] Bridge call failed (${request.model.id}) [${latencyMs}ms]: ${(err as Error).message}`);
+      logger.warn(
+        `[Sovereign] Bridge call failed (${request.model.id}) [${latencyMs}ms]: ${(err as Error).message}`,
+      );
       return {
         ok: false,
         error: {

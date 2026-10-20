@@ -31,7 +31,7 @@ export function LiveTicker() {
       /^\/(?:en|tr|[a-z]{2})\/auth(?:\/|$)/.test(pathname));
 
   const [incidents, setIncidents] = useState<TickerIncident[]>(
-    () => CANONICAL_FALLBACK_INCIDENTS.slice(0, 8) as unknown as TickerIncident[]
+    () => CANONICAL_FALLBACK_INCIDENTS.slice(0, 8) as unknown as TickerIncident[],
   );
 
   useEffect(() => {
@@ -40,9 +40,10 @@ export function LiveTicker() {
       try {
         const res = await fetch("/api/incidents?limit=8");
         if (res.ok) {
-          const data = await res.json();
-          if (Array.isArray(data) && data.length > 0) {
-            setIncidents(data as unknown as TickerIncident[]);
+          const payload = (await res.json()) as unknown;
+          const list = Array.isArray(payload) ? payload : (payload as { data?: unknown }).data;
+          if (Array.isArray(list) && list.length > 0) {
+            setIncidents(list as unknown as TickerIncident[]);
           }
         }
       } catch {
@@ -110,8 +111,8 @@ export function LiveTicker() {
     return "bg-zinc-500/15 text-fg-secondary border-zinc-500/30";
   };
 
-  const renderItems = (prefix: string) => (
-    <div className="flex shrink-0 items-center gap-4 px-3">
+  const renderItems = (prefix: string, hidden = false) => (
+    <div aria-hidden={hidden || undefined} className="flex shrink-0 items-center gap-4 px-3">
       {incidents.map((inc) => {
         const providerName = resolveProvider(inc);
         const label = resolveTitle(inc);
@@ -128,10 +129,10 @@ export function LiveTicker() {
             >
               {providerName}
             </span>
-            <span className="font-medium text-fg-secondary transition-colors group-hover:text-cyan-300">
+            <span className="text-fg-secondary font-medium transition-colors group-hover:text-cyan-300">
               {label}
             </span>
-            <span className="font-mono text-[10px] font-semibold text-fg-muted">
+            <span className="text-fg-muted font-mono text-[10px] font-semibold">
               #{inc.id.substring(0, 8)}
             </span>
             <span className="inline-flex items-center gap-1 rounded border border-emerald-500/30 bg-emerald-500/10 px-1 py-0.5 text-[9px] font-semibold text-emerald-400">
@@ -146,7 +147,7 @@ export function LiveTicker() {
               </svg>
               {t("verified_badge", { defaultValue: "Doğrulandı" })}
             </span>
-            <span className="text-white/20 select-none px-1 font-mono text-xs" aria-hidden="true">
+            <span className="px-1 font-mono text-xs text-white/20 select-none" aria-hidden="true">
               /
             </span>
           </Link>
@@ -156,25 +157,25 @@ export function LiveTicker() {
   );
 
   return (
-    <div className="relative flex h-9 w-full max-w-full items-center overflow-hidden overflow-x-clip border-b border-border-subtle/80 bg-bg-primary/95 backdrop-blur-md select-none">
+    <div className="border-border-subtle/80 bg-bg-primary/95 relative flex h-9 w-full max-w-full items-center overflow-hidden overflow-x-clip border-b backdrop-blur-md select-none">
       {/* Fixed Left Corporate Brand Anchor */}
-      <div className="z-20 flex h-full shrink-0 items-center gap-2 border-r border-border-subtle/80 bg-bg-primary px-3.5 shadow-md">
+      <div className="border-border-subtle/80 bg-bg-primary z-20 flex h-full shrink-0 items-center gap-2 border-r px-3.5 shadow-md">
         <span className="relative flex h-2 w-2">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
           <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
         </span>
-        <span className="font-mono text-[10px] font-bold tracking-wider text-fg-primary uppercase whitespace-nowrap">
+        <span className="text-fg-primary font-mono text-[10px] font-bold tracking-wider whitespace-nowrap uppercase">
           {locale === "tr" ? "CANLI RADAR" : "LIVE RADAR"}
         </span>
       </div>
 
       {/* Marquee Track Container */}
       <div className="relative flex h-full min-w-0 flex-1 items-center overflow-hidden overflow-x-clip">
-        <div className="pointer-events-none absolute top-0 bottom-0 left-0 z-10 w-12 bg-gradient-to-r from-bg-primary to-transparent" />
-        <div className="pointer-events-none absolute top-0 right-0 bottom-0 z-10 w-16 bg-gradient-to-l from-bg-primary to-transparent" />
+        <div className="from-bg-primary pointer-events-none absolute top-0 bottom-0 left-0 z-10 w-12 bg-gradient-to-r to-transparent" />
+        <div className="from-bg-primary pointer-events-none absolute top-0 right-0 bottom-0 z-10 w-16 bg-gradient-to-l to-transparent" />
         <div className="animate-marquee-track flex h-full w-max shrink-0 items-center hover:[animation-play-state:paused]">
           {renderItems("track1")}
-          {renderItems("track2")}
+          {renderItems("track2", true)}
         </div>
       </div>
 

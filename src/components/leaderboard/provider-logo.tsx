@@ -53,13 +53,7 @@ function getInitials(name: string): string {
   return (first + last).toUpperCase();
 }
 
-export function ProviderLogo({
-  src,
-  name,
-  slug,
-  size = "md",
-  className = "",
-}: ProviderLogoProps) {
+export function ProviderLogo({ src, name, slug, size = "md", className = "" }: ProviderLogoProps) {
   const [imgError, setImgError] = useState(false);
   const sizePx = SIZE_NUMBERS[size] || 48;
   const hasIcon = hasProviderIcon(slug || name);
@@ -71,7 +65,11 @@ export function ProviderLogo({
         className={`relative flex h-full w-full items-center justify-center overflow-hidden rounded-md p-1 transition-transform duration-300 hover:scale-105 ${className}`}
         title={name}
       >
-        <ProviderVectorIcon nameOrSlug={slug || name} size="100%" className="h-full w-full object-contain" />
+        <ProviderVectorIcon
+          nameOrSlug={slug || name}
+          size="100%"
+          className="h-full w-full object-contain"
+        />
       </div>
     );
   }
@@ -79,7 +77,9 @@ export function ProviderLogo({
   // 2. If a custom URL is provided and not errored, render Next.js Image
   if (src && !imgError) {
     return (
-      <div className={`relative flex h-full w-full items-center justify-center overflow-hidden rounded-md p-1 ${className}`}>
+      <div
+        className={`relative flex h-full w-full items-center justify-center overflow-hidden rounded-md p-1 ${className}`}
+      >
         <Image
           src={src}
           alt={`${name} logo`}
@@ -109,8 +109,8 @@ export function ProviderLogo({
 
   return (
     <div
-      className={`flex items-center justify-center rounded-md font-black tracking-tight ${palette.bg} ${palette.fg} h-full w-full border border-border-subtle shadow-inner ${className}`}
-      aria-label={`${name} logo placeholder`}
+      className={`flex items-center justify-center rounded-md font-black tracking-tight ${palette.bg} ${palette.fg} border-border-subtle h-full w-full border shadow-inner ${className}`}
+      aria-label={`${name} logosu`}
       title={name}
     >
       <span className={fontSize}>{initials}</span>

@@ -25,73 +25,6 @@ import { StatusBadge } from "@/components/admin-core/status-badge";
 import { useAdminStats } from "@/hooks/admin/use-admin-stats";
 import { CANONICAL_INCIDENT_COUNT } from "@/lib/constants";
 
-const recentIncidentStream = [
-  {
-    id: "inc-1",
-    trackingNumber: "ALP-2026-3115",
-    modelTarget: "Frontier GPT-5 Biometric",
-    provider: "OpenAI",
-    source: "REGULATORY_FILING",
-    euAiActTag: "PROHIBITED_ART5",
-    slaRemainingHours: 12.4,
-    status: "UNDER_TRIAGE",
-  },
-  {
-    id: "inc-2",
-    trackingNumber: "ALP-2026-2879",
-    modelTarget: "Claude 3.7 Sonnet HR Agent",
-    provider: "Anthropic",
-    source: "WHISTLEBLOWER_LEAK",
-    euAiActTag: "HIGH_RISK_ART6",
-    slaRemainingHours: 36.2,
-    status: "CONFIRMED_VIOLATION",
-  },
-  {
-    id: "inc-3",
-    trackingNumber: "ALP-2026-2878",
-    modelTarget: "DeepSeek R1 Credit Engine",
-    provider: "DeepSeek AI",
-    source: "EXTERNAL_SECURITY_RESEARCH",
-    euAiActTag: "HIGH_RISK_ART6",
-    slaRemainingHours: 58.0,
-    status: "AUDIT_IN_PROGRESS",
-  },
-  {
-    id: "inc-4",
-    trackingNumber: "ALP-2026-2877",
-    modelTarget: "Gemini 2.5 Flash Search",
-    provider: "Google DeepMind",
-    source: "AUTOMATED_HONEYPOT",
-    euAiActTag: "TRANSPARENCY_ART50",
-    slaRemainingHours: 0,
-    status: "SEALED_DEFENDED",
-  },
-];
-
-const b2bKeyStream = [
-  {
-    id: "k-1",
-    organizationName: "Allianz AI Risk Solutions",
-    monthlyRateUsd: 5000,
-    requestsThisMonth: 184200,
-    requestQuotaMonthly: 250000,
-  },
-  {
-    id: "k-2",
-    organizationName: "Swiss Re Underwriting Labs",
-    monthlyRateUsd: 8500,
-    requestsThisMonth: 642100,
-    requestQuotaMonthly: 1000000,
-  },
-  {
-    id: "k-3",
-    organizationName: "JPMorgan AI Governance Desk",
-    monthlyRateUsd: 12000,
-    requestsThisMonth: 890000,
-    requestQuotaMonthly: 1500000,
-  },
-];
-
 export default function AdminV2OverviewPage() {
   const t = useTranslations("admin");
   const td = useTranslations("admin.dashboard");
@@ -146,10 +79,11 @@ export default function AdminV2OverviewPage() {
           );
         }
 
-        // 2. Fetch real B2B keys
+        // 2. Fetch real B2B keys (bottleneck guard: bounded)
         const { data: keysData } = await dehost
           .from("api_keys")
-          .select("id, provider, client_type, tier, created_at");
+          .select("id, provider, client_type, tier, created_at")
+          .limit(100);
 
         if (keysData && keysData.length > 0) {
           setB2bKeys(
@@ -213,7 +147,7 @@ export default function AdminV2OverviewPage() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <ShieldAlert className="h-4 w-4 text-cyan-400" />
-              <h2 className="text-balance font-sans text-sm font-bold tracking-wide text-[#1f2328] dark:text-[#f0f6fc]">
+              <h2 className="font-sans text-sm font-bold tracking-wide text-balance text-[#1f2328] dark:text-[#f0f6fc]">
                 {td("liveIncidentDesk")}
               </h2>
             </div>
@@ -300,7 +234,7 @@ export default function AdminV2OverviewPage() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <KeyRound className="h-4 w-4 text-cyan-400" />
-                <h2 className="text-balance font-sans text-sm font-bold tracking-wide text-[#1f2328] dark:text-[#f0f6fc]">
+                <h2 className="font-sans text-sm font-bold tracking-wide text-balance text-[#1f2328] dark:text-[#f0f6fc]">
                   {td("b2bFlow")}
                 </h2>
               </div>
@@ -374,7 +308,7 @@ export default function AdminV2OverviewPage() {
   const quickDeckSection = React.useMemo(
     () => (
       <div className="space-y-3 rounded-xl border border-[#d0d7de] bg-zinc-950/70 p-5 shadow-2xl shadow-black/80 backdrop-blur-xl dark:border-[#30363d]">
-        <h3 className="text-balance font-sans text-xs font-bold tracking-wider text-zinc-400 uppercase dark:text-[#8b949e] dark:text-[#656d76]">
+        <h3 className="font-sans text-xs font-bold tracking-wider text-balance text-zinc-400 uppercase dark:text-[#8b949e] dark:text-[#656d76]">
           {td("quickDeck")}
         </h3>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-5">
@@ -461,7 +395,7 @@ export default function AdminV2OverviewPage() {
               ADMIN
             </span>
           </div>
-          <h1 className="text-balance font-sans text-xl font-bold tracking-tight text-[#1f2328] md:text-2xl dark:text-[#f0f6fc]">
+          <h1 className="font-sans text-xl font-bold tracking-tight text-balance text-[#1f2328] md:text-2xl dark:text-[#f0f6fc]">
             {t("enterprise_command_deck")}
           </h1>
           <p className="mt-0.5 text-xs text-zinc-400 dark:text-[#8b949e] dark:text-[#656d76]">
@@ -543,4 +477,4 @@ export default function AdminV2OverviewPage() {
     </div>
   );
 }
-export const runtime = "nodejs";
+export const runtime = "edge";

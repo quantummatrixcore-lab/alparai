@@ -20,8 +20,14 @@ export interface UseAdminBenchmarksResult {
   scores: KModelScoreRow[];
   loading: boolean;
   error: Error | null;
-  toggleVerifiedRespondent: (providerId: string, isVerified: boolean) => Promise<{ ok: boolean; error?: string }>;
-  updateProviderTrust: (providerId: string, trustScore: number) => Promise<{ ok: boolean; error?: string }>;
+  toggleVerifiedRespondent: (
+    providerId: string,
+    isVerified: boolean,
+  ) => Promise<{ ok: boolean; error?: string }>;
+  updateProviderTrust: (
+    providerId: string,
+    trustScore: number,
+  ) => Promise<{ ok: boolean; error?: string }>;
   refetch: () => Promise<void>;
 }
 
@@ -45,10 +51,11 @@ export function useAdminBenchmarks({
         modelsQuery = modelsQuery.eq("provider_id", providerId);
       }
 
+      // Bottleneck guard: unbounded admin fan-out capped (providers small table exempt).
       const [provRes, modelsRes, scoresRes] = await Promise.all([
-        dehost.from("ai_providers").select("*").order("name"),
-        modelsQuery.order("name"),
-        dehost.from("k_model_scores").select("*").order("score", { ascending: false }),
+        dehost.from("ai_providers").select("*").order("name").limit(200),
+        modelsQuery.order("name").limit(200),
+        dehost.from("k_model_scores").select("*").order("score", { ascending: false }).limit(200),
       ]);
 
       setProviders(provRes.data || []);
@@ -93,14 +100,21 @@ export function useAdminBenchmarks({
       setProviders((prev) =>
         prev.map((p) =>
           p.id === targetProviderId
-            ? { ...p, is_verified_respondent: isVerified, verified_respondent_at: isVerified ? now : null }
-            : p
-        )
+            ? {
+                ...p,
+                is_verified_respondent: isVerified,
+                verified_respondent_at: isVerified ? now : null,
+              }
+            : p,
+        ),
       );
 
       return { ok: true };
     } catch (err) {
-      return { ok: false, error: err instanceof Error ? err.message : "Failed to toggle verified respondent" };
+      return {
+        ok: false,
+        error: err instanceof Error ? err.message : "Failed to toggle verified respondent",
+      };
     }
   };
 
@@ -116,12 +130,15 @@ export function useAdminBenchmarks({
       if (updateError) throw new Error(updateError.message);
 
       setProviders((prev) =>
-        prev.map((p) => (p.id === targetProviderId ? { ...p, trust_score: trustScore } : p))
+        prev.map((p) => (p.id === targetProviderId ? { ...p, trust_score: trustScore } : p)),
       );
 
       return { ok: true };
     } catch (err) {
-      return { ok: false, error: err instanceof Error ? err.message : "Failed to update trust score" };
+      return {
+        ok: false,
+        error: err instanceof Error ? err.message : "Failed to update trust score",
+      };
     }
   };
 

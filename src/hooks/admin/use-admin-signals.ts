@@ -23,7 +23,7 @@ export interface UseAdminSignalsResult {
   processRedaction: (
     id: string,
     status: "approved" | "rejected",
-    reason?: string
+    reason?: string,
   ) => Promise<{ ok: boolean; error?: string }>;
   refetch: () => Promise<void>;
 }
@@ -42,10 +42,22 @@ export function useAdminSignals(autoSubscribe = true): UseAdminSignalsResult {
       setError(null);
 
       const [alarmsRes, ratingRes, doraRes, redactionRes] = await Promise.all([
-        dehost.from("sla_alarms").select("*"),
-        dehost.from("rating_alerts").select("*").order("created_at", { ascending: false }).limit(20),
-        dehost.from("dora_metrics").select("*").order("metric_date", { ascending: false }).limit(10),
-        dehost.from("redaction_requests").select("*").order("created_at", { ascending: false }).limit(20),
+        dehost.from("sla_alarms").select("*").order("created_at", { ascending: false }).limit(50),
+        dehost
+          .from("rating_alerts")
+          .select("*")
+          .order("created_at", { ascending: false })
+          .limit(20),
+        dehost
+          .from("dora_metrics")
+          .select("*")
+          .order("metric_date", { ascending: false })
+          .limit(10),
+        dehost
+          .from("redaction_requests")
+          .select("*")
+          .order("created_at", { ascending: false })
+          .limit(20),
       ]);
 
       setAlarms(alarmsRes.data || []);
@@ -89,7 +101,7 @@ export function useAdminSignals(autoSubscribe = true): UseAdminSignalsResult {
       if (updateError) throw new Error(updateError.message);
 
       setAlarms((prev) =>
-        prev.map((a) => (a.id === id ? { ...a, resolved: true, resolved_at: now } : a))
+        prev.map((a) => (a.id === id ? { ...a, resolved: true, resolved_at: now } : a)),
       );
 
       return { ok: true };
@@ -98,11 +110,7 @@ export function useAdminSignals(autoSubscribe = true): UseAdminSignalsResult {
     }
   };
 
-  const processRedaction = async (
-    id: string,
-    status: "approved" | "rejected",
-    reason?: string
-  ) => {
+  const processRedaction = async (id: string, status: "approved" | "rejected", reason?: string) => {
     try {
       const now = new Date().toISOString();
       const { error: updateError } = await dehost
@@ -117,12 +125,17 @@ export function useAdminSignals(autoSubscribe = true): UseAdminSignalsResult {
       if (updateError) throw new Error(updateError.message);
 
       setRedactionRequests((prev) =>
-        prev.map((r) => (r.id === id ? { ...r, status, reason: reason || null, processed_at: now } : r))
+        prev.map((r) =>
+          r.id === id ? { ...r, status, reason: reason || null, processed_at: now } : r,
+        ),
       );
 
       return { ok: true };
     } catch (err) {
-      return { ok: false, error: err instanceof Error ? err.message : "Failed to process redaction" };
+      return {
+        ok: false,
+        error: err instanceof Error ? err.message : "Failed to process redaction",
+      };
     }
   };
 

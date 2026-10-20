@@ -32,14 +32,26 @@ export default async function AdminV2Layout({
   }
 
   return (
-    <div className="relative flex min-h-screen w-full overflow-x-clip bg-[#ffffff] font-sans text-[#1f2328] antialiased selection:bg-[#0969da]/20 dark:bg-[#0d1117] dark:text-[#f0f6fc] dark:selection:bg-[#58a6ff]/20">
+    <div className="bg-admin-canvas text-admin-fg relative flex min-h-screen w-full overflow-x-clip font-sans antialiased">
+      <a
+        href="#admin-main"
+        className="focus:bg-admin-accent sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:px-3 focus:py-1.5 focus:text-xs focus:font-semibold focus:text-white"
+      >
+        Skip to admin content
+      </a>
       {/* 5-Cluster Rigid Sidebar */}
       <AdminSidebar />
 
       {/* Main Content Area */}
       <div className="flex min-w-0 flex-1 flex-col overflow-x-clip">
         <AdminTopbar />
-        <main className="mx-auto w-full max-w-7xl flex-1 space-y-6 p-6 md:p-8">{children}</main>
+        <main
+          id="admin-main"
+          tabIndex={-1}
+          className="mx-auto w-full max-w-7xl flex-1 space-y-6 p-6 outline-none md:p-8"
+        >
+          {children}
+        </main>
       </div>
     </div>
   );

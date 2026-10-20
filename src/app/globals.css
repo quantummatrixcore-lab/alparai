@@ -60,6 +60,24 @@
   --color-foreground: var(--color-fg-primary);
   --color-muted-foreground: var(--color-fg-muted);
 
+  /* Admin semantic layer (Primer hues, theme-aware via --admin-* vars) */
+  --color-admin-canvas: var(--admin-canvas);
+  --color-admin-subtle: var(--admin-subtle);
+  --color-admin-elevated: var(--admin-elevated);
+  --color-admin-border: var(--admin-border);
+  --color-admin-fg: var(--admin-fg);
+  --color-admin-muted: var(--admin-muted);
+  --color-admin-accent: var(--admin-accent);
+  --color-admin-success: var(--admin-success);
+  --color-admin-success-bg: var(--admin-success-bg);
+  --color-admin-success-border: var(--admin-success-border);
+  --color-admin-danger: var(--admin-danger);
+  --color-admin-danger-bg: var(--admin-danger-bg);
+  --color-admin-danger-border: var(--admin-danger-border);
+  --color-admin-warn: var(--admin-warn);
+  --color-admin-warn-bg: var(--admin-warn-bg);
+  --color-admin-warn-border: var(--admin-warn-border);
+
   /* Radius */
   --radius-sm: 6px;
   --radius-md: 12px;
@@ -139,6 +157,43 @@ html.dark,
   --color-bg-glass-subtle: rgba(255, 255, 255, 0.03);
   --shadow-glass: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   --shadow-glass-card: 0 15px 35px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  /* Admin layer default = LIGHT (matches dark: variant inactive state) */
+  --admin-canvas: #ffffff;
+  --admin-subtle: #f6f8fa;
+  --admin-elevated: #ffffff;
+  --admin-border: #d0d7de;
+  --admin-fg: #1f2328;
+  --admin-muted: #656d76;
+  --admin-accent: #0969da;
+  --admin-success: #1a7f37;
+  --admin-success-bg: #dafbe1;
+  --admin-success-border: rgba(74, 194, 107, 0.4);
+  --admin-danger: #cf222e;
+  --admin-danger-bg: #ffebe9;
+  --admin-danger-border: rgba(255, 129, 130, 0.4);
+  --admin-warn: #9a6700;
+  --admin-warn-bg: #fff8c5;
+  --admin-warn-border: rgba(212, 167, 44, 0.4);
+}
+
+html.dark,
+[data-theme="dark"] {
+  --admin-canvas: #0d1117;
+  --admin-subtle: #161b22;
+  --admin-elevated: #21262d;
+  --admin-border: #30363d;
+  --admin-fg: #f0f6fc;
+  --admin-muted: #8b949e;
+  --admin-accent: #58a6ff;
+  --admin-success: #3fb950;
+  --admin-success-bg: rgba(35, 134, 54, 0.2);
+  --admin-success-border: rgba(35, 134, 54, 0.4);
+  --admin-danger: #ff7b72;
+  --admin-danger-bg: rgba(218, 54, 51, 0.2);
+  --admin-danger-border: rgba(218, 54, 51, 0.4);
+  --admin-warn: #f0b72f;
+  --admin-warn-bg: #382800;
+  --admin-warn-border: #bb8009;
 }
 
 html.light,

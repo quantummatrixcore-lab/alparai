@@ -30,7 +30,8 @@ export function AdminTopbar() {
       <div className="relative hidden w-80 items-center md:flex lg:w-96">
         <Search className="pointer-events-none absolute top-1/2 left-3 h-3.5 w-3.5 -translate-y-1/2 text-[#656d76] dark:text-[#8b949e]" />
         <input
-          type="text"
+          type="search"
+          aria-label={t("searchPlaceholder")}
           placeholder={t("searchPlaceholder")}
           className="w-full rounded-md border border-[#d0d7de] bg-[#ffffff] py-1.5 pr-10 pl-9 font-sans text-xs text-[#1f2328] placeholder-[#656d76] transition-all focus:border-[#0969da] focus:ring-1 focus:ring-[#0969da] focus:outline-none dark:border-[#30363d] dark:bg-[#0d1117] dark:text-[#f0f6fc] dark:placeholder-[#8b949e] dark:focus:border-[#58a6ff] dark:focus:ring-[#58a6ff]"
         />

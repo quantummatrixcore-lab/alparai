@@ -1,9 +1,12 @@
 let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
-try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
+try {
+  vault = require("@/lib/security/vault").vault;
+} catch {
+  /* stub bicimi korunur */
+}
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/dehost/admin";
 import { uploadToDrive } from "@/lib/gdrive/client";
-
 
 // This route should only be triggered by DeHost Cron
 // You should protect it by checking the Authorization header in a real setup
@@ -12,9 +15,9 @@ export async function GET(request: Request) {
     // Basic protection (DeHost Cron sets this header)
     const authHeader = request.headers.get("authorization");
     if (
-      !(vault.read('CRON_SECRET') ?? process.env.CRON_SECRET) ||
+      !(vault.read("CRON_SECRET") ?? process.env.CRON_SECRET) ||
       !authHeader ||
-      authHeader !== `Bearer ${(vault.read('CRON_SECRET') ?? process.env.CRON_SECRET)}`
+      authHeader !== `Bearer ${vault.read("CRON_SECRET") ?? process.env.CRON_SECRET}`
     ) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
@@ -25,13 +28,17 @@ export async function GET(request: Request) {
     const tablesToBackup = ["incidents", "profiles", "incident_votes"];
     const backupData: Record<string, unknown[]> = {};
 
+    // Bottleneck guard: unbounded full-table dump capped per table.
+    const BACKUP_ROW_LIMIT = 2000;
+    const rowCounts: Record<string, number> = {};
     for (const table of tablesToBackup) {
-      const { data, error } = await dehost.from(table).select("*");
+      const { data, error } = await dehost.from(table).select("*").limit(BACKUP_ROW_LIMIT);
       if (error) {
         console.error(`Failed to backup table ${table}:`, error);
         continue;
       }
       backupData[table] = data;
+      rowCounts[table] = data.length;
     }
 
     // Convert to JSON buffer
@@ -52,6 +59,8 @@ export async function GET(request: Request) {
       message: "Database backup completed successfully",
       fileId,
       timestamp,
+      rowCounts,
+      rowLimit: BACKUP_ROW_LIMIT,
     });
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";

@@ -27,6 +27,7 @@ import {
   X,
 } from "lucide-react";
 import { StatusBadge } from "@/components/admin-core/status-badge";
+import { CANONICAL_INCIDENT_COUNT } from "@/lib/constants";
 import { dehost } from "@/lib/dehost/client";
 import { useTranslations } from "next-intl";
 import {
@@ -239,10 +240,12 @@ export default function IncidentsPage() {
               KÜME 1: HESAP VEREBİLİRLİK & VERİ FABRİKASI
             </span>
             <span className="font-sans text-xs font-semibold text-[#0969da] dark:text-[#58a6ff]">
-              {incidents.length > 1 ? `${incidents.length} VAKA İNDEKSİ` : "3.115 VAKA İNDEKSİ"}
+              {incidents.length > 1
+                ? `${incidents.length} VAKA (LİSTEDE)`
+                : `${CANONICAL_INCIDENT_COUNT.toLocaleString("tr-TR")} VAKA İNDEKSİ`}
             </span>
           </div>
-          <h1 className="text-balance font-sans text-xl font-bold tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
+          <h1 className="font-sans text-xl font-bold tracking-tight text-balance text-[#1f2328] dark:text-[#f0f6fc]">
             Olay İnceleme & Canlı Triage Masası
           </h1>
           <p className="mt-0.5 text-xs text-[#656d76] dark:text-[#8b949e]">
@@ -277,49 +280,52 @@ export default function IncidentsPage() {
           </span>
           <div className="mt-1 flex items-baseline gap-2">
             <span className="font-sans text-lg font-bold text-[#1f2328] dark:text-[#f0f6fc]">
-              3.115
+              {CANONICAL_INCIDENT_COUNT.toLocaleString("tr-TR")}
             </span>
             <span className="font-sans text-[10px] font-semibold text-[#1a7f37] dark:text-[#3fb950]">
-              +24/gün
+              kayıtlı vaka
             </span>
           </div>
         </div>
         <div className="rounded-md border border-[#d0d7de] bg-[#ffffff] p-3 dark:border-[#30363d] dark:bg-[#161b22]">
           <span className="block font-sans text-[11px] text-[#656d76] dark:text-[#8b949e]">
-            Doğrulanmış İhbar
+            Doğrulanmış (listede)
           </span>
           <div className="mt-1 flex items-baseline gap-2">
             <span className="font-sans text-lg font-bold text-[#1f2328] dark:text-[#f0f6fc]">
-              498
+              {incidents.filter((i) => i.humanVerified).length}
             </span>
             <span className="font-sans text-[10px] text-[#0969da] dark:text-[#58a6ff]">
-              Tekel Veri (%18)
+              listelenen vaka
             </span>
           </div>
         </div>
         <div className="rounded-md border border-[#d0d7de] bg-[#ffffff] p-3 dark:border-[#30363d] dark:bg-[#161b22]">
           <span className="block font-sans text-[11px] text-[#656d76] dark:text-[#8b949e]">
-            Risk Maruziyeti (Max)
+            Risk Maruziyeti (listede)
           </span>
           <div className="mt-1 flex items-baseline gap-2">
             <span className="font-sans text-lg font-bold text-[#cf222e] dark:text-[#ff7b72]">
-              €87.5M
+              €
+              {(filtered.reduce((s, i) => s + (i.potentialFineEur || 0), 0) / 1_000_000).toFixed(1)}
+              M
             </span>
             <span className="font-sans text-[10px] text-[#cf222e] dark:text-[#ff7b72]">
-              35M€ Ceza Tavanı
+              toplam potansiyel ceza
             </span>
           </div>
         </div>
         <div className="rounded-md border border-[#d0d7de] bg-[#ffffff] p-3 dark:border-[#30363d] dark:bg-[#161b22]">
           <span className="block font-sans text-[11px] text-[#656d76] dark:text-[#8b949e]">
-            Kritik 72h SLA
+            Kritik 72h SLA (listede)
           </span>
           <div className="mt-1 flex items-baseline gap-2">
             <span className="font-sans text-lg font-bold text-[#9a6700] dark:text-[#d29922]">
-              3 Vaka
+              {filtered.filter((i) => i.slaRemainingHours > 0 && i.slaRemainingHours <= 24).length}{" "}
+              Vaka
             </span>
             <span className="font-sans text-[10px] text-[#9a6700] dark:text-[#d29922]">
-              &lt; 24h Kalan
+              &lt; 24h kalan
             </span>
           </div>
         </div>
@@ -332,7 +338,8 @@ export default function IncidentsPage() {
           <div className="relative flex-1">
             <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-[#656d76] dark:text-[#8b949e]" />
             <input
-              type="text"
+              type="search"
+              aria-label="Vaka ara"
               placeholder="Vaka no (ALP-...), model (GPT-4o), şirket, sektör veya anahtar kelime ara..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -378,6 +385,7 @@ export default function IncidentsPage() {
 
           {/* Durum */}
           <select
+            aria-label="Durum filtresi"
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
             className="rounded border border-[#d0d7de] bg-[#ffffff] px-2 py-1 font-sans text-xs text-[#1f2328] focus:outline-none dark:border-[#30363d] dark:bg-[#0d1117] dark:text-[#f0f6fc]"
@@ -391,6 +399,7 @@ export default function IncidentsPage() {
 
           {/* Şiddet */}
           <select
+            aria-label="Şiddet filtresi"
             value={severityFilter}
             onChange={(e) => setSeverityFilter(e.target.value)}
             className="rounded border border-[#d0d7de] bg-[#ffffff] px-2 py-1 font-sans text-xs text-[#1f2328] focus:outline-none dark:border-[#30363d] dark:bg-[#0d1117] dark:text-[#f0f6fc]"
@@ -404,6 +413,7 @@ export default function IncidentsPage() {
 
           {/* EU AI Act */}
           <select
+            aria-label="EU AI Act filtresi"
             value={euFilter}
             onChange={(e) => setEuFilter(e.target.value)}
             className="rounded border border-[#d0d7de] bg-[#ffffff] px-2 py-1 font-sans text-xs text-[#1f2328] focus:outline-none dark:border-[#30363d] dark:bg-[#0d1117] dark:text-[#f0f6fc]"
@@ -417,6 +427,7 @@ export default function IncidentsPage() {
 
           {/* Sağlayıcı */}
           <select
+            aria-label="Sağlayıcı filtresi"
             value={providerFilter}
             onChange={(e) => setProviderFilter(e.target.value)}
             className="rounded border border-[#d0d7de] bg-[#ffffff] px-2 py-1 font-sans text-xs text-[#1f2328] focus:outline-none dark:border-[#30363d] dark:bg-[#0d1117] dark:text-[#f0f6fc]"
@@ -444,7 +455,7 @@ export default function IncidentsPage() {
               VAKA AKIŞ KUYRUĞU
             </span>
             <span className="font-sans text-[10px] text-[#656d76] dark:text-[#8b949e]">
-              Canlı WebSocket Dinleniyor
+              Anlık Veri Görünümü
             </span>
           </div>
 
@@ -483,7 +494,7 @@ export default function IncidentsPage() {
                       )}
                     </div>
 
-                    <h3 className="text-balance mb-1 line-clamp-1 text-xs font-semibold text-[#1f2328] dark:text-[#f0f6fc]">
+                    <h3 className="mb-1 line-clamp-1 text-xs font-semibold text-balance text-[#1f2328] dark:text-[#f0f6fc]">
                       {inc.title}
                     </h3>
 
@@ -526,7 +537,7 @@ export default function IncidentsPage() {
                     <StatusBadge type="status" value={selectedIncident.status} />
                   </div>
                 </div>
-                <h2 className="text-balance text-sm leading-snug font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+                <h2 className="text-sm leading-snug font-bold text-balance text-[#1f2328] dark:text-[#f0f6fc]">
                   {selectedIncident.title}
                 </h2>
               </div>
@@ -660,7 +671,7 @@ export default function IncidentsPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
           <div className="animate-in fade-in zoom-in w-full max-w-md space-y-4 rounded-lg border border-[#d0d7de] bg-[#ffffff] p-5 shadow-2xl duration-150 dark:border-[#30363d] dark:bg-[#161b22]">
             <div className="flex items-center justify-between border-b border-[#d0d7de] pb-3 dark:border-[#30363d]">
-              <h3 className="text-balance font-sans text-sm font-bold text-[#1f2328] dark:text-[#f0f6fc]">
+              <h3 className="font-sans text-sm font-bold text-balance text-[#1f2328] dark:text-[#f0f6fc]">
                 Veri Setini Dışa Aktar (B2B Hazırlık)
               </h3>
               <button
@@ -698,4 +709,4 @@ export default function IncidentsPage() {
     </div>
   );
 }
-export const runtime = "nodejs";
+export const runtime = "edge";

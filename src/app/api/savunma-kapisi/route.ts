@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 
 let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
 try {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
   vault = require("@/lib/security/vault").vault;
 } catch {
   /* vault yoksa env fallback */

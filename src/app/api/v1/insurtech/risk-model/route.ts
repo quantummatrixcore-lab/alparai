@@ -5,7 +5,6 @@ import { rateLimit } from "@/lib/rate-limit";
 import { logger } from "@/lib/utils/logger";
 import { checkInternalQuota } from "@/lib/internal/guard";
 
-export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const querySchema = z.object({
@@ -40,7 +39,7 @@ export async function GET(request: NextRequest) {
 
   try {
     const dehost = await createServerClient();
-    let q = dehost
+    const q = dehost
       .from("incidents")
       .select("id,severity,category,incident_date,ai_provider_id")
       .eq("status", "published")
@@ -93,3 +92,4 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "internal_error" }, { status: 500 });
   }
 }
+export const runtime = "edge";

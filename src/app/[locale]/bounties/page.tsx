@@ -112,16 +112,30 @@ export default async function BountiesPage({ params }: { params: Promise<{ local
 
       {badgesStats && badgesStats.length > 0 && (
         <BountyBadgesShowcase
-          badges={badgesStats}
+          badges={badgesStats.map((b) => ({
+            ...b,
+            earnedByLabel:
+              locale === "tr"
+                ? `${b.earned_count} araştırmacı kazandı`
+                : `${b.earned_count} earned`,
+            requirementText:
+              locale === "tr"
+                ? `En az ${b.threshold_count} doğrulanmış rapor`
+                : `Min ${b.threshold_count} validated reports`,
+          }))}
           userBadgeCodes={userBadgeCodes}
           locale={locale}
           labels={{
-            title: t("badges_title"),
-            subtitle: t("badges_subtitle"),
-            unlocked: t("badges_unlocked"),
-            locked: t("badges_locked"),
-            earnedBy: (count) => t("badges_earned_by", { count }),
-            requirementLabel: (code, threshold) => t(`badges_req_${code}`, { threshold }),
+            title:
+              locale === "tr"
+                ? "Etik Araştırmacı Liyakat Rozetleri"
+                : "Ethical Researcher Merit Badges",
+            subtitle:
+              locale === "tr"
+                ? "Doğrulanmış yapay zeka ihlal raporlarıyla kazanılan kriptografik topluluk rozetleri."
+                : "Cryptographic community merit badges unlocked through validated AI incident disclosures.",
+            unlocked: locale === "tr" ? "KAZANILDI" : "UNLOCKED",
+            locked: locale === "tr" ? "KİLİTLİ" : "LOCKED",
           }}
         />
       )}

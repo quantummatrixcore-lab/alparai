@@ -4,78 +4,34 @@ import React, { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import {
-  ShieldAlert,
   Search,
   Filter,
   Download,
-  ExternalLink,
   CheckCircle,
-  AlertCircle,
-  Eye,
-  Lock,
-  Plus,
   Copy,
   Check,
   Clock,
   Building,
   Cpu,
   Scale,
-  Sparkles,
-  ArrowUpDown,
-  RefreshCw,
-  SlidersHorizontal,
   X,
 } from "lucide-react";
 import { StatusBadge } from "@/components/admin-core/status-badge";
 import { IncidentsTelemetry } from "@/components/admin/incidents-telemetry";
 import { CANONICAL_INCIDENT_COUNT } from "@/lib/constants";
-import { dehost } from "@/lib/dehost/client";
+import { getAdminIncidentsList } from "@/actions/admin/overview";
 import { useTranslations } from "next-intl";
 import {
   type IncidentRecord,
-  SeverityLevel,
   type IncidentStatus,
-  EUAIActCategory,
-  IngestionSource,
 } from "@/types/admin";
 
-const defaultIncidentPlaceholder: IncidentRecord[] = [
-  {
-    id: "inc-placeholder-1",
-    trackingNumber: "ALP-2026-3115",
-    title: "Multimodal Biometric Recognition Discrimination Bias",
-    modelTarget: "Frontier Vision-Language Model v4",
-    provider: "OpenAI",
-    severity: "CRITICAL",
-    status: "UNDER_TRIAGE",
-    source: "REGULATORY_FILING",
-    euAiActTag: "PROHIBITED_ART5",
-    potentialFineEur: 35000000,
-    slaRemainingHours: 12.4,
-    evidenceHash: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    createdAt: "2026-08-28T04:12:00Z",
-    humanVerified: true,
-    affectedIndustry: "Law Enforcement & Security",
-    summary:
-      "Biometric AI facial classification system demonstrated severe demographic classification bias in real-time edge testing.",
-  },
-];
-
-function calculateSlaRemainingHours(createdAt?: string | null, totalSlaHours = 72.0): number {
-  if (!createdAt) return totalSlaHours;
-  const createdTime = new Date(createdAt).getTime();
-  if (isNaN(createdTime)) return totalSlaHours;
-  const elapsedHours = (Date.now() - createdTime) / (1000 * 60 * 60);
-  const remaining = totalSlaHours - elapsedHours;
-  return Math.max(0, parseFloat(remaining.toFixed(1)));
-}
-
 export default function IncidentsPage() {
-  const t = useTranslations("admin.sidebar");
+  const _t = useTranslations("admin.sidebar");
   const params = useParams();
   const locale = (params?.locale as string) || "en";
   const [incidents, setIncidents] = useState<IncidentRecord[]>([]);
-  const [loadingDb, setLoadingDb] = useState(false);
+  const [_loadingDb, setLoadingDb] = useState(false);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("ALL");
   const [severityFilter, setSeverityFilter] = useState<string>("ALL");
@@ -87,52 +43,29 @@ export default function IncidentsPage() {
   const [actionNotice, setActionNotice] = useState<string | null>(null);
 
   useEffect(() => {
+    let cancelled = false;
     async function fetchRealIncidents() {
       try {
         setLoadingDb(true);
-        const { data, error } = await dehost
-          .from("incidents")
-          .select("id, title, description, status, severity, created_at, ai_providers(name)")
-          .order("created_at", { ascending: false })
-          .limit(50);
-
-        if (!error && data && data.length > 0) {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const mapped: IncidentRecord[] = data.map((row: any) => {
-            const createdAt = row.created_at || new Date().toISOString();
-            const slaRemainingHours = calculateSlaRemainingHours(createdAt);
-
-            return {
-              id: row.id,
-              trackingNumber: `ALP-2026-${row.id.slice(0, 4)}`,
-              title: row.title || "Untitled AI Incident",
-              modelTarget: row.ai_providers?.name || "Autonomous AI System",
-              provider: row.ai_providers?.name || "Global AI Lab",
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              severity: (row.severity?.toUpperCase() || "HIGH") as any,
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              status: (row.status?.toUpperCase() || "UNDER_TRIAGE") as any,
-              source: "REGULATORY_FILING",
-              euAiActTag: "HIGH_RISK_ART6",
-              potentialFineEur: 15000000,
-              slaRemainingHours,
-              evidenceHash: row.id.replace(/-/g, "") + "0000000000000000",
-              createdAt,
-              humanVerified: true,
-              affectedIndustry: "Enterprise & Tech",
-              summary: row.description || row.title || "Incident details undergoing triage.",
-            };
-          });
-          setIncidents(mapped);
-          setSelectedIncident(mapped[0] || null);
+        const data = await getAdminIncidentsList(50);
+        if (!cancelled) {
+          setIncidents(data);
+          if (data.length > 0) {
+            setSelectedIncident(data[0] || null);
+          }
         }
       } catch (err) {
-        console.error("Failed to load real incidents from DeHost:", err);
+        console.error("Failed to load real incidents:", err);
       } finally {
-        setLoadingDb(false);
+        if (!cancelled) {
+          setLoadingDb(false);
+        }
       }
     }
     fetchRealIncidents();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   // Multi-facet filtering
@@ -603,7 +536,7 @@ export default function IncidentsPage() {
               </div>
             </div>
           ) : (
-            <div className="rounded-md border border-[#d0d7de] bg-[#ffffff] p-8 text-center font-sans text-xs text-[#656d76] dark:border-[#30363d] dark:bg-[#161b22] dark:text-[#8b949e]">
+            <div className="rounded-md border border-border-subtle bg-bg-elevated p-8 text-center font-sans text-xs text-fg-muted">
               Detayları görmek için sol listeden bir vaka seçin.
             </div>
           )}
@@ -613,20 +546,20 @@ export default function IncidentsPage() {
       {/* Export Modal */}
       {showExportModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
-          <div className="animate-in fade-in zoom-in w-full max-w-md space-y-4 rounded-lg border border-[#d0d7de] bg-[#ffffff] p-5 shadow-2xl duration-150 dark:border-[#30363d] dark:bg-[#161b22]">
-            <div className="flex items-center justify-between border-b border-[#d0d7de] pb-3 dark:border-[#30363d]">
-              <h3 className="font-sans text-sm font-bold text-balance text-[#1f2328] dark:text-[#f0f6fc]">
+          <div className="animate-in fade-in zoom-in w-full max-w-md space-y-4 rounded-lg border border-border-subtle bg-bg-elevated p-5 shadow-2xl duration-150">
+            <div className="flex items-center justify-between border-b border-border-subtle pb-3">
+              <h3 className="font-sans text-sm font-bold text-balance text-fg-primary">
                 Veri Setini Dışa Aktar (B2B Hazırlık)
               </h3>
               <button
                 onClick={() => setShowExportModal(false)}
-                className="text-[#656d76] hover:text-[#1f2328] dark:text-[#8b949e] dark:hover:text-[#f0f6fc]"
+                className="text-fg-muted hover:text-fg-primary"
               >
                 <X className="h-4 w-4" />
               </button>
             </div>
 
-            <p className="text-xs text-[#656d76] dark:text-[#8b949e]">
+            <p className="text-xs text-fg-muted">
               Şu an filtrelenmiş olan <strong>{filtered.length} vaka</strong>, SHA-256 zaman
               damgaları ve EU AI Act regülasyon etiketleriyle birlikte dışa aktarılacaktır.
             </p>
@@ -634,14 +567,14 @@ export default function IncidentsPage() {
             <div className="grid grid-cols-2 gap-3 pt-2">
               <button
                 onClick={handleExportJSON}
-                className="flex items-center justify-center gap-2 rounded-md border border-[#0969da] bg-[#0969da]/10 p-3 font-sans text-xs font-bold text-[#0969da] transition-all hover:bg-[#0969da]/20 dark:border-[#58a6ff] dark:text-[#58a6ff]"
+                className="flex items-center justify-center gap-2 rounded-md border border-brand-500/40 bg-brand-500/10 p-3 font-sans text-xs font-bold text-brand-400 transition-all hover:bg-brand-500/20"
               >
                 <Download className="h-4 w-4" />
                 <span>JSON İndir</span>
               </button>
               <button
                 onClick={handleExportCSV}
-                className="flex items-center justify-center gap-2 rounded-md border border-[#238636] bg-[#238636]/10 p-3 font-sans text-xs font-bold text-[#1a7f37] transition-all hover:bg-[#238636]/20 dark:border-[#3fb950] dark:text-[#3fb950]"
+                className="flex items-center justify-center gap-2 rounded-md border border-success-500/40 bg-success-500/10 p-3 font-sans text-xs font-bold text-success-400 transition-all hover:bg-success-500/20"
               >
                 <Download className="h-4 w-4" />
                 <span>CSV / Excel</span>
@@ -653,4 +586,4 @@ export default function IncidentsPage() {
     </div>
   );
 }
-export const runtime = "edge";
+

@@ -3,8 +3,13 @@
 import { Trophy, Award, Medal, Crown, ShieldCheck, CheckCircle2, Lock } from "lucide-react";
 import type { BountyBadgeWithStats } from "@/actions/community/bounties";
 
+export interface BountyBadgePrecomputed extends BountyBadgeWithStats {
+  earnedByLabel: string;
+  requirementText: string;
+}
+
 interface BountyBadgesShowcaseProps {
-  badges: BountyBadgeWithStats[];
+  badges: BountyBadgePrecomputed[];
   userBadgeCodes?: string[];
   locale: string;
   labels: {
@@ -12,8 +17,6 @@ interface BountyBadgesShowcaseProps {
     subtitle: string;
     unlocked: string;
     locked: string;
-    earnedBy: (count: number) => string;
-    requirementLabel: (code: string, threshold: number) => string;
   };
 }
 
@@ -75,7 +78,6 @@ export function BountyBadgesShowcase({
           const isUnlocked = userBadgeCodes.includes(badge.code);
           const name = locale === "tr" ? badge.name_tr : badge.name_en;
           const description = locale === "tr" ? badge.description_tr : badge.description_en;
-          const requirementText = labels.requirementLabel(badge.code, badge.threshold_count);
 
           return (
             <div
@@ -116,9 +118,9 @@ export function BountyBadgesShowcase({
 
               <div className="border-border-subtle mt-4 border-t pt-3">
                 <div className="flex items-center justify-between text-[11px]">
-                  <span className="text-fg-muted font-medium">{requirementText}</span>
+                  <span className="text-fg-muted font-medium">{badge.requirementText}</span>
                   <span className="text-warning-400 font-bold">
-                    {labels.earnedBy(badge.earned_count)}
+                    {badge.earnedByLabel}
                   </span>
                 </div>
               </div>

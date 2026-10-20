@@ -6,6 +6,7 @@ import { KanbanBoard, type KanbanIncident } from "@/components/b2b/kanban-board"
 import { redirect } from "@/i18n/routing";
 import { constructPageMetadata } from "@/lib/seo/metadata";
 import { ShieldAlert } from "lucide-react";
+import { updateB2BIncidentStatus } from "@/actions/b2b";
 
 export async function generateMetadata({
   params,
@@ -31,7 +32,7 @@ export default async function B2BDashboardPage({
   setRequestLocale(locale);
 
   const user = await getCurrentUser();
-  if (!user || user.role !== "admin") {
+  if (!user || !["admin", "ceo", "moderator"].includes(user.role)) {
     redirect({ href: "/auth/signin?returnTo=/b2b/dashboard", locale });
   }
 
@@ -79,16 +80,7 @@ export default async function B2BDashboardPage({
       <div className="flex-1">
         <KanbanBoard
           incidents={incidents}
-          onStatusChange={async (id, status) => {
-            "use server";
-            const sb = await createServerClient();
-
-             
-            await sb
-              .from("incidents")
-              .update({ status: status as never })
-              .eq("id", id);
-          }}
+          onStatusChange={updateB2BIncidentStatus}
         />
       </div>
     </Container>

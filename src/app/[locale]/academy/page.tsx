@@ -22,6 +22,7 @@ import {
 import { ExpertForm } from "./expert-form";
 import { createClient } from "@/lib/dehost/server";
 import { Link } from "@/i18n/routing";
+import { CANONICAL_INCIDENT_COUNT, CANONICAL_TOTAL_PROVIDERS } from "@/lib/constants";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const resolvedParams = await params;
@@ -45,8 +46,8 @@ export default async function AcademyPage({ params }: { params: Promise<{ locale
     dehost.from("ai_providers").select("*", { count: "exact", head: true }),
   ]);
 
-  const totalIncidents = incidentsCount ? `${incidentsCount}+` : "350+";
-  const displayProviders = providersCount ? `${providersCount}+` : "40+";
+  const totalIncidents = `${incidentsCount || CANONICAL_INCIDENT_COUNT}+`;
+  const displayProviders = `${providersCount || CANONICAL_TOTAL_PROVIDERS}+`;
 
   return (
     <div className="bg-bg-primary text-fg-primary selection:bg-brand-500/30 min-h-screen">

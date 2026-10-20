@@ -8,3 +8,11 @@ if [ $? -ne 0 ]; then
   echo "🚨 Pre-commit checks failed! Commit aborted."
   exit 1
 fi
+
+echo "Running Edge Runtime Ban Verification..."
+node scripts/check-no-edge-runtime.mjs
+
+if [ $? -ne 0 ]; then
+  echo "🚨 Edge runtime check failed! Commit aborted."
+  exit 1
+fi

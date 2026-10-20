@@ -1,4 +1,4 @@
-import { redirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -14,6 +14,6 @@ export default async function AdvisoryBoardUnderscoreRedirect({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  redirect(`/${locale}/about/advisory-board`);
+  permanentRedirect(`/${locale}/about/advisory-board`);
 }
 export const runtime = "nodejs";

@@ -82,6 +82,7 @@ const routeSchemaMap: Record<string, z.ZodTypeAny> = {
   "public/domain-count": schemas.publicDomainCountResponseSchema,
   "regulatory/dispatch": schemas.regulatoryDispatchResponseSchema,
   "shield/scan": schemas.shieldScanResponseSchema,
+  "openapi.json": schemas.openApiSpecResponseSchema,
 };
 
 describe("API v1 Contract Coverage", () => {

@@ -221,7 +221,7 @@ export default function AiActComplianceGuideLocalePage() {
               AlparAi Otonom Uyum Analizörü ile Sisteminizi Doğrulayın
             </h2>
             <p className="text-slate-300 mb-6">
-              2,880+ yapay zeka vaka geçmişi ve otonom güvenlik radarıyla AI modellerinizin 
+              3,130+ yapay zeka vaka geçmişi ve otonom güvenlik radarıyla AI modellerinizin 
               EU AI Act uyumluluğunu dakikalar içinde test edin.
             </p>
             <div className="flex flex-wrap gap-4">

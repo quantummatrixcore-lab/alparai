@@ -10,14 +10,7 @@ import {
   Gavel,
   Clock,
   ShieldAlert,
-  Radio,
   ArrowUpRight,
-  CheckCircle2,
-  AlertTriangle,
-  FileText,
-  Activity,
-  Layers,
-  Flame,
   ArrowRight,
 } from "lucide-react";
 import { MetricCard } from "@/components/admin-core/metric-card";
@@ -26,6 +19,11 @@ import { useAdminStats } from "@/hooks/admin/use-admin-stats";
 import { useAdminVisualSample } from "@/hooks/admin/use-admin-visual-sample";
 import { AdminVisualsSection } from "@/components/admin/admin-visuals";
 import { CANONICAL_INCIDENT_COUNT } from "@/lib/constants";
+import {
+  getAdminOverviewData,
+  type AdminOverviewIncident,
+  type AdminOverviewB2BKey,
+} from "@/actions/admin/overview";
 
 export default function AdminV2OverviewPage() {
   const t = useTranslations("admin");
@@ -37,110 +35,38 @@ export default function AdminV2OverviewPage() {
   const locale = (params?.locale as string) || "en";
 
   // Dynamic states to replace mock static data
-  const [recentIncidents, setRecentIncidents] = React.useState<any[]>([]);
-  const [b2bKeys, setB2bKeys] = React.useState<any[]>([]);
+  const [recentIncidents, setRecentIncidents] = React.useState<AdminOverviewIncident[]>([]);
+  const [b2bKeys, setB2bKeys] = React.useState<AdminOverviewB2BKey[]>([]);
   const [b2bRevenueStr, setB2bRevenueStr] = React.useState<string>("$0.0k MRR");
   const [euRiskStr, setEuRiskStr] = React.useState<string>("€0.0M");
-  const [loadingRealData, setLoadingRealData] = React.useState(true);
+  const [_loadingRealData, setLoadingRealData] = React.useState(true);
 
   React.useEffect(() => {
+    let cancelled = false;
     async function loadRealData() {
       try {
-        const { dehost } = await import("@/lib/dehost/client");
-
-        // 1. Fetch real recent incidents
-        const { data: incidentsData } = await dehost
-          .from("incidents")
-          .select(
-            "id, title_masked, title_tr, severity, status, category, incident_date, incident_source, ai_providers(name, slug)",
-          )
-          .order("created_at", { ascending: false })
-          .limit(4);
-
-        if (incidentsData && incidentsData.length > 0) {
-          setRecentIncidents(
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            incidentsData.map((inc: any) => ({
-              id: inc.id,
-              trackingNumber: `ALP-2026-${inc.id.substring(0, 4).toUpperCase()}`,
-              modelTarget:
-                locale === "tr" && inc.title_tr
-                  ? inc.title_tr
-                  : inc.title_masked || "AI Model Incident",
-              provider: inc.ai_providers?.name || "Unknown Provider",
-              source: (inc.incident_source || "USER_SUBMITTED").toUpperCase(),
-              euAiActTag:
-                inc.category === "prohibited_practices" ? "PROHIBITED_ART5" : "HIGH_RISK_ART6",
-              slaRemainingHours: inc.status === "pending_review" ? 24 : 0,
-              status:
-                inc.status === "published"
-                  ? "SEALED_DEFENDED"
-                  : inc.status === "pending_review"
-                    ? "UNDER_TRIAGE"
-                    : "AUDIT_IN_PROGRESS",
-            })),
-          );
-        }
-
-        // 2. Fetch real B2B keys (bottleneck guard: bounded)
-        const { data: keysData } = await dehost
-          .from("api_keys")
-          .select("id, provider, client_type, tier, created_at")
-          .limit(100);
-
-        if (keysData && keysData.length > 0) {
-          setB2bKeys(
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            keysData.slice(0, 3).map((key: any) => {
-              const quota =
-                key.tier === "premium" ? 1000000 : key.tier === "enterprise" ? 5000000 : 250000;
-              const usage = Math.floor(quota * 0.12);
-              const rate = key.tier === "premium" ? 5000 : key.tier === "enterprise" ? 12000 : 1500;
-              return {
-                id: key.id || Math.random().toString(),
-                organizationName: `${key.provider.toUpperCase()} Core Link`,
-                monthlyRateUsd: rate,
-                requestsThisMonth: usage,
-                requestQuotaMonthly: quota,
-              };
-            }),
-          );
-
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const totalMrr = keysData.reduce((acc: number, curr: any) => {
-            const rate = curr.tier === "premium" ? 5000 : curr.tier === "enterprise" ? 12000 : 1500;
-            return acc + rate;
-          }, 0);
-          setB2bRevenueStr(`$${(totalMrr / 1000).toFixed(1)}k MRR`);
-        } else {
-          setB2bKeys([]);
-          setB2bRevenueStr("$0.0k MRR");
-        }
-
-        // 3. Compute dynamic EU AI Act Risk fine potential
-        const criticalCount =
-          stats.incidents.critical ||
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          incidentsData?.filter((i: any) => i.severity === "critical").length ||
-          0;
-        const prohibitedCount =
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          incidentsData?.filter((i: any) => i.category === "prohibited_practices").length || 0;
-        const riskFine = prohibitedCount * 35.0 + criticalCount * 15.0;
-        if (riskFine >= 1000) {
-          setEuRiskStr(`€${(riskFine / 1000).toFixed(2)} Mrd`);
-        } else {
-          setEuRiskStr(`€${riskFine > 0 ? riskFine.toFixed(1) : "0.0"}M`);
+        setLoadingRealData(true);
+        const data = await getAdminOverviewData(locale);
+        if (!cancelled) {
+          setRecentIncidents(data.recentIncidents);
+          setB2bKeys(data.b2bKeys);
+          setB2bRevenueStr(data.b2bRevenueStr);
+          setEuRiskStr(data.euRiskStr);
         }
       } catch (err) {
         console.error("Error loading real dashboard data:", err);
       } finally {
-        setLoadingRealData(false);
+        if (!cancelled) {
+          setLoadingRealData(false);
+        }
       }
     }
 
     loadRealData();
-  }, [locale, stats.incidents.critical, stats.incidents.total]);
+    return () => {
+      cancelled = true;
+    };
+  }, [locale]);
 
   const liveIncidentSection = React.useMemo(
     () => (
@@ -305,7 +231,7 @@ export default function AdminV2OverviewPage() {
         </div>
       </div>
     ),
-    [td, locale, recentIncidents, b2bKeys, b2bRevenueStr],
+    [td, locale, recentIncidents, b2bKeys],
   );
 
   const quickDeckSection = React.useMemo(
@@ -476,10 +402,17 @@ export default function AdminV2OverviewPage() {
       <div className="space-y-3">
         <div className="flex items-baseline justify-between">
           <h2 className="text-fg-primary font-sans text-sm font-bold tracking-wide">
-            Görsel Anlatım
+            {td("visualStorytelling", {
+              defaultValue: locale === "tr" ? "Görsel Anlatım" : "Visual Telemetry",
+            })}
           </h2>
           <span className="text-fg-muted font-sans text-[11px]">
-            Son 500 yayınlanmış kayıt örneğinden hesaplanır
+            {td("visualStorytellingSub", {
+              defaultValue:
+                locale === "tr"
+                  ? "Son 500 yayınlanmış kayıt örneğinden hesaplanır"
+                  : "Computed from the latest 500 published incident records",
+            })}
           </span>
         </div>
         <AdminVisualsSection rows={visualRows} loading={visualLoading} />
@@ -493,4 +426,4 @@ export default function AdminV2OverviewPage() {
     </div>
   );
 }
-export const runtime = 'edge';
+

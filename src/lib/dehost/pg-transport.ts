@@ -41,14 +41,22 @@ let driverLoadError: string | null = null;
 async function loadPgDriver(): Promise<{ Pool: new (config: unknown) => PgPoolLike } | null> {
   try {
     const specifier = "pg";
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const mod: any = await import(/* @vite-ignore */ /* webpackIgnore: true */ specifier);
-    const Pool = mod?.default?.Pool ?? mod?.Pool;
+    const mod: unknown = await import(/* @vite-ignore */ /* webpackIgnore: true */ specifier);
+    let Pool: unknown;
+    if (typeof mod === "object" && mod !== null) {
+      const record = mod as Record<string, unknown>;
+      const defaultExport = record.default;
+      if (typeof defaultExport === "object" && defaultExport !== null && "Pool" in defaultExport) {
+        Pool = (defaultExport as Record<string, unknown>).Pool;
+      } else if ("Pool" in record) {
+        Pool = record.Pool;
+      }
+    }
     if (typeof Pool !== "function") {
       driverLoadError = "pg module loaded but does not expose a Pool constructor";
       return null;
     }
-    return { Pool };
+    return { Pool: Pool as new (config: unknown) => PgPoolLike };
   } catch (error) {
     driverLoadError = error instanceof Error ? error.message : String(error);
     return null;
@@ -69,7 +77,7 @@ function buildPoolConfig(): Record<string, unknown> {
       connectionTimeoutMillis: 5000,
       statement_timeout: 15000,
       idleTimeoutMillis: 30000,
-      max: 10,
+      max: Number(env.PG_POOL_MAX) || 20,
       ssl: isProduction && !isLocal ? { rejectUnauthorized: false } : undefined,
     };
   }
@@ -88,7 +96,7 @@ function buildPoolConfig(): Record<string, unknown> {
     connectionTimeoutMillis: 5000,
     statement_timeout: 15000,
     idleTimeoutMillis: 30000,
-    max: 10,
+    max: Number(env.PG_POOL_MAX) || 20,
     ssl: isProduction && !isLocalHost ? { rejectUnauthorized: false } : undefined,
   };
 }

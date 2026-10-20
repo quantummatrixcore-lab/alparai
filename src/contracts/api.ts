@@ -800,6 +800,19 @@ export const shieldScanResponseSchema = z.object({
   error: z.string().optional(),
 }).passthrough();
 
+// 53. GET /api/v1/openapi.json
+export const openApiSpecResponseSchema = z.object({
+  openapi: z.literal("3.1.0"),
+  info: z.object({
+    title: z.string(),
+    version: z.string(),
+    description: z.string().optional(),
+  }).passthrough(),
+  paths: z.record(z.string(), z.unknown()),
+  components: z.record(z.string(), z.unknown()).optional(),
+}).passthrough();
+
+
 
 
 

@@ -1,9 +1,6 @@
 import "server-only";
 import { createClient } from "@/lib/dehost/server";
-import {
-  resolveIncidentCount,
-  CANONICAL_TOTAL_PROVIDERS,
-} from "@/lib/constants";
+import { resolveIncidentCount, CANONICAL_TOTAL_PROVIDERS } from "@/lib/constants";
 
 export interface GlobalMetrics {
   totalIncidents: number;
@@ -26,7 +23,8 @@ export async function getGlobalMetrics(): Promise<GlobalMetrics> {
     dehost
       .from("incidents")
       .select("*", { count: "exact", head: true })
-      .eq("status", "published"),
+      .eq("status", "published")
+      .not("evidence_hash", "is", null),
     dehost.from("ai_providers").select("*", { count: "exact", head: true }),
     dehost.from("ai_provider_responses").select("*", { count: "exact", head: true }),
   ]);

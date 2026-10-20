@@ -1,5 +1,9 @@
 let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
-try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
+try {
+  vault = require("@/lib/security/vault").vault;
+} catch {
+  /* stub bicimi korunur */
+}
 import "server-only";
 import { type NextRequest, NextResponse } from "next/server";
 import { createServerClient } from "@/lib/dehost/server";
@@ -9,11 +13,12 @@ import { headers } from "next/headers";
 import { logger } from "@/lib/utils/logger";
 import { privatizeHistogram } from "@/lib/privacy/differential-privacy";
 
-
 const ALLOWED_ORIGINS = [
   "https://alparai.com",
   "https://www.alparai.com",
-  ...((vault.read('NODE_ENV') ?? process.env.NODE_ENV) === "development" ? ["http://localhost:3000"] : []),
+  ...((vault.read("NODE_ENV") ?? process.env.NODE_ENV) === "development"
+    ? ["http://localhost:3000"]
+    : []),
 ];
 
 function corsHeaders(origin: string | null) {
@@ -66,7 +71,8 @@ export async function GET(request: NextRequest) {
       dehost
         .from("incidents")
         .select("id", { count: "exact", head: true })
-        .eq("status", "published"),
+        .eq("status", "published")
+        .not("evidence_hash", "is", null),
       dehost.from("ai_providers").select("trust_score"),
       dehost.from("incidents").select("category").eq("status", "published"),
     ]);
@@ -103,7 +109,8 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const useDp = searchParams.get("dp") === "true";
     const epsilonParam = parseFloat(searchParams.get("epsilon") || "1.0");
-    const epsilon = Number.isFinite(epsilonParam) && epsilonParam > 0 ? Math.min(epsilonParam, 5.0) : 1.0;
+    const epsilon =
+      Number.isFinite(epsilonParam) && epsilonParam > 0 ? Math.min(epsilonParam, 5.0) : 1.0;
 
     const reportedByCategory = useDp
       ? privatizeHistogram(byCategory, epsilon, { minThreshold: 1 })

@@ -107,8 +107,17 @@ export function useAdminStats(): UseAdminStatsResult {
       setLoading(true);
       setError(null);
 
+      // Bottleneck fix (2026-10-20): incidents tablosu komple ÇEKİLMEZ.
+      // Toplamlar için hafif head-count sorguları; dağılım için sınırlı örnek
+      // (useAdminVisualSample) ayrı hook'tadır. 3.000+ satır indirme tarihe karıştı.
       const [
-        incidentsRes,
+        incidentsTotalRes,
+        incidentsPendingRes,
+        incidentsPublishedRes,
+        incidentsApprovedRes,
+        incidentsRejectedRes,
+        incidentsCriticalRes,
+        incidentsCriticalUpperRes,
         usersRes,
         alarmsRes,
         autopilotRes,
@@ -116,7 +125,31 @@ export function useAdminStats(): UseAdminStatsResult {
         flagsRes,
         dsarRes,
       ] = await Promise.all([
-        dehost.from("incidents").select("status, severity"),
+        dehost.from("incidents").select("id", { count: "exact", head: true }),
+        dehost
+          .from("incidents")
+          .select("id", { count: "exact", head: true })
+          .eq("status", "pending"),
+        dehost
+          .from("incidents")
+          .select("id", { count: "exact", head: true })
+          .eq("status", "published"),
+        dehost
+          .from("incidents")
+          .select("id", { count: "exact", head: true })
+          .eq("status", "approved"),
+        dehost
+          .from("incidents")
+          .select("id", { count: "exact", head: true })
+          .eq("status", "rejected"),
+        dehost
+          .from("incidents")
+          .select("id", { count: "exact", head: true })
+          .eq("severity", "critical"),
+        dehost
+          .from("incidents")
+          .select("id", { count: "exact", head: true })
+          .eq("severity", "CRITICAL"),
         dehost.from("users").select("role, is_banned"),
         dehost.from("sla_alarms").select("resolved"),
         dehost.from("autopilot_runs").select("status, created_at"),
@@ -125,7 +158,9 @@ export function useAdminStats(): UseAdminStatsResult {
         dehost.from("dsar_requests").select("status"),
       ]);
 
-      const incidentsData = (incidentsRes.data || []) as unknown as IncidentStatRow[];
+      const headCount = (r: { count?: number | null }): number | null =>
+        typeof r?.count === "number" ? r.count : null;
+      const liveTotal = headCount(incidentsTotalRes as unknown as { count?: number | null });
       const usersData = (usersRes.data || []) as unknown as UserStatRow[];
       const alarmsData = (alarmsRes.data || []) as unknown as SlaAlarmStatRow[];
       const autopilotData = (autopilotRes.data || []) as unknown as AutopilotRunStatRow[];
@@ -133,23 +168,25 @@ export function useAdminStats(): UseAdminStatsResult {
       const flagsData = (flagsRes.data || []) as unknown as FeatureFlagStatRow[];
       const dsarData = (dsarRes.data || []) as unknown as DsarRequestStatRow[];
 
-      const hasIncidents = incidentsData.length > 0;
-      const totalIncidents = hasIncidents ? incidentsData.length : CANONICAL_INCIDENT_COUNT;
-      const pendingIncidents = hasIncidents
-        ? incidentsData.filter((i: IncidentStatRow) => i.status === "pending").length
-        : 38;
+      const countOr = (v: number | null, fallback: number): number =>
+        typeof v === "number" ? v : fallback;
+      const totalIncidents = countOr(liveTotal, CANONICAL_INCIDENT_COUNT);
+      const hasIncidents = liveTotal !== null && liveTotal > 0;
+      const pendingIncidents = countOr(
+        headCount(incidentsPendingRes as unknown as { count?: number | null }),
+        38,
+      );
       const approvedIncidents = hasIncidents
-        ? incidentsData.filter(
-            (i: IncidentStatRow) => i.status === "published" || i.status === "approved"
-          ).length
+        ? countOr(headCount(incidentsPublishedRes as unknown as { count?: number | null }), 0) +
+          countOr(headCount(incidentsApprovedRes as unknown as { count?: number | null }), 0)
         : CANONICAL_INCIDENT_COUNT;
-      const rejectedIncidents = hasIncidents
-        ? incidentsData.filter((i: IncidentStatRow) => i.status === "rejected").length
-        : 14;
+      const rejectedIncidents = countOr(
+        headCount(incidentsRejectedRes as unknown as { count?: number | null }),
+        14,
+      );
       const criticalIncidents = hasIncidents
-        ? incidentsData.filter(
-            (i: IncidentStatRow) => i.severity === "critical" || i.severity === "CRITICAL"
-          ).length
+        ? countOr(headCount(incidentsCriticalRes as unknown as { count?: number | null }), 0) +
+          countOr(headCount(incidentsCriticalUpperRes as unknown as { count?: number | null }), 0)
         : 4;
 
       const newStats: AdminSystemStats = {
@@ -163,11 +200,10 @@ export function useAdminStats(): UseAdminStatsResult {
         users: {
           total: usersData.length,
           moderators: usersData.filter(
-            (u: UserStatRow) => u.role === "moderator" || u.role === "admin" || u.role === "ceo"
+            (u: UserStatRow) => u.role === "moderator" || u.role === "admin" || u.role === "ceo",
           ).length,
-          experts: usersData.filter(
-            (u: UserStatRow) => u.role === "expert" || u.role === "advisor"
-          ).length,
+          experts: usersData.filter((u: UserStatRow) => u.role === "expert" || u.role === "advisor")
+            .length,
           banned: usersData.filter((u: UserStatRow) => Boolean(u.is_banned)).length,
         },
         alarms: {
@@ -177,20 +213,20 @@ export function useAdminStats(): UseAdminStatsResult {
         },
         autopilot: {
           activeRuns: autopilotData.filter(
-            (r: AutopilotRunStatRow) => r.status === "running" || r.status === "in_progress"
+            (r: AutopilotRunStatRow) => r.status === "running" || r.status === "in_progress",
           ).length,
-          failedToday: autopilotData.filter((r: AutopilotRunStatRow) => r.status === "failed").length,
-          completedToday: autopilotData.filter(
-            (r: AutopilotRunStatRow) => r.status === "completed"
-          ).length,
+          failedToday: autopilotData.filter((r: AutopilotRunStatRow) => r.status === "failed")
+            .length,
+          completedToday: autopilotData.filter((r: AutopilotRunStatRow) => r.status === "completed")
+            .length,
         },
         grants: {
           totalApplications: grantsData.length,
           awardedCount: grantsData.filter(
-            (g: GrantApplicationStatRow) => g.status === "awarded" || g.status === "approved"
+            (g: GrantApplicationStatRow) => g.status === "awarded" || g.status === "approved",
           ).length,
           pendingCount: grantsData.filter(
-            (g: GrantApplicationStatRow) => g.status === "submitted" || g.status === "review"
+            (g: GrantApplicationStatRow) => g.status === "submitted" || g.status === "review",
           ).length,
         },
         featureFlags: {
@@ -199,7 +235,7 @@ export function useAdminStats(): UseAdminStatsResult {
         },
         dsar: {
           pendingRequests: dsarData.filter(
-            (d: DsarRequestStatRow) => d.status === "pending" || d.status === "in_progress"
+            (d: DsarRequestStatRow) => d.status === "pending" || d.status === "in_progress",
           ).length,
         },
       };

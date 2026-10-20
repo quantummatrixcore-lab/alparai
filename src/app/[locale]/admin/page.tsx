@@ -23,12 +23,15 @@ import {
 import { MetricCard } from "@/components/admin-core/metric-card";
 import { StatusBadge } from "@/components/admin-core/status-badge";
 import { useAdminStats } from "@/hooks/admin/use-admin-stats";
+import { useAdminVisualSample } from "@/hooks/admin/use-admin-visual-sample";
+import { AdminVisualsSection } from "@/components/admin/admin-visuals";
 import { CANONICAL_INCIDENT_COUNT } from "@/lib/constants";
 
 export default function AdminV2OverviewPage() {
   const t = useTranslations("admin");
   const td = useTranslations("admin.dashboard");
   const { stats } = useAdminStats();
+  const { rows: visualRows, loading: visualLoading } = useAdminVisualSample();
 
   const params = useParams();
   const locale = (params?.locale as string) || "en";
@@ -469,12 +472,25 @@ export default function AdminV2OverviewPage() {
         />
       </div>
 
-      {/* 3. Mid Grid: Live Incident Triage + EU AI Act Compliance Barometer */}
+      {/* 3. Görsel Anlatım: şiddet + kategori + 12 haftalık akış (canlı örnek) */}
+      <div className="space-y-3">
+        <div className="flex items-baseline justify-between">
+          <h2 className="text-fg-primary font-sans text-sm font-bold tracking-wide">
+            Görsel Anlatım
+          </h2>
+          <span className="text-fg-muted font-sans text-[11px]">
+            Son 500 yayınlanmış kayıt örneğinden hesaplanır
+          </span>
+        </div>
+        <AdminVisualsSection rows={visualRows} loading={visualLoading} />
+      </div>
+
+      {/* 4. Mid Grid: Live Incident Triage + EU AI Act Compliance Barometer */}
       {liveIncidentSection}
 
-      {/* 4. Bottom 5-Cluster Navigation Quick Deck */}
+      {/* 5. Bottom 5-Cluster Navigation Quick Deck */}
       {quickDeckSection}
     </div>
   );
 }
-export const runtime = "edge";
+export const runtime = 'edge';

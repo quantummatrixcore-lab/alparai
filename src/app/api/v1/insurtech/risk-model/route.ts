@@ -4,6 +4,7 @@ import { createServerClient } from "@/lib/dehost/server";
 import { rateLimit } from "@/lib/rate-limit";
 import { logger } from "@/lib/utils/logger";
 import { checkInternalQuota } from "@/lib/internal/guard";
+import { recordUsage } from "@/lib/billing/meter";
 
 export const dynamic = "force-dynamic";
 
@@ -55,6 +56,12 @@ export async function GET(request: NextRequest) {
       category?: string;
       incident_date?: string;
     }>;
+    // Metered billing: her sorgu 1 birim yazar (iç müşteri ayrı etikette).
+    recordUsage(
+      internalKey ?? request.headers.get("x-api-key") ?? "anonymous",
+      internalKey ? "insurtech-internal" : "insurtech-query",
+      1,
+    );
     const bySeverity: Record<string, number> = {};
     for (const r of rows) {
       const s = (r.severity || "unknown").toLowerCase();

@@ -2,9 +2,9 @@ import { type NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { rateLimit } from "@/lib/rate-limit";
 import { computeArticle73Deadline } from "@/lib/legal/article73";
+import { recordUsage } from "@/lib/billing/meter";
 import { logger } from "@/lib/utils/logger";
 
-export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const bodySchema = z.object({
@@ -35,6 +35,8 @@ export async function POST(request: NextRequest) {
       severity: parsed.data.severity,
       euActRiskCategory: parsed.data.eu_act_risk_category ?? null,
     });
+    // Metered billing: her bildirim paketi 1 birim yazar.
+    recordUsage(request.headers.get("x-api-key") ?? "anonymous", "regulatory-dispatch", 1);
     return NextResponse.json(
       {
         data: {
@@ -61,3 +63,4 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "internal_error" }, { status: 500 });
   }
 }
+export const runtime = "edge";

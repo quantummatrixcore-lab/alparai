@@ -65,13 +65,13 @@ async function init() {
 
   try {
     const res = await fetch(
-      `${API_BASE}/api/v1/incidents?domain=${encodeURIComponent(domain)}&limit=100`,
+      `${API_BASE}/api/v1/public/domain-count?domain=${encodeURIComponent(domain)}`,
       { signal: controller.signal },
     );
     clearTimeout(timeoutId);
 
     const data = await res.json();
-    const count = data.meta?.count ?? data.data?.length ?? 0;
+    const count = data.data?.count ?? 0;
 
     popupCache.set(domain, count);
     displayResults(count, domain);

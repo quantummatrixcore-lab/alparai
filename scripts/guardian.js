@@ -1,6 +1,6 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -8,24 +8,24 @@ const __dirname = path.dirname(__filename);
 let hasError = false;
 
 function error(msg) {
-  console.error('[ERROR]', msg);
+  console.error("[ERROR]", msg);
   hasError = true;
 }
 
 function warn(msg) {
-  console.warn('[GUARDIAN WARN]', msg);
+  console.warn("[GUARDIAN WARN]", msg);
 }
 
 function success(msg) {
-  console.log('[OK]', msg);
+  console.log("[OK]", msg);
 }
 
-const basePath = path.resolve(__dirname, '..');
+const basePath = path.resolve(__dirname, "..");
 
 function countDeepKeys(obj) {
   let count = 0;
   for (const k in obj) {
-    if (typeof obj[k] === 'object' && obj[k] !== null) {
+    if (typeof obj[k] === "object" && obj[k] !== null) {
       count += countDeepKeys(obj[k]);
     } else {
       count++;
@@ -35,21 +35,21 @@ function countDeepKeys(obj) {
 }
 
 function checkMessages() {
-  const messagesDir = path.join(basePath, 'messages');
-  const files = ['en.json', 'tr.json'];
+  const messagesDir = path.join(basePath, "messages");
+  const files = ["en.json", "tr.json"];
   let en = {};
   let tr = {};
-  
-  files.forEach(file => {
+
+  files.forEach((file) => {
     const filePath = path.join(messagesDir, file);
     if (fs.existsSync(filePath)) {
       try {
-        const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-        if (file === 'en.json') en = data;
-        if (file === 'tr.json') tr = data;
+        const data = JSON.parse(fs.readFileSync(filePath, "utf8"));
+        if (file === "en.json") en = data;
+        if (file === "tr.json") tr = data;
         const topLevelCount = Object.keys(data).length;
         const deepCount = countDeepKeys(data);
-        
+
         if (topLevelCount < 80) {
           error(`${file} has only ${topLevelCount} top-level namespaces. Expected at least 80.`);
         }
@@ -57,7 +57,7 @@ function checkMessages() {
           error(`${file} has only ${deepCount} deep keys. Expected at least 3000.`);
         }
 
-        const requiredKeys = ['hero', 'segments', 'marketing', 'common', 'nav', 'admin'];
+        const requiredKeys = ["hero", "segments", "marketing", "common", "nav", "admin"];
         for (const rk of requiredKeys) {
           if (!data[rk]) {
             error(`${file} is missing critical namespace: '${rk}'`);
@@ -73,10 +73,10 @@ function checkMessages() {
 
   // Check nested namespaces
   const nestedChecks = [
-    ['about', 'advisoryBoardTitle'],
-    ['suggestions', 'signInToSuggest'],
-    ['transparency', 'obligation_header'],
-    ['products', 'eu_ai_act_page'],
+    ["about", "advisoryBoardTitle"],
+    ["suggestions", "signInToSuggest"],
+    ["transparency", "obligation_header"],
+    ["products", "eu_ai_act_page"],
   ];
   for (const [ns, key] of nestedChecks) {
     if (!en[ns]?.[key]) warn(`EN missing: ${ns}.${key}`);
@@ -87,11 +87,11 @@ function checkMessages() {
 function walk(dir, fileCallback) {
   if (!fs.existsSync(dir)) return;
   const list = fs.readdirSync(dir);
-  list.forEach(file => {
+  list.forEach((file) => {
     const fullPath = path.join(dir, file);
     const stat = fs.statSync(fullPath);
     if (stat && stat.isDirectory()) {
-      if (file !== 'node_modules' && file !== '.next' && file !== '.git') {
+      if (file !== "node_modules" && file !== ".next" && file !== ".git") {
         walk(fullPath, fileCallback);
       }
     } else {
@@ -101,20 +101,27 @@ function walk(dir, fileCallback) {
 }
 
 function checkSrcCode() {
-  const srcDir = path.join(basePath, 'src');
+  const srcDir = path.join(basePath, "src");
   if (!fs.existsSync(srcDir)) return;
-  
+
   walk(srcDir, (filePath) => {
     try {
-      const content = fs.readFileSync(filePath, 'utf8');
-      
+      const content = fs.readFileSync(filePath, "utf8");
+
       // Prohibit inc-demo in production files
-      if (content.includes('inc-demo-') && !filePath.includes('.test.') && !filePath.includes('.spec.')) {
+      if (
+        content.includes("inc-demo-") &&
+        !filePath.includes(".test.") &&
+        !filePath.includes(".spec.")
+      ) {
         error(`Found forbidden 'inc-demo-' pattern in ${filePath}`);
       }
-      
-      if (filePath.endsWith('page.tsx')) {
-        if (content.includes('as unknown as IncidentListItem[]') || content.includes('as LeaderboardEntry[]')) {
+
+      if (filePath.endsWith("page.tsx")) {
+        if (
+          content.includes("as unknown as IncidentListItem[]") ||
+          content.includes("as LeaderboardEntry[]")
+        ) {
           error(`Found forbidden mock fallbacks in ${filePath}`);
         }
       }
@@ -125,42 +132,92 @@ function checkSrcCode() {
 }
 
 function checkSeedFiles() {
-  const dehostDir = path.join(basePath, 'dehost');
+  const dehostDir = path.join(basePath, "dehost");
   if (!fs.existsSync(dehostDir)) return;
   walk(dehostDir, (filePath) => {
-    if (filePath.endsWith('.sql') && path.basename(filePath).includes('seed')) {
+    if (filePath.endsWith(".sql") && path.basename(filePath).includes("seed")) {
       try {
-        const content = fs.readFileSync(filePath, 'utf8');
-        if (!content.includes('-- PRODUCTION SEED') && !content.includes('-- TEST ONLY')) {
+        const content = fs.readFileSync(filePath, "utf8");
+        if (!content.includes("-- PRODUCTION SEED") && !content.includes("-- TEST ONLY")) {
           error(`Seed SQL file missing production/test tag: ${filePath}`);
         }
-      } catch(e) {}
+      } catch (e) {}
     }
   });
+}
+
+function checkBrandAssets() {
+  // Logo zinciri: navbar logo.tsx -> public dosyası -> geçerli SVG.
+  // Tarihçe: logo 4 kez "restore" edildi; kırılmayı commit kapısında yakala.
+  const logoComponent = path.join(basePath, "src", "components", "layout", "logo.tsx");
+  let referenced = [];
+  try {
+    const src = fs.readFileSync(logoComponent, "utf8");
+    const matches = src.match(/src="(\/[^"]+)"/g) || [];
+    referenced = matches.map((m) => m.slice(5, -1));
+  } catch (e) {
+    error(`Logo bileşeni okunamadı: ${logoComponent}`);
+    return;
+  }
+  if (referenced.length === 0) {
+    error("logo.tsx içinde public dosya referansı bulunamadı.");
+    return;
+  }
+  for (const ref of referenced) {
+    const diskPath = path.join(basePath, "public", ref.replace(/^\//, ""));
+    if (!fs.existsSync(diskPath)) {
+      error(`Logo dosyası eksik: ${ref} (${diskPath})`);
+      continue;
+    }
+    const stat = fs.statSync(diskPath);
+    if (!stat.isFile() || stat.size < 100) {
+      error(`Logo dosyası bozuk/boş: ${ref} (${stat.size} bayt)`);
+      continue;
+    }
+    if (ref.endsWith(".svg")) {
+      const head = fs.readFileSync(diskPath, "utf8").slice(0, 200);
+      if (!head.includes("<svg")) {
+        error(`Logo SVG geçersiz (svg etiketi yok): ${ref}`);
+        continue;
+      }
+    }
+    success(`Marka varlığı sağlam: ${ref} (${stat.size} bayt)`);
+  }
+  for (const fav of ["favicon.ico", "favicon-32x32.png", "apple-touch-icon.png"]) {
+    const p = path.join(basePath, "public", fav);
+    if (!fs.existsSync(p)) {
+      error(`Favicon eksik: public/${fav}`);
+    }
+  }
 }
 
 function checkPublicDir() {
-  const publicDir = path.join(basePath, 'public');
+  const publicDir = path.join(basePath, "public");
   if (!fs.existsSync(publicDir)) return;
-  
+
   walk(publicDir, (filePath) => {
     const fileName = path.basename(filePath);
-    if (fileName === 'index.html') {
-      error(`Found forbidden file in public directory: ${filePath}. These hijack the Next.js App Router.`);
+    if (fileName === "index.html") {
+      error(
+        `Found forbidden file in public directory: ${filePath}. These hijack the Next.js App Router.`,
+      );
     }
   });
 }
 
-console.log('--- Running ALPAR AI Guardian & Integrity Gate ---');
+console.log("--- Running ALPAR AI Guardian & Integrity Gate ---");
 checkMessages();
 checkSrcCode();
 checkSeedFiles();
 checkPublicDir();
+checkBrandAssets();
 
 if (hasError) {
-  console.error('\n[GUARDIAN REJECTED] Commit/Build aborted due to security or integrity violations.');
+  console.error(
+    "\n[GUARDIAN REJECTED] Commit/Build aborted due to security or integrity violations.",
+  );
   process.exit(1);
 } else {
-  success('All system integrity and zero-mock constraints passed!');
+  success("All system integrity and zero-mock constraints passed!");
   process.exit(0);
 }

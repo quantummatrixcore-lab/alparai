@@ -323,7 +323,7 @@ export const AdminSidebar = memo(function AdminSidebar() {
               <Link href={`/${locale}/admin`} className="group flex min-w-0 items-center gap-2.5">
                 <Logo size="sm" />
                 <div className="flex min-w-0 flex-col">
-                  <span className="truncate text-xs font-black tracking-tight text-[#1f2328] dark:text-[#f0f6fc]">
+                  <span className="text-admin-fg truncate text-xs font-black tracking-tight">
                     ALPAR <span className="text-cyan-600 dark:text-cyan-400">AI</span>
                   </span>
                   <span className="truncate font-sans text-[9px] font-semibold tracking-wider text-[#656d76] uppercase dark:text-[#8b949e]">
@@ -377,9 +377,9 @@ export const AdminSidebar = memo(function AdminSidebar() {
                   >
                     <span className="truncate">{cluster.title}</span>
                     {isOpen ? (
-                      <ChevronDown className="h-3 w-3 flex-shrink-0 text-[#656d76] dark:text-[#8b949e]" />
+                      <ChevronDown className="text-admin-muted h-3 w-3 flex-shrink-0" />
                     ) : (
-                      <ChevronRight className="h-3 w-3 flex-shrink-0 text-[#656d76] dark:text-[#8b949e]" />
+                      <ChevronRight className="text-admin-muted h-3 w-3 flex-shrink-0" />
                     )}
                   </button>
                 ) : (
@@ -414,7 +414,7 @@ export const AdminSidebar = memo(function AdminSidebar() {
                             <Icon
                               className={`h-4 w-4 flex-shrink-0 ${
                                 isActive
-                                  ? "text-[#0969da] dark:text-[#58a6ff]"
+                                  ? "text-admin-accent"
                                   : "text-[#656d76] group-hover:text-[#1f2328] dark:text-[#8b949e] dark:group-hover:text-[#f0f6fc]"
                               }`}
                             />
@@ -445,7 +445,7 @@ export const AdminSidebar = memo(function AdminSidebar() {
         </div>
 
         <div
-          className={`flex items-center border-t border-[#d0d7de] bg-[#f6f8fa] p-3 dark:border-[#30363d] dark:bg-[#0d1117] ${isCollapsed ? "justify-center" : "justify-between"} shrink-0 font-sans text-[11px] text-[#656d76] dark:text-[#8b949e]`}
+          className={`flex items-center border-t border-[#d0d7de] bg-[#f6f8fa] p-3 dark:border-[#30363d] dark:bg-[#0d1117] ${isCollapsed ? "justify-center" : "justify-between"} text-admin-muted shrink-0 font-sans text-[11px]`}
         >
           {!isCollapsed ? (
             <>

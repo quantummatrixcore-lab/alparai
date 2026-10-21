@@ -19,7 +19,7 @@ export function AdminTopbar() {
     <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b border-[#d0d7de] bg-[#f6f8fa] pr-6 pl-14 select-none md:px-6 dark:border-[#30363d] dark:bg-[#161b22]">
       {/* Left: Breadcrumbs & Path */}
       <div className="flex items-center gap-2 font-sans text-xs">
-        <span className="font-medium text-[#656d76] dark:text-[#8b949e]">ADMIN-OS</span>
+        <span className="text-admin-muted font-medium">ADMIN-OS</span>
         <span className="text-[#d0d7de] dark:text-[#30363d]">/</span>
         <span className="font-semibold tracking-wider text-[#1f2328] uppercase dark:text-[#f0f6fc]">
           {currentSection.replace(/-/g, " ")}
@@ -28,7 +28,7 @@ export function AdminTopbar() {
 
       {/* Center: Search Command Bar */}
       <div className="relative hidden w-80 items-center md:flex lg:w-96">
-        <Search className="pointer-events-none absolute top-1/2 left-3 h-3.5 w-3.5 -translate-y-1/2 text-[#656d76] dark:text-[#8b949e]" />
+        <Search className="text-admin-muted pointer-events-none absolute top-1/2 left-3 h-3.5 w-3.5 -translate-y-1/2" />
         <input
           type="search"
           aria-label={t("searchPlaceholder")}
@@ -44,7 +44,7 @@ export function AdminTopbar() {
       <div className="flex items-center gap-2.5">
         {/* Ingestion Velocity */}
         <div className="hidden items-center gap-1.5 rounded-md border border-[#d0d7de] bg-[#ffffff] px-2.5 py-1 font-sans text-[11px] text-[#656d76] lg:flex dark:border-[#30363d] dark:bg-[#0d1117] dark:text-[#8b949e]">
-          <Database className="h-3 w-3 text-[#0969da] dark:text-[#58a6ff]" />
+          <Database className="text-admin-accent h-3 w-3" />
           <span className="text-[#1f2328] dark:text-[#c9d1d9]">3.115 {t("activeIncidents")}</span>
           <span className="font-semibold text-[#1a7f37] dark:text-[#3fb950]">{t("dailyRate")}</span>
         </div>
@@ -67,7 +67,7 @@ export function AdminTopbar() {
             OP
           </div>
           <div className="hidden flex-col text-left sm:flex">
-            <span className="font-sans text-[11px] leading-tight font-semibold text-[#1f2328] dark:text-[#f0f6fc]">
+            <span className="text-admin-fg font-sans text-[11px] leading-tight font-semibold">
               Supreme Exec
             </span>
             <span className="font-sans text-[9px] leading-tight text-[#1a7f37] dark:text-[#3fb950]">

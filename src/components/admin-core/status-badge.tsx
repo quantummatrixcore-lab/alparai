@@ -16,8 +16,7 @@ export const StatusBadge = memo(function StatusBadge({
   className = "",
   showPing,
 }: StatusBadgeProps) {
-  let bg =
-    "bg-[#f6f8fa] dark:bg-[#21262d] text-[#656d76] dark:text-[#8b949e] border-[#d0d7de] dark:border-[#30363d]";
+  let bg = "bg-[#f6f8fa] dark:bg-[#21262d] text-admin-muted border-admin-border";
   let dotColor = "bg-[#656d76] dark:text-[#8b949e]";
   let isPinging = showPing;
 
@@ -36,17 +35,16 @@ export const StatusBadge = memo(function StatusBadge({
         break;
       case "MEDIUM":
         bg =
-          "bg-[#ddf4ff] dark:bg-[#388bfd]/20 text-[#0969da] dark:text-[#58a6ff] border-[#54aeff]/40 dark:border-[#388bfd]/40";
+          "bg-[#ddf4ff] dark:bg-[#388bfd]/20 text-admin-accent border-[#54aeff]/40 dark:border-[#388bfd]/40";
         dotColor = "bg-[#0969da] dark:bg-[#58a6ff]";
         break;
       case "LOW":
-        bg =
-          "bg-[#f6f8fa] dark:bg-[#21262d] text-[#656d76] dark:text-[#8b949e] border-[#d0d7de] dark:border-[#30363d]";
+        bg = "bg-[#f6f8fa] dark:bg-[#21262d] text-admin-muted border-admin-border";
         dotColor = "bg-[#656d76] dark:bg-[#8b949e]";
         break;
       case "INFORMATIONAL":
         bg =
-          "bg-[#ddf4ff] dark:bg-[#388bfd]/20 text-[#0969da] dark:text-[#58a6ff] border-[#54aeff]/40 dark:border-[#388bfd]/40";
+          "bg-[#ddf4ff] dark:bg-[#388bfd]/20 text-admin-accent border-[#54aeff]/40 dark:border-[#388bfd]/40";
         dotColor = "bg-[#0969da] dark:bg-[#58a6ff]";
         break;
     }
@@ -69,8 +67,7 @@ export const StatusBadge = memo(function StatusBadge({
         dotColor = "bg-[#8250df] dark:bg-[#d2a8ff]";
         break;
       case "RESOLVED":
-        bg =
-          "bg-[#f6f8fa] dark:bg-[#21262d] text-[#656d76] dark:text-[#8b949e] border-[#d0d7de] dark:border-[#30363d]";
+        bg = "bg-[#f6f8fa] dark:bg-[#21262d] text-admin-muted border-admin-border";
         dotColor = "bg-[#656d76] dark:bg-[#8b949e]";
         break;
     }
@@ -94,7 +91,7 @@ export const StatusBadge = memo(function StatusBadge({
         break;
       case "TRANSPARENCY_ART50":
         bg =
-          "bg-[#ddf4ff] dark:bg-[#388bfd]/20 text-[#0969da] dark:text-[#58a6ff] border-[#54aeff]/40 dark:border-[#388bfd]/40";
+          "bg-[#ddf4ff] dark:bg-[#388bfd]/20 text-admin-accent border-[#54aeff]/40 dark:border-[#388bfd]/40";
         dotColor = "bg-[#0969da] dark:bg-[#58a6ff]";
         break;
       case "COMPLIANT":
@@ -109,8 +106,7 @@ export const StatusBadge = memo(function StatusBadge({
         "bg-[#dafbe1] dark:bg-[#238636]/20 text-[#1a7f37] dark:text-[#3fb950] border-[#4ac26b]/40 dark:border-[#238636]/40 font-semibold";
       dotColor = "bg-[#1a7f37] dark:bg-[#3fb950]";
     } else {
-      bg =
-        "bg-[#f6f8fa] dark:bg-[#21262d] text-[#656d76] dark:text-[#8b949e] border-[#d0d7de] dark:border-[#30363d]";
+      bg = "bg-[#f6f8fa] dark:bg-[#21262d] text-admin-muted border-admin-border";
       dotColor = "bg-[#656d76] dark:bg-[#8b949e]";
     }
   }

@@ -29,8 +29,7 @@ export const MetricCard = memo(function MetricCard({
       "text-[#1a7f37] dark:text-[#3fb950] bg-[#dafbe1] dark:bg-[#238636]/20 border-[#4ac26b]/40 dark:border-[#238636]/40 shadow-sm dark:shadow-none",
     negative:
       "text-[#cf222e] dark:text-[#ff7b72] bg-[#ffebe9] dark:bg-[#da3633]/20 border-[#ff8182]/40 dark:border-[#da3633]/40 shadow-sm dark:shadow-none",
-    neutral:
-      "text-[#656d76] dark:text-[#8b949e] bg-[#f6f8fa] dark:bg-[#21262d] border-[#d0d7de] dark:border-[#30363d]",
+    neutral: "text-admin-muted bg-[#f6f8fa] dark:bg-[#21262d] border-admin-border",
     alert:
       "text-[#9a6700] dark:text-[#f0b72f] bg-[#fff8c5] dark:bg-[#9e6a03]/20 border-[#d4a72c]/40 dark:border-[#9e6a03]/40 font-semibold shadow-sm dark:shadow-none animate-pulse",
   }[changeType];
@@ -111,9 +110,7 @@ export const MetricCard = memo(function MetricCard({
       {/* Subtext & Sparkline Row */}
       <div className="z-10 mt-2 flex min-h-[22px] items-center justify-between gap-2">
         {subtext ? (
-          <p className="line-clamp-1 font-sans text-[11px] text-[#656d76] dark:text-[#8b949e]">
-            {subtext}
-          </p>
+          <p className="text-admin-muted line-clamp-1 font-sans text-[11px]">{subtext}</p>
         ) : (
           <div />
         )}

@@ -5,7 +5,6 @@ import { NextResponse } from "next/server";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { headers } from "next/headers";
 
-
 const ALLOWED_ORIGINS = [
   "https://alparai.com",
   "https://www.alparai.com",
@@ -53,21 +52,41 @@ export async function GET(request: Request) {
             status: "Enforced since Feb 2025",
           },
           {
-            tier: "High-Risk AI Systems",
-            articles: ["Article 6", "Article 72", "Article 73"],
-            description: "Systems in critical infrastructure, employment, essential services, and law enforcement.",
-            incidentReportingDeadlineHours: 72,
+            tier: "High-Risk AI Systems — Critical Infrastructure (Article 73)",
+            articles: ["Article 6", "Article 72", "Article 73(2)"],
+            description: "Critical infrastructure disruption or essential public service incidents. Mandatory 2-day (48-hour) statutory SLA incident notification to market surveillance authorities.",
+            incidentReportingDeadlineHours: 48,
+            status: "Live SLA Radar: 2-Day (48h) Critical Infrastructure Window",
+            passportExportEndpoint: "/api/v1/compliance/article50",
+          },
+          {
+            tier: "High-Risk AI Systems — Death & Severe Harm (Article 73)",
+            articles: ["Article 6", "Article 72", "Article 73(3)"],
+            description: "Incidents resulting in death or serious irreversible harm to health, safety, or fundamental rights. Mandatory 10-day (240-hour) statutory SLA notification.",
+            incidentReportingDeadlineHours: 240,
+            status: "Live SLA Radar: 10-Day (240h) Severe Harm Window",
+            passportExportEndpoint: "/api/v1/compliance/article50",
+          },
+          {
+            tier: "High-Risk AI Systems — Widespread Infringement (Article 73)",
+            articles: ["Article 6", "Article 72", "Article 73(4)"],
+            description: "Serious incidents causing widespread market disruption or systemic fundamental rights breaches. Mandatory 15-day (360-hour) statutory SLA notification.",
+            incidentReportingDeadlineHours: 360,
+            status: "Live SLA Radar: 15-Day (360h) General Serious Incident Window",
             passportExportEndpoint: "/api/v1/compliance/article50",
           },
           {
             tier: "Specific Transparency Risk",
             articles: ["Article 50"],
-            description: "Generative AI systems must detect and label AI-generated synthetic content.",
+            description: "Generative AI systems must detect and label AI-generated synthetic content and deepfakes.",
+            status: "Active Telemetry Radar",
             provenanceEndpoint: "/api/v1/provenance",
           },
           {
             tier: "Minimal / No Risk",
+            articles: ["Article 69"],
             description: "AI-enabled video games or spam filters freely allowed with voluntary codes of conduct.",
+            status: "Unrestricted",
           },
         ],
         documentationUrl: "https://alparai.com/ai-act",

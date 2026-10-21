@@ -25,6 +25,14 @@
     "pnpm": ">=9.12.0"
   },
   "packageManager": "pnpm@9.12.0",
+  "pnpm": {
+    "overrides": {
+      "tinypool": ">=2.1.2",
+      "vite": ">=6.4.4",
+      "semver": ">=5.7.2",
+      "braces": ">=3.0.3"
+    }
+  },
   "scripts": {
     "dev": "next dev",
     "dev:all": "turbo run dev test:watch",

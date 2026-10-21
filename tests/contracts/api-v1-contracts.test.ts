@@ -83,6 +83,7 @@ const routeSchemaMap: Record<string, z.ZodTypeAny> = {
   "regulatory/dispatch": schemas.regulatoryDispatchResponseSchema,
   "shield/scan": schemas.shieldScanResponseSchema,
   "openapi.json": schemas.openApiSpecResponseSchema,
+  firewall: schemas.firewallResponseSchema,
 };
 
 describe("API v1 Contract Coverage", () => {
@@ -434,6 +435,18 @@ describe("API v1 Contract Schema Validators", () => {
       },
     };
     const result = schemas.playbooksResponseSchema.safeParse(data);
+    expect(result.success).toBe(true);
+  });
+
+  it("should validate a valid firewall response", () => {
+    const data: z.infer<typeof schemas.firewallResponseSchema> = {
+      allowed: true,
+      riskScore: 0.05,
+      redactions: 0,
+      latencyMs: 1.2,
+      firewallSeal: "sha384:efw_contract_test_seal",
+    };
+    const result = schemas.firewallResponseSchema.safeParse(data);
     expect(result.success).toBe(true);
   });
 });

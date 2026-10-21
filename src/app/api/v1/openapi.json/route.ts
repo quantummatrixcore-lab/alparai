@@ -366,7 +366,7 @@ const OPENAPI_SPEC = {
         type: "http",
         scheme: "bearer",
         bearerFormat: "JWT",
-        description: "Supabase / DeHost bearer authorization token.",
+        description: "upstash / DeHost bearer authorization token.",
       },
       InternalClientAuth: {
         type: "apiKey",

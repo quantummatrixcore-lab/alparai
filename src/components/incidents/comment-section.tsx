@@ -41,6 +41,7 @@ export function CommentSection({
   const locale = useLocale();
   const [comments, setComments] = useState<IncidentComment[]>(initialComments);
   const [commentText, setCommentText] = useState("");
+  const [confirmingId, setConfirmingId] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
 
   // Simple localized helpers
@@ -92,16 +93,8 @@ export function CommentSection({
     });
   };
 
-  const handleDeleteComment = (commentId: string) => {
-    if (
-      !window.confirm(
-        locale === "tr"
-          ? "Bu yorumu silmek istediğinize emin misiniz?"
-          : "Are you sure you want to delete this comment?",
-      )
-    ) {
-      return;
-    }
+  const executeDeleteComment = (commentId: string) => {
+    setConfirmingId(null);
     startTransition(async () => {
       const res = await deleteComment(commentId, incidentId);
       if (res.ok) {
@@ -173,14 +166,39 @@ export function CommentSection({
                         {formatRelativeTime(new Date(comment.created_at), locale)}
                       </span>
                       {isOwner && (
-                        <button
-                          onClick={() => handleDeleteComment(comment.id)}
-                          className="text-fg-muted hover:text-danger-400 p-1 transition-colors"
-                          title={textDelete}
-                          disabled={isPending}
-                        >
-                          <Trash2 className="h-3.5 w-3.5" />
-                        </button>
+                        confirmingId === comment.id ? (
+                          <div className="flex items-center gap-1.5 text-xs">
+                            <span className="text-danger-400 text-[11px] font-medium">
+                              {locale === "tr" ? "Silinsin mi?" : "Delete?"}
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() => executeDeleteComment(comment.id)}
+                              className="text-danger-400 hover:text-danger-300 font-bold px-1.5 py-0.5 rounded border border-danger-500/30 bg-danger-500/10 text-[11px] transition-colors"
+                              disabled={isPending}
+                            >
+                              {locale === "tr" ? "Evet" : "Yes"}
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => setConfirmingId(null)}
+                              className="text-fg-muted hover:text-fg-primary px-1.5 py-0.5 rounded border border-border-subtle text-[11px] transition-colors"
+                              disabled={isPending}
+                            >
+                              {locale === "tr" ? "İptal" : "Cancel"}
+                            </button>
+                          </div>
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={() => setConfirmingId(comment.id)}
+                            className="text-fg-muted hover:text-danger-400 p-1 transition-colors"
+                            title={textDelete}
+                            disabled={isPending}
+                          >
+                            <Trash2 className="h-3.5 w-3.5" />
+                          </button>
+                        )
                       )}
                     </div>
                   </div>

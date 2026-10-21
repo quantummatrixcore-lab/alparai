@@ -812,6 +812,18 @@ export const openApiSpecResponseSchema = z.object({
   components: z.record(z.string(), z.unknown()).optional(),
 }).passthrough();
 
+// 54. POST /api/v1/firewall & GET /api/v1/firewall
+export const firewallResponseSchema = z.object({
+  allowed: z.boolean(),
+  riskScore: z.number(),
+  redactions: z.number(),
+  latencyMs: z.number(),
+  firewallSeal: z.string(),
+  status: z.string().optional(),
+  engine: z.string().optional(),
+}).passthrough();
+
+
 
 
 

@@ -233,6 +233,11 @@ export function evaluateAgentQuota(
   agentIdOrRoiOrOptions: string | number | AgentQuotaOptions,
   maybeRoi?: number,
   maybeIq?: number
+): AgentModelTier;
+export function evaluateAgentQuota(
+  agentIdOrRoiOrOptions: string | number | AgentQuotaOptions,
+  maybeRoi?: number,
+  maybeIq?: number
 ): AgentModelTier {
   const { agentId, roi, iqScore } = parseEvaluationArgs(
     agentIdOrRoiOrOptions,
@@ -345,9 +350,9 @@ export class V64AgiBridge {
     maybeIq?: number
   ): AgentModelTier {
     return evaluateAgentQuota(
-      agentIdOrRoiOrOptions as any,
-      maybeRoi as any,
-      maybeIq as any
+      agentIdOrRoiOrOptions,
+      maybeRoi,
+      maybeIq
     );
   }
 
@@ -360,9 +365,9 @@ export class V64AgiBridge {
     maybeIq?: number
   ): AgentQuotaResult {
     return evaluateAgentQuotaDetails(
-      agentIdOrRoiOrOptions as any,
-      maybeRoi as any,
-      maybeIq as any
+      agentIdOrRoiOrOptions,
+      maybeRoi,
+      maybeIq
     );
   }
 
@@ -415,7 +420,7 @@ function createAutonomousFallbackEngine(): V64EngineModule {
     SLEEP: { model: "sleep", tokens: 0, status: "SLEEP_MODE", min_roi: 0.0, min_iq: 0 }
   };
 
-  const registry = new Map<string, any>();
+  const registry = new Map<string, ReturnType<typeof evalQuota>>();
 
   function evalQuota(agentId: string, roi: number, iqScore: number) {
     const cleanRoi = typeof roi === "number" && !Number.isNaN(roi) ? roi : 0;
@@ -463,7 +468,7 @@ function createAutonomousFallbackEngine(): V64EngineModule {
       removeAgent(id: string) { return registry.delete(id); }
       clear() { registry.clear(); }
       getQuotaReport() { return Object.fromEntries(registry.entries()); }
-    } as any,
+    } as unknown as V64EngineModule["QuotaManager"],
     QUOTA_TIERS: TIERS,
     ZERO_ALLOC_QUOTA: {}
   };

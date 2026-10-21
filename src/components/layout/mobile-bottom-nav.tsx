@@ -38,7 +38,7 @@ export function MobileBottomNav() {
   }
 
   return (
-    <div className="bg-[#0A1622]/95 border-border-subtle/60 safe-bottom fixed right-0 bottom-0 left-0 z-40 flex items-center justify-around border-t px-2 py-1.5 shadow-[0_-8px_30px_rgba(0,0,0,0.5)] backdrop-blur-xl lg:hidden">
+    <div className="bg-background/95 border-border-subtle/60 safe-bottom fixed right-0 bottom-0 left-0 z-40 flex items-center justify-around border-t px-2 py-1.5 shadow-[0_-8px_30px_rgba(0,0,0,0.5)] backdrop-blur-xl lg:hidden">
       {navItems.map((item) => {
         const Icon = item.icon;
         const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);

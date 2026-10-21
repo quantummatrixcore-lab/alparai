@@ -60,14 +60,18 @@ const embedHeaders = [
 import path from "path";
 import { fileURLToPath } from "url";
 import { createRequire } from "module";
+import fs from "fs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 try {
-  const requireCjs = createRequire(import.meta.url);
-  const loadVaultIntoMemory = requireCjs("D:/00_MATRIX/vault_loader.js");
-  loadVaultIntoMemory(__dirname);
+  const vaultPath = process.env.MATRIX_VAULT_PATH || "D:/00_MATRIX/vault_loader.js";
+  if (fs.existsSync(vaultPath)) {
+    const requireCjs = createRequire(import.meta.url);
+    const loadVaultIntoMemory = requireCjs(vaultPath);
+    loadVaultIntoMemory(__dirname);
+  }
 } catch {
   // Vault loader optional in non-local/CI environments
 }

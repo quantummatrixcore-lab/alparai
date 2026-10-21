@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { logger } from "@/lib/utils/logger";
+import { toast } from "sonner";
 
 interface StripeCheckoutButtonProps {
   variant?: "primary" | "outline";
@@ -31,11 +32,11 @@ export function StripeCheckoutButton({
       if (data.url) {
         window.location.href = data.url;
       } else {
-        alert(data.error || "Checkout failed. Please try again.");
+        toast.error(data.error || "Checkout failed. Please try again.");
       }
     } catch (err) {
       logger.error("Stripe checkout error", undefined, err instanceof Error ? err : undefined);
-      alert("An error occurred. Please try again.");
+      toast.error("An error occurred. Please try again.");
     } finally {
       setLoading(false);
     }

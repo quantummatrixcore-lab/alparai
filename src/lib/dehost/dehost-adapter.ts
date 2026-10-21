@@ -10,25 +10,25 @@ try {
  * Backed by DeHost dedicated infrastructure with zero DeHost external dependency.
  */
 
-import { getDeHostConnectionString } from "./schema";
 import { logger } from "@/lib/utils/logger";
 import type { Database } from "../../types/database.types";
+import type * as PgTransportModule from "./pg-transport";
 
 export type TableName = keyof Database["public"]["Tables"];
 
 export type TableRow<T> = T extends TableName
   ? Database["public"]["Tables"][T]["Row"]
-  : T extends Record<string, any>
+  : T extends Record<string, unknown>
     ? T
-    : Record<string, any>;
+    : Record<string, unknown>;
 
 export type TableInsert<T> = T extends TableName
   ? Database["public"]["Tables"][T]["Insert"]
-  : Record<string, any>;
+  : Record<string, unknown>;
 
 export type TableUpdate<T> = T extends TableName
   ? Database["public"]["Tables"][T]["Update"]
-  : Record<string, any>;
+  : Record<string, unknown>;
 
 export interface DeHostFilter {
   column: string;
@@ -54,10 +54,34 @@ export interface DeHostError extends Error {
   message: string;
 }
 
-export class DeHostQueryBuilder<TRow = any, TSingle extends boolean = false> {
+export interface DeHostUser {
+  id: string;
+  email?: string;
+  user_metadata?: {
+    full_name?: string;
+    name?: string;
+    avatar_url?: string;
+    picture?: string;
+    [key: string]: unknown;
+  };
+  app_metadata?: {
+    role?: string;
+    [key: string]: unknown;
+  };
+  [key: string]: unknown;
+}
+
+export interface DeHostSession {
+  user: DeHostUser | null;
+  access_token?: string;
+  refresh_token?: string;
+  [key: string]: unknown;
+}
+
+export class DeHostQueryBuilder<TRow = Record<string, unknown>, TSingle extends boolean = false> {
   private options: DeHostQueryOptions;
   private action: "select" | "insert" | "update" | "delete" | "upsert" = "select";
-  private payload: any = null;
+  private payload: unknown = null;
   private upsertOnConflict: string | undefined;
 
   constructor(table: string) {
@@ -68,7 +92,7 @@ export class DeHostQueryBuilder<TRow = any, TSingle extends boolean = false> {
     };
   }
 
-  public select<TResult = TRow & Record<string, any>>(
+  public select<TResult = TRow & Record<string, unknown>>(
     columns = "*",
     opts?: { count?: "exact" | "planned" | "estimated"; head?: boolean },
   ): DeHostQueryBuilder<TResult, TSingle> {
@@ -83,26 +107,26 @@ export class DeHostQueryBuilder<TRow = any, TSingle extends boolean = false> {
     return this as unknown as DeHostQueryBuilder<TResult, TSingle>;
   }
 
-  public insert(values: any, _opts?: any): DeHostQueryBuilder<TRow, TSingle> {
+  public insert(values: unknown, _opts?: unknown): DeHostQueryBuilder<TRow, TSingle> {
     this.action = "insert";
     this.payload = values;
     return this;
   }
 
-  public update(values: any, _opts?: any): DeHostQueryBuilder<TRow, TSingle> {
+  public update(values: unknown, _opts?: unknown): DeHostQueryBuilder<TRow, TSingle> {
     this.action = "update";
     this.payload = values;
     return this;
   }
 
-  public upsert(values: any, opts?: { onConflict?: string }): DeHostQueryBuilder<TRow, TSingle> {
+  public upsert(values: unknown, opts?: { onConflict?: string }): DeHostQueryBuilder<TRow, TSingle> {
     this.action = "upsert";
     this.payload = values;
     this.upsertOnConflict = typeof opts?.onConflict === "string" ? opts.onConflict : undefined;
     return this;
   }
 
-  public delete(_opts?: any): DeHostQueryBuilder<TRow, TSingle> {
+  public delete(_opts?: unknown): DeHostQueryBuilder<TRow, TSingle> {
     this.action = "delete";
     return this;
   }
@@ -224,13 +248,13 @@ export class DeHostQueryBuilder<TRow = any, TSingle extends boolean = false> {
     return this as unknown as DeHostQueryBuilder<TRow, true>;
   }
 
-  public csv(_opts?: any): this {
+  public csv(_opts?: unknown): this {
     this.options.csvVal = true;
     return this;
   }
 
-  public returns<NewT = any>(): DeHostQueryBuilder<NewT extends (infer E)[] ? E : NewT, TSingle> {
-    return this as any;
+  public returns<NewT = Record<string, unknown>>(): DeHostQueryBuilder<NewT extends (infer E)[] ? E : NewT, TSingle> {
+    return this as unknown as DeHostQueryBuilder<NewT extends (infer E)[] ? E : NewT, TSingle>;
   }
 
   public async then<
@@ -250,12 +274,18 @@ export class DeHostQueryBuilder<TRow = any, TSingle extends boolean = false> {
   ): Promise<TResult1> {
     const result = await this.execute();
     if (onfulfilled) {
-      return onfulfilled(result as any);
+      return onfulfilled(
+        result as unknown as {
+          data: TSingle extends true ? TRow : TRow[];
+          error: DeHostError | null;
+          count: number | null;
+        },
+      );
     }
-    return result as any;
+    return result as unknown as TResult1;
   }
 
-  private async execute(): Promise<{ data: any; error: DeHostError | null; count: number | null }> {
+  private async execute(): Promise<{ data: unknown; error: DeHostError | null; count: number | null }> {
     const tableName = this.options.table;
 
     // =========================================================================
@@ -267,7 +297,7 @@ export class DeHostQueryBuilder<TRow = any, TSingle extends boolean = false> {
     // transport is unavailable", NOT "the database is broken". Conflating the
     // two would report a connection error for a missing optional dependency.
     // =========================================================================
-    let pgTransport: typeof import("./pg-transport") | null = null;
+    let pgTransport: typeof PgTransportModule | null = null;
     try {
       pgTransport = await import("./pg-transport");
     } catch (loadError) {
@@ -337,7 +367,7 @@ export class DeHostQueryBuilder<TRow = any, TSingle extends boolean = false> {
         if (this.action === "update") {
           const { sql, params } = buildUpdateSql({
             table: tableName,
-            values: this.payload ?? {},
+            values: (this.payload as Record<string, unknown>) || ({} as Record<string, unknown>),
             filters: this.options.filters,
           });
           const result = await queryWithPg(sql, params);
@@ -499,7 +529,7 @@ export class DeHostQueryBuilder<TRow = any, TSingle extends boolean = false> {
   }
 }
 
-export class DeHostAdapterClient<T = any> {
+export class DeHostAdapterClient<_T = unknown> {
   public dehostUrl = "https://dehost.alparai.com";
   public dehostKey = "dehost-anon-key";
   public realtimeUrl = "wss://dehost.alparai.com/realtime";
@@ -525,7 +555,7 @@ export class DeHostAdapterClient<T = any> {
     getUser: async (_token?: string) => {
       return {
         data: {
-          user: null as any,
+          user: null as DeHostUser | null,
         },
         error: null as DeHostError | null,
       };
@@ -533,14 +563,14 @@ export class DeHostAdapterClient<T = any> {
     getSession: async () => {
       return {
         data: {
-          session: null as any,
+          session: null as DeHostSession | null,
         },
         error: null as DeHostError | null,
       };
     },
     signOut: async () => ({ error: null as DeHostError | null }),
-    signInWithPassword: async (_credentials: any) => ({
-      data: { user: null as any, session: null as any },
+    signInWithPassword: async (_credentials: unknown) => ({
+      data: { user: null as DeHostUser | null, session: null as DeHostSession | null },
       error: null as DeHostError | null,
     }),
     signInWithOAuth: async (credentials: {
@@ -622,48 +652,48 @@ export class DeHostAdapterClient<T = any> {
         return { data: { provider, url }, error: null as DeHostError | null };
       } catch (err) {
         return {
-          data: { provider: credentials?.provider || "google", url: null as any },
+          data: { provider: credentials?.provider || "google", url: null as unknown as string },
           error: err instanceof Error ? err : new Error(String(err)),
         };
       }
     },
-    signInWithOtp: async (_credentials: any) => ({ data: {}, error: null as DeHostError | null }),
-    signUp: async (_credentials: any) => ({
-      data: { user: null as any, session: null as any },
+    signInWithOtp: async (_credentials: unknown) => ({ data: {}, error: null as DeHostError | null }),
+    signUp: async (_credentials: unknown) => ({
+      data: { user: null as DeHostUser | null, session: null as DeHostSession | null },
       error: null as DeHostError | null,
     }),
     exchangeCodeForSession: async (_code: string) => ({
-      data: { user: null as any, session: null as any },
+      data: { user: null as DeHostUser | null, session: null as DeHostSession | null },
       error: null as DeHostError | null,
     }),
-    verifyOtp: async (_params: any) => ({
-      data: { user: null as any, session: null as any },
+    verifyOtp: async (_params: unknown) => ({
+      data: { user: null as DeHostUser | null, session: null as DeHostSession | null },
       error: null as DeHostError | null,
     }),
-    resetPasswordForEmail: async (_email: string, _opts?: any) => ({
+    resetPasswordForEmail: async (_email: string, _opts?: unknown) => ({
       data: {},
       error: null as DeHostError | null,
     }),
-    updateUser: async (_attributes: any) => ({
-      data: { user: null as any },
+    updateUser: async (_attributes: unknown) => ({
+      data: { user: null as DeHostUser | null },
       error: null as DeHostError | null,
     }),
     admin: {
       deleteUser: async (_id: string) => ({
-        data: { user: null as any },
+        data: { user: null as DeHostUser | null },
         error: null as DeHostError | null,
       }),
       getUserById: async (_id: string) => ({
-        data: { user: null as any },
+        data: { user: null as DeHostUser | null },
         error: null as DeHostError | null,
       }),
-      listUsers: async () => ({ data: { users: [] as any[] }, error: null as DeHostError | null }),
-      createUser: async (_attributes: any) => ({
-        data: { user: null as any },
+      listUsers: async () => ({ data: { users: [] as DeHostUser[] }, error: null as DeHostError | null }),
+      createUser: async (_attributes: unknown) => ({
+        data: { user: null as DeHostUser | null },
         error: null as DeHostError | null,
       }),
-      updateUserById: async (_id: string, _attributes: any) => ({
-        data: { user: null as any },
+      updateUserById: async (_id: string, _attributes: unknown) => ({
+        data: { user: null as DeHostUser | null },
         error: null as Error | null,
       }),
     },
@@ -671,12 +701,12 @@ export class DeHostAdapterClient<T = any> {
 
   public from<
     TName extends string = string,
-    TRow = TName extends TableName ? Database["public"]["Tables"][TName]["Row"] : any,
+    TRow = TName extends TableName ? Database["public"]["Tables"][TName]["Row"] : Record<string, unknown>,
   >(table: TName): DeHostQueryBuilder<TRow, false> {
     return new DeHostQueryBuilder<TRow, false>(table);
   }
 
-  public rpc<TRow = any>(
+  public rpc<TRow = Record<string, unknown>>(
     _fn: string,
     _params?: Record<string, unknown>,
   ): DeHostQueryBuilder<TRow, true> {
@@ -684,19 +714,22 @@ export class DeHostAdapterClient<T = any> {
     return builder;
   }
 
-  public channel(_name: string, _opts?: any) {
-    const channelObj: any = {
-      on: (
+  public channel(_name: string, _opts?: unknown) {
+    const channelObj = {
+      on: <
+        TPayload = {
+          new?: Record<string, unknown>;
+          old?: Record<string, unknown>;
+          payload?: unknown;
+          [key: string]: unknown;
+        },
+      >(
         _event: string,
-        _filter: any,
-        _callback?: (payload: {
-          new: Record<string, any>;
-          old: Record<string, any>;
-          [key: string]: any;
-        }) => void,
+        _filter: unknown,
+        _callback?: (payload: TPayload) => void,
       ) => channelObj,
-      send: async (_msg: any) => ({ error: null }),
-      subscribe: (statusCallback?: any) => {
+      send: async (_msg: unknown) => ({ error: null }),
+      subscribe: (statusCallback?: (status: string) => void) => {
         if (statusCallback) statusCallback("SUBSCRIBED");
         return { unsubscribe: () => {} };
       },
@@ -704,13 +737,13 @@ export class DeHostAdapterClient<T = any> {
     return channelObj;
   }
 
-  public removeChannel(_channel: any) {
+  public removeChannel(_channel: unknown) {
     return Promise.resolve("ok");
   }
 
   public storage = {
     from: (bucket: string) => ({
-      upload: async (_path?: string, _file?: any, _options?: any) => ({
+      upload: async (_path?: string, _file?: unknown, _options?: unknown) => ({
         data: { path: "dehost/" + bucket + "/" + (_path || "") },
         error: null as DeHostError | null,
       }),
@@ -718,7 +751,7 @@ export class DeHostAdapterClient<T = any> {
         data: { publicUrl: `https://dehost.alparai.com/storage/${bucket}/${path}` },
       }),
       remove: async (_paths?: string[]) => ({ data: [], error: null as DeHostError | null }),
-      list: async (_path?: string, _options?: any) => ({
+      list: async (_path?: string, _options?: unknown) => ({
         data: [],
         error: null as DeHostError | null,
       }),
@@ -726,6 +759,6 @@ export class DeHostAdapterClient<T = any> {
   };
 }
 
-export function createDeHostAdapterClient<T = any>(): DeHostAdapterClient<T> {
-  return new DeHostAdapterClient<T>();
+export function createDeHostAdapterClient<_T = unknown>(): DeHostAdapterClient<_T> {
+  return new DeHostAdapterClient<_T>();
 }

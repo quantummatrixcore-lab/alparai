@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useEffect } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { requestUserDeletionAction, cancelUserDeletionAction } from "@/actions/user-deletion";
@@ -18,6 +18,7 @@ export function AccountDeletionForm({
   locale,
 }: AccountDeletionFormProps) {
   const t = useTranslations("settings");
+  const [isConfirming, setIsConfirming] = useState(false);
 
   const [requestState, requestAction, requestPending] = useActionState(requestUserDeletionAction, {
     ok: false,
@@ -97,25 +98,39 @@ export function AccountDeletionForm({
           })}
         </p>
       </div>
-      <form
-        action={requestAction}
-        onSubmit={(e) => {
-          if (
-            !confirm(
-              t("delete_confirm_prompt", {
-                defaultValue:
-                  "Are you sure you want to delete your account? This action can be cancelled within 72 hours.",
-              }),
-            )
-          ) {
-            e.preventDefault();
-          }
-        }}
-      >
-        <Button type="submit" variant="danger" isLoading={requestPending}>
+      {isConfirming ? (
+        <div className="space-y-3 rounded-lg border border-danger-500/30 bg-danger-500/10 p-4">
+          <p className="text-sm font-medium text-danger-300">
+            {t("delete_confirm_prompt", {
+              defaultValue:
+                "Are you sure you want to delete your account? This action can be cancelled within 72 hours.",
+            })}
+          </p>
+          <div className="flex items-center gap-3">
+            <form action={requestAction}>
+              <Button type="submit" variant="danger" isLoading={requestPending}>
+                {locale === "tr" ? "Evet, Hesabımı Sil" : "Yes, Delete Account"}
+              </Button>
+            </form>
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={() => setIsConfirming(false)}
+              disabled={requestPending}
+            >
+              {locale === "tr" ? "Vazgeç" : "Cancel"}
+            </Button>
+          </div>
+        </div>
+      ) : (
+        <Button
+          type="button"
+          variant="danger"
+          onClick={() => setIsConfirming(true)}
+        >
           {t("delete_account_btn", { defaultValue: "Delete Account" })}
         </Button>
-      </form>
+      )}
     </div>
   );
 }

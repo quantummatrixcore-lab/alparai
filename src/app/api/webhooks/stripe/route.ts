@@ -1,14 +1,18 @@
 let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
-try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
+try {
+  vault = require("@/lib/security/vault").vault;
+} catch {
+  /* stub bicimi korunur */
+}
 import { waitUntil } from "@/lib/dehost/functions-stub";
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 import { processAutonomousPdfInvoice } from "@/lib/billing/invoices";
 
-
-const STRIPE_SECRET_KEY = (vault.read('STRIPE_SECRET_KEY') ?? process.env.STRIPE_SECRET_KEY);
-const STRIPE_WEBHOOK_SECRET = (vault.read('STRIPE_WEBHOOK_SECRET') ?? process.env.STRIPE_WEBHOOK_SECRET);
+const STRIPE_SECRET_KEY = vault.read("STRIPE_SECRET_KEY") ?? process.env.STRIPE_SECRET_KEY;
+const STRIPE_WEBHOOK_SECRET =
+  vault.read("STRIPE_WEBHOOK_SECRET") ?? process.env.STRIPE_WEBHOOK_SECRET;
 
 /**
  * Normalizes user subscription tier for `api_keys.tier` ('free' | 'developer' | 'vendor' | 'enterprise')
@@ -104,6 +108,23 @@ export async function POST(request: Request) {
                 userId,
                 error: subErr.message,
               });
+            }
+
+            // Akademi kuponunu SADECE başarılı ödemede yak (terk edilen sepet korunur).
+            const academyCoupon = session.metadata?.academy_coupon_code;
+            if (typeof academyCoupon === "string" && academyCoupon.length > 0) {
+              const { error: burnErr } = await admin
+                .from("academy_coupons")
+                .update({ used: true, used_at: new Date().toISOString() })
+                .eq("code", academyCoupon)
+                .eq("used", false);
+              if (burnErr) {
+                logger.error("Failed to burn academy coupon on checkout completion", {
+                  userId,
+                  coupon: academyCoupon,
+                  error: burnErr.message,
+                });
+              }
             }
 
             const { error: keyErr } = await admin

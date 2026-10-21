@@ -1,20 +1,27 @@
 let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
-try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
+try {
+  vault = require("@/lib/security/vault").vault;
+} catch {
+  /* stub bicimi korunur */
+}
 import "server-only";
 import { NextResponse } from "next/server";
 import { createServerClient } from "@/lib/dehost/server";
 import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
 
-const STRIPE_SECRET_KEY = (vault.read('STRIPE_SECRET_KEY') ?? process.env.STRIPE_SECRET_KEY);
-const STRIPE_PRO_PRICE_ID = (vault.read('STRIPE_PRO_PRICE_ID') ?? process.env.STRIPE_PRO_PRICE_ID);
-const STRIPE_ENTERPRISE_PRICE_ID = (vault.read('STRIPE_ENTERPRISE_PRICE_ID') ?? process.env.STRIPE_ENTERPRISE_PRICE_ID);
-const APP_URL = (vault.read('NEXT_PUBLIC_APP_URL') ?? process.env.NEXT_PUBLIC_APP_URL) || "https://alparai.com";
+const STRIPE_SECRET_KEY = vault.read("STRIPE_SECRET_KEY") ?? process.env.STRIPE_SECRET_KEY;
+const STRIPE_PRO_PRICE_ID = vault.read("STRIPE_PRO_PRICE_ID") ?? process.env.STRIPE_PRO_PRICE_ID;
+const STRIPE_ENTERPRISE_PRICE_ID =
+  vault.read("STRIPE_ENTERPRISE_PRICE_ID") ?? process.env.STRIPE_ENTERPRISE_PRICE_ID;
+const APP_URL =
+  (vault.read("NEXT_PUBLIC_APP_URL") ?? process.env.NEXT_PUBLIC_APP_URL) || "https://alparai.com";
 
 // @auth: requireAuth (verified via dehost.auth.getUser)
 export async function POST(request: Request) {
   let tier = "pro";
   let locale = "tr";
+  let couponCode: string | null = null;
   try {
     const body = await request.json();
     if (body.tier === "enterprise") {
@@ -22,6 +29,9 @@ export async function POST(request: Request) {
     }
     if (body.locale && typeof body.locale === "string") {
       locale = body.locale;
+    }
+    if (typeof body.coupon_code === "string" && body.coupon_code.trim().length > 0) {
+      couponCode = body.coupon_code.trim().toUpperCase();
     }
   } catch (_e) {
     // Ignore invalid JSON
@@ -61,6 +71,52 @@ export async function POST(request: Request) {
 
     const admin = createAdminClient();
 
+    // Akademi kuponu: doğrula (var + kullanılmamış + süresi dolmamış + bu e-posta).
+    // Kupon YAKILMAZ — sadece webhook başarılı ödemede yakar (terk edilen sepet korunur).
+    let stripeCouponId: string | null = null;
+    let academyCouponCode: string | null = null;
+    if (couponCode) {
+      const { data: couponRows, error: couponErr } = await admin
+        .from("academy_coupons")
+        .select("code,percent,used,expires_at,email")
+        .eq("code", couponCode)
+        .limit(1);
+      const coupon = (
+        couponRows as Array<{
+          code: string;
+          percent: number;
+          used: boolean;
+          expires_at: string;
+          email: string;
+        }> | null
+      )?.[0];
+      if (couponErr || !coupon) {
+        return NextResponse.json({ error: "coupon_invalid" }, { status: 400 });
+      }
+      if (coupon.used) {
+        return NextResponse.json({ error: "coupon_used" }, { status: 400 });
+      }
+      if (new Date(coupon.expires_at).getTime() < Date.now()) {
+        return NextResponse.json({ error: "coupon_expired" }, { status: 400 });
+      }
+      if ((coupon.email || "").toLowerCase() !== (user.email || "").toLowerCase()) {
+        return NextResponse.json({ error: "coupon_email_mismatch" }, { status: 400 });
+      }
+      const percent = Math.max(1, Math.min(50, Math.floor(coupon.percent)));
+      stripeCouponId = `alpar-academy-${percent}`;
+      try {
+        await stripe.coupons.retrieve(stripeCouponId);
+      } catch {
+        await stripe.coupons.create({
+          id: stripeCouponId,
+          percent_off: percent,
+          duration: "once",
+          name: `AlparAI Academy ${percent}%`,
+        });
+      }
+      academyCouponCode = coupon.code;
+    }
+
     // Get or create Stripe customer
     const { data: existingSub } = await admin
       .from("subscriptions")
@@ -88,9 +144,14 @@ export async function POST(request: Request) {
       customer: customerId,
       mode: "subscription",
       line_items: [{ price: priceId, quantity: 1 }],
+      ...(stripeCouponId ? { discounts: [{ coupon: stripeCouponId }] } : {}),
       success_url: `${APP_URL}/${locale}/pricing?session_id={CHECKOUT_SESSION_ID}&success=true`,
       cancel_url: `${APP_URL}/${locale}/pricing?canceled=true`,
-      metadata: { user_id: user.id, tier },
+      metadata: {
+        user_id: user.id,
+        tier,
+        ...(academyCouponCode ? { academy_coupon_code: academyCouponCode } : {}),
+      },
       subscription_data: { metadata: { user_id: user.id, tier } },
     });
 

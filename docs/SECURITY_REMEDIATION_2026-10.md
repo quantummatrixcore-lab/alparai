@@ -1,11 +1,11 @@
 # Güvenlik Remediasyonu 2026-10 — 22 zafiyetten 6 saf dışı kalan
 
-> Tarih: 2026-10-20. Yöntem: kanıtlı denetim, ölçülü pinleme, dürüst istisna.
+> Tarih: 2026-10-20. Güncelleme: 2026-10-21 (vite 6.4.4 bump). Yöntem: kanıtlı denetim, ölçülü pinleme, dürüst istisna.
 
 ## Sonuç
 
-- `pnpm audit --prod`: **0 zafiyet** (önce: 1 moderate + 1 low). HARD GATE YEŞİL.
-- Full-tree: **22 → 6** (önce: 4 critical / 6 high / 8 moderate / 4 low).
+- `pnpm audit --prod`: **0 zafiyet**. HARD GATE YEŞİL.
+- Full-tree: **22 → 6** (2 critical + 2 high + 2 moderate; tamamı dev-only/yamasız-upstream).
 
 ## Kapatılanlar (pin + kaldırma)
 
@@ -22,6 +22,7 @@
 2. `vitest`/`@vitest/mocker` moderate x2 — aynı gerekçe, dev-only.
 3. `semver@5.3.0` high — SEC-001'de kayıtlı (`imap-simple > imap > utf7`), devDependencies ops scripti.
 4. `braces` high — upstreamde yama YOK (patched: none). Geçici kabul; micromatch zinciri dev tooling.
+5. 2026-10-21: `vite` 6.4.3 → 6.4.4 (1 high + 2 moderate kapatıldı, 9 → 6). `pnpm.overrides` bloğu bu repoda ETKİSİZDİR (kurulu sürümler kanıt); pinler direkt bağımlılıkla yapılır.
 
 ## Alınan ders (kalıcı)
 

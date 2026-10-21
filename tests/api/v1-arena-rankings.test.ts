@@ -5,16 +5,29 @@ vi.mock("server-only", () => ({}));
 vi.mock("@/lib/rate-limit", () => ({ rateLimit: () => null }));
 vi.mock("@/lib/dehost/server", () => ({
   createServerClient: async () => ({
-    from: () => ({
+    from: (table: string) => ({
       select: () => ({
         order: () => ({
           limit: async () => ({
-            data: [
-              { model_slug: "model-b", score: 900 },
-              { model_slug: "model-a", score: 100 },
-            ],
+            data:
+              table === "k_model_scores"
+                ? [
+                    { model_id: "m-b", score: 900 },
+                    { model_id: "m-a", score: 100 },
+                  ]
+                : [
+                    { id: "m-b", slug: "Model-B" },
+                    { id: "m-a", slug: "Model-A" },
+                  ],
             error: null,
           }),
+        }),
+        limit: async () => ({
+          data: [
+            { id: "m-b", slug: "Model-B" },
+            { id: "m-a", slug: "Model-A" },
+          ],
+          error: null,
         }),
       }),
     }),
@@ -34,5 +47,6 @@ describe("IN6 arena rankings", () => {
     expect(json.meta.live).toBe(true);
     expect(json.data[0]?.model_slug).toBe("model-b");
     expect(json.data.every((e) => e.rating >= 1500)).toBe(true);
+    expect(json.data[0]?.rating).toBeGreaterThan(json.data[1]?.rating ?? 0);
   });
 });

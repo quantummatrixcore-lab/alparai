@@ -6,6 +6,7 @@ import { Link } from "@/i18n/routing";
 import { Cookie, ShieldCheck, X, ChevronDown, ChevronUp, Check } from "lucide-react";
 
 const CONSENT_STORAGE_KEY = "alpar_cookie_consent_v1";
+const LEGACY_STORAGE_KEY = "alpar_cookie_consent";
 
 interface ConsentSettings {
   essential: boolean;
@@ -23,7 +24,7 @@ export function CookieConsent() {
 
   useEffect(() => {
     try {
-      const stored = localStorage.getItem(CONSENT_STORAGE_KEY);
+      const stored = localStorage.getItem(CONSENT_STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY);
       if (!stored) {
         // Small delay so SSR hydrates smoothly and banner animates in
         const timer = setTimeout(() => setIsOpen(true), 600);
@@ -37,6 +38,13 @@ export function CookieConsent() {
   const saveConsent = (settings: ConsentSettings) => {
     try {
       localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(settings));
+      localStorage.setItem(
+        LEGACY_STORAGE_KEY,
+        JSON.stringify({
+          consent: { necessary: true, analytics: settings.analytics, marketing: false },
+          at: Date.now(),
+        })
+      );
       window.dispatchEvent(
         new CustomEvent("alpar_cookie_consent_updated", { detail: settings })
       );

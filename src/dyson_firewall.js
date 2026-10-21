@@ -1,3 +1,5 @@
+import { pathToFileURL } from 'url';
+
 class DysonFirewall {
     constructor(q = 97, n = 4, m = 10) {
         this.q = q; // Modulus for the finite field
@@ -99,3 +101,19 @@ class DysonFirewall {
 }
 
 export default DysonFirewall;
+
+// For standalone test execution
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+    console.log("Starting AlparAi Dyson Sphere (Lattice-Based Post-Quantum) Security Firewall Test...");
+    const fw = new DysonFirewall();
+    const keys = fw.generateKeys();
+    const isAuth = fw.authenticate(keys.publicKey, keys.privateKey);
+    const wrongKey = fw.getRandomVector(fw.n);
+    const isAuthWrong = fw.authenticate(keys.publicKey, wrongKey);
+    if (isAuth && !isAuthWrong) {
+        console.log("✅ All Dyson Firewall post-quantum authentication checks passed.");
+    } else {
+        console.error("❌ Dyson Firewall check failed.");
+        process.exit(1);
+    }
+}

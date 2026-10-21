@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-10-16T20:20:51.520Z",
+  "timestamp": "2026-10-21T00:13:36.810Z",
   "target": "D:\\03_ALPARAI",
-  "totalScanned": 1881,
-  "findingsCount": 30,
+  "totalScanned": 2115,
+  "findingsCount": 32,
   "criticalCount": 3,
-  "highCount": 27,
+  "highCount": 29,
   "mediumCount": 0,
   "findings": [
     {
@@ -100,6 +100,12 @@
     {
       "severity": "HIGH",
       "cwe": "CWE-95",
+      "file": "src\\app\\auth\\callback\\route.ts",
+      "message": "Direct eval() Execution detected; potential RCE or command injection vector."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-95",
       "file": "tests\\e2e\\admin-pwa.spec.ts",
       "message": "Direct eval() Execution detected; potential RCE or command injection vector."
     },
@@ -168,6 +174,12 @@
       "cwe": "CWE-338",
       "file": "vibe_security_audit_manifest.json",
       "message": "Insecure PRNG (Math.random()) used in authentication/token context. Use crypto.randomBytes() or crypto.randomUUID()."
+    },
+    {
+      "severity": "HIGH",
+      "cwe": "CWE-284",
+      "file": "database/migrations",
+      "message": "Found 2 SQL migration table declarations without explicit ENABLE ROW LEVEL SECURITY."
     },
     {
       "severity": "HIGH",

@@ -1,5 +1,7 @@
 'use strict';
 
+import { pathToFileURL } from 'url';
+
 /**
  * AlparAi Cosmic Camouflage (Simulation Firewall)
  * Simulates masking the system's compute signature to blend in with Cosmic Microwave Background (CMB).
@@ -30,7 +32,7 @@ class CosmicCamouflage {
 export default CosmicCamouflage;
 
 // For standalone test execution
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
     const firewall = new CosmicCamouflage();
     firewall.activateFirewall();
     firewall.maskComputeSignature(9500000); // 9.5 million TFLOPS

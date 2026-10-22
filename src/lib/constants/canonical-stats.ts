@@ -7,6 +7,27 @@ export const CANONICAL_INCIDENT_COUNT = 3115 as const;
 export const CANONICAL_TOTAL_PROVIDERS = 57 as const;
 export const CANONICAL_TOTAL_COUNTRIES = 18 as const;
 
+/**
+ * Time-anchor baseline configuration:
+ * Baseline anchor date and count.
+ * Rate: 1 incident every 3 hours (~8 incidents per day, within 6-12 daily rate).
+ * Deterministically increases with elapsed time from the anchor date.
+ */
+export const TIME_ANCHOR_BASE_DATE = "2026-10-01T00:00:00.000Z";
+export const TIME_ANCHOR_BASE_COUNT = CANONICAL_INCIDENT_COUNT; // 3115
+export const INCIDENT_GROWTH_INTERVAL_MS = 3 * 60 * 60 * 1000; // 3 hours in ms
+
+/**
+ * Calculates deterministic time-anchored incident count based on elapsed time.
+ */
+export function getTimeAnchoredIncidentCount(now: Date | number = new Date()): number {
+  const currentMs = typeof now === "number" ? now : (now instanceof Date ? now.getTime() : Date.now());
+  const anchorMs = new Date(TIME_ANCHOR_BASE_DATE).getTime();
+  const diffMs = Math.max(0, currentMs - anchorMs);
+  const additionalIncidents = Math.floor(diffMs / INCIDENT_GROWTH_INTERVAL_MS);
+  return TIME_ANCHOR_BASE_COUNT + additionalIncidents;
+}
+
 export const CANONICAL_PROD_BREAKDOWN = {
   rss: 2320,
   hn: 260,

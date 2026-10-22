@@ -12,6 +12,9 @@ import { rateLimit } from "@/lib/rate-limit";
 import { headers } from "next/headers";
 import { logger } from "@/lib/utils/logger";
 import { privatizeHistogram } from "@/lib/privacy/differential-privacy";
+import { resolveIncidentCount } from "@/lib/constants";
+
+export const dynamic = "force-dynamic";
 
 const ALLOWED_ORIGINS = [
   "https://alparai.com",
@@ -89,7 +92,7 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const totalIncidents = incidentsCountResult.count ?? 0;
+    const totalIncidents = resolveIncidentCount(incidentsCountResult.count);
     const totalProviders = providersResult.data?.length ?? 0;
 
     let averageTrustScore = 0;

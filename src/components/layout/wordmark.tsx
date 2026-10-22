@@ -27,7 +27,7 @@ export function Wordmark({
       <Logo size={logo} />
       <div className="flex flex-col leading-none">
         <span className={cn("flex items-center gap-1.5 font-bold tracking-tight", text)}>
-          <span className="bg-gradient-to-r from-slate-900 via-slate-800 to-brand-700 dark:from-white dark:via-slate-100 dark:to-brand-100 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 dark:from-white dark:via-slate-100 dark:to-white bg-clip-text text-transparent">
             ALPAR
           </span>
           <span className="from-sky-400 via-cyan-400 to-blue-500 bg-gradient-to-r bg-clip-text text-transparent font-black">

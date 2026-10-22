@@ -1,5 +1,4 @@
 import * as React from "react";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 export interface LogoProps extends React.HTMLAttributes<HTMLSpanElement> {
@@ -28,11 +27,11 @@ export function Logo({ className, size = "md", ...props }: LogoProps) {
       {...props}
     >
       <img
-        src="/brand-assets/alpar-shield-emblem.svg"
+        src="/brand-assets/alpar-shield-emblem.png"
         alt="ALPAR AI Shield"
         width={px}
         height={px}
-        className="h-full w-full object-contain rounded-full drop-shadow-[0_0_12px_rgba(56,189,248,0.35)] transition-all duration-300 group-hover/logo:scale-105 group-hover/logo:drop-shadow-[0_0_20px_rgba(0,242,254,0.6)]"
+        className="h-full w-full object-contain drop-shadow-[0_0_12px_rgba(56,189,248,0.35)] transition-all duration-300 group-hover/logo:scale-105 group-hover/logo:drop-shadow-[0_0_20px_rgba(0,242,254,0.6)]"
       />
     </span>
   );

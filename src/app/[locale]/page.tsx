@@ -1,4 +1,4 @@
-export const revalidate = 60;
+export const revalidate = 30;
 
 import { Suspense, cache } from "react";
 import { Skeleton } from "@/components/ui/skeleton";

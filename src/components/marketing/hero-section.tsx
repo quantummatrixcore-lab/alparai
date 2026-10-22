@@ -17,6 +17,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { Container } from "@/components/ui/layout";
 import { cn } from "@/lib/utils";
 import { trackEvent } from "@/lib/analytics";
+import { useLiveIncidentCount } from "@/hooks/use-live-incident-count";
 
 // Animation Variants for Staggering (Safe initial state prevents stuck opacity in React 19)
 const containerVariants: Variants = {
@@ -62,6 +63,10 @@ export function HeroSection({
   const tIncident = useTranslations("incident");
   const heroPitches = [t("pitch_1"), t("pitch_2"), t("pitch_3")];
   const [pitchIndex, setPitchIndex] = React.useState(0);
+
+  const { count: liveIncidentCount, isPulsing: isIncidentPulsing } = useLiveIncidentCount({
+    initialCount: totalIncidents,
+  });
 
   React.useEffect(() => {
     const timer = setInterval(() => {
@@ -130,9 +135,9 @@ export function HeroSection({
               <div className="group hover:border-success-500/50 border-success-500/30 bg-success-500/10 text-success-300 relative inline-flex items-center gap-2 overflow-hidden rounded-full border px-4 py-2 text-[11px] font-black tracking-[0.2em] uppercase backdrop-blur-xl transition-all duration-300">
                 <Target className="text-success-400 h-3.5 w-3.5" />
                 <span className="relative z-10">
-                  {totalIncidents > 0
+                  {liveIncidentCount > 0
                     ? t("incidents_monitored", {
-                        count: `${totalIncidents.toLocaleString()}+`,
+                        count: `${liveIncidentCount.toLocaleString()}+`,
                       })
                     : t("incidents_monitored_empty")}
                 </span>
@@ -270,11 +275,12 @@ export function HeroSection({
               <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent mix-blend-overlay" />
               <div className="relative z-10 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-6">
                 <LiveStatCard
-                  value={totalIncidents}
+                  value={liveIncidentCount}
                   label={t("stats_incidents")}
                   glowColor="rgba(230,57,70,0.2)"
                   accentClass="text-danger-400"
                   tooltip={incidentTooltip}
+                  isPulsing={isIncidentPulsing}
                 />
                 <LiveStatCard
                   value={totalProviders}
@@ -428,24 +434,36 @@ function AnimatedValue({ value }: { value: number | string; enableLiveTicker?: b
   const [count, setCount] = React.useState(numVal);
   const ref = React.useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const hasAnimatedInitial = React.useRef(false);
+  const prevValRef = React.useRef(numVal);
 
   React.useEffect(() => {
     if (numVal === 0 || !isInView) return;
 
-    const controls = animate(0, numVal, {
-      duration: 2,
-      ease: [0.21, 0.47, 0.32, 0.98], // Custom ease for premium feel
-      onUpdate: (latest) => {
-        setCount(Math.round(latest));
-      },
-    });
-
-    return () => controls.stop();
+    if (!hasAnimatedInitial.current) {
+      hasAnimatedInitial.current = true;
+      const controls = animate(0, numVal, {
+        duration: 2,
+        ease: [0.21, 0.47, 0.32, 0.98],
+        onUpdate: (latest) => {
+          setCount(Math.round(latest));
+        },
+      });
+      prevValRef.current = numVal;
+      return () => controls.stop();
+    } else if (numVal !== prevValRef.current) {
+      const from = prevValRef.current;
+      prevValRef.current = numVal;
+      const controls = animate(from, numVal, {
+        duration: 0.5,
+        ease: "easeOut",
+        onUpdate: (latest) => {
+          setCount(Math.round(latest));
+        },
+      });
+      return () => controls.stop();
+    }
   }, [numVal, isInView]);
-
-  React.useEffect(() => {
-    setCount(numVal);
-  }, [numVal]);
 
   if (typeof value === "string") return <>{value}</>;
   return (
@@ -468,24 +486,35 @@ function LiveStatCard({
   glowColor: _glowColor,
   accentClass,
   tooltip,
+  isPulsing,
 }: {
   value: number | string;
   label: string;
   glowColor?: string;
   accentClass: string;
   tooltip?: string;
+  isPulsing?: boolean;
 }) {
   return (
     <div
       className={cn(
-        "group relative overflow-hidden rounded-2xl bg-white/5 p-3 text-center shadow-inner ring-1 shadow-white/5 ring-white/10 transition-all duration-300 hover:bg-white/10 sm:p-4",
+        "group relative overflow-hidden rounded-2xl bg-white/5 p-3 text-center shadow-inner ring-1 shadow-white/5 ring-white/10 transition-all duration-500 hover:bg-white/10 sm:p-4",
+        isPulsing && "scale-[1.03] ring-2 ring-danger-400/80 shadow-[0_0_25px_rgba(230,57,70,0.5)]",
         tooltip && "cursor-help",
       )}
       title={tooltip}
     >
-      <div className="absolute inset-0 bg-gradient-to-t from-transparent to-white/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      <div
+        className={cn(
+          "absolute inset-0 bg-gradient-to-t from-transparent to-white/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100",
+          isPulsing && "opacity-100 bg-danger-500/15",
+        )}
+      />
       <p
-        className={`relative z-10 font-sans text-3xl font-black tracking-tight sm:text-4xl ${accentClass} drop-shadow-md transition-transform duration-300 group-hover:scale-105`}
+        className={cn(
+          `relative z-10 font-sans text-3xl font-black tracking-tight sm:text-4xl ${accentClass} drop-shadow-md transition-all duration-300 group-hover:scale-105`,
+          isPulsing && "text-danger-300 scale-105 drop-shadow-[0_0_15px_rgba(230,57,70,0.8)]",
+        )}
       >
         <AnimatedValue value={value} />
       </p>

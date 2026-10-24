@@ -1,0 +1,134 @@
+name: "🚨 AI Incident Report / Yapay Zekâ İhlal Bildirimi"
+description: "Report an AI system failure, hallucination, data breach, bias, or autonomous drift under EU AI Act and ISO/IEC 27037 standards."
+title: "[AI INCIDENT]: "
+labels: ["incident", "ai-safety", "triage-needed"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### ⚖️ ALPAR AI — Autonomous AI Incident Intake & Verification Pipeline
+        Thank you for reporting an AI incident. ALPAR AI indexes real-world AI failures into cryptographic incident passports conforming to **ISO/IEC 27037** forensic digital evidence standards and **EU AI Act Regulation (EU) 2024/1689** Article 73/74 mandates.
+
+        > **⚠️ ZERO-PII MANDATE:** Do NOT submit unredacted personal identifiable information (PII), credentials, private tokens, or confidential trade secrets. All prompts and outputs must be sanitized before submission.
+
+  - type: input
+    id: ai_provider_model
+    attributes:
+      label: "AI System / Model & Provider"
+      description: "Specify the exact AI provider and model version involved."
+      placeholder: "e.g. OpenAI GPT-4o (2024-08-06 checkpoint), Anthropic Claude 3.5 Sonnet, Google Gemini 1.5 Pro, Meta Llama 3 70B"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: annex_iii_category
+    attributes:
+      label: "EU AI Act Annex III Risk Category"
+      description: "Select the applicable risk domain under EU AI Act Regulation (EU) 2024/1689."
+      options:
+        - "Annex III.1: Biometrics & Categorization of Natural Persons"
+        - "Annex III.2: Critical Infrastructure (Energy, Water, Transport, Health, Traffic)"
+        - "Annex III.3: Educational & Vocational Training"
+        - "Annex III.4: Employment, Workers Management & Access to Self-Employment"
+        - "Annex III.5: Access to Essential Private & Public Services (Credit, Benefits, Insurance, Healthcare)"
+        - "Annex III.6: Law Enforcement & Criminal Justice"
+        - "Annex III.7: Migration, Asylum & Border Control Management"
+        - "Annex III.8: Administration of Justice & Democratic Processes"
+        - "Article 51 / 52: General Purpose AI (GPAI) with Systemic Risk"
+        - "Other / Enterprise Non-Annex III High-Impact AI System"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: harm_type
+    attributes:
+      label: "Incident Harm Category (İhlal Türü)"
+      description: "Select the primary nature of the failure or damage observed."
+      options:
+        - "Hallucination / Factuality Fabrication (Kritik Halüsinasyon ve Yanıltıcı Çıktı)"
+        - "PII Leak / Data Privacy Violation (Kişisel Veri ve Gizlilik İhlali)"
+        - "Algorithmic Bias / Discrimination (Algoritmik Ayrımcılık ve Yanlılık)"
+        - "Autonomous Drift / Alignment Failure (Otonom Sapma ve Hizalama Çöküşü)"
+        - "Unauthorized System Execution / Tool Misuse (Yetkisiz Sistem ve Araç Çalıştırma)"
+        - "Prompt Injection / Jailbreak Vulnerability (Güvenlik Kalkanı Aşımı)"
+        - "Financial, Physical, or Property Damage (Maddi veya Fiziksel Zarar)"
+        - "Other Emergent Failure Mode"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: "Perceived Severity Level"
+      description: "Assess the real-world operational and safety impact."
+      options:
+        - "Critical (Severe harm, bodily injury, fundamental rights violation, critical infrastructure impact)"
+        - "High (Direct financial loss, widespread algorithmic discrimination, significant PII breach)"
+        - "Medium (Verifiable domain hallucination in production, compliance violation, system drift)"
+        - "Low (Minor divergence, edge-case failure with bounded blast radius)"
+    validations:
+      required: true
+
+  - type: input
+    id: incident_url
+    attributes:
+      label: "Affected Endpoint / Application URL / System Interface"
+      description: "URL of the web service, public API, or application where the incident occurred (if publicly accessible)."
+      placeholder: "https://app.example.com/ai-service or API endpoint"
+    validations:
+      required: false
+
+  - type: textarea
+    id: incident_summary
+    attributes:
+      label: "Incident Summary & Real-World Impact"
+      description: "Provide a factual, step-by-step account of the event and its real-world consequences."
+      placeholder: "Describe the operational context, what was expected, what occurred, who was affected, and the observed consequences..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: prompt_input
+    attributes:
+      label: "Verbatim Input Prompt / Query (PII Sanitized)"
+      description: "Exact prompt or instructions delivered to the model. Ensure all personal names, phone numbers, API keys, and corporate secrets are scrubbed."
+      placeholder: "Enter the exact prompt or input payload delivered to the model..."
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: model_output
+    attributes:
+      label: "Verbatim Model Output / Response"
+      description: "Exact text, code, or payload returned by the model."
+      placeholder: "Paste the exact unfiltered response received from the model..."
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence_artifacts
+    attributes:
+      label: "Evidence Verification & Forensic Artifacts"
+      description: "Links to cryptographic logs, SHA-256 hashes, network traces, session IDs, or uploaded screenshots demonstrating the failure."
+      placeholder: |
+        - Evidence SHA-256 Hash:
+        - Archive / Wayback Link:
+        - Screenshot URLs:
+        - Telemetry / Session ID:
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: zero_pii_ack
+    attributes:
+      label: "Evidence Integrity & Zero-PII Acknowledgment"
+      description: "You must confirm the following compliance assertions before this issue can be accepted."
+      options:
+        - label: "I confirm that all raw Personally Identifiable Information (PII), credentials, private tokens, and confidential secrets have been removed or masked from this report."
+          required: true
+        - label: "I attest that this report represents a factual, non-fabricated incident observed in an operational or verified test environment."
+          required: true
+        - label: "I acknowledge that this incident report will be recorded under AlparAI's ISO/IEC 27037 forensic chain of custody and may be forwarded to the respective AI vendor under the 72-hour Right of Reply protocol."
+          required: true

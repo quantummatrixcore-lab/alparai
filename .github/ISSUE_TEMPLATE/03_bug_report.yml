@@ -1,0 +1,105 @@
+name: "🐛 Bug Report / Hata Bildirimi"
+description: "Report a bug, crash, or unexpected behavior in the ALPAR AI platform codebase."
+title: "[BUG]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### 🐞 ALPAR AI Platform Bug Report
+        Thank you for reporting an issue in the ALPAR AI platform codebase. Please provide clear, reproducible steps so our engineering team can isolate and fix the problem quickly.
+
+  - type: dropdown
+    id: affected_component
+    attributes:
+      label: "Affected Platform Component"
+      description: "Select which architectural domain is experiencing the issue."
+      options:
+        - "Epistemic Firewall (In-Memory Proxy & Real-time Filter)"
+        - "Incident Registry & Incident Passport Pipeline"
+        - "Truth Engine & Multi-Model Consensus"
+        - "B2B Enterprise Governance Panel ($499-$2,499 Tier)"
+        - "EU AI Act Telemetry & Article 73 Radar"
+        - "Authentication & Session Management"
+        - "Database, RLS & DeHost Layer"
+        - "Internationalization (i18n en/tr)"
+        - "UI / Tailwind v4 Primitives & Design System"
+        - "CI/CD & DevOps Pipeline"
+        - "Other / Core Infrastructure"
+    validations:
+      required: true
+
+  - type: textarea
+    id: bug_description
+    attributes:
+      label: "Bug Description"
+      description: "A clear and concise description of what the bug is."
+      placeholder: "Clear summary of the defect encountered..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps_to_reproduce
+    attributes:
+      label: "Steps to Reproduce"
+      description: "Step-by-step instructions to reproduce the behavior."
+      placeholder: |
+        1. Navigate to '...'
+        2. Execute action '...'
+        3. Observe error '...'
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: "Expected Behavior"
+      description: "What you expected to happen according to system specification."
+      placeholder: "Describe the expected state or response..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual_behavior
+    attributes:
+      label: "Actual Behavior"
+      description: "What actually occurred (including error codes, UI freezes, or invalid responses)."
+      placeholder: "Describe the observed behavior or crash..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: "Environment & Runtime Details"
+      description: "Please share your environment details to assist reproduction."
+      value: |
+        - OS: [e.g. Windows 11, Ubuntu 24.04, macOS Sonoma]
+        - Browser: [e.g. Chrome 128, Firefox 130, Safari 18]
+        - Node.js Version: [e.g. 20.x, 22.x]
+        - Package Manager: [e.g. pnpm 9.12.0]
+        - Commit / Branch: [e.g. master @ commit hash]
+    validations:
+      required: true
+
+  - type: textarea
+    id: error_logs
+    attributes:
+      label: "Terminal Logs / Browser Console Output"
+      description: "Relevant logs or stack traces. (Never include real secrets, tokens, or PII!)."
+      placeholder: "Paste terminal output or browser console logs here..."
+      render: shell
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: bug_checklist
+    attributes:
+      label: "Validation Checklist"
+      options:
+        - label: "I have searched existing issues and verified this is not a duplicate."
+          required: true
+        - label: "I have verified that no private API keys, connection strings, or personal data are included in these logs."
+          required: true
+        - label: "I can reliably reproduce this bug using the steps provided above."
+          required: false

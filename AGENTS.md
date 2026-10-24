@@ -41,6 +41,21 @@ Herhangi bir form, başvuru, API veya dokümantasyonda kurucu ve danışman bilg
 * **Hukuk & Tahkim Başkanı:** Prof. Dr. Musa Aygül (`musaaygul.com` / Selçuk Üniversitesi Hukuk Fakültesi Ticaret Hukuku Anabilim Dalı Başkanı)
 * **Kamuoyu & Medya Lideri:** Ahmet Rıfat Albuz (`ahmetrifatalbuz.com`)
 
+---
+
+## 5. ULUSLARARASI STANDARTLAR VE GLOBAL REPO EGEMENLİĞİ (MUTLAK KURAL)
+* **Kök Dizin Hijyeni (DORA & Linux Foundation Standardı):** Kök dizin (root) yalnızca uluslararası açık kaynak ve kurumsal vitrin dosyalarını (`README.md`, `README.tr.md`, `LICENSE`, `SECURITY.md`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `GOVERNANCE.md`, `CITATION.cff`) barındırabilir. Tüm dahili sunumlar, başvuru metinleri, jüri notları ve operasyonel dökümler `docs/` altındaki ilgili klasörlere (`docs/grants/`, `docs/governance/`, `docs/playbooks/` vb.) taşınmak zorundadır.
+* **Çift Depo & Senkronizasyon Disiplini:**
+  - `quantummatrixcore-lab/alparai`: Küresel açık kaynak, yatırımcı ve bağımsız denetim vitrinidir (Public Open-Core Showcase).
+  - `quantummatrixcore-lab/alparai-platform`: Üretim ve Cloudflare Pages dağıtım motorudur (Production & CI/CD).
+  - Yapılan her genel vitrin ve açık çekirdek geliştirmesi `quantummatrixcore-lab/alparai` reposuna da uluslararası standartlarda yansıtılır.
+* **Uluslararası Uyumluluk ve Yasal Çerçeve:**
+  - **EU AI Act (Regulation 2024/1689):** Madde 73 (Ciddi Olay Bildirimi), Madde 74 ve Ek III risk sınıflandırmaları teknik ve hukuki olarak canlı tutulur.
+  - **ISO/IEC 27037:** Adli bilişim delil bütünlüğü; üretilen her `IncidentPassport` SHA-256 hash zinciriyle mühürlenir.
+  - **DORA (Digital Operational Resilience Act):** Finansal ve kritik yapay zekâ entegrasyonlarında ICT risk yönetimi ve sıfır kesinti protokolü uygulanır.
+  - **W3C Verifiable Credentials & DID:** İhlal pasaportları uluslararası geçerlilikte doğrulanabilir kriptografik kimliklerle sunulur.
+* **Çift Dilli Vitrin (Bilingual Global Standard):** Tüm uluslararası dokümantasyon İngilizce birincil (`README.md`), Türkçe ikincil (`README.tr.md`) olarak saf UTF-8 formatında hazırlanır.
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 ## This is NOT the Next.js you know

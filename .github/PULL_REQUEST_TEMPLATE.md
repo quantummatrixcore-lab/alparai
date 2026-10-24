@@ -1,37 +1,90 @@
-## Description
+<!--
+  ALPAR AI — Pull Request Template
+  Operating Standard: Opus Engineering & DORA Elite Protocol
+  License: AGPL-3.0
+-->
 
-Please provide a brief description of the changes introduced by this Pull Request. Explain the problem being solved and how your implementation addresses it.
+## 📌 Architectural Overview & Context
 
-## Type of Change
+<!-- Provide a concise summary of the problem, architectural context, and solution. -->
 
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [ ] Refactoring / Code Cleanup (no functional changes)
-- [ ] Documentation update
+### Problem & Motivation
 
-## Related Issues
+<!-- What problem does this PR solve? Reference relevant issues or Incident Passports. -->
 
-Please link any related issues or audit points here (e.g., `Closes #123` or `Addresses Audit Point P1-1`).
+### Proposed Changes & Architectural Impact
 
-## Verification & Testing
+<!-- Summarize changes made across server actions, components, database migrations, or schemas. -->
 
-### Automated Tests
+---
 
-Describe the automated tests you ran to verify these changes.
+## 🎯 Type of Change
 
-- [ ] `pnpm lint` passed without warnings
-- [ ] `pnpm typecheck` passed without errors
-- [ ] `pnpm test` passed with all unit tests succeeding
+- [ ] 🐛 **Bug Fix** (non-breaking fix for an issue)
+- [ ] ✨ **New Feature** (non-breaking addition aligned with core pillars)
+- [ ] 💥 **Breaking Change** (fix or feature modifying API/data contracts)
+- [ ] 🗄️ **Database Migration** (schema update with verified RLS & rollback)
+- [ ] ♻️ **Refactoring** (performance, code health, zero functional regression)
+- [ ] 🛡️ **Security & Privacy** (PII Guardian, Epistemic Firewall, auth hardening)
+- [ ] 🌐 **Localization** (updates to `messages/en.json` & `messages/tr.json`)
+- [ ] 📚 **Documentation / Compliance** (EU AI Act, ISO/IEC 27037, DORA)
 
-### Manual Verification
+---
 
-Describe any manual testing performed (e.g. tested on localhost, verified responsive UI on Chrome/Firefox).
+## ⚡ Opus Engineering Three-Gate Quality Control
 
-## Checklist
+All pull requests MUST pass the Opus Three-Gate Crucible before review or merge.
 
-- [ ] My code follows the code style and conventions of this project.
-- [ ] I have performed a self-review of my own code.
-- [ ] I have commented my code, particularly in hard-to-understand areas (if applicable).
-- [ ] My changes generate no new warnings or console errors.
-- [ ] New and existing unit tests pass locally with my changes.
+### Gate 1: Compiles & Static Integrity
+
+- [ ] **Lint Cleanliness:** `pnpm lint` passed with **0 warnings** (`--max-warnings 0`).
+- [ ] **Type Sovereignty:** `pnpm typecheck` passed with **0 errors** (`noUncheckedIndexedAccess` strictly satisfied).
+- [ ] **No `any` Keyword:** No usages of `any`; all dynamic payloads typed as `unknown` and parsed via **Zod Strict Contracts**.
+
+### Gate 2: Test Suite & Zero-Entropy Verification
+
+- [ ] **Fast Test Suite:** `pnpm test:fast` executed and 100% green (contracts, security, API health).
+- [ ] **Regression Resilience:** New unit/integration tests added covering modified paths (`pnpm test`).
+- [ ] **Zero-State Placeholders:** Strictly NO `// TODO`, `pass`, placeholder stubs, or mock data. Code is production-ready.
+
+### Gate 3: Database Sovereignty & Security (RLS)
+
+- [ ] **Server Action Isolation:** State mutations occur EXCLUSIVELY via `src/actions/<domain>.ts`.
+- [ ] **Client Mutation Ban:** Absolutely NO client-side direct mutations (e.g. `dehost.from().insert()` is forbidden).
+- [ ] **Row-Level Security (RLS):** Every new/modified table has strict RLS policies defined in the migration file.
+- [ ] **Deterministic Rollback:** Migration includes an explicit `-- ROLLBACK:` SQL block.
+
+---
+
+## 🔐 Privacy, Security & Isolation Checklist
+
+- [ ] **PII Guardian Protocol:** Free-text user inputs are sanitized via `src/lib/pii/guardian.ts` prior to persistence.
+- [ ] **Zero-Knowledge Logging:** No raw IPs, personal emails, secrets, or unhashed PII logged. Cryptographic hashing is applied.
+- [ ] **Secret Hygiene:** `DEHOST_SERVICE_ROLE_KEY` or sensitive credentials never leak to client-side bundles.
+- [ ] **Port 22 Prohibition:** No code, scripts, or container definitions reference or expose Port 22 (Zero-Trust / WireGuard Mesh VPN only).
+
+---
+
+## 🌐 UI, i18n & Architecture Standards
+
+- [ ] **Strict i18n:** Zero hardcoded strings in UI components; all user-facing copy mapped in `messages/en.json` and `messages/tr.json`.
+- [ ] **Tailwind v4 Primitives:** Styling strictly uses Tailwind v4 primitives (`@theme inline` in `globals.css`). No legacy `tailwind.config.ts`.
+- [ ] **Component Taxonomy:** `src/components/ui/` contains only pure primitive components; domain logic isolated in feature directories.
+
+---
+
+## 🔗 Related Issues & Artifacts
+
+- Closes #<!-- Issue Number -->
+- Incident Passport Hash: `<!-- 0x... if applicable -->`
+- Spec / Proposal: `<!-- Link to docs/PROPOSALS/... or task -->`
+
+---
+
+## ✍️ Developer Certificate of Origin (DCO 1.1)
+
+By signing below, I certify that this contribution is original, compliant with the AGPL-3.0 license, and meets the Open-Core integrity standards of ALPAR AI:
+
+```text
+Signed-off-by: Full Name <developer@example.com>
+```

@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "🌐 Canlı İhlal Kaydı (Live Incident Reporting Portal)"
+    url: "https://alparai.com"
+    about: "Raporunuzu doğrudan AlparAI Canlı Delil & Epistemic Firewall portalı üzerinden bildirin."
+  - name: "🔒 Güvenlik ve İhbar Masası (Security & Whistleblower Desk)"
+    url: "mailto:security@alparai.com"
+    about: "Kritik güvenlik açıkları, zero-day ihlalleri veya gizli bildirimler için PGP şifreli güvenlik masası."
+  - name: "⚖️ EU AI Act Compliance & Legal Desk"
+    url: "mailto:legal@alparai.com"
+    about: "EU AI Act Article 73/74 yasal bildirimleri, regülasyon uyumu ve resmi tahkim süreçleri."

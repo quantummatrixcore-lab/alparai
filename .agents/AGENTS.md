@@ -1,4 +1,4 @@
-﻿# Alparai â€” Opus Engineering Operating Standard
+# Alparai â€” Opus Engineering Operating Standard
 
 # [SYSTEM BOUNDARY: D:\Alparai Workspace Only]
 
@@ -129,3 +129,9 @@ Deploy ajanÄ± her iÅŸlemde bu sÄ±nÄ±rlarÄ± Admin Paneldeki DeploymentL
 
 ## 11. MODEL YÜKSELTME KANUNU (PRO 3.1 DOKTRİNİ)
 Kurucu İrade kararıyla (Global Kural 5) "Strictly Flash" kısıtlaması esnetilmiştir. Derin muhakeme gerektiren 10'lu Kurul üyeleri (Sinan, Turing, Da Vinci vb.), görev ağırlıklarına göre doğrudan gemini-3.1-pro modelini kullanma tam yetkisine sahiptir.
+
+## 12. ULUSLARARASI STANDARTLAR VE REPO EGEMENLİĞİ DOKTRİNİ
+- **Root Hijyeni (Linux Foundation / CNCF Standartları):** Kök dizin sadece genel açık kaynak/kurumsal dosyalarını (`README.md`, `LICENSE`, `SECURITY.md`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `GOVERNANCE.md`, `CITATION.cff`) içerebilir. Dahili jüri, teşvik, hibe ve operasyon belgeleri `docs/` altında arşivlenir.
+- **Çift Repo Mimarisi:** `quantummatrixcore-lab/alparai` (Public Showcase) ve `alparai-platform` (Core Engine) birbirini tamamlar.
+- **Yasal ve Adli Standartlar:** EU AI Act (2024/1689 Art. 73-74), ISO/IEC 27037 (Adli Delil), DORA (EU 2022/2554), W3C DID/VC.
+- **Evrensel Karakter Kodlaması:** Kesin UTF-8. ANSI bozulması kesinlikle engellenir.

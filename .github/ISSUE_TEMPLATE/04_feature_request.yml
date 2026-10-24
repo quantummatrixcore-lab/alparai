@@ -1,0 +1,66 @@
+name: "💡 Feature Request / Özellik Talebi"
+description: "Propose a new feature, capability, or architectural enhancement for the ALPAR AI platform."
+title: "[FEATURE]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### 💡 ALPAR AI Feature Proposal
+        Propose a strategic enhancement to ALPAR AI's trust infrastructure for artificial intelligence accountability.
+
+        > **Opus Engineering Note:** Every line of code is a maintenance liability. Feature proposals must demonstrate significant utility and align with our core architectural pillars.
+
+  - type: dropdown
+    id: feature_pillar
+    attributes:
+      label: "Strategic Architectural Pillar"
+      description: "Select which core pillar of ALPAR AI this enhancement serves."
+      options:
+        - "Pillar 1: Halkın Anayasası (Civic Accountability & Community Feedback)"
+        - "Pillar 2: Epistemic Firewall (In-Memory Zero-GC Real-Time Safety Proxy)"
+        - "Pillar 3: Actuarial Risk Engine & Moody's for AI (InsurTech & Risk Moat)"
+        - "Pillar 4: Geopolitical Arbitration & EU AI Act Enforcement"
+        - "Developer Experience: SDK, CLI & Public API"
+        - "B2B Enterprise Portal & Incident Mitigation Workflows"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem_statement
+    attributes:
+      label: "Problem Statement / Friction Point"
+      description: "What challenge, limitation, or regulatory gap does this proposal address?"
+      placeholder: "As a [user/auditor/enterprise/insurer], I need [...] because [...]"
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_solution
+    attributes:
+      label: "Proposed Solution & Architecture"
+      description: "Describe your proposed feature, workflow, and architectural design."
+      placeholder: "Provide a clear description of the proposed solution, UI flow, or API contracts..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives_considered
+    attributes:
+      label: "Alternatives Considered"
+      description: "What other approaches or workarounds were evaluated and why were they rejected?"
+      placeholder: "Describe alternative implementations or existing tools..."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: feature_checklist
+    attributes:
+      label: "Architectural Readiness Checklist"
+      options:
+        - label: "This proposal respects the Zero Entropy principle (avoids unnecessary complexity and code bloat)."
+          required: true
+        - label: "This proposal adheres to strict Zero-Knowledge / PII Guardian security boundaries."
+          required: true
+        - label: "I am willing to contribute or help review the implementation for this feature."
+          required: false

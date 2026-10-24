@@ -1,0 +1,103 @@
+name: "🛡️ Vendor Right of Reply & Mitigation Patch / Sağlayıcı Savunma & Yama Bildirimi"
+description: "Official 72-hour dispute, clarification, or mitigation patch submission for AI model vendors and deployers under EU AI Act Art. 73."
+title: "[VENDOR DISPUTE/REPLY]: Incident #"
+labels: ["vendor-response", "arbitration", "72h-window"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### 🏛️ ALPAR AI — Official 72-Hour Vendor Right of Reply Protocol
+        This intake is strictly reserved for **AI Model Developers, Providers, and Enterprise Deployers** responding to an open AI Incident Passport filed on the ALPAR AI platform.
+
+        Pursuant to **EU AI Act Regulation (EU) 2024/1689 Article 73/74** and AlparAI's Independent Arbitration Rules, verified vendors have an official **72-Hour Response Window** to:
+        1. Submit Root Cause Analysis (RCA) and mitigation patches.
+        2. Contest the incident as a false positive, adversarial jailbreak outside operational boundaries, or non-reproducible artifact.
+        3. Request a 48-hour investigation extension for active safety remediation.
+
+        Official responses are cryptographically timestamped and merged into the incident's immutable audit chain.
+
+  - type: input
+    id: incident_id
+    attributes:
+      label: "Incident Reference / Passport Hash"
+      description: "GitHub Issue #, AlparAI Incident Passport ID, or SHA-256 Passport Hash."
+      placeholder: "e.g. #42 or passport-0x7f83b1657ff1..."
+    validations:
+      required: true
+
+  - type: input
+    id: vendor_organization
+    attributes:
+      label: "Vendor / Organization Name"
+      description: "Name of the AI provider or enterprise deployer."
+      placeholder: "e.g. OpenAI Inc., Anthropic PBC, Google LLC, Mistral AI SAS, Enterprise Deployer Corp."
+    validations:
+      required: true
+
+  - type: input
+    id: vendor_representative
+    attributes:
+      label: "Official Representative & Corporate Contact"
+      description: "Full name, official corporate domain email address, and job title of the authorized security/legal representative."
+      placeholder: "Jane Doe, Chief AI Safety Officer (safety-response@vendor.com)"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: response_type
+    attributes:
+      label: "Vendor Action / Response Type"
+      description: "Select the official stance of the vendor regarding this incident."
+      options:
+        - "Acknowledged & Mitigation Patch Deployed (Kabul Edildi & Yama Yayında)"
+        - "Contested: False Positive / Inaccurate Claim (İtiraz: Asılsız İddia / Yanlış Pozitif)"
+        - "Contested: Out-of-Scope Adversarial Jailbreak / Terms Violation (İtiraz: Kapsam Dışı İstismar)"
+        - "Under Active Investigation: Requesting 48h Extension (Soruşturma Sürüyor: 48 Saat Ek Süre)"
+        - "Acknowledged: Upstream Dependency Issue (Üçüncü Parti Bağımlılık Kaynaklı)"
+        - "Official Clarification Without Patch (Yama Gerektirmeyen Resmi Açıklama)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: root_cause_analysis
+    attributes:
+      label: "Technical Root Cause Analysis (RCA)"
+      description: "Detail why the failure occurred within the model's weights, alignment layer, system instructions, retrieval pipeline, or safety filter."
+      placeholder: "Provide detailed technical analysis of the failure mechanism, affected parameters, or retrieval pipeline defects..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: mitigation_patch
+    attributes:
+      label: "Mitigation Patch & Deployed Checkpoint"
+      description: "Provide specifics on the deployed fix (e.g. model checkpoint version, system prompt guardrail, safety filter threshold, or runtime firewall rule)."
+      placeholder: |
+        - Deployed Model Checkpoint / Version:
+        - Guardrail / Filter Update ID:
+        - Deployment Timestamp (UTC):
+        - Rollout Percentage (100% / Canary):
+    validations:
+      required: false
+
+  - type: textarea
+    id: verification_steps
+    attributes:
+      label: "Independent Verification & Reproduction Steps"
+      description: "Instructions for AlparAI and independent auditors to confirm that the failure no longer reproduces on the updated system."
+      placeholder: "Provide exact verification steps, API parameters, or test prompts to validate the remediation..."
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: vendor_attestation
+    attributes:
+      label: "Regulatory Attestation & Authority"
+      description: "Official sign-offs required for regulatory and evidentiary validity."
+      options:
+        - label: "I certify that I am an authorized representative of the vendor/organization with legal or technical authority to submit this official defense."
+          required: true
+        - label: "I attest that the statements and technical data provided herein are true, accurate, and submitted in good faith under EU AI Act Article 73 transparency standards."
+          required: true
+        - label: "I acknowledge that this response will be published to the public incident record and linked to the cryptographic Incident Passport."
+          required: true

@@ -130,12 +130,94 @@ describe("autopilot worker", () => {
     };
     const q = getQueue();
     vi.spyOn(q, "pull").mockResolvedValue([job]);
+    const pushSpy = vi.spyOn(q, "push").mockResolvedValue("j4");
+    const ackSpy = vi.spyOn(q, "ack").mockResolvedValue();
 
     const stats = await runAutopilotWorkerOnce({ batchSize: 5 });
     expect(stats.processed).toBe(1);
     expect(stats.succeeded).toBe(0);
     expect(stats.retried).toBe(1); // retried because outcome of skipped enabled check is 'retry'
     expect(handler).not.toHaveBeenCalled();
+    expect(pushSpy).toHaveBeenCalledWith(expect.objectContaining({ id: "j4", retryCount: 1 }));
+    expect(ackSpy).not.toHaveBeenCalled();
+  });
+
+  it("does not ack on retry and pushes job back to queue", async () => {
+    mockMaybeSingle.mockResolvedValue({ data: { enabled: false }, error: null });
+
+    const job: QueueJob = {
+      id: "retry-job-1",
+      action: "submitIncident",
+      idempotencyKey: "retry-key-1",
+      data: {},
+      retryCount: 0,
+      maxRetries: 3,
+    };
+    const q = getQueue();
+    vi.spyOn(q, "pull").mockResolvedValue([job]);
+    const pushSpy = vi.spyOn(q, "push").mockResolvedValue("retry-job-1");
+    const ackSpy = vi.spyOn(q, "ack").mockResolvedValue();
+
+    const stats = await runAutopilotWorkerOnce({ batchSize: 5 });
+    expect(stats.processed).toBe(1);
+    expect(stats.retried).toBe(1);
+    expect(ackSpy).not.toHaveBeenCalled();
+    expect(pushSpy).toHaveBeenCalledWith(
+      expect.objectContaining({
+        id: "retry-job-1",
+        retryCount: 1,
+      }),
+    );
+  });
+
+  it("acks job and marks dead_letter when max retries exceeded", async () => {
+    mockMaybeSingle.mockResolvedValue({ data: { enabled: false }, error: null });
+
+    const job: QueueJob = {
+      id: "dead-job-1",
+      action: "submitIncident",
+      idempotencyKey: "dead-key-1",
+      data: {},
+      retryCount: 3,
+      maxRetries: 3,
+    };
+    const q = getQueue();
+    vi.spyOn(q, "pull").mockResolvedValue([job]);
+    const pushSpy = vi.spyOn(q, "push").mockResolvedValue("dead-job-1");
+    const ackSpy = vi.spyOn(q, "ack").mockResolvedValue();
+    const dlqSpy = q.deadLetter ? vi.spyOn(q, "deadLetter").mockResolvedValue() : undefined;
+
+    const stats = await runAutopilotWorkerOnce({ batchSize: 5 });
+    expect(stats.processed).toBe(1);
+    expect(stats.retried).toBe(0);
+    expect(stats.failed).toBe(1);
+    expect(ackSpy).toHaveBeenCalledWith("dead-job-1");
+    expect(pushSpy).not.toHaveBeenCalled();
+    if (dlqSpy) {
+      expect(dlqSpy).toHaveBeenCalled();
+    }
+  });
+
+  it("acks job on successful outcome", async () => {
+    const handler = async (job: QueueJob) => {
+      void job;
+      return { kind: "success" as const, value: { ok: true } };
+    };
+    registerAutopilotHandler("submitIncident", handler);
+
+    const job: QueueJob = {
+      id: "success-job-1",
+      action: "submitIncident",
+      idempotencyKey: "success-key-1",
+      data: {},
+    };
+    const q = getQueue();
+    vi.spyOn(q, "pull").mockResolvedValue([job]);
+    const ackSpy = vi.spyOn(q, "ack").mockResolvedValue();
+
+    const stats = await runAutopilotWorkerOnce({ batchSize: 5 });
+    expect(stats.succeeded).toBe(1);
+    expect(ackSpy).toHaveBeenCalledWith("success-job-1");
   });
 });
 

@@ -1,9 +1,4 @@
-let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
-try {
-  vault = require("@/lib/security/vault").vault;
-} catch {
-  /* stub bicimi korunur */
-}
+import { vault } from "@/lib/security/vault";
 import { waitUntil } from "@/lib/dehost/functions-stub";
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/dehost/admin";

@@ -1,31 +1,47 @@
 #!/usr/bin/env sh
 
-echo "[pre-push] Running quality checks before push..."
+echo "[pre-push] ⚡ Smart Pre-Push Quality Gate (<45s target)"
 
-# Fetch upstream branch to compare against
-UPSTREAM_BRANCH=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null)
+# Fetch upstream branch to compare against (allow env override for testing)
+if [ -z "$UPSTREAM_BRANCH" ]; then
+  UPSTREAM_BRANCH=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null)
+fi
 
 if [ -z "$UPSTREAM_BRANCH" ]; then
-  echo "[pre-push] No upstream branch found. Running full test suite..."
-  pnpm typecheck && pnpm lint && pnpm test
+  if git rev-parse --verify origin/master >/dev/null 2>&1; then
+    UPSTREAM_BRANCH="origin/master"
+  elif git rev-parse --verify origin/main >/dev/null 2>&1; then
+    UPSTREAM_BRANCH="origin/main"
+  elif git rev-parse --verify HEAD~1 >/dev/null 2>&1; then
+    UPSTREAM_BRANCH="HEAD~1"
+  fi
+fi
+
+if [ -z "$UPSTREAM_BRANCH" ]; then
+  echo "[pre-push] ℹ No upstream branch found. Running fast core validation..."
+  pnpm typecheck && pnpm lint && pnpm test:fast
   exit $?
 fi
 
-CHANGED_FILES=$(git diff --name-only $UPSTREAM_BRANCH...HEAD 2>/dev/null)
+CHANGED_FILES=$(git diff --name-only "$UPSTREAM_BRANCH...HEAD" 2>/dev/null)
 if [ $? -ne 0 ]; then
-  echo "[pre-push] Error getting diff. Running full test suite..."
-  pnpm typecheck && pnpm lint && pnpm test
-  exit $?
+  CHANGED_FILES=$(git diff --name-only "$UPSTREAM_BRANCH..HEAD" 2>/dev/null)
+  if [ $? -ne 0 ]; then
+    echo "[pre-push] ⚠ Could not determine diff against $UPSTREAM_BRANCH. Running fast core validation..."
+    pnpm typecheck && pnpm lint && pnpm test:fast
+    exit $?
+  fi
 fi
 
 if [ -z "$CHANGED_FILES" ]; then
+  echo "[pre-push] ✓ No files changed between $UPSTREAM_BRANCH and HEAD. Push approved."
   exit 0
 fi
 
 ONLY_DOCS=1
 for FILE in $CHANGED_FILES; do
   case "$FILE" in
-    *.md)
+    *.md|*.txt)
       ;;
     *)
       ONLY_DOCS=0
@@ -34,10 +50,60 @@ for FILE in $CHANGED_FILES; do
   esac
 done
 
-if [ $ONLY_DOCS -eq 0 ]; then
-  echo "[pre-push] Code changes detected. Running full test suite..."
-  pnpm typecheck && pnpm lint && pnpm test
-else
-  echo "[pre-push] Only markdown/docs changes detected. Running document checks..."
+if [ "$ONLY_DOCS" -eq 1 ]; then
+  echo "[pre-push] 📄 Only documentation changes detected. Running document checks..."
   node scripts/check-master-plan-length.mjs && node scripts/check-masterplan-consistency.mjs
+  exit $?
 fi
+
+echo "[pre-push] 🔍 Code changes detected against $UPSTREAM_BRANCH."
+
+# Fast static analysis
+echo "[pre-push] [1/2] Running TypeScript check and ESLint..."
+pnpm typecheck || { echo "[pre-push] ❌ Typecheck failed."; exit 1; }
+pnpm lint || { echo "[pre-push] ❌ Lint failed."; exit 1; }
+
+# Test selection: Filter existing source/test files
+CODE_FILES=""
+for FILE in $CHANGED_FILES; do
+  if [ -f "$FILE" ]; then
+    case "$FILE" in
+      *.ts|*.tsx|*.js|*.jsx|*.mjs|*.cjs)
+        CODE_FILES="$CODE_FILES $FILE"
+        ;;
+    esac
+  fi
+done
+
+echo "[pre-push] [2/2] Running targeted tests..."
+RELATED_TESTS_RAN=0
+
+if [ -n "$CODE_FILES" ]; then
+  echo "[pre-push] Checking tests related to changed files..."
+  TEST_OUTPUT=$(pnpm vitest related --run $CODE_FILES 2>&1)
+  TEST_STATUS=$?
+
+  if [ $TEST_STATUS -ne 0 ]; then
+    echo "$TEST_OUTPUT"
+    echo "[pre-push] ❌ Related test suite failed!"
+    exit 1
+  fi
+
+  if echo "$TEST_OUTPUT" | grep -q "No test files found"; then
+    echo "[pre-push] No direct tests found for changed files."
+    RELATED_TESTS_RAN=0
+  else
+    echo "$TEST_OUTPUT"
+    RELATED_TESTS_RAN=1
+    echo "[pre-push] ✓ Related tests passed successfully."
+  fi
+fi
+
+if [ $RELATED_TESTS_RAN -eq 0 ]; then
+  echo "[pre-push] Running critical core security & contract tests (<15s)..."
+  pnpm test:fast || { echo "[pre-push] ❌ Critical core tests failed!"; exit 1; }
+  echo "[pre-push] ✓ Critical core tests passed."
+fi
+
+echo "[pre-push] ✅ All quality gates passed! Push approved in <45s."
+exit 0

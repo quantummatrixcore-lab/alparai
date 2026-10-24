@@ -148,4 +148,76 @@ describe("Autopilot Queue", () => {
     expect(jobs[0]).toBeDefined();
     expect(jobs[0]!.id).toBe("2");
   });
+
+  it("InMemoryQueue supports push and deadLetter", async () => {
+    delete process.env.UPSTASH_REDIS_REST_URL;
+    delete process.env.UPSTASH_REDIS_REST_TOKEN;
+
+    const { getQueue } = await import("@/lib/autopilot/queue");
+    const q = getQueue();
+
+    const id = await q.push({
+      action: "retry-test",
+      idempotencyKey: createIdempotencyKey("test-retry"),
+      data: { hello: "world" },
+      retryCount: 1,
+    });
+    expect(id).toBeDefined();
+    expect(await q.size()).toBe(1);
+
+    const jobs = await q.pull(1);
+    expect(jobs[0]?.retryCount).toBe(1);
+
+    if (q.deadLetter) {
+      await q.deadLetter(jobs[0]!, "Exceeded retries");
+    }
+  });
+
+  it("RedisQueue supports push and deadLetter", async () => {
+    process.env.UPSTASH_REDIS_REST_URL = "https://example.com";
+    process.env.UPSTASH_REDIS_REST_TOKEN = "token";
+
+    const mockRedis = {
+      llen: vi.fn().mockResolvedValue(0),
+      rpush: vi.fn().mockResolvedValue(1),
+      sadd: vi.fn().mockResolvedValue(1),
+      lpop: vi.fn().mockResolvedValue(null),
+      srem: vi.fn().mockResolvedValue(1),
+    };
+
+    vi.doMock("@upstash/redis", () => ({
+      Redis: vi.fn(function() { return mockRedis; }),
+    }));
+
+    const { getQueue } = await import("@/lib/autopilot/queue");
+    const q = getQueue();
+
+    await q.push({
+      id: "redis-job-1",
+      action: "push-action",
+      idempotencyKey: createIdempotencyKey("rk1"),
+      data: {},
+      retryCount: 2,
+    });
+    expect(mockRedis.rpush).toHaveBeenCalledWith(
+      "alpar:autopilot:queue",
+      expect.stringContaining('"retryCount":2'),
+    );
+
+    if (q.deadLetter) {
+      await q.deadLetter(
+        {
+          id: "redis-job-1",
+          action: "push-action",
+          idempotencyKey: createIdempotencyKey("rk1"),
+          data: {},
+        },
+        "test reason",
+      );
+      expect(mockRedis.rpush).toHaveBeenCalledWith(
+        "alpar:autopilot:queue:dead_letter",
+        expect.stringContaining("test reason"),
+      );
+    }
+  });
 });

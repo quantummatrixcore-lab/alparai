@@ -1,10 +1,10 @@
-let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
-try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
+import { vault } from "@/lib/security/vault";
 import { withCronLogger } from "@/lib/utils/cron-logger";
 import { type NextRequest, NextResponse } from "next/server";
 import { parseIncidentCSV } from "@/lib/import/csv-parser";
 import { importIncidents } from "@/lib/import/incident-importer";
 import { logger } from "@/lib/utils/logger";
+import { fetchWithSsrfGuard } from "@/lib/security/ssrf";
 
 export const dynamic = "force-dynamic";
 
@@ -38,7 +38,7 @@ async function getHandler(request: NextRequest) {
     // -------------------------------------------------------------------------
     if ((!sourceParam || sourceParam === "aiaaic") && aiaaicUrl) {
       logger.info("Starting cron import for AIAAIC", { url: aiaaicUrl });
-      const res = await fetch(aiaaicUrl);
+      const res = await fetchWithSsrfGuard(aiaaicUrl);
       if (!res.ok) {
         throw new Error(`Failed to fetch AIAAIC feed: ${res.statusText}`);
       }
@@ -69,7 +69,7 @@ async function getHandler(request: NextRequest) {
     // -------------------------------------------------------------------------
     if ((!sourceParam || sourceParam === "aiid") && aiidUrl) {
       logger.info("Starting cron import for AIID", { url: aiidUrl });
-      const res = await fetch(aiidUrl);
+      const res = await fetchWithSsrfGuard(aiidUrl);
       if (!res.ok) {
         throw new Error(`Failed to fetch AIID feed: ${res.statusText}`);
       }

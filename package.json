@@ -51,6 +51,7 @@
     "check:hygiene": "npx tsx scripts/codebase-hygiene.ts",
     "backfill:evidence": "npx tsx scripts/backfill-evidence-hash.ts",
     "test": "cross-env NODE_OPTIONS=\"--max-old-space-size=6144\" vitest run --pool=forks",
+    "test:fast": "cross-env NODE_OPTIONS=\"--max-old-space-size=6144\" vitest run tests/contracts/ tests/security/ tests/api/health.test.ts",
     "test:watch": "cross-env NODE_OPTIONS=\"--max-old-space-size=6144\" vitest",
     "test:coverage": "cross-env NODE_OPTIONS=\"--max-old-space-size=6144\" vitest run --coverage",
     "test:jury": "node scripts/jury_redteam_drill.cjs",

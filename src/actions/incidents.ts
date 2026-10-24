@@ -158,6 +158,11 @@ const runSubmitWork = async (
     });
   }
 
+  const publishedAt = raw.incident_date ? incidentDateISO : undefined;
+  const evidenceHash = createHash("sha256")
+    .update((raw.title ?? "") + (raw.description ?? "") + String(publishedAt || Date.now()))
+    .digest("hex");
+
   const payload = {
     user_id: user?.id ?? null,
     title: maskedTitle.masked,
@@ -180,6 +185,7 @@ const runSubmitWork = async (
     ip_hash: hashIp(data.ip),
     user_agent: userAgent,
     contains_pii: containsPii,
+    evidence_hash: evidenceHash,
     pii_categories: [
       ...maskedTitle.detections.map((d) => d.type),
       ...maskedDescription.detections.map((d) => d.type),
@@ -201,6 +207,16 @@ const runSubmitWork = async (
   }
 
   const incidentId = (rpcRes as unknown as { id: string }).id;
+
+  // Persist deterministic evidence_hash on incident row
+  try {
+    await dehost
+      .from("incidents")
+      .update({ evidence_hash: evidenceHash })
+      .eq("id", incidentId);
+  } catch (hashErr) {
+    logger.warn("Failed to set evidence_hash on incident", { incidentId, error: String(hashErr) });
+  }
 
   if (providerIsCustom && providerCustom) {
     const slug = providerCustomSlug || slugify(providerCustom);

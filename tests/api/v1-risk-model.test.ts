@@ -34,8 +34,18 @@ import { GET } from "@/app/api/v1/insurtech/risk-model/route";
 import { recordUsage } from "@/lib/billing/meter";
 
 describe("IN2 insurtech risk-model", () => {
-  it("computes risk index and meters the query", async () => {
+  it("rejects unauthorized anonymous queries with 401", async () => {
     const res = await GET(new NextRequest("http://localhost/api/v1/insurtech/risk-model"));
+    expect(res.status).toBe(401);
+    const json = (await res.json()) as { error: string; message: string };
+    expect(json.error).toBe("Unauthorized");
+  });
+
+  it("computes risk index and meters the query for authorized client", async () => {
+    const req = new NextRequest("http://localhost/api/v1/insurtech/risk-model", {
+      headers: { "x-internal-client": "alpar-insurtech-suite" },
+    });
+    const res = await GET(req);
     expect(res.status).toBe(200);
     const json = (await res.json()) as {
       data: { sample_size: number; risk_index: number };

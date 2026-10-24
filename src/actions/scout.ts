@@ -2,6 +2,7 @@
 
 import { VertexGeminiAdapter } from "@/lib/ai/adapters/vertex-gemini";
 import { createAdminClient } from "@/lib/dehost/admin";
+import { createHash } from "node:crypto";
 import { revalidatePath } from "next/cache";
 import { logger } from "@/lib/utils/logger";
 import { getCurrentUser, requireAdmin } from "@/lib/auth/session";
@@ -93,6 +94,7 @@ Format of each object in the array:
           }
         }
 
+        const scoutPublishedAt = new Date().toISOString();
         await admin.from("incidents").insert({
           title: item.title,
           title_masked: item.title,
@@ -101,8 +103,11 @@ Format of each object in the array:
           severity: item.severity || "medium",
           category: item.category || "AI Event",
           status: "published",
+          evidence_hash: createHash("sha256")
+            .update((item.title || "") + (item.description || "") + String(scoutPublishedAt))
+            .digest("hex"),
           is_anonymous: false,
-          incident_date: new Date().toISOString().split("T")[0],
+          incident_date: scoutPublishedAt.split("T")[0],
           ai_provider_id: providerId,
           user_id: userId,
         });

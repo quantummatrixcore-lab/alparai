@@ -60,6 +60,10 @@ export async function submitFlaggingReport(
       category: "other",
       severity: "medium",
       source_url: evidence_url,
+      evidence_hash: (await import("node:crypto"))
+        .createHash("sha256")
+        .update(`[Wrongful Flagging] ${detector_name} — ${platform}` + maskedContext.masked + String(Date.now()))
+        .digest("hex"),
       is_anonymous: true,
       is_expert: false,
       language: "en",

@@ -1,5 +1,4 @@
-let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
-try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
+import { vault } from "@/lib/security/vault";
 import { withCronLogger } from "@/lib/utils/cron-logger";
 import { NextResponse } from "next/server";
 import { logger } from "@/lib/utils/logger";

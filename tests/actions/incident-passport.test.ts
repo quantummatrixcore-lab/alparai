@@ -89,6 +89,13 @@ describe("getIncidentPassport", () => {
       expect(result.passport.incident.id).toBe("inc-1");
       expect(result.passport.incident.title).toBe("AI Incident");
       expect(result.passport.engagement.views).toBe(100);
+      expect(result.passport.standard).toBe("ISO/IEC 27037 & W3C Verifiable Incident Passport");
+      expect(result.passport.evidenceHash).toMatch(/^[a-f0-9]{64}$/);
+      expect(result.passport.proof).toEqual({
+        type: "Sha256Signature2026",
+        created: expect.any(String),
+        verificationMethod: "alparai:keys:master",
+      });
     }
   });
 

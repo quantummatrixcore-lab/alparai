@@ -220,9 +220,25 @@ html.light,
 
 * {
   border-color: var(--color-border-subtle);
+}
+
+button,
+a,
+input,
+select,
+textarea,
+[role="button"],
+.transition-colors,
+.transition-all {
   transition:
     background-color 0.15s ease,
     border-color 0.15s ease;
+}
+
+:root,
+html {
+  scrollbar-color: var(--color-border-strong) var(--color-bg-primary);
+  scrollbar-width: thin;
 }
 
 html {
@@ -239,6 +255,7 @@ h4,
 h5,
 h6 {
   font-family: var(--font-display);
+  text-wrap: balance;
 }
 
 body {

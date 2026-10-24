@@ -43,6 +43,6 @@ export function computeArticle73Deadline(input: {
     dueAt: new Date(dueAtMs).toISOString(),
     remainingMs: dueAtMs - nowMs,
     overdue: nowMs > dueAtMs,
-    label: tier === "2-day" ? "72 saat acil bildirim" : `${days} günlük yasal bildirim`,
+    label: tier === "2-day" ? "48 saat / 2 gün acil bildirim" : `${days} günlük yasal bildirim`,
   };
 }

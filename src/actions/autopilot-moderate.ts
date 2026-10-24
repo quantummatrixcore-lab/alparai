@@ -4,6 +4,7 @@ try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi ko
 
 import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
+import { createHash } from "node:crypto";
 import type { Database } from "@/types/database";
 import {
   withAutopilot,
@@ -162,7 +163,11 @@ async function runAutoModerationWork(
   };
 
   if (finalStatus === "published") {
-    updateData.published_at = new Date().toISOString();
+    const publishedAt = new Date().toISOString();
+    updateData.published_at = publishedAt;
+    updateData.evidence_hash = createHash("sha256")
+      .update((incident.title || "") + (incident.description || "") + String(publishedAt))
+      .digest("hex");
   }
 
   const { error: updateError } = await admin

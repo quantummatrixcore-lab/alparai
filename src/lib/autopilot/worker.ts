@@ -2,7 +2,7 @@ let vault: { read: (k: string) => string | undefined } = { read: () => undefined
 try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
 import "server-only";
 import { getQueue } from "./queue";
-import type { QueueJob } from "./queue";
+import type { QueueJob, QueueHandle } from "./queue";
 import { withAutopilot, getPolicy } from "./index";
 import { policies } from "./policies";
 import type { AttemptContext, AttemptOutcome } from "./types";
@@ -79,10 +79,12 @@ const defaultHandlerFor = (action: string): WorkerHandler => {
   };
 };
 
-const processJob = async (job: QueueJob): Promise<"ok" | "retry" | "fail"> => {
+export type ProcessJobOutcome = "success" | "ok" | "retry" | "dead_letter" | "fail";
+
+export const processJob = async (job: QueueJob): Promise<ProcessJobOutcome> => {
   const handler = handlers.get(job.action) ?? defaultHandlerFor(job.action);
   if (!isRegisteredAction(job.action)) {
-    return "fail";
+    return "dead_letter";
   }
   const enabled = await isWorkerEnabled(job.action);
   if (!enabled) {
@@ -90,15 +92,76 @@ const processJob = async (job: QueueJob): Promise<"ok" | "retry" | "fail"> => {
     return "retry";
   }
   const policy = getPolicy(job.action);
-  const result = await withAutopilot(
-    policy,
-    [job.id || "", job.idempotencyKey],
-    async (ctx) => handler(job, ctx),
-    { context: { userId: null, ipHash: null, clientIdempotencyKey: job.idempotencyKey } },
-  );
-  if (result.kind === "ok" || result.kind === "replayed") return "ok";
-  if (result.kind === "exhausted" || result.kind === "budget_exceeded") return "fail";
-  return "retry";
+  try {
+    const result = await withAutopilot(
+      policy,
+      [job.id || "", job.idempotencyKey],
+      async (ctx) => handler(job, ctx),
+      { context: { userId: null, ipHash: null, clientIdempotencyKey: job.idempotencyKey } },
+    );
+    if (result.kind === "ok" || result.kind === "replayed") return "success";
+    if (result.kind === "exhausted" || result.kind === "budget_exceeded") return "dead_letter";
+    return "retry";
+  } catch (err) {
+    logger.error(`[autopilot worker] uncaught error in processJob for action ${job.action}`, {
+      error: err,
+    });
+    return "retry";
+  }
+};
+
+export const processJobAndHandleOutcome = async (
+  job: QueueJob,
+  queue: QueueHandle,
+  stats: Pick<WorkerRunStats, "processed" | "succeeded" | "retried" | "failed">,
+): Promise<"success" | "retry" | "dead_letter"> => {
+  stats.processed += 1;
+  const outcome = await processJob(job);
+
+  if (outcome === "success" || outcome === "ok") {
+    stats.succeeded += 1;
+    await queue.ack(job.id || "");
+    return "success";
+  }
+
+  if (outcome === "retry") {
+    const currentRetries = job.retryCount ?? job.retries ?? 0;
+    const maxRetries =
+      job.maxRetries ??
+      (isRegisteredAction(job.action) ? getPolicy(job.action).config.retry.attempts : 3);
+
+    if (currentRetries >= maxRetries) {
+      logger.warn(
+        `[autopilot worker] Job ${job.id || "unknown"} for action ${job.action} reached max retries (${maxRetries}), moving to dead_letter`,
+      );
+      if (typeof queue.deadLetter === "function") {
+        await queue.deadLetter(job, `Max retries (${maxRetries}) reached`);
+      }
+      stats.failed += 1;
+      await queue.ack(job.id || "");
+      return "dead_letter";
+    }
+
+    job.retryCount = currentRetries + 1;
+    job.retries = job.retryCount;
+    stats.retried += 1;
+
+    if (typeof queue.push === "function") {
+      await queue.push(job);
+    } else {
+      await queue.enqueue(job);
+    }
+    // Note: queue.ack(job.id) is intentionally NOT called to avoid silent job loss
+    return "retry";
+  }
+
+  // outcome is "dead_letter" or "fail"
+  if (typeof queue.deadLetter === "function") {
+    await queue.deadLetter(job, "Job failed permanently or exhausted");
+  }
+  stats.failed += 1;
+  await queue.ack(job.id || "");
+  return "dead_letter";
 };
 
 export const runAutopilotWorkerOnce = async (
@@ -124,12 +187,7 @@ export const runAutopilotWorkerOnce = async (
   const queue = getQueue();
   const jobs = await queue.pull(batchSize);
   for (const job of jobs) {
-    const outcome = await processJob(job);
-    stats.processed += 1;
-    if (outcome === "ok") stats.succeeded += 1;
-    else if (outcome === "retry") stats.retried += 1;
-    else stats.failed += 1;
-    await queue.ack(job.id || "");
+    await processJobAndHandleOutcome(job, queue, stats);
   }
   stats.durationMs = Date.now() - started;
   return stats;
@@ -167,12 +225,7 @@ export const runAutopilotWorker = async (
     }
     aggregate.emptyPolls = 0;
     for (const job of batch) {
-      const outcome = await processJob(job);
-      aggregate.processed += 1;
-      if (outcome === "ok") aggregate.succeeded += 1;
-      else if (outcome === "retry") aggregate.retried += 1;
-      else aggregate.failed += 1;
-      await queue.ack(job.id || "");
+      await processJobAndHandleOutcome(job, queue, aggregate);
     }
   }
   aggregate.durationMs = Date.now() - started;

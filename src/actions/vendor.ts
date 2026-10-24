@@ -83,20 +83,58 @@ export async function submitVendorResponseAction(
         roleStr === "b2b" ||
         roleStr === "moderator");
 
-    // 3. Validate vendor token format (e.g. vtr_anthropic_2026, b2b_*, or 32+ char token)
-    const isVendorTokenValid =
-      Boolean(token) &&
-      (token.startsWith("vtr_") ||
-        token.startsWith("b2b_") ||
-        token.startsWith("vendor_") ||
-        (token.length >= 32 && /^[a-zA-Z0-9_-]+$/.test(token)));
+    // 3. Database verification of vendor token against ai_providers (SHA-256 hash match)
+    let isVendorTokenValid = false;
+    if (token) {
+      const { createHash } = await import("node:crypto");
+      const tokenHash = createHash("sha256").update(token).digest("hex");
+
+      try {
+        let dehostClient;
+        try {
+          const { createAdminClient } = await import("@/lib/dehost/admin");
+          dehostClient = createAdminClient();
+        } catch {
+          dehostClient = await createClient();
+        }
+
+        // Check if token matches a registered provider in ai_providers
+        const { data: providerMatch } = await dehostClient
+          .from("ai_providers")
+          .select("id")
+          .eq("token_hash", tokenHash)
+          .maybeSingle();
+
+        if (providerMatch) {
+          isVendorTokenValid = true;
+        } else {
+          // Fallback: check one-time provider_response_tokens for this incident
+          const { data: tokenRecord } = await dehostClient
+            .from("provider_response_tokens")
+            .select("id")
+            .eq("incident_id", incidentId)
+            .eq("token_hash", tokenHash)
+            .gt("expires_at", new Date().toISOString())
+            .is("used_at", null)
+            .maybeSingle();
+
+          if (tokenRecord) {
+            isVendorTokenValid = true;
+          }
+        }
+      } catch (dbErr) {
+        logger.warn("[submitVendorResponseAction] Failed to verify vendor token against DB", {
+          error: dbErr instanceof Error ? dbErr.message : String(dbErr),
+        });
+      }
+    }
 
     const isAuthorized = isAdminOrCeo || isCorporateOrVendorRole || isVendorTokenValid;
 
     if (!isAuthorized) {
       return {
         ok: false,
-        error: "Unauthorized: Admin privileges, corporate credentials, or a valid vendorToken (vtr_*) required.",
+        error: "Unauthorized: Admin privileges, corporate credentials, or a valid vendorToken required.",
       };
     }
 

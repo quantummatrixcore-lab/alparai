@@ -37,3 +37,109 @@ CREATE INDEX IF NOT EXISTS idx_academy_completions_cert
   ON public.academy_completions (cert_code);
 CREATE INDEX IF NOT EXISTS idx_academy_coupons_code
   ON public.academy_coupons (code);
+
+-- ------------------------------------------------------------------------------
+-- ROW LEVEL SECURITY (RLS)
+-- ------------------------------------------------------------------------------
+ALTER TABLE public.academy_completions ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.academy_coupons ENABLE ROW LEVEL SECURITY;
+
+-- academy_completions policies
+DROP POLICY IF EXISTS "Public can verify passed certificates" ON public.academy_completions;
+CREATE POLICY "Public can verify passed certificates"
+  ON public.academy_completions
+  FOR SELECT
+  USING (cert_code IS NOT NULL AND passed = true);
+
+DROP POLICY IF EXISTS "Users can view own academy completions" ON public.academy_completions;
+CREATE POLICY "Users can view own academy completions"
+  ON public.academy_completions
+  FOR SELECT
+  USING (
+    (auth.uid() IS NOT NULL AND lower(email) = lower(coalesce(auth.jwt() ->> 'email', auth.email())))
+    OR (auth.role() = 'service_role')
+    OR public.is_admin(auth.uid())
+  );
+
+DROP POLICY IF EXISTS "Users can insert own academy completions" ON public.academy_completions;
+CREATE POLICY "Users can insert own academy completions"
+  ON public.academy_completions
+  FOR INSERT
+  WITH CHECK (
+    (auth.uid() IS NOT NULL AND lower(email) = lower(coalesce(auth.jwt() ->> 'email', auth.email())))
+    OR (auth.role() = 'service_role')
+    OR public.is_admin(auth.uid())
+    OR (auth.role() = 'anon')
+  );
+
+DROP POLICY IF EXISTS "Admins and service role can update academy completions" ON public.academy_completions;
+CREATE POLICY "Admins and service role can update academy completions"
+  ON public.academy_completions
+  FOR UPDATE
+  USING (
+    auth.role() = 'service_role'
+    OR public.is_admin(auth.uid())
+  )
+  WITH CHECK (
+    auth.role() = 'service_role'
+    OR public.is_admin(auth.uid())
+  );
+
+DROP POLICY IF EXISTS "Admins and service role can delete academy completions" ON public.academy_completions;
+CREATE POLICY "Admins and service role can delete academy completions"
+  ON public.academy_completions
+  FOR DELETE
+  USING (
+    auth.role() = 'service_role'
+    OR public.is_admin(auth.uid())
+  );
+
+-- academy_coupons policies
+DROP POLICY IF EXISTS "Coupons can be verified by anyone" ON public.academy_coupons;
+CREATE POLICY "Coupons can be verified by anyone"
+  ON public.academy_coupons
+  FOR SELECT
+  USING (true);
+
+DROP POLICY IF EXISTS "Users can insert coupons upon lesson completion" ON public.academy_coupons;
+CREATE POLICY "Users can insert coupons upon lesson completion"
+  ON public.academy_coupons
+  FOR INSERT
+  WITH CHECK (
+    (auth.uid() IS NOT NULL AND lower(email) = lower(coalesce(auth.jwt() ->> 'email', auth.email())))
+    OR (auth.role() = 'service_role')
+    OR public.is_admin(auth.uid())
+    OR (auth.role() = 'anon')
+  );
+
+DROP POLICY IF EXISTS "Service role and admins can manage coupons" ON public.academy_coupons;
+CREATE POLICY "Service role and admins can manage coupons"
+  ON public.academy_coupons
+  FOR ALL
+  USING (
+    auth.role() = 'service_role'
+    OR public.is_admin(auth.uid())
+  )
+  WITH CHECK (
+    auth.role() = 'service_role'
+    OR public.is_admin(auth.uid())
+  );
+
+-- ------------------------------------------------------------------------------
+-- ROLLBACK:
+-- ------------------------------------------------------------------------------
+-- DROP POLICY IF EXISTS "Public can verify passed certificates" ON public.academy_completions;
+-- DROP POLICY IF EXISTS "Users can view own academy completions" ON public.academy_completions;
+-- DROP POLICY IF EXISTS "Users can insert own academy completions" ON public.academy_completions;
+-- DROP POLICY IF EXISTS "Admins and service role can update academy completions" ON public.academy_completions;
+-- DROP POLICY IF EXISTS "Admins and service role can delete academy completions" ON public.academy_completions;
+-- DROP POLICY IF EXISTS "Coupons can be verified by anyone" ON public.academy_coupons;
+-- DROP POLICY IF EXISTS "Users can insert coupons upon lesson completion" ON public.academy_coupons;
+-- DROP POLICY IF EXISTS "Service role and admins can manage coupons" ON public.academy_coupons;
+-- ALTER TABLE public.academy_completions DISABLE ROW LEVEL SECURITY;
+-- ALTER TABLE public.academy_coupons DISABLE ROW LEVEL SECURITY;
+-- DROP INDEX IF EXISTS public.idx_academy_coupons_code;
+-- DROP INDEX IF EXISTS public.idx_academy_completions_cert;
+-- DROP INDEX IF EXISTS public.idx_academy_completions_email;
+-- DROP TABLE IF EXISTS public.academy_coupons;
+-- DROP TABLE IF EXISTS public.academy_completions;

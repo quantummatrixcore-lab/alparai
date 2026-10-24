@@ -40,7 +40,6 @@ export async function isSafeUrl(
     // while Webpack Edge runtime (where dns is {}) safely skips it.
     try {
       if (dns && typeof dns.lookup === 'function') {
-        // eslint-disable-next-line @typescript-eslint/no-require-imports
         const util = typeof require !== 'undefined' ? require('util') : null;
         if (util && typeof util.promisify === 'function') {
           const dnsLookup = util.promisify(dns.lookup);
@@ -84,10 +83,25 @@ export async function fetchWithSsrfGuard(
   let currentUrl = urlStr;
   const maxRedirects = 3;
   let redirectCount = 0;
+  const MAX_RESPONSE_SIZE = 2 * 1024 * 1024; // 2MB
 
   // Enforce response time cap (8000ms)
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 8000);
+
+  if (options.signal) {
+    if (options.signal.aborted) {
+      controller.abort(options.signal.reason);
+    } else {
+      options.signal.addEventListener(
+        "abort",
+        () => {
+          controller.abort(options.signal?.reason);
+        },
+        { once: true },
+      );
+    }
+  }
 
   try {
     while (redirectCount <= maxRedirects) {
@@ -116,10 +130,35 @@ export async function fetchWithSsrfGuard(
       } else {
         // Enforce response size cap (2MB limit)
         const contentLength = res.headers.get("content-length");
-        if (contentLength && parseInt(contentLength, 10) > 2 * 1024 * 1024) {
+        if (contentLength && parseInt(contentLength, 10) > MAX_RESPONSE_SIZE) {
+          controller.abort();
           throw new Error("Response size limit exceeded (2MB limit)");
         }
         clearTimeout(timeoutId);
+
+        // Stream counter guard for chunked transfer or streams without Content-Length
+        if (res.body && res.status !== 204 && res.status !== 205 && res.status !== 304) {
+          let receivedBytes = 0;
+          const byteCounterStream = new TransformStream<Uint8Array, Uint8Array>({
+            transform(chunk, streamController) {
+              receivedBytes += chunk.byteLength ?? chunk.length ?? 0;
+              if (receivedBytes > MAX_RESPONSE_SIZE) {
+                controller.abort();
+                streamController.error(new Error("Response size limit exceeded (2MB limit)"));
+                return;
+              }
+              streamController.enqueue(chunk);
+            },
+          });
+
+          const monitoredBody = res.body.pipeThrough(byteCounterStream);
+          return new Response(monitoredBody, {
+            status: res.status,
+            statusText: res.statusText,
+            headers: res.headers,
+          });
+        }
+
         return res;
       }
     }

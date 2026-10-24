@@ -5,6 +5,16 @@ import { rateLimit } from "@/lib/rate-limit";
 import { logger } from "@/lib/utils/logger";
 import { checkInternalQuota } from "@/lib/internal/guard";
 import { recordUsage } from "@/lib/billing/meter";
+import { timingSafeEqual, createHash } from "node:crypto";
+
+import { vault } from "@/lib/security/vault";
+
+function safeCompare(a: string, b: string): boolean {
+  const aBuf = Buffer.from(a);
+  const bBuf = Buffer.from(b);
+  if (aBuf.length !== bBuf.length) return false;
+  return timingSafeEqual(aBuf, bBuf);
+}
 
 export const dynamic = "force-dynamic";
 
@@ -30,7 +40,9 @@ export async function GET(request: NextRequest) {
   const rl = rateLimit(request);
   if (rl) return rl;
 
+  // 1. Internal client quota check
   const internalKey = request.headers.get("x-internal-client");
+  let isInternalAuthorized = false;
   if (internalKey) {
     const q = checkInternalQuota(internalKey);
     if (!q.ok) {
@@ -39,6 +51,65 @@ export async function GET(request: NextRequest) {
         { status: 429, headers: { "Retry-After": String(q.retryAfter) } },
       );
     }
+    isInternalAuthorized = true;
+  }
+
+  // 2. Active session check
+  let isSessionAuthorized = false;
+  let sessionUserId: string | null = null;
+  try {
+    const { getCurrentUser } = await import("@/lib/auth/session");
+    const user = await getCurrentUser();
+    if (user?.id) {
+      isSessionAuthorized = true;
+      sessionUserId = user.id;
+    }
+  } catch {
+    // Unauthenticated outside session context
+  }
+
+  // 3. API Key check (x-api-key or Bearer token)
+  const apiKey =
+    request.headers.get("x-api-key") ||
+    request.headers.get("authorization")?.replace(/^Bearer\s+/i, "");
+
+  let isApiKeyValid = false;
+  if (apiKey) {
+    const validEnvKey =
+      (vault.read?.("INSURTECH_API_KEY") ?? process.env.INSURTECH_API_KEY) ||
+      (vault.read?.("PUBLIC_API_KEY") ?? process.env.PUBLIC_API_KEY);
+
+    if (validEnvKey && (apiKey === validEnvKey || safeCompare(apiKey, validEnvKey))) {
+      isApiKeyValid = true;
+    } else {
+      try {
+        const hashedKey = createHash("sha256").update(apiKey).digest("hex");
+        const { createAdminClient } = await import("@/lib/dehost/admin");
+        const adminClient = createAdminClient();
+        const { data: dbKey } = await adminClient
+          .from("api_keys")
+          .select("provider, tier")
+          .eq("api_key", hashedKey)
+          .maybeSingle();
+
+        if (dbKey) {
+          isApiKeyValid = true;
+        }
+      } catch {
+        // DB lookup failure or test mock omission
+      }
+    }
+  }
+
+  const isAuthorized = isInternalAuthorized || isSessionAuthorized || isApiKeyValid;
+  if (!isAuthorized) {
+    return NextResponse.json(
+      {
+        error: "Unauthorized",
+        message: "Valid API key or authorized session required to access actuarial risk models.",
+      },
+      { status: 401 },
+    );
   }
 
   const parsed = querySchema.safeParse({
@@ -93,9 +164,10 @@ export async function GET(request: NextRequest) {
       incident_date?: string;
     }>;
 
-    // Metered billing: her sorgu 1 birim yazar (iç müşteri ayrı etikette).
+    // Metered billing: recorded for authenticated client identifier
+    const clientIdentifier = internalKey ?? apiKey ?? sessionUserId ?? "authenticated_client";
     recordUsage(
-      internalKey ?? request.headers.get("x-api-key") ?? "anonymous",
+      clientIdentifier,
       internalKey ? "insurtech-internal" : "insurtech-query",
       1,
     );

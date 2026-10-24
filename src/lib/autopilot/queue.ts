@@ -12,29 +12,40 @@ export interface QueueJob {
   idempotencyKey: string;
   data: Record<string, unknown>;
   payload?: Record<string, unknown>;
+  retries?: number;
+  retryCount?: number;
+  maxRetries?: number;
 }
 
 export interface QueueHandle {
   available: boolean;
   enqueue: (job: QueueJob) => Promise<string | null>;
+  push: (job: QueueJob) => Promise<string | null>;
   pull: (count?: number) => Promise<QueueJob[]>;
   ack: (jobId: string) => Promise<void>;
+  deadLetter?: (job: QueueJob, reason?: string) => Promise<void>;
   size: () => Promise<number>;
 }
 
 const MAX_QUEUE_LENGTH = 10000;
 const QUEUE_KEY = "alpar:autopilot:queue";
 const INDEX_KEY = "alpar:autopilot:queue:index";
+const DLQ_KEY = "alpar:autopilot:queue:dead_letter";
 
 class InMemoryQueue implements QueueHandle {
   available = false;
   private jobs: QueueJob[] = [];
+  private deadLetters: Array<{ job: QueueJob; reason?: string; timestamp: number }> = [];
 
   async enqueue(job: QueueJob): Promise<string | null> {
     const id = job.id || `job_${Date.now()}_${crypto.randomUUID().slice(0, 8)}`;
-    const fullJob: QueueJob = { ...job, id, payload: job.data };
+    const fullJob: QueueJob = { ...job, id, payload: job.payload ?? job.data };
     this.jobs.push(fullJob);
     return id;
+  }
+
+  async push(job: QueueJob): Promise<string | null> {
+    return this.enqueue(job);
   }
 
   async pull(count: number = 10): Promise<QueueJob[]> {
@@ -42,11 +53,20 @@ class InMemoryQueue implements QueueHandle {
   }
 
   async ack(_jobId: string): Promise<void> {
-    // Already removed on pull in memory
+    // Already removed on pull in memory, marked as completed
+  }
+
+  async deadLetter(job: QueueJob, reason?: string): Promise<void> {
+    this.deadLetters.push({ job, reason, timestamp: Date.now() });
+    logger.warn(`[autopilot] job ${job.id || "unknown"} moved to dead_letter: ${reason ?? "max retries reached"}`);
   }
 
   async size(): Promise<number> {
     return this.jobs.length;
+  }
+
+  getDeadLetters(): Array<{ job: QueueJob; reason?: string; timestamp: number }> {
+    return [...this.deadLetters];
   }
 }
 
@@ -72,7 +92,7 @@ class RedisQueue implements QueueHandle {
         return null;
       }
       const id = job.id || `job_${Date.now()}_${crypto.randomUUID().slice(0, 8)}`;
-      const fullJob: QueueJob = { ...job, id, payload: job.data };
+      const fullJob: QueueJob = { ...job, id, payload: job.payload ?? job.data };
       await this.redis.rpush(QUEUE_KEY, JSON.stringify(fullJob));
       await this.redis.sadd(INDEX_KEY, id);
       return id;
@@ -80,6 +100,10 @@ class RedisQueue implements QueueHandle {
       logger.error("[autopilot] failed to enqueue job to Redis", { error: err });
       return null;
     }
+  }
+
+  async push(job: QueueJob): Promise<string | null> {
+    return this.enqueue(job);
   }
 
   async pull(count: number = 10): Promise<QueueJob[]> {
@@ -107,10 +131,25 @@ class RedisQueue implements QueueHandle {
   }
 
   async ack(jobId: string): Promise<void> {
+    if (!jobId) return;
     try {
       await this.redis.srem(INDEX_KEY, jobId);
     } catch (err) {
       logger.error("[autopilot] failed to ack job in Redis", { jobId, error: err });
+    }
+  }
+
+  async deadLetter(job: QueueJob, reason?: string): Promise<void> {
+    try {
+      const record = {
+        job,
+        reason: reason ?? "max retries reached",
+        timestamp: Date.now(),
+      };
+      await this.redis.rpush(DLQ_KEY, JSON.stringify(record));
+      logger.warn(`[autopilot] job ${job.id || "unknown"} moved to Redis dead_letter: ${record.reason}`);
+    } catch (err) {
+      logger.error("[autopilot] failed to move job to dead_letter queue in Redis", { jobId: job.id, error: err });
     }
   }
 

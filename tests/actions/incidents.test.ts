@@ -194,6 +194,24 @@ describe("submitIncident", () => {
     expect(result.incidentId).toBe("inc-123");
   });
 
+  it("assigns deterministic evidence_hash to payload and updates incident", async () => {
+    let capturedPayload: any = null;
+    mockDeHost.rpc = vi.fn().mockImplementation((fnName: string, args: any) => {
+      if (fnName === "submit_incident_atomic") {
+        capturedPayload = args?.payload;
+        return Promise.resolve({ data: { id: "inc-123" }, error: null });
+      }
+      return Promise.resolve({ data: null, error: null });
+    });
+
+    const result = await submitIncident({ ok: false }, buildFormData());
+    expect(result.ok).toBe(true);
+    expect(capturedPayload).toBeDefined();
+    expect(capturedPayload.evidence_hash).toBeDefined();
+    expect(typeof capturedPayload.evidence_hash).toBe("string");
+    expect(capturedPayload.evidence_hash.length).toBe(64);
+  });
+
   it("calls maskPII on title and description", async () => {
     await submitIncident({ ok: false }, buildFormData());
     expect(maskPII).toHaveBeenCalledWith("A valid incident title here");

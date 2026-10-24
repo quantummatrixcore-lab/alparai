@@ -1,11 +1,5 @@
 import { NextResponse } from "next/server";
-
-let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
-try {
-  vault = require("@/lib/security/vault").vault;
-} catch {
-  /* vault yoksa env fallback */
-}
+import { vault } from "@/lib/security/vault";
 
 function isAuthorizedToken(token: unknown): boolean {
   if (typeof token !== "string" || token.length < 16) return false;

@@ -422,6 +422,7 @@ export type Database = {
           verified_respondent_at: string | null
           website_url: string | null
           sla_uptime_pct: number | null
+          token_hash: string | null
         }
         Insert: {
           contact_email?: string | null
@@ -439,6 +440,7 @@ export type Database = {
           verified_respondent_at?: string | null
           website_url?: string | null
           sla_uptime_pct?: number | null
+          token_hash?: string | null
         }
         Update: {
           contact_email?: string | null
@@ -456,6 +458,7 @@ export type Database = {
           verified_respondent_at?: string | null
           website_url?: string | null
           sla_uptime_pct?: number | null
+          token_hash?: string | null
         }
         Relationships: []
       }
@@ -2273,6 +2276,7 @@ export type Database = {
           vendor_response_text: string | null
           views_count: number
           media_type: string | null
+          evidence_hash: string | null
         }
         Insert: {
           affected_users_count?: number
@@ -2350,6 +2354,7 @@ export type Database = {
           vendor_response_text?: string | null
           views_count?: number
           media_type?: string | null
+          evidence_hash?: string | null
         }
         Update: {
           affected_users_count?: number
@@ -2427,6 +2432,7 @@ export type Database = {
           vendor_response_text?: string | null
           views_count?: number
           media_type?: string | null
+          evidence_hash?: string | null
         }
         Relationships: []
       }

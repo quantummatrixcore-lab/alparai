@@ -2,6 +2,7 @@
 
 import { createAdminClient } from "@/lib/dehost/admin";
 import { logger } from "@/lib/utils/logger";
+import { createHash } from "node:crypto";
 import {
   withAutopilot,
   syncNewsPolicy,
@@ -290,6 +291,13 @@ async function runNewsSyncWork(
                 : "incident",
               severity: aiResult.severity || "medium",
               status: "published",
+              evidence_hash: createHash("sha256")
+                .update(
+                  (aiResult.title_en || "") +
+                    (aiResult.summary_en || "") +
+                    String(publishedAt.toISOString()),
+                )
+                .digest("hex"),
               incident_date: publishedAt.toISOString().slice(0, 10),
               incident_source: "news_curated",
               is_anonymous: false,

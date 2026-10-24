@@ -1,5 +1,10 @@
 import { defineConfig } from "vitest/config";
 import { resolve } from "node:path";
+import { availableParallelism, cpus } from "node:os";
+
+const coreCount = typeof availableParallelism === "function" ? availableParallelism() : cpus().length;
+// Optimize worker allocation for Windows to maximize throughput while avoiding memory exhaustion
+const maxWorkers = Math.max(1, Math.min(coreCount, 4));
 
 export default defineConfig({
   resolve: {
@@ -14,7 +19,9 @@ export default defineConfig({
     testTimeout: 30000,
     hookTimeout: 45000,
     setupFiles: ["./vitest.setup.ts"],
-    fileParallelism: false,
+    fileParallelism: true,
+    maxWorkers,
+    maxConcurrency: 5,
     include: ["src/**/*.{test,spec}.{ts,tsx}", "tests/**/*.{test,spec}.{ts,tsx}"],
     exclude: ["tests/e2e/**", "node_modules/**", "dist-public/**"],
     coverage: {

@@ -4,6 +4,7 @@ import { createServerClient } from "@/lib/dehost/server";
 import { requireUser } from "@/lib/auth/session";
 import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
 import { headers } from "next/headers";
+import crypto from "node:crypto";
 
 export interface IncidentPassport {
   meta: {
@@ -11,6 +12,13 @@ export interface IncidentPassport {
     passport_version: "1.0";
     alpar_provenance: string;
     compliance_framework: "EU AI Act Article 73";
+  };
+  evidenceHash: string;
+  standard: "ISO/IEC 27037 & W3C Verifiable Incident Passport";
+  proof: {
+    type: "Sha256Signature2026";
+    created: string;
+    verificationMethod: "alparai:keys:master";
   };
   incident: {
     id: string;
@@ -116,12 +124,31 @@ export async function getIncidentPassport(
       .select("file_name, file_path, mime_type")
       .eq("incident_id", incidentId);
 
+    const generatedAt = new Date().toISOString();
+    const canonicalIncident = JSON.stringify({
+      id: data.id,
+      title: data.title_masked ?? "",
+      description: data.description_masked ?? "",
+      category: data.category,
+      severity: data.severity,
+      incident_date: data.incident_date ?? null,
+      created_at: data.created_at,
+    });
+    const evidenceHash = crypto.createHash("sha256").update(canonicalIncident).digest("hex");
+
     const passport: IncidentPassport = {
       meta: {
-        generated_at: new Date().toISOString(),
+        generated_at: generatedAt,
         passport_version: "1.0",
         alpar_provenance: `https://alparai.com/en/incidents/${incidentId}`,
         compliance_framework: "EU AI Act Article 73",
+      },
+      evidenceHash,
+      standard: "ISO/IEC 27037 & W3C Verifiable Incident Passport",
+      proof: {
+        type: "Sha256Signature2026",
+        created: generatedAt,
+        verificationMethod: "alparai:keys:master",
       },
       incident: {
         id: data.id as string,

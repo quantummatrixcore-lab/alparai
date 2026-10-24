@@ -1,5 +1,4 @@
-let vault: { read: (k: string) => string | undefined } = { read: () => undefined };
-try { vault = require("@/lib/security/vault").vault; } catch { /* stub bicimi korunur */ }
+import { vault } from "@/lib/security/vault";
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@/lib/dehost/server";
 type EmailOtpType = any;

@@ -77,10 +77,16 @@ export default async function SignInPage({
         {/* Brand Header */}
         <div className="mb-10 text-center">
           <div className="mx-auto mb-5 flex justify-center">
-            <Logo
-              size="xl"
-              className="drop-shadow-[0_0_35px_rgba(168,85,247,0.45)] filter transition-all duration-500 hover:scale-105"
-            />
+            <Link
+              href="/"
+              className="group/brand focus-visible:ring-brand-500 inline-flex items-center justify-center rounded-2xl outline-none transition-all duration-300 focus-visible:ring-2"
+              aria-label="ALPAR AI Home"
+            >
+              <Logo
+                size="xl"
+                className="drop-shadow-[0_0_30px_rgba(56,189,248,0.45)] filter transition-all duration-500 group-hover/brand:scale-105 group-hover/brand:drop-shadow-[0_0_45px_rgba(0,242,254,0.7)]"
+              />
+            </Link>
           </div>
           <h1 className="text-balance text-fg-primary text-3xl font-extrabold tracking-tight drop-shadow-md">
             {t("signin_title")}

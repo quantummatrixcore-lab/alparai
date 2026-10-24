@@ -16,19 +16,35 @@ function AnimatedNumber({ value }: CounterProps) {
   const [count, setCount] = React.useState(value);
   const ref = React.useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const hasAnimatedInitial = React.useRef(false);
+  const prevValRef = React.useRef(value);
 
   React.useEffect(() => {
     if (value === 0 || !isInView) return;
 
-    const controls = animate(0, value, {
-      duration: 2,
-      ease: [0.21, 0.47, 0.32, 0.98],
-      onUpdate: (latest) => {
-        setCount(Math.round(latest));
-      },
-    });
-
-    return () => controls.stop();
+    if (!hasAnimatedInitial.current) {
+      hasAnimatedInitial.current = true;
+      const controls = animate(0, value, {
+        duration: 2,
+        ease: [0.21, 0.47, 0.32, 0.98],
+        onUpdate: (latest) => {
+          setCount(Math.round(latest));
+        },
+      });
+      prevValRef.current = value;
+      return () => controls.stop();
+    } else if (value !== prevValRef.current) {
+      const from = prevValRef.current;
+      prevValRef.current = value;
+      const controls = animate(from, value, {
+        duration: 0.5,
+        ease: "easeOut",
+        onUpdate: (latest) => {
+          setCount(Math.round(latest));
+        },
+      });
+      return () => controls.stop();
+    }
   }, [value, isInView]);
 
   // NOTE: numbers are live DB/canonical values only. No client-side simulation.

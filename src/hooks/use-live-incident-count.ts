@@ -17,9 +17,9 @@ interface UseLiveIncidentCountReturn {
 
 export function useLiveIncidentCount({
   initialCount,
-  minIntervalMs = 15000,
-  maxIntervalMs = 30000,
-  syncIntervalMs = 60000,
+  minIntervalMs = 7000,
+  maxIntervalMs = 16000,
+  syncIntervalMs = 30000,
 }: UseLiveIncidentCountOptions): UseLiveIncidentCountReturn {
   const [count, setCount] = useState<number>(initialCount);
   const [isPulsing, setIsPulsing] = useState<boolean>(false);
@@ -91,19 +91,22 @@ export function useLiveIncidentCount({
     let syncInterval: ReturnType<typeof setInterval> | null = null;
     let isMounted = true;
 
-    // Random interval between minIntervalMs and maxIntervalMs
-    const scheduleNextIncrement = () => {
+    // Immediately sync with server on mount for instant true DB count
+    void syncWithServer();
+
+    // First increment after 3-5s for immediate live feeling, then regular random cadence
+    const scheduleNextIncrement = (isInitial = false) => {
       if (!isMounted) return;
-      const delay = Math.floor(
-        Math.random() * (maxIntervalMs - minIntervalMs + 1) + minIntervalMs,
-      );
+      const delay = isInitial
+        ? Math.floor(Math.random() * 2000 + 3000)
+        : Math.floor(Math.random() * (maxIntervalMs - minIntervalMs + 1) + minIntervalMs);
       tickerTimeout = setTimeout(() => {
         incrementCount();
-        scheduleNextIncrement();
+        scheduleNextIncrement(false);
       }, delay);
     };
 
-    scheduleNextIncrement();
+    scheduleNextIncrement(true);
 
     // Periodic sync with /api/v1/stats
     syncInterval = setInterval(() => {

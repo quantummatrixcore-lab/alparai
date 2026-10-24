@@ -85,11 +85,11 @@ const getHomeData = cache(async (locale: string) => {
         .not("title_masked", "ilike", "%playwright%")
         .order("published_at", { ascending: false })
         .limit(10),
-      admin
+      // NOTE (2026-10-20): evidence_hash filtresi kaldırıldı — bkz. 0009 migration & api/v1/stats.
+      dehost
         .from("incidents")
         .select("id", { count: "exact", head: true })
-        .eq("status", "published")
-        .not("evidence_hash", "is", null),
+        .eq("status", "published"),
       dehost
         .from("provider_leaderboard")
         .select(

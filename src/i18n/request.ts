@@ -23,8 +23,7 @@ export default getRequestConfig(
       locale = DEFAULT_LOCALE;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let messages: AbstractIntlMessages = {} as any;
+    let messages: AbstractIntlMessages = {};
     try {
       const loader = localeMessages[locale as Locale] ?? localeMessages[DEFAULT_LOCALE];
       messages = (await loader()).default;

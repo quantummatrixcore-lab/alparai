@@ -78,8 +78,7 @@ async function fetchDegradedModelIds(): Promise<Set<string>> {
   try {
     const dehost = createAdminClient();
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: degradedData } = await (dehost as any)
+    const { data: degradedData } = await dehost
       .from("ai_free_models")
       .select("id")
       .eq("is_active", false);
@@ -100,8 +99,7 @@ export async function selectModelByCapability(domain: TaskDomain): Promise<Model
     const dehost = createAdminClient();
     const degradedIds = await fetchDegradedModelIds();
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data, error } = await (dehost as any)
+    const { data, error } = await dehost
       .from("ai_routing_chains")
       .select("models")
       .eq("domain_name", domain)

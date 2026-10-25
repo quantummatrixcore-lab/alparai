@@ -140,8 +140,8 @@ export default async function AIActTrackerPage({
     return {
       ...item,
       eu_act_risk_category: euRiskCategory,
-      provider_name: (provider as any)?.name ?? tCommon("unknown"),
-      provider_slug: (provider as any)?.slug ?? "",
+      provider_name: provider?.name ?? tCommon("unknown"),
+      provider_slug: provider?.slug ?? "",
     };
   });
 

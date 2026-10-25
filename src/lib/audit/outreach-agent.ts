@@ -20,8 +20,10 @@ export interface OutreachItem {
   created_at: string;
 }
 
+import type { DeHostServerClient } from "@/lib/dehost/server-adapter";
+
 export async function processOutreachQueue(
-  dehost: any,
+  dehost: DeHostServerClient,
   resend: Resend,
 ): Promise<{ sent: number; failed: number; skipped: boolean }> {
   try {

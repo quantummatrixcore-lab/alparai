@@ -1,11 +1,8 @@
 import { vault } from "@/lib/security/vault";
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@/lib/dehost/server";
-type EmailOtpType = any;
-type DeHostClient = any;
 import { logger } from "@/lib/utils/logger";
 import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from "@/lib/constants";
-import type { Database } from "@/types/database";
 
 async function sha256Hex(text: string) {
   const msgBuffer = new TextEncoder().encode(text);
@@ -51,7 +48,7 @@ import { logAdminLoginAction } from "@/actions/auth-audit";
 
 
 async function logAdminLogin(
-  dehost: any,
+  dehost: unknown,
   userId: string,
   request: NextRequest,
 ) {
@@ -98,7 +95,7 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const isProduction =
+  const _isProduction =
     (vault.read('NODE_ENV') ?? process.env.NODE_ENV) === "production" ||
     (!request.url.startsWith("http://localhost") && !request.url.startsWith("http://127.0.0.1"));
 
@@ -220,7 +217,7 @@ export async function GET(request: NextRequest) {
     if (tokenHash && type) {
       const { error } = await dehost.auth.verifyOtp({
         token_hash: tokenHash,
-        type: type as EmailOtpType,
+        type: type,
       });
       if (!error) {
         return response;

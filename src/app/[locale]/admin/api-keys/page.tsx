@@ -396,8 +396,14 @@ export default function ApiKeysPage() {
                 </label>
                 <select
                   value={clientTier}
-                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                  onChange={(e) => setClientTier(e.target.value as any)}
+                  onChange={(e) =>
+                    setClientTier(
+                      e.target.value as
+                        | "TIER_1_GROWTH"
+                        | "TIER_2_ENTERPRISE"
+                        | "TIER_3_INSTITUTIONAL",
+                    )
+                  }
                   className="w-full rounded border border-[#d0d7de] bg-[#ffffff] px-3 py-1.5 text-[#1f2328] focus:outline-none dark:border-[#30363d] dark:bg-[#0d1117] dark:text-[#f0f6fc]"
                 >
                   <option value="TIER_1_GROWTH">Tier 1: Growth Feed ($2,500/ay)</option>

@@ -157,7 +157,7 @@ export async function POST(request: Request) {
   }
 
   const dehost = await createServerClient();
-  let dbRecord = null;
+  let dbRecord: unknown = null;
 
   if (payload.provider_id) {
     const { data: existingRecord } = await dehost

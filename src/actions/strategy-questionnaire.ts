@@ -78,8 +78,19 @@ export async function runQuestionnaire(modelIds?: string[]): Promise<{
 
         for (let i = 0; i < allQuestions.length; i += BATCH_SIZE) {
           const chunk = allQuestions.slice(i, i + BATCH_SIZE);
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const chunkInserts: any[] = [];
+          interface StrategicAnswerInsert {
+            run_id: string;
+            model_id: string;
+            model_name: string;
+            question_index: number;
+            question_id: number;
+            section: string;
+            answer_text?: string;
+            error_message?: string;
+            latency_ms: number;
+            tokens_used?: number;
+          }
+          const chunkInserts: StrategicAnswerInsert[] = [];
 
           await Promise.all(
             chunk.map(async (q, chunkIndex) => {
@@ -104,7 +115,7 @@ export async function runQuestionnaire(modelIds?: string[]): Promise<{
                     model_id: model.id,
                     model_name: modelLabel,
                     question_index: qi,
-                    question_id: q.id,
+                    question_id: Number(q.id) || 0,
                     section: q.section,
                     answer_text: result.data.content,
                     latency_ms: latencyMs,
@@ -116,7 +127,7 @@ export async function runQuestionnaire(modelIds?: string[]): Promise<{
                     model_id: model.id,
                     model_name: modelLabel,
                     question_index: qi,
-                    question_id: q.id,
+                    question_id: Number(q.id) || 0,
                     section: q.section,
                     error_message: result.error?.message || "Unknown error",
                     latency_ms: latencyMs,
@@ -129,7 +140,7 @@ export async function runQuestionnaire(modelIds?: string[]): Promise<{
                   model_id: model.id,
                   model_name: modelLabel,
                   question_index: qi,
-                  question_id: q.id,
+                  question_id: Number(q.id) || 0,
                   section: q.section,
                   error_message: err instanceof Error ? err.message : "Unknown error",
                   latency_ms: latencyMs,

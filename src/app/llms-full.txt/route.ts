@@ -4,8 +4,18 @@ import { createAdminClient } from "@/lib/dehost/admin";
 export const dynamic = "force-dynamic";
 export const revalidate = 3600; // Cache for 1 hour
 
+interface IncidentFeedItem {
+  id: string;
+  title: string;
+  description: string;
+  category?: string | null;
+  severity?: string | null;
+  incident_date?: string | null;
+  source_url?: string | null;
+}
+
 export async function GET() {
-  let incidents: any[] = [];
+  let incidents: IncidentFeedItem[] = [];
   try {
     const admin = createAdminClient();
     const res = await admin
@@ -14,8 +24,8 @@ export async function GET() {
       .eq("status", "published")
       .order("created_at", { ascending: false })
       .limit(50);
-    if (res.data) incidents = res.data;
-  } catch (e) {
+    if (res.data) incidents = res.data as unknown as IncidentFeedItem[];
+  } catch {
     // Fallback in environments without direct database secrets
     incidents = [];
   }

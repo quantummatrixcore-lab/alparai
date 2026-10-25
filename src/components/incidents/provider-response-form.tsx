@@ -41,7 +41,7 @@ export function ProviderResponseForm({
   token,
   providerName,
 }: ProviderResponseFormProps) {
-  const [stateBase, formAction] = useActionState(submitProviderResponse, initialState); const state = stateBase as any;
+  const [state, formAction] = useActionState(submitProviderResponse, initialState);
   const t = useTranslations("respond");
 
   useEffect(() => {

@@ -100,7 +100,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.redirect(`${origin}/${locale}/auth/signin?error=missing_params`);
   } catch (err) {
-    if (err instanceof Error && (err.message.includes("NEXT_REDIRECT") || (err as any).digest?.includes("NEXT_REDIRECT"))) {
+    if (err instanceof Error && (err.message.includes("NEXT_REDIRECT") || (err as Error & { digest?: string }).digest?.includes("NEXT_REDIRECT"))) {
       throw err;
     }
     logger.error("Callback handler exception", undefined, err instanceof Error ? err : undefined);

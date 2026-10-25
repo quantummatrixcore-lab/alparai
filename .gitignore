@@ -75,6 +75,16 @@ docs/private/
 
 # Root artifact hygiene (REPO-1)
 /*.png
+/*.pdf
+/form_status*.png
+/hasat_*.png
+/*_deployments*.json
+cf_*.json
+/cf_*.json
+zoho_*.json
+/zoho_*.json
+run.log
+/run.log
 /typecheck_output*.txt
 /database_old.ts
 /database_new.ts
@@ -115,7 +125,7 @@ coverage/
 # Vault Guvenligi
 VAULT.env
 
-# Sýr Kalkaný ve Gizlilik
+# Sï¿½r Kalkanï¿½ ve Gizlilik
 core/hafiza/ledger.json
 core/hafiza/memory.json
 data/escrows.jsonl

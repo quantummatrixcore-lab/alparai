@@ -24,10 +24,8 @@ export async function GET(request: Request) {
     const limit = Math.min(Number(searchParams.get("limit") ?? "20"), 50);
     const offset = Math.max(Number(searchParams.get("offset") ?? "0"), 0);
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const dehost = createAdminClient() as any;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let query: any = dehost
+    const dehost = createAdminClient();
+    let query = dehost
       .from("jury_cases")
       .select(`
         id,
@@ -89,8 +87,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Title and description are required." }, { status: 400 });
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const dehost = createAdminClient() as any;
+    const dehost = createAdminClient();
 
     const { data: rep } = await dehost
       .from("user_reputation")

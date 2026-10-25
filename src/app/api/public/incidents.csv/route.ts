@@ -29,8 +29,17 @@ export async function GET() {
       "source_url",
       "description",
     ];
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const rows = data.map((item: any) => [
+    interface IncidentCsvRow {
+      id: string;
+      title_masked?: string;
+      description_masked?: string;
+      ai_providers?: { name?: string } | null;
+      provider_custom_name?: string | null;
+      severity?: string;
+      created_at?: string;
+      source_url?: string;
+    }
+    const rows = (data as unknown as IncidentCsvRow[]).map((item) => [
       `"${item.id}"`,
       `"${(item.title_masked || "").replace(/"/g, '""')}"`,
       `"${(item.ai_providers?.name || item.provider_custom_name || "Unknown").replace(/"/g, '""')}"`,
@@ -40,8 +49,7 @@ export async function GET() {
       `"${(item.description_masked || "").replace(/"/g, '""').replace(/\n/g, " ")}"`,
     ]);
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const csvContent = [headers.join(","), ...rows.map((r: any) => r.join(","))].join("\n");
+    const csvContent = [headers.join(","), ...rows.map((r) => r.join(","))].join("\n");
 
     return new NextResponse(csvContent, {
       status: 200,

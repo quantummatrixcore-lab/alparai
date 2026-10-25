@@ -29,9 +29,9 @@ function verifySignature(rawBody: string, signature: string | null): boolean {
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-async function resolveUserId(admin: any, custom: Record<string, any>, email?: string | null): Promise<string | null> {
+import type { DeHostServerClient } from "@/lib/dehost/server-adapter";
+
+async function resolveUserId(admin: DeHostServerClient, custom: Record<string, unknown>, email?: string | null): Promise<string | null> {
   const fromCustom =
     custom?.user_id && custom.user_id !== "guest" ? String(custom.user_id)
     : custom?.userId && custom.userId !== "guest" ? String(custom.userId)
@@ -57,10 +57,19 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "invalid_signature" }, { status: 400 });
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let event: any;
+  interface LemonWebhookEvent {
+    meta?: {
+      event_name?: string;
+      custom_data?: Record<string, unknown>;
+    };
+    data?: {
+      id?: string | number;
+      attributes?: Record<string, unknown>;
+    };
+  }
+  let event: LemonWebhookEvent | null = null;
   try {
-    event = JSON.parse(rawBody);
+    event = JSON.parse(rawBody) as LemonWebhookEvent;
   } catch {
     return NextResponse.json({ error: "invalid_json" }, { status: 400 });
   }
@@ -71,7 +80,7 @@ export async function POST(request: Request) {
   }
 
   const attrs = event?.data?.attributes ?? {};
-  const custom = (event?.meta?.custom_data ?? {}) as Record<string, any>;
+  const custom = (event?.meta?.custom_data ?? {}) as Record<string, unknown>;
   const tier = normalizeTier(typeof custom.tier === "string" ? custom.tier : "developer");
   const orderId = event?.data?.id ? String(event.data.id) : null;
   const customerId = attrs?.customer_id != null ? String(attrs.customer_id) : null;

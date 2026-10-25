@@ -35,7 +35,7 @@ export default async function DilemmasPage({ params }: { params: Promise<{ local
 
   // Fetch active polls and suggestions in parallel
   const [pollsResult, suggestionsResult] = await Promise.all([
-    (dehost.from("ai_polls").select("*").eq("is_active", true).order("created_at", { ascending: false }) as any),
+    dehost.from("ai_polls").select("*").eq("is_active", true).order("created_at", { ascending: false }),
     dehost
       .from("suggestions")
       .select(

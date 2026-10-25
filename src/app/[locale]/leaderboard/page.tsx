@@ -85,12 +85,29 @@ async function LeaderboardDataContent({
   const dehost = await createServerClient();
   const _t = await getTranslations({ locale, namespace: "leaderboard" });
 
-  let { data: leaderboardData } = await dehost
+  interface LeaderboardRowItem {
+    id: string | null;
+    slug: string | null;
+    name: string | null;
+    logo_url: string | null;
+    is_verified: boolean | null;
+    website_url: string | null;
+    trust_score: number | null;
+    incident_count: number;
+    response_count: number;
+    is_verified_respondent: boolean;
+    response_rate: number;
+  }
+
+  let leaderboardData: LeaderboardRowItem[] | null = null;
+  const { data: rawLeaderboard } = await dehost
     .from("provider_leaderboard")
     .select(
       "id, slug, name, logo_url, is_verified, website_url, trust_score, incident_count, response_count, is_verified_respondent, response_rate",
     )
     .order("name");
+
+  leaderboardData = (rawLeaderboard as unknown as LeaderboardRowItem[]) ?? null;
 
   if (!leaderboardData || leaderboardData.length === 0) {
     const { data: fallbackProviders } = await dehost
@@ -99,12 +116,18 @@ async function LeaderboardDataContent({
       .order("name");
 
     if (fallbackProviders && fallbackProviders.length > 0) {
-      leaderboardData = fallbackProviders.map((p: any) => ({
-        ...p,
-        incident_count: (p as any).incident_count ?? 0,
-        response_count: (p as any).response_count ?? 0,
-        is_verified_respondent: Boolean((p as any).is_verified_respondent),
-        response_rate: (p as any).response_rate ?? 0,
+      leaderboardData = fallbackProviders.map((p) => ({
+        id: p.id,
+        slug: p.slug,
+        name: p.name,
+        logo_url: p.logo_url,
+        is_verified: p.is_verified,
+        website_url: p.website_url,
+        trust_score: p.trust_score,
+        incident_count: 0,
+        response_count: 0,
+        is_verified_respondent: false,
+        response_rate: 0,
       }));
     }
   }

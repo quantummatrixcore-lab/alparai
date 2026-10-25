@@ -11,8 +11,10 @@ import { VisitorAnalytics } from "./VisitorAnalytics";
 import { SEOAnalytics } from "./SEOAnalytics";
 import { CognitiveDNA } from "./CognitiveDNA";
 
+type BentoTabId = "ALL" | "SAGES" | "HEALTH" | "FINANCE" | "SECURITY";
+
 export function BentoCommandCenter() {
-  const [activeTab, setActiveTab] = useState<"ALL" | "SAGES" | "HEALTH" | "FINANCE" | "SECURITY">(
+  const [activeTab, setActiveTab] = useState<BentoTabId>(
     "ALL",
   );
 
@@ -48,20 +50,21 @@ export function BentoCommandCenter() {
 
           {/* Quick Navigation Filter Tabs (Mobile Scrollable + Desktop Wrap) */}
           <div className="no-scrollbar flex max-w-full items-center gap-1.5 overflow-x-auto rounded-xl border border-[#27272a] bg-[#18181b]/80 p-1.5 backdrop-blur-md sm:flex-wrap">
-            {[
-              { id: "ALL", label: "Tüm Bento", icon: Layers },
-              { id: "SAGES", label: "Bilgeler Meclisi", icon: Crown },
-              { id: "HEALTH", label: "Sistem Sağlığı", icon: Activity },
-              { id: "FINANCE", label: "Finans & MRR", icon: Wallet },
-              { id: "SECURITY", label: "Güvenlik", icon: Shield },
-            ].map((tab) => {
+            {(
+              [
+                { id: "ALL", label: "Tüm Bento", icon: Layers },
+                { id: "SAGES", label: "Bilgeler Meclisi", icon: Crown },
+                { id: "HEALTH", label: "Sistem Sağlığı", icon: Activity },
+                { id: "FINANCE", label: "Finans & MRR", icon: Wallet },
+                { id: "SECURITY", label: "Güvenlik", icon: Shield },
+              ] as const
+            ).map((tab) => {
               const TabIcon = tab.icon;
               const isCurrent = activeTab === tab.id;
               return (
                 <button
                   key={tab.id}
-                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                  onClick={() => setActiveTab(tab.id as any)}
+                  onClick={() => setActiveTab(tab.id)}
                   className={`flex shrink-0 items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-bold transition-all sm:px-3 ${
                     isCurrent
                       ? "border border-[#00f0ff]/40 bg-[#00f0ff]/15 text-[#00f0ff] shadow-[0_0_12px_rgba(0,240,255,0.25)]"

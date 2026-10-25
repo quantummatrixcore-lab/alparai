@@ -26,13 +26,13 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Invalid vote payload." }, { status: 400 });
     }
 
-    // Anti-Sybil / Reputation Check - Bypass strict types for prototype
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: profile } = await (dehost as any)
+    const { data: rawProfile } = await dehost
       .from("user_profiles")
       .select("reputation_score, is_verified_citizen")
       .eq("id", user.id)
       .single();
+
+    const profile = rawProfile as { reputation_score: number; is_verified_citizen: boolean } | null;
 
     if (!profile?.is_verified_citizen) {
       return NextResponse.json(
@@ -44,8 +44,7 @@ export async function POST(req: Request) {
     }
 
     // Register Vote in Agora-T System
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { error: voteError } = await (dehost as any).from("incident_jury_votes").insert({
+    const { error: voteError } = await dehost.from("incident_jury_votes").insert({
       incident_id: incidentId,
       voter_id: user.id,
       vote_type: vote,

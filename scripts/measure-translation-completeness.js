@@ -21,6 +21,7 @@ function isTranslatable(str) {
   if (typeof str !== "string") return false;
   if (str.length < 3) return false;
   if (str.startsWith("http://") || str.startsWith("https://")) return false;
+  if (str.includes("@")) return false;
   if (str === "ALPAR AI") return false;
   if (!/[a-zA-Z]/.test(str)) return false;
   return true;

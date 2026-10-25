@@ -31,8 +31,18 @@ export async function GET() {
       return NextResponse.json({ error: "Failed to generate dataset" }, { status: 500 });
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const incidents: DatasetItem[] = data.map((row: any) => ({
+    interface IncidentRow {
+      id: string;
+      title_masked?: string;
+      description_masked?: string;
+      ai_providers?: { name?: string } | null;
+      provider_custom_name?: string | null;
+      severity: string;
+      created_at: string;
+      published_at: string;
+      source_url?: string | null;
+    }
+    const incidents: DatasetItem[] = (data as unknown as IncidentRow[]).map((row) => ({
       id: row.id,
       title: row.title_masked ?? "",
       description: row.description_masked ?? "",
@@ -40,7 +50,7 @@ export async function GET() {
       severity: row.severity,
       created_at: row.created_at,
       published_at: row.published_at,
-      source_url: row.source_url,
+      source_url: row.source_url ?? null,
     }));
 
     return NextResponse.json(

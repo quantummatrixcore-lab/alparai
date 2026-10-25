@@ -5,6 +5,7 @@
 
 import { cookies } from "next/headers";
 import { createDeHostServerClient, type DeHostServerClient } from "@/lib/dehost/server-adapter";
+import type { DeHostUser } from "@/lib/dehost/dehost-adapter";
 
 export async function createClient(): Promise<DeHostServerClient> {
   const cookieStore = await cookies();
@@ -31,7 +32,7 @@ export async function createClient(): Promise<DeHostServerClient> {
                 avatar_url: u.picture,
                 picture: u.picture,
               },
-            } as any,
+            } as DeHostUser,
           },
           error: null,
         });

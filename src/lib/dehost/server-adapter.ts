@@ -26,10 +26,23 @@
 
 import "server-only";
 
-import { createDeHostAdapterClient } from "./dehost-adapter";
+import {
+  createDeHostAdapterClient,
+  type DeHostAdapterClient,
+  type DeHostQueryBuilder,
+  type TableRow,
+} from "./dehost-adapter";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type DeHostServerClient = any;
+export interface DeHostServerClient extends Omit<DeHostAdapterClient, "from" | "rpc"> {
+  from<
+    TName extends string = string,
+    TRow = TableRow<TName>,
+  >(table: TName): DeHostQueryBuilder<TRow, false>;
+  rpc<TRow = unknown>(
+    fn: string,
+    params?: Record<string, unknown>,
+  ): DeHostQueryBuilder<TRow, true>;
+}
 
 /**
  * Kept for API compatibility with call sites that probe the pool directly.
@@ -47,26 +60,19 @@ export async function getDeHostPgPool(): Promise<unknown | null> {
 export function createDeHostServerClient(): DeHostServerClient {
   const adapter = createDeHostAdapterClient();
 
-  return {
-    // Own instance properties (urls, auth, rest, functions, realtime).
-    ...adapter,
-    /**
-     * `from` and `rpc` live on the adapter PROTOTYPE, so an object spread
-     * does not copy them. They must be bound explicitly or the fluent query
-     * surface disappears and every call site breaks.
-     */
-    from: (table: string) => adapter.from(table),
-    rpc: (fn: string, params?: Record<string, unknown>) => adapter.rpc(fn, params),
+  const client = Object.create(adapter);
+  Object.assign(client, {
+    from: <
+      TName extends string = string,
+      TRow = TableRow<TName>,
+    >(table: TName) => adapter.from<TName, TRow>(table),
+    rpc: <TRow = unknown>(fn: string, params?: Record<string, unknown>) =>
+      adapter.rpc<TRow>(fn, params),
     auth: {
       ...adapter.auth,
-      /**
-       * The adapter's own `getUser` is a stub (the DeHost auth service is not
-       * reachable from this runtime). The authoritative session is the
-       * HMAC-signed `alparai_session` cookie, which is resolved by
-       * `src/lib/dehost/server.ts` and injected into this client there.
-       * Returning `null` here is a truthful "no session" — never a fake user.
-       */
       getUser: async () => ({ data: { user: null }, error: null }),
     },
-  };
+  });
+
+  return client as DeHostServerClient;
 }

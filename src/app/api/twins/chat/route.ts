@@ -1,9 +1,8 @@
 import { vault } from "@/lib/security/vault";
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { type NextRequest, NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/dehost/admin";
 import { fetchWithSsrfGuard } from "@/lib/security/ssrf";
-import { checkRateLimit, RATE_LIMIT_KEYS } from "@/lib/utils/rate-limit";
+import { checkRateLimit } from "@/lib/utils/rate-limit";
 import { headers } from "next/headers";
 import { logger } from "@/lib/utils/logger";
 import { DIGITAL_TWINS } from "@/lib/agent-os/personas";
@@ -43,8 +42,7 @@ export async function POST(req: NextRequest) {
     const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "127.0.0.1";
 
     const rl = await checkRateLimit(
-       
-      `${(RATE_LIMIT_KEYS as any).chat_rate_limit ?? "twin_chat"}:${ip}`,
+      `ratelimit:twin_chat:${ip}`,
     );
     if (!rl.ok) {
       return NextResponse.json(
@@ -196,14 +194,13 @@ export async function POST(req: NextRequest) {
     const adminClient = createAdminClient();
     try {
        
-      const { error: rpcError } = await (adminClient.rpc as any)("increment_persona_usage", {
+      const { error: rpcError } = await adminClient.rpc("increment_persona_usage", {
         p_twin_id: twinId,
         p_tokens: totalTokens,
       });
 
       if (rpcError) {
-         
-        await (adminClient as any).from("persona_usage_stats").insert({
+        await adminClient.from("persona_usage_stats").insert({
           twin_id: twinId,
           tokens_used: totalTokens,
           request_count: 1,

@@ -9,8 +9,7 @@ interface RetentionPolicy {
 export async function getRetentionPolicies(): Promise<RetentionPolicy[]> {
   const admin = createAdminClient();
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data, error } = await (admin as any)
+  const { data, error } = await admin
     .from("data_retention_policies")
     .select("table_name, retention_period_months");
 

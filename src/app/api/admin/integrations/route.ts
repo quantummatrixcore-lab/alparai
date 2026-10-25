@@ -301,7 +301,7 @@ export async function GET() {
     const dehost = createAdminClient();
     const { data: dbKeys } = await dehost.from("api_keys").select("provider");
     const dbProviders = new Set<string>(
-      (dbKeys || []).map((k: any) => String(k.provider || '').toLowerCase()),
+      (dbKeys || []).map((k: { provider?: string | null }) => String(k.provider || '').toLowerCase()),
     );
 
     const statuses: IntegrationStatus[] = ACTIVE_SERVICES.map((svc) => {

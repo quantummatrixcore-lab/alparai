@@ -79,8 +79,7 @@ export async function getKBenchmarkScores(modelId?: string): Promise<BenchmarkMo
       dehost = createAdminClient();
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: rawScores, error } = await (dehost as any).from("k_model_scores").select(`
+    const { data: rawScores, error } = await dehost.from("k_model_scores").select(`
         score,
         category_id,
         model_id,

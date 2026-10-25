@@ -330,7 +330,7 @@ export async function POST(request: Request) {
     const auditSeal = `ALPAR_SEAL_v2.5_${certificateId.substring(0, 16).toUpperCase()}`;
 
     // Record audit in DeHost if provider_id is provided
-    let providerData = null;
+    let providerData: unknown = null;
     if (payload.provider_id) {
       try {
         const dehost = await createServerClient();

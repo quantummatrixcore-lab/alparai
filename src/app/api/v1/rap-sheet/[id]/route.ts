@@ -10,8 +10,7 @@ export async function GET(
 ) {
   try {
     const { id } = await params;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const dehost = createAdminClient() as any;
+    const dehost = createAdminClient();
 
     const { data, error } = await dehost
       .from("ai_rap_sheet_entries")
@@ -46,8 +45,7 @@ export async function PATCH(
     if (is_active !== undefined) updates.is_active = is_active;
     if (penalty_details !== undefined) updates.penalty_details = penalty_details;
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const dehost = createAdminClient() as any;
+    const dehost = createAdminClient();
     const { data, error } = await dehost
       .from("ai_rap_sheet_entries")
       .update(updates)

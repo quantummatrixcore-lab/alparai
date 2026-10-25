@@ -51,8 +51,7 @@ export function useAdminModeration({
       setLoading(true);
       setError(null);
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      let query: any = dehost
+      let query = dehost
         .from("incidents")
         .select("*", { count: "exact" });
 

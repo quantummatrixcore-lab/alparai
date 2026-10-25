@@ -10,8 +10,7 @@ export async function GET(
 ) {
   try {
     const { id } = await params;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const dehost = createAdminClient() as any;
+    const dehost = createAdminClient();
 
     const { data: juryCase, error: caseErr } = await dehost
       .from("jury_cases")
@@ -61,8 +60,7 @@ export async function PATCH(
     if (resolution_summary) updates.resolution_summary = resolution_summary;
     if (category) updates.category = category;
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const dehost = createAdminClient() as any;
+    const dehost = createAdminClient();
     const { data, error } = await dehost
       .from("jury_cases")
       .update(updates)

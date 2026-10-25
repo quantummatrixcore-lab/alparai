@@ -11,9 +11,7 @@ export async function fetchLatestIntel() {
   const dehost = await createClient();
 
   const { data, error } = await dehost
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    .from("agent_ecosystem_intel" as any)
+    .from("agent_ecosystem_intel" as never)
     .select("*")
     .order("created_at", { ascending: false })
     .limit(20);
@@ -44,9 +42,7 @@ export async function markIntelActioned(id: string) {
   const dehost = await createClient();
 
   const { error } = await dehost
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    .from("agent_ecosystem_intel" as any)
+    .from("agent_ecosystem_intel" as never)
     .update({ is_actioned: true })
     .eq("id", id);
 

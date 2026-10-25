@@ -37,7 +37,19 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: "Failed to fetch public incidents" }, { status: 500 });
     }
 
-    const incidents: PublicIncidentItem[] = (data || []).map((row) => ({
+    interface PublicIncidentRow {
+      id: string;
+      title_masked?: string | null;
+      description_masked?: string | null;
+      provider_custom_name?: string | null;
+      severity: string;
+      created_at: string;
+      published_at: string;
+      source_url?: string | null;
+      ai_providers?: { name?: string | null } | null;
+    }
+
+    const incidents: PublicIncidentItem[] = ((data as unknown as PublicIncidentRow[]) || []).map((row) => ({
       id: row.id,
       title: row.title_masked ?? "",
       description: row.description_masked ?? "",
@@ -45,7 +57,7 @@ export async function GET(request: Request) {
       severity: row.severity,
       created_at: row.created_at,
       published_at: row.published_at,
-      source_url: row.source_url,
+      source_url: row.source_url ?? null,
     }));
 
     return NextResponse.json(

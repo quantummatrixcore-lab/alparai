@@ -2,8 +2,16 @@
 
 import { useEffect, useRef } from "react";
 import { dehost } from "@/lib/dehost/client";
-export type RealtimeChannel = any;
-export type RealtimePostgresChangesPayload<T> = any;
+export type RealtimeChannel = ReturnType<typeof dehost.channel>;
+export interface RealtimePostgresChangesPayload<T> {
+  eventType?: "INSERT" | "UPDATE" | "DELETE" | "*";
+  new: T;
+  old?: Partial<T>;
+  schema?: string;
+  table?: string;
+  commit_timestamp?: string;
+  errors?: unknown[] | null;
+}
 import type { Database } from "@/types/database";
 
 export type TableName = keyof Database["public"]["Tables"];
@@ -49,8 +57,7 @@ export function useAdminRealtime<T extends { [key: string]: unknown } = Record<s
 
     const channelId = "admin-rt-" + String(table) + "-" + event + "-" + (filter || "all") + "-" + Math.random().toString(36).substring(2, 8);
     
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const channel: RealtimeChannel = (dehost as any).channel(channelId);
+    const channel: RealtimeChannel = dehost.channel(channelId);
 
     const subscriptionConfig: {
       event: PostgresChangeEvent;
@@ -67,23 +74,22 @@ export function useAdminRealtime<T extends { [key: string]: unknown } = Record<s
       subscriptionConfig.filter = filter;
     }
 
-     
-      channel
-            .on(
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              "postgres_changes" as any,
-              subscriptionConfig,
-              (payload: RealtimePostgresChangesPayload<T>) => {
-                onChangeRef.current?.(payload);
-                if (payload.eventType === "INSERT") {
-                  onInsertRef.current?.(payload);
-                } else if (payload.eventType === "UPDATE") {
-                  onUpdateRef.current?.(payload);
-                } else if (payload.eventType === "DELETE") {
-                  onDeleteRef.current?.(payload);
-                }
-              }
-            )
+    channel
+      .on(
+        "postgres_changes",
+        subscriptionConfig,
+        (payload: unknown) => {
+          const typedPayload = payload as RealtimePostgresChangesPayload<T>;
+          onChangeRef.current?.(typedPayload);
+          if (typedPayload.eventType === "INSERT") {
+            onInsertRef.current?.(typedPayload);
+          } else if (typedPayload.eventType === "UPDATE") {
+            onUpdateRef.current?.(typedPayload);
+          } else if (typedPayload.eventType === "DELETE") {
+            onDeleteRef.current?.(typedPayload);
+          }
+        }
+      )
             .subscribe();
 
     return () => {

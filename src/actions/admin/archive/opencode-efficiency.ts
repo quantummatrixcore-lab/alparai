@@ -47,7 +47,7 @@ export async function getOpenCodeEfficiencyAction(): Promise<OpenCodeEfficiencyR
               attemptNo: parsed.data.attempt_no,
               role: parsed.data.role,
               diagnosis: parsed.data.diagnosis,
-              gates: parsed.data.gates as any,
+              gates: parsed.data.gates,
             });
           }
         } catch {

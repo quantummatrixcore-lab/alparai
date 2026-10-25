@@ -19,6 +19,20 @@ export const dynamic = "force-dynamic";
 
 async function checkDeHost(): Promise<ServiceHealth> {
   const start = Date.now();
+  try {
+    const { probeDatabase } = await import("@/lib/dehost/health-probe");
+    const probe = await probeDatabase();
+    if (probe.ok) {
+      return {
+        name: "dehost",
+        status: "healthy",
+        latencyMs: probe.latencyMs,
+      };
+    }
+  } catch {
+    // probeDatabase threw; fall back to REST check
+  }
+
   const url =
     (vault.read("NEXT_PUBLIC_DEHOST_URL") ?? process.env.NEXT_PUBLIC_DEHOST_URL) ||
     (vault.read("NEXT_PUBLIC_upstash_URL") ?? process.env.NEXT_PUBLIC_upstash_URL);
@@ -129,10 +143,26 @@ async function checkResend(): Promise<ServiceHealth> {
       headers: { Authorization: `Bearer ${apiKey}` },
       signal: AbortSignal.timeout(3000),
     });
+    if (res.ok) {
+      return {
+        name: "resend",
+        status: "healthy",
+        latencyMs: Date.now() - start,
+      };
+    }
+    const text = await res.text();
+    if (res.status === 403 && text.includes("restricted_api_key")) {
+      return {
+        name: "resend",
+        status: "healthy",
+        latencyMs: Date.now() - start,
+      };
+    }
     return {
       name: "resend",
-      status: res.ok ? "healthy" : "unhealthy",
+      status: "unhealthy",
       latencyMs: Date.now() - start,
+      error: `HTTP ${res.status}: ${res.statusText || text.slice(0, 100)}`,
     };
   } catch (err) {
     return {
@@ -152,12 +182,20 @@ async function checkGemini(): Promise<ServiceHealth> {
   const start = Date.now();
   try {
     const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${key}`, {
-      signal: AbortSignal.timeout(3000),
+      signal: AbortSignal.timeout(5000),
     });
+    if (res.ok) {
+      return {
+        name: "gemini",
+        status: "healthy",
+        latencyMs: Date.now() - start,
+      };
+    }
     return {
       name: "gemini",
-      status: res.ok ? "healthy" : "unhealthy",
+      status: "unhealthy",
       latencyMs: Date.now() - start,
+      error: `HTTP ${res.status}: ${res.statusText}`,
     };
   } catch (err) {
     return {

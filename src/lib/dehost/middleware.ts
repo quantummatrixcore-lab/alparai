@@ -37,10 +37,19 @@ async function verifySessionTokenHmac(payload: string, signatureB64Url: string):
   }
 }
 
+interface MiddlewareUser {
+  id: string;
+  email: string;
+  role: string;
+  user_metadata: {
+    role: string;
+  };
+}
+
 export async function updateSession(request: NextRequest, response: NextResponse) {
   const sessionCookie = request.cookies.get("alparai_session");
 
-  let user: any = null;
+  let user: MiddlewareUser | null = null;
   if (sessionCookie?.value) {
     try {
       const parts = sessionCookie.value.split(".");
@@ -68,19 +77,28 @@ export async function updateSession(request: NextRequest, response: NextResponse
     }
   }
 
+  interface MockQueryChain {
+    select: () => MockQueryChain;
+    eq: () => MockQueryChain;
+    neq: () => MockQueryChain;
+    single: () => Promise<{ data: null; error: null }>;
+    maybeSingle: () => Promise<{ data: null; error: null }>;
+    then: (resolve: (val: { data: null; error: null }) => void) => void;
+  }
+
   const dehost = {
     auth: {
       getUser: async () => ({ data: { user }, error: null }),
       getSession: async () => ({ data: { session: null }, error: null }),
     },
     from: (_table: string) => {
-      const chain: any = {
+      const chain: MockQueryChain = {
         select: () => chain,
         eq: () => chain,
         neq: () => chain,
         single: async () => ({ data: null, error: null }),
         maybeSingle: async () => ({ data: null, error: null }),
-        then: (resolve: any) => resolve({ data: null, error: null }),
+        then: (resolve) => resolve({ data: null, error: null }),
       };
       return chain;
     },

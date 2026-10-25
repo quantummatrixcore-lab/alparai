@@ -11,8 +11,7 @@ export async function GET(
   try {
     const { userId } = await params;
     const currentUser = await getCurrentUser();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const dehost = createAdminClient() as any;
+    const dehost = createAdminClient();
 
     // Get user reputation
     const { data: rep, error: repErr } = await dehost
@@ -37,8 +36,7 @@ export async function GET(
     };
 
     // If own profile or admin/moderator, also fetch reputation history logs
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let logs: any[] = [];
+    let logs: unknown[] = [];
     if (currentUser?.id === userId || currentUser?.role === "admin" || currentUser?.role === "moderator") {
       const { data: logsData } = await dehost
         .from("reputation_logs")

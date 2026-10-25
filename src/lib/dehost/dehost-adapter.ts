@@ -14,19 +14,19 @@ import { logger } from "@/lib/utils/logger";
 import type { Database } from "../../types/database.types";
 import type * as PgTransportModule from "./pg-transport";
 
-export type TableName = keyof Database["public"]["Tables"];
+export type TableName = keyof Database["public"]["Tables"] | keyof Database["public"]["Views"];
 
-export type TableRow<T> = T extends TableName
+export type TableRow<T> = T extends keyof Database["public"]["Tables"]
   ? Database["public"]["Tables"][T]["Row"]
-  : T extends Record<string, unknown>
-    ? T
+  : T extends keyof Database["public"]["Views"]
+    ? Database["public"]["Views"][T]["Row"]
     : Record<string, unknown>;
 
-export type TableInsert<T> = T extends TableName
+export type TableInsert<T> = T extends keyof Database["public"]["Tables"]
   ? Database["public"]["Tables"][T]["Insert"]
   : Record<string, unknown>;
 
-export type TableUpdate<T> = T extends TableName
+export type TableUpdate<T> = T extends keyof Database["public"]["Tables"]
   ? Database["public"]["Tables"][T]["Update"]
   : Record<string, unknown>;
 
@@ -119,7 +119,7 @@ export class DeHostQueryBuilder<TRow = Record<string, unknown>, TSingle extends 
     return this;
   }
 
-  public upsert(values: unknown, opts?: { onConflict?: string }): DeHostQueryBuilder<TRow, TSingle> {
+  public upsert(values: unknown, opts?: { onConflict?: string; ignoreDuplicates?: boolean }): DeHostQueryBuilder<TRow, TSingle> {
     this.action = "upsert";
     this.payload = values;
     this.upsertOnConflict = typeof opts?.onConflict === "string" ? opts.onConflict : undefined;
@@ -701,12 +701,12 @@ export class DeHostAdapterClient<_T = unknown> {
 
   public from<
     TName extends string = string,
-    TRow = TName extends TableName ? Database["public"]["Tables"][TName]["Row"] : Record<string, unknown>,
+    TRow = TableRow<TName>,
   >(table: TName): DeHostQueryBuilder<TRow, false> {
     return new DeHostQueryBuilder<TRow, false>(table);
   }
 
-  public rpc<TRow = Record<string, unknown>>(
+  public rpc<TRow = unknown>(
     _fn: string,
     _params?: Record<string, unknown>,
   ): DeHostQueryBuilder<TRow, true> {

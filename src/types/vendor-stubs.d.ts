@@ -1,28 +1,29 @@
+import type * as React from "react";
+
 declare module "@dehost/dehost-js" {
-  export function createClient<T = any>(url: string, key: string, options?: any): any;
-  export type User = any;
-  export type Session = any;
-  export type DeHostClient = any;
-  export type DeHostClient = any;
-  export type EmailOtpType = any;
-  export type RealtimeChannel = any;
-  export type RealtimePostgresChangesPayload<T = any> = any;
+  export function createClient<T = unknown>(url: string, key: string, options?: unknown): unknown;
+  export type User = unknown;
+  export type Session = unknown;
+  export type DeHostClient = unknown;
+  export type EmailOtpType = unknown;
+  export type RealtimeChannel = unknown;
+  export type RealtimePostgresChangesPayload<T = unknown> = unknown;
 }
 
 declare module "@dehost/ssr" {
-  export function createServerClient<T = any>(url: string, key: string, options?: any): any;
-  export function createBrowserClient<T = any>(url: string, key: string, options?: any): any;
-  export function createMiddlewareClient<T = any>(req: any, res: any, options?: any): any;
+  export function createServerClient<T = unknown>(url: string, key: string, options?: unknown): unknown;
+  export function createBrowserClient<T = unknown>(url: string, key: string, options?: unknown): unknown;
+  export function createMiddlewareClient<T = unknown>(req: unknown, res: unknown, options?: unknown): unknown;
 }
 
 declare module "@cloudflare/functions" {
-  export function waitUntil(promise: Promise<any>): void;
+  export function waitUntil(promise: Promise<unknown>): void;
 }
 
 declare module "@cloudflare/analytics/react" {
-  export const Analytics: any;
+  export const Analytics: React.ComponentType<Record<string, unknown>>;
 }
 
 declare module "@cloudflare/speed-insights/next" {
-  export const SpeedInsights: any;
+  export const SpeedInsights: React.ComponentType<Record<string, unknown>>;
 }

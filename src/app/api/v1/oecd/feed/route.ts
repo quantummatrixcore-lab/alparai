@@ -39,7 +39,7 @@ export async function GET() {
     // Map to OECD Classification dimensions
     const oecdFeed = (incidents || []).map((inc) => {
       const provider = inc.ai_provider_id ? providerMap.get(inc.ai_provider_id) : null;
-      const providerName = (provider as any)?.name || "Unknown Provider";
+      const providerName = provider?.name || "Unknown Provider";
 
       // 1. People & Planet Mapping
       let peoplePlanet = "Societal and Economic Context";

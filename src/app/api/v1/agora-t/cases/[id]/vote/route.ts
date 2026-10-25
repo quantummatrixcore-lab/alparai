@@ -22,8 +22,7 @@ export async function POST(
       return NextResponse.json({ error: "Invalid vote decision. Must be 'guilty', 'innocent', or 'abstain'." }, { status: 400 });
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const dehost = createAdminClient() as any;
+    const dehost = createAdminClient();
 
     // Verify case exists and is open for voting
     const { data: juryCase, error: caseErr } = await dehost
@@ -41,18 +40,20 @@ export async function POST(
     }
 
     // Check user reputation & trust level
-    const { data: userRep } = await dehost
+    const { data: userRepRaw } = await dehost
       .from("user_reputation")
       .select("reputation_score, trust_level, is_sybil_suspect")
       .eq("user_id", user.id)
       .maybeSingle();
+
+    const userRep = userRepRaw as { reputation_score?: number | null; trust_level?: string | null; is_sybil_suspect?: boolean | null } | null;
 
     if (userRep?.is_sybil_suspect || userRep?.trust_level === "banned") {
       return NextResponse.json({ error: "Vote rejected: Account flagged by Anti-Sybil system." }, { status: 403 });
     }
 
     // Compute dynamic quadratic vote weight
-    const score = userRep?.reputation_score ?? 50;
+    const score = typeof userRep?.reputation_score === "number" ? userRep.reputation_score : 50;
     let weight = 1.0;
     if (score >= 90) weight = 2.0;
     else if (score >= 75) weight = 1.5;

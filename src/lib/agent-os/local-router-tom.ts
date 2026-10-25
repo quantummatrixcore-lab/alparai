@@ -11,7 +11,7 @@ export const TomIntentSchema = z.object({
   intentType: z.enum(["REFACTOR", "BUGFIX", "FEATURE", "SECURITY_AUDIT"]),
   complexity: z.enum(["LOW", "MEDIUM", "HIGH", "CRITICAL"]),
   targetEngine: z.enum(["HEPHAESTUS", "TCSFL", "DIRECT_BYPASS"]),
-  contextPayload: z.record(z.any()),
+  contextPayload: z.record(z.unknown()),
   estimatedTokens: z.number().optional(),
 });
 

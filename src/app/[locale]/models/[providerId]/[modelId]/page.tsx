@@ -250,8 +250,7 @@ export default async function ModelDetailPage({ params }: ModelDetailPageProps) 
               K-Benchmark 3.0 Standard Performance
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-              {categoryScores.map((c: any) => (
+              {(categoryScores as Array<{ category_id: string; score: number; wilson_lower?: number; wilson_upper?: number }>).map((c) => (
                 <div key={c.category_id} className="border-border-subtle bg-bg-secondary/60 rounded-2xl border p-4 space-y-2">
                   <div className="text-xs font-bold text-fg-muted uppercase tracking-wider">{c.category_id}</div>
                   <div className="text-2xl font-black text-white">{Number(c.score).toFixed(0)}<span className="text-xs text-fg-muted font-normal">/100</span></div>
@@ -338,8 +337,7 @@ export default async function ModelDetailPage({ params }: ModelDetailPageProps) 
               Related AI Incident Reports ({incidents.length})
             </h2>
             <div className="divide-y divide-border-subtle">
-              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-              {incidents.map((inc: any) => (
+              {(incidents as Array<{ id: string; title: string; severity?: string; category?: string }>).map((inc) => (
                 <div key={inc.id} className="py-4 flex items-center justify-between gap-4">
                   <div className="space-y-1">
                     <Link href={`/incidents/${inc.id}`} className="text-base font-semibold text-fg-secondary hover:text-brand-400 transition-colors">

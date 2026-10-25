@@ -68,7 +68,7 @@ Format of each object in the array:
       const userId = users?.[0]?.id;
 
       for (const item of incidents) {
-        let providerId = null;
+        let providerId: string | null = null;
         if (item.ai_provider_name) {
           const { data: provider } = await admin
             .from("ai_providers")
@@ -90,7 +90,7 @@ Format of each object in the array:
               })
               .select()
               .single();
-            providerId = newProvider?.id;
+            providerId = newProvider?.id ?? null;
           }
         }
 

@@ -13,8 +13,17 @@ export async function GET(_request: Request, props: { params: Promise<{ id: stri
 
     const dehost = await createServerClient();
 
+    interface OgIncidentData {
+      title_masked?: string | null;
+      category?: string | null;
+      severity?: string | null;
+      views_count?: number | null;
+      upvotes_count?: number | null;
+      ai_providers?: { name?: string | null; logo_url?: string | null } | null;
+    }
+
     // Fetch incident data
-    const { data: incident } = await dehost
+    const { data: incidentRaw } = await dehost
       .from("incidents")
       .select(
         `
@@ -28,6 +37,8 @@ export async function GET(_request: Request, props: { params: Promise<{ id: stri
       )
       .eq("id", id)
       .single();
+
+    const incident = incidentRaw as OgIncidentData | null;
 
     if (!incident) {
       return new Response("Not found", { status: 404 });

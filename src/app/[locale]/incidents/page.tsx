@@ -103,7 +103,7 @@ export default async function IncidentsPage({
       .eq("is_active", true)
       .order("created_at", { ascending: false })
       .limit(1),
-    (dehost.from("ecosystem_news").select("id, title_en, title_tr, source, severity, published_at").eq("is_active", true).order("published_at", { ascending: false }).limit(4) as any),
+    dehost.from("ecosystem_news").select("id, title_en, title_tr, source, severity, published_at").eq("is_active", true).order("published_at", { ascending: false }).limit(4),
   ]);
 
   const providerMap = new Map(

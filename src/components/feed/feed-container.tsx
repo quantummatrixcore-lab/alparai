@@ -58,33 +58,34 @@ export function FeedContainer({
           table: "incidents",
           filter: "status=eq.published",
         },
-        (payload: any) => {
-          const providerId = payload.new.ai_provider_id;
+        (payload: { new: Record<string, unknown> & { id: string } }) => {
+          const newRow = payload.new as Record<string, unknown>;
+          const providerId = (newRow.ai_provider_id as string | undefined) ?? null;
           const provider = providerId ? providerMap.get(providerId) : null;
           const newIncident: IncidentListItem = {
             id: payload.new.id,
-            title_masked: payload.new.title_masked ?? "",
-            description_masked: payload.new.description_masked ?? "",
-            title_tr: payload.new.title_tr ?? null,
-            description_tr: payload.new.description_tr ?? null,
+            title_masked: (newRow.title_masked as string | undefined) ?? "",
+            description_masked: (newRow.description_masked as string | undefined) ?? "",
+            title_tr: (newRow.title_tr as string | null | undefined) ?? null,
+            description_tr: (newRow.description_tr as string | null | undefined) ?? null,
             translated_title: null,
             translated_description: null,
-            machine_translated: payload.new.machine_translated ?? false,
-            severity: payload.new.severity ?? "medium",
-            status: payload.new.status ?? "published",
-            category: payload.new.category ?? "other",
-            is_anonymous: payload.new.is_anonymous ?? false,
-            incident_date: payload.new.incident_date ?? new Date().toISOString(),
-            view_count: payload.new.views_count ?? 0,
-            vote_count: payload.new.upvotes_count ?? 0,
-            created_at: payload.new.created_at ?? new Date().toISOString(),
+            machine_translated: (newRow.machine_translated as boolean | undefined) ?? false,
+            severity: (newRow.severity as IncidentListItem["severity"] | undefined) ?? "medium",
+            status: (newRow.status as IncidentListItem["status"] | undefined) ?? "published",
+            category: (newRow.category as IncidentListItem["category"] | undefined) ?? "other",
+            is_anonymous: (newRow.is_anonymous as boolean | undefined) ?? false,
+            incident_date: (newRow.incident_date as string | undefined) ?? new Date().toISOString(),
+            view_count: (newRow.views_count as number | undefined) ?? 0,
+            vote_count: (newRow.upvotes_count as number | undefined) ?? 0,
+            created_at: (newRow.created_at as string | undefined) ?? new Date().toISOString(),
             provider_name: provider?.provider_name ?? "Unknown",
             provider_slug: provider?.provider_slug ?? "",
-            evidence_count: payload.new.comments_count ?? 0,
-            affected_count: payload.new.affected_users_count ?? 0,
-            cross_audit_truth_score: payload.new.cross_audit_truth_score ?? null,
-            cross_audit_confidence: payload.new.cross_audit_confidence ?? null,
-            shares_count: payload.new.shares_count ?? 0,
+            evidence_count: (newRow.comments_count as number | undefined) ?? 0,
+            affected_count: (newRow.affected_users_count as number | undefined) ?? 0,
+            cross_audit_truth_score: (newRow.cross_audit_truth_score as number | null | undefined) ?? null,
+            cross_audit_confidence: (newRow.cross_audit_confidence as number | null | undefined) ?? null,
+            shares_count: (newRow.shares_count as number | undefined) ?? 0,
             author_name: null,
           };
           setNewIncidents((prev) => [newIncident, ...prev]);
@@ -97,20 +98,21 @@ export function FeedContainer({
           schema: "public",
           table: "incidents",
         },
-        (payload: any) => {
+        (payload: { new: Record<string, unknown> & { id: string } }) => {
+          const updatedRow = payload.new as Record<string, unknown>;
           setIncidents((prev) =>
             prev.map((item) => {
               if (item.id === payload.new.id) {
                 return {
                   ...item,
-                  view_count: payload.new.views_count ?? item.view_count,
-                  vote_count: payload.new.upvotes_count ?? item.vote_count,
-                  evidence_count: payload.new.comments_count ?? item.evidence_count,
-                  affected_count: payload.new.affected_users_count ?? item.affected_count,
+                  view_count: (updatedRow.views_count as number | undefined) ?? item.view_count,
+                  vote_count: (updatedRow.upvotes_count as number | undefined) ?? item.vote_count,
+                  evidence_count: (updatedRow.comments_count as number | undefined) ?? item.evidence_count,
+                  affected_count: (updatedRow.affected_users_count as number | undefined) ?? item.affected_count,
                   cross_audit_truth_score:
-                    payload.new.cross_audit_truth_score ?? item.cross_audit_truth_score,
+                    (payload.new.cross_audit_truth_score as number | null | undefined) ?? item.cross_audit_truth_score,
                   cross_audit_confidence:
-                    payload.new.cross_audit_confidence ?? item.cross_audit_confidence,
+                    (payload.new.cross_audit_confidence as number | null | undefined) ?? item.cross_audit_confidence,
                 };
               }
               return item;

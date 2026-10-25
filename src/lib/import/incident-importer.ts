@@ -71,7 +71,13 @@ export async function importIncidents(
     );
   }
 
-  const providerMap = new Map((providers ?? []).map((p: any) => [p.slug, p])) as any;
+  interface ProviderMapItem {
+    id: string;
+    slug: string;
+    name: string;
+  }
+  const providerList = (providers ?? []) as ProviderMapItem[];
+  const providerMap = new Map<string, ProviderMapItem>(providerList.map((p) => [p.slug, p]));
 
   for (let i = 0; i < rows.length; i += BATCH_SIZE) {
     const batch = rows.slice(i, i + BATCH_SIZE);

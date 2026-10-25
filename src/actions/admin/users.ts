@@ -199,8 +199,7 @@ export async function getAdminUsers(options?: {
     const page = options?.page || 1;
     const pageSize = options?.pageSize || 20;
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let query: any = db
+    let query = db
       .from("users")
       .select("id, email, role, full_name, created_at, is_verified", { count: "exact" });
 
@@ -251,8 +250,7 @@ export async function toggleUserBanAction(
     if (!admin) return { ok: false, error: "Forbidden" };
 
     const db = createAdminClient();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { error } = await (db as any)
+    const { error } = await db
       .from("users")
       .update({ is_deleted: isBanned })
       .eq("id", userId);

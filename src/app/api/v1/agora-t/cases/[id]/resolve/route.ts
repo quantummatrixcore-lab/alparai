@@ -11,8 +11,7 @@ export async function POST(
   try {
     await requireModerator();
     const { id: caseId } = await params;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const dehost = createAdminClient() as any;
+    const dehost = createAdminClient();
 
     // Call atomic resolution RPC
     const { data, error } = await dehost.rpc("resolve_agora_case_rpc", {
@@ -24,7 +23,8 @@ export async function POST(
       return NextResponse.json({ error: error.message || "Failed to resolve case" }, { status: 500 });
     }
 
-    logger.info(`Agora-T Case ${caseId} resolved with verdict: ${data?.verdict}`);
+    const resolutionData = data as { verdict?: string } | null;
+    logger.info(`Agora-T Case ${caseId} resolved with verdict: ${resolutionData?.verdict}`);
     return NextResponse.json({
       success: true,
       resolution: data

@@ -18,8 +18,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Fingerprint is required for Anti-Sybil evaluation" }, { status: 400 });
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const dehost = createAdminClient() as any;
+    const dehost = createAdminClient();
 
     // Call evaluate_sybil_risk_rpc
     const { data, error } = await dehost.rpc("evaluate_sybil_risk_rpc", {

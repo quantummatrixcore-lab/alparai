@@ -46,8 +46,14 @@ export async function signInWithGoogleIdToken(token: string, nonce: string): Pro
       console.error("[signInWithGoogleIdToken] Google verification returned status:", verifyRes.status);
       return { ok: false, error: "Google ID Token verification failed" };
     }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const payload = (await verifyRes.json()) as any;
+    interface GoogleTokenPayload {
+      aud?: string;
+      sub?: string;
+      email?: string;
+      name?: string;
+      picture?: string;
+    }
+    const payload = (await verifyRes.json()) as GoogleTokenPayload;
     const envClientId = (vault.read('GOOGLE_CLIENT_ID') ?? process.env.GOOGLE_CLIENT_ID);
     const expectedClientId =
       envClientId && !envClientId.includes("SENSITIVE") && envClientId.includes(".apps.googleusercontent.com")
@@ -60,7 +66,7 @@ export async function signInWithGoogleIdToken(token: string, nonce: string): Pro
 
     const { setSessionUser } = await import("@/lib/auth/session");
     await setSessionUser({
-      id: payload.sub,
+      id: payload.sub || crypto.randomUUID(),
       email: payload.email || "",
       name: payload.name || payload.email?.split("@")[0] || "User",
       picture: payload.picture || "",
@@ -191,8 +197,7 @@ export async function signInWithDeHostToken(accessToken: string): Promise<AuthRe
             email: user.email || "",
             name: user.user_metadata?.full_name || user.user_metadata?.name || user.email?.split("@")[0] || "User",
             picture: user.user_metadata?.avatar_url || user.user_metadata?.picture || "",
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            role: (user.app_metadata?.role as any) || "user",
+            role: (user.app_metadata?.role as "user" | "moderator" | "admin" | "ceo" | "instructor") || "user",
           });
     return { ok: true };
   } catch (err) {

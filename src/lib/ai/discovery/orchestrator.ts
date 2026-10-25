@@ -8,8 +8,7 @@ export async function runOrchestrator() {
   try {
     const dehost = createAdminClient();
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: models, error } = await (dehost as any)
+    const { data: models, error } = await dehost
       .from("ai_free_models")
       .select(
         "id, name, provider, context_length, pricing_prompt, pricing_completion, is_active, last_checked_at",
@@ -79,8 +78,7 @@ export async function runOrchestrator() {
     ];
 
     for (const chain of chains) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      await (dehost as any)
+      await dehost
         .from("ai_routing_chains")
         .upsert(chain, { onConflict: "domain_name" });
     }

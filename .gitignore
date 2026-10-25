@@ -12,6 +12,7 @@ package-lock.json
 
 # Next.js & Build
 .next/
+.open-next/
 dist/
 dist-ssr/
 dist-public/
